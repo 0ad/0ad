@@ -1,9 +1,4 @@
-#if USE_GPU_SKINNING
-// Skinning requires GLSL 1.30 for ivec4 vertex attributes
-#version 130
-#else
 #version 120
-#endif
 
 uniform mat4 transform;
 uniform vec3 cameraPos;
@@ -60,7 +55,7 @@ attribute vec2 a_uv1;
   const int MAX_INFLUENCES = 4;
   const int MAX_BONES = 64;
   uniform mat4 skinBlendMatrices[MAX_BONES];
-  attribute ivec4 a_skinJoints;
+  attribute vec4 a_skinJoints;
   attribute vec4 a_skinWeights;
 #endif
 
@@ -78,7 +73,7 @@ void main()
     vec3 p = vec3(0.0);
     vec3 n = vec3(0.0);
     for (int i = 0; i < MAX_INFLUENCES; ++i) {
-      int joint = a_skinJoints[i];
+      int joint = int(a_skinJoints[i]);
       if (joint != 0xff) {
         mat4 m = skinBlendMatrices[joint];
         p += vec3(m * vec4(a_vertex, 1.0)) * a_skinWeights[i];

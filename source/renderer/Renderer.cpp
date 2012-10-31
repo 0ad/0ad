@@ -69,6 +69,7 @@
 #include "renderer/VertexBufferManager.h"
 #include "renderer/WaterManager.h"
 
+extern bool g_GameRestarted;
 
 ///////////////////////////////////////////////////////////////////////////////////
 // CRendererStatsTable - Profile display of rendering stats
@@ -429,6 +430,7 @@ CRenderer::CRenderer()
 	m_Options.m_NoVBO = false;
 	m_Options.m_RenderPath = RP_DEFAULT;
 	m_Options.m_FancyWater = false;
+	m_Options.m_SuperFancyWater = false;
 	m_Options.m_Shadows = false;
 	m_Options.m_ShadowAlphaFix = true;
 	m_Options.m_ARBProgramShadow = true;
@@ -468,6 +470,7 @@ CRenderer::CRenderer()
 	m_Stats.Reset();
 	AddLocalProperty(L"particles", &m_Options.m_Particles, false);
 	AddLocalProperty(L"fancyWater", &m_Options.m_FancyWater, false);
+	AddLocalProperty(L"superFancyWater", &m_Options.m_SuperFancyWater, false);
 	AddLocalProperty(L"horizonHeight", &m->skyManager.m_HorizonHeight, false);
 	AddLocalProperty(L"waterMurkiness", &m->waterManager.m_Murkiness, false);
 	AddLocalProperty(L"waterReflTintStrength", &m->waterManager.m_ReflectionTintStrength, false);
@@ -682,6 +685,9 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_FANCYWATER:
 			m_Options.m_FancyWater = value;
 			break;
+		case OPT_SUPERFANCYWATER:
+			m_Options.m_SuperFancyWater = value;
+			break;
 		case OPT_SHADOWPCF:
 			m_Options.m_ShadowPCF = value;
 			MakeShadersDirty();
@@ -712,6 +718,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_Shadows;
 		case OPT_FANCYWATER:
 			return m_Options.m_FancyWater;
+		case OPT_SUPERFANCYWATER:
+			return m_Options.m_SuperFancyWater;
 		case OPT_SHADOWPCF:
 			return m_Options.m_ShadowPCF;
 		case OPT_PARTICLES:
@@ -806,6 +814,10 @@ void CRenderer::BeginFrame()
 
 	if (m->ShadersDirty)
 		ReloadShaders();
+	
+	// this is ugly, I should do otherwise
+	if (g_GameRestarted)
+		m_WaterManager->m_NeedsReloading = true; 
 
 	m->Model.ModShader->SetShadowMap(&m->shadow);
 	m->Model.ModShader->SetLightEnv(m_LightEnv);
@@ -1481,7 +1493,7 @@ void CRenderer::RenderSubmissions()
 		RenderTransparentModels(context, TRANSPARENT_OPAQUE);
 		ogl_WarnIfError();
 
-		m->terrainRenderer.RenderWater();
+		m->terrainRenderer.RenderWater(context, &m->shadow);
 		ogl_WarnIfError();
 
 		// render transparent stuff again, but only the blended parts that overlap water

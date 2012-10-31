@@ -39,6 +39,7 @@ CStr g_PlayerName = "";
 bool g_Shadows = false;
 bool g_ShadowPCF = false;
 bool g_FancyWater = false;
+bool g_SuperFancyWater = false;
 bool g_Particles = false;
 bool g_Silhouettes = false;
 bool g_ShowSky = false;
@@ -81,6 +82,10 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("shadows", Bool, g_Shadows);
 	CFG_GET_USER_VAL("shadowpcf", Bool, g_ShadowPCF);
 	CFG_GET_USER_VAL("fancywater", Bool, g_FancyWater);
+	CFG_GET_USER_VAL("superfancywater", Bool, g_SuperFancyWater);
+	if (g_SuperFancyWater && !g_FancyWater) {
+		g_SuperFancyWater = false;
+	}
 	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);
 	CFG_GET_USER_VAL("particles", Bool, g_Particles);
 	CFG_GET_USER_VAL("silhouettes", Bool, g_Silhouettes);

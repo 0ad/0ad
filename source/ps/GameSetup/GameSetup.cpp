@@ -575,6 +575,7 @@ static void InitRenderer()
 	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO, g_NoGLVBO);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, g_Shadows);
 	g_Renderer.SetOptionBool(CRenderer::OPT_FANCYWATER, g_FancyWater);
+	g_Renderer.SetOptionBool(CRenderer::OPT_SUPERFANCYWATER, (g_SuperFancyWater && g_FancyWater) );
 	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(g_RenderPath));
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWPCF, g_ShadowPCF);
 	g_Renderer.SetOptionBool(CRenderer::OPT_PARTICLES, g_Particles);

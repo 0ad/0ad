@@ -123,8 +123,10 @@ void SetDisableShadowPCF(void* UNUSED(cbdata), bool disabled)
 
 void SetDisableFancyWater(void* UNUSED(cbdata), bool disabled)
 {
-	if (!IsOverridden("fancywater"))
+	if (!IsOverridden("fancywater")) {
 		g_FancyWater = !disabled;
+		g_SuperFancyWater = !disabled;
+	}
 }
 
 void SetRenderPath(void* UNUSED(cbdata), std::string renderpath)
