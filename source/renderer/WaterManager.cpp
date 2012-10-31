@@ -399,7 +399,7 @@ void WaterManager::CreateSuperfancyInfo()
 				}
 				
 			}
-			distanceToShore = sqrt(distanceToShore);
+			distanceToShore = sqrt((float)distanceToShore);
 			// Compute the normals
 			// Also create the waves quad.
 			CVector3D normal;
