@@ -81,6 +81,7 @@ public:
 		OPT_NOVBO,
 		OPT_SHADOWS,
 		OPT_FANCYWATER,
+		OPT_SUPERFANCYWATER,
 		OPT_SHADOWPCF,
 		OPT_PARTICLES,
 		OPT_SILHOUETTES,
@@ -124,6 +125,7 @@ public:
 		bool m_NoVBO;
 		bool m_Shadows;
 		bool m_FancyWater;
+		bool m_SuperFancyWater;
 		RenderPath m_RenderPath;
 		bool m_ShadowAlphaFix;
 		bool m_ARBProgramShadow;

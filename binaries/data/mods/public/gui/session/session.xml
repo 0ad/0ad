@@ -298,76 +298,83 @@
 	<!-- ================================  ================================ -->
 	<!-- Settings Window -->
 	<!-- ================================  ================================ -->
-	<object name="settingsDialogPanel"
-		style="StoneDialog"
-		type="image"
-		size="50%-180 50%-200 50%+180 50%+100"
-		hidden="true"
-	>
-	    <object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Settings</object>
-
-	    <object style="TranslucentPanelThinBorder"
-		    type="image"
-		    size="32 32 100%-32 100%-70"
-	    >
-		<!-- Settings / shadows -->
-		<object size="0 10 100%-80 35" type="text" style="RightLabelText" ghost="true">Enable Shadows</object>
-		<object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="StoneCrossBox" checked="true">
-		    <action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
-		    <action on="Press">renderer.shadows = this.checked;</action>
+		<object name="settingsDialogPanel"
+			style="StoneDialog"
+			type="image"
+			size="50%-180 50%-200 50%+180 50%+125"
+			hidden="true"
+			>
+			<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Settings</object>
+			
+			<object style="TranslucentPanelThinBorder"
+				type="image"
+				size="32 32 100%-32 100%-70"
+				>
+				<!-- Settings / shadows -->
+				<object size="0 10 100%-80 35" type="text" style="RightLabelText" ghost="true">Enable Shadows</object>
+				<object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="StoneCrossBox" checked="true">
+					<action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
+					<action on="Press">renderer.shadows = this.checked;</action>
+				</object>
+				
+				<!-- Settings / Shadow PCF -->
+				<object size="0 35 100%-80 60" type="text" style="RightLabelText" ghost="true">Enable Shadow Filtering</object>
+				<object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="StoneCrossBox" checked="true">
+					<action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
+					<action on="Press">renderer.shadowPCF = this.checked;</action>
+				</object>
+				
+				<!-- Settings / Water -->
+				<object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Enable Water Reflections</object>
+				<object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="StoneCrossBox" checked="true">
+					<action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
+					<action on="Press">renderer.fancyWater = this.checked; </action>
+				</object>
+				
+				<!-- Settings / Advanced Water -->
+				<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Advanced Water</object>
+				<object name="superFancyWaterCheckbox" size="100%-56 90 100%-30 115"  type="checkbox" style="StoneCrossBox" checked="true">
+					<action on="Load">if (renderer.superFancyWater)  { if (renderer.fancyWater) this.checked = true; else this.checked = false; }</action>
+					<action on="Press">renderer.superFancyWater = this.checked; </action>
+				</object>
+				
+				<!-- Settings / Particles -->
+				<object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Enable Particles</object>
+				<object name="particlesCheckbox" size="100%-56 115 100%-30 140" type="checkbox" style="StoneCrossBox" checked="true">
+					<action on="Load">if (renderer.particles) this.checked = true; else this.checked = false;</action>
+					<action on="Press">renderer.particles = this.checked;</action>
+				</object>
+				
+				<!-- Settings / Unit Silhouettes -->
+				<object size="0 135 100%-80 160" type="text" style="RightLabelText" ghost="true">Enable Unit Silhouettes</object>
+				<object name="silhouettesCheckbox" size="100%-56 140 100%-30 165" type="checkbox" style="StoneCrossBox" checked="true">
+					<action on="Load">if (renderer.silhouettes) this.checked = true; else this.checked = false;</action>
+					<action on="Press">renderer.silhouettes = this.checked;</action>
+				</object>
+				
+				<!-- Settings / Music-->
+				<object size="0 160 100%-80 185" type="text" style="RightLabelText" ghost="true">Enable Music</object>
+				<object size="100%-56 165 100%-30 190" type="checkbox" style="StoneCrossBox" checked="true">
+					<action on="Press">if (this.checked) global.music.start(); else global.music.stop();</action>
+				</object>
+				
+				<!-- Settings / Dev Overlay -->
+				<object size="0 185 100%-80 210" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
+				<object size="100%-56 190 100%-30 215" type="checkbox" style="StoneCrossBox" checked="false">
+					<action on="Press">toggleDeveloperOverlay();</action>
+				</object>
+			</object>
+			
+			<!-- Close button -->
+			<object type="button"
+				style="StoneButton"
+				size="50%-64 100%-52 50%+64 100%-24"
+				tooltip_style="sessionToolTip"
+				>
+				Close
+				<action on="Press">closeSettings(true);</action>
+			</object>
 		</object>
-
-		<!-- Settings / Shadow PCF -->
-		<object size="0 35 100%-80 60" type="text" style="RightLabelText" ghost="true">Enable Shadow Filtering</object>
-		<object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="StoneCrossBox" checked="true">
-		    <action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
-		    <action on="Press">renderer.shadowPCF = this.checked;</action>
-		</object>
-
-		<!-- Settings / Water -->
-		<object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Enable Water Reflections</object>
-		<object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="StoneCrossBox" checked="true">
-		    <action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
-		    <action on="Press">renderer.fancyWater = this.checked;</action>
-		</object>
-
-		<!-- Settings / Particles -->
-		<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Particles</object>
-		<object name="particlesCheckbox" size="100%-56 90 100%-30 115" type="checkbox" style="StoneCrossBox" checked="true">
-		    <action on="Load">if (renderer.particles) this.checked = true; else this.checked = false;</action>
-		    <action on="Press">renderer.particles = this.checked;</action>
-		</object>
-
-		<!-- Settings / Unit Silhouettes -->
-		<object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Enable Unit Silhouettes</object>
-		<object name="silhouettesCheckbox" size="100%-56 115 100%-30 140" type="checkbox" style="StoneCrossBox" checked="true">
-		    <action on="Load">if (renderer.silhouettes) this.checked = true; else this.checked = false;</action>
-		    <action on="Press">renderer.silhouettes = this.checked;</action>
-		</object>
-
-		<!-- Settings / Music-->
-		<object size="0 135 100%-80 160" type="text" style="RightLabelText" ghost="true">Enable Music</object>
-		<object size="100%-56 140 100%-30 165" type="checkbox" style="StoneCrossBox" checked="true">
-		    <action on="Press">if (this.checked) global.music.start(); else global.music.stop();</action>
-		</object>
-
-		<!-- Settings / Dev Overlay -->
-		<object size="0 160 100%-80 185" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
-		<object size="100%-56 165 100%-30 190" type="checkbox" style="StoneCrossBox" checked="false">
-		    <action on="Press">toggleDeveloperOverlay();</action>
-		</object>
-	    </object>
-
-	    <!-- Close button -->
-	    <object type="button"
-		    style="StoneButton"
-		    size="50%-64 100%-52 50%+64 100%-24"
-		    tooltip_style="sessionToolTip"
-	    >
-		Close
-		<action on="Press">closeSettings(true);</action>
-	    </object>
-	</object>
 
 	<!-- ================================  ================================ -->
 	<!-- Top Panel  -->

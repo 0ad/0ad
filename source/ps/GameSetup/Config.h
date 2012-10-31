@@ -51,6 +51,8 @@ extern CStr g_PlayerName;
 extern bool g_Shadows;
 // flag to switch on reflective/refractive water
 extern bool g_FancyWater;
+// flag to switch on foam, normal interpolation, shadows on water
+extern bool g_SuperFancyWater;
 // flag to switch on shadow PCF
 extern bool g_ShadowPCF;
 // flag to switch on particles rendering
