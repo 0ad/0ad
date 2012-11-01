@@ -614,10 +614,13 @@ if (rt !== 3)
 setSkySet("stormy");
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
-setWaterTint(0.447, 0.412, 0.322);				// muddy brown
-setWaterReflectionTint(0.447, 0.412, 0.322);	// muddy brown
-setWaterMurkiness(1.0);
-setWaterReflectionTintStrength(0.677);
+
+setWaterColour(0.035,0.098,0.314);
+setWaterTint(0.259,0,49,0.808);
+setWaterReflectionTint(0.255, 0.361, 0.651);
+setWaterWaviness(3.0);
+setWaterMurkiness(0.88);
+setWaterReflectionTintStrength(0.05);
 
 // Export map data
 

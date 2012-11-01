@@ -364,11 +364,12 @@ createObjectGroups(group, 0,
 // Set environment
 setSkySet("sunny");
 setSunColour(0.746, 0.718, 0.539);	
-setWaterColour(0.292, 0.347, 0.691);		
-setWaterTint(0.550, 0.543, 0.437);				
-setWaterReflectionTint(0.562, 0.511, 0.425);	
-setWaterMurkiness(0.83);
-setWaterReflectionTintStrength(0.377);
+setWaterColour(0, 0.227, 0.843);
+setWaterTint(0, 0.545, 0.859);
+setWaterReflectionTint(1, 1, 1);
+setWaterWaviness(1);
+setWaterMurkiness(0.5);
+setWaterReflectionTintStrength(0.0);
 
 // Export map data
 ExportMap();

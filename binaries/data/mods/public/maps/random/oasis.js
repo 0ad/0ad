@@ -440,13 +440,12 @@ setSkySet("sunny");
 setSunColour(0.914,0.827,0.639);
 setSunRotation(PI/3);
 setSunElevation(0.5);
-setWaterTint(0.411765,0.466667,0.3);				// muddy brown
-setWaterReflectionTint(0.55, 0.4, 0.55);	// muddy brown
-setWaterMurkiness(2.0);
-setWaterShininess(1.46484);
-setWaterWaviness(0);
-setWaterColour(0.294118,0.34902,0.694118);
-setWaterReflectionTintStrength(0.25);
+setWaterColour(0, 0.227, 0.843);
+setWaterTint(0, 0.545, 0.859);
+setWaterReflectionTint(1, 1, 1);
+setWaterWaviness(1);
+setWaterMurkiness(0.5);
+setWaterReflectionTintStrength(0.0);
 setTerrainAmbientColour(0.45, 0.5, 0.6);
 setUnitsAmbientColour(0.501961, 0.501961, 0.501961);
 
