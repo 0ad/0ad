@@ -550,10 +550,12 @@ setSkySet("sunny");
 }
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
-setWaterTint(0.447, 0.412, 0.322);				// muddy brown
-setWaterReflectionTint(0.447, 0.412, 0.322);	// muddy brown
-setWaterMurkiness(1.0);
-setWaterReflectionTintStrength(0.677);
+setWaterColour(0.0, 0.047, 0.286);				// dark majestic blue
+setWaterTint(0.471, 0.776, 0.863);				// light blue
+setWaterReflectionTint(0.0, 0.047, 0.286);
+setWaterMurkiness(0.82);
+setWaterWaviness(2);
+setWaterReflectionTintStrength(0.15);
 
 // Export map data
 

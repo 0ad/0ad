@@ -777,10 +777,6 @@ createObjectGroups(group, 0, [avoidClasses(clFood, 15), stayClasses(clWater, 6)]
 
 setSunElevation(randFloat(PI/5, PI / 3));
 setSunRotation(randFloat(0, TWO_PI));
-setWaterTint(0.1, 0.1, 0.3);				// muddy brown
-setWaterReflectionTint(0.2, 0.2, 0.5);	// muddy brown
-setWaterMurkiness(0.8);
-setWaterReflectionTintStrength(0.3);
 
 //var rt = randInt(1,6);
 //if (rt==1){
@@ -796,8 +792,12 @@ setWaterReflectionTintStrength(0.3);
 	setSunColour(0.73,0.73,0.65);
 	setTerrainAmbientColour(0.45,0.45,0.50);
 	setUnitsAmbientColour(0.4,0.4,0.4);
-	setWaterTint(0.15, 0.15, 0.3);				// muddy brown
-	setWaterReflectionTintStrength(0.15);
+	setWaterColour(0.114, 0.192, 0.463);
+	setWaterTint(0.255, 0.361, 0.651);
+	setWaterReflectionTint(0.255, 0.361, 0.651);
+	setWaterWaviness(5.5);
+	setWaterMurkiness(0.83);
+	setWaterReflectionTintStrength(0.05);
 //}
 
 // Export map data

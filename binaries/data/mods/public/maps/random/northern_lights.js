@@ -408,5 +408,13 @@ createObjectGroups(group, 0,
 
 setSunColour(0.6, 0.6, 0.6);	
 setSunElevation(PI/ 6);
+
+setWaterColour(0.0, 0.047, 0.286);				// dark majestic blue
+setWaterTint(0.471, 0.776, 0.863);				// light blue
+setWaterReflectionTint(0.0, 0.047, 0.286);
+setWaterMurkiness(0.82);
+setWaterWaviness(3);
+setWaterReflectionTintStrength(0.15);
+
 setSkySet("fog");
 ExportMap();

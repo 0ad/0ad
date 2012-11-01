@@ -491,7 +491,11 @@ for (var i = 0; i < types.length; ++i)
 // Set environment
 setSkySet("sunny");
 setSunColour(0.917, 0.828, 0.734);
-setWaterColour(0.292, 0.347, 0.691);
-
+setWaterColour(0.263,0.314,0.631);
+setWaterTint(0.133, 0.725,0.855);
+setWaterReflectionTint(0.31,0.769,0.894);
+setWaterWaviness(3);
+setWaterMurkiness(0.8);
+setWaterReflectionTintStrength(0.1);
 // Export map data
 ExportMap();

@@ -506,9 +506,11 @@ createObjectGroups(group, 0,
 
 // Set environment
 setSkySet("cirrus");
+setWaterColour(0.447, 0.412, 0.322);			// muddy brown
 setWaterTint(0.447, 0.412, 0.322);				// muddy brown
 setWaterReflectionTint(0.447, 0.412, 0.322);	// muddy brown
 setWaterMurkiness(1.0);
+setWaterWaviness(2.0);
 setWaterReflectionTintStrength(0.677);
 
 // Export map data

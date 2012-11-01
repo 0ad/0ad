@@ -285,9 +285,9 @@ void WaterManager::CreateSuperfancyInfo()
 			
 			int landTexel = 0;
 			int waterTexel = 0;
-			CVector3D avnormal (0.0,0.0,0.0);
-			CVector2D landPosition(0.0,0.0);
-			CVector2D waterPosition(0.0,0.0);
+			CVector3D avnormal (0.0f,0.0f,0.0f);
+			CVector2D landPosition(0.0f,0.0f);
+			CVector2D waterPosition(0.0f,0.0f);
 			for (int xx = 0; xx < size; ++xx)
 			{
 				for (int yy = 0; yy < size; ++yy)
@@ -302,33 +302,33 @@ void WaterManager::CreateSuperfancyInfo()
 						waterPosition += CVector2D(i*size+xx,j*size+yy);
 						waterTexel++;
 					}
-					avnormal += terrain->CalcExactNormal( (i*size+xx)*4.0,(j*size+yy)*4.0);;
+					avnormal += terrain->CalcExactNormal( (i*size+xx)*4.0f,(j*size+yy)*4.0f);
 				}
 			}
 			landPosition /= landTexel;
 			waterPosition /= waterTexel;
 			
-			avnormal[1] = 1.0;
+			avnormal[1] = 1.0f;
 			avnormal.Normalize();
-			avnormal[1] = 0.0;
+			avnormal[1] = 0.0f;
 			
 			if (landTexel < size/2)
 				continue;
 			// this should help ensure that the shore is pretty flat.
-			if (avnormal.Length() <= 0.2)
+			if (avnormal.Length() <= 0.2f)
 				continue;
 			
 			// To get the best position for squares, I start at the mean "ocean" position
 			// And step by step go to the mean "land" position. I keep the position where I change from water to land.
 			// If this never happens, the square is scrapped.
-			if (terrain->GetExactGroundLevel(waterPosition.X*4,waterPosition.Y*4) > this->m_WaterHeight)
+			if (terrain->GetExactGroundLevel(waterPosition.X*4.0f,waterPosition.Y*4.0f) > this->m_WaterHeight)
 				continue;
 			
 			CVector2D squarePos(-1,-1);
 			for (u8 i = 0; i < 40; i++)
 			{
-				squarePos = landPosition * (i/40.0) + waterPosition * (1.0-(i/40.0));
-				if (terrain->GetExactGroundLevel(squarePos.X*4,squarePos.Y*4) > this->m_WaterHeight)
+				squarePos = landPosition * (i/40.0f) + waterPosition * (1.0f-(i/40.0f));
+				if (terrain->GetExactGroundLevel(squarePos.X*4.0f,squarePos.Y*4.0f) > this->m_WaterHeight)
 					break;
 			}
 			if (squarePos.X == -1)
@@ -376,9 +376,9 @@ void WaterManager::CreateSuperfancyInfo()
 					}
 				}
 				// finer check
-				for (float xx = -2.5; xx <= 2.5; ++xx)
+				for (float xx = -2.5f; xx <= 2.5f; ++xx)
 				{
-					for (float yy = -2.5; yy <= 2.5; ++yy)
+					for (float yy = -2.5f; yy <= 2.5f; ++yy)
 					{
 						float hereDepth = this->m_WaterHeight - terrain->GetExactGroundLevel( (i+xx)*4, (j+yy)*4 );
 						if (hereDepth < 0 && xx*xx + yy*yy < distanceToShore)
@@ -388,9 +388,9 @@ void WaterManager::CreateSuperfancyInfo()
 			}
 			else
 			{
-				for (float xx = -2.0; xx <= 2.0; xx+=0.5)
+				for (float xx = -2.0f; xx <= 2.0f; xx+=0.5f)
 				{
-					for (float yy = -2.0; yy <= 2.0; yy+=0.5)
+					for (float yy = -2.0f; yy <= 2.0f; yy+=0.5f)
 					{
 						float hereDepth = this->m_WaterHeight - terrain->GetExactGroundLevel( (i+xx)*4, (j+yy)*4 );
 						if (hereDepth > 0)
@@ -399,7 +399,7 @@ void WaterManager::CreateSuperfancyInfo()
 				}
 				
 			}
-			distanceToShore = sqrt(distanceToShore);
+			distanceToShore = (int)sqrt((float)distanceToShore);
 			// Compute the normals
 			// Also create the waves quad.
 			CVector3D normal;
@@ -409,13 +409,13 @@ void WaterManager::CreateSuperfancyInfo()
 			{
 				for (int yy = -4; yy <= 4; ++yy)
 				{
-					normal += terrain->CalcExactNormal((i+xx)*4,(j+yy)*4);
+					normal += terrain->CalcExactNormal(((float)i+xx)*4.0f,((float)j+yy)*4.0f);
 					if (terrain->GetVertexGroundLevel(i+xx,j+yy) < heightmap[j*mapSize + i]*HEIGHT_SCALE)
 						waterRaise += heightmap[j*mapSize + i]*HEIGHT_SCALE - terrain->GetVertexGroundLevel(i+xx,j+yy);
 				}
 			}
 			waterRaise = waterRaise > 255 ? 255 : waterRaise; // gives a very good result, actually.
-			normal *= 1.0/81.0;
+			normal *= 1.0f/81.0f;
 			normal[1] = 0.1;	// acts as an anti distorter
 			normal = normal.Normalized();
 			
@@ -429,10 +429,10 @@ void WaterManager::CreateSuperfancyInfo()
 			float wvness = this->m_Waviness;
 			
 			// computing the amount of foam I want
-			float foamAmount = (waterRaise/255.0) * (1.0 - depth/10.0) * (waveForceHQ[j*mapSize+i]/255.0) * (wvness/8.0);
-			foamAmount += clamp(wvness/2.0f - distanceToShore,0.0f,wvness/2.0f)/(wvness/2.0) * clamp(wvness/9.0f,0.3f,1.0f);
+			float foamAmount = (waterRaise/255.0f) * (1.0f - depth/10.0f) * (waveForceHQ[j*mapSize+i]/255.0f) * (wvness/8.0f);
+			foamAmount += clamp(wvness/2.0f - distanceToShore,0.0f,wvness/2.0f)/(wvness/2.0f) * clamp(wvness/9.0f,0.3f,1.0f);
 			
-			foamAmount = foamAmount > 1.0 ? 1.0: foamAmount;
+			foamAmount = foamAmount > 1.0f ? 1.0f: foamAmount;
 			
 			otherInfo[j*texSize + i] = (waveForceHQ[j*mapSize+i] << 24) + ((u8)(foamAmount*255) << 16) + (0x00 << 8) + (0x00 << 0);
 		}
@@ -469,15 +469,15 @@ void WaterManager::CreateSuperfancyInfo()
 	{
 		CVector2D pos(waveSquares[i]);
 		
-		CVector3D avgnorm(0.0,0.0,0.0);
+		CVector3D avgnorm(0.0f,0.0f,0.0f);
 		for (int xx = -size/2; xx < size/2; ++xx)
 		{
 			for (int yy = -size/2; yy < size/2; ++yy)
 			{
-				avgnorm += terrain->CalcExactNormal((pos.X+xx)*4,(pos.Y+yy)*4);
+				avgnorm += terrain->CalcExactNormal((pos.X+xx)*4.0f,(pos.Y+yy)*4.0f);
 			}
 		}
-		avgnorm[1] = 0.1;
+		avgnorm[1] = 0.1f;
 		// okay crank out a square.
 		// we have the direction of the square. We'll get the perpendicular vector too
 		CVector2D perp(-avgnorm[2],avgnorm[0]);
@@ -485,27 +485,27 @@ void WaterManager::CreateSuperfancyInfo()
 		avgnorm = avgnorm.Normalized();
 		
 		SWavesVertex vertex[4];
-		vertex[0].m_Position = CVector3D(pos.X + perp.X*(size/2.2) - avgnorm[0]*1, 0.0,pos.Y + perp.Y*(size/2.2) - avgnorm[2]*1);
-		vertex[0].m_Position *= 4.0;
-		vertex[0].m_Position.Y = this->m_WaterHeight + 1.0;
+		vertex[0].m_Position = CVector3D(pos.X + perp.X*(size/2.2f) - avgnorm[0]*1.0f, 0.0f,pos.Y + perp.Y*(size/2.2f) - avgnorm[2]*1.0f);
+		vertex[0].m_Position *= 4.0f;
+		vertex[0].m_Position.Y = this->m_WaterHeight + 1.0f;
 		vertex[0].m_UV[1] = 1;
 		vertex[0].m_UV[0] = 0;
 		
-		vertex[1].m_Position = CVector3D(pos.X - perp.X*(size/2.2) - avgnorm[0]*1, 0.0,pos.Y - perp.Y*(size/2.2) - avgnorm[2]*1);
-		vertex[1].m_Position *= 4.0;
-		vertex[1].m_Position.Y = this->m_WaterHeight + 1.0;
+		vertex[1].m_Position = CVector3D(pos.X - perp.X*(size/2.2f) - avgnorm[0]*1, 0.0f,pos.Y - perp.Y*(size/2.2f) - avgnorm[2]*1.0f);
+		vertex[1].m_Position *= 4.0f;
+		vertex[1].m_Position.Y = this->m_WaterHeight + 1.0f;
 		vertex[1].m_UV[1] = 1;
 		vertex[1].m_UV[0] = 1;
 		
-		vertex[3].m_Position = CVector3D(pos.X + perp.X*(size/2.2) + avgnorm[0]*(size/1.5), 0.0,pos.Y + perp.Y*(size/2.2) + avgnorm[2]*(size/1.5));
-		vertex[3].m_Position *= 4.0;
-		vertex[3].m_Position.Y = this->m_WaterHeight + 1.0;
+		vertex[3].m_Position = CVector3D(pos.X + perp.X*(size/2.2f) + avgnorm[0]*(size/1.5f), 0.0f,pos.Y + perp.Y*(size/2.2f) + avgnorm[2]*(size/1.5f));
+		vertex[3].m_Position *= 4.0f;
+		vertex[3].m_Position.Y = this->m_WaterHeight + 1.0f;
 		vertex[3].m_UV[1] = 0;
 		vertex[3].m_UV[0] = 0;
 		
-		vertex[2].m_Position = CVector3D(pos.X - perp.X*(size/2.2) + avgnorm[0]*(size/1.5), 0.0,pos.Y - perp.Y*(size/2.2) + avgnorm[2]*(size/1.5));
-		vertex[2].m_Position *= 4.0;
-		vertex[2].m_Position.Y = this->m_WaterHeight + 1.0;
+		vertex[2].m_Position = CVector3D(pos.X - perp.X*(size/2.2f) + avgnorm[0]*(size/1.5f), 0.0,pos.Y - perp.Y*(size/2.2f) + avgnorm[2]*(size/1.5f));
+		vertex[2].m_Position *= 4.0f;
+		vertex[2].m_Position.Y = this->m_WaterHeight + 1.0f;
 		vertex[2].m_UV[1] = 0;
 		vertex[2].m_UV[0] = 1;
 		

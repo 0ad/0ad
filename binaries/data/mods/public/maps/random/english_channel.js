@@ -614,10 +614,12 @@ createObjectGroups(group, 0,
 
 // Set environment
 setSkySet("cirrus");
-setWaterTint(0.412, 0.412, 0.312);				
-setWaterReflectionTint(0.447, 0.402, 0.322);	
-setWaterMurkiness(1.0);
-setWaterReflectionTintStrength(0.677);
+setWaterColour(0.114, 0.192, 0.463);
+setWaterTint(0.255, 0.361, 0.651);
+setWaterReflectionTint(0.255, 0.361, 0.651);
+setWaterWaviness(5.5);
+setWaterMurkiness(0.83);
+setWaterReflectionTintStrength(0.05);
 
 // Export map data
 ExportMap();
