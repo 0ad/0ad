@@ -22,6 +22,7 @@
 #include "graphics/ParticleEmitterType.h"
 #include "graphics/ParticleManager.h"
 #include "graphics/TextureManager.h"
+#include "graphics/LightEnv.h"
 
 #include "renderer/Renderer.h"
 
@@ -165,6 +166,8 @@ void CParticleEmitter::UpdateArrayData()
 void CParticleEmitter::Bind(const CShaderProgramPtr& shader)
 {
 	shader->BindTexture("baseTex", m_Type->m_Texture);
+	shader->Uniform("fogColor", g_Renderer.GetLightEnv().m_FogColor);
+	shader->Uniform("fogParams", g_Renderer.GetLightEnv().m_FogFactor, g_Renderer.GetLightEnv().m_FogMax, 0.f, 0.f);
 	pglBlendEquationEXT(m_Type->m_BlendEquation);
 	glBlendFunc(m_Type->m_BlendFuncSrc, m_Type->m_BlendFuncDst);
 }
