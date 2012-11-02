@@ -253,8 +253,7 @@
 		<object name="diplomacyHeader" size="32 32 100%-32 64">
 			<object name="diplomacyHeaderName" size="0 0 150 100%" type="text" style="chatPanel" ghost="true" caption="Name"/>
 			<object name="diplomacyHeaderCiv" size="150 0 250 100%" type="text" style="chatPanel" ghost="true" caption="Civilization"/>
-			<object name="diplomacyHeaderTheirs" size="250 0 310 100%" type="text" style="chatPanel" ghost="true" caption="Theirs"/>
-			<object name="diplomacyHeaderTeam" size="310 0 360 100%" type="text" style="chatPanel" ghost="true" caption="Team"/>
+			<object name="diplomacyHeaderTeam" size="250 0 310 100%" type="text" style="chatPanel" ghost="true" caption="Team"/>
 			<object name="diplomacyHeaderAlly" size="100%-180 0 100%-160 100%" type="text" style="chatPanel" caption="A" tooltip="Ally" tooltip_style="sessionToolTipBold"/>
 			<object name="diplomacyHeaderNeutral" size="100%-160 0 100%-140 100%" type="text" style="chatPanel" caption="N" tooltip="Neutral" tooltip_style="sessionToolTipBold"/>
 			<object name="diplomacyHeaderEnemy" size="100%-140 0 100%-120 100%" type="text" style="chatPanel" caption="E" tooltip="Enemy" tooltip_style="sessionToolTipBold"/>
@@ -266,13 +265,13 @@
 				<object name="diplomacyPlayer[n]" size="0 0 100% 20" type="image" hidden="false">
 					<object name="diplomacyPlayerName[n]" size="0 0 150 100%" type="text" style="chatPanel" ghost="true"/>
 					<object name="diplomacyPlayerCiv[n]" size="150 0 250 100%" type="text" style="chatPanel" ghost="true"/>
-					<object name="diplomacyPlayerTheirs[n]" size="250 0 310 100%" type="text" style="chatPanel" ghost="true"/>
-					<object name="diplomacyPlayerTeam[n]" size="310 0 360 100%" type="text" style="chatPanel" ghost="true"/>
-					<!-- TODO add tooltips to those 3 ? -->
+					<object name="diplomacyPlayerTeam[n]" size="250 0 310 100%" type="text" style="chatPanel" ghost="true"/>
+
 					<object name="diplomacyPlayerAlly[n]" size="100%-180 0 100%-160 100%" type="button" style="StoneButton" hidden="true"/>
 					<object name="diplomacyPlayerNeutral[n]" size="100%-160 0 100%-140 100%" type="button" style="StoneButton" hidden="true"/>
 					<object name="diplomacyPlayerEnemy[n]" size="100%-140 0 100%-120 100%" type="button" style="StoneButton" hidden="true"/>
-					
+
+					<!-- Tribute -->
 					<object name="diplomacyPlayerTributeFood[n]" size="100%-110 0 100%-90 100%" type="button" style="iconButton" tooltip="Food" hidden="true">
 						<object name="diplomacyPlayerTributeFoodImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/food.png" ghost="true"/>
 					</object>
@@ -334,7 +333,7 @@
 				<!-- Settings / Advanced Water -->
 				<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Advanced Water</object>
 				<object name="superFancyWaterCheckbox" size="100%-56 90 100%-30 115"  type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.superFancyWater)  { if (renderer.fancyWater) this.checked = true; else this.checked = false; }</action>
+					<action on="Load">if (renderer.superFancyWater) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.superFancyWater = this.checked; </action>
 				</object>
 				

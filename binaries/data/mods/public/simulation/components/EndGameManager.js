@@ -97,8 +97,7 @@ EndGameManager.prototype.UpdatePlayerStates = function()
 				for (var j = 0; j < numPlayers && onlyAlliesLeft; j++)
 				{
 					if (cmpPlayers[j].GetState() == "active"
-						&& (cmpPlayers[i].IsEnemy(j+1) || cmpPlayers[j].IsEnemy(i+1)
-						    || cmpPlayers[i].IsNeutral(j+1) || cmpPlayers[j].IsNeutral(i+1)))
+						&& (cmpPlayers[i].IsEnemy(j+1) || cmpPlayers[i].IsNeutral(j+1)))
 					{	// Only need to find an active non-allied player
 						onlyAlliesLeft = false;
 					}

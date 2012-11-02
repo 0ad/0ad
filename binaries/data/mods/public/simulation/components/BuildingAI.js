@@ -38,6 +38,17 @@ BuildingAI.prototype.OnOwnershipChanged = function(msg)
 		this.SetupGaiaRangeQuery(msg.to);
 };
 
+BuildingAI.prototype.OnDiplomacyChanged = function(msg)
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (cmpOwnership && cmpOwnership.GetOwner() == msg.player)
+	{
+		// Remove maybe now allied/neutral units
+		this.targetUnits = [];
+		this.SetupRangeQuery(msg.player);
+	}
+};
+
 /**
  * Cleanup on destroy
  */
@@ -66,7 +77,10 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	if (this.enemyUnitsQuery)
+	{
 		cmpRangeManager.DestroyActiveQuery(this.enemyUnitsQuery);
+		this.enemyUnitsQuery = undefined;
+	}
 	var players = [];
 	
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);

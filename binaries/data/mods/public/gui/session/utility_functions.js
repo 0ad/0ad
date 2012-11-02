@@ -63,6 +63,8 @@ function getPlayerData(playerAssignments)
 		    "isAlly": playerState.isAlly,
 		    "isNeutral": playerState.isNeutral,
 		    "isEnemy": playerState.isEnemy,
+		    "wantAlly": playerState.wantAlly,
+		    "wantNeutral": playerState.wantNeutral,
 		    "guid": undefined, // network guid for players controlled by hosts
 		    "disconnected": false // flag for host-controlled players who have left the game
 		};
