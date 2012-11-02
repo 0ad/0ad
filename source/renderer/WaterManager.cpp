@@ -219,7 +219,7 @@ void WaterManager::CreateSuperfancyInfo()
 {
 	ssize_t mapSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 	ssize_t texSize = (GLsizei)round_up_to_pow2((size_t)mapSize);
-	CTerrain *terrain = g_Game->GetWorld()->GetTerrain();
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	
 	u32* newHeightmap = NULL;
 	newHeightmap = new u32[texSize*texSize];
@@ -491,7 +491,7 @@ void WaterManager::CreateSuperfancyInfo()
 		vertex[0].m_UV[1] = 1;
 		vertex[0].m_UV[0] = 0;
 		
-		vertex[1].m_Position = CVector3D(pos.X - perp.X*(size/2.2f) - avgnorm[0]*1, 0.0f,pos.Y - perp.Y*(size/2.2f) - avgnorm[2]*1.0f);
+		vertex[1].m_Position = CVector3D(pos.X - perp.X*(size/2.2f) - avgnorm[0]*1.0f, 0.0f,pos.Y - perp.Y*(size/2.2f) - avgnorm[2]*1.0f);
 		vertex[1].m_Position *= 4.0f;
 		vertex[1].m_Position.Y = this->m_WaterHeight + 1.0f;
 		vertex[1].m_UV[1] = 1;
@@ -503,7 +503,7 @@ void WaterManager::CreateSuperfancyInfo()
 		vertex[3].m_UV[1] = 0;
 		vertex[3].m_UV[0] = 0;
 		
-		vertex[2].m_Position = CVector3D(pos.X - perp.X*(size/2.2f) + avgnorm[0]*(size/1.5f), 0.0,pos.Y - perp.Y*(size/2.2f) + avgnorm[2]*(size/1.5f));
+		vertex[2].m_Position = CVector3D(pos.X - perp.X*(size/2.2f) + avgnorm[0]*(size/1.5f), 0.0f,pos.Y - perp.Y*(size/2.2f) + avgnorm[2]*(size/1.5f));
 		vertex[2].m_Position *= 4.0f;
 		vertex[2].m_Position.Y = this->m_WaterHeight + 1.0f;
 		vertex[2].m_UV[1] = 0;

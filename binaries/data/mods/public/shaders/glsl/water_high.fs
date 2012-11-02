@@ -32,6 +32,7 @@ uniform float time;
 	uniform sampler2D waveTex;
 
 	#if USE_SHADOW
+		varying vec4 v_shadow;
 		#if USE_SHADOW_SAMPLER
 			uniform sampler2DShadow shadowTex;
 			#if USE_SHADOW_PCF
@@ -46,7 +47,6 @@ uniform float time;
 
 varying vec3 worldPos;
 varying float waterDepth;
-varying vec4 v_shadow;
 
 #if USE_SUPERFANCYWATER
 float get_shadow(vec4 coords)
@@ -215,7 +215,7 @@ void main()
 	losMod = texture2D(losMap, gl_TexCoord[3].st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
 	
-	#if USE_SUPERFANCYWATER
+	#if USE_SUPERFANCYWATER && USE_SHADOW
 		float shadow = get_shadow(vec4(v_shadow.xy - 8.0*waviness*n.xz, v_shadow.zw));
 		float fresShadow = mix(fresnel, fresnel*shadow, 0.05 + (murkiness * 0.15));
 		vec3 colour = mix(refrColor*(shadow/5.0 + 0.8) + fresnel*shadow*specular, reflColor + fresnel*shadow*specular, fresShadow) + max(ndotl,0.4)*(finalFoam)*(shadow/2.0 + 0.5);
@@ -227,7 +227,7 @@ void main()
 	gl_FragColor.rgb = get_fog(colour) * losMod;
 
 	#if USE_SUPERFANCYWATER
-		gl_FragColor.a = clamp(distToShore-0.012,waterDepth2/2.0,1.0) + finalFoam.r;
+		gl_FragColor.a = clamp(distToShore-0.012,waterDepth2/2.0,1.0) + finalFoam.r * losMod;
 	#else
 		// Make alpha vary based on both depth (so it blends with the shore) and view angle (make it
 		// become opaque faster at lower view angles so we can't look "underneath" the water plane)
