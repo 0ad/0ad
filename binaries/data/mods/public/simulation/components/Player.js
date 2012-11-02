@@ -277,24 +277,48 @@ Player.prototype.SetDiplomacy = function(dipl)
 
 Player.prototype.SetDiplomacyIndex = function(idx, value)
 {
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (!cmpPlayerManager)
+		return;
+
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(idx), IID_Player);
+	if (!cmpPlayer)
+		return;
+
 	// You can have alliances with other players,
 	if (this.teamsLocked)
 	{
-		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		if (cmpPlayerManager)
+		// but can't stab your team members in the back
+		if (this.team == -1 || cmpPlayer && this.team != cmpPlayer.GetTeam())
 		{
-			var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(idx), IID_Player);
-			// but can't stab your team members in the back
-			if (this.team == -1 || cmpPlayer && this.team != cmpPlayer.GetTeam())
+			// Break alliance or declare war
+			if (Math.min(this.diplomacy[idx],cmpPlayer.diplomacy[this.playerID]) > value)
 			{
 				this.diplomacy[idx] = value;
-				Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
+				cmpPlayer.SetDiplomacyIndex(this.playerID, value);
 			}
+			else
+			{
+				this.diplomacy[idx] = value;
+			}
+			Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
 		}
 	}
 	else
 	{
-		this.diplomacy[idx] = value;
+		// Break alliance or declare war
+		if (Math.min(this.diplomacy[idx],cmpPlayer.diplomacy[this.playerID]) > value)
+		{
+			// This is duplicated because otherwise we get too much recursion
+			this.diplomacy[idx] = value;
+			// Diplomacy is mutual
+			cmpPlayer.SetDiplomacyIndex(this.playerID, value);
+		}
+		else
+		{
+			this.diplomacy[idx] = value;
+		}
+
 		Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
 	}
 };
@@ -312,11 +336,7 @@ Player.prototype.UpdateSharedLos = function()
 	var sharedLos = [];
 	for (var i = 0; i < this.diplomacy.length; ++i)
 		if (this.IsAlly(i))
-		{
-			var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
-			if (cmpPlayer && cmpPlayer.IsAlly(this.playerID))
-				sharedLos.push(i);
-		}
+			sharedLos.push(i);
 
 	cmpRangeManager.SetSharedLos(this.playerID, sharedLos);
 };
@@ -381,6 +401,23 @@ Player.prototype.SetAlly = function(id)
  */
 Player.prototype.IsAlly = function(id)
 {
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (!cmpPlayerManager)
+		return false;
+
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(id), IID_Player);
+	if (!cmpPlayer)
+		return false;
+
+	return Math.min(this.diplomacy[id],cmpPlayer.diplomacy[this.playerID]) > 0;
+};
+
+/**
+ * Check if we want to be allied with the given player.
+ * NOTE: Returns true if we are already allies.
+ */
+Player.prototype.WantAlly = function(id)
+{
 	return this.diplomacy[id] > 0;
 };
 
@@ -394,7 +431,15 @@ Player.prototype.SetEnemy = function(id)
  */
 Player.prototype.IsEnemy = function(id)
 {
-	return this.diplomacy[id] < 0;
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (!cmpPlayerManager)
+		return false;
+
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(id), IID_Player);
+	if (!cmpPlayer)
+		return false;
+
+	return Math.min(this.diplomacy[id],cmpPlayer.diplomacy[this.playerID]) < 0;
 };
 
 Player.prototype.SetNeutral = function(id)
@@ -407,7 +452,24 @@ Player.prototype.SetNeutral = function(id)
  */
 Player.prototype.IsNeutral = function(id)
 {
-	return this.diplomacy[id] == 0;
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (!cmpPlayerManager)
+		return false;
+
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(id), IID_Player);
+	if (!cmpPlayer)
+		return false;
+
+	return Math.min(this.diplomacy[id],cmpPlayer.diplomacy[this.playerID]) == 0;
+};
+
+/**
+ * Check if we want to be neutral with the given player.
+ * NOTE: Returns true if we are already neutral or above.
+ */
+Player.prototype.WantNeutral = function(id)
+{
+	return this.diplomacy[id] >= 0;
 };
 
 /**

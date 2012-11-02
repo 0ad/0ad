@@ -266,13 +266,13 @@
 				<object name="diplomacyPlayer[n]" size="0 0 100% 20" type="image" hidden="false">
 					<object name="diplomacyPlayerName[n]" size="0 0 150 100%" type="text" style="chatPanel" ghost="true"/>
 					<object name="diplomacyPlayerCiv[n]" size="150 0 250 100%" type="text" style="chatPanel" ghost="true"/>
-					<object name="diplomacyPlayerTheirs[n]" size="250 0 310 100%" type="text" style="chatPanel" ghost="true"/>
-					<object name="diplomacyPlayerTeam[n]" size="310 0 360 100%" type="text" style="chatPanel" ghost="true"/>
-					<!-- TODO add tooltips to those 3 ? -->
+					<object name="diplomacyPlayerTeam[n]" size="250 0 310 100%" type="text" style="chatPanel" ghost="true"/>
+
 					<object name="diplomacyPlayerAlly[n]" size="100%-180 0 100%-160 100%" type="button" style="StoneButton" hidden="true"/>
 					<object name="diplomacyPlayerNeutral[n]" size="100%-160 0 100%-140 100%" type="button" style="StoneButton" hidden="true"/>
 					<object name="diplomacyPlayerEnemy[n]" size="100%-140 0 100%-120 100%" type="button" style="StoneButton" hidden="true"/>
-					
+
+					<!-- Tribute -->
 					<object name="diplomacyPlayerTributeFood[n]" size="100%-110 0 100%-90 100%" type="button" style="iconButton" tooltip="Food" hidden="true">
 						<object name="diplomacyPlayerTributeFoodImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/food.png" ghost="true"/>
 					</object>
