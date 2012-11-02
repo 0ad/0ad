@@ -334,7 +334,7 @@
 				<!-- Settings / Advanced Water -->
 				<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Advanced Water</object>
 				<object name="superFancyWaterCheckbox" size="100%-56 90 100%-30 115"  type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.superFancyWater)  { if (renderer.fancyWater) this.checked = true; else this.checked = false; }</action>
+					<action on="Load">if (renderer.superFancyWater) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.superFancyWater = this.checked; </action>
 				</object>
 				
