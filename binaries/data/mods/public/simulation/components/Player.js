@@ -300,6 +300,8 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 			else
 			{
 				this.diplomacy[idx] = value;
+				if (this.diplomacy[idx] == cmpPlayer.diplomacy[this.playerID])
+					Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": idx});
 			}
 			Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
 		}
@@ -317,6 +319,8 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 		else
 		{
 			this.diplomacy[idx] = value;
+			if (this.diplomacy[idx] == cmpPlayer.diplomacy[this.playerID])
+				Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": idx});
 		}
 
 		Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});

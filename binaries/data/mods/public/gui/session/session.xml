@@ -253,8 +253,7 @@
 		<object name="diplomacyHeader" size="32 32 100%-32 64">
 			<object name="diplomacyHeaderName" size="0 0 150 100%" type="text" style="chatPanel" ghost="true" caption="Name"/>
 			<object name="diplomacyHeaderCiv" size="150 0 250 100%" type="text" style="chatPanel" ghost="true" caption="Civilization"/>
-			<object name="diplomacyHeaderTheirs" size="250 0 310 100%" type="text" style="chatPanel" ghost="true" caption="Theirs"/>
-			<object name="diplomacyHeaderTeam" size="310 0 360 100%" type="text" style="chatPanel" ghost="true" caption="Team"/>
+			<object name="diplomacyHeaderTeam" size="250 0 310 100%" type="text" style="chatPanel" ghost="true" caption="Team"/>
 			<object name="diplomacyHeaderAlly" size="100%-180 0 100%-160 100%" type="text" style="chatPanel" caption="A" tooltip="Ally" tooltip_style="sessionToolTipBold"/>
 			<object name="diplomacyHeaderNeutral" size="100%-160 0 100%-140 100%" type="text" style="chatPanel" caption="N" tooltip="Neutral" tooltip_style="sessionToolTipBold"/>
 			<object name="diplomacyHeaderEnemy" size="100%-140 0 100%-120 100%" type="text" style="chatPanel" caption="E" tooltip="Enemy" tooltip_style="sessionToolTipBold"/>
