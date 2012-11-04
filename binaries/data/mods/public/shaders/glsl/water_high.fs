@@ -4,9 +4,6 @@ uniform vec3 ambient;
 uniform vec3 sunDir;
 uniform vec3 sunColor;
 uniform vec3 cameraPos;
-uniform sampler2D normalMap;
-uniform sampler2D reflectionMap;
-uniform sampler2D refractionMap;
 uniform sampler2D losMap;
 uniform float shininess;		// Blinn-Phong specular strength
 uniform float specularStrength;	// Scaling for specular reflection (specular color is (this,this,this))
@@ -23,57 +20,64 @@ uniform vec2 fogParams;
 uniform vec2 screenSize;
 uniform float time;
 
-#if USE_SUPERFANCYWATER
-	uniform sampler2D heightmap;
-	uniform sampler2D infoTex;
-	uniform sampler2D normalMap2;
-	uniform sampler2D Foam;
-	uniform sampler2D depthTex;
-	uniform sampler2D waveTex;
-
-	#if USE_SHADOW
-		varying vec4 v_shadow;
-		#if USE_SHADOW_SAMPLER
-			uniform sampler2DShadow shadowTex;
-			#if USE_SHADOW_PCF
-				uniform vec4 shadowScale;
-			#endif
-		#else
-			uniform sampler2D shadowTex;
-		#endif
-	#endif
-#endif
-
-
 varying vec3 worldPos;
 varying float waterDepth;
 
-#if USE_SUPERFANCYWATER
-float get_shadow(vec4 coords)
-{
-	#if USE_SHADOW && !DISABLE_RECEIVE_SHADOWS
-		#if USE_SHADOW_SAMPLER
-			#if USE_SHADOW_PCF
-				vec2 offset = fract(coords.xy - 0.5);
-				vec4 size = vec4(offset + 1.0, 2.0 - offset);
-				vec4 weight = (vec4(2.0 - 1.0 / size.xy, 1.0 / size.zw - 1.0) + (coords.xy - offset).xyxy) * shadowScale.zwzw;
-				return (1.0/9.0)*dot(size.zxzx*size.wwyy,
-									 vec4(shadow2D(shadowTex, vec3(weight.zw, coords.z)).r,
-										  shadow2D(shadowTex, vec3(weight.xw, coords.z)).r,
-										  shadow2D(shadowTex, vec3(weight.zy, coords.z)).r,
-										  shadow2D(shadowTex, vec3(weight.xy, coords.z)).r));
-			#else
-				return shadow2D(shadowTex, coords.xyz).r;
-			#endif
-		#else
-			if (coords.z >= 1.0)
-				return 1.0;
-			return (coords.z <= texture2D(shadowTex, coords.xy).x ? 1.0 : 0.0);
+uniform sampler2D normalMap;
+
+#if USE_BINORMALS
+	uniform sampler2D normalMap2;
+#endif
+#if USE_REFLECTION
+	uniform sampler2D reflectionMap;
+#endif
+#if USE_REFRACTION
+	uniform sampler2D refractionMap;
+#endif
+#if USE_REAL_DEPTH
+	uniform sampler2D depthTex;
+#endif
+#if USE_FOAM || USE_WAVES
+	uniform sampler2D heightmap;
+	uniform sampler2D infoTex;
+	uniform sampler2D Foam;
+	uniform sampler2D waveTex;
+#endif
+#if USE_SHADOWS
+	varying vec4 v_shadow;
+	#if USE_SHADOW_SAMPLER
+		uniform sampler2DShadow shadowTex;
+		#if USE_SHADOW_PCF
+			uniform vec4 shadowScale;
 		#endif
 	#else
-		return 1.0;
+		uniform sampler2D shadowTex;
 	#endif
-}
+	float get_shadow(vec4 coords)
+	{
+		#if USE_SHADOWS && !DISABLE_RECEIVE_SHADOWS
+			#if USE_SHADOW_SAMPLER
+				#if USE_SHADOW_PCF
+					vec2 offset = fract(coords.xy - 0.5);
+					vec4 size = vec4(offset + 1.0, 2.0 - offset);
+					vec4 weight = (vec4(2.0 - 1.0 / size.xy, 1.0 / size.zw - 1.0) + (coords.xy - offset).xyxy) * shadowScale.zwzw;
+					return (1.0/9.0)*dot(size.zxzx*size.wwyy,
+										 vec4(shadow2D(shadowTex, vec3(weight.zw, coords.z)).r,
+											  shadow2D(shadowTex, vec3(weight.xw, coords.z)).r,
+											  shadow2D(shadowTex, vec3(weight.zy, coords.z)).r,
+											  shadow2D(shadowTex, vec3(weight.xy, coords.z)).r));
+				#else
+					return shadow2D(shadowTex, coords.xyz).r;
+				#endif
+			#else
+				if (coords.z >= 1.0)
+					return 1.0;
+				return (coords.z <= texture2D(shadowTex, coords.xy).x ? 1.0 : 0.0);
+			#endif
+		#else
+			return 1.0;
+		#endif
+	}
 #endif
 
 vec3 get_fog(vec3 color)
@@ -94,7 +98,7 @@ vec3 get_fog(vec3 color)
 
 void main()
 {
-	#if USE_SUPERFANCYWATER
+	#if USE_FOAM || USE_WAVES
 		vec4 heightmapval = texture2D(heightmap, gl_TexCoord[3].zw);
 		vec2 beachOrientation = heightmapval.rb - vec2(0.5,0.5);
 		float distToShore = heightmapval.a;
@@ -108,32 +112,39 @@ void main()
 	vec3 reflColor, refrColor, specular;
 	float losMod;
 	
+	float wavyFactor = waviness * 0.125;
+
+	// always done cause this is also used, even when not using normals, by the refraction.
 	vec3 ww = texture2D(normalMap, (gl_TexCoord[0].st) * mix(2.0,0.8,waviness/10.0) +gl_TexCoord[0].zw).xzy;
 
-	#if USE_SUPERFANCYWATER
-		vec3 ww2 = texture2D(normalMap2, (gl_TexCoord[0].st) * mix(2.0,0.8,waviness/10.0) +gl_TexCoord[0].zw).xzy;
-		ww = mix(ww, ww2, mod(time * 60.0, 8.0) / 8.0);
-		vec3 waves = texture2D(waveTex, gl_FragCoord.xy/screenSize).rbg - vec3(0.5,0.5,0.5);
-		float waveFoam = 0.0;//texture2D(waveTex, gl_FragCoord.xy/screenSize).a;
-		n = normalize(mix(waves, ww - vec3(0.5, 0.5, 0.5) , clamp(distToShore*3.0,0.4,1.0)));
+	#if USE_NORMALS
+		#if USE_BINORMALS
+			vec3 ww2 = texture2D(normalMap2, (gl_TexCoord[0].st) * mix(2.0,0.8,waviness/10.0) +gl_TexCoord[0].zw).xzy;
+			ww = mix(ww, ww2, mod(time * 60.0, 8.0) / 8.0);
+		#endif
+	
+		#if USE_WAVES
+			vec3 waves = texture2D(waveTex, gl_FragCoord.xy/screenSize).rbg - vec3(0.5,0.5,0.5);
+			float waveFoam = 0.0;//texture2D(waveTex, gl_FragCoord.xy/screenSize).a;
+			n = normalize(mix(waves, ww - vec3(0.5, 0.5, 0.5) , clamp(distToShore*3.0,0.4,1.0)));
+		#else
+			n = normalize(ww - vec3(0.5, 0.5, 0.5));
+		#endif
+		n = mix(vec3(0.0,1.0,0.0),n,wavyFactor);
 	#else
-		n = normalize(ww - vec3(0.5, 0.5, 0.5));
+		n = vec3(0.0,1.0,0.0);
 	#endif
-	
-	float wavyFactor = waviness * 0.125;
-	
-	n = mix(vec3(0.0,1.0,0.0),n,wavyFactor);
 	
 	l = -sunDir;
 	v = normalize(cameraPos - worldPos);
 	h = normalize(l + v);
 	
-	ndotl = (dot(n, l) + 1.0) /2.0;
+	ndotl = (dot(n, l) + 1.0)/2.0;
 	ndoth = dot(n, h);
 	ndotv = dot(n, v);
 	
 	
-	#if USE_SUPERFANCYWATER
+	#if USE_REAL_DEPTH
 		// Don't change these two. They should match the values in the config (TODO: dec uniforms).
 		float zNear = 2.0;
 		float zFar = 4096.0;
@@ -165,9 +176,9 @@ void main()
 		float distoFactor = clamp(waterDepth2/10.0,0.0,7.0);
 	#endif
   	
-	fresnel = pow(1.0 - ndotv, 1.3333);// approximation
+	fresnel = pow(1.0 - ndotv, 1.3333); // approximation
 	
-	#if USE_SUPERFANCYWATER
+	#if USE_FOAM
 		// texture is rotated 90°, moves slowly.
 		vec2 foam1RC = vec2(-gl_TexCoord[0].t,gl_TexCoord[0].s)*1.3  - 0.012*n.xz + vec2(time*0.004,time*0.003);
 		// texture is not rotated, moves twice faster in the opposite direction, translated.
@@ -181,33 +192,50 @@ void main()
 		
 		if ((1.0 - finalFoam.r) >= wavyFactor)
 			finalFoam = vec3(0.0);
-		
-		// waves bypass the regular foam restrictions.
-		finalFoam += min( max(0.0,-waves.b) * texture2D(Foam, foam1RC).r, 1.0)*3.0 * max(0.0,wavyFactor-0.1);
+		#if USE_WAVES && USE_NORMALS
+			// waves bypass the regular foam restrictions.
+			finalFoam += min( max(0.0,-waves.b) * texture2D(Foam, foam1RC).r, 1.0)*3.0 * max(0.0,wavyFactor-0.1);
+		#endif
 		finalFoam *= sunColor;
 	#endif
 		
-	#if USE_SUPERFANCYWATER
-		refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * distoFactor) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
+	#if USE_REFRACTION
+		#if USE_REAL_DEPTH
+			refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * distoFactor) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
+			vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
+			float luminance = (1.0 - clamp((waterDepth2/mix(300.0,1.0, pow(murkiness,0.2) )), 0.0, 1.0));
+			float colorExtinction = clamp(waterDepth2*murkiness/5.0,0.0,1.0);
+			refrColor = (0.5 + 0.5*ndotl) * mix(color,mix(refColor,refColor*tint,colorExtinction),luminance*luminance);
+		#else
+			refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * 6.0) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
+			// fake it. It won't look as good but it will give a similar result.
+			float perceivedDepth = waterDepth / v.y;
+			vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
+			float luminance = (1.0 - clamp((perceivedDepth/mix(300.0,1.0, pow(murkiness,0.2) )), 0.0, 1.0));
+			float colorExtinction = clamp(perceivedDepth*murkiness/5.0,0.0,1.0);
+			refrColor = (0.5 + 0.5*ndotl) * mix(color,mix(refColor,refColor*tint,colorExtinction),luminance*luminance);
+		#endif
 	#else
-		refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * 6.0) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
+		float alphaCoeff = 0.0;
+		#if USE_REAL_DEPTH
+			alphaCoeff = clamp(waterDepth2*murkiness/5.0,0.0,1.0);
+		#else
+			alphaCoeff = clamp((waterDepth / v.y)*murkiness/5.0,0.0,1.0);
+		#endif
+		refrColor = color;
 	#endif
 	
-	reflCoords = clamp( (0.5*gl_TexCoord[1].xy + 10.0*n.xz) / gl_TexCoord[1].w + 0.5,0.0,1.0);	// Unbias texture coords
-	reflColor = mix(texture2D(reflectionMap, reflCoords).rgb, sunColor * reflectionTint, reflectionTintStrength);
+	#if !USE_NORMALS
+		// we're not using normals. Simulate by applying a B&W effect.
+		refrColor *= (ww*2.0).x;
+	#endif
 	
-	#if USE_SUPERFANCYWATER
-		vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
-		float luminance = (1.0 - clamp((waterDepth2/mix(300.0,1.0, pow(murkiness,0.2) )), 0.0, 1.0));
-		float colorExtinction = clamp(waterDepth2*murkiness/5.0,0.0,1.0);
-		refrColor = (0.5 + 0.5*ndotl) * mix(color,mix(refColor,refColor*tint,colorExtinction),luminance*luminance);
+	#if USE_REFLECTION
+		reflCoords = clamp( (0.5*gl_TexCoord[1].xy + 10.0*n.xz) / gl_TexCoord[1].w + 0.5,0.0,1.0);	// Unbias texture coords
+		reflColor = mix(texture2D(reflectionMap, reflCoords).rgb, sunColor * reflectionTint, reflectionTintStrength);
 	#else
-		// fake it. It won't look as good but it will give a similar result.
-		float perceivedDepth = waterDepth / v.y;
-		vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
-		float luminance = (1.0 - clamp((perceivedDepth/mix(300.0,1.0, pow(murkiness,0.2) )), 0.0, 1.0));
-		float colorExtinction = clamp(perceivedDepth*murkiness/5.0,0.0,1.0);
-		refrColor = (0.5 + 0.5*ndotl) * mix(color,mix(refColor,refColor*tint,colorExtinction),luminance*luminance);
+		// TODO: implement some sort of skybox rendering.
+		reflColor = mix( (sunColor + vec3(0.565,0.843,0.961))/1.85, reflectionTint, reflectionTintStrength);
 	#endif
 	
 	specular = pow(ndoth, shininess) * sunColor * specularStrength;
@@ -215,23 +243,54 @@ void main()
 	losMod = texture2D(losMap, gl_TexCoord[3].st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
 	
-	#if USE_SUPERFANCYWATER && USE_SHADOW
+	vec3 colour;
+	#if USE_SHADOWS
 		float shadow = get_shadow(vec4(v_shadow.xy - 8.0*waviness*n.xz, v_shadow.zw));
 		float fresShadow = mix(fresnel, fresnel*shadow, 0.05 + (murkiness * 0.15));
-		vec3 colour = mix(refrColor*(shadow/5.0 + 0.8) + fresnel*shadow*specular, reflColor + fresnel*shadow*specular, fresShadow) + max(ndotl,0.4)*(finalFoam)*(shadow/2.0 + 0.5);
-		colour = mix( texture2D(refractionMap, (0.5*gl_TexCoord[2].xy) / gl_TexCoord[2].w + 0.5).rgb ,colour, clamp(waterDepth2,0.0,1.0));
+		#if USE_FOAM
+			colour = mix(refrColor*(shadow/5.0 + 0.8) + fresnel*shadow*specular, reflColor + fresnel*shadow*specular, fresShadow) + max(ndotl,0.4)*(finalFoam)*(shadow/2.0 + 0.5);
+		#else
+			colour = mix(refrColor*(shadow/5.0 + 0.8) + fresnel*shadow*specular, reflColor + fresnel*shadow*specular, fresShadow);
+		#endif
 	#else
-		vec3 colour = mix(refrColor + fresnel*specular, reflColor + fresnel*specular, fresnel);
+		#if USE_FOAM
+			colour = mix(refrColor + fresnel*specular, reflColor + fresnel*specular, fresnel) + max(ndotl,0.4)*(finalFoam);
+		#else
+			colour = mix(refrColor + fresnel*specular, reflColor + fresnel*specular, fresnel);
+		#endif
+	#endif
+	
+	#if USE_REFRACTION
+		#if USE_REAL_DEPTH
+			colour = mix(texture2D(refractionMap, (0.5*gl_TexCoord[2].xy) / gl_TexCoord[2].w + 0.5).rgb ,colour, clamp(waterDepth2,0.0,1.0));
+		#else
+			colour = mix(texture2D(refractionMap, (0.5*gl_TexCoord[2].xy) / gl_TexCoord[2].w + 0.5).rgb ,colour, clamp(perceivedDepth,0.0,1.0));
+		#endif
+	#else
+		// I'm not even sure what this does.
+		//colour = mix( texture2D(refractionMap, (0.5*gl_TexCoord[2].xy) / gl_TexCoord[2].w + 0.5).rgb ,colour, clamp(perceivedDepth,0.0,1.0));
 	#endif
 	
 	gl_FragColor.rgb = get_fog(colour) * losMod;
 
-	#if USE_SUPERFANCYWATER
-		gl_FragColor.a = clamp(distToShore-0.012,waterDepth2/2.0,1.0) + finalFoam.r * losMod;
+	#if USE_REAL_DEPTH
+		float alpha = clamp(waterDepth2*(5.0*murkiness),0.0,1.0);
+		#if !USE_REFRACTION
+			alpha *= alphaCoeff;
+		#endif
+		#if USE_FOAM
+			alpha += finalFoam.r * losMod;
+		#endif
+		gl_FragColor.a = alpha;
 	#else
 		// Make alpha vary based on both depth (so it blends with the shore) and view angle (make it
 		// become opaque faster at lower view angles so we can't look "underneath" the water plane)
-		t = 18.0 * max(0.0, 0.9 - v.y);
-		gl_FragColor.a = clamp(0.15 * waterDepth * (1.2 + t + fresnel),0.0,1.0);
+		t = 30.0 * max(0.0, 0.9 - v.y);
+		float alpha = clamp(0.15 * waterDepth * (1.2 + t + fresnel),0.0,1.0);
+		#if !USE_REFRACTION
+			gl_FragColor.a = alpha * alphaCoeff;
+		#else
+			gl_FragColor.a = alpha;
+		#endif
 	#endif
 }

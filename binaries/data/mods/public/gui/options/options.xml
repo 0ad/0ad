@@ -23,7 +23,7 @@
 			Game Options
 		</object>
 
-                <object size="50%-190 50%-80 50%+140 50%+120">
+                <object size="50%-190 50%-80 50%+140 50%+95">
         
                         <!-- Settings / shadows -->
                         <object size="0 10 100%-80 35" type="text" style="RightLabelText" ghost="true">Enable Shadows</object>
@@ -40,15 +40,15 @@
                         </object>
 
                         <!-- Settings / Water -->
-                        <object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Enable Water Reflections</object>
+<!--                        <object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Enable Water Reflections</object>
                         <object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="StoneCrossBox" checked="true">
                                 <action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
                                 <action on="Press">renderer.fancyWater = this.checked;</action>
-                        </object>
+                        </object>-->
 
                         <!-- Settings / Music-->
-                        <object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Music</object>
-                        <object size="100%-56 90 100%-30 115" type="checkbox" style="StoneCrossBox" checked="true">
+                        <object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Enable Music</object>
+                        <object size="100%-56 65 100%-30 90" type="checkbox" style="StoneCrossBox" checked="true">
                                 <action on="Press">if (this.checked) startMusic(); else stopMusic();</action>
                         </object>
 

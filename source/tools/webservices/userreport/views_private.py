@@ -86,7 +86,6 @@ def report_performance(request):
             mapname = 'unknown' # e.g. random maps
         msecs = None
         shadows = False
-        fancywater = False
         for name,table in json['profiler'].items():
             m = re.match(r'Profiling Information for: root \(Time in node: (\d+\.\d+) msec/frame\)', name)
             if m:
@@ -101,18 +100,11 @@ def report_performance(request):
                 except (KeyError, TypeError):
                     pass
 
-                try:
-                    if float(table['data']['render'][0]['render submissions'][0]['render reflections'][2]):
-                        fancywater = True
-                except (KeyError, TypeError):
-                    pass
-
         if msecs is None:
             return None
 
         options = []
         if shadows: options.append('S')
-        if fancywater: options.append('W')
 
         return {
             'msecs': msecs,

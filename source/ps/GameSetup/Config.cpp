@@ -38,8 +38,16 @@ CStr g_PlayerName = "";
 
 bool g_Shadows = false;
 bool g_ShadowPCF = false;
-bool g_FancyWater = false;
-bool g_SuperFancyWater = false;
+
+bool g_WaterNormal = false;
+bool g_WaterBinormal = false;
+bool g_WaterRealDepth = false;
+bool g_WaterFoam = false;
+bool g_WaterCoastalWaves = false;
+bool g_WaterRefraction = false;
+bool g_WaterReflection = false;
+bool g_WaterShadows = false;
+
 bool g_Particles = false;
 bool g_Silhouettes = false;
 bool g_ShowSky = false;
@@ -81,11 +89,20 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("playername", String, g_PlayerName);
 	CFG_GET_USER_VAL("shadows", Bool, g_Shadows);
 	CFG_GET_USER_VAL("shadowpcf", Bool, g_ShadowPCF);
-	CFG_GET_USER_VAL("fancywater", Bool, g_FancyWater);
-	CFG_GET_USER_VAL("superfancywater", Bool, g_SuperFancyWater);
-	if (g_SuperFancyWater && !g_FancyWater) {
-		g_SuperFancyWater = false;
-	}
+	
+	CFG_GET_USER_VAL("waternormals",Bool, g_WaterNormal);
+	CFG_GET_USER_VAL("waterbinormals",Bool, g_WaterBinormal);
+	if (g_WaterBinormal && !g_WaterNormal)
+		g_WaterBinormal = false;
+	CFG_GET_USER_VAL("waterrealdepth",Bool, g_WaterRealDepth);
+	CFG_GET_USER_VAL("waterfoam",Bool, g_WaterFoam);
+	CFG_GET_USER_VAL("watercoastalwaves",Bool, g_WaterCoastalWaves);
+	if (g_WaterCoastalWaves && !g_WaterNormal)
+		g_WaterCoastalWaves = false;
+	CFG_GET_USER_VAL("waterrefraction",Bool, g_WaterRefraction);
+	CFG_GET_USER_VAL("waterreflection",Bool, g_WaterReflection);
+	CFG_GET_USER_VAL("watershadows",Bool, g_WaterShadows);
+	
 	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);
 	CFG_GET_USER_VAL("particles", Bool, g_Particles);
 	CFG_GET_USER_VAL("silhouettes", Bool, g_Silhouettes);

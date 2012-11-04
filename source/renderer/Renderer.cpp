@@ -429,8 +429,6 @@ CRenderer::CRenderer()
 
 	m_Options.m_NoVBO = false;
 	m_Options.m_RenderPath = RP_DEFAULT;
-	m_Options.m_FancyWater = false;
-	m_Options.m_SuperFancyWater = false;
 	m_Options.m_Shadows = false;
 	m_Options.m_ShadowAlphaFix = true;
 	m_Options.m_ARBProgramShadow = true;
@@ -469,8 +467,16 @@ CRenderer::CRenderer()
 
 	m_Stats.Reset();
 	AddLocalProperty(L"particles", &m_Options.m_Particles, false);
-	AddLocalProperty(L"fancyWater", &m_Options.m_FancyWater, false);
-	AddLocalProperty(L"superFancyWater", &m_Options.m_SuperFancyWater, false);
+
+	AddLocalProperty(L"waternormal", &m_Options.m_WaterNormal, false);
+	AddLocalProperty(L"waterbinormal", &m_Options.m_WaterBinormal, false);
+	AddLocalProperty(L"waterrealdepth", &m_Options.m_WaterRealDepth, false);
+	AddLocalProperty(L"waterreflection", &m_Options.m_WaterReflection, false);
+	AddLocalProperty(L"waterrefraction", &m_Options.m_WaterRefraction, false);
+	AddLocalProperty(L"waterfoam", &m_Options.m_WaterFoam, false);
+	AddLocalProperty(L"watercoastalwaves", &m_Options.m_WaterCoastalWaves, false);
+	AddLocalProperty(L"watershadow", &m_Options.m_WaterShadow, false);
+
 	AddLocalProperty(L"horizonHeight", &m->skyManager.m_HorizonHeight, false);
 	AddLocalProperty(L"waterMurkiness", &m->waterManager.m_Murkiness, false);
 	AddLocalProperty(L"waterReflTintStrength", &m->waterManager.m_ReflectionTintStrength, false);
@@ -682,11 +688,29 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 			m_Options.m_Shadows = value;
 			MakeShadersDirty();
 			break;
-		case OPT_FANCYWATER:
-			m_Options.m_FancyWater = value;
+		case OPT_WATERNORMAL:
+			m_Options.m_WaterNormal = value;
 			break;
-		case OPT_SUPERFANCYWATER:
-			m_Options.m_SuperFancyWater = value;
+		case OPT_WATERBINORMAL:
+			m_Options.m_WaterBinormal = value;
+			break;
+		case OPT_WATERREALDEPTH:
+			m_Options.m_WaterRealDepth = value;
+			break;
+		case OPT_WATERFOAM:
+			m_Options.m_WaterFoam = value;
+			break;
+		case OPT_WATERCOASTALWAVES:
+			m_Options.m_WaterCoastalWaves = value;
+			break;
+		case OPT_WATERREFLECTION:
+			m_Options.m_WaterReflection = value;
+			break;
+		case OPT_WATERREFRACTION:
+			m_Options.m_WaterRefraction = value;
+			break;
+		case OPT_WATERSHADOW:
+			m_Options.m_WaterShadow = value;
 			break;
 		case OPT_SHADOWPCF:
 			m_Options.m_ShadowPCF = value;
@@ -716,10 +740,22 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_NoVBO;
 		case OPT_SHADOWS:
 			return m_Options.m_Shadows;
-		case OPT_FANCYWATER:
-			return m_Options.m_FancyWater;
-		case OPT_SUPERFANCYWATER:
-			return m_Options.m_SuperFancyWater;
+		case OPT_WATERNORMAL:
+			return m_Options.m_WaterNormal;
+		case OPT_WATERBINORMAL:
+			return m_Options.m_WaterBinormal;
+		case OPT_WATERREALDEPTH:
+			return m_Options.m_WaterRealDepth;
+		case OPT_WATERFOAM:
+			return m_Options.m_WaterFoam;
+		case OPT_WATERCOASTALWAVES:
+			return m_Options.m_WaterCoastalWaves;
+		case OPT_WATERREFLECTION:
+			return m_Options.m_WaterReflection;
+		case OPT_WATERREFRACTION:
+			return m_Options.m_WaterRefraction;
+		case OPT_WATERSHADOW:
+			return m_Options.m_WaterShadow;
 		case OPT_SHADOWPCF:
 			return m_Options.m_ShadowPCF;
 		case OPT_PARTICLES:
@@ -815,10 +851,6 @@ void CRenderer::BeginFrame()
 	if (m->ShadersDirty)
 		ReloadShaders();
 	
-	// this is ugly, I should do otherwise
-	if (g_GameRestarted)
-		m_WaterManager->m_NeedsReloading = true; 
-
 	m->Model.ModShader->SetShadowMap(&m->shadow);
 	m->Model.ModShader->SetLightEnv(m_LightEnv);
 }
@@ -1446,9 +1478,13 @@ void CRenderer::RenderSubmissions()
 		waterScissor = m->terrainRenderer.ScissorWater(m_ViewCamera.GetViewProjection());
 		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
 		{
-			SScreenRect reflectionScissor = RenderReflections(context, waterScissor);
-			SScreenRect refractionScissor = RenderRefractions(context, waterScissor);
-
+			SScreenRect reflectionScissor;
+			if (m_Options.m_WaterReflection)
+				reflectionScissor = RenderReflections(context, waterScissor);
+			SScreenRect refractionScissor;
+			if (m_Options.m_WaterRefraction)
+				refractionScissor = RenderRefractions(context, waterScissor);
+			
 			PROFILE3_GPU("water scissor");
 			SScreenRect dirty;
 			dirty.x1 = std::min(reflectionScissor.x1, refractionScissor.x1);
