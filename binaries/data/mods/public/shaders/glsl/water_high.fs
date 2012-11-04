@@ -173,7 +173,9 @@ void main()
 		float z_n = 2.0 * z_b - 1.0;
 		float waterDepth2 = (2.0 * zNear * zFar / (zFar + zNear - z_n * (zFar - zNear)) - waterDBuffer);
 		
-		float distoFactor = clamp(waterDepth2/10.0,0.0,7.0);
+		float distoFactor = clamp(waterDepth2/3.0,0.0,7.0);
+	#else
+		float distoFactor = clamp((waterDepth/v.y)/4.0,0.0,7.0);
 	#endif
   	
 	fresnel = pow(1.0 - ndotv, 1.3333); // approximation
@@ -207,7 +209,7 @@ void main()
 			float colorExtinction = clamp(waterDepth2*murkiness/5.0,0.0,1.0);
 			refrColor = (0.5 + 0.5*ndotl) * mix(color,mix(refColor,refColor*tint,colorExtinction),luminance*luminance);
 		#else
-			refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * 6.0) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
+			refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * distoFactor) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
 			// fake it. It won't look as good but it will give a similar result.
 			float perceivedDepth = waterDepth / v.y;
 			vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
@@ -218,9 +220,11 @@ void main()
 	#else
 		float alphaCoeff = 0.0;
 		#if USE_REAL_DEPTH
-			alphaCoeff = clamp(waterDepth2*murkiness/5.0,0.0,1.0);
+			float luminance = clamp((waterDepth2/mix(300.0,1.0, pow(murkiness,0.2) )), 0.0, 1.0);
+			alphaCoeff = mix(mix(0.0,3.0 - (tint.r + tint.g + tint.b),clamp(waterDepth2*murkiness/5.0,0.0,1.0)),1.0,luminance*luminance);
 		#else
-			alphaCoeff = clamp((waterDepth / v.y)*murkiness/5.0,0.0,1.0);
+			float luminance = clamp(((waterDepth / v.y)/mix(300.0,1.0, pow(murkiness,0.2) )), 0.0, 1.0);
+			alphaCoeff = mix(mix(0.0,3.0 - (tint.r + tint.g + tint.b),clamp((waterDepth / v.y)*murkiness/5.0,0.0,1.0)),1.0,luminance*luminance);
 		#endif
 		refrColor = color;
 	#endif
