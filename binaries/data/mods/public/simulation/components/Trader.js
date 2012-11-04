@@ -169,7 +169,7 @@ Trader.prototype.CanTrade = function(target)
 	var traderPlayerId = cmpTraderPlayer.GetPlayerID();
 	var cmpTargetPlayer = QueryOwnerInterface(target, IID_Player);
 	var targetPlayerId = cmpTargetPlayer.GetPlayerID();
-	var ownershipSuitableForTrading = (traderPlayerId == targetPlayerId) || cmpTraderPlayer.IsAlly(targetPlayerId);
+	var ownershipSuitableForTrading = cmpTraderPlayer.IsAlly(targetPlayerId) || cmpTraderPlayer.IsNeutral(targetPlayerId);
 	if (!ownershipSuitableForTrading)
 		return false;
 	return true;
