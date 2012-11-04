@@ -65,8 +65,23 @@ public:
 	int m_WaterCurrentTex;
 	CColor m_WaterColor;
 	bool m_RenderWater;
-	bool m_RunningSuperFancy;
+
+	// Those variables register the current quality level. If there is a change, I have to recompile the shader.
+	bool m_WaterNormal;
+	bool m_WaterBinormal;
+	bool m_WaterRealDepth;
+	bool m_WaterFoam;
+	bool m_WaterCoastalWaves;
+	bool m_WaterRefraction;
+	bool m_WaterReflection;
+	bool m_WaterShadows;
+	
 	bool m_NeedsReloading;
+	// requires also recreating the super fancy information.
+	bool m_NeedsFullReloading;
+	// used only by Atlas to know when to update the water map.
+	bool m_TerrainChangeThisTurn;
+
 	bool m_WaterScroll;
 	float m_WaterHeight;
 	float m_WaterMaxAlpha;
@@ -132,16 +147,15 @@ public:
 	void CreateSuperfancyInfo();
 
 	/**
+	 * Updates the settings to the one from the renderer, and sets m_NeedsReloading.
+	 */
+	void updateQuality();
+	
+	/**
 	 * Returns true if fancy water shaders will be used (i.e. the hardware is capable
 	 * and it hasn't been configured off)
 	 */
 	bool WillRenderFancyWater();
-	
-	/**
-	 * Returns true if super fancy water shaders will be used (i.e. the hardware is capable
-	 * and it hasn't been configured off)
-	 */
-	bool WillRenderSuperFancyWater();
 };
 
 

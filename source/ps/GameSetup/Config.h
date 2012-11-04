@@ -49,10 +49,24 @@ extern CStr g_PlayerName;
 
 // flag to switch on shadows
 extern bool g_Shadows;
-// flag to switch on reflective/refractive water
-extern bool g_FancyWater;
-// flag to switch on foam, normal interpolation, shadows on water
-extern bool g_SuperFancyWater;
+
+// Use real normals for ocean-wave rendering, instead of applying them as a flat texture.
+extern bool g_WaterNormal;
+// Use interpolated normals, smoother. Requires g_WaterNormal.
+extern bool g_WaterBinormal;
+// Use real depth for water rendering.
+extern bool g_WaterRealDepth;
+// Show foam near the shores depending on waviness.
+extern bool g_WaterFoam;
+// Show coastal breaking waves.
+extern bool g_WaterCoastalWaves;
+// Use a real refraction map and not transparency.
+extern bool g_WaterRefraction;
+// Use a real reflection map and not a skybox texture.
+extern bool g_WaterReflection;
+// Enable on-water shadows.
+extern bool g_WaterShadows;
+
 // flag to switch on shadow PCF
 extern bool g_ShadowPCF;
 // flag to switch on particles rendering

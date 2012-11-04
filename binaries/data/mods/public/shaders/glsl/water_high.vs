@@ -17,8 +17,9 @@ uniform float mapSize;
 
 varying vec3 worldPos;
 varying float waterDepth;
-varying vec4 v_shadow;
-
+#if USE_SHADOW
+	varying vec4 v_shadow;
+#endif
 attribute vec3 a_vertex;
 attribute vec4 a_encodedDepth;
 
@@ -34,7 +35,7 @@ void main()
 
 	gl_TexCoord[3].zw = vec2(a_vertex.xz)/mapSize;
 	
-	#if USE_SHADOW && USE_SUPERFANCYWATER
+	#if USE_SHADOW && USE_SHADOWS
 			v_shadow = shadowTransform * vec4(a_vertex, 1.0);
 		#if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
 			v_shadow.xy *= shadowScale.xy;

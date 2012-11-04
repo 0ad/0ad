@@ -123,16 +123,31 @@ void SetDisableShadowPCF(void* UNUSED(cbdata), bool disabled)
 
 void SetDisableFancyWater(void* UNUSED(cbdata), bool disabled)
 {
-	if (!IsOverridden("fancywater")) {
-		g_FancyWater = !disabled;
-		g_SuperFancyWater = !disabled;
+	if (!IsOverridden("waternormals"))
+	{
+		g_WaterNormal = !disabled;
+		if (!g_WaterNormal)
+			g_WaterBinormal = false;
 	}
+	if (!IsOverridden("waterbinormals"))
+		g_WaterBinormal = !disabled;
+	if (!IsOverridden("waterrealdepth"))
+		g_WaterRealDepth = !disabled;
+	if (!IsOverridden("waterfoam"))
+		g_WaterFoam = !disabled;
+	if (!IsOverridden("watercoastalwaves"))
+		g_WaterCoastalWaves = !disabled;
+	if (!IsOverridden("waterrefraction"))
+		g_WaterRefraction = !disabled;
+	if (!IsOverridden("waterreflection"))
+		g_WaterReflection = !disabled;
+	if (!IsOverridden("watershadows"))
+		g_WaterShadows = !disabled;
 }
 
 void SetRenderPath(void* UNUSED(cbdata), std::string renderpath)
 {
-	if (!IsOverridden("fancywater"))
-		g_RenderPath = renderpath;
+	g_RenderPath = renderpath;
 }
 
 void RunHardwareDetection()

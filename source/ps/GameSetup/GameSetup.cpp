@@ -574,8 +574,16 @@ static void InitRenderer()
 	// set renderer options from command line options - NOVBO must be set before opening the renderer
 	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO, g_NoGLVBO);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, g_Shadows);
-	g_Renderer.SetOptionBool(CRenderer::OPT_FANCYWATER, g_FancyWater);
-	g_Renderer.SetOptionBool(CRenderer::OPT_SUPERFANCYWATER, (g_SuperFancyWater && g_FancyWater) );
+
+	g_Renderer.SetOptionBool(CRenderer::OPT_WATERNORMAL, g_WaterNormal);
+	g_Renderer.SetOptionBool(CRenderer::OPT_WATERBINORMAL, g_WaterBinormal);
+	g_Renderer.SetOptionBool(CRenderer::OPT_WATERREALDEPTH, g_WaterRealDepth);
+	g_Renderer.SetOptionBool(CRenderer::OPT_WATERFOAM, g_WaterFoam);
+	g_Renderer.SetOptionBool(CRenderer::OPT_WATERCOASTALWAVES, g_WaterCoastalWaves);
+	g_Renderer.SetOptionBool(CRenderer::OPT_WATERREFLECTION, g_WaterRefraction);
+	g_Renderer.SetOptionBool(CRenderer::OPT_WATERREFRACTION, g_WaterReflection);
+	g_Renderer.SetOptionBool(CRenderer::OPT_WATERSHADOW, g_WaterShadows);
+	
 	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(g_RenderPath));
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWPCF, g_ShadowPCF);
 	g_Renderer.SetOptionBool(CRenderer::OPT_PARTICLES, g_Particles);
