@@ -43,7 +43,7 @@ uniform sampler2D normalMap;
 	uniform sampler2D Foam;
 	uniform sampler2D waveTex;
 #endif
-#if USE_SHADOWS
+#if USE_SHADOWS && USE_SHADOW
 	varying vec4 v_shadow;
 	#if USE_SHADOW_SAMPLER
 		uniform sampler2DShadow shadowTex;
@@ -248,7 +248,7 @@ void main()
 	losMod = losMod < 0.03 ? 0.0 : losMod;
 	
 	vec3 colour;
-	#if USE_SHADOWS
+	#if USE_SHADOWS && USE_SHADOW
 		float shadow = get_shadow(vec4(v_shadow.xy - 8.0*waviness*n.xz, v_shadow.zw));
 		float fresShadow = mix(fresnel, fresnel*shadow, 0.05 + (murkiness * 0.15));
 		#if USE_FOAM

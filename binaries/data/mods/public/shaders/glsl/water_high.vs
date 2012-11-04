@@ -17,7 +17,7 @@ uniform float mapSize;
 
 varying vec3 worldPos;
 varying float waterDepth;
-#if USE_SHADOW
+#if USE_SHADOW && USE_SHADOWS
 	varying vec4 v_shadow;
 #endif
 attribute vec3 a_vertex;
