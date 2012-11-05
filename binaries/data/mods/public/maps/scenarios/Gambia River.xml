@@ -6,24 +6,24 @@
 		<SunColour r="0.866667" g="0.737255" b="0.466667"/>
 		<SunElevation angle="0.920389"/>
 		<SunRotation angle="0.263845"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
-		<UnitsAmbientColour r="0.407843" g="0.462745" b="0.501961"/>
+		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<UnitsAmbientColour r="0.403922" g="0.458824" b="0.501961"/>
 		<Fog>
-			<FogFactor>0.00338867</FogFactor>
+			<FogFactor>0</FogFactor>
 			<FogThickness>0</FogThickness>
 			<FogColour r="1" g="1" b="1"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Colour r="0.447059" g="0.34902" b="0.211765"/>
 				<Height>19.2</Height>
-				<Shininess>4.15039</Shininess>
-				<Waviness>8</Waviness>
+				<Shininess>69.8242</Shininess>
+				<Waviness>2.1875</Waviness>
 				<Murkiness>1</Murkiness>
 				<Tint r="0.447059" g="0.34902" b="0.211765"/>
 				<ReflectionTint r="0.666667" g="0.529412" b="0.321569"/>
-				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
+				<ReflectionTintStrength>0.188477</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -31,12 +31,12 @@
 			<Contrast>1</Contrast>
 			<Saturation>1</Saturation>
 			<Bloom>0.162695</Bloom>
-			<PostEffect>hdr</PostEffect>
+			<PostEffect>default</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="334.687" y="88.8236" z="346.694"/>
-		<Rotation angle="0"/>
+		<Position x="276.532" y="144.181" z="598.918"/>
+		<Rotation angle="0.60839"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[

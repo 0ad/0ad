@@ -2,36 +2,47 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>mountainous</SkySet>
-		<SunColour r="1.03649" g="1.00907" b="0.899387"/>
+		<SunColour r="1.03649" g="1.00804" b="0.898291"/>
 		<SunElevation angle="0.613592"/>
 		<SunRotation angle="1.09219"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Colour r="0.611765" g="0.447059" b="0.219608"/>
 				<Height>21.823</Height>
 				<Shininess>150</Shininess>
-				<Waviness>8</Waviness>
+				<Waviness>0.976562</Waviness>
 				<Murkiness>1</Murkiness>
-				<Tint r="0.611765" g="0.447059" b="0.219608"/>
+				<Tint r="0.611765" g="0.482353" b="0.313726"/>
 				<ReflectionTint r="0.611765" g="0.447059" b="0.219608"/>
 				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="606.621" y="87.3049" z="166.541"/>
-		<Rotation angle="0"/>
+		<Position x="664.854" y="101.397" z="546.921"/>
+		<Rotation angle="-2.24314"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "Name": "Savanna Ravine",
-  "Preview" : "savanna_ravine.png",
+  "Preview": "savanna_ravine.png",
   "Description": "A wide-open Savanna map with a small ravine running down the center, which is easily forded.",
   "PlayerData": [
     {
