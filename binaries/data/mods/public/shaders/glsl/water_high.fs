@@ -24,10 +24,8 @@ varying vec3 worldPos;
 varying float waterDepth;
 
 uniform sampler2D normalMap;
+uniform sampler2D normalMap2;
 
-#if USE_BINORMALS
-	uniform sampler2D normalMap2;
-#endif
 #if USE_REFLECTION
 	uniform sampler2D reflectionMap;
 #endif
@@ -43,7 +41,7 @@ uniform sampler2D normalMap;
 	uniform sampler2D Foam;
 	uniform sampler2D waveTex;
 #endif
-#if USE_SHADOWS
+#if USE_SHADOWS && USE_SHADOW
 	varying vec4 v_shadow;
 	#if USE_SHADOW_SAMPLER
 		uniform sampler2DShadow shadowTex;
@@ -118,10 +116,8 @@ void main()
 	vec3 ww = texture2D(normalMap, (gl_TexCoord[0].st) * mix(2.0,0.8,waviness/10.0) +gl_TexCoord[0].zw).xzy;
 
 	#if USE_NORMALS
-		#if USE_BINORMALS
-			vec3 ww2 = texture2D(normalMap2, (gl_TexCoord[0].st) * mix(2.0,0.8,waviness/10.0) +gl_TexCoord[0].zw).xzy;
-			ww = mix(ww, ww2, mod(time * 60.0, 8.0) / 8.0);
-		#endif
+		vec3 ww2 = texture2D(normalMap2, (gl_TexCoord[0].st) * mix(2.0,0.8,waviness/10.0) +gl_TexCoord[0].zw).xzy;
+		ww = mix(ww, ww2, mod(time * 60.0, 8.0) / 8.0);
 	
 		#if USE_WAVES
 			vec3 waves = texture2D(waveTex, gl_FragCoord.xy/screenSize).rbg - vec3(0.5,0.5,0.5);
@@ -248,7 +244,7 @@ void main()
 	losMod = losMod < 0.03 ? 0.0 : losMod;
 	
 	vec3 colour;
-	#if USE_SHADOWS
+	#if USE_SHADOWS && USE_SHADOW
 		float shadow = get_shadow(vec4(v_shadow.xy - 8.0*waviness*n.xz, v_shadow.zw));
 		float fresShadow = mix(fresnel, fresnel*shadow, 0.05 + (murkiness * 0.15));
 		#if USE_FOAM

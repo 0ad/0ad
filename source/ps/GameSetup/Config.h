@@ -52,8 +52,6 @@ extern bool g_Shadows;
 
 // Use real normals for ocean-wave rendering, instead of applying them as a flat texture.
 extern bool g_WaterNormal;
-// Use interpolated normals, smoother. Requires g_WaterNormal.
-extern bool g_WaterBinormal;
 // Use real depth for water rendering.
 extern bool g_WaterRealDepth;
 // Show foam near the shores depending on waviness.

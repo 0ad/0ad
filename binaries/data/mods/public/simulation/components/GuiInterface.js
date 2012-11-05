@@ -66,16 +66,11 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var allies = [];
 		var neutrals = [];
 		var enemies = [];
-		var wantAllies = [];
-		var wantNeutral = [];
 		for (var j = 0; j < n; ++j)
 		{
 			allies[j] = cmpPlayer.IsAlly(j);
 			neutrals[j] = cmpPlayer.IsNeutral(j);
 			enemies[j] = cmpPlayer.IsEnemy(j);
-
-			wantAllies[j] = !allies[j] && cmpPlayer.WantAlly(j);
-			wantNeutral[j] = !allies[j] && !neutrals[j] && cmpPlayer.WantNeutral(j);
 		}
 		var playerData = {
 			"name": cmpPlayer.GetName(),
@@ -93,8 +88,6 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"isAlly": allies,
 			"isNeutral": neutrals,
 			"isEnemy": enemies,
-			"wantAlly": wantAllies,
-			"wantNeutral": wantNeutral,
 			"buildLimits": cmpPlayerBuildLimits.GetLimits(),
 			"buildCounts": cmpPlayerBuildLimits.GetCounts(),
 			"techModifications": cmpTechnologyManager.GetTechModifications()

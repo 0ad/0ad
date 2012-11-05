@@ -258,6 +258,8 @@ function openDiplomacy()
 		// Don't display this for ourself and our locked team members
 		if (i != we && !(players[we].teamsLocked && players[we].team != -1 && players[we].team == players[i].team))
 		{
+			getGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (players[i].isAlly[we] ? "Ally" : (players[i].isNeutral[we] ? "Neutral" : "Enemy"));
+
 			// Set up the buttons
 			for each (var setting in ["ally", "neutral", "enemy"])
 			{
@@ -266,29 +268,21 @@ function openDiplomacy()
 				if (setting == "ally")
 				{
 					if (players[we].isAlly[i])
-						button.caption = "o";
-					else if (players[we].wantAlly[i])
 						button.caption = "x";
-					else if (players[i].wantAlly[we])
-						button.caption = "+";
 					else
 						button.caption = "";
 				}
 				else if (setting == "neutral")
 				{
 					if (players[we].isNeutral[i])
-						button.caption = "o";
-					else if (players[we].wantNeutral[i])
 						button.caption = "x";
-					else if (players[i].wantNeutral[we])
-						button.caption = "+";
 					else
 						button.caption = "";
 				}
 				else // "enemy"
 				{
 					if (players[we].isEnemy[i])
-						button.caption = "o";
+						button.caption = "x";
 					else
 						button.caption = "";
 				}

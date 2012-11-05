@@ -68,7 +68,6 @@ public:
 
 	// Those variables register the current quality level. If there is a change, I have to recompile the shader.
 	bool m_WaterNormal;
-	bool m_WaterBinormal;
 	bool m_WaterRealDepth;
 	bool m_WaterFoam;
 	bool m_WaterCoastalWaves;

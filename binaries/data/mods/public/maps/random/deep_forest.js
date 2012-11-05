@@ -222,7 +222,7 @@ for (var x = 0; x < mapSize; x++)
 	for (var z = 0;z < mapSize;z++)
 	{
 		// Some variables
-		var radius = Math.pow(Math.pow(mapCenterX - x, 2) + Math.pow(mapCenterZ - z, 2), 1/2);
+		var radius = Math.pow(Math.pow(mapCenterX - x - 0.5, 2) + Math.pow(mapCenterZ - z - 0.5, 2), 1/2); // The 0.5 is a correction for the entities placed on the center of tiles
 		var minDistToSL = mapSize;
 		for (var i=0; i < numPlayers; i++)
 			minDistToSL = min(minDistToSL, getDistance(playerStartLocX[i], playerStartLocZ[i], x, z))

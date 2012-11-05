@@ -124,13 +124,7 @@ void SetDisableShadowPCF(void* UNUSED(cbdata), bool disabled)
 void SetDisableFancyWater(void* UNUSED(cbdata), bool disabled)
 {
 	if (!IsOverridden("waternormals"))
-	{
 		g_WaterNormal = !disabled;
-		if (!g_WaterNormal)
-			g_WaterBinormal = false;
-	}
-	if (!IsOverridden("waterbinormals"))
-		g_WaterBinormal = !disabled;
 	if (!IsOverridden("waterrealdepth"))
 		g_WaterRealDepth = !disabled;
 	if (!IsOverridden("waterfoam"))

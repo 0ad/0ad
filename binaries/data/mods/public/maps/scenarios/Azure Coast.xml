@@ -2,30 +2,41 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
 		<SunColour r="0.784314" g="0.764706" b="0.682353"/>
 		<SunElevation angle="0.908117"/>
 		<SunRotation angle="-0.693359"/>
 		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Colour r="0.145098" g="0.321569" b="0.619608"/>
 				<Height>19</Height>
 				<Shininess>158</Shininess>
-				<Waviness>10</Waviness>
-				<Murkiness>0.228516</Murkiness>
-				<Tint r="0.392157" g="0.47451" b="0.654902"/>
+				<Waviness>5.52734</Waviness>
+				<Murkiness>0.371094</Murkiness>
+				<Tint r="0.282353" g="0.705882" b="0.882353"/>
 				<ReflectionTint r="0.00392157" g="0.921569" b="0.992157"/>
-				<ReflectionTintStrength>0.491211</ReflectionTintStrength>
+				<ReflectionTintStrength>0.385742</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="1181.76" y="89.005" z="479.806"/>
-		<Rotation angle="0"/>
+		<Position x="939.435" y="28.4048" z="324.037"/>
+		<Rotation angle="0.105854"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -33,7 +44,7 @@
   "BaseHeight": 0,
   "BaseTerrain": "grass1_spring",
   "CircularMap": true,
-  "Preview" : "azure_coast_1.png",
+  "Preview": "azure_coast_1.png",
   "Description": "Help the young Massilia to settle or expel the Greeks from Gaul.",
   "GameType": "conquest",
   "Keywords": [],
@@ -13709,6 +13720,7 @@
 			<Player>0</Player>
 			<Position x="791.32148" z="1224.46912"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="2875"/>
 		</Entity>
 		<Entity uid="2866">
 			<Template>other/palisades_small_spikes</Template>
@@ -13745,12 +13757,14 @@
 			<Player>0</Player>
 			<Position x="865.73304" z="1226.63416"/>
 			<Orientation y="-2.53281"/>
+			<Obstruction group="2876"/>
 		</Entity>
 		<Entity uid="2872">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>0</Player>
 			<Position x="793.9148" z="1224.96644"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="2875"/>
 		</Entity>
 		<Entity uid="2873">
 			<Template>other/palisades_tall_spikes</Template>
@@ -17957,6 +17971,7 @@
 			<Player>0</Player>
 			<Position x="788.43244" z="1230.97986"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="2875"/>
 		</Entity>
 		<Entity uid="3656">
 			<Template>other/palisades_tall_spikes</Template>
@@ -28195,6 +28210,7 @@
 			<Player>0</Player>
 			<Position x="345.51551" z="1082.05042"/>
 			<Orientation y="-2.65954"/>
+			<Obstruction group="5508"/>
 		</Entity>
 		<Entity uid="5506">
 			<Template>other/palisades_rocks_gate</Template>

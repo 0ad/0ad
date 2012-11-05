@@ -659,8 +659,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	{
 		if(WaterMgr->m_WaterNormal)
 			defines.Add("USE_NORMALS","1");
-		if(WaterMgr->m_WaterBinormal)
-			defines.Add("USE_BINORMALS","1");
 		if(WaterMgr->m_WaterRealDepth)
 			defines.Add("USE_REAL_DEPTH","1");
 		if(WaterMgr->m_WaterFoam)
@@ -823,8 +821,8 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	CVector3D camPos = camera.m_Orientation.GetTranslation();
 
 	m->fancyWaterShader->BindTexture("normalMap", WaterMgr->m_NormalMap[curTex]);
-	if (WaterMgr->m_WaterBinormal)
-		m->fancyWaterShader->BindTexture("normalMap2", WaterMgr->m_NormalMap[nexTex]);
+	m->fancyWaterShader->BindTexture("normalMap2", WaterMgr->m_NormalMap[nexTex]);
+	
 	if (WaterMgr->m_WaterFoam || WaterMgr->m_WaterCoastalWaves)
 	{
 		m->fancyWaterShader->BindTexture("Foam", WaterMgr->m_Foam);

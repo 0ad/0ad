@@ -40,7 +40,6 @@ bool g_Shadows = false;
 bool g_ShadowPCF = false;
 
 bool g_WaterNormal = false;
-bool g_WaterBinormal = false;
 bool g_WaterRealDepth = false;
 bool g_WaterFoam = false;
 bool g_WaterCoastalWaves = false;
@@ -91,9 +90,6 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("shadowpcf", Bool, g_ShadowPCF);
 	
 	CFG_GET_USER_VAL("waternormals",Bool, g_WaterNormal);
-	CFG_GET_USER_VAL("waterbinormals",Bool, g_WaterBinormal);
-	if (g_WaterBinormal && !g_WaterNormal)
-		g_WaterBinormal = false;
 	CFG_GET_USER_VAL("waterrealdepth",Bool, g_WaterRealDepth);
 	CFG_GET_USER_VAL("waterfoam",Bool, g_WaterFoam);
 	CFG_GET_USER_VAL("watercoastalwaves",Bool, g_WaterCoastalWaves);

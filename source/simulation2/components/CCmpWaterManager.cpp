@@ -33,6 +33,7 @@ public:
 	{
 		componentManager.SubscribeToMessageType(MT_Interpolate);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit);
+		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(WaterManager)
@@ -85,6 +86,17 @@ public:
 				g_Renderer.GetWaterManager()->m_WaterHeight = m_WaterHeight.ToFloat();
 			break;
 		}
+			case MT_TerrainChanged:
+			{
+				// Tell the renderer to redraw the map.
+				if (CRenderer::IsInitialised())
+				{
+					g_Renderer.GetWaterManager()->m_NeedsFullReloading = true;
+					g_Renderer.GetWaterManager()->m_NeedsReloading = true;
+					g_Renderer.GetWaterManager()->m_TerrainChangeThisTurn = true;
+				}
+				break;
+			}
 		}
 	}
 

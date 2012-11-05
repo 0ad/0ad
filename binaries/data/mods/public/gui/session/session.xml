@@ -253,7 +253,8 @@
 		<object name="diplomacyHeader" size="32 32 100%-32 64">
 			<object name="diplomacyHeaderName" size="0 0 150 100%" type="text" style="chatPanel" ghost="true" caption="Name"/>
 			<object name="diplomacyHeaderCiv" size="150 0 250 100%" type="text" style="chatPanel" ghost="true" caption="Civilization"/>
-			<object name="diplomacyHeaderTeam" size="250 0 310 100%" type="text" style="chatPanel" ghost="true" caption="Team"/>
+			<object name="diplomacyHeaderTeam" size="250 0 300 100%" type="text" style="chatPanel" ghost="true" caption="Team"/>
+			<object name="diplomacyHeaderTheirs" size="300 0 360 100%" type="text" style="chatPanel" ghost="true" caption="Theirs"/>
 			<object name="diplomacyHeaderAlly" size="100%-180 0 100%-160 100%" type="text" style="chatPanel" caption="A" tooltip="Ally" tooltip_style="sessionToolTipBold"/>
 			<object name="diplomacyHeaderNeutral" size="100%-160 0 100%-140 100%" type="text" style="chatPanel" caption="N" tooltip="Neutral" tooltip_style="sessionToolTipBold"/>
 			<object name="diplomacyHeaderEnemy" size="100%-140 0 100%-120 100%" type="text" style="chatPanel" caption="E" tooltip="Enemy" tooltip_style="sessionToolTipBold"/>
@@ -265,8 +266,10 @@
 				<object name="diplomacyPlayer[n]" size="0 0 100% 20" type="image" hidden="false">
 					<object name="diplomacyPlayerName[n]" size="0 0 150 100%" type="text" style="chatPanel" ghost="true"/>
 					<object name="diplomacyPlayerCiv[n]" size="150 0 250 100%" type="text" style="chatPanel" ghost="true"/>
-					<object name="diplomacyPlayerTeam[n]" size="250 0 310 100%" type="text" style="chatPanel" ghost="true"/>
+					<object name="diplomacyPlayerTeam[n]" size="250 0 300 100%" type="text" style="chatPanel" ghost="true"/>
+					<object name="diplomacyPlayerTheirs[n]" size="300 0 360 100%" type="text" style="chatPanel" ghost="true"/>
 
+					<!-- Diplomatic stance - selection -->
 					<object name="diplomacyPlayerAlly[n]" size="100%-180 0 100%-160 100%" type="button" style="StoneButton" hidden="true"/>
 					<object name="diplomacyPlayerNeutral[n]" size="100%-160 0 100%-140 100%" type="button" style="StoneButton" hidden="true"/>
 					<object name="diplomacyPlayerEnemy[n]" size="100%-140 0 100%-120 100%" type="button" style="StoneButton" hidden="true"/>
@@ -300,7 +303,7 @@
 		<object name="settingsDialogPanel"
 			style="StoneDialog"
 			type="image"
-			size="50%-180 50%-225 50%+180 50%+250"
+			size="50%-180 50%-225 50%+180 50%+225"
 			hidden="true"
 			>
 			<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Settings</object>
@@ -324,84 +327,77 @@
 				</object>
 				
 				<!-- Settings / Water Normals -->
-				<object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Water - 3D Waviness</object>
+				<object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Water - HQ Waviness</object>
 				<object name="waterNormalCheckox" size="100%-56 65 100%-30 90"  type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.waternormal) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.waternormal = this.checked;</action>
 				</object>
 				
-				<!-- Settings / Water Binormals -->
-				<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Water - HQ Waviness</object>
-				<object name="waterBinormalCheckox" size="100%-56 90 100%-30 115"  type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.waterbinormal) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.waterbinormal = this.checked;</action>
-				</object>
-
 				<!-- Settings / Real Depth -->
-				<object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Water - Use Actual Depth</object>
-				<object name="waterRealDepthCheckbox" size="100%-56 115 100%-30 140"  type="checkbox" style="StoneCrossBox" checked="true">
+				<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Water - Use Actual Depth</object>
+				<object name="waterRealDepthCheckbox" size="100%-56 90 100%-30 115"  type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.waterrealdepth) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.waterrealdepth = this.checked; </action>
 				</object>
 
 				<!-- Settings / Reflection -->
-				<object size="0 135 100%-80 160" type="text" style="RightLabelText" ghost="true">Water - Enable Reflections</object>
-				<object name="waterReflectionCheckbox" size="100%-56 140 100%-30 165"  type="checkbox" style="StoneCrossBox" checked="true">
+				<object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Water - Enable Reflections</object>
+				<object name="waterReflectionCheckbox" size="100%-56 115 100%-30 140"  type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.waterreflection) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.waterreflection = this.checked; </action>
 				</object>
 				
 				<!-- Settings / Refraction -->
-				<object size="0 160 100%-80 185" type="text" style="RightLabelText" ghost="true">Water - Enable Refraction</object>
-				<object name="waterRefractionCheckbox" size="100%-56 165 100%-30 190"  type="checkbox" style="StoneCrossBox" checked="true">
+				<object size="0 135 100%-80 160" type="text" style="RightLabelText" ghost="true">Water - Enable Refraction</object>
+				<object name="waterRefractionCheckbox" size="100%-56 140 100%-30 165"  type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.waterrefraction) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.waterrefraction = this.checked; </action>
 				</object>
 				
 				<!-- Settings / Foam -->
-				<object size="0 185 100%-80 210" type="text" style="RightLabelText" ghost="true">Water - Enable Shore Foam</object>
-				<object name="waterFoamCheckbox" size="100%-56 190 100%-30 215"  type="checkbox" style="StoneCrossBox" checked="true">
+				<object size="0 160 100%-80 185" type="text" style="RightLabelText" ghost="true">Water - Enable Shore Foam</object>
+				<object name="waterFoamCheckbox" size="100%-56 165 100%-30 190"  type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.waterfoam) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.waterfoam = this.checked; </action>
 				</object>
 				
 				<!-- Settings / Waves -->
-				<object size="0 210 100%-80 235" type="text" style="RightLabelText" ghost="true">Water - Enable Shore Waves</object>
-				<object name="waterCoastalWavesCheckbox" size="100%-56 215 100%-30 240"  type="checkbox" style="StoneCrossBox" checked="true">
+				<object size="0 185 100%-80 210" type="text" style="RightLabelText" ghost="true">Water - Enable Shore Waves</object>
+				<object name="waterCoastalWavesCheckbox" size="100%-56 190 100%-30 215"  type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.watercoastalwaves) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.watercoastalwaves = this.checked; </action>
 				</object>
 				
 				<!-- Settings / Shadows -->
-				<object size="0 235 100%-80 260" type="text" style="RightLabelText" ghost="true">Water - Use Surface Shadows</object>
-				<object name="waterShadowsCheckbox" size="100%-56 240 100%-30 265"  type="checkbox" style="StoneCrossBox" checked="true">
+				<object size="0 210 100%-80 235" type="text" style="RightLabelText" ghost="true">Water - Use Surface Shadows</object>
+				<object name="waterShadowsCheckbox" size="100%-56 215 100%-30 240"  type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.watershadow) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.watershadow = this.checked; </action>
 				</object>
 
 				<!-- Settings / Particles -->
-				<object size="0 260 100%-80 285" type="text" style="RightLabelText" ghost="true">Enable Particles</object>
-				<object name="particlesCheckbox" size="100%-56 265 100%-30 290" type="checkbox" style="StoneCrossBox" checked="true">
+				<object size="0 235 100%-80 260" type="text" style="RightLabelText" ghost="true">Enable Particles</object>
+				<object name="particlesCheckbox" size="100%-56 240 100%-30 265" type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.particles) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.particles = this.checked;</action>
 				</object>
 				
 				<!-- Settings / Unit Silhouettes -->
-				<object size="0 285 100%-80 310" type="text" style="RightLabelText" ghost="true">Enable Unit Silhouettes</object>
-				<object name="silhouettesCheckbox" size="100%-56 290 100%-30 315" type="checkbox" style="StoneCrossBox" checked="true">
+				<object size="0 260 100%-80 285" type="text" style="RightLabelText" ghost="true">Enable Unit Silhouettes</object>
+				<object name="silhouettesCheckbox" size="100%-56 265 100%-30 290" type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.silhouettes) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.silhouettes = this.checked;</action>
 				</object>
 				
 				<!-- Settings / Music-->
-				<object size="0 310 100%-80 335" type="text" style="RightLabelText" ghost="true">Enable Music</object>
-				<object size="100%-56 315 100%-30 340" type="checkbox" style="StoneCrossBox" checked="true">
+				<object size="0 285 100%-80 310" type="text" style="RightLabelText" ghost="true">Enable Music</object>
+				<object size="100%-56 290 100%-30 315" type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Press">if (this.checked) global.music.start(); else global.music.stop();</action>
 				</object>
 				
 				<!-- Settings / Dev Overlay -->
-				<object size="0 335 100%-80 360" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
-				<object size="100%-56 340 100%-30 365" type="checkbox" style="StoneCrossBox" checked="false">
+				<object size="0 310 100%-80 335" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
+				<object size="100%-56 315 100%-30 340" type="checkbox" style="StoneCrossBox" checked="false">
 					<action on="Press">toggleDeveloperOverlay();</action>
 				</object>
 			</object>

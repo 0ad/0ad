@@ -2,36 +2,47 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cumulus</SkySet>
 		<SunColour r="0.811765" g="0.792157" b="0.701961"/>
 		<SunElevation angle="0.708699"/>
 		<SunRotation angle="-0.0122718"/>
 		<TerrainAmbientColour r="0.376471" g="0.439216" b="0.466667"/>
 		<UnitsAmbientColour r="0.458824" g="0.458824" b="0.458824"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Colour r="0.627451" g="0.615686" b="0.505882"/>
 				<Height>20.1443</Height>
-				<Shininess>0</Shininess>
-				<Waviness>8</Waviness>
-				<Murkiness>1</Murkiness>
-				<Tint r="0.54902" g="0.537255" b="0.439216"/>
+				<Shininess>104.004</Shininess>
+				<Waviness>2.94922</Waviness>
+				<Murkiness>0.71875</Murkiness>
+				<Tint r="0.513726" g="0.658824" b="0.764706"/>
 				<ReflectionTint r="0" g="1" b="1"/>
-				<ReflectionTintStrength>0.0673828</ReflectionTintStrength>
+				<ReflectionTintStrength>0.0976562</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="335.328" y="63.7619" z="508.879"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="609.509" y="67.7636" z="590.315"/>
+		<Rotation angle="0.23004"/>
+		<Declination angle="0.610866"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "nile_river.png",
+  "Preview": "nile_river.png",
   "Description": "A desert map, generally wide open, except for the Nile River running through the middle.",
   "GameType": "conquest",
   "Keywords": [],
@@ -4540,6 +4551,7 @@
 			<Player>0</Player>
 			<Position x="840.086" z="728.51142"/>
 			<Orientation y="-0.33368"/>
+			<Obstruction group="4311"/>
 		</Entity>
 		<Entity uid="3701">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
