@@ -238,7 +238,7 @@ Player.prototype.SetTeam = function(team)
 		if (cmpPlayerManager && this.team != -1)
 		{
 			// Set all team members as allies
-			for (var i = 0; i < this.diplomacy.length; ++i)
+			for (var i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
 			{
 				var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
 				if (this.team == cmpPlayer.GetTeam())
@@ -338,7 +338,7 @@ Player.prototype.UpdateSharedLos = function()
 		return;
 
 	var sharedLos = [];
-	for (var i = 0; i < this.diplomacy.length; ++i)
+	for (var i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
 		if (this.IsAlly(i))
 			sharedLos.push(i);
 
