@@ -576,7 +576,6 @@ static void InitRenderer()
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, g_Shadows);
 
 	g_Renderer.SetOptionBool(CRenderer::OPT_WATERNORMAL, g_WaterNormal);
-	g_Renderer.SetOptionBool(CRenderer::OPT_WATERBINORMAL, g_WaterBinormal);
 	g_Renderer.SetOptionBool(CRenderer::OPT_WATERREALDEPTH, g_WaterRealDepth);
 	g_Renderer.SetOptionBool(CRenderer::OPT_WATERFOAM, g_WaterFoam);
 	g_Renderer.SetOptionBool(CRenderer::OPT_WATERCOASTALWAVES, g_WaterCoastalWaves);

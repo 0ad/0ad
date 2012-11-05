@@ -81,7 +81,6 @@ public:
 		OPT_NOVBO,
 		OPT_SHADOWS,
 		OPT_WATERNORMAL,
-		OPT_WATERBINORMAL,
 		OPT_WATERREALDEPTH,
 		OPT_WATERFOAM,
 		OPT_WATERCOASTALWAVES,
@@ -132,7 +131,6 @@ public:
 		bool m_Shadows;
 		
 		bool m_WaterNormal;
-		bool m_WaterBinormal;
 		bool m_WaterRealDepth;
 		bool m_WaterFoam;
 		bool m_WaterCoastalWaves;

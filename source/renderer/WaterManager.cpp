@@ -79,7 +79,6 @@ WaterManager::WaterManager()
 	m_OtherInfoTex = NULL;
 
 	m_WaterNormal = false;
-	m_WaterBinormal = false;
 	m_WaterRealDepth = false;
 	m_WaterFoam = false;
 	m_WaterCoastalWaves = false;
@@ -462,7 +461,7 @@ void WaterManager::CreateSuperfancyInfo()
 				// okaaaaaay. Got a square. Check for proximity.
 				for (unsigned long i = 0; i < waveSquares.size(); i++)
 				{
-					if ( CVector2D(waveSquares[i]-squarePos).LengthSquared() < 100) {
+					if ( CVector2D(waveSquares[i]-squarePos).LengthSquared() < 80) {
 						enter = 0;
 						break;
 					}
@@ -551,10 +550,6 @@ void WaterManager::updateQuality()
 		m_WaterNormal = g_Renderer.GetOptionBool(CRenderer::OPT_WATERNORMAL);
 		m_NeedsReloading = true;
 	}
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERBINORMAL) != m_WaterBinormal) {
-		m_WaterBinormal = g_Renderer.GetOptionBool(CRenderer::OPT_WATERBINORMAL);
-		m_NeedsReloading = true;
-	}
 	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERREALDEPTH) != m_WaterRealDepth) {
 		m_WaterRealDepth = g_Renderer.GetOptionBool(CRenderer::OPT_WATERREALDEPTH);
 		m_NeedsReloading = true;
@@ -586,8 +581,6 @@ void WaterManager::updateQuality()
 bool WaterManager::WillRenderFancyWater()
 {
 	if (!g_Renderer.GetCapabilities().m_FragmentShader)
-		return false;
-	if (g_Renderer.GetRenderPath() == 1)
 		return false;
 	if (!m_RenderWater)
 		return false;

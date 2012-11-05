@@ -469,7 +469,6 @@ CRenderer::CRenderer()
 	AddLocalProperty(L"particles", &m_Options.m_Particles, false);
 
 	AddLocalProperty(L"waternormal", &m_Options.m_WaterNormal, false);
-	AddLocalProperty(L"waterbinormal", &m_Options.m_WaterBinormal, false);
 	AddLocalProperty(L"waterrealdepth", &m_Options.m_WaterRealDepth, false);
 	AddLocalProperty(L"waterreflection", &m_Options.m_WaterReflection, false);
 	AddLocalProperty(L"waterrefraction", &m_Options.m_WaterRefraction, false);
@@ -691,9 +690,6 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_WATERNORMAL:
 			m_Options.m_WaterNormal = value;
 			break;
-		case OPT_WATERBINORMAL:
-			m_Options.m_WaterBinormal = value;
-			break;
 		case OPT_WATERREALDEPTH:
 			m_Options.m_WaterRealDepth = value;
 			break;
@@ -742,8 +738,6 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_Shadows;
 		case OPT_WATERNORMAL:
 			return m_Options.m_WaterNormal;
-		case OPT_WATERBINORMAL:
-			return m_Options.m_WaterBinormal;
 		case OPT_WATERREALDEPTH:
 			return m_Options.m_WaterRealDepth;
 		case OPT_WATERFOAM:
@@ -1487,10 +1481,27 @@ void CRenderer::RenderSubmissions()
 			
 			PROFILE3_GPU("water scissor");
 			SScreenRect dirty;
-			dirty.x1 = std::min(reflectionScissor.x1, refractionScissor.x1);
-			dirty.y1 = std::min(reflectionScissor.y1, refractionScissor.y1);
-			dirty.x2 = std::max(reflectionScissor.x2, refractionScissor.x2);
-			dirty.y2 = std::max(reflectionScissor.y2, refractionScissor.y2);
+			if (m_Options.m_WaterRefraction && m_Options.m_WaterReflection)
+			{
+				dirty.x1 = reflectionScissor.x1;
+				dirty.y1 = reflectionScissor.y1;
+				dirty.x2 = reflectionScissor.x2;
+				dirty.y2 = reflectionScissor.y2;
+			}
+			else if (m_Options.m_WaterRefraction)
+			{
+				dirty.x1 = refractionScissor.x1;
+				dirty.y1 = refractionScissor.y1;
+				dirty.x2 = refractionScissor.x2;
+				dirty.y2 = refractionScissor.y2;
+			}
+			else
+			{
+				dirty.x1 = reflectionScissor.x1;
+				dirty.y1 = reflectionScissor.y1;
+				dirty.x2 = reflectionScissor.x2;
+				dirty.y2 = reflectionScissor.y2;
+			}
 			if (dirty.x1 < dirty.x2 && dirty.y1 < dirty.y2)
 			{
 				glEnable(GL_SCISSOR_TEST);

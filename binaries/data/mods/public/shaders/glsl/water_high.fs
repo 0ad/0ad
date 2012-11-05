@@ -24,10 +24,8 @@ varying vec3 worldPos;
 varying float waterDepth;
 
 uniform sampler2D normalMap;
+uniform sampler2D normalMap2;
 
-#if USE_BINORMALS
-	uniform sampler2D normalMap2;
-#endif
 #if USE_REFLECTION
 	uniform sampler2D reflectionMap;
 #endif
@@ -118,10 +116,8 @@ void main()
 	vec3 ww = texture2D(normalMap, (gl_TexCoord[0].st) * mix(2.0,0.8,waviness/10.0) +gl_TexCoord[0].zw).xzy;
 
 	#if USE_NORMALS
-		#if USE_BINORMALS
-			vec3 ww2 = texture2D(normalMap2, (gl_TexCoord[0].st) * mix(2.0,0.8,waviness/10.0) +gl_TexCoord[0].zw).xzy;
-			ww = mix(ww, ww2, mod(time * 60.0, 8.0) / 8.0);
-		#endif
+		vec3 ww2 = texture2D(normalMap2, (gl_TexCoord[0].st) * mix(2.0,0.8,waviness/10.0) +gl_TexCoord[0].zw).xzy;
+		ww = mix(ww, ww2, mod(time * 60.0, 8.0) / 8.0);
 	
 		#if USE_WAVES
 			vec3 waves = texture2D(waveTex, gl_FragCoord.xy/screenSize).rbg - vec3(0.5,0.5,0.5);
