@@ -300,27 +300,22 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 			else
 			{
 				this.diplomacy[idx] = value;
-				if (this.diplomacy[idx] == cmpPlayer.diplomacy[this.playerID])
-					Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": idx});
 			}
 			Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
 		}
 	}
 	else
 	{
-		// Break alliance or declare war
+		// Break alliance or declare war (worsening of relations is mutual)
 		if (Math.min(this.diplomacy[idx],cmpPlayer.diplomacy[this.playerID]) > value)
 		{
 			// This is duplicated because otherwise we get too much recursion
 			this.diplomacy[idx] = value;
-			// Diplomacy is mutual
 			cmpPlayer.SetDiplomacyIndex(this.playerID, value);
 		}
 		else
 		{
 			this.diplomacy[idx] = value;
-			if (this.diplomacy[idx] == cmpPlayer.diplomacy[this.playerID])
-				Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": idx});
 		}
 
 		Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
@@ -340,7 +335,11 @@ Player.prototype.UpdateSharedLos = function()
 	var sharedLos = [];
 	for (var i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
 		if (this.IsAlly(i))
-			sharedLos.push(i);
+		{
+			var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+			if (cmpPlayer && cmpPlayer.IsAlly(this.playerID))
+				sharedLos.push(i);
+		}
 
 	cmpRangeManager.SetSharedLos(this.playerID, sharedLos);
 };
@@ -405,23 +404,6 @@ Player.prototype.SetAlly = function(id)
  */
 Player.prototype.IsAlly = function(id)
 {
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	if (!cmpPlayerManager)
-		return false;
-
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(id), IID_Player);
-	if (!cmpPlayer)
-		return false;
-
-	return Math.min(this.diplomacy[id],cmpPlayer.diplomacy[this.playerID]) > 0;
-};
-
-/**
- * Check if we want to be allied with the given player.
- * NOTE: Returns true if we are already allies.
- */
-Player.prototype.WantAlly = function(id)
-{
 	return this.diplomacy[id] > 0;
 };
 
@@ -435,15 +417,7 @@ Player.prototype.SetEnemy = function(id)
  */
 Player.prototype.IsEnemy = function(id)
 {
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	if (!cmpPlayerManager)
-		return false;
-
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(id), IID_Player);
-	if (!cmpPlayer)
-		return false;
-
-	return Math.min(this.diplomacy[id],cmpPlayer.diplomacy[this.playerID]) < 0;
+	return this.diplomacy[id] < 0;
 };
 
 Player.prototype.SetNeutral = function(id)
@@ -456,24 +430,7 @@ Player.prototype.SetNeutral = function(id)
  */
 Player.prototype.IsNeutral = function(id)
 {
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	if (!cmpPlayerManager)
-		return false;
-
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(id), IID_Player);
-	if (!cmpPlayer)
-		return false;
-
-	return Math.min(this.diplomacy[id],cmpPlayer.diplomacy[this.playerID]) == 0;
-};
-
-/**
- * Check if we want to be neutral with the given player.
- * NOTE: Returns true if we are already neutral or above.
- */
-Player.prototype.WantNeutral = function(id)
-{
-	return this.diplomacy[id] >= 0;
+	return this.diplomacy[id] == 0;
 };
 
 /**

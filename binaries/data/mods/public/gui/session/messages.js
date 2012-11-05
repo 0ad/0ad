@@ -286,25 +286,18 @@ function addChatMessage(msg, playerAssignments)
 		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] " + verb + " been defeated.";
 		break;
 	case "diplomacy":
-		// TODO: Proper wording for all cases
-		// TODO: If the second player sets the diplomacy to the same as you 
-		// have already set, display something like "You and username are 
-		// now msg.status" and if the other players setting is more (eg you 
-		// set it to neutral he to ally) than your setting display something
-		// like "Player wants to be msg.status with you" in addition. Breaking
-		// alliances/declaring war should be done with only one message (maybe
-		// change the message generation in Commands.js)
+		var status = (msg.status == "ally" ? "allied" : (msg.status == "enemy" ? "at war" : "neutral"));
 		if (msg.player == Engine.GetPlayerID())
 		{
 			username= escapeText(g_Players[msg.player1].name);
 			playerColor = g_Players[msg.player1].color.r + " " + g_Players[msg.player1].color.g + " " + g_Players[msg.player1].color.b;
-			formatted = "You want to be "+msg.status+" with [color=\"" + playerColor + "\"]"+username + "[/color].";
+			formatted = "You are now "+status+" with [color=\"" + playerColor + "\"]"+username + "[/color].";
 		}
 		else if (msg.player1 == Engine.GetPlayerID())
 		{
 			username= escapeText(g_Players[msg.player].name);
 			playerColor = g_Players[msg.player].color.r + " " + g_Players[msg.player].color.g + " " + g_Players[msg.player].color.b;
-			formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] wants to be " + msg.status + " with you."
+			formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] is now " + status + " with you."
 		}
 		else // No need for other players to know of this.
 			return;

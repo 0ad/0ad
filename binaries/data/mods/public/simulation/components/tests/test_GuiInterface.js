@@ -67,8 +67,6 @@ AddMock(100, IID_Player, {
 	IsAlly: function() { return false; },
 	IsNeutral: function() { return false; },
 	IsEnemy: function() { return true; },
-	WantAlly: function() { return false; },
-	WantNeutral: function() { return false; },
 });
 
 AddMock(100, IID_BuildLimits, {
@@ -122,8 +120,6 @@ AddMock(101, IID_Player, {
 	IsAlly: function() { return true; },
 	IsNeutral: function() { return false; },
 	IsEnemy: function() { return false; },
-	WantAlly: function() { return false; },
-	WantNeutral: function() { return false; },
 });
 
 AddMock(101, IID_BuildLimits, {
@@ -181,8 +177,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			isAlly: [false, false],
 			isNeutral: [false, false],
 			isEnemy: [true, true],
-			wantAlly: [false, false],
-			wantNeutral: [false, false],
 			buildLimits: {"Foo": 10},
 			buildCounts: {"Foo": 5},
 			techModifications: {},
@@ -203,8 +197,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			isAlly: [true, true],
 			isNeutral: [false, false],
 			isEnemy: [false, false],
-			wantAlly: [false, false],
-			wantNeutral: [false, false],
 			buildLimits: {"Bar": 20},
 			buildCounts: {"Bar": 0},
 			techModifications: {},
@@ -232,8 +224,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			isAlly: [false, false],
 			isNeutral: [false, false],
 			isEnemy: [true, true],
-			wantAlly: [false, false],
-			wantNeutral: [false, false],
 			buildLimits: {"Foo": 10},
 			buildCounts: {"Foo": 5},
 			techModifications: {},
@@ -270,8 +260,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			isAlly: [true, true],
 			isNeutral: [false, false],
 			isEnemy: [false, false],
-			wantAlly: [false, false],
-			wantNeutral: [false, false],
 			buildLimits: {"Bar": 20},
 			buildCounts: {"Bar": 0},
 			techModifications: {},
