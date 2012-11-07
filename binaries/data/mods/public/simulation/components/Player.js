@@ -440,23 +440,19 @@ Player.prototype.IsNeutral = function(id)
 Player.prototype.OnGlobalOwnershipChanged = function(msg)
 {
 	var isConquestCritical = false;
-
 	// Load class list only if we're going to need it
 	if (msg.from == this.playerID || msg.to == this.playerID)
 	{
 		var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
 		if (cmpIdentity)
 		{
-			var classes = cmpIdentity.GetClassesList();
-			isConquestCritical = classes.indexOf("ConquestCritical") != -1;
+			isConquestCritical = cmpIdentity.HasClass("ConquestCritical");
 		}
 	}
-	
 	if (msg.from == this.playerID)
 	{
 		if (isConquestCritical)
 			this.conquestCriticalEntitiesCount--;
-
 		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
 		if (cost)
 		{
@@ -464,12 +460,10 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 			this.popBonuses -= cost.GetPopBonus();
 		}
 	}
-	
 	if (msg.to == this.playerID)
 	{
 		if (isConquestCritical)
 			this.conquestCriticalEntitiesCount++;
-			
 		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
 		if (cost)
 		{

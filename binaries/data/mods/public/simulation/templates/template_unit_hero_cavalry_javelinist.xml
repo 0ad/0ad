@@ -39,7 +39,6 @@
   <Identity>
     <Classes datatype="tokens">Hero</Classes>
     <GenericName>Hero Cavalry Skirmisher</GenericName>
-    <RequiredTechnology>no_heroes</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>450</xp>
@@ -60,6 +59,9 @@
       </Texture>
     </Overlay>
   </Selectable>
+  <TrainingRestrictions>
+    <Category>Hero</Category>
+  </TrainingRestrictions>
   <UnitMotion>
     <WalkSpeed>11.5</WalkSpeed>
     <Run>

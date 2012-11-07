@@ -315,22 +315,23 @@ GameState.prototype.getResourceSupplies = function(resource){
 	return this.updatingCollection("resource-" + resource, Filters.byResource(resource), this.getEntities());
 };
 
-GameState.prototype.getBuildLimits = function() {
-	return this.playerData.buildLimits;
+GameState.prototype.getEntityLimits = function() {
+	return this.playerData.entityLimits;
 };
 
-GameState.prototype.getBuildCounts = function() {
-	return this.playerData.buildCounts;
+GameState.prototype.getEntityCounts = function() {
+	return this.playerData.entityCounts;
 };
 
-// Checks whether the maximum number of buildings have been cnstructed for a certain catergory
-GameState.prototype.isBuildLimitReached = function(category) {
-	if(this.playerData.buildLimits[category] === undefined || this.playerData.buildCounts[category] === undefined)
+// Checks whether the maximum number of buildings have been constructed for a certain catergory
+GameState.prototype.isEntityLimitReached = function(category) {
+	if(this.playerData.entityLimits[category] === undefined || this.playerData.entityCounts[category] === undefined)
 		return false;
-	if(this.playerData.buildLimits[category].LimitsPerCivCentre != undefined)
-		return (this.playerData.buildCounts[category] >= this.playerData.buildCounts["CivilCentre"]*this.playerData.buildLimits[category].LimitPerCivCentre);
+	if(this.playerData.entityLimits[category].LimitsPerCivCentre != undefined)
+		return (this.playerData.entityCounts[category] >=
+			this.playerData.entityCounts["CivilCentre"] * this.playerData.entityLimits[category].LimitPerCivCentre);
 	else
-		return (this.playerData.buildCounts[category] >= this.playerData.buildLimits[category]);
+		return (this.playerData.entityCounts[category] >= this.playerData.entityLimits[category]);
 };
 
 GameState.prototype.findTrainableUnits = function(classes){

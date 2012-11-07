@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
-  <BuildLimits>
+  <EntityLimits>
     <LimitMultiplier>1.0</LimitMultiplier>
     <Limits>
       <CivilCentre/>
       <DefenseTower>25</DefenseTower>
       <Fortress>10</Fortress>
+      <Hero>1</Hero>
     </Limits>
-  </BuildLimits>
+  </EntityLimits>
   <Player/>
   <StatisticsTracker/>
   <TechnologyManager/>

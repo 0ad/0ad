@@ -416,33 +416,35 @@ var GameState = Class({
 	 * Returns player build limits
 	 * an object where each key is a category corresponding to a build limit for the player.
 	 */
-	getBuildLimits: function()
+	getEntityLimits: function()
 	{
-		return this.playerData.buildLimits;
+		return this.playerData.entityLimits;
 	},
 	
 	/**
 	 * Returns player build counts
 	 * an object where each key is a category corresponding to the current building count for the player.
 	 */
-	getBuildCounts: function()
+	getEntityCounts: function()
 	{
-		return this.playerData.buildCounts;
+		return this.playerData.entityCounts;
 	},
 	
 	/**
 	 * Checks if the player's build limit has been reached for the given category.
-	 * The category comes from the entity tenplate, specifically the BuildRestrictions component.
+	 * The category comes from the entity template, specifically the
+	 * BuildRestrictions/TrainingRestrictions components.
 	 */
-	isBuildLimitReached: function(category)
+	isEntityLimitReached: function(category)
 	{
-		if (this.playerData.buildLimits[category] === undefined || this.playerData.buildCounts[category] === undefined)
+		if (this.playerData.entityLimits[category] === undefined || this.playerData.entityCounts[category] === undefined)
 			return false;
 		
 		// There's a special case of build limits per civ centre, so check that first
-		if (this.playerData.buildLimits[category].LimitPerCivCentre !== undefined)
-			return (this.playerData.buildCounts[category] >= this.playerData.buildCounts["CivilCentre"]*this.playerData.buildLimits[category].LimitPerCivCentre);
+		if (this.playerData.entityLimits[category].LimitPerCivCentre !== undefined)
+			return (this.playerData.entityCounts[category] >=
+				this.playerData.entityCounts["CivilCentre"] * this.playerData.entityLimits[category].LimitPerCivCentre);
 		else
-			return (this.playerData.buildCounts[category] >= this.playerData.buildLimits[category]);
+			return (this.playerData.entityCounts[category] >= this.playerData.entityLimits[category]);
 	},
 });

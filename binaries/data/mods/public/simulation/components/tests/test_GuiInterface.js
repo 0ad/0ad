@@ -1,8 +1,8 @@
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/Barter.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
-Engine.LoadComponentScript("interfaces/BuildLimits.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
+Engine.LoadComponentScript("interfaces/EntityLimits.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Gate.js");
@@ -69,7 +69,7 @@ AddMock(100, IID_Player, {
 	IsEnemy: function() { return true; },
 });
 
-AddMock(100, IID_BuildLimits, {
+AddMock(100, IID_EntityLimits, {
 	GetLimits: function() { return {"Foo": 10}; },
 	GetCounts: function() { return {"Foo": 5}; },
 });
@@ -122,7 +122,7 @@ AddMock(101, IID_Player, {
 	IsEnemy: function() { return false; },
 });
 
-AddMock(101, IID_BuildLimits, {
+AddMock(101, IID_EntityLimits, {
 	GetLimits: function() { return {"Bar": 20}; },
 	GetCounts: function() { return {"Bar": 0}; },
 });
@@ -177,8 +177,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			isAlly: [false, false],
 			isNeutral: [false, false],
 			isEnemy: [true, true],
-			buildLimits: {"Foo": 10},
-			buildCounts: {"Foo": 5},
+			entityLimits: {"Foo": 10},
+			entityCounts: {"Foo": 5},
 			techModifications: {},
 		},
 		{
@@ -197,8 +197,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			isAlly: [true, true],
 			isNeutral: [false, false],
 			isEnemy: [false, false],
-			buildLimits: {"Bar": 20},
-			buildCounts: {"Bar": 0},
+			entityLimits: {"Bar": 20},
+			entityCounts: {"Bar": 0},
 			techModifications: {},
 		}
 	],
@@ -224,8 +224,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			isAlly: [false, false],
 			isNeutral: [false, false],
 			isEnemy: [true, true],
-			buildLimits: {"Foo": 10},
-			buildCounts: {"Foo": 5},
+			entityLimits: {"Foo": 10},
+			entityCounts: {"Foo": 5},
 			techModifications: {},
 			statistics: {
 				unitsTrained: 10,
@@ -260,8 +260,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			isAlly: [true, true],
 			isNeutral: [false, false],
 			isEnemy: [false, false],
-			buildLimits: {"Bar": 20},
-			buildCounts: {"Bar": 0},
+			entityLimits: {"Bar": 20},
+			entityCounts: {"Bar": 0},
 			techModifications: {},
 			statistics: {
 				unitsTrained: 10,

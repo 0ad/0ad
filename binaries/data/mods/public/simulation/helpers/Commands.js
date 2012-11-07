@@ -169,11 +169,30 @@ function ProcessCommand(player, cmd)
 
 	case "train":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		
+		// Check entity limits
+		var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+		var template = cmpTempMan.GetTemplate(cmd.template);
+		var unitCategory = null;
+		if (template.TrainingRestrictions)
+			unitCategory = template.TrainingRestrictions.Category;
+
 		// Verify that the building(s) can be controlled by the player
 		if (entities.length > 0)
 		{
 			for each (var ent in entities)
 			{
+				if (unitCategory)
+				{
+					var cmpPlayerEntityLimits = QueryOwnerInterface(ent, IID_EntityLimits);
+					if (!cmpPlayerEntityLimits.AllowedToTrain(unitCategory, cmd.count))
+					{
+						if (g_DebugCommands)
+							warn(unitCategory + " train limit is reached: " + uneval(cmd));
+						continue;
+					}
+				}
+
 				var cmpTechnologyManager = QueryOwnerInterface(ent, IID_TechnologyManager);
 				// TODO: Enable this check once the AI gets technology support
 				if (cmpTechnologyManager.CanProduce(cmd.template) || true)
@@ -568,9 +587,9 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		return false;
 	}
 	
-	// Check build limits
-	var cmpBuildLimits = QueryPlayerIDInterface(player, IID_BuildLimits);
-	if (!cmpBuildLimits || !cmpBuildLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
+	// Check entity limits
+	var cmpEntityLimits = QueryPlayerIDInterface(player, IID_EntityLimits);
+	if (!cmpEntityLimits || !cmpEntityLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
 	{
 		if (g_DebugCommands)
 		{

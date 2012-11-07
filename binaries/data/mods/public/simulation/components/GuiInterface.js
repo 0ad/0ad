@@ -49,7 +49,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	for (var i = 0; i < n; ++i)
 	{
 		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
-		var cmpPlayerBuildLimits = Engine.QueryInterface(playerEnt, IID_BuildLimits);
+		var cmpPlayerEntityLimits = Engine.QueryInterface(playerEnt, IID_EntityLimits);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 		
 		// Work out what phase we are in
@@ -88,8 +88,8 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"isAlly": allies,
 			"isNeutral": neutrals,
 			"isEnemy": enemies,
-			"buildLimits": cmpPlayerBuildLimits.GetLimits(),
-			"buildCounts": cmpPlayerBuildLimits.GetCounts(),
+			"entityLimits": cmpPlayerEntityLimits.GetLimits(),
+			"entityCounts": cmpPlayerEntityLimits.GetCounts(),
 			"techModifications": cmpTechnologyManager.GetTechModifications()
 		};
 		ret.players.push(playerData);
@@ -384,7 +384,14 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 			if (template.BuildRestrictions.Distance.MaxDistance) ret.buildRestrictions.distance.max = +template.BuildRestrictions.Distance.MaxDistance;
 		}
 	}
-	
+
+	if (template.TrainingRestrictions)
+	{
+		ret.trainingRestrictions = {
+			"category": template.TrainingRestrictions.Category,
+		};
+	}
+
 	if (template.Cost)
 	{
 		ret.cost = {};
@@ -453,6 +460,7 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 		ret.icon = template.Identity.Icon;
 		ret.tooltip =  template.Identity.Tooltip;
 		ret.requiredTechnology = template.Identity.RequiredTechnology;
+		ret.identityClassesString = GetTemplateIdentityClassesString(template);
 	}
 
 	if (template.UnitMotion)
