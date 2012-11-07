@@ -174,7 +174,7 @@ void main()
 		float distoFactor = clamp((waterDepth/v.y)/4.0,0.0,7.0);
 	#endif
   	
-	fresnel = pow(1.0 - ndotv, 1.3333); // approximation
+	fresnel = pow(1.05 - ndotv, 1.3333); // approximation. I'm using 1.05 and not 1.0 because it causes artifacts, see #1714
 	
 	#if USE_FOAM
 		// texture is rotated 90°, moves slowly.
