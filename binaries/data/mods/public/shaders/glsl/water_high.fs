@@ -266,9 +266,6 @@ void main()
 		#else
 			colour = mix(texture2D(refractionMap, (0.5*gl_TexCoord[2].xy) / gl_TexCoord[2].w + 0.5).rgb ,colour, clamp(perceivedDepth,0.0,1.0));
 		#endif
-	#else
-		// I'm not even sure what this does.
-		//colour = mix( texture2D(refractionMap, (0.5*gl_TexCoord[2].xy) / gl_TexCoord[2].w + 0.5).rgb ,colour, clamp(perceivedDepth,0.0,1.0));
 	#endif
 	
 	gl_FragColor.rgb = get_fog(colour) * losMod;
