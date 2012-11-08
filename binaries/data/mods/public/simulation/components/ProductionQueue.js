@@ -212,6 +212,14 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			if (!cmpPlayer.TrySubtractResources(totalCosts))
 				return;
 
+			// Update entity count in the EntityLimits component
+			if (template.TrainingRestrictions)
+			{
+				var unitCategory = template.TrainingRestrictions.Category;
+				var cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
+				cmpPlayerEntityLimits.IncreaseCount(unitCategory, count);
+			}
+
 			this.queue.push({
 				"id": this.nextID++,
 				"player": cmpPlayer.GetPlayerID(),
@@ -306,6 +314,19 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 		// Now we've found the item to remove
 		
 		var cmpPlayer = QueryPlayerIDInterface(item.player, IID_Player);
+
+		// Update entity count in the EntityLimits component
+		if (item.unitTemplate)
+		{
+			var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+			var template = cmpTempMan.GetTemplate(item.unitTemplate);
+			if (template.TrainingRestrictions)
+			{
+				var unitCategory = template.TrainingRestrictions.Category;
+				var cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
+				cmpPlayerEntityLimits.DecreaseCount(unitCategory, item.count);
+			}
+		}
 
 		// Refund the resource cost for this batch
 		var totalCosts = {};
@@ -422,7 +443,19 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		//	so only create them once and use as needed
 		for (var i = 0; i < count; ++i)
 		{
-			this.entityCache.push(Engine.AddEntity(templateName));
+			var ent = Engine.AddEntity(templateName);
+			this.entityCache.push(ent);
+
+			// Decrement entity count in the EntityLimits component
+			// since it will be increased by EntityLimits.OnGlobalOwnershipChanged function,
+			// i.e. we replace a 'trained' entity to an 'alive' one
+			var cmpTrainingRestrictions = Engine.QueryInterface(ent, IID_TrainingRestrictions);
+			if (cmpTrainingRestrictions)
+			{
+				var unitCategory = cmpTrainingRestrictions.GetCategory();
+				var cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
+				cmpPlayerEntityLimits.DecrementCount(unitCategory);
+			}
 		}
 	}
 

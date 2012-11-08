@@ -368,7 +368,7 @@ MilitaryAttackManager.prototype.measureEnemyStrength = function(gameState){
 // Adds towers to the defenceBuilding queue
 MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){ 
 	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv('structures/{civ}_defense_tower'))
-			+ queues.defenceBuilding.totalLength() < gameState.getBuildLimits()["DefenseTower"]) {
+			+ queues.defenceBuilding.totalLength() < gameState.getEntityLimits()["DefenseTower"]) {
 		
 		gameState.getOwnEntities().forEach(function(dropsiteEnt) {
 			if (dropsiteEnt.resourceDropsiteTypes() && dropsiteEnt.getMetadata("defenseTower") !== true){
@@ -386,7 +386,7 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 		numFortresses += gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bFort[i]));
 	}
 	
-	if (numFortresses + queues.defenceBuilding.totalLength() < 1){ //gameState.getBuildLimits()["Fortress"]) {
+	if (numFortresses + queues.defenceBuilding.totalLength() < 1){ //gameState.getEntityLimits()["Fortress"]) {
 		if (gameState.getTimeElapsed() > 840 * 1000 + numFortresses * 300 * 1000){
 			if (gameState.ai.pathsToMe && gameState.ai.pathsToMe.length > 0){
 				var position = gameState.ai.pathsToMe.shift();

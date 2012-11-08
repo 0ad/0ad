@@ -121,7 +121,7 @@ void SetDisableShadowPCF(void* UNUSED(cbdata), bool disabled)
 		g_ShadowPCF = !disabled;
 }
 
-void SetDisableFancyWater(void* UNUSED(cbdata), bool disabled)
+void SetDisableAllWater(void* UNUSED(cbdata), bool disabled)
 {
 	if (!IsOverridden("waternormals"))
 		g_WaterNormal = !disabled;
@@ -137,6 +137,24 @@ void SetDisableFancyWater(void* UNUSED(cbdata), bool disabled)
 		g_WaterReflection = !disabled;
 	if (!IsOverridden("watershadows"))
 		g_WaterShadows = !disabled;
+}
+void SetDisableFancyWater(void* UNUSED(cbdata), bool disabled)
+{
+	if (!IsOverridden("waterrealdepth"))
+		g_WaterRealDepth = !disabled;
+	if (!IsOverridden("waterfoam"))
+		g_WaterFoam = !disabled;
+	if (!IsOverridden("watercoastalwaves"))
+		g_WaterCoastalWaves = !disabled;
+	if (!IsOverridden("watershadows"))
+		g_WaterShadows = !disabled;
+}
+void SetDisableFBOWater(void* UNUSED(cbdata), bool disabled)
+{
+	if (!IsOverridden("waterfoam"))
+		g_WaterFoam = !disabled;
+	if (!IsOverridden("watercoastalwaves"))
+		g_WaterCoastalWaves = !disabled;
 }
 
 void SetRenderPath(void* UNUSED(cbdata), std::string renderpath)
@@ -154,7 +172,9 @@ void RunHardwareDetection()
 	scriptInterface.RegisterFunction<void, bool, &SetDisableS3TC>("SetDisableS3TC");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableShadows>("SetDisableShadows");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableShadowPCF>("SetDisableShadowPCF");
+	scriptInterface.RegisterFunction<void, bool, &SetDisableAllWater>("SetDisableAllWater");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableFancyWater>("SetDisableFancyWater");
+	scriptInterface.RegisterFunction<void, bool, &SetDisableFBOWater>("SetDisableFBOWater");
 	scriptInterface.RegisterFunction<void, std::string, &SetRenderPath>("SetRenderPath");
 
 	// Load the detection script:

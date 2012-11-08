@@ -45,7 +45,6 @@
   <Identity>
     <Classes datatype="tokens">Hero</Classes>
     <GenericName>Hero Skirmisher</GenericName>
-    <RequiredTechnology>no_heroes</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>350</xp>
@@ -66,4 +65,7 @@
       </Texture>
     </Overlay>
   </Selectable>
+  <TrainingRestrictions>
+    <Category>Hero</Category>
+  </TrainingRestrictions>
 </Entity>

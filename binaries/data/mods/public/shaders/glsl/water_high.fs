@@ -174,7 +174,7 @@ void main()
 		float distoFactor = clamp((waterDepth/v.y)/4.0,0.0,7.0);
 	#endif
   	
-	fresnel = pow(1.0 - ndotv, 1.3333); // approximation
+	fresnel = pow(1.05 - ndotv, 1.3333); // approximation. I'm using 1.05 and not 1.0 because it causes artifacts, see #1714
 	
 	#if USE_FOAM
 		// texture is rotated 90°, moves slowly.
@@ -266,9 +266,6 @@ void main()
 		#else
 			colour = mix(texture2D(refractionMap, (0.5*gl_TexCoord[2].xy) / gl_TexCoord[2].w + 0.5).rgb ,colour, clamp(perceivedDepth,0.0,1.0));
 		#endif
-	#else
-		// I'm not even sure what this does.
-		//colour = mix( texture2D(refractionMap, (0.5*gl_TexCoord[2].xy) / gl_TexCoord[2].w + 0.5).rgb ,colour, clamp(perceivedDepth,0.0,1.0));
 	#endif
 	
 	gl_FragColor.rgb = get_fog(colour) * losMod;

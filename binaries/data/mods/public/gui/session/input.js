@@ -1467,17 +1467,76 @@ function exchangeResources(command)
 var batchTrainingEntities;
 var batchTrainingType;
 var batchTrainingCount;
+var batchTrainingEntityAllowedCount;
 const batchIncrementSize = 5;
 
 function flushTrainingBatch()
 {
-	Engine.PostNetworkCommand({"type": "train", "entities": batchTrainingEntities, "template": batchTrainingType, "count": batchTrainingCount});
+	var appropriateBuildings = getBuidlingsWhichCanTrainEntity(batchTrainingEntities, batchTrainingType);
+	// If training limits don't allow us to train batchTrainingCount in each appropriate building
+	if (batchTrainingEntityAllowedCount !== undefined &&
+		batchTrainingEntityAllowedCount < batchTrainingCount * appropriateBuildings.length)
+	{
+		// Train as many full batches as we can
+		var buildingsCountToTrainFullBatch = Math.floor(batchTrainingEntityAllowedCount / batchTrainingCount);
+		var buildingsToTrainFullBatch = appropriateBuildings.slice(0, buildingsCountToTrainFullBatch);
+		Engine.PostNetworkCommand({"type": "train", "entities": buildingsToTrainFullBatch,
+			"template": batchTrainingType, "count": batchTrainingCount});
+
+		// Train remainer in one more building
+		var remainderToTrain = batchTrainingEntityAllowedCount % batchTrainingCount;
+		Engine.PostNetworkCommand({"type": "train",
+			"entities": [ appropriateBuildings[buildingsCountToTrainFullBatch] ],
+			"template": batchTrainingType, "count": remainderToTrain});
+	}
+	else
+	{
+		Engine.PostNetworkCommand({"type": "train", "entities": appropriateBuildings,
+			"template": batchTrainingType, "count": batchTrainingCount});
+	}
+}
+
+function getBuidlingsWhichCanTrainEntity(entitiesToCheck, trainEntType)
+{
+	return entitiesToCheck.filter(function(entity) {
+		var state = GetEntityState(entity);
+		var canTrain = state && state.production && state.production.entities.length &&
+			state.production.entities.indexOf(trainEntType) != -1;
+		return canTrain;
+	});
+}
+
+function getEntityLimitAndCount(playerState, entType)
+{
+	var template = GetTemplateData(entType);
+	var trainingCategory = null;
+	if (template.trainingRestrictions)
+		trainingCategory = template.trainingRestrictions.category;
+	var trainEntLimit = undefined;
+	var trainEntCount = undefined;
+	var canBeTrainedCount = undefined;
+	if (trainingCategory && playerState.entityLimits[trainingCategory])
+	{
+		trainEntLimit = playerState.entityLimits[trainingCategory];
+		trainEntCount = playerState.entityCounts[trainingCategory];
+		canBeTrainedCount = trainEntLimit - trainEntCount;
+	}
+	return [trainEntLimit, trainEntCount, canBeTrainedCount];
 }
 
 // Called by GUI when user clicks training button
-function addTrainingToQueue(selection, trainEntType)
+function addTrainingToQueue(selection, trainEntType, playerState)
 {
-	if (Engine.HotkeyIsPressed("session.batchtrain"))
+	// Create list of buildings which can train trainEntType
+	var appropriateBuildings = getBuidlingsWhichCanTrainEntity(selection, trainEntType);
+
+	// Check trainEntType entity limit and count
+	var [trainEntLimit, trainEntCount, canBeTrainedCount] = getEntityLimitAndCount(playerState, trainEntType)
+
+	// Batch training possible if we can train at least 2 units
+	var batchTrainingPossible = canBeTrainedCount == undefined || canBeTrainedCount > 1;
+
+	if (Engine.HotkeyIsPressed("session.batchtrain") && batchTrainingPossible)
 	{
 		if (inputState == INPUT_BATCHTRAINING)
 		{
@@ -1494,9 +1553,13 @@ function addTrainingToQueue(selection, trainEntType)
 				}
 			}
 			// If we're already creating a batch of this unit (in the same building(s)), then just extend it
+			// (if training limits allow)
 			if (sameEnts && batchTrainingType == trainEntType)
 			{
-				batchTrainingCount += batchIncrementSize;
+				if (canBeTrainedCount == undefined ||
+					canBeTrainedCount > batchTrainingCount * appropriateBuildings.length)
+					batchTrainingCount += batchIncrementSize;
+				batchTrainingEntityAllowedCount = canBeTrainedCount;
 				return;
 			}
 			// Otherwise start a new one
@@ -1509,12 +1572,18 @@ function addTrainingToQueue(selection, trainEntType)
 		inputState = INPUT_BATCHTRAINING;
 		batchTrainingEntities = selection;
 		batchTrainingType = trainEntType;
+		batchTrainingEntityAllowedCount = canBeTrainedCount;
 		batchTrainingCount = batchIncrementSize;
 	}
 	else
 	{
-		// Non-batched - just create a single entity
-		Engine.PostNetworkCommand({"type": "train", "template": trainEntType, "count": 1, "entities": selection});
+		// Non-batched - just create a single entity in each building
+		// (but no more than entity limit allows)
+		var buildingsForTraining = appropriateBuildings;
+		if (trainEntLimit)
+			buildingsForTraining = buildingsForTraining.slice(0, canBeTrainedCount);
+		Engine.PostNetworkCommand({"type": "train", "template": trainEntType,
+			"count": 1, "entities": buildingsForTraining});
 	}
 }
 
@@ -1526,12 +1595,39 @@ function addResearchToQueue(entity, researchType)
 
 // Returns the number of units that will be present in a batch if the user clicks
 // the training button with shift down
-function getTrainingBatchStatus(entity, trainEntType)
+function getTrainingBatchStatus(playerState, entity, trainEntType, selection)
 {
-	if (inputState == INPUT_BATCHTRAINING && batchTrainingEntities.indexOf(entity) != -1 && batchTrainingType == trainEntType)
-		return [batchTrainingCount, batchIncrementSize];
+	var apporpriateBuildings = [entity];
+	if (selection && selection.indexOf(entity) != -1)
+		appropriateBuildings = getBuidlingsWhichCanTrainEntity(selection, trainEntType);
+	var nextBatchTrainingCount = 0;
+	if (inputState == INPUT_BATCHTRAINING && batchTrainingEntities.indexOf(entity) != -1 &&
+		batchTrainingType == trainEntType)
+	{
+		nextBatchTrainingCount = batchTrainingCount;
+		var canBeTrainedCount = batchTrainingEntityAllowedCount;
+	}
 	else
-		return [0, batchIncrementSize];
+	{
+		var [trainEntLimit, trainEntCount, canBeTrainedCount] =
+			getEntityLimitAndCount(playerState, trainEntType);
+		var batchSize = Math.min(canBeTrainedCount, batchIncrementSize);
+	}
+	// We need to calculate count after the next increment if it's possible
+	if (canBeTrainedCount == undefined ||
+		canBeTrainedCount > nextBatchTrainingCount * appropriateBuildings.length)
+		nextBatchTrainingCount += batchIncrementSize;
+	// If training limits don't allow us to train batchTrainingCount in each appropriate building
+	// train as many full batches as we can and remainer in one more building.
+	var buildingsCountToTrainFullBatch = appropriateBuildings.length;
+	var remainderToTrain = 0;
+	if (canBeTrainedCount !== undefined &&
+		canBeTrainedCount < nextBatchTrainingCount * appropriateBuildings.length)
+	{
+		buildingsCountToTrainFullBatch = Math.floor(canBeTrainedCount / nextBatchTrainingCount);
+		remainderToTrain = canBeTrainedCount % nextBatchTrainingCount;
+	}
+	return [buildingsCountToTrainFullBatch, nextBatchTrainingCount, remainderToTrain];
 }
 
 // Called by GUI when user clicks production queue item

@@ -324,7 +324,7 @@ MilitaryAttackManager.prototype.measureEnemyStrength = function(gameState){
 // Adds towers to the defenceBuilding queue
 MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){ 
 	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv('structures/{civ}_defense_tower'))
-			+ queues.defenceBuilding.totalLength() < gameState.getBuildLimits()["DefenseTower"]) {
+			+ queues.defenceBuilding.totalLength() < gameState.getEntityLimits()["DefenseTower"]) {
 		
 		
 		gameState.getOwnEntities().forEach(function(dropsiteEnt) {
@@ -343,7 +343,7 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 		numFortresses += gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bFort[i]));
 	}
 	
-	if (numFortresses + queues.defenceBuilding.totalLength() < gameState.getBuildLimits()["Fortress"]) {
+	if (numFortresses + queues.defenceBuilding.totalLength() < gameState.getEntityLimits()["Fortress"]) {
 		if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > gameState.ai.modules["economy"].targetNumWorkers * 0.5){
 			if (gameState.getTimeElapsed() > 350 * 1000 * numFortresses){
 				if (gameState.ai.pathsToMe && gameState.ai.pathsToMe.length > 0){

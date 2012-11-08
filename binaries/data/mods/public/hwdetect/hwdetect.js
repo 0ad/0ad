@@ -172,7 +172,9 @@ function RunDetection(settings)
 	var disable_s3tc = undefined;
 	var disable_shadows = undefined;
 	var disable_shadowpcf = undefined;
+	var disable_allwater = undefined;
 	var disable_fancywater = undefined;
+	var disable_fbowater = undefined;
 	var override_renderpath = undefined;
 
 	// TODO: add some mechanism for setting config values
@@ -247,7 +249,9 @@ function RunDetection(settings)
 		(os_win && IsWorseThanIntelWindows(GL_RENDERER, "Intel(R) Graphics Media Accelerator HD"))
 	)
 	{
+		disable_allwater = false;
 		disable_fancywater = true;
+		//disable_fbowater = true;
 		disable_shadowpcf = true;
 	}
 
@@ -264,7 +268,7 @@ function RunDetection(settings)
 	if (GL_RENDERER.match(/^GeForce FX /))
 	{
 		override_renderpath = "fixed";
-		disable_fancywater = true;
+		disable_allwater = true;
 	}
 
 	// http://trac.wildfiregames.com/ticket/964
@@ -283,7 +287,9 @@ function RunDetection(settings)
 		"disable_s3tc": disable_s3tc,
 		"disable_shadows": disable_shadows,
 		"disable_shadowpcf": disable_shadowpcf,
+		"disable_allwater": disable_allwater,
 		"disable_fancywater": disable_fancywater,
+		"disable_fbowater": disable_fbowater,
 		"override_renderpath": override_renderpath,
 	};
 }
@@ -317,8 +323,14 @@ global.RunHardwareDetection = function(settings)
 	if (output.disable_shadowpcf !== undefined)
 		Engine.SetDisableShadowPCF(output.disable_shadowpcf);
 
+	if (output.disable_allwater !== undefined)
+		Engine.SetDisableFancyWater(output.disable_allwater);
+	
 	if (output.disable_fancywater !== undefined)
 		Engine.SetDisableFancyWater(output.disable_fancywater);
+	
+	if (output.disable_fbowater !== undefined)
+		Engine.SetDisableFancyWater(output.disable_fbowater);
 
 	if (output.override_renderpath !== undefined)
 		Engine.SetRenderPath(output.override_renderpath);

@@ -139,6 +139,65 @@ function setOverlay(object, value)
 }
 
 /**
+ * Format entity count/limit message for the tooltip
+ */
+function formatLimitString(trainEntLimit, trainEntCount)
+{
+	if (trainEntLimit == undefined)
+		return "";
+	var text = "\n\nCurrent count: " + trainEntCount + ", limit: " + trainEntLimit + ".";
+	if (trainEntCount >= trainEntLimit)
+		text = "[color=\"red\"]" + text + "[/color]";
+	return text;
+}
+
+/**
+ * Format batch training string for the tooltip
+ * Examples:
+ * buildingsCountToTrainFullBatch = 1, fullBatchSize = 5, remainderBatch = 0:
+ * "Shift-click to train 5"
+ * buildingsCountToTrainFullBatch = 2, fullBatchSize = 5, remainderBatch = 0:
+ * "Shift-click to train 10 (2*5)"
+ * buildingsCountToTrainFullBatch = 1, fullBatchSize = 15, remainderBatch = 12:
+ * "Shift-click to train 27 (15 + 12)"
+ */
+function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
+{
+	var totalBatchTrainingCount = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
+	// Don't show the batch training tooltip if either units of this type can't be trained at all
+	// or only one unit can be trained
+	if (totalBatchTrainingCount < 2)
+		return "";
+	var batchTrainingString = "";
+	var fullBatchesString = "";
+	if (buildingsCountToTrainFullBatch > 0)
+	{
+		if (buildingsCountToTrainFullBatch > 1)
+			fullBatchesString += buildingsCountToTrainFullBatch + "*";
+		fullBatchesString += fullBatchSize;
+	}
+	var remainderBatchString = remainderBatch > 0 ? remainderBatch : "";
+	var batchDetailsString = "";
+	// We need to display the batch details part if there is either more than
+	// one building with full batch or one building with the full batch and
+	// another with a partial batch
+	if (buildingsCountToTrainFullBatch > 1 ||
+		(buildingsCountToTrainFullBatch == 1 && remainderBatch > 0))
+	{
+		batchDetailsString += " (";
+		if (fullBatchesString != "" && remainderBatchString != "")
+			batchDetailsString += fullBatchesString + " + " + remainderBatchString;
+		else if (fullBatchesString != "")
+			batchDetailsString += fullBatchesString;
+		else
+			batchDetailsString += remainderBatchString;
+		batchDetailsString += ")";
+	}
+	return "\n\n[font=\"serif-bold-13\"]Shift-click[/font][font=\"serif-13\"] to train "
+		+ totalBatchTrainingCount + batchDetailsString + ".[/font]";
+}
+
+/**
  * Helper function for updateUnitCommands; sets up "unit panels" (i.e. panels with rows of icons) for the currently selected
  * unit.
  * 
@@ -150,7 +209,7 @@ function setOverlay(object, value)
  * @param items Panel-specific data to construct the icons with.
  * @param callback Callback function to argument to execute when an item's icon gets clicked. Takes a single 'item' argument.
  */
-function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
+function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, callback)
 {
 	usedPanels[guiName] = 1;
 
@@ -374,9 +433,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
-				var [batchSize, batchIncrement] = getTrainingBatchStatus(unitEntState.id, entType);
-				var trainNum = batchSize ? batchSize+batchIncrement : batchIncrement;
-
 				tooltip += "\n" + getEntityCostTooltip(template);
 
 				if (template.health)
@@ -388,8 +444,13 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				if (template.speed)
 					tooltip += "\n" + getEntitySpeed(template);
 
-				tooltip += "\n\n[font=\"serif-bold-13\"]Shift-click[/font][font=\"serif-13\"] to train " + trainNum + ".[/font]";
+				var [trainEntLimit, trainEntCount, canBeTrainedCount] =
+					getEntityLimitAndCount(playerState, entType)
+				tooltip += formatLimitString(trainEntLimit, trainEntCount);
 
+				var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
+					getTrainingBatchStatus(playerState, unitEntState.id, entType, selection);
+				tooltip += formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch);
 				break;
 				
 			case RESEARCH:
@@ -627,17 +688,30 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 					pair.hidden = true;
 					button1.hidden = true;
 					affordableMask1.hidden = true;
-  				}
+				}
 			}
 			else if (guiName == CONSTRUCTION || guiName == TRAINING)
 			{
+				if (guiName == TRAINING)
+				{
+					var trainingCategory = null;
+					if (template.trainingRestrictions)
+						trainingCategory = template.trainingRestrictions.category;
+					var grayscale = "";
+					if (trainingCategory && playerState.entityLimits[trainingCategory] &&
+						playerState.entityCounts[trainingCategory] >= playerState.entityLimits[trainingCategory])
+						grayscale = "grayscale:";
+					icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
+				}
+
 				affordableMask.hidden = true;
 				var totalCosts = {};
 				var trainNum = 1;
 				if (Engine.HotkeyIsPressed("session.batchtrain") && guiName == TRAINING)
 				{
-					var [batchSize, batchIncrement] = getTrainingBatchStatus(unitEntState.id, entType);
-					trainNum = batchSize + batchIncrement;
+					var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
+						getTrainingBatchStatus(playerState, unitEntState.id, entType, selection);
+					trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
 				}
 
 				// Walls have no cost defined.
@@ -767,7 +841,7 @@ function setupUnitTradingPanel(usedPanels, unitEntState, selection)
 }
 
 // Sets up "unit barter panel" - special case for setupUnitPanel
-function setupUnitBarterPanel(unitEntState)
+function setupUnitBarterPanel(unitEntState, playerState)
 {
 	// Amount of player's resource to exchange
 	var amountToSell = BARTER_RESOURCE_AMOUNT_TO_SELL;
@@ -862,13 +936,18 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 	var player = Engine.GetPlayerID();
 	if (entState.player == player || g_DevSettings.controlAll)
 	{
+		// Get player state to check some constraints
+		// e.g. presence of a hero or build limits
+		var simState = Engine.GuiInterfaceCall("GetSimulationState");
+		var playerState = simState.players[player];
+
 		if (selection.length > 1)
-			setupUnitPanel(SELECTION, usedPanels, entState, g_Selection.groups.getTemplateNames(),
+			setupUnitPanel(SELECTION, usedPanels, entState, playerState, g_Selection.groups.getTemplateNames(),
 				function (entType) { changePrimarySelectionGroup(entType); } );
 
 		var commands = getEntityCommandsList(entState);
 		if (commands.length)
-			setupUnitPanel(COMMAND, usedPanels, entState, commands,
+			setupUnitPanel(COMMAND, usedPanels, entState, playerState, commands,
 				function (item) { performCommand(entState.id, item.name); } );
 
 		if (entState.garrisonHolder)
@@ -881,14 +960,14 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 					groups.add(state.garrisonHolder.entities)
 			}
 
-			setupUnitPanel(GARRISON, usedPanels, entState, groups.getTemplateNames(),
+			setupUnitPanel(GARRISON, usedPanels, entState, playerState, groups.getTemplateNames(),
 				function (item) { unloadTemplate(item); } );
 		}
 
 		var formations = Engine.GuiInterfaceCall("GetAvailableFormations");
 		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && !entState.garrisonHolder && formations.length)
 		{
-			setupUnitPanel(FORMATION, usedPanels, entState, formations,
+			setupUnitPanel(FORMATION, usedPanels, entState, playerState, formations,
 				function (item) { performFormation(entState.id, item); } );
 		}
 
@@ -897,7 +976,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		var stances = ["violent", "aggressive", "passive", "defensive", "standground"];
 		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && stances.length)
 		{
-			setupUnitPanel(STANCE, usedPanels, entState, stances,
+			setupUnitPanel(STANCE, usedPanels, entState, playerState, stances,
 				function (item) { performStance(entState.id, item); } );
 		}
 
@@ -905,7 +984,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		if (entState.barterMarket)
 		{
 			usedPanels["Barter"] = 1;
-			setupUnitBarterPanel(entState);
+			setupUnitBarterPanel(entState, playerState);
 		}
 
 		var buildableEnts = [];
@@ -929,10 +1008,10 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 
 		// The first selected entity's type has priority.
 		if (entState.buildEntities)
-			setupUnitPanel(CONSTRUCTION, usedPanels, entState, buildableEnts, startBuildingPlacement);
+			setupUnitPanel(CONSTRUCTION, usedPanels, entState, playerState, buildableEnts, startBuildingPlacement);
 		else if (entState.production && entState.production.entities)
-			setupUnitPanel(TRAINING, usedPanels, entState, trainableEnts,
-				function (trainEntType) { addTrainingToQueue(selection, trainEntType); } );
+			setupUnitPanel(TRAINING, usedPanels, entState, playerState, trainableEnts,
+				function (trainEntType) { addTrainingToQueue(selection, trainEntType, playerState); } );
 		else if (entState.trader)
 			setupUnitTradingPanel(usedPanels, entState, selection);
 		else if (!entState.foundation && entState.gate || hasClass(entState, "LongWall"))
@@ -979,7 +1058,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			// Place wall conversion options after gate lock/unlock icons.
 			var items = gates.concat(walls);
 			if (items.length)
-				setupUnitPanel(GATE, usedPanels, entState, items);
+				setupUnitPanel(GATE, usedPanels, entState, playerState, items);
 			else
 				rightUsed = false;
 		}
@@ -991,23 +1070,22 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			// The right pane is empty. Fill the pane with a sane type.
 			// Prefer buildables for units and trainables for structures.
 			if (buildableEnts.length && (hasClass(entState, "Unit") || !trainableEnts.length))
-				setupUnitPanel(CONSTRUCTION, usedPanels, entState, buildableEnts, startBuildingPlacement);
+				setupUnitPanel(CONSTRUCTION, usedPanels, entState, playerState, buildableEnts, startBuildingPlacement);
 			else if (trainableEnts.length)
-				setupUnitPanel(TRAINING, usedPanels, entState, trainableEnts,
-					function (trainEntType) { addTrainingToQueue(selection, trainEntType); } );
+				setupUnitPanel(TRAINING, usedPanels, entState, playerState, trainableEnts,
+					function (trainEntType) { addTrainingToQueue(selection, trainEntType, playerState); } );
 		}
-
 		// Show technologies if the active panel has at most one row of icons.
 		if (entState.production && entState.production.technologies.length)
 		{
 			var activepane = usedPanels[CONSTRUCTION] ? buildableEnts.length : trainableEnts.length;
 			if (selection.length == 1 || activepane <= 8)
-				setupUnitPanel(RESEARCH, usedPanels, entState, entState.production.technologies,
+				setupUnitPanel(RESEARCH, usedPanels, entState, playerState, entState.production.technologies,
 					function (researchType) { addResearchToQueue(entState.id, researchType); } );
 		}
 
 		if (entState.production && entState.production.queue.length)
-			setupUnitPanel(QUEUE, usedPanels, entState, entState.production.queue,
+			setupUnitPanel(QUEUE, usedPanels, entState, playerState, entState.production.queue,
 				function (item) { removeFromProductionQueue(entState.id, item.id); } );
 		
 		supplementalDetailsPanel.hidden = false;
