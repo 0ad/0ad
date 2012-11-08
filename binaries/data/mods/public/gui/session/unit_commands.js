@@ -1058,7 +1058,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			// Place wall conversion options after gate lock/unlock icons.
 			var items = gates.concat(walls);
 			if (items.length)
-				setupUnitPanel(GATE, usedPanels, entState, items);
+				setupUnitPanel(GATE, usedPanels, entState, playerState, items);
 			else
 				rightUsed = false;
 		}
@@ -1070,18 +1070,17 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			// The right pane is empty. Fill the pane with a sane type.
 			// Prefer buildables for units and trainables for structures.
 			if (buildableEnts.length && (hasClass(entState, "Unit") || !trainableEnts.length))
-				setupUnitPanel(CONSTRUCTION, usedPanels, entState, buildableEnts, startBuildingPlacement);
+				setupUnitPanel(CONSTRUCTION, usedPanels, entState, playerState, buildableEnts, startBuildingPlacement);
 			else if (trainableEnts.length)
-				setupUnitPanel(TRAINING, usedPanels, entState, trainableEnts,
+				setupUnitPanel(TRAINING, usedPanels, entState, playerState, trainableEnts,
 					function (trainEntType) { addTrainingToQueue(selection, trainEntType, playerState); } );
 		}
-
 		// Show technologies if the active panel has at most one row of icons.
 		if (entState.production && entState.production.technologies.length)
 		{
 			var activepane = usedPanels[CONSTRUCTION] ? buildableEnts.length : trainableEnts.length;
 			if (selection.length == 1 || activepane <= 8)
-				setupUnitPanel(RESEARCH, usedPanels, entState, entState.production.technologies,
+				setupUnitPanel(RESEARCH, usedPanels, entState, playerState, entState.production.technologies,
 					function (researchType) { addResearchToQueue(entState.id, researchType); } );
 		}
 
