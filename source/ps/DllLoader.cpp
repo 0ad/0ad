@@ -79,15 +79,25 @@ static CStr GenerateFilename(const CStr& name, const CStr& suffix, const CStr& e
 		n = g_Libdir + "/";
 
 #if OS_MACOSX
-	// On OS X, we might be in a bundle in which case the lib directory is ../Frameworks
-	//  relative to the binary, so we use a helper function to get the system path
 	if (osx_IsAppBundleValid())
 	{
+		// We are in a bundle, in which case the lib directory is ../Frameworks
+		// relative to the binary, so we use a helper function to get the system path
+		// (alternately we could use @executable_path as below, but this seems better)
 		CStr frameworksPath = osx_GetBundleFrameworksPath();
 		if (!frameworksPath.empty())
-		{
 			n = frameworksPath + "/";
-		}
+	}
+	else
+	{
+		// On OS X, dlopen will search the current working directory for the library to
+		// to load if given only a filename. But the CWD is not guaranteed to be
+		// binaries/system (where our dylibs are placed) and it's not when e.g. the user
+		// launches the game from Finder.
+		// To work around this, we use the @executable_path variable, which should always
+		// resolve to binaries/system, if we're not a bundle.
+		// (see Apple's dyld(1) and dlopen(3) man pages for more info)
+		n = "@executable_path/";
 	}
 #endif
 
