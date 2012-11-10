@@ -240,9 +240,9 @@ function getEntityCommandsList(entState)
 	if (entState.rallyPoint)
 	{
 		commands.push({
-		    "name": "delete",
-		    "tooltip": "Delete",
-		    "icon": "kill_small.png"
+		    "name": "focus-rally",
+		    "tooltip": "Focus on Rally Point",
+		    "icon": "focus-rally.png"
 		});
 	}
 

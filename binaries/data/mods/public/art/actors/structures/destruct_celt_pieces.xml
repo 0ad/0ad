@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="celt cc pieces 6x6">
+      <mesh>props/celt_cc_pieces.dae</mesh>
+      <textures>
+        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+        <texture file="props/ao/celt_cc_rubble.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

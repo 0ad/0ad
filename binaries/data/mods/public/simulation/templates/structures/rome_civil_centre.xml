@@ -9,6 +9,9 @@
     <SpecificName>Municipium</SpecificName>
     <History>A Municipium was a Roman settlement just below a Colonia in level, enjoying self-governance and the grant of Latin citizenship rights for its inhabitants.</History>
   </Identity>
+<Health>
+ <SpawnEntityOnDeath>rubble/rubble_rome_cc</SpawnEntityOnDeath>
+ </Health>
   <Obstruction>
     <Static width="37.0" depth="37.0"/>
   </Obstruction>

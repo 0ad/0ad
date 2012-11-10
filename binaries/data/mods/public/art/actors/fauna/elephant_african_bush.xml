@@ -4,7 +4,10 @@
   <group>
     <variant frequency="1" name="elephant_african_bush [adult]">
       <mesh>skeletal/elephant_african_bush.dae</mesh>
-      <textures><texture file="skeletal/animal-elephant-base.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal-elephant-base.dds" name="baseTex"/>
+        <texture file="skeletal/animal-elephant-base_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -20,4 +23,5 @@
       </props>
     </variant>
   </group>
+  <material>basic_specmap.xml</material>
 </actor>

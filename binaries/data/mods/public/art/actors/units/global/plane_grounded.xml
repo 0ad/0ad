@@ -7,7 +7,10 @@
       <props>
         <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/mustang.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/mustang.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
+  <material>basic_spec.xml</material>
 </actor>

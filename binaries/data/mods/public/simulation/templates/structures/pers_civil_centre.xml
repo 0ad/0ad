@@ -6,6 +6,9 @@
     <SpecificName>Xsacapava</SpecificName>
     <History>Possibly of Median origin, the word 'satrapy' means province. Soon after coming to the throne, Darius the Great carried out a vast administrative reform, dividing the huge empire into 20 satrapies governed by satraps.</History>
   </Identity>
+<Health>
+    <SpawnEntityOnDeath>rubble/rubble_pers_cc</SpawnEntityOnDeath>
+  </Health>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/pers_infantry_spearman_b
