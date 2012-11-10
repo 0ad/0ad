@@ -1472,24 +1472,20 @@ void CRenderer::RenderSubmissions()
 		waterScissor = m->terrainRenderer.ScissorWater(m_ViewCamera.GetViewProjection());
 		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
 		{
-			SScreenRect reflectionScissor;
-			if (m_Options.m_WaterReflection)
-				reflectionScissor = RenderReflections(context, waterScissor);
-			SScreenRect refractionScissor;
-			if (m_Options.m_WaterRefraction)
-				refractionScissor = RenderRefractions(context, waterScissor);
-			
 			PROFILE3_GPU("water scissor");
 			SScreenRect dirty;
 			if (m_Options.m_WaterRefraction && m_Options.m_WaterReflection)
 			{
-				dirty.x1 = reflectionScissor.x1;
-				dirty.y1 = reflectionScissor.y1;
-				dirty.x2 = reflectionScissor.x2;
-				dirty.y2 = reflectionScissor.y2;
-			}
+				SScreenRect reflectionScissor = RenderReflections(context, waterScissor);
+				SScreenRect refractionScissor = RenderRefractions(context, waterScissor);
+				dirty.x1 = std::min(reflectionScissor.x1, refractionScissor.x1);
+				dirty.y1 = std::min(reflectionScissor.y1, refractionScissor.y1);
+				dirty.x2 = std::max(reflectionScissor.x2, refractionScissor.x2);
+				dirty.y2 = std::max(reflectionScissor.y2, refractionScissor.y2);
+ 			}
 			else if (m_Options.m_WaterRefraction)
 			{
+				SScreenRect refractionScissor = RenderRefractions(context, waterScissor);
 				dirty.x1 = refractionScissor.x1;
 				dirty.y1 = refractionScissor.y1;
 				dirty.x2 = refractionScissor.x2;
@@ -1497,6 +1493,7 @@ void CRenderer::RenderSubmissions()
 			}
 			else
 			{
+				SScreenRect reflectionScissor = RenderReflections(context, waterScissor);
 				dirty.x1 = reflectionScissor.x1;
 				dirty.y1 = reflectionScissor.y1;
 				dirty.x2 = reflectionScissor.x2;
