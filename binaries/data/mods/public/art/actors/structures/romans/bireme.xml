@@ -3,18 +3,23 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="Greek Pentekonter">
-      <animations>
-        <animation file="mechanical/hele_ship_pentekonter_idle.dae" name="Idle" speed="30"/>
-        <animation file="mechanical/hele_ship_pentekonter_move.dae" name="Walk" speed="8"/>
-        <animation file="mechanical/hele_ship_pentekonter_move.dae" name="Run" speed="10"/>
-      </animations>
-      <mesh>structural/hele_ship_pentekonter.dae</mesh>
+    <variant frequency="1" name="Rome Trireme">
+      <mesh>structural/rome_bireme.dae</mesh>
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/structures/romans/bireme_sail.xml" attachpoint="sail"/>
+        <prop actor="props/structures/romans/bireme_mainsail.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/bireme_foresail.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/bireme_shroud.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/bireme_banner_trans.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/bireme_shields.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/hele_pentekonter.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Blue Eye">
+      <textures>
+        <texture file="structural/rome_bireme.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

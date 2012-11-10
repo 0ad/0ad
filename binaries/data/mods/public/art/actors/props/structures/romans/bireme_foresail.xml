@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="mesh">
+      <mesh>props/rome_bireme_foresail.dae</mesh>
+      <textures>
+        <texture file="props/sail_blank_netting.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
