@@ -20,6 +20,7 @@
       <mesh>skeletal/elephant_african_forest.dae</mesh>
       <textures>
         <texture file="skeletal/animal-elephant-base.dds" name="baseTex"/>
+        <texture file="skeletal/animal-elephant-base_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -36,4 +37,5 @@
       </props>
     </variant>
   </group>
+  <material>basic_specmap.xml</material>
 </actor>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Cost>
+    <BuildTime>120</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>100</stone>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="10.0" depth="10.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <GarrisonHolder disable=""/>
+  <Health>
+    <Max>1000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_2x2</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>maur</Civ>
+	<GenericName>Edict Pillar of Ashoka</GenericName>
+    <SpecificName>Śāsana Stambha Aśokā</SpecificName>
+    <Icon>structures/monument.png</Icon>
+    <Tooltip>.</Tooltip>
+    <History>.</History>
+  </Identity>
+  <Obstruction>
+    <Static width="10.0" depth="10.0"/>
+  </Obstruction>
+  <RallyPoint disable=""/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_iber_monument.xml</select>
+      <constructed>interface/complete/building/complete_iber_monument.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence>
+    <Root>true</Root>
+  </TerritoryInfluence>
+  <VisualActor>
+    <Actor>props/structures/mauryans/ashoka_pillar.xml</Actor>
+    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
+  </VisualActor>
+</Entity>
