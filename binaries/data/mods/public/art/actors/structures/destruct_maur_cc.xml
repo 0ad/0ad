@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="maur cc rubble 6x6">
+      <mesh>props/maur_cc_rubble.dae</mesh>
+      <props>
+        <prop actor="structures/destruct_maur_pieces.xml" attachpoint="root"/>
+        <prop actor="particle/flame.xml" attachpoint="flame1"/>
+        <prop actor="particle/smoke.xml" attachpoint="flame1"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="flame2"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="flame2"/>
+        <prop actor="props/structures/decals/destruct_6x6.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/rubble_stone.png" name="baseTex"/>
+        <texture file="props/ao/maur_cc_rubble.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

@@ -5,6 +5,9 @@
     <SpecificName>Merkāz</SpecificName>
     <History>Carthiginian's History</History>
   </Identity>
+<Health>
+  <SpawnEntityOnDeath>rubble/rubble_kart_cc</SpawnEntityOnDeath>
+  </Health>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/cart_infantry_spearman_b

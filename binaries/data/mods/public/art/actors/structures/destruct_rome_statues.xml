@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="rome cc pieces 6x6">
+      <mesh>props/rome_cc_rubble_statues.dae</mesh>
+      <textures>
+        <texture file="props/rome_cc_statues.png" name="baseTex"/>
+        <texture file="props/ao/rome_cc_rubble.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

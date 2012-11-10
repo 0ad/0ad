@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="hele cc pieces tile b 6x6">
+      <mesh>props/hele_cc_rubble_tile_b.dae</mesh>
+      <textures>
+        <texture file="props/hele_tile_b.dds" name="baseTex"/>
+        <texture file="props/ao/hele_cc_rubble.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>
