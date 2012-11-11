@@ -11,8 +11,12 @@
         <prop actor="props/structures/mauryans/ashoka_pillar.xml" attachpoint="ashokapillar1"/>
 		<prop actor="props/structures/mauryans/ashoka_pillar.xml" attachpoint="ashokapillar2"/>
         <prop actor="props/structures/mauryans/stupa_gate.xml" attachpoint="stupagate"/>
+<prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/maur_struct.png" name="baseTex"/></textures>
+      <textures><texture file="structural/maur_struct.png" name="baseTex"/>
+<texture file="structural/ao/maur_cc_ao.png" name="aoTex"/>
+</textures>
     </variant>
   </group>
   <group>
@@ -23,5 +27,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao.xml</material>
 </actor>
