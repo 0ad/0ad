@@ -8,7 +8,8 @@ const COST_DISPLAY_NAMES = {
     "wood": "[icon=\"iconWood\"]",
     "stone": "[icon=\"iconStone\"]",
     "metal": "[icon=\"iconMetal\"]",
-    "population": "[icon=\"iconPopulation\"]"
+    "population": "[icon=\"iconPopulation\"]",
+    "time": "[icon=\"iconTime\"]"
 };
 
 //-------------------------------- -------------------------------- --------------------------------
@@ -264,11 +265,12 @@ function getCostComponentDisplayName(costComponentName)
 function getEntityCostComponentsTooltipString(template)
 {
 	var costs = [];
-	if (template.cost.food) costs.push("[font=\"serif-12\"]" + getCostComponentDisplayName("food") + "[/font] " + template.cost.food);
-	if (template.cost.wood) costs.push("[font=\"serif-12\"]" + getCostComponentDisplayName("wood") + "[/font] " + template.cost.wood);
-	if (template.cost.metal) costs.push("[font=\"serif-12\"]" + getCostComponentDisplayName("metal") + "[/font] " + template.cost.metal);
-	if (template.cost.stone) costs.push("[font=\"serif-12\"]" + getCostComponentDisplayName("stone") + "[/font] " + template.cost.stone);
-	if (template.cost.population) costs.push("[font=\"serif-12\"]" + getCostComponentDisplayName("population") + "[/font] " + template.cost.population);
+	if (template.cost.food) costs.push(getCostComponentDisplayName("food") + " " + template.cost.food);
+	if (template.cost.wood) costs.push(getCostComponentDisplayName("wood") + " " + template.cost.wood);
+	if (template.cost.metal) costs.push(getCostComponentDisplayName("metal") + " " + template.cost.metal);
+	if (template.cost.stone) costs.push(getCostComponentDisplayName("stone") + " " + template.cost.stone);
+	if (template.cost.population) costs.push(getCostComponentDisplayName("population") + " " + template.cost.population);
+	if (template.cost.time) costs.push(getCostComponentDisplayName("time") + " " + template.cost.time);
 	return costs;
 }
 

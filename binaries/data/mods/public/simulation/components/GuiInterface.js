@@ -401,6 +401,7 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 		if (template.Cost.Resources.metal) ret.cost.metal = GetTechModifiedProperty(techMods, template, "Cost/Resources/metal", +template.Cost.Resources.metal);
 		if (template.Cost.Population) ret.cost.population = GetTechModifiedProperty(techMods, template, "Cost/Population", +template.Cost.Population);
 		if (template.Cost.PopulationBonus) ret.cost.populationBonus = GetTechModifiedProperty(techMods, template, "Cost/PopulationBonus", +template.Cost.PopulationBonus);
+		if (template.Cost.BuildTime) ret.cost.time = GetTechModifiedProperty(techMods, template, "Cost/BuildTime", +template.Cost.BuildTime);
 	}
 	
 	if (template.Footprint)
@@ -531,6 +532,7 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 		"wood": template.cost ? (+template.cost.wood) : 0,
 		"metal": template.cost ? (+template.cost.metal) : 0,
 		"stone": template.cost ? (+template.cost.stone) : 0,
+		"time": template.researchTime ? (+template.researchTime) : 0,
 	}
 	ret.tooltip = template.tooltip;
 	
