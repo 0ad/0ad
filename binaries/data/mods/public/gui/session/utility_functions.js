@@ -4,11 +4,11 @@ const FAUNA = "fauna";
 const SPECIAL = "special";
 
 const COST_DISPLAY_NAMES = {
-    "food": "Food",
-    "wood": "Wood",
-    "stone": "Stone",
-    "metal": "Metal",
-    "population": "Population"
+    "food": "[icon=\"iconFood\"]",
+    "wood": "[icon=\"iconWood\"]",
+    "stone": "[icon=\"iconStone\"]",
+    "metal": "[icon=\"iconMetal\"]",
+    "population": "[icon=\"iconPopulation\"]"
 };
 
 //-------------------------------- -------------------------------- --------------------------------
@@ -264,11 +264,11 @@ function getCostComponentDisplayName(costComponentName)
 function getEntityCostComponentsTooltipString(template)
 {
 	var costs = [];
-	if (template.cost.food) costs.push(template.cost.food + " [font=\"serif-12\"]" + getCostComponentDisplayName("food") + "[/font]");
-	if (template.cost.wood) costs.push(template.cost.wood + " [font=\"serif-12\"]" + getCostComponentDisplayName("wood") + "[/font]");
-	if (template.cost.metal) costs.push(template.cost.metal + " [font=\"serif-12\"]" + getCostComponentDisplayName("metal") + "[/font]");
-	if (template.cost.stone) costs.push(template.cost.stone + " [font=\"serif-12\"]" + getCostComponentDisplayName("stone") + "[/font]");
-	if (template.cost.population) costs.push(template.cost.population + " [font=\"serif-12\"]" + getCostComponentDisplayName("population") + "[/font]");
+	if (template.cost.food) costs.push("[font=\"serif-12\"]" + getCostComponentDisplayName("food") + "[/font] " + template.cost.food);
+	if (template.cost.wood) costs.push("[font=\"serif-12\"]" + getCostComponentDisplayName("wood") + "[/font] " + template.cost.wood);
+	if (template.cost.metal) costs.push("[font=\"serif-12\"]" + getCostComponentDisplayName("metal") + "[/font] " + template.cost.metal);
+	if (template.cost.stone) costs.push("[font=\"serif-12\"]" + getCostComponentDisplayName("stone") + "[/font] " + template.cost.stone);
+	if (template.cost.population) costs.push("[font=\"serif-12\"]" + getCostComponentDisplayName("population") + "[/font] " + template.cost.population);
 	return costs;
 }
 
@@ -320,7 +320,7 @@ function getWallPieceTooltip(wallTypes)
 			var resourceMin = Math.min.apply(Math, resourceCount[resource]);
 			var resourceMax = Math.max.apply(Math, resourceCount[resource]);
 
-			out.push(resourceMin + " to " + resourceMax + " [font=\"serif-12\"]" + getCostComponentDisplayName(resource) + "[/font]");
+			out.push(getCostComponentDisplayName(resource) + resourceMin + " to " + getCostComponentDisplayName(resource) + resourceMax);
 		}
 	}
 	else
@@ -350,13 +350,13 @@ function getEntityCostTooltip(template)
 		var towerCosts = getEntityCostComponentsTooltipString(templateTower);
 
 		cost += "\n";
-		cost += " Walls:  " + wallCosts.join("; ") + "\n";
-		cost += " Towers: " + towerCosts.join(", ");
+		cost += " Walls:  " + wallCosts.join("  ") + "\n";
+		cost += " Towers: " + towerCosts.join("  ");
 	}
 	else if (template.cost)
 	{
 		var costs = getEntityCostComponentsTooltipString(template);
-		cost += costs.join(", ");
+		cost += costs.join("  ");
 	}
 	else
 	{
@@ -384,9 +384,9 @@ function getNeededResourcesTooltip(resources)
 {
 	var formatted = [];
 	for (var resource in resources)
-		formatted.push(resources[resource] + " [font=\"serif-12\"]" + getCostComponentDisplayName(resource) + "[/font]");
+		formatted.push("[font=\"serif-12\"]" + getCostComponentDisplayName(resource) + "[/font] " + resources[resource]);
 
-	return "\n\n[font=\"serif-bold-13\"][color=\"red\"]Insufficient resources:[/color][/font]\n" + formatted.join(", ");
+	return "\n\n[font=\"serif-bold-13\"][color=\"red\"]Insufficient resources:[/color][/font]\n" + formatted.join("  ");
 }
 
 function getEntitySpeed(template)
