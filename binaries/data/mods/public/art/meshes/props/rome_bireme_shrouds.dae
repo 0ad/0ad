@@ -5,71 +5,11 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.63.0 r46461:46487M</authoring_tool>
     </contributor>
-    <created>2012-11-10T21:55:16</created>
-    <modified>2012-11-10T21:55:16</modified>
+    <created>2012-11-12T09:55:54</created>
+    <modified>2012-11-12T09:55:54</modified>
     <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="ship_shrouds_dds" name="ship_shrouds_dds">
-      <init_from>../../../../0ad/binaries/data/mods/public/art/textures/skins/props/ship_shrouds.dds</init_from>
-    </image>
-  </library_images>
-  <library_effects>
-    <effect id="Material_003-effect">
-      <profile_COMMON>
-        <newparam sid="ship_shrouds_dds-surface">
-          <surface type="2D">
-            <init_from>ship_shrouds_dds</init_from>
-          </surface>
-        </newparam>
-        <newparam sid="ship_shrouds_dds-sampler">
-          <sampler2D>
-            <source>ship_shrouds_dds-surface</source>
-          </sampler2D>
-        </newparam>
-        <technique sid="common">
-          <phong>
-            <emission>
-              <color sid="emission">0 0 0 1</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0 0 0 1</color>
-            </ambient>
-            <diffuse>
-              <texture texture="ship_shrouds_dds-sampler"/>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.5 0.5 0.5 1</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">50</float>
-            </shininess>
-            <transparent>
-              <texture texture="ship_shrouds_dds-sampler"/>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0</float>
-            </transparency>
-            <index_of_refraction>
-              <float sid="index_of_refraction">1</float>
-            </index_of_refraction>
-          </phong>
-        </technique>
-        <extra>
-          <technique profile="GOOGLEEARTH">
-            <double_sided>1</double_sided>
-          </technique>
-        </extra>
-      </profile_COMMON>
-      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
-    </effect>
-  </library_effects>
-  <library_materials>
-    <material id="Material_003-material" name="Material.003">
-      <instance_effect url="#Material_003-effect"/>
-    </material>
-  </library_materials>
   <library_geometries>
     <geometry id="Plane-mesh" name="Plane">
       <mesh>
@@ -105,7 +45,7 @@
         <vertices id="Plane-mesh-vertices">
           <input semantic="POSITION" source="#Plane-mesh-positions"/>
         </vertices>
-        <polylist material="Material_003" count="8">
+        <polylist count="8">
           <input semantic="VERTEX" source="#Plane-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Plane-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Plane-mesh-map-0" offset="2" set="0"/>
@@ -123,16 +63,8 @@
         <rotate sid="rotationZ">0 0 1 0</rotate>
         <rotate sid="rotationY">0 1 0 90</rotate>
         <rotate sid="rotationX">1 0 0 0</rotate>
-        <scale sid="scale">5.284846 5.284846 5.284846</scale>
-        <instance_geometry url="#Plane-mesh">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="Material_003" target="#Material_003-material">
-                <bind_vertex_input semantic="UVTex" input_semantic="TEXCOORD" input_set="0"/>
-              </instance_material>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+        <scale sid="scale">5.030586 5.030586 5.030586</scale>
+        <instance_geometry url="#Plane-mesh"/>
       </node>
     </visual_scene>
   </library_visual_scenes>

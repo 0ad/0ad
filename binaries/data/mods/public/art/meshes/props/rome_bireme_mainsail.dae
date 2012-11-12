@@ -5,65 +5,11 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.63.0 r46461:46487M</authoring_tool>
     </contributor>
-    <created>2012-11-10T21:54:00</created>
-    <modified>2012-11-10T21:54:00</modified>
+    <created>2012-11-12T09:55:36</created>
+    <modified>2012-11-12T09:55:36</modified>
     <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="kart_sail_2_dds" name="kart_sail_2_dds">
-      <init_from>../../../../0ad/binaries/data/mods/public/art/textures/skins/props/kart_sail_1.dds</init_from>
-    </image>
-  </library_images>
-  <library_effects>
-    <effect id="Material_002-effect">
-      <profile_COMMON>
-        <newparam sid="kart_sail_2_dds-surface">
-          <surface type="2D">
-            <init_from>kart_sail_2_dds</init_from>
-          </surface>
-        </newparam>
-        <newparam sid="kart_sail_2_dds-sampler">
-          <sampler2D>
-            <source>kart_sail_2_dds-surface</source>
-          </sampler2D>
-        </newparam>
-        <technique sid="common">
-          <phong>
-            <emission>
-              <color sid="emission">0 0 0 1</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0 0 0 1</color>
-            </ambient>
-            <diffuse>
-              <texture texture="kart_sail_2_dds-sampler"/>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.5 0.5 0.5 1</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">50</float>
-            </shininess>
-            <index_of_refraction>
-              <float sid="index_of_refraction">1</float>
-            </index_of_refraction>
-          </phong>
-        </technique>
-        <extra>
-          <technique profile="GOOGLEEARTH">
-            <double_sided>1</double_sided>
-          </technique>
-        </extra>
-      </profile_COMMON>
-      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
-    </effect>
-  </library_effects>
-  <library_materials>
-    <material id="Material_002-material" name="Material.002">
-      <instance_effect url="#Material_002-effect"/>
-    </material>
-  </library_materials>
   <library_geometries>
     <geometry id="Cube_002-mesh" name="Cube.002">
       <mesh>
@@ -99,7 +45,7 @@
         <vertices id="Cube_002-mesh-vertices">
           <input semantic="POSITION" source="#Cube_002-mesh-positions"/>
         </vertices>
-        <polylist material="Material_002" count="136">
+        <polylist count="136">
           <input semantic="VERTEX" source="#Cube_002-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Cube_002-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Cube_002-mesh-map-0" offset="2" set="0"/>
@@ -117,16 +63,8 @@
         <rotate sid="rotationZ">0 0 1 2.69711e-10</rotate>
         <rotate sid="rotationY">0 1 0 -4.29261e-8</rotate>
         <rotate sid="rotationX">1 0 0 -10.6086</rotate>
-        <scale sid="scale">0.2116686 0.1425425 0.1425425</scale>
-        <instance_geometry url="#Cube_002-mesh">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="Material_002" target="#Material_002-material">
-                <bind_vertex_input semantic="UVTex" input_semantic="TEXCOORD" input_set="0"/>
-              </instance_material>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+        <scale sid="scale">0.201485 0.1356846 0.1356846</scale>
+        <instance_geometry url="#Cube_002-mesh"/>
       </node>
     </visual_scene>
   </library_visual_scenes>

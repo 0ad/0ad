@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="iber cc pieces 6x6">
+      <mesh>props/iber_cc_pieces.dae</mesh>
+      <textures>
+        <texture file="structural/iber_struct.dds" name="baseTex"/>
+        <texture file="props/ao/iber_cc_rubble.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>
