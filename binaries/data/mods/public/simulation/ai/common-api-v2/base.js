@@ -223,15 +223,8 @@ BaseAI.prototype.ApplyEntitiesDelta = function(state)
 
 		for (var prop in changes)
 		{
-			if (prop == "position" || prop == "resourceSupplyAmount") {
-				if (this.turn % 10 === 0) {
-					this._entities[id]._entity[prop] = changes[prop];
-					this.updateEntityCollections(prop, this._entities[id]);
-				}
-			} else {
-				this._entities[id]._entity[prop] = changes[prop];
-				this.updateEntityCollections(prop, this._entities[id]);
-			}
+			this._entities[id]._entity[prop] = changes[prop];
+			this.updateEntityCollections(prop, this._entities[id]);
 		}
 	}
 	Engine.ProfileStop();
