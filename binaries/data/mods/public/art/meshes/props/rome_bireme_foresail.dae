@@ -5,65 +5,11 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.63.0 r46461:46487M</authoring_tool>
     </contributor>
-    <created>2012-11-10T21:54:19</created>
-    <modified>2012-11-10T21:54:19</modified>
+    <created>2012-11-12T09:55:19</created>
+    <modified>2012-11-12T09:55:19</modified>
     <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="sail_blank_netting_pn" name="sail_blank_netting_pn">
-      <init_from>../../../../0ad/binaries/data/mods/public/art/textures/skins/props/sail_blank_netting.png</init_from>
-    </image>
-  </library_images>
-  <library_effects>
-    <effect id="Material_006-effect">
-      <profile_COMMON>
-        <newparam sid="sail_blank_netting_pn-surface">
-          <surface type="2D">
-            <init_from>sail_blank_netting_pn</init_from>
-          </surface>
-        </newparam>
-        <newparam sid="sail_blank_netting_pn-sampler">
-          <sampler2D>
-            <source>sail_blank_netting_pn-surface</source>
-          </sampler2D>
-        </newparam>
-        <technique sid="common">
-          <phong>
-            <emission>
-              <color sid="emission">0 0 0 1</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0 0 0 1</color>
-            </ambient>
-            <diffuse>
-              <texture texture="sail_blank_netting_pn-sampler"/>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.5 0.5 0.5 1</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">50</float>
-            </shininess>
-            <index_of_refraction>
-              <float sid="index_of_refraction">1</float>
-            </index_of_refraction>
-          </phong>
-        </technique>
-        <extra>
-          <technique profile="GOOGLEEARTH">
-            <double_sided>1</double_sided>
-          </technique>
-        </extra>
-      </profile_COMMON>
-      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
-    </effect>
-  </library_effects>
-  <library_materials>
-    <material id="Material_006-material" name="Material.006">
-      <instance_effect url="#Material_006-effect"/>
-    </material>
-  </library_materials>
   <library_geometries>
     <geometry id="Circle_000-mesh" name="Circle.000">
       <mesh>
@@ -99,7 +45,7 @@
         <vertices id="Circle_000-mesh-vertices">
           <input semantic="POSITION" source="#Circle_000-mesh-positions"/>
         </vertices>
-        <polylist material="Material_006" count="96">
+        <polylist count="96">
           <input semantic="VERTEX" source="#Circle_000-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Circle_000-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Circle_000-mesh-map-0" offset="2" set="0"/>
@@ -117,16 +63,8 @@
         <rotate sid="rotationZ">0 0 1 0</rotate>
         <rotate sid="rotationY">0 1 0 0</rotate>
         <rotate sid="rotationX">1 0 0 0</rotate>
-        <scale sid="scale">0.494123 0.494123 0.494123</scale>
-        <instance_geometry url="#Circle_000-mesh">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="Material_006" target="#Material_006-material">
-                <bind_vertex_input semantic="UVTex" input_semantic="TEXCOORD" input_set="0"/>
-              </instance_material>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+        <scale sid="scale">0.4703501 0.4703501 0.4703501</scale>
+        <instance_geometry url="#Circle_000-mesh"/>
       </node>
     </visual_scene>
   </library_visual_scenes>
