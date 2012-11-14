@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="iber dock rubble struct">
+      <mesh>props/iber_dock_rubble_struct.dae</mesh>
+      <textures>
+        <texture file="structural/iber_struct.dds" name="baseTex"/>
+        <texture file="props/ao/iber_dock_rubble_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

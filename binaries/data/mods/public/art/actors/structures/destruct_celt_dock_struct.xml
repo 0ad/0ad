@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="celt dock rubble struct">
+      <mesh>props/celt_dock_rubble_struct.dae</mesh>
+      <textures>
+        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+        <texture file="props/ao/celt_dock_rubble_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

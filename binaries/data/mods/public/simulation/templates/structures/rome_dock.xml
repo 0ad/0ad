@@ -4,6 +4,9 @@
     <Square width="24.0" depth="28.0"/>
     <Height>8.0</Height>
   </Footprint>
+<Health>
+    <SpawnEntityOnDeath>rubble/rubble_rome_dock</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Portus</SpecificName>
