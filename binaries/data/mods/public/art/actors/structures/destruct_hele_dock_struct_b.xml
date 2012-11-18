@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="hele dock rubble struct b">
+      <mesh>props/hele_dock_rubble_struct_b.dae</mesh>
+      <textures>
+        <texture file="structural/hele_struct_b.dds" name="baseTex"/>
+        <texture file="props/ao/hele_dock_rubble_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

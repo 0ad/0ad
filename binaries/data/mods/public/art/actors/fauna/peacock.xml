@@ -11,6 +11,7 @@
         <animation file="quadraped/peacock_walk.dae" name="walk" speed="25"/>
         <animation file="quadraped/peacock_walk.dae" name="run" speed="30"/>
         <animation file="quadraped/peacock_walk_feeding.dae" name="walk_feeding" speed="25"/>
+        <animation file="quadraped/peacock_death.dae" name="death" speed="75"/>
       </animations>
       <mesh>skeletal/peacock.dae</mesh>
       <textures><texture file="skeletal/animal_peacock.png" name="baseTex"/></textures>

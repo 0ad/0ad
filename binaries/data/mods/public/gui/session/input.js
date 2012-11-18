@@ -1524,6 +1524,27 @@ function getEntityLimitAndCount(playerState, entType)
 	return [trainEntLimit, trainEntCount, canBeTrainedCount];
 }
 
+// Add the unit shown at position to the training queue for all entities in the selection
+function addTrainingByPosition(position)
+{
+	var simState = Engine.GuiInterfaceCall("GetSimulationState");
+	var playerState = simState.players[Engine.GetPlayerID()];
+	var selection = g_Selection.toList();
+
+	if (!selection.length)
+		return;
+	
+	var trainableEnts = getAllTrainableEntities(selection);
+	
+	if (!trainableEnts.length) 
+		return;
+	
+	var entToTrain = trainableEnts[position];
+	
+	addTrainingToQueue(selection, entToTrain, playerState);
+	return;
+}
+
 // Called by GUI when user clicks training button
 function addTrainingToQueue(selection, trainEntType, playerState)
 {
