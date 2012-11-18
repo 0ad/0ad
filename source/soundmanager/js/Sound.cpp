@@ -189,7 +189,7 @@ void JSound::ScriptingInit()
 CStr JSound::ToString(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 #if CONFIG2_AUDIO
-	return "[object Sound: " + (m_SndItem ? m_SndItem->GetName() : "(null)") + "]";
+	return "[object Sound: " + (m_SndItem ? m_SndItem->GetName()->ToUTF8() : "(null)") + "]";
 #else // !CONFIG2_AUDIO
 	return "[object Sound: audio disabled]";
 #endif // !CONFIG2_AUDIO

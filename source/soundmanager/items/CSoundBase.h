@@ -36,7 +36,6 @@ protected:
 	ALuint m_ALSource;
 	CSoundData* m_SoundData;
 
-	std::string* m_Name;
 	bool m_LastPlay;
 	bool m_Looping;
 	bool m_ShouldBePlaying;
@@ -73,8 +72,7 @@ public:
 	void PlayAsMusic();
 	void PlayAsAmbient();
 
-	const char* Name();
-	std::string GetName();
+	CStrW* GetName();
 
 	virtual bool GetLooping();
 	virtual void SetLooping(bool loops);
@@ -84,7 +82,7 @@ public:
 
 protected:
 
-	void SetNameFromPath(char* fileLoc);
+	void SetNameFromPath(VfsPath& itemPath);
 	void ResetFade();
 	bool HandleFade();
 

@@ -37,8 +37,7 @@ CSoundData::~CSoundData()
 {
 	if (m_ALBuffer != 0)
 		alDeleteBuffers(1, &m_ALBuffer);
-	if ( m_FileName )
-		delete m_FileName;
+	delete m_FileName;
 }
 
 void CSoundData::InitProperties()
@@ -120,17 +119,16 @@ ALsizei CSoundData::GetBufferCount()
 	return 1;
 }
 
-std::wstring* CSoundData::GetFileName()
+CStrW* CSoundData::GetFileName()
 {
 	return m_FileName;
 }
 
 void CSoundData::SetFileName(const Path& aName)
 {
-	if ( m_FileName )
-		delete m_FileName;
+	delete m_FileName;
 
-	m_FileName = new std::wstring( aName.string() );
+	m_FileName = new CStrW( aName.string() );
 }
 
 CSoundData* CSoundData::IncrementCount()

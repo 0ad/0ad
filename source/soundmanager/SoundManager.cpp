@@ -295,7 +295,9 @@ Status CSoundManager::AlcInit()
 	m_Device = alcOpenDevice(NULL);
 	if(m_Device)
 	{
-		m_Context = alcCreateContext(m_Device, 0);	// no attrlist needed
+		ALCint attribs[] = {ALC_STEREO_SOURCES, 16, 0};
+		m_Context = alcCreateContext(m_Device, &attribs[0]);
+
 		if(m_Context)
 			alcMakeContextCurrent(m_Context);
 	}
