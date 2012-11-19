@@ -37,7 +37,7 @@ public:
 	virtual bool IsPlaying() = 0;
 	
 	
-	virtual std::string	GetName() = 0;
+	virtual CStrW* GetName() = 0;
 	virtual bool IdleTask() = 0;
 	
 	virtual void Play() = 0;

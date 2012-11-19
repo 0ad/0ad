@@ -130,7 +130,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	else {
 		if ((x < 0) || (x > screenWidth))
 		{
-			itemRollOff = 5.0;
+			itemRollOff = 2.0;
 		}
 		float pixPerRadian = audioWidth / (radianCap * 2);
 		answer = (x - (screenWidth/2)) / pixPerRadian;
@@ -147,7 +147,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	else {
 		if ((y < 0) || (y > screenHeight))
 		{
-			itemRollOff = 5.0;
+			itemRollOff = 2.0;
 		}
 	}
 
@@ -162,7 +162,7 @@ void CSoundGroup::UploadPropertiesAndPlay(int theIndex, const CVector3D& positio
 #if CONFIG2_AUDIO
 	if ( g_SoundManager ) {
 		bool	isOnscreen;
-		ALfloat	initialRolllOff = 1.0f;
+		ALfloat	initialRolllOff = 0.1f;
 		ALfloat	itemRollOff = initialRolllOff;
 
 		float 	offSet = RadiansOffCenter(position, isOnscreen, itemRollOff);
@@ -178,11 +178,11 @@ void CSoundGroup::UploadPropertiesAndPlay(int theIndex, const CVector3D& positio
 
 			if (!TestFlag(eOmnipresent))
 			{
-				hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, - sndDist * cos(offSet)));
 				if (TestFlag(eDistanceless))
-					hSound->SetRollOff(initialRolllOff);
-				else
-					hSound->SetRollOff(itemRollOff);
+					itemRollOff = 0;
+				
+				hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, - sndDist * cos(offSet)));
+				hSound->SetRollOff(itemRollOff);
 			}
 
 			if (TestFlag(eRandPitch))

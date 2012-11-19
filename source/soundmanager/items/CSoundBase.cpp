@@ -46,8 +46,6 @@ CSoundBase::~CSoundBase()
 		CSoundData::ReleaseSoundData(m_SoundData);
 		m_SoundData = 0;
 	}
-	if (m_Name)
-		delete m_Name;
 }
 
 void CSoundBase::ResetVars()
@@ -62,7 +60,6 @@ void CSoundBase::ResetVars()
 	m_EndVolume = 0;
 
 	ResetFade();
-	m_Name = new std::string("sound name");
 }
 
 void CSoundBase::ResetFade()
@@ -89,6 +86,10 @@ void CSoundBase::SetRollOff(ALfloat rolls)
 {
 	if ( m_ALSource )	
    	{
+		alSourcef(m_ALSource, AL_REFERENCE_DISTANCE, 70.0f);
+		AL_CHECK
+		alSourcef(m_ALSource, AL_MAX_DISTANCE, 200.0);
+		AL_CHECK
    		alSourcef(m_ALSource, AL_ROLLOFF_FACTOR, rolls);
 		AL_CHECK
 	}
@@ -148,13 +149,6 @@ bool CSoundBase::InitOpenAL()
 		AL_CHECK
 		alSourcei(m_ALSource,AL_LOOPING,AL_FALSE);
 		AL_CHECK
-		alSourcef(m_ALSource, AL_REFERENCE_DISTANCE, 70.0f);
-		AL_CHECK
-		alSourcef(m_ALSource, AL_MAX_DISTANCE, 145.0);
-		AL_CHECK
-		alSourcef(m_ALSource, AL_ROLLOFF_FACTOR, 1.0);
-		AL_CHECK
-
 		return true;
 	}
 	else
@@ -304,24 +298,12 @@ void CSoundBase::Stop()
 	}
 }
 
-const char* CSoundBase::Name()
+CStrW* CSoundBase::GetName()
 {
-	return m_Name->c_str();
-}
+	if ( m_SoundData )
+		return m_SoundData->GetFileName();
 
-std::string CSoundBase::GetName()
-{
-	return std::string(m_Name->c_str());
-}
-
-void CSoundBase::SetNameFromPath(char* fileLoc)
-{
-	std::string anst(fileLoc);
-	size_t pos = anst.find_last_of("/");
-	if(pos != std::wstring::npos)
-		m_Name->assign(anst.begin() + pos + 1, anst.end());
-	else
-		m_Name->assign(anst.begin(), anst.end());
+	return NULL;
 }
 
 #endif // CONFIG2_AUDIO
