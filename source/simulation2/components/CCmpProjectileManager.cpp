@@ -60,7 +60,7 @@ public:
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 		m_ActorSeed = 0;
-		m_Id = 1;
+		m_NextId = 1;
 	}
 
 	virtual void Deinit()
@@ -70,16 +70,22 @@ public:
 		m_Projectiles.clear();
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	virtual void Serialize(ISerializer& serialize)
 	{
 		// Because this is just graphical effects, and because it's all non-deterministic floating point,
-		// we don't do any serialization here.
+		// we don't do much serialization here.
 		// (That means projectiles will vanish if you save/load - is that okay?)
+		
+		// The attack code stores the id so that the projectile gets deleted when it hits the target
+		serialize.NumberU32_Unbounded("next id", m_NextId);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(paramNode);
+		
+		// The attack code stores the id so that the projectile gets deleted when it hits the target
+		deserialize.NumberU32_Unbounded("next id", m_NextId);
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -125,7 +131,7 @@ private:
 
 	uint32_t m_ActorSeed;
 	
-	uint32_t m_Id;
+	uint32_t m_NextId;
 
 	uint32_t LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, fixed speed, fixed gravity);
 
@@ -140,12 +146,15 @@ REGISTER_COMPONENT_TYPE(ProjectileManager)
 
 uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, fixed speed, fixed gravity)
 {
+	// This is network synced so don't use GUI checks before incrementing or it breaks any non GUI simulations
+	uint32_t currentId = m_NextId++;
+	
 	if (!GetSimContext().HasUnitManager())
-		return 0; // do nothing if graphics are disabled
+		return currentId; // do nothing if graphics are disabled
 
 	CmpPtr<ICmpVisual> cmpSourceVisual(GetSimContext(), source);
 	if (!cmpSourceVisual)
-		return 0;
+		return currentId;
 
 	std::wstring name = cmpSourceVisual->GetProjectileActor();
 	if (name.empty())
@@ -176,7 +185,7 @@ uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVecto
 	Projectile projectile;
 	std::set<CStr> selections;
 	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(name, m_ActorSeed++, selections);
-	projectile.id = m_Id++;
+	projectile.id = currentId;
 	if (!projectile.unit)
 	{
 		// The error will have already been logged
@@ -305,18 +314,18 @@ void CCmpProjectileManager::Interpolate(float frameTime)
 
 void CCmpProjectileManager::RemoveProjectile(uint32_t id)
 {
-    // Scan through the projectile list looking for one with the correct id to remove
-    for (size_t i = 0; i < m_Projectiles.size(); i++)
-    {
-        if (m_Projectiles[i].id == id)
-        {
-            // Delete in-place by swapping with the last in the list
-            std::swap(m_Projectiles[i], m_Projectiles.back());
-            GetSimContext().GetUnitManager().DeleteUnit(m_Projectiles.back().unit);
-            m_Projectiles.pop_back();
-            return;
-        }
-    }
+	// Scan through the projectile list looking for one with the correct id to remove
+	for (size_t i = 0; i < m_Projectiles.size(); i++)
+	{
+		if (m_Projectiles[i].id == id)
+		{
+			// Delete in-place by swapping with the last in the list
+			std::swap(m_Projectiles[i], m_Projectiles.back());
+			GetSimContext().GetUnitManager().DeleteUnit(m_Projectiles.back().unit);
+			m_Projectiles.pop_back();
+			return;
+		}
+	}
 }
 
 void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
