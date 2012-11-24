@@ -184,8 +184,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				return;
 			
 			// Apply a time discount to larger batches.
-			// TODO: work out what equation we should use here.
-			var timeMult = Math.pow(count, 0.7) * cmpPlayer.cheatTimeMultiplier;
+			var timeMult = this.GetBatchTime(count);
 			
 			// We need the costs after tech modifications
 			// Obviously we don't have the entities yet, so we must use template data
@@ -392,6 +391,16 @@ ProductionQueue.prototype.ResetQueue = function()
 
 	while (this.queue.length)
 		this.RemoveBatch(this.queue[0].id);
+};
+
+/*
+ * Returns batch build time.
+ */
+ProductionQueue.prototype.GetBatchTime = function(batchSize)
+{
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	// TODO: work out what equation we should use here.
+	return Math.pow(batchSize, 0.7) * cmpPlayer.cheatTimeMultiplier;
 };
 
 ProductionQueue.prototype.OnOwnershipChanged = function(msg)
