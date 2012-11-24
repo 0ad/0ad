@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+
+    <texture>art/textures/particles/fireflies.png</texture>
+    <blend mode="add"/>
+
+    <constant name="emissionrate" value="2.0"/>
+    <uniform name="lifetime" min="1.0" max="3.0"/>
+
+    <uniform name="position.x" min="-20.0" max="20.0"/>
+    <uniform name="position.z" min="-20.0" max="20.0"/>
+    <uniform name="position.y" min="0.5" max="2.0"/>
+
+    <uniform name="angle" min="-3.14" max="3.14"/>
+
+    <uniform name="velocity.x" min="-0.5" max="0.5"/>
+    <uniform name="velocity.y" min="-0.5" max="1.5"/>
+    <uniform name="velocity.z" min="-1.5" max="1.0"/>
+    <uniform name="velocity.angle" min="-5.0" max="5.0"/>
+
+    <uniform name="size" min="0.25" max="0.75"/>
+
+
+    <force y="0.25"/>
+
+</particles>
