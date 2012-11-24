@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+  
+  <group>
+    <variant frequency="100" name="wagon empty">
+      <animations>
+        <animation file="mechanical/wagon_two_wheel_empty_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/wagon_two_wheel_empty_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/wagon_two_wheel_empty_move.dae" name="Run" speed="10"/>
+      </animations>
+      <mesh>props/special/wagon_two_wheel_empty.dae</mesh>
+      <props>
+        <prop actor="units/hellenes/trader_h.xml" attachpoint="horse"/>
+      </props>
+      <textures><texture file="props/wooden_wagon.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  
+</actor>

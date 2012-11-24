@@ -26,9 +26,6 @@
 #include "soundmanager/items/ISoundItem.h"
 #include "soundmanager/data/SoundData.h"
 
-#include <string>
-
-
 class CSoundBase : public ISoundItem
 {
 protected:
@@ -85,11 +82,8 @@ protected:
 	void SetNameFromPath(VfsPath& itemPath);
 	void ResetFade();
 	bool HandleFade();
-
-	
 };
 
 #endif // CONFIG2_AUDIO
 
 #endif // INCLUDED_CSOUNDBASE_H
-
