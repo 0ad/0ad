@@ -26,7 +26,6 @@
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 
-#include <string>
 #include <map>
 
 class CSoundData;

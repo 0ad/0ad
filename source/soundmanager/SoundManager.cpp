@@ -28,6 +28,7 @@
 #include "soundmanager/js/MusicSound.h"
 #include "soundmanager/js/Sound.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "ps/Profiler2.h"
 
 CSoundManager* g_SoundManager = NULL;

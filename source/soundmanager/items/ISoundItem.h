@@ -24,8 +24,7 @@
 
 #include "lib/external_libraries/openal.h"
 #include "maths/Vector3D.h"
-
-#include <string>
+#include "ps/CStr.h"
 
 class ISoundItem
 {
