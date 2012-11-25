@@ -69,7 +69,7 @@
     <Static width="6.5" depth="6.5"/>
   </Obstruction>
   <ProductionQueue>
-    <BatchTimeFactor>0.7</BatchTimeFactor>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
     <Technologies datatype="tokens">
       decay_outpost
     </Technologies>

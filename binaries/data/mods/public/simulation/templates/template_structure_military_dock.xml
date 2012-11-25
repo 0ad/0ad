@@ -64,7 +64,7 @@
   </Sound>
   <TerritoryDecay disable=""/>
   <ProductionQueue>
-    <BatchTimeFactor>0.7</BatchTimeFactor>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/{civ}_ship_fishing
       units/{civ}_ship_merchant

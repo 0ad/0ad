@@ -6,12 +6,12 @@ function ProductionQueue() {}
 ProductionQueue.prototype.Schema =
 	"<a:help>Allows the building to train new units and research technologies</a:help>" +
 	"<a:example>" +
-		"<BatchTimeFactor>0.7</BatchTimeFactor>" +
+		"<BatchTimeModifier>0.7</BatchTimeModifier>" +
 		"<Entities datatype='tokens'>" +
 			"\n    units/{civ}_support_female_citizen\n    units/{civ}_support_trader\n    units/celt_infantry_spearman_b\n  " +
 		"</Entities>" +
 	"</a:example>" +
-	"<element name='BatchTimeFactor' a:help='Factor that influences the time benefit for batch training'>" +
+	"<element name='BatchTimeModifier' a:help='Modifier that influences the time benefit for batch training'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<optional>" + 
@@ -404,13 +404,13 @@ ProductionQueue.prototype.GetBatchTime = function(batchSize)
 {
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
-	var batchTimeFactor = +this.template.BatchTimeFactor;
+	var batchTimeModifier = +this.template.BatchTimeModifier;
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	if (cmpTechMan)
-		batchTimeFactor = cmpTechMan.ApplyModifications("ProductionQueue/BatchTimeFactor", batchTimeFactor, this.entity);
+		batchTimeModifier = cmpTechMan.ApplyModifications("ProductionQueue/BatchTimeModifier", batchTimeModifier, this.entity);
 
 	// TODO: work out what equation we should use here.
-	return Math.pow(batchSize, batchTimeFactor) * cmpPlayer.cheatTimeMultiplier;
+	return Math.pow(batchSize, batchTimeModifier) * cmpPlayer.cheatTimeMultiplier;
 };
 
 ProductionQueue.prototype.OnOwnershipChanged = function(msg)

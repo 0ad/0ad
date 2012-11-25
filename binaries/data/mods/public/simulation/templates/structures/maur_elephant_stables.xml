@@ -28,7 +28,7 @@
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
   <ProductionQueue>
-    <BatchTimeFactor>0.7</BatchTimeFactor>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/maur_support_elephant
       units/maur_cavalry_archer_b
