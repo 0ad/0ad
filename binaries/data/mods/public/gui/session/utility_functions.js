@@ -269,7 +269,7 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 		trainNum = 1;
 	for (var r in template.cost)
 		totalCosts[r] = Math.floor(template.cost[r] * trainNum);
-	totalCosts.time = entity ? Math.ceil(Engine.GuiInterfaceCall("GetBatchTime", {"entity": entity, "batchSize": trainNum})) : template.cost.time;
+	totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", {"entity": entity, "batchSize": trainNum}) : 1));
 
 	var costs = [];
 	if (totalCosts.food) costs.push(getCostComponentDisplayName("food") + " " + totalCosts.food);
