@@ -44,11 +44,12 @@
     <Static width="13.0" depth="13.0"/>
   </Obstruction>
   <ProductionQueue>
+    <BatchTimeFactor>0.7</BatchTimeFactor>
     <Technologies datatype="tokens">
       pair_gather_01
       pair_gather_02
       pair_gather_03
-	  pair_gather_wood_01
+      pair_gather_wood_01
     </Technologies>
   </ProductionQueue>
   <RallyPoint disable=""/>

@@ -22,6 +22,7 @@
     <Radius>25</Radius>
   </TerritoryInfluence>
   <ProductionQueue>
+    <BatchTimeFactor>0.7</BatchTimeFactor>
     <Entities datatype="tokens">
       units/{civ}_support_female_citizen
     </Entities>

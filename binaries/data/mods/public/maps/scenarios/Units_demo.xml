@@ -14,7 +14,7 @@
 	var gap = 14;
 
 	for each (var template in entityTemplates) {
-		if (template.match(/^(special\/|actor\|)/)) continue;
+		if (template.match(/^(rubble\/|special\/|actor\|)/)) continue;
 
 		print(template+"...\n");
 

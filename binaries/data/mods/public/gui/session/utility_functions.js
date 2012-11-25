@@ -269,15 +269,15 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 		trainNum = 1;
 	for (var r in template.cost)
 		totalCosts[r] = Math.floor(template.cost[r] * trainNum);
-	totalCosts.time = (entity)?Math.ceil(Engine.GuiInterfaceCall("GetBatchTime", {"entity": entity, "batchSize": trainNum})):template.cost.time;
+	totalCosts.time = entity ? Math.ceil(Engine.GuiInterfaceCall("GetBatchTime", {"entity": entity, "batchSize": trainNum})) : template.cost.time;
 
 	var costs = [];
-	if (template.cost.food) costs.push(getCostComponentDisplayName("food") + " " + totalCosts.food);
-	if (template.cost.wood) costs.push(getCostComponentDisplayName("wood") + " " + totalCosts.wood);
-	if (template.cost.metal) costs.push(getCostComponentDisplayName("metal") + " " + totalCosts.metal);
-	if (template.cost.stone) costs.push(getCostComponentDisplayName("stone") + " " + totalCosts.stone);
-	if (template.cost.population) costs.push(getCostComponentDisplayName("population") + " " + totalCosts.population);
-	if (template.cost.time) costs.push(getCostComponentDisplayName("time") + " " + totalCosts.time);
+	if (totalCosts.food) costs.push(getCostComponentDisplayName("food") + " " + totalCosts.food);
+	if (totalCosts.wood) costs.push(getCostComponentDisplayName("wood") + " " + totalCosts.wood);
+	if (totalCosts.metal) costs.push(getCostComponentDisplayName("metal") + " " + totalCosts.metal);
+	if (totalCosts.stone) costs.push(getCostComponentDisplayName("stone") + " " + totalCosts.stone);
+	if (totalCosts.population) costs.push(getCostComponentDisplayName("population") + " " + totalCosts.population);
+	if (totalCosts.time) costs.push(getCostComponentDisplayName("time") + " " + totalCosts.time);
 	return costs;
 }
 

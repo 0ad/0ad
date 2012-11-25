@@ -33,7 +33,7 @@
     <SpecificName>Kennel</SpecificName>
     <Tooltip>Train Celtic war dogs.</Tooltip>
     <Icon>structures/kennel.png</Icon>
-	<RequiredTechnology>phase_town</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Obstruction>
     <Static width="7.5" depth="6.75"/>
@@ -53,6 +53,7 @@
     <Weight>65536</Weight>
   </TerritoryInfluence>
   <ProductionQueue>
+    <BatchTimeFactor>0.7</BatchTimeFactor>
     <Entities datatype="tokens">
       units/celt_war_dog_b
     </Entities>
