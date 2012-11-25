@@ -83,6 +83,11 @@ TEX tex, v_tex, texture[0], 2D;
 // color = (texdiffuse * sundiffuse + specular) * get_shadow() + texdiffuse * ambient;
 // (sundiffuse is 2*fragment.color due to clamp-avoidance in the vertex program)
 #if USE_SHADOW && !DISABLE_RECEIVE_SHADOWS
+  TEMP shadowBias;
+  TEMP biasedShdw;
+  MOV shadowBias.x, 0.003;
+  MOV biasedShdw, v_shadow;
+  SUB biasedShdw.z, v_shadow.z, shadowBias.x;
   #if USE_FP_SHADOW
     #if USE_SHADOW_PCF
       SUB offset.xy, v_shadow, 0.5;
@@ -97,7 +102,7 @@ TEX tex, v_tex, texture[0], 2D;
       SUB weight.zw, weight, 1.0;
 
       SUB offset.xy, v_shadow, offset;
-      MOV offset.z, v_shadow;
+      MOV offset.z, biasedShdw.z;
       ADD weight, weight, offset.xyxy;
       MUL weight, weight, shadowScale.zwzw;
 
@@ -114,11 +119,11 @@ TEX tex, v_tex, texture[0], 2D;
       DP4 shadow.x, temp, size;
       MUL shadow.x, shadow.x, 0.111111;
     #else
-      TEX shadow.x, v_shadow, texture[1], SHADOW2D;
+      TEX shadow.x, biasedShdw, texture[1], SHADOW2D;
     #endif
   #else
     TEX tex, v_shadow, texture[1], 2D;
-    MOV_SAT temp.z, v_shadow.z;
+    MOV_SAT temp.z, biasedShdw.z;
     SGE shadow.x, tex.x, temp.z;
   #endif
 

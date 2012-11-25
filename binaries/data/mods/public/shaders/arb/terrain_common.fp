@@ -37,6 +37,11 @@ TEX color, fragment.texcoord[0], texture[0], 2D;
 // Compute color = texture * (ambient + diffuse*shadow)
 // (diffuse is 2*fragment.color due to clamp-avoidance in the vertex program)
 #if USE_SHADOW
+  TEMP shadowBias;
+  TEMP biasedShdw;
+  MOV shadowBias.x, 0.0005;
+  MOV biasedShdw, fragment.texcoord[2];
+  SUB biasedShdw.z, fragment.texcoord[2].z, shadowBias.x;
   #if USE_FP_SHADOW
     #if USE_SHADOW_PCF
       SUB offset.xy, fragment.texcoord[2], 0.5;
@@ -51,7 +56,7 @@ TEX color, fragment.texcoord[0], texture[0], 2D;
       SUB weight.zw, weight, 1.0;
 
       SUB offset.xy, fragment.texcoord[2], offset;
-      MOV offset.z, fragment.texcoord[2];
+      MOV offset.z, biasedShdw;
       ADD weight, weight, offset.xyxy;
       MUL weight, weight, shadowScale.zwzw;
 
@@ -68,11 +73,11 @@ TEX color, fragment.texcoord[0], texture[0], 2D;
       DP4 temp.x, temp, size;
       MUL temp.x, temp.x, 0.111111;
     #else
-      TEX temp.x, fragment.texcoord[2], texture[2], SHADOW2D;
+      TEX temp.x, biasedShdw, texture[2], SHADOW2D;
     #endif
   #else
     TEX tex, fragment.texcoord[2], texture[2], 2D;
-    MOV_SAT temp.z, fragment.texcoord[2].z;
+    MOV_SAT temp.z, biasedShdw.z;
     SGE temp.x, tex.x, temp.z;
   #endif
   MUL diffuse.rgb, fragment.color, 2.0;
