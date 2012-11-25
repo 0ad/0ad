@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_flora_tree">
+<Entity parent="template_gaia_flora_bush_berry">
   <Footprint>
     <Circle radius="2.5"/>
     <Height>10.0</Height>
@@ -13,7 +13,7 @@
     <Unit radius="0.9"/>
   </Obstruction>
   <ResourceSupply>
-    <Amount>300</Amount>
+    <Amount>400</Amount>
     <Type>food.fruit</Type>
   </ResourceSupply>
   <VisualActor>

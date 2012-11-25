@@ -7,7 +7,7 @@
 		<SunElevation angle="0.757787"/>
 		<SunRotation angle="-0.693359"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
+		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<Fog>
 			<FogFactor>0.00199219</FogFactor>
 			<FogThickness>0</FogThickness>
@@ -16,14 +16,14 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.313726" g="0.321569" b="0.47451"/>
+				<Colour r="0.396078" g="0.47451" b="0.654902"/>
 				<Height>26.3344</Height>
-				<Shininess>1.2207</Shininess>
-				<Waviness>1.43555</Waviness>
-				<Murkiness>0.15918</Murkiness>
-				<Tint r="0.545098" g="0.898039" b="1"/>
-				<ReflectionTint r="0" g="0" b="0"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
+				<Shininess>2.92969</Shininess>
+				<Waviness>7.46094</Waviness>
+				<Murkiness>0.44043</Murkiness>
+				<Tint r="0.623529" g="0.596078" b="0.376471"/>
+				<ReflectionTint r="0.396078" g="0.47451" b="0.654902"/>
+				<ReflectionTintStrength>0.118164</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="748.108" y="96.3776" z="138.75"/>
+		<Position x="520.013" y="89.1097" z="343.886"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>

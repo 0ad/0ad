@@ -16,14 +16,14 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Colour r="0.564706" g="0.513726" b="0.419608"/>
 				<Height>21.823</Height>
 				<Shininess>250</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>1</Murkiness>
-				<Tint r="0.639216" g="0.54902" b="0.34902"/>
-				<ReflectionTint r="0.603922" g="0.529412" b="0.384314"/>
-				<ReflectionTintStrength>0.525391</ReflectionTintStrength>
+				<Murkiness>0.830078</Murkiness>
+				<Tint r="0.819608" g="0.74902" b="0.513726"/>
+				<ReflectionTint r="0.819608" g="0.74902" b="0.513726"/>
+				<ReflectionTintStrength>0.510742</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,9 +35,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="217.92" y="75.8118" z="573.814"/>
-		<Rotation angle="0.0942882"/>
-		<Declination angle="0.530227"/>
+		<Position x="215.719" y="72.9414" z="532.268"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -2463,19 +2463,19 @@
 			<Template>gaia/fauna_elephant_asian</Template>
 			<Player>0</Player>
 			<Position x="63.96433" z="691.26661"/>
-			<Orientation y="-2.64611"/>
+			<Orientation y="-1.86966"/>
 		</Entity>
 		<Entity uid="479">
 			<Template>gaia/fauna_elephant_asian</Template>
 			<Player>0</Player>
 			<Position x="67.23391" z="707.0232"/>
-			<Orientation y="-3.13062"/>
+			<Orientation y="1.02088"/>
 		</Entity>
 		<Entity uid="480">
 			<Template>gaia/fauna_elephant_asian</Template>
 			<Player>0</Player>
 			<Position x="52.7939" z="685.87354"/>
-			<Orientation y="0.96044"/>
+			<Orientation y="2.20278"/>
 		</Entity>
 		<Entity uid="481">
 			<Template>gaia/fauna_elephant_asian</Template>
@@ -5361,7 +5361,7 @@
 		<Entity uid="1061">
 			<Template>gaia/flora_tree_fig</Template>
 			<Player>0</Player>
-			<Position x="257.08729" z="663.93958"/>
+			<Position x="290.07938" z="710.72602"/>
 			<Orientation y="-2.57528"/>
 		</Entity>
 		<Entity uid="1062">
@@ -29103,8 +29103,8 @@
 		<Entity uid="5340">
 			<Template>gaia/flora_tree_poplar</Template>
 			<Player>0</Player>
-			<Position x="243.71758" z="686.51276"/>
-			<Orientation y="-1.23728"/>
+			<Position x="235.15996" z="719.4162"/>
+			<Orientation y="0.09838"/>
 		</Entity>
 		<Entity uid="5341">
 			<Template>gaia/flora_tree_poplar</Template>
@@ -29470,7 +29470,7 @@
 			<Template>structures/maur_fortress</Template>
 			<Player>1</Player>
 			<Position x="158.57755" z="619.75727"/>
-			<Orientation y="0.76638"/>
+			<Orientation y="2.3679"/>
 		</Entity>
 		<Entity uid="5412">
 			<Template>structures/maur_farmstead</Template>
@@ -29505,7 +29505,7 @@
 		<Entity uid="5418">
 			<Template>structures/maur_barracks</Template>
 			<Player>1</Player>
-			<Position x="266.61292" z="633.00031"/>
+			<Position x="268.93543" z="630.59498"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5419">
@@ -29535,8 +29535,8 @@
 		<Entity uid="5424">
 			<Template>units/maur_ship_bireme</Template>
 			<Player>1</Player>
-			<Position x="448.98832" z="487.20084"/>
-			<Orientation y="2.35621"/>
+			<Position x="444.14176" z="493.96866"/>
+			<Orientation y="-1.92196"/>
 		</Entity>
 		<Entity uid="5425">
 			<Template>units/maur_ship_trireme</Template>
@@ -29553,8 +29553,8 @@
 		<Entity uid="5428">
 			<Template>units/maur_champion_elephant</Template>
 			<Player>1</Player>
-			<Position x="194.77933" z="614.6952"/>
-			<Orientation y="2.35621"/>
+			<Position x="269.4886" z="668.2284"/>
+			<Orientation y="2.22233"/>
 		</Entity>
 		<Entity uid="5430">
 			<Template>units/maur_infantry_archer_b</Template>
@@ -29631,7 +29631,7 @@
 		<Entity uid="5442">
 			<Template>units/maur_champion_chariot</Template>
 			<Player>1</Player>
-			<Position x="207.8138" z="602.84687"/>
+			<Position x="193.46952" z="592.84675"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5443">
@@ -29728,7 +29728,7 @@
 			<Template>units/maur_infantry_swordsman_b</Template>
 			<Player>1</Player>
 			<Position x="195.95861" z="686.89264"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="2.4193"/>
 		</Entity>
 		<Entity uid="5459">
 			<Template>units/maur_infantry_swordsman_b</Template>
@@ -29847,31 +29847,31 @@
 		<Entity uid="5478">
 			<Template>structures/maur_defense_tower</Template>
 			<Player>1</Player>
-			<Position x="254.79532" z="639.92042"/>
+			<Position x="258.24088" z="640.2079"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5479">
 			<Template>structures/maur_defense_tower</Template>
 			<Player>1</Player>
-			<Position x="177.68859" z="654.41272"/>
-			<Orientation y="2.35621"/>
+			<Position x="214.42415" z="542.83411"/>
+			<Orientation y="2.4053"/>
 		</Entity>
 		<Entity uid="5483">
 			<Template>units/maur_cavalry_archer_a</Template>
 			<Player>1</Player>
-			<Position x="195.61031" z="581.98627"/>
+			<Position x="280.80875" z="683.55597"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5484">
 			<Template>units/maur_cavalry_archer_b</Template>
 			<Player>1</Player>
-			<Position x="201.68702" z="584.13062"/>
+			<Position x="286.88547" z="685.70032"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5485">
 			<Template>units/maur_cavalry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="203.39992" z="590.83063"/>
+			<Position x="288.59836" z="692.40033"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5486">
@@ -29883,7 +29883,7 @@
 		<Entity uid="5487">
 			<Template>units/maur_support_elephant</Template>
 			<Player>1</Player>
-			<Position x="247.5157" z="612.5323"/>
+			<Position x="268.45118" z="655.17286"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5488">

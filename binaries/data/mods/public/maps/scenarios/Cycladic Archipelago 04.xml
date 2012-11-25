@@ -2,29 +2,40 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
-		<SkySet>sunny</SkySet>
-		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
-		<SunElevation angle="0.773126"/>
+		<SkySet>cumulus</SkySet>
+		<SunColour r="0.819608" g="0.74902" b="0.513726"/>
+		<SunElevation angle="0.984816"/>
 		<SunRotation angle="-0.582913"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.027451" g="0.129412" b="0.4"/>
+				<Colour r="0.192157" g="0.239216" b="0.341176"/>
 				<Height>33.0492</Height>
-				<Shininess>2.19727</Shininess>
+				<Shininess>8.54492</Shininess>
 				<Waviness>4.77539</Waviness>
-				<Murkiness>0.643555</Murkiness>
-				<Tint r="0.392157" g="0.47451" b="0.654902"/>
+				<Murkiness>0.628906</Murkiness>
+				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0.00392157" g="0.921569" b="0.992157"/>
-				<ReflectionTintStrength>0.519531</ReflectionTintStrength>
+				<ReflectionTintStrength>0.302734</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>0.991211</Contrast>
+			<Saturation>1</Saturation>
+			<Bloom>0.179688</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="466.751" y="97.3873" z="311.405"/>
+		<Position x="466.156" y="86.2014" z="334.236"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -20764,6 +20775,42 @@
 			<Player>1</Player>
 			<Position x="466.86774" z="400.94971"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3970">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="664.39759" z="513.14179"/>
+			<Orientation y="1.02305"/>
+		</Entity>
+		<Entity uid="3971">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="1313.09864" z="757.09217"/>
+			<Orientation y="-2.17537"/>
+		</Entity>
+		<Entity uid="3972">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="1390.32557" z="289.71723"/>
+			<Orientation y="-2.16683"/>
+		</Entity>
+		<Entity uid="3973">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="877.79859" z="77.21821"/>
+			<Orientation y="1.01829"/>
+		</Entity>
+		<Entity uid="3974">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="157.09488" z="895.05286"/>
+			<Orientation y="-2.67675"/>
+		</Entity>
+		<Entity uid="3975">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="916.22455" z="1382.14222"/>
+			<Orientation y="1.16443"/>
 		</Entity>
 	</Entities>
 	<Paths/>

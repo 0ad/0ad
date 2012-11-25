@@ -7,8 +7,10 @@
   </group>
   <group>
     <variant frequency="1" name="texture">
-      <textures><texture file="gaia/grass_tropic_a.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_tropic_a.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>alphatest.xml</material>
+  <material>basic_trans_wind.xml</material>
 </actor>

@@ -2,50 +2,51 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>cirrus</SkySet>
-		<SunColour r="1.29883" g="1.03906" b="0.499157"/>
-		<SunElevation angle="0.291456"/>
-		<SunRotation angle="-0.79767"/>
-		<TerrainAmbientColour r="0.309804" g="0.384314" b="0.541176"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<SkySet>dark2</SkySet>
+		<SunColour r="0.48125" g="1.05" b="1.39453"/>
+		<SunElevation angle="0.13499"/>
+		<SunRotation angle="-2.50346"/>
+		<TerrainAmbientColour r="0.254902" g="0.313726" b="0.447059"/>
+		<UnitsAmbientColour r="0.286275" g="0.337255" b="0.486275"/>
 		<Fog>
 			<FogFactor>0.00398437</FogFactor>
-			<FogThickness>0</FogThickness>
-			<FogColour r="0.6" g="0.592157" b="0.466667"/>
+			<FogThickness>0.400391</FogThickness>
+			<FogColour r="0.392157" g="0.47451" b="0.654902"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.486275" g="0.513726" b="0.282353"/>
-				<Height>22.1377</Height>
-				<Shininess>54.6875</Shininess>
-				<Waviness>0.830078</Waviness>
-				<Murkiness>1</Murkiness>
-				<Tint r="0.466667" g="0.901961" b="0.921569"/>
-				<ReflectionTint r="0.501961" g="0.501961" b="0.247059"/>
-				<ReflectionTintStrength>0.307617</ReflectionTintStrength>
+				<Colour r="0.211765" g="0.247059" b="0.501961"/>
+				<Height>21.9279</Height>
+				<Shininess>229.004</Shininess>
+				<Waviness>2.1875</Waviness>
+				<Murkiness>0.800781</Murkiness>
+				<Tint r="0.396078" g="0.47451" b="0.654902"/>
+				<ReflectionTint r="0" g="0.501961" b="1"/>
+				<ReflectionTintStrength>0.304688</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
-			<Contrast>1.07617</Contrast>
+			<Contrast>1</Contrast>
 			<Saturation>0.99</Saturation>
-			<Bloom>0.108398</Bloom>
+			<Bloom>0.1999</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="896.186" y="82.1029" z="414.648"/>
+		<Position x="628.558" y="82.7317" z="194.657"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview": "belgian_bog.png",
-  "Description": "Two Celtic tribes face off across a large bog.",
+  "Description": "Two Celtic tribes face off across a large bog at night.",
+  "GameType": "conquest",
   "Keywords": [],
-  "Name": "Belgian Bog",
+  "LockTeams": false,
+  "Name": "Belgian Bog Night",
   "PlayerData": [
     {
       "AI": "",
@@ -69,7 +70,9 @@
       "Name": "Player 2",
       "Team": -1
     }
-  ]
+  ],
+  "Preview": "belgian_bog_night.png",
+  "RevealMap": false
 }
 ]]></ScriptSettings>
 	<Entities>

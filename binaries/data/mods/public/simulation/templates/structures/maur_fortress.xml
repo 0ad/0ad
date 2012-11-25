@@ -15,6 +15,11 @@
       units/maur_champion_maiden
       units/maur_champion_infantry
     </Entities>
+    <Technologies datatype="tokens">
+      pair_champ_02
+      -siege_attack
+      -siege_armor
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/mauryans/fortress.xml</Actor>

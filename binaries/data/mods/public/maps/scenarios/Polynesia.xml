@@ -2,11 +2,11 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunny 1</SkySet>
-		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
+		<SkySet>sunny</SkySet>
+		<SunColour r="0.752941" g="0.752941" b="0.752941"/>
 		<SunElevation angle="1.11674"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.541176" g="0.529412" b="0.529412"/>
+		<TerrainAmbientColour r="0.537255" g="0.529412" b="0.529412"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0</FogFactor>
@@ -16,12 +16,12 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.00392157" g="0.0156863" b="0.14902"/>
+				<Colour r="0" g="0" b="0"/>
 				<Height>36.5115</Height>
 				<Shininess>150</Shininess>
 				<Waviness>1.88477</Waviness>
 				<Murkiness>0.62793</Murkiness>
-				<Tint r="0.211765" g="0.937255" b="0.964706"/>
+				<Tint r="0.501961" g="1" b="1"/>
 				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
@@ -35,14 +35,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="333.714" y="97.476" z="350.279"/>
-		<Rotation angle="-2.68274"/>
-		<Declination angle="0.610866"/>
+		<Position x="330.959" y="122.299" z="135.4"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "polynesia.png",
+  "Preview": "polynesia.png",
   "Description": "Give an interesting description of your map.",
   "Name": "Polynesia",
   "PlayerData": [

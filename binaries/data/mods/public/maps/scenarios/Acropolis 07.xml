@@ -11,12 +11,12 @@
 		<Fog>
 			<FogFactor>0.00398437</FogFactor>
 			<FogThickness>0.400391</FogThickness>
-			<FogColour r="0.396078" g="0.47451" b="0.654902"/>
+			<FogColour r="0.392157" g="0.47451" b="0.654902"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.211765" g="0.25098" b="0.505882"/>
+				<Colour r="0.211765" g="0.247059" b="0.501961"/>
 				<Height>20.0394</Height>
 				<Shininess>229.004</Shininess>
 				<Waviness>2.1875</Waviness>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="462.415" y="111.28" z="83.7982"/>
+		<Position x="663.981" y="120.422" z="521.331"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -22370,6 +22370,71 @@
 			<Position x="446.21164" z="257.70868"/>
 			<Orientation y="-0.25882"/>
 			<Obstruction group="4670" group2="4671"/>
+		</Entity>
+		<Entity uid="4695">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="258.3227" z="251.41462"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4696">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="628.32465" z="50.75025"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4697">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="571.27222" z="298.56943"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4698">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="331.10001" z="509.14167"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4699">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="175.80982" z="569.82612"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4700">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="432.57486" z="848.14954"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4701">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="488.43918" z="695.43732"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4702">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="683.54664" z="703.2411"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4703">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="806.42829" z="672.76014"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4704">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="912.50635" z="447.62311"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4705">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="885.23841" z="210.09908"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4706">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="426.1839" z="337.85907"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4707">
+			<Template>actor|particle/fireflies.xml</Template>
+			<Position x="713.32404" z="596.44282"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
