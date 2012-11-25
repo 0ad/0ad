@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
   <BuildRestrictions>
-	<Territory>own ally neutral</Territory>
+    <Territory>own ally neutral</Territory>
     <PlacementType>shore</PlacementType>
     <Category>Dock</Category>
   </BuildRestrictions>
@@ -11,9 +11,9 @@
     <SpecificName>Cothon</SpecificName>
     <Classes datatype="tokens">-City Town</Classes>
     <History>The structure is based upon the centre island of the inner harbour constructed to house the war fleet of the Carthaginian navy at Carthage.</History>
-	<Tooltip>Construct and repair mighty warships.</Tooltip>
+    <Tooltip>Construct and repair mighty warships.</Tooltip>
     <Icon>structures/uber_dock.png</Icon>
-	<RequiredTechnology>phase_town</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
@@ -35,7 +35,7 @@
     <Static width="42.0" depth="58.0"/>
   </Obstruction>
   <Position>
-	<Floating>true</Floating>
+    <Floating>true</Floating>
   </Position>
   <RallyPointRenderer>
     <LinePassabilityClass>ship</LinePassabilityClass>
@@ -50,6 +50,7 @@
   <TerritoryDecay disable=""/>
   <TerritoryInfluence disable=""/>
   <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/cart_ship_bireme
       units/cart_ship_trireme

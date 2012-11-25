@@ -20,7 +20,7 @@
     <Civ>maur</Civ>
     <GenericName>Elephant Stables</GenericName>
     <SpecificName>Vāraṇaśālā</SpecificName>
-	<History>Elephant Stables.</History>
+    <History>Elephant Stables.</History>
     <Icon>structures/palace.png</Icon>
     <Tooltip>Train elephant units.</Tooltip>
   </Identity>
@@ -28,8 +28,9 @@
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
   <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-	  units/maur_support_elephant
+      units/maur_support_elephant
       units/maur_cavalry_archer_b
       units/maur_champion_elephant
     </Entities>

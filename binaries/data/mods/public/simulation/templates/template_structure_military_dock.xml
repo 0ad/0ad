@@ -47,7 +47,7 @@
     <Static width="18.0" depth="18.0"/>
   </Obstruction>
   <Position>
-	<Floating>true</Floating>
+    <Floating>true</Floating>
   </Position>
   <RallyPointRenderer>
     <LinePassabilityClass>ship</LinePassabilityClass>
@@ -64,6 +64,7 @@
   </Sound>
   <TerritoryDecay disable=""/>
   <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/{civ}_ship_fishing
       units/{civ}_ship_merchant

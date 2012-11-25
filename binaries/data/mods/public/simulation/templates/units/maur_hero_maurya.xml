@@ -9,38 +9,38 @@
     <Melee>
       <Hack>25.0</Hack>
       <Crush>25.0</Crush>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusStructures>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
+      <Bonuses>
+        <BonusStructures>
+          <Classes>Structure</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusStructures>
+        <BonusCav>
+          <Classes>Cavalry</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusCav>
+        <BonusGates>
+          <Classes>Gates</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusGates>
+      </Bonuses>
     </Melee>
     <Charge>
       <Hack>75.0</Hack>
       <Crush>75.0</Crush>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusStructures>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
+      <Bonuses>
+        <BonusStructures>
+          <Classes>Structure</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusStructures>
+        <BonusCav>
+          <Classes>Cavalry</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusCav>
+        <BonusGates>
+          <Classes>Gates</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusGates>
+      </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -62,11 +62,12 @@
     <Classes datatype="tokens">Elephant -Cavalry</Classes>
     <GenericName>Chandragupta Maurya</GenericName>
     <SpecificName>Chandragupta Maurya</SpecificName>
-	<Tooltip>Hero Aura: "TBD"</Tooltip>
+    <Tooltip>Hero Aura: "TBD"</Tooltip>
     <History>TBD.</History>
     <Icon>units/cart_hero_hannibal.png</Icon>
   </Identity>
   <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/maur_champion_maiden
       units/maur_champion_maiden_archer

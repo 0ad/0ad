@@ -873,7 +873,10 @@ void CRenderer::RenderShadowMap(const CShaderDefines& context)
 
 	{
 		PROFILE("render patches");
+		glCullFace(GL_FRONT);
+		glEnable(GL_CULL_FACE);
 		m->terrainRenderer.RenderPatches();
+		glCullFace(GL_BACK);
 	}
 
 	CShaderDefines contextCast = context;

@@ -4,19 +4,19 @@
     <Civ>pers</Civ>
     <SpecificName>Padgan</SpecificName>
     <History>The Persian barracks was often the armory where the weapons of the national regiment of that region was stored. </History>
-	<Tooltip>Levy citizen-infantry units.</Tooltip>
+    <Tooltip>Levy citizen-infantry units.</Tooltip>
     <Icon>structures/pers_barracks.png</Icon>
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/pers_infantry_spearman_b
       units/pers_infantry_javelinist_b
-	  units/pers_infantry_archer_b
+      units/pers_infantry_archer_b
     </Entities>
     <Technologies datatype="tokens">
-	  pair_inf_01
-	  pair_inf_02
-	  -pair_cav_01
+      pair_inf_01
+      pair_inf_02
+      -pair_cav_01
     </Technologies>
   </ProductionQueue>
   <VisualActor>

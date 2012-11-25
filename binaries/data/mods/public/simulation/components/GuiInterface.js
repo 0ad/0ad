@@ -1617,6 +1617,18 @@ GuiInterface.prototype.CanAttack = function(player, data)
 	return cmpAttack.CanAttack(data.target);
 };
 
+/*
+ * Returns batch build time.
+ */
+GuiInterface.prototype.GetBatchTime = function(player, data)
+{
+	var cmpProductionQueue = Engine.QueryInterface(data.entity, IID_ProductionQueue);
+	if (!cmpProductionQueue)
+		return 0;
+
+	return cmpProductionQueue.GetBatchTime(data.batchSize);
+};
+
 GuiInterface.prototype.SetPathfinderDebugOverlay = function(player, enabled)
 {
 	var cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
@@ -1688,6 +1700,7 @@ var exposedFunctions = {
 	"GetTradingRouteGain": 1,
 	"GetTradingDetails": 1,
 	"CanAttack": 1,
+	"GetBatchTime": 1,
 
 	"SetPathfinderDebugOverlay": 1,
 	"SetObstructionDebugOverlay": 1,

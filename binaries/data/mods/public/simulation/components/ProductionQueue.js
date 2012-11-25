@@ -6,10 +6,14 @@ function ProductionQueue() {}
 ProductionQueue.prototype.Schema =
 	"<a:help>Allows the building to train new units and research technologies</a:help>" +
 	"<a:example>" +
+		"<BatchTimeModifier>0.7</BatchTimeModifier>" +
 		"<Entities datatype='tokens'>" +
 			"\n    units/{civ}_support_female_citizen\n    units/{civ}_support_trader\n    units/celt_infantry_spearman_b\n  " +
 		"</Entities>" +
 	"</a:example>" +
+	"<element name='BatchTimeModifier' a:help='Modifier that influences the time benefit for batch training'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
 	"<optional>" + 
 		"<element name='Entities' a:help='Space-separated list of entity template names that this building can train. The special string \"{civ}\" will be automatically replaced by the building&apos;s four-character civ code'>" +
 			"<attribute name='datatype'>" +
@@ -123,7 +127,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 	
 	var ret = []
 	
-	// This inserts the techs into the correct positions to line up the tehnology pairs
+	// This inserts the techs into the correct positions to line up the technology pairs
 	for (var i = 0; i < techList.length; i++)
 	{
 		var tech = techList[i];
@@ -184,8 +188,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				return;
 			
 			// Apply a time discount to larger batches.
-			// TODO: work out what equation we should use here.
-			var timeMult = Math.pow(count, 0.7) * cmpPlayer.cheatTimeMultiplier;
+			var timeMult = this.GetBatchTime(count);
 			
 			// We need the costs after tech modifications
 			// Obviously we don't have the entities yet, so we must use template data
@@ -392,6 +395,22 @@ ProductionQueue.prototype.ResetQueue = function()
 
 	while (this.queue.length)
 		this.RemoveBatch(this.queue[0].id);
+};
+
+/*
+ * Returns batch build time.
+ */
+ProductionQueue.prototype.GetBatchTime = function(batchSize)
+{
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+
+	var batchTimeModifier = +this.template.BatchTimeModifier;
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (cmpTechMan)
+		batchTimeModifier = cmpTechMan.ApplyModifications("ProductionQueue/BatchTimeModifier", batchTimeModifier, this.entity);
+
+	// TODO: work out what equation we should use here.
+	return Math.pow(batchSize, batchTimeModifier) * cmpPlayer.cheatTimeMultiplier;
 };
 
 ProductionQueue.prototype.OnOwnershipChanged = function(msg)

@@ -42,6 +42,7 @@ Train War Elephants and Kardakes mercenaries.</Tooltip>
     <Radius>38</Radius>
   </TerritoryInfluence>
   <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/pers_kardakes_hoplite
       units/pers_kardakes_skirmisher

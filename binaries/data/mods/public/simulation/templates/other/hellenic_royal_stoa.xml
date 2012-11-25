@@ -30,7 +30,7 @@
     <GenericName>Stoa</GenericName>
     <SpecificName>Hellenic Royal Stoa</SpecificName>
     <History>A structure built for civic purposes. Stoas eventually became meeting places for philosophy and commerce. They were usually built within the Agora, or city center, of a Greek city.</History>
-	<Tooltip>Add +10 to Population Cap. Recruit special units.</Tooltip>
+      <Tooltip>Add +10 to Population Cap. Recruit special units.</Tooltip>
     <Icon>gaia/special_stoa.png</Icon>
   </Identity>
   <Loot>
@@ -49,9 +49,10 @@
     <Weight>65536</Weight>
   </TerritoryInfluence>
   <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-	  units/mace_thureophoros
-	  units/mace_thorakites
+      units/mace_thureophoros
+      units/mace_thorakites
       units/thrace_black_cloak
     </Entities>
   </ProductionQueue>

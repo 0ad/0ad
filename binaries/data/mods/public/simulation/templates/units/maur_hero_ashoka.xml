@@ -8,14 +8,15 @@
   </Builder>
   <Identity>
     <Civ>maur</Civ>
-	<GenericName>Ashoka the Great</GenericName>
+    <GenericName>Ashoka the Great</GenericName>
     <SpecificName>Aśoka Devānāmpriya</SpecificName>
     <Icon>units/pers_hero_cyrus.png</Icon>
-	<Tooltip>Hero Cavalry Lancer.
+    <Tooltip>Hero Cavalry Lancer.
 Hero Aura: "TBD."</Tooltip>
     <History>TBD.</History>
   </Identity>
   <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/maur_champion_maiden
       units/maur_champion_maiden_archer

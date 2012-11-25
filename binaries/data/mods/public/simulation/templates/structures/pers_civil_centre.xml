@@ -2,11 +2,11 @@
 <Entity parent="template_structure_civic_civil_centre">
   <Identity>
     <Civ>pers</Civ>
-	<GenericName>Provincial Governor</GenericName>
+    <GenericName>Provincial Governor</GenericName>
     <SpecificName>Xsacapava</SpecificName>
     <History>Possibly of Median origin, the word 'satrapy' means province. Soon after coming to the throne, Darius the Great carried out a vast administrative reform, dividing the huge empire into 20 satrapies governed by satraps.</History>
   </Identity>
-<Health>
+  <Health>
     <SpawnEntityOnDeath>rubble/rubble_pers_cc</SpawnEntityOnDeath>
   </Health>
   <ProductionQueue>

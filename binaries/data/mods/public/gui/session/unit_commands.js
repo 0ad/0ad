@@ -434,7 +434,14 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
-				tooltip += "\n" + getEntityCostTooltip(template);
+				var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
+					getTrainingBatchStatus(playerState, unitEntState.id, entType, selection);
+				if (Engine.HotkeyIsPressed("session.batchtrain"))
+				{
+					trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
+				}
+
+				tooltip += "\n" + getEntityCostTooltip(template, trainNum, unitEntState.id);
 
 				if (template.health)
 					tooltip += "\n[font=\"serif-bold-13\"]Health:[/font] " + template.health;
@@ -449,8 +456,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 					getEntityLimitAndCount(playerState, entType)
 				tooltip += formatLimitString(trainEntLimit, trainEntCount);
 
-				var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
-					getTrainingBatchStatus(playerState, unitEntState.id, entType, selection);
 				tooltip += formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch);
 				var key = g_ConfigDB.system["hotkey.session.queueunit." + (i+1)];
 				if (key !== undefined)
@@ -678,7 +683,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 
 					// Check resource requirements for second button
 					affordableMask1.hidden = true;
-					neededResources = Engine.GuiInterfaceCall("GetNeededResources", template.cost);
+					neededResources = Engine.GuiInterfaceCall("GetNeededResources", template1.cost);
 					if (neededResources)
 					{
 						if (button1.enabled !== false)

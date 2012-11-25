@@ -481,16 +481,13 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 		shader->Uniform("shadowScale", width, height, 1.0f / width, 1.0f / height);
 	}
 
-	shader->Uniform("ambient", lightEnv.m_UnitsAmbientColor);
-	shader->Uniform("sunDir", lightEnv.GetSunDir());
-	shader->Uniform("sunColor", lightEnv.m_SunColor);
-
 	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 	shader->BindTexture("losTex", los.GetTextureSmooth());
 	shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
 	shader->Uniform("ambient", lightEnv.m_TerrainAmbientColor);
 	shader->Uniform("sunColor", lightEnv.m_SunColor);
+	shader->Uniform("sunDir", lightEnv.GetSunDir());
 	
 	shader->Uniform("fogColor", lightEnv.m_FogColor);
 	shader->Uniform("fogParams", lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);

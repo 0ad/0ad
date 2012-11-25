@@ -276,7 +276,7 @@ void ShadowMapInternals::CalcShadowMatrices()
 	LightProjection._22 = scale.Y;
 	LightProjection._24 = (shift.Y + offsetY) * scale.Y;
 	LightProjection._33 = scale.Z;
-	LightProjection._34 = shift.Z * scale.Z + renderer.m_ShadowZBias;
+	LightProjection._34 = shift.Z * scale.Z;// + renderer.m_ShadowZBias;
 	LightProjection._44 = 1.0;
 
 	// Calculate texture matrix by creating the clip space to texture coordinate matrix
