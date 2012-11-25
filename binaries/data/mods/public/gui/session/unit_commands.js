@@ -683,7 +683,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 
 					// Check resource requirements for second button
 					affordableMask1.hidden = true;
-					neededResources = Engine.GuiInterfaceCall("GetNeededResources", template.cost);
+					neededResources = Engine.GuiInterfaceCall("GetNeededResources", template1.cost);
 					if (neededResources)
 					{
 						if (button1.enabled !== false)
