@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <effect>
-
     <technique>
-     
         <require shaders="glsl"/>
         <sort_by_distance/>
         <pass shader="glsl/model_waterfall">
             <define name="USE_TRANSPARENT" value="1"/>
-	    <define name="USE_INSTANCING" value="1"/>
+            <define name="USE_INSTANCING" value="1"/>
             <blend src="src_alpha" dst="one_minus_src_alpha"/>
-	    <depth func="lequal" mask="true"/>
+            <depth func="lequal" mask="true"/>
         </pass>
     </technique>
-
-
-
+    <technique>
+        <require shaders="arb"/>
+    </technique>
+    <technique>
+        <require shaders="fixed"/>
+    </technique>
 </effect>
