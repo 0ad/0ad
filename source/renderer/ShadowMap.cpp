@@ -224,7 +224,6 @@ void ShadowMap::AddShadowedBound(const CBoundingBoxAligned& bounds)
 // projection and transformation matrices
 void ShadowMapInternals::CalcShadowMatrices()
 {
-	CRenderer& renderer = g_Renderer;
 	float minZ = ShadowBound[0].Z;
 
 	ShadowBound.IntersectFrustumConservative(LightspaceCamera.GetFrustum());
@@ -276,7 +275,7 @@ void ShadowMapInternals::CalcShadowMatrices()
 	LightProjection._22 = scale.Y;
 	LightProjection._24 = (shift.Y + offsetY) * scale.Y;
 	LightProjection._33 = scale.Z;
-	LightProjection._34 = shift.Z * scale.Z;// + renderer.m_ShadowZBias;
+	LightProjection._34 = shift.Z * scale.Z;
 	LightProjection._44 = 1.0;
 
 	// Calculate texture matrix by creating the clip space to texture coordinate matrix

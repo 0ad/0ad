@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,8 +21,8 @@
 
 #include "precompiled.h"
 
-#include "graphics/TextureManager.h"
 #include "graphics/Terrain.h"
+#include "graphics/TextureManager.h"
 
 #include "lib/bits.h"
 #include "lib/timer.h"
@@ -348,7 +348,7 @@ void WaterManager::CreateSuperfancyInfo()
 			}
 			waterRaise = waterRaise > 255 ? 255 : waterRaise; // gives a very good result, actually.
 			normal *= 1.0f/81.0f;
-			normal[1] = 0.1;	// acts as an anti distorter
+			normal[1] = 0.1f;	// acts as an anti distorter
 			normal = normal.Normalized();
 			
 			u8 r = static_cast<u8>(normal[0]*128 + 127);
