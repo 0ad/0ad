@@ -105,7 +105,7 @@ public:
 	
 private:
 	void SetGain(float gain);
-	void UploadPropertiesAndPlay(int theIndex, const CVector3D& position);
+	void UploadPropertiesAndPlay(unsigned int theIndex, const CVector3D& position);
 	void SetDefaultValues();
 
 	size_t m_index;  // index of the next sound to play
