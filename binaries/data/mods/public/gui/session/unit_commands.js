@@ -184,13 +184,9 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 	if (buildingsCountToTrainFullBatch > 1 ||
 		(buildingsCountToTrainFullBatch == 1 && remainderBatch > 0))
 	{
-		batchDetailsString += " (";
-		if (fullBatchesString != "" && remainderBatchString != "")
-			batchDetailsString += fullBatchesString + " + " + remainderBatchString;
-		else if (fullBatchesString != "")
-			batchDetailsString += fullBatchesString;
-		else
-			batchDetailsString += remainderBatchString;
+		batchDetailsString += " (" + fullBatchesString;
+		if (remainderBatchString != "")
+			batchDetailsString += " + " + remainderBatchString;
 		batchDetailsString += ")";
 	}
 

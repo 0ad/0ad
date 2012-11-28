@@ -3,12 +3,12 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>sunset</SkySet>
-		<SunColour r="1.01305" g="0.977237" b="0.752114"/>
-		<SunElevation angle="0.469398"/>
+		<SkySet>cirrus</SkySet>
+		<SunColour r="0.940257" g="0.907016" b="0.69807"/>
+		<SunElevation angle="0.779262"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -17,14 +17,14 @@
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>1</Murkiness>
-				<Tint r="0.109804" g="0.686275" b="0.882353"/>
+				<Tint r="0.294118" g="0.541176" b="0.788235"/>
 				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="362.595" y="100.293" z="851.914"/>
+		<Position x="1231.23" y="70.6868" z="544.87"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -373,7 +373,7 @@
 		<Entity uid="256">
 			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
 			<Player>0</Player>
-			<Position x="539.77137" z="881.58533"/>
+			<Position x="535.70276" z="881.56116"/>
 			<Orientation y="-0.7509"/>
 		</Entity>
 		<Entity uid="257">
@@ -6447,6 +6447,681 @@
 			<Player>3</Player>
 			<Position x="1235.26636" z="878.42725"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1270">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="869.78907" z="1117.76392"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1271">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="869.42316" z="1109.43763"/>
+			<Orientation y="-2.31766"/>
+		</Entity>
+		<Entity uid="1272">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="864.14045" z="1105.44825"/>
+			<Orientation y="-2.01568"/>
+		</Entity>
+		<Entity uid="1273">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="858.54987" z="1101.80335"/>
+			<Orientation y="2.57354"/>
+		</Entity>
+		<Entity uid="1274">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="866.9021" z="1099.88941"/>
+			<Orientation y="1.03542"/>
+		</Entity>
+		<Entity uid="1275">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="874.31885" z="1105.39307"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1276">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="877.31116" z="1156.97156"/>
+			<Orientation y="0.17405"/>
+		</Entity>
+		<Entity uid="1277">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="880.93915" z="1173.693"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1278">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="887.18519" z="1180.08619"/>
+			<Orientation y="0.53388"/>
+		</Entity>
+		<Entity uid="1279">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="892.42151" z="1189.4922"/>
+			<Orientation y="0.8665"/>
+		</Entity>
+		<Entity uid="1280">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="901.64228" z="1193.29981"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1281">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="908.96283" z="1196.59705"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1282">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="907.26386" z="1193.18665"/>
+			<Orientation y="-2.04488"/>
+		</Entity>
+		<Entity uid="1283">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="898.23835" z="1188.35474"/>
+			<Orientation y="-2.84777"/>
+		</Entity>
+		<Entity uid="1284">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="897.00123" z="1185.03028"/>
+			<Orientation y="-2.49009"/>
+		</Entity>
+		<Entity uid="1285">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="892.14563" z="1182.65735"/>
+			<Orientation y="-1.75525"/>
+		</Entity>
+		<Entity uid="1286">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="889.89393" z="1182.46106"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1287">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="917.83112" z="1168.97425"/>
+			<Orientation y="1.72051"/>
+		</Entity>
+		<Entity uid="1288">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="922.57837" z="1168.77027"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1289">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="920.6839" z="1164.36878"/>
+			<Orientation y="-2.51285"/>
+		</Entity>
+		<Entity uid="1290">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="918.12269" z="1159.88038"/>
+			<Orientation y="1.91823"/>
+		</Entity>
+		<Entity uid="1291">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="925.3039" z="1162.7627"/>
+			<Orientation y="0.25292"/>
+		</Entity>
+		<Entity uid="1292">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="926.76075" z="1169.29859"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1293">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="928.66889" z="1172.0464"/>
+			<Orientation y="1.89188"/>
+		</Entity>
+		<Entity uid="1294">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="931.2989" z="1170.08912"/>
+			<Orientation y="-2.7622"/>
+		</Entity>
+		<Entity uid="1295">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="929.20655" z="1164.30628"/>
+			<Orientation y="-2.49978"/>
+		</Entity>
+		<Entity uid="1296">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="924.74787" z="1158.3401"/>
+			<Orientation y="-2.55991"/>
+		</Entity>
+		<Entity uid="1297">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="887.55225" z="1307.36219"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1298">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="887.93537" z="1299.58472"/>
+			<Orientation y="2.03508"/>
+		</Entity>
+		<Entity uid="1299">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="894.30073" z="1297.40613"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1300">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="898.2605" z="1300.46375"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1301">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="896.67444" z="1308.98768"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1302">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="890.18787" z="1222.0542"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1303">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="955.68335" z="1281.89271"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1304">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="957.40778" z="1298.48206"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1305">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="954.50275" z="1406.52796"/>
+			<Orientation y="0.73581"/>
+		</Entity>
+		<Entity uid="1306">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="990.05671" z="1282.88794"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1307">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="1234.02576" z="1218.60181"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1308">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="722.73444" z="1301.18201"/>
+			<Orientation y="-2.20852"/>
+		</Entity>
+		<Entity uid="1309">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="737.46924" z="1500.6554"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1310">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="754.21723" z="1397.6388"/>
+			<Orientation y="-2.0211"/>
+		</Entity>
+		<Entity uid="1311">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="725.4054" z="509.28882"/>
+			<Orientation y="-1.84176"/>
+		</Entity>
+		<Entity uid="1312">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="690.88642" z="549.4358"/>
+			<Orientation y="1.00568"/>
+		</Entity>
+		<Entity uid="1313">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="785.063" z="565.52405"/>
+			<Orientation y="-1.7204"/>
+		</Entity>
+		<Entity uid="1314">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="780.1703" z="599.73682"/>
+			<Orientation y="0.91666"/>
+		</Entity>
+		<Entity uid="1315">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="787.60859" z="620.74854"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1316">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="782.87061" z="611.94245"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1317">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="787.83277" z="603.68866"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1318">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="770.87916" z="601.00178"/>
+			<Orientation y="0.96268"/>
+		</Entity>
+		<Entity uid="1319">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="719.38526" z="594.72205"/>
+			<Orientation y="-1.92266"/>
+		</Entity>
+		<Entity uid="1320">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="647.11805" z="702.42505"/>
+			<Orientation y="-1.44372"/>
+		</Entity>
+		<Entity uid="1321">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="1014.21857" z="91.70905"/>
+			<Orientation y="1.17205"/>
+		</Entity>
+		<Entity uid="1322">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="1049.46192" z="65.70089"/>
+			<Orientation y="-2.1028"/>
+		</Entity>
+		<Entity uid="1323">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="1063.4651" z="127.06537"/>
+			<Orientation y="-1.95101"/>
+		</Entity>
+		<Entity uid="1324">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="757.37574" z="91.5783"/>
+			<Orientation y="-1.69028"/>
+		</Entity>
+		<Entity uid="1325">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="573.62482" z="37.16555"/>
+			<Orientation y="0.97329"/>
+		</Entity>
+		<Entity uid="1326">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="529.3241" z="57.53794"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1327">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="496.10749" z="79.26584"/>
+			<Orientation y="-1.66756"/>
+		</Entity>
+		<Entity uid="1328">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="485.44498" z="82.31421"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1329">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="493.008" z="83.83208"/>
+			<Orientation y="1.0952"/>
+		</Entity>
+		<Entity uid="1330">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="499.63938" z="86.22922"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1331">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="504.70316" z="77.09086"/>
+			<Orientation y="-2.10956"/>
+		</Entity>
+		<Entity uid="1332">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="493.6666" z="76.7537"/>
+			<Orientation y="1.1439"/>
+		</Entity>
+		<Entity uid="1333">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="533.1366" z="148.80701"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1334">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="528.74091" z="148.5014"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1335">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="542.27283" z="162.08689"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1336">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="559.24372" z="182.9478"/>
+			<Orientation y="1.06676"/>
+		</Entity>
+		<Entity uid="1337">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="591.83356" z="199.74885"/>
+			<Orientation y="-2.89831"/>
+		</Entity>
+		<Entity uid="1338">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="588.12476" z="181.73903"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1339">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="591.34791" z="175.47634"/>
+			<Orientation y="1.45034"/>
+		</Entity>
+		<Entity uid="1340">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="603.22828" z="177.01359"/>
+			<Orientation y="1.27744"/>
+		</Entity>
+		<Entity uid="1341">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="621.95466" z="182.14075"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1342">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="627.57319" z="173.20478"/>
+			<Orientation y="2.19951"/>
+		</Entity>
+		<Entity uid="1343">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="641.0901" z="165.21224"/>
+			<Orientation y="1.57081"/>
+		</Entity>
+		<Entity uid="1344">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="655.76777" z="167.69973"/>
+			<Orientation y="1.08262"/>
+		</Entity>
+		<Entity uid="1345">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="666.96021" z="173.58057"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1346">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="605.1808" z="181.73905"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1347">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="595.96808" z="194.35389"/>
+			<Orientation y="-0.39322"/>
+		</Entity>
+		<Entity uid="1348">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="579.4516" z="215.23574"/>
+			<Orientation y="-2.18804"/>
+		</Entity>
+		<Entity uid="1349">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="552.51453" z="200.20806"/>
+			<Orientation y="-2.49521"/>
+		</Entity>
+		<Entity uid="1350">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="331.70411" z="226.06183"/>
+			<Orientation y="0.9293"/>
+		</Entity>
+		<Entity uid="1351">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="335.4415" z="231.04278"/>
+			<Orientation y="-3.00013"/>
+		</Entity>
+		<Entity uid="1352">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="334.90708" z="227.097"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1353">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="334.12327" z="225.97602"/>
+			<Orientation y="-2.43351"/>
+		</Entity>
+		<Entity uid="1354">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="321.64142" z="225.97603"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1355">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="320.50858" z="231.04278"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1356">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="319.76676" z="234.7482"/>
+			<Orientation y="0.53808"/>
+		</Entity>
+		<Entity uid="1357">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="321.09662" z="238.91318"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1358">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="316.55927" z="244.86258"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1359">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="325.61234" z="247.62725"/>
+			<Orientation y="2.01269"/>
+		</Entity>
+		<Entity uid="1360">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="331.53486" z="245.04267"/>
+			<Orientation y="2.1843"/>
+		</Entity>
+		<Entity uid="1361">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="338.28351" z="243.44315"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1362">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="480.55155" z="348.88804"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1363">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="477.77448" z="346.33796"/>
+			<Orientation y="-1.3559"/>
+		</Entity>
+		<Entity uid="1364">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="473.32105" z="347.06586"/>
+			<Orientation y="-2.69117"/>
+		</Entity>
+		<Entity uid="1365">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="472.06653" z="343.83881"/>
+			<Orientation y="-2.4719"/>
+		</Entity>
+		<Entity uid="1366">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="466.26746" z="339.00959"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1367">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="464.49097" z="340.85187"/>
+			<Orientation y="-0.65201"/>
+		</Entity>
+		<Entity uid="1368">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="462.79242" z="344.03321"/>
+			<Orientation y="0.74146"/>
+		</Entity>
+		<Entity uid="1369">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="466.35108" z="348.02073"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1370">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="466.46766" z="354.73972"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1371">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="471.40506" z="359.75318"/>
+			<Orientation y="1.96021"/>
+		</Entity>
+		<Entity uid="1372">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="473.12613" z="342.31705"/>
+			<Orientation y="1.44651"/>
+		</Entity>
+		<Entity uid="1373">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="482.15723" z="342.88093"/>
+			<Orientation y="-1.9284"/>
+		</Entity>
+		<Entity uid="1374">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="401.04813" z="433.4239"/>
+			<Orientation y="2.77205"/>
+		</Entity>
+		<Entity uid="1375">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="404.63877" z="425.43943"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1376">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="405.60267" z="423.82941"/>
+			<Orientation y="2.49265"/>
+		</Entity>
+		<Entity uid="1377">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="409.15741" z="419.59504"/>
+			<Orientation y="1.36445"/>
+		</Entity>
+		<Entity uid="1378">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="412.62214" z="424.18311"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1379">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="413.20813" z="433.63318"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1380">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="421.61927" z="442.41721"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1381">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="413.85163" z="425.43943"/>
+			<Orientation y="1.47477"/>
+		</Entity>
+		<Entity uid="1382">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="417.6919" z="426.35474"/>
+			<Orientation y="-2.2844"/>
+		</Entity>
+		<Entity uid="1383">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="407.45771" z="443.23566"/>
+			<Orientation y="1.2387"/>
+		</Entity>
+		<Entity uid="1384">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="397.76572" z="439.84357"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1385">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="302.5016" z="518.01697"/>
+			<Orientation y="-1.6487"/>
+		</Entity>
+		<Entity uid="1386">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="291.55066" z="518.5564"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1387">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="290.90522" z="515.53608"/>
+			<Orientation y="-2.70974"/>
+		</Entity>
+		<Entity uid="1388">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="287.09986" z="509.14744"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1389">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="283.95359" z="507.84644"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1390">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="279.5276" z="512.22681"/>
+			<Orientation y="-0.22991"/>
+		</Entity>
+		<Entity uid="1391">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="276.3177" z="522.95575"/>
+			<Orientation y="-0.09939"/>
+		</Entity>
+		<Entity uid="1392">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="275.00016" z="529.10511"/>
+			<Orientation y="0.12107"/>
+		</Entity>
+		<Entity uid="1393">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="275.35145" z="534.37916"/>
+			<Orientation y="0.58994"/>
+		</Entity>
+		<Entity uid="1394">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="278.99915" z="540.20813"/>
+			<Orientation y="2.48327"/>
+		</Entity>
+		<Entity uid="1395">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="284.08237" z="532.56348"/>
+			<Orientation y="2.0778"/>
+		</Entity>
+		<Entity uid="1396">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="274.71723" z="405.75522"/>
+			<Orientation y="-2.16982"/>
+		</Entity>
+		<Entity uid="1397">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="259.06174" z="396.80744"/>
+			<Orientation y="3.13505"/>
+		</Entity>
+		<Entity uid="1398">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="258.49738" z="386.94797"/>
+			<Orientation y="3.13865"/>
+		</Entity>
+		<Entity uid="1399">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="290.48288" z="362.5481"/>
+			<Orientation y="2.84078"/>
+		</Entity>
+		<Entity uid="1400">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="298.11005" z="338.64344"/>
+			<Orientation y="2.93793"/>
+		</Entity>
+		<Entity uid="1401">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="302.06238" z="326.86759"/>
+			<Orientation y="1.63758"/>
+		</Entity>
+		<Entity uid="1402">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="307.12537" z="326.18525"/>
+			<Orientation y="1.67261"/>
+		</Entity>
+		<Entity uid="1403">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="318.10712" z="326.41184"/>
+			<Orientation y="1.13314"/>
+		</Entity>
+		<Entity uid="1404">
+			<Template>actor|props/flora/plant_desert_a.xml</Template>
+			<Position x="327.6258" z="331.12656"/>
+			<Orientation y="1.68703"/>
 		</Entity>
 	</Entities>
 	<Paths/>

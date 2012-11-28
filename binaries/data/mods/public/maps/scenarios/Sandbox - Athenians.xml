@@ -9,7 +9,7 @@
 		<TerrainAmbientColour r="0.329412" g="0.403922" b="0.576471"/>
 		<UnitsAmbientColour r="0.34902" g="0.403922" b="0.439216"/>
 		<Fog>
-			<FogFactor>0.00297852</FogFactor>
+			<FogFactor>0.00237305</FogFactor>
 			<FogThickness>0.400391</FogThickness>
 			<FogColour r="0.819608" g="0.74902" b="0.513726"/>
 		</Fog>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="782.943" y="146.273" z="1129.61"/>
+		<Position x="609.584" y="155.723" z="1260.85"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -4215,6 +4215,106 @@
 			<Player>0</Player>
 			<Position x="1335.95777" z="1502.03394"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="798">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="621.75709" z="1252.5547"/>
+			<Orientation y="2.93403"/>
+		</Entity>
+		<Entity uid="799">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="623.326" z="1249.75245"/>
+			<Orientation y="3.12922"/>
+		</Entity>
+		<Entity uid="800">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="622.97327" z="1243.80481"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="801">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="629.45069" z="1241.28956"/>
+			<Orientation y="0.5453"/>
+		</Entity>
+		<Entity uid="802">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="634.51954" z="1249.44642"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="803">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="635.25361" z="1249.5204"/>
+			<Orientation y="2.31826"/>
+		</Entity>
+		<Entity uid="804">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="638.48371" z="1246.2284"/>
+			<Orientation y="-2.77594"/>
+		</Entity>
+		<Entity uid="805">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="635.16388" z="1236.40723"/>
+			<Orientation y="-2.20813"/>
+		</Entity>
+		<Entity uid="806">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="630.17261" z="1231.21302"/>
+			<Orientation y="-1.35288"/>
+		</Entity>
+		<Entity uid="807">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="615.66132" z="1238.88794"/>
+			<Orientation y="-0.94657"/>
+		</Entity>
+		<Entity uid="808">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="601.63941" z="1249.47657"/>
+			<Orientation y="-1.42608"/>
+		</Entity>
+		<Entity uid="809">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="596.38294" z="1250.70948"/>
+			<Orientation y="-1.66709"/>
+		</Entity>
+		<Entity uid="810">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="590.47114" z="1252.58619"/>
+			<Orientation y="-2.4441"/>
+		</Entity>
+		<Entity uid="811">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="585.52436" z="1249.22681"/>
+			<Orientation y="-1.96035"/>
+		</Entity>
+		<Entity uid="812">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="607.30292" z="1247.44471"/>
+			<Orientation y="0.36165"/>
+		</Entity>
+		<Entity uid="813">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="605.25086" z="1265.59144"/>
+			<Orientation y="-1.71734"/>
+		</Entity>
+		<Entity uid="814">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="580.11725" z="1272.18812"/>
+			<Orientation y="-0.97345"/>
+		</Entity>
+		<Entity uid="815">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="656.21406" z="1216.04554"/>
+			<Orientation y="-0.15334"/>
+		</Entity>
+		<Entity uid="816">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="723.26423" z="1232.32093"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="817">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="758.6966" z="1273.3125"/>
+			<Orientation y="-1.68091"/>
 		</Entity>
 	</Entities>
 	<Paths/>

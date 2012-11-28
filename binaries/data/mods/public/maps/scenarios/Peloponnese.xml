@@ -2,36 +2,47 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
-		<SkySet>cloudless</SkySet>
+		<SkySet>cumulus</SkySet>
 		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.874369"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.329412" g="0.411765" b="0.584314"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Colour r="0.392157" g="0.47451" b="0.654902"/>
 				<Height>22.2426</Height>
 				<Shininess>2.92969</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.641602</Murkiness>
+				<Murkiness>0.644531</Murkiness>
 				<Tint r="0.137255" g="0.603922" b="0.854902"/>
 				<ReflectionTint r="0.0901961" g="0.619608" b="0.901961"/>
 				<ReflectionTintStrength>0.398438</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="1369.63" y="72.9725" z="974.602"/>
+		<Position x="1388.91" y="124.086" z="894.162"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "peloponnese_scenario.png",
+  "Preview": "peloponnese_scenario.png",
   "Description": "A real-world map of the Greek homeland.",
   "GameType": "conquest",
   "Keywords": [],
@@ -12208,8 +12219,8 @@
 		<Entity uid="2087">
 			<Template>gaia/fauna_boar</Template>
 			<Player>0</Player>
-			<Position x="644.22431" z="709.86646"/>
-			<Orientation y="-2.82015"/>
+			<Position x="647.14504" z="718.0551"/>
+			<Orientation y="-2.72863"/>
 		</Entity>
 		<Entity uid="2088">
 			<Template>gaia/fauna_boar</Template>
@@ -12238,8 +12249,8 @@
 		<Entity uid="2092">
 			<Template>gaia/fauna_boar</Template>
 			<Player>0</Player>
-			<Position x="931.40943" z="927.54908"/>
-			<Orientation y="-2.49099"/>
+			<Position x="915.93847" z="930.29874"/>
+			<Orientation y="1.26162"/>
 		</Entity>
 		<Entity uid="2093">
 			<Template>gaia/fauna_boar</Template>
@@ -12265,12 +12276,6 @@
 			<Position x="1276.32642" z="1161.24415"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2097">
-			<Template>gaia/fauna_boar</Template>
-			<Player>0</Player>
-			<Position x="1496.97388" z="1080.13221"/>
-			<Orientation y="-2.04915"/>
-		</Entity>
 		<Entity uid="2098">
 			<Template>gaia/fauna_boar</Template>
 			<Player>0</Player>
@@ -12286,8 +12291,8 @@
 		<Entity uid="2100">
 			<Template>gaia/fauna_boar</Template>
 			<Player>0</Player>
-			<Position x="686.9242" z="1420.60853"/>
-			<Orientation y="2.35621"/>
+			<Position x="685.7774" z="1425.47509"/>
+			<Orientation y="-0.2996"/>
 		</Entity>
 		<Entity uid="2101">
 			<Template>gaia/fauna_boar</Template>
@@ -12340,8 +12345,8 @@
 		<Entity uid="2109">
 			<Template>gaia/fauna_boar</Template>
 			<Player>0</Player>
-			<Position x="827.64051" z="1583.67188"/>
-			<Orientation y="2.35621"/>
+			<Position x="839.67664" z="1592.14034"/>
+			<Orientation y="0.48386"/>
 		</Entity>
 		<Entity uid="2110">
 			<Template>gaia/fauna_deer</Template>
@@ -12406,8 +12411,8 @@
 		<Entity uid="2120">
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
-			<Position x="1496.63025" z="1042.57105"/>
-			<Orientation y="-2.00054"/>
+			<Position x="1501.46598" z="1047.35135"/>
+			<Orientation y="0.78994"/>
 		</Entity>
 		<Entity uid="2121">
 			<Template>gaia/fauna_deer</Template>
@@ -12676,8 +12681,8 @@
 		<Entity uid="2165">
 			<Template>gaia/fauna_bear</Template>
 			<Player>0</Player>
-			<Position x="266.6999" z="1516.125"/>
-			<Orientation y="2.35621"/>
+			<Position x="267.6966" z="1516.04418"/>
+			<Orientation y="1.68863"/>
 		</Entity>
 		<Entity uid="2166">
 			<Template>gaia/fauna_bear</Template>
@@ -14068,8 +14073,8 @@
 		<Entity uid="2397">
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
-			<Position x="1168.98194" z="788.49878"/>
-			<Orientation y="3.11377"/>
+			<Position x="1170.30326" z="786.9975"/>
+			<Orientation y="2.40627"/>
 		</Entity>
 		<Entity uid="2398">
 			<Template>gaia/fauna_goat</Template>
@@ -14110,8 +14115,8 @@
 		<Entity uid="2404">
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
-			<Position x="989.4911" z="607.70728"/>
-			<Orientation y="-0.2206"/>
+			<Position x="993.50034" z="610.69472"/>
+			<Orientation y="0.90012"/>
 		</Entity>
 		<Entity uid="2405">
 			<Template>gaia/fauna_goat</Template>
@@ -14224,8 +14229,8 @@
 		<Entity uid="2423">
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
-			<Position x="557.82746" z="1064.64698"/>
-			<Orientation y="1.16527"/>
+			<Position x="572.77088" z="1063.65288"/>
+			<Orientation y="1.10492"/>
 		</Entity>
 		<Entity uid="2424">
 			<Template>gaia/fauna_goat</Template>
@@ -14332,8 +14337,8 @@
 		<Entity uid="2441">
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
-			<Position x="365.84272" z="1524.42164"/>
-			<Orientation y="-1.63596"/>
+			<Position x="363.84293" z="1524.39637"/>
+			<Orientation y="-1.59041"/>
 		</Entity>
 		<Entity uid="2442">
 			<Template>gaia/fauna_goat</Template>
@@ -14494,8 +14499,8 @@
 		<Entity uid="2468">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="1436.43824" z="1383.63282"/>
-			<Orientation y="-3.06516"/>
+			<Position x="1436.17196" z="1386.62087"/>
+			<Orientation y="-0.12856"/>
 		</Entity>
 		<Entity uid="2469">
 			<Template>gaia/fauna_sheep</Template>
@@ -14596,56 +14601,56 @@
 		<Entity uid="2485">
 			<Template>gaia/fauna_whale_humpback</Template>
 			<Player>0</Player>
-			<Position x="1240.05274" z="691.58716"/>
-			<Orientation y="2.35621"/>
+			<Position x="1246.61953" z="692.32084"/>
+			<Orientation y="-1.47837"/>
 		</Entity>
 		<Entity uid="2486">
 			<Template>gaia/fauna_whale_humpback</Template>
 			<Player>0</Player>
-			<Position x="1565.87415" z="278.14972"/>
-			<Orientation y="-2.11792"/>
+			<Position x="1591.37722" z="277.93218"/>
+			<Orientation y="0.66703"/>
 		</Entity>
 		<Entity uid="2487">
 			<Template>gaia/fauna_whale_humpback</Template>
 			<Player>0</Player>
-			<Position x="1297.40589" z="258.40378"/>
-			<Orientation y="1.1352"/>
+			<Position x="1319.07902" z="284.38125"/>
+			<Orientation y="0.79397"/>
 		</Entity>
 		<Entity uid="2488">
 			<Template>gaia/fauna_whale_humpback</Template>
 			<Player>0</Player>
-			<Position x="953.75678" z="125.11286"/>
-			<Orientation y="-2.74558"/>
+			<Position x="965.58974" z="157.13625"/>
+			<Orientation y="0.30868"/>
 		</Entity>
 		<Entity uid="2489">
 			<Template>gaia/fauna_whale_humpback</Template>
 			<Player>0</Player>
-			<Position x="618.46717" z="194.51981"/>
-			<Orientation y="1.31984"/>
+			<Position x="600.06399" z="206.81354"/>
+			<Orientation y="0.71331"/>
 		</Entity>
 		<Entity uid="2490">
 			<Template>gaia/fauna_whale_humpback</Template>
 			<Player>0</Player>
-			<Position x="272.42371" z="605.90223"/>
-			<Orientation y="-2.67324"/>
+			<Position x="286.70235" z="636.0346"/>
+			<Orientation y="0.8067"/>
 		</Entity>
 		<Entity uid="2491">
 			<Template>gaia/fauna_whale_humpback</Template>
 			<Player>0</Player>
-			<Position x="82.24166" z="752.39362"/>
-			<Orientation y="1.4948"/>
+			<Position x="93.35157" z="744.21302"/>
+			<Orientation y="-2.24686"/>
 		</Entity>
 		<Entity uid="2492">
 			<Template>gaia/fauna_whale_humpback</Template>
 			<Player>0</Player>
-			<Position x="169.44758" z="1162.12378"/>
-			<Orientation y="2.35621"/>
+			<Position x="151.66207" z="1170.94047"/>
+			<Orientation y="-2.46244"/>
 		</Entity>
 		<Entity uid="2493">
 			<Template>gaia/fauna_whale_humpback</Template>
 			<Player>0</Player>
-			<Position x="105.06354" z="1407.83509"/>
-			<Orientation y="-2.66538"/>
+			<Position x="100.59604" z="1384.67739"/>
+			<Orientation y="2.29874"/>
 		</Entity>
 		<Entity uid="2494">
 			<Template>gaia/fauna_wolf</Template>
@@ -14758,8 +14763,8 @@
 		<Entity uid="2512">
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
-			<Position x="634.68183" z="1108.55652"/>
-			<Orientation y="2.67548"/>
+			<Position x="636.97854" z="1115.07271"/>
+			<Orientation y="-2.22301"/>
 		</Entity>
 		<Entity uid="2513">
 			<Template>gaia/fauna_goat</Template>
@@ -14770,8 +14775,8 @@
 		<Entity uid="2514">
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
-			<Position x="507.00129" z="1141.72681"/>
-			<Orientation y="2.35621"/>
+			<Position x="507.17081" z="1133.729"/>
+			<Orientation y="3.09572"/>
 		</Entity>
 		<Entity uid="2515">
 			<Template>gaia/fauna_goat</Template>
@@ -14824,8 +14829,8 @@
 		<Entity uid="2523">
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
-			<Position x="702.19312" z="921.69813"/>
-			<Orientation y="3.09885"/>
+			<Position x="699.34693" z="916.4163"/>
+			<Orientation y="-2.59154"/>
 		</Entity>
 		<Entity uid="2524">
 			<Template>gaia/fauna_goat</Template>
@@ -14860,8 +14865,8 @@
 		<Entity uid="2529">
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
-			<Position x="858.07142" z="994.12049"/>
-			<Orientation y="0.02117"/>
+			<Position x="851.67037" z="991.42815"/>
+			<Orientation y="2.7788"/>
 		</Entity>
 		<Entity uid="2530">
 			<Template>gaia/fauna_goat</Template>
@@ -14872,8 +14877,8 @@
 		<Entity uid="2531">
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
-			<Position x="832.03187" z="1027.97767"/>
-			<Orientation y="0.76333"/>
+			<Position x="825.09972" z="1015.05927"/>
+			<Orientation y="-2.65026"/>
 		</Entity>
 		<Entity uid="2532">
 			<Template>gaia/fauna_goat</Template>
@@ -33435,14 +33440,14 @@
 		<Entity uid="6211">
 			<Template>units/athen_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="1437.38404" z="1089.79737"/>
-			<Orientation y="2.35621"/>
+			<Position x="1489.8953" z="1080.16095"/>
+			<Orientation y="1.50374"/>
 		</Entity>
 		<Entity uid="6212">
 			<Template>units/athen_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="1440.33436" z="1092.81482"/>
-			<Orientation y="2.35621"/>
+			<Position x="1491.12868" z="1081.98342"/>
+			<Orientation y="1.94863"/>
 		</Entity>
 		<Entity uid="6213">
 			<Template>units/athen_champion_marine</Template>
@@ -33569,6 +33574,12 @@
 			<Player>2</Player>
 			<Position x="903.41742" z="402.59031"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6234">
+			<Template>resource|gaia/fauna_boar</Template>
+			<Player>0</Player>
+			<Position x="1495.06724" z="1080.73604"/>
+			<Orientation y="-1.19298"/>
 		</Entity>
 	</Entities>
 	<Paths/>

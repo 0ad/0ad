@@ -19,10 +19,10 @@
 
 #include "ParticleEmitter.h"
 
+#include "graphics/LightEnv.h"
 #include "graphics/ParticleEmitterType.h"
 #include "graphics/ParticleManager.h"
 #include "graphics/TextureManager.h"
-#include "graphics/LightEnv.h"
 
 #include "renderer/Renderer.h"
 
