@@ -1,10 +1,11 @@
 /**
  * \file   os_getversioninfo.c
  * \brief  Retrieve operating system version information.
- * \author Copyright (c) 2011 Jason Perkins and the Premake project
+ * \author Copyright (c) 2011-2012 Jason Perkins and the Premake project
  */
 
 #include "premake.h"
+#include <stdlib.h>
 
 struct OsVersionInfo
 {
@@ -12,7 +13,41 @@ struct OsVersionInfo
 	int minorversion;
 	int revision;
 	const char* description;
-} ;
+	int isalloc;
+};
+
+static void getversion(struct OsVersionInfo* info);
+
+
+int os_getversion(lua_State* L)
+{
+	struct OsVersionInfo info = {0};
+	getversion(&info);
+
+	lua_newtable(L);
+
+	lua_pushstring(L, "majorversion");
+	lua_pushnumber(L, info.majorversion);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "minorversion");
+	lua_pushnumber(L, info.minorversion);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "revision");
+	lua_pushnumber(L, info.revision);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "description");
+	lua_pushstring(L, info.description);
+	lua_settable(L, -3);
+
+	if (info.isalloc) {
+		free((void*)info.description);
+	}
+
+	return 1;
+}
 
 /*************************************************************/
 
@@ -148,7 +183,6 @@ void getversion(struct OsVersionInfo* info)
 
 #elif defined(PLATFORM_BSD) || defined(PLATFORM_LINUX) || defined(PLATFORM_SOLARIS)
 
-#include <stdlib.h>
 #include <string.h>
 #include <sys/utsname.h>
 
@@ -172,8 +206,9 @@ void getversion(struct OsVersionInfo* info)
 	// When using glibc, info->description gets set to u.sysname,
 	// but it isn't passed out of this function, so we need to copy 
 	// the string.
-	info->description = malloc(strlen(u.sysname)+1);
+	info->description = malloc(strlen(u.sysname) + 1);
 	strcpy((char*)info->description, u.sysname);
+	info->isalloc = 1;
 #else
 	info->description = u.sysname;
 #endif
@@ -205,36 +240,3 @@ void getversion(struct OsVersionInfo* info)
 
 #endif
 
-/*************************************************************/
-
-int os_getversion(lua_State* L)
-{
-	struct OsVersionInfo info;
-	getversion(&info);
-
-	lua_newtable(L);
-
-	lua_pushstring(L, "majorversion");
-	lua_pushnumber(L, info.majorversion);
-	lua_settable(L, -3);
-
-	lua_pushstring(L, "minorversion");
-	lua_pushnumber(L, info.minorversion);
-	lua_settable(L, -3);
-
-	lua_pushstring(L, "revision");
-	lua_pushnumber(L, info.revision);
-	lua_settable(L, -3);
-
-	lua_pushstring(L, "description");
-	lua_pushstring(L, info.description);
-	lua_settable(L, -3);
-
-#if (defined(PLATFORM_BSD) || defined(PLATFORM_LINUX) || defined(PLATFORM_SOLARIS)) && __GLIBC__
-	// Check if we had no error in the uname syscall and can free this
-	if (*info.description != *PLATFORM_STRING)
-		free((char*)info.description);
-#endif
-
-	return 1;
-}
