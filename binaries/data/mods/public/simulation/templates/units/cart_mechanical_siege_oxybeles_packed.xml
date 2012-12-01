@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_siege_ballista">
+<Entity parent="template_unit_mechanical_siege_ballista_packed">
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Oxybeles</SpecificName>
@@ -8,7 +8,10 @@
   <Obstruction>
     <Unit radius="3.0"/>
   </Obstruction>
+  <Pack>
+    <Entity>units/cart_mechanical_siege_oxybeles_unpacked</Entity>
+  </Pack>
   <VisualActor>
-    <Actor>units/carthaginians/siege_spear.xml</Actor>
+    <Actor>units/carthaginians/siege_spear_packed.xml</Actor>
   </VisualActor>
 </Entity>

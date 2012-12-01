@@ -4,7 +4,7 @@
   <castshadow/>
   
   <group>
-    <variant frequency="100" name="wagon hele rock">
+    <variant frequency="100" name="wagon kart rock">
       <animations>
         <animation file="mechanical/wagon_four_wheel_empty_idle.dae" name="Idle" speed="100"/>
         <animation file="mechanical/wagon_four_wheel_empty_move.dae" name="Walk" speed="10"/>
@@ -12,7 +12,7 @@
       </animations>
       <mesh>props/special/wagon_four_wheel_empty.dae</mesh>
       <props>
-        <prop actor="props/special/rome_rock_packed.xml" attachpoint="cargo"/>
+        <prop actor="props/units/kart_rock_packed.xml" attachpoint="cargo"/>
         <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_l"/>
         <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_r"/>
       </props>

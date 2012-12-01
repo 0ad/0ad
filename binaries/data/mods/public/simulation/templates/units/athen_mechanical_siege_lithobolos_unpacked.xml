@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_siege_onager">
+<Entity parent="template_unit_mechanical_siege_onager_unpacked">
   <Identity>
-    <Civ>mace</Civ>
+    <Civ>athen</Civ>
     <SpecificName>Lithóbolos</SpecificName>
     <Icon>units/hele_mechanical_siege_lithobolos.png</Icon>
   </Identity>
   <Obstruction>
     <Unit radius="3.5"/>
   </Obstruction>
+  <Pack>
+    <Entity>units/athen_mechanical_siege_lithobolos_packed</Entity>
+  </Pack>
   <Vision>
     <Range>88</Range>
   </Vision>
   <VisualActor>
-    <Actor>units/hellenes/siege_rock.xml</Actor>
+    <Actor>units/athenians/siege_rock.xml</Actor>
   </VisualActor>
 </Entity>

@@ -1797,6 +1797,30 @@ function lockGate(lock)
 	});
 }
 
+// Pack / unpack unit(s)
+function packUnit(pack)
+{
+	var selection = g_Selection.toList();
+	Engine.PostNetworkCommand({
+		"type": "pack",
+		"entities": selection,
+		"pack": pack,
+		"queued": false
+	});
+}
+
+// Cancel un/packing unit(s)
+function cancelPackUnit(pack)
+{
+	var selection = g_Selection.toList();
+	Engine.PostNetworkCommand({
+		"type": "cancel-pack",
+		"entities": selection,
+		"pack": pack,
+		"queued": false
+	});
+}
+
 // Transform a wall to a gate
 function transformWallToGate(template)
 {

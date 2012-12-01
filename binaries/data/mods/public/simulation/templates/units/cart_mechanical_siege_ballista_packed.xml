@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_siege_onager_packed">
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Ballista</SpecificName>
+    <Icon>units/cart_mechanical_siege_ballista.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="3.5"/>
+  </Obstruction>
+  <Pack>
+    <Entity>units/cart_mechanical_siege_ballista_unpacked</Entity>
+  </Pack>
+  <VisualActor>
+    <Actor>units/carthaginians/siege_rock_packed.xml</Actor>
+  </VisualActor>
+</Entity>

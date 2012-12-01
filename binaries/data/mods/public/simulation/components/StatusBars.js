@@ -55,6 +55,12 @@ StatusBars.prototype.OnResourceSupplyChanged = function(msg)
 		this.RegenerateSprites();
 };
 
+StatusBars.prototype.OnPackProgressUpdate = function(msg)
+{
+	if (this.enabled)
+		this.RegenerateSprites();
+};
+
 StatusBars.prototype.ResetSprites = function()
 {
 	var cmpOverlayRenderer = Engine.QueryInterface(this.entity, IID_OverlayRenderer);
@@ -94,6 +100,12 @@ StatusBars.prototype.RegenerateSprites = function()
 
 		yoffset -= height * 1.2;
 	};
+
+	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+	if (cmpPack && cmpPack.IsPacking())
+	{
+		AddBar("pack", cmpPack.GetProgress());
+	}
 
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	if (cmpHealth && cmpHealth.GetHitpoints() > 0)

@@ -457,6 +457,36 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
+	case "pack":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+			{
+				if (cmd.pack)
+					cmpUnitAI.Pack(cmd.queued);
+				else
+					cmpUnitAI.Unpack(cmd.queued);
+			}
+		}
+		break;
+
+	case "cancel-pack":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+			{
+				if (cmd.pack)
+					cmpUnitAI.CancelPack(cmd.queued);
+				else
+					cmpUnitAI.CancelUnpack(cmd.queued);
+			}
+		}
+		break;
+
 	default:
 		error("Invalid command: unknown command type: "+uneval(cmd));
 	}

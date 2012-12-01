@@ -678,6 +678,10 @@ Formation.prototype.OnGlobalEntityRenamed = function(msg)
 
 		if (cmpNewUnitAI)
 			cmpNewUnitAI.SetFormationController(this.entity);
+
+		// Because the renamed entity might have different characteristics,
+		// (e.g. packed vs. unpacked siege), we need to recompute motion parameters
+		this.ComputeMotionParameters();
 	}
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_siege_ballista">
+<Entity parent="template_unit_mechanical_siege_ballista_packed">
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -29,7 +29,10 @@
     <SpecificName>Scorpio</SpecificName>
     <Icon>units/rome_mechanical_siege_scorpio.png</Icon>
   </Identity>
+  <Pack>
+    <Entity>units/rome_mechanical_siege_scorpio_unpacked</Entity>
+  </Pack>
   <VisualActor>
-    <Actor>units/romans/siege_scorpio.xml</Actor>
+    <Actor>units/romans/siege_scorpio_packed.xml</Actor>
   </VisualActor>
 </Entity>

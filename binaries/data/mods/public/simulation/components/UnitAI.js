@@ -159,6 +159,10 @@ var UnitFsmSpec = {
 	"EntityRenamed": function(msg) {
 		// ignore
 	},
+	
+	"PackFinished": function(msg) {
+		// ignore
+	},
 
 	// Formation handlers:
 
@@ -175,6 +179,16 @@ var UnitFsmSpec = {
 			return;
 		}
 
+		// For packable units:
+		// 1. If packed, we can move.
+		// 2. If unpacked, we first need to pack, then follow case 1.
+		if (this.CanPack())
+		{
+			// Case 2: pack
+			this.PushOrderFront("Pack", { "force": true });
+			return;
+		}
+
 		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 		cmpUnitMotion.MoveToFormationOffset(msg.data.target, msg.data.x, msg.data.z);
 
@@ -185,7 +199,9 @@ var UnitFsmSpec = {
 	// (these will be overridden by various states)
 
 	"Order.LeaveFoundation": function(msg) {
-		if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target))
+		// If foundation is not ally of entity, or if entity is unpacked siege,
+		// ignore the order
+		if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) || this.IsPacking() || this.CanPack())
 		{
 			this.FinishOrder();
 			return;
@@ -236,6 +252,16 @@ var UnitFsmSpec = {
 			return;
 		}
 
+		// For packable units:
+		// 1. If packed, we can move.
+		// 2. If unpacked, we first need to pack, then follow case 1.
+		if (this.CanPack())
+		{
+			// Case 2: pack
+			this.PushOrderFront("Pack", { "force": true });
+			return;
+		}
+
 		this.SetHeldPosition(this.order.data.x, this.order.data.z);
 		this.MoveToPoint(this.order.data.x, this.order.data.z);
 		if (this.IsAnimal())
@@ -249,6 +275,16 @@ var UnitFsmSpec = {
 		if (this.IsAnimal() && !this.IsDomestic())
 		{
 			this.FinishOrder();
+			return;
+		}
+
+		// For packable units:
+		// 1. If packed, we can move.
+		// 2. If unpacked, we first need to pack, then follow case 1.
+		if (this.CanPack())
+		{
+			// Case 2: pack
+			this.PushOrderFront("Pack", { "force": true });
 			return;
 		}
 
@@ -310,11 +346,51 @@ var UnitFsmSpec = {
 		if (this.CheckTargetRange(this.order.data.target, IID_Attack, this.attackType))
 		{
 			this.StopMoving();
+			// For packable units within attack range:
+			// 1. If unpacked, we can attack the target.
+			// 2. If packed, we first need to unpack, then follow case 1.
+			if (this.CanUnpack())
+			{
+				// Ignore unforced attacks
+				// TODO: use special stances instead?
+				if (!this.order.data.force)
+				{
+					this.FinishOrder();
+					return;
+				}
+
+				// Case 2: unpack
+				this.PushOrderFront("Unpack", { "force": true });
+				return;
+			}
+
 			if (this.IsAnimal())
 				this.SetNextState("ANIMAL.COMBAT.ATTACKING");
 			else
 				this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
 			return;
+		}
+
+		// For packable units out of attack range:
+		// 1. If packed, we need to move to attack range and then unpack.
+		// 2. If unpacked, we first need to pack, then follow case 1.
+		var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+		if (cmpPack)
+		{
+			// Ignore unforced attacks
+			// TODO: use special stances instead?
+			if (!this.order.data.force)
+			{
+				this.FinishOrder();
+				return;
+			}
+			
+			if (this.CanPack())
+			{
+				// Case 2: pack
+				this.PushOrderFront("Pack", { "force": true });
+				return;
+			}
 		}
 
 		// If we can't reach the target, but are standing ground, then abandon this attack order.
@@ -486,6 +562,36 @@ var UnitFsmSpec = {
 		this.SetNextState("INDIVIDUAL.CHEERING");
 	},
 
+	"Order.Pack": function(msg) {
+		if (this.CanPack())
+		{
+			this.StopMoving();
+			this.SetNextState("INDIVIDUAL.PACKING");
+		}
+	},
+
+	"Order.Unpack": function(msg) {
+		if (this.CanUnpack())
+		{
+			this.StopMoving();
+			this.SetNextState("INDIVIDUAL.UNPACKING");
+		}
+	},
+
+	"Order.CancelPack": function(msg) {
+		var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+		if (cmpPack && cmpPack.IsPacking() && !cmpPack.IsPacked())
+			cmpPack.CancelPack();
+		this.FinishOrder();
+	},
+
+	"Order.CancelUnpack": function(msg) {
+		var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+		if (cmpPack && cmpPack.IsPacking() && cmpPack.IsPacked())
+			cmpPack.CancelPack();
+		this.FinishOrder();
+	},
+
 	// States for the special entity representing a group of units moving in formation:
 	"FORMATIONCONTROLLER": {
 
@@ -587,6 +693,20 @@ var UnitFsmSpec = {
 			cmpFormation.CallMemberFunction("Garrison", [msg.data.target, false]);
 			cmpFormation.Disband();
 		},
+		
+		"Order.Pack": function(msg) {
+			// TODO: see notes in Order.Attack
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.CallMemberFunction("Pack", [false]);
+			cmpFormation.Disband();
+		},
+		
+		"Order.Unpack": function(msg) {
+			// TODO: see notes in Order.Attack
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.CallMemberFunction("Unpack", [false]);
+			cmpFormation.Disband();
+		},
 
 		"IDLE": {
 		},
@@ -649,7 +769,9 @@ var UnitFsmSpec = {
 		// anything more important (and we might be stuck in the WALKING
 		// state forever and need to get out of foundations in that case)
 		"Order.LeaveFoundation": function(msg) {
-			if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target))
+			// If foundation is not ally of entity, or if entity is unpacked siege,
+			// ignore the order
+			if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) || this.IsPacking() || this.CanPack())
 			{
 				this.FinishOrder();
 				return;
@@ -877,7 +999,11 @@ var UnitFsmSpec = {
 				},
 
 				"MoveCompleted": function() {
-					this.SetNextState("ATTACKING");
+					// If the unit needs to unpack, do so
+					if (this.CanUnpack())
+						this.SetNextState("UNPACKING");
+					else
+						this.SetNextState("ATTACKING");
 				},
 
 				"Attacked": function(msg) {
@@ -887,6 +1013,35 @@ var UnitFsmSpec = {
 					{
 						this.RespondToTargetedEntities([msg.data.attacker]);
 					}
+				},
+			},
+
+			"UNPACKING": {
+				"enter": function() {
+					// If we're not in range yet (maybe we stopped moving), move to target again
+					if (!this.CheckTargetRange(this.order.data.target, IID_Attack, this.attackType))
+					{
+						if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
+							this.SetNextState("APPROACHING");
+						else
+						{
+							// Give up
+							this.FinishOrder();
+						}
+						return true;
+					}
+
+					// In range, unpack
+					var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+					cmpPack.Unpack();
+					return false;
+				},
+
+				"PackFinished": function(msg) {
+					this.SetNextState("ATTACKING");
+				},
+
+				"leave": function() {
 				},
 			},
 
@@ -1714,6 +1869,34 @@ var UnitFsmSpec = {
 				this.FinishOrder();
 			},
 		},
+
+		"PACKING": {
+			"enter": function() {
+				var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+				cmpPack.Pack();
+			},
+
+			"PackFinished": function(msg) {
+				this.FinishOrder();
+			},
+
+			"leave": function() {
+			},
+		},
+
+		"UNPACKING": {
+			"enter": function() {
+				var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+				cmpPack.Unpack();
+			},
+
+			"PackFinished": function(msg) {
+				this.FinishOrder();
+			},
+
+			"leave": function() {
+			},
+		},
 	},
 
 	"ANIMAL": {
@@ -2218,12 +2401,21 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 
 UnitAI.prototype.ReplaceOrder = function(type, data)
 {
-	// If current order is cheering then add new order after it
+	// Special cases of orders that shouldn't be replaced:
+	// 1. Cheering - we're invulnerable, add order after we finish
+	// 2. Packing/unpacking - we're immobile, add order after we finish (unless it's cancel)
+	// TODO: maybe a better way of doing this would be to use priority levels
 	if (this.order && this.order.type == "Cheering")
 	{
 		var order = { "type": type, "data": data };
 		var cheeringOrder = this.orderQueue.shift();
 		this.orderQueue = [ cheeringOrder, order ];
+	}
+	else if (this.IsPacking() && type != "CancelPack" && type != "CancelUnpack")
+	{
+		var order = { "type": type, "data": data };
+		var packingOrder = this.orderQueue.shift();
+		this.orderQueue = [ packingOrder, order ];
 	}
 	else
 	{
@@ -2343,6 +2535,11 @@ UnitAI.prototype.OnRangeUpdate = function(msg)
 		UnitFsm.ProcessMessage(this, {"type": "LosGaiaRangeUpdate", "data": msg});
 	else if (msg.tag == this.losHealRangeQuery)
 		UnitFsm.ProcessMessage(this, {"type": "LosHealRangeUpdate", "data": msg});
+};
+
+UnitAI.prototype.OnPackFinished = function(msg)
+{
+	UnitFsm.ProcessMessage(this, {"type": "PackFinished", "packed": msg.packed});
 };
 
 //// Helper functions to be called by the FSM ////
@@ -2841,6 +3038,11 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
  */
 UnitAI.prototype.ShouldChaseTargetedEntity = function(target, force)
 {
+	// TODO: use special stances instead?
+	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+	if (cmpPack)
+		return false;
+
 	if (this.GetStance().respondChase)
 		return true;
 
@@ -3246,6 +3448,34 @@ UnitAI.prototype.Cheer = function()
 	this.AddOrder("Cheering", { "force": true }, false);
 };
 
+UnitAI.prototype.Pack = function(queued)
+{
+	// Check that we can pack
+	if (this.CanPack())
+		this.AddOrder("Pack", { "force": true }, queued);
+};
+
+UnitAI.prototype.Unpack = function(queued)
+{
+	// Check that we can unpack
+	if (this.CanUnpack())
+		this.AddOrder("Unpack", { "force": true }, queued);
+};
+
+UnitAI.prototype.CancelPack = function(queued)
+{
+	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+	if (cmpPack && cmpPack.IsPacking() && !cmpPack.IsPacked())
+		this.AddOrder("CancelPack", { "force": true }, queued);
+};
+
+UnitAI.prototype.CancelUnpack = function(queued)
+{
+	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+	if (cmpPack && cmpPack.IsPacking() && cmpPack.IsPacked())
+		this.AddOrder("CancelUnpack", { "force": true }, queued);
+};
+
 UnitAI.prototype.SetStance = function(stance)
 {
 	if (g_Stances[stance])
@@ -3610,6 +3840,24 @@ UnitAI.prototype.CanRepair = function(target)
 		return false;
 
 	return true;
+};
+
+UnitAI.prototype.CanPack = function()
+{
+	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+	return (cmpPack && !cmpPack.IsPacking() && !cmpPack.IsPacked());
+};
+
+UnitAI.prototype.CanUnpack = function()
+{
+	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+	return (cmpPack && !cmpPack.IsPacking() && cmpPack.IsPacked());
+};
+
+UnitAI.prototype.IsPacking = function()
+{
+	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+	return (cmpPack && cmpPack.IsPacking());
 };
 
 //// Animal specific functions ////

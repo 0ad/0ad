@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_siege_onager">
+<Entity parent="template_unit_mechanical_siege_onager_packed">
   <Attack>
     <Ranged>
       <MaxRange>76</MaxRange>
@@ -35,10 +35,13 @@
   <Obstruction>
     <Unit radius="3.5"/>
   </Obstruction>
+  <Pack>
+    <Entity>units/rome_mechanical_siege_ballista_unpacked</Entity>
+  </Pack>
   <Vision>
     <Range>88</Range>
   </Vision>
   <VisualActor>
-    <Actor>units/romans/siege_rock.xml</Actor>
+    <Actor>units/romans/siege_rock_packed.xml</Actor>
   </VisualActor>
 </Entity>

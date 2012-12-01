@@ -37,7 +37,7 @@
       <wood>100</wood>
       <metal>100</metal>
     </Resources>
-	<Population>2</Population>
+    <Population>2</Population>
   </Cost>
   <Footprint replace="">
     <Square width="8.0" depth="9.0"/>
@@ -57,6 +57,11 @@
     <stone>0</stone>
     <metal>10</metal>
   </Loot>
+  <Pack>
+    <Entity>template_unit_mechanical_siege_ballista_packed</Entity>
+    <Time>10000</Time>
+    <State>unpacked</State>
+  </Pack>
   <Selectable>
     <Overlay>
       <Texture>
@@ -66,9 +71,9 @@
     </Overlay>
   </Selectable>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed>0.001</WalkSpeed>
     <Run>
-      <Speed>12.0</Speed>
+      <Speed>0.001</Speed>
     </Run>
   </UnitMotion>
   <Vision>
