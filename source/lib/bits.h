@@ -147,7 +147,7 @@ inline size_t SparsePopulationCount(T mask)
 template<typename T>
 static inline size_t PopulationCount(T x)
 {
-    cassert(!std::numeric_limits<T>::is_signed);
+    cassert_dependent(!std::numeric_limits<T>::is_signed);
 	const T mask = T(~T(0));
 	x -= (x >> 1) & (mask/3);	// count 2 bits
 	x = (x & (mask/15*3)) + ((x >> 2) & (mask/15*3));	// count 4 bits
