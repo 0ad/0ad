@@ -247,11 +247,9 @@ static HWND wnd_CreateWindow(int w, int h)
 	wc.lpszClassName = L"WSDL{55752F43-0241-492C-8648-C7243397FCE4}";
 	wc.hInstance = hInst;
 	ATOM class_atom = RegisterClassW(&wc);
-	if(!class_atom)
-	{
-		DEBUG_WARN_ERR(ERR::LOGIC);	// RegisterClassW failed
-		return 0;
-	}
+    // ignore failure, which is probably caused by not unregistering the class
+    // (does not happen automatically when called from a DLL). just re-use
+    // the existing class, which is safe because our class name is unique.
 
 	const DWORD windowStyle = wnd_ChooseWindowStyle(fullscreen);
 	wnd_UpdateWindowDimensions(windowStyle, w, h);
