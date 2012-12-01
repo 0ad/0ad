@@ -164,7 +164,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 		if (! it->second.m_FileName.empty())
 		{
-			CSkeletonAnim* anim = model->BuildAnimation(it->second.m_FileName, name, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2);
+			CSkeletonAnim* anim = model->BuildAnimation(it->second.m_FileName, name, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2, it->second.m_SoundPos);
 			if (anim)
 				m_Animations.insert(std::make_pair(name, anim));
 		}
@@ -179,6 +179,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		anim->m_Speed = 0.f;
 		anim->m_ActionPos = 0.f;
 		anim->m_ActionPos2 = 0.f;
+		anim->m_SoundPos = 0.f;
 		m_Animations.insert(std::make_pair("idle", anim));
 
 		// Ignore errors, since they're probably saying this is a non-animated model
