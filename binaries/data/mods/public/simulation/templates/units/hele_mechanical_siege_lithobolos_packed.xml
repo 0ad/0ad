@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_siege_onager_packed">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Lithóbolos</SpecificName>
+    <Icon>units/hele_mechanical_siege_lithobolos.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="3.5"/>
+  </Obstruction>
+  <Pack>
+    <Entity>units/hele_mechanical_siege_lithobolos_unpacked</Entity>
+  </Pack>
+  <Vision>
+    <Range>88</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/hellenes/siege_rock_packed.xml</Actor>
+  </VisualActor>
+</Entity>

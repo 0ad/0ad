@@ -10,6 +10,7 @@ const TRADING = "Trading";
 const COMMAND = "Command";
 const STANCE = "Stance";
 const GATE = "Gate";
+const PACK = "Pack";
 
 // Constants
 const COMMANDS_PANEL_WIDTH = 228;
@@ -29,10 +30,10 @@ const BARTER_ACTIONS = ["Sell", "Buy"];
 const GATE_ACTIONS = ["Lock", "Unlock"];
 
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Barter": 0, "Trading": 0, "Construction": 0, "Command": 0, "Stance": 0, "Gate": 0};
+var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Barter": 0, "Trading": 0, "Construction": 0, "Command": 0, "Stance": 0, "Gate": 0, "Pack": 0};
 
 // Unit panels are panels with row(s) of buttons
-var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "Barter", "Trading", "Construction", "Research", "Stance", "Command", "Gate"];
+var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "Barter", "Trading", "Construction", "Research", "Stance", "Command", "Gate", "Pack"];
 
 // Indexes of resources to sell and buy on barter panel
 var g_barterSell = 0;
@@ -267,6 +268,11 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				numberOfItems = 8;
 			break;
 
+		case PACK:
+			if(numberOfItems > 8)
+				numberOfItems = 8;
+			break;
+
 		default:
 			break;
 	}
@@ -417,6 +423,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 						tooltip += getNeededResourcesTooltip(neededResources);
 					}
 				}
+				break;
+
+			case PACK:
+				var tooltip = item.tooltip;
 				break;
 
 			case STANCE:
@@ -626,6 +636,20 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			}
 
 			icon.sprite = "stretched:session/" + gateIcon;
+		}
+		else if (guiName == PACK)
+		{
+			if (item.packing)
+			{
+				icon.sprite = "stretched:session/icons/cancel.png";
+			}
+			else
+			{
+				if (item.packed)
+					icon.sprite = "stretched:session/icons/unpack.png";
+				else
+					icon.sprite = "stretched:session/icons/pack.png";
+			}
 		}
 		else if (template.icon)
 		{
@@ -1053,6 +1077,50 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			var items = gates.concat(walls);
 			if (items.length)
 				setupUnitPanel(GATE, usedPanels, entState, playerState, items);
+			else
+				rightUsed = false;
+		}
+		else if (entState.pack)
+		{
+			var items = [];
+			var packButton = false;
+			var unpackButton = false;
+			var packCancelButton = false;
+			var unpackCancelButton = false;
+			for (var i in selection)
+			{
+				// Find un/packable entities
+				var state = GetEntityState(selection[i]);
+				if (state.pack)
+				{
+					if (state.pack.progress == 0)
+					{
+						if (!state.pack.packed)
+							packButton = true;
+						else if (state.pack.packed)
+							unpackButton = true;
+					}
+					else
+					{
+						// Already un/packing - show cancel button
+						if (!state.pack.packed)
+							packCancelButton = true;
+						else if (state.pack.packed)
+							unpackCancelButton = true;
+					}
+				}
+			}
+			if (packButton)
+				items.push({ "packing": false, "packed": false, "tooltip": "Pack this unit", "callback": function() { packUnit(true); } });
+			if (unpackButton)
+				items.push({ "packing": false, "packed": true, "tooltip": "Unpack this unit", "callback": function() { packUnit(false); } });
+			if (packCancelButton)
+				items.push({ "packing": true, "packed": false, "tooltip": "Stop packing this unit", "callback": function() { cancelPackUnit(true); } });
+			if (unpackCancelButton)
+				items.push({ "packing": true, "packed": true, "tooltip": "Stop unpacking this unit", "callback": function() { cancelPackUnit(false); } });
+
+			if (items.length)
+				setupUnitPanel(PACK, usedPanels, entState, playerState, items);
 			else
 				rightUsed = false;
 		}

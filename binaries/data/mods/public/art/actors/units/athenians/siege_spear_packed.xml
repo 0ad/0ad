@@ -2,14 +2,20 @@
 <actor version="1">
 
   <castshadow/>
-
+  
   <group>
-    <variant>
-      <mesh>structural/hele_sp_p.dae</mesh>
+    <variant frequency="100" name="wagon hele spear">
+      <animations>
+        <animation file="mechanical/wagon_two_wheel_empty_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/wagon_two_wheel_empty_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/wagon_two_wheel_empty_move.dae" name="Run" speed="10"/>
+      </animations>
+      <mesh>props/special/wagon_two_wheel_empty.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/hele_siege_spear.xml" attachpoint="siege"/>
+        <prop actor="props/units/hele_spear_packed.xml" attachpoint="cargo"/>
+        <prop actor="units/hellenes/trader_h.xml" attachpoint="horse"/>
       </props>
-      <textures><texture file="structural/hele_wagon.dds" name="baseTex"/></textures>
+      <textures><texture file="props/wooden_wagon.png" name="baseTex"/></textures>
     </variant>
   </group>
 

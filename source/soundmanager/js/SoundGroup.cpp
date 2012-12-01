@@ -157,7 +157,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	return answer;
 }
 
-void CSoundGroup::UploadPropertiesAndPlay(int theIndex, const CVector3D& position)
+void CSoundGroup::UploadPropertiesAndPlay(unsigned int theIndex, const CVector3D& position)
 {
 #if CONFIG2_AUDIO
 	if ( g_SoundManager )
