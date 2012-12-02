@@ -188,6 +188,23 @@ Formation.prototype.TestAllMemberFunction = function(funcname, args)
 	return true;
 };
 
+Formation.prototype.GetMaxAttackRangeFunction = function(target)
+{
+	var result = 0;
+	var range = 0;
+	for each (var ent in this.members)
+	{
+		var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
+		if (!cmpAttack)
+			continue;
+
+		range = cmpAttack.GetRange(cmpAttack.GetBestAttackAgainst(target));
+		if (range.max > result)
+			result = range.max;
+	}
+	return result;
+};
+
 /**
  * Set all members to form up into the formation shape.
  * If moveCenter is true, the formation center will be reinitialised

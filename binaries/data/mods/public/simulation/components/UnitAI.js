@@ -613,7 +613,14 @@ var UnitFsmSpec = {
 
 		// Only used by other orders to walk there in formation
 		"Order.WalkToTargetRange": function(msg) {
-			if(this.MoveToTargetRangeExplicit(this.order.data.target, this.order.data.min, this.order.data.max))
+			if (this.MoveToTargetRangeExplicit(this.order.data.target, this.order.data.min, this.order.data.max))
+				this.SetNextState("WALKING");
+			else
+				this.FinishOrder();
+		},
+
+		"Order.WalkToPointRange": function(msg) {
+			if (this.MoveToPointRange(this.order.data.x, this.order.data.z, this.order.data.min, this.order.data.max))
 				this.SetNextState("WALKING");
 			else
 				this.FinishOrder();
@@ -626,20 +633,21 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Attack": function(msg) {
-			// TODO: on what should we base this range?
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+
+			var maxRange = cmpFormation.GetMaxAttackRangeFunction(msg.data.target);
 			// Check if we are already in range, otherwise walk there
-			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 20))
+			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, maxRange))
 			{
 				if (!this.TargetIsAlive(msg.data.target))
 					// The target was destroyed
 					this.FinishOrder();
 				else
 					// Out of range; move there in formation
-					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 20 });
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": maxRange });
 				return;
 			}
 
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 			// We don't want to rearrange the formation if the individual units are carrying
 			// out a task and one of the members dies/leaves the formation.
 			cmpFormation.SetRearrange(false);
@@ -699,14 +707,10 @@ var UnitFsmSpec = {
 		"Order.GatherNearPosition": function(msg) {
 			// TODO: on what should we base this range?
 			// Check if we are already in range, otherwise walk there
-			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 20))
+			if (!this.CheckPointRangeExplicit(msg.data.x, msg.data.z, 0, 20))
 			{
-				if (!this.TargetIsAlive(msg.data.target))
-					// The target was destroyed
-					this.FinishOrder();
-				else
-					// Out of range; move there in formation
-					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 20 });
+				// Out of range; move there in formation
+				this.PushOrderFront("WalkToPointRange", { "x": msg.data.x, "z": msg.data.z, "min": 0, "max": 20 });
 				return;
 			}
 
@@ -2979,6 +2983,12 @@ UnitAI.prototype.MoveToTargetRangeExplicit = function(target, min, max)
 	return cmpUnitMotion.MoveToTargetRange(target, min, max);
 };
 
+UnitAI.prototype.CheckPointRangeExplicit = function(x, z, min, max)
+{
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.IsInPointRange(x, z, min, max);
+};
+
 UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 {
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
@@ -3306,6 +3316,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 		switch (order.type)
 		{
 		case "Walk":
+		case "WalkToPointRange":
 		case "MoveIntoFormation":
 		case "GatherNearPosition":
 			// Add the distance to the target point
