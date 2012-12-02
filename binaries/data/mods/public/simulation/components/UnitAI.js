@@ -602,10 +602,25 @@ var UnitFsmSpec = {
 			this.MoveToPoint(this.order.data.x, this.order.data.z);
 			this.SetNextState("WALKING");
 		},
+		
+		"Order.MoveIntoFormation": function(msg) {
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
+
+			this.MoveToPoint(this.order.data.x, this.order.data.z);
+			this.SetNextState("FORMING");
+		},
 
 		// Only used by other orders to walk there in formation
 		"Order.WalkToTargetRange": function(msg) {
-			if(this.MoveToTargetRangeExplicit(this.order.data.target, this.order.data.min, this.order.data.max))
+			if (this.MoveToTargetRangeExplicit(this.order.data.target, this.order.data.min, this.order.data.max))
+				this.SetNextState("WALKING");
+			else
+				this.FinishOrder();
+		},
+
+		"Order.WalkToPointRange": function(msg) {
+			if (this.MoveToPointRange(this.order.data.x, this.order.data.z, this.order.data.min, this.order.data.max))
 				this.SetNextState("WALKING");
 			else
 				this.FinishOrder();
@@ -618,27 +633,121 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Attack": function(msg) {
-			// TODO: we should move in formation towards the target,
-			// then break up into individuals when close enough to it
-
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+
+			var maxRange = cmpFormation.GetMaxAttackRangeFunction(msg.data.target);
+			// Check if we are already in range, otherwise walk there
+			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, maxRange))
+			{
+				if (!this.TargetIsAlive(msg.data.target))
+					// The target was destroyed
+					this.FinishOrder();
+				else
+					// Out of range; move there in formation
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": maxRange });
+				return;
+			}
+
+			// We don't want to rearrange the formation if the individual units are carrying
+			// out a task and one of the members dies/leaves the formation.
+			cmpFormation.SetRearrange(false);
 			cmpFormation.CallMemberFunction("Attack", [msg.data.target, false]);
 
-			// TODO: we should wait until the target is killed, then
-			// move on to the next queued order.
-			// Don't bother now, just disband the formation immediately.
-			cmpFormation.Disband();
+			this.SetNextStateAlwaysEntering("MEMBER");
+		},
+
+		"Order.Garrison": function(msg) {
+			// TODO: on what should we base this range?
+			// Check if we are already in range, otherwise walk there
+			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
+			{
+				if (!this.TargetIsAlive(msg.data.target))
+					// The target was destroyed
+					this.FinishOrder();
+				else
+					// Out of range; move there in formation
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
+				return;
+			}
+
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			// We don't want to rearrange the formation if the individual units are carrying
+			// out a task and one of the members dies/leaves the formation.
+			cmpFormation.SetRearrange(false);
+			cmpFormation.CallMemberFunction("Garrison", [msg.data.target, false]);
+
+			this.SetNextStateAlwaysEntering("MEMBER");
+		},
+
+		"Order.Gather": function(msg) {
+			// TODO: on what should we base this range?
+			// Check if we are already in range, otherwise walk there
+			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
+			{
+				if (!this.CanGather(msg.data.target))
+					// The target isn't gatherable
+					this.FinishOrder();
+				// TODO: Should we issue a gather-near-position order
+				// if the target isn't gatherable/doesn't exist anymore?
+				else
+					// Out of range; move there in formation
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
+				return;
+			}
+
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			// We don't want to rearrange the formation if the individual units are carrying
+			// out a task and one of the members dies/leaves the formation.
+			cmpFormation.SetRearrange(false);
+			cmpFormation.CallMemberFunction("Gather", [msg.data.target, false]);
+
+			this.SetNextStateAlwaysEntering("MEMBER");
+		},
+
+		"Order.GatherNearPosition": function(msg) {
+			// TODO: on what should we base this range?
+			// Check if we are already in range, otherwise walk there
+			if (!this.CheckPointRangeExplicit(msg.data.x, msg.data.z, 0, 20))
+			{
+				// Out of range; move there in formation
+				this.PushOrderFront("WalkToPointRange", { "x": msg.data.x, "z": msg.data.z, "min": 0, "max": 20 });
+				return;
+			}
+
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			// We don't want to rearrange the formation if the individual units are carrying
+			// out a task and one of the members dies/leaves the formation.
+			cmpFormation.SetRearrange(false);
+			cmpFormation.CallMemberFunction("GatherNearPosition", [msg.data.x, msg.data.z, msg.data.type, msg.data.template, false]);
+
+			this.SetNextStateAlwaysEntering("MEMBER");
 		},
 
 		"Order.Heal": function(msg) {
-			// TODO: see notes in Order.Attack
+			// TODO: on what should we base this range?
+			// Check if we are already in range, otherwise walk there
+			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
+			{
+				if (!this.TargetIsAlive(msg.data.target))
+					// The target was destroyed
+					this.FinishOrder();
+				else
+					// Out of range; move there in formation
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
+				return;
+			}
+
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			// We don't want to rearrange the formation if the individual units are carrying
+			// out a task and one of the members dies/leaves the formation.
+			cmpFormation.SetRearrange(false);
 			cmpFormation.CallMemberFunction("Heal", [msg.data.target, false]);
-			cmpFormation.Disband();
+
+			this.SetNextStateAlwaysEntering("MEMBER");
 		},
 
 		"Order.Repair": function(msg) {
-			// TODO on what should we base this range?
+			// TODO: on what should we base this range?
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
@@ -657,55 +766,50 @@ var UnitFsmSpec = {
 			cmpFormation.SetRearrange(false);
 			cmpFormation.CallMemberFunction("Repair", [msg.data.target, msg.data.autocontinue, false]);
 
-			this.SetNextState("REPAIR");
-		},
-
-		"Order.Gather": function(msg) {
-			// TODO: see notes in Order.Attack
-
-			// If the resource no longer exists, send a GatherNearPosition order
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			if (this.CanGather(msg.data.target))
-				cmpFormation.CallMemberFunction("Gather", [msg.data.target, false]);
-			else
-				cmpFormation.CallMemberFunction("GatherNearPosition", [msg.data.lastPos.x, msg.data.lastPos.z, msg.data.type, msg.data.template, false]);
-
-			cmpFormation.Disband();
-		},
-
-		"Order.GatherNearPosition": function(msg) {
-			// TODO: see notes in Order.Attack
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("GatherNearPosition", [msg.data.x, msg.data.z, msg.data.type, msg.data.template, false]);
-			cmpFormation.Disband();
+			this.SetNextStateAlwaysEntering("MEMBER");
 		},
 
 		"Order.ReturnResource": function(msg) {
-			// TODO: see notes in Order.Attack
+			// TODO: on what should we base this range?
+			// Check if we are already in range, otherwise walk there
+			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
+			{
+				if (!this.TargetIsAlive(msg.data.target))
+					// The target was destroyed
+					this.FinishOrder();
+				else
+					// Out of range; move there in formation
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
+				return;
+			}
+
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			// We don't want to rearrange the formation if the individual units are carrying
+			// out a task and one of the members dies/leaves the formation.
+			cmpFormation.SetRearrange(false);
 			cmpFormation.CallMemberFunction("ReturnResource", [msg.data.target, false]);
-			cmpFormation.Disband();
+
+			this.SetNextStateAlwaysEntering("MEMBER");
 		},
 
-		"Order.Garrison": function(msg) {
-			// TODO: see notes in Order.Attack
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("Garrison", [msg.data.target, false]);
-			cmpFormation.Disband();
-		},
-		
 		"Order.Pack": function(msg) {
-			// TODO: see notes in Order.Attack
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			// We don't want to rearrange the formation if the individual units are carrying
+			// out a task and one of the members dies/leaves the formation.
+			cmpFormation.SetRearrange(false);
 			cmpFormation.CallMemberFunction("Pack", [false]);
-			cmpFormation.Disband();
+
+			this.SetNextStateAlwaysEntering("MEMBER");
 		},
-		
+
 		"Order.Unpack": function(msg) {
-			// TODO: see notes in Order.Attack
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			// We don't want to rearrange the formation if the individual units are carrying
+			// out a task and one of the members dies/leaves the formation.
+			cmpFormation.SetRearrange(false);
 			cmpFormation.CallMemberFunction("Unpack", [false]);
-			cmpFormation.Disband();
+
+			this.SetNextStateAlwaysEntering("MEMBER");
 		},
 
 		"IDLE": {
@@ -715,29 +819,69 @@ var UnitFsmSpec = {
 			"MoveStarted": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true);
+				cmpFormation.MoveMembersIntoFormation(true, true);
 			},
 
 			"MoveCompleted": function(msg) {
-				if (this.FinishOrder())
-					return;
-					
-				// If this was the last order, attempt to disband the formation.
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+
+				if (this.FinishOrder())
+				{
+					cmpFormation.CallMemberFunction("ResetFinishOrder", []);
+					return;
+				}
+
+				// If this was the last order, attempt to disband the formation.
 				cmpFormation.FindInPosition();
 			},
 		},
+		
+		"FORMING": {
+			"MoveStarted": function(msg) {
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(true, false);
+			},
 
-		"REPAIR": {
-			"ConstructionFinished": function(msg) {
-				if (msg.data.entity != this.order.data.target)
+			"MoveCompleted": function(msg) {
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+
+				if (this.FinishOrder())
+				{
+					cmpFormation.CallMemberFunction("ResetFinishOrder", []);
+					return;
+				}
+
+				// If this was the last order, attempt to disband the formation.
+				cmpFormation.FindInPosition();
+			}
+		},
+
+		"MEMBER": {
+			// Wait for individual members to finish
+			"enter": function(msg) {
+				this.StartTimer(1000, 1000);
+			},
+
+			"Timer": function(msg) {
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+
+				// Have all members finished the task?
+				if (!cmpFormation.TestAllMemberFunction("HasFinishedOrder", []))
 					return;
 
+				cmpFormation.CallMemberFunction("ResetFinishOrder", []);
+
+				// Execute the next order
 				if (this.FinishOrder())
 					return;
 
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				// No more order left.
 				cmpFormation.Disband();
+			},
+
+			"leave": function(msg) {
+				this.StopTimer();
 			},
 		},
 	},
@@ -746,6 +890,9 @@ var UnitFsmSpec = {
 	// States for entities moving as part of a formation:
 	"FORMATIONMEMBER": {
 		"FormationLeave": function(msg) {
+			// We're not in a formation anymore, so no need to track this.
+			this.finishedOrder = false;
+
 			// Stop moving as soon as the formation disbands
 			this.StopMoving();
 
@@ -807,6 +954,9 @@ var UnitFsmSpec = {
 			// is done moving. The controller is notified, and will disband the
 			// formation if all units are in formation and no orders remain.
 			"MoveCompleted": function(msg) {
+				if(this.FinishOrder())
+					return;
+
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 				cmpFormation.SetInPosition(this.entity);
 			},
@@ -1663,7 +1813,6 @@ var UnitFsmSpec = {
 
 			"REPAIRING": {
 				"enter": function() {
-
 					// If this order was forced, the player probably gave it, but now we've reached the target
 					//	switch to an unforced order (can be interrupted by attacks)
 					if (this.order.data.force)
@@ -2032,6 +2181,7 @@ UnitAI.prototype.Init = function()
 	this.isGarrisoned = false;
 	this.isIdle = false;
 	this.lastFormationName = "";
+	this.finishedOrder = false; // used to find if all formation members finished the order
 
 	// For preventing increased action rate due to Stop orders or target death.
 	this.lastAttacked = undefined;
@@ -2043,6 +2193,21 @@ UnitAI.prototype.Init = function()
 UnitAI.prototype.IsFormationController = function()
 {
 	return (this.template.FormationController == "true");
+};
+
+UnitAI.prototype.IsFormationMember = function()
+{
+	return (this.formationController != INVALID_ENTITY);
+};
+
+UnitAI.prototype.HasFinishedOrder = function()
+{
+	return this.finishedOrder;
+};
+
+UnitAI.prototype.ResetFinishOrder = function()
+{
+	this.finishedOrder = false;
 };
 
 UnitAI.prototype.IsAnimal = function()
@@ -2332,6 +2497,22 @@ UnitAI.prototype.FinishOrder = function()
 	else
 	{
 		this.SetNextState("IDLE");
+
+		// Check if there are queued formation orders
+		if (this.IsFormationMember())
+		{
+			var cmpUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
+			if (cmpUnitAI)
+			{
+				// Inform the formation controller that we finished this task
+				this.finishedOrder = true;
+				// We don't want to carry out the default order
+				// if there are still queued formation orders left
+				if (cmpUnitAI.GetOrders().length > 1) 
+					return true;
+			}
+		}
+
 		return false;
 	}
 };
@@ -2802,6 +2983,12 @@ UnitAI.prototype.MoveToTargetRangeExplicit = function(target, min, max)
 	return cmpUnitMotion.MoveToTargetRange(target, min, max);
 };
 
+UnitAI.prototype.CheckPointRangeExplicit = function(x, z, min, max)
+{
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.IsInPointRange(x, z, min, max);
+};
+
 UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 {
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
@@ -3089,6 +3276,24 @@ UnitAI.prototype.GetLastFormationName = function()
 	return this.lastFormationName;
 };
 
+UnitAI.prototype.MoveIntoFormation = function(cmd)
+{
+	var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+	if (!cmpFormation)
+		return;
+
+	cmpFormation.LoadFormation(cmd.name);
+
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition || !cmpPosition.IsInWorld())
+		return;
+
+	var pos = cmpPosition.GetPosition();
+
+	// Add new order to move into formation at the current position
+	this.PushOrderFront("MoveIntoFormation", { "x": pos.x, "z": pos.z, "force": true });
+};
+
 /**
  * Returns the estimated distance that this unit will travel before either
  * finishing all of its orders, or reaching a non-walk target (attack, gather, etc).
@@ -3111,6 +3316,8 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 		switch (order.type)
 		{
 		case "Walk":
+		case "WalkToPointRange":
+		case "MoveIntoFormation":
 		case "GatherNearPosition":
 			// Add the distance to the target point
 			var dx = order.data.x - pos.x;

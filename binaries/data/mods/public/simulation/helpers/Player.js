@@ -96,7 +96,7 @@ function LoadPlayerSettings(settings, newPlayers)
 					else
 						cmpPlayer.SetEnemy(j);
 				}
-				cmpPlayer.SetTeam(myTeam);
+				cmpPlayer.SetTeam((myTeam !== undefined) ? myTeam : -1);
 			}
 
 			// If formations explicitly defined, use that; otherwise use civ defaults
