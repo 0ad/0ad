@@ -69,6 +69,9 @@ public:
 	void PlayAsMusic();
 	void PlayAsAmbient();
 
+	void Pause();
+	void Resume();
+
 	CStrW* GetName();
 
 	virtual bool GetLooping();
