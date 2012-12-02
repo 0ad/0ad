@@ -370,11 +370,7 @@ function ProcessCommand(player, cmd)
 	case "formation":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player, cmd.name).forEach(function(cmpUnitAI) {
-			var cmpFormation = Engine.QueryInterface(cmpUnitAI.entity, IID_Formation);
-			if (!cmpFormation)
-				return;
-			cmpFormation.LoadFormation(cmd.name);
-			cmpFormation.MoveMembersIntoFormation(true);
+			cmpUnitAI.MoveIntoFormation(cmd);
 		});
 		break;
 

@@ -146,6 +146,139 @@ function TestFormationExiting(mode)
 		TS_FAIL("invalid mode");
 }
 
+function TestMoveIntoFormationWhileAttacking()
+{
+	ResetState();
+
+	var playerEntity = 5;
+	var controller = 10;
+	var enemy = 20;
+	var unit = 30;
+	var units = [];
+	var unitCount = 8;
+	var unitAIs = [];
+
+	AddMock(SYSTEM_ENTITY, IID_Timer, {
+		SetInterval: function() { },
+		SetTimeout: function() { },
+	});
+
+
+	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
+		CreateActiveQuery: function(ent, minRange, maxRange, players, iid, flags) {
+			return 1;
+		},
+		EnableActiveQuery: function(id) { },
+		ResetActiveQuery: function(id) { return [enemy]; },
+		DisableActiveQuery: function(id) { },
+		GetEntityFlagMask: function(identifier) { },
+	});;
+
+	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
+		GetPlayerByID: function(id) { return playerEntity; },
+		GetNumPlayers: function() { return 2; },
+	});
+
+	AddMock(playerEntity, IID_Player, {
+		IsAlly: function() { return []; },
+		IsEnemy: function() { return []; },
+	});
+
+	// create units
+	for (var i = 0; i < unitCount; i++) {
+	
+		units.push(unit + i);
+		
+		var unitAI = ConstructComponent(unit + i, "UnitAI", { "FormationController": "false", "DefaultStance": "aggressive" });
+	
+		AddMock(unit + i, IID_Identity, {
+			GetClassesList: function() { return []; },
+		});
+	
+		AddMock(unit + i, IID_Ownership, {
+			GetOwner: function() { return 1; },
+		});
+	
+		AddMock(unit + i, IID_Position, {
+			GetPosition: function() { return { "x": 0, "z": 0 }; },
+			IsInWorld: function() { return true; },
+		});
+	
+		AddMock(unit + i, IID_UnitMotion, {
+			GetWalkSpeed: function() { return 1; },
+			MoveToFormationOffset: function(target, x, z) { },
+			IsInTargetRange: function(target, min, max) { return true; },
+			MoveToTargetRange: function(target, min, max) { },
+			StopMoving: function() { },
+		});
+	
+		AddMock(unit + i, IID_Vision, {
+			GetRange: function() { return 10; },
+		});
+	
+		AddMock(unit + i, IID_Attack, {
+			GetRange: function() { return 10; },
+			GetBestAttack: function() { return "melee"; },
+			GetBestAttackAgainst: function(t) { return "melee"; },
+			GetTimers: function() { return { "prepare": 500, "repeat": 1000 }; },
+			CanAttack: function(v) { return true; },
+			CompareEntitiesByPreference: function(a, b) { return 0; },
+		});
+		
+		unitAI.OnCreate();
+		
+		unitAI.SetupRangeQuery(1);
+		
+		unitAIs.push(unitAI);
+	}
+	
+	// create enemy
+	AddMock(enemy, IID_Health, {
+		GetHitpoints: function() { return 40; },
+	});
+
+	var controllerFormation = ConstructComponent(controller, "Formation");
+	var controllerAI = ConstructComponent(controller, "UnitAI", { "FormationController": "true", "DefaultStance": "aggressive" });
+
+	AddMock(controller, IID_Position, {
+		JumpTo: function(x, z) { this.x = x; this.z = z; },
+		GetPosition: function() { return { "x": this.x, "z": this.z }; },
+		IsInWorld: function() { return true; },
+	});
+
+	AddMock(controller, IID_UnitMotion, {
+		SetUnitRadius: function(r) { },
+		SetSpeed: function(speed) { },
+		MoveToPointRange: function(x, z, minRange, maxRange) { },
+		IsInTargetRange: function(target, min, max) { return true; },
+	});
+
+	controllerAI.OnCreate();
+
+	controllerFormation.SetMembers(units);
+	
+	controllerAI.Attack(enemy, []);
+	
+	for each (var ent in unitAIs) {
+		TS_ASSERT_EQUALS(unitAI.fsmStateName, "INDIVIDUAL.COMBAT.ATTACKING");
+	}
+	
+	controllerAI.MoveIntoFormation({"name": "Circle"});
+	
+	// let all units be in position
+	for each (var ent in unitAIs) {
+		controllerFormation.SetInPosition(ent);
+	}
+
+	for each (var ent in unitAIs) {
+		TS_ASSERT_EQUALS(unitAI.fsmStateName, "INDIVIDUAL.COMBAT.ATTACKING");
+	}
+	
+	controllerFormation.Disband();
+}
+
 TestFormationExiting(0);
 TestFormationExiting(1);
 TestFormationExiting(2);
+
+TestMoveIntoFormationWhileAttacking();
