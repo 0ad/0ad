@@ -2,36 +2,47 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>sunrise</SkySet>
 		<SunColour r="1.13477" g="0.738713" b="0.373807"/>
-		<SunElevation angle="0.34668"/>
+		<SunElevation angle="0.291456"/>
 		<SunRotation angle="-0.582913"/>
 		<TerrainAmbientColour r="0.282353" g="0.34902" b="0.513726"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0.00152344</FogFactor>
+			<FogThickness>0.250977</FogThickness>
+			<FogColour r="0.819608" g="0.74902" b="0.513726"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.0352941" g="0.054902" b="0.117647"/>
+				<Colour r="0.0313726" g="0.054902" b="0.113725"/>
 				<Height>18.2557</Height>
 				<Shininess>1.70898</Shininess>
-				<Waviness>1.58203</Waviness>
+				<Waviness>3.30078</Waviness>
 				<Murkiness>0.704102</Murkiness>
-				<Tint r="0.184314" g="0.415686" b="0.639216"/>
-				<ReflectionTint r="0.580392" g="0.717647" b="0.905882"/>
+				<Tint r="0.184314" g="0.411765" b="0.639216"/>
+				<ReflectionTint r="0.576471" g="0.713726" b="0.901961"/>
 				<ReflectionTintStrength>0.204102</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="683.317" y="91.0991" z="447.679"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="889.672" y="96.4849" z="338.502"/>
+		<Rotation angle="-0.00360064"/>
+		<Declination angle="0.711179"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "median_oasis_1.png",
+  "Preview": "median_oasis_1.png",
   "Description": "The Persians fight back the Greek invaders! A large oasis acts as the hub of mountainous spokes that divide the home territories of each player.",
   "GameType": "conquest",
   "Keywords": [],
