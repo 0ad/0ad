@@ -1056,7 +1056,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 	
 	var result = {
 		"pieces": [],
-		"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 0, "population": 0, "populationBonus": 0},
+		"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 0, "population": 0, "populationBonus": 0, "time": 0},
 	};
 	
 	var previewEntities = [];
@@ -1343,6 +1343,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			result.cost.metal += tplData.cost.metal;
 			result.cost.population += tplData.cost.population;
 			result.cost.populationBonus += tplData.cost.populationBonus;
+			result.cost.time += tplData.cost.time;
 		}
 
 		var canAfford = true;
