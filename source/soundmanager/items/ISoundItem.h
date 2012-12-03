@@ -45,6 +45,8 @@ public:
 	virtual void EnsurePlay() = 0;
 	virtual void PlayAsMusic() = 0;
 	virtual void PlayAsAmbient() = 0;
+	virtual void Pause() = 0;
+	virtual void Resume() = 0;
 
 	virtual void PlayAndDelete() = 0;
 	virtual void StopAndDelete() = 0;

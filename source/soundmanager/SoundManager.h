@@ -54,6 +54,10 @@ protected:
 	bool m_MusicEnabled;
 	bool m_SoundEnabled;
 
+	bool m_MusicPaused;
+	bool m_AmbientPaused;
+	bool m_ActionPaused;
+
 public:
 	CSoundManager();
 	virtual ~CSoundManager();
@@ -91,7 +95,12 @@ public:
 	void SetMusicGain(float gain);
 	void SetAmbientGain(float gain);
 	void SetActionGain(float gain);
-	
+
+	void Pause(bool pauseIt);
+	void PauseMusic (bool pauseIt);
+	void PauseAmbient (bool pauseIt);
+	void PauseAction (bool pauseIt);
+
 protected:
 	void InitListener();
 	virtual Status AlcInit();
