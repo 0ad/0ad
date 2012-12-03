@@ -870,7 +870,7 @@ var UnitFsmSpec = {
 			},
 
 			"EntityRenamed": function(msg) {
-				if (this.order.data.target == msg.entity)
+				if (this.order.data && this.order.data.target == msg.entity)
 				{
 					this.order.data.target = msg.newentity;
 
