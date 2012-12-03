@@ -191,6 +191,12 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 
 	if (args.Has("vsync"))
 		g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String = "true";
+
+	if (args.Has("ooslog"))
+		g_ConfigDB.CreateValue(CFG_COMMAND, "ooslog")->m_String = "true";
+
+	if (args.Has("serializationtest"))
+		g_ConfigDB.CreateValue(CFG_COMMAND, "serializationtest")->m_String = "true";
 }
 
 

@@ -33,6 +33,7 @@
 #include "lib/file/vfs/vfs_util.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Loader.h"
 #include "ps/Profile.h"
@@ -68,8 +69,8 @@ public:
 
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
 
-// 		m_EnableOOSLog = true; // TODO: this should be a command-line flag or similar
-// 		m_EnableSerializationTest = true; // TODO: this should too
+		CFG_GET_USER_VAL("ooslog", Bool, m_EnableOOSLog);
+		CFG_GET_USER_VAL("serializationtest", Bool, m_EnableSerializationTest);
 	}
 
 	~CSimulation2Impl()
