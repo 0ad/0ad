@@ -688,7 +688,8 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 				}
 				else if (element_name == el_posteffect)
 				{
-					m_MapReader.pPostproc->SetPostEffect(postproc.GetText().FromUTF8());
+					if (m_MapReader.pPostproc)
+						m_MapReader.pPostproc->SetPostEffect(postproc.GetText().FromUTF8());
 				}
 			}
 		}
