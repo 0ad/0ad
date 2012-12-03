@@ -3089,8 +3089,11 @@ UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, typ
 	var halfvision = cmpVision.GetRange() / 2;
 
 	var pos = cmpPosition.GetPosition();
-	var dx = this.heldPosition.x - pos.x;
-	var dz = this.heldPosition.z - pos.z;
+	var heldPosition = this.heldPosition;
+	if (heldPosition === undefined)
+		heldPosition = {"x": pos.x, "z": pos.z};
+	var dx = heldPosition.x - pos.x;
+	var dz = heldPosition.z - pos.z;
 	var dist = Math.sqrt(dx*dx + dz*dz);
 
 	return dist < halfvision + range.max;
