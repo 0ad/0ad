@@ -2,29 +2,40 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.811765" g="0.792157" b="0.701961"/>
+		<SunColour r="0.838718" g="0.818459" b="0.725268"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.668816"/>
 		<TerrainAmbientColour r="0.337255" g="0.427451" b="0.603922"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0.00199219</FogFactor>
+			<FogThickness>0.400391</FogThickness>
+			<FogColour r="0.776471" g="0.74902" b="0.576471"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.0862745" g="0.152941" b="0.266667"/>
+				<Colour r="0.0823529" g="0.14902" b="0.266667"/>
 				<Height>19.9</Height>
 				<Shininess>111.572</Shininess>
-				<Waviness>2.80273</Waviness>
+				<Waviness>3.02734</Waviness>
 				<Murkiness>0.626953</Murkiness>
 				<Tint r="0" g="0.501961" b="0.501961"/>
 				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0.143555</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>0.991211</Contrast>
+			<Saturation>1</Saturation>
+			<Bloom>0.179297</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="273.677" y="83.9629" z="143.043"/>
+		<Position x="285.178" y="97.0694" z="161.021"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -37,7 +48,7 @@
     "medit_grass_field_b"
   ],
   "CircularMap": true,
-  "Preview" : "zagros_mountains_2.png",
+  "Preview": "zagros_mountains_2.png",
   "Description": "Defend the Persian homeland against the Macedonian invaders or complete the conquest of Persia as the mighty Macedonians.\u000a\u000aPlayers start the match in their own province near the Persian Gulf. Access to untapped resources territories can be found through the rugged hinterlands.",
   "GameType": "conquest",
   "Keywords": [],

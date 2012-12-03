@@ -680,6 +680,12 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Gather": function(msg) {
+			if (this.MustKillGatherTarget(msg.data.target))
+			{
+				this.PushOrderFront("Attack", { "target": msg.data.target, "hunting": true });
+				return;
+			}
+
 			// TODO: on what should we base this range?
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
@@ -831,8 +837,8 @@ var UnitFsmSpec = {
 					return;
 				}
 
-				// If this was the last order, attempt to disband the formation.
-				cmpFormation.FindInPosition();
+				// No more orders left.
+				cmpFormation.Disband();
 			},
 		},
 		
@@ -862,6 +868,20 @@ var UnitFsmSpec = {
 			"enter": function(msg) {
 				this.StartTimer(1000, 1000);
 			},
+
+			"EntityRenamed": function(msg) {
+				if (this.order.data.target == msg.entity)
+				{
+					this.order.data.target = msg.newentity;
+
+					// If we're hunting, that means we have a queued gather
+					// order whose target also needs to be updated.
+					if (this.order.data.hunting && this.orderQueue[1] &&
+							this.orderQueue[1].type == "Gather")
+						this.orderQueue[1].data.target = msg.newentity;
+				}
+			},
+
 
 			"Timer": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
@@ -3069,8 +3089,11 @@ UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, typ
 	var halfvision = cmpVision.GetRange() / 2;
 
 	var pos = cmpPosition.GetPosition();
-	var dx = this.heldPosition.x - pos.x;
-	var dz = this.heldPosition.z - pos.z;
+	var heldPosition = this.heldPosition;
+	if (heldPosition === undefined)
+		heldPosition = {"x": pos.x, "z": pos.z};
+	var dx = heldPosition.x - pos.x;
+	var dz = heldPosition.z - pos.z;
 	var dist = Math.sqrt(dx*dx + dz*dz);
 
 	return dist < halfvision + range.max;

@@ -2,8 +2,8 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>mountainous</SkySet>
-		<SunColour r="1.03649" g="1.00804" b="0.898291"/>
+		<SkySet>cloudless</SkySet>
+		<SunColour r="1.03649" g="1.00804" b="0.894227"/>
 		<SunElevation angle="0.613592"/>
 		<SunRotation angle="1.09219"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
@@ -11,7 +11,7 @@
 		<Fog>
 			<FogFactor>0</FogFactor>
 			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.898039"/>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -20,7 +20,7 @@
 				<Height>21.823</Height>
 				<Shininess>150</Shininess>
 				<Waviness>0.976562</Waviness>
-				<Murkiness>1</Murkiness>
+				<Murkiness>0.932617</Murkiness>
 				<Tint r="0.611765" g="0.482353" b="0.313726"/>
 				<ReflectionTint r="0.611765" g="0.447059" b="0.219608"/>
 				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="664.854" y="101.397" z="546.921"/>
-		<Rotation angle="-2.24314"/>
+		<Position x="549.61" y="72.9564" z="613.147"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[

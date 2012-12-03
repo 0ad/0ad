@@ -198,7 +198,11 @@ Formation.prototype.GetMaxAttackRangeFunction = function(target)
 		if (!cmpAttack)
 			continue;
 
-		range = cmpAttack.GetRange(cmpAttack.GetBestAttackAgainst(target));
+		var type = cmpAttack.GetBestAttackAgainst(target);
+		if (!type)
+			continue;
+
+		range = cmpAttack.GetRange(type);
 		if (range.max > result)
 			result = range.max;
 	}

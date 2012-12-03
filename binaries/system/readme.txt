@@ -41,6 +41,10 @@ Advanced / diagnostic:
 					  PATH is system path to commands.txt containing simulation log
 -writableRoot		store runtime game data in root data directory
 					  (only use if you have write permissions on that directory)
+-ooslog				dumps simulation state in binary and ASCII representation each turn.
+					  NOTE: game will run much slower with this option!
+-serializationtest  checks simulation state each turn for serialization errors.
+					  NOTE: game will run much slower with this option!
 
 Windows-specific:
 -wQpcTscSafe		allow timing via QueryPerformanceCounter despite the fact

@@ -142,11 +142,11 @@ static void* RunEngine(void* data)
 
 		// Calculate frame length
 		{
-			double time = timer_Time();
+			const double time = timer_Time();
 			static double last_time = time;
-			// TODO: why is this sometimes negative, if timer_Time ensures monotonic results?
-			float realFrameLength = std::max(0.0f, (float)(time-last_time));
+			const double realFrameLength = time-last_time;
 			last_time = time;
+			ENSURE(realFrameLength >= 0.0);
 			// TODO: filter out big jumps, e.g. when having done a lot of slow
 			// processing in the last frame
 			state.realFrameLength = realFrameLength;

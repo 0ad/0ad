@@ -34,6 +34,7 @@
 #include <cstdarg>
 
 #include "lib/module_init.h"
+#include "lib/posix/posix_pthread.h"
 #include "lib/posix/posix_time.h"
 # include "lib/sysdep/cpu.h"
 #if OS_WIN
@@ -81,33 +82,16 @@ void timer_LatchStartTime()
 #endif
 }
 
-
+static pthread_mutex_t ensure_monotonic_mutex = PTHREAD_MUTEX_INITIALIZER;
 // NB: does not guarantee strict monotonicity - callers must avoid
 // dividing by the difference of two equal times.
-// (this avoids having to update maxRepresentation when
-// updating newTime to the (more recent) oldTime)
 static void EnsureMonotonic(double& newTime)
 {
-	i64 newRepresentation;
-	memcpy(&newRepresentation, &newTime, sizeof(newRepresentation));
-
-	// representation of the latest time reported by any thread
-	static volatile i64 maxRepresentation;	// initially 0.0
-
-retry:
-	const i64 oldRepresentation = maxRepresentation;	// latch
-	double oldTime;
-	memcpy(&oldTime, &oldRepresentation, sizeof(oldTime));
-	// a previous or concurrent call got a more recent time -
-	// return that and avoid updating maxRepresentation.
-	if(newTime < oldTime)
-	{
-		newTime = oldTime;
-		return;
-	}
-
-	if(!cpu_CAS64(&maxRepresentation, oldRepresentation, newRepresentation))
-		goto retry;
+	pthread_mutex_lock(&ensure_monotonic_mutex);
+	static double maxTime;
+	maxTime = std::max(maxTime, newTime);
+	newTime = maxTime;
+	pthread_mutex_unlock(&ensure_monotonic_mutex);
 }
 
 
