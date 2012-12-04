@@ -459,7 +459,7 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	{
 		ret.pack = {
 			"state": template.Pack.State,
-			"time": +template.Pack.Time
+			"time": GetTechModifiedProperty(techMods, template, "Pack/Time", +template.Pack.Time),
 		};
 	}
 
