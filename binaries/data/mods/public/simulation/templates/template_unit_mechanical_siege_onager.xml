@@ -50,7 +50,7 @@
     <Max>150</Max>
   </Health>
   <Identity>
-    <GenericName>Siege Catapult -- Packed</GenericName>
+    <GenericName>Siege Catapult</GenericName>
     <Tooltip>Bonused vs. Structures and Massed Infantry.</Tooltip>
   </Identity>
   <Loot>
@@ -60,11 +60,6 @@
     <stone>10</stone>
     <metal>0</metal>
   </Loot>
-  <Pack>
-    <Entity>template_unit_mechanical_siege_onager_unpacked</Entity>
-    <Time>10000</Time>
-    <State>packed</State>
-  </Pack>
   <Selectable>
     <Overlay>
       <Texture>
