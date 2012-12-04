@@ -337,6 +337,8 @@ public:
 
 		serialize.NumberFixed_Unbounded("speed", m_Speed);
 
+		serialize.Bool("moving", m_Moving);
+
 		SerializeVector<SerializeWaypoint>()(serialize, "long path", m_LongPath.m_Waypoints);
 		SerializeVector<SerializeWaypoint>()(serialize, "short path", m_ShortPath.m_Waypoints);
 
