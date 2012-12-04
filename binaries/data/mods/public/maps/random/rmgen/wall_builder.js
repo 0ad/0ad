@@ -133,7 +133,7 @@ for (var style in wallScaleByType)
 	wallStyles[style]["entryFort"] = new WallElement("entryFort", "structures/" + civ + "_fortress", 0*PI, 8*wallScaleByType[style], 6*wallScaleByType[style]);
 	// Defensive wall elements with 0 width outside the wall
 	wallStyles[style]["outpost"] = new WallElement("outpost", "structures/" + civ + "_outpost", PI, 0, -4*wallScaleByType[style]);
-	wallStyles[style]["defenseTower"] = new WallElement("defenseTower", "structures/" + civ + "_defenseTower", PI, 0, -4*wallScaleByType[style]);
+	wallStyles[style]["defenseTower"] = new WallElement("defenseTower", "structures/" + civ + "_defense_tower", PI, 0, -4*wallScaleByType[style]);
 	// Base buildings wall elements with 0 width inside the wall
 	wallStyles[style]["barracks"] = new WallElement("barracks", "structures/" + civ + "_barracks", PI, 0, 4.5*wallScaleByType[style]);
 	wallStyles[style]["civilCentre"] = new WallElement("civilCentre", "structures/" + civ + "_civil_centre", PI, 0, 4.5*wallScaleByType[style]);
