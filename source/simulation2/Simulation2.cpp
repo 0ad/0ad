@@ -69,8 +69,12 @@ public:
 
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
 
-		CFG_GET_USER_VAL("ooslog", Bool, m_EnableOOSLog);
-		CFG_GET_USER_VAL("serializationtest", Bool, m_EnableSerializationTest);
+		// Tests won't have config initialised
+		if (CConfigDB::IsInitialised())
+		{
+			CFG_GET_USER_VAL("ooslog", Bool, m_EnableOOSLog);
+			CFG_GET_USER_VAL("serializationtest", Bool, m_EnableSerializationTest);
+		}
 	}
 
 	~CSimulation2Impl()

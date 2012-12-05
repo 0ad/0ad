@@ -19,8 +19,6 @@
 
 #include "graphics/LOSTexture.h"
 #include "lib/timer.h"
-#include "ps/ConfigDB.h"
-#include "scripting/ScriptingHost.h"
 #include "simulation2/Simulation2.h"
 
 class TestLOSTexture : public CxxTest::TestSuite
@@ -28,10 +26,6 @@ class TestLOSTexture : public CxxTest::TestSuite
 public:
 	void test_basic()
 	{
-		// Needed for CFG_GET_USER_VAL
-		new ScriptingHost;
-		new CConfigDB;
-
 		CSimulation2 sim(NULL, NULL);
 		CLOSTexture tex(sim);
 
