@@ -16,6 +16,9 @@ function displaySingle(entState, template)
 	// Get general unit and player data
 	var specificName = template.name.specific;
 	var genericName = template.name.generic != template.name.specific? template.name.generic : "";
+	// If packed, add that to the generic name (reduces template clutter)
+	if (genericName && template.pack && template.pack.state == "packed")
+		genericName += " -- Packed";
 	var playerState = g_Players[entState.player];
 
 	var civName = g_CivData[playerState.civ].Name;

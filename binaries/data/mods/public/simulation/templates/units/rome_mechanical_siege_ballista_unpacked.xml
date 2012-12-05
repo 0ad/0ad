@@ -1,46 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_siege_onager_unpacked">
-  <Attack>
-    <Ranged>
-      <MaxRange>76</MaxRange>
-      <MinRange>16.0</MinRange>
-      <ProjectileSpeed>22.0</ProjectileSpeed>
-      <RepeatTime>6000</RepeatTime>
-      <Splash>
-        <Shape>Circular</Shape>
-        <Range>10</Range>
-        <FriendlyFire>true</FriendlyFire>
-        <Hack>40.0</Hack>
-        <Pierce>0.0</Pierce>
-        <Crush>40.0</Crush>
-      </Splash>
-    </Ranged>
-  </Attack>
-  <Cost>
-    <BuildTime>40</BuildTime>
-    <Resources>
-      <wood>300</wood>
-      <stone>100</stone>
-    </Resources>
-  </Cost>
-  <Footprint replace="">
-    <Square width="10.0" depth="10.0"/>
-    <Height>5.0</Height>
-  </Footprint>
+<Entity parent="units/rome_mechanical_siege_ballista_common">
   <Identity>
-    <Civ>rome</Civ>
-    <SpecificName>Ballista</SpecificName>
     <Icon>units/rome_mechanical_siege_ballista.png</Icon>
   </Identity>
-  <Obstruction>
-    <Unit radius="3.5"/>
-  </Obstruction>
   <Pack>
     <Entity>units/rome_mechanical_siege_ballista_packed</Entity>
+    <Time>10000</Time>
+    <State>unpacked</State>
   </Pack>
-  <Vision>
-    <Range>88</Range>
-  </Vision>
+  <UnitMotion>
+    <WalkSpeed>0.001</WalkSpeed>
+    <Run>
+      <Speed>0.001</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/romans/siege_rock.xml</Actor>
   </VisualActor>

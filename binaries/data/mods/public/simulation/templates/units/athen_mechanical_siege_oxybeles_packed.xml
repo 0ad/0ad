@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_siege_ballista_packed">
+<Entity parent="units/athen_mechanical_siege_oxybeles_common">
   <Identity>
-    <Civ>athen</Civ>
-    <SpecificName>Oxybelḗs</SpecificName>
     <Icon>units/hele_mechanical_siege_oxybeles_packed.png</Icon>
   </Identity>
-  <Obstruction>
-    <Unit radius="3.0"/>
-  </Obstruction>
   <Pack>
     <Entity>units/athen_mechanical_siege_oxybeles_unpacked</Entity>
+    <Time>10000</Time>
+    <State>packed</State>
   </Pack>
-  <Vision>
-    <Range>77</Range>
-  </Vision>
   <VisualActor>
     <Actor>units/athenians/siege_spear_packed.xml</Actor>
   </VisualActor>

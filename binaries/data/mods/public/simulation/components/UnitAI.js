@@ -546,6 +546,16 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Garrison": function(msg) {
+		// For packable units:
+		// 1. If packed, we can move to the garrison target.
+		// 2. If unpacked, we first need to pack, then follow case 1.
+		if (this.CanPack())
+		{
+			// Case 2: pack
+			this.PushOrderFront("Pack", { "force": true });
+			return;
+		}
+
 		if (this.MoveToTarget(this.order.data.target))
 		{
 			this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
@@ -870,7 +880,8 @@ var UnitFsmSpec = {
 			},
 
 			"EntityRenamed": function(msg) {
-				if (this.order.data.target == msg.entity)
+				if (this.order.data && this.order.data.target
+				    && this.order.data.target == msg.entity)
 				{
 					this.order.data.target = msg.newentity;
 

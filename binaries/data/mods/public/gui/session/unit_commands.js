@@ -1111,13 +1111,13 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 				}
 			}
 			if (packButton)
-				items.push({ "packing": false, "packed": false, "tooltip": "Pack this unit", "callback": function() { packUnit(true); } });
+				items.push({ "packing": false, "packed": false, "tooltip": "Pack", "callback": function() { packUnit(true); } });
 			if (unpackButton)
-				items.push({ "packing": false, "packed": true, "tooltip": "Unpack this unit", "callback": function() { packUnit(false); } });
+				items.push({ "packing": false, "packed": true, "tooltip": "Unpack", "callback": function() { packUnit(false); } });
 			if (packCancelButton)
-				items.push({ "packing": true, "packed": false, "tooltip": "Stop packing this unit", "callback": function() { cancelPackUnit(true); } });
+				items.push({ "packing": true, "packed": false, "tooltip": "Cancel packing", "callback": function() { cancelPackUnit(true); } });
 			if (unpackCancelButton)
-				items.push({ "packing": true, "packed": true, "tooltip": "Stop unpacking this unit", "callback": function() { cancelPackUnit(false); } });
+				items.push({ "packing": true, "packed": true, "tooltip": "Cancel unpacking", "callback": function() { cancelPackUnit(false); } });
 
 			if (items.length)
 				setupUnitPanel(PACK, usedPanels, entState, playerState, items);

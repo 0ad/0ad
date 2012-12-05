@@ -60,11 +60,6 @@
     <stone>10</stone>
     <metal>0</metal>
   </Loot>
-  <Pack>
-    <Entity>template_unit_mechanical_siege_onager_packed</Entity>
-    <Time>10000</Time>
-    <State>unpacked</State>
-  </Pack>
   <Selectable>
     <Overlay>
       <Texture>
@@ -82,13 +77,10 @@
     <BarWidth>4.0</BarWidth>
     <BarHeight>0.5</BarHeight>
   </StatusBars>
-  <UnitAI>
-    <DefaultStance>standground</DefaultStance>
-  </UnitAI>
   <UnitMotion>
-    <WalkSpeed>0.001</WalkSpeed>
+    <WalkSpeed>5.5</WalkSpeed>
     <Run>
-      <Speed>0.001</Speed>
+      <Speed>10.0</Speed>
     </Run>
   </UnitMotion>
   <Vision>

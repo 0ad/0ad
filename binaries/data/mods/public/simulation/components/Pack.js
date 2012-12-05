@@ -95,7 +95,11 @@ Pack.prototype.CancelPack = function()
 
 Pack.prototype.GetPackTime = function()
 {
-	return +this.template.Time;
+	var packTime = +this.template.Time;
+	var cmpTechManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (cmpTechManager)
+		packTime = cmpTechManager.ApplyModifications("Pack/Time", packTime, this.entity);
+	return packTime;
 };
 
 Pack.prototype.GetElapsedTime = function()
@@ -105,7 +109,7 @@ Pack.prototype.GetElapsedTime = function()
 
 Pack.prototype.GetProgress = function()
 {
-	return this.elapsedTime / +this.template.Time;
+	return this.elapsedTime / this.GetPackTime();
 };
 
 Pack.prototype.SetElapsedTime = function(time)
@@ -116,7 +120,7 @@ Pack.prototype.SetElapsedTime = function(time)
 
 Pack.prototype.PackProgress = function(data, lateness)
 {
-	if (this.elapsedTime >= +this.template.Time)
+	if (this.elapsedTime >= this.GetPackTime())
 	{
 		this.CancelTimer();
 
