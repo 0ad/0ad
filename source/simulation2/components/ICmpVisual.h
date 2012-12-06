@@ -92,6 +92,21 @@ public:
 	virtual void SelectAnimation(std::string name, bool once, fixed speed, std::wstring soundgroup) = 0;
 
 	/**
+	 * Replaces a specified animation with another. Only affects the special speed-based
+	 * animation determination behaviour.
+	 * @param name Animation to match.
+	 * @param replace Animation that should replace the matched animation.
+	 */
+	virtual void ReplaceMoveAnimation(std::string name, std::string replace) = 0;
+
+	/**
+	 * Ensures that the given animation will be used when it normally would be,
+	 * removing reference to any animation that might replace it.
+	 * @param name Animation name to remove from the replacement map.
+	 */
+	virtual void ResetMoveAnimation(std::string name) = 0;
+
+	/**
 	 * Sets the specified entity selection on the underlying unit.
 	 */
 	virtual void SetUnitEntitySelection(const CStr& selection) = 0;

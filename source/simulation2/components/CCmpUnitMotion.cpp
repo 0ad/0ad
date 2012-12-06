@@ -228,6 +228,9 @@ public:
 
 	fixed m_Speed;
 
+	// Current mean speed (over the last turn).
+	fixed m_CurSpeed;
+
 	// Currently active paths (storing waypoints in reverse order).
 	// The last item in each path is the point we're currently heading towards.
 	ICmpPathfinder::Path m_LongPath;
@@ -280,6 +283,7 @@ public:
 		m_Moving = false;
 		m_WalkSpeed = paramNode.GetChild("WalkSpeed").ToFixed();
 		m_Speed = m_WalkSpeed;
+		m_CurSpeed = fixed::Zero();
 
 		if (paramNode.GetChild("Run").IsOk())
 		{
@@ -414,6 +418,11 @@ public:
 		return m_PassClass;
 	}
 
+	virtual fixed GetCurrentSpeed()
+	{
+		return m_CurSpeed;
+	}
+
 	virtual void SetSpeed(fixed speed)
 	{
 		m_Speed = speed;
@@ -496,6 +505,9 @@ private:
 		CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), GetEntityId());
 		if (cmpObstruction)
 			cmpObstruction->SetMovingFlag(false);
+
+		// No longer moving, so speed is 0.
+		m_CurSpeed = fixed::Zero();
 
 		CMessageMotionChanged msg(false, false);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
@@ -885,6 +897,9 @@ void CCmpUnitMotion::Move(fixed dt)
 		// Update the Position component after our movement (if we actually moved anywhere)
 		if (pos != initialPos)
 			cmpPosition->MoveTo(pos.X, pos.Y);
+
+		// Calculate the mean speed over this past turn.
+		m_CurSpeed = cmpPosition->GetDistanceTravelled() / dt;
 
 		if (wasObstructed)
 		{

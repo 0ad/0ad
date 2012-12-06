@@ -23,6 +23,7 @@
 #include "ICmpOwnership.h"
 #include "ICmpPosition.h"
 #include "ICmpRangeManager.h"
+#include "ICmpUnitMotion.h"
 #include "ICmpVision.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpFootprint.h"
@@ -58,6 +59,8 @@ public:
 	CUnit* m_Unit;
 
 	fixed m_R, m_G, m_B; // shading colour
+
+	std::map<std::string, std::string> m_AnimOverride;
 
 	ICmpRangeManager::ELosVisibility m_Visibility; // only valid between Interpolate and RenderSubmit
 
@@ -372,6 +375,18 @@ public:
 		}
 	}
 
+	virtual void ReplaceMoveAnimation(std::string name, std::string replace)
+	{
+		m_AnimOverride[name] = replace;
+	}
+
+	virtual void ResetMoveAnimation(std::string name)
+	{
+		std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
+		if (it != m_AnimOverride.end())
+			m_AnimOverride.erase(name);
+	}
+
 	virtual void SetUnitEntitySelection(const CStr& selection)
 	{
 		if (m_Unit)
@@ -566,7 +581,7 @@ void CCmpVisualActor::InitSelectionShapeDescriptor(CModelAbstract& model, const 
 	model.SetCustomSelectionShape(shapeDescriptor);
 }
 
-void CCmpVisualActor::Update(fixed turnLength)
+void CCmpVisualActor::Update(fixed UNUSED(turnLength))
 {
 	if (m_Unit == NULL)
 		return;
@@ -580,25 +595,34 @@ void CCmpVisualActor::Update(fixed turnLength)
 		if (!cmpPosition || !cmpPosition->IsInWorld())
 			return;
 
-		float speed = cmpPosition->GetDistanceTravelled().ToFloat() / turnLength.ToFloat();
+		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), GetEntityId());
+		if (!cmpUnitMotion)
+			return;
 
+		float speed = cmpUnitMotion->GetCurrentSpeed().ToFloat();
+
+		std::string name;
+		if (speed == 0.0f)
+			name = "idle";
+		else
+			name = (speed < m_AnimRunThreshold.ToFloat()) ? "walk" : "run";
+
+		std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
+		if (it != m_AnimOverride.end())
+			name = it->second;
+
+		m_Unit->SetEntitySelection(name);
 		if (speed == 0.0f)
 		{
-			m_Unit->SetEntitySelection("idle");
+			m_Unit->SetEntitySelection(name);
 			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationState("idle", false, 1.f, 0.f, L"");
-		}
-		else if (speed < m_AnimRunThreshold.ToFloat())
-		{
-			m_Unit->SetEntitySelection("walk");
-			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationState("walk", false, speed, 0.f, L"");
+				m_Unit->GetAnimation()->SetAnimationState(name, false, 1.f, 0.f, L"");
 		}
 		else
 		{
-			m_Unit->SetEntitySelection("run");
+			m_Unit->SetEntitySelection(name);
 			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationState("run", false, speed, 0.f, L"");
+				m_Unit->GetAnimation()->SetAnimationState(name, false, speed, 0.f, L"");
 		}
 	}
 }
