@@ -85,6 +85,11 @@ public:
 	virtual void StopMoving() = 0;
 
 	/**
+	 * Get the current movement speed.
+	 */
+	virtual fixed GetCurrentSpeed() = 0;
+
+	/**
 	 * Set the current movement speed.
 	 */
 	virtual void SetSpeed(fixed speed) = 0;

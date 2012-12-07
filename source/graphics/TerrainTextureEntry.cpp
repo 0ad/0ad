@@ -106,7 +106,8 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 		else if (child_name == el_material)
 		{
 			VfsPath mat = VfsPath("art/materials") / child.GetText().FromUTF8();
-			m_Material = g_Renderer.GetMaterialManager().LoadMaterial(mat);
+			if (CRenderer::IsInitialised())
+				m_Material = g_Renderer.GetMaterialManager().LoadMaterial(mat);
 		}
 		else if (child_name == el_alphamap)
 		{
@@ -141,8 +142,9 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 			m_Material.AddSampler(CMaterial::TextureSampler(samplers[i].first, texptr));
 		}
 	}
-	
-	LoadAlphaMaps(alphamap);
+
+	if (CRenderer::IsInitialised())
+		LoadAlphaMaps(alphamap);
 
 	float texAngle = 0.f;
 	float texSize = 1.f;

@@ -30,6 +30,7 @@ DEFINE_INTERFACE_METHOD_3("MoveToTargetRange", bool, ICmpUnitMotion, MoveToTarge
 DEFINE_INTERFACE_METHOD_3("MoveToFormationOffset", void, ICmpUnitMotion, MoveToFormationOffset, entity_id_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_2("FaceTowardsPoint", void, ICmpUnitMotion, FaceTowardsPoint, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_0("StopMoving", void, ICmpUnitMotion, StopMoving)
+DEFINE_INTERFACE_METHOD_0("GetCurrentSpeed", fixed, ICmpUnitMotion, GetCurrentSpeed)
 DEFINE_INTERFACE_METHOD_1("SetSpeed", void, ICmpUnitMotion, SetSpeed, fixed)
 DEFINE_INTERFACE_METHOD_0("IsMoving", bool, ICmpUnitMotion, IsMoving)
 DEFINE_INTERFACE_METHOD_0("GetWalkSpeed", fixed, ICmpUnitMotion, GetWalkSpeed)
@@ -76,6 +77,11 @@ public:
 	virtual void StopMoving()
 	{
 		m_Script.CallVoid("StopMoving");
+	}
+
+	virtual fixed GetCurrentSpeed()
+	{
+		return m_Script.Call<fixed>("GetCurrentSpeed");
 	}
 
 	virtual void SetSpeed(fixed speed)
