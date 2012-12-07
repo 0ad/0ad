@@ -8,10 +8,9 @@
   </Auras>
   <Identity>
     <Civ>athen</Civ>
-	<GenericName>Xenophon</GenericName>
-    <SpecificName>Xenophôn</SpecificName>
-    <Tooltip>Hero Aura: All units in his formation +15% speed and +15% armor. Additionally, during Xeno's lifespan, all Peltasts +15% speed.</Tooltip>
-    <History>Xenophon (c. 430 B. C. to c. 355 B. C.) was a Greek soldier and (later) historian who was born in Athens of an oligarch family and was a student of Socrates during his youth. He was elected one of the new Greek leaders chosen to lead the army in its retreat out of Persia. Xenophon went on to fight and lead troops in numerous battles then later write numerous books on military tactics, organization and command throughout the remainder of his lifetime.</History>
+    <SpecificName>Iphicrates</SpecificName>
+    <Tooltip>Hero Aura: All units in his formation +15% speed and +15% armor. All Peltasts +15% speed.</Tooltip>
+    <History>.</History>
     <Icon>units/hele_hero_xenophon.png</Icon>
   </Identity>
   <UnitMotion>
@@ -21,6 +20,6 @@
     </Run>
   </UnitMotion>
   <VisualActor>
-    <Actor>units/athenians/xenophon.xml</Actor>
+    <Actor>units/athenians/iphicrates.xml</Actor>
   </VisualActor>
 </Entity>
