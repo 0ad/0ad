@@ -41,6 +41,9 @@
       units/athen_hero_pericles
       units/athen_hero_iphicrates
     </Entities>
+    <Technologies datatype="tokens">
+      hellenes/special_long_walls
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/athenians/prytaneion.xml</Actor>
