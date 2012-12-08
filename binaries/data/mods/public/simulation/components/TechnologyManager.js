@@ -191,23 +191,23 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function (msg)
 		this.typeCounts[template] = this.typeCounts[template] || 0;
 		this.typeCounts[template] += 1;
 		
-		// don't use foundations for the class counts
-		if (Engine.QueryInterface(msg.entity, IID_Foundation))
-			return;
-		
 		var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
 		if (!cmpIdentity)
 			return;
 			
 		var classes = cmpIdentity.GetClassesList();
-		for (var i in classes)
+		// don't use foundations for the class counts but check if techs apply (e.g. health increase)
+		if (!Engine.QueryInterface(msg.entity, IID_Foundation))
 		{
-			this.classCounts[classes[i]] = this.classCounts[classes[i]] || 0;
-			this.classCounts[classes[i]] += 1;
+			for (var i in classes)
+			{
+				this.classCounts[classes[i]] = this.classCounts[classes[i]] || 0;
+				this.classCounts[classes[i]] += 1;
 			
-			this.typeCountsByClass[classes[i]] = this.typeCountsByClass[classes[i]] || {};
-			this.typeCountsByClass[classes[i]][template] = this.typeCountsByClass[classes[i]][template] || 0;
-			this.typeCountsByClass[classes[i]][template] += 1;
+				this.typeCountsByClass[classes[i]] = this.typeCountsByClass[classes[i]] || {};
+				this.typeCountsByClass[classes[i]][template] = this.typeCountsByClass[classes[i]][template] || 0;
+				this.typeCountsByClass[classes[i]][template] += 1;
+			}
 		}
 		
 		// Newly created entity, check if any researched techs might apply
@@ -243,22 +243,22 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function (msg)
 			delete this.typeCounts[template];
 		
 		// don't use foundations for the class counts
-		if (Engine.QueryInterface(msg.entity, IID_Foundation))
-			return;
-		
-		var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
-		if (cmpIdentity)
+		if (!Engine.QueryInterface(msg.entity, IID_Foundation))
 		{
-			var classes = cmpIdentity.GetClassesList();
-			for (var i in classes)
+			var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
+			if (cmpIdentity)
 			{
-				this.classCounts[classes[i]] -= 1;
-				if (this.classCounts[classes[i]] <= 0)
-					delete this.classCounts[classes[i]];
+				var classes = cmpIdentity.GetClassesList();
+				for (var i in classes)
+				{
+					this.classCounts[classes[i]] -= 1;
+					if (this.classCounts[classes[i]] <= 0)
+						delete this.classCounts[classes[i]];
 				
-				this.typeCountsByClass[classes[i]][template] -= 1;
-				if (this.typeCountsByClass[classes[i]][template] <= 0)
-					delete this.typeCountsByClass[classes[i]][template];
+					this.typeCountsByClass[classes[i]][template] -= 1;
+					if (this.typeCountsByClass[classes[i]][template] <= 0)
+						delete this.typeCountsByClass[classes[i]][template];
+				}
 			}
 		}
 		
