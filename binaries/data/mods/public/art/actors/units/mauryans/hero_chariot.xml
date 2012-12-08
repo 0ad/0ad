@@ -14,11 +14,13 @@
         <prop actor="units/persians/pers_chariot_archer_e_h2.xml" attachpoint="horse2"/>
         <prop actor="units/persians/pers_chariot_archer_e_h3.xml" attachpoint="horse3"/>
         <prop actor="units/persians/pers_chariot_archer_e_h4.xml" attachpoint="horse4"/>
-        <prop actor="units/persians/cavalry_archer_e_r.xml" attachpoint="rider1"/>
-        <prop actor="units/persians/cavalry_archer_e_d.xml" attachpoint="rider2"/>
-        <prop actor="units/persians/cavalry_archer_e_d.xml" attachpoint="rider3"/>
+        <prop actor="units/persians/hero_xerxes.xml" attachpoint="rider1"/>
+        <prop actor="units/mauryans/hero_chariot_maiden_archer.xml" attachpoint="rider2"/>
+        <prop actor="units/mauryans/hero_chariot_maiden_parasol.xml" attachpoint="rider3"/>
       </props>
-      <textures><texture file="structural/maur_hero_chariot.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/maur_hero_chariot.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

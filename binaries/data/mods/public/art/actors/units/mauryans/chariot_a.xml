@@ -10,12 +10,28 @@
       </animations>
       <mesh>structural/maur_chariot_a.dae</mesh>
       <props>
-        <prop actor="units/persians/cavalry_archer_b_r.xml" attachpoint="rider1"/>
-	  <prop actor="units/persians/cavalry_archer_b_r.xml" attachpoint="rider2"/>
+        <prop actor="units/mauryans/infantry_archer_b.xml" attachpoint="rider1"/>
+        <prop actor="units/mauryans/infantry_archer_e.xml" attachpoint="rider2"/>
         <prop actor="units/persians/pers_chariot_archer_b_h1.xml" attachpoint="horse1"/>
         <prop actor="units/persians/pers_chariot_archer_b_h2.xml" attachpoint="horse2"/>
       </props>
-      <textures><texture file="structural/maur_chariot_a.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="texture a">
+      <textures>
+        <texture file="structural/maur_chariot_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="texture b">
+      <textures>
+        <texture file="structural/maur_chariot_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="texture c">
+      <textures>
+        <texture file="structural/maur_chariot_c.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
