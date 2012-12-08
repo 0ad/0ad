@@ -2,13 +2,17 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
 		<SunColour r="0.721569" g="0.701961" b="0.647059"/>
 		<SunElevation angle="0.865165"/>
 		<SunRotation angle="-1.54625"/>
 		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<UnitsAmbientColour r="0.513726" g="0.564706" b="0.603922"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -22,16 +26,23 @@
 				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="840.658" y="69.9167" z="218.321"/>
-		<Rotation angle="0"/>
+		<Position x="690.394" y="180.942" z="230.122"/>
+		<Rotation angle="-1.17716"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "mediterranean_coves.png",
+  "Preview": "mediterranean_coves.png",
   "Description": "A sheltered natural harbour on the Mediterranean coast provides the resources for battle.",
   "Keywords": [],
   "MapType": "conquest",
