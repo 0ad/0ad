@@ -989,7 +989,8 @@ var UnitFsmSpec = {
 					return;
 
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-				cmpFormation.SetInPosition(this.entity);
+				if (cmpFormation)
+					cmpFormation.SetInPosition(this.entity);
 			},
 		},
 
@@ -997,7 +998,8 @@ var UnitFsmSpec = {
 		"WALKINGTOPOINT": {
 			"enter": function() {
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-				cmpFormation.UnsetInPosition(this.entity);
+				if (cmpFormation)
+					cmpFormation.UnsetInPosition(this.entity);
 				this.SelectAnimation("move");
 			},
 
