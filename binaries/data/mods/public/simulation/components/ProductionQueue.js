@@ -326,14 +326,14 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 			if (template.TrainingRestrictions)
 			{
 				var unitCategory = template.TrainingRestrictions.Category;
-				var cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
+				var cmpPlayerEntityLimits = QueryPlayerIDInterface(item.player, IID_EntityLimits);
 				cmpPlayerEntityLimits.DecreaseCount(unitCategory, item.count);
 			}
 		}
 
 		// Refund the resource cost for this batch
 		var totalCosts = {};
-		var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+		var cmpStatisticsTracker = QueryPlayerIDInterface(item.player, IID_StatisticsTracker);
 		for each (var r in ["food", "wood", "stone", "metal"])
 		{
 			totalCosts[r] = Math.floor(item.count * item.resources[r]);
