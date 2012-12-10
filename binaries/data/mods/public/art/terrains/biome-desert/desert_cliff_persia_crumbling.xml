@@ -2,6 +2,8 @@
 <terrain>
 	<textures>
 		<texture name="baseTex" file="types/desert_cliff_persia_crumbling.png"/>
+		<texture name="normTex" file="types/desert_cliff_persia_crumbling_norm.png"/>
+		<texture name="specTex" file="types/desert_cliff_persia_crumbling_spec.png"/>
 	</textures>
-	<material>terrain_triplanar.xml</material>
+	<material>terrain_triplanar_norm_spec.xml</material>
 </terrain>
