@@ -649,8 +649,8 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, maxRange))
 			{
-				if (!this.TargetIsAlive(msg.data.target))
-					// The target was destroyed
+				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
+					// The target was destroyed or isn't visible any more.
 					this.FinishOrder();
 				else
 					// Out of range; move there in formation
@@ -700,8 +700,8 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				if (!this.CanGather(msg.data.target))
-					// The target isn't gatherable
+				if (!this.CanGather(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
+					// The target isn't gatherable or not visible any more.
 					this.FinishOrder();
 				// TODO: Should we issue a gather-near-position order
 				// if the target isn't gatherable/doesn't exist anymore?
@@ -851,7 +851,7 @@ var UnitFsmSpec = {
 				cmpFormation.Disband();
 			},
 		},
-		
+
 		"FORMING": {
 			"MoveStarted": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
