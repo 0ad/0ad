@@ -671,7 +671,7 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				if (!this.TargetIsAlive(msg.data.target))
+				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
 					// The target was destroyed
 					this.FinishOrder();
 				else
@@ -690,7 +690,7 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Gather": function(msg) {
-			if (this.MustKillGatherTarget(msg.data.target))
+			if (this.MustKillGatherTarget(msg.data.target) && this.CheckTargetVisible(msg.data.target))
 			{
 				this.PushOrderFront("Attack", { "target": msg.data.target, "hunting": true });
 				return;
@@ -744,7 +744,7 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				if (!this.TargetIsAlive(msg.data.target))
+				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
 					// The target was destroyed
 					this.FinishOrder();
 				else
@@ -767,7 +767,7 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				if (!this.TargetIsAlive(msg.data.target))
+				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
 					// The building was finished or destroyed
 					this.FinishOrder();
 				else
@@ -790,7 +790,7 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				if (!this.TargetIsAlive(msg.data.target))
+				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
 					// The target was destroyed
 					this.FinishOrder();
 				else
