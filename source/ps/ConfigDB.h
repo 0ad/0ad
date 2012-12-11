@@ -18,7 +18,7 @@
 /*
 	CConfigDB - Load, access and store configuration variables
 	
-	TDD		:	http://forums.wildfiregames.com/0ad/index.php?showtopic=1125
+	TDD		:	http://www.wildfiregames.com/forum/index.php?showtopic=1125
 	OVERVIEW:
 
 	JavaScript:

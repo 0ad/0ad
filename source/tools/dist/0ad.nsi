@@ -97,7 +97,7 @@ Section "!Game and data files" GameSection
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "InstallLocation" "$\"$INSTDIR$\""
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "UninstallString" "$\"$INSTDIR\Uninstall.exe$\""
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "QuietUninstallString" "$\"$INSTDIR\Uninstall.exe$\" /S"
-  WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "URLInfoAbout" "http://wildfiregames.com/0ad"
+  WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "URLInfoAbout" "http://play0ad.com"
   WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "NoModify" 1
   WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "NoRepair" 1
 
@@ -109,7 +109,7 @@ Section "!Game and data files" GameSection
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Map editor.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-editor" "$INSTDIR\binaries\data\tools\atlas\icons\ScenarioEditor.ico"
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Open logs folder.lnk" "$INSTDIR\OpenLogsFolder.bat"
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
-  WriteINIStr "$SMPROGRAMS\$StartMenuFolder\Web site.url" "InternetShortcut" "URL" "http://wildfiregames.com/0ad/"
+  WriteINIStr "$SMPROGRAMS\$StartMenuFolder\Web site.url" "InternetShortcut" "URL" "http://play0ad.com/"
 
   !insertmacro MUI_STARTMENU_WRITE_END
 

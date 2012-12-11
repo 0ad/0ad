@@ -1,4 +1,4 @@
-This is an AI for 0 A.D. (http://wildfiregames.com/0ad/) based on the testBot.
+This is an AI for 0 A.D. (http://play0ad.com/) based on the testBot.
 
 Install by placing the files into the data/mods/public/simulation/ai/qbot folder.
 
