@@ -37,8 +37,6 @@ Armour.prototype.Init = function()
 	this.invulnerable = false;
 };
 
-Armour.prototype.Serialize = null; // we have no dynamic state to save
-
 Armour.prototype.SetInvulnerability = function(invulnerability)
 {
 	this.invulnerable = invulnerability;
