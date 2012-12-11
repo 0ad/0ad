@@ -28,7 +28,8 @@
     <Classes datatype="tokens">-StoneWall Palisade Tower</Classes>
     <History>A cheap, quick defensive structure constructed with sharpened tree trunks</History>
     <Icon>gaia/special_palisade.png</Icon>
-	</Identity>
+	<RequiredTechnology>phase_village</RequiredTechnology>
+  </Identity>
   <Obstruction>
     <Static width="4.0" depth="4.0"/>
     <ControlPersist/>

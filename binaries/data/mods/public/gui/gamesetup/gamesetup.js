@@ -85,9 +85,7 @@ function init(attribs)
 function initMain()
 {
 	// Load AI list and hide deprecated AIs
-	g_AIs = Engine.GetAIs().filter( function(ai) {
-		return !ai.data.hidden;
-	});
+	g_AIs = Engine.GetAIs();
 
 	// Sort AIs by displayed name
 	g_AIs.sort(function (a, b) {
@@ -1159,6 +1157,22 @@ function updatePlayerList()
 
 	for each (var ai in g_AIs)
 	{
+		if (ai.data.hidden) 
+		{
+			// If the map uses a hidden AI then don't hide it
+			var usedByMap = false;
+			for (var i = 0; i < MAX_PLAYERS; ++i) {
+				if (i < g_GameAttributes.settings.PlayerData.length &&
+				    g_GameAttributes.settings.PlayerData[i].AI == ai.id)
+				{
+					usedByMap = true;
+				}
+			}
+			if (!usedByMap)
+			{
+				continue;
+			}
+		}
 		// Give AI a different color so it stands out
 		aiAssignments[ai.id] = hostNameList.length;
 		hostNameList.push("[color=\"70 150 70 255\"]AI: " + ai.data.name);

@@ -38,8 +38,6 @@ Foundation.prototype.InitialiseConstruction = function(owner, template)
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 
 	this.finalTemplateName = template;
-	this.addedHitpoints = cmpHealth.GetHitpoints();
-	this.maxHitpoints = cmpHealth.GetMaxHitpoints();
 
 	// We need to know the owner in OnDestroy, but at that point the entity has already been
 	// decoupled from its owner, so we need to remember it in here (and assume it won't change)
@@ -193,13 +191,13 @@ Foundation.prototype.Build = function(builderEnt, work)
 	Engine.PostMessage(this.entity, MT_FoundationProgressChanged, { "to": this.GetBuildPercentage() });
 
 	// Add an appropriate proportion of hitpoints
-	var targetHP = Math.max(0, Math.min(this.maxHitpoints, Math.floor(this.maxHitpoints * this.buildProgress)));
-	var deltaHP = targetHP - this.addedHitpoints;
-	if (deltaHP > 0)
+	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
+	var maxHealth = cmpHealth.GetMaxHitpoints();
+	var targetHP = Math.max(0, Math.min(maxHealth, Math.floor(maxHealth * this.buildProgress)));
+	if (targetHP > 0)
 	{
-		var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-		cmpHealth.Increase(deltaHP);
-		this.addedHitpoints += deltaHP;
+		
+		cmpHealth.SetHitpoints(targetHP);
 	}
 
 	if (this.buildProgress >= 1.0)

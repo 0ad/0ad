@@ -649,8 +649,8 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, maxRange))
 			{
-				if (!this.TargetIsAlive(msg.data.target))
-					// The target was destroyed
+				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
+					// The target was destroyed or isn't visible any more.
 					this.FinishOrder();
 				else
 					// Out of range; move there in formation
@@ -671,7 +671,7 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				if (!this.TargetIsAlive(msg.data.target))
+				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
 					// The target was destroyed
 					this.FinishOrder();
 				else
@@ -690,7 +690,7 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Gather": function(msg) {
-			if (this.MustKillGatherTarget(msg.data.target))
+			if (this.MustKillGatherTarget(msg.data.target) && this.CheckTargetVisible(msg.data.target))
 			{
 				this.PushOrderFront("Attack", { "target": msg.data.target, "hunting": true });
 				return;
@@ -700,8 +700,8 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				if (!this.CanGather(msg.data.target))
-					// The target isn't gatherable
+				if (!this.CanGather(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
+					// The target isn't gatherable or not visible any more.
 					this.FinishOrder();
 				// TODO: Should we issue a gather-near-position order
 				// if the target isn't gatherable/doesn't exist anymore?
@@ -744,7 +744,7 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				if (!this.TargetIsAlive(msg.data.target))
+				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
 					// The target was destroyed
 					this.FinishOrder();
 				else
@@ -767,7 +767,7 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				if (!this.TargetIsAlive(msg.data.target))
+				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
 					// The building was finished or destroyed
 					this.FinishOrder();
 				else
@@ -790,7 +790,7 @@ var UnitFsmSpec = {
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				if (!this.TargetIsAlive(msg.data.target))
+				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
 					// The target was destroyed
 					this.FinishOrder();
 				else
@@ -851,7 +851,7 @@ var UnitFsmSpec = {
 				cmpFormation.Disband();
 			},
 		},
-		
+
 		"FORMING": {
 			"MoveStarted": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
@@ -989,7 +989,8 @@ var UnitFsmSpec = {
 					return;
 
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-				cmpFormation.SetInPosition(this.entity);
+				if (cmpFormation)
+					cmpFormation.SetInPosition(this.entity);
 			},
 		},
 
@@ -997,7 +998,8 @@ var UnitFsmSpec = {
 		"WALKINGTOPOINT": {
 			"enter": function() {
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-				cmpFormation.UnsetInPosition(this.entity);
+				if (cmpFormation)
+					cmpFormation.UnsetInPosition(this.entity);
 				this.SelectAnimation("move");
 			},
 

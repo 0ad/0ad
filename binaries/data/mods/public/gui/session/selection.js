@@ -29,9 +29,9 @@ function _playSound(ent)
 	Engine.GuiInterfaceCall("PlaySound", { "name":"select", "entity":ent });
 }
 
-//-------------------------------- -------------------------------- -------------------------------- 
-// EntityGroups class for managing grouped entities
-//-------------------------------- -------------------------------- -------------------------------- 
+/**
+ * EntityGroups class for managing grouped entities
+ */
 function EntityGroups()
 {
 	this.groups = {};
@@ -135,7 +135,9 @@ EntityGroups.prototype.getEntsByName = function(templateName)
 	return ents;
 };
 
-// Gets all ents in every group except ones of the specified group
+/**
+ * Gets all ents in every group except ones of the specified group
+ */
 EntityGroups.prototype.getEntsByNameInverse = function(templateName)
 {
 	var ents = [];
@@ -148,9 +150,9 @@ EntityGroups.prototype.getEntsByNameInverse = function(templateName)
 	return ents;
 };
 
-//-------------------------------- -------------------------------- -------------------------------- 
-// EntitySelection class for managing the entity selection list and the primary selection
-//-------------------------------- -------------------------------- -------------------------------- 
+/**
+ * EntitySelection class for managing the entity selection list and the primary selection
+ */
 function EntitySelection()
 {
 	// Private properties:
@@ -169,27 +171,13 @@ function EntitySelection()
 	this.groups = new EntityGroups();
 }
 
-// Deselect everything but entities of the chosen type if the modifier is true otherwise deselect just the chosen entity
+/**
+ * Deselect everything but entities of the chosen type if the modifier is true otherwise deselect just the chosen entity
+ */
 EntitySelection.prototype.makePrimarySelection = function(templateName, modifierKey)
 {
 	var selection = this.toList();
 	
-	
-	
-// This doesn't seem to do anything
-
-//	var ent;
-//
-//	// Find an ent of a unit of the same type
-//	for (var i = 0; i < selection.length; i++)
-//	{
-//		var entState = GetEntityState(selection[i]);
-//		if (!entState)
-//			continue;
-//		if (entState.template == templateName)
-//			ent = selection[i];
-//	}
-
 	var template = GetTemplateData(templateName);
 	var key = template.selectionGroupName || templateName;
 
@@ -203,7 +191,9 @@ EntitySelection.prototype.makePrimarySelection = function(templateName, modifier
 	this.addList(ents);
 }
 
-// Get a list of the template names
+/**
+ * Get a list of the template names
+ */
 EntitySelection.prototype.getTemplateNames = function()
 {
 	var templateNames = [];
@@ -218,7 +208,9 @@ EntitySelection.prototype.getTemplateNames = function()
 	return templateNames;
 }
 
-// Update the selection to take care of changes (like units that have been killed)
+/**
+ * Update the selection to take care of changes (like units that have been killed)
+ */
 EntitySelection.prototype.update = function()
 {
 	this.checkRenamedEntities();
@@ -276,7 +268,10 @@ EntitySelection.prototype.checkRenamedEntities = function()
 	}
 }
 
-EntitySelection.prototype.addList = function(ents)
+/**
+ * Add entities to selection. Play selection sound unless quiet is true
+ */
+EntitySelection.prototype.addList = function(ents, quiet)
 {
 	var selection = this.toList();
 	var playerID = Engine.GetPlayerID();
@@ -314,7 +309,7 @@ EntitySelection.prototype.addList = function(ents)
 	{
 		// Play the sound if the entity is controllable by us or Gaia-owned.
 		var owner = GetEntityState(added[0]).player;
-		if (owner == playerID || owner == 0 || g_DevSettings.controlAll)
+		if (!quiet && (owner == playerID || owner == 0 || g_DevSettings.controlAll))
 			_playSound(added[0]);
 	}
 
@@ -362,11 +357,10 @@ EntitySelection.prototype.rebuildSelection = function(renamed)
 	for each (var ent in oldSelection)
 		toAdd.push(renamed[ent] ? renamed[ent] : ent);
 
-	this.addList(toAdd);
+	this.addList(toAdd, true); // don't play selection sounds
 }
 
-EntitySelection.prototype.toList = function()
-{
+EntitySelection.prototype.toList = function(){
 	var ents = [];
 	for each (var ent in this.selected)
 		ents.push(ent);
@@ -411,9 +405,9 @@ EntitySelection.prototype.SetMotionDebugOverlay = function(enabled)
 
 var g_Selection = new EntitySelection();
 
-//-------------------------------- -------------------------------- --------------------------------
-// EntityGroupsContainer class for managing grouped entities
-//-------------------------------- -------------------------------- --------------------------------
+/**
+ * EntityGroupsContainer class for managing grouped entities
+ */
 function EntityGroupsContainer()
 {
 	this.groups = [];

@@ -2,13 +2,17 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>mountainous</SkySet>
-		<SunColour r="0.992157" g="0.992157" b="0.992157"/>
+		<SunColour r="0.98727" g="0.952367" b="0.732973"/>
 		<SunElevation angle="0.877437"/>
 		<SunRotation angle="-0.903888"/>
-		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColour r="0.439216" g="0.517647" b="0.611765"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0.00199219</FogFactor>
+			<FogThickness>0.0996094</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -22,10 +26,17 @@
 				<ReflectionTintStrength>0.304688</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1.09961</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="621.8" y="112.997" z="82.3596"/>
-		<Rotation angle="0.118035"/>
+		<Position x="587.526" y="91.8688" z="752.201"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -2355,7 +2366,7 @@
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
 			<Position x="457.82902" z="237.09623"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-0.505"/>
 		</Entity>
 		<Entity uid="429">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
@@ -2372,7 +2383,7 @@
 		<Entity uid="431">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="502.88492" z="228.98455"/>
+			<Position x="493.59482" z="265.465"/>
 			<Orientation y="3.04101"/>
 		</Entity>
 		<Entity uid="432">
@@ -6777,12 +6788,6 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="374.88526" z="156.81608"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1318">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="516.41297" z="230.13801"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1319">
@@ -19182,6 +19187,306 @@
 			<Player>0</Player>
 			<Position x="181.0336" z="764.08368"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4794">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="498.71384" z="893.24225"/>
+			<Orientation y="-1.90584"/>
+		</Entity>
+		<Entity uid="4795">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="483.55237" z="901.7461"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4796">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="489.29731" z="889.9073"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4797">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="513.45417" z="908.85334"/>
+			<Orientation y="-1.55742"/>
+		</Entity>
+		<Entity uid="4798">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="511.30997" z="896.71851"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4799">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="474.9286" z="890.72828"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="4800">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="496.50626" z="881.05091"/>
+			<Orientation y="0.90688"/>
+		</Entity>
+		<Entity uid="4801">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="508.79093" z="888.2284"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4802">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="523.38324" z="903.57776"/>
+			<Orientation y="-1.03713"/>
+		</Entity>
+		<Entity uid="4803">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="484.31782" z="879.40119"/>
+			<Orientation y="-1.3025"/>
+		</Entity>
+		<Entity uid="4804">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="446.8618" z="756.97358"/>
+			<Orientation y="2.32013"/>
+		</Entity>
+		<Entity uid="4805">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="462.75342" z="743.95942"/>
+			<Orientation y="2.36403"/>
+		</Entity>
+		<Entity uid="4806">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="472.92469" z="735.71644"/>
+			<Orientation y="2.20696"/>
+		</Entity>
+		<Entity uid="4807">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="484.1457" z="728.01655"/>
+			<Orientation y="2.4845"/>
+		</Entity>
+		<Entity uid="4808">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="487.5047" z="722.12391"/>
+			<Orientation y="2.74346"/>
+		</Entity>
+		<Entity uid="4809">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="477.72336" z="723.88459"/>
+			<Orientation y="0.73075"/>
+		</Entity>
+		<Entity uid="4810">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="479.22873" z="750.05414"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4811">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="490.48621" z="737.0691"/>
+			<Orientation y="0.931"/>
+		</Entity>
+		<Entity uid="4812">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="686.99909" z="780.8791"/>
+			<Orientation y="-2.31267"/>
+		</Entity>
+		<Entity uid="4813">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="680.3957" z="774.54468"/>
+			<Orientation y="-2.49643"/>
+		</Entity>
+		<Entity uid="4814">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="669.76893" z="758.25403"/>
+			<Orientation y="-2.99921"/>
+		</Entity>
+		<Entity uid="4815">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="669.3263" z="745.1272"/>
+			<Orientation y="2.32422"/>
+		</Entity>
+		<Entity uid="4816">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="676.89313" z="740.80445"/>
+			<Orientation y="0.95521"/>
+		</Entity>
+		<Entity uid="4817">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="685.47205" z="760.33606"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4818">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="690.2024" z="737.51368"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4819">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="677.0475" z="735.65918"/>
+			<Orientation y="0.02866"/>
+		</Entity>
+		<Entity uid="4820">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="389.17588" z="291.60474"/>
+			<Orientation y="-2.90796"/>
+		</Entity>
+		<Entity uid="4821">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="385.33854" z="270.80323"/>
+			<Orientation y="-2.93503"/>
+		</Entity>
+		<Entity uid="4822">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="383.28345" z="259.66303"/>
+			<Orientation y="3.11974"/>
+		</Entity>
+		<Entity uid="4823">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="384.81968" z="249.54255"/>
+			<Orientation y="1.98981"/>
+		</Entity>
+		<Entity uid="4824">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="393.1229" z="247.03614"/>
+			<Orientation y="1.17367"/>
+		</Entity>
+		<Entity uid="4825">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="423.01597" z="256.2173"/>
+			<Orientation y="0.72104"/>
+		</Entity>
+		<Entity uid="4826">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="436.75324" z="271.4314"/>
+			<Orientation y="-1.30475"/>
+		</Entity>
+		<Entity uid="4827">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="413.04105" z="294.67829"/>
+			<Orientation y="0.904"/>
+		</Entity>
+		<Entity uid="4828">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="401.35163" z="252.78986"/>
+			<Orientation y="-1.16915"/>
+		</Entity>
+		<Entity uid="4829">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="538.79731" z="258.98313"/>
+			<Orientation y="2.83774"/>
+		</Entity>
+		<Entity uid="4830">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="544.047" z="246.98249"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4831">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="548.66321" z="238.05117"/>
+			<Orientation y="2.88529"/>
+		</Entity>
+		<Entity uid="4832">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="552.99836" z="222.4282"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4833">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="553.58094" z="217.5034"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4834">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="552.78083" z="210.49604"/>
+			<Orientation y="-2.79339"/>
+		</Entity>
+		<Entity uid="4835">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="549.42829" z="204.77161"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4836">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="544.55903" z="210.23826"/>
+			<Orientation y="-0.07792"/>
+		</Entity>
+		<Entity uid="4837">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="543.78101" z="219.7852"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4838">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="542.1125" z="230.22442"/>
+			<Orientation y="-0.75225"/>
+		</Entity>
+		<Entity uid="4839">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="534.09198" z="240.20675"/>
+			<Orientation y="-0.61182"/>
+		</Entity>
+		<Entity uid="4840">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="526.14985" z="251.77608"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4841">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="522.50355" z="249.15667"/>
+			<Orientation y="3.11204"/>
+		</Entity>
+		<Entity uid="4842">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="535.51691" z="220.94973"/>
+			<Orientation y="1.09562"/>
+		</Entity>
+		<Entity uid="4843">
+			<Template>gaia/flora_tree_toona</Template>
+			<Player>0</Player>
+			<Position x="525.75507" z="227.0223"/>
+			<Orientation y="-0.52997"/>
 		</Entity>
 	</Entities>
 	<Paths/>
