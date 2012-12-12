@@ -236,9 +236,7 @@ void CSoundManager::SetEnabled(bool doEnable)
 {
 	if ( g_SoundManager && !doEnable ) 
 	{
-		delete g_SoundManager;
-
-		g_SoundManager = NULL;
+		SAFE_DELETE(g_SoundManager);
 	}
 	else if ( ! g_SoundManager && doEnable ) 
 	{
@@ -260,8 +258,8 @@ void CSoundManager::al_check(const char* caller, int line)
 
 CSoundManager::CSoundManager()
 {
-	m_CurrentEnvirons	= 0;
-	m_CurrentTune		= 0;
+	m_CurrentEnvirons	= NULL;
+	m_CurrentTune		= NULL;
 	m_Gain				= 1;
 	m_MusicGain			= 1;
 	m_AmbientGain		= 1;
@@ -278,14 +276,11 @@ CSoundManager::CSoundManager()
 
 CSoundManager::~CSoundManager()
 {	
-	m_Worker->Shutdown();
-	m_Worker = 0L;
+	if (m_Worker->Shutdown())
+		delete m_Worker;
 
 	alcDestroyContext(m_Context);
 	alcCloseDevice(m_Device);
-
-	m_CurrentEnvirons = 0;
-	m_CurrentTune = 0;
 }
 
 
