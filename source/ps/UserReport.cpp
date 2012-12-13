@@ -120,7 +120,7 @@ public:
 		// Set the UA string
 		std::string ua = "User-Agent: 0ad ";
 		ua += curl_version();
-		ua += " (http://wildfiregames.com/0ad/)";
+		ua += " (http://play0ad.com/)";
 		m_Headers = curl_slist_append(m_Headers, ua.c_str());
 		// Override the default application/x-www-form-urlencoded type since we're not using that type
 		m_Headers = curl_slist_append(m_Headers, "Content-Type: application/octet-stream");

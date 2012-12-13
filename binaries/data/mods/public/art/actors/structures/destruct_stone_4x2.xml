@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="stone rubble 4x2">
+      <mesh>props/rubble_stone_4x2.dae</mesh>
+      <props>
+        <prop actor="particle/flame.xml" attachpoint="flame1"/>
+        <prop actor="particle/smoke.xml" attachpoint="flame1"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="flame2"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="flame2"/>
+        <prop actor="props/structures/decals/destruct_4x2.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/rubble_stone.png" name="baseTex"/>
+        <texture file="props/ao/rubble_stone_4x2_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_ao.xml</material>
+</actor>

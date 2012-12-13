@@ -22,6 +22,21 @@
 #define AL_ALEXT_H
 
 #include <stddef.h>
+/* Define int64_t and uint64_t types */
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+#include <inttypes.h>
+#elif defined(_WIN32) && defined(__GNUC__)
+#include <stdint.h>
+#elif defined(_WIN32)
+typedef __int64 int64_t;
+typedef unsigned __int64 uint64_t;
+#else
+/* Fallback if nothing above works */
+#include <inttypes.h>
+#endif
+
+#include "alc.h"
+#include "al.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -286,6 +301,50 @@ typedef void (ALC_APIENTRY*LPALCRENDERSAMPLESSOFT)(ALCdevice*,ALCvoid*,ALCsizei)
 ALC_API ALCdevice* ALC_APIENTRY alcLoopbackOpenDeviceSOFT(const ALCchar *deviceName);
 ALC_API ALCboolean ALC_APIENTRY alcIsRenderFormatSupportedSOFT(ALCdevice *device, ALCsizei freq, ALCenum channels, ALCenum type);
 ALC_API void ALC_APIENTRY alcRenderSamplesSOFT(ALCdevice *device, ALCvoid *buffer, ALCsizei samples);
+#endif
+#endif
+
+#ifndef AL_EXT_STEREO_ANGLES
+#define AL_EXT_STEREO_ANGLES 1
+#define AL_STEREO_ANGLES                         0x1030
+#endif
+
+#ifndef AL_EXT_SOURCE_RADIUS
+#define AL_EXT_SOURCE_RADIUS 1
+#define AL_SOURCE_RADIUS                         0x1031
+#endif
+
+#ifndef AL_SOFT_source_latency
+#define AL_SOFT_source_latency 1
+#define AL_SAMPLE_OFFSET_LATENCY_SOFT            0x1200
+#define AL_SEC_OFFSET_LATENCY_SOFT               0x1201
+typedef int64_t ALint64SOFT;
+typedef uint64_t ALuint64SOFT;
+typedef void (AL_APIENTRY*LPALSOURCEDSOFT)(ALuint,ALenum,ALdouble);
+typedef void (AL_APIENTRY*LPALSOURCE3DSOFT)(ALuint,ALenum,ALdouble,ALdouble,ALdouble);
+typedef void (AL_APIENTRY*LPALSOURCEDVSOFT)(ALuint,ALenum,const ALdouble*);
+typedef void (AL_APIENTRY*LPALGETSOURCEDSOFT)(ALuint,ALenum,ALdouble*);
+typedef void (AL_APIENTRY*LPALGETSOURCE3DSOFT)(ALuint,ALenum,ALdouble*,ALdouble*,ALdouble*);
+typedef void (AL_APIENTRY*LPALGETSOURCEDVSOFT)(ALuint,ALenum,ALdouble*);
+typedef void (AL_APIENTRY*LPALSOURCEI64SOFT)(ALuint,ALenum,ALint64SOFT);
+typedef void (AL_APIENTRY*LPALSOURCE3I64SOFT)(ALuint,ALenum,ALint64SOFT,ALint64SOFT,ALint64SOFT);
+typedef void (AL_APIENTRY*LPALSOURCEI64VSOFT)(ALuint,ALenum,const ALint64SOFT*);
+typedef void (AL_APIENTRY*LPALGETSOURCEI64SOFT)(ALuint,ALenum,ALint64SOFT*);
+typedef void (AL_APIENTRY*LPALGETSOURCE3I64SOFT)(ALuint,ALenum,ALint64SOFT*,ALint64SOFT*,ALint64SOFT*);
+typedef void (AL_APIENTRY*LPALGETSOURCEI64VSOFT)(ALuint,ALenum,ALint64SOFT*);
+#ifdef AL_ALEXT_PROTOTYPES
+AL_API void AL_APIENTRY alSourcedSOFT(ALuint source, ALenum param, ALdouble value);
+AL_API void AL_APIENTRY alSource3dSOFT(ALuint source, ALenum param, ALdouble value1, ALdouble value2, ALdouble value3);
+AL_API void AL_APIENTRY alSourcedvSOFT(ALuint source, ALenum param, const ALdouble *values);
+AL_API void AL_APIENTRY alGetSourcedSOFT(ALuint source, ALenum param, ALdouble *value);
+AL_API void AL_APIENTRY alGetSource3dSOFT(ALuint source, ALenum param, ALdouble *value1, ALdouble *value2, ALdouble *value3);
+AL_API void AL_APIENTRY alGetSourcedvSOFT(ALuint source, ALenum param, ALdouble *values);
+AL_API void AL_APIENTRY alSourcei64SOFT(ALuint source, ALenum param, ALint64SOFT value);
+AL_API void AL_APIENTRY alSource3i64SOFT(ALuint source, ALenum param, ALint64SOFT value1, ALint64SOFT value2, ALint64SOFT value3);
+AL_API void AL_APIENTRY alSourcei64vSOFT(ALuint source, ALenum param, const ALint64SOFT *values);
+AL_API void AL_APIENTRY alGetSourcei64SOFT(ALuint source, ALenum param, ALint64SOFT *value);
+AL_API void AL_APIENTRY alGetSource3i64SOFT(ALuint source, ALenum param, ALint64SOFT *value1, ALint64SOFT *value2, ALint64SOFT *value3);
+AL_API void AL_APIENTRY alGetSourcei64vSOFT(ALuint source, ALenum param, ALint64SOFT *values);
 #endif
 #endif
 

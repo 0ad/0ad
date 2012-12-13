@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="decal_destruct_4x6">
+      <decal angle="90" depth="26" offsetx="0" offsetz="0" width="40"/>
+      <textures>
+        <texture file="props/decal_destruct_llong.png" name="baseTex"/>
+        
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_base.xml</material>
+</actor>

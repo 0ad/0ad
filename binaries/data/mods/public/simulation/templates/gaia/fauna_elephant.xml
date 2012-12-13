@@ -14,6 +14,16 @@
     <SpecificName>Elephant</SpecificName>
     <Icon>gaia/fauna_elephant.png</Icon>
   </Identity>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/elephant_select.xml</select>
+      <order_walk>actor/fauna/animal/elephant_order.xml</order_walk>
+      <order_attack>actor/fauna/animal/elephant_attack.xml</order_attack>
+      <attack>actor/fauna/animal/elephant_attack.xml</attack>
+      <death>actor/fauna/animal/elephant_death.xml</death>
+      <trained>actor/fauna/animal/elephant_trained.xml</trained>
+    </SoundGroups>
+  </Sound>
   <ResourceSupply>
     <Amount>500</Amount>
     <Type>food.meat</Type>

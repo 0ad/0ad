@@ -64,11 +64,11 @@ bool CStreamItem::IdleTask()
 		if (m_LastPlay)
 			return (proc_state != AL_STOPPED);
 	}
-	else
+	else if (m_SoundData != NULL)
 	{
-		COggData* tmp = (COggData*)m_SoundData;
+		COggData* theData = (COggData*)m_SoundData;
 		
-		if (! tmp->IsFileFinished())
+		if (! theData->IsFileFinished())
 		{
 			int num_processed;
 			alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
@@ -79,7 +79,7 @@ bool CStreamItem::IdleTask()
 				ALuint* al_buf = new ALuint[num_processed];
 				alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
 				AL_CHECK
-				int didWrite = tmp->FetchDataIntoBuffer(num_processed, al_buf);
+				int didWrite = theData->FetchDataIntoBuffer(num_processed, al_buf);
 				alSourceQueueBuffers(m_ALSource, didWrite, al_buf);
 				AL_CHECK
 				delete[] al_buf;
@@ -87,7 +87,7 @@ bool CStreamItem::IdleTask()
 		}
 		else if (GetLooping())
 		{
-			tmp->ResetFile();
+			theData->ResetFile();
 		}
 	}
 	return true;
