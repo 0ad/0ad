@@ -39,16 +39,19 @@ CBufferItem::~CBufferItem()
 	AL_CHECK
 
 	Stop();
-	int num_processed;
-	alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
-	
-	if (num_processed > 0)
+	if (m_ALSource != 0)
 	{
-		ALuint* al_buf = new ALuint[num_processed];
-		alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
+		int num_processed;
+		alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
 		
-		AL_CHECK
-		delete[] al_buf;
+		if (num_processed > 0)
+		{
+			ALuint* al_buf = new ALuint[num_processed];
+			alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
+			
+			AL_CHECK
+			delete[] al_buf;
+		}
 	}
 }
 
@@ -56,26 +59,30 @@ CBufferItem::~CBufferItem()
 bool CBufferItem::IdleTask()
 {
 	HandleFade();
-	
-	if (m_LastPlay)
+	if (m_ALSource != 0)
 	{
-		int proc_state;
-		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
-		return (proc_state != AL_STOPPED);
-	}
-	
-	if (GetLooping())
-	{
-		int num_processed;
-		alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
-		
-		for (int i = 0; i < num_processed; i++)
+		if (m_LastPlay)
 		{
-			ALuint al_buf;
-			alSourceUnqueueBuffers(m_ALSource, 1, &al_buf);
+			int proc_state;
+			alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
 			AL_CHECK
-			alSourceQueueBuffers(m_ALSource, 1, &al_buf);
-			AL_CHECK
+			
+			return (proc_state != AL_STOPPED);
+		}
+		
+		if (GetLooping())
+		{
+			int num_processed;
+			alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
+			
+			for (int i = 0; i < num_processed; i++)
+			{
+				ALuint al_buf;
+				alSourceUnqueueBuffers(m_ALSource, 1, &al_buf);
+				AL_CHECK
+				alSourceQueueBuffers(m_ALSource, 1, &al_buf);
+				AL_CHECK
+			}
 		}
 	}
 
@@ -84,8 +91,8 @@ bool CBufferItem::IdleTask()
 
 void CBufferItem::Attach(CSoundData* itemData)
 {
-AL_CHECK
-	if (itemData != NULL)
+	AL_CHECK
+	if ( (itemData != NULL) && (m_ALSource != 0) )
 	{
 		m_SoundData = itemData->IncrementCount();
 		alSourceQueueBuffers(m_ALSource, m_SoundData->GetBufferCount(),(const ALuint *) m_SoundData->GetBufferPtr());
