@@ -728,7 +728,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 					var trainingCategory = null;
 					if (template.trainingRestrictions)
 						trainingCategory = template.trainingRestrictions.category;
-					var grayscale = "";
 					if (trainingCategory && playerState.entityLimits[trainingCategory] &&
 						playerState.entityCounts[trainingCategory] >= playerState.entityLimits[trainingCategory])
 						grayscale = "grayscale:";
