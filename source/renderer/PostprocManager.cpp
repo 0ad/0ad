@@ -118,8 +118,8 @@ void CPostprocManager::RecreateBuffers()
 	// Allocate the Depth/Stencil texture.
 	glGenTextures(1, (GLuint*)&m_DepthTex);
 	glBindTexture(GL_TEXTURE_2D, m_DepthTex);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, m_Width, m_Height,
-		      0, GL_DEPTH_STENCIL_EXT, GL_UNSIGNED_INT_24_8, 0);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8_EXT, m_Width, m_Height,
+		      0, GL_DEPTH_STENCIL_EXT, GL_UNSIGNED_INT_24_8_EXT, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE,
 			GL_NONE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -305,7 +305,7 @@ void CPostprocManager::CaptureRenderOutput()
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	
-	GLenum buffers[] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
+	GLenum buffers[] = { GL_COLOR_ATTACHMENT0_EXT, GL_COLOR_ATTACHMENT1_EXT };
 	pglDrawBuffers(1, buffers);
 	
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
@@ -421,13 +421,13 @@ void CPostprocManager::ApplyPostproc()
 	}
 	
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, 0, 0);
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, 0, 0);
 	
-	GLenum buffers[] = { GL_COLOR_ATTACHMENT0 };
+	GLenum buffers[] = { GL_COLOR_ATTACHMENT0_EXT };
 	pglDrawBuffers(1, buffers);
 	
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, 0, 0);
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, 0, 0);
 	pglDrawBuffers(1, buffers);	
 	
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
