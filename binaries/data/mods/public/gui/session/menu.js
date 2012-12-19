@@ -255,59 +255,67 @@ function openDiplomacy()
 
 		getGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption = (players[i].team < 0) ? "None" : players[i].team+1;
 
-		// Don't display this for ourself and our locked team members
-		if (i != we && !(players[we].teamsLocked && players[we].team != -1 && players[we].team == players[i].team))
-		{
+		if (i != we)
 			getGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (players[i].isAlly[we] ? "Ally" : (players[i].isNeutral[we] ? "Neutral" : "Enemy"));
 
-			// Set up the buttons
-			for each (var setting in ["ally", "neutral", "enemy"])
-			{
-				var button = getGUIObjectByName("diplomacyPlayer"+toTitleCase(setting)+"["+(i-1)+"]");
-
-				if (setting == "ally")
-				{
-					if (players[we].isAlly[i])
-						button.caption = "x";
-					else
-						button.caption = "";
-				}
-				else if (setting == "neutral")
-				{
-					if (players[we].isNeutral[i])
-						button.caption = "x";
-					else
-						button.caption = "";
-				}
-				else // "enemy"
-				{
-					if (players[we].isEnemy[i])
-						button.caption = "x";
-					else
-						button.caption = "";
-				}
-				
-				button.onpress = (function(e){ return function() { setDiplomacy(e) } })({"player": i, "to": setting});
-				button.hidden = false;
-			}
-		}
-		
-		// Tributes (you can't tribute to yourself)
-		if (i != we)
+		// Don't display the options for ourself, or if we or the other player aren't active anymore
+		if (i == we || players[we].state != "active" || players[i].state != "active")
 		{
-			for each (var resource in ["food", "wood", "stone", "metal"])
+			// Hide the unused/unselectable options
+			for each (var a in ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
+				getGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
+			continue;
+		}
+
+		// Tribute
+		for each (var resource in ["food", "wood", "stone", "metal"])
+		{
+			var button = getGUIObjectByName("diplomacyPlayerTribute"+toTitleCase(resource)+"["+(i-1)+"]");
+			// TODO: Make amounts changeable or change to 500 if shift is pressed
+			var amounts = {
+				"food": (resource=="food")?100:0,
+				"wood": (resource=="wood")?100:0,
+				"stone": (resource=="stone")?100:0,
+				"metal": (resource=="metal")?100:0,
+			};
+			button.onpress = (function(e){ return function() { tributeResource(e) } })({"player": i, "amounts": amounts});
+			button.hidden = false;
+		}
+
+		// Skip our own teams on teams locked
+		if (players[we].teamsLocked && players[we].team != -1 && players[we].team == players[i].team)
+			continue;
+
+		// Diplomacy settings
+		// Set up the buttons
+		for each (var setting in ["ally", "neutral", "enemy"])
+		{
+			var button = getGUIObjectByName("diplomacyPlayer"+toTitleCase(setting)+"["+(i-1)+"]");
+
+			if (setting == "ally")
 			{
-				var button = getGUIObjectByName("diplomacyPlayerTribute"+toTitleCase(resource)+"["+(i-1)+"]");
-				// TODO: Make amounts changeable or change to 500 if shift is pressed
-				var amounts = {
-					"food": (resource=="food")?100:0,
-					"wood": (resource=="wood")?100:0,
-					"stone": (resource=="stone")?100:0,
-					"metal": (resource=="metal")?100:0,
-				};
-				button.onpress = (function(e){ return function() { tributeResource(e) } })({"player": i, "amounts": amounts});
-				button.hidden = false;
+				if (players[we].isAlly[i])
+					button.caption = "x";
+				else
+					button.caption = "";
 			}
+			else if (setting == "neutral")
+			{
+				if (players[we].isNeutral[i])
+					button.caption = "x";
+				else
+					button.caption = "";
+			}
+			else // "enemy"
+			{
+				if (players[we].isEnemy[i])
+					button.caption = "x";
+				else
+					button.caption = "";
+			}
+			
+			button.onpress = (function(e){ return function() { setDiplomacy(e) } })({"player": i, "to": setting});
+			button.hidden = false;
 		}
 	}
 
