@@ -28,14 +28,14 @@
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
-			<Contrast>1</Contrast>
+			<Contrast>1.09961</Contrast>
 			<Saturation>0.99</Saturation>
 			<Bloom>0.1999</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="470.551" y="111.276" z="81.2162"/>
+		<Position x="463.96" y="101.517" z="94.8426"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -22142,14 +22142,14 @@
 		<Entity uid="4656">
 			<Template>structures/iber_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="501.76334" z="132.61826"/>
-			<Orientation y="2.35621"/>
+			<Position x="499.71641" z="131.15926"/>
+			<Orientation y="2.98145"/>
 		</Entity>
 		<Entity uid="4657">
 			<Template>structures/iber_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="528.98493" z="141.92615"/>
-			<Orientation y="2.35621"/>
+			<Position x="534.43146" z="143.4019"/>
+			<Orientation y="2.70395"/>
 		</Entity>
 		<Entity uid="4658">
 			<Template>structures/iber_wall_long</Template>
@@ -22219,26 +22219,26 @@
 		<Entity uid="4668">
 			<Template>structures/iber_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="498.06904" z="251.58608"/>
+			<Position x="495.47953" z="251.3986"/>
 			<Orientation y="-2.74708"/>
 		</Entity>
 		<Entity uid="4669">
 			<Template>structures/iber_wall_medium</Template>
 			<Player>1</Player>
-			<Position x="508.99506" z="244.75786"/>
+			<Position x="508.02527" z="244.05535"/>
 			<Orientation y="-2.55443"/>
 			<Obstruction group="4663" group2="4668"/>
 		</Entity>
 		<Entity uid="4670">
 			<Template>structures/iber_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="455.81714" z="260.92331"/>
-			<Orientation y="-0.02935"/>
+			<Position x="457.4354" z="260.16465"/>
+			<Orientation y="1.711"/>
 		</Entity>
 		<Entity uid="4671">
 			<Template>structures/iber_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="437.66498" z="254.9677"/>
+			<Position x="436.31537" z="253.83985"/>
 			<Orientation y="2.7761"/>
 		</Entity>
 		<Entity uid="4672">
@@ -22360,16 +22360,9 @@
 		<Entity uid="4693">
 			<Template>structures/iber_wall_medium</Template>
 			<Player>1</Player>
-			<Position x="425.73453" z="246.79011"/>
+			<Position x="424.20469" z="245.94974"/>
 			<Orientation y="-0.46901"/>
 			<Obstruction group="4671" group2="4672"/>
-		</Entity>
-		<Entity uid="4694">
-			<Template>structures/iber_wall_short</Template>
-			<Player>1</Player>
-			<Position x="446.21164" z="257.70868"/>
-			<Orientation y="-0.25882"/>
-			<Obstruction group="4670" group2="4671"/>
 		</Entity>
 		<Entity uid="4695">
 			<Template>actor|particle/fireflies.xml</Template>
@@ -22465,6 +22458,27 @@
 			<Template>actor|particle/fireflies.xml</Template>
 			<Position x="181.57773" z="762.4405"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4714">
+			<Template>structures/iber_wall_gate</Template>
+			<Player>1</Player>
+			<Position x="517.04267" z="136.90874"/>
+			<Orientation y="-0.36574"/>
+			<Obstruction group="4656" group2="4657"/>
+		</Entity>
+		<Entity uid="4715">
+			<Template>structures/iber_wall_gate</Template>
+			<Player>1</Player>
+			<Position x="476.581" z="256.38331"/>
+			<Orientation y="-2.92815"/>
+			<Obstruction group="4668" group2="4670"/>
+		</Entity>
+		<Entity uid="4716">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>1</Player>
+			<Position x="446.98365" z="257.26679"/>
+			<Orientation y="-0.2593"/>
+			<Obstruction group="4670" group2="4671"/>
 		</Entity>
 	</Entities>
 	<Paths/>
