@@ -47,6 +47,9 @@ extern bool g_PauseOnFocusLoss;
 // default player name to use in multiplayer
 extern CStr g_PlayerName;
 
+// default server name or IP to use in multiplayer
+extern CStr g_MPServer;
+
 // flag to switch on shadows
 extern bool g_Shadows;
 
