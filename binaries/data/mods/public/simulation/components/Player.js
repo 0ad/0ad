@@ -285,6 +285,9 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 	if (!cmpPlayer)
 		return;
 
+	if (this.state != "active" || cmpPlayer.state != "active")
+		return;
+
 	// You can have alliances with other players,
 	if (this.teamsLocked)
 	{
@@ -528,8 +531,13 @@ Player.prototype.TributeResource = function(player, amounts)
 		return;
 
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
+	if (!cmpPlayer)
+		return;
 
-	if (cmpPlayer && !this.GetNeededResources(amounts))
+	if (this.state != "active" || cmpPlayer.state != "active")
+		return;
+
+	if (!this.GetNeededResources(amounts))
 	{
 		for (var type in amounts)
 			this.resourceCount[type] -= amounts[type];
