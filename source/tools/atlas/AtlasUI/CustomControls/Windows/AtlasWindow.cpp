@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -125,7 +125,7 @@ AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& 
 	m_CommandProc.SetEditMenu(menuEdit);
 	m_CommandProc.Initialize();
 
-	m_FileHistory.Load(*wxConfigBase::Get());
+	m_FileHistory.LoadFromSubDir(*wxConfigBase::Get());
 
 	CreateStatusBar();
 
@@ -166,7 +166,7 @@ void AtlasWindow::OnClose(wxCloseEvent& event)
 	}
 
 	if (event.GetSkipped())
-		m_FileHistory.Save(*wxConfigBase::Get());
+		m_FileHistory.SaveToSubDir(*wxConfigBase::Get());
 }
 
 void AtlasWindow::OnUndo(wxCommandEvent& WXUNUSED(event))

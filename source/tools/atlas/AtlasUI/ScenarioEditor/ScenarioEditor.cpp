@@ -462,7 +462,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		menuRP->Append(ID_RenderPathShader, _("&Shader (default)"));
 	}
 
-	m_FileHistory.Load(*wxConfigBase::Get());
+	m_FileHistory.LoadFromSubDir(*wxConfigBase::Get());
 
 
 	m_SectionLayout.SetWindow(this);
@@ -571,7 +571,7 @@ void ScenarioEditor::OnClose(wxCloseEvent&)
 {
 	m_ToolManager.SetCurrentTool(_T(""));
 
-	m_FileHistory.Save(*wxConfigBase::Get());
+	m_FileHistory.SaveToSubDir(*wxConfigBase::Get());
 
 	POST_MESSAGE(Shutdown, ());
 
