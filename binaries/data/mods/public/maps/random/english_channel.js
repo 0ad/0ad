@@ -153,7 +153,7 @@ for (var i = 0; i < numPlayers; i++)
 	for (var j = 0; j < 2; ++j)
 	{
 		var aAngle = randFloat(0, TWO_PI);
-		var aDist = 7;
+		var aDist = 9;
 		var aX = round(fx + aDist * cos(aAngle));
 		var aZ = round(fz + aDist * sin(aAngle));
 		var group = new SimpleGroup(
@@ -336,8 +336,11 @@ for (var i = 0; i <= randInt(8, (scaleByMapSize(12,20))); i++)
 		if (success !== undefined)
 		{
 			placer = new ClumpPlacer(floor(PI*scaleByMapSize(10,20)*scaleByMapSize(10,20)/4), 0.95, 0.6, 10, fractionToTiles(0.5 + 0.49*cos(tang)), fractionToTiles(0.5 + 0.49*sin(tang)));
-			var painter = new LayeredPainter([tWater, tWater], [1]);
-			var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -3, 2);
+			var painter = new LayeredPainter(
+				[tShore, tWater, tWater],		// terrains
+				[1, 3]								// widths);
+			)
+			var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -3, 3);
 			createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 22));
 		}
 	}
