@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
   <Armour>
-    <Hack>1.0</Hack>
-    <Pierce>1.0</Pierce>
+    <Hack>2.0</Hack>
+    <Pierce>5.0</Pierce>
   </Armour>
   <Attack>
     <Melee>
-      <Crush>15.0</Crush>
+      <Crush>10.0</Crush>
 	  <Bonuses>
 		<BonusStructures>
 		  <Classes>Structure</Classes>
@@ -38,7 +38,7 @@
   </Attack>
   <Cost>
     <Resources>
-      <food>0</food>
+      <food>60</food>
       <metal>100</metal>
     </Resources>
   </Cost>
