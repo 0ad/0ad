@@ -2,7 +2,7 @@
 <Entity parent="template_unit_cavalry_melee_spearman">
   <Armour>
     <Hack>3.0</Hack>
-    <Pierce>3.0</Pierce>
+    <Pierce>6.0</Pierce>
     <Crush>3.0</Crush>
   </Armour>
   <Attack>
@@ -41,7 +41,7 @@
     <Height>3.0</Height>
   </Footprint>
   <Health>
-    <Max>100</Max>
+    <Max>120</Max>
   </Health>
   <Identity>
     <Civ>celt</Civ>
@@ -74,7 +74,7 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>10.0</WalkSpeed>
+    <WalkSpeed>11.0</WalkSpeed>
     <Run>
       <Speed>30.0</Speed>
     </Run>

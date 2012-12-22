@@ -2,7 +2,7 @@
 <Entity parent="units/brit_war_dog_b">
   <Armour>
     <Hack>2.0</Hack>
-    <Pierce>2.0</Pierce>
+    <Pierce>5.0</Pierce>
     <Crush>2.0</Crush>
   </Armour>
   <Attack>
@@ -20,7 +20,7 @@
     <Entity>units/brit_war_dog_e</Entity>
   </Promotion>
   <UnitMotion>
-    <WalkSpeed>9.24</WalkSpeed>
+    <WalkSpeed>10.24</WalkSpeed>
     <Run>
       <Speed>27.72</Speed>
     </Run>

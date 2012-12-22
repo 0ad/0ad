@@ -2,7 +2,7 @@
 <Entity parent="units/iber_cavalry_spearman_a">
   <Armour>
     <Hack>7.0</Hack>
-    <Pierce>12.0</Pierce>
+    <Pierce>15.0</Pierce>
     <Crush>7.0</Crush>
   </Armour>
   <Attack>
@@ -16,7 +16,7 @@
     </Charge>
   </Attack>
   <Health>
-    <Max>150</Max>
+    <Max>220</Max>
   </Health>
   <Identity>
     <Rank>Elite</Rank>
@@ -26,7 +26,7 @@
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>9.0</WalkSpeed>
+    <WalkSpeed>10.0</WalkSpeed>
     <Run>
       <Speed>22.5</Speed>
     </Run>

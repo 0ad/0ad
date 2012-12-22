@@ -2,7 +2,7 @@
 <Entity parent="template_unit_cavalry_ranged">
   <Armour>
     <Hack>3.0</Hack>
-    <Pierce>3.0</Pierce>
+    <Pierce>4.0</Pierce>
     <Crush>2.0</Crush>
   </Armour>
   <Attack>
@@ -35,7 +35,7 @@
     </Resources>
   </Cost>
   <Health>
-    <Max>120</Max>
+    <Max>150</Max>
   </Health>
   <Identity>
     <Classes datatype="tokens">Javelin</Classes>
