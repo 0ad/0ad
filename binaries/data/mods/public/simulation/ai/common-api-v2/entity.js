@@ -59,10 +59,24 @@ var EntityTemplate = Class({
 		return 0; // this should never happen
 	},
 
-	maxHitpoints: function() { return this._template.Health.Max; },
-	isHealable: function() { return this._template.Health.Unhealable !== "true"; },
-	isRepairable: function() { return this._template.Health.Repairable === "true"; },
-
+	maxHitpoints: function()
+	{
+		if (this._template.Health !== undefined)
+			return this._template.Health.Max;
+		return 0;
+	},
+	isHealable: function()
+	{
+		if (this._template.Health !== undefined)
+			return this._template.Health.Unhealable !== "true";
+		return false;
+	},
+	isRepairable: function()
+	{
+		if (this._template.Health !== undefined)
+			return this._template.Health.Repairable === "true";
+		return false;
+	},
 
 	armourStrengths: function() {
 		if (!this._template.Armour)
@@ -276,7 +290,7 @@ var Entity = Class({
 	
 	unitAIState: function() { return this._entity.unitAIState; },
 	unitAIOrderData: function() { return this._entity.unitAIOrderData; },
-	hitpoints: function() { return this._entity.hitpoints; },
+	hitpoints: function() { if (this._entity.hitpoints !== undefined) return this._entity.hitpoints; return undefined; },
 	isHurt: function() { return this.hitpoints() < this.maxHitpoints(); },
 	needsHeal: function() { return this.isHurt() && this.isHealable(); },
 	needsRepair: function() { return this.isHurt() && this.isRepairable(); },
