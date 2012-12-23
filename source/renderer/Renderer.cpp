@@ -1494,7 +1494,7 @@ void CRenderer::RenderSubmissions()
 				dirty.x2 = refractionScissor.x2;
 				dirty.y2 = refractionScissor.y2;
 			}
-			else
+            else if (m_Options.m_WaterReflection)
 			{
 				SScreenRect reflectionScissor = RenderReflections(context, waterScissor);
 				dirty.x1 = reflectionScissor.x1;
