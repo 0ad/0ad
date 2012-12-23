@@ -139,7 +139,7 @@ for (var i = 0; i < numPlayers; i++)
 		var aX = round(fx + aDist * cos(aAngle));
 		var aZ = round(fz + aDist * sin(aAngle));
 		var group = new SimpleGroup(
-			[new SimpleObject(oChicken, 5,5, 0,3)],
+			[new SimpleObject(oChicken, 5,5, 0,2)],
 			true, clBaseResource, aX, aZ
 		);
 		createObjectGroup(group, 0);

@@ -35,6 +35,7 @@ bool g_NoGLVBO = false;
 
 bool g_PauseOnFocusLoss = false;
 CStr g_PlayerName = "";
+CStr g_MPServer = "";
 
 bool g_Shadows = false;
 bool g_ShadowPCF = false;
@@ -86,9 +87,10 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("novbo", Bool, g_NoGLVBO);
 	CFG_GET_USER_VAL("pauseonfocusloss", Bool, g_PauseOnFocusLoss);
 	CFG_GET_USER_VAL("playername", String, g_PlayerName);
+	CFG_GET_USER_VAL("multiplayerserver", String, g_MPServer);
 	CFG_GET_USER_VAL("shadows", Bool, g_Shadows);
 	CFG_GET_USER_VAL("shadowpcf", Bool, g_ShadowPCF);
-	
+
 	CFG_GET_USER_VAL("waternormals",Bool, g_WaterNormal);
 	CFG_GET_USER_VAL("waterrealdepth",Bool, g_WaterRealDepth);
 	CFG_GET_USER_VAL("waterfoam",Bool, g_WaterFoam);
@@ -109,9 +111,9 @@ static void LoadGlobals()
 	float musicGain = 0.5f;
 	float ambientGain = 0.5f;
 	float actionGain = 0.5f;
-	int	bufferCount = 50;
-	unsigned long	bufferSize = 65536;
-	
+	int bufferCount = 50;
+	unsigned long bufferSize = 65536;
+
 	CFG_GET_USER_VAL("sound.mastergain", Float, gain);
 	CFG_GET_USER_VAL("sound.musicgain", Float, musicGain);
 	CFG_GET_USER_VAL("sound.ambientgain", Float, ambientGain);
@@ -120,7 +122,7 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("sound.bufferCount", Int, bufferCount);
 	CFG_GET_USER_VAL("sound.bufferSize", UnsignedLong, bufferSize);
 
-	if ( g_SoundManager ) {
+	if (g_SoundManager) {
 		g_SoundManager->SetMasterGain(gain);
 		g_SoundManager->SetMusicGain(musicGain);
 		g_SoundManager->SetAmbientGain(ambientGain);

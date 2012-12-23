@@ -5,15 +5,13 @@
   </Cost>
   <Health>
     <Max>3300</Max>
+    <SpawnEntityOnDeath>rubble/rubble_hele_cc</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>spart</Civ>
     <SpecificName>Agorā́</SpecificName>
     <History>The most important place in most Classical Greek poleis, the Agora served many purposes; it was a place for public speeches and was the stage for civic life and commercial interests.</History>
   </Identity>
-<Health>
-  <SpawnEntityOnDeath>rubble/rubble_hele_cc</SpawnEntityOnDeath>
-  </Health>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/spart_infantry_spearman_b

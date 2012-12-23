@@ -145,7 +145,6 @@ private:
 		// Wait until the main thread wakes us up
 		while ( true )
 		{
-			g_Profiler2.RecordRegionLeave("semaphore wait");
 
 			if (timer_Time() < m_PauseUntilTime)
 				continue;

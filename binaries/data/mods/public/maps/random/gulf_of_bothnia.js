@@ -192,7 +192,7 @@ for (var i = 0; i < numPlayers; i++)
 		var aX = round(fx + aDist * cos(aAngle));
 		var aZ = round(fz + aDist * sin(aAngle));
 		var group = new SimpleGroup(
-			[new SimpleObject(oChicken, 5,5, 0,3)],
+			[new SimpleObject(oChicken, 5,5, 0,2)],
 			true, clBaseResource, aX, aZ
 		);
 		createObjectGroup(group, 0);
@@ -324,12 +324,6 @@ var terrainPainter = new LayeredPainter(
 	[tGrass, tGrass, tGrass, tGrass],		// terrains
 	[1, 4, 2]		// widths
 );
-var elevationPainter = new SmoothElevationPainter(
-	ELEVATION_SET,			// type
-	seaHeight,				// elevation
-	0				// blend radius
-);
-createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,scaleByMapSize(15,25)+4));
 var elevationPainter = new SmoothElevationPainter(
 	ELEVATION_SET,			// type
 	seaHeight,				// elevation

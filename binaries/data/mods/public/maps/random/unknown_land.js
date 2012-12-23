@@ -1049,12 +1049,6 @@ else if (md == 7) //gulf
 	var elevationPainter = new SmoothElevationPainter(
 		ELEVATION_SET,			// type
 		-3,				// elevation
-		0				// blend radius
-	);
-	createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,scaleByMapSize(15,25)+4));
-	var elevationPainter = new SmoothElevationPainter(
-		ELEVATION_SET,			// type
-		-3,				// elevation
 		4				// blend radius
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,scaleByMapSize(15,25)));	
@@ -1437,7 +1431,7 @@ for (var i = 0; i < numPlayers; i++)
 		var aX = round(fx + aDist * cos(aAngle));
 		var aZ = round(fz + aDist * sin(aAngle));
 		var group = new SimpleGroup(
-			[new SimpleObject(oChicken, 5,5, 0,3)],
+			[new SimpleObject(oChicken, 5,5, 0,2)],
 			true, clBaseResource, aX, aZ
 		);
 		createObjectGroup(group, 0);

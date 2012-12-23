@@ -179,6 +179,12 @@ std::wstring GetDefaultPlayerName(void* UNUSED(cbdata))
 	return name;
 }
 
+std::wstring GetDefaultMPServer(void* UNUSED(cbdata))
+{
+	std::wstring server = g_MPServer.FromUTF8();
+	return server;
+}
+
 void StartNetworkGame(void* UNUSED(cbdata))
 {
 	ENSURE(g_NetServer);
@@ -634,6 +640,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
 	scriptInterface.RegisterFunction<std::wstring, &GetDefaultPlayerName>("GetDefaultPlayerName");
+	scriptInterface.RegisterFunction<std::wstring, &GetDefaultMPServer>("GetDefaultMPServer");
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
