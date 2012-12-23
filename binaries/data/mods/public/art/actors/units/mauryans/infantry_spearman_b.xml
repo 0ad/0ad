@@ -45,6 +45,7 @@
       </props>
       <textures>
         <texture file="skeletal/maur_isp_b.png" name="baseTex"/>
+        <texture file="skeletal/maur_isp_b_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -160,5 +161,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
