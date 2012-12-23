@@ -30,6 +30,9 @@ BuildingAI.prototype.Init = function()
 
 BuildingAI.prototype.OnOwnershipChanged = function(msg)
 {
+	// Remove current targets, to prevent them from being added twice
+	this.targetUnits = [];
+
 	if (msg.to != -1)
 		this.SetupRangeQuery(msg.to);
 
