@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,17 +85,19 @@ public:
 	CConfigDB();
 
 	/**
-	 * Attempt to find a config variable with the given name; will search all
-	 * namespaces from system up to the specified namespace.
+	 * Attempt to find a config variable with the given name; will search
+	 * CFG_COMMAND first, and then all namespaces from the specified namespace
+	 * down to system.
 	 *
 	 * Returns a pointer to the config value structure for the variable, or
-	 * NULL if such a variable could not be found
+	 * NULL if such a variable could not be found.
 	 */
 	CConfigValue *GetValue(EConfigNamespace ns, const CStr& name);
-	
+
 	/**
 	 * Attempt to retrieve a vector of values corresponding to the given setting;
-	 * will search all namespaces from system up to the specified namespace.
+	 * will search CFG_COMMAND first, and then all namespaces from the specified
+	 * namespace down to system.
 	 *
 	 * Returns a pointer to the vector, or NULL if the setting could not be found.
 	 */
@@ -116,8 +118,7 @@ public:
 
 	/**
 	 * Create a new config value in the specified namespace. If such a
-	 * variable already exists, the old value is returned and the effect is
-	 * exactly the same as that of GetValue()
+	 * variable already exists in this namespace, the old value is returned.
 	 *
 	 * Returns a pointer to the value of the newly created config variable, or
 	 * that of the already existing config variable.
