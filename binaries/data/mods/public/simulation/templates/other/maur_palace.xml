@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_house">
+  <Footprint>
+    <Square width="40.0" depth="16.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>maur</Civ>
+    <SpecificName>Griham</SpecificName>
+    <History>House.</History>
+  </Identity>
+  <Obstruction>
+    <Static width="36.0" depth="12.0"/>
+  </Obstruction>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>38</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
+  <VisualActor>
+    <Actor>structures/mauryans/misc_structure_01.xml</Actor>
+  </VisualActor>
+</Entity>
