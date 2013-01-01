@@ -20,7 +20,6 @@
 
 #include "lib/res/graphics/unifont.h"
 
-#include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 

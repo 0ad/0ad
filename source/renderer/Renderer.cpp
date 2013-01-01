@@ -444,12 +444,12 @@ CRenderer::CRenderer()
 	m_Options.m_ShowSky = false;
 
 	// TODO: be more consistent in use of the config system
-	CFG_GET_USER_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
-	CFG_GET_USER_VAL("forcealphatest", Bool, m_Options.m_ForceAlphaTest);
-	CFG_GET_USER_VAL("gpuskinning", Bool, m_Options.m_GPUSkinning);
-	CFG_GET_USER_VAL("gentangents", Bool, m_Options.m_GenTangents);
-	CFG_GET_USER_VAL("smoothlos", Bool, m_Options.m_SmoothLOS);
-	CFG_GET_USER_VAL("postproc", Bool, m_Options.m_Postproc);
+	CFG_GET_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
+	CFG_GET_VAL("forcealphatest", Bool, m_Options.m_ForceAlphaTest);
+	CFG_GET_VAL("gpuskinning", Bool, m_Options.m_GPUSkinning);
+	CFG_GET_VAL("gentangents", Bool, m_Options.m_GenTangents);
+	CFG_GET_VAL("smoothlos", Bool, m_Options.m_SmoothLOS);
+	CFG_GET_VAL("postproc", Bool, m_Options.m_Postproc);
 
 #if CONFIG2_GLES
 	// Override config option since GLES only supports GLSL

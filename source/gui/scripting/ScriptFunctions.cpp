@@ -171,7 +171,7 @@ int GetPlayerID(void* UNUSED(cbdata))
 std::wstring GetDefaultPlayerName(void* UNUSED(cbdata))
 {
 	CStr playername;
-	CFG_GET_USER_VAL("playername", String, playername);
+	CFG_GET_VAL("playername", String, playername);
 	std::wstring name = playername.FromUTF8();
 	if (!name.empty())
 		return name;
@@ -186,7 +186,7 @@ std::wstring GetDefaultPlayerName(void* UNUSED(cbdata))
 std::wstring GetDefaultMPServer(void* UNUSED(cbdata))
 {
 	CStr server;
-	CFG_GET_USER_VAL("multiplayerserver", String, server);
+	CFG_GET_VAL("multiplayerserver", String, server);
 	return server.FromUTF8();
 }
 
@@ -492,7 +492,7 @@ bool IsUserReportEnabled(void* UNUSED(cbdata))
 bool IsSplashScreenEnabled(void* UNUSED(cbdata))
 {
 	bool splashScreenEnable = true;
-	CFG_GET_USER_VAL("splashscreenenable", Bool, splashScreenEnable);
+	CFG_GET_VAL("splashscreenenable", Bool, splashScreenEnable);
 	return splashScreenEnable;
 }
 

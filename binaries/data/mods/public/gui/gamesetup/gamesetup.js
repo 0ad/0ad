@@ -1202,12 +1202,15 @@ function updatePlayerList()
 				var aiId = g_GameAttributes.settings.PlayerData[playerSlot].AI;
 				if (aiId)
 				{
-					selection = aiAssignments[aiId];
+					// Check for a valid AI
+					if (aiId in aiAssignments)
+						selection = aiAssignments[aiId];
+					else
+						warn("AI \""+aiId+"\" not present. Defaulting to unassigned.");
 				}
-				else
-				{
+
+				if (!selection)
 					selection = noAssignment;
-				}
 
 				// Since no human is assigned, show the AI config button
 				if (g_IsController)

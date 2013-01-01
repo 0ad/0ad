@@ -78,29 +78,29 @@ CStr g_AutostartMap = "";
 // Fill in the globals from the config files.
 static void LoadGlobals()
 {
-	CFG_GET_USER_VAL("vsync", Bool, g_VSync);
+	CFG_GET_VAL("vsync", Bool, g_VSync);
 
-	CFG_GET_USER_VAL("nos3tc", Bool, g_NoGLS3TC);
-	CFG_GET_USER_VAL("noautomipmap", Bool, g_NoGLAutoMipmap);
-	CFG_GET_USER_VAL("novbo", Bool, g_NoGLVBO);
-	CFG_GET_USER_VAL("pauseonfocusloss", Bool, g_PauseOnFocusLoss);
-	CFG_GET_USER_VAL("shadows", Bool, g_Shadows);
-	CFG_GET_USER_VAL("shadowpcf", Bool, g_ShadowPCF);
+	CFG_GET_VAL("nos3tc", Bool, g_NoGLS3TC);
+	CFG_GET_VAL("noautomipmap", Bool, g_NoGLAutoMipmap);
+	CFG_GET_VAL("novbo", Bool, g_NoGLVBO);
+	CFG_GET_VAL("pauseonfocusloss", Bool, g_PauseOnFocusLoss);
+	CFG_GET_VAL("shadows", Bool, g_Shadows);
+	CFG_GET_VAL("shadowpcf", Bool, g_ShadowPCF);
 
-	CFG_GET_USER_VAL("waternormals",Bool, g_WaterNormal);
-	CFG_GET_USER_VAL("waterrealdepth",Bool, g_WaterRealDepth);
-	CFG_GET_USER_VAL("waterfoam",Bool, g_WaterFoam);
-	CFG_GET_USER_VAL("watercoastalwaves",Bool, g_WaterCoastalWaves);
+	CFG_GET_VAL("waternormals",Bool, g_WaterNormal);
+	CFG_GET_VAL("waterrealdepth",Bool, g_WaterRealDepth);
+	CFG_GET_VAL("waterfoam",Bool, g_WaterFoam);
+	CFG_GET_VAL("watercoastalwaves",Bool, g_WaterCoastalWaves);
 	if (g_WaterCoastalWaves && !g_WaterNormal)
 		g_WaterCoastalWaves = false;
-	CFG_GET_USER_VAL("waterrefraction",Bool, g_WaterRefraction);
-	CFG_GET_USER_VAL("waterreflection",Bool, g_WaterReflection);
-	CFG_GET_USER_VAL("watershadows",Bool, g_WaterShadows);
-	
-	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);
-	CFG_GET_USER_VAL("particles", Bool, g_Particles);
-	CFG_GET_USER_VAL("silhouettes", Bool, g_Silhouettes);
-	CFG_GET_USER_VAL("showsky", Bool, g_ShowSky);
+	CFG_GET_VAL("waterrefraction",Bool, g_WaterRefraction);
+	CFG_GET_VAL("waterreflection",Bool, g_WaterReflection);
+	CFG_GET_VAL("watershadows",Bool, g_WaterShadows);
+
+	CFG_GET_VAL("renderpath", String, g_RenderPath);
+	CFG_GET_VAL("particles", Bool, g_Particles);
+	CFG_GET_VAL("silhouettes", Bool, g_Silhouettes);
+	CFG_GET_VAL("showsky", Bool, g_ShowSky);
 
 #if CONFIG2_AUDIO
 	float gain = 0.5f;
@@ -110,13 +110,13 @@ static void LoadGlobals()
 	int bufferCount = 50;
 	unsigned long bufferSize = 65536;
 
-	CFG_GET_USER_VAL("sound.mastergain", Float, gain);
-	CFG_GET_USER_VAL("sound.musicgain", Float, musicGain);
-	CFG_GET_USER_VAL("sound.ambientgain", Float, ambientGain);
-	CFG_GET_USER_VAL("sound.actiongain", Float, actionGain);
+	CFG_GET_VAL("sound.mastergain", Float, gain);
+	CFG_GET_VAL("sound.musicgain", Float, musicGain);
+	CFG_GET_VAL("sound.ambientgain", Float, ambientGain);
+	CFG_GET_VAL("sound.actiongain", Float, actionGain);
 
-	CFG_GET_USER_VAL("sound.bufferCount", Int, bufferCount);
-	CFG_GET_USER_VAL("sound.bufferSize", UnsignedLong, bufferSize);
+	CFG_GET_VAL("sound.bufferCount", Int, bufferCount);
+	CFG_GET_VAL("sound.bufferSize", UnsignedLong, bufferSize);
 
 	if (g_SoundManager) {
 		g_SoundManager->SetMasterGain(gain);
@@ -223,7 +223,7 @@ void CONFIG_Init(const CmdLineArgs& args)
 
 	// Initialise console history file
 	int max_history_lines = 200;
-	CFG_GET_USER_VAL("console.history.size", Int, max_history_lines);
+	CFG_GET_VAL("console.history.size", Int, max_history_lines);
 	g_Console->UseHistoryFile(L"config/console.txt", max_history_lines);
 
 	// Collect information from system.cfg, the profile file,

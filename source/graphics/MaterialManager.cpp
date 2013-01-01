@@ -33,7 +33,7 @@
 CMaterialManager::CMaterialManager()
 {
 	qualityLevel = 5.0;
-	CFG_GET_USER_VAL("materialmgr.quality", Float, qualityLevel);
+	CFG_GET_VAL("materialmgr.quality", Float, qualityLevel);
 	qualityLevel = clamp(qualityLevel, 0.0f, 10.0f);
 }
 
@@ -133,8 +133,8 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 				CStr conf = attrs.GetNamedItem(at_conf);
 				if (!conf.empty())
 				{
-					CFG_GET_USER_VAL("materialmgr." + conf + ".min", Float, valmin);
-					CFG_GET_USER_VAL("materialmgr." + conf + ".max", Float, valmax);
+					CFG_GET_VAL("materialmgr." + conf + ".min", Float, valmin);
+					CFG_GET_VAL("materialmgr." + conf + ".max", Float, valmax);
 				}
 				else
 				{
