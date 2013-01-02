@@ -97,7 +97,7 @@ boost
                     {
                     shared_ptr<error_info_base> const & p = i->second;
 #ifndef BOOST_NO_RTTI
-                    BOOST_ASSERT( BOOST_EXCEPTION_DYNAMIC_TYPEID(*p).type_==ti.type_ );
+                    BOOST_ASSERT( *BOOST_EXCEPTION_DYNAMIC_TYPEID(*p).type_==*ti.type_ );
 #endif
                     return p;
                     }
@@ -109,7 +109,6 @@ boost
                 {
                 if( header )
                     {
-                    BOOST_ASSERT(*header!=0);
                     std::ostringstream tmp;
                     tmp << header;
                     for( error_info_map::const_iterator i=info_.begin(),end=info_.end(); i!=end; ++i )

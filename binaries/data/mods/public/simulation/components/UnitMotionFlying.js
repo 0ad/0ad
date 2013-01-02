@@ -189,6 +189,11 @@ UnitMotionFlying.prototype.GetRunSpeed = function()
 	return this.GetWalkSpeed();
 };
 
+UnitMotionFlying.prototype.GetCurrentSpeed = function()
+{
+	return this.speed;
+}
+
 UnitMotionFlying.prototype.FaceTowardsPoint = function(x, z)
 {
 	// Ignore this - angle is controlled by the target-seeking code instead

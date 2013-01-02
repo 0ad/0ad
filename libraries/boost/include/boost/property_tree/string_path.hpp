@@ -17,6 +17,7 @@
 #include <boost/property_tree/detail/ptree_utils.hpp>
 
 #include <boost/static_assert.hpp>
+#include <boost/assert.hpp>
 #include <boost/type_traits/is_same.hpp>
 #include <boost/optional.hpp>
 #include <boost/throw_exception.hpp>
@@ -57,10 +58,12 @@ namespace boost { namespace property_tree
         {
             return s;
         }
+#ifndef BOOST_NO_STD_WSTRING
         inline std::string dump_sequence(const std::wstring &s)
         {
             return narrow(s.c_str());
         }
+#endif
     }
 
     /// Default path class. A path is a sequence of values. Groups of values
@@ -119,6 +122,9 @@ namespace boost { namespace property_tree
         /// Test if the path contains a single element, i.e. no separators.
         bool single() const;
 
+        /// Get the separator used by this path.
+        char_type separator() const { return m_separator; }
+
         std::string dump() const {
             return detail::dump_sequence(m_value);
         }
@@ -129,8 +135,10 @@ namespace boost { namespace property_tree
             // If it's single, there's no separator. This allows to do
             // p /= "piece";
             // even for non-default separators.
-            assert((m_separator == o.m_separator || o.empty() || o.single())
-                   && "Incompatible paths.");
+            BOOST_ASSERT((m_separator == o.m_separator
+                          || o.empty()
+                          || o.single())
+                         && "Incompatible paths.");
             if(!o.empty()) {
                 String sub;
                 if(!this->empty()) {
@@ -197,7 +205,7 @@ namespace boost { namespace property_tree
     template <typename String, typename Translator>
     typename Translator::external_type string_path<String, Translator>::reduce()
     {
-        assert(!empty() && "Reducing empty path");
+        BOOST_ASSERT(!empty() && "Reducing empty path");
 
         s_iter next_sep = std::find(m_start, m_value.end(), m_separator);
         String part(m_start, next_sep);

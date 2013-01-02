@@ -38,9 +38,17 @@
 #include <boost/mpl/insert_range.hpp>
 #include <boost/mpl/front.hpp>
 #include <boost/mpl/logical.hpp>
+#include <boost/mpl/plus.hpp>
+#include <boost/mpl/copy_if.hpp>
+#include <boost/mpl/back_inserter.hpp>
+#include <boost/mpl/transform.hpp>
 
 #include <boost/type_traits/is_same.hpp>
 #include <boost/utility/enable_if.hpp>
+
+// mpl_graph graph implementation and depth first search
+#include <boost/msm/mpl_graph/incidence_list_graph.hpp>
+#include <boost/msm/mpl_graph/depth_first_search.hpp>
 
 BOOST_MPL_HAS_XXX_TRAIT_DEF(explicit_creation)
 BOOST_MPL_HAS_XXX_TRAIT_DEF(pseudo_entry)
@@ -55,9 +63,18 @@ BOOST_MPL_HAS_XXX_TRAIT_DEF(no_exception_thrown)
 BOOST_MPL_HAS_XXX_TRAIT_DEF(no_message_queue)
 BOOST_MPL_HAS_XXX_TRAIT_DEF(activate_deferred_events)
 BOOST_MPL_HAS_XXX_TRAIT_DEF(wrapped_entry)
+BOOST_MPL_HAS_XXX_TRAIT_DEF(active_state_switch_policy)
 
 namespace boost { namespace msm { namespace back
 {
+template <typename Sequence, typename Range>
+struct set_insert_range
+{
+    typedef typename ::boost::mpl::fold<
+        Range,Sequence, 
+        ::boost::mpl::insert< ::boost::mpl::placeholders::_1, ::boost::mpl::placeholders::_2 >
+    >::type type;
+};
 
 // returns the current state type of a transition
 template <class Transition>
@@ -139,6 +156,35 @@ struct generate_state_ids
     typedef typename ::boost::mpl::first<all_state_ids>::type type;
 };
 
+template <class Fsm>
+struct get_active_state_switch_policy_helper
+{
+    typedef typename Fsm::active_state_switch_policy type;
+};
+template <class Iter>
+struct get_active_state_switch_policy_helper2
+{
+    typedef typename boost::mpl::deref<Iter>::type Fsm;
+    typedef typename Fsm::active_state_switch_policy type;
+};
+// returns the active state switching policy
+template <class Fsm>
+struct get_active_state_switch_policy
+{
+    typedef typename ::boost::mpl::find_if<
+        typename Fsm::configuration,
+        has_active_state_switch_policy< ::boost::mpl::placeholders::_1 > >::type iter;
+
+    typedef typename ::boost::mpl::eval_if<
+        typename ::boost::is_same<
+            iter, 
+            typename ::boost::mpl::end<typename Fsm::configuration>::type
+        >::type,
+        get_active_state_switch_policy_helper<Fsm>,
+        get_active_state_switch_policy_helper2< iter >
+    >::type type;
+};
+
 // returns the id of a given state
 template <class stt,class State>
 struct get_state_id
@@ -168,6 +214,7 @@ struct get_number_of_regions
 };
 
 // builds a mpl::vector of initial states
+//TODO remove duplicate from get_initial_states
 template <class region>
 struct get_regions_as_sequence 
 {
@@ -314,7 +361,7 @@ struct is_pseudo_exit
         ::boost::mpl::bool_<true>, ::boost::mpl::bool_<false> 
     >::type type;
 };
-// says if a state is an exit pseudo state
+// says if a state is an entry pseudo state or an explicit entry
 template <class State>
 struct is_direct_entry 
 {
@@ -374,7 +421,7 @@ struct create_stt
         ::boost::mpl::if_<
                  ::boost::mpl::has_key<states, ::boost::mpl::placeholders::_2>,
                  ::boost::mpl::placeholders::_1,
-                 ::boost::mpl::insert< ::boost::mpl::placeholders::_1, ::boost::mpl::end<mpl::placeholders::_1>,
+                 ::boost::mpl::insert< ::boost::mpl::placeholders::_1, ::boost::mpl::end< ::boost::mpl::placeholders::_1>,
                              not_a_row< get_wrapped_state< ::boost::mpl::placeholders::_2> > > 
                   >
         >::type with_init;
@@ -408,6 +455,29 @@ struct get_transition_table
 {
     typedef typename create_stt<Composite>::type type;
 };
+
+// recursively builds an internal table including those of substates, sub-substates etc.
+// variant for submachines
+template <class StateType,class IsComposite>
+struct recursive_get_internal_transition_table
+{
+    // get the composite's internal table
+    typedef typename StateType::internal_transition_table composite_table;
+    // and for every substate (state of submachine), recursively get the internal transition table
+    typedef typename generate_state_set<typename StateType::stt>::type composite_states;
+    typedef typename ::boost::mpl::fold<
+            composite_states, composite_table,
+            ::boost::mpl::insert_range< ::boost::mpl::placeholders::_1, ::boost::mpl::end< ::boost::mpl::placeholders::_1>,
+             recursive_get_internal_transition_table< ::boost::mpl::placeholders::_2, is_composite_state< ::boost::mpl::placeholders::_2> >
+             >
+    >::type type;
+};
+// stop iterating on leafs (simple states)
+template <class StateType>
+struct recursive_get_internal_transition_table<StateType, ::boost::mpl::false_ >
+{
+    typedef typename StateType::internal_transition_table type;
+};
 // recursively get a transition table for a given composite state.
 // returns the transition table for this state + the tables of all composite sub states recursively
 template <class Composite>
@@ -416,7 +486,8 @@ struct recursive_get_transition_table
     // get the transition table of the state if it's a state machine
     typedef typename ::boost::mpl::eval_if<typename is_composite_state<Composite>::type,
         get_transition_table<Composite>,
-        ::boost::mpl::vector0<> >::type org_table;
+        ::boost::mpl::vector0<>
+    >::type org_table;
 
     typedef typename generate_state_set<org_table>::type states;
 
@@ -561,11 +632,22 @@ struct has_exit_pseudo_states
         ::boost::mpl::bool_<false> >::type type;
 };
 
+// builds flags (add internal_flag_list and flag_list). internal_flag_list is used for terminate/interrupt states
+template <class StateType>
+struct get_flag_list 
+{
+    typedef typename ::boost::mpl::insert_range< 
+        typename StateType::flag_list, 
+        typename ::boost::mpl::end< typename StateType::flag_list >::type,
+        typename StateType::internal_flag_list
+    >::type type;
+};
+
 template <class StateType>
 struct is_state_blocking 
 {
     typedef typename ::boost::mpl::fold<
-        typename StateType::flag_list, ::boost::mpl::set<>,
+        typename get_flag_list<StateType>::type, ::boost::mpl::set<>,
         ::boost::mpl::if_<
                  has_event_blocking_flag< ::boost::mpl::placeholders::_2>,
                  ::boost::mpl::insert< ::boost::mpl::placeholders::_1, ::boost::mpl::placeholders::_2 >, 
@@ -625,10 +707,210 @@ struct is_no_message_queue
 };
 
 template <class StateType>
+struct is_active_state_switch_policy 
+{
+    typedef ::boost::mpl::bool_< ::boost::mpl::count_if<
+        typename StateType::configuration,
+        has_active_state_switch_policy< ::boost::mpl::placeholders::_1 > >::value != 0> found;
+
+    typedef typename ::boost::mpl::or_<
+        typename has_active_state_switch_policy<StateType>::type,
+        found
+    >::type type;
+};
+
+template <class StateType>
 struct get_initial_event 
 {
     typedef typename StateType::initial_event type;
 };
+
+template <class StateType>
+struct get_final_event 
+{
+    typedef typename StateType::final_event type;
+};
+
+template <class TransitionTable, class InitState>
+struct build_one_orthogonal_region 
+{
+     template<typename Row>
+     struct row_to_incidence :
+         ::boost::mpl::vector<
+                ::boost::mpl::pair<
+                    typename Row::next_state_type, 
+                    typename Row::transition_event>, 
+                typename Row::current_state_type, 
+                typename Row::next_state_type
+         > {};
+
+     template <class Seq, class Elt>
+     struct transition_incidence_list_helper 
+     {
+         typedef typename ::boost::mpl::push_back< Seq, row_to_incidence< Elt > >::type type;
+     };
+
+     typedef typename ::boost::mpl::fold<
+         TransitionTable,
+         ::boost::mpl::vector<>,
+         transition_incidence_list_helper< ::boost::mpl::placeholders::_1, ::boost::mpl::placeholders::_2>
+     >::type transition_incidence_list;
+
+     typedef ::boost::msm::mpl_graph::incidence_list_graph<transition_incidence_list>
+         transition_graph;
+
+     struct preordering_dfs_visitor : 
+         ::boost::msm::mpl_graph::dfs_default_visitor_operations 
+     {    
+         template<typename Node, typename Graph, typename State>
+         struct discover_vertex :
+             ::boost::mpl::insert<State, Node>
+         {};
+     };
+
+     typedef typename mpl::first< 
+         typename ::boost::msm::mpl_graph::depth_first_search<
+            transition_graph, 
+            preordering_dfs_visitor,
+            ::boost::mpl::set<>,
+            InitState
+         >::type
+     >::type type;
+};
+
+template <class Fsm>
+struct find_entry_states 
+{
+    typedef typename ::boost::mpl::copy<
+        typename Fsm::substate_list,
+        ::boost::mpl::inserter< 
+            ::boost::mpl::set0<>,
+            ::boost::mpl::if_<
+                has_explicit_entry_state< ::boost::mpl::placeholders::_2 >,
+                ::boost::mpl::insert< ::boost::mpl::placeholders::_1, ::boost::mpl::placeholders::_2>,
+                ::boost::mpl::placeholders::_1
+            >
+        >
+    >::type type;
+};
+
+template <class Set1, class Set2>
+struct is_common_element 
+{
+    typedef typename ::boost::mpl::fold<
+        Set1, ::boost::mpl::false_,
+        ::boost::mpl::if_<
+            ::boost::mpl::has_key<
+                Set2,
+                ::boost::mpl::placeholders::_2
+            >,
+            ::boost::mpl::true_,
+            ::boost::mpl::placeholders::_1
+        >
+    >::type type;
+};
+
+template <class EntryRegion, class AllRegions>
+struct add_entry_region 
+{
+    typedef typename ::boost::mpl::transform<
+        AllRegions, 
+        ::boost::mpl::if_<
+            is_common_element<EntryRegion, ::boost::mpl::placeholders::_1>,
+            set_insert_range< ::boost::mpl::placeholders::_1, EntryRegion>,
+            ::boost::mpl::placeholders::_1
+        >
+    >::type type;
+};
+
+// build a vector of regions states (as a set)
+// one set of states for every region
+template <class Fsm, class InitStates>
+struct build_orthogonal_regions 
+{
+    typedef typename 
+        ::boost::mpl::fold<
+            InitStates, ::boost::mpl::vector0<>,
+            ::boost::mpl::push_back< 
+                ::boost::mpl::placeholders::_1, 
+                build_one_orthogonal_region< typename Fsm::stt, ::boost::mpl::placeholders::_2 > >
+        >::type without_entries;
+
+    typedef typename 
+        ::boost::mpl::fold<
+        typename find_entry_states<Fsm>::type, ::boost::mpl::vector0<>,
+            ::boost::mpl::push_back< 
+                ::boost::mpl::placeholders::_1, 
+                build_one_orthogonal_region< typename Fsm::stt, ::boost::mpl::placeholders::_2 > >
+        >::type only_entries;
+
+    typedef typename ::boost::mpl::fold<
+        only_entries , without_entries,
+        add_entry_region< ::boost::mpl::placeholders::_2, ::boost::mpl::placeholders::_1>
+    >::type type;
+};
+
+template <class GraphAsSeqOfSets, class StateType>
+struct find_region_index
+{
+    typedef typename 
+        ::boost::mpl::fold<
+            GraphAsSeqOfSets, ::boost::mpl::pair< ::boost::mpl::int_< -1 > /*res*/, ::boost::mpl::int_<0> /*counter*/ >,
+            ::boost::mpl::if_<
+                ::boost::mpl::has_key< ::boost::mpl::placeholders::_2, StateType >,
+                ::boost::mpl::pair< 
+                    ::boost::mpl::second< ::boost::mpl::placeholders::_1 >,
+                    ::boost::mpl::next< ::boost::mpl::second< ::boost::mpl::placeholders::_1 > >
+                >,
+                ::boost::mpl::pair< 
+                    ::boost::mpl::first< ::boost::mpl::placeholders::_1 >,
+                    ::boost::mpl::next< ::boost::mpl::second< ::boost::mpl::placeholders::_1 > >
+                >
+            >
+        >::type result_pair;
+    typedef typename ::boost::mpl::first<result_pair>::type type;
+    enum {value = type::value};
+};
+
+template <class Fsm>
+struct check_regions_orthogonality
+{
+    typedef typename build_orthogonal_regions< Fsm,typename Fsm::initial_states>::type regions;
+    
+    typedef typename ::boost::mpl::fold<
+        regions, ::boost::mpl::int_<0>,
+        ::boost::mpl::plus< ::boost::mpl::placeholders::_1 , ::boost::mpl::size< ::boost::mpl::placeholders::_2> >
+    >::type number_of_states_in_regions;
+
+    typedef typename ::boost::mpl::fold<
+            regions,mpl::set0<>,
+            set_insert_range< 
+                    ::boost::mpl::placeholders::_1, 
+                    ::boost::mpl::placeholders::_2 > 
+    >::type one_big_states_set;
+
+    enum {states_in_regions_raw = number_of_states_in_regions::value};
+    enum {cumulated_states_in_regions_raw = ::boost::mpl::size<one_big_states_set>::value};
+};
+
+template <class Fsm>
+struct check_no_unreachable_state
+{
+    typedef typename check_regions_orthogonality<Fsm>::one_big_states_set states_in_regions;
+
+    typedef typename set_insert_range<
+        states_in_regions, 
+        typename ::boost::mpl::eval_if<
+            typename has_explicit_creation<Fsm>::type,
+            get_explicit_creation<Fsm>,
+            ::boost::mpl::vector0<>
+        >::type
+    >::type with_explicit_creation;
+
+    enum {states_in_fsm = ::boost::mpl::size< typename Fsm::substate_list >::value};
+    enum {cumulated_states_in_regions = ::boost::mpl::size< with_explicit_creation >::value};
+};
+
 // helper to find out if a SM has an active exit state and is therefore waiting for exiting
 template <class StateType,class OwnerFct,class FSM>
 inline
@@ -648,7 +930,7 @@ template <class StateType,class OwnerFct,class FSM>
 inline
 typename ::boost::disable_if<typename ::boost::mpl::and_<typename is_composite_state<FSM>::type,
                                                          typename is_pseudo_exit<StateType>::type>,bool >::type
-is_exit_state_active(FSM& fsm)
+is_exit_state_active(FSM&)
 {
     return false;
 }

@@ -15,6 +15,7 @@
 //  Alisdair Meredith - For help porting to Borland
 //  Stefan Slapeta    - For help porting to Intel
 //  David Jenkins     - For help finding a Microsoft Code Analysis bug
+//  mimomorin@...     - For a patch to use rvalue refs on supporting compilers
 
 #ifndef BOOST_FOREACH
 
@@ -30,8 +31,10 @@
 #include <boost/detail/workaround.hpp>
 
 // Some compilers let us detect even const-qualified rvalues at compile-time
-#if BOOST_WORKAROUND(BOOST_MSVC, >= 1310) && !defined(_PREFAST_)                                 \
- || (BOOST_WORKAROUND(__GNUC__, >= 4) && !defined(BOOST_INTEL) && !defined(BOOST_CLANG))         \
+#if !defined(BOOST_NO_RVALUE_REFERENCES)                                                         \
+ || BOOST_WORKAROUND(BOOST_MSVC, >= 1310) && !defined(_PREFAST_)                                 \
+ || (BOOST_WORKAROUND(__GNUC__, == 4) && (__GNUC_MINOR__ <= 5) && !defined(BOOST_INTEL) &&       \
+                                                                  !defined(BOOST_CLANG))         \
  || (BOOST_WORKAROUND(__GNUC__, == 3) && (__GNUC_MINOR__ >= 4) && !defined(BOOST_INTEL) &&       \
                                                                   !defined(BOOST_CLANG))
 # define BOOST_FOREACH_COMPILE_TIME_CONST_RVALUE_DETECTION
@@ -80,6 +83,7 @@
 #include <boost/type_traits/is_const.hpp>
 #include <boost/type_traits/is_abstract.hpp>
 #include <boost/type_traits/is_base_and_derived.hpp>
+#include <boost/type_traits/is_rvalue_reference.hpp>
 #include <boost/iterator/iterator_traits.hpp>
 #include <boost/utility/addressof.hpp>
 #include <boost/foreach_fwd.hpp>
@@ -214,12 +218,6 @@ template<typename Bool1>
 inline boost::mpl::not_<Bool1> *not_(Bool1 *) { return 0; }
 
 template<typename T>
-inline boost::mpl::false_ *is_rvalue_(T &, int) { return 0; }
-
-template<typename T>
-inline boost::mpl::true_ *is_rvalue_(T const &, ...) { return 0; }
-
-template<typename T>
 inline boost::is_array<T> *is_array_(T const &) { return 0; }
 
 template<typename T>
@@ -228,6 +226,17 @@ inline boost::is_const<T> *is_const_(T &) { return 0; }
 #ifndef BOOST_FOREACH_NO_RVALUE_DETECTION
 template<typename T>
 inline boost::mpl::true_ *is_const_(T const &) { return 0; }
+#endif
+
+#ifdef BOOST_NO_RVALUE_REFERENCES
+template<typename T>
+inline boost::mpl::false_ *is_rvalue_(T &, int) { return 0; }
+
+template<typename T>
+inline boost::mpl::true_ *is_rvalue_(T const &, ...) { return 0; }
+#else
+template<typename T>
+inline boost::is_rvalue_reference<T &&> *is_rvalue_(T &&, int) { return 0; }
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -246,7 +255,7 @@ struct auto_any_base
 template<typename T>
 struct auto_any : auto_any_base
 {
-    auto_any(T const &t)
+    explicit auto_any(T const &t)
       : item(t)
     {
     }
@@ -445,7 +454,18 @@ inline T &derefof(T *t)
     );
 }
 
-#ifdef BOOST_FOREACH_COMPILE_TIME_CONST_RVALUE_DETECTION
+#if defined(BOOST_FOREACH_COMPILE_TIME_CONST_RVALUE_DETECTION)                                  \
+ && !defined(BOOST_NO_RVALUE_REFERENCES)
+///////////////////////////////////////////////////////////////////////////////
+// Rvalue references makes it drop-dead simple to detect at compile time
+// whether an expression is an rvalue.
+///////////////////////////////////////////////////////////////////////////////
+
+# define BOOST_FOREACH_IS_RVALUE(COL)                                                           \
+    boost::foreach_detail_::is_rvalue_((COL), 0)
+
+#elif defined(BOOST_FOREACH_COMPILE_TIME_CONST_RVALUE_DETECTION)                                \
+ && defined(BOOST_NO_RVALUE_REFERENCES)
 ///////////////////////////////////////////////////////////////////////////////
 // Detect at compile-time whether an expression yields an rvalue or
 // an lvalue. This is rather non-standard, but some popular compilers
@@ -606,7 +626,7 @@ should_copy_impl(boost::mpl::false_ *, boost::mpl::false_ *, bool *is_rvalue)
 template<typename T>
 inline auto_any<T> contain(T const &t, boost::mpl::true_ *) // rvalue
 {
-    return t;
+    return auto_any<T>(t);
 }
 
 template<typename T>
@@ -614,18 +634,18 @@ inline auto_any<T *> contain(T &t, boost::mpl::false_ *) // lvalue
 {
     // Cannot seem to get sunpro to handle addressof() with array types.
     #if BOOST_WORKAROUND(__SUNPRO_CC, BOOST_TESTED_AT(0x570))
-    return &t;
+    return auto_any<T *>(&t);
     #else
-    return boost::addressof(t);
+    return auto_any<T *>(boost::addressof(t));
     #endif
 }
 
 #ifdef BOOST_FOREACH_RUN_TIME_CONST_RVALUE_DETECTION
 template<typename T>
-auto_any<simple_variant<T> >
+inline auto_any<simple_variant<T> >
 contain(T const &t, bool *rvalue)
 {
-    return *rvalue ? simple_variant<T>(t) : simple_variant<T>(&t);
+    return auto_any<simple_variant<T> >(*rvalue ? simple_variant<T>(t) : simple_variant<T>(&t));
 }
 #endif
 
@@ -636,7 +656,8 @@ template<typename T, typename C>
 inline auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, C>::type>
 begin(auto_any_t col, type2type<T, C> *, boost::mpl::true_ *) // rvalue
 {
-    return boost::begin(auto_any_cast<T, C>(col));
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, C>::type>(
+        boost::begin(auto_any_cast<T, C>(col)));
 }
 
 template<typename T, typename C>
@@ -645,15 +666,17 @@ begin(auto_any_t col, type2type<T, C> *, boost::mpl::false_ *) // lvalue
 {
     typedef BOOST_DEDUCED_TYPENAME type2type<T, C>::type type;
     typedef BOOST_DEDUCED_TYPENAME foreach_iterator<T, C>::type iterator;
-    return iterator(boost::begin(derefof(auto_any_cast<type *, boost::mpl::false_>(col))));
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, C>::type>(
+        iterator(boost::begin(derefof(auto_any_cast<type *, boost::mpl::false_>(col)))));
 }
 
 #ifdef BOOST_FOREACH_RUN_TIME_CONST_RVALUE_DETECTION
 template<typename T>
-auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, const_>::type>
+inline auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, const_>::type>
 begin(auto_any_t col, type2type<T, const_> *, bool *)
 {
-    return boost::begin(*auto_any_cast<simple_variant<T>, boost::mpl::false_>(col).get());
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, const_>::type>(
+        boost::begin(*auto_any_cast<simple_variant<T>, boost::mpl::false_>(col).get()));
 }
 #endif
 
@@ -662,7 +685,7 @@ template<typename T, typename C>
 inline auto_any<T *>
 begin(auto_any_t col, type2type<T *, C> *, boost::mpl::true_ *) // null-terminated C-style strings
 {
-    return auto_any_cast<T *, boost::mpl::false_>(col);
+    return auto_any<T *>(auto_any_cast<T *, boost::mpl::false_>(col));
 }
 #endif
 
@@ -673,7 +696,8 @@ template<typename T, typename C>
 inline auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, C>::type>
 end(auto_any_t col, type2type<T, C> *, boost::mpl::true_ *) // rvalue
 {
-    return boost::end(auto_any_cast<T, C>(col));
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, C>::type>(
+        boost::end(auto_any_cast<T, C>(col)));
 }
 
 template<typename T, typename C>
@@ -682,15 +706,17 @@ end(auto_any_t col, type2type<T, C> *, boost::mpl::false_ *) // lvalue
 {
     typedef BOOST_DEDUCED_TYPENAME type2type<T, C>::type type;
     typedef BOOST_DEDUCED_TYPENAME foreach_iterator<T, C>::type iterator;
-    return iterator(boost::end(derefof(auto_any_cast<type *, boost::mpl::false_>(col))));
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, C>::type>(
+        iterator(boost::end(derefof(auto_any_cast<type *, boost::mpl::false_>(col)))));
 }
 
 #ifdef BOOST_FOREACH_RUN_TIME_CONST_RVALUE_DETECTION
 template<typename T>
-auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, const_>::type>
+inline auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, const_>::type>
 end(auto_any_t col, type2type<T, const_> *, bool *)
 {
-    return boost::end(*auto_any_cast<simple_variant<T>, boost::mpl::false_>(col).get());
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_iterator<T, const_>::type>(
+        boost::end(*auto_any_cast<simple_variant<T>, boost::mpl::false_>(col).get()));
 }
 #endif
 
@@ -699,7 +725,7 @@ template<typename T, typename C>
 inline auto_any<int>
 end(auto_any_t, type2type<T *, C> *, boost::mpl::true_ *) // null-terminated C-style strings
 {
-    return 0; // not used
+    return auto_any<int>(0); // not used
 }
 #endif
 
@@ -749,7 +775,8 @@ template<typename T, typename C>
 inline auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, C>::type>
 rbegin(auto_any_t col, type2type<T, C> *, boost::mpl::true_ *) // rvalue
 {
-    return boost::rbegin(auto_any_cast<T, C>(col));
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, C>::type>(
+        boost::rbegin(auto_any_cast<T, C>(col)));
 }
 
 template<typename T, typename C>
@@ -758,15 +785,17 @@ rbegin(auto_any_t col, type2type<T, C> *, boost::mpl::false_ *) // lvalue
 {
     typedef BOOST_DEDUCED_TYPENAME type2type<T, C>::type type;
     typedef BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, C>::type iterator;
-    return iterator(boost::rbegin(derefof(auto_any_cast<type *, boost::mpl::false_>(col))));
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, C>::type>(
+        iterator(boost::rbegin(derefof(auto_any_cast<type *, boost::mpl::false_>(col)))));
 }
 
 #ifdef BOOST_FOREACH_RUN_TIME_CONST_RVALUE_DETECTION
 template<typename T>
-auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, const_>::type>
+inline auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, const_>::type>
 rbegin(auto_any_t col, type2type<T, const_> *, bool *)
 {
-    return boost::rbegin(*auto_any_cast<simple_variant<T>, boost::mpl::false_>(col).get());
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, const_>::type>(
+        boost::rbegin(*auto_any_cast<simple_variant<T>, boost::mpl::false_>(col).get()));
 }
 #endif
 
@@ -778,7 +807,7 @@ rbegin(auto_any_t col, type2type<T *, C> *, boost::mpl::true_ *) // null-termina
     T *p = auto_any_cast<T *, boost::mpl::false_>(col);
     while(0 != *p)
         ++p;
-    return reverse_iterator<T *>(p);
+    return auto_any<reverse_iterator<T *> >(reverse_iterator<T *>(p));
 }
 #endif
 
@@ -789,7 +818,8 @@ template<typename T, typename C>
 inline auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, C>::type>
 rend(auto_any_t col, type2type<T, C> *, boost::mpl::true_ *) // rvalue
 {
-    return boost::rend(auto_any_cast<T, C>(col));
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, C>::type>(
+        boost::rend(auto_any_cast<T, C>(col)));
 }
 
 template<typename T, typename C>
@@ -798,15 +828,17 @@ rend(auto_any_t col, type2type<T, C> *, boost::mpl::false_ *) // lvalue
 {
     typedef BOOST_DEDUCED_TYPENAME type2type<T, C>::type type;
     typedef BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, C>::type iterator;
-    return iterator(boost::rend(derefof(auto_any_cast<type *, boost::mpl::false_>(col))));
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, C>::type>(
+        iterator(boost::rend(derefof(auto_any_cast<type *, boost::mpl::false_>(col)))));
 }
 
 #ifdef BOOST_FOREACH_RUN_TIME_CONST_RVALUE_DETECTION
 template<typename T>
-auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, const_>::type>
+inline auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, const_>::type>
 rend(auto_any_t col, type2type<T, const_> *, bool *)
 {
-    return boost::rend(*auto_any_cast<simple_variant<T>, boost::mpl::false_>(col).get());
+    return auto_any<BOOST_DEDUCED_TYPENAME foreach_reverse_iterator<T, const_>::type>(
+        boost::rend(*auto_any_cast<simple_variant<T>, boost::mpl::false_>(col).get()));
 }
 #endif
 
@@ -815,7 +847,8 @@ template<typename T, typename C>
 inline auto_any<reverse_iterator<T *> >
 rend(auto_any_t col, type2type<T *, C> *, boost::mpl::true_ *) // null-terminated C-style strings
 {
-    return reverse_iterator<T *>(auto_any_cast<T *, boost::mpl::false_>(col));
+    return auto_any<reverse_iterator<T *> >(
+        reverse_iterator<T *>(auto_any_cast<T *, boost::mpl::false_>(col)));
 }
 #endif
 
@@ -889,7 +922,7 @@ rderef(auto_any_t cur, type2type<T, C> *)
             boost::foreach_detail_::to_ptr(COL)                                                 \
           , boost_foreach_argument_dependent_lookup_hack_value))
 
-#ifdef BOOST_FOREACH_COMPILE_TIME_CONST_RVALUE_DETECTION
+#if defined(BOOST_FOREACH_COMPILE_TIME_CONST_RVALUE_DETECTION)
 ///////////////////////////////////////////////////////////////////////////////
 // R-values and const R-values supported here with zero runtime overhead
 ///////////////////////////////////////////////////////////////////////////////

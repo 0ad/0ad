@@ -48,7 +48,7 @@ typedef boost::ulong_long_type polygon_ulong_long_type;
 #include <boost/mpl/or.hpp>
 #else
 
-#ifdef WIN32
+#ifdef _WIN32
 #define BOOST_POLYGON_MSVC
 #endif
 #ifdef __ICC
@@ -198,6 +198,16 @@ namespace boost { namespace polygon{
     typedef double coordinate_distance;
   };
 
+  template <>
+  struct coordinate_traits<long double> {
+    typedef long double coordinate_type;
+    typedef long double area_type;
+    typedef long double manhattan_area_type;
+    typedef long double unsigned_area_type;
+    typedef long double coordinate_difference;
+    typedef long double coordinate_distance;
+  };
+
   template <typename T>
   struct scaling_policy {
     template <typename T2>
@@ -222,6 +232,8 @@ namespace boost { namespace polygon{
   struct geometry_concept<float> { typedef coordinate_concept type; };
   template <>
   struct geometry_concept<double> { typedef coordinate_concept type; };
+  template <>
+  struct geometry_concept<long double> { typedef coordinate_concept type; };
 
 #ifndef BOOST_POLYGON_NO_DEPS
   struct gtl_no : mpl::bool_<false> {};
@@ -278,7 +290,7 @@ namespace boost { namespace polygon{
 
   template <typename T>
   struct gtl_if {
-#ifdef WIN32
+#ifdef BOOST_POLYGON_MSVC
     typedef gtl_no type;
 #endif
   };

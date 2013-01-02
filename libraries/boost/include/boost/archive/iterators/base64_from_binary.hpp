@@ -16,7 +16,7 @@
 
 //  See http://www.boost.org for updates, documentation, and revision history.
 
-#include <cassert>
+#include <boost/assert.hpp>
 
 #include <cstddef> // size_t
 #include <boost/config.hpp> // for BOOST_DEDUCED_TYPENAME
@@ -49,7 +49,7 @@ struct from_6_bit {
             "abcdefghijklmnopqrstuvwxyz"
             "0123456789"
             "+/";
-        assert(t < 64);
+        BOOST_ASSERT(t < 64);
         return lookup_table[static_cast<size_t>(t)];
     }
 };
@@ -91,7 +91,7 @@ public:
     template<class T>
     base64_from_binary(BOOST_PFTO_WRAPPER(T) start) :
         super_t(
-            Base(BOOST_MAKE_PFTO_WRAPPER(static_cast<T>(start))),
+            Base(BOOST_MAKE_PFTO_WRAPPER(static_cast< T >(start))),
             detail::from_6_bit<CharType>()
         )
     {}

@@ -24,13 +24,14 @@
 #include <boost/mpl/long.hpp>
 #include <boost/type_traits/remove_const.hpp>
 #include <boost/type_traits/remove_reference.hpp>
+#include <boost/mpl/aux_/config/ttp.hpp>
 
 #ifndef BOOST_PROTO_MAX_ARITY
-# define BOOST_PROTO_MAX_ARITY 5
+# define BOOST_PROTO_MAX_ARITY 10
 #endif
 
 #ifndef BOOST_PROTO_MAX_LOGICAL_ARITY
-# define BOOST_PROTO_MAX_LOGICAL_ARITY 8
+# define BOOST_PROTO_MAX_LOGICAL_ARITY 10
 #endif
 
 #ifndef BOOST_PROTO_MAX_FUNCTION_CALL_ARITY
@@ -43,6 +44,14 @@
 
 #if BOOST_PROTO_MAX_FUNCTION_CALL_ARITY > BOOST_PROTO_MAX_ARITY
 # error BOOST_PROTO_MAX_FUNCTION_CALL_ARITY cannot be larger than BOOST_PROTO_MAX_ARITY
+#endif
+
+#ifndef BOOST_PROTO_DONT_USE_PREPROCESSED_FILES
+  #if 10 < BOOST_PROTO_MAX_ARITY ||                                                                 \
+      10 < BOOST_PROTO_MAX_LOGICAL_ARITY ||                                                         \
+      10 < BOOST_PROTO_MAX_FUNCTION_CALL_ARITY
+    #define BOOST_PROTO_DONT_USE_PREPROCESSED_FILES
+  #endif
 #endif
 
 #ifndef BOOST_PROTO_BROKEN_CONST_OVERLOADS
@@ -83,12 +92,52 @@
 # endif
 #endif
 
+#ifndef BOOST_NO_DECLTYPE_N3276
+# // Proto can only use the decltype-based result_of if N3276 has been
+# // implemented by the compiler.
+# // See http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2011/n3276.pdf
+# ifndef BOOST_PROTO_USE_NORMAL_RESULT_OF
+#  define BOOST_PROTO_USE_NORMAL_RESULT_OF
+# endif
+# // If we're using the decltype-based result_of, we need to be a bit
+# // stricter about the return types of some functions.
+# ifndef BOOST_PROTO_STRICT_RESULT_OF
+#  define BOOST_PROTO_STRICT_RESULT_OF
+# endif
+#endif
+
+// Unless compiler support is there, use tr1_result_of instead of
+// result_of to avoid the problems addressed by N3276.
+#ifdef BOOST_PROTO_USE_NORMAL_RESULT_OF
+# define BOOST_PROTO_RESULT_OF boost::result_of
+#else
+# define BOOST_PROTO_RESULT_OF boost::tr1_result_of
+#endif
+
+#ifdef BOOST_MPL_CFG_EXTENDED_TEMPLATE_PARAMETERS_MATCHING
+# define BOOST_PROTO_EXTENDED_TEMPLATE_PARAMETERS_MATCHING 
+#endif
+
+#if defined(_MSC_VER) && (_MSC_VER >= 1020)
+# define BOOST_PROTO_DISABLE_MSVC_C4522 __pragma(warning(disable : 4522))  // 'class' : multiple assignment operators specified
+# define BOOST_PROTO_DISABLE_MSVC_C4714 __pragma(warning(disable : 4714))  // function 'xxx' marked as __forceinline not inlined
+#else
+# define BOOST_PROTO_DISABLE_MSVC_C4522 
+# define BOOST_PROTO_DISABLE_MSVC_C4714
+#endif
+
 namespace boost { namespace proto
 {
     namespace detail
     {
         typedef char yes_type;
         typedef char (&no_type)[2];
+
+        template<int N>
+        struct sized_type
+        {
+            typedef char (&type)[N];
+        };
 
         struct dont_care;
         struct undefined; // leave this undefined
@@ -154,14 +203,20 @@ namespace boost { namespace proto
         /// INTERNAL ONLY
         ///
         #define BOOST_PROTO_UNCVREF(X)                                                              \
-			typename boost::proto::detail::uncvref<X>::type											\
-			/**/
+            typename boost::proto::detail::uncvref<X>::type                                         \
+            /**/
 
         struct _default;
 
         struct not_a_domain;
         struct not_a_grammar;
         struct not_a_generator;
+
+        template<typename T, typename Void = void>
+        struct is_transform_;
+
+        template<typename T, typename Void = void>
+        struct is_aggregate_;
     }
 
     typedef detail::ignore const ignore;
@@ -182,68 +237,78 @@ namespace boost { namespace proto
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operator tags
-    namespace tag
+    namespace tagns_
     {
-        struct terminal;
-        struct unary_plus;
-        struct negate;
-        struct dereference;
-        struct complement;
-        struct address_of;
-        struct logical_not;
-        struct pre_inc;
-        struct pre_dec;
-        struct post_inc;
-        struct post_dec;
+        namespace tag
+        {
+            struct terminal;
+            struct unary_plus;
+            struct negate;
+            struct dereference;
+            struct complement;
+            struct address_of;
+            struct logical_not;
+            struct pre_inc;
+            struct pre_dec;
+            struct post_inc;
+            struct post_dec;
 
-        struct shift_left;
-        struct shift_right;
-        struct multiplies;
-        struct divides;
-        struct modulus;
-        struct plus;
-        struct minus;
-        struct less;
-        struct greater;
-        struct less_equal;
-        struct greater_equal;
-        struct equal_to;
-        struct not_equal_to;
-        struct logical_or;
-        struct logical_and;
-        struct bitwise_and;
-        struct bitwise_or;
-        struct bitwise_xor;
-        struct comma;
-        struct mem_ptr;
+            struct shift_left;
+            struct shift_right;
+            struct multiplies;
+            struct divides;
+            struct modulus;
+            struct plus;
+            struct minus;
+            struct less;
+            struct greater;
+            struct less_equal;
+            struct greater_equal;
+            struct equal_to;
+            struct not_equal_to;
+            struct logical_or;
+            struct logical_and;
+            struct bitwise_and;
+            struct bitwise_or;
+            struct bitwise_xor;
+            struct comma;
+            struct mem_ptr;
 
-        struct assign;
-        struct shift_left_assign;
-        struct shift_right_assign;
-        struct multiplies_assign;
-        struct divides_assign;
-        struct modulus_assign;
-        struct plus_assign;
-        struct minus_assign;
-        struct bitwise_and_assign;
-        struct bitwise_or_assign;
-        struct bitwise_xor_assign;
-        struct subscript;
-        struct member;
-        struct if_else_;
-        struct function;
+            struct assign;
+            struct shift_left_assign;
+            struct shift_right_assign;
+            struct multiplies_assign;
+            struct divides_assign;
+            struct modulus_assign;
+            struct plus_assign;
+            struct minus_assign;
+            struct bitwise_and_assign;
+            struct bitwise_or_assign;
+            struct bitwise_xor_assign;
+            struct subscript;
+            struct member;
+            struct if_else_;
+            struct function;
 
-        // Fusion tags
-        struct proto_expr;
-        struct proto_expr_iterator;
-        struct proto_flat_view;
+            // Fusion tags
+            struct proto_expr;
+            struct proto_expr_iterator;
+            struct proto_flat_view;
+        }
     }
+
+    using namespace tagns_;
+
+    template<typename Expr>
+    struct tag_of;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     struct _;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     struct default_generator;
+
+    struct basic_default_generator;
 
     template<template<typename> class Extends>
     struct generator;
@@ -275,6 +340,8 @@ namespace boost { namespace proto
         struct domain;
 
         struct default_domain;
+
+        struct basic_default_domain;
 
         struct deduce_domain;
 
@@ -325,7 +392,7 @@ namespace boost { namespace proto
     template<typename Condition, typename Then = _, typename Else = not_<_> >
     struct if_;
 
-    template<typename Cases>
+    template<typename Cases, typename Transform = tag_of<_>()>
     struct switch_;
 
     template<typename T>
@@ -337,7 +404,11 @@ namespace boost { namespace proto
     template<typename Grammar>
     struct vararg;
 
-    int const N = INT_MAX;
+    struct pack;
+
+    // Boost bug https://svn.boost.org/trac/boost/ticket/4602
+    //int const N = INT_MAX;
+    int const N = (INT_MAX >> 10);
 
     namespace context
     {
@@ -422,8 +493,8 @@ namespace boost { namespace proto
     template<typename T, typename Void = void>
     struct is_domain;
 
-    template<typename Expr>
-    struct tag_of;
+    template<typename SubDomain, typename SuperDomain>
+    struct is_sub_domain_of;
 
     template<typename Expr>
     struct arity_of;
@@ -523,12 +594,6 @@ namespace boost { namespace proto
         template<typename Tag, typename Domain = deduce_domain>
         struct unpack_expr;
 
-        template<typename Tag, typename Domain = deduce_domain>
-        struct unfused_expr_fun;
-
-        template<typename Tag, typename Domain = deduce_domain>
-        struct unfused_expr;
-
         typedef make_expr<tag::terminal>            make_terminal;
         typedef make_expr<tag::unary_plus>          make_unary_plus;
         typedef make_expr<tag::negate>              make_negate;
@@ -576,12 +641,26 @@ namespace boost { namespace proto
         typedef make_expr<tag::function>            make_function;
 
         struct flatten;
+        struct make_pair;
+        struct first;
+        struct second;
+        struct at;
         struct pop_front;
+        struct push_front;
+        struct pop_back;
+        struct push_back;
         struct reverse;
     }
 
     typedef functional::flatten     _flatten;
+    typedef functional::make_pair   _make_pair;
+    typedef functional::first       _first;
+    typedef functional::second      _second;
+    typedef functional::pop_front   _at;
     typedef functional::pop_front   _pop_front;
+    typedef functional::push_front  _push_front;
+    typedef functional::pop_back    _pop_back;
+    typedef functional::push_back   _push_back;
     typedef functional::reverse     _reverse;
     typedef functional::eval        _eval;
     struct _deep_copy;
@@ -635,11 +714,11 @@ namespace boost { namespace proto
     template<typename T>
     struct is_callable;
 
-    template<typename T, typename Void = void>
-    struct is_aggregate;
-
-    template<typename T, typename Void = void>
+    template<typename T>
     struct is_transform;
+
+    template<typename T>
+    struct is_aggregate;
 
     #define BOOST_PROTO_UNEXPR() typedef int proto_is_expr_;
     #define BOOST_PROTO_CALLABLE() typedef void proto_is_callable_;
@@ -651,7 +730,9 @@ namespace boost { namespace proto
         BOOST_PROTO_CALLABLE()
     };
 
-    template<typename PrimitiveTransform, typename X = void>
+    struct external_transform;
+
+    template<typename PrimitiveTransform = void, typename X = void>
     struct transform;
 
     template<typename Grammar, typename Fun = Grammar>
@@ -703,6 +784,21 @@ namespace boost { namespace proto
 
     struct _void;
 
+    template<typename T, T I>
+    struct integral_c;
+
+    template<char I>
+    struct char_;
+
+    template<int I>
+    struct int_;
+
+    template<long I>
+    struct long_;
+
+    template<std::size_t I>
+    struct size_t;
+
     template<int I>
     struct _child_c;
 
@@ -731,7 +827,7 @@ namespace boost { namespace proto
     //namespace exops
     //{}
 
-	namespace exops = exprns_;
+    namespace exops = exprns_;
 
 }} // namespace boost::proto
 

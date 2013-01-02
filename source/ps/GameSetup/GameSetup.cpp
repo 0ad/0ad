@@ -202,7 +202,7 @@ void Render()
 	ogl_WarnIfError();
 
 	CStr skystring = "255 0 255";
-	CFG_GET_USER_VAL("skycolor", String, skystring);
+	CFG_GET_VAL("skycolor", String, skystring);
 	CColor skycol;
 	GUI<CColor>::ParseString(skystring.FromUTF8(), skycol);
 	g_Renderer.SetClearColor(skycol.AsSColor4ub());
@@ -269,7 +269,7 @@ void Render()
 		else
 		{
 			bool forceGL = false;
-			CFG_GET_USER_VAL("nohwcursor", Bool, forceGL);
+			CFG_GET_VAL("nohwcursor", Bool, forceGL);
 
 #if CONFIG2_GLES
 #warning TODO: implement cursors for GLES
@@ -892,7 +892,7 @@ void Init(const CmdLineArgs& args, int UNUSED(flags))
 	// Optionally start profiler HTTP output automatically
 	// (By default it's only enabled by a hotkey, for security/performance)
 	bool profilerHTTPEnable = false;
-	CFG_GET_USER_VAL("profiler2.http.autoenable", Bool, profilerHTTPEnable);
+	CFG_GET_VAL("profiler2.http.autoenable", Bool, profilerHTTPEnable);
 	if (profilerHTTPEnable)
 		g_Profiler2.EnableHTTP();
 
@@ -930,7 +930,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 	// Optionally start profiler GPU timings automatically
 	// (By default it's only enabled by a hotkey, for performance/compatibility)
 	bool profilerGPUEnable = false;
-	CFG_GET_USER_VAL("profiler2.gpu.autoenable", Bool, profilerGPUEnable);
+	CFG_GET_VAL("profiler2.gpu.autoenable", Bool, profilerGPUEnable);
 	if (profilerGPUEnable)
 		g_Profiler2.EnableGPU();
 
