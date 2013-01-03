@@ -1659,9 +1659,9 @@ function removeFromProductionQueue(entity, id)
 }
 
 // Called by unit selection buttons
-function changePrimarySelectionGroup(templateName)
+function changePrimarySelectionGroup(templateName, deselectGroup)
 {
-	if (Engine.HotkeyIsPressed("session.deselectgroup"))
+	if (Engine.HotkeyIsPressed("session.deselectgroup") || deselectGroup)
 		g_Selection.makePrimarySelection(templateName, true);
 	else
 		g_Selection.makePrimarySelection(templateName, false);

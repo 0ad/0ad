@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,7 +48,50 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 			break;
 
 		m_Pressed = true;
-	}	break;
+	}
+	break;
+
+	case GUIM_MOUSE_DBLCLICK_RIGHT:
+	case GUIM_MOUSE_RELEASE_RIGHT:
+	{
+		bool enabled;
+		GUI<bool>::GetSetting(this, "enabled", enabled);
+		
+		if (!enabled)
+			break;
+		
+		if (m_PressedRight)
+		{
+			m_PressedRight = false;
+			if (Message.type == GUIM_MOUSE_RELEASE_RIGHT)
+			{
+				// Button was right-clicked
+				SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
+			}
+			else
+			{
+				// Button was clicked a second time. We can't tell if the button
+				// expects to receive doublepress events or just a second press
+				// event, so send both of them (and assume the extra unwanted press
+				// is harmless on buttons that expect doublepress)
+				SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
+				SendEvent(GUIM_DOUBLE_PRESSED_MOUSE_RIGHT, "doublepressright");
+			}
+		}
+	}
+	break;
+
+	case GUIM_MOUSE_PRESS_RIGHT:
+	{
+		bool enabled;
+		GUI<bool>::GetSetting(this, "enabled", enabled);
+		
+		if (!enabled)
+			break;
+		
+		m_PressedRight = true;
+	}
+	break;
 
 	case GUIM_MOUSE_DBLCLICK_LEFT:
 	case GUIM_MOUSE_RELEASE_LEFT:
@@ -77,7 +120,8 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 				SendEvent(GUIM_DOUBLE_PRESSED, "doublepress");
 			}
 		}
-	}	break;
+	}
+	break;
 
 	default:
 		break;

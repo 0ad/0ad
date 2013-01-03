@@ -534,6 +534,12 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		// Items can have a callback element that overrides the normal caller-supplied callback function.
 		button.onpress = (function(e){ return function() { e.callback ? e.callback(e) : callback(e) } })(item);
 
+		if(guiName == SELECTION)
+		{
+			button.onpressright = (function(e){return function() {callback(e, true) } })(item);
+			button.onpress = (function(e){ return function() {callback(e, false) } })(item);
+		}
+
 		if (guiName == RESEARCH)
 		{
 			if (item.pair)
@@ -973,7 +979,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 
 		if (selection.length > 1)
 			setupUnitPanel(SELECTION, usedPanels, entState, playerState, g_Selection.groups.getTemplateNames(),
-				function (entType) { changePrimarySelectionGroup(entType); } );
+				function (entType, rightPressed) { changePrimarySelectionGroup(entType, rightPressed); } );
 
 		var commands = getEntityCommandsList(entState);
 		if (commands.length)
