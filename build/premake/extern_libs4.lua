@@ -370,7 +370,7 @@ extern_lib_defs = {
 				add_default_lib_paths("libpng")
 			end
 			add_default_links({
-				win_names  = { "libpng14" },
+				win_names  = { "libpng15" },
 				unix_names = { "png" },
 			})
 		end,
