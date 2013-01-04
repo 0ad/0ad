@@ -329,7 +329,7 @@ function getWallPieceTooltip(wallTypes)
 			var resourceMin = Math.min.apply(Math, resourceCount[resource]);
 			var resourceMax = Math.max.apply(Math, resourceCount[resource]);
 
-			out.push(getCostComponentDisplayName(resource) + resourceMin + " to " + getCostComponentDisplayName(resource) + resourceMax);
+			out.push(getCostComponentDisplayName(resource) + " " + resourceMin + " to " + getCostComponentDisplayName(resource) + " " + resourceMax);
 		}
 	}
 	else
