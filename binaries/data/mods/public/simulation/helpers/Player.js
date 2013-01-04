@@ -37,7 +37,9 @@ function LoadPlayerSettings(settings, newPlayers)
 			numPlayers = settings.PlayerData.length + 1;
 		}
 		else
+		{
 			warn("Player.js: Setup has no player data - using defaults");
+		}
 
 		for (var i = 0; i < numPlayers; ++i)
 		{
