@@ -7,7 +7,6 @@
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Run" speed="40"/>
-        <animation event="" file="biped/cavalryidle.psa" load="" name="Melee" speed="50"/>
         <animation event="" file="biped/cavalryidle.psa" name="gather_meat" speed="300"/>
         <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
@@ -18,9 +17,11 @@
         <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
         <prop actor="props/units/shields/maur_small_b.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/axe_sagaris.xml" attachpoint="r_hand"/>
       </props>
       <textures>
-        <texture file="skeletal/maur_isp_e.png" name="baseTex"/>
+        <texture file="skeletal/maur_isp_b.png" name="baseTex"/>
+        <texture file="skeletal/maur_isp_b_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -34,5 +35,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
