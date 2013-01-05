@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/maur_shield_tall_round.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Mauryan Shield Tall Round-top-A">
+      <textures>
+        <texture file="props/shield/maur_shield_tall_round_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Mauryan Shield Tall Round-top-B">
+      <textures>
+        <texture file="props/shield/maur_shield_tall_round_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

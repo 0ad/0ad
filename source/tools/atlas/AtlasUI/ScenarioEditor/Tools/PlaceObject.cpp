@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -98,18 +98,13 @@ public:
 
 	bool OnKeyOverride(wxKeyEvent& evt, KeyEventType type)
 	{
-		switch (type)
+		if (type == KEY_CHAR && evt.GetKeyCode() == WXK_ESCAPE)
 		{
-		case KEY_CHAR:
-			int key = evt.GetKeyCode();
-			if (key == WXK_ESCAPE)
-			{
-				SetState(&Disabled);
-				return true;
-			}
-			break;
+			SetState(&Disabled);
+			return true;
 		}
-		return false;
+		else
+			return false;
 	}
 
 	void RotateTick(float dt)
