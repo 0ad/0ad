@@ -6,18 +6,18 @@
       <animations>
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
-        <animation event="0.59" file="biped/rider_javelin_atk_a.psa" load="0" name="Melee" speed="50"/>
-        <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="gather_meat" speed="300"/>
+        <animation file="biped/cavalryidle.psa" name="Run" speed="40"/>
+        <animation event="0.59" file="biped/rider_archer_atk_a.psa" load="0" name="Melee" speed="50"/>
+        <animation event="0.5" file="biped/cavalryidle.psa" name="gather_meat" speed="300"/>
         <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
         <prop actor="props/units/heads/head_indian_a.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
-        <prop actor="props/units/shields/maur_small_b.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/bow_bamboo_long.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
       </props>
       <textures>
         <texture file="skeletal/maur_isp_e.png" name="baseTex"/>
