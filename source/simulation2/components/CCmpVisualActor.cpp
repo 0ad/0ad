@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -144,9 +144,6 @@ public:
 
 		m_R = m_G = m_B = fixed::FromInt(1);
 
-		if (!GetSimContext().HasUnitManager())
-			return; // do nothing further if graphics are disabled
-
 		// TODO: we should do some fancy animation of under-construction buildings rising from the ground,
 		// but for now we'll just use the foundation actor and ignore the normal one
 		if (paramNode.GetChild("Foundation").IsOk() && paramNode.GetChild("FoundationActor").IsOk())
@@ -154,38 +151,42 @@ public:
 		else
 			m_ActorName = paramNode.GetChild("Actor").ToString();
 
-		std::set<CStr> selections;
-		m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
-		if (m_Unit)
+		if (GetSimContext().HasUnitManager())
 		{
-			CModelAbstract& model = m_Unit->GetModel();
-			if (model.ToCModel())
+			std::set<CStr> selections;
+			m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
+			if (m_Unit)
 			{
-				u32 modelFlags = 0;
+				CModelAbstract& model = m_Unit->GetModel();
+				if (model.ToCModel())
+				{
+					u32 modelFlags = 0;
 
-				if (paramNode.GetChild("SilhouetteDisplay").ToBool())
-					modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
+					if (paramNode.GetChild("SilhouetteDisplay").ToBool())
+						modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
 
-				if (paramNode.GetChild("SilhouetteOccluder").ToBool())
-					modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
+					if (paramNode.GetChild("SilhouetteOccluder").ToBool())
+						modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
 
-				CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
-				if (cmpVision && cmpVision->GetAlwaysVisible())
-					modelFlags |= MODELFLAG_IGNORE_LOS;
+					CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
+					if (cmpVision && cmpVision->GetAlwaysVisible())
+						modelFlags |= MODELFLAG_IGNORE_LOS;
 
-				model.ToCModel()->AddFlagsRec(modelFlags);
+					model.ToCModel()->AddFlagsRec(modelFlags);
+				}
+
+				// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the 
+				// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint
+				// shape for the selection box (instead of the default recursive bounding box). See TypeList.h for the order in
+				// which components are initialized; if for whatever reason you need to get rid of this dependency, you can always just
+				// initialize the selection shape descriptor on-demand.
+				InitSelectionShapeDescriptor(model, paramNode);
+
+				m_Unit->SetID(GetEntityId());
 			}
-
-			// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the 
-			// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint
-			// shape for the selection box (instead of the default recursive bounding box). See TypeList.h for the order in
-			// which components are initialized; if for whatever reason you need to get rid of this dependency, you can always just
-			// initialize the selection shape descriptor on-demand.
-			InitSelectionShapeDescriptor(model, paramNode);
-
-			m_Unit->SetID(GetEntityId());
 		}
 
+		// We need to select animation even if graphics are disabled, as this modifies serialized state
 		SelectAnimation("idle", false, fixed::FromInt(1), L"");
 	}
 
