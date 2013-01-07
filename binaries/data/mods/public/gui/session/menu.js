@@ -361,7 +361,6 @@ function togglePause()
 	{
 		getGUIObjectByName("pauseButtonText").caption = RESUME;
 		setPaused(true);
-
 	}
 	else
 	{
@@ -375,8 +374,10 @@ function togglePause()
 function toggleDeveloperOverlay()
 {
 	var devCommands = getGUIObjectByName("devCommands");
-	var text = devCommands.hidden? "opened." : "closed.";
+	var text = devCommands.hidden ? "opened." : "closed.";
 	submitChatDirectly("The Developer Overlay was " + text);
+	// Update the options dialog
+	getGUIObjectByName("developerOverlayCheckbox").checked = devCommands.hidden;
 	devCommands.hidden = !devCommands.hidden;
 }
 
@@ -387,12 +388,3 @@ function closeOpenDialogs()
 	closeDiplomacy();
 	closeSettings(false);
 }
-
-
-// Temporarily adding this here
-//function playButtonSound()
-//{
-//    const BUTTON_SOUND = "audio/interface/ui/ui_button_longclick.ogg";
-//    var buttonSound = new Sound(BUTTON_SOUND);
-//    buttonSound.play();
-//}
