@@ -276,7 +276,7 @@ Health.prototype.OnTechnologyModification = function(msg)
 		if (cmpTechnologyManager)
 		{
 			var oldMaxHitpoints = this.GetMaxHitpoints();
-			var newMaxHitpoints = Math.round(cmpTechnologyManager.ApplyModifications("Health/Max", +this.template.Max, this.entity));
+			var newMaxHitpoints = Math.round(ApplyTechModificationsToEntity("Health/Max", +this.template.Max, this.entity));
 			if (oldMaxHitpoints != newMaxHitpoints)
 			{
 				var newHitpoints = Math.round(this.GetHitpoints() * newMaxHitpoints/oldMaxHitpoints);

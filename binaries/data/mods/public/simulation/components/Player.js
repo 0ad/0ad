@@ -105,11 +105,7 @@ Player.prototype.SetMaxPopulation = function(max)
 
 Player.prototype.GetMaxPopulation = function()
 {
-	var cmpTechMan = Engine.QueryInterface(this.entity, IID_TechnologyManager);
-	if (cmpTechMan) 
-		return cmpTechMan.ApplyModifications("Player/MaxPopulation", this.maxPop, this.entity);
-	else
-		return this.maxPop;
+	return ApplyTechModificationsToPlayer("Player/MaxPopulation", this.maxPop, this.entity);
 };
 
 Player.prototype.IsTrainingBlocked = function()
