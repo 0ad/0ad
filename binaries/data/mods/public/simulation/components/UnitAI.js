@@ -1249,7 +1249,9 @@ var UnitFsmSpec = {
 						prepare = Math.max(prepare, repeatLeft);
 					}
 
-					this.SelectAnimation("melee", false, 1.0, "attack");
+					// add prefix + no Capital First Letter for this.attackType
+					var attackName = "attack_" + this.attackType.toLowerCase();
+					this.SelectAnimation(attackName, false, 1.0, "attack");
 					this.SetAnimationSync(prepare, this.attackTimers.repeat);
 					this.StartTimer(prepare, this.attackTimers.repeat);
 					// TODO: we should probably only bother syncing projectile attacks, not melee

@@ -128,17 +128,11 @@ ResourceGatherer.prototype.GetLastCarriedType = function()
 ResourceGatherer.prototype.GetGatherRates = function()
 {
 	var ret = {};
-	var baseSpeed = +this.template.BaseSpeed;
-
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	if (cmpTechMan)
-		baseSpeed = cmpTechMan.ApplyModifications("ResourceGatherer/BaseSpeed", baseSpeed, this.entity);
+	var baseSpeed = ApplyTechModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity);
 
 	for (var r in this.template.Rates)
 	{
-		var rate = +this.template.Rates[r]
-		if (cmpTechMan)
-			rate = cmpTechMan.ApplyModifications("ResourceGatherer/Rates/" + r, rate, this.entity);
+		var rate = ApplyTechModificationsToEntity("ResourceGatherer/Rates/" + r, +this.template.Rates[r], this.entity);
 		ret[r] = rate * baseSpeed;
 	}
 
@@ -148,14 +142,10 @@ ResourceGatherer.prototype.GetGatherRates = function()
 ResourceGatherer.prototype.GetCapacities = function()
 {
 	var ret = {};
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 
 	for (var r in this.template.Capacities)
 	{
-		var capacity = +this.template.Capacities[r];
-		if (cmpTechMan)
-			capacity = cmpTechMan.ApplyModifications("ResourceGatherer/Capacities/" + r, capacity, this.entity);
-		ret[r] = capacity;
+		ret[r] = ApplyTechModificationsToEntity("ResourceGatherer/Capacities/" + r, +this.template.Capacities[r], this.entity);
 	}
 
 	return ret;

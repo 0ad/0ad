@@ -213,6 +213,12 @@ bool CSoundBase::HandleFade()
 	return true;
 }
 
+bool CSoundBase::IsFading()
+{
+	return ((m_ALSource != 0) && (m_StartFadeTime != 0));
+}
+
+
 bool CSoundBase::GetLooping()
 {
 	return m_Looping;

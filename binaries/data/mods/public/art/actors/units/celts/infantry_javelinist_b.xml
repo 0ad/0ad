@@ -6,8 +6,9 @@
       <animations>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="110"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="95"/>
-        <animation event="0.5" file="biped/not used/ijv_def_02.psa" load="0" name="Melee" speed="100"/>
-        <animation event="0.5" file="biped/not used/ijv_def_03.psa" load="0" name="Melee" speed="200"/>
+        <animation event="0.5" file="biped/not used/ijv_def_02.psa" load="0" name="attack_ranged" speed="100"/>
+        <animation event="0.5" file="biped/not used/ijv_def_03.psa" load="0" name="attack_ranged" speed="200"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_slaughter" speed="100"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="30"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="40"/>
@@ -44,11 +45,16 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Melee">
+    <variant name="attack_ranged">
       <props>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
         <prop actor="" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+      </props>
+    </variant>
+    <variant name="attack_slaughter">
+      <props>
+        <prop actor="props/units/weapons/knife.xml" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="gather_tree">

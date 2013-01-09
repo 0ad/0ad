@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="carthaginian ballista">
       <animations>
-        <animation event="0.75" file="mechanical/rome_ballista_atttack.dae" load="0.7" name="melee" speed="100"/>
+        <animation event="0.75" file="mechanical/rome_ballista_atttack.dae" load="0.7" name="attack_ranged" speed="100"/>
       </animations>
       <mesh>structural/kart_ballista.dae</mesh>
       <props>

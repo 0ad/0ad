@@ -7,7 +7,7 @@
         <animation file="female/f_idle_01.dae" name="Idle" speed="100"/>
         <animation file="female/f_walk_01.dae" name="Walk" speed="25"/>
         <animation file="female/f_walk_01.dae" name="Run" speed="25"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="melee" speed="250"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="250"/>
         <animation file="female/f_walk_01.dae" name="carry_food" speed="25"/>
         <animation file="female/f_walk_01.dae" name="carry_meat" speed="25"/>
         <animation file="female/f_walk_01.dae" name="carry_wood" speed="25"/>
@@ -37,7 +37,7 @@
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
-    <variant name="melee">
+    <variant name="attack_melee">
       <props>
         <prop actor="props/units/weapons/knife.xml" attachpoint="r_hand"/>
       </props>

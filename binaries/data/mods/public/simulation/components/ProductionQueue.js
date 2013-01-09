@@ -194,18 +194,12 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			// Obviously we don't have the entities yet, so we must use template data
 			var costs = {};
 			var totalCosts = {};
-			var buildTime = +template.Cost.BuildTime;
-			
-			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-			if (cmpTechnologyManager)
-				buildTime = cmpTechnologyManager.ApplyModificationsTemplate("Cost/BuildTime", buildTime, template);
+			var buildTime = ApplyTechModificationsToTemplate("Cost/BuildTime", +template.Cost.BuildTime, this.entity, template);
 			var time = timeMult * buildTime;
 
 			for (var r in template.Cost.Resources)
 			{
-				costs[r] = +template.Cost.Resources[r];
-				if (cmpTechnologyManager)
-					costs[r] = cmpTechnologyManager.ApplyModificationsTemplate("Cost/Resources/"+r, costs[r], template);
+				costs[r] = ApplyTechModificationsToTemplate("Cost/Resources/"+r, +template.Cost.Resources[r], this.entity, template);
 				totalCosts[r] = Math.floor(count * costs[r]);
 			}
 
@@ -404,10 +398,7 @@ ProductionQueue.prototype.GetBatchTime = function(batchSize)
 {
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
-	var batchTimeModifier = +this.template.BatchTimeModifier;
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	if (cmpTechMan)
-		batchTimeModifier = cmpTechMan.ApplyModifications("ProductionQueue/BatchTimeModifier", batchTimeModifier, this.entity);
+	var batchTimeModifier = ApplyTechModificationsToEntity("ProductionQueue/BatchTimeModifier", +this.template.BatchTimeModifier, this.entity);
 
 	// TODO: work out what equation we should use here.
 	return Math.pow(batchSize, batchTimeModifier) * cmpPlayer.cheatTimeMultiplier;

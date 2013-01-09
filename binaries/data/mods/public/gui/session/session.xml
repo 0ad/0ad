@@ -60,10 +60,13 @@
 	<object hotkey="menu.toggle">
 	    <action on="Press">openMenu();</action>
 	</object>
-		
+
 	<!-- Unit silhouettes -->
 	<object hotkey="silhouettes">
-	    <action on="Press">renderer.silhouettes = !renderer.silhouettes;</action>
+	    <action on="Press">
+		renderer.silhouettes = !renderer.silhouettes;
+		getGUIObjectByName("silhouettesCheckbox").checked = renderer.silhouettes;
+	    </action>
 	</object>
 
 	<!-- Sky -->
@@ -218,10 +221,7 @@
 	<!-- Time elapsed counter -->
 	<!-- ================================  ================================ -->
 	<object size="100%-100 50 100%-10 70" type="text" name="timeElapsedCounter" style="SettingsText" hotkey="timeelapsedcounter.toggle" hidden="true">
-	    <action on="Press"><![CDATA[
-				this.hidden = !this.hidden;
-			]]>
-	    </action>
+	    <action on="Press">this.hidden = !this.hidden;</action>
 	</object>
 
 	<!-- ================================  ================================ -->
@@ -430,13 +430,13 @@
 				
 				<!-- Settings / Music-->
 				<object size="0 285 100%-80 310" type="text" style="RightLabelText" ghost="true">Enable Music</object>
-				<object size="100%-56 290 100%-30 315" type="checkbox" style="StoneCrossBox" checked="true">
+				<object name="musicCheckbox" size="100%-56 290 100%-30 315" type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Press">if (this.checked) global.music.start(); else global.music.stop();</action>
 				</object>
 				
 				<!-- Settings / Dev Overlay -->
 				<object size="0 310 100%-80 335" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
-				<object size="100%-56 315 100%-30 340" type="checkbox" style="StoneCrossBox" checked="false">
+				<object name="developerOverlayCheckbox" size="100%-56 315 100%-30 340" type="checkbox" style="StoneCrossBox" checked="false">
 					<action on="Press">toggleDeveloperOverlay();</action>
 				</object>
 			</object>
@@ -518,8 +518,7 @@
 
 		<!-- Displays build date and revision number-->
 		<object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" style="BuildNameText" ghost="true">
-		    <action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]>
-		    </action>
+		    <action on="Load">this.caption = buildTime(0) + " (" + buildTime(2) + ")"</action>
 		</object>
 	    </object>
 

@@ -9,7 +9,7 @@
         <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="80"/>
         <animation file="biped/inf_hoplite_shield_run_a.psa" name="walk" speed="40"/>
         <animation file="biped/inf_hoplite_shield_run_a.psa" name="run" speed="30"/>
-        <animation event="0.5" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="melee" speed="75"/>
+        <animation event="0.5" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="attack_ranged" speed="75"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
@@ -43,7 +43,7 @@
         <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
       </props>
     </variant>
-    <variant name="Melee">
+    <variant name="attack_ranged">
       <props>
         <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="projectile"/>

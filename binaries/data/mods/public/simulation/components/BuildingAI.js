@@ -180,19 +180,13 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
 BuildingAI.prototype.GetDefaultArrowCount = function()
 {
 	var arrowCount = +this.template.DefaultArrowCount;
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	if (cmpTechMan)
-		arrowCount = cmpTechMan.ApplyModifications("BuildingAI/DefaultArrowCount", arrowCount, this.entity);
-	return arrowCount;
+	return ApplyTechModificationsToEntity("BuildingAI/DefaultArrowCount", arrowCount, this.entity);
 };
 
 BuildingAI.prototype.GetGarrisonArrowMultiplier = function()
 {
 	var arrowMult = +this.template.GarrisonArrowMultiplier;
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	if (cmpTechMan)
-		arrowMult = cmpTechMan.ApplyModifications("BuildingAI/GarrisonArrowMultiplier", arrowMult, this.entity);
-	return arrowMult;
+	return ApplyTechModificationsToEntity("BuildingAI/GarrisonArrowMultiplier", arrowMult, this.entity);
 };
 
 /**

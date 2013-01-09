@@ -8,7 +8,7 @@
         <animation file="female/f_cav_idle_01.dae" name="Walk" speed="50"/>
         <animation file="female/f_cav_run_01.dae" name="Run" speed="30"/>
         <animation file="female/f_cav_death_01.dae" name="Death" speed="230"/>
-        <animation event=".5" file="female/f_cav_jav_atk_01.dae" load="0" name="melee" speed="50"/>
+        <animation event=".5" file="female/f_cav_jav_atk_01.dae" load="0" name="attack_ranged" speed="50"/>
       </animations>
       <mesh>skeletal/f_tunic.dae</mesh>
       <props>
@@ -19,7 +19,7 @@
     </variant>
   </group>
   <group>
-    <variant name="Melee">
+    <variant name="attack_ranged">
       <props>
         <prop actor="props/units/weapons/jav_gold.xml" attachpoint="loaded-r_hand"/>
         <prop attachpoint="r_hand"/>

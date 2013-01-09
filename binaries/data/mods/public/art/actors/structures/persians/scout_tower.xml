@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="scouttowera">
       <animations>
-        <animation event="0.5" load="0" name="melee" speed="100"/>
+        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
       </animations>
       <mesh>structural/pers_scout_tower_a.dae</mesh>
       <props>
@@ -15,7 +15,7 @@
     </variant>
     <variant frequency="1" name="scouttowerb">
       <animations>
-        <animation event="0.5" load="0" name="melee" speed="100"/>
+        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
       </animations>
       <mesh>structural/pers_scout_tower_b.dae</mesh>
       <props>
