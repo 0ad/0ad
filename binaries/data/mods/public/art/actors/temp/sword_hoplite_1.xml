@@ -9,9 +9,9 @@
         <animation file="infantry/sword/attack/isw_s_off_05.psa" name="Idle" speed="1"/>
         <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="8"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_em_04.psa" name="Attack" speed="120"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="Attack" speed="150"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="Attack" speed="145"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_em_04.psa" name="attack_melee" speed="120"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="150"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_melee" speed="145"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_02.psa" name="death" speed="420"/>
         <animation file="infantry/general/death/inf_06.psa" name="death" speed="200"/>

@@ -7,7 +7,7 @@
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
         <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
-        <animation event=".5" file="biped/rider_javelin_atk_a.psa" load="0" name="Melee" speed="50"/>
+        <animation event=".5" file="biped/rider_javelin_atk_a.psa" load="0" name="attack_ranged" speed="50"/>
         <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
       <props>
@@ -31,7 +31,7 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Melee">
+    <variant name="attack_ranged">
       <props>
         <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav_projectile_flame.xml" attachpoint="projectile"/>

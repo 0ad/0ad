@@ -17,8 +17,8 @@
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="122"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="130"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="118"/>
-        <animation event="0.5" file="quadraped/horse_attack_a.psa" name="Melee" speed="200"/>
-        <animation event="0.5" file="quadraped/horse_attack_b.psa" name="Melee" speed="200"/>
+        <animation event="0.5" file="quadraped/horse_attack_a.psa" name="attack_melee" speed="200"/>
+        <animation event="0.5" file="quadraped/horse_attack_b.psa" name="attack_melee" speed="200"/>
         <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>

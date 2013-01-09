@@ -6,7 +6,7 @@
       <animations>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="95"/>
-        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="Attack" speed="100"/>
+        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="attack_ranged" speed="100"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Walk" speed="20"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Run" speed="5"/>
         <animation file="biped/inf_salute_c.psa" name="Promotion" speed="290"/>
@@ -33,7 +33,7 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Melee">
+    <variant name="attack_ranged">
       <props>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
