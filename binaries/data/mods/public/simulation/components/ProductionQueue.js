@@ -194,12 +194,12 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			// Obviously we don't have the entities yet, so we must use template data
 			var costs = {};
 			var totalCosts = {};
-			var buildTime = ApplyTechModificationsToEntity("Cost/BuildTime", +template.Cost.BuildTime, template);
+			var buildTime = ApplyTechModificationsToTemplate("Cost/BuildTime", +template.Cost.BuildTime, this.entity, template);
 			var time = timeMult * buildTime;
 
 			for (var r in template.Cost.Resources)
 			{
-				costs[r] = ApplyTechModificationsToEntity("Cost/Resources/"+r, +template.Cost.Resources[r], template);
+				costs[r] = ApplyTechModificationsToTemplate("Cost/Resources/"+r, +template.Cost.Resources[r], this.entity, template);
 				totalCosts[r] = Math.floor(count * costs[r]);
 			}
 
