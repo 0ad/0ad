@@ -214,6 +214,11 @@ extern_lib_defs = {
 			if os.getversion().description == "OpenBSD" then
 				includedirs { "/usr/local/include" }
 			end
+		end,
+		link_settings = function()
+			if os.is("windows") then
+				add_default_lib_paths("boost")
+			end
 			add_default_links({
 				-- The following are not strictly link dependencies on all systems, but
 				-- are included for compatibility with different versions of Boost
@@ -221,11 +226,6 @@ extern_lib_defs = {
 				unix_names = { "boost_filesystem-mt", "boost_system-mt" },
 				bsd_names = { "boost_filesystem", "boost_system" },
 			})
-		end,
-		link_settings = function()
-			if os.is("windows") then
-				add_default_lib_paths("boost")
-			end
 		end,
 	},
 	boost_signals = {
