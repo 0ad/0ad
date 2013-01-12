@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,9 @@ CInput
 #include "graphics/TextRenderer.h"
 #include "lib/ogl.h"
 #include "lib/sysdep/clipboard.h"
+#include "lib/timer.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/Font.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
@@ -41,7 +43,9 @@ extern int g_yres;
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
-CInput::CInput() : m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(false), m_HorizontalScroll(0.f)
+CInput::CInput()
+	: m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(false), m_HorizontalScroll(0.f),
+	  m_PrevTime(0.0), m_CursorVisState(true), m_CursorBlinkRate(0.5)
 {
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CStrW,					"caption");
@@ -57,6 +61,8 @@ CInput::CInput() : m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(fals
 	AddSetting(GUIST_CColor,				"textcolor_selected");
 	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
+
+	CFG_GET_VAL("gui.cursorblinkrate", Double, m_CursorBlinkRate);
 
 	// Add scroll-bar
 	CGUIScrollBarVertical * bar = new CGUIScrollBarVertical();
@@ -955,6 +961,8 @@ void CInput::HandleMessage(SGUIMessage &Message)
 
 	case GUIM_GOT_FOCUS:
 		m_iBufferPos = 0;
+		m_PrevTime = 0.0;
+		m_CursorVisState = false;
 		
 		break;
 
@@ -989,6 +997,22 @@ void CInput::UpdateCachedSize()
 void CInput::Draw()
 {
 	float bz = GetBufferedZ();
+
+	if (m_CursorBlinkRate > 0.0)
+	{
+		// check if the cursor visibility state needs to be changed
+		double currTime = timer_Time();
+		if ((currTime - m_PrevTime) >= m_CursorBlinkRate)
+		{
+			m_CursorVisState = !m_CursorVisState;
+			m_PrevTime = currTime;
+		}
+	}
+	else
+	{
+		// should always be visible
+		m_CursorVisState = true;
+	}
 
 	// First call draw on ScrollBarOwner
 	bool scrollbar;
@@ -1299,7 +1323,8 @@ void CInput::Draw()
 						it->m_ListStart + i == m_iBufferPos)
 					{
 						// selecting only one, then we need only to draw a cursor.
-						textRenderer.Put(0.0f, 0.0f, L"_");
+						if (m_CursorVisState)
+							textRenderer.Put(0.0f, 0.0f, L"_");
 					}
 
 					// Drawing selected area
@@ -1326,7 +1351,8 @@ void CInput::Draw()
 				if (it->m_ListStart + (int)it->m_ListOfX.size() == m_iBufferPos)
 				{
 					textRenderer.Color(color);
-					textRenderer.PutAdvance(L"_");
+					if (m_CursorVisState)
+						textRenderer.PutAdvance(L"_");
 
 					if (using_selected_color)
 					{
