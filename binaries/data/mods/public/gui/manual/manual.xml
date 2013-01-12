@@ -23,7 +23,7 @@
 		</object>
 		<object type="button" style="StoneButton" tooltip_style="snToolTip" size="100%-164 100%-52 100%-24 100%-24">
 			Close
-			<action on="Press"><![CDATA[Engine.PopGuiPage();]]></action>
+			<action on="Press"><![CDATA[closeManual();]]></action>
 		</object>
 	</object>
 

@@ -9,7 +9,7 @@ const RESUME = "Resume";
 const MARGIN = 4;
 
 // Includes the main menu button
-const NUM_BUTTONS = 7;
+const NUM_BUTTONS = 8;
 
 // Regular menu buttons
 const BUTTON_HEIGHT = 32;
@@ -369,6 +369,14 @@ function togglePause()
 	}
 
 	pauseOverlay.hidden = !pauseOverlay.hidden;
+}
+
+function openManual()
+{
+	closeMenu();
+	closeOpenDialogs();
+	pauseGame();
+	Engine.PushGuiPage("page_manual.xml", {"page": "intro", "closeCallback": resumeGame});
 }
 
 function toggleDeveloperOverlay()

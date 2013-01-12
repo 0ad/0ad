@@ -641,7 +641,18 @@
 		    <object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
 		    <action on="Press">togglePause();</action>
 		</object>
-	    </object>
+
+		<!-- Manual button -->
+		<object type="button"
+			name="manualButton"
+			style="StoneButtonFancy"
+			size="0 192 100% 220"
+			tooltip_style="sessionToolTip"
+		>
+			Manual
+			<action on="Press">openManual();</action>
+		</object>
+		</object>
 	</object>
 
 	<!-- In-progress research -->
