@@ -11,3 +11,4 @@ plus some patches:
   cmake-freebsd.patch (fixes build on FreeBSD)
   gcc47-unistd.patch (fixes build on GCC 4.7)
   cmake-depflags.patch (from https://407191.bugs.gentoo.org/attachment.cgi?id=308589 - allows disabling various dependencies)
+  issue182.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=182)
