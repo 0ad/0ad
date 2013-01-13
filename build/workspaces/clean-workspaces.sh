@@ -37,6 +37,8 @@ rm -rf ./gcc
 rm -rf ./codeblocks
 # Remove workspaces/xcode3 if present
 rm -rf ./xcode3
+# Remove workspaces/xcode4 if present
+rm -rf ./xcode4
 
 echo
 echo "Done. Try running update-workspaces.sh again now."

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -492,6 +492,10 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, CScriptVal initData)
 		g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);
 		// Offset by an arbitrary amount, to make it fit more nicely
 		g_Console->m_iFontOffset = 7;
+
+		double blinkRate = 0.5;
+		CFG_GET_VAL("gui.cursorblinkrate", Double, blinkRate);
+		g_Console->SetCursorBlinkRate(blinkRate);
 	}
 
 	// hotkeys

@@ -280,6 +280,7 @@
 			size="100%-308 100%-52 100%-168 100%-24"
 			tooltip_style="onscreenToolTip"
 			tooltip="Start a new game with the current settings."
+			enabled="false"
 		>
 			Start game!
 			<action on="Press">launchGame();</action>

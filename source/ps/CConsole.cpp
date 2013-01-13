@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@
 #include "gui/GUIutil.h"
 #include "lib/ogl.h"
 #include "lib/sysdep/clipboard.h"
+#include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
@@ -56,7 +57,11 @@ CConsole::CConsole()
 
 	m_iMsgHistPos = 1;
 	m_charsPerPage = 0;
-	
+
+	m_prevTime = 0.0;
+	m_bCursorVisState = true;
+	m_cursorBlinkRate = 0.5;
+
 	InsertMessage(L"[ 0 A.D. Console v0.14 ]");
 	InsertMessage(L"");
 }
@@ -93,6 +98,16 @@ void CConsole::SetVisible(bool visible)
 	if (visible != m_bVisible)
 		m_bToggle = true;
 	m_bVisible = visible;
+	if (visible)
+	{
+		m_prevTime = 0.0;
+		m_bCursorVisState = false;
+	}
+}
+
+void CConsole::SetCursorBlinkRate(double rate)
+{
+	m_cursorBlinkRate = rate;
 }
 
 void CConsole::FlushBuffer()
@@ -301,14 +316,33 @@ void CConsole::DrawBuffer(CTextRenderer& textRenderer)
 
 void CConsole::DrawCursor(CTextRenderer& textRenderer)
 {
-	// Slightly translucent yellow
-	textRenderer.Color(1.0f, 1.0f, 0.0f, 0.8f);
+	if (m_cursorBlinkRate > 0.0)
+	{
+		// check if the cursor visibility state needs to be changed
+		double currTime = timer_Time();
+		if ((currTime - m_prevTime) >= m_cursorBlinkRate)
+		{
+			m_bCursorVisState = !m_bCursorVisState;
+			m_prevTime = currTime;
+		}
+	}
+	else
+	{
+		// Should always be visible
+		m_bCursorVisState = true;
+	}
 
-	// Cursor character is chosen to be an underscore
-	textRenderer.Put(0.0f, 0.0f, L"_");
+	if(m_bCursorVisState)
+	{
+		// Slightly translucent yellow
+		textRenderer.Color(1.0f, 1.0f, 0.0f, 0.8f);
 
-	// Revert to the standard text colour
-	textRenderer.Color(1.0f, 1.0f, 1.0f);
+		// Cursor character is chosen to be an underscore
+		textRenderer.Put(0.0f, 0.0f, L"_");
+
+		// Revert to the standard text colour
+		textRenderer.Color(1.0f, 1.0f, 1.0f);
+	}
 }
 
 

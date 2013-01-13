@@ -256,10 +256,6 @@ function initMain()
 		}
 
 		getGUIObjectByName("numPlayersSelection").hidden = true;
-
-		// Disable "start game" button
-		// TODO: Perhaps replace this with a "ready" button, and require host to wait?
-		getGUIObjectByName("startGame").enabled = false;
 	}
 
 	// Set up multiplayer/singleplayer bits:
@@ -654,6 +650,19 @@ function selectNumPlayers(num)
 		for (var i = pData.length; i < num; ++i)
 		{
 			g_GameAttributes.settings.PlayerData.push(g_DefaultPlayerData[i]);
+		}
+	}
+
+	// Some players may have lost their assigned slot
+	for (var guid in g_PlayerAssignments)
+	{
+		var player = g_PlayerAssignments[guid].player;
+		if (player > num)
+		{
+			if (g_IsNetworked)
+				Engine.AssignNetworkPlayer(player, "");
+			else
+				g_PlayerAssignments = { "local": { "name": "You", "player": 1, "civ": "", "team": -1} };
 		}
 	}
 
@@ -1143,6 +1152,7 @@ function updatePlayerList()
 	var assignments = [];
 	var aiAssignments = {};
 	var noAssignment;
+	var assignedCount = 0;
 
 	for (var guid in g_PlayerAssignments)
 	{
@@ -1153,7 +1163,14 @@ function updatePlayerList()
 		hostNameList.push(name);
 		hostGuidList.push(guid);
 		assignments[player] = hostID;
+
+		if (player != 255)
+			assignedCount++;
 	}
+
+	// Only enable start button if we have enough assigned players
+	if (g_IsController)
+		getGUIObjectByName("startGame").enabled = (assignedCount > 0);
 
 	for each (var ai in g_AIs)
 	{

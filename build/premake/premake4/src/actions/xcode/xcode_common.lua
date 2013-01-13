@@ -1,7 +1,7 @@
 --
 -- xcode_common.lua
 -- Functions to generate the different sections of an Xcode project.
--- Copyright (c) 2009-2010 Jason Perkins and the Premake project
+-- Copyright (c) 2009-2011 Jason Perkins and the Premake project
 --
 
 	local xcode = premake.xcode
@@ -32,7 +32,6 @@
 			[".nib"] = "Resources",
 			[".xib"] = "Resources",
 			[".icns"] = "Resources",
-			[".asm"] = "Sources"
 		}
 		return categories[path.getextension(node.name)]
 	end
@@ -86,7 +85,6 @@
 			[".strings"]   = "text.plist.strings",
 			[".xib"]       = "file.xib",
 			[".icns"]      = "image.icns",
-			[".asm"]       = "sourcecode.asm",
 		}
 		return types[path.getextension(node.path)] or "text"
 	end
@@ -265,25 +263,6 @@
 	end
 
 
-	function xcode.PBXBuildRule(tr)
-		if not (tr.project.solution.nasmpath) then
-			tr.project.solution.nasmpath = 'nasm'				
-		end
-		_p('/* Begin PBXBuildRule section */')
-			_p(2,'28AD1E6E1336798800207177 /* PBXBuildRule */ = {')
-				_p(3,'isa = PBXBuildRule;')
-				_p(3,'compilerSpec = com.apple.compilers.proxy.script;')
-				_p(3,'fileType = sourcecode.asm;')
-				_p(3,'isEditable = 1;')
-				_p(3,'outputFiles = (')
-					_p(4,'"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).o",')
-				_p(3,');')
-				_p(3,'script = "%s -D OS_UNIX=1 -i${INPUT_FILE_DIR}/ -f %s ${INPUT_FILE_PATH} -o ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.o";', tr.project.solution.nasmpath, tr.project.solution.nasmformat)
-			_p(2,'};')
-		_p('/* End PBXBuildRule section */')
-	end
-
-
 	function xcode.PBXContainerItemProxy(tr)
 		if #tr.projects.children > 0 then
 			_p('/* Begin PBXContainerItemProxy section */')
@@ -334,13 +313,27 @@
 				else
 					local pth, src
 					if xcode.isframework(node.path) then
-						-- I need to figure out how to locate frameworks; this is just to get something working
-						pth = "/System/Library/Frameworks/" .. node.path
+						--respect user supplied paths
+						if string.find(node.path,'/')  then
+							if string.find(node.path,'^%.')then
+								error('relative paths are not currently supported for frameworks')
+							end
+							pth = node.path
+						else
+							pth = "/System/Library/Frameworks/" .. node.path
+						end
 						src = "absolute"
 					else
 						-- something else; probably a source code file
-						pth = tree.getlocalpath(node)
 						src = "group"
+
+						-- if the parent node is virtual, it won't have a local path
+						-- of its own; need to use full relative path from project
+						if node.parent.isvpath then
+							pth = node.cfg.name
+						else
+							pth = tree.getlocalpath(node)
+						end
 					end
 					
 					_p(2,'%s /* %s */ = {isa = PBXFileReference; lastKnownFileType = %s; name = "%s"; path = "%s"; sourceTree = "<%s>"; };',
@@ -411,12 +404,12 @@
 					_p(3,'name = Products;')
 				else
 					_p(3,'name = "%s";', node.name)
-					if node.path then
+					if node.path and not node.isvpath then
 						local p = node.path
 						if node.parent.path then
 							p = path.getrelative(node.parent.path, node.path)
 						end
-						_p(3,'path = %s;', p)
+						_p(3,'path = "%s";', p)
 					end
 				end
 				
@@ -453,7 +446,6 @@
 			end
 			_p(3,');')
 			_p(3,'buildRules = (')
-			_p(4,'28AD1E6E1336798800207177 /* PBXBuildRule */,')
 			_p(3,');')
 			
 			_p(3,'dependencies = (')
@@ -489,7 +481,7 @@
 		_p(2,'08FB7793FE84155DC02AAC07 /* Project object */ = {')
 		_p(3,'isa = PBXProject;')
 		_p(3,'buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "%s" */;', tr.name)
-		_p(3,'compatibilityVersion = "Xcode 3.1";')
+		_p(3,'compatibilityVersion = "Xcode 3.2";')
 		_p(3,'hasScannedForEncodings = 1;')
 		_p(3,'mainGroup = %s /* %s */;', tr.id, tr.name)
 		_p(3,'projectDirPath = "";')
@@ -756,7 +748,7 @@
 			_p(4,'GCC_ENABLE_CPP_RTTI = NO;')
 		end
 		
-		if cfg.flags.Symbols and not cfg.flags.NoEditAndContinue then
+		if _ACTION ~= "xcode4" and cfg.flags.Symbols and not cfg.flags.NoEditAndContinue then
 			_p(4,'GCC_ENABLE_FIX_AND_CONTINUE = YES;')
 		end
 		
@@ -821,8 +813,6 @@
 		end
 		flags = table.join(flags, cfg.linkoptions)
 		xcode.printlist(flags, 'OTHER_LDFLAGS')
-		
-		_p(4,'PREBINDING = NO;')
 		
 		if cfg.flags.StaticRuntime then
 			_p(4,'STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;')

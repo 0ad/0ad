@@ -109,8 +109,9 @@ export HOSTTYPE="$HOSTTYPE"
 premake4/bin/release/premake4 --file="premake4.lua" --outpath="../workspaces/gcc/" ${premake_args} gmake || die "Premake failed"
 premake4/bin/release/premake4 --file="premake4.lua" --outpath="../workspaces/codeblocks/" ${premake_args} codeblocks || die "Premake failed"
 
-# Also generate xcode3 workspaces if on OS X
+# Also generate xcode workspaces if on OS X
 if [ "`uname -s`" = "Darwin" ]
 then
   premake4/bin/release/premake4 --file="premake4.lua" --outpath="../workspaces/xcode3" ${premake_args} xcode3 || die "Premake failed"
+  premake4/bin/release/premake4 --file="premake4.lua" --outpath="../workspaces/xcode4" ${premake_args} xcode4 || die "Premake failed"
 fi
