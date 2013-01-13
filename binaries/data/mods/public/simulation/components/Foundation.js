@@ -36,6 +36,7 @@ Foundation.prototype.UpdateTimeout = function()
 Foundation.prototype.InitialiseConstruction = function(owner, template)
 {
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
+	this.addedHitpoints = cmpHealth.GetHitpoints();
 
 	this.finalTemplateName = template;
 
@@ -194,10 +195,11 @@ Foundation.prototype.Build = function(builderEnt, work)
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	var maxHealth = cmpHealth.GetMaxHitpoints();
 	var targetHP = Math.max(0, Math.min(maxHealth, Math.floor(maxHealth * this.buildProgress)));
-	if (targetHP > 0)
+	var deltaHP = targetHP - this.addedHitpoints;
+	if (deltaHP > 0)
 	{
-		
-		cmpHealth.SetHitpoints(targetHP);
+		cmpHealth.Increase(deltaHP);
+		this.addedHitpoints += deltaHP;
 	}
 
 	if (this.buildProgress >= 1.0)
