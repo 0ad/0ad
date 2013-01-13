@@ -227,6 +227,8 @@ void CSoundManager::ScriptingInit()
 
 #if CONFIG2_AUDIO
 
+#define		SOURCE_NUM		600
+
 void CSoundManager::CreateSoundManager()
 {
 	g_SoundManager = new CSoundManager();
@@ -284,9 +286,14 @@ CSoundManager::~CSoundManager()
 	alcDestroyContext(m_Context);
 	alcCloseDevice(m_Device);
 
+	delete m_ALSourceBuffer;
+	delete m_StateBuffer;
+
+
 	m_CurrentEnvirons = 0;
 	m_CurrentTune = 0;
 }
+
 
 
 Status CSoundManager::AlcInit()
@@ -300,7 +307,20 @@ Status CSoundManager::AlcInit()
 		m_Context = alcCreateContext(m_Device, &attribs[0]);
 
 		if(m_Context)
+		{
 			alcMakeContextCurrent(m_Context);
+			m_ALSourceBuffer = new( sizeof( ALuint ) * SOURCE_NUM );
+			m_StateBuffer = new( sizeof( ALSourceHolder ) * SOURCE_NUM );
+			sourceList = new( sizeof( ALuint ) * SOURCE_NUM );
+
+			alGenSources( SOURCE_NUM, sourceList);
+
+			for ( x=0; x<SOURCE_NUM;x++)
+			{
+				m_ALSourceBuffer[x].ALSource = sourceList[x];
+				m_ALSourceBuffer[x].IsUsed = false;
+			}
+		}
 	}
 
 	// check if init succeeded.
@@ -314,6 +334,9 @@ Status CSoundManager::AlcInit()
 	else
 	{
 		LOGERROR(L"Sound: AlcInit failed, m_Device=%p m_Context=%p dev_name=%hs err=%d\n", m_Device, m_Context, dev_name, err);
+
+
+
 // FIXME Hack to get around exclusive access to the sound device
 #if OS_UNIX
 		ret = INFO::OK;
@@ -324,6 +347,32 @@ Status CSoundManager::AlcInit()
 
 	return ret;
 }
+
+ALuint CSoundManager::GetALSource()
+{
+	for ( x=0; x<SOURCE_NUM;x++)
+	{
+		if ( !m_ALSourceBuffer[x].IsUsed )
+		{
+			m_ALSourceBuffer[x].IsUsed = true;
+			return m_ALSourceBuffer[x].ALSource;
+		}
+	}
+	return 0;
+}
+
+void CSoundManager::ReleaseALSource(ALuint theSource)
+{
+	for ( x=0; x<SOURCE_NUM;x++)
+	{
+		if ( m_ALSourceBuffer[x].ALSource == theSource )
+		{
+			m_ALSourceBuffer[x].IsUsed = false;
+			return;
+		}
+	}
+}
+
 void CSoundManager::SetMemoryUsage(long bufferSize, int bufferCount)
 {
 	m_BufferCount = bufferCount;
@@ -364,6 +413,34 @@ ISoundItem* CSoundManager::LoadItem(const VfsPath& itemPath)
 	AL_CHECK
 
 	CSoundData* itemData = CSoundData::SoundDataFromFile(itemPath);
+	ISoundItem* answer = ItemFromData(CSoundData* itemData);
+
+	AL_CHECK
+	
+	if (itemData != NULL)
+	{
+		if (itemData->IsOneShot())
+		{
+			if (itemData->GetBufferCount() == 1)
+				answer = new CSoundItem(itemData);
+			else
+				answer = new CBufferItem(itemData);
+		}
+		else
+		{
+			answer = new CStreamItem(itemData);
+		}
+
+		if ( answer && m_Worker )
+			m_Worker->addItem( answer );
+	}
+
+	
+	return answer;
+}
+ISoundItem* CSoundManager::ItemFromData(CSoundData* itemData)
+{	
+	AL_CHECK
 	ISoundItem* answer = NULL;
 
 	AL_CHECK

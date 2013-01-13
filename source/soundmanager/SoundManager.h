@@ -34,6 +34,14 @@ typedef std::vector<ISoundItem*> ItemsList;
 
 class CSoundManagerWorker;
 
+
+struct ALSourceHolder
+{
+	/// Title of the column
+	ALuint 	ALSource;
+	bool	IsUsed;
+};
+
 class CSoundManager
 {
 protected:
@@ -54,6 +62,8 @@ protected:
 	bool m_MusicEnabled;
 	bool m_SoundEnabled;
 
+	ALSourceHolder* m_ALSourceBuffer;
+
 public:
 	CSoundManager();
 	virtual ~CSoundManager();
@@ -69,6 +79,10 @@ public:
 
 	void SetMusicEnabled (bool isEnabled);
 	void setSoundEnabled( bool enabled );
+
+	ALuint GetALSource();
+	void ReleaseALSource(ALuint theSource);
+	ISoundItem* ItemFromData(CSoundData* itemData);
 
 	ISoundItem* ItemFromWAV(VfsPath& fname);
 	ISoundItem* ItemFromOgg(VfsPath& fname);

@@ -38,7 +38,7 @@ CSoundBase::~CSoundBase()
 	Stop();
 	if (m_ALSource != 0)
 	{
-		alDeleteSources(1, &m_ALSource);
+		g_SoundManager->ReleaseALSource(m_ALSource);
 		m_ALSource = 0;
 	}
 	if (m_SoundData != 0)
@@ -70,6 +70,34 @@ void CSoundBase::ResetFade()
 	m_EndVolume = 0;
 	m_ShouldBePlaying = false;
 }
+
+
+bool CSoundBase::InitOpenAL()
+{
+	alGetError(); /* clear error */
+	
+	m_ALSource = g_SoundManager->GetALSource();
+	long anErr = alGetError();
+
+	AL_CHECK
+
+	if ( m_ALSource )	
+	{		
+		alSourcef(m_ALSource,AL_PITCH,1.0f);
+		AL_CHECK
+		alSourcef(m_ALSource,AL_GAIN,1.0f);
+		AL_CHECK
+		alSourcei(m_ALSource,AL_LOOPING,AL_FALSE);
+		AL_CHECK
+		return true;
+	}
+	else
+	{
+		LOGERROR(L"Source not allocated by SOundManager\n", 0);
+	}
+	return false;
+}
+
 
 void CSoundBase::SetGain(ALfloat gain)
 {
@@ -133,30 +161,6 @@ void CSoundBase::SetDirection(const CVector3D& direction)
 	}
 }
 
-bool CSoundBase::InitOpenAL()
-{
-	alGetError(); /* clear error */
-	alGenSources(1, &m_ALSource);
-	long anErr = alGetError();
-
-	AL_CHECK
-
-	if (anErr == AL_NO_ERROR) 
-	{		
-		alSourcef(m_ALSource,AL_PITCH,1.0f);
-		AL_CHECK
-		alSourcef(m_ALSource,AL_GAIN,1.0f);
-		AL_CHECK
-		alSourcei(m_ALSource,AL_LOOPING,AL_FALSE);
-		AL_CHECK
-		return true;
-	}
-	else
-	{
-		CSoundManager::al_ReportError( anErr, __func__, __LINE__);
-	}
-	return false;
-}
 
 bool CSoundBase::IsPlaying()
 {
