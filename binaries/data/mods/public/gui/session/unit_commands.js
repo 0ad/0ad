@@ -662,7 +662,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			var grayscale = "";
 			button.enabled = true;
 			
-			if (guiName != SELECTION && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
+			if (guiName != SELECTION && guiName != GARRISON && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
 			{
 				button.enabled = false;
 				var techName = getEntityNames(GetTechnologyData(template.requiredTechnology));

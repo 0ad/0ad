@@ -1519,7 +1519,7 @@ function getEntityLimitAndCount(playerState, entType)
 	{
 		trainEntLimit = playerState.entityLimits[trainingCategory];
 		trainEntCount = playerState.entityCounts[trainingCategory];
-		canBeTrainedCount = trainEntLimit - trainEntCount;
+		canBeTrainedCount = Math.max(trainEntLimit - trainEntCount, 0);
 	}
 	return [trainEntLimit, trainEntCount, canBeTrainedCount];
 }
