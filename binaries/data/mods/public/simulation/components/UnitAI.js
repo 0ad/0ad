@@ -2001,7 +2001,10 @@ var UnitFsmSpec = {
 									var dropsiteTypes = cmpResourceDropsite.GetTypes();
 									var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 									if (cmpResourceGatherer)
+									{
 										cmpResourceGatherer.CommitResources(dropsiteTypes);
+										this.SetGathererAnimationOverride();
+									}
 								}
 								
 								return false;
