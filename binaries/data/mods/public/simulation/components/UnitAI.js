@@ -306,8 +306,9 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Flee": function(msg) {
-		// TODO: if we were attacked by a ranged unit, we need to flee much further away
-		var ok = this.MoveToTargetRangeExplicit(this.order.data.target, +this.template.FleeDistance, -1);
+		// We use the distance between the enities to account for ranged attacks
+		var distance = DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
+		var ok = this.MoveToTargetRangeExplicit(this.order.data.target, distance, -1);
 		if (ok)
 		{
 			// We've started fleeing from the given target
