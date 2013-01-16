@@ -16,6 +16,10 @@
       units/rome_mechanical_siege_scorpio_packed
       units/rome_mechanical_siege_ram
     </Entities>
+    <Technologies datatype="tokens">
+      pair_siege_attack_pack
+      pair_siege_cost_armor
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/romans/fortress.xml</Actor>

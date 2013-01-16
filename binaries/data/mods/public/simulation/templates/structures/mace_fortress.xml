@@ -28,6 +28,10 @@
       units/mace_mechanical_siege_ram
       units/mace_mechanical_siege_tower
     </Entities>
+    <Technologies datatype="tokens">
+      pair_siege_attack_pack
+      pair_siege_cost_armor
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/hellenes/fortress_up.xml</Actor>
