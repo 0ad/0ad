@@ -306,8 +306,9 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Flee": function(msg) {
-		// TODO: if we were attacked by a ranged unit, we need to flee much further away
-		var ok = this.MoveToTargetRangeExplicit(this.order.data.target, +this.template.FleeDistance, -1);
+		// We use the distance between the enities to account for ranged attacks
+		var distance = DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
+		var ok = this.MoveToTargetRangeExplicit(this.order.data.target, distance, -1);
 		if (ok)
 		{
 			// We've started fleeing from the given target
@@ -985,7 +986,9 @@ var UnitFsmSpec = {
 			// is done moving. The controller is notified, and will disband the
 			// formation if all units are in formation and no orders remain.
 			"MoveCompleted": function(msg) {
-				if(this.FinishOrder())
+				// Ignore MoveFailed messages, as formation members will still
+				// follow the formation controller.
+				if (!(!msg.data.starting && msg.data.error) && this.FinishOrder())
 					return;
 
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
@@ -2001,7 +2004,10 @@ var UnitFsmSpec = {
 									var dropsiteTypes = cmpResourceDropsite.GetTypes();
 									var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 									if (cmpResourceGatherer)
+									{
 										cmpResourceGatherer.CommitResources(dropsiteTypes);
+										this.SetGathererAnimationOverride();
+									}
 								}
 								
 								return false;

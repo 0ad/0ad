@@ -11,6 +11,10 @@
       units/pers_champion_cavalry
       units/pers_mechanical_siege_ram
     </Entities>
+    <Technologies datatype="tokens">
+      pair_siege_attack_cost
+      pair_siege_cost_armor
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/fortress.xml</Actor>

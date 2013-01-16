@@ -1,0 +1,12 @@
+{
+	"genericName": "Metalworker",
+	"description": "Siege weapons require less metal resource",
+	"cost": {"food": 200, "wood": 0, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "anvil.png",
+	"researchTime": 30,
+	"tooltip": "Siege weapons cost 20% less metal",
+	"modifications": [{"value": "Cost/Resources/metal", "multiplier": 0.80}],
+	"affects": ["Siege"]
+}
