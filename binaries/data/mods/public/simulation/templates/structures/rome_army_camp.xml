@@ -47,6 +47,7 @@
     <Max>40</Max>
     <List datatype="tokens">Support Infantry Cavalry Siege</List>
     <BuffHeal>1</BuffHeal>
+    <LoadingRange>6</LoadingRange>
   </GarrisonHolder>
   <Health>
     <Max>3600</Max>
@@ -82,8 +83,8 @@
       units/rome_infantry_spearman_a
       units/rome_infantry_javelinist_b
       units/rome_cavalry_spearman_b
-      units/rome_mechanical_siege_ballista
-      units/rome_mechanical_siege_scorpio
+      units/rome_mechanical_siege_ballista_packed
+      units/rome_mechanical_siege_scorpio_packed
       units/rome_mechanical_siege_ram
     </Entities>
   </ProductionQueue>

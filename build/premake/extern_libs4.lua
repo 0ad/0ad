@@ -32,7 +32,7 @@ local function pkgconfig_cflags(lib, alternative_cmd)
 		cmd_cflags = alternative_cmd
 	end
 
-	if _ACTION == "xcode3" then
+	if _ACTION == "xcode3" or _ACTION == "xcode4" then
 		result_cflags = string.gsub(os.capture(cmd_cflags), "\n", "")
 		buildoptions { result_cflags }
 	else
@@ -49,7 +49,7 @@ local function pkgconfig_libs(lib, alternative_cmd)
 		cmd_libs = alternative_cmd
 	end
 
-	if _ACTION == "xcode3" then
+	if _ACTION == "xcode3" or _ACTION == "xcode4" then
 		-- The syntax of -Wl with the comma separated list doesn't work and -Wl apparently isn't needed in xcode.
 		-- This is a hack, but it works...
 		result_libs = string.gsub(os.capture(cmd_libs), "-Wl", "")
@@ -214,6 +214,11 @@ extern_lib_defs = {
 			if os.getversion().description == "OpenBSD" then
 				includedirs { "/usr/local/include" }
 			end
+		end,
+		link_settings = function()
+			if os.is("windows") then
+				add_default_lib_paths("boost")
+			end
 			add_default_links({
 				-- The following are not strictly link dependencies on all systems, but
 				-- are included for compatibility with different versions of Boost
@@ -221,11 +226,6 @@ extern_lib_defs = {
 				unix_names = { "boost_filesystem-mt", "boost_system-mt" },
 				bsd_names = { "boost_filesystem", "boost_system" },
 			})
-		end,
-		link_settings = function()
-			if os.is("windows") then
-				add_default_lib_paths("boost")
-			end
 		end,
 	},
 	boost_signals = {
@@ -370,7 +370,7 @@ extern_lib_defs = {
 				add_default_lib_paths("libpng")
 			end
 			add_default_links({
-				win_names  = { "libpng14" },
+				win_names  = { "libpng15" },
 				unix_names = { "png" },
 			})
 		end,

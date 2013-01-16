@@ -2,7 +2,7 @@
 <Entity parent="template_unit_champion_cavalry_spearman">
   <Armour>
     <Hack>15.0</Hack>
-    <Pierce>15.0</Pierce>
+    <Pierce>19.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
   <Attack>
@@ -23,7 +23,7 @@
     </Resources>
   </Cost>
   <Health>
-    <Max>150</Max>
+    <Max>220</Max>
   </Health>
   <Identity>
     <Civ>pers</Civ>
@@ -33,7 +33,7 @@
     <History>Cataphracts were the crushing blow of the Persian cavalry. The development of the Persian cataphract is not well understood, as is the relationship between these men and future generations of cataphract cavalry. At best it seems the Persians adopted the catapharct from encounters with Iranian nomads like the Massagetes.</History>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>9.0</WalkSpeed>
+    <WalkSpeed>10.0</WalkSpeed>
     <Run>
       <Speed>25.0</Speed>
       <Range>1000.0</Range>

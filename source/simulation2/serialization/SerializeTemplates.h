@@ -68,9 +68,11 @@ struct SerializeMap
 		}
 	}
 
-	template<typename K, typename V>
-	void operator()(IDeserializer& deserialize, const char* UNUSED(name), std::map<K, V>& value)
+	template<typename M>
+	void operator()(IDeserializer& deserialize, const char* UNUSED(name), M& value)
 	{
+		typedef typename M::key_type K;
+		typedef typename M::value_type::second_type V; // M::data_type gives errors with gcc
 		value.clear();
 		u32 len;
 		deserialize.NumberU32_Unbounded("length", len);
@@ -82,6 +84,24 @@ struct SerializeMap
 			VS()(deserialize, "value", v);
 			value.insert(std::make_pair(k, v));
 		}
+	}
+};
+
+// We have to order the map before serializing to make things consistent
+template<typename KS, typename VS>
+struct SerializeUnorderedMap
+{
+	template<typename K, typename V>
+	void operator()(ISerializer& serialize, const char* name, boost::unordered_map<K, V>& value)
+	{
+		std::map<K, V> ordered_value(value.begin(), value.end());
+		SerializeMap<KS, VS>()(serialize, name, ordered_value);
+	}
+
+	template<typename K, typename V>
+	void operator()(IDeserializer& deserialize, const char* name, boost::unordered_map<K, V>& value)
+	{
+		SerializeMap<KS, VS>()(deserialize, name, value);
 	}
 };
 

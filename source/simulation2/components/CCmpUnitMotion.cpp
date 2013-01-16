@@ -228,6 +228,9 @@ public:
 
 	fixed m_Speed;
 
+	// Current mean speed (over the last turn).
+	fixed m_CurSpeed;
+
 	// Currently active paths (storing waypoints in reverse order).
 	// The last item in each path is the point we're currently heading towards.
 	ICmpPathfinder::Path m_LongPath;
@@ -280,6 +283,7 @@ public:
 		m_Moving = false;
 		m_WalkSpeed = paramNode.GetChild("WalkSpeed").ToFixed();
 		m_Speed = m_WalkSpeed;
+		m_CurSpeed = fixed::Zero();
 
 		if (paramNode.GetChild("Run").IsOk())
 		{
@@ -336,6 +340,8 @@ public:
 		serialize.NumberFixed_Unbounded("target max range", m_TargetMaxRange);
 
 		serialize.NumberFixed_Unbounded("speed", m_Speed);
+
+		serialize.Bool("moving", m_Moving);
 
 		SerializeVector<SerializeWaypoint>()(serialize, "long path", m_LongPath.m_Waypoints);
 		SerializeVector<SerializeWaypoint>()(serialize, "short path", m_ShortPath.m_Waypoints);
@@ -412,6 +418,11 @@ public:
 		return m_PassClass;
 	}
 
+	virtual fixed GetCurrentSpeed()
+	{
+		return m_CurSpeed;
+	}
+
 	virtual void SetSpeed(fixed speed)
 	{
 		m_Speed = speed;
@@ -423,6 +434,7 @@ public:
 	}
 
 	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange);
+	virtual bool IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange);
 	virtual bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange);
 	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange);
 	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z);
@@ -493,6 +505,9 @@ private:
 		CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), GetEntityId());
 		if (cmpObstruction)
 			cmpObstruction->SetMovingFlag(false);
+
+		// No longer moving, so speed is 0.
+		m_CurSpeed = fixed::Zero();
 
 		CMessageMotionChanged msg(false, false);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
@@ -882,6 +897,9 @@ void CCmpUnitMotion::Move(fixed dt)
 		// Update the Position component after our movement (if we actually moved anywhere)
 		if (pos != initialPos)
 			cmpPosition->MoveTo(pos.X, pos.Y);
+
+		// Calculate the mean speed over this past turn.
+		m_CurSpeed = cmpPosition->GetDistanceTravelled() / dt;
 
 		if (wasObstructed)
 		{
@@ -1318,6 +1336,55 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 	BeginPathing(pos, goal);
 
 	return true;
+}
+
+bool CCmpUnitMotion::IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
+{
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	if (!cmpPosition || !cmpPosition->IsInWorld())
+		return false;
+
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
+
+	bool hasObstruction = false;
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+	ICmpObstructionManager::ObstructionSquare obstruction;
+	if (cmpObstructionManager)
+		hasObstruction = cmpObstructionManager->FindMostImportantObstruction(GetObstructionFilter(true), x, z, m_Radius, obstruction);
+
+	if (minRange.IsZero() && maxRange.IsZero() && hasObstruction)
+	{
+		// Handle the non-ranged mode:
+		CFixedVector2D halfSize(obstruction.hw, obstruction.hh);
+		entity_pos_t distance = Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize);
+
+		// See if we're too close to the target square
+		if (distance < minRange)
+			return false;
+
+		// See if we're close enough to the target square
+		if (maxRange < entity_pos_t::Zero() || distance <= maxRange)
+			return true;
+
+		return false;
+	}
+	else
+	{
+		entity_pos_t distance = (pos - CFixedVector2D(x, z)).Length();
+
+		if (distance < minRange)
+		{
+			return false;
+		}
+		else if (maxRange >= entity_pos_t::Zero() && distance > maxRange)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 }
 
 bool CCmpUnitMotion::ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t hw, entity_pos_t hh, entity_pos_t circleRadius)

@@ -2,7 +2,7 @@
 <Entity parent="template_unit_cavalry_ranged">
   <Armour>
     <Hack>2.0</Hack>
-    <Pierce>5.0</Pierce>
+    <Pierce>6.0</Pierce>
     <Crush>8.0</Crush>
   </Armour>
   <Attack>
@@ -35,7 +35,7 @@
     </Resources>
   </Cost>
   <Health>
-    <Max>150</Max>
+    <Max>180</Max>
   </Health>
   <Identity>
 	<Classes datatype="tokens">Bow</Classes>

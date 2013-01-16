@@ -40,7 +40,7 @@ namespace boost
         virtual ~connection_body_base() {}
         void disconnect()
         {
-          unique_lock<connection_body_base> lock(*this);
+          unique_lock<connection_body_base> local_lock(*this);
           nolock_disconnect();
         }
         void nolock_disconnect()
@@ -50,7 +50,7 @@ namespace boost
         virtual bool connected() const = 0;
         shared_ptr<void> get_blocker()
         {
-          unique_lock<connection_body_base> lock(*this);
+          unique_lock<connection_body_base> local_lock(*this);
           shared_ptr<void> blocker = _weak_blocker.lock();
           if(blocker == shared_ptr<void>())
           {
@@ -90,7 +90,7 @@ namespace boost
         virtual ~connection_body() {}
         virtual bool connected() const
         {
-          unique_lock<mutex_type> lock(_mutex);
+          unique_lock<mutex_type> local_lock(_mutex);
           nolock_grab_tracked_objects(detail::null_output_iterator());
           return nolock_nograb_connected();
         }
@@ -108,19 +108,25 @@ namespace boost
         template<typename OutputIterator>
           void nolock_grab_tracked_objects(OutputIterator inserter) const
         {
-            slot_base::tracked_container_type::const_iterator it;
-            for(it = slot.tracked_objects().begin();
-              it != slot.tracked_objects().end();
-              ++it)
+          slot_base::tracked_container_type::const_iterator it;
+          for(it = slot.tracked_objects().begin();
+            it != slot.tracked_objects().end();
+            ++it)
+          {
+            void_shared_ptr_variant locked_object
+            (
+              apply_visitor
+              (
+                detail::lock_weak_ptr_visitor(),
+                *it
+              )
+            );
+            if(apply_visitor(detail::expired_weak_ptr_visitor(), *it))
             {
-              boost::shared_ptr<void> locked_object = it->lock();
-              boost::shared_ptr<void> empty;
-              if(!(empty < locked_object) && !(locked_object < empty))
-              {
-                _connected = false;
-                return;
-              }
-              *inserter++ = locked_object;
+              _connected = false;
+              return;
+            }
+            *inserter++ = locked_object;
           }
         }
         // expose Lockable concept of mutex

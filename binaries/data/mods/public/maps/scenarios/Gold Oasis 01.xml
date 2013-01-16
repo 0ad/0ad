@@ -3,27 +3,27 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.847059" g="0.792157" b="0.592157"/>
+		<SunColour r="1.01581" g="0.949969" b="0.710126"/>
 		<SunElevation angle="0.613592"/>
 		<SunRotation angle="-1.22718"/>
 		<TerrainAmbientColour r="0.364706" g="0.364706" b="0.294118"/>
 		<UnitsAmbientColour r="0.392157" g="0.356863" b="0.286275"/>
 		<Fog>
 			<FogFactor>0.00253906</FogFactor>
-			<FogThickness>0</FogThickness>
-			<FogColour r="0.741176" g="0.721569" b="0.643137"/>
+			<FogThickness>0.149414</FogThickness>
+			<FogColour r="0.819608" g="0.74902" b="0.513726"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.403922" g="0.466667" b="0.294118"/>
+				<Colour r="0.501961" g="0.501961" b="0.25098"/>
 				<Height>19.9</Height>
 				<Shininess>1.46484</Shininess>
 				<Waviness>2</Waviness>
-				<Murkiness>0.612305</Murkiness>
-				<Tint r="0.392157" g="0.380392" b="0.27451"/>
+				<Murkiness>0.900391</Murkiness>
+				<Tint r="0.866667" g="0.737255" b="0.466667"/>
 				<ReflectionTint r="1" g="0.501961" b="0"/>
-				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
+				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,9 +35,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="469.27" y="90.0104" z="753.874"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="570.344" y="93.1977" z="87.8181"/>
+		<Rotation angle="-0.0455103"/>
+		<Declination angle="0.604607"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -247,12 +247,6 @@
 			<Player>0</Player>
 			<Position x="499.04316" z="826.57947"/>
 			<Orientation y="5.76203"/>
-		</Entity>
-		<Entity uid="175">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="562" z="898"/>
-			<Orientation y="0.38704"/>
 		</Entity>
 		<Entity uid="176">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -790,12 +784,6 @@
 			<Player>0</Player>
 			<Position x="524.6036" z="117.2715"/>
 			<Orientation y="5.10714"/>
-		</Entity>
-		<Entity uid="270">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="530" z="250"/>
-			<Orientation y="3.29534"/>
 		</Entity>
 		<Entity uid="271">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -3873,7 +3861,7 @@
 		<Entity uid="823">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="554" z="410"/>
+			<Position x="528.9527" z="561.08356"/>
 			<Orientation y="1.72567"/>
 		</Entity>
 		<Entity uid="824">

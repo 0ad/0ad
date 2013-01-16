@@ -105,11 +105,7 @@ Player.prototype.SetMaxPopulation = function(max)
 
 Player.prototype.GetMaxPopulation = function()
 {
-	var cmpTechMan = Engine.QueryInterface(this.entity, IID_TechnologyManager);
-	if (cmpTechMan) 
-		return cmpTechMan.ApplyModifications("Player/MaxPopulation", this.maxPop, this.entity);
-	else
-		return this.maxPop;
+	return ApplyTechModificationsToPlayer("Player/MaxPopulation", this.maxPop, this.entity);
 };
 
 Player.prototype.IsTrainingBlocked = function()
@@ -283,6 +279,9 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(idx), IID_Player);
 	if (!cmpPlayer)
+		return;
+
+	if (this.state != "active" || cmpPlayer.state != "active")
 		return;
 
 	// You can have alliances with other players,
@@ -528,8 +527,13 @@ Player.prototype.TributeResource = function(player, amounts)
 		return;
 
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
+	if (!cmpPlayer)
+		return;
 
-	if (cmpPlayer && !this.GetNeededResources(amounts))
+	if (this.state != "active" || cmpPlayer.state != "active")
+		return;
+
+	if (!this.GetNeededResources(amounts))
 	{
 		for (var type in amounts)
 			this.resourceCount[type] -= amounts[type];

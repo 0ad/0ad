@@ -370,11 +370,7 @@ function ProcessCommand(player, cmd)
 	case "formation":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player, cmd.name).forEach(function(cmpUnitAI) {
-			var cmpFormation = Engine.QueryInterface(cmpUnitAI.entity, IID_Formation);
-			if (!cmpFormation)
-				return;
-			cmpFormation.LoadFormation(cmd.name);
-			cmpFormation.MoveMembersIntoFormation(true);
+			cmpUnitAI.MoveIntoFormation(cmd);
 		});
 		break;
 
@@ -454,6 +450,36 @@ function ProcessCommand(player, cmd)
 			var cmpVisual = Engine.QueryInterface(ent, IID_Visual)
 			if (cmpVisual)
 				cmpVisual.SetShadingColour(cmd.rgb[0], cmd.rgb[1], cmd.rgb[2], 0) // alpha isn't used so just send 0
+		}
+		break;
+
+	case "pack":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+			{
+				if (cmd.pack)
+					cmpUnitAI.Pack(cmd.queued);
+				else
+					cmpUnitAI.Unpack(cmd.queued);
+			}
+		}
+		break;
+
+	case "cancel-pack":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+			{
+				if (cmd.pack)
+					cmpUnitAI.CancelPack(cmd.queued);
+				else
+					cmpUnitAI.CancelUnpack(cmd.queued);
+			}
 		}
 		break;
 

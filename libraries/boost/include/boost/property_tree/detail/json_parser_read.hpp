@@ -102,7 +102,8 @@ namespace boost { namespace property_tree { namespace json_parser
             void operator()(It b, It e) const
             {
                 BOOST_ASSERT(c.stack.size() >= 1);
-                c.stack.back()->push_back(std::make_pair(c.name, Str(b, e)));
+                c.stack.back()->push_back(std::make_pair(c.name,
+                    Ptree(Str(b, e))));
                 c.name.clear();
                 c.string.clear();
             }
@@ -128,7 +129,7 @@ namespace boost { namespace property_tree { namespace json_parser
                 {
                     case Ch('\"'): c.string += Ch('\"'); break;
                     case Ch('\\'): c.string += Ch('\\'); break;
-                    case Ch('0'): c.string += Ch('\0'); break;
+                    case Ch('/'): c.string += Ch('/'); break;
                     case Ch('b'): c.string += Ch('\b'); break;
                     case Ch('f'): c.string += Ch('\f'); break;
                     case Ch('n'): c.string += Ch('\n'); break;
@@ -179,9 +180,12 @@ namespace boost { namespace property_tree { namespace json_parser
             {
 
                 using namespace boost::spirit::classic;
+                // There's a boost::assertion too, so another explicit using
+                // here:
+                using boost::spirit::classic::assertion;
 
                 // Assertions
-                assertion<std::string> expect_object("expected object");
+                assertion<std::string> expect_root("expected object or array");
                 assertion<std::string> expect_eoi("expected end of input");
                 assertion<std::string> expect_objclose("expected ',' or '}'");
                 assertion<std::string> expect_arrclose("expected ',' or ']'");
@@ -192,7 +196,7 @@ namespace boost { namespace property_tree { namespace json_parser
 
                 // JSON grammar rules
                 root 
-                    =   expect_object(object) 
+                    =   expect_root(object | array) 
                         >> expect_eoi(end_p)
                         ;
                 
@@ -232,24 +236,31 @@ namespace boost { namespace property_tree { namespace json_parser
                         ;
                 
                 number 
-                    =   strict_real_p 
-                        | int_p
+                    =   !ch_p("-") >>
+                        (ch_p("0") | (range_p(Ch('1'), Ch('9')) >> *digit_p)) >>
+                        !(ch_p(".") >> +digit_p) >>
+                        !(chset_p(detail::widen<Ch>("eE").c_str()) >>
+                          !chset_p(detail::widen<Ch>("-+").c_str()) >>
+                          +digit_p)
                         ;
-                
-                string 
+
+                string
                     =   +(lexeme_d[confix_p('\"', *character, '\"')])
                         ;
-                
-                character 
-                    =   (anychar_p - "\\" - "\"")[typename Context::a_char(self.c)] 
-                        | ch_p("\\") >> expect_escape(escape)
-                        ;
-                
-                escape 
-                    =   chset_p(detail::widen<Ch>("\"\\0bfnrt").c_str())[typename Context::a_escape(self.c)] 
-                        | 'u' >> uint_parser<unsigned long, 16, 4, 4>()[typename Context::a_unicode(self.c)]
-                        ;
-                
+
+                character
+                    =   (anychar_p - "\\" - "\"")
+                            [typename Context::a_char(self.c)]
+                    |   ch_p("\\") >> expect_escape(escape)
+                    ;
+
+                escape
+                    =   chset_p(detail::widen<Ch>("\"\\/bfnrt").c_str())
+                            [typename Context::a_escape(self.c)]
+                    |   'u' >> uint_parser<unsigned long, 16, 4, 4>()
+                            [typename Context::a_unicode(self.c)]
+                    ;
+
                 // Debug
                 BOOST_SPIRIT_DEBUG_RULE(root);
                 BOOST_SPIRIT_DEBUG_RULE(object);

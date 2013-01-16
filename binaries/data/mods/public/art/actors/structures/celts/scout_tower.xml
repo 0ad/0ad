@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="celt outpost a">
       <animations>
-        <animation event="0.5" load="0" name="melee" speed="100"/>
+        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
       </animations>
       <mesh>structural/celt_outpost.dae</mesh>
       <props>
@@ -18,7 +18,7 @@
     </variant>
     <variant frequency="1" name="celt outpost b">
       <animations>
-        <animation event="0.5" load="0" name="melee" speed="100"/>
+        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
       </animations>
       <mesh>structural/celt_outpost2.dae</mesh>
       <props>

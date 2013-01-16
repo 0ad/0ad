@@ -27,6 +27,7 @@
 #include "soundmanager/js/AmbientSound.h"
 #include "soundmanager/js/MusicSound.h"
 #include "soundmanager/js/Sound.h"
+#include "lib/external_libraries/libsdl.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Profiler2.h"
@@ -43,7 +44,6 @@ public:
 		m_DeadItems = new ItemsList;
 		m_Shutdown = false;
 		m_Enabled = false;
-		m_PauseUntilTime = 0;
 
 		int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
 		ENSURE(ret == 0);
@@ -102,7 +102,7 @@ public:
 
 	void CleanupItems()
 	{
-		CScopeLock lock(m_WorkerMutex);
+		CScopeLock lock(m_DeadItemsMutex);
 		AL_CHECK
 		ItemsList::iterator deadItems = m_DeadItems->begin();
 		while (deadItems != m_DeadItems->end())
@@ -114,6 +114,7 @@ public:
 		}
 		m_DeadItems->clear();
 	}
+
 	void DeleteItem(long itemNum)
 	{
 		CScopeLock lock(m_WorkerMutex);
@@ -145,11 +146,6 @@ private:
 		// Wait until the main thread wakes us up
 		while ( true )
 		{
-			g_Profiler2.RecordRegionLeave("semaphore wait");
-
-			if (timer_Time() < m_PauseUntilTime)
-				continue;
-
 			// Handle shutdown requests as soon as possible
 			if (GetShutdown())
 				return;
@@ -158,6 +154,7 @@ private:
 			if (!GetEnabled())
 				continue;
 
+			int pauseTime = 1000;
 			{
 				CScopeLock lock(m_WorkerMutex);
 		
@@ -168,9 +165,16 @@ private:
 				while (lstr != m_Items->end()) {
 
 					if ((*lstr)->IdleTask())
+					{
+						if ( (*lstr)->IsFading() )
+							pauseTime = 100;
 						nextItemList->push_back(*lstr);
+					}
 					else
+					{
+						CScopeLock lock(m_DeadItemsMutex);
 						m_DeadItems->push_back(*lstr);
+					}
 					lstr++;
 
 					AL_CHECK
@@ -181,7 +185,7 @@ private:
 
 				AL_CHECK
 			}
-			m_PauseUntilTime = timer_Time() + 0.1;
+			SDL_Delay( pauseTime );
 		}
 	}
 
@@ -203,6 +207,7 @@ private:
 	// Thread-related members:
 	pthread_t m_WorkerThread;
 	CMutex m_WorkerMutex;
+	CMutex m_DeadItemsMutex;
 
 	// Shared by main thread and worker thread:
 	// These variables are all protected by m_WorkerMutex
@@ -211,9 +216,6 @@ private:
 
 	bool m_Enabled;
 	bool m_Shutdown;
-
-	// Initialised in constructor by main thread; otherwise used only by worker thread:
-	double m_PauseUntilTime;
 };
 
 void CSoundManager::ScriptingInit()
@@ -238,9 +240,7 @@ void CSoundManager::SetEnabled(bool doEnable)
 {
 	if ( g_SoundManager && !doEnable ) 
 	{
-		delete g_SoundManager;
-
-		g_SoundManager = NULL;
+		SAFE_DELETE(g_SoundManager);
 	}
 	else if ( ! g_SoundManager && doEnable ) 
 	{
@@ -262,8 +262,8 @@ void CSoundManager::al_check(const char* caller, int line)
 
 CSoundManager::CSoundManager()
 {
-	m_CurrentEnvirons	= 0;
-	m_CurrentTune		= 0;
+	m_CurrentEnvirons	= NULL;
+	m_CurrentTune		= NULL;
 	m_Gain				= 1;
 	m_MusicGain			= 1;
 	m_AmbientGain		= 1;
@@ -280,11 +280,12 @@ CSoundManager::CSoundManager()
 
 CSoundManager::~CSoundManager()
 {	
-	m_Worker->Shutdown();
-	m_Worker = 0L;
+	if (m_Worker->Shutdown())
+		delete m_Worker;
 
 	alcDestroyContext(m_Context);
 	alcCloseDevice(m_Device);
+<<<<<<< HEAD
 
 	delete m_ALSourceBuffer;
 	delete m_StateBuffer;
@@ -292,6 +293,8 @@ CSoundManager::~CSoundManager()
 
 	m_CurrentEnvirons = 0;
 	m_CurrentTune = 0;
+=======
+>>>>>>> upstream/master
 }
 
 

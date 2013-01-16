@@ -23,11 +23,11 @@
         <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_a.psa" name="Attack" speed="50"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_b.psa" name="Attack" speed="50"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_c.psa" name="Attack" speed="50"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_d.psa" name="Attack" speed="50"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_e.psa" name="Attack" speed="50"/>
+        <animation event="0.5" file="biped/not used/inf_2sword_attack_a.psa" name="attack_melee" speed="50"/>
+        <animation event="0.5" file="biped/not used/inf_2sword_attack_b.psa" name="attack_melee" speed="50"/>
+        <animation event="0.5" file="biped/not used/inf_2sword_attack_c.psa" name="attack_melee" speed="50"/>
+        <animation event="0.5" file="biped/not used/inf_2sword_attack_d.psa" name="attack_melee" speed="50"/>
+        <animation event="0.5" file="biped/not used/inf_2sword_attack_e.psa" name="attack_melee" speed="50"/>
       </animations>
       <mesh>skeletal/m_hero_caros.dae</mesh>
       <props>

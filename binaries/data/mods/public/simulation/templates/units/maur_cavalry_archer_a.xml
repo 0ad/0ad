@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/maur_cavalry_archer_b">
   <Health>
-    <Max>310</Max>
+    <Max>340</Max>
   </Health>
   <Identity>
 	<Rank>Advanced</Rank>
@@ -13,6 +13,6 @@
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
   <VisualActor>
-    <Actor>units/persians/war_elephant.xml</Actor>
+    <Actor>units/mauryans/cavalry_archer_b.xml</Actor>
   </VisualActor>
 </Entity>

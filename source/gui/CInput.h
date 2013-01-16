@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -182,6 +182,15 @@ protected:
 
 	// *** Things for one-line input control *** //
 	float m_HorizontalScroll;
+
+	// Used to store the previous time for flashing the cursor.
+	double m_PrevTime;
+
+	// Cursor blink rate in seconds, if greater than 0.0.
+	double m_CursorBlinkRate;
+
+	// If the cursor should be drawn or not.
+	bool m_CursorVisState;
 };
 
 #endif

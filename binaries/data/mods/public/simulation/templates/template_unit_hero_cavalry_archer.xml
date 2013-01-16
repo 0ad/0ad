@@ -41,7 +41,7 @@
     <Height>3.0</Height>
   </Footprint>
   <Health>
-    <Max>500</Max>
+    <Max>800</Max>
     <RegenRate>0.5</RegenRate>
   </Health>
   <Identity>
@@ -49,6 +49,7 @@
     <GenericName>Hero Cavalry Archer</GenericName>
     <Tooltip>Hero Aura: n/a.
 Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen.</Tooltip>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>450</xp>

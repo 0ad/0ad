@@ -12,7 +12,8 @@
         <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
-        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="Melee" speed="200"/>
+        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="attack_melee" speed="200"/>
+        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="attack_slaughter" speed="200"/>
         <animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
         <animation file="infantry/general/forage.psa" name="gather_fruit" speed="125"/>
@@ -63,7 +64,12 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Melee">
+    <variant name="attack_melee">
+      <props>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="attack_slaughter">
       <props>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
       </props>

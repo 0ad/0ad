@@ -112,13 +112,19 @@ Map.prototype.validT = function(x, z, distance)
 			var halfSize = Math.floor(0.5*this.size)-distance;
 		var dx = (x - halfSize);
 		var dz = (z - halfSize);
-		return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize;
+		return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize - 1;
 	}
 	else
 	{	// Within map square
 		return x >= 0 && z >= 0 && x < this.size && z < this.size;
 	}
 };
+
+// Check bounds on tile map
+Map.prototype.inMapBounds = function(x, z)
+{
+	return x >= 0 && z >= 0 && x < this.size && z < this.size;
+}
 
 // Check bounds on height map if TILE_CENTERED_HEIGHT_MAP==false then this is (size + 1 by size + 1) otherwise (size, size)
 Map.prototype.validH = function(x, z)

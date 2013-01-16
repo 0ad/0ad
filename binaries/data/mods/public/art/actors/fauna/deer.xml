@@ -9,7 +9,7 @@
         <animation file="quadraped/deer_idle_03.dae" name="idle" speed="20"/>
         <animation file="quadraped/deer_walk_01.dae" name="walk" speed="35"/>
         <animation file="quadraped/deer_run_01.dae" name="run" speed="20"/>
-        <animation file="quadraped/deer_attack_01.dae" name="melee" speed="20"/>
+        <animation file="quadraped/deer_attack_01.dae" name="attack_melee" speed="20"/>
       </animations>
       <mesh>skeletal/deer_mesh.dae</mesh>
       <textures><texture file="skeletal/animal_deer.dds" name="baseTex"/></textures>

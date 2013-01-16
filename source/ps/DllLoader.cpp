@@ -23,7 +23,6 @@
 #include "lib/posix/posix_dlfcn.h"
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
-#include "ps/GameSetup/Config.h"
 
 #if OS_MACOSX
 # include "lib/sysdep/os/osx/osx_bundle.h"

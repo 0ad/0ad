@@ -242,7 +242,7 @@ terrainPainter = new LayeredPainter(
 	[tCliff, tHill],		// terrains
 	[2]								// widths
 );
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 12, 2);
+elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 17, 2);
 createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 

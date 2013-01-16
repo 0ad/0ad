@@ -11,7 +11,16 @@
   </group>
   <group>
     <variant frequency="1" name="rock texture">
-      <textures><texture file="gaia/stone_alpine_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/stonequarry_temperate.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="decal">
+      <props>
+        <prop actor="geology/decal_stone_medit_a.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
 </actor>

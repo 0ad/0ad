@@ -63,6 +63,11 @@
 #     else
 #        define BOOST_TR1_STD_HEADER(name) <../stlport/name>
 #     endif
+#  elif defined(__PATHSCALE__) && (defined(__STD_RWCOMPILER_H__) || defined(_RWSTD_VER))
+#     define BOOST_TR1_STD_HEADER(name) <../include/name>
+
+#  elif defined(__SUNPRO_CC) && (defined(__STD_RWCOMPILER_H__) || defined(_RWSTD_VER))
+#     define BOOST_TR1_STD_HEADER(name) <../stdcxx4/name>
 
 #  elif defined(__HP_aCC)
       // HP aCC include path:
@@ -73,6 +78,9 @@
 
 #  elif defined(__BORLANDC__) && __BORLANDC__ >= 0x570
 #     define BOOST_TR1_STD_HEADER(name) <../include/dinkumware/name>
+
+#  elif defined(__clang__)
+#     define BOOST_TR1_STD_HEADER(name) <../include/name>
 
 #  elif defined(__GNUC__) && __GNUC__ >= 3
 #    if defined(BOOST_TR1_GCC_INCLUDE_PATH)

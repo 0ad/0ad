@@ -7,8 +7,9 @@
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="105"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="90"/>
         <animation file="biped/inf_sword_ready_b.dae" name="Idle" speed="95"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_03.psa" name="melee" speed="150"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="melee" speed="150"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_03.psa" name="attack_melee" speed="150"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="150"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_03.psa" name="attack_slaughter" speed="150"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="25"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="30"/>
@@ -50,7 +51,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant name="Melee">
+    <variant name="attack_melee">
       <props>
         <prop actor="props/units/weapons/falcata.xml" attachpoint="r_hand"/>
       </props>

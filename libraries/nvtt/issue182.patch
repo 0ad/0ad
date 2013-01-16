@@ -1,0 +1,18 @@
+Index: src/src/nvtt/squish/CMakeLists.txt
+===================================================================
+--- src/src/nvtt/squish/CMakeLists.txt	(revision 13060)
++++ src/src/nvtt/squish/CMakeLists.txt	(working copy)
+@@ -22,7 +22,11 @@
+ 
+ ADD_LIBRARY(squish STATIC ${SQUISH_SRCS})
+ 
+-IF(CMAKE_COMPILER_IS_GNUCXX)
++IF("${CMAKE_CXX_COMPILER}" MATCHES "clang(\\+\\+)?$" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
++	SET(CMAKE_COMPILER_IS_CLANGXX 1)
++ENDIF()
++
++IF(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX)
+ 	SET_TARGET_PROPERTIES(squish PROPERTIES COMPILE_FLAGS -fPIC)
+-ENDIF(CMAKE_COMPILER_IS_GNUCXX)
++ENDIF(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX)
+ 

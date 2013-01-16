@@ -132,7 +132,17 @@ boost
             }
         };
 
+#if defined(__GNUC__)
+# if (__GNUC__ == 4 && __GNUC_MINOR__ >= 1) || (__GNUC__ > 4)
+#  pragma GCC visibility push (default)
+# endif
+#endif
     class exception;
+#if defined(__GNUC__)
+# if (__GNUC__ == 4 && __GNUC_MINOR__ >= 1) || (__GNUC__ > 4)
+#  pragma GCC visibility pop
+# endif
+#endif
 
     template <class T>
     class shared_ptr;
@@ -189,6 +199,11 @@ boost
         E const & set_info( E const &, throw_line const & );
         }
 
+#if defined(__GNUC__)
+# if (__GNUC__ == 4 && __GNUC_MINOR__ >= 1) || (__GNUC__ > 4)
+#  pragma GCC visibility push (default)
+# endif
+#endif
     class
     exception
         {
@@ -250,6 +265,11 @@ boost
         mutable char const * throw_file_;
         mutable int throw_line_;
         };
+#if defined(__GNUC__)
+# if (__GNUC__ == 4 && __GNUC_MINOR__ >= 1) || (__GNUC__ > 4)
+#  pragma GCC visibility pop
+# endif
+#endif
 
     inline
     exception::
@@ -290,6 +310,11 @@ boost
     namespace
     exception_detail
         {
+#if defined(__GNUC__)
+# if (__GNUC__ == 4 && __GNUC_MINOR__ >= 1) || (__GNUC__ > 4)
+#  pragma GCC visibility push (default)
+# endif
+#endif
         template <class T>
         struct
         error_info_injector:
@@ -306,6 +331,11 @@ boost
                 {
                 }
             };
+#if defined(__GNUC__)
+# if (__GNUC__ == 4 && __GNUC_MINOR__ >= 1) || (__GNUC__ > 4)
+#  pragma GCC visibility pop
+# endif
+#endif
 
         struct large_size { char c[256]; };
         large_size dispatch_boost_exception( exception const * );
@@ -334,7 +364,7 @@ boost
         struct
         enable_error_info_return_type
             {
-            typedef typename enable_error_info_helper<T,sizeof(exception_detail::dispatch_boost_exception((T*)0))>::type type;
+            typedef typename enable_error_info_helper<T,sizeof(exception_detail::dispatch_boost_exception(static_cast<T *>(0)))>::type type;
             };
         }
 
@@ -353,6 +383,11 @@ boost
     namespace
     exception_detail
         {
+#if defined(__GNUC__)
+# if (__GNUC__ == 4 && __GNUC_MINOR__ >= 1) || (__GNUC__ > 4)
+#  pragma GCC visibility push (default)
+# endif
+#endif
         class
         clone_base
             {
@@ -366,6 +401,11 @@ boost
                 {
                 }
             };
+#if defined(__GNUC__)
+# if (__GNUC__ == 4 && __GNUC_MINOR__ >= 1) || (__GNUC__ > 4)
+#  pragma GCC visibility pop
+# endif
+#endif
 
         inline
         void
@@ -390,8 +430,15 @@ boost
         class
         clone_impl:
             public T,
-            public clone_base
+            public virtual clone_base
             {
+            struct clone_tag { };
+            clone_impl( clone_impl const & x, clone_tag ):
+                T(x)
+                {
+                copy_boost_exception(this,&x);
+                }
+
             public:
 
             explicit
@@ -410,7 +457,7 @@ boost
             clone_base const *
             clone() const
                 {
-                return new clone_impl(*this);
+                return new clone_impl(*this,clone_tag());
                 }
 
             void

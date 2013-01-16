@@ -122,7 +122,7 @@ Formation.prototype.RemoveMembers = function(ents)
 	this.ComputeMotionParameters();
 
 	// Rearrange the remaining members
-	this.MoveMembersIntoFormation(true);
+	this.MoveMembersIntoFormation(true, true);
 };
 
 /**
@@ -174,11 +174,49 @@ Formation.prototype.CallMemberFunction = function(funcname, args)
 };
 
 /**
+ * Call obj.functname(args) on UnitAI components of all members,
+ * and return true if all calls return true.
+ */
+Formation.prototype.TestAllMemberFunction = function(funcname, args)
+{
+	for each (var ent in this.members)
+	{
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (!cmpUnitAI[funcname].apply(cmpUnitAI, args))
+			return false;
+	}
+	return true;
+};
+
+Formation.prototype.GetMaxAttackRangeFunction = function(target)
+{
+	var result = 0;
+	var range = 0;
+	for each (var ent in this.members)
+	{
+		var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
+		if (!cmpAttack)
+			continue;
+
+		var type = cmpAttack.GetBestAttackAgainst(target);
+		if (!type)
+			continue;
+
+		range = cmpAttack.GetRange(type);
+		if (range.max > result)
+			result = range.max;
+	}
+	return result;
+};
+
+/**
  * Set all members to form up into the formation shape.
  * If moveCenter is true, the formation center will be reinitialised
  * to the center of the units.
+ * If force is true, all individual orders of the formation units are replaced,
+ * otherwise the order to walk into formation is just pushed to the front.
  */
-Formation.prototype.MoveMembersIntoFormation = function(moveCenter)
+Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 {
 	var active = [];
 	var positions = [];
@@ -213,11 +251,23 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter)
 		var offset = offsets[i];
 
 		var cmpUnitAI = Engine.QueryInterface(offset.ent, IID_UnitAI);
-		cmpUnitAI.ReplaceOrder("FormationWalk", {
-			"target": this.entity,
-			"x": offset.x - avgoffset.x,
-			"z": offset.z - avgoffset.z
-		});
+		
+		if (force)
+		{
+			cmpUnitAI.ReplaceOrder("FormationWalk", {
+				"target": this.entity,
+				"x": offset.x - avgoffset.x,
+				"z": offset.z - avgoffset.z
+			});
+		}
+		else
+		{
+			cmpUnitAI.PushOrderFront("FormationWalk", {
+				"target": this.entity,
+				"x": offset.x - avgoffset.x,
+				"z": offset.z - avgoffset.z
+			});
+		}
 	}
 };
 
@@ -651,7 +701,7 @@ Formation.prototype.OnUpdate_Final = function(msg)
 	var walkingDistance = cmpUnitAI.ComputeWalkingDistance();
 	var columnar = (walkingDistance > g_ColumnDistanceThreshold);
 	if (columnar != this.columnar)
-		this.MoveMembersIntoFormation(false);
+		this.MoveMembersIntoFormation(false, true);
 		// (disable moveCenter so we can't get stuck in a loop of switching
 		// shape causing center to change causing shape to switch back)
 };
@@ -678,6 +728,10 @@ Formation.prototype.OnGlobalEntityRenamed = function(msg)
 
 		if (cmpNewUnitAI)
 			cmpNewUnitAI.SetFormationController(this.entity);
+
+		// Because the renamed entity might have different characteristics,
+		// (e.g. packed vs. unpacked siege), we need to recompute motion parameters
+		this.ComputeMotionParameters();
 	}
 }
 

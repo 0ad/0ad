@@ -29,7 +29,7 @@ ElevationPainter.prototype.paint = function(area)
 		
 		for (var j=0; j < 4; j++)
 		{
-			if (g_Map.validT(pt.x + this.DX[j],pt.z + this.DZ[j]))
+			if (g_Map.inMapBounds(pt.x + this.DX[j],pt.z + this.DZ[j]))
 				g_Map.height[pt.x + this.DX[j]][pt.z + this.DZ[j]] = elevation;
 		}
 	}
@@ -94,7 +94,7 @@ LayeredPainter.prototype.paint = function(area)
 			{
 				var nz = z+dz;
 				
-				if (g_Map.validT(nx, nz) && g_Map.area[nx][nz] != areaID && !saw[nx][nz])
+				if (g_Map.inMapBounds(nx, nz) && g_Map.area[nx][nz] != areaID && !saw[nx][nz])
 				{
 					saw[nx][nz] = 1;
 					dist[nx][nz] = 0;
@@ -137,7 +137,7 @@ LayeredPainter.prototype.paint = function(area)
 			{
 				var nz = pz+dz;
 				
-				if (g_Map.validT(nx, nz) && g_Map.area[nx][nz] == areaID && !saw[nx][nz])
+				if (g_Map.inMapBounds(nx, nz) && g_Map.area[nx][nz] == areaID && !saw[nx][nz])
 				{
 					saw[nx][nz] = 1;
 					dist[nx][nz] = d+1;
@@ -199,10 +199,10 @@ SmoothElevationPainter.prototype.checkInArea = function(areaID, x, z)
 {
 	// Check given tile and its neighbors
 	return (
-		(g_Map.validT(x, z) && g_Map.area[x][z] == areaID)
-		|| (g_Map.validT(x-1, z) && g_Map.area[x-1][z] == areaID)
-		|| (g_Map.validT(x, z-1) && g_Map.area[x][z-1] == areaID)
-		|| (g_Map.validT(x-1, z-1) && g_Map.area[x-1][z-1] == areaID)
+		(g_Map.inMapBounds(x, z) && g_Map.area[x][z] == areaID)
+		|| (g_Map.inMapBounds(x-1, z) && g_Map.area[x-1][z] == areaID)
+		|| (g_Map.inMapBounds(x, z-1) && g_Map.area[x][z-1] == areaID)
+		|| (g_Map.inMapBounds(x-1, z-1) && g_Map.area[x-1][z-1] == areaID)
 	);
 };
 

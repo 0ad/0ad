@@ -2,7 +2,7 @@
 <Entity parent="template_unit_champion_cavalry">
   <Armour>
     <Hack>9.0</Hack>
-    <Pierce>11.0</Pierce>
+    <Pierce>14.0</Pierce>
     <Crush>8.0</Crush>
   </Armour>
   <Attack>
@@ -72,7 +72,7 @@
     </Resources>
   </Cost>
   <Health>
-    <Max>160</Max>
+    <Max>230</Max>
   </Health>
   <Identity>
     <Classes datatype="tokens">Melee Sword</Classes>

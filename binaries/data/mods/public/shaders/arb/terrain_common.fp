@@ -48,16 +48,10 @@ TEX color, fragment.texcoord[0], texture[0], 2D;
       FRC offset.xy, offset;
       ADD size.xy, offset, 1.0;
       SUB size.zw, 2.0, offset.xyxy;
-      RCP weight.x, size.x;
-      RCP weight.y, size.y;
-      RCP weight.z, size.z;
-      RCP weight.w, size.w;
-      SUB weight.xy, 2.0, weight;
-      SUB weight.zw, weight, 1.0;
 
-      SUB offset.xy, fragment.texcoord[2], offset;
-      MOV offset.z, biasedShdw;
-      ADD weight, weight, offset.xyxy;
+      MAD offset.xy, -0.5, offset, fragment.texcoord[2];
+      MOV offset.z, biasedShdw.z;
+      ADD weight, { 1.0, 1.0, -0.5, -0.5 }, offset.xyxy;
       MUL weight, weight, shadowScale.zwzw;
 
       MOV offset.xy, weight.zwww;

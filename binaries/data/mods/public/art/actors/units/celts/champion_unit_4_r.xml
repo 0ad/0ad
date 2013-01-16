@@ -5,7 +5,7 @@
     <variant frequency="100" name="Base">
       <animations>
         <animation file="biped/cav_chariot_driver_idle_a.dae" name="Idle" speed="10"/>
-        <animation event="0.4" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="Melee" speed="60"/>
+        <animation event="0.4" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="attack_ranged" speed="60"/>
         <animation file="biped/cav_chariot_driver_idle_a.dae" name="Walk" speed="10"/>
         <animation file="biped/cav_chariot_driver_run_a.dae" name="Run" speed="5"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
@@ -34,7 +34,7 @@
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
       </props>
     </variant>
-    <variant name="Melee">
+    <variant name="attack_ranged">
       <props>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
         <prop actor="" attachpoint="r_hand"/>

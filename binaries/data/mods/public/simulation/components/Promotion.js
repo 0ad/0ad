@@ -15,13 +15,7 @@ Promotion.prototype.Init = function()
 
 Promotion.prototype.GetRequiredXp = function()
 {
-	var requiredXp = +this.template.RequiredXp;
-
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	if (cmpTechMan)
-		requiredXp = cmpTechMan.ApplyModifications("Promotion/RequiredXp", requiredXp, this.entity);
-
-	return requiredXp;
+	return ApplyTechModificationsToEntity("Promotion/RequiredXp", +this.template.RequiredXp, this.entity);
 };
 
 Promotion.prototype.GetCurrentXp = function()
@@ -96,8 +90,7 @@ Promotion.prototype.IncreaseXp = function(amount)
 	this.currentXp += +(amount);
 
 	if (this.currentXp >= this.GetRequiredXp())
-	{	
-		var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	{
 		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		var promotionTemplate = this.template;
 		var promotedTemplateName;
@@ -107,9 +100,7 @@ Promotion.prototype.IncreaseXp = function(amount)
 		//	so find the highest level we can reach
 		do
 		{
-			requiredXp = +promotionTemplate.RequiredXp;
-			if (cmpTechMan)
-				requiredXp = cmpTechMan.ApplyModifications("Promotion/RequiredXp", requiredXp, this.entity);
+			requiredXp = this.GetRequiredXp();
 			this.currentXp -= requiredXp;
 			promotedTemplateName = promotionTemplate.Entity;
 			var template = cmpTemplateManager.GetTemplate(promotedTemplateName);

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/cart_mechanical_siege_ballista_common">
+  <Identity>
+    <Icon>units/cart_mechanical_siege_ballista_packed.png</Icon>
+  </Identity>
+  <Pack>
+    <Entity>units/cart_mechanical_siege_ballista_unpacked</Entity>
+    <Time>10000</Time>
+    <State>packed</State>
+  </Pack>
+  <VisualActor>
+    <Actor>units/carthaginians/siege_rock_packed.xml</Actor>
+  </VisualActor>
+</Entity>

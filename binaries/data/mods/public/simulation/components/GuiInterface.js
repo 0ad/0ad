@@ -198,6 +198,15 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.buildEntities = cmpBuilder.GetEntitiesList();
 	}
 
+	var cmpPack = Engine.QueryInterface(ent, IID_Pack);
+	if (cmpPack)
+	{
+		ret.pack = {
+			"packed": cmpPack.IsPacked(),
+			"progress": cmpPack.GetProgress(),
+		};
+	}
+
 	var cmpProductionQueue = Engine.QueryInterface(ent, IID_ProductionQueue);
 	if (cmpProductionQueue)
 	{
@@ -445,7 +454,15 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 			ret.obstruction.shape.type = "cluster";
 		}
 	}
-	
+
+	if (template.Pack)
+	{
+		ret.pack = {
+			"state": template.Pack.State,
+			"time": GetTechModifiedProperty(techMods, template, "Pack/Time", +template.Pack.Time),
+		};
+	}
+
 	if (template.Health)
 	{
 		ret.health = Math.round(GetTechModifiedProperty(techMods, template, "Health/Max", +template.Health.Max));
@@ -1039,7 +1056,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 	
 	var result = {
 		"pieces": [],
-		"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 0, "population": 0, "populationBonus": 0},
+		"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 0, "population": 0, "populationBonus": 0, "time": 0},
 	};
 	
 	var previewEntities = [];
@@ -1326,6 +1343,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			result.cost.metal += tplData.cost.metal;
 			result.cost.population += tplData.cost.population;
 			result.cost.populationBonus += tplData.cost.populationBonus;
+			result.cost.time += tplData.cost.time;
 		}
 
 		var canAfford = true;

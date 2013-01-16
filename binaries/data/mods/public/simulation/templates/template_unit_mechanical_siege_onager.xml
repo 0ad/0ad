@@ -15,23 +15,23 @@
       <PrepareTime>5000</PrepareTime>
       <RepeatTime>5000</RepeatTime>
       <Spread>6.0</Spread>
-	  <Bonuses>
-		<BonusStruct>
-		  <Classes>Structure</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusStruct>
-		<NerfWall>
-		  <Classes>StoneWall</Classes>
-		  <Multiplier>0.75</Multiplier>
-		</NerfWall>
-	  </Bonuses>
+      <Bonuses>
+        <BonusStruct>
+          <Classes>Structure</Classes>
+          <Multiplier>2.0</Multiplier>
+        </BonusStruct>
+        <NerfWall>
+          <Classes>StoneWall</Classes>
+          <Multiplier>0.75</Multiplier>
+        </NerfWall>
+      </Bonuses>
       <Splash>
         <Shape>Circular</Shape>
         <Range>8</Range>
         <FriendlyFire>true</FriendlyFire>
-        <Hack>30.0</Hack>
+        <Hack>40.0</Hack>
         <Pierce>0.0</Pierce>
-        <Crush>30.0</Crush>
+        <Crush>40.0</Crush>
       </Splash>
     </Ranged>
   </Attack>
@@ -51,7 +51,7 @@
   </Health>
   <Identity>
     <GenericName>Siege Catapult</GenericName>
-    <Tooltip>Bonused vs. Structures and Massed Infantry. Slightly less effective vs. Stone Walls.</Tooltip>
+    <Tooltip>Bonused vs. Structures and Massed Infantry.</Tooltip>
   </Identity>
   <Loot>
     <xp>300</xp>

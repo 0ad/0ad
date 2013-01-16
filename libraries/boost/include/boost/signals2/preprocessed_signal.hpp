@@ -17,6 +17,7 @@
 
 #include <boost/preprocessor/arithmetic.hpp>
 #include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/control/expr_if.hpp>
 #include <boost/preprocessor/iteration.hpp>
 #include <boost/preprocessor/repetition.hpp>
 #include <boost/signals2/detail/preprocessed_arg_type.hpp>
@@ -44,8 +45,8 @@ namespace boost
       typedef typename detail::signalN<boost::function_traits<Signature>::arity,
         Signature, Combiner, Group, GroupCompare, SlotFunction, ExtendedSlotFunction, Mutex>::type base_type;
     public:
-      signal(const Combiner &combiner = Combiner(), const GroupCompare &group_compare = GroupCompare()):
-        base_type(combiner, group_compare)
+      signal(const Combiner &combiner_arg = Combiner(), const GroupCompare &group_compare = GroupCompare()):
+        base_type(combiner_arg, group_compare)
       {}
     };
   }

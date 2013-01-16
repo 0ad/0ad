@@ -151,9 +151,9 @@ namespace boost
         typedef typename detail::slot_call_iterator_t<slot_invoker,
           typename connection_list_type::iterator, connection_body<group_key_type, slot_type, Mutex> > slot_call_iterator;
 
-        BOOST_SIGNALS2_SIGNAL_IMPL_CLASS_NAME(BOOST_SIGNALS2_NUM_ARGS)(const combiner_type &combiner,
+        BOOST_SIGNALS2_SIGNAL_IMPL_CLASS_NAME(BOOST_SIGNALS2_NUM_ARGS)(const combiner_type &combiner_arg,
           const group_compare_type &group_compare):
-          _shared_state(new invocation_state(connection_list_type(group_compare), combiner)),
+          _shared_state(new invocation_state(connection_list_type(group_compare), combiner_arg)),
           _garbage_collector_it(_shared_state->connection_bodies().end())
         {}
         // connect slot
@@ -299,13 +299,13 @@ namespace boost
           unique_lock<mutex_type> lock(_mutex);
           return _shared_state->combiner();
         }
-        void set_combiner(const combiner_type &combiner)
+        void set_combiner(const combiner_type &combiner_arg)
         {
           unique_lock<mutex_type> lock(_mutex);
           if(_shared_state.unique())
-            _shared_state->combiner() = combiner;
+            _shared_state->combiner() = combiner_arg;
           else
-            _shared_state.reset(new invocation_state(*_shared_state, combiner));
+            _shared_state.reset(new invocation_state(*_shared_state, combiner_arg));
         }
       private:
         typedef Mutex mutex_type;
@@ -316,21 +316,26 @@ namespace boost
         {
         public:
           typedef nonvoid_slot_result_type result_type;
+// typename add_reference<Tn>::type
+#define BOOST_SIGNALS2_ADD_REF_TYPE(z, n, data) \
+  typename add_reference<BOOST_PP_CAT(T, BOOST_PP_INC(n))>::type
 // typename add_reference<Tn>::type argn
 #define BOOST_SIGNALS2_ADD_REF_ARG(z, n, data) \
-  typename add_reference<BOOST_PP_CAT(T, BOOST_PP_INC(n))>::type \
+  BOOST_SIGNALS2_ADD_REF_TYPE(~, n, ~) \
   BOOST_SIGNALS2_SIGNATURE_ARG_NAME(~, n, ~)
 // typename add_reference<T1>::type arg1, typename add_reference<T2>::type arg2, ..., typename add_reference<Tn>::type argn
 #define BOOST_SIGNALS2_ADD_REF_ARGS(arity) \
   BOOST_PP_ENUM(arity, BOOST_SIGNALS2_ADD_REF_ARG, ~)
-          slot_invoker(BOOST_SIGNALS2_ADD_REF_ARGS(BOOST_SIGNALS2_NUM_ARGS)) BOOST_PP_IF(BOOST_SIGNALS2_NUM_ARGS, :, )
+          slot_invoker(BOOST_SIGNALS2_ADD_REF_ARGS(BOOST_SIGNALS2_NUM_ARGS)) BOOST_PP_EXPR_IF(BOOST_SIGNALS2_NUM_ARGS, :)
 #undef BOOST_SIGNALS2_ADD_REF_ARGS
 
-// argn ( argn ) ,
+// m_argn
+#define BOOST_SIGNALS2_M_ARG_NAME(z, n, data) BOOST_PP_CAT(m_arg, BOOST_PP_INC(n))
+// m_argn ( argn )
 #define BOOST_SIGNALS2_MISC_STATEMENT(z, n, data) \
-  BOOST_PP_CAT(arg, n) ( BOOST_PP_CAT(arg, n) )
-// arg1(arg1), arg2(arg2), ..., argn(argn)
-            BOOST_PP_ENUM_SHIFTED(BOOST_PP_INC(BOOST_SIGNALS2_NUM_ARGS), BOOST_SIGNALS2_MISC_STATEMENT, ~)
+  BOOST_SIGNALS2_M_ARG_NAME(~, n, ~) ( BOOST_SIGNALS2_SIGNATURE_ARG_NAME(~, n, ~) )
+// m_arg1(arg1), m_arg2(arg2), ..., m_argn(argn)
+            BOOST_PP_ENUM(BOOST_SIGNALS2_NUM_ARGS, BOOST_SIGNALS2_MISC_STATEMENT, ~)
 #undef BOOST_SIGNALS2_MISC_STATEMENT
           {}
           result_type operator ()(const connection_body_type &connectionBody) const
@@ -340,22 +345,32 @@ namespace boost
               resolver);
           }
         private:
-#define BOOST_SIGNALS2_ADD_REF_ARG_STATEMENT(z, n, data) \
-  BOOST_SIGNALS2_ADD_REF_ARG(z, n, data) ;
-          BOOST_PP_REPEAT(BOOST_SIGNALS2_NUM_ARGS, BOOST_SIGNALS2_ADD_REF_ARG_STATEMENT, ~)
-#undef BOOST_SIGNALS2_ADD_REF_ARG_STATEMENT
+          // declare assignment operator private since this class might have reference or const members
+          slot_invoker & operator=(const slot_invoker &);
+
+#define BOOST_SIGNALS2_ADD_REF_M_ARG_STATEMENT(z, n, data) \
+  BOOST_SIGNALS2_ADD_REF_TYPE(~, n, ~) BOOST_SIGNALS2_M_ARG_NAME(~, n, ~) ;
+          BOOST_PP_REPEAT(BOOST_SIGNALS2_NUM_ARGS, BOOST_SIGNALS2_ADD_REF_M_ARG_STATEMENT, ~)
+#undef BOOST_SIGNALS2_ADD_REF_M_ARG_STATEMENT
 #undef BOOST_SIGNALS2_ADD_REF_ARG
+#undef BOOST_SIGNALS2_ADD_REF_TYPE
+
+// m_arg1, m_arg2, ..., m_argn
+#define BOOST_SIGNALS2_M_ARG_NAMES(arity) BOOST_PP_ENUM(arity, BOOST_SIGNALS2_M_ARG_NAME, ~)
           result_type m_invoke(const connection_body_type &connectionBody,
             const void_type *) const
           {
-            connectionBody->slot.slot_function()(BOOST_SIGNALS2_SIGNATURE_ARG_NAMES(BOOST_SIGNALS2_NUM_ARGS));
+            connectionBody->slot.slot_function()(BOOST_SIGNALS2_M_ARG_NAMES(BOOST_SIGNALS2_NUM_ARGS));
             return void_type();
           }
           result_type m_invoke(const connection_body_type &connectionBody, ...) const
           {
-            return connectionBody->slot.slot_function()(BOOST_SIGNALS2_SIGNATURE_ARG_NAMES(BOOST_SIGNALS2_NUM_ARGS));
+            return connectionBody->slot.slot_function()(BOOST_SIGNALS2_M_ARG_NAMES(BOOST_SIGNALS2_NUM_ARGS));
           }
         };
+#undef BOOST_SIGNALS2_M_ARG_NAMES
+#undef BOOST_SIGNALS2_M_ARG_NAME
+
 #endif // BOOST_NO_VARIADIC_TEMPLATES
         // a struct used to optimize (minimize) the number of shared_ptrs that need to be created
         // inside operator()
@@ -495,12 +510,12 @@ namespace boost
           nolock_force_unique_connection_list();
           return connection_body_type(new connection_body<group_key_type, slot_type, Mutex>(slot));
         }
-        void do_disconnect(const group_type &group, mpl::bool_<true> is_group)
+        void do_disconnect(const group_type &group, mpl::bool_<true> /* is_group */)
         {
           disconnect(group);
         }
         template<typename T>
-        void do_disconnect(const T &slot, mpl::bool_<false> is_group)
+        void do_disconnect(const T &slot, mpl::bool_<false> /* is_group */)
         {
           shared_ptr<invocation_state> local_state =
             get_readable_state();
@@ -636,9 +651,9 @@ namespace boost
 
 #endif // BOOST_NO_VARIADIC_TEMPLATES
 
-      BOOST_SIGNALS2_SIGNAL_CLASS_NAME(BOOST_SIGNALS2_NUM_ARGS)(const combiner_type &combiner = combiner_type(),
+      BOOST_SIGNALS2_SIGNAL_CLASS_NAME(BOOST_SIGNALS2_NUM_ARGS)(const combiner_type &combiner_arg = combiner_type(),
         const group_compare_type &group_compare = group_compare_type()):
-        _pimpl(new impl_class(combiner, group_compare))
+        _pimpl(new impl_class(combiner_arg, group_compare))
       {};
       virtual ~BOOST_SIGNALS2_SIGNAL_CLASS_NAME(BOOST_SIGNALS2_NUM_ARGS)()
       {
@@ -695,9 +710,9 @@ namespace boost
       {
         return (*_pimpl).combiner();
       }
-      void set_combiner(const combiner_type &combiner)
+      void set_combiner(const combiner_type &combiner_arg)
       {
-        return (*_pimpl).set_combiner(combiner);
+        return (*_pimpl).set_combiner(combiner_arg);
       }
     protected:
       virtual shared_ptr<void> lock_pimpl() const

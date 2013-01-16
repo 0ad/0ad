@@ -62,7 +62,6 @@
 #ifndef BOOST_XPRESSIVE_DOXYGEN_INVOKED
 # include <boost/proto/proto_fwd.hpp>
 # include <boost/proto/traits.hpp>
-# include <boost/proto/eval.hpp>
 #endif
 
 namespace boost { namespace xpressive { namespace detail
@@ -660,9 +659,9 @@ public:
         using std::swap;
         swap(this->regex_id_, that.regex_id_);
         this->sub_matches_.swap(that.sub_matches_);
-        swap(this->base_, that.base_);
-        swap(this->prefix_, that.prefix_);
-        swap(this->suffix_, that.suffix_);
+        this->base_.swap(that.base_);
+        this->prefix_.swap(that.prefix_);
+        this->suffix_.swap(that.suffix_);
         this->nested_results_.swap(that.nested_results_);
         this->extras_ptr_.swap(that.extras_ptr_);
         this->traits_.swap(that.traits_);
@@ -939,8 +938,10 @@ private:
       , mpl::size_t<4>
     ) const
     {
-        detail::replacement_context<BidiIter> ctx(*this);
-        return this->format2_(out, proto::eval(format, ctx));
+        // detail::ReplaceAlgo may be an incomplete type at this point, so
+        // we can't construct it directly.
+        typedef typename mpl::if_c<true, detail::ReplaceAlgo, OutputIterator>::type ReplaceAlgo;
+        return this->format2_(out, ReplaceAlgo()(format, 0, *this));
     }
 
     /// INTERNAL ONLY

@@ -76,7 +76,7 @@ WaterManager::WaterManager()
 	m_RepeatPeriod = 16.0f;
 	m_Heightmap = NULL;
 	m_HeightmapTexture = 0;
-	m_OtherInfoTex = NULL;
+	m_OtherInfoTex = 0;
 
 	m_WaterNormal = false;
 	m_WaterRealDepth = false;

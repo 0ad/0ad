@@ -85,9 +85,7 @@ function init(attribs)
 function initMain()
 {
 	// Load AI list and hide deprecated AIs
-	g_AIs = Engine.GetAIs().filter( function(ai) {
-		return !ai.data.hidden;
-	});
+	g_AIs = Engine.GetAIs();
 
 	// Sort AIs by displayed name
 	g_AIs.sort(function (a, b) {
@@ -258,10 +256,6 @@ function initMain()
 		}
 
 		getGUIObjectByName("numPlayersSelection").hidden = true;
-
-		// Disable "start game" button
-		// TODO: Perhaps replace this with a "ready" button, and require host to wait?
-		getGUIObjectByName("startGame").enabled = false;
 	}
 
 	// Set up multiplayer/singleplayer bits:
@@ -656,6 +650,19 @@ function selectNumPlayers(num)
 		for (var i = pData.length; i < num; ++i)
 		{
 			g_GameAttributes.settings.PlayerData.push(g_DefaultPlayerData[i]);
+		}
+	}
+
+	// Some players may have lost their assigned slot
+	for (var guid in g_PlayerAssignments)
+	{
+		var player = g_PlayerAssignments[guid].player;
+		if (player > num)
+		{
+			if (g_IsNetworked)
+				Engine.AssignNetworkPlayer(player, "");
+			else
+				g_PlayerAssignments = { "local": { "name": "You", "player": 1, "civ": "", "team": -1} };
 		}
 	}
 
@@ -1145,6 +1152,7 @@ function updatePlayerList()
 	var assignments = [];
 	var aiAssignments = {};
 	var noAssignment;
+	var assignedCount = 0;
 
 	for (var guid in g_PlayerAssignments)
 	{
@@ -1155,10 +1163,33 @@ function updatePlayerList()
 		hostNameList.push(name);
 		hostGuidList.push(guid);
 		assignments[player] = hostID;
+
+		if (player != 255)
+			assignedCount++;
 	}
+
+	// Only enable start button if we have enough assigned players
+	if (g_IsController)
+		getGUIObjectByName("startGame").enabled = (assignedCount > 0);
 
 	for each (var ai in g_AIs)
 	{
+		if (ai.data.hidden) 
+		{
+			// If the map uses a hidden AI then don't hide it
+			var usedByMap = false;
+			for (var i = 0; i < MAX_PLAYERS; ++i) {
+				if (i < g_GameAttributes.settings.PlayerData.length &&
+				    g_GameAttributes.settings.PlayerData[i].AI == ai.id)
+				{
+					usedByMap = true;
+				}
+			}
+			if (!usedByMap)
+			{
+				continue;
+			}
+		}
 		// Give AI a different color so it stands out
 		aiAssignments[ai.id] = hostNameList.length;
 		hostNameList.push("[color=\"70 150 70 255\"]AI: " + ai.data.name);
@@ -1188,12 +1219,15 @@ function updatePlayerList()
 				var aiId = g_GameAttributes.settings.PlayerData[playerSlot].AI;
 				if (aiId)
 				{
-					selection = aiAssignments[aiId];
+					// Check for a valid AI
+					if (aiId in aiAssignments)
+						selection = aiAssignments[aiId];
+					else
+						warn("AI \""+aiId+"\" not present. Defaulting to unassigned.");
 				}
-				else
-				{
+
+				if (!selection)
 					selection = noAssignment;
-				}
 
 				// Since no human is assigned, show the AI config button
 				if (g_IsController)

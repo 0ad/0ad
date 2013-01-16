@@ -6,7 +6,7 @@
       <animations>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="115"/>
-        <animation event="0.25" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="Melee" speed="100"/>
+        <animation event="0.25" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="attack_ranged" speed="100"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="100"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="30"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="30"/>
@@ -48,7 +48,7 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Melee">
+    <variant name="attack_ranged">
       <props>
         <prop actor="" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>

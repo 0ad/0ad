@@ -36,16 +36,19 @@ CStreamItem::CStreamItem(CSoundData* sndData)
 CStreamItem::~CStreamItem()
 {
 	Stop();
-
-	int num_processed;
-	alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
 	
-	if (num_processed > 0)
+	if (m_ALSource != 0)
 	{
-		ALuint* al_buf = new ALuint[num_processed];
-		alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
-		AL_CHECK
-		delete[] al_buf;
+		int num_processed;
+		alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
+		
+		if (num_processed > 0)
+		{
+			ALuint* al_buf = new ALuint[num_processed];
+			alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
+			AL_CHECK
+			delete[] al_buf;
+		}
 	}
 }
 
@@ -55,39 +58,42 @@ bool CStreamItem::IdleTask()
 	HandleFade();
 	AL_CHECK
 
-	int proc_state;
-	alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
-	AL_CHECK
-	
-	if (proc_state == AL_STOPPED)
+	if (m_ALSource != 0)
 	{
-		if (m_LastPlay)
-			return (proc_state != AL_STOPPED);
-	}
-	else
-	{
-		COggData* tmp = (COggData*)m_SoundData;
+		int proc_state;
+		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+		AL_CHECK
 		
-		if (! tmp->IsFileFinished())
+		if (proc_state == AL_STOPPED)
 		{
-			int num_processed;
-			alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
-			AL_CHECK
-			
-			if (num_processed > 0)
-			{
-				ALuint* al_buf = new ALuint[num_processed];
-				alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
-				AL_CHECK
-				int didWrite = tmp->FetchDataIntoBuffer(num_processed, al_buf);
-				alSourceQueueBuffers(m_ALSource, didWrite, al_buf);
-				AL_CHECK
-				delete[] al_buf;
-			}
+			if (m_LastPlay)
+				return (proc_state != AL_STOPPED);
 		}
-		else if (GetLooping())
+		else if (m_SoundData != NULL)
 		{
-			tmp->ResetFile();
+			COggData* theData = (COggData*)m_SoundData;
+			
+			if (! theData->IsFileFinished())
+			{
+				int num_processed;
+				alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
+				AL_CHECK
+				
+				if (num_processed > 0)
+				{
+					ALuint* al_buf = new ALuint[num_processed];
+					alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
+					AL_CHECK
+					int didWrite = theData->FetchDataIntoBuffer(num_processed, al_buf);
+					alSourceQueueBuffers(m_ALSource, didWrite, al_buf);
+					AL_CHECK
+					delete[] al_buf;
+				}
+			}
+			else if (GetLooping())
+			{
+				theData->ResetFile();
+			}
 		}
 	}
 	return true;
@@ -95,7 +101,7 @@ bool CStreamItem::IdleTask()
 
 void CStreamItem::Attach(CSoundData* itemData)
 {
-	if (itemData != NULL)
+	if (itemData != NULL && (m_ALSource != 0) )
 	{
 		m_SoundData = itemData->IncrementCount();
 		alSourceQueueBuffers(m_ALSource, m_SoundData->GetBufferCount(), (const ALuint *)m_SoundData->GetBufferPtr());

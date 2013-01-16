@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,18 +26,18 @@ FileHistory::FileHistory(const wxString& configSubdir)
 {
 }
 
-void FileHistory::Load(wxConfigBase& config)
+void FileHistory::LoadFromSubDir(wxConfigBase& config)
 {
 	wxString old = config.GetPath();
 	config.SetPath(m_configSubdir);
-	wxFileHistory::Load(config);
+	Load(config);
 	config.SetPath(old);
 }
 
-void FileHistory::Save(wxConfigBase& config)
+void FileHistory::SaveToSubDir(wxConfigBase& config)
 {
 	wxString old = config.GetPath();
 	config.SetPath(m_configSubdir);
-	wxFileHistory::Save(config);
+	Save(config);
 	config.SetPath(old);
 }

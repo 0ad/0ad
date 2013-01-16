@@ -35,6 +35,10 @@ function handleNotifications()
 			"guid": findGuidForPlayerID(g_PlayerAssignments, notification.player),
 			"player": notification.player
 		});
+
+		// If the diplomacy panel is open refresh it.
+		if (isDiplomacyOpen)
+			openDiplomacy();
 	}
 	else if (notification.type == "diplomacy")
 	{

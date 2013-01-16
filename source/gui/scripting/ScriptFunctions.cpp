@@ -170,13 +170,31 @@ int GetPlayerID(void* UNUSED(cbdata))
 
 std::wstring GetDefaultPlayerName(void* UNUSED(cbdata))
 {
-	std::wstring name = g_PlayerName.FromUTF8();
-	if (name.empty())
-		name = sys_get_user_name();
+	CStr playername;
+	CFG_GET_VAL("playername", String, playername);
+	std::wstring name = playername.FromUTF8();
+	if (!name.empty())
+		return name;
 
-	if (name.empty())
-		name = L"anonymous";
-	return name;
+	name = sys_get_user_name();
+	if (!name.empty())
+		return name;
+
+	return L"anonymous";
+}
+
+std::wstring GetDefaultMPServer(void* UNUSED(cbdata))
+{
+	CStr server;
+	CFG_GET_VAL("multiplayerserver", String, server);
+	return server.FromUTF8();
+}
+
+void SaveMPConfig(void* UNUSED(cbdata), std::wstring playerName, std::wstring server)
+{
+	g_ConfigDB.CreateValue(CFG_USER, "playername")->m_String = CStrW(playerName).ToUTF8();
+	g_ConfigDB.CreateValue(CFG_USER, "multiplayerserver")->m_String = CStrW(server).ToUTF8();
+	g_ConfigDB.WriteFile(CFG_USER);
 }
 
 void StartNetworkGame(void* UNUSED(cbdata))
@@ -474,7 +492,7 @@ bool IsUserReportEnabled(void* UNUSED(cbdata))
 bool IsSplashScreenEnabled(void* UNUSED(cbdata))
 {
 	bool splashScreenEnable = true;
-	CFG_GET_USER_VAL("splashscreenenable", Bool, splashScreenEnable);
+	CFG_GET_VAL("splashscreenenable", Bool, splashScreenEnable);
 	return splashScreenEnable;
 }
 
@@ -634,6 +652,8 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
 	scriptInterface.RegisterFunction<std::wstring, &GetDefaultPlayerName>("GetDefaultPlayerName");
+	scriptInterface.RegisterFunction<std::wstring, &GetDefaultMPServer>("GetDefaultMPServer");
+	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &SaveMPConfig>("SaveMPConfig");
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,27 +100,12 @@ void IGUITextOwner::DrawText(int index, const CColor& color, const CPos& pos, fl
 
 void IGUITextOwner::CalculateTextPosition(CRect &ObjSize, CPos &TextPos, SGUIText &Text)
 {
-	EAlign align;
 	EVAlign valign;
-	GUI<EAlign>::GetSetting(this, "text_align", align);
 	GUI<EVAlign>::GetSetting(this, "text_valign", valign);
 
-	switch (align)
-	{
-	case EAlign_Left:
-		TextPos.x = ObjSize.left;
-		break;
-	case EAlign_Center:
-		// Round to integer pixel values, else the fonts look awful
-		TextPos.x = floorf(ObjSize.CenterPoint().x - Text.m_Size.cx/2.f);
-		break;
-	case EAlign_Right:
-		TextPos.x = ObjSize.right - Text.m_Size.cx;
-		break;
-	default:
-		debug_warn(L"Broken EAlign in CButton::SetupText()");
-		break;
-	}
+	// The horizontal Alignment is now computed in GenerateText in order to not have to
+	// loop through all of the TextCall objects again.
+	TextPos.x = ObjSize.left;
 
 	switch (valign)
 	{

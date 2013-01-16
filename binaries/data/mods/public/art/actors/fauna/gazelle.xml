@@ -12,7 +12,7 @@
         <animation file="quadraped/deer_walk_01.dae" name="walk" speed="20"/>
         <animation file="quadraped/deer_walk_02.dae" name="walk" speed="20"/>
         <animation file="quadraped/deer_run_01.dae" name="run" speed="15"/>
-        <animation file="quadraped/deer_attack_01.dae" name="melee" speed="20"/>
+        <animation file="quadraped/deer_attack_01.dae" name="attack_melee" speed="20"/>
       </animations>
       <mesh>skeletal/deer_mesh.dae</mesh>
       <props>
@@ -30,7 +30,7 @@
         <animation file="quadraped/deer_walk_01.dae" name="walk" speed="20"/>
         <animation file="quadraped/deer_walk_02.dae" name="walk" speed="20"/>
         <animation file="quadraped/deer_run_01.dae" name="run" speed="15"/>
-        <animation file="quadraped/deer_attack_01.dae" name="melee" speed="20"/>
+        <animation file="quadraped/deer_attack_01.dae" name="attack_melee" speed="20"/>
         <animation name=""/>
       </animations>
       <mesh>skeletal/deer_mesh.dae</mesh>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "ICmpOwnership.h"
 #include "ICmpPosition.h"
 #include "ICmpRangeManager.h"
+#include "ICmpUnitMotion.h"
 #include "ICmpVision.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpFootprint.h"
@@ -58,6 +59,8 @@ public:
 	CUnit* m_Unit;
 
 	fixed m_R, m_G, m_B; // shading colour
+
+	std::map<std::string, std::string> m_AnimOverride;
 
 	ICmpRangeManager::ELosVisibility m_Visibility; // only valid between Interpolate and RenderSubmit
 
@@ -141,9 +144,6 @@ public:
 
 		m_R = m_G = m_B = fixed::FromInt(1);
 
-		if (!GetSimContext().HasUnitManager())
-			return; // do nothing further if graphics are disabled
-
 		// TODO: we should do some fancy animation of under-construction buildings rising from the ground,
 		// but for now we'll just use the foundation actor and ignore the normal one
 		if (paramNode.GetChild("Foundation").IsOk() && paramNode.GetChild("FoundationActor").IsOk())
@@ -151,38 +151,42 @@ public:
 		else
 			m_ActorName = paramNode.GetChild("Actor").ToString();
 
-		std::set<CStr> selections;
-		m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
-		if (m_Unit)
+		if (GetSimContext().HasUnitManager())
 		{
-			CModelAbstract& model = m_Unit->GetModel();
-			if (model.ToCModel())
+			std::set<CStr> selections;
+			m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
+			if (m_Unit)
 			{
-				u32 modelFlags = 0;
+				CModelAbstract& model = m_Unit->GetModel();
+				if (model.ToCModel())
+				{
+					u32 modelFlags = 0;
 
-				if (paramNode.GetChild("SilhouetteDisplay").ToBool())
-					modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
+					if (paramNode.GetChild("SilhouetteDisplay").ToBool())
+						modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
 
-				if (paramNode.GetChild("SilhouetteOccluder").ToBool())
-					modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
+					if (paramNode.GetChild("SilhouetteOccluder").ToBool())
+						modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
 
-				CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
-				if (cmpVision && cmpVision->GetAlwaysVisible())
-					modelFlags |= MODELFLAG_IGNORE_LOS;
+					CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
+					if (cmpVision && cmpVision->GetAlwaysVisible())
+						modelFlags |= MODELFLAG_IGNORE_LOS;
 
-				model.ToCModel()->AddFlagsRec(modelFlags);
+					model.ToCModel()->AddFlagsRec(modelFlags);
+				}
+
+				// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the 
+				// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint
+				// shape for the selection box (instead of the default recursive bounding box). See TypeList.h for the order in
+				// which components are initialized; if for whatever reason you need to get rid of this dependency, you can always just
+				// initialize the selection shape descriptor on-demand.
+				InitSelectionShapeDescriptor(model, paramNode);
+
+				m_Unit->SetID(GetEntityId());
 			}
-
-			// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the 
-			// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint
-			// shape for the selection box (instead of the default recursive bounding box). See TypeList.h for the order in
-			// which components are initialized; if for whatever reason you need to get rid of this dependency, you can always just
-			// initialize the selection shape descriptor on-demand.
-			InitSelectionShapeDescriptor(model, paramNode);
-
-			m_Unit->SetID(GetEntityId());
 		}
 
+		// We need to select animation even if graphics are disabled, as this modifies serialized state
 		SelectAnimation("idle", false, fixed::FromInt(1), L"");
 	}
 
@@ -370,6 +374,18 @@ public:
 			if (m_Unit->GetAnimation())
 				m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
 		}
+	}
+
+	virtual void ReplaceMoveAnimation(std::string name, std::string replace)
+	{
+		m_AnimOverride[name] = replace;
+	}
+
+	virtual void ResetMoveAnimation(std::string name)
+	{
+		std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
+		if (it != m_AnimOverride.end())
+			m_AnimOverride.erase(name);
 	}
 
 	virtual void SetUnitEntitySelection(const CStr& selection)
@@ -566,7 +582,7 @@ void CCmpVisualActor::InitSelectionShapeDescriptor(CModelAbstract& model, const 
 	model.SetCustomSelectionShape(shapeDescriptor);
 }
 
-void CCmpVisualActor::Update(fixed turnLength)
+void CCmpVisualActor::Update(fixed UNUSED(turnLength))
 {
 	if (m_Unit == NULL)
 		return;
@@ -580,25 +596,34 @@ void CCmpVisualActor::Update(fixed turnLength)
 		if (!cmpPosition || !cmpPosition->IsInWorld())
 			return;
 
-		float speed = cmpPosition->GetDistanceTravelled().ToFloat() / turnLength.ToFloat();
+		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), GetEntityId());
+		if (!cmpUnitMotion)
+			return;
 
+		float speed = cmpUnitMotion->GetCurrentSpeed().ToFloat();
+
+		std::string name;
+		if (speed == 0.0f)
+			name = "idle";
+		else
+			name = (speed < m_AnimRunThreshold.ToFloat()) ? "walk" : "run";
+
+		std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
+		if (it != m_AnimOverride.end())
+			name = it->second;
+
+		m_Unit->SetEntitySelection(name);
 		if (speed == 0.0f)
 		{
-			m_Unit->SetEntitySelection("idle");
+			m_Unit->SetEntitySelection(name);
 			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationState("idle", false, 1.f, 0.f, L"");
-		}
-		else if (speed < m_AnimRunThreshold.ToFloat())
-		{
-			m_Unit->SetEntitySelection("walk");
-			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationState("walk", false, speed, 0.f, L"");
+				m_Unit->GetAnimation()->SetAnimationState(name, false, 1.f, 0.f, L"");
 		}
 		else
 		{
-			m_Unit->SetEntitySelection("run");
+			m_Unit->SetEntitySelection(name);
 			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationState("run", false, speed, 0.f, L"");
+				m_Unit->GetAnimation()->SetAnimationState(name, false, speed, 0.f, L"");
 		}
 	}
 }

@@ -22,8 +22,8 @@ namespace detail {
 
 #ifdef BOOST_MSVC
 #pragma warning( push )
-#pragma warning( disable : 4584 )
-#elif defined __GNUC__
+#pragma warning( disable : 4584 4250)
+#elif defined(__GNUC__) && (__GNUC__ >= 4)
 #pragma GCC system_header
 #endif
 
@@ -37,37 +37,37 @@ template<typename Base, typename Derived>
 struct is_virtual_base_of_impl<Base, Derived, mpl::true_>
 {
 #ifdef __BORLANDC__
-    struct X : public virtual Derived, public virtual Base 
+    struct boost_type_traits_internal_struct_X : public virtual Derived, public virtual Base 
     {
-       X();
-       X(const X&);
-       X& operator=(const X&);
-       ~X()throw();
+       boost_type_traits_internal_struct_X();
+       boost_type_traits_internal_struct_X(const boost_type_traits_internal_struct_X&);
+       boost_type_traits_internal_struct_X& operator=(const boost_type_traits_internal_struct_X&);
+       ~boost_type_traits_internal_struct_X()throw();
     };
-    struct Y : public virtual Derived 
+    struct boost_type_traits_internal_struct_Y : public virtual Derived 
     {
-       Y();
-       Y(const Y&);
-       Y& operator=(const Y&);
-       ~Y()throw();
+       boost_type_traits_internal_struct_Y();
+       boost_type_traits_internal_struct_Y(const boost_type_traits_internal_struct_Y&);
+       boost_type_traits_internal_struct_Y& operator=(const boost_type_traits_internal_struct_Y&);
+       ~boost_type_traits_internal_struct_Y()throw();
     };
 #else
-    struct X : Derived, virtual Base 
+    struct boost_type_traits_internal_struct_X : public Derived, virtual Base 
     {
-       X();
-       X(const X&);
-       X& operator=(const X&);
-       ~X()throw();
+       boost_type_traits_internal_struct_X();
+       boost_type_traits_internal_struct_X(const boost_type_traits_internal_struct_X&);
+       boost_type_traits_internal_struct_X& operator=(const boost_type_traits_internal_struct_X&);
+       ~boost_type_traits_internal_struct_X()throw();
     };
-    struct Y : Derived 
+    struct boost_type_traits_internal_struct_Y : public Derived 
     {
-       Y();
-       Y(const Y&);
-       Y& operator=(const Y&);
-       ~Y()throw();
+       boost_type_traits_internal_struct_Y();
+       boost_type_traits_internal_struct_Y(const boost_type_traits_internal_struct_Y&);
+       boost_type_traits_internal_struct_Y& operator=(const boost_type_traits_internal_struct_Y&);
+       ~boost_type_traits_internal_struct_Y()throw();
     };
 #endif
-    BOOST_STATIC_CONSTANT(bool, value = (sizeof(X)==sizeof(Y)));
+    BOOST_STATIC_CONSTANT(bool, value = (sizeof(boost_type_traits_internal_struct_X)==sizeof(boost_type_traits_internal_struct_Y)));
 };
 
 template<typename Base, typename Derived>

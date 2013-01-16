@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="110"/>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="100"/>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="80"/>
+        <animation file="biped/inf_hoplite_shield_run_a.psa" name="walk" speed="40"/>
+        <animation file="biped/inf_hoplite_shield_run_a.psa" name="run" speed="30"/>
+        <animation event="0.5" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="attack_ranged" speed="75"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_05.psa" name="Death" speed="600"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/hele_xenophon.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/hele_round_xenophon.xml" attachpoint="shield"/>
+      </props>
+      <textures><texture file="skeletal/hele_xenophon.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle">
+      <props>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="Walk">
+      <props>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="Run">
+      <props>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="attack_ranged">
+      <props>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="projectile"/>
+        <prop attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="Death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

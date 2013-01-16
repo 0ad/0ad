@@ -1519,7 +1519,7 @@ function getEntityLimitAndCount(playerState, entType)
 	{
 		trainEntLimit = playerState.entityLimits[trainingCategory];
 		trainEntCount = playerState.entityCounts[trainingCategory];
-		canBeTrainedCount = trainEntLimit - trainEntCount;
+		canBeTrainedCount = Math.max(trainEntLimit - trainEntCount, 0);
 	}
 	return [trainEntLimit, trainEntCount, canBeTrainedCount];
 }
@@ -1659,9 +1659,9 @@ function removeFromProductionQueue(entity, id)
 }
 
 // Called by unit selection buttons
-function changePrimarySelectionGroup(templateName)
+function changePrimarySelectionGroup(templateName, deselectGroup)
 {
-	if (Engine.HotkeyIsPressed("session.deselectgroup"))
+	if (Engine.HotkeyIsPressed("session.deselectgroup") || deselectGroup)
 		g_Selection.makePrimarySelection(templateName, true);
 	else
 		g_Selection.makePrimarySelection(templateName, false);
@@ -1794,6 +1794,30 @@ function lockGate(lock)
 		"type": "lock-gate",
 		"entities": selection,
 		"lock": lock,
+	});
+}
+
+// Pack / unpack unit(s)
+function packUnit(pack)
+{
+	var selection = g_Selection.toList();
+	Engine.PostNetworkCommand({
+		"type": "pack",
+		"entities": selection,
+		"pack": pack,
+		"queued": false
+	});
+}
+
+// Cancel un/packing unit(s)
+function cancelPackUnit(pack)
+{
+	var selection = g_Selection.toList();
+	Engine.PostNetworkCommand({
+		"type": "cancel-pack",
+		"entities": selection,
+		"pack": pack,
+		"queued": false
 	});
 }
 

@@ -99,22 +99,23 @@
 		
 		
 		<object size="100%-425 363 100%-325 455" name="mapTypeSelectionTooltip">
-			<object type="text" style="RightLabelText" size="0 66 100% 88">Select Map:</object>
-			<object type="text" style="RightLabelText" size="0 0 100% 28">Match Type:</object>
-			<object type="text" style="RightLabelText" size="0 34 100% 60">Map Filter:</object>
-			<object type="text" style="RightLabelText" size="0 94 100% 122">Map Size:</object>
+			<object type="text" style="RightLabelText" size="0 0 100% 30">Match Type:</object>
+			<object type="text" style="RightLabelText" size="0 32 100% 62">Map Filter:</object>
+			<object type="text" style="RightLabelText" size="0 64 100% 94">Select Map:</object>
+			<object type="text" style="RightLabelText" size="0 96 100% 126">Map Size:</object>
 		</object>
 
 		<object size="100%-327 363 100%-25 423" name="mapFilterSelectionTooltip">
-			<object name="mapTypeText" type="text" style="LeftLabelText" size="0 0 100% 28"  hidden="true"/>
-			<object name="mapFilterText" type="text" style="LeftLabelText" size="0 32 100% 60"  hidden="true"/>
-			<object name="mapSelectionText" type="text" style="LeftLabelText" size="0 64 100% 92"  hidden="true"/>
+			<object name="mapTypeText" type="text" style="LeftLabelText" size="0 0 100% 30"  hidden="true"/>
+			<object name="mapFilterText" type="text" style="LeftLabelText" size="0 32 100% 62"  hidden="true"/>
+			<object name="mapSelectionText" type="text" style="LeftLabelText" size="0 64 100% 94"  hidden="true"/>
+			<object name="mapSizeText" type="text" style="LeftLabelText" size="0 96 100% 126" hidden="true"/>
 		</object>
 		
 		<object name="mapTypeSelection"
 			type="dropdown"
 			style="StoneDropDown"
-			size="100%-327 363 100%-25 391"
+			size="100%-325 363 100%-25 391"
 			tooltip_style="onscreenToolTip"
 			tooltip="Select a map type.">
 			<action on="SelectionChange">selectMapType(this.list_data[this.selected]);</action>
@@ -123,13 +124,13 @@
 		<object name="mapFilterSelection"
 			type="dropdown"
 			style="StoneDropDown"
-			size="100%-327 395 100%-25 423"
+			size="100%-325 395 100%-25 423"
 			tooltip_style="onscreenToolTip"
 			tooltip="Select a map filter.">
 			<action on="SelectionChange">selectMapFilter(this.list[this.selected]);</action>
 		</object>
 		
-		<object size="100%-327 427 100%-25 455" name="mapSelectionPannel" z="55">
+		<object size="100%-325 427 100%-25 455" name="mapSelectionPannel" z="55">
 
 			<object name="mapSelection"
 				style="StoneDropDown"
@@ -142,15 +143,7 @@
 
 		</object>
 		
-		<object size="100%-327 459 100%-25 487">
-			
-			<!-- Map Size-->	
-			<object size="0 0 100% 100%">
-				<object name="mapSizeText" size="0 0 100% 100%" type="text" style="LeftLabelText"/>
-				<object name="mapSize" size="0 0 100% 28" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size. (Larger sizes may reduce performance.)"/>
-			</object>
-		
-		</object>
+		<object name="mapSize" size="100%-325 459 100%-25 487" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size. (Larger sizes may reduce performance.)"/>		
 		
 		<!-- Map Preview -->
 		<object  type="image" sprite="BackgroundIndentFillDark" name="gamePreviewBox" size="100%-426 57 100%-24 359">
@@ -159,7 +152,7 @@
 		
 		<!-- Map Description -->
 		<object size="100%-425 497 100%-25 100%-60">
-			<object name="mapInfoName" type="text" style="LeftLabelText" size="0 0 100% 30"/>
+			<object name="mapInfoName" type="text" style="LeftLabelText" size="0 0 100%-120 30"/>
 			<object type="image" sprite="BackgroundIndentFillDark" size="0 30 100% 100%">
 				<object name="mapInfoDescription" type="text" style="MapDescription" size="0 0 100% 100%"/>
 			</object>
@@ -184,7 +177,7 @@
 		</object>
 
 		<!-- More Options -->
-		<object name="moreOptions" type="image" sprite="StoneWindow" size="50%-190 50%-120 50%+190 50%+155" z="55" hidden="true">
+		<object name="moreOptions" type="image" sprite="StoneWindow" size="50%-200 50%-120 50%+200 50%+155" z="70" hidden="true">
 			<object style="TitleText" type="text" size="50%-128 11 50%+128 27">
 				More Options
 			</object>
@@ -226,15 +219,15 @@
 				
 				<object size="40% 0 100% 28">
 					<object name="revealMapText" size="0 0 100% 100%" type="text" style="LeftLabelText"/>
-					<object name="revealMap" size="0 50%-8 16 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map."/>
+					<object name="revealMap" size="4 50%-8 20 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map."/>
 				</object>
 				<object size="40% 30 100% 58">
 					<object name="lockTeamsText" size="0 0 100% 100%" type="text" style="LeftLabelText"/>
-					<object name="lockTeams" size="0 50%-8 16 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle locked teams."/>
+					<object name="lockTeams" size="4 50%-8 20 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle locked teams."/>
 				</object>
 				<object size="40% 60 100% 88">
 					<object name="enableCheatsText" size="0 0 100% 100%" type="text" style="LeftLabelText" hidden="true"/>
-					<object name="enableCheats" size="0 50%-8 16 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle the usability of cheats."/>
+					<object name="enableCheats" size="4 50%-8 20 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle the usability of cheats."/>
 				</object>
 			</object>
 
@@ -287,6 +280,7 @@
 			size="100%-308 100%-52 100%-168 100%-24"
 			tooltip_style="onscreenToolTip"
 			tooltip="Start a new game with the current settings."
+			enabled="false"
 		>
 			Start game!
 			<action on="Press">launchGame();</action>

@@ -37,8 +37,6 @@ Armour.prototype.Init = function()
 	this.invulnerable = false;
 };
 
-Armour.prototype.Serialize = null; // we have no dynamic state to save
-
 Armour.prototype.SetInvulnerability = function(invulnerability)
 {
 	this.invulnerable = invulnerability;
@@ -69,7 +67,6 @@ Armour.prototype.GetArmourStrengths = function()
 	// Work out the armour values with technology effects
 	var self = this;
 	
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	var applyTechs = function(type, foundation)
 	{
 		var strength;
@@ -83,12 +80,9 @@ Armour.prototype.GetArmourStrengths = function()
 			strength = +self.template[type];
 		}
 		
-		if (cmpTechMan)
-		{
-			// All causes caching problems so disable it for now.
-			// var allComponent = cmpTechMan.ApplyModifications("Armour/All", strength, self.entity) - self.template[type];
-			strength = cmpTechMan.ApplyModifications("Armour/" + type, strength, self.entity);
-		}
+		// All causes caching problems so disable it for now.
+		// var allComponent = ApplyTechModificationsToEntity("Armour/All", strength, self.entity) - self.template[type];
+		strength = ApplyTechModificationsToEntity("Armour/" + type, strength, self.entity);
 		return strength;
 	};
 	

@@ -19,7 +19,6 @@
 
 #include "CLogger.h"
 #include "CConsole.h"
-#include "ConfigDB.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "lib/ogl.h"
@@ -47,8 +46,6 @@ static const double RENDER_TIMEOUT_RATE = 10.0; // number of timed-out messages 
 static const size_t RENDER_LIMIT = 20; // maximum messages on screen at once
 
 static const size_t BUFFER_SIZE = 1024;
-
-extern int g_xres, g_yres;
 
 // Set up a default logger that throws everything away, because that's
 // better than crashing. (This is particularly useful for unit tests which

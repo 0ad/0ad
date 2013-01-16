@@ -2,7 +2,7 @@
 <Entity parent="units/cart_cavalry_swordsman_b">
   <Armour>
     <Hack>5.0</Hack>
-    <Pierce>7.0</Pierce>
+    <Pierce>11.0</Pierce>
     <Crush>6.0</Crush>
   </Armour>
   <Attack>
@@ -14,7 +14,7 @@
     </Charge>
   </Attack>
   <Health>
-    <Max>140</Max>
+    <Max>210</Max>
   </Health>
   <Identity>
     <Rank>Advanced</Rank>
@@ -26,7 +26,7 @@
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>10.0</WalkSpeed>
+    <WalkSpeed>11.0</WalkSpeed>
   </UnitMotion>
   <VisualActor>
     <Actor>units/carthaginians/cavalry_swordsman_a.xml</Actor>

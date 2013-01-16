@@ -19,8 +19,9 @@
         <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="melee" speed="100"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="melee" speed="100"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="attack_melee" speed="100"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_melee" speed="100"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="attack_slaughter" speed="100"/>
         <animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
         <animation file="infantry/general/forage.psa" name="gather_fruit" speed="125"/>
@@ -39,12 +40,13 @@
       </animations>
       <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/maur_straight_b.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear_bamboo.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/head_indian_a.xml" attachpoint="head"/>
       </props>
       <textures>
         <texture file="skeletal/maur_isp_b.png" name="baseTex"/>
+        <texture file="skeletal/maur_isp_b_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -160,5 +162,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

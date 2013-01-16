@@ -167,7 +167,7 @@ for (var i = 0; i < numPlayers; i++)
 		var aX = round(fx + aDist * cos(aAngle));
 		var aZ = round(fz + aDist * sin(aAngle));
 		var group = new SimpleGroup(
-			[new SimpleObject(oChicken, 5,5, 0,3)],
+			[new SimpleObject(oChicken, 5,5, 0,2)],
 			true, clBaseResource, aX, aZ
 		);
 		createObjectGroup(group, 0);
@@ -267,7 +267,7 @@ for (var i = 0; i < scaleByMapSize(9,16); i++)
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill2)], avoidClasses(clPlayer, 6, clHill2, 3, clHill, 2));
 }
 
-for (var g = 0; g < scaleByMapSize(20,80); g++)
+for (var g = 0; g < scaleByMapSize(10,40); g++)
 {
 	var tx = randInt(1, mapSize - 1);
 	var tz = randInt(1, mapSize - 1);

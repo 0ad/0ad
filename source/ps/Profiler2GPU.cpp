@@ -776,9 +776,9 @@ CProfiler2GPU::CProfiler2GPU(CProfiler2& profiler) :
 	bool enabledARB = false;
 	bool enabledEXT = false;
 	bool enabledINTEL = false;
-	CFG_GET_USER_VAL("profiler2.gpu.arb.enable", Bool, enabledARB);
-	CFG_GET_USER_VAL("profiler2.gpu.ext.enable", Bool, enabledEXT);
-	CFG_GET_USER_VAL("profiler2.gpu.intel.enable", Bool, enabledINTEL);
+	CFG_GET_VAL("profiler2.gpu.arb.enable", Bool, enabledARB);
+	CFG_GET_VAL("profiler2.gpu.ext.enable", Bool, enabledEXT);
+	CFG_GET_VAL("profiler2.gpu.intel.enable", Bool, enabledINTEL);
 
 	// Only enable either ARB or EXT, not both, because they are redundant
 	// (EXT is only needed for compatibility with older systems), and because

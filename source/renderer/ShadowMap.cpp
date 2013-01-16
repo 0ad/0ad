@@ -322,7 +322,7 @@ void ShadowMapInternals::CreateTexture()
 	}
 	
 	// save the caller's FBO	
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &SavedViewFBO);
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &SavedViewFBO);
 
 	pglGenFramebuffersEXT(1, &Framebuffer);
 
@@ -457,7 +457,7 @@ void ShadowMap::BeginRender()
 	// HACK HACK: this depends in non-obvious ways on the behaviour of the caller
 	
 	// save caller's FBO
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m->SavedViewFBO);
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &m->SavedViewFBO);
 
 	// Calc remaining shadow matrices
 	m->CalcShadowMatrices();

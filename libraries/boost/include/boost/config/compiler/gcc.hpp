@@ -42,7 +42,9 @@
 #   define BOOST_NO_USING_DECLARATION_OVERLOADS_FROM_TYPENAME_BASE
 #   define BOOST_FUNCTION_SCOPE_USING_DECLARATION_BREAKS_ADL
 #   define BOOST_NO_IS_ABSTRACT
-#   define BOOST_NO_EXTERN_TEMPLATE
+#   define BOOST_NO_CXX11_EXTERN_TEMPLATE
+// Variadic macros do not exist for gcc versions before 3.0
+#   define BOOST_NO_CXX11_VARIADIC_MACROS
 #elif __GNUC__ == 3
 #  if defined (__PATHSCALE__)
 #     define BOOST_NO_TWO_PHASE_NAME_LOOKUP
@@ -59,7 +61,7 @@
 #  if __GNUC_MINOR__ < 4
 #     define BOOST_NO_IS_ABSTRACT
 #  endif
-#  define BOOST_NO_EXTERN_TEMPLATE
+#  define BOOST_NO_CXX11_EXTERN_TEMPLATE
 #endif
 #if __GNUC__ < 4
 //
@@ -113,7 +115,7 @@
 // Dynamic shared object (DSO) and dynamic-link library (DLL) support
 //
 #if __GNUC__ >= 4
-#  if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
+#  if (defined(_WIN32) || defined(__WIN32__) || defined(WIN32)) && !defined(__CYGWIN__)
      // All Win32 development environments, including 64-bit Windows and MinGW, define 
      // _WIN32 or one of its variant spellings. Note that Cygwin is a POSIX environment,
      // so does not define _WIN32 or its variants.
@@ -144,11 +146,6 @@
 #  endif
 #endif
 
-// C++0x features not implemented in any GCC version
-//
-#define BOOST_NO_CONSTEXPR
-#define BOOST_NO_NULLPTR
-#define BOOST_NO_TEMPLATE_ALIASES
 
 // C++0x features in 4.3.n and later
 //
@@ -161,52 +158,73 @@
 #  define BOOST_HAS_STATIC_ASSERT
 #  define BOOST_HAS_VARIADIC_TMPL
 #else
-#  define BOOST_NO_DECLTYPE
-#  define BOOST_NO_FUNCTION_TEMPLATE_DEFAULT_ARGS
-#  define BOOST_NO_RVALUE_REFERENCES
-#  define BOOST_NO_STATIC_ASSERT
+#  define BOOST_NO_CXX11_DECLTYPE
+#  define BOOST_NO_CXX11_FUNCTION_TEMPLATE_DEFAULT_ARGS
+#  define BOOST_NO_CXX11_RVALUE_REFERENCES
+#  define BOOST_NO_CXX11_STATIC_ASSERT
 
 // Variadic templates compiler: 
 //   http://www.generic-programming.org/~dgregor/cpp/variadic-templates.html
-#  ifdef __VARIADIC_TEMPLATES
+#  if defined(__VARIADIC_TEMPLATES) || (__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 4) && defined(__GXX_EXPERIMENTAL_CXX0X__))
 #    define BOOST_HAS_VARIADIC_TMPL
 #  else
-#    define BOOST_NO_VARIADIC_TEMPLATES
+#    define BOOST_NO_CXX11_VARIADIC_TEMPLATES
 #  endif
 #endif
 
 // C++0x features in 4.4.n and later
 //
 #if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 4) || !defined(__GXX_EXPERIMENTAL_CXX0X__)
-#  define BOOST_NO_AUTO_DECLARATIONS
-#  define BOOST_NO_AUTO_MULTIDECLARATIONS
-#  define BOOST_NO_CHAR16_T
-#  define BOOST_NO_CHAR32_T
-#  define BOOST_NO_DEFAULTED_FUNCTIONS
-#  define BOOST_NO_DELETED_FUNCTIONS
-#  define BOOST_NO_INITIALIZER_LISTS
-#  define BOOST_NO_SCOPED_ENUMS  
+#  define BOOST_NO_CXX11_AUTO_DECLARATIONS
+#  define BOOST_NO_CXX11_AUTO_MULTIDECLARATIONS
+#  define BOOST_NO_CXX11_CHAR16_T
+#  define BOOST_NO_CXX11_CHAR32_T
+#  define BOOST_NO_CXX11_HDR_INITIALIZER_LIST
+#  define BOOST_NO_CXX11_DEFAULTED_FUNCTIONS
+#  define BOOST_NO_CXX11_DELETED_FUNCTIONS
 #endif
 
 #if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 4)
 #  define BOOST_NO_SFINAE_EXPR
 #endif
 
-// C++0x features in 4.4.1 and later
-//
-#if (__GNUC__*10000 + __GNUC_MINOR__*100 + __GNUC_PATCHLEVEL__ < 40401) || !defined(__GXX_EXPERIMENTAL_CXX0X__)
-// scoped enums have a serious bug in 4.4.0, so define BOOST_NO_SCOPED_ENUMS before 4.4.1
-// See http://gcc.gnu.org/bugzilla/show_bug.cgi?id=38064
-#  define BOOST_NO_SCOPED_ENUMS
-#endif
-
-// C++0x features in 4.5.n and later
+// C++0x features in 4.5.0 and later
 //
 #if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 5) || !defined(__GXX_EXPERIMENTAL_CXX0X__)
-#  define BOOST_NO_EXPLICIT_CONVERSION_OPERATORS
-#  define BOOST_NO_LAMBDAS
-#  define BOOST_NO_RAW_LITERALS
-#  define BOOST_NO_UNICODE_LITERALS
+#  define BOOST_NO_CXX11_EXPLICIT_CONVERSION_OPERATORS
+#  define BOOST_NO_CXX11_LAMBDAS
+#  define BOOST_NO_CXX11_LOCAL_CLASS_TEMPLATE_PARAMETERS
+#  define BOOST_NO_CXX11_RAW_LITERALS
+#  define BOOST_NO_CXX11_UNICODE_LITERALS
+#endif
+
+// C++0x features in 4.5.1 and later
+//
+#if (__GNUC__*10000 + __GNUC_MINOR__*100 + __GNUC_PATCHLEVEL__ < 40501) || !defined(__GXX_EXPERIMENTAL_CXX0X__)
+// scoped enums have a serious bug in 4.4.0, so define BOOST_NO_CXX11_SCOPED_ENUMS before 4.5.1
+// See http://gcc.gnu.org/bugzilla/show_bug.cgi?id=38064
+#  define BOOST_NO_CXX11_SCOPED_ENUMS
+#endif
+
+// C++0x features in 4.6.n and later
+//
+#if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 6) || !defined(__GXX_EXPERIMENTAL_CXX0X__)
+#define BOOST_NO_CXX11_CONSTEXPR
+#define BOOST_NO_CXX11_NOEXCEPT
+#define BOOST_NO_CXX11_NULLPTR
+#define BOOST_NO_CXX11_RANGE_BASED_FOR
+#define BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX
+#endif
+
+#if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 7) || !defined(__GXX_EXPERIMENTAL_CXX0X__)
+#  define BOOST_NO_CXX11_TEMPLATE_ALIASES
+#endif
+// C++0x features not supported at all yet
+//
+#define BOOST_NO_CXX11_DECLTYPE_N3276
+
+#ifndef BOOST_COMPILER
+#  define BOOST_COMPILER "GNU C++ version " __VERSION__
 #endif
 
 // ConceptGCC compiler:
@@ -214,23 +232,16 @@
 #ifdef __GXX_CONCEPTS__
 #  define BOOST_HAS_CONCEPTS
 #  define BOOST_COMPILER "ConceptGCC version " __VERSION__
-#else
-#  define BOOST_NO_CONCEPTS
 #endif
 
-#ifndef BOOST_COMPILER
-#  define BOOST_COMPILER "GNU C++ version " __VERSION__
-#endif
-
-//
 // versions check:
 // we don't know gcc prior to version 2.90:
 #if (__GNUC__ == 2) && (__GNUC_MINOR__ < 90)
 #  error "Compiler not configured - please reconfigure"
 #endif
 //
-// last known and checked version is 4.4 (Pre-release):
-#if (__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ > 4))
+// last known and checked version is 4.6 (Pre-release):
+#if (__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ > 6))
 #  if defined(BOOST_ASSERT_CONFIG)
 #     error "Unknown compiler version - please run the configure tests and report the results"
 #  else

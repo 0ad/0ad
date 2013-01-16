@@ -2,30 +2,41 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
 		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
 		<SunElevation angle="0.717903"/>
 		<SunRotation angle="-0.693359"/>
 		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<Fog>
+			<FogFactor>0.00199219</FogFactor>
+			<FogThickness>0.400391</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.211765" g="0.25098" b="0.505882"/>
+				<Colour r="0.313726" g="0.321569" b="0.247059"/>
 				<Height>20.0394</Height>
 				<Shininess>229.004</Shininess>
-				<Waviness>2.1875</Waviness>
-				<Murkiness>0.734375</Murkiness>
-				<Tint r="0" g="0" b="0"/>
+				<Waviness>3.18359</Waviness>
+				<Murkiness>0.701172</Murkiness>
+				<Tint r="0.819608" g="0.74902" b="0.513726"/>
 				<ReflectionTint r="0" g="0.501961" b="1"/>
-				<ReflectionTintStrength>0.304688</ReflectionTintStrength>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="470.852" y="75.4352" z="240.591"/>
-		<Rotation angle="0.118509"/>
+		<Position x="434.436" y="110.442" z="99.7125"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -36,7 +47,7 @@
   "Keywords": [],
   "LockTeams": false,
   "Name": "Acropolis 2",
-  "Preview" : "acropolis_2.png",
+  "Preview": "acropolis_2.png",
   "PlayerData": [
     {
       "AI": "",
@@ -73,7 +84,6 @@
       "Team": -1
     }
   ],
-  "Preview": "acropolis_2.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -2261,6 +2271,7 @@
 			<Player>0</Player>
 			<Position x="625.62085" z="782.64594"/>
 			<Orientation y="-1.7861"/>
+			<Obstruction group="4500"/>
 		</Entity>
 		<Entity uid="410">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>

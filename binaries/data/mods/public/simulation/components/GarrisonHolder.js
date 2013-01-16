@@ -63,11 +63,7 @@ GarrisonHolder.prototype.GetAllowedClassesList = function()
  */
 GarrisonHolder.prototype.GetCapacity = function()
 {
-	var max = +this.template.Max;
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	if (cmpTechMan)
-		max = cmpTechMan.ApplyModifications("GarrisonHolder/Max", max, this.entity);
-	return max;
+	return ApplyTechModificationsToEntity("GarrisonHolder/Max", +this.template.Max, this.entity);
 };
 
 /**
@@ -75,11 +71,7 @@ GarrisonHolder.prototype.GetCapacity = function()
  */
 GarrisonHolder.prototype.GetHealRate = function()
 {
-	var rate = +this.template.BuffHeal;
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	if (cmpTechMan)
-		rate = cmpTechMan.ApplyModifications("GarrisonHolder/BuffHeal", rate, this.entity);
-	return rate;
+	return ApplyTechModificationsToEntity("GarrisonHolder/BuffHeal", +this.template.BuffHeal, this.entity);
 };
 
 /**

@@ -2,8 +2,8 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunset 1</SkySet>
-		<SunColour r="1.24922" g="1.04347" b="0.67115"/>
+		<SkySet>sunset</SkySet>
+		<SunColour r="1.24922" g="1.03857" b="0.67115"/>
 		<SunElevation angle="0.34668"/>
 		<SunRotation angle="-2.51573"/>
 		<TerrainAmbientColour r="0.329412" g="0.403922" b="0.576471"/>
@@ -20,10 +20,10 @@
 				<Height>26.859</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>1</Murkiness>
+				<Murkiness>0.84082</Murkiness>
 				<Tint r="0" g="0.501961" b="0.74902"/>
 				<ReflectionTint r="0.866667" g="0.737255" b="0.466667"/>
-				<ReflectionTintStrength>0.398438</ReflectionTintStrength>
+				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="609.584" y="155.723" z="1260.85"/>
+		<Position x="1006.5" y="119.939" z="1305.6"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -175,8 +175,8 @@
 		<Entity uid="22">
 			<Template>structures/athen_dock</Template>
 			<Player>1</Player>
-			<Position x="1459.29188" z="753.29487"/>
-			<Orientation y="0.83085"/>
+			<Position x="1334.01551" z="907.83234"/>
+			<Orientation y="0.14016"/>
 		</Entity>
 		<Entity uid="23">
 			<Template>actor|geology/stone_scandiv_formation.xml</Template>

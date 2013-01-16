@@ -25,6 +25,12 @@
 
 #include <iosfwd>
 
+#if defined(BOOST_MSVC)
+#   pragma warning (push)
+#   pragma warning (disable:4251) // class 'boost::shared_ptr<T>' needs to have dll-interface to be used by clients of class 'boost::program_options::option_description'
+#endif
+
+
 /** Boost namespace */
 namespace boost { 
 /** Namespace for the library. */
@@ -95,6 +101,16 @@ namespace program_options {
             it's a short name with prepended '-'.
         */
         const std::string& key(const std::string& option) const;
+
+
+        /** Returns the canonical name for the option description to enable the user to
+            recognised a matching option.
+            1) For short options ('-', '/'), returns the short name prefixed.
+            2) For long options ('--' / '-') returns the long name prefixed
+            3) All other cases, returns the long name (if present) or the short name,
+                unprefixed.
+        */
+        std::string canonical_display_name(int canonical_option_style = 0) const;
 
         const std::string& long_name() const;
 
@@ -250,5 +266,9 @@ namespace program_options {
         duplicate_option_error(const std::string& xwhat) : error(xwhat) {}
     };
 }}
+
+#if defined(BOOST_MSVC)
+#   pragma warning (pop)
+#endif
 
 #endif

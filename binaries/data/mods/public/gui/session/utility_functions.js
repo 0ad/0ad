@@ -329,7 +329,7 @@ function getWallPieceTooltip(wallTypes)
 			var resourceMin = Math.min.apply(Math, resourceCount[resource]);
 			var resourceMax = Math.max.apply(Math, resourceCount[resource]);
 
-			out.push(getCostComponentDisplayName(resource) + resourceMin + " to " + getCostComponentDisplayName(resource) + resourceMax);
+			out.push(getCostComponentDisplayName(resource) + " " + resourceMin + " to " + getCostComponentDisplayName(resource) + " " + resourceMax);
 		}
 	}
 	else
@@ -418,6 +418,8 @@ function getEntityAttack(template)
 	var attacks = [];
 	if (template.attack)
 	{
+		// Don't show slaughter attack
+		delete template.attack['Slaughter'];
 		for (var type in template.attack)
 		{
 			var attack = "[font=\"serif-bold-13\"]" + type + " Attack:[/font] " + damageTypesToText(template.attack[type]);

@@ -13,10 +13,14 @@
 
 #include <boost/iterator/iterator_adaptor.hpp>
 #include <boost/iterator/reverse_iterator.hpp>
+#include <boost/assert.hpp>
+#include <boost/utility/swap.hpp>
 #include <memory>
 
-#if defined(BOOST_MSVC) && \
-    (_MSC_FULL_VER >= 160000000 && _MSC_FULL_VER < 170000000)
+#if (defined(BOOST_MSVC) && \
+     (_MSC_FULL_VER >= 160000000 && _MSC_FULL_VER < 170000000)) || \
+    (defined(BOOST_INTEL_WIN) && \
+     defined(BOOST_DINKUMWARE_STDLIB))
 #define BOOST_PROPERTY_TREE_PAIR_BUG
 #endif
 
@@ -32,28 +36,23 @@ namespace boost { namespace property_tree
         // class. Unfortunately this does break the interface.
         BOOST_STATIC_CONSTANT(unsigned,
             first_offset = offsetof(value_type, first));
+#endif
         typedef multi_index_container<value_type,
             multi_index::indexed_by<
                 multi_index::sequenced<>,
                 multi_index::ordered_non_unique<multi_index::tag<by_name>,
+#if defined(BOOST_PROPERTY_TREE_PAIR_BUG)
                     multi_index::member_offset<value_type, const key_type,
                                         first_offset>,
-                    key_compare
-                >
-            >
-        > base_container;
 #else
-        typedef multi_index_container<value_type,
-            multi_index::indexed_by<
-                multi_index::sequenced<>,
-                multi_index::ordered_non_unique<multi_index::tag<by_name>,
                     multi_index::member<value_type, const key_type,
                                         &value_type::first>,
+#endif
                     key_compare
                 >
             >
         > base_container;
-#endif
+
         // The by-name lookup index.
         typedef typename base_container::template index<by_name>::type
             by_name_index;
@@ -183,8 +182,8 @@ namespace boost { namespace property_tree
     }
 
     template<class K, class D, class C> inline
-    basic_ptree<K, D, C>::basic_ptree(const data_type &data)
-        : m_data(data), m_children(new typename subs::base_container)
+    basic_ptree<K, D, C>::basic_ptree(const data_type &d)
+        : m_data(d), m_children(new typename subs::base_container)
     {
     }
 
@@ -212,7 +211,7 @@ namespace boost { namespace property_tree
     template<class K, class D, class C> inline
     void basic_ptree<K, D, C>::swap(basic_ptree<K, D, C> &rhs)
     {
-        m_data.swap(rhs.m_data);
+        boost::swap(m_data, rhs.m_data);
         // Void pointers, no ADL necessary
         std::swap(m_children, rhs.m_children);
     }
@@ -383,10 +382,21 @@ namespace boost { namespace property_tree
         subs::ch(this).reverse();
     }
 
+    namespace impl
+    {
+        struct by_first
+        {
+            template <typename P>
+            bool operator ()(const P& lhs, const P& rhs) const {
+              return lhs.first < rhs.first;
+            }
+        };
+    }
+
     template<class K, class D, class C> inline
     void basic_ptree<K, D, C>::sort()
     {
-        subs::ch(this).sort();
+        sort(impl::by_first());
     }
 
     template<class K, class D, class C>
@@ -467,8 +477,8 @@ namespace boost { namespace property_tree
         std::pair<typename subs::by_name_index::iterator,
                   typename subs::by_name_index::iterator> r(
             subs::assoc(this).equal_range(key));
-        return std::pair<assoc_iterator, assoc_iterator>(r.first.base(),
-                                                         r.second.base());
+        return std::pair<assoc_iterator, assoc_iterator>(
+          assoc_iterator(r.first), assoc_iterator(r.second));
     }
 
     template<class K, class D, class C> inline
@@ -481,7 +491,7 @@ namespace boost { namespace property_tree
                   typename subs::by_name_index::const_iterator> r(
             subs::assoc(this).equal_range(key));
         return std::pair<const_assoc_iterator, const_assoc_iterator>(
-            r.first.base(), r.second.base());
+            const_assoc_iterator(r.first), const_assoc_iterator(r.second));
     }
 
     template<class K, class D, class C> inline
@@ -770,7 +780,8 @@ namespace boost { namespace property_tree
                                                          Translator tr) const
     {
         if (optional<const self_type&> child = get_child_optional(path))
-            return child.get().BOOST_NESTED_TEMPLATE get_value_optional<Type>(tr);
+            return child.get().
+                BOOST_NESTED_TEMPLATE get_value_optional<Type>(tr);
         else
             return optional<Type>();
     }
@@ -872,7 +883,7 @@ namespace boost { namespace property_tree
     template<class K, class D, class C>
     basic_ptree<K, D, C> & basic_ptree<K, D, C>::force_path(path_type &p)
     {
-        assert(!p.empty() && "Empty path not allowed for put_child.");
+        BOOST_ASSERT(!p.empty() && "Empty path not allowed for put_child.");
         if(p.single()) {
             // I'm the parent we're looking for.
             return *this;

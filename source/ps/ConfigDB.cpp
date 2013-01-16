@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -220,7 +220,7 @@ CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, const CStr& name)
 {
 	CConfigValueSet* values = GetValues(ns, name);
 	if (!values)
-		return (NULL);
+		return NULL;
 	return &((*values)[0]);
 }
 
@@ -244,7 +244,7 @@ CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name)
 	}
 
 	return NULL;
-}	
+}
 
 EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& name)
 {
@@ -299,11 +299,12 @@ CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, const CStr& name)
 		debug_warn(L"CConfigDB: Invalid ns value");
 		return NULL;
 	}
-	
-	CConfigValue *ret=GetValue(ns, name);
-	if (ret) return ret;
-	
-	TConfigMap::iterator it=m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet( 1 )));
+
+	TConfigMap::iterator it = m_Map[ns].find(name);
+	if (it != m_Map[ns].end())
+		return &(it->second[0]);
+
+	it=m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet(1)));
 	return &(it->second[0]);
 }
 
@@ -314,7 +315,7 @@ void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)
 		debug_warn(L"CConfigDB: Invalid ns value");
 		return;
 	}
-	
+
 	m_ConfigFile[ns]=path;
 }
 

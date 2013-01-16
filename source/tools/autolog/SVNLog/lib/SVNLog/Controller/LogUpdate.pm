@@ -182,7 +182,7 @@ sub generate_feed
 
 	my $feed = new XML::Atom::SimpleFeed(
 		title => "0 A.D. Revision Log",
-		link => "http://www.wildfiregames.com/0ad/",
+		link => "http://play0ad.com/",
 		link => { rel => 'self', href => $feed_url },
 		id => "urn:uuid:" . $uid_gen->create_from_name_str('WFG SVN feed', 'feed'),
 	);
@@ -202,7 +202,7 @@ sub generate_feed
 			content => $msg->msg,
 			published => $date,
 			updated => $date,
-			link => "http://www.wildfiregames.com/0ad/",
+			link => "http://play0ad.com/",
 		);
 	}
 	

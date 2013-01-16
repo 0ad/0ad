@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
-  <Armour>
-    <Hack>1.0</Hack>
-    <Pierce>1.0</Pierce>
-  </Armour>
   <Attack>
     <Melee>
-      <Crush>15.0</Crush>
+      <Hack>0.0</Hack>
+      <Crush>20.0</Crush>
 	  <Bonuses>
 		<BonusStructures>
 		  <Classes>Structure</Classes>
 		  <Multiplier>2.0</Multiplier>
 		</BonusStructures>
 		<BonusPrimary>
-		  <Classes>Spear</Classes>
+		  <Classes>Infantry Spear</Classes>
 		  <Multiplier>1.5</Multiplier>
 		</BonusPrimary>
 		<BonusSecondary>
 		  <Classes>Elephant</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>1.25</Multiplier>
 		</BonusSecondary>
 	  </Bonuses>
     </Melee>
     <Charge>
-      <Crush>30.0</Crush>
+      <Hack>0.0</Hack>
+      <Crush>40.0</Crush>
 	  <Bonuses>
 		<BonusPrimary>
-		  <Classes>Spear</Classes>
+		  <Classes>Infantry Spear</Classes>
 		  <Multiplier>1.5</Multiplier>
 		</BonusPrimary>
 		<BonusSecondary>
 		  <Classes>Elephant</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>1.25</Multiplier>
 		</BonusSecondary>
 	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
     <Resources>
-      <food>0</food>
+      <food>60</food>
       <metal>100</metal>
     </Resources>
   </Cost>
@@ -47,16 +45,10 @@
     <GenericName>Warrior</GenericName>
     <SpecificName>Yōddha</SpecificName>
     <History>Lightly armoured or no armour.</History>
-    <Icon>units/celt_fanatic.png</Icon>
+    <Icon>units/maur_champion_maceman.png</Icon>
 	<Tooltip>Champion Swordsman. Lightly armoured. Good against buildings.
-Counters: 2x vs. Structures, 1.5x vs. Spearmen and Elephants. Countered by: Archers, Cavalry Spearmen.</Tooltip>
+Counters: 2x vs. Structures, 1.5x vs. Spearmen, 1.25x vs. Elephants. Countered by: Archers, Cavalry Spearmen.</Tooltip>
   </Identity>
-  <UnitMotion>
-    <WalkSpeed>11.0</WalkSpeed>
-    <Run>
-      <Speed>22.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/mauryans/champion_maceman.xml</Actor>
   </VisualActor>

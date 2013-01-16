@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -61,6 +61,8 @@ public:
 	void ToggleVisible();
 	void SetVisible(bool visible);
 
+	void SetCursorBlinkRate(double rate);
+
 	/**
 	 * @param deltaRealTime Elapsed real time since the last frame.
 	 */
@@ -117,6 +119,9 @@ private:
 	bool m_bFocus;
 	bool m_bVisible;	// console is to be drawn
 	bool m_bToggle;		// show/hide animation is currently active
+	double m_prevTime;	// the previous time the cursor draw state changed (used for blinking cursor)
+	bool m_bCursorVisState;	// if the cursor should be drawn or not
+	double m_cursorBlinkRate;	// cursor blink rate in seconds, if greater than 0.0
 
 	void ToLower(wchar_t* szMessage, size_t iSize = 0);
 	void Trim(wchar_t* szMessage, const wchar_t cChar = 32, size_t iSize = 0);
