@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Elephant Stables">
+      <mesh>structural/maur_stables_struct.dae</mesh>
+<props>
+<prop actor="props/structures/mauryans/stables_struct_b.xml" attachpoint="root"/>
+<prop actor="fauna/elephant_asian.xml" attachpoint="ele1"/>
+<prop actor="fauna/elephant_asian.xml" attachpoint="ele2"/>
+<prop actor="fauna/elephant_asian.xml" attachpoint="ele3"/>
+</props>
+      <textures><texture file="structural/maur_struct.png" name="baseTex"/>
+<texture file="structural/ao/maur_stables_ao.png" name="aoTex"/>
+</textures>
+    </variant>
+  </group>
+<group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_mauryans.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>
