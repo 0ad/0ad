@@ -5,6 +5,7 @@
     <variant frequency="100" name="Elephant Stables">
       <mesh>structural/maur_stables_struct.dae</mesh>
 <props>
+<prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
 <prop actor="props/structures/mauryans/stables_struct_b.xml" attachpoint="root"/>
 <prop actor="fauna/elephant_asian.xml" attachpoint="ele1"/>
 <prop actor="fauna/elephant_asian.xml" attachpoint="ele2"/>
