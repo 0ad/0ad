@@ -16,13 +16,13 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.396078" g="0.47451" b="0.654902"/>
+				<Colour r="0.392157" g="0.47451" b="0.654902"/>
 				<Height>26.3344</Height>
 				<Shininess>2.92969</Shininess>
 				<Waviness>7.46094</Waviness>
 				<Murkiness>0.44043</Murkiness>
-				<Tint r="0.623529" g="0.596078" b="0.376471"/>
-				<ReflectionTint r="0.396078" g="0.47451" b="0.654902"/>
+				<Tint r="0.619608" g="0.592157" b="0.376471"/>
+				<ReflectionTint r="0.392157" g="0.47451" b="0.654902"/>
 				<ReflectionTintStrength>0.118164</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="520.013" y="89.1097" z="343.886"/>
+		<Position x="293.083" y="61.4358" z="724.61"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -4542,73 +4542,73 @@
 		</Entity>
 		<Entity uid="888">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>2</Player>
 			<Position x="339.6414" z="751.318"/>
 			<Orientation y="-2.4469"/>
 		</Entity>
 		<Entity uid="889">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>2</Player>
 			<Position x="333.89374" z="743.90192"/>
 			<Orientation y="2.76731"/>
 		</Entity>
 		<Entity uid="890">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>2</Player>
 			<Position x="339.18573" z="745.60322"/>
 			<Orientation y="-1.3261"/>
 		</Entity>
 		<Entity uid="891">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>2</Player>
 			<Position x="219.54114" z="676.12262"/>
 			<Orientation y="0.44704"/>
 		</Entity>
 		<Entity uid="892">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>2</Player>
 			<Position x="225.05863" z="678.73182"/>
 			<Orientation y="2.88373"/>
 		</Entity>
 		<Entity uid="893">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>2</Player>
 			<Position x="224.5219" z="670.83326"/>
 			<Orientation y="-0.25602"/>
 		</Entity>
 		<Entity uid="894">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>1</Player>
 			<Position x="777.71662" z="324.76056"/>
 			<Orientation y="-2.25055"/>
 		</Entity>
 		<Entity uid="895">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>1</Player>
 			<Position x="768.79505" z="318.50303"/>
 			<Orientation y="-2.5562"/>
 		</Entity>
 		<Entity uid="896">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>1</Player>
 			<Position x="772.5625" z="316.0192"/>
 			<Orientation y="0.27327"/>
 		</Entity>
 		<Entity uid="897">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>1</Player>
 			<Position x="670.4745" z="158.11692"/>
 			<Orientation y="0.8266"/>
 		</Entity>
 		<Entity uid="898">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>1</Player>
 			<Position x="673.16327" z="164.52532"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="899">
 			<Template>gaia/fauna_sheep</Template>
-			<Player>0</Player>
+			<Player>1</Player>
 			<Position x="666.63678" z="163.04337"/>
 			<Orientation y="-2.14342"/>
 		</Entity>
@@ -5825,19 +5825,19 @@
 		<Entity uid="1139">
 			<Template>units/maur_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="285.19571" z="748.73792"/>
+			<Position x="285.29834" z="748.65033"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1140">
 			<Template>units/maur_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="287.3177" z="751.03797"/>
+			<Position x="287.68158" z="751.20752"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1141">
 			<Template>units/maur_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="290.43433" z="754.00934"/>
+			<Position x="289.89423" z="753.65094"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1142">

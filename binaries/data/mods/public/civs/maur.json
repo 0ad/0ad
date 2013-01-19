@@ -77,13 +77,13 @@
 	"Structures":
 	[
 		{
-			"Name":"Stupa Shrine",
+			"Name":"Elephant Stables",
 			"Class":"SB1",
 			"Emblem":"",
 			"History":".",
 			"Requirements":"Temple",
-			"Phase":"City",
-			"Special":"."
+			"Phase":"Town",
+			"Special":"Trains Elephant Archer and Worker Elephant at Town Phase, then adds the champion War Elephant at the City phase."
 		},
 		{
 			"Name":"Edict Pillar of Ashoka",
@@ -93,15 +93,6 @@
 			"Requirements":"Built by the Ashoka hero unit.",
 			"Phase":"City",
 			"Special":"."
-		},
-		{
-			"Name":"Elephant Stables",
-			"Class":"SB3",
-			"Emblem":"",
-			"History":".",
-			"Requirements":"Temple",
-			"Phase":"Town",
-			"Special":"Trains Elephant Archer and Worker Elephant at Town Phase, then adds the champion War Elephant at the City phase."
 		}
 	],
 	"StartEntities":
