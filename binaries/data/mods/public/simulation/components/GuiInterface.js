@@ -605,6 +605,13 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 	return ret;
 }
 
+// Returns the battle state of the player.
+GuiInterface.prototype.GetBattleState = function(player)
+{
+	var cmpBattleDetection = QueryPlayerIDInterface(player, IID_BattleDetection);
+	return cmpBattleDetection.GetState();
+};
+
 // Used to show a red square over GUI elements you can't yet afford.
 GuiInterface.prototype.GetNeededResources = function(player, amounts)
 {
@@ -1697,6 +1704,7 @@ var exposedFunctions = {
 	"IsTechnologyResearched": 1,
 	"CheckTechnologyRequirements": 1,
 	"GetStartedResearch": 1,
+	"GetBattleState": 1,
 	"GetNeededResources": 1,
 	"GetNextNotification": 1,
 

@@ -155,6 +155,7 @@ Health.prototype.Reduce = function(amount)
 
 		Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
 	}
+	state.change = this.hitpoints - old;
 	return state;
 };
 
