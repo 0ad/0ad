@@ -18,11 +18,11 @@
       <mesh>skeletal/elephant_african_forest.dae</mesh>
       <props>
         <prop actor="units/carthaginians/hero_hannibal_mahout.xml" attachpoint="rider"/>
+        <prop actor="" attachpoint="turret"/>
       </props>
       <textures>
-        <texture file="skeletal/kart_elephant_a.png" name="baseTex"/>
-        <texture file="skeletal/kart_elephant_a_spec.png" name="specTex"/>
-        <texture file="skeletal/kart_elephant_a_norm.png" name="normTex"/>
+        <texture file="skeletal/ptol_elephant_a.png" name="baseTex"/>
+        <texture file="skeletal/ptol_elephant_a_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -39,5 +39,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
