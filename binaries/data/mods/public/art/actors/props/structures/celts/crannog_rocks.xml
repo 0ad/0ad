@@ -4,7 +4,11 @@
   <group>
     <variant name="broch top">
       <mesh>structural/celt_crannog_rocks.dae</mesh>
-      <textures><texture file="props/palisade_main.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/palisade_main.png" name="baseTex"/>
+        <texture file="props/palisade_main_norm.png" name="normTex"/>
+      </textures>
     </variant>
   </group>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

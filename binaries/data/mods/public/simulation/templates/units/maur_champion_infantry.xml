@@ -3,7 +3,7 @@
   <Attack>
     <Melee>
       <Hack>0.0</Hack>
-      <Crush>20.0</Crush>
+      <Crush>15.0</Crush>
 	  <Bonuses>
 		<BonusStructures>
 		  <Classes>Structure</Classes>
@@ -34,12 +34,6 @@
 	  </Bonuses>
     </Charge>
   </Attack>
-  <Cost>
-    <Resources>
-      <food>60</food>
-      <metal>100</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>maur</Civ>
     <GenericName>Warrior</GenericName>
