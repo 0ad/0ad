@@ -7,7 +7,7 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>15.0</Hack>
+      <Hack>10.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>3.0</MaxRange>
@@ -29,7 +29,7 @@
       <RestrictedClasses datatype="tokens">Structure</RestrictedClasses>
     </Melee>
     <Charge>
-      <Hack>45.0</Hack>
+      <Hack>20.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>3.0</MaxRange>
@@ -41,7 +41,7 @@
 		</BonusSupport>
 		<BonusCav>
 		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>3.0</Multiplier>
 		</BonusCav>
 		<BonusHunt>
 		  <Classes>Animal</Classes>
@@ -78,7 +78,7 @@
     <Classes datatype="tokens">Dog Organic</Classes>
     <GenericName>War Dog</GenericName>
     <Rank>Basic</Rank>
-    <Tooltip>Counters: 2x vs. Support, 1.5x vs. Cavalry and Animals. Cannot attack structures.</Tooltip>
+    <Tooltip>Counters: 3x vs. Cavalry, 2x vs. Support, 1.5x vs. Animals. Cannot attack structures.</Tooltip>
   </Identity>
   <Loot>
     <xp>130</xp>
@@ -128,6 +128,6 @@
     </Run>
   </UnitMotion>
   <Vision>
-    <Range>40</Range>
+    <Range>30</Range>
   </Vision>
 </Entity>
