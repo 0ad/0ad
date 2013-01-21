@@ -105,7 +105,7 @@ Player.prototype.SetMaxPopulation = function(max)
 
 Player.prototype.GetMaxPopulation = function()
 {
-	return ApplyTechModificationsToPlayer("Player/MaxPopulation", this.maxPop, this.entity);
+	return Math.round(ApplyTechModificationsToPlayer("Player/MaxPopulation", this.maxPop, this.entity));
 };
 
 Player.prototype.IsTrainingBlocked = function()
