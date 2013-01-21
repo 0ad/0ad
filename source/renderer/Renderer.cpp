@@ -1476,7 +1476,7 @@ void CRenderer::RenderSubmissions()
 		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
 		{
 			PROFILE3_GPU("water scissor");
-			SScreenRect dirty;
+			SScreenRect dirty = { 0, 0, 0, 0 };
 			if (m_Options.m_WaterRefraction && m_Options.m_WaterReflection)
 			{
 				SScreenRect reflectionScissor = RenderReflections(context, waterScissor);
