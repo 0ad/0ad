@@ -97,7 +97,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	if (!line.m_ParseOK)
 		return false;
 
-	int arg_count[4]; // argument counts for the four values
+	int arg_count[4] = {0,0,0,0}; // argument counts for the four values
 	int arg_start[4] = {0,0,0,0}; // location of first argument, [0] is always 0
 
 	// Divide into the four piles (delimiter is an argument named "delim")

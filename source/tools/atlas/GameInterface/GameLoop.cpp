@@ -327,6 +327,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	// Clean up
 	AtlasView::DestroyViews();
 	ScriptingHost::FinalShutdown();
+	AtlasMessage::g_MessagePasser = NULL;
 
 	return true;
 }

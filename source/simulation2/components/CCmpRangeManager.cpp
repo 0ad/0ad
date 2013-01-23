@@ -1449,6 +1449,10 @@ public:
 				}
 			}
 		}
+
+		if (overallVisibleVertices == 0) // avoid divide-by-zero
+			return 0;
+
 		return exploredVertices * 100 / overallVisibleVertices;
 	}
 };

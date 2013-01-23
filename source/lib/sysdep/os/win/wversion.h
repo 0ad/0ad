@@ -34,6 +34,7 @@ const size_t WVERSION_XP    = 0x0501;
 const size_t WVERSION_XP64  = 0x0502;
 const size_t WVERSION_VISTA = 0x0600;
 const size_t WVERSION_7     = 0x0601;
+const size_t WVERSION_8     = 0x0602;
 
 /**
  * @return one of the above WVERSION* values

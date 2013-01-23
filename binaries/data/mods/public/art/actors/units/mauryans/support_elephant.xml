@@ -17,6 +17,9 @@
         <animation file="quadraped/elephant_african_attack.dae" name="Build" speed="50"/>
       </animations>
       <mesh>skeletal/elephant_african_forest.dae</mesh>
+<props>
+        <prop actor="props/units/maur_support_turret.xml" attachpoint="turret"/>
+      </props>
       <textures>
         <texture file="skeletal/kart_elephant_a.png" name="baseTex"/>
         <texture file="skeletal/kart_elephant_a_spec.png" name="specTex"/>

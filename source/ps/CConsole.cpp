@@ -578,6 +578,7 @@ void CConsole::SetBuffer(const wchar_t* szMessage)
 	FlushBuffer();
 
 	wcsncpy(m_szBuffer, szMessage, CONSOLE_BUFFER_SIZE);
+	m_szBuffer[CONSOLE_BUFFER_SIZE-1] = 0;
 	m_iBufferLength = (int)wcslen(m_szBuffer);
 	m_iBufferPos = std::min(oldBufferPos, m_iBufferLength);
 }
