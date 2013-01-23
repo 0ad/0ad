@@ -986,9 +986,8 @@ var UnitFsmSpec = {
 			// is done moving. The controller is notified, and will disband the
 			// formation if all units are in formation and no orders remain.
 			"MoveCompleted": function(msg) {
-				// Ignore MoveFailed messages, as formation members will still
-				// follow the formation controller.
-				if (!(!msg.data.starting && msg.data.error) && this.FinishOrder())
+				// We can only finish this order if the move was really completed.
+				if (!msg.data.error && this.FinishOrder())
 					return;
 
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
