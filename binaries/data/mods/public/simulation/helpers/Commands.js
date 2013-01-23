@@ -596,9 +596,13 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			cmpObstruction.SetControlGroup2(cmd.obstructionControlGroup2);
 	}
 	
+	// Make it owned by the current player
+	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+	cmpOwnership.SetOwner(player);
+	
 	// Check whether it's obstructed by other entities or invalid terrain
 	var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
-	if (!cmpBuildRestrictions || !cmpBuildRestrictions.CheckPlacement(player))
+	if (!cmpBuildRestrictions || !cmpBuildRestrictions.CheckPlacement())
 	{
 		if (g_DebugCommands)
 		{
@@ -689,10 +693,6 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		Engine.DestroyEntity(ent);
 		return false;
 	}
-	
-	// Make it owned by the current player
-	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-	cmpOwnership.SetOwner(player);
 	
 	// Initialise the foundation
 	var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);

@@ -839,13 +839,16 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 		var visible = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player, true) != "hidden");
 		var validPlacement = false;
 
+		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		cmpOwnership.SetOwner(player);
+
 		if (visible)
 		{	// Check whether it's obstructed by other entities or invalid terrain
 			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
 			if (!cmpBuildRestrictions)
 				error("cmpBuildRestrictions not defined");
 
-			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement(player));
+			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement());
 		}
 
 		var ok = (visible && validPlacement);
@@ -1294,6 +1297,9 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 		// check whether this wall piece can be validly positioned here
 		var validPlacement = false;
 		
+		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		cmpOwnership.SetOwner(player);
+		
 		// Check whether it's in a visible or fogged region
 		//  tell GetLosVisibility to force RetainInFog because preview entities set this to false,
 		//	which would show them as hidden instead of fogged
@@ -1308,7 +1314,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 				continue;
 			}
 			
-			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement(player));
+			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement());
 
 			// If a wall piece has two control groups, it's likely a segment that spans
 			// between two existing towers. To avoid placing a duplicate wall segment,
