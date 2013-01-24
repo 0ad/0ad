@@ -169,6 +169,10 @@ BuildRestrictions.prototype.CheckPlacement = function()
 		var ents = Engine.GetEntitiesWithInterface(IID_BuildRestrictions);
 		for each (var ent in ents)
 		{
+			// Ignore ourself
+			if (ent == this.entity)
+				continue;
+
 			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
 			if (cmpBuildRestrictions.GetCategory() == this.template.Distance.FromCategory && IsOwnedByPlayer(cmpPlayer.GetPlayerID(), ent))
 			{	// Find nearest building matching this category
