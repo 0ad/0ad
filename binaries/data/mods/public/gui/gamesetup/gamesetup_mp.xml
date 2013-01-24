@@ -30,9 +30,9 @@
 			</object>
 
 			<object name="joinPlayerName" type="input" size="210 40 100%-32 64" style="StoneInput">
-				<action on="Load"><![CDATA[
+				<action on="Load">
 					this.caption = Engine.GetDefaultPlayerName();
-				]]></action>
+				</action>
 			</object>
 
 			<object type="text" size="0 80 200 110" style="RightLabelText">
@@ -40,14 +40,14 @@
 			</object>
 
 			<object name="joinServer" type="input" size="210 80 100%-32 104" style="StoneInput">
-				<action on="Load"><![CDATA[
+				<action on="Load">
 					this.caption = Engine.GetDefaultMPServer();
-				]]></action>
+				</action>
 			</object>3 100%-33 103 100%-3
 
 			<object type="button" size="50%-144 100%-60 50%-16 100%-32" style="StoneButton">
 				Continue
-				<action on="Press"><![CDATA[
+				<action on="Press">
 					var joinPlayerName = getGUIObjectByName("joinPlayerName").caption;
 					var joinServer = getGUIObjectByName("joinServer").caption;
 					Engine.SaveMPConfig(joinPlayerName, joinServer);
@@ -55,7 +55,7 @@
 					{
 						switchSetupPage("pageJoin", "pageConnecting");
 					}
-				]]></action>
+				</action>
 			</object>
 		</object>
 
@@ -70,9 +70,9 @@
 			</object>
 
 			<object name="hostPlayerName" type="input" size="210 40 100%-32 64" style="StoneInput">
-				<action on="Load"><![CDATA[
+				<action on="Load">
 					this.caption = Engine.GetDefaultPlayerName();
-				]]></action>
+				</action>
 			</object>
 
 			<object hidden="true"> <!-- TODO: restore this when the server name is actually used -->
@@ -81,28 +81,30 @@
 			</object>
 
 			<object name="hostServerName" type="input" size="210 80 100%-32 104" style="StoneInput">
-				<action on="Load"><![CDATA[
+				<action on="Load">
 					this.caption = Engine.GetDefaultPlayerName() + "'s game";
-				]]></action>
+				</action>
 			</object>
 			</object>
 
 			<object type="button" size="50%-144 100%-60 50%-16 100%-32" style="StoneButton">
 				Continue
-				<action on="Press"><![CDATA[
+				<action on="Press">
+					var hostPlayerName = getGUIObjectByName("hostPlayerName").caption;
+					Engine.SaveMPConfig(hostPlayerName, Engine.GetDefaultMPServer());
 					if (startHost(
-						getGUIObjectByName("hostPlayerName").caption,
+						hostPlayerName,
 						getGUIObjectByName("hostServerName").caption))
 					{
 						switchSetupPage("pageHost", "pageConnecting");
 					}
-				]]></action>
+				</action>
 			</object>
 		</object>
 
 		<object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
 			Cancel
-			<action on="Press"><![CDATA[cancelSetup();]]></action>
+			<action on="Press">cancelSetup();</action>
 		</object>
 
 		<object name="pageConnecting" hidden="true">
