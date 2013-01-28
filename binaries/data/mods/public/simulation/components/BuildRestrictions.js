@@ -64,7 +64,6 @@ BuildRestrictions.prototype.Schema =
 			"</interleave>" +
 		"</element>" +
 	"</optional>";
-	// TODO: add phases, prerequisites, etc
 
 BuildRestrictions.prototype.Init = function()
 {
@@ -74,7 +73,7 @@ BuildRestrictions.prototype.Init = function()
 /**
  * Returns true iff this entity can be built at its current position.
  */
-BuildRestrictions.prototype.CheckPlacement = function(player)
+BuildRestrictions.prototype.CheckPlacement = function()
 {
 	// TODO: Return error code for invalid placement, which can be handled by the UI
 
@@ -99,7 +98,7 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 	
 	// Check territory restrictions
 	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
-	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!(cmpTerritoryManager && cmpPlayer && cmpPosition && cmpPosition.IsInWorld()))
 	{
@@ -108,7 +107,7 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 	
 	var pos = cmpPosition.GetPosition2D();
 	var tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
-	var isOwn = (tileOwner == player);
+	var isOwn = (tileOwner == cmpPlayer.GetPlayerID());
 	var isNeutral = (tileOwner == 0);
 	var isAlly = !isOwn && cmpPlayer.IsAlly(tileOwner);
 	var isEnemy = !isNeutral && cmpPlayer.IsEnemy(tileOwner);
@@ -157,7 +156,7 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 		var sz = halfSize * Math.sin(ang);
 		var cz = halfSize * Math.cos(ang);
 		if ((cmpWaterManager.GetWaterLevel(pos.x + sz, pos.y + cz) - cmpTerrain.GetGroundLevel(pos.x + sz, pos.y + cz)) < 1.0 // front
-			|| (cmpWaterManager.GetWaterLevel(pos.x - sz, pos.y - cz) - cmpTerrain.GetGroundLevel(pos.x - sz, pos.y - cz)) > 2.0)	// back
+			|| (cmpWaterManager.GetWaterLevel(pos.x - sz, pos.y - cz) - cmpTerrain.GetGroundLevel(pos.x - sz, pos.y - cz)) > 2.0) // back
 		{
 			return false;	// Fail
 		}
@@ -170,8 +169,12 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 		var ents = Engine.GetEntitiesWithInterface(IID_BuildRestrictions);
 		for each (var ent in ents)
 		{
+			// Ignore ourself
+			if (ent == this.entity)
+				continue;
+
 			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
-			if (cmpBuildRestrictions.GetCategory() == this.template.Distance.FromCategory && IsOwnedByPlayer(player, ent))
+			if (cmpBuildRestrictions.GetCategory() == this.template.Distance.FromCategory && IsOwnedByPlayer(cmpPlayer.GetPlayerID(), ent))
 			{	// Find nearest building matching this category
 				var cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
 				if (cmpEntPosition && cmpEntPosition.IsInWorld())
@@ -204,12 +207,12 @@ BuildRestrictions.prototype.GetCategory = function()
 
 BuildRestrictions.prototype.GetTerritories = function()
 {
-	return this.territories;
+	return ApplyTechModificationsToEntity("BuildRestrictions/Territory", this.territories, this.entity);
 };
 
 BuildRestrictions.prototype.HasTerritory = function(territory)
 {
-	return (this.territories.indexOf(territory) != -1);
+	return (this.GetTerritories().indexOf(territory) != -1);
 };
 
 Engine.RegisterComponentType(IID_BuildRestrictions, "BuildRestrictions", BuildRestrictions);

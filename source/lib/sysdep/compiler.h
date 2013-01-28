@@ -36,7 +36,7 @@
 #else
 # define MSC_VERSION 0
 #endif
-// .. ICC (VC-compatible)
+// .. ICC (VC-compatible, GCC-compatible)
 #if defined(__INTEL_COMPILER)
 # define ICC_VERSION __INTEL_COMPILER
 #else
@@ -53,6 +53,14 @@
 # define GCC_VERSION (__GNUC__*100 + __GNUC_MINOR__)
 #else
 # define GCC_VERSION 0
+#endif
+// .. Clang/LLVM (GCC-compatible)
+// use Clang's feature checking macros to check for availability of features
+// http://clang.llvm.org/docs/LanguageExtensions.html#feature-checking-macros
+#ifdef __clang__
+# define CLANG_VERSION (__clang_major__*100 + __clang_minor__)
+#else
+# define CLANG_VERSION 0
 #endif
 
 
