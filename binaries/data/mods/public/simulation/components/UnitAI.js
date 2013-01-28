@@ -463,9 +463,8 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Gather": function(msg) {
-		
 		// If the target is still alive, we need to kill it first
-		if (this.MustKillGatherTarget(this.order.data.target) && this.CheckTargetVisible(this.order.data.target))
+		if (this.MustKillGatherTarget(this.order.data.target))
 		{
 			// Make sure we can attack the target, else we'll get very stuck
 			if (!this.GetBestAttackAgainst(this.order.data.target))
@@ -473,6 +472,22 @@ var UnitFsmSpec = {
 				// Oops, we can't attack at all - give up
 				// TODO: should do something so the player knows why this failed
 				this.FinishOrder();
+				return;
+			}
+			// The target was visible when this order was issued,
+			// but could now be invisible again.
+			if (!this.CheckTargetVisible(this.order.data.target))
+			{
+				if (this.order.data.secondTry === undefined)
+				{
+					this.order.data.secondTry = true;
+					this.PushOrderFront("Walk", this.order.data.lastPos);
+				}
+				else
+				{
+					// We couldn't move there, or the target moved away
+					this.FinishOrder();
+				}
 				return;
 			}
 
@@ -691,8 +706,25 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Gather": function(msg) {
-			if (this.MustKillGatherTarget(msg.data.target) && this.CheckTargetVisible(msg.data.target))
+			if (this.MustKillGatherTarget(msg.data.target))
 			{
+				// The target was visible when this order was given,
+				// but could now be invisible.
+				if (!this.CheckTargetVisible(msg.data.target))
+				{
+					if (msg.data.secondTry === undefined)
+					{
+						msg.data.secondTry = true;
+						this.PushOrderFront("Walk", msg.data.lastPos);
+					}
+					else
+					{
+						// We couldn't move there, or the target moved away
+						this.FinishOrder();
+					}
+					return;
+				}
+
 				this.PushOrderFront("Attack", { "target": msg.data.target, "hunting": true });
 				return;
 			}
@@ -3111,10 +3143,10 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 {
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!cmpPosition || !cmpPosition.IsInWorld())
-			return;
+		return;
 	var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
 	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
-			return;
+		return;
 	var pos = cmpPosition.GetPosition();
 	var targetpos = cmpTargetPosition.GetPosition();
 	var angle = Math.atan2(targetpos.x - pos.x, targetpos.z - pos.z);
