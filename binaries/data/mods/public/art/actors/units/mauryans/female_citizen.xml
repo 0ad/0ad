@@ -44,6 +44,13 @@
         <texture file="skeletal/maur_fem_b_spec.png" name="specTex"/>
       </textures>
     </variant>
+    <variant frequency="2" name="Skirt-Short-Beads">
+      <mesh>skeletal/f_tunic.dae</mesh>
+      <textures>
+        <texture file="skeletal/maur_fem_d.png" name="baseTex"/>
+        <texture file="skeletal/maur_fem_d_spec.png" name="specTex"/>
+      </textures>
+    </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle">
