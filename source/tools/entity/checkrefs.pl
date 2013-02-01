@@ -76,7 +76,7 @@ sub add_entities
             push @roots, $path;
             if ($ent->{Entity}{VisualActor})
             {
-                push @deps, [ $path, "art/actors/" . $ent->{Entity}{VisualActor}{Actor}{' content'} ];
+                push @deps, [ $path, "art/actors/" . $ent->{Entity}{VisualActor}{Actor}{' content'} ] if $ent->{Entity}{VisualActor}{Actor};
                 push @deps, [ $path, "art/actors/" . $ent->{Entity}{VisualActor}{FoundationActor}{' content'} ] if $ent->{Entity}{VisualActor}{FoundationActor};
             }
 
@@ -194,10 +194,16 @@ sub add_scenarios_xml
         {
             if ($template =~ /^actor\|(.*)$/)
             {
+                # Handle special 'actor|' case
                 push @deps, [ $f, "art/actors/$1" ];
             }
             else
             {
+                if ($template =~ /^resource\|(.*)$/)
+                {
+                    # Handle special 'resource|' case
+                    $template = $1;
+                }
                 push @deps, [ $f, "simulation/templates/$template.xml" ];
             }
         }
