@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,6 +41,7 @@
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTemplateManager.h"
+#include "simulation2/components/ICmpVisual.h"
 #include "simulation2/components/ICmpWaterManager.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -370,14 +371,26 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 					entity_id_t group2 = cmpObstruction->GetControlGroup2();
 
 					// Don't waste space writing the default control groups.
-					if (group == ent && group2 == INVALID_ENTITY)
-						continue;
+					if (group != ent || group2 != INVALID_ENTITY)
+					{
+						XML_Element("Obstruction");
+						if (group != ent)
+							XML_Attribute("group", group);
+						if (group2 != INVALID_ENTITY)
+							XML_Attribute("group2", group2);
+					}
+				}
 
-					XML_Element("Obstruction");
-					if (group != ent)
-						XML_Attribute("group", group);
-					if (group2 != INVALID_ENTITY)
-						XML_Attribute("group2", group2);
+				CmpPtr<ICmpVisual> cmpVisual(sim, ent);
+				if (cmpVisual)
+				{
+					u32 seed = cmpVisual->GetActorSeed();
+					if (seed != (u32)ent)
+					{
+						XML_Element("Actor");
+						XML_Attribute("seed", seed);
+					}
+					// TODO: variation/selection strings
 				}
 			}
 		}

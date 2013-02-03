@@ -857,6 +857,9 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 		var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
 		if (cmpVisual)
 		{
+			if (cmd.actorSeed !== undefined)
+				cmpVisual.SetActorSeed(cmd.actorSeed);
+		
 			if (!ok)
 				cmpVisual.SetShadingColour(1.4, 0.4, 0.4, 1);
 			else

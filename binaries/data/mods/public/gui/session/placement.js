@@ -20,6 +20,7 @@ PlacementSupport.prototype.Reset = function()
 	this.wallDragTooltip = null;     // tooltip text while the user is draggin the wall. Used to indicate the current cost to build the wall.
 	
 	this.SetDefaultAngle();
+	this.RandomizeActorSeed();
 	
 	Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
 	Engine.GuiInterfaceCall("SetWallPlacementPreview", {"wallSet": null});
@@ -28,4 +29,9 @@ PlacementSupport.prototype.Reset = function()
 PlacementSupport.prototype.SetDefaultAngle = function()
 {
 	this.angle = PlacementSupport.DEFAULT_ANGLE;
+};
+
+PlacementSupport.prototype.RandomizeActorSeed = function()
+{
+	this.actorSeed = Math.floor(65535 * Math.random());
 };
