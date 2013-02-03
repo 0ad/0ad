@@ -22,6 +22,8 @@ Foundation.prototype.Init = function()
 	this.recentBuilders = []; // builder entities since the last timeout
 	this.numRecentBuilders = 0; // number of builder entities as of the last timeout
 	this.buildMultiplier = 1; // Multiplier for the amount of work builders do.
+	
+	this.previewEntity = INVALID_ENTITY;
 };
 
 Foundation.prototype.UpdateTimeout = function()
@@ -68,6 +70,12 @@ Foundation.prototype.OnDestroy = function()
 
 	if (!this.initialised) // this happens if the foundation was destroyed because the player had insufficient resources
 		return;
+
+	if (this.previewEntity != INVALID_ENTITY)
+	{
+		Engine.DestroyEntity(this.previewEntity);
+		this.previewEntity = INVALID_ENTITY;
+	}
 
 	if (this.buildProgress == 1.0)
 		return;
@@ -175,6 +183,36 @@ Foundation.prototype.Build = function(builderEnt, work)
 			cmpObstruction.SetDisableBlockMovementPathfinding(false, false, -1);
 		}
 
+		// Switch foundation to scaffold variant
+		var cmpFoundationVisual = Engine.QueryInterface(this.entity, IID_Visual);
+		if (cmpFoundationVisual)
+			cmpFoundationVisual.SelectAnimation("scaffold", false, 1.0, "");
+
+		// Create preview entity and copy various parameters from the foundation
+		if (cmpFoundationVisual && cmpFoundationVisual.HasConstructionPreview())
+		{
+			this.previewEntity = Engine.AddEntity("construction|"+this.finalTemplateName);
+			var cmpFoundationOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+			var cmpPreviewOwnership = Engine.QueryInterface(this.previewEntity, IID_Ownership);
+			cmpPreviewOwnership.SetOwner(cmpFoundationOwnership.GetOwner());
+
+			// Initially hide the preview underground
+			var cmpPreviewVisual = Engine.QueryInterface(this.previewEntity, IID_Visual);
+			if (cmpPreviewVisual)
+			{
+				cmpPreviewVisual.SetConstructionProgress(0.0);
+				cmpPreviewVisual.SetActorSeed(cmpFoundationVisual.GetActorSeed());
+			}
+
+			var cmpFoundationPosition = Engine.QueryInterface(this.entity, IID_Position);
+			var pos = cmpFoundationPosition.GetPosition();
+			var rot = cmpFoundationPosition.GetRotation();
+			var cmpPreviewPosition = Engine.QueryInterface(this.previewEntity, IID_Position);
+			cmpPreviewPosition.SetYRotation(rot.y);
+			cmpPreviewPosition.SetXZRotation(rot.x, rot.z);
+			cmpPreviewPosition.JumpTo(pos.x, pos.z);
+		}
+
 		this.committed = true;
 	}
 
@@ -188,8 +226,13 @@ Foundation.prototype.Build = function(builderEnt, work)
 	this.buildProgress += amount * this.buildMultiplier;
 	if (this.buildProgress > 1.0)
 		this.buildProgress = 1.0;
-		
+
 	Engine.PostMessage(this.entity, MT_FoundationProgressChanged, { "to": this.GetBuildPercentage() });
+
+	// Gradually reveal the final building preview
+	var cmpPreviewVisual = Engine.QueryInterface(this.previewEntity, IID_Visual);
+	if (cmpPreviewVisual)
+		cmpPreviewVisual.SetConstructionProgress(this.buildProgress);
 
 	// Add an appropriate proportion of hitpoints
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
@@ -210,6 +253,11 @@ Foundation.prototype.Build = function(builderEnt, work)
 		var building = Engine.AddEntity(this.finalTemplateName);
 
 		// Copy various parameters from the foundation
+
+		var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+		var cmpBuildingVisual = Engine.QueryInterface(building, IID_Visual)
+		if (cmpVisual && cmpBuildingVisual)
+			cmpBuildingVisual.SetActorSeed(cmpVisual.GetActorSeed());
 
 		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 		var cmpBuildingPosition = Engine.QueryInterface(building, IID_Position);
