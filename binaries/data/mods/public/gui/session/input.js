@@ -110,6 +110,7 @@ function updateBuildingPlacementPreview()
 				"x": placementSupport.position.x,
 				"z": placementSupport.position.z,
 				"angle": placementSupport.angle,
+				"actorSeed": placementSupport.actorSeed
 			});
 		}
 	}
@@ -514,7 +515,7 @@ function tryPlaceBuilding(queued)
 		error("[tryPlaceBuilding] Called while in '"+placementSupport.mode+"' placement mode instead of 'building'");
 		return false;
 	}
-	
+
 	var selection = g_Selection.toList();
 
 	// Use the preview to check it's a valid build location
@@ -532,6 +533,7 @@ function tryPlaceBuilding(queued)
 		"x": placementSupport.position.x,
 		"z": placementSupport.position.z,
 		"angle": placementSupport.angle,
+		"actorSeed": placementSupport.actorSeed,
 		"entities": selection,
 		"autorepair": true,
 		"autocontinue": true,
@@ -541,6 +543,8 @@ function tryPlaceBuilding(queued)
 
 	if (!queued)
 		placementSupport.Reset();
+	else
+		placementSupport.RandomizeActorSeed();
 
 	return true;
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,6 +47,7 @@
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpTemplateManager.h"
+#include "simulation2/components/ICmpVisual.h"
 #include "simulation2/helpers/Selection.h"
 
 
@@ -355,6 +356,10 @@ MESSAGEHANDLER(ObjectPreview)
 
 		// TODO: handle random variations somehow
 
+		CmpPtr<ICmpVisual> cmpVisual(*g_Game->GetSimulation2(), g_PreviewEntityID);
+		if (cmpVisual)
+			cmpVisual->SetActorSeed(msg->actorseed);
+
 		CmpPtr<ICmpOwnership> cmpOwnership(*g_Game->GetSimulation2(), g_PreviewEntityID);
 		if (cmpOwnership)
 			cmpOwnership->SetOwner((player_id_t)msg->settings->player);
@@ -365,9 +370,9 @@ BEGIN_COMMAND(CreateObject)
 {
 	CVector3D m_Pos;
 	float m_Angle;
-	size_t m_ID; // old simulation system
 	player_id_t m_Player;
-	entity_id_t m_EntityID; // new simulation system
+	entity_id_t m_EntityID;
+	u32 m_ActorSeed;
 
 	void Do()
 	{
@@ -386,8 +391,9 @@ BEGIN_COMMAND(CreateObject)
 			m_Angle = msg->angle;
 		}
 
-		// TODO: variations too
 		m_Player = (player_id_t)msg->settings->player;
+		m_ActorSeed = msg->actorseed;
+		// TODO: variation/selection strings
 
 		Redo();
 	}
@@ -409,7 +415,12 @@ BEGIN_COMMAND(CreateObject)
 		if (cmpOwnership)
 			cmpOwnership->SetOwner(m_Player);
 
-		// TODO: handle random variations somehow
+		CmpPtr<ICmpVisual> cmpVisual(*g_Game->GetSimulation2(), m_EntityID);
+		if (cmpVisual)
+		{
+			cmpVisual->SetActorSeed(m_ActorSeed);
+			// TODO: variation/selection strings
+		}
 	}
 
 	void Undo()
