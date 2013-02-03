@@ -652,15 +652,15 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	WaterMgr->updateQuality();
 
 	// If we're using fancy water, make sure its shader is loaded
-	if (!m->fancyWaterShader || (WaterMgr->m_NeedsReloading && (!g_AtlasGameLoop->running || !WaterMgr->m_TerrainChangeThisTurn) ))
+	if (!m->fancyWaterShader || (WaterMgr->m_NeedsReloading && !g_AtlasGameLoop->running))
 	{
 		if(WaterMgr->m_WaterNormal)
 			defines.Add("USE_NORMALS","1");
 		if(WaterMgr->m_WaterRealDepth)
 			defines.Add("USE_REAL_DEPTH","1");
-		if(WaterMgr->m_WaterFoam)
+		if(WaterMgr->m_WaterFoam && !g_AtlasGameLoop->running)
 			defines.Add("USE_FOAM","1");
-		if(WaterMgr->m_WaterCoastalWaves)
+		if(WaterMgr->m_WaterCoastalWaves && !g_AtlasGameLoop->running)
 			defines.Add("USE_WAVES","1");
 		if(WaterMgr->m_WaterRefraction)
 			defines.Add("USE_REFRACTION","1");
