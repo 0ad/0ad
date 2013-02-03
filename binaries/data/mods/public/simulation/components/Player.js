@@ -539,6 +539,14 @@ Player.prototype.TributeResource = function(player, amounts)
 			this.resourceCount[type] -= amounts[type];
 
 		cmpPlayer.AddResources(amounts);
+
+		var total = Object.keys(amounts).reduce(function (sum, type){ return sum + amounts[type]; }, 0);
+		var cmpOurStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
+		if (cmpOurStatisticsTracker)
+			cmpOurStatisticsTracker.IncreaseTributesSentCounter(total);
+		var cmpTheirStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
+		if (cmpTheirStatisticsTracker)
+			cmpTheirStatisticsTracker.IncreaseTributesReceivedCounter(total);
 		// TODO: notify the receiver
 	}
 	// else not enough resources... TODO: send gui notification

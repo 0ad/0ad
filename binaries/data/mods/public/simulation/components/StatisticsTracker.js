@@ -46,6 +46,8 @@ StatisticsTracker.prototype.Init = function()
 			"metal": 0,
 			"stone": 0
 	};
+	this.tributesSent = 0;
+	this.tributesReceived = 0;
 	this.tradeIncome = 0;
 	this.treasuresCollected = 0;
 };
@@ -69,6 +71,8 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"resourcesUsed": this.resourcesUsed,
 		"resourcesSold": this.resourcesSold,
 		"resourcesBought": this.resourcesBought,
+		"tributesSent": this.tributesSent,
+		"tributesReceived": this.tributesReceived,
 		"tradeIncome": this.tradeIncome,
 		"treasuresCollected": this.treasuresCollected,
 		"percentMapExplored": this.GetPercentMapExplored()
@@ -106,7 +110,7 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 		var targetIsCivCentre = cmpTargetEntityIdentity.HasClass("CivCentre");
 
 		var cmpTargetOwnership = Engine.QueryInterface(targetEntity, IID_Ownership);
-
+	    
 		// Don't increase counters if target player is gaia (player 0)
 		if (cmpTargetOwnership.GetOwner() != 0)
 		{
@@ -200,6 +204,16 @@ StatisticsTracker.prototype.IncreaseResourcesSoldCounter = function(type, amount
 StatisticsTracker.prototype.IncreaseResourcesBoughtCounter = function(type, amount)
 {
 	this.resourcesBought[type] += amount;
+}
+
+StatisticsTracker.prototype.IncreaseTributesSentCounter = function(amount)
+{
+	this.tributesSent += amount;
+}
+
+StatisticsTracker.prototype.IncreaseTributesReceivedCounter = function(amount)
+{
+	this.tributesReceived += amount;
 }
 
 StatisticsTracker.prototype.IncreaseTradeIncomeCounter = function(amount)
