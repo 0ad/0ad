@@ -652,7 +652,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	WaterMgr->updateQuality();
 
 	// If we're using fancy water, make sure its shader is loaded
-	if ((!m->fancyWaterShader || WaterMgr->m_NeedsReloading) && !g_AtlasGameLoop->running)
+	if (!m->fancyWaterShader || (WaterMgr->m_NeedsReloading && (!g_AtlasGameLoop->running || !WaterMgr->m_TerrainChangeThisTurn) ))
 	{
 		if(WaterMgr->m_WaterNormal)
 			defines.Add("USE_NORMALS","1");

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -175,6 +175,10 @@ private:
 	// (position, actor, armour, health, etc) into a new entity template
 	void CopyFoundationSubset(CParamNode& out, const CParamNode& in);
 
+	// Copy the components of an entity necessary for a non-foundation construction entity
+	// into a new entity template
+	void CopyConstructionSubset(CParamNode& out, const CParamNode& in);
+
 	// Copy the components of an entity necessary for a gatherable resource
 	// into a new entity template
 	void CopyResourceSubset(CParamNode& out, const CParamNode& in);
@@ -325,6 +329,21 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::string& templateName, int 
 		}
 		// Copy a subset to the requested template
 		CopyFoundationSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
+		return true;
+	}
+
+	// Handle special case "construction|foo"
+	if (templateName.find("construction|") == 0)
+	{
+		// Load the base entity template, if it wasn't already loaded
+		std::string baseName = templateName.substr(13);
+		if (!LoadTemplateFile(baseName, depth+1))
+		{
+			LOGERROR(L"Failed to load entity template '%hs'", baseName.c_str());
+			return false;
+		}
+		// Copy a subset to the requested template
+		CopyConstructionSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
 		return true;
 	}
 
@@ -572,6 +591,21 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	if (out.GetChild("Entity").GetChild("Vision").IsOk())
 		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range></Vision></Entity>");
 }
+
+void CCmpTemplateManager::CopyConstructionSubset(CParamNode& out, const CParamNode& in)
+{
+	// Currently used for buildings rising during construction
+	// Mostly serves to filter out components like Vision, UnitAI, etc.
+	std::set<std::string> permittedComponentTypes;
+	permittedComponentTypes.insert("Footprint");
+	permittedComponentTypes.insert("Ownership");
+	permittedComponentTypes.insert("Position");
+	permittedComponentTypes.insert("VisualActor");
+
+	CParamNode::LoadXMLString(out, "<Entity/>");
+	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
+}
+
 
 void CCmpTemplateManager::CopyResourceSubset(CParamNode& out, const CParamNode& in)
 {
