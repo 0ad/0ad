@@ -6,15 +6,31 @@
 -- 2) add library name to extern_libs tables in premake.lua for all 'projects' that want to use it
 
 
--- directory in which all library subdirectories reside.
-libraries_dir = rootdir.."/libraries/"
+-- directory in which OS-specific library subdirectories reside.
+if os.is("macosx") then
+	libraries_dir = rootdir.."/libraries/osx/"
+elseif os.is("windows") then
+	libraries_dir = rootdir.."/libraries/win32/"
+else
+	-- No Unix-specific libs yet (use source directory instead!)
+end
+-- directory for shared, bundled libraries
+libraries_source_dir = rootdir.."/libraries/source/"
 
 local function add_default_lib_paths(extern_lib)
 	libdirs { libraries_dir .. extern_lib .. "/lib" }
 end
 
+local function add_source_lib_paths(extern_lib)
+	libdirs { libraries_source_dir .. extern_lib .. "/lib" }
+end
+
 local function add_default_include_paths(extern_lib)
 	includedirs { libraries_dir .. extern_lib .. "/include" }
+end
+
+local function add_source_include_paths(extern_lib)
+	includedirs { libraries_source_dir .. extern_lib .. "/include" }
 end
 
 
@@ -208,7 +224,7 @@ end
 extern_lib_defs = {
 	boost = {
 		compile_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_include_paths("boost")
 			end
 			if os.getversion().description == "OpenBSD" then
@@ -216,7 +232,7 @@ extern_lib_defs = {
 			end
 		end,
 		link_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_lib_paths("boost")
 			end
 			add_default_links({
@@ -255,10 +271,10 @@ extern_lib_defs = {
 	},
 	cxxtest = {
 		compile_settings = function()
-			add_default_include_paths("cxxtest")
+			add_source_include_paths("cxxtest")
 		end,
 		link_settings = function()
-			add_default_lib_paths("cxxtest")
+			add_source_lib_paths("cxxtest")
 		end,
 	},
 	comsuppw = {
@@ -273,12 +289,12 @@ extern_lib_defs = {
 	enet = {
 		compile_settings = function()
 			if not _OPTIONS["with-system-enet"] then
-				add_default_include_paths("enet")
+				add_source_include_paths("enet")
 			end
 		end,
 		link_settings = function()
 			if not _OPTIONS["with-system-enet"] then
-				add_default_lib_paths("enet")
+				add_source_lib_paths("enet")
 			end
 			add_default_links({
 				win_names  = { "enet" },
@@ -288,10 +304,10 @@ extern_lib_defs = {
 	},
 	fcollada = {
 		compile_settings = function()
-			add_default_include_paths("fcollada")
+			add_source_include_paths("fcollada")
 		end,
 		link_settings = function()
-			add_default_lib_paths("fcollada")
+			add_source_lib_paths("fcollada")
 			if os.is("windows") then
 				configuration "Debug"
 					links { "FColladaD" }
@@ -342,12 +358,12 @@ extern_lib_defs = {
 	},
 	libjpg = {
 		compile_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_include_paths("libjpg")
 			end
 		end,
 		link_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_lib_paths("libjpg")
 			end
 			add_default_links({
@@ -358,7 +374,7 @@ extern_lib_defs = {
 	},
 	libpng = {
 		compile_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_include_paths("libpng")
 			end
 			if os.getversion().description == "OpenBSD" then
@@ -366,12 +382,15 @@ extern_lib_defs = {
 			end
 		end,
 		link_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_lib_paths("libpng")
 			end
 			add_default_links({
 				win_names  = { "libpng15" },
 				unix_names = { "png" },
+				-- Otherwise ld will sometimes pull in ancient 1.2 from the SDK, which breaks the build :/
+				-- TODO: Figure out why that happens
+				osx_names = { "png15" },
 			})
 		end,
 	},
@@ -379,13 +398,20 @@ extern_lib_defs = {
 		compile_settings = function()
 			if os.is("windows") then
 				add_default_include_paths("libxml2")
-			else
-				pkgconfig_cflags("libxml-2.0")
+			elseif os.is("macosx") then
+				-- Support XML2_CONFIG for overriding for the default PATH-based xml2-config
+				xml2_config_path = os.getenv("XML2_CONFIG")
+				if not xml2_config_path then
+					xml2_config_path = "xml2-config"
+				end
+
+				-- use xml2-config instead of pkg-config on OS X
+				pkgconfig_cflags(nil, xml2_config_path.." --cflags")
 				-- libxml2 needs _REENTRANT or __MT__ for thread support;
 				-- OS X doesn't get either set by default, so do it manually
-				if os.is("macosx") then
-					defines { "_REENTRANT" }
-				end
+				defines { "_REENTRANT" }
+			else
+				pkgconfig_cflags("libxml-2.0")
 			end
 		end,
 		link_settings = function()
@@ -396,6 +422,12 @@ extern_lib_defs = {
 				configuration "Release"
 					links { "libxml2" }
 				configuration { }
+			elseif os.is("macosx") then
+				xml2_config_path = os.getenv("XML2_CONFIG")
+				if not xml2_config_path then
+					xml2_config_path = "xml2-config"
+				end
+				pkgconfig_libs(nil, xml2_config_path.." --libs")
 			else
 				pkgconfig_libs("libxml-2.0")
 			end
@@ -404,17 +436,18 @@ extern_lib_defs = {
 	nvtt = {
 		compile_settings = function()
 			if not _OPTIONS["with-system-nvtt"] then
-				add_default_include_paths("nvtt")
+				add_source_include_paths("nvtt")
 			end
 			defines { "NVTT_SHARED=1" }
 		end,
 		link_settings = function()
 			if not _OPTIONS["with-system-nvtt"] then
-				add_default_lib_paths("nvtt")
+				add_source_lib_paths("nvtt")
 			end
 			add_default_links({
 				win_names  = { "nvtt" },
 				unix_names = { "nvcore", "nvmath", "nvimage", "nvtt" },
+				osx_names = { "nvcore", "nvmath", "nvimage", "nvtt", "squish" },
 				dbg_suffix = "", -- for performance we always use the release-mode version
 			})
 		end,
@@ -502,13 +535,15 @@ extern_lib_defs = {
 			else
 				if os.is("windows") then
 					include_dir = "include-win32"
+				elseif os.is("macosx") then
+					include_dir = "include"
 				else
 					include_dir = "include-unix"
 				end
 				configuration "Debug"
-					includedirs { libraries_dir.."spidermonkey/"..include_dir }
+					includedirs { libraries_source_dir.."spidermonkey/"..include_dir }
 				configuration "Release"
-					includedirs { libraries_dir.."spidermonkey/"..include_dir }
+					includedirs { libraries_source_dir.."spidermonkey/"..include_dir }
 				configuration { }
 			end
 		end,
@@ -521,30 +556,30 @@ extern_lib_defs = {
 				end
 			else
 				configuration "Debug"
-			  		links { "mozjs185-ps-debug" }
+					links { "mozjs185-ps-debug" }
 				configuration "Release"
 					links { "mozjs185-ps-release" }
 				configuration { }
-				add_default_lib_paths("spidermonkey")
+				add_source_lib_paths("spidermonkey")
 			end
 		end,
 	},
 	valgrind = {
 		compile_settings = function()
-			add_default_include_paths("valgrind")
+			add_source_include_paths("valgrind")
 		end,
 		link_settings = function()
-			add_default_lib_paths("valgrind")
+			add_source_lib_paths("valgrind")
 		end,
 	},
 	vorbis = {
 		compile_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_include_paths("vorbis")
 			end
 		end,
 		link_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_lib_paths("vorbis")
 			end
 			-- TODO: We need to force linking with these as currently
@@ -558,6 +593,7 @@ extern_lib_defs = {
 			add_default_links({
 				win_names  = { "vorbisfile" },
 				unix_names = { "vorbisfile" },
+				osx_names = { "vorbis", "vorbisenc", "vorbisfile", "ogg" },
 				dbg_suffix = "_d",
 			})
 		end,
@@ -652,20 +688,5 @@ function project_add_extern_libs(extern_libs, target_type)
 		if target_type ~= "StaticLib" and def.link_settings then
 			def.link_settings()
 		end
-	end
-
-	if os.is("macosx") then
-		-- MacPorts uses /opt/local as the prefix for most of its libraries,
-		-- which isn't on the default compiler's default include path.
-		-- This needs to come after we add our own external libraries, so that
-		-- our versions take precedence over the system versions (especially
-		-- for SpiderMonkey), which means we have to do it per-config
-		configuration "Debug"
-			includedirs { "/opt/local/include" }
-			libdirs { "/opt/local/lib" }
-		configuration "Release"
-			includedirs { "/opt/local/include" }
-			libdirs { "/opt/local/lib" }
-		configuration { }
 	end
 end

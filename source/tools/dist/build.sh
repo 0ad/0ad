@@ -35,12 +35,10 @@ cp export-unix/binaries/data/mods/public/public.zip export-win32/binaries/data/m
 # Collect the relevant files
 ln -Tsf export-unix ${PREFIX}
 tar cf $PREFIX-unix-build.tar \
-	--exclude='*.bat' --exclude='*.dll' --exclude='*.exe' \
-	--exclude='libraries/enet/lib/*.lib' \
-	--exclude='libraries/fcollada/lib/*' --exclude='libraries/fcollada/src/FCollada/FColladaTest' \
-	--exclude='libraries/nvtt/lib/*' \
-	--exclude='libraries/spidermonkey/lib/*' --exclude='libraries/spidermonkey/include-win32' \
-	${PREFIX}/{source,build,libraries/{cxxtest,enet,fcollada,spidermonkey,valgrind,nvtt},binaries/system/readme.txt,binaries/data/tests,binaries/data/mods/_test.*,*.txt}
+	--exclude='*.bat' --exclude='*.dll' --exclude='*.exe' --exclude='*.lib' \
+	--exclude='libraries/source/fcollada/src/FCollada/FColladaTest' \
+	--exclude='libraries/source/spidermonkey/include-win32' \
+	${PREFIX}/{source,build,libraries/source,binaries/system/readme.txt,binaries/data/tests,binaries/data/mods/_test.*,*.txt}
 tar cf $PREFIX-unix-data.tar ${PREFIX}/binaries/data/{config,mods/public/public.zip,tools}
 # TODO: ought to include generated docs in here, perhaps?
 

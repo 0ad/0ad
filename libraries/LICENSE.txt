@@ -1,56 +1,61 @@
-This directory contains libraries that are used by the game, mostly 
-precompiled for Windows developers, but a few are bundled with source
-when the game requires a specific version that may not be available
-in package managers.
+This directory contains libraries that are used by the game:
 
-  boost
-    Boost Software License
+osx/ contains a script for download and building required libraries on OS X.
+source/ contains bundled source, when the game requires a specific library
+    version that may not be available in package managers.
+win32/ contains headers and precompiled static libs for Windows builds.
 
-  cryptopp
-    Crypto++ License (files are public domain)
+  osx/build-osx-libs.sh
+    MIT
 
-  cxxtest
+  source/cxxtest
     LGPL v2.1 (see COPYING)
 
-  enet
+  source/enet
     MIT (see src/LICENSE)
 
-  fcollada
+  source/fcollada
     MIT (see src/FCollada/Copyright.txt)
 
-  libcurl
-    MIT
-
-  libjpg
-    libjpeg license
-
-  libpng
-    libpng license
-
-  libxml2
-    MIT
-    LGPL v2.0 (include/iconv.h)
-
-  nvtt
+  source/nvtt
     MIT (see src/NVIDIA_Texture_Tools_LICENSE.txt)
 
-  openal
-    LGPL v2.0
-
-  opengl
-    MIT
-
-  sdl
-    LGPL v2.1
-
-  spidermonkey
+  source/spidermonkey
     MPL / GPL / LGPL
 
-  valgrind
+  source/valgrind
     BSD
 
-  vorbis
+  win32/boost
+    Boost Software License
+
+  win32/cryptopp
+    Crypto++ License (files are public domain)
+
+  win32/libcurl
+    MIT
+
+  win32/libjpg
+    libjpeg license
+
+  win32/libpng
+    libpng license
+
+  win32/libxml2
+    MIT
+    LGPL v2.0 (include/iconv.h)
+	
+  win32/openal
+    LGPL v2.0
+
+  win32/opengl
+    MIT
+
+  win32/sdl
+    LGPL v2.1
+
+  win32/vorbis
     BSD
 
-  zlib
+  win32/zlib
     zlib license
