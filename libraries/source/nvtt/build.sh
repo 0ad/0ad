@@ -29,4 +29,4 @@ else
 fi
 
 cp src/build/src/nv*/${LIB_PREFIX}nv*.${LIB_EXTN} lib/
-cp src/build/src/nv*/${LIB_PREFIX}nv*.${DLL_EXTN} ../../binaries/system/
+cp src/build/src/nv*/${LIB_PREFIX}nv*.${DLL_EXTN} ../../../binaries/system/

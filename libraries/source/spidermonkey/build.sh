@@ -120,8 +120,8 @@ cp -L js-1.8.5/js/src/build-release/dist/include/* ${INCLUDE_DIR}/js/
 mkdir -p lib/
 cp -L js-1.8.5/js/src/build-debug/dist/lib/${LIB_PREFIX}mozjs185-ps-debug${LIB_SRC_SUFFIX} lib/${LIB_PREFIX}mozjs185-ps-debug${LIB_DST_SUFFIX}
 cp -L js-1.8.5/js/src/build-release/dist/lib/${LIB_PREFIX}mozjs185-ps-release${LIB_SRC_SUFFIX} lib/${LIB_PREFIX}mozjs185-ps-release${LIB_DST_SUFFIX}
-cp -L js-1.8.5/js/src/build-debug/dist/bin/${LIB_PREFIX}mozjs185-ps-debug${DLL_SRC_SUFFIX} ../../binaries/system/${LIB_PREFIX}mozjs185-ps-debug${DLL_DST_SUFFIX}
-cp -L js-1.8.5/js/src/build-release/dist/bin/${LIB_PREFIX}mozjs185-ps-release${DLL_SRC_SUFFIX} ../../binaries/system/${LIB_PREFIX}mozjs185-ps-release${DLL_DST_SUFFIX}
+cp -L js-1.8.5/js/src/build-debug/dist/bin/${LIB_PREFIX}mozjs185-ps-debug${DLL_SRC_SUFFIX} ../../../binaries/system/${LIB_PREFIX}mozjs185-ps-debug${DLL_DST_SUFFIX}
+cp -L js-1.8.5/js/src/build-release/dist/bin/${LIB_PREFIX}mozjs185-ps-release${DLL_SRC_SUFFIX} ../../../binaries/system/${LIB_PREFIX}mozjs185-ps-release${DLL_DST_SUFFIX}
 
 # Flag that it's already been built successfully so we can skip it next time
 touch .already-built
