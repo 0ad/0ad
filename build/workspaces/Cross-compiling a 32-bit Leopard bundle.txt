@@ -1,0 +1,43 @@
+Steps to cross-compile a 32-bit Leopard compatible binary on 64-bit Snow Leopard:
+
+* install Xcode 3.x with 10.5 SDK (may work on later OS X and Xcode versions as well, but no longer supported by Apple)
+* force arch to "x86", may need to override detection in premake4.lua
+* may need to unset HOSTTYPE before running update-workspaces.sh, since that variable is used in hacky arch detection
+
+In libraries/osx/build-osx-lbs.sh:
+* set ARCH="i386"
+* for Spidermonkey build, add "--target=i386-apple-darwin9.0.0" configure option, it seems to use this value to determine the correct target arch (otherwise defaults to x86_64 which breaks the cross-compile)
+
+In build/workspaces/build-osx-bundle.sh:
+* set ARCH="i386"
+* set SYSROOT="/Developer/SDKs/MacOSX10.5.sdk"
+* set MIN_OSX_VERSION="10.5"
+
+One of the files in the 10.5 SDK's OpenAL library needs to be patched to build with GCC 4.2. Specifically, open "/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/OpenAL.framework/Headers/alc.h" and replace every instance of "ALCvoid" with "void" except the first typedef. Xcode might refuse to modify this protected file.
+
+For 32-bit GCC 4.2 build, there will be an error about not finding a register in class BREG, in the cpuid() function of source/lib/sysdep/arch/x86_64/x86_64.cpp. This is due to PIC. Apply the following patch to fix it:
+
+Index: source/lib/sysdep/arch/x86_x64/x86_x64.cpp
+===================================================================
+--- source/lib/sysdep/arch/x86_x64/x86_x64.cpp	(revision 11863)
++++ source/lib/sysdep/arch/x86_x64/x86_x64.cpp	(working copy)
+@@ -50,8 +50,12 @@
+ // VC10+ and VC9 SP1: __cpuidex is already available
+ #elif GCC_VERSION
+ # define __cpuidex(regsArray, level, index)\
+-	__asm__ __volatile__ ("cpuid"\
+-	: "=a" ((regsArray)[0]), "=b" ((regsArray)[1]), "=c" ((regsArray)[2]), "=d" ((regsArray)[3])\
++	__asm__ __volatile__ (\
++	"pushl %%ebx\n"\
++	"cpuid\n"\
++	"movl %%ebx, %1\n"\
++	"popl %%ebx\n"\
++	: "=a" ((regsArray)[0]), "=r" ((regsArray)[1]), "=c" ((regsArray)[2]), "=d" ((regsArray)[3])\
+ 	: "0" (level), "2" (index));
+ #else
+ # error "compiler not supported"
+
+
+Finally run build-osx-bundle.sh, if it works a bundle will be produced.
+
+You can use the "file" command to verify binaries and dylibs were built for i386 arch. If there were missing symbols in the linking stage, then probably one of the dependencies was built as the wrong arch (likely x86_64), which could be a config problem.

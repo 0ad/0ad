@@ -116,7 +116,7 @@
 				</repeat>
 			</object>
 
-		</object>		
+		</object>
 		<object name="unitsBuildingsPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-58" hidden="true">
 
 			<object size="0 0 100% 100%-50">
@@ -141,7 +141,6 @@
 				<object name="enemyBuildingsDestroyedHeading" type="text" style="CenteredTabLabelText">
 					Enemy&#10;buildings&#10;destroyed
 				</object>
-
 			</object>
 
 			<object size="0 65 100% 100%-50">
@@ -219,6 +218,9 @@
 				<object name="treasuresCollectedHeading" type="text" style="CenteredTabLabelText">
 					Treasures&#10;collected
 				</object>
+				<object name="resourcesTributedHeading" type="text" style="CenteredTabLabelText">
+					Tributes&#10;(Sent / Received)
+				</object>
 			</object>
 
 			<object size="0 65 100% 100%-50">
@@ -233,6 +235,7 @@
 						<object name="metalGathered[n]"    		type="text" style="CenteredLabelText"/>
 						<object name="vegetarianRatio[n]"  		type="text" style="CenteredLabelText"/>
 						<object name="treasuresCollected[n]"    	type="text" style="CenteredLabelText"/>
+						<object name="resourcesTributed[n]"	    type="text" style="CenteredLabelText"/>
 					</object>
 				</repeat>
 			</object>
