@@ -213,8 +213,11 @@ Health.prototype.CreateCorpse = function(leaveResources)
 	var cmpCorpseOwnership = Engine.QueryInterface(corpse, IID_Ownership);
 	cmpCorpseOwnership.SetOwner(cmpOwnership.GetOwner());
 
-	// Make it fall over
+	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	var cmpCorpseVisual = Engine.QueryInterface(corpse, IID_Visual);
+	cmpCorpseVisual.SetActorSeed(cmpVisual.GetActorSeed());
+
+	// Make it fall over
 	cmpCorpseVisual.SelectAnimation("death", true, 1.0, "");
 
 	return corpse;
