@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="farmstead struct b">
+      <mesh>structural/maur_farmstead_prop_a.dae</mesh>
+	  <textures>
+        <texture file="structural/maur_struct.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+<material>player_trans.xml</material>
+</actor>
