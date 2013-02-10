@@ -958,6 +958,18 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 	g_GUI = new CGUIManager(g_ScriptingHost.GetScriptInterface());
 
 	// (must come after SetVideoMode, since it calls ogl_Init)
+	if (ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", NULL) != 0 // ARB
+		&& ogl_HaveExtensions(0, "GL_ARB_vertex_shader", "GL_ARB_fragment_shader", NULL) != 0) // GLSL
+	{
+		DEBUG_DISPLAY_ERROR(
+			L"Your graphics card doesn't appear to be fully compatible with OpenGL shaders."
+			L" In the future, the game will not support pre-shader graphics cards."
+			L" You are advised to try installing newer drivers and/or upgrade your graphics card."
+			L" For more information, please see http://www.wildfiregames.com/forum/index.php?showtopic=16734"
+		);
+		// TODO: actually quit once fixed function support is dropped
+	}
+
 	const char* missing = ogl_HaveExtensions(0,
 		"GL_ARB_multitexture",
 		"GL_EXT_draw_range_elements",
