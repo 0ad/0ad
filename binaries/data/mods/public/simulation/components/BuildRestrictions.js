@@ -110,7 +110,8 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	var isOwn = (tileOwner == cmpPlayer.GetPlayerID());
 	var isNeutral = (tileOwner == 0);
 	var isAlly = !isOwn && cmpPlayer.IsAlly(tileOwner);
-	var isEnemy = !isNeutral && cmpPlayer.IsEnemy(tileOwner);
+	// We count neutral players as enemies, so you can't build in their territory.
+	var isEnemy = !isNeutral && (cmpPlayer.IsEnemy(tileOwner) || cmpPlayer.IsNeutral(tileOwner));
 	
 	if ((isAlly && !this.HasTerritory("ally"))
 		|| (isOwn && !this.HasTerritory("own"))
