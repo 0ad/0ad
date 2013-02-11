@@ -3,22 +3,39 @@ function BattleDetection() {}
 BattleDetection.prototype.Schema =
 	"<a:help>Detects the occurence of battles.</a:help>" +
 	"<a:example/>" +
-	"<a:component type='system'/>" +
-	"<empty/>";
+	"<element name='TimerInterval' a:help='Duration of one timer period. Interval over which damage should be recorded in milliseconds.'>" +
+		"<data type='positiveInteger'/>" +
+	"</element>" +
+	"<element name='RecordLength' a:help='Record length. Number of timer cycles over which damage rate should be calculated.'>" +
+		"<data type='positiveInteger'/>" +
+	"</element>" +
+	"<element name='DamageRateThreshold' a:help='Damage rate at which alertness is increased.'>" +
+		"<ref name='positiveDecimal'/>" +
+	"</element>" +
+	"<element name='AlertnessBattleThreshold' a:help='Alertness at which the player is considered in battle.'>" +
+		"<ref name='positiveDecimal'/>" +
+	"</element>" +
+	"<element name='AlertnessPeaceThreshold' a:help='Alertness at which the player is considered at peace.'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<element name='AlertnessMax' a:help='Maximum alertness level.'>" +
+		"<ref name='positiveDecimal'/>" +
+	"</element>";
 
 BattleDetection.prototype.Init = function()
 {
-	this.interval = 5 * 1000; // Duration of one timer period. Interval over which damage rate should be calculated in milliseconds.
-	this.damageRateThreshold = 0.04; // Damage rate at which alertness is increased.
-	this.alertnessBattleThreshold = 2; // Alertness at which the player is considered in battle.
-	this.alertnessPeaceThreshold = 0; // Alertness at which the player is considered at peace.
-	this.alertnessMax = 4; // Maximum alertness level.
+	// Load values from template.
+	this.interval = Number(this.template.TimerInterval);
+	this.recordLength = Number(this.template.RecordLength);
+	this.damageRateThreshold = Number(this.template.DamageRateThreshold);
+	this.alertnessBattleThreshold = Number(this.template.AlertnessBattleThreshold);
+	this.alertnessPeaceThreshold = Number(this.template.AlertnessPeaceThreshold);
+	this.alertnessMax = Number(this.template.AlertnessMax);
 
-	this.damage = 0; // Accumulative damage dealt over the current timer period.
-	this.damageRate = 0; // Damage rate. Total damage dealt over the previous timer period.
+	// Initialize variables.
+	this.damage = 0; // Damage counter. Accumulative damage done over the current timer period.
+	this.damageRecord = []; // Damage record. Array of elements representing total damage done in a given timer cycle.
 	this.alertness = 0; // Alertness level. Incremented if damage rate exceeds 'damageRateThreshold' over a given timer period and decremented if it does not.
-
-	this.StartTimer(0, this.interval);
 };
 
 BattleDetection.prototype.setState = function(state)
@@ -29,19 +46,6 @@ BattleDetection.prototype.setState = function(state)
 		Engine.PostMessage(this.entity, MT_BattleStateChanged, { "player": cmpPlayer.GetPlayerID(), "to": this.state });
 	}
 };
-
-BattleDetection.prototype.updateAlertness = function()
-{
-	if (this.damageRate > this.damageRateThreshold)
-		this.alertness = Math.min(this.alertnessMax, this.alertness+1); // Increment alertness up to 'alertnessMax'.
-	else
-		this.alertness = Math.max(0, this.alertness-1); // Decrement alertness down to zero.
-
-	if (this.alertness >= this.alertnessBattleThreshold)
-		this.setState("BATTLE");
-	else if (this.alertness <= this.alertnessPeaceThreshold)
-		this.setState("PEACE");
-}
 
 BattleDetection.prototype.GetState = function()
 {
@@ -56,26 +60,53 @@ BattleDetection.prototype.TimerHandler = function(data, lateness)
 		this.timer = undefined;
 	}
 
-	this.damageRate = this.damage / this.interval; // Define damage rate as total damage dealt per unit 'interval' (i.e. millisecond) over the previous timer period.
+	this.damageRecord.unshift(this.damage);
+	if (this.damageRecord.length > this.recordLength)
+		this.damageRecord.splice(this.recordLength, this.damageRecord.length-1); // Discard any elements beyond 'recordLength'.
 	this.damage = 0; // Reset damage counter for the next timer period.
-	this.updateAlertness();
+
+	// Always update alertness if not already alert, or once per 'recordLength' otherwise.
+	if (!this.alertness || this.recordControl++ == this.recordLength-1)
+	{
+		var recordDamage = this.damageRecord.reduce(function(a, b) {return a + b;}, 0); // Sum up all values in the damage record.
+		var damageRate = recordDamage / (this.recordLength * this.interval);
+
+		if (damageRate > this.damageRateThreshold)
+			this.alertness = Math.min(this.alertnessMax, this.alertness+1); // Increment alertness up to 'alertnessMax'.
+		else
+			this.alertness = Math.max(0, this.alertness-1); // Decrement alertness down to zero.
+
+		// Stop the damage rate timer if we're no longer alert.
+		if (!this.alertness)
+			this.stopTimer();
+
+		if (this.alertness >= this.alertnessBattleThreshold)
+			this.setState("BATTLE");
+		else if (this.alertness <= this.alertnessPeaceThreshold)
+			this.setState("PEACE");
+
+	}
+	if (this.recordControl > this.recordLength-1)
+		this.recordControl = 0;
 };
 
 /**
- * Set up the BattleDetection timer to run after 'offset' msecs, and then optionally
- * every 'repeat' msecs until StopTimer is called, if 'repeat' is set. A "Timer" message
+ * Set up the damage rate timer to run after 'offset' msecs, and then optionally
+ * every 'repeat' msecs until stopTimer is called, if 'repeat' is set. A "Timer" message
  * will be sent each time the timer runs. Must not be called if a timer is already active.
  */
-BattleDetection.prototype.StartTimer = function(offset, repeat)
+BattleDetection.prototype.startTimer = function(offset, repeat)
 {
 	if (this.timer)
 	{
-		this.StopTimer();
-		error("Called StartTimer when there's already an active timer.");
+		this.stopTimer();
+		error("Called startTimer when there's already an active timer.");
 	}
 
-	var data = { "timerRepeat": repeat };
+	this.recordControl = 0;
+	this.damage = 0; // Reset damage counter for the first timer period.
 
+	var data = { "timerRepeat": repeat };
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	if (repeat === undefined)
 		this.timer = cmpTimer.SetTimeout(this.entity, IID_BattleDetection, "TimerHandler", offset, data);
@@ -84,9 +115,9 @@ BattleDetection.prototype.StartTimer = function(offset, repeat)
 };
 
 /**
- * Stop the current BattleDetection timer.
+ * Stop the current damage rate timer.
  */
-BattleDetection.prototype.StopTimer = function()
+BattleDetection.prototype.stopTimer = function()
 {
 	if (!this.timer)
 		return;
@@ -103,13 +134,18 @@ BattleDetection.prototype.OnGlobalAttacked = function(msg)
 	var cmpAttackerOwnership = Engine.QueryInterface(msg.attacker, IID_Ownership);
 	if (!cmpAttackerOwnership || cmpAttackerOwnership.GetOwner() != cmpPlayer.GetPlayerID())
 		return;
-	// Don't register attacks dealt against Gaia or invalid player.	
+	// Don't register attacks dealt against Gaia or invalid player or myself.
 	var cmpTargetOwnership = Engine.QueryInterface(msg.target, IID_Ownership);
-	if (!cmpTargetOwnership || cmpTargetOwnership.GetOwner() <= 0)
+	if (!cmpTargetOwnership || cmpTargetOwnership.GetOwner() <= 0 || cmpTargetOwnership.GetOwner() == cmpPlayer.GetPlayerID())
 		return;
 
+	// If the damage rate timer isn't already started, start it now.
+	if (!this.timer)
+		this.startTimer(0, this.interval);
+	// Add damage of this attack to the damage counter.
 	if (msg.damage)
 		this.damage += msg.damage;
 };
 
 Engine.RegisterComponentType(IID_BattleDetection, "BattleDetection", BattleDetection);
+
