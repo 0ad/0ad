@@ -4,7 +4,12 @@
   <group>
     <variant frequency="100" name="Farmstead">
       <mesh>structural/maur_farmstead.dae</mesh>
-      <textures><texture file="structural/maur_struct_temp.png" name="baseTex"/></textures>
+      <props>
+        <prop actor="props/structures/mauryans/farmstead_prop_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/mauryans/farmstead_prop_b.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/hay_cart.xml" attachpoint="cart"/>
+      </props>
+      <textures><texture file="structural/maur_struct_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>
