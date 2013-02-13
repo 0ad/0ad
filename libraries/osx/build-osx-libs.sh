@@ -145,7 +145,8 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no && make $JOBS && make install) || die "SDL build failed"
+  # Don't use X11 - we don't need it and Mountain Lion removed it
+  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --without-x --enable-shared=no && make $JOBS && make install) || die "SDL build failed"
   popd
   touch .already-built
 else
