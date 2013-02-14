@@ -10,5 +10,6 @@ plus some patches:
   png-api.patch (partially from NVTT SVN r1248 - fixes build with libpng 1.5)
   cmake-freebsd.patch (fixes build on FreeBSD)
   gcc47-unistd.patch (fixes build on GCC 4.7)
-  cmake-depflags.patch (from https://407191.bugs.gentoo.org/attachment.cgi?id=308589 - allows disabling various dependencies)
+  cmake-devflags.patch (from https://407191.bugs.gentoo.org/attachment.cgi?id=308589 - allows disabling various dependencies)
+  cmake-devflags2.patch - allows disabling more dependencies
   issue182.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=182)
