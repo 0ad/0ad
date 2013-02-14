@@ -4,7 +4,21 @@
   <group>
     <variant frequency="100" name="Corral">
       <mesh>structural/maur_corral.dae</mesh>
-      <textures><texture file="structural/maur_struct_temp.png" name="baseTex"/></textures>
+      <props>
+        <prop actor="props/structures/celts/corral_mud.xml" attachpoint="mud"/>
+      </props>
+      <textures><texture file="structural/maur_struct_b.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>
