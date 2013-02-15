@@ -5,43 +5,45 @@
 # App bundles are intended to be self-contained and portable.
 # An SDK is required, usually included with Xcode. The SDK ensures
 # that only those system libraries are used which are available on
-# the chosen target and compatible systems (10.6 by default).
+# the chosen target and compatible systems.
 #
 # Steps to build a 0 A.D. bundle are:
 # 1. confirm ARCH is set to desired target architecture
-# 2. confirm SYSROOT points to the target SDK
+# 2. confirm SYSROOT points to the correct target SDK
 # 3. confirm MIN_OSX_VERSION matches the target OS X version
 # 4. update BUNDLE_VERSION to match current 0 A.D. version
 # 5. if building 32-bit 10.5 bundle, read the accompanying documentation
 # 6. run this script
 #
 
-die()
-{
-  echo ERROR: $*
-  exit 1
-}
-
 # Force build architecture, as sometimes environment is broken.
-#  Using multiple values would in theory produce a "universal"
-#  or fat binary, but this is untested.
-#  Choices are: x86_64 i386 (ppc and ppc64 not supported)
+# For a universal fat binary, the approach would be to build every
+# dependency with both archs and combine them with lipo, then do the
+# same thing with the game itself.
+# Choices are "x86_64" or  "i386" (ppc and ppc64 not supported)
 export ARCH=${ARCH:="x86_64"}
 
 # Set SDK and mimimum required OSX version
-#  (As of Xcode 4.3, the SDKs are located directly in Xcode.app,
-#  	but previously they were in /Developer/SDKs)
-#  TODO: we could get this from xcode-select but the user must set that up
+# (As of Xcode 4.3, the SDKs are located directly in Xcode.app,
+#  but previously they were in /Developer/SDKs)
+# TODO: we could get this from xcode-select but the user must set that up
 #export SYSROOT=${SYSROOT="/Developer/SDKs/MacOSX10.5.sdk"}
-export SYSROOT=${SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.6.sdk"}
+export SYSROOT=${SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"}
 export MIN_OSX_VERSION=${MIN_OSX_VERSION="10.6"}
 
 # 0 A.D. release version, e.g. Alpha 12 is 0.0.12
 BUNDLE_VERSION=${BUNDLE_VERSION:="0.0.0"}
 
-# Define compiler as GCC (in case anything expects e.g. gcc-4.2)
-#  TODO: should use the compiler provided by the SDK
+# Define compiler as "gcc" (in case anything expects e.g. gcc-4.2)
+# On newer OS X versions, this will be a symbolic link to LLVM GCC
+# TODO: don't rely on that
 export CC=${CC:="gcc"} CXX=${CXX:="g++"}
+
+die()
+{
+  echo ERROR: $*
+  exit 1
+}
 
 # Check that we're actually on OS X
 if [ "`uname -s`" != "Darwin" ]; then
