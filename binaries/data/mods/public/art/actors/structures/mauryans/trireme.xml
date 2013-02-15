@@ -28,8 +28,13 @@
   </group>
   <group>
     <variant frequency="1" name="Blue Eye">
-      <textures><texture file="structural/maur_trireme.png" name="baseTex"/></textures>
+      <textures>
+	  <texture file="structural/maur_trireme.png" name="baseTex"/>
+	  <texture file="structural/maur_trireme_spec.png" name="specTex"/>
+	  <texture file="structural/maur_trireme_norm.png" name="normTex"/>
+	  
+	  </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

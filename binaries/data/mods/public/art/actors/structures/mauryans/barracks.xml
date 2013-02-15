@@ -16,6 +16,8 @@
         </props>
       <textures>
 		<texture file="structural/maur_struct.png" name="baseTex"/>
+		<texture file="structural/maur_struct_spec.png" name="specTex"/>
+		<texture file="structural/maur_struct_norm.png" name="normTex"/>
 		<texture file="structural/ao/maur_barracks_a.png" name="aoTex"/></textures>
     </variant>
 	<variant frequency="1" name="Barracks B">
@@ -32,6 +34,8 @@
         </props>
       <textures>
 		<texture file="structural/maur_struct.png" name="baseTex"/>
+				<texture file="structural/maur_struct_spec.png" name="specTex"/>
+		<texture file="structural/maur_struct_norm.png" name="normTex"/>
 		<texture file="structural/ao/maur_barracks_b.png" name="aoTex"/>
 	  </textures>
     </variant>
@@ -52,5 +56,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

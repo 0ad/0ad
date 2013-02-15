@@ -5,8 +5,14 @@
     <variant>
       <mesh>structural/maur_fishing_boat.dae</mesh>
       
-      <textures><texture file="structural/maur_fishing_boat.png" name="baseTex"/></textures>
+      <textures>
+	  <texture file="structural/maur_fishing_boat.png" name="baseTex"/>
+	  <texture file="structural/maur_fishing_boat_spec.png" name="specTex"/>
+	  <texture file="structural/maur_fishing_boat_norm.png" name="normTex"/>
+	  
+	  
+	  </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

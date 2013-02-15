@@ -7,7 +7,12 @@
       <props>
         <prop actor="props/structures/celts/corral_mud.xml" attachpoint="mud"/>
       </props>
-      <textures><texture file="structural/maur_struct_b.png" name="baseTex"/></textures>
+      <textures>
+	  <texture file="structural/maur_struct_b.png" name="baseTex"/>
+	  <texture file="structural/maur_struct_b_spec.png" name="specTex"/>
+	  <texture file="structural/maur_struct_b_norm.png" name="normTex"/>
+	  
+	  </textures>
     </variant>
   </group>
   <group>
@@ -21,5 +26,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>
