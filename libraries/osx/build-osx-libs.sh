@@ -18,26 +18,6 @@
 # as not all build environments contain the Developer SDKs
 # (Xcode does, but the Command Line Tools package does not)
 #
-
-set -e
-
-die()
-{
-  echo ERROR: $*
-  exit 1
-}
-
-download_lib()
-{
-  local url=$1
-  local filename=$2
-
-  if [ ! -e $filename ]; then
-    echo "Downloading $filename"
-    curl -L -O ${url}${filename} || die "Download of $url$filename failed"
-  fi
-}
-
 # --------------------------------------------------------------
 # Library versions for ease of updating:
 # * SDL 1.2.15+ required for Lion support
@@ -55,7 +35,7 @@ VORBIS_VERSION="libvorbis-1.3.3"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey 1.8.5
-# * ENet
+# * ENet 1.3.3
 # * NVTT
 # * FCollada
 # --------------------------------------------------------------
@@ -67,18 +47,16 @@ VORBIS_VERSION="libvorbis-1.3.3"
 # * zlib
 # --------------------------------------------------------------
 
-# Force build architecture, as sometimes configure is broken.
-# (Using multiple values would in theory produce a "universal"
-#  or fat binary, but this is untested)
-#
-# Choices are: x86_64 i386 (ppc and ppc64 NOT supported)
+# Force build architecture, as sometimes environment is broken.
+# For a universal fat binary, the approach would be to build every
+# dependency with both archs and combine them with lipo, then do the
+# same thing with the game itself.
+# Choices are "x86_64" or  "i386" (ppc and ppc64 not supported)
 ARCH=${ARCH:="x86_64"}
 
-# Define compiler as simply gcc (if anything expects e.g. gcc-4.2)
-# sometimes the OS X build environment will be messed up because
-# Apple dropped GCC support and removed the symbolic links, but 
-# after everyone complained they added them again. Now it is
-# merely a GCC-like frontend to LLVM.
+# Define compiler as "gcc" (in case anything expects e.g. gcc-4.2)
+# On newer OS X versions, this will be a symbolic link to LLVM GCC
+# TODO: don't rely on that
 export CC=${CC:="gcc"} CXX=${CXX:="g++"}
 
 # The various libs offer inconsistent configure options, some allow
@@ -99,10 +77,30 @@ if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
   LDFLAGS="$LDFLAGS -mmacosx-version-min=$MIN_OSX_VERSION"
 fi
 CFLAGS="$CFLAGS -arch $ARCH"
-CPPFLAGS="$CPPFLAGS $CFLAGS"
+# Avoid linker warnings about compiling translation units with different visibility settings
+CPPFLAGS="$CPPFLAGS $CFLAGS -fvisibility=hidden"
 LDFLAGS="$LDFLAGS -arch $ARCH"
 
 JOBS=${JOBS:="-j2"}
+
+set -e
+
+die()
+{
+  echo ERROR: $*
+  exit 1
+}
+
+download_lib()
+{
+  local url=$1
+  local filename=$2
+
+  if [ ! -e $filename ]; then
+    echo "Downloading $filename"
+    curl -L -O ${url}${filename} || die "Download of $url$filename failed"
+  fi
+}
 
 # Check that we're actually on OS X
 if [ "`uname -s`" != "Darwin" ]; then
@@ -210,8 +208,6 @@ then
   mkdir -p build-release
   pushd build-release
 
-  # Avoid linker warnings about compiling translation units with different visibility settings
-  CPPFLAGS="$CPPFLAGS -fvisibility=hidden"
   (../configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix=$INSTALL_DIR --disable-shared --enable-unicode --with-cocoa --with-opengl && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
   popd
@@ -428,7 +424,8 @@ then
 
   # Could use CMAKE_OSX_DEPLOYMENT_TARGET and CMAKE_OSX_SYSROOT
   # but they're not as flexible for cross-compiling
-  (cmake .. -DCMAKE_LINK_FLAGS="$LDFLAGS" -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CPPFLAGS" -DCMAKE_BUILD_TYPE=Release -DBINDIR=bin -DLIBDIR=lib -DGLUT=0 -DGLEW=0 -DCG=0 -DCUDA=0 -DOPENEXR=0 -G "Unix Makefiles" && make clean && make nvtt ${JOBS}) || die "NVTT build failed"
+  # Disable optional libs that we don't need (avoids some conflicts with MacPorts)
+  (cmake .. -DCMAKE_LINK_FLAGS="$LDFLAGS" -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CPPFLAGS" -DCMAKE_BUILD_TYPE=Release -DBINDIR=bin -DLIBDIR=lib -DGLUT=0 -DGLEW=0 -DCG=0 -DCUDA=0 -DOPENEXR=0 -DJPEG=0 -DPNG=0 -DTIFF=0 -G "Unix Makefiles" && make clean && make nvtt ${JOBS}) || die "NVTT build failed"
   popd
 
   mkdir -p ../lib

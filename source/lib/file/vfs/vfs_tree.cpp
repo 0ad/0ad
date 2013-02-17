@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -55,6 +55,8 @@ static bool ShouldReplaceWith(const VfsFile& previousFile, const VfsFile& newFil
 	// 1) priority (override mods)
 	if(newFile.Priority() < previousFile.Priority())
 		return false;
+	if(newFile.Priority() > previousFile.Priority())
+		return true;
 
 	// 2) timestamp
 	{

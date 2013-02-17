@@ -448,21 +448,17 @@ static void InitVfs(const CmdLineArgs& args)
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
 
-	g_VFS->Mount(L"screenshots/", paths.UserData()/"screenshots"/"");
-	g_VFS->Mount(L"saves/", paths.UserData()/"saves"/"", VFS_MOUNT_WATCH);
-	const OsPath readonlyConfig = paths.RData()/"config"/"";
-	g_VFS->Mount(L"config/", readonlyConfig);
-	if(readonlyConfig != paths.Config())
-		g_VFS->Mount(L"config/", paths.Config());
-	g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);	// (adding XMBs to archive speeds up subsequent reads)
-
 	std::vector<CStr> mods = args.GetMultiple("mod");
-	mods.push_back("public");
-	if(!args.Has("onlyPublicFiles"))
-		mods.push_back("internal");
+	if (!args.Has("onlyPublicFiles"))
+		mods.insert(mods.begin(), "internal");
+	mods.insert(mods.begin(), "public");
+
+	if (!args.Has("noUserMod"))
+		mods.push_back("user");
 
 	OsPath modArchivePath = paths.Cache()/"mods";
 	OsPath modLoosePath = paths.RData()/"mods";
+	OsPath modUserPath = paths.UserData()/"mods";
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
 		size_t priority = i+1;	// mods are higher priority than regular mountings, which default to priority 0
@@ -470,7 +466,19 @@ static void InitVfs(const CmdLineArgs& args)
 		OsPath modName(mods[i]);
 		g_VFS->Mount(L"", modLoosePath / modName/"", flags, priority);
 		g_VFS->Mount(L"", modArchivePath / modName/"", flags, priority);
+		g_VFS->Mount(L"", modUserPath / modName/"", flags, priority);
 	}
+
+	// We mount these dirs last as otherwise writing could result in files being placed in a mod's dir.
+	g_VFS->Mount(L"screenshots/", paths.UserData()/"screenshots"/"");
+	g_VFS->Mount(L"saves/", paths.UserData()/"saves"/"", VFS_MOUNT_WATCH);
+	const OsPath readonlyConfig = paths.RData()/"config"/"";
+	// Mounting with highest priority, so that a mod supplied user.cfg is harmless
+	g_VFS->Mount(L"config/", readonlyConfig, 0, -1);
+	if(readonlyConfig != paths.Config())
+		g_VFS->Mount(L"config/", paths.Config(), 0, -1);
+
+	g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);	// (adding XMBs to archive speeds up subsequent reads)
 
 	// note: don't bother with g_VFS->TextRepresentation - directories
 	// haven't yet been populated and are empty.

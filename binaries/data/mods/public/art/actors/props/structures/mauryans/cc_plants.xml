@@ -4,10 +4,13 @@
   <group>
     <variant name="maur cc plants">
       <mesh>props/maur_cc_plants.dae</mesh>
-	  <textures><texture file="props/structs_nature.png" name="baseTex"/>
+	  <textures>
+	  <texture file="props/structs_nature.png" name="baseTex"/>
+	  <texture file="props/structs_nature_spec.png" name="specTex"/>
+	  <texture file="props/structs_nature_norm.png" name="normTex"/>
 <texture file="structural/ao/maur_civic_ao.png" name="aoTex"/>
 </textures>
     </variant>
   </group>
-<material>basic_trans_ao.xml</material>
+<material>basic_trans_ao_parallax_spec.xml</material>
 </actor>

@@ -8,8 +8,12 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
-        <texture file="structural/maur_struct.png" name="baseTex"/>
-      </textures>
+
+	  	<texture file="structural/maur_struct.png" name="baseTex"/>
+	  	<texture file="structural/maur_struct_spec.png" name="specTex"/>
+		<texture file="structural/maur_struct_norm.png" name="normTex"/>
+
+		</textures>
     </variant>
   </group>
   <group>
@@ -27,5 +31,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

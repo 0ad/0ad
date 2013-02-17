@@ -224,8 +224,11 @@ end
 extern_lib_defs = {
 	boost = {
 		compile_settings = function()
-			if os.is("windows") or os.is("macosx") then
+			if os.is("windows") then
 				add_default_include_paths("boost")
+			elseif os.is("macosx") then
+				-- Suppress all the Boost warnings on OS X by including it as a system directory
+				buildoptions { "-isystem../" .. libraries_dir .. "boost/include" }
 			end
 			if os.getversion().description == "OpenBSD" then
 				includedirs { "/usr/local/include" }
