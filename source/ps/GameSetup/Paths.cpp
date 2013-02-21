@@ -126,7 +126,7 @@ Paths::Paths(const CmdLineArgs& args)
 		}
 
 		// We don't make the game vs. user data distinction on OS X
-		m_gameData = appSupportPath / "data"/"";
+		m_gameData = appSupportPath /"";
 		m_userData = m_gameData;
 		m_cache = cachePath/"";
 		m_config = appSupportPath / "config"/"";

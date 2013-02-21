@@ -25,7 +25,6 @@ Configuration:
 -conf=KEY:VALUE		set a config value
 -g=F				set the gamma correction to 'F' (default 1.0)
 -nosound			disable audio
--onlyPublicFiles	force game to use only the public (default) mod
 -noUserMod			disable loading of the user mod
 -shadows			enable shadows
 -vsync				enable VSync, i.e. lock FPS to monitor refresh rate

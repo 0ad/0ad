@@ -122,12 +122,10 @@ echo "\nRunning tests\n"
 ./test || die "Test(s) failed!"
 
 # Build archive(s) - don't archive the _test.* mods
-# (and we should exclude internal)
 pushd ../data/mods
 archives=""
 for modname in [a-zA-Z0-9]*
 do
-  if [ "${modname}" = "internal" ]; then continue; fi
   archives="${archives} ${modname}"
 done
 popd
