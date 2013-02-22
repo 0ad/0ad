@@ -117,6 +117,7 @@ QUERY(SimStateDebugDump,
 
 MESSAGE(SimPlay,
 		((float, speed)) // 0 for pause, 1 for normal speed
+		((bool, simTest)) // true if we're in simulation test mode, false otherwise
 		);
 
 //////////////////////////////////////////////////////////////////////////

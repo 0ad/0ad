@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -94,6 +94,7 @@ public:
 	virtual void SetParam(const std::wstring& name, const std::wstring& value);
 
 	void SetSpeedMultiplier(float speedMultiplier);
+	void SetTesting(bool testing);
 	void SaveState(const std::wstring& label);
 	void RestoreState(const std::wstring& label);
 	std::wstring DumpState(bool binary);
@@ -101,6 +102,7 @@ public:
 
 private:
 	float m_SpeedMultiplier;
+	bool m_IsTesting;
 	std::map<std::wstring, SimState*> m_SavedStates;
 	std::string m_DisplayPassability;
 

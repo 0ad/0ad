@@ -305,11 +305,6 @@ bool CGame::Update(const double deltaRealTime, bool doInterpolate)
 			g_SoundManager->IdleTask();
 #endif
 	}
-	
-	// TODO: maybe we should add a CCmpParticleInterface that passes the interpolation commands
-	// etc to CParticleManager. But in the meantime just handle it explicitly here.
-	if (doInterpolate && CRenderer::IsInitialised())
-		g_Renderer.GetParticleManager().Interpolate(deltaSimTime);
 
 	return ok;
 }
@@ -320,9 +315,6 @@ void CGame::Interpolate(float simFrameLength, float realFrameLength)
 		return;
 
 	m_TurnManager->Interpolate(simFrameLength, realFrameLength);
-
-	if (CRenderer::IsInitialised())
-		g_Renderer.GetParticleManager().Interpolate(simFrameLength);
 }
 
 
