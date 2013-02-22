@@ -2,11 +2,11 @@
 <Entity parent="template_unit_fauna_hunt_aggressive">
   <Attack>
     <Melee>
-      <Hack>10.0</Hack>
+      <Hack>20.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>10.0</Crush>
+      <Crush>20.0</Crush>
       <MaxRange>6.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
+      <RepeatTime>2000</RepeatTime>
     </Melee>
   </Attack>
   <Footprint>
@@ -18,6 +18,13 @@
     <SpecificName>Bear</SpecificName>
     <Icon>gaia/fauna_bear.png</Icon>
   </Identity>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/lion_select.xml</select>
+      <attack>actor/fauna/animal/lion_attack.xml</attack>
+      <death>actor/fauna/animal/lion_attack.xml</death>
+    </SoundGroups>
+  </Sound>
   <ResourceSupply>
     <Amount>300</Amount>
     <Type>food.meat</Type>

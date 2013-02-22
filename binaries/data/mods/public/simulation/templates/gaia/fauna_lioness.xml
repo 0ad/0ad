@@ -2,11 +2,11 @@
 <Entity parent="template_unit_fauna_wild_violent">
   <Attack>
     <Melee>
-      <Hack>12.0</Hack>
-      <Pierce>8.0</Pierce>
+      <Hack>24.0</Hack>
+      <Pierce>16.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>4.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
+      <RepeatTime>2000</RepeatTime>
     </Melee>
   </Attack>
   <Footprint>
@@ -18,6 +18,13 @@
     <SpecificName>Lion</SpecificName>
     <Icon>gaia/fauna_lion.png</Icon>
   </Identity>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/lion_select.xml</select>
+      <attack>actor/fauna/animal/lion_attack.xml</attack>
+      <death>actor/fauna/animal/lion_attack.xml</death>
+    </SoundGroups>
+  </Sound>
   <UnitMotion>
     <WalkSpeed>3.0</WalkSpeed>
     <Run>
