@@ -14,10 +14,10 @@ Player.prototype.Init = function()
 	this.maxPop = 300; // maximum population
 	this.trainingBlocked = false; // indicates whether any training queue is currently blocked
 	this.resourceCount = {
-		"food": 300,	
-		"wood": 300,	
-		"metal": 300,	
-		"stone": 300	
+		"food": 300,
+		"wood": 300,
+		"metal": 300,
+		"stone": 300
 	};
 
 	this.team = -1;	// team number of the player, players on the same team will always have ally diplomatic status - also this is useful for team emblems, scoring, etc.
@@ -547,7 +547,10 @@ Player.prototype.TributeResource = function(player, amounts)
 		var cmpTheirStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
 		if (cmpTheirStatisticsTracker)
 			cmpTheirStatisticsTracker.IncreaseTributesReceivedCounter(total);
-		// TODO: notify the receiver
+
+		var notification = {"type": "tribute", "player": player, "player1": this.playerID, "amounts": amounts};
+		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification(notification);
 	}
 	// else not enough resources... TODO: send gui notification
 };

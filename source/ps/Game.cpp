@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -199,6 +199,18 @@ PSRETURN CGame::ReallyStartGame()
 		m_Simulation2->InitGame(settings);
 	}
 
+	// We need to do an initial Interpolate call to set up all the models etc,
+	// because Update might never interpolate (e.g. if the game starts paused)
+	// and we could end up rendering before having set up any models (so they'd
+	// all be invisible)
+	Interpolate(0, 0);
+
+	m_GameStarted=true;
+	
+	// Render a frame to begin loading assets
+	if (CRenderer::IsInitialised())
+		Render();
+
 	// Call the reallyStartGame GUI function, but only if it exists
 	if (g_GUI && g_GUI->HasPages())
 	{
@@ -212,14 +224,7 @@ PSRETURN CGame::ReallyStartGame()
 	if (g_NetClient)
 		g_NetClient->LoadFinished();
 
-	// We need to do an initial Interpolate call to set up all the models etc,
-	// because Update might never interpolate (e.g. if the game starts paused)
-	// and we could end up rendering before having set up any models (so they'd
-	// all be invisible)
-	Interpolate(0, 0);
-
 	debug_printf(L"GAME STARTED, ALL INIT COMPLETE\n");
-	m_GameStarted=true;
 
 	// The call tree we've built for pregame probably isn't useful in-game.
 	if (CProfileManager::IsInitialised())

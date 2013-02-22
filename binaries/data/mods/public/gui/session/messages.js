@@ -58,6 +58,15 @@ function handleNotifications()
 		// Used for AI testing
 		exit();
 	}
+	else if (notification.type == "tribute")
+	{
+		addChatMessage({
+			"type": "tribute",
+			"player": notification.player,
+			"player1": notification.player1,
+			"amounts": notification.amounts
+		});
+	}
 	else
 	{
 		// Only display notifications directed to this player
@@ -305,6 +314,26 @@ function addChatMessage(msg, playerAssignments)
 		}
 		else // No need for other players to know of this.
 			return;
+		break;
+	case "tribute":
+		if (msg.player != Engine.GetPlayerID()) 
+			return;
+
+		username = escapeText(g_Players[msg.player1].name);
+		playerColor = g_Players[msg.player1].color.r + " " + g_Players[msg.player1].color.g + " " + g_Players[msg.player1].color.b;
+
+		// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
+		var amounts = Object.keys(msg.amounts)
+			.filter(function (type) { return msg.amounts[type] > 0; })
+			.map(function (type) { return msg.amounts[type] + " " + type; });
+
+		if (amounts.length > 1)
+		{
+			var lastAmount = amounts.pop();
+			amounts = amounts.join(", ") + " and " + lastAmount;
+		}
+
+		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has sent you " + amounts + ".";
 		break;
 	case "message":
 		// May have been hidden by the 'team' command.

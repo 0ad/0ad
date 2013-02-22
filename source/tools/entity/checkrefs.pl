@@ -9,7 +9,6 @@ use Entity;
 
 use constant CHECK_SCENARIOS_XML => 0;
 use constant ROOT_ACTORS => 1;
-use constant INCLUDE_INTERNAL => 1;
 
 my @files;
 my @roots;
@@ -21,9 +20,6 @@ sub vfs_to_physical
 {
     my ($vfspath) = @_;
     my $fn = "$vfsroot/public/$vfspath";
-    if (INCLUDE_INTERNAL and not -e $fn) {
-        $fn = "$vfsroot/internal/$vfspath";
-    }
     return $fn;
 }
 
@@ -31,9 +27,6 @@ sub vfs_to_relative_to_mods
 {
     my ($vfspath) = @_;
     my $fn = "public/$vfspath";
-    if (INCLUDE_INTERNAL and not -e "$vfsroot/$fn") {
-        $fn = "internal/$vfspath";
-    }
     return $fn;
 }
 
@@ -47,11 +40,10 @@ sub find_files
         return if /~$/;
         return unless -f $_;
         return unless /\.($extn)$/;
-        $n =~ s~\Q$vfsroot\E/(public|internal)/~~;
+        $n =~ s~\Q$vfsroot\E/public/~~;
         push @files, $n;
     };
     find({ wanted => $find_process }, "$vfsroot/public/$vfspath");
-    find({ wanted => $find_process }, "$vfsroot/internal/$vfspath") if INCLUDE_INTERNAL and -e "$vfsroot/internal/$vfspath";
 
     return @files;
 }
