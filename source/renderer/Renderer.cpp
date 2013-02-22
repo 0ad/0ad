@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -450,6 +450,12 @@ CRenderer::CRenderer()
 	CFG_GET_VAL("gentangents", Bool, m_Options.m_GenTangents);
 	CFG_GET_VAL("smoothlos", Bool, m_Options.m_SmoothLOS);
 	CFG_GET_VAL("postproc", Bool, m_Options.m_Postproc);
+
+	CStr skystring = "0 0 0";
+	CColor skycolor;
+	CFG_GET_VAL("skycolor", String, skystring);
+	if (skycolor.ParseString(skystring, 255.f))
+		SetClearColor(skycolor.AsSColor4ub());
 
 #if CONFIG2_GLES
 	// Override config option since GLES only supports GLSL

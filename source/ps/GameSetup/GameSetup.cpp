@@ -201,12 +201,6 @@ void Render()
 
 	ogl_WarnIfError();
 
-	CStr skystring = "255 0 255";
-	CFG_GET_VAL("skycolor", String, skystring);
-	CColor skycol;
-	GUI<CColor>::ParseString(skystring.FromUTF8(), skycol);
-	g_Renderer.SetClearColor(skycol.AsSColor4ub());
-
 	// prepare before starting the renderer frame
 	if (g_Game && g_Game->IsGameStarted())
 		g_Game->GetView()->BeginFrame();
