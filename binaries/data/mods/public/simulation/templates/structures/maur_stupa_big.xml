@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Footprint replace="">
+    <Circle radius="30.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Health>
+    <Max>4400</Max>
+  </Health>
+  <Identity>
+    <Civ>maur</Civ>
+    <GenericName>Special Structure</GenericName>
+    <SpecificName>Great Stupa</SpecificName>
+    <History>The Great Stupa was originally commissioned by the emperor Ashoka the Great in the 3rd century BCE. Its nucleus was a simple hemispherical brick structure built over the relics of the Buddha. It was crowned by the chatra, a parasol-like structure symbolising high rank. It has four profusely carved ornamental gateways and a balustrade encircling the whole structure. The construction work was overseen was Ashoka's first wife, Samragyi Vidisha Devi herself.</History>
+    <Icon>structures/gardens.png</Icon>
+  </Identity>
+  <Loot>
+    <xp>200</xp>
+  </Loot>
+  <Obstruction>
+    <Static width="59.0" depth="59.0"/>
+  </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_temple.xml</select>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.6</BarHeight>
+    <HeightOffset>12.0</HeightOffset>
+  </StatusBars>
+  <TerritoryInfluence>
+    <Radius>100</Radius>
+  </TerritoryInfluence>
+  <Vision>
+    <Range>72</Range>
+    <RetainInFog>true</RetainInFog>
+  </Vision>
+  <VisualActor>
+    <Actor>structures/mauryans/big_stupa.xml</Actor>
+  </VisualActor>
+</Entity>
