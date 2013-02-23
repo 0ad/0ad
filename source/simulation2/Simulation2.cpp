@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -102,6 +102,7 @@ public:
 
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_CommandQueue, noParam);
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_ObstructionManager, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_ParticleManager, noParam);
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_Pathfinder, noParam);
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_ProjectileManager, noParam);
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_RangeManager, noParam);
