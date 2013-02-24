@@ -25,12 +25,12 @@ BattleDetection.prototype.Schema =
 BattleDetection.prototype.Init = function()
 {
 	// Load values from template.
-	this.interval = Number(this.template.TimerInterval);
-	this.recordLength = Number(this.template.RecordLength);
-	this.damageRateThreshold = Number(this.template.DamageRateThreshold);
-	this.alertnessBattleThreshold = Number(this.template.AlertnessBattleThreshold);
-	this.alertnessPeaceThreshold = Number(this.template.AlertnessPeaceThreshold);
-	this.alertnessMax = Number(this.template.AlertnessMax);
+	this.interval = +this.template.TimerInterval;
+	this.recordLength = +this.template.RecordLength;
+	this.damageRateThreshold = +this.template.DamageRateThreshold;
+	this.alertnessBattleThreshold = +this.template.AlertnessBattleThreshold;
+	this.alertnessPeaceThreshold = +this.template.AlertnessPeaceThreshold;
+	this.alertnessMax = +this.template.AlertnessMax;
 
 	// Initialize variables.
 	this.damage = 0; // Damage counter. Accumulative damage done over the current timer period.

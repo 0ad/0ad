@@ -82,16 +82,20 @@ function updateCursorAndTooltip()
 	if (!tooltipSet)
 		informationTooltip.hidden = true;
 	
-	var wallDragTooltip = getGUIObjectByName("wallDragTooltip");
-	if (placementSupport.wallDragTooltip)
+	var placementTooltip = getGUIObjectByName("placementTooltip");
+	if (placementSupport.tooltipMessage)
 	{
-		wallDragTooltip.caption = placementSupport.wallDragTooltip;
-		wallDragTooltip.hidden = false;
+		if (placementSupport.tooltipError)
+			placementTooltip.sprite = "BackgroundErrorTooltip";
+		else
+			placementTooltip.sprite = "BackgroundInformationTooltip";
+		placementTooltip.caption = placementSupport.tooltipMessage;
+		placementTooltip.hidden = false;
 	}
 	else
 	{
-		wallDragTooltip.caption = "";
-		wallDragTooltip.hidden = true;
+		placementTooltip.caption = "";
+		placementTooltip.hidden = true;
 	}
 }
 
@@ -105,13 +109,18 @@ function updateBuildingPlacementPreview()
 	{
 		if (placementSupport.template && placementSupport.position)
 		{
-			return Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+			var result = Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
 				"template": placementSupport.template,
 				"x": placementSupport.position.x,
 				"z": placementSupport.position.z,
 				"angle": placementSupport.angle,
 				"actorSeed": placementSupport.actorSeed
 			});
+
+			// Show placement info tooltip if invalid position
+			placementSupport.tooltipError = !result.success;
+			placementSupport.tooltipMessage = result.success ? "" : result.message;
+			return result.success;
 		}
 	}
 	else if (placementSupport.mode === "wall")
@@ -862,10 +871,10 @@ function handleInputBeforeGui(ev, hoveredObject)
 				
 				if (result && result.cost)
 				{
-					placementSupport.wallDragTooltip = getEntityCostTooltip(result);
+					placementSupport.tooltipMessage = getEntityCostTooltip(result);
 					var neededResources = Engine.GuiInterfaceCall("GetNeededResources", result.cost);
 					if (neededResources)
-						placementSupport.wallDragTooltip += getNeededResourcesTooltip(neededResources);
+						placementSupport.tooltipMessage += getNeededResourcesTooltip(neededResources);
 				}
 				
 				break;
@@ -892,7 +901,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 					}
 					else
 					{
-						placementSupport.wallDragTooltip = "Cannot build wall here!";
+						placementSupport.tooltipMessage = "Cannot build wall here!";
 					}
 					
 					updateBuildingPlacementPreview();

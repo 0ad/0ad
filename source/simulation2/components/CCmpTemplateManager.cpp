@@ -501,6 +501,7 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	// and safe (i.e. won't do anything that affects the synchronised simulation state), so additions
 	// to this list should be carefully considered
 	std::set<std::string> permittedComponentTypes;
+	permittedComponentTypes.insert("Identity");
 	permittedComponentTypes.insert("Ownership");
 	permittedComponentTypes.insert("Position");
 	permittedComponentTypes.insert("VisualActor");

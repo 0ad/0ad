@@ -74,7 +74,17 @@
 		<image
 			backcolor="0 0 0 191"
 			size="0 0 100% 100%"
-			border="false"
+			border="true"
+			bordercolor="white"
+		/>
+	</sprite>
+
+	<sprite name="BackgroundErrorTooltip">
+		<image
+			backcolor="0 0 0 191"
+			size="0 0 100% 100%"
+			border="true"
+			bordercolor="red"
 		/>
 	</sprite>
 

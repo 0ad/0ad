@@ -798,10 +798,19 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
  * cmd.template is the name of the entity template, or "" to disable the preview.
  * cmd.x, cmd.z, cmd.angle give the location.
  * 
- * Returns true if the placement is okay (everything is valid and the entity is not obstructed by others).
+ * Returns result object from CheckPlacement:
+ * 	{
+ *		"success":	true iff the placement is valid, else false
+ *		"message":	message to display in UI for invalid placement, else empty string
+ *  }
  */
 GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 {
+	var result = {
+		"success": false,
+		"message": "",
+	}
+
 	// See if we're changing template
 	if (!this.placementEntity || this.placementEntity[0] != cmd.template)
 	{
@@ -832,26 +841,15 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 			pos.SetYRotation(cmd.angle);
 		}
 
-		// Check whether it's in a visible or fogged region
-		//	tell GetLosVisibility to force RetainInFog because preview entities set this to false,
-		//	which would show them as hidden instead of fogged
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		var visible = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player, true) != "hidden");
-		var validPlacement = false;
-
 		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		cmpOwnership.SetOwner(player);
 
-		if (visible)
-		{	// Check whether it's obstructed by other entities or invalid terrain
-			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
-			if (!cmpBuildRestrictions)
-				error("cmpBuildRestrictions not defined");
-
-			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement());
-		}
-
-		var ok = (visible && validPlacement);
+		// Check whether building placement is valid
+		var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
+		if (!cmpBuildRestrictions)
+			error("cmpBuildRestrictions not defined");
+		else
+			result = cmpBuildRestrictions.CheckPlacement();
 
 		// Set it to a red shade if this is an invalid location
 		var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
@@ -859,17 +857,15 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 		{
 			if (cmd.actorSeed !== undefined)
 				cmpVisual.SetActorSeed(cmd.actorSeed);
-		
-			if (!ok)
+
+			if (!result.success)
 				cmpVisual.SetShadingColour(1.4, 0.4, 0.4, 1);
 			else
 				cmpVisual.SetShadingColour(1, 1, 1, 1);
 		}
-
-		return ok;
 	}
 
-	return false;
+	return result;
 };
 
 /**
@@ -1317,7 +1313,8 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 				continue;
 			}
 			
-			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement());
+			// TODO: Handle results of CheckPlacement
+			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement().success);
 
 			// If a wall piece has two control groups, it's likely a segment that spans
 			// between two existing towers. To avoid placing a duplicate wall segment,
