@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -186,7 +186,7 @@ public:
 					CFixedVector3D pos (initialPos.X + s.Multiply(radius), fixed::Zero(), initialPos.Y + c.Multiply(radius));
 
 					SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
-					if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Z, spawnedRadius, spawnedPass))
+					if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Z, spawnedRadius, spawnedPass) == ICmpObstruction::FOUNDATION_CHECK_SUCCESS)
 						return pos; // this position is okay, so return it
 				}
 			}
@@ -241,7 +241,7 @@ public:
 						CFixedVector2D pos (center + dir*i);
 
 						SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
-						if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, spawnedRadius, spawnedPass))
+						if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, spawnedRadius, spawnedPass) == ICmpObstruction::FOUNDATION_CHECK_SUCCESS)
 							return CFixedVector3D(pos.X, fixed::Zero(), pos.Y); // this position is okay, so return it
 					}
 				}

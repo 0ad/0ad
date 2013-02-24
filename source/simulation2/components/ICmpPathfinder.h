@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 
 #include "simulation2/system/Interface.h"
 
+#include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/helpers/Position.h"
 
 #include "maths/FixedVector2D.h"
@@ -152,16 +153,18 @@ public:
 	/**
 	 * Check whether a unit placed here is valid and doesn't hit any obstructions
 	 * or impassable terrain.
-	 * Returns true if the placement is okay.
+	 * @return ICmpObstruction::FOUNDATION_CHECK_SUCCESS if the placement is okay, else
+	 *	a value describing the type of failure.
 	 */
-	virtual bool CheckUnitPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, pass_class_t passClass) = 0;
+	virtual ICmpObstruction::EFoundationCheck CheckUnitPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, pass_class_t passClass) = 0;
 
 	/**
 	 * Check whether a building placed here is valid and doesn't hit any obstructions
 	 * or impassable terrain.
-	 * Returns true if the placement is okay.
+	 * @return ICmpObstruction::FOUNDATION_CHECK_SUCCESS if the placement is okay, else
+	 *	a value describing the type of failure.
 	 */
-	virtual bool CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass) = 0;
+	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass) = 0;
 
 	/**
 	 * Toggle the storage and rendering of debug info.

@@ -133,4 +133,9 @@ Identity.prototype.GetSelectionGroupName = function()
 	return (this.template.SelectionGroupName || "");
 };
 
+Identity.prototype.GetGenericName = function()
+{
+	return this.template.GenericName;
+};
+
 Engine.RegisterComponentType(IID_Identity, "Identity", Identity);

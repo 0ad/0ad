@@ -601,22 +601,28 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 	cmpOwnership.SetOwner(player);
 	
-	// Check whether it's obstructed by other entities or invalid terrain
+	// Check whether building placement is valid
 	var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
-	if (!cmpBuildRestrictions || !cmpBuildRestrictions.CheckPlacement())
+	if (cmpBuildRestrictions)
 	{
-		if (g_DebugCommands)
+		var ret = cmpBuildRestrictions.CheckPlacement();
+		if (!ret.success)
 		{
-			warn("Invalid command: build restrictions check failed for player "+player+": "+uneval(cmd));
+			if (g_DebugCommands)
+			{
+				warn("Invalid command: build restrictions check failed for player "+player+": "+uneval(cmd));
+			}
+
+			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+			cmpGuiInterface.PushNotification({ "player": player, "message": ret.message });
+			
+			// Remove the foundation because the construction was aborted
+			Engine.DestroyEntity(ent);
+			return false;
 		}
-		
-		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was obstructed" });
-		
-		// Remove the foundation because the construction was aborted
-		Engine.DestroyEntity(ent);
-		return false;
 	}
+	else
+		error("cmpBuildRestrictions not defined");
 	
 	// Check entity limits
 	var cmpEntityLimits = QueryPlayerIDInterface(player, IID_EntityLimits);
@@ -647,29 +653,6 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		
 		// Remove the foundation because the construction was aborted 
 		Engine.DestroyEntity(ent); 
-	} 
-	
-	// TODO: AI has no visibility info
-	if (!cmpPlayer.IsAI())
-	{
-		// Check whether it's in a visible or fogged region
-		//	tell GetLosVisibility to force RetainInFog because preview entities set this to false,
-		//	which would show them as hidden instead of fogged
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		var visible = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player, true) != "hidden");
-		if (!visible)
-		{
-			if (g_DebugCommands)
-			{
-				warn("Invalid command: foundation visibility check failed for player "+player+": "+uneval(cmd));
-			}
-			
-			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-			cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was not visible" });
-			
-			Engine.DestroyEntity(ent);
-			return false;
-		}
 	}
 	
 	// We need the cost after tech modifications

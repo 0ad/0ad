@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -478,26 +478,26 @@ public:
 		return m_ControlPersist;
 	}
 
-	virtual bool CheckFoundation(std::string className)
+	virtual EFoundationCheck CheckFoundation(std::string className)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 		if (!cmpPosition)
-			return false; // error
+			return FOUNDATION_CHECK_FAIL_ERROR; // error
 
 		if (!cmpPosition->IsInWorld())
-			return false; // no obstruction
+			return FOUNDATION_CHECK_FAIL_NO_OBSTRUCTION; // no obstruction
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpPathfinder)
-			return false; // error
+			return FOUNDATION_CHECK_FAIL_ERROR; // error
 
 		// required precondition to use SkipControlGroupsRequireFlagObstructionFilter
 		if (m_ControlGroup == INVALID_ENTITY)
 		{
 			LOGERROR(L"[CmpObstruction] Cannot test for foundation obstructions; primary control group must be valid");
-			return false;
+			return FOUNDATION_CHECK_FAIL_ERROR;
 		}
 
 		// Get passability class
@@ -509,11 +509,9 @@ public:
 		SkipControlGroupsRequireFlagObstructionFilter filter(m_ControlGroup, m_ControlGroup2,
 			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
 
-		if (m_Type == STATIC)
-			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass);
-		else if (m_Type == UNIT)
+		if (m_Type == UNIT)
 			return cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, m_Size0, passClass);
-		else 
+		else
 			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass);
 	}
 
