@@ -34,6 +34,9 @@ var menu;
 
 var isDiplomacyOpen = false;
 
+// Redefined every time someone makes a tribute (so we can save some data in a closure). Called in input.js handleInputBeforeGui.
+var flushTributing = function() {};
+
 // Ignore size defined in XML and set the actual menu size here
 function initMenuPosition()
 {
@@ -271,15 +274,37 @@ function openDiplomacy()
 		for each (var resource in ["food", "wood", "stone", "metal"])
 		{
 			var button = getGUIObjectByName("diplomacyPlayerTribute"+toTitleCase(resource)+"["+(i-1)+"]");
-			// TODO: Make amounts changeable or change to 500 if shift is pressed
-			var amounts = {
-				"food": (resource=="food")?100:0,
-				"wood": (resource=="wood")?100:0,
-				"stone": (resource=="stone")?100:0,
-				"metal": (resource=="metal")?100:0,
-			};
-			button.onpress = (function(e){ return function() { tributeResource(e) } })({"player": i, "amounts": amounts});
+			button.onpress = (function(player, resource, button){
+				// Implement something like how unit batch training works. Shift+click to send 500, shift+click+click to send 1000, etc.
+				// Also see input.js (searching for "INPUT_MASSTRIBUTING" should get all the relevant parts).
+				var multiplier = 1;
+				return function() {
+					var isBatchTrainPressed = Engine.HotkeyIsPressed("session.masstribute");
+					if (isBatchTrainPressed)
+					{
+						inputState = INPUT_MASSTRIBUTING;
+						multiplier += multiplier == 1 ? 4 : 5;
+					}
+					var amounts = {
+						"food": (resource == "food" ? 100 : 0) * multiplier,
+						"wood": (resource == "wood" ? 100 : 0) * multiplier,
+						"stone": (resource == "stone" ? 100 : 0) * multiplier,
+						"metal": (resource == "metal" ? 100 : 0) * multiplier,
+					};
+					button.tooltip = formatTributeTooltip(players[player], resource, amounts[resource]);
+					// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
+					// evil global variable hackery.
+					flushTributing = function() {
+						tributeResource({"player": player, "amounts": amounts});
+						multiplier = 1;
+						button.tooltip = formatTributeTooltip(players[player], resource, 100);
+					};
+					if (!isBatchTrainPressed)
+						flushTributing();
+				};
+			})(i, resource, button);
 			button.hidden = false;
+			button.tooltip = formatTributeTooltip(players[i], resource, 100);
 		}
 
 		// Skip our own teams on teams locked
@@ -395,4 +420,11 @@ function closeOpenDialogs()
 	closeChat();
 	closeDiplomacy();
 	closeSettings(false);
+}
+
+function formatTributeTooltip(player, resource, amount)
+{
+	var playerColor = player.color.r + " " + player.color.g + " " + player.color.b;
+	return "Tribute " + amount + " " + resource + " to [color=\"" + playerColor + "\"]" + player.name +
+		"[/color]. Shift-click to tribute " + (amount < 500 ? 500 : amount + 500) + ".";
 }

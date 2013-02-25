@@ -74,13 +74,14 @@ Player.prototype.GetColour = function()
 	return this.colour;
 };
 
+// Try reserving num population slots. Returns 0 on success or number of missing slots otherwise.
 Player.prototype.TryReservePopulationSlots = function(num)
 {
 	if (num != 0 && num > (this.GetPopulationLimit() - this.GetPopulationCount()))
-		return false;
+		return num - (this.GetPopulationLimit() - this.GetPopulationCount());
 
 	this.popUsed += num;
-	return true;
+	return 0;
 };
 
 Player.prototype.UnReservePopulationSlots = function(num)
@@ -143,7 +144,7 @@ Player.prototype.GetResourceCounts = function()
 /**
  * Add resource of specified type to player
  * @param type Generic type of resource (string)
- * @param amount Amount of resource, whick should be added (integer)
+ * @param amount Amount of resource, which should be added (integer)
  */
 Player.prototype.AddResource = function(type, amount)
 {
