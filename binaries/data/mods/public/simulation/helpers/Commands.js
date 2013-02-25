@@ -88,6 +88,13 @@ function ProcessCommand(player, cmd)
 		});
 		break;
 
+	case "attack-walk":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
+			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.queued);
+		});
+		break;
+
 	case "attack":
 		if (g_DebugCommands && !(IsOwnedByEnemyOfPlayer(player, cmd.target) || IsOwnedByNeutralOfPlayer(player, cmd.target)))
 		{

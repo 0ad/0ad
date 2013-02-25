@@ -187,7 +187,7 @@ function getActionInfo(action, target)
 	{
 		if (action == "set-rallypoint" && haveRallyPoints)
 			return {"possible": true};
-		else if (action == "move")
+		else if (action == "move" || action == "attack-move")
 			return {"possible": true};
 		else
 			return {"possible": false};
@@ -404,7 +404,7 @@ function getActionInfo(action, target)
 			break;
 		}
 	}
-	if (action == "move")
+	if (action == "move" || action == "attack-move")
 		return {"possible": true};
 	else
 		return {"possible": false};
@@ -480,12 +480,13 @@ function determineAction(x, y, fromMinimap)
 	{
 		return {"type": "attack", "cursor": "action-attack", "target": target};
 	}
-	else if (Engine.HotkeyIsPressed("session.garrison"))
+	else if (Engine.HotkeyIsPressed("session.garrison") && getActionInfo("garrison", target).possible)
 	{
-		if (getActionInfo("garrison", target).possible)
-			return {"type": "garrison", "cursor": "action-garrison", "target": target};
-		else
-			return 	{"type": "none", "cursor": "action-garrison-disabled", "target": undefined};
+		return {"type": "garrison", "cursor": "action-garrison", "target": target};
+	}
+	else if (Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target).possible)
+	{
+			return {"type": "attack-move", "cursor": "action-attack"};
 	}
 	else
 	{
@@ -1320,6 +1321,12 @@ function doAction(action, ev)
 		Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
 		return true;
 
+	case "attack-move":
+		var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
+		Engine.PostNetworkCommand({"type": "attack-walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
+		return true;
+
 	case "attack":
 		Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued});
 		Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
@@ -1416,6 +1423,11 @@ function handleMinimapEvent(target)
 		{
 		case "move":
 			Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
+			Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
+			return true;
+
+		case "attack-move":
+			Engine.PostNetworkCommand({"type": "attack-walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
 			Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
 			return true;
 
