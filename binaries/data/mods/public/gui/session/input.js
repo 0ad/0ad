@@ -27,6 +27,7 @@ const INPUT_BATCHTRAINING = 6;
 const INPUT_PRESELECTEDACTION = 7;
 const INPUT_BUILDING_WALL_CLICK = 8;
 const INPUT_BUILDING_WALL_PATHING = 9;
+const INPUT_MASSTRIBUTING = 10;
 
 var inputState = INPUT_NORMAL;
 var placementSupport = new PlacementSupport();
@@ -987,17 +988,21 @@ function handleInputBeforeGui(ev, hoveredObject)
 		}
 		break;
 
-	case INPUT_BATCHTRAINING:
-		switch (ev.type)
+	case INPUT_MASSTRIBUTING:
+		if (ev.type == "hotkeyup" && ev.hotkey == "session.masstribute")
 		{
-		case "hotkeyup":
-			if (ev.hotkey == "session.batchtrain")
-			{
-				flushTrainingBatch();
-				inputState = INPUT_NORMAL;
-			}
-			break;
+			flushTributing();
+			inputState = INPUT_NORMAL;
 		}
+		break;
+
+	case INPUT_BATCHTRAINING:
+		if (ev.type == "hotkeyup" && ev.hotkey == "session.batchtrain")
+		{
+			flushTrainingBatch();
+			inputState = INPUT_NORMAL;
+		}
+		break;
 	}
 
 	return false;
