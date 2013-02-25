@@ -59,12 +59,12 @@
     <Max>400</Max>
   </Health>
   <Identity>
-    <Civ>cart</Civ>
+    <Civ>ptol</Civ>
     <Classes datatype="tokens">Elephant -Cavalry</Classes>
 	<GenericName>War Elephant</GenericName>
-    <SpecificName>Pil Malḥamit</SpecificName>
+    <SpecificName>Elephantos Polemou</SpecificName>
     <Icon>units/cart_champion_cavalry.png</Icon>
-    <History>By far the most famous of Carthaginian weapons was the small, ugly, and now extinct, North African forest elephants. Going into battle without a war tower carrying only a driver, Carthaginian war elephants were used as terror weapons: horses could not stand their smell, inexperienced troops were frightened, and the havoc they could cause was immense. Yet by the time of the Second Punic War elephants were at the end of their time. Armies had learned the weaknesses of the giant beasts, specifically how to hamstring and confuse them. More often than not a war elephant could be just as dangerous to its own side as the enemy.</History>
+    <History>The North African elephant was trained for war and used by the Ptolemaic dynasty of Egypt. Writing in the 2nd century BC, Polybius (The Histories; 5.83) described their inferiority in battle against the larger Indian elephants used by the Seleucid kings. A surviving Ptolemaic inscription enumerates three types of war elephant, the "Troglodytic" (probably Libyan), the "Ethiopian", and the "Indian". The Ptolemaic king prides himself with being the first to tame the Ethiopian elephants, a stock which could be identical to one of the two extant African species. (source: Wikipedia)</History>
 	<Tooltip>Champion War Elephant.
 Good sieging capability. "Stench" Aura vs. Horses. Can run amok. Countered by Swordsmen and Skirmishers.</Tooltip>
   </Identity>
@@ -87,9 +87,9 @@ Good sieging capability. "Stench" Aura vs. Horses. Can run amok. Countered by Sw
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>7.0</WalkSpeed>
+    <WalkSpeed>5.0</WalkSpeed>
     <Run>
-      <Speed>14.0</Speed>
+      <Speed>10.0</Speed>
     </Run>
   </UnitMotion>
   <Vision>
