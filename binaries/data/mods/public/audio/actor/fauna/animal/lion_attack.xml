@@ -2,11 +2,11 @@
 <SoundGroup>
 	<Gain>1</Gain>
 	<Pitch>1</Pitch>
-	<Priority>100</Priority>
+	<Priority>80</Priority>
 	<ConeGain>1</ConeGain>
 	<ConeInner>360</ConeInner>
 	<ConeOuter>360</ConeOuter>
-	<Looping>0</Looping>
+	<Looping>1</Looping>
 	<RandOrder>0</RandOrder>
 	<RandGain>0</RandGain>
 	<GainUpper>1</GainUpper>
@@ -19,4 +19,5 @@
 	<Replacement>lion_attack1.ogg</Replacement>
 	<Path>audio/actor/fauna/animal</Path>
 	<Sound>lion_attack1.ogg</Sound>
+	<Sound>lion_attack2.ogg</Sound>
 </SoundGroup>
