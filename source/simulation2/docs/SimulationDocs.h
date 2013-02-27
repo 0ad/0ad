@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -199,7 +199,7 @@ to hear about all MT_Destroy messages.)
 Then you need to respond to the messages in @c HandleMessage:
 
 @code
-virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 {
     switch (msg.GetType())
     {
@@ -222,17 +222,17 @@ Component type instances go through one of two lifecycles:
 
 @code
 CCmpExample();
-Init(context, paramNode);
+Init(paramNode);
 // any sequence of HandleMessage and Serialize and interface methods
-Deinit(context);
+Deinit();
 ~CCmpExample();
 @endcode
 
 @code
 CCmpExample();
-Deserialize(context, paramNode, deserialize);
+Deserialize(paramNode, deserialize);
 // any sequence of HandleMessage and Serialize and interface methods
-Deinit(context);
+Deinit();
 ~CCmpExample();
 @endcode
 
@@ -240,9 +240,6 @@ The order of <code>Init</code>/<code>Deserialize</code>/<code>Deinit</code> betw
 so they must not rely on other entities or components already existing; @em except that the SYSTEM_ENTITY is
 created before anything else and therefore may be used, and that the components for a single entity will be
 processed in the order determined by TypeList.h.
-
-The same @c context object will be used in all these calls.
-The context can also be accessed with IComponent::GetSimContext.
 
 In a typical component:
 
@@ -526,8 +523,8 @@ CComponentManager::BroadcastMessage to send to all entities.
 
 @code
 CMessageExample msg(10, 20);
-context.GetComponentManager().PostMessage(ent, msg);
-context.GetComponentManager().BroadcastMessage(msg);
+GetSimContext().GetComponentManager().PostMessage(ent, msg);
+GetSimContext().GetComponentManager().BroadcastMessage(msg);
 @endcode
 
 From JS, use @ref CComponentManager::Script_PostMessage "Engine.PostMessage" and
