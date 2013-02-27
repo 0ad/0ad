@@ -487,7 +487,7 @@ function determineAction(x, y, fromMinimap)
 	}
 	else if (Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target).possible)
 	{
-			return {"type": "attack-move", "cursor": "action-attack"};
+			return {"type": "attack-move", "cursor": "action-attack-move"};
 	}
 	else
 	{
