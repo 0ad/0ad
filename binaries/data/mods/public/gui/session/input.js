@@ -1588,6 +1588,10 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 	// Batch training possible if we can train at least 2 units
 	var batchTrainingPossible = canBeTrainedCount == undefined || canBeTrainedCount > 1;
 
+	var decrement = Engine.HotkeyIsPressed("selection.remove");
+	if (!decrement)
+		var template = GetTemplateData(trainEntType);
+
 	if (Engine.HotkeyIsPressed("session.batchtrain") && batchTrainingPossible)
 	{
 		if (inputState == INPUT_BATCHTRAINING)
@@ -1608,19 +1612,37 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 			// (if training limits allow)
 			if (sameEnts && batchTrainingType == trainEntType)
 			{
-				if (canBeTrainedCount == undefined ||
+				if (decrement)
+				{
+					batchTrainingCount -= batchIncrementSize;
+					if (batchTrainingCount <= 0)
+						inputState = INPUT_NORMAL;
+				}
+				else if (canBeTrainedCount == undefined ||
 					canBeTrainedCount > batchTrainingCount * appropriateBuildings.length)
+				{
+					if (Engine.GuiInterfaceCall("GetNeededResources", multiplyEntityCosts(
+						template, batchTrainingCount + batchIncrementSize)))
+						return;
+
 					batchTrainingCount += batchIncrementSize;
+				}
 				batchTrainingEntityAllowedCount = canBeTrainedCount;
 				return;
 			}
 			// Otherwise start a new one
-			else
+			else if (!decrement)
 			{
 				flushTrainingBatch();
 				// fall through to create the new batch
 			}
 		}
+
+		// Don't start a new batch if decrementing or unable to afford it.
+		if (decrement || Engine.GuiInterfaceCall("GetNeededResources",
+			multiplyEntityCosts(template, batchIncrementSize)))
+			return;
+
 		inputState = INPUT_BATCHTRAINING;
 		batchTrainingEntities = selection;
 		batchTrainingType = trainEntType;
@@ -1653,10 +1675,13 @@ function getTrainingBatchStatus(playerState, entity, trainEntType, selection)
 	if (selection && selection.indexOf(entity) != -1)
 		appropriateBuildings = getBuildingsWhichCanTrainEntity(selection, trainEntType);
 	var nextBatchTrainingCount = 0;
+	var currentBatchTrainingCount = 0;
+
 	if (inputState == INPUT_BATCHTRAINING && batchTrainingEntities.indexOf(entity) != -1 &&
 		batchTrainingType == trainEntType)
 	{
 		nextBatchTrainingCount = batchTrainingCount;
+		currentBatchTrainingCount = batchTrainingCount;
 		var canBeTrainedCount = batchTrainingEntityAllowedCount;
 	}
 	else
@@ -1679,7 +1704,7 @@ function getTrainingBatchStatus(playerState, entity, trainEntType, selection)
 		buildingsCountToTrainFullBatch = Math.floor(canBeTrainedCount / nextBatchTrainingCount);
 		remainderToTrain = canBeTrainedCount % nextBatchTrainingCount;
 	}
-	return [buildingsCountToTrainFullBatch, nextBatchTrainingCount, remainderToTrain];
+	return [buildingsCountToTrainFullBatch, nextBatchTrainingCount, remainderToTrain, currentBatchTrainingCount];
 }
 
 // Called by GUI when user clicks production queue item

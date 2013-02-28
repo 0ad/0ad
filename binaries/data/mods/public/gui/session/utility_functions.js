@@ -260,15 +260,26 @@ function getCostComponentDisplayName(costComponentName)
 }
 
 /**
+ * Multiplies the costs for a template by a given batch size.
+ */
+function multiplyEntityCosts(template, trainNum)
+{
+	var totalCosts = {};
+	for (var r in template.cost)
+		totalCosts[r] = Math.floor(template.cost[r] * trainNum);
+
+	return totalCosts;
+}
+
+/**
  * Helper function for getEntityCostTooltip.
  */
 function getEntityCostComponentsTooltipString(template, trainNum, entity)
 {
-	var totalCosts = {};
 	if (!trainNum)
 		trainNum = 1;
-	for (var r in template.cost)
-		totalCosts[r] = Math.floor(template.cost[r] * trainNum);
+
+	var totalCosts = multiplyEntityCosts(template, trainNum);
 	totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", {"entity": entity, "batchSize": trainNum}) : 1));
 
 	var costs = [];
