@@ -40,35 +40,51 @@ CSoundItem::CSoundItem(CSoundData* sndData)
 
 CSoundItem::~CSoundItem()
 {
-	AL_CHECK
-	
-	Stop();
+}
 
-	if (m_ALSource != 0)
-	{
-		alSourcei(m_ALSource, AL_BUFFER, 0);
-		AL_CHECK
-	}	
+void CSoundItem::ReleaseOpenAL()
+{
+	alSourcei(m_ALSource, AL_BUFFER, 0);
+
+	CSoundBase::ReleaseOpenAL();
 }
 
 bool CSoundItem::IdleTask()
 {
+	if ( m_ALSource == 0 )
+		return false;
+
+	TouchTimer();
 	HandleFade();
 
-	if (m_LastPlay && (m_ALSource != 0) )
+	if (m_LastPlay && m_ALSource)
 	{
+		CScopeLock lock(m_ItemMutex);
 		int proc_state;
-		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		AL_CHECK
 		return (proc_state != AL_STOPPED);
 	}
 	return true;
 }
+bool CSoundItem::CanAttach(CSoundData* itemData)
+{
+	return itemData->IsOneShot() && (itemData->GetBufferCount() == 1);
+}
 
 void CSoundItem::Attach(CSoundData* itemData)
 {
-	if (itemData != NULL && (m_ALSource != 0) )
+AL_CHECK
+	if (m_SoundData != NULL)
 	{
+		CSoundData::ReleaseSoundData(m_SoundData);
+		m_SoundData = 0;
+	}
+AL_CHECK
+	if (itemData != NULL)
+	{
+		alSourcei(m_ALSource, AL_BUFFER, 0);
+		AL_CHECK
 		m_SoundData = itemData->IncrementCount();
 		alSourcei(m_ALSource, AL_BUFFER, m_SoundData->GetBuffer());
 		

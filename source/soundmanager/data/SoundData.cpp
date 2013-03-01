@@ -35,8 +35,11 @@ CSoundData::CSoundData()
 
 CSoundData::~CSoundData()
 {
+//	LOGERROR(L"Sound data deleted %ls\n", m_FileName->c_str() );
+
 	if (m_ALBuffer != 0)
 		alDeleteBuffers(1, &m_ALBuffer);
+
 	delete m_FileName;
 }
 

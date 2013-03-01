@@ -36,10 +36,15 @@ CBufferItem::CBufferItem(CSoundData* sndData)
 
 CBufferItem::~CBufferItem()
 {
-	AL_CHECK
+}
 
-	Stop();
-	if (m_ALSource != 0)
+
+void CBufferItem::ReleaseOpenAL()
+{
+	int num_processed;
+	alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
+	
+	if (num_processed > 0)
 	{
 		int num_processed;
 		alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
@@ -53,15 +58,34 @@ CBufferItem::~CBufferItem()
 			delete[] al_buf;
 		}
 	}
-}
 
+	CSoundBase::ReleaseOpenAL();
+}
 
 bool CBufferItem::IdleTask()
 {
+	if ( m_ALSource == 0 )
+		return false;
+
 	HandleFade();
-	if (m_ALSource != 0)
+	TouchTimer();
+	
+	if (m_LastPlay)
 	{
-		if (m_LastPlay)
+		CScopeLock lock(m_ItemMutex);
+		int proc_state;
+		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+		AL_CHECK
+		return (proc_state != AL_STOPPED);
+	}
+	
+	if (GetLooping())
+	{
+		CScopeLock lock(m_ItemMutex);
+		int num_processed;
+		alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
+		
+		for (int i = 0; i < num_processed; i++)
 		{
 			int proc_state;
 			alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
@@ -88,11 +112,25 @@ bool CBufferItem::IdleTask()
 
 	return true;
 }
+bool CBufferItem::CanAttach(CSoundData* itemData)
+{
+	return itemData->IsOneShot() && (itemData->GetBufferCount() > 1);
+}
 
 void CBufferItem::Attach(CSoundData* itemData)
 {
+AL_CHECK
+	if ( m_ALSource == 0 )
+		return;
+	
 	AL_CHECK
-	if ( (itemData != NULL) && (m_ALSource != 0) )
+	if (m_SoundData != NULL)
+	{
+		CSoundData::ReleaseSoundData(m_SoundData);
+		m_SoundData = 0;
+	}
+	AL_CHECK
+	if (itemData != NULL)
 	{
 		m_SoundData = itemData->IncrementCount();
 		alSourceQueueBuffers(m_ALSource, m_SoundData->GetBufferCount(),(const ALuint *) m_SoundData->GetBufferPtr());

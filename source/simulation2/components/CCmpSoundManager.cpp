@@ -135,7 +135,7 @@ public:
 					sourcePos = CVector3D(cmpPosition->GetPosition());
 			}
 
-			group->PlayNext(sourcePos);
+			group->PlayNext(sourcePos, source);
 		}
 #else // !CONFIG2_AUDIO
 		UNUSED2(name);

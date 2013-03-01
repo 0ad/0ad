@@ -28,6 +28,7 @@
 #include "lib/file/file_system.h"
 
 #include "lib/file/vfs/vfs_util.h"
+#include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 
 
@@ -217,6 +218,14 @@ public:
 		: adapter(adapter)
 	{
 		m_fileEOF = false;
+	}
+
+	Status Close()
+	{
+		ov_clear( &vf );
+	LOGERROR(L"did clear ov\n", 0 );
+
+		return 0;
 	}
 
 	Status Open()
