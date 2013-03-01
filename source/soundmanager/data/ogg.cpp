@@ -223,7 +223,6 @@ public:
 	Status Close()
 	{
 		ov_clear( &vf );
-	LOGERROR(L"did clear ov\n", 0 );
 
 		return 0;
 	}
