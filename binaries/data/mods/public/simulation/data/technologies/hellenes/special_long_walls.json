@@ -8,7 +8,8 @@
 	"researchTime": 30,
 	"tooltip": "Build stone walls in neutral territory. Stone walls -50% build time.",
 	"modifications": [
-		{"value": "Cost/BuildTime", "multiplier": 0.5}
+		{"value": "Cost/BuildTime", "multiplier": 0.5},
+		{"value": "BuildRestrictions/Territory", "replace": ["own", "neutral"]}
 	],
 	"affects": ["StoneWall"]
 }

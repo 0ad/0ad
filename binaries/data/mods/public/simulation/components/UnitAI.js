@@ -270,6 +270,33 @@ var UnitFsmSpec = {
 			this.SetNextState("INDIVIDUAL.WALKING");
 	},
 
+	"Order.WalkAndFight": function(msg) {
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() && !this.IsDomestic())
+		{
+			this.FinishOrder();
+			return;
+		}
+
+		// For packable units:
+		// 1. If packed, we can move.
+		// 2. If unpacked, we first need to pack, then follow case 1.
+		if (this.CanPack())
+		{
+			// Case 2: pack
+			this.PushOrderFront("Pack", { "force": true });
+			return;
+		}
+
+		this.SetHeldPosition(this.order.data.x, this.order.data.z);
+		this.MoveToPoint(this.order.data.x, this.order.data.z);
+		if (this.IsAnimal())
+			this.SetNextState("ANIMAL.WALKING");   // WalkAndFight not applicable for animals
+		else
+			this.SetNextState("INDIVIDUAL.WALKINGANDFIGHTING");
+	},
+
+
 	"Order.WalkToTarget": function(msg) {
 		// Let players move captured domestic animals around
 		if (this.IsAnimal() && !this.IsDomestic())
@@ -306,8 +333,9 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Flee": function(msg) {
-		// TODO: if we were attacked by a ranged unit, we need to flee much further away
-		var ok = this.MoveToTargetRangeExplicit(this.order.data.target, +this.template.FleeDistance, -1);
+		// We use the distance between the enities to account for ranged attacks
+		var distance = DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
+		var ok = this.MoveToTargetRangeExplicit(this.order.data.target, distance, -1);
 		if (ok)
 		{
 			// We've started fleeing from the given target
@@ -352,8 +380,10 @@ var UnitFsmSpec = {
 			if (this.CanUnpack())
 			{
 				// Ignore unforced attacks
+				// this would prevent attacks from AttackVisibleEntity or AttackEntityInZone ?
+				// so we accept attacks against targets for which we have a bonus
 				// TODO: use special stances instead?
-				if (!this.order.data.force)
+				if (!this.order.data.force && this.GetAttackBonus(type, this.order.data.target) < 1.5)
 				{
 					this.FinishOrder();
 					return;
@@ -462,9 +492,8 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Gather": function(msg) {
-		
 		// If the target is still alive, we need to kill it first
-		if (this.MustKillGatherTarget(this.order.data.target) && this.CheckTargetVisible(this.order.data.target))
+		if (this.MustKillGatherTarget(this.order.data.target))
 		{
 			// Make sure we can attack the target, else we'll get very stuck
 			if (!this.GetBestAttackAgainst(this.order.data.target))
@@ -472,6 +501,22 @@ var UnitFsmSpec = {
 				// Oops, we can't attack at all - give up
 				// TODO: should do something so the player knows why this failed
 				this.FinishOrder();
+				return;
+			}
+			// The target was visible when this order was issued,
+			// but could now be invisible again.
+			if (!this.CheckTargetVisible(this.order.data.target))
+			{
+				if (this.order.data.secondTry === undefined)
+				{
+					this.order.data.secondTry = true;
+					this.PushOrderFront("Walk", this.order.data.lastPos);
+				}
+				else
+				{
+					// We couldn't move there, or the target moved away
+					this.FinishOrder();
+				}
 				return;
 			}
 
@@ -612,6 +657,14 @@ var UnitFsmSpec = {
 			this.MoveToPoint(this.order.data.x, this.order.data.z);
 			this.SetNextState("WALKING");
 		},
+
+		"Order.WalkAndFight": function(msg) {
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
+
+			this.MoveToPoint(this.order.data.x, this.order.data.z);
+			this.SetNextState("WALKINGANDFIGHTING");
+		},
 		
 		"Order.MoveIntoFormation": function(msg) {
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
@@ -690,8 +743,25 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Gather": function(msg) {
-			if (this.MustKillGatherTarget(msg.data.target) && this.CheckTargetVisible(msg.data.target))
+			if (this.MustKillGatherTarget(msg.data.target))
 			{
+				// The target was visible when this order was given,
+				// but could now be invisible.
+				if (!this.CheckTargetVisible(msg.data.target))
+				{
+					if (msg.data.secondTry === undefined)
+					{
+						msg.data.secondTry = true;
+						this.PushOrderFront("Walk", msg.data.lastPos);
+					}
+					else
+					{
+						// We couldn't move there, or the target moved away
+						this.FinishOrder();
+					}
+					return;
+				}
+
 				this.PushOrderFront("Attack", { "target": msg.data.target, "hunting": true });
 				return;
 			}
@@ -852,6 +922,54 @@ var UnitFsmSpec = {
 			},
 		},
 
+		"WALKINGANDFIGHTING": {
+			"enter": function(msg) {
+				this.StartTimer(0, 1000);
+			},
+
+			"Timer": function(msg) {
+				// check if there are no enemies to attack
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				for each (var ent in cmpFormation.members)
+				{
+					var cmpUnitAI =  Engine.QueryInterface(ent, IID_UnitAI);
+	    				if (cmpUnitAI.FindNewTargets())
+					{
+						if (cmpUnitAI.orderQueue[0] && cmpUnitAI.orderQueue[0].type == "Attack")
+						{
+							var data = cmpUnitAI.orderQueue[0].data;
+							cmpUnitAI.FinishOrder();
+							this.PushOrderFront("Attack", { "target": data.target, "force": false, "forceResponse": data.forceResponse });
+							break;
+						}
+					}
+				}
+			},
+
+			"leave": function(msg) {
+				this.StopTimer();
+			},
+
+			"MoveStarted": function(msg) {
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(true, true);
+			},
+
+			"MoveCompleted": function(msg) {
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+
+				if (this.FinishOrder())
+				{
+					cmpFormation.CallMemberFunction("ResetFinishOrder", []);
+					return;
+				}
+
+				// No more orders left.
+				cmpFormation.Disband();
+			},
+		},
+
 		"FORMING": {
 			"MoveStarted": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
@@ -905,7 +1023,27 @@ var UnitFsmSpec = {
 
 				// Execute the next order
 				if (this.FinishOrder())
+				{
+					// if WalkAndFight order, look for new target before moving again
+					if (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight")
+					{
+						for each (var ent in cmpFormation.members)
+						{
+							var cmpUnitAI =  Engine.QueryInterface(ent, IID_UnitAI);
+	    						if (cmpUnitAI.FindNewTargets())
+							{
+								if (cmpUnitAI.orderQueue[0] && cmpUnitAI.orderQueue[0].type == "Attack")
+								{
+									var data = cmpUnitAI.orderQueue[0].data;
+									cmpUnitAI.FinishOrder();
+									this.PushOrderFront("Attack", { "target": data.target, "force": false, "forceResponse": data.forceResponse });
+									break;
+								}
+							}
+						}
+					}
 					return;
+				}
 
 				// No more order left.
 				cmpFormation.Disband();
@@ -985,7 +1123,8 @@ var UnitFsmSpec = {
 			// is done moving. The controller is notified, and will disband the
 			// formation if all units are in formation and no orders remain.
 			"MoveCompleted": function(msg) {
-				if(this.FinishOrder())
+				// We can only finish this order if the move was really completed.
+				if (!msg.data.error && this.FinishOrder())
 					return;
 
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
@@ -1105,6 +1244,25 @@ var UnitFsmSpec = {
 		"WALKING": {
 			"enter": function () {
 				this.SelectAnimation("move");
+			},
+
+			"MoveCompleted": function() {
+				this.FinishOrder();
+			},
+		},
+
+		"WALKINGANDFIGHTING": {
+			"enter": function () {
+				this.StartTimer(0, 1000);
+				this.SelectAnimation("move");
+			},
+
+			"Timer": function(msg) {
+				this.FindNewTargets();
+			},
+
+			"leave": function(msg) {
+				this.StopTimer();
 			},
 
 			"MoveCompleted": function() {
@@ -1301,8 +1459,13 @@ var UnitFsmSpec = {
 					}
 
 					// Can't reach it, no longer owned by enemy, or it doesn't exist any more - give up
+					// Except if in WalkAndFight mode where we look for more ennemies around before moving again
 					if (this.FinishOrder())
+					{
+						if (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight")
+	    						this.FindNewTargets();
 						return;
+					}
 
 					// See if we can switch to a new nearby enemy
 					if (this.FindNewTargets())
@@ -2001,7 +2164,10 @@ var UnitFsmSpec = {
 									var dropsiteTypes = cmpResourceDropsite.GetTypes();
 									var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 									if (cmpResourceGatherer)
+									{
 										cmpResourceGatherer.CommitResources(dropsiteTypes);
+										this.SetGathererAnimationOverride();
+									}
 								}
 								
 								return false;
@@ -3106,10 +3272,10 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 {
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!cmpPosition || !cmpPosition.IsInWorld())
-			return;
+		return;
 	var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
 	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
-			return;
+		return;
 	var pos = cmpPosition.GetPosition();
 	var targetpos = cmpTargetPosition.GetPosition();
 	var angle = Math.atan2(targetpos.x - pos.x, targetpos.z - pos.z);
@@ -3174,6 +3340,14 @@ UnitAI.prototype.GetBestAttackAgainst = function(target)
 	if (!cmpAttack)
 		return undefined;
 	return cmpAttack.GetBestAttackAgainst(target);
+};
+
+UnitAI.prototype.GetAttackBonus = function(type, target)
+{
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpAttack)
+		return 1;
+	return cmpAttack.GetAttackBonus(type, target);
 };
 
 /**
@@ -3388,6 +3562,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 		switch (order.type)
 		{
 		case "Walk":
+		case "WalkAndFight":
 		case "WalkToPointRange":
 		case "MoveIntoFormation":
 		case "GatherNearPosition":
@@ -3471,6 +3646,15 @@ UnitAI.prototype.Stop = function(queued)
 UnitAI.prototype.WalkToTarget = function(target, queued)
 {
 	this.AddOrder("WalkToTarget", { "target": target, "force": true }, queued);
+};
+
+/**
+ * Adds walk-and-fight order to queue, this only occurs in response
+ * to a player order, and so is forced.
+ */
+UnitAI.prototype.WalkAndFight = function(x, z, queued)
+{
+	this.AddOrder("WalkAndFight", { "x": x, "z": z, "force": true }, queued);
 };
 
 /**

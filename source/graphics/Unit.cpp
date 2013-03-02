@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,10 +27,10 @@
 #include "UnitAnimation.h"
 
 CUnit::CUnit(CObjectEntry* object, CObjectManager& objectManager,
-			 const std::set<CStr>& actorSelections)
+			 const std::set<CStr>& actorSelections, uint32_t seed)
 : m_Object(object), m_Model(object->m_Model->Clone()),
   m_ID(INVALID_ENTITY), m_ActorSelections(actorSelections),
-  m_ObjectManager(objectManager)
+  m_ObjectManager(objectManager), m_Seed(seed)
 {
 	if (m_Model->ToCModel())
 		m_Animation = new CUnitAnimation(m_ID, m_Model->ToCModel(), m_Object);
@@ -61,7 +61,7 @@ CUnit* CUnit::Create(const CStrW& actorName, uint32_t seed, const std::set<CStr>
 	if (! obj)
 		return NULL;
 
-	return new CUnit(obj, objectManager, actorSelections);
+	return new CUnit(obj, objectManager, actorSelections, seed);
 }
 
 void CUnit::UpdateModel(float frameTime)
@@ -111,7 +111,7 @@ void CUnit::ReloadObject()
 	// see http://trac.wildfiregames.com/ticket/979
 	
 	// Use the entity ID as randomization seed (same as when the unit was first created)
-	std::set<CStr> remainingSelections = m_Object->m_Base->CalculateRandomRemainingSelections(m_ID, selections);
+	std::set<CStr> remainingSelections = m_Object->m_Base->CalculateRandomRemainingSelections(m_Seed, selections);
 	if (remainingSelections.size() > 0)
 		selections.push_back(remainingSelections);
 

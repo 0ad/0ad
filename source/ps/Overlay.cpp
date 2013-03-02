@@ -41,8 +41,7 @@ bool CColor::ParseString(const CStr8& Value, float DefaultAlpha)
 		// TODO Gee: Parsing failed
 		return false;
 	}
-	float values[4];
-	values[3] = DefaultAlpha;
+	float values[4] = { 0, 0, 0, DefaultAlpha };
 	for (int i=0; i<(int)line.GetArgCount(); ++i)
 	{
 		if (!line.GetArgFloat(i, values[i]))

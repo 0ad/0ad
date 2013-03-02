@@ -32,7 +32,7 @@
   </BuildRestrictions>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
-    <BuildTime>420</BuildTime>
+    <BuildTime>300</BuildTime>
     <Resources>
       <wood>0</wood>
       <stone>650</stone>
@@ -74,8 +74,6 @@
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Technologies datatype="tokens">
       pair_champ_02
-      siege_attack
-      siege_armor
     </Technologies>
   </ProductionQueue>
   <Sound>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * ...the usual copyright header...
  */
 
@@ -26,12 +26,12 @@ public:
 		return "<ref name='anything'/>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
+	virtual void Init(const CParamNode& paramNode)
 	{
 		// ...
 	}
 
-	virtual void Deinit(const CSimContext& context)
+	virtual void Deinit()
 	{
 		// ...
 	}
@@ -41,12 +41,12 @@ public:
 		// ...
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		// ...
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		// ...
 	}

@@ -376,6 +376,11 @@ function onSimulationUpdate()
 	updateResearchDisplay();
 	updateBuildingPlacementPreview();
 	updateTimeElapsedCounter(simState);
+
+	// Update music state on basis of battle state.
+	var battleState = Engine.GuiInterfaceCall("GetBattleState", Engine.GetPlayerID());
+	if (battleState)
+		global.music.setState(global.music.states[battleState]);
 }
 
 function updateGroups()

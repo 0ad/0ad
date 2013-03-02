@@ -13,6 +13,9 @@ newoption { trigger = "without-pch", description = "Disable generation and usage
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
 newoption { trigger = "with-system-enet", description = "Search standard paths for libenet, instead of using bundled copy" }
 newoption { trigger = "with-system-mozjs185", description = "Search standard paths for libmozjs185, instead of using bundled copy" }
+newoption { trigger = "sysroot", description = "Set compiler system root path, used for building against a non-system SDK. For example /usr/local becomes SYSROOT/user/local" }
+newoption { trigger = "macosx-version-min", description = "Set minimum required version of the OS X API, the build will possibly fail if an older SDK is used, while newer API functions will be weakly linked (i.e. resolved at runtime)" }
+newoption { trigger = "macosx-bundle", description = "Enable OSX bundle, the argument is the bundle identifier string (e.g. com.wildfiregames.0ad)" }
 
 newoption { trigger = "bindir", description = "Directory for executables (typically '/usr/games'); default is to be relocatable" }
 newoption { trigger = "datadir", description = "Directory for data files (typically '/usr/share/games/0ad'); default is ../data/ relative to executable" }
@@ -49,7 +52,6 @@ else
 		end
 	end
 end
-
 
 -- Set up the Solution
 solution "pyrogenesis"
@@ -274,6 +276,23 @@ function project_set_build_flags()
 			if os.is("macosx") then
 				buildoptions { "-msse2" }
 			end
+
+			-- Check if SDK path should be used
+			if _OPTIONS["sysroot"] then
+				buildoptions { "-isysroot " .. _OPTIONS["sysroot"] }
+				linkoptions { "-Wl,-syslibroot," .. _OPTIONS["sysroot"] }
+			end
+
+			-- On OS X, sometimes we need to specify the minimum API version to use
+			if _OPTIONS["macosx-version-min"] then
+				buildoptions { "-mmacosx-version-min=" .. _OPTIONS["macosx-version-min"] }
+				linkoptions { "-mmacosx-version-min=" .. _OPTIONS["macosx-version-min"] }
+			end
+
+			-- Check if we're building a bundle
+			if _OPTIONS["macosx-bundle"] then
+				defines { "BUNDLE_IDENTIFIER=" .. _OPTIONS["macosx-bundle"] }
+			end
 		end
 
 		if not _OPTIONS["minimal-flags"] then
@@ -283,15 +302,6 @@ function project_set_build_flags()
 				"-fvisibility=hidden"
 			}
 		end
-
-		-- X11 includes may be installed in one of a gadzillion of three places
-		-- Famous last words: "You can't include too much! ;-)"
-		includedirs {
-			"/usr/X11R6/include/X11",
-			"/usr/X11R6/include",
-			"/usr/include/X11"
-		}
-		libdirs { "/usr/X11R6/lib" }
 
 		if _OPTIONS["bindir"] then
 			defines { "INSTALLED_BINDIR=" .. _OPTIONS["bindir"] }
@@ -326,6 +336,20 @@ function project_set_build_flags()
 	end
 end
 
+-- add X11 includes paths after all the others so they don't conflict with
+-- bundled libs
+function project_add_x11_dirs()
+	if not os.is("windows") and not os.is("macosx") then
+		-- X11 includes may be installed in one of a gadzillion of three places
+		-- Famous last words: "You can't include too much! ;-)"
+		includedirs {
+			"/usr/X11R6/include/X11",
+			"/usr/X11R6/include",
+			"/usr/include/X11"
+		}
+		libdirs { "/usr/X11R6/lib" }
+	end
+end
 
 -- create a project and set the attributes that are common to all projects.
 function project_create(project_name, target_type)
@@ -462,6 +486,7 @@ function setup_static_lib_project (project_name, rel_source_dirs, extern_libs, e
 	project_create(project_name, target_type)
 	project_add_contents(source_root, rel_source_dirs, {}, extra_params)
 	project_add_extern_libs(extern_libs, target_type)
+	project_add_x11_dirs()
 
 	if not extra_params["no_default_link"] then
 		table.insert(static_lib_names, project_name)
@@ -750,6 +775,7 @@ function setup_main_exe ()
 	}
 	project_add_contents(source_root, {}, {}, extra_params)
 	project_add_extern_libs(used_extern_libs, target_type)
+	project_add_x11_dirs()
 
 	-- Platform Specifics
 	if os.is("windows") then
@@ -835,6 +861,7 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 
 	project_add_contents(source_root, rel_source_dirs, rel_include_dirs, extra_params)
 	project_add_extern_libs(extern_libs, target_type)
+	project_add_x11_dirs()
 
 	-- Platform Specifics
 	if os.is("windows") then
@@ -852,7 +879,12 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 		-- install_name settings aren't really supported yet by premake, but there are plans for the future.
 		-- we currently use this hack to work around some bugs with wrong install_names.
 		if target_type == "SharedLib" then
-			linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }
+			if _OPTIONS["macosx-bundle"] then
+				-- If we're building a bundle, it will be in ../Frameworks
+				linkoptions { "-install_name @executable_path/../Frameworks/lib"..project_name..".dylib" }
+			else
+				linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }
+			end
 		end
 	end
 
@@ -963,6 +995,7 @@ function setup_atlas_frontend_project (project_name)
 		"spidermonkey",
 	},
 	target_type)
+	project_add_x11_dirs()
 
 	local source_root = rootdir.."/source/tools/atlas/AtlasFrontends/"
 	files { source_root..project_name..".cpp" }
@@ -1007,6 +1040,7 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 	extra_params["pch_dir"] = source_root
 	project_add_contents(source_root, rel_source_dirs, rel_include_dirs, extra_params)
 	project_add_extern_libs(extern_libs, target_type)
+	project_add_x11_dirs()
 
 	-- Platform Specifics
 	if os.is("windows") then
@@ -1049,7 +1083,12 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 		-- install_name settings aren't really supported yet by premake, but there are plans for the future.
 		-- we currently use this hack to work around some bugs with wrong install_names.
 		if target_type == "SharedLib" then
-			linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }
+			if _OPTIONS["macosx-bundle"] then
+				-- If we're building a bundle, it will be in ../Frameworks
+				linkoptions { "-install_name @executable_path/../Frameworks/lib"..project_name..".dylib" }
+			else
+				linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }
+			end
 		end
 
 		buildoptions { "-fno-strict-aliasing" }
@@ -1180,6 +1219,7 @@ function setup_tests()
 
 	project_add_contents(source_root, {}, {}, extra_params)
 	project_add_extern_libs(used_extern_libs, target_type)
+	project_add_x11_dirs()
 
 	-- TODO: should fix the duplication between this OS-specific linking
 	-- code, and the similar version in setup_main_exe

@@ -698,36 +698,39 @@ void CComponentManager::DestroyComponentsSoon(entity_id_t ent)
 
 void CComponentManager::FlushDestroyedComponents()
 {
-	// Make a copy of the destruction queue, so that the iterators won't be invalidated if the
-	// CMessageDestroy handlers try to destroy more entities themselves
-	std::vector<entity_id_t> queue;
-	queue.swap(m_DestructionQueue);
-
-	for (std::vector<entity_id_t>::iterator it = queue.begin(); it != queue.end(); ++it)
+	while(!m_DestructionQueue.empty())
 	{
-		entity_id_t ent = *it;
+		// Make a copy of the destruction queue, so that the iterators won't be invalidated if the
+		// CMessageDestroy handlers try to destroy more entities themselves
+		std::vector<entity_id_t> queue;
+		queue.swap(m_DestructionQueue);
 
-		CMessageDestroy msg(ent);
-		PostMessage(ent, msg);
-
-		// Destroy the components, and remove from m_ComponentsByTypeId:
-		std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::iterator iit = m_ComponentsByTypeId.begin();
-		for (; iit != m_ComponentsByTypeId.end(); ++iit)
+		for (std::vector<entity_id_t>::iterator it = queue.begin(); it != queue.end(); ++it)
 		{
-			std::map<entity_id_t, IComponent*>::iterator eit = iit->second.find(ent);
-			if (eit != iit->second.end())
+			entity_id_t ent = *it;
+
+			CMessageDestroy msg(ent);
+			PostMessage(ent, msg);
+
+			// Destroy the components, and remove from m_ComponentsByTypeId:
+			std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::iterator iit = m_ComponentsByTypeId.begin();
+			for (; iit != m_ComponentsByTypeId.end(); ++iit)
 			{
-				eit->second->Deinit();
-				m_ComponentTypesById[iit->first].dealloc(eit->second);
-				iit->second.erase(ent);
+				std::map<entity_id_t, IComponent*>::iterator eit = iit->second.find(ent);
+				if (eit != iit->second.end())
+				{
+					eit->second->Deinit();
+					m_ComponentTypesById[iit->first].dealloc(eit->second);
+					iit->second.erase(ent);
+				}
 			}
-		}
 
-		// Remove from m_ComponentsByInterface
-		std::vector<boost::unordered_map<entity_id_t, IComponent*> >::iterator ifcit = m_ComponentsByInterface.begin();
-		for (; ifcit != m_ComponentsByInterface.end(); ++ifcit)
-		{
-			ifcit->erase(ent);
+			// Remove from m_ComponentsByInterface
+			std::vector<boost::unordered_map<entity_id_t, IComponent*> >::iterator ifcit = m_ComponentsByInterface.begin();
+			for (; ifcit != m_ComponentsByInterface.end(); ++ifcit)
+			{
+				ifcit->erase(ent);
+			}
 		}
 	}
 }

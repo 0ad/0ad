@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="ashoka pillar big lions">
+      <mesh>props/ashoka_pillar_big_lions.dae</mesh>
+	  <textures>
+	  <texture file="structural/ashoka_lion.png" name="baseTex"/>
+	  <texture file="structural/ashoka_lion_spec.png" name="specTex"/>
+	  <texture file="structural/ashoka_lion_norm.png" name="normTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

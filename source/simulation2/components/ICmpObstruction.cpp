@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,9 +21,33 @@
 
 #include "simulation2/system/InterfaceScripted.h"
 
+#include "simulation2/system/SimContext.h"
+
+std::string ICmpObstruction::CheckFoundation_wrapper(std::string className)
+{
+	EFoundationCheck check = CheckFoundation(className);
+
+	switch (check)
+	{
+	case FOUNDATION_CHECK_SUCCESS:
+		return "success";
+	case FOUNDATION_CHECK_FAIL_ERROR:
+		return "fail_error";
+	case FOUNDATION_CHECK_FAIL_NO_OBSTRUCTION:
+		return "fail_no_obstruction";
+	case FOUNDATION_CHECK_FAIL_OBSTRUCTS_FOUNDATION:
+		return "fail_obstructs_foundation";
+	case FOUNDATION_CHECK_FAIL_TERRAIN_CLASS:
+		return "fail_terrain_class";
+	default:
+		debug_warn(L"Unexpected result from CheckFoundation");
+		return "";
+	}
+}
+
 BEGIN_INTERFACE_WRAPPER(Obstruction)
 DEFINE_INTERFACE_METHOD_0("GetUnitRadius", entity_pos_t, ICmpObstruction, GetUnitRadius)
-DEFINE_INTERFACE_METHOD_1("CheckFoundation", bool, ICmpObstruction, CheckFoundation, std::string)
+DEFINE_INTERFACE_METHOD_1("CheckFoundation", std::string, ICmpObstruction, CheckFoundation_wrapper, std::string)
 DEFINE_INTERFACE_METHOD_0("CheckDuplicateFoundation", bool, ICmpObstruction, CheckDuplicateFoundation)
 DEFINE_INTERFACE_METHOD_2("GetEntityCollisions", std::vector<entity_id_t>, ICmpObstruction, GetEntityCollisions, bool, bool)
 DEFINE_INTERFACE_METHOD_1("SetActive", void, ICmpObstruction, SetActive, bool)

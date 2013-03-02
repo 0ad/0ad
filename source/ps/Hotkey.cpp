@@ -249,7 +249,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 #if SDL_VERSION_ATLEAST(2, 0, 0)
 	else if( ( keycode == SDLK_LGUI ) || ( keycode == SDLK_RGUI ) )
 #else
-	else if( ( keycode == SDLK_LSUPER ) || ( keycode == SDLK_RSUPER ) )
+	else if( ( keycode == SDLK_LSUPER ) || ( keycode == SDLK_RSUPER ) || ( keycode == SDLK_LMETA ) || ( keycode == SDLK_RMETA) )
 #endif
 	{
 		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_SUPER;

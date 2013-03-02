@@ -22,6 +22,10 @@
       units/cart_mechanical_siege_ballista_packed
       units/cart_mechanical_siege_oxybeles_packed
     </Entities>
+    <Technologies datatype="tokens">
+      pair_siege_attack_pack
+      pair_siege_cost_armor
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/carthaginians/fortress.xml</Actor>

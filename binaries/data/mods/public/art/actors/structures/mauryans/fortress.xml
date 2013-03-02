@@ -21,6 +21,8 @@
       </props>
       <textures>
         <texture file="structural/maur_struct.png" name="baseTex"/>
+		<texture file="structural/maur_struct_spec.png" name="specTex"/>
+		<texture file="structural/maur_struct_norm.png" name="normTex"/>
         <texture file="structural/ao/maur_fortress_ao.png" name="aoTex"/>
       </textures>
     </variant>
@@ -29,7 +31,7 @@
     <variant frequency="100" name="Idle"/>
     <variant name="garrisoned">
       <props>
-        <prop actor="props/special/common/garrison_flag_persians.xml" attachpoint="garrisoned"/>
+        <prop actor="props/special/common/garrison_flag_mauryans.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
     <variant name="death">
@@ -41,5 +43,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

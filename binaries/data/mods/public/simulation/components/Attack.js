@@ -698,7 +698,7 @@ Attack.prototype.CauseDamage = function(data)
 	}
 
 	Engine.PostMessage(data.target, MT_Attacked,
-		{ "attacker": this.entity, "target": data.target, "type": data.type });
+		{ "attacker": this.entity, "target": data.target, "type": data.type, "damage": -targetState.change });
 
 	PlaySound("attack_impact", this.entity);
 };

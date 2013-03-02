@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource_corral">
   <Footprint>
-    <Square width="18.0" depth="12.0"/>
+    <Square width="14.5" depth="14.5"/>
     <Height>5.0</Height>
   </Footprint>
   <Health>
-    <SpawnEntityOnDeath>rubble/rubble_4x2</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>rubble/rubble_3x3</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>maur</Civ>
@@ -13,10 +13,10 @@
     <History>Corral.</History>
   </Identity>
   <Obstruction>
-    <Static width="17.0" depth="11.0"/>
+    <Static width="13.0" depth="13.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/mauryans/corral.xml</Actor>
-    <FoundationActor>structures/fndn_4x2.xml</FoundationActor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
   </VisualActor>
 </Entity>

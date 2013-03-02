@@ -3,7 +3,7 @@
   <Attack>
     <Melee>
       <Hack>0.0</Hack>
-      <Crush>20.0</Crush>
+      <Crush>10.0</Crush>
 	  <Bonuses>
 		<BonusStructures>
 		  <Classes>Structure</Classes>
@@ -21,7 +21,7 @@
     </Melee>
     <Charge>
       <Hack>0.0</Hack>
-      <Crush>40.0</Crush>
+      <Crush>20.0</Crush>
 	  <Bonuses>
 		<BonusPrimary>
 		  <Classes>Infantry Spear</Classes>
@@ -34,19 +34,13 @@
 	  </Bonuses>
     </Charge>
   </Attack>
-  <Cost>
-    <Resources>
-      <food>60</food>
-      <metal>100</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>maur</Civ>
     <GenericName>Warrior</GenericName>
     <SpecificName>Yōddha</SpecificName>
     <History>Lightly armoured or no armour.</History>
     <Icon>units/maur_champion_maceman.png</Icon>
-	<Tooltip>Champion Swordsman. Lightly armoured. Good against buildings.
+	<Tooltip>Champion Swordsman. Good against buildings.
 Counters: 2x vs. Structures, 1.5x vs. Spearmen, 1.25x vs. Elephants. Countered by: Archers, Cavalry Spearmen.</Tooltip>
   </Identity>
   <VisualActor>

@@ -10,7 +10,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="25.0" depth="25.0"/>
+    <Square width="29.0" depth="27.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Health>
@@ -25,7 +25,7 @@
     <Tooltip>Train elephant units.</Tooltip>
   </Identity>
   <Obstruction>
-    <Static width="25.0" depth="25.0"/>
+    <Static width="30.0" depth="29.0"/>
   </Obstruction>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
@@ -46,6 +46,6 @@
     <Radius>38</Radius>
   </TerritoryInfluence>
   <VisualActor>
-    <Actor>structures/mauryans/fortress.xml</Actor>
+    <Actor>structures/mauryans/stables.xml</Actor>
   </VisualActor>
 </Entity>

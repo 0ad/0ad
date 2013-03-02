@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="farmstead hay">
+      <animations/>
+      <mesh>structural/maur_farmstead_prop_b.dae</mesh>
+      <props/>
+      <textures><texture file="props/celt_prop_1.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+<material>player_trans.xml</material>
+</actor>

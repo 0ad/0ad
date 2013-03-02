@@ -249,4 +249,6 @@ void CReplayPlayer::Replay()
 
 	delete &g_Profiler;
 	delete &g_ProfileViewer;
+
+	g_Game = NULL;
 }

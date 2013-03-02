@@ -439,6 +439,9 @@ namespace
 
 			f << "\n\n" << table->GetTitle() << "\n";
 
+			if (cols == 0) // avoid divide-by-zero
+				return;
+
 			for (size_t r = 0; r < data.size()/cols; ++r)
 			{
 				for (size_t c = 0; c < cols; ++c)

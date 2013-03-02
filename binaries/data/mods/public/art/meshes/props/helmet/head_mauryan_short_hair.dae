@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.62.0 r44136</authoring_tool>
+    </contributor>
+    <created>2013-01-31T23:07:05</created>
+    <modified>2013-01-31T23:07:05</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="head-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="head-material" name="head">
+      <instance_effect url="#head-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="short_hair-mesh" name="short hair">
+      <mesh>
+        <source id="short_hair-mesh-positions">
+          <float_array id="short_hair-mesh-positions-array" count="78">0.217279 -0.253521 0.177904 0.170587 -0.362187 -0.04085695 0.1699501 -0.4747731 0.3488331 0.112669 -0.569065 0.148071 0.151938 -0.1787829 0.382311 0.128305 -0.14459 -0.168938 -0.002303957 -0.40898 -0.1126909 -0.00230199 -0.1797139 0.455248 -0.002303957 -0.1347 -0.2074629 -0.221886 -0.253521 0.177905 -0.175195 -0.362187 -0.04085594 -0.1745561 -0.474773 0.3488341 -0.117277 -0.569065 0.148072 -0.002303957 -0.615221 0.103882 -0.156543 -0.1787829 0.382312 -0.002302944 -0.558722 0.347018 -0.1329129 -0.144589 -0.1689369 -0.00230199 -0.375795 0.484415 0.123453 -0.01781195 0.026398 -0.128059 -0.01781195 0.026398 -0.002303957 -0.04184997 -0.08708196 -0.002302944 0.03232097 0.22768 0.1662434 -0.319479 0.376735 0.1295838 -0.417985 0.427787 -0.170849 -0.319479 0.376736 -0.1341888 -0.417985 0.4277876</float_array>
+          <technique_common>
+            <accessor source="#short_hair-mesh-positions-array" count="26" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="short_hair-mesh-normals">
+          <float_array id="short_hair-mesh-normals-array" count="78">0.780633 -0.5086215 0.3631092 0.641377 -0.755089 -0.1358684 0.8110904 -0.3241371 -0.4868618 0.9947813 0.1019623 -0.001739501 0 -0.8609882 0.5085909 0 -0.9474776 -0.3197424 0 -0.5791193 -0.8152104 0.7061983 0.4084903 0.5782647 0 0.8869289 0.4618671 0 0.4309824 0.9023408 0 -0.1660817 0.9860836 0.838496 0.5301675 -0.1257668 0.6708579 0.2364879 -0.7028413 0 0.2829371 -0.9591052 0 0.8245491 -0.5657216 -0.780633 -0.5086215 0.3631398 -0.9947813 0.1019929 -0.001739501 -0.8110904 -0.3241371 -0.4868618 -0.641377 -0.755089 -0.1358684 -0.7061678 0.4084903 0.5782647 -0.838496 0.5301675 -0.1257668 -0.6708579 0.2364879 -0.7028108 0.8929411 0.02603226 0.4494156 0.5432295 -0.2838832 0.7901242 -0.8929105 0.02603226 0.4494156 -0.543199 -0.2838832 0.7901242</float_array>
+          <technique_common>
+            <accessor source="#short_hair-mesh-normals-array" count="26" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="short_hair-mesh-map-0">
+          <float_array id="short_hair-mesh-map-0-array" count="276">0.644017 0.885876 0.206654 0.904975 0.210938 0.556103 0.210938 0.556103 0.570261 0.605047 0.644017 0.885876 0.470245 1 2.51456e-4 0.924492 0.206654 0.904975 0.206654 0.904975 0.644017 0.885876 0.470245 1 2.51456e-4 0.556445 0.210938 0.556103 0.206654 0.904975 0.206654 0.904975 2.51456e-4 0.924492 2.51456e-4 0.556445 0.823732 0.745248 0.995527 0.03849595 0.999294 0.855959 0.999294 0.855959 0.999294 1 0.823732 0.745248 0.587555 0.179186 0.995527 0.03849595 0.823732 0.745248 0.823732 0.745248 0.570261 0.605047 0.587555 0.179186 0.587555 0.179186 0.570261 0.605047 0.210938 0.556103 0.210938 0.556103 0.210938 0.185225 0.587555 0.179186 0.210938 0.185225 0.210938 0.556103 2.51456e-4 0.556445 2.51456e-4 0.556445 2.51456e-4 0.185566 0.210938 0.185225 0.320194 0.01807397 0.587555 0.179186 0.210938 0.185225 0.210938 0.185225 2.51456e-4 0.185566 0.320194 0.01807397 0.644017 0.885876 0.570261 0.605047 0.210938 0.556103 0.210938 0.556103 0.206654 0.904975 0.644017 0.885876 0.470245 1 0.644017 0.885876 0.206654 0.904975 0.206654 0.904975 2.51456e-4 0.924492 0.470245 1 2.51456e-4 0.556445 2.51456e-4 0.924492 0.206654 0.904975 0.206654 0.904975 0.210938 0.556103 2.51456e-4 0.556445 0.823732 0.745248 0.999294 1 0.999294 0.855959 0.999294 0.855959 0.995527 0.03849595 0.823732 0.745248 0.587555 0.179186 0.570261 0.605047 0.823732 0.745248 0.823732 0.745248 0.995527 0.03849595 0.587555 0.179186 0.210938 0.556103 0.570261 0.605047 0.587555 0.179186 0.587555 0.179186 0.210938 0.185225 0.210938 0.556103 2.51456e-4 0.556445 0.210938 0.556103 0.210938 0.185225 0.210938 0.185225 2.51456e-4 0.185566 2.51456e-4 0.556445 0.320194 0.01807397 2.51456e-4 0.185566 0.210938 0.185225 0.210938 0.185225 0.587555 0.179186 0.320194 0.01807397 0.7338745 0.8155621 0.570261 0.605047 0.823732 0.745248 0.644017 0.885876 0.570261 0.605047 0.7338745 0.8155621 0.644017 0.885876 0.8216556 0.9429381 0.470245 1 0.8216556 0.9429381 0.999294 1 0.470245 1 0.8216555 0.942938 0.644017 0.885876 0.7338745 0.8155621 0.644017 0.885876 0.7338745 0.8155621 0.570261 0.605047 0.7338745 0.8155621 0.823732 0.745248 0.570261 0.605047 0.7338744 0.815562 0.644017 0.885876 0.8216555 0.942938 0.999294 1 0.8216555 0.942938 0.470245 1 0.8216555 0.942938 0.644017 0.885876 0.470245 1 0.8216555 0.942938 0.7338745 0.8155621 0.823732 0.745248 0.823732 0.745248 0.999294 1 0.8216555 0.942938 0.823732 0.745248 0.7338744 0.815562 0.8216555 0.942938 0.8216555 0.942938 0.999294 1 0.823732 0.745248</float_array>
+          <technique_common>
+            <accessor source="#short_hair-mesh-map-0-array" count="138" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="short_hair-mesh-vertices">
+          <input semantic="POSITION" source="#short_hair-mesh-positions"/>
+        </vertices>
+        <polylist material="head1" count="46">
+          <input semantic="VERTEX" source="#short_hair-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#short_hair-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#short_hair-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>2 0 0 3 1 1 1 2 2 1 2 3 0 3 4 2 0 5 15 4 6 13 5 7 3 1 8 3 1 9 2 0 10 15 4 11 6 6 12 1 2 13 3 1 14 3 1 15 13 5 16 6 6 17 4 7 18 21 8 19 7 9 20 7 9 21 17 10 22 4 7 23 18 11 24 21 8 25 4 7 26 4 7 27 0 3 28 18 11 29 18 11 30 0 3 31 1 2 32 1 2 33 5 12 34 18 11 35 5 12 36 1 2 37 6 6 38 6 6 39 8 13 40 5 12 41 20 14 42 18 11 43 5 12 44 5 12 45 8 13 46 20 14 47 11 15 48 9 16 49 10 17 50 10 17 51 12 18 52 11 15 53 15 4 54 11 15 55 12 18 56 12 18 57 13 5 58 15 4 59 6 6 60 13 5 61 12 18 62 12 18 63 10 17 64 6 6 65 14 19 66 17 10 67 7 9 68 7 9 69 21 8 70 14 19 71 19 20 72 9 16 73 14 19 74 14 19 75 21 8 76 19 20 77 10 17 78 9 16 79 19 20 80 19 20 81 16 21 82 10 17 83 6 6 84 10 17 85 16 21 86 16 21 87 8 13 88 6 6 89 20 14 90 8 13 91 16 21 92 16 21 93 19 20 94 20 14 95 22 22 96 0 3 97 4 7 98 2 0 99 0 3 100 22 22 101 2 0 102 23 23 103 15 4 104 23 23 105 17 10 106 15 4 107 23 23 108 2 0 109 22 22 110 11 15 111 24 24 112 9 16 113 24 24 114 14 19 115 9 16 116 24 24 117 11 15 118 25 25 119 17 10 120 25 25 121 15 4 122 25 25 123 11 15 124 15 4 125 23 23 126 22 22 127 4 7 128 4 7 129 17 10 130 23 23 131 14 19 132 24 24 133 25 25 134 25 25 135 17 10 136 14 19 137</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Indian_head_short_hair" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 -56.8209</rotate>
+        <scale sid="scale">1 0.9999999 0.9999999</scale>
+        <instance_geometry url="#short_hair-mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="head1" target="#head-material">
+                <bind_vertex_input semantic="Sphere003-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

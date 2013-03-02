@@ -4,10 +4,15 @@
   <group>
     <variant name="ashoka_pillar">
       <mesh>props/ashoka_pillar.dae</mesh>
-	   <textures><texture file="structural/ashoka_pillar.png" name="baseTex"/></textures>
+	   <textures>
+	   <texture file="structural/ashoka_pillar.png" name="baseTex"/>
+	   <texture file="structural/ashoka_pillar_spec.png" name="specTex"/>
+	   <texture file="structural/ashoka_pillar_norm.png" name="normTex"/>
+	   </textures>
 	    <props>
         <prop actor="props/structures/mauryans/ashoka_lion.xml" attachpoint="ashoka_lion"/>
 		</props>
     </variant>
   </group>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

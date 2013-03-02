@@ -7,29 +7,45 @@
       <props>
         <prop actor="props/structures/mauryans/house_a_struct_b.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/maur_struct.png" name="baseTex"/></textures>
+      <textures>
+	  	<texture file="structural/maur_struct.png" name="baseTex"/>
+	  	<texture file="structural/maur_struct_spec.png" name="specTex"/>
+		<texture file="structural/maur_struct_norm.png" name="normTex"/>
+	  </textures>
     </variant>
     <variant frequency="1" name="House B">
       <mesh>structural/maur_house_b.dae</mesh>
       <props>
         <prop actor="props/structures/mauryans/house_b_struct_b.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/maur_struct.png" name="baseTex"/></textures>
+      <textures>
+	  <texture file="structural/maur_struct.png" name="baseTex"/>
+	  <texture file="structural/maur_struct_spec.png" name="specTex"/>
+	  <texture file="structural/maur_struct_norm.png" name="normTex"/>
+	  </textures>
     </variant>
     <variant frequency="1" name="House C">
       <mesh>structural/maur_house_c.dae</mesh>
       <props>
         <prop actor="props/structures/mauryans/house_c_struct_b.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/maur_struct.png" name="baseTex"/></textures>
+      <textures>
+	  <texture file="structural/maur_struct.png" name="baseTex"/>
+	  <texture file="structural/maur_struct_spec.png" name="specTex"/>
+	  <texture file="structural/maur_struct_norm.png" name="normTex"/>
+	  </textures>
     </variant>
     <variant frequency="1" name="House D">
       <mesh>structural/maur_house_d.dae</mesh>
       <props>
         <prop actor="props/structures/mauryans/house_d_struct_b.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/maur_struct.png" name="baseTex"/></textures>
+      <textures>
+	  <texture file="structural/maur_struct.png" name="baseTex"/>
+	  <texture file="structural/maur_struct_spec.png" name="specTex"/>
+	  <texture file="structural/maur_struct_norm.png" name="normTex"/>
+	  </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

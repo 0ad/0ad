@@ -85,6 +85,8 @@ function init(data)
 	var left = 50;
 	var width = 100;
 	var playerNameHeadingWidth = 200;
+	// Special cased to make the (Sent / Received) part fit
+	var tributesWidth = 121;
 	getGUIObjectByName("playerName0Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
 	getGUIObjectByName("economyScoreHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("militaryScoreHeading").size = left +  " 16 " + (left + width) + " 100%"; left += width;
@@ -98,7 +100,7 @@ function init(data)
 	getGUIObjectByName("enemyUnitsKilledHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("buildingsConstructedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("buildingsLostHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("enemyBuildingsDestroyedHeading").size = left +  " 6 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("enemyBuildingsDestroyedHeading").size = left + " 6 " + (left + width) + " 100%"; left += width;
 
 	left = 50;
 	getGUIObjectByName("playerName2Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
@@ -115,6 +117,7 @@ function init(data)
 	getGUIObjectByName("metalGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("vegetarianRatioHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("treasuresCollectedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("resourcesTributedHeading").size = left + " 16 " + (left + tributesWidth) + " 100%"; left += tributesWidth;
 
 	left = 50;
 	getGUIObjectByName("playerName4Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
@@ -176,6 +179,7 @@ function init(data)
 			var metalGathered = getGUIObjectByName("metalGathered["+i+"]");
 			var vegetarianRatio = getGUIObjectByName("vegetarianRatio["+i+"]");
 			var treasuresCollected = getGUIObjectByName("treasuresCollected["+i+"]");
+			var resourcesTributed = getGUIObjectByName("resourcesTributed["+i+"]");
 
 			var exchangedFood = getGUIObjectByName("exchangedFood["+i+"]");
 			var exchangedWood = getGUIObjectByName("exchangedWood["+i+"]");
@@ -222,6 +226,7 @@ function init(data)
 			metalGathered.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			vegetarianRatio.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			treasuresCollected.size	= left + " 2 " + (left + width) + " 100%"; left += width;
+			resourcesTributed.size = left + " 2 " + (left + tributesWidth) + " 100%"; left += tributesWidth;
 			size = getGUIObjectByName("playerBox3["+i+"]").size;
 			size.right = left + 10;
 			getGUIObjectByName("playerBox3["+i+"]").size = size;
@@ -259,15 +264,17 @@ function init(data)
 			const BOUGHT_COLOR = '[color="255 213 213"]';
 			foodGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.food + "[/color] / " +
 				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.food - playerState.statistics.resourcesSold.food) + "[/color]";
-			woodGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.wood + "[/color]  / " +
+			woodGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.wood + "[/color] / " +
 				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.wood - playerState.statistics.resourcesSold.wood) + "[/color]";
-			stoneGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.stone + "[/color]  / " +
+			stoneGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.stone + "[/color] / " +
 				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.stone - playerState.statistics.resourcesSold.stone) + "[/color]";
-			metalGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.metal + "[/color]  / " +
+			metalGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.metal + "[/color] / " +
 				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.metal - playerState.statistics.resourcesSold.metal) + "[/color]";
 			vegetarianRatio.caption = Math.floor(playerState.statistics.resourcesGathered.food > 0 ?
 				(playerState.statistics.resourcesGathered.vegetarianFood / playerState.statistics.resourcesGathered.food) * 100 : 0) + "%";
 			treasuresCollected.caption = playerState.statistics.treasuresCollected;
+			resourcesTributed.caption = SOLD_COLOR + playerState.statistics.tributesSent + "[/color] / " +
+				BOUGHT_COLOR + playerState.statistics.tributesReceived + "[/color]";
 
 			exchangedFood.caption = SOLD_COLOR + '+' + playerState.statistics.resourcesBought.food
 				+ '[/color] ' + BOUGHT_COLOR + '-' + playerState.statistics.resourcesSold.food + '[/color]';

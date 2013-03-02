@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -117,6 +117,7 @@ QUERY(SimStateDebugDump,
 
 MESSAGE(SimPlay,
 		((float, speed)) // 0 for pause, 1 for normal speed
+		((bool, simTest)) // true if we're in simulation test mode, false otherwise
 		);
 
 //////////////////////////////////////////////////////////////////////////
@@ -336,6 +337,7 @@ MESSAGE(ObjectPreview,
 		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
 		((Position, target))
 		((float, angle))
+		((unsigned int, actorseed))
 		);
 
 COMMAND(CreateObject, NOMERGE,
@@ -345,6 +347,7 @@ COMMAND(CreateObject, NOMERGE,
 		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
 		((Position, target))
 		((float, angle))
+		((unsigned int, actorseed))
 		);
 
 // Set an actor to be previewed on its own (i.e. without the game world).

@@ -313,16 +313,16 @@
 					<object name="diplomacyPlayerEnemy[n]" size="100%-140 0 100%-120 100%" type="button" style="StoneButton" hidden="true"/>
 
 					<!-- Tribute -->
-					<object name="diplomacyPlayerTributeFood[n]" size="100%-110 0 100%-90 100%" type="button" style="iconButton" tooltip="Food" hidden="true">
+					<object name="diplomacyPlayerTributeFood[n]" size="100%-110 0 100%-90 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
 						<object name="diplomacyPlayerTributeFoodImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/food.png" ghost="true"/>
 					</object>
-					<object name="diplomacyPlayerTributeWood[n]" size="100%-90 0 100%-70 100%" type="button" style="iconButton" tooltip="Wood" hidden="true">
+					<object name="diplomacyPlayerTributeWood[n]" size="100%-90 0 100%-70 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
 						<object name="diplomacyPlayerTributeWoodImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/wood.png" ghost="true"/>
 					</object>
-					<object name="diplomacyPlayerTributeStone[n]" size="100%-70 0 100%-50 100%" type="button" style="iconButton" tooltip="Stone" hidden="true">
+					<object name="diplomacyPlayerTributeStone[n]" size="100%-70 0 100%-50 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
 						<object name="diplomacyPlayerTributeStoneImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/stone.png" ghost="true"/>
 					</object>
-					<object name="diplomacyPlayerTributeMetal[n]" size="100%-50 0 100%-30 100%" type="button" style="iconButton" tooltip="Metal" hidden="true">
+					<object name="diplomacyPlayerTributeMetal[n]" size="100%-50 0 100%-30 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
 						<object name="diplomacyPlayerTributeMetalImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/metal.png" ghost="true"/>
 					</object>
 				</object>
@@ -688,9 +688,9 @@
 	<object name="informationTooltip" type="tooltip" independent="true" style="informationTooltip"/>
 
 	<!-- ================================  ================================ -->
-	<!-- Wall-dragging tooltip. Shows the total cost of building a wall while the player is dragging it. -->
+	<!-- Building placement info tooltip									-->
 	<!-- ================================  ================================ -->
-	<object name="wallDragTooltip" type="tooltip" independent="true" style="informationTooltip"/>
+	<object name="placementTooltip" type="tooltip" independent="true" style="informationTooltip"/>
 
 	<!-- ================================  ================================ -->
 	<!-- START of BOTTOM PANEL -->

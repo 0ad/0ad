@@ -59,28 +59,39 @@ if [ "$enable_atlas" = "true" ]; then
   premake_args="${premake_args} --atlas"
 fi
 
-
 cd "$(dirname $0)"
 # Now in build/workspaces/ (where we assume this script resides)
 
-echo "Updating bundled third-party dependencies..."
-echo
+if [ "`uname -s`" = "Darwin" ]; then
+  # Set *_CONFIG variables on OS X, to override the path to e.g. sdl-config
+  export SDL_CONFIG=${SDL_CONFIG:="$(pwd)/../../libraries/osx/sdl/bin/sdl-config"}
+  export WX_CONFIG=${WX_CONFIG:="$(pwd)/../../libraries/osx/wxwidgets/bin/wx-config"}
+  # use xml2-config from system or SDK
+  export XML2_CONFIG=${XML2_CONFIG:="$SYSROOT/usr/bin/xml2-config"}
+fi
 
-# Build/update bundled external libraries
-(cd ../../libraries/fcollada/src && ${MAKE} ${JOBS}) || die "FCollada build failed"
-echo
-if [ "$with_system_mozjs185" = "false" ]; then
-  (cd ../../libraries/spidermonkey && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
+# Don't want to build bundled libs on OS X
+# (build-osx-libs.sh is used instead)
+if [ "`uname -s`" != "Darwin" ]; then
+  echo "Updating bundled third-party dependencies..."
+  echo
+
+  # Build/update bundled external libraries
+  (cd ../../libraries/source/fcollada/src && ${MAKE} ${JOBS}) || die "FCollada build failed"
+  echo
+  if [ "$with_system_mozjs185" = "false" ]; then
+    (cd ../../libraries/source/spidermonkey && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
+  fi
+  echo
+  if [ "$with_system_nvtt" = "false" ] && [ "$without_nvtt" = "false" ]; then
+    (cd ../../libraries/source/nvtt && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "NVTT build failed"
+  fi
+  echo
+  if [ "$with_system_enet" = "false" ]; then
+    (cd ../../libraries/source/enet && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "ENet build failed"
+  fi
+  echo
 fi
-echo
-if [ "$with_system_nvtt" = "false" ] && [ "$without_nvtt" = "false" ]; then
-  (cd ../../libraries/nvtt && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "NVTT build failed"
-fi
-echo
-if [ "$with_system_enet" = "false" ]; then
-  (cd ../../libraries/enet && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "ENet build failed"
-fi
-echo
 
 # Now build premake and run it to create the makefiles
 cd ../premake/premake4
@@ -106,12 +117,13 @@ cd ..
 # If we're in bash then make HOSTTYPE available to Premake, for primitive arch-detection
 export HOSTTYPE="$HOSTTYPE"
 
+echo "Premake args: ${premake_args}"
+
 premake4/bin/release/premake4 --file="premake4.lua" --outpath="../workspaces/gcc/" ${premake_args} gmake || die "Premake failed"
 premake4/bin/release/premake4 --file="premake4.lua" --outpath="../workspaces/codeblocks/" ${premake_args} codeblocks || die "Premake failed"
 
 # Also generate xcode workspaces if on OS X
-if [ "`uname -s`" = "Darwin" ]
-then
+if [ "`uname -s`" = "Darwin" ]; then
   premake4/bin/release/premake4 --file="premake4.lua" --outpath="../workspaces/xcode3" ${premake_args} xcode3 || die "Premake failed"
   premake4/bin/release/premake4 --file="premake4.lua" --outpath="../workspaces/xcode4" ${premake_args} xcode4 || die "Premake failed"
 fi

@@ -659,14 +659,14 @@ private:
 							if (counter.type == INTEL_PERFQUERIES_TYPE_UNSIGNED_INT)
 							{
 								ENSURE(counter.size == 4);
-								GLuint value;
+								GLuint value = 0;
 								memcpy(&value, buf + counter.offset, counter.size);
 								m_Storage.RecordAttributePrintf("%s: %u", counter.name.c_str(), value);
 							}
 							else if (counter.type == INTEL_PERFQUERIES_TYPE_UNSIGNED_INT64)
 							{
 								ENSURE(counter.size == 8);
-								GLuint64 value;
+								GLuint64 value = 0;
 								memcpy(&value, buf + counter.offset, counter.size);
 								m_Storage.RecordAttributePrintf("%s: %.0f", counter.name.c_str(), (double)value);
 
@@ -676,14 +676,14 @@ private:
 							else if (counter.type == INTEL_PERFQUERIES_TYPE_FLOAT)
 							{
 								ENSURE(counter.size == 4);
-								GLfloat value;
+								GLfloat value = 0;
 								memcpy(&value, buf + counter.offset, counter.size);
 								m_Storage.RecordAttributePrintf("%s: %f", counter.name.c_str(), value);
 							}
 							else if (counter.type == INTEL_PERFQUERIES_TYPE_BOOL)
 							{
 								ENSURE(counter.size == 4);
-								GLuint value;
+								GLuint value = 0;
 								memcpy(&value, buf + counter.offset, counter.size);
 								ENSURE(value == 0 || value == 1);
 								m_Storage.RecordAttributePrintf("%s: %u", counter.name.c_str(), value);

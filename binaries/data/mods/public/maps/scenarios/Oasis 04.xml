@@ -11,17 +11,17 @@
 		<Fog>
 			<FogFactor>0.00288086</FogFactor>
 			<FogThickness>0.313477</FogThickness>
-			<FogColour r="0.858824" g="0.803922" b="0.615686"/>
+			<FogColour r="0.858824" g="0.803922" b="0.611765"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.482353" g="0.584314" b="0.815686"/>
+				<Colour r="0.482353" g="0.584314" b="0.811765"/>
 				<Height>20.6689</Height>
 				<Shininess>51.0254</Shininess>
 				<Waviness>2.1875</Waviness>
 				<Murkiness>0.71875</Murkiness>
-				<Tint r="0.545098" g="0.745098" b="0.898039"/>
+				<Tint r="0.541176" g="0.741176" b="0.894118"/>
 				<ReflectionTint r="0.564706" g="0.513726" b="0.419608"/>
 				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="944.164" y="82.0961" z="182.752"/>
+		<Position x="327.433" y="75.1126" z="880.446"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -137,11 +137,11 @@
     },
     {
       "AI": "qbot",
-      "Civ": "brit",
+      "Civ": "maur",
       "Colour": {
-        "b": 75,
-        "g": 230,
-        "r": 230
+        "b": 199,
+        "g": 54,
+        "r": 134
       },
       "Name": "Player 4",
       "Resources": {
@@ -12442,7 +12442,7 @@
 		<Entity uid="2303">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="361.79435" z="994.46082"/>
+			<Position x="365.78931" z="956.06147"/>
 			<Orientation y="1.72742"/>
 		</Entity>
 		<Entity uid="2304">
@@ -14680,7 +14680,7 @@
 		</Entity>
 		<Entity uid="2720">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="360.57602" z="971.08045"/>
+			<Position x="370.08628" z="973.79493"/>
 			<Orientation y="2.08222"/>
 		</Entity>
 		<Entity uid="2721">
@@ -14720,7 +14720,7 @@
 		</Entity>
 		<Entity uid="2728">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="364.23542" z="979.34034"/>
+			<Position x="350.83198" z="984.07996"/>
 			<Orientation y="2.82723"/>
 		</Entity>
 		<Entity uid="2729">
@@ -15749,12 +15749,6 @@
 			<Position x="982.51441" z="967.96155"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2940">
-			<Template>other/celt_tavern</Template>
-			<Player>4</Player>
-			<Position x="352.23642" z="928.01319"/>
-			<Orientation y="-2.37522"/>
-		</Entity>
 		<Entity uid="2948">
 			<Template>units/pers_kardakes_hoplite</Template>
 			<Player>1</Player>
@@ -15789,30 +15783,6 @@
 			<Template>units/cart_sacred_band_cavalry</Template>
 			<Player>2</Player>
 			<Position x="319.34528" z="308.14945"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2959">
-			<Template>units/celt_fanatic</Template>
-			<Player>4</Player>
-			<Position x="323.88266" z="941.19678"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2960">
-			<Template>units/celt_fanatic</Template>
-			<Player>4</Player>
-			<Position x="327.59055" z="944.80628"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2961">
-			<Template>units/celt_fanatic</Template>
-			<Player>4</Player>
-			<Position x="331.89927" z="948.8946"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2962">
-			<Template>units/celt_fanatic</Template>
-			<Player>4</Player>
-			<Position x="336.6579" z="953.98877"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2963">
@@ -15899,36 +15869,6 @@
 			<Position x="954.92682" z="257.11124"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2981">
-			<Template>structures/brit_civil_centre</Template>
-			<Player>4</Player>
-			<Position x="311.23761" z="969.201"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2982">
-			<Template>units/brit_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="317.49027" z="947.35785"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2983">
-			<Template>units/brit_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="320.99271" z="950.12073"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2984">
-			<Template>units/brit_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="324.68265" z="954.26606"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2985">
-			<Template>units/brit_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="329.25736" z="958.75556"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2986">
 			<Template>units/mace_thorakites</Template>
 			<Player>3</Player>
@@ -15957,6 +15897,66 @@
 			<Template>units/cart_sacred_band_cavalry</Template>
 			<Player>2</Player>
 			<Position x="316.45212" z="304.66272"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2991">
+			<Template>structures/maur_civil_centre</Template>
+			<Player>4</Player>
+			<Position x="314.92344" z="972.27479"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2992">
+			<Template>other/maur_palace</Template>
+			<Player>4</Player>
+			<Position x="362.4933" z="985.21534"/>
+			<Orientation y="-2.34755"/>
+		</Entity>
+		<Entity uid="2997">
+			<Template>units/maur_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="324.38587" z="948.78931"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2999">
+			<Template>units/maur_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="327.14966" z="951.71674"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3000">
+			<Template>units/maur_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="332.00086" z="956.00886"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3002">
+			<Template>units/maur_champion_infantry</Template>
+			<Player>4</Player>
+			<Position x="328.35825" z="944.57923"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3003">
+			<Template>units/maur_champion_infantry</Template>
+			<Player>4</Player>
+			<Position x="330.95884" z="947.10895"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3004">
+			<Template>units/maur_champion_infantry</Template>
+			<Player>4</Player>
+			<Position x="333.34449" z="950.40168"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3005">
+			<Template>units/maur_champion_infantry</Template>
+			<Player>4</Player>
+			<Position x="336.75806" z="953.11109"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3006">
+			<Template>units/maur_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="329.5524" z="953.82154"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

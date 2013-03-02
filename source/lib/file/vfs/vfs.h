@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -136,6 +136,17 @@ struct IVFS
 	 * (we need only invalidate cached data when closing a newly written file).
 	 **/
 	virtual Status CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size) = 0;
+
+	/**
+	 * Replace a file with the given contents.
+	 * 
+	 * @see CreateFile
+	 * 
+	 * Used to replace a file if it is already present (even if the file is not
+	 * in the attached vfs directory). Calls CreateFile if the file doesn't yet
+	 * exist.
+	  **/
+	virtual Status ReplaceFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size) = 0;
 
 	/**
 	 * Read an entire file into memory.

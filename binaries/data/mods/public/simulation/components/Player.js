@@ -14,10 +14,10 @@ Player.prototype.Init = function()
 	this.maxPop = 300; // maximum population
 	this.trainingBlocked = false; // indicates whether any training queue is currently blocked
 	this.resourceCount = {
-		"food": 300,	
-		"wood": 300,	
-		"metal": 300,	
-		"stone": 300	
+		"food": 300,
+		"wood": 300,
+		"metal": 300,
+		"stone": 300
 	};
 
 	this.team = -1;	// team number of the player, players on the same team will always have ally diplomatic status - also this is useful for team emblems, scoring, etc.
@@ -74,13 +74,14 @@ Player.prototype.GetColour = function()
 	return this.colour;
 };
 
+// Try reserving num population slots. Returns 0 on success or number of missing slots otherwise.
 Player.prototype.TryReservePopulationSlots = function(num)
 {
 	if (num != 0 && num > (this.GetPopulationLimit() - this.GetPopulationCount()))
-		return false;
+		return num - (this.GetPopulationLimit() - this.GetPopulationCount());
 
 	this.popUsed += num;
-	return true;
+	return 0;
 };
 
 Player.prototype.UnReservePopulationSlots = function(num)
@@ -105,7 +106,7 @@ Player.prototype.SetMaxPopulation = function(max)
 
 Player.prototype.GetMaxPopulation = function()
 {
-	return ApplyTechModificationsToPlayer("Player/MaxPopulation", this.maxPop, this.entity);
+	return Math.round(ApplyTechModificationsToPlayer("Player/MaxPopulation", this.maxPop, this.entity));
 };
 
 Player.prototype.IsTrainingBlocked = function()
@@ -143,7 +144,7 @@ Player.prototype.GetResourceCounts = function()
 /**
  * Add resource of specified type to player
  * @param type Generic type of resource (string)
- * @param amount Amount of resource, whick should be added (integer)
+ * @param amount Amount of resource, which should be added (integer)
  */
 Player.prototype.AddResource = function(type, amount)
 {
@@ -539,7 +540,18 @@ Player.prototype.TributeResource = function(player, amounts)
 			this.resourceCount[type] -= amounts[type];
 
 		cmpPlayer.AddResources(amounts);
-		// TODO: notify the receiver
+
+		var total = Object.keys(amounts).reduce(function (sum, type){ return sum + amounts[type]; }, 0);
+		var cmpOurStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
+		if (cmpOurStatisticsTracker)
+			cmpOurStatisticsTracker.IncreaseTributesSentCounter(total);
+		var cmpTheirStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
+		if (cmpTheirStatisticsTracker)
+			cmpTheirStatisticsTracker.IncreaseTributesReceivedCounter(total);
+
+		var notification = {"type": "tribute", "player": player, "player1": this.playerID, "amounts": amounts};
+		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification(notification);
 	}
 	// else not enough resources... TODO: send gui notification
 };

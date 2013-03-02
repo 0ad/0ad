@@ -13,9 +13,6 @@ sub get_filename
 {
     my ($vfspath) = @_;
     my $fn = "$vfsroot/public/simulation/templates/$vfspath.xml";
-    if (not -e $fn) {
-        $fn = "$vfsroot/internal/simulation/templates/$vfspath.xml";
-    }
     return $fn;
 }
 
@@ -125,12 +122,11 @@ sub find_entities
         my $n = $File::Find::name;
         return if /~$/;
         return unless -f $_;
-        $n =~ s~\Q$vfsroot\E/(public|internal)/simulation/templates/~~;
+        $n =~ s~\Q$vfsroot\E/public/simulation/templates/~~;
         $n =~ s/\.xml$//;
         push @files, $n;
     };
     find({ wanted => $find_process }, "$vfsroot/public/simulation/templates");
-    find({ wanted => $find_process }, "$vfsroot/internal/simulation/templates") if -e "$vfsroot/internal";
 
     return @files;
 }

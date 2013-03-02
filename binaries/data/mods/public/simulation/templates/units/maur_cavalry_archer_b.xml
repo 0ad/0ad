@@ -22,8 +22,8 @@
   <Identity>
     <Civ>maur</Civ>
     <Classes datatype="tokens">Elephant -Cavalry</Classes>
-	<SelectionGroupName>units/maur_cavalry_archer_b</SelectionGroupName>
-	<GenericName>Elephant Archer</GenericName>
+    <SelectionGroupName>units/maur_cavalry_archer_b</SelectionGroupName>
+    <GenericName>Elephant Archer</GenericName>
     <SpecificName>Vachii Gaja</SpecificName>
     <Icon>units/cart_champion_cavalry.png</Icon>
     <History>Elephant Archer.</History>
@@ -49,7 +49,7 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
+    <WalkSpeed>6.0</WalkSpeed>
     <Run>
       <Speed>12.0</Speed>
     </Run>

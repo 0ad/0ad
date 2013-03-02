@@ -198,6 +198,7 @@ void RunHardwareDetection()
 	scriptInterface.Eval("({})", settings);
 
 	scriptInterface.SetProperty(settings.get(), "os_unix", OS_UNIX);
+	scriptInterface.SetProperty(settings.get(), "os_bsd", OS_BSD);
 	scriptInterface.SetProperty(settings.get(), "os_linux", OS_LINUX);
 	scriptInterface.SetProperty(settings.get(), "os_android", OS_ANDROID);
 	scriptInterface.SetProperty(settings.get(), "os_macosx", OS_MACOSX);
@@ -220,6 +221,7 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "build_msc", (int)MSC_VERSION);
 	scriptInterface.SetProperty(settings.get(), "build_icc", (int)ICC_VERSION);
 	scriptInterface.SetProperty(settings.get(), "build_gcc", (int)GCC_VERSION);
+	scriptInterface.SetProperty(settings.get(), "build_clang", (int)CLANG_VERSION);
 
 	scriptInterface.SetProperty(settings.get(), "gfx_card", gfx::CardName());
 	scriptInterface.SetProperty(settings.get(), "gfx_drv_ver", gfx::DriverInfo());

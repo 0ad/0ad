@@ -92,7 +92,7 @@ EntityGroups.prototype.rebuildGroup = function(renamed)
 
 	var toAdd = [];
 	for (var ent in oldGroup)
-		toAdd.push(renamed[ent] ? renamed[ent] : parseInt(ent));
+		toAdd.push(renamed[ent] ? renamed[ent] : +ent);
 
 	this.add(toAdd);
 }
@@ -129,7 +129,7 @@ EntityGroups.prototype.getEntsByName = function(templateName)
 	for (var ent in this.ents)
 	{
 		if (this.ents[ent] == templateName)
-			ents.push(parseInt(ent));
+			ents.push(+ent);
 	}
 
 	return ents;
@@ -144,7 +144,7 @@ EntityGroups.prototype.getEntsByNameInverse = function(templateName)
 	for (var ent in this.ents)
 	{
 		if (this.ents[ent] != templateName)
-			ents.push(parseInt(ent));
+			ents.push(+ent);
 	}
 
 	return ents;

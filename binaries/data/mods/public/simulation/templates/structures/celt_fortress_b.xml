@@ -42,6 +42,10 @@
       units/celt_champion_infantry_brit
       units/celt_mechanical_siege_ram
     </Entities>
+    <Technologies datatype="tokens">
+      pair_siege_attack_cost
+      pair_siege_cost_armor
+    </Technologies>
   </ProductionQueue>
   <Vision>
     <Range>100</Range>

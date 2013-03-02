@@ -460,6 +460,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// run non-visual simulation replay if requested
 	if (args.Has("replay"))
 	{
+		// TODO: Support mods
 		Paths paths(args);
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);

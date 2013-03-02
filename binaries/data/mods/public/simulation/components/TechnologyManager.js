@@ -359,6 +359,9 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 	{
 		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		var templateName = cmpTemplateManager.GetCurrentTemplateName(ent);
+		// Ensure that preview entites have the same properties as the final building
+		if (templateName.indexOf("preview|") != -1)
+			templateName = templateName.slice(8);
 		this.modificationCache[valueName][ent] = GetTechModifiedProperty(this.modifications, cmpTemplateManager.GetTemplate(templateName), valueName, curValue);
 	}
 	

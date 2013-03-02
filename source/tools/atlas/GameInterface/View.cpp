@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/components/ICmpParticleManager.h"
 #include "simulation2/components/ICmpPathfinder.h"
 
 extern void (*Atlas_GLSwapBuffers)(void* context);
@@ -168,7 +169,7 @@ static void delete_pair_2nd(std::pair<T,S> v)
 }
 
 AtlasViewGame::AtlasViewGame()
-	: m_SpeedMultiplier(0.f)
+	: m_SpeedMultiplier(0.f), m_IsTesting(false)
 {
 	ENSURE(g_Game);
 }
@@ -194,14 +195,6 @@ void AtlasViewGame::Update(float realFrameLength)
 	{
 		// Update unit interpolation
 		g_Game->Interpolate(0.0, realFrameLength);
-
-		// Update particles even when the game is paused, so people can see
-		// what they look like (i.e., use real time to simulate them).
-		// (TODO: maybe it'd be nice if this only applied in
-		// the not-testing-game editor state, not the testing-game-but-currently-paused
-		// state. Or maybe display a static snapshot of the particles (at some time
-		// later than 0 so they're actually visible) instead of animation, or something.)
-		g_Renderer.GetParticleManager().Interpolate(realFrameLength);
 	}
 	else
 	{
@@ -353,6 +346,15 @@ bool AtlasViewGame::WantsHighFramerate()
 void AtlasViewGame::SetSpeedMultiplier(float speed)
 {
 	m_SpeedMultiplier = speed;
+}
+
+void AtlasViewGame::SetTesting(bool testing)
+{
+	m_IsTesting = testing;
+	// If we're testing, particles should freeze on pause (like in-game), otherwise they keep going
+	CmpPtr<ICmpParticleManager> cmpParticleManager(*GetSimulation2(), SYSTEM_ENTITY);
+	if (cmpParticleManager)
+		cmpParticleManager->SetUseSimTime(m_IsTesting);
 }
 
 void AtlasViewGame::SaveState(const std::wstring& label)
