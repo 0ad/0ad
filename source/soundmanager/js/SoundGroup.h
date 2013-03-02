@@ -54,6 +54,8 @@ Example SoundGroup.xml
 
 #include "lib/config2.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "simulation2/system/Entity.h"
+#include "soundmanager/data/SoundData.h"
 
 #include <vector>
 
@@ -82,7 +84,7 @@ public:
 	// Play next sound in group
 	// @param position world position of the entity generating the sound
 	// (ignored if the eOmnipresent flag is set)
-	void PlayNext(const CVector3D& position);
+	void PlayNext(const CVector3D& position, entity_id_t source);
 
 	float RadiansOffCenter(const CVector3D& position, bool& onScreen, float& itemRollOff);
 
@@ -105,13 +107,15 @@ public:
 	
 private:
 	void SetGain(float gain);
-	void UploadPropertiesAndPlay(unsigned int theIndex, const CVector3D& position);
+
+	void UploadPropertiesAndPlay(int theIndex, const CVector3D& position, entity_id_t source);
+
 	void SetDefaultValues();
 
-	size_t m_index;  // index of the next sound to play
+	int m_index;  // index of the next sound to play
 		
 #if CONFIG2_AUDIO
-	std::vector<ISoundItem*> snd_group;  // we store the handles so we can load now and play later
+	std::vector<CSoundData*> snd_group;  // we store the handles so we can load now and play later
 #endif
 	std::vector<std::wstring> filenames; // we need the filenames so we can reload when necessary.
 

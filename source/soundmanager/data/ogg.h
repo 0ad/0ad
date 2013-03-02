@@ -32,6 +32,7 @@ public:
 	virtual ALsizei SamplingRate() = 0;
 	virtual bool atFileEOF() = 0;
 	virtual Status ResetFile() = 0;
+  virtual Status Close() = 0;
 
 	/**
 	 * @return bytes read (<= size) or a (negative) Status

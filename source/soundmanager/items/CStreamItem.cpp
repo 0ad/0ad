@@ -35,7 +35,12 @@ CStreamItem::CStreamItem(CSoundData* sndData)
 
 CStreamItem::~CStreamItem()
 {
-	Stop();
+}
+
+void CStreamItem::ReleaseOpenAL()
+{
+	int num_processed;
+	alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
 	
 	if (m_ALSource != 0)
 	{
@@ -50,11 +55,13 @@ CStreamItem::~CStreamItem()
 			delete[] al_buf;
 		}
 	}
+	CSoundBase::ReleaseOpenAL();
 }
 
 bool CStreamItem::IdleTask()
 {
 	AL_CHECK
+	TouchTimer();
 	HandleFade();
 	AL_CHECK
 
@@ -98,10 +105,20 @@ bool CStreamItem::IdleTask()
 	}
 	return true;
 }
+bool CStreamItem::CanAttach(CSoundData* itemData)
+{
+	return ! itemData->IsOneShot();
+}
 
 void CStreamItem::Attach(CSoundData* itemData)
 {
-	if (itemData != NULL && (m_ALSource != 0) )
+	if (m_SoundData != NULL)
+	{
+		CSoundData::ReleaseSoundData(m_SoundData);
+		m_SoundData = 0;
+	}
+
+	if (itemData != NULL)
 	{
 		m_SoundData = itemData->IncrementCount();
 		alSourceQueueBuffers(m_ALSource, m_SoundData->GetBufferCount(), (const ALuint *)m_SoundData->GetBufferPtr());

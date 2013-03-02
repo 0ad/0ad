@@ -36,9 +36,15 @@ CSoundBase::CSoundBase()
 CSoundBase::~CSoundBase()
 {
 	Stop();
+	ReleaseOpenAL();
+}
+
+void CSoundBase::ReleaseOpenAL()
+{
 	if (m_ALSource != 0)
 	{
-		alDeleteSources(1, &m_ALSource);
+		alSourcei(m_ALSource, AL_BUFFER, 0);
+		g_SoundManager->ReleaseALSource(m_ALSource);
 		m_ALSource = 0;
 	}
 	if (m_SoundData != 0)
@@ -46,6 +52,15 @@ CSoundBase::~CSoundBase()
 		CSoundData::ReleaseSoundData(m_SoundData);
 		m_SoundData = 0;
 	}
+}
+
+void CSoundBase::Attach(CSoundData* itemData)
+{
+
+}
+bool CSoundBase::CanAttach(CSoundData* itemData)
+{
+	return false;
 }
 
 void CSoundBase::ResetVars()
@@ -58,7 +73,8 @@ void CSoundBase::ResetVars()
 	m_EndFadeTime = 0;
 	m_StartVolume = 0;
 	m_EndVolume = 0;
-
+	m_IsManaged = false;
+	m_TouchTime  = timer_Time();
 	ResetFade();
 }
 
@@ -71,12 +87,44 @@ void CSoundBase::ResetFade()
 	m_ShouldBePlaying = false;
 }
 
+
+bool CSoundBase::InitOpenAL()
+{
+	alGetError(); /* clear error */
+	m_ALSource = g_SoundManager->GetALSource( this );
+
+	AL_CHECK
+
+	if ( m_ALSource )	
+	{		
+		alSourcef(m_ALSource,AL_PITCH,1.0f);
+		AL_CHECK
+		alSourcef(m_ALSource,AL_GAIN,1.0f);
+		AL_CHECK
+		alSourcei(m_ALSource,AL_LOOPING,AL_FALSE);
+		AL_CHECK
+		return true;
+	}
+	else
+	{
+//		LOGERROR(L"Source not allocated by SOundManager\n", 0);
+	}
+	return false;
+}
+
+
+void CSoundBase::SetIsManaged(bool manage)
+{
+	m_IsManaged = manage;
+}
+
 void CSoundBase::SetGain(ALfloat gain)
 {
 	AL_CHECK
 
 	if ( m_ALSource )	
 	{
+		CScopeLock lock(m_ItemMutex);
 		alSourcef(m_ALSource, AL_GAIN, gain);
 		AL_CHECK
 	}
@@ -86,6 +134,7 @@ void CSoundBase::SetRollOff(ALfloat rolls)
 {
 	if ( m_ALSource )	
    	{
+		CScopeLock lock(m_ItemMutex);
 		alSourcef(m_ALSource, AL_REFERENCE_DISTANCE, 70.0f);
 		AL_CHECK
 		alSourcef(m_ALSource, AL_MAX_DISTANCE, 200.0);
@@ -105,6 +154,7 @@ void CSoundBase::SetCone(ALfloat innerCone, ALfloat outerCone, ALfloat coneGain)
 {
 	if ( m_ALSource )
 	{
+		CScopeLock lock(m_ItemMutex);
 		AL_CHECK	
 		alSourcef(m_ALSource, AL_CONE_INNER_ANGLE, innerCone);
 		AL_CHECK
@@ -119,6 +169,7 @@ void CSoundBase::SetPitch(ALfloat pitch)
 {
 	if ( m_ALSource )
 	{
+		CScopeLock lock(m_ItemMutex);
 		alSourcef(m_ALSource, AL_PITCH, pitch);
 		AL_CHECK
 	}
@@ -128,44 +179,25 @@ void CSoundBase::SetDirection(const CVector3D& direction)
 {
 	if ( m_ALSource )
 	{
+		CScopeLock lock(m_ItemMutex);
 		alSourcefv(m_ALSource, AL_DIRECTION, direction.GetFloatArray());
 		AL_CHECK
 	}
 }
 
-bool CSoundBase::InitOpenAL()
-{
-	alGetError(); /* clear error */
-	alGenSources(1, &m_ALSource);
-	ALenum anErr = alGetError();
-
-	if (anErr == AL_NO_ERROR) 
-	{		
-		alSourcef(m_ALSource,AL_PITCH,1.0f);
-		AL_CHECK
-		alSourcef(m_ALSource,AL_GAIN,1.0f);
-		AL_CHECK
-		alSourcei(m_ALSource,AL_LOOPING,AL_FALSE);
-		AL_CHECK
-		return true;
-	}
-	else
-	{
-		CSoundManager::al_ReportError( anErr, __func__, __LINE__);
-	}
-	return false;
-}
 
 bool CSoundBase::IsPlaying()
 {
-	ALenum proc_state = AL_STOPPED;
-	if ( m_ALSource != 0 )
+	if ( m_ALSource )
 	{
+		CScopeLock lock(m_ItemMutex);
+		int proc_state;
 		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		AL_CHECK
-	}
 
-	return (proc_state == AL_PLAYING);
+		return (proc_state == AL_PLAYING);
+	}
+	return false;
 }
 
 void CSoundBase::SetLastPlay(bool last)
@@ -178,10 +210,17 @@ bool CSoundBase::IdleTask()
 	return true;
 }
 
+void CSoundBase::TouchTimer()
+{
+	if ( IsPlaying() )
+		m_TouchTime  = timer_Time();
+}
+
 void CSoundBase::SetLocation (const CVector3D& position)
 {
 	if ( m_ALSource != 0 )
 	{
+		CScopeLock lock(m_ItemMutex);
 		alSourcefv(m_ALSource,AL_POSITION, position.GetFloatArray());
 		AL_CHECK
 	}
@@ -224,6 +263,11 @@ bool CSoundBase::GetLooping()
 	return m_Looping;
 }
 
+bool CSoundBase::SoundStale()
+{
+	return !m_IsManaged && ( ( timer_Time() - m_TouchTime ) > 120 );
+}
+
 void CSoundBase::SetLooping(bool loops)
 {
 	m_Looping = loops;
@@ -236,10 +280,23 @@ void CSoundBase::SetLooping(bool loops)
 
 void CSoundBase::Play()
 {
+	CScopeLock lock(m_ItemMutex);
+
+	m_TouchTime  = timer_Time();
 	m_ShouldBePlaying = true;
-	if (m_ALSource != 0)
-		alSourcePlay(m_ALSource);
 	AL_CHECK
+	if (m_ALSource != 0)
+	{
+		alSourcePlay(m_ALSource);
+		ALenum err = alGetError();
+		if (err != AL_NO_ERROR)
+		{
+			if (err == AL_INVALID)
+				g_SoundManager->SetDistressThroughError();
+			else
+				g_SoundManager->al_ReportError(err, __func__, __LINE__);
+		}
+	}
 }
 
 void CSoundBase::PlayAndDelete()
@@ -247,6 +304,7 @@ void CSoundBase::PlayAndDelete()
 	SetLastPlay(true);
 	Play();
 }
+
 
 void CSoundBase::FadeAndDelete(double fadeTime)
 {
@@ -264,6 +322,7 @@ void CSoundBase::PlayLoop()
 {
 	if (m_ALSource != 0)
 	{
+		m_TouchTime  = timer_Time();
 		SetLooping(true);
 		Play();
 		AL_CHECK
@@ -302,6 +361,7 @@ void CSoundBase::Stop()
 	m_ShouldBePlaying = false;
 	if (m_ALSource != 0)
 	{
+		CScopeLock lock(m_ItemMutex);
 		int proc_state;
 		alSourcei(m_ALSource, AL_LOOPING, AL_FALSE);
 		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);

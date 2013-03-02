@@ -157,7 +157,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	return answer;
 }
 
-void CSoundGroup::UploadPropertiesAndPlay(unsigned int theIndex, const CVector3D& position)
+void CSoundGroup::UploadPropertiesAndPlay(int theIndex, const CVector3D& position, entity_id_t source)
 {
 #if CONFIG2_AUDIO
 	if ( g_SoundManager )
@@ -175,10 +175,12 @@ void CSoundGroup::UploadPropertiesAndPlay(unsigned int theIndex, const CVector3D
 
 			if ( snd_group.size() > theIndex )
 			{
-				if ( ISoundItem* hSound = snd_group[theIndex] )
+				if ( CSoundData* sndData = snd_group[theIndex] )
 				{
 					CVector3D origin = g_Game->GetView()->GetCamera()->GetOrientation().GetTranslation();
 					float sndDist = origin.Y;
+
+					ISoundItem*	hSound = g_SoundManager->ItemForEntity( source, sndData);
 
 					if (!TestFlag(eOmnipresent))
 					{
@@ -208,6 +210,7 @@ void CSoundGroup::UploadPropertiesAndPlay(unsigned int theIndex, const CVector3D
 #else // !CONFIG2_AUDIO
 	UNUSED2(theIndex);
 	UNUSED2(position);
+	UNUSED2(source);
 #endif // !CONFIG2_AUDIO
 }
 
@@ -219,14 +222,14 @@ static void HandleError(const CStrW& message, const VfsPath& pathname, Status er
 	LOGERROR(L"%ls: pathname=%ls, error=%ls", message.c_str(), pathname.string().c_str(), ErrorString(err));
 }
 
-void CSoundGroup::PlayNext(const CVector3D& position)
+void CSoundGroup::PlayNext(const CVector3D& position, entity_id_t source)
 {
 	// if no sounds, return
 	if (filenames.size() == 0)
 		return;
 	
 	m_index = (size_t)rand(0, (size_t)filenames.size());
-	UploadPropertiesAndPlay(m_index, position);
+	UploadPropertiesAndPlay(m_index, position, source);
 }
 
 void CSoundGroup::Reload()
@@ -234,18 +237,18 @@ void CSoundGroup::Reload()
 	m_index = 0; // reset our index
 
 #if CONFIG2_AUDIO
-	snd_group.clear();
+	ReleaseGroup();
 
 	if ( g_SoundManager ) {
 		for (size_t i = 0; i < filenames.size(); i++)
 		{
 			VfsPath  thePath =  m_filepath/filenames[i];
-			ISoundItem* temp = g_SoundManager->LoadItem(thePath);
+			CSoundData* itemData = CSoundData::SoundDataFromFile(thePath);
 
-			if (temp == NULL)
+			if (itemData == NULL)
 				HandleError(L"error loading sound", thePath, ERR::FAIL);
 			else
-				snd_group.push_back(temp);
+				snd_group.push_back(itemData->IncrementCount());
 		}
 
 		if (TestFlag(eRandOrder))
@@ -259,7 +262,7 @@ void CSoundGroup::ReleaseGroup()
 #if CONFIG2_AUDIO
 	for (size_t i = 0; i < snd_group.size(); i++)
 	{
-		snd_group[i]->FadeAndDelete(0.2);
+		CSoundData::ReleaseSoundData( snd_group[i] );
 	}
 	snd_group.clear();
 #endif // CONFIG2_AUDIO

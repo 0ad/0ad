@@ -732,6 +732,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			}
 			else if (guiName == CONSTRUCTION || guiName == TRAINING)
 			{
+				affordableMask.hidden = true;
+				var totalCosts = {};
+				var trainNum = 1;
+				var button_disableable = true;
 				if (guiName == TRAINING)
 				{
 					var trainingCategory = null;
@@ -741,22 +745,20 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 						playerState.entityCounts[trainingCategory] >= playerState.entityLimits[trainingCategory])
 						grayscale = "grayscale:";
 					icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
-				}
 
-				affordableMask.hidden = true;
-				var totalCosts = {};
-				var trainNum = 1;
-				if (Engine.HotkeyIsPressed("session.batchtrain") && guiName == TRAINING)
-				{
-					var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
-						getTrainingBatchStatus(playerState, unitEntState.id, entType, selection);
-					trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
+					if (Engine.HotkeyIsPressed("session.batchtrain"))
+					{
+						var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch, batchTrainingCount] =
+							getTrainingBatchStatus(playerState, unitEntState.id, entType, selection);
+						trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
+						button_disableable = !Engine.HotkeyIsPressed("selection.remove");
+					}
+					getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (batchTrainingCount > 0) ? batchTrainingCount : "";
 				}
 
 				// Walls have no cost defined.
 				if (template.cost !== undefined)
-					for (var r in template.cost)
-						totalCosts[r] = Math.floor(template.cost[r] * trainNum);
+					totalCosts = multiplyEntityCosts(template, trainNum);
 
 				var neededResources = Engine.GuiInterfaceCall("GetNeededResources", totalCosts);
 				if (neededResources)
@@ -767,7 +769,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 						for each (var resource in neededResources)
 							totalCost += resource;
 
-						button.enabled = false;
+						button.enabled = (button_disableable ? false : true);
 						affordableMask.hidden = false;
 						var alpha = 75 + totalCost/6;
 						alpha = alpha > 150 ? 150 : alpha;

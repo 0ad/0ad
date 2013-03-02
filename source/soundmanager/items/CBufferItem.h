@@ -27,16 +27,17 @@
 class CBufferItem : public CSoundBase
 {
 public:
-	CBufferItem(CSoundData* sndData);
-	virtual ~CBufferItem();
-	
-	virtual void SetLooping(bool loops);
-	virtual bool IdleTask();
-	
-protected:	
-	virtual void Attach(CSoundData* itemData);
+  CBufferItem(CSoundData* sndData);
+  virtual ~CBufferItem();
+  
+  virtual void SetLooping(bool loops);
+  virtual bool IdleTask();
+    void Attach(CSoundData* itemData);
+   bool CanAttach(CSoundData* itemData);
 
-	
+protected:  
+  virtual void ReleaseOpenAL();
+  
 };
 
 #endif // CONFIG2_AUDIO

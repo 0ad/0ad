@@ -34,6 +34,8 @@ COggData::COggData()
 
 COggData::~COggData()
 {
+	ogg->Close();
+
 	alDeleteBuffers(m_BuffersUsed, m_Buffer);
 }
 
