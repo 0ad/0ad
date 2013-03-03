@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Maur helmet">
+      <textures>
+        <texture file="props/helmet/maur_helmet_metal.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="metal a">
+      <mesh>props/helmet/maur_helmet_metal_a.dae</mesh>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
