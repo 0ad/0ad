@@ -554,20 +554,23 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				button1.tooltip = tooltip1;
 				button1.onpress = (function(e){ return function() { callback(e) } })(item.top);
 
-				// We add a red overlay to the paired button (we reuse the selection for that)
-				button1.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection);
-				button1.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection);
+				// when we hover over a pair, the other one gets a red cross over it to show it won't be available any more.
+				var unchosenIcon = getGUIObjectByName("unit"+guiName+"UnchosenIcon["+i+"]");
+				var unchosenIcon1 = getGUIObjectByName("unit"+guiName+"UnchosenIcon["+(i+rowLength)+"]");
 
-				var selection1 = getGUIObjectByName("unit"+guiName+"Selection["+(i+rowLength)+"]");;
-				button.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection1);
-				button.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection1);
+				button1.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(unchosenIcon);
+				button1.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(unchosenIcon);
+
+				button.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(unchosenIcon1);
+				button.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(unchosenIcon1);
 
 				pair.hidden = false;
 			}
 			else
 			{
-				// Hide the overlay
-				selection.hidden = true;
+				// Hide the overlay.
+				var unchosenIcon = getGUIObjectByName("unit"+guiName+"UnchosenIcon["+i+"]");
+				unchosenIcon.hidden = true;
 			}
 		}
 
@@ -664,13 +667,18 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		{
 			var grayscale = "";
 			button.enabled = true;
-			
-			if (guiName != SELECTION && guiName != GARRISON && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
+			if (affordableMask)
+				affordableMask.hidden = true;	// actually used for the red "lack of resource" overlay, and darkening if unavailable. Sort of a hack.
+	
+			// In case this is an icon that would require tech checking, make sure we have the requirements.
+			if (guiName != SELECTION && guiName != GARRISON && guiName != QUEUE && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
 			{
 				button.enabled = false;
 				var techName = getEntityNames(GetTechnologyData(template.requiredTechnology));
 				button.tooltip += "\nRequires " + techName;
 				grayscale = "grayscale:";
+                affordableMask.hidden = false;
+				affordableMask.sprite = "colour: 0 0 0 127";
 			}
 			
 			if (guiName == RESEARCH && !Engine.GuiInterfaceCall("CheckTechnologyRequirements", entType))
@@ -678,14 +686,15 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				button.enabled = false;
 				button.tooltip += "\n" + GetTechnologyData(entType).requirementsTooltip;
 				grayscale = "grayscale:";
+                affordableMask.hidden = false;
+				affordableMask.sprite = "colour: 0 0 0 127";
 			}
 			
 			icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
 			
 			if (guiName == RESEARCH)
 			{
-				// Check resource requirements for first button
-				affordableMask.hidden = true;
+				// Check resource requirements
 				var neededResources = Engine.GuiInterfaceCall("GetNeededResources", template.cost);
 				if (neededResources)
 				{
@@ -693,6 +702,13 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 					{
 						button.enabled = false;
 						affordableMask.hidden = false;
+						
+						var totalCost = 0;
+						for each (var resource in neededResources)
+							totalCost += resource;
+						var alpha = 50 + totalCost/10;
+						alpha = alpha > 125 ? 125 : alpha;
+						affordableMask.sprite = "colour: 255 0 0 " + (alpha);
 					}
 					button.tooltip += getNeededResourcesTooltip(neededResources);
 				}
@@ -701,17 +717,19 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				{
 					grayscale = "";
 					button1.enabled = true;
+					affordableMask1.hidden = true;
 
 					if (!Engine.GuiInterfaceCall("CheckTechnologyRequirements", entType1))
 					{
 						button1.enabled = false;
 						button1.tooltip += "\n" + GetTechnologyData(entType1).requirementsTooltip;
 						grayscale = "grayscale:";
+                        affordableMask1.hidden = false;
+						affordableMask1.sprite = "colour: 0 0 0 127";
 					}
 					icon1.sprite = "stretched:" + grayscale + "session/portraits/" +template1.icon;
 
 					// Check resource requirements for second button
-					affordableMask1.hidden = true;
 					neededResources = Engine.GuiInterfaceCall("GetNeededResources", template1.cost);
 					if (neededResources)
 					{
@@ -719,6 +737,13 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 						{
 							button1.enabled = false;
 							affordableMask1.hidden = false;
+
+							var totalCost = 0;
+							for each (var resource in neededResources)
+								totalCost += resource;
+							var alpha = 50 + totalCost/10;
+							alpha = alpha > 125 ? 125 : alpha;
+							affordableMask1.sprite = "colour: 255 0 0 " + (alpha);
 						}
 						button1.tooltip += getNeededResourcesTooltip(neededResources);
 					}
@@ -732,7 +757,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			}
 			else if (guiName == CONSTRUCTION || guiName == TRAINING)
 			{
-				affordableMask.hidden = true;
 				var totalCosts = {};
 				var trainNum = 1;
 				var button_disableable = true;
@@ -743,7 +767,11 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 						trainingCategory = template.trainingRestrictions.category;
 					if (trainingCategory && playerState.entityLimits[trainingCategory] &&
 						playerState.entityCounts[trainingCategory] >= playerState.entityLimits[trainingCategory])
+					{
 						grayscale = "grayscale:";
+                        affordableMask.hidden = false;
+						affordableMask.sprite = "colour: 0 0 0 100";
+					}
 					icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
 
 					if (Engine.HotkeyIsPressed("session.batchtrain"))
@@ -763,16 +791,16 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				var neededResources = Engine.GuiInterfaceCall("GetNeededResources", totalCosts);
 				if (neededResources)
 				{
-					var totalCost = 0;
 					if (button.enabled !== false)
 					{
-						for each (var resource in neededResources)
-							totalCost += resource;
-
 						button.enabled = (button_disableable ? false : true);
 						affordableMask.hidden = false;
-						var alpha = 75 + totalCost/6;
-						alpha = alpha > 150 ? 150 : alpha;
+
+						var totalCost = 0;
+						for each (var resource in neededResources)
+							totalCost += resource;
+						var alpha = 50 + totalCost/10;
+						alpha = alpha > 125 ? 125 : alpha;
 						affordableMask.sprite = "colour: 255 0 0 " + (alpha);
 					}
 					button.tooltip += getNeededResourcesTooltip(neededResources);
