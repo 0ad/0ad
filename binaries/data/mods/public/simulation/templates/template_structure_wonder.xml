@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure">
+  <BuildRestrictions>
+    <Category>Special</Category>
+  </BuildRestrictions>
+  <Cost>
+    <BuildTime>500</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>1000</wood>
+      <stone>1000</stone>
+      <metal>1000</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="34.0" depth="34.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <GarrisonHolder disable=""/>
+  <Health>
+    <Max>5000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <GenericName>Wonder</GenericName>
+    <Tooltip>Bring glory to your civilisation and add large tracts of land to your empire.</Tooltip>
+    <Classes datatype="tokens">City</Classes>
+    <Icon>structures/gardens.png</Icon>
+    <RequiredTechnology>phase_city</RequiredTechnology>
+  </Identity>
+  <Loot>
+    <xp>200</xp>
+    <food>0</food>
+    <wood>100</wood>
+    <stone>100</stone>
+    <metal>100</metal>
+  </Loot>
+  <Obstruction>
+    <Static width="30.0" depth="30.0"/>
+  </Obstruction>
+  <RallyPoint disable=""/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_temple.xml</select>
+      <constructed>interface/complete/building/complete_temple.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.6</BarHeight>
+    <HeightOffset>12.0</HeightOffset>
+  </StatusBars>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>100</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
+  <Vision>
+    <Range>72</Range>
+    <RetainInFog>true</RetainInFog>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
+</Entity>
