@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/inf_salute_d.psa" name="Walk" speed="50"/>
+        <animation file="biped/inf_salute_e.psa" name="Walk" speed="50"/>
+        <animation file="biped/inf_salute_e.psa" name="run" speed="65"/>
+        <animation event="" file="infantry/general/dude/dudeidle.psa" name="attack_melee" speed="1"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="200"/>
+      </animations>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/head_maur_short_hair.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_helmet_metal.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/maur_champion_infantry.png" name="baseTex"/>
+        <texture file="skeletal/maur_champion_infantry_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

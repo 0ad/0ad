@@ -56,10 +56,11 @@ void CSoundBase::ReleaseOpenAL()
 
 void CSoundBase::Attach(CSoundData* itemData)
 {
-
+	UNUSED2(itemData);
 }
 bool CSoundBase::CanAttach(CSoundData* itemData)
 {
+	UNUSED2(itemData);
 	return false;
 }
 
@@ -132,8 +133,8 @@ void CSoundBase::SetGain(ALfloat gain)
 
 void CSoundBase::SetRollOff(ALfloat rolls)
 {
-	if ( m_ALSource )	
-   	{
+	if ( m_ALSource )
+	{
 		CScopeLock lock(m_ItemMutex);
 		alSourcef(m_ALSource, AL_REFERENCE_DISTANCE, 70.0f);
 		AL_CHECK

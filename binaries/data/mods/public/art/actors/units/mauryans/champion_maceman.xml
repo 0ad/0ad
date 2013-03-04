@@ -24,7 +24,8 @@
       <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/shields/maur_bell_a.xml" attachpoint="shield"/>
-        <prop actor="props/units/heads/head_indian_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_maur_short_hair.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_helmet_metal_plyr.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/mace_mauryan.xml" attachpoint="r_hand"/>
       </props>
       <textures>

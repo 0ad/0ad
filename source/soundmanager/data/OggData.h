@@ -54,9 +54,9 @@ protected:
 
 	bool AddDataBuffer(char* data, long length);
 	void SetFormatAndFreq(int form, ALsizei freq);
-	ALsizei  GetBufferCount();
-	ALuint GetBuffer();
-	ALuint* GetBufferPtr();
+	int  GetBufferCount();
+	unsigned int GetBuffer();
+	unsigned int* GetBufferPtr();
 };
 
 #endif // CONFIG2_AUDIO
