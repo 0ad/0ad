@@ -2,9 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Maur helmet">
+    <variant frequency="1" name="Maur helmet a">
       <textures>
         <texture file="props/helmet/maur_helmet_metal_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Maur helmet b">
+      <textures>
+        <texture file="props/helmet/maur_helmet_metal_b.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
