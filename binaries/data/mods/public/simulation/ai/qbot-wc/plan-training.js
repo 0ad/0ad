@@ -1,4 +1,4 @@
-var UnitTrainingPlan = function(gameState, type, metadata, number) {
+var UnitTrainingPlan = function(gameState, type, metadata, number, maxMerge) {
 	this.type = gameState.applyCiv(type);
 	this.metadata = metadata;
 
@@ -15,6 +15,10 @@ var UnitTrainingPlan = function(gameState, type, metadata, number) {
 	}else{
 		this.number = number;
 	}
+	if (!maxMerge)
+		this.maxMerge = 5;
+	else
+		this.maxMerge = maxMerge;
 };
 
 UnitTrainingPlan.prototype.canExecute = function(gameState) {
@@ -62,6 +66,8 @@ UnitTrainingPlan.prototype.getCost = function(){
 	return multCost;
 };
 
-UnitTrainingPlan.prototype.addItem = function(){
-	this.number += 1;
+UnitTrainingPlan.prototype.addItem = function(amount){
+	if (amount === undefined)
+		amount = 1;
+	this.number += amount;
 };

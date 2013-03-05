@@ -31,6 +31,8 @@ public:
 	 * to control player @p player.
 	 */
 	virtual void AddPlayer(std::wstring id, player_id_t player) = 0;
+	virtual void TryLoadSharedComponent() = 0;
+	virtual void RunGamestateInit() = 0;
 
 	/**
 	 * Call this at the end of a turn, to trigger AI computation which will be

@@ -21,7 +21,7 @@ function Map(gameState, originalMap, actualCopy){
 }
 
 Map.prototype.gamePosToMapPos = function(p){
-	return [Math.round(p[0]/this.cellSize), Math.round(p[1]/this.cellSize)];
+	return [Math.floor(p[0]/this.cellSize), Math.floor(p[1]/this.cellSize)];
 };
 
 Map.prototype.point = function(p){
@@ -48,34 +48,78 @@ Map.createObstructionMap = function(gameState, template){
 		buildEnemy = template.hasBuildTerritory("enemy");
 	}
 
-	var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction");
-	// Only accept valid land tiles (we don't handle docks yet)
-	switch(placementType){
-		case "shore":
-			obstructionMask |= gameState.getPassabilityClassMask("building-shore");
-			break;
-		case "land":
-		default:
-			obstructionMask |= gameState.getPassabilityClassMask("building-land");
-			break;
-	}
+	var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction") | gameState.getPassabilityClassMask("building-land");
 	
-	var playerID = gameState.getPlayerID();  
-	
-	var obstructionTiles = new Uint16Array(passabilityMap.data.length); 
-	for (var i = 0; i < passabilityMap.data.length; ++i) 
+	if (placementType == "shore")
 	{
-		var tilePlayer = (territoryMap.data[i] & TERRITORY_PLAYER_MASK); 
-		var invalidTerritory = ( 
-			(!buildOwn && tilePlayer == playerID) || 
-			(!buildAlly && gameState.isPlayerAlly(tilePlayer) && tilePlayer != playerID) || 
-			(!buildNeutral && tilePlayer == 0) || 
-			(!buildEnemy && gameState.isPlayerEnemy(tilePlayer) && tilePlayer != 0) 
-		);
-		var tileAccessible = (gameState.ai.accessibility.map[i] == 1);
-		obstructionTiles[i] = (!tileAccessible || invalidTerritory || (passabilityMap.data[i] & obstructionMask)) ? 0 : 65535; 
+		// assume Dock, TODO.
+		var obstructionTiles = new Uint16Array(passabilityMap.data.length);
+		var okay = false;
+		for (var x = 0; x < passabilityMap.width; ++x)
+		{
+			for (var y = 0; y < passabilityMap.height; ++y)
+			{
+				okay = false;
+				var i = x + y*passabilityMap.width;
+				var tilePlayer = (territoryMap.data[i] & TERRITORY_PLAYER_MASK);
+
+				var positions = [[0,1], [1,1], [1,0], [1,-1], [0,-1], [-1,-1], [-1,0], [-1,1]];
+				var available = 0;
+				for each (stuff in positions)
+				{
+					var index = x + stuff[0] + (y+stuff[1])*passabilityMap.width;
+					var index2 = x + stuff[0]*2 + (y+stuff[1]*2)*passabilityMap.width;
+					var index3 = x + stuff[0]*3 + (y+stuff[1]*3)*passabilityMap.width;
+					var index4 = x + stuff[0]*4 + (y+stuff[1]*4)*passabilityMap.width;
+					if ((passabilityMap.data[index] & gameState.getPassabilityClassMask("default")) && gameState.ai.accessibility.getRegionSizei(index) > 500)
+						if ((passabilityMap.data[index2] & gameState.getPassabilityClassMask("default")) && gameState.ai.accessibility.getRegionSizei(index2) > 500)
+							if ((passabilityMap.data[index3] & gameState.getPassabilityClassMask("default")) && gameState.ai.accessibility.getRegionSizei(index3) > 500)
+								if ((passabilityMap.data[index4] & gameState.getPassabilityClassMask("default")) && gameState.ai.accessibility.getRegionSizei(index4) > 500) {
+									if (available < 2)
+										available++;
+									else
+										okay = true;
+								}
+				}
+				// checking for accessibility: if a neighbor is inaccessible, this is too. If it's not on the same "accessible map" as us, we crash-i~u.
+				var radius = 3;
+				for (var xx = -radius;xx <= radius; xx++)
+					for (var yy = -radius;yy <= radius; yy++)
+					{
+						var id = x + xx + (y+yy)*passabilityMap.width;
+						if (id > 0 && id < passabilityMap.data.length)
+							if (gameState.ai.terrainAnalyzer.map[id] === 0 || gameState.ai.terrainAnalyzer.map[id] == 30 || gameState.ai.terrainAnalyzer.map[id] == 40)
+								okay = false;
+					}
+				if (gameState.ai.myIndex !== gameState.ai.accessibility.passMap[i])
+					okay = false;
+				if (gameState.isPlayerEnemy(tilePlayer) && tilePlayer !== 0)
+					okay = false;
+				if ((passabilityMap.data[i] & (gameState.getPassabilityClassMask("building-shore") | gameState.getPassabilityClassMask("default"))))
+					okay = false;
+				obstructionTiles[i] = okay ? 65535 : 0;
+			}
+		}
+	} else {
+		var playerID = PlayerID;
+		
+		var obstructionTiles = new Uint16Array(passabilityMap.data.length);
+		for (var i = 0; i < passabilityMap.data.length; ++i)
+		{
+			var tilePlayer = (territoryMap.data[i] & TERRITORY_PLAYER_MASK);
+			var invalidTerritory = (
+									(!buildOwn && tilePlayer == playerID) ||
+									(!buildAlly && gameState.isPlayerAlly(tilePlayer) && tilePlayer != playerID) ||
+									(!buildNeutral && tilePlayer == 0) ||
+									(!buildEnemy && gameState.isPlayerEnemy(tilePlayer) && tilePlayer != 0)
+									);
+			var tileAccessible = (gameState.ai.myIndex === gameState.ai.accessibility.passMap[i]);
+			if (placementType === "shore")
+				tileAccessible = true;
+			obstructionTiles[i] = (!tileAccessible || invalidTerritory || (passabilityMap.data[i] & obstructionMask)) ? 0 : 65535;
+		}
 	}
-	
+		
 	var map = new Map(gameState, obstructionTiles);
 	
 	if (template && template.buildDistance()){
@@ -109,6 +153,7 @@ Map.createTerritoryMap = function(gameState) {
 	}
 	return ret;
 };
+
 Map.prototype.drawDistance = function(gameState, elements) {
 	for ( var y = 0; y < this.height; ++y) {
 		for ( var x = 0; x < this.width; ++x) {
@@ -120,7 +165,7 @@ Map.prototype.drawDistance = function(gameState, elements) {
 				if (dist < minDist)
 					minDist = dist;
 			}
-			this.map[x + y*this.width] = Math.max(1,this.width - minDist);
+			this.map[x + y*this.width] = Math.max(1,(this.width - minDist)*2.5);
 		}
 	}
 };
@@ -146,6 +191,7 @@ Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 		str = +strength;
 		break;
 	}
+	
 	for ( var y = y0; y < y1; ++y) {
 		for ( var x = x0; x < x1; ++x) {
 			var dx = x - cx;
@@ -342,17 +388,19 @@ Map.prototype.findBestTile = function(radius, obstructionTiles){
 };
 
 // Multiplies current map by 3 if in my territory
-Map.prototype.multiplyTerritory = function(gameState,map){
+Map.prototype.multiplyTerritory = function(gameState,map,evenNeutral){
 	for (var i = 0; i < this.length; ++i){
-		if (map.getOwnerIndex(i) === gameState.player)
+		if (map.getOwnerIndex(i) === PlayerID)
 			this.map[i] *= 2.5;
+		else if (map.getOwnerIndex(i) !== PlayerID && (map.getOwnerIndex(i) !== 0 || evenNeutral))
+			this.map[i] = 0;
 	}
 };
 
 // sets to 0 any enemy territory
-Map.prototype.annulateTerritory = function(gameState,map){
+Map.prototype.annulateTerritory = function(gameState,map,evenNeutral){
 	for (var i = 0; i < this.length; ++i){
-		if (map.getOwnerIndex(i) !== gameState.player && map.getOwnerIndex(i) !== 0)
+		if (map.getOwnerIndex(i) !== PlayerID && (map.getOwnerIndex(i) !== 0 || evenNeutral))
 			this.map[i] = 0;
 	}
 };
@@ -370,12 +418,29 @@ Map.prototype.add = function(map){
 		this.map[i] += +map.map[i];
 	}
 };
+// add to current map by the parameter map pixelwise with a multiplier
+Map.prototype.madd = function(map, multiplier){
+	for (var i = 0; i < this.length; ++i){
+		this.map[i] += +map.map[i]*multiplier;
+	}
+};
+// add to current map if the map is not null in that point
+Map.prototype.addIfNotNull = function(map){
+	for (var i = 0; i < this.length; ++i){
+		if (this.map[i] !== 0)
+			this.map[i] += +map.map[i];
+	}
+};
 // add to current map by the parameter map pixelwise
 Map.prototype.subtract = function(map){
 	for (var i = 0; i < this.length; ++i){
-		this.map[i] += map.map[i];
-		if (this.map[i] <= 0)
-			this.map[i] = 0;
+		this.map[i] = this.map[i] - map.map[i] < 0 ? 0 : this.map[i] - map.map[i];
+	}
+};
+// add to current map by the parameter map pixelwise with a multiplier
+Map.prototype.subtractMultiplied = function(map,multiple){
+	for (var i = 0; i < this.length; ++i){
+		this.map[i] = this.map[i] - map.map[i]*multiple < 0 ? 0 : this.map[i] - map.map[i]*multiple;
 	}
 };
 

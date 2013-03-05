@@ -14,7 +14,7 @@ AIInterface.prototype.GetRepresentation = function()
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 
 	// Return the same game state as the GUI uses
-	var state = cmpGuiInterface.GetSimulationState(-1);
+	var state = cmpGuiInterface.GetExtendedSimulationState(-1);
 
 	// Add some extra AI-specific data
 	state.events = this.events;
@@ -34,6 +34,31 @@ AIInterface.prototype.GetRepresentation = function()
 	this.changedEntities = {};
 	Engine.ProfileStop();
 
+	return state;
+};
+// Intended to be called first, during the map initialization: no caching
+AIInterface.prototype.GetFullRepresentation = function()
+{
+	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	
+	// Return the same game state as the GUI uses
+	var state = cmpGuiInterface.GetSimulationState(-1);
+	
+	// Add some extra AI-specific data
+	state.events = this.events;
+	
+	// Add entity representations
+	Engine.ProfileStart("proxy representations");
+	state.entities = {};
+	// all entities are changed in the initial state.
+	for (var id in this.changedEntities)
+	{
+		var aiProxy = Engine.QueryInterface(+id, IID_AIProxy);
+		if (aiProxy)
+			state.entities[id] = aiProxy.GetFullRepresentation();
+	}
+	Engine.ProfileStop();
+	
 	return state;
 };
 

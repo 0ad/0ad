@@ -32,6 +32,8 @@ function InitGame(settings)
 				newResourceCounts[resouces] = settings.StartingResources;
 			cmpPlayer.SetResourceCounts(newResourceCounts);
 	}
+	cmpAIManager.TryLoadSharedComponent();
+	cmpAIManager.RunGamestateInit();
 }
 
 Engine.RegisterGlobal("InitGame", InitGame);

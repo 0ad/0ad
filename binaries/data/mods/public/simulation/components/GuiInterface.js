@@ -90,7 +90,12 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"isEnemy": enemies,
 			"entityLimits": cmpPlayerEntityLimits.GetLimits(),
 			"entityCounts": cmpPlayerEntityLimits.GetCounts(),
-			"techModifications": cmpTechnologyManager.GetTechModifications()
+			"techModifications": cmpTechnologyManager.GetTechModifications(),
+			"researchQueued": cmpTechnologyManager.GetQueuedResearch(),
+			"researchStarted": cmpTechnologyManager.GetStartedResearch(),
+			"researchedTechs": cmpTechnologyManager.GetResearchedTechs(),
+			"classCounts": cmpTechnologyManager.GetClassCounts(),
+			"typeCountsByClass": cmpTechnologyManager.GetTypeCountsByClass()
 		};
 		ret.players.push(playerData);
 	}
@@ -1451,6 +1456,7 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 	
 	if (template.BuildRestrictions.Category == "Dock")
 	{
+		// warning: copied almost identically in helpers/command.js , "GetDockAngle".
 		var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
 		var cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
 		if (!cmpTerrain || !cmpWaterManager)
