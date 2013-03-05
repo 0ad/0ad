@@ -59,6 +59,7 @@ public:
 	virtual fixed GetDistanceTravelled() { return fixed::Zero(); }
 	virtual void GetInterpolatedPosition2D(float UNUSED(frameOffset), float& x, float& z, float& rotY) { x = z = rotY = 0; }
 	virtual CMatrix3D GetInterpolatedTransform(float UNUSED(frameOffset), bool UNUSED(forceFloating)) { return CMatrix3D(); }
+	virtual bool GetReinterpolate() { return true; } 
 };
 
 class TestCmpRangeManager : public CxxTest::TestSuite

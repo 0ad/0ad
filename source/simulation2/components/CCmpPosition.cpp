@@ -123,6 +123,8 @@ public:
 
 		m_RotX = m_RotY = m_RotZ = entity_angle_t::FromInt(0);
 		m_InterpolatedRotY = 0;
+
+		m_PositionChanged = false;
 	}
 
 	virtual void Deinit()
@@ -454,9 +456,16 @@ public:
 			m_LastX = m_X;
 			m_LastZ = m_Z;
 
+			m_PositionChanged = m_X != m_PrevX || m_Z != m_PrevZ;
+
 			break;
 		}
 		}
+	}
+
+	virtual bool GetReinterpolate()
+	{
+		return m_PositionChanged;
 	}
 
 private:
@@ -472,7 +481,10 @@ private:
 			CMessagePositionChanged msg(GetEntityId(), false, entity_pos_t::Zero(), entity_pos_t::Zero(), entity_angle_t::Zero());
 			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 		}
+		m_PositionChanged = true;
 	}
+
+	bool m_PositionChanged;
 };
 
 REGISTER_COMPONENT_TYPE(Position)

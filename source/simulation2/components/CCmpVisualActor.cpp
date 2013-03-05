@@ -44,6 +44,8 @@
 #include "ps/CLogger.h"
 #include "renderer/Scene.h"
 
+#include "tools/atlas/GameInterface/GameLoop.h"
+
 class CCmpVisualActor : public ICmpVisual
 {
 public:
@@ -732,6 +734,14 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 	{
 		UpdateVisibility();
 		m_PreviouslyRendered = true;
+	}
+	else if (!cmpPosition->GetReinterpolate() && m_ConstructionProgress.IsZero() &&
+			 !g_AtlasGameLoop->running)
+	{
+		// Position hasn't changed so skip most of the work.  Special cases are when placing a building or being
+		// in atlas (since terrain height can change in atlas)
+		m_Unit->UpdateModel(frameTime);
+		return;
 	}
 
 	// Even if HIDDEN due to LOS, we need to set up the transforms
