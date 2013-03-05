@@ -111,11 +111,6 @@ public:
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_TerritoryManager, noParam);
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_WaterManager, noParam);
 
-		if (!skipAI)
-		{
-			componentManager.AddComponent(SYSTEM_ENTITY, CID_AIManager, noParam);
-		}
-
 		// Add scripted system components:
 		if (!skipScriptedComponents)
 		{
@@ -134,6 +129,12 @@ public:
 			LOAD_SCRIPTED_COMPONENT("Timer");
 
 #undef LOAD_SCRIPTED_COMPONENT
+
+			if (!skipAI)
+			{
+				componentManager.AddComponent(SYSTEM_ENTITY, CID_AIManager, noParam);
+			}
+		
 		}
 	}
 

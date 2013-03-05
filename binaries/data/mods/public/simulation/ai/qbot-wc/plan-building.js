@@ -20,7 +20,9 @@ BuildingConstructionPlan.prototype.canExecute = function(gameState) {
 	}
 
 	// TODO: verify numeric limits etc
-
+	if (this.template.requiredTech() && !gameState.isResearched(this.template.requiredTech()))
+		return false;
+	
 	var builders = gameState.findBuilders(this.type);
 
 	return (builders.length != 0);
@@ -40,7 +42,14 @@ BuildingConstructionPlan.prototype.execute = function(gameState) {
 		return;
 	}
 
-	builders[0].construct(this.type, pos.x, pos.z, pos.angle);
+	if (gameState.getTemplate(this.type).buildCategory() === "Dock")
+	{
+		for (var angle = 0; angle < Math.PI * 2; angle += Math.PI/4)
+		{
+			builders[0].construct(this.type, pos.x, pos.z, angle);
+		}
+	} else
+		builders[0].construct(this.type, pos.x, pos.z, pos.angle);
 };
 
 BuildingConstructionPlan.prototype.getCost = function() {
@@ -56,10 +65,11 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 
 	var obstructionMap = Map.createObstructionMap(gameState,template);
 	
-	///obstructionMap.dumpIm("obstructions.png");
+	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions.png");
 
-	obstructionMap.expandInfluences();
-	
+	if (template.buildCategory() !== "Dock")
+		obstructionMap.expandInfluences();
+
 	// Compute each tile's closeness to friendly structures:
 
 	var friendlyTiles = new Map(gameState);
@@ -71,7 +81,7 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 		var x = Math.round(this.position[0] / cellSize);
 		var z = Math.round(this.position[1] / cellSize);
 		friendlyTiles.addInfluence(x, z, 200);
-	}else{
+	} else {
 		// No position was specified so try and find a sensible place to build
 		gameState.getOwnEntities().forEach(function(ent) {
 			if (ent.hasClass("Structure")) {
@@ -118,25 +128,26 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 		});
 	}
 	
-	//friendlyTiles.dumpIm("Building " +gameState.getTimeElapsed() + ".png",	200);
-
+	//friendlyTiles.dumpIm(template.buildCategory() + "_" +gameState.getTimeElapsed() + ".png",	200);
 	
 	// Find target building's approximate obstruction radius, and expand by a bit to make sure we're not too close, this
 	// allows room for units to walk between buildings.
 	// note: not for houses and dropsites who ought to be closer to either each other or a resource.
 	// also not for fields who can be stacked quite a bit
+	var radius = 0;
 	if (template.genericName() == "Field")
-		var radius = Math.ceil(template.obstructionRadius() / cellSize) - 0.7;
+		radius = Math.ceil(template.obstructionRadius() / cellSize) - 0.7;
 	else if (template.buildCategory() === "Dock")
-		var radius = 0;
+		radius = 1;//Math.floor(template.obstructionRadius() / cellSize);
 	else if (template.genericName() != "House" && !template.hasClass("DropsiteWood") && !template.hasClass("DropsiteStone") && !template.hasClass("DropsiteMetal"))
-		var radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
+		radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
 	else
-		var radius = Math.ceil(template.obstructionRadius() / cellSize);
+		radius = Math.ceil(template.obstructionRadius() / cellSize);
 	
 	// further contract cause walls
-	if (gameState.playerData.civ == "iber")
-		radius *= 0.95;
+	// Note: I'm currently destroying them so that doesn't matter.
+	//if (gameState.playerData.civ == "iber")
+	//	radius *= 0.95;
 
 	// Find the best non-obstructed
 	if (template.genericName() == "House" && !alreadyHasHouses) {
@@ -144,24 +155,26 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 		var bestTile = friendlyTiles.findBestTile(10, obstructionMap);
 		var bestIdx = bestTile[0];
 		var bestVal = bestTile[1];
-	} else if (template.genericName() == "House") {
-		radius *= 0.9;
 	}
+	
 	if (bestVal === undefined || bestVal === -1) {
 		var bestTile = friendlyTiles.findBestTile(radius, obstructionMap);
 		var bestIdx = bestTile[0];
 		var bestVal = bestTile[1];
 	}
-	if (bestVal === -1){
+	if (bestVal === -1) {
 		return false;
 	}
 	
+	//friendlyTiles.setInfluence((bestIdx % friendlyTiles.width), Math.floor(bestIdx / friendlyTiles.width), 1, 200);
+	//friendlyTiles.dumpIm(template.buildCategory() + "_" +gameState.getTimeElapsed() + ".png",	200);
+
 	var x = ((bestIdx % friendlyTiles.width) + 0.5) * cellSize;
 	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * cellSize;
 
 	// default angle
 	var angle = 3*Math.PI/4;
-
+	
 	return {
 		"x" : x,
 		"z" : z,

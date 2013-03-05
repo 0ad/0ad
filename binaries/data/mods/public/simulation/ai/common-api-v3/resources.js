@@ -21,6 +21,14 @@ function Resources(amounts, population) {
 
 Resources.prototype.types = [ "food", "wood", "stone", "metal" ];
 
+Resources.prototype.reset = function() {
+	for ( var tKey in this.types) {
+		var t = this.types[tKey];
+		this[t] = 0;
+	}
+	this.population = 0;
+};
+
 Resources.prototype.canAfford = function(that) {
 	for ( var tKey in this.types) {
 		var t = this.types[tKey];

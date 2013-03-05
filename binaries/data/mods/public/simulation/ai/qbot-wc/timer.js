@@ -7,6 +7,8 @@
 //timer.activateTimer      : Sets the status of a deactivated timer to active.
 //timer.deactivateTimer    : Deactivates a timer. Deactivated timers will never give true.
 
+// Currently totally unused, iirc.
+
 
 //-EmjeR-// Timer class //
 var Timer = function() {

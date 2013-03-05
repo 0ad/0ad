@@ -141,6 +141,9 @@ COMPONENT(SoundManager)
 INTERFACE(TechnologyManager)
 COMPONENT(TechnologyManagerScripted)
 
+INTERFACE(TechnologyTemplateManager)
+COMPONENT(TechnologyTemplateManagerScripted)
+
 INTERFACE(Terrain)
 COMPONENT(Terrain)
 

@@ -1,17 +1,24 @@
 /*
- * A class that keeps track of enem buildings, units, and pretty much anything I can think of (still a LOT TODO here)
+ * A class that keeps track of enemy buildings, units, and pretty much anything I can think of (still a LOT TODO here)
  * Only watches one enemy, you'll need one per enemy.
+ * Note: pretty much unused in the current version.
  */
 
 var enemyWatcher = function(gameState, playerToWatch) {
 	
 	this.watched = playerToWatch;
 	
-	// creating fitting entity collections
+	// using global entity collections, shared by any AI that knows the name of this.
+	
 	var filter = Filters.and(Filters.byClass("Structure"), Filters.byOwner(this.watched));
-	this.enemyBuildings = gameState.getEnemyEntities().filter(filter);
-	this.enemyBuildings.registerUpdates();
-
+	this.enemyBuildings = gameState.updatingGlobalCollection("player-" +this.watched + "-structures", filter);
+							 
+	filter = Filters.and(Filters.byClass("Worker"), Filters.byOwner(this.watched));
+	this.enemyCivilians = gameState.updatingGlobalCollection("player-" +this.watched + "-civilians", filter);
+							 
+	filter = Filters.and(Filters.byClassesOr(["CitizenSoldier", "Hero", "Champion", "Siege"]), Filters.byOwner(this.watched));
+	this.enemySoldiers = gameState.updatingGlobalCollection("player-" +this.watched + "-soldiers", filter);
+	
 	filter = Filters.and(Filters.byClass("Worker"), Filters.byOwner(this.watched));
 	this.enemyCivilians = gameState.getEnemyEntities().filter(filter);
 	this.enemyCivilians.registerUpdates();
@@ -19,16 +26,6 @@ var enemyWatcher = function(gameState, playerToWatch) {
 	filter = Filters.and(Filters.byClassesOr(["CitizenSoldier", "Hero", "Champion", "Siege"]), Filters.byOwner(this.watched));
 	this.enemySoldiers = gameState.getEnemyEntities().filter(filter);
 	this.enemySoldiers.registerUpdates();
-	
-	// okay now we register here only enemy soldiers that we are monitoring (ie we see as part of an army…)
-	filter = Filters.and(Filters.byClassesOr(["CitizenSoldier", "Hero", "Champion", "Siege"]), Filters.and(Filters.byMetadata("monitored","true"),Filters.byOwner(this.watched)));
-	this.monitoredEnemySoldiers = gameState.getEnemyEntities().filter(filter);
-	this.monitoredEnemySoldiers.registerUpdates();
-	
-	// and here those that we do not monitor
-	filter = Filters.and(Filters.byClassesOr(["CitizenSoldier","Hero","Champion","Siege"]), Filters.and(Filters.not(Filters.byMetadata("monitored","true")),Filters.byOwner(this.watched)));
-	this.unmonitoredEnemySoldiers = gameState.getEnemyEntities().filter(filter);
-	this.unmonitoredEnemySoldiers.registerUpdates();
 
 	// entity collections too.
 	this.armies = {};	
@@ -46,16 +43,16 @@ enemyWatcher.prototype.getAllEnemySoldiers = function() {
 enemyWatcher.prototype.getAllEnemyBuildings = function() {
 	return this.enemyBuildings;
 };
-enemyWatcher.prototype.getEnemyBuildings = function(specialClass, OneTime) {
-	var filter = Filters.byClass(specialClass);
-	var returnable = this.enemyBuildings.filter(filter);
 
-	if (!this.enemyBuildingClass[specialClass] && !OneTime) {
-		this.enemyBuildingClass[specialClass] = returnable;
-		this.enemyBuildingClass[specialClass].registerUpdates();
-		return this.enemyBuildingClass[specialClass];
-	}
-	return returnable;
+enemyWatcher.prototype.getEnemyBuildings = function(gameState, specialClass, OneTime) {
+	var filter = Filters.byClass(specialClass);
+	
+	if (OneTime && gameState.getGEC("player-" +this.watched + "-structures-" +specialClass))
+		return gameState.getGEC("player-" +this.watched + "-structures-" +specialClass);
+	else if (OneTime)
+		return this.enemyBuildings.filter(filter);
+	
+	return gameState.updatingGlobalCollection("player-" +this.watched + "-structures-" +specialClass, filter, gameState.getGEC("player-" +this.watched + "-structure"));
 };
 enemyWatcher.prototype.getDangerousArmies = function() {
 	var toreturn = {};
@@ -117,11 +114,11 @@ enemyWatcher.prototype.detectArmies = function(gameState){
 				return;
 			
 			// this was an unmonitored unit, we do not know any army associated with it. We assign it a new army (we'll merge later if needed)
-			enemy.setMetadata("monitored","true");
+			enemy.setMetadata(PlayerID, "monitored","true");
 			var armyID = gameState.player + "" + self.totalNBofArmies;
 			self.totalNBofArmies++,
-			enemy.setMetadata("EnemyWatcherArmy",armyID);
-			var filter = Filters.byMetadata("EnemyWatcherArmy",armyID);
+			enemy.setMetadata(PlayerID, "EnemyWatcherArmy",armyID);
+			var filter = Filters.byMetadata(PlayerID, "EnemyWatcherArmy",armyID);
 			var army = self.enemySoldiers.filter(filter);
 			self.armies[armyID] = army;
 			self.armies[armyID].registerUpdates();
@@ -157,7 +154,7 @@ enemyWatcher.prototype.mergeArmies = function(){
 							this.dangerousArmies.push(army);
 						
 						secondArmy.forEach( function(ent) {
-							ent.setMetadata("EnemyWatcherArmy",army);
+							ent.setMetadata(PlayerID, "EnemyWatcherArmy",army);
 						});
 					}
 				}
@@ -184,7 +181,7 @@ enemyWatcher.prototype.ScrapEmptyArmies = function(){
 enemyWatcher.prototype.splitArmies = function(gameState){
 	var self = this;
 	
-	var map = gameState.getTerritoryMap();
+	var map = Map.createTerritoryMap(gameState);
 	
 	for (armyID in this.armies) {
 		var army = this.armies[armyID];
@@ -203,8 +200,8 @@ enemyWatcher.prototype.splitArmies = function(gameState){
 					 self.dangerousArmies.push(newArmyID);
 				
 				self.totalNBofArmies++,
-				enemy.setMetadata("EnemyWatcherArmy",newArmyID);
-				var filter = Filters.byMetadata("EnemyWatcherArmy",newArmyID);
+				enemy.setMetadata(PlayerID, "EnemyWatcherArmy",newArmyID);
+				var filter = Filters.byMetadata(PlayerID, "EnemyWatcherArmy",newArmyID);
 				var newArmy = self.enemySoldiers.filter(filter);
 				self.armies[newArmyID] = newArmy;
 				self.armies[newArmyID].registerUpdates();

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,26 +15,25 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_ICMPAIINTERFACE
-#define INCLUDED_ICMPAIINTERFACE
+#include "precompiled.h"
 
-#include "simulation2/system/Interface.h"
+#include "ICmpTechnologyTemplateManager.h"
 
-class ICmpAIInterface : public IComponent
+#include "simulation2/system/InterfaceScripted.h"
+#include "simulation2/scripting/ScriptComponent.h"
+
+BEGIN_INTERFACE_WRAPPER(TechnologyTemplateManager)
+END_INTERFACE_WRAPPER(TechnologyTemplateManager)
+
+class CCmpTechnologyTemplateManagerScripted : public ICmpTechnologyTemplateManager
 {
 public:
-	/**
-	 * Returns a script object that represents the current world state,
-	 * to be passed to AI scripts.
-	 */
-	virtual CScriptVal GetRepresentation() = 0;
-	/**
-	 * Returns a script object that represents the current world state,
-	 * to be passed to AI scripts. No caching for initialization
-	 */
-	virtual CScriptVal GetFullRepresentation() = 0;
+	DEFAULT_SCRIPT_WRAPPER(TechnologyTemplateManagerScripted)
 
-	DECLARE_INTERFACE_TYPE(AIInterface)
+	virtual CScriptVal GetAllTechs()
+	{
+		return m_Script.Call<CScriptVal>("GetAllTechs");
+	}
 };
 
-#endif // INCLUDED_ICMPAIINTERFACE
+REGISTER_COMPONENT_SCRIPT_WRAPPER(TechnologyTemplateManagerScripted)

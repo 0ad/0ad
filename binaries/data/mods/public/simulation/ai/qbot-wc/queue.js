@@ -7,7 +7,21 @@ var Queue = function() {
 	this.outQueue = [];
 };
 
+Queue.prototype.empty = function() {
+	this.queue = [];
+	this.outQueue = [];
+};
+
+
 Queue.prototype.addItem = function(plan) {
+	for (var i in this.queue)
+	{
+		if (plan.category === "unit" && this.queue[i].type == plan.type && this.queue[i].number + plan.number <= this.queue[i].maxMerge)
+		{
+			this.queue[i].addItem(plan.number)
+			return;
+		}
+	}
 	this.queue.push(plan);
 };
 
@@ -37,15 +51,7 @@ Queue.prototype.outQueueCost = function(){
 
 Queue.prototype.nextToOutQueue = function(){
 	if (this.queue.length > 0){
-		if (this.outQueue.length > 0 && 
-				this.getNext().category === "unit" && 
-				this.outQueue[this.outQueue.length-1].type === this.getNext().type &&
-				this.outQueue[this.outQueue.length-1].number < 5){
-			this.queue.shift();
-			this.outQueue[this.outQueue.length-1].addItem();
-		}else{
-			this.outQueue.push(this.queue.shift());
-		}
+		this.outQueue.push(this.queue.shift());
 	}
 };
 

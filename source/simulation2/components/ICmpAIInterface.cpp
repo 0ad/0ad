@@ -34,6 +34,11 @@ public:
 	{
 		return m_Script.Call<CScriptVal> ("GetRepresentation");
 	}
+	virtual CScriptVal GetFullRepresentation()
+	{
+		return m_Script.Call<CScriptVal> ("GetFullRepresentation");
+	}
+	
 };
 
 REGISTER_COMPONENT_SCRIPT_WRAPPER(AIInterfaceScripted)
