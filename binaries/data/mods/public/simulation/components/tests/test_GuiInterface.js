@@ -128,9 +128,47 @@ AddMock(101, IID_EntityLimits, {
 	GetCounts: function() { return {"Bar": 0}; },
 });
 
-AddMock(101, IID_TechnologyManager, {
+AddMock(100, IID_TechnologyManager, {
 	IsTechnologyResearched: function(tech) { if (tech == "phase_village") return true; else return false; },
+	GetQueuedResearch: function() { return {}; },
+	GetStartedResearch: function() { return {}; },
+	GetResearchedTechs: function() { return {}; },
+	GetClassCounts: function() { return {}; },
+	GetTypeCountsByClass: function() { return {}; },
 	GetTechModifications: function() { return {}; },
+});
+AddMock(100, IID_StatisticsTracker, {
+		GetStatistics: function() {
+		return {
+		"unitsTrained": 10,
+		"unitsLost": 9,
+		"buildingsConstructed": 5,
+		"buildingsLost": 4,
+		"civCentresBuilt": 1,
+		"resourcesGathered": {
+		"food": 100,
+		"wood": 0,
+		"metal": 0,
+		"stone": 0,
+		"vegetarianFood": 0,
+		},
+		"treasuresCollected": 0,
+		"percentMapExplored": 10,
+		};
+		},
+		IncreaseTrainedUnitsCounter: function() { return 1; },
+		IncreaseConstructedBuildingsCounter: function() { return 1; },
+		IncreaseBuiltCivCentresCounter: function() { return 1; },
+		});
+
+AddMock(101, IID_TechnologyManager, {
+		IsTechnologyResearched: function(tech) { if (tech == "phase_village") return true; else return false; },
+		GetQueuedResearch: function() { return {}; },
+		GetStartedResearch: function() { return {}; },
+		GetResearchedTechs: function() { return {}; },
+		GetClassCounts: function() { return {}; },
+		GetTypeCountsByClass: function() { return {}; },
+		GetTechModifications: function() { return {}; },
 });
 
 AddMock(101, IID_StatisticsTracker, {
@@ -174,13 +212,18 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			state: "active",
 			team: -1,
 			teamsLocked: false,
-			phase: "",
+			phase: "village",
 			isAlly: [false, false],
 			isNeutral: [false, false],
 			isEnemy: [true, true],
 			entityLimits: {"Foo": 10},
 			entityCounts: {"Foo": 5},
 			techModifications: {},
+			researchQueued: {},
+			researchStarted: {},
+			researchedTechs: {},
+			classCounts: {},
+			typeCountsByClass: {},
 		},
 		{
 			name: "Player 2",
@@ -201,6 +244,11 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			entityLimits: {"Bar": 20},
 			entityCounts: {"Bar": 0},
 			techModifications: {},
+			researchQueued: {},
+			researchStarted: {},
+			researchedTechs: {},
+			classCounts: {},
+			typeCountsByClass: {},
 		}
 	],
 	circularMap: false,
@@ -221,13 +269,18 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			state: "active",
 			team: -1,
 			teamsLocked: false,
-			phase: "",
+			phase: "village",
 			isAlly: [false, false],
 			isNeutral: [false, false],
 			isEnemy: [true, true],
 			entityLimits: {"Foo": 10},
 			entityCounts: {"Foo": 5},
 			techModifications: {},
+			researchQueued: {},
+			researchStarted: {},
+			researchedTechs: {},
+			classCounts: {},
+			typeCountsByClass: {},
 			statistics: {
 				unitsTrained: 10,
 				unitsLost: 9,
@@ -264,6 +317,11 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			entityLimits: {"Bar": 20},
 			entityCounts: {"Bar": 0},
 			techModifications: {},
+			researchQueued: {},
+			researchStarted: {},
+			researchedTechs: {},
+			classCounts: {},
+			typeCountsByClass: {},
 			statistics: {
 				unitsTrained: 10,
 				unitsLost: 9,

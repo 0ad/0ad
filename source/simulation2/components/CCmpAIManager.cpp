@@ -359,7 +359,7 @@ public:
 		JS_GC(self->m_ScriptInterface.GetContext());
 	}
 
-	bool TryLoadSharedComponent(bool callConstructor)
+	bool TryLoadSharedComponent(bool hasTechs)
 	{
 		// only load if there are AI players.
 		if (m_Players.size() == 0)
@@ -370,7 +370,7 @@ public:
 		
 		// reset the value so it can be used to determine if we actually initialized it.
 		m_HasSharedComponent = false;
-		
+				
 		VfsPaths sharedPathnames;
 		// Check for "shared" module.
 		vfs::GetPathnames(g_VFS, L"simulation/ai/common-api-v3/", L"*.js", sharedPathnames);
@@ -423,10 +423,27 @@ public:
 		}
 		else
 		{
-			// For deserialization, we want to create the object with the correct prototype
-			// but don't want to actually run the constructor again
-			// XXX: actually we don't currently use this path for deserialization - maybe delete it?
-			m_SharedAIObj = CScriptValRooted(m_ScriptInterface.GetContext(),m_ScriptInterface.NewObjectFromConstructor(ctor.get()));
+			// won't get the tech templates directly.
+			// Set up the data to pass as the constructor argument
+			CScriptVal settings;
+			m_ScriptInterface.Eval(L"({})", settings);
+			CScriptVal playersID;
+			m_ScriptInterface.Eval(L"({})", playersID);
+			for (size_t i = 0; i < m_Players.size(); ++i)
+			{
+				jsval val = m_ScriptInterface.ToJSVal(m_ScriptInterface.GetContext(), m_Players[i]->m_Player);
+				m_ScriptInterface.SetPropertyInt(playersID.get(), i, CScriptVal(val), true);
+			}
+			
+			m_ScriptInterface.SetProperty(settings.get(), "players", playersID);
+			
+			CScriptVal m_fakeTech;
+			m_ScriptInterface.Eval("({})", m_fakeTech);
+			m_ScriptInterface.SetProperty(settings.get(), "techTemplates", m_fakeTech, false);
+
+			ENSURE(m_HasLoadedEntityTemplates);
+			m_ScriptInterface.SetProperty(settings.get(), "templates", m_EntityTemplates, false);
+			m_SharedAIObj = CScriptValRooted(m_ScriptInterface.GetContext(),m_ScriptInterface.CallConstructor(ctor.get(), settings.get()));
 		}
 		
 		if (m_SharedAIObj.undefined())
@@ -640,6 +657,7 @@ public:
 			if (!m_ScriptInterface.CallFunctionVoid(m_Players.back()->m_Obj.get(), "Deserialize", scriptData))
 				LOGERROR(L"AI script Deserialize call failed");
 		}
+		TryLoadSharedComponent(false);
 	}
 	
 	int getPlayerSize()
@@ -774,17 +792,6 @@ public:
 		m_TerritoriesDirtyID = 0;
 
 		StartLoadEntityTemplates();
-		
-		// loading the technology template
-		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		
-		CmpPtr<ICmpTechnologyTemplateManager> cmpTechTemplateManager(GetSimContext(), SYSTEM_ENTITY);
-		ENSURE(cmpTechTemplateManager);
-		
-		// Get the game state from AIInterface
-		CScriptVal techTemplates = cmpTechTemplateManager->GetAllTechs();
-		
-		m_Worker.RegisterTechTemplates(scriptInterface.WriteStructuredClone(techTemplates.get()));
 	}
 
 	virtual void Deinit()
@@ -847,6 +854,15 @@ public:
 	
 	virtual void TryLoadSharedComponent()
 	{
+		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		// load the technology templates
+		CmpPtr<ICmpTechnologyTemplateManager> cmpTechTemplateManager(GetSimContext(), SYSTEM_ENTITY);
+		ENSURE(cmpTechTemplateManager);
+		
+		// Get the game state from AIInterface
+		CScriptVal techTemplates = cmpTechTemplateManager->GetAllTechs();
+		
+		m_Worker.RegisterTechTemplates(scriptInterface.WriteStructuredClone(techTemplates.get()));
 		m_Worker.TryLoadSharedComponent(true);
 	}
 

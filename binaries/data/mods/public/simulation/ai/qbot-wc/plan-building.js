@@ -38,6 +38,8 @@ BuildingConstructionPlan.prototype.execute = function(gameState) {
 
 	var pos = this.findGoodPosition(gameState);
 	if (!pos){
+		if (this.template.hasClass("Naval"))
+			gameState.ai.modules.economy.dockFailed = true;
 		debug("No room to place " + this.type);
 		return;
 	}

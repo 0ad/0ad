@@ -65,9 +65,12 @@ QBotAI.prototype.InitShared = function(gameState, sharedScript) {
 	this.pathsToMe = [];
 	this.pathInfo = { "angle" : 0, "needboat" : true, "mkeyPos" : myKeyEntities.toEntityArray()[0].position(), "ekeyPos" : enemyKeyEntities.toEntityArray()[0].position() };
 	
-	var pos = [this.pathInfo.mkeyPos[0] + 140*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 140*Math.sin(this.pathInfo.angle)];
+	// First path has a sampling of 3, which ensures we'll get at least one path even on Acropolis. The others are 6 so might fail.
+	var pos = [this.pathInfo.mkeyPos[0] + 180*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 180*Math.sin(this.pathInfo.angle)];
 	var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 3, 3);// uncomment for debug:*/, 300000, gameState);
 
+	//Engine.DumpImage("initialPath" + PlayerID + ".png", this.pathFinder.TotorMap.map, this.pathFinder.TotorMap.width,this.pathFinder.TotorMap.height,255);
+	
 	if (path !== undefined && path[1] !== undefined && path[1] == false) {
 		// path is viable and doesn't require boating.
 		// blackzone the last two waypoints.
@@ -171,7 +174,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 
 		if (this.pathInfo !== undefined)
 		{
-			var pos = [this.pathInfo.mkeyPos[0] + 140*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 140*Math.sin(this.pathInfo.angle)];
+			var pos = [this.pathInfo.mkeyPos[0] + 180*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 180*Math.sin(this.pathInfo.angle)];
 			var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 6, 6);// uncomment for debug:*/, 300000, gameState);
 			if (path !== undefined && path[1] !== undefined && path[1] == false) {
 				// path is viable and doesn't require boating.

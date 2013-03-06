@@ -20,6 +20,8 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 				max = enemyCount[i];
 			}
 	}
+	if (this.targetPlayer === undefined)
+		return false;
 	debug ("Target = " +this.targetPlayer);
 	this.targetFinder = targetFinder || this.defaultTargetFinder;
 	this.type = type || "normal";
@@ -184,6 +186,7 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	
 	//debug ("after");
 	//Engine.DumpHeap();
+	return true;
 };
 
 CityAttack.prototype.getName = function(){
@@ -266,7 +269,7 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 				}
 			}
 			// when we have a target, we path to it.
-			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, 2, 2);//,300000,gameState);
+			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, 4, 4,300000,gameState);
 			
 			if (this.path === undefined) {
 				delete this.pathFinder;
@@ -560,6 +563,9 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 	var bool_attacked = false;
 	// raids don't care about attacks much
 	
+	if (this.unitCollection.length === 0)
+		return 0;
+	
 	this.position = this.unitCollection.getCentrePosition();
 	
 	var IDs = this.unitCollection.toIdArray();
@@ -673,32 +679,60 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 		
 		this.position = this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).getCentrePosition();
 		
+		// probably not too good.
+		if (!this.position)
+			return undefined;	// should spawn an error.
+		
 		if (SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0) {
 			this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).moveIndiv(this.path[0][0][0], this.path[0][0][1]);
+			// We're stuck, presumably. Check if there are no walls just close to us. If so, we're arrived, and we're gonna tear down some serious stone.
+			var walls = gameState.getEnemyEntities().filter(Filters.and(Filters.byOwner(this.targetPlayer), Filters.byClass("StoneWall")));
+			var nexttoWalls = false;
+			walls.forEach( function (ent) {
+				if (!nexttoWalls && SquareVectorDistance(self.position, ent.position()) < 800)
+					nexttoWalls = true;
+			});
+			// there are walls but we can attack
+			if (nexttoWalls && this.unitCollection.filter(Filters.byCanAttack("StoneWall")).length !== 0)
+			{
+				debug ("Attack Plan " +this.type +" " +this.name +" has met walls and is not happy.");
+				this.state = "arrived";
+			} else if (nexttoWalls) {
+				// abort plan.
+				debug ("Attack Plan " +this.type +" " +this.name +" has met walls and gives up.");
+				return 0;
+			}
 		}
+		
+		// check if our land units are close enough from the next waypoint.
 		if (SquareVectorDistance(this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).getCentrePosition(), this.path[0][0]) < 600) {
-			// okay so here basically two cases. The first one is "we need a boat at this point".
-			// the second one is "we need to unload at this point". The third is "normal".
-			if (this.path[0][1] !== true)
+			if (this.unitCollection.filter(Filters.byClass("Siege")).length !== 0
+				&& SquareVectorDistance(this.unitCollection.filter(Filters.byClass("Siege")).getCentrePosition(), this.path[0][0]) > 600)
 			{
-				this.path.shift();
-				if (this.path.length > 0){
-					this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).moveIndiv(this.path[0][0][0], this.path[0][0][1]);
-				} else {
-					debug ("Attack Plan " +this.type +" " +this.name +" has arrived to destination.");
-					// we must assume we've arrived at the end of the trail.
-					this.state = "arrived";
-				}
-			} else if (this.path[0][1] === true)
-			{
-				// okay we must load our units.
-				// check if we have some kind of ships.
-				var ships = this.unitCollection.filter(Filters.byClass("Warship"));
-				if (ships.length === 0)
-					return 0; // abort
+			} else {
+				// okay so here basically two cases. The first one is "we need a boat at this point".
+				// the second one is "we need to unload at this point". The third is "normal".
+				if (this.path[0][1] !== true)
+				{
+					this.path.shift();
+					if (this.path.length > 0){
+						this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).moveIndiv(this.path[0][0][0], this.path[0][0][1]);
+					} else {
+						debug ("Attack Plan " +this.type +" " +this.name +" has arrived to destination.");
+						// we must assume we've arrived at the end of the trail.
+						this.state = "arrived";
+					}
+				} else if (this.path[0][1] === true)
+				{
+					// okay we must load our units.
+					// check if we have some kind of ships.
+					var ships = this.unitCollection.filter(Filters.byClass("Warship"));
+					if (ships.length === 0)
+						return 0; // abort
 				
-				debug ("switch to boarding");
-				this.state = "boarding";
+					debug ("switch to boarding");
+					this.state = "boarding";
+				}
 			}
 		}
 	} else if (this.state === "shipping") {
@@ -854,7 +888,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 		this.unitCollection.forEach( function (ent) { //}) {
 			if (ent.isIdle()) {
 				var mStruct = enemyStructures.filter(function (enemy) {// }){
-					if (!enemy.position()) {
+					if (!enemy.position() || (enemy.hasClass("StoneWall") && ent.canAttackClass("StoneWall"))) {
 						return false;
 					}
 					if (SquareVectorDistance(enemy.position(),ent.position()) > ent.visionRange()*ent.visionRange() + 300) {
@@ -871,32 +905,54 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 					}
 					return true;
 				});
+				var isGate = false;
 				mUnit = mUnit.toEntityArray();
 				mStruct = mStruct.toEntityArray();
-				mStruct.sort(function (struct) {
-					if (struct.hasClass("ConquestCritical"))
-						return 100 + struct.costSum();
-					else
-						return struct.costSum();
-				})
+				mStruct.sort(function (structa,structb) {
+					var vala = structa.costSum();
+					if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))	// we hate gates
+					{
+						isGate = true;
+						vala += 10000;
+					} else if (structa.hasClass("ConquestCritical"))
+						vala = 100;
+					var valb = structb.costSum();
+					if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))	// we hate gates
+					{
+						isGate = true;
+						valb += 10000;
+					} else if (structb.hasClass("ConquestCritical"))
+						valb = 100;
+					return (valb - vala);
+				});
 				if (ent.hasClass("Siege")) {
 					if (mStruct.length !== 0) {
-						var rand = Math.floor(Math.random() * mStruct.length*0.2);
-						ent.attack(mStruct[+rand].id());
-						//debug ("Siege units attacking a structure from " +mStruct[+rand].owner() + " , " +mStruct[+rand].templateName());
+						if (isGate)
+							ent.attack(mStruct[0].id());
+						else
+						{
+							var rand = Math.floor(Math.random() * mStruct.length*0.2);
+							ent.attack(mStruct[+rand].id());
+							//debug ("Siege units attacking a structure from " +mStruct[+rand].owner() + " , " +mStruct[+rand].templateName());
+						}
 					} else if (SquareVectorDistance(self.targetPos, ent.position()) > 900 ){
 						//debug ("Siege units moving to " + uneval(self.targetPos));
 						ent.move((self.targetPos[0] + ent.position()[0])/2,(self.targetPos[1] + ent.position()[1])/2);
 					}
 				} else {
-					if (mUnit.length !== 0) {
+					if (mUnit.length !== 0 && !isGate) {
 						var rand = Math.floor(Math.random() * mUnit.length*0.99);
 						ent.attack(mUnit[(+rand)].id());
 						//debug ("Units attacking a unit from " +mUnit[+rand].owner() + " , " +mUnit[+rand].templateName());
 					} else if (mStruct.length !== 0) {
-						var rand = Math.floor(Math.random() * mStruct.length*0.99);
-						ent.attack(mStruct[+rand].id());
-						//debug ("Units attacking a structure from " +mStruct[+rand].owner() + " , " +mStruct[+rand].templateName());
+						if (isGate)
+							ent.attack(mStruct[0].id());
+						else
+						{
+							var rand = Math.floor(Math.random() * mStruct.length*0.2);
+							ent.attack(mStruct[+rand].id());
+							//debug ("Units attacking a structure from " +mStruct[+rand].owner() + " , " +mStruct[+rand].templateName());
+						}
 					} else if (SquareVectorDistance(self.targetPos, ent.position()) > 900 ){
 						//debug ("Units moving to " + uneval(self.targetPos));
 						ent.move((self.targetPos[0] + ent.position()[0])/2,(self.targetPos[1] + ent.position()[1])/2);

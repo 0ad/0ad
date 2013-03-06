@@ -236,6 +236,7 @@ TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI) {
  * it can also determine if any point is "probably" reachable, assuming the unit can get close enough
  * for optimizations it's called after the TerrainAnalyser has finished initializing his map
  * so this can use the land regions already.
+
  */
 function Accessibility(rawState, terrainAnalyser){
 	var self = this;
@@ -245,8 +246,11 @@ function Accessibility(rawState, terrainAnalyser){
 
 	this.regionSize = [];
 	this.regionSize.push(0);
-	// initialized to 0, so start to 1 for optimization
-	this.regionID = 1;
+	
+	// initialized to 0, it's more optimized to start at 1 (I'm checking that if it's not 0, then it's already aprt of a region, don't touch);
+	// However I actually store all unpassable as region 1 (because if I don't, on some maps the toal nb of region is over 256, and it crashes as the mapis 8bit.)
+	// So start at 2.
+	this.regionID = 2;
 	for (var i = 0; i < this.passMap.length; ++i) {
 		if (this.passMap[i] === 0 && this.map[i] !== 0) {	// any non-painted, non-inacessible area.
 			this.regionSize.push(0);	// updated

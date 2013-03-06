@@ -23,6 +23,8 @@ var EconomyManager = function() {
 	this.farmsteadStartTime =  Config.Economy.farmsteadStartTime * 1000;
 	this.techStartTime = Config.Economy.techStartTime * 1000;
 	
+	this.dockFailed = false;	// sanity check
+	
 	this.resourceMaps = {}; // Contains maps showing the density of wood, stone and metal
 	this.CCResourceMaps = {}; // Contains maps showing the density of wood, stone and metal, optimized for CC placement.
 	
@@ -844,7 +846,7 @@ EconomyManager.prototype.buildFarmstead = function(gameState, queues){
 };
 
 EconomyManager.prototype.buildDock = function(gameState, queues){
-	if (!gameState.ai.waterMap)
+	if (!gameState.ai.waterMap || this.dockFailed)
 		return;
 	if (gameState.getTimeElapsed() > this.dockStartTime) {
 		if (queues.economicBuilding.countTotalQueuedUnitsWithClass("NavalMarket") === 0 &&

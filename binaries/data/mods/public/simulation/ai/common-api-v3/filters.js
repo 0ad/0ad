@@ -113,6 +113,13 @@ var Filters = {
 		},
 			"dynamicProperties": ['unitAIOrderData']};
 	},
+	
+	byCanAttack: function(saidClass){
+		return {"func" : function(ent){
+			return ent.canAttackClass(saidClass);
+		},
+			"dynamicProperties": []};
+	},
 
 	isSoldier: function(){
 		return {"func" : function(ent){

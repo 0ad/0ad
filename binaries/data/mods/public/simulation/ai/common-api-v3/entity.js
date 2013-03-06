@@ -266,6 +266,21 @@ var EntityTemplate = Class({
 		return 1;
 	},
 
+	// returns true if the entity can attack the given class
+	canAttackClass: function(saidClass) {
+		if (!this._template.Attack)
+			return false;
+		
+		for (i in this._template.Attack) {
+			if (!this._template.Attack[i].RestrictedClasses)
+				continue;
+			var cannotAttack = this._template.Attack[i].RestrictedClasses._string.split(" ");
+			if (cannotAttack.indexOf(saidClass) !== -1)
+				return false;
+		}
+		return true;
+	},
+
 	buildableEntities: function() {
 		if (!this._template.Builder || !this._template.Builder.Entities._string)
 			return undefined;
