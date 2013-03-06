@@ -379,7 +379,7 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 		+ queues.defenceBuilding.totalLength() < gameState.getEntityLimits()["DefenseTower"]
 		&& gameState.currentPhase() > 1) {
 		gameState.getOwnEntities().forEach(function(dropsiteEnt) {
-			if (dropsiteEnt.resourceDropsiteTypes() && dropsiteEnt.getMetadata(PlayerID, "defenseTower") !== true){
+			if (dropsiteEnt.resourceDropsiteTypes() && dropsiteEnt.getMetadata(PlayerID, "defenseTower") !== true && !dropsiteEnt.hasClass("CivCentre")){
 				var position = dropsiteEnt.position();
 				if (position){
 					queues.defenceBuilding.addItem(new BuildingConstructionPlan(gameState, 'structures/{civ}_defense_tower', position));
@@ -574,14 +574,24 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 			&& gameState.getTimeElapsed() > this.attackPlansStartTime) {
 		if (this.upcomingAttacks["CityAttack"].length == 0 && (gameState.getTimeElapsed() < 25*60000 || Config.difficulty < 2)) {
 			var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1);
-			debug ("Military Manager: Creating the plan " +this.TotalAttackNumber);
-			this.TotalAttackNumber++;
-			this.upcomingAttacks["CityAttack"].push(Lalala);
+			if (!Lalala)
+			{
+				this.attackPlansEncounteredWater = true; // hack
+			} else {
+				debug ("Military Manager: Creating the plan " +this.TotalAttackNumber);
+				this.TotalAttackNumber++;
+				this.upcomingAttacks["CityAttack"].push(Lalala);
+			}
 		} else if (this.upcomingAttacks["CityAttack"].length == 0 && Config.difficulty !== 0) {
 			var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1, "superSized");
-			debug ("Military Manager: Creating the super sized plan " +this.TotalAttackNumber);
-			this.TotalAttackNumber++;
-			this.upcomingAttacks["CityAttack"].push(Lalala);
+			if (!Lalala)
+			{
+				this.attackPlansEncounteredWater = true; // hack
+			} else {
+				debug ("Military Manager: Creating the super sized plan " +this.TotalAttackNumber);
+				this.TotalAttackNumber++;
+				this.upcomingAttacks["CityAttack"].push(Lalala);
+			}
 		}
 	}
 	/*

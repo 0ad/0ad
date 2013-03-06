@@ -216,7 +216,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 						this.openList.push(index);
 					}
 					this.isOpened[index] = true;
-					if (SquareVectorDistance( [this.currentSquare%w, Math.floor(this.currentSquare/w)] , target) <= this.Sampling*this.Sampling) {
+					if (SquareVectorDistance( [this.currentSquare%w, Math.floor(this.currentSquare/w)] , target) <= this.Sampling*this.Sampling+1) {
 						if (this.e != this.currentSquare)
 							this.parentSquare[this.e] = this.currentSquare;
 						found = true;

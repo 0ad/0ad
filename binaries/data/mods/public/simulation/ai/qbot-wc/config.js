@@ -1,9 +1,9 @@
 // Baseconfig is the highest difficulty.
 var baseConfig = {
 	"Military" : {
-		"fortressStartTime" : 840, // Time to wait before building one fortress.
+		"fortressStartTime" : 780, // Time to wait before building one fortress.
 		"fortressLapseTime" : 300, // Time to wait between building 2 fortresses (minimal)
-		"defenceBuildingTime" : 300, // Time to wait before building towers or fortresses
+		"defenceBuildingTime" : 600, // Time to wait before building towers or fortresses
 		"advancedMilitaryStartTime" : 720, // Time to wait before building advanced military buildings. Also limited by phase 2.
 		"attackPlansStartTime" : 0	// time to wait before attacking. Start as soon as possible (first barracks)
 	},
@@ -11,7 +11,7 @@ var baseConfig = {
 		"townPhase" : 180,	// time to start trying to reach town phase (might be a while after. Still need the requirements + ress )
 		"cityPhase" : 540,	// time to start trying to reach city phase
 		"farmsteadStartTime" : 240,	// Time to wait before building a farmstead.
-		"marketStartTime" : 620, // Time to wait before building the market.
+		"marketStartTime" : 480, // Time to wait before building the market.
 		"dockStartTime" : 240,	// Time to wait before building the dock
 		"techStartTime" : 600,	// time to wait before teching.
 		"targetNumBuilders" : 1.5, // Base number of builders per foundation. Later updated, but this remains a multiplier.
@@ -58,7 +58,7 @@ var baseConfig = {
 		"villager" : 60,
 		"economicBuilding" : 80,
 		"dropsites" : 180,
-		"field" : 500,
+		"field" : 1000,
 		"militaryBuilding" : 120,
 		"defenceBuilding" : 17,
 		"majorTech" : 100,
@@ -83,7 +83,7 @@ if (Config.difficulty === 1)
 	Config["Military"] = {
 		"fortressStartTime" : 1000,
 		"fortressLapseTime" : 400,
-		"defenceBuildingTime" : 350,
+		"defenceBuildingTime" : 720,
 		"advancedMilitaryStartTime" : 1000,
 		"attackPlansStartTime" : 600
 	};
@@ -106,7 +106,7 @@ if (Config.difficulty === 1)
 	Config["Military"] = {
 		"fortressStartTime" : 1500,
 		"fortressLapseTime" : 1000000,
-		"defenceBuildingTime" : 500,
+		"defenceBuildingTime" : 900,
 		"advancedMilitaryStartTime" : 1300,
 		"attackPlansStartTime" : 1200	// 20 minutes ought to give enough times for beginners
 	};
