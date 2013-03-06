@@ -269,7 +269,7 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 				}
 			}
 			// when we have a target, we path to it.
-			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, 4, 4,300000,gameState);
+			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, 4, 4);//,300000,gameState);
 			
 			if (this.path === undefined) {
 				delete this.pathFinder;

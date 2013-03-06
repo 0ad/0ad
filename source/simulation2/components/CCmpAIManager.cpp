@@ -398,7 +398,7 @@ public:
 			return false;
 		}
 		
-		if (callConstructor)
+		if (hasTechs)
 		{
 			// Set up the data to pass as the constructor argument
 			CScriptVal settings;
