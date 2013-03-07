@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="maur wall medium palisade">
+      <mesh>structural/maur_wall_medium_palisade.dae</mesh>
+	  <textures>
+        <texture file="props/palisade_main.png" name="baseTex"/>
+	    <texture file="props/palisade_main_norm.png" name="normTex"/>
+        <texture file="structural/ao/maur_wall_medium_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+<material>player_trans_ao_parallax_spec.xml</material>
+</actor>
