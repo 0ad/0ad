@@ -75,6 +75,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval*
 	if (propName == "constructor" ||
 		propName == "prototype"   ||
 		propName == "toString"    ||
+		propName == "toJSON"      ||
 		propName == "focus"       ||
 		propName == "blur"        ||
 		propName == "getComputedSize"

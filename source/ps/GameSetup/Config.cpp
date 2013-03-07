@@ -21,6 +21,7 @@
 
 #include "ps/ConfigDB.h"
 #include "ps/CConsole.h"
+#include "ps/CLogger.h"
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "lib/timer.h"
 #include "soundmanager/SoundManager.h"
@@ -59,6 +60,9 @@ bool g_VSync = false;
 
 bool g_Quickstart = false;
 bool g_DisableAudio = false;
+
+bool g_JSDebuggerEnabled = false;
+bool g_ScriptProfilingEnabled = false;
 
 // flag to switch on drawing terrain overlays
 bool g_ShowPathfindingOverlay = false;
@@ -127,6 +131,14 @@ static void LoadGlobals()
 		g_SoundManager->SetMemoryUsage(bufferSize, bufferCount);
 	}
 #endif // CONFIG2_AUDIO
+
+	CFG_GET_VAL("jsdebugger.enable", Bool, g_JSDebuggerEnabled);
+	CFG_GET_VAL("profiler2.script.enable", Bool, g_ScriptProfilingEnabled);
+
+	// Script Debugging and profiling does not make sense together because of the hooks
+	// that reduce performance a lot - and it wasn't tested if it even works together.
+	if (g_JSDebuggerEnabled && g_ScriptProfilingEnabled)
+		LOGERROR(L"Enabling both script profiling and script debugging is not supported!");
 }
 
 

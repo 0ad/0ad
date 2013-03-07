@@ -14,9 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
+ #include "ps/GameSetup/Config.h"
 
 // (NativeWrapperDecls.h set up a lot of the macros we use here)
-
 
 // ScriptInterface_NativeWrapper<T>::call(cx, rval, fptr, args...) will call fptr(cbdata, args...),
 // and if T != void then it will store the result in rval:
@@ -76,18 +76,17 @@ struct ScriptInterface_NativeMethodWrapper<void, TC> {
 // ScriptInterface_impl::Register stores the name in a reserved slot.
 // (TODO: this doesn't work for functions registered via InterfaceScripted.h.
 // Maybe we should do some interned JS_GetFunctionId thing.)
-#if ENABLE_SCRIPT_PROFILING
 #define SCRIPT_PROFILE \
-	ENSURE(JSVAL_IS_OBJECT(JS_CALLEE(cx, vp)) && JS_ObjectIsFunction(cx, JSVAL_TO_OBJECT(JS_CALLEE(cx, vp)))); \
-	const char* name = "(unknown)"; \
-	jsval nameval; \
-	if (JS_GetReservedSlot(cx, JSVAL_TO_OBJECT(JS_CALLEE(cx, vp)), 0, &nameval) \
-		&& !JSVAL_IS_VOID(nameval)) \
-		name = static_cast<const char*>(JSVAL_TO_PRIVATE(nameval)); \
-	CProfileSampleScript profile(name);
-#else
-#define SCRIPT_PROFILE
-#endif
+	if (g_ScriptProfilingEnabled) \
+	{ \
+		ENSURE(JSVAL_IS_OBJECT(JS_CALLEE(cx, vp)) && JS_ObjectIsFunction(cx, JSVAL_TO_OBJECT(JS_CALLEE(cx, vp)))); \
+		const char* name = "(unknown)"; \
+		jsval nameval; \
+		if (JS_GetReservedSlot(cx, JSVAL_TO_OBJECT(JS_CALLEE(cx, vp)), 0, &nameval) \
+			&& !JSVAL_IS_VOID(nameval)) \
+			name = static_cast<const char*>(JSVAL_TO_PRIVATE(nameval)); \
+		CProfileSampleScript profile(name); \
+	}
 
 // JSFastNative-compatible function that wraps the function identified in the template argument list
 #define OVERLOADS(z, i, data) \

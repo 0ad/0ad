@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "ScriptInterface.h"
+#include "DebuggingServer.h"
 #include "ScriptStats.h"
 #include "AutoRooters.h"
 
@@ -73,17 +74,18 @@ public:
 		m_rt = JS_NewRuntime(runtimeSize);
 		ENSURE(m_rt); // TODO: error handling
 
-#if ENABLE_SCRIPT_PROFILING
-		// Profiler isn't thread-safe, so only enable this on the main thread
-		if (ThreadUtil::IsMainThread())
+		if (g_ScriptProfilingEnabled)
 		{
-			if (CProfileManager::IsInitialised())
+			// Profiler isn't thread-safe, so only enable this on the main thread
+			if (ThreadUtil::IsMainThread())
 			{
-				JS_SetExecuteHook(m_rt, jshook_script, this);
-				JS_SetCallHook(m_rt, jshook_function, this);
+				if (CProfileManager::IsInitialised())
+				{
+					JS_SetExecuteHook(m_rt, jshook_script, this);
+					JS_SetCallHook(m_rt, jshook_function, this);
+				}
 			}
 		}
-#endif
 
 		JS_SetExtraGCRoots(m_rt, jshook_trace, this);
 	}
@@ -100,7 +102,7 @@ public:
 
 private:
 
-#if ENABLE_SCRIPT_PROFILING
+
 	static void* jshook_script(JSContext* UNUSED(cx), JSStackFrame* UNUSED(fp), JSBool before, JSBool* UNUSED(ok), void* closure)
 	{
 		if (before)
@@ -212,7 +214,6 @@ private:
 
 		return closure;
 	}
-#endif
 
 	static void jshook_trace(JSTracer* trc, void* data)
 	{
@@ -493,15 +494,17 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	options |= JSOPTION_XML; // "ECMAScript for XML support: parse <!-- --> as a token"
 	options |= JSOPTION_VAROBJFIX; // "recommended" (fixes variable scoping)
 
-	// Enable method JIT, unless script profiling is enabled (since profiling
+	// Enable method JIT, unless script profiling/debugging is enabled (since profiling/debugging
 	// hooks are incompatible with the JIT)
-#if !ENABLE_SCRIPT_PROFILING
-	options |= JSOPTION_METHODJIT;
+	// TODO: Verify what exactly is incompatible
+	if (!g_ScriptProfilingEnabled && !g_JSDebuggerEnabled)
+	{
+		options |= JSOPTION_METHODJIT;
 
-	// Some other JIT flags to experiment with:
-	options |= JSOPTION_JIT;
-	options |= JSOPTION_PROFILING;
-#endif
+		// Some other JIT flags to experiment with:
+		options |= JSOPTION_JIT;
+		options |= JSOPTION_PROFILING;
+	}
 
 	JS_SetOptions(m_cx, options);
 
@@ -557,20 +560,21 @@ void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs
 	if (!func)
 		return;
 
-#if ENABLE_SCRIPT_PROFILING
-	// Store the function name in a slot, so we can pass it to the profiler.
+	if (g_ScriptProfilingEnabled)
+	{
+		// Store the function name in a slot, so we can pass it to the profiler.
 
-	// Use a flyweight std::string because we can't assume the caller has
-	// a correctly-aligned string and that its lifetime is long enough
-	typedef boost::flyweight<
-		std::string,
-		boost::flyweights::no_tracking
-		// can't use no_locking; Register might be called in threads
-	> LockedStringFlyweight;
+		// Use a flyweight std::string because we can't assume the caller has
+		// a correctly-aligned string and that its lifetime is long enough
+		typedef boost::flyweight<
+			std::string,
+			boost::flyweights::no_tracking
+			// can't use no_locking; Register might be called in threads
+		> LockedStringFlyweight;
 
-	LockedStringFlyweight fw(name);
-	JS_SetReservedSlot(m_cx, JS_GetFunctionObject(func), 0, PRIVATE_TO_JSVAL((void*)fw.get().c_str()));
-#endif
+		LockedStringFlyweight fw(name);
+		JS_SetReservedSlot(m_cx, JS_GetFunctionObject(func), 0, PRIVATE_TO_JSVAL((void*)fw.get().c_str()));
+	}
 }
 
 ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptRuntime>& runtime) :
@@ -582,6 +586,14 @@ ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugN
 		if (g_ScriptStatsTable)
 			g_ScriptStatsTable->Add(this, debugName);
 	}
+	
+	if (g_JSDebuggerEnabled && g_DebuggingServer != NULL)
+	{
+		if(!JS_SetDebugMode(GetContext(), true))
+			LOGERROR(L"Failed to set Spidermonkey to debug mode!");
+		else
+			g_DebuggingServer->RegisterScriptinterface(debugName, this);
+	}
 }
 
 ScriptInterface::~ScriptInterface()
@@ -591,6 +603,10 @@ ScriptInterface::~ScriptInterface()
 		if (g_ScriptStatsTable)
 			g_ScriptStatsTable->Remove(this);
 	}
+	
+	// Unregister from the Debugger class
+	if (g_JSDebuggerEnabled && g_DebuggingServer != NULL)
+		g_DebuggingServer->UnRegisterScriptinterface(this);
 }
 
 void ScriptInterface::ShutDown()
@@ -1075,11 +1091,13 @@ std::string ScriptInterface::StringifyJSON(jsval obj, bool indent)
 	{
 		JS_ClearPendingException(m->m_cx);
 		LOGERROR(L"StringifyJSON failed");
+		JS_ClearPendingException(m->m_cx);
 		return "";
 	}
 
 	return str.stream.str();
 }
+
 
 std::wstring ScriptInterface::ToString(jsval obj, bool pretty)
 {
