@@ -20,7 +20,7 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 				max = enemyCount[i];
 			}
 	}
-	if (this.targetPlayer === undefined)
+	if (this.targetPlayer === undefined || this.targetPlayer === -1)
 		return false;
 	debug ("Target = " +this.targetPlayer);
 	this.targetFinder = targetFinder || this.defaultTargetFinder;
@@ -54,7 +54,17 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	this.unitStat["Siege"] = { "priority" : 0.5, "minSize" : 0, "targetSize" : 3 , "batchSize" : 1, "classes" : ["Siege"], "interests" : [ ["siegeStrength", 3], ["cost",1] ], "templates" : [] };
 	var priority = 60;
 
-	if (type === "superSized") {
+	if (type === "rush") {
+		// we have 3 minutes to train infantry.
+		delete this.unitStat["RangedInfantry"];
+		delete this.unitStat["MeleeInfantry"];
+		delete this.unitStat["MeleeCavalry"];
+		delete this.unitStat["RangedCavalry"];
+		delete this.unitStat["Siege"];
+		this.unitStat["Infantry"] = { "priority" : 1, "minSize" : 10, "targetSize" : 30, "batchSize" : 1, "classes" : ["Infantry"], "interests" : [ ["strength",1], ["cost",1] ], "templates" : [] };
+		this.maxPreparationTime = 150*1000;
+		priority = 150;
+	} else if (type === "superSized") {
 		this.unitStat["RangedInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 18, "batchSize" : 5, "classes" : ["Infantry","Ranged"],
 			"interests" : [ ["strength",2], ["cost",1] ], "templates" : [] };
 		this.unitStat["MeleeInfantry"] = { "priority" : 1, "minSize" : 6, "targetSize" : 24, "batchSize" : 5, "classes" : ["Infantry","Melee"],
@@ -66,7 +76,8 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 		this.unitStat["Siege"] = { "priority" : 0.5, "minSize" : 3, "targetSize" : 6 , "batchSize" : 3, "classes" : ["Siege"],"interests" : [ ["siegeStrength",3], ["cost",1] ], "templates" : [] };
 		this.maxPreparationTime = 450*1000;
 		priority = 70;
-	}
+	} else if (gameState.getTimeElapsed() > 15*60*1000)
+		this.unitStat["Siege"]["minSize"] = 2;
 
 	gameState.ai.queueManager.addQueue("plan_" + this.name, priority);
 	this.queue = gameState.ai.queues["plan_" + this.name];
@@ -269,7 +280,7 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 				}
 			}
 			// when we have a target, we path to it.
-			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, 4, 4);//,300000,gameState);
+			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, 3, 3);//,300000,gameState);
 			
 			if (this.path === undefined) {
 				delete this.pathFinder;
@@ -430,6 +441,8 @@ CityAttack.prototype.assignUnits = function(gameState){
 	// TODO: assign myself units that fit only, right now I'm getting anything.
 	// Assign all no-roles that fit (after a plan aborts, for example).
 	var NoRole = gameState.getOwnEntitiesByRole(undefined);
+	if (this.type === "rush")
+		NoRole = gameState.getOwnEntitiesByRole("worker");
 	NoRole.forEach(function(ent) {
 		if (ent.hasClasses(["CitizenSoldier", "Infantry"]))
 			ent.setMetadata(PlayerID, "role", "worker");
@@ -683,6 +696,23 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 		if (!this.position)
 			return undefined;	// should spawn an error.
 		
+		// basically haven't moved an inch: very likely stuck)
+		if (this.position[0] == this.lastPosition[0] && this.position[1] == this.lastPosition[1] && this.path.length > 0) {
+			// check for stuck siege units
+			var sieges = this.unitCollection.filter(Filters.byClass("Siege"));
+			var farthest = 0;
+			var farthestEnt = -1;
+			sieges.forEach (function (ent) {
+				if (SquareVectorDistance(ent.position(),self.position) > farthest)
+				{
+					farthest = SquareVectorDistance(ent.position(),self.position);
+					farthestEnt = ent;
+				}
+			});
+			if (farthestEnt !== -1)
+				farthestEnt.destroy();
+		}
+		
 		if (SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0) {
 			this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).moveIndiv(this.path[0][0][0], this.path[0][0][1]);
 			// We're stuck, presumably. Check if there are no walls just close to us. If so, we're arrived, and we're gonna tear down some serious stone.
@@ -848,6 +878,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 				this.state = "arrived";
 			}
 		}
+		
 	}
 
 
@@ -881,86 +912,159 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 	}
 	
 	if (this.state === "" && gameState.ai.playedTurn % 3 === 0) {
-		// Each unit will randomly pick a target and attack it and then they'll do what they feel like doing for now. TODO
-		// only the targeted enemy. I've seen the units attack gazelles otherwise.
-		var enemyUnits = gameState.getEnemyEntities().filter(Filters.and(Filters.byOwner(this.targetPlayer), Filters.byClass("Unit")));
-		var enemyStructures = gameState.getEnemyEntities().filter(Filters.and(Filters.byOwner(this.targetPlayer), Filters.byClass("Structure")));
-		this.unitCollection.forEach( function (ent) { //}) {
-			if (ent.isIdle()) {
-				var mStruct = enemyStructures.filter(function (enemy) {// }){
-					if (!enemy.position() || (enemy.hasClass("StoneWall") && ent.canAttackClass("StoneWall"))) {
-						return false;
-					}
-					if (SquareVectorDistance(enemy.position(),ent.position()) > ent.visionRange()*ent.visionRange() + 300) {
-						return false;
-					}
-					return true;
-				});
-				var mUnit = enemyUnits.filter(function (enemy) {// }){
-					if (!enemy.position()) {
-						return false;
-					}
-					if (SquareVectorDistance(enemy.position(),ent.position()) > ent.visionRange()*ent.visionRange() + 300) {
-						return false;
-					}
-					return true;
-				});
-				var isGate = false;
-				mUnit = mUnit.toEntityArray();
-				mStruct = mStruct.toEntityArray();
-				mStruct.sort(function (structa,structb) {
-					var vala = structa.costSum();
-					if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))	// we hate gates
-					{
-						isGate = true;
-						vala += 10000;
-					} else if (structa.hasClass("ConquestCritical"))
-						vala = 100;
-					var valb = structb.costSum();
-					if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))	// we hate gates
-					{
-						isGate = true;
-						valb += 10000;
-					} else if (structb.hasClass("ConquestCritical"))
-						valb = 100;
-					return (valb - vala);
-				});
-				if (ent.hasClass("Siege")) {
-					if (mStruct.length !== 0) {
-						if (isGate)
-							ent.attack(mStruct[0].id());
-						else
+		
+		// Units attacked will target their attacker unless they're siege. Then we take another non-siege unit to attack them.
+		for (var key in events) {
+			var e = events[key];
+			if (e.type === "Attacked" && e.msg) {
+				if (IDs.indexOf(e.msg.target) !== -1) {
+					var attacker = gameState.getEntityById(e.msg.attacker);
+					var ourUnit = gameState.getEntityById(e.msg.target);
+					
+					if (attacker && attacker.position() && attacker.hasClass("Unit") && attacker.owner() != 0 && attacker.owner() != PlayerID) {
+						if (ourUnit.hasClass("Siege"))
 						{
-							var rand = Math.floor(Math.random() * mStruct.length*0.2);
-							ent.attack(mStruct[+rand].id());
-							//debug ("Siege units attacking a structure from " +mStruct[+rand].owner() + " , " +mStruct[+rand].templateName());
+							var help = this.unitCollection.filter(Filters.and(Filters.not(Filters.byClass("Siege")),Filters.isIdle()));
+							if (help.length === 0)
+								help = this.unitCollection.filter(Filters.not(Filters.byClass("Siege")));
+							if (help.length > 0)
+							{
+								help.toEntityArray()[0].attack(attacker.id());
+							}
+						} else {
+							ourUnit.attack(attacker.id());
 						}
-					} else if (SquareVectorDistance(self.targetPos, ent.position()) > 900 ){
-						//debug ("Siege units moving to " + uneval(self.targetPos));
-						ent.move((self.targetPos[0] + ent.position()[0])/2,(self.targetPos[1] + ent.position()[1])/2);
-					}
-				} else {
-					if (mUnit.length !== 0 && !isGate) {
-						var rand = Math.floor(Math.random() * mUnit.length*0.99);
-						ent.attack(mUnit[(+rand)].id());
-						//debug ("Units attacking a unit from " +mUnit[+rand].owner() + " , " +mUnit[+rand].templateName());
-					} else if (mStruct.length !== 0) {
-						if (isGate)
-							ent.attack(mStruct[0].id());
-						else
-						{
-							var rand = Math.floor(Math.random() * mStruct.length*0.2);
-							ent.attack(mStruct[+rand].id());
-							//debug ("Units attacking a structure from " +mStruct[+rand].owner() + " , " +mStruct[+rand].templateName());
-						}
-					} else if (SquareVectorDistance(self.targetPos, ent.position()) > 900 ){
-						//debug ("Units moving to " + uneval(self.targetPos));
-						ent.move((self.targetPos[0] + ent.position()[0])/2,(self.targetPos[1] + ent.position()[1])/2);
 					}
 				}
 			}
-		});
+		}
+		
+		
+		var enemyUnits = gameState.getEnemyEntities().filter(Filters.and(Filters.byOwner(this.targetPlayer), Filters.byClass("Unit")));
+		var enemyStructures = gameState.getEnemyEntities().filter(Filters.and(Filters.byOwner(this.targetPlayer), Filters.byClass("Structure")));
 
+		if (this.unitCollUpdateArray === undefined || this.unitCollUpdateArray.length === 0)
+		{
+			this.unitCollUpdateArray = this.unitCollection.toEntityArray();
+		} else {
+			// Let's check a few units each time we update. Currently 10
+			for (var check = 0; check < Math.min(this.unitCollUpdateArray.length,10); check++)
+			{
+				var ent = this.unitCollUpdateArray[0];
+				
+				// if the unit is not in my territory, make it move.
+				var territoryMap = Map.createTerritoryMap(gameState);
+				if (territoryMap.point(ent.position()) - 64 === PlayerID)
+					ent.move((this.targetPos[0] + ent.position()[0])/2,(this.targetPos[1] + ent.position()[1])/2);
+				// update it.
+				var needsUpdate = false;
+				if (ent.isIdle())
+					needsUpdate = true;
+				// always update siege units, they tend to target nothing we want.
+				if (ent.hasClass("Siege"))
+					needsUpdate = true;
+				else if (ent.unitAIOrderData() && ent.unitAIOrderData()["target"] && gameState.getEntityById(ent.unitAIOrderData()["target"]).hasClass("Structure"))
+					needsUpdate = true; // try to make it attack a unit instead
+				
+				if (needsUpdate)
+				{
+					//warn ("Entity " +ent.id() + ", a " + ent._templateName + " needs updating.");
+					var mStruct = enemyStructures.filter(function (enemy) { //}){
+						if (!enemy.position() || (enemy.hasClass("StoneWall") && ent.canAttackClass("StoneWall"))) {
+							return false;
+						}
+						if (SquareVectorDistance(enemy.position(),ent.position()) > 2000) {
+							return false;
+						}
+						return true;
+					});
+					var mUnit = enemyUnits.filter(function (enemy) { //}){
+						if (!enemy.position()) {
+							return false;
+						}
+						if (SquareVectorDistance(enemy.position(),ent.position()) > 2000) {
+							return false;
+						}
+						return true;
+					});
+					var isGate = false;
+					mUnit = mUnit.toEntityArray();
+					mStruct = mStruct.toEntityArray();
+					if (ent.hasClass("Siege")) {
+						mStruct.sort(function (structa,structb) { //}){
+							var vala = structa.costSum();
+							if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))	// we hate gates
+							{
+								isGate = true;
+								vala += 10000;
+							} else if (structa.hasClass("ConquestCritical"))
+								vala += 100;
+							var valb = structb.costSum();
+							if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))	// we hate gates
+							{
+								isGate = true;
+								valb += 10000;
+							} else if (structb.hasClass("ConquestCritical"))
+								valb += 100;
+							//warn ("Structure " +structa.genericName() + " is worth " +vala);
+							//warn ("Structure " +structb.genericName() + " is worth " +valb);
+							return (valb - vala);
+						});
+						
+						if (mStruct.length !== 0) {
+							if (isGate)
+								ent.attack(mStruct[0].id());
+							else
+							{
+								var rand = Math.floor(Math.random() * mStruct.length*0.1);
+								ent.attack(mStruct[+rand].id());
+								//debug ("Siege units attacking a structure from " +mStruct[+rand].owner() + " , " +mStruct[+rand].templateName());
+							}
+						} else if (SquareVectorDistance(self.targetPos, ent.position()) > 900 ){
+							//debug ("Siege units moving to " + uneval(self.targetPos));
+							ent.move((self.targetPos[0] + ent.position()[0])/2,(self.targetPos[1] + ent.position()[1])/2);
+						}
+					} else {
+						if (mUnit.length !== 0 && !isGate) {
+							var rand = Math.floor(Math.random() * mUnit.length*0.99);
+							ent.attack(mUnit[(+rand)].id());
+							//debug ("Units attacking a unit from " +mUnit[+rand].owner() + " , " +mUnit[+rand].templateName());
+						} else if (mStruct.length !== 0) {
+							mStruct.sort(function (structa,structb) { //}){
+								var vala = structa.costSum();
+								if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))	// we hate gates
+								{
+									isGate = true;
+									vala += 10000;
+								} else if (structa.hasClass("ConquestCritical"))
+									vala += 100;
+								var valb = structb.costSum();
+								if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))	// we hate gates
+								{
+									isGate = true;
+									valb += 10000;
+								} else if (structb.hasClass("ConquestCritical"))
+									valb += 100;
+								return (valb - vala);
+							});
+							if (isGate)
+								ent.attack(mStruct[0].id());
+							else
+							{
+								var rand = Math.floor(Math.random() * mStruct.length*0.1);
+								ent.attack(mStruct[+rand].id());
+								//debug ("Units attacking a structure from " +mStruct[+rand].owner() + " , " +mStruct[+rand].templateName());
+							}
+						} else if (SquareVectorDistance(self.targetPos, ent.position()) > 900 ){
+							//debug ("Units moving to " + uneval(self.targetPos));
+							ent.move((self.targetPos[0] + ent.position()[0])/2,(self.targetPos[1] + ent.position()[1])/2);
+						}
+					}
+				}
+				
+				this.unitCollUpdateArray.splice(0,1);
+			}
+		}
 	}
 	/*
 	if (this.state === "huntVillagers")

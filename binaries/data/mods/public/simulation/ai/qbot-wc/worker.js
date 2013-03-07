@@ -323,10 +323,11 @@ Worker.prototype.startGathering = function(gameState){
 			//debug ("enemy");
 			return;
 		}
+							 
 		var territoryOwner = Map.createTerritoryMap(gameState).getOwner(supply.position());
 		if (territoryOwner != PlayerID && territoryOwner != 0) {
-			//debug ("enemy territory");
-			return;
+			dist *= 3.0;
+			//return;
 		}
 
 		// quickscope accessbility check.

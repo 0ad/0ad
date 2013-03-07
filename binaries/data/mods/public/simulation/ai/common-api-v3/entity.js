@@ -663,6 +663,22 @@ var Entity = Class({
 		Engine.PostCommand({ "type": "research", "entity": this.id(), "template": template });
 		return this;
 	},
-				   
+
+	stopProduction: function(id) {
+		Engine.PostCommand({ "type": "stop-production", "entity": this.id(), "id": id });
+		return this;
+	},
+	
+	stopAllProduction: function(percentToStopAt) {
+		var queue = this._entity.trainingQueue;
+		if (!queue)
+			return true;	// no queue, so technically we stopped all production.
+		for (i in queue)
+		{
+			if (queue[i].progress < percentToStopAt)
+				   Engine.PostCommand({ "type": "stop-production", "entity": this.id(), "id": queue[i].id });
+		}
+		return this;
+	}
 });
 

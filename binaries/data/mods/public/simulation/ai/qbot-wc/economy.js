@@ -11,7 +11,6 @@ var EconomyManager = function() {
 	this.baseNeed["food"] = 150;
 	this.baseNeed["wood"] = 150;
 	this.baseNeed["stone"] = 0;
-	
 	this.baseNeed["metal"] = 0;
 	
 	// see rePrioritize() for more info
@@ -40,10 +39,11 @@ var EconomyManager = function() {
 };
 // More initialisation for stuff that needs the gameState
 EconomyManager.prototype.init = function(gameState, events){
-	this.targetNumWorkers = Math.max(Math.floor(gameState.getPopulationMax()*0.55), 1);
-	
+	if (this.targetNumWorkers === undefined)
+		this.targetNumWorkers = Math.max(Math.floor(gameState.getPopulationMax()*0.55), 1);
+
 	// Athen's fastest Citizen soldier requires stone.
-	if (gameState.civ() == "athen")
+	if (gameState.civ() == "athen" && !gameState.ai.strategy === "rush")
 	{
 		this.baseNeed["food"] = 140;
 		this.baseNeed["wood"] = 100;
@@ -103,19 +103,20 @@ EconomyManager.prototype.trainMoreWorkers = function(gameState, queues) {
 	
 	// If we have too few, train more
 	// should plan enough to always have females…
-	if (numTotal < this.targetNumWorkers && numQueued < 2 && (numQueued+numInTraining) < Math.min(Math.ceil(gameState.getTimeElapsed() / 60000)+ 4,15000)) {
+	if (numTotal < this.targetNumWorkers && numQueued < 3 && (numQueued+numInTraining) < 15) {
 		var template = gameState.applyCiv("units/{civ}_support_female_citizen");
 		var size = Math.min(Math.ceil(gameState.getTimeElapsed() / 30000),5);
 		if (numFemales/numTotal > this.femaleRatio && gameState.getTimeElapsed() > 60*1000) {
 			template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["cost",1], ["speed",0.5]]);
-			if (!template) {
+			if (!template)
 				template = gameState.applyCiv("units/{civ}_support_female_citizen");
-			}
+			else
+				size = Math.min(Math.ceil(gameState.getTimeElapsed() / 90000),5);
 		}
 		if (template === gameState.applyCiv("units/{civ}_support_female_citizen"))
-			queues.villager.addItem(new UnitTrainingPlan(gameState, template, { "role" : "worker" },size ));
+			queues.villager.addItem(new UnitTrainingPlan(gameState, template, { "role" : "worker" }, size, size ));
 		else
-			queues.citizenSoldier.addItem(new UnitTrainingPlan(gameState, template, { "role" : "worker" },size ));
+			queues.citizenSoldier.addItem(new UnitTrainingPlan(gameState, template, { "role" : "worker" }, size, size ));
 	}
 };
 
@@ -303,13 +304,13 @@ EconomyManager.prototype.assignToFoundations = function(gameState, noRepair) {
 			continue; // we do not build fields
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target).length;
 		if (assigned < this.targetNumBuilders) {
-			if (builderWorkers.length + addedWorkers < this.targetNumBuilders*Math.min(3.0,gameState.getTimeElapsed()/60000)) {
+			if (builderWorkers.length + addedWorkers < this.targetNumBuilders*Math.min(4.0,gameState.getTimeElapsed()/60000)) {
 				var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.getMetadata(PlayerID, "gather-type") !== "food" && ent.position() !== undefined); });
 				var nearestNonBuilders = null;
 				if (target.hasClass("CivCentre"))
 					nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), this.targetNumBuilders*2.0 - assigned);
 				else
-					nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), this.targetNumBuilders*2.0 - assigned);
+					nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), this.targetNumBuilders - assigned);
 
 				nearestNonBuilders.forEach(function(ent) {
 					addedWorkers++;
@@ -587,77 +588,102 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 // Returns the position of the best place to build a new dropsite for the specified resource
 EconomyManager.prototype.getBestResourceBuildSpot = function(gameState, resource){
 	
+	// This builds a map. The procedure is fairly simple. It adds the resource maps
+	//	(which are dynamically updated and are made so that they will facilitate DP placement)
+	// Then checks for a good spot in the territory. If none, and town/city phase, checks outside
+	// The AI will currently not build a CC if it wouldn't connect with an existing CC.
+	
 	var friendlyTiles = new Map(gameState);
-
-	friendlyTiles.madd(this.resourceMaps[resource],1.5);
-
-	for (i in this.resourceMaps)
-		if (i !== "food")
-			friendlyTiles.addIfNotNull(this.resourceMaps[i]);
-	
-	//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_density_fade_base.png", 1000);
-
 	var territory = Map.createTerritoryMap(gameState);
-	friendlyTiles.multiplyTerritory(gameState,territory,true);
-		
-	//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_density_fade_caracas.png", 3000);
-
-	//var resources = ["wood","stone","metal"];
-	//for (i in resources)
-	//	friendlyTiles.subtract(this.dropsiteMaps[resources[i]]);
 	
-	if (gameState.ai.distanceFromMeMap !== undefined)
-		friendlyTiles.add(gameState.ai.distanceFromMeMap);
-	
-	//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_density_fade_final.png", 1000);
-
 	var obstructions = Map.createObstructionMap(gameState);
 	obstructions.expandInfluences();
+
+	for (var j = 0; j < friendlyTiles.length; ++j)
+	{
+		friendlyTiles.map[j] += this.resourceMaps[resource].map[j] * 1.5;
+	
+		// first pass: we remove anything not in our territory
+		if (territory.getOwnerIndex(j) !== PlayerID)
+		{
+			friendlyTiles.map[j] = 0;
+			continue;
+		}
+		// only add where the map is currently not null, ie in our territory and some "Resource" would be close.
+		// This makes the placement go from "OK" to "human-like".
+		for (i in this.resourceMaps)
+			if (friendlyTiles.map[j] !== 0 && i !== "food")
+				friendlyTiles.map[j] += this.resourceMaps[i].map[j];
+	}
+	
+	//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_dp_placement_base.png", 1000);
 	
 	var isCivilCenter = false;
-	var best = friendlyTiles.findBestTile(2, obstructions);
+	var best = friendlyTiles.findBestTile(2, obstructions);	// try to find a spot to place a DP.
 	var bestIdx = best[0];
 	
-	if (best[1] <= 750 && gameState.currentPhase() >= 2)
+	//debug ("Have " + best[1] + " for " + resource);
+	
+	// 300, from empirical values, seems reasonable.
+	if (best[1] <= 300 && gameState.currentPhase() >= 2)
 	{
 		// restart the search this time for a CC
 		friendlyTiles = new Map(gameState);
 		
-		friendlyTiles.madd(this.CCResourceMaps[resource],1.8);
-		for (i in this.CCResourceMaps)
-			if (i !== "food")
-				friendlyTiles.addIfNotNull(this.CCResourceMaps[i]);
+		var ents = gameState.getOwnEntities().filter(Filters.byClass("CivCentre"));
+
+		// This uses a different resource maps,where the point is basically to try to have as many resources as possible in the CC's territory.
+		for (var j = 0; j < friendlyTiles.length; ++j)
+		{
+			// second pass: we remove anything that's enemy
+			var index = territory.getOwnerIndex(j);
+			if (index !== PlayerID && index !== 0)
+			{
+				friendlyTiles.map[j] = 0;
+				continue;
+			}
+			// We check for our other CCs: the distance must not be too big. Anything bigger will result in scrapping.
+			// This ensures territorial continuity.
+			// TODO: maybe whenever I get around to implement multi-base support (details below, requires being part of the team. If you're not, ask wraitii directly by PM).
+			// (see www.wildfiregames.com/forum/index.php?showtopic=16702&#entry255631 )
+			var mindist = 7101;
+			var pos = [j%friendlyTiles.width, Math.floor(j/friendlyTiles.width)];
+			ents.forEach( function (cc) {
+				var dist = SquareVectorDistance(friendlyTiles.gamePosToMapPos(cc.position()),pos);
+				if (dist < mindist)
+					mindist = dist;
+			});
+			if (mindist > 7100 || mindist < 2025)	// cannot build too close to each other.
+			{
+				friendlyTiles.map[j] = 0;
+				continue;
+			}
+			
+			friendlyTiles.map[j] += this.CCResourceMaps[resource].map[j] * 1.5;
+			
+			for (i in this.CCResourceMaps)
+				if (friendlyTiles.map[j] !== 0 && i !== "food")
+					friendlyTiles.map[j] += this.CCResourceMaps[i].map[j];
+		}
 		
-		friendlyTiles.annulateTerritory(gameState,territory);
-		
-		if (gameState.ai.distanceFromMeMap !== undefined)
-			friendlyTiles.add(gameState.ai.distanceFromMeMap);
-		
-		//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_density_fade_final2_CC.png", 5000);
+		//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_cc_placement_base.png", 5000);
 		
 		best = friendlyTiles.findBestTile(4, obstructions);
 		bestIdx = best[0];
+		isCivilCenter = true;
 	} else {
 		//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_density_fade_final2.png", 5000);
 	}
 	
-	if (best[1] < 700)
-	{
-		// tell the dropsite builder we haven't found anything satisfactory.
+	debug ("Have " + best[1] + " for " + resource);
+
+	// tell the dropsite builder we haven't found anything satisfactory.
+	if (best[1] < 250)
 		return [false, [-1,0]];
-	}
-	
-	//warn ("Getting " + best[1] + " for " +resource);
 	
 	var x = ((bestIdx % friendlyTiles.width) + 0.5) * gameState.cellSize;
 	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * gameState.cellSize;
 
-	if (territory.getOwner([x,z]) === 0) {
-		isCivilCenter = true;
-		bestIdx = friendlyTiles.findBestTile(4, obstructions)[0];
-		x = ((bestIdx % friendlyTiles.width) + 0.5) * gameState.cellSize;
-		z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * gameState.cellSize;
-	}
 	return [isCivilCenter, [x,z]];
 };
 EconomyManager.prototype.updateResourceConcentrations = function(gameState, resource){
@@ -671,6 +697,7 @@ EconomyManager.prototype.updateResourceConcentrations = function(gameState, reso
 		dropsite.getMetadata(PlayerID, "linked-resources-" + resource).forEach(function(supply){ //}){
 			if (supply.getMetadata(PlayerID, "full") == true || supply.getMetadata(PlayerID, "inaccessible") == true)
 				return;
+																			   
 			if (supply.getMetadata(PlayerID, "linked-dropsite-nearby") == true)
 				amount += supply.resourceSupplyAmount();
 			else
@@ -913,7 +940,7 @@ EconomyManager.prototype.buildMoreHouses = function(gameState, queues) {
 	
 	// temporary 'remaining population space' based check, need to do
 	// predictive in future
-	if (gameState.getPopulationLimit() - gameState.getPopulation() < 20
+	if (gameState.getPopulationLimit() - gameState.getPopulation() < 12
 		&& gameState.getPopulationLimit() < gameState.getPopulationMax()) {
 		
 		var numConstructing = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_house"));
@@ -1055,7 +1082,7 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 		this.targetNumBuilders = Config.Economy.targetNumBuilders;
 	}
 	if (gameState.currentPhase() == 1)
-		this.femaleRatio = Config.Economy.femaleRatio * 2.0;
+		this.femaleRatio = Config.Economy.femaleRatio * 1.5;
 	else
 		this.femaleRatio = Config.Economy.femaleRatio;
 	
@@ -1089,8 +1116,8 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 		
 	this.buildFarmstead(gameState, queues);
 	this.buildMarket(gameState, queues);
-	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market")) === 1)
-		this.buildTemple(gameState, queues);
+	//if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market")) === 1)
+	//	this.buildTemple(gameState, queues);
 	this.buildDock(gameState, queues);	// not if not a water map.
 
 	if (gameState.ai.playedTurn % 20 === 0){
@@ -1135,13 +1162,14 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 		Engine.ProfileStop();
 	}
 	
-	// TODO: do this incrementally a la defence.js
+	// TODO: do this incrementally a la defence.js (Changed slightly to be faster already).
 	Engine.ProfileStart("Run Workers");
 	gameState.getOwnEntitiesByRole("worker").forEach(function(ent){
-		if (!ent.getMetadata(PlayerID, "worker-object")){
+		if (!ent.getMetadata(PlayerID, "worker-object"))
 			ent.setMetadata(PlayerID, "worker-object", new Worker(ent));
-		}
-		ent.getMetadata(PlayerID, "worker-object").update(gameState);
+													 
+		if ((ent.id() + gameState.ai.playedTurn) % 3 === 0)	// should make it significantly faster without much drawbacks.
+			ent.getMetadata(PlayerID, "worker-object").update(gameState);
 	});
 	// Gatherer count updates for non-workers
 	var filter = Filters.and(Filters.not(Filters.byMetadata(PlayerID, "worker-object", undefined)), 

@@ -188,17 +188,21 @@ SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		else if (evt.type == "Destroy")
 		{
 			// A small warning: javascript "delete" does not actually delete, it only removes the reference in this object/
-			// the "deleted" object remains in memory, and any older reference to will still reference it as if it were not "deleted".
+			// the "deleted" object remains in memory, and any older reference to it will still reference it as if it were not "deleted".
 			// Worse, they might prevent it from being garbage collected, thus making it stay alive and consuming ram needlessly.
 			// So take care, and if you encounter a weird bug with deletion not appearing to work correctly, this is probably why.
 			if (!this._entities[evt.msg.entity])
 			{
 				continue;
 			}
+			
 			// The entity was destroyed but its data may still be useful, so
 			// remember the entity and this AI's metadata concerning it
-			evt.msg.metadata = (evt.msg.metadata || []);
+			evt.msg.metadata = {};
 			evt.msg.entityObj = (evt.msg.entityObj || this._entities[evt.msg.entity]);
+			for (i in this._players)
+				evt.msg.metadata[this._players[i]] = this._entityMetadata[this._players[i]][evt.msg.entity];
+
 			//evt.msg.metadata[this._player] = this._entityMetadata[evt.msg.entity];
 
 			for each (var entCol in this._entityCollections)

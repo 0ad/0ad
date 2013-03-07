@@ -88,6 +88,7 @@ Defence.prototype.update = function(gameState, events, militaryManager){
 	
 	this.DealWithWantedUnits(gameState,events,militaryManager);
 
+	/*
 	var self = this;
 	// putting unneeded units at rest
 	this.idleDefs.forEach(function(ent) {
@@ -97,7 +98,7 @@ Defence.prototype.update = function(gameState, events, militaryManager){
 			ent.setMetadata(PlayerID, "role", "worker");
 		ent.setMetadata(PlayerID, "subrole", undefined);
 		self.nbDefenders--;
-	});
+	});*/
 
 	Engine.ProfileStop();
 	
@@ -193,6 +194,12 @@ Defence.prototype.evaluateEntity = function(gameState, entity) {
 		return true;
 	return false;
 }
+// returns false if the unit is in its territory
+Defence.prototype.reevaluateEntity = function(gameState, entity) {
+	if ( (entity.position() && +this.territoryMap.point(entity.position()) - 64 === +entity.owner()) || entity.attackTypes() !== undefined)
+		return true;
+	return false;
+}
 // This deals with incoming enemy armies, setting the defcon if needed. It will take new soldiers, and assign them to attack
 // TODO: still is still pretty dumb, it could use improvements.
 Defence.prototype.defendFromEnemies = function(gameState, events, militaryManager) {
@@ -221,6 +228,10 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 				}
 				delete this.listOfEnemies[evt.msg.entity];
 				this.nbAttackers--;
+			} else if (evt.msg.entityObj && evt.msg.entityObj.owner() === PlayerID && evt.msg.metadata[PlayerID] && evt.msg.metadata[PlayerID]["role"] === "defence")
+			{
+				// lost a brave man there.
+				this.nbDefenders--;
 			}
 		}
 	}
@@ -235,27 +246,28 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 		if (this.enemyUnits[enemyID] === undefined || this.enemyUnits[enemyID].length === 0)
 		{
 			this.enemyUnits[enemyID] = militaryManager.enemyWatchers[enemyID].enemySoldiers.toEntityArray();
-			continue;
-		}
-		// we have some units still to check in this array. Check 15 (TODO: DIFFLEVEL)
-		// Note: given the way memory works, if the entity has been recently deleted, its reference may still exist.
-		// and this.enemyUnits[enemyID][0] may still point to that reference, "reviving" the unit.
-		// So we've got to make sure it's not supposed to be dead.
-		for (var check = 0; check < 15; check++)
-		{
-			if (this.enemyUnits[enemyID].length > 0 && gameState.getEntityById(this.enemyUnits[enemyID][0].id()) !== undefined)
+		} else {
+			// we have some units still to check in this array. Check 15 (TODO: DIFFLEVEL)
+			// Note: given the way memory works, if the entity has been recently deleted, its reference may still exist.
+			// and this.enemyUnits[enemyID][0] may still point to that reference, "reviving" the unit.
+			// So we've got to make sure it's not supposed to be dead.
+			for (var check = 0; check < 15; check++)
 			{
-				if (this.enemyUnits[enemyID][0].getMetadata(PlayerID, "inArmy") !== undefined)
+				if (this.enemyUnits[enemyID].length > 0 && gameState.getEntityById(this.enemyUnits[enemyID][0].id()) !== undefined)
+				{
+					if (this.enemyUnits[enemyID][0].getMetadata(PlayerID, "inArmy") !== undefined)
+					{
+						this.enemyUnits[enemyID].splice(0,1);
+					} else {
+						var dangerous = this.evaluateEntity(gameState, this.enemyUnits[enemyID][0]);
+						if (dangerous)
+							this.armify(gameState, this.enemyUnits[enemyID][0], militaryManager);
+						this.enemyUnits[enemyID].splice(0,1);
+					}
+				} else if (this.enemyUnits[enemyID].length > 0 && gameState.getEntityById(this.enemyUnits[enemyID][0].id()) === undefined)
 				{
 					this.enemyUnits[enemyID].splice(0,1);
-					continue;
 				}
-				var dangerous = this.evaluateEntity(gameState, this.enemyUnits[enemyID][0]);
-				if (dangerous)
-				{
-					this.armify(gameState, this.enemyUnits[enemyID][0], militaryManager);
-				}
-				this.enemyUnits[enemyID].splice(0,1);
 			}
 		}
 		// okay then we'll check one of the armies
@@ -264,48 +276,60 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 		{
 			this.enemyArmyLoop[enemyID] = [];
 			for (i in this.enemyArmy[enemyID])
-				this.enemyArmyLoop[enemyID].push(this.enemyArmy[enemyID][i]);
+				this.enemyArmyLoop[enemyID].push([this.enemyArmy[enemyID][i],i]);
 		}
 		// and now we check the last known army.
 		if (this.enemyArmyLoop[enemyID].length !== 0) {
-			var army = this.enemyArmyLoop[enemyID][0];
+			var army = this.enemyArmyLoop[enemyID][0][0];
 			var position = army.getCentrePosition();
+
 			if (!position)
 			{
-				// todo: scrap that army, it means all units are likely garrisoned.
+				var index = this.enemyArmyLoop[enemyID][0][1];
+				delete this.enemyArmy[enemyID][index];
+				this.enemyArmyLoop[enemyID].splice(0,1);
+			} else {
+				army.forEach(function (ent) { //}){
+					// check if the unit is a breakaway
+					if (ent.position() && SquareVectorDistance(position, ent.position()) > self.armyBreakawaySize)
+					{
+						ent.setMetadata(PlayerID, "inArmy", undefined);
+						army.removeEnt(ent);
+						if (self.evaluateEntity(gameState,ent))
+							self.armify(gameState,ent);
+					} else {
+						// check if we have registered that unit already.
+						if (self.listOfEnemies[ent.id()] === undefined) {
+							self.listOfEnemies[ent.id()] = new EntityCollection(gameState.sharedScript, {}, [Filters.byOwner(ent.owner())]);
+							self.listOfEnemies[ent.id()].freeze();
+							self.listOfEnemies[ent.id()].addEnt(ent);
+							self.listOfEnemies[ent.id()].registerUpdates();
+							
+							self.attackerCache[ent.id()] = self.myUnits.filter(Filters.byTargetedEntity(ent.id()));
+							self.attackerCache[ent.id()].registerUpdates();
+							nbOfAttackers++;
+							self.nbAttackers++;
+							newEnemies.push(ent);
+						} else if (self.attackerCache[ent.id()] === undefined || self.attackerCache[ent.id()].length == 0) {
+							nbOfAttackers++;
+							newEnemies.push(ent);
+						} else if (!self.reevaluateEntity(gameState,ent))
+						{
+							 ent.setMetadata(PlayerID, "inArmy", undefined);
+							 army.removeEnt(ent);
+							 if (self.attackerCache[ent.id()] !== undefined)
+							 {
+								self.attackerCache[ent.id()].forEach(function(ent) { ent.stopMoving(); });
+								delete self.attackerCache[ent.id()];
+								delete self.listOfEnemies[ent.id()];
+								self.nbAttackers--;
+							 }
+						}
+					}
+				});
+				// TODO: check if the army itself is not dangerous anymore.
 				this.enemyArmyLoop[enemyID].splice(0,1);
 			}
-			army.forEach(function (ent) { //}){
-				// check if the unit is a breakaway
-				if (ent.position() && SquareVectorDistance(position, ent.position()) > self.armyBreakawaySize)
-				{
-					ent.setMetadata(PlayerID, "inArmy", undefined);
-					army.removeEnt(ent);
-					if (self.evaluateEntity(gameState,ent))
-						self.armify(gameState,ent);
-				} else {
-					// check if we have registered that unit already.
-					if (self.listOfEnemies[ent.id()] === undefined) {
-						self.listOfEnemies[ent.id()] = new EntityCollection(gameState.sharedScript, {}, [Filters.byOwner(ent.owner())]);
-						self.listOfEnemies[ent.id()].freeze();
-						self.listOfEnemies[ent.id()].addEnt(ent);
-						self.listOfEnemies[ent.id()].registerUpdates();
-						
-						self.attackerCache[ent.id()] = self.myUnits.filter(Filters.byTargetedEntity(ent.id()));
-						self.attackerCache[ent.id()].registerUpdates();
-						nbOfAttackers++;
-						self.nbAttackers++;
-						newEnemies.push(ent);
-					} else if (self.attackerCache[ent.id()] === undefined || self.attackerCache[ent.id()].length == 0) {
-						nbOfAttackers++;
-						newEnemies.push(ent);
-					}
-				}
-			});
-
-			// TODO: check if the army itself is not dangerous anymore.
-			
-			this.enemyArmyLoop[enemyID].splice(0,1);
 		}
 		
 		// okay so now the army update is done.
@@ -322,30 +346,43 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 	this.attackerCacheLoopIndicator++;
 	this.attackerCacheLoopIndicator = this.attackerCacheLoopIndicator % 2;
 	
-	//debug ("total number "+ this.nbAttackers);
-	//debug ("total number "+ this.nbDefenders);
 
-	if (this.nbAttackers === 0) {
+	if (this.nbAttackers === 0 && this.nbDefenders === 0) {
+		return;
+	} else if (this.nbAttackers === 0 && this.nbDefenders !== 0) {
+		// Release all our units
+		this.myUnits.filter(Filters.byMetadata(PlayerID, "role","defence")).forEach(function (defender) { //}){
+			defender.stopMoving();
+			if (defender.getMetadata(PlayerID, "formerrole"))
+				defender.setMetadata(PlayerID, "role", defender.getMetadata(PlayerID, "formerrole") );
+			else
+				defender.setMetadata(PlayerID, "role", "worker");
+			defender.setMetadata(PlayerID, "subrole", undefined);
+			self.nbDefenders--;
+		});
 		militaryManager.unpauseAllPlans(gameState);
 		return;
 	}
 	
+	//debug ("total number of attackers:"+ this.nbAttackers);
+	//debug ("total number of defenders:"+ this.nbDefenders);
+
 	// If I'm here, I have a list of enemy units, and a list of my units attacking it (in absolute terms, I could use a list of any unit attacking it).
 	// now I'll list my idle defenders, then my idle soldiers that could defend.
 	// and then I'll assign my units.
 	// and then rock on.	
 	
-	if (this.nbAttackers < 10){
+	if (this.nbAttackers < 8){
 		gameState.setDefcon(4);	// few local units
-	} else if (this.nbAttackers >= 10){
+	} else if (this.nbAttackers >= 8){
 		gameState.setDefcon(3);
 	}
 	
-	// we're having too many.
-	if (this.myUnits.filter(Filters.byMetadata(PlayerID, "role","defence")).length > nbOfAttackers*this.defenceRatio*1.3) {
+	// we're having too many. Release those that attack units already dealt with, or idle ones.
+	if (this.myUnits.filter(Filters.byMetadata(PlayerID, "role","defence")).length > nbOfAttackers*this.defenceRatio*1.2) {
 		this.myUnits.filter(Filters.byMetadata(PlayerID, "role","defence")).forEach(function (defender) { //}){
-			if (defender.unitAIOrderData() && defender.unitAIOrderData()["target"]) {
-				if (self.attackerCache[defender.unitAIOrderData()["target"]].length > 3) {
+			if ( defender.isIdle() || (defender.unitAIOrderData() && defender.unitAIOrderData()["target"])) {
+				if ( defender.isIdle() || (self.attackerCache[defender.unitAIOrderData()["target"]] && self.attackerCache[defender.unitAIOrderData()["target"]].length > 3)) {
 					// okay release me.
 					defender.stopMoving();
 					if (defender.getMetadata(PlayerID, "formerrole"))
@@ -367,17 +404,25 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 	//debug ("newEnemies.length "+ newEnemies.length);
 	//debug ("nonDefenders.length "+ nonDefenders.length);
 	
-	if (newEnemies.length * defenceRatio > nonDefenders.length)
+	// todo: this is suboptimal. Should allow the maximum number of unit, right now it just lowers the ratio.
+	if (newEnemies.length * (defenceRatio) > nonDefenders.length)
+	{
 		defenceRatio--;
-		if (newEnemies.length * defenceRatio > nonDefenders.length)
-			defenceRatio--;
-
+		gameState.setDefcon(2);
+	}
 	if (defenceRatio < 1)
 			defenceRatio = 1;
 
-	if (gameState.defcon() < 3)
+	if (nonDefenders.length*2.0 < newEnemies.length)
+		gameState.setDefcon(1);
+	
+	if (gameState.defcon() < 2 && (this.nbAttackers-this.nbDefenders) > 15)
+	{
+		militaryManager.garrisonAllFemales(gameState);
 		militaryManager.pauseAllPlans(gameState);
-		
+	} else if (gameState.defcon() < 3 && this.nbDefenders === 0 && newEnemies.length === 0) {
+		militaryManager.ungarrisonAll(gameState);
+	}
 	// For each enemy, we'll pick two units.
 	for each (enemy in newEnemies) {
 		if (nonDefenders.length === 0)
@@ -387,6 +432,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 			continue;
 		
 		var assigned = self.attackerCache[enemy.id()].length;
+		
 		if (assigned >= defenceRatio)
 			return;
 
@@ -416,11 +462,13 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 
 		// successfully sorted
 		defs.forEach(function (defender) { //}){
+			//debug ("Against " +enemy.id() + " Assigning " + defender.id());
 			if (defender.getMetadata(PlayerID, "role") == "worker" || defender.getMetadata(PlayerID, "role") == "attack")
 				defender.setMetadata(PlayerID, "formerrole", defender.getMetadata(PlayerID, "role"));
 			defender.setMetadata(PlayerID, "role","defence");
 			defender.setMetadata(PlayerID, "subrole","defending");
 			defender.attack(+enemy.id());
+			defender._entity.idle = false; // hack to prevent a bug as informations aren't updated during a turn
 			nonDefenders.updateEnt(defender);
 			assigned++;
 			self.nbDefenders++;

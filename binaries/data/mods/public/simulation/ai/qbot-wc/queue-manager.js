@@ -49,6 +49,7 @@ QueueManager.prototype.getAvailableResources = function(gameState, noAccounts) {
 };
 
 QueueManager.prototype.futureNeeds = function(gameState, EcoManager) {
+	/*
 	// Work out which plans will be executed next using priority and return the total cost of these plans
 	var recurse = function(queues, qm, number, depth){
 		var needs = new Resources();
@@ -106,6 +107,35 @@ QueueManager.prototype.futureNeeds = function(gameState, EcoManager) {
 			"wood" : Math.max(needs.wood + 15*needs.population - current.wood, 0) + EcoManager.baseNeed["wood"], //TODO: read the house cost in case it changes in the future
 			"stone" : Math.max(needs.stone - current.stone, 0) + EcoManager.baseNeed["stone"],
 			"metal" : Math.max(needs.metal - current.metal, 0) + EcoManager.baseNeed["metal"]
+		};
+	}*/
+	var needs = new Resources();
+	// get ouy current resources, not removing accounts.
+	var current = this.getAvailableResources(gameState, true);
+	//queueArrays because it's faster.
+	for (i in this.queueArrays)
+	{
+		var name = this.queueArrays[i][0];
+		var queue = this.queueArrays[i][1];
+		for (var j = 0; j < Math.min(3,queue.length()); ++j)
+		{
+			needs.add(queue.queue[j].getCost());
+		}
+	}
+	if (EcoManager === false) {
+		return {
+			"food" : Math.max(needs.food - current.food, 0),
+			"wood" : Math.max(needs.wood - current.wood, 0),
+			"stone" : Math.max(needs.stone - current.stone, 0),
+			"metal" : Math.max(needs.metal - current.metal, 0)
+		};
+	} else {
+		// Return predicted values minus the current stockpiles along with a base rater for all resources
+		return {
+			"food" : Math.max(needs.food - current.food, 0) + EcoManager.baseNeed["food"]*2,
+			"wood" : Math.max(needs.wood - current.wood, 0) + EcoManager.baseNeed["wood"]*2,
+			"stone" : Math.max(needs.stone - current.stone, 0) + EcoManager.baseNeed["stone"]*2,
+			"metal" : Math.max(needs.metal - current.metal, 0) + EcoManager.baseNeed["metal"]*2
 		};
 	}
 };
@@ -239,15 +269,17 @@ QueueManager.prototype.update = function(gameState) {
 	Engine.ProfileStart("Execute items");
 	
 	// Handle output queues by executing items where possible
-	for (var p in this.queues) {
-		while (this.queues[p].outQueueLength() > 0) {
-			var next = this.queues[p].outQueueNext();
+	for (var p in this.queueArrays) {
+		var name = this.queueArrays[p][0];
+		var queue = this.queueArrays[p][1];
+		while (queue.outQueueLength() > 0) {
+			var next = queue.outQueueNext();
 			if (next.category === "building") {
 				if (gameState.buildingsBuilt == 0) {
 					if (next.canExecute(gameState)) {
-						this.accounts[p].subtract(next.getCost())
+						this.accounts[name].subtract(next.getCost())
 						//debug ("Starting " + next.type + " substracted " + uneval(next.getCost()))
-						this.queues[p].executeNext(gameState);
+						queue.executeNext(gameState);
 						gameState.buildingsBuilt += 1;
 					} else {
 						break;
@@ -256,10 +288,10 @@ QueueManager.prototype.update = function(gameState) {
 					break;
 				}
 			} else {
-				if (this.queues[p].outQueueNext().canExecute(gameState)){
+				if (queue.outQueueNext().canExecute(gameState)){
 					//debug ("Starting " + next.type + " substracted " + uneval(next.getCost()))
-					this.accounts[p].subtract(next.getCost())
-					this.queues[p].executeNext(gameState);
+					this.accounts[name].subtract(next.getCost())
+					queue.executeNext(gameState);
 				} else {
 					break;
 				}
