@@ -412,7 +412,7 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 	// Build more military buildings
 	// TODO: make military building better
 	Engine.ProfileStart("Build buildings");
-	if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > 25 && gameState.currentPhase() > 1) {
+	if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > 15 && gameState.currentPhase() > 1) {
 		if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0]))
 				+ queues.militaryBuilding.totalLength() < 1) {
 			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
@@ -424,7 +424,7 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 			var inConst = 0;
 			for (var i in this.bAdvanced)
 				inConst += gameState.countFoundationsWithType(gameState.applyCiv(this.bAdvanced[i]));
-			if (inConst == 0 && this.bAdvanced !== undefined) {
+			if (inConst == 0 && this.bAdvanced && this.bAdvanced.length !== 0) {
 				var i = Math.floor(Math.random() * this.bAdvanced.length);
 				if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i])) < 1){
 					queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bAdvanced[i]));
@@ -434,6 +434,42 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 	}
 	Engine.ProfileStop();
 };
+
+// TODO: use pop()
+MilitaryAttackManager.prototype.garrisonAllFemales = function(gameState) {
+	var buildings = gameState.getOwnEntities().filter(Filters.byCanGarrison()).toEntityArray();
+	var females = gameState.getOwnEntities().filter(Filters.byClass("Support"));
+	
+	var cache = {};
+	
+	females.forEach( function (ent) {
+		for (i in buildings)
+		{
+			if (ent.position())
+			{
+				var struct = buildings[i];
+				if (!cache[struct.id()])
+					cache[struct.id()] = 0;
+				if (struct.garrisoned() && struct.garrisonMax() - struct.garrisoned().length - cache[struct.id()] > 0)
+				{
+					ent.garrison(struct);
+					cache[struct.id()]++;
+					break;
+				}
+			}
+		}
+	});
+	this.hasGarrisonedFemales = true;
+};
+MilitaryAttackManager.prototype.ungarrisonAll = function(gameState) {
+	this.hasGarrisonedFemales = false;
+	var buildings = gameState.getOwnEntities().filter(Filters.byCanGarrison()).toEntityArray();
+	buildings.forEach( function (struct) {
+		if (struct.garrisoned() && struct.garrisoned().length)
+				struct.unloadAll();
+	});
+};
+
 MilitaryAttackManager.prototype.pausePlan = function(gameState, planName) {
 	for (attackType in this.upcomingAttacks) {
 		for (i in this.upcomingAttacks[attackType]) {
@@ -569,28 +605,42 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 			}
 		}
 	}
-	// creating plans after updating because an aborted plan might be reused in that case.
-	if (gameState.countEntitiesByType(gameState.applyCiv(this.bModerate[0])) >= 1 && !this.attackPlansEncounteredWater
+	if (gameState.ai.strategy === "rush" && this.startedAttacks["CityAttack"].length !== 0) {
+		// and then we revert shit.
+		gameState.ai.strategy = "normal";
+		Config.Economy.femaleRatio = 0.4;
+		gameState.ai.modules.economy.targetNumWorkers = Math.max(Math.floor(gameState.getPopulationMax()*0.55), 1);
+	} else if (gameState.ai.strategy === "rush" && this.upcomingAttacks["CityAttack"].length === 0)
+	{
+		Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1, "rush")
+		this.TotalAttackNumber++;
+		this.upcomingAttacks["CityAttack"].push(Lalala);
+		debug ("Starting a little something");
+	} else if (gameState.ai.strategy !== "rush")
+	{
+		// creating plans after updating because an aborted plan might be reused in that case.
+		if (gameState.countEntitiesByType(gameState.applyCiv(this.bModerate[0])) >= 1 && !this.attackPlansEncounteredWater
 			&& gameState.getTimeElapsed() > this.attackPlansStartTime) {
-		if (this.upcomingAttacks["CityAttack"].length == 0 && (gameState.getTimeElapsed() < 25*60000 || Config.difficulty < 2)) {
-			var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1);
-			if (!Lalala)
-			{
-				this.attackPlansEncounteredWater = true; // hack
-			} else {
-				debug ("Military Manager: Creating the plan " +this.TotalAttackNumber);
-				this.TotalAttackNumber++;
-				this.upcomingAttacks["CityAttack"].push(Lalala);
-			}
-		} else if (this.upcomingAttacks["CityAttack"].length == 0 && Config.difficulty !== 0) {
-			var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1, "superSized");
-			if (!Lalala)
-			{
-				this.attackPlansEncounteredWater = true; // hack
-			} else {
-				debug ("Military Manager: Creating the super sized plan " +this.TotalAttackNumber);
-				this.TotalAttackNumber++;
-				this.upcomingAttacks["CityAttack"].push(Lalala);
+			if (this.upcomingAttacks["CityAttack"].length == 0 && (gameState.getTimeElapsed() < 25*60000 || Config.difficulty < 2)) {
+				var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1);
+				if (!Lalala)
+				{
+					this.attackPlansEncounteredWater = true; // hack
+				} else {
+					debug ("Military Manager: Creating the plan " +this.TotalAttackNumber);
+					this.TotalAttackNumber++;
+					this.upcomingAttacks["CityAttack"].push(Lalala);
+				}
+			} else if (this.upcomingAttacks["CityAttack"].length == 0 && Config.difficulty !== 0) {
+				var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1, "superSized");
+				if (!Lalala)
+				{
+					this.attackPlansEncounteredWater = true; // hack
+				} else {
+					debug ("Military Manager: Creating the super sized plan " +this.TotalAttackNumber);
+					this.TotalAttackNumber++;
+					this.upcomingAttacks["CityAttack"].push(Lalala);
+				}
 			}
 		}
 	}

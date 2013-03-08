@@ -63,6 +63,7 @@ void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::strin
 void* CMapGeneratorWorker::RunThread(void *data)
 {
 	debug_SetThreadName("MapGenerator");
+	g_Profiler2.RegisterCurrentThread("MapGenerator");
 
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(data);
 

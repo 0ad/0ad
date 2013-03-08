@@ -154,21 +154,6 @@ Map.createTerritoryMap = function(gameState) {
 	return ret;
 };
 
-Map.prototype.drawDistance = function(gameState, elements) {
-	for ( var y = 0; y < this.height; ++y) {
-		for ( var x = 0; x < this.width; ++x) {
-			var minDist = 500000;
-			for (i in elements) {
-				var px = elements[i].position()[0]/gameState.cellSize;
-				var py = elements[i].position()[1]/gameState.cellSize;
-				var dist = VectorDistance([px,py], [x,y]);
-				if (dist < minDist)
-					minDist = dist;
-			}
-			this.map[x + y*this.width] = Math.max(1,(this.width - minDist)*2.5);
-		}
-	}
-};
 Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 	strength = strength ? +strength : +maxDist;
 	type = type ? type : 'linear';

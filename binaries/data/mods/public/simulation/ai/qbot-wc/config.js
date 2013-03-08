@@ -2,15 +2,15 @@
 var baseConfig = {
 	"Military" : {
 		"fortressStartTime" : 780, // Time to wait before building one fortress.
-		"fortressLapseTime" : 300, // Time to wait between building 2 fortresses (minimal)
+		"fortressLapseTime" : 600, // Time to wait between building 2 fortresses (minimal)
 		"defenceBuildingTime" : 600, // Time to wait before building towers or fortresses
 		"advancedMilitaryStartTime" : 720, // Time to wait before building advanced military buildings. Also limited by phase 2.
 		"attackPlansStartTime" : 0	// time to wait before attacking. Start as soon as possible (first barracks)
 	},
 	"Economy" : {
-		"townPhase" : 180,	// time to start trying to reach town phase (might be a while after. Still need the requirements + ress )
-		"cityPhase" : 540,	// time to start trying to reach city phase
-		"farmsteadStartTime" : 240,	// Time to wait before building a farmstead.
+		"townPhase" : 230,	// time to start trying to reach town phase (might be a while after. Still need the requirements + ress )
+		"cityPhase" : 720,	// time to start trying to reach city phase
+		"farmsteadStartTime" : 400,	// Time to wait before building a farmstead.
 		"marketStartTime" : 480, // Time to wait before building the market.
 		"dockStartTime" : 240,	// Time to wait before building the dock
 		"techStartTime" : 600,	// time to wait before teching.
@@ -22,7 +22,7 @@ var baseConfig = {
 	
 	// defence
 	"Defence" : {
-		"defenceRatio" : 3,	// see defence.js for more info.
+		"defenceRatio" : 2,	// see defence.js for more info.
 		"armyCompactSize" : 700,	// squared. Half-diameter of an army.
 		"armyBreakawaySize" : 900  // squared.
 	},
@@ -33,17 +33,16 @@ var baseConfig = {
 			"default" : [ "structures/{civ}_barracks" ]
 		},
 		"advanced" : {
-			"hele" : [ "structures/{civ}_gymnasion", "structures/{civ}_fortress" ],
-			"athen" : [ "structures/{civ}_gymnasion", "structures/{civ}_fortress" ],
-			"spart" : [ "structures/{civ}_syssiton", "structures/{civ}_fortress" ],
-			"mace" : [ "structures/{civ}_fortress" ],
-			"cart" : [ "structures/{civ}_fortress", "structures/{civ}_embassy_celtic",
+			"default" : [],
+			"hele" : [ "structures/{civ}_gymnasion" ],
+			"athen" : [ "structures/{civ}_gymnasion" ],
+			"spart" : [ "structures/{civ}_syssiton" ],
+			"cart" : [ "structures/{civ}_embassy_celtic",
 					"structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ],
-			"celt" : [ "structures/{civ}_kennel", "structures/{civ}_fortress_b", "structures/{civ}_fortress_g" ],
-			"iber" : [ "structures/{civ}_fortress" ],
+			"celt" : [ "structures/{civ}_kennel" ],
 			"pers" : [ "structures/{civ}_fortress", "structures/{civ}_stables", "structures/{civ}_apadana" ],
-			"rome" : [ "structures/{civ}_army_camp", "structures/{civ}_fortress" ],
-			"maur" : [ "structures/{civ}_elephant_stables", "structures/{civ}_fortress" ]
+			"rome" : [ "structures/{civ}_army_camp" ],
+			"maur" : [ "structures/{civ}_elephant_stables"]
 		},
 		"fort" : {
 			"default" : [ "structures/{civ}_fortress" ],
@@ -53,15 +52,15 @@ var baseConfig = {
 
 	// qbot
 	"priorities" : {  // Note these are dynamic, you are only setting the initial values
-		"house" : 250,
+		"house" : 200,
 		"citizenSoldier" : 50,
 		"villager" : 60,
-		"economicBuilding" : 80,
-		"dropsites" : 180,
+		"economicBuilding" : 70,
+		"dropsites" : 160,
 		"field" : 1000,
-		"militaryBuilding" : 120,
-		"defenceBuilding" : 17,
-		"majorTech" : 100,
+		"militaryBuilding" : 90,
+		"defenceBuilding" : 20,
+		"majorTech" : 250,
 		"minorTech" : 40,
 		"civilCentre" : 10000	// will hog all resources
 	},
@@ -82,14 +81,14 @@ if (Config.difficulty === 1)
 {
 	Config["Military"] = {
 		"fortressStartTime" : 1000,
-		"fortressLapseTime" : 400,
+		"fortressLapseTime" : 900,
 		"defenceBuildingTime" : 720,
 		"advancedMilitaryStartTime" : 1000,
 		"attackPlansStartTime" : 600
 	};
 	Config["Economy"] = {
-		"townPhase" : 240,
-		"cityPhase" : 660,
+		"townPhase" : 300,
+		"cityPhase" : 900,
 		"farmsteadStartTime" : 600,
 		"marketStartTime" : 800,
 		"techStartTime" : 1320,
@@ -97,7 +96,6 @@ if (Config.difficulty === 1)
 		"femaleRatio" : 0.5
 	};
 	Config["Defence"] = {
-		"defenceRatio" : 2.0,
 		"armyCompactSize" : 700,
 		"armyBreakawaySize" : 900
 	};
@@ -111,8 +109,8 @@ if (Config.difficulty === 1)
 		"attackPlansStartTime" : 1200	// 20 minutes ought to give enough times for beginners
 	};
 	Config["Economy"] = {
-		"townPhase" : 360,
-		"cityPhase" : 840,
+		"townPhase" : 480,
+		"cityPhase" : 1200,
 		"farmsteadStartTime" : 1200,
 		"marketStartTime" : 1000,
 		"techStartTime" : 600000,	// never

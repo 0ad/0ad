@@ -95,6 +95,12 @@ var Filters = {
 		"dynamicProperties": ['owner']};
 	},
 
+	byCanGarrison: function(){
+		return {"func" : function(ent){
+			return ent.garrisonMax();
+		},
+			"dynamicProperties": []};
+	},
 	byTrainingQueue: function(){
 		return {"func" : function(ent){
 			return ent.trainingQueue();

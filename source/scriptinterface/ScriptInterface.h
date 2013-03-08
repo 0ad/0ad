@@ -43,16 +43,11 @@ class AutoGCRooter;
 // TODO: what's a good default?
 #define DEFAULT_RUNTIME_SIZE 16 * 1024 * 1024
 
-
-#ifdef NDEBUG
-#define ENABLE_SCRIPT_PROFILING 0
-#else
-#define ENABLE_SCRIPT_PROFILING 1
-#endif
-
 struct ScriptInterface_impl;
 
 class ScriptRuntime;
+
+class CDebuggingServer;
 
 /**
  * Abstraction around a SpiderMonkey JSContext.
@@ -244,7 +239,7 @@ public:
 	 * Stringify to a JSON string, UTF-8 encoded. Returns an empty string on error.
 	 */
 	std::string StringifyJSON(jsval obj, bool indent = true);
-
+	
 	/**
 	 * Report the given error message through the JS error reporting mechanism,
 	 * and throw a JS exception. (Callers can check IsPendingException, and must

@@ -1,4 +1,4 @@
-var ResearchPlan = function(gameState, type) {
+var ResearchPlan = function(gameState, type, rush) {
 	this.type = type;
 
 	this.template = gameState.getTemplate(this.type);
@@ -11,6 +11,10 @@ var ResearchPlan = function(gameState, type) {
 	this.category = "technology";
 	this.cost = new Resources(this.template.cost(),0);
 	this.number = 1; // Obligatory for compatibility
+	if (rush)
+		this.rush = true;
+	else
+		this.rush = false;
 	return true;
 };
 
@@ -36,7 +40,10 @@ ResearchPlan.prototype.execute = function(gameState) {
 	if (trainers.length > 0){
 		trainers.sort(function(a, b) {
 			return (a.trainingQueueTime() - b.trainingQueueTime());
-		}); 
+		});
+		// drop anything in the queue if we rush it.
+		if (this.rush)
+			trainers[0].stopAllProduction(0.45);
 		trainers[0].research(this.type);
 	}
 };

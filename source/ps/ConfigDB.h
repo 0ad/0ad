@@ -80,9 +80,12 @@ class CConfigDB: public Singleton<CConfigDB>
 	static VfsPath m_ConfigFile[];
 
 public:
-	// NOTE: Construct the Singleton Object *after* JavaScript init, so that
-	// the JS interface can be registered.
 	CConfigDB();
+	
+	// NOTE: Construct the Singleton Object *after* JavaScript init, so that
+	// the JS interface can be registered. ConfigDB (C++) needs to be initialized before
+	// The ScriptInterface because the ScriptInterface requires some configuration information too.
+	void RegisterJSConfigDB();
 
 	/**
 	 * Attempt to find a config variable with the given name; will search

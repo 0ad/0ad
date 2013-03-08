@@ -66,7 +66,7 @@ QBotAI.prototype.InitShared = function(gameState, sharedScript) {
 	this.pathInfo = { "angle" : 0, "needboat" : true, "mkeyPos" : myKeyEntities.toEntityArray()[0].position(), "ekeyPos" : enemyKeyEntities.toEntityArray()[0].position() };
 	
 	// First path has a sampling of 3, which ensures we'll get at least one path even on Acropolis. The others are 6 so might fail.
-	var pos = [this.pathInfo.mkeyPos[0] + 180*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 180*Math.sin(this.pathInfo.angle)];
+	var pos = [this.pathInfo.mkeyPos[0] + 200*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 200*Math.sin(this.pathInfo.angle)];
 	var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 3, 3);// uncomment for debug:*/, 300000, gameState);
 
 	//Engine.DumpImage("initialPath" + PlayerID + ".png", this.pathFinder.TotorMap.map, this.pathFinder.TotorMap.width,this.pathFinder.TotorMap.height,255);
@@ -84,6 +84,9 @@ QBotAI.prototype.InitShared = function(gameState, sharedScript) {
 
 //Some modules need the gameState to fully initialise
 QBotAI.prototype.runInit = function(gameState, events){
+
+	this.chooseRandomStrategy();
+
 	for (var i in this.modules){
 		if (this.modules[i].init){
 			this.modules[i].init(gameState, events);
@@ -125,11 +128,6 @@ QBotAI.prototype.runInit = function(gameState, events){
 		return;
 		
 	this.templateManager = new TemplateManager(gameState);
-	
-	this.distanceFromMeMap = new Map(gameState);
-	this.distanceFromMeMap.drawDistance(gameState,myKeyEntities.toEntityArray());
-	
-	//this.distanceFromMeMap.dumpIm("dumping.png", this.distanceFromMeMap.width*1.5);
 };
 
 QBotAI.prototype.OnUpdate = function(sharedScript) {
@@ -174,7 +172,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 
 		if (this.pathInfo !== undefined)
 		{
-			var pos = [this.pathInfo.mkeyPos[0] + 180*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 180*Math.sin(this.pathInfo.angle)];
+			var pos = [this.pathInfo.mkeyPos[0] + 200*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 200*Math.sin(this.pathInfo.angle)];
 			var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 6, 6);// uncomment for debug:*/, 300000, gameState);
 			if (path !== undefined && path[1] !== undefined && path[1] == false) {
 				// path is viable and doesn't require boating.
@@ -201,7 +199,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		// try going up phases.
 		if (gameState.canResearch("phase_town",true) && gameState.getTimeElapsed() > (Config.Economy.townPhase*1000)
 			&& gameState.findResearchers("phase_town").length != 0 && this.queues.majorTech.length() === 0) {
-			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_town"));
+			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_town",true));	// we rush the town phase.
 			debug ("Trying to reach town phase");
 		} else if (gameState.canResearch("phase_city_generic",true) && gameState.getTimeElapsed() > (Config.Economy.cityPhase*1000)
 				&& gameState.findResearchers("phase_city_generic").length != 0 && this.queues.majorTech.length() === 0) {
@@ -215,6 +213,8 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		{
 			this.defcon++;
 			debug ("updefconing to " +this.defcon);
+			if (this.defcon >= 4 && this.modules.military.hasGarrisonedFemales)
+				this.modules.military.ungarrisonAll(gameState);
 		}
 		
 		for (var i in this.modules){
@@ -223,7 +223,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		
 		this.queueManager.update(gameState);
 		
-		//if (this.playedTurn % 20 === 0)
+		//if (this.playedTurn % 15 === 0)
 		//	this.queueManager.printQueues(gameState);
 		
 		// Generate some entropy in the random numbers (against humans) until the engine gets random initialised numbers
@@ -240,6 +240,23 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 	}
 
 	this.turn++;
+};
+
+QBotAI.prototype.chooseRandomStrategy = function()
+{
+	// deactivated for now.
+	this.strategy = "normal";
+	// rarely and if we can assume it's not a water map.
+	if (!this.pathInfo.needboat && 0)//Math.random() < 0.2 && Config.difficulty == 2)
+	{
+		this.strategy = "rush";
+		// going to rush.
+		this.modules.economy.targetNumWorkers = 0;
+		Config.Economy.townPhase = 480;
+		Config.Economy.cityPhase = 900;
+		Config.Economy.farmsteadStartTime = 600;
+		Config.Economy.femaleRatio = 0;	// raise it since we'll want to rush age 2.
+	}
 };
 
 // TODO: Remove override when the whole AI state is serialised

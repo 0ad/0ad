@@ -545,6 +545,7 @@ function setup_all_libs ()
 		"boost",
 		"spidermonkey",
 		"valgrind",
+		"sdl",
 	}
 	setup_static_lib_project("scriptinterface", source_dirs, extern_libs, {})
 

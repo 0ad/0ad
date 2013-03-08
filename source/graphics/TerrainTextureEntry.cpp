@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -203,8 +203,8 @@ const float* CTerrainTextureEntry::GetTextureMatrix()
 // calculate the coordinate of each alphamap within this packed texture
 void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 {
-	const wchar_t* const key = (L"(alpha map composite" + amtype.string() + L")").c_str();
-	
+	std::wstring key = L"(alpha map composite" + amtype.string() + L")";
+
 	CTerrainTextureManager::TerrainAlphaMap::iterator it = g_TexMan.m_TerrainAlphas.find(amtype);
 	
 	if (it != g_TexMan.m_TerrainAlphas.end())

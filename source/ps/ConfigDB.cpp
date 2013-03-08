@@ -210,6 +210,10 @@ namespace ConfigDB_JS
 
 CConfigDB::CConfigDB()
 {
+}
+
+void CConfigDB::RegisterJSConfigDB()
+{
 	g_ScriptingHost.DefineCustomObjectType(&ConfigDB_JS::Class, ConfigDB_JS::Construct, 0, ConfigDB_JS::Props, ConfigDB_JS::Funcs, NULL, NULL);
 	g_ScriptingHost.DefineCustomObjectType(&ConfigNamespace_JS::Class, ConfigNamespace_JS::Construct, 0, NULL, ConfigNamespace_JS::Funcs, NULL, NULL);
 	JSObject *js_ConfigDB = g_ScriptingHost.CreateCustomObject("ConfigDB");

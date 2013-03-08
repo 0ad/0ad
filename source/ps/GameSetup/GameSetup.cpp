@@ -84,6 +84,7 @@
 #include "renderer/ModelRenderer.h"
 #include "scripting/ScriptingHost.h"
 #include "scripting/ScriptGlue.h"
+#include "scriptinterface/DebuggingServer.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
 #include "simulation2/Simulation2.h"
@@ -692,6 +693,7 @@ void Shutdown(int UNUSED(flags))
 
 	TIMER_BEGIN(L"shutdown ScriptingHost");
 	delete &g_ScriptingHost;
+	delete g_DebuggingServer;
 	TIMER_END(L"shutdown ScriptingHost");
 
 	TIMER_BEGIN(L"shutdown ConfigDB");
@@ -886,10 +888,16 @@ void Init(const CmdLineArgs& args, int UNUSED(flags))
 	CSoundManager::CreateSoundManager();
 #endif
 
-	InitScripting();	// before GUI
-
 	// g_ConfigDB, command line args, globals
 	CONFIG_Init(args);
+	
+	// before scripting 
+	if (g_JSDebuggerEnabled)
+		g_DebuggingServer = new CDebuggingServer();
+
+	InitScripting();	// before GUI
+	
+	g_ConfigDB.RegisterJSConfigDB(); 	// after scripting 
 
 	// Optionally start profiler HTTP output automatically
 	// (By default it's only enabled by a hotkey, for security/performance)
