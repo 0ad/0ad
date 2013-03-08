@@ -444,6 +444,9 @@ public:
 			// Calculate new orientation, in a peculiar way in order to make sure the
 			// result gets close to m_orientation (rather than being n*2*M_PI out)
 			m_InterpolatedRotY = rotY + deltaClamped - delta;
+			
+			if (delta != 0)
+				m_PositionChanged = true;
 
 			break;
 		}
