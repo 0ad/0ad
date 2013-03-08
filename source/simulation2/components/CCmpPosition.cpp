@@ -445,7 +445,8 @@ public:
 			// result gets close to m_orientation (rather than being n*2*M_PI out)
 			m_InterpolatedRotY = rotY + deltaClamped - delta;
 			
-			if (delta != 0)
+			// Anything smaller than this will not be visible
+			if (abs(delta) > 0.0001)
 				m_PositionChanged = true;
 
 			break;
