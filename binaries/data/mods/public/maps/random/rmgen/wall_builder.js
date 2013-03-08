@@ -108,7 +108,7 @@ function Fortress(type, wall, centerToFirstElement)
 var wallStyles = {};
 
 // Generic civ dependent wall style definition. "rome_siege" needs some tweek...
-var wallScaleByType = {"athen" : 1.5, "brit" : 1.5, "cart" : 1.8, "celt" : 1.5, "gaul" : 1.5, "hele" : 1.5, "iber" : 1.5, "mace" : 1.5, "pers" : 1.5, "rome" : 1.5, "spart" : 1.5, "rome_siege" : 1.5};
+var wallScaleByType = {"athen" : 1.5, "brit" : 1.5, "cart" : 1.8, "celt" : 1.5, "gaul" : 1.5, "hele" : 1.5, "iber" : 1.5, "mace" : 1.5, "maur": 1.5, "pers" : 1.5, "rome" : 1.5, "spart" : 1.5, "rome_siege" : 1.5};
 for (var style in wallScaleByType)
 {
 	var civ = style;
@@ -159,6 +159,7 @@ wallStyles["gaul"]["wallFort"] = new WallElement("wallFort", "structures/gaul_fo
 wallStyles["hele"]["wallFort"] = new WallElement("wallFort", "structures/hele_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
 wallStyles["iber"]["wallFort"] = new WallElement("wallFort", "structures/iber_fortress", PI, 5, 0.2);
 wallStyles["mace"]["wallFort"] = new WallElement("wallFort", "structures/mace_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
+wallStyles["maur"]["wallFort"] = new WallElement("wallFort", "structures/maur_fortress", PI, 5.5);
 wallStyles["pers"]["wallFort"] = new WallElement("wallFort", "structures/pers_fortress", PI, 5.6/*5.5*/, 1.9/*1.7*/);
 wallStyles["rome"]["wallFort"] = new WallElement("wallFort", "structures/rome_fortress", PI, 6.3, 2.1);
 wallStyles["spart"]["wallFort"] = new WallElement("wallFort", "structures/spart_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
