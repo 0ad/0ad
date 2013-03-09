@@ -75,7 +75,7 @@ aStarPath.prototype.getPath = function(start, end, Sampling, minWidth, iteration
 	if (start[0] < 0 || this.gamePosToMapPos(start)[0] >= this.width || start[1] < 0 || this.gamePosToMapPos(start)[1] >= this.height)
 		return undefined;
 	
-	var s = this.terrainAnalyzer.findClosestPassablePoint(this.gamePosToMapPos(start), !this.waterPathfinder,500,true);
+	var s = this.terrainAnalyzer.findClosestPassablePoint(this.gamePosToMapPos(start), !this.waterPathfinder,500,false);
 	var e = this.terrainAnalyzer.findClosestPassablePoint(this.gamePosToMapPos(end), !this.waterPathfinder,500,true);
 	
 	var w = this.width;

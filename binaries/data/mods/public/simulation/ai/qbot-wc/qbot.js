@@ -202,6 +202,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_town",true));	// we rush the town phase.
 			debug ("Trying to reach town phase");
 		} else if (gameState.canResearch("phase_city_generic",true) && gameState.getTimeElapsed() > (Config.Economy.cityPhase*1000)
+				&& gameState.getOwnEntitiesByRole("worker").length > 90
 				&& gameState.findResearchers("phase_city_generic").length != 0 && this.queues.majorTech.length() === 0) {
 			debug ("Trying to reach city phase");
 			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_city_generic"));
@@ -223,6 +224,22 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		
 		this.queueManager.update(gameState);
 		
+		/*
+		if (this.playedTurn % 80 === 0)
+		{
+			// some debug informations about units.
+			var units = gameState.getOwnEntities().filter(Filters.byClass("Unit"));
+			for (var i in units._entities)
+			{
+				var ent = units._entities[i];
+				debug ("Unit " + ent.id() + " is a " + ent._templateName);
+				debug ("It is a " + uneval(ent.getMetadata(PlayerID, "role")) + ", "+ uneval(ent.getMetadata(PlayerID, "subrole")));
+				if (ent.getMetadata(PlayerID, "plan") != undefined)
+					debug ("it is part of the plan " + uneval(ent.getMetadata(PlayerID, "plan")));
+			}
+		}*/
+
+			
 		//if (this.playedTurn % 15 === 0)
 		//	this.queueManager.printQueues(gameState);
 		

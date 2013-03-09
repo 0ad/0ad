@@ -132,10 +132,10 @@ QueueManager.prototype.futureNeeds = function(gameState, EcoManager) {
 	} else {
 		// Return predicted values minus the current stockpiles along with a base rater for all resources
 		return {
-			"food" : Math.max(needs.food - current.food, 0) + EcoManager.baseNeed["food"]*2,
-			"wood" : Math.max(needs.wood - current.wood, 0) + EcoManager.baseNeed["wood"]*2,
-			"stone" : Math.max(needs.stone - current.stone, 0) + EcoManager.baseNeed["stone"]*2,
-			"metal" : Math.max(needs.metal - current.metal, 0) + EcoManager.baseNeed["metal"]*2
+			"food" : Math.max(needs.food - current.food, 0) + EcoManager.baseNeed["food"],
+			"wood" : Math.max(needs.wood - current.wood, 0) + EcoManager.baseNeed["wood"],
+			"stone" : Math.max(needs.stone - current.stone, 0) + EcoManager.baseNeed["stone"],
+			"metal" : Math.max(needs.metal - current.metal, 0) + EcoManager.baseNeed["metal"]
 		};
 	}
 };

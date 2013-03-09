@@ -580,6 +580,8 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 		if (item.timeRemaining > time)
 		{
 			item.timeRemaining -= time;
+			// send a message for the AIs.
+			Engine.PostMessage(this.entity, MT_ProductionQueueChanged, { });
 			break;
 		}
 

@@ -52,7 +52,7 @@ enemyWatcher.prototype.getEnemyBuildings = function(gameState, specialClass, One
 	else if (OneTime)
 		return this.enemyBuildings.filter(filter);
 	
-	return gameState.updatingGlobalCollection("player-" +this.watched + "-structures-" +specialClass, filter, gameState.getGEC("player-" +this.watched + "-structure"));
+	return gameState.updatingGlobalCollection("player-" +this.watched + "-structures-" +specialClass, filter, gameState.getGEC("player-" +this.watched + "-structures"));
 };
 enemyWatcher.prototype.getDangerousArmies = function() {
 	var toreturn = {};

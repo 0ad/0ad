@@ -291,11 +291,11 @@ public:
 	};
 
 	CAIWorker() :
-		// TODO: Passing a 24 MB argument to CreateRuntime() is a temporary fix
+		// TODO: Passing a 32 MB argument to CreateRuntime() is a temporary fix
 		// to prevent frequent AI out-of-memory crashes. The argument should be
 		// removed as soon whenever the new pathfinder is committed
 		// And the AIs can stop relying on their own little hands.
-		m_ScriptRuntime(ScriptInterface::CreateRuntime(25165824)),
+		m_ScriptRuntime(ScriptInterface::CreateRuntime(33554432)),
 		m_ScriptInterface("Engine", "AI", m_ScriptRuntime),
 		m_TurnNum(0),
 		m_CommandsComputed(true),
@@ -726,7 +726,7 @@ private:
 		}
 
 		// Run GC if we are about to overflow
-		if (JS_GetGCParameter(m_ScriptInterface.GetRuntime(), JSGC_BYTES) > 24000000)
+		if (JS_GetGCParameter(m_ScriptInterface.GetRuntime(), JSGC_BYTES) > 33000000)
 		{
 			PROFILE3("AI compute GC");
 

@@ -17,8 +17,8 @@ Worker.prototype.update = function(gameState) {
 		// If the worker has no position then no work can be done
 		return;
 	}
-	
-	if (subrole === "gatherer"){
+
+	if (subrole === "gatherer") {
 		if (this.ent.unitAIState().split(".")[1] !== "GATHER" && this.ent.unitAIState().split(".")[1] !== "COMBAT" && this.ent.unitAIState().split(".")[1] !== "RETURNRESOURCE"){
 			// TODO: handle combat for hunting animals
 			if (!this.ent.resourceCarrying() || this.ent.resourceCarrying().length === 0 || 
@@ -400,6 +400,7 @@ Worker.prototype.startGathering = function(gameState){
 		if (!tried) {
 			this.maxApproachTime = Math.max(25000, VectorDistance(pos,this.ent.position()) * 1000);
 			ent.gather(nearestSupply);
+			ent.setMetadata(PlayerID, "target-foundation", undefined);
 		}
 	} else {
 		if (resource === "food" && this.buildAnyField(gameState))

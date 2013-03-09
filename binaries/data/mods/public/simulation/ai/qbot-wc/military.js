@@ -148,35 +148,42 @@ MilitaryAttackManager.prototype.findBestTrainableUnit = function(gameState, clas
 	
 	
 	units.sort(function(a, b) { //}) {
-			   var aDivParam = 0, bDivParam = 0;
-			   var aTopParam = 0, bTopParam = 0;
-			   for (i in parameters) {
-			   var param = parameters[i];
-			   
-			   if (param[0] == "base") {
-			   aTopParam = param[1];
-			   bTopParam = param[1];
-			   }
-			   if (param[0] == "strength") {
-			   aTopParam += getMaxStrength(a[1]) * param[1];
-			   bTopParam += getMaxStrength(b[1]) * param[1];
-			   }
-			   if (param[0] == "siegeStrength") {
-			   aTopParam += getMaxStrength(a[1], "Structure") * param[1];
-			   bTopParam += getMaxStrength(b[1], "Structure") * param[1];
-			   }
-			   if (param[0] == "speed") {
-			   aTopParam += a[1].walkSpeed() * param[1];
-			   bTopParam += b[1].walkSpeed() * param[1];
-			   }
-			   
-			   if (param[0] == "cost") {
-			   aDivParam += a[1].costSum() * param[1];
-			   bDivParam += b[1].costSum() * param[1];
-			   }
-			   }
-			   return -(aTopParam/(aDivParam+1)) + (bTopParam/(bDivParam+1));
-			   });
+		var aDivParam = 0, bDivParam = 0;
+		var aTopParam = 0, bTopParam = 0;
+		for (i in parameters) {
+			var param = parameters[i];
+			
+			if (param[0] == "base") {
+				aTopParam = param[1];
+				bTopParam = param[1];
+			}
+			if (param[0] == "strength") {
+				aTopParam += getMaxStrength(a[1]) * param[1];
+				bTopParam += getMaxStrength(b[1]) * param[1];
+			}
+			if (param[0] == "siegeStrength") {
+				aTopParam += getMaxStrength(a[1], "Structure") * param[1];
+				bTopParam += getMaxStrength(b[1], "Structure") * param[1];
+			}
+			if (param[0] == "speed") {
+				aTopParam += a[1].walkSpeed() * param[1];
+				bTopParam += b[1].walkSpeed() * param[1];
+			}
+			
+			if (param[0] == "cost") {
+				aDivParam += a[1].costSum() * param[1];
+				bDivParam += b[1].costSum() * param[1];
+			}
+			if (param[0] == "canGather") {
+				// checking against wood, could be anything else really.
+				if (a[1].resourceGatherRates() && a[1].resourceGatherRates()["wood.tree"])
+					aTopParam *= param[1];
+				if (b[1].resourceGatherRates() && b[1].resourceGatherRates()["wood.tree"])
+					bTopParam *= param[1];
+			}
+		}
+		return -(aTopParam/(aDivParam+1)) + (bTopParam/(bDivParam+1));
+	});
 	return units[0][0];
 };
 
@@ -376,8 +383,8 @@ MilitaryAttackManager.prototype.measureEnemyStrength = function(gameState){
 // Adds towers to the defenceBuilding queue
 MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){ 
 	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv('structures/{civ}_defense_tower'))
-		+ queues.defenceBuilding.totalLength() < gameState.getEntityLimits()["DefenseTower"]
-		&& gameState.currentPhase() > 1) {
+		+ queues.defenceBuilding.totalLength() < gameState.getEntityLimits()["DefenseTower"] && queues.defenceBuilding.totalLength() < 4
+		&& gameState.currentPhase() > 1 && queues.defenceBuilding.totalLength() < 3) {
 		gameState.getOwnEntities().forEach(function(dropsiteEnt) {
 			if (dropsiteEnt.resourceDropsiteTypes() && dropsiteEnt.getMetadata(PlayerID, "defenseTower") !== true && !dropsiteEnt.hasClass("CivCentre")){
 				var position = dropsiteEnt.position();
@@ -394,7 +401,7 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 		numFortresses += gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bFort[i]));
 	}
 	
-	if (numFortresses + queues.defenceBuilding.totalLength() < 1 && gameState.currentPhase() > 2)
+	if (numFortresses + queues.defenceBuilding.totalLength() < 2 && gameState.currentPhase() > 2)
 	{
 		if (gameState.getTimeElapsed() > this.fortressStartTime + numFortresses * this.fortressLapseTime){
 			if (gameState.ai.pathsToMe && gameState.ai.pathsToMe.length > 0){
@@ -412,12 +419,22 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 	// Build more military buildings
 	// TODO: make military building better
 	Engine.ProfileStart("Build buildings");
-	if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > 15 && gameState.currentPhase() > 1) {
-		if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0]))
-				+ queues.militaryBuilding.totalLength() < 1) {
+	if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > 25 && (gameState.currentPhase() > 1 || gameState.isResearching("phase_town"))) {
+		if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) + queues.militaryBuilding.totalLength() < 1) {
+			debug ("Trying to build barracks");
 			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
 		}
 	}
+	
+	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) < 2 && gameState.getTimeElapsed() > 15*60*1000)
+		if (queues.militaryBuilding.totalLength() < 1)
+			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
+	
+	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) < 3 && gameState.getTimeElapsed() > 23*60*1000 &&
+		(gameState.civ() == "gaul" || gameState.civ() == "brit" || gameState.civ() == "iber"))
+		if (queues.militaryBuilding.totalLength() < 1)
+			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
+	
 	//build advanced military buildings
 	if (gameState.getTimeElapsed() > this.advancedMilitaryStartTime && gameState.currentPhase() > 2){
 		if (queues.militaryBuilding.totalLength() === 0){
@@ -432,6 +449,20 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 			}
 		}
 	}
+	if (gameState.civ() !== "gaul" && gameState.civ() !== "brit" && gameState.civ() !== "iber" &&
+		gameState.getTimeElapsed() > this.advancedMilitaryStartTime && gameState.currentPhase() > 2 && gameState.getTimeElapsed() > 25*60*1000)
+	{
+		var Const = 0;
+		for (var i in this.bAdvanced)
+			Const += gameState.countEntitiesByType(gameState.applyCiv(this.bAdvanced[i]));
+		if (inConst == 1) {
+			var i = Math.floor(Math.random() * this.bAdvanced.length);
+			if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i])) < 1){
+				queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bAdvanced[i]));
+			}
+		}
+	}
+
 	Engine.ProfileStop();
 };
 
