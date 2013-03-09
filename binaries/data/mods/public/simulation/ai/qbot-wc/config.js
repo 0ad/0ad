@@ -8,14 +8,14 @@ var baseConfig = {
 		"attackPlansStartTime" : 0	// time to wait before attacking. Start as soon as possible (first barracks)
 	},
 	"Economy" : {
-		"townPhase" : 230,	// time to start trying to reach town phase (might be a while after. Still need the requirements + ress )
+		"townPhase" : 270,	// time to start trying to reach town phase (might be a while after. Still need the requirements + ress )
 		"cityPhase" : 720,	// time to start trying to reach city phase
 		"farmsteadStartTime" : 400,	// Time to wait before building a farmstead.
 		"marketStartTime" : 480, // Time to wait before building the market.
 		"dockStartTime" : 240,	// Time to wait before building the dock
 		"techStartTime" : 600,	// time to wait before teching.
 		"targetNumBuilders" : 1.5, // Base number of builders per foundation. Later updated, but this remains a multiplier.
-		"femaleRatio" : 0.4 // percent of females among the workforce.
+		"femaleRatio" : 0.6 // percent of females among the workforce.
 	},
 	
 	// Note: attack settings are set directly in attack_plan.js
@@ -59,7 +59,7 @@ var baseConfig = {
 		"dropsites" : 160,
 		"field" : 1000,
 		"militaryBuilding" : 90,
-		"defenceBuilding" : 20,
+		"defenceBuilding" : 45,
 		"majorTech" : 250,
 		"minorTech" : 40,
 		"civilCentre" : 10000	// will hog all resources
@@ -87,13 +87,14 @@ if (Config.difficulty === 1)
 		"attackPlansStartTime" : 600
 	};
 	Config["Economy"] = {
-		"townPhase" : 300,
+		"townPhase" : 360,
 		"cityPhase" : 900,
 		"farmsteadStartTime" : 600,
 		"marketStartTime" : 800,
 		"techStartTime" : 1320,
 		"targetNumBuilders" : 2,
-		"femaleRatio" : 0.5
+		"femaleRatio" : 0.5,
+		"targetNumWorkers" : 100
 	};
 	Config["Defence"] = {
 		"armyCompactSize" : 700,
@@ -115,7 +116,8 @@ if (Config.difficulty === 1)
 		"marketStartTime" : 1000,
 		"techStartTime" : 600000,	// never
 		"targetNumBuilders" : 1,
-		"femaleRatio" : 0.0
+		"femaleRatio" : 0.0,
+		"targetNumWorkers" : 50
 	};
 	Config["Defence"] = {
 		"defenceRatio" : 1.0,

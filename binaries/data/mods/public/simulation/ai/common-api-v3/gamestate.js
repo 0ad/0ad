@@ -109,6 +109,11 @@ GameState.prototype.isResearched = function(template)
 {
 	return this.playerData.researchedTechs[template] !== undefined;
 };
+// true if started or queued
+GameState.prototype.isResearching = function(template)
+{
+	return (this.playerData.researchStarted[template] !== undefined || this.playerData.researchQueued[template] !== undefined);
+};
 
 // this is an absolute check that doesn't check if we have a building to research from.
 GameState.prototype.canResearch = function(techTemplateName, noRequirementCheck)
@@ -475,14 +480,26 @@ GameState.prototype.findResearchers = function(templateName) {
 	// let's check we can research the tech.
 	if (!this.canResearch(templateName))
 		return [];
-	
+
 	var template = this.getTemplate(templateName);
+	var self = this;
 	
 	return this.getOwnResearchFacilities().filter(function(ent) { //}){
 		var techs = ent.researchableTechs();
-		if (!techs || (template.pair() && techs.indexOf(template.pair()) === -1) || (!template.pair() && techs.indexOf(templateName) === -1))
-			return false;
-		return true;
+		for (i in techs)
+		{
+			var thisTemp = self.getTemplate(techs[i]);
+			if (thisTemp.pairDef())
+			{
+				var pairedTechs = thisTemp.getPairedTechs();
+				if (pairedTechs[0]._templateName == templateName || pairedTechs[1]._templateName == templateName)
+					return true;
+			} else {
+				if (techs[i] == templateName)
+					return true;
+			}
+		}
+		return false;
 	});
 };
 

@@ -1,13 +1,16 @@
 // returns some sort of DPS * health factor. If you specify a class, it'll use the modifiers against that class too.
 function getMaxStrength(ent, againstClass)
 {
-	
 	var strength = 0.0;
 	var attackTypes = ent.attackTypes();
 	var armourStrength = ent.armourStrengths();
 	var hp = ent.maxHitpoints() / 100.0;	// some normalization
 	for (var typeKey in attackTypes) {
 		var type = attackTypes[typeKey];
+		
+		if (type == "Slaughter" || type == "Charged")
+			continue;
+		
 		var attackStrength = ent.attackStrengths(type);
 		var attackRange = ent.attackRange(type);
 		var attackTimes = ent.attackTimes(type);

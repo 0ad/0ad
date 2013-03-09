@@ -676,7 +676,7 @@ var Entity = Class({
 		for (i in queue)
 		{
 			if (queue[i].progress < percentToStopAt)
-				   Engine.PostCommand({ "type": "stop-production", "entity": this.id(), "id": queue[i].id });
+				Engine.PostCommand({ "type": "stop-production", "entity": this.id(), "id": queue[i].id });
 		}
 		return this;
 	}

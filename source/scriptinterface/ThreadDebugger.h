@@ -22,6 +22,7 @@
 #include "ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 
+#include <queue>
 
 // These Breakpoint classes are not implemented threadsafe. The class using the Breakpoints is responsible to make sure that 
 // only one thread accesses the Breakpoint at a time

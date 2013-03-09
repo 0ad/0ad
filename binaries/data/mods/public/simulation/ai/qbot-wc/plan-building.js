@@ -125,12 +125,14 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 						friendlyTiles.addInfluence(x, z, infl/3.0, infl + 1);
 						friendlyTiles.addInfluence(x, z, Math.ceil(infl/5.0), -(infl/2.0), 'linear');
 					}
+					//avoid building too close to each other if possible.
+					friendlyTiles.addInfluence(x, z, 5, -5, 'linear');
 				}
 			}
 		});
 	}
 	
-	//friendlyTiles.dumpIm(template.buildCategory() + "_" +gameState.getTimeElapsed() + ".png",	200);
+	friendlyTiles.dumpIm(template.buildCategory() + "_" +gameState.getTimeElapsed() + ".png",	200);
 	
 	// Find target building's approximate obstruction radius, and expand by a bit to make sure we're not too close, this
 	// allows room for units to walk between buildings.
@@ -142,7 +144,9 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	else if (template.buildCategory() === "Dock")
 		radius = 1;//Math.floor(template.obstructionRadius() / cellSize);
 	else if (template.genericName() != "House" && !template.hasClass("DropsiteWood") && !template.hasClass("DropsiteStone") && !template.hasClass("DropsiteMetal"))
-		radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
+		radius = Math.ceil(template.obstructionRadius() / cellSize + 0.5);
+	else if (gameState.civ() === "iber" || gameState.civ() === "gaul" || gameState.civ() === "brit")
+		radius = Math.ceil(template.obstructionRadius() / cellSize);
 	else
 		radius = Math.ceil(template.obstructionRadius() / cellSize);
 	
