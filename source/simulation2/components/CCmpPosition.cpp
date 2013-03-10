@@ -72,7 +72,7 @@ public:
 	entity_pos_t m_YOffset;
 	bool m_RelativeToGround; // whether m_YOffset is relative to terrain/water plane, or an absolute height
 
-	entity_angle_t m_RotX, m_RotY, m_RotZ;
+	entity_angle_t m_RotX, m_RotY, m_LastRotY, m_PrevRotY, m_RotZ;
 	float m_InterpolatedRotY; // not serialized
 
 	static std::string GetSchema()
@@ -121,10 +121,11 @@ public:
 
 		m_RotYSpeed = paramNode.GetChild("TurnRate").ToFixed().ToFloat();
 
-		m_RotX = m_RotY = m_RotZ = entity_angle_t::FromInt(0);
+		m_RotX = m_RotY = m_RotZ = m_PrevRotY = m_LastRotY = entity_angle_t::FromInt(0);
 		m_InterpolatedRotY = 0;
 
 		m_PositionChanged = false;
+		m_Interpolated = false;
 	}
 
 	virtual void Deinit()
@@ -329,6 +330,8 @@ public:
 	virtual void SetYRotation(entity_angle_t y)
 	{
 		m_RotY = y;
+		m_PrevRotY = y;
+		m_LastRotY = y;
 		m_InterpolatedRotY = m_RotY.ToFloat();
 
 		AdvertisePositionChanges();
@@ -431,6 +434,10 @@ public:
 		{
 		case MT_Interpolate:
 		{
+			m_Interpolated = true;
+			if (!m_PositionChanged)
+				return;
+			
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 
 			float rotY = m_RotY.ToFloat();
@@ -444,10 +451,6 @@ public:
 			// Calculate new orientation, in a peculiar way in order to make sure the
 			// result gets close to m_orientation (rather than being n*2*M_PI out)
 			m_InterpolatedRotY = rotY + deltaClamped - delta;
-			
-			// Anything smaller than this will not be visible
-			if (abs(delta) > 0.0001)
-				m_PositionChanged = true;
 
 			break;
 		}
@@ -456,11 +459,14 @@ public:
 			// Store the positions from the turn before
 			m_PrevX = m_LastX;
 			m_PrevZ = m_LastZ;
-			
+			m_PrevRotY = m_LastRotY;
+
 			m_LastX = m_X;
 			m_LastZ = m_Z;
+			m_LastRotY = m_RotY;
 
-			m_PositionChanged = m_X != m_PrevX || m_Z != m_PrevZ;
+			m_PositionChanged = m_X != m_PrevX || m_Z != m_PrevZ || m_RotY != m_PrevRotY || !m_Interpolated;
+			m_Interpolated = false;
 
 			break;
 		}
@@ -489,6 +495,7 @@ private:
 	}
 
 	bool m_PositionChanged;
+	bool m_Interpolated;
 };
 
 REGISTER_COMPONENT_TYPE(Position)
