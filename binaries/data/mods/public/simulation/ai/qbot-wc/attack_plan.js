@@ -20,12 +20,19 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 				max = enemyCount[i];
 			}
 	}
+	warn ("target " + this.targetPlayer);
 	if (this.targetPlayer === undefined || this.targetPlayer === -1)
+	{
+		this.failed = true;
 		return false;
+	}
 	
 	var CCs = gameState.getOwnEntities().filter(Filters.byClass("CivCentre"));
 	if (CCs.length === 0)
+	{
+		this.failed = true;
 		return false;
+	}
 
 	debug ("Target (" + PlayerID +") = " +this.targetPlayer);
 	this.targetFinder = targetFinder || this.defaultTargetFinder;
@@ -196,7 +203,7 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	}
 	
 	// some variables for during the attack
-	this.position20TurnsAgo = [0,0];
+	this.position10TurnsAgo = [0,0];
 	this.lastPosition = [0,0];
 	this.position = [0,0];
 
@@ -284,6 +291,7 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 			targets = this.defaultTargetFinder(gameState, militaryManager);
 		}
 		if (targets.length) {
+			debug ("Aiming for " + targets);
 			// picking a target
 			var rand = Math.floor((Math.random()*targets.length));
 			this.targetPos = undefined;
@@ -337,8 +345,16 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 	
 	Engine.ProfileStart("Update Preparation");
 	
-	// keep on while the units finish being trained.
-	if (this.mustStart(gameState) && (gameState.countOwnQueuedEntitiesWithMetadata("plan", +this.name) > 0 || (gameState.getPopulationMax() - gameState.getPopulation() < 10) )) {
+	// special case: if we're reached max pop, and we can start the plan, start it.
+	if ((gameState.getPopulationMax() - gameState.getPopulation() < 10) && this.canStart())
+	{
+		this.assignUnits(gameState);
+		if (this.queue.length())
+			this.queue.empty();
+		if ( (gameState.ai.turn + gameState.ai.player) % 40 == 0)
+			this.AllToRallyPoint(gameState, false);
+	} else if (this.mustStart(gameState) && (gameState.countOwnQueuedEntitiesWithMetadata("plan", +this.name) > 0)) {
+		// keep on while the units finish being trained, then we'll start
 		this.assignUnits(gameState);
 		
 		if (this.queue.length())
@@ -528,7 +544,6 @@ CityAttack.prototype.defaultTargetFinder = function(gameState, militaryManager){
 	if (targets.length == 0) {
 		targets = gameState.getEnemyEntities().filter(Filters.and( Filters.byOwner(this.targetPlayer),Filters.byClass("ConquestCritical")));
 	}
-	debug ("target is " + targets);
 	return targets;
 };
 
@@ -716,17 +731,13 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 	if (this.state === "walking"){
 		
 		this.position = this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).getCentrePosition();
-		
+
 		// probably not too good.
 		if (!this.position)
 			return undefined;	// should spawn an error.
 		
 		// basically haven't moved an inch: very likely stuck)
-		if (SquareVectorDistance(this.position, this.position20TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 100 === 0) {
-			
-			if (gameState.ai.playedTurn % 100 === 0)
-				this.position20TurnsAgo = this.position;
-
+		if (SquareVectorDistance(this.position, this.position10TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 20 === 0) {
 			// check for stuck siege units
 			
 			var sieges = this.unitCollection.filter(Filters.byClass("Siege"));
@@ -742,6 +753,8 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 			if (farthestEnt !== -1)
 				farthestEnt.destroy();
 		}
+		if (gameState.ai.playedTurn % 20 === 0)
+			this.position10TurnsAgo = this.position;
 		
 		if (this.lastPosition && SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0) {
 			this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).moveIndiv(this.path[0][0][0], this.path[0][0][1]);
@@ -1123,14 +1136,14 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 		}
 		// updating targets.
 		if (!gameState.getEntityById(this.target.id()))
-		{
-			debug ("Seems like our target has been destroyed. Switching.");
-			
+		{			
 			var targets = this.targetFinder(gameState, militaryManager);
 			if (targets.length === 0){
 				targets = this.defaultTargetFinder(gameState, militaryManager);
 			}
 			if (targets.length) {
+				debug ("Seems like our target has been destroyed. Switching.");
+				debug ("Aiming for " + targets);
 				// picking a target
 				var rand = Math.floor((Math.random()*targets.length));
 				this.targetPos = undefined;

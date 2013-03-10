@@ -20,6 +20,7 @@ Random maps only:
 -autostart-random=SEED			random map with SEED value (default 0, use -1 for random)
 -autostart-size=TILES			random map SIZE in tiles (default 192)
 -autostart-players=NUMBER		NUMBER of players on random map
+-autostart-civ=PLAYER:CIV		changes the civilisation of player PLAYER to CIV (default athen)
 
 Configuration:
 -conf=KEY:VALUE		set a config value
