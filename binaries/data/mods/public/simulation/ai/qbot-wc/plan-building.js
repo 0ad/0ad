@@ -116,7 +116,11 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 						friendlyTiles.addInfluence(x, z, Math.ceil(infl/2.0),infl);	// houses are farther away from other buildings but houses
 						friendlyTiles.addInfluence(x, z, Math.ceil(infl/4.0),-infl/2.0);	// houses are farther away from other buildings but houses
 					} else if (ent.genericName() != "House") // houses have no influence on other buildings
+					{
 						friendlyTiles.addInfluence(x, z, infl);
+						//avoid building too close to each other if possible.
+						friendlyTiles.addInfluence(x, z, 5, -5, 'linear');
+					}
 						// If this is not a field add a negative influence near the CivCentre because we want to leave this
 						// area for fields.
 					if (ent.hasClass("CivCentre") && template.genericName() != "House"){
@@ -125,14 +129,12 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 						friendlyTiles.addInfluence(x, z, infl/3.0, infl + 1);
 						friendlyTiles.addInfluence(x, z, Math.ceil(infl/5.0), -(infl/2.0), 'linear');
 					}
-					//avoid building too close to each other if possible.
-					friendlyTiles.addInfluence(x, z, 5, -5, 'linear');
 				}
 			}
 		});
 	}
 	
-	friendlyTiles.dumpIm(template.buildCategory() + "_" +gameState.getTimeElapsed() + ".png",	200);
+	//friendlyTiles.dumpIm(template.buildCategory() + "_" +gameState.getTimeElapsed() + ".png",	200);
 	
 	// Find target building's approximate obstruction radius, and expand by a bit to make sure we're not too close, this
 	// allows room for units to walk between buildings.
@@ -146,7 +148,7 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	else if (template.genericName() != "House" && !template.hasClass("DropsiteWood") && !template.hasClass("DropsiteStone") && !template.hasClass("DropsiteMetal"))
 		radius = Math.ceil(template.obstructionRadius() / cellSize + 0.5);
 	else if (gameState.civ() === "iber" || gameState.civ() === "gaul" || gameState.civ() === "brit")
-		radius = Math.ceil(template.obstructionRadius() / cellSize);
+		radius = Math.ceil(template.obstructionRadius() / cellSize - 0.5);
 	else
 		radius = Math.ceil(template.obstructionRadius() / cellSize);
 	
@@ -180,6 +182,9 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 
 	// default angle
 	var angle = 3*Math.PI/4;
+	
+	if (template.genericName() == "House")
+		angle = Math.PI;
 	
 	return {
 		"x" : x,

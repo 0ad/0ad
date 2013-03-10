@@ -369,6 +369,11 @@ EconomyManager.prototype.assignToFoundations = function(gameState, noRepair) {
 			}
 		} else if (noRepair && !target.hasClass("CivCentre"))
 			continue;
+		
+		var territory = Map.createTerritoryMap(gameState);
+		if (territory.getOwner(target.position()) !== PlayerID || territory.getOwner([target.position()[0] + 5, target.position()[1]]) !== PlayerID)
+			continue;
+		
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target).length;
 		if (assigned < this.targetNumBuilders) {
 			if (builderWorkers.length + addedWorkers < this.targetNumBuilders*4) {

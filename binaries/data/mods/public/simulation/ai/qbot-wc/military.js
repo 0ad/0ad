@@ -588,7 +588,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 			for (var i = 0;i < this.upcomingAttacks[attackType].length; ++i) {
 				
 				var attack = this.upcomingAttacks[attackType][i];
-				
+
 				// okay so we'll get the support plan
 				if (!attack.isStarted()) {
 					var updateStep = attack.updatePreparation(gameState, this,events);
@@ -637,7 +637,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 		}
 	}
 	if (gameState.ai.strategy === "rush" && this.startedAttacks["CityAttack"].length !== 0) {
-		// and then we revert shit.
+		// and then we revert.
 		gameState.ai.strategy = "normal";
 		Config.Economy.femaleRatio = 0.4;
 		gameState.ai.modules.economy.targetNumWorkers = Math.max(Math.floor(gameState.getPopulationMax()*0.55), 1);
@@ -654,7 +654,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 			&& gameState.getTimeElapsed() > this.attackPlansStartTime) {
 			if (this.upcomingAttacks["CityAttack"].length == 0 && (gameState.getTimeElapsed() < 25*60000 || Config.difficulty < 2)) {
 				var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1);
-				if (!Lalala)
+				if (Lalala.failed)
 				{
 					this.attackPlansEncounteredWater = true; // hack
 				} else {
@@ -664,7 +664,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 				}
 			} else if (this.upcomingAttacks["CityAttack"].length == 0 && Config.difficulty !== 0) {
 				var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1, "superSized");
-				if (!Lalala)
+				if (Lalala.failed)
 				{
 					this.attackPlansEncounteredWater = true; // hack
 				} else {
