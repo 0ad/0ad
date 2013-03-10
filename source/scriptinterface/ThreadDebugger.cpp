@@ -21,6 +21,8 @@
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 
+#include <queue>
+
 // Hooks
 
 CMutex ThrowHandlerMutex;
@@ -107,20 +109,85 @@ static void* CallHook_(JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* U
 	return closure;
 }
 
+/// ThreadDebugger_impl
+
+struct StackInfoRequest
+{
+	STACK_INFO requestType;
+	uint nestingLevel;
+	SDL_sem* semaphore;
+};
+
+struct trapLocation
+{
+	jsbytecode* pBytecode;
+	JSScript* pScript;
+	uint firstLineInFunction;
+	uint lastLineInFunction;
+};
+
+struct ThreadDebugger_impl
+{
+	ThreadDebugger_impl();
+	~ThreadDebugger_impl();
+
+	CMutex m_Mutex;
+	CMutex m_ActiveBreakpointsMutex;
+	CMutex m_NextDbgCmdMutex;
+	CMutex m_IsInBreakMutex;
+
+	// This member could actually be used by other threads via CompareScriptInterfacePtr(), but that should be safe
+	ScriptInterface* m_pScriptInterface; 
+	CDebuggingServer* m_pDebuggingServer;
+	// We store the pointer on the heap because the stack frame becomes invalid in certain cases
+	// and spidermonkey throws errors if it detects a pointer on the stack.
+	// We only use the pointer for comparing it with the current stack pointer and we don't try to access it, so it
+	// shouldn't be a problem.
+	JSStackFrame** m_pLastBreakFrame;
+	uint m_ObjectReferenceID;
+
+	/// shared between multiple mongoose threads and one scriptinterface thread
+	std::string m_BreakFileName;
+	uint m_LastBreakLine;
+	bool m_IsInBreak;
+	DBGCMD m_NextDbgCmd;
+
+	std::queue<StackInfoRequest> m_StackInfoRequests;
+
+	std::map<std::string, std::map<uint, trapLocation> > m_LineToPCMap;
+	std::list<CActiveBreakPoint*> m_ActiveBreakPoints;
+	std::map<STACK_INFO, std::map<uint, std::string> > m_StackFrameData;
+	std::string m_Callstack;
+
+	/// shared between multiple mongoose threads (initialization may be an exception)
+	std::string m_Name;
+	uint m_ID;
+};
+
+ThreadDebugger_impl::ThreadDebugger_impl() :
+	m_NextDbgCmd(DBG_CMD_NONE), m_IsInBreak(false), m_pLastBreakFrame(new JSStackFrame*)
+{
+}
+
+ThreadDebugger_impl::~ThreadDebugger_impl()
+{
+	delete m_pLastBreakFrame;
+}
+
 /// CThreadDebugger
 
 void CThreadDebugger::ClearTrapsToRemove()
 {
-	CScopeLock lock(m_Mutex);
-	std::list<CActiveBreakPoint*>::iterator itr=m_ActiveBreakPoints.begin();
-	while (itr != m_ActiveBreakPoints.end())
+	CScopeLock lock(m->m_Mutex);
+	std::list<CActiveBreakPoint*>::iterator itr=m->m_ActiveBreakPoints.begin();
+	while (itr != m->m_ActiveBreakPoints.end())
 	{
 		if ((*itr)->m_ToRemove)
 		{
 				ClearTrap((*itr));
 				// Remove the breakpoint
 				delete (*itr);
-				itr = m_ActiveBreakPoints.erase(itr);
+				itr = m->m_ActiveBreakPoints.erase(itr);
 
 		}
 		else
@@ -132,8 +199,8 @@ void CThreadDebugger::ClearTrap(CActiveBreakPoint* activeBreakPoint)
 {
 	ENSURE(activeBreakPoint->m_Script != NULL && activeBreakPoint->m_Pc != NULL);
 	JSTrapHandler prevHandler;
-	jsval prevClosure;	
-	JS_ClearTrap(m_pScriptInterface->GetContext(), activeBreakPoint->m_Script, activeBreakPoint->m_Pc, &prevHandler, &prevClosure);
+	jsval prevClosure;
+	JS_ClearTrap(m->m_pScriptInterface->GetContext(), activeBreakPoint->m_Script, activeBreakPoint->m_Pc, &prevHandler, &prevClosure);
 	activeBreakPoint->m_Script = NULL;
 	activeBreakPoint->m_Pc = NULL;
 }
@@ -142,7 +209,7 @@ void CThreadDebugger::SetAllNewTraps()
 {
 	std::list<CBreakPoint>* pBreakPoints = NULL;
 	double breakPointsLockID;
-	breakPointsLockID = m_pDebuggingServer->AquireBreakPointAccess(&pBreakPoints);
+	breakPointsLockID = m->m_pDebuggingServer->AquireBreakPointAccess(&pBreakPoints);
 	std::list<CBreakPoint>::iterator itr = pBreakPoints->begin();
 	while (itr != pBreakPoints->end())
 	{
@@ -154,9 +221,9 @@ void CThreadDebugger::SetAllNewTraps()
 			// set and the user sets another one by setting a breakpoint on a line directly above without sourcecode.
 			bool trapAlreadySet = false;
 			{
-				CScopeLock lock(m_Mutex);
+				CScopeLock lock(m->m_Mutex);
 				std::list<CActiveBreakPoint*>::iterator itr1;
-				for ( itr1 = m_ActiveBreakPoints.begin(); itr1 != m_ActiveBreakPoints.end(); itr1++)
+				for (itr1 = m->m_ActiveBreakPoints.begin(); itr1 != m->m_ActiveBreakPoints.end(); itr1++)
 				{
 					if ((*itr1)->m_ActualLine == (*itr).m_UserLine)
 						trapAlreadySet = true;
@@ -168,8 +235,8 @@ void CThreadDebugger::SetAllNewTraps()
 				CActiveBreakPoint* pActiveBreakPoint = new CActiveBreakPoint((*itr));
 				SetNewTrap(pActiveBreakPoint, (*itr).m_Filename, (*itr).m_UserLine);
 				{
-					CScopeLock lock(m_Mutex);
-					m_ActiveBreakPoints.push_back(pActiveBreakPoint);
+					CScopeLock lock(m->m_Mutex);
+					m->m_ActiveBreakPoints.push_back(pActiveBreakPoint);
 				}
 				itr = pBreakPoints->erase(itr);
 				continue;
@@ -177,12 +244,12 @@ void CThreadDebugger::SetAllNewTraps()
 		}
 		itr++;
 	}
-	m_pDebuggingServer->ReleaseBreakPointAccess(breakPointsLockID);
+	m->m_pDebuggingServer->ReleaseBreakPointAccess(breakPointsLockID);
 }
 
 bool CThreadDebugger::CheckIfMappingPresent(std::string filename, uint line)
 {
-	bool isPresent = (m_LineToPCMap.end() != m_LineToPCMap.find(filename) && m_LineToPCMap[filename].end() != m_LineToPCMap[filename].find(line));
+	bool isPresent = (m->m_LineToPCMap.end() != m->m_LineToPCMap.find(filename) && m->m_LineToPCMap[filename].end() != m->m_LineToPCMap[filename].find(line));
 	return isPresent;
 }
 
@@ -191,22 +258,20 @@ void CThreadDebugger::SetNewTrap(CActiveBreakPoint* activeBreakPoint, std::strin
 	ENSURE(activeBreakPoint->m_Script == NULL); // The trap must not be set already!
 	ENSURE(CheckIfMappingPresent(filename, line)); // You have to check if the mapping exists before calling this function!
 
-	jsbytecode* pc = m_LineToPCMap[filename][line].pBytecode;
-	JSScript* script = m_LineToPCMap[filename][line].pScript;
+	jsbytecode* pc = m->m_LineToPCMap[filename][line].pBytecode;
+	JSScript* script = m->m_LineToPCMap[filename][line].pScript;
 	activeBreakPoint->m_Script = script;
 	activeBreakPoint->m_Pc = pc;
 	ENSURE(script != NULL && pc != NULL);
-	activeBreakPoint->m_ActualLine = JS_PCToLineNumber(m_pScriptInterface->GetContext(), script, pc);
+	activeBreakPoint->m_ActualLine = JS_PCToLineNumber(m->m_pScriptInterface->GetContext(), script, pc);
 	
-	JS_SetTrap(m_pScriptInterface->GetContext(), script, pc, TrapHandler_, PRIVATE_TO_JSVAL(this));
+	JS_SetTrap(m->m_pScriptInterface->GetContext(), script, pc, TrapHandler_, PRIVATE_TO_JSVAL(this));
 }
 
 
-CThreadDebugger::CThreadDebugger()
+CThreadDebugger::CThreadDebugger() :
+	m(new ThreadDebugger_impl())
 {
-	m_NextDbgCmd = DBG_CMD_NONE;
-	m_IsInBreak = false;
-	m_pLastBreakFrame = new JSStackFrame*;
 }
 
 CThreadDebugger::~CThreadDebugger()
@@ -218,26 +283,24 @@ CThreadDebugger::~CThreadDebugger()
 	ReturnActiveBreakPoints(NULL);
 
 	// Remove all the hooks because they store a pointer to this object
-	JS_SetExecuteHook(m_pScriptInterface->GetRuntime(), NULL, NULL);
-	JS_SetCallHook(m_pScriptInterface->GetRuntime(), NULL, NULL);
-	JS_SetNewScriptHook(m_pScriptInterface->GetRuntime(), NULL, NULL);
-	JS_SetDestroyScriptHook(m_pScriptInterface->GetRuntime(), NULL, NULL);
-	
-	delete m_pLastBreakFrame;
+	JS_SetExecuteHook(m->m_pScriptInterface->GetRuntime(), NULL, NULL);
+	JS_SetCallHook(m->m_pScriptInterface->GetRuntime(), NULL, NULL);
+	JS_SetNewScriptHook(m->m_pScriptInterface->GetRuntime(), NULL, NULL);
+	JS_SetDestroyScriptHook(m->m_pScriptInterface->GetRuntime(), NULL, NULL);
 }
 
 void CThreadDebugger::ReturnActiveBreakPoints(jsbytecode* pBytecode)
 {
-	CScopeLock lock(m_ActiveBreakpointsMutex);
+	CScopeLock lock(m->m_ActiveBreakpointsMutex);
 	std::list<CActiveBreakPoint*>::iterator itr;
-	itr = m_ActiveBreakPoints.begin();
-	while (itr != m_ActiveBreakPoints.end())
+	itr = m->m_ActiveBreakPoints.begin();
+	while (itr != m->m_ActiveBreakPoints.end())
 	{
 		// Breakpoints marked for removal should be deleted instead of returned!
 		if ( ((*itr)->m_Pc == pBytecode || pBytecode == NULL) && !(*itr)->m_ToRemove )
 		{
 			std::list<CBreakPoint>* pBreakPoints;
-			double breakPointsLockID = m_pDebuggingServer->AquireBreakPointAccess(&pBreakPoints);
+			double breakPointsLockID = m->m_pDebuggingServer->AquireBreakPointAccess(&pBreakPoints);
 			CBreakPoint breakPoint;
 			breakPoint.m_UserLine = (*itr)->m_UserLine;
 			breakPoint.m_Filename = (*itr)->m_Filename;
@@ -245,8 +308,8 @@ void CThreadDebugger::ReturnActiveBreakPoints(jsbytecode* pBytecode)
 			ClearTrap((*itr));
 			pBreakPoints->push_back(breakPoint);
 			delete (*itr);
-			itr=m_ActiveBreakPoints.erase(itr);
-			m_pDebuggingServer->ReleaseBreakPointAccess(breakPointsLockID);
+			itr = m->m_ActiveBreakPoints.erase(itr);
+			m->m_pDebuggingServer->ReleaseBreakPointAccess(breakPointsLockID);
 		}
 		else
 			itr++;
@@ -256,20 +319,20 @@ void CThreadDebugger::ReturnActiveBreakPoints(jsbytecode* pBytecode)
 void CThreadDebugger::Initialize(uint id, std::string name, ScriptInterface* pScriptInterface, CDebuggingServer* pDebuggingServer)
 {
 	ENSURE(id != 0);
-	m_ID = id;
-	m_Name = name;
-	m_pScriptInterface = pScriptInterface;
-	m_pDebuggingServer = pDebuggingServer;
-	JS_SetExecuteHook(m_pScriptInterface->GetRuntime(), CallHook_, (void*)this);
-	JS_SetCallHook(m_pScriptInterface->GetRuntime(), CallHook_, (void*)this);
-	JS_SetNewScriptHook(m_pScriptInterface->GetRuntime(), NewScriptHook_, (void*)this);
-	JS_SetDestroyScriptHook(m_pScriptInterface->GetRuntime(), DestroyScriptHook_, (void*)this);
-	JS_SetThrowHook(m_pScriptInterface->GetRuntime(), ThrowHandler_, (void*)this);
+	m->m_ID = id;
+	m->m_Name = name;
+	m->m_pScriptInterface = pScriptInterface;
+	m->m_pDebuggingServer = pDebuggingServer;
+	JS_SetExecuteHook(m->m_pScriptInterface->GetRuntime(), CallHook_, (void*)this);
+	JS_SetCallHook(m->m_pScriptInterface->GetRuntime(), CallHook_, (void*)this);
+	JS_SetNewScriptHook(m->m_pScriptInterface->GetRuntime(), NewScriptHook_, (void*)this);
+	JS_SetDestroyScriptHook(m->m_pScriptInterface->GetRuntime(), DestroyScriptHook_, (void*)this);
+	JS_SetThrowHook(m->m_pScriptInterface->GetRuntime(), ThrowHandler_, (void*)this);
 	
-	if (m_pDebuggingServer->GetSettingSimultaneousThreadBreak())
+	if (m->m_pDebuggingServer->GetSettingSimultaneousThreadBreak())
 	{
 		// Setup a handler to check for break-requests from the DebuggingServer regularly
-		JS_SetInterrupt(m_pScriptInterface->GetRuntime(), CheckForBreakRequestHandler_, (void*)this);
+		JS_SetInterrupt(m->m_pScriptInterface->GetRuntime(), CheckForBreakRequestHandler_, (void*)this);
 	}
 }
 
@@ -283,11 +346,11 @@ JSTrapStatus CThreadDebugger::StepHandler(JSContext* cx, JSScript* script, jsbyt
 	uint line = JS_PCToLineNumber(cx, script, pc);
 	JSStackFrame* iter = NULL;
 	JSStackFrame* pStackFrame;
-	pStackFrame = JS_FrameIterator(m_pScriptInterface->GetContext(), &iter);
+	pStackFrame = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 	uint lastBreakLine = GetLastBreakLine() ;
 	jsval val = JSVAL_VOID;
-	if ((*m_pLastBreakFrame == pStackFrame && lastBreakLine != line) || 
-		(*m_pLastBreakFrame != pStackFrame && !CurrentFrameIsChildOf(*m_pLastBreakFrame)))
+	if ((*m->m_pLastBreakFrame == pStackFrame && lastBreakLine != line) || 
+		(*m->m_pLastBreakFrame != pStackFrame && !CurrentFrameIsChildOf(*m->m_pLastBreakFrame)))
 		return BreakHandler(cx, script, pc, rval, val, BREAK_SRC_INTERRUP);
 	else
 		return JSTRAP_CONTINUE;
@@ -300,11 +363,11 @@ JSTrapStatus CThreadDebugger::StepIntoHandler(JSContext *cx, JSScript *script, j
 	uint line = JS_PCToLineNumber(cx, script, pc);
 	JSStackFrame* iter = NULL;
 	JSStackFrame* pStackFrame;
-	pStackFrame = JS_FrameIterator(m_pScriptInterface->GetContext(), &iter);
+	pStackFrame = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 	uint lastBreakLine = GetLastBreakLine();
 	
 	jsval val = JSVAL_VOID;
-	if ((*m_pLastBreakFrame == pStackFrame && lastBreakLine != line) || *m_pLastBreakFrame != pStackFrame)
+	if ((*m->m_pLastBreakFrame == pStackFrame && lastBreakLine != line) || *m->m_pLastBreakFrame != pStackFrame)
 		return BreakHandler(cx, script, pc, rval, val, BREAK_SRC_INTERRUP);
 	else
 		return JSTRAP_CONTINUE;
@@ -316,8 +379,8 @@ JSTrapStatus CThreadDebugger::StepOutHandler(JSContext *cx, JSScript *script, js
 	// (because we stepped out of the function)
 	JSStackFrame* iter = NULL;
 	JSStackFrame* pStackFrame;
-	pStackFrame = JS_FrameIterator(m_pScriptInterface->GetContext(), &iter);
-	if (pStackFrame != *m_pLastBreakFrame && !CurrentFrameIsChildOf(*m_pLastBreakFrame))
+	pStackFrame = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
+	if (pStackFrame != *m->m_pLastBreakFrame && !CurrentFrameIsChildOf(*m->m_pLastBreakFrame))
 	{
 		jsval val = JSVAL_VOID;
 		return BreakHandler(cx, script, pc, rval, val, BREAK_SRC_INTERRUP);
@@ -329,14 +392,14 @@ JSTrapStatus CThreadDebugger::StepOutHandler(JSContext *cx, JSScript *script, js
 bool CThreadDebugger::CurrentFrameIsChildOf(JSStackFrame* pParentFrame)
 {
 	JSStackFrame* iter = NULL;
-	JSStackFrame* fp = JS_FrameIterator(m_pScriptInterface->GetContext(), &iter);
+	JSStackFrame* fp = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 	// Get the first parent Frame
-	fp = JS_FrameIterator(m_pScriptInterface->GetContext(), &iter);
+	fp = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 	while (fp)
 	{
 		if (fp == pParentFrame) 
 			return true;
-		fp = JS_FrameIterator(m_pScriptInterface->GetContext(), &iter);
+		fp = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 	}
 	return false;
 }
@@ -344,7 +407,7 @@ bool CThreadDebugger::CurrentFrameIsChildOf(JSStackFrame* pParentFrame)
 JSTrapStatus CThreadDebugger::CheckForBreakRequestHandler(JSContext *cx, JSScript *script, jsbytecode *pc, jsval *rval, void* UNUSED(closure))
 {
 	jsval val = JSVAL_VOID;
-	if (m_pDebuggingServer->GetBreakRequestedByThread() || m_pDebuggingServer->GetBreakRequestedByUser())
+	if (m->m_pDebuggingServer->GetBreakRequestedByThread() || m->m_pDebuggingServer->GetBreakRequestedByUser())
 		return BreakHandler(cx, script, pc, rval, val, BREAK_SRC_INTERRUP);
 	else
 		return JSTRAP_CONTINUE;
@@ -363,7 +426,7 @@ JSTrapStatus CThreadDebugger::ThrowHandler(JSContext *cx, JSScript *script, jsby
 	if (JSVAL_IS_STRING(jsexception))
 	{
 		std::string str(JS_EncodeString(cx, JSVAL_TO_STRING(jsexception)));
-		if (str == "Breakpoint" || m_pDebuggingServer->GetSettingBreakOnException())
+		if (str == "Breakpoint" || m->m_pDebuggingServer->GetSettingBreakOnException())
 		{
 			if (str == "Breakpoint")
 				JS_ClearPendingException(cx);
@@ -371,11 +434,11 @@ JSTrapStatus CThreadDebugger::ThrowHandler(JSContext *cx, JSScript *script, jsby
 			return BreakHandler(cx, script, pc, rval, val, BREAK_SRC_EXCEPTION);
 		}
 	}
-	return JSTRAP_CONTINUE;			
+	return JSTRAP_CONTINUE;
 }
 
 JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsbytecode* pc, jsval* UNUSED(rval), jsval UNUSED(closure), BREAK_SRC breakSrc) 
-{	
+{
 	uint line = JS_PCToLineNumber(cx, script, pc);
 	std::string filename(JS_GetScriptFilename(cx, script));
 
@@ -383,17 +446,17 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 	SaveCallstack();
 	SetLastBreakLine(line);
 	SetBreakFileName(filename);
-	*m_pLastBreakFrame = NULL;
+	*m->m_pLastBreakFrame = NULL;
 	
 	if (breakSrc == BREAK_SRC_INTERRUP)
 	{
-		JS_ClearInterrupt(m_pScriptInterface->GetRuntime(), NULL, NULL);
+		JS_ClearInterrupt(m->m_pScriptInterface->GetRuntime(), NULL, NULL);
 		JS_SetSingleStepMode(cx, script, false);
 	}
 	
-	if (m_pDebuggingServer->GetSettingSimultaneousThreadBreak())
+	if (m->m_pDebuggingServer->GetSettingSimultaneousThreadBreak())
 	{
-		m_pDebuggingServer->SetBreakRequestedByThread(true);
+		m->m_pDebuggingServer->SetBreakRequestedByThread(true);
 	}
 	
 	// Wait until the user continues the execution
@@ -401,12 +464,12 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 	{
 		DBGCMD nextDbgCmd = GetNextDbgCmd();
 		
-		while (!m_StackInfoRequests.empty())
+		while (!m->m_StackInfoRequests.empty())
 		{
-			StackInfoRequest request = m_StackInfoRequests.front();
+			StackInfoRequest request = m->m_StackInfoRequests.front();
 			SaveStackFrameData(request.requestType, request.nestingLevel);
 			SDL_SemPost(request.semaphore);
-			m_StackInfoRequests.pop();
+			m->m_StackInfoRequests.pop();
 		}
 		
 		if (nextDbgCmd == DBG_CMD_NONE)
@@ -419,7 +482,7 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 		else if (nextDbgCmd == DBG_CMD_SINGLESTEP || nextDbgCmd == DBG_CMD_STEPINTO || nextDbgCmd == DBG_CMD_STEPOUT)
 		{
 			JSStackFrame* iter = NULL;
-			*m_pLastBreakFrame = JS_FrameIterator(m_pScriptInterface->GetContext(), &iter);
+			*m->m_pLastBreakFrame = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 			
 			if (!JS_SetSingleStepMode(cx, script, true))
 				LOGERROR(L"JS_SetSingleStepMode returned false!"); // TODO: When can this happen?
@@ -427,17 +490,17 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 			{
 				if (nextDbgCmd == DBG_CMD_SINGLESTEP)
 				{
-					JS_SetInterrupt(m_pScriptInterface->GetRuntime(), StepHandler_, this);
+					JS_SetInterrupt(m->m_pScriptInterface->GetRuntime(), StepHandler_, this);
 					break;
 				}
 				else if (nextDbgCmd == DBG_CMD_STEPINTO)
 				{
-					JS_SetInterrupt(m_pScriptInterface->GetRuntime(), StepIntoHandler_, this);
+					JS_SetInterrupt(m->m_pScriptInterface->GetRuntime(), StepIntoHandler_, this);
 					break;
 				}
 				else if (nextDbgCmd == DBG_CMD_STEPOUT)
 				{
-					JS_SetInterrupt(m_pScriptInterface->GetRuntime(), StepOutHandler_, this);
+					JS_SetInterrupt(m->m_pScriptInterface->GetRuntime(), StepOutHandler_, this);
 					break;
 				}
 			}
@@ -449,7 +512,7 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 			else
 			{
 				// Setup a handler to check for break-requests from the DebuggingServer regularly
-				JS_SetInterrupt(m_pScriptInterface->GetRuntime(), CheckForBreakRequestHandler_, this);
+				JS_SetInterrupt(m->m_pScriptInterface->GetRuntime(), CheckForBreakRequestHandler_, this);
 			}
 			break;
 		}
@@ -464,8 +527,8 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 	
 	// All saved stack data becomes invalid
 	{
-		CScopeLock lock(m_Mutex);
-		m_StackFrameData.clear();
+		CScopeLock lock(m->m_Mutex);
+		m->m_StackFrameData.clear();
 	}
 	
 	return JSTRAP_CONTINUE;
@@ -474,9 +537,9 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 void CThreadDebugger::NewScriptHook(JSContext* cx, const char* filename, unsigned lineno, JSScript* script, JSFunction* UNUSED(fun), void* UNUSED(callerdata))
 {
 	uint scriptExtent = JS_GetScriptLineExtent (cx, script);
-    std::string stringFileName(filename);
-    if (stringFileName == "")
-    	return;
+	std::string stringFileName(filename);
+	if (stringFileName == "")
+		return;
 
 	for (uint line = lineno; line < scriptExtent + lineno; ++line) 
 	{
@@ -488,8 +551,8 @@ void CThreadDebugger::NewScriptHook(JSContext* cx, const char* filename, unsigne
 		jsbytecode* oldPC = NULL;
 		if (CheckIfMappingPresent(stringFileName, line))
 		{
-			firstLine = m_LineToPCMap[stringFileName][line].firstLineInFunction;
-			lastLine = m_LineToPCMap[stringFileName][line].lastLineInFunction;
+			firstLine = m->m_LineToPCMap[stringFileName][line].firstLineInFunction;
+			lastLine = m->m_LineToPCMap[stringFileName][line].lastLineInFunction;
 			
 			// If an entry nested equally is present too, we must overwrite it.
 			// The same script(function) can trigger a NewScriptHook multiple times without DestroyScriptHooks between these 
@@ -497,14 +560,14 @@ void CThreadDebugger::NewScriptHook(JSContext* cx, const char* filename, unsigne
 			if (lineno < firstLine || scriptExtent + lineno > lastLine)
 				continue;
 			else
-				oldPC = m_LineToPCMap[stringFileName][line].pBytecode;
+				oldPC = m->m_LineToPCMap[stringFileName][line].pBytecode;
 				
 		}
 		jsbytecode* pc = JS_LineNumberToPC (cx, script, line);
-		m_LineToPCMap[stringFileName][line].pBytecode = pc;
-		m_LineToPCMap[stringFileName][line].pScript = script;
-		m_LineToPCMap[stringFileName][line].firstLineInFunction = lineno;
-		m_LineToPCMap[stringFileName][line].lastLineInFunction = lineno + scriptExtent;
+		m->m_LineToPCMap[stringFileName][line].pBytecode = pc;
+		m->m_LineToPCMap[stringFileName][line].pScript = script;
+		m->m_LineToPCMap[stringFileName][line].firstLineInFunction = lineno;
+		m->m_LineToPCMap[stringFileName][line].lastLineInFunction = lineno + scriptExtent;
 		
 		// If we are replacing a script, the associated traps become invalid
 		if (lineno == firstLine && scriptExtent + lineno == lastLine)
@@ -530,12 +593,12 @@ void CThreadDebugger::DestroyScriptHook(JSContext* cx, JSScript* script)
 		{
 			if (CheckIfMappingPresent(fileName, line))
 			{
-				if (m_LineToPCMap[fileName][line].pScript == script)
+				if (m->m_LineToPCMap[fileName][line].pScript == script)
 				{
-					ReturnActiveBreakPoints(m_LineToPCMap[fileName][line].pBytecode);
-					m_LineToPCMap[fileName].erase(line);
-					if (m_LineToPCMap[fileName].empty())
-						m_LineToPCMap.erase(fileName);
+					ReturnActiveBreakPoints(m->m_LineToPCMap[fileName][line].pBytecode);
+					m->m_LineToPCMap[fileName].erase(line);
+					if (m->m_LineToPCMap[fileName].empty())
+						m->m_LineToPCMap.erase(fileName);
 				}
 			}
 		}
@@ -554,9 +617,9 @@ void CThreadDebugger::ExecuteHook(JSContext* UNUSED(cx), const char* UNUSED(file
 
 bool CThreadDebugger::ToggleBreakPoint(std::string filename, uint userLine)
 {
-	CScopeLock lock(m_Mutex);
+	CScopeLock lock(m->m_Mutex);
 	std::list<CActiveBreakPoint*>::iterator itr;
-	for (itr = m_ActiveBreakPoints.begin(); itr != m_ActiveBreakPoints.end(); itr++)
+	for (itr = m->m_ActiveBreakPoints.begin(); itr != m->m_ActiveBreakPoints.end(); itr++)
 	{
 		if ((*itr)->m_UserLine == userLine && (*itr)->m_Filename == filename)
 		{
@@ -569,48 +632,48 @@ bool CThreadDebugger::ToggleBreakPoint(std::string filename, uint userLine)
 
 void CThreadDebugger::GetCallstack(std::stringstream& response)
 {
-	CScopeLock lock(m_Mutex);
-	response << m_Callstack;
+	CScopeLock lock(m->m_Mutex);
+	response << m->m_Callstack;
 }
 
 void CThreadDebugger::SaveCallstack()
 {
 	ENSURE(GetIsInBreak());
 	
-	CScopeLock lock(m_Mutex);
+	CScopeLock lock(m->m_Mutex);
 	
-	JSStackFrame *fp;	
+	JSStackFrame *fp;
 	JSStackFrame *iter = 0;
 	std::string functionName;
 	jsint counter = 0;
 	
 	JSObject* jsArray;
-	jsArray = JS_NewArrayObject(m_pScriptInterface->GetContext(), 0, 0);
+	jsArray = JS_NewArrayObject(m->m_pScriptInterface->GetContext(), 0, 0);
 	JSString* functionID;
 
-	fp = JS_FrameIterator(m_pScriptInterface->GetContext(), &iter);
+	fp = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 
 	while (fp)
 	{
 		JSFunction* fun = 0;
-		fun = JS_GetFrameFunction(m_pScriptInterface->GetContext(), fp);
+		fun = JS_GetFrameFunction(m->m_pScriptInterface->GetContext(), fp);
 		if (NULL == fun)
-			functionID = JS_NewStringCopyZ(m_pScriptInterface->GetContext(), "null");
+			functionID = JS_NewStringCopyZ(m->m_pScriptInterface->GetContext(), "null");
 		else
 		{
 			functionID = JS_GetFunctionId(fun);
 			if (NULL == functionID)
-				functionID = JS_NewStringCopyZ(m_pScriptInterface->GetContext(), "anonymous");
+				functionID = JS_NewStringCopyZ(m->m_pScriptInterface->GetContext(), "anonymous");
 		}
 
-		JSBool ret = JS_DefineElement(m_pScriptInterface->GetContext(), jsArray, counter, STRING_TO_JSVAL(functionID), NULL, NULL, 0);
+		JSBool ret = JS_DefineElement(m->m_pScriptInterface->GetContext(), jsArray, counter, STRING_TO_JSVAL(functionID), NULL, NULL, 0);
 		ENSURE(ret);
-		fp = JS_FrameIterator(m_pScriptInterface->GetContext(), &iter);
+		fp = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 		counter++;
 	}
 	
-	m_Callstack = "";
-	m_Callstack = m_pScriptInterface->StringifyJSON(OBJECT_TO_JSVAL(jsArray), false).c_str();
+	m->m_Callstack = "";
+	m->m_Callstack = m->m_pScriptInterface->StringifyJSON(OBJECT_TO_JSVAL(jsArray), false).c_str();
 }
 
 void CThreadDebugger::GetStackFrameData(std::stringstream& response, uint nestingLevel, STACK_INFO stackInfoKind)
@@ -618,8 +681,8 @@ void CThreadDebugger::GetStackFrameData(std::stringstream& response, uint nestin
 	// If the data is not yet cached, request it and wait until it's ready.
 	bool dataCached = false;
 	{
-		CScopeLock lock(m_Mutex);
-		dataCached = (!m_StackFrameData.empty() && m_StackFrameData[stackInfoKind].end() != m_StackFrameData[stackInfoKind].find(nestingLevel));
+		CScopeLock lock(m->m_Mutex);
+		dataCached = (!m->m_StackFrameData.empty() && m->m_StackFrameData[stackInfoKind].end() != m->m_StackFrameData[stackInfoKind].find(nestingLevel));
 	}
 
 	if (!dataCached)
@@ -630,10 +693,10 @@ void CThreadDebugger::GetStackFrameData(std::stringstream& response, uint nestin
 		SDL_DestroySemaphore(semaphore);
 	}
 	
-	CScopeLock lock(m_Mutex);
+	CScopeLock lock(m->m_Mutex);
 	{
 		response.str("");
-		response << m_StackFrameData[stackInfoKind][nestingLevel];
+		response << m->m_StackFrameData[stackInfoKind][nestingLevel];
 	}
 }
 
@@ -643,15 +706,15 @@ void CThreadDebugger::AddStackInfoRequest(STACK_INFO requestType, uint nestingLe
 	request.requestType = requestType;
 	request.semaphore = semaphore;
 	request.nestingLevel = nestingLevel;
-	m_StackInfoRequests.push(request);
+	m->m_StackInfoRequests.push(request);
 }
 
 void CThreadDebugger::SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel)
 {
 	ENSURE(GetIsInBreak());
 	
-	CScopeLock lock(m_Mutex);
-	JSStackFrame *fp;	
+	CScopeLock lock(m->m_Mutex);
+	JSStackFrame *fp;
 	JSStackFrame *iter = 0;
 	uint counter = 0;
 	jsval val;
@@ -659,12 +722,12 @@ void CThreadDebugger::SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel
 	if (stackInfo == STACK_INFO_GLOBALOBJECT)
 	{
 		JSObject* obj;
-		obj = JS_GetGlobalForScopeChain(m_pScriptInterface->GetContext());
-		m_StackFrameData[stackInfo][nestingLevel] = StringifyCyclicJSON(OBJECT_TO_JSVAL(obj), false);
+		obj = JS_GetGlobalForScopeChain(m->m_pScriptInterface->GetContext());
+		m->m_StackFrameData[stackInfo][nestingLevel] = StringifyCyclicJSON(OBJECT_TO_JSVAL(obj), false);
 	}
 	else
 	{
-		fp = JS_FrameIterator(m_pScriptInterface->GetContext(), &iter);
+		fp = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 		while (fp)
 		{
 			if (counter == nestingLevel)
@@ -672,23 +735,21 @@ void CThreadDebugger::SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel
 				if (stackInfo == STACK_INFO_LOCALS)
 				{
 					JSObject* obj;
-					obj = JS_GetFrameCallObject(m_pScriptInterface->GetContext(), fp);
-					//obj = JS_GetFrameScopeChain(m_pScriptInterface->GetContext(), fp);
-					m_StackFrameData[stackInfo][nestingLevel] = StringifyCyclicJSON(OBJECT_TO_JSVAL(obj), false);
+					obj = JS_GetFrameCallObject(m->m_pScriptInterface->GetContext(), fp);
+					//obj = JS_GetFrameScopeChain(m->m_pScriptInterface->GetContext(), fp);
+					m->m_StackFrameData[stackInfo][nestingLevel] = StringifyCyclicJSON(OBJECT_TO_JSVAL(obj), false);
 				}
 				else if (stackInfo == STACK_INFO_THIS)
 				{
-					if (JS_GetFrameThis(m_pScriptInterface->GetContext(), fp, &val))
-					{
-						m_StackFrameData[stackInfo][nestingLevel] = StringifyCyclicJSON(val, false);
-					}
+					if (JS_GetFrameThis(m->m_pScriptInterface->GetContext(), fp, &val))
+						m->m_StackFrameData[stackInfo][nestingLevel] = StringifyCyclicJSON(val, false);
 					else
-						m_StackFrameData[stackInfo][nestingLevel] = "";
+						m->m_StackFrameData[stackInfo][nestingLevel] = "";
 				}
 			}
 			
 			counter++;
-			fp = JS_FrameIterator(m_pScriptInterface->GetContext(), &iter);
+			fp = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 		}
 	}
 }
@@ -773,29 +834,29 @@ std::string CThreadDebugger::StringifyCyclicJSON(jsval obj, bool indent)
 	CyclicRefWorkaround::g_ProcessedObjects.clear();
 	CyclicRefWorkaround::g_LastKey = JSVAL_VOID;
 	
-	JSObject* pGlob = JSVAL_TO_OBJECT(m_pScriptInterface->GetGlobalObject());
-	JSFunction* fun = JS_DefineFunction(m_pScriptInterface->GetContext(), pGlob, "replacer", CyclicRefWorkaround::replacer,        0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JSObject* pGlob = JSVAL_TO_OBJECT(m->m_pScriptInterface->GetGlobalObject());
+	JSFunction* fun = JS_DefineFunction(m->m_pScriptInterface->GetContext(), pGlob, "replacer", CyclicRefWorkaround::replacer, 0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	JSObject* replacer = JS_GetFunctionObject(fun);
-	if (!JS_Stringify(m_pScriptInterface->GetContext(), &obj, replacer, indent ? INT_TO_JSVAL(2) : JSVAL_VOID, &CyclicRefWorkaround::Stringifier::callback, &str))
+	if (!JS_Stringify(m->m_pScriptInterface->GetContext(), &obj, replacer, indent ? INT_TO_JSVAL(2) : JSVAL_VOID, &CyclicRefWorkaround::Stringifier::callback, &str))
 	{
 		LOGERROR(L"StringifyJSON failed");
 		jsval exec;
 		jsval execString;
-		if (JS_GetPendingException(m_pScriptInterface->GetContext(), &exec))
+		if (JS_GetPendingException(m->m_pScriptInterface->GetContext(), &exec))
 		{
 			if (JSVAL_IS_OBJECT(exec))
 			{
-				JS_GetProperty(m_pScriptInterface->GetContext(), JSVAL_TO_OBJECT(exec), "message", &execString);
+				JS_GetProperty(m->m_pScriptInterface->GetContext(), JSVAL_TO_OBJECT(exec), "message", &execString);
 			
 				if (JSVAL_IS_STRING(execString))
 				{
-					std::string strExec = JS_EncodeString(m_pScriptInterface->GetContext(), JSVAL_TO_STRING(execString));
+					std::string strExec = JS_EncodeString(m->m_pScriptInterface->GetContext(), JSVAL_TO_STRING(execString));
 					LOGERROR(L"Error: %hs", strExec.c_str());
 				}
 			}
 			
 		}			
-		JS_ClearPendingException(m_pScriptInterface->GetContext());
+		JS_ClearPendingException(m->m_pScriptInterface->GetContext());
 		return "";
 	}
 
@@ -805,67 +866,67 @@ std::string CThreadDebugger::StringifyCyclicJSON(jsval obj, bool indent)
 
 bool CThreadDebugger::CompareScriptInterfacePtr(ScriptInterface* pScriptInterface)
 {
-	return (pScriptInterface == m_pScriptInterface);
+	return (pScriptInterface == m->m_pScriptInterface);
 }
 
 
 std::string CThreadDebugger::GetBreakFileName()
 {
-	CScopeLock lock(m_Mutex);
-	return m_BreakFileName;
+	CScopeLock lock(m->m_Mutex);
+	return m->m_BreakFileName;
 }
 
 void CThreadDebugger::SetBreakFileName(std::string breakFileName)
 {
-	CScopeLock lock(m_Mutex);
-	m_BreakFileName = breakFileName;
+	CScopeLock lock(m->m_Mutex);
+	m->m_BreakFileName = breakFileName;
 }
 
 uint CThreadDebugger::GetLastBreakLine()
 {
-	CScopeLock lock(m_Mutex);
-	return m_LastBreakLine;
+	CScopeLock lock(m->m_Mutex);
+	return m->m_LastBreakLine;
 }
 
 void CThreadDebugger::SetLastBreakLine(uint breakLine)
 {
-	CScopeLock lock(m_Mutex);
-	m_LastBreakLine = breakLine;
+	CScopeLock lock(m->m_Mutex);
+	m->m_LastBreakLine = breakLine;
 }
 
 bool CThreadDebugger::GetIsInBreak()
 {
-	CScopeLock lock(m_IsInBreakMutex);
-	return m_IsInBreak;
+	CScopeLock lock(m->m_IsInBreakMutex);
+	return m->m_IsInBreak;
 }
 
 void CThreadDebugger::SetIsInBreak(bool isInBreak)
 {
-	CScopeLock lock(m_IsInBreakMutex);
-	m_IsInBreak = isInBreak;
+	CScopeLock lock(m->m_IsInBreakMutex);
+	m->m_IsInBreak = isInBreak;
 }
 
 void CThreadDebugger::SetNextDbgCmd(DBGCMD dbgCmd)
 {
-	CScopeLock lock(m_NextDbgCmdMutex);
-		m_NextDbgCmd = dbgCmd;
+	CScopeLock lock(m->m_NextDbgCmdMutex);
+	m->m_NextDbgCmd = dbgCmd;
 }
 
 DBGCMD CThreadDebugger::GetNextDbgCmd()
 {
-	CScopeLock lock(m_NextDbgCmdMutex);
-	return m_NextDbgCmd;
+	CScopeLock lock(m->m_NextDbgCmdMutex);
+	return m->m_NextDbgCmd;
 }
 
 std::string CThreadDebugger::GetName()
 {
-	CScopeLock lock(m_Mutex);
-	return m_Name;
+	CScopeLock lock(m->m_Mutex);
+	return m->m_Name;
 }
 
 uint CThreadDebugger::GetID()
 {
-	CScopeLock lock(m_Mutex);
-	return m_ID;
+	CScopeLock lock(m->m_Mutex);
+	return m->m_ID;
 }
 

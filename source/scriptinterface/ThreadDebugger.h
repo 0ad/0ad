@@ -22,8 +22,6 @@
 #include "ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 
-#include <queue>
-
 // These Breakpoint classes are not implemented threadsafe. The class using the Breakpoints is responsible to make sure that 
 // only one thread accesses the Breakpoint at a time
 class CBreakPoint
@@ -67,6 +65,7 @@ public:
 
 enum BREAK_SRC { BREAK_SRC_TRAP, BREAK_SRC_INTERRUP, BREAK_SRC_EXCEPTION };
 
+struct ThreadDebugger_impl;
 
 class CThreadDebugger
 {
@@ -176,59 +175,14 @@ private:
 	// Other threadsafe functions
 	void SaveCallstack();
 	
-	CMutex m_Mutex;
-	CMutex m_ActiveBreakpointsMutex;
-	CMutex m_NextDbgCmdMutex;
-	CMutex m_IsInBreakMutex;
-	
 	/// Used only in the scriptinterface's thread.
 	void ClearTrapsToRemove();
 	bool CurrentFrameIsChildOf(JSStackFrame* pParentFrame);
 	void ReturnActiveBreakPoints(jsbytecode* pBytecode);
 	void SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel);
 	std::string StringifyCyclicJSON(jsval obj, bool indent);
-	// This member could actually be used by other threads via CompareScriptInterfacePtr(), but that should be safe
-	ScriptInterface* m_pScriptInterface; 
-	CDebuggingServer* m_pDebuggingServer;
-	// We store the pointer on the heap because the stack frame becomes invalid in certain cases
-	// and spidermonkey throws errors if it detects a pointer on the stack.
-	// We only use the pointer for comparing it with the current stack pointer and we don't try to access it, so it
-	// shouldn't be a problem.
-	JSStackFrame** m_pLastBreakFrame;
-	uint m_ObjectReferenceID;
-	
-	/// shared between multiple mongoose threads and one scriptinterface thread
-	std::string m_BreakFileName;
-	uint m_LastBreakLine;
-	bool m_IsInBreak;
-	DBGCMD m_NextDbgCmd;
 
-	
-	struct StackInfoRequest
-	{
-		STACK_INFO requestType;
-		uint nestingLevel;
-		SDL_sem* semaphore;
-		
-	};
-	std::queue<StackInfoRequest> m_StackInfoRequests;
-	
-	struct trapLocation
-	{
-		jsbytecode* pBytecode;
-		JSScript* pScript;
-		uint firstLineInFunction;
-		uint lastLineInFunction;
-	};
-	std::map<std::string, std::map<uint, trapLocation> > m_LineToPCMap;
-	std::list<CActiveBreakPoint*> m_ActiveBreakPoints;
-	std::map<STACK_INFO, std::map<uint, std::string> > m_StackFrameData;
-	std::string m_Callstack;
-	
-	/// shared between multiple mongoose threads (initialization may be an exception)
-	std::string m_Name;	
-	uint m_ID;
-	
+	std::auto_ptr<ThreadDebugger_impl> m;
 };
 
 #endif // INCLUDED_THREADDEBUGGER
