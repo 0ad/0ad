@@ -12,8 +12,6 @@ Foundation.prototype.Init = function()
 	// its obstruction once there's nothing in the way.
 	this.committed = false;
 
-	this.buildProgress = 0.0; // 0 <= progress <= 1
-
 	// Set up a timer so we can count the number of builders in a 1-second period.
 	// (We assume each builder only builds once per second, which is what UnitAI
 	// implements.)
@@ -37,9 +35,6 @@ Foundation.prototype.UpdateTimeout = function()
 
 Foundation.prototype.InitialiseConstruction = function(owner, template)
 {
-	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-	this.addedHitpoints = cmpHealth.GetHitpoints();
-
 	this.finalTemplateName = template;
 
 	// We need to know the owner in OnDestroy, but at that point the entity has already been
@@ -54,14 +49,40 @@ Foundation.prototype.InitialiseConstruction = function(owner, template)
 	this.initialised = true;
 };
 
+/**
+ * Moving the revelation logic from Build to here makes the building sink if 
+ * it is attacked.
+ */
+Foundation.prototype.OnHealthChanged = function(msg)
+{
+	// Gradually reveal the final building preview
+	var cmpPreviewVisual = Engine.QueryInterface(this.previewEntity, IID_Visual);
+	if (cmpPreviewVisual)
+		cmpPreviewVisual.SetConstructionProgress(this.GetBuildProgress());
+		
+	Engine.PostMessage(this.entity, MT_FoundationProgressChanged, { "to": this.GetBuildPercentage() });
+};
+
+/**
+ * Returns the current build progress in a [0,1] range.
+ */
+Foundation.prototype.GetBuildProgress = function()
+{
+	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health)
+	var hitpoints = cmpHealth.GetHitpoints();
+	var maxHitpoints = cmpHealth.GetMaxHitpoints();
+	
+	return (hitpoints / maxHitpoints);
+};
+
 Foundation.prototype.GetBuildPercentage = function()
 {
-	return Math.floor(this.buildProgress * 100);
+	return Math.floor(this.GetBuildProgress() * 100);
 };
 
 Foundation.prototype.IsFinished = function()
 {
-	return (this.buildProgress >= 1.0);
+	return (this.GetBuildProgress() == 1.0);
 };
 
 Foundation.prototype.OnDestroy = function()
@@ -77,7 +98,7 @@ Foundation.prototype.OnDestroy = function()
 		this.previewEntity = INVALID_ENTITY;
 	}
 
-	if (this.buildProgress == 1.0)
+	if (this.IsFinished())
 		return;
 
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
@@ -85,7 +106,7 @@ Foundation.prototype.OnDestroy = function()
 
 	for (var r in this.costs)
 	{
-		var scaled = Math.floor(this.costs[r] * (1.0 - this.buildProgress));
+		var scaled = Math.floor(this.costs[r] * (1.0 - this.GetBuildProgress()));
 		if (scaled)
 		{
 			cmpPlayer.AddResource(r, scaled);
@@ -115,7 +136,7 @@ Foundation.prototype.AddBuilder = function(builderEnt)
 		this.numRecentBuilders = this.recentBuilders.length;
 		this.SetBuildMultiplier();
 	}
-}
+};
 
 /**
  * Sets the build rate multiplier, which is applied to all builders.
@@ -124,7 +145,7 @@ Foundation.prototype.SetBuildMultiplier = function()
 {
 	// Yields a total rate of construction equal to numRecentBuilders^0.7
 	this.buildMultiplier = Math.pow(this.numRecentBuilders, 0.7) / this.numRecentBuilders;
-}
+};
 
 /**
  * Perform some number of seconds of construction work.
@@ -135,7 +156,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 	// Do nothing if we've already finished building
 	// (The entity will be destroyed soon after completion so
 	// this won't happen much)
-	if (this.buildProgress == 1.0)
+	if (this.GetBuildProgress() == 1.0)
 		return;
 
 	// Handle the initial 'committing' of the foundation
@@ -223,29 +244,16 @@ Foundation.prototype.Build = function(builderEnt, work)
 	// Record this builder so we can count the total number
 	this.AddBuilder(builderEnt);
 
-	this.buildProgress += amount * this.buildMultiplier;
-	if (this.buildProgress > 1.0)
-		this.buildProgress = 1.0;
-
-	Engine.PostMessage(this.entity, MT_FoundationProgressChanged, { "to": this.GetBuildPercentage() });
-
-	// Gradually reveal the final building preview
-	var cmpPreviewVisual = Engine.QueryInterface(this.previewEntity, IID_Visual);
-	if (cmpPreviewVisual)
-		cmpPreviewVisual.SetConstructionProgress(this.buildProgress);
-
 	// Add an appropriate proportion of hitpoints
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	var maxHealth = cmpHealth.GetMaxHitpoints();
-	var targetHP = Math.max(0, Math.min(maxHealth, Math.floor(maxHealth * this.buildProgress)));
-	var deltaHP = targetHP - this.addedHitpoints;
+	var deltaHP = Math.max(0, Math.min(maxHealth, Math.floor(maxHealth * amount)));
 	if (deltaHP > 0)
 	{
 		cmpHealth.Increase(deltaHP);
-		this.addedHitpoints += deltaHP;
 	}
 
-	if (this.buildProgress >= 1.0)
+	if (this.GetBuildProgress() >= 1.0)
 	{
 		// Finished construction
 
