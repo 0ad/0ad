@@ -67,10 +67,12 @@ aStarPath.prototype.markImpassableArea = function(cx, cy, Distance) {
 
 
 // sending gamestate creates a map
+// Not recommended to use minwidth < sampling. I allow minwidth = sampling - 1.
+// (you run the risk of "jumping" over obstacles or weird behavior.
 aStarPath.prototype.getPath = function(start, end, Sampling, minWidth, iterationLimit, gamestate)
 {
 	this.Sampling = Sampling >= 1 ? Sampling : 1;
-	this.minWidth = (minWidth !== undefined && minWidth >= this.Sampling) ? minWidth : this.Sampling;
+	this.minWidth = (minWidth !== undefined && minWidth+1 >= this.Sampling) ? minWidth : this.Sampling;
 	
 	if (start[0] < 0 || this.gamePosToMapPos(start)[0] >= this.width || start[1] < 0 || this.gamePosToMapPos(start)[1] >= this.height)
 		return undefined;

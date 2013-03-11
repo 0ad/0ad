@@ -29,9 +29,19 @@ function SharedScript(settings)
 
 //Return a simple object (using no classes etc) that will be serialized
 //into saved games
-// TODO: that
+//TODO: that
+// note: we'll need to serialize much more than that before this can work.
 SharedScript.prototype.Serialize = function()
 {
+	// serializing entities without using the class.
+	var entities = [];
+	for (var id in this._entities)
+	{
+		var ent = this._entities[id];
+		entities.push( [ent._template, ent._entity, ent._templateName]);
+	}
+	// serialiazing metadata will be done by each AI on a AI basis and they shall update the shared script with that info on deserialization (using DeserializeMetadata() ).
+	return { "entities" : entities };
 };
 
 //Called after the constructor when loading a saved game, with 'data' being
@@ -39,6 +49,13 @@ SharedScript.prototype.Serialize = function()
 // TODO: that
 SharedScript.prototype.Deserialize = function(data)
 {
+	this._entities = {};
+	for (i in data.entities)
+	{
+		var entData = data.entities[i];
+		
+		//this._entities[entData[1].id] = new Entity();
+	}
 };
 
 // Components that will be disabled in foundation entity templates.

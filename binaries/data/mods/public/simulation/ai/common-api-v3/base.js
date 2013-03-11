@@ -227,6 +227,14 @@ BaseAI.prototype.chat = function(message)
 {
 	Engine.PostCommand({"type": "chat", "message": message});
 };
+BaseAI.prototype.chatTeam = function(message)
+{
+	Engine.PostCommand({"type": "chat", "message": "/team " +message});
+};
+BaseAI.prototype.chatEnemies = function(message)
+{
+	Engine.PostCommand({"type": "chat", "message": "/enemy " +message});
+};
 
 BaseAI.prototype.registerUpdatingEntityCollection = function(entCollection)
 {

@@ -22,11 +22,22 @@ function handleNotifications()
 	// Handle chat notifications specially
 	if (notification.type == "chat")
 	{
-		addChatMessage({
-			"type": "message",
-			"guid": findGuidForPlayerID(g_PlayerAssignments, notification.player),
-			"text": notification.message
-		});
+		var guid = findGuidForPlayerID(g_PlayerAssignments, notification.player);
+		if (guid == undefined)
+		{
+			addChatMessage({
+				"type": "message",
+				"guid": -1,
+				"player": notification.player,
+				"text": notification.message
+			});
+		} else {
+			addChatMessage({
+				"type": "message",
+				"guid": findGuidForPlayerID(g_PlayerAssignments, notification.player),
+				"text": notification.message
+			});
+		}
 	}
 	else if (notification.type == "defeat")
 	{
@@ -274,6 +285,12 @@ function addChatMessage(msg, playerAssignments)
 		// This case is hit for AIs, whose names don't exist in playerAssignments.
 		playerColor = g_Players[msg.player].color.r + " " + g_Players[msg.player].color.g + " " + g_Players[msg.player].color.b;
 		username = escapeText(g_Players[msg.player].name);
+	} else if (msg.type == "message")
+	{
+		// This case is hit for AIs, whose names don't exist in playerAssignments.
+		playerColor = g_Players[msg.player].color.r + " " + g_Players[msg.player].color.g + " " + g_Players[msg.player].color.b;
+		username = escapeText(g_Players[msg.player].name);
+		parseChatCommands(msg, playerAssignments);
 	}
 	else
 	{
@@ -380,7 +397,11 @@ function parseChatCommands(msg, playerAssignments)
 	if (!msg.text || msg.text[0] != '/')
 		return;
 
-	var sender = playerAssignments[msg.guid].player;
+	var sender;
+	if (playerAssignments[msg.guid])
+		sender = playerAssignments[msg.guid].player;
+	else
+		sender = msg.player;
 	var recurse = false;
 	var split = msg.text.split(/\s/);
 
