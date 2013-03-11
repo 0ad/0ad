@@ -333,4 +333,16 @@ QueueManager.prototype.removeQueue = function(queueName) {
 		this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
 	}
 }
+QueueManager.prototype.changePriority = function(queueName, newPriority) {
+	var self = this;
+	if (this.queues[queueName] !== undefined)
+		this.priorities[queueName] = newPriority;
+	this.queueArrays = [];
+	for (var p in this.queues) {
+		this.account[p] = 0;
+		this.accounts[p] = new Resources();
+		this.queueArrays.push([p,this.queues[p]]);
+	}
+	this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
+}
 

@@ -67,7 +67,7 @@ QBotAI.prototype.InitShared = function(gameState, sharedScript) {
 	
 	// First path has a sampling of 3, which ensures we'll get at least one path even on Acropolis. The others are 6 so might fail.
 	var pos = [this.pathInfo.mkeyPos[0] + 200*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 200*Math.sin(this.pathInfo.angle)];
-	var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 3, 3);// uncomment for debug:*/, 300000, gameState);
+	var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 2, 2);// uncomment for debug:*/, 300000, gameState);
 
 	//Engine.DumpImage("initialPath" + PlayerID + ".png", this.pathFinder.TotorMap.map, this.pathFinder.TotorMap.width,this.pathFinder.TotorMap.height,255);
 	
@@ -173,7 +173,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		if (this.pathInfo !== undefined)
 		{
 			var pos = [this.pathInfo.mkeyPos[0] + 200*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 200*Math.sin(this.pathInfo.angle)];
-			var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 6, 6);// uncomment for debug:*/, 300000, gameState);
+			var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 6, 5);// uncomment for debug:*/, 300000, gameState);
 			if (path !== undefined && path[1] !== undefined && path[1] == false) {
 				// path is viable and doesn't require boating.
 				// blackzone the last two waypoints.
@@ -228,14 +228,25 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		if (this.playedTurn % 80 === 0)
 		{
 			// some debug informations about units.
-			var units = gameState.getOwnEntities().filter(Filters.byClass("Unit"));
+			var units = gameState.getOwnEntities();
 			for (var i in units._entities)
 			{
 				var ent = units._entities[i];
 				debug ("Unit " + ent.id() + " is a " + ent._templateName);
-				debug ("It is a " + uneval(ent.getMetadata(PlayerID, "role")) + ", "+ uneval(ent.getMetadata(PlayerID, "subrole")));
-				if (ent.getMetadata(PlayerID, "plan") != undefined)
-					debug ("it is part of the plan " + uneval(ent.getMetadata(PlayerID, "plan")));
+				if (sharedScript._entityMetadata[PlayerID][ent.id()])
+				{
+					var metadata = sharedScript._entityMetadata[PlayerID][ent.id()];
+					for (j in metadata)
+					{
+						debug ("Metadata " + j);
+						if (typeof(metadata[j]) == "object")
+							warn ("Object");
+						else if (typeof(metadata[j]) == undefined)
+							warn ("Undefined");
+						else
+							warn(metadata[j]);
+					}
+				}
 			}
 		}*/
 

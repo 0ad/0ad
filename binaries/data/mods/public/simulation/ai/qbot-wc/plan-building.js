@@ -115,6 +115,9 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 					} else if (template.genericName() == "House") {
 						friendlyTiles.addInfluence(x, z, Math.ceil(infl/2.0),infl);	// houses are farther away from other buildings but houses
 						friendlyTiles.addInfluence(x, z, Math.ceil(infl/4.0),-infl/2.0);	// houses are farther away from other buildings but houses
+					} else if (template.hasClass("GarrisonFortress"))
+					{
+						friendlyTiles.addInfluence(x, z, -infl/3.0, -infl/3.0);
 					} else if (ent.genericName() != "House") // houses have no influence on other buildings
 					{
 						friendlyTiles.addInfluence(x, z, infl);
@@ -142,15 +145,15 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	// also not for fields who can be stacked quite a bit
 	var radius = 0;
 	if (template.genericName() == "Field")
-		radius = Math.ceil(template.obstructionRadius() / cellSize) - 0.7;
+		radius = Math.ceil(template.obstructionRadius() / cellSize) - 0.4;
 	else if (template.buildCategory() === "Dock")
 		radius = 1;//Math.floor(template.obstructionRadius() / cellSize);
 	else if (template.genericName() != "House" && !template.hasClass("DropsiteWood") && !template.hasClass("DropsiteStone") && !template.hasClass("DropsiteMetal"))
 		radius = Math.ceil(template.obstructionRadius() / cellSize + 0.5);
 	else if (gameState.civ() === "iber" || gameState.civ() === "gaul" || gameState.civ() === "brit")
-		radius = Math.ceil(template.obstructionRadius() / cellSize - 0.5);
-	else
 		radius = Math.ceil(template.obstructionRadius() / cellSize);
+	else
+		radius = Math.ceil(template.obstructionRadius() / cellSize + 0.2);
 	
 	// further contract cause walls
 	// Note: I'm currently destroying them so that doesn't matter.
@@ -182,9 +185,6 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 
 	// default angle
 	var angle = 3*Math.PI/4;
-	
-	if (template.genericName() == "House")
-		angle = Math.PI;
 	
 	return {
 		"x" : x,

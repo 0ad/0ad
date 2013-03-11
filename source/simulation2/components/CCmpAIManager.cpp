@@ -610,6 +610,14 @@ public:
 			if (!m_ScriptInterface.CallFunction(m_Players[i]->m_Obj.get(), "Serialize", scriptData))
 				LOGERROR(L"AI script Serialize call failed");
 			serializer.ScriptVal("data", scriptData);
+			
+		}
+		if (m_HasSharedComponent)
+		{
+			CScriptVal sharedData;
+			if (!m_ScriptInterface.CallFunction(m_SharedAIObj.get(), "Serialize", sharedData))
+				LOGERROR(L"AI shared script Serialize call failed");
+			serializer.ScriptVal("sharedData", sharedData);
 		}
 	}
 
@@ -658,6 +666,13 @@ public:
 				LOGERROR(L"AI script Deserialize call failed");
 		}
 		TryLoadSharedComponent(false);
+		if (m_HasSharedComponent)
+		{
+			CScriptVal sharedData;
+			deserializer.ScriptVal("sharedData", sharedData);
+			if (!m_ScriptInterface.CallFunctionVoid(m_SharedAIObj.get(), "Deserialize", sharedData))
+				LOGERROR(L"AI shared script Deserialize call failed");
+		}
 	}
 	
 	int getPlayerSize()

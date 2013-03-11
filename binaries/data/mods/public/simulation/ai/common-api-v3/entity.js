@@ -579,10 +579,10 @@ var Entity = Class({
 	// Flees from a unit in the opposite direction.
 	flee: function(unitToFleeFrom) {
 		if (this.position() !== undefined && unitToFleeFrom.position() !== undefined) {
-			var FleeDirection = [unitToFleeFrom.position()[0] - this.position()[0],unitToFleeFrom.position()[1] - this.position()[1]];
+			var FleeDirection = [this.position()[0] - unitToFleeFrom.position()[0],this.position()[1] - unitToFleeFrom.position()[1]];
 			var dist = VectorDistance(unitToFleeFrom.position(), this.position() );
-			FleeDirection[0] = (FleeDirection[0]/dist) * 5;
-			FleeDirection[1] = (FleeDirection[1]/dist) * 5;
+			FleeDirection[0] = (FleeDirection[0]/dist) * 8;
+			FleeDirection[1] = (FleeDirection[1]/dist) * 8;
 			
 			Engine.PostCommand({"type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0]*5, "z": this.position()[1] + FleeDirection[1]*5, "queued": false});
 		}

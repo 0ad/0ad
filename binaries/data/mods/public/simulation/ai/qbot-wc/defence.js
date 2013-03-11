@@ -439,6 +439,9 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 	if (nonDefenders.length*2.0 < newEnemies.length && this.nbAttackers > 5)
 		gameState.setDefcon(1);
 	
+	if (gameState.defcon() > 3)
+		militaryManager.unpauseAllPlans(gameState);
+	
 	if ( (nonDefenders.length + this.nbDefenders > newEnemies.length + this.nbAttackers)
 		|| this.nbDefenders + nonDefenders.length < 4)
 	{
@@ -496,6 +499,8 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 
 		// successfully sorted
 		defs.forEach(function (defender) { //}){
+			if (defender.getMetadata(PlayerID, "plan") != undefined && gameState.defcon() < 3)
+				militaryManager.pausePlan(gameState, defender.getMetadata(PlayerID, "plan"));
 			//debug ("Against " +enemy.id() + " Assigning " + defender.id());
 			if (defender.getMetadata(PlayerID, "role") == "worker" || defender.getMetadata(PlayerID, "role") == "attack")
 				defender.setMetadata(PlayerID, "formerrole", defender.getMetadata(PlayerID, "role"));
@@ -535,8 +540,10 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 								break;
 							}
 						}
-						if (!garrisoned)
+						if (!garrisoned) {
 							ent.flee(enemy);
+							ent.setMetadata(PlayerID,"fleeing", gameState.getTimeElapsed());
+						}
 					}
 				}
 			});
@@ -578,6 +585,7 @@ Defence.prototype.MessageProcess = function(gameState,events, militaryManager) {
 								ourUnit.attack(e.msg.attacker);
 							else {
 								ourUnit.flee(attacker);
+								ourUnit.setMetadata(PlayerID,"fleeing", gameState.getTimeElapsed());
 							}
 						}
 						// anyway we'll register the animal as dangerous, and attack it.
@@ -653,6 +661,7 @@ Defence.prototype.MessageProcess = function(gameState,events, militaryManager) {
 
 										// Right now we'll flee from the attacker.
 										ourUnit.flee(attacker);
+										ourUnit.setMetadata(PlayerID,"fleeing", gameState.getTimeElapsed());
 									} else {
 										// It's a soldier. Right now we'll retaliate
 										// TODO: check for stronger units against this type, check for fleeing options, etc.

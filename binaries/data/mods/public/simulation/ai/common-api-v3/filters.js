@@ -41,9 +41,9 @@ var Filters = {
 		}, 
 		"dynamicProperties": ['metadata.' + key]};
 	},
-	byHasMetadata: function(key){
+	byHasMetadata: function(player, key){
 		return {"func" : function(ent){
-			return (ent.getMetadata(PlayerID, key) != undefined);
+			return (ent.getMetadata(player, key) != undefined);
 		},
 			"dynamicProperties": ['metadata.' + key]};
 	},

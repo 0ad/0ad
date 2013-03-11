@@ -20,7 +20,6 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 				max = enemyCount[i];
 			}
 	}
-	warn ("target " + this.targetPlayer);
 	if (this.targetPlayer === undefined || this.targetPlayer === -1)
 	{
 		this.failed = true;
@@ -185,7 +184,9 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	else
 		var position = [-1,-1];
 	
-	// abort.
+	if (gameState.ai.accessibility.getAccessValue(position) !== gameState.ai.myIndex)
+		var position = [-1,-1];
+	
 	var nearestCCArray = CCs.filterNearest(position, 1).toEntityArray();
 	var CCpos = nearestCCArray[0].position();
 	this.rallyPoint = [0,0];
@@ -217,6 +218,8 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	
 	// get a good path to an estimated target.
 	this.pathFinder = new aStarPath(gameState,false);
+	this.pathWidth = 8;	// a path pretty farm from entities
+	this.pathSampling = 2;
 	this.onBoat = false;	// tells us if our units are loaded on boats.
 	this.needsShip = false;
 	
@@ -265,7 +268,7 @@ CityAttack.prototype.setPaused = function(gameState, boolValue){
 	}
 };
 CityAttack.prototype.mustStart = function(gameState){
-	if (this.isPaused())
+	if (this.isPaused() || this.path === undefined)
 		return false;
 	var MaxReachedEverywhere = true;
 	for (unitCat in this.unitStat) {
@@ -284,65 +287,88 @@ CityAttack.prototype.mustStart = function(gameState){
 CityAttack.prototype.updatePreparation = function(gameState, militaryManager,events) {
 	var self = this;
 	
-	if (this.path == undefined || this.target == undefined) {
+	if (this.path == undefined || this.target == undefined || this.path === "toBeContinued") {
 		// find our target
-		var targets = this.targetFinder(gameState, militaryManager);
-		if (targets.length === 0){
-			targets = this.defaultTargetFinder(gameState, militaryManager);
-		}
-		if (targets.length) {
-			debug ("Aiming for " + targets);
-			// picking a target
-			var rand = Math.floor((Math.random()*targets.length));
-			this.targetPos = undefined;
-			var count = 0;
-			while (!this.targetPos){
-				this.target = targets.toEntityArray()[rand];
-				this.targetPos = this.target.position();
-				count++;
-				if (count > 1000){
-					debug("No target with a valid position found");
-					return false;
+		if (this.target == undefined)
+		{
+			var targets = this.targetFinder(gameState, militaryManager);
+			if (targets.length === 0)
+				targets = this.defaultTargetFinder(gameState, militaryManager);
+				
+			if (targets.length) {
+				debug ("Aiming for " + targets);
+				// picking a target
+				var maxDist = 1000000;
+				var index = 0;
+				for (i in targets._entities)
+				{
+					var dist = SquareVectorDistance(targets._entities[i].position(), this.rallyPoint);
+					if (dist < maxDist)
+					{
+						maxDist = dist;
+						index = i;
+					}
 				}
+				this.target = targets._entities[index];
+				this.targetPos = this.target.position();
 			}
-			// when we have a target, we path to it.
-			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, 3, 3);//,300000,gameState);
-			
-			if (this.path === undefined) {
+		}
+		// when we have a target, we path to it.
+		// I'd like a good high width sampling first.
+		// Thus I will not do everything at once.
+		// It will probably carry over a few turns but that's no issue.
+		if (this.path === undefined)
+			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, this.pathSampling, this.pathWidth,250,gameState);
+		else if (this.path === "toBeContinued")
+			this.path = this.pathFinder.continuePath(gameState);
+		
+		if (this.path === undefined) {
+			if (this.pathWidth == 8)
+			{
+				this.pathWidth = 2;
+				delete this.path;
+			} else {
 				delete this.pathFinder;
 				return 3;	// no path.
-			} else if (this.path[1] === true) {
-				// okay so we need a ship.
-				// Basically we'll add it as a new class to train compulsorily, and we'll recompute our path.
-				debug ("We need a ship.");
-				if (!gameState.ai.waterMap)
-				{
-					debug ("This is actually a water map.");
-					gameState.ai.waterMap = true;
-				}
-				this.unitStat["TransportShip"] = { "priority" : 1.1, "minSize" : 2, "targetSize" : 2, "batchSize" : 1, "classes" : ["Warship"],
-					"interests" : [ ["strength",1], ["cost",1] ]  ,"templates" : [] };
-				if (type === "superSized") {
-					this.unitStat["TransportShip"]["minSize"] = 4;
-					this.unitStat["TransportShip"]["targetSize"] = 4;
-				}
-				var Unit = this.unitStat["TransportShip"];
-				var filter = Filters.and(Filters.byClassesAnd(Unit["classes"]),Filters.and(Filters.byMetadata(PlayerID, "plan",this.name),Filters.byOwner(PlayerID)));
-				this.unit["TransportShip"] = gameState.getOwnEntities().filter(filter);
-				this.unit["TransportShip"].registerUpdates();
-				this.unit["TransportShip"].length;
-				this.buildOrder.push([0, Unit["classes"], this.unit["TransportShip"], Unit, "TransportShip"]);
-				this.needsShip = true;
 			}
+		} else if (this.path === "toBeContinued") {
+			// carry on.
+		} else if (this.path[1] === true && this.pathWidth == 2) {
+			// okay so we need a ship.
+			// Basically we'll add it as a new class to train compulsorily, and we'll recompute our path.
+			if (!gameState.ai.waterMap)
+			{
+				debug ("This is actually a water map.");
+				gameState.ai.waterMap = true;
+			}
+			debug ("We need a ship.");
+			this.unitStat["TransportShip"] = { "priority" : 1.1, "minSize" : 2, "targetSize" : 2, "batchSize" : 1, "classes" : ["Warship"],
+				"interests" : [ ["strength",1], ["cost",1] ]  ,"templates" : [] };
+			if (type === "superSized") {
+				this.unitStat["TransportShip"]["minSize"] = 4;
+				this.unitStat["TransportShip"]["targetSize"] = 4;
+			}
+			var Unit = this.unitStat["TransportShip"];
+			var filter = Filters.and(Filters.byClassesAnd(Unit["classes"]),Filters.and(Filters.byMetadata(PlayerID, "plan",this.name),Filters.byOwner(PlayerID)));
+			this.unit["TransportShip"] = gameState.getOwnEntities().filter(filter);
+			this.unit["TransportShip"].registerUpdates();
+			this.unit["TransportShip"].length;
+			this.buildOrder.push([0, Unit["classes"], this.unit["TransportShip"], Unit, "TransportShip"]);
+			this.needsShip = true;
+			this.pathWidth = 3;
+			this.pathSampling = 3;
 			this.path = this.path[0].reverse();
 			delete this.pathFinder;
-		}  else if (targets.length == 0 ) {
-			gameState.ai.gameFinished = true;
-			debug ("I do not have any target. So I'll just assume I won the game.");
-			return 0;
+		} else if (this.path[1] === true && this.pathWidth == 8) {
+			// retry with a smaller pathwidth:
+			this.pathWidth = 2;
+			delete this.path;
+		} else {
+			this.path = this.path[0].reverse();
+			delete this.pathFinder;
 		}
 	}
-	
+
 	Engine.ProfileStart("Update Preparation");
 	
 	// special case: if we're reached max pop, and we can start the plan, start it.
@@ -737,7 +763,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 			return undefined;	// should spawn an error.
 		
 		// basically haven't moved an inch: very likely stuck)
-		if (SquareVectorDistance(this.position, this.position10TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 20 === 0) {
+		if (SquareVectorDistance(this.position, this.position10TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 10 === 0) {
 			// check for stuck siege units
 			
 			var sieges = this.unitCollection.filter(Filters.byClass("Siege"));
@@ -753,7 +779,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 			if (farthestEnt !== -1)
 				farthestEnt.destroy();
 		}
-		if (gameState.ai.playedTurn % 20 === 0)
+		if (gameState.ai.playedTurn % 10 === 0)
 			this.position10TurnsAgo = this.position;
 		
 		if (this.lastPosition && SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0) {
@@ -778,11 +804,11 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 		}
 		
 		// check if our land units are close enough from the next waypoint.
-		if (SquareVectorDistance(this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).getCentrePosition(), this.targetPos) < 8000 ||
-			SquareVectorDistance(this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).getCentrePosition(), this.path[0][0]) < 600) {
+		if (SquareVectorDistance(this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).getCentrePosition(), this.targetPos) < 7500 ||
+			SquareVectorDistance(this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).getCentrePosition(), this.path[0][0]) < 850) {
 			if (this.unitCollection.filter(Filters.byClass("Siege")).length !== 0
-				&& SquareVectorDistance(this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).getCentrePosition(), this.targetPos) > 8000
-				&& SquareVectorDistance(this.unitCollection.filter(Filters.byClass("Siege")).getCentrePosition(), this.path[0][0]) > 600)
+				&& SquareVectorDistance(this.unitCollection.filter(Filters.not(Filters.byClass("Warship"))).getCentrePosition(), this.targetPos) > 7500
+				&& SquareVectorDistance(this.unitCollection.filter(Filters.byClass("Siege")).getCentrePosition(), this.path[0][0]) > 850)
 			{
 			} else {
 				// okay so here basically two cases. The first one is "we need a boat at this point".

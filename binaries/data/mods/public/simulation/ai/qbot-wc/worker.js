@@ -12,12 +12,14 @@ Worker.prototype.update = function(gameState) {
 	
 	
 	var subrole = this.ent.getMetadata(PlayerID, "subrole");
-	
-	if (!this.ent.position()){
+
+	if (!this.ent.position() || (this.ent.getMetadata(PlayerID,"fleeing") && gameState.getTimeElapsed() - this.ent.getMetadata(PlayerID,"fleeing") < 8000)){
 		// If the worker has no position then no work can be done
 		return;
 	}
-
+	if (this.ent.getMetadata(PlayerID,"fleeing"))
+		this.ent.setMetadata(PlayerID,"fleeing", undefined);
+	
 	if (subrole === "gatherer") {
 		if (this.ent.unitAIState().split(".")[1] !== "GATHER" && this.ent.unitAIState().split(".")[1] !== "COMBAT" && this.ent.unitAIState().split(".")[1] !== "RETURNRESOURCE"){
 			// TODO: handle combat for hunting animals
@@ -92,6 +94,12 @@ Worker.prototype.update = function(gameState) {
 		}
 		this.startApproachingResourceTime = gameState.getTimeElapsed();
 		//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [0,10,0]});
+	}  else if(subrole === "hunter") {
+		if (!this.ent.resourceCarrying() || this.ent.resourceCarrying().length === 0){
+			Engine.ProfileStart("Start Hunting");
+			this.startHunting(gameState);
+			Engine.ProfileStop();
+		}
 	} else {
 		this.startApproachingResourceTime = gameState.getTimeElapsed();
 	}
@@ -306,7 +314,10 @@ Worker.prototype.startGathering = function(gameState){
 			//debug ("noposition");
 			return;
 		}
-							 
+		
+		if (supply.isUnhuntable())
+			return;
+
 		if (supply.getMetadata(PlayerID, "inaccessible") === true) {
 			//debug ("inaccessible");
 			return;
@@ -322,12 +333,6 @@ Worker.prototype.startGathering = function(gameState){
 		if (!supply.isOwn(PlayerID) && supply.owner() !== 0) {
 			//debug ("enemy");
 			return;
-		}
-							 
-		var territoryOwner = Map.createTerritoryMap(gameState).getOwner(supply.position());
-		if (territoryOwner != PlayerID && territoryOwner != 0) {
-			dist *= 3.0;
-			//return;
 		}
 
 		// quickscope accessbility check.
@@ -354,6 +359,12 @@ Worker.prototype.startGathering = function(gameState){
 		if (nearestDropsite !== undefined ){
 			dist += 4*SquareVectorDistance(supply.position(), nearestDropsite.position());
 			dist /= 5.0;
+		}
+					
+		var territoryOwner = Map.createTerritoryMap(gameState).getOwner(supply.position());
+		if (territoryOwner != PlayerID && territoryOwner != 0) {
+			dist *= 3.0;
+			//return;
 		}
 		
 		// Go for treasure as a priority
@@ -450,6 +461,95 @@ Worker.prototype.returnResources = function(gameState){
 	
 	this.ent.returnResources(closestDropsite);
 	return true;
+};
+
+Worker.prototype.startHunting = function(gameState){
+	var ent = this.ent;
+	
+	if (!ent.position() || ent.getMetadata(PlayerID, "stoppedHunting"))
+		return;
+	
+	// So here we're doing it basic. We check what we can hunt, we hunt it. No fancies.
+	
+	var resources = gameState.getResourceSupplies("food");
+	
+	if (resources.length === 0){
+		debug("No food found to hunt!");
+		return;
+	}
+	
+	var supplies = [];
+	var nearestSupplyDist = Math.min();
+	var nearestSupply = undefined;
+	
+	resources.forEach(function(supply) { //}){
+		if (!supply.position())
+			return;
+		
+		if (supply.getMetadata(PlayerID, "inaccessible") === true)
+			return;
+		
+		//if (supply.isFull === true)
+		//	return;
+		
+		if (!supply.hasClass("Animal"))
+			return;
+		
+		if (supply.walkSpeed() + 0.5 >= ent.walkSpeed())
+			return;
+					  
+		// measure the distance to the resource
+		var dist = SquareVectorDistance(supply.position(), ent.position());
+
+		var territoryOwner = Map.createTerritoryMap(gameState).getOwner(supply.position());
+		if (territoryOwner != PlayerID && territoryOwner != 0) {
+			dist *= 3.0;
+		}
+		
+		// quickscope accessbility check
+		if (!gameState.ai.accessibility.pathAvailable(gameState, ent.position(), supply.position(), true))
+			return;
+		
+		if (dist < nearestSupplyDist) {
+			nearestSupplyDist = dist;
+			nearestSupply = supply;
+		}
+	});
+	
+	if (nearestSupply) {
+		var pos = nearestSupply.position();
+		
+		var nearestDropsite = 0;
+		var minDropsiteDist = 1000000;
+		// find a fitting dropsites in case we haven't already.
+		gameState.getOwnDropsites("food").forEach(function (dropsite){ //}){
+			if (dropsite.position()){
+				var dist = SquareVectorDistance(pos, dropsite.position());
+				if (dist < minDropsiteDist){
+					minDropsiteDist = dist;
+					nearestDropsite = dropsite;
+				}
+			}
+		});
+		if (!nearestDropsite)
+		{
+			ent.setMetadata(PlayerID, "stoppedHunting", true);
+			ent.setMetadata(PlayerID, "role", undefined);
+			debug ("No dropsite for hunting food");
+			return;
+		}
+		if (minDropsiteDist > 45000) {
+			ent.setMetadata(PlayerID, "stoppedHunting", true);
+			ent.setMetadata(PlayerID, "role", undefined);
+		} else {
+			ent.gather(nearestSupply);
+			ent.setMetadata(PlayerID, "target-foundation", undefined);
+		}
+	} else {
+		ent.setMetadata(PlayerID, "stoppedHunting", true);
+		ent.setMetadata(PlayerID, "role", undefined);
+		debug("No food found for hunting! (2)");
+	}
 };
 
 Worker.prototype.getResourceType = function(type){
