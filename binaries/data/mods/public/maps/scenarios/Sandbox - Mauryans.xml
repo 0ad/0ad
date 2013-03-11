@@ -31,12 +31,12 @@
 			<Contrast>1.02539</Contrast>
 			<Saturation>0.99</Saturation>
 			<Bloom>0.159375</Bloom>
-			<PostEffect>hdr</PostEffect>
+			<PostEffect>default</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="359.362" y="137.04" z="577.9"/>
-		<Rotation angle="-0.96928"/>
+		<Position x="246.366" y="82.3693" z="494.351"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -1024,6 +1024,7 @@
 			<Player>0</Player>
 			<Position x="87.92556" z="728.20728"/>
 			<Orientation y="-1.38778"/>
+			<Actor seed="0"/>
 		</Entity>
 		<Entity uid="180">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
@@ -34637,7 +34638,7 @@
 		<Entity uid="5404">
 			<Template>structures/maur_outpost</Template>
 			<Player>1</Player>
-			<Position x="335.80283" z="609.81977"/>
+			<Position x="331.48548" z="645.71302"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="0"/>
 		</Entity>
@@ -35064,7 +35065,7 @@
 		<Entity uid="5479">
 			<Template>structures/maur_defense_tower</Template>
 			<Player>1</Player>
-			<Position x="207.81302" z="548.0304"/>
+			<Position x="199.13999" z="561.43378"/>
 			<Orientation y="2.4053"/>
 			<Actor seed="0"/>
 		</Entity>
@@ -35503,11 +35504,78 @@
 			<Actor seed="59794"/>
 		</Entity>
 		<Entity uid="5557">
-			<Template>structures/maur_stupa_big</Template>
+			<Template>structures/maur_wonder</Template>
 			<Player>1</Player>
 			<Position x="251.93131" z="771.75672"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="20566"/>
+		</Entity>
+		<Entity uid="5558">
+			<Template>structures/maur_wall_gate</Template>
+			<Player>1</Player>
+			<Position x="305.84357" z="580.39417"/>
+			<Orientation y="2.35621"/>
+			<Obstruction group="5559" group2="5560"/>
+			<Actor seed="52468"/>
+		</Entity>
+		<Entity uid="5559">
+			<Template>structures/maur_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="290.24369" z="565.15711"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31730"/>
+		</Entity>
+		<Entity uid="5560">
+			<Template>structures/maur_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="320.81492" z="595.91236"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49654"/>
+		</Entity>
+		<Entity uid="5561">
+			<Template>structures/maur_wall_long</Template>
+			<Player>1</Player>
+			<Position x="275.35953" z="550.9018"/>
+			<Orientation y="2.35621"/>
+			<Obstruction group="5559" group2="5562"/>
+			<Actor seed="13792"/>
+		</Entity>
+		<Entity uid="5562">
+			<Template>structures/maur_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="260.14371" z="536.6421"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="630"/>
+		</Entity>
+		<Entity uid="5563">
+			<Template>structures/maur_wall_medium</Template>
+			<Player>1</Player>
+			<Position x="246.18162" z="534.5146"/>
+			<Orientation y="2.99827"/>
+			<Obstruction group="5562" group2="5564"/>
+			<Actor seed="4376"/>
+		</Entity>
+		<Entity uid="5564">
+			<Template>structures/maur_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="233.36077" z="531.98444"/>
+			<Orientation y="2.9922"/>
+			<Actor seed="32260"/>
+		</Entity>
+		<Entity uid="5565">
+			<Template>structures/maur_wall_long</Template>
+			<Player>1</Player>
+			<Position x="213.45815" z="533.07264"/>
+			<Orientation y="-3.01111"/>
+			<Obstruction group="5564" group2="5566"/>
+			<Actor seed="44718"/>
+		</Entity>
+		<Entity uid="5566">
+			<Template>structures/maur_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="195.711" z="536.93201"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5210"/>
 		</Entity>
 	</Entities>
 	<Paths/>

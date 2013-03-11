@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/maur_cavalry_swordsman_b">
+  <Attack>
+    <Melee>
+      <Hack>21.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>63.0</Hack>
+    </Charge>
+  </Attack>
+  <Identity>
+	<Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/maur_cavalry_swordsman_e</Entity>
+  </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <Health>
+    <Max>160</Max>
+  </Health>
+  <Armour>
+    <Hack>3.0</Hack>
+    <Pierce>5.0</Pierce>
+    <Crush>3.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>11.5</WalkSpeed>
+    <Run>
+      <Speed>28.5</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/mauryans/cavalry_swordsman_a.xml</Actor>
+  </VisualActor>
+</Entity>
