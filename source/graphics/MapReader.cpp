@@ -954,7 +954,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		int PlayerID = 0;
 		CFixedVector3D Position;
 		CFixedVector3D Orientation;
-		long Seed = 0;
+		long Seed = -1;
 
 		// Obstruction control groups.
 		entity_id_t ControlGroup = INVALID_ENTITY;
@@ -1004,7 +1004,12 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			else if (element_name == el_actor)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
-				Seed = attrs.GetNamedItem(at_seed).ToLong();
+				CStr seedStr = attrs.GetNamedItem(at_seed);
+				if (!seedStr.empty())
+				{
+					Seed = seedStr.ToLong();
+					ENSURE(Seed >= 0);
+				}
 			}
 			else
 				debug_warn(L"Invalid map XML data");
