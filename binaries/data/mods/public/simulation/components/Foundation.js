@@ -247,7 +247,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 	// Add an appropriate proportion of hitpoints
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	var maxHealth = cmpHealth.GetMaxHitpoints();
-	var deltaHP = Math.max(0, Math.min(maxHealth, Math.floor(maxHealth * amount)));
+	var deltaHP = Math.max(work, Math.min(maxHealth, Math.floor(maxHealth * (amount * this.buildMultiplier))));
 	if (deltaHP > 0)
 	{
 		cmpHealth.Increase(deltaHP);
