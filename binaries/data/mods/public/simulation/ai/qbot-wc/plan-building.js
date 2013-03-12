@@ -112,12 +112,16 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 					if (template.genericName() == "House" && ent.genericName() == "House") {
 						friendlyTiles.addInfluence(x, z, 15.0,20,'linear');	// houses are close to other houses
 						alreadyHasHouses = true;
+					} else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
+					{
+						friendlyTiles.addInfluence(x, z, 30, -50);
 					} else if (template.genericName() == "House") {
 						friendlyTiles.addInfluence(x, z, Math.ceil(infl/2.0),infl);	// houses are farther away from other buildings but houses
 						friendlyTiles.addInfluence(x, z, Math.ceil(infl/4.0),-infl/2.0);	// houses are farther away from other buildings but houses
 					} else if (template.hasClass("GarrisonFortress"))
 					{
-						friendlyTiles.addInfluence(x, z, -infl/3.0, -infl/3.0);
+						friendlyTiles.addInfluence(x, z, 20, 10);
+						friendlyTiles.addInfluence(x, z, 10, -40);
 					} else if (ent.genericName() != "House") // houses have no influence on other buildings
 					{
 						friendlyTiles.addInfluence(x, z, infl);
@@ -146,6 +150,8 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	var radius = 0;
 	if (template.genericName() == "Field")
 		radius = Math.ceil(template.obstructionRadius() / cellSize) - 0.4;
+	else if (template.hasClass("GarrisonFortress"))
+		radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
 	else if (template.buildCategory() === "Dock")
 		radius = 1;//Math.floor(template.obstructionRadius() / cellSize);
 	else if (template.genericName() != "House" && !template.hasClass("DropsiteWood") && !template.hasClass("DropsiteStone") && !template.hasClass("DropsiteMetal"))

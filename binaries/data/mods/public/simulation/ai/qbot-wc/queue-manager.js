@@ -246,21 +246,22 @@ QueueManager.prototype.update = function(gameState) {
 			for (j in this.queues) {
 				if ((this.queues[j].length() > 0 && this.queues[j].getNext().getCost()[ress] > 0)
 					|| (this.queues[j].outQueueLength() > 0 && this.queues[j].outQueueNext().getCost()[ress] > 0))
-					if ( (this.queues[j].length() && this.accounts[j][ress] < this.queues[j].length() * (this.queues[j].getNext().getCost()[ress]))
-						|| (this.queues[j].outQueueLength() && this.accounts[j][ress] < this.queues[j].outQueueLength() * (this.queues[j].outQueueNext().getCost()[ress])))
-					{
-						// we'll add at much what can be allowed to this queue.
-						var toAdd = Math.floor(this.priorities[j]/totalPriority * availableRes[ress]);
-						var maxNeed = 0;
-						if (this.queues[j].length())
-							maxNeed = this.queues[j].length() * (this.queues[j].getNext().getCost()[ress]);
-						if (this.queues[j].outQueueLength() && this.queues[j].outQueueLength() * (this.queues[j].outQueueNext().getCost()[ress]) > maxNeed)
-							maxNeed = this.queues[j].outQueueLength() * (this.queues[j].outQueueNext().getCost()[ress]);
-						if (toAdd + this.accounts[j][ress] > maxNeed)
-							toAdd = maxNeed - this.accounts[j][ress];	// always inferior to the original level.
-						//debug ("Adding " + toAdd + " of " + ress + " to the account of " + j);
-						this.accounts[j][ress] += toAdd;
-					}
+				{
+					// we'll add at much what can be allowed to this queue.
+					var toAdd = Math.floor(this.priorities[j]/totalPriority * availableRes[ress]);
+					
+					var maxNeed = 0;
+					if (this.queues[j].length())
+						for (var y = 0; y < Math.min(3,this.queues[j].length()); ++y)
+							maxNeed += this.queues[j].queue[y].getCost()[ress];
+					if (this.queues[j].outQueueLength())
+						for (var y = 0; y < this.queues[j].outQueueLength(); ++y)
+							maxNeed += this.queues[j].outQueue[y].getCost()[ress];
+					if (toAdd + this.accounts[j][ress] > maxNeed)
+						toAdd = maxNeed - this.accounts[j][ress];	// always inferior to the original level.
+					//debug ("Adding " + toAdd + " of " + ress + " to the account of " + j);
+					this.accounts[j][ress] += toAdd;
+				}
 			}
 		}
 	}
@@ -268,6 +269,7 @@ QueueManager.prototype.update = function(gameState) {
 
 	Engine.ProfileStart("Execute items");
 	
+	var units_Techs_passed = 0;
 	// Handle output queues by executing items where possible
 	for (var p in this.queueArrays) {
 		var name = this.queueArrays[p][0];
@@ -288,15 +290,18 @@ QueueManager.prototype.update = function(gameState) {
 					break;
 				}
 			} else {
-				if (queue.outQueueNext().canExecute(gameState)){
+				if (units_Techs_passed < 2 && queue.outQueueNext().canExecute(gameState)){
 					//debug ("Starting " + next.type + " substracted " + uneval(next.getCost()))
 					this.accounts[name].subtract(next.getCost())
 					queue.executeNext(gameState);
+					units_Techs_passed++;
 				} else {
 					break;
 				}
 			}
 		}
+		if (units_Techs_passed >= 2)
+			break;
 	}
 	Engine.ProfileStop();
 	Engine.ProfileStop();

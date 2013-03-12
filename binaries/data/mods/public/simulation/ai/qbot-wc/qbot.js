@@ -66,7 +66,7 @@ QBotAI.prototype.InitShared = function(gameState, sharedScript) {
 	this.pathInfo = { "angle" : 0, "needboat" : true, "mkeyPos" : myKeyEntities.toEntityArray()[0].position(), "ekeyPos" : enemyKeyEntities.toEntityArray()[0].position() };
 	
 	// First path has a sampling of 3, which ensures we'll get at least one path even on Acropolis. The others are 6 so might fail.
-	var pos = [this.pathInfo.mkeyPos[0] + 200*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 200*Math.sin(this.pathInfo.angle)];
+	var pos = [this.pathInfo.mkeyPos[0] + 150*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 150*Math.sin(this.pathInfo.angle)];
 	var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 2, 2);// uncomment for debug:*/, 300000, gameState);
 
 	//Engine.DumpImage("initialPath" + PlayerID + ".png", this.pathFinder.TotorMap.map, this.pathFinder.TotorMap.width,this.pathFinder.TotorMap.height,255);
@@ -172,7 +172,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 
 		if (this.pathInfo !== undefined)
 		{
-			var pos = [this.pathInfo.mkeyPos[0] + 200*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 200*Math.sin(this.pathInfo.angle)];
+			var pos = [this.pathInfo.mkeyPos[0] + 150*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 150*Math.sin(this.pathInfo.angle)];
 			var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 6, 5);// uncomment for debug:*/, 300000, gameState);
 			if (path !== undefined && path[1] !== undefined && path[1] == false) {
 				// path is viable and doesn't require boating.
@@ -198,12 +198,12 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		
 		// try going up phases.
 		if (gameState.canResearch("phase_town",true) && gameState.getTimeElapsed() > (Config.Economy.townPhase*1000)
-			&& gameState.findResearchers("phase_town").length != 0 && this.queues.majorTech.length() === 0) {
+			&& gameState.findResearchers("phase_town",true).length != 0 && this.queues.majorTech.totalLength() === 0) {
 			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_town",true));	// we rush the town phase.
 			debug ("Trying to reach town phase");
 		} else if (gameState.canResearch("phase_city_generic",true) && gameState.getTimeElapsed() > (Config.Economy.cityPhase*1000)
-				&& gameState.getOwnEntitiesByRole("worker").length > 90
-				&& gameState.findResearchers("phase_city_generic").length != 0 && this.queues.majorTech.length() === 0) {
+				&& gameState.getOwnEntitiesByRole("worker").length > 85
+				&& gameState.findResearchers("phase_city_generic", true).length != 0 && this.queues.majorTech.totalLength() === 0) {
 			debug ("Trying to reach city phase");
 			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_city_generic"));
 		}

@@ -402,6 +402,7 @@ function parseChatCommands(msg, playerAssignments)
 		sender = playerAssignments[msg.guid].player;
 	else
 		sender = msg.player;
+	
 	var recurse = false;
 	var split = msg.text.split(/\s/);
 
@@ -422,6 +423,8 @@ function parseChatCommands(msg, playerAssignments)
 					msg.hide = true;
 				else
 					msg.prefix = "(Team) ";
+			} else {
+				msg.hide = true;
 			}
 			recurse = true;
 			break;
