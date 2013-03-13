@@ -169,7 +169,7 @@ Worker.prototype.startGathering = function(gameState){
 			return;
 		}
 							 
-		if (supply.isFull === true) {
+		if (supply.isFull() === true) {
 			return;
 		}
 		

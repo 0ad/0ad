@@ -319,10 +319,8 @@ Worker.prototype.startGathering = function(gameState){
 			//debug ("inaccessible");
 			return;
 		}
-							 
-		// too many workers trying to gather from this resource
-		if (supply.getMetadata(PlayerID, "full") === true) {
-			//debug ("full");
+									 
+		if (supply.isFull() === true) {
 			return;
 		}
 							 
@@ -331,7 +329,7 @@ Worker.prototype.startGathering = function(gameState){
 			//debug ("enemy");
 			return;
 		}
-
+		
 		// quickscope accessbility check.
 		if (!gameState.ai.accessibility.pathAvailable(gameState, ent.position(), supply.position(), true)) {
 			//debug ("nopath");
@@ -352,6 +350,9 @@ Worker.prototype.startGathering = function(gameState){
 		// measure the distance to the resource (largely irrelevant)
 		 var dist = SquareVectorDistance(supply.position(), ent.position());
 							 
+		if (dist > 4900 && supply.hasClass("Animal"))
+		return;
+
 		// Add on a factor for the nearest dropsite if one exists
 		if (nearestDropsite !== undefined ){
 			dist += 4*SquareVectorDistance(supply.position(), nearestDropsite.position());
@@ -486,8 +487,8 @@ Worker.prototype.startHunting = function(gameState){
 		if (supply.getMetadata(PlayerID, "inaccessible") === true)
 			return;
 		
-		//if (supply.isFull === true)
-		//	return;
+		if (supply.isFull() === true)
+			return;
 		
 		if (!supply.hasClass("Animal"))
 			return;

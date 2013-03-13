@@ -49,6 +49,14 @@ Queue.prototype.outQueueCost = function(){
 	return cost;
 };
 
+Queue.prototype.queueCost = function(){
+	var cost = new Resources();
+	for (var key in this.queue){
+		cost.add(this.queue[key].getCost());
+	}
+	return cost;
+};
+
 Queue.prototype.nextToOutQueue = function(){
 	if (this.queue.length > 0){
 		this.outQueue.push(this.queue.shift());

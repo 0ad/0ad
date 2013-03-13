@@ -30,6 +30,7 @@ Player.prototype.Init = function()
 	this.startCam = undefined;
 	this.controlAllUnits = false;
 	this.isAI = false;
+	this.gatherRateMultiplier = 1;
 	this.cheatsEnabled = true;
 	this.cheatTimeMultiplier = 1;
 };
@@ -107,6 +108,16 @@ Player.prototype.SetMaxPopulation = function(max)
 Player.prototype.GetMaxPopulation = function()
 {
 	return Math.round(ApplyTechModificationsToPlayer("Player/MaxPopulation", this.maxPop, this.entity));
+};
+
+Player.prototype.SetGatherRateMultiplier = function(value)
+{
+	this.gatherRateMultiplier = value;
+};
+
+Player.prototype.GetGatherRateMultiplier = function()
+{
+	return this.gatherRateMultiplier;
 };
 
 Player.prototype.IsTrainingBlocked = function()

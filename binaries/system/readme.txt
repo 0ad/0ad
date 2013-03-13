@@ -9,6 +9,7 @@ Basic gameplay:
 Autostart:
 -autostart=NAME					map NAME for scenario, or rms name for random map
 -autostart-ai=PLAYER:AI			adds named AI to the given PLAYER (e.g. 2:testbot)
+-autostart-aidiff=PLAYER:level	changes the difficulty setting for AI PLAYER (0: easy, 3: very hard)
 Multiplayer:
 -autostart-playername=NAME		multiplayer local player NAME (default 'anonymous')
 -autostart-host					multiplayer host mode

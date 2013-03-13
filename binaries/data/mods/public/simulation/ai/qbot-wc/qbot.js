@@ -1,6 +1,8 @@
 function QBotAI(settings) {
 	BaseAI.call(this, settings);
 
+	Config.updateDifficulty(settings.difficulty);
+	
 	this.turn = 0;
 
 	this.playedTurn = 0;
@@ -92,7 +94,7 @@ QBotAI.prototype.runInit = function(gameState, events){
 			this.modules[i].init(gameState, events);
 		}
 	}
-	debug ("inited");
+	debug ("Inited, diff is " + Config.difficulty);
 	this.timer = new Timer();
 	
 	
@@ -201,14 +203,18 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 			&& gameState.findResearchers("phase_town",true).length != 0 && this.queues.majorTech.totalLength() === 0) {
 			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_town",true));	// we rush the town phase.
 			debug ("Trying to reach town phase");
+			var nb = gameState.getOwnEntities().filter(Filters.byClass("Village")).length-1;
+			if (nb < 5)
+			{
+				while (nb < 5 && ++nb)
+					this.queues.house.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_house"));
+			}
 		} else if (gameState.canResearch("phase_city_generic",true) && gameState.getTimeElapsed() > (Config.Economy.cityPhase*1000)
 				&& gameState.getOwnEntitiesByRole("worker").length > 85
 				&& gameState.findResearchers("phase_city_generic", true).length != 0 && this.queues.majorTech.totalLength() === 0) {
 			debug ("Trying to reach city phase");
 			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_city_generic"));
 		}
-
-		
 		// defcon cooldown
 		if (this.defcon < 5 && gameState.timeSinceDefconChange() > 20000)
 		{
@@ -251,7 +257,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		}*/
 
 			
-		//if (this.playedTurn % 15 === 0)
+		//if (this.playedTurn % 5 === 0)
 		//	this.queueManager.printQueues(gameState);
 		
 		// Generate some entropy in the random numbers (against humans) until the engine gets random initialised numbers

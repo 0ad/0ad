@@ -779,6 +779,10 @@ function selectMap(name)
 		{
 			g_GameAttributes.settings.PlayerData[i].AI = g_DefaultPlayerData[i].AI;
 		}
+		if (!('AIDiff' in g_GameAttributes.settings.PlayerData[i]))
+		{
+			g_GameAttributes.settings.PlayerData[i].AIDiff = g_DefaultPlayerData[i].AIDiff;
+		}
 	}
 	
 	// Reset player assignments on map change
@@ -1238,9 +1242,11 @@ function updatePlayerList()
 						Engine.PushGuiPage("page_aiconfig.xml", {
 							ais: g_AIs,
 							id: g_GameAttributes.settings.PlayerData[playerSlot].AI,
+							difficulty: g_GameAttributes.settings.PlayerData[playerSlot].AIDiff,
 							callback: function(ai) {
 								g_GameAttributes.settings.PlayerData[playerSlot].AI = ai.id;
-
+								g_GameAttributes.settings.PlayerData[playerSlot].AIDiff = ai.difficulty;
+										   
 								if (g_IsNetworked)
 								{
 									Engine.SetNetworkGameAttributes(g_GameAttributes);

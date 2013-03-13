@@ -7,7 +7,6 @@ var MilitaryAttackManager = function() {
 	this.fortressStartTime = 0;
 	this.fortressLapseTime = Config.Military.fortressLapseTime * 1000;
 	this.defenceBuildingTime = Config.Military.defenceBuildingTime * 1000;
-	this.advancedMilitaryStartTime = Config.Military.advancedMilitaryStartTime * 1000;
 	this.attackPlansStartTime = Config.Military.attackPlansStartTime * 1000;
 	this.defenceManager = new Defence();
 	
@@ -463,7 +462,7 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 			}
 		}
 	//build advanced military buildings
-	if (workersNumber > 75 && gameState.currentPhase() > 2){
+	if (workersNumber >= 75 && gameState.currentPhase() > 2){
 		if (queues.militaryBuilding.totalLength() === 0){
 			var inConst = 0;
 			for (var i in this.bAdvanced)
