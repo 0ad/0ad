@@ -175,7 +175,7 @@ Player.prototype.GetNeededResources = function(amounts)
 	return amountsNeeded;
 };
 
-Player.prototype.TrySubtractResources = function(amounts)
+Player.prototype.SubtractResourcesOrNotify = function(amounts)
 {
 	var amountsNeeded = this.GetNeededResources(amounts);
 
@@ -190,17 +190,23 @@ Player.prototype.TrySubtractResources = function(amounts)
 		cmpGUIInterface.PushNotification(notification);
 		return false;
 	}
-	else
-	{
-		// Subtract the resources
-		var cmpStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
+
+	// Subtract the resources
+	for (var type in amounts)
+		this.resourceCount[type] -= amounts[type];
+
+	return true;
+};
+
+Player.prototype.TrySubtractResources = function(amounts)
+{
+	if (!this.SubtractResourcesOrNotify(amounts))
+		return false;
+
+	var cmpStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
+	if (cmpStatisticsTracker)
 		for (var type in amounts)
-		{
-			this.resourceCount[type] -= amounts[type];
-			if (cmpStatisticsTracker)
-				cmpStatisticsTracker.IncreaseResourceUsedCounter(type, amounts[type]);
-		}
-	}
+			cmpStatisticsTracker.IncreaseResourceUsedCounter(type, amounts[type]);
 
 	return true;
 };
@@ -534,26 +540,23 @@ Player.prototype.TributeResource = function(player, amounts)
 	if (this.state != "active" || cmpPlayer.state != "active")
 		return;
 
-	if (!this.GetNeededResources(amounts))
-	{
-		for (var type in amounts)
-			this.resourceCount[type] -= amounts[type];
+	if (!this.SubtractResourcesOrNotify(amounts))
+		return;
 
-		cmpPlayer.AddResources(amounts);
+	cmpPlayer.AddResources(amounts);
 
-		var total = Object.keys(amounts).reduce(function (sum, type){ return sum + amounts[type]; }, 0);
-		var cmpOurStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
-		if (cmpOurStatisticsTracker)
-			cmpOurStatisticsTracker.IncreaseTributesSentCounter(total);
-		var cmpTheirStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
-		if (cmpTheirStatisticsTracker)
-			cmpTheirStatisticsTracker.IncreaseTributesReceivedCounter(total);
+	var total = Object.keys(amounts).reduce(function (sum, type){ return sum + amounts[type]; }, 0);
+	var cmpOurStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
+	if (cmpOurStatisticsTracker)
+		cmpOurStatisticsTracker.IncreaseTributesSentCounter(total);
+	var cmpTheirStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
+	if (cmpTheirStatisticsTracker)
+		cmpTheirStatisticsTracker.IncreaseTributesReceivedCounter(total);
 
-		var notification = {"type": "tribute", "player": player, "player1": this.playerID, "amounts": amounts};
-		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	var notification = {"type": "tribute", "player": player, "player1": this.playerID, "amounts": amounts};
+	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	if (cmpGUIInterface)
 		cmpGUIInterface.PushNotification(notification);
-	}
-	// else not enough resources... TODO: send gui notification
 };
 
 Engine.RegisterComponentType(IID_Player, "Player", Player);
