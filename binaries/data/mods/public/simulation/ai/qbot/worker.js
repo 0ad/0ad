@@ -168,6 +168,10 @@ Worker.prototype.startGathering = function(gameState){
 		if (!supply.position()){
 			return;
 		}
+							 
+		if (supply.isFull === true) {
+			return;
+		}
 		
 		// measure the distance to the resource
 		var dist = VectorDistance(supply.position(), ent.position());

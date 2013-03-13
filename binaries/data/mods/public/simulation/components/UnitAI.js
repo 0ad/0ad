@@ -1539,12 +1539,59 @@ var UnitFsmSpec = {
 			"APPROACHING": {
 				"enter": function() {
 					this.SelectAnimation("move");
+					
+					this.gatheringTarget = this.order.data.target;	// temporary, deleted in "leave".
+
+					// check that we can gather from the resource we're supposed to gather from.
+					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+					if (!cmpSupply || !cmpSupply.AddGatherer(this.entity))
+					{
+						// Save the current order's data in case we need it later
+						var oldType = this.order.data.type;
+						var oldTarget = this.order.data.target;
+						var oldTemplate = this.order.data.template;
+
+						// Try the next queued order if there is any
+						if (this.FinishOrder())
+							return true;
+						
+						// Try to find another nearby target of the same specific type
+						// Also don't switch to a different type of huntable animal
+						var nearby = this.FindNearbyResource(function (ent, type, template) {
+							return (
+								ent != oldTarget
+								 && ((type.generic == "treasure" && oldType.generic == "treasure")
+								 || (type.specific == oldType.specific
+								 && (type.specific != "meat" || oldTemplate == template)))
+							);
+						});
+						if (nearby)
+						{
+							this.PerformGather(nearby, false, false);
+							return true;
+						}
+
+						var nearby = this.FindNearestDropsite(oldType.generic);
+						if (nearby)
+						{
+							this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
+							return true;
+						}
+						
+						return true;
+					}
+					return false;
 				},
 
 				"MoveCompleted": function(msg) {
 					if (msg.data.error)
 					{
 						// We failed to reach the target
+
+						// remove us from the list of entities gathering from Resource.
+						var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+						if (cmpSupply)
+							cmpSupply.RemoveGatherer(this.entity);
 
 						// Save the current order's data in case we need it later
 						var oldType = this.order.data.type;
@@ -1579,6 +1626,13 @@ var UnitFsmSpec = {
 
 					// We reached the target - start gathering from it now
 					this.SetNextState("GATHERING");
+				},
+				
+				"leave": function() {
+					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+					if (cmpSupply)
+						cmpSupply.RemoveGatherer(this.entity);
+					delete this.gatheringTarget;
 				},
 			},
 			
@@ -1616,8 +1670,18 @@ var UnitFsmSpec = {
 
 			"GATHERING": {
 				"enter": function() {
-					var target = this.order.data.target;
+					this.gatheringTarget = this.order.data.target;	// deleted in "leave".
 
+					if (this.gatheringTarget) {
+						// Check that we can gather from the resource we're supposed to gather from.
+						// Will only be added if we're not already in.
+						var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+						if (!cmpSupply || !cmpSupply.AddGatherer(this.entity))
+						{
+							this.StartTimer(0);
+							return false;
+						}
+					}
 					// If this order was forced, the player probably gave it, but now we've reached the target
 					//	switch to an unforced order (can be interrupted by attacks)
 					this.order.data.force = false;
@@ -1626,12 +1690,12 @@ var UnitFsmSpec = {
 					// Calculate timing based on gather rates
 					// This allows the gather rate to control how often we gather, instead of how much.
 					var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-					var rate = cmpResourceGatherer.GetTargetGatherRate(target);
+					var rate = cmpResourceGatherer.GetTargetGatherRate(this.gatheringTarget);
 
 					if (!rate)
 					{
 						// Try to find another target if the current one stopped existing
-						if (!Engine.QueryInterface(target, IID_Identity))
+						if (!Engine.QueryInterface(this.gatheringTarget, IID_Identity))
 						{
 							// Let the Timer logic handle this
 							this.StartTimer(0);
@@ -1654,7 +1718,7 @@ var UnitFsmSpec = {
 					// (else it'll look like we're chopping empty air).
 					// (If it's not alive, the Timer handler will deal with sending us
 					// off to a different target.)
-					if (this.CheckTargetRange(target, IID_ResourceGatherer))
+					if (this.CheckTargetRange(this.gatheringTarget, IID_ResourceGatherer))
 					{
 						var typename = "gather_" + this.order.data.type.specific;
 						this.SelectAnimation(typename, false, 1.0, typename);
@@ -1664,24 +1728,31 @@ var UnitFsmSpec = {
 
 				"leave": function() {
 					this.StopTimer();
-
+					
+					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+					if (cmpSupply)
+						cmpSupply.RemoveGatherer(this.entity);
+					delete this.gatheringTarget;
+					
 					// Show the carried resource, if we've gathered anything.
 					this.SetGathererAnimationOverride();
 				},
 
 				"Timer": function(msg) {
-					var target = this.order.data.target;
 					var resourceTemplate = this.order.data.template;
 					var resourceType = this.order.data.type;
+					
+					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+						
 					// Check we can still reach and gather from the target
-					if (this.CheckTargetRange(target, IID_ResourceGatherer) && this.CanGather(target))
+					if (this.CheckTargetRange(this.gatheringTarget, IID_ResourceGatherer) && this.CanGather(this.gatheringTarget) && cmpSupply && cmpSupply.IsAvailable(this.entity))
 					{
 						// Gather the resources:
 
 						var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 
 						// Try to gather treasure
-						if (cmpResourceGatherer.TryInstantGather(target)) 
+						if (cmpResourceGatherer.TryInstantGather(this.gatheringTarget))
 							return;
 						
 						// If we've already got some resources but they're the wrong type,
@@ -1690,7 +1761,7 @@ var UnitFsmSpec = {
 							cmpResourceGatherer.DropResources();
 
 						// Collect from the target
-						var status = cmpResourceGatherer.PerformGather(target);
+						var status = cmpResourceGatherer.PerformGather(this.gatheringTarget);
 
 						// If we've collected as many resources as possible,
 						// return to the nearest dropsite
@@ -1714,10 +1785,10 @@ var UnitFsmSpec = {
 						if (!status.exhausted)
 							return;
 					}
-					else
+					else if (cmpSupply && cmpSupply.IsAvailable(this.entity))
 					{
 						// Try to follow the target
-						if (this.MoveToTargetRange(target, IID_ResourceGatherer))
+						if (this.MoveToTargetRange(this.gatheringTarget, IID_ResourceGatherer))
 						{
 							this.SetNextState("APPROACHING");
 							return;
@@ -2997,7 +3068,7 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 		if (template.indexOf("resource|") != -1)
 			template = template.slice(9);
 
-		if (amount > 0 && filter(ent, type, template))
+		if (amount > 0 && cmpResourceSupply.IsAvailable(this.entity) && filter(ent, type, template))
 			return ent;
 	}
 
@@ -4179,7 +4250,9 @@ UnitAI.prototype.CanGather = function(target)
 
 	// No need to verify ownership as we should be able to gather from
 	// a target regardless of ownership.
-
+	// No need to call "cmpResourceSupply.IsAvailable()" either because that
+	// would cause units to walk to full entities instead of choosing another one
+	// nearby to gather from, which is undesirable.
 	return true;
 };
 
