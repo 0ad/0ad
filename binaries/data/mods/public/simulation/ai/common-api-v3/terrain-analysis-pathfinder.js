@@ -11,7 +11,7 @@
 
 // The initializer creates an expanded influence map for checking.
 // It's not extraordinarily slow, but it might be.
-function aStarPath(gameState, onWater, disregardEntities) {
+function aStarPath(gameState, onWater, disregardEntities, targetTerritory) {
 	var self = this;
 	
 	// get the terrain analyzer map as a reference.
@@ -25,10 +25,18 @@ function aStarPath(gameState, onWater, disregardEntities) {
 	} else
 		this.waterPathfinder = false;
 	
+	var pathObstruction = gameState.sharedScript.passabilityClasses["pathfinderObstruction"];
+	var passMap = gameState.sharedScript.passabilityMap;
+	var terrMap = gameState.sharedScript.territoryMap;
+
+
 	this.widthMap = new Uint8Array(this.map.length);
 	for (var i = 0; i < this.map.length; ++i) {
 		if (this.map[i] === 0)
 			this.widthMap[i] = 0;
+		else if (!disregardEntities &&  (((terrMap.data[i] & 0x3F) !== gameState.ai.player && (terrMap.data[i] & 0x3F) !== 0 && (terrMap.data[i] & 0x3F) !== targetTerritory)
+										 || (passMap.data[i] & pathObstruction)))
+			this.widthMap[i] = 1;	// we try to avoid enemy territory and pathfinder obstructions.
 		else if (!disregardEntities && this.map[i] === 30)
 			this.widthMap[i] = 0;
 		else if (!disregardEntities && this.map[i] === 40)
@@ -67,12 +75,12 @@ aStarPath.prototype.markImpassableArea = function(cx, cy, Distance) {
 
 
 // sending gamestate creates a map
-// Not recommended to use minwidth < sampling. I allow minwidth = sampling - 1.
 // (you run the risk of "jumping" over obstacles or weird behavior.
-aStarPath.prototype.getPath = function(start, end, Sampling, minWidth, iterationLimit, gamestate)
+aStarPath.prototype.getPath = function(start, end, Sampling, preferredWidth, iterationLimit, gamestate)
 {
 	this.Sampling = Sampling >= 1 ? Sampling : 1;
-	this.minWidth = (minWidth !== undefined && minWidth+1 >= this.Sampling) ? minWidth : this.Sampling;
+	this.minWidth = 1;
+	this.preferredWidth = (preferredWidth !== undefined && preferredWidth >= this.Sampling) ? preferredWidth : this.Sampling;
 	
 	if (start[0] < 0 || this.gamePosToMapPos(start)[0] >= this.width || start[1] < 0 || this.gamePosToMapPos(start)[1] >= this.height)
 		return undefined;
@@ -207,6 +215,9 @@ aStarPath.prototype.continuePath = function(gamestate)
 						this.gCostArray[index] += 10000;
 					}
 					
+					if (this.widthMap[index] < this.preferredWidth)
+						this.gCostArray[index] += 1000 * (this.preferredWidth-this.widthMap[index]);
+					
 					if (this.map[index] === 200 || (this.map[index] === 201 && this.onWater))
 						this.gCostArray[index] += 1000;
 					
@@ -231,6 +242,9 @@ aStarPath.prototype.continuePath = function(gamestate)
 					} else if (this.onWater && this.map[index] !== 200) {
 						addCost += 10000;
 					}
+					if (this.widthMap[index] < this.preferredWidth)
+						addCost += 1000 * (this.preferredWidth-this.widthMap[index]);
+					
 					if (this.map[index] === 200 || (this.map[index] === 201 && this.onWater))
 						addCost += 1000;
 

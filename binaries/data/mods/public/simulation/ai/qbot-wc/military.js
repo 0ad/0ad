@@ -389,7 +389,9 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 		+ queues.defenceBuilding.totalLength() < gameState.getEntityLimits()["DefenseTower"] && queues.defenceBuilding.totalLength() < 4
 		&& gameState.currentPhase() > 1 && queues.defenceBuilding.totalLength() < 3) {
 		gameState.getOwnEntities().forEach(function(dropsiteEnt) {
-			if (dropsiteEnt.resourceDropsiteTypes() && dropsiteEnt.getMetadata(PlayerID, "defenseTower") !== true && !dropsiteEnt.hasClass("CivCentre")){
+			if (dropsiteEnt.resourceDropsiteTypes() && dropsiteEnt.getMetadata(PlayerID, "defenseTower") !== true
+				&& (dropsiteEnt.getMetadata(PlayerID, "resource-quantity-wood") > 400 || dropsiteEnt.getMetadata(PlayerID, "resource-quantity-stone") > 500
+					|| dropsiteEnt.getMetadata(PlayerID, "resource-quantity-metal") > 500) ){
 				var position = dropsiteEnt.position();
 				if (position){
 					queues.defenceBuilding.addItem(new BuildingConstructionPlan(gameState, 'structures/{civ}_defense_tower', position));
@@ -404,13 +406,30 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 		numFortresses += gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bFort[i]));
 	}
 	
-	if (queues.defenceBuilding.totalLength() < 1 && gameState.currentPhase() > 2)
+	if (queues.defenceBuilding.totalLength() < 1 && (gameState.currentPhase() > 2 || gameState.isResearching("phase_city_generic")))
 	{
-		if (workersNumber >= 95 && gameState.getTimeElapsed() > numFortresses * this.fortressLapseTime + this.fortressStartTime)
+		if (workersNumber >= 80 && gameState.getTimeElapsed() > numFortresses * this.fortressLapseTime + this.fortressStartTime)
 		{
 			if (!this.fortressStartTime)
 				this.fortressStartTime = gameState.getTimeElapsed();
 			queues.defenceBuilding.addItem(new BuildingConstructionPlan(gameState, this.bFort[0]));
+			debug ("Building a fortress");
+		}
+	}
+	if (gameState.countEntitiesByType(gameState.applyCiv(this.bFort[i])) >= 1) {
+		// let's add a siege building plan to the current attack plan if there is none currently.
+		if (this.upcomingAttacks["CityAttack"].length !== 0)
+		{
+			var attack = this.upcomingAttacks["CityAttack"][0];
+			if (!attack.unitStat["Siege"])
+			{
+				// no minsize as we don't want the plan to fail at the last minute though.
+				var stat = { "priority" : 1.1, "minSize" : 0, "targetSize" : 4, "batchSize" : 2, "classes" : ["Siege"],
+					"interests" : [ ["siegeStrength", 3], ["cost",1] ]  ,"templates" : [] };
+				if (gameState.civ() == "cart" || gameState.civ() == "maur")
+					stat["classes"] = ["Elephant"];
+				attack.addBuildOrder(gameState, "Siege", stat, true);
+			}
 		}
 	}
 };
@@ -423,7 +442,7 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 	
 	var workersNumber = gameState.getOwnEntitiesByRole("worker").filter(Filters.not(Filters.byHasMetadata(PlayerID, "plan"))).length;
 	
-	if (workersNumber > 40 && (gameState.currentPhase() > 1 || gameState.isResearching("phase_town"))) {
+	if (workersNumber > 30 && (gameState.currentPhase() > 1 || gameState.isResearching("phase_town"))) {
 		if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) + queues.militaryBuilding.totalLength() < 1) {
 			debug ("Trying to build barracks");
 			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
@@ -434,11 +453,15 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 		if (queues.militaryBuilding.totalLength() < 1)
 			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
 	
-	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) < 3 && workersNumber > 125 &&
-		(gameState.civ() == "gaul" || gameState.civ() == "brit" || gameState.civ() == "iber"))
+	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) < 3 && workersNumber > 125)
 		if (queues.militaryBuilding.totalLength() < 1)
+		{
 			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
-	
+			if (gameState.civ() == "gaul" || gameState.civ() == "brit" || gameState.civ() == "iber") {
+				queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
+				queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
+			}
+		}
 	//build advanced military buildings
 	if (workersNumber > 75 && gameState.currentPhase() > 2){
 		if (queues.militaryBuilding.totalLength() === 0){
@@ -462,6 +485,7 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 		if (inConst == 1) {
 			var i = Math.floor(Math.random() * this.bAdvanced.length);
 			if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i])) < 1){
+				queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bAdvanced[i]));
 				queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bAdvanced[i]));
 			}
 		}
@@ -646,13 +670,16 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 		for (var i = 0; i < this.startedAttacks[attackType].length; ++i) {
 			var attack = this.startedAttacks[attackType][i];
 			// okay so then we'll update the raid.
-			var remaining = attack.update(gameState,this,events);
-			if (remaining == 0 || remaining == undefined) {
-				debug ("Military Manager: " +attack.getType() +" plan " +attack.getName() +" is now finished.");
-				attack.Abort(gameState);
+			if (!attack.isPaused())
+			{
+				var remaining = attack.update(gameState,this,events);
+				if (remaining == 0 || remaining == undefined) {
+					debug ("Military Manager: " +attack.getType() +" plan " +attack.getName() +" is now finished.");
+					attack.Abort(gameState);
 				
-				//this.abortedAttacks.push(attack);
-				this.startedAttacks[attackType].splice(i--,1);
+					//this.abortedAttacks.push(attack);
+					this.startedAttacks[attackType].splice(i--,1);
+				}
 			}
 		}
 	}
@@ -676,7 +703,8 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 			{
 					// wait till we get a dock.
 			} else {
-				if (this.upcomingAttacks["CityAttack"].length == 0 && (gameState.getTimeElapsed() < 25*60000 || Config.difficulty < 2)) {
+				// basically only the first plan, really.
+				if (this.upcomingAttacks["CityAttack"].length == 0 && (gameState.getTimeElapsed() < 12*60000 || Config.difficulty < 2)) {
 					var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1);
 					if (Lalala.failed)
 					{

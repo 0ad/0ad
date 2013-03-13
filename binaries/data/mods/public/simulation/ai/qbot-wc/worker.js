@@ -315,9 +315,6 @@ Worker.prototype.startGathering = function(gameState){
 			return;
 		}
 		
-		if (supply.isUnhuntable())
-			return;
-
 		if (supply.getMetadata(PlayerID, "inaccessible") === true) {
 			//debug ("inaccessible");
 			return;
@@ -493,9 +490,6 @@ Worker.prototype.startHunting = function(gameState){
 		//	return;
 		
 		if (!supply.hasClass("Animal"))
-			return;
-		
-		if (supply.walkSpeed() + 0.5 >= ent.walkSpeed())
 			return;
 					  
 		// measure the distance to the resource

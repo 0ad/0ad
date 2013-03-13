@@ -123,6 +123,7 @@ SharedScript.prototype.GetTemplate = function(name)
 SharedScript.prototype.initWithState = function(state) {	
 	this.passabilityClasses = state.passabilityClasses;
 	this.passabilityMap = state.passabilityMap;
+	this.territoryMap = state.territoryMap;
 
 	for (o in state.players)
 		this._techModifications[o] = state.players[o].techModifications;

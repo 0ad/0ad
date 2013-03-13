@@ -126,7 +126,7 @@ GameState.prototype.canResearch = function(techTemplateName, noRequirementCheck)
 	if (this.playerData.researchQueued[techTemplateName] || this.playerData.researchStarted[techTemplateName] || this.playerData.researchedTechs[techTemplateName])
 		return false;
 
-	if (noRequirementCheck === false)
+	if (noRequirementCheck === true)
 		return true;
 	
 	// not already researched, check if we can.
@@ -386,7 +386,7 @@ GameState.prototype.countEntitiesAndQueuedByType = function(type) {
 	// Count entities in building production queues
 	this.getOwnTrainingFacilities().forEach(function(ent){
 		ent.trainingQueue().forEach(function(item) {
-			if (item.template == type){
+			if (item.unitTemplate == type){
 				count += item.count;
 			}
 		});
@@ -476,9 +476,9 @@ GameState.prototype.findBuilders = function(template) {
  * Find buildings that are capable of researching the given tech, and aren't
  * already too busy.
  */
-GameState.prototype.findResearchers = function(templateName) {
+GameState.prototype.findResearchers = function(templateName, noRequirementCheck) {
 	// let's check we can research the tech.
-	if (!this.canResearch(templateName))
+	if (!this.canResearch(templateName, noRequirementCheck))
 		return [];
 
 	var template = this.getTemplate(templateName);

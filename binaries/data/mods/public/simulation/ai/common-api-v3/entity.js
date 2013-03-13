@@ -357,17 +357,14 @@ var EntityTemplate = Class({
 	
 	/**
 	 * Returns whether this is an animal that is too difficult to hunt.
-	 * (Currently this just includes skittish animals, which are probably
-	 * too fast to chase.)
+	 * (Any non domestic currently.)
 	 */
 	isUnhuntable: function() {
 		if (!this._template.UnitAI || !this._template.UnitAI.NaturalBehaviour)
 			return false;
 
-		// return (this._template.UnitAI.NaturalBehaviour == "skittish");
-		// Actually, since the AI is currently rubbish at hunting, skip all animals
-		// that aren't really weak:
-		return this._template.Health.Max >= 10;
+		// only attack domestic animals since they won't flee nor retaliate.
+		return this._template.UnitAI.NaturalBehaviour !== "domestic";
 	},
 						   
 	walkSpeed: function() {
@@ -383,9 +380,9 @@ var EntityTemplate = Class({
 	},
 	
 	buildTime: function() {
-		if (!this._template.Cost || !this._template.Cost.buildTime)
+		if (!this._template.Cost || !this._template.Cost.BuildTime)
 			return undefined;
-		return this._template.Cost.buildTime;
+		return this._template.Cost.BuildTime;
 	},
 
 	buildDistance: function() {
