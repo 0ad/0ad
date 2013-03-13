@@ -157,7 +157,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	return answer;
 }
 
-void CSoundGroup::UploadPropertiesAndPlay(int theIndex, const CVector3D& position, entity_id_t source)
+void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& position, entity_id_t source)
 {
 #if CONFIG2_AUDIO
 	if ( g_SoundManager )
@@ -228,7 +228,7 @@ void CSoundGroup::PlayNext(const CVector3D& position, entity_id_t source)
 	if (filenames.size() == 0)
 		return;
 	
-	m_index = (size_t)rand(0, (size_t)filenames.size());
+	m_index = rand(0, (size_t)filenames.size());
 	UploadPropertiesAndPlay(m_index, position, source);
 }
 
