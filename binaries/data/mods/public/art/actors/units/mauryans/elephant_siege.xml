@@ -2,11 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="elephant_asian [adult male]">
-      <mesh>skeletal/elephant_asian_male.dae</mesh>
+    <variant frequency="1" name="maur_elephant_asian_armor">
+      <mesh>skeletal/maur_elephant_siege.dae</mesh>
       <textures>
-        <texture file="skeletal/animal-elephant-asian-base.png" name="baseTex"/>
-        <texture file="skeletal/animal-elephant-asian-spec.png" name="specTex"/>
+        <texture file="skeletal/maur_elephant_siege.png" name="baseTex"/>
+        <texture file="skeletal/maur_elephant_siege_spec.png" name="specTex"/>
+<texture file="skeletal/maur_elephant_siege_normal.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -23,5 +24,5 @@
       </props>
     </variant>
   </group>
-  <material>basic_specmap.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>
