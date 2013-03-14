@@ -54,7 +54,9 @@ public:
 
 	~CSoundManagerWorker()
 	{
-
+		delete m_Items;
+		CleanupItems();
+		delete m_DeadItems;
 	}
 
 	/**
@@ -284,6 +286,11 @@ CSoundManager::~CSoundManager()
 	if (m_Worker->Shutdown())
 		delete m_Worker;
 
+	delete m_ItemsMap;
+	
+	if ( m_ALSourceBuffer != NULL )
+		delete[] m_ALSourceBuffer;
+
 	alcDestroyContext(m_Context);
 	alcCloseDevice(m_Device);
 }
@@ -361,15 +368,10 @@ bool CSoundManager::InDistress()
 	else if ( (timer_Time() - m_DistressTime) > 10 )
 	{
 		m_DistressTime = 0;
-		LOGERROR(L"Sound: Coming out of distress mode suffering %ld errors\n", m_DistressErrCount);
+// Coming out of distress mode
 		m_DistressErrCount = 0;
 		return false;
 	}
-	else
-	{
-//		LOGERROR(L"Sound: Still in distress mode suffering %ld errors at %ld time\n", m_DistressErrCount, m_DistressTime);
-	}
-
 
 	return true;
 }
@@ -378,8 +380,7 @@ void CSoundManager::SetDistressThroughShortage()
 {
 	CScopeLock lock(m_DistressMutex);
 
-	if ( m_DistressTime == 0 )
-		LOGERROR(L"Sound: Entering distress mode through shortage\n", 0);
+// Going into distress for normal reasons
 	
 	m_DistressTime = timer_Time();
 }
@@ -388,8 +389,7 @@ void CSoundManager::SetDistressThroughError()
 {
 	CScopeLock lock(m_DistressMutex);
 
-	if ( m_DistressTime == 0 )
-		LOGERROR(L"Sound: Entering distress mode through error\n", 0);
+// Going into distress due to unknown error
 	
 	m_DistressTime = timer_Time();
 	m_DistressErrCount++;

@@ -10,11 +10,12 @@
         <prop actor="props/special/eyecandy/hay_cart.xml" attachpoint="cart"/>
       </props>
       <textures>
-	  <texture file="structural/maur_struct_b.png" name="baseTex"/>
-	  <texture file="structural/maur_struct_b_spec.png" name="specTex"/>
-	  <texture file="structural/maur_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/maur_struct_b.png" name="baseTex"/>
+        <texture file="structural/maur_struct_b_spec.png" name="specTex"/>
+        <texture file="structural/maur_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/ao/maur_farmstead_ao.png" name="aoTex"/>
 	  </textures>
     </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

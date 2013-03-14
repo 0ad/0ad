@@ -216,7 +216,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 					}
 					
 					if (this.widthMap[index] < this.preferredWidth)
-						this.gCostArray[index] += 1000 * (this.preferredWidth-this.widthMap[index]);
+						this.gCostArray[index] += 200 * (this.preferredWidth-this.widthMap[index]);
 					
 					if (this.map[index] === 200 || (this.map[index] === 201 && this.onWater))
 						this.gCostArray[index] += 1000;
@@ -243,7 +243,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 						addCost += 10000;
 					}
 					if (this.widthMap[index] < this.preferredWidth)
-						addCost += 1000 * (this.preferredWidth-this.widthMap[index]);
+						addCost += 200 * (this.preferredWidth-this.widthMap[index]);
 					
 					if (this.map[index] === 200 || (this.map[index] === 201 && this.onWater))
 						addCost += 1000;

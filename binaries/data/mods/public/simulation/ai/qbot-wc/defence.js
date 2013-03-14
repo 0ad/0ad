@@ -433,6 +433,9 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 		});
 	}
 	
+	if (newEnemies.length === 0)
+		return;
+
 	var nonDefenders = this.myUnits.filter(Filters.or(Filters.not(Filters.byMetadata(PlayerID, "role","defence")),Filters.isIdle()));
 	nonDefenders = nonDefenders.filter(Filters.not(Filters.byClass("Female")));
 	nonDefenders = nonDefenders.filter(Filters.not(Filters.byMetadata(PlayerID, "subrole","attacking")));
@@ -441,10 +444,10 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 	//debug ("newEnemies.length "+ newEnemies.length);
 	//debug ("nonDefenders.length "+ nonDefenders.length);
 	
-	if (newEnemies.length > nonDefenders.length * 1.2 && this.nbAttackers > 5)
+	if (newEnemies.length + this.nbAttackers > (this.nbDefenders + nonDefenders.length) * 0.8 && this.nbAttackers > 9)
 		gameState.setDefcon(2);
 
-	if (nonDefenders.length * 2.0 < newEnemies.length && this.nbAttackers > 5)
+	if (newEnemies.length + this.nbAttackers > (this.nbDefenders + nonDefenders.length) * 1.5 && this.nbAttackers > 5)
 		gameState.setDefcon(1);
 	
 	if (gameState.defcon() > 3)
@@ -468,6 +471,21 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 		militaryManager.ungarrisonAll(gameState);
 	}*/
 	
+	// A little sorting to target sieges first.
+	newEnemies.sort (function (a,b) {
+		var vala = 1;
+		var valb = 1;
+		if (a.hasClass("Siege"))
+			vala = 10;
+		else if (a.hasClass("Champion") || a.hasClass("Hero"))
+			vala = 5;
+		if (b.hasClass("Siege"))
+			valb = 10;
+		else if (b.hasClass("Champion") || b.hasClass("Hero"))
+			valb = 5;
+		return valb - vala;
+	});
+	
 	// For each enemy, we'll pick two units.
 	for each (enemy in newEnemies) {
 		if (nonDefenders.length === 0 || self.nbDefenders >= self.nbAttackers * 1.8)
@@ -480,7 +498,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 		
 		var defRatio = defenceRatio;
 		if (enemy.hasClass("Siege"))
-			defRatio *= 1.6;
+			defRatio *= 1.2;
 
 		if (assigned >= defRatio)
 			return;
@@ -492,16 +510,21 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 		for (var id in nonDefenders._entities)
 		{
 			var ent = nonDefenders._entities[id];
-			if (ent.position() && !ent.hasClass("Siege"))
+			if (ent.position())
 				data.push([id, ent, SquareVectorDistance(enemy.position(), ent.position())]);
 		}
+		// refine the defenders we want.
 		data.sort(function (a, b) {
 			var vala = a[2];
 			var valb = b[2];
-			if (a[1].hasClass("Ranged") && enemy.hasClass("Siege"))
-				vala *= 5;
-			if (b[1].hasClass("Ranged") && enemy.hasClass("Siege"))
-				valb *= 5;
+			if (a[1].hasClass("Siege") && !enemy.hasClass("Siege"))
+				vala *= 4;
+			if (b[1].hasClass("Siege") && !enemy.hasClass("Siege"))
+				valb *= 4;
+			if (enemy.hasClass("Siege") && a[1].attackStrengths("Melee") !== undefined)
+				vala /= (a[1].attackStrengths("Melee")["hack"] + a[1].attackStrengths("Melee")["crush"]);
+			if (enemy.hasClass("Siege") && b[1].attackStrengths("Melee") !== undefined)
+				valb /= (b[1].attackStrengths("Melee")["hack"] + b[1].attackStrengths("Melee")["crush"]);
 			if (a[1].countersClasses(b[1].classes()))
 				vala *= 0.8;
 			if (b[1].countersClasses(a[1].classes()))
@@ -520,7 +543,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 
 		// successfully sorted
 		defs.forEach(function (defender) { //}){
-			if (defender.getMetadata(PlayerID, "plan") != undefined && gameState.defcon() < 3)
+			if (defender.getMetadata(PlayerID, "plan") != undefined && gameState.defcon() < 4)
 				militaryManager.pausePlan(gameState, defender.getMetadata(PlayerID, "plan"));
 			//debug ("Against " +enemy.id() + " Assigning " + defender.id());
 			if (defender.getMetadata(PlayerID, "role") == "worker" || defender.getMetadata(PlayerID, "role") == "attack")

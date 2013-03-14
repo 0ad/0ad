@@ -325,7 +325,14 @@ var EntityTemplate = Class({
 			return undefined;
 		return +this._template.ResourceSupply.Amount;
 	},
-	
+						   
+	maxGatherers: function()
+	{
+		if (this._template.ResourceSupply !== undefined)
+			return this._template.ResourceSupply.MaxGatherers;
+		return 0;
+	},
+
 	resourceGatherRates: function() {
 		if (!this._template.ResourceGatherer)
 			return undefined;
@@ -519,6 +526,20 @@ var Entity = Class({
 		if(this._entity.resourceSupplyAmount === undefined)
 			return undefined;
 		return this._entity.resourceSupplyAmount;
+	},
+				   
+	resourceSupplyGatherers: function()
+	{
+		if (this._entity.resourceSupplyGatherers !== undefined)
+			return this._entity.resourceSupplyGatherers;
+		return [];
+	},
+				   
+	isFull: function()
+	{
+		if (this._entity.resourceSupplyGatherers !== undefined)
+			return (this.maxGatherers === this._entity.resourceSupplyGatherers.length);
+		return undefined;
 	},
 
 	resourceCarrying: function() {

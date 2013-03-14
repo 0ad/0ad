@@ -7,23 +7,30 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="BackgroundTranslucent"/>
 
-	<object type="image" style="StoneDialog" size="50%-200 50%-100 50%+200 50%+140">
+	<object type="image" style="StoneDialog" size="50%-200 40%-140 50%+200 40%+180">
 
 		<object style="TitleText" type="text" size="50%-128 -16 50%+128 16">AI Configuration</object>
 
-		<object size="50%-128 46 50%+128 66">
-			<object type="text" style="RightLabelText" size="0 0 100 100%">
+		<object size="50%-128 30 50%+128 80">
+			<object type="text" style="RightLabelText" size="-10 0 90 50%">
 				AI Player
 			</object>
 
-			<object name="aiSelection" type="dropdown" style="StoneDropDown" size="50%-16 0 50%+144 28">
+			<object name="aiSelection" type="dropdown" style="StoneDropDown" size="50%-24 0 50%+136 28">
 				<action on="SelectionChange">selectAI(this.selected);</action>
+			</object>
+
+			<object type="text" style="RightLabelText" size="-10 35 90 50%+35">
+				AI Difficulty
+			</object>
+			
+			<object name="aiDifficulty" type="dropdown" style="StoneDropDown" size="50%-24 35 50%+136 63">
 			</object>
 		</object>
 
-		<object size="15% 50%-48 85% 50%+48">
+		<object size="8% 50%-54 92% 50%+74">
 
-			<object name="aiDescription" type="text" style="LeftLabelText" size="0 0 100% 100%"/>
+			<object name="aiDescription" type="text" style="LeftLabelText" size="0 0 100% 100%" text_align="center"/>
 
 			<!-- TODO: we might want to add things like difficulty controls into here -->
 

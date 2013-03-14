@@ -75,6 +75,11 @@ function LoadPlayerSettings(settings, newPlayers)
 			var colour = getSetting(pData, pDefs, "Colour");
 			cmpPlayer.SetColour(colour.r, colour.g, colour.b);
 
+			// Note: this is not yet implemented but I leave it commented to highlight it's easy
+			// If anyone ever adds handicap.
+			//if (getSetting(pData, pDefs, "GatherRateMultiplier") !== undefined)
+			//	cmpPlayer.SetGatherRateMultiplier(getSetting(pData, pDefs, "GatherRateMultiplier"));
+
 			if (getSetting(pData, pDefs, "PopulationLimit") !== undefined)
 				cmpPlayer.SetMaxPopulation(getSetting(pData, pDefs, "PopulationLimit"));
 

@@ -108,11 +108,11 @@ public:
 private:
 	void SetGain(float gain);
 
-	void UploadPropertiesAndPlay(int theIndex, const CVector3D& position, entity_id_t source);
+	void UploadPropertiesAndPlay(size_t theIndex, const CVector3D& position, entity_id_t source);
 
 	void SetDefaultValues();
 
-	int m_index;  // index of the next sound to play
+	size_t m_index;  // index of the next sound to play
 		
 #if CONFIG2_AUDIO
 	std::vector<CSoundData*> snd_group;  // we store the handles so we can load now and play later

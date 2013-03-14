@@ -9,7 +9,7 @@ var EconomyManager = function() {
 	// Used by the QueueManager to determine future needs.
 	this.baseNeed = {};
 	this.baseNeed["food"] = 150;
-	this.baseNeed["wood"] = 80;
+	this.baseNeed["wood"] = 100;
 	this.baseNeed["stone"] = 0;
 	this.baseNeed["metal"] = 0;
 	
@@ -17,7 +17,6 @@ var EconomyManager = function() {
 	this.lastStatG = { "food" : 0, "wood" : 0, "stone" : 0, "metal" : 0};	// resource collecting stats: gathered
 	this.lastStatU = { "food" : 0, "wood" : 0, "stone" : 0, "metal" : 0};	// resource collecting stats: used
 	
-	this.marketStartTime = Config.Economy.marketStartTime * 1000;
 	this.dockStartTime =  Config.Economy.dockStartTime * 1000;
 	this.farmsteadStartTime =  Config.Economy.farmsteadStartTime * 1000;
 	this.techStartTime = Config.Economy.techStartTime * 1000;
@@ -116,22 +115,28 @@ EconomyManager.prototype.trainMoreWorkers = function(gameState, queues) {
 	var numTotal = numWorkers + numQueued;
 	
 	if (gameState.currentPhase() > 1 || gameState.isResearching("phase_town"))
-		this.targetNumFields = numFemales/23;
+		this.targetNumFields = numWorkers/25;
 	else
 		this.targetNumFields = 1;
 	
 	// ought to refine this.
 	if ((gameState.ai.playedTurn+2) % 3 === 0) {
-		this.dropsiteNumbers = {"wood": Math.ceil((numWorkers)/18)/2, "stone": Math.ceil((numWorkers)/30)/2, "metal": Math.ceil((numWorkers)/20)/2};
+		this.dropsiteNumbers = {"wood": Math.ceil(numWorkers/25)/2, "stone": Math.ceil(numWorkers/30)/2, "metal": Math.ceil(numWorkers/20)/2};
+		if (numWorkers < 30)
+		{
+			this.dropsiteNumbers["wood"] -= 0.5;
+			this.dropsiteNumbers["metal"] -= 0.5;
+			this.dropsiteNumbers["stone"] -= 0.5;
+		}
 	}
-
+	
 	//debug (numTotal + "/" +this.targetNumWorkers + ", " +numFemales +"/" +numTotal);
 	
 	// If we have too few, train more
 	// should plan enough to always have females…
-	if (numTotal < this.targetNumWorkers && numQueued < 2 && (numQueued+numInTraining) < 15) {
+	if (numTotal < this.targetNumWorkers && numQueued < 15 && ((queues.villager.length() < 2 && queues.citizenSoldier.length() < 2) || gameState.currentPhase() !== 1) && (numInTraining) < 15) {
 		var template = gameState.applyCiv("units/{civ}_support_female_citizen");
-		var size = Math.min(Math.ceil(gameState.getTimeElapsed() / 30000),5);
+		var size = Math.min(Math.ceil(gameState.getTimeElapsed() / 20000),5);
 		if (numFemales/numTotal > this.femaleRatio && (gameState.getTimeElapsed() > 60*1000 || this.fastStart)) {
 			if (numTotal < 100)
 				template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["cost",1], ["speed",0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]]);
@@ -140,10 +145,10 @@ EconomyManager.prototype.trainMoreWorkers = function(gameState, queues) {
 			if (!template)
 				template = gameState.applyCiv("units/{civ}_support_female_citizen");
 			else
-				size = Math.min(Math.ceil(gameState.getTimeElapsed() / 90000),5);
+				size = Math.min(Math.ceil(gameState.getTimeElapsed() / 60000),5);
 		}
 		
-		if ((gameState.getTimeElapsed() < 60000 && gameState.ai.queueManager.getAvailableResources(gameState, true)["food"] > 250) || this.fastStart)
+		if ((gameState.getTimeElapsed() < 60000 && gameState.ai.queueManager.getAvailableResources(gameState)["food"] > 250) || this.fastStart)
 			size = 5;
 		
 		if (template === gameState.applyCiv("units/{civ}_support_female_citizen"))
@@ -356,7 +361,7 @@ EconomyManager.prototype.assignToFoundations = function(gameState, noRepair) {
 		
 		if (assigned < targetNB) {
 			if (builderWorkers.length + addedWorkers < this.targetNumBuilders*Math.min(4.0,gameState.getTimeElapsed()/30000)) {
-				var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.getMetadata(PlayerID, "gather-type") !== "food" && ent.position() !== undefined); });
+				var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.position() !== undefined); });
 				var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), targetNB - assigned);
 
 				nearestNonBuilders.forEach(function(ent) {
@@ -417,7 +422,7 @@ EconomyManager.prototype.buildMoreFields = function(gameState, queues) {
 		var numFarms = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_field"));
 		numFarms += queues.field.countTotalQueuedUnits();
 	
-		if (numFarms < this.targetNumFields + Math.floor(gameState.getTimeElapsed() / 750000))
+		if (numFarms < this.targetNumFields)
 			queues.field.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_field"));
 	} else {
 		var foodAmount = 0;
@@ -464,10 +469,10 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 	var radius = {'wood':10.0, 'stone': 24.0, 'metal': 24.0, 'food': 24.0};
 		
 	// smallRadius is the distance necessary to mark a resource as linked to a dropsite.
-	var smallRadius = { 'food':90*90,'wood':40*40,'stone':60*60,'metal':60*60 };
+	var smallRadius = { 'food':90*90,'wood':55*55,'stone':70*70,'metal':70*70 };
 	// bigRadius is the distance for a weak link (resources are considered when building other dropsites)
 	// and their resource amount is divided by 3 when checking for dropsite resource level.
-	var bigRadius = { 'food':110*110,'wood':100*100,'stone':140*140,'metal':140*140 };
+	var bigRadius = { 'food':100*100,'wood':100*100,'stone':140*140,'metal':140*140 };
 
 	var self = this;
 	
@@ -763,7 +768,7 @@ EconomyManager.prototype.updateResourceConcentrations = function(gameState, reso
 		if (dropsite.getMetadata(PlayerID, "linked-resources-" + resource) == undefined)
 			return;
 		dropsite.getMetadata(PlayerID, "linked-resources-" + resource).forEach(function(supply){ //}){
-			if (supply.getMetadata(PlayerID, "full") == true || supply.getMetadata(PlayerID, "inaccessible") == true)
+			if (supply.isFull() === true || supply.getMetadata(PlayerID, "inaccessible") == true)
 				return;
 																			   
 			if (supply.getMetadata(PlayerID, "linked-dropsite-nearby") == true)
@@ -791,10 +796,10 @@ EconomyManager.prototype.updateNearbyResources = function(gameState,resource){
 	var radius = {'wood':10.0, 'stone': 24.0, 'metal': 24.0, 'food': 24.0};
 	
 	// smallRadius is the distance necessary to mark a resource as linked to a dropsite.
-	var smallRadius = { 'food':90*90,'wood':60*60,'stone':70*70,'metal':70*70 };
+	var smallRadius = { 'food':90*90,'wood':55*55,'stone':70*70,'metal':70*70 };
 	// bigRadius is the distance for a weak link (resources are considered when building other dropsites)
 	// and their resource amount is divided by 3 when checking for dropsite resource level.
-	var bigRadius = { 'food':110*110,'wood':140*140,'stone':140*140,'metal':140*140 };
+	var bigRadius = { 'food':100*100,'wood':100*100,'stone':140*140,'metal':140*140 };
 	
 	gameState.getOwnDropsites(resource).forEach(function(ent) { //}){
 		
@@ -984,8 +989,8 @@ EconomyManager.prototype.buildDropsites = function(gameState, queues){
 		 gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_civil_centre")) === 0){
 			//only ever build one mill/CC/market at a time
 		if (gameState.getTimeElapsed() > 30 * 1000){
+			var built = false;
 			for (var resource in this.dropsiteNumbers){
-
 				if (this.checkResourceConcentrations(gameState, resource) < this.dropsiteNumbers[resource]){
 					var spot = this.getBestResourceBuildSpot(gameState, resource);
 					if (spot[1][0] === -1)
@@ -995,9 +1000,25 @@ EconomyManager.prototype.buildDropsites = function(gameState, queues){
 					} else {
 						queues.dropsites.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_mill", spot[1]));
 					}
+					built = true;
 					break;
 				}
 			}
+			if (!built)
+				for (var resource in this.dropsiteNumbers){
+					if (this.checkResourceConcentrations(gameState, resource) < Math.ceil(this.dropsiteNumbers[resource])){
+						var spot = this.getBestResourceBuildSpot(gameState, resource);
+						if (spot[1][0] === -1)
+							break;
+						if (spot[0] === true){
+							queues.dropsites.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_civil_centre", spot[1]));
+						} else {
+							queues.dropsites.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_mill", spot[1]));
+						}
+						built = true;
+						break;
+					}
+				}
 		}
 	}
 };
@@ -1008,19 +1029,20 @@ EconomyManager.prototype.buildMoreHouses = function(gameState, queues) {
 	
 	// temporary 'remaining population space' based check, need to do
 	// predictive in future
-	if (gameState.getPopulationLimit() - gameState.getPopulation() < 15
+	if (gameState.getPopulationLimit() - gameState.getPopulation() < 20
 		&& gameState.getPopulationLimit() < gameState.getPopulationMax()) {
 		
 		var numConstructing = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_house"));
 		var numPlanned = queues.house.totalLength();
 		
-		if (gameState.getTimeElapsed() < 120000 && numConstructing + numPlanned !== 0)
-			return;
 		var additional = 0;
 		if (gameState.civ() == "gaul" || gameState.civ() == "brit" || gameState.civ() == "iber")
 			additional = Math.ceil((20 - (gameState.getPopulationLimit() - gameState.getPopulation())) / 5) - numConstructing - numPlanned;
 		else
 			additional = Math.ceil((20 - (gameState.getPopulationLimit() - gameState.getPopulation())) / 10) - numConstructing - numPlanned;
+		
+		if (Config.difficulty === 3)
+			additional *= 2;	// we don't build enough otherwise.
 		
 		for ( var i = 0; i < additional; i++) {
 			queues.house.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_house"));
@@ -1111,7 +1133,7 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 			ent.getMetadata(PlayerID, "worker-object").update(gameState);
 		});
 		// Gatherer count updates for non-workers
-		var filter = Filters.and(Filters.not(Filters.byMetadata(PlayerID, "worker-object", undefined)),
+		/*var filter = Filters.and(Filters.not(Filters.byMetadata(PlayerID, "worker-object", undefined)),
 								 Filters.not(Filters.byMetadata(PlayerID, "role", "worker")));
 		gameState.updatingCollection("reassigned-workers", filter, gameState.getOwnEntities()).forEach(function(ent){
 			ent.getMetadata(PlayerID, "worker-object").updateGathererCounts(gameState);
@@ -1127,7 +1149,7 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 					delete e.msg.metadata[PlayerID]["worker-object"];
 				}
 			}
-		}
+		}*/
 		Engine.ProfileStop();
 		return;
 	}
@@ -1160,11 +1182,11 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	else
 		this.femaleRatio = Config.Economy.femaleRatio;
 
-	if (gameState.getTimeElapsed() > 600000 && this.numWorkers < 50)
+	if (gameState.getTimeElapsed() > 600000 && this.numWorkers < 50 && Config.difficulty > 0)
 	{
 		gameState.ai.queueManager.changePriority("villager", 80);
 		gameState.ai.queueManager.changePriority("citizenSoldier", 70);
-	} else if (gameState.getTimeElapsed() > 600000 && this.numWorkers > 80
+	} else if (gameState.getTimeElapsed() > 600000 && this.numWorkers > 80 && Config.difficulty > 0
 			   && gameState.ai.queueManager.priorities["villager"] == 80)
 	{
 		gameState.ai.queueManager.changePriority("villager", Config.priorities.villager);
@@ -1177,16 +1199,21 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 		this.baseNeed["wood"] = 100;
 		this.baseNeed["stone"] = 80;
 		this.baseNeed["metal"] = 50;
+		if (gameState.civ() == "maur" || gameState.civ() == "brit" || gameState.civ() == "gaul")
+		{
+			this.baseNeed["wood"] = 120;
+			this.baseNeed["stone"] = 60;
+		}
 	} else if (this.baseNeed["stone"] === 80 && (gameState.currentPhase() === 3 || gameState.isResearching("phase_city_generic")) )
 	{
 		// switch back to less stone but push metal.
 		this.baseNeed["food"] = 80;
 		this.baseNeed["wood"] = 80;
-		this.baseNeed["stone"] = 60;
-		this.baseNeed["metal"] = 70;
+		this.baseNeed["stone"] = 45;
+		this.baseNeed["metal"] = 65;
 	}
-	if (Config.difficulty === 2 && gameState.getTimeElapsed() > 900000 && gameState.ai.playedTurn % 60 === 10)
-		this.rePrioritize(gameState);
+	//if (Config.difficulty === 2 && gameState.getTimeElapsed() > 900000 && gameState.ai.playedTurn % 60 === 10)
+	//	this.rePrioritize(gameState);
 		
 	Engine.ProfileStart("Update Resource Maps and Concentrations");
 	this.updateResourceMaps(gameState, events);
@@ -1213,16 +1240,18 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	//	this.buildTemple(gameState, queues);
 	this.buildDock(gameState, queues);	// not if not a water map.
 
-	if (gameState.ai.playedTurn % 20 === 0){
+	if (gameState.ai.playedTurn % 10 === 0){
 		this.setWorkersIdleByPriority(gameState);
 	}
-	
-	Engine.ProfileStart("Reassign Idle Workers");
-	this.reassignIdleWorkers(gameState);
-	Engine.ProfileStop();
+	if (gameState.ai.playedTurn % 3 === 0)
+	{
+		Engine.ProfileStart("Reassign Idle Workers");
+		this.reassignIdleWorkers(gameState);
+		Engine.ProfileStop();
+	}
 	
 	// this is pretty slow, run it once in a while
-	if (gameState.ai.playedTurn % 4 === 1) {
+	if (gameState.ai.playedTurn % 6 === 1) {
 		Engine.ProfileStart("Swap Workers");
 		var gathererGroups = {};
 		gameState.getOwnEntitiesByRole("worker").forEach(function(ent){

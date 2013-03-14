@@ -77,9 +77,9 @@ private:
 	{
 		NONCOPYABLE(CAIPlayer);
 	public:
-		CAIPlayer(CAIWorker& worker, const std::wstring& aiName, player_id_t player,
+		CAIPlayer(CAIWorker& worker, const std::wstring& aiName, player_id_t player, uint8_t difficulty,
 				const shared_ptr<ScriptRuntime>& runtime, boost::rand48& rng) :
-			m_Worker(worker), m_AIName(aiName), m_Player(player), m_ScriptInterface("Engine", "AI", runtime)
+			m_Worker(worker), m_AIName(aiName), m_Player(player), m_Difficulty(difficulty), m_ScriptInterface("Engine", "AI", runtime)
 		{
 			m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
 
@@ -231,6 +231,7 @@ private:
 				CScriptVal settings;
 				m_ScriptInterface.Eval(L"({})", settings);
 				m_ScriptInterface.SetProperty(settings.get(), "player", m_Player, false);
+				m_ScriptInterface.SetProperty(settings.get(), "difficulty", m_Difficulty, false);
 				ENSURE(m_Worker.m_HasLoadedEntityTemplates);
 				m_ScriptInterface.SetProperty(settings.get(), "templates", m_Worker.m_EntityTemplates, false);
 
@@ -275,6 +276,7 @@ private:
 		CAIWorker& m_Worker;
 		std::wstring m_AIName;
 		player_id_t m_Player;
+		uint8_t m_Difficulty;
 		bool m_UseSharedComponent;
 		
 		ScriptInterface m_ScriptInterface;
@@ -455,9 +457,9 @@ public:
 		return true;
 	}
 
-	bool AddPlayer(const std::wstring& aiName, player_id_t player, bool callConstructor)
+	bool AddPlayer(const std::wstring& aiName, player_id_t player, uint8_t difficulty, bool callConstructor)
 	{
-		shared_ptr<CAIPlayer> ai(new CAIPlayer(*this, aiName, player, m_ScriptRuntime, m_RNG));
+		shared_ptr<CAIPlayer> ai(new CAIPlayer(*this, aiName, player, difficulty, m_ScriptRuntime, m_RNG));
 		if (!ai->Initialise(callConstructor))
 			return false;
 		
@@ -598,7 +600,8 @@ public:
 		{
 			serializer.String("name", m_Players[i]->m_AIName, 1, 256);
 			serializer.NumberI32_Unbounded("player", m_Players[i]->m_Player);
-
+			serializer.NumberU8_Unbounded("difficulty", m_Players[i]->m_Difficulty);
+			
 			serializer.NumberU32_Unbounded("num commands", (u32)m_Players[i]->m_Commands.size());
 			for (size_t j = 0; j < m_Players[i]->m_Commands.size(); ++j)
 			{
@@ -645,9 +648,11 @@ public:
 		{
 			std::wstring name;
 			player_id_t player;
+			uint8_t difficulty;
 			deserializer.String("name", name, 1, 256);
 			deserializer.NumberI32_Unbounded("player", player);
-			if (!AddPlayer(name, player, true))
+			deserializer.NumberU8_Unbounded("difficulty",difficulty);
+			if (!AddPlayer(name, player, difficulty, true))
 				throw PSERROR_Deserialize_ScriptError();
 
 			uint32_t numCommands;
@@ -855,9 +860,9 @@ public:
 		}
 	}
 
-	virtual void AddPlayer(std::wstring id, player_id_t player)
+	virtual void AddPlayer(std::wstring id, player_id_t player, uint8_t difficulty)
 	{
-		m_Worker.AddPlayer(id, player, true);
+		m_Worker.AddPlayer(id, player, difficulty, true);
 
 		// AI players can cheat and see through FoW/SoD, since that greatly simplifies
 		// their implementation.

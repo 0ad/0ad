@@ -121,7 +121,7 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 					} else if (template.hasClass("GarrisonFortress"))
 					{
 						friendlyTiles.addInfluence(x, z, 20, 10);
-						friendlyTiles.addInfluence(x, z, 10, -40);
+						friendlyTiles.addInfluence(x, z, 10, -40, 'linear');
 					} else if (ent.genericName() != "House") // houses have no influence on other buildings
 					{
 						friendlyTiles.addInfluence(x, z, infl);
@@ -151,15 +151,13 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	if (template.genericName() == "Field")
 		radius = Math.ceil(template.obstructionRadius() / cellSize) - 0.4;
 	else if (template.hasClass("GarrisonFortress"))
-		radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
+		radius = Math.ceil(template.obstructionRadius() / cellSize) + 2;
 	else if (template.buildCategory() === "Dock")
 		radius = 1;//Math.floor(template.obstructionRadius() / cellSize);
-	else if (template.genericName() != "House" && !template.hasClass("DropsiteWood") && !template.hasClass("DropsiteStone") && !template.hasClass("DropsiteMetal"))
-		radius = Math.ceil(template.obstructionRadius() / cellSize + 0.5);
-	else if (gameState.civ() === "iber" || gameState.civ() === "gaul" || gameState.civ() === "brit")
-		radius = Math.ceil(template.obstructionRadius() / cellSize);
+	else if (!template.hasClass("DropsiteWood") && !template.hasClass("DropsiteStone") && !template.hasClass("DropsiteMetal"))
+		radius = Math.ceil(template.obstructionRadius() / cellSize + 1);
 	else
-		radius = Math.ceil(template.obstructionRadius() / cellSize + 0.2);
+		radius = Math.ceil(template.obstructionRadius() / cellSize);
 	
 	// further contract cause walls
 	// Note: I'm currently destroying them so that doesn't matter.

@@ -773,7 +773,9 @@ void CGameView::Update(const float deltaRealTime)
 	if (m->FollowEntity)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(*(m->Game->GetSimulation2()), m->FollowEntity);
-		if (cmpPosition && cmpPosition->IsInWorld())
+		CmpPtr<ICmpRangeManager> cmpRangeManager(*(m->Game->GetSimulation2()), SYSTEM_ENTITY);
+		if (cmpPosition && cmpPosition->IsInWorld() &&
+		    cmpRangeManager && cmpRangeManager->GetLosVisibility(m->FollowEntity, m->Game->GetPlayerID(), false) == ICmpRangeManager::VIS_VISIBLE)
 		{
 			// Get the most recent interpolated position
 			float frameOffset = m->Game->GetSimulation2()->GetLastFrameOffset();
@@ -849,7 +851,7 @@ void CGameView::Update(const float deltaRealTime)
 
 		CVector3D desiredPivot = pivot;
 
-		CmpPtr<ICmpRangeManager> cmpRangeManager(*m->Game->GetSimulation2(), SYSTEM_ENTITY);
+		CmpPtr<ICmpRangeManager> cmpRangeManager(*(m->Game->GetSimulation2()), SYSTEM_ENTITY);
 		if (cmpRangeManager && cmpRangeManager->GetLosCircular())
 		{
 			// Clamp to a circular region around the center of the map

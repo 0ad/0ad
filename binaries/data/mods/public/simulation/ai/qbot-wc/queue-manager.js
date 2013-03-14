@@ -36,10 +36,6 @@ var QueueManager = function(queues, priorities) {
 
 QueueManager.prototype.getAvailableResources = function(gameState, noAccounts) {
 	var resources = gameState.getResources();
-	if (Config.difficulty == 1)
-		resources.multiply(0.75);
-	else if (Config.difficulty == 1)
-		resources.multiply(0.5);
 	if (noAccounts)
 		return resources;
 	for (var key in this.queues) {
@@ -49,66 +45,6 @@ QueueManager.prototype.getAvailableResources = function(gameState, noAccounts) {
 };
 
 QueueManager.prototype.futureNeeds = function(gameState, EcoManager) {
-	/*
-	// Work out which plans will be executed next using priority and return the total cost of these plans
-	var recurse = function(queues, qm, number, depth){
-		var needs = new Resources();
-		var totalPriority = 0;
-		for (var i = 0; i < queues.length; i++){
-			totalPriority += qm.priorities[queues[i]];
-		}
-		for (var i = 0; i < queues.length; i++){
-			var num = Math.round(((qm.priorities[queues[i]]/totalPriority) * number));
-			if (num < qm.queues[queues[i]].countQueuedUnits()){
-				var cnt = 0;
-				for ( var j = 0; cnt < num; j++) {
-					cnt += qm.queues[queues[i]].queue[j].number;
-					needs.add(qm.queues[queues[i]].queue[j].getCost());
-					number -= qm.queues[queues[i]].queue[j].number;
-				}
-			}else{
-				for ( var j = 0; j < qm.queues[queues[i]].length(); j++) {
-					needs.add(qm.queues[queues[i]].queue[j].getCost());
-					number -= qm.queues[queues[i]].queue[j].number;
-				}
-				queues.splice(i, 1);
-				i--;
-			}
-		}
-		// Check that more items were selected this call and that there are plans left to be allocated
-		// Also there is a fail-safe max depth 
-		if (queues.length > 0 && number > 0 && depth < 20){
-			needs.add(recurse(queues, qm, number, depth + 1));
-		}
-		return needs;
-	};
-	
-	//number of plans to look at
-	var current = this.getAvailableResources(gameState, true);
-
-	var futureNum = 20;
-	var queues = [];
-	for (var q in this.queues){
-		queues.push(q);
-	}
-	var needs = recurse(queues, this, futureNum, 0);
-	
-	if (EcoManager === false) {
-		return {
-			"food" : Math.max(needs.food - current.food, 0),
-			"wood" : Math.max(needs.wood + 15*needs.population - current.wood, 0),
-			"stone" : Math.max(needs.stone - current.stone, 0),
-			"metal" : Math.max(needs.metal - current.metal, 0)
-		};
-	} else {
-		// Return predicted values minus the current stockpiles along with a base rater for all resources
-		return {
-			"food" : Math.max(needs.food - current.food, 0) + EcoManager.baseNeed["food"],
-			"wood" : Math.max(needs.wood + 15*needs.population - current.wood, 0) + EcoManager.baseNeed["wood"], //TODO: read the house cost in case it changes in the future
-			"stone" : Math.max(needs.stone - current.stone, 0) + EcoManager.baseNeed["stone"],
-			"metal" : Math.max(needs.metal - current.metal, 0) + EcoManager.baseNeed["metal"]
-		};
-	}*/
 	var needs = new Resources();
 	// get ouy current resources, not removing accounts.
 	var current = this.getAvailableResources(gameState, true);
@@ -117,7 +53,7 @@ QueueManager.prototype.futureNeeds = function(gameState, EcoManager) {
 	{
 		var name = this.queueArrays[i][0];
 		var queue = this.queueArrays[i][1];
-		for (var j = 0; j < Math.min(3,queue.length()); ++j)
+		for (var j = 0; j < Math.min(2,queue.length()); ++j)
 		{
 			needs.add(queue.queue[j].getCost());
 		}
@@ -223,45 +159,55 @@ QueueManager.prototype.update = function(gameState) {
 	}
 	
 	var availableRes = this.getAvailableResources(gameState);
-	// assign some accounts to queues. This is done by priority, and by need. Note that this currently only looks at the next element.
+	// assign some accounts to queues. This is done by priority, and by need.
 	for (ress in availableRes)
 	{
 		if (availableRes[ress] > 0 && ress != "population")
 		{
 			var totalPriority = 0;
+			var tempPrio = {};
+			var maxNeed = {};
 			// Okay so this is where it gets complicated.
-			// If a queue requires "ress" for the next element (in the queue or the outqueue)
-			// And the account is not high enough for it (multiplied by queue length... Might be bad, might not be).
+			// If a queue requires "ress" for the next elements (in the queue or the outqueue)
+			// And the account is not high enough for it.
 			// Then we add it to the total priority.
-			// (sorry about readability... Those big 'ifs' basically check if there is a need in the inqueue/outqueue
+			// To try and be clever, we don't want a long queue to hog all resources. So two things:
+			//	-if a queue has enough of resource X for the 1st element, its priority is decreased (/2).
+			//	-queues accounts are capped at "resources for the first + 80% of the next"
+			// This avoids getting a high priority queue with many elements hogging all of one resource
+			// uselessly while it awaits for other resources.
 			for (j in this.queues) {
-				if ((this.queues[j].length() > 0 && this.queues[j].getNext().getCost()[ress] > 0)
-					|| (this.queues[j].outQueueLength() > 0 && this.queues[j].outQueueNext().getCost()[ress] > 0))
-					if ( (this.queues[j].length() && this.accounts[j][ress] < this.queues[j].length() * (this.queues[j].getNext().getCost()[ress]))
-						|| (this.queues[j].outQueueLength() && this.accounts[j][ress] < this.queues[j].outQueueLength() * (this.queues[j].outQueueNext().getCost()[ress])))
-						totalPriority += this.priorities[j];
-			}
-			// Now we allow resources to the accounts. We can at most allow "priority/totalpriority*available"
-			// But we'll sometimes allow less if that would overflow.
-			for (j in this.queues) {
-				if ((this.queues[j].length() > 0 && this.queues[j].getNext().getCost()[ress] > 0)
-					|| (this.queues[j].outQueueLength() > 0 && this.queues[j].outQueueNext().getCost()[ress] > 0))
+				var outQueueCost = this.queues[j].outQueueCost();
+				var queueCost = this.queues[j].queueCost();
+				if (this.accounts[j][ress] < queueCost[ress] + outQueueCost[ress])
 				{
-					// we'll add at much what can be allowed to this queue.
-					var toAdd = Math.floor(this.priorities[j]/totalPriority * availableRes[ress]);
-					
-					var maxNeed = 0;
-					if (this.queues[j].length())
-						for (var y = 0; y < Math.min(3,this.queues[j].length()); ++y)
-							maxNeed += this.queues[j].queue[y].getCost()[ress];
-					if (this.queues[j].outQueueLength())
-						for (var y = 0; y < this.queues[j].outQueueLength(); ++y)
-							maxNeed += this.queues[j].outQueue[y].getCost()[ress];
-					if (toAdd + this.accounts[j][ress] > maxNeed)
-						toAdd = maxNeed - this.accounts[j][ress];	// always inferior to the original level.
-					//debug ("Adding " + toAdd + " of " + ress + " to the account of " + j);
-					this.accounts[j][ress] += toAdd;
+					// adding us to the list of queues that need an update.
+					tempPrio[j] = this.priorities[j];
+					maxNeed[j] = outQueueCost[ress] + this.queues[j].getNext().getCost()[ress];
+					// if we have enough of that resource for the outqueue and our first resource in the queue, diminish our priority.
+					if (this.accounts[j][ress] >= outQueueCost[ress] + this.queues[j].getNext().getCost()[ress])
+					{
+						tempPrio[j] /= 2;
+						if (this.queues[j].length() !== 1)
+						{
+							var halfcost = this.queues[j].queue[1].getCost()[ress]*0.8;
+							maxNeed[j] += halfcost;
+							if (this.accounts[j][ress] >= outQueueCost[ress] + this.queues[j].getNext().getCost()[ress] + halfcost)
+								delete tempPrio[j];
+						}
+					}
+					if (tempPrio[j])
+						totalPriority += tempPrio[j];
 				}
+			}
+			// Now we allow resources to the accounts. We can at most allow "TempPriority/totalpriority*available"
+			// But we'll sometimes allow less if that would overflow.
+			for (j in tempPrio) {
+				// we'll add at much what can be allowed to this queue.
+				var toAdd = Math.floor(tempPrio[j]/totalPriority * availableRes[ress]);
+				// let's check we're not adding too much.
+				var maxAdd = Math.min(maxNeed[j] - this.accounts[j][ress], toAdd);
+				this.accounts[j][ress] += maxAdd;
 			}
 		}
 	}

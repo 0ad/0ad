@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="maur_elephant_asian_hero">
+      <mesh>skeletal/maur_elephant_hero.dae</mesh>
+      <textures>
+        <texture file="skeletal/maur_elephant_hero.png" name="baseTex"/>
+        <texture file="skeletal/maur_elephant_hero_spec.png" name="specTex"/>
+<texture file="skeletal/maur_elephant_hero_normal.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

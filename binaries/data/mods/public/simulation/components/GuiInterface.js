@@ -261,7 +261,9 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"max": cmpResourceSupply.GetMaxAmount(),
 			"amount": cmpResourceSupply.GetCurrentAmount(),
 			"type": cmpResourceSupply.GetType(),
-			"killBeforeGather": cmpResourceSupply.GetKillBeforeGather()
+			"killBeforeGather": cmpResourceSupply.GetKillBeforeGather(),
+			"maxGatherers": cmpResourceSupply.GetMaxGatherers(),
+			"gatherers": cmpResourceSupply.GetGatherers()
 		};
 	}
 

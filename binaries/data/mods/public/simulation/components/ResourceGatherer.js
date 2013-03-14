@@ -128,7 +128,9 @@ ResourceGatherer.prototype.GetLastCarriedType = function()
 ResourceGatherer.prototype.GetGatherRates = function()
 {
 	var ret = {};
-	var baseSpeed = ApplyTechModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity);
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	
+	var baseSpeed = ApplyTechModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity) * cmpPlayer.GetGatherRateMultiplier();
 
 	for (var r in this.template.Rates)
 	{
