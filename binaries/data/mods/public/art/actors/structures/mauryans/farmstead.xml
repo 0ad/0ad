@@ -17,5 +17,18 @@
 	  </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/mauryans/farmstead_prop_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/mauryans/farmstead_prop_b.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/hay_cart.xml" attachpoint="cart"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
