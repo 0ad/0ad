@@ -54,7 +54,9 @@ public:
 
 	~CSoundManagerWorker()
 	{
-
+		delete m_Items;
+		CleanupItems();
+		delete m_DeadItems;
 	}
 
 	/**
@@ -283,6 +285,11 @@ CSoundManager::~CSoundManager()
 {	
 	if (m_Worker->Shutdown())
 		delete m_Worker;
+
+	delete m_ItemsMap;
+	
+	if ( m_ALSourceBuffer != NULL )
+		delete[] m_ALSourceBuffer;
 
 	alcDestroyContext(m_Context);
 	alcCloseDevice(m_Device);
