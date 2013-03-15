@@ -2584,6 +2584,15 @@ UnitAI.prototype.OnDestroy = function()
 	// Clean up any timers that are now obsolete
 	this.StopTimer();
 
+	// clear up the ResourceSupply gatherer count.
+	if (this.gatheringTarget)
+	{
+		var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+		if (cmpSupply)
+			cmpSupply.RemoveGatherer(this.entity);
+		delete this.gatheringTarget;
+	}
+	
 	// Clean up range queries
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.losRangeQuery)
