@@ -20,6 +20,7 @@
 #include "ParticleEmitter.h"
 
 #include "graphics/LightEnv.h"
+#include "graphics/LOSTexture.h"
 #include "graphics/ParticleEmitterType.h"
 #include "graphics/ParticleManager.h"
 #include "graphics/TextureManager.h"
@@ -165,9 +166,16 @@ void CParticleEmitter::UpdateArrayData()
 
 void CParticleEmitter::Bind(const CShaderProgramPtr& shader)
 {
+	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
+	shader->BindTexture("losTex", los.GetTextureSmooth());
+	shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+	
+	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+	shader->Uniform("sunColor", lightEnv.m_SunColor);
+	shader->Uniform("fogColor", lightEnv.m_FogColor);
+	shader->Uniform("fogParams", lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
+
 	shader->BindTexture("baseTex", m_Type->m_Texture);
-	shader->Uniform("fogColor", g_Renderer.GetLightEnv().m_FogColor);
-	shader->Uniform("fogParams", g_Renderer.GetLightEnv().m_FogFactor, g_Renderer.GetLightEnv().m_FogMax, 0.f, 0.f);
 	pglBlendEquationEXT(m_Type->m_BlendEquation);
 	glBlendFunc(m_Type->m_BlendFuncSrc, m_Type->m_BlendFuncDst);
 }

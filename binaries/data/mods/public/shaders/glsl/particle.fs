@@ -1,10 +1,13 @@
 #version 110
 
 uniform sampler2D baseTex;
+uniform sampler2D losTex;
 
 varying vec2 v_tex;
+varying vec2 v_los;
 varying vec4 v_color;
 
+uniform vec3 sunColor;
 uniform vec3 fogColor;
 uniform vec2 fogParams;
 
@@ -26,5 +29,11 @@ vec4 get_fog(vec4 color)
 
 void main()
 {
-	gl_FragColor = get_fog(texture2D(baseTex, v_tex) * v_color);
+	vec4 color = texture2D(baseTex, v_tex) * vec4((v_color.rgb + sunColor)/2.0,v_color.a);
+	
+    float los = texture2D(losTex, v_los).a;
+    los = los < 0.03 ? 0.0 : los;
+    color.rgb *= los;
+
+	gl_FragColor = get_fog(color);
 }
