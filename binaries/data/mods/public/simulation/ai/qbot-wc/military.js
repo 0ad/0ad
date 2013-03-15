@@ -452,7 +452,7 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 		if (queues.militaryBuilding.totalLength() < 1)
 			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
 	
-	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) < 3 && workersNumber > 125)
+	if (gameState.countEntitiesByType(gameState.applyCiv(this.bModerate[0])) === 2  && gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) < 3 && workersNumber > 125)
 		if (queues.militaryBuilding.totalLength() < 1)
 		{
 			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
@@ -703,7 +703,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 					// wait till we get a dock.
 			} else {
 				// basically only the first plan, really.
-				if (this.upcomingAttacks["CityAttack"].length == 0 && (gameState.getTimeElapsed() < 12*60000 || Config.difficulty < 2)) {
+				if (this.upcomingAttacks["CityAttack"].length == 0 && (gameState.getTimeElapsed() < 12*60000 || Config.difficulty < 1)) {
 					var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1);
 					if (Lalala.failed)
 					{

@@ -68,10 +68,10 @@ QueueManager.prototype.futureNeeds = function(gameState, EcoManager) {
 	} else {
 		// Return predicted values minus the current stockpiles along with a base rater for all resources
 		return {
-			"food" : Math.max(needs.food - current.food, 0) + EcoManager.baseNeed["food"],
-			"wood" : Math.max(needs.wood - current.wood, 0) + EcoManager.baseNeed["wood"],
-			"stone" : Math.max(needs.stone - current.stone, 0) + EcoManager.baseNeed["stone"],
-			"metal" : Math.max(needs.metal - current.metal, 0) + EcoManager.baseNeed["metal"]
+			"food" : (Math.max(needs.food - current.food, 0) + EcoManager.baseNeed["food"])/2,
+			"wood" : (Math.max(needs.wood - current.wood, 0) + EcoManager.baseNeed["wood"])/2,
+			"stone" : (Math.max(needs.stone - current.stone, 0) + EcoManager.baseNeed["stone"])/2,
+			"metal" : (Math.max(needs.metal - current.metal, 0) + EcoManager.baseNeed["metal"])/2
 		};
 	}
 };
@@ -139,7 +139,7 @@ QueueManager.prototype.update = function(gameState) {
 	
 	// TODO: this only pushes the first object. SHould probably try to push any possible object to maximize productivity. Perhaps a settinh?
 	// looking at queues in decreasing priorities and pushing to the current item queues.
-	for (i in this.queueArrays)
+	for (var i in this.queueArrays)
 	{
 		var name = this.queueArrays[i][0];
 		var queue = this.queueArrays[i][1];
@@ -220,34 +220,28 @@ QueueManager.prototype.update = function(gameState) {
 	for (var p in this.queueArrays) {
 		var name = this.queueArrays[p][0];
 		var queue = this.queueArrays[p][1];
-		while (queue.outQueueLength() > 0) {
-			var next = queue.outQueueNext();
-			if (next.category === "building") {
-				if (gameState.buildingsBuilt == 0) {
-					if (next.canExecute(gameState)) {
-						this.accounts[name].subtract(next.getCost())
-						//debug ("Starting " + next.type + " substracted " + uneval(next.getCost()))
-						queue.executeNext(gameState);
-						gameState.buildingsBuilt += 1;
-					} else {
-						break;
-					}
-				} else {
-					break;
-				}
-			} else {
-				if (units_Techs_passed < 2 && queue.outQueueNext().canExecute(gameState)){
-					//debug ("Starting " + next.type + " substracted " + uneval(next.getCost()))
+		var next = queue.outQueueNext();
+		if (!next)
+			continue;
+		if (next.category === "building") {
+			if (gameState.buildingsBuilt == 0) {
+				if (next.canExecute(gameState)) {
 					this.accounts[name].subtract(next.getCost())
+					//debug ("Starting " + next.type + " substracted " + uneval(next.getCost()))
 					queue.executeNext(gameState);
-					units_Techs_passed++;
-				} else {
-					break;
+					gameState.buildingsBuilt += 1;
 				}
+			}
+		} else {
+			if (units_Techs_passed < 2 && queue.outQueueNext().canExecute(gameState)){
+				//debug ("Starting " + next.type + " substracted " + uneval(next.getCost()))
+				this.accounts[name].subtract(next.getCost())
+				queue.executeNext(gameState);
+				units_Techs_passed++;
 			}
 		}
 		if (units_Techs_passed >= 2)
-			break;
+			continue;
 	}
 	Engine.ProfileStop();
 	Engine.ProfileStop();
@@ -290,8 +284,6 @@ QueueManager.prototype.changePriority = function(queueName, newPriority) {
 		this.priorities[queueName] = newPriority;
 	this.queueArrays = [];
 	for (var p in this.queues) {
-		this.account[p] = 0;
-		this.accounts[p] = new Resources();
 		this.queueArrays.push([p,this.queues[p]]);
 	}
 	this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });

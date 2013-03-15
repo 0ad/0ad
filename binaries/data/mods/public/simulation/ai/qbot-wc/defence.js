@@ -471,7 +471,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 		militaryManager.ungarrisonAll(gameState);
 	}*/
 	
-	// A little sorting to target sieges first.
+	// A little sorting to target sieges/champions first.
 	newEnemies.sort (function (a,b) {
 		var vala = 1;
 		var valb = 1;
@@ -504,8 +504,6 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 			return;
 		
 		// We'll sort through our units that can legitimately attack.
-		// Sorting is done by distance, and if the unit counters the attacker it's "assumed" it's a little closer.
-		// We also prefer units from attack plans as this will hurt our eco less, and it's fair to assume they're stronger.
 		var data = [];
 		for (var id in nonDefenders._entities)
 		{
@@ -513,26 +511,32 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 			if (ent.position())
 				data.push([id, ent, SquareVectorDistance(enemy.position(), ent.position())]);
 		}
-		// refine the defenders we want.
+		// refine the defenders we want. Since it's the distance squared, it has the effect
+		// of tending to always prefer closer units, though this refinement should change it slighty.
 		data.sort(function (a, b) {
 			var vala = a[2];
 			var valb = b[2];
+			
+			// don't defend with siege units unless enemy is also a siege unit.
 			if (a[1].hasClass("Siege") && !enemy.hasClass("Siege"))
-				vala *= 4;
+				  vala *= 9;
 			if (b[1].hasClass("Siege") && !enemy.hasClass("Siege"))
-				valb *= 4;
+				valb *= 9;
+			// If it's a siege unit, We basically ignore units that only deal pierce damage.
 			if (enemy.hasClass("Siege") && a[1].attackStrengths("Melee") !== undefined)
 				vala /= (a[1].attackStrengths("Melee")["hack"] + a[1].attackStrengths("Melee")["crush"]);
 			if (enemy.hasClass("Siege") && b[1].attackStrengths("Melee") !== undefined)
 				valb /= (b[1].attackStrengths("Melee")["hack"] + b[1].attackStrengths("Melee")["crush"]);
+			// If it's a counter, it's better.
 			if (a[1].countersClasses(b[1].classes()))
-				vala *= 0.8;
+				vala *= 0.1;	// quite low but remember it's squared distance.
 			if (b[1].countersClasses(a[1].classes()))
-				valb *= 0.8;
-			if (a[1].getMetadata(PlayerID,"plan") != undefined)
-				vala *= 0.6;
-			if (b[1].getMetadata(PlayerID,"plan") != undefined)
-				valb *= 0.6;
+				valb *= 0.1;
+			// If the unit is idle, we prefer. ALso if attack plan.
+			if ((a[1].isIdle() || a[1].getMetadata(PlayerID, "plan") !== undefined) && !a[1].hasClass("Siege"))
+				vala *= 0.15;
+			if ((b[1].isIdle() || b[1].getMetadata(PlayerID, "plan") !== undefined) && !b[1].hasClass("Siege"))
+				valb *= 0.15;
 			return (vala - valb); });
 
 		var ret = {};
@@ -543,7 +547,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 
 		// successfully sorted
 		defs.forEach(function (defender) { //}){
-			if (defender.getMetadata(PlayerID, "plan") != undefined && gameState.defcon() < 4)
+			if (defender.getMetadata(PlayerID, "plan") != undefined && (gameState.defcon() < 4 || defender.getMetadata(PlayerID,"subrole") == "walking"))
 				militaryManager.pausePlan(gameState, defender.getMetadata(PlayerID, "plan"));
 			//debug ("Against " +enemy.id() + " Assigning " + defender.id());
 			if (defender.getMetadata(PlayerID, "role") == "worker" || defender.getMetadata(PlayerID, "role") == "attack")

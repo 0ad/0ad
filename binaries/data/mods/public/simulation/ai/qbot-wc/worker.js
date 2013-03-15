@@ -28,7 +28,7 @@ Worker.prototype.update = function(gameState) {
 				Engine.ProfileStart("Start Gathering");
 				this.startGathering(gameState);
 				Engine.ProfileStop();
-			} else if (this.ent.unitAIState().split(".")[1] !== "RETURNRESOURCE") {
+			} else {
 				// Should deposit resources
 				Engine.ProfileStart("Return Resources");
 				if (!this.returnResources(gameState))
