@@ -5,13 +5,12 @@
     <variant name="house a struct c">
       <mesh>structural/maur_house_c_struct_b.dae</mesh>
       <textures>
-	  <texture file="structural/maur_struct_b.png" name="baseTex"/>
-	  	  	<texture file="structural/maur_struct_b_spec.png" name="specTex"/>
-	<texture file="structural/maur_struct_b_norm.png" name="normTex"/>
-	  
-	  
+		<texture file="structural/maur_struct_b.png" name="baseTex"/>
+		<texture file="structural/maur_struct_b_spec.png" name="specTex"/>
+		<texture file="structural/maur_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/ao/maur_house_c_ao.png" name="aoTex"/>
 	  </textures>
     </variant>
   </group>
-<material>player_trans_parallax_spec.xml</material>
+<material>player_trans_ao_parallax_spec.xml</material>
 </actor>
