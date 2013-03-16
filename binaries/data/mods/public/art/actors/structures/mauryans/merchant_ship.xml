@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Mauryan Merchant">
+      <animations>
+      </animations>
+      <mesh>structural/maur_merchant.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a1"/>
+		<prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a2"/>
+		<prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a3"/>
+		<prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a004"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Blue Eye">
+      <textures>
+	  <texture file="structural/maur_bireme.png" name="baseTex"/>
+	 </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
