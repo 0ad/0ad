@@ -365,9 +365,9 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 		// Thus I will not do everything at once.
 		// It will probably carry over a few turns but that's no issue.
 		if (this.path === undefined)
-			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, this.pathSampling, this.pathWidth,250,gameState);
+			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, this.pathSampling, this.pathWidth,250);//,gameState);
 		else if (this.path === "toBeContinued")
-			this.path = this.pathFinder.continuePath(gameState);
+			this.path = this.pathFinder.continuePath();//gameState);
 		
 		if (this.path === undefined) {
 			if (this.pathWidth == 6)
