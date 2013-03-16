@@ -1193,6 +1193,7 @@ bool Autostart(const CmdLineArgs& args)
 			CStr name = aiArgs[i].AfterFirst(":");
 
 			scriptInterface.SetProperty(player.get(), "AI", std::string(name));
+			scriptInterface.SetProperty(player.get(), "AIDiff", 2);
 			scriptInterface.SetPropertyInt(playerData.get(), playerID-1, player);
 		}
 	}

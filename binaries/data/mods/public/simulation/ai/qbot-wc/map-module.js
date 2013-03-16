@@ -52,8 +52,8 @@ Map.createObstructionMap = function(gameState, template){
 	
 	if (placementType == "shore")
 	{
-		// assume Dock, TODO.
-		var obstructionTiles = new Uint16Array(passabilityMap.data.length);
+		// TODO: this won't change much, should be cached, it's slow.
+		var obstructionTiles = new Uint8Array(passabilityMap.data.length);
 		var okay = false;
 		for (var x = 0; x < passabilityMap.width; ++x)
 		{
@@ -97,13 +97,13 @@ Map.createObstructionMap = function(gameState, template){
 					okay = false;
 				if ((passabilityMap.data[i] & (gameState.getPassabilityClassMask("building-shore") | gameState.getPassabilityClassMask("default"))))
 					okay = false;
-				obstructionTiles[i] = okay ? 65535 : 0;
+				obstructionTiles[i] = okay ? 255 : 0;
 			}
 		}
 	} else {
 		var playerID = PlayerID;
 		
-		var obstructionTiles = new Uint16Array(passabilityMap.data.length);
+		var obstructionTiles = new Uint8Array(passabilityMap.data.length);
 		for (var i = 0; i < passabilityMap.data.length; ++i)
 		{
 			var tilePlayer = (territoryMap.data[i] & TERRITORY_PLAYER_MASK);
@@ -116,7 +116,7 @@ Map.createObstructionMap = function(gameState, template){
 			var tileAccessible = (gameState.ai.myIndex === gameState.ai.accessibility.passMap[i]);
 			if (placementType === "shore")
 				tileAccessible = true;
-			obstructionTiles[i] = (!tileAccessible || invalidTerritory || (passabilityMap.data[i] & obstructionMask)) ? 0 : 65535;
+			obstructionTiles[i] = (!tileAccessible || invalidTerritory || (passabilityMap.data[i] & obstructionMask)) ? 0 : 255;
 		}
 	}
 		
@@ -131,7 +131,7 @@ Map.createObstructionMap = function(gameState, template){
 					var pos = ent.position();
 					var x = Math.round(pos[0] / gameState.cellSize);
 					var z = Math.round(pos[1] / gameState.cellSize);
-					map.addInfluence(x, z, minDist/gameState.cellSize, -65535, 'constant');
+					map.addInfluence(x, z, minDist/gameState.cellSize, -255, 'constant');
 				}
 			});
 		}
@@ -303,17 +303,16 @@ Map.prototype.sumInfluence = function(cx, cy, radius){
 
 /**
  * Make each cell's 16-bit value at least one greater than each of its
- * neighbours' values. (If the grid is initialised with 0s and 65535s, the
+ * neighbours' values. (If the grid is initialised with 0s and 65535s or 255s, the
  * result of each cell is its Manhattan distance to the nearest 0.)
- * 
- * TODO: maybe this should be 8-bit (and clamp at 255)?
  */
-Map.prototype.expandInfluences = function() {
+Map.prototype.expandInfluences = function(minVal) {
+	var minValue = minVal ? minVal : 65535;
 	var w = this.width;
 	var h = this.height;
 	var grid = this.map;
 	for ( var y = 0; y < h; ++y) {
-		var min = 65535;
+		var min = minValue;
 		for ( var x = 0; x < w; ++x) {
 			var g = grid[x + y * w];
 			if (g > min)
@@ -334,7 +333,7 @@ Map.prototype.expandInfluences = function() {
 	}
 
 	for ( var x = 0; x < w; ++x) {
-		var min = 65535;
+		var min = minValue;
 		for ( var y = 0; y < h; ++y) {
 			var g = grid[x + y * w];
 			if (g > min)

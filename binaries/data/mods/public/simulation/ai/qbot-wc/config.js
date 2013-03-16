@@ -50,8 +50,8 @@ var baseConfig = {
 	// qbot
 	"priorities" : {  // Note these are dynamic, you are only setting the initial values
 		"house" : 200,
-		"citizenSoldier" : 65,
-		"villager" : 60,
+		"citizenSoldier" : 70,
+		"villager" : 55,
 		"economicBuilding" : 70,
 		"dropsites" : 120,
 		"field" : 1000,
@@ -72,7 +72,7 @@ var Config = {
 	{
 		Config.difficulty = difficulty;
 		// changing settings based on difficulty.
-		if (Config.difficulty === 1)
+		if (Config.difficulty === 1 && 0)	// deactivated for the time being. Medium is basic mode.
 		{
 			Config["Military"] = {
 				"fortressLapseTime" : 900,

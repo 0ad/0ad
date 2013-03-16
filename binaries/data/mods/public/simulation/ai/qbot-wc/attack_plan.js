@@ -43,7 +43,7 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	
 	this.maxPreparationTime = 210*1000;
 	// in this case we want to have the attack ready by the 13th minute. Countdown. Minimum 2 minutes.
-	if (type !== "superSized" && Config.difficulty >= 2)
+	if (type !== "superSized" && Config.difficulty >= 1)
 		this.maxPreparationTime = 780000 - gameState.getTimeElapsed() < 120000 ? 120000 : 780000 - gameState.getTimeElapsed();
 	
 	this.pausingStart = 0;
@@ -80,29 +80,31 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	} else if (type === "superSized") {
 		// our first attack has started worst case at the 14th minute, we want to attack another time by the 21th minute, so we rock 6.5 minutes
 		this.maxPreparationTime = 480000;
-		this.unitStat["RangedInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 10, "batchSize" : 5, "classes" : ["Infantry","Ranged", "CitizenSoldier"],
+		this.unitStat["RangedInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 20, "batchSize" : 5, "classes" : ["Infantry","Ranged", "CitizenSoldier"],
 			"interests" : [["strength",3], ["cost",1] ], "templates" : [] };
-		this.unitStat["MeleeInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 10, "batchSize" : 5, "classes" : ["Infantry","Melee", "CitizenSoldier" ],
+		this.unitStat["MeleeInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 20, "batchSize" : 5, "classes" : ["Infantry","Melee", "CitizenSoldier" ],
 			"interests" : [ ["strength",3], ["cost",1] ], "templates" : [] };
 		this.unitStat["ChampRangedInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 15, "batchSize" : 5, "classes" : ["Infantry","Ranged", "Champion"],
 			"interests" : [["strength",3], ["cost",1] ], "templates" : [] };
 		this.unitStat["ChampMeleeInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 15, "batchSize" : 5, "classes" : ["Infantry","Melee", "Champion" ],
 			"interests" : [ ["strength",3], ["cost",1] ], "templates" : [] };
-		this.unitStat["MeleeCavalry"] = { "priority" : 1, "minSize" : 3, "targetSize" : 10, "batchSize" : 3, "classes" : ["Cavalry","Melee", "CitizenSoldier" ],
+		this.unitStat["MeleeCavalry"] = { "priority" : 1, "minSize" : 3, "targetSize" : 18, "batchSize" : 3, "classes" : ["Cavalry","Melee", "CitizenSoldier" ],
 			"interests" : [ ["strength",2], ["cost",1] ], "templates" : [] };
-		this.unitStat["RangedCavalry"] = { "priority" : 1, "minSize" : 3, "targetSize" : 10 , "batchSize" : 3, "classes" : ["Cavalry","Ranged", "CitizenSoldier"],
+		this.unitStat["RangedCavalry"] = { "priority" : 1, "minSize" : 3, "targetSize" : 18 , "batchSize" : 3, "classes" : ["Cavalry","Ranged", "CitizenSoldier"],
 			"interests" : [ ["strength",2], ["cost",1] ], "templates" : [] };
-		this.unitStat["ChampMeleeInfantry"] = { "priority" : 0.8, "minSize" : 3, "targetSize" : 9, "batchSize" : 3, "classes" : ["Infantry","Melee", "Champion" ],
+		this.unitStat["ChampMeleeInfantry"] = { "priority" : 0.8, "minSize" : 3, "targetSize" : 12, "batchSize" : 3, "classes" : ["Infantry","Melee", "Champion" ],
 			"interests" : [ ["strength",3], ["cost",1] ], "templates" : [] };
-		this.unitStat["ChampMeleeCavalry"] = { "priority" : 0.8, "minSize" : 3, "targetSize" : 9, "batchSize" : 3, "classes" : ["Cavalry","Melee", "Champion" ],
+		this.unitStat["ChampMeleeCavalry"] = { "priority" : 0.8, "minSize" : 3, "targetSize" : 12, "batchSize" : 3, "classes" : ["Cavalry","Melee", "Champion" ],
 			"interests" : [ ["strength",2], ["cost",1] ], "templates" : [] };
 
 		priority = 70;
 	}
 
+	// TODO: there should probably be one queue per type of training building
 	gameState.ai.queueManager.addQueue("plan_" + this.name, priority);
 	this.queue = gameState.ai.queues["plan_" + this.name];
-
+	gameState.ai.queueManager.addQueue("plan_" + this.name +"_champ", priority);
+	this.queueChamp = gameState.ai.queues["plan_" + this.name +"_champ"];
 	/*
 	this.unitStat["Siege"]["filter"] = function (ent) {
 		var strength = [ent.attackStrengths("Melee")["crush"],ent.attackStrengths("Ranged")["crush"]];
@@ -181,8 +183,11 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 		// make this our rallypoint
 		for (i in myFortresses._entities)
 		{
-			this.rallyPoint = myFortresses._entities[i].position();
-			break;
+			if (myFortresses._entities[i].position())
+			{
+				this.rallyPoint = myFortresses._entities[i].position();
+				break;
+			}
 		}
 	} else {
 		
@@ -306,8 +311,11 @@ CityAttack.prototype.addBuildOrder = function(gameState, name, unitStats, resetQ
 		this.unit[name] = gameState.getOwnEntities().filter(filter);
 		this.unit[name].registerUpdates();
 		this.buildOrder.push([0, Unit["classes"], this.unit[name], Unit, name]);
-		if (resetQueue && this.queue.length())
+		if (resetQueue)
+		{
 			this.queue.empty();
+			this.queueChamp.empty();
+		}
 	}
 };
 
@@ -331,6 +339,7 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 				var index = 0;
 				for (i in targets._entities)
 				{
+					// we're sure it has a position has TargetFinder already checks that.
 					var dist = SquareVectorDistance(targets._entities[i].position(), this.rallyPoint);
 					if (dist < maxDist)
 					{
@@ -417,10 +426,13 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 				{
 					// if we're suddenly out of our territory or this is the point where we change transportation method.
 					if (i !== 0)
+					{
 						this.rallyPoint = this.path[i-1][0];
-					else
+					} else
 						this.rallyPoint = this.path[0][0];
 					break;
+					if (i > 1)
+						this.path.splice(0,i-2);
 				}
 			}
 		}
@@ -432,16 +444,16 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 	if ((gameState.getPopulationMax() - gameState.getPopulation() < 10) && this.canStart())
 	{
 		this.assignUnits(gameState);
-		if (this.queue.length())
-			this.queue.empty();
+		this.queue.empty();
+		this.queueChamp.empty();
 		if ( gameState.ai.playedTurn % 5 == 0)
 			this.AllToRallyPoint(gameState, false);
 	} else if (this.mustStart(gameState) && (gameState.countOwnQueuedEntitiesWithMetadata("plan", +this.name) > 0)) {
 		// keep on while the units finish being trained, then we'll start
 		this.assignUnits(gameState);
 		
-		if (this.queue.length())
-			this.queue.empty();
+		this.queue.empty();
+		this.queueChamp.empty();
 
 		if (gameState.ai.playedTurn % 5 == 0) {
 			this.AllToRallyPoint(gameState, false);
@@ -458,10 +470,12 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 		this.buildOrder.sort(function (a,b) { //}) {
 			var aQueued = gameState.countOwnQueuedEntitiesWithMetadata("special","Plan_"+self.name+"_"+a[4]);
 			aQueued += self.queue.countTotalQueuedUnitsWithMetadata("special","Plan_"+self.name+"_"+a[4]);
+			aQueued += self.queueChamp.countTotalQueuedUnitsWithMetadata("special","Plan_"+self.name+"_"+a[4]);
 			a[0] = (a[2].length + aQueued)/a[3]["targetSize"];
 							 
 			var bQueued = gameState.countOwnQueuedEntitiesWithMetadata("special","Plan_"+self.name+"_"+b[4]);
 			bQueued += self.queue.countTotalQueuedUnitsWithMetadata("special","Plan_"+self.name+"_"+b[4]);
+			bQueued += self.queueChamp.countTotalQueuedUnitsWithMetadata("special","Plan_"+self.name+"_"+b[4]);
 			b[0] = (b[2].length + bQueued)/b[3]["targetSize"];
 							 
 			a[0] -= a[3]["priority"];
@@ -482,9 +496,15 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 		var specialData = "Plan_"+this.name+"_"+this.buildOrder[0][4];
 		var inTraining = gameState.countOwnQueuedEntitiesWithMetadata("special",specialData);
 				
-		if (this.queue.countTotalQueuedUnitsWithMetadata("special",specialData) + inTraining + this.buildOrder[0][2].length <= this.buildOrder[0][3]["targetSize"]) {
-			if (this.buildOrder[0][0] < 1 && this.queue.length() <= 4) {
-
+		var queued = this.queue.countTotalQueuedUnitsWithMetadata("special",specialData) + this.queueChamp.countTotalQueuedUnitsWithMetadata("special",specialData)
+		
+		if (queued + inTraining + this.buildOrder[0][2].length <= this.buildOrder[0][3]["targetSize"]) {
+			// find the actual queue we want
+			var queue = this.queue;
+			if (this.buildOrder[0][3]["classes"].indexOf("Champion") !== -1)
+				queue = this.queueChamp;
+			
+			if (this.buildOrder[0][0] < 1 && queue.length() <= 5) {
 				var template = militaryManager.findBestTrainableUnit(gameState, this.buildOrder[0][1], this.buildOrder[0][3]["interests"] );
 				//debug ("tried " + uneval(this.buildOrder[0][1]) +", and " + template);
 				// HACK (TODO replace) : if we have no trainable template... Then we'll simply remove the buildOrder, effectively removing the unit from the plan.
@@ -500,9 +520,9 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 					if (gameState.getTimeElapsed() > 1800000)
 						max *= 2;
 					if (gameState.getTemplate(template).hasClasses(["CitizenSoldier", "Infantry"]))
-						this.queue.addItem( new UnitTrainingPlan(gameState,template, { "role" : "worker", "plan" : this.name, "special" : specialData }, this.buildOrder[0][3]["batchSize"],max ) );
+						queue.addItem( new UnitTrainingPlan(gameState,template, { "role" : "worker", "plan" : this.name, "special" : specialData }, this.buildOrder[0][3]["batchSize"],max ) );
 					else
-						this.queue.addItem( new UnitTrainingPlan(gameState,template, { "role" : "attack", "plan" : this.name, "special" : specialData }, this.buildOrder[0][3]["batchSize"],max ) );
+						queue.addItem( new UnitTrainingPlan(gameState,template, { "role" : "attack", "plan" : this.name, "special" : specialData }, this.buildOrder[0][3]["batchSize"],max ) );
 				}
 			}
 		}
@@ -664,6 +684,7 @@ CityAttack.prototype.StartAttack = function(gameState, militaryManager){
 	if (this.targetPos && this.path !== undefined) {
 		// erase our queue. This will stop any leftover unit from being trained.
 		gameState.ai.queueManager.removeQueue("plan_" + this.name);
+		gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
 		
 		var curPos = this.unitCollection.getCentrePosition();
 		
@@ -1281,4 +1302,5 @@ CityAttack.prototype.Abort = function(gameState){
 	}
 	delete this.unitCollection;
 	gameState.ai.queueManager.removeQueue("plan_" + this.name);
+	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
 };

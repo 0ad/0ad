@@ -1570,14 +1570,27 @@ var UnitFsmSpec = {
 							this.PerformGather(nearby, false, false);
 							return true;
 						}
-
-						var nearby = this.FindNearestDropsite(oldType.generic);
-						if (nearby)
+						else
 						{
-							this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
-							return true;
+							// It's probably better in this case, to avoid units getting stuck around a dropsite
+							// in a "Target is far away, full, nearby are no good resources, return to dropsite" loop
+							// to order it to GatherNear the resource position.
+							var cmpPosition = Engine.QueryInterface(this.gatheringTarget, IID_Position);
+							if (cmpPosition)
+							{
+								var pos = cmpPosition.GetPosition();
+								this.GatherNearPosition(pos.x, pos.z, oldType, oldTemplate);
+								return true;
+							} else {
+								// we're kind of stuck here. Return resource.
+								var nearby = this.FindNearestDropsite(oldType.generic);
+								if (nearby)
+								{
+									this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
+									return true;
+								}
+							}
 						}
-						
 						return true;
 					}
 					return false;
@@ -2571,6 +2584,15 @@ UnitAI.prototype.OnDestroy = function()
 	// Clean up any timers that are now obsolete
 	this.StopTimer();
 
+	// clear up the ResourceSupply gatherer count.
+	if (this.gatheringTarget)
+	{
+		var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+		if (cmpSupply)
+			cmpSupply.RemoveGatherer(this.entity);
+		delete this.gatheringTarget;
+	}
+	
 	// Clean up range queries
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.losRangeQuery)

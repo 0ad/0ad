@@ -15,13 +15,14 @@
       <props>
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/head_maur_short_hair.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/maur_helmet_metal.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_inf_big_turban.xml" attachpoint="head"/>
       </props>
       <textures>
-        <texture file="skeletal/maur_champion_infantry.png" name="baseTex"/>
-        <texture file="skeletal/maur_champion_infantry_spec.png" name="specTex"/>
+        <texture file="skeletal/maur_hero_chandragupta.png" name="baseTex"/>
+        <texture file="skeletal/maur_hero_chandragupta_spec.png" name="specTex"/>
+<texture file="skeletal/maur_hero_chandragupta_normal.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

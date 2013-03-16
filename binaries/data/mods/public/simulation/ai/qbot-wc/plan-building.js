@@ -70,7 +70,7 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions.png");
 
 	if (template.buildCategory() !== "Dock")
-		obstructionMap.expandInfluences();
+		obstructionMap.expandInfluences(255);
 
 	// Compute each tile's closeness to friendly structures:
 

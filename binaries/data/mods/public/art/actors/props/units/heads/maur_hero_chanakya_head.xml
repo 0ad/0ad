@@ -10,8 +10,9 @@
       <props/>
       <textures>
 <texture file="props/head/maur_hero_chanakya.png" name="baseTex"/>
+<texture file="skeletal/maur_hero_chandragupta_spec.png" name="specTex"/>
 </textures>
     </variant>
   </group>
-
+<material>objectcolor_specmap.xml</material>
 </actor>

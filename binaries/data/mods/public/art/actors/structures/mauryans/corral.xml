@@ -8,10 +8,10 @@
         <prop actor="props/structures/celts/corral_mud.xml" attachpoint="mud"/>
       </props>
       <textures>
-	  <texture file="structural/maur_struct_b.png" name="baseTex"/>
-	  <texture file="structural/maur_struct_b_spec.png" name="specTex"/>
-	  <texture file="structural/maur_struct_b_norm.png" name="normTex"/>
-	  
+        <texture file="structural/maur_struct_b.png" name="baseTex"/>
+        <texture file="structural/maur_struct_b_spec.png" name="specTex"/>
+        <texture file="structural/maur_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/ao/maur_corral_ao.png" name="aoTex"/>
 	  </textures>
     </variant>
   </group>
@@ -22,9 +22,9 @@
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/corral_mud.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

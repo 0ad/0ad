@@ -158,7 +158,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		// Delete creation events
 		delete this.savedEvents;
 		this.savedEvents = [];
-	} else if ((this.turn + this.player) % 10 == 0) {
+	} else if ((this.turn + this.player) % 8 == 5) {
 		
 		Engine.ProfileStart("Aegis bot");
 		
@@ -231,26 +231,28 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		this.queueManager.update(gameState);
 		
 		/*
-		if (this.playedTurn % 80 === 0)
+		if (this.playedTurn % 10 === 0)
 		{
 			// some debug informations about units.
 			var units = gameState.getOwnEntities();
 			for (var i in units._entities)
 			{
 				var ent = units._entities[i];
-				debug ("Unit " + ent.id() + " is a " + ent._templateName);
+				if (!ent.isIdle())
+					continue;
+				warn ("Unit " + ent.id() + " is a " + ent._templateName);
 				if (sharedScript._entityMetadata[PlayerID][ent.id()])
 				{
 					var metadata = sharedScript._entityMetadata[PlayerID][ent.id()];
 					for (j in metadata)
 					{
-						debug ("Metadata " + j);
+						warn ("Metadata " + j);
 						if (typeof(metadata[j]) == "object")
 							warn ("Object");
 						else if (typeof(metadata[j]) == undefined)
 							warn ("Undefined");
 						else
-							warn(metadata[j]);
+							warn(uneval(metadata[j]));
 					}
 				}
 			}
