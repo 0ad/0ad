@@ -7,6 +7,8 @@
 <props>
 <prop actor="props/structures/mauryans/wall_tower_palisade.xml" attachpoint="root"/>
 <prop actor="props/structures/mauryans/wall_tower_struct_b.xml" attachpoint="root"/>
+<prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
 </props>
       <textures>
 <texture file="structural/maur_struct.png" name="baseTex"/>
@@ -18,6 +20,11 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
+<variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_mauryans.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
