@@ -1,18 +1,23 @@
-//This takes the input queues and picks which items to fund with resources until no more resources are left to distribute.
+// This takes the input queues and picks which items to fund with resources until no more resources are left to distribute.
 //
-//In this manager all resources are 'flattened' into a single type=(food+wood+metal+stone+pop*50 (see resources.js))
-//the following refers to this simple as resource
+// Currently this manager keeps accounts for each queue, split between the 4 main resources
 //
-// Each queue has an account which records the amount of resource it can spend.  If no queue has an affordable item
-// then the amount of resource is increased to all accounts in direct proportion to the priority until an item on one
-// of the queues becomes affordable.
+// Each time resources are available (ie not in any account), it is split between the different queues
+// Mostly based on priority of the queue, and existing needs.
+// Each turn, the queue Manager checks if a queue can afford its next item, then it does.
 //
-// A consequence of the system is that a rarely used queue will end up with a very large account.  I am unsure if this
-// is good or bad or neither.
+// A consequence of the system it's not really revertible. Once a queue has an account of 500 food, it'll keep it
+// If for some reason the AI stops getting new food, and this queue lacks, say, wood, no other queues will
+// be able to benefit form the 500 food (even if they only needed food).
+// This is not to annoying as long as all goes well. If the AI loses many workers, it starts being problematic.
 //
-// Each queue object has two queues in it, one with items waiting for resources and the other with items which have been 
-// allocated resources and are due to be executed.  The secondary queues are helpful because then units can be trained
-// in groups of 5 and buildings are built once per turn to avoid placement clashes.
+// It also has the effect of making the AI more or less always sit on a few hundreds resources since most queues
+// get some part of the total, and if all queues have 70% of their needs, nothing gets done
+// Particularly noticeable when phasing: the AI often overshoots by a good 200/300 resources before starting.
+//
+// The fact that there is an outqueue is mostly a relic of qBot.
+//
+// This system should be improved. It's probably not flexible enough.
 
 var QueueManager = function(queues, priorities) {
 	this.queues = queues;

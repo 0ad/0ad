@@ -1,5 +1,6 @@
 /*
  * Used to know which templates I have, which templates I know I can train, things like that.
+ * Mostly unused.
  */
 
 var TemplateManager = function(gameState) {

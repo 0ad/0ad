@@ -1,4 +1,11 @@
-// basically an attack plan. The name is an artifact.
+/* This is an attack plan (despite the name, it's a relic of older times).
+ * It deals with everything in an attack, from picking a target to picking a path to it
+ * To making sure units rae built, and pushing elements to the queue manager otherwise
+ * It also handles the actual attack, though much work is needed on that.
+ * These should be extremely flexible with only minimal work.
+ * There is a basic support for naval expeditions here. 
+ */
+
 function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , targetFinder) {
 	
 	//This is the list of IDs of the units in the plan
@@ -53,10 +60,11 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	this.onArrivalReaction = "proceedOnTargets";
 
 	// priority is relative. If all are 0, the only relevant criteria is "currentsize/targetsize".
-	// if not, this is a "bonus". The higher the priority, the more this unit will get built.
+	// if not, this is a "bonus". The higher the priority, the faster this unit will get built.
 	// Should really be clamped to [0.1-1.5] (assuming 1 is default/the norm)
 	// Eg: if all are priority 1, and the siege is 0.5, the siege units will get built
 	// only once every other category is at least 50% of its target size.
+	// note: siege build order is currently added by the military manager if a fortress is there.
 	this.unitStat = {};
 	this.unitStat["RangedInfantry"] = { "priority" : 1, "minSize" : 4, "targetSize" : 10, "batchSize" : 5, "classes" : ["Infantry","Ranged"],
 		"interests" : [ ["canGather", 2], ["strength",2], ["cost",1] ], "templates" : [] };
@@ -80,6 +88,7 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	} else if (type === "superSized") {
 		// our first attack has started worst case at the 14th minute, we want to attack another time by the 21th minute, so we rock 6.5 minutes
 		this.maxPreparationTime = 480000;
+		// basically we want a mix of citizen soldiers so our barracks have a purpose, and champion units.
 		this.unitStat["RangedInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 20, "batchSize" : 5, "classes" : ["Infantry","Ranged", "CitizenSoldier"],
 			"interests" : [["strength",3], ["cost",1] ], "templates" : [] };
 		this.unitStat["MeleeInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 20, "batchSize" : 5, "classes" : ["Infantry","Melee", "CitizenSoldier" ],
@@ -356,9 +365,9 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 		// Thus I will not do everything at once.
 		// It will probably carry over a few turns but that's no issue.
 		if (this.path === undefined)
-			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, this.pathSampling, this.pathWidth,250);//,gameState);
+			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, this.pathSampling, this.pathWidth,250,gameState);
 		else if (this.path === "toBeContinued")
-			this.path = this.pathFinder.continuePath();//gameState);
+			this.path = this.pathFinder.continuePath(gameState);
 		
 		if (this.path === undefined) {
 			if (this.pathWidth == 6)
