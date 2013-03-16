@@ -11,8 +11,8 @@
         <prop actor="props/structures/mauryans/cc_lions.xml" attachpoint="root"/>
 		<prop actor="props/structures/mauryans/cc_pillars.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryans/cc_plants.xml" attachpoint="root"/>
-<prop actor="props/structures/mauryans/cc_struct_b.xml" attachpoint="root"/>
-<prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+		<prop actor="props/structures/mauryans/cc_struct_b.xml" attachpoint="root"/>
+		<prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
     <textures>
@@ -22,8 +22,7 @@
       <texture file="structural/ao/maur_civic_ao.png" name="aoTex"/>
     </textures>
     </variant>
-   </group>
-  
+  </group>
   <group>
     <variant frequency="100" name="Idle"/>
     <variant name="garrisoned">
