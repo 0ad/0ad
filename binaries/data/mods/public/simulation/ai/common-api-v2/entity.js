@@ -356,7 +356,7 @@ var Entity = Class({
 	isFull: function()
 	{
 		if (this._entity.resourceSupplyGatherers !== undefined)
-			return (this.maxGatherers === this._entity.resourceSupplyGatherers.length);
+			return (this.maxGatherers() === this._entity.resourceSupplyGatherers.length);
 		return undefined;
 	},
 

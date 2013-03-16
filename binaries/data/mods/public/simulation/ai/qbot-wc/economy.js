@@ -487,7 +487,7 @@ EconomyManager.prototype.buildNewCC= function(gameState, queues) {
 EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 
 	// By how much to divide the resource amount for plotting.
-	var decreaseFactor = {'wood': 100.0, 'stone': 180.0, 'metal': 180.0, 'food': 80.0};
+	var decreaseFactor = {'wood': 50.0, 'stone': 90.0, 'metal': 90.0, 'food': 40.0};
 	// This is the maximum radius of the influence
 	var dpRadius = 10;
 	var radius = {'wood':10.0, 'stone': 24.0, 'metal': 24.0, 'food': 24.0};
@@ -536,7 +536,7 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 							this.CCResourceMaps[resource].addInfluence(x, z, 15, -strength/2.0,'constant');
 						} else if (resource === "stone" || resource === "metal")
 						{
-							this.resourceMaps[resource].addInfluence(x, z, 3, 50);
+							this.resourceMaps[resource].addInfluence(x, z, 8, 50);
 							this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/1.5);
 							this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/2.0,'constant');
 							this.CCResourceMaps[resource].addInfluence(x, z, 30, -strength,'constant');
@@ -588,7 +588,7 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 									self.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
 									self.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);
 									self.resourceMaps[resource].addInfluence(x, z, 12.0, strength/2.0,'constant');
-									self.resourceMaps[resource].addInfluence(x, z, 3, -50);
+									self.resourceMaps[resource].addInfluence(x, z, 8, -50);
 								}
 							}
 						});
@@ -635,7 +635,7 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 							this.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
 							this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);
 							this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/2.0,'constant');
-							this.resourceMaps[resource].addInfluence(x, z, 3, -50);
+							this.resourceMaps[resource].addInfluence(x, z, 8, -50);
 						}
 					}
 				} else if (ent && ent.position() && ent.resourceDropsiteTypes) {
@@ -654,8 +654,8 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 		this.updateNearbyResources(gameState,i);
 		this.updateResourceConcentrations(gameState,i);
 	}
-	
-	/*if (gameState.ai.playedTurn % 20 === 1)
+	/*
+	if (gameState.ai.playedTurn % 20 === 1)
 	{
 		this.resourceMaps['wood'].dumpIm("s_tree_density_ " + gameState.getTimeElapsed() +".png", 255);
 		this.resourceMaps['stone'].dumpIm("stone_density_ " + gameState.getTimeElapsed() +".png", 255);
@@ -709,7 +709,7 @@ EconomyManager.prototype.getBestResourceBuildSpot = function(gameState, resource
 		}
 	}
 	
-	//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_dp_placement_base.png", 1000);
+	//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_dp_placement_base.png", 255);
 	
 	var isCivilCenter = false;
 	var best = friendlyTiles.findBestTile(2, obstructions);	// try to find a spot to place a DP.
@@ -825,7 +825,7 @@ EconomyManager.prototype.updateNearbyResources = function(gameState,resource){
 	var resourceSupplies;
 
 	// By how much to divide the resource amount for plotting.
-	var decreaseFactor = {'wood': 100.0, 'stone': 180.0, 'metal': 180.0, 'food': 80.0};
+	var decreaseFactor = {'wood': 50.0, 'stone': 90.0, 'metal': 90.0, 'food': 40.0};
 	// This is the maximum radius of the influence
 	var radius = {'wood':10.0, 'stone': 24.0, 'metal': 24.0, 'food': 24.0};
 	
@@ -850,7 +850,8 @@ EconomyManager.prototype.updateNearbyResources = function(gameState,resource){
 					if (distance < bigRadius[resource]) {
 						if (distance < smallRadius[resource]) {
 							// it's new to the game, remove it from the resource maps
-							if (supply.getMetadata(PlayerID, "linked-dropsite") == undefined || supply.getMetadata(PlayerID, "linked-dropsite-nearby") == false) {
+							if ((supply.getMetadata(PlayerID, "linked-dropsite") == undefined || supply.getMetadata(PlayerID, "linked-dropsite-nearby") == false)
+								&& supply.resourceSupplyType().generic !== "treasure") {
 								var x = Math.round(supply.position()[0] / gameState.cellSize);
 								var z = Math.round(supply.position()[1] / gameState.cellSize);
 								var strength = Math.round(supply.resourceSupplyMax()/decreaseFactor[resource]);
@@ -862,7 +863,7 @@ EconomyManager.prototype.updateNearbyResources = function(gameState,resource){
 								} else if (resource === "stone" || resource === "metal")
 								{
 									self.CCResourceMaps[resource].addInfluence(x, z, 30, -strength,'constant');
-									self.resourceMaps[resource].addInfluence(x, z, 3, 50);
+									self.resourceMaps[resource].addInfluence(x, z, 8, 50);
 									self.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/1.5);
 									self.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/2.0,'constant');
 								}

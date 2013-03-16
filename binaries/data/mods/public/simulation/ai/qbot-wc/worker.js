@@ -10,7 +10,6 @@ var Worker = function(ent) {
 
 Worker.prototype.update = function(gameState) {
 	
-	
 	var subrole = this.ent.getMetadata(PlayerID, "subrole");
 
 	if (!this.ent.position() || (this.ent.getMetadata(PlayerID,"fleeing") && gameState.getTimeElapsed() - this.ent.getMetadata(PlayerID,"fleeing") < 8000)){
@@ -226,7 +225,9 @@ Worker.prototype.startGathering = function(gameState){
 			return;
 		}
 									 
-		if (supply.isFull() === true) {
+		if (supply.isFull() === true || (supply.maxGatherers() - supply.resourceSupplyGatherers().length == 0) ||
+			(gameState.turnCache["ressGathererNB"] && gameState.turnCache["ressGathererNB"][supply.id()]
+				&& gameState.turnCache["ressGathererNB"][supply.id()] + supply.resourceSupplyGatherers().length >= supply.maxGatherers())) {
 			return;
 		}
 							 
@@ -313,9 +314,38 @@ Worker.prototype.startGathering = function(gameState){
 			}
 		}
 		if (!tried) {
+			
+			if (!gameState.turnCache["ressGathererNB"])
+			{
+				gameState.turnCache["ressGathererNB"] = {};
+				gameState.turnCache["ressGathererNB"][nearestSupply.id()] = 1;
+			} else if (!gameState.turnCache["ressGathererNB"][nearestSupply.id()])
+				gameState.turnCache["ressGathererNB"][nearestSupply.id()] = 1;
+			else
+				gameState.turnCache["ressGathererNB"][nearestSupply.id()]++;
+			
 			this.maxApproachTime = Math.max(25000, VectorDistance(pos,this.ent.position()) * 1000);
 			ent.gather(nearestSupply);
 			ent.setMetadata(PlayerID, "target-foundation", undefined);
+
+			// check if the resource we've started gathering from is now full, in which case inform the dropsite.
+			if (gameState.turnCache["ressGathererNB"][nearestSupply.id()] + nearestSupply.resourceSupplyGatherers().length >= nearestSupply.maxGatherers()
+				&& nearestSupply.getMetadata(PlayerID, "linked-dropsite") != undefined)
+			{
+				var dropsite = gameState.getEntityById(nearestSupply.getMetadata(PlayerID, "linked-dropsite"));
+				if (dropsite == undefined || dropsite.getMetadata(PlayerID, "linked-resources-" + resource) === undefined)
+					return;
+				if (nearestSupply.getMetadata(PlayerID, "linked-dropsite-nearby") == true) {
+					dropsite.setMetadata(PlayerID, "resource-quantity-" + resource, +dropsite.getMetadata(PlayerID, "resource-quantity-" + resource) - (+nearestSupply.getMetadata(PlayerID, "dp-update-value")));
+					dropsite.getMetadata(PlayerID, "linked-resources-" + resource).updateEnt(nearestSupply);
+					dropsite.getMetadata(PlayerID, "nearby-resources-" + resource).updateEnt(nearestSupply);
+				} else {
+					dropsite.setMetadata(PlayerID, "resource-quantity-far-" + resource, +dropsite.getMetadata(PlayerID, "resource-quantity-" + resource) - (+nearestSupply.getMetadata(PlayerID, "dp-update-value")));
+					dropsite.getMetadata(PlayerID, "linked-resources-" + resource).updateEnt(nearestSupply);
+				}
+
+			}
+		
 		}
 	} else {
 		if (resource === "food" && this.buildAnyField(gameState))

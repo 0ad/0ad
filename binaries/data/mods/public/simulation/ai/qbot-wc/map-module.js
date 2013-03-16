@@ -9,8 +9,9 @@ function Map(gameState, originalMap, actualCopy){
 	this.height = gameMap.height;
 	this.length = gameMap.data.length;
 
+	this.maxVal = 65535;
+	
 	if (originalMap && actualCopy){
-		this.maxVal = 65535;
 		this.map = new Uint16Array(this.length);
 		for (var i = 0; i < originalMap.length; ++i)
 			this.map[i] = originalMap[i];
@@ -18,7 +19,6 @@ function Map(gameState, originalMap, actualCopy){
 		this.map = originalMap;
 	} else {
 		this.map = new Uint16Array(this.length);
-		this.maxVal = 65535;
 	}
 	this.cellSize = gameState.cellSize;
 }
