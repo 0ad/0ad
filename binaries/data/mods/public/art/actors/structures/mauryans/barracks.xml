@@ -51,6 +51,7 @@
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
+<prop actor="props/structures/mauryans/barracks_a_struct_b.xml" attachpoint="root"/>
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
