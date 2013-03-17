@@ -1,14 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/maur_support_healer_e">
+<Entity parent="template_unit">
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>20.0</Pierce>
+    <Crush>15.0</Crush>
+  </Armour>
+  <Heal>
+    <Range>20</Range>
+    <HP>12</HP>
+    <Rate>2000</Rate>
+    <UnhealableClasses datatype="tokens"/>
+    <HealableClasses datatype="tokens">Organic</HealableClasses>
+  </Heal>
+  <Cost>
+    <Population>2</Population>
+    <BuildTime>60</BuildTime>
+    <Resources>
+      <food>100</food>
+      <metal>250</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>600</Max>
+    <RegenRate>0.5</RegenRate>
+  </Health>
   <Identity>
     <Civ>maur</Civ>
+    <Classes datatype="tokens">Hero Organic</Classes>
 	<GenericName>Acharya Chanakya</GenericName>
     <SpecificName>Acharya Chanakya</SpecificName>
     <Icon>units/pers_hero_xerxes.png</Icon>
 	<Tooltip>Hero Archer.
 Hero Special: "Teacher." TBD.</Tooltip>
     <History>TBD.</History>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
+  <Minimap>
+    <Type>hero</Type>
+  </Minimap>
+  <Selectable>
+    <Overlay>
+      <AlwaysVisible/>
+      <Texture>
+        <MainTexture>star/256x256.png</MainTexture>
+        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <Sound>
+    <SoundGroups>
+      <select>voice/hellenes/civ/civ_male_select.xml</select>
+      <order_walk>voice/hellenes/civ/civ_male_ack.xml</order_walk>
+      <walk>actor/human/movement/walk.xml</walk>
+      <run>actor/human/movement/run.xml</run>
+      <death>actor/human/death/death.xml</death>
+      <trained>actor/singlesteps/steps_gravel.xml</trained>
+    </SoundGroups>
+  </Sound>
+  <TrainingRestrictions>
+    <Category>Hero</Category>
+  </TrainingRestrictions>
+  <UnitMotion>
+    <WalkSpeed>7.5</WalkSpeed>
+    <Run>
+      <Speed>12.0</Speed>
+      <Range>200.0</Range>
+      <RangeMin>0.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>30</Range>
+  </Vision>
   <VisualActor>
     <Actor>units/mauryans/hero_chanakya.xml</Actor>
   </VisualActor>
