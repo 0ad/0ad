@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Maur turban">
+      <textures>
+        <texture file="props/helmet/maur_hero_turban_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="top knot front">
+      <mesh>props/helmet/maur_hero_turban_a.dae</mesh>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
