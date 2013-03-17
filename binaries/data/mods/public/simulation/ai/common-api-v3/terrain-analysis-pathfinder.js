@@ -46,7 +46,7 @@ function aStarPath(gameState, onWater, disregardEntities, targetTerritory) {
 		else if (!disregardEntities && this.map[i] === 42)
 			this.widthMap[i] = 1;
 		else if (!onWater && this.map[i] === 201)
-			this.widthMap[i] = 2;
+			this.widthMap[i] = 1;
 		else
 			this.widthMap[i] = 255;
 	}

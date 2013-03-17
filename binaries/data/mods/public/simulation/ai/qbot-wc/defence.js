@@ -433,23 +433,21 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 		});
 	}
 	
-	if (newEnemies.length === 0)
-		return;
 
 	var nonDefenders = this.myUnits.filter(Filters.or(Filters.not(Filters.byMetadata(PlayerID, "role","defence")),Filters.isIdle()));
 	nonDefenders = nonDefenders.filter(Filters.not(Filters.byClass("Female")));
 	nonDefenders = nonDefenders.filter(Filters.not(Filters.byMetadata(PlayerID, "subrole","attacking")));
 	var defenceRatio = this.defenceRatio;
 	
-	//debug ("newEnemies.length "+ newEnemies.length);
-	//debug ("nonDefenders.length "+ nonDefenders.length);
-	
 	if (newEnemies.length + this.nbAttackers > (this.nbDefenders + nonDefenders.length) * 0.8 && this.nbAttackers > 9)
 		gameState.setDefcon(2);
-
+	
 	if (newEnemies.length + this.nbAttackers > (this.nbDefenders + nonDefenders.length) * 1.5 && this.nbAttackers > 5)
 		gameState.setDefcon(1);
-	
+
+	//debug ("newEnemies.length "+ newEnemies.length);
+	//debug ("nonDefenders.length "+ nonDefenders.length);
+		
 	if (gameState.defcon() > 3)
 		militaryManager.unpauseAllPlans(gameState);
 	
@@ -462,6 +460,9 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 				struct.unloadAll();
 			});
 	};
+	
+	if (newEnemies.length === 0)
+		return;
 
 	/*
 	if (gameState.defcon() < 2 && (this.nbAttackers-this.nbDefenders) > 15)
