@@ -1,5 +1,9 @@
 /*
- * Military Manager. NOT cleaned up from qBot, many of the functions here are deprecated for functions in attack_plan.js
+ * Military Manager.
+ * Basically this deals with constructing defense and attack buildings, but it's not very developped yet.
+ * There's a lot of work still to do here.
+ * It also handles the attack plans (see attack_plan.js)
+ * Not completely cleaned up from the original version in qBot.
  */
 
 var MilitaryAttackManager = function() {
@@ -46,9 +50,6 @@ MilitaryAttackManager.prototype.init = function(gameState) {
 		this.bFort[i] = gameState.applyCiv(this.bFort[i]);
 	}
 	
-	this.getEconomicTargets = function(gameState, militaryManager){
-		return militaryManager.getEnemyBuildings(gameState, "Economic");
-	};
 	// TODO: figure out how to make this generic
 	for (var i in this.attackManagers){
 		this.availableAttacks[i] = new this.attackManagers[i](gameState, this);
@@ -72,72 +73,6 @@ MilitaryAttackManager.prototype.init = function(gameState) {
 
 };
 
-/**
- * @param (GameState) gameState
- * @param (string) soldierTypes
- * @returns array of soldiers for which training buildings exist
- */
-MilitaryAttackManager.prototype.findTrainableUnits = function(gameState, soldierType){
-	var allTrainable = [];
-	gameState.getOwnEntities().forEach(function(ent) {
-		var trainable = ent.trainableEntities();
-		for (var i in trainable){
-			if (allTrainable.indexOf(trainable[i]) === -1){
-				allTrainable.push(trainable[i]);
-			}
-		}
-	});
-	
-	var ret = [];
-	for (var i in allTrainable){
-		var template = gameState.getTemplate(allTrainable[i]);
-		if (soldierType == this.getSoldierType(template)){
-			ret.push(allTrainable[i]);
-		}
-	}
-	return ret;
-};
-
-// Returns the type of a soldier, either citizenSoldier, advanced or siege 
-MilitaryAttackManager.prototype.getSoldierType = function(ent){
-	if (ent.hasClass("Hero")){
-		return undefined;
-	}
-	if (ent.hasClass("CitizenSoldier") && !ent.hasClass("Cavalry")){
-		return "citizenSoldier";
-	}else if (ent.hasClass("Champion") || ent.hasClass("CitizenSoldier")){
-		return "advanced";
-	}else if (ent.hasClass("Siege")){
-		return "siege";
-	}else{
-		return undefined;
-	}
-};
-
-/**
- * Returns the unit type we should begin training. (Currently this is whatever
- * we have least of.)
- */
-MilitaryAttackManager.prototype.findBestNewUnit = function(gameState, queue, soldierType) {
-	var units = this.findTrainableUnits(gameState, soldierType);
-	// Count each type
-	var types = [];
-	for ( var tKey in units) {
-		var t = units[tKey];
-		types.push([t, gameState.countEntitiesAndQueuedByType(gameState.applyCiv(t))
-						+ queue.countAllByType(gameState.applyCiv(t)) ]);
-	}
-
-	// Sort by increasing count
-	types.sort(function(a, b) {
-		return a[1] - b[1];
-	});
-
-	if (types.length === 0){
-		return false;
-	}
-	return types[0][0];
-};
 // picks the best template based on parameters and classes
 MilitaryAttackManager.prototype.findBestTrainableUnit = function(gameState, classes, parameters) {
 	var units = gameState.findTrainableUnits(classes);
@@ -186,200 +121,9 @@ MilitaryAttackManager.prototype.findBestTrainableUnit = function(gameState, clas
 	return units[0][0];
 };
 
-
-
-MilitaryAttackManager.prototype.registerSoldiers = function(gameState) {
-	var soldiers = gameState.getOwnEntitiesByRole("soldier");
-	var self = this;
-
-	soldiers.forEach(function(ent) {
-		ent.setMetadata(PlayerID, "role", "military");
-		ent.setMetadata(PlayerID, "military", "unassigned");
-	});
-};
-
-// return count of enemy buildings for a given building class
-MilitaryAttackManager.prototype.getEnemyBuildings = function(gameState,cls) {
-	var targets = gameState.entities.filter(function(ent) {
-			return (gameState.isEntityEnemy(ent) && ent.hasClass("Structure") && ent.hasClass(cls) && ent.owner() !== 0  && ent.position());
-		});
-	return targets;
-};
-
-// return n available units and makes these units unavailable
-MilitaryAttackManager.prototype.getAvailableUnits = function(n, filter) {
-	var ret = [];
-	var count = 0;
-	
-	var units = undefined;
-	
-	if (filter){
-		units = this.getUnassignedUnits().filter(filter);
-	}else{
-		units = this.getUnassignedUnits();
-	}
-	
-	units.forEach(function(ent){
-		ret.push(ent.id());
-		ent.setMetadata(PlayerID, "military", "assigned");
-		ent.setMetadata(PlayerID, "role", "military");
-		count++;
-		if (count >= n) {
-			return;
-		}
-	});
-	return ret;
-};
-
-// Takes a single unit id, and marks it unassigned
-MilitaryAttackManager.prototype.unassignUnit = function(unit){
-	this.entity(unit).setMetadata(PlayerID, "military", "unassigned");
-};
-
-// Takes an array of unit id's and marks all of them unassigned 
-MilitaryAttackManager.prototype.unassignUnits = function(units){
-	for (var i in units){
-		this.unassignUnit(units[i]);
-	}
-};
-
-MilitaryAttackManager.prototype.getUnassignedUnits = function(){
-	return this.gameState.getOwnEntitiesByMetadata("military", "unassigned");
-};
-
-MilitaryAttackManager.prototype.countAvailableUnits = function(filter){
-	var count = 0;
-	if (filter){
-		return this.getUnassignedUnits().filter(filter).length;
-	}else{
-		return this.getUnassignedUnits().length;
-	}
-};
-
-// Takes an entity id and returns an entity object or undefined if there is no entity with that id
-// Also sends a debug message warning if the id has no entity
-MilitaryAttackManager.prototype.entity = function(id) {
-	return this.gameState.getEntityById(id);
-};
-
-// Returns the military strength of unit 
-MilitaryAttackManager.prototype.getUnitStrength = function(ent){
-	var strength = 0.0;
-	var attackTypes = ent.attackTypes();
-	var armourStrength = ent.armourStrengths();
-	var hp = 2 * ent.hitpoints() / (160 + 1*ent.maxHitpoints()); //100 = typical number of hitpoints
-	for (var typeKey in attackTypes) {
-		var type = attackTypes[typeKey];
-		var attackStrength = ent.attackStrengths(type);
-		var attackRange = ent.attackRange(type);
-		var attackTimes = ent.attackTimes(type);
-		for (var str in attackStrength) {
-			var val = parseFloat(attackStrength[str]);
-			switch (str) {
-				case "crush":
-					strength += (val * 0.085) / 3;
-					break;
-				case "hack":
-					strength += (val * 0.075) / 3;
-					break;
-				case "pierce":
-					strength += (val * 0.065) / 3;
-					break;
-			}
-		}
-		if (attackRange){
-			strength += (attackRange.max * 0.0125) ;
-		}
-		for (var str in attackTimes) {
-			var val = parseFloat(attackTimes[str]);
-			switch (str){
-				case "repeat":
-					strength += (val / 100000);
-					break;
-				case "prepare":
-					strength -= (val / 100000);
-					break;
-			}
-		}
-	}
-	for (var str in armourStrength) {
-		var val = parseFloat(armourStrength[str]);
-		switch (str) {
-			case "crush":
-				strength += (val * 0.085) / 3;
-				break;
-			case "hack":
-				strength += (val * 0.075) / 3;
-				break;
-			case "pierce":
-				strength += (val * 0.065) / 3;
-				break;
-		}
-	}
-	return strength * hp;
-};
-
-// Returns the  strength of the available units of ai army
-MilitaryAttackManager.prototype.measureAvailableStrength = function(){
-	var  strength = 0.0;
-	var self = this;
-	this.getUnassignedUnits(this.gameState).forEach(function(ent){
-		strength += self.getUnitStrength(ent);
-	});
-	return strength;
-};
-
-MilitaryAttackManager.prototype.getEnemySoldiers = function(){
-	return this.enemySoldiers;
-};
-
-// Returns the number of units in the largest enemy army
-MilitaryAttackManager.prototype.measureEnemyCount = function(gameState){
-	// Measure enemy units
-	var isEnemy = gameState.playerData.isEnemy;
-	var enemyCount = [];
-	var maxCount = 0;
-	for ( var i = 1; i < isEnemy.length; i++) {
-		enemyCount[i] = 0;
-	}
-	
-	// Loop through the enemy soldiers and add one to the count for that soldiers player's count
-	this.enemySoldiers.forEach(function(ent) {
-		enemyCount[ent.owner()]++;
-		
-		if (enemyCount[ent.owner()] > maxCount) {
-			maxCount = enemyCount[ent.owner()];
-		}
-	});
-	
-	return maxCount;
-};
-
-// Returns the strength of the largest enemy army
-MilitaryAttackManager.prototype.measureEnemyStrength = function(gameState){
-	// Measure enemy strength
-	var isEnemy = gameState.playerData.isEnemy;
-	var enemyStrength = [];
-	var maxStrength = 0;
-	var self = this;
-	
-	for ( var i = 1; i < isEnemy.length; i++) {
-		enemyStrength[i] = 0;
-	}
-	
-	// Loop through the enemy soldiers and add the strength to that soldiers player's total strength
-	this.enemySoldiers.forEach(function(ent) {
-		enemyStrength[ent.owner()] += self.getUnitStrength(ent);
-		
-		if (enemyStrength[ent.owner()] > maxStrength) {
-			maxStrength = enemyStrength[ent.owner()];
-		}
-	});
-	
-	return maxStrength;
-};
-
-// Adds towers to the defenceBuilding queue
+// Deals with building fortresses and towers.
+// Currently build towers next to every useful dropsites.
+// TODO: Fortresses are placed randomly atm.
 MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){ 
 
 	var workersNumber = gameState.getOwnEntitiesByRole("worker").filter(Filters.not(Filters.byHasMetadata(PlayerID,"plan"))).length;
@@ -433,12 +177,12 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 	}
 };
 
+// Deals with constructing military buildings (barracks, stables…)
+// They are mostly defined by Config.js. This is unreliable since changes could be done easily.
+// TODO: We need to determine these dynamically. Also doesn't build fortresses since the above function does that.
+// TODO: building placement is bad. Choice of buildings is also fairly dumb.
 MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState, queues) {
-	// Build more military buildings
-	// TODO: make military building better
 	Engine.ProfileStart("Build buildings");
-	
-	
 	var workersNumber = gameState.getOwnEntitiesByRole("worker").filter(Filters.not(Filters.byHasMetadata(PlayerID, "plan"))).length;
 	
 	if (workersNumber > 30 && (gameState.currentPhase() > 1 || gameState.isResearching("phase_town"))) {
@@ -493,7 +237,7 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 	Engine.ProfileStop();
 };
 
-// TODO: use pop()
+// TODO: use pop(). Currently unused as this is too gameable.
 MilitaryAttackManager.prototype.garrisonAllFemales = function(gameState) {
 	var buildings = gameState.getOwnEntities().filter(Filters.byCanGarrison()).toEntityArray();
 	var females = gameState.getOwnEntities().filter(Filters.byClass("Support"));
@@ -536,11 +280,25 @@ MilitaryAttackManager.prototype.pausePlan = function(gameState, planName) {
 				attack.setPaused(gameState, true);
 		}
 	}
+	for (attackType in this.startedAttacks) {
+		for (i in this.startedAttacks[attackType]) {
+			var attack = this.startedAttacks[attackType][i];
+			if (attack.getName() == planName)
+				attack.setPaused(gameState, true);
+		}
+	}
 }
 MilitaryAttackManager.prototype.unpausePlan = function(gameState, planName) {
 	for (attackType in this.upcomingAttacks) {
 		for (i in this.upcomingAttacks[attackType]) {
 			var attack = this.upcomingAttacks[attackType][i];
+			if (attack.getName() == planName)
+				attack.setPaused(gameState, false);
+		}
+	}
+	for (attackType in this.startedAttacks) {
+		for (i in this.startedAttacks[attackType]) {
+			var attack = this.startedAttacks[attackType][i];
 			if (attack.getName() == planName)
 				attack.setPaused(gameState, false);
 		}
@@ -553,11 +311,23 @@ MilitaryAttackManager.prototype.pauseAllPlans = function(gameState) {
 			attack.setPaused(gameState, true);
 		}
 	}
+	for (attackType in this.startedAttacks) {
+		for (i in this.startedAttacks[attackType]) {
+			var attack = this.startedAttacks[attackType][i];
+			attack.setPaused(gameState, true);
+		}
+	}
 }
 MilitaryAttackManager.prototype.unpauseAllPlans = function(gameState) {
 	for (attackType in this.upcomingAttacks) {
 		for (i in this.upcomingAttacks[attackType]) {
 			var attack = this.upcomingAttacks[attackType][i];
+			attack.setPaused(gameState, false);
+		}
+	}
+	for (attackType in this.startedAttacks) {
+		for (i in this.startedAttacks[attackType]) {
+			var attack = this.startedAttacks[attackType][i];
 			attack.setPaused(gameState, false);
 		}
 	}
@@ -576,40 +346,10 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 		this.buildDefences(gameState, queues);
 	Engine.ProfileStop();
 
-	//Engine.ProfileStart("Updating enemy watchers");
-	//this.enemyWatchers[ this.ennWatcherIndex[gameState.ai.playedTurn % this.ennWatcherIndex.length] ].detectArmies(gameState,this);
-	//Engine.ProfileStop();
-
 	this.defenceManager.update(gameState, events, this);
 	
-	/*Engine.ProfileStart("Plan new attacks");
-	// Look for attack plans which can be executed, only do this once every minute
-	for (var i = 0; i < this.availableAttacks.length; i++){
-		if (this.availableAttacks[i].canExecute(gameState, this)){
-			this.availableAttacks[i].execute(gameState, this);
-			this.currentAttacks.push(this.availableAttacks[i]);
-			//debug("Attacking!");
-		}
-		this.availableAttacks.splice(i, 1, new this.attackManagers[i](gameState, this));
-	}
-	Engine.ProfileStop();
-	
-	Engine.ProfileStart("Update attacks");
-	// Keep current attacks updated
-	for (var i in this.currentAttacks){
-		this.currentAttacks[i].update(gameState, this, events);
-	}
-	Engine.ProfileStop();*/
-	
 	Engine.ProfileStart("Looping through attack plans");
-	// create plans if I'm at peace. I'm not starting plans if there is a sizable force in my realm (hence defcon 4+)
-	
-	//if (gameState.defcon() >= 4 && this.canStartAttacks === true) {
-		//if ((this.preparingNormal) == 0 && this.BuildingInfoManager.getNumberBuiltByRole("Barracks") > 0) {
-
-	// this will updats plans. Plans can be updated up to defcon 2, where they'll be paused (TODO)
-	//if (0 == 1)	// remove to activate attacks
-	//if (gameState.defcon() >= 3) {
+	// TODO: implement some form of check before starting a new attack plans. Sometimes it is not the priority.
 	if (1) {
 		for (attackType in this.upcomingAttacks) {
 			for (var i = 0;i < this.upcomingAttacks[attackType].length; ++i) {
@@ -630,58 +370,55 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 							debug("No attack path found. Aborting.");
 						}
 						attack.Abort(gameState, this);
-						//this.abortedAttacks.push(attack);
-						
 						this.upcomingAttacks[attackType].splice(i--,1);
 					} else if (updateStep === 2) {
-						var chatText = "I am launching an attack against " + gameState.sharedScript.playersData[attack.targetPlayer].name;
+						var chatText = "I am launching an attack against " + gameState.sharedScript.playersData[attack.targetPlayer].name + ".";
 						if (Math.random() < 0.2)
-							chatText = "Attacking " + gameState.sharedScript.playersData[attack.targetPlayer].name;
+							chatText = "Attacking " + gameState.sharedScript.playersData[attack.targetPlayer].name + ".";
 						else if (Math.random() < 0.3)
-							chatText = "Starting to attack " + gameState.sharedScript.playersData[attack.targetPlayer].name;
+							chatText = "I have sent an army against " + gameState.sharedScript.playersData[attack.targetPlayer].name + ".";
 						else if (Math.random() < 0.3)
-							chatText = "I'm starting an attack against " + gameState.sharedScript.playersData[attack.targetPlayer].name;
+							chatText = "I'm starting an attack against " + gameState.sharedScript.playersData[attack.targetPlayer].name + ".";
 						gameState.ai.chatTeam(chatText);
+						
 						debug ("Military Manager: Starting " +attack.getType() +" plan " +attack.getName());
 						attack.StartAttack(gameState,this);
 						this.startedAttacks[attackType].push(attack);
 						this.upcomingAttacks[attackType].splice(i--,1);
 					}
 				} else {
-					var chatText = "I am launching an attack against " + gameState.sharedScript.playersData[attack.targetPlayer].name;
+					var chatText = "I am launching an attack against " + gameState.sharedScript.playersData[attack.targetPlayer].name + ".";
 					if (Math.random() < 0.2)
-						chatText = "Attacking " + gameState.sharedScript.playersData[attack.targetPlayer].name;
+						chatText = "Attacking " + gameState.sharedScript.playersData[attack.targetPlayer].name + ".";
 					else if (Math.random() < 0.3)
-						chatText = "Starting to attack " + gameState.sharedScript.playersData[attack.targetPlayer].name;
+						chatText = "I have sent an army against " + gameState.sharedScript.playersData[attack.targetPlayer].name + ".";
 					else if (Math.random() < 0.3)
-						chatText = "I'm starting an attack against " + gameState.sharedScript.playersData[attack.targetPlayer].name;
+						chatText = "I'm starting an attack against " + gameState.sharedScript.playersData[attack.targetPlayer].name + ".";
 					gameState.ai.chatTeam(chatText);
+					
 					debug ("Military Manager: Starting " +attack.getType() +" plan " +attack.getName());
 					this.startedAttacks[attackType].push(attack);
 					this.upcomingAttacks[attackType].splice(i--,1);
 				}
 			}
 		}
-		//if (this.abortedAttacks.length !== 0)
-		//	this.abortedAttacks[gameState.ai.mainCounter % this.abortedAttacks.length].releaseAnyUnit(gameState);
 	}
 	for (attackType in this.startedAttacks) {
 		for (var i = 0; i < this.startedAttacks[attackType].length; ++i) {
 			var attack = this.startedAttacks[attackType][i];
-			// okay so then we'll update the raid.
+			// okay so then we'll update the attack.
 			if (!attack.isPaused())
 			{
 				var remaining = attack.update(gameState,this,events);
 				if (remaining == 0 || remaining == undefined) {
 					debug ("Military Manager: " +attack.getType() +" plan " +attack.getName() +" is now finished.");
 					attack.Abort(gameState);
-				
-					//this.abortedAttacks.push(attack);
 					this.startedAttacks[attackType].splice(i--,1);
 				}
 			}
 		}
 	}
+	// Note: these indications of "rush" are currently unused. 
 	if (gameState.ai.strategy === "rush" && this.startedAttacks["CityAttack"].length !== 0) {
 		// and then we revert.
 		gameState.ai.strategy = "normal";
@@ -727,7 +464,10 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 			}
 		}
 	}
+	
 	/*
+	 // very old relic. This should be reimplemented someday so the code stays here.
+	 
 	 if (this.HarassRaiding && this.preparingRaidNumber + this.startedRaidNumber < 1 && gameState.getTimeElapsed() < 780000) {
 	 var Lalala = new CityAttack(gameState, this,this.totalStartedAttackNumber, -1, "harass_raid");
 	 if (!Lalala.createSupportPlans(gameState, this, )) {
@@ -745,16 +485,5 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 
 	
 	Engine.ProfileStop();
-
-	
-	/*Engine.ProfileStart("Use idle military as workers");
-	// Set unassigned to be workers TODO: fix this so it doesn't scan all units every time
-	this.getUnassignedUnits(gameState).forEach(function(ent){
-		if (self.getSoldierType(ent) === "citizenSoldier"){
-			ent.setMetadata(PlayerID, "role", "worker");
-		}
-	});
-	Engine.ProfileStop();*/
-	
 	Engine.ProfileStop();
 };

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
   <Cost>
-    <BuildTime>120</BuildTime>
+    <BuildTime>80</BuildTime>
     <Resources>
       <food>0</food>
       <wood>0</wood>
@@ -9,9 +9,9 @@
       <metal>100</metal>
     </Resources>
   </Cost>
-  <Footprint>
-    <Square width="10.0" depth="10.0"/>
-    <Height>8.0</Height>
+  <Footprint replace="">
+    <Circle radius="2.5"/>
+    <Height>5.0</Height>
   </Footprint>
   <GarrisonHolder disable=""/>
   <Health>
@@ -27,7 +27,7 @@
     <History>.</History>
   </Identity>
   <Obstruction>
-    <Static width="10.0" depth="10.0"/>
+    <Static width="1.5" depth="1.5"/>
   </Obstruction>
   <RallyPoint disable=""/>
   <Sound>

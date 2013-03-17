@@ -231,6 +231,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		this.queueManager.update(gameState);
 		
 		/*
+		 // Use this to debug informations about the metadata.
 		if (this.playedTurn % 10 === 0)
 		{
 			// some debug informations about units.

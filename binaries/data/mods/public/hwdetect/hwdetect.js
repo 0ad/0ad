@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -69,7 +69,11 @@ var g_IntelMesaChipsets = [
 	"Intel(R) Ivybridge Desktop",
 	"Intel(R) Ivybridge Mobile",
 	"Intel(R) Ivybridge Server",
+	"Intel(R) Haswell Desktop",
+	"Intel(R) Haswell Mobile",
+	"Intel(R) Haswell Server",
 	"Unknown Intel Chipset",
+	"*", // dummy value to support IsWorseThanIntelMesa("*") to detect all Intel Mesa devices
 ];
 // Originally generated from Mesa with
 //   perl -lne'print "\t$1," if /chipset = (".*")/' src/mesa/drivers/dri/intel/intel_context.c
@@ -94,6 +98,7 @@ var g_IntelWindowsChipsets = [
 	"Mobile Intel(R) 4 Series Express Chipset Family", // probably Cantiga
 	"Intel(R) HD Graphics", // probably Ironlake
 	"Intel(R) Graphics Media Accelerator HD", // no idea
+	"*",
 ];
 // Determined manually from data reports.
 // See http://en.wikipedia.org/wiki/Intel_GMA for useful listing.
@@ -104,6 +109,7 @@ var g_IntelMacChipsets = [
 	"Intel HD Graphics",
 	"Intel HD Graphics 3000",
 	"Unknown Intel Chipset",
+	"*",
 ];
 // Determined manually from data reports.
 // See http://support.apple.com/kb/HT3246 for useful listing.
@@ -241,12 +247,12 @@ function RunDetection(settings)
 		disable_shadowpcf = true;
 	}
 
-	// Fragment-shader water is really slow on most Intel devices,
-	// so disable it (with a fairly arbitrary cutoff)
+	// Fragment-shader water is really slow on most Intel devices (especially the
+	// "use actual depth" option) and on software renderers, so disable it on all of them
 	if ((os_unix && GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on llvmpipe|Apple Software Renderer)$/)) ||
-		(os_macosx && IsWorseThanIntelMac(GL_RENDERER, "Intel HD Graphics 3000")) ||
-		(os_unix && IsWorseThanIntelMesa(GL_RENDERER, "Intel(R) Sandybridge Desktop")) ||
-		(os_win && IsWorseThanIntelWindows(GL_RENDERER, "Intel(R) Graphics Media Accelerator HD"))
+		(os_macosx && IsWorseThanIntelMac(GL_RENDERER, "*")) ||
+		(os_unix && IsWorseThanIntelMesa(GL_RENDERER, "*")) ||
+		(os_win && IsWorseThanIntelWindows(GL_RENDERER, "*"))
 	)
 	{
 		disable_allwater = false;

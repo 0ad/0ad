@@ -1,4 +1,11 @@
-// basically an attack plan. The name is an artifact.
+/* This is an attack plan (despite the name, it's a relic of older times).
+ * It deals with everything in an attack, from picking a target to picking a path to it
+ * To making sure units rae built, and pushing elements to the queue manager otherwise
+ * It also handles the actual attack, though much work is needed on that.
+ * These should be extremely flexible with only minimal work.
+ * There is a basic support for naval expeditions here. 
+ */
+
 function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , targetFinder) {
 	
 	//This is the list of IDs of the units in the plan
@@ -53,10 +60,11 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	this.onArrivalReaction = "proceedOnTargets";
 
 	// priority is relative. If all are 0, the only relevant criteria is "currentsize/targetsize".
-	// if not, this is a "bonus". The higher the priority, the more this unit will get built.
+	// if not, this is a "bonus". The higher the priority, the faster this unit will get built.
 	// Should really be clamped to [0.1-1.5] (assuming 1 is default/the norm)
 	// Eg: if all are priority 1, and the siege is 0.5, the siege units will get built
 	// only once every other category is at least 50% of its target size.
+	// note: siege build order is currently added by the military manager if a fortress is there.
 	this.unitStat = {};
 	this.unitStat["RangedInfantry"] = { "priority" : 1, "minSize" : 4, "targetSize" : 10, "batchSize" : 5, "classes" : ["Infantry","Ranged"],
 		"interests" : [ ["canGather", 2], ["strength",2], ["cost",1] ], "templates" : [] };
@@ -80,6 +88,7 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	} else if (type === "superSized") {
 		// our first attack has started worst case at the 14th minute, we want to attack another time by the 21th minute, so we rock 6.5 minutes
 		this.maxPreparationTime = 480000;
+		// basically we want a mix of citizen soldiers so our barracks have a purpose, and champion units.
 		this.unitStat["RangedInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 20, "batchSize" : 5, "classes" : ["Infantry","Ranged", "CitizenSoldier"],
 			"interests" : [["strength",3], ["cost",1] ], "templates" : [] };
 		this.unitStat["MeleeInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 20, "batchSize" : 5, "classes" : ["Infantry","Melee", "CitizenSoldier" ],
@@ -430,9 +439,9 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 						this.rallyPoint = this.path[i-1][0];
 					} else
 						this.rallyPoint = this.path[0][0];
+					if (i >= 1)
+						this.path.splice(0,i-1);
 					break;
-					if (i > 1)
-						this.path.splice(0,i-2);
 				}
 			}
 		}
@@ -447,7 +456,7 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 		this.queue.empty();
 		this.queueChamp.empty();
 		if ( gameState.ai.playedTurn % 5 == 0)
-			this.AllToRallyPoint(gameState, false);
+			this.AllToRallyPoint(gameState, true);
 	} else if (this.mustStart(gameState) && (gameState.countOwnQueuedEntitiesWithMetadata("plan", +this.name) > 0)) {
 		// keep on while the units finish being trained, then we'll start
 		this.assignUnits(gameState);
@@ -456,7 +465,7 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 		this.queueChamp.empty();
 
 		if (gameState.ai.playedTurn % 5 == 0) {
-			this.AllToRallyPoint(gameState, false);
+			this.AllToRallyPoint(gameState, true);
 			// TODO: should use this time to let gatherers deposit resources.
 		}
 		Engine.ProfileStop();
@@ -614,7 +623,10 @@ CityAttack.prototype.AllToRallyPoint = function(gameState, evenWorkers) {
 		for (unitCat in this.unit) {
 			this.unit[unitCat].forEach(function (ent) {
 				if (ent.getMetadata(PlayerID, "role") != "defence" && !ent.hasClass("Warship"))
+				{
+					ent.setMetadata(PlayerID,"role", "attack");
 					ent.move(self.rallyPoint[0],self.rallyPoint[1]);
+				}
 			});
 		}
 	} else {
@@ -693,9 +705,10 @@ CityAttack.prototype.StartAttack = function(gameState, militaryManager){
 		this.unitCollectionNoWarship = this.unitCollection.filter(Filters.not(Filters.byClass("Warship")));
 		this.unitCollectionNoWarship.registerUpdates();
 		
-		this.unitCollection.move(this.path[0][0][0], this.path[0][0][1]);
-		this.unitCollection.setStance("aggressive");	// make sure units won't disperse out of control
-		
+		this.unitCollection.moveIndiv(this.path[0][0][0], this.path[0][0][1]);
+		this.unitCollection.setStance("aggressive");
+		this.unitCollection.filter(Filters.byClass("Siege")).setStance("defensive");
+
 		this.state = "walking";
 	} else {
 		gameState.ai.gameFinished = true;
@@ -913,14 +926,14 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 			this.lastPosition = [0,0];
 
 		if (SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0) {
-			this.unitCollection.filter(Filters.byClass("Warship")).moveIndiv(this.path[0][0][0], this.path[0][0][1]);
+			this.unitCollection.filter(Filters.byClass("Warship")).move(this.path[0][0][0], this.path[0][0][1]);
 		}
 		if (SquareVectorDistance(this.position, this.path[0][0]) < 1600) {
 			if (this.path[0][1] !== true)
 			{
 				this.path.shift();
 				if (this.path.length > 0){
-					this.unitCollection.filter(Filters.byClass("Warship")).moveIndiv(this.path[0][0][0], this.path[0][0][1]);
+					this.unitCollection.filter(Filters.byClass("Warship")).move(this.path[0][0][0], this.path[0][0][1]);
 				} else {
 					debug ("Attack Plan " +this.type +" " +this.name +" has arrived to destination, but it's still on the ship…");
 					return 0; // abort
@@ -967,7 +980,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 				// okay.
 				this.path.shift();
 				if (this.path.length > 0){
-					ships.moveIndiv(this.path[0][0][0], this.path[0][0][1]);
+					ships.move(this.path[0][0][0], this.path[0][0][1]);
 					debug ("switch to shipping");
 					this.state = "shipping";
 				} else {
@@ -989,7 +1002,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 		// TODO: make it better, like avoiding collisions, and so on.
 
 		if (this.path.length > 1)
-			ships.moveIndiv(this.path[1][0][0], this.path[1][0][1]);
+			ships.move(this.path[1][0][0], this.path[1][0][1]);
 
 		ships.forEach(function (ship) {
 			ship.unloadAll();

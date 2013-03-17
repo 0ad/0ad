@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship_fishing">
+  <Footprint>
+    <Square width="7.0" depth="17.0"/>
+    <Height>4.0</Height>
+  </Footprint>
   <Identity>
     <Civ>maur</Civ>
 	<GenericName>Fisherman</GenericName>
     <SpecificName>Matsyapalak</SpecificName>
     <History>Fishing Boat</History>
-    <Icon>units/celt_ship_fishing.png</Icon>
+    <Icon>units/maur_ship_fishing.png</Icon>
   </Identity>
   <VisualActor>
     <Actor>structures/mauryans/fishing_ship.xml</Actor>

@@ -10,7 +10,6 @@ var Worker = function(ent) {
 
 Worker.prototype.update = function(gameState) {
 	
-	
 	var subrole = this.ent.getMetadata(PlayerID, "subrole");
 
 	if (!this.ent.position() || (this.ent.getMetadata(PlayerID,"fleeing") && gameState.getTimeElapsed() - this.ent.getMetadata(PlayerID,"fleeing") < 8000)){
@@ -102,100 +101,6 @@ Worker.prototype.update = function(gameState) {
 		}
 	} else {
 		this.startApproachingResourceTime = gameState.getTimeElapsed();
-	}
-	
-	Engine.ProfileStart("Update Gatherer Counts");
-	this.updateGathererCounts(gameState);
-	Engine.ProfileStop();
-};
-
-Worker.prototype.updateGathererCounts = function(gameState, dead){
-	// update gatherer counts for the resources
-	if (this.ent.unitAIState().split(".")[1] === "GATHER" && !dead){
-		if (this.gatheringFrom !== this.ent.unitAIOrderData()[0].target){
-			if (this.gatheringFrom){
-				var ent = gameState.getEntityById(this.gatheringFrom);
-				if (ent && ent.resourceSupplyType()){
-					ent.setMetadata(PlayerID, "gatherer-count", ent.getMetadata(PlayerID, "gatherer-count") - 1);
-					this.markFull(gameState,ent);
-				}
-			}
-			this.gatheringFrom = this.ent.unitAIOrderData()[0].target;
-			if (this.gatheringFrom){
-				var ent = gameState.getEntityById(this.gatheringFrom);
-				if (ent && ent.resourceSupplyType()){
-					ent.setMetadata(PlayerID, "gatherer-count", (ent.getMetadata(PlayerID, "gatherer-count") || 0) + 1);
-					this.markFull(gameState,ent);
-				}
-			}
-			this.startApproachingResourceTime = gameState.getTimeElapsed();
-		}
-	} else if (this.ent.unitAIState().split(".")[1] === "RETURNRESOURCE" && !dead) {
-		// We remove us from the counting is we have no following order or its not "return to collected resource".
-		if (this.ent.unitAIOrderData().length === 1) {
-			var ent = gameState.getEntityById(this.gatheringFrom);
-			if (ent && ent.resourceSupplyType()){
-				ent.setMetadata(PlayerID, "gatherer-count", ent.getMetadata(PlayerID, "gatherer-count") - 1);
-				this.markFull(gameState,ent);
-			}
-			this.gatheringFrom = undefined;
-		} else if (!this.ent.unitAIOrderData()[1].target || this.gatheringFrom !== this.ent.unitAIOrderData()[1].target){
-			if (this.gatheringFrom){
-				var ent = gameState.getEntityById(this.gatheringFrom);
-				if (ent && ent.resourceSupplyType()){
-					ent.setMetadata(PlayerID, "gatherer-count", ent.getMetadata(PlayerID, "gatherer-count") - 1);
-					this.markFull(gameState,ent);
-				}
-			}
-			this.gatheringFrom = undefined;
-		}
-	} else {
-		if (this.gatheringFrom){
-			var ent = gameState.getEntityById(this.gatheringFrom);
-			if (ent && ent.resourceSupplyType()){
-				ent.setMetadata(PlayerID, "gatherer-count", ent.getMetadata(PlayerID, "gatherer-count") - 1);
-				this.markFull(gameState,ent);
-			}
-			this.gatheringFrom = undefined;
-		}
-	}
-};
-
-Worker.prototype.markFull = function(gameState,ent){
-	var maxCounts = {"food": 15, "wood": 6, "metal": 15, "stone": 15, "treasure": 1};
-	var resource = ent.resourceSupplyType().generic;
-	if (ent.resourceSupplyType() && ent.getMetadata(PlayerID, "gatherer-count") >= maxCounts[resource]){
-		if (!ent.getMetadata(PlayerID, "full")){
-			ent.setMetadata(PlayerID, "full", true);
-			// update the dropsite
-			var dropsite = gameState.getEntityById(ent.getMetadata(PlayerID, "linked-dropsite"));
-			if (dropsite == undefined || dropsite.getMetadata(PlayerID, "linked-resources-" + resource) === undefined)
-				return;
-			if (ent.getMetadata(PlayerID, "linked-dropsite-nearby") == true) {
-				dropsite.setMetadata(PlayerID, "resource-quantity-" + resource, +dropsite.getMetadata(PlayerID, "resource-quantity-" + resource) - (+ent.getMetadata(PlayerID, "dp-update-value")));
-				dropsite.getMetadata(PlayerID, "linked-resources-" + resource).updateEnt(ent);
-				dropsite.getMetadata(PlayerID, "nearby-resources-" + resource).updateEnt(ent);
-			} else {
-				dropsite.setMetadata(PlayerID, "resource-quantity-far-" + resource, +dropsite.getMetadata(PlayerID, "resource-quantity-" + resource) - (+ent.getMetadata(PlayerID, "dp-update-value")));
-				dropsite.getMetadata(PlayerID, "linked-resources-" + resource).updateEnt(ent);
-			}
-		}
-	}else{
-		if (ent.getMetadata(PlayerID, "full")){
-			ent.setMetadata(PlayerID, "full", false);
-			// update the dropsite
-			var dropsite = gameState.getEntityById(ent.getMetadata(PlayerID, "linked-dropsite"));
-			if (dropsite == undefined || dropsite.getMetadata(PlayerID, "linked-resources-" + resource) === undefined)
-				return;
-			if (ent.getMetadata(PlayerID, "linked-dropsite-nearby") == true) {
-				dropsite.setMetadata(PlayerID, "resource-quantity-" + resource, +dropsite.getMetadata(PlayerID, "resource-quantity-" + resource) + ent.resourceSupplyAmount());
-				dropsite.getMetadata(PlayerID, "linked-resources-" + resource).updateEnt(ent);
-				dropsite.getMetadata(PlayerID, "nearby-resources-" + resource).updateEnt(ent);
-			} else {
-				dropsite.setMetadata(PlayerID, "resource-quantity-far-" + resource, +dropsite.getMetadata(PlayerID, "resource-quantity-" + resource) + ent.resourceSupplyAmount());
-				dropsite.getMetadata(PlayerID, "linked-resources-" + resource).updateEnt(ent);
-			}
-		}
 	}
 };
 
@@ -320,7 +225,9 @@ Worker.prototype.startGathering = function(gameState){
 			return;
 		}
 									 
-		if (supply.isFull() === true) {
+		if (supply.isFull() === true || (supply.maxGatherers() - supply.resourceSupplyGatherers().length == 0) ||
+			(gameState.turnCache["ressGathererNB"] && gameState.turnCache["ressGathererNB"][supply.id()]
+				&& gameState.turnCache["ressGathererNB"][supply.id()] + supply.resourceSupplyGatherers().length >= supply.maxGatherers())) {
 			return;
 		}
 							 
@@ -407,9 +314,38 @@ Worker.prototype.startGathering = function(gameState){
 			}
 		}
 		if (!tried) {
+			
+			if (!gameState.turnCache["ressGathererNB"])
+			{
+				gameState.turnCache["ressGathererNB"] = {};
+				gameState.turnCache["ressGathererNB"][nearestSupply.id()] = 1;
+			} else if (!gameState.turnCache["ressGathererNB"][nearestSupply.id()])
+				gameState.turnCache["ressGathererNB"][nearestSupply.id()] = 1;
+			else
+				gameState.turnCache["ressGathererNB"][nearestSupply.id()]++;
+			
 			this.maxApproachTime = Math.max(25000, VectorDistance(pos,this.ent.position()) * 1000);
 			ent.gather(nearestSupply);
 			ent.setMetadata(PlayerID, "target-foundation", undefined);
+
+			// check if the resource we've started gathering from is now full, in which case inform the dropsite.
+			if (gameState.turnCache["ressGathererNB"][nearestSupply.id()] + nearestSupply.resourceSupplyGatherers().length >= nearestSupply.maxGatherers()
+				&& nearestSupply.getMetadata(PlayerID, "linked-dropsite") != undefined)
+			{
+				var dropsite = gameState.getEntityById(nearestSupply.getMetadata(PlayerID, "linked-dropsite"));
+				if (dropsite == undefined || dropsite.getMetadata(PlayerID, "linked-resources-" + resource) === undefined)
+					return;
+				if (nearestSupply.getMetadata(PlayerID, "linked-dropsite-nearby") == true) {
+					dropsite.setMetadata(PlayerID, "resource-quantity-" + resource, +dropsite.getMetadata(PlayerID, "resource-quantity-" + resource) - (+nearestSupply.getMetadata(PlayerID, "dp-update-value")));
+					dropsite.getMetadata(PlayerID, "linked-resources-" + resource).updateEnt(nearestSupply);
+					dropsite.getMetadata(PlayerID, "nearby-resources-" + resource).updateEnt(nearestSupply);
+				} else {
+					dropsite.setMetadata(PlayerID, "resource-quantity-far-" + resource, +dropsite.getMetadata(PlayerID, "resource-quantity-" + resource) - (+nearestSupply.getMetadata(PlayerID, "dp-update-value")));
+					dropsite.getMetadata(PlayerID, "linked-resources-" + resource).updateEnt(nearestSupply);
+				}
+
+			}
+		
 		}
 	} else {
 		if (resource === "food" && this.buildAnyField(gameState))

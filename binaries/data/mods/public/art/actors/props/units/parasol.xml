@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/parasol.dae</mesh>
+      <textures><texture file="structural/maur_hero_chariot.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
