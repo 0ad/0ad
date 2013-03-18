@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_support">
+<Entity parent="template_unit_champion_cavalry">
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>10.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
-  <Builder>
-    <Rate>2.0</Rate>
-    <Entities datatype="tokens"/>
-  </Builder>
   <Cost>
-    <BuildTime>20</BuildTime>
+    <Population>3</Population>
+    <BuildTime>15</BuildTime>
     <Resources>
       <food>200</food>
+      <wood>0</wood>
+      <stone>0</stone>
+      <metal>200</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -20,27 +20,14 @@
     <Height>6.0</Height>
   </Footprint>
   <Health>
-    <Max>300</Max>
+    <Max>400</Max>
   </Health>
   <Identity>
-    <Civ>maur</Civ>
-    <Classes datatype="tokens">Elephant</Classes>
-    <GenericName>Worker Elephant</GenericName>
-    <SpecificName>Karmākara Gaja</SpecificName>
-    <Icon>units/maur_support_elephant.png</Icon>
-    <History>Support Elephant.</History>
-    <Tooltip>Mobile dropsite. Can also assist in constructing buildings.</Tooltip>
+    <Classes datatype="tokens">Elephant -Cavalry</Classes>
+    <GenericName>War Elephant</GenericName>
+    <Icon>gaia/fauna_elephant.png</Icon>
+    <History>War elephants were used by many Eastern and African cultures.</History>
   </Identity>
-  <Loot>
-    <xp>50</xp>
-    <food>25</food>
-    <wood>10</wood>
-    <stone>10</stone>
-    <metal>10</metal>
-  </Loot>
-  <ResourceDropsite>
-    <Types>food wood stone metal</Types>
-  </ResourceDropsite>
   <Selectable>
     <Overlay>
       <Texture>
@@ -60,7 +47,7 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>4.0</WalkSpeed>
+    <WalkSpeed>5.0</WalkSpeed>
     <Run>
       <Speed>10.0</Speed>
     </Run>
@@ -69,6 +56,6 @@
     <Range>80</Range>
   </Vision>
   <VisualActor>
-    <Actor>units/mauryans/support_elephant.xml</Actor>
+    <Actor>units/mauryans/champion_elephant.xml</Actor>
   </VisualActor>
 </Entity>

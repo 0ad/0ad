@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="ashoka pillar base struct">
+      <mesh>props/ashoka_pillar_big_base_struct.dae</mesh>
+	  <textures>
+	  <texture file="structural/maur_struct.png" name="baseTex"/>
+	  <texture file="structural/maur_struct_spec.png" name="specTex"/>
+		<texture file="structural/maur_struct_norm.png" name="normTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

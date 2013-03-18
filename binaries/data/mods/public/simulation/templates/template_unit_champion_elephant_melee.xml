@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_elephant">
+  <Attack>
+    <Melee>
+      <Hack>20.0</Hack>
+      <Crush>20.0</Crush>
+      <MaxRange>8.0</MaxRange>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
+    </Melee>
+    <Charge>
+      <Hack>60.0</Hack>
+      <Crush>60.0</Crush>
+      <MaxRange>8.0</MaxRange>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
+    </Charge>
+  </Attack>
+  <Identity>
+    <Tooltip>Champion War Elephant.
+Good sieging capability. "Stench" Aura vs. Horses. Can run amok. Countered by Swordsmen and Skirmishers.</Tooltip>
+  </Identity>
+</Entity>

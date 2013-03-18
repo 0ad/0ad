@@ -1,100 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_cavalry">
-  <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>10.0</Pierce>
-    <Crush>15.0</Crush>
-  </Armour>
-  <Attack>
-    <Melee>
-      <Hack>25.0</Hack>
-      <Crush>20.0</Crush>
-      <MaxRange>8.0</MaxRange>
-      <RepeatTime>1500</RepeatTime>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusStructures>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
-    </Melee>
-    <Charge>
-      <Hack>60.0</Hack>
-      <Crush>60.0</Crush>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusStructures>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
-    </Charge>
-  </Attack>
-  <Cost>
-    <Resources>
-      <food>200</food>
-      <metal>200</metal>
-    </Resources>
-  </Cost>
-  <Footprint>
-    <Circle radius="3.5"/>
-    <Height>6.0</Height>
-  </Footprint>
-  <Health>
-    <Max>400</Max>
-  </Health>
+<Entity parent="template_unit_champion_elephant_melee">
   <Identity>
     <Civ>cart</Civ>
-    <Classes datatype="tokens">Elephant -Cavalry</Classes>
-	<GenericName>War Elephant</GenericName>
+	<GenericName>North African War Elephant</GenericName>
     <SpecificName>Pil Malḥamit</SpecificName>
     <Icon>units/cart_champion_cavalry.png</Icon>
     <History>By far the most famous of Carthaginian weapons was the small, ugly, and now extinct, North African forest elephants. Going into battle without a war tower carrying only a driver, Carthaginian war elephants were used as terror weapons: horses could not stand their smell, inexperienced troops were frightened, and the havoc they could cause was immense. Yet by the time of the Second Punic War elephants were at the end of their time. Armies had learned the weaknesses of the giant beasts, specifically how to hamstring and confuse them. More often than not a war elephant could be just as dangerous to its own side as the enemy.</History>
-	<Tooltip>Champion War Elephant.
-Good sieging capability. "Stench" Aura vs. Horses. Can run amok. Countered by Swordsmen and Skirmishers.</Tooltip>
   </Identity>
-  <Selectable>
-    <Overlay>
-      <Texture>
-        <MainTexture>circle/256x256.png</MainTexture>
-        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
-  <Sound>
-    <SoundGroups>
-      <select>actor/fauna/animal/elephant_select.xml</select>
-      <order_walk>actor/fauna/animal/elephant_order.xml</order_walk>
-      <order_attack>actor/fauna/animal/elephant_attack.xml</order_attack>
-      <attack>actor/fauna/animal/elephant_attack.xml</attack>
-      <death>actor/fauna/animal/elephant_death.xml</death>
-      <trained>actor/fauna/animal/elephant_trained.xml</trained>
-    </SoundGroups>
-  </Sound>
-  <UnitMotion>
-    <WalkSpeed>5.0</WalkSpeed>
-    <Run>
-      <Speed>10.0</Speed>
-    </Run>
-  </UnitMotion>
-  <Vision>
-    <Range>80</Range>
-  </Vision>
   <VisualActor>
     <Actor>units/carthaginians/champion_unit_2.xml</Actor>
   </VisualActor>

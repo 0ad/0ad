@@ -11,6 +11,8 @@
 	   </textures>
 	    <props>
         <prop actor="props/structures/mauryans/ashoka_lion.xml" attachpoint="ashoka_lion"/>
+<prop actor="props/structures/mauryans/ashoka_pillar_big_base_flowers.xml" attachpoint="root"/>
+<prop actor="props/structures/mauryans/ashoka_pillar_big_base_struct.xml" attachpoint="root"/>
 		</props>
     </variant>
     <variant name="ashoka pillar big">
@@ -22,8 +24,12 @@
 	  </textures>
 	  <props>
 		<prop actor="props/structures/mauryans/ashoka_pillar_big_lions.xml" attachpoint="root"/>
+<prop actor="props/structures/mauryans/ashoka_pillar_big_chakra.xml" attachpoint="root"/>
+<prop actor="props/structures/mauryans/ashoka_pillar_big_base_flowers.xml" attachpoint="root"/>
+<prop actor="props/structures/mauryans/ashoka_pillar_big_base_struct.xml" attachpoint="root"/>
+
 	  </props>
     </variant>
   </group>
-  <material>basic_trans_parallax_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

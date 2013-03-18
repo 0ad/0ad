@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="ashoka pillar chakra">
+      <mesh>props/ashoka_pillar_chakra.dae</mesh>
+	  <textures>
+	  <texture file="structural/ashoka_chakra.png" name="baseTex"/>
+	  <texture file="structural/ashoka_chakra_spec.png" name="specTex"/>
+		<texture file="structural/ashoka_chakra_normal.png" name="normTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
