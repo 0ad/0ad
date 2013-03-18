@@ -10,7 +10,7 @@
     </Resources>
   </Cost>
   <Footprint replace="">
-    <Circle radius="2.5"/>
+    <Square width="7.0" depth="7.0"/>
     <Height>5.0</Height>
   </Footprint>
   <GarrisonHolder disable=""/>
@@ -27,7 +27,7 @@
     <History>.</History>
   </Identity>
   <Obstruction>
-    <Static width="1.5" depth="1.5"/>
+    <Static width="4" depth="4"/>
   </Obstruction>
   <RallyPoint disable=""/>
   <Sound>
