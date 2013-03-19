@@ -1390,6 +1390,10 @@ var UnitFsmSpec = {
 
 				"leave": function() {
 				},
+				
+				"Attacked": function(msg) {
+					// Ignore further attacks while unpacking
+				},
 			},
 
 			"ATTACKING": {
@@ -2317,6 +2321,10 @@ var UnitFsmSpec = {
 
 			"leave": function() {
 			},
+
+			"Attacked": function(msg) {
+				// Ignore attacks while packing
+			},
 		},
 
 		"UNPACKING": {
@@ -2330,6 +2338,10 @@ var UnitFsmSpec = {
 			},
 
 			"leave": function() {
+			},
+
+			"Attacked": function(msg) {
+				// Ignore attacks while unpacking
 			},
 		},
 	},
