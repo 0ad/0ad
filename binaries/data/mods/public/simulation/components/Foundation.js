@@ -144,7 +144,10 @@ Foundation.prototype.AddBuilder = function(builderEnt)
 Foundation.prototype.SetBuildMultiplier = function()
 {
 	// Yields a total rate of construction equal to numRecentBuilders^0.7
-	this.buildMultiplier = Math.pow(this.numRecentBuilders, 0.7) / this.numRecentBuilders;
+	if (this.numRecentBuilders)
+		this.buildMultiplier = Math.pow(this.numRecentBuilders, 0.7) / this.numRecentBuilders;
+	else
+		this.buildMultiplier = 1;
 };
 
 /**
