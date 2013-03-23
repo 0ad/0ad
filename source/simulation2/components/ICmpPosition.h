@@ -168,8 +168,6 @@ public:
 	 */
 	virtual CMatrix3D GetInterpolatedTransform(float frameOffset, bool forceFloating) = 0;
 
-	virtual bool GetReinterpolate() = 0;
-
 	DECLARE_INTERFACE_TYPE(Position)
 };
 
