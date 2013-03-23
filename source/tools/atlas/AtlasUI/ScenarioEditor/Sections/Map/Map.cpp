@@ -155,7 +155,7 @@ void MapSettingsControl::CreateWidgets()
 		_("Select the game type (or victory condition)")), wxSizerFlags().Expand());
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Lock teams")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	gridSizer->Add(Tooltipped(new wxCheckBox(this, ID_MapTeams, wxEmptyString),
-		_("NOT IMPLEMENTED")));
+		_("If checked, teams will be locked")));
 	sizer->Add(gridSizer, wxSizerFlags().Expand());
 
 	sizer->AddSpacer(5);
