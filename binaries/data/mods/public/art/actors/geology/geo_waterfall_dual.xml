@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+<float/>
+  <group>
+    <variant frequency="100" name="waterfall cave">
+      <mesh>gaia/geo_waterfall_dual.dae</mesh>
+<props>
+<prop actor="props/geology/geo_waterfall_dual_water.xml" attachpoint="root"/>
+<prop actor="props/flora/bush_medit_sm_lush.xml" attachpoint="bush_medit_sm_lush"/>
+<prop actor="props/flora/bush_medit_sm.xml" attachpoint="bush_medit_sm"/>
+<prop actor="props/flora/bush_medit_sm.xml" attachpoint="bush_medit_sm1"/>
+<prop actor="props/flora/bush_medit_sm.xml" attachpoint="bush_medit_sm2"/>
+<prop actor="particle/water_splash.xml" attachpoint="water_splash"/>
+<prop actor="particle/water_splash.xml" attachpoint="water_splash1"/>
+</props>
+<textures>
+<texture file="gaia/waterfalls/geo_waterfall_dual.png" name="baseTex"/>
+<texture file="gaia/waterfalls/geo_waterfall_dual_spec.png" name="specTex"/>
+<texture file="gaia/waterfalls/geo_waterfall_dual_normal.png" name="normTex"/>
+<texture file="gaia/ao/geo_waterfall_dual_ao.png" name="aoTex"/></textures>
+    </variant>
+  </group>
+  <material>basic_trans_ao_parallax_spec.xml</material>
+</actor>

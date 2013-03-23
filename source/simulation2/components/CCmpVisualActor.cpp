@@ -55,6 +55,8 @@ public:
 		componentManager.SubscribeToMessageType(MT_Interpolate);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
+		componentManager.SubscribeToMessageType(MT_PositionChanged);
+		componentManager.SubscribeToMessageType(MT_TurnStart);
 		componentManager.SubscribeGloballyToMessageType(MT_TerrainChanged);
 	}
 
@@ -82,6 +84,9 @@ public:
 
 	bool m_ConstructionPreview;
 	fixed m_ConstructionProgress;
+
+	bool m_NeedsInterpolation;
+	bool m_PositionChanged;
 
 	static std::string GetSchema()
 	{
@@ -172,6 +177,9 @@ public:
 
 		// We need to select animation even if graphics are disabled, as this modifies serialized state
 		SelectAnimation("idle", false, fixed::FromInt(1), L"");
+
+		m_NeedsInterpolation = true;
+		m_PositionChanged = true;
 	}
 
 	virtual void Deinit()
@@ -283,6 +291,22 @@ public:
 		{
 			const CMessageTerrainChanged& msgData = static_cast<const CMessageTerrainChanged&> (msg);
 			m_Unit->GetModel().SetTerrainDirty(msgData.i0, msgData.j0, msgData.i1, msgData.j1);
+			// Terrain has changed, so we need to interpolate again
+			m_NeedsInterpolation = true;
+			break;
+		}
+		case MT_PositionChanged:
+		{
+			// The position was changed, so we need to interpolate again
+			m_PositionChanged = true;
+			m_NeedsInterpolation = true;
+			break;
+		}
+		case MT_TurnStart:
+		{
+			// Check whether we need to reinterpolate during this turn
+			m_NeedsInterpolation = m_PositionChanged || m_NeedsInterpolation;
+			m_PositionChanged = false;
 			break;
 		}
 		}
@@ -453,7 +477,12 @@ public:
 
 	virtual void SetConstructionProgress(fixed progress)
 	{
-		m_ConstructionProgress = progress;
+		if (progress != m_ConstructionProgress)
+		{
+			m_ConstructionProgress = progress;
+			// Visual height changed, so we need to interpolate again
+			m_NeedsInterpolation = true;
+		}
 	}
 
 	virtual void Hotload(const VfsPath& name)
@@ -726,6 +755,13 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 	if (m_Unit == NULL)
 		return;
 
+	if (!m_NeedsInterpolation)
+	{
+		// Position hasn't changed so skip most of the work
+		m_Unit->UpdateModel(frameTime);
+		return;
+	}
+
 	// Disable rendering of the unit if it has no position
 	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
@@ -735,14 +771,8 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 		UpdateVisibility();
 		m_PreviouslyRendered = true;
 	}
-	else if (!cmpPosition->GetReinterpolate() && m_ConstructionProgress.IsZero() &&
-			 !g_AtlasGameLoop->running)
-	{
-		// Position hasn't changed so skip most of the work.  Special cases are when placing a building or being
-		// in atlas (since terrain height can change in atlas)
-		m_Unit->UpdateModel(frameTime);
-		return;
-	}
+
+	m_NeedsInterpolation = m_PositionChanged;
 
 	// Even if HIDDEN due to LOS, we need to set up the transforms
 	// so that projectiles will be launched from the right place

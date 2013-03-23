@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+
+    <texture>art/textures/particles/water_splash.png</texture>
+    <blend mode="over"/>
+
+    <constant name="emissionrate" value="3.0"/>
+    <uniform name="lifetime" min="2.0" max="3.0"/>
+
+    <constant name="position.y" value="0.0"/>
+
+    <uniform name="angle" min="-3.14" max="3.14"/>
+
+    <uniform name="velocity.x" min="-0.3" max="0.3"/>
+    <uniform name="velocity.y" min="2.0" max="2.5"/>
+    <uniform name="velocity.z" min="-0.5" max="0.5"/>
+    <uniform name="velocity.angle" min="-2.0" max="2.0"/>
+
+    <uniform name="size" min="2.5" max="5.5"/>
+
+    <force y="-0.3"/>
+
+
+</particles>
