@@ -297,9 +297,47 @@ QBotAI.prototype.chooseRandomStrategy = function()
 };
 
 // TODO: Remove override when the whole AI state is serialised
-QBotAI.prototype.Deserialize = function(data)
+// TODO: this currently is very much equivalent to "rungamestateinit" with a few hacks. Should deserialize/serialize properly someday.
+QBotAI.prototype.Deserialize = function(data, sharedScript)
 {
 	BaseAI.prototype.Deserialize.call(this, data);
+	
+	var ents = sharedScript.entities.filter(Filters.byOwner(PlayerID));
+	var myKeyEntities = ents.filter(function(ent) {
+		return ent.hasClass("CivCentre");
+	});
+	
+	if (myKeyEntities.length == 0){
+		myKeyEntities = sharedScript.entities.filter(Filters.byOwner(PlayerID));
+	}
+	
+	var filter = Filters.byClass("CivCentre");
+	var enemyKeyEntities = sharedScript.entities.filter(Filters.not(Filters.byOwner(PlayerID))).filter(filter);
+	
+	if (enemyKeyEntities.length == 0){
+		enemyKeyEntities = sharedScript.entities.filter(Filters.not(Filters.byOwner(PlayerID)));
+	}
+	
+	this.terrainAnalyzer = sharedScript.terrainAnalyzer;
+	this.passabilityMap = sharedScript.passabilityMap;
+
+	var fakeState = { "ai" : this, "sharedScript" : sharedScript };
+	this.pathFinder = new aStarPath(fakeState, false, true);
+	this.pathsToMe = [];
+	this.pathInfo = { "angle" : 0, "needboat" : true, "mkeyPos" : myKeyEntities.toEntityArray()[0].position(), "ekeyPos" : enemyKeyEntities.toEntityArray()[0].position() };
+	
+	// First path has a sampling of 3, which ensures we'll get at least one path even on Acropolis. The others are 6 so might fail.
+	var pos = [this.pathInfo.mkeyPos[0] + 150*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 150*Math.sin(this.pathInfo.angle)];
+	var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 2, 2);
+	
+	if (path !== undefined && path[1] !== undefined && path[1] == false) {
+		// path is viable and doesn't require boating.
+		// blackzone the last two waypoints.
+		this.pathFinder.markImpassableArea(path[0][0][0],path[0][0][1],20);
+		this.pathsToMe.push(path[0][0][0]);
+		this.pathInfo.needboat = false;
+	}
+	this.pathInfo.angle += Math.PI/3.0;
 };
 
 // Override the default serializer
