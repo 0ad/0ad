@@ -4,11 +4,10 @@ function SharedScript(settings)
 	if (!settings)
 		return;
 	
-	// Make some properties non-enumerable, so they won't be serialised
-	Object.defineProperty(this, "_players", {value: settings.players, enumerable: false});
-	Object.defineProperty(this, "_templates", {value: settings.templates, enumerable: false});
-	Object.defineProperty(this, "_derivedTemplates", {value: {}, enumerable: false});
-	Object.defineProperty(this, "_techTemplates", {value: settings.techTemplates, enumerable: false});
+	this._players = settings.players;
+	this._templates = settings.templates;
+	this._derivedTemplates = {};
+	this._techTemplates = settings.techTemplates;
 		
 	this._entityMetadata = {};
 	for (i in this._players)
@@ -40,22 +39,62 @@ SharedScript.prototype.Serialize = function()
 		var ent = this._entities[id];
 		entities.push( [ent._template, ent._entity, ent._templateName]);
 	}
+	
 	// serialiazing metadata will be done by each AI on a AI basis and they shall update the shared script with that info on deserialization (using DeserializeMetadata() ).
-	return { "entities" : entities };
+	// TODO: this may not be the most clever method.
+	return { "entities" : entities, "techModifs" : this._techModifications, "passabClasses" : this.passabilityClasses, "passabMap" : this.passabilityMap,
+		"timeElapsed" : this.timeElapsed, "techTemplates" : this._techTemplates, "players": this._players};
 };
 
-//Called after the constructor when loading a saved game, with 'data' being
-//whatever Serialize() returned
-// TODO: that
+// Called after the constructor when loading a saved game, with 'data' being
+// whatever Serialize() returned
+// todo: very not-finished. Mostly hacky, and ugly too.
 SharedScript.prototype.Deserialize = function(data)
 {
 	this._entities = {};
+
+	this._players = data.players;
+	this._entityMetadata = {};
+	for (i in this._players)
+		this._entityMetadata[this._players[i]] = {};
+
+	this._techModifications = data.techModifs;
+	this.techModifications = data.techModifs;	// needed for entities
+	
+	this.passabilityClasses = data.passabClasses;
+	this.passabilityMap = data.passabMap;
+	var dataArray = [];
+	for (i in this.passabilityMap.data)
+		dataArray.push(this.passabilityMap.data[i]);
+
+	this.passabilityMap.data = dataArray;
+
+	// TODO: this is needlessly slow (not to mention a hack)
+	// Should probably call a "init" function rather to avoid this and serialize the terrainanalyzer state.
+	var fakeState = { "passabilityClasses" : this.passabilityClasses, "passabilityMap":this.passabilityMap };
+	this.terrainAnalyzer = new TerrainAnalysis (this, fakeState);
+	this.accessibility = new Accessibility(fakeState, this.terrainAnalyzer);
+	
+	this._techTemplates = data.techTemplates;
+	this.timeElapsed = data.timeElapsed;
+
+	// deserializing entities;
 	for (i in data.entities)
 	{
 		var entData = data.entities[i];
-		
-		//this._entities[entData[1].id] = new Entity();
+		entData[1].template = entData[2];
+		this._entities[entData[1].id] = new Entity(this, entData[1]);
 	}
+	// entity collection updated on create/destroy event.
+	this.entities = new EntityCollection(this, this._entities);
+	
+	//deserializing game states.
+	fakeState["timeElapsed"] = this.timeElapsed;
+	fakeState["players"] = this._players;
+	
+	this.gameState = {};
+	for (i in this._players)
+		this.gameState[this._players[i]] = new GameState(this, fakeState, this._players[i]);
 };
 
 // Components that will be disabled in foundation entity templates.

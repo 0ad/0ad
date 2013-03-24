@@ -363,9 +363,6 @@ public:
 
 	bool TryLoadSharedComponent(bool hasTechs)
 	{
-		// only load if there are AI players.
-		if (m_Players.size() == 0)
-			return false;
 		// we don't need to load it.
 		if (!m_HasSharedComponent)
 			return false;
@@ -596,6 +593,14 @@ public:
 
 		serializer.NumberU32_Unbounded("num ais", (u32)m_Players.size());
 
+		serializer.Bool("useSharedScript", m_HasSharedComponent);
+		if (m_HasSharedComponent)
+		{
+			CScriptVal sharedData;
+			if (!m_ScriptInterface.CallFunction(m_SharedAIObj.get(), "Serialize", sharedData))
+				LOGERROR(L"AI shared script Serialize call failed");
+			serializer.ScriptVal("sharedData", sharedData);
+		}
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
 			serializer.String("name", m_Players[i]->m_AIName, 1, 256);
@@ -614,13 +619,6 @@ public:
 				LOGERROR(L"AI script Serialize call failed");
 			serializer.ScriptVal("data", scriptData);
 			
-		}
-		if (m_HasSharedComponent)
-		{
-			CScriptVal sharedData;
-			if (!m_ScriptInterface.CallFunction(m_SharedAIObj.get(), "Serialize", sharedData))
-				LOGERROR(L"AI shared script Serialize call failed");
-			serializer.ScriptVal("sharedData", sharedData);
 		}
 	}
 
@@ -644,6 +642,16 @@ public:
 		uint32_t numAis;
 		deserializer.NumberU32_Unbounded("num ais", numAis);
 
+		deserializer.Bool("useSharedScript", m_HasSharedComponent);
+		TryLoadSharedComponent(false);
+		if (m_HasSharedComponent)
+		{
+			CScriptVal sharedData;
+			deserializer.ScriptVal("sharedData", sharedData);
+			if (!m_ScriptInterface.CallFunctionVoid(m_SharedAIObj.get(), "Deserialize", sharedData))
+				LOGERROR(L"AI shared script Deserialize call failed");
+		}
+
 		for (size_t i = 0; i < numAis; ++i)
 		{
 			std::wstring name;
@@ -664,19 +672,17 @@ public:
 				deserializer.ScriptVal("command", val);
 				m_Players.back()->m_Commands.push_back(m_ScriptInterface.WriteStructuredClone(val.get()));
 			}
-			
 			CScriptVal scriptData;
 			deserializer.ScriptVal("data", scriptData);
-			if (!m_ScriptInterface.CallFunctionVoid(m_Players.back()->m_Obj.get(), "Deserialize", scriptData))
-				LOGERROR(L"AI script Deserialize call failed");
-		}
-		TryLoadSharedComponent(false);
-		if (m_HasSharedComponent)
-		{
-			CScriptVal sharedData;
-			deserializer.ScriptVal("sharedData", sharedData);
-			if (!m_ScriptInterface.CallFunctionVoid(m_SharedAIObj.get(), "Deserialize", sharedData))
-				LOGERROR(L"AI shared script Deserialize call failed");
+			if (m_Players[i]->m_UseSharedComponent)
+			{
+				if (!m_ScriptInterface.CallFunctionVoid(m_Players.back()->m_Obj.get(), "Deserialize", scriptData, m_SharedAIObj))
+					LOGERROR(L"AI script Deserialize call failed");
+			}
+			else if (!m_ScriptInterface.CallFunctionVoid(m_Players.back()->m_Obj.get(), "Deserialize", scriptData))
+			{
+				LOGERROR(L"AI script deserialize() call failed");
+			}
 		}
 	}
 	
