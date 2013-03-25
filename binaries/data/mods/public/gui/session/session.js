@@ -26,6 +26,8 @@ var g_EntityStates = {}; // {id:entState}
 // Whether the player has lost/won and reached the end of their game
 var g_GameEnded = false;
 
+var g_Disconnected = false; // Lost connection to server
+
 // Colors to flash when pop limit reached
 const DEFAULT_POPULATION_COLOR = "white";
 const POPULATION_ALERT_COLOR = "orange";
@@ -148,7 +150,7 @@ function resignGame()
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
 
 	// Players can't resign if they've already won or lost.	
-	if (simState.players[Engine.GetPlayerID()].state != "active")
+	if (simState.players[Engine.GetPlayerID()].state != "active" || g_Disconnected)
 		return;
 
 	// Tell other players that we have given up and been defeated
@@ -167,7 +169,11 @@ function leaveGame()
 	var playerState = extendedSimState.players[Engine.GetPlayerID()];
 
 	var gameResult;
-	if (playerState.state == "won")
+	if (g_Disconnected)
+	{
+		gameResult = "You have been disconnected."
+	}
+	else if (playerState.state == "won")
 	{
 		gameResult = "You have won the battle!";
 	}

@@ -89,7 +89,8 @@ public:
 		PROFILE2_ATTR("command: %s", GetSimContext().GetScriptInterface().StringifyJSON(cmd.get(), false).c_str());
 
 		// TODO: would be nicer to not use globals
-		g_Game->GetTurnManager()->PostCommand(CScriptValRooted(cx, cmd));
+		if (g_Game && g_Game->GetTurnManager())
+			g_Game->GetTurnManager()->PostCommand(CScriptValRooted(cx, cmd));
 	}
 
 	virtual void FlushTurn(const std::vector<SimulationCommand>& commands)

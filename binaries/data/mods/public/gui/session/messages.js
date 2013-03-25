@@ -118,6 +118,10 @@ function handleNetMessage(message)
 	switch (message.type)
 	{
 	case "netstatus":
+		// If we lost connection, further netstatus messages are useless
+		if (g_Disconnected)
+			return;
+
 		var obj = getGUIObjectByName("netStatus");
 		switch (message.status)
 		{
@@ -142,9 +146,9 @@ function handleNetMessage(message)
 			obj.hidden = false;
 			break;
 		case "disconnected":
+			g_Disconnected = true;
 			obj.caption = "Connection to the server has been lost.\n\nThe game has ended.";
 			obj.hidden = false;
-			getGUIObjectByName("disconnectedExitButton").hidden = false;
 			break;
 		default:
 			error("Unrecognised netstatus type "+message.status);
