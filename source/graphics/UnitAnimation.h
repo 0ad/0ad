@@ -100,6 +100,7 @@ private:
 		float time;
 		bool pastLoadPos;
 		bool pastActionPos;
+		bool pastSoundPos;
 	};
 
 	std::vector<SModelAnimState> m_AnimStates;
