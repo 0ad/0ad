@@ -38,7 +38,8 @@ public:
 	
 	virtual CStrW* GetName() = 0;
 	virtual bool IdleTask() = 0;
-	
+	virtual	bool IsFading() = 0;
+
 	virtual void Play() = 0;
 	virtual void Stop() = 0;
 

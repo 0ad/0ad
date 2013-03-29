@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_temple">
   <Footprint>
-    <Square width="19.0" depth="19.0"/>
+    <Square width="16.0" depth="30.5"/>
     <Height>12.0</Height>
   </Footprint>
   <Health>
-    <SpawnEntityOnDeath>rubble/rubble_4x4</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>maur</Civ>
@@ -13,7 +13,7 @@
     <History>Temple.</History>
   </Identity>
   <Obstruction>
-    <Static width="17.5" depth="17.5"/>
+    <Static width="15.0" depth="30.5"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/mauryans/temple.xml</Actor>

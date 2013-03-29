@@ -47,6 +47,12 @@ public:
 	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 
 	/**
+	 * Determine wether the givven point is within the given range, using the same measurement
+	 * as MoveToPointRange.
+	 */
+	virtual bool IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) = 0;
+
+	/**
 	 * Determine whether the target is within the given range, using the same measurement
 	 * as MoveToTargetRange.
 	 */
@@ -77,6 +83,11 @@ public:
 	 * Stop moving immediately.
 	 */
 	virtual void StopMoving() = 0;
+
+	/**
+	 * Get the current movement speed.
+	 */
+	virtual fixed GetCurrentSpeed() = 0;
 
 	/**
 	 * Set the current movement speed.

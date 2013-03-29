@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_spearman">
   <Armour>
-    <Hack>15.0</Hack>
-    <Pierce>15.0</Pierce>
+    <Hack>10.0</Hack>
+    <Pierce>16.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
   <Attack>
@@ -19,12 +19,9 @@
   <Cost>
     <Resources>
       <wood>0</wood>
-	  <metal>100</metal>
+	  <metal>120</metal>
     </Resources>
   </Cost>
-  <Health>
-    <Max>150</Max>
-  </Health>
   <Identity>
     <Civ>pers</Civ>
     <GenericName>Bactrian Heavy Lancer</GenericName>
@@ -33,7 +30,7 @@
     <History>Cataphracts were the crushing blow of the Persian cavalry. The development of the Persian cataphract is not well understood, as is the relationship between these men and future generations of cataphract cavalry. At best it seems the Persians adopted the catapharct from encounters with Iranian nomads like the Massagetes.</History>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>9.0</WalkSpeed>
+    <WalkSpeed>10.0</WalkSpeed>
     <Run>
       <Speed>25.0</Speed>
       <Range>1000.0</Range>

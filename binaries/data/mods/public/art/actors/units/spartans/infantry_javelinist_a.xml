@@ -5,7 +5,8 @@
     <variant frequency="100" name="Base">
       <animations>
         <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
-        <animation event="0.5" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="Melee" speed="75"/>
+        <animation event="0.5" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="attack_ranged" speed="75"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_slaughter" speed="100"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="30"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="30"/>
@@ -45,11 +46,16 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Melee">
+    <variant name="attack_ranged">
       <props>
         <prop attachpoint="r_hand"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+      </props>
+    </variant>
+    <variant name="attack_slaughter">
+      <props>
+        <prop actor="props/units/weapons/knife.xml" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="gather_tree">

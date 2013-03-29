@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Mauryan Trireme">
+      <animations>
+      </animations>
+      <mesh>structural/maur_trireme.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a1"/>
+<prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a2"/>
+        <prop actor="props/special/eyecandy/sack_1.xml" attachpoint="wrld_sack1"/>
+<prop actor="props/units/shields/maur_bell_a.xml" attachpoint="maur_shield_bell1"/>
+<prop actor="props/units/shields/maur_bell_b.xml" attachpoint="maur_shield_bell2"/>
+<prop actor="props/units/shields/maur_bell_straight_b.xml" attachpoint="maur_shield_bell3"/>
+<prop actor="props/units/shields/maur_tall_roundtop_a.xml" attachpoint="maur_shield_tall_round1"/>
+<prop actor="props/units/shields/maur_tall_roundtop_b.xml" attachpoint="maur_shield_tall_round2"/>
+<prop actor="props/units/shields/maur_tall_roundtop_a.xml" attachpoint="maur_shield_tall_round3"/>
+<prop actor="props/units/shields/maur_tall_roundtop_b.xml" attachpoint="maur_shield_tall_round4"/>
+<prop actor="props/units/weapons/longsword_mauryan.xml" attachpoint="maur_long_sword1"/>
+<prop actor="props/units/weapons/longsword_mauryan.xml" attachpoint="maur_long_sword2"/>
+<prop actor="props/units/weapons/longsword_mauryan.xml" attachpoint="maur_long_sword3"/>
+<prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a1"/>
+<prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a003"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Blue Eye">
+      <textures>
+	  <texture file="structural/maur_trireme.png" name="baseTex"/>
+	  <texture file="structural/maur_trireme_spec.png" name="specTex"/>
+	  <texture file="structural/maur_trireme_norm.png" name="normTex"/>
+	  
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

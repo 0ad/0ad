@@ -24,7 +24,7 @@ function ClumpPlacer(size, coherence, smoothness, failFraction, x, z)
 ClumpPlacer.prototype.place = function(constraint)
 {
 	// Preliminary bounds check
-	if (!g_Map.validT(this.x, this.z) || !constraint.allows(this.x, this.z))
+	if (!g_Map.inMapBounds(this.x, this.z) || !constraint.allows(this.x, this.z))
 	{
 		return undefined;
 	}
@@ -99,7 +99,7 @@ ClumpPlacer.prototype.place = function(constraint)
 		{
 			var i = Math.floor(xx);
 			var j = Math.floor(yy);
-			if (g_Map.validT(i, j) && constraint.allows(i, j))
+			if (g_Map.inMapBounds(i, j) && constraint.allows(i, j))
 			{
 				if (!gotRet[i][j])
 				{	// Only include each point once
@@ -145,8 +145,8 @@ function RectPlacer(x1, z1, x2, z2)
 RectPlacer.prototype.place = function(constraint)
 {
 	// Preliminary bounds check
-	if (!g_Map.validT(this.x1, this.z1) || !constraint.allows(this.x1, this.z1) ||
-		!g_Map.validT(this.x2, this.z2) || !constraint.allows(this.x2, this.z2))
+	if (!g_Map.inMapBounds(this.x1, this.z1) || !constraint.allows(this.x1, this.z1) ||
+		!g_Map.inMapBounds(this.x2, this.z2) || !constraint.allows(this.x2, this.z2))
 	{
 		return undefined;
 	}
@@ -160,7 +160,7 @@ RectPlacer.prototype.place = function(constraint)
 	{
 		for (var z=this.z1; z < z2; z++)
 		{
-			if (g_Map.validT(x, z) && constraint.allows(x, z))
+			if (g_Map.inMapBounds(x, z) && constraint.allows(x, z))
 			{
 				ret.push(new PointXZ(x, z));
 			}

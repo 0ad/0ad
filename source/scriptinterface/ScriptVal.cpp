@@ -83,13 +83,14 @@ JSIdArray* AutoJSIdArray::get() const
 
 size_t AutoJSIdArray::length() const
 {
-	ENSURE(m_IdArray);
+	if (!m_IdArray)
+		return 0;
 	return m_IdArray->length;
 }
 
 jsid AutoJSIdArray::operator[](size_t i) const
 {
-	ENSURE(m_IdArray);
-	ENSURE(i < (size_t)m_IdArray->length);
+	if (!(m_IdArray && i < (size_t)m_IdArray->length))
+		return JSID_VOID;
 	return m_IdArray->vector[i];
 }

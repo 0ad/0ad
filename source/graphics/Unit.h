@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ class CUnit
 private:
 	// Private constructor. Needs complete list of selections for the variation.
 	CUnit(CObjectEntry* object, CObjectManager& objectManager,
-		const std::set<CStr>& actorSelections);
+		const std::set<CStr>& actorSelections, uint32_t seed);
 
 public:
 	// Attempt to create a unit with the given actor, with a set of
@@ -88,6 +88,9 @@ private:
 	// unique (per map) ID number for units created in the editor, as a
 	// permanent way of referencing them.
 	entity_id_t m_ID;
+
+	// seed used when creating unit
+	uint32_t m_Seed;
 
 	// actor-level selections for this unit
 	std::set<CStr> m_ActorSelections;

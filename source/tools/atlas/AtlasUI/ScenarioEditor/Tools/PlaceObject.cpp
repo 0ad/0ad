@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@ class PlaceObject : public StateDrivenTool<PlaceObject>
 
 	Position m_ScreenPos, m_ObjPos, m_Target;
 	wxString m_ObjectID;
+	unsigned int m_ActorSeed;
 
 public:
 	PlaceObject()
@@ -48,9 +49,12 @@ public:
 			+ (m_ScreenPos.type1.y-m_Target.type1.y)*(m_ScreenPos.type1.y-m_Target.type1.y);
 		bool useTarget = (dragDistSq >= 16*16);
 		if (preview)
-			POST_MESSAGE(ObjectPreview, ((std::wstring)m_ObjectID.wc_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+			POST_MESSAGE(ObjectPreview, ((std::wstring)m_ObjectID.wc_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle, m_ActorSeed));
 		else
-			POST_COMMAND(CreateObject, ((std::wstring)m_ObjectID.wc_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+		{
+			POST_COMMAND(CreateObject, ((std::wstring)m_ObjectID.wc_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle, m_ActorSeed));
+			RandomizeActorSeed();
+		}
 	}
 
 	virtual void Init(void* initData, ScenarioEditor* scenarioEditor)
@@ -65,6 +69,7 @@ public:
 
 	void OnEnable()
 	{
+		RandomizeActorSeed();
 	}
 
 	void OnDisable()
@@ -98,18 +103,13 @@ public:
 
 	bool OnKeyOverride(wxKeyEvent& evt, KeyEventType type)
 	{
-		switch (type)
+		if (type == KEY_CHAR && evt.GetKeyCode() == WXK_ESCAPE)
 		{
-		case KEY_CHAR:
-			int key = evt.GetKeyCode();
-			if (key == WXK_ESCAPE)
-			{
-				SetState(&Disabled);
-				return true;
-			}
-			break;
+			SetState(&Disabled);
+			return true;
 		}
-		return false;
+		else
+			return false;
 	}
 
 	void RotateTick(float dt)
@@ -125,6 +125,10 @@ public:
 		}
 	}
 
+	void RandomizeActorSeed()
+	{
+		m_ActorSeed = (unsigned int)floor((rand() / (float)RAND_MAX) * 65535.f);
+	}
 
 	struct sWaiting : public State
 	{

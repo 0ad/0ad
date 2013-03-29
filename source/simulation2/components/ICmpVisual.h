@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -92,6 +92,21 @@ public:
 	virtual void SelectAnimation(std::string name, bool once, fixed speed, std::wstring soundgroup) = 0;
 
 	/**
+	 * Replaces a specified animation with another. Only affects the special speed-based
+	 * animation determination behaviour.
+	 * @param name Animation to match.
+	 * @param replace Animation that should replace the matched animation.
+	 */
+	virtual void ReplaceMoveAnimation(std::string name, std::string replace) = 0;
+
+	/**
+	 * Ensures that the given animation will be used when it normally would be,
+	 * removing reference to any animation that might replace it.
+	 * @param name Animation name to remove from the replacement map.
+	 */
+	virtual void ResetMoveAnimation(std::string name) = 0;
+
+	/**
 	 * Sets the specified entity selection on the underlying unit.
 	 */
 	virtual void SetUnitEntitySelection(const CStr& selection) = 0;
@@ -130,6 +145,27 @@ public:
 	 * (e.g. in particle emitter parameter computations).
 	 */
 	virtual void SetVariable(std::string name, float value) = 0;
+
+	/**
+	 * Get actor seed used for random variations
+	 */
+	virtual u32 GetActorSeed() = 0;
+	
+	/**
+	 * Set actor seed for random variations and reload model
+	 */
+	virtual void SetActorSeed(u32 seed) = 0;
+
+	/**
+	 * Returns true if this entity should have a construction preview
+	 */
+	virtual bool HasConstructionPreview() = 0;
+
+	/**
+	 * Set construction progress of the model, this affects the rendered position of the model.
+	 * 0.0 will be fully underground, 1.0 will be fully visible, 0.5 will be half underground.
+	 */
+	virtual void SetConstructionProgress(fixed progress) = 0;
 
 	/**
 	 * Called when an actor file has been modified and reloaded dynamically.

@@ -4,8 +4,15 @@
   <group>
     <variant frequency="100" name="Mill">
       <mesh>structural/maur_mill.dae</mesh>
-      <textures><texture file="structural/maur_struct_temp.png" name="baseTex"/></textures>
+      <props>
+        <prop actor="props/structures/mauryans/mill_props.xml" attachpoint="root"/>
+      </props>
+      <textures>
+	  <texture file="structural/maur_struct_b.png" name="baseTex"/>
+	  <texture file="structural/maur_struct_b_spec.png" name="specTex"/>
+	  <texture file="structural/maur_struct_b_norm.png" name="normTex"/>
+	  </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

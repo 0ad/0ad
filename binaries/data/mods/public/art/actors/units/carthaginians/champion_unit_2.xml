@@ -12,15 +12,17 @@
         <animation file="quadraped/elephant_african_idle_03.dae" name="Idle" speed="75"/>
         <animation file="quadraped/elephant_african_walk.dae" name="Walk" speed="30"/>
         <animation file="quadraped/elephant_african_walk.dae" name="Run" speed="20"/>
-        <animation file="quadraped/elephant_african_attack.dae" name="Attack" speed="75"/>
-        <animation file="quadraped/elephant_african_death.dae" name="Death" speed="100"/>
+        <animation file="quadraped/elephant_african_attack.dae" name="attack_melee" speed="75"/>
+        <animation file="quadraped/elephant_african_death.dae" name="Death" speed="50"/>
       </animations>
       <mesh>skeletal/elephant_african_forest.dae</mesh>
       <props>
         <prop actor="units/carthaginians/hero_hannibal_mahout.xml" attachpoint="rider"/>
       </props>
       <textures>
-        <texture file="skeletal/animal-elephant-base.dds" name="baseTex"/>
+        <texture file="skeletal/kart_elephant_a.png" name="baseTex"/>
+        <texture file="skeletal/kart_elephant_a_spec.png" name="specTex"/>
+        <texture file="skeletal/kart_elephant_a_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -37,4 +39,5 @@
       </props>
     </variant>
   </group>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

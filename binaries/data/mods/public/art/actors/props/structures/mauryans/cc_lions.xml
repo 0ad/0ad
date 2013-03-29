@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="maur cc lions">
+      <mesh>props/maur_cc_lions.dae</mesh>
+<textures>
+	 <texture file="structural/ashoka_lion.png" name="baseTex"/>
+	 <texture file="structural/ashoka_lion_spec.png" name="specTex"/>
+	 <texture file="structural/ashoka_lion_norm.png" name="normTex"/> 
+     <texture file="structural/ao/maur_civic_ao.png" name="aoTex"/>
+</textures>
+    </variant>
+  </group>
+<material>player_trans_ao_parallax_spec.xml</material>
+</actor>

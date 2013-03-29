@@ -8,6 +8,7 @@ Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Gate.js");
 Engine.LoadComponentScript("interfaces/Heal.js");
 Engine.LoadComponentScript("interfaces/Health.js");
+Engine.LoadComponentScript("interfaces/Pack.js");
 Engine.LoadComponentScript("interfaces/ProductionQueue.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
 Engine.LoadComponentScript("interfaces/RallyPoint.js");

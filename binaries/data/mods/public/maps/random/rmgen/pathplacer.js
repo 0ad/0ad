@@ -51,6 +51,13 @@ PathPlacer.prototype.place = function(constraint)
 	var totalSteps = numSteps*numISteps;
 	var offset = 1 + Math.floor(dist/4 * this.c);
 	
+	var size = getMapSize();
+	var gotRet = new Array(size);
+	for (var i = 0; i < size; ++i)
+	{
+		gotRet[i] = new Uint8Array(size);			// bool / uint8
+	}
+	
 	// Generate random offsets
 	var ctrlVals = new Float32Array(numSteps);		//float32
 	for (var j = 1; j < (numSteps-1); ++j)
@@ -71,7 +78,6 @@ PathPlacer.prototype.place = function(constraint)
 		var Q = (v0 - v1) - P;
 		var R = v2 - v0;
 		var S = v1;
-		
 		for (var k = 0; k < numISteps; ++k)
 		{
 			var t = k/numISteps;
@@ -122,7 +128,6 @@ PathPlacer.prototype.place = function(constraint)
 	}
 	
 	var retVec = [];
-	
 	// Draw path segments
 	var num = segments1.length - 1;
 	for (var j = 0; j < num; ++j)
@@ -155,9 +160,10 @@ PathPlacer.prototype.place = function(constraint)
 				{
 					if (constraint.allows(x, z))
 					{
-						if (g_Map.validT(x, z))
+						if (g_Map.inMapBounds(x, z) && !gotRet[x][z])
 						{
 							retVec.push(new PointXZ(x, z));
+							gotRet[x][z] = 1;
 						}
 					}
 					else

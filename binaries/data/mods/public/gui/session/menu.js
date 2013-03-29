@@ -9,7 +9,7 @@ const RESUME = "Resume";
 const MARGIN = 4;
 
 // Includes the main menu button
-const NUM_BUTTONS = 7;
+const NUM_BUTTONS = 8;
 
 // Regular menu buttons
 const BUTTON_HEIGHT = 32;
@@ -33,6 +33,9 @@ var isMenuOpen = false;
 var menu;
 
 var isDiplomacyOpen = false;
+
+// Redefined every time someone makes a tribute (so we can save some data in a closure). Called in input.js handleInputBeforeGui.
+var flushTributing = function() {};
 
 // Ignore size defined in XML and set the actual menu size here
 function initMenuPosition()
@@ -255,59 +258,89 @@ function openDiplomacy()
 
 		getGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption = (players[i].team < 0) ? "None" : players[i].team+1;
 
-		// Don't display this for ourself and our locked team members
-		if (i != we && !(players[we].teamsLocked && players[we].team != -1 && players[we].team == players[i].team))
-		{
+		if (i != we)
 			getGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (players[i].isAlly[we] ? "Ally" : (players[i].isNeutral[we] ? "Neutral" : "Enemy"));
 
-			// Set up the buttons
-			for each (var setting in ["ally", "neutral", "enemy"])
-			{
-				var button = getGUIObjectByName("diplomacyPlayer"+toTitleCase(setting)+"["+(i-1)+"]");
-
-				if (setting == "ally")
-				{
-					if (players[we].isAlly[i])
-						button.caption = "x";
-					else
-						button.caption = "";
-				}
-				else if (setting == "neutral")
-				{
-					if (players[we].isNeutral[i])
-						button.caption = "x";
-					else
-						button.caption = "";
-				}
-				else // "enemy"
-				{
-					if (players[we].isEnemy[i])
-						button.caption = "x";
-					else
-						button.caption = "";
-				}
-				
-				button.onpress = (function(e){ return function() { setDiplomacy(e) } })({"player": i, "to": setting});
-				button.hidden = false;
-			}
-		}
-		
-		// Tributes (you can't tribute to yourself)
-		if (i != we)
+		// Don't display the options for ourself, or if we or the other player aren't active anymore
+		if (i == we || players[we].state != "active" || players[i].state != "active")
 		{
-			for each (var resource in ["food", "wood", "stone", "metal"])
-			{
-				var button = getGUIObjectByName("diplomacyPlayerTribute"+toTitleCase(resource)+"["+(i-1)+"]");
-				// TODO: Make amounts changeable or change to 500 if shift is pressed
-				var amounts = {
-					"food": (resource=="food")?100:0,
-					"wood": (resource=="wood")?100:0,
-					"stone": (resource=="stone")?100:0,
-					"metal": (resource=="metal")?100:0,
+			// Hide the unused/unselectable options
+			for each (var a in ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
+				getGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
+			continue;
+		}
+
+		// Tribute
+		for each (var resource in ["food", "wood", "stone", "metal"])
+		{
+			var button = getGUIObjectByName("diplomacyPlayerTribute"+toTitleCase(resource)+"["+(i-1)+"]");
+			button.onpress = (function(player, resource, button){
+				// Implement something like how unit batch training works. Shift+click to send 500, shift+click+click to send 1000, etc.
+				// Also see input.js (searching for "INPUT_MASSTRIBUTING" should get all the relevant parts).
+				var multiplier = 1;
+				return function() {
+					var isBatchTrainPressed = Engine.HotkeyIsPressed("session.masstribute");
+					if (isBatchTrainPressed)
+					{
+						inputState = INPUT_MASSTRIBUTING;
+						multiplier += multiplier == 1 ? 4 : 5;
+					}
+					var amounts = {
+						"food": (resource == "food" ? 100 : 0) * multiplier,
+						"wood": (resource == "wood" ? 100 : 0) * multiplier,
+						"stone": (resource == "stone" ? 100 : 0) * multiplier,
+						"metal": (resource == "metal" ? 100 : 0) * multiplier,
+					};
+					button.tooltip = formatTributeTooltip(players[player], resource, amounts[resource]);
+					// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
+					// evil global variable hackery.
+					flushTributing = function() {
+						tributeResource({"player": player, "amounts": amounts});
+						multiplier = 1;
+						button.tooltip = formatTributeTooltip(players[player], resource, 100);
+					};
+					if (!isBatchTrainPressed)
+						flushTributing();
 				};
-				button.onpress = (function(e){ return function() { tributeResource(e) } })({"player": i, "amounts": amounts});
-				button.hidden = false;
+			})(i, resource, button);
+			button.hidden = false;
+			button.tooltip = formatTributeTooltip(players[i], resource, 100);
+		}
+
+		// Skip our own teams on teams locked
+		if (players[we].teamsLocked && players[we].team != -1 && players[we].team == players[i].team)
+			continue;
+
+		// Diplomacy settings
+		// Set up the buttons
+		for each (var setting in ["ally", "neutral", "enemy"])
+		{
+			var button = getGUIObjectByName("diplomacyPlayer"+toTitleCase(setting)+"["+(i-1)+"]");
+
+			if (setting == "ally")
+			{
+				if (players[we].isAlly[i])
+					button.caption = "x";
+				else
+					button.caption = "";
 			}
+			else if (setting == "neutral")
+			{
+				if (players[we].isNeutral[i])
+					button.caption = "x";
+				else
+					button.caption = "";
+			}
+			else // "enemy"
+			{
+				if (players[we].isEnemy[i])
+					button.caption = "x";
+				else
+					button.caption = "";
+			}
+			
+			button.onpress = (function(e){ return function() { setDiplomacy(e) } })({"player": i, "to": setting});
+			button.hidden = false;
 		}
 	}
 
@@ -353,7 +386,6 @@ function togglePause()
 	{
 		getGUIObjectByName("pauseButtonText").caption = RESUME;
 		setPaused(true);
-
 	}
 	else
 	{
@@ -364,11 +396,21 @@ function togglePause()
 	pauseOverlay.hidden = !pauseOverlay.hidden;
 }
 
+function openManual()
+{
+	closeMenu();
+	closeOpenDialogs();
+	pauseGame();
+	Engine.PushGuiPage("page_manual.xml", {"page": "intro", "closeCallback": resumeGame});
+}
+
 function toggleDeveloperOverlay()
 {
 	var devCommands = getGUIObjectByName("devCommands");
-	var text = devCommands.hidden? "opened." : "closed.";
+	var text = devCommands.hidden ? "opened." : "closed.";
 	submitChatDirectly("The Developer Overlay was " + text);
+	// Update the options dialog
+	getGUIObjectByName("developerOverlayCheckbox").checked = devCommands.hidden;
 	devCommands.hidden = !devCommands.hidden;
 }
 
@@ -380,11 +422,9 @@ function closeOpenDialogs()
 	closeSettings(false);
 }
 
-
-// Temporarily adding this here
-//function playButtonSound()
-//{
-//    const BUTTON_SOUND = "audio/interface/ui/ui_button_longclick.ogg";
-//    var buttonSound = new Sound(BUTTON_SOUND);
-//    buttonSound.play();
-//}
+function formatTributeTooltip(player, resource, amount)
+{
+	var playerColor = player.color.r + " " + player.color.g + " " + player.color.b;
+	return "Tribute " + amount + " " + resource + " to [color=\"" + playerColor + "\"]" + player.name +
+		"[/color]. Shift-click to tribute " + (amount < 500 ? 500 : amount + 500) + ".";
+}

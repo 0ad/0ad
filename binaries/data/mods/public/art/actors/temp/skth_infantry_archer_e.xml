@@ -7,7 +7,7 @@
     <variant frequency="100" name="Base">
       <animations>
         <animation file="biped/inf_arch_atk_a.psa" name="Idle" speed="1"/>
-        <animation event="0.6" file="biped/inf_arch_atk_a.psa" load="0" name="Attack" speed="100"/>
+        <animation event="0.6" file="biped/inf_arch_atk_a.psa" load="0" name="attack_ranged" speed="100"/>
         <animation file="infantry/general/dude/dudewalk.psa" name="Walk" speed="20"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="5"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="10"/>
@@ -40,7 +40,7 @@
 
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Melee">
+    <variant name="attack_ranged">
       <props>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>

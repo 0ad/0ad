@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -462,7 +462,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		menuRP->Append(ID_RenderPathShader, _("&Shader (default)"));
 	}
 
-	m_FileHistory.Load(*wxConfigBase::Get());
+	m_FileHistory.LoadFromSubDir(*wxConfigBase::Get());
 
 
 	m_SectionLayout.SetWindow(this);
@@ -522,6 +522,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	// Start with a blank map (so that the editor can assume there's always
 	// a valid map loaded)
 	POST_MESSAGE(LoadMap, (_T("_default")));
+	POST_MESSAGE(SimPlay, (0.f, false));
 
 	// Select the initial sidebar (after the map has loaded)
 	m_SectionLayout.SelectPage(_T("MapSidebar"));
@@ -571,7 +572,7 @@ void ScenarioEditor::OnClose(wxCloseEvent&)
 {
 	m_ToolManager.SetCurrentTool(_T(""));
 
-	m_FileHistory.Save(*wxConfigBase::Get());
+	m_FileHistory.SaveToSubDir(*wxConfigBase::Get());
 
 	POST_MESSAGE(Shutdown, ());
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -387,6 +387,12 @@ void MapSidebar::OnFirstDisplay()
 void MapSidebar::OnMapReload()
 {
 	m_MapSettingsCtrl->ReadFromEngine();
+
+	// Reset sim test buttons
+	POST_MESSAGE(SimPlay, (0.f, false));
+	POST_MESSAGE(GuiSwitchPage, (L"page_atlas.xml"));
+	m_SimState = SimInactive;
+	UpdateSimButtons();
 }
 
 void MapSidebar::UpdateSimButtons()
@@ -436,12 +442,12 @@ void MapSidebar::OnSimPlay(wxCommandEvent& event)
 
 		POST_MESSAGE(SimStateSave, (L"default"));
 		POST_MESSAGE(GuiSwitchPage, (L"page_session.xml"));
-		POST_MESSAGE(SimPlay, (speed));
+		POST_MESSAGE(SimPlay, (speed, true));
 		m_SimState = newState;
 	}
 	else // paused or already playing at a different speed
 	{
-		POST_MESSAGE(SimPlay, (speed));
+		POST_MESSAGE(SimPlay, (speed, true));
 		m_SimState = newState;
 	}
 	UpdateSimButtons();
@@ -451,7 +457,7 @@ void MapSidebar::OnSimPause(wxCommandEvent& WXUNUSED(event))
 {
 	if (IsPlaying(m_SimState))
 	{
-		POST_MESSAGE(SimPlay, (0.f));
+		POST_MESSAGE(SimPlay, (0.f, true));
 		m_SimState = SimPaused;
 	}
 	UpdateSimButtons();
@@ -461,14 +467,17 @@ void MapSidebar::OnSimReset(wxCommandEvent& WXUNUSED(event))
 {
 	if (IsPlaying(m_SimState))
 	{
-		POST_MESSAGE(SimPlay, (0.f));
+		POST_MESSAGE(SimPlay, (0.f, true));
 		POST_MESSAGE(SimStateRestore, (L"default"));
+		POST_MESSAGE(SimPlay, (0.f, false));
 		POST_MESSAGE(GuiSwitchPage, (L"page_atlas.xml"));
 		m_SimState = SimInactive;
 	}
 	else if (m_SimState == SimPaused)
 	{
+		POST_MESSAGE(SimPlay, (0.f, true));
 		POST_MESSAGE(SimStateRestore, (L"default"));
+		POST_MESSAGE(SimPlay, (0.f, false));
 		POST_MESSAGE(GuiSwitchPage, (L"page_atlas.xml"));
 		m_SimState = SimInactive;
 	}

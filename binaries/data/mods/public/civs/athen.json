@@ -3,7 +3,7 @@
 	"Culture":"hele",
 	"Name":"Athenians",
 	"Emblem":"session/portraits/emblems/emblem_athenians.png",
-	"History":"The Athenians were famed for their philosophy, democracy, and artistic achievement. They were also good warriors, with a naval tradition, and an energetic populace.",
+	"History":"As the cradle of Western civilization and the birthplace of democracy, Athens was famed as a center for the arts, learning and philosophy. The Athenians were also powerful warriors, particularly at sea. At its peak, Athens dominated a large part of the Hellenic world for several decades.",
 	"Music":[
 			{"File":"Harvest_Festival.ogg", "Type":"peace"},
 			{"File":"Forging_a_City-State.ogg", "Type":"peace"}
@@ -23,12 +23,12 @@
 				{
 					"Name":"Long Walls",
 					"History":"The Long Walls of Athens were constructed under the auspices of the wily Themistokles and extended 6 km from the city to the port of Piraeus. This secured the city's sea supply routes and prevented an enemy from starving out the city during a siege.",
-					"Description":"The Athenians can build their stone walls in neutral territory. Construction time for walls is reduced by 50%."
+					"Description":"Stone walls can be built in neutral territory. Construction time for walls is reduced by 50%."
 				},
 				{
 					"Name":"Othismos",
 					"History":"The classical phalanx formation was developed about VIII century BC. It was eight men deep and up to eight hundred men wide. The men within overlapped their shields, presenting a formidable shield wall brimming with 8 foot spears.",
-					"Description":"The player gains the ability to order spear troops into Phalanx formation, providing +20% attack and +30% armor if attacked from the front."
+					"Description":"The player gains the ability to order spear-armed troops into Phalanx formation, providing greater attack and armour."
 				}
 			],
 			"Heroes":
@@ -48,11 +48,11 @@
 					"History":"Pericles was the foremost Athenian politician of the 5th Century."
 				},
 				{
-					"Name":"Xenophon",
+					"Name":"Iphicrates",
 					"Class":"",
 					"Armament":"",
 					"Emblem":"",
-					"History":"Xenophon (c. 430-355 B.C.) was a Greek soldier and (later) historian who was born in Athens of an oligarch family and was a student of Socrates during his youth. In 401 B. C., Xenophon joined an army of Greek mercenaries lead by Clearchus and four other generals who were aiding Cyrus the Younger in his military campaign against his brother, King Artaxerxes II. After Persian treachery killed the leaders of the mercenary force, Xenophon was elected one of the 5 new generals to lead the army. After a trek of over 1,500 kilometers and 1 1/2 years, Xenophon finally helped lead his men home, fighting dozens of battles and skirmishes along the way."
+					"History":"."
 				}
 			]
 		}
@@ -66,7 +66,7 @@
 		},
 		{
 			"Name":"Hellenisation",
-			"History":"By means of their superior culture and evocative language, the Greeks were highly successful in Hellenising various foreigners. During the Hellenistic Age, Greek was the lingua franca of the Ancient World, spoken widely from Spain to India.",
+			"History":"The Greeks were highly successful in Hellenising various foreigners. During the Hellenistic Age, Greek was the lingua franca of the Ancient World, spoken widely from Spain to India.",
 			"Description":"Constructing an expensive Theatron increases the territory expanse of all buildings by 20%."
 		}
 	],

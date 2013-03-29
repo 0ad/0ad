@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="maur cc plants">
+      <mesh>props/maur_cc_plants.dae</mesh>
+	  <textures>
+	  <texture file="props/structs_nature.png" name="baseTex"/>
+	  <texture file="props/structs_nature_spec.png" name="specTex"/>
+	  <texture file="props/structs_nature_norm.png" name="normTex"/>
+<texture file="structural/ao/maur_civic_ao.png" name="aoTex"/>
+</textures>
+    </variant>
+  </group>
+<material>basic_trans_ao_parallax_spec.xml</material>
+</actor>

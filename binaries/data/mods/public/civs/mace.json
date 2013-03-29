@@ -3,7 +3,7 @@
 	"Culture":"hele",
 	"Name":"Macedonians",
 	"Emblem":"session/portraits/emblems/emblem_macedonians.png",
-	"History":"The Macedonians were famed for their conquests and energetic monarchs.",
+	"History":"Macedonia was an ancient Greek kingdom, centered in the northeastern part of the Greek peninsula. Under the leadership of Alexander the Great, Macedonian forces and allies took over most of the world they knew, including Egypt, Persia and parts of the Indian subcontinent, allowing a diffusion of Hellenic and eastern cultures for years to come.",
 	"Music":[
 			{"File":"Rise_of_Macedon.ogg", "Type":"peace"},
 			{"File":"In_the_Shadow_of_Olympus.ogg", "Type":"peace"}
@@ -57,7 +57,7 @@
 		{
 			"Name":"Hellenic League",
 			"History":"After the unification of Greece, Philip II gathered all the city-states together to form the Hellenic League, with Macedon as the its leader. With this Pan-Hellenic federation he planned to launch an expedition to punish Persia for past wrongs. Although assassinated before he could carry out the invasion, his son Alexander the Great took up the mantle and completed his fathers plans.",
-			"Description":"All Macedonian units have a +10% attack bonus vs. Persian and Hellenic factions (but also -5% attack debonus vs. Roman units)."
+			"Description":"Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, but -5% attack debonus vs. Romans."
 		},
 		{
 			"Name":"Syntagma",
@@ -66,8 +66,8 @@
 		},
 		{
 			"Name":"Hellenisation",
-			"History":"By means of their superior culture and evocative language, the Greeks were highly successful in Hellenising various foreigners. During the Hellenistic Age, Greek was the lingua franca of the Ancient World, spoken widely from Spain to India.",
-			"Description":"Constructing an expensive Theatron increases the territory expanse of all buildings by 20%."
+			"History":"The Greeks were highly successful in Hellenising various foreigners. During the Hellenistic Age, Greek was the lingua franca of the Ancient World, spoken widely from Spain to India.",
+			"Description":"Constructing a Theatron increases the territory expanse of all buildings by +20%."
 		}
 	],
 	"TeamBonuses":
@@ -75,7 +75,7 @@
 		{
 			"Name":"Standardized Currency",
 			"History":"The Macedonians and the Diadochi minted coins of very high quality. On their currency the Diadochi in particular frequently depicted themselves as the rightful successor to Alexander the Great, attempting to legitimize their rule.",
-			"Description":"Tribute and trade between allies of the metal resource is bonused ~ 15%."
+			"Description":"+15% tribute and trade bonus on metal."
 		}
 	],
 	"Structures":

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -529,7 +529,6 @@ void ActorViewer::Update(float simFrameLength, float realFrameLength)
 {
 	m.Simulation2.Update((int)(simFrameLength*1000));
 	m.Simulation2.Interpolate(simFrameLength, 0, realFrameLength);
-	g_Renderer.GetParticleManager().Interpolate(simFrameLength);
 
 	if (m.WalkEnabled && m.CurrentSpeed)
 	{

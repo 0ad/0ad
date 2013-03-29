@@ -48,6 +48,8 @@ const wchar_t* wversion_Family()
 		return L"Vista";
 	case WVERSION_7:
 		return L"Win7";
+	case WVERSION_8:
+		return L"Win8";
 	default:
 		return L"Windows";
 	}

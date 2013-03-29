@@ -11,7 +11,7 @@ project of this scope.
 
 There are several ways to contact us and find more information:
 
-  Web site: http://wildfiregames.com/0ad/
+  Web site: http://play0ad.com/
 
   Forums: http://www.wildfiregames.com/forum/
 

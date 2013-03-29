@@ -3,7 +3,7 @@
 	"Culture": "pers",
 	"Name": "Persians",
 	"Emblem": "session/portraits/emblems/emblem_persians.png",
-	"History": "The Persians originally came from beyond the Zargos Mountains and moved into what is now Iran sometime in the first millennium B.C. They began their rise to power when Cyrus the Great led a revolt against the Median Empire, he would go on to conquer everything he possibly could. By the time of his death in 529 B.C. Cyrus  had created the greatest empire thus far seen in the ancient world. In 0 A.D. we will cover the Achaemenid dynasty of Persia, this dynasty was ended by the conquests of Alexander the Great starting with the Greek victory the Battle of Granicus in 334 B.C.",
+	"History": "The Persian Empire, when ruled by the Achaemenid dynasty, was one of the greatest empires of antiquity, stretching at its zenith from the Indus Valley in the east to Greece in the west. The Persians were the pioneers of empire-building of the ancient world, successfully imposing a centralized rule over various peoples with different customs, laws, religions and languages, and building a cosmopolitan army made up of contingents from each of these nations.",
 	"Music":[
 			{"File":"Eastern_Dreams.ogg", "Type":"peace"},
 			{"File":"Sands_of_Time.ogg", "Type":"peace"}
@@ -62,12 +62,12 @@
 		{
 			"Name": "Corral Camels and Horses",
 			"History": "While the Persians employed camelry only in a few cases, its use was always accompanied by great success (most notably during the battle of Sardis in 546 B.C.) The satrapy of Bactria was a rich source of 'two-hump' camels, while Northern Arabia supplied 'one-hump' camels.",
-			"Description": "Cost of training camel-mounted units or horse-mounted units (as appropriate) is reduced by a fixed amount per corralled animal."
+			"Description": "The resource cost of training camel-mounted (trader) or horse-mounted units (cavalry) is reduced by 5% per animal (as appropriate) corralled."
 		},
 		{
 			"Name": "Great King's Levy",
 			"History": "The Persians could and did levy a large number of infantry during wartime due to the sheer size of the Achaemenid Empire and the way in which it was set-up. In general the Persian infantry was well trained and fought with great tenacity. However while this was true the infantry were poor hand-to-hand, close combat fighters. Also, with the exception of the elite regiments, the Persian infantry was not a standing professional force.",
-			"Description": "Population cap for the Persian player is increased +10%." 
+			"Description": "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the usual 300)."
 		} 
 	],
 	"TeamBonuses":
@@ -75,7 +75,7 @@
 		{
 			"Name": "Royal Road",
 			"History": "Coinage was invented by the Lydians in 7th Century B.C., but it was not very common until the Persian period. Darius the Great standardised coined money and his golden coins (known as 'darics') became commonplace not only throughout his empire, but as far to the west as Central Europe.",
-			"Description": "Higher income (+25%) from land trade routes for the player's traders and his allies' traders."
+			"Description": "+25% trade profit land routes."
 		} 
 	],
 	"Structures":

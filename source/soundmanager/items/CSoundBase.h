@@ -57,6 +57,7 @@ public:
 	virtual	void SetDirection(const CVector3D& direction);
 	virtual	void SetCone(ALfloat innerCone, ALfloat outerCone, ALfloat coneGain);
 	virtual void SetLastPlay(bool last);
+	virtual	bool IsFading();
 
 	void Play();
 	void PlayAndDelete();

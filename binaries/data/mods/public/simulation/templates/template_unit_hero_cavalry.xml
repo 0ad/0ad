@@ -34,12 +34,13 @@
     <Height>3.0</Height>
   </Footprint>
   <Health>
-    <Max>500</Max>
+    <Max>800</Max>
     <RegenRate>0.5</RegenRate>
   </Health>
   <Identity>
     <GenericName>Hero Cavalry</GenericName>
     <Classes datatype="tokens">Hero Cavalry</Classes>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>500</xp>

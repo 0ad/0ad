@@ -1,8 +1,8 @@
 // Max player slots for any map (should read from config)
 const MAX_SLOTS = 8;
 
-var panelNames = [ 'unitsBuildingsPanel', 'conquestPanel', 'resourcesPanel', 'marketPanel' ];
-var panelButtonNames = [ 'unitsBuildingsPanelButton', 'conquestPanelButton', 'resourcesPanelButton', 'marketPanelButton' ];
+var panelNames = [ 'scorePanel', 'unitsBuildingsPanel', 'conquestPanel', 'resourcesPanel', 'marketPanel' ];
+var panelButtonNames = [ 'scorePanelButton', 'unitsBuildingsPanelButton', 'conquestPanelButton', 'resourcesPanelButton', 'marketPanelButton' ];
 
 /**
  * Select active panel
@@ -85,22 +85,31 @@ function init(data)
 	var left = 50;
 	var width = 100;
 	var playerNameHeadingWidth = 200;
+	// Special cased to make the (Sent / Received) part fit
+	var tributesWidth = 121;
 	getGUIObjectByName("playerName0Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	getGUIObjectByName("economyScoreHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("militaryScoreHeading").size = left +  " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("explorationScoreHeading").size = left +  " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("totalScoreHeading").size = left +  " 16 " + (left + width) + " 100%"; left += width;
+	
+	left = 50;
+	getGUIObjectByName("playerName1Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
 	getGUIObjectByName("unitsTrainedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("unitsLostHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("enemyUnitsKilledHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("buildingsConstructedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("buildingsLostHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("enemyBuildingsDestroyedHeading").size = left +  " 6 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("enemyBuildingsDestroyedHeading").size = left + " 6 " + (left + width) + " 100%"; left += width;
 
 	left = 50;
-	getGUIObjectByName("playerName1Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	getGUIObjectByName("playerName2Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
 	getGUIObjectByName("civCentresBuiltHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("enemyCivCentresDestroyedHeading").size = left +  " 6 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("mapExplorationHeading").size = left +  " 6 " + (left + width) + " 100%"; left += width;
 
 	left = 50;
-	getGUIObjectByName("playerName2Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	getGUIObjectByName("playerName3Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
 	getGUIObjectByName("resourceHeading").size = left + " 16 " + (left + width * 4) + " 100%";
 	getGUIObjectByName("foodGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("woodGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
@@ -108,9 +117,10 @@ function init(data)
 	getGUIObjectByName("metalGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("vegetarianRatioHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("treasuresCollectedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("resourcesTributedHeading").size = left + " 16 " + (left + tributesWidth) + " 100%"; left += tributesWidth;
 
 	left = 50;
-	getGUIObjectByName("playerName3Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	getGUIObjectByName("playerName4Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
 	getGUIObjectByName("exchangedFoodHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("exchangedWoodHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("exchangedStoneHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
@@ -147,6 +157,11 @@ function init(data)
 				getGUIObjectByName("civIcon"+k+"["+i+"]").tooltip = civData[playerState.civ].Name;
 			}
 
+			var economyScore = getGUIObjectByName("economyScore["+i+"]");
+			var militaryScore = getGUIObjectByName("militaryScore["+i+"]");
+			var explorationScore = getGUIObjectByName("explorationScore["+i+"]");
+			var totalScore = getGUIObjectByName("totalScore["+i+"]");
+
 			var unitsTrained = getGUIObjectByName("unitsTrained["+i+"]");
 			var unitsLost = getGUIObjectByName("unitsLost["+i+"]");
 			var enemyUnitsKilled = getGUIObjectByName("enemyUnitsKilled["+i+"]");
@@ -164,6 +179,7 @@ function init(data)
 			var metalGathered = getGUIObjectByName("metalGathered["+i+"]");
 			var vegetarianRatio = getGUIObjectByName("vegetarianRatio["+i+"]");
 			var treasuresCollected = getGUIObjectByName("treasuresCollected["+i+"]");
+			var resourcesTributed = getGUIObjectByName("resourcesTributed["+i+"]");
 
 			var exchangedFood = getGUIObjectByName("exchangedFood["+i+"]");
 			var exchangedWood = getGUIObjectByName("exchangedWood["+i+"]");
@@ -176,23 +192,32 @@ function init(data)
 
 			left = 240;
 			width = 100;
+			economyScore.size = left + " 2 " + (left + width) + " 100%"; left += width;
+			militaryScore.size = left + " 2 " + (left + width) + " 100%"; left += width;
+			explorationScore.size = left + " 2 " + (left + width) + " 100%"; left += width;
+			totalScore.size = left + " 2 " + (left + width) + " 100%"; left += width;
+			size = getGUIObjectByName("playerBox0["+i+"]").size;
+			size.right = left + 10;
+			getGUIObjectByName("playerBox0["+i+"]").size = size;
+			
+			left = 240;
 			unitsTrained.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			unitsLost.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			enemyUnitsKilled.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			buildingsConstructed.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			buildingsLost.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			enemyBuildingsDestroyed.size = left + " 2 " + (left + width) + " 100%"; left += width;
-			size = getGUIObjectByName("playerBox0["+i+"]").size;
+			size = getGUIObjectByName("playerBox1["+i+"]").size;
 			size.right = left + 10;
-			getGUIObjectByName("playerBox0["+i+"]").size = size;
+			getGUIObjectByName("playerBox1["+i+"]").size = size;
 
 			left = 240;
 			civCentresBuilt.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			enemyCivCentresDestroyed.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			mapExploration.size = left + " 2 " + (left + width) + " 100%"; left += width;
-			size = getGUIObjectByName("playerBox1["+i+"]").size;
+			size = getGUIObjectByName("playerBox2["+i+"]").size;
 			size.right = left + 10;
-			getGUIObjectByName("playerBox1["+i+"]").size = size;
+			getGUIObjectByName("playerBox2["+i+"]").size = size;
 
 			left = 240;
 			foodGathered.size = left + " 2 " + (left + width) + " 100%"; left += width;
@@ -201,9 +226,10 @@ function init(data)
 			metalGathered.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			vegetarianRatio.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			treasuresCollected.size	= left + " 2 " + (left + width) + " 100%"; left += width;
-			size = getGUIObjectByName("playerBox2["+i+"]").size;
+			resourcesTributed.size = left + " 2 " + (left + tributesWidth) + " 100%"; left += tributesWidth;
+			size = getGUIObjectByName("playerBox3["+i+"]").size;
 			size.right = left + 10;
-			getGUIObjectByName("playerBox2["+i+"]").size = size;
+			getGUIObjectByName("playerBox3["+i+"]").size = size;
 
 			left = 240;
 			exchangedFood.size = left + " 2 " + (left + width) + " 100%"; left += width;
@@ -212,11 +238,17 @@ function init(data)
 			exchangedMetal.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			barterEfficiency.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			tradeIncome.size = left + " 2 " + (left + width) + " 100%"; left += width;
-			size = getGUIObjectByName("playerBox3["+i+"]").size;
+			size = getGUIObjectByName("playerBox4["+i+"]").size;
 			size.right = left + 10;
-			getGUIObjectByName("playerBox3["+i+"]").size = size;
+			getGUIObjectByName("playerBox4["+i+"]").size = size;
 
 			// display counters
+			economyScore.caption = Math.round((playerState.statistics.resourcesGathered.food + playerState.statistics.resourcesGathered.wood + 
+				playerState.statistics.resourcesGathered.stone + playerState.statistics.resourcesGathered.metal) / 10);
+			militaryScore.caption = Math.round((playerState.statistics.enemyUnitsKilledValue + playerState.statistics.enemyBuildingsDestroyedValue) / 10);
+			explorationScore.caption = playerState.statistics.percentMapExplored * 10;
+			totalScore.caption = Number(economyScore.caption) + Number(militaryScore.caption) + Number(explorationScore.caption);
+			
 			unitsTrained.caption = playerState.statistics.unitsTrained;
 			unitsLost.caption = playerState.statistics.unitsLost;
 			enemyUnitsKilled.caption = playerState.statistics.enemyUnitsKilled;
@@ -232,15 +264,17 @@ function init(data)
 			const BOUGHT_COLOR = '[color="255 213 213"]';
 			foodGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.food + "[/color] / " +
 				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.food - playerState.statistics.resourcesSold.food) + "[/color]";
-			woodGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.wood + "[/color]  / " +
+			woodGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.wood + "[/color] / " +
 				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.wood - playerState.statistics.resourcesSold.wood) + "[/color]";
-			stoneGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.stone + "[/color]  / " +
+			stoneGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.stone + "[/color] / " +
 				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.stone - playerState.statistics.resourcesSold.stone) + "[/color]";
-			metalGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.metal + "[/color]  / " +
+			metalGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.metal + "[/color] / " +
 				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.metal - playerState.statistics.resourcesSold.metal) + "[/color]";
 			vegetarianRatio.caption = Math.floor(playerState.statistics.resourcesGathered.food > 0 ?
 				(playerState.statistics.resourcesGathered.vegetarianFood / playerState.statistics.resourcesGathered.food) * 100 : 0) + "%";
 			treasuresCollected.caption = playerState.statistics.treasuresCollected;
+			resourcesTributed.caption = SOLD_COLOR + playerState.statistics.tributesSent + "[/color] / " +
+				BOUGHT_COLOR + playerState.statistics.tributesReceived + "[/color]";
 
 			exchangedFood.caption = SOLD_COLOR + '+' + playerState.statistics.resourcesBought.food
 				+ '[/color] ' + BOUGHT_COLOR + '-' + playerState.statistics.resourcesSold.food + '[/color]';

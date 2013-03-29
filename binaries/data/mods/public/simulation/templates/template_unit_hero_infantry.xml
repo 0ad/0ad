@@ -32,12 +32,13 @@
     <Height>2.5</Height>
   </Footprint>
   <Health>
-    <Max>400</Max>
+    <Max>600</Max>
     <RegenRate>0.5</RegenRate>
   </Health>
   <Identity>
     <Classes datatype="tokens">Hero Infantry</Classes>
     <GenericName>Hero</GenericName>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>400</xp>

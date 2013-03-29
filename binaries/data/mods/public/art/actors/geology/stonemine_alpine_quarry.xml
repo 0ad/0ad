@@ -4,14 +4,18 @@
   <group>
     <variant frequency="1" name="Jagged">
       <mesh>gaia/geo_stonemine_large.dae</mesh>
-    </variant>
-    <variant frequency="1" name="Mesa">
-      <mesh>gaia/geo_desert_02.dae</mesh>
+      <textures>
+        <texture file="gaia/stonequarry_temperate.png" name="baseTex"/>
+        <texture file="gaia/ao/geo_stonemine_large_ao.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="rock texture">
-      <textures><texture file="gaia/stone_alpine_a.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="decal">
+      <props>
+        <prop actor="geology/decal_stone_medit_a.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
+  <material>basic_trans_ao.xml</material>
 </actor>

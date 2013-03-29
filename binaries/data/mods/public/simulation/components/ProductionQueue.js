@@ -42,6 +42,7 @@ ProductionQueue.prototype.Init = function()
 	//     "player": 1, // who paid for this batch; we need this to cope with refunds cleanly
 	//     "unitTemplate": "units/example",
 	//     "count": 10,
+	//     "neededSlots": 3, // number of population slots missing for production to begin
 	//     "resources": { "wood": 100, ... },	// resources per unit, multiply by count to get total
 	//     "population": 1,	// population per unit, multiply by count to get total
 	//     "productionStarted": false, // true iff we have reserved population
@@ -194,18 +195,12 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			// Obviously we don't have the entities yet, so we must use template data
 			var costs = {};
 			var totalCosts = {};
-			var buildTime = +template.Cost.BuildTime;
-			
-			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-			if (cmpTechnologyManager)
-				buildTime = cmpTechnologyManager.ApplyModificationsTemplate("Cost/BuildTime", buildTime, template);
+			var buildTime = ApplyTechModificationsToTemplate("Cost/BuildTime", +template.Cost.BuildTime, this.entity, template);
 			var time = timeMult * buildTime;
 
 			for (var r in template.Cost.Resources)
 			{
-				costs[r] = +template.Cost.Resources[r];
-				if (cmpTechnologyManager)
-					costs[r] = cmpTechnologyManager.ApplyModificationsTemplate("Cost/Resources/"+r, costs[r], template);
+				costs[r] = ApplyTechModificationsToTemplate("Cost/Resources/"+r, +template.Cost.Resources[r], this.entity, template);
 				totalCosts[r] = Math.floor(count * costs[r]);
 			}
 
@@ -326,14 +321,14 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 			if (template.TrainingRestrictions)
 			{
 				var unitCategory = template.TrainingRestrictions.Category;
-				var cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
+				var cmpPlayerEntityLimits = QueryPlayerIDInterface(item.player, IID_EntityLimits);
 				cmpPlayerEntityLimits.DecreaseCount(unitCategory, item.count);
 			}
 		}
 
 		// Refund the resource cost for this batch
 		var totalCosts = {};
-		var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+		var cmpStatisticsTracker = QueryPlayerIDInterface(item.player, IID_StatisticsTracker);
 		for each (var r in ["food", "wood", "stone", "metal"])
 		{
 			totalCosts[r] = Math.floor(item.count * item.resources[r]);
@@ -377,6 +372,7 @@ ProductionQueue.prototype.GetQueue = function()
 			"unitTemplate": item.unitTemplate,
 			"technologyTemplate": item.technologyTemplate,
 			"count": item.count,
+			"neededSlots": item.neededSlots,
 			"progress": 1-(item.timeRemaining/item.timeTotal),
 			"metadata": item.metadata,
 		});
@@ -404,10 +400,7 @@ ProductionQueue.prototype.GetBatchTime = function(batchSize)
 {
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
-	var batchTimeModifier = +this.template.BatchTimeModifier;
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	if (cmpTechMan)
-		batchTimeModifier = cmpTechMan.ApplyModifications("ProductionQueue/BatchTimeModifier", batchTimeModifier, this.entity);
+	var batchTimeModifier = ApplyTechModificationsToEntity("ProductionQueue/BatchTimeModifier", +this.template.BatchTimeModifier, this.entity);
 
 	// TODO: work out what equation we should use here.
 	return Math.pow(batchSize, batchTimeModifier) * cmpPlayer.cheatTimeMultiplier;
@@ -558,9 +551,10 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 			{
 				// Batch's training hasn't started yet.
 				// Try to reserve the necessary population slots
-				if (item.unitTemplate && !cmpPlayer.TryReservePopulationSlots(item.population * item.count))
+				item.neededSlots = cmpPlayer.TryReservePopulationSlots(item.population * item.count);
+				if (item.neededSlots)
 				{
-					// No slots available - don't train this batch now
+					// Not enough slots available - don't train this batch now
 					// (we'll try again on the next timeout)
 
 					// Set flag that training is blocked

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="maur cc pillars">
+      <mesh>props/maur_cc_pillar.dae</mesh>
+	  <textures>
+	  <texture file="structural/ashoka_pillar.png" name="baseTex"/>
+      <texture file="structural/ashoka_pillar.png" name="baseTex"/>
+	  <texture file="structural/ashoka_pillar_spec.png" name="specTex"/>
+	  <texture file="structural/ashoka_pillar_norm.png" name="normTex"/>
+	  <texture file="structural/ao/maur_civic_ao.png" name="aoTex"/>
+</textures>
+    </variant>
+  </group>
+<material>player_trans_ao_parallax_spec.xml</material>
+</actor>

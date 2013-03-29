@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_infantry_swordsman">
+<Entity parent="template_unit_champion_infantry_spearman">
   <Armour>
     <Hack>1.0</Hack>
-    <Pierce>1.0</Pierce>
   </Armour>
-  <Attack>
-    <Melee>
-      <Hack>30.0</Hack>
-    </Melee>
-    <Charge>
-      <Hack>60.0</Hack>
-    </Charge>
-  </Attack>
   <Cost>
     <Resources>
       <food>0</food>
@@ -22,9 +13,7 @@
     <Civ>celt</Civ>
     <GenericName>Naked Fanatic</GenericName>
     <SpecificName>Gaesata</SpecificName>
-    <Tooltip>Mercenary Champion Swordsman.
-Counters Spear Units. Low armour.</Tooltip>
-    <History>A Celtic fanatic warrior, devoted to war and his Gallic lord.</History>
+    <History>A Celtic fanatic warrior, devoted to war and his Celtic liege lord.</History>
     <Icon>units/celt_fanatic.png</Icon>
   </Identity>
   <UnitMotion>

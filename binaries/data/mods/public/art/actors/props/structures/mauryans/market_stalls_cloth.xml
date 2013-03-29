@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="market stalls cloth">
+      <mesh>structural/maur_market_stalls_cloth.dae</mesh>
+	  <textures>
+        <texture file="props/maur_stalls.png" name="baseTex"/>
+		<texture file="structural/ao/maur_market_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+<material>player_trans_ao.xml</material>
+</actor>

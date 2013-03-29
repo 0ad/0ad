@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -656,16 +656,16 @@ void CCmpPathfinder::ProcessSameTurnMoves()
 	}
 }
 
-bool CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
+ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
 	entity_pos_t x, entity_pos_t z, entity_pos_t r,	pass_class_t passClass)
 {
 	// Check unit obstruction
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	if (!cmpObstructionManager)
-		return false;
+		return ICmpObstruction::FOUNDATION_CHECK_FAIL_ERROR;
 
 	if (cmpObstructionManager->TestUnitShape(filter, x, z, r, NULL))
-		return false;
+		return ICmpObstruction::FOUNDATION_CHECK_FAIL_OBSTRUCTS_FOUNDATION;
 
 	// Test against terrain:
 
@@ -680,36 +680,33 @@ bool CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
 		{
 			if (!IS_TERRAIN_PASSABLE(m_Grid->get(i,j), passClass))
 			{
-				return false;
+				return ICmpObstruction::FOUNDATION_CHECK_FAIL_TERRAIN_CLASS;
 			}
 		}
 	}
-	return true;
+	return ICmpObstruction::FOUNDATION_CHECK_SUCCESS;
 }
 
-bool CCmpPathfinder::CheckBuildingPlacement(const IObstructionTestFilter& filter,
+ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckBuildingPlacement(const IObstructionTestFilter& filter,
 	entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w,
 	entity_pos_t h, entity_id_t id, pass_class_t passClass)
 {
 	// Check unit obstruction
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	if (!cmpObstructionManager)
-		return false;
+		return ICmpObstruction::FOUNDATION_CHECK_FAIL_ERROR;
 
 	if (cmpObstructionManager->TestStaticShape(filter, x, z, a, w, h, NULL))
-		return false;
+		return ICmpObstruction::FOUNDATION_CHECK_FAIL_OBSTRUCTS_FOUNDATION;
 
 	// Test against terrain:
 
 	UpdateGrid();
 
-	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), id);
-	if (!cmpObstruction)
-		return false;
-
 	ICmpObstructionManager::ObstructionSquare square;
-	if (!cmpObstruction->GetObstructionSquare(square))
-		return false;
+	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), id);
+	if (!cmpObstruction || !cmpObstruction->GetObstructionSquare(square))
+		return ICmpObstruction::FOUNDATION_CHECK_FAIL_NO_OBSTRUCTION;
 
 	// Expand bounds by 1/sqrt(2) tile (multiply by TERRAIN_TILE_SIZE since we want world coordinates)
 	entity_pos_t expand = entity_pos_t::FromInt(2).Sqrt().Multiply(entity_pos_t::FromInt(TERRAIN_TILE_SIZE / 2));
@@ -728,10 +725,10 @@ bool CCmpPathfinder::CheckBuildingPlacement(const IObstructionTestFilter& filter
 			if (Geometry::PointIsInSquare(CFixedVector2D(x - square.x, z - square.z), square.u, square.v, halfSize)
 				&& !IS_TERRAIN_PASSABLE(m_Grid->get(i,j), passClass))
 			{
-				return false;
+				return ICmpObstruction::FOUNDATION_CHECK_FAIL_TERRAIN_CLASS;
 			}
 		}
 	}
 
-	return true;
+	return ICmpObstruction::FOUNDATION_CHECK_SUCCESS;
 }

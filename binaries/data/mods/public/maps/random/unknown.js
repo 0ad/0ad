@@ -1147,8 +1147,8 @@ else if (md == 7) //gulf
 		createArea(placer, paintClass(clPlayer), null);
 	}
 	
-	var fx = fractionToTiles(0.5);
-	var fz = fractionToTiles(0.5);
+	fx = fractionToTiles(0.5);
+	fz = fractionToTiles(0.5);
 	ix = round(fx);
 	iz = round(fz);
 
@@ -1165,10 +1165,10 @@ else if (md == 7) //gulf
 		-3,				// elevation
 		4				// blend radius
 	);
-	createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,scaleByMapSize(15,25)));
+	createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,floor(scaleByMapSize(15,25))));
 
-	var fx = fractionToTiles(0.5 - 0.2*cos(mdd1*PI/2));
-	var fz = fractionToTiles(0.5 - 0.2*sin(mdd1*PI/2));
+	fx = fractionToTiles(0.5 - 0.2*cos(mdd1*PI/2));
+	fz = fractionToTiles(0.5 - 0.2*sin(mdd1*PI/2));
 	ix = round(fx);
 	iz = round(fz);
 
@@ -1184,10 +1184,10 @@ else if (md == 7) //gulf
 		-3,				// elevation
 		4				// blend radius
 	);
-	createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,scaleByMapSize(15,25)));
+	createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,floor(scaleByMapSize(15,25))));
 
-	var fx = fractionToTiles(0.5 - 0.49*cos(mdd1*PI/2));
-	var fz = fractionToTiles(0.5 - 0.49*sin(mdd1*PI/2));
+	fx = fractionToTiles(0.5 - 0.49*cos(mdd1*PI/2));
+	fz = fractionToTiles(0.5 - 0.49*sin(mdd1*PI/2));
 	ix = round(fx);
 	iz = round(fz);
 
@@ -1201,15 +1201,9 @@ else if (md == 7) //gulf
 	var elevationPainter = new SmoothElevationPainter(
 		ELEVATION_SET,			// type
 		-3,				// elevation
-		0				// blend radius
-	);
-	createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,scaleByMapSize(15,25)+4));
-	var elevationPainter = new SmoothElevationPainter(
-		ELEVATION_SET,			// type
-		-3,				// elevation
 		4				// blend radius
 	);
-	createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,scaleByMapSize(15,25)));	
+	createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,floor(scaleByMapSize(15,25))));	
 }
 //********************************************************************************************************
 else if (md == 8) //lakes
@@ -1589,7 +1583,7 @@ for (var i = 0; i < numPlayers; i++)
 		var aX = round(fx + aDist * cos(aAngle));
 		var aZ = round(fz + aDist * sin(aAngle));
 		var group = new SimpleGroup(
-			[new SimpleObject(oChicken, 5,5, 0,3)],
+			[new SimpleObject(oChicken, 5,5, 0,2)],
 			true, clBaseResource, aX, aZ
 		);
 		createObjectGroup(group, 0);

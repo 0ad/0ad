@@ -2,16 +2,28 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Mauryan Shield Bell">
+    <variant frequency="1" name="Mauryan Shield Bell A">
       <mesh>props/maur_shield_bell.dae</mesh>
       <textures>
         <texture file="props/shield/maur_shield_bell_a.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Mauryan Shield Bell Straight">
+    <variant frequency="1" name="Mauryan Shield Bell Straight A">
       <mesh>props/maur_shield_bell_straight.dae</mesh>
       <textures>
         <texture file="props/shield/maur_shield_bell_straight_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Mauryan Shield Bell B">
+      <mesh>props/maur_shield_bell.dae</mesh>
+      <textures>
+        <texture file="props/shield/maur_shield_bell_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Mauryan Shield Bell Straight B">
+      <mesh>props/maur_shield_bell_straight.dae</mesh>
+      <textures>
+        <texture file="props/shield/maur_shield_bell_straight_b.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

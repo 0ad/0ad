@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -444,12 +444,18 @@ CRenderer::CRenderer()
 	m_Options.m_ShowSky = false;
 
 	// TODO: be more consistent in use of the config system
-	CFG_GET_USER_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
-	CFG_GET_USER_VAL("forcealphatest", Bool, m_Options.m_ForceAlphaTest);
-	CFG_GET_USER_VAL("gpuskinning", Bool, m_Options.m_GPUSkinning);
-	CFG_GET_USER_VAL("gentangents", Bool, m_Options.m_GenTangents);
-	CFG_GET_USER_VAL("smoothlos", Bool, m_Options.m_SmoothLOS);
-	CFG_GET_USER_VAL("postproc", Bool, m_Options.m_Postproc);
+	CFG_GET_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
+	CFG_GET_VAL("forcealphatest", Bool, m_Options.m_ForceAlphaTest);
+	CFG_GET_VAL("gpuskinning", Bool, m_Options.m_GPUSkinning);
+	CFG_GET_VAL("gentangents", Bool, m_Options.m_GenTangents);
+	CFG_GET_VAL("smoothlos", Bool, m_Options.m_SmoothLOS);
+	CFG_GET_VAL("postproc", Bool, m_Options.m_Postproc);
+
+	CStr skystring = "0 0 0";
+	CColor skycolor;
+	CFG_GET_VAL("skycolor", String, skystring);
+	if (skycolor.ParseString(skystring, 255.f))
+		SetClearColor(skycolor.AsSColor4ub());
 
 #if CONFIG2_GLES
 	// Override config option since GLES only supports GLSL
@@ -1476,7 +1482,7 @@ void CRenderer::RenderSubmissions()
 		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
 		{
 			PROFILE3_GPU("water scissor");
-			SScreenRect dirty;
+			SScreenRect dirty = { 0, 0, 0, 0 };
 			if (m_Options.m_WaterRefraction && m_Options.m_WaterReflection)
 			{
 				SScreenRect reflectionScissor = RenderReflections(context, waterScissor);
@@ -1494,7 +1500,7 @@ void CRenderer::RenderSubmissions()
 				dirty.x2 = refractionScissor.x2;
 				dirty.y2 = refractionScissor.y2;
 			}
-			else
+            else if (m_Options.m_WaterReflection)
 			{
 				SScreenRect reflectionScissor = RenderReflections(context, waterScissor);
 				dirty.x1 = reflectionScissor.x1;

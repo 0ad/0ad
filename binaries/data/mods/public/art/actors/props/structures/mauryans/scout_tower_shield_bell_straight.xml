@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="scout tower shield bell straight">
+      <mesh>props/maur_scout_tower_shields_bell_straight.dae</mesh>
+	  <textures>
+        <texture file="props/shield/maur_shield_bell_straight_a.png" name="baseTex"/>
+        <texture file="structural/ao/maur_scout_tower_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+<material>player_trans_ao.xml</material>
+</actor>

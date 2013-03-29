@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,13 +20,17 @@
 #include "simulation2/system/Component.h"
 #include "ICmpVisual.h"
 
+#include "simulation2/MessageTypes.h"
+
+#include "ICmpFootprint.h"
 #include "ICmpOwnership.h"
 #include "ICmpPosition.h"
 #include "ICmpRangeManager.h"
+#include "ICmpSelectable.h"
+#include "ICmpTemplateManager.h"
+#include "ICmpTerrain.h"
+#include "ICmpUnitMotion.h"
 #include "ICmpVision.h"
-#include "simulation2/MessageTypes.h"
-#include "simulation2/components/ICmpFootprint.h"
-#include "simulation2/components/ICmpSelectable.h"
 
 #include "graphics/Frustum.h"
 #include "graphics/Model.h"
@@ -59,6 +63,8 @@ public:
 
 	fixed m_R, m_G, m_B; // shading colour
 
+	std::map<std::string, std::string> m_AnimOverride;
+
 	ICmpRangeManager::ELosVisibility m_Visibility; // only valid between Interpolate and RenderSubmit
 
 	// Current animation state
@@ -69,6 +75,11 @@ public:
 	std::wstring m_SoundGroup;
 	fixed m_AnimDesync;
 	fixed m_AnimSyncRepeatTime; // 0.0 if not synced
+
+	u32 m_Seed; // seed used for random variations
+
+	bool m_ConstructionPreview;
+	fixed m_ConstructionProgress;
 
 	static std::string GetSchema()
 	{
@@ -90,7 +101,12 @@ public:
 				"</element>"
 			"</optional>"
 			"<optional>"
-				"<element name='Foundation' a:help='Used internally; if present the unit will be rendered as a foundation'>"
+				"<element name='Foundation' a:help='Used internally; if present, the unit will be rendered as a foundation'>"
+					"<empty/>"
+				"</element>"
+			"</optional>"
+			"<optional>"
+				"<element name='ConstructionPreview' a:help='If present, the unit should have a construction preview'>"
 					"<empty/>"
 				"</element>"
 			"</optional>"
@@ -138,51 +154,21 @@ public:
 		m_PreviouslyRendered = false;
 		m_Unit = NULL;
 		m_Visibility = ICmpRangeManager::VIS_HIDDEN;
-
 		m_R = m_G = m_B = fixed::FromInt(1);
 
-		if (!GetSimContext().HasUnitManager())
-			return; // do nothing further if graphics are disabled
+		m_ConstructionPreview = paramNode.GetChild("ConstructionPreview").IsOk();
+		m_ConstructionProgress = fixed::Zero();
 
-		// TODO: we should do some fancy animation of under-construction buildings rising from the ground,
-		// but for now we'll just use the foundation actor and ignore the normal one
+		m_Seed = GetEntityId();
+
 		if (paramNode.GetChild("Foundation").IsOk() && paramNode.GetChild("FoundationActor").IsOk())
 			m_ActorName = paramNode.GetChild("FoundationActor").ToString();
 		else
 			m_ActorName = paramNode.GetChild("Actor").ToString();
 
-		std::set<CStr> selections;
-		m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
-		if (m_Unit)
-		{
-			CModelAbstract& model = m_Unit->GetModel();
-			if (model.ToCModel())
-			{
-				u32 modelFlags = 0;
+		InitModel(paramNode);
 
-				if (paramNode.GetChild("SilhouetteDisplay").ToBool())
-					modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
-
-				if (paramNode.GetChild("SilhouetteOccluder").ToBool())
-					modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
-
-				CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
-				if (cmpVision && cmpVision->GetAlwaysVisible())
-					modelFlags |= MODELFLAG_IGNORE_LOS;
-
-				model.ToCModel()->AddFlagsRec(modelFlags);
-			}
-
-			// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the 
-			// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint
-			// shape for the selection box (instead of the default recursive bounding box). See TypeList.h for the order in
-			// which components are initialized; if for whatever reason you need to get rid of this dependency, you can always just
-			// initialize the selection shape descriptor on-demand.
-			InitSelectionShapeDescriptor(model, paramNode);
-
-			m_Unit->SetID(GetEntityId());
-		}
-
+		// We need to select animation even if graphics are disabled, as this modifies serialized state
 		SelectAnimation("idle", false, fixed::FromInt(1), L"");
 	}
 
@@ -198,13 +184,6 @@ public:
 	template<typename S>
 	void SerializeCommon(S& serialize)
 	{
-		// TODO: store random variation. This ought to be synchronised across saved games
-		// and networks, so everyone sees the same thing. Saving the list of selection strings
-		// would be awfully inefficient, so actors should be changed to (by default) represent
-		// variations with a 16-bit RNG seed (selected randomly when creating new units, or
-		// when someone hits the "randomise" button in the map editor), only overridden with
-		// a list of strings if it really needs to be a specific variation.
-
 		serialize.NumberFixed_Unbounded("r", m_R);
 		serialize.NumberFixed_Unbounded("g", m_G);
 		serialize.NumberFixed_Unbounded("b", m_B);
@@ -216,6 +195,11 @@ public:
 		serialize.String("sound group", m_SoundGroup, 0, 256);
 		serialize.NumberFixed_Unbounded("anim desync", m_AnimDesync);
 		serialize.NumberFixed_Unbounded("anim sync repeat time", m_AnimSyncRepeatTime);
+
+		serialize.NumberU32_Unbounded("seed", m_Seed);
+		// TODO: variation/selection strings
+
+		serialize.NumberFixed_Unbounded("constructionprogress", m_ConstructionProgress);
 
 		// TODO: store actor variables?
 	}
@@ -236,7 +220,13 @@ public:
 	{
 		Init(paramNode);
 
+		u32 oldSeed = GetActorSeed();
+
 		SerializeCommon(deserialize);
+
+		// If we serialized a different seed, reload actor
+		if (oldSeed != GetActorSeed())
+			ReloadActor();
 
 		fixed repeattime = m_AnimSyncRepeatTime; // save because SelectAnimation overwrites it
 
@@ -372,6 +362,18 @@ public:
 		}
 	}
 
+	virtual void ReplaceMoveAnimation(std::string name, std::string replace)
+	{
+		m_AnimOverride[name] = replace;
+	}
+
+	virtual void ResetMoveAnimation(std::string name)
+	{
+		std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
+		if (it != m_AnimOverride.end())
+			m_AnimOverride.erase(name);
+	}
+
 	virtual void SetUnitEntitySelection(const CStr& selection)
 	{
 		if (m_Unit)
@@ -428,6 +430,30 @@ public:
 		}
 	}
 
+	virtual u32 GetActorSeed()
+	{
+		return m_Seed;
+	}
+	
+	virtual void SetActorSeed(u32 seed)
+	{
+		if (seed == m_Seed)
+			return;
+
+		m_Seed = seed;
+		ReloadActor();
+	}
+
+	virtual bool HasConstructionPreview()
+	{
+		return m_ConstructionPreview;
+	}
+
+	virtual void SetConstructionProgress(fixed progress)
+	{
+		m_ConstructionProgress = progress;
+	}
+
 	virtual void Hotload(const VfsPath& name)
 	{
 		if (!m_Unit)
@@ -436,36 +462,7 @@ public:
 		if (name != m_ActorName)
 			return;
 
-		std::set<CStr> selections;
-		CUnit* newUnit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
-
-		if (!newUnit)
-			return;
-
-		// Save some data from the old unit
-		CColor shading = m_Unit->GetModel().GetShadingColor();
-		player_id_t playerID = m_Unit->GetModel().GetPlayerID();
-
-		// Replace with the new unit
-		GetSimContext().GetUnitManager().DeleteUnit(m_Unit);
-		m_Unit = newUnit;
-
-		m_Unit->SetID(GetEntityId());
-
-		m_Unit->SetEntitySelection(m_AnimName);
-		if (m_Unit->GetAnimation())
-			m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
-
-		// We'll lose the exact synchronisation but we should at least make sure it's going at the correct rate
-		if (!m_AnimSyncRepeatTime.IsZero())
-			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime.ToFloat());
-
-		m_Unit->GetModel().SetShadingColor(shading);
-
-		m_Unit->GetModel().SetPlayerID(playerID);
-
-		// TODO: should copy/reset silhouette flags
+		ReloadActor();
 	}
 
 private:
@@ -474,17 +471,13 @@ private:
 	/// which may not occur immediately if the game starts paused.
 	bool m_PreviouslyRendered;
 
-	int32_t GetActorSeed()
-	{
-		return GetEntityId();
-	}
+	/// Helper function shared by component init and actor reloading
+	void InitModel(const CParamNode& paramNode);
 
 	/// Helper method; initializes the model selection shape descriptor from XML. Factored out for readability of @ref Init.
-	/// The @p model argument is technically not really necessary since naturally this method is intended to initialize this
-	/// visual actor's model (I wouldn't know which other one you'd pass), but it's included here to enforce that the
-	/// component's model must have been created before using this method (i.e. to prevent accidentally calls to this method
-	/// before the model was constructed).
-	void InitSelectionShapeDescriptor(CModelAbstract& model, const CParamNode& paramNode);
+	void InitSelectionShapeDescriptor(const CParamNode& paramNode);
+
+	void ReloadActor();
 
 	void Update(fixed turnLength);
 	void UpdateVisibility();
@@ -496,7 +489,45 @@ REGISTER_COMPONENT_TYPE(VisualActor)
 
 // ------------------------------------------------------------------------------------------------------------------
 
-void CCmpVisualActor::InitSelectionShapeDescriptor(CModelAbstract& model, const CParamNode& paramNode)
+void CCmpVisualActor::InitModel(const CParamNode& paramNode)
+{
+	if (GetSimContext().HasUnitManager())
+	{
+		std::set<CStr> selections;
+		m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
+		if (m_Unit)
+		{
+			CModelAbstract& model = m_Unit->GetModel();
+			if (model.ToCModel())
+			{
+				u32 modelFlags = 0;
+
+				if (paramNode.GetChild("SilhouetteDisplay").ToBool())
+					modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
+
+				if (paramNode.GetChild("SilhouetteOccluder").ToBool())
+					modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
+
+				CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
+				if (cmpVision && cmpVision->GetAlwaysVisible())
+					modelFlags |= MODELFLAG_IGNORE_LOS;
+
+				model.ToCModel()->AddFlagsRec(modelFlags);
+			}
+
+			// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the 
+			// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint
+			// shape for the selection box (instead of the default recursive bounding box). See TypeList.h for the order in
+			// which components are initialized; if for whatever reason you need to get rid of this dependency, you can always just
+			// initialize the selection shape descriptor on-demand.
+			InitSelectionShapeDescriptor(paramNode);
+
+			m_Unit->SetID(GetEntityId());
+		}
+	}
+}
+
+void CCmpVisualActor::InitSelectionShapeDescriptor(const CParamNode& paramNode)
 {
 	// by default, we don't need a custom selection shape and we can just keep the default behaviour
 	CModelAbstract::CustomSelectionShape* shapeDescriptor = NULL;
@@ -562,11 +593,52 @@ void CCmpVisualActor::InitSelectionShapeDescriptor(CModelAbstract& model, const 
 		}
 	}
 
+	ENSURE(m_Unit);
 	// the model is now responsible for cleaning up the descriptor
-	model.SetCustomSelectionShape(shapeDescriptor);
+	m_Unit->GetModel().SetCustomSelectionShape(shapeDescriptor);
 }
 
-void CCmpVisualActor::Update(fixed turnLength)
+void CCmpVisualActor::ReloadActor()
+{
+	if (!m_Unit)
+		return;
+
+	std::set<CStr> selections;
+	CUnit* newUnit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
+
+	if (!newUnit)
+		return;
+
+	// Save some data from the old unit
+	CColor shading = m_Unit->GetModel().GetShadingColor();
+	player_id_t playerID = m_Unit->GetModel().GetPlayerID();
+
+	// Replace with the new unit
+	GetSimContext().GetUnitManager().DeleteUnit(m_Unit);
+
+	// HACK: selection shape needs template data, but rather than storing all that data
+	//	in the component, we load the template here and pass it into a helper function
+	CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSimContext(), SYSTEM_ENTITY);
+	const CParamNode* node = cmpTemplateManager->LoadLatestTemplate(GetEntityId());
+	ENSURE(node && node->GetChild("VisualActor").IsOk());
+
+	InitModel(node->GetChild("VisualActor"));
+
+	m_Unit->SetEntitySelection(m_AnimName);
+	if (m_Unit->GetAnimation())
+		m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
+
+	// We'll lose the exact synchronisation but we should at least make sure it's going at the correct rate
+	if (!m_AnimSyncRepeatTime.IsZero())
+		if (m_Unit->GetAnimation())
+			m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime.ToFloat());
+
+	m_Unit->GetModel().SetShadingColor(shading);
+
+	m_Unit->GetModel().SetPlayerID(playerID);
+}
+
+void CCmpVisualActor::Update(fixed UNUSED(turnLength))
 {
 	if (m_Unit == NULL)
 		return;
@@ -580,25 +652,34 @@ void CCmpVisualActor::Update(fixed turnLength)
 		if (!cmpPosition || !cmpPosition->IsInWorld())
 			return;
 
-		float speed = cmpPosition->GetDistanceTravelled().ToFloat() / turnLength.ToFloat();
+		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), GetEntityId());
+		if (!cmpUnitMotion)
+			return;
 
+		float speed = cmpUnitMotion->GetCurrentSpeed().ToFloat();
+
+		std::string name;
+		if (speed == 0.0f)
+			name = "idle";
+		else
+			name = (speed < m_AnimRunThreshold.ToFloat()) ? "walk" : "run";
+
+		std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
+		if (it != m_AnimOverride.end())
+			name = it->second;
+
+		m_Unit->SetEntitySelection(name);
 		if (speed == 0.0f)
 		{
-			m_Unit->SetEntitySelection("idle");
+			m_Unit->SetEntitySelection(name);
 			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationState("idle", false, 1.f, 0.f, L"");
-		}
-		else if (speed < m_AnimRunThreshold.ToFloat())
-		{
-			m_Unit->SetEntitySelection("walk");
-			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationState("walk", false, speed, 0.f, L"");
+				m_Unit->GetAnimation()->SetAnimationState(name, false, 1.f, 0.f, L"");
 		}
 		else
 		{
-			m_Unit->SetEntitySelection("run");
+			m_Unit->SetEntitySelection(name);
 			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationState("run", false, speed, 0.f, L"");
+				m_Unit->GetAnimation()->SetAnimationState(name, false, speed, 0.f, L"");
 		}
 	}
 }
@@ -659,6 +740,30 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 	bool floating = m_Unit->GetObject().m_Base->m_Properties.m_FloatOnWater;
 
 	CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset, floating));
+
+	if (!m_ConstructionProgress.IsZero())
+	{
+		// We use selection boxes to calculate the model size, since the model could be offset
+		// TODO: this annoyingly shows decals, would be nice to hide them
+		CBoundingBoxOriented bounds = GetSelectionBox();
+		if (!bounds.IsEmpty())
+		{
+			float dy = 2.0f * bounds.m_HalfSizes.Y;
+
+			// If this is a floating unit, we want it to start all the way under the terrain,
+			// so find the difference between its current position and the terrain
+
+			CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+			if (floating && cmpTerrain)
+			{
+				CVector3D pos = transform.GetTranslation();
+				float ground = cmpTerrain->GetExactGroundLevel(pos.X, pos.Z);
+				dy += std::max(0.f, pos.Y - ground);
+			}
+
+			transform.Translate(0.0f, (m_ConstructionProgress.ToFloat() - 1.0f) * dy, 0.0f);
+		}
+	}
 
 	CModelAbstract& model = m_Unit->GetModel();
 

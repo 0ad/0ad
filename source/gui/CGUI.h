@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -241,7 +241,8 @@ public:
 	 * Generate a SGUIText object from the inputted string.
 	 * The function will break down the string and its
 	 * tags to calculate exactly which rendering queries
-	 * will be sent to the Renderer.
+	 * will be sent to the Renderer. Also, horizontal alignment
+	 * is taken into acount in this method but NOT vertical alignment.
 	 *
 	 * Done through the CGUI since it can communicate with 
 	 *

@@ -85,7 +85,7 @@ function TileClass(size, id)
 
 TileClass.prototype.add = function(x, z)
 {
-	if (!this.inclusionCount[x][z])
+	if (!this.inclusionCount[x][z] && g_Map.validT(x, z))
 	{
 		this.rangeCount[z].add(x, 1);
 	}

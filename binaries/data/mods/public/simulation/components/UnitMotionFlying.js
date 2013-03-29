@@ -156,6 +156,18 @@ UnitMotionFlying.prototype.MoveToTargetRange = function(target, minRange, maxRan
 	return true;
 };
 
+UnitMotionFlying.prototype.IsInPointRange = function(x, y, minRange, maxRange)
+{
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	var pos = cmpPosition.GetPosition2D();
+
+	var distFromTarget = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2));
+	if (minRange <= distFromTarget && distFromTarget <= maxRange)
+		return true;
+
+	return false;
+};
+
 UnitMotionFlying.prototype.IsInTargetRange = function(target, minRange, maxRange)
 {
 	var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
@@ -164,14 +176,7 @@ UnitMotionFlying.prototype.IsInTargetRange = function(target, minRange, maxRange
 
 	var targetPos = cmpTargetPosition.GetPosition2D();
 
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	var pos = cmpPosition.GetPosition2D();
-
-	var distFromTarget = Math.sqrt(Math.pow(targetPos.x - pos.x, 2) + Math.pow(targetPos.y - pos.y, 2));
-	if (minRange <= distFromTarget && distFromTarget <= maxRange)
-		return true;
-
-	return false;
+	return this.IsInPointRange(targetPos.x, targetPos.y, minRange, maxRange);
 };
 
 UnitMotionFlying.prototype.GetWalkSpeed = function()
@@ -183,6 +188,11 @@ UnitMotionFlying.prototype.GetRunSpeed = function()
 {
 	return this.GetWalkSpeed();
 };
+
+UnitMotionFlying.prototype.GetCurrentSpeed = function()
+{
+	return this.speed;
+}
 
 UnitMotionFlying.prototype.FaceTowardsPoint = function(x, z)
 {

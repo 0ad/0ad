@@ -33,11 +33,11 @@ CJoystick::CJoystick() :
 void CJoystick::Initialise()
 {
 	bool joystickEnable = false;
-	CFG_GET_USER_VAL("joystick.enable", Bool, joystickEnable);
+	CFG_GET_VAL("joystick.enable", Bool, joystickEnable);
 	if (!joystickEnable)
 		return;
 
-	CFG_GET_USER_VAL("joystick.deadzone", Int, m_Deadzone);
+	CFG_GET_VAL("joystick.deadzone", Int, m_Deadzone);
 
 	if (SDL_InitSubSystem(SDL_INIT_JOYSTICK) < 0)
 	{

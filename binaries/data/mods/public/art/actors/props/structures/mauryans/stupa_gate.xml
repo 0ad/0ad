@@ -4,7 +4,14 @@
   <group>
     <variant name="stupa_gate">
       <mesh>props/stupa_gate.dae</mesh>
-	  <textures><texture file="structural/stupa_gate.png" name="baseTex"/></textures>
+	  <textures>
+	  <texture file="structural/stupa_gate.png" name="baseTex"/>
+	  <texture file="structural/stupa_gate_spec.png" name="specTex"/>
+	  <texture file="structural/stupa_gate_norm.png" name="normTex"/>
+	  
+	  
+	  </textures>
     </variant>
   </group>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

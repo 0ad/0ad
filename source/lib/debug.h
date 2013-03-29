@@ -122,7 +122,7 @@ typedef volatile intptr_t atomic_bool;
  * debugging the symbol engine.
  * use 0 as the initial value to avoid allocating .rdata space.
  **/
-const atomic_bool DEBUG_SUPPRESS = 0xAB;
+static const atomic_bool DEBUG_SUPPRESS = 0xAB;
 
 /**
  * choices offered by the error dialog that are returned

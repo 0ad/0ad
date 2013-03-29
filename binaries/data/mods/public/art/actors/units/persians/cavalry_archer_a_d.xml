@@ -6,10 +6,10 @@
       <animations>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="95"/>
-        <animation event="" file="biped/inf_salute_a.psa" load="" name="Attack" speed="250"/>
-        <animation file="biped/inf_salute_b.psa" name="Attack" speed="250"/>
-        <animation file="biped/inf_salute_d.psa" name="Attack" speed="250"/>
-        <animation file="biped/inf_salute_e.psa" name="Attack" speed="250"/>
+        <animation event="" file="biped/inf_salute_a.psa" load="" name="attack_ranged" speed="250"/>
+        <animation file="biped/inf_salute_b.psa" name="attack_ranged" speed="250"/>
+        <animation file="biped/inf_salute_d.psa" name="attack_ranged" speed="250"/>
+        <animation file="biped/inf_salute_e.psa" name="attack_ranged" speed="250"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Walk" speed="20"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Run" speed="5"/>
         <animation file="biped/inf_salute_c.psa" name="Promotion" speed="290"/>

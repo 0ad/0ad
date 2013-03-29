@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -201,12 +201,6 @@ void Render()
 
 	ogl_WarnIfError();
 
-	CStr skystring = "255 0 255";
-	CFG_GET_USER_VAL("skycolor", String, skystring);
-	CColor skycol;
-	GUI<CColor>::ParseString(skystring.FromUTF8(), skycol);
-	g_Renderer.SetClearColor(skycol.AsSColor4ub());
-
 	// prepare before starting the renderer frame
 	if (g_Game && g_Game->IsGameStarted())
 		g_Game->GetView()->BeginFrame();
@@ -269,7 +263,7 @@ void Render()
 		else
 		{
 			bool forceGL = false;
-			CFG_GET_USER_VAL("nohwcursor", Bool, forceGL);
+			CFG_GET_VAL("nohwcursor", Bool, forceGL);
 
 #if CONFIG2_GLES
 #warning TODO: implement cursors for GLES
@@ -448,29 +442,33 @@ static void InitVfs(const CmdLineArgs& args)
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
 
-	g_VFS->Mount(L"screenshots/", paths.UserData()/"screenshots"/"");
-	g_VFS->Mount(L"saves/", paths.UserData()/"saves"/"", VFS_MOUNT_WATCH);
-	const OsPath readonlyConfig = paths.RData()/"config"/"";
-	g_VFS->Mount(L"config/", readonlyConfig);
-	if(readonlyConfig != paths.Config())
-		g_VFS->Mount(L"config/", paths.Config());
-	g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);	// (adding XMBs to archive speeds up subsequent reads)
-
 	std::vector<CStr> mods = args.GetMultiple("mod");
-	mods.push_back("public");
-	if(!args.Has("onlyPublicFiles"))
-		mods.push_back("internal");
+	mods.insert(mods.begin(), "public");
 
-	OsPath modArchivePath = paths.Cache()/"mods";
-	OsPath modLoosePath = paths.RData()/"mods";
+	if (!args.Has("noUserMod"))
+		mods.push_back("user");
+
+	OsPath modPath = paths.RData()/"mods";
+	OsPath modUserPath = paths.UserData()/"mods";
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
 		size_t priority = i+1;	// mods are higher priority than regular mountings, which default to priority 0
 		size_t flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE|VFS_MOUNT_MUST_EXIST;
 		OsPath modName(mods[i]);
-		g_VFS->Mount(L"", modLoosePath / modName/"", flags, priority);
-		g_VFS->Mount(L"", modArchivePath / modName/"", flags, priority);
+		g_VFS->Mount(L"", modPath / modName/"", flags, priority);
+		g_VFS->Mount(L"", modUserPath / modName/"", flags, priority);
 	}
+
+	// We mount these dirs last as otherwise writing could result in files being placed in a mod's dir.
+	g_VFS->Mount(L"screenshots/", paths.UserData()/"screenshots"/"");
+	g_VFS->Mount(L"saves/", paths.UserData()/"saves"/"", VFS_MOUNT_WATCH);
+	const OsPath readonlyConfig = paths.RData()/"config"/"";
+	// Mounting with highest priority, so that a mod supplied user.cfg is harmless
+	g_VFS->Mount(L"config/", readonlyConfig, 0, (size_t)-1);
+	if(readonlyConfig != paths.Config())
+		g_VFS->Mount(L"config/", paths.Config(), 0, (size_t)-1);
+
+	g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);	// (adding XMBs to archive speeds up subsequent reads)
 
 	// note: don't bother with g_VFS->TextRepresentation - directories
 	// haven't yet been populated and are empty.
@@ -492,6 +490,10 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, CScriptVal initData)
 		g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);
 		// Offset by an arbitrary amount, to make it fit more nicely
 		g_Console->m_iFontOffset = 7;
+
+		double blinkRate = 0.5;
+		CFG_GET_VAL("gui.cursorblinkrate", Double, blinkRate);
+		g_Console->SetCursorBlinkRate(blinkRate);
 	}
 
 	// hotkeys
@@ -892,7 +894,7 @@ void Init(const CmdLineArgs& args, int UNUSED(flags))
 	// Optionally start profiler HTTP output automatically
 	// (By default it's only enabled by a hotkey, for security/performance)
 	bool profilerHTTPEnable = false;
-	CFG_GET_USER_VAL("profiler2.http.autoenable", Bool, profilerHTTPEnable);
+	CFG_GET_VAL("profiler2.http.autoenable", Bool, profilerHTTPEnable);
 	if (profilerHTTPEnable)
 		g_Profiler2.EnableHTTP();
 
@@ -930,7 +932,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 	// Optionally start profiler GPU timings automatically
 	// (By default it's only enabled by a hotkey, for performance/compatibility)
 	bool profilerGPUEnable = false;
-	CFG_GET_USER_VAL("profiler2.gpu.autoenable", Bool, profilerGPUEnable);
+	CFG_GET_VAL("profiler2.gpu.autoenable", Bool, profilerGPUEnable);
 	if (profilerGPUEnable)
 		g_Profiler2.EnableGPU();
 
@@ -954,6 +956,18 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 	g_GUI = new CGUIManager(g_ScriptingHost.GetScriptInterface());
 
 	// (must come after SetVideoMode, since it calls ogl_Init)
+	if (ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", NULL) != 0 // ARB
+		&& ogl_HaveExtensions(0, "GL_ARB_vertex_shader", "GL_ARB_fragment_shader", NULL) != 0) // GLSL
+	{
+		DEBUG_DISPLAY_ERROR(
+			L"Your graphics card doesn't appear to be fully compatible with OpenGL shaders."
+			L" In the future, the game will not support pre-shader graphics cards."
+			L" You are advised to try installing newer drivers and/or upgrade your graphics card."
+			L" For more information, please see http://www.wildfiregames.com/forum/index.php?showtopic=16734"
+		);
+		// TODO: actually quit once fixed function support is dropped
+	}
+
 	const char* missing = ogl_HaveExtensions(0,
 		"GL_ARB_multitexture",
 		"GL_EXT_draw_range_elements",

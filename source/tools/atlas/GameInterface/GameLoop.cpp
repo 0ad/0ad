@@ -142,11 +142,11 @@ static void* RunEngine(void* data)
 
 		// Calculate frame length
 		{
-			double time = timer_Time();
+			const double time = timer_Time();
 			static double last_time = time;
-			float realFrameLength = (float)(time-last_time);
+			const double realFrameLength = time-last_time;
 			last_time = time;
-			ENSURE(realFrameLength >= 0.0f);
+			ENSURE(realFrameLength >= 0.0);
 			// TODO: filter out big jumps, e.g. when having done a lot of slow
 			// processing in the last frame
 			state.realFrameLength = realFrameLength;
@@ -327,6 +327,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	// Clean up
 	AtlasView::DestroyViews();
 	ScriptingHost::FinalShutdown();
+	AtlasMessage::g_MessagePasser = NULL;
 
 	return true;
 }

@@ -2,7 +2,7 @@
 <Entity parent="units/brit_cavalry_swordsman_a">
   <Armour>
     <Hack>7.0</Hack>
-    <Pierce>10.0</Pierce>
+    <Pierce>14.0</Pierce>
     <Crush>7.0</Crush>
   </Armour>
   <Attack>
@@ -14,7 +14,7 @@
     </Charge>
   </Attack>
   <Health>
-    <Max>150</Max>
+    <Max>220</Max>
   </Health>
   <Identity>
     <Rank>Elite</Rank>
@@ -24,7 +24,7 @@
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>11.75</WalkSpeed>
+    <WalkSpeed>12.75</WalkSpeed>
     <Run>
       <Speed>29.375</Speed>
     </Run>

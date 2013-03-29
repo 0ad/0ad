@@ -13,13 +13,15 @@ PlacementSupport.prototype.Reset = function()
 	this.mode = null;
 	this.position = null;
 	this.template = null;
+	this.tooltipMessage = "";        // tooltip text to show while the user is placing a building
+	this.tooltipError = false;
 	this.wallSet = null;             // maps types of wall pieces ("tower", "long", "short", ...) to template names
 	this.wallSnapEntities = null;    // list of candidate entities to snap the starting and (!) ending positions to when building walls
 	this.wallEndPosition = null;
 	this.wallSnapEntitiesIncludeOffscreen = false; // should the next update of the snap candidate list include offscreen towers?
-	this.wallDragTooltip = null;     // tooltip text while the user is draggin the wall. Used to indicate the current cost to build the wall.
 	
 	this.SetDefaultAngle();
+	this.RandomizeActorSeed();
 	
 	Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
 	Engine.GuiInterfaceCall("SetWallPlacementPreview", {"wallSet": null});
@@ -28,4 +30,9 @@ PlacementSupport.prototype.Reset = function()
 PlacementSupport.prototype.SetDefaultAngle = function()
 {
 	this.angle = PlacementSupport.DEFAULT_ANGLE;
+};
+
+PlacementSupport.prototype.RandomizeActorSeed = function()
+{
+	this.actorSeed = Math.floor(65535 * Math.random());
 };

@@ -24,11 +24,13 @@
 
 BEGIN_INTERFACE_WRAPPER(UnitMotion)
 DEFINE_INTERFACE_METHOD_4("MoveToPointRange", bool, ICmpUnitMotion, MoveToPointRange, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_4("IsInPointRange", bool, ICmpUnitMotion, IsInPointRange, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_3("IsInTargetRange", bool, ICmpUnitMotion, IsInTargetRange, entity_id_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_3("MoveToTargetRange", bool, ICmpUnitMotion, MoveToTargetRange, entity_id_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_3("MoveToFormationOffset", void, ICmpUnitMotion, MoveToFormationOffset, entity_id_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_2("FaceTowardsPoint", void, ICmpUnitMotion, FaceTowardsPoint, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_0("StopMoving", void, ICmpUnitMotion, StopMoving)
+DEFINE_INTERFACE_METHOD_0("GetCurrentSpeed", fixed, ICmpUnitMotion, GetCurrentSpeed)
 DEFINE_INTERFACE_METHOD_1("SetSpeed", void, ICmpUnitMotion, SetSpeed, fixed)
 DEFINE_INTERFACE_METHOD_0("IsMoving", bool, ICmpUnitMotion, IsMoving)
 DEFINE_INTERFACE_METHOD_0("GetWalkSpeed", fixed, ICmpUnitMotion, GetWalkSpeed)
@@ -45,6 +47,11 @@ public:
 	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
 	{
 		return m_Script.Call<bool>("MoveToPointRange", x, z, minRange, maxRange);
+	}
+
+	virtual bool IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
+	{
+		return m_Script.Call<bool>("IsInPointRange", x, z, minRange, maxRange);
 	}
 
 	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
@@ -70,6 +77,11 @@ public:
 	virtual void StopMoving()
 	{
 		m_Script.CallVoid("StopMoving");
+	}
+
+	virtual fixed GetCurrentSpeed()
+	{
+		return m_Script.Call<fixed>("GetCurrentSpeed");
 	}
 
 	virtual void SetSpeed(fixed speed)

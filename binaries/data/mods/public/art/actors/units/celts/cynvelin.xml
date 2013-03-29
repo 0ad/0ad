@@ -12,9 +12,9 @@
         <animation file="infantry/general/dude/dudechop.psa" name="Chop" speed="150"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_em_04.psa" name="Attack" speed="100"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="Attack" speed="100"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_em_04.psa" name="attack_melee" speed="100"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="100"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_melee" speed="100"/>
       </animations>
       <mesh>skeletal/m_hero_cape.dae</mesh>
       <props>

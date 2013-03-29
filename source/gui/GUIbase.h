@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -93,7 +93,9 @@ enum EGUIMessageType
 	GUIM_MOUSE_MOTION,
 	GUIM_LOAD,				// Called when an object is added to the GUI.
 	GUIM_GOT_FOCUS,
-	GUIM_LOST_FOCUS
+	GUIM_LOST_FOCUS,
+	GUIM_PRESSED_MOUSE_RIGHT,
+	GUIM_DOUBLE_PRESSED_MOUSE_RIGHT
 };
 
 /**

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,7 +35,6 @@
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 #include <boost/random/linear_congruential.hpp>
-#include <boost/random/uniform_real.hpp>
 #include <boost/flyweight.hpp>
 #include <boost/flyweight/key_value.hpp>
 #include <boost/flyweight/no_locking.hpp>
@@ -1074,6 +1073,7 @@ std::string ScriptInterface::StringifyJSON(jsval obj, bool indent)
 	Stringifier str;
 	if (!JS_Stringify(m->m_cx, &obj, NULL, indent ? INT_TO_JSVAL(2) : JSVAL_VOID, &Stringifier::callback, &str))
 	{
+		JS_ClearPendingException(m->m_cx);
 		LOGERROR(L"StringifyJSON failed");
 		return "";
 	}

@@ -16,10 +16,10 @@ SemiRandomElevationPainter.prototype.checkInArea = function(areaID, x, z)
 {
 	// Check given tile and its neighbors
 	return (
-			(g_Map.validT(x, z) && g_Map.area[x][z] == areaID)
-			|| (g_Map.validT(x-1, z) && g_Map.area[x-1][z] == areaID)
-			|| (g_Map.validT(x, z-1) && g_Map.area[x][z-1] == areaID)
-			|| (g_Map.validT(x-1, z-1) && g_Map.area[x-1][z-1] == areaID)
+			(g_Map.inMapBounds(x, z) && g_Map.area[x][z] == areaID)
+			|| (g_Map.inMapBounds(x-1, z) && g_Map.area[x-1][z] == areaID)
+			|| (g_Map.inMapBounds(x, z-1) && g_Map.area[x][z-1] == areaID)
+			|| (g_Map.inMapBounds(x-1, z-1) && g_Map.area[x-1][z-1] == areaID)
 			);
 };
 
@@ -288,7 +288,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	baseHeights.push([]);
 	for (var iz = 0; iz < mapSize; iz++)
 	{
-		if (g_Map.validT(ix,iz) && !checkIfInClass(ix,iz,clWater)) {
+		if (g_Map.inMapBounds(ix,iz) && !checkIfInClass(ix,iz,clWater)) {
 			placeTerrain(ix, iz, tGrass);
 			setHeight(ix,iz,baseHeight +randFloat(-1,1) + scaleByMapSize(1,3)*(cos(ix/scaleByMapSize(5,30))+sin(iz/scaleByMapSize(5,30))));
 			baseHeights[ix].push( baseHeight +randFloat(-1,1) + scaleByMapSize(1,3)*(cos(ix/scaleByMapSize(5,30))+sin(iz/scaleByMapSize(5,30)))  );
@@ -361,7 +361,7 @@ for (var i = 0; i < numPlayers; i++)
 		var aX = round(fx + aDist * cos(aAngle));
 		var aZ = round(fz + aDist * sin(aAngle));
 		var group = new SimpleGroup(
-			[new SimpleObject(oChicken, 5,5, 0,3)],
+			[new SimpleObject(oChicken, 5,5, 0,2)],
 			true, clBaseResource, aX, aZ
 		);
 		createObjectGroup(group, 0);
@@ -487,7 +487,7 @@ for (var ix = 1; ix < mapSize-1; ix++)
 {
 	for (var iz = 1; iz < mapSize-1; iz++)
 	{
-		if (g_Map.validT(ix,iz) && checkIfInClass(ix,iz,clPyrenneans) ) {
+		if (g_Map.inMapBounds(ix,iz) && checkIfInClass(ix,iz,clPyrenneans) ) {
 			var NB = getNeighborsHeight(ix,iz);
 			var index = 9/(1 + Math.max(0,getHeight(ix,iz)/7));
 			setHeight(ix,iz, (getHeight(ix,iz)*(9-index) + NB*index)/9 );
@@ -519,7 +519,7 @@ for (var ix = 1; ix < mapSize-1; ix++)
 {
 	for (var iz = 1; iz < mapSize-1; iz++)
 	{
-		if ( g_Map.validT(ix,iz) && checkIfInClass(ix,iz,clPyrenneans) ) {
+		if ( g_Map.inMapBounds(ix,iz) && checkIfInClass(ix,iz,clPyrenneans) ) {
 			var NB = getNeighborsHeight(ix,iz);
 			var index = 9/(1 + Math.max(0,(getHeight(ix,iz)-10)/7));
 			setHeight(ix,iz, (getHeight(ix,iz)*(9-index) + NB*index)/9 );
@@ -554,7 +554,7 @@ for (var ix = 1; ix < mapSize-1; ix++)
 {
 	for (var iz = 1; iz < mapSize-1; iz++)
 	{
-		if ( g_Map.validT(ix,iz) && getTileClass(clWater).countInRadius(ix,iz,5,true) > 0 ) {
+		if ( g_Map.inMapBounds(ix,iz) && getTileClass(clWater).countInRadius(ix,iz,5,true) > 0 ) {
 			// Allright smoothing
 			// I'll have to hack again.
 			
@@ -571,7 +571,7 @@ for (var ix = 1; ix < mapSize-1; ix++)
 			var todivide = 0;
 			for (var xx = -size; xx <= size;xx++)
 				for (var yy = -size; yy <= size;yy++) {
-					if (g_Map.validT(ix + xx,iz + yy) && (xx != 0 || yy != 0)){
+					if (g_Map.inMapBounds(ix + xx,iz + yy) && (xx != 0 || yy != 0)){
 						averageHeight += getHeight(ix + xx,iz + yy) / (abs(xx)+abs(yy));
 						todivide += 1/(abs(xx)+abs(yy));
 					}
@@ -582,7 +582,7 @@ for (var ix = 1; ix < mapSize-1; ix++)
 			setHeight(ix,iz, averageHeight );
 			//baseHeights[ix][iz] = averageHeight;
 		}
-		if ( g_Map.validT(ix,iz) && getTileClass(clWater).countInRadius(ix,iz,4,true) > 0 && getTileClass(clWater).countInRadius(ix,iz,4) > 0 )
+		if ( g_Map.inMapBounds(ix,iz) && getTileClass(clWater).countInRadius(ix,iz,4,true) > 0 && getTileClass(clWater).countInRadius(ix,iz,4) > 0 )
 			setHeight(ix,iz, getHeight(ix,iz) + randFloat(-1,1));
 	}
 }
@@ -884,7 +884,7 @@ function getHeightDifference(x1, z1)
 	z1 = round(z1);
 	var height = getHeight(x1,z1);
 
-	if (!g_Map.validT(x1,z1))
+	if (!g_Map.inMapBounds(x1,z1))
 		return 0;
 	// I wanna store the height difference with any neighbor
 	
@@ -895,7 +895,7 @@ function getHeightDifference(x1, z1)
 	for (i in toCheck) {
 		var xx = round(x1 + toCheck[i][0]);
 		var zz = round(z1 + toCheck[i][1]);
-		if (g_Map.validT(xx,zz)) {
+		if (g_Map.inMapBounds(xx,zz)) {
 			diff += abs(getHeight(xx,zz) - height);
 			todiv++;
 		}

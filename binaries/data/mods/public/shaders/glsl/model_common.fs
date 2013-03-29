@@ -74,7 +74,7 @@ float get_shadow()
       #if USE_SHADOW_PCF
         vec2 offset = fract(v_shadow.xy - 0.5);
         vec4 size = vec4(offset + 1.0, 2.0 - offset);
-        vec4 weight = (vec4(2.0 - 1.0 / size.xy, 1.0 / size.zw - 1.0) + (v_shadow.xy - offset).xyxy) * shadowScale.zwzw;
+        vec4 weight = (vec4(1.0, 1.0, -0.5, -0.5) + (v_shadow.xy - 0.5*offset).xyxy) * shadowScale.zwzw;
         return (1.0/9.0)*dot(size.zxzx*size.wwyy,
           vec4(shadow2D(shadowTex, vec3(weight.zw, biasedShdwZ)).r,
                shadow2D(shadowTex, vec3(weight.xw, biasedShdwZ)).r,

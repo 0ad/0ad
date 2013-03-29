@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -665,6 +665,12 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 	// Easier to read.
 	bool WordWrapping = (Width != 0);
 
+	// get the alignment type for the control we are computing the text for since
+	// we are computing the horizontal alignment in this method in order to not have
+	// to run through the TextCalls a second time in the CalculateTextPosition method again
+	EAlign align;
+	GUI<EAlign>::GetSetting(pObject, "text_align", align);
+
 	// Go through string word by word
 	for (int i=0; i<(int)string.m_Words.size()-1 && !done; ++i)
 	{
@@ -778,13 +784,15 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 			// Reset X for the next loop
 			x = width_range[From];
 
-			// Now we'll do another loop to figure out the height of
-			//  the line (the height of the largest character). This
+			// Now we'll do another loop to figure out the height and width of
+			//  the line (the height of the largest character and the width is
+			//  the sum of all of the individual widths). This
 			//  couldn't be determined in the first loop (main loop)
 			//  because it didn't regard images, so we don't know
 			//  if all characters processed, will actually be involved
 			//  in that line.
 			float line_height=0.f;
+			float line_width=0.f;
 			for (int j=temp_from; j<=i; ++j)
 			{
 				// We don't want to use Feedback now, so we'll have to use
@@ -807,10 +815,33 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				// Let line_height be the maximum m_Height we encounter.
 				line_height = std::max(line_height, Feedback2.m_Size.cy);
 
+				line_width += Feedback2.m_Size.cx;
+
 				if (WordWrapping && Feedback2.m_NewLine)
 					break;
 			}
 
+			float dx = 0.f;
+			// compute offset based on what kind of alignment
+			switch (align)
+			{
+			case EAlign_Left:
+				// don't add an offset
+				dx = 0.f;
+				break;
+
+			case EAlign_Center:
+				dx = ((width_range[To] - width_range[From]) - line_width) / 2;
+				break;
+
+			case EAlign_Right:
+				dx = width_range[To] - line_width;
+				break;
+
+			default:
+				debug_warn(L"Broken EAlign in CGUI::GenerateText()");
+				break;
+			}
 			// Reset x once more
 			x = width_range[From];
 			// Move down, because font drawing starts from the baseline
@@ -837,7 +868,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				std::vector<SGUIText::STextCall>::iterator it;
 				for (it = Feedback2.m_TextCalls.begin(); it != Feedback2.m_TextCalls.end(); ++it)
 				{
-					it->m_Pos = CPos(x + x_pointer, y);
+					it->m_Pos = CPos(dx + x + x_pointer, y);
 
 					x_pointer += it->m_Size.cx;
 

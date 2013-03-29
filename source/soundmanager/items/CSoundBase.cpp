@@ -38,7 +38,7 @@ CSoundBase::~CSoundBase()
 	Stop();
 	if (m_ALSource != 0)
 	{
-		alDeleteSources(1, &m_ALSource);
+		g_SoundManager->ReleaseALSource(m_ALSource);
 		m_ALSource = 0;
 	}
 	if (m_SoundData != 0)
@@ -70,6 +70,34 @@ void CSoundBase::ResetFade()
 	m_EndVolume = 0;
 	m_ShouldBePlaying = false;
 }
+
+
+bool CSoundBase::InitOpenAL()
+{
+	alGetError(); /* clear error */
+	
+	m_ALSource = g_SoundManager->GetALSource();
+	long anErr = alGetError();
+
+	AL_CHECK
+
+	if ( m_ALSource )	
+	{		
+		alSourcef(m_ALSource,AL_PITCH,1.0f);
+		AL_CHECK
+		alSourcef(m_ALSource,AL_GAIN,1.0f);
+		AL_CHECK
+		alSourcei(m_ALSource,AL_LOOPING,AL_FALSE);
+		AL_CHECK
+		return true;
+	}
+	else
+	{
+		LOGERROR(L"Source not allocated by SOundManager\n", 0);
+	}
+	return false;
+}
+
 
 void CSoundBase::SetGain(ALfloat gain)
 {
@@ -133,13 +161,13 @@ void CSoundBase::SetDirection(const CVector3D& direction)
 	}
 }
 
+<<<<<<< HEAD
+=======
 bool CSoundBase::InitOpenAL()
 {
 	alGetError(); /* clear error */
 	alGenSources(1, &m_ALSource);
-	long anErr = alGetError();
-
-	AL_CHECK
+	ALenum anErr = alGetError();
 
 	if (anErr == AL_NO_ERROR) 
 	{		
@@ -157,12 +185,16 @@ bool CSoundBase::InitOpenAL()
 	}
 	return false;
 }
+>>>>>>> upstream/master
 
 bool CSoundBase::IsPlaying()
 {
-	int proc_state;
-	alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
-	AL_CHECK
+	ALenum proc_state = AL_STOPPED;
+	if ( m_ALSource != 0 )
+	{
+		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+		AL_CHECK
+	}
 
 	return (proc_state == AL_PLAYING);
 }
@@ -179,7 +211,7 @@ bool CSoundBase::IdleTask()
 
 void CSoundBase::SetLocation (const CVector3D& position)
 {
-	if ( m_ALSource )
+	if ( m_ALSource != 0 )
 	{
 		alSourcefv(m_ALSource,AL_POSITION, position.GetFloatArray());
 		AL_CHECK
@@ -200,16 +232,23 @@ bool CSoundBase::HandleFade()
 			Stop();
 		else if (curGain == m_EndVolume)
 		{
-			alSourcef(m_ALSource, AL_GAIN, curGain);	 
+			if (m_ALSource != 0)
+				alSourcef(m_ALSource, AL_GAIN, curGain);	 
 			ResetFade();
 		}
-		else
+		else if (m_ALSource != 0)
 			alSourcef(m_ALSource, AL_GAIN, curGain);	 
 
 		AL_CHECK
 	}
 	return true;
 }
+
+bool CSoundBase::IsFading()
+{
+	return ((m_ALSource != 0) && (m_StartFadeTime != 0));
+}
+
 
 bool CSoundBase::GetLooping()
 {
@@ -219,8 +258,11 @@ bool CSoundBase::GetLooping()
 void CSoundBase::SetLooping(bool loops)
 {
 	m_Looping = loops;
-	alSourcei(m_ALSource, AL_LOOPING, loops ? AL_TRUE : AL_FALSE);
-	AL_CHECK
+	if (m_ALSource != 0)
+	{
+		alSourcei(m_ALSource, AL_LOOPING, loops ? AL_TRUE : AL_FALSE);
+		AL_CHECK
+	}
 }
 
 void CSoundBase::Play()
@@ -261,16 +303,19 @@ void CSoundBase::PlayLoop()
 
 void CSoundBase::FadeToIn(ALfloat newVolume, double fadeDuration)
 {
-	int proc_state;
-	alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
-	if (proc_state == AL_PLAYING)
-	{
-		m_StartFadeTime = timer_Time();
-		m_EndFadeTime = m_StartFadeTime + fadeDuration;
-		alGetSourcef(m_ALSource, AL_GAIN, &m_StartVolume);
-		m_EndVolume = newVolume;
+	if (m_ALSource != 0)
+	{		
+		ALenum proc_state;
+		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+		if (proc_state == AL_PLAYING)
+		{
+			m_StartFadeTime = timer_Time();
+			m_EndFadeTime = m_StartFadeTime + fadeDuration;
+			alGetSourcef(m_ALSource, AL_GAIN, &m_StartVolume);
+			m_EndVolume = newVolume;
+		}
+		AL_CHECK
 	}
-	AL_CHECK
 }
 
 void CSoundBase::PlayAsMusic()

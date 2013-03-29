@@ -2,36 +2,47 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
-		<SkySet>sunny</SkySet>
+		<SkySet>sunny 1</SkySet>
 		<SunColour r="0.756863" g="0.737255" b="0.658824"/>
 		<SunElevation angle="0.717903"/>
 		<SunRotation angle="-0.478602"/>
 		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<Fog>
+			<FogFactor>0.00199219</FogFactor>
+			<FogThickness>0.350586</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.211765" g="0.25098" b="0.505882"/>
+				<Colour r="0.262745" g="0.239216" b="0.196078"/>
 				<Height>20.0394</Height>
 				<Shininess>229.004</Shininess>
 				<Waviness>2.1875</Waviness>
 				<Murkiness>0.734375</Murkiness>
-				<Tint r="0" g="0" b="0"/>
-				<ReflectionTint r="0" g="0.501961" b="1"/>
-				<ReflectionTintStrength>0.304688</ReflectionTintStrength>
+				<Tint r="0.819608" g="0.74902" b="0.513726"/>
+				<ReflectionTint r="0" g="0" b="0"/>
+				<ReflectionTintStrength>0.0849609</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="579.599" y="101.475" z="748.131"/>
+		<Position x="481.446" y="122.072" z="80.626"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "acropolis_3.png",
+  "Preview": "acropolis_3.png",
   "Description": "Arch enemies, Rome and Carthage, square off on a richly detailed map of Southern Italy.\u000a\u000aScout the lands to find free Treasures and to secure new resources.",
   "GameType": "conquest",
   "Keywords": [],
@@ -11909,17 +11920,17 @@
 		</Entity>
 		<Entity uid="2257">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="769.2157" z="299.1667"/>
+			<Position x="769.09345" z="296.5988"/>
 			<Orientation y="1.3007"/>
 		</Entity>
 		<Entity uid="2258">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="776.56336" z="304.01532"/>
+			<Position x="779.86091" z="302.7717"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2259">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="776.90168" z="307.09403"/>
+			<Position x="777.07172" z="309.15534"/>
 			<Orientation y="1.82644"/>
 		</Entity>
 		<Entity uid="2260">
@@ -11929,17 +11940,17 @@
 		</Entity>
 		<Entity uid="2261">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="780.90107" z="299.19806"/>
+			<Position x="786.41529" z="296.3983"/>
 			<Orientation y="-1.871"/>
 		</Entity>
 		<Entity uid="2262">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="777.05445" z="297.89347"/>
+			<Position x="779.28754" z="289.87058"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2263">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="776.96924" z="295.65552"/>
+			<Position x="775.42341" z="293.13013"/>
 			<Orientation y="2.09014"/>
 		</Entity>
 		<Entity uid="2264">
@@ -11949,7 +11960,7 @@
 		</Entity>
 		<Entity uid="2265">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="783.52637" z="301.84681"/>
+			<Position x="786.13636" z="300.14036"/>
 			<Orientation y="0.12816"/>
 		</Entity>
 		<Entity uid="2266">
@@ -11964,7 +11975,7 @@
 		</Entity>
 		<Entity uid="2268">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="787.74183" z="309.28125"/>
+			<Position x="788.36878" z="304.01615"/>
 			<Orientation y="-2.67563"/>
 		</Entity>
 		<Entity uid="2269">
@@ -11979,7 +11990,7 @@
 		</Entity>
 		<Entity uid="2271">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="777.80018" z="297.0453"/>
+			<Position x="780.5528" z="293.8892"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2272">
@@ -11994,12 +12005,12 @@
 		</Entity>
 		<Entity uid="2274">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="782.95582" z="306.91102"/>
+			<Position x="782.79206" z="309.53843"/>
 			<Orientation y="0.20669"/>
 		</Entity>
 		<Entity uid="2275">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="782.11017" z="313.31003"/>
+			<Position x="779.1421" z="311.18503"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2276">
@@ -12019,17 +12030,17 @@
 		</Entity>
 		<Entity uid="2279">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="772.42121" z="302.39948"/>
+			<Position x="774.07282" z="301.04065"/>
 			<Orientation y="-2.57107"/>
 		</Entity>
 		<Entity uid="2280">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="772.02686" z="300.31147"/>
+			<Position x="769.97718" z="299.18778"/>
 			<Orientation y="2.48031"/>
 		</Entity>
 		<Entity uid="2281">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="773.76172" z="298.06281"/>
+			<Position x="773.90772" z="296.61521"/>
 			<Orientation y="-1.55353"/>
 		</Entity>
 		<Entity uid="2282">

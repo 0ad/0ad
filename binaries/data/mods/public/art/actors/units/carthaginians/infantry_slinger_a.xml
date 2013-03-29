@@ -11,7 +11,8 @@
         <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
-        <animation event="0.5" file="biped/inf_sling_atk_a.psa" name="melee" speed="30"/>
+        <animation event="0.5" file="biped/inf_sling_atk_a.psa" name="attack_ranged" speed="30"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_slaughter" speed="100"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="40"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="36"/>
         <animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
@@ -46,6 +47,11 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
+    <variant name="attack_slaughter">
+      <props>
+        <prop actor="props/units/weapons/knife.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
     <variant name="gather_tree">
       <props>
         <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>

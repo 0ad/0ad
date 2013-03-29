@@ -22,10 +22,10 @@ Random maps only:
 -autostart-players=NUMBER		NUMBER of players on random map
 
 Configuration:
--conf:KEY=VALUE		set a config value (overrides the contents of system.cfg)
+-conf=KEY:VALUE		set a config value
 -g=F				set the gamma correction to 'F' (default 1.0)
 -nosound			disable audio
--onlyPublicFiles	force game to use only the public (default) mod
+-noUserMod			disable loading of the user mod
 -shadows			enable shadows
 -vsync				enable VSync, i.e. lock FPS to monitor refresh rate
 -xres=N				set screen X resolution to 'N'
@@ -41,6 +41,12 @@ Advanced / diagnostic:
 					  PATH is system path to commands.txt containing simulation log
 -writableRoot		store runtime game data in root data directory
 					  (only use if you have write permissions on that directory)
+-ooslog				dumps simulation state in binary and ASCII representations each turn,
+					  files created in sim_log within the game's log folder. NOTE: game will
+					  run much slower with this option!
+-serializationtest  checks simulation state each turn for serialization errors; on test
+					  failure, error is displayed and logs created in oos_log within the
+					  game's log folder. NOTE: game will run much slower with this option!
 
 Windows-specific:
 -wQpcTscSafe		allow timing via QueryPerformanceCounter despite the fact

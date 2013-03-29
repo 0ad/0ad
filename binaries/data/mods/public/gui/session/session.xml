@@ -60,10 +60,13 @@
 	<object hotkey="menu.toggle">
 	    <action on="Press">openMenu();</action>
 	</object>
-		
+
 	<!-- Unit silhouettes -->
 	<object hotkey="silhouettes">
-	    <action on="Press">renderer.silhouettes = !renderer.silhouettes;</action>
+	    <action on="Press">
+		renderer.silhouettes = !renderer.silhouettes;
+		getGUIObjectByName("silhouettesCheckbox").checked = renderer.silhouettes;
+	    </action>
 	</object>
 
 	<!-- Sky -->
@@ -202,7 +205,10 @@
 
 	    <object size="0 144 100%-18 160" type="text" style="devCommandsText">Enable time warp</object>
 	    <object size="100%-16 144 100% 160" type="checkbox" name="devTimeWarp" style="StoneCrossBox">
-		<action on="Press">Engine.EnableTimeWarpRecording(this.checked ? 10 : 0);</action>
+		<action on="Press">
+        if (this.checked)
+          messageBox(500, 250, "Note: time warp mode is a developer option, and not intended\nfor use over long periods of time. Using it incorrectly may\ncause the game to run out of memory or crash.", "Time warp mode", 2);
+        Engine.EnableTimeWarpRecording(this.checked ? 10 : 0);</action>
 	    </object>
 
 	    <object size="0 160 100%-18 176" type="text" style="devCommandsText">Promote selected units</object>
@@ -215,10 +221,7 @@
 	<!-- Time elapsed counter -->
 	<!-- ================================  ================================ -->
 	<object size="100%-100 50 100%-10 70" type="text" name="timeElapsedCounter" style="SettingsText" hotkey="timeelapsedcounter.toggle" hidden="true">
-	    <action on="Press"><![CDATA[
-				this.hidden = !this.hidden;
-			]]>
-	    </action>
+	    <action on="Press">this.hidden = !this.hidden;</action>
 	</object>
 
 	<!-- ================================  ================================ -->
@@ -310,16 +313,16 @@
 					<object name="diplomacyPlayerEnemy[n]" size="100%-140 0 100%-120 100%" type="button" style="StoneButton" hidden="true"/>
 
 					<!-- Tribute -->
-					<object name="diplomacyPlayerTributeFood[n]" size="100%-110 0 100%-90 100%" type="button" style="iconButton" tooltip="Food" hidden="true">
+					<object name="diplomacyPlayerTributeFood[n]" size="100%-110 0 100%-90 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
 						<object name="diplomacyPlayerTributeFoodImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/food.png" ghost="true"/>
 					</object>
-					<object name="diplomacyPlayerTributeWood[n]" size="100%-90 0 100%-70 100%" type="button" style="iconButton" tooltip="Wood" hidden="true">
+					<object name="diplomacyPlayerTributeWood[n]" size="100%-90 0 100%-70 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
 						<object name="diplomacyPlayerTributeWoodImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/wood.png" ghost="true"/>
 					</object>
-					<object name="diplomacyPlayerTributeStone[n]" size="100%-70 0 100%-50 100%" type="button" style="iconButton" tooltip="Stone" hidden="true">
+					<object name="diplomacyPlayerTributeStone[n]" size="100%-70 0 100%-50 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
 						<object name="diplomacyPlayerTributeStoneImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/stone.png" ghost="true"/>
 					</object>
-					<object name="diplomacyPlayerTributeMetal[n]" size="100%-50 0 100%-30 100%" type="button" style="iconButton" tooltip="Metal" hidden="true">
+					<object name="diplomacyPlayerTributeMetal[n]" size="100%-50 0 100%-30 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
 						<object name="diplomacyPlayerTributeMetalImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/metal.png" ghost="true"/>
 					</object>
 				</object>
@@ -340,6 +343,7 @@
 			type="image"
 			size="50%-180 50%-225 50%+180 50%+225"
 			hidden="true"
+			z="200"
 			>
 			<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Settings</object>
 			
@@ -426,13 +430,13 @@
 				
 				<!-- Settings / Music-->
 				<object size="0 285 100%-80 310" type="text" style="RightLabelText" ghost="true">Enable Music</object>
-				<object size="100%-56 290 100%-30 315" type="checkbox" style="StoneCrossBox" checked="true">
+				<object name="musicCheckbox" size="100%-56 290 100%-30 315" type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Press">if (this.checked) global.music.start(); else global.music.stop();</action>
 				</object>
 				
 				<!-- Settings / Dev Overlay -->
 				<object size="0 310 100%-80 335" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
-				<object size="100%-56 315 100%-30 340" type="checkbox" style="StoneCrossBox" checked="false">
+				<object name="developerOverlayCheckbox" size="100%-56 315 100%-30 340" type="checkbox" style="StoneCrossBox" checked="false">
 					<action on="Press">toggleDeveloperOverlay();</action>
 				</object>
 			</object>
@@ -510,12 +514,11 @@
 
 	    <!-- Displays Alpha name and number -->
 	    <object size="70%-128 0 70%+128 100%" name="alphaLabel" type="text" style="CenteredLabelText" text_valign="top" ghost="true">
-		ALPHA XI : Kronos<!-- IMPORTANT: remember to update pregame/mainmenu.xml in sync with this -->
+		ALPHA XII : Loucetios<!-- IMPORTANT: remember to update pregame/mainmenu.xml in sync with this -->
 
 		<!-- Displays build date and revision number-->
 		<object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" style="BuildNameText" ghost="true">
-		    <action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]>
-		    </action>
+		    <action on="Load">this.caption = buildTime(0) + " (" + buildTime(2) + ")"</action>
 		</object>
 	    </object>
 
@@ -638,7 +641,18 @@
 		    <object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
 		    <action on="Press">togglePause();</action>
 		</object>
-	    </object>
+
+		<!-- Manual button -->
+		<object type="button"
+			name="manualButton"
+			style="StoneButtonFancy"
+			size="0 192 100% 220"
+			tooltip_style="sessionToolTip"
+		>
+			Manual
+			<action on="Press">openManual();</action>
+		</object>
+		</object>
 	</object>
 
 	<!-- In-progress research -->
@@ -674,9 +688,9 @@
 	<object name="informationTooltip" type="tooltip" independent="true" style="informationTooltip"/>
 
 	<!-- ================================  ================================ -->
-	<!-- Wall-dragging tooltip. Shows the total cost of building a wall while the player is dragging it. -->
+	<!-- Building placement info tooltip									-->
 	<!-- ================================  ================================ -->
-	<object name="wallDragTooltip" type="tooltip" independent="true" style="informationTooltip"/>
+	<object name="placementTooltip" type="tooltip" independent="true" style="informationTooltip"/>
 
 	<!-- ================================  ================================ -->
 	<!-- START of BOTTOM PANEL -->
@@ -1061,6 +1075,18 @@
 				<object name="unitGateIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
 				<object name="unitGateSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/corners.png"/>
 				<object name="unitGateUnaffordable[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="colour: 255 0 0 127"/>
+			    </object>
+			</repeat>
+		    </object>
+		</object>
+    
+    <object name="unitPackPanel"
+			size="10 12 100% 100%"
+		>
+		    <object size="0 0 100% 100%">
+			<repeat count="8">
+			    <object name="unitPackButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
+				<object name="unitPackIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
 			    </object>
 			</repeat>
 		    </object>

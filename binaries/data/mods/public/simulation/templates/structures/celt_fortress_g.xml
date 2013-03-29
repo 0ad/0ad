@@ -3,6 +3,9 @@
   <Cost>
     <PopulationBonus>12</PopulationBonus>
   </Cost>
+<Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_5x5</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Gallic Dun</SpecificName>
@@ -26,6 +29,10 @@
       units/celt_champion_infantry_gaul
       units/celt_mechanical_siege_ram
     </Entities>
+    <Technologies datatype="tokens">
+      pair_siege_attack_cost
+      pair_siege_cost_armor
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/celts/fortress_gallic.xml</Actor>

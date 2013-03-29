@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,6 +46,7 @@
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTerrain.h"
+#include "simulation2/components/ICmpVisual.h"
 #include "simulation2/components/ICmpWaterManager.h"
 
 #include <boost/algorithm/string/predicate.hpp>
@@ -406,19 +407,19 @@ private:
 	int el_tracks;
 	int el_template, el_player;
 	int el_position, el_orientation, el_obstruction;
-	int el_nonentity;
 	int el_actor;
 	int at_x, at_y, at_z;
 	int at_group, at_group2;
 	int at_id;
 	int at_angle;
 	int at_uid;
+	int at_seed;
 
 	XMBElementList nodes; // children of root
 
 	// loop counters
 	int node_idx;
-	int entity_idx, nonentity_idx;
+	int entity_idx;
 
 	// # entities+nonentities processed and total (for progress calc)
 	int completed_jobs, total_jobs;
@@ -440,7 +441,7 @@ private:
 void CXMLReader::Init(const VfsPath& xml_filename)
 {
 	// must only assign once, so do it here
-	node_idx = entity_idx = nonentity_idx = 0;
+	node_idx = entity_idx = 0;
 
 	if (xmb_file.Load(g_VFS, xml_filename) != PSRETURN_OK)
 		throw PSERROR_File_ReadFailed();
@@ -458,12 +459,12 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 	EL(position);
 	EL(orientation);
 	EL(obstruction);
-	EL(nonentity);
 	EL(actor);
 	AT(x); AT(y); AT(z);
 	AT(group); AT(group2);
 	AT(angle);
 	AT(uid);
+	AT(seed);
 #undef AT
 #undef EL
 
@@ -688,7 +689,8 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 				}
 				else if (element_name == el_posteffect)
 				{
-					m_MapReader.pPostproc->SetPostEffect(postproc.GetText().FromUTF8());
+					if (m_MapReader.pPostproc)
+						m_MapReader.pPostproc->SetPostEffect(postproc.GetText().FromUTF8());
 				}
 			}
 		}
@@ -952,6 +954,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		int PlayerID = 0;
 		CFixedVector3D Position;
 		CFixedVector3D Orientation;
+		long Seed = 0;
 
 		// Obstruction control groups.
 		entity_id_t ControlGroup = INVALID_ENTITY;
@@ -997,6 +1000,12 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				ControlGroup = attrs.GetNamedItem(at_group).ToInt();
 				ControlGroup2 = attrs.GetNamedItem(at_group2).ToInt();
 			}
+			// <actor>
+			else if (element_name == el_actor)
+			{
+				XMBAttributeList attrs = setting.GetAttributes();
+				Seed = attrs.GetNamedItem(at_seed).ToLong();
+			}
 			else
 				debug_warn(L"Invalid map XML data");
 		}
@@ -1030,6 +1039,14 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 					cmpObstruction->SetControlGroup2(ControlGroup2);
 
 				cmpObstruction->ResolveFoundationCollisions();
+			}
+
+			CmpPtr<ICmpVisual> cmpVisual(sim, ent);
+			if (cmpVisual)
+			{
+				if (Seed != -1)
+					cmpVisual->SetActorSeed((u32)Seed);
+				// TODO: variation/selection strings
 			}
 
 			if (PlayerID == m_MapReader.m_PlayerID && (boost::algorithm::ends_with(TemplateName, L"civil_centre") || m_MapReader.m_StartingCameraTarget == INVALID_ENTITY))

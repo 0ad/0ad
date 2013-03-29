@@ -33,12 +33,13 @@
     <Height>3.0</Height>
   </Footprint>
   <Health>
-    <Max>500</Max>
+    <Max>800</Max>
     <RegenRate>0.5</RegenRate>
   </Health>
   <Identity>
     <Classes datatype="tokens">Hero</Classes>
     <GenericName>Hero Cavalry Skirmisher</GenericName>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>450</xp>

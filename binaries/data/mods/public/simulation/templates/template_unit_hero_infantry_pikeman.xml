@@ -31,8 +31,9 @@
     </Charge>
   </Attack>
   <Identity>
-    <Classes datatype="tokens">Melee Spear</Classes>
+    <Classes datatype="tokens">Melee Spear Pike</Classes>
     <GenericName>Hero Pikeman</GenericName>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
     <wood>10</wood>

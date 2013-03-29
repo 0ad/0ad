@@ -155,6 +155,7 @@ Health.prototype.Reduce = function(amount)
 
 		Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
 	}
+	state.change = this.hitpoints - old;
 	return state;
 };
 
@@ -212,8 +213,11 @@ Health.prototype.CreateCorpse = function(leaveResources)
 	var cmpCorpseOwnership = Engine.QueryInterface(corpse, IID_Ownership);
 	cmpCorpseOwnership.SetOwner(cmpOwnership.GetOwner());
 
-	// Make it fall over
+	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	var cmpCorpseVisual = Engine.QueryInterface(corpse, IID_Visual);
+	cmpCorpseVisual.SetActorSeed(cmpVisual.GetActorSeed());
+
+	// Make it fall over
 	cmpCorpseVisual.SelectAnimation("death", true, 1.0, "");
 
 	return corpse;
@@ -276,7 +280,7 @@ Health.prototype.OnTechnologyModification = function(msg)
 		if (cmpTechnologyManager)
 		{
 			var oldMaxHitpoints = this.GetMaxHitpoints();
-			var newMaxHitpoints = Math.round(cmpTechnologyManager.ApplyModifications("Health/Max", +this.template.Max, this.entity));
+			var newMaxHitpoints = Math.round(ApplyTechModificationsToEntity("Health/Max", +this.template.Max, this.entity));
 			if (oldMaxHitpoints != newMaxHitpoints)
 			{
 				var newHitpoints = Math.round(this.GetHitpoints() * newMaxHitpoints/oldMaxHitpoints);

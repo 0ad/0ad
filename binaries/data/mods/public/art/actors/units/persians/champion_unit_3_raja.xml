@@ -7,7 +7,7 @@
         <animation file="quadraped/elephant_rider_idle.psa" name="Idle" speed="50"/>
         <animation file="quadraped/elephant_rider_idle.psa" name="Walk" speed="18"/>
         <animation file="quadraped/elephant_rider_idle.psa" name="Run" speed="8"/>
-        <animation file="quadraped/elephant_rider_idle.psa" name="melee" speed="50"/>
+        <animation file="quadraped/elephant_rider_idle.psa" name="attack_melee" speed="50"/>
       </animations>
       <props>
         <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>

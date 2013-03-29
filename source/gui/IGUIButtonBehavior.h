@@ -115,6 +115,7 @@ protected:
 		// Notify the gui that we aren't hovered anymore
 		UpdateMouseOver(NULL);
 		m_Pressed = false;
+		m_PressedRight = false;
 	}
 
 	/**
@@ -125,6 +126,7 @@ protected:
 	 * this lets us know we are done with step one (clicking).
 	 */
 	bool							m_Pressed;
+	bool							m_PressedRight;
 };
 
 #endif

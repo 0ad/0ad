@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_fortress">
   <Cost>
-    <BuildTime>462</BuildTime>
+    <BuildTime>330</BuildTime>
   </Cost>
   <Footprint>
     <Square width="26.0" depth="28.0"/>
@@ -21,10 +21,14 @@
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/hele_mechanical_siege_oxybeles
-      units/hele_mechanical_siege_lithobolos
+      units/hele_mechanical_siege_oxybeles_packed
+      units/hele_mechanical_siege_lithobolos_packed
       units/hele_mechanical_siege_tower
     </Entities>
+    <Technologies datatype="tokens">
+      pair_siege_attack_pack
+      pair_siege_cost_armor
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/hellenes/fortress_up.xml</Actor>

@@ -14,24 +14,6 @@ the file's path.
 Some files don't yet have licensing details specified - if you care about any
 in particular, let us know and we can try to clarify it.
 
-  /source
-    GPL version 2 (or later) - see license_gpl-2.0.txt
-
-  /source/lib
-    MIT
-
-  /source/third_party/mikktspace
-    zlib
-
-  /source/third_party/mongoose
-    MIT
-
-  /source/tools
-    Various (unspecified)
-
-  /source/tools/atlas
-    GPL version 2 (or later) - see license_gpl-2.0.txt
-
   /binaries/data
     GPL version 2 (or later) - see license_gpl-2.0.txt
 
@@ -48,11 +30,35 @@ in particular, let us know and we can try to clarify it.
     Proprietary - see license_dbghelp.txt for restrictions you must agree to
     before distributing this particular file
 
-  /libraries
-    Various - see individual directories and files for details
-
   /build
     Various (unspecified)
 
+  /build/premake/premake4
+    BSD
+
+  /build/premake/*.lua
+    MIT
+
   /docs
     Various (unspecified)
+
+  /libraries
+    Various - see LICENSE.txt within that directory
+
+  /source
+    GPL version 2 (or later) - see license_gpl-2.0.txt
+
+  /source/lib
+    MIT
+
+  /source/third_party/mikktspace
+    zlib
+
+  /source/third_party/mongoose
+    MIT
+
+  /source/tools
+    Various - see LICENSE.txt within that directory
+
+  /source/tools/atlas
+    GPL version 2 (or later) - see license_gpl-2.0.txt

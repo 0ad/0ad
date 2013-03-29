@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Cost>
+    <PopulationBonus>10</PopulationBonus>
+  </Cost>
+  <Footprint>
+    <Square width="40.0" depth="16.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>maur</Civ>
+    <SpecificName>Mauryan Palace</SpecificName>
+    <History>Palace.</History>
+    <Tooltip>Add +15 to Population Cap. Recruit extra units and heroes.</Tooltip>
+    <Icon>gaia/special_stoa.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="36.0" depth="12.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}_support_female_citizen
+      units/maur_champion_maiden_archer
+      units/maur_hero_chanakya
+      units/maur_hero_maurya
+      units/maur_hero_ashoka
+    </Entities>
+  </ProductionQueue>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>38</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
+  <VisualActor>
+    <Actor>structures/mauryans/misc_structure_01.xml</Actor>
+  </VisualActor>
+</Entity>

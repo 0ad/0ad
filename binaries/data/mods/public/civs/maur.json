@@ -1,13 +1,12 @@
 ﻿{
 	"Code": "maur",
-	"Culture": "indi",
+	"Culture": "maur",
 	"Name": "Mauryans",
 	"Emblem": "session/portraits/emblems/emblem_mauryans.png",
-	"History": "Founded in 322 B.C. by Chandragupta Maurya after his conquest of the Nanda Dynasty, the Mauryan Empire quickly expanded into the Indian subcontinent.",
+	"History": "Founded in 322 B.C., the Mauryan Empire was the first to rule most of the Indian subcontinent, and one of the largest and most populous empires of its time. Its military featured longbowmen, female warriors and war elephants. Under the rule of Ashoka the Great, the empire saw 40 years of peace, harmony and prosperity.",
 	"Music":[
 			{"File":"Eastern_Dreams.ogg", "Type":"peace"},
-			{"File":"Sands_of_Time.ogg", "Type":"peace"},
-			{"File":"persian_battle_1.ogg", "Type":"battle"}
+			{"File":"Sands_of_Time.ogg", "Type":"peace"}
 		],
 	"Factions":
 	[
@@ -77,13 +76,13 @@
 	"Structures":
 	[
 		{
-			"Name":"Stupa Shrine",
+			"Name":"Elephant Stables",
 			"Class":"SB1",
 			"Emblem":"",
 			"History":".",
 			"Requirements":"Temple",
-			"Phase":"City",
-			"Special":"."
+			"Phase":"Town",
+			"Special":"Trains Elephant Archer and Worker Elephant at Town Phase, then adds the champion War Elephant at the City phase."
 		},
 		{
 			"Name":"Edict Pillar of Ashoka",
@@ -93,15 +92,6 @@
 			"Requirements":"Built by the Ashoka hero unit.",
 			"Phase":"City",
 			"Special":"."
-		},
-		{
-			"Name":"Elephant Stables",
-			"Class":"SB3",
-			"Emblem":"",
-			"History":".",
-			"Requirements":"Temple",
-			"Phase":"Town",
-			"Special":"Trains Elephant Archer and Worker Elephant at Town Phase, then adds the champion War Elephant at the City phase."
 		}
 	],
 	"StartEntities":

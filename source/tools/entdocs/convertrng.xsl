@@ -22,7 +22,7 @@
     <body>
       <h1>Entity component documentation</h1>
       <p>
-      In <a href="http://www.wildfiregames.com/0ad/">0 A.D.</a>,
+      In <a href="http://play0ad.com/">0 A.D.</a>,
       entities (units and buildings and other world objects)
       consist of a collection of components, each of which determines
       part of the entity's behaviour.

@@ -8,7 +8,7 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>15.0</Pierce>
+      <Pierce>10.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>48.0</MaxRange>
       <MinRange>16.0</MinRange>
@@ -17,22 +17,26 @@
       <RepeatTime>1500</RepeatTime>
       <Spread>1.5</Spread>
 	  <Bonuses>
-		<BonusInfantry>
-		  <Classes>Infantry</Classes>
+		<BonusInfantryRanged>
+		  <Classes>Infantry Ranged</Classes>
 		  <Multiplier>2.0</Multiplier>
-		</BonusInfantry>
+		</BonusInfantryRanged>
+		<BonusInfantryMelee>
+		  <Classes>Infantry Melee</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusInfantryMelee>
 	  </Bonuses>
     </Ranged>
   </Attack>
   <Cost>
     <Resources>
-      <stone>40</stone>
+      <stone>50</stone>
     </Resources>
   </Cost>
   <Identity>
     <Classes datatype="tokens">Sling</Classes>
     <GenericName>Slinger</GenericName>
-    <Tooltip>Counters: 2x vs. All Infantry. Countered by: Cavalry.</Tooltip>
+    <Tooltip>Counters: 2x vs. Ranged Infantry, 1.5x vs. Melee Infantry. Countered by: Melee Cavalry.</Tooltip>
   </Identity>
   <Loot>
     <xp>75</xp>

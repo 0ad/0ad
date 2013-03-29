@@ -38,10 +38,12 @@ When you are ready to start, click the "Start game" button.
 [font="serif-bold-14"]Always
 [font="serif-14"]Alt+F4: Close the game, without confirmation
 Alt + Enter: Toggle between fullscreen and windowed
-F9: Show/hide console
+~ or F9: Show/hide console
 Alt + F: Show/hide frame counter (FPS)
-F2: Take screenshot (in .png format, saved to %appdata%/0ad\data\screenshots on Windows)
-Shift+F2: Take huge screenshot (6400px*4800px, in .bmp format, saved to %appdata%/0ad\data\screenshots on Windows)
+F11: Enable/disable real-time profiler (toggles through the displays of information)
+Shift + F11: Save current profiler data to "logs/profile.txt"
+F2: Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
+Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there) 
 
 [font="serif-bold-14"]In Game
 [font="serif-14"]
@@ -49,10 +51,13 @@ Double Left Click [on unit]: Select all of your units of the same kind and the s
 Triple Left Click [on unit]: Select all of your units of the same kind on the screen (even if they're different ranks)
 Alt + Double Left Click [on unit]: Select all your units of the same kind and rank on the entire map
 Alt + Triple Left Click [on unit]: Select all your units of the same kind on the entire map (even if the are different ranks)
+Shift + F5: Quicksave
+Shift + F8: Quickload
 F10: Open/close menu
 F12: Show/hide time elapsed counter
 ESC: Close all dialogs (chat, menu)
-Enter/return:Open/send chat
+Enter/return: Open/send chat
+T: Send team chat
 Pause: Pause/unpause the game
 Delete: Delete currently selected unit/units/building/buildings
 ,: Select idle fighters
@@ -60,6 +65,7 @@ Delete: Delete currently selected unit/units/building/buildings
 Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the selected units/buildings
 1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)
 Shift + 1 (to 0): Add selected units/buildings to control group 1 (to 0)
+Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ... unit shown to the training queue for all the selected buildings.
 
 [font="serif-bold-14"]Modify mouse action
 [font="serif-14"]Ctrl + Right Click on building: Garrison
@@ -70,10 +76,16 @@ Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection
 Alt + Left Drag over units on map: Only select military units
 Ctrl + Left Click on unit/group icon with multiple units selected: Deselect
 Right Click with a building/buildings selected: sets a rally point for units created/ungarrisoned from that building. 
+Ctrl + Right Click with units selected:
+    - If the cursor is over a structure: Garrison
+    - Otherwise: Attack move
 
 [font="serif-bold-14"]Overlays
 [font="serif-14"]Alt + G: Hide/show the GUI
 Alt + D: Show/hide developer overlay (with developer options)
+Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over the textured models, twice to get just the wireframes colored by the textures, thrice to get back to normal textured mode)
+Alt + S: Toggle unit silhouettes (might give a small performance boost)
+Alt + Z: Toggle sky
 
 [font="serif-bold-14"]Camera manipulation
 [font="serif-14"]W or [up]: Pan screen up

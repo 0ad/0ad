@@ -64,7 +64,6 @@ BuildRestrictions.prototype.Schema =
 			"</interleave>" +
 		"</element>" +
 	"</optional>";
-	// TODO: add phases, prerequisites, etc
 
 BuildRestrictions.prototype.Init = function()
 {
@@ -72,11 +71,50 @@ BuildRestrictions.prototype.Init = function()
 };
 
 /**
- * Returns true iff this entity can be built at its current position.
+ * Checks whether building placement is valid
+ *	1. Visibility is not hidden (may be fogged or visible)
+ *	2. Check foundation
+ *		a. Doesn't obstruct foundation-blocking entities
+ *		b. On valid terrain, based on passability class
+ *	3. Territory type is allowed
+ *	4. Dock is on shoreline and facing into water
+ *	5. Distance constraints satisfied
+ *
+ * Returns result object:
+ * 	{
+ *		"success":	true iff the placement is valid, else false
+ *		"message":	message to display in UI for invalid placement, else empty string
+ *  }
  */
-BuildRestrictions.prototype.CheckPlacement = function(player)
+BuildRestrictions.prototype.CheckPlacement = function()
 {
-	// TODO: Return error code for invalid placement, which can be handled by the UI
+	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	var name = cmpIdentity ? cmpIdentity.GetGenericName() : "Building";
+
+	var result = {
+		"success": false,
+		"message": name+" cannot be built due to unknown error",
+	};
+
+	// TODO: AI has no visibility info
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	if (!cmpPlayer.IsAI())
+	{
+		// Check whether it's in a visible or fogged region
+		// tell GetLosVisibility to force RetainInFog because preview entities set this to false,
+		// which would show them as hidden instead of fogged
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+		if (!cmpRangeManager || !cmpOwnership)
+			return result; // Fail
+
+		var explored = (cmpRangeManager.GetLosVisibility(this.entity, cmpOwnership.GetOwner(), true) != "hidden");
+		if (!explored)
+		{
+			result.message = name+" cannot be built in unexplored area";
+			return result; // Fail
+		}
+	}
 
 	// Check obstructions and terrain passability
 	var passClassName = "";
@@ -92,35 +130,62 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 	}
 
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
-	if (!cmpObstruction || !cmpObstruction.CheckFoundation(passClassName))
+	if (!cmpObstruction)
+		return result; // Fail
+
+	var ret = cmpObstruction.CheckFoundation(passClassName);
+	if (ret != "success")
 	{
-		return false;	// Fail
+		switch (ret)
+		{
+		case "fail_error":
+		case "fail_no_obstruction":
+			error("CheckPlacement: Error returned from CheckFoundation");
+			break;
+		case "fail_obstructs_foundation":
+			result.message = name+" cannot be built on another building or resource";
+			break;
+		case "fail_terrain_class":
+			// TODO: be more specific and/or list valid terrain?
+			result.message = name+" cannot be built on invalid terrain";
+		}
+		return result; // Fail
 	}
-	
+
 	// Check territory restrictions
 	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
-	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!(cmpTerritoryManager && cmpPlayer && cmpPosition && cmpPosition.IsInWorld()))
-	{
-		return false;	// Fail
-	}
-	
+		return result;	// Fail
+
 	var pos = cmpPosition.GetPosition2D();
 	var tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
-	var isOwn = (tileOwner == player);
+	var isOwn = (tileOwner == cmpPlayer.GetPlayerID());
 	var isNeutral = (tileOwner == 0);
 	var isAlly = !isOwn && cmpPlayer.IsAlly(tileOwner);
-	var isEnemy = !isNeutral && cmpPlayer.IsEnemy(tileOwner);
-	
-	if ((isAlly && !this.HasTerritory("ally"))
-		|| (isOwn && !this.HasTerritory("own"))
-		|| (isNeutral && !this.HasTerritory("neutral"))
-		|| (isEnemy && !this.HasTerritory("enemy")))
+	// We count neutral players as enemies, so you can't build in their territory.
+	var isEnemy = !isNeutral && (cmpPlayer.IsEnemy(tileOwner) || cmpPlayer.IsNeutral(tileOwner));
+
+	var territoryFail = true;
+	var territoryType = "";
+	if (isAlly && !this.HasTerritory("ally"))
+		territoryType = "ally";
+	else if (isOwn && !this.HasTerritory("own"))
+		territoryType = "own";
+	else if (isNeutral && !this.HasTerritory("neutral"))
+		territoryType = "neutral";
+	else if (isEnemy && !this.HasTerritory("enemy"))
+		territoryType = "enemy";
+	else
+		territoryFail = false
+
+	if (territoryFail)
 	{
-		return false;	// Fail
+		result.message = name+" cannot be built in "+territoryType+" territory. Valid territories: " + this.GetTerritories().join(", ");
+		return result;	// Fail
 	}
-	
+
 	// Check special requirements
 	if (this.template.Category == "Dock")
 	{
@@ -130,39 +195,32 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 		//	so it's correct even if the criteria changes for these units
 		var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
 		if (!cmpFootprint)
-		{
-			return false;	// Fail
-		}
-		
+			return result;	// Fail
+
 		// Get building's footprint
 		var shape = cmpFootprint.GetShape();
 		var halfSize = 0;
 		if (shape.type == "square")
-		{
 			halfSize = shape.depth/2;
-		}
 		else if (shape.type == "circle")
-		{
 			halfSize = shape.radius;
-		}
-		
+
 		var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
 		var cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
 		if (!cmpTerrain || !cmpWaterManager)
-		{
-			return false;	// Fail
-		}
-		
+			return result;	// Fail
+
 		var ang = cmpPosition.GetRotation().y;
 		var sz = halfSize * Math.sin(ang);
 		var cz = halfSize * Math.cos(ang);
 		if ((cmpWaterManager.GetWaterLevel(pos.x + sz, pos.y + cz) - cmpTerrain.GetGroundLevel(pos.x + sz, pos.y + cz)) < 1.0 // front
-			|| (cmpWaterManager.GetWaterLevel(pos.x - sz, pos.y - cz) - cmpTerrain.GetGroundLevel(pos.x - sz, pos.y - cz)) > 2.0)	// back
+			|| (cmpWaterManager.GetWaterLevel(pos.x - sz, pos.y - cz) - cmpTerrain.GetGroundLevel(pos.x - sz, pos.y - cz)) > 2.0) // back
 		{
-			return false;	// Fail
+			result.message = name+" must be built on a valid shoreline";
+			return result;	// Fail
 		}
 	}
-	
+
 	// Check distance restriction
 	if (this.template.Distance)
 	{
@@ -170,8 +228,12 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 		var ents = Engine.GetEntitiesWithInterface(IID_BuildRestrictions);
 		for each (var ent in ents)
 		{
+			// Ignore ourself
+			if (ent == this.entity)
+				continue;
+
 			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
-			if (cmpBuildRestrictions.GetCategory() == this.template.Distance.FromCategory && IsOwnedByPlayer(player, ent))
+			if (cmpBuildRestrictions.GetCategory() == this.template.Distance.FromCategory && IsOwnedByPlayer(cmpPlayer.GetPlayerID(), ent))
 			{	// Find nearest building matching this category
 				var cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
 				if (cmpEntPosition && cmpEntPosition.IsInWorld())
@@ -185,16 +247,23 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 				}
 			}
 		}
-		
-		if ((this.template.Distance.MinDistance && nearest < this.template.Distance.MinDistance)
-			|| (this.template.Distance.MaxDistance && nearest > this.template.Distance.MaxDistance))
+
+		if (this.template.Distance.MinDistance && nearest < +this.template.Distance.MinDistance)
 		{
-			return false;	// Fail
+			result.message = name+" too close to a "+this.GetCategory()+", must be at least "+ +this.template.Distance.MinDistance+" units away";
+			return result;	// Fail
+		}
+		else if (this.template.Distance.MaxDistance && nearest > +this.template.Distance.MaxDistance)
+		{
+			result.message = name+" too far away from a "+this.GetCategory()+", must be within "+ +this.template.Distance.MaxDistance+" units";
+			return result;	// Fail
 		}
 	}
-	
+
 	// Success
-	return true;
+	result.success = true;
+	result.message = "";
+	return result;
 };
 
 BuildRestrictions.prototype.GetCategory = function()
@@ -204,12 +273,12 @@ BuildRestrictions.prototype.GetCategory = function()
 
 BuildRestrictions.prototype.GetTerritories = function()
 {
-	return this.territories;
+	return ApplyTechModificationsToEntity("BuildRestrictions/Territory", this.territories, this.entity);
 };
 
 BuildRestrictions.prototype.HasTerritory = function(territory)
 {
-	return (this.territories.indexOf(territory) != -1);
+	return (this.GetTerritories().indexOf(territory) != -1);
 };
 
 Engine.RegisterComponentType(IID_BuildRestrictions, "BuildRestrictions", BuildRestrictions);

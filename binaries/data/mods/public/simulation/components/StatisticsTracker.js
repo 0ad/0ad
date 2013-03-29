@@ -8,11 +8,15 @@ StatisticsTracker.prototype.Init = function()
 	// units
 	this.unitsTrained = 0;
 	this.unitsLost = 0;
+	this.unitsLostValue = 0;
 	this.enemyUnitsKilled = 0;
+	this.enemyUnitsKilledValue = 0;
 	//buildings
 	this.buildingsConstructed = 0;
 	this.buildingsLost = 0;
+	this.buildingsLostValue = 0;
 	this.enemyBuildingsDestroyed = 0;
+	this.enemyBuildingsDestroyedValue = 0;
 	// civ centres
 	this.civCentresBuilt = 0;
 	this.enemyCivCentresDestroyed = 0;
@@ -28,7 +32,7 @@ StatisticsTracker.prototype.Init = function()
 			"food": 0,
 			"wood": 0,
 			"metal": 0,
-			"stone": 0,
+			"stone": 0
 	};
 	this.resourcesSold = {
 			"food": 0,
@@ -42,6 +46,8 @@ StatisticsTracker.prototype.Init = function()
 			"metal": 0,
 			"stone": 0
 	};
+	this.tributesSent = 0;
+	this.tributesReceived = 0;
 	this.tradeIncome = 0;
 	this.treasuresCollected = 0;
 };
@@ -51,16 +57,22 @@ StatisticsTracker.prototype.GetStatistics = function()
 	return {
 		"unitsTrained": this.unitsTrained,
 		"unitsLost": this.unitsLost,
+		"unitsLostValue": this.unitsLostValue,
 		"enemyUnitsKilled": this.enemyUnitsKilled,
+		"enemyUnitsKilledValue": this.enemyUnitsKilledValue,
 		"buildingsConstructed": this.buildingsConstructed,
 		"buildingsLost": this.buildingsLost,
+		"buildingsLostValue": this.buildingsLostValue,
 		"enemyBuildingsDestroyed": this.enemyBuildingsDestroyed,
+		"enemyBuildingsDestroyedValue": this.enemyBuildingsDestroyedValue,
 		"civCentresBuilt": this.civCentresBuilt,
 		"enemyCivCentresDestroyed": this.enemyCivCentresDestroyed,
 		"resourcesGathered": this.resourcesGathered,
 		"resourcesUsed": this.resourcesUsed,
 		"resourcesSold": this.resourcesSold,
 		"resourcesBought": this.resourcesBought,
+		"tributesSent": this.tributesSent,
+		"tributesReceived": this.tributesReceived,
 		"tradeIncome": this.tradeIncome,
 		"treasuresCollected": this.treasuresCollected,
 		"percentMapExplored": this.GetPercentMapExplored()
@@ -85,6 +97,8 @@ StatisticsTracker.prototype.IncreaseBuiltCivCentresCounter = function()
 StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 {
 	var cmpTargetEntityIdentity = Engine.QueryInterface(targetEntity, IID_Identity);
+	var cmpCost = Engine.QueryInterface(targetEntity, IID_Cost);
+	var costs = cmpCost.GetResourceCosts();
 	if (cmpTargetEntityIdentity)
 	{
 		var cmpFoundation = Engine.QueryInterface(targetEntity, IID_Foundation);
@@ -96,14 +110,26 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 		var targetIsCivCentre = cmpTargetEntityIdentity.HasClass("CivCentre");
 
 		var cmpTargetOwnership = Engine.QueryInterface(targetEntity, IID_Ownership);
-
+	    
 		// Don't increase counters if target player is gaia (player 0)
 		if (cmpTargetOwnership.GetOwner() != 0)
 		{
 			if (targetIsUnit)
+			{
 				this.enemyUnitsKilled++;
+				for (var r in costs)
+				{
+					this.enemyUnitsKilledValue += costs[r];
+				}
+			}	
 			if (targetIsStructure)
+			{
 				this.enemyBuildingsDestroyed++;
+				for (var r in costs)
+				{
+					this.enemyBuildingsDestroyedValue += costs[r];
+				}
+			}
 			if (targetIsCivCentre && targetIsStructure)
 				this.enemyCivCentresDestroyed++;
 		}
@@ -113,6 +139,8 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 StatisticsTracker.prototype.LostEntity = function(lostEntity)
 {
 	var cmpLostEntityIdentity = Engine.QueryInterface(lostEntity, IID_Identity);
+	var cmpCost = Engine.QueryInterface(lostEntity, IID_Cost);
+	var costs = cmpCost.GetResourceCosts();
 	if (cmpLostEntityIdentity)
 	{
 		var cmpFoundation = Engine.QueryInterface(lostEntity, IID_Foundation);
@@ -123,9 +151,21 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 		var lostEntityIsUnit = cmpLostEntityIdentity.HasClass("Unit") && !lostEntityIsDomesticAnimal;
 
 		if (lostEntityIsUnit)
+		{
 			this.unitsLost++;
+			for (var r in costs)
+			{
+				this.unitsLostValue += costs[r];
+			}	
+		}	
 		if (lostEntityIsStructure)
+		{
 			this.buildingsLost++;
+			for (var r in costs)
+			{
+				this.buildingsLostValue += costs[r];
+			}
+		}
 	}
 };
 
@@ -164,6 +204,16 @@ StatisticsTracker.prototype.IncreaseResourcesSoldCounter = function(type, amount
 StatisticsTracker.prototype.IncreaseResourcesBoughtCounter = function(type, amount)
 {
 	this.resourcesBought[type] += amount;
+}
+
+StatisticsTracker.prototype.IncreaseTributesSentCounter = function(amount)
+{
+	this.tributesSent += amount;
+}
+
+StatisticsTracker.prototype.IncreaseTributesReceivedCounter = function(amount)
+{
+	this.tributesReceived += amount;
 }
 
 StatisticsTracker.prototype.IncreaseTradeIncomeCounter = function(amount)

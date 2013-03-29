@@ -33,7 +33,7 @@ will exist, and it's up to the system to figure out which one acquired.
 
 --More Info--
 
-	http://forums.wildfiregames.com/0ad/index.php?showtopic=134
+	http://www.wildfiregames.com/forum/index.php?showtopic=134
 
 */
 

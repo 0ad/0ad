@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -46,7 +46,7 @@ static pthread_mutex_t vfs_mutex = PTHREAD_MUTEX_INITIALIZER;
 struct ScopedLock
 {
 	ScopedLock() { pthread_mutex_lock(&vfs_mutex); }
-	~ScopedLock() {	pthread_mutex_unlock(&vfs_mutex); }
+	~ScopedLock() { pthread_mutex_unlock(&vfs_mutex); }
 };
 
 class VFS : public IVFS
@@ -144,6 +144,35 @@ public:
 
 		const VfsFile file(name, size, time(0), realDirectory->Priority(), realDirectory);
 		directory->AddFile(file);
+
+		m_trace->NotifyStore(pathname, size);
+		return INFO::OK;
+	}
+
+	virtual Status ReplaceFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size)
+	{
+		ScopedLock s;
+		VfsDirectory* directory;
+		VfsFile* file;
+		Status st;
+		st = vfs_Lookup(pathname, &m_rootDirectory, directory, &file, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE);
+
+		// There is no such file, create it.
+		if (st == ERR::VFS_FILE_NOT_FOUND)
+		{
+			s.~ScopedLock();
+			return CreateFile(pathname, fileContents, size);
+		}
+		else
+			WARN_RETURN_STATUS_IF_ERR(st);
+
+		RealDirectory realDirectory(file->Loader()->Path(), file->Priority(), directory->AssociatedDirectory()->Flags());
+		RETURN_STATUS_IF_ERR(realDirectory.Store(pathname.Filename(), fileContents, size));
+
+		// See comment in CreateFile
+		m_fileCache.Remove(pathname);
+
+		directory->AddFile(*file);
 
 		m_trace->NotifyStore(pathname, size);
 		return INFO::OK;

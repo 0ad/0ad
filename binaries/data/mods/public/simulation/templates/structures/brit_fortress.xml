@@ -14,7 +14,7 @@
     <Height>18.0</Height>
   </Footprint>
   <Health>
-    <SpawnEntityOnDeath>rubble/rubble_5x5</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>rubble/rubble_stone_5x5</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>brit</Civ>
@@ -41,6 +41,10 @@
       units/brit_champion_infantry
       units/brit_mechanical_siege_ram
     </Entities>
+    <Technologies datatype="tokens">
+      pair_siege_attack_cost
+      pair_siege_cost_armor
+    </Technologies>
   </ProductionQueue>
   <Vision>
     <Range>100</Range>

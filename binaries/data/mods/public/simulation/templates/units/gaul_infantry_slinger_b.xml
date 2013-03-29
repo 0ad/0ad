@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_ranged_slinger">
+  <Armour>
+    <Hack>2.0</Hack>
+  </Armour>
   <Builder>
     <Entities datatype="tokens">
       structures/gaul_rotarymill
-	</Entities>
+    </Entities>
   </Builder>
   <Identity>
     <Civ>gaul</Civ>
-	<SelectionGroupName>units/gaul_infantry_slinger_b</SelectionGroupName>
+    <SelectionGroupName>units/gaul_infantry_slinger_b</SelectionGroupName>
     <GenericName>Celtic Slinger</GenericName>
     <SpecificName>Iaosae</SpecificName>
     <History>Sling bullets are found in enormous numbers in Celtic sites, made of lead, though clay bullets would also have been used. Slings figure prominently in Celtic myth, and were not associated with any sense of shame. To the contrary, the great skill needed to use a sling well was highly rewarded and favored, so they found much more use in Celtic society for a ranged weapon than bows, outside of specific tribes. The god Lugos, in Irish myth Lug, is associated closely with many weapons, among them his sling. Slings were the primary weapon of Celtic hunters as well.</History>
@@ -16,9 +19,6 @@
   <Promotion>
     <Entity>units/gaul_infantry_slinger_a</Entity>
   </Promotion>
-  <Armour>
-    <Hack>2.0</Hack>
-  </Armour>
   <UnitMotion>
     <WalkSpeed>7.92</WalkSpeed>
     <Run>

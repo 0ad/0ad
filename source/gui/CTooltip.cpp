@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@ CTooltip::CTooltip()
 	AddSetting(GUIST_float,					"maxwidth");
 	AddSetting(GUIST_CPos,					"offset");
 	AddSetting(GUIST_EVAlign,				"anchor");
+	AddSetting(GUIST_EAlign,				"text_align");
 	// This is used for tooltips that are hidden/revealed manually by scripts, rather than through the standard tooltip display mechanism
 	AddSetting(GUIST_bool,					"independent");
 
@@ -49,6 +50,7 @@ CTooltip::CTooltip()
 	// Defaults
 	GUI<int>::SetSetting(this, "delay", 500);
 	GUI<EVAlign>::SetSetting(this, "anchor", EVAlign_Bottom);
+	GUI<EAlign>::SetSetting(this, "text_align", EAlign_Left);
 
 	// Set up a blank piece of text, to be replaced with a more
 	// interesting message later

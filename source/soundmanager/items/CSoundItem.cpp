@@ -43,15 +43,19 @@ CSoundItem::~CSoundItem()
 	AL_CHECK
 	
 	Stop();
-	alSourcei(m_ALSource, AL_BUFFER, 0);
-	AL_CHECK
+
+	if (m_ALSource != 0)
+	{
+		alSourcei(m_ALSource, AL_BUFFER, 0);
+		AL_CHECK
+	}	
 }
 
 bool CSoundItem::IdleTask()
 {
 	HandleFade();
 
-	if (m_LastPlay)
+	if (m_LastPlay && (m_ALSource != 0) )
 	{
 		int proc_state;
 		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
@@ -63,7 +67,7 @@ bool CSoundItem::IdleTask()
 
 void CSoundItem::Attach(CSoundData* itemData)
 {
-	if (itemData != NULL)
+	if (itemData != NULL && (m_ALSource != 0) )
 	{
 		m_SoundData = itemData->IncrementCount();
 		alSourcei(m_ALSource, AL_BUFFER, m_SoundData->GetBuffer());

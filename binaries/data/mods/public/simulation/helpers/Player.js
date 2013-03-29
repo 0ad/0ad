@@ -37,7 +37,9 @@ function LoadPlayerSettings(settings, newPlayers)
 			numPlayers = settings.PlayerData.length + 1;
 		}
 		else
+		{
 			warn("Player.js: Setup has no player data - using defaults");
+		}
 
 		for (var i = 0; i < numPlayers; ++i)
 		{
@@ -96,7 +98,7 @@ function LoadPlayerSettings(settings, newPlayers)
 					else
 						cmpPlayer.SetEnemy(j);
 				}
-				cmpPlayer.SetTeam(myTeam);
+				cmpPlayer.SetTeam((myTeam !== undefined) ? myTeam : -1);
 			}
 
 			// If formations explicitly defined, use that; otherwise use civ defaults

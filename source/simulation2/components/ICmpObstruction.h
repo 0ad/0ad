@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,14 @@ class ICmpObstruction : public IComponent
 {
 public:
 
+	enum EFoundationCheck {
+		FOUNDATION_CHECK_SUCCESS,
+		FOUNDATION_CHECK_FAIL_ERROR,
+		FOUNDATION_CHECK_FAIL_NO_OBSTRUCTION,
+		FOUNDATION_CHECK_FAIL_OBSTRUCTS_FOUNDATION,
+		FOUNDATION_CHECK_FAIL_TERRAIN_CLASS
+	};
+
 	virtual ICmpObstructionManager::tag_t GetObstruction() = 0;
 
 	/**
@@ -47,9 +55,16 @@ public:
 	 * Test whether this entity is colliding with any obstruction that are set to
 	 * block the creation of foundations.
 	 * @param ignoredEntities List of entities to ignore during the test.
-	 * @return true if foundation is valid (not obstructed)
+	 * @return FOUNDATION_CHECK_SUCCESS if check passes, else an EFoundationCheck
+	 *	value describing the type of failure.
 	 */
-	virtual bool CheckFoundation(std::string className) = 0;
+	virtual EFoundationCheck CheckFoundation(std::string className) = 0;
+
+	/**
+	 * CheckFoundation wrapper for script calls, to return friendly strings instead of an EFoundationCheck.
+	 * @return "success" if check passes, else a string describing the type of failure.
+	 */
+	virtual std::string CheckFoundation_wrapper(std::string className);
 
 	/**
 	 * Test whether this entity is colliding with any obstructions that share its

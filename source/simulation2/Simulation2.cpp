@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,6 +33,7 @@
 #include "lib/file/vfs/vfs_util.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Loader.h"
 #include "ps/Profile.h"
@@ -68,8 +69,12 @@ public:
 
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
 
-// 		m_EnableOOSLog = true; // TODO: this should be a command-line flag or similar
-// 		m_EnableSerializationTest = true; // TODO: this should too
+		// Tests won't have config initialised
+		if (CConfigDB::IsInitialised())
+		{
+			CFG_GET_VAL("ooslog", Bool, m_EnableOOSLog);
+			CFG_GET_VAL("serializationtest", Bool, m_EnableSerializationTest);
+		}
 	}
 
 	~CSimulation2Impl()
@@ -97,6 +102,7 @@ public:
 
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_CommandQueue, noParam);
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_ObstructionManager, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_ParticleManager, noParam);
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_Pathfinder, noParam);
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_ProjectileManager, noParam);
 		componentManager.AddComponent(SYSTEM_ENTITY, CID_RangeManager, noParam);

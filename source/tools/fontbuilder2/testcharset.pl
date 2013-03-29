@@ -23,7 +23,6 @@ sub find_entities
         push @files, $n;
     };
     find({ wanted => $find_process }, "$vfsroot/public/simulation/templates");
-    find({ wanted => $find_process }, "$vfsroot/internal/simulation/templates") if -e "$vfsroot/internal";
 
     return @files;
 }

@@ -18,12 +18,15 @@ esac
 cd "$(dirname $0)"
 # Now in build/workspaces/ (where we assume this script resides)
 
-echo "Cleaning bundled third-party dependencies..."
+# We don't want to clean bundled libs on OS X
+if [ "`uname -s`" != "Darwin" ]; then
+  echo "Cleaning bundled third-party dependencies..."
 
-(cd ../../libraries/fcollada/src && rm -rf ./output)
-(cd ../../libraries/spidermonkey && rm -f .already-built)
-(cd ../../libraries/spidermonkey && rm -rf ./js-1.8.5)
-(cd ../../libraries/nvtt/src && rm -rf ./build)
+  (cd ../../libraries/source/fcollada/src && rm -rf ./output)
+  (cd ../../libraries/source/spidermonkey && rm -f .already-built)
+  (cd ../../libraries/source/spidermonkey && rm -rf ./js-1.8.5)
+  (cd ../../libraries/source/nvtt/src && rm -rf ./build)
+fi
 
 (cd ../premake/premake4/build/gmake.bsd && ${MAKE} clean)
 (cd ../premake/premake4/build/gmake.macosx && ${MAKE} clean)
@@ -37,6 +40,8 @@ rm -rf ./gcc
 rm -rf ./codeblocks
 # Remove workspaces/xcode3 if present
 rm -rf ./xcode3
+# Remove workspaces/xcode4 if present
+rm -rf ./xcode4
 
 echo
 echo "Done. Try running update-workspaces.sh again now."

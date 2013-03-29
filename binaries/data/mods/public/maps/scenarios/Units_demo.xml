@@ -16,6 +16,9 @@
 	for each (var template in entityTemplates) {
 		if (template.match(/^(rubble\/|special\/|actor\|)/)) continue;
 
+		// Exclude common templates used for inheritance only.
+		if (template.match(/_common$/)) continue;
+
 		print(template+"...\n");
 
 		var ent = Engine.AddEntity(template);

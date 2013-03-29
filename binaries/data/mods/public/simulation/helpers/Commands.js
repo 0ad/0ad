@@ -88,6 +88,13 @@ function ProcessCommand(player, cmd)
 		});
 		break;
 
+	case "attack-walk":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
+			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.queued);
+		});
+		break;
+
 	case "attack":
 		if (g_DebugCommands && !(IsOwnedByEnemyOfPlayer(player, cmd.target) || IsOwnedByNeutralOfPlayer(player, cmd.target)))
 		{
@@ -370,11 +377,7 @@ function ProcessCommand(player, cmd)
 	case "formation":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player, cmd.name).forEach(function(cmpUnitAI) {
-			var cmpFormation = Engine.QueryInterface(cmpUnitAI.entity, IID_Formation);
-			if (!cmpFormation)
-				return;
-			cmpFormation.LoadFormation(cmd.name);
-			cmpFormation.MoveMembersIntoFormation(true);
+			cmpUnitAI.MoveIntoFormation(cmd);
 		});
 		break;
 
@@ -457,6 +460,36 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
+	case "pack":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+			{
+				if (cmd.pack)
+					cmpUnitAI.Pack(cmd.queued);
+				else
+					cmpUnitAI.Unpack(cmd.queued);
+			}
+		}
+		break;
+
+	case "cancel-pack":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+			{
+				if (cmd.pack)
+					cmpUnitAI.CancelPack(cmd.queued);
+				else
+					cmpUnitAI.CancelUnpack(cmd.queued);
+			}
+		}
+		break;
+
 	default:
 		error("Invalid command: unknown command type: "+uneval(cmd));
 	}
@@ -513,6 +546,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	//   "x": ...,
 	//   "z": ...,
 	//   "angle": ...,
+	//   "actorSeed": ...,
 	//   "autorepair": true,                // whether to automatically start constructing/repairing the new foundation
 	//   "autocontinue": true,              // whether to automatically gather/build/etc after finishing this
 	//   "queued": true,                    // whether to add the construction/repairing of this foundation to entities' queue (if applicable)
@@ -570,22 +604,32 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			cmpObstruction.SetControlGroup2(cmd.obstructionControlGroup2);
 	}
 	
-	// Check whether it's obstructed by other entities or invalid terrain
+	// Make it owned by the current player
+	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+	cmpOwnership.SetOwner(player);
+	
+	// Check whether building placement is valid
 	var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
-	if (!cmpBuildRestrictions || !cmpBuildRestrictions.CheckPlacement(player))
+	if (cmpBuildRestrictions)
 	{
-		if (g_DebugCommands)
+		var ret = cmpBuildRestrictions.CheckPlacement();
+		if (!ret.success)
 		{
-			warn("Invalid command: build restrictions check failed for player "+player+": "+uneval(cmd));
+			if (g_DebugCommands)
+			{
+				warn("Invalid command: build restrictions check failed for player "+player+": "+uneval(cmd));
+			}
+
+			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+			cmpGuiInterface.PushNotification({ "player": player, "message": ret.message });
+			
+			// Remove the foundation because the construction was aborted
+			Engine.DestroyEntity(ent);
+			return false;
 		}
-		
-		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was obstructed" });
-		
-		// Remove the foundation because the construction was aborted
-		Engine.DestroyEntity(ent);
-		return false;
 	}
+	else
+		error("cmpBuildRestrictions not defined");
 	
 	// Check entity limits
 	var cmpEntityLimits = QueryPlayerIDInterface(player, IID_EntityLimits);
@@ -595,9 +639,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		{
 			warn("Invalid command: build limits check failed for player "+player+": "+uneval(cmd));
 		}
-		
-		// TODO: The UI should tell the user they can't build this (but we still need this check)
-		
+
 		// Remove the foundation because the construction was aborted
 		Engine.DestroyEntity(ent);
 		return false;
@@ -618,29 +660,6 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		
 		// Remove the foundation because the construction was aborted 
 		Engine.DestroyEntity(ent); 
-	} 
-	
-	// TODO: AI has no visibility info
-	if (!cmpPlayer.IsAI())
-	{
-		// Check whether it's in a visible or fogged region
-		//	tell GetLosVisibility to force RetainInFog because preview entities set this to false,
-		//	which would show them as hidden instead of fogged
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		var visible = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player, true) != "hidden");
-		if (!visible)
-		{
-			if (g_DebugCommands)
-			{
-				warn("Invalid command: foundation visibility check failed for player "+player+": "+uneval(cmd));
-			}
-			
-			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-			cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was not visible" });
-			
-			Engine.DestroyEntity(ent);
-			return false;
-		}
 	}
 	
 	// We need the cost after tech modifications
@@ -663,15 +682,15 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		Engine.DestroyEntity(ent);
 		return false;
 	}
-	
-	// Make it owned by the current player
-	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-	cmpOwnership.SetOwner(player);
-	
+
+	var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
+	if (cmpVisual && cmd.actorSeed !== undefined)
+		cmpVisual.SetActorSeed(cmd.actorSeed);
+
 	// Initialise the foundation
 	var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
 	cmpFoundation.InitialiseConstruction(player, cmd.template);
-	
+
 	// Tell the units to start building this new entity
 	if (cmd.autorepair)
 	{
@@ -683,7 +702,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			"queued": cmd.queued
 		});
 	}
-	
+
 	return ent;
 }
 

@@ -4,21 +4,32 @@
   <group>
     <variant frequency="100" name="Tower">
       <animations>
-        <animation event="0.5" load="0" name="melee" speed="100"/>
+        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
       </animations>
       <mesh>structural/maur_scout_tower.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+<prop actor="props/structures/mauryans/scout_tower_shield_bell.xml" attachpoint="root"/>
+<prop actor="props/structures/mauryans/scout_tower_shield_straight.xml" attachpoint="root"/>
+<prop actor="props/structures/mauryans/scout_tower_shield_bell_straight.xml" attachpoint="root"/>
+<prop actor="props/structures/mauryans/scout_tower_shield_curved.xml" attachpoint="root"/>
+<prop actor="props/structures/mauryans/scout_tower_shield_tall_round.xml" attachpoint="root"/>
+<prop actor="props/structures/mauryans/scout_tower_struct_b.xml" attachpoint="root"/>
+<prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/maur_struct_temp.png" name="baseTex"/></textures>
+      <textures>
+		<texture file="structural/maur_struct.png" name="baseTex"/>
+	  	<texture file="structural/maur_struct_spec.png" name="specTex"/>
+		<texture file="structural/maur_struct_norm.png" name="normTex"/>
+		<texture file="structural/ao/maur_scout_tower_ao.png" name="aoTex"/>
+	  </textures>
     </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
     <variant name="garrisoned">
       <props>
-        <prop actor="props/special/common/garrison_flag_persians.xml" attachpoint="garrisoned"/>
+        <prop actor="props/special/common/garrison_flag_mauryans.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
     <variant name="death">
@@ -30,5 +41,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

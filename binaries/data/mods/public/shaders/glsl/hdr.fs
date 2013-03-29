@@ -19,8 +19,6 @@ varying vec2 v_tex;
 
 void main(void)
 {
-
-
 	vec3 colour = texture2D(renderedTex, v_tex).rgb;
 	vec3 bloomv2 = texture2D(blurTex2, v_tex).rgb;
 	vec3 bloomv4 = texture2D(blurTex4, v_tex).rgb;
@@ -32,6 +30,8 @@ void main(void)
 
 	vec3 bloomv = (bloomv2 + bloomv4 + bloomv8) / 3.0;
 
+	bloomv = mix(bloomv, colour, bloom/0.2);
+
 	colour = max(bloomv, colour);
 	
 	colour += vec3(brightness);
@@ -41,7 +41,6 @@ void main(void)
 	colour += vec3(0.5);
 
 	colour = mix(vec3(dot(colour, vec3(0.299, 0.587, 0.114))), colour, saturation);
-
 	
 	gl_FragColor.rgb = colour;
 	gl_FragColor.a = 1.0;
