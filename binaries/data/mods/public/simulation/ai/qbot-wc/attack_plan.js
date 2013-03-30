@@ -341,16 +341,16 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 			if (targets.length === 0)
 				targets = this.defaultTargetFinder(gameState, militaryManager);
 				
-			if (targets.length) {
+			if (targets.length !== 0) {
 				debug ("Aiming for " + targets);
 				// picking a target
-				var maxDist = 1000000;
+				var maxDist = -1;
 				var index = 0;
 				for (i in targets._entities)
 				{
 					// we're sure it has a position has TargetFinder already checks that.
 					var dist = SquareVectorDistance(targets._entities[i].position(), this.rallyPoint);
-					if (dist < maxDist)
+					if (dist < maxDist || maxDist === -1)
 					{
 						maxDist = dist;
 						index = i;

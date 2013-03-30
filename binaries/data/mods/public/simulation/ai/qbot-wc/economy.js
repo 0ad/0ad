@@ -553,7 +553,7 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 						var metadata = e.msg.metadata[PlayerID];
 						
 						// can happen if it's destroyed before we've initialised it.
-						if (!metadata)
+						if (!metadata || !metadata["linked-resources-" + resource])
 							break;
 						metadata["linked-resources-" + resource].filter( function (supply) { //}){
 							var takenOver = false;
