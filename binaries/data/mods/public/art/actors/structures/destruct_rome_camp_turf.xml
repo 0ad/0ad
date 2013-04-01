@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="rome army camp rubble turf">
+      <mesh>props/rome_sb_rubble_turf.dae</mesh>
+      <textures>
+<texture file="props/rome_sb_turf.png" name="baseTex"/>
+</textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

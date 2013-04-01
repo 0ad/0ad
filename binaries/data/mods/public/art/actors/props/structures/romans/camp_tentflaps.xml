@@ -4,8 +4,9 @@
   <group>
     <variant name="camp tent flaps">
       <mesh>props/rome_camp_tentflaps.dae</mesh>
-      <textures><texture file="props/rome_sb_tent.png" name="baseTex"/></textures>
+      <textures><texture file="props/rome_sb_tent.png" name="baseTex"/>
+<texture file="structural/ao/rome_camp_ao.png" name="aoTex"/></textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_ao.xml</material>
 </actor>
