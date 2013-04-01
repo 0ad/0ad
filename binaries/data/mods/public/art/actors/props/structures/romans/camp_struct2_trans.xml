@@ -4,8 +4,9 @@
   <group>
     <variant name="camp struct 2 trans">
       <mesh>props/rome_camp_struct2_trans.dae</mesh>
-      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/></textures>
+      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/>
+<texture file="structural/ao/rome_camp_ao.png" name="aoTex"/></textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_ao.xml</material>
 </actor>

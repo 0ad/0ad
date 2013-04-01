@@ -8,8 +8,9 @@
 	    <texture file="props/rome_sb_tent.png" name="baseTex"/>
 	    <texture file="props/rome_sb_tent_norm.png" name="normTex"/>
 	    <texture file="props/rome_sb_tent_spec.png" name="specTex"/>
+<texture file="structural/ao/rome_camp_ao.png" name="aoTex"/>
 	  </textures>
     </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

@@ -4,7 +4,9 @@
   <group>
     <variant name="camp turf">
       <mesh>props/rome_camp_turf.dae</mesh>
-      <textures><texture file="props/rome_sb_turf.png" name="baseTex"/></textures>
+      <textures><texture file="props/rome_sb_turf.png" name="baseTex"/>
+<texture file="structural/ao/rome_camp_ao.png" name="aoTex"/></textures>
     </variant>
   </group>
+<material>player_trans_ao.xml</material>
 </actor>
