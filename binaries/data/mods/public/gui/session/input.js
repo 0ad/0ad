@@ -159,7 +159,7 @@ function findGatherType(gatherer, supply)
 	return undefined;
 }
 
-function getActionInfo(action, target)
+function getActionInfo(action, target, simState)
 {
 	var selection = g_Selection.toList();
 
@@ -201,11 +201,6 @@ function getActionInfo(action, target)
 	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
 	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
 	var targetState = GetEntityState(target);
-
-	// Check if the target entity is a resource, dropsite, foundation, or enemy unit.
-	// Check if any entities in the selection can gather the requested resource,
-	// can return to the dropsite, can build the foundation, or can attack the enemy
-	var simState = Engine.GuiInterfaceCall("GetSimulationState");
 
 	// Look to see what type of command units going to the rally point should use
 	if (haveRallyPoints && action == "set-rallypoint")
@@ -288,6 +283,9 @@ function getActionInfo(action, target)
 		return {"possible": true, "data": data, "position": targetState.position, "cursor": cursor, "tooltip": tooltip};
 	}
 
+	// Check if the target entity is a resource, dropsite, foundation, or enemy unit.
+	// Check if any entities in the selection can gather the requested resource,
+	// can return to the dropsite, can build the foundation, or can attack the enemy
 	for each (var entityID in selection)
 	{
 		var entState = GetEntityState(entityID);
@@ -459,58 +457,60 @@ function determineAction(x, y, fromMinimap)
 		target = targets[0];
 	}
 
+	var simState = Engine.GuiInterfaceCall("GetSimulationState");
+
 	if (preSelectedAction != ACTION_NONE)
 	{
 		switch (preSelectedAction)
 		{
 		case ACTION_GARRISON:
-			if (getActionInfo("garrison", target).possible)
+			if (getActionInfo("garrison", target, simState).possible)
 				return {"type": "garrison", "cursor": "action-garrison", "target": target};
 			else
 				return 	{"type": "none", "cursor": "action-garrison-disabled", "target": undefined};
 			break;
 		case ACTION_REPAIR:
-			if (getActionInfo("repair", target).possible)
+			if (getActionInfo("repair", target, simState).possible)
 				return {"type": "repair", "cursor": "action-repair", "target": target};
 			else
 				return {"type": "none", "cursor": "action-repair-disabled", "target": undefined};
 			break;
 		}
 	}
-	else if (Engine.HotkeyIsPressed("session.attack") && getActionInfo("attack", target).possible)
+	else if (Engine.HotkeyIsPressed("session.attack") && getActionInfo("attack", target, simState).possible)
 	{
 		return {"type": "attack", "cursor": "action-attack", "target": target};
 	}
-	else if (Engine.HotkeyIsPressed("session.garrison") && getActionInfo("garrison", target).possible)
+	else if (Engine.HotkeyIsPressed("session.garrison") && getActionInfo("garrison", target, simState).possible)
 	{
 		return {"type": "garrison", "cursor": "action-garrison", "target": target};
 	}
-	else if (Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target).possible)
+	else if (Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target, simState).possible)
 	{
 			return {"type": "attack-move", "cursor": "action-attack-move"};
 	}
 	else
 	{
 		var actionInfo = undefined;
-		if ((actionInfo = getActionInfo("setup-trade-route", target)).possible)
+		if ((actionInfo = getActionInfo("setup-trade-route", target, simState)).possible)
 			return {"type": "setup-trade-route", "cursor": "action-setup-trade-route", "tooltip": actionInfo.tooltip, "target": target};
-		else if ((actionInfo = getActionInfo("gather", target)).possible)
+		else if ((actionInfo = getActionInfo("gather", target, simState)).possible)
 			return {"type": "gather", "cursor": actionInfo.cursor, "target": target};
-		else if ((actionInfo = getActionInfo("returnresource", target)).possible)
+		else if ((actionInfo = getActionInfo("returnresource", target, simState)).possible)
 			return {"type": "returnresource", "cursor": actionInfo.cursor, "target": target};
-		else if (getActionInfo("build", target).possible)
+		else if (getActionInfo("build", target, simState).possible)
 			return {"type": "build", "cursor": "action-build", "target": target};
-		else if (getActionInfo("repair", target).possible)
+		else if (getActionInfo("repair", target, simState).possible)
 			return {"type": "build", "cursor": "action-repair", "target": target};
-		else if ((actionInfo = getActionInfo("set-rallypoint", target)).possible)
+		else if ((actionInfo = getActionInfo("set-rallypoint", target, simState)).possible)
 			return {"type": "set-rallypoint", "cursor": actionInfo.cursor, "data": actionInfo.data, "tooltip": actionInfo.tooltip, "position": actionInfo.position};
-		else if (getActionInfo("heal", target).possible)
+		else if (getActionInfo("heal", target, simState).possible)
 			return {"type": "heal", "cursor": "action-heal", "target": target};
-		else if (getActionInfo("attack", target).possible)
+		else if (getActionInfo("attack", target, simState).possible)
 			return {"type": "attack", "cursor": "action-attack", "target": target};
-		else if (getActionInfo("unset-rallypoint", target).possible)
+		else if (getActionInfo("unset-rallypoint", target, simState).possible)
 			return {"type": "unset-rallypoint"};
-		else if (getActionInfo("move", target).possible)
+		else if (getActionInfo("move", target, simState).possible)
 			return {"type": "move"};
 	}
 	return {"type": type, "cursor": cursor, "target": target};
