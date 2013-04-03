@@ -126,6 +126,10 @@ void CGame::RegisterInit(const CScriptValRooted& attribs, const std::string& sav
 	std::string mapType;
 	m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "mapType", mapType);
 
+	float speed;
+	if (m_Simulation2->GetScriptInterface().HasProperty(attribs.get(), "gameSpeed") && m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "gameSpeed", speed))
+		SetSimRate(speed);
+
 	LDR_BeginRegistering();
 
 	RegMemFun(m_Simulation2, &CSimulation2::ProgressiveLoad, L"Simulation init", 1000);

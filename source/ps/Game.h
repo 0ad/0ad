@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -145,7 +145,10 @@ public:
 	 *						clamped to 0.0f.
 	 **/
 	inline void SetSimRate(float simRate)
-	{	 m_SimRate = std::max(simRate, 0.0f); }
+	{	if (isfinite(simRate)) m_SimRate = std::max(simRate, 0.0f); }
+
+	inline float GetSimRate()
+	{	return m_SimRate; }
 
 	/**
 	 * Replace the current turn manager.

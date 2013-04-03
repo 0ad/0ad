@@ -134,29 +134,43 @@ function toTitleCase (string)
 
 // ====================================================================
 
-// Load default player data, for when it's not otherwise specified
-function initPlayerDefaults()
+// Parse and return JSON data from file in simulation/data/*
+// returns valid object or undefined on error
+function parseJSONFromDataFile(filename)
 {
-	var filename = "simulation/data/player_defaults.json";
-	var defaults = [];
-	var rawData = readFile(filename);
+	var path = "simulation/data/"+filename;
+	var rawData = readFile(path);
 	if (!rawData)
-		error("Failed to read player defaults file: "+filename);
-	
+		error("Failed to read file: "+path);
+
 	try
-	{	// Catch nasty errors from JSON parsing
+	{
+		// Catch nasty errors from JSON parsing
 		// TODO: Need more info from the parser on why it failed: line number, position, etc!
 		var data = JSON.parse(rawData);
-		if (!data || !data.PlayerData)
-			error("Failed to parse player defaults in: "+filename+" (check for valid JSON data)");
-		
-		defaults = data.PlayerData;
+		return data;
 	}
 	catch(err)
 	{
-		error(err.toString()+": parsing player defaults in "+filename);
+		error(err.toString()+": parsing JSON data in "+path);
 	}
-	
+
+	return undefined;
+}
+
+// ====================================================================
+
+// Load default player data, for when it's not otherwise specified
+function initPlayerDefaults()
+{
+	var defaults = [];
+
+	var data = parseJSONFromDataFile("player_defaults.json");
+	if (!data || !data.PlayerData)
+		error("Failed to parse player defaults in player_defaults.json (check for valid JSON data)");
+	else
+		defaults = data.PlayerData;
+
 	return defaults;
 }
 
@@ -165,39 +179,59 @@ function initPlayerDefaults()
 // Load map size data
 function initMapSizes()
 {
-	var filename = "simulation/data/map_sizes.json";
 	var sizes = {
-		names: [],
-		tiles: [],
-		default: 0
+		"names":[],
+		"tiles": [],
+		"default": 0
 	};
-	var rawData = readFile(filename);
-	if (!rawData)
-		error("Failed to read map sizes file: "+filename);
-	
-	try
-	{	// Catch nasty errors from JSON parsing
-		// TODO: Need more info from the parser on why it failed: line number, position, etc!
-		var data = JSON.parse(rawData);
-		if (!data || !data.Sizes)
-			error("Failed to parse map sizes in: "+filename+" (check for valid JSON data)");
-		
+
+	var data = parseJSONFromDataFile("map_sizes.json");
+	if (!data || !data.Sizes)
+		error("Failed to parse map sizes in map_sizes.json (check for valid JSON data)");
+	else
+	{
 		for (var i = 0; i < data.Sizes.length; ++i)
 		{
 			sizes.names.push(data.Sizes[i].LongName);
 			sizes.tiles.push(data.Sizes[i].Tiles);
-			
+
 			if (data.Sizes[i].Default)
-				sizes.default = i;
+				sizes["default"] = i;
 		}
 	}
-	catch(err)
-	{
-		error(err.toString()+": parsing map sizes in "+filename);
-	}
-	
+
 	return sizes;
 }
+
+// ====================================================================
+
+// Load game speed data
+function initGameSpeeds()
+{
+	var gameSpeeds = {
+		"names": [],
+		"speeds": [],
+		"default": 0
+	};
+
+	var data = parseJSONFromDataFile("game_speeds.json");
+	if (!data || !data.Speeds)
+		error("Failed to parse game speeds in game_speeds.json (check for valid JSON data)");
+	else
+	{
+		for (var i = 0; i < data.Speeds.length; ++i)
+		{
+			gameSpeeds.names.push(data.Speeds[i].Name);
+			gameSpeeds.speeds.push(data.Speeds[i].Speed);
+
+			if (data.Speeds[i].Default)
+				gameSpeeds["default"] = i;
+		}
+	}
+
+	return gameSpeeds;
+}
+
 
 // ====================================================================
 
