@@ -7,8 +7,8 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>8.0</Hack>
-      <Pierce>15.0</Pierce>
+      <Hack>15.0</Hack>
+      <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
@@ -38,8 +38,8 @@
       <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
     </Melee>
     <Charge>
-      <Hack>24.0</Hack>
-      <Pierce>45.0</Pierce>
+      <Hack>45.0</Hack>
+      <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <MinRange>0.0</MinRange>

@@ -21,6 +21,7 @@
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 
+#include <map>
 #include <queue>
 
 // Hooks

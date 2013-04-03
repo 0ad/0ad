@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="246.366" y="82.3693" z="494.351"/>
+		<Position x="200.385" y="92.8654" z="514.325"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -29445,7 +29445,7 @@
 		<Entity uid="5406">
 			<Template>structures/maur_market</Template>
 			<Player>1</Player>
-			<Position x="157.7693" z="701.17377"/>
+			<Position x="157.85424" z="701.21985"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5411">
@@ -29781,7 +29781,7 @@
 		<Entity uid="5476">
 			<Template>structures/maur_outpost</Template>
 			<Player>1</Player>
-			<Position x="147.1916" z="582.14454"/>
+			<Position x="151.20647" z="517.11274"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5477">
@@ -30259,6 +30259,13 @@
 			<Position x="195.711" z="536.93201"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="5210"/>
+		</Entity>
+		<Entity uid="5568">
+			<Template>structures/maur_pillar_ashoka</Template>
+			<Player>1</Player>
+			<Position x="155.6005" z="587.22211"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28660"/>
 		</Entity>
 	</Entities>
 	<Paths/>
