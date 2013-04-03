@@ -19,7 +19,7 @@ Player.prototype.Init = function()
 		"metal": 300,
 		"stone": 300
 	};
-
+	
 	this.team = -1;	// team number of the player, players on the same team will always have ally diplomatic status - also this is useful for team emblems, scoring, etc.
 	this.teamsLocked = false;
 	this.state = "active"; // game state - one of "active", "defeated", "won"
@@ -33,6 +33,7 @@ Player.prototype.Init = function()
 	this.gatherRateMultiplier = 1;
 	this.cheatsEnabled = true;
 	this.cheatTimeMultiplier = 1;
+	this.heroes = [];
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -118,6 +119,11 @@ Player.prototype.SetGatherRateMultiplier = function(value)
 Player.prototype.GetGatherRateMultiplier = function()
 {
 	return this.gatherRateMultiplier;
+};
+
+Player.prototype.GetHeroes = function()
+{
+	return this.heroes;
 };
 
 Player.prototype.IsTrainingBlocked = function()
@@ -456,37 +462,44 @@ Player.prototype.IsNeutral = function(id)
  */
 Player.prototype.OnGlobalOwnershipChanged = function(msg)
 {
-	var isConquestCritical = false;
-	// Load class list only if we're going to need it
-	if (msg.from == this.playerID || msg.to == this.playerID)
-	{
-		var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
-		if (cmpIdentity)
-		{
-			isConquestCritical = cmpIdentity.HasClass("ConquestCritical");
-		}
-	}
+	if (msg.from != this.playerID && msg.to != this.playerID)
+		return;
+
+	var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
+	var cmpCost = Engine.QueryInterface(msg.entity, IID_Cost);
+
 	if (msg.from == this.playerID)
 	{
-		if (isConquestCritical)
+		if (cmpIdentity && cmpIdentity.HasClass("ConquestCritical"))
 			this.conquestCriticalEntitiesCount--;
-		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
-		if (cost)
+
+		if (cmpCost)
 		{
-			this.popUsed -= cost.GetPopCost();
-			this.popBonuses -= cost.GetPopBonus();
+			this.popUsed -= cmpCost.GetPopCost();
+			this.popBonuses -= cmpCost.GetPopBonus();
+		}
+
+		if (cmpIdentity && cmpIdentity.HasClass("Hero"))
+		{
+			//Remove from Heroes list
+			var index = this.heroes.indexOf(msg.entity);
+			if (index >= 0)
+				this.heroes.splice(index, 1);
 		}
 	}
 	if (msg.to == this.playerID)
 	{
-		if (isConquestCritical)
+		if (cmpIdentity && cmpIdentity.HasClass("ConquestCritical"))
 			this.conquestCriticalEntitiesCount++;
-		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
-		if (cost)
+
+		if (cmpCost)
 		{
-			this.popUsed += cost.GetPopCost();
-			this.popBonuses += cost.GetPopBonus();
+			this.popUsed += cmpCost.GetPopCost();
+			this.popBonuses += cmpCost.GetPopBonus();
 		}
+
+		if (cmpIdentity && cmpIdentity.HasClass("Hero"))
+			this.heroes.push(msg.entity);
 	}
 };
 

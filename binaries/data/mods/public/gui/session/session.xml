@@ -666,6 +666,19 @@
 	</object>
 
 	<!-- ================================  ================================ -->
+	<!-- Hero Selection -->
+	<!-- ================================  ================================ -->
+	<object
+	    name="unitHeroPanel"
+	    size="0 36 50 86"
+	>
+		<object name="unitHeroButton" size="0 0 50 50" type="button" hidden="false" style="iconButton" 
+			tooltip_style="sessionToolTip" tooltip="Attack and Armor">
+			<object name="unitHeroImage" size="5 5 100%-5 100%-5" type="image" ghost="true"/>
+		</object>
+	</object>
+	
+	<!-- ================================  ================================ -->
 	<!-- Unit Selection Groups -->
 	<!-- ================================  ================================ -->
 	<object

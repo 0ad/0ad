@@ -375,6 +375,7 @@ function onSimulationUpdate()
 	if (g_ShowAllStatusBars)
 		recalculateStatusBarDisplay();
 
+	updateHero(simState);
 	updateGroups();
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
@@ -388,6 +389,41 @@ function onSimulationUpdate()
 	if (battleState)
 		global.music.setState(global.music.states[battleState]);
 }
+
+function updateHero(simState)
+{
+	var playerState = simState.players[Engine.GetPlayerID()];
+	var heroButton = getGUIObjectByName("unitHeroButton");
+
+	if (!playerState || playerState.heroes.length <= 0)
+	{
+		heroButton.hidden = true;
+		return;
+	}
+
+	var heroImage = getGUIObjectByName("unitHeroImage");
+	var heroState = Engine.GuiInterfaceCall("GetEntityState", playerState.heroes[0]);
+	var template = GetTemplateData(heroState.template);
+	heroImage.sprite = "stretched:session/portraits/" + template.icon;
+
+	heroButton.onpress = (function(e) { return function() { if (!Engine.HotkeyIsPressed("selection.add")) g_Selection.reset(); g_Selection.addList([e]); } })(playerState.heroes[0]);
+	heroButton.ondoublepress = (function(e) { return function() { selectAndMoveTo(e) }; })(playerState.heroes[0]);
+	heroButton.hidden = false;
+
+	// Setup tooltip
+	var tooltip = "[font=\"serif-bold-16\"]" + template.name.specific + "[/font]";
+	tooltip += "\n[font=\"serif-bold-13\"]Health:[/font] " + heroState.hitpoints + "/" + heroState.maxHitpoints;
+	tooltip += "\n[font=\"serif-bold-13\"]" + (heroState.attack ? heroState.attack.type + " " : type)
+	           + "Attack:[/font] " + damageTypeDetails(heroState.attack);
+	// Show max attack range if ranged attack, also convert to tiles (4m per tile)
+	if (heroState.attack && heroState.attack.type == "Ranged")
+		tooltip += ", [font=\"serif-bold-13\"]Range:[/font] " + Math.round(heroState.attack.maxRange/4);
+
+	tooltip += "\n[font=\"serif-bold-13\"]Armor:[/font] " + damageTypeDetails(heroState.armour);
+	tooltip += "\n" + template.tooltip;
+
+	heroButton.tooltip = tooltip;
+};
 
 function updateGroups()
 {

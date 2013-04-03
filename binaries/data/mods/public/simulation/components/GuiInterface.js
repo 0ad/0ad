@@ -79,6 +79,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"popCount": cmpPlayer.GetPopulationCount(),
 			"popLimit": cmpPlayer.GetPopulationLimit(),
 			"popMax": cmpPlayer.GetMaxPopulation(),
+			"heroes": cmpPlayer.GetHeroes(),
 			"resourceCounts": cmpPlayer.GetResourceCounts(),
 			"trainingBlocked": cmpPlayer.IsTrainingBlocked(),
 			"state": cmpPlayer.GetState(),
