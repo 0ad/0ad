@@ -2,8 +2,8 @@
 <Entity parent="template_unit_cavalry">
   <Attack>
     <Melee>
-      <Hack>5.0</Hack>
-      <Pierce>10.0</Pierce>
+      <Hack>10.0</Hack>
+      <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
@@ -25,8 +25,8 @@
       <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
     </Melee>
     <Charge>
-      <Hack>15.0</Hack>
-      <Pierce>30.0</Pierce>
+      <Hack>30.0</Hack>
+      <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
       <MinRange>0.0</MinRange>

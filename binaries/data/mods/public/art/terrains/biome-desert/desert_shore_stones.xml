@@ -1,1 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?> <terrain> <textures> <texture name="baseTex" file="types/desert_shore_stones.dds"/>  </textures> <material>terrain_base.xml</material> </terrain>
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/desert_shore_stones.dds"/>
+		<texture name="normTex" file="types/desert_shore_stones_norm.png"/>
+		<texture name="specTex" file="types/desert_shore_stones_spec.png"/>
+    </textures>
+    <material>terrain_norm_spec.xml</material>
+</terrain>

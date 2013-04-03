@@ -2,7 +2,7 @@
 <Entity parent="template_unit_champion_cavalry">
   <Armour>
     <Hack>10.0</Hack>
-    <Pierce>10.0</Pierce>
+    <Pierce>22.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
   <Cost>
@@ -47,9 +47,9 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>5.0</WalkSpeed>
+    <WalkSpeed>8.0</WalkSpeed>
     <Run>
-      <Speed>10.0</Speed>
+      <Speed>16.0</Speed>
     </Run>
   </UnitMotion>
   <Vision>

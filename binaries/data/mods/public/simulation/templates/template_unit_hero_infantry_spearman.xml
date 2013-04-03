@@ -2,8 +2,8 @@
 <Entity parent="template_unit_hero_infantry">
   <Attack>
     <Melee>
-      <Hack>15.0</Hack>
-      <Pierce>25.0</Pierce>
+      <Hack>30.0</Hack>
+      <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
 	  <Bonuses>
 		<BonusCavMelee>
@@ -13,8 +13,8 @@
 	  </Bonuses>
     </Melee>
     <Charge>
-      <Hack>24.0</Hack>
-      <Pierce>40.0</Pierce>
+      <Hack>60.0</Hack>
+      <Pierce>0.0</Pierce>
 	  <Bonuses>
 		<BonusCavMelee>
 		  <Classes>Cavalry</Classes>
