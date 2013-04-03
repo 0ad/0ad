@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -239,25 +239,6 @@ void WaterManager::CreateSuperfancyInfo()
 	
 	u16* heightmap = terrain->GetHeightMap();
 	
-	// Recovering wave direction at any given point (5x5 blur)
-	// the precision is one vertice, which iirc is 4 per in-game "tile"
-	CVector3D* groundDirection = new CVector3D[(mapSize+1)*(mapSize+1)];
-	for (ssize_t i = 0; i < mapSize; ++i)
-	{
-		for (ssize_t j = 0; j < mapSize; ++j)
-		{
-			CVector3D normal;
-			for (int xx = -5; xx <= 5; ++xx)
-			{
-				for (int yy = -5; yy <= 5; ++yy)
-				{
-					normal += terrain->CalcExactNormal((i+xx)*4,(j+yy)*4);
-				}
-			}
-			normal = normal.Normalized();
-			groundDirection[j*mapSize+i] = normal;
-		}
-	}
 	// Recovering wave intensity
 	u8* waveForceHQ = new u8[(mapSize+1)*(mapSize+1)];	// high qual map.
 	u16 waterHeightInu16 = this->m_WaterHeight/HEIGHT_SCALE;
@@ -371,6 +352,7 @@ void WaterManager::CreateSuperfancyInfo()
 	}
 	this->m_TexSize = texSize*4;
 	this->m_Heightmap = newHeightmap;
+	delete[] waveForceHQ;
 	
 	GLuint heightName;
 	glGenTextures(1, &heightName);
