@@ -6,6 +6,9 @@ var g_Players = [];
 // Cache the useful civ data
 var g_CivData = {};
 
+var g_GameSpeeds = {};
+var g_CurrentSpeed;
+
 var g_PlayerAssignments = { "local": { "name": "You", "player": 1 } };
 
 // Cache dev-mode settings that are frequently or widely used
@@ -85,9 +88,9 @@ function init(initData, hotloadData)
 		g_Players = getPlayerData(g_PlayerAssignments);
 
 		if (initData.savedGUIData)
-		{
 			restoreSavedGameData(initData.savedGUIData);
-		}
+
+		getGUIObjectByName("gameSpeedButton").hidden = g_IsNetworked;
 	}
 	else // Needed for autostart loading option
 	{
@@ -97,6 +100,15 @@ function init(initData, hotloadData)
 	// Cache civ data
 	g_CivData = loadCivData();
 	g_CivData["gaia"] = { "Code": "gaia", "Name": "Gaia" };
+
+	g_GameSpeeds = initGameSpeeds();
+	g_CurrentSpeed = Engine.GetSimRate();
+	var gameSpeed = getGUIObjectByName("gameSpeed");
+	gameSpeed.list = g_GameSpeeds.names;
+	gameSpeed.list_data = g_GameSpeeds.speeds;
+	var idx = g_GameSpeeds.speeds.indexOf(g_CurrentSpeed);
+	gameSpeed.selected = idx != -1 ? idx : g_GameSpeeds["default"];
+	gameSpeed.onSelectionChange = function() { changeGameSpeed(+this.list_data[this.selected]); }
 
 	getGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
 	getGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[Engine.GetPlayerID()].civ].Name;
@@ -353,6 +365,16 @@ function checkPlayerState()
 	}
 }
 
+function changeGameSpeed(speed)
+{
+	// For non-networked games only
+	if (!g_IsNetworked)
+	{
+		Engine.SetSimRate(speed);
+		g_CurrentSpeed = speed;
+	}
+}
+
 /**
  * Recomputes GUI state that depends on simulation state or selection state. Called directly every simulation
  * update (see session.xml), or from onTick when the selection has changed.
@@ -562,8 +584,9 @@ function updateResearchDisplay()
 
 function updateTimeElapsedCounter(simState)
 {
+	var speed = g_CurrentSpeed != 1.0 ? " (" + g_CurrentSpeed + "x)" : "";
 	var timeElapsedCounter = getGUIObjectByName("timeElapsedCounter");
-	timeElapsedCounter.caption = timeToString(simState.timeElapsed);
+	timeElapsedCounter.caption = timeToString(simState.timeElapsed) + speed;
 }
 
 // Toggles the display of status bars for all of the player's entities.

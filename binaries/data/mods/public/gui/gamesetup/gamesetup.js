@@ -36,6 +36,7 @@ var g_GameAttributes = {
 	settings: {}
 };
 
+var g_GameSpeeds = {};
 var g_MapSizes = {};
 
 var g_AIs = [];
@@ -97,7 +98,8 @@ function initMain()
 	g_DefaultPlayerData.shift();
 	for (var i = 0; i < g_DefaultPlayerData.length; i++)
 		g_DefaultPlayerData[i].Civ = "random";
-	
+
+	g_GameSpeeds = initGameSpeeds();
 	g_MapSizes = initMapSizes();
 
 	// Init civs
@@ -135,6 +137,22 @@ function initMain()
 		numPlayersSelection.list = players;
 		numPlayersSelection.list_data = players;
 		numPlayersSelection.selected = MAX_PLAYERS - 1;
+		
+		var gameSpeed = getGUIObjectByName("gameSpeed");
+		gameSpeed.hidden = false;
+		getGUIObjectByName("gameSpeedText").hidden = true;
+		gameSpeed.list = g_GameSpeeds.names;
+		gameSpeed.list_data = g_GameSpeeds.speeds;
+		gameSpeed.onSelectionChange = function()
+		{
+			// Update attributes so other players can see change
+			if (this.selected != -1)
+				g_GameAttributes.gameSpeed = g_GameSpeeds.speeds[this.selected];
+
+			if (!g_IsInGuiUpdate)
+				updateGameAttributes();
+		}
+		gameSpeed.selected = g_GameSpeeds["default"];
 
 		var populationCaps = getGUIObjectByName("populationCap");
 		populationCaps.list = POPULATION_CAP;
@@ -245,7 +263,9 @@ function initMain()
 		getGUIObjectByName("mapSelection").hidden = true;
 		getGUIObjectByName("victoryConditionText").hidden = false;
 		getGUIObjectByName("victoryCondition").hidden = true;
-		
+		getGUIObjectByName("gameSpeedText").hidden = false;
+		getGUIObjectByName("gameSpeed").hidden = true;
+
 		// Disable player and game options controls
 		// TODO: Shouldn't players be able to choose their own assignment?
 		for (var i = 0; i < MAX_PLAYERS; ++i)
@@ -955,15 +975,19 @@ function onGameAttributesChange()
 	var enableCheatsText = getGUIObjectByName("enableCheatsText");
 	var populationCapText = getGUIObjectByName("populationCapText");
 	var startingResourcesText = getGUIObjectByName("startingResourcesText");
-	
-	var sizeIdx = (g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes.default);
+	var gameSpeedText = getGUIObjectByName("gameSpeedText");
+
+	var sizeIdx = (g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
+	var speedIdx = (g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) != -1) ? g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds["default"];
 	var victoryIdx = (VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
 	enableCheats.checked = (g_GameAttributes.settings.CheatsEnabled === undefined || !g_GameAttributes.settings.CheatsEnabled ? false : true)
 	enableCheatsText.caption = (enableCheats.checked ? "Yes" : "No");
+	gameSpeedText.caption = g_GameSpeeds.names[speedIdx];
 	populationCap.selected = (POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) != -1 ? POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) : POPULATION_CAP_DEFAULTIDX);
 	populationCapText.caption = POPULATION_CAP[populationCap.selected];
 	startingResources.selected = (STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) != -1 ? STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) : STARTING_RESOURCES_DEFAULTIDX);
 	startingResourcesText.caption = STARTING_RESOURCES[startingResources.selected];
+
 	// Handle map type specific logic
 	switch (g_GameAttributes.mapType)
 	{

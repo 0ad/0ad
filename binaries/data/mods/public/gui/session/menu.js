@@ -361,6 +361,12 @@ function toggleDiplomacy()
 		openDiplomacy();
 };
 
+function toggleGameSpeed()
+{
+	var gameSpeed = getGUIObjectByName("gameSpeed");
+	gameSpeed.hidden = !gameSpeed.hidden;
+}
+
 function pauseGame()
 {
 	getGUIObjectByName("pauseButtonText").caption = RESUME;
