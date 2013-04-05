@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ void CJoystick::Initialise()
 
 	if (SDL_InitSubSystem(SDL_INIT_JOYSTICK) < 0)
 	{
-		LOGERROR(L"InitInput: failed to initialise joystick");
+		LOGERROR(L"CJoystick::Initialise failed to initialise joysticks (\"%hs\")", SDL_GetError());
 		return;
 	}
 
@@ -50,7 +50,23 @@ void CJoystick::Initialise()
 	LOGMESSAGE(L"Found %d joystick(s)", numJoysticks);
 
 	for (int i = 0; i < numJoysticks; ++i)
-		LOGMESSAGE(L"Joystick %d: %hs", i, SDL_JoystickName(i));
+	{
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+		SDL_Joystick* stick = SDL_JoystickOpen(i);
+		if (!stick)
+		{
+			LOGERROR(L"CJoystick::Initialise failed to open joystick %d (\"%hs\")", i, SDL_GetError());
+			continue;
+		}
+		const char* name = SDL_JoystickName(stick);
+#else // SDL 1.2
+		const char* name = SDL_JoystickName(i);
+#endif
+		LOGMESSAGE(L"Joystick %d: %hs", i, name);
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+		SDL_JoystickClose(stick);
+#endif
+	}
 
 	if (numJoysticks)
 	{
@@ -58,6 +74,8 @@ void CJoystick::Initialise()
 
 		// Always pick the first joystick, and assume that's the right one
 		m_Joystick = SDL_JoystickOpen(0);
+		if (!m_Joystick)
+			LOGERROR(L"CJoystick::Initialise failed to open joystick (\"%hs\")", SDL_GetError());
 	}
 }
 

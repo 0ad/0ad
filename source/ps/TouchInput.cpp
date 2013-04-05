@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -267,11 +267,11 @@ InReaction CTouchInput::HandleEvent(const SDL_Event_* ev)
 	case SDL_FINGERMOTION:
 	{
 		// Map finger events onto the mouse, for basic testing
-		debug_printf(L"finger %s tid=%lld fid=%lld s=%d x=%d y=%d dx=%d dy=%d p=%d\n",
+		debug_printf(L"finger %s tid=%lld fid=%lld x=%d y=%d dx=%d dy=%d p=%d\n",
 			ev->ev.type == SDL_FINGERDOWN ? "down" :
 			ev->ev.type == SDL_FINGERUP ? "up" :
 			ev->ev.type == SDL_FINGERMOTION ? "motion" : "?",
-			ev->ev.tfinger.touchId, ev->ev.tfinger.fingerId, ev->ev.tfinger.state,
+			ev->ev.tfinger.touchId, ev->ev.tfinger.fingerId,
 			ev->ev.tfinger.x, ev->ev.tfinger.y, ev->ev.tfinger.dx, ev->ev.tfinger.dy, ev->ev.tfinger.pressure);
 
 		if (ev->ev.type == SDL_FINGERDOWN)

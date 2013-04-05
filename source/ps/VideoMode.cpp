@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -66,34 +66,65 @@ void CVideoMode::ReadConfig()
 bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 {
 #if SDL_VERSION_ATLEAST(2, 0, 0)
+	
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
 	if (fullscreen)
-		flags |= SDL_WINDOW_FULLSCREEN;
+		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 	else
 		flags |= SDL_WINDOW_RESIZABLE;
 
-	m_Window = SDL_CreateWindow("0 A.D.", 0, 0, w, h, flags);
 	if (!m_Window)
 	{
-		LOGERROR(L"SetVideoMode failed in SDL_CreateWindow: %dx%d:%d %d (\"%hs\")",
-			w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
-		return false;
-		// TODO: fall back to windowed mode
-	}
+		m_Window = SDL_CreateWindow("0 A.D.", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, flags);
+		if (!m_Window)
+		{
+			// If fullscreen fails, try windowed mode
+			if (fullscreen)
+			{
+				LOGWARNING(L"Failed to set the video mode to fullscreen for the chosen resolution "
+					L"%dx%d:%d (\"%hs\"), falling back to windowed mode",
+					w, h, bpp, SDL_GetError());
+				// Using default size for the window for now, as the attempted setting
+				// could be as large, or larger than the screen size.
+				return SetVideoMode(DEFAULT_WINDOW_W, DEFAULT_WINDOW_H, bpp, false);	
+			}
+			else
+			{
+				LOGERROR(L"SetVideoMode failed in SDL_CreateWindow: %dx%d:%d %d (\"%hs\")",
+					w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
+				return false;
+			}
+		}
 
-	if (SDL_SetWindowDisplayMode(m_Window, NULL) < 0)
-	{
-		LOGERROR(L"SetVideoMode failed in SDL_SetWindowDisplayMode: %dx%d:%d %d (\"%hs\")",
-			w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
-		return false;
-	}
+		if (SDL_SetWindowDisplayMode(m_Window, NULL) < 0)
+		{
+			LOGERROR(L"SetVideoMode failed in SDL_SetWindowDisplayMode: %dx%d:%d %d (\"%hs\")",
+				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
+			return false;
+		}
 
-	SDL_GLContext context = SDL_GL_CreateContext(m_Window);
-	if (!context)
+		SDL_GLContext context = SDL_GL_CreateContext(m_Window);
+		if (!context)
+		{
+			LOGERROR(L"SetVideoMode failed in SDL_GL_CreateContext: %dx%d:%d %d (\"%hs\")",
+				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
+			return false;
+		}
+	}
+	else
 	{
-		LOGERROR(L"SetVideoMode failed in SDL_GL_CreateContext: %dx%d:%d %d (\"%hs\")",
-			w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
-		return false;
+		if (m_IsFullscreen != fullscreen)
+		{
+			if (SDL_SetWindowFullscreen(m_Window, flags) < 0)
+			{
+				LOGERROR(L"SetVideoMode failed in SDL_SetWindowFullscreen: %dx%d:%d %d (\"%hs\")",
+					w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
+				return false;
+			}
+		}
+
+		if (!fullscreen)
+			SDL_SetWindowSize(m_Window, w, h);
 	}
 
 	// Grab the current video settings
