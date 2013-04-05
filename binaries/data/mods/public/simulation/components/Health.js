@@ -242,6 +242,11 @@ Health.prototype.CreateDeathSpawnedEntity = function()
 	cmpSpawnedPosition.SetYRotation(rot.y);
 	cmpSpawnedPosition.SetXZRotation(rot.x, rot.z);
 
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	var cmpSpawnedOwnership = Engine.QueryInterface(spawnedEntity, IID_Ownership);
+	if (cmpOwnership && cmpSpawnedOwnership)
+		cmpSpawnedOwnership.SetOwner(cmpOwnership.GetOwner());
+
 	return spawnedEntity;
 };
 
