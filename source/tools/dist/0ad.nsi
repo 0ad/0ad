@@ -178,6 +178,7 @@ Section "Uninstall"
   !endif
   Delete "$INSTDIR\*.txt"
   Delete "$INSTDIR\*.bat"
+  Delete "$INSTDIR\OpenLogsFolder.vbs"
   Delete "$INSTDIR\Uninstall.exe"
 
   RMDir "$INSTDIR"
