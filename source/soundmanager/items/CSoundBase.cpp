@@ -381,5 +381,23 @@ CStrW* CSoundBase::GetName()
 	return NULL;
 }
 
+void CSoundBase::Pause()
+{
+  if (m_ALSource != 0)
+  {
+    alSourcePause(m_ALSource);
+    AL_CHECK
+  }
+}
+
+void CSoundBase::Resume()
+{
+  if (m_ALSource != 0)
+  {
+    alSourcePlay(m_ALSource);
+    AL_CHECK
+  }
+}
+
 #endif // CONFIG2_AUDIO
 

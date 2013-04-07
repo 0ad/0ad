@@ -53,6 +53,7 @@
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
+#include "soundmanager/SoundManager.h"
 
 // rationale: the function table is now at the end of the source file to
 // avoid the need for forward declarations for every function.
@@ -340,6 +341,7 @@ JSBool SetPaused(JSContext* cx, uintN argc, jsval* vp)
 	try
 	{
 		g_Game->m_Paused = ToPrimitive<bool> (JS_ARGV(cx, vp)[0]);
+		g_SoundManager->Pause(g_Game->m_Paused);
 	}
 	catch (PSERROR_Scripting_ConversionFailed)
 	{

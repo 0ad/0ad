@@ -71,6 +71,10 @@ protected:
 	bool m_MusicEnabled;
 	bool m_SoundEnabled;
 
+	bool m_MusicPaused;
+	bool m_AmbientPaused;
+	bool m_ActionPaused;
+
 	long m_DistressErrCount;
 	long m_DistressTime;
 
@@ -121,6 +125,11 @@ public:
 	bool InDistress();
 	void SetDistressThroughShortage();
 	void SetDistressThroughError();
+
+  	void Pause(bool pauseIt);
+  	void PauseMusic (bool pauseIt);
+  	void PauseAmbient (bool pauseIt);
+  	void PauseAction (bool pauseIt);
 
 protected:
 	void InitListener();

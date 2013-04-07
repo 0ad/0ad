@@ -64,6 +64,9 @@ public:
 	virtual void SetGain(ALfloat gain) = 0;
 	virtual void SetLocation(const CVector3D& position) = 0;
 	virtual void SetRollOff(ALfloat gain) = 0;
+
+	virtual void Pause() = 0;
+	virtual void Resume() = 0;
 };
 
 #endif // CONFIG2_AUDIO

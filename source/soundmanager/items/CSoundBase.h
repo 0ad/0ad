@@ -89,6 +89,8 @@ public:
 	virtual void FadeAndDelete(double fadeTime);
 	virtual	bool SoundStale();
 
+	void Pause();
+	void Resume();
 protected:
 
 	void SetNameFromPath(VfsPath& itemPath);
