@@ -270,6 +270,10 @@ CSoundManager::CSoundManager()
 	m_BufferCount		= 50;
 	m_BufferSize		= 65536;
 	m_MusicEnabled		= true;
+	m_MusicPaused     = false;
+	m_AmbientPaused   = false;
+	m_ActionPaused     = false;
+
 	m_DistressTime	= 0;
 	m_DistressErrCount = 0;
 
@@ -648,6 +652,40 @@ void CSoundManager::SetAmbientItem(ISoundItem* anItem)
 	}
 	AL_CHECK
 }
+
+
+void CSoundManager::Pause(bool pauseIt)
+{
+  PauseMusic(pauseIt);
+  PauseAmbient(pauseIt);
+  PauseAction(pauseIt);
+}
+
+void CSoundManager::PauseMusic (bool pauseIt)
+{
+  if (m_CurrentTune && pauseIt)
+    m_CurrentTune->Pause();
+  else if ( m_CurrentTune )
+    m_CurrentTune->Resume();
+
+  m_MusicPaused = pauseIt;
+}
+
+void CSoundManager::PauseAmbient (bool pauseIt)
+{
+  if (m_CurrentEnvirons && pauseIt)
+    m_CurrentEnvirons->Pause();
+  else if ( m_CurrentEnvirons )
+    m_CurrentEnvirons->Resume();
+
+  m_AmbientPaused = pauseIt;
+}
+
+void CSoundManager::PauseAction (bool pauseIt)
+{
+  m_ActionPaused = pauseIt;
+}
+
 
 #endif // CONFIG2_AUDIO
 

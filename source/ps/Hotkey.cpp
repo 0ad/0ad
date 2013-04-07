@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -200,12 +200,12 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 #if SDL_VERSION_ATLEAST(2, 0, 0)
 	case SDL_MOUSEWHEEL:
-		if (ev->ev.wheel.y < 0)
+		if (ev->ev.wheel.y > 0)
 		{
 			keycode = MOUSE_WHEELUP;
 			break;
 		}
-		else if (ev->ev.wheel.y > 0)
+		else if (ev->ev.wheel.y < 0)
 		{
 			keycode = MOUSE_WHEELDOWN;
 			break;
@@ -248,7 +248,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	}
 #if SDL_VERSION_ATLEAST(2, 0, 0)
 	else if( ( keycode == SDLK_LGUI ) || ( keycode == SDLK_RGUI ) )
-#else
+#else // SDL 1.2
 	else if( ( keycode == SDLK_LSUPER ) || ( keycode == SDLK_RSUPER ) || ( keycode == SDLK_LMETA ) || ( keycode == SDLK_RMETA) )
 #endif
 	{
@@ -279,7 +279,11 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	// matching the conditions (i.e. the event with the highest number of auxiliary
 	// keys, providing they're all down)
 
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	bool typeKeyDown = ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN ) || (ev->ev.type == SDL_MOUSEWHEEL);
+#else
 	bool typeKeyDown = ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN );
+#endif
 	
 	// -- KEYDOWN SECTION -- 
 

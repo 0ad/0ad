@@ -524,7 +524,7 @@ function updatePlayerDisplay(simState)
 function selectAndMoveTo(ent)
 {
 	var entState = GetEntityState(ent);
-	if (!entState)
+	if (!entState || !entState.position)
 		return;
 
 	g_Selection.reset();
