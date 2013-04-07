@@ -7,6 +7,8 @@
       <textures>
         <texture file="gaia/stonequarry_desert.png" name="baseTex"/>
         <texture file="gaia/ao/geo_stonemine_large_ao.png" name="aoTex"/>
+        <texture file="gaia/stonequarry_desert_spec.png" name="specTex"/>
+        <texture file="gaia/stonequarry_desert_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -17,5 +19,5 @@
       </props>
     </variant>
   </group>
-  <material>basic_trans_ao.xml</material>
+  <material>basic_trans_ao_parallax_spec.xml</material>
 </actor>

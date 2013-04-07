@@ -15,8 +15,8 @@
     <BuildTime>19</BuildTime>
     <Resources>
       <food>200</food>
-      <wood>100</wood>
-      <metal>100</metal>
+      <wood>200</wood>
+      <metal>0</metal>
     </Resources>
   </Cost>
   <Footprint replace="">
@@ -31,7 +31,7 @@
     <Classes datatype="tokens">Champion Chariot</Classes>
 	<GenericName>War Chariot</GenericName>
     <SpecificName>Rath</SpecificName>
-    <History>Champion Cavalry Archer</History>
+    <History>Champion Cavalry Archer.</History>
 	<Icon>units/maur_champion_chariot.png</Icon>
     <Tooltip>Counters Spearmen and Swordsmen. Countered by Skirmishers. Trample Damage Aura.</Tooltip>
   </Identity>
