@@ -11,6 +11,14 @@
     <SpecificName>Sheep</SpecificName>
     <Icon>gaia/fauna_sheep.png</Icon>
   </Identity>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/sheep.xml</select>
+      <order_walk>actor/fauna/animal/sheep.xml</order_walk>
+      <death>actor/fauna/animal/sheep.xml</death>
+      <trained>actor/fauna/animal/sheep.xml</trained>
+    </SoundGroups>
+  </Sound>
   <StatusBars>
     <HeightOffset>5.0</HeightOffset>
   </StatusBars>

@@ -4,10 +4,10 @@
 	<Environment>
 		<SkySet>sunset</SkySet>
 		<SunColour r="1" g="0.67451" b="0.384314"/>
-		<SunElevation angle="0.344294"/>
+		<SunElevation angle="0.392699"/>
 		<SunRotation angle="-2.89403"/>
 		<TerrainAmbientColour r="0.211765" g="0.266667" b="0.392157"/>
-		<UnitsAmbientColour r="0.301961" g="0.376471" b="0.537255"/>
+		<UnitsAmbientColour r="0.301961" g="0.376471" b="0.482353"/>
 		<Fog>
 			<FogFactor>0.00350586</FogFactor>
 			<FogThickness>0</FogThickness>
@@ -19,7 +19,7 @@
 				<Colour r="0.282353" g="0.258824" b="0.203922"/>
 				<Height>18.2557</Height>
 				<Shininess>29.2969</Shininess>
-				<Waviness>1.32813</Waviness>
+				<Waviness>2.32422</Waviness>
 				<Murkiness>0.773438</Murkiness>
 				<Tint r="0.564706" g="0.513726" b="0.419608"/>
 				<ReflectionTint r="0.258824" g="0.627451" b="1"/>
@@ -30,13 +30,13 @@
 			<Brightness>0.0078125</Brightness>
 			<Contrast>1.10156</Contrast>
 			<Saturation>0.99</Saturation>
-			<Bloom>0.120313</Bloom>
+			<Bloom>0.115625</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="437.732" y="97.649" z="130.483"/>
-		<Rotation angle="-0.127611"/>
+		<Position x="514.071" y="75.1475" z="803.741"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -887,8 +887,8 @@
 		<Entity uid="145">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="670.38935" z="479.91092"/>
-			<Orientation y="-2.41308"/>
+			<Position x="712.22498" z="478.42774"/>
+			<Orientation y="-0.15026"/>
 		</Entity>
 		<Entity uid="146">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
@@ -3810,7 +3810,7 @@
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
 			<Position x="487.71354" z="937.33948"/>
-			<Orientation y="0.63091"/>
+			<Orientation y="-2.33303"/>
 		</Entity>
 		<Entity uid="667">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
@@ -3833,8 +3833,8 @@
 		<Entity uid="670">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="480.4629" z="946.24244"/>
-			<Orientation y="2.35621"/>
+			<Position x="483.70643" z="943.03693"/>
+			<Orientation y="-3.09292"/>
 		</Entity>
 		<Entity uid="671">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
@@ -14183,26 +14183,26 @@
 		<Entity uid="2865">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="494.85685" z="945.81629"/>
-			<Orientation y="2.35621"/>
+			<Position x="466.50052" z="931.02344"/>
+			<Orientation y="-0.95365"/>
 		</Entity>
 		<Entity uid="2866">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="494.99656" z="954.30384"/>
+			<Position x="493.52054" z="946.21912"/>
 			<Orientation y="0.63053"/>
 		</Entity>
 		<Entity uid="2867">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="470.26746" z="927.12464"/>
-			<Orientation y="0.50751"/>
+			<Position x="452.67356" z="931.33008"/>
+			<Orientation y="-1.04119"/>
 		</Entity>
 		<Entity uid="2868">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="471.92664" z="933.47687"/>
-			<Orientation y="2.35621"/>
+			<Position x="465.67103" z="950.1037"/>
+			<Orientation y="-0.04711"/>
 		</Entity>
 		<Entity uid="2869">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
@@ -14501,8 +14501,8 @@
 		<Entity uid="2918">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="666.47901" z="578.26038"/>
-			<Orientation y="-3.0532"/>
+			<Position x="725.20527" z="553.31617"/>
+			<Orientation y="1.0575"/>
 		</Entity>
 		<Entity uid="2919">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
@@ -15051,6 +15051,13 @@
 			<Position x="890.74976" z="499.75583"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="53794"/>
+		</Entity>
+		<Entity uid="3032">
+			<Template>units/maur_support_elephant</Template>
+			<Player>1</Player>
+			<Position x="517.82557" z="839.13605"/>
+			<Orientation y="2.39779"/>
+			<Actor seed="39410"/>
 		</Entity>
 	</Entities>
 	<Paths/>

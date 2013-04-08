@@ -25,7 +25,7 @@
     <SelectionGroupName>units/maur_cavalry_archer_b</SelectionGroupName>
     <GenericName>Elephant Archer</GenericName>
     <SpecificName>Vachii Gaja</SpecificName>
-    <Icon>units/cart_champion_cavalry.png</Icon>
+    <Icon>units/maur_cavalry_archer.png</Icon>
     <History>Elephant Archer.</History>
   </Identity>
   <Promotion>
@@ -58,6 +58,6 @@
     <Range>84</Range>
   </Vision>
   <VisualActor>
-    <Actor>units/mauryans/cavalry_archer_b.xml</Actor>
+    <Actor>units/mauryans/elephant_archer_b.xml</Actor>
   </VisualActor>
 </Entity>
