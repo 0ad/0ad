@@ -8,13 +8,13 @@
 		"athen": "Agema",
 		"rome": "Regio Cohors"
 	},
-	"description": "Elite units wield the best weapons.",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 150},
+	"description": "Guard units wield the best weapons.",
+	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 250},
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "armor_plates_swords.png",
 	"researchTime": 20,
-	"tooltip": "Elite units wield the best weapons. Champions +2 attack.",
+	"tooltip": "Guard units wield the best weapons! Champions +2 attack.",
 	"modifications": [
 		{"value": "Attack/Melee/Hack", "add": 2.0, "affects": ["Champion Melee"]},
 		{"value": "Attack/Ranged/Pierce", "add": 2.0, "affects": ["Champion Ranged"]}
