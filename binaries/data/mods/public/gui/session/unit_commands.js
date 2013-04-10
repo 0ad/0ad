@@ -1007,7 +1007,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 	{
 		// Get player state to check some constraints
 		// e.g. presence of a hero or build limits
-		var simState = Engine.GuiInterfaceCall("GetSimulationState");
+		var simState = GetSimState();
 		var playerState = simState.players[player];
 
 		if (selection.length > 1)

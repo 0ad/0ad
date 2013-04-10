@@ -159,8 +159,9 @@ function findGatherType(gatherer, supply)
 	return undefined;
 }
 
-function getActionInfo(action, target, simState)
+function getActionInfo(action, target)
 {
+	var simState = GetSimState();
 	var selection = g_Selection.toList();
 
 	// If the selection doesn't exist, no action
@@ -457,60 +458,58 @@ function determineAction(x, y, fromMinimap)
 		target = targets[0];
 	}
 
-	var simState = Engine.GuiInterfaceCall("GetSimulationState");
-
 	if (preSelectedAction != ACTION_NONE)
 	{
 		switch (preSelectedAction)
 		{
 		case ACTION_GARRISON:
-			if (getActionInfo("garrison", target, simState).possible)
+			if (getActionInfo("garrison", target).possible)
 				return {"type": "garrison", "cursor": "action-garrison", "target": target};
 			else
 				return 	{"type": "none", "cursor": "action-garrison-disabled", "target": undefined};
 			break;
 		case ACTION_REPAIR:
-			if (getActionInfo("repair", target, simState).possible)
+			if (getActionInfo("repair", target).possible)
 				return {"type": "repair", "cursor": "action-repair", "target": target};
 			else
 				return {"type": "none", "cursor": "action-repair-disabled", "target": undefined};
 			break;
 		}
 	}
-	else if (Engine.HotkeyIsPressed("session.attack") && getActionInfo("attack", target, simState).possible)
+	else if (Engine.HotkeyIsPressed("session.attack") && getActionInfo("attack", target).possible)
 	{
 		return {"type": "attack", "cursor": "action-attack", "target": target};
 	}
-	else if (Engine.HotkeyIsPressed("session.garrison") && getActionInfo("garrison", target, simState).possible)
+	else if (Engine.HotkeyIsPressed("session.garrison") && getActionInfo("garrison", target).possible)
 	{
 		return {"type": "garrison", "cursor": "action-garrison", "target": target};
 	}
-	else if (Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target, simState).possible)
+	else if (Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target).possible)
 	{
 			return {"type": "attack-move", "cursor": "action-attack-move"};
 	}
 	else
 	{
 		var actionInfo = undefined;
-		if ((actionInfo = getActionInfo("setup-trade-route", target, simState)).possible)
+		if ((actionInfo = getActionInfo("setup-trade-route", target)).possible)
 			return {"type": "setup-trade-route", "cursor": "action-setup-trade-route", "tooltip": actionInfo.tooltip, "target": target};
-		else if ((actionInfo = getActionInfo("gather", target, simState)).possible)
+		else if ((actionInfo = getActionInfo("gather", target)).possible)
 			return {"type": "gather", "cursor": actionInfo.cursor, "target": target};
-		else if ((actionInfo = getActionInfo("returnresource", target, simState)).possible)
+		else if ((actionInfo = getActionInfo("returnresource", target)).possible)
 			return {"type": "returnresource", "cursor": actionInfo.cursor, "target": target};
-		else if (getActionInfo("build", target, simState).possible)
+		else if (getActionInfo("build", target).possible)
 			return {"type": "build", "cursor": "action-build", "target": target};
-		else if (getActionInfo("repair", target, simState).possible)
+		else if (getActionInfo("repair", target).possible)
 			return {"type": "build", "cursor": "action-repair", "target": target};
-		else if ((actionInfo = getActionInfo("set-rallypoint", target, simState)).possible)
+		else if ((actionInfo = getActionInfo("set-rallypoint", target)).possible)
 			return {"type": "set-rallypoint", "cursor": actionInfo.cursor, "data": actionInfo.data, "tooltip": actionInfo.tooltip, "position": actionInfo.position};
-		else if (getActionInfo("heal", target, simState).possible)
+		else if (getActionInfo("heal", target).possible)
 			return {"type": "heal", "cursor": "action-heal", "target": target};
-		else if (getActionInfo("attack", target, simState).possible)
+		else if (getActionInfo("attack", target).possible)
 			return {"type": "attack", "cursor": "action-attack", "target": target};
-		else if (getActionInfo("unset-rallypoint", target, simState).possible)
+		else if (getActionInfo("unset-rallypoint", target).possible)
 			return {"type": "unset-rallypoint"};
-		else if (getActionInfo("move", target, simState).possible)
+		else if (getActionInfo("move", target).possible)
 			return {"type": "move"};
 	}
 	return {"type": type, "cursor": cursor, "target": target};
@@ -1170,14 +1169,14 @@ function handleInputAfterGui(ev)
 					{
 						// If double click hasn't already occurred, this is a double click.
 						// Select similar units regardless of rank
-						templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).identity.selectionGroupName;
+						templateToMatch = GetEntityState(selectedEntity).identity.selectionGroupName;
 						if (templateToMatch)
 						{
 							matchRank = false;
 						}
 						else
 						{	// No selection group name defined, so fall back to exact match
-							templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
+							templateToMatch = GetEntityState(selectedEntity).template;
 						}
 
 						doubleClicked = true;
@@ -1188,7 +1187,7 @@ function handleInputAfterGui(ev)
 					{
 						// Double click has already occurred, so this is a triple click.
 						// Select units matching exact template name (same rank)
-						templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
+						templateToMatch = GetEntityState(selectedEntity).template;
 					}
 
 					// TODO: Should we handle "control all units" here as well?
@@ -1557,7 +1556,7 @@ function getEntityLimitAndCount(playerState, entType)
 // Add the unit shown at position to the training queue for all entities in the selection
 function addTrainingByPosition(position)
 {
-	var simState = Engine.GuiInterfaceCall("GetSimulationState");
+	var simState = GetSimState();
 	var playerState = simState.players[Engine.GetPlayerID()];
 	var selection = g_Selection.toList();
 
