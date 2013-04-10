@@ -146,7 +146,7 @@ private:
 			if (!GetEnabled())
 				continue;
 
-			int pauseTime = 1000;
+			int pauseTime = 500;
 			if ( g_SoundManager->InDistress() )
 				pauseTime = 50;
 
@@ -663,12 +663,17 @@ void CSoundManager::Pause(bool pauseIt)
 
 void CSoundManager::PauseMusic (bool pauseIt)
 {
-  if (m_CurrentTune && pauseIt)
-    m_CurrentTune->Pause();
-  else if ( m_CurrentTune )
-    m_CurrentTune->Resume();
-
-  m_MusicPaused = pauseIt;
+	if (m_CurrentTune && pauseIt && !m_MusicPaused )
+	{
+		m_CurrentTune->FadeAndPause( 1.0 );
+	}
+	else if ( m_CurrentTune && m_MusicPaused && !pauseIt )
+	{
+		m_CurrentTune->SetGain(0);
+		m_CurrentTune->Resume();
+		m_CurrentTune->FadeToIn( m_MusicGain, 1.0);
+	}
+	m_MusicPaused = pauseIt;
 }
 
 void CSoundManager::PauseAmbient (bool pauseIt)

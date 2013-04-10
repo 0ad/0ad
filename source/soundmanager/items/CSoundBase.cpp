@@ -86,6 +86,7 @@ void CSoundBase::ResetFade()
 	m_StartVolume = 0;
 	m_EndVolume = 0;
 	m_ShouldBePlaying = false;
+	m_PauseAfterFade = false;
 }
 
 
@@ -238,7 +239,12 @@ bool CSoundBase::HandleFade()
 		ALfloat curGain = ((m_EndVolume - m_StartVolume) * pctDone) + m_StartVolume;
 
 		if  (curGain == 0)
-			Stop();
+		{
+			if ( m_PauseAfterFade )
+				Pause();
+			else
+				Stop();
+		}
 		else if (curGain == m_EndVolume)
 		{
 			if (m_ALSource != 0)
@@ -306,6 +312,11 @@ void CSoundBase::PlayAndDelete()
 	Play();
 }
 
+void CSoundBase::FadeAndPause(double fadeTime)
+{
+	m_PauseAfterFade = true;
+	FadeToIn(0, fadeTime);
+}
 
 void CSoundBase::FadeAndDelete(double fadeTime)
 {

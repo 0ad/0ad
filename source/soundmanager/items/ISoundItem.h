@@ -57,6 +57,7 @@ public:
 	virtual void StopAndDelete() = 0;
 	virtual void FadeToIn(ALfloat newVolume, double fadeDuration) = 0;
 	virtual void FadeAndDelete(double fadeTime) = 0;
+	virtual void FadeAndPause(double fadeTime) = 0;
 	virtual void PlayLoop() = 0;
 
 	virtual void SetCone(ALfloat innerCone, ALfloat outerCone, ALfloat coneGain) = 0;

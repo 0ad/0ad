@@ -38,7 +38,8 @@ protected:
 	bool m_LastPlay;
 	bool m_Looping;
 	bool m_ShouldBePlaying;
-	
+	bool m_PauseAfterFade;
+
 	double m_StartFadeTime;
 	double m_EndFadeTime;
 	double m_TouchTime;
@@ -87,6 +88,7 @@ public:
 	virtual bool IsPlaying();
 	virtual void SetLocation(const CVector3D& position);
 	virtual void FadeAndDelete(double fadeTime);
+	virtual void FadeAndPause(double fadeTime);
 	virtual	bool SoundStale();
 
 	void Pause();
