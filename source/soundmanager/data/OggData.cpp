@@ -30,6 +30,9 @@
 COggData::COggData()
 {
 	m_OneShot = false;
+	m_Format = 0;
+	m_Frequency = 0;
+	m_BuffersUsed = 0;
 }
 
 COggData::~COggData()

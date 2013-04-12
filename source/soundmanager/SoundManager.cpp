@@ -89,7 +89,7 @@ public:
 			while (lstr != m_Items->end())
 			{
 				delete *lstr;
-				lstr++;
+				++lstr;
 			}
 
 		}
@@ -112,7 +112,7 @@ public:
 		while (deadItems != m_DeadItems->end())
 		{   
 			delete *deadItems;
-			deadItems++;
+			++deadItems;
 
 			AL_CHECK
 		}
@@ -172,7 +172,7 @@ private:
 						CScopeLock lock(m_DeadItemsMutex);
 						m_DeadItems->push_back(*lstr);
 					}
-					lstr++;
+					++lstr;
 
 					AL_CHECK
 				}
@@ -213,6 +213,8 @@ private:
 
 	bool m_Enabled;
 	bool m_Shutdown;
+
+	CSoundManagerWorker(CSoundManager* UNUSED(other)){};
 };
 #endif
 
@@ -269,6 +271,7 @@ CSoundManager::CSoundManager()
 	m_ActionGain		= 1;
 	m_BufferCount		= 50;
 	m_BufferSize		= 65536;
+	m_SoundEnabled		= true;
 	m_MusicEnabled		= true;
 	m_MusicPaused     = false;
 	m_AmbientPaused   = false;
@@ -520,35 +523,9 @@ void CSoundManager::IdleTask()
 	AL_CHECK
 }
 
-ISoundItem*	CSoundManager::ItemForEntity( entity_id_t source, CSoundData* sndData)
+ISoundItem*	CSoundManager::ItemForEntity( entity_id_t UNUSED(source), CSoundData* sndData)
 {
-	ISoundItem*		currentItem = NULL;
-	if ( false ) 
-	{
-		ItemsMap::iterator		itemFound = m_ItemsMap->find( source );
-		if ( itemFound != m_ItemsMap->end() )
-		{
-			currentItem = itemFound->second;
-			if ( currentItem->CanAttach( sndData ) )
-			{
-				currentItem->Attach( sndData );
-				LOGERROR(L"did REUSE items source = %d", m_SourceCOunt);
-			}
-			else
-			{
-				m_ItemsMap->erase( itemFound );
-				currentItem->StopAndDelete();
-				LOGERROR(L"item UNREUSABLE for data = %d", m_SourceCOunt);
-				currentItem = NULL;
-			}
-		}
-	}
-	if ( currentItem == NULL )
-	{
-		currentItem = ItemForData( sndData );
-		if ( currentItem )
-			m_ItemsMap->insert(std::make_pair( source, currentItem));		
-	}
+	ISoundItem* currentItem = ItemForData( sndData );
 
 	return currentItem;
 }

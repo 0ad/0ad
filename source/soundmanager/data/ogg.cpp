@@ -82,7 +82,7 @@ public:
 
 	static size_t Read(void* bufferToFill, size_t itemSize, size_t numItems, void* context)
 	{
-		VorbisFileAdapter* adapter = (VorbisFileAdapter*)context;
+		VorbisFileAdapter* adapter = static_cast<VorbisFileAdapter*>(context);
 		const off_t sizeRequested = numItems*itemSize;
 		const off_t sizeRemaining = adapter->size - adapter->offset;
 		const size_t sizeToRead = (size_t)std::min(sizeRequested, sizeRemaining);
@@ -100,7 +100,7 @@ public:
 
 	static int Seek(void* context, ogg_int64_t offset, int whence)
 	{
-		VorbisFileAdapter* adapter = (VorbisFileAdapter*)context;
+		VorbisFileAdapter* adapter = static_cast<VorbisFileAdapter*>(context);
 
 		off_t origin = 0;
 		switch(whence)
@@ -123,14 +123,14 @@ public:
 
 	static int Close(void* context)
 	{
-		VorbisFileAdapter* adapter = (VorbisFileAdapter*)context;
+		VorbisFileAdapter* adapter = static_cast<VorbisFileAdapter*>(context);
 		adapter->file.reset();
 		return 0;	// return value is ignored
 	}
 
 	static long Tell(void* context)
 	{
-		VorbisFileAdapter* adapter = (VorbisFileAdapter*)context;
+		VorbisFileAdapter* adapter = static_cast<VorbisFileAdapter*>(context);
 		return adapter->offset;
 	}
 
@@ -154,7 +154,8 @@ public:
 
 	static size_t Read(void* bufferToFill, size_t itemSize, size_t numItems, void* context)
 	{
-		VorbisBufferAdapter* adapter = (VorbisBufferAdapter*)context;
+		VorbisBufferAdapter* adapter = static_cast<VorbisBufferAdapter*>(context);
+
 		const off_t sizeRequested = numItems*itemSize;
 		const off_t sizeRemaining = adapter->size - adapter->offset;
 		const size_t sizeToRead = (size_t)std::min(sizeRequested, sizeRemaining);
@@ -167,7 +168,7 @@ public:
 
 	static int Seek(void* context, ogg_int64_t offset, int whence)
 	{
-		VorbisBufferAdapter* adapter = (VorbisBufferAdapter*)context;
+		VorbisBufferAdapter* adapter = static_cast<VorbisBufferAdapter*>(context);
 
 		off_t origin = 0;
 		switch(whence)
@@ -190,14 +191,14 @@ public:
 
 	static int Close(void* context)
 	{
-		VorbisBufferAdapter* adapter = (VorbisBufferAdapter*)context;
+		VorbisBufferAdapter* adapter = static_cast<VorbisBufferAdapter*>(context);
 		adapter->buffer.reset();
 		return 0;	// return value is ignored
 	}
 
 	static long Tell(void* context)
 	{
-		VorbisBufferAdapter* adapter = (VorbisBufferAdapter*)context;
+		VorbisBufferAdapter* adapter = static_cast<VorbisBufferAdapter*>(context);
 		return adapter->offset;
 	}
 
@@ -218,6 +219,7 @@ public:
 		: adapter(adapter)
 	{
 		m_fileEOF = false;
+		info = NULL;
 	}
 
 	Status Close()
