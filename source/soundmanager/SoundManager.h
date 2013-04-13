@@ -135,6 +135,8 @@ protected:
 	void InitListener();
 	virtual Status AlcInit();
 
+private:
+	CSoundManager(CSoundManager* UNUSED(other)){};
 };
 
 #else // !CONFIG2_AUDIO

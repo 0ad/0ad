@@ -37,7 +37,7 @@ function getPlayerData(playerAssignments)
 {
 	var players = [];
 
-	var simState = Engine.GuiInterfaceCall("GetSimulationState");
+	var simState = GetSimState();
 	if (!simState)
 		return players;
 

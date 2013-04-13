@@ -156,10 +156,6 @@ var UnitFsmSpec = {
 		// ignore
 	},
 
-	"EntityRenamed": function(msg) {
-		// ignore
-	},
-	
 	"PackFinished": function(msg) {
 		// ignore
 	},
@@ -997,21 +993,6 @@ var UnitFsmSpec = {
 				this.StartTimer(1000, 1000);
 			},
 
-			"EntityRenamed": function(msg) {
-				if (this.order.data && this.order.data.target
-				    && this.order.data.target == msg.entity)
-				{
-					this.order.data.target = msg.newentity;
-
-					// If we're hunting, that means we have a queued gather
-					// order whose target also needs to be updated.
-					if (this.order.data.hunting && this.orderQueue[1] &&
-							this.orderQueue[1].type == "Gather")
-						this.orderQueue[1].data.target = msg.newentity;
-				}
-			},
-
-
 			"Timer": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 
@@ -1297,19 +1278,6 @@ var UnitFsmSpec = {
 			"Order.LeaveFoundation": function(msg) {
 				// Ignore the order as we're busy.
 				return { "discardOrder": true };
-			},
-
-			"EntityRenamed": function(msg) {
-				if (this.order.data.target == msg.entity)
-				{
-					this.order.data.target = msg.newentity;
-
-					// If we're hunting, that means we have a queued gather
-					// order whose target also needs to be updated.
-					if (this.order.data.hunting && this.orderQueue[1] &&
-							this.orderQueue[1].type == "Gather")
-						this.orderQueue[1].data.target = msg.newentity;
-				}
 			},
 
 			"Attacked": function(msg) {
@@ -1867,11 +1835,6 @@ var UnitFsmSpec = {
 		},
 
 		"HEAL": {
-			"EntityRenamed": function(msg) {
-				if (this.order.data.target == msg.entity)
-					this.order.data.target = msg.newentity;
-			},
-
 			"Attacked": function(msg) {
 				// If we stand ground we will rather die than flee
 				if (!this.GetStance().respondStandGround && !this.order.data.force)
@@ -3002,7 +2965,9 @@ UnitAI.prototype.OnGlobalConstructionFinished = function(msg)
 
 UnitAI.prototype.OnGlobalEntityRenamed = function(msg)
 {
-	UnitFsm.ProcessMessage(this, {"type": "EntityRenamed", "entity": msg.entity, "newentity": msg.newentity});
+	for each (var order in this.orderQueue)
+		if (order.data && order.data.target && order.data.target == msg.entity)
+			order.data.target = msg.newentity;
 };
 
 UnitAI.prototype.OnAttacked = function(msg)
