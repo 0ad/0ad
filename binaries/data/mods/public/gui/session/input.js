@@ -213,6 +213,7 @@ function getActionInfo(action, target)
 		var playerState = simState.players[entState.player];
 		var playerOwned = (targetState.player == entState.player);
 		var allyOwned = playerState.isAlly[targetState.player];
+		var mutualAllyOwned = playerState.isMutualAlly[targetState.player];
 		var enemyOwned = playerState.isEnemy[targetState.player];
 		var gaiaOwned = (targetState.player == 0);
 
@@ -221,7 +222,7 @@ function getActionInfo(action, target)
 
 		// default to walking there
 		var data = {command: "walk"};
-		if (targetState.garrisonHolder && playerOwned)
+		if (targetState.garrisonHolder && (playerOwned || mutualAllyOwned))
 		{
 			data.command = "garrison";
 			data.target = target;
@@ -296,6 +297,7 @@ function getActionInfo(action, target)
 		var playerState = simState.players[entState.player];
 		var playerOwned = (targetState.player == entState.player);
 		var allyOwned = playerState.isAlly[targetState.player];
+		var mutualAllyOwned = playerState.isMutualAlly[targetState.player];
 		var neutralOwned = playerState.isNeutral[targetState.player];
 		var enemyOwned = playerState.isEnemy[targetState.player];
 		var gaiaOwned = (targetState.player == 0);
@@ -307,7 +309,7 @@ function getActionInfo(action, target)
 		switch (action)
 		{
 		case "garrison":
-			if (hasClass(entState, "Unit") && targetState.garrisonHolder && playerOwned)
+			if (hasClass(entState, "Unit") && targetState.garrisonHolder && (playerOwned || mutualAllyOwned))
 			{
 				var allowedClasses = targetState.garrisonHolder.allowedClasses;
 				for each (var unitClass in entState.identity.classes)
@@ -1731,6 +1733,8 @@ function performCommand(entity, commandName)
 		var unitName = getEntityName(template);
 
 		var playerID = Engine.GetPlayerID();
+		var simState = GetSimState();
+
 		if (entState.player == playerID || g_DevSettings.controlAll)
 		{
 			switch (commandName)
@@ -1774,6 +1778,18 @@ function performCommand(entity, commandName)
 				if (focusTarget !== null)
 					Engine.CameraMoveTo(focusTarget.x, focusTarget.z);
 				
+				break;
+			default:
+				break;
+			}
+		}
+		else if (simState.players[playerID].isMutualAlly[entState.player])
+		{
+			switch (commandName)
+			{
+			case "garrison":
+				inputState = INPUT_PRESELECTEDACTION;
+				preSelectedAction = ACTION_GARRISON;
 				break;
 			default:
 				break;

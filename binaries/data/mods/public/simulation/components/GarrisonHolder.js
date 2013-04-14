@@ -220,97 +220,111 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
 };
 
 /**
- * Unload units from the garrisoning entity and order them
- * to move to the Rally Point
+ * Ejects units and orders them to move to the Rally Point.
  * Returns true if successful, false if not
  */
-GarrisonHolder.prototype.Unload = function(entity, forced)
+GarrisonHolder.prototype.PerformEject = function(entities, forced)
 {
-	if (this.Eject(entity, forced))
-	{
-		this.OrderWalkToRallyPoint([entity]);
-		this.UpdateGarrisonFlag();
-		return true;
-	}
-	
-	return false;
-};
-
-/**
- * Unload one or all units that match a template from the
- * garrisoning entity and order them to move to the Rally Point
- * Returns true if successful, false if not
- */
-GarrisonHolder.prototype.UnloadTemplate = function(template, all, forced)
-{
-	var ejectedEntities = [];
-	var success = true;
-	for (var i = 0; i < this.entities.length; ++i)
-	{
-		var entity = this.entities[i];
-		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-
-		// Units with multiple ranks are grouped together.
-		var name = cmpIdentity.GetSelectionGroupName();
-		if (!name)
-		{
-			var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-			name = cmpTemplateManager.GetCurrentTemplateName(entity);
-		}
-		
-		if (name != template)
-			continue;
-
-		if (this.Eject(entity, forced))
-		{
-			--i; // Decrement 'i' as Eject() shortens the array.
-			ejectedEntities.push(entity);
-
-			// If 'all' is false, only ungarrison the first matched unit.
-			if (!all)
-				break;
-		}
-		else
-			success = false;
-	}
-
-	this.OrderWalkToRallyPoint(ejectedEntities);
-	this.UpdateGarrisonFlag();
-
-	return success;
-};
-
-/**
- * Unload all units from the entity
- * Returns true if all successful, false if not
- */
-GarrisonHolder.prototype.UnloadAll = function(forced)
-{
-	// Make copy of entity list
-	var entities = [];
-	for each (var entity in this.entities)
-	{
-		entities.push(entity);
-	}
-	
 	var ejectedEntities = [];
 	var success = true;
 	for each (var entity in entities)
 	{
 		if (this.Eject(entity, forced))
-		{
 			ejectedEntities.push(entity);
-		}
 		else
-		{
 			success = false;
-		}
 	}
-	
+
 	this.OrderWalkToRallyPoint(ejectedEntities);
 	this.UpdateGarrisonFlag();
-	
+
 	return success;
+};
+
+/**
+ * Unload unit from the garrisoning entity and order them
+ * to move to the Rally Point
+ * Returns true if successful, false if not
+ */
+GarrisonHolder.prototype.Unload = function(entity, forced)
+{
+	return this.PerformEject([entity], forced);
+};
+
+/**
+ * Unload one or all units that match a template and owner from
+ * the garrisoning entity and order them to move to the Rally Point
+ * Returns true if successful, false if not
+ * 
+ * extendedTemplate has the format "p"+ownerid+"&"+template
+ */
+GarrisonHolder.prototype.UnloadTemplate = function(extendedTemplate, all, forced)
+{
+	var index = extendedTemplate.indexOf("&");
+	if (index == -1)
+		return false;
+
+	var owner = +extendedTemplate.slice(1,index);
+	var template = extendedTemplate.slice(index+1);
+
+	var entities = [];
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	for each (var entity in this.entities)
+	{
+		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
+
+		// Units with multiple ranks are grouped together.
+		var name = cmpIdentity.GetSelectionGroupName()
+		           || cmpTemplateManager.GetCurrentTemplateName(entity);
+
+		if (name != template)
+			continue;
+		if (owner != Engine.QueryInterface(entity, IID_Ownership).GetOwner())
+			continue;
+
+		entities.push(entity);
+
+		// If 'all' is false, only ungarrison the first matched unit.
+		if (!all)
+			break;
+	}
+
+	return this.PerformEject(entities, forced);
+};
+
+/**
+ * Unload all units with same owner as the entity
+ * and order them to move to the Rally Point
+ * Returns true if all successful, false if not
+ */
+GarrisonHolder.prototype.UnloadAllOwn = function(forced)
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
+		return false;
+	var owner = cmpOwnership.GetOwner();
+
+	// Make copy of entity list
+	var entities = [];
+	for each (var entity in this.entities)
+	{
+		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+		if (cmpOwnership && cmpOwnership.GetOwner() == owner)
+			entities.push(entity);
+	}
+	
+	return this.PerformEject(entities, forced);
+};
+
+/**
+ * Unload all units from the entity
+ * and order them to move to the Rally Point
+ * Returns true if all successful, false if not
+ */
+GarrisonHolder.prototype.UnloadAll = function(forced)
+{
+	var entities = this.entities.slice(0);
+	return this.PerformEject(entities, forced);
 };
 
 /**
@@ -467,6 +481,20 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 		this.entities[entityIndex] = msg.newentity;
 		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 	}
+};
+
+
+/**
+ * Eject all foreign garrisoned entities which are no more allied
+ */
+GarrisonHolder.prototype.OnDiplomacyChanged = function()
+{
+	for (var i = this.entities.length; i > 0; --i)
+	{
+		if (!IsOwnedByMutualAllyOfEntity(this.entity, this.entities[i-1]))
+			this.Eject(this.entities[i-1], true);
+	}
+	this.UpdateGarrisonFlag();
 };
 
 Engine.RegisterComponentType(IID_GarrisonHolder, "GarrisonHolder", GarrisonHolder);

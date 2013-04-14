@@ -314,8 +314,8 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "garrison":
-		// Verify that the building can be controlled by the player
-		if (CanControlUnit(cmd.target, player, controlAllUnits))
+		// Verify that the building can be controlled by the player or is mutualAlly
+		if (CanControlUnitOrIsAlly(cmd.target, player, controlAllUnits))
 		{
 			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 			GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
@@ -324,7 +324,7 @@ function ProcessCommand(player, cmd)
 		}
 		else if (g_DebugCommands)
 		{
-			warn("Invalid command: garrison target cannot be controlled by player "+player+": "+uneval(cmd));
+			warn("Invalid command: garrison target cannot be controlled by player "+player+" (or ally): "+uneval(cmd));
 		}
 		break;
 
@@ -336,12 +336,17 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "unload":
-		// Verify that the building can be controlled by the player
-		if (CanControlUnit(cmd.garrisonHolder, player, controlAllUnits))
+		// Verify that the building can be controlled by the player or is mutualAlly
+		if (CanControlUnitOrIsAlly(cmd.garrisonHolder, player, controlAllUnits))
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
 			var notUngarrisoned = 0;
-			for each (ent in cmd.entities)
+			if (IsOwnedByPlayer(player, cmd.garrisonHolder))
+				var entities = cmd.entities;
+			else
+				var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+
+			for each (var ent in entities)
 				if (!cmpGarrisonHolder || !cmpGarrisonHolder.Unload(ent))
 					notUngarrisoned++;
 
@@ -350,23 +355,45 @@ function ProcessCommand(player, cmd)
 		}
 		else if (g_DebugCommands)
 		{
-			warn("Invalid command: unload target cannot be controlled by player "+player+": "+uneval(cmd));
+			warn("Invalid command: unload target cannot be controlled by player "+player+" (or ally): "+uneval(cmd));
 		}
 		break;
 
 	case "unload-template":
-		var selected = FilterEntityList(cmd.garrisonHolders, player, controlAllUnits);
-		for each (var garrisonHolder in selected)
+		var index = cmd.template.indexOf("&");  // Templates for garrisoned units are extended
+		if (index == -1)
+			break;
+
+		var entities = FilterEntityListWithAllies(cmd.garrisonHolders, player, controlAllUnits);
+		for each (var garrisonHolder in entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
-			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadTemplate(cmd.template, cmd.all))
+			if (cmpGarrisonHolder)
+			{
+				// Only the owner of the garrisonHolder may unload entities from any owners
+				if (!IsOwnedByPlayer(player, garrisonHolder) && !controlAllUnits
+				    && player != +cmd.template.slice(1,index))
+						continue;
+
+				if (!cmpGarrisonHolder.UnloadTemplate(cmd.template, cmd.all))
+					notifyUnloadFailure(player, garrisonHolder);
+			}
+		}
+		break;
+
+	case "unload-all-own":
+		var entities = FilterEntityList(cmd.garrisonHolders, player, controlAllUnits);
+		for each (var garrisonHolder in entities)
+		{
+			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
+			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAllOwn())
 				notifyUnloadFailure(player, garrisonHolder)
 		}
 		break;
 
 	case "unload-all":
-		var selected = FilterEntityList(cmd.garrisonHolders, player, controlAllUnits);
-		for each (var garrisonHolder in selected)
+		var entities = FilterEntityList(cmd.garrisonHolders, player, controlAllUnits);
+		for each (var garrisonHolder in entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
 			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAll())
@@ -1272,12 +1299,23 @@ function CanMoveEntsIntoFormation(ents, formationName)
 
 /**
  * Check if player can control this entity
- * returns: true if the entity is valid and owned by the player if
- *		or control all units is activated for the player, else false
+ * returns: true if the entity is valid and owned by the player
+ *          or control all units is activated, else false
  */
 function CanControlUnit(entity, player, controlAll)
 {
 	return (IsOwnedByPlayer(player, entity) || controlAll);
+}
+
+/**
+ * Check if player can control this entity
+ * returns: true if the entity is valid and owned by the player
+ *          or the entity is owned by an mutualAlly
+ *          or control all units is activated, else false
+ */
+function CanControlUnitOrIsAlly(entity, player, controlAll)
+{
+	return (IsOwnedByPlayer(player, entity) || IsOwnedByMutualAllyOfPlayer(player, entity) || controlAll);
 }
 
 /**
@@ -1286,6 +1324,14 @@ function CanControlUnit(entity, player, controlAll)
 function FilterEntityList(entities, player, controlAll)
 {
 	return entities.filter(function(ent) { return CanControlUnit(ent, player, controlAll);} );
+}
+
+/**
+ * Filter entities which the player can control or are mutualAlly
+ */
+function FilterEntityListWithAllies(entities, player, controlAll)
+{
+	return entities.filter(function(ent) { return CanControlUnitOrIsAlly(ent, player, controlAll);} );
 }
 
 /**

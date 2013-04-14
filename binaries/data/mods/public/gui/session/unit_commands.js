@@ -677,7 +677,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				var techName = getEntityNames(GetTechnologyData(template.requiredTechnology));
 				button.tooltip += "\nRequires " + techName;
 				grayscale = "grayscale:";
-                affordableMask.hidden = false;
+				affordableMask.hidden = false;
 				affordableMask.sprite = "colour: 0 0 0 127";
 			}
 			
@@ -686,8 +686,25 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				button.enabled = false;
 				button.tooltip += "\n" + GetTechnologyData(entType).requirementsTooltip;
 				grayscale = "grayscale:";
-                affordableMask.hidden = false;
+				affordableMask.hidden = false;
 				affordableMask.sprite = "colour: 0 0 0 127";
+			}
+
+			if (guiName == GARRISON)
+			{
+				var ents = garrisonGroups.getEntsByName(item);
+				var entplayer = GetEntityState(ents[0]).player;
+				button.sprite = "colour: " + g_Players[entplayer].color.r + " " + g_Players[entplayer].color.g + " " + g_Players[entplayer].color.b;
+
+				var player = Engine.GetPlayerID();
+				if(player != unitEntState.player && !g_DevSettings.controlAll)
+				{
+					if (entplayer != player) 
+					{
+						button.enabled = false;
+						grayscale = "grayscale:";
+					}
+				}
 			}
 			
 			icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
@@ -724,7 +741,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 						button1.enabled = false;
 						button1.tooltip += "\n" + GetTechnologyData(entType1).requirementsTooltip;
 						grayscale = "grayscale:";
-                        affordableMask1.hidden = false;
+						affordableMask1.hidden = false;
 						affordableMask1.sprite = "colour: 0 0 0 127";
 					}
 					icon1.sprite = "stretched:" + grayscale + "session/portraits/" +template1.icon;
@@ -769,7 +786,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 						playerState.entityCounts[trainingCategory] >= playerState.entityLimits[trainingCategory])
 					{
 						grayscale = "grayscale:";
-                        affordableMask.hidden = false;
+						affordableMask.hidden = false;
 						affordableMask.sprite = "colour: 0 0 0 100";
 					}
 					icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
@@ -1003,13 +1020,14 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 
 	// If the selection is friendly units, add the command panels
 	var player = Engine.GetPlayerID();
+
+	// Get player state to check some constraints
+	// e.g. presence of a hero or build limits
+	var simState = GetSimState();
+	var playerState = simState.players[player];
+
 	if (entState.player == player || g_DevSettings.controlAll)
 	{
-		// Get player state to check some constraints
-		// e.g. presence of a hero or build limits
-		var simState = GetSimState();
-		var playerState = simState.players[player];
-
 		if (selection.length > 1)
 			setupUnitPanel(SELECTION, usedPanels, entState, playerState, g_Selection.groups.getTemplateNames(),
 				function (entType, rightPressed) { changePrimarySelectionGroup(entType, rightPressed); } );
@@ -1024,7 +1042,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			var groups = new EntityGroups();
 			for (var i in selection)
 			{
-				state = GetEntityState(selection[i]);
+				var state = GetEntityState(selection[i]);
 				if (state.garrisonHolder)
 					groups.add(state.garrisonHolder.entities)
 			}
@@ -1190,6 +1208,30 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		
 		supplementalDetailsPanel.hidden = false;
 		commandsPanel.hidden = false;
+	}
+	else if (playerState.isMutualAlly[entState.player]) // owned by allied player
+	{
+		if (entState.garrisonHolder)
+		{
+			var groups = new EntityGroups();
+			for (var i in selection)
+			{
+				var state = GetEntityState(selection[i]);
+				if (state.garrisonHolder)
+					groups.add(state.garrisonHolder.entities)
+			}
+
+			setupUnitPanel(GARRISON, usedPanels, entState, playerState, groups.getTemplateNames(),
+				function (item) { unloadTemplate(item); } );
+
+			supplementalDetailsPanel.hidden = false;
+		}
+		else
+		{
+			supplementalDetailsPanel.hidden = true;
+		}
+
+		commandsPanel.hidden = true;
 	}
 	else // owned by another player
 	{
