@@ -573,14 +573,15 @@ var Entity = Class({
 	unload: function(id) {
 		if (!this._template.GarrisonHolder)
 			return undefined;
-		Engine.PostCommand({"type": "unload", "garrisonHolder": this.id(), "entity": id});
+		Engine.PostCommand({"type": "unload", "garrisonHolder": this.id(), "entities": [id]});
 		return this;
 	},
-	
+
+	// Unloads all owned units, don't unload allies
 	unloadAll: function() {
 		if (!this._template.GarrisonHolder)
 			return undefined;
-		Engine.PostCommand({"type": "unload-all", "garrisonHolders": [this.id()]});
+		Engine.PostCommand({"type": "unload-all-own", "garrisonHolders": [this.id()]});
 		return this;
 	},
 

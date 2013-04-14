@@ -357,12 +357,8 @@ Player.prototype.UpdateSharedLos = function()
 
 	var sharedLos = [];
 	for (var i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
-		if (this.IsAlly(i))
-		{
-			var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
-			if (cmpPlayer && cmpPlayer.IsAlly(this.playerID))
-				sharedLos.push(i);
-		}
+		if (this.IsMutualAlly(i))
+			sharedLos.push(i);
 
 	cmpRangeManager.SetSharedLos(this.playerID, sharedLos);
 };
@@ -428,6 +424,19 @@ Player.prototype.SetAlly = function(id)
 Player.prototype.IsAlly = function(id)
 {
 	return this.diplomacy[id] > 0;
+};
+
+/**
+ * Check if given player is our ally, and we are its ally
+ */
+Player.prototype.IsMutualAlly = function(id)
+{
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (!cmpPlayerManager)
+		return false;
+
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(id), IID_Player);
+	return this.IsAlly(id) && cmpPlayer && cmpPlayer.IsAlly(this.playerID);
 };
 
 Player.prototype.SetEnemy = function(id)

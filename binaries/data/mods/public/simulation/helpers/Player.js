@@ -214,7 +214,7 @@ function IsOwnedByAllyOfEntity(entity, target)
 	if (cmpOwnership)
 		owner = cmpOwnership.GetOwner();
 
-	// Figure out which player controls the foundation being built
+	// Figure out which player controls the target entity
 	var targetOwner = 0;
 	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
 	if (cmpOwnershipTarget)
@@ -225,6 +225,34 @@ function IsOwnedByAllyOfEntity(entity, target)
 
 	// Check for allied diplomacy status
 	if (cmpPlayer.IsAlly(targetOwner))
+		return true;
+
+	return false;
+}
+
+/**
+ * Returns true if the entity 'target' is owned by a mutual ally of
+ * the owner of 'entity'.
+ */
+function IsOwnedByMutualAllyOfEntity(entity, target)
+{
+	// Figure out which player controls us
+	var owner = 0;
+	var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+	if (cmpOwnership)
+		owner = cmpOwnership.GetOwner();
+
+	// Figure out which player controls the target entity
+	var targetOwner = 0;
+	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
+	if (cmpOwnershipTarget)
+		targetOwner = cmpOwnershipTarget.GetOwner();
+
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
+
+	// Check for mutual allied diplomacy status
+	if (cmpPlayer.IsMutualAlly(targetOwner))
 		return true;
 
 	return false;
@@ -263,6 +291,26 @@ function IsOwnedByAllyOfPlayer(player, target)
 
 	// Check for allied diplomacy status
 	if (cmpPlayer.IsAlly(targetOwner))
+		return true;
+
+	return false;
+}
+
+/**
+ * Returns true if the entity 'target' is owned by a mutual ally of player
+ */
+function IsOwnedByMutualAllyOfPlayer(player, target)
+{
+	var targetOwner = 0;
+	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
+	if (cmpOwnershipTarget)
+		targetOwner = cmpOwnershipTarget.GetOwner();
+
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
+
+	// Check for mutual allied diplomacy status
+	if (cmpPlayer.IsMutualAlly(targetOwner))
 		return true;
 
 	return false;
@@ -312,8 +360,10 @@ Engine.RegisterGlobal("LoadPlayerSettings", LoadPlayerSettings);
 Engine.RegisterGlobal("QueryOwnerInterface", QueryOwnerInterface);
 Engine.RegisterGlobal("QueryPlayerIDInterface", QueryPlayerIDInterface);
 Engine.RegisterGlobal("IsOwnedByAllyOfEntity", IsOwnedByAllyOfEntity);
+Engine.RegisterGlobal("IsOwnedByMutualAllyOfEntity", IsOwnedByMutualAllyOfEntity);
 Engine.RegisterGlobal("IsOwnedByPlayer", IsOwnedByPlayer);
 Engine.RegisterGlobal("IsOwnedByGaia", IsOwnedByGaia);
 Engine.RegisterGlobal("IsOwnedByAllyOfPlayer", IsOwnedByAllyOfPlayer);
+Engine.RegisterGlobal("IsOwnedByMutualAllyOfPlayer", IsOwnedByMutualAllyOfPlayer);
 Engine.RegisterGlobal("IsOwnedByNeutralOfPlayer", IsOwnedByNeutralOfPlayer);
 Engine.RegisterGlobal("IsOwnedByEnemyOfPlayer", IsOwnedByEnemyOfPlayer);

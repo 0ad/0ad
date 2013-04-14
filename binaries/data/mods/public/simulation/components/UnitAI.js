@@ -4212,9 +4212,9 @@ UnitAI.prototype.CanGarrison = function(target)
 	if (!cmpGarrisonHolder)
 		return false;
 
-	// Verify that the target is owned by this entity's player
+	// Verify that the target is owned by this entity's player or a mutual ally of this player
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || !IsOwnedByPlayer(cmpOwnership.GetOwner(), target))
+	if (!cmpOwnership || !(IsOwnedByPlayer(cmpOwnership.GetOwner(), target) || IsOwnedByMutualAllyOfPlayer(cmpOwnership.GetOwner(), target)))
 		return false;
 
 	// Don't let animals garrison for now
