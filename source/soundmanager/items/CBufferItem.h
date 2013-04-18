@@ -32,11 +32,11 @@ public:
   
   virtual void SetLooping(bool loops);
   virtual bool IdleTask();
-    void Attach(CSoundData* itemData);
-   bool CanAttach(CSoundData* itemData);
+
+  virtual void Attach(CSoundData* itemData);
 
 protected:  
-  virtual void ReleaseOpenAL();
+  void ReleaseOpenALBuffer();
   
 };
 

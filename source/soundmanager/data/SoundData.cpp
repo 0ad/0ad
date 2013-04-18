@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "SoundData.h"
+#include "soundmanager/SoundManager.h"
 
 #if CONFIG2_AUDIO
 
@@ -35,11 +36,11 @@ CSoundData::CSoundData()
 
 CSoundData::~CSoundData()
 {
-//	LOGERROR(L"Sound data deleted %ls\n", m_FileName->c_str() );
-
+	AL_CHECK
 	if (m_ALBuffer != 0)
 		alDeleteBuffers(1, &m_ALBuffer);
-
+	m_ALBuffer = 0;
+	AL_CHECK
 	delete m_FileName;
 }
 

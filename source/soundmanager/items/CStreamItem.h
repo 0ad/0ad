@@ -33,11 +33,10 @@ public:
   
   virtual void SetLooping(bool loops);
   virtual bool IdleTask();
-  virtual bool CanAttach(CSoundData* itemData);
   virtual void Attach(CSoundData* itemData);
 
 protected:  
-  virtual void ReleaseOpenAL();
+  void ReleaseOpenALStream();
 };
 
 #endif // CONFIG2_AUDIO
