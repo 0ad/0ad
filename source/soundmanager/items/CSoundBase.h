@@ -24,8 +24,8 @@
 
 #include "lib/external_libraries/openal.h"
 #include "ps/ThreadUtil.h"
-#include "soundmanager/items/ISoundItem.h"
 #include "soundmanager/data/SoundData.h"
+#include "soundmanager/items/ISoundItem.h"
 
 class CSoundBase : public ISoundItem
 {
@@ -34,7 +34,6 @@ protected:
 	ALuint m_ALSource;
 	CSoundData* m_SoundData;
 
-	bool m_IsManaged;
 	bool m_LastPlay;
 	bool m_Looping;
 	bool m_ShouldBePlaying;
@@ -42,7 +41,7 @@ protected:
 
 	double m_StartFadeTime;
 	double m_EndFadeTime;
-	double m_TouchTime;
+
 	ALfloat	m_StartVolume;
 	ALfloat	m_EndVolume;
 	CMutex m_ItemMutex;
@@ -52,47 +51,44 @@ public:
 	
 	virtual ~CSoundBase();
 	
-	virtual bool InitOpenAL();
-	virtual void ResetVars();
-	virtual void EnsurePlay();
+	bool InitOpenAL();
+	void ResetVars();
+	void EnsurePlay();
 
-	virtual void SetGain(ALfloat gain);
-	virtual void SetRollOff(ALfloat gain);
-	virtual	void SetPitch(ALfloat pitch);
-	virtual	void SetDirection(const CVector3D& direction);
-	virtual	void SetCone(ALfloat innerCone, ALfloat outerCone, ALfloat coneGain);
-	virtual void SetLastPlay(bool last);
-	virtual	void ReleaseOpenAL();
-	virtual void TouchTimer();
-	virtual	void SetIsManaged(bool manage);
-	
-	virtual	bool IsFading();
+	void SetGain(ALfloat gain);
+	void SetRollOff(ALfloat gain);
+	void SetPitch(ALfloat pitch);
+	void SetDirection(const CVector3D& direction);
+	void SetCone(ALfloat innerCone, ALfloat outerCone, ALfloat coneGain);
+	void SetLastPlay(bool last);
+	void ReleaseOpenAL();
+	bool IsFading();
 
 	void Play();
 	void PlayAndDelete();
-	bool IdleTask();
 	void PlayLoop();
 	void Stop();
 	void StopAndDelete();
 	void FadeToIn(ALfloat newVolume, double fadeDuration);
-	void Attach(CSoundData* itemData);
-	 bool CanAttach(CSoundData* itemData);
 
 	void PlayAsMusic();
 	void PlayAsAmbient();
+	bool GetLooping();
+	bool IsPlaying();
 
-	CStrW* GetName();
-
-	virtual bool GetLooping();
-	virtual void SetLooping(bool loops);
-	virtual bool IsPlaying();
-	virtual void SetLocation(const CVector3D& position);
-	virtual void FadeAndDelete(double fadeTime);
-	virtual void FadeAndPause(double fadeTime);
-	virtual	bool SoundStale();
+	void SetLocation(const CVector3D& position);
+	void FadeAndDelete(double fadeTime);
+	void FadeAndPause(double fadeTime);
 
 	void Pause();
 	void Resume();
+
+	CStrW* GetName();
+
+	virtual void SetLooping(bool loops);
+	virtual bool IdleTask();
+	virtual void Attach(CSoundData* itemData);
+
 protected:
 
 	void SetNameFromPath(VfsPath& itemPath);

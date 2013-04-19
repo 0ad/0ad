@@ -59,11 +59,12 @@ EntityGroups.prototype.add = function(ents)
 				continue;
 
 			var templateName = entState.template;
-			// Special handling for garrisoned units
-			if (templateName && templateName.indexOf("&") != -1)
-				var key = templateName;
-			else
-				var key = GetTemplateData(templateName).selectionGroupName || templateName;
+			var key = GetTemplateData(templateName).selectionGroupName || templateName;
+
+			// Prefix garrisoned unit's selection name with the player they belong to
+			var index = templateName.indexOf("&");
+			if (index != -1 && key.indexOf("&") == -1)
+				key = templateName.slice(0, index+1) + key;
 
 			if (this.groups[key])
 				this.groups[key] += 1;

@@ -30,6 +30,16 @@ Gate.prototype.OnOwnershipChanged = function(msg)
 	}
 };
 
+Gate.prototype.OnDiplomacyChanged = function(msg)
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (cmpOwnership && cmpOwnership.GetOwner() == msg.player)
+	{
+		this.allies = [];
+		this.SetupRangeQuery(msg.player);
+	}
+};
+
 /**
  * Cleanup on destroy
  */

@@ -41,8 +41,6 @@ bool JAmbientSound::Play(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSE
 
 		if (aSnd)
 			aSnd->PlayAsAmbient();
-		else
-			LOGERROR(L"sound item could not be loaded to play: %ls\n", m_FileName.string().c_str());
 	}
 #endif // CONFIG2_AUDIO
 	return true;
@@ -57,8 +55,6 @@ bool JAmbientSound::Loop(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSE
 
 		if (aSnd)
 			aSnd->PlayAsAmbient();
-		else
-			LOGERROR(L"sound item could not be loaded to loop: %ls\n", m_FileName.string().c_str());
 	}
 #endif // CONFIG2_AUDIO
 	return true;

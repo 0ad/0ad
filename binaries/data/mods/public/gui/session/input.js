@@ -227,6 +227,10 @@ function getActionInfo(action, target)
 			data.command = "garrison";
 			data.target = target;
 			cursor = "action-garrison";
+			tooltip = "Current garrison: " + targetState.garrisonHolder.entities.length
+				+ "/" + targetState.garrisonHolder.capacity;
+			if (targetState.garrisonHolder.entities.length >= targetState.garrisonHolder.capacity)
+				tooltip = "[color=\"orange\"]" + tooltip + "[/color]";
 		}
 		else if (targetState.resourceSupply)
 		{
@@ -311,12 +315,16 @@ function getActionInfo(action, target)
 		case "garrison":
 			if (hasClass(entState, "Unit") && targetState.garrisonHolder && (playerOwned || mutualAllyOwned))
 			{
+				var tooltip = "Current garrison: " + targetState.garrisonHolder.entities.length
+					+ "/" + targetState.garrisonHolder.capacity;
+				if (targetState.garrisonHolder.entities.length >= targetState.garrisonHolder.capacity)
+					tooltip = "[color=\"orange\"]" + tooltip + "[/color]";
 				var allowedClasses = targetState.garrisonHolder.allowedClasses;
 				for each (var unitClass in entState.identity.classes)
 				{
 					if (allowedClasses.indexOf(unitClass) != -1)
 					{
-						return {"possible": true};
+						return {"possible": true, "tooltip": tooltip};
 					}
 				}
 			}
@@ -460,15 +468,16 @@ function determineAction(x, y, fromMinimap)
 		target = targets[0];
 	}
 
+	var actionInfo = undefined;
 	if (preSelectedAction != ACTION_NONE)
 	{
 		switch (preSelectedAction)
 		{
 		case ACTION_GARRISON:
-			if (getActionInfo("garrison", target).possible)
-				return {"type": "garrison", "cursor": "action-garrison", "target": target};
+			if ((actionInfo = getActionInfo("garrison", target)).possible)
+				return {"type": "garrison", "cursor": "action-garrison", "tooltip": actionInfo.tooltip, "target": target};
 			else
-				return 	{"type": "none", "cursor": "action-garrison-disabled", "target": undefined};
+				return {"type": "none", "cursor": "action-garrison-disabled", "target": undefined};
 			break;
 		case ACTION_REPAIR:
 			if (getActionInfo("repair", target).possible)
@@ -482,9 +491,9 @@ function determineAction(x, y, fromMinimap)
 	{
 		return {"type": "attack", "cursor": "action-attack", "target": target};
 	}
-	else if (Engine.HotkeyIsPressed("session.garrison") && getActionInfo("garrison", target).possible)
+	else if (Engine.HotkeyIsPressed("session.garrison") && (actionInfo = getActionInfo("garrison", target)).possible)
 	{
-		return {"type": "garrison", "cursor": "action-garrison", "target": target};
+		return {"type": "garrison", "cursor": "action-garrison", "tooltip": actionInfo.tooltip, "target": target};
 	}
 	else if (Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target).possible)
 	{
@@ -492,7 +501,6 @@ function determineAction(x, y, fromMinimap)
 	}
 	else
 	{
-		var actionInfo = undefined;
 		if ((actionInfo = getActionInfo("setup-trade-route", target)).possible)
 			return {"type": "setup-trade-route", "cursor": "action-setup-trade-route", "tooltip": actionInfo.tooltip, "target": target};
 		else if ((actionInfo = getActionInfo("gather", target)).possible)

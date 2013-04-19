@@ -37,9 +37,15 @@ COggData::COggData()
 
 COggData::~COggData()
 {
+	AL_CHECK
 	ogg->Close();
 
-	alDeleteBuffers(m_BuffersUsed, m_Buffer);
+	AL_CHECK
+	if ( m_BuffersUsed > 0 )
+		alDeleteBuffers(m_BuffersUsed, &m_Buffer[0] );
+
+	AL_CHECK
+	m_BuffersUsed = 0;
 }
 
 void COggData::SetFormatAndFreq(int form, ALsizei freq)
