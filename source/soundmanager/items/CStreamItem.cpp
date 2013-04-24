@@ -103,6 +103,12 @@ bool CStreamItem::IdleTask()
 			{
 				theData->ResetFile();
 			}
+			else
+			{
+				int num_processed;
+				alGetSourcei(m_ALSource, AL_BUFFERS_QUEUED, &num_processed);
+				m_ShouldBePlaying = ( num_processed == 0 );
+			}
 		}
 	}
 	AL_CHECK

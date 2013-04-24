@@ -74,7 +74,8 @@ void CSoundBase::ResetVars()
 	m_EndFadeTime = 0;
 	m_StartVolume = 0;
 	m_EndVolume = 0;
-
+	m_ShouldBePlaying = false;
+	m_IsPaused = false;
 	ResetFade();
 }
 
@@ -84,10 +85,13 @@ void CSoundBase::ResetFade()
 	m_EndFadeTime = 0;
 	m_StartVolume = 0;
 	m_EndVolume = 0;
-	m_ShouldBePlaying = false;
 	m_PauseAfterFade = false;
 }
 
+bool CSoundBase::Finished()
+{
+  return !m_ShouldBePlaying && !IsPlaying();
+}
 
 bool CSoundBase::InitOpenAL()
 {
@@ -141,7 +145,7 @@ void CSoundBase::SetRollOff(ALfloat rolls)
 
 void CSoundBase::EnsurePlay()
 {
-	if (m_ShouldBePlaying && !IsPlaying())
+	if (m_ShouldBePlaying && !m_IsPaused && !IsPlaying())
 		Play();
 }
 
@@ -275,6 +279,7 @@ void CSoundBase::Play()
 	CScopeLock lock(m_ItemMutex);
 
 	m_ShouldBePlaying = true;
+	m_IsPaused = false;
 	AL_CHECK
 	if (m_ALSource != 0)
 	{
@@ -366,7 +371,7 @@ void CSoundBase::Stop()
 	}
 }
 
-CStrW* CSoundBase::GetName()
+Path* CSoundBase::GetName()
 {
 	if ( m_SoundData )
 		return m_SoundData->GetFileName();
@@ -378,6 +383,7 @@ void CSoundBase::Pause()
 {
   if (m_ALSource != 0)
   {
+		m_IsPaused = true;
     alSourcePause(m_ALSource);
     AL_CHECK
   }

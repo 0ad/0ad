@@ -57,7 +57,7 @@ void CSoundData::ReleaseSoundData(CSoundData* theData)
 
 	if (theData->DecrementCount())
 	{
-		if ((itemFind = CSoundData::sSoundData->find( *theData->GetFileName() )) != sSoundData->end())
+		if ((itemFind = CSoundData::sSoundData->find( theData->GetFileName()->string() )) != sSoundData->end())
 		{
 			CSoundData::sSoundData->erase(itemFind);
 		}
@@ -74,14 +74,13 @@ CSoundData* CSoundData::SoundDataFromFile(const VfsPath& itemPath)
 	DataMap::iterator itemFind;
 	CSoundData* answer = NULL;
 
-
 	if ((itemFind = CSoundData::sSoundData->find(itemPath.string())) != sSoundData->end())
 	{
 		answer = itemFind->second;
 	}
 	else
 	{
-	   	if (fExt == ".ogg")
+	  if (fExt == ".ogg")
 			answer = SoundDataFromOgg(itemPath);
 	
 		if (answer && answer->IsOneShot()) 
@@ -123,7 +122,7 @@ int CSoundData::GetBufferCount()
 	return 1;
 }
 
-CStrW* CSoundData::GetFileName()
+Path* CSoundData::GetFileName()
 {
 	return m_FileName;
 }
@@ -132,7 +131,7 @@ void CSoundData::SetFileName(const Path& aName)
 {
 	delete m_FileName;
 
-	m_FileName = new CStrW( aName.string() );
+	m_FileName = new Path( aName );
 }
 
 CSoundData* CSoundData::IncrementCount()

@@ -34,6 +34,7 @@
 
 #define AL_CHECK CSoundManager::al_check(__func__, __LINE__);
 
+typedef std::vector<VfsPath> PlayList;
 typedef std::vector<ISoundItem*> ItemsList;
 typedef std::map<entity_id_t, ISoundItem*> ItemsMap;
 
@@ -58,6 +59,7 @@ protected:
 	ISoundItem* m_CurrentEnvirons;
 	CSoundManagerWorker* m_Worker;
 	CMutex m_DistressMutex;
+	PlayList* m_PlayListItems;
 
 	float m_Gain;
 	float m_MusicGain;
@@ -72,7 +74,11 @@ protected:
 	bool m_MusicPaused;
 	bool m_AmbientPaused;
 	bool m_ActionPaused;
+	bool m_RunningPlaylist;
+ 	bool m_PlayingPlaylist;
+  bool m_LoopingPlaylist;
 
+	long m_PlaylistGap;
 	long m_DistressErrCount;
 	long m_DistressTime;
 
@@ -85,6 +91,10 @@ public:
 	ISoundItem* LoadItem(const VfsPath& itemPath);
 	ISoundItem* ItemForData(CSoundData* itemData);
 	ISoundItem* ItemForEntity( entity_id_t source, CSoundData* sndData);
+
+	void ClearPlayListItems();
+	void StartPlayList( bool doLoop );
+	void AddPlayListItem( VfsPath* itemPath);
 
 	static void ScriptingInit();
 	static void CreateSoundManager();

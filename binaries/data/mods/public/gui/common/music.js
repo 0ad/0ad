@@ -88,23 +88,23 @@ Music.prototype.updateState = function()
 			break;
 
 		case this.states.PEACE:
-			this.switchMusic(this.getRandomTrack(this.tracks.PEACE), 3.0, true);
+			this.startPlayList(this.tracks.PEACE, 3.0, true);
 			break;
 
 		case this.states.BATTLE:
-			this.switchMusic(this.getRandomTrack(this.tracks.BATTLE), 2.0, true);
+			this.startPlayList(this.tracks.BATTLE, 2.0, true);
 			break;
 
 		case this.states.VICTORY:
-			this.switchMusic(this.getRandomTrack(this.tracks.VICTORY), 2.0, true);
+			this.startPlayList(this.tracks.VICTORY, 2.0, true);
 			break;
 
 		case this.states.DEFEAT:
-			this.switchMusic(this.getRandomTrack(this.tracks.DEFEAT), 2.0, true);
+			this.startPlayList(this.tracks.DEFEAT, 2.0, true);
 			break;
 
 		case this.states.DEFEAT_CUE:
-			this.switchMusic(this.getRandomTrack(this.tracks.DEFEAT_CUE), 2.0, false);
+			this.startPlayList(this.tracks.DEFEAT_CUE, 2.0, false);
 			this.setDelay(this.states.DEFEAT, 7000);
 			break;
 
@@ -142,6 +142,23 @@ Music.prototype.storeTracks = function(civMusic)
 Music.prototype.getRandomTrack = function(tracks)
 {
 	return tracks[getRandom(0, tracks.length-1)];
+};
+
+Music.prototype.startPlayList = function(tracks, fadeInPeriod, isLooping)
+{
+  this.currentMusicList = new MusicList;
+  for (var i in tracks)
+  {
+    this.currentMusicList.addItem( this.RELATIVE_MUSIC_PATH + tracks[i] )
+  }
+
+  if (this.currentMusicList)
+  {
+    if (isLooping)
+      this.currentMusicList.loop();
+    else
+      this.currentMusicList.play();
+  }
 };
 
 Music.prototype.switchMusic = function(track, fadeInPeriod, isLooping)
