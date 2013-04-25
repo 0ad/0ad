@@ -37,10 +37,11 @@ public:
 	virtual bool IsPlaying() = 0;
 	
 	
-	virtual CStrW* GetName() = 0;
+	virtual Path* GetName() = 0;
 	virtual bool IdleTask() = 0;
 	virtual	bool IsFading() = 0;
-
+	virtual bool Finished() = 0;
+	
 	virtual void Play() = 0;
 	virtual void Stop() = 0;
 

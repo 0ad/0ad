@@ -25,6 +25,7 @@
 #include "soundmanager/items/CStreamItem.h"
 #include "soundmanager/js/SoundPlayer.h"
 #include "soundmanager/js/AmbientSound.h"
+#include "soundmanager/js/MusicList.h"
 #include "soundmanager/js/MusicSound.h"
 #include "soundmanager/js/Sound.h"
 #include "lib/external_libraries/libsdl.h"
@@ -214,6 +215,7 @@ void CSoundManager::ScriptingInit()
 	JMusicSound::ScriptingInit();
 	JSound::ScriptingInit();
 	JSoundPlayer::ScriptingInit();
+	JMusicList::ScriptingInit();
 }
 
 
@@ -256,6 +258,7 @@ CSoundManager::CSoundManager()
 	m_Device	= NULL;
 	m_Context	= NULL;
 	m_Worker	= NULL;
+	m_PlayListItems	= NULL;
 	m_CurrentTune		= 0;
 	m_Gain				= 1;
 	m_MusicGain			= 1;
@@ -272,12 +275,19 @@ CSoundManager::CSoundManager()
 	m_DistressTime	= 0;
 	m_DistressErrCount = 0;
 
+	m_PlayingPlaylist = false;
+	m_LoopingPlaylist = false;
+	m_RunningPlaylist = false;
+	m_PlaylistGap      = 0;
+
 	m_Enabled = false;
 	AlcInit();
 
 	if ( m_Enabled )
 	{
 		InitListener();
+
+		m_PlayListItems = new PlayList;
 
 		m_Worker = new CSoundManagerWorker();
 		m_Worker->SetEnabled( true );
@@ -297,6 +307,9 @@ CSoundManager::~CSoundManager()
 		delete m_Worker;
 	}
 	AL_CHECK
+
+	if ( m_PlayListItems )
+		delete m_PlayListItems;
 
 	if ( m_ALSourceBuffer != NULL )
 		delete[] m_ALSourceBuffer;
@@ -453,6 +466,42 @@ long CSoundManager::GetBufferSize()
 	return m_BufferSize;
 }
 
+void CSoundManager::AddPlayListItem( VfsPath* itemPath)
+{
+  m_PlayListItems->push_back( *itemPath );
+}
+
+void CSoundManager::ClearPlayListItems()
+{
+  if ( m_PlayingPlaylist )
+    SetMusicItem( NULL );
+
+  m_PlayingPlaylist = false;
+  m_LoopingPlaylist = false;
+  m_RunningPlaylist = false;
+
+  m_PlayListItems->clear();
+}
+
+void CSoundManager::StartPlayList( bool doLoop )
+{
+  if ( m_PlayListItems->size() > 0 )
+  {
+    m_PlayingPlaylist = true;
+    m_LoopingPlaylist = doLoop;
+    m_RunningPlaylist = false;
+    
+    ISoundItem* aSnd = g_SoundManager->LoadItem( (m_PlayListItems->at( 0 )) );
+    if ( aSnd )
+      SetMusicItem( aSnd );
+    else
+    {
+      SetMusicItem( NULL );
+    }
+  }
+}
+
+
 void CSoundManager::SetMasterGain(float gain)
 {
 	if ( m_Enabled )
@@ -527,7 +576,35 @@ void CSoundManager::IdleTask()
 	if ( m_Enabled )
 	{
 		if (m_CurrentTune)
+		{
 			m_CurrentTune->EnsurePlay();
+			if ( m_PlayingPlaylist && m_RunningPlaylist )
+			{
+				if ( m_CurrentTune->Finished() )
+				{
+					if ( m_PlaylistGap == 0 )
+					{
+						m_PlaylistGap = timer_Time() + 15;
+					}
+					else if ( m_PlaylistGap < timer_Time() )
+					{
+						m_PlaylistGap = 0;
+						PlayList::iterator it = find (m_PlayListItems->begin(), m_PlayListItems->end(), *(m_CurrentTune->GetName()) );
+						it++;
+
+						Path nextPath;
+						if ( it == m_PlayListItems->end() )
+							nextPath = m_PlayListItems->at( 0 );
+						else
+							nextPath = *it;
+
+						ISoundItem* aSnd = g_SoundManager->LoadItem( nextPath );
+						if ( aSnd )
+							SetMusicItem( aSnd );
+					}
+				}
+			}
+		}
 
 		if (m_CurrentEnvirons)
 			m_CurrentEnvirons->EnsurePlay();
@@ -614,7 +691,15 @@ void CSoundManager::SetMusicItem(ISoundItem* anItem)
 		{
 			m_CurrentTune = anItem;
 			m_CurrentTune->SetGain(0);
-			m_CurrentTune->PlayLoop();
+
+			if ( m_PlayingPlaylist )
+			{
+				m_RunningPlaylist = true;
+				m_CurrentTune->Play();
+			}
+			else
+				m_CurrentTune->PlayLoop();
+
 			m_CurrentTune->FadeToIn( m_MusicGain, 1.00);
 		}
 		else

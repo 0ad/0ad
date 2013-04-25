@@ -8,16 +8,21 @@ function ProcessCommand(player, cmd)
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	if (!cmpPlayerMan || player < 0)
 		return;
-	
+
 	var playerEnt = cmpPlayerMan.GetPlayerByID(player);
 	if (playerEnt == INVALID_ENTITY)
 		return;
-	
+
 	var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 	if (!cmpPlayer)
 		return;
-	
+
 	var controlAllUnits = cmpPlayer.CanControlAllUnits();
+
+	var entities;
+	if (cmd.entities)
+		entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+
 
 	// Note: checks of UnitAI targets are not robust enough here, as ownership
 	//	can change after the order is issued, they should be checked by UnitAI
@@ -82,14 +87,12 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "walk":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Walk(cmd.x, cmd.z, cmd.queued);
 		});
 		break;
 
 	case "attack-walk":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.queued);
 		});
@@ -103,7 +106,6 @@ function ProcessCommand(player, cmd)
 		}
 
 		// See UnitAI.CanAttack for target checks
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Attack(cmd.target, cmd.queued);
 		});
@@ -117,7 +119,6 @@ function ProcessCommand(player, cmd)
 		}
 
 		// See UnitAI.CanHeal for target checks
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Heal(cmd.target, cmd.queued);
 		});
@@ -132,7 +133,6 @@ function ProcessCommand(player, cmd)
 		}
 
 		// See UnitAI.CanRepair for target checks
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
 		});
@@ -146,14 +146,12 @@ function ProcessCommand(player, cmd)
 		}
 
 		// See UnitAI.CanGather for target checks
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Gather(cmd.target, cmd.queued);
 		});
 		break;
 		
 	case "gather-near-position":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.GatherNearPosition(cmd.x, cmd.z, cmd.resourceType, cmd.resourceTemplate, cmd.queued);
 		});
@@ -168,15 +166,12 @@ function ProcessCommand(player, cmd)
 		}
 
 		// See UnitAI.CanReturnResource for target checks
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
 		});
 		break;
 
 	case "train":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		
 		// Check entity limits
 		var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		var template = cmpTempMan.GetTemplate(cmd.template);
@@ -267,7 +262,6 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "delete-entities":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		for each (var ent in entities)
 		{
 			var cmpHealth = Engine.QueryInterface(ent, IID_Health);
@@ -283,7 +277,6 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "set-rallypoint":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		for each (var ent in entities)
 		{
 			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
@@ -299,7 +292,6 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "unset-rallypoint":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		for each (var ent in entities)
 		{
 			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
@@ -317,7 +309,6 @@ function ProcessCommand(player, cmd)
 		// Verify that the building can be controlled by the player or is mutualAlly
 		if (CanControlUnitOrIsAlly(cmd.target, player, controlAllUnits))
 		{
-			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 			GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 				cmpUnitAI.Garrison(cmd.target, cmd.queued);
 			});
@@ -329,7 +320,6 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "stop":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Stop(cmd.queued);
 		});
@@ -341,10 +331,10 @@ function ProcessCommand(player, cmd)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
 			var notUngarrisoned = 0;
+
+			// The owner can ungarrison every garrisoned unit
 			if (IsOwnedByPlayer(player, cmd.garrisonHolder))
-				var entities = cmd.entities;
-			else
-				var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+				entities = cmd.entities;
 
 			for each (var ent in entities)
 				if (!cmpGarrisonHolder || !cmpGarrisonHolder.Unload(ent))
@@ -402,7 +392,6 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "formation":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player, cmd.name).forEach(function(cmpUnitAI) {
 			cmpUnitAI.MoveIntoFormation(cmd);
 		});
@@ -422,7 +411,6 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "stance":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		for each (var ent in entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
@@ -432,7 +420,6 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "wall-to-gate":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		for each (var ent in entities)
 		{
 			TryTransformWallToGate(ent, cmpPlayer, cmd.template);
@@ -440,7 +427,6 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "lock-gate":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		for each (var ent in entities)
 		{
 			var cmpGate = Engine.QueryInterface(ent, IID_Gate);
@@ -455,7 +441,7 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "setup-trade-route":
-		for each (var ent in cmd.entities)
+		for each (var ent in entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if (cmpUnitAI)
@@ -464,7 +450,7 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "select-trading-goods":
-		for each (var ent in cmd.entities)
+		for each (var ent in entities)
 		{
 			var cmpTrader = Engine.QueryInterface(ent, IID_Trader);
 			if (cmpTrader)
@@ -488,7 +474,6 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "pack":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		for each (var ent in entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
@@ -503,7 +488,6 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "cancel-pack":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		for each (var ent in entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);

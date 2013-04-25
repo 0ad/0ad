@@ -38,7 +38,8 @@ protected:
 	bool m_Looping;
 	bool m_ShouldBePlaying;
 	bool m_PauseAfterFade;
-
+	bool m_IsPaused;
+	
 	double m_StartFadeTime;
 	double m_EndFadeTime;
 
@@ -63,7 +64,8 @@ public:
 	void SetLastPlay(bool last);
 	void ReleaseOpenAL();
 	bool IsFading();
-
+	bool Finished();
+	
 	void Play();
 	void PlayAndDelete();
 	void PlayLoop();
@@ -83,7 +85,7 @@ public:
 	void Pause();
 	void Resume();
 
-	CStrW* GetName();
+	Path* GetName();
 
 	virtual void SetLooping(bool loops);
 	virtual bool IdleTask();
