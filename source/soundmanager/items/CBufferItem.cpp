@@ -74,7 +74,7 @@ bool CBufferItem::IdleTask()
 	{
 		CScopeLock lock(m_ItemMutex);
 		int proc_state;
-		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		AL_CHECK
 		m_ShouldBePlaying = (proc_state != AL_STOPPED);
 		return (proc_state != AL_STOPPED);

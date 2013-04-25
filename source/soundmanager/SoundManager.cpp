@@ -317,8 +317,6 @@ CSoundManager::~CSoundManager()
 	if ( m_Context )
 		alcDestroyContext(m_Context);
 	
-	AL_CHECK
-
 	if ( m_Device )
 		alcCloseDevice(m_Device);
 }

@@ -70,7 +70,7 @@ bool CStreamItem::IdleTask()
 	if (m_ALSource != 0)
 	{
 		int proc_state;
-		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		AL_CHECK
 		
 		if (proc_state == AL_STOPPED)
