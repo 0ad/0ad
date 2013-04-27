@@ -22,6 +22,7 @@ uniform float time;
 
 varying vec3 worldPos;
 varying float waterDepth;
+varying vec4 waterInfo;
 
 uniform sampler2D normalMap;
 uniform sampler2D normalMap2;
@@ -36,8 +37,6 @@ uniform sampler2D normalMap2;
 	uniform sampler2D depthTex;
 #endif
 #if USE_FOAM || USE_WAVES
-	uniform sampler2D heightmap;
-	uniform sampler2D infoTex;
 	uniform sampler2D Foam;
 	uniform sampler2D waveTex;
 #endif
@@ -97,9 +96,9 @@ vec3 get_fog(vec3 color)
 void main()
 {
 	#if USE_FOAM || USE_WAVES
-		vec4 heightmapval = texture2D(heightmap, gl_TexCoord[3].zw);
-		vec2 beachOrientation = heightmapval.rb - vec2(0.5,0.5);
-		float distToShore = heightmapval.a;
+		vec4 heightmapval = waterInfo;
+		vec2 beachOrientation = heightmapval.rg;
+		float distToShore = heightmapval.b;
 	#endif
 	
   	vec3 n, l, h, v;		// Normal, light vector, half-vector and view vector (vector to eye)
@@ -182,11 +181,11 @@ void main()
 		// texture is not rotated, moves twice faster in the opposite direction, translated.
 		vec2 foam2RC = gl_TexCoord[0].st*1.8 + vec2(time*-0.019,time*-0.012) - 0.012*n.xz + vec2(0.4,0.2);
 		
-		vec2 WaveRocking = cos(time*1.2566) * beachOrientation * clamp(1.0 - distToShore*2.0,0.1,1.0)/3.0;
+		vec2 WaveRocking = cos(time*1.2566) * beachOrientation * clamp(1.0 - distToShore,0.1,1.0)/6.0;
 		vec4 foam1 = texture2D(Foam, foam1RC + vec2(-WaveRocking.t,WaveRocking.s));
 		vec4 foam2 = foam1.r*texture2D(Foam, foam2RC + WaveRocking);
 		
-		vec3 finalFoam = min((foam2).rrr * texture2D(infoTex,gl_TexCoord[3].zw).g,1.0);
+	vec3 finalFoam = min((foam2).rrr * waterInfo.a,1.0);
 		
 		if ((1.0 - finalFoam.r) >= wavyFactor)
 			finalFoam = vec3(0.0);

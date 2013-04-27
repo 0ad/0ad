@@ -45,6 +45,10 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpWaterManager.h"
 
+#include "tools/atlas/GameInterface/GameLoop.h"
+
+extern GameLoopState* g_AtlasGameLoop;
+
 const ssize_t BlendOffsets[9][2] = {
 	{  0, -1 },
 	{ -1, -1 },
@@ -1297,7 +1301,7 @@ void CPatchRData::BuildWater()
 	CmpPtr<ICmpWaterManager> cmpWaterManager(*m_Simulation, SYSTEM_ENTITY);
 	if (!cmpWaterManager)
 		return;
-
+	
 	// Build data for water
 	std::vector<SWaterVertex> water_vertex_data;
 	std::vector<GLushort> water_indices;
@@ -1307,8 +1311,15 @@ void CPatchRData::BuildWater()
 	// TODO: This is not (yet) exported via the ICmp interface so... we stick to these values which can be compiled in defaults
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 
+	if (WaterMgr->m_NeedsFullReloading && !g_AtlasGameLoop->running)
+	{
+		WaterMgr->m_NeedsFullReloading = false;
+		WaterMgr->CreateSuperfancyInfo(m_Simulation);
+	}
 	CPatch* patch = m_Patch;
 	CTerrain* terrain = patch->m_Parent;
+
+	ssize_t mapSize = (size_t)terrain->GetVerticesPerSide();
 
 	ssize_t x1 = m_Patch->m_X*PATCH_SIZE;
 	ssize_t z1 = m_Patch->m_Z*PATCH_SIZE;
@@ -1374,6 +1385,21 @@ void CPatchRData::BuildWater()
 						u8(clamp(depthFrac*255.0f, 0.0f, 255.0f)),
 						u8(clamp(alpha*255.0f, 0.0f, 255.0f)));
 
+					int tx = x+x1;
+					int ty = z+z1 + j*water_cell_size;
+
+					if (g_AtlasGameLoop->running)
+					{
+						// currently no foam is used so push whatever
+						vertex.m_WaterData = CVector4D(0.0f,0.0f,0.0f,0.0f);
+					}
+					else
+					{
+						vertex.m_WaterData = CVector4D(WaterMgr->m_WaveX[tx + ty*mapSize],
+												   WaterMgr->m_WaveZ[tx + ty*mapSize],
+												   WaterMgr->m_DistanceToShore[tx + ty*mapSize],
+												   WaterMgr->m_FoamFactor[tx + ty*mapSize]);
+					}
 					water_index_map[z+j*water_cell_size][x] = water_vertex_data.size();
 					water_vertex_data.push_back(vertex);
 				}
@@ -1418,6 +1444,7 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader)
 	GLsizei stride = sizeof(SWaterVertex);
 	shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base[m_VBWater->m_Index].m_DepthData);
 	shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
+	shader->TexCoordPointer(GL_TEXTURE0, 4, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_WaterData);
 
 	shader->AssertPointersBound();
 

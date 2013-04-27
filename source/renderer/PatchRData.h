@@ -109,8 +109,9 @@ private:
 		//   p*255 + q*-255 + r = depth of water
 		//   a = depth-dependent alpha
 		SColor4ub m_DepthData;
+		CVector4D m_WaterData;
 	};
-	cassert(sizeof(SWaterVertex) == 16);
+	cassert(sizeof(SWaterVertex) == 32);
 
 	// build this renderdata object
 	void Build();

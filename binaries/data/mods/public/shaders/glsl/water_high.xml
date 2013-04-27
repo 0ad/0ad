@@ -6,6 +6,7 @@
         <stream name="color"/>
         <attrib name="a_vertex" semantics="gl_Vertex"/>
         <attrib name="a_encodedDepth" semantics="gl_Color"/>
+        <attrib name="a_waterInfo" semantics="gl_MultiTexCoord0"/>
     </vertex>
 
     <fragment file="glsl/water_high.fs"/>

@@ -28,6 +28,7 @@
 #include "ps/Overlay.h"
 #include "renderer/VertexBufferManager.h"
 
+class CSimulation2;
 
 struct SWavesVertex {
 	// vertex position
@@ -52,10 +53,11 @@ public:
 	CTexturePtr m_NormalMap[60];
 	CTexturePtr m_Foam;
 	CTexturePtr m_Wave;
-	u32* m_Heightmap;
+	float* m_WaveX;
+	float* m_WaveZ;
+	float* m_DistanceToShore;
+	float* m_FoamFactor;
 	
-	GLuint m_HeightmapTexture;
-	GLuint m_OtherInfoTex;
 	ssize_t m_TexSize;
 
 	GLuint m_depthTT;
@@ -143,7 +145,7 @@ public:
 	/**
 	 * CreateSuperfancyInfo: creates textures and wave vertices for superfancy water
 	 */
-	void CreateSuperfancyInfo();
+	void CreateSuperfancyInfo(CSimulation2* simulation);
 
 	/**
 	 * Updates the settings to the one from the renderer, and sets m_NeedsReloading.
