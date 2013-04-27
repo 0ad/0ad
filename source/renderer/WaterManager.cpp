@@ -377,14 +377,14 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			}
 			// normalizes the terrain info to avoid foam moving at too different speeds.
 			normal *= 0.012345679f;
-			normal[1] = 0.1;
+			normal[1] = 0.1f;
 			normal = normal.Normalized();
 
 			m_WaveX[j*mapSize + i] = normal[0];
 			m_WaveZ[j*mapSize + i] = normal[2];
 			// distance is /5.0 to be a [0,1] value.
 
-			m_DistanceToShore[j*mapSize + i] = sqrt(distanceToShore)/5.0; // TODO: this can probably be cached as I'm integer here.
+			m_DistanceToShore[j*mapSize + i] = sqrtf(distanceToShore)/5.0f; // TODO: this can probably be cached as I'm integer here.
 
 			// computing the amount of foam I want
 
