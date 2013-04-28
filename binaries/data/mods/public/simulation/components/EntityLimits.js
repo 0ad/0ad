@@ -7,6 +7,7 @@ EntityLimits.prototype.Schema =
 		  "<CivilCentre/>" +
 		  "<DefenseTower>25</DefenseTower>" +
 		  "<Fortress>10</Fortress>" +
+		  "<Wonder>1</Wonder>" +
 		  "<Hero>1</Hero>" +
 		  "<Special>" +
 			"<LimitPerCivCentre>1</LimitPerCivCentre>" +

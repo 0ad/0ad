@@ -2,8 +2,8 @@
 <Entity parent="template_unit">
   <Armour>
     <Hack>0.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>2.0</Crush>
+    <Pierce>10.0</Pierce>
+    <Crush>10.0</Crush>
   </Armour>
   <Attack>
     <Slaughter>
@@ -90,9 +90,9 @@
     <HeightOffset>6.5</HeightOffset>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>11.0</WalkSpeed>
+    <WalkSpeed>13.0</WalkSpeed>
     <Run>
-      <Speed>27.5</Speed>
+      <Speed>26.0</Speed>
       <Range>600.0</Range>
       <RangeMin>5.0</RangeMin>
     </Run>
