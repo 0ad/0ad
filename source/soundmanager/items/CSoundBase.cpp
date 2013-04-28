@@ -191,7 +191,7 @@ bool CSoundBase::IsPlaying()
 	{
 		CScopeLock lock(m_ItemMutex);
 		int proc_state;
-		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		AL_CHECK
 
 		return (proc_state == AL_PLAYING);
@@ -334,7 +334,7 @@ void CSoundBase::FadeToIn(ALfloat newVolume, double fadeDuration)
 	if (m_ALSource != 0)
 	{		
 		ALenum proc_state;
-		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		if (proc_state == AL_PLAYING)
 		{
 			m_StartFadeTime = timer_Time();

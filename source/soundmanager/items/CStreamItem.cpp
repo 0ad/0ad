@@ -57,6 +57,8 @@ void CStreamItem::ReleaseOpenALStream()
 		}
 		alSourcei(m_ALSource, AL_BUFFER, NULL);
 		AL_CHECK
+		g_SoundManager->ReleaseALSource(m_ALSource);
+		AL_CHECK
 		m_ALSource = 0;
 	}
 }
@@ -70,7 +72,7 @@ bool CStreamItem::IdleTask()
 	if (m_ALSource != 0)
 	{
 		int proc_state;
-		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		AL_CHECK
 		
 		if (proc_state == AL_STOPPED)

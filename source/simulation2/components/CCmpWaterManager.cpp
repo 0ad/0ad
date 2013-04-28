@@ -32,7 +32,6 @@ public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeToMessageType(MT_Interpolate);
-		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 	}
 
@@ -72,20 +71,13 @@ public:
 	{
 		switch (msg.GetType())
 		{
-		case MT_Interpolate:
-		{
-			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
-			if (CRenderer::IsInitialised())
-				g_Renderer.GetWaterManager()->m_WaterTexTimer += msgData.deltaSimTime;
-			break;
-		}
-		case MT_RenderSubmit:
-		{
-			// Don't actually do rendering here, but tell the renderer how to draw water
-			if (CRenderer::IsInitialised())
-				g_Renderer.GetWaterManager()->m_WaterHeight = m_WaterHeight.ToFloat();
-			break;
-		}
+			case MT_Interpolate:
+			{
+				const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
+				if (CRenderer::IsInitialised())
+					g_Renderer.GetWaterManager()->m_WaterTexTimer += msgData.deltaSimTime;
+				break;
+			}
 			case MT_TerrainChanged:
 			{
 				// Tell the renderer to redraw the map.

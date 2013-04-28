@@ -692,15 +692,10 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 		// we need to actually recompute the whole map settings.
 		if (WaterMgr->m_NeedsFullReloading)
 		{
-			delete[] WaterMgr->m_Heightmap;
-			WaterMgr->m_Heightmap = NULL;
-			glDeleteTextures(1, &WaterMgr->m_HeightmapTexture);
-			WaterMgr->m_NeedsReloading = false;
-			WaterMgr->m_NeedsFullReloading = false;
-			
 			WaterMgr->m_waveTT = 0;
 			WaterMgr->m_depthTT = 0;
 		}
+		WaterMgr->m_NeedsReloading = false;
 	}
 	
 	if (g_AtlasGameLoop->running)
@@ -732,9 +727,12 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 	// Calculating the advanced informations about Foam and all if the quality calls for it.
-	if (WaterMgr->m_Heightmap == NULL && (WaterMgr->m_WaterFoam || WaterMgr->m_WaterCoastalWaves))
+	/*if (WaterMgr->m_NeedsFullReloading && (WaterMgr->m_WaterFoam || WaterMgr->m_WaterCoastalWaves))
+	{
+		WaterMgr->m_NeedsFullReloading = false;
 		WaterMgr->CreateSuperfancyInfo();
-
+	}*/
+	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_DEPTH_TEST);
@@ -783,7 +781,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 		// rendering
 		m->wavesShader->Bind();
 		m->wavesShader->BindTexture("waveTex", WaterMgr->m_Wave);
-		m->wavesShader->BindTexture("infoTex", WaterMgr->m_OtherInfoTex);
 		m->wavesShader->Uniform("time", (float)time);
 		m->wavesShader->Uniform("waviness", WaterMgr->m_Waviness);
 		m->wavesShader->Uniform("mapSize", (float)(WaterMgr->m_TexSize));
@@ -823,8 +820,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	if (WaterMgr->m_WaterFoam || WaterMgr->m_WaterCoastalWaves)
 	{
 		m->fancyWaterShader->BindTexture("Foam", WaterMgr->m_Foam);
-		m->fancyWaterShader->BindTexture("heightmap", WaterMgr->m_HeightmapTexture);
-		m->fancyWaterShader->BindTexture("infoTex", WaterMgr->m_OtherInfoTex);
 		m->fancyWaterShader->Uniform("mapSize", (float)(WaterMgr->m_TexSize));
 	}
 	if (WaterMgr->m_WaterRealDepth)
@@ -840,7 +835,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
-	
 	// TODO: only bind what's really needed for that.
 	m->fancyWaterShader->Uniform("sunDir", lightEnv.GetSunDir());
 	m->fancyWaterShader->Uniform("sunColor", lightEnv.m_SunColor.X);

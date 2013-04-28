@@ -17,15 +17,17 @@ uniform float mapSize;
 
 varying vec3 worldPos;
 varying float waterDepth;
+varying vec4 waterInfo;
 #if USE_SHADOW && USE_SHADOWS
 	varying vec4 v_shadow;
 #endif
 attribute vec3 a_vertex;
 attribute vec4 a_encodedDepth;
-
+attribute vec4 a_waterInfo;
 void main()
 {
 	worldPos = a_vertex;
+	waterInfo = a_waterInfo;
 	waterDepth = dot(a_encodedDepth.xyz, vec3(255.0, -255.0, 1.0));
 	
 	gl_TexCoord[0] = vec4(a_vertex.xz*repeatScale,translation);
