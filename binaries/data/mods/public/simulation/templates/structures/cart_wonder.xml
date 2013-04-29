@@ -6,6 +6,7 @@
   </Footprint>
   <Health>
     <Max>2000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>cart</Civ>
@@ -16,6 +17,7 @@
     <Static width="12.5" depth="12.5"/>
   </Obstruction>
   <VisualActor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
     <Actor>structures/carthaginians/mausoleum.xml</Actor>
   </VisualActor>
 </Entity>
