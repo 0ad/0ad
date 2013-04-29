@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_elephant">
+  <Armour>
+    <Hack>10</Hack>
+    <Pierce>10</Pierce>
+    <Crush>12</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>25.0</Hack>
+      <Crush>25.0</Crush>
+      <MaxRange>8.0</MaxRange>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
+    </Melee>
+    <Charge>
+      <Hack>75.0</Hack>
+      <Crush>75.0</Crush>
+      <MaxRange>8.0</MaxRange>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
+    </Charge>
+  </Attack>
+  <Cost>
+    <Population>3</Population>
+    <Resources>
+      <food>500</food>
+      <metal>500</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Circle radius="4.0"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Identity>
+    <Classes datatype="tokens">Hero -Champion</Classes>
+    <Tooltip>Hero War Elephant.
+Good sieging capability. "Stench" Aura vs. Horses. Can run amok. Countered by Swordsmen and Skirmishers.</Tooltip>
+  </Identity>
+</Entity>

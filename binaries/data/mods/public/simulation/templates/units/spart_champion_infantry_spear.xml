@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
   <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>20.0</Pierce>
-    <Crush>20.0</Crush>
+    <Hack>7</Hack>
+    <Pierce>7</Pierce>
+    <Crush>6</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>12.0</Hack>
-      <Pierce>15.0</Pierce>
       <MaxRange>6.0</MaxRange>
 	  <Bonuses>
 		<BonusCarths>
@@ -49,8 +47,6 @@
 	  </Bonuses>
     </Melee>
     <Charge>
-      <Hack>20.0</Hack>
-      <Pierce>30.0</Pierce>
       <MaxRange>6.0</MaxRange>
 	  <Bonuses>
 		<BonusCarths>
@@ -102,7 +98,7 @@
 	<GenericName>Spartan Hoplite</GenericName>
     <SpecificName>Spartiā́tēs</SpecificName>
     <Tooltip>Champion Spearman.
-Counters: 2x vs. All Cavalry types. Countered by: Skirmishers, Swordsmen, Cavalry Archers. +10% Attack vs. All Non-Greek Units.</Tooltip>
+Counters: 2x vs. All Cavalry types. Countered by: Skirmishers, Swordsmen, Cavalry Archers. +10% Attack vs. All Non-Greek Units. Countered by: Skirmishers, Swordsmen.</Tooltip>
     <History>The Spartans had a very peculiar form of government which enabled them to be professional soldiers. It not only enabled them, but actually forced them to be superior soldiers as a small group of Spartans had to dominate an enormous number of subjects and unwilling allies. The Spartan army was superior in Hellas, and in the rest of the known world. No other army was so well trained, and had such excellent equipment. They believed that traditional training was the key to success, and for centuries they were correct, as they rarely lost a battle in spite of their small numbers. Ironic enough, this concept ended the Spartan supremacy, as the Spartan phalanx could not resist the new sloped Theban phalanx and the invading integrated Macedonian forces. The end of the Spartan power marked the decline of the domination of traditional phalanx warfare.</History>
     <Icon>units/hele_champion_infantry_polis.png</Icon>
   </Identity>

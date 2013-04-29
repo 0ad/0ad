@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/maur_cavalry_swordsman_b">
+  <Armour>
+    <Hack>2</Hack>
+    <Pierce>4</Pierce>
+    <Crush>5</Crush>
+  </Armour>
   <Attack>
     <Melee>
       <Hack>21.0</Hack>
@@ -20,11 +25,6 @@
   <Health>
     <Max>160</Max>
   </Health>
-  <Armour>
-    <Hack>3.0</Hack>
-    <Pierce>5.0</Pierce>
-    <Crush>3.0</Crush>
-  </Armour>
   <UnitMotion>
     <WalkSpeed>12.5</WalkSpeed>
     <Run>

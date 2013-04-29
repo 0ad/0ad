@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
+  <Armour>
+    <Hack>5</Hack>
+    <Pierce>20</Pierce>
+    <Crush>5</Crush>
+    <Foundation>
+      <Hack>3</Hack>
+      <Pierce>10</Pierce>
+      <Crush>3</Crush>
+    </Foundation>
+  </Armour>
   <Identity>
     <GenericName>Civic Structure</GenericName>
     <Classes datatype="tokens">Civic</Classes>

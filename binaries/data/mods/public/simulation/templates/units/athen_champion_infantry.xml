@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
-  <Armour>
-    <Hack>9.0</Hack>
-    <Pierce>9.0</Pierce>
-    <Crush>9.0</Crush>
-  </Armour>
   <Attack>
     <Melee>
-      <Pierce>16.0</Pierce>
+      <Hack>16.0</Hack>
       <MaxRange>6.0</MaxRange>
     </Melee>
   </Attack>

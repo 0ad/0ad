@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/maur_cavalry_javelinist_a">
+  <Armour>
+    <Hack>3</Hack>
+    <Pierce>5</Pierce>
+    <Crush>5</Crush>
+  </Armour>
   <Identity>
 	<Rank>Elite</Rank>
   </Identity>
@@ -10,11 +15,6 @@
   <Health>
     <Max>170</Max>
   </Health>
-  <Armour>
-    <Hack>4.0</Hack>
-    <Pierce>6.0</Pierce>
-    <Crush>4.0</Crush>
-  </Armour>
   <UnitMotion>
     <WalkSpeed>13.0</WalkSpeed>
     <Run>

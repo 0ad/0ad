@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_spearman">
   <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>16.0</Pierce>
-    <Crush>10.0</Crush>
+    <Hack>10</Hack>
+    <Pierce>16</Pierce>
+    <Crush>10</Crush>
   </Armour>
   <Attack>
-    <Melee>
-      <Hack>5.0</Hack>
-      <Pierce>15.0</Pierce>
-    </Melee>
     <Charge>
       <Hack>50.0</Hack>
       <Pierce>50.0</Pierce>

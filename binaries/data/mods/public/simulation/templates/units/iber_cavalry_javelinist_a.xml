@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/iber_cavalry_javelinist_b">
+  <Armour>
+    <Hack>2</Hack>
+    <Pierce>4</Pierce>
+    <Crush>4</Crush>
+  </Armour>
   <Identity>
 	<Rank>Advanced</Rank>
   </Identity>
@@ -12,11 +17,6 @@
   <Health>
     <Max>160</Max>
   </Health>
-  <Armour>
-    <Hack>3.0</Hack>
-    <Pierce>5.0</Pierce>
-    <Crush>3.0</Crush>
-  </Armour>
   <UnitMotion>
     <WalkSpeed>13.5</WalkSpeed>
     <Run>

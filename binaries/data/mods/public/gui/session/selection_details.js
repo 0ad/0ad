@@ -192,7 +192,7 @@ function displaySingle(entState, template)
 	// Show max attack range if ranged attack, also convert to tiles (4m per tile)
 	if (entState.attack && entState.attack.type == "Ranged")
 		attack += ", [font=\"serif-bold-13\"]Range:[/font] " + Math.round(entState.attack.maxRange/4);
-	getGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n[font=\"serif-bold-13\"]Armor:[/font] " + damageTypeDetails(entState.armour);
+	getGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n[font=\"serif-bold-13\"]Armor:[/font] " + armorTypeDetails(entState.armour);
 
 	// Icon Tooltip
 	var iconTooltip = "";
