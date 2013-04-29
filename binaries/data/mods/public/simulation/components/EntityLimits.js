@@ -127,7 +127,9 @@ EntityLimits.prototype.AllowedToBuild = function(category)
 	// TODO: The UI should reflect this before the user tries to place the building,
 	//			since the limits are independent of placement location
 
-	return this.AllowedToCreate(BUILD, category, 1);
+	// We pass count 0 as the creation of the building has already taken place and
+	// the ownership has been set (triggering OnGlobalOwnershipChanged) 
+	return this.AllowedToCreate(BUILD, category, 0);
 };
 
 EntityLimits.prototype.AllowedToTrain = function(category, count)
