@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_swordsman">
-  <Armour>
-    <Hack>6.0</Hack>
-    <Pierce>11.0</Pierce>
-  </Armour>
   <Attack>
     <Melee>
+      <Hack>14.0</Hack>
 	  <Bonuses>
 		<BonusSupport>
 		  <Classes>Support</Classes>
@@ -26,6 +23,7 @@
 	  </Bonuses>
     </Melee>
     <Charge>
+      <Hack>28.0</Hack>
 	  <Bonuses>
 		<BonusSupport>
 		  <Classes>Support</Classes>
@@ -67,7 +65,7 @@
     <SpecificName>Ékdromos Skiritis</SpecificName>
     <Rank>Elite</Rank>
     <Tooltip>A swordsman trained at the Elite rank.
-Counters Support Units, Spear units, and Ranged Units (if they can catch them). Countered by Archers and Cavalry Spearmen.</Tooltip>
+Counters: 1.25x vs. Support Units, Spear units, and Ranged Units (if they can catch them). Countered by: Archers, Cavalry Spearmen.</Tooltip>
     <History>The Skiritai were commandos in the Spartan army. They lead the vanguard on campaign and held the vital left flank of the Spartan infantry line.</History>
     <Icon>units/spart_champion_infantry_sword.png</Icon>
   </Identity>

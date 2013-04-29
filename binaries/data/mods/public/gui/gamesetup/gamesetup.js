@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Constants
-const DEFAULT_NETWORKED_MAP = "Punjab 01";
-const DEFAULT_OFFLINE_MAP = "Punjab 01";
+const DEFAULT_NETWORKED_MAP = "Acropolis 01";
+const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
 // TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
 const VICTORY_TEXT = ["Conquest", "None"];

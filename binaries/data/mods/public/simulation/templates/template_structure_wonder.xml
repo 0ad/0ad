@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
+  <Armour>
+    <Hack>3</Hack>
+    <Pierce>20</Pierce>
+    <Crush>3</Crush>
+    <Foundation>
+      <Hack>2</Hack>
+      <Pierce>10</Pierce>
+      <Crush>2</Crush>
+    </Foundation>
+  </Armour>
   <BuildRestrictions>
-    <Category>Special</Category>
+    <Category>Wonder</Category>
   </BuildRestrictions>
   <Cost>
     <BuildTime>500</BuildTime>

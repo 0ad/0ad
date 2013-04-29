@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/celt_cavalry_swordsman_b">
   <Armour>
-    <Hack>5.0</Hack>
-    <Pierce>12.0</Pierce>
-    <Crush>6.0</Crush>
+    <Hack>2</Hack>
+    <Pierce>4</Pierce>
+    <Crush>5</Crush>
   </Armour>
   <Attack>
     <Melee>
@@ -28,7 +28,7 @@
   <UnitMotion>
     <WalkSpeed>13.5</WalkSpeed>
     <Run>
-      <Speed>31.25</Speed>
+      <Speed>27.0</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

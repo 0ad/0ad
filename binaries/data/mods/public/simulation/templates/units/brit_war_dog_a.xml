@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/brit_war_dog_b">
   <Armour>
-    <Hack>2.0</Hack>
-    <Pierce>5.0</Pierce>
-    <Crush>2.0</Crush>
+    <Hack>2</Hack>
+    <Pierce>3</Pierce>
+    <Crush>2</Crush>
   </Armour>
   <Attack>
     <Melee>
@@ -20,9 +20,9 @@
     <Entity>units/brit_war_dog_e</Entity>
   </Promotion>
   <UnitMotion>
-    <WalkSpeed>10.24</WalkSpeed>
+    <WalkSpeed>12.5</WalkSpeed>
     <Run>
-      <Speed>27.72</Speed>
+      <Speed>25</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_civic">
-  <Armour>
-    <Hack>20.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>15.0</Crush>
-    <Foundation>
-      <Hack>5.0</Hack>
-      <Pierce>8.0</Pierce>
-      <Crush>4.0</Crush>
-    </Foundation>
-  </Armour>
+<Entity parent="template_structure_defense">
   <BuildRestrictions>
     <Category>Wall</Category>
   </BuildRestrictions>

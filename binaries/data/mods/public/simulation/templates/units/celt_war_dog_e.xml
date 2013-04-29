@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/celt_war_dog_a">
   <Armour>
-    <Hack>6.0</Hack>
-    <Pierce>9.0</Pierce>
-    <Crush>6.0</Crush>
+    <Hack>3</Hack>
+    <Pierce>5</Pierce>
+    <Crush>3</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>22.0</Hack>
+      <Hack>19.0</Hack>
     </Melee>
     <Charge>
-      <Hack>66.0</Hack>
+      <Hack>57.0</Hack>
     </Charge>
   </Attack>
   <Identity>
@@ -18,9 +18,9 @@
   </Identity>
   <Promotion disable=""/>
   <UnitMotion>
-    <WalkSpeed>9.8</WalkSpeed>
+    <WalkSpeed>12</WalkSpeed>
     <Run>
-      <Speed>26.4</Speed>
+      <Speed>24</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

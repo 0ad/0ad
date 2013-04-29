@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry">
   <Armour>
-    <Hack>6.0</Hack>
-    <Pierce>6.0</Pierce>
-    <Crush>5.0</Crush>
+    <Hack>4</Hack>
+    <Pierce>5</Pierce>
+    <Crush>6</Crush>
   </Armour>
   <Attack>
     <Ranged>
@@ -52,9 +52,9 @@ Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. Countered by: Skirmishers, Elepha
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>11.5</WalkSpeed>
+    <WalkSpeed>14.0</WalkSpeed>
     <Run>
-      <Speed>28.75</Speed>
+      <Speed>28.0</Speed>
       <Range>1000.0</Range>
       <RangeMin>10.0</RangeMin>
     </Run>

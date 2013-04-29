@@ -47,11 +47,11 @@ Armour.prototype.TakeDamage = function(hack, pierce, crush)
 	if (this.invulnerable) 
 		return { "killed": false };
 
-	// Adjust damage values based on armour
+	// Adjust damage values based on armour; exponential armour: damage = attack * 0.9^armour
 	var armourStrengths = this.GetArmourStrengths();
-	var adjHack = Math.max(0, hack - armourStrengths.hack);
-	var adjPierce = Math.max(0, pierce - armourStrengths.pierce);
-	var adjCrush = Math.max(0, crush - armourStrengths.crush);
+	var adjHack = hack * Math.pow(0.9, armourStrengths.hack);
+	var adjPierce = pierce * Math.pow(0.9, armourStrengths.pierce);
+	var adjCrush = crush * Math.pow(0.9, armourStrengths.crush);
 
 	// Total is sum of individual damages, with minimum damage 1
 	//	Round to nearest integer, since HP is integral

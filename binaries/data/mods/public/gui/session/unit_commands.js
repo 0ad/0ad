@@ -455,7 +455,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				if (template.health)
 					tooltip += "\n[font=\"serif-bold-13\"]Health:[/font] " + template.health;
 				if (template.armour)
-					tooltip += "\n[font=\"serif-bold-13\"]Armour:[/font] " + damageTypesToText(template.armour);
+					tooltip += "\n[font=\"serif-bold-13\"]Armour:[/font] " + armorTypesToText(template.armour);
 				if (template.attack)
 					tooltip += "\n" + getEntityAttack(template);
 				if (template.speed)

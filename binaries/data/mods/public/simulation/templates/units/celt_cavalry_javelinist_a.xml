@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/celt_cavalry_javelinist_b">
   <Armour>
-    <Hack>3.0</Hack>
-    <Pierce>5.0</Pierce>
-    <Crush>3.0</Crush>
+    <Hack>2</Hack>
+    <Pierce>4</Pierce>
+    <Crush>4</Crush>
   </Armour>
   <Attack>
     <Ranged>
@@ -24,9 +24,9 @@
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>11.44</WalkSpeed>
+    <WalkSpeed>14</WalkSpeed>
     <Run>
-      <Speed>34.32</Speed>
+      <Speed>28</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

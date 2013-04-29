@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
-  <Armour>
-    <Pierce>9.0</Pierce>
-  </Armour>
   <Attack>
     <Melee>
       <MaxRange>6.0</MaxRange>
@@ -16,13 +13,9 @@
       structures/athen_gymnasion
       structures/athen_theatron
       structures/athen_prytaneion
+      structures/{civ}_wonder
     </Entities>
   </Builder>
-  <Cost>
-    <Resources>
-      <wood>60</wood>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>athen</Civ>
 	<SelectionGroupName>units/athen_infantry_spearman_b</SelectionGroupName>

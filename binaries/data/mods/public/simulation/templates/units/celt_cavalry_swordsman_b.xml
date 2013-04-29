@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_melee_swordsman">
-  <Armour>
-    <Hack>3.0</Hack>
-  </Armour>
   <Identity>
     <Civ>celt</Civ>
 	<SelectionGroupName>units/celt_cavalry_swordsman_b</SelectionGroupName>
@@ -16,7 +13,7 @@
   <UnitMotion>
     <WalkSpeed>14.0</WalkSpeed>
     <Run>
-      <Speed>33.0</Speed>
+      <Speed>28.0</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

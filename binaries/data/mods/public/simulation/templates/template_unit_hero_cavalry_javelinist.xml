@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_javelinist">
   <Armour>
-    <Hack>8.0</Hack>
-    <Pierce>8.0</Pierce>
-    <Crush>7.0</Crush>
+    <Hack>5</Hack>
+    <Pierce>7</Pierce>
+    <Crush>8</Crush>
   </Armour>
   <Attack>
     <Ranged>
@@ -64,9 +64,9 @@
     <Category>Hero</Category>
   </TrainingRestrictions>
   <UnitMotion>
-    <WalkSpeed>11.5</WalkSpeed>
+    <WalkSpeed>14.0</WalkSpeed>
     <Run>
-      <Speed>28.75</Speed>
+      <Speed>28.0</Speed>
       <Range>1000.0</Range>
       <RangeMin>16.0</RangeMin>
     </Run>

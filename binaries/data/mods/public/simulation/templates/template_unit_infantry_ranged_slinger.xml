@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_ranged">
   <Armour>
-    <Hack>2.0</Hack>
-    <Pierce>2.0</Pierce>
-    <Crush>2.0</Crush>
+    <Hack>1</Hack>
+    <Pierce>2</Pierce>
+    <Crush>3</Crush>
   </Armour>
   <Attack>
     <Ranged>
@@ -45,7 +45,7 @@
   <UnitMotion>
     <WalkSpeed>9.0</WalkSpeed>
     <Run>
-      <Speed>22.5</Speed>
+      <Speed>18.0</Speed>
     </Run>
   </UnitMotion>
 </Entity>
