@@ -115,8 +115,13 @@ Music.prototype.updateState = function()
 	}
 };
 
+Music.prototype.clearCiv = function()
+{
+	this.tracks.PEACE = [];
+}
 Music.prototype.storeTracks = function(civMusic)
 {
+	this.clearCiv();
 	for each (var music in civMusic)
 	{
 		var type = undefined;
