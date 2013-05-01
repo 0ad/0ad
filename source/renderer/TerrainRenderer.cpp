@@ -746,7 +746,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	GLuint FramebufferName = 0;
 
 	// rendering waves to a framebuffer
-	if (WaterMgr->m_WaterCoastalWaves)
+	if (WaterMgr->m_WaterCoastalWaves && !g_AtlasGameLoop->running)
 	{
 		// Save the post-processing framebuffer.
 		GLint fbo;
