@@ -29,14 +29,7 @@ function Music()
 		DEFEAT_CUE: "defeat_cue"
 	};
 
-	this.tracks = {
-		MENU: ["Honor_Bound.ogg"],
-		PEACE: [],
-		BATTLE: ["Taiko_1.ogg", "Taiko_2.ogg"],
-		VICTORY : ["You_are_Victorious!.ogg"],
-		DEFEAT : ["Dried_Tears.ogg"],
-		DEFEAT_CUE : ["gen_loss_cue.ogg"]
-	};
+	this.resetTracks();
 
 	this.states = {
 		OFF : 0,
@@ -59,6 +52,18 @@ function Music()
 	this.timer = [];
 	this.time = Date.now();
 }
+
+Music.prototype.resetTracks = function()
+{
+	this.tracks = {
+		MENU: ["Honor_Bound.ogg"],
+		PEACE: [],
+		BATTLE: ["Taiko_1.ogg", "Taiko_2.ogg"],
+		VICTORY : ["You_are_Victorious!.ogg"],
+		DEFEAT : ["Dried_Tears.ogg"],
+		DEFEAT_CUE : ["gen_loss_cue.ogg"]
+	};
+};
 
 // "reference" refers to this instance of Music (needed if called from the timer)
 Music.prototype.setState = function(state)
@@ -115,13 +120,9 @@ Music.prototype.updateState = function()
 	}
 };
 
-Music.prototype.clearCiv = function()
-{
-	this.tracks.PEACE = [];
-}
 Music.prototype.storeTracks = function(civMusic)
 {
-	this.clearCiv();
+	this.resetTracks();
 	for each (var music in civMusic)
 	{
 		var type = undefined;
