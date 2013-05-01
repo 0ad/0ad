@@ -1464,8 +1464,11 @@ function handleMinimapEvent(target)
 
 // Called by GUI when user clicks construction button
 // @param buildTemplate Template name of the entity the user wants to build
-function startBuildingPlacement(buildTemplate)
+function startBuildingPlacement(buildTemplate, playerState)
 {
+	if(getEntityLimitAndCount(playerState, buildTemplate)[2] == 0)
+		return;
+
 	// TODO: we should clear any highlight selection rings here. If the mouse was over an entity before going onto the GUI
 	// to start building a structure, then the highlight selection rings are kept during the construction of the building.
 	// Gives the impression that somehow the hovered-over entity has something to do with the building you're constructing.
@@ -1548,19 +1551,21 @@ function getBuildingsWhichCanTrainEntity(entitiesToCheck, trainEntType)
 function getEntityLimitAndCount(playerState, entType)
 {
 	var template = GetTemplateData(entType);
-	var trainingCategory = null;
+	var entCategory = null;
 	if (template.trainingRestrictions)
-		trainingCategory = template.trainingRestrictions.category;
-	var trainEntLimit = undefined;
-	var trainEntCount = undefined;
-	var canBeTrainedCount = undefined;
-	if (trainingCategory && playerState.entityLimits[trainingCategory])
+		entCategory = template.trainingRestrictions.category;
+	else if (template.buildRestrictions)
+		entCategory = template.buildRestrictions.category;
+	var entLimit = undefined;
+	var entCount = undefined;
+	var canBeAddedCount = undefined;
+	if (entCategory && playerState.entityLimits[entCategory])
 	{
-		trainEntLimit = playerState.entityLimits[trainingCategory];
-		trainEntCount = playerState.entityCounts[trainingCategory];
-		canBeTrainedCount = Math.max(trainEntLimit - trainEntCount, 0);
+		entLimit = playerState.entityLimits[entCategory];
+		entCount = playerState.entityCounts[entCategory];
+		canBeAddedCount = Math.max(entLimit - entCount, 0);
 	}
-	return [trainEntLimit, trainEntCount, canBeTrainedCount];
+	return [entLimit, entCount, canBeAddedCount];
 }
 
 // Add the unit shown at position to the training queue for all entities in the selection
