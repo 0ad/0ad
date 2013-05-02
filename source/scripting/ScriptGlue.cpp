@@ -341,8 +341,10 @@ JSBool SetPaused(JSContext* cx, uintN argc, jsval* vp)
 	try
 	{
 		g_Game->m_Paused = ToPrimitive<bool> (JS_ARGV(cx, vp)[0]);
+#if CONFIG2_AUDIO
 		if ( g_SoundManager )
 			g_SoundManager->Pause(g_Game->m_Paused);
+#endif
 	}
 	catch (PSERROR_Scripting_ConversionFailed)
 	{
