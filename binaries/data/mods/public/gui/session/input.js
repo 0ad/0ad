@@ -2053,3 +2053,15 @@ function unloadAll()
 
 	Engine.PostNetworkCommand({"type": "unload-all", "garrisonHolders": garrisonHolders});
 }
+
+function clearSelection()
+{
+	if(inputState==INPUT_BUILDING_PLACEMENT || inputState==INPUT_BUILDING_WALL_PATHING)
+	{
+		inputState = INPUT_NORMAL;
+		placementSupport.Reset();
+	}
+	else
+		g_Selection.reset();
+	preSelectedAction = ACTION_NONE;
+}
