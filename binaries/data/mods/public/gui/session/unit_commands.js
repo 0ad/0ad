@@ -1193,7 +1193,8 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			// The right pane is empty. Fill the pane with a sane type.
 			// Prefer buildables for units and trainables for structures.
 			if (buildableEnts.length && (hasClass(entState, "Unit") || !trainableEnts.length))
-				setupUnitPanel(CONSTRUCTION, usedPanels, entState, playerState, buildableEnts, startBuildingPlacement);
+				setupUnitPanel(CONSTRUCTION, usedPanels, entState, playerState, buildableEnts, 
+					function (trainEntType) { startBuildingPlacement(trainEntType, playerState); });
 			else if (trainableEnts.length)
 				setupUnitPanel(TRAINING, usedPanels, entState, playerState, trainableEnts,
 					function (trainEntType) { addTrainingToQueue(selection, trainEntType, playerState); } );
