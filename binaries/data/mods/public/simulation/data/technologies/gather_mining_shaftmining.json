@@ -8,6 +8,6 @@
 	"icon": "mining_metal.png",
 	"researchTime": 20,
 	"tooltip": "Develop shaft mining. +25% metal gathering rate.",
-	"modifications": [{"value": "ResourceGatherer/Rates/metal/ore", "multiplier": 1.25}],
+	"modifications": [{"value": "ResourceGatherer/Rates/metal.ore", "multiplier": 1.25}],
 	"affects": ["Worker"]
 }
