@@ -29,7 +29,9 @@
   </group>
   <group>
     <variant frequency="1">
-      <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/foundation.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
 </actor>
