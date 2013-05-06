@@ -142,6 +142,10 @@
 	    <action on="Press">findIdleUnit(["Hero", "Champion", "CitizenSoldier", "Siege", "Warship"]);</action>
 	</object>
 
+	<!-- Unselect any selected entities -->
+	<object hotkey="selection.cancel">
+	    <action on="Press">clearSelection()</action>
+	</object>
 	<!-- ================================  ================================ -->
 	<!-- Developer / Debug items -->
 	<!-- ================================  ================================ -->

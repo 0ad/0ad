@@ -19,8 +19,8 @@
 				<Colour r="0.564706" g="0.513726" b="0.419608"/>
 				<Height>20.0394</Height>
 				<Shininess>229.004</Shininess>
-				<Waviness>3.18359</Waviness>
-				<Murkiness>0.800781</Murkiness>
+				<Waviness>3.75</Waviness>
+				<Murkiness>0.898438</Murkiness>
 				<Tint r="0.866667" g="0.737255" b="0.466667"/>
 				<ReflectionTint r="0" g="0.501961" b="1"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
@@ -2257,7 +2257,7 @@
 		<Entity uid="410">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="634.01789" z="780.89313"/>
+			<Position x="650.05323" z="809.02265"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="411">
@@ -7381,7 +7381,7 @@
 		<Entity uid="1416">
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>
 			<Player>0</Player>
-			<Position x="438.54551" z="226.78893"/>
+			<Position x="378.90067" z="208.89841"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1417">
@@ -22956,13 +22956,6 @@
 			<Orientation y="2.35621"/>
 			<Actor seed="40566"/>
 		</Entity>
-		<Entity uid="4652">
-			<Template>units/maur_cavalry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="456.43479" z="187.1058"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="24466"/>
-		</Entity>
 		<Entity uid="4655">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
@@ -23088,6 +23081,13 @@
 			<Position x="608.58588" z="817.5876"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="38038"/>
+		</Entity>
+		<Entity uid="4673">
+			<Template>units/maur_support_elephant</Template>
+			<Player>1</Player>
+			<Position x="457.84141" z="187.03768"/>
+			<Orientation y="2.44446"/>
+			<Actor seed="24630"/>
 		</Entity>
 	</Entities>
 	<Paths/>
