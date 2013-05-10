@@ -508,6 +508,7 @@ void CGameView::Render()
 // Submit all objects visible in the given frustum
 void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 {
+	c->atlas= false;	
 	{
 	PROFILE3("submit terrain");
 

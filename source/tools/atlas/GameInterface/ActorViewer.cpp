@@ -187,6 +187,7 @@ public:
 			}
 		}
 
+		c->atlas = true;
 		// send a RenderSubmit message so the components can submit their visuals to the renderer
 		Simulation2.RenderSubmit(*c, frustum, false);
 	}
