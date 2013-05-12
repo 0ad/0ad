@@ -34,7 +34,10 @@
   <Identity>
     <GenericName>Wonder</GenericName>
     <Tooltip>Bring glory to your civilisation and add large tracts of land to your empire.</Tooltip>
-    <Classes datatype="tokens">City</Classes>
+    <Classes datatype="tokens">
+	  City
+	  Wonder
+	</Classes>
     <Icon>structures/wonder.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>

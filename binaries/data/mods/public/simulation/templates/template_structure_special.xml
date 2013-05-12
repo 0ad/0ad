@@ -40,7 +40,10 @@
   <Identity>
     <GenericName>Special Building</GenericName>
     <Tooltip>This is a special building unique to a particular civilisation.</Tooltip>
-    <Classes datatype="tokens">City</Classes>
+    <Classes datatype="tokens">
+	  City
+	  SpecialBuilding
+	</Classes>
     <Icon>.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>

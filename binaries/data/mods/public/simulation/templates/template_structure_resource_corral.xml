@@ -24,7 +24,10 @@
   <Identity>
     <GenericName>Corral</GenericName>
     <Tooltip>Raise herd animals for food.</Tooltip>
-    <Classes datatype="tokens">Village</Classes>
+    <Classes datatype="tokens">
+	  Village
+	  Corral
+	</Classes>
     <Icon>structures/corral.png</Icon>
   </Identity>
   <Loot>

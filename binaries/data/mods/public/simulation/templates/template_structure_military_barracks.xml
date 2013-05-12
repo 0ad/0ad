@@ -27,7 +27,10 @@
   <Identity>
     <GenericName>Barracks</GenericName>
     <Tooltip>Train citizen-soldiers. Research military improvements. Garrison: 10.</Tooltip>
-    <Classes datatype="tokens">Town</Classes>
+    <Classes datatype="tokens">
+	  Town
+	  Barracks
+	</Classes>
     <Icon>structures/barracks.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
