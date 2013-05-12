@@ -139,7 +139,7 @@ QueueManager.prototype.onlyUsesSpareAndUpdateSpare = function(unitCost, spare){
 	// If there are no negative resources then there weren't any higher priority items so we 
 	// definitely want to say that this can be added to the list.
 	var tmp = true;
-	for (key in spare.types){
+	for (var key in spare.types){
 		var type = spare.types[key];
 		if (spare[type] < 0){
 			tmp = false;

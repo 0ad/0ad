@@ -174,7 +174,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 		if (shortcut === true) {
 			this.currentSquare = this.openList.shift();
 		} else {
-			for (i in this.openList)
+			for (var i in this.openList)
 			{
 				var sum = this.fCostArray[this.openList[i]] + this.gCostArray[this.openList[i]];
 				if (sum < currentDist)
@@ -198,7 +198,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 		if (gamestate !== undefined)
 			this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w),1,40,'constant');
 		
-		for (i in positions)
+		for (var i in positions)
 		{
 			var index = 0 + this.currentSquare +positions[i][0]*this.Sampling +w*this.Sampling*positions[i][1];
 			if (this.widthMap[index] >= this.minWidth || (this.onWater && this.map[index] > 0 && this.map[index] !== 200 && this.map[index] !== 201)

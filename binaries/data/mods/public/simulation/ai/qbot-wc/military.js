@@ -84,7 +84,7 @@ MilitaryAttackManager.prototype.findBestTrainableUnit = function(gameState, clas
 	units.sort(function(a, b) { //}) {
 		var aDivParam = 0, bDivParam = 0;
 		var aTopParam = 0, bTopParam = 0;
-		for (i in parameters) {
+		for (var i in parameters) {
 			var param = parameters[i];
 			
 			if (param[0] == "base") {
@@ -245,7 +245,7 @@ MilitaryAttackManager.prototype.garrisonAllFemales = function(gameState) {
 	var cache = {};
 	
 	females.forEach( function (ent) {
-		for (i in buildings)
+		for (var i in buildings)
 		{
 			if (ent.position())
 			{
@@ -274,14 +274,14 @@ MilitaryAttackManager.prototype.ungarrisonAll = function(gameState) {
 
 MilitaryAttackManager.prototype.pausePlan = function(gameState, planName) {
 	for (attackType in this.upcomingAttacks) {
-		for (i in this.upcomingAttacks[attackType]) {
+		for (var i in this.upcomingAttacks[attackType]) {
 			var attack = this.upcomingAttacks[attackType][i];
 			if (attack.getName() == planName)
 				attack.setPaused(gameState, true);
 		}
 	}
 	for (attackType in this.startedAttacks) {
-		for (i in this.startedAttacks[attackType]) {
+		for (var i in this.startedAttacks[attackType]) {
 			var attack = this.startedAttacks[attackType][i];
 			if (attack.getName() == planName)
 				attack.setPaused(gameState, true);
@@ -290,14 +290,14 @@ MilitaryAttackManager.prototype.pausePlan = function(gameState, planName) {
 }
 MilitaryAttackManager.prototype.unpausePlan = function(gameState, planName) {
 	for (attackType in this.upcomingAttacks) {
-		for (i in this.upcomingAttacks[attackType]) {
+		for (var i in this.upcomingAttacks[attackType]) {
 			var attack = this.upcomingAttacks[attackType][i];
 			if (attack.getName() == planName)
 				attack.setPaused(gameState, false);
 		}
 	}
 	for (attackType in this.startedAttacks) {
-		for (i in this.startedAttacks[attackType]) {
+		for (var i in this.startedAttacks[attackType]) {
 			var attack = this.startedAttacks[attackType][i];
 			if (attack.getName() == planName)
 				attack.setPaused(gameState, false);
@@ -306,13 +306,13 @@ MilitaryAttackManager.prototype.unpausePlan = function(gameState, planName) {
 }
 MilitaryAttackManager.prototype.pauseAllPlans = function(gameState) {
 	for (attackType in this.upcomingAttacks) {
-		for (i in this.upcomingAttacks[attackType]) {
+		for (var i in this.upcomingAttacks[attackType]) {
 			var attack = this.upcomingAttacks[attackType][i];
 			attack.setPaused(gameState, true);
 		}
 	}
 	for (attackType in this.startedAttacks) {
-		for (i in this.startedAttacks[attackType]) {
+		for (var i in this.startedAttacks[attackType]) {
 			var attack = this.startedAttacks[attackType][i];
 			attack.setPaused(gameState, true);
 		}
@@ -320,13 +320,13 @@ MilitaryAttackManager.prototype.pauseAllPlans = function(gameState) {
 }
 MilitaryAttackManager.prototype.unpauseAllPlans = function(gameState) {
 	for (attackType in this.upcomingAttacks) {
-		for (i in this.upcomingAttacks[attackType]) {
+		for (var i in this.upcomingAttacks[attackType]) {
 			var attack = this.upcomingAttacks[attackType][i];
 			attack.setPaused(gameState, false);
 		}
 	}
 	for (attackType in this.startedAttacks) {
-		for (i in this.startedAttacks[attackType]) {
+		for (var i in this.startedAttacks[attackType]) {
 			var attack = this.startedAttacks[attackType][i];
 			attack.setPaused(gameState, false);
 		}

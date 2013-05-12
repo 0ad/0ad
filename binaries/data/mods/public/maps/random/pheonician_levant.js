@@ -201,9 +201,9 @@ RMS.SetProgress(30);
 log("Creating sea");
 var theta = randFloat(0, 1);
 var seed = randFloat(2,3);
-for (ix = 0; ix < mapSize; ix++)
+for (var ix = 0; ix < mapSize; ix++)
 {
-	for (iz = 0; iz < mapSize; iz++)
+	for (var iz = 0; iz < mapSize; iz++)
 	{
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);

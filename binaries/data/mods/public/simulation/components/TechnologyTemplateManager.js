@@ -10,7 +10,7 @@ TechnologyTemplateManager.prototype.Init = function()
 {
 	this.allTechs = {};
 	var techNames = this.ListAllTechs();
-	for (i in techNames)
+	for (var i in techNames)
 		this.GetTemplate(techNames[i]);
 };
 

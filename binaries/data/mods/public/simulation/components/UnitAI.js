@@ -2891,7 +2891,7 @@ UnitAI.prototype.AddOrders = function(orders)
 UnitAI.prototype.GetOrderData = function()
 {
 	var orders = [];
-	for (i in this.orderQueue) {
+	for (var i in this.orderQueue) {
 		if (this.orderQueue[i].data)
 			orders.push(deepcopy(this.orderQueue[i].data));
 		}

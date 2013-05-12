@@ -891,13 +891,13 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 	}
 
 	// Hide any buttons we're no longer using
-	for (i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
+	for (var i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
 		getGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
 
 	// Hide unused pair buttons and symbols
 	if (guiName == RESEARCH)
 	{
-		for (i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
+		for (var i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
 		{
 			getGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]").hidden = true;
 			getGUIObjectByName("unit"+guiName+"Pair["+i+"]").hidden = true;

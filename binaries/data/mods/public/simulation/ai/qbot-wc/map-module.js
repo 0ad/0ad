@@ -72,7 +72,7 @@ Map.createObstructionMap = function(gameState, template){
 
 				var positions = [[0,1], [1,1], [1,0], [1,-1], [0,-1], [-1,-1], [-1,0], [-1,1]];
 				var available = 0;
-				for each (stuff in positions)
+				for each (var stuff in positions)
 				{
 					var index = x + stuff[0] + (y+stuff[1])*passabilityMap.width;
 					var index2 = x + stuff[0]*2 + (y+stuff[1]*2)*passabilityMap.width;

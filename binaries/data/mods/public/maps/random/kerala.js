@@ -187,9 +187,9 @@ RMS.SetProgress(15);
 // create western sea
 var fadedistance = 8;
 
-for (ix = 0; ix < mapSize; ix++)
+for (var ix = 0; ix < mapSize; ix++)
 {
-	for (iz = 0; iz < mapSize; iz++)
+	for (var iz = 0; iz < mapSize; iz++)
 	{
 		if (ix < 0.31 * mapSize)
 		{

@@ -263,9 +263,9 @@ else if (md == 3) //central sea
 	var theta2 = randFloat(0, 1);
 	var seed = randFloat(2,3);
 	var seed2 = randFloat(2,3);
-	for (ix = 0; ix < mapSize; ix++)
+	for (var ix = 0; ix < mapSize; ix++)
 	{
-		for (iz = 0; iz < mapSize; iz++)
+		for (var iz = 0; iz < mapSize; iz++)
 		{
 			var x = ix / (mapSize + 1.0);
 			var z = iz / (mapSize + 1.0);
@@ -692,9 +692,9 @@ else if (md == 6) //edge seas
 		if ((mdd2 == 1)||(mdd2 == 3))
 		{
 			var distance = randFloat(0., 0.1);
-			for (ix = 0; ix < mapSize; ix++)
+			for (var ix = 0; ix < mapSize; ix++)
 			{
-				for (iz = 0; iz < mapSize; iz++)
+				for (var iz = 0; iz < mapSize; iz++)
 				{
 					if (iz > (0.69+distance) * mapSize)
 					{
@@ -732,13 +732,13 @@ else if (md == 6) //edge seas
 		if ((mdd2 == 2)||(mdd2 == 3))
 		{
 			var distance = randFloat(0., 0.1);
-			for (ix = 0; ix < mapSize; ix++)
+			for (var ix = 0; ix < mapSize; ix++)
 			{
-				for (iz = 0; iz < mapSize; iz++)
+				for (var iz = 0; iz < mapSize; iz++)
 				{
-					if (iz < (0.31-distance) * mapSize)
+					if (var iz < (0.31-distance) * mapSize)
 					{
-						if (iz > (0.31-distance) * mapSize - fadedistance)
+						if (var iz > (0.31-distance) * mapSize - fadedistance)
 						{
 							setHeight(ix, iz, 3 - 7 * ((0.31-distance) * mapSize - iz) / fadedistance);
 							if (3 - 7 * ((0.31-distance) * mapSize - iz) / fadedistance < 0.5)
@@ -774,9 +774,9 @@ else if (md == 6) //edge seas
 		if ((mdd2 == 1)||(mdd2 == 3))
 		{
 			var distance = randFloat(0., 0.1);
-			for (ix = 0; ix < mapSize; ix++)
+			for (var ix = 0; ix < mapSize; ix++)
 			{
-				for (iz = 0; iz < mapSize; iz++)
+				for (var iz = 0; iz < mapSize; iz++)
 				{
 					if (ix > (0.69+distance) * mapSize)
 					{
@@ -813,9 +813,9 @@ else if (md == 6) //edge seas
 		if ((mdd2 == 2)||(mdd2 == 3))
 		{
 			var distance = randFloat(0., 0.1);
-			for (ix = 0; ix < mapSize; ix++)
+			for (var ix = 0; ix < mapSize; ix++)
 			{
-				for (iz = 0; iz < mapSize; iz++)
+				for (var iz = 0; iz < mapSize; iz++)
 				{
 					if (ix < (0.31-distance) * mapSize)
 					{

@@ -486,7 +486,7 @@ GameState.prototype.findResearchers = function(templateName, noRequirementCheck)
 	
 	return this.getOwnResearchFacilities().filter(function(ent) { //}){
 		var techs = ent.researchableTechs();
-		for (i in techs)
+		for (var i in techs)
 		{
 			var thisTemp = self.getTemplate(techs[i]);
 			if (thisTemp.pairDef())
@@ -549,7 +549,7 @@ GameState.prototype.findTrainableUnits = function(classes){
 		var template = this.getTemplate(allTrainable[i]);
 		var okay = true;
 		
-		for (o in classes)
+		for (var o in classes)
 			if (!template.hasClass(classes[o]))
 				okay = false;
 		

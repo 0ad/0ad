@@ -41,12 +41,12 @@ TemplateManager.prototype.AcknowledgeTemplates = function(gameState)
 }
 TemplateManager.prototype.getBuildableSubtemplates = function(gameState)
 {
-	for each (templateName in this.knownTemplatesList) {
+	for each (var templateName in this.knownTemplatesList) {
 		var template = gameState.getTemplate(templateName);
 		if (template !== null) {
 			var buildable = template.buildableEntities();
 			if (buildable !== undefined)
-				for each (subtpname in buildable) {
+				for each (var subtpname in buildable) {
 					if (this.knownTemplatesList.indexOf(subtpname) === -1) {
 						this.knownTemplatesList.push(subtpname);
 						var subtemplate = gameState.getTemplate(subtpname);
@@ -61,12 +61,12 @@ TemplateManager.prototype.getBuildableSubtemplates = function(gameState)
 }
 TemplateManager.prototype.getTrainableSubtemplates = function(gameState)
 {
-	for each (templateName in this.knownTemplatesList) {
+	for each (var templateName in this.knownTemplatesList) {
 		var template = gameState.getTemplate(templateName);
 		if (template !== null) {
 			var trainables = template.trainableEntities();
 			if (trainables !== undefined)
-				for each (subtpname in trainables) {
+				for each (var subtpname in trainables) {
 					if (this.knownTemplatesList.indexOf(subtpname) === -1) {
 						this.knownTemplatesList.push(subtpname);
 						var subtemplate = gameState.getTemplate(subtpname);
@@ -81,7 +81,7 @@ TemplateManager.prototype.getTrainableSubtemplates = function(gameState)
 }
 TemplateManager.prototype.getTemplateCounters = function(gameState)
 {
-	for (i in this.unitTemplates)
+	for (var i in this.unitTemplates)
 	{
 		var tp = gameState.getTemplate(this.unitTemplates[i]);
 		var tpname = this.unitTemplates[i];
@@ -95,11 +95,11 @@ TemplateManager.prototype.getCountersToClasses = function(gameState,classes,temp
 		return this.templateCounteredBy[templateName];
 	
 	var templates = [];
-	for (i in this.templateCounters) {
+	for (var i in this.templateCounters) {
 		var okay = false;
-		for each (ticket in this.templateCounters[i]) {
+		for each (var ticket in this.templateCounters[i]) {
 			var okaya = true;
-			for (a in ticket[0]) {
+			for (var a in ticket[0]) {
 				if (classes.indexOf(ticket[0][a]) === -1)
 					okaya = false;
 			}

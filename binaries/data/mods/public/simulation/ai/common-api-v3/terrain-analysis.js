@@ -67,7 +67,7 @@ function TerrainAnalysis(sharedScript,rawState){
 			// unless it's impassable already, mark it as 40.
 			if (obstructionTiles[x + y*this.width] !== 0)
 				obstructionTiles[x + y*this.width] = 40;
-			for (i in square)
+			for (var i in square)
 			{
 				xx = square[i][0];
 				yy = square[i][1];
@@ -153,7 +153,7 @@ TerrainAnalysis.prototype.countConnected = function(startIndex, byLand){
 					 [0,2], [0,-2], [2,0], [-2,0], [2,2], [-2,-2], [2,-2], [-2,2]/*,
 					 [1,2], [1,-2], [2,1], [-2,1], [-1,2], [-1,-2], [2,-1], [-2,-1]*/];
 	
-	for (i in positions) {
+	for (var i in positions) {
 		var index = startIndex + positions[i][0] + positions[i][1]*w;
 		if (this.map[index] !== 0) {
 			if (byLand) {
@@ -526,7 +526,7 @@ landSizeCounter.prototype.continueLandSizeCalculation = function()
 	var iteration = 0;
 	while (this.openList.length !== 0 && iteration < this.iterationLimit && this.countedValue < this.sizeLimit && this.countedArray.length < this.sizeLimit){
 		currentDist = infinity;
-		for (i in this.openList)
+		for (var i in this.openList)
 		{
 			var sum = this.gCostArray[this.openList[i]];
 			if (sum < currentDist)
@@ -539,7 +539,7 @@ landSizeCounter.prototype.continueLandSizeCalculation = function()
 
 		shortcut = false;
 		this.isOpened[this.currentSquare] = false;
-		for (i in positions) {
+		for (var i in positions) {
 			var index = 0 + this.currentSquare + positions[i][0]*Sampling + w*Sampling*positions[i][1];
 			if (this.passMap[index] !== 0 && this.passMap[index] !== 200 && this.map[index] >= Sampling && (!this.onlyBuildable || this.passMap[index] !== 201)) {
 				if(this.isOpened[index] === undefined) {

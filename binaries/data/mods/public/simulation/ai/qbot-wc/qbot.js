@@ -245,7 +245,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 				if (sharedScript._entityMetadata[PlayerID][ent.id()])
 				{
 					var metadata = sharedScript._entityMetadata[PlayerID][ent.id()];
-					for (j in metadata)
+					for (var j in metadata)
 					{
 						warn ("Metadata " + j);
 						if (typeof(metadata[j]) == "object")

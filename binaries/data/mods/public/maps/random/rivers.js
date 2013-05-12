@@ -308,9 +308,9 @@ for (var ix = 0; ix < mapSize; ix++)
 {
 	for (var iz = 0; iz < mapSize; iz++)
 	{
-		for (m = 0; m < numPlayers+1; m++)
+		for (var m = 0; m < numPlayers+1; m++)
 		{
-			for (n = 0; n < numPlayers+1; n++)
+			for (var n = 0; n < numPlayers+1; n++)
 			{
 				//checking if there is a river between those points
 				if(isRiver[m][n] == 1)

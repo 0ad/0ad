@@ -31,7 +31,7 @@ ResearchPlan.prototype.execute = function(gameState) {
 	//debug ("Starting the research plan for " + this.type);
 	var trainers = gameState.findResearchers(this.type).toEntityArray();
 
-	//for (i in trainers)
+	//for (var i in trainers)
 	//	warn (this.type + " - " +trainers[i].genericName());
 	
 	// Prefer training buildings with short queues

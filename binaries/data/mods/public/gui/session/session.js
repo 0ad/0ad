@@ -252,7 +252,7 @@ function getSavedGameData()
 function restoreSavedGameData(data)
 {
 	// Restore control groups
-	for (groupNumber in data.groups)
+	for (var groupNumber in data.groups)
 	{
 		g_Groups.groups[groupNumber].groups = data.groups[groupNumber].groups;
 		g_Groups.groups[groupNumber].ents = data.groups[groupNumber].ents;

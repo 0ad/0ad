@@ -20,7 +20,7 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 			enemyCount[i] = 0;
 		gameState.getEntities().forEach(function(ent) { if (gameState.isEntityEnemy(ent) && ent.owner() !== 0) { enemyCount[ent.owner()]++; } });
 		var max = 0;
-		for (i in enemyCount)
+		for (var i in enemyCount)
 			if (enemyCount[i] > max && +i !== PlayerID)
 			{
 				this.targetPlayer = +i;
@@ -132,7 +132,7 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	
 	// defining the entity collections. Will look for units I own, that are part of this plan.
 	// Also defining the buildOrders.
-	for (unitCat in this.unitStat) {
+	for (var unitCat in this.unitStat) {
 		var cat = unitCat;
 		var Unit = this.unitStat[cat];
 
@@ -190,7 +190,7 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	if (myFortresses.length !== 0)
 	{
 		// make this our rallypoint
-		for (i in myFortresses._entities)
+		for (var i in myFortresses._entities)
 		{
 			if (myFortresses._entities[i].position())
 			{
@@ -264,7 +264,7 @@ CityAttack.prototype.getType = function(){
 // Basically his checks we have enough units.
 // We run a count of our units.
 CityAttack.prototype.canStart = function(gameState){	
-	for (unitCat in this.unitStat) {
+	for (var unitCat in this.unitStat) {
 		var Unit = this.unitStat[unitCat];
 		if (this.unit[unitCat].length < Unit["minSize"])
 			return false;
@@ -297,7 +297,7 @@ CityAttack.prototype.mustStart = function(gameState){
 	if (this.isPaused() || this.path === undefined)
 		return false;
 	var MaxReachedEverywhere = true;
-	for (unitCat in this.unitStat) {
+	for (var unitCat in this.unitStat) {
 		var Unit = this.unitStat[unitCat];
 		if (this.unit[unitCat].length < Unit["targetSize"]) {
 			MaxReachedEverywhere = false;
@@ -346,7 +346,7 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 				// picking a target
 				var maxDist = -1;
 				var index = 0;
-				for (i in targets._entities)
+				for (var i in targets._entities)
 				{
 					// we're sure it has a position has TargetFinder already checks that.
 					var dist = SquareVectorDistance(targets._entities[i].position(), this.rallyPoint);
@@ -620,7 +620,7 @@ CityAttack.prototype.ToRallyPoint = function(gameState,id)
 CityAttack.prototype.AllToRallyPoint = function(gameState, evenWorkers) {
 	var self = this;
 	if (evenWorkers) {
-		for (unitCat in this.unit) {
+		for (var unitCat in this.unit) {
 			this.unit[unitCat].forEach(function (ent) {
 				if (ent.getMetadata(PlayerID, "role") != "defence" && !ent.hasClass("Warship"))
 				{
@@ -630,7 +630,7 @@ CityAttack.prototype.AllToRallyPoint = function(gameState, evenWorkers) {
 			});
 		}
 	} else {
-		for (unitCat in this.unit) {
+		for (var unitCat in this.unit) {
 			this.unit[unitCat].forEach(function (ent) {
 				if (ent.getMetadata(PlayerID, "role") != "worker" && ent.getMetadata(PlayerID, "role") != "defence" && !ent.hasClass("Warship"))
 					ent.move(self.rallyPoint[0],self.rallyPoint[1]);
@@ -798,7 +798,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 						if (this.threatList.indexOf(e.msg.attacker) === -1)
 						{
 							var enemySoldiers = HeadQuarters.getEnemySoldiers().toEntityArray();
-							for (j in enemySoldiers)
+							for (var j in enemySoldiers)
 							{
 								var enemy = enemySoldiers[j];
 								if (enemy.position() === undefined)	// likely garrisoned
@@ -1296,7 +1296,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 };
 CityAttack.prototype.totalCountUnits = function(gameState){
 	var totalcount = 0;
-	for (i in this.idList)
+	for (var i in this.idList)
 	{
 		totalcount++;
 	}
@@ -1309,7 +1309,7 @@ CityAttack.prototype.Abort = function(gameState){
 		ent.setMetadata(PlayerID, "subrole",undefined);
 		ent.setMetadata(PlayerID, "plan",undefined);
 	});
-	for (unitCat in this.unitStat) {
+	for (var unitCat in this.unitStat) {
 		delete this.unitStat[unitCat];
 		delete this.unit[unitCat];
 	}

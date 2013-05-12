@@ -119,11 +119,11 @@ Technology.prototype.isAffected = function(classes)
 	if (!this._template.affects)
 		return false;
 	
-	for (index in this._template.affects)
+	for (var index in this._template.affects)
 	{
 		var reqClasses = this._template.affects[index].split(" ");
 		var fitting = true;
-		for (i in reqClasses)
+		for (var i in reqClasses)
 		{
 			if (classes.indexOf(reqClasses[i]) === -1)
 			{

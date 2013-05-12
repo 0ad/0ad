@@ -108,7 +108,7 @@ Defence.prototype.update = function(gameState, events, militaryManager){
 // returns armies that are still seen as dangerous (in the LOS of any of my buildings for now)
 Defence.prototype.reevaluateDangerousArmies = function(gameState, armies) {
 	var stillDangerousArmies = {};
-	for (i in armies) {
+	for (var i in armies) {
 		var pos = armies[i].getCentrePosition();
 		if (pos === undefined)
 			
@@ -116,7 +116,7 @@ Defence.prototype.reevaluateDangerousArmies = function(gameState, armies) {
 			stillDangerousArmies[i] = armies[i];
 			continue;
 		}
-		for (o in this.myBuildings) {
+		for (var o in this.myBuildings) {
 			// if the armies out of my buildings LOS (with a little more, because we're cheating right now and big armies could go undetected)
 			if (inRange(pos, this.myBuildings[o].position(),this.myBuildings[o].visionRange()*this.myBuildings[o].visionRange() + 2500)) {
 				stillDangerousArmies[i] = armies[i];
@@ -129,7 +129,7 @@ Defence.prototype.reevaluateDangerousArmies = function(gameState, armies) {
 // returns armies we now see as dangerous, ie in my territory
 Defence.prototype.evaluateArmies = function(gameState, armies) {
 	var DangerousArmies = {};
-	for (i in armies) {
+	for (var i in armies) {
 		if (armies[i].getCentrePosition() && +this.territoryMap.point(armies[i].getCentrePosition()) - 64 === +PlayerID) {
 			DangerousArmies[i] = armies[i];
 		}
@@ -145,7 +145,7 @@ Defence.prototype.armify = function(gameState, entity, militaryManager, minNBFor
 	{
 		this.enemyArmy[entity.owner()] = {};
 	} else {
-		for (armyIndex in this.enemyArmy[entity.owner()])
+		for (var armyIndex in this.enemyArmy[entity.owner()])
 		{
 			var army = this.enemyArmy[entity.owner()][armyIndex];
 			if (army.getCentrePosition() === undefined)
@@ -206,7 +206,7 @@ Defence.prototype.evaluateEntity = function(gameState, entity) {
 	if (this.territoryMap.point(entity.position()) - 64 === entity.owner() || entity.attackTypes() === undefined)
 		return false;
 	
-	for (i in this.myBuildings._entities)
+	for (var i in this.myBuildings._entities)
 	{
 		if (!this.myBuildings._entities[i].hasClass("ConquestCritical"))
 			continue;
@@ -237,7 +237,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 	var newEnemies = [];
 
 	// clean up using events.
-	for each(evt in events)
+	for each(var evt in events)
 	{
 		if (evt.type == "Destroy")
 		{
@@ -262,7 +262,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 	// It'll add new units if they are now dangerous and were not before
 	// It'll also deal with cleanup of armies.
 	// When it's finished it'll start over.
-	for (enemyID in this.enemyArmy)
+	for (var enemyID in this.enemyArmy)
 	{
 		//this.enemyUnits[enemyID] = militaryManager.enemyWatchers[enemyID].getAllEnemySoldiers();
 		if (this.enemyUnits[enemyID] === undefined || this.enemyUnits[enemyID].length === 0)
@@ -297,7 +297,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 		if (this.enemyArmyLoop[enemyID] === undefined || this.enemyArmyLoop[enemyID].length === 0)
 		{
 			this.enemyArmyLoop[enemyID] = [];
-			for (i in this.enemyArmy[enemyID])
+			for (var i in this.enemyArmy[enemyID])
 				this.enemyArmyLoop[enemyID].push([this.enemyArmy[enemyID][i],i]);
 		}
 		// and now we check the last known army.
@@ -358,7 +358,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 	}
 
 	// Reordering attack because the pathfinder is for now not dynamically updated
-	for (o in this.attackerCache) {
+	for (var o in this.attackerCache) {
 		if ((this.attackerCacheLoopIndicator + o) % 2 === 0) {
 			this.attackerCache[o].forEach(function (ent) {
 				ent.attack(+o);
@@ -488,7 +488,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 	});
 	
 	// For each enemy, we'll pick two units.
-	for each (enemy in newEnemies) {
+	for each (var enemy in newEnemies) {
 		if (nonDefenders.length === 0 || self.nbDefenders >= self.nbAttackers * 1.8)
 			break;
 		// garrisoned.
@@ -576,7 +576,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 				{
 					if (SquareVectorDistance(ent.position(), enemy.position()) < 3500)
 					{
-						for (i in buildings)
+						for (var i in buildings)
 						{
 							var struct = buildings[i];
 							if (!cache[struct.id()])
@@ -704,7 +704,7 @@ Defence.prototype.MessageProcess = function(gameState,events, militaryManager) {
 										{
 											var buildings = gameState.getOwnEntities().filter(Filters.byCanGarrison()).filterNearest(ourUnit.position(),4).toEntityArray();
 											var garrisoned = false;
-											for (i in buildings)
+											for (var i in buildings)
 											{
 												var struct = buildings[i];
 												if (struct.garrisoned() && struct.garrisonMax() - struct.garrisoned().length > 0)
@@ -746,7 +746,7 @@ Defence.prototype.DealWithWantedUnits = function(gameState, events, militaryMana
 	var nbOfDealtWith = 0;
 	
 	// clean up before adding new units (slight speeding up, since new units can't already be dead)
-	for (i in this.listOfWantedUnits) {
+	for (var i in this.listOfWantedUnits) {
 		if (this.listOfWantedUnits[i].length === 0 || this.listOfEnemies[i] !== undefined) {	// unit died/was converted/is already dealt with as part of an army
 			delete this.WantedUnitsAttacker[i];
 			delete this.listOfWantedUnits[i];
@@ -777,7 +777,7 @@ Defence.prototype.DealWithWantedUnits = function(gameState, events, militaryMana
 	// we do not use plan units
 	this.idleDefs.forEach(function(ent) {
 		if (nbOfDealtWith < 3 && nbOfAttackers > 0 && ent.getMetadata(PlayerID, "plan") == undefined)
-			for (o in self.listOfWantedUnits) {
+			for (var o in self.listOfWantedUnits) {
 				if ( (addedto[o] == undefined && self.WantedUnitsAttacker[o].length < 3) || (addedto[o] && self.WantedUnitsAttacker[o].length + addedto[o] < 3)) {
 					if (self.WantedUnitsAttacker[o].length === 0)
 						nbOfDealtWith++;
@@ -807,7 +807,7 @@ Defence.prototype.DealWithWantedUnits = function(gameState, events, militaryMana
 		// If we're not female, we attack
 		if (ent.hasClass("CitizenSoldier"))
 			if (nbOfDealtWith < 3 && nbOfAttackers > 0)
-				for (o in self.listOfWantedUnits) {
+				for (var o in self.listOfWantedUnits) {
 					if ( (addedto[o] == undefined && self.WantedUnitsAttacker[o].length < 3) || (addedto[o] && self.WantedUnitsAttacker[o].length + addedto[o] < 3)) {
 						if (self.WantedUnitsAttacker[o].length === 0)
 							nbOfDealtWith++;

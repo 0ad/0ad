@@ -725,7 +725,7 @@ function hasTextureInRadius(x1, z1,radius, textureName)
 					{
 						if (typeof(textureName) != "number")
 						{
-							for (i in textureName)
+							for (var i in textureName)
 								if ( g_Map.getTexture(xx,zz) == textureName[i])
 									return true;
 						} else {

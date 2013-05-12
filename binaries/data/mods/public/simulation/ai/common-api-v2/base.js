@@ -208,7 +208,7 @@ BaseAI.prototype.ApplyEntitiesDelta = function(state)
 			{
 				for each (var ent in evt.msg.entities)
 				{
-					for (key in evt.msg.metadata)
+					for (var key in evt.msg.metadata)
 					{
 						this.setMetadata(this._entities[ent], key, evt.msg.metadata[key])
 					}

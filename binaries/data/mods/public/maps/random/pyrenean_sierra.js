@@ -809,7 +809,7 @@ function getNeighborsHeight(x1, z1)
 {
 	var toCheck = [ [-1,-1], [-1,0], [-1,1], [0,1], [1,1], [1,0], [1,-1], [0,-1] ];
 	var height = 0;
-	for (i in toCheck) {
+	for (var i in toCheck) {
 		var xx = x1 + toCheck[i][0];
 		var zz = z1 + toCheck[i][1];
 		height += getHeight(round(xx),round(zz));
@@ -892,7 +892,7 @@ function getHeightDifference(x1, z1)
 	
 	var diff = 0;
 	var todiv = 0;
-	for (i in toCheck) {
+	for (var i in toCheck) {
 		var xx = round(x1 + toCheck[i][0]);
 		var zz = round(z1 + toCheck[i][1]);
 		if (g_Map.inMapBounds(xx,zz)) {
