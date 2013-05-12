@@ -449,7 +449,7 @@ function updateHero()
 	// Setup tooltip
 	var tooltip = "[font=\"serif-bold-16\"]" + template.name.specific + "[/font]";
 	tooltip += "\n[font=\"serif-bold-13\"]Health:[/font] " + heroState.hitpoints + "/" + heroState.maxHitpoints;
-	tooltip += "\n[font=\"serif-bold-13\"]" + (heroState.attack ? heroState.attack.type + " " : type)
+	tooltip += "\n[font=\"serif-bold-13\"]" + (heroState.attack ? heroState.attack.type + " " : "")
 	           + "Attack:[/font] " + damageTypeDetails(heroState.attack);
 	// Show max attack range if ranged attack, also convert to tiles (4m per tile)
 	if (heroState.attack && heroState.attack.type == "Ranged")
