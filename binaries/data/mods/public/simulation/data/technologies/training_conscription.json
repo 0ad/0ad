@@ -1,0 +1,12 @@
+{
+	"genericName": "Conscription",
+	"description": "Significantly increase training speed of soldiers by training them in large batches or battalions.",
+	"cost": {"food": 200, "wood": 0, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "fist_spear.png",
+	"researchTime": 30,
+	"tooltip": "All soldiers +25% batch training speed bonus.",
+	"modifications": [{"value": "ProductionQueue/BatchTimeFactor", "multiplier": 1.25}],
+	"affects": ["Unit Organic -Support"]
+}

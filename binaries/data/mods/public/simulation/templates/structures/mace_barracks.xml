@@ -31,7 +31,13 @@
       units/mace_infantry_slinger_b
       units/mace_cavalry_spearman_b
       units/mace_cavalry_javelinist_b
+      units/mace_champion_infantry_a
+      units/mace_champion_cavalry
     </Entities>
+    <Technologies datatype="tokens">
+      training_conscription
+	  unlock_champion_units
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/macedonians/barracks.xml</Actor>

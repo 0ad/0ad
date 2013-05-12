@@ -1,13 +1,19 @@
 {
 	"pair": "pair_heal_01",	
 	"genericName": "Healing Rate",
-	"description": "Increases the Healing Rate of all healers",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 300},
+	"specificName": {
+		"hele": "Sphagia",
+		"mace": "Sphagia",
+		"spart": "Sphagia",
+		"athen": "Sphagia"
+	},
+	"description": "Increases the Healing Rate of all healers.",
+	"cost": {"food": 100, "wood": 0, "stone": 0, "metal": 0},
 	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "healing_rate.png",
 	"researchTime": 30,
-	"tooltip": "Healing Rate increases by 25%.",
+	"tooltip": "Healers +25% healing rate.",
 	"modifications": [{"value": "Heal/Rate", "add": -500.0}],
 	"affects": ["Healer"]
 }
