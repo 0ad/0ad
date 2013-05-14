@@ -134,7 +134,6 @@ public:
 	 */
 	virtual void SubmitRecursive(CModelAbstract* model);
 
-	bool atlas;
 };
 
 

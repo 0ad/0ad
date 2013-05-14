@@ -841,7 +841,7 @@ void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& fr
 
 	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetWorldBoundsRec()))
 		return;
-	if (!collector.atlas && m_AtlasVisibleOnly)
+	if (!(g_AtlasGameLoop && g_AtlasGameLoop->view) && m_AtlasVisibleOnly)
 		return;
 	collector.SubmitRecursive(&model);
 }
