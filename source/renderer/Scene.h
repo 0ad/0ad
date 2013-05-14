@@ -133,6 +133,7 @@ public:
 	 * so you shouldn't have to reimplement it.
 	 */
 	virtual void SubmitRecursive(CModelAbstract* model);
+
 };
 
 

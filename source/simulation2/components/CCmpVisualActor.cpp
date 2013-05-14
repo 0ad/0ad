@@ -88,6 +88,8 @@ public:
 	bool m_NeedsInterpolation;
 	bool m_PositionChanged;
 
+	bool m_AtlasVisibleOnly;
+
 	static std::string GetSchema()
 	{
 		return
@@ -123,6 +125,11 @@ public:
 			"<element name='SilhouetteOccluder'>"
 				"<data type='boolean'/>"
 			"</element>"
+			"<optional>"
+                        	"<element name= 'AtlasVisibleOnly'>"
+					"<data type='boolean'/>"
+				"</element>"
+			"</optional>"
 			"<optional>"
 				"<element name='SelectionShape'>"
 					"<choice>"
@@ -165,9 +172,13 @@ public:
 
 		m_ConstructionPreview = paramNode.GetChild("ConstructionPreview").IsOk();
 		m_ConstructionProgress = fixed::Zero();
-
+		
 		m_Seed = GetEntityId();
 
+                if(paramNode.GetChild("AtlasVisibleOnly").IsOk())
+			m_AtlasVisibleOnly = paramNode.GetChild("AtlasVisibleOnly").ToBool();
+		else
+			m_AtlasVisibleOnly = false;
 		if (paramNode.GetChild("Foundation").IsOk() && paramNode.GetChild("FoundationActor").IsOk())
 			m_ActorName = paramNode.GetChild("FoundationActor").ToString();
 		else
@@ -830,6 +841,7 @@ void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& fr
 
 	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetWorldBoundsRec()))
 		return;
-
+	if (!(g_AtlasGameLoop && g_AtlasGameLoop->view) && m_AtlasVisibleOnly)
+		return;
 	collector.SubmitRecursive(&model);
 }

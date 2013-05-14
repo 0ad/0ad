@@ -507,7 +507,7 @@ void CGameView::Render()
 // This callback is part of the Scene interface
 // Submit all objects visible in the given frustum
 void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
-{
+{	
 	{
 	PROFILE3("submit terrain");
 
