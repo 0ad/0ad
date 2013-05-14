@@ -7,7 +7,7 @@
     <Category>Field</Category>
   </BuildRestrictions>
   <Cost>
-    <BuildTime>60</BuildTime>
+    <BuildTime>100</BuildTime>
     <Resources>
       <wood>100</wood>
     </Resources>
@@ -17,7 +17,7 @@
     <Height>2.0</Height>
   </Footprint>
   <Health>
-    <Max>120</Max>
+    <Max>100</Max>
     <SpawnEntityOnDeath>rubble/rubble_field</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -45,9 +45,9 @@
   <RallyPoint disable=""/>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>
-    <Amount>2000</Amount>
+    <Amount>5000</Amount>
     <Type>food.grain</Type>
-	<MaxGatherers>20</MaxGatherers>
+	<MaxGatherers>5</MaxGatherers>
   </ResourceSupply>
   <Sound>
     <SoundGroups>

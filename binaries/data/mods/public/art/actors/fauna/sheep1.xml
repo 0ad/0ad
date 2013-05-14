@@ -12,7 +12,9 @@
         <animation file="quadraped/sheep_death.dae" name="Death" speed="90"/>
       </animations>
       <mesh>skeletal/sheep.dae</mesh>
-      <textures><texture file="skeletal/animal_sheep_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_sheep_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -21,6 +23,9 @@
       <props>
         <prop actor="props/units/blood_01.xml" attachpoint="root"/>
       </props>
+      <textures>
+        <texture file="skeletal/animal_sheep_dead.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>
