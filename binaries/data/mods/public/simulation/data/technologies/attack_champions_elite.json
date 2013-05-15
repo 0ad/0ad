@@ -2,19 +2,19 @@
 	"pair": "pair_champ_02",	
 	"genericName": "Guard Unit",
 	"specificName": {
-		"hele": "Agema",
-		"mace": "Agema",
-		"spart": "Agema",
-		"athen": "Agema",
-		"rome": "Regio Cohors"
+		"hele": "Andreia",
+		"mace": "Andreia",
+		"spart": "Andreia",
+		"athen": "Andreia",
+		"rome": "Fortitudo"
 	},
-	"description": "Guard units wield the best weapons.",
+	"description": "Guard units have uncommon bravery and valor in battle.",
 	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 250},
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "armor_plates_swords.png",
 	"researchTime": 20,
-	"tooltip": "Guard units wield the best weapons! Champions +2 attack.",
+	"tooltip": "Guard units have uncommon courage and valor in battle. Champions +2 attack.",
 	"modifications": [
 		{"value": "Attack/Melee/Hack", "add": 2.0, "affects": ["Champion Melee"]},
 		{"value": "Attack/Ranged/Pierce", "add": 2.0, "affects": ["Champion Ranged"]}
