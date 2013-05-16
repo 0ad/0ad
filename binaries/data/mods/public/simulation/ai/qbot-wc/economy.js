@@ -640,7 +640,7 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 					}
 				} else if (ent && ent.position() && ent.resourceDropsiteTypes) {
 					var resources = ent.resourceDropsiteTypes();
-					for (i in resources) {
+					for (var i in resources) {
 						var resource = resources[i];
 						needUpdate[resource] = true;
 					}

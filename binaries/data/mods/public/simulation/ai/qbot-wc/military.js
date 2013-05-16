@@ -273,14 +273,14 @@ MilitaryAttackManager.prototype.ungarrisonAll = function(gameState) {
 };
 
 MilitaryAttackManager.prototype.pausePlan = function(gameState, planName) {
-	for (attackType in this.upcomingAttacks) {
+	for (var attackType in this.upcomingAttacks) {
 		for (var i in this.upcomingAttacks[attackType]) {
 			var attack = this.upcomingAttacks[attackType][i];
 			if (attack.getName() == planName)
 				attack.setPaused(gameState, true);
 		}
 	}
-	for (attackType in this.startedAttacks) {
+	for (var attackType in this.startedAttacks) {
 		for (var i in this.startedAttacks[attackType]) {
 			var attack = this.startedAttacks[attackType][i];
 			if (attack.getName() == planName)
@@ -289,14 +289,14 @@ MilitaryAttackManager.prototype.pausePlan = function(gameState, planName) {
 	}
 }
 MilitaryAttackManager.prototype.unpausePlan = function(gameState, planName) {
-	for (attackType in this.upcomingAttacks) {
+	for (var attackType in this.upcomingAttacks) {
 		for (var i in this.upcomingAttacks[attackType]) {
 			var attack = this.upcomingAttacks[attackType][i];
 			if (attack.getName() == planName)
 				attack.setPaused(gameState, false);
 		}
 	}
-	for (attackType in this.startedAttacks) {
+	for (var attackType in this.startedAttacks) {
 		for (var i in this.startedAttacks[attackType]) {
 			var attack = this.startedAttacks[attackType][i];
 			if (attack.getName() == planName)
@@ -305,13 +305,13 @@ MilitaryAttackManager.prototype.unpausePlan = function(gameState, planName) {
 	}
 }
 MilitaryAttackManager.prototype.pauseAllPlans = function(gameState) {
-	for (attackType in this.upcomingAttacks) {
+	for (var attackType in this.upcomingAttacks) {
 		for (var i in this.upcomingAttacks[attackType]) {
 			var attack = this.upcomingAttacks[attackType][i];
 			attack.setPaused(gameState, true);
 		}
 	}
-	for (attackType in this.startedAttacks) {
+	for (var attackType in this.startedAttacks) {
 		for (var i in this.startedAttacks[attackType]) {
 			var attack = this.startedAttacks[attackType][i];
 			attack.setPaused(gameState, true);
@@ -319,13 +319,13 @@ MilitaryAttackManager.prototype.pauseAllPlans = function(gameState) {
 	}
 }
 MilitaryAttackManager.prototype.unpauseAllPlans = function(gameState) {
-	for (attackType in this.upcomingAttacks) {
+	for (var attackType in this.upcomingAttacks) {
 		for (var i in this.upcomingAttacks[attackType]) {
 			var attack = this.upcomingAttacks[attackType][i];
 			attack.setPaused(gameState, false);
 		}
 	}
-	for (attackType in this.startedAttacks) {
+	for (var attackType in this.startedAttacks) {
 		for (var i in this.startedAttacks[attackType]) {
 			var attack = this.startedAttacks[attackType][i];
 			attack.setPaused(gameState, false);
@@ -351,7 +351,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 	Engine.ProfileStart("Looping through attack plans");
 	// TODO: implement some form of check before starting a new attack plans. Sometimes it is not the priority.
 	if (1) {
-		for (attackType in this.upcomingAttacks) {
+		for (var attackType in this.upcomingAttacks) {
 			for (var i = 0;i < this.upcomingAttacks[attackType].length; ++i) {
 				
 				var attack = this.upcomingAttacks[attackType][i];
@@ -403,7 +403,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 			}
 		}
 	}
-	for (attackType in this.startedAttacks) {
+	for (var attackType in this.startedAttacks) {
 		for (var i = 0; i < this.startedAttacks[attackType].length; ++i) {
 			var attack = this.startedAttacks[attackType][i];
 			// okay so then we'll update the attack.
