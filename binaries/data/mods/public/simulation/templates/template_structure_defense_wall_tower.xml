@@ -59,6 +59,12 @@
     <Static width="6.0" depth="6.0"/>
     <ControlPersist/>
   </Obstruction>
+  <ProductionQueue>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Technologies datatype="tokens">
+	  pair_walls_01
+    </Technologies>
+  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_tower.xml</select>

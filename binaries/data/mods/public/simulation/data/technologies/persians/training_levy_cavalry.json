@@ -6,10 +6,10 @@
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "horse_rider.png",
 	"researchTime": 30,
-	"tooltip": "All cavalry -10% train time, but also -5% health. Unlocks Cavalry Conscription.",
+	"tooltip": "All cavalry -10% train time, but also -10 health. Unlocks Cavalry Conscription.",
 	"modifications": [
 		{"value": "Cost/BuildTime", "multiplier": 0.9},
-		{"value": "Health/Max", "multiplier": 0.95}
+		{"value": "Health/Max", "add": -10}
 	],
 	"affects": ["Cavalry"]  
 }

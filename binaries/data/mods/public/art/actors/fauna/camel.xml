@@ -24,6 +24,9 @@
 	  <props>
 		<prop actor="props/units/blood_01.xml" attachpoint="root"/>
 	  </props>
+      <textures>
+        <texture file="skeletal/animal_camel_dead.png" name="baseTex"/>
+      </textures>
 	</variant>
     <variant name="Run">
       <props>
