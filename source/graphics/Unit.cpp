@@ -112,7 +112,7 @@ void CUnit::ReloadObject()
 	
 	// Use the entity ID as randomization seed (same as when the unit was first created)
 	std::set<CStr> remainingSelections = m_Object->m_Base->CalculateRandomRemainingSelections(m_Seed, selections);
-	if (remainingSelections.size() > 0)
+	if (!remainingSelections.empty())
 		selections.push_back(remainingSelections);
 
 	// If these selections give a different object, change this unit to use it

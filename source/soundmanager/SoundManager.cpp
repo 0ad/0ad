@@ -483,7 +483,7 @@ void CSoundManager::ClearPlayListItems()
 
 void CSoundManager::StartPlayList( bool doLoop )
 {
-  if ( m_PlayListItems->size() > 0 )
+  if ( !m_PlayListItems->empty() )
   {
     m_PlayingPlaylist = true;
     m_LoopingPlaylist = doLoop;

@@ -37,7 +37,7 @@ void CDebuggingServer::GetAllCallstacks(std::stringstream& response)
 	std::stringstream stream;
 	uint nbrCallstacksWritten = 0;
 	std::list<CThreadDebugger*>::iterator itr;
-	if (m_ThreadDebuggers.size() > 0)
+	if (!m_ThreadDebuggers.empty())
 	{
 		response << "[";
 		for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); itr++)

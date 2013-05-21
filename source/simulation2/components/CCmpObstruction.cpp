@@ -718,7 +718,7 @@ public:
 			}
 
 			// The collision can't be resolved without usable persistent control groups.
-			if (!persistentEnts.size())
+			if (persistentEnts.empty())
 				return;
 
 			// Attempt to replace colliding entities' control groups with a persistent one.
