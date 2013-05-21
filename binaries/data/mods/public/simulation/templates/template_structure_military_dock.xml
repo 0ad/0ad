@@ -23,7 +23,7 @@
   <Identity>
     <GenericName>Dock</GenericName>
     <Tooltip>Build upon a shoreline to construct naval vessels and to open sea trade.</Tooltip>
-    <Classes datatype="tokens">Village Naval Market NavalMarket</Classes>
+    <Classes datatype="tokens">Village Naval Market NavalMarket Dock</Classes>
     <Icon>structures/dock.png</Icon>
   </Identity>
   <Loot>
@@ -54,13 +54,14 @@
   </Sound>
   <TerritoryDecay disable=""/>
   <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
       units/{civ}_ship_fishing
       units/{civ}_ship_merchant
     </Entities>
     <Technologies datatype="tokens">
-      armor_ship_reinforcedhull
+      training_naval_architects
+	  armor_ship_reinforcedhull
       armor_ship_hypozomata
       armor_ship_hullsheathing
     </Technologies>

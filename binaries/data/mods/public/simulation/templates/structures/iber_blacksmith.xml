@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_blacksmith">
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Cuartel</SpecificName>
+    <History>To the best of our knowledge, the Iberians did not have standing armies in the sense that we know of them elsewhere or of today, it is doubtful that they had specific structures designated as military centres; however as a game construct we show a modest structure wherein military related activities take place.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/iberians/blacksmith.xml</Actor>
+  </VisualActor>
+</Entity>

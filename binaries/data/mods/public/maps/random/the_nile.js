@@ -234,9 +234,9 @@ var theta2 = randFloat(0, 1);
 var seed2 = randFloat(2,3);
 var rifp = 0;
 var rifp2 = 0;
-for (ix = 0; ix < mapSize; ix++)
+for (var ix = 0; ix < mapSize; ix++)
 {
-	for (iz = 0; iz < mapSize; iz++)
+	for (var iz = 0; iz < mapSize; iz++)
 	{
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);

@@ -7,7 +7,7 @@
     <Category>Field</Category>
   </BuildRestrictions>
   <Cost>
-    <BuildTime>60</BuildTime>
+    <BuildTime>100</BuildTime>
     <Resources>
       <wood>100</wood>
     </Resources>
@@ -17,11 +17,12 @@
     <Height>2.0</Height>
   </Footprint>
   <Health>
-    <Max>120</Max>
+    <Max>100</Max>
     <SpawnEntityOnDeath>rubble/rubble_field</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <GenericName>Field</GenericName>
+	<Classes datatype="tokens">Field</Classes>
     <Tooltip>Harvest vegetables for food.</Tooltip>
     <History>Farming originated around 9500 BC in India and the Middle East. The history of agriculture is a central element of human history, as agricultural progress has been a crucial factor in worldwide socio-economic change. Wealth-building and militaristic specializations rarely seen in hunter-gatherer cultures are commonplace in agricultural and agro-industrial societies - when farmers became capable of producing food beyond the needs of their own families, others in the tribe/nation/empire were freed to devote themselves to projects other than food acquisition.</History>
     <Icon>structures/field.png</Icon>
@@ -44,9 +45,9 @@
   <RallyPoint disable=""/>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>
-    <Amount>2000</Amount>
+    <Amount>5000</Amount>
     <Type>food.grain</Type>
-	<MaxGatherers>20</MaxGatherers>
+	<MaxGatherers>5</MaxGatherers>
   </ResourceSupply>
   <Sound>
     <SoundGroups>

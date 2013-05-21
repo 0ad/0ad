@@ -50,6 +50,7 @@ BuildRestrictions.prototype.Schema =
 			"<value>Resource</value>" +
 			"<value>Special</value>" +
 			"<value>Wonder</value>" +
+			"<value>Apadana</value>" +
 		"</choice>" +
 	"</element>" +
 	"<optional>" +

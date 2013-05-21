@@ -1,12 +1,18 @@
 {
 	"genericName": "Divine Offerings",
-	"description": "Garrisoned units are healed faster.",
+	"specificName": {
+		"hele": "Olympic Games",
+		"mace": "Olympic Games",
+		"spart": "Olympic Games",
+		"athen": "Eleusian Mysteries"
+	},
+	"description": "Units garrisoned in a temple are healed faster.",
 	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 200},
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "statue_face_stone.png",
 	"researchTime": 20,
-	"tooltip": "Healing rate +50% for Temples.",
+	"tooltip": "Temples +50% garrisoned healing rate.",
 	"modifications": [{"value": "GarrisonHolder/BuffHeal", "multiplier": 1.5}],
 	"affects": ["Temple"]  
 }

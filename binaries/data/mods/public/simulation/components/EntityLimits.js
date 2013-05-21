@@ -12,6 +12,7 @@ EntityLimits.prototype.Schema =
 		  "<Special>" +
 			"<LimitPerCivCentre>1</LimitPerCivCentre>" +
 		  "</Special>" +
+		  "<Apadana>1</Apadana>" +
 		"</Limits>" +
 	"</a:example>" +
 	"<element name='LimitMultiplier'>" +

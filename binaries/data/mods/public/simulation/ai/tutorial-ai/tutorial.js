@@ -102,7 +102,7 @@ TutorialAI.prototype.OnUpdate = function() {
 		trainingStructures.forEach(function (ent) {
 			if (ent.trainingQueue()) {
 				var queue = ent.trainingQueue();
-				for (i in queue) {
+				for (var i in queue) {
 					if (queue[i].unitTemplate === nextState.template &&
 					    queue[i].count === nextState.count) {
 						doNext = true;

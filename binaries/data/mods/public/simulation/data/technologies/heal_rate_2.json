@@ -1,0 +1,19 @@
+{
+	"pair": "pair_heal_01",	
+	"genericName": "Healing Rate 2",
+	"specificName": {
+		"hele": "Hippocratic Oath",
+		"mace": "Hippocratic Oath",
+		"spart": "Hippocratic Oath",
+		"athen": "Hippocratic Oath"
+	},
+	"description": "Increases the Healing Rate of all healers.",
+	"cost": {"food": 200, "wood": 0, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "healing_rate.png",
+	"researchTime": 30,
+	"tooltip": "Healers +25% healing rate.",
+	"modifications": [{"value": "Heal/Rate", "add": -500.0}],
+	"affects": ["Healer"]
+}

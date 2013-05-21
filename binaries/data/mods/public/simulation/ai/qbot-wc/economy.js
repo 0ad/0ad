@@ -197,7 +197,7 @@ EconomyManager.prototype.findBestTrainableUnit = function(gameState, classes, pa
 	units.sort(function(a, b) { //}) {
 		var aDivParam = 0, bDivParam = 0;
 		var aTopParam = 0, bTopParam = 0;
-		for (i in parameters) {
+		for (var i in parameters) {
 			var param = parameters[i];
 			
 			if (param[0] == "base") {
@@ -243,7 +243,7 @@ EconomyManager.prototype.pickMostNeededResources = function(gameState) {
 	}
 	
 	var numGatherers = {};
-	for (type in this.gatherWeights){
+	for (var type in this.gatherWeights){
 		numGatherers[type] = gameState.updatingCollection("workers-gathering-" + type, 
 														  Filters.byMetadata(PlayerID, "gather-type", type)).length;//, gameState.getOwnEntitiesByRole("worker")).length;
 	}
@@ -360,7 +360,7 @@ EconomyManager.prototype.assignToFoundations = function(gameState, noRepair) {
 	
 	var maxTotalBuilders = Math.ceil(this.numWorkers * 0.15);
 	
-	for (i in foundations) {
+	for (var i in foundations) {
 		var target = foundations[i];
 		// Removed: sometimes the AI would not notice it has empty unbuilt fields
 		//if (target._template.BuildRestrictions.Category === "Field")
@@ -402,7 +402,7 @@ EconomyManager.prototype.assignToFoundations = function(gameState, noRepair) {
 		}
 	}
 	// don't repair if we're still under attack, unless it's like a vital (civcentre or wall) building that's getting destroyed.
-	for (i in damagedBuildings) {
+	for (var i in damagedBuildings) {
 		var target = damagedBuildings[i];
 		if (gameState.defcon() < 5) {
 			if (target.healthLevel() > 0.5 || !target.hasClass("CivCentre") || !target.hasClass("StoneWall")) {
@@ -516,8 +516,8 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 	
 	// Look for destroy events and subtract the entities original influence from the resourceMap
 	// also look for dropsite destruction and add the associated entities (along with unmarking them)
-	for (var i in events) {
-		var e = events[i];
+	for (var key in events) {
+		var e = events[key];
 		if (e.type === "Destroy") {
 			
 			if (e.msg.entityObj){
@@ -545,7 +545,7 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 				}
 				if (ent && ent.owner() == PlayerID && ent.resourceDropsiteTypes() !== undefined) {
 					var resources = ent.resourceDropsiteTypes();
-					for (i in resources) {
+					for (var i in resources) {
 						var resource = resources[i];
 						// loop through all dropsites to see if the resources of his entity collection could
 						// be taken over by another dropsite
@@ -640,7 +640,7 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 					}
 				} else if (ent && ent.position() && ent.resourceDropsiteTypes) {
 					var resources = ent.resourceDropsiteTypes();
-					for (i in resources) {
+					for (var i in resources) {
 						var resource = resources[i];
 						needUpdate[resource] = true;
 					}
@@ -649,7 +649,7 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 		}
 	}
 	
-	for (i in needUpdate)
+	for (var i in needUpdate)
 	{
 		this.updateNearbyResources(gameState,i);
 		this.updateResourceConcentrations(gameState,i);
@@ -695,13 +695,13 @@ EconomyManager.prototype.getBestResourceBuildSpot = function(gameState, resource
 		}
 		// only add where the map is currently not null, ie in our territory and some "Resource" would be close.
 		// This makes the placement go from "OK" to "human-like".
-		for (i in this.resourceMaps)
+		for (var i in this.resourceMaps)
 			if (friendlyTiles.map[j] !== 0 && i !== "food")
 				friendlyTiles.map[j] += this.resourceMaps[i].map[j];
 
 		// mark as unbuildable if we're realy close from another dropsite. Might avoid rare bugs.
 		// TODO: should mostly examine why those happen, check top post page 4 of the "WIP new API" topic started by Wraitii.
-		for (i in myDropsites._entities)
+		for (var i in myDropsites._entities)
 		{
 			var pos = [j%friendlyTiles.width, Math.floor(j/friendlyTiles.width)];
 			if (myDropsites._entities[i].position() && SquareVectorDistance(friendlyTiles.gamePosToMapPos(myDropsites._entities[i].position()), pos) < 100)
@@ -760,7 +760,7 @@ EconomyManager.prototype.getBestResourceBuildSpot = function(gameState, resource
 			
 			// mark as unbuildable if we're realy close from another dropsite. Might avoid rare bugs.
 			// TODO: should mostly examine why those happen, check top post page 4 of the "WIP new API" topic started by Wraitii.
-			for (i in myDropsites._entities)
+			for (var i in myDropsites._entities)
 			{
 				var pos = [j%friendlyTiles.width, Math.floor(j/friendlyTiles.width)];
 				if (myDropsites._entities[i].position() && SquareVectorDistance(friendlyTiles.gamePosToMapPos(myDropsites._entities[i].position()), pos) < 100)
@@ -769,7 +769,7 @@ EconomyManager.prototype.getBestResourceBuildSpot = function(gameState, resource
 
 			friendlyTiles.map[j] += this.CCResourceMaps[resource].map[j] * 1.5;
 			
-			for (i in this.CCResourceMaps)
+			for (var i in this.CCResourceMaps)
 				if (friendlyTiles.map[j] !== 0 && i !== "food")
 					friendlyTiles.map[j] += this.CCResourceMaps[i].map[j];
 		}
@@ -1006,8 +1006,8 @@ EconomyManager.prototype.tryBartering = function(gameState){
 		var needs = gameState.ai.queueManager.futureNeeds(gameState,false);
 		var ress = gameState.ai.queueManager.getAvailableResources(gameState);
 		
-		for (sell in needs) {
-			for (buy in needs) {
+		for (var sell in needs) {
+			for (var buy in needs) {
 				if (!done && buy != sell && needs[sell] <= 0 && ress[sell] > 400) {	// if we don't need it and have a buffer
 					if ( (ress[buy] < 400) || needs[buy] > 0) {	// if we need that other resource/ have too little of it
 						var markets = gameState.getOwnEntitiesByType(gameState.applyCiv("structures/{civ}_market")).toEntityArray();
@@ -1106,7 +1106,7 @@ EconomyManager.prototype.rePrioritize = function(gameState) {
 	var statG = gameState.playerData.statistics.resourcesGathered;
 	var statU = gameState.playerData.statistics.resourcesUsed;
 	var resources = ["food", "wood", "stone", "metal"];
-	for each (ress in resources)
+	for each (var ress in resources)
 	{
 		var eff = (statG[ress]-this.lastStatG[ress]) / (statU[ress]-this.lastStatU[ress]);
 		

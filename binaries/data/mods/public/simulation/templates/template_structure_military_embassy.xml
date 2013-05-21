@@ -18,7 +18,10 @@
   </Health>
   <Identity>
     <Civ>cart</Civ>
-    <Classes datatype="tokens">Town Embassy</Classes>
+    <Classes datatype="tokens">
+	  Town
+	  Embassy
+	</Classes>
     <GenericName>Embassy</GenericName>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
@@ -33,7 +36,7 @@
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
   <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
   </ProductionQueue>
   <TerritoryInfluence>
     <Radius>25</Radius>

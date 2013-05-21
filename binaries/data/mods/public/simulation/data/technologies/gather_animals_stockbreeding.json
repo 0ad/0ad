@@ -1,12 +1,11 @@
 {
 	"genericName": "Stockbreeding",
 	"description": "Breeding livestock for food.",
-	"cost": {"food": 100, "wood": 100, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_town"},
-	"requirementsTooltip": "Unlocked in Town Phase.",
+	"cost": {"food": 50, "wood": 0, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_village"},
 	"icon": "meat.png",
 	"researchTime": 30,
-	"tooltip": "+25% meat gathering rate for all workers.",
-	"modifications": [{"value": "ResourceGatherer/Rates/food.meat", "multiplier": 1.25}],
-	"affects": ["Worker"]
+	"tooltip": "Breed time -25% for domestic animals (sheep, goats, cattle, etc.).",
+	"modifications": [{"value": "Cost/BuildTime", "multiplier": 0.75}],
+	"affects": ["Domestic"]
 }

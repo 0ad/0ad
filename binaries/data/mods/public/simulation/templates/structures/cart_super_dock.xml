@@ -9,7 +9,7 @@
     <Civ>cart</Civ>
     <GenericName>Naval Shipyard</GenericName>
     <SpecificName>Cothon</SpecificName>
-    <Classes datatype="tokens">-City Town</Classes>
+    <Classes datatype="tokens">-City Town Shipyard</Classes>
     <History>The structure is based upon the centre island of the inner harbour constructed to house the war fleet of the Carthaginian navy at Carthage.</History>
     <Tooltip>Construct and repair mighty warships.</Tooltip>
     <Icon>structures/uber_dock.png</Icon>
@@ -57,7 +57,8 @@
       units/cart_ship_quinquereme
     </Entities>
     <Technologies datatype="tokens">
-      carthaginians/special_exploration
+	  carthaginians/training_phoenician_naval_architects
+	  carthaginians/special_exploration
     </Technologies>
   </ProductionQueue>
   <Vision>

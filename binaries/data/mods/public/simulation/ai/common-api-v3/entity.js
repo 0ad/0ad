@@ -55,7 +55,7 @@ var EntityTemplate = Class({
 		if (!classes)
 			return false;
 		
-		for (i in array)
+		for (var i in array)
 			if (classes.indexOf(array[i]) === -1)
 				return false;
 		return true;
@@ -214,10 +214,10 @@ var EntityTemplate = Class({
 			return undefined;
 		
 		var Classes = [];
-		for (i in this._template.Attack) {
+		for (var i in this._template.Attack) {
 			if (!this._template.Attack[i].Bonuses)
 				continue;
-			for (o in this._template.Attack[i].Bonuses) {
+			for (var o in this._template.Attack[i].Bonuses) {
 				if (this._template.Attack[i].Bonuses[o].Classes == undefined)
 					continue;
 				Classes.push([this._template.Attack[i].Bonuses[o].Classes.split(" "), +this._template.Attack[i].Bonuses[o].Multiplier]);
@@ -232,16 +232,16 @@ var EntityTemplate = Class({
 		if (!this._template.Attack)
 			return false;
 		var mcounter = [];
-		for (i in this._template.Attack) {
+		for (var i in this._template.Attack) {
 			if (!this._template.Attack[i].Bonuses)
 				continue;
-			for (o in this._template.Attack[i].Bonuses) {
+			for (var o in this._template.Attack[i].Bonuses) {
 				if (this._template.Attack[i].Bonuses[o].Classes == undefined)
 					continue;
 				mcounter.concat(this._template.Attack[i].Bonuses[o].Classes.split(" "));
 			}
 		}
-		for (i in classes)
+		for (var i in classes)
 		{
 			if (mcounter.indexOf(classes[i]) !== -1)
 				return true;
@@ -255,11 +255,11 @@ var EntityTemplate = Class({
 			return undefined;
 
 		if (this._template.Attack[type].Bonuses)
-			for (o in this._template.Attack[type].Bonuses)
+			for (var o in this._template.Attack[type].Bonuses)
 				if (this._template.Attack[type].Bonuses[o].Classes !== undefined)
 				{
 					var total = this._template.Attack[type].Bonuses[o].Classes.split(" ");
-					for (j in total)
+					for (var j in total)
 						if (total[j] === againstClass)
 							return this._template.Attack[type].Bonuses[o].Multiplier;
 				}
@@ -271,7 +271,7 @@ var EntityTemplate = Class({
 		if (!this._template.Attack)
 			return false;
 		
-		for (i in this._template.Attack) {
+		for (var i in this._template.Attack) {
 			if (!this._template.Attack[i].RestrictedClasses)
 				continue;
 			var cannotAttack = this._template.Attack[i].RestrictedClasses._string.split(" ");
@@ -692,7 +692,7 @@ var Entity = Class({
 		var queue = this._entity.trainingQueue;
 		if (!queue)
 			return true;	// no queue, so technically we stopped all production.
-		for (i in queue)
+		for (var i in queue)
 		{
 			if (queue[i].progress < percentToStopAt)
 				Engine.PostCommand({ "type": "stop-production", "entity": this.id(), "id": queue[i].id });

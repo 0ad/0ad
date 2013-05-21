@@ -54,7 +54,7 @@ QueueManager.prototype.futureNeeds = function(gameState, EcoManager) {
 	// get ouy current resources, not removing accounts.
 	var current = this.getAvailableResources(gameState, true);
 	//queueArrays because it's faster.
-	for (i in this.queueArrays)
+	for (var i in this.queueArrays)
 	{
 		var name = this.queueArrays[i][0];
 		var queue = this.queueArrays[i][1];
@@ -110,7 +110,7 @@ QueueManager.prototype.printQueues = function(gameState){
 		}
 	}
 	debug ("Accounts");
-	for (p in this.accounts)
+	for (var p in this.accounts)
 	{
 		debug(p + ": " + uneval(this.accounts[p]));
 	}
@@ -121,7 +121,7 @@ QueueManager.prototype.printQueues = function(gameState){
 
 QueueManager.prototype.clear = function(){
 	this.curItemQueue = [];
-	for (i in this.queues)
+	for (var i in this.queues)
 		this.queues[i].empty();
 };
 
@@ -165,7 +165,7 @@ QueueManager.prototype.update = function(gameState) {
 	
 	var availableRes = this.getAvailableResources(gameState);
 	// assign some accounts to queues. This is done by priority, and by need.
-	for (ress in availableRes)
+	for (var ress in availableRes)
 	{
 		if (availableRes[ress] > 0 && ress != "population")
 		{
@@ -181,7 +181,7 @@ QueueManager.prototype.update = function(gameState) {
 			//	-queues accounts are capped at "resources for the first + 80% of the next"
 			// This avoids getting a high priority queue with many elements hogging all of one resource
 			// uselessly while it awaits for other resources.
-			for (j in this.queues) {
+			for (var j in this.queues) {
 				var outQueueCost = this.queues[j].outQueueCost();
 				var queueCost = this.queues[j].queueCost();
 				if (this.accounts[j][ress] < queueCost[ress] + outQueueCost[ress])
@@ -207,7 +207,7 @@ QueueManager.prototype.update = function(gameState) {
 			}
 			// Now we allow resources to the accounts. We can at most allow "TempPriority/totalpriority*available"
 			// But we'll sometimes allow less if that would overflow.
-			for (j in tempPrio) {
+			for (var j in tempPrio) {
 				// we'll add at much what can be allowed to this queue.
 				var toAdd = Math.floor(tempPrio[j]/totalPriority * availableRes[ress]);
 				// let's check we're not adding too much.

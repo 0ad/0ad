@@ -8,7 +8,7 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>25.0</Pierce>
+      <Pierce>15.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>58</MaxRange>
       <MinRange>10.0</MinRange>
@@ -23,7 +23,7 @@
         </BonusPrimary>
         <BonusSecondary>
           <Classes>Cavalry Spear</Classes>
-          <Multiplier>1.5</Multiplier>
+          <Multiplier>1.25</Multiplier>
         </BonusSecondary>
       </Bonuses>
       <PreferredClasses datatype="tokens">Organic</PreferredClasses>
@@ -46,7 +46,8 @@
     <Classes datatype="tokens">Ranged Bow</Classes>
     <GenericName>Champion Archer</GenericName>
 	<Tooltip>Champion Archer.
-Counters: 2x vs. Swordsmen, 1.5x vs. Cavalry Spearmen. Countered by: Cavalry Swordsmen, Cavalry Skirmishers.</Tooltip>
+Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. 
+Countered by: Cavalry Swordsmen, Cavalry Skirmishers.</Tooltip>
   </Identity>
   <Sound>
     <SoundGroups>

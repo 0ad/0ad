@@ -234,9 +234,9 @@ var theta = randFloat(0, 1);
 var theta2 = randFloat(0, 1);
 var seed = randFloat(2,3);
 var seed2 = randFloat(2,3);
-for (ix = 0; ix < mapSize; ix++)
+for (var ix = 0; ix < mapSize; ix++)
 {
-	for (iz = 0; iz < mapSize; iz++)
+	for (var iz = 0; iz < mapSize; iz++)
 	{
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
@@ -293,7 +293,7 @@ RMS.SetProgress(20);
 log("Creating fish...");
 
 num = scaleByMapSize(10, 20);
-for (i=0; i < num; i++){
+for (var i=0; i < num; i++){
 group = new SimpleGroup(
 	[new SimpleObject(oFish, 2,3, 0,2)],
 	true, clFood

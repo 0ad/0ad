@@ -56,13 +56,13 @@ enemyWatcher.prototype.getEnemyBuildings = function(gameState, specialClass, One
 };
 enemyWatcher.prototype.getDangerousArmies = function() {
 	var toreturn = {};
-	for (i in this.dangerousArmies)
+	for (var i in this.dangerousArmies)
 		toreturn[this.dangerousArmies[i]] = this.armies[this.dangerousArmies[i]];
 	return toreturn;
 };
 enemyWatcher.prototype.getSafeArmies = function() {
 	var toreturn = {};
-	for (i in this.armies)
+	for (var i in this.armies)
 		if (this.dangerousArmies.indexOf(i) == -1)
 			toreturn[i] = this.armies[i];
 	return toreturn;
@@ -81,7 +81,7 @@ enemyWatcher.prototype.isDangerous = function(armyID) {
 };
 // returns [id, army]
 enemyWatcher.prototype.getArmyFromMember = function(memberID) {
-	for (i in this.armies) {
+	for (var i in this.armies) {
 		if (this.armies[i].toIdArray().indexOf(memberID) !== -1)
 			return [i,this.armies[i]];
 	}
@@ -94,7 +94,7 @@ enemyWatcher.prototype.isPartOfDangerousArmy = function(memberID) {
 	return false;
 };
 enemyWatcher.prototype.cleanDebug = function() {
-	for (armyID in this.armies) {
+	for (var armyID in this.armies) {
 		var army = this.armies[armyID];
 		debug ("Army " +armyID);
 		debug (army.length +" members, centered around " +army.getCentrePosition());
@@ -138,11 +138,11 @@ enemyWatcher.prototype.detectArmies = function(gameState){
 // this will merge any two army who are too close together. The distance for "army" is fairly big.
 // note: this doesn't actually merge two entity collections... It simply changes the unit metadatas, and will clear the empty entity collection
 enemyWatcher.prototype.mergeArmies = function(){
-	for (army in this.armies) {
+	for (var army in this.armies) {
 		var firstArmy = this.armies[army];
 		if (firstArmy.length !== 0) {
 			var firstAPos = firstArmy.getApproximatePosition(4);
-			for (otherArmy in this.armies) {
+			for (var otherArmy in this.armies) {
 				if (otherArmy !== army && this.armies[otherArmy].length !== 0) {
 					var secondArmy = this.armies[otherArmy];
 					// we're not self merging, so we check if the two armies are close together
@@ -165,7 +165,7 @@ enemyWatcher.prototype.mergeArmies = function(){
 };
 enemyWatcher.prototype.ScrapEmptyArmies = function(){
 	var removelist = [];
-	for (army in this.armies) {
+	for (var army in this.armies) {
 		if (this.armies[army].length === 0) {
 			removelist.push(army);
 			// if the army was dangerous, we remove it from the list
@@ -173,7 +173,7 @@ enemyWatcher.prototype.ScrapEmptyArmies = function(){
 				this.dangerousArmies.splice(this.dangerousArmies.indexOf(army),1);
 		}
 	}
-	for each (toRemove in removelist) {
+	for each (var toRemove in removelist) {
 		delete this.armies[toRemove];
 	}
 };
@@ -183,7 +183,7 @@ enemyWatcher.prototype.splitArmies = function(gameState){
 	
 	var map = Map.createTerritoryMap(gameState);
 	
-	for (armyID in this.armies) {
+	for (var armyID in this.armies) {
 		var army = this.armies[armyID];
 		var centre = army.getApproximatePosition(4);
 		

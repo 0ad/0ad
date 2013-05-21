@@ -10,7 +10,7 @@ function SharedScript(settings)
 	this._techTemplates = settings.techTemplates;
 		
 	this._entityMetadata = {};
-	for (i in this._players)
+	for (var i in this._players)
 		this._entityMetadata[this._players[i]] = {};
 
 	// always create for 8 + gaia players, since _players isn't aware of the human.
@@ -55,7 +55,7 @@ SharedScript.prototype.Deserialize = function(data)
 
 	this._players = data.players;
 	this._entityMetadata = {};
-	for (i in this._players)
+	for (var i in this._players)
 		this._entityMetadata[this._players[i]] = {};
 
 	this._techModifications = data.techModifs;
@@ -64,7 +64,7 @@ SharedScript.prototype.Deserialize = function(data)
 	this.passabilityClasses = data.passabClasses;
 	this.passabilityMap = data.passabMap;
 	var dataArray = [];
-	for (i in this.passabilityMap.data)
+	for (var i in this.passabilityMap.data)
 		dataArray.push(this.passabilityMap.data[i]);
 
 	this.passabilityMap.data = dataArray;
@@ -79,7 +79,7 @@ SharedScript.prototype.Deserialize = function(data)
 	this.timeElapsed = data.timeElapsed;
 
 	// deserializing entities;
-	for (i in data.entities)
+	for (var i in data.entities)
 	{
 		var entData = data.entities[i];
 		entData[1].template = entData[2];
@@ -93,7 +93,7 @@ SharedScript.prototype.Deserialize = function(data)
 	fakeState["players"] = this._players;
 	
 	this.gameState = {};
-	for (i in this._players)
+	for (var i in this._players)
 		this.gameState[this._players[i]] = new GameState(this, fakeState, this._players[i]);
 };
 
@@ -164,7 +164,7 @@ SharedScript.prototype.initWithState = function(state) {
 	this.passabilityMap = state.passabilityMap;
 	this.territoryMap = state.territoryMap;
 
-	for (o in state.players)
+	for (var o in state.players)
 		this._techModifications[o] = state.players[o].techModifications;
 	
 	this.techModifications = this._techModifications;
@@ -182,7 +182,7 @@ SharedScript.prototype.initWithState = function(state) {
 	this.accessibility = new Accessibility(state, this.terrainAnalyzer);
 	
 	this.gameState = {};
-	for (i in this._players)
+	for (var i in this._players)
 	{
 		this.gameState[this._players[i]] = new GameState(this,state,this._players[i]);
 	}
@@ -205,10 +205,10 @@ SharedScript.prototype.onUpdate = function(state)
 	this.territoryMap = state.territoryMap;
 	this.timeElapsed = state.timeElapsed;
 	
-	for (o in state.players)
+	for (var o in state.players)
 		this._techModifications[o] = state.players[o].techModifications;
 
-	for (i in this.gameState)
+	for (var i in this.gameState)
 		this.gameState[i].update(this,state);
 
 	this.terrainAnalyzer.updateMapWithEvents(this);
@@ -256,7 +256,7 @@ SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			// remember the entity and this AI's metadata concerning it
 			evt.msg.metadata = {};
 			evt.msg.entityObj = (evt.msg.entityObj || this._entities[evt.msg.entity]);
-			for (i in this._players)
+			for (var i in this._players)
 				evt.msg.metadata[this._players[i]] = this._entityMetadata[this._players[i]][evt.msg.entity];
 
 			for each (var entCol in this._entityCollections)
@@ -266,7 +266,7 @@ SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			this.entities.removeEnt(this._entities[evt.msg.entity]);
 
 			delete this._entities[evt.msg.entity];
-			for (i in this._players)
+			for (var i in this._players)
 				delete this._entityMetadata[this._players[i]][evt.msg.entity];
 		}
 		else if (evt.type == "TrainingFinished")
@@ -274,7 +274,7 @@ SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			// Apply metadata stored in training queues
 			for each (var ent in evt.msg.entities)
 			{
-				for (key in evt.msg.metadata)
+				for (var key in evt.msg.metadata)
 				{
 					this.setMetadata(evt.msg.owner, this._entities[ent], key, evt.msg.metadata[key])
 				}

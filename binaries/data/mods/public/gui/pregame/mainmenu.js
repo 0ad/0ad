@@ -264,7 +264,7 @@ function blendSubmenuIntoMain(topPosition, bottomPosition)
 //function openOptionsTab(tabName)
 //{
 //	// Hide the other tabs.
-//	for (i = 1; i <= 3; i++)
+//	for (var i = 1; i <= 3; i++)
 //	{
 //		switch (i)
 //		{

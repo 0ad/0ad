@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
-  <Armour>
-    <Hack>20.0</Hack>
-    <Pierce>40</Pierce>
-    <Crush>10.0</Crush>
-    <Foundation>
-      <Hack>5.0</Hack>
-      <Pierce>8.0</Pierce>
-      <Crush>3.0</Crush>
-    </Foundation>
-  </Armour>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>25.0</Pierce>
+      <Pierce>20.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>60.0</MaxRange>
       <MinRange>10.0</MinRange>
@@ -25,7 +15,7 @@
   </Attack>
   <BuildingAI>
     <DefaultArrowCount>1</DefaultArrowCount>
-    <GarrisonArrowMultiplier>0.5</GarrisonArrowMultiplier>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
   </BuildingAI>
   <BuildRestrictions>
     <Territory>own neutral</Territory>
@@ -82,7 +72,7 @@
     <Static width="30.0" depth="30.0"/>
   </Obstruction>
   <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
       units/{civ}_support_female_citizen
     </Entities>

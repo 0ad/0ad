@@ -183,7 +183,7 @@ var nbCreeks = scaleByMapSize(6,15);
 var islandX = [SardiniaX,CorsicaX];
 var islandZ = [SardiniaZ,CorsicaZ];
 // first: the creeks
-for (island = 0; island <= 1; island++)
+for (var island = 0; island <= 1; island++)
 	for (var i = 0; i <= nbCreeks; i++)
 	{
 		var radius = fractionToTiles( (Math.random()/17) + 0.49);
@@ -206,7 +206,7 @@ for (island = 0; island <= 1; island++)
 	}
 
 var nbBeaches = scaleByMapSize(2,5);
-for (island = 0; island <= 1; island++)
+for (var island = 0; island <= 1; island++)
 {
 	for (var i = 0; i <= nbBeaches; i++)
 	{
@@ -725,7 +725,7 @@ function hasTextureInRadius(x1, z1,radius, textureName)
 					{
 						if (typeof(textureName) != "number")
 						{
-							for (i in textureName)
+							for (var i in textureName)
 								if ( g_Map.getTexture(xx,zz) == textureName[i])
 									return true;
 						} else {

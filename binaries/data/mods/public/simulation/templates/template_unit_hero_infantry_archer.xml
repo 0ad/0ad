@@ -7,7 +7,7 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Pierce>50.0</Pierce>
+      <Pierce>25.0</Pierce>
       <MaxRange>60</MaxRange>
       <Spread>1.0</Spread>
 	  <Bonuses>
@@ -17,7 +17,7 @@
 		</BonusPrimary>
 		<BonusSecondary>
 		  <Classes>Cavalry Spear</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>1.25</Multiplier>
 		</BonusSecondary>
 	  </Bonuses>
     </Ranged>
@@ -40,7 +40,8 @@
     <GenericName>Hero Archer</GenericName>
     <Classes datatype="tokens">Hero</Classes>
 	<Tooltip>Hero Archer.
-Counters Swordsmen and Cavalry Spearmen. Countered by Skirmishers and other Cavalry types.</Tooltip>
+Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. 
+Countered by: Cavalry Swordsmen, Cavalry Skirmishers.</Tooltip>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>

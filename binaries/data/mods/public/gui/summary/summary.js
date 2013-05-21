@@ -48,10 +48,9 @@ function init(data)
 	{
 		// load the map sizes from the JSON file
 		var mapSizes = initMapSizes();
-		var mapSizeIndex;
 
 		// retrieve the index of the map size
-		for (mapSizeIndex in mapSizes.tiles)
+		for (var mapSizeIndex in mapSizes.tiles)
 		{
 			if (mapSizes.tiles[mapSizeIndex] == data.mapSettings.Size)
 			{

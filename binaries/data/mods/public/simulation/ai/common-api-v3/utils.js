@@ -33,7 +33,7 @@ function ManhattanDistance(a, b)
 
 function AssocArraytoArray(assocArray) {
 	var endArray = [];
-	for (i in assocArray)
+	for (var i in assocArray)
 		endArray.push(assocArray[i]);
 	return endArray;
 };

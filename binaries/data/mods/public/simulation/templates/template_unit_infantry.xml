@@ -2,7 +2,7 @@
 <Entity parent="template_unit">
   <Attack>
     <Slaughter>
-      <Hack>1000.0</Hack>
+      <Hack>50.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>4.0</MaxRange>
@@ -21,6 +21,7 @@
       structures/{civ}_dock
       structures/{civ}_civil_centre
       structures/{civ}_barracks
+      structures/{civ}_blacksmith
       structures/{civ}_temple
       structures/{civ}_market
       structures/{civ}_defense_tower

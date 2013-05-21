@@ -3,7 +3,7 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>25.0</Pierce>
+      <Pierce>20.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>50.0</MaxRange>
       <MinRange>12.0</MinRange>
@@ -59,6 +59,12 @@
     <Static width="6.0" depth="6.0"/>
     <ControlPersist/>
   </Obstruction>
+  <ProductionQueue>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Technologies datatype="tokens">
+	  pair_walls_01
+    </Technologies>
+  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_tower.xml</select>
