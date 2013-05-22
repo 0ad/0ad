@@ -464,9 +464,9 @@ long CSoundManager::GetBufferSize()
 	return m_BufferSize;
 }
 
-void CSoundManager::AddPlayListItem( VfsPath* itemPath)
+void CSoundManager::AddPlayListItem( const VfsPath& itemPath)
 {
-  m_PlayListItems->push_back( *itemPath );
+  m_PlayListItems->push_back( itemPath );
 }
 
 void CSoundManager::ClearPlayListItems()

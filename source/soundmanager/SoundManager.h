@@ -94,7 +94,7 @@ public:
 
 	void ClearPlayListItems();
 	void StartPlayList( bool doLoop );
-	void AddPlayListItem( VfsPath* itemPath);
+	void AddPlayListItem( const VfsPath& itemPath);
 
 	static void ScriptingInit();
 	static void CreateSoundManager();

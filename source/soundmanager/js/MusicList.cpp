@@ -45,7 +45,7 @@ bool JMusicList::AddItem(JSContext* cx, uintN UNUSED(argc), jsval* vp)
     return false;
 
 #if CONFIG2_AUDIO
-  g_SoundManager->AddPlayListItem( new VfsPath( filename ) );
+  g_SoundManager->AddPlayListItem( VfsPath( filename ) );
 #endif
 
   return true;
