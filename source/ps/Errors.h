@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,11 +58,11 @@ And you can use it as an exception:
 
 	try {
 		foo();
-	} catch (PSERROR_ModuleName_FrobnificationFailed e) {
+	} catch (PSERROR_ModuleName_FrobnificationFailed& e) {
 		// catches that particular error type
-	} catch (PSERROR_ModuleName e) {
+	} catch (PSERROR_ModuleName& e) {
 		// catches anything in the hierarchy
-	} catch (PSERROR e) {
+	} catch (PSERROR& e) {
 		std::cout << e.what();
 	}
 
