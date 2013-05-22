@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,8 @@
 
 class Noise2D
 {
+	NONCOPYABLE(Noise2D);
+
 	/// Frequency in X and Y
 	int freq;
 
@@ -47,6 +49,8 @@ public:
 
 class Noise3D 
 {
+	NONCOPYABLE(Noise3D);
+
 	/// Frequency in X and Y
 	int freq;
 

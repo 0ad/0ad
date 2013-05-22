@@ -129,6 +129,9 @@ struct trapLocation
 
 struct ThreadDebugger_impl
 {
+	NONCOPYABLE(ThreadDebugger_impl);
+public:
+
 	ThreadDebugger_impl();
 	~ThreadDebugger_impl();
 

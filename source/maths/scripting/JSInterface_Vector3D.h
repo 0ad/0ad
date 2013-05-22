@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,6 +40,9 @@ namespace JSI_Vector3D
 
 	struct Vector3D_Info
 	{
+		NONCOPYABLE(Vector3D_Info);
+	public:
+
 		IPropertyOwner* owner;
 		void (IPropertyOwner::*updateFn)();
 		void (IPropertyOwner::*freshenFn)();

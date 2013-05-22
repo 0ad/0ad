@@ -41,6 +41,8 @@ CSoundManager* g_SoundManager = NULL;
 
 class CSoundManagerWorker
 {
+	NONCOPYABLE(CSoundManagerWorker);
+
 public:
 	CSoundManagerWorker()
 	{

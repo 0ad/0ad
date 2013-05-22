@@ -96,6 +96,8 @@ class GUITooltip;
  */
 class CGUI
 {
+	NONCOPYABLE(CGUI);
+	
 	friend class IGUIObject;
 	friend class IGUIScrollBarOwner;
 	friend class CInternalCGUIAccessorBase;

@@ -51,6 +51,8 @@ class CTextRenderer;
  */
 class CConsole
 {
+	NONCOPYABLE(CConsole);
+
 public:
 	CConsole();
 	~CConsole();
