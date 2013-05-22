@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -79,7 +79,7 @@ public:
 	CRect(const float l, const float t, const float r, const float b);
 
 	// Operators
-	void				operator =  (const CRect& a);
+	CRect&				operator =  (const CRect& a);
 	bool				operator == (const CRect& a) const;
 	bool				operator != (const CRect& a) const;
 	CRect				operator -	(void) const;
@@ -172,7 +172,7 @@ public:
 	CPos(const float &_x, const float &_y);
 
 	// Operators
-	void				operator =  (const CPos& a);
+	CPos&				operator =  (const CPos& a);
 	bool				operator == (const CPos& a) const;
 	bool				operator != (const CPos& a) const;
 	CPos				operator -	(void) const;
@@ -211,7 +211,7 @@ public:
 	CSize(const float &_cx, const float &_cy);
 
 	// Operators
-	void				operator =  (const CSize& a);
+	CSize&				operator =  (const CSize& a);
 	bool				operator == (const CSize& a) const;
 	bool				operator != (const CSize& a) const;
 	CSize				operator -	(void) const;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -103,12 +103,13 @@ CRect::CRect(const float l, const float t, const float r, const float b) :
 }
 
 // =
-void CRect::operator = (const CRect& a)
+CRect& CRect::operator = (const CRect& a)
 {
 	left = a.left;
 	top = a.top;
 	right = a.right;
 	bottom = a.bottom;
+	return *this;
 }
 
 // ==
@@ -296,10 +297,11 @@ CPos::CPos(const float &_x, const float &_y) : x(_x), y(_y)
 }
 
 // =
-void CPos::operator = (const CPos& a)
+CPos& CPos::operator = (const CPos& a)
 {
 	x = a.x;
 	y = a.y;
+	return *this;
 }
 
 // ==
@@ -397,10 +399,11 @@ CSize::CSize(const float &_cx, const float &_cy) : cx(_cx), cy(_cy)
 }
 
 // =
-void CSize::operator = (const CSize& a)
+CSize& CSize::operator = (const CSize& a)
 {
 	cx = a.cx;
 	cy = a.cy;
+	return *this;
 }
 
 // ==
