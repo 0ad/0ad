@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -233,7 +233,7 @@ void OverlayRenderer::EndFrame()
 	// won't be very large or very variable
 	
 	// Empty the batch rendering data structures, but keep their key mappings around for the next frames
-	for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); it++)
+	for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); ++it)
 	{
 		QuadBatchData& quadBatchData = (it->second);
 		quadBatchData.m_Quads.clear();
@@ -505,7 +505,7 @@ void OverlayRenderer::RenderQuadOverlays()
 		GLsizei indexStride = m->quadIndices.GetStride();
 		GLsizei vertexStride = m->quadVertices.GetStride();
 
-		for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); it++)
+		for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); ++it)
 		{
 			QuadBatchData& batchRenderData = it->second;
 			const size_t batchNumQuads = batchRenderData.m_NumRenderQuads;

@@ -40,7 +40,7 @@ void CDebuggingServer::GetAllCallstacks(std::stringstream& response)
 	if (!m_ThreadDebuggers.empty())
 	{
 		response << "[";
-		for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); itr++)
+		for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); ++itr)
 		{
 			if ((*itr)->GetIsInBreak())
 			{
@@ -68,7 +68,7 @@ void CDebuggingServer::GetStackFrameData(std::stringstream& response, uint nesti
 	response.str("");
 	std::stringstream stream;
 	std::list<CThreadDebugger*>::iterator itr;
-	for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); itr++)
+	for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); ++itr)
 	{
 		if ( (*itr)->GetID() == threadDebuggerID && (*itr)->GetIsInBreak())
 		{
@@ -112,7 +112,7 @@ bool CDebuggingServer::SetNextDbgCmd(uint threadDebuggerID, DBGCMD dbgCmd)
 {
 	CScopeLock lock(m_Mutex);
 	std::list<CThreadDebugger*>::iterator itr;
-	for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); itr++)
+	for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); ++itr)
 	{
 		if ( (*itr)->GetID() == threadDebuggerID || threadDebuggerID == 0)
 		{
@@ -195,7 +195,7 @@ void CDebuggingServer::EnumVfsJSFiles(std::stringstream& response)
 
 	std::vector<std::string>::iterator itr;
 	response << "[";
-	for (itr = templates.begin(); itr != templates.end(); itr++)
+	for (itr = templates.begin(); itr != templates.end(); ++itr)
 	{
 		if (itr != templates.begin())
 			response << ",";
@@ -477,7 +477,7 @@ void CDebuggingServer::UnRegisterScriptinterface(ScriptInterface* pScriptInterfa
 {
 	CScopeLock lock(m_Mutex);
 	std::list<CThreadDebugger*>::iterator itr;
-	for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); itr++)
+	for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); ++itr)
 	{
 		if ((*itr)->CompareScriptInterfacePtr(pScriptInterface))
 		{
@@ -496,7 +496,7 @@ void CDebuggingServer::GetThreadDebuggerStatus(std::stringstream& response)
 	std::list<CThreadDebugger*>::iterator itr;
 
 	response << "[";
-	for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); itr++)
+	for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); ++itr)
 	{
 		if (itr == m_ThreadDebuggers.begin())
 			response << "{ ";
@@ -519,7 +519,7 @@ void CDebuggingServer::ToggleBreakPoint(std::string filename, uint line)
 	{
 		CScopeLock lock(m_Mutex);
 		std::list<CThreadDebugger*>::iterator itr;
-		for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); itr++)
+		for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); ++itr)
 		{
 			if ((*itr)->ToggleBreakPoint(filename, line))
 				return;
@@ -533,7 +533,7 @@ void CDebuggingServer::ToggleBreakPoint(std::string filename, uint line)
 
 	// If set, delete
 	bool deleted = false;
-	for (itr = pBreakPoints->begin(); itr != pBreakPoints->end(); itr++)
+	for (itr = pBreakPoints->begin(); itr != pBreakPoints->end(); ++itr)
 	{
 		if ((*itr).m_Filename == filename && (*itr).m_UserLine == line)
 		{

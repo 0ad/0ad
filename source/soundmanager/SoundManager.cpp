@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -588,7 +588,7 @@ void CSoundManager::IdleTask()
 					{
 						m_PlaylistGap = 0;
 						PlayList::iterator it = find (m_PlayListItems->begin(), m_PlayListItems->end(), *(m_CurrentTune->GetName()) );
-						it++;
+						++it;
 
 						Path nextPath;
 						if ( it == m_PlayListItems->end() )
