@@ -80,16 +80,13 @@ Heal.prototype.PerformHeal = function(target)
 	var cmpHealth = Engine.QueryInterface(target, IID_Health);
 	if (!cmpHealth)
 		return;
-	
-	var hp = +this.template.HP;
-	hp = ApplyTechModificationsToEntity("Heal/HP", hp, this.entity);
-	
-	var targetState = cmpHealth.Increase(hp);
+
+	var targetState = cmpHealth.Increase(ApplyTechModificationsToEntity("Heal/HP", +this.template.HP, this.entity));
 
 	// Add XP
 	var cmpLoot = Engine.QueryInterface(target, IID_Loot);
 	var cmpPromotion = Engine.QueryInterface(this.entity, IID_Promotion);
-	if (targetState!==undefined && cmpLoot && cmpPromotion)
+	if (targetState !== undefined && cmpLoot && cmpPromotion)
 	{
 		// HP healed * XP per HP
 		cmpPromotion.IncreaseXp((targetState.new-targetState.old)*(cmpLoot.GetXp()/cmpHealth.GetMaxHitpoints()));

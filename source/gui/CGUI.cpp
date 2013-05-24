@@ -707,7 +707,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 					// Y is if no other floating images is above, y. Else it is placed
 					//  after the last image, like a stack downwards.
 					float _y;
-					if (Images[j].size() > 0)
+					if (!Images[j].empty())
 						_y = std::max(y, Images[j].back().m_YTo);
 					else
 						_y = y; 

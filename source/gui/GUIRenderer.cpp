@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,7 +50,7 @@ DrawCalls::DrawCalls(const DrawCalls&)
 {
 }
 
-const DrawCalls& DrawCalls::operator=(const DrawCalls&)
+DrawCalls& DrawCalls::operator=(const DrawCalls&)
 {
 	return *this;
 }

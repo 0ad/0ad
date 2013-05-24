@@ -585,7 +585,7 @@ std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const
 		if (prop)
 		{
 			std::vector<std::set<CStr> > propInitialSelections = initialSelections;
-			if (remainingSelections.size() > 0)
+			if (!remainingSelections.empty())
 				propInitialSelections.push_back(remainingSelections);
 
 			std::set<CStr> propRemainingSelections = prop->CalculateRandomRemainingSelections(rng, propInitialSelections);
@@ -611,7 +611,7 @@ std::vector<std::vector<CStr> > CObjectBase::GetVariantGroups() const
 	// Set of objects already processed, so we don't do them more than once
 	std::set<const CObjectBase*> objectsProcessed;
 
-	while (objectsQueue.size())
+	while (!objectsQueue.empty())
 	{
 		const CObjectBase* obj = objectsQueue.front();
 		objectsQueue.pop();

@@ -144,6 +144,10 @@ GarrisonHolder.prototype.Garrison = function(entity)
 		this.spaceOccupied += 1;
 		cmpPosition.MoveOutOfWorld();
 		this.UpdateGarrisonFlag();
+		var cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
+		if (cmpProductionQueue)
+			cmpProductionQueue.PauseProduction();
+
 		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 		return true;
 	}
@@ -185,9 +189,11 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 	
 	var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 	if (cmpUnitAI)
-	{
 		cmpUnitAI.Ungarrison();
-	}
+
+	var cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
+	if (cmpProductionQueue)
+		cmpProductionQueue.UnpauseProduction();
 	
 	var cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
 	cmpNewPosition.JumpTo(pos.x, pos.z);

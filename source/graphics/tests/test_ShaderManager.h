@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -93,7 +93,7 @@ public:
 	{
 		CShaderUniforms uniforms1;
 		CShaderUniforms uniforms2;
-		TS_ASSERT(uniforms1 == uniforms1);
+		TS_ASSERT(uniforms1 == uniforms2);
 
 		uniforms1.Add("FOO", CVector4D(1.0f, 0.0f, 0.0f, 0.0f));
 

@@ -61,7 +61,8 @@ ProductionQueue.prototype.Init = function()
 	//   }
 	
 	this.timer = undefined; // g_ProgressInterval msec timer, active while the queue is non-empty
-	
+	this.paused = false;
+
 	this.entityCache = [];
 	this.spawnNotified = false;
 };
@@ -535,6 +536,9 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
  */
 ProductionQueue.prototype.ProgressTimeout = function(data)
 {
+	// Check if the production is paused (eg the entity is garrisoned)
+	if (this.paused)
+		return;
 	// Allocate the 1000msecs to as many queue items as it takes
 	// until we've used up all the time (so that we work accurately
 	// with items that take fractions of a second)
@@ -650,6 +654,19 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		this.timer = cmpTimer.SetTimeout(this.entity, IID_ProductionQueue, "ProgressTimeout", g_ProgressInterval, data);
 	}
-}
+};
+
+ProductionQueue.prototype.PauseProduction = function()
+{
+	this.timer = undefined;
+	this.paused = true;
+};
+
+ProductionQueue.prototype.UnpauseProduction = function()
+{
+	this.paused = false;
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.timer = cmpTimer.SetTimeout(this.entity, IID_ProductionQueue, "ProgressTimeout", g_ProgressInterval, {});
+};
 
 Engine.RegisterComponentType(IID_ProductionQueue, "ProductionQueue", ProductionQueue);

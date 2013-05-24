@@ -129,6 +129,9 @@ struct trapLocation
 
 struct ThreadDebugger_impl
 {
+	NONCOPYABLE(ThreadDebugger_impl);
+public:
+
 	ThreadDebugger_impl();
 	~ThreadDebugger_impl();
 
@@ -192,7 +195,7 @@ void CThreadDebugger::ClearTrapsToRemove()
 
 		}
 		else
-			itr++;
+			++itr;
 	}
 }
 
@@ -224,7 +227,7 @@ void CThreadDebugger::SetAllNewTraps()
 			{
 				CScopeLock lock(m->m_Mutex);
 				std::list<CActiveBreakPoint*>::iterator itr1;
-				for (itr1 = m->m_ActiveBreakPoints.begin(); itr1 != m->m_ActiveBreakPoints.end(); itr1++)
+				for (itr1 = m->m_ActiveBreakPoints.begin(); itr1 != m->m_ActiveBreakPoints.end(); ++itr1)
 				{
 					if ((*itr1)->m_ActualLine == (*itr).m_UserLine)
 						trapAlreadySet = true;
@@ -243,7 +246,7 @@ void CThreadDebugger::SetAllNewTraps()
 				continue;
 			}
 		}
-		itr++;
+		++itr;
 	}
 	m->m_pDebuggingServer->ReleaseBreakPointAccess(breakPointsLockID);
 }
@@ -313,7 +316,7 @@ void CThreadDebugger::ReturnActiveBreakPoints(jsbytecode* pBytecode)
 			m->m_pDebuggingServer->ReleaseBreakPointAccess(breakPointsLockID);
 		}
 		else
-			itr++;
+			++itr;
 	}
 }
 
@@ -620,7 +623,7 @@ bool CThreadDebugger::ToggleBreakPoint(std::string filename, uint userLine)
 {
 	CScopeLock lock(m->m_Mutex);
 	std::list<CActiveBreakPoint*>::iterator itr;
-	for (itr = m->m_ActiveBreakPoints.begin(); itr != m->m_ActiveBreakPoints.end(); itr++)
+	for (itr = m->m_ActiveBreakPoints.begin(); itr != m->m_ActiveBreakPoints.end(); ++itr)
 	{
 		if ((*itr)->m_UserLine == userLine && (*itr)->m_Filename == filename)
 		{

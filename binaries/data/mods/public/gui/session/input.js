@@ -1451,7 +1451,8 @@ function handleMinimapEvent(target)
 			Engine.GuiInterfaceCall("DisplayRallyPoint", {
 				"entities": selection,
 				"x": target.x,
-				"z": target.z
+				"z": target.z,
+				"queued": queued
 			});
 			return true;
 

@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -447,7 +447,7 @@ static Status call_init_and_reload(Handle h, H_Type type, HDATA* hd, const PIVFS
 			if(err == INFO::OK)
 				warn_if_invalid(hd);
 		}
-		catch(std::bad_alloc)
+		catch(std::bad_alloc&)
 		{
 			err  = ERR::NO_MEM;
 		}

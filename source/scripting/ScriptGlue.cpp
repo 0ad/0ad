@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -346,7 +346,7 @@ JSBool SetPaused(JSContext* cx, uintN argc, jsval* vp)
 			g_SoundManager->Pause(g_Game->m_Paused);
 #endif
 	}
-	catch (PSERROR_Scripting_ConversionFailed)
+	catch (PSERROR_Scripting_ConversionFailed&)
 	{
 		JS_ReportError(cx, "Invalid parameter to SetPaused");
 	}

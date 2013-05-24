@@ -396,6 +396,8 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			m_FoamFactor[j*mapSize + i] = foamAmount;
 		}
 	}
+
+	delete[] waveForceHQ;
 	
 	// TODO: The rest should be cleaned up
 	
@@ -430,10 +432,13 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 					{
 						waterPosition += CVector2D(i*size+xx,j*size+yy);
 						waterTexel++;
+						avnormal += terrain->CalcExactNormal( (i*size+xx)*4.0f,(j*size+yy)*4.0f);
 					}
-					avnormal += terrain->CalcExactNormal( (i*size+xx)*4.0f,(j*size+yy)*4.0f);
 				}
 			}
+			if (landTexel < size/2)
+				continue;
+
 			landPosition /= landTexel;
 			waterPosition /= waterTexel;
 			
@@ -441,8 +446,6 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			avnormal.Normalize();
 			avnormal[1] = 0.0f;
 			
-			if (landTexel < size/2)
-				continue;
 			// this should help ensure that the shore is pretty flat.
 			if (avnormal.Length() <= 0.2f)
 				continue;

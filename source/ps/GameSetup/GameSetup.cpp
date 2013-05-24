@@ -1027,7 +1027,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 			InitPs(setup_gui, L"page_pregame.xml", data.get());
 		}
 	}
-	catch (PSERROR_Game_World_MapLoadFailed e)
+	catch (PSERROR_Game_World_MapLoadFailed& e)
 	{
 		// Map Loading failed
 

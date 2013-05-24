@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ JSBool JSI_Console::setProperty(JSContext* UNUSED(cx), JSObject* UNUSED(obj), js
 			g_Console->SetVisible(ToPrimitive<bool> (*vp));
 			return JS_TRUE;
 		}
-		catch (PSERROR_Scripting_ConversionFailed)
+		catch (PSERROR_Scripting_ConversionFailed&)
 		{
 			return JS_TRUE;
 		}
@@ -110,7 +110,7 @@ JSBool JSI_Console::writeConsole(JSContext* cx, uintN argc, jsval* vp)
 			CStrW arg = g_ScriptingHost.ValueToUCString(JS_ARGV(cx, vp)[i]);
 			output += arg;
 		}
-		catch (PSERROR_Scripting_ConversionFailed)
+		catch (PSERROR_Scripting_ConversionFailed&)
 		{
 		}
 	}

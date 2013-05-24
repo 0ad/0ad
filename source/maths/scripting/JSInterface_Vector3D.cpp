@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -179,7 +179,7 @@ JSBool JSI_Vector3D::construct(JSContext* cx, uintN argc, jsval* vp)
 		JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(vector));
 		return JS_TRUE;
 	}
-	catch (PSERROR_Scripting_ConversionFailed)
+	catch (PSERROR_Scripting_ConversionFailed&)
 	{
 		// Invalid input (i.e. can't be coerced into doubles) - fail
 		JS_ReportError(cx, "Invalid parameters to Vector3D constructor");

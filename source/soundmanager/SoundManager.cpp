@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,6 +41,8 @@ CSoundManager* g_SoundManager = NULL;
 
 class CSoundManagerWorker
 {
+	NONCOPYABLE(CSoundManagerWorker);
+
 public:
 	CSoundManagerWorker()
 	{
@@ -464,9 +466,9 @@ long CSoundManager::GetBufferSize()
 	return m_BufferSize;
 }
 
-void CSoundManager::AddPlayListItem( VfsPath* itemPath)
+void CSoundManager::AddPlayListItem( const VfsPath& itemPath)
 {
-  m_PlayListItems->push_back( *itemPath );
+  m_PlayListItems->push_back( itemPath );
 }
 
 void CSoundManager::ClearPlayListItems()
@@ -483,7 +485,7 @@ void CSoundManager::ClearPlayListItems()
 
 void CSoundManager::StartPlayList( bool doLoop )
 {
-  if ( m_PlayListItems->size() > 0 )
+  if ( !m_PlayListItems->empty() )
   {
     m_PlayingPlaylist = true;
     m_LoopingPlaylist = doLoop;
@@ -588,7 +590,7 @@ void CSoundManager::IdleTask()
 					{
 						m_PlaylistGap = 0;
 						PlayList::iterator it = find (m_PlayListItems->begin(), m_PlayListItems->end(), *(m_CurrentTune->GetName()) );
-						it++;
+						++it;
 
 						Path nextPath;
 						if ( it == m_PlayListItems->end() )

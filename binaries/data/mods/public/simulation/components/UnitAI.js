@@ -2078,12 +2078,20 @@ var UnitFsmSpec = {
 						this.FinishOrder();
 						return true;
 					}
-					else
+
+					// Check if the target is still repairable
+					var cmpHealth = Engine.QueryInterface(target, IID_Health);
+					if (cmpHealth && cmpHealth.GetHitpoints() >= cmpHealth.GetMaxHitpoints())
 					{
-						var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
-						if (cmpFoundation)
-							cmpFoundation.AddBuilder(this.entity);
+						// The building was already finished/fully repaired before we arrived;
+						// let the ConstructionFinished handler handle this.
+						this.OnGlobalConstructionFinished({"entity": target, "newentity": target});
+						return true;
 					}
+
+					var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
+					if (cmpFoundation)
+						cmpFoundation.AddBuilder(this.entity);
 
 					this.SelectAnimation("build", false, 1.0, "build");
 					this.StartTimer(1000, 1000);

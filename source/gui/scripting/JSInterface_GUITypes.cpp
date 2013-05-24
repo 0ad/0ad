@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -120,7 +120,7 @@ JSBool JSI_GUISize::toString(JSContext* cx, uintN argc, jsval* vp)
 		SIDE(bottom);
 #undef SIDE
 	}
-	catch (PSERROR_Scripting_ConversionFailed)
+	catch (PSERROR_Scripting_ConversionFailed&)
 	{
 		JS_SET_RVAL(cx, vp, STRING_TO_JSVAL(JS_NewStringCopyZ(cx, "<Error converting value to numbers>")));
 		return JS_TRUE;
