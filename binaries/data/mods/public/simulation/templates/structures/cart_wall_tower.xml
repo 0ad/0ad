@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_tower">
-  <Cost>
-    <BuildTime>120</BuildTime>
-    <Resources>
-      <stone>90</stone>
-    </Resources>
-  </Cost>
   <Footprint>
     <Square width="14.0" depth="14.0"/>
     <Height>18.0</Height>
   </Footprint>
   <Health>
-    <Max>12000</Max>
     <SpawnEntityOnDeath>rubble/rubble_stone_2x2</SpawnEntityOnDeath>
   </Health>
   <Identity>
