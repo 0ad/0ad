@@ -519,8 +519,11 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 				// HACK (TODO replace) : if we have no trainable template... Then we'll simply remove the buildOrder, effectively removing the unit from the plan.
 				if (template === undefined) {
 					// TODO: this is a complete hack.
-					if (this.needsShip && this.buildOrder[0][4] == "TransportShip")
+					if (this.needsShip && this.buildOrder[0][4] == "TransportShip") {
+						Engine.ProfileStop();
+						Engine.ProfileStop();
 						return 0;
+					}
 					delete this.unitStat[this.buildOrder[0][4]];	// deleting the associated unitstat.
 					this.buildOrder.splice(0,1);
 				} else {
@@ -569,13 +572,13 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 			}
 		}
 		*/
+		Engine.ProfileStop();
+		Engine.ProfileStop();
 		// can happen for now
 		if (this.buildOrder.length === 0) {
 			debug ("Ending plan: no build orders");
 			return 0;	// will abort the plan, should return something else
 		}
-		Engine.ProfileStop();
-		Engine.ProfileStop();
 		return 1;
 	}
 	this.unitCollection.forEach(function (entity) { entity.setMetadata(PlayerID, "role","attack"); });
@@ -705,6 +708,8 @@ CityAttack.prototype.StartAttack = function(gameState, militaryManager){
 		this.unitCollectionNoWarship = this.unitCollection.filter(Filters.not(Filters.byClass("Warship")));
 		this.unitCollectionNoWarship.registerUpdates();
 		
+		if (this.path[0][0])
+			return false;
 		this.unitCollection.moveIndiv(this.path[0][0][0], this.path[0][0][1]);
 		this.unitCollection.setStance("aggressive");
 		this.unitCollection.filter(Filters.byClass("Siege")).setStance("defensive");
@@ -713,7 +718,7 @@ CityAttack.prototype.StartAttack = function(gameState, militaryManager){
 	} else {
 		gameState.ai.gameFinished = true;
 		debug ("I do not have any target. So I'll just assume I won the game.");
-		return true;
+		return false;
 	}
 	return true;
 };
@@ -729,8 +734,10 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 	var bool_attacked = false;
 	// raids don't care about attacks much
 	
-	if (this.unitCollection.length === 0)
+	if (this.unitCollection.length === 0) {
+		Engine.ProfileStop();
 		return 0;
+	}
 	
 	this.position = this.unitCollection.getCentrePosition();
 	
@@ -842,9 +849,11 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 		this.position = this.unitCollectionNoWarship.getCentrePosition();
 
 		// probably not too good.
-		if (!this.position)
+		if (!this.position) {
+			Engine.ProfileStop();
 			return undefined;	// should spawn an error.
-		
+		}
+
 		// basically haven't moved an inch: very likely stuck)
 		if (SquareVectorDistance(this.position, this.position5TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 5 === 0) {
 			// check for stuck siege units
@@ -882,6 +891,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 			} else if (nexttoWalls) {
 				// abort plan.
 				debug ("Attack Plan " +this.type +" " +this.name +" has met walls and gives up.");
+				Engine.ProfileStop();
 				return 0;
 			}
 		}
@@ -911,8 +921,10 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 					// okay we must load our units.
 					// check if we have some kind of ships.
 					var ships = this.unitCollection.filter(Filters.byClass("Warship"));
-					if (ships.length === 0)
+					if (ships.length === 0) {
+						Engine.ProfileStop();
 						return 0; // abort
+					}
 				
 					debug ("switch to boarding");
 					this.state = "boarding";
@@ -936,6 +948,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 					this.unitCollection.filter(Filters.byClass("Warship")).move(this.path[0][0][0], this.path[0][0][1]);
 				} else {
 					debug ("Attack Plan " +this.type +" " +this.name +" has arrived to destination, but it's still on the ship…");
+					Engine.ProfileStop();
 					return 0; // abort
 				}
 			} else if (this.path[0][1] === true)
@@ -949,8 +962,10 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 		this.position = this.unitCollectionNoWarship.getCentrePosition();
 
 		var ships = this.unitCollection.filter(Filters.byClass("Warship"));
-		if (ships.length === 0)
+		if (ships.length === 0) {
+			Engine.ProfileStop();
 			return 0; // abort
+		}
 		
 		var globalPos = this.unitCollectionNoWarship.getCentrePosition();
 		var shipPos = ships.getCentrePosition();
@@ -993,9 +1008,11 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 	} else if (this.state === "unboarding") {
 		
 		var ships = this.unitCollection.filter(Filters.byClass("Warship"));
-		if (ships.length === 0)
+		if (ships.length === 0) {
+			Engine.ProfileStop();
 			return 0; // abort
-		
+		}
+
 		this.position = ships.getCentrePosition();
 		
 		// the procedure is pretty simple: we move the ships to the next point and try to unload until all units are over.
@@ -1264,6 +1281,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 					count++;
 					if (count > 1000){
 						debug("No target with a valid position found");
+						Engine.ProfileStop();
 						return false;
 					}
 				}

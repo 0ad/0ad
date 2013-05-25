@@ -477,7 +477,7 @@ EconomyManager.prototype.buildNewCC= function(gameState, queues) {
 			this.baseNeed["metal"] = 50;
 			queues.civilCentre.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_civil_centre"));
 		}
-	return (gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_civil_centre")) == 0 && gameState.currentPhase > 1);
+	return (gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_civil_centre")) == 0 && gameState.currentPhase() > 1);
 };
 
 // TODO: make it regularly update stone+metal mines and their resource levels.
@@ -1183,6 +1183,7 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 			ent.getMetadata(PlayerID, "worker-object").update(gameState);
 		});
 
+		Engine.ProfileStop();
 		Engine.ProfileStop();
 		return;
 	}
