@@ -128,7 +128,7 @@ EconomyManager.prototype.trainMoreWorkers = function(gameState, queues) {
 	var numTotal = numWorkers + numQueued;
 	
 	if (gameState.currentPhase() > 1 || gameState.isResearching("phase_town"))
-		this.targetNumFields = numWorkers/25;
+		this.targetNumFields = numWorkers/10.0;	// 5 workers per field max.
 	else
 		this.targetNumFields = 1;
 	

@@ -708,8 +708,6 @@ CityAttack.prototype.StartAttack = function(gameState, militaryManager){
 		this.unitCollectionNoWarship = this.unitCollection.filter(Filters.not(Filters.byClass("Warship")));
 		this.unitCollectionNoWarship.registerUpdates();
 		
-		if (this.path[0][0])
-			return false;
 		this.unitCollection.moveIndiv(this.path[0][0][0], this.path[0][0][1]);
 		this.unitCollection.setStance("aggressive");
 		this.unitCollection.filter(Filters.byClass("Siege")).setStance("defensive");
