@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,6 +39,8 @@ public:
 
 	virtual std::istream& GetStream();
 	virtual void RequireBytesInStream(size_t numBytes);
+
+	virtual void SetSerializablePrototypes(std::map<std::wstring, JSObject*>& prototypes);
 	
 protected:
 	virtual void Get(const char* name, u8* data, size_t len);
@@ -49,11 +51,18 @@ private:
 
 	virtual void AddScriptBackref(JSObject* obj);
 	virtual JSObject* GetScriptBackref(u32 tag);
+	virtual u32 ReserveScriptBackref();
+	virtual void SetReservedScriptBackref(u32 tag, JSObject* obj);
 	void FreeScriptBackrefs();
 	std::map<u32, JSObject*> m_ScriptBackrefs; // vector would be nice but maintaining JS roots would be harder
 	ScriptInterface& m_ScriptInterface;
 
 	std::istream& m_Stream;
+
+	std::map<std::wstring, JSObject*> m_SerializablePrototypes;
+
+	bool IsSerializablePrototype(const std::wstring& name);
+	JSObject* GetSerializablePrototype(const std::wstring& name);
 };
 
 #endif // INCLUDED_STDDESERIALIZER

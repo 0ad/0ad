@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,6 +59,7 @@ public:
 
 	void ScriptString(const char* name, JSString* string);
 	void HandleScriptVal(jsval val);
+	void SetSerializablePrototypes(std::map<JSObject*, std::wstring>& prototypes);
 private:
 	ScriptInterface& m_ScriptInterface;
 	ISerializer& m_Serializer;
@@ -73,6 +74,11 @@ private:
 	u32 GetScriptBackrefTag(JSObject* obj);
 
 	AutoGCRooter m_Rooter;
+
+	std::map<JSObject*, std::wstring> m_SerializablePrototypes;
+
+	bool IsSerializablePrototype(JSObject* prototype);
+	std::wstring GetPrototypeName(JSObject* prototype);
 };
 
 /**
@@ -98,6 +104,11 @@ public:
 		m_RawStreamBuf(m_Impl),
 		m_RawStream(&m_RawStreamBuf)
 	{
+	}
+
+	virtual void SetSerializablePrototypes(std::map<JSObject*, std::wstring>& prototypes)
+	{
+		m_ScriptImpl->SetSerializablePrototypes(prototypes);
 	}
 
 protected:

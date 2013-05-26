@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,11 +25,39 @@
 #include "ps/CLogger.h"
 
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptExtraHeaders.h" // for JSDOUBLE_IS_INT32
+#include "scriptinterface/ScriptExtraHeaders.h" // for JSDOUBLE_IS_INT32, typed arrays
+
+static u8 GetArrayType(uint32 arrayType)
+{
+	switch(arrayType)
+	{
+	case js::TypedArray::TYPE_INT8:
+		return SCRIPT_TYPED_ARRAY_INT8;
+	case js::TypedArray::TYPE_UINT8:
+		return SCRIPT_TYPED_ARRAY_UINT8;
+	case js::TypedArray::TYPE_INT16:
+		return SCRIPT_TYPED_ARRAY_INT16;
+	case js::TypedArray::TYPE_UINT16:
+		return SCRIPT_TYPED_ARRAY_UINT16;
+	case js::TypedArray::TYPE_INT32:
+		return SCRIPT_TYPED_ARRAY_INT32;
+	case js::TypedArray::TYPE_UINT32:
+		return SCRIPT_TYPED_ARRAY_UINT32;
+	case js::TypedArray::TYPE_FLOAT32:
+		return SCRIPT_TYPED_ARRAY_FLOAT32;
+	case js::TypedArray::TYPE_FLOAT64:
+		return SCRIPT_TYPED_ARRAY_FLOAT64;
+	case js::TypedArray::TYPE_UINT8_CLAMPED:
+		return SCRIPT_TYPED_ARRAY_UINT8_CLAMPED;
+	default:
+		LOGERROR(L"Cannot serialize unrecognized typed array view: %d", arrayType);
+		throw PSERROR_Serialize_InvalidScriptValue();
+	}
+}
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer) :
 	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_Rooter(m_ScriptInterface),
-	m_ScriptBackrefsArena(8*MiB), m_ScriptBackrefs(backrefs_t::key_compare(), ScriptBackrefsAlloc(m_ScriptBackrefsArena)), m_ScriptBackrefsNext(1)
+	m_ScriptBackrefsArena(16*MiB), m_ScriptBackrefs(backrefs_t::key_compare(), ScriptBackrefsAlloc(m_ScriptBackrefsArena)), m_ScriptBackrefsNext(1)
 {
 }
 
@@ -68,6 +96,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 			break;
 		}
 
+		// Arrays are special cases of Object
 		if (JS_IsArrayObject(cx, obj))
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY);
@@ -80,18 +109,130 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 				throw PSERROR_Serialize_ScriptError("JS_GetArrayLength failed");
 			m_Serializer.NumberU32_Unbounded("array length", length);
 		}
+		else if (js_IsTypedArray(obj))
+		{
+			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_TYPED_ARRAY);
+
+			js::TypedArray* typedArray = js::TypedArray::fromJSObject(obj);
+			
+			m_Serializer.NumberU8_Unbounded("array type", GetArrayType(typedArray->type));
+			m_Serializer.NumberU32_Unbounded("byte offset", typedArray->byteOffset);
+			m_Serializer.NumberU32_Unbounded("length", typedArray->length);
+
+			// Now handle its array buffer
+			// this may be a backref, since ArrayBuffers can be shared by multiple views
+			HandleScriptVal(OBJECT_TO_JSVAL(typedArray->bufferJS));
+			break;
+		}
+		else if (js_IsArrayBuffer(obj))
+		{
+			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY_BUFFER);
+
+			js::ArrayBuffer* arrayBuffer = js::ArrayBuffer::fromJSObject(obj);
+
+#if BYTE_ORDER != LITTLE_ENDIAN
+#error TODO: need to convert JS ArrayBuffer data to little-endian
+#endif
+
+			u32 length = arrayBuffer->byteLength;
+			m_Serializer.NumberU32_Unbounded("buffer length", length);
+			m_Serializer.RawBytes("buffer data", (const u8*)arrayBuffer->data, length);
+			break;
+		}
 		else
 		{
-			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT);
+			// Find type of object
+			JSClass* jsclass = JS_GET_CLASS(cx, obj);
+			if (!jsclass)
+				throw PSERROR_Serialize_ScriptError("JS_GET_CLASS failed");
+			JSProtoKey protokey = JSCLASS_CACHED_PROTO_KEY(jsclass);
 
-			//			if (JS_GetClass(cx, obj))
-			//			{
-			//				LOGERROR("Cannot serialise JS objects of type 'object' with a class");
-			//				throw PSERROR_Serialize_InvalidScriptValue();
-			//			}
-			// TODO: ought to complain only about non-standard classes
-			// TODO: probably ought to do something cleverer for classes, prototypes, etc
-			// (See Trac #406, #407)
+			if (protokey == JSProto_Object)
+			{
+				// Object class - check for user-defined prototype
+				JSObject* proto = JS_GetPrototype(cx, obj);
+				if (!proto)
+					throw PSERROR_Serialize_ScriptError("JS_GetPrototype failed");
+
+				if (m_SerializablePrototypes.empty() || !IsSerializablePrototype(proto))
+				{
+					// Standard Object prototype
+					m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT);
+
+					// TODO: maybe we should throw an error for unrecognized non-Object prototypes?
+					//	(requires fixing AI serialization first and excluding component scripts)
+				}
+				else
+				{
+					// User-defined custom prototype
+					m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_PROTOTYPE);
+
+					const std::wstring& prototypeName = GetPrototypeName(proto);
+					m_Serializer.String("proto name", prototypeName, 0, 256);
+
+					// Does it have custom Serialize function?
+					// if so, we serialize the data it returns, rather than the object's properties directly
+					JSBool hasCustomSerialize;
+					if (!JS_HasProperty(cx, obj, "Serialize", &hasCustomSerialize))
+						throw PSERROR_Serialize_ScriptError("JS_HasProperty failed");
+					
+					if (hasCustomSerialize)
+					{
+						jsval serialize;
+						if (!JS_LookupProperty(cx, obj, "Serialize", &serialize))
+							throw PSERROR_Serialize_ScriptError("JS_LookupProperty failed");
+
+						// If serialize is null, so don't serialize anything more
+						if (!JSVAL_IS_NULL(serialize))
+						{
+							CScriptValRooted data;
+							if (!m_ScriptInterface.CallFunction(val, "Serialize", data))
+								throw PSERROR_Serialize_ScriptError("Prototype Serialize function failed");
+							HandleScriptVal(data.get());
+						}
+						break;
+					}
+				}
+			}
+			else if (protokey == JSProto_Number)
+			{
+				// Standard Number object
+				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_NUMBER);
+				// Get primitive value
+				jsdouble d;
+				if (!JS_ValueToNumber(cx, val, &d))
+					throw PSERROR_Serialize_ScriptError("JS_ValueToNumber failed");
+				m_Serializer.NumberDouble_Unbounded("value", d);
+				break;
+			}
+			else if (protokey == JSProto_String)
+			{
+				// Standard String object
+				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_STRING);
+				// Get primitive value
+				JSString* str = JS_ValueToString(cx, val);
+				if (!str)
+					throw PSERROR_Serialize_ScriptError("JS_ValueToString failed");
+				ScriptString("value", str);
+				break;
+			}
+			else if (protokey == JSProto_Boolean)
+			{
+				// Standard Boolean object
+				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_BOOLEAN);
+				// Get primitive value
+				JSBool b;
+				if (!JS_ValueToBoolean(cx, val, &b))
+					throw PSERROR_Serialize_ScriptError("JS_ValueToBoolean failed");
+				m_Serializer.Bool("value", b == JS_TRUE);
+				break;
+			}
+			else
+			{
+				// Unrecognized class
+				LOGERROR(L"Cannot serialise JS objects with unrecognized class '%hs'", jsclass->name);
+				throw PSERROR_Serialize_InvalidScriptValue();
+			}
 		}
 
 		// Find all properties (ordered by insertion time)
@@ -245,4 +386,21 @@ u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JSObject* obj)
 	m_ScriptBackrefsNext++;
 	// Return a non-tag number so callers know they need to serialize the object
 	return 0;
+}
+
+bool CBinarySerializerScriptImpl::IsSerializablePrototype(JSObject* prototype)
+{
+	return m_SerializablePrototypes.find(prototype) != m_SerializablePrototypes.end();
+}
+
+std::wstring CBinarySerializerScriptImpl::GetPrototypeName(JSObject* prototype)
+{
+	std::map<JSObject*, std::wstring>::iterator it = m_SerializablePrototypes.find(prototype);
+	ENSURE(it != m_SerializablePrototypes.end());
+	return it->second;
+}
+
+void CBinarySerializerScriptImpl::SetSerializablePrototypes(std::map<JSObject*, std::wstring>& prototypes)
+{
+	m_SerializablePrototypes = prototypes;
 }
