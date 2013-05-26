@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_gate">
-  <Cost>
-    <BuildTime>30</BuildTime>
-    <Resources>
-      <stone>90</stone>
-    </Resources>
-  </Cost>
   <Footprint>
     <Square width="46.0" depth="11.0"/>
     <Height>9.0</Height>
   </Footprint>
-  <Health>
-    <Max>6000</Max>
-  </Health>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Mijdil-šaʿar</SpecificName>

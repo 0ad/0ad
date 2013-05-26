@@ -8,11 +8,11 @@
 		"athen": "Prometoopidion"
 	},
 	"description": "Metal armour for a horse's face.",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 155},
-	"requirements": {"tech": "phase_city"},
-	"requirementsTooltip": "Unlocked in City Phase.",
+	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 200},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_plates_cavalry.png",
-	"researchTime": 20,
+	"researchTime": 30,
 	"tooltip": "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level.",
 	"modifications": [{"value": "Armour/Hack", "add": 1.0}],
 	"affects": ["Cavalry"]

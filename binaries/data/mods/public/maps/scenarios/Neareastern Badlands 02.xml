@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="623.277" y="91.261" z="223.332"/>
+		<Position x="249.401" y="100.819" z="297.582"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -49,6 +49,7 @@
   "Name": "Neareastern Badlands 2",
   "PlayerData": [
     {
+      "AI": "",
       "Civ": "pers",
       "Colour": {
         "b": 200,
@@ -59,6 +60,7 @@
       "Team": 0
     },
     {
+      "AI": "qbot-wc",
       "Civ": "rome",
       "Colour": {
         "b": 20,
@@ -69,6 +71,7 @@
       "Team": 0
     },
     {
+      "AI": "qbot-wc",
       "Civ": "brit",
       "Colour": {
         "b": 5,
@@ -79,6 +82,7 @@
       "Team": 1
     },
     {
+      "AI": "qbot-wc",
       "Civ": "maur",
       "Colour": {
         "b": 75,
@@ -2398,70 +2402,34 @@
 			<Position x="233.04801" z="423.99006"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="443">
-			<Template>units/pers_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="232.19062" z="416.12195"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="444">
-			<Template>units/pers_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="234.29125" z="418.39536"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="445">
-			<Template>units/pers_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="236.68081" z="420.52961"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="446">
-			<Template>units/pers_cavalry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="240.46988" z="427.46555"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="447">
 			<Template>units/rome_infantry_swordsman_b</Template>
 			<Player>2</Player>
-			<Position x="528.31562" z="146.08936"/>
-			<Orientation y="2.35621"/>
+			<Position x="492.07871" z="150.94387"/>
+			<Orientation y="-2.06183"/>
 		</Entity>
 		<Entity uid="448">
 			<Template>units/rome_infantry_swordsman_b</Template>
 			<Player>2</Player>
-			<Position x="530.87183" z="148.64599"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="449">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>2</Player>
-			<Position x="533.64203" z="150.84316"/>
-			<Orientation y="2.35621"/>
+			<Position x="495.65867" z="146.97582"/>
+			<Orientation y="-2.41904"/>
 		</Entity>
 		<Entity uid="450">
 			<Template>units/rome_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="524.58063" z="149.78142"/>
+			<Position x="524.30475" z="148.40601"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="451">
 			<Template>units/rome_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="526.9267" z="152.26742"/>
+			<Position x="526.65082" z="150.892"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="452">
 			<Template>units/rome_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="528.91028" z="153.97596"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="453">
-			<Template>units/rome_cavalry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="537.10425" z="158.25951"/>
+			<Position x="528.6344" z="152.60055"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="454">
@@ -13237,8 +13205,8 @@
 		<Entity uid="2777">
 			<Template>units/maur_support_elephant</Template>
 			<Player>4</Player>
-			<Position x="601.04096" z="1066.8473"/>
-			<Orientation y="2.35621"/>
+			<Position x="546.57099" z="1097.04773"/>
+			<Orientation y="-0.8386"/>
 		</Entity>
 		<Entity uid="2779">
 			<Template>units/maur_support_female_citizen</Template>
@@ -13267,80 +13235,44 @@
 		<Entity uid="2783">
 			<Template>units/maur_infantry_spearman_b</Template>
 			<Player>4</Player>
-			<Position x="582.16437" z="1050.75489"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2784">
-			<Template>units/maur_infantry_spearman_b</Template>
-			<Player>4</Player>
-			<Position x="585.04651" z="1053.05103"/>
-			<Orientation y="2.35621"/>
+			<Position x="556.48298" z="1054.49463"/>
+			<Orientation y="-2.64791"/>
 		</Entity>
 		<Entity uid="2785">
 			<Template>units/maur_infantry_spearman_b</Template>
 			<Player>4</Player>
-			<Position x="588.99445" z="1056.13477"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2786">
-			<Template>units/maur_infantry_spearman_b</Template>
-			<Player>4</Player>
-			<Position x="591.82905" z="1058.55005"/>
-			<Orientation y="2.35621"/>
+			<Position x="550.70752" z="1059.58167"/>
+			<Orientation y="-2.50451"/>
 		</Entity>
 		<Entity uid="2787">
 			<Template>units/brit_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="267.00266" z="862.50348"/>
+			<Position x="269.29737" z="860.97815"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2788">
 			<Template>units/brit_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="269.05561" z="864.4007"/>
+			<Position x="271.35032" z="862.87537"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2789">
 			<Template>units/brit_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="271.37137" z="867.09723"/>
+			<Position x="273.66608" z="865.5719"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2790">
 			<Template>units/brit_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="273.73954" z="869.22901"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2791">
-			<Template>units/brit_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="270.55527" z="859.25367"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2792">
-			<Template>units/brit_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="273.12336" z="861.91413"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2793">
-			<Template>units/brit_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="275.5034" z="864.44684"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2794">
-			<Template>units/brit_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="277.79181" z="866.80237"/>
+			<Position x="276.03425" z="867.70368"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2795">
 			<Template>units/brit_cavalry_javelinist_b</Template>
 			<Player>3</Player>
-			<Position x="281.57886" z="873.91205"/>
-			<Orientation y="2.35621"/>
+			<Position x="234.49492" z="902.11438"/>
+			<Orientation y="-0.80628"/>
 		</Entity>
 		<Entity uid="2796">
 			<Template>gaia/flora_bush_badlands</Template>
@@ -14643,6 +14575,118 @@
 			<Player>0</Player>
 			<Position x="638.81464" z="464.96409"/>
 			<Orientation y="1.23012"/>
+		</Entity>
+		<Entity uid="3013">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="226.02367" z="416.88828"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33028"/>
+		</Entity>
+		<Entity uid="3014">
+			<Template>units/pers_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="199.1745" z="426.44925"/>
+			<Orientation y="-2.58816"/>
+			<Actor seed="25472"/>
+		</Entity>
+		<Entity uid="3015">
+			<Template>units/pers_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="205.63601" z="420.77729"/>
+			<Orientation y="-2.3819"/>
+			<Actor seed="65072"/>
+		</Entity>
+		<Entity uid="3016">
+			<Template>units/pers_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="239.91535" z="452.87586"/>
+			<Orientation y="0.5465"/>
+			<Actor seed="32240"/>
+		</Entity>
+		<Entity uid="3017">
+			<Template>units/pers_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="234.15033" z="458.37787"/>
+			<Orientation y="0.96616"/>
+			<Actor seed="3342"/>
+		</Entity>
+		<Entity uid="3018">
+			<Template>units/pers_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="198.7414" z="462.4897"/>
+			<Orientation y="-0.77762"/>
+			<Actor seed="47530"/>
+		</Entity>
+		<Entity uid="3019">
+			<Template>units/rome_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="531.28779" z="155.44361"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40266"/>
+		</Entity>
+		<Entity uid="3020">
+			<Template>units/rome_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="533.31324" z="182.62685"/>
+			<Orientation y="0.6588"/>
+			<Actor seed="8684"/>
+		</Entity>
+		<Entity uid="3021">
+			<Template>units/rome_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="528.55738" z="188.974"/>
+			<Orientation y="0.90136"/>
+			<Actor seed="33650"/>
+		</Entity>
+		<Entity uid="3022">
+			<Template>units/rome_cavalry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="484.61722" z="195.56"/>
+			<Orientation y="-0.90098"/>
+			<Actor seed="32122"/>
+		</Entity>
+		<Entity uid="3024">
+			<Template>units/brit_infantry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="269.94123" z="895.00684"/>
+			<Orientation y="0.71291"/>
+			<Actor seed="3010"/>
+		</Entity>
+		<Entity uid="3025">
+			<Template>units/brit_infantry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="265.64536" z="900.78315"/>
+			<Orientation y="1.0698"/>
+			<Actor seed="9298"/>
+		</Entity>
+		<Entity uid="3026">
+			<Template>units/brit_infantry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="247.02215" z="865.3296"/>
+			<Orientation y="-2.27428"/>
+			<Actor seed="31956"/>
+		</Entity>
+		<Entity uid="3027">
+			<Template>units/brit_infantry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="241.747" z="869.91706"/>
+			<Orientation y="-2.76694"/>
+			<Actor seed="23454"/>
+		</Entity>
+		<Entity uid="3028">
+			<Template>units/maur_infantry_archer_b</Template>
+			<Player>4</Player>
+			<Position x="596.12031" z="1094.35535"/>
+			<Orientation y="0.91126"/>
+			<Actor seed="14038"/>
+		</Entity>
+		<Entity uid="3029">
+			<Template>units/maur_infantry_archer_b</Template>
+			<Player>4</Player>
+			<Position x="592.16529" z="1098.84546"/>
+			<Orientation y="0.94564"/>
+			<Actor seed="60486"/>
 		</Entity>
 	</Entities>
 	<Paths/>

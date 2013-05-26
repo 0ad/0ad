@@ -2,40 +2,40 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>cumulus</SkySet>
-		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
-		<SunElevation angle="0.785398"/>
-		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<SkySet>cirrus</SkySet>
+		<SunColour r="0.858824" g="0.827451" b="0.639216"/>
+		<SunElevation angle="0.545379"/>
+		<SunRotation angle="-1.18303"/>
+		<TerrainAmbientColour r="0.301961" g="0.376471" b="0.482353"/>
+		<UnitsAmbientColour r="0.439216" g="0.439216" b="0.439216"/>
 		<Fog>
-			<FogFactor>0.00253906</FogFactor>
+			<FogFactor>0.00352539</FogFactor>
 			<FogThickness>0</FogThickness>
 			<FogColour r="0.819608" g="0.74902" b="0.513726"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.482353" g="0.584314" b="0.811765"/>
+				<Colour r="0.819608" g="0.74902" b="0.513726"/>
 				<Height>20.6689</Height>
 				<Shininess>51.0254</Shininess>
-				<Waviness>2.1875</Waviness>
-				<Murkiness>0.71875</Murkiness>
-				<Tint r="0.541176" g="0.741176" b="0.894118"/>
+				<Waviness>3.18359</Waviness>
+				<Murkiness>0.708984</Murkiness>
+				<Tint r="0.819608" g="0.74902" b="0.513726"/>
 				<ReflectionTint r="0.564706" g="0.513726" b="0.419608"/>
 				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>-0.0253906</Brightness>
-			<Contrast>1</Contrast>
+			<Contrast>1.09961</Contrast>
 			<Saturation>0.99</Saturation>
 			<Bloom>0.189844</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="687.63" y="71.8633" z="701.424"/>
+		<Position x="696.471" y="91.2212" z="688.188"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -49,6 +49,7 @@
   "Name": "Oasis 12",
   "PlayerData": [
     {
+      "AI": "",
       "Civ": "maur",
       "Colour": {
         "b": 200,
@@ -77,6 +78,7 @@
       "Team": -1
     },
     {
+      "AI": "qbot-wc",
       "Civ": "athen",
       "Colour": {
         "b": 20,
@@ -2941,7 +2943,7 @@
 		<Entity uid="519">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="884.88434" z="432.61347"/>
+			<Position x="889.53602" z="433.31116"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="520">
@@ -3007,13 +3009,13 @@
 		<Entity uid="530">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="896.05616" z="427.39975"/>
-			<Orientation y="2.91768"/>
+			<Position x="897.69288" z="435.81461"/>
+			<Orientation y="2.75365"/>
 		</Entity>
 		<Entity uid="531">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="890.35792" z="433.34882"/>
+			<Position x="887.33039" z="447.76493"/>
 			<Orientation y="-1.38541"/>
 		</Entity>
 		<Entity uid="532">
@@ -3091,7 +3093,7 @@
 		<Entity uid="544">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="891.96656" z="421.94428"/>
+			<Position x="890.92853" z="439.90088"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="545">
@@ -9066,30 +9068,6 @@
 			<Position x="286.04667" z="278.94971"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1731">
-			<Template>units/athen_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="294.22818" z="257.90864"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1732">
-			<Template>units/athen_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="297.20411" z="260.63593"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1733">
-			<Template>units/athen_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="299.50971" z="263.08606"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1734">
-			<Template>units/athen_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="302.49503" z="266.10563"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1739">
 			<Template>structures/athen_defense_tower</Template>
 			<Player>2</Player>
@@ -9144,29 +9122,131 @@
 			<Position x="674.0907" z="666.04291"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1750">
-			<Template>units/maur_infantry_spearman_e</Template>
+		<Entity uid="1754">
+			<Template>units/maur_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="684.38538" z="777.49396"/>
-			<Orientation y="2.35621"/>
+			<Position x="658.48981" z="787.08973"/>
+			<Orientation y="-2.47851"/>
+			<Actor seed="56264"/>
 		</Entity>
-		<Entity uid="1751">
-			<Template>units/maur_infantry_spearman_e</Template>
+		<Entity uid="1755">
+			<Template>units/maur_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="688.29651" z="781.52302"/>
-			<Orientation y="2.35621"/>
+			<Position x="654.65088" z="790.99811"/>
+			<Orientation y="-2.26914"/>
+			<Actor seed="54162"/>
 		</Entity>
-		<Entity uid="1752">
-			<Template>units/maur_infantry_spearman_e</Template>
+		<Entity uid="1764">
+			<Template>units/maur_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="691.90955" z="785.51417"/>
+			<Position x="684.37586" z="780.10895"/>
 			<Orientation y="2.35621"/>
+			<Actor seed="30720"/>
 		</Entity>
-		<Entity uid="1753">
-			<Template>units/maur_infantry_spearman_e</Template>
+		<Entity uid="1765">
+			<Template>units/maur_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="695.7046" z="789.15448"/>
+			<Position x="687.34198" z="783.42487"/>
 			<Orientation y="2.35621"/>
+			<Actor seed="45468"/>
+		</Entity>
+		<Entity uid="1766">
+			<Template>units/maur_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="690.69361" z="786.748"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51460"/>
+		</Entity>
+		<Entity uid="1767">
+			<Template>units/maur_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="693.70881" z="789.53901"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55282"/>
+		</Entity>
+		<Entity uid="1768">
+			<Template>units/maur_support_elephant</Template>
+			<Player>1</Player>
+			<Position x="693.47248" z="827.94037"/>
+			<Orientation y="0.874"/>
+			<Actor seed="56214"/>
+		</Entity>
+		<Entity uid="1769">
+			<Template>units/maur_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="648.61561" z="815.35621"/>
+			<Orientation y="-0.79435"/>
+			<Actor seed="37152"/>
+		</Entity>
+		<Entity uid="1770">
+			<Template>units/maur_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="650.32184" z="819.34961"/>
+			<Orientation y="-0.75257"/>
+			<Actor seed="298"/>
+		</Entity>
+		<Entity uid="1771">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="270.20786" z="263.97382"/>
+			<Orientation y="-2.23156"/>
+			<Actor seed="39386"/>
+		</Entity>
+		<Entity uid="1772">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="274.3007" z="259.93638"/>
+			<Orientation y="-2.56633"/>
+			<Actor seed="30050"/>
+		</Entity>
+		<Entity uid="1773">
+			<Template>units/athen_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="304.81626" z="288.44928"/>
+			<Orientation y="0.76835"/>
+			<Actor seed="30406"/>
+		</Entity>
+		<Entity uid="1774">
+			<Template>units/athen_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="300.87446" z="293.38059"/>
+			<Orientation y="1.14725"/>
+			<Actor seed="36652"/>
+		</Entity>
+		<Entity uid="1775">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="295.90778" z="257.76001"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44440"/>
+		</Entity>
+		<Entity uid="1776">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="298.73292" z="260.84336"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40276"/>
+		</Entity>
+		<Entity uid="1777">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="300.88654" z="263.53559"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31334"/>
+		</Entity>
+		<Entity uid="1778">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="303.82425" z="265.90674"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="6208"/>
+		</Entity>
+		<Entity uid="1779">
+			<Template>units/athen_cavalry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="267.1435" z="299.24515"/>
+			<Orientation y="-0.92942"/>
+			<Actor seed="50216"/>
 		</Entity>
 	</Entities>
 	<Paths/>
