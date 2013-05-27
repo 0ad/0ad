@@ -56,7 +56,7 @@ public:
 	virtual unsigned int* GetBufferPtr();
 
 protected:
-	static DataMap* sSoundData;
+	static DataMap sSoundData;
 
 	unsigned int m_ALBuffer;
 	int m_RetentionCount;

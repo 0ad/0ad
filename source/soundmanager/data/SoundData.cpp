@@ -27,7 +27,7 @@
 
 #include <iostream>
 
-DataMap* CSoundData::sSoundData = NULL;
+DataMap CSoundData::sSoundData;
 
 CSoundData::CSoundData()
 {
@@ -57,24 +57,21 @@ void CSoundData::ReleaseSoundData(CSoundData* theData)
 
 	if (theData->DecrementCount())
 	{
-		if ((itemFind = CSoundData::sSoundData->find( theData->GetFileName()->string() )) != sSoundData->end())
+		if ((itemFind = CSoundData::sSoundData.find( theData->GetFileName()->string() )) != sSoundData.end())
 		{
-			CSoundData::sSoundData->erase(itemFind);
+			CSoundData::sSoundData.erase(itemFind);
 		}
 		delete theData;
 	}
 }
 
 CSoundData* CSoundData::SoundDataFromFile(const VfsPath& itemPath)
-{
-	if (CSoundData::sSoundData == NULL)
-		CSoundData::sSoundData = new DataMap;
-	
+{	
 	Path fExt = itemPath.Extension();
 	DataMap::iterator itemFind;
 	CSoundData* answer = NULL;
 
-	if ((itemFind = CSoundData::sSoundData->find(itemPath.string())) != sSoundData->end())
+	if ((itemFind = CSoundData::sSoundData.find(itemPath.string())) != sSoundData.end())
 	{
 		answer = itemFind->second;
 	}
@@ -85,7 +82,7 @@ CSoundData* CSoundData::SoundDataFromFile(const VfsPath& itemPath)
 	
 		if (answer && answer->IsOneShot()) 
 		{
-			(*CSoundData::sSoundData)[itemPath.string()] = answer;
+			CSoundData::sSoundData[itemPath.string()] = answer;
 		}
 	
 	}
