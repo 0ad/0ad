@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,13 +16,6 @@
  */
 
 #include "precompiled.h"
-
-// Ugly hack: Boost disables rand48's operator<< in VC2005 and older, but we'd quite
-// like to use it, so remove the macro that disables it (before we include
-// linear_congruential.hpp)
-#if MSC_VERSION && MSC_VERSION <= 1400
-#undef BOOST_NO_MEMBER_TEMPLATE_FRIENDS
-#endif
 
 #include "ComponentManager.h"
 #include "IComponent.h"
