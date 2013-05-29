@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -92,6 +92,8 @@ private:
 			m_ScriptInterface.RegisterFunction<void, CScriptValRooted, CAIPlayer::PostCommand>("PostCommand");
 
 			m_ScriptInterface.RegisterFunction<void, std::wstring, std::vector<u32>, u32, u32, u32, CAIPlayer::DumpImage>("DumpImage");
+
+			m_ScriptInterface.RegisterFunction<void, std::wstring, CScriptVal, CAIPlayer::RegisterSerializablePrototype>("RegisterSerializablePrototype");
 		}
 
 		~CAIPlayer()
@@ -165,6 +167,18 @@ private:
 
 			tex_write(&t, filename);
 			tex_free(&t);
+		}
+
+		static void RegisterSerializablePrototype(void* cbdata, std::wstring name, CScriptVal proto)
+		{
+			CAIPlayer* self = static_cast<CAIPlayer*> (cbdata);
+			// Add our player number to avoid name conflicts with other prototypes
+			// TODO: it would be better if serializable prototypes were stored in ScriptInterfaces
+			//	and then each serializer would access those matching its own context, but that's
+			//	not possible with AIs sharing data across contexts
+			std::wstringstream protoID;
+			protoID << self->m_Player << L"." << name.c_str();
+			self->m_Worker.RegisterSerializablePrototype(protoID.str(), proto);
 		}
 
 		bool LoadScripts(const std::wstring& moduleName)
@@ -579,6 +593,8 @@ public:
 		else
 		{
 			CStdSerializer serializer(m_ScriptInterface, stream);
+			// TODO: see comment in Deserialize()
+			serializer.SetSerializablePrototypes(m_SerializablePrototypes);
 			SerializeState(serializer);
 		}
 	}
@@ -614,11 +630,18 @@ public:
 				serializer.ScriptVal("command", val);
 			}
 
-			CScriptVal scriptData;
-			if (!m_ScriptInterface.CallFunction(m_Players[i]->m_Obj.get(), "Serialize", scriptData))
-				LOGERROR(L"AI script Serialize call failed");
-			serializer.ScriptVal("data", scriptData);
-			
+			bool hasCustomSerialize = m_ScriptInterface.HasProperty(m_Players[i]->m_Obj.get(), "Serialize");
+			if (hasCustomSerialize)
+			{
+				CScriptVal scriptData;
+				if (!m_ScriptInterface.CallFunction(m_Players[i]->m_Obj.get(), "Serialize", scriptData))
+					LOGERROR(L"AI script Serialize call failed");
+				serializer.ScriptVal("data", scriptData);
+			}
+			else
+			{
+				serializer.ScriptVal("data", m_Players[i]->m_Obj.get());
+			}
 		}
 	}
 
@@ -672,16 +695,31 @@ public:
 				deserializer.ScriptVal("command", val);
 				m_Players.back()->m_Commands.push_back(m_ScriptInterface.WriteStructuredClone(val.get()));
 			}
-			CScriptVal scriptData;
-			deserializer.ScriptVal("data", scriptData);
-			if (m_Players[i]->m_UseSharedComponent)
+			
+			// TODO: this is yucky but necessary while the AIs are sharing data between contexts;
+			//	ideally a new (de)serializer instance would be created for each player
+			//	so they would have a single, consistent script context to use and serializable
+			//	prototypes could be stored in their ScriptInterface
+			deserializer.SetSerializablePrototypes(m_DeserializablePrototypes);
+
+			bool hasCustomDeserialize = m_ScriptInterface.HasProperty(m_Players.back()->m_Obj.get(), "Deserialize");
+			if (hasCustomDeserialize)
 			{
-				if (!m_ScriptInterface.CallFunctionVoid(m_Players.back()->m_Obj.get(), "Deserialize", scriptData, m_SharedAIObj))
-					LOGERROR(L"AI script Deserialize call failed");
+				CScriptVal scriptData;
+				deserializer.ScriptVal("data", scriptData);
+				if (m_Players[i]->m_UseSharedComponent)
+				{
+					if (!m_ScriptInterface.CallFunctionVoid(m_Players.back()->m_Obj.get(), "Deserialize", scriptData, m_SharedAIObj))
+						LOGERROR(L"AI script Deserialize call failed");
+				}
+				else if (!m_ScriptInterface.CallFunctionVoid(m_Players.back()->m_Obj.get(), "Deserialize", scriptData))
+				{
+					LOGERROR(L"AI script deserialize() call failed");
+				}
 			}
-			else if (!m_ScriptInterface.CallFunctionVoid(m_Players.back()->m_Obj.get(), "Deserialize", scriptData))
+			else
 			{
-				LOGERROR(L"AI script deserialize() call failed");
+				deserializer.ScriptVal("data", m_Players.back()->m_Obj);
 			}
 		}
 	}
@@ -689,6 +727,17 @@ public:
 	int getPlayerSize()
 	{
 		return m_Players.size();
+	}
+
+	void RegisterSerializablePrototype(std::wstring name, CScriptVal proto)
+	{
+		// Require unique prototype and name (for reverse lookup)
+		// TODO: this is yucky - see comment in Deserialize()
+		JSObject* obj = JSVAL_TO_OBJECT(proto.get());
+		std::pair<std::map<JSObject*, std::wstring>::iterator, bool> ret1 = m_SerializablePrototypes.insert(std::make_pair(obj, name));
+		std::pair<std::map<std::wstring, JSObject*>::iterator, bool> ret2 = m_DeserializablePrototypes.insert(std::make_pair(name, obj));
+		if (!ret1.second || !ret2.second)
+			LOGERROR(L"RegisterSerializablePrototype called with same prototype multiple times: p=%p n='%ls'", obj, name.c_str());
 	}
 
 private:
@@ -792,6 +841,9 @@ private:
 	CScriptValRooted m_TerritoryMapVal;
 
 	bool m_CommandsComputed;
+
+	std::map<JSObject*, std::wstring> m_SerializablePrototypes;
+	std::map<std::wstring, JSObject*> m_DeserializablePrototypes;
 };
 
 

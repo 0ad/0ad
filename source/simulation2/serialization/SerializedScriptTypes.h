@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,12 +23,32 @@ enum
 	SCRIPT_TYPE_VOID = 0,
 	SCRIPT_TYPE_NULL = 1,
 	SCRIPT_TYPE_ARRAY = 2,
-	SCRIPT_TYPE_OBJECT = 3,
+	SCRIPT_TYPE_OBJECT = 3,				// standard Object prototype
 	SCRIPT_TYPE_STRING = 4,
 	SCRIPT_TYPE_INT = 5,
 	SCRIPT_TYPE_DOUBLE = 6,
 	SCRIPT_TYPE_BOOLEAN = 7,
-	SCRIPT_TYPE_BACKREF = 8
+	SCRIPT_TYPE_BACKREF = 8,
+	SCRIPT_TYPE_TYPED_ARRAY = 9,		// ArrayBufferView subclasses - see below
+	SCRIPT_TYPE_ARRAY_BUFFER = 10,		// ArrayBuffer containing actual typed array data (may be shared by multiple views)
+	SCRIPT_TYPE_OBJECT_PROTOTYPE = 11,	// user-defined prototype
+	SCRIPT_TYPE_OBJECT_NUMBER = 12,		// standard Number class
+	SCRIPT_TYPE_OBJECT_STRING = 13,		// standard String class
+	SCRIPT_TYPE_OBJECT_BOOLEAN = 14		// standard Boolean class
+};
+
+// ArrayBufferView subclasses (to avoid relying directly on the JSAPI enums)
+enum
+{
+	SCRIPT_TYPED_ARRAY_INT8 = 0,
+	SCRIPT_TYPED_ARRAY_UINT8 = 1,
+	SCRIPT_TYPED_ARRAY_INT16 = 2,
+	SCRIPT_TYPED_ARRAY_UINT16 = 3,
+	SCRIPT_TYPED_ARRAY_INT32 = 4,
+	SCRIPT_TYPED_ARRAY_UINT32 = 5,
+	SCRIPT_TYPED_ARRAY_FLOAT32 = 6,
+	SCRIPT_TYPED_ARRAY_FLOAT64 = 7,
+	SCRIPT_TYPED_ARRAY_UINT8_CLAMPED = 8
 };
 
 #endif // INCLUDED_SERIALIZEDSCRIPTTYPES

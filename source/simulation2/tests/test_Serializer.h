@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -384,11 +384,149 @@ public:
 		helper_script_roundtrip("unicode", "\"\\ud800\\uffff\"", "(new String(\"\\uD800\\uFFFF\"))");
 	}
 
-	void TODO_test_script_objects()
+	void test_script_objects()
 	{
-		helper_script_roundtrip("Number", "([1, new Number('2.0'), 3])", "([1, new Number(2), 3])");
+		helper_script_roundtrip("Number", "[1, new Number('2.0'), 3]", "[1, (new Number(2)), 3]");
 		helper_script_roundtrip("Number with props", "var n=new Number('2.0'); n.foo='bar'; n", "(new Number(2))");
+
+		helper_script_roundtrip("String", "['test1', new String('test2'), 'test3']", "[\"test1\", (new String(\"test2\")), \"test3\"]");
+		helper_script_roundtrip("String with props", "var s=new String('test'); s.foo='bar'; s", "(new String(\"test\"))");
+
+		helper_script_roundtrip("Boolean", "[new Boolean('true'), false]", "[(new Boolean(true)), false]");
+		helper_script_roundtrip("Boolean with props", "var b=new Boolean('true'); b.foo='bar'; b", "(new Boolean(true))");
 	}
+
+	void test_script_typed_arrays_simple()
+	{
+		helper_script_roundtrip("Int8Array",
+			"var arr=new Int8Array(8);"
+			"for(i=0; i<arr.length; ++i)"
+			"  arr[i]=(i+1)*32;"
+			"arr",
+		/* expected: */
+			"({0:32, 1:64, 2:96, 3:-128, 4:-96, 5:-64, 6:-32, 7:0})"
+		);
+
+		helper_script_roundtrip("Uint8Array",
+			"var arr=new Uint8Array(8);"
+			"for(i=0; i<arr.length; ++i)"
+			"  arr[i]=(i+1)*32;"
+			"arr",
+		/* expected: */
+			"({0:32, 1:64, 2:96, 3:128, 4:160, 5:192, 6:224, 7:0})"
+		);
+
+		helper_script_roundtrip("Int16Array",
+			"var arr=new Int16Array(8);"
+			"for(i=0; i<arr.length; ++i)"
+			"  arr[i]=(i+1)*8192;"
+			"arr",
+		/* expected: */
+			"({0:8192, 1:16384, 2:24576, 3:-32768, 4:-24576, 5:-16384, 6:-8192, 7:0})"
+		);
+
+		helper_script_roundtrip("Uint16Array",
+			"var arr=new Uint16Array(8);"
+			"for(i=0; i<arr.length; ++i)"
+			"  arr[i]=(i+1)*8192;"
+			"arr",
+		/* expected: */
+			"({0:8192, 1:16384, 2:24576, 3:32768, 4:40960, 5:49152, 6:57344, 7:0})"
+		);
+
+		helper_script_roundtrip("Int32Array",
+			"var arr=new Int32Array(8);"
+			"for(i=0; i<arr.length; ++i)"
+			"  arr[i]=(i+1)*536870912;"
+			"arr",
+		/* expected: */
+			"({0:536870912, 1:1073741824, 2:1610612736, 3:-2147483648, 4:-1610612736, 5:-1073741824, 6:-536870912, 7:0})"
+		);
+
+		helper_script_roundtrip("Uint32Array",
+			"var arr=new Uint32Array(8);"
+			"for(i=0; i<arr.length; ++i)"
+			"  arr[i]=(i+1)*536870912;"
+			"arr", 
+		/* expected: */
+			"({0:536870912, 1:1073741824, 2:1610612736, 3:2147483648, 4:2684354560, 5:3221225472, 6:3758096384, 7:0})"
+		);
+
+		helper_script_roundtrip("Float32Array",
+			"var arr=new Float32Array(2);"
+			"arr[0]=3.4028234e38;"
+			"arr[1]=Infinity;"
+			"arr", 
+		/* expected: */
+			"({0:3.4028234663852886e+38, 1:Infinity})"
+		);
+
+		helper_script_roundtrip("Float64Array",
+			"var arr=new Float64Array(2);"
+			"arr[0]=1.7976931348623157e308;"
+			"arr[1]=-Infinity;"
+			"arr", 
+		/* expected: */
+			"({0:1.7976931348623157e+308, 1:-Infinity})"
+		);
+
+		helper_script_roundtrip("Uint8ClampedArray",
+			"var arr=new Uint8ClampedArray(8);"
+			"for(i=0; i<arr.length; ++i)"
+			"  arr[i]=(i-2)*64;"
+			"arr",
+		/* expected: */
+			"({0:0, 1:0, 2:0, 3:64, 4:128, 5:192, 6:255, 7:255})"
+		);
+	}
+
+	void test_script_typed_arrays_complex()
+	{
+		helper_script_roundtrip("ArrayBuffer with Int16Array",
+			"var buf=new ArrayBuffer(16);"
+			"var int16=Int16Array(buf);"
+			"for(i=0; i<int16.length; ++i)"
+			"  int16[i]=(i+1)*8192;"
+			"int16",
+		/* expected: */
+			"({0:8192, 1:16384, 2:24576, 3:-32768, 4:-24576, 5:-16384, 6:-8192, 7:0})"
+		);
+
+		helper_script_roundtrip("ArrayBuffer with Int16Array and Uint32Array",
+			"var buf = new ArrayBuffer(16);"
+			"var int16 = Int16Array(buf);"
+			"for(i=0; i < int16.length; ++i)"
+			"  int16[i] = (i+1)*32768;"
+			"var uint32 = new Uint32Array(buf);"
+			"uint32[0] = 4294967295;"
+			"[int16, uint32]",
+		/* expected: */ "["
+				"{0:-1, 1:-1, 2:-32768, 3:0, 4:-32768, 5:0, 6:-32768, 7:0}, "
+				"{0:4294967295, 1:32768, 2:32768, 3:32768}"
+			"]"
+		);
+
+		helper_script_roundtrip("ArrayBuffer with complex structure",
+			"var buf=new ArrayBuffer(16);" // 16 bytes
+			"var chunk1=Int8Array(buf, 0, 4);" // 4 bytes
+			"var chunk2=Uint16Array(buf, 4, 2);" // 4 bytes
+			"var chunk3=Int32Array(buf, 8, 2);" // 8 bytes
+			"for(i=0; i<chunk1.length; ++i)"
+			"  chunk1[i]=255;"
+			"for(i=0; i<chunk2.length; ++i)"
+			"  chunk2[i]=65535;"
+			"for(i=0; i<chunk3.length; ++i)"
+			"  chunk3[i]=4294967295;"
+			"var bytes = Uint8Array(buf);"
+			"({'struct':[chunk1, chunk2, chunk3], 'bytes':bytes})",
+		/* expected: */ "({"
+				"struct:[{0:-1, 1:-1, 2:-1, 3:-1}, {0:65535, 1:65535}, {0:-1, 1:-1}], "
+				"bytes:{0:255, 1:255, 2:255, 3:255, 4:255, 5:255, 6:255, 7:255, 8:255, 9:255, 10:255, 11:255, 12:255, 13:255, 14:255, 15:255}"
+			"})"
+		);
+	}
+
+	// TODO: prototype objects
 
 	void test_script_nonfinite()
 	{

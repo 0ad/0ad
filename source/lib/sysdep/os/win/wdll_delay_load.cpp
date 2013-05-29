@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -36,7 +36,10 @@ WINIT_REGISTER_LATE_SHUTDOWN2(wdll_Shutdown);	// last - DLLs are unloaded here
 //-----------------------------------------------------------------------------
 // delay loading (modified from VC7 DelayHlp.cpp and DelayImp.h)
 
-
+#if MSC_VERSION && MSC_VERSION >= 1700
+// FACILITY_VISUALCPP is already defined in winerror.h in VC2012
+# undef FACILITY_VISUALCPP
+#endif
 #define FACILITY_VISUALCPP  ((LONG)0x6d)
 #define VcppException(sev,status)  ((sev) | (FACILITY_VISUALCPP<<16) | status)
 

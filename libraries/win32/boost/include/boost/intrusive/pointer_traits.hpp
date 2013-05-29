@@ -81,10 +81,10 @@ struct pointer_traits
          typedef typename boost::intrusive::detail::type_rebinder<Ptr, U>::type  type;
       };
 
-      #if !defined(BOOST_NO_TEMPLATE_ALIASES)
+      #if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
          template <class U> using rebind = typename boost::intrusive::detail::type_rebinder<Ptr, U>::type;
       #endif
-   #endif   //#if !defined(BOOST_NO_TEMPLATE_ALIASES)
+   #endif   //#if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
 
    //! <b>Remark</b>: If element_type is (possibly cv-qualified) void, r type is unspecified; otherwise,
    //!   it is element_type &.
@@ -170,7 +170,7 @@ struct pointer_traits
 
    template<class UPtr>
    static pointer priv_static_cast_from(boost::false_type, const UPtr &uptr)
-   {  return pointer_to(static_cast<element_type&>(*uptr));  }
+   {  return pointer_to(*static_cast<element_type*>(to_raw_pointer(uptr)));  }
 
    //priv_const_cast_from
    template<class UPtr>
@@ -225,7 +225,7 @@ struct pointer_traits<T*>
       template <class U> using rebind = U*;
    #else
       typedef typename boost::intrusive::detail::unvoid<element_type>::type& reference;
-      #if !defined(BOOST_NO_TEMPLATE_ALIASES)
+      #if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
          template <class U> using rebind = U*;
       #endif
    #endif

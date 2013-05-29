@@ -89,7 +89,7 @@ class rbtree_impl
    typedef typename Config::value_traits                             value_traits;
    /// @cond
    static const bool external_value_traits =
-      detail::external_value_traits_is_true<value_traits>::value;
+      detail::external_value_traits_bool_is_true<value_traits>::value;
    typedef typename detail::eval_if_c
       < external_value_traits
       , detail::eval_value_traits<value_traits>
@@ -224,8 +224,8 @@ class rbtree_impl
    //! <b>Throws</b>: If value_traits::node_traits::node
    //!   constructor throws (this does not happen with predefined Boost.Intrusive hooks)
    //!   or the copy constructorof the value_compare object throws. Basic guarantee.
-   rbtree_impl( const value_compare &cmp = value_compare()
-              , const value_traits &v_traits = value_traits())
+   explicit rbtree_impl( const value_compare &cmp = value_compare()
+                       , const value_traits &v_traits = value_traits())
       :  data_(cmp, v_traits)
    {
       node_algorithms::init_header(this->priv_header_ptr());

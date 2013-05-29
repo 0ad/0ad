@@ -16,12 +16,8 @@
 #endif
 
 #include <boost/container/detail/config_begin.hpp>
-
-#ifndef BOOST_NO_RVALUE_REFERENCES
-#include <boost/container/detail/stored_ref.hpp>
-#endif   //#ifndef BOOST_NO_RVALUE_REFERENCES
-
 #include <boost/container/detail/workaround.hpp>
+#include <boost/move/utility.hpp>
 
 #ifdef BOOST_CONTAINER_PERFECT_FORWARDING
 //#error "This file is not needed when perfect forwarding is available"
@@ -43,6 +39,7 @@
 #include <boost/preprocessor/arithmetic/sub.hpp>
 #include <boost/preprocessor/arithmetic/add.hpp>
 #include <boost/preprocessor/iteration/iterate.hpp>
+#include <boost/move/utility.hpp>
 
 #define BOOST_CONTAINER_MAX_CONSTRUCTOR_PARAMETERS 10
 
@@ -52,7 +49,7 @@
 //This cast is ugly but it is necessary until "perfect forwarding"
 //is achieved in C++0x. Meanwhile, if we want to be able to
 //bind rvalues with non-const references, we have to be ugly
-#ifndef BOOST_NO_RVALUE_REFERENCES
+#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
    #define BOOST_CONTAINER_PP_PARAM_LIST(z, n, data) \
    BOOST_PP_CAT(P, n) && BOOST_PP_CAT(p, n) \
    //!
@@ -60,13 +57,13 @@
    #define BOOST_CONTAINER_PP_PARAM_LIST(z, n, data) \
    const BOOST_PP_CAT(P, n) & BOOST_PP_CAT(p, n) \
    //!
-#endif   //#ifndef BOOST_NO_RVALUE_REFERENCES
+#endif   //#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
 
 #define BOOST_CONTAINER_PP_CONST_REF_PARAM_LIST_Q(z, n, Data) \
 const BOOST_PP_CAT(Q, n) & BOOST_PP_CAT(q, n) \
 //!
 
-#ifndef BOOST_NO_RVALUE_REFERENCES
+#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
    #define BOOST_CONTAINER_PP_PARAM(U, u) \
    U && u \
    //!
@@ -74,36 +71,87 @@ const BOOST_PP_CAT(Q, n) & BOOST_PP_CAT(q, n) \
    #define BOOST_CONTAINER_PP_PARAM(U, u) \
    const U & u \
    //!
-#endif   //#ifndef BOOST_NO_RVALUE_REFERENCES
+#endif   //#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
 
-#ifndef BOOST_NO_RVALUE_REFERENCES
-
-   #if defined(BOOST_MOVE_MSVC_10_MEMBER_RVALUE_REF_BUG)
-
-   #define BOOST_CONTAINER_PP_PARAM_INIT(z, n, data) \
-   BOOST_PP_CAT(m_p, n) (static_cast<BOOST_PP_CAT(P, n)>( BOOST_PP_CAT(p, n) ))           \
-
-   #else //#if defined(BOOST_MOVE_MSVC_10_MEMBER_RVALUE_REF_BUG)
+#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
 
    #define BOOST_CONTAINER_PP_PARAM_INIT(z, n, data) \
    BOOST_PP_CAT(m_p, n) (::boost::forward< BOOST_PP_CAT(P, n) >( BOOST_PP_CAT(p, n) ))           \
    //!
 
-   #endif   //BOOST_MOVE_OLD_RVALUE_REF_BINDING_RULES
-
-#else //BOOST_NO_RVALUE_REFERENCES
+#else //BOOST_NO_CXX11_RVALUE_REFERENCES
 
    #define BOOST_CONTAINER_PP_PARAM_INIT(z, n, data) \
    BOOST_PP_CAT(m_p, n) (const_cast<BOOST_PP_CAT(P, n) &>(BOOST_PP_CAT(p, n))) \
    //!
-#endif   //#ifndef BOOST_NO_RVALUE_REFERENCES
+#endif   //#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
 
-#ifndef BOOST_NO_RVALUE_REFERENCES
+#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
 
    #if defined(BOOST_MOVE_MSVC_10_MEMBER_RVALUE_REF_BUG)
 
+      namespace boost {
+      namespace container {
+      namespace container_detail {
+         template<class T>
+         struct ref_holder;
+
+         template<class T>
+         struct ref_holder<T &>
+         {
+            explicit ref_holder(T &t)
+               : t_(t)
+            {}
+            T &t_;
+            T & get() {  return t_;   }
+         };
+
+         template<class T>
+         struct ref_holder<const T>
+         {
+            explicit ref_holder(const T &t)
+               : t_(t)
+            {}
+            const T &t_;
+            const T & get() {  return t_;   }
+         };
+
+         template<class T>
+         struct ref_holder<const T &&>
+         {
+            explicit ref_holder(const T &t)
+               : t_(t)
+            {}
+            const T &t_;
+            const T & get() {  return t_;   }
+         };
+
+         template<class T>
+         struct ref_holder
+         {
+            explicit ref_holder(T &&t)
+               : t_(t)
+            {}
+            T &t_;
+            T && get() {  return ::boost::move(t_);   }
+         };
+
+         template<class T>
+         struct ref_holder<T &&>
+         {
+            explicit ref_holder(T &&t)
+               : t_(t)
+            {}
+            T &t_;
+            T && get()  { return ::boost::move(t_); }
+         };
+
+      }  //namespace container_detail {
+      }  //namespace container {
+      }  //namespace boost {
+
       #define BOOST_CONTAINER_PP_PARAM_DEFINE(z, n, data)  \
-      BOOST_PP_CAT(P, n) & BOOST_PP_CAT(m_p, n);            \
+         ::boost::container::container_detail::ref_holder<BOOST_PP_CAT(P, n)> BOOST_PP_CAT(m_p, n);  \
       //!
 
    #else //BOOST_MOVE_MSVC_10_MEMBER_RVALUE_REF_BUG
@@ -114,26 +162,25 @@ const BOOST_PP_CAT(Q, n) & BOOST_PP_CAT(q, n) \
 
    #endif //defined(BOOST_MOVE_MSVC_10_MEMBER_RVALUE_REF_BUG)
 
-#else //BOOST_NO_RVALUE_REFERENCES
+#else //BOOST_NO_CXX11_RVALUE_REFERENCES
 
    #define BOOST_CONTAINER_PP_PARAM_DEFINE(z, n, data)  \
    BOOST_PP_CAT(P, n) & BOOST_PP_CAT(m_p, n);             \
    //!
-#endif   //#ifndef BOOST_NO_RVALUE_REFERENCES
+#endif   //#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
 
-#if !defined(BOOST_NO_RVALUE_REFERENCES) && defined(BOOST_MOVE_MSVC_10_MEMBER_RVALUE_REF_BUG)
+#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES) && defined(BOOST_MOVE_MSVC_10_MEMBER_RVALUE_REF_BUG)
 
-   #define BOOST_CONTAINER_PP_MEMBER_FORWARD(z, n, data) \
-   ::boost::container::container_detail::stored_ref< BOOST_PP_CAT(P, n) >::forward( BOOST_PP_CAT(this->m_p, n) ) \
+   #define BOOST_CONTAINER_PP_MEMBER_FORWARD(z, n, data) BOOST_PP_CAT(this->m_p, n).get() \
    //!
 
-#else //!defined(BOOST_NO_RVALUE_REFERENCES) && defined(BOOST_MOVE_MSVC_10_MEMBER_RVALUE_REF_BUG)
+#else //!defined(BOOST_NO_CXX11_RVALUE_REFERENCES) && defined(BOOST_MOVE_MSVC_10_MEMBER_RVALUE_REF_BUG)
 
    #define BOOST_CONTAINER_PP_MEMBER_FORWARD(z, n, data) \
    ::boost::forward< BOOST_PP_CAT(P, n) >( BOOST_PP_CAT(this->m_p, n) ) \
    //!
 
-#endif   //!defined(BOOST_NO_RVALUE_REFERENCES) && defined(BOOST_MOVE_MSVC_10_MEMBER_RVALUE_REF_BUG)
+#endif   //!defined(BOOST_NO_CXX11_RVALUE_REFERENCES) && defined(BOOST_MOVE_MSVC_10_MEMBER_RVALUE_REF_BUG)
 
 #define BOOST_CONTAINER_PP_PARAM_INC(z, n, data)   \
   BOOST_PP_CAT(++this->m_p, n)                     \

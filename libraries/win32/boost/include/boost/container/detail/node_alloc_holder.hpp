@@ -21,7 +21,7 @@
 #include <utility>
 #include <functional>
 
-#include <boost/move/move.hpp>
+#include <boost/move/utility.hpp>
 #include <boost/intrusive/options.hpp>
 
 #include <boost/container/detail/version_type.hpp>
@@ -30,6 +30,8 @@
 #include <boost/container/allocator_traits.hpp>
 #include <boost/container/detail/mpl.hpp>
 #include <boost/container/detail/destroyers.hpp>
+#include <boost/container/detail/allocator_version_traits.hpp>
+#include <boost/detail/no_exceptions_support.hpp>
 
 #ifndef BOOST_CONTAINER_PERFECT_FORWARDING
 #include <boost/container/detail/preprocessor.hpp>
@@ -42,99 +44,6 @@
 namespace boost {
 namespace container {
 namespace container_detail {
-
-//!A deleter for scoped_ptr that deallocates the memory
-//!allocated for an object using a STL allocator.
-template <class A>
-struct scoped_deallocator
-{
-   typedef allocator_traits<A> allocator_traits_type;
-   typedef typename allocator_traits_type::pointer pointer;
-   typedef container_detail::integral_constant<unsigned,
-      boost::container::container_detail::
-         version<A>::value>                   alloc_version;
-   typedef container_detail::integral_constant<unsigned, 1>     allocator_v1;
-   typedef container_detail::integral_constant<unsigned, 2>     allocator_v2;
-
-   private:
-   void priv_deallocate(allocator_v1)
-   {  m_alloc.deallocate(m_ptr, 1); }
-
-   void priv_deallocate(allocator_v2)
-   {  m_alloc.deallocate_one(m_ptr); }
-
-   BOOST_MOVABLE_BUT_NOT_COPYABLE(scoped_deallocator)
-
-   public:
-
-   pointer     m_ptr;
-   A&  m_alloc;
-
-   scoped_deallocator(pointer p, A& a)
-      : m_ptr(p), m_alloc(a)
-   {}
-
-   ~scoped_deallocator()
-   {  if (m_ptr)priv_deallocate(alloc_version());  }
-
-   scoped_deallocator(BOOST_RV_REF(scoped_deallocator) o)
-      :  m_ptr(o.m_ptr), m_alloc(o.m_alloc)
-   {  o.release();  }
-
-   pointer get() const
-   {  return m_ptr;  }
-
-   void release()
-   {  m_ptr = 0; }
-};
-
-template <class A>
-class allocator_destroyer_and_chain_builder
-{
-   typedef allocator_traits<A> allocator_traits_type;
-   typedef typename allocator_traits_type::value_type value_type;
-   typedef typename A::multiallocation_chain    multiallocation_chain;
-
-   A & a_;
-   multiallocation_chain &c_;
-
-   public:
-   allocator_destroyer_and_chain_builder(A &a, multiallocation_chain &c)
-      :  a_(a), c_(c)
-   {}
-
-   void operator()(const typename A::pointer &p)
-   {
-      allocator_traits<A>::destroy(a_, container_detail::to_raw_pointer(p));
-      c_.push_front(p);
-   }
-};
-
-template <class A>
-class allocator_multialloc_chain_node_deallocator
-{
-   typedef allocator_traits<A> allocator_traits_type;
-   typedef typename allocator_traits_type::value_type value_type;
-   typedef typename A::multiallocation_chain    multiallocation_chain;
-   typedef allocator_destroyer_and_chain_builder<A> chain_builder;
-
-   A & a_;
-   multiallocation_chain c_;
-
-   public:
-   allocator_multialloc_chain_node_deallocator(A &a)
-      :  a_(a), c_()
-   {}
-
-   chain_builder get_chain_builder()
-   {  return chain_builder(a_, c_);  }
-
-   ~allocator_multialloc_chain_node_deallocator()
-   {
-      if(!c_.empty())
-         a_.deallocate_individual(boost::move(c_));
-   }
-};
 
 template<class ValueCompare, class Node>
 struct node_compare
@@ -182,6 +91,7 @@ struct node_alloc_holder
    typedef typename ICont::const_iterator             icont_citerator;
    typedef allocator_destroyer<NodeAlloc>             Destroyer;
    typedef allocator_traits<NodeAlloc>                NodeAllocTraits;
+   typedef allocator_version_traits<NodeAlloc>        AllocVersionTraits;
 
    private:
    BOOST_COPYABLE_AND_MOVABLE(node_alloc_holder)
@@ -244,22 +154,10 @@ struct node_alloc_holder
    {  return allocator_traits_type::max_size(this->node_alloc());  }
 
    NodePtr allocate_one()
-   {  return this->allocate_one(alloc_version());   }
-
-   NodePtr allocate_one(allocator_v1)
-   {  return this->node_alloc().allocate(1);   }
-
-   NodePtr allocate_one(allocator_v2)
-   {  return this->node_alloc().allocate_one();   }
+   {  return AllocVersionTraits::allocate_one(this->node_alloc());   }
 
    void deallocate_one(const NodePtr &p)
-   {  return this->deallocate_one(p, alloc_version());   }
-
-   void deallocate_one(const NodePtr &p, allocator_v1)
-   {  this->node_alloc().deallocate(p, 1);   }
-
-   void deallocate_one(const NodePtr &p, allocator_v2)
-   {  this->node_alloc().deallocate_one(p);   }
+   {  AllocVersionTraits::deallocate_one(this->node_alloc(), p);  }
 
    #ifdef BOOST_CONTAINER_PERFECT_FORWARDING
 
@@ -328,41 +226,51 @@ struct node_alloc_holder
    }
 
    template<class FwdIterator, class Inserter>
-   FwdIterator allocate_many_and_construct
+   void allocate_many_and_construct
       (FwdIterator beg, difference_type n, Inserter inserter)
    {
-      if(n){
-         typedef typename NodeAlloc::multiallocation_chain multiallocation_chain;
+      /*
+      NodePtr p = this->allocate_one();
+      Deallocator node_deallocator(p, this->node_alloc());
+      ::boost::container::construct_in_place(this->node_alloc(), container_detail::addressof(p->m_data), it);
+      node_deallocator.release();
+      //This does not throw
+      typedef typename Node::hook_type hook_type;
+      ::new(static_cast<hook_type*>(container_detail::to_raw_pointer(p))) hook_type;
+      return (p);
+      */
+      typedef typename NodeAlloc::multiallocation_chain multiallocation_chain;
 
-         //Try to allocate memory in a single block
-         multiallocation_chain mem(this->node_alloc().allocate_individual(n));
-         int constructed = 0;
-         Node *p = 0;
-         BOOST_TRY{
-               for(difference_type i = 0; i < n; ++i, ++beg, --constructed){
-               p = container_detail::to_raw_pointer(mem.front());
-               mem.pop_front();
-               //This can throw
-               constructed = 0;
-               boost::container::construct_in_place(this->node_alloc(), container_detail::addressof(p->m_data), beg);
-               ++constructed;
-               //This does not throw
-               typedef typename Node::hook_type hook_type;
-               ::new(static_cast<hook_type*>(container_detail::to_raw_pointer(p))) hook_type;
-               //This can throw in some containers (predicate might throw)
-               inserter(*p);
-            }
+      //Try to allocate memory in a single block
+      typedef typename multiallocation_chain::iterator multialloc_iterator;
+      multiallocation_chain mem;
+      this->node_alloc().allocate_individual(n, mem);
+      multialloc_iterator itbeg(mem.begin()), itlast(mem.last());
+      mem.clear();
+      Node *p = 0;
+      NodeAlloc &nalloc = this->node_alloc();
+      BOOST_TRY{
+         while(n--){
+            p = container_detail::to_raw_pointer(&*itbeg);
+            ++itbeg;
+            //This can throw
+            Deallocator node_deallocator(p, nalloc);
+            boost::container::construct_in_place(nalloc, container_detail::addressof(p->m_data), beg);
+            ++beg;
+            node_deallocator.release();
+            //This does not throw
+            typedef typename Node::hook_type hook_type;
+            ::new(static_cast<hook_type*>(p)) hook_type;
+            //This can throw in some containers (predicate might throw)
+            inserter(*p);
          }
-         BOOST_CATCH(...){
-            if(constructed){
-               allocator_traits<NodeAlloc>::destroy(this->node_alloc(), container_detail::to_raw_pointer(p));
-            }
-            this->node_alloc().deallocate_individual(boost::move(mem));
-            BOOST_RETHROW
-         }
-         BOOST_CATCH_END
       }
-      return beg;
+      BOOST_CATCH(...){
+         mem.incorporate_after(mem.last(), &*itbeg, &*itlast, n);
+         this->node_alloc().deallocate_individual(mem);
+         BOOST_RETHROW
+      }
+      BOOST_CATCH_END
    }
 
    void clear(allocator_v1)
@@ -375,7 +283,7 @@ struct node_alloc_holder
       this->icont().clear_and_dispose(builder);
       //BOOST_STATIC_ASSERT((::boost::has_move_emulation_enabled<typename NodeAlloc::multiallocation_chain>::value == true));
       if(!chain.empty())
-         this->node_alloc().deallocate_individual(boost::move(chain));
+         this->node_alloc().deallocate_individual(chain);
    }
 
    icont_iterator erase_range(const icont_iterator &first, const icont_iterator &last, allocator_v1)
@@ -383,8 +291,13 @@ struct node_alloc_holder
 
    icont_iterator erase_range(const icont_iterator &first, const icont_iterator &last, allocator_v2)
    {
-      allocator_multialloc_chain_node_deallocator<NodeAlloc> chain_holder(this->node_alloc());
-      return this->icont().erase_and_dispose(first, last, chain_holder.get_chain_builder());
+      typedef typename NodeAlloc::multiallocation_chain multiallocation_chain;
+      NodeAlloc & nalloc = this->node_alloc();
+      multiallocation_chain chain;
+      allocator_destroyer_and_chain_builder<NodeAlloc> chain_builder(nalloc, chain);
+      icont_iterator ret_it = this->icont().erase_and_dispose(first, last, chain_builder);
+      nalloc.deallocate_individual(chain);
+      return ret_it;
    }
 
    template<class Key, class Comparator>
