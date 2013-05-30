@@ -1,0 +1,11 @@
+﻿{
+	"genericName": "Wooden Structures",
+	"autoResearch": true,
+	"description": "Celtic structures were mostly made of wood, with rubble foundations. Consequently, their structures have less health than other cultres do, but they also construct faster.",
+	"requirements": {"any": [{"civ": "celt"},{"civ": "brit"},{"civ": "gaul"}]},
+	"modifications": [
+		{"value": "Health/Max", "multiplier": 0.8},
+		{"value": "Cost/BuildTime", "multiplier": 0.8}
+	],
+	"affects": ["Structure"]
+}

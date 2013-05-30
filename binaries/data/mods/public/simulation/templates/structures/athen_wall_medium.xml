@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_medium">
-  <Cost>
-    <BuildTime>22</BuildTime>
-  </Cost>
   <Footprint>
     <Square width="26.0" depth="7.0"/>
     <Height>9.0</Height>
   </Footprint>
-  <Health>
-    <Max>3300</Max>
-  </Health>
   <Identity>
     <Civ>athen</Civ>
 	<SelectionGroupName>structures/athen_wallset_stone</SelectionGroupName>
