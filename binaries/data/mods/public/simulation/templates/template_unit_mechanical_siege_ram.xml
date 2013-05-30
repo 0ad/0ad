@@ -14,7 +14,7 @@
       <RepeatTime>1500</RepeatTime>
 	  <Bonuses>
 		<BonusStruct>
-		  <Classes>Structure</Classes>
+		  <Classes>Structure -Gates</Classes>
 		  <Multiplier>2.0</Multiplier>
 		</BonusStruct>
 		<BonusGates>
@@ -33,7 +33,7 @@
       <MinRange>0.0</MinRange>
 	  <Bonuses>
 		<BonusStruct>
-		  <Classes>Structure</Classes>
+		  <Classes>Structure -Gates</Classes>
 		  <Multiplier>2.0</Multiplier>
 		</BonusStruct>
 		<BonusGates>
@@ -65,7 +65,7 @@
   </Health>
   <Identity>
     <GenericName>Battering Ram</GenericName>
-    <Tooltip>Bonused vs. Wall Gates.</Tooltip>
+    <Tooltip>Counters: 3x vs. gates, 2x vs. other structures. Countered by: Melee cavalry. Cannot attack organic units.</Tooltip>
   </Identity>
   <Sound>
     <SoundGroups>
