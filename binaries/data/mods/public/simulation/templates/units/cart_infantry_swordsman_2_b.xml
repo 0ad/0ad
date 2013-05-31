@@ -13,7 +13,7 @@
   <Cost>
     <Resources>
       <food>0</food>
-	  <metal>80</metal>
+	  <metal>100</metal>
     </Resources>
   </Cost>
   <Identity>
@@ -21,6 +21,7 @@
     <SelectionGroupName>units/cart_infantry_swordsman_2_b</SelectionGroupName>
     <GenericName>Italian Allied Swordsman</GenericName>
     <SpecificName>/Italian Allied Swordsman/</SpecificName>
+    <Classes datatype="tokens">Italian Mercenary</Classes>
     <History>TBD.</History>
     <Icon>units/cart_infantry_swordsman_2.png</Icon>
   </Identity>

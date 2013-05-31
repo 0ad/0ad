@@ -24,6 +24,9 @@
       units/cart_infantry_slinger_b
       units/cart_cavalry_swordsman_b
     </Entities>
+    <Technologies datatype="tokens">
+      carthaginians/cost_iberian_mercs
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/carthaginians/embassy_iberian.xml</Actor>

@@ -1,0 +1,12 @@
+{
+	"genericName": "Italiote Mercenary Captain",
+	"description": "Italian mercenaries have their metal cost decreased.",
+	"cost": {"food": 200, "wood": 0, "stone": 0, "metal": 200},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "helmet_corinthian_gold.png",
+	"researchTime": 30,
+	"tooltip": "Hire an Italiote mercenary captain to reduce metal cost -50% for Italian mercenaries.",
+	"modifications": [{"value": "Cost/Resources/metal", "multiplier": 0.5}],
+	"affects": ["Italian Mercenary"]
+}
