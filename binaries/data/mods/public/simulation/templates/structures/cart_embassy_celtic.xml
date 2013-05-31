@@ -30,6 +30,9 @@
       units/cart_infantry_swordsman_b
       units/cart_cavalry_swordsman_2_b
     </Entities>
+    <Technologies datatype="tokens">
+      carthaginians/cost_celt_mercs
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/carthaginians/embassy_celtic.xml</Actor>
