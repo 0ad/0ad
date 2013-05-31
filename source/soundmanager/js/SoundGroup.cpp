@@ -110,6 +110,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	const size_t screenWidth = g_Game->GetView()->GetCamera()->GetViewPort().m_Width;
 	const size_t screenHeight = g_Game->GetView()->GetCamera()->GetViewPort().m_Height;
 	float bufferSize = screenWidth * 0.10;
+	float yBufferSize = 15;
 	const size_t audioWidth = screenWidth;
 	float radianCap = PI / 3;
 	
@@ -127,32 +128,28 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 		onScreen = false;
 		answer = radianCap;
 	}
-	else {
+	else
+	{
 		if ((x < 0) || (x > screenWidth))
 		{
-			itemRollOff = 2.0;
+			itemRollOff = 0.5;
 		}
 		float pixPerRadian = audioWidth / (radianCap * 2);
 		answer = (x - (screenWidth/2)) / pixPerRadian;
 	}
 
-	if (y < -bufferSize)
+	if (y < -yBufferSize)
 	{
 		onScreen = false;
 	}
-	else if (y > screenHeight + bufferSize)
+	else if (y > screenHeight + yBufferSize)
 	{
 		onScreen = false;
 	}
-	else {
-		if ((y < 0) || (y > screenHeight))
-		{
-			itemRollOff = 2.0;
-		}
+	else if ((y < 0) || (y > screenHeight))
+	{
+		itemRollOff = 0.5;
 	}
-
-		
- //   debug_printf(L"do play at x portion:%f pts x:%f, y=%f at radians=%f\n\n", answer, x, y, answer);
 
 	return answer;
 }
@@ -179,6 +176,10 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 				{
 					CVector3D origin = g_Game->GetView()->GetCamera()->GetOrientation().GetTranslation();
 					float sndDist = origin.Y;
+					float itemDist = ( position - origin ).Length();
+
+					if ( (sndDist * 2) < itemDist )
+						sndDist = itemDist;
 
 					ISoundItem*	hSound = g_SoundManager->ItemForEntity( source, sndData);
 
