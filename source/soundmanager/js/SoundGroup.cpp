@@ -190,6 +190,9 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 							if (TestFlag(eDistanceless))
 								itemRollOff = 0;
 							
+							if ( sndData->IsStereo() )
+								LOGWARNING( L"OpenAL: stereo sounds can't be positioned: %ls", sndData->GetFileName()->string().c_str() );
+
 							hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, - sndDist * cos(offSet)));
 							hSound->SetRollOff(itemRollOff);
 						}

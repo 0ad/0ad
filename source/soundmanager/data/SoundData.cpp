@@ -154,5 +154,10 @@ unsigned int* CSoundData::GetBufferPtr()
 	return &m_ALBuffer;
 }
 
+bool CSoundData::IsStereo()
+{
+	return false;
+}
+
 #endif // CONFIG2_AUDIO
 

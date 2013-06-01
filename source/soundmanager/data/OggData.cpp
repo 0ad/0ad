@@ -54,6 +54,11 @@ void COggData::SetFormatAndFreq(int form, ALsizei freq)
 	m_Frequency = freq;
 }
 
+bool COggData::IsStereo()
+{
+	return ( m_Format == AL_FORMAT_STEREO16 );
+}
+
 bool COggData::InitOggFile(const VfsPath& itemPath)
 {
 	int buffersToStart = g_SoundManager->GetBufferCount();	

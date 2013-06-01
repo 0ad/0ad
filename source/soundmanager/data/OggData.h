@@ -40,6 +40,7 @@ public:
 	virtual bool InitOggFile(const VfsPath& itemPath);
 	virtual bool IsFileFinished();
 	virtual bool IsOneShot();
+	virtual bool IsStereo();
 
 	virtual int FetchDataIntoBuffer(int count, ALuint* buffers);
 	virtual void ResetFile();

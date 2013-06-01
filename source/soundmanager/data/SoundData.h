@@ -46,6 +46,7 @@ public:
 	bool DecrementCount();
 	void InitProperties();
 	virtual bool IsOneShot();
+	virtual bool IsStereo();
 
 	
 	virtual unsigned int GetBuffer();
