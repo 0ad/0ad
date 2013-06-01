@@ -56,7 +56,7 @@ Trader.prototype.CalculateGain = function(firstMarket, secondMarket, template)
 		}
 	}
 	
-	return garrisonMultiplier * CalculateTraderGain(firstMarket, secondMarket, this.template);
+	return Math.round(garrisonMultiplier * CalculateTraderGain(firstMarket, secondMarket, this.template));
 }
 
 Trader.prototype.GetGain = function()
