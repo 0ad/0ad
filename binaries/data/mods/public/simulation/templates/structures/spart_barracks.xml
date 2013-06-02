@@ -30,6 +30,9 @@
       units/spart_infantry_javelinist_b
       units/spart_cavalry_javelinist_b
     </Entities>
+    <Technologies datatype="tokens">
+	  -unlock_champion_units
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/spartans/barracks.xml</Actor>
