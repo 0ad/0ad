@@ -260,7 +260,7 @@ function getActionInfo(action, target)
 			cursor = "action-repair";
 		}
 		else if (hasClass(entState, "Market") && hasClass(targetState, "Market") && entState.id != targetState.id &&
-				(!hasClass(entState, "NavalMarket") || hasClass(targetState, "NavalMarket")))
+				(!hasClass(entState, "NavalMarket") || hasClass(targetState, "NavalMarket")) && !enemyOwned)
 		{
 			// Find a trader (if any) that this building can produce.
 			var trader;
