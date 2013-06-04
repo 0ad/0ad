@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <SoundGroup>
-	<Distanceless>1</Distanceless>
 	<Gain>1</Gain>
 	<Pitch>1</Pitch>
 	<Priority>70</Priority>
@@ -17,7 +16,8 @@
 	<PitchLower>0.9</PitchLower>
 	<Threshold>1</Threshold>
 	<Decay>3</Decay>
-	<Replacement>sel_kennel.ogg</Replacement>
-	<Path>audio/interface/select/building</Path>
-	<Sound>sel_kennel.ogg</Sound>
+	<Replacement>stonegate_open_21.ogg</Replacement>
+	<Path>audio/actor/gate</Path>
+	<Sound>stonegate_open_21.ogg</Sound>
+	<Sound>stonegate_open_22.ogg</Sound>
 </SoundGroup>

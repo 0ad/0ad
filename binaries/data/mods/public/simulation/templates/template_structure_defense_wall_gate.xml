@@ -50,8 +50,8 @@
       <select>interface/select/building/sel_gate.xml</select>
       <constructed>interface/complete/building/complete_gate.xml</constructed>
       <death>attack/destruction/building_collapse_large.xml</death>
-      <gate_closing>interface/select/building/sel_gate.xml</gate_closing>
-      <gate_opening>interface/select/building/sel_gate.xml</gate_opening>
+      <gate_closing>actor/gate/stonegate_close.xml</gate_closing>
+      <gate_opening>actor/gate/stonegate_open.xml</gate_opening>
       <gate_locked>interface/select/building/sel_gate.xml</gate_locked>
       <gate_unlocked>interface/select/building/sel_gate.xml</gate_unlocked>
     </SoundGroups>
