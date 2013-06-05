@@ -34,6 +34,7 @@
 JMusicList::JMusicList()
 {
 #if CONFIG2_AUDIO
+  if ( g_SoundManager )
     g_SoundManager->ClearPlayListItems();
 #endif
 }
@@ -45,7 +46,8 @@ bool JMusicList::AddItem(JSContext* cx, uintN UNUSED(argc), jsval* vp)
     return false;
 
 #if CONFIG2_AUDIO
-  g_SoundManager->AddPlayListItem( VfsPath( filename ) );
+  if ( g_SoundManager )
+    g_SoundManager->AddPlayListItem( VfsPath( filename ) );
 #endif
 
   return true;
