@@ -19,6 +19,8 @@
 #define INCLUDED_MINIMAP
 
 #include "gui/GUI.h"
+#include "renderer/VertexArray.h"
+
 
 class CCamera;
 class CTerrain;
@@ -88,6 +90,13 @@ protected:
 	void GetMouseWorldCoordinates(float& x, float& z);
 
 	float GetAngle();
+
+	VertexIndexArray m_IndexArray;
+	VertexArray m_VertexArray;
+	VertexArray::Attribute m_AttributePos;
+	VertexArray::Attribute m_AttributeColor;
+
+	size_t m_EntitiesDrawn;
 };
 
 #endif
