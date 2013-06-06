@@ -53,7 +53,7 @@
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
-#include "soundmanager/SoundManager.h"
+#include "soundmanager/ISoundManager.h"
 
 // rationale: the function table is now at the end of the source file to
 // avoid the need for forward declarations for every function.

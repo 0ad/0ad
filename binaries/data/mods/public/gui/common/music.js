@@ -46,8 +46,6 @@ function Music()
 	this.currentState = 0;
 	this.oldState = 0;
 
-	this.currentMusic = null;
-
 	// timer for delay between tracks
 	this.timer = [];
 	this.time = Date.now();
@@ -81,11 +79,7 @@ Music.prototype.updateState = function()
 		switch (this.currentState)
 		{
 		case this.states.OFF:
-			if (this.isPlaying())
-			{
-				var thePlayer = SoundPlayer();
-				thePlayer.stopMusic();
-			}
+			Engine.StopMusic();
 			break;
 
 		case this.states.MENU:
@@ -152,50 +146,34 @@ Music.prototype.getRandomTrack = function(tracks)
 
 Music.prototype.startPlayList = function(tracks, fadeInPeriod, isLooping)
 {
-  this.currentMusicList = new MusicList;
+  Engine.ClearPlaylist();
   for (var i in tracks)
   {
-    this.currentMusicList.addItem( this.RELATIVE_MUSIC_PATH + tracks[i] )
+		Engine.AddPlaylistItem( this.RELATIVE_MUSIC_PATH + tracks[i] );
   }
 
-  if (this.currentMusicList)
-  {
-    if (isLooping)
-      this.currentMusicList.loop();
-    else
-      this.currentMusicList.play();
-  }
+	if (isLooping)
+		Engine.LoopPlaylist();
+	else
+		Engine.PlayPlaylist();
 };
 
 Music.prototype.switchMusic = function(track, fadeInPeriod, isLooping)
 {
-	this.currentMusic = new MusicSound(this.RELATIVE_MUSIC_PATH + track);
-
-	if (this.currentMusic)
-	{
-		if (isLooping)
-			this.currentMusic.loop();
-		else
-			this.currentMusic.play();
-	}
+	if (isLooping)
+		Engine.LoopMusic(this.RELATIVE_MUSIC_PATH + track);
+	else
+		Engine.PlayMusic(this.RELATIVE_MUSIC_PATH + track);
 };
 
 Music.prototype.isPlaying = function()
 {
-	if (!this.currentMusic)
-		return false;
-
-	// should return whether there is a valid handle; gain and fade do this also
-	// However, if looping is not set, then it always returns false because the
-	// handle is immediately cleared out
-//	return this.currentMusic.isPlaying();
-	return true;
+	return Engine.MusicPlaying();
 };
 
 Music.prototype.start = function()
 {
-	var thePlayer = SoundPlayer();
-	thePlayer.startMusic();
+	Engine.StartMusic();
 	this.setState(this.states.PEACE);
 };
 
@@ -204,31 +182,3 @@ Music.prototype.stop = function()
 	this.setState(this.states.OFF);
 };
 
-// =============================================================================
-// This allows for delays between tracks
-// =============================================================================
-Music.prototype.setDelay = function(state, delay)
-{
-	this.timer = [this.time + delay, state];
-};
-
-Music.prototype.stopTimer = function()
-{
-	this.timer = null;
-};
-
-// Needs to be called in onTick() to work
-Music.prototype.updateTimer = function()
-{
-	this.time = Date.now();
-
-	if (this.timer && (this.timer[0] <= this.time))
-	{
-		// Setting to OFF first guarantees that a state
-		// change will take place even if the current
-		// state is the same as the new state
-		this.reference.setState(this.states.OFF);
-		this.reference.setState(this.timer[1]);
-		this.stopTimer();
-	}
-};

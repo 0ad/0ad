@@ -21,7 +21,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "network/NetClient.h"
 #include "ps/GameSetup/Config.h"
-#include "soundmanager/SoundManager.h"
+#include "soundmanager/ISoundManager.h"
 
 bool g_app_minimized = false;
 bool g_app_has_focus = true;

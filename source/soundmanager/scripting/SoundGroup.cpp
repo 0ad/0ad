@@ -181,7 +181,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 					if ( (sndDist * 2) < itemDist )
 						sndDist = itemDist;
 
-					ISoundItem*	hSound = g_SoundManager->ItemForEntity( source, sndData);
+					ISoundItem*	hSound = ((CSoundManager*)g_SoundManager)->ItemForEntity( source, sndData);
 
 					if ( hSound )
 					{
@@ -208,7 +208,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 
 						hSound->SetCone(m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
 
-						g_SoundManager->PlayGroupItem(hSound, theGain);
+						((CSoundManager*)g_SoundManager)->PlayGroupItem(hSound, theGain);
 					}
 				}
 			}

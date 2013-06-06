@@ -559,7 +559,7 @@ function setup_all_libs ()
 		"soundmanager",
 		"soundmanager/data",
 		"soundmanager/items",
-		"soundmanager/js",
+		"soundmanager/scripting",
 		"scripting",
 		"maths",
 		"maths/scripting",

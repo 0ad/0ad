@@ -22,7 +22,11 @@
 
 #if CONFIG2_AUDIO
 
+#include "lib/external_libraries/openal.h"
+
+
 #include "lib/file/vfs/vfs_path.h"
+#include "soundmanager/ISoundManager.h"
 #include "soundmanager/items/ISoundItem.h"
 #include "simulation2/system/Entity.h"
 #include "soundmanager/data/SoundData.h"
@@ -34,13 +38,6 @@
 
 #define AL_CHECK CSoundManager::al_check(__func__, __LINE__);
 
-typedef std::vector<VfsPath> PlayList;
-typedef std::vector<ISoundItem*> ItemsList;
-typedef std::map<entity_id_t, ISoundItem*> ItemsMap;
-
-class CSoundManagerWorker;
-
-
 struct ALSourceHolder
 {
 	/// Title of the column
@@ -48,7 +45,14 @@ struct ALSourceHolder
 	ISoundItem*	SourceItem;
 };
 
-class CSoundManager
+typedef std::vector<VfsPath> PlayList;
+typedef std::vector<ISoundItem*> ItemsList;
+typedef std::map<entity_id_t, ISoundItem*> ItemsMap;
+
+class CSoundManagerWorker;
+
+
+class CSoundManager : public ISoundManager
 {
 	NONCOPYABLE(CSoundManager);
 
@@ -96,7 +100,7 @@ public:
 
 	void ClearPlayListItems();
 	void StartPlayList( bool doLoop );
-	void AddPlayListItem( const VfsPath& itemPath);
+	void AddPlayListItem( const VfsPath* itemPath);
 
 	static void ScriptingInit();
 	static void CreateSoundManager();
@@ -153,15 +157,7 @@ private:
 
 #define AL_CHECK
 
-class CSoundManager
-{
-public:
-	static void ScriptingInit();
-};
 #endif // !CONFIG2_AUDIO
-
-
-extern CSoundManager*  g_SoundManager;
 
 #endif // INCLUDED_SOUNDMANAGER_H
 

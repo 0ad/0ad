@@ -46,7 +46,7 @@ void CSoundBase::ReleaseOpenAL()
 		AL_CHECK
 		alSourcei(m_ALSource, AL_BUFFER, NULL);
 		AL_CHECK
-		g_SoundManager->ReleaseALSource(m_ALSource);
+		((CSoundManager*)g_SoundManager)->ReleaseALSource(m_ALSource);
 		AL_CHECK
 		m_ALSource = 0;
 	}
@@ -96,7 +96,7 @@ bool CSoundBase::Finished()
 bool CSoundBase::InitOpenAL()
 {
 	alGetError(); /* clear error */
-	m_ALSource = g_SoundManager->GetALSource( this );
+	m_ALSource = ((CSoundManager*)g_SoundManager)->GetALSource( this );
 
 	AL_CHECK
 
@@ -288,9 +288,9 @@ void CSoundBase::Play()
 		if (err != AL_NO_ERROR)
 		{
 			if (err == AL_INVALID)
-				g_SoundManager->SetDistressThroughError();
+				((CSoundManager*)g_SoundManager)->SetDistressThroughError();
 			else
-				g_SoundManager->al_ReportError(err, __func__, __LINE__);
+				((CSoundManager*)g_SoundManager)->al_ReportError(err, __func__, __LINE__);
 		}
 	}
 }
@@ -348,12 +348,12 @@ void CSoundBase::FadeToIn(ALfloat newVolume, double fadeDuration)
 
 void CSoundBase::PlayAsMusic()
 {
-	g_SoundManager->SetMusicItem(this);
+	((CSoundManager*)g_SoundManager)->SetMusicItem(this);
 }
 
 void CSoundBase::PlayAsAmbient()
 {
-	g_SoundManager->SetAmbientItem(this);
+	((CSoundManager*)g_SoundManager)->SetAmbientItem(this);
 }
 
 void CSoundBase::Stop()

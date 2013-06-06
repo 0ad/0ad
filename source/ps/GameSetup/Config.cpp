@@ -24,7 +24,7 @@
 #include "ps/CLogger.h"
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "lib/timer.h"
-#include "soundmanager/SoundManager.h"
+#include "soundmanager/ISoundManager.h"
 
 // (these variables are documented in the header.)
 

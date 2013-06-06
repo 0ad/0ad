@@ -299,9 +299,6 @@ function onTick()
 	// Animate menu
 	updateMenuPosition(tickLength);
 
-	// Update music state
-	global.music.updateTimer();
-
 	// When training is blocked, flash population (alternates colour every 500msec)
 	if (g_IsTrainingBlocked && (Date.now() % 1000) < 500)
 		getGUIObjectByName("resourcePop").textcolor = POPULATION_ALERT_COLOR;
@@ -639,12 +636,7 @@ function playRandomAmbient(type)
 //			currentAmbient = newRandomSound("ambient", "temperate_", "dayscape");
 
 			const AMBIENT = "audio/ambient/dayscape/day_temperate_gen_03.ogg";
-			currentAmbient = new AmbientSound(AMBIENT);
-
-			if (currentAmbient)
-			{
-				currentAmbient.loop();
-			}
+			Engine.LoopAmbientSound( AMBIENT );
 			break;
 
 		default:

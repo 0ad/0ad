@@ -46,7 +46,7 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
-#include "soundmanager/SoundManager.h"
+#include "soundmanager/ISoundManager.h"
 
 extern bool g_GameRestarted;
 
