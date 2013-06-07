@@ -57,7 +57,7 @@ void CStreamItem::ReleaseOpenALStream()
 		}
 		alSourcei(m_ALSource, AL_BUFFER, NULL);
 		AL_CHECK
-		g_SoundManager->ReleaseALSource(m_ALSource);
+		((CSoundManager*)g_SoundManager)->ReleaseALSource(m_ALSource);
 		AL_CHECK
 		m_ALSource = 0;
 	}

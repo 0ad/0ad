@@ -277,7 +277,11 @@ function getActionInfo(action, target)
 				data.target = traderData.secondMarket;
 				data.source = traderData.firstMarket;
 				cursor = "action-setup-trade-route";
-				tooltip = "Click to establish a default route for new traders. Gain: " + gain + " metal.";
+				tooltip = "Click to establish a default route for new traders.";
+				if (trader)
+					tooltip += " Gain: " + gain + " metal.";
+				else // Foundation or cannot produce traders
+					tooltip += " Expected gain: " + gain + " metal.";
 			}
 		}
 

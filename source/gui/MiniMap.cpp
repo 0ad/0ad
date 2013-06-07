@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,6 +44,10 @@
 
 bool g_GameRestarted = false;
 
+// Set max drawn entities to UINT16_MAX for now, which is more than enough
+// TODO: we should be cleverer about drawing them to reduce clutter
+const u16 MAX_ENTITIES_DRAWN = 65535;
+
 static unsigned int ScaleColor(unsigned int color, float x)
 {
 	unsigned int r = unsigned(float(color & 0xff) * x);
@@ -53,7 +57,8 @@ static unsigned int ScaleColor(unsigned int color, float x)
 }
 
 CMiniMap::CMiniMap() :
-	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true), m_MapScale(1.f)
+	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true), m_MapScale(1.f),
+	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW)
 {
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_CStrW,		"tooltip");
@@ -69,6 +74,46 @@ CMiniMap::CMiniMap() :
 		m_ShallowPassageHeight = pathingSettings.GetChild("default").GetChild("MaxWaterDepth").ToFloat();
 	else
 		m_ShallowPassageHeight = 0.0f;
+		
+	m_AttributePos.type = GL_FLOAT;
+	m_AttributePos.elems = 2;
+	m_VertexArray.AddAttribute(&m_AttributePos);
+	
+	m_AttributeColor.type = GL_UNSIGNED_BYTE;
+	m_AttributeColor.elems = 4;
+	m_VertexArray.AddAttribute(&m_AttributeColor);
+	
+	m_VertexArray.SetNumVertices(MAX_ENTITIES_DRAWN);
+	m_VertexArray.Layout();
+
+	m_IndexArray.SetNumVertices(MAX_ENTITIES_DRAWN);
+	m_IndexArray.Layout();
+	VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
+	for (u16 i = 0; i < MAX_ENTITIES_DRAWN; ++i)
+	{
+		*index++ = i;
+	}
+	m_IndexArray.Upload();
+	m_IndexArray.FreeBackingStore();
+	
+	
+	VertexArrayIterator<float[2]> attrPos = m_AttributePos.GetIterator<float[2]>();
+	VertexArrayIterator<u8[4]> attrColor = m_AttributeColor.GetIterator<u8[4]>();
+	for (u16 i = 0; i < MAX_ENTITIES_DRAWN; i++)
+	{
+		(*attrColor)[0] = 0;
+		(*attrColor)[1] = 0;
+		(*attrColor)[2] = 0;
+		(*attrColor)[3] = 0;
+		++attrColor;
+
+		(*attrPos)[0] = -10000.0f;
+		(*attrPos)[1] = -10000.0f;
+		
+		++attrPos;
+		
+	}
+	m_VertexArray.Upload();
 }
 
 CMiniMap::~CMiniMap()
@@ -218,12 +263,13 @@ void CMiniMap::DrawViewRect()
 	hitPt[3]=m_Camera->GetWorldCoordinates(0, 0, h);
 
 	float ViewRect[4][2];
+	const float invTileMapSize = 1.0f/float(TERRAIN_TILE_SIZE*m_MapSize);
 	for (int i=0;i<4;i++) {
 		// convert to minimap space
-		float px=hitPt[i].X;
-		float pz=hitPt[i].Z;
-		ViewRect[i][0]=(m_CachedActualSize.GetWidth()*px/float(TERRAIN_TILE_SIZE*m_MapSize));
-		ViewRect[i][1]=(m_CachedActualSize.GetHeight()*pz/float(TERRAIN_TILE_SIZE*m_MapSize));
+		const float px=hitPt[i].X;
+		const float pz=hitPt[i].Z;
+		ViewRect[i][0]=(m_CachedActualSize.GetWidth()*px*invTileMapSize);
+		ViewRect[i][1]=(m_CachedActualSize.GetHeight()*pz*invTileMapSize);
 	}
 
 	// Enable Scissoring as to restrict the rectangle
@@ -276,6 +322,10 @@ void CMiniMap::DrawTexture(float coordMax, float angle, float x, float y, float 
 	glEnd();
 }
 
+// TODO: render the minimap in a framebuffer and just draw the frambuffer texture
+//	most of the time, updating the framebuffer twice a frame.
+// Here it updates as ping-pong either texture or vertex array each sec to lower gpu stalling
+// (those operations cause a gpu sync, which slows down the way gpu works)
 void CMiniMap::Draw()
 {
 	PROFILE3("render minimap");
@@ -305,12 +355,13 @@ void CMiniMap::Draw()
 	// only update 2x / second
 	// (note: since units only move a few pixels per second on the minimap,
 	// we can get away with infrequent updates; this is slow)
+	// TODO: store frequency in a config file?
 	static double last_time;
 	const double cur_time = timer_Time();
-	if(cur_time - last_time > 0.5)
-	{
+	const bool doUpdate = cur_time - last_time > 0.5;
+	if(doUpdate)
+	{	
 		last_time = cur_time;
-
 		if(m_TerrainDirty)
 			RebuildTerrainTexture();
 	}
@@ -444,56 +495,87 @@ void CMiniMap::Draw()
 
 	PROFILE_START("minimap units");
 
-	// Don't enable GL_POINT_SMOOTH because it's far too slow
-	// (~70msec/frame on a GF4 rendering a thousand points)
-	glPointSize(3.f);
 
-	float sx = (float)m_Width / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
-	float sy = (float)m_Height / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
+	const float sx = (float)m_Width / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
+	const float sy = (float)m_Height / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
 
 	CSimulation2::InterfaceList ents = sim->GetEntitiesWithInterface(IID_Minimap);
 
-	std::vector<MinimapUnitVertex> vertexArray;
-	vertexArray.reserve(ents.size());
-
-	for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
+	if (doUpdate)
 	{
+
+		VertexArrayIterator<float[2]> attrPos = m_AttributePos.GetIterator<float[2]>();
+		VertexArrayIterator<u8[4]> attrColor = m_AttributeColor.GetIterator<u8[4]>();
+
+		m_EntitiesDrawn = 0;
 		MinimapUnitVertex v;
-		ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
 		entity_pos_t posX, posZ;
-		if (cmpMinimap->GetRenderData(v.r, v.g, v.b, posX, posZ))
+		for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 		{
-			ICmpRangeManager::ELosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, g_Game->GetPlayerID());
-			if (vis != ICmpRangeManager::VIS_HIDDEN)
+			ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
+			if (cmpMinimap->GetRenderData(v.r, v.g, v.b, posX, posZ))
 			{
-				v.a = 255;
-				v.x = posX.ToFloat()*sx;
-				v.y = -posZ.ToFloat()*sy;
-				vertexArray.push_back(v);
+				ICmpRangeManager::ELosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, g_Game->GetPlayerID());
+				if (vis != ICmpRangeManager::VIS_HIDDEN)
+				{
+					v.a = 255;
+					v.x = posX.ToFloat()*sx;
+					v.y = -posZ.ToFloat()*sy;
+
+					
+					(*attrColor)[0] = v.r;
+					(*attrColor)[1] = v.g;
+					(*attrColor)[2] = v.b;
+					(*attrColor)[3] = v.a;
+					++attrColor;
+
+					(*attrPos)[0] = v.x;
+					(*attrPos)[1] = v.y;
+		
+					++attrPos;
+
+					m_EntitiesDrawn++;
+				}
 			}
 		}
+		ENSURE(m_EntitiesDrawn < MAX_ENTITIES_DRAWN);
+		m_VertexArray.Upload();
 	}
 
-	if (!vertexArray.empty())
-	{
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_COLOR_ARRAY);
-		
+	if (m_EntitiesDrawn > 0)
+	{		
+		// Don't enable GL_POINT_SMOOTH because it's far too slow
+		// (~70msec/frame on a GF4 rendering a thousand points)
+		glPointSize(3.f);
+
+		u8* indexBase = m_IndexArray.Bind();
+		u8* base = m_VertexArray.Bind();
+		const GLsizei stride = (GLsizei)m_VertexArray.GetStride();
+
 		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 		{
-			shader->VertexPointer(2, GL_FLOAT, sizeof(MinimapUnitVertex), &vertexArray[0].x);
-			shader->ColorPointer(4, GL_UNSIGNED_BYTE, sizeof(MinimapUnitVertex), &vertexArray[0].r);
+			shader->VertexPointer(2, GL_FLOAT, stride, base + m_AttributePos.offset);
+			shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
+			shader->AssertPointersBound();
 		}
 		else
+		{	
+			glEnableClientState(GL_VERTEX_ARRAY);
+			glEnableClientState(GL_COLOR_ARRAY);
+
+			glDisable(GL_TEXTURE_2D);
+			glVertexPointer(2, GL_FLOAT, stride, base + m_AttributePos.offset);
+			glColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
+		}
+		
+		if (!g_Renderer.m_SkipSubmit)
 		{
-			glVertexPointer(2, GL_FLOAT, sizeof(MinimapUnitVertex), &vertexArray[0].x);
-			glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(MinimapUnitVertex), &vertexArray[0].r);
+			glDrawElements(GL_POINTS, (GLsizei)(m_EntitiesDrawn), GL_UNSIGNED_SHORT, indexBase);
 		}
 
-		glDrawArrays(GL_POINTS, 0, (GLsizei)vertexArray.size());
-
-		glDisableClientState(GL_COLOR_ARRAY);
-		glDisableClientState(GL_VERTEX_ARRAY);
+		
+		g_Renderer.GetStats().m_DrawCalls++;
+		CVertexBuffer::Unbind();
 	}
 
 	PROFILE_END("minimap units");
@@ -507,6 +589,12 @@ void CMiniMap::Draw()
 		tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("minimap"), g_Renderer.GetSystemShaderDefines(), defines);
 		tech->BeginPass();
 		shader = tech->GetShader();
+	}
+	else
+	{
+		glEnable(GL_TEXTURE_2D);
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_COLOR_ARRAY);
 	}
 
 	DrawViewRect();

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+	/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,23 +17,19 @@
 
 #include "precompiled.h"
 
+#include "ISoundManager.h"
 #include "SoundManager.h"
 
 #include "soundmanager/data/SoundData.h"
 #include "soundmanager/items/CSoundItem.h"
 #include "soundmanager/items/CBufferItem.h"
 #include "soundmanager/items/CStreamItem.h"
-#include "soundmanager/js/SoundPlayer.h"
-#include "soundmanager/js/AmbientSound.h"
-#include "soundmanager/js/MusicList.h"
-#include "soundmanager/js/MusicSound.h"
-#include "soundmanager/js/Sound.h"
 #include "lib/external_libraries/libsdl.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Profiler2.h"
 
-CSoundManager* g_SoundManager = NULL;
+ISoundManager* g_SoundManager = NULL;
 
 #define		SOURCE_NUM		64
 
@@ -207,29 +203,15 @@ private:
 	bool m_Enabled;
 	bool m_Shutdown;
 
-	CSoundManagerWorker(CSoundManager* UNUSED(other)){};
+	CSoundManagerWorker(ISoundManager* UNUSED(other)){};
 };
-#endif
 
-void CSoundManager::ScriptingInit()
-{
-	JAmbientSound::ScriptingInit();
-	JMusicSound::ScriptingInit();
-	JSound::ScriptingInit();
-	JSoundPlayer::ScriptingInit();
-	JMusicList::ScriptingInit();
-}
-
-
-#if CONFIG2_AUDIO
-
-
-void CSoundManager::CreateSoundManager()
+void ISoundManager::CreateSoundManager()
 {
 	g_SoundManager = new CSoundManager();
 }
 
-void CSoundManager::SetEnabled(bool doEnable)
+void ISoundManager::SetEnabled(bool doEnable)
 {
 	if ( g_SoundManager && !doEnable ) 
 	{
@@ -237,7 +219,7 @@ void CSoundManager::SetEnabled(bool doEnable)
 	}
 	else if ( ! g_SoundManager && doEnable ) 
 	{
-		CSoundManager::CreateSoundManager();
+		ISoundManager::CreateSoundManager();
 	}
 }
 
@@ -466,9 +448,9 @@ long CSoundManager::GetBufferSize()
 	return m_BufferSize;
 }
 
-void CSoundManager::AddPlayListItem( const VfsPath& itemPath)
+void CSoundManager::AddPlayListItem( const VfsPath* itemPath)
 {
-  m_PlayListItems->push_back( itemPath );
+  m_PlayListItems->push_back( *itemPath );
 }
 
 void CSoundManager::ClearPlayListItems()
@@ -485,20 +467,23 @@ void CSoundManager::ClearPlayListItems()
 
 void CSoundManager::StartPlayList( bool doLoop )
 {
-  if ( !m_PlayListItems->empty() )
-  {
-    m_PlayingPlaylist = true;
-    m_LoopingPlaylist = doLoop;
-    m_RunningPlaylist = false;
-    
-    ISoundItem* aSnd = g_SoundManager->LoadItem( (m_PlayListItems->at( 0 )) );
-    if ( aSnd )
-      SetMusicItem( aSnd );
-    else
-    {
-      SetMusicItem( NULL );
-    }
-  }
+	if ( m_MusicEnabled )
+	{
+	  if ( m_PlayListItems->size() > 0 )
+	  {
+	    m_PlayingPlaylist = true;
+	    m_LoopingPlaylist = doLoop;
+	    m_RunningPlaylist = false;
+	    
+	    ISoundItem* aSnd = LoadItem( (m_PlayListItems->at( 0 )) );
+	    if ( aSnd )
+	      SetMusicItem( aSnd );
+	    else
+	    {
+	      SetMusicItem( NULL );
+	    }
+	  }
+	}
 }
 
 
@@ -598,7 +583,7 @@ void CSoundManager::IdleTask()
 						else
 							nextPath = *it;
 
-						ISoundItem* aSnd = g_SoundManager->LoadItem( nextPath );
+						ISoundItem* aSnd = LoadItem( nextPath );
 						if ( aSnd )
 							SetMusicItem( aSnd );
 					}
@@ -746,7 +731,7 @@ void CSoundManager::PauseMusic (bool pauseIt)
 	{
 		m_CurrentTune->FadeAndPause( 1.0 );
 	}
-	else if ( m_CurrentTune && m_MusicPaused && !pauseIt )
+	else if ( m_CurrentTune && m_MusicPaused && !pauseIt && m_MusicEnabled )
 	{
 		m_CurrentTune->SetGain(0);
 		m_CurrentTune->Resume();

@@ -6,7 +6,6 @@ const background = "hellenes1"; // Background type. Currently: 'hellenes1', 'per
 function init(initData)
 {
 	initMusic();
-
 	// Play main menu music
 	global.music.setState(global.music.states.MENU);
 
@@ -155,9 +154,6 @@ function onTick()
 
 	// Animate submenu
 	updateMenuPosition(tickLength);
-
-	// Update music state
-	global.music.updateTimer();
 
 	if (Engine.IsUserReportEnabled())
 	{

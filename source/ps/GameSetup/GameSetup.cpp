@@ -88,7 +88,8 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
 #include "simulation2/Simulation2.h"
-#include "soundmanager/SoundManager.h"
+#include "soundmanager/scripting/JSInterface_Sound.h"
+#include "soundmanager/ISoundManager.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 #include "tools/atlas/GameInterface/View.h"
 
@@ -321,9 +322,6 @@ static void RegisterJavascriptInterfaces()
 	// maths
 	JSI_Vector3D::init();
 
-	// sound
-	CSoundManager::ScriptingInit();
-
 	// graphics
 	CGameView::ScriptingInit();
 
@@ -337,6 +335,7 @@ static void RegisterJavascriptInterfaces()
 	CGUI::ScriptingInit();
 
 	GuiScriptingInit(g_ScriptingHost.GetScriptInterface());
+	JSI_Sound::RegisterScriptFunctions(g_ScriptingHost.GetScriptInterface());
 }
 
 
@@ -885,7 +884,7 @@ void Init(const CmdLineArgs& args, int UNUSED(flags))
 
 
 #if CONFIG2_AUDIO
-	CSoundManager::CreateSoundManager();
+	ISoundManager::CreateSoundManager();
 #endif
 
 	// g_ConfigDB, command line args, globals
@@ -957,7 +956,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 		// (OpenAL init will be skipped).
 		// must be called before first snd_open.
 #if CONFIG2_AUDIO
-		CSoundManager::SetEnabled(false);
+		ISoundManager::SetEnabled(false);
 #endif
 	}
 

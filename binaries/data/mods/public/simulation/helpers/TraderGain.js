@@ -25,7 +25,7 @@ function CalculateTraderGain(firstMarket, secondMarket, template)
 	if (cmpFirstMarketOwnership.GetOwner() != cmpSecondMarketOwnership.GetOwner())
 		gain *= 1 + INTERNATIONAL_TRADING_ADDITION / 100;
 
-	if (template.GainMultiplier)
+	if (template && template.GainMultiplier)
 		gain *= template.GainMultiplier;
 	gain = Math.round(gain);
 	return gain;
