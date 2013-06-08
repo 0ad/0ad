@@ -20,6 +20,7 @@
 		</BonusGates>
 	  </Bonuses>
       <PreferredClasses datatype="tokens">Structure</PreferredClasses>
+      <RestrictedClasses datatype="tokens">-StoneWall</RestrictedClasses>
     </Melee>
     <Charge>
       <Hack>60.0</Hack>
@@ -40,6 +41,7 @@
 		</BonusGates>
 	  </Bonuses>
       <PreferredClasses datatype="tokens">Structure</PreferredClasses>
+      <RestrictedClasses datatype="tokens">-StoneWall</RestrictedClasses>
     </Charge>
   </Attack>
   <Identity>
