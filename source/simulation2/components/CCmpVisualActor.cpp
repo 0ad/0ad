@@ -62,6 +62,7 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(VisualActor)
 
+private:
 	std::wstring m_ActorName;
 	CUnit* m_Unit;
 
@@ -85,9 +86,17 @@ public:
 	bool m_ConstructionPreview;
 	fixed m_ConstructionProgress;
 
+	bool m_VisibleInAtlasOnly;
+
 	bool m_NeedsInterpolation;
 	bool m_PositionChanged;
 
+	/// Whether the visual actor has been rendered at least once.
+	/// Necessary because the visibility update runs on simulation update,
+	/// which may not occur immediately if the game starts paused.
+	bool m_PreviouslyRendered;
+
+public:
 	static std::string GetSchema()
 	{
 		return
@@ -153,7 +162,10 @@ public:
 						"</element>"
 					"</choice>"
 				"</element>"
-			"</optional>";
+			"</optional>"
+			"<element name='VisibleInAtlasOnly'>"
+				"<data type='boolean'/>"
+			"</element>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
@@ -172,6 +184,8 @@ public:
 			m_ActorName = paramNode.GetChild("FoundationActor").ToString();
 		else
 			m_ActorName = paramNode.GetChild("Actor").ToString();
+
+		m_VisibleInAtlasOnly = paramNode.GetChild("VisibleInAtlasOnly").ToBool();
 
 		InitModel(paramNode);
 
@@ -497,11 +511,6 @@ public:
 	}
 
 private:
-	/// Whether the visual actor has been rendered at least once.
-	/// Necessary because the visibility update runs on simulation update,
-	/// which may not occur immediately if the game starts paused.
-	bool m_PreviouslyRendered;
-
 	/// Helper function shared by component init and actor reloading
 	void InitModel(const CParamNode& paramNode);
 
@@ -829,6 +838,9 @@ void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& fr
 	CModelAbstract& model = m_Unit->GetModel();
 
 	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetWorldBoundsRec()))
+		return;
+
+	if (!g_AtlasGameLoop->running && m_VisibleInAtlasOnly)
 		return;
 
 	collector.SubmitRecursive(&model);
