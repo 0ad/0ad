@@ -1508,6 +1508,33 @@ function exchangeResources(command)
 	Engine.PostNetworkCommand({"type": "barter", "sell": command.sell, "buy": command.buy, "amount": command.amount});
 }
 
+// Camera jumping: when the user presses a hotkey the current camera location is marked.
+// When they press another hotkey the camera jumps back to that position. If the camera is already roughly at that location,
+// jump back to where it was previously.
+var jumpCameraPositions = [], jumpCameraLast;
+
+function jumpCamera(index)
+{
+	var position = jumpCameraPositions[index], distanceThreshold = g_ConfigDB.system["camerajump.threshold"];
+	if (position)
+	{
+		if (jumpCameraLast &&
+				Math.abs(Engine.CameraGetX() - position.x) < distanceThreshold &&
+				Math.abs(Engine.CameraGetZ() - position.z) < distanceThreshold)
+			Engine.CameraMoveTo(jumpCameraLast.x, jumpCameraLast.z);
+		else
+		{
+			jumpCameraLast = {x: Engine.CameraGetX(), z: Engine.CameraGetZ()};
+			Engine.CameraMoveTo(position.x, position.z);
+		}
+	}
+}
+
+function setJumpCamera(index)
+{
+	jumpCameraPositions[index] = {x: Engine.CameraGetX(), z: Engine.CameraGetZ()};
+}
+
 // Batch training:
 // When the user shift-clicks, we set these variables and switch to INPUT_BATCHTRAINING
 // When the user releases shift, or clicks on a different training button, we create the batched units

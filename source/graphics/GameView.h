@@ -82,6 +82,8 @@ public:
 
 	InReaction HandleEvent(const SDL_Event_* ev);
 
+	float GetCameraX();
+	float GetCameraZ();
 	void MoveCameraTarget(const CVector3D& target);
 	void ResetCameraTarget(const CVector3D& target);
 	void ResetCameraAngleZoom();

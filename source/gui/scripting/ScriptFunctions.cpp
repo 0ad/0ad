@@ -422,6 +422,26 @@ CScriptVal GetMapSettings(void* cbdata)
 }
 
 /**
+ * Get the current X coordinate of the camera.
+ */
+float CameraGetX(void* UNUSED(cbdata))
+{
+	if (g_Game && g_Game->GetView())
+		return g_Game->GetView()->GetCameraX();
+	return -1;
+}
+
+/**
+ * Get the current Z coordinate of the camera.
+ */
+float CameraGetZ(void* UNUSED(cbdata))
+{
+	if (g_Game && g_Game->GetView())
+		return g_Game->GetView()->GetCameraZ();
+	return -1;
+}
+
+/**
  * Start / stop camera following mode
  * @param entityid unit id to follow. If zero, stop following mode
  */
@@ -665,6 +685,8 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<bool, &IsAtlasRunning>("IsAtlasRunning");
 	scriptInterface.RegisterFunction<CScriptVal, VfsPath, &LoadMapSettings>("LoadMapSettings");
 	scriptInterface.RegisterFunction<CScriptVal, &GetMapSettings>("GetMapSettings");
+	scriptInterface.RegisterFunction<float, &CameraGetX>("CameraGetX");
+	scriptInterface.RegisterFunction<float, &CameraGetZ>("CameraGetZ");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollowFPS>("CameraFollowFPS");
 	scriptInterface.RegisterFunction<void, entity_pos_t, entity_pos_t, &CameraMoveTo>("CameraMoveTo");
