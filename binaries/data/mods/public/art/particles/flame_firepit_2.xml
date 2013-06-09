@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+
+    <texture>art/textures/particles/flame.png</texture>
+    <blend mode="add"/>
+
+    <constant name="emissionrate" value="7.0"/>
+    <uniform name="lifetime" min="0.5" max="0.8"/>
+
+    <uniform name="angle" min="-0.5" max="0.5"/>
+	<constant name="position.y" value="0.2"/>
+
+    <uniform name="velocity.x" min="-0.2" max="0.2"/>
+    <uniform name="velocity.y" min="0.5" max="1.0"/>
+    <uniform name="velocity.z" min="-0.2" max="0.2"/>
+    <uniform name="velocity.angle" min="-0.2" max="0.2"/>
+
+    <uniform name="size" min="1.0" max="1.3"/>
+
+    <uniform name="color.r" min="0.4" max="0.7"/>
+    <copy name="color.g" from="color.r"/>
+    <copy name="color.b" from="color.r"/>
+
+</particles>

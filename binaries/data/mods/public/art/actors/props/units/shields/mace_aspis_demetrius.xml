@@ -7,7 +7,9 @@
       <props>
         <prop actor="props/units/shields/mace_round_back_purple.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="props/shield/mace_round_c1.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/mace_round_h_silver_player.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

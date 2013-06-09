@@ -18,7 +18,9 @@
         <prop actor="props/units/weapons/falcata.xml" attachpoint="r_hand"/>
         <prop actor="props/units/cape_hd_cav_white.xml" attachpoint="shoulders"/>
       </props>
-      <textures><texture file="skeletal/hele_alexander.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_alexander.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>
