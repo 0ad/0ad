@@ -10,9 +10,31 @@
     </variant>
   </group>
   <group>
+    <variant frequency="3" name="Silver Shield A">
+      <textures>
+        <texture file="props/shield/mace_silver_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Silver Shield B">
+      <textures>
+        <texture file="props/shield/mace_silver_b.png" name="baseTex"/>
+      </textures>
+    </variant>
     <variant frequency="1" name="Silver Shield C">
-      <textures><texture file="props/shield/mace_round_c_silver.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/mace_silver_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Silver Shield D">
+      <textures>
+        <texture file="props/shield/mace_silver_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Silver Shield E">
+      <textures>
+        <texture file="props/shield/mace_round_c_silver.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>playercolor_spec.xml</material>
 </actor>

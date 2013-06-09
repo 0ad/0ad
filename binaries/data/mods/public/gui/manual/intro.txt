@@ -1,4 +1,4 @@
-[font="serif-bold-18"]0 A.D. in-game manual
+﻿[font="serif-bold-18"]0 A.D. in-game manual
 [font="serif-14"]
 Thank you for installing 0 A.D.! This page will give a brief overview of the features available in this incomplete, under-development, alpha version of the game.
 
@@ -55,7 +55,7 @@ Shift + F5: Quicksave
 Shift + F8: Quickload
 F10: Open/close menu
 F12: Show/hide time elapsed counter
-ESC: Close all dialogs (chat, menu)
+ESC: Close all dialogs (chat, menu) or clear selected units
 Enter/return: Open/send chat
 T: Send team chat
 Pause: Pause/unpause the game
@@ -66,6 +66,8 @@ H: Stop (halt) the currently selected units.
 Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the selected units/buildings
 1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)
 Shift + 1 (to 0): Add selected units/buildings to control group 1 (to 0)
+Ctrl + F5 (and so on up to F8): Mark the current camera position, for jumping back to later.
+F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the last location if the camera is already over the marked position.
 Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ... unit shown to the training queue for all the selected buildings.
 
 [font="serif-bold-14"]Modify mouse action

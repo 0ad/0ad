@@ -954,6 +954,20 @@ void CGameView::Update(const float deltaRealTime)
 	m->ViewCamera.UpdateFrustum();
 }
 
+float CGameView::GetCameraX()
+{
+	CCamera targetCam = m->ViewCamera;
+	CVector3D pivot = GetSmoothPivot(targetCam);
+	return pivot.X;
+}
+
+float CGameView::GetCameraZ()
+{
+	CCamera targetCam = m->ViewCamera;
+	CVector3D pivot = GetSmoothPivot(targetCam);
+	return pivot.Z;
+}
+
 void CGameView::MoveCameraTarget(const CVector3D& target)
 {
 	// Maintain the same orientation and level of zoom, if we can

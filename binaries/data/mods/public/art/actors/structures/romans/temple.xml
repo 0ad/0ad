@@ -5,19 +5,24 @@
     <variant>
       <mesh>structural/rome_hc1.dae</mesh>
       <props>
-        <prop actor="particle/flame_jav.xml" attachpoint="flame01"/>
+        <prop actor="particle/sparks.xml" attachpoint="flame01"/>
+        <prop actor="particle/flame_firepit_1.xml" attachpoint="flame01"/>
+        <prop actor="particle/flame_firepit_2.xml" attachpoint="flame01"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="flame01"/>
-        <prop actor="particle/flame_jav.xml" attachpoint="flame02"/>
+        <prop actor="particle/sparks.xml" attachpoint="flame02"/>
+        <prop actor="particle/flame_firepit_1.xml" attachpoint="flame02"/>
+        <prop actor="particle/flame_firepit_2.xml" attachpoint="flame02"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="flame02"/>
         <prop actor="props/structures/romans/rome_temple_ashes.xml" attachpoint="flame01"/>
         <prop actor="props/structures/romans/rome_temple_ashes.xml" attachpoint="flame02"/>
       </props>
+      <texture>structural/rome_struct.png</texture>
       <textures>
-	    <texture file="structural/rome_struct.png" name="baseTex"/>
-	    <texture file="structural/rome_struct_norm.png" name="normTex"/>
-	    <texture file="structural/rome_struct_spec.png" name="specTex"/>
-	    <texture file="structural/ao/rome_temple.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/rome_struct.png" name="baseTex"/>
+        <texture file="structural/ao/rome_temple.png" name="aoTex"/>
+        <texture file="structural/rome_struct_norm.png" name="normTex"/>
+        <texture file="structural/rome_struct_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>

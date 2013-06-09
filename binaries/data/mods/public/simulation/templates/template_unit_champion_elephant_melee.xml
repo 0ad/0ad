@@ -3,8 +3,10 @@
   <Attack>
     <Melee>
       <Hack>20.0</Hack>
+      <Pierce>0.0</Pierce>
       <Crush>20.0</Crush>
       <MaxRange>8.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
 	  <Bonuses>
 		<BonusStructures>
 		  <Classes>Structure</Classes>
@@ -23,8 +25,10 @@
     </Melee>
     <Charge>
       <Hack>60.0</Hack>
+      <Pierce>0.0</Pierce>
       <Crush>60.0</Crush>
       <MaxRange>8.0</MaxRange>
+      <MinRange>0.0</MinRange>
 	  <Bonuses>
 		<BonusStructures>
 		  <Classes>Structure</Classes>
