@@ -6,12 +6,12 @@
   </Footprint>
   <Identity>
     <Civ>rome</Civ>
-    <SpecificName>Municipium</SpecificName>
-    <History>A Municipium was a Roman settlement just below a Colonia in level, enjoying self-governance and the grant of Latin citizenship rights for its inhabitants.</History>
+    <SpecificName>Forum</SpecificName>
+    <History>A Roman forum was the center of a city's commercial and public life. The most famous of which was in Rome herself, the Forum Romanum.</History>
   </Identity>
-<Health>
- <SpawnEntityOnDeath>rubble/rubble_rome_cc</SpawnEntityOnDeath>
- </Health>
+  <Health>
+	<SpawnEntityOnDeath>rubble/rubble_rome_cc</SpawnEntityOnDeath>
+  </Health>
   <Obstruction>
     <Static width="37.0" depth="37.0"/>
   </Obstruction>
