@@ -47,8 +47,6 @@ public:
 	virtual void Attach(CSoundData* itemData) = 0;
 
 	virtual void EnsurePlay() = 0;
-	virtual void PlayAsMusic() = 0;
-	virtual void PlayAsAmbient() = 0;
 
 	virtual void PlayAndDelete() = 0;
 	virtual void StopAndDelete() = 0;

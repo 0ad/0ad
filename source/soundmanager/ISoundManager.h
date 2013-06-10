@@ -19,10 +19,9 @@
 #define INCLUDED_ISOUNDMANAGER_H
 
 #include "lib/config2.h"
+#include "lib/file/vfs/vfs_path.h"
 
 #if CONFIG2_AUDIO
-
-class CSoundManagerWorker;
 
 class ISoundManager
 {
@@ -30,20 +29,20 @@ class ISoundManager
 public:
   virtual ~ISoundManager() {};
 
-  virtual void IdleTask() = 0;
-  virtual void Pause(bool pauseIt) = 0;
-  virtual void SetMemoryUsage(long bufferSize, int bufferCount) = 0;
-  virtual void SetMasterGain(float gain) = 0;
-  virtual void SetMusicGain(float gain) = 0;
-  virtual void SetAmbientGain(float gain) = 0;
-  virtual void SetActionGain(float gain) = 0;
-
   static void CreateSoundManager();
   static void SetEnabled(bool doEnable);
-  
+
+  virtual void IdleTask() = 0;
+  virtual void Pause(bool pauseIt) = 0;
+
+  virtual void SetGains(float masterG, float musicG, float ambientG, float actionG, float uiG ) = 0;
+
+  virtual void PlayAsUI(const VfsPath& itemPath, bool looping) = 0;
+  virtual void PlayAsMusic(const VfsPath& itemPath, bool looping) = 0;
+  virtual void PlayAsAmbient(const VfsPath& itemPath, bool looping) = 0;
+
+
   virtual bool InDistress() = 0;
-  virtual long GetBufferCount() = 0;
-  virtual long GetBufferSize() = 0;
 };
 
 #else // !CONFIG2_AUDIO

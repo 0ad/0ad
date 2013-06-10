@@ -71,6 +71,7 @@ protected:
 	float m_MusicGain;
 	float m_AmbientGain;
 	float m_ActionGain;
+	float m_UIGain;
 	bool m_Enabled;
 	long m_BufferSize;
 	int m_BufferCount;
@@ -127,15 +128,13 @@ public:
 	long GetBufferCount();
 	long GetBufferSize();
 
-	void SetMusicItem(ISoundItem* anItem);
-	void SetAmbientItem(ISoundItem* anItem);
-	void PlayActionItem(ISoundItem* anItem);
-	void PlayGroupItem(ISoundItem* anItem, ALfloat groupGain);
+	void PlayAsMusic( const VfsPath& itemPath, bool looping );
+	void PlayAsAmbient( const VfsPath& itemPath, bool looping );
+	void PlayAsUI(const VfsPath& itemPath, bool looping);
 
-	void SetMasterGain(float gain);
-	void SetMusicGain(float gain);
-	void SetAmbientGain(float gain);
-	void SetActionGain(float gain);
+	void PlayGroupItem(ISoundItem* anItem, ALfloat groupGain);
+	void SetGains(float masterG, float musicG, float ambientG, float actionG, float uiG );
+
 	bool InDistress();
 	void SetDistressThroughShortage();
 	void SetDistressThroughError();
@@ -147,7 +146,14 @@ public:
 
 protected:
 	void InitListener();
-	virtual Status AlcInit();
+	Status AlcInit();
+	void SetMusicItem(ISoundItem* anItem);
+	void SetAmbientItem(ISoundItem* anItem);
+	void SetMasterGain(float gain);
+	void SetMusicGain(float gain);
+	void SetAmbientGain(float gain);
+	void SetActionGain(float gain);
+	void SetUIGain(float gain);
 
 private:
 	CSoundManager(CSoundManager* UNUSED(other)){};

@@ -29,109 +29,76 @@
 
 namespace JSI_Sound
 {
+  #if CONFIG2_AUDIO
+
   void StartMusic(void* UNUSED(cbdata))
   {
-  #if CONFIG2_AUDIO
-    CSoundManager* sndManager = (CSoundManager*)g_SoundManager;
-    if ( sndManager )
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->SetMusicEnabled(true);
-  #endif
   }
+
   void StopMusic(void* UNUSED(cbdata))
   {
-  #if CONFIG2_AUDIO
-    CSoundManager* sndManager = (CSoundManager*)g_SoundManager;
-    if ( sndManager )
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->SetMusicEnabled(false);
-  #endif
   }
 
   void ClearPlaylist(void* UNUSED(cbdata))
   {
-  #if CONFIG2_AUDIO
-    CSoundManager* sndManager = (CSoundManager*)g_SoundManager;
-    if ( sndManager )
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->ClearPlayListItems();
-  #endif
   }
 
   void AddPlaylistItem(void* UNUSED(cbdata), std::wstring filename)
-  {
-  #if CONFIG2_AUDIO
-    CSoundManager* sndManager = (CSoundManager*)g_SoundManager;
-    if ( sndManager )
+  {  
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->AddPlayListItem( new VfsPath( filename ) );
-  #else
-    UNUSED2(filename);
-  #endif
   }
 
-  void LoopPlaylist(void* UNUSED(cbdata))
+  void StartPlaylist(void* UNUSED(cbdata), bool looping)
   {
-  #if CONFIG2_AUDIO
-    CSoundManager* sndManager = (CSoundManager*)g_SoundManager;
-    if ( sndManager )
-      sndManager->StartPlayList( true );
-  #endif
-  }
-  void PlayPlaylist(void* UNUSED(cbdata))
-  {
-  #if CONFIG2_AUDIO
-    CSoundManager* sndManager = (CSoundManager*)g_SoundManager;
-    if ( sndManager )
-      sndManager->StartPlayList( false );
-  #endif
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
+      sndManager->StartPlayList( looping );
   }
 
-  void LoopMusic(void* UNUSED(cbdata), std::wstring filename)
+  void PlayMusic(void* UNUSED(cbdata), std::wstring filename, bool looping)
   {
-  #if CONFIG2_AUDIO
-    if ( g_SoundManager ) {
-      CSoundManager* sndManager = (CSoundManager*)g_SoundManager;
-      ISoundItem* aSnd = sndManager->LoadItem(filename);
-      if (aSnd != NULL)
-        aSnd->PlayAsMusic();
-    }
-  #else
-    UNUSED2(filename);
-  #endif // CONFIG2_AUDIO
-  }
-  void PlayMusic(void* UNUSED(cbdata), std::wstring filename)
-  {
-  #if CONFIG2_AUDIO
-    if ( g_SoundManager ) {
-      CSoundManager* sndManager = (CSoundManager*)g_SoundManager;
-      ISoundItem* aSnd = sndManager->LoadItem(filename);
-      if (aSnd != NULL)
-        aSnd->PlayAsMusic();
-    }
-  #else
-    UNUSED2(filename);
-  #endif // CONFIG2_AUDIO
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
+      sndManager->PlayAsMusic( filename, looping);
   }
 
-  void LoopAmbientSound(void* UNUSED(cbdata), std::wstring filename)
+  void PlayUISound(void* UNUSED(cbdata), std::wstring filename, bool looping)
   {
-  #if CONFIG2_AUDIO
-    if ( g_SoundManager ) {
-      CSoundManager* sndManager = (CSoundManager*)g_SoundManager;
-      ISoundItem* aSnd = sndManager->LoadItem(filename);
-      if (aSnd != NULL)
-        aSnd->PlayAsAmbient();
-    }
-  #else
-    UNUSED2(filename);
-  #endif // CONFIG2_AUDIO
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
+      sndManager->PlayAsUI( filename, looping);
+  }
+
+  void PlayAmbientSound(void* UNUSED(cbdata), std::wstring filename, bool looping)
+  {
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
+      sndManager->PlayAsAmbient( filename, looping);
   }
 
   bool MusicPlaying(void* UNUSED(cbdata))
   {
-  #if CONFIG2_AUDIO
     return true;
-  #else
-    return false;
-  #endif // CONFIG2_AUDIO
   }
+
+
+
+  #else
+    bool MusicPlaying(void* UNUSED(cbdata) ){}
+    void PlayAmbientSound(void* UNUSED(cbdata), std::wstring UNUSED(filename), bool UNUSED(looping) ){}
+    void PlayUISound(void* UNUSED(cbdata), std::wstring UNUSED(filename), bool UNUSED(looping) ) {}
+    void PlayMusic(void* UNUSED(cbdata), std::wstring UNUSED(filename), bool UNUSED(looping) ) {}
+    void StartPlaylist(void* UNUSED(cbdata), bool UNUSED(looping) ){}
+    void AddPlaylistItem(void* UNUSED(cbdata), std::wstring UNUSED(filename) ){}
+    void ClearPlaylist(void* UNUSED(cbdata) ){}
+    void StopMusic(void* UNUSED(cbdata) ){}
+    void StartMusic(void* UNUSED(cbdata) ){}
+
+  #endif
+
 
   void RegisterScriptFunctions(ScriptInterface& scriptInterface)
   {
@@ -139,11 +106,12 @@ namespace JSI_Sound
     scriptInterface.RegisterFunction<void, &StopMusic>("StopMusic");
     scriptInterface.RegisterFunction<void, &ClearPlaylist>("ClearPlaylist");
     scriptInterface.RegisterFunction<void, std::wstring, &AddPlaylistItem>("AddPlaylistItem");
-    scriptInterface.RegisterFunction<void, &LoopPlaylist>("LoopPlaylist");
-    scriptInterface.RegisterFunction<void, &PlayPlaylist>("PlayPlaylist");
-    scriptInterface.RegisterFunction<void, std::wstring, &LoopMusic>("LoopMusic");
-    scriptInterface.RegisterFunction<void, std::wstring, &PlayMusic>("PlayMusic");
-    scriptInterface.RegisterFunction<void, std::wstring, &LoopAmbientSound>("LoopAmbientSound");
+    scriptInterface.RegisterFunction<void, bool, &StartPlaylist>("StartPlaylist");
+    scriptInterface.RegisterFunction<void, std::wstring, bool, &PlayMusic>("PlayMusic");
+    scriptInterface.RegisterFunction<void, std::wstring, bool, &PlayUISound>("PlayUISound");
+    scriptInterface.RegisterFunction<void, std::wstring, bool, &PlayAmbientSound>("PlayAmbientSound");
     scriptInterface.RegisterFunction<bool, &MusicPlaying>("MusicPlaying");
   }
 }
+
+

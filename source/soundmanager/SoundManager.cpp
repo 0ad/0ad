@@ -248,8 +248,9 @@ CSoundManager::CSoundManager()
 	m_MusicGain			= 1;
 	m_AmbientGain		= 1;
 	m_ActionGain		= 1;
+	m_UIGain = 1;
 	m_BufferCount		= 50;
-	m_BufferSize		= 65536;
+	m_BufferSize		= 98304;
 	m_SoundEnabled		= true;
 	m_MusicEnabled		= true;
 	m_MusicPaused     = false;
@@ -434,11 +435,6 @@ void CSoundManager::ReleaseALSource(ALuint theSource)
 	}
 }
 
-void CSoundManager::SetMemoryUsage(long bufferSize, int bufferCount)
-{
-	m_BufferCount = bufferCount;
-	m_BufferSize = bufferSize;
-}
 long CSoundManager::GetBufferCount()
 {
 	return m_BufferCount;
@@ -487,6 +483,16 @@ void CSoundManager::StartPlayList( bool doLoop )
 }
 
 
+
+void CSoundManager::SetGains(float masterG, float musicG, float ambientG, float actionG, float uiG )
+{
+	SetMasterGain( masterG );
+	SetMusicGain( musicG );
+	SetAmbientGain( ambientG );
+	SetActionGain( actionG );
+	SetUIGain( uiG );
+}
+
 void CSoundManager::SetMasterGain(float gain)
 {
 	if ( m_Enabled )
@@ -508,6 +514,10 @@ void CSoundManager::SetAmbientGain(float gain)
 void CSoundManager::SetActionGain(float gain)
 {
 	m_ActionGain = gain;
+}
+void CSoundManager::SetUIGain(float gain)
+{
+	m_UIGain = gain;
 }
 
 
@@ -624,19 +634,6 @@ void CSoundManager::InitListener()
 	alDistanceModel(AL_LINEAR_DISTANCE);
 }
 
-void CSoundManager::PlayActionItem(ISoundItem* anItem)
-{
-	if (anItem)
-	{
-		if (m_Enabled && (m_ActionGain > 0))
-		{
-			anItem->SetGain( m_ActionGain );
-			anItem->Play();
-			AL_CHECK
-		}
-	}
-}
-
 void CSoundManager::PlayGroupItem(ISoundItem* anItem, ALfloat groupGain )
 {
 	if (anItem)
@@ -657,6 +654,78 @@ void CSoundManager::SetMusicEnabled (bool isEnabled)
 		m_CurrentTune = 0L;
 	}
 	m_MusicEnabled = isEnabled;
+}
+
+void CSoundManager::PlayAsMusic( const VfsPath& itemPath, bool looping )
+{
+		UNUSED2( looping );
+
+    ISoundItem* aSnd = LoadItem(itemPath);
+    if (aSnd != NULL)
+      SetMusicItem( aSnd );
+}
+
+void CSoundManager::PlayAsAmbient( const VfsPath& itemPath, bool looping )
+{
+		UNUSED2( looping );
+    ISoundItem* aSnd = LoadItem(itemPath);
+    if (aSnd != NULL)
+      SetAmbientItem( aSnd );
+}
+
+
+void CSoundManager::PlayAsUI(const VfsPath& itemPath, bool looping)
+{
+	IdleTask();
+	
+  if ( ISoundItem* anItem = LoadItem(itemPath) )
+	{
+		if (m_Enabled && (m_UIGain > 0))
+		{
+			anItem->SetGain(m_UIGain);
+			anItem->SetLooping( looping );
+			anItem->PlayAndDelete();
+		}
+	}
+	AL_CHECK
+}
+
+
+void CSoundManager::Pause(bool pauseIt)
+{
+  PauseMusic(pauseIt);
+  PauseAmbient(pauseIt);
+  PauseAction(pauseIt);
+}
+
+void CSoundManager::PauseMusic (bool pauseIt)
+{
+	if (m_CurrentTune && pauseIt && !m_MusicPaused )
+	{
+		m_CurrentTune->FadeAndPause( 1.0 );
+	}
+	else if ( m_CurrentTune && m_MusicPaused && !pauseIt && m_MusicEnabled )
+	{
+		m_CurrentTune->SetGain(0);
+		m_CurrentTune->Resume();
+		m_CurrentTune->FadeToIn( m_MusicGain, 1.0);
+	}
+	m_MusicPaused = pauseIt;
+}
+
+void CSoundManager::PauseAmbient (bool pauseIt)
+{
+  if (m_CurrentEnvirons && pauseIt)
+    m_CurrentEnvirons->Pause();
+  else if ( m_CurrentEnvirons )
+    m_CurrentEnvirons->Resume();
+
+  m_AmbientPaused = pauseIt;
+}
+
+void CSoundManager::PauseAction (bool pauseIt)
+{
+  m_ActionPaused = pauseIt;
 }
 
 void CSoundManager::SetMusicItem(ISoundItem* anItem)
@@ -716,45 +785,6 @@ void CSoundManager::SetAmbientItem(ISoundItem* anItem)
 	}
 	AL_CHECK
 }
-
-
-void CSoundManager::Pause(bool pauseIt)
-{
-  PauseMusic(pauseIt);
-  PauseAmbient(pauseIt);
-  PauseAction(pauseIt);
-}
-
-void CSoundManager::PauseMusic (bool pauseIt)
-{
-	if (m_CurrentTune && pauseIt && !m_MusicPaused )
-	{
-		m_CurrentTune->FadeAndPause( 1.0 );
-	}
-	else if ( m_CurrentTune && m_MusicPaused && !pauseIt && m_MusicEnabled )
-	{
-		m_CurrentTune->SetGain(0);
-		m_CurrentTune->Resume();
-		m_CurrentTune->FadeToIn( m_MusicGain, 1.0);
-	}
-	m_MusicPaused = pauseIt;
-}
-
-void CSoundManager::PauseAmbient (bool pauseIt)
-{
-  if (m_CurrentEnvirons && pauseIt)
-    m_CurrentEnvirons->Pause();
-  else if ( m_CurrentEnvirons )
-    m_CurrentEnvirons->Resume();
-
-  m_AmbientPaused = pauseIt;
-}
-
-void CSoundManager::PauseAction (bool pauseIt)
-{
-  m_ActionPaused = pauseIt;
-}
-
 
 #endif // CONFIG2_AUDIO
 

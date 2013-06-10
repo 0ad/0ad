@@ -636,7 +636,7 @@ function playRandomAmbient(type)
 //			currentAmbient = newRandomSound("ambient", "temperate_", "dayscape");
 
 			const AMBIENT = "audio/ambient/dayscape/day_temperate_gen_03.ogg";
-			Engine.LoopAmbientSound( AMBIENT );
+			Engine.PlayAmbientSound( AMBIENT, true );
 			break;
 
 		default:

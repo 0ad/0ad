@@ -346,16 +346,6 @@ void CSoundBase::FadeToIn(ALfloat newVolume, double fadeDuration)
 	}
 }
 
-void CSoundBase::PlayAsMusic()
-{
-	((CSoundManager*)g_SoundManager)->SetMusicItem(this);
-}
-
-void CSoundBase::PlayAsAmbient()
-{
-	((CSoundManager*)g_SoundManager)->SetAmbientItem(this);
-}
-
 void CSoundBase::Stop()
 {
 	m_ShouldBePlaying = false;
