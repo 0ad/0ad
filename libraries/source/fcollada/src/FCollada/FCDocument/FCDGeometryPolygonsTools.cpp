@@ -905,9 +905,11 @@ namespace FCDGeometryPolygonsTools
 		}
 	}
 
-#pragma warning(push)
-#pragma warning(disable : 4127) // conditional expression constant
-#pragma warning(disable : 4244) // conversion from 'const float' to 'uint8'
+#if _MSC_VER
+# pragma warning(push)
+# pragma warning(disable : 4127) // conditional expression constant
+# pragma warning(disable : 4244) // conversion from 'const float' to 'uint8'
+#endif
 	
 #define INVALID_VTX_IDX		(uint16(~0)) // This value is the default (invalid) value in the vtx data map
 
@@ -954,7 +956,9 @@ namespace FCDGeometryPolygonsTools
 		}
 	}
 
-	#pragma warning(pop)
+#if _MSC_VER
+# pragma warning(pop)
+#endif
 
 	void PackVertexBufferV3(uint8* destBuffer, uint32 destBuffStride, 
 		const FCDGeometrySource* source, uint32 vCount, uint16* vtxPackingMap,

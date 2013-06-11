@@ -152,18 +152,12 @@ Music.prototype.startPlayList = function(tracks, fadeInPeriod, isLooping)
 		Engine.AddPlaylistItem( this.RELATIVE_MUSIC_PATH + tracks[i] );
   }
 
-	if (isLooping)
-		Engine.LoopPlaylist();
-	else
-		Engine.PlayPlaylist();
+	Engine.StartPlaylist(isLooping);
 };
 
 Music.prototype.switchMusic = function(track, fadeInPeriod, isLooping)
 {
-	if (isLooping)
-		Engine.LoopMusic(this.RELATIVE_MUSIC_PATH + track);
-	else
-		Engine.PlayMusic(this.RELATIVE_MUSIC_PATH + track);
+		Engine.PlayMusic(this.RELATIVE_MUSIC_PATH + track, isLooping);
 };
 
 Music.prototype.isPlaying = function()

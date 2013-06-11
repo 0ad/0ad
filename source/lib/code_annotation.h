@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -174,6 +174,13 @@ switch(x % 2)
 //-----------------------------------------------------------------------------
 // cassert
 
+// Silence warnings about unused local typedefs
+#if GCC_VERSION >= 408
+# define UNUSED_ATTRIBUTE __attribute__((unused))
+#else
+# define UNUSED_ATTRIBUTE
+#endif
+
 /**
  * Compile-time assertion. Causes a compile error if the expression
  * evaluates to zero/false.
@@ -183,7 +190,7 @@ switch(x % 2)
  *
  * @param expr Expression that is expected to evaluate to non-zero at compile-time.
  **/
-#define cassert(expr) typedef static_assert_<(expr)>::type UID__
+#define cassert(expr) typedef static_assert_<(expr)>::type UID__ UNUSED_ATTRIBUTE
 template<bool> struct static_assert_;
 template<> struct static_assert_<true>
 {
@@ -196,7 +203,7 @@ template<> struct static_assert_<true>
  * This version must be used if expr uses a dependent type (e.g. depends on
  * a template parameter).
  **/
-#define cassert_dependent(expr) typedef typename static_assert_<(expr)>::type UID__
+#define cassert_dependent(expr) typedef typename static_assert_<(expr)>::type UID__ UNUSED_ATTRIBUTE
 
 /**
  * @copydoc cassert(expr)

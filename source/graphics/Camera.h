@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,10 +30,10 @@
 // view port
 struct SViewPort
 {
-	size_t m_X;
-	size_t m_Y;
-	size_t m_Width;
-	size_t m_Height;
+	int m_X;
+	int m_Y;
+	int m_Width;
+	int m_Height;
 };
 
 class CCamera

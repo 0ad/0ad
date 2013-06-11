@@ -61,37 +61,41 @@ bool COggData::IsStereo()
 
 bool COggData::InitOggFile(const VfsPath& itemPath)
 {
-	int buffersToStart = g_SoundManager->GetBufferCount();	
-	if ( OpenOggNonstream( g_VFS, itemPath, ogg) == INFO::OK )
-	{
-		m_FileFinished = false;
+  if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
+  {
+		int buffersToStart = sndManager->GetBufferCount();	
+		if ( OpenOggNonstream( g_VFS, itemPath, ogg) == INFO::OK )
+		{
+			m_FileFinished = false;
 
-		SetFormatAndFreq(ogg->Format(), ogg->SamplingRate() );
-		SetFileName( itemPath );
-	
-		AL_CHECK
+			SetFormatAndFreq(ogg->Format(), ogg->SamplingRate() );
+			SetFileName( itemPath );
 		
-		alGenBuffers(buffersToStart, m_Buffer);
-		
-		if(alGetError() != AL_NO_ERROR) 
-		{
-			LOGERROR( L"- Error creating initial buffer !!\n");
-			return false;
-		}
-		else
-		{
-			m_BuffersUsed = FetchDataIntoBuffer(buffersToStart, m_Buffer);
-			if (m_FileFinished)
-			{
-				m_OneShot = true;
-				if (m_BuffersUsed < buffersToStart)
-				{
-					alDeleteBuffers(buffersToStart - m_BuffersUsed, &m_Buffer[m_BuffersUsed]);
-				}
-			}
 			AL_CHECK
-		}
-		return true;
+			
+			alGenBuffers(buffersToStart, m_Buffer);
+			
+			if(alGetError() != AL_NO_ERROR) 
+			{
+				LOGERROR( L"- Error creating initial buffer !!\n");
+				return false;
+			}
+			else
+			{
+				m_BuffersUsed = FetchDataIntoBuffer(buffersToStart, m_Buffer);
+				if (m_FileFinished)
+				{
+					m_OneShot = true;
+					if (m_BuffersUsed < buffersToStart)
+					{
+						alDeleteBuffers(buffersToStart - m_BuffersUsed, &m_Buffer[m_BuffersUsed]);
+					}
+				}
+				AL_CHECK
+			}
+			return true;
+	  }
+		return false;
 	}
 	return false;
 }
@@ -119,24 +123,28 @@ bool COggData::IsOneShot()
 
 int COggData::FetchDataIntoBuffer(int count, ALuint* buffers)
 {
-	long bufferSize = g_SoundManager->GetBufferSize();
-	
-	u8* pcmout = new u8[bufferSize + 5000];
-	int buffersWritten = 0;
-	
-	for (int i = 0; (i < count) && !m_FileFinished; i++)
-	{
-		memset( pcmout, 0, bufferSize + 5000 );
-		Status totalRet = ogg->GetNextChunk( pcmout, bufferSize);
-		m_FileFinished = ogg->atFileEOF();
-		if (totalRet > 0)
+  if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
+  {
+		long bufferSize = sndManager->GetBufferSize();
+		
+		u8* pcmout = new u8[bufferSize + 5000];
+		int buffersWritten = 0;
+		
+		for (int i = 0; (i < count) && !m_FileFinished; i++)
 		{
-			buffersWritten++;
-			alBufferData(buffers[i], m_Format, pcmout, (ALsizei)totalRet, (int)m_Frequency);
+			memset( pcmout, 0, bufferSize + 5000 );
+			Status totalRet = ogg->GetNextChunk( pcmout, bufferSize);
+			m_FileFinished = ogg->atFileEOF();
+			if (totalRet > 0)
+			{
+				buffersWritten++;
+				alBufferData(buffers[i], m_Format, pcmout, (ALsizei)totalRet, (int)m_Frequency);
+			}
 		}
+		delete[] pcmout;
+		return buffersWritten;
 	}
-	delete[] pcmout;
-	return buffersWritten;
+	return 0;
 }
 
 

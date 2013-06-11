@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_elephant">
+<Entity parent="template_unit_champion_elephant_melee">
   <Armour>
     <Hack>10</Hack>
     <Pierce>10</Pierce>
@@ -9,42 +9,10 @@
     <Melee>
       <Hack>25.0</Hack>
       <Crush>25.0</Crush>
-      <MaxRange>8.0</MaxRange>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusStructures>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
-      <PreferredClasses datatype="tokens">Structure</PreferredClasses>
     </Melee>
     <Charge>
       <Hack>75.0</Hack>
       <Crush>75.0</Crush>
-      <MaxRange>8.0</MaxRange>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusStructures>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
-      <PreferredClasses datatype="tokens">Structure</PreferredClasses>
     </Charge>
   </Attack>
   <Cost>

@@ -306,7 +306,7 @@ public:
 	/** Resizes the wanted qualifiers.
 		@param qualifiers The new qualifiers for the animated element.
 		@param prependDot Whether to prepend the '.' character for all the qualifiers of the animated element. */
-	void Resize(const StringList& qualifiers = NULL, bool prependDot = true);
+	void Resize(const StringList& qualifiers = StringList(), bool prependDot = true);
 };
 
 /** The common qualifier lists. */

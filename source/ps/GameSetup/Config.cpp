@@ -111,25 +111,17 @@ static void LoadGlobals()
 	float musicGain = 0.5f;
 	float ambientGain = 0.5f;
 	float actionGain = 0.5f;
-	int bufferCount = 50;
-	unsigned long bufferSize = 65536;
+	float uiGain = 0.5f;
 
 	CFG_GET_VAL("sound.mastergain", Float, gain);
 	CFG_GET_VAL("sound.musicgain", Float, musicGain);
 	CFG_GET_VAL("sound.ambientgain", Float, ambientGain);
 	CFG_GET_VAL("sound.actiongain", Float, actionGain);
+	CFG_GET_VAL("sound.uigain", Float, uiGain);
 
-	CFG_GET_VAL("sound.bufferCount", Int, bufferCount);
-	CFG_GET_VAL("sound.bufferSize", UnsignedLong, bufferSize);
+	if (g_SoundManager)
+		g_SoundManager->SetGains(gain, musicGain, ambientGain, actionGain, uiGain);
 
-	if (g_SoundManager) {
-		g_SoundManager->SetMasterGain(gain);
-		g_SoundManager->SetMusicGain(musicGain);
-		g_SoundManager->SetAmbientGain(ambientGain);
-		g_SoundManager->SetActionGain(actionGain);
-
-		g_SoundManager->SetMemoryUsage(bufferSize, bufferCount);
-	}
 #endif // CONFIG2_AUDIO
 
 	CFG_GET_VAL("jsdebugger.enable", Bool, g_JSDebuggerEnabled);

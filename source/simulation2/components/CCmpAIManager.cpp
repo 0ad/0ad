@@ -963,14 +963,12 @@ public:
 		
 		// Get the territory data
 		//	Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
-		bool territoryMapDirty = false;
 		Grid<u8> dummyGrid2;
 		const Grid<u8>* territoryMap = &dummyGrid2;
 		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSimContext(), SYSTEM_ENTITY);
 		if (cmpTerritoryManager && cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
 		{
 			territoryMap = &cmpTerritoryManager->GetTerritoryGrid();
-			territoryMapDirty = true;
 		}
 		
 		LoadPathfinderClasses(state);

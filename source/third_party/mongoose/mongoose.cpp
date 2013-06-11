@@ -10,6 +10,7 @@
 //  * ws2_32 is linked explicitly here, instead of requiring more complexity
 //    in the build system.
 //  * To avoid debug spew, we disable DEBUG.
+//  * Use memcopy to get rid of strict-aliasing warning
 
 #define __STDC_LIMIT_MACROS
 
@@ -1996,8 +1997,7 @@ static void MD5Final(unsigned char digest[16], MD5_CTX *ctx) {
   }
   byteReverse(ctx->in, 14);
 
-  ((uint32_t *) ctx->in)[14] = ctx->bits[0];
-  ((uint32_t *) ctx->in)[15] = ctx->bits[1];
+  memcpy(ctx->in + 14 * sizeof(uint32_t), ctx->bits, sizeof(ctx->bits));
 
   MD5Transform(ctx->buf, (uint32_t *) ctx->in);
   byteReverse((unsigned char *) ctx->buf, 4);

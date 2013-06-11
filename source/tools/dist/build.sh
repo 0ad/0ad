@@ -39,7 +39,9 @@ tar cf $PREFIX-unix-build.tar \
 	--exclude='libraries/source/fcollada/src/FCollada/FColladaTest' \
 	--exclude='libraries/source/spidermonkey/include-win32' \
 	${PREFIX}/{source,build,libraries/source,binaries/system/readme.txt,binaries/data/tests,binaries/data/mods/_test.*,*.txt}
-tar cf $PREFIX-unix-data.tar ${PREFIX}/binaries/data/{config,mods/public/public.zip,tools}
+tar cf $PREFIX-unix-data.tar \
+	--exclude='binaries/data/config/dev.cfg' \
+	 ${PREFIX}/binaries/data/{config,mods/public/public.zip,tools}
 # TODO: ought to include generated docs in here, perhaps?
 
 # Compress

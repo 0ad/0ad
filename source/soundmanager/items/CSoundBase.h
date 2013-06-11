@@ -73,8 +73,6 @@ public:
 	void StopAndDelete();
 	void FadeToIn(ALfloat newVolume, double fadeDuration);
 
-	void PlayAsMusic();
-	void PlayAsAmbient();
 	bool GetLooping();
 	bool IsPlaying();
 
