@@ -218,6 +218,7 @@ function project_set_build_flags()
 					-- enable security features (stack checking etc) that shouldn't have
 					-- a significant effect on performance and can catch bugs
 					"-fstack-protector-all",
+					"-U_FORTIFY_SOURCE",	-- (avoid redefinition warning if already defined)
 					"-D_FORTIFY_SOURCE=2",
 
 					-- always enable strict aliasing (useful in debug builds because of the warnings)

@@ -273,3 +273,5 @@ clean:
 	rm -rf output
 
 -include $(OBJECTS_ALL:.o=.P)
+
+.SILENT:

@@ -278,7 +278,7 @@ int32 FCDGeometryPolygons::TestPolyType() const
 	if (!faceVertexCounts.empty())
 	{
 		uint32 fCount = *itC;
-		for (itC ; itC != faceVertexCounts.end() && *itC == fCount; ++itC) {}
+		for (; itC != faceVertexCounts.end() && *itC == fCount; ++itC) {}
 		if (itC == faceVertexCounts.end()) return fCount;
 	}
 	return -1;

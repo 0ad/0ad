@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -170,7 +170,7 @@ void CReplayPlayer::Replay()
 		}
 		else if (type == "cmd")
 		{
-			u32 player;
+			player_id_t player;
 			*m_Stream >> player;
 
 			std::string line;
