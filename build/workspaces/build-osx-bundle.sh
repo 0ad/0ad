@@ -158,9 +158,13 @@ cp -v ../../binaries/system/libCollada.dylib ${BUNDLE_FRAMEWORKS}
 
 # Copy data
 echo "\nCopying non-archived game data\n"
+# Removing it now and restoring it later, cp has no exclusion switch
+# and using find is a bit over-the-top
+rm ../../binaries/data/config/dev.cfg
 cp -v ../resources/0ad.icns ${BUNDLE_RESOURCES}
 cp -R -v ../../binaries/data/config ${BUNDLE_RESOURCES}/data/
 cp -R -v ../../binaries/data/tools ${BUNDLE_RESOURCES}/data/
+svn revert ../../binaries/data/config/dev.cfg
 
 # Copy license/readmes
 # TODO: Also want copies in the DMG - decide on layout

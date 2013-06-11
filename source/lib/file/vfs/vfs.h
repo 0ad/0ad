@@ -65,7 +65,16 @@ enum VfsMountFlags
 	 * ".DELETED" suffix will still apply.
 	 * (the default behavior is to hide both the suffixed and unsuffixed files)
 	 **/
-	VFS_MOUNT_KEEP_DELETED = 8
+	VFS_MOUNT_KEEP_DELETED = 8,
+
+	/**
+	 * mark a directory replaceable, so that when writing a file to this path
+	 * new real directories will be created instead of reusing already existing
+	 * ones mounted at a subpath of the VFS path.
+	 * (the default behaviour is to write to the real directory associated
+	 * with the VFS directory that was last mounted to this path (or subpath))
+	 **/
+	VFS_MOUNT_REPLACEABLE = 16
 };
 
 // (member functions are thread-safe after the instance has been

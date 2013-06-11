@@ -132,7 +132,7 @@ public:
 	{
 		ScopedLock s;
 		VfsDirectory* directory;
-		WARN_RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
+		WARN_RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_CREATE_ALWAYS));
 
 		const PRealDirectory& realDirectory = directory->AssociatedDirectory();
 		const OsPath name = pathname.Filename();

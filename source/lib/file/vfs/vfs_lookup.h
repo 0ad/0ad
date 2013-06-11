@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -49,7 +49,12 @@ enum VfsLookupFlags
 	// don't populate the directories encountered. this makes sense
 	// when adding files from an archive, which would otherwise
 	// cause nearly every directory to be populated.
-	VFS_LOOKUP_SKIP_POPULATE = 4
+	VFS_LOOKUP_SKIP_POPULATE = 4,
+
+	// even create directories if they are already present, this is
+	// useful to write new files to the directory that was attached
+	// last, if the directory wasn't mounted with VFS_MOUNT_REPLACEABLE
+	VFS_LOOKUP_CREATE_ALWAYS = 8
 };
 
 /**

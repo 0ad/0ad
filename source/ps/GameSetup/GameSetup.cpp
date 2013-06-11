@@ -421,6 +421,20 @@ ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(
 	return ERI_NOT_IMPLEMENTED;
 }
 
+static std::vector<CStr> GetMods(const CmdLineArgs& args, bool dev)
+{
+	std::vector<CStr> mods = args.GetMultiple("mod");
+	// TODO: It would be nice to remove this hard-coding
+	mods.insert(mods.begin(), "public");
+
+	// Add the user mod if not explicitly disabled or we have a dev copy so
+	// that saved files end up in version control and not in the user mod.
+	if (!dev && !args.Has("noUserMod"))
+		mods.push_back("user");
+
+	return mods;
+}
+
 static void InitVfs(const CmdLineArgs& args)
 {
 	TIMER(L"InitVfs");
@@ -441,28 +455,44 @@ static void InitVfs(const CmdLineArgs& args)
 
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
+	
+	// Work out whether we are a dev version to make sure saved files
+	// (maps, etc) end up in version control.
+	const OsPath readonlyConfig = paths.RData()/"config"/"";
+	g_VFS->Mount(L"config/", readonlyConfig);
+	bool dev = (g_VFS->GetFileInfo(L"config/dev.cfg", NULL) == INFO::OK);
 
-	std::vector<CStr> mods = args.GetMultiple("mod");
-	mods.insert(mods.begin(), "public");
-
-	if (!args.Has("noUserMod"))
-		mods.push_back("user");
+	const std::vector<CStr> mods = GetMods(args, dev);
 
 	OsPath modPath = paths.RData()/"mods";
 	OsPath modUserPath = paths.UserData()/"mods";
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
-		size_t priority = i+1;	// mods are higher priority than regular mountings, which default to priority 0
-		size_t flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE|VFS_MOUNT_MUST_EXIST;
+		size_t priority = (i+1)*2;	// mods are higher priority than regular mountings, which default to priority 0
+		size_t userFlags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE|VFS_MOUNT_REPLACEABLE;
+		size_t flags = userFlags|VFS_MOUNT_MUST_EXIST;
+		
 		OsPath modName(mods[i]);
-		g_VFS->Mount(L"", modPath / modName/"", flags, priority);
-		g_VFS->Mount(L"", modUserPath / modName/"", flags, priority);
+		if (dev)
+		{
+			// We are running a dev copy, so only mount mods in the user mod path
+			// if the mod does not exist in the data path.
+			if (DirectoryExists(modPath / modName/""))
+				g_VFS->Mount(L"", modPath / modName/"", flags, priority);
+			else
+				g_VFS->Mount(L"", modUserPath / modName/"", userFlags, priority);
+		}
+		else
+		{
+			g_VFS->Mount(L"", modPath / modName/"", flags, priority);
+			// Ensure that user modified files are loaded, if they are present
+			g_VFS->Mount(L"", modUserPath / modName/"", userFlags, priority+1);
+		}
 	}
 
 	// We mount these dirs last as otherwise writing could result in files being placed in a mod's dir.
 	g_VFS->Mount(L"screenshots/", paths.UserData()/"screenshots"/"");
 	g_VFS->Mount(L"saves/", paths.UserData()/"saves"/"", VFS_MOUNT_WATCH);
-	const OsPath readonlyConfig = paths.RData()/"config"/"";
 	// Mounting with highest priority, so that a mod supplied user.cfg is harmless
 	g_VFS->Mount(L"config/", readonlyConfig, 0, (size_t)-1);
 	if(readonlyConfig != paths.Config())
@@ -889,13 +919,13 @@ void Init(const CmdLineArgs& args, int UNUSED(flags))
 
 	// g_ConfigDB, command line args, globals
 	CONFIG_Init(args);
-	
+
 	// before scripting 
 	if (g_JSDebuggerEnabled)
 		g_DebuggingServer = new CDebuggingServer();
 
 	InitScripting();	// before GUI
-	
+
 	g_ConfigDB.RegisterJSConfigDB(); 	// after scripting 
 
 	// Optionally start profiler HTTP output automatically

@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -74,7 +74,8 @@ Status vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDire
 	const bool addMissingDirectories    = (flags & VFS_LOOKUP_ADD) != 0;
 	const bool createMissingDirectories = (flags & VFS_LOOKUP_CREATE) != 0;
 	const bool skipPopulate = (flags & VFS_LOOKUP_SKIP_POPULATE) != 0;
-	ENSURE((flags & ~(VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_SKIP_POPULATE)) == 0);
+	const bool createAlways = (flags & VFS_LOOKUP_CREATE_ALWAYS) != 0;
+	ENSURE((flags & ~(VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_SKIP_POPULATE|VFS_LOOKUP_CREATE_ALWAYS)) == 0);
 
 	directory = startDirectory;
 	if(pfile)
@@ -111,7 +112,8 @@ Status vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDire
 				return ERR::VFS_DIR_NOT_FOUND;	// NOWARN
 		}
 
-		if(createMissingDirectories && !subdirectory->AssociatedDirectory())
+		if(createMissingDirectories && (!subdirectory->AssociatedDirectory()
+		     || (createAlways && (subdirectory->AssociatedDirectory()->Flags() & VFS_MOUNT_REPLACEABLE) != 0)))
 		{
 			OsPath currentPath;
 			if(directory->AssociatedDirectory())	// (is NULL when mounting into root)
