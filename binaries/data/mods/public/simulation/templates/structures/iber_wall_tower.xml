@@ -12,6 +12,11 @@
   <Obstruction>
     <Static width="10" depth="10"/>
   </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+	  -pair_walls_01
+    </Technologies>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/iberians/wall_tower.xml</Actor>
   </VisualActor>
