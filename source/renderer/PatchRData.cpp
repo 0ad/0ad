@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -233,7 +233,7 @@ void CPatchRData::BuildBlends()
 			{
 				if (!blendStacks[k].blends.empty() && blendStacks[k].blends.back().m_Texture == tex)
 				{
-					SBlendLayer::Tile t = { blendStacks[k].i, blendStacks[k].j, blendStacks[k].blends.back().m_TileMask };
+					SBlendLayer::Tile t = { blendStacks[k].i, blendStacks[k].j, (u8)blendStacks[k].blends.back().m_TileMask };
 					blendLayers.back().m_Tiles.push_back(t);
 					blendStacks[k].blends.pop_back();
 				}
