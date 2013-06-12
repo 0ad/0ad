@@ -665,14 +665,14 @@ public:
 		}
 
 		double t = timer_Time();
-		CALLGRIND_START_INSTRUMENTATION
+		CALLGRIND_START_INSTRUMENTATION;
 		size_t reps = 128;
 		for (size_t i = 0; i < reps; ++i)
 		{
 			std::string hash;
 			sim2.ComputeStateHash(hash, false);
 		}
-		CALLGRIND_STOP_INSTRUMENTATION
+		CALLGRIND_STOP_INSTRUMENTATION;
 		t = timer_Time() - t;
 		debug_printf(L"# time = %f (%f/%d)\n", t/reps, t, (int)reps);
 
