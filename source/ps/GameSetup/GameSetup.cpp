@@ -193,10 +193,9 @@ void Render()
 {
 	PROFILE3("render");
 
-#if CONFIG2_AUDIO
 	if (g_SoundManager)
 		g_SoundManager->IdleTask();
-#endif
+
 	ogl_WarnIfError();
 
 	g_Profiler2.RecordGPUFrameStart();
@@ -732,10 +731,8 @@ void Shutdown(int UNUSED(flags))
 	// resource
 	// first shut down all resource owners, and then the handle manager.
 	TIMER_BEGIN(L"resource modules");
-#if CONFIG2_AUDIO
-		if (g_SoundManager)
-			delete g_SoundManager;
-#endif
+
+		ISoundManager::SetEnabled(false);
 
 		g_VFS.reset();
 
@@ -981,14 +978,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 	}
 
 	if(g_DisableAudio)
-	{
-		// speed up startup by disabling all sound
-		// (OpenAL init will be skipped).
-		// must be called before first snd_open.
-#if CONFIG2_AUDIO
 		ISoundManager::SetEnabled(false);
-#endif
-	}
 
 	g_GUI = new CGUIManager(g_ScriptingHost.GetScriptInterface());
 

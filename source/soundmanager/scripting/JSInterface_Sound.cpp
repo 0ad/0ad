@@ -87,7 +87,7 @@ namespace JSI_Sound
 
 
   #else
-    bool MusicPlaying(void* UNUSED(cbdata) ){}
+    bool MusicPlaying(void* UNUSED(cbdata) ){ return false; }
     void PlayAmbientSound(void* UNUSED(cbdata), std::wstring UNUSED(filename), bool UNUSED(looping) ){}
     void PlayUISound(void* UNUSED(cbdata), std::wstring UNUSED(filename), bool UNUSED(looping) ) {}
     void PlayMusic(void* UNUSED(cbdata), std::wstring UNUSED(filename), bool UNUSED(looping) ) {}

@@ -31,6 +31,7 @@
 #include "simulation2/system/Entity.h"
 #include "soundmanager/data/SoundData.h"
 #include "soundmanager/items/ISoundItem.h"
+#include "soundmanager/scripting/SoundGroup.h"
 #include "ps/Profiler2.h"
 
 #include <vector>
@@ -48,6 +49,7 @@ struct ALSourceHolder
 typedef std::vector<VfsPath> PlayList;
 typedef std::vector<ISoundItem*> ItemsList;
 typedef std::map<entity_id_t, ISoundItem*> ItemsMap;
+typedef	std::map<std::wstring, CSoundGroup*> SoundGroupMap;
 
 class CSoundManagerWorker;
 
@@ -66,6 +68,7 @@ protected:
 	CSoundManagerWorker* m_Worker;
 	CMutex m_DistressMutex;
 	PlayList* m_PlayListItems;
+	SoundGroupMap m_SoundGroups;
 
 	float m_Gain;
 	float m_MusicGain;
@@ -131,9 +134,9 @@ public:
 	void PlayAsMusic( const VfsPath& itemPath, bool looping );
 	void PlayAsAmbient( const VfsPath& itemPath, bool looping );
 	void PlayAsUI(const VfsPath& itemPath, bool looping);
+	void PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source);
 
 	void PlayGroupItem(ISoundItem* anItem, ALfloat groupGain);
-	void SetGains(float masterG, float musicG, float ambientG, float actionG, float uiG );
 
 	bool InDistress();
 	void SetDistressThroughShortage();

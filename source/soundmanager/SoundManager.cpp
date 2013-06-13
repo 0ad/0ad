@@ -293,6 +293,10 @@ CSoundManager::~CSoundManager()
 	}
 	AL_CHECK
 
+	for (std::map<std::wstring, CSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
+		delete it->second;
+	m_SoundGroups.clear();
+
 	if ( m_PlayListItems )
 		delete m_PlayListItems;
 
@@ -482,17 +486,6 @@ void CSoundManager::StartPlayList( bool doLoop )
 	}
 }
 
-
-
-void CSoundManager::SetGains(float masterG, float musicG, float ambientG, float actionG, float uiG )
-{
-	SetMasterGain( masterG );
-	SetMusicGain( musicG );
-	SetAmbientGain( ambientG );
-	SetActionGain( actionG );
-	SetUIGain( uiG );
-}
-
 void CSoundManager::SetMasterGain(float gain)
 {
 	if ( m_Enabled )
@@ -656,6 +649,32 @@ void CSoundManager::SetMusicEnabled (bool isEnabled)
 	m_MusicEnabled = isEnabled;
 }
 
+void CSoundManager::PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source)
+{
+	// Make sure the sound group is loaded
+	CSoundGroup* group;
+	if (m_SoundGroups.find(groupPath.string()) == m_SoundGroups.end())
+	{
+		group = new CSoundGroup();
+		if (!group->LoadSoundGroup(L"audio/" + groupPath.string() ))
+		{
+			LOGERROR(L"Failed to load sound group '%ls'", groupPath.string().c_str());
+			delete group;
+			group = NULL;
+		}
+		// Cache the sound group (or the null, if it failed)
+		m_SoundGroups[groupPath.string()] = group;
+	}
+	else
+	{
+		group = m_SoundGroups[groupPath.string()];
+	}
+
+	// Failed to load group -> do nothing
+	if ( group )
+		group->PlayNext(sourcePos, source);
+}
+
 void CSoundManager::PlayAsMusic( const VfsPath& itemPath, bool looping )
 {
 		UNUSED2( looping );
@@ -785,6 +804,10 @@ void CSoundManager::SetAmbientItem(ISoundItem* anItem)
 	}
 	AL_CHECK
 }
+#else // CONFIG2_AUDIO
+
+void ISoundManager::CreateSoundManager(){}
+void ISoundManager::SetEnabled(bool UNUSED(doEnable)){}
 
 #endif // CONFIG2_AUDIO
 

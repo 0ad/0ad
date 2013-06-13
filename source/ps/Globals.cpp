@@ -72,18 +72,16 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 		if(ev->ev.active.state & SDL_APPACTIVE)
 		{
 			g_app_minimized = (ev->ev.active.gain == 0);	// negated
-#if CONFIG2_AUDIO
+
 			if ( g_SoundManager )
 				g_SoundManager->Pause( g_app_minimized && g_PauseOnFocusLoss && !g_NetClient );
-#endif
 		}
 		if(ev->ev.active.state & SDL_APPINPUTFOCUS)
 		{
 			g_app_has_focus = (ev->ev.active.gain != 0);
-#if CONFIG2_AUDIO
+
 			if ( g_SoundManager )
 				g_SoundManager->Pause( !g_app_has_focus && g_PauseOnFocusLoss && !g_NetClient );
-#endif
 		}
 		if(ev->ev.active.state & SDL_APPMOUSEFOCUS)
 			g_mouse_active = (ev->ev.active.gain != 0);
