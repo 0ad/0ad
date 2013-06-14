@@ -28,9 +28,8 @@
 class CCmpSoundManager : public ICmpSoundManager
 {
 public:
-	static void ClassInit(CComponentManager& componentManager)
+	static void ClassInit(CComponentManager& UNUSED(componentManager) )
 	{
-		componentManager.SubscribeToMessageType(MT_Update);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(SoundManager)
@@ -59,36 +58,27 @@ public:
 		Init(paramNode);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
-	{
-		switch (msg.GetType())
-		{
-			case MT_Update:
-			{
-			}
-		}
-	}
-
 	virtual void PlaySoundGroup(std::wstring name, entity_id_t source)
 	{
-		if ( g_SoundManager )
-		{
-			CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
-			ICmpRangeManager::ELosVisibility vis = cmpRangeManager->GetLosVisibility(source, GetSimContext().GetCurrentDisplayedPlayer());
+		if ( ! g_SoundManager )
+			return;
 
-			if (vis == ICmpRangeManager::VIS_VISIBLE)
+		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+		ICmpRangeManager::ELosVisibility vis = cmpRangeManager->GetLosVisibility(source, GetSimContext().GetCurrentDisplayedPlayer());
+
+		if (vis == ICmpRangeManager::VIS_VISIBLE)
+		{
+			if (source != INVALID_ENTITY)
 			{
-				if (source != INVALID_ENTITY)
+				CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), source);
+				if (cmpPosition && cmpPosition->IsInWorld())
 				{
-					CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), source);
-					if (cmpPosition && cmpPosition->IsInWorld())
-					{
-						CVector3D sourcePos = CVector3D(cmpPosition->GetPosition());
-						g_SoundManager->PlayAsGroup(name, sourcePos, source);
-					}
+					CVector3D sourcePos = CVector3D(cmpPosition->GetPosition());
+					g_SoundManager->PlayAsGroup(name, sourcePos, source);
 				}
 			}
 		}
+
 	}
 };
 
