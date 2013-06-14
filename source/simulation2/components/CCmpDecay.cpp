@@ -53,9 +53,13 @@ public:
 	DEFAULT_COMPONENT_ALLOCATOR(Decay)
 
 	bool m_Active;
+	bool m_ShipSink;
 	float m_DelayTime;
 	float m_SinkRate;
 	float m_SinkAccel;
+
+	entity_pos_t m_InitialXRotation;
+	entity_pos_t m_InitialZRotation;
 
 	float m_CurrentTime;
 	float m_TotalSinkDepth; // distance we need to sink (derived from bounding box), or -1 if undetermined
@@ -76,12 +80,18 @@ public:
 				"<element name='Inactive' a:help='If this element is present, the entity will not do any decaying'>"
 					"<empty/>"
 				"</element>"
+			"</optional>"
+			"<optional>"
+				"<element name='SinkingAnim' a:help='If this element is present, the entity will decay in a ship-like manner'>"
+					"<empty/>"
+				"</element>"
 			"</optional>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
 	{
 		m_Active = !paramNode.GetChild("Inactive").IsOk();
+		m_ShipSink = paramNode.GetChild("SinkingAnim").IsOk();
 		m_DelayTime = paramNode.GetChild("DelayTime").ToFixed().ToFloat();
 		m_SinkRate = paramNode.GetChild("SinkRate").ToFixed().ToFloat();
 		m_SinkAccel = paramNode.GetChild("SinkAccel").ToFixed().ToFloat();
@@ -155,15 +165,37 @@ public:
 					fixed ground = cmpTerrain->GetGroundLevel(pos.X, pos.Z);
 					m_TotalSinkDepth += std::max(0.f, (pos.Y - ground).ToFloat());
 				}
+
+				// Sink it further down if it sinks like a ship, as it will rotate.
+				if (m_ShipSink)
+					m_TotalSinkDepth += 10.0f;
+
+				// probably 0 in both cases but we'll remember it anyway.
+				m_InitialXRotation = cmpPosition->GetRotation().X;
+				m_InitialZRotation = cmpPosition->GetRotation().Z;
 			}
 
 			m_CurrentTime += msgData.deltaSimTime;
 
-			if (m_CurrentTime > m_DelayTime)
+			if (m_CurrentTime >= m_DelayTime)
 			{
 				float t = m_CurrentTime - m_DelayTime;
 				float depth = (m_SinkRate * t) + (m_SinkAccel * t * t);
 
+				if (m_ShipSink)
+				{
+					// exponential sinking with tilting.
+					float tilt_time = t > 5 ? 5 : t;
+					float tiltSink = (tilt_time/5)*(tilt_time/5)*5;
+					entity_pos_t RotX = entity_pos_t::FromFloat(((m_InitialXRotation.ToFloat() * (5 - tiltSink)) + (1.5 * tiltSink))/5);
+					entity_pos_t RotZ = entity_pos_t::FromFloat(((m_InitialZRotation.ToFloat() * (3 - tilt_time)) + (-0.3 * tilt_time))/3);
+					cmpPosition->SetXZRotation(RotX,RotZ);
+					
+					depth = m_SinkRate * (exp(t-1)-exp(-0.6)) + (m_SinkAccel * exp(t-4)-exp(-4));
+					if (depth < 0)
+						depth = 0;
+				}
+				
 				cmpPosition->SetHeightOffset(entity_pos_t::FromFloat(-depth));
 
 				if (depth > m_TotalSinkDepth)
