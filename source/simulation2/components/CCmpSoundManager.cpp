@@ -60,23 +60,20 @@ public:
 
 	virtual void PlaySoundGroup(std::wstring name, entity_id_t source)
 	{
-		if ( ! g_SoundManager )
+		if ( ! g_SoundManager || (source == INVALID_ENTITY) )
 			return;
 
 		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
-		ICmpRangeManager::ELosVisibility vis = cmpRangeManager->GetLosVisibility(source, GetSimContext().GetCurrentDisplayedPlayer());
 
-		if (vis == ICmpRangeManager::VIS_VISIBLE)
+		if ( !cmpRangeManager || 
+				( cmpRangeManager->GetLosVisibility(source, GetSimContext().GetCurrentDisplayedPlayer()) != ICmpRangeManager::VIS_VISIBLE ) )
+			return;
+
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), source);
+		if (cmpPosition && cmpPosition->IsInWorld())
 		{
-			if (source != INVALID_ENTITY)
-			{
-				CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), source);
-				if (cmpPosition && cmpPosition->IsInWorld())
-				{
-					CVector3D sourcePos = CVector3D(cmpPosition->GetPosition());
-					g_SoundManager->PlayAsGroup(name, sourcePos, source);
-				}
-			}
+			CVector3D sourcePos = CVector3D(cmpPosition->GetPosition());
+			g_SoundManager->PlayAsGroup(name, sourcePos, source);
 		}
 
 	}
