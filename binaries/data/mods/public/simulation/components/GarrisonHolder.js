@@ -54,7 +54,7 @@ GarrisonHolder.prototype.GetEntities = function()
  */
 GarrisonHolder.prototype.GetAllowedClassesList = function()
 {
-	var string = this.template.List._string;
+	var string = this.template.List._string || "";
 	return string.split(/\s+/);
 };
 
