@@ -191,7 +191,7 @@ public:
 					entity_pos_t RotZ = entity_pos_t::FromFloat(((m_InitialZRotation.ToFloat() * (3 - tilt_time)) + (-0.3 * tilt_time))/3);
 					cmpPosition->SetXZRotation(RotX,RotZ);
 					
-					depth = m_SinkRate * (exp(t-1)-exp(-0.6)) + (m_SinkAccel * exp(t-4)-exp(-4));
+					depth = m_SinkRate * (exp(t-1.0f)-exp(-0.6f)) + (m_SinkAccel * exp(t-4.0f)-exp(-4.0f));
 					if (depth < 0)
 						depth = 0;
 				}
