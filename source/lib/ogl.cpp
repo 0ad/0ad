@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -349,6 +349,9 @@ static void importExtensionFunctions()
 	// checking for the extension.
 	// (TODO: this calls ogl_HaveVersion far more times than is necessary -
 	// we should probably use the have_* variables instead)
+	// Note: the xorg-x11 implementation of glXGetProcAddress doesn't return NULL
+	//   if the function is unsupported (i.e. the rare case of a driver not reporting
+	//   its supported version correctly, see http://trac.wildfiregames.com/ticket/171)
 #define FUNC(ret, name, params) p##name = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#name);
 #define FUNC23(pname, ret, nameARB, nameCore, version, params) \
 	pname = NULL; \

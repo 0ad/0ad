@@ -304,10 +304,9 @@ bool CGame::Update(const double deltaRealTime, bool doInterpolate)
 	if (doInterpolate)
 	{
 		m_TurnManager->Interpolate(deltaSimTime, deltaRealTime);
-#if CONFIG2_AUDIO
+
 		if ( g_SoundManager )
 			g_SoundManager->IdleTask();
-#endif
 	}
 
 	return ok;

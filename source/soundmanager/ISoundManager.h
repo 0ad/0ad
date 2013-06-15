@@ -20,8 +20,9 @@
 
 #include "lib/config2.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "simulation2/system/Entity.h"
 
-#if CONFIG2_AUDIO
+class CVector3D;
 
 class ISoundManager
 {
@@ -35,22 +36,19 @@ public:
   virtual void IdleTask() = 0;
   virtual void Pause(bool pauseIt) = 0;
 
-  virtual void SetGains(float masterG, float musicG, float ambientG, float actionG, float uiG ) = 0;
+  virtual void SetMasterGain(float gain) = 0;
+  virtual void SetMusicGain(float gain) = 0;
+  virtual void SetAmbientGain(float gain) = 0;
+  virtual void SetActionGain(float gain) = 0;
+  virtual void SetUIGain(float gain) = 0;
 
   virtual void PlayAsUI(const VfsPath& itemPath, bool looping) = 0;
   virtual void PlayAsMusic(const VfsPath& itemPath, bool looping) = 0;
   virtual void PlayAsAmbient(const VfsPath& itemPath, bool looping) = 0;
-
+  virtual void PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source) = 0;
 
   virtual bool InDistress() = 0;
 };
-
-#else // !CONFIG2_AUDIO
-
-class ISoundManager {};
-
-#endif // !CONFIG2_AUDIO
-
 
 extern ISoundManager*  g_SoundManager;
 

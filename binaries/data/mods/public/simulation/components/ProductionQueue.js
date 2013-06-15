@@ -76,6 +76,8 @@ ProductionQueue.prototype.GetEntitiesList = function()
 		return [];
 	
 	var string = this.template.Entities._string;
+	if (!string)
+		return [];
 	
 	// Replace the "{civ}" codes with this entity's civ ID
 	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
@@ -94,6 +96,8 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		return [];
 	
 	var string = this.template.Technologies._string;
+	if (!string)
+		return [];
 	
 	var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	if (!cmpTechnologyManager)

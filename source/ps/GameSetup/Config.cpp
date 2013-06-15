@@ -106,23 +106,27 @@ static void LoadGlobals()
 	CFG_GET_VAL("silhouettes", Bool, g_Silhouettes);
 	CFG_GET_VAL("showsky", Bool, g_ShowSky);
 
-#if CONFIG2_AUDIO
-	float gain = 0.5f;
-	float musicGain = 0.5f;
-	float ambientGain = 0.5f;
-	float actionGain = 0.5f;
-	float uiGain = 0.5f;
-
-	CFG_GET_VAL("sound.mastergain", Float, gain);
-	CFG_GET_VAL("sound.musicgain", Float, musicGain);
-	CFG_GET_VAL("sound.ambientgain", Float, ambientGain);
-	CFG_GET_VAL("sound.actiongain", Float, actionGain);
-	CFG_GET_VAL("sound.uigain", Float, uiGain);
-
 	if (g_SoundManager)
-		g_SoundManager->SetGains(gain, musicGain, ambientGain, actionGain, uiGain);
+	{
+		float gain = 0.5f;
+		float musicGain = 0.5f;
+		float ambientGain = 0.5f;
+		float actionGain = 0.5f;
+		float uiGain = 0.5f;
 
-#endif // CONFIG2_AUDIO
+		CFG_GET_VAL("sound.mastergain", Float, gain);
+		CFG_GET_VAL("sound.musicgain", Float, musicGain);
+		CFG_GET_VAL("sound.ambientgain", Float, ambientGain);
+		CFG_GET_VAL("sound.actiongain", Float, actionGain);
+		CFG_GET_VAL("sound.uigain", Float, uiGain);
+
+  	g_SoundManager->SetMasterGain( gain );
+  	g_SoundManager->SetMusicGain( musicGain );
+  	g_SoundManager->SetAmbientGain( ambientGain );
+  	g_SoundManager->SetActionGain( actionGain );
+  	g_SoundManager->SetUIGain( uiGain );
+	}
+
 
 	CFG_GET_VAL("jsdebugger.enable", Bool, g_JSDebuggerEnabled);
 	CFG_GET_VAL("profiler2.script.enable", Bool, g_ScriptProfilingEnabled);

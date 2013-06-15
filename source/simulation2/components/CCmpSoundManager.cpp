@@ -20,26 +20,19 @@
 #include "simulation2/system/Component.h"
 #include "ICmpSoundManager.h"
 
-#include "lib/config2.h"
-#include "ps/CLogger.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
-#include "soundmanager/scripting/SoundGroup.h"
+#include "soundmanager/ISoundManager.h"
 
 class CCmpSoundManager : public ICmpSoundManager
 {
 public:
-	static void ClassInit(CComponentManager& componentManager)
+	static void ClassInit(CComponentManager& UNUSED(componentManager) )
 	{
-		componentManager.SubscribeToMessageType(MT_Update);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(SoundManager)
-
-#if CONFIG2_AUDIO
-	std::map<std::wstring, CSoundGroup*> m_SoundGroups;
-#endif
 
 	static std::string GetSchema()
 	{
@@ -52,11 +45,6 @@ public:
 
 	virtual void Deinit()
 	{
-#if CONFIG2_AUDIO
-		for (std::map<std::wstring, CSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
-			delete it->second;
-		m_SoundGroups.clear();
-#endif // CONFIG2_AUDIO
 	}
 
 	virtual void Serialize(ISerializer& UNUSED(serialize))
@@ -70,77 +58,24 @@ public:
 		Init(paramNode);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
-	{
-		switch (msg.GetType())
-		{
-		case MT_Update:
-		{
-#if CONFIG2_AUDIO
-			// Update all the sound groups
-			// TODO: is it sensible to do this once per simulation turn, not once per renderer frame
-			// or on some other timer?
-			const CMessageUpdate& msgData = static_cast<const CMessageUpdate&> (msg);
-			float t = msgData.turnLength.ToFloat();
-			for (std::map<std::wstring, CSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
-				if (it->second)
-					it->second->Update(t);
-#else // !CONFIG2_AUDIO
-			UNUSED2(msg);
-#endif // !CONFIG2_AUDIO
-			break;
-		}
-		}
-	}
-
 	virtual void PlaySoundGroup(std::wstring name, entity_id_t source)
 	{
-#if CONFIG2_AUDIO
-		// Make sure the sound group is loaded
-		CSoundGroup* group;
-		if (m_SoundGroups.find(name) == m_SoundGroups.end())
-		{
-			group = new CSoundGroup();
-			if (!group->LoadSoundGroup(L"audio/" + name))
-			{
-				LOGERROR(L"Failed to load sound group '%ls'", name.c_str());
-				delete group;
-				group = NULL;
-			}
-			// Cache the sound group (or the null, if it failed)
-			m_SoundGroups[name] = group;
-		}
-		else
-		{
-			group = m_SoundGroups[name];
-		}
-
-		// Failed to load group -> do nothing
-		if (!group)
+		if ( ! g_SoundManager || (source == INVALID_ENTITY) )
 			return;
 
-		// Only play the sound if the entity is visible
 		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
-		ICmpRangeManager::ELosVisibility vis = cmpRangeManager->GetLosVisibility(source, GetSimContext().GetCurrentDisplayedPlayer());
 
-		if (vis == ICmpRangeManager::VIS_VISIBLE)
+		if ( !cmpRangeManager || 
+				( cmpRangeManager->GetLosVisibility(source, GetSimContext().GetCurrentDisplayedPlayer()) != ICmpRangeManager::VIS_VISIBLE ) )
+			return;
+
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), source);
+		if (cmpPosition && cmpPosition->IsInWorld())
 		{
-			// Find the source's position, if possible
-			// (TODO: we should do something more sensible if there's no position available)
-			CVector3D sourcePos(0, 0, 0);
-			if (source != INVALID_ENTITY)
-			{
-				CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), source);
-				if (cmpPosition && cmpPosition->IsInWorld())
-					sourcePos = CVector3D(cmpPosition->GetPosition());
-			}
-
-			group->PlayNext(sourcePos, source);
+			CVector3D sourcePos = CVector3D(cmpPosition->GetPosition());
+			g_SoundManager->PlayAsGroup(name, sourcePos, source);
 		}
-#else // !CONFIG2_AUDIO
-		UNUSED2(name);
-		UNUSED2(source);
-#endif // !CONFIG2_AUDIO
+
 	}
 };
 

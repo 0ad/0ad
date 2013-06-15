@@ -199,7 +199,8 @@ Attack.prototype.GetAttackTypes = function()
 
 Attack.prototype.GetPreferredClasses = function(type)
 {
-	if (this.template[type] && this.template[type].PreferredClasses)
+	if (this.template[type] && this.template[type].PreferredClasses
+	    && this.template[type].PreferredClasses._string)
 	{
 		return this.template[type].PreferredClasses._string.split(/\s+/);
 	}
@@ -208,7 +209,8 @@ Attack.prototype.GetPreferredClasses = function(type)
 
 Attack.prototype.GetRestrictedClasses = function(type)
 {
-	if (this.template[type] && this.template[type].RestrictedClasses)
+	if (this.template[type] && this.template[type].RestrictedClasses
+	    && this.template[type].RestrictedClasses._string)
 	{
 		return this.template[type].RestrictedClasses._string.split(/\s+/);
 	}
