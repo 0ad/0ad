@@ -168,7 +168,7 @@ public:
 
 				// Sink it further down if it sinks like a ship, as it will rotate.
 				if (m_ShipSink)
-					m_TotalSinkDepth += 10.0f;
+					m_TotalSinkDepth += 10.f;
 
 				// probably 0 in both cases but we'll remember it anyway.
 				m_InitialXRotation = cmpPosition->GetRotation().X;
@@ -184,16 +184,16 @@ public:
 
 				if (m_ShipSink)
 				{
-					// exponential sinking with tilting.
-					float tilt_time = t > 5 ? 5 : t;
-					float tiltSink = (tilt_time/5)*(tilt_time/5)*5;
-					entity_pos_t RotX = entity_pos_t::FromFloat(((m_InitialXRotation.ToFloat() * (5 - tiltSink)) + (1.5 * tiltSink))/5);
-					entity_pos_t RotZ = entity_pos_t::FromFloat(((m_InitialZRotation.ToFloat() * (3 - tilt_time)) + (-0.3 * tilt_time))/3);
+					// exponential sinking with tilting
+					float tilt_time = t > 5.f ? 5.f : t;
+					float tiltSink = tilt_time * tilt_time / 5.f;
+					entity_pos_t RotX = entity_pos_t::FromFloat(((m_InitialXRotation.ToFloat() * (5.f - tiltSink)) + (1.5f * tiltSink)) / 5.f);
+					entity_pos_t RotZ = entity_pos_t::FromFloat(((m_InitialZRotation.ToFloat() * (3.f - tilt_time)) + (-0.3f * tilt_time)) / 3.f);
 					cmpPosition->SetXZRotation(RotX,RotZ);
 					
-					depth = m_SinkRate * (exp(t-1.0f)-exp(-0.6f)) + (m_SinkAccel * exp(t-4.0f)-exp(-4.0f));
-					if (depth < 0)
-						depth = 0;
+					depth = m_SinkRate * (exp(t - 1.f) - 0.54881163609f) + (m_SinkAccel * exp(t - 4.f) - 0.01831563888f);
+					if (depth < 0.f)
+						depth = 0.f;
 				}
 				
 				cmpPosition->SetHeightOffset(entity_pos_t::FromFloat(-depth));
