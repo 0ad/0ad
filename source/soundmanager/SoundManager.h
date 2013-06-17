@@ -134,7 +134,7 @@ public:
 	void PlayAsMusic( const VfsPath& itemPath, bool looping );
 	void PlayAsAmbient( const VfsPath& itemPath, bool looping );
 	void PlayAsUI(const VfsPath& itemPath, bool looping);
-	void PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source);
+	void PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source, bool ownedSound);
 
 	void PlayGroupItem(ISoundItem* anItem, ALfloat groupGain);
 

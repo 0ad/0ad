@@ -27,7 +27,6 @@
 #include "precompiled.h"
 
 #include "SoundGroup.h"
-
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "lib/rand.h"
@@ -157,63 +156,65 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& position, entity_id_t source)
 {
 #if CONFIG2_AUDIO
-	if ( g_SoundManager )
+	if ( !g_SoundManager )
+		return;
+
+	bool isOnscreen = false;
+	ALfloat	initialRolllOff = 0.1f;
+	ALfloat	itemRollOff = initialRolllOff;
+	
+
+	float offSet = RadiansOffCenter(position, isOnscreen, itemRollOff);
+	bool 	shouldBePlayed = isOnscreen || TestFlag(eDistanceless) || TestFlag(eOmnipresent);
+
+	if ( !shouldBePlayed )
+		return;
+
+	if (snd_group.size() == 0)
+		Reload();
+
+	if ( snd_group.size() <= theIndex )
+		return;
+
+	CSoundData* sndData = snd_group[theIndex];
+	if ( sndData == NULL )
+		return;
+
+	ISoundItem*	hSound = ((CSoundManager*)g_SoundManager)->ItemForEntity( source, sndData);
+	if ( hSound == NULL )
+		return;
+
+	if (!TestFlag(eOmnipresent))
 	{
-		bool	isOnscreen;
-		ALfloat	initialRolllOff = 0.1f;
-		ALfloat	itemRollOff = initialRolllOff;
+		CVector3D origin = g_Game->GetView()->GetCamera()->GetOrientation().GetTranslation();
+		float sndDist = origin.Y;
+		float itemDist = ( position - origin ).Length();
 
-		float 	offSet = RadiansOffCenter(position, isOnscreen, itemRollOff);
+		if ( (sndDist * 2) < itemDist )
+			sndDist = itemDist;
 
-		if (isOnscreen || TestFlag(eDistanceless) || TestFlag(eOmnipresent))
-		{
-			if (snd_group.size() == 0)
-				Reload();
+		if (TestFlag(eDistanceless))
+			itemRollOff = 0;
+		
+		if ( sndData->IsStereo() )
+			LOGWARNING( L"OpenAL: stereo sounds can't be positioned: %ls", sndData->GetFileName()->string().c_str() );
 
-			if ( snd_group.size() > theIndex )
-			{
-				if ( CSoundData* sndData = snd_group[theIndex] )
-				{
-					CVector3D origin = g_Game->GetView()->GetCamera()->GetOrientation().GetTranslation();
-					float sndDist = origin.Y;
-					float itemDist = ( position - origin ).Length();
-
-					if ( (sndDist * 2) < itemDist )
-						sndDist = itemDist;
-
-					ISoundItem*	hSound = ((CSoundManager*)g_SoundManager)->ItemForEntity( source, sndData);
-
-					if ( hSound )
-					{
-						if (!TestFlag(eOmnipresent))
-						{
-							if (TestFlag(eDistanceless))
-								itemRollOff = 0;
-							
-							if ( sndData->IsStereo() )
-								LOGWARNING( L"OpenAL: stereo sounds can't be positioned: %ls", sndData->GetFileName()->string().c_str() );
-
-							hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, - sndDist * cos(offSet)));
-							hSound->SetRollOff(itemRollOff);
-						}
-
-						if (TestFlag(eRandPitch))
-							hSound->SetPitch(RandFloat(m_PitchLower, m_PitchUpper));
-						else
-							hSound->SetPitch(m_Pitch);
-
-						ALfloat theGain = m_Gain;
-						if (TestFlag(eRandGain))
-							theGain = RandFloat(m_GainLower, m_GainUpper);
-
-						hSound->SetCone(m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
-
-						((CSoundManager*)g_SoundManager)->PlayGroupItem(hSound, theGain);
-					}
-				}
-			}
-		}
+		hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, - sndDist * cos(offSet)));
+		hSound->SetRollOff(itemRollOff);
 	}
+
+	if (TestFlag(eRandPitch))
+		hSound->SetPitch(RandFloat(m_PitchLower, m_PitchUpper));
+	else
+		hSound->SetPitch(m_Pitch);
+
+	ALfloat theGain = m_Gain;
+	if (TestFlag(eRandGain))
+		theGain = RandFloat(m_GainLower, m_GainUpper);
+
+	hSound->SetCone(m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
+	((CSoundManager*)g_SoundManager)->PlayGroupItem(hSound, theGain);
+
 #else // !CONFIG2_AUDIO
 	UNUSED2(theIndex);
 	UNUSED2(position);
@@ -294,6 +295,7 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 	EL(gain);
 	EL(looping);
 	EL(omnipresent);
+	EL(restricted);
 	EL(distanceless);
 	EL(pitch);
 	EL(priority);
@@ -340,6 +342,11 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 		{
 			if(child.GetText().ToInt() == 1)
 				SetFlag(eOmnipresent);
+		}
+		else if(child_name == el_restricted)
+		{
+			if(child.GetText().ToInt() == 1)
+				SetFlag(eOwnerOnly);
 		}
 		else if(child_name == el_distanceless)
 		{

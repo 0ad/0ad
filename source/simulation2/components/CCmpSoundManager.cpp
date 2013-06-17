@@ -23,6 +23,8 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/components/ICmpOwnership.h"
+
 #include "soundmanager/ISoundManager.h"
 
 class CCmpSoundManager : public ICmpSoundManager
@@ -64,19 +66,25 @@ public:
 			return;
 
 		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+		int currentPlayer = GetSimContext().GetCurrentDisplayedPlayer();
 
 		if ( !cmpRangeManager || 
-				( cmpRangeManager->GetLosVisibility(source, GetSimContext().GetCurrentDisplayedPlayer()) != ICmpRangeManager::VIS_VISIBLE ) )
+				( cmpRangeManager->GetLosVisibility(source, currentPlayer) != ICmpRangeManager::VIS_VISIBLE ) )
 			return;
 
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), source);
 		if (cmpPosition && cmpPosition->IsInWorld())
 		{
-			CVector3D sourcePos = CVector3D(cmpPosition->GetPosition());
-			g_SoundManager->PlayAsGroup(name, sourcePos, source);
-		}
+			bool playerOwned = false;
+			CmpPtr<ICmpOwnership> cmpOwnership( GetSimContext(), source);
+			if (cmpOwnership)
+				playerOwned = cmpOwnership->GetOwner() == currentPlayer;
 
+			CVector3D sourcePos = CVector3D(cmpPosition->GetPosition());
+			g_SoundManager->PlayAsGroup(name, sourcePos, source, playerOwned);
+		}
 	}
+
 };
 
 REGISTER_COMPONENT_TYPE(SoundManager)
