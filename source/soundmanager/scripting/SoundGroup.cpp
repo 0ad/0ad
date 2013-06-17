@@ -295,7 +295,7 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 	EL(gain);
 	EL(looping);
 	EL(omnipresent);
-	EL(restricted);
+	EL(heardby);
 	EL(distanceless);
 	EL(pitch);
 	EL(priority);
@@ -343,9 +343,9 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 			if(child.GetText().ToInt() == 1)
 				SetFlag(eOmnipresent);
 		}
-		else if(child_name == el_restricted)
+		else if(child_name == el_heardby)
 		{
-			if(child.GetText().ToInt() == 1)
+			if(child.GetText().FindInsensitive( "owner" ) == 0 )
 				SetFlag(eOwnerOnly);
 		}
 		else if(child_name == el_distanceless)
