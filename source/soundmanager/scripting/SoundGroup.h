@@ -69,7 +69,8 @@ enum eSndGrpFlags
 	eRandPitch		= 0x04,
 	eLoop			= 0x08,
 	eOmnipresent	= 0x10,
-	eDistanceless	= 0x20
+	eDistanceless	= 0x20,
+	eOwnerOnly = 0x40
 };
 
 

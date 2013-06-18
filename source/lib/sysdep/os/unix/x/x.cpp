@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -112,6 +112,33 @@ Status GetMonitorSize(int& width_mm, int& height_mm)
 
 }	// namespace gfx
 
+
+static bool get_wminfo(SDL_SysWMinfo& wminfo)
+{
+	SDL_VERSION(&wminfo.version);
+
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	const int ret = SDL_GetWindowWMInfo(g_VideoMode.GetWindow(), &wminfo);
+#else
+	const int ret = SDL_GetWMInfo(&wminfo);
+#endif
+	if(ret == 1)
+		return true;
+
+	if(ret == -1)
+	{
+		debug_printf(L"SDL_GetWMInfo failed\n");
+		return false;
+	}
+	if(ret == 0)
+	{
+		debug_printf(L"SDL_GetWMInfo is not implemented on this platform\n");
+		return false;
+	}
+
+	debug_printf(L"SDL_GetWMInfo returned an unknown value: %d\n", ret);
+	return false;
+}
 
 /*
 Oh, boy, this is heavy stuff...
@@ -302,12 +329,7 @@ Status x11_clipboard_init()
 {
 	SDL_SysWMinfo info;
 
-	SDL_VERSION(&info.version);
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-	if(SDL_GetWindowWMInfo(g_VideoMode.GetWindow(), &info))
-#else
-	if(SDL_GetWMInfo(&info))
-#endif
+	if(get_wminfo(info))
 	{
 		/* Save the information for later use */
 		if(info.subsystem == SDL_SYSWM_X11)
@@ -405,38 +427,16 @@ static XcursorPixel cursor_pixel_to_x11_format(const XcursorPixel& bgra_pixel)
 	return ret;
 }
 
-static bool get_wminfo(SDL_SysWMinfo& wminfo)
-{
-	SDL_VERSION(&wminfo.version);
-	const int ret = SDL_GetWMInfo(&wminfo);
-	if(ret == 1)
-		return true;
-
-	if(ret == -1)
-	{
-		debug_printf(L"SDL_GetWMInfo failed\n");
-		return false;
-	}
-	if(ret == 0)
-	{
-		debug_printf(L"SDL_GetWMInfo is not implemented on this platform\n");
-		return false;
-	}
-
-	debug_printf(L"SDL_GetWMInfo returned an unknown value: %d\n", ret);
-	return false;
-}
-
 Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_cursor* cursor)
 {
-	debug_printf(L"Using Xcursor to sys_cursor_create %d x %d cursor\n", w, h);
+	debug_printf(L"sys_cursor_create: using Xcursor to create %d x %d cursor\n", w, h);
 	XcursorImage* image = XcursorImageCreate(w, h);
 	if(!image)
 		WARN_RETURN(ERR::FAIL);
 
 	const XcursorPixel* bgra_img_begin = reinterpret_cast<XcursorPixel*>(bgra_img);
 	std::transform(bgra_img_begin, bgra_img_begin + (w*h), image->pixels,
-				   cursor_pixel_to_x11_format);
+		cursor_pixel_to_x11_format);
 	image->xhot = hx;
 	image->yhot = hy;
 
@@ -474,18 +474,41 @@ Status sys_cursor_set(sys_cursor cursor)
 		if(!get_wminfo(wminfo))
 			WARN_RETURN(ERR::FAIL);
 
+		if(wminfo.subsystem != SDL_SYSWM_X11)
+			WARN_RETURN(ERR::FAIL);
+
+#if !SDL_VERSION_ATLEAST(1, 3, 0)
 		wminfo.info.x11.lock_func();
+#endif
+		
 		SDL_ShowCursor(SDL_ENABLE);
-		// wminfo.info.x11.window is sometimes 0, in which case
-		// it causes a crash; in these cases use fswindow instead
-		Window& window = wminfo.info.x11.window ? wminfo.info.x11.window : wminfo.info.x11.fswindow;
+
+		Window window;
+		if(wminfo.info.x11.window)
+			window = wminfo.info.x11.window;
+		else
+		{
+#if !SDL_VERSION_ATLEAST(1, 3, 0)
+			// wminfo.info.x11.window is sometimes 0, in which case
+			// it causes a crash; in these cases use fswindow instead
+			window = wminfo.info.x11.fswindow;
+#else
+			WARN_RETURN(ERR::FAIL);
+#endif
+		}
+
 		XDefineCursor(wminfo.info.x11.display, window,
-					  static_cast<sys_cursor_impl*>(cursor)->cursor);
+			static_cast<sys_cursor_impl*>(cursor)->cursor);
+#if !SDL_VERSION_ATLEAST(1, 3, 0)
 		wminfo.info.x11.unlock_func();
+#else
+		// SDL 1.3 doesn't have a lockable event thread, so it just uses
+		// XSync directly instead of lock_func/unlock_func
+		XSync(wminfo.info.x11.display, False);
+#endif
 	}
 
-	return INFO::OK;
-}
+	return INFO::OK;}
 
 // destroys the indicated cursor and frees its resources. if it is
 // currently the system cursor, the default cursor is restored first.

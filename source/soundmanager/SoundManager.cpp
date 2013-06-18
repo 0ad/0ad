@@ -649,7 +649,7 @@ void CSoundManager::SetMusicEnabled (bool isEnabled)
 	m_MusicEnabled = isEnabled;
 }
 
-void CSoundManager::PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source)
+void CSoundManager::PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source, bool ownedSound)
 {
 	// Make sure the sound group is loaded
 	CSoundGroup* group;
@@ -671,7 +671,7 @@ void CSoundManager::PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, e
 	}
 
 	// Failed to load group -> do nothing
-	if ( group )
+	if ( group && ( ownedSound || !group->TestFlag( eOwnerOnly ) ) )
 		group->PlayNext(sourcePos, source);
 }
 

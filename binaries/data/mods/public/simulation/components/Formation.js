@@ -243,8 +243,17 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 
 	// Reposition the formation if we're told to or if we don't already have a position
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (moveCenter || !cmpPosition.IsInWorld())
+	var inWorld = cmpPosition.IsInWorld();
+	if (moveCenter || !inWorld)
+	{
 		cmpPosition.JumpTo(avgpos.x, avgpos.z);
+		// Don't make the formation controller entity show up in range queries
+		if (!inWorld)
+		{
+			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+			cmpRangeManager.SetEntityFlag(this.entity, "normal", false);
+		}
+	}
 
 	for (var i = 0; i < offsets.length; ++i)
 	{
@@ -287,7 +296,15 @@ Formation.prototype.MoveToMembersCenter = function()
 	var avgpos = this.ComputeAveragePosition(positions);
 
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	var inWorld = cmpPosition.IsInWorld();
 	cmpPosition.JumpTo(avgpos.x, avgpos.z);
+
+	// Don't make the formation controller show up in range queries
+	if (!inWorld)
+	{
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		cmpRangeManager.SetEntityFlag(this.entity, "normal", false);
+	}
 };
 
 Formation.prototype.ComputeFormationOffsets = function(active, columnar)
