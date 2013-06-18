@@ -100,6 +100,10 @@ Health.prototype.Kill = function()
 	this.Reduce(this.hitpoints);
 };
 
+/**
+ * Reduces entity's health by amount HP.
+ * Returns object of the form { "killed": false, "change": -12 }
+ */
 Health.prototype.Reduce = function(amount)
 {
 	var state = { "killed": false };
@@ -109,6 +113,7 @@ Health.prototype.Reduce = function(amount)
 		if (cmpRangeManager)
 			cmpRangeManager.SetEntityFlag(this.entity, "injured", true);
 	}
+	var oldHitpoints = this.hitpoints;
 	if (amount >= this.hitpoints)
 	{
 		// If this is the first time we reached 0, then die.
@@ -141,21 +146,19 @@ Health.prototype.Reduce = function(amount)
 				Engine.DestroyEntity(this.entity);
 			}
 
-			var old = this.hitpoints;
 			this.hitpoints = 0;
 
-			Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
+			Engine.PostMessage(this.entity, MT_HealthChanged, { "from": oldHitpoints, "to": this.hitpoints });
 		}
 
 	}
 	else
 	{
-		var old = this.hitpoints;
 		this.hitpoints -= amount;
 
-		Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
+		Engine.PostMessage(this.entity, MT_HealthChanged, { "from": oldHitpoints, "to": this.hitpoints });
 	}
-	state.change = this.hitpoints - old;
+	state.change = this.hitpoints - oldHitpoints;
 	return state;
 };
 
