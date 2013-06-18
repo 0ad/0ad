@@ -42,10 +42,14 @@ Armour.prototype.SetInvulnerability = function(invulnerability)
 	this.invulnerable = invulnerability;
 };
 
+/**
+ * Take damage according to the entity's armor.
+ * Returns object of the form { "killed": false, "change": -12 }
+ */
 Armour.prototype.TakeDamage = function(hack, pierce, crush)
 {
 	if (this.invulnerable) 
-		return { "killed": false };
+		return { "killed": false, "change": 0 };
 
 	// Adjust damage values based on armour; exponential armour: damage = attack * 0.9^armour
 	var armourStrengths = this.GetArmourStrengths();

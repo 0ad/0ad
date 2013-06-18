@@ -100,6 +100,10 @@ Health.prototype.Kill = function()
 	this.Reduce(this.hitpoints);
 };
 
+/**
+ * Reduces entity's health by amount HP.
+ * Returns object of the form { "killed": false, "change": -12 }
+ */
 Health.prototype.Reduce = function(amount)
 {
 	var state = { "killed": false };
