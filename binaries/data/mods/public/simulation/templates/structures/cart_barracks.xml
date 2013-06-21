@@ -28,6 +28,9 @@
       units/cart_infantry_archer_b
       units/cart_cavalry_javelinist_b
     </Entities>
+    <Technologies datatype="tokens">
+	  -unlock_champion_units
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/carthaginians/barracks.xml</Actor>
