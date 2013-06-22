@@ -965,7 +965,7 @@ EconomyManager.prototype.buildMarket = function(gameState, queues){
 	if (this.numWorkers > 50  && gameState.currentPhase() >= 2 ) {
 		if (queues.economicBuilding.countTotalQueuedUnitsWithClass("BarterMarket") === 0 &&
 			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market")) === 0){
-			//only ever build one mill/CC/market at a time
+			//only ever build one storehouse/CC/market at a time
 			queues.economicBuilding.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_market"));
 		}
 	}
@@ -976,7 +976,7 @@ EconomyManager.prototype.buildFarmstead = function(gameState, queues){
 	if (gameState.getTimeElapsed() > this.farmsteadStartTime) {
 		if (queues.economicBuilding.countTotalQueuedUnitsWithClass("DropsiteFood") === 0 &&
 			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_farmstead")) === 0){
-			//only ever build one mill/CC/market at a time
+			//only ever build one storehouse/CC/market at a time
 			queues.economicBuilding.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_farmstead"));
 		}
 	}
@@ -1024,9 +1024,9 @@ EconomyManager.prototype.tryBartering = function(gameState){
 // TODO: while the algorithm for dropsite placement is quite good
 // This is bad. Choosing when to place dropsites should be improved.
 EconomyManager.prototype.buildDropsites = function(gameState, queues){
-	if ( queues.dropsites.totalLength() === 0 && gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_mill")) === 0 &&
+	if ( queues.dropsites.totalLength() === 0 && gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_storehouse")) === 0 &&
 		 gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_civil_centre")) === 0){
-			//only ever build one mill/CC/market at a time
+			//only ever build one storehouse/CC/market at a time
 		if (gameState.getTimeElapsed() > 30 * 1000){
 			var built = false;
 			for (var resource in this.dropsiteNumbers){
@@ -1037,7 +1037,7 @@ EconomyManager.prototype.buildDropsites = function(gameState, queues){
 					if (spot[0] === true){
 						queues.dropsites.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_civil_centre", spot[1]));
 					} else {
-						queues.dropsites.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_mill", spot[1]));
+						queues.dropsites.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_storehouse", spot[1]));
 					}
 					built = true;
 					break;
@@ -1052,7 +1052,7 @@ EconomyManager.prototype.buildDropsites = function(gameState, queues){
 						if (spot[0] === true){
 							queues.dropsites.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_civil_centre", spot[1]));
 						} else {
-							queues.dropsites.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_mill", spot[1]));
+							queues.dropsites.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_storehouse", spot[1]));
 						}
 						built = true;
 						break;

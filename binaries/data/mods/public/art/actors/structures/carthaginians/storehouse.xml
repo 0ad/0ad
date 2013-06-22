@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/kart_storehouse.dae</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/storehouse.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/kart_struct.dds" name="baseTex"/>
+        <texture file="structural/kart_struct_norm.png" name="normTex"/>
+        <texture file="structural/kart_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/kart_storehouse.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/storehouse.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_spec.xml</material>
+</actor>

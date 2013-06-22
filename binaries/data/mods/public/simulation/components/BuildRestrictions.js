@@ -45,7 +45,7 @@ BuildRestrictions.prototype.Schema =
 			"<value>Temple</value>" +
 			"<value>Wall</value>" +
 			"<value>Fence</value>" +
-			"<value>Mill</value>" +
+			"<value>Storehouse</value>" +
 			"<value>Stoa</value>" +
 			"<value>Resource</value>" +
 			"<value>Special</value>" +

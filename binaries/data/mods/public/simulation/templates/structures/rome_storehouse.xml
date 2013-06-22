@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_economic_storehouse">
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Receptaculum</SpecificName>
+    <History>Resources and building materials were kept in warehouses.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/romans/storehouse.xml</Actor>
+  </VisualActor>
+</Entity>
