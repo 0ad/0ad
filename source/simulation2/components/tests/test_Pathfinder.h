@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,7 +68,7 @@ public:
 		CMapReader* mapReader = new CMapReader(); // it'll call "delete this" itself
 
 		LDR_BeginRegistering();
-		mapReader->LoadMap(L"maps/scenarios/Median Oasis.pmp", &terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+		mapReader->LoadMap(L"maps/scenarios/Median Oasis 01.pmp", &terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();
 		TS_ASSERT_OK(LDR_NonprogressiveLoad());
