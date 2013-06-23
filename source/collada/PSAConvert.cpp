@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -81,6 +81,8 @@ public:
 
 			float timeStart = 0, timeEnd = 0;
 			GetAnimationRange(converter.GetDocument(), skeleton, controllerInstance, timeStart, timeEnd);
+			// To catch broken animations / skeletons.xml:
+			REQUIRE(timeEnd > timeStart, "animation end frame must come after start frame");
 
 			// Count frames; don't include the last keyframe
 			size_t frameCount = (size_t)((timeEnd - timeStart) / frameLength - 0.5f);
