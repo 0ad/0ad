@@ -142,7 +142,7 @@ for (var style in wallScaleByType)
 	wallStyles[style]["fortress"] = new WallElement("fortress", "structures/" + civ + "_fortress", PI, 0, 4.5*wallScaleByType[style]);
 	wallStyles[style]["house"] = new WallElement("house", "structures/" + civ + "_house", PI, 0, 4.5*wallScaleByType[style]);
 	wallStyles[style]["market"] = new WallElement("market", "structures/" + civ + "_market", PI, 0, 4.5*wallScaleByType[style]);
-	wallStyles[style]["mill"] = new WallElement("mill", "structures/" + civ + "_mill", PI, 0, 4.5*wallScaleByType[style]);
+	wallStyles[style]["storehouse"] = new WallElement("storehouse", "structures/" + civ + "_storehouse", PI, 0, 4.5*wallScaleByType[style]);
 	wallStyles[style]["temple"] = new WallElement("temple", "structures/" + civ + "_temple", PI, 0, 4.5*wallScaleByType[style]);
 	// Generic space/gap wall elements
 	wallStyles[style]["space1"] = new WallElement("space1", undefined, 0*PI, wallScaleByType[style]);

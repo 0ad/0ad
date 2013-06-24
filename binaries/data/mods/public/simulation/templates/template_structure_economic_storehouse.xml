@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_economic">
+  <BuildRestrictions>
+    <Category>Storehouse</Category>
+  </BuildRestrictions>
+  <Cost>
+    <BuildTime>40</BuildTime>
+    <Resources>
+      <wood>100</wood>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="15.0" depth="15.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>800</Max>
+    <SpawnEntityOnDeath>rubble/rubble_stone_3x3</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <GenericName>Storehouse</GenericName>
+    <Tooltip>Dropsite for wood, stone, and metal resources. Research gathering improvements for these resources.</Tooltip>
+    <Classes datatype="tokens">Storehouse Village -ConquestCritical DropsiteWood DropsiteMetal DropsiteStone</Classes>
+    <Icon>structures/storehouse.png</Icon>
+  </Identity>
+  <Loot>
+    <xp>100</xp>
+    <food>0</food>
+    <wood>10</wood>
+    <stone>0</stone>
+    <metal>0</metal>
+  </Loot>
+  <Obstruction>
+    <Static width="13.0" depth="13.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Technologies datatype="tokens">
+      pair_gather_01
+      pair_gather_02
+      pair_gather_03
+      pair_gather_wood_01
+    </Technologies>
+  </ProductionQueue>
+  <RallyPoint disable=""/>
+  <ResourceDropsite>
+    <Types>wood stone metal</Types>
+  </ResourceDropsite>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_storehouse.xml</select>
+      <constructed>interface/complete/building/complete_storehouse.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>16</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
+  <Vision>
+    <Range>20</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
+  </VisualActor>
+</Entity>

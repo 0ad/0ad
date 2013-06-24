@@ -5,7 +5,7 @@
     <variant frequency="1" name="Blacksmith">
       <mesh>structural/temp_blacksmith.dae</mesh>
       <props>
-        <prop actor="particle/smoke.xml" attachpoint="smoke"/>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
       </props>
       <textures>

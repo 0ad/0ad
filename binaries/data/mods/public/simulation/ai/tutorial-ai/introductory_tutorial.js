@@ -18,7 +18,7 @@ var introductoryTutorial = [
 	"count": 5
 },
 {
-	"instructions": "Select the newly trained Hoplites and assign them to build a mill beside some nearby trees. They will begin to gather wood when it's constructed.",
+	"instructions": "Select the newly trained Hoplites and assign them to build a storehouse beside some nearby trees. They will begin to gather wood when it's constructed.",
 	"trigger": "entity_count",
 	"template": "structures/spart_house",
 	"count": 1
@@ -26,7 +26,7 @@ var introductoryTutorial = [
 {
 	"instructions": "Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd in the row) in the Civil Centre.",
 	"trigger": "entity_count",
-	"template": "structures/spart_mill",
+	"template": "structures/spart_storehouse",
 	"count": 1
 },
 {

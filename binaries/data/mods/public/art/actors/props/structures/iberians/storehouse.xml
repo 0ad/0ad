@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="storehouse-props-a">
+      <mesh>props/iber_storehouse_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="storehouse-props-b">
+      <mesh>props/iber_storehouse_b.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+
+</actor>

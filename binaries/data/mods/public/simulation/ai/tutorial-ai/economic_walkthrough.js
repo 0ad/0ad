@@ -50,7 +50,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 95,
-				"instructions": "Send one citizen soldier to gather stone, send 2 others to build a mill near the southern trees."
+				"instructions": "Send one citizen soldier to gather stone, send 2 others to build a storehouse near the southern trees."
 			},
 			{
 				"trigger": "time",
@@ -95,7 +95,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 170,
-				"instructions": "Move your woodcutters to the trees near the mill so they dont have to walk as far."
+				"instructions": "Move your woodcutters to the trees near the storehouse so they dont have to walk as far."
 			},
 			{
 				"trigger": "time",
@@ -145,7 +145,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 295,
-				"instructions": "Research the stone mining technology from the mill."
+				"instructions": "Research the stone mining technology from the storehouse."
 			},
 			{
 				"trigger": "time",
