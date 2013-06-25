@@ -73,7 +73,7 @@ public:
 	bool m_RelativeToGround; // whether m_YOffset is relative to terrain/water plane, or an absolute height
 
 	entity_angle_t m_RotX, m_RotY, m_RotZ;
-	float m_InterpolatedRotY, m_PrevInterpolatedRotY; // not serialized
+	float m_InterpolatedRotY; // not serialized
 
 	static std::string GetSchema()
 	{
@@ -122,7 +122,7 @@ public:
 		m_RotYSpeed = paramNode.GetChild("TurnRate").ToFixed().ToFloat();
 
 		m_RotX = m_RotY = m_RotZ = entity_angle_t::FromInt(0);
-		m_InterpolatedRotY = m_PrevInterpolatedRotY = 0;
+		m_InterpolatedRotY = 0;
 	}
 
 	virtual void Deinit()
@@ -328,7 +328,6 @@ public:
 	{
 		m_RotY = y;
 		m_InterpolatedRotY = m_RotY.ToFloat();
-		m_PrevInterpolatedRotY = m_InterpolatedRotY;
 
 		AdvertisePositionChanges();
 	}
@@ -439,16 +438,9 @@ public:
 			// Store the positions from the turn before
 			m_PrevX = m_LastX;
 			m_PrevZ = m_LastZ;
-
+			
 			m_LastX = m_X;
 			m_LastZ = m_Z;
-
-			// HACK: Rotation interpolation can take a long time, so advertise position
-			// changes again to force recomputation of the transformation matrix
-			// if the rotation was not done yet.
-			if (fabs(m_PrevInterpolatedRotY - m_InterpolatedRotY) > 0.001f)
-				AdvertisePositionChanges();
-			m_PrevInterpolatedRotY = m_InterpolatedRotY;
 
 			break;
 		}
