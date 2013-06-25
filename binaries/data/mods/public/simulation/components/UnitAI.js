@@ -2564,18 +2564,9 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 
 UnitAI.prototype.OnDestroy = function()
 {
-	// Clean up any timers that are now obsolete
-	this.StopTimer();
+	// Switch to an empty state to let states execute their leave handlers.
+	UnitFsm.SwitchToNextState(this, "");
 
-	// clear up the ResourceSupply gatherer count.
-	if (this.gatheringTarget)
-	{
-		var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-		if (cmpSupply)
-			cmpSupply.RemoveGatherer(this.entity);
-		delete this.gatheringTarget;
-	}
-	
 	// Clean up range queries
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.losRangeQuery)
