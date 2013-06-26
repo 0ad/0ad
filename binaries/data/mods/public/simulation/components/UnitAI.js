@@ -364,10 +364,10 @@ var UnitFsmSpec = {
 			this.FinishOrder();
 			return;
 		}
-		this.attackType = type;
+		this.order.data.attackType = type;
 
 		// If we are already at the target, try attacking it from here
-		if (this.CheckTargetRange(this.order.data.target, IID_Attack, this.attackType))
+		if (this.CheckTargetRange(this.order.data.target, IID_Attack, this.order.data.attackType))
 		{
 			this.StopMoving();
 			// For packable units within attack range:
@@ -428,7 +428,7 @@ var UnitFsmSpec = {
 		}
 
 		// Try to move within attack range
-		if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
+		if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.order.data.attackType))
 		{
 			// We've started walking to the given point
 			if (this.IsAnimal())
@@ -1334,9 +1334,9 @@ var UnitFsmSpec = {
 			"UNPACKING": {
 				"enter": function() {
 					// If we're not in range yet (maybe we stopped moving), move to target again
-					if (!this.CheckTargetRange(this.order.data.target, IID_Attack, this.attackType))
+					if (!this.CheckTargetRange(this.order.data.target, IID_Attack, this.order.data.attackType))
 					{
-						if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
+						if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.order.data.attackType))
 							this.SetNextState("APPROACHING");
 						else
 						{
@@ -1367,7 +1367,7 @@ var UnitFsmSpec = {
 			"ATTACKING": {
 				"enter": function() {
 					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-					this.attackTimers = cmpAttack.GetTimers(this.attackType);
+					this.attackTimers = cmpAttack.GetTimers(this.order.data.attackType);
 
 					// If the repeat time since the last attack hasn't elapsed,
 					// delay this attack to avoid attacking too fast.
@@ -1379,8 +1379,8 @@ var UnitFsmSpec = {
 						prepare = Math.max(prepare, repeatLeft);
 					}
 
-					// add prefix + no Capital First Letter for this.attackType
-					var attackName = "attack_" + this.attackType.toLowerCase();
+					// add prefix + no capital first letter for attackType
+					var attackName = "attack_" + this.order.data.attackType.toLowerCase();
 					this.SelectAnimation(attackName, false, 1.0, "attack");
 					this.SetAnimationSync(prepare, this.attackTimers.repeat);
 					this.StartTimer(prepare, this.attackTimers.repeat);
@@ -1402,14 +1402,14 @@ var UnitFsmSpec = {
 					if (this.TargetIsAlive(target) && this.CanAttack(target, this.order.data.forceResponse || null))
 					{
 						// Check we can still reach the target
-						if (this.CheckTargetRange(target, IID_Attack, this.attackType))
+						if (this.CheckTargetRange(target, IID_Attack, this.order.data.attackType))
 						{
 							var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 							this.lastAttacked = cmpTimer.GetTime() - msg.lateness;
 
 							this.FaceTowardsTarget(target);
 							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-							cmpAttack.PerformAttack(this.attackType, target);
+							cmpAttack.PerformAttack(this.order.data.attackType, target);
 
 							if (this.resyncAnimation)
 							{
@@ -1422,7 +1422,7 @@ var UnitFsmSpec = {
 						// Can't reach it - try to chase after it
 						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
 						{
-							if (this.MoveToTargetRange(target, IID_Attack, this.attackType))
+							if (this.MoveToTargetRange(target, IID_Attack, this.order.data.attackType))
 							{
 								this.SetNextState("COMBAT.CHASING");
 								return;
@@ -3518,7 +3518,7 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
 	// Stop if we're in hold-ground mode and it's too far from the holding point
 	if (this.GetStance().respondHoldGround)
 	{
-		if (!this.CheckTargetDistanceFromHeldPosition(target, iid, this.attackType))
+		if (!this.CheckTargetDistanceFromHeldPosition(target, iid, this.order.data.attackType))
 			return true;
 	}
 

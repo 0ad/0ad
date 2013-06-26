@@ -180,7 +180,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	else if (isEnemy && !this.HasTerritory("enemy"))
 		territoryType = "enemy";
 	else
-		territoryFail = false
+		territoryFail = false;
 
 	if (territoryFail)
 	{
