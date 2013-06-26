@@ -3447,7 +3447,8 @@ UnitAI.prototype.AttackEntityInZone = function(ents, forceResponse)
 	for each (var target in ents)
 	{
 		var type = this.GetBestAttackAgainst(target);
-		if (this.CanAttack(target, forceResponse) && this.CheckTargetDistanceFromHeldPosition(target, IID_Attack, type))
+		if (this.CanAttack(target, forceResponse) && this.CheckTargetDistanceFromHeldPosition(target, IID_Attack, type)
+		    && (this.GetStance().respondChaseBeyondVision || this.CheckTargetIsInVisionRange(target)))
 		{
 			this.PushOrderFront("Attack", { "target": target, "force": false, "forceResponse": forceResponse });
 			return true;
