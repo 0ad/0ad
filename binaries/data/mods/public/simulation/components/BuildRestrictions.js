@@ -78,7 +78,7 @@ BuildRestrictions.prototype.Init = function()
  *	2. Check foundation
  *		a. Doesn't obstruct foundation-blocking entities
  *		b. On valid terrain, based on passability class
- *	3. Territory type is allowed
+ *	3. Territory type is allowed (see note below)
  *	4. Dock is on shoreline and facing into water
  *	5. Distance constraints satisfied
  *
@@ -87,6 +87,10 @@ BuildRestrictions.prototype.Init = function()
  *		"success":	true iff the placement is valid, else false
  *		"message":	message to display in UI for invalid placement, else empty string
  *  }
+ *
+ * Note: The entity which is used to check this should be a preview entity
+ *  (template name should be "preview|"+templateName), as otherwise territory
+ *  checks for buildings with territory influence will not work as expected.
  */
 BuildRestrictions.prototype.CheckPlacement = function()
 {

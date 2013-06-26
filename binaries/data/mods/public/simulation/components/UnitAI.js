@@ -1180,7 +1180,8 @@ var UnitFsmSpec = {
 
 			"leave": function() {
 				var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-				rangeMan.DisableActiveQuery(this.losRangeQuery);
+				if (this.losRangeQuery)
+					rangeMan.DisableActiveQuery(this.losRangeQuery);
 				if (this.losHealRangeQuery)
 					rangeMan.DisableActiveQuery(this.losHealRangeQuery);
 
