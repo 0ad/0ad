@@ -20,7 +20,7 @@ Cost.prototype.Schema =
 		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
 	"<element name='BuildTime' a:help='Time taken to construct/train this unit (in seconds)'>" +
-		"<ref name='positiveDecimal'/>" +
+		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<element name='Resources' a:help='Resource costs to construct/train this unit'>" +
 		"<interleave>" +
