@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -133,7 +133,8 @@ void CTerrain::CalcPositionFixed(ssize_t i, ssize_t j, CFixedVector3D& pos) cons
 	ssize_t hj = clamp(j, (ssize_t)0, m_MapSize-1);
 	u16 height = m_Heightmap[hj*m_MapSize + hi];
 	pos.X = fixed::FromInt(i) * (int)TERRAIN_TILE_SIZE;
-	pos.Y = fixed::FromInt(height) / (int)HEIGHT_UNITS_PER_METRE;
+	// fixed max value is 32767, but height is a u16, so divide by two to avoid overflow
+	pos.Y = fixed::FromInt(height/ 2 ) / ((int)HEIGHT_UNITS_PER_METRE / 2);
 	pos.Z = fixed::FromInt(j) * (int)TERRAIN_TILE_SIZE;
 }
 

@@ -54,7 +54,7 @@ function displaySingle(entState, template)
 		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
 
-		var hitpoints = entState.hitpoints + " / " + entState.maxHitpoints;
+		var hitpoints = Math.ceil(entState.hitpoints) + " / " + entState.maxHitpoints;
 		getGUIObjectByName("healthStats").caption = hitpoints;
 		getGUIObjectByName("healthSection").hidden = false;
 	}

@@ -117,9 +117,6 @@ GarrisonHolder.prototype.AllowedToGarrison = function(entity)
  */
 GarrisonHolder.prototype.Garrison = function(entity)
 {
-	var entityPopCost = (Engine.QueryInterface(entity, IID_Cost)).GetPopCost();
-	var entityClasses = (Engine.QueryInterface(entity, IID_Identity)).GetClassesList();
-
 	if (!this.HasEnoughHealth())
 		return false;
 
@@ -130,28 +127,27 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if (this.GetCapacity() < this.spaceOccupied + 1)
 		return false;
 
+	var cmpPosition = Engine.QueryInterface(entity, IID_Position);
+	if (!cmpPosition)
+		return false;
+
 	if (!this.timer && this.GetHealRate() > 0)
 	{
  		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
 	}
 
-	var cmpPosition = Engine.QueryInterface(entity, IID_Position);
-	if (cmpPosition)
-	{
-		// Actual garrisoning happens here
-		this.entities.push(entity);
-		this.spaceOccupied += 1;
-		cmpPosition.MoveOutOfWorld();
-		this.UpdateGarrisonFlag();
-		var cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
-		if (cmpProductionQueue)
-			cmpProductionQueue.PauseProduction();
+	// Actual garrisoning happens here
+	this.entities.push(entity);
+	this.spaceOccupied += 1;
+	cmpPosition.MoveOutOfWorld();
+	this.UpdateGarrisonFlag();
+	var cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
+	if (cmpProductionQueue)
+		cmpProductionQueue.PauseProduction();
 
-		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
-		return true;
-	}
-	return false;
+	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+	return true;
 };
 
 /**

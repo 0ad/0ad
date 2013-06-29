@@ -350,7 +350,7 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 	}
 	
 	// Check if we should exit and enter the current state due to the reenter parameter. If so we go up 1 level
-	if (obj.fsmReenter && equalPrefix === toState.length)
+	if (obj.fsmReenter && equalPrefix > 0 && equalPrefix === toState.length)
 		--equalPrefix;
 	
 	for (var i = fromState.length-1; i >= equalPrefix; --i)

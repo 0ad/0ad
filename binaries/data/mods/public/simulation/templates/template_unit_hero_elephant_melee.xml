@@ -32,6 +32,15 @@
 Good sieging capability. "Stench" Aura vs. Horses. Can run amok. Countered by Swordsmen and Skirmishers.</Tooltip>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <AlwaysVisible/>
+      <Texture>
+        <MainTexture>star/256x256.png</MainTexture>
+        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <TrainingRestrictions>
     <Category>Hero</Category>
   </TrainingRestrictions>

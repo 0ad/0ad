@@ -11,16 +11,29 @@
   </group>
   <group>
     <variant frequency="1" name="kart-shield-d">
-      <textures><texture file="props/shield/kart_round_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_d.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="kart-shield-i">
-      <textures><texture file="props/shield/kart_round_i.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_i.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="kart-shield-j">
-      <textures><texture file="props/shield/kart_round_j.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_j.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="kart-shield-p">
-      <textures><texture file="props/shield/kart_round_p.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_p.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="aspis-plain">
+      <textures>
+        <texture file="props/shield/aspis_player_plain.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>
