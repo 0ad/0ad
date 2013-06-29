@@ -8,11 +8,11 @@ Health.prototype.Schema =
 		"<DeathType>corpse</DeathType>" +
 	"</a:example>" +
 	"<element name='Max' a:help='Maximum hitpoints'>" +
-		"<data type='decimal'/>" +
+		"<data type='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<optional>" +
 		"<element name='Initial' a:help='Initial hitpoints. Default if unspecified is equal to Max'>" +
-			"<data type='decimal'/>" +
+			"<data type='nonNegativeDecimal'/>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
