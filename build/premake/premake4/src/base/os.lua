@@ -19,6 +19,41 @@
 -- Scan the well-known system locations for a particular library.
 --
 
+	local function parse_ld_so_conf(conf_file)
+		-- Linux ldconfig file parser to find system library locations
+		local first, last
+		local dirs = { }
+		local file = io.open(conf_file)
+		-- Handle missing ld.so.conf (BSDs) gracefully
+		if file == nil then
+			return dirs
+		end
+		for line in file:lines() do
+			-- ignore comments
+			first = line:find("#", 1, true)
+			if first ~= nil then
+				line = line:sub(1, first - 1)
+			end
+
+			if line ~= "" then
+				-- check for include files
+				first, last = line:find("include%s+")
+				if first ~= nil then
+					-- found include glob
+					local include_glob = line:sub(last + 1)
+					local includes = os.matchfiles(include_glob)
+					for _, v in ipairs(includes) do
+						dirs = table.join(dirs, parse_ld_so_conf(v))
+					end
+				else
+					-- found an actual ld path entry
+					table.insert(dirs, line)
+				end
+			end
+		end
+		return dirs
+	end
+
 	function os.findlib(libname)
 		local path, formats
 		
@@ -37,17 +72,17 @@
 				formats = { "lib%s.so", "%s.so" }
 				path = os.getenv("LD_LIBRARY_PATH") or ""
 	
-				io.input("/etc/ld.so.conf")
-				if io.input() then
-					for line in io.lines() do
-						path = path .. ":" .. line
-					end
-					io.input():close()
+				for _, v in ipairs(parse_ld_so_conf("/etc/ld.so.conf")) do
+					path = path .. ":" .. v
 				end
 			end
 			
 			table.insert(formats, "%s")
-			path = (path or "") .. ":/lib:/usr/lib:/usr/local/lib"
+			path = path or ""
+			if os.is64bit() then
+				path = path .. ":/lib64:/usr/lib64/:usr/local/lib64"
+			end
+			path = path .. ":/lib:/usr/lib:/usr/local/lib"
 		end
 		
 		for _, fmt in ipairs(formats) do
@@ -78,6 +113,43 @@
 	end
 	
 	
+
+--
+-- Determine if the current system is running a 64-bit architecture
+--
+
+	local _64BitHostTypes = {
+		"x86_64",
+		"ia64",
+		"amd64",
+		"ppc64",
+		"powerpc64",
+		"sparc64"
+	}
+
+	function os.is64bit()
+
+		-- Identify the system
+		local arch
+		if _OS == "windows" then
+			arch = os.getenv("PROCESSOR_ARCHITECTURE")
+		elseif _OS == "macosx" then
+			arch = os.outputof("echo $HOSTTYPE")
+		else
+			arch = os.outputof("uname -m")
+		end
+
+		-- Check our known 64-bit identifiers
+		arch = arch:lower()
+		for _, hosttype in ipairs(_64BitHostTypes) do
+			if arch:find(hosttype) then
+				return true
+			end
+		end
+		return false
+	end
+
+
 
 --
 -- The os.matchdirs() and os.matchfiles() functions
