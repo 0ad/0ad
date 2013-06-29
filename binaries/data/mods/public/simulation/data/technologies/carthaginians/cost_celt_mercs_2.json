@@ -1,0 +1,13 @@
+{
+	"pair": "carthaginians/pair_celt_mercs_2",
+	"genericName": "Gallic Mercenary General",
+	"description": "Celtic mercenaries have their metal cost decreased.",
+	"cost": {"food": 200, "wood": 0, "stone": 0, "metal": 200},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "helmet_corinthian_gold.png",
+	"researchTime": 30,
+	"tooltip": "Hire a Gallic mercenary general to reduce metal cost -25% for Celtic mercenaries.",
+	"modifications": [{"value": "Cost/Resources/metal", "multiplier": 0.75}],
+	"affects": ["Celt Mercenary"]
+}

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Category>Embassy</Category>
+  </BuildRestrictions>
   <Cost>
     <PopulationBonus>0</PopulationBonus>
     <Resources>
@@ -38,6 +41,13 @@
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
   </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_gymnasium.xml</select>
+      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <TerritoryInfluence>
     <Radius>25</Radius>
   </TerritoryInfluence>

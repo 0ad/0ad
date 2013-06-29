@@ -51,6 +51,7 @@ BuildRestrictions.prototype.Schema =
 			"<value>Special</value>" +
 			"<value>Wonder</value>" +
 			"<value>Apadana</value>" +
+			"<value>Embassy</value>" +
 		"</choice>" +
 	"</element>" +
 	"<optional>" +

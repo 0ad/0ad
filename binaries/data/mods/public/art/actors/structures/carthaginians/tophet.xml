@@ -5,10 +5,14 @@
     <variant frequency="100" name="Carthage Tophet">
       <mesh>structural/kart_tophet.dae</mesh>
       <props>
-        <prop actor="particle/flame.xml" attachpoint="fire1"/>
-        <prop actor="particle/flame.xml" attachpoint="fire2"/>
-        <prop actor="particle/smoke.xml" attachpoint="fire1"/>
-        <prop actor="particle/smoke.xml" attachpoint="fire2"/>
+        <prop actor="particle/sparks.xml" attachpoint="fire1"/>
+        <prop actor="particle/flame_firepit_1.xml" attachpoint="fire1"/>
+        <prop actor="particle/flame_firepit_2.xml" attachpoint="fire1"/>
+        <prop actor="particle/smoke_small_light.xml" attachpoint="fire1"/>
+        <prop actor="particle/sparks.xml" attachpoint="fire2"/>
+        <prop actor="particle/flame_firepit_1.xml" attachpoint="fire2"/>
+        <prop actor="particle/flame_firepit_2.xml" attachpoint="fire2"/>
+        <prop actor="particle/smoke_small_light.xml" attachpoint="fire2"/>
         <prop actor="props/structures/carthaginians/tophet_palms.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
       </props>
@@ -29,6 +33,8 @@
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/carthaginians/tophet_palms.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+        <prop actor="" attachpoint="fire1"/>
+        <prop actor="" attachpoint="fire2"/>
       </props>
     </variant>
   </group>

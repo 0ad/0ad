@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunset</SkySet>
-		<SunColour r="1.24922" g="1.03367" b="0.67115"/>
+		<SunColour r="1.24922" g="1.02877" b="0.67115"/>
 		<SunElevation angle="0.34668"/>
 		<SunRotation angle="-2.51573"/>
 		<TerrainAmbientColour r="0.329412" g="0.403922" b="0.576471"/>
@@ -19,7 +19,7 @@
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>26.859</Height>
 				<Shininess>150</Shininess>
-				<Waviness>8</Waviness>
+				<Waviness>8.99414</Waviness>
 				<Murkiness>0.84082</Murkiness>
 				<Tint r="0" g="0.501961" b="0.74902"/>
 				<ReflectionTint r="0.866667" g="0.737255" b="0.466667"/>
@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="591.835" y="147.272" z="1333.33"/>
-		<Rotation angle="0"/>
+		<Position x="626.758" y="133.525" z="1303.81"/>
+		<Rotation angle="-0.00498114"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -3871,7 +3871,7 @@
 		<Entity uid="735">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="825.41901" z="1308.38868"/>
+			<Position x="784.41059" z="1278.94861"/>
 			<Orientation y="-2.99128"/>
 		</Entity>
 		<Entity uid="736">
@@ -4323,6 +4323,27 @@
 			<Position x="690.33478" z="1309.05738"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="43798"/>
+		</Entity>
+		<Entity uid="820">
+			<Template>structures/athen_fortress</Template>
+			<Player>1</Player>
+			<Position x="618.41114" z="1541.82605"/>
+			<Orientation y="2.0878"/>
+			<Actor seed="33270"/>
+		</Entity>
+		<Entity uid="821">
+			<Template>structures/athen_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="600.62104" z="1235.13111"/>
+			<Orientation y="-0.85358"/>
+			<Actor seed="23212"/>
+		</Entity>
+		<Entity uid="822">
+			<Template>structures/athen_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="488.88093" z="1236.01124"/>
+			<Orientation y="-2.96073"/>
+			<Actor seed="32484"/>
 		</Entity>
 	</Entities>
 	<Paths/>
