@@ -2,13 +2,17 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
 		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
 		<SunElevation angle="0.825282"/>
 		<SunRotation angle="-0.374291"/>
 		<TerrainAmbientColour r="0.313726" g="0.392157" b="0.54902"/>
 		<UnitsAmbientColour r="0.384314" g="0.411765" b="0.454902"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -22,9 +26,16 @@
 				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="842.538" y="131.405" z="147.513"/>
+		<Position x="390.945" y="77.664" z="285.231"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -148,7 +159,7 @@
 		<Entity uid="26">
 			<Template>structures/cart_defense_tower</Template>
 			<Player>1</Player>
-			<Position x="502.00577" z="408.68036"/>
+			<Position x="461.0788" z="401.33158"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="27">
@@ -1211,7 +1222,7 @@
 		<Entity uid="232">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="375.45502" z="363.84018"/>
+			<Position x="366.21833" z="367.54758"/>
 			<Orientation y="-0.21781"/>
 		</Entity>
 		<Entity uid="233">
@@ -1253,7 +1264,7 @@
 		<Entity uid="239">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="374.50617" z="383.71903"/>
+			<Position x="392.16941" z="403.4344"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="240">
@@ -5732,6 +5743,20 @@
 			<Player>2</Player>
 			<Position x="59.9716" z="659.9513"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1082">
+			<Template>structures/cart_wonder</Template>
+			<Player>1</Player>
+			<Position x="387.4798" z="320.82233"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="6296"/>
+		</Entity>
+		<Entity uid="1083">
+			<Template>structures/cart_blacksmith</Template>
+			<Player>1</Player>
+			<Position x="387.71348" z="377.39087"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55270"/>
 		</Entity>
 	</Entities>
 	<Paths/>
