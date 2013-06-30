@@ -243,6 +243,7 @@ extern_lib_defs = {
 				-- are included for compatibility with different versions of Boost
 				android_names = { "boost_filesystem-gcc-mt", "boost_system-gcc-mt" },
 				unix_names = { os.findlib("boost_filesystem-mt") and "boost_filesystem-mt" or "boost_filesystem", os.findlib("boost_system-mt") and "boost_system-mt" or "boost_system" },
+				osx_names = { "boost_filesystem-mt", "boost_system-mt" },
 			})
 		end,
 	},
@@ -251,6 +252,7 @@ extern_lib_defs = {
 			add_default_links({
 				android_names = { "boost_signals-gcc-mt" },
 				unix_names = { os.findlib("boost_signals-mt") and "boost_signals-mt" or "boost_signals" },
+				osx_names = { "boost_signals-mt" },
 			})
 		end,
 	},
