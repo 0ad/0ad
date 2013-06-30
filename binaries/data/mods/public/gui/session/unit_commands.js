@@ -414,12 +414,19 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				if (item.template)
 				{
 					var template = GetTemplateData(item.template);
-					tooltip += "\n" + getEntityCostTooltip(template);
+					var wallCount = g_Selection.toList().reduce(function (count, ent) {
+							var state = GetEntityState(ent);
+							if (hasClass(state, "LongWall") && !state.gate) 
+								count++;
+							return count;
+						}, 0);
+
+					tooltip += "\n" + getEntityCostTooltip(template, wallCount);
 
 					var affordableMask = getGUIObjectByName("unitGateUnaffordable["+i+"]");
 					affordableMask.hidden = true;
 
-					var neededResources = Engine.GuiInterfaceCall("GetNeededResources", template.cost);
+					var neededResources = Engine.GuiInterfaceCall("GetNeededResources", multiplyEntityCosts(template, wallCount));
 					if (neededResources)
 					{
 						affordableMask.hidden = false;
