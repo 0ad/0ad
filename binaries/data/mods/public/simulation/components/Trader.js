@@ -32,9 +32,9 @@ Trader.prototype.Init = function()
 	this.preferredGoods = "metal";
 	// Currently carried goods
 	this.goods = { "type": null, "amount": 0 };
-}
+};
 
-Trader.prototype.CalculateGain = function(firstMarket, secondMarket, template)
+Trader.prototype.CalculateGain = function(firstMarket, secondMarket)
 {
 	// For ship increase gain for each garrisoned trader
 	// Calculate this here to save passing unnecessary stuff into the CalculatetraderGain function
@@ -57,12 +57,12 @@ Trader.prototype.CalculateGain = function(firstMarket, secondMarket, template)
 	}
 	
 	return Math.round(garrisonMultiplier * CalculateTraderGain(firstMarket, secondMarket, this.template));
-}
+};
 
 Trader.prototype.GetGain = function()
 {
 	return this.gain;
-}
+};
 
 // Set target as target market.
 // Return true if at least one of markets was changed.
@@ -119,27 +119,27 @@ Trader.prototype.SetTargetMarket = function(target, source)
 		this.goods.amount = 0;
 	}
 	return marketsChanged;
-}
+};
 
 Trader.prototype.GetFirstMarket = function()
 {
 	return this.firstMarket;
-}
+};
 
 Trader.prototype.GetSecondMarket = function()
 {
 	return this.secondMarket;
-}
+};
 
 Trader.prototype.HasBothMarkets = function()
 {
 	return this.firstMarket && this.secondMarket;
-}
+};
 
 Trader.prototype.GetPreferredGoods = function()
 {
 	return this.preferredGoods;
-}
+};
 
 Trader.prototype.SetPreferredGoods = function(preferredGoods)
 {
@@ -147,7 +147,7 @@ Trader.prototype.SetPreferredGoods = function(preferredGoods)
 	if (RESOURCES.indexOf(preferredGoods) == -1)
 		return;
 	this.preferredGoods = preferredGoods;
-}
+};
 
 Trader.prototype.CanTrade = function(target)
 {
@@ -173,7 +173,7 @@ Trader.prototype.CanTrade = function(target)
 	if (!ownershipSuitableForTrading)
 		return false;
 	return true;
-}
+};
 
 Trader.prototype.PerformTrade = function()
 {
@@ -188,12 +188,12 @@ Trader.prototype.PerformTrade = function()
 	}
 	this.goods.type = this.preferredGoods;
 	this.goods.amount = this.gain;
-}
+};
 
 Trader.prototype.GetGoods = function()
 {
 	return this.goods;
-}
+};
 
 Trader.prototype.StopTrading = function()
 {
@@ -202,7 +202,7 @@ Trader.prototype.StopTrading = function()
 	// Reset markets
 	this.firstMarket = INVALID_ENTITY;
 	this.secondMarket = INVALID_ENTITY;
-}
+};
 
 // Get range in which deals with market are available,
 // i.e. trader should be in no more than MaxDistance from market
@@ -210,7 +210,12 @@ Trader.prototype.StopTrading = function()
 Trader.prototype.GetRange = function()
 {
 	return { "min": 0, "max": +this.template.MaxDistance };
-}
+};
+
+Trader.prototype.OnGarrisonedUnitsChanged = function()
+{
+	if (this.HasBothMarkets())
+		this.gain = this.CalculateGain(this.firstMarket, this.secondMarket);
+};
 
 Engine.RegisterComponentType(IID_Trader, "Trader", Trader);
-
