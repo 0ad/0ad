@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,11 +20,12 @@ CDropDown
 */
 
 #include "precompiled.h"
-#include "GUI.h"
+
 #include "CDropDown.h"
 
-#include "lib/ogl.h"
 #include "lib/external_libraries/libsdl.h"
+#include "lib/ogl.h"
+#include "soundmanager/ISoundManager.h"
 
 
 //-------------------------------------------------------------------
@@ -36,6 +37,11 @@ CDropDown::CDropDown() : m_Open(false), m_HideScrollBar(false), m_ElementHighlig
 	AddSetting(GUIST_float,					"dropdown_size");
 	AddSetting(GUIST_float,					"dropdown_buffer");
 //	AddSetting(GUIST_CStrW,					"font");
+	AddSetting(GUIST_CStrW,					"sound_closed");
+	AddSetting(GUIST_CStrW,					"sound_disabled");
+	AddSetting(GUIST_CStrW,					"sound_enter");
+	AddSetting(GUIST_CStrW,					"sound_leave");
+	AddSetting(GUIST_CStrW,					"sound_opened");
 //	AddSetting(GUIST_CGUISpriteInstance,	"sprite");				// Background that sits around the size
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_list");			// Background of the drop down list
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2");				// Button that sits to the right
@@ -131,10 +137,31 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 		break;
 	}
 
+	case GUIM_MOUSE_ENTER:
+	{
+		bool enabled;
+		GUI<bool>::GetSetting(this, "enabled", enabled);
+		if (enabled)
+		{
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_enter", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		}
+		break;
+	}
+
 	case GUIM_MOUSE_LEAVE:
 	{
 		GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
 
+		bool enabled;
+		GUI<bool>::GetSetting(this, "enabled", enabled);
+		if (enabled)
+		{
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_leave", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		}
 		break;
 	}
 
@@ -145,7 +172,12 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 		bool enabled;
 		GUI<bool>::GetSetting(this, "enabled", enabled);
 		if (!enabled)
+		{
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 			break;
+		}
 
 		if (!m_Open)
 		{
@@ -155,6 +187,11 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 
 			// Start at the position of the selected item, if possible.
 			GetScrollBar(0).SetPos( m_ItemsYPositions.empty() ? 0 : m_ItemsYPositions[m_ElementHighlight] );
+
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_opened", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+
 			return; // overshadow
 		}
 		else
@@ -166,6 +203,11 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 			{
 				m_Open = false;
 				GetScrollBar(0).SetZ(GetBufferedZ());
+
+				CStrW soundPath;
+				if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_closed", soundPath) == PSRETURN_OK && !soundPath.empty())
+					g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+
 				return; // overshadow
 			}
 
@@ -181,8 +223,16 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 	}
 
 	case GUIM_LOST_FOCUS:
+	{
+		if (m_Open)
+		{
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_closed", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		}
 		m_Open = false;
 		break;
+	}
 
 	case GUIM_LOAD:
 		SetupListRect();
