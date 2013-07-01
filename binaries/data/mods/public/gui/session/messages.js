@@ -238,7 +238,14 @@ function submitChatInput()
 						number = cheat.DefaultNumber;
 				}
 
-				Engine.PostNetworkCommand({"type": "cheat", "action": cheat.Action, "number": number, "selected": g_Selection.toList(), "templates": cheat.Templates, "player": Engine.GetPlayerID()});
+				Engine.PostNetworkCommand({
+					"type": "cheat",
+					"action": cheat.Action,
+					"number": number,
+					"text": cheat.Type,
+					"selected": g_Selection.toList(),
+					"templates": cheat.Templates,
+					"player": Engine.GetPlayerID()});
 				isCheat = true;
 				break;
 			}

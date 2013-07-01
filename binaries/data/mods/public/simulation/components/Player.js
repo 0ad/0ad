@@ -555,9 +555,19 @@ Player.prototype.SetCheatEnabled = function(flag)
 	this.cheatsEnabled = flag;
 };
 
-Player.prototype.GetCheatEnabled = function(flag)
+Player.prototype.GetCheatEnabled = function()
 {
 	return this.cheatsEnabled;
+};
+
+Player.prototype.SetCheatTimeMultiplier = function(time)
+{
+	this.cheatTimeMultiplier = time;
+};
+
+Player.prototype.GetCheatTimeMultiplier = function()
+{
+	return this.cheatTimeMultiplier;
 };
 
 Player.prototype.TributeResource = function(player, amounts)

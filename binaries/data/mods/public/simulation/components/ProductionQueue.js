@@ -244,7 +244,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			if (!template)
 				return;
 			var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-			var time = template.researchTime * cmpPlayer.cheatTimeMultiplier;
+			var time = template.researchTime * cmpPlayer.GetCheatTimeMultiplier();
 
 			var cost = {};
 			for each (var r in ["food", "wood", "stone", "metal"])
@@ -408,7 +408,7 @@ ProductionQueue.prototype.GetBatchTime = function(batchSize)
 	var batchTimeModifier = ApplyTechModificationsToEntity("ProductionQueue/BatchTimeModifier", +this.template.BatchTimeModifier, this.entity);
 
 	// TODO: work out what equation we should use here.
-	return Math.pow(batchSize, batchTimeModifier) * cmpPlayer.cheatTimeMultiplier;
+	return Math.pow(batchSize, batchTimeModifier) * cmpPlayer.GetCheatTimeMultiplier();
 };
 
 ProductionQueue.prototype.OnOwnershipChanged = function(msg)
