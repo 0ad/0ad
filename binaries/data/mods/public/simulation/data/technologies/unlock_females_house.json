@@ -1,0 +1,16 @@
+﻿{
+	"genericName": "Fertility Festival",
+	"specificName": {
+		"hele": "Thesmophoria",
+		"mace": "Thesmophoria",
+		"spart": "Thesmophoria",
+		"athen": "Thesmophoria"
+	},
+	"description": "A festival attended by women-only, to celebrate female fertility.",
+	"cost": {"food": 200, "wood": 0, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "wives_festival.png",
+	"researchTime": 30,
+	"tooltip": "Unlock the ability to train women from houses."
+}

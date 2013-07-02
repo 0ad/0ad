@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_infantry_pikeman">
+<Entity parent="template_unit_champion_infantry_spearman">
   <Identity>
     <Civ>cart</Civ>
-	<GenericName>Sacred Band Pikeman</GenericName>
-    <SpecificName>Mašal</SpecificName>
-    <History>The Sacred Band was a group of elite troops dedicated to the service of the Phoenician god Ba'al. In addition to providing crack troops, the unit trained Carthaginians aspiring to command Punic mercenary armies. Specially picked troops carried the unit standard emblazoned with the symbols of Carthage into battle.</History>
+	<GenericName>Sacred Band Infantry</GenericName>
+    <SpecificName>Sacred Band of Ba'al</SpecificName>
+    <History>The Sacred Band was a group of elite infantry dedicated to the service of the Phoenician god Ba'al. In addition to providing crack troops, the unit trained Carthaginians aspiring to command Punic mercenary armies. Specially picked troops carried the unit standard emblazoned with the symbols of Carthage into battle.</History>
     <Icon>units/cart_champion_infantry.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>units/carthaginians/champion_unit_1.xml</Actor>
+    <Actor>units/carthaginians/champion_spearman.xml</Actor>
   </VisualActor>
 </Entity>

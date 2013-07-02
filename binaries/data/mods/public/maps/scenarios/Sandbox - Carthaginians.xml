@@ -9,9 +9,9 @@
 		<TerrainAmbientColour r="0.313726" g="0.392157" b="0.54902"/>
 		<UnitsAmbientColour r="0.384314" g="0.411765" b="0.454902"/>
 		<Fog>
-			<FogFactor>0</FogFactor>
-			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.898039"/>
+			<FogFactor>0.00273437</FogFactor>
+			<FogThickness>0</FogThickness>
+			<FogColour r="0.819608" g="0.74902" b="0.513726"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -28,15 +28,15 @@
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
-			<Contrast>1</Contrast>
-			<Saturation>0.99</Saturation>
-			<Bloom>0.1999</Bloom>
-			<PostEffect>default</PostEffect>
+			<Contrast>1.11719</Contrast>
+			<Saturation>0.889648</Saturation>
+			<Bloom>0.120313</Bloom>
+			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="390.945" y="77.664" z="285.231"/>
-		<Rotation angle="0"/>
+		<Position x="287.959" y="91.4378" z="399.583"/>
+		<Rotation angle="0.0418333"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -322,13 +322,13 @@
 		<Entity uid="54">
 			<Template>units/cart_champion_cavalry</Template>
 			<Player>1</Player>
-			<Position x="384.80546" z="152.31193"/>
+			<Position x="364.90235" z="322.06672"/>
 			<Orientation y="2.60969"/>
 		</Entity>
 		<Entity uid="55">
 			<Template>units/cart_champion_cavalry</Template>
 			<Player>1</Player>
-			<Position x="396.28708" z="161.12281"/>
+			<Position x="376.38398" z="330.87751"/>
 			<Orientation y="2.5448"/>
 		</Entity>
 		<Entity uid="81">
@@ -4958,78 +4958,6 @@
 			<Position x="123.5336" z="351.19874"/>
 			<Orientation y="2.1848"/>
 		</Entity>
-		<Entity uid="945">
-			<Template>other/palisades_rocks_straight</Template>
-			<Player>1</Player>
-			<Position x="702.15442" z="291.06931"/>
-			<Orientation y="2.35621"/>
-			<Obstruction group="951" group2="955"/>
-		</Entity>
-		<Entity uid="948">
-			<Template>other/palisades_rocks_straight</Template>
-			<Player>1</Player>
-			<Position x="681.56507" z="312.76856"/>
-			<Orientation y="2.35621"/>
-			<Obstruction group="949" group2="954"/>
-		</Entity>
-		<Entity uid="949">
-			<Template>other/palisades_rocks_tower</Template>
-			<Player>1</Player>
-			<Position x="686.09845" z="307.22101"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="951">
-			<Template>other/palisades_rocks_tower</Template>
-			<Player>1</Player>
-			<Position x="697.90723" z="295.22495"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="954">
-			<Template>other/palisades_rocks_fort</Template>
-			<Player>1</Player>
-			<Position x="674.70282" z="317.96631"/>
-			<Orientation y="0.76954"/>
-		</Entity>
-		<Entity uid="955">
-			<Template>other/palisades_rocks_fort</Template>
-			<Player>1</Player>
-			<Position x="707.5066" z="285.23435"/>
-			<Orientation y="0.70438"/>
-		</Entity>
-		<Entity uid="956">
-			<Template>other/palisades_rocks_gate</Template>
-			<Player>1</Player>
-			<Position x="692.0271" z="300.9893"/>
-			<Orientation y="-0.80918"/>
-		</Entity>
-		<Entity uid="957">
-			<Template>other/palisades_rocks_curve</Template>
-			<Player>1</Player>
-			<Position x="721.75532" z="275.91211"/>
-			<Orientation y="1.67827"/>
-			<Obstruction group="955"/>
-		</Entity>
-		<Entity uid="958">
-			<Template>other/palisades_rocks_curve</Template>
-			<Player>1</Player>
-			<Position x="666.15204" z="332.52994"/>
-			<Orientation y="-3.06463"/>
-			<Obstruction group="954"/>
-		</Entity>
-		<Entity uid="959">
-			<Template>other/palisades_rocks_straight</Template>
-			<Player>1</Player>
-			<Position x="714.06232" z="280.56235"/>
-			<Orientation y="2.35621"/>
-			<Obstruction group="955"/>
-		</Entity>
-		<Entity uid="960">
-			<Template>other/palisades_rocks_straight</Template>
-			<Player>1</Player>
-			<Position x="670.36194" z="323.79346"/>
-			<Orientation y="-0.76119"/>
-			<Obstruction group="954"/>
-		</Entity>
 		<Entity uid="961">
 			<Template>gaia/fauna_fish_tuna</Template>
 			<Player>0</Player>
@@ -5564,12 +5492,6 @@
 			<Position x="687.00483" z="408.56122"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1052">
-			<Template>other/hellenic_epic_temple</Template>
-			<Player>2</Player>
-			<Position x="701.84302" z="454.56171"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1053">
 			<Template>structures/hele_civil_centre</Template>
 			<Player>2</Player>
@@ -5747,7 +5669,7 @@
 		<Entity uid="1082">
 			<Template>structures/cart_wonder</Template>
 			<Player>1</Player>
-			<Position x="387.4798" z="320.82233"/>
+			<Position x="386.47397" z="321.77344"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="6296"/>
 		</Entity>
@@ -5757,6 +5679,55 @@
 			<Position x="387.71348" z="377.39087"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="55270"/>
+		</Entity>
+		<Entity uid="1084">
+			<Template>units/cart_champion_elephant</Template>
+			<Player>1</Player>
+			<Position x="397.4178" z="165.43642"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37534"/>
+		</Entity>
+		<Entity uid="1085">
+			<Template>units/cart_champion_elephant</Template>
+			<Player>1</Player>
+			<Position x="383.48523" z="152.23986"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36270"/>
+		</Entity>
+		<Entity uid="1086">
+			<Template>units/cart_ship_quinquereme</Template>
+			<Player>1</Player>
+			<Position x="318.91871" z="487.30896"/>
+			<Orientation y="-1.98577"/>
+			<Actor seed="57540"/>
+		</Entity>
+		<Entity uid="1087">
+			<Template>units/cart_ship_bireme</Template>
+			<Player>1</Player>
+			<Position x="231.79845" z="466.09974"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17268"/>
+		</Entity>
+		<Entity uid="1088">
+			<Template>units/cart_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="285.94956" z="531.73615"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3150"/>
+		</Entity>
+		<Entity uid="1089">
+			<Template>units/cart_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="378.79041" z="483.37006"/>
+			<Orientation y="-2.26925"/>
+			<Actor seed="6692"/>
+		</Entity>
+		<Entity uid="1090">
+			<Template>structures/athen_wonder</Template>
+			<Player>2</Player>
+			<Position x="717.01417" z="461.16349"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23014"/>
 		</Entity>
 	</Entities>
 	<Paths/>
