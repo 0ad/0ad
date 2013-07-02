@@ -39,8 +39,7 @@ public:
 	struct Anim
 	{
 		// constructor
-		Anim() : m_Speed(1.f), m_ActionPos(-1.f), m_ActionPos2(-1.f) {}
-
+		Anim() : m_Speed(1.f), m_ActionPos(-1.f), m_ActionPos2(-1.f), m_SoundPos(-1.f) {}
 		// name of the animation - "Idle", "Run", etc
 		CStr m_AnimName;
 		// filename of the animation - manidle.psa, manrun.psa, etc
@@ -51,6 +50,7 @@ public:
 		// happens, or -1.0 if unspecified
 		float m_ActionPos;
 		float m_ActionPos2;
+		float m_SoundPos;
 	};
 
 	struct Prop

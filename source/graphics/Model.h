@@ -197,9 +197,10 @@ public:
 	 * @param speed animation speed as a factor of the default animation speed
 	 * @param actionpos offset of 'action' event, in range [0, 1]
 	 * @param actionpos2 offset of 'action2' event, in range [0, 1]
+	 * @param sound offset of 'sound' event, in range [0, 1]
 	 * @return new animation, or NULL on error
 	 */
-	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const CStr& name, float speed, float actionpos, float actionpos2);
+	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const CStr& name, float speed, float actionpos, float actionpos2, float soundpos);
 
 	/**
 	 * Add a prop to the model on the given point.

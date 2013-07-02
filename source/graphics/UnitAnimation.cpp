@@ -67,6 +67,7 @@ void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
 	state.time = 0.f;
 	state.pastLoadPos = false;
 	state.pastActionPos = false;
+	state.pastSoundPos = false;
 
 	m_AnimStates.push_back(state);
 
@@ -157,8 +158,10 @@ void CUnitAnimation::Update(float time)
 
 		float actionPos = it->anims[it->animIdx]->m_ActionPos;
 		float loadPos = it->anims[it->animIdx]->m_ActionPos2;
+		float soundPos = it->anims[it->animIdx]->m_SoundPos;
 		bool hasActionPos = (actionPos != -1.f);
 		bool hasLoadPos = (loadPos != -1.f);
+		bool hasSoundPos = (soundPos != -1.f);
 
 		// Find the current animation speed
 		float speed;
@@ -183,7 +186,7 @@ void CUnitAnimation::Update(float time)
 			if (hasLoadPos)
 				it->model->HideAmmoProp();
 
-			if (!m_ActionSound.empty())
+			if ( !hasSoundPos && !m_ActionSound.empty() )
 			{
 				CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 				if (cmpSoundManager)
@@ -191,6 +194,17 @@ void CUnitAnimation::Update(float time)
 			}
 
 			it->pastActionPos = true;
+		}
+		if (hasSoundPos && !it->pastSoundPos && it->time + advance >= soundPos)
+		{
+			if (!m_ActionSound.empty() )
+			{
+				CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+				if (cmpSoundManager)
+					cmpSoundManager->PlaySoundGroup(m_ActionSound, m_Entity);
+			}
+
+			it->pastSoundPos = true;
 		}
 
 		if (it->time + advance < duration)
@@ -219,6 +233,7 @@ void CUnitAnimation::Update(float time)
 
 			it->pastActionPos = false;
 			it->pastLoadPos = false;
+			it->pastSoundPos = false;
 
 			it->model->UpdateTo(it->time);
 		}

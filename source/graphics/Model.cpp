@@ -251,7 +251,7 @@ const CBoundingBoxAligned CModel::GetObjectSelectionBoundsRec()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildAnimation: load raw animation frame animation from given file, and build a 
 // animation specific to this model
-CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const CStr& name, float speed, float actionpos, float actionpos2)
+CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const CStr& name, float speed, float actionpos, float actionpos2, float soundpos)
 {
 	CSkeletonAnimDef* def = m_SkeletonAnimManager.GetAnimation(pathname);
 	if (!def)
@@ -271,6 +271,11 @@ CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const CStr& name,
 		anim->m_ActionPos2 = -1.f;
 	else
 		anim->m_ActionPos2 = actionpos2 * anim->m_AnimDef->GetDuration();
+
+	if (soundpos == -1.f)
+		anim->m_SoundPos = -1.f;
+	else
+		anim->m_SoundPos = soundpos * anim->m_AnimDef->GetDuration();
 
 	anim->m_ObjectBounds.SetEmpty();
 	InvalidateBounds();
