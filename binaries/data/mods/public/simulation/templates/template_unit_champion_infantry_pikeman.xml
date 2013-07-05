@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
   <Armour>
-    <Hack>6</Hack>
-    <Pierce>5</Pierce>
-    <Crush>6</Crush>
+    <Hack>15</Hack>
+    <Pierce>10</Pierce>
+    <Crush>10</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>5.0</Hack>
-      <Pierce>20.0</Pierce>
+      <Hack>7.0</Hack>
+      <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>8.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
@@ -25,10 +25,10 @@
       <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
     </Melee>
     <Charge>
-      <Hack>8.0</Hack>
-      <Pierce>30.0</Pierce>
+      <Hack>14.0</Hack>
+      <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>7.0</MaxRange>
+      <MaxRange>8.0</MaxRange>
       <MinRange>0.0</MinRange>
 	  <Bonuses>
 		<BonusCavalry>
@@ -52,10 +52,11 @@
     </Resources>
   </Cost>
   <Identity>
-    <Classes datatype="tokens">Melee Spear</Classes>
+    <Classes datatype="tokens">Melee Spear Pike</Classes>
     <GenericName>Champion Pikeman</GenericName>
+	<History>Pike, or sarissa, infantry were developed by Philip II of Macedon based on the hoplite of the Greek city-states. The Macedonian pikemen, or phalangites, wielded an extra long spear (sarissa) approximatly 4 to 7 meters (13–21 feet) in length. Because of it's length and weight, the pike required the use of both hands, so the shield was slung over the pikeman's shoulder with a leather strap. Front-line pikemen of the age were generally highly-armored, while those in the back lines were lightly armored. Such pike-wielding troops were employed by numerous states, from Carthage to Syria, and were used to fix enemy infantry in position while the army's cavalry worked to turn the enemy flanks.</History>
 	<Tooltip>Champion Pikeman.
-The ultimate line infantry. Counters: 2x vs. All Cavalry, 1.5x vs. Elephants. Countered by: Swordsmen, Skirmishers.</Tooltip>
+The ultimate line infantry. Low attack, but high armor. Counters: 2x vs. All Cavalry, 1.5x vs. Elephants. Countered by: Swordsmen, Skirmishers, Cavalry Archers.</Tooltip>
   </Identity>
   <Sound>
     <SoundGroups>
@@ -76,7 +77,7 @@ The ultimate line infantry. Counters: 2x vs. All Cavalry, 1.5x vs. Elephants. Co
   <UnitMotion>
     <WalkSpeed>6.5</WalkSpeed>
     <Run>
-      <Speed>12.0</Speed>
+      <Speed>13.0</Speed>
       <Range>600.0</Range>
       <RangeMin>5.0</RangeMin>
     </Run>

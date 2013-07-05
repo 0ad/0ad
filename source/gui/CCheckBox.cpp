@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,11 +20,11 @@ CCheckBox
 */
 
 #include "precompiled.h"
-#include "GUI.h"
+
 #include "CCheckBox.h"
 
-#include "ps/Font.h"
 #include "ps/CLogger.h"
+#include "ps/Font.h"
 
 
 //-------------------------------------------------------------------
@@ -37,6 +37,11 @@ CCheckBox::CCheckBox()
 	AddSetting(GUIST_int,					"cell_id");
 	AddSetting(GUIST_bool,					"checked");
 	AddSetting(GUIST_CStrW,					"font");
+	AddSetting(GUIST_CStrW,					"sound_disabled");
+	AddSetting(GUIST_CStrW,					"sound_enter");
+	AddSetting(GUIST_CStrW,					"sound_leave");
+	AddSetting(GUIST_CStrW,					"sound_pressed");
+	AddSetting(GUIST_CStrW,					"sound_released");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_over");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_pressed");

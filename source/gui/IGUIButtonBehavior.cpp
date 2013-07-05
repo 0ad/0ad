@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,8 +20,10 @@ IGUIButtonBehavior
 */
 
 #include "precompiled.h"
+
 #include "GUI.h"
 
+#include "soundmanager/ISoundManager.h"
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor
@@ -39,13 +41,48 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 	// TODO Gee: easier access functions
 	switch (Message.type)
 	{
+	case GUIM_MOUSE_ENTER:
+	{
+		bool enabled;
+		GUI<bool>::GetSetting(this, "enabled", enabled);
+		if (enabled)
+		{
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_enter", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		}
+	}
+	break;
+
+	case GUIM_MOUSE_LEAVE:
+	{
+		bool enabled;
+		GUI<bool>::GetSetting(this, "enabled", enabled);
+		if (enabled)
+		{
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_leave", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		}
+	}
+	break;
+
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
 		bool enabled;
 		GUI<bool>::GetSetting(this, "enabled", enabled);
 	
 		if (!enabled)
+		{
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 			break;
+		}
+
+		CStrW soundPath;
+		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_pressed", soundPath) == PSRETURN_OK && !soundPath.empty())
+			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 
 		m_Pressed = true;
 	}
@@ -77,6 +114,10 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 				SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
 				SendEvent(GUIM_DOUBLE_PRESSED_MOUSE_RIGHT, "doublepressright");
 			}
+
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_released", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 		}
 	}
 	break;
@@ -87,7 +128,16 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 		GUI<bool>::GetSetting(this, "enabled", enabled);
 		
 		if (!enabled)
+		{
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 			break;
+		}
+
+		CStrW soundPath;
+		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_pressed", soundPath) == PSRETURN_OK && !soundPath.empty())
+			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 		
 		m_PressedRight = true;
 	}
@@ -119,6 +169,10 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 				SendEvent(GUIM_PRESSED, "press");
 				SendEvent(GUIM_DOUBLE_PRESSED, "doublepress");
 			}
+
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_released", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 		}
 	}
 	break;

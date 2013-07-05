@@ -3,25 +3,29 @@
 	[
 		{
 			"Name": "i want pizza",
-			"Action": "addfood",
+			"Action": "addresource",
+			"Type": "food",
 			"IsNumeric": true,
 			"DefaultNumber": 1000
 		},
 		{
 			"Name": "bring me my axe",
-			"Action": "addwood",
+			"Action": "addresource",
+			"Type": "wood",
 			"IsNumeric": true,
 			"DefaultNumber": 1000
 		},
 		{
 			"Name": "your money or your life",
-			"Action": "addmetal",
+			"Action": "addresource",
+			"Type": "metal",
 			"IsNumeric": true,
 			"DefaultNumber": 1000
 		},
 		{
 			"Name": "i see a mountain here",
-			"Action": "addstone",
+			"Action": "addresource",
+			"Type": "stone",
 			"IsNumeric": true,
 			"DefaultNumber": 1000
 		},

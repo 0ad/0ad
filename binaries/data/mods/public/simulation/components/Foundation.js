@@ -176,6 +176,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 			var collisions = cmpObstruction.GetEntityCollisions(true, true);
 			if (collisions.length)
 			{
+				var cmpFoundationOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 				for each (var ent in collisions)
 				{
 					var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
@@ -183,10 +184,11 @@ Foundation.prototype.Build = function(builderEnt, work)
 						cmpUnitAI.LeaveFoundation(this.entity);
 					else
 					{
-						// If obstructing fauna is gaia but doesn't have UnitAI, just destroy it
+						// If obstructing fauna is gaia or our own but doesn't have UnitAI, just destroy it
 						var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 						var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-						if (cmpOwnership && cmpIdentity && cmpOwnership.GetOwner() == 0 && cmpIdentity.HasClass("Animal"))
+						if (cmpOwnership && cmpIdentity && cmpIdentity.HasClass("Animal")
+						    && (cmpOwnership.GetOwner() == 0 || cmpFoundationOwnership && cmpOwnership.GetOwner() == cmpFoundationOwnership.GetOwner()))
 							Engine.DestroyEntity(ent);
 					}
 

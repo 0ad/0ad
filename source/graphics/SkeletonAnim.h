@@ -46,6 +46,7 @@ public:
 	// ActionPos2 is used for loading projectile ammunition.
 	float m_ActionPos;
 	float m_ActionPos2;
+	float m_SoundPos;
 	// object space bounds of the model when this animation is applied to it
 	CBoundingBoxAligned m_ObjectBounds;
 };

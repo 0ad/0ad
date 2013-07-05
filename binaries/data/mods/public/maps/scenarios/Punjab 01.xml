@@ -16,12 +16,12 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.411765" g="0.388235" b="0.372549"/>
+				<Colour r="0.411765" g="0.384314" b="0.368627"/>
 				<Height>21.823</Height>
 				<Shininess>250</Shininess>
 				<Waviness>3.25195</Waviness>
 				<Murkiness>0.946289</Murkiness>
-				<Tint r="0.443137" g="0.25098" b="0.156863"/>
+				<Tint r="0.439216" g="0.247059" b="0.156863"/>
 				<ReflectionTint r="0.403922" g="0.329412" b="0.27451"/>
 				<ReflectionTintStrength>0.204102</ReflectionTintStrength>
 			</WaterBody>
@@ -35,14 +35,13 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="528.112" y="72.1904" z="459.704"/>
-		<Rotation angle="1.46936"/>
+		<Position x="815.325" y="91.2117" z="282.522"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview": "punjab_1.png",
   "Description": "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\u000a\u000aThe rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common danger.",
   "GameType": "conquest",
   "Keywords": [],
@@ -50,16 +49,18 @@
   "Name": "Punjab 1",
   "PlayerData": [
     {
+      "AI": "",
       "Civ": "maur",
       "Colour": {
         "b": 200,
         "g": 46,
         "r": 46
       },
-      "Name": "Porus of Paurava",
+      "Name": "Purushottama of Paurava",
       "Team": -1
     },
     {
+      "AI": "qbot-wc",
       "Civ": "mace",
       "Colour": {
         "b": 20,
@@ -70,6 +71,7 @@
       "Team": -1
     }
   ],
+  "Preview": "punjab_1.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>

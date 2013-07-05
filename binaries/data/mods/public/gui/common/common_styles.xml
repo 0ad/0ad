@@ -212,6 +212,7 @@
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
+		sound_pressed="audio/interface/ui/ui_button_click.ogg"
 	/>
 
 	<style 	name="StoneButton"
@@ -223,6 +224,7 @@
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
+		sound_pressed="audio/interface/ui/ui_button_click.ogg"
 	/>
 
 	<style 	name="StoneCrossBox"
@@ -231,6 +233,7 @@
 		sprite2="StoneCheckBoxCross"
 		square_side="16"
 		textcolor="black"
+		sound_pressed="audio/interface/ui/ui_button_click.ogg"
 	/>
 
 	<style  name="StoneInput"
@@ -263,6 +266,10 @@
 
 		scrollbar="true"
 		scrollbar_style="wheatScrollBar"
+
+		sound_opened="audio/interface/ui/ui_button_click.ogg"
+		sound_closed="audio/interface/ui/ui_button_click.ogg"
+		sound_selected="audio/interface/ui/ui_button_click.ogg"
 	/>
 
 	<style 	name="StoneList"
@@ -277,6 +284,7 @@
 		textcolor_selected="white"
 		text_align="left"
 		text_valign="center"
+		sound_selected="audio/interface/ui/ui_button_click.ogg"
 	/>
 
 	<style 	name="StoneExit"

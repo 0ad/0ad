@@ -71,6 +71,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	AT(speed);
 	AT(event);
 	AT(load);
+	AT(sound);
 	AT(attachpoint);
 	AT(actor);
 	AT(frequency);
@@ -221,6 +222,11 @@ bool CObjectBase::Load(const VfsPath& pathname)
 								{
 									float pos = ae.Value.ToFloat();
 									anim.m_ActionPos2 = clamp(pos, 0.f, 1.f);
+								}
+								else if (ae.Name == at_sound)
+								{
+									float pos = ae.Value.ToFloat();
+									anim.m_SoundPos = clamp(pos, 0.f, 1.f);
 								}
 							}
 							currentVariant->m_Anims.push_back(anim);

@@ -2,8 +2,6 @@
 <Entity parent="template_unit_champion_infantry_spearman">
   <Attack>
     <Melee>
-      <Hack>10.0</Hack>
-      <Pierce>15.0</Pierce>
       <MaxRange>6.0</MaxRange>
 	  <Bonuses>
 		<BonusPersians>
@@ -14,9 +12,6 @@
 	  </Bonuses>
     </Melee>
     <Charge>
-      <Hack>20.0</Hack>
-      <Pierce>30.0</Pierce>
-      <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
 	  <Bonuses>
 		<BonusPersians>
@@ -27,11 +22,6 @@
 	  </Bonuses>
     </Charge>
   </Attack>
-  <Cost>
-    <Resources>
-      <metal>20</metal>
-    </Resources>
-  </Cost>
   <Health>
     <Max>135</Max>
   </Health>

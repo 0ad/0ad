@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="584.856" y="147.616" z="1318.31"/>
+		<Position x="648.405" y="109.968" z="1336.29"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -4363,6 +4363,13 @@
 			<Position x="640.90247" z="1394.78528"/>
 			<Orientation y="-2.40476"/>
 			<Actor seed="12774"/>
+		</Entity>
+		<Entity uid="869">
+			<Template>units/spart_hero_brasidas</Template>
+			<Player>1</Player>
+			<Position x="642.38263" z="1391.2494"/>
+			<Orientation y="-2.42852"/>
+			<Actor seed="43206"/>
 		</Entity>
 	</Entities>
 	<Paths/>

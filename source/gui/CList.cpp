@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,12 +20,14 @@ CList
 */
 
 #include "precompiled.h"
-#include "GUI.h"
+
 #include "CList.h"
+
 #include "CGUIScrollBarVertical.h"
 
-#include "ps/CLogger.h"
 #include "lib/external_libraries/libsdl.h"
+#include "ps/CLogger.h"
+#include "soundmanager/ISoundManager.h"
 
 
 //-------------------------------------------------------------------
@@ -41,6 +43,8 @@ CList::CList() :
 	AddSetting(GUIST_CStrW,					"font");
 	AddSetting(GUIST_bool,					"scrollbar");
 	AddSetting(GUIST_CStr,					"scrollbar_style");
+	AddSetting(GUIST_CStrW,					"sound_disabled");
+	AddSetting(GUIST_CStrW,					"sound_selected");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_selectarea");
 	AddSetting(GUIST_int,					"cell_id");
@@ -194,7 +198,12 @@ void CList::HandleMessage(SGUIMessage &Message)
 		bool enabled;
 		GUI<bool>::GetSetting(this, "enabled", enabled);
 		if (!enabled)
+		{
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 			break;
+		}
 
 		bool scrollbar;
 		CGUIList *pList;
@@ -226,6 +235,10 @@ void CList::HandleMessage(SGUIMessage &Message)
 		{
 			GUI<int>::SetSetting(this, "selected", set);
 			UpdateAutoScroll();
+
+			CStrW soundPath;
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_selected", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 		}
 	}	break;
 
@@ -455,6 +468,10 @@ void CList::SelectNextElement()
 	{
 		++selected;
 		GUI<int>::SetSetting(this, "selected", selected);
+
+		CStrW soundPath;
+		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_selected", soundPath) == PSRETURN_OK && !soundPath.empty())
+			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 	}
 }
 	
@@ -467,6 +484,10 @@ void CList::SelectPrevElement()
 	{
 		--selected;
 		GUI<int>::SetSetting(this, "selected", selected);
+
+		CStrW soundPath;
+		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_selected", soundPath) == PSRETURN_OK && !soundPath.empty())
+			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 	}
 }
 
