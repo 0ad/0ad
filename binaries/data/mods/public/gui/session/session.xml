@@ -988,8 +988,9 @@
 			    <object size="90 -2 126 34" name="attackAndArmorStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip="Attack and Armor" tooltip_style="sessionToolTip"/>
 
 			    <!-- Resource carrying icon/counter -->
+			    <!-- Used also for number of gatherers/builders -->
 			    <object size="100%-78 -2 100%-28 34" type="text" name="resourceCarryingText" style="CarryingTextRight"/>
-			    <object size="100%-36 -2 100% 34" type="image" name="resourceCarryingIcon"/>
+			    <object size="100%-36 -2 100% 34" type="image" name="resourceCarryingIcon" tooltip_style="sessionToolTip"/>
 			</object>
 			
 			<!-- Big unit icon -->

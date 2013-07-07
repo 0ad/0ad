@@ -477,8 +477,13 @@ public:
 	{
 		return m_ControlPersist;
 	}
-
+	
 	virtual EFoundationCheck CheckFoundation(std::string className)
+	{
+		return  CheckFoundation(className, false);
+	}
+
+	virtual EFoundationCheck CheckFoundation(std::string className, bool onlyCenterPoint)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 		if (!cmpPosition)
@@ -510,9 +515,9 @@ public:
 			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
 
 		if (m_Type == UNIT)
-			return cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, m_Size0, passClass);
+			return cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, m_Size0, passClass, onlyCenterPoint);
 		else
-			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass);
+			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass, onlyCenterPoint);
 	}
 
 	virtual bool CheckDuplicateFoundation()
@@ -544,7 +549,7 @@ public:
 		if (m_Type == UNIT)
 			return !cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Size0, NULL);
 		else
-			return !cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, NULL);
+			return !cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, NULL );
 	} 
 
 	virtual std::vector<entity_id_t> GetEntityCollisions(bool checkStructures, bool checkUnits)

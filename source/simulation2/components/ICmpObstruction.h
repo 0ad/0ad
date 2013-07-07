@@ -59,12 +59,13 @@ public:
 	 *	value describing the type of failure.
 	 */
 	virtual EFoundationCheck CheckFoundation(std::string className) = 0;
+	virtual EFoundationCheck CheckFoundation(std::string className, bool onlyCenterPoint) = 0;
 
 	/**
 	 * CheckFoundation wrapper for script calls, to return friendly strings instead of an EFoundationCheck.
 	 * @return "success" if check passes, else a string describing the type of failure.
 	 */
-	virtual std::string CheckFoundation_wrapper(std::string className);
+	virtual std::string CheckFoundation_wrapper(std::string className, bool onlyCenterPoint);
 
 	/**
 	 * Test whether this entity is colliding with any obstructions that share its

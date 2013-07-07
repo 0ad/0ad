@@ -1390,7 +1390,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	m_iBufferPos = std::min(m_iBufferPos, (int)caption.size());
 	m_iBufferPos_Tail = std::min(m_iBufferPos_Tail, (int)caption.size());
 
-	if (font_name == CStrW())
+	if (font_name.empty())
 	{
 		// Destroy everything stored, there's no font, so there can be
 		//  no data.
@@ -1436,8 +1436,8 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		//  to be redone. And when going along, we'll delete a row at a time
 		//  when continuing to see how much more after 'to' we need to remake.
 		int i=0;
-		for (std::list<SRow>::iterator it=m_CharacterPositions.begin(); 
-			 it!=m_CharacterPositions.end(); ++it, ++i)
+		for (std::list<SRow>::iterator it = m_CharacterPositions.begin(); 
+			 it != m_CharacterPositions.end(); ++it, ++i)
 		{
 			if (destroy_row_from_used == false &&
 				it->m_ListStart > from)
@@ -1517,15 +1517,10 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		// Setup the first row
 		row.m_ListStart = destroy_row_from->m_ListStart;
 
-		// Set current line, new rows will be added before current_line, so
-		//  we'll choose the destroy_row_to, because it won't be deleted
-		//  in the coming erase.
-		current_line = destroy_row_to;
-
 		std::list<SRow>::iterator temp_it = destroy_row_to;
 		--temp_it;
 
-		m_CharacterPositions.erase(destroy_row_from, destroy_row_to);
+		current_line = m_CharacterPositions.erase(destroy_row_from, destroy_row_to);
 		
 		// If there has been a change in number of characters
 		//  we need to change all m_ListStart that comes after
@@ -1534,8 +1529,8 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		int delta = to_after - to_before;
 		if (delta != 0)
 		{
-			for (std::list<SRow>::iterator it=current_line;
-				 it!=m_CharacterPositions.end();
+			for (std::list<SRow>::iterator it = current_line;
+				 it != m_CharacterPositions.end();
 				 ++it)
 			{
 				it->m_ListStart += delta;

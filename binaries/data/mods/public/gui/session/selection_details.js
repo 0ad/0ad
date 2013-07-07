@@ -131,6 +131,7 @@ function displaySingle(entState, template)
 		getGUIObjectByName("resourceCarryingText").hidden = false;
 		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+carried.type+".png";
 		getGUIObjectByName("resourceCarryingText").caption = carried.amount + " / " + carried.max;
+		getGUIObjectByName("resourceCarryingIcon").tooltip = "";
 	}
 	// Use the same indicators for traders
 	else if (entState.trader && entState.trader.goods.amount > 0)
@@ -139,6 +140,24 @@ function displaySingle(entState, template)
 		getGUIObjectByName("resourceCarryingText").hidden = false;
 		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+entState.trader.goods.type+".png";
 		getGUIObjectByName("resourceCarryingText").caption = entState.trader.goods.amount;
+		getGUIObjectByName("resourceCarryingIcon").tooltip = "";
+	}
+	// And for number of workers
+	else if (entState.foundation)
+	{
+		getGUIObjectByName("resourceCarryingIcon").hidden = false;
+		getGUIObjectByName("resourceCarryingText").hidden = false;
+		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
+		getGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders + "    ";
+		getGUIObjectByName("resourceCarryingIcon").tooltip = "Number of builders";
+	}
+	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints))
+	{
+		getGUIObjectByName("resourceCarryingIcon").hidden = false;
+		getGUIObjectByName("resourceCarryingText").hidden = false;
+		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
+		getGUIObjectByName("resourceCarryingText").caption = entState.resourceSupply.gatherers.length + " / " + entState.resourceSupply.maxGatherers + "    ";
+		getGUIObjectByName("resourceCarryingIcon").tooltip = "Current/max gatherers";
 	}
 	else
 	{
@@ -148,7 +167,7 @@ function displaySingle(entState, template)
 
 	// Set Player details
 	getGUIObjectByName("specific").caption = specificName;
-		getGUIObjectByName("player").caption = playerName;
+	getGUIObjectByName("player").caption = playerName;
 	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
 	
 	if (genericName)

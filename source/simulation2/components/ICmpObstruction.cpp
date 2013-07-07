@@ -23,9 +23,9 @@
 
 #include "simulation2/system/SimContext.h"
 
-std::string ICmpObstruction::CheckFoundation_wrapper(std::string className)
+std::string ICmpObstruction::CheckFoundation_wrapper(std::string className, bool onlyCenterPoint)
 {
-	EFoundationCheck check = CheckFoundation(className);
+	EFoundationCheck check = CheckFoundation(className, onlyCenterPoint);
 
 	switch (check)
 	{
@@ -47,7 +47,7 @@ std::string ICmpObstruction::CheckFoundation_wrapper(std::string className)
 
 BEGIN_INTERFACE_WRAPPER(Obstruction)
 DEFINE_INTERFACE_METHOD_0("GetUnitRadius", entity_pos_t, ICmpObstruction, GetUnitRadius)
-DEFINE_INTERFACE_METHOD_1("CheckFoundation", std::string, ICmpObstruction, CheckFoundation_wrapper, std::string)
+DEFINE_INTERFACE_METHOD_2("CheckFoundation", std::string, ICmpObstruction, CheckFoundation_wrapper, std::string, bool)
 DEFINE_INTERFACE_METHOD_0("CheckDuplicateFoundation", bool, ICmpObstruction, CheckDuplicateFoundation)
 DEFINE_INTERFACE_METHOD_2("GetEntityCollisions", std::vector<entity_id_t>, ICmpObstruction, GetEntityCollisions, bool, bool)
 DEFINE_INTERFACE_METHOD_1("SetActive", void, ICmpObstruction, SetActive, bool)

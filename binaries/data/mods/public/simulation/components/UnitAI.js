@@ -2071,9 +2071,9 @@ var UnitFsmSpec = {
 
 					this.order.data.force = false;
 
-					var target = this.order.data.target;
+					this.repairTarget = this.order.data.target;	// temporary, deleted in "leave".
 					// Check we can still reach and repair the target
-					if (!this.CheckTargetRange(target, IID_Builder) || !this.CanRepair(target))
+					if (!this.CheckTargetRange(this.repairTarget, IID_Builder) || !this.CanRepair(this.repairTarget))
 					{
 						// Can't reach it, no longer owned by ally, or it doesn't exist any more
 						this.FinishOrder();
@@ -2081,16 +2081,16 @@ var UnitFsmSpec = {
 					}
 
 					// Check if the target is still repairable
-					var cmpHealth = Engine.QueryInterface(target, IID_Health);
+					var cmpHealth = Engine.QueryInterface(this.repairTarget, IID_Health);
 					if (cmpHealth && cmpHealth.GetHitpoints() >= cmpHealth.GetMaxHitpoints())
 					{
 						// The building was already finished/fully repaired before we arrived;
 						// let the ConstructionFinished handler handle this.
-						this.OnGlobalConstructionFinished({"entity": target, "newentity": target});
+						this.OnGlobalConstructionFinished({"entity": this.repairTarget, "newentity": this.repairTarget});
 						return true;
 					}
 
-					var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
+					var cmpFoundation = Engine.QueryInterface(this.repairTarget, IID_Foundation);
 					if (cmpFoundation)
 						cmpFoundation.AddBuilder(this.entity);
 
@@ -2100,13 +2100,16 @@ var UnitFsmSpec = {
 				},
 
 				"leave": function() {
+					var cmpFoundation = Engine.QueryInterface(this.repairTarget, IID_Foundation);
+					if (cmpFoundation)
+						cmpFoundation.RemoveBuilder(this.entity);
+					delete this.repairTarget;
 					this.StopTimer();
 				},
 
 				"Timer": function(msg) {
-					var target = this.order.data.target;
 					// Check we can still reach and repair the target
-					if (!this.CheckTargetRange(target, IID_Builder) || !this.CanRepair(target))
+					if (!this.CheckTargetRange(this.repairTarget, IID_Builder) || !this.CanRepair(this.repairTarget))
 					{
 						// Can't reach it, no longer owned by ally, or it doesn't exist any more
 						this.FinishOrder();
@@ -2114,7 +2117,7 @@ var UnitFsmSpec = {
 					}
 					
 					var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
-					cmpBuilder.PerformBuilding(target);
+					cmpBuilder.PerformBuilding(this.repairTarget);
 				},
 			},
 
