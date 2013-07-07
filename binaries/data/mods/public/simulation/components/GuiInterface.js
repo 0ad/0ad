@@ -239,7 +239,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpFoundation)
 	{
 		ret.foundation = {
-			"progress": cmpFoundation.GetBuildPercentage()
+			"progress": cmpFoundation.GetBuildPercentage(),
+			"numBuilders": cmpFoundation.GetNumBuilders()
 		};
 	}
 
