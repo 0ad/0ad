@@ -6,9 +6,9 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "siege_ram.png",
 	"researchTime": 30,
-	"tooltip": "Siege crush damage increased 20%",
+	"tooltip": "All siege weapons +3 Crush damage.",
 	"modifications": [
-		{"value": "Attack/Melee/Crush", "multiplier": 1.2},
-		{"value": "Attack/Ranged/Crush", "multiplier": 1.2}],
+		{"value": "Attack/Melee/Crush", "add": 3},
+		{"value": "Attack/Ranged/Crush", "add": 3}],
 	"affects": ["Siege"]
 }

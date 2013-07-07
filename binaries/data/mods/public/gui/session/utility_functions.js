@@ -227,9 +227,9 @@ function damageTypesToText(dmg)
 	var crushDamage = dmg.crush;
 
 	var dmgArray = [];
-	if (hackDamage) dmgArray.push(hackDamage + hackLabel);
-	if (pierceDamage) dmgArray.push(pierceDamage + pierceLabel);
-	if (crushDamage) dmgArray.push(crushDamage + crushLabel);
+	if (hackDamage) dmgArray.push(Math.round(hackDamage) + hackLabel);
+	if (pierceDamage) dmgArray.push(Math.round(pierceDamage) + pierceLabel);
+	if (crushDamage) dmgArray.push(Math.round(crushDamage) + crushLabel);
 
 	return dmgArray.join("[font=\"serif-12\"], [/font]");
 }
