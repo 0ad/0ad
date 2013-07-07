@@ -2,14 +2,14 @@
 <Entity parent="template_unit_mechanical_siege">
   <Armour>
     <Hack>2</Hack>
-    <Pierce>20</Pierce>
+    <Pierce>30</Pierce>
     <Crush>10</Crush>
   </Armour>
   <Attack>
     <Melee>
       <Hack>0.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>30.0</Crush>
+      <Crush>50.0</Crush>
       <MaxRange>6.5</MaxRange>
       <RepeatTime>1500</RepeatTime>
 	  <Bonuses>

@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -40,18 +40,17 @@ namespace gfx {
 
 std::wstring CardName()
 {
+	// GL_VENDOR+GL_RENDERER are good enough here, so we don't use wgfx_CardName,
+	// plus that can cause crashes with Nvidia Optimus and some netbooks
+	// see http://trac.wildfiregames.com/ticket/1952
+	//     http://trac.wildfiregames.com/ticket/1575
 	wchar_t cardName[128];
-#if OS_WIN
-	if(wgfx_CardName(cardName, ARRAY_SIZE(cardName)) != INFO::OK)
-#endif
-	{
-		const char* vendor   = (const char*)glGetString(GL_VENDOR);
-		const char* renderer = (const char*)glGetString(GL_RENDERER);
-		// (happens if called before ogl_Init or between glBegin and glEnd.)
-		if(!vendor || !renderer)
-			return L"";
-		swprintf_s(cardName, ARRAY_SIZE(cardName), L"%hs %hs", vendor, renderer);
-	}
+	const char* vendor   = (const char*)glGetString(GL_VENDOR);
+	const char* renderer = (const char*)glGetString(GL_RENDERER);
+	// (happens if called before ogl_Init or between glBegin and glEnd.)
+	if(!vendor || !renderer)
+		return L"";
+	swprintf_s(cardName, ARRAY_SIZE(cardName), L"%hs %hs", vendor, renderer);
 
 	// remove crap from vendor names. (don't dare touch the model name -
 	// it's too risky, there are too many different strings)
