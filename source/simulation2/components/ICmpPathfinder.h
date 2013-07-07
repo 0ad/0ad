@@ -159,12 +159,31 @@ public:
 	virtual ICmpObstruction::EFoundationCheck CheckUnitPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, pass_class_t passClass) = 0;
 
 	/**
+	 * Check whether a unit placed here is valid and doesn't hit any obstructions
+	 * or impassable terrain.
+	 * When onlyCenterPoint = true, only check the center tile of the unit
+	 * @return ICmpObstruction::FOUNDATION_CHECK_SUCCESS if the placement is okay, else
+	 *	a value describing the type of failure.
+	 */
+	virtual ICmpObstruction::EFoundationCheck CheckUnitPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, pass_class_t passClass, bool onlyCenterPoint) = 0;
+
+	/**
 	 * Check whether a building placed here is valid and doesn't hit any obstructions
 	 * or impassable terrain.
 	 * @return ICmpObstruction::FOUNDATION_CHECK_SUCCESS if the placement is okay, else
 	 *	a value describing the type of failure.
 	 */
 	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass) = 0;
+
+	/**
+	 * Check whether a building placed here is valid and doesn't hit any obstructions
+	 * or impassable terrain.
+	 * when onlyCenterPoint = true, only check the center tile of the building
+	 * @return ICmpObstruction::FOUNDATION_CHECK_SUCCESS if the placement is okay, else
+	 *	a value describing the type of failure.
+	 */
+	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass, bool onlyCenterPoint) = 0;
+
 
 	/**
 	 * Toggle the storage and rendering of debug info.

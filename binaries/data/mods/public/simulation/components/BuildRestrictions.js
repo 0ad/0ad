@@ -17,6 +17,7 @@ BuildRestrictions.prototype.Schema =
 		"<choice>" +
 			"<value>land</value>" +
 			"<value>shore</value>" +
+			"<value>land-shore</value>"+
 		"</choice>" +
 	"</element>" +
 	"<element name='Territory' a:help='Specifies territory type restrictions for this building.'>" +
@@ -130,7 +131,13 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	case "shore":
 		passClassName = "building-shore";
 		break;
-		
+
+	case "land-shore":
+		// 'default' is everywhere a normal unit can go
+		// So on passable land, and not too deep in the water
+		passClassName = "default";
+		break;
+	
 	case "land":
 	default:
 		passClassName = "building-land";
@@ -139,8 +146,18 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (!cmpObstruction)
 		return result; // Fail
+	
+	
+	if (this.template.Category == "Wall")
+	{
+		// for walls, only test the center point
+		var ret = cmpObstruction.CheckFoundation(passClassName, true);
+	}
+	else
+	{
+		var ret = cmpObstruction.CheckFoundation(passClassName, false);
+	}
 
-	var ret = cmpObstruction.CheckFoundation(passClassName);
 	if (ret != "success")
 	{
 		switch (ret)

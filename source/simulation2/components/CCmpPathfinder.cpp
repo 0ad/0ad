@@ -659,6 +659,12 @@ void CCmpPathfinder::ProcessSameTurnMoves()
 ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
 	entity_pos_t x, entity_pos_t z, entity_pos_t r,	pass_class_t passClass)
 {
+	return CCmpPathfinder::CheckUnitPlacement(filter, x, z, r, passClass, false);
+}
+
+ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
+	entity_pos_t x, entity_pos_t z, entity_pos_t r,	pass_class_t passClass, bool onlyCenterPoint)
+{
 	// Check unit obstruction
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	if (!cmpObstructionManager)
@@ -670,6 +676,17 @@ ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObst
 	// Test against terrain:
 
 	UpdateGrid();
+	
+	if (onlyCenterPoint)
+	{
+		u16 i, j;
+		NearestTile(x , z, i, j);
+
+		if (IS_TERRAIN_PASSABLE(m_Grid->get(i,j), passClass))
+			return ICmpObstruction::FOUNDATION_CHECK_SUCCESS;
+
+		return ICmpObstruction::FOUNDATION_CHECK_FAIL_TERRAIN_CLASS;
+	}
 
 	u16 i0, j0, i1, j1;
 	NearestTile(x - r, z - r, i0, j0);
@@ -691,6 +708,14 @@ ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckBuildingPlacement(const I
 	entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w,
 	entity_pos_t h, entity_id_t id, pass_class_t passClass)
 {
+	return CCmpPathfinder::CheckBuildingPlacement(filter, x, z, a, w, h, id, passClass, false);
+}
+
+
+ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckBuildingPlacement(const IObstructionTestFilter& filter,
+	entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w,
+	entity_pos_t h, entity_id_t id, pass_class_t passClass, bool onlyCenterPoint)
+{
 	// Check unit obstruction
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	if (!cmpObstructionManager)
@@ -707,6 +732,17 @@ ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckBuildingPlacement(const I
 	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), id);
 	if (!cmpObstruction || !cmpObstruction->GetObstructionSquare(square))
 		return ICmpObstruction::FOUNDATION_CHECK_FAIL_NO_OBSTRUCTION;
+
+	if (onlyCenterPoint)
+	{
+		u16 i, j;
+		NearestTile(x, z, i, j);
+
+		if (IS_TERRAIN_PASSABLE(m_Grid->get(i,j), passClass))
+			return ICmpObstruction::FOUNDATION_CHECK_SUCCESS;
+
+		return ICmpObstruction::FOUNDATION_CHECK_FAIL_TERRAIN_CLASS;
+	}
 
 	// Expand bounds by 1/sqrt(2) tile (multiply by TERRAIN_TILE_SIZE since we want world coordinates)
 	entity_pos_t expand = entity_pos_t::FromInt(2).Sqrt().Multiply(entity_pos_t::FromInt(TERRAIN_TILE_SIZE / 2));
