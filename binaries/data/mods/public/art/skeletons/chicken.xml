@@ -1,0 +1,62 @@
+<skeletons>
+	<standard_skeleton title="BlenderChicken" id="BlenderChicken">
+		<bone name="Body">
+			<bone name="Neck_Low">
+			  <bone name="Neck_High">
+				<bone name="Head"></bone>
+			  </bone>
+			</bone>
+			<bone name="Leg_L">
+			  <bone name="Shin_L">
+				<bone name="Foot_L"></bone>
+			  </bone>
+			</bone>
+			<bone name="Leg_R">
+			  <bone name="Shin_R">
+				<bone name="Foot_R"></bone>
+			  </bone>
+			</bone>
+			<bone name="Rear">
+			  <bone name="Tail"></bone>
+			</bone>
+			<bone name="Wing_R">
+			  <bone name="WingTip_R"></bone>
+			</bone>
+			<bone name="Wing_L">
+			  <bone name="WingTip_L"></bone>
+			</bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="BlenderChicken" target="BlenderChicken">
+		<identifier>
+			<root>BlenderChicken</root>
+		</identifier>
+		<bone name="Body"><target>Body</target>
+			<bone name="Neck_Low"><target>Neck_Low</target>
+			  <bone name="Neck_High"><target>Neck_High</target>
+				<bone name="Head"><target>Head</target></bone>
+			  </bone>
+			</bone>
+			<bone name="Leg_L"><target>Leg_L</target>
+			  <bone name="Shin_L"><target>Shin_L</target>
+				<bone name="Foot_L"><target>Foot_L</target></bone>
+			  </bone>
+			</bone>
+			<bone name="Leg_R"><target>Leg_R</target>
+			  <bone name="Shin_R"><target>Shin_R</target>
+				<bone name="Foot_R"><target>Foot_R</target></bone>
+			  </bone>
+			</bone>
+			<bone name="Rear"><target>Rear</target>
+			  <bone name="Tail"><target>Tail</target></bone>
+			</bone>
+			<bone name="Wing_R"><target>Wing_R</target>
+			  <bone name="WingTip_R"><target>WingTip_R</target></bone>
+			</bone>
+			<bone name="Wing_L"><target>Wing_L</target>
+			  <bone name="WingTip_L"><target>WingTip_L</target></bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>

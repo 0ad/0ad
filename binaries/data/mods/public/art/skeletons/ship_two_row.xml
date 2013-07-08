@@ -1,0 +1,22 @@
+<skeletons>
+	<standard_skeleton title="Ship Two Row" id="shiptworow">
+		<bone name="two_row_main">
+			<bone name="right_top_row"></bone>
+			<bone name="right_bottom_row"></bone>
+			<bone name="left_top_row"></bone>
+			<bone name="left_bottom_row"></bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Ship Two Row" target="shiptworow">
+		<identifier>
+			<root>shiptworow</root>
+		</identifier>
+		<bone name="two_row_main"><target>two_row_main</target>
+			<bone name="right_top_row"><target>right_top_row</target></bone>
+			<bone name="right_bottom_row"><target>right_bottom_row</target></bone>
+			<bone name="left_top_row"><target>left_top_row</target></bone>
+			<bone name="left_bottom_row"><target>left_bottom_row</target></bone>
+		</bone>
+	</skeleton>
+</skeletons>

@@ -1,0 +1,28 @@
+<skeletons>
+	<standard_skeleton title="Ballista Weapon" id="ballista">
+		<bone name="main">
+			<bone name="weapon"></bone>
+			<bone name="lever"></bone>
+			<bone name="arm_left"></bone>
+			<bone name="arm_right"></bone>
+			<bone name="sling_left"></bone>
+			<bone name="sling"></bone>
+			<bone name="sling_right"></bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Ballista Weapon" target="ballista">
+		<identifier>
+			<root>ballista</root>
+		</identifier>
+		<bone name="main"><target>main</target>
+			<bone name="weapon"><target>weapon</target></bone>
+			<bone name="lever"><target>lever</target></bone>
+			<bone name="arm_left"><target>arm_left</target></bone>
+			<bone name="arm_right"><target>arm_right</target></bone>
+			<bone name="sling_left"><target>sling_left</target></bone>
+			<bone name="sling"><target>sling</target></bone>
+			<bone name="sling_right"><target>sling_right</target></bone>
+		</bone>
+	</skeleton>
+</skeletons>

@@ -1,0 +1,28 @@
+<skeletons>
+	<standard_skeleton title="Siege Onager" id="onager">
+		<bone name="onagermain">
+			<bone name="windlass"></bone>
+			<bone name="spoke">
+				<bone name="sling"></bone>
+				<bone name="rope_left"></bone>
+				<bone name="rope_right"></bone>
+				<bone name="rope_center"></bone>
+			</bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Siege Onager" target="onager">
+		<identifier>
+			<root>onager</root>
+		</identifier>
+		<bone name="onagermain"><target>onagermain</target>
+			<bone name="windlass"><target>windlass</target></bone>
+			<bone name="spoke"><target>spoke</target>
+				<bone name="sling"><target>sling</target></bone>
+				<bone name="rope_left"><target>rope_left</target></bone>
+				<bone name="rope_right"><target>rope_right</target></bone>
+				<bone name="rope_center"><target>rope_center</target></bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>

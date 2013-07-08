@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,6 +18,8 @@
 #include "precompiled.h"
 
 #include "ColladaManager.h"
+
+#include <boost/algorithm/string.hpp>
 
 #include "graphics/ModelDef.h"
 #include "lib/fnv_hash.h"
@@ -65,14 +67,62 @@ class CColladaManagerImpl
 
 public:
 	CColladaManagerImpl(const PIVFS& vfs)
-		: dll("Collada"), m_VFS(vfs)
+		: dll("Collada"), m_VFS(vfs), m_skeletonHashInvalidated(false)
 	{
+		// Support hotloading
+		RegisterFileReloadFunc(ReloadChangedFileCB, this);
 	}
 
 	~CColladaManagerImpl()
 	{
 		if (dll.IsLoaded())
 			set_logger(NULL, NULL); // unregister the log handler
+		UnregisterFileReloadFunc(ReloadChangedFileCB, this);
+	}
+
+	Status ReloadChangedFile(const VfsPath& path)
+	{
+		// Ignore files that aren't in the right path
+		if (!boost::algorithm::starts_with(path.string(), L"art/skeletons/"))
+			return INFO::OK;
+
+		if (path.Extension() != L".xml")
+			return INFO::OK;
+
+		m_skeletonHashInvalidated = true;
+
+		// If the file doesn't exist (e.g. it was deleted), don't bother reloading
+		// or 'unloading' since that isn't possible
+		if (!VfsFileExists(path))
+			return INFO::OK;
+
+		if (!dll.IsLoaded() && !TryLoadDLL())
+			return ERR::FAIL;	
+
+		LOGMESSAGE(L"Hotloading skeleton definitions from '%ls'", path.string().c_str());
+		// Set the filename for the logger to report
+		set_logger(ColladaLog, const_cast<void*>(static_cast<const void*>(&path)));
+
+		CVFSFile skeletonFile;
+		if (skeletonFile.Load(m_VFS, path) != PSRETURN_OK)
+		{
+			LOGERROR(L"Failed to read skeleton defintions from '%ls'", path.string().c_str());
+			return ERR::FAIL;
+		}
+
+		int ok = set_skeleton_definitions((const char*)skeletonFile.GetBuffer(), (int)skeletonFile.GetBufferSize());
+		if (ok < 0)
+		{
+			LOGERROR(L"Failed to load skeleton definitions from '%ls'", path.string().c_str());
+			return ERR::FAIL;
+		}
+
+		return INFO::OK;
+	}
+
+	static Status ReloadChangedFileCB(void* param, const VfsPath& path)
+	{
+		return static_cast<CColladaManagerImpl*>(param)->ReloadChangedFile(path);
 	}
 
 	bool Convert(const VfsPath& daeFilename, const VfsPath& pmdFilename, CColladaManager::FileType type)
@@ -83,46 +133,14 @@ public:
 		// to get all the right libraries to build the COLLADA DLL), we load
 		// it dynamically when it is required, instead of using the exported
 		// functions and binding at link-time.
-		if (! dll.IsLoaded())
+		if (!dll.IsLoaded())
 		{
-			if (! dll.LoadDLL())
-			{
-				LOGERROR(L"Failed to load COLLADA conversion DLL");
+			if (!TryLoadDLL())
 				return false;
-			}
 
-			try
+			if (!LoadSkeletonDefinitions())
 			{
-				dll.LoadSymbol("set_logger", set_logger);
-				dll.LoadSymbol("set_skeleton_definitions", set_skeleton_definitions);
-				dll.LoadSymbol("convert_dae_to_pmd", convert_dae_to_pmd);
-				dll.LoadSymbol("convert_dae_to_psa", convert_dae_to_psa);
-			}
-			catch (PSERROR_DllLoader&)
-			{
-				LOGERROR(L"Failed to load symbols from COLLADA conversion DLL");
-				dll.Unload();
-				return false;
-			}
-
-			VfsPath skeletonPath("art/skeletons/skeletons.xml");
-
-			// Set the filename for the logger to report
-			set_logger(ColladaLog, static_cast<void*>(&skeletonPath));
-
-			CVFSFile skeletonFile;
-			if (skeletonFile.Load(m_VFS, skeletonPath) != PSRETURN_OK)
-			{
-				LOGERROR(L"Failed to read skeleton definitions");
-				dll.Unload();
-				return false;
-			}
-
-			int ok = set_skeleton_definitions((const char*)skeletonFile.GetBuffer(), (int)skeletonFile.GetBufferSize());
-			if (ok < 0)
-			{
-				LOGERROR(L"Failed to load skeleton definitions");
-				dll.Unload();
+				dll.Unload(); // Error should have been logged already
 				return false;
 			}
 		}
@@ -167,8 +185,133 @@ public:
 		return (result == 0);
 	}
 
+	bool TryLoadDLL()
+	{
+		if (!dll.LoadDLL())
+		{
+			LOGERROR(L"Failed to load COLLADA conversion DLL");
+			return false;
+		}
+
+		try
+		{
+			dll.LoadSymbol("set_logger", set_logger);
+			dll.LoadSymbol("set_skeleton_definitions", set_skeleton_definitions);
+			dll.LoadSymbol("convert_dae_to_pmd", convert_dae_to_pmd);
+			dll.LoadSymbol("convert_dae_to_psa", convert_dae_to_psa);
+		}
+		catch (PSERROR_DllLoader&)
+		{
+			LOGERROR(L"Failed to load symbols from COLLADA conversion DLL");
+			dll.Unload();
+			return false;
+		}
+		return true;
+	}
+
+	bool LoadSkeletonDefinitions()
+	{
+		VfsPaths pathnames;
+		if (vfs::GetPathnames(m_VFS, L"art/skeletons/", L"*.xml", pathnames) < 0)
+		{
+			LOGERROR(L"No skeleton definition files present");
+			return false;
+		}
+
+		bool loaded = false;
+		for (VfsPaths::const_iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+		{
+			LOGMESSAGE(L"Loading skeleton definitions from '%ls'", it->string().c_str());
+			// Set the filename for the logger to report
+			set_logger(ColladaLog, const_cast<void*>(static_cast<const void*>(&(*it))));
+
+			CVFSFile skeletonFile;
+			if (skeletonFile.Load(m_VFS, *it) != PSRETURN_OK)
+			{
+				LOGERROR(L"Failed to read skeleton defintions from '%ls'", it->string().c_str());
+				continue;
+			}
+
+			int ok = set_skeleton_definitions((const char*)skeletonFile.GetBuffer(), (int)skeletonFile.GetBufferSize());
+			if (ok < 0)
+			{
+				LOGERROR(L"Failed to load skeleton definitions from '%ls'", it->string().c_str());
+				continue;
+			}
+
+			loaded = true;
+		}
+
+		if (!loaded)
+			LOGERROR(L"Failed to load any skeleton definitions");
+
+		return loaded;
+	}
+	
+	/**
+	 * Creates MD5 hash key from skeletons.xml info and COLLADA converter version,
+	 * used to invalidate cached .pmd/psas
+	 *
+	 * @param[out] hash resulting MD5 hash
+	 * @param[out] version version passed to CCacheLoader, used if code change should force
+	 *		  cache invalidation
+	 */
+	void PrepareCacheKey(MD5& hash, u32& version)
+	{
+		// Add converter version to the hash
+		version = COLLADA_CONVERTER_VERSION;
+
+		// Cache the skeleton files hash data
+		if (m_skeletonHashInvalidated)
+		{
+			VfsPaths paths;
+			if (vfs::GetPathnames(m_VFS, L"art/skeletons/", L".xml", paths) != INFO::OK)
+			{
+				LOGWARNING(L"Failed to load skeleton definitions");
+				return;
+			}
+
+			// Sort the paths to not invalidate the cache if mods are mounted in different order
+			// (No need to stable_sort as the VFS gurantees that we have no duplicates)
+			std::sort(paths.begin(), paths.end());
+
+			// We need two u64s per file
+			m_skeletonHashes.clear();
+			m_skeletonHashes.resize(paths.size()*2);
+
+			FileInfo fileInfo;
+			for (VfsPaths::const_iterator it = paths.begin(); it != paths.end(); ++it)
+			{
+				// This will cause an assertion failure if *it doesn't exist,
+				//	because fileinfo is not a NULL pointer, which is annoying but that
+				//	should never happen, unless there really is a problem
+				if (m_VFS->GetFileInfo(*it, &fileInfo) != INFO::OK)
+				{
+					LOGERROR(L"Failed to stat '%ls' for DAE caching", it->string().c_str());
+				}
+				else
+				{
+					m_skeletonHashes.push_back((u64)fileInfo.MTime() & ~1); //skip lowest bit, since zip and FAT don't preserve it
+					m_skeletonHashes.push_back((u64)fileInfo.Size());
+				}
+			}
+
+			// Check if we were able to load any skeleton files
+			if (m_skeletonHashes.empty())
+				LOGERROR(L"Failed to stat any skeleton definitions for DAE caching");
+				// We can continue, something else will break if we try loading a skeletal model
+
+			m_skeletonHashInvalidated = false;
+		}
+
+		for (std::vector<u64>::const_iterator it = m_skeletonHashes.begin(); it != m_skeletonHashes.end(); ++it)
+			hash.Update((const u8*)&(*it), sizeof(*it));
+	}
+
 private:
 	PIVFS m_VFS;
+	bool m_skeletonHashInvalidated;
+	std::vector<u64> m_skeletonHashes;
 };
 
 CColladaManager::CColladaManager(const PIVFS& vfs)
@@ -179,32 +322,6 @@ CColladaManager::CColladaManager(const PIVFS& vfs)
 CColladaManager::~CColladaManager()
 {
 	delete m;
-}
-
-void CColladaManager::PrepareCacheKey(MD5& hash, u32& version)
-{
-	// Include skeletons.xml file info in the hash
-	VfsPath skeletonPath("art/skeletons/skeletons.xml");
-	FileInfo fileInfo;
-
-	// This will cause an assertion failure if skeletons.xml doesn't exist,
-	//	because fileinfo is not a NULL pointer, which is annoying but that
-	//	should never happen, unless there really is a problem
-	if (m_VFS->GetFileInfo(skeletonPath, &fileInfo) != INFO::OK)
-	{
-		LOGERROR(L"Failed to stat '%ls' for DAE caching", skeletonPath.string().c_str());
-		// We can continue, something else will break if we try loading a skeletal model
-	}
-	else
-	{
-		u64 skeletonsModifyTime = (u64)fileInfo.MTime() & ~1; // skip lowest bit, since zip and FAT don't preserve it
-		u64 skeletonsSize = (u64)fileInfo.Size();	
-		hash.Update((const u8*)&skeletonsModifyTime, sizeof(skeletonsModifyTime));
-		hash.Update((const u8*)&skeletonsSize, sizeof(skeletonsSize));
-	}
-
-	// Add converter version to the hash
-	version = COLLADA_CONVERTER_VERSION;
 }
 
 VfsPath CColladaManager::GetLoadablePath(const VfsPath& pathnameNoExtension, FileType type)
@@ -255,22 +372,18 @@ VfsPath CColladaManager::GetLoadablePath(const VfsPath& pathnameNoExtension, Fil
 	CCacheLoader cacheLoader(m_VFS, extn);
 	MD5 hash;
 	u32 version;
-	PrepareCacheKey(hash, version);
+	m->PrepareCacheKey(hash, version);
 
 	VfsPath cachePath;
 	VfsPath sourcePath = pathnameNoExtension.ChangeExtension(L".dae");
 	Status ret = cacheLoader.TryLoadingCached(sourcePath, hash, version, cachePath);
+
 	if (ret == INFO::OK)
-	{
 		// Found a valid cached version
 		return cachePath;
-	}
-	else if (ret == INFO::SKIPPED)
-	{
-		// No valid cached version was found - but source .dae exists
-		// We'll try converting it
-	}
-	else
+
+	// No valid cached version, check if we have a source .dae
+	if (ret != INFO::SKIPPED)
 	{
 		// No valid cached version was found, and no source .dae exists
 		ENSURE(ret < 0);
@@ -287,6 +400,9 @@ VfsPath CColladaManager::GetLoadablePath(const VfsPath& pathnameNoExtension, Fil
 			return sourcePath;
 		}
 	}
+
+	// No valid cached version was found - but source .dae exists
+	// We'll try converting it
 
 	// We have a source .dae and invalid cached version, so regenerate cached version
 	if (! m->Convert(sourcePath, cachePath, type))

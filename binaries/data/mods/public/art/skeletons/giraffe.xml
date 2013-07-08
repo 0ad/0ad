@@ -1,0 +1,122 @@
+<skeletons>
+	<standard_skeleton title="GiraffeBones" id="giraffe"> 
+		<bone name="main_pelvis">
+			<bone name="left_r_pelvis_upper">
+				<bone name="left_r_leg_top">
+					<bone name="left_r_leg_mid">
+						<bone name="left_r_leg_bottom">
+							<bone name="left_r_foot"></bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="right_r_pelvis_upper">
+				<bone name="right_r_leg_top">
+					<bone name="right_r_leg_mid">
+						<bone name="right_r_leg_bottom">
+							<bone name="right_r_foot"></bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="spine_01">
+				<bone name="spine_02">
+					<bone name="spine_neck">
+						<bone name="right_f_pelvis_upper">
+							<bone name="right_f_leg_top">
+								<bone name="right_f_leg_mid">
+									<bone name="right_f_leg_bottom">
+										<bone name="right_f_foot"></bone>
+									</bone>
+								</bone>
+							</bone>
+						</bone>
+						<bone name="left_f_pelvis_upper">
+							<bone name="left_f_leg_top">
+								<bone name="left_f_leg_mid">
+									<bone name="left_f_leg_bottom">
+										<bone name="left_f_foot"></bone>
+									</bone>
+								</bone>
+							</bone>
+						</bone>
+						<bone name="neck_01">
+							<bone name="neck_02">
+								<bone name="neck_03">
+									<bone name="head"></bone>
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone> 
+			<bone name="tail_01">
+				<bone name="tail_02">
+					<bone name="tail_03"></bone>
+				</bone>
+			</bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="GiraffeBones" target="giraffe">
+		<identifier>
+				<root>main_pelvis</root>
+		</identifier>
+		<bone name="main_pelvis"><target>main_pelvis</target>
+			<bone name="left_r_pelvis_upper"><target>left_r_pelvis_upper</target>
+				<bone name="left_r_leg_top"><target>left_r_leg_top</target>
+					<bone name="left_r_leg_mid"><target>left_r_leg_mid</target>
+						<bone name="left_r_leg_bottom"><target>left_r_leg_bottom</target>
+							<bone name="left_r_foot"><target>left_r_foot</target></bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="right_r_pelvis_upper"><target>right_r_pelvis_upper</target>
+				<bone name="right_r_leg_top"><target>right_r_leg_top</target>
+					<bone name="right_r_leg_mid"><target>right_r_leg_mid</target>
+						<bone name="right_r_leg_bottom"><target>right_r_leg_bottom</target>
+							<bone name="right_r_foot"><target>right_r_foot</target></bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="spine_01"><target>spine_01</target>
+				<bone name="spine_02"><target>spine_02</target>
+					<bone name="spine_neck"><target>spine_neck</target>
+						<bone name="right_f_pelvis_upper"><target>right_f_pelvis_upper</target>
+							<bone name="right_f_leg_top"><target>right_f_leg_top</target>
+								<bone name="right_f_leg_mid"><target>right_f_leg_mid</target>
+									<bone name="right_f_leg_bottom"><target>right_f_leg_bottom</target>
+										<bone name="right_f_foot"><target>right_f_foot</target></bone>
+									</bone>
+								</bone>
+							</bone>
+						</bone>
+						<bone name="left_f_pelvis_upper"><target>left_f_pelvis_upper</target>
+							<bone name="left_f_leg_top"><target>left_f_leg_top</target>
+								<bone name="left_f_leg_mid"><target>left_f_leg_mid</target>
+									<bone name="left_f_leg_bottom"><target>left_f_leg_bottom</target>
+										<bone name="left_f_foot"><target>left_f_foot</target></bone>
+									</bone>
+								</bone>
+							</bone>
+						</bone>
+						<bone name="neck_01"><target>neck_01</target>
+							<bone name="neck_02"><target>neck_02</target>
+								<bone name="neck_03"><target>neck_03</target>
+									<bone name="head"><target>head</target></bone>
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone> 
+			<bone name="tail_01"><target>tail_01</target>
+				<bone name="tail_02"><target>tail_02</target>
+					<bone name="tail_03"><target>tail_03</target></bone>
+				</bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>

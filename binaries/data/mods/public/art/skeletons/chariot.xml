@@ -1,0 +1,22 @@
+<skeletons>
+	<standard_skeleton title="Chariot Skeleton" id="chariot">
+		<bone name="base">
+			<bone name="chariot">
+				<bone name="left_wheel"></bone>
+				<bone name="right_wheel"></bone>
+			</bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Chariot Skeleton" target="chariot">
+		 <identifier>
+			<root>base</root>
+		 </identifier>
+		<bone name="base"><target>base</target>
+			<bone name="chariot"><target>chariot</target>
+				<bone name="left_wheel"><target>left_wheel</target></bone>
+				<bone name="right_wheel"><target>right_wheel</target></bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>

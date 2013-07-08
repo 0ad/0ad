@@ -1,0 +1,28 @@
+<skeletons>
+	<standard_skeleton title="Six Wheel Vehicle" id="sixwheel"> 
+		<bone name="sixwheel">
+			<bone name="l_back"></bone>
+			<bone name="l_mid"></bone>
+			<bone name="l_front"></bone>
+			<bone name="r_back"></bone>
+			<bone name="r_mid"></bone>
+			<bone name="r_front"></bone>
+			<bone name="weapon"></bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Six Wheel Vehicle" target="sixwheel">
+		<identifier>
+			<root>SixWheeler</root>
+		</identifier>
+		<bone name="sixwheel"><target>sixwheel</target>
+			<bone name="l_back"><target>l_back</target></bone>
+			<bone name="l_mid"><target>l_mid</target></bone>
+			<bone name="l_front"><target>l_front</target></bone>
+			<bone name="r_back"><target>r_back</target></bone>
+			<bone name="r_mid"><target>r_mid</target></bone>
+			<bone name="r_front"><target>r_front</target></bone>
+			<bone name="weapon"><target>weapon</target></bone>
+		</bone>
+	</skeleton>
+</skeletons>

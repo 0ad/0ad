@@ -1,0 +1,112 @@
+<skeletons>
+	<standard_skeleton title="BlenderShark" id="BlenderShark">
+		<bone name="head" />
+		<bone name="spine1">
+			<bone name="spine2">
+				<bone name="spine3">
+					<bone name="spine4">
+						<bone name="spine5">
+							<bone name="spine6">
+								<bone name="spine7">
+									<bone name="reartopfin1">
+										<bone name="reartopfin2">
+											<bone name="reartopfin3">
+												<bone name="reartopfin4">
+													<bone name="reartopfintip" />
+													<bone name="reartopfin4back" />
+												</bone>
+												<bone name="reartopfin3back" />
+											</bone>
+											<bone name="reartopfin2back" />
+										</bone>
+									</bone>
+									<bone name="rearbottomfin1">
+										<bone name="rearbottomfin2">
+											<bone name="rearbottomfin3">
+												<bone name="rearbottomfin4" />
+											</bone>
+											<bone name="rearbottomfin2back" />
+										</bone>
+										<bone name="rearbottomfin1back" />
+									</bone>
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="leftfin">
+					<bone name="leftfintip">
+						<bone name="leftfintipback" />
+					</bone>
+					<bone name="leftfinback" />
+				</bone>
+				<bone name="topfin">
+					<bone name="topfintip" />
+					<bone name="topfinback" />
+				</bone>
+				<bone name="rightfin">
+					<bone name="rightfintip">
+						<bone name="rightfintipback" />
+					</bone>
+					<bone name="rightfinback" />
+				</bone>
+			</bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="BlenderShark" target="BlenderShark">
+		<identifier><root>SHARK_</root></identifier>
+		<bone name="head"><target>head</target></bone>
+		<bone name="spine1"><target>spine1</target>
+			<bone name="spine2"><target>spine2</target>
+				<bone name="spine3"><target>spine3</target>
+					<bone name="spine4"><target>spine4</target>
+						<bone name="spine5"><target>spine5</target>
+							<bone name="spine6"><target>spine6</target>
+								<bone name="spine7"><target>spine7</target>
+									<bone name="reartopfin1"><target>reartopfin1</target>
+										<bone name="reartopfin2"><target>reartopfin2</target>
+											<bone name="reartopfin3"><target>reartopfin3</target>
+												<bone name="reartopfin4"><target>reartopfin4</target>
+													<bone name="reartopfintip"><target>reartopfintip</target></bone>
+													<bone name="reartopfin4back"><target>reartopfin4back</target></bone>
+												</bone>
+												<bone name="reartopfin3back"><target>reartopfin3back</target></bone>
+											</bone>
+											<bone name="reartopfin2back"><target>reartopfin2back</target></bone>
+										</bone>
+									</bone>
+									<bone name="rearbottomfin1"><target>rearbottomfin1</target>
+										<bone name="rearbottomfin2"><target>rearbottomfin2</target>
+											<bone name="rearbottomfin3"><target>rearbottomfin3</target>
+												<bone name="rearbottomfin4"><target>rearbottomfin4</target></bone>
+											</bone>
+											<bone name="rearbottomfin2back"><target>rearbottomfin2back</target></bone>
+										</bone>
+										<bone name="rearbottomfin1back"><target>rearbottomfin1back</target></bone>
+									</bone>
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="leftfin"><target>leftfin</target>
+					<bone name="leftfintip"><target>leftfintip</target>
+						<bone name="leftfintipback"><target>leftfintipback</target></bone>
+					</bone>
+					<bone name="leftfinback"><target>leftfinback</target></bone>
+				</bone>
+				<bone name="topfin"><target>topfin</target>
+					<bone name="topfintip"><target>topfintip</target></bone>
+					<bone name="topfinback"><target>topfinback</target></bone>
+				</bone>
+				<bone name="rightfin"><target>rightfin</target>
+					<bone name="rightfintip"><target>rightfintip</target>
+						<bone name="rightfintipback"><target>rightfintipback</target></bone>
+					</bone>
+					<bone name="rightfinback"><target>rightfinback</target></bone>
+				</bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>

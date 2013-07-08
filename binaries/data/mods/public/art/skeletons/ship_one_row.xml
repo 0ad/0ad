@@ -1,0 +1,18 @@
+<skeletons>
+	<standard_skeleton title="Ship One Row" id="shiponerow">
+		<bone name="one_row_main">
+			<bone name="right_top_row"></bone>
+			<bone name="left_top_row"></bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Ship One Row" target="shiponerow">
+		<identifier>
+			<root>shiponerow</root>
+		</identifier>
+		<bone name="one_row_main"><target>one_row_main</target>
+			<bone name="right_top_row"><target>right_top_row</target></bone>
+			<bone name="left_top_row"><target>left_top_row</target></bone>
+		</bone>
+	</skeleton>
+</skeletons>

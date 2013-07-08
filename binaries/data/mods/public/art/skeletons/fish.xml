@@ -1,0 +1,26 @@
+<skeletons>
+	<standard_skeleton title="Fish School" id="fish">
+		<bone name="main">
+			<bone name="motion_head"></bone>
+			<bone name="motion_mid"></bone>
+			<bone name="motion_back"></bone>
+			<bone name="jump_first"></bone>
+			<bone name="jump_second"></bone>
+			<bone name="jump_third"></bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Fish School" target="fish">
+		<identifier>
+			<root>fish_shoal</root>
+		</identifier>
+		<bone name="main"><target>main</target>
+			<bone name="motion_head"><target>motion_head</target></bone>
+			<bone name="motion_mid"><target>motion_mid</target></bone>
+			<bone name="motion_back"><target>motion_back</target></bone>
+			<bone name="jump_first"><target>jump_first</target></bone>
+			<bone name="jump_second"><target>jump_second</target></bone>
+			<bone name="jump_third"><target>jump_third</target></bone>
+		</bone>
+	</skeleton>
+</skeletons>

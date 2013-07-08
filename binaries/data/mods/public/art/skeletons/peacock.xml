@@ -1,0 +1,104 @@
+<skeletons>
+	<standard_skeleton title="Peacock" id="Peacock">
+		<bone name="PeacockArmature">
+			<bone name="Body">
+				<bone name="Neck1">
+					<bone name="Neck2">
+						<bone name="Neck3">
+							<bone name="Head">
+								<bone name="Mohawk" />
+							</bone>
+						</bone>
+						<bone name="Neck2_Joint" />
+					</bone>
+				</bone>
+				<bone name="tailHolder_Base">
+					<bone name="tailHolder_Middle">
+						<bone name="tailHolder_Top">
+							<bone name="tailFeather_Middle" />
+							<bone name="tailFeather_Right" />
+							<bone name="tailFeather_Rightmost" />
+							<bone name="tailFeather_Left" />
+							<bone name="tailFeather_Leftmost" />
+							<bone name="tailFeather_Right45" />
+							<bone name="tailFeather_Left45" />
+							<bone name="tailFeather_Right60" />
+							<bone name="tailFeather_Left60" />
+							<bone name="tailHolder_Back">
+								<bone name="tailHolder_Back_Fluff" />
+							</bone>
+							<bone name="tailFeather_Right90" />
+							<bone name="tailFeather_Left90" />
+						</bone>
+					</bone>
+				</bone>
+				<bone name="RightWing" />
+				<bone name="LeftWing" />
+			</bone>
+			<bone name="LeftLeg">
+				<bone name="LeftShin">
+					<bone name="LeftFoot" />
+				</bone>
+				<bone name="LeftKnee" />
+			</bone>
+			<bone name="RightLeg">
+				<bone name="RightShin">
+					<bone name="RightFoot" />
+				</bone>
+				<bone name="RightKnee" />
+			</bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Peacock" target="Peacock">
+		<identifier><root>PeacockArmature</root></identifier>
+		<bone name="PeacockArmature"><target>PeacockArmature</target>
+			<bone name="Body"><target>Body</target>
+				<bone name="Neck1"><target>Neck1</target>
+					<bone name="Neck2"><target>Neck2</target>
+						<bone name="Neck3"><target>Neck3</target>
+							<bone name="Head"><target>Head</target>
+								<bone name="Mohawk"><target>Mohawk</target></bone>
+							</bone>
+						</bone>
+						<bone name="Neck2_Joint"><target>Neck2_Joint</target></bone>
+					</bone>
+				</bone>
+				<bone name="tailHolder_Base"><target>tailHolder_Base</target>
+					<bone name="tailHolder_Middle"><target>tailHolder_Middle</target>
+						<bone name="tailHolder_Top"><target>tailHolder_Top</target>
+							<bone name="tailFeather_Middle"><target>tailFeather_Middle</target></bone>
+							<bone name="tailFeather_Right"><target>tailFeather_Right</target></bone>
+							<bone name="tailFeather_Rightmost"><target>tailFeather_Rightmost</target></bone>
+							<bone name="tailFeather_Left"><target>tailFeather_Left</target></bone>
+							<bone name="tailFeather_Leftmost"><target>tailFeather_Leftmost</target></bone>
+							<bone name="tailFeather_Right45"><target>tailFeather_Right45</target></bone>
+							<bone name="tailFeather_Left45"><target>tailFeather_Left45</target></bone>
+							<bone name="tailFeather_Right60"><target>tailFeather_Right60</target></bone>
+							<bone name="tailFeather_Left60"><target>tailFeather_Left60</target></bone>
+							<bone name="tailHolder_Back"><target>tailHolder_Back</target>
+								<bone name="tailHolder_Back_Fluff"><target>tailHolder_Back_Fluff</target></bone>
+							</bone>
+							<bone name="tailFeather_Right90"><target>tailFeather_Right90</target></bone>
+							<bone name="tailFeather_Left90"><target>tailFeather_Left90</target></bone>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="RightWing"><target>RightWing</target></bone>
+				<bone name="LeftWing"><target>LeftWing</target></bone>
+			</bone>
+			<bone name="LeftLeg"><target>LeftLeg</target>
+				<bone name="LeftShin"><target>LeftShin</target>
+					<bone name="LeftFoot"><target>LeftFoot</target></bone>
+				</bone>
+				<bone name="LeftKnee"><target>LeftKnee</target></bone>
+			</bone>
+			<bone name="RightLeg"><target>RightLeg</target>
+				<bone name="RightShin"><target>RightShin</target>
+					<bone name="RightFoot"><target>RightFoot</target></bone>
+				</bone>
+				<bone name="RightKnee"><target>RightKnee</target></bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>

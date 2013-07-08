@@ -1,0 +1,88 @@
+<skeletons>
+	<standard_skeleton title="Sheep" id="Sheep">
+		<bone name="ThreeBagsFull">
+			<bone name="Neck">
+				<bone name="Head" />
+			</bone>
+			<bone name="Body_Front">
+				<bone name="Body_Rear">
+					<bone name="Pelvis_Left">
+						<bone name="Leg_Left">
+							<bone name="Shin_Left">
+								<bone name="Foot_Left" />
+							</bone>
+						</bone>
+					</bone>
+					<bone name="Pelvis_Right">
+						<bone name="Leg_Right">
+							<bone name="Shin_Right">
+								<bone name="Foot_Right" />
+							</bone>
+						</bone>
+					</bone>
+					<bone name="Butt">
+						<bone name="Tail" />
+					</bone>
+				</bone>
+			</bone>
+			<bone name="Shoulder_Left">
+				<bone name="Arm_Left">
+					<bone name="Forearm_Left">
+						<bone name="Hand_Left" />
+					</bone>
+				</bone>
+			</bone>
+			<bone name="Shoulder_Right">
+				<bone name="Arm_Right">
+					<bone name="Forearm_Right">
+						<bone name="Hand_Right" />
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Sheep" target="Sheep">
+		<identifier><root>ThreeBagsFull</root></identifier>
+		<bone name="ThreeBagsFull"><target>ThreeBagsFull</target>
+			<bone name="Neck"><target>Neck</target>
+				<bone name="Head"><target>Head</target></bone>
+			</bone>
+			<bone name="Body_Front"><target>Body_Front</target>
+				<bone name="Body_Rear"><target>Body_Rear</target>
+					<bone name="Pelvis_Left"><target>Pelvis_Left</target>
+						<bone name="Leg_Left"><target>Leg_Left</target>
+							<bone name="Shin_Left"><target>Shin_Left</target>
+								<bone name="Foot_Left"><target>Foot_Left</target></bone>
+							</bone>
+						</bone>
+					</bone>
+					<bone name="Pelvis_Right"><target>Pelvis_Right</target>
+						<bone name="Leg_Right"><target>Leg_Right</target>
+							<bone name="Shin_Right"><target>Shin_Right</target>
+								<bone name="Foot_Right"><target>Foot_Right</target></bone>
+							</bone>
+						</bone>
+					</bone>
+					<bone name="Butt"><target>Butt</target>
+						<bone name="Tail"><target>Tail</target></bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="Shoulder_Left"><target>Shoulder_Left</target>
+				<bone name="Arm_Left"><target>Arm_Left</target>
+					<bone name="Forearm_Left"><target>Forearm_Left</target>
+						<bone name="Hand_Left"><target>Hand_Left</target></bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="Shoulder_Right"><target>Shoulder_Right</target>
+				<bone name="Arm_Right"><target>Arm_Right</target>
+					<bone name="Forearm_Right"><target>Forearm_Right</target>
+						<bone name="Hand_Right"><target>Hand_Right</target></bone>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>

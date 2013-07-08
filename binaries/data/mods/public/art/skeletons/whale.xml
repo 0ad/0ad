@@ -1,0 +1,34 @@
+<skeletons>
+	<standard_skeleton title="whale skeleton1" id="whale1">
+		<bone name="main">
+			<bone name="body">
+				<bone name="head"></bone>
+				<bone name="spine">
+					<bone name="pelvis">
+						<bone name="tail"></bone>
+					</bone>
+				</bone>
+				<bone name="fin_r"></bone>
+				<bone name="fin_l"></bone>
+			</bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="whale skeleton1" target="whale1">
+		<identifier>
+			<root>whale_1</root>
+		</identifier>
+		<bone name="main"><target>main</target>
+			<bone name="body"><target>body</target>
+				<bone name="head"><target>head</target></bone>
+				<bone name="spine"><target>spine</target>
+					<bone name="pelvis"><target>pelvis</target>
+						<bone name="tail"><target>tail</target></bone>
+					</bone>
+				</bone>
+				<bone name="fin_r"><target>fin_r</target></bone>
+				<bone name="fin_l"><target>fin_l</target></bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>
