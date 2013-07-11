@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@ class CObjectEntry;
 class CSkeletonAnim;
 class CSkeletonAnimDef;
 class CSkeletonAnimManager;
+class CSimulation2;
 
 #define MODELFLAG_CASTSHADOWS		(1<<0)
 #define MODELFLAG_NOLOOPANIMATION	(1<<1)
@@ -54,6 +55,9 @@ public:
 	struct Prop
 	{
 		Prop() : m_Point(0), m_Model(0), m_ObjectEntry(0), m_Hidden(false) {}
+
+		float m_minHeight;
+		float m_maxHeight;
 
 		/**
 		 * Location of the prop point within its parent model, relative to either a bone in the parent model or to the 
@@ -75,9 +79,10 @@ public:
 
 public:
 	// constructor
-	CModel(CSkeletonAnimManager& skeletonAnimManager);
+	CModel(CSkeletonAnimManager& skeletonAnimManager, CSimulation2& simulation);
 	// destructor
 	~CModel();
+
 
 	/// Dynamic cast
 	virtual CModel* ToCModel()
@@ -205,7 +210,7 @@ public:
 	/**
 	 * Add a prop to the model on the given point.
 	 */
-	void AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry);
+	void AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry, float minHeight = 0.f, float maxHeight = 0.f);
 
 	/**
 	 * Add a prop to the model on the given point, and treat it as the ammo prop.
@@ -250,6 +255,9 @@ public:
 private:
 	// delete anything allocated by the model
 	void ReleaseData();
+	
+	// Needed for terrain aligned props
+	CSimulation2& m_Simulation;
 
 	// object flags
 	int m_Flags;

@@ -7,9 +7,9 @@
       <props>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_sb1_mud.xml" attachpoint="root"/>
-        <prop actor="props/structures/persians/stable_horse_a.xml" attachpoint="horsea"/>
-        <prop actor="props/structures/persians/stable_horse_b.xml" attachpoint="horseb"/>
-        <prop actor="props/structures/persians/stable_horse_c.xml" attachpoint="horsec"/>
+        <prop actor="props/structures/persians/stable_horse_a.xml" attachpoint="horsea" minheight="-20" maxheight="1.7"/>
+        <prop actor="props/structures/persians/stable_horse_b.xml" attachpoint="horseb" minheight="-20" maxheight="1.7"/>
+        <prop actor="props/structures/persians/stable_horse_c.xml" attachpoint="horsec" minheight="-20" maxheight="1.7"/>
       </props>
       <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
     </variant>

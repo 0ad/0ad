@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,6 +59,9 @@ public:
 		CStr m_PropPointName;
 		// name of the model file - art/actors/props/sword.xml or whatever
 		CStrW m_ModelName;
+		// allow the prop to ajust the height from minHeight to maxHeight relative to the main model
+		float m_minHeight;
+		float m_maxHeight;
 	};
 	
 	struct Samp

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -139,7 +139,7 @@ CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::
 	// makes more sense (e.g. use shared_ptr); for now I'll just leak, to avoid making the logic
 	// more complex than it is already is, since this only matters for the rare case of hotloading.
 
-	CObjectEntry* obj = new CObjectEntry(base); // TODO: type ?
+	CObjectEntry* obj = new CObjectEntry(base, m_Simulation); // TODO: type ?
 
 	// TODO (for some efficiency): use the pre-calculated choices for this object,
 	// which has already worked out what to do for props, instead of passing the
