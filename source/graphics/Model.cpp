@@ -408,7 +408,7 @@ void CModel::ValidatePosition()
 			{
 				float objTerrain = cmpTerrain->GetExactGroundLevel(objTranslation.X, objTranslation.Z);
 				float propTerrain = cmpTerrain->GetExactGroundLevel(propTranslation.X, propTranslation.Z);
-				float translateHeight = std::min(prop.m_maxHeigth,
+				float translateHeight = std::min(prop.m_maxHeight,
 				                                 std::max(prop.m_minHeight, propTerrain - objTerrain));
 				CMatrix3D translate = CMatrix3D();
 				translate.SetTranslation(0.f, translateHeight, 0.f);
