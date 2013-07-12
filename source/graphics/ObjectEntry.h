@@ -37,6 +37,8 @@ struct SPropPoint;
 
 class CObjectEntry
 {
+	NONCOPYABLE(CObjectEntry);
+
 public:
 	CObjectEntry(CObjectBase* base, CSimulation2& simulation);
 	~CObjectEntry();
