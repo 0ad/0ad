@@ -54,7 +54,7 @@ class CModel : public CModelAbstract
 public:
 	struct Prop
 	{
-		Prop() : m_Point(0), m_Model(0), m_ObjectEntry(0), m_Hidden(false) {}
+		Prop() : m_minHeight(0.f), m_maxHeight(0.f), m_Point(0), m_Model(0), m_ObjectEntry(0), m_Hidden(false) {}
 
 		float m_minHeight;
 		float m_maxHeight;
