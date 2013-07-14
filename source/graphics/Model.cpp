@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,13 +36,15 @@
 #include "ps/Profile.h"
 #include "ps/CLogger.h"
 #include "renderer/Renderer.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpTerrain.h"
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
-CModel::CModel(CSkeletonAnimManager& skeletonAnimManager)
-	: m_Flags(0), m_Anim(NULL), m_AnimTime(0),
-	m_BoneMatrices(NULL),
-	m_AmmoPropPoint(NULL), m_AmmoLoadedProp(0),
+CModel::CModel(CSkeletonAnimManager& skeletonAnimManager, CSimulation2& simulation)
+	: m_Flags(0), m_Anim(NULL), m_AnimTime(0), m_Simulation(simulation),
+	m_BoneMatrices(NULL), m_AmmoPropPoint(NULL), m_AmmoLoadedProp(0),
 	m_SkeletonAnimManager(skeletonAnimManager)
 {
 }
@@ -380,7 +382,8 @@ void CModel::ValidatePosition()
 	{
 		const Prop& prop=m_Props[j];
 
-		CMatrix3D proptransform = prop.m_Point->m_Transform;;
+		CMatrix3D proptransform = prop.m_Point->m_Transform;
+
 		if (prop.m_Point->m_BoneIndex != 0xff)
 		{
 			CMatrix3D boneMatrix = m_BoneMatrices[prop.m_Point->m_BoneIndex];
@@ -393,7 +396,26 @@ void CModel::ValidatePosition()
 			// not relative to any bone; just apply world-space transformation (i.e. relative to object-space origin)
 			proptransform.Concatenate(m_Transform);
 		}
-		
+
+		// Adjust prop height to terrain level when needed
+		if (prop.m_maxHeight != 0.f || prop.m_minHeight != 0.f) 
+		{
+			CVector3D propTranslation = proptransform.GetTranslation();
+			CVector3D objTranslation = m_Transform.GetTranslation();
+
+			CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
+			if (cmpTerrain)
+			{
+				float objTerrain = cmpTerrain->GetExactGroundLevel(objTranslation.X, objTranslation.Z);
+				float propTerrain = cmpTerrain->GetExactGroundLevel(propTranslation.X, propTranslation.Z);
+				float translateHeight = std::min(prop.m_maxHeight,
+				                                 std::max(prop.m_minHeight, propTerrain - objTerrain));
+				CMatrix3D translate = CMatrix3D();
+				translate.SetTranslation(0.f, translateHeight, 0.f);
+				proptransform.Concatenate(translate);
+			}
+		}
+
 		prop.m_Model->SetTransform(proptransform);
 		prop.m_Model->ValidatePosition();
 	}
@@ -484,7 +506,7 @@ void CModel::CopyAnimationFrom(CModel* source)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AddProp: add a prop to the model on the given point
-void CModel::AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry)
+void CModel::AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry, float minHeight, float maxHeight)
 {
 	// position model according to prop point position
 
@@ -496,6 +518,8 @@ void CModel::AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntr
 	prop.m_Point = point;
 	prop.m_Model = model;
 	prop.m_ObjectEntry = objectentry;
+	prop.m_minHeight = minHeight;
+	prop.m_maxHeight = maxHeight;
 	m_Props.push_back(prop);
 }
 
@@ -564,7 +588,7 @@ CModelAbstract* CModel::FindFirstAmmoProp()
 // Clone: return a clone of this model
 CModelAbstract* CModel::Clone() const
 {
-	CModel* clone = new CModel(m_SkeletonAnimManager);
+	CModel* clone = new CModel(m_SkeletonAnimManager, m_Simulation);
 	clone->m_ObjectBounds = m_ObjectBounds;
 	clone->InitModel(m_pModelDef);
 	clone->SetMaterial(m_Material);
@@ -577,7 +601,7 @@ CModelAbstract* CModel::Clone() const
 		if (m_AmmoPropPoint && i == m_AmmoLoadedProp)
 			clone->AddAmmoProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone(), m_Props[i].m_ObjectEntry);
 		else
-			clone->AddProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone(), m_Props[i].m_ObjectEntry);
+			clone->AddProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone(), m_Props[i].m_ObjectEntry, m_Props[i].m_minHeight, m_Props[i].m_maxHeight);
 	}
 
 	return clone;

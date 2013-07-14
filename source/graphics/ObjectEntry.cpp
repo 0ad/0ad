@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,11 +35,12 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "simulation2/Simulation2.h"
 
 #include <sstream>
 
-CObjectEntry::CObjectEntry(CObjectBase* base) :
-	m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f), m_Model(NULL), m_Outdated(false)
+CObjectEntry::CObjectEntry(CObjectBase* base, CSimulation2& simulation) :
+	m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f), m_Model(NULL), m_Outdated(false), m_Simulation(simulation)
 {
 }
 
@@ -123,7 +124,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	}
 
 	// delete old model, create new 
-	CModel* model = new CModel(objectManager.GetSkeletonAnimManager());
+	CModel* model = new CModel(objectManager.GetSkeletonAnimManager(), m_Simulation);
 	delete m_Model;
 	m_Model = model;
 	model->SetMaterial(g_Renderer.GetMaterialManager().LoadMaterial(m_Base->m_Material));
@@ -234,7 +235,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			if (isAmmo)
 				model->AddAmmoProp(proppoint, propmodel, oe);
 			else
-				model->AddProp(proppoint, propmodel, oe);
+				model->AddProp(proppoint, propmodel, oe, prop.m_minHeight, prop.m_maxHeight);
 			if (propmodel->ToCModel())
 				propmodel->ToCModel()->SetAnimation(oe->GetRandomAnimation("idle"));
 		}

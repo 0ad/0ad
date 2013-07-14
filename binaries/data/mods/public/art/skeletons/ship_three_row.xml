@@ -1,0 +1,26 @@
+<skeletons>
+	<standard_skeleton title="Ship Three Row" id="shipthreerow">
+		<bone name="three_row_main">
+			<bone name="right_top_row"></bone>
+			<bone name="right_middle_row"></bone>
+			<bone name="right_bottom_row"></bone>
+			<bone name="left_top_row"></bone>
+			<bone name="left_middle_row"></bone>
+			<bone name="left_bottom_row"></bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Ship Three Row" target="shipthreerow">
+		<identifier>
+			<root>shipthreerow</root>
+		</identifier>
+		<bone name="three_row_main"><target>three_row_main</target>
+			<bone name="right_top_row"><target>right_top_row</target></bone>
+			<bone name="right_middle_row"><target>right_middle_row</target></bone>
+			<bone name="right_bottom_row"><target>right_bottom_row</target></bone>
+			<bone name="left_top_row"><target>left_top_row</target></bone>
+			<bone name="left_middle_row"><target>left_middle_row</target></bone>
+			<bone name="left_bottom_row"><target>left_bottom_row</target></bone>
+		</bone>
+	</skeleton>
+</skeletons>

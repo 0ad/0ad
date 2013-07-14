@@ -114,6 +114,8 @@ public:
 		// Add scripted system components:
 		if (!skipScriptedComponents)
 		{
+			// TODO: Load this from a file to allow modders to add scripted components
+			// without having to recompile.
 #define LOAD_SCRIPTED_COMPONENT(name) \
 			cid = componentManager.LookupCID(name); \
 			if (cid == CID__Invalid) \
@@ -203,7 +205,7 @@ public:
 bool CSimulation2Impl::LoadDefaultScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts)
 {
 	return (
-		LoadScripts(componentManager, loadedScripts, "simulation/components/interfaces/") &&
+		LoadScripts(componentManager, loadedScripts, L"simulation/components/interfaces/") &&
 		LoadScripts(componentManager, loadedScripts, L"simulation/helpers/") &&
 		LoadScripts(componentManager, loadedScripts, L"simulation/components/")
 	);
@@ -230,11 +232,9 @@ bool CSimulation2Impl::LoadScripts(CComponentManager& componentManager, std::set
 
 Status CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 {
-	const VfsPath& filename = path;
-
 	// Ignore if this file wasn't loaded as a script
 	// (TODO: Maybe we ought to load in any new .js files that are created in the right directories)
-	if (m_LoadedScripts.find(filename) == m_LoadedScripts.end())
+	if (m_LoadedScripts.find(path) == m_LoadedScripts.end())
 		return INFO::OK;
 
 	// If the file doesn't exist (e.g. it was deleted), don't bother loading it since that'll give an error message.
@@ -242,8 +242,8 @@ Status CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 	if (!VfsFileExists(path))
 		return INFO::OK;
 
-	LOGMESSAGE(L"Reloading simulation script '%ls'", filename.string().c_str());
-	if (!m_ComponentManager.LoadScript(filename, true))
+	LOGMESSAGE(L"Reloading simulation script '%ls'", path.string().c_str());
+	if (!m_ComponentManager.LoadScript(path, true))
 		return ERR::FAIL;
 
 	return INFO::OK;

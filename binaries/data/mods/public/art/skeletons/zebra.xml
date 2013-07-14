@@ -1,0 +1,140 @@
+<skeletons>
+	<standard_skeleton title="ZebraArmature" id="ZebraArmature">
+		<bone name="ZebraArmature">
+			<bone name="body">
+				<bone name="rear_body">
+					<bone name="left_pelvis">
+						<bone name="rear_left_leg">
+							<bone name="rear_left_shin">
+								<bone name="rear_left_foot" />
+							</bone>
+							<bone name="rear_left_knee" />
+						</bone>
+						<bone name="left_pelvis_joint_front">
+							<bone name="left_pelvis_joint_rear" />
+						</bone>
+					</bone>
+					<bone name="butt">
+						<bone name="tail_start">
+							<bone name="tail_middle">
+								<bone name="tail_tip" />
+							</bone>
+						</bone>
+					</bone>
+					<bone name="right_pelvis">
+						<bone name="rear_right_leg">
+							<bone name="rear_right_shin">
+								<bone name="rear_right_foot" />
+							</bone>
+							<bone name="rear_right_knee" />
+						</bone>
+						<bone name="right_pelvis_joint_front">
+							<bone name="right_pelvis_joint_rear" />
+						</bone>
+					</bone>
+					<bone name="rear_belly" />
+				</bone>
+				<bone name="middle_belly" />
+				<bone name="front_belly" />
+			</bone>
+			<bone name="left_shoulder">
+				<bone name="left_leg">
+					<bone name="left_shin">
+						<bone name="left_foot" />
+					</bone>
+				</bone>
+			</bone>
+			<bone name="neck1">
+				<bone name="neck2">
+					<bone name="head">
+						<bone name="left_ear" />
+						<bone name="right_ear" />
+					</bone>
+				</bone>
+			</bone>
+			<bone name="right_shoulder">
+				<bone name="right_leg">
+					<bone name="right_shin">
+						<bone name="right_foot" />
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+		<bone name="rear_right_leg-target" />
+		<bone name="rear_left_leg-target" />
+		<bone name="left_leg-target" />
+		<bone name="left_knee-target" />
+		<bone name="right_leg-target" />
+		<bone name="right_knee-target" />
+	</standard_skeleton>
+
+	<skeleton title="ZebraArmature" target="ZebraArmature">
+		<identifier><root>ZebraArmature</root></identifier>
+		<bone name="ZebraArmature"><target>ZebraArmature</target>
+			<bone name="body"><target>body</target>
+				<bone name="rear_body"><target>rear_body</target>
+					<bone name="left_pelvis"><target>left_pelvis</target>
+						<bone name="rear_left_leg"><target>rear_left_leg</target>
+							<bone name="rear_left_shin"><target>rear_left_shin</target>
+								<bone name="rear_left_foot"><target>rear_left_foot</target></bone>
+							</bone>
+							<bone name="rear_left_knee"><target>rear_left_knee</target></bone>
+						</bone>
+						<bone name="left_pelvis_joint_front"><target>left_pelvis_joint_front</target>
+							<bone name="left_pelvis_joint_rear"><target>left_pelvis_joint_rear</target></bone>
+						</bone>
+					</bone>
+					<bone name="butt"><target>butt</target>
+						<bone name="tail_start"><target>tail_start</target>
+							<bone name="tail_middle"><target>tail_middle</target>
+								<bone name="tail_tip"><target>tail_tip</target></bone>
+							</bone>
+						</bone>
+					</bone>
+					<bone name="right_pelvis"><target>right_pelvis</target>
+						<bone name="rear_right_leg"><target>rear_right_leg</target>
+							<bone name="rear_right_shin"><target>rear_right_shin</target>
+								<bone name="rear_right_foot"><target>rear_right_foot</target></bone>
+							</bone>
+							<bone name="rear_right_knee"><target>rear_right_knee</target></bone>
+						</bone>
+						<bone name="right_pelvis_joint_front"><target>right_pelvis_joint_front</target>
+							<bone name="right_pelvis_joint_rear"><target>right_pelvis_joint_rear</target></bone>
+						</bone>
+					</bone>
+					<bone name="rear_belly"><target>rear_belly</target></bone>
+				</bone>
+				<bone name="middle_belly"><target>middle_belly</target></bone>
+				<bone name="front_belly"><target>front_belly</target></bone>
+			</bone>
+			<bone name="left_shoulder"><target>left_shoulder</target>
+				<bone name="left_leg"><target>left_leg</target>
+					<bone name="left_shin"><target>left_shin</target>
+						<bone name="left_foot"><target>left_foot</target></bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="neck1"><target>neck1</target>
+				<bone name="neck2"><target>neck2</target>
+					<bone name="head"><target>head</target>
+						<bone name="left_ear"><target>left_ear</target></bone>
+						<bone name="right_ear"><target>right_ear</target></bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="right_shoulder"><target>right_shoulder</target>
+				<bone name="right_leg"><target>right_leg</target>
+					<bone name="right_shin"><target>right_shin</target>
+						<bone name="right_foot"><target>right_foot</target></bone>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+		<bone name="rear_right_leg-target"><target>rear_right_leg-target</target></bone>
+		<bone name="rear_left_leg-target"><target>rear_left_leg-target</target></bone>
+		<bone name="left_leg-target"><target>left_leg-target</target></bone>
+		<bone name="left_knee-target"><target>left_knee-target</target></bone>
+		<bone name="right_leg-target"><target>right_leg-target</target></bone>
+		<bone name="right_knee-target"><target>right_knee-target</target></bone>
+	</skeleton>
+</skeletons>

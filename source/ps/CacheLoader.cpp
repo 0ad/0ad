@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -143,8 +143,10 @@ VfsPath CCacheLoader::LooseCachePath(const VfsPath& sourcePath, const MD5& initi
 	for (size_t i = 0; i < 8; ++i)
 		digestPrefix << std::setfill(L'0') << std::setw(2) << (int)digest[i];
 
-	// Construct the final path
-	return VfsPath("cache") / sourcePath.ChangeExtension(sourcePath.Extension().string() + L"." + digestPrefix.str() + m_FileExtension);
+	// Get the mod path
+	OsPath path;
+	m_VFS->GetRealPath(sourcePath, path);
 
-	// TODO: we should probably include the mod name, once that's possible (http://trac.wildfiregames.com/ticket/564)
+	// Construct the final path
+	return VfsPath("cache") / path_name_only(path.BeforeCommon(sourcePath).Parent().string().c_str()) / sourcePath.ChangeExtension(sourcePath.Extension().string() + L"." + digestPrefix.str() + m_FileExtension);
 }

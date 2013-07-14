@@ -268,11 +268,19 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	// not really used too much right now.
 	u8* waveForceHQ = new u8[mapSize*mapSize];
 	u16 waterHeightInu16 = m_WaterHeight/HEIGHT_SCALE;
-	
+
+	// used to cache terrain normals since otherwise we'd recalculate them a lot (I'm blurring the "normal" map).
+	// this might be updated to actually cache in the terrain manager but that's not for now.
+	CVector3D* normals = new CVector3D[mapSize*mapSize];
+
+	// calculate wave force (not really used right now)
+	// and puts into "normals" the terrain normal at that point
+	// so as to avoid recalculating terrain normals too often.
 	for (ssize_t i = 0; i < mapSize; ++i)
 	{
 		for (ssize_t j = 0; j < mapSize; ++j)
 		{
+			normals[j*mapSize + i] = terrain->CalcExactNormal(((float)i)*4.0f,((float)j)*4.0f);
 			if (circular && (i-halfSize)*(i-halfSize)+(j-halfSize)*(j-halfSize) > mSize)
 			{
 				waveForceHQ[j*mapSize + i] = 255;
@@ -370,7 +378,8 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			{
 				for (int yy = -4; yy <= 4; yy += 2)
 				{
-					normal += terrain->CalcExactNormal(((float)i+xx)*4.0f,((float)j+yy)*4.0f);
+					if (j+yy < mapSize && i+xx < mapSize && i+xx >= 0 && j+yy >= 0)
+						normal += normals[(j+yy)*mapSize + (i+xx)];
 					if (terrain->GetVertexGroundLevel(i+xx,j+yy) < heightmap[j*mapSize + i]*HEIGHT_SCALE)
 						waterRaise += heightmap[j*mapSize + i]*HEIGHT_SCALE - terrain->GetVertexGroundLevel(i+xx,j+yy);
 				}
@@ -397,6 +406,7 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 		}
 	}
 
+	delete[] normals;
 	delete[] waveForceHQ;
 	
 	// TODO: The rest should be cleaned up
@@ -538,16 +548,17 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 		waves_vertex_data.push_back(vertex[2]);
 		waves_indices.push_back(waves_vertex_data.size());
 		waves_vertex_data.push_back(vertex[3]);
+
+		// waves
+		// allocate vertex buffer
+		m_VBWaves = g_VBMan.Allocate(sizeof(SWavesVertex), waves_vertex_data.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+		m_VBWaves->m_Owner->UpdateChunkVertices(m_VBWaves, &waves_vertex_data[0]);
+		
+		// Construct indices buffer
+		m_VBWavesIndices = g_VBMan.Allocate(sizeof(GLushort), waves_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
+		m_VBWavesIndices->m_Owner->UpdateChunkVertices(m_VBWavesIndices, &waves_indices[0]);
+	
 	}
-	
-	// waves
-	// allocate vertex buffer
-	m_VBWaves = g_VBMan.Allocate(sizeof(SWavesVertex), waves_vertex_data.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
-	m_VBWaves->m_Owner->UpdateChunkVertices(m_VBWaves, &waves_vertex_data[0]);
-	
-	// Construct indices buffer
-	m_VBWavesIndices = g_VBMan.Allocate(sizeof(GLushort), waves_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
-	m_VBWavesIndices->m_Owner->UpdateChunkVertices(m_VBWavesIndices, &waves_indices[0]);
 }
 
 ////////////////////////////////////////////////////////////////////////

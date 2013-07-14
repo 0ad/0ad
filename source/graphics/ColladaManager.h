@@ -61,16 +61,6 @@ public:
 	bool GenerateCachedFile(const VfsPath& sourcePath, FileType type, VfsPath& archiveCachePath);
 
 private:
-	/**
-	 * Creates MD5 hash key from skeletons.xml info and COLLADA converter version,
-	 * used to invalidate cached .pmd/psas
-	 *
-	 * @param[out] hash resulting MD5 hash
-	 * @param[out] version version passed to CCacheLoader, used if code change should force
-	 *		  cache invalidation
-	 */
-	void PrepareCacheKey(MD5& hash, u32& version);
-
 	CColladaManagerImpl* m;
 	PIVFS m_VFS;
 };

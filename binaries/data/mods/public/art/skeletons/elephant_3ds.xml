@@ -1,0 +1,148 @@
+<skeletons>
+	<standard_skeleton title="Elephant Biped" id="Ele01">
+	 <bone name="root">
+		<bone name="pelvis">
+			<bone name="spine">
+				<bone name="spine1">
+					<bone name="neck">
+						<bone name="neck1">
+							<bone name="head">
+								<bone name="DUMMY_headnub"/> <!-- kept for binary compatibility with PSA files -->
+								<bone name="trunk">
+									<bone name="trunk1">
+										<bone name="trunk2">
+											<bone name="DUMMY_ponytail1nub"/>
+										</bone>
+									</bone>
+								</bone>
+							</bone>
+						</bone>
+						<bone name="l_clavicle">
+							<bone name="l_upperarm">
+								<bone name="l_forearm">
+									<bone name="l_hand">
+										<bone name="l_finger">
+											<bone name="DUMMY_l_finger0nub"/>
+										</bone>
+									</bone>
+								</bone>
+							</bone>
+						</bone>
+						<bone name="r_clavicle">
+							<bone name="r_upperarm">
+								<bone name="r_forearm">
+									<bone name="r_hand">
+										<bone name="r_finger">
+											<bone name="DUMMY_r_finger0nub"/>
+										</bone>
+									</bone>
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="l_thigh">
+				<bone name="l_calf">
+					<bone name="l_foot">
+						<bone name="l_toe">
+							<bone name="DUMMY_l_toe0nub"/>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="r_thigh">
+				<bone name="r_calf">
+					<bone name="r_foot">
+						<bone name="r_toe">
+							<bone name="DUMMY_r_toe0nub"/>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="tail">
+				<bone name="tail1">
+					<bone name="tail2">
+						<bone name="DUMMY_tailnub"/>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+	 </bone>
+	</standard_skeleton>
+
+	<skeleton title="3ds Max Elephant biped" target="Ele01">
+		 <identifier>
+			<root>Ele01</root>
+		 </identifier>
+		 <bone name="Ele01"><target>root</target>
+			<bone name="Ele01_Pelvis"><target>pelvis</target>
+				<bone name="Ele01_Spine"><target>spine</target>
+					<bone name="Ele01_Spine1"><target>spine1</target>
+						<bone name="Ele01_Neck"><target>neck</target>
+							<bone name="Ele01_Neck1"><target>neck1</target>
+								<bone name="Ele01_Head"><target>head</target>
+									<bone name="Ele01_HeadNub"/>
+									<bone name="Ele01_Ponytail1"><target>trunk</target>
+										<bone name="Ele01_Ponytail11"><target>trunk1</target>
+											<bone name="Ele01_Ponytail12"><target>trunk2</target>
+												<bone name="Ele01_Ponytail1Nub"/>
+											</bone>
+										</bone>
+									</bone>
+								</bone>
+							</bone>
+							<bone name="Ele01_L_Clavicle"><target>l_clavicle</target>
+								<bone name="Ele01_L_UpperArm"><target>l_upperarm</target>
+									<bone name="Ele01_L_Forearm"><target>l_forearm</target>
+										<bone name="Ele01_L_Hand"><target>l_hand</target>
+											<bone name="Ele01_L_Finger0"><target>l_finger</target>
+												<bone name="Ele01_L_Finger0Nub"/>
+											</bone>
+										</bone>
+									</bone>
+								</bone>
+							</bone>
+							<bone name="Ele01_R_Clavicle"><target>r_clavicle</target>
+								<bone name="Ele01_R_UpperArm"><target>r_upperarm</target>
+									<bone name="Ele01_R_Forearm"><target>r_forearm</target>
+										<bone name="Ele01_R_Hand"><target>r_hand</target>
+											<bone name="Ele01_R_Finger0"><target>r_finger</target>
+												<bone name="Ele01_R_Finger0Nub"/>
+											</bone>
+										</bone>
+									</bone>
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="Ele01_L_Thigh"><target>l_thigh</target>
+					<bone name="Ele01_L_Calf"><target>l_calf</target>
+						<bone name="Ele01_L_Foot"><target>l_foot</target>
+							<bone name="Ele01_L_Toe0"><target>l_toe</target>
+								<bone name="Ele01_L_Toe0Nub"/>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="Ele01_R_Thigh"><target>r_thigh</target>
+					<bone name="Ele01_R_Calf"><target>r_calf</target>
+						<bone name="Ele01_R_Foot"><target>r_foot</target>
+							<bone name="Ele01_R_Toe0"><target>r_toe</target>
+								<bone name="Ele01_R_Toe0Nub"/>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="Ele01_Tail"><target>tail</target>
+					<bone name="Ele01_Tail1"><target>tail1</target>
+						<bone name="Ele01_Tail2"><target>tail1</target>
+							<bone name="Ele01_TailNub"/>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+		 </bone>
+	</skeleton>
+</skeletons>

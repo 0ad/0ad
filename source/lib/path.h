@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -203,6 +203,28 @@ public:
 		}
 		ret.path += rhs.path;
 		return ret;
+	}
+
+	/**
+	 * Return the path before the common part of both paths
+	 * @param other Indicates the start of the path which should be removed
+	 * @note other should be a VfsPath, while this should be an OsPath
+	 */
+	Path BeforeCommon(Path other) const
+	{
+		Path ret = *this;
+		if(ret.empty() || other.empty())
+			return L"";
+
+		// Convert the separator to allow for string comparison
+		if(other.separator != ret.separator)
+			replace(other.path.begin(), other.path.end(), other.separator, ret.separator);
+
+		const size_t idx = ret.path.rfind(other.path);
+		if(idx == String::npos)
+			return L"";
+
+		return path.substr(0, idx);
 	}
 
 	static Status Validate(String::value_type c);

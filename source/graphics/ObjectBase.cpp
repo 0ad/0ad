@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -80,6 +80,8 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	AT(angle);
 	AT(offsetx);
 	AT(offsetz);
+	AT(minheight);
+	AT(maxheight);
 	#undef AT
 	#undef EL
 
@@ -246,6 +248,10 @@ bool CObjectBase::Load(const VfsPath& pathname)
 									prop.m_PropPointName = pe.Value;
 								else if (pe.Name == at_actor)
 									prop.m_ModelName = pe.Value.FromUTF8();
+								else if (pe.Name == at_minheight)
+									prop.m_minHeight = pe.Value.ToFloat();
+								else if (pe.Name == at_maxheight)
+									prop.m_maxHeight = pe.Value.ToFloat();
 							}
 							currentVariant->m_Props.push_back(prop);
 						}

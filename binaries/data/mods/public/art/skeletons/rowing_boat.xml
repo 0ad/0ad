@@ -1,0 +1,18 @@
+<skeletons>
+	<standard_skeleton title="Rowing Boat" id="rowingboat">
+		<bone name="RowingBoatBone">
+			<bone name="RightRow"></bone>
+			<bone name="LeftRow"></bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Rowing Boat" target="rowingboat">
+		<identifier>
+			<root>RowingBoat</root>
+		</identifier>
+		<bone name="RowingBoatBone"><target>RowingBoatBone</target>
+			<bone name="RightRow"><target>RightRow</target></bone>
+			<bone name="LeftRow"><target>LeftRow</target></bone>
+		</bone>
+	</skeleton>
+</skeletons>

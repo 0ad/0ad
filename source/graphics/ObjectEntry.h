@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@ class CModelAbstract;
 class CSkeletonAnim;
 class CObjectBase;
 class CObjectManager;
+class CSimulation2;
 struct SPropPoint;
 
 #include <map>
@@ -36,8 +37,10 @@ struct SPropPoint;
 
 class CObjectEntry
 {
+	NONCOPYABLE(CObjectEntry);
+
 public:
-	CObjectEntry(CObjectBase* base);
+	CObjectEntry(CObjectBase* base, CSimulation2& simulation);
 	~CObjectEntry();
 
 	// Construct this actor, using the specified variation selections
@@ -75,6 +78,8 @@ public:
 	bool m_Outdated;
 
 private:
+	CSimulation2& m_Simulation;
+
 	typedef std::multimap<CStr, CSkeletonAnim*> SkeletonAnimMap;
 	SkeletonAnimMap m_Animations;
 		// TODO: something more memory-efficient than storing loads of similar strings for each unit?

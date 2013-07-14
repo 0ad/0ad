@@ -1,0 +1,216 @@
+<skeletons>
+	<standard_skeleton title="BlenderElephant" id="BlenderElephant">
+		<bone name="Elephant">
+			<bone name="body_1">
+				<bone name="body_2">
+					<bone name="butt">
+						<bone name="tail_1">
+							<bone name="tail_2">
+								<bone name="tail_3">
+									<bone name="tail_4" />
+									<bone name="tail_3_joint" />
+								</bone>
+								<bone name="tail_2_joint" />
+							</bone>
+							<bone name="tail_1_joint" />
+						</bone>
+					</bone>
+					<bone name="pelvis" />
+					<bone name="Bone_001">
+						<bone name="leg_right">
+							<bone name="shin_right">
+								<bone name="foot_right" />
+							</bone>
+							<bone name="leg_right_joint" />
+						</bone>
+					</bone>
+					<bone name="Bone_002">
+						<bone name="leg_left">
+							<bone name="shin_left">
+								<bone name="foot_left" />
+							</bone>
+							<bone name="leg_left_joint" />
+						</bone>
+					</bone>
+				</bone>
+				<bone name="belly" />
+			</bone>
+			<bone name="shoulder_left">
+				<bone name="arm_left">
+					<bone name="forearm_left">
+						<bone name="hand_left" />
+					</bone>
+					<bone name="arm_left_joint_front">
+						<bone name="arm_left_joint_back" />
+					</bone>
+				</bone>
+			</bone>
+			<bone name="shoulder_right">
+				<bone name="arm_right">
+					<bone name="forearm_right">
+						<bone name="hand_right" />
+					</bone>
+					<bone name="arm_right_joint_front">
+						<bone name="arm_right_joint_back" />
+					</bone>
+				</bone>
+			</bone>
+			<bone name="neck">
+				<bone name="head">
+					<bone name="trunk_1">
+						<bone name="trunk_2">
+							<bone name="trunk_3">
+								<bone name="trunk_4">
+									<bone name="trunk_5">
+										<bone name="trunk_5_joint" />
+										<bone name="trunk_6">
+											<bone name="trunk_7">
+												<bone name="trunk_8">
+													<bone name="trunk_9">
+														<bone name="trunk_10">
+															<bone name="trunk_11" />
+															<bone name="trunk_10_joint" />
+														</bone>
+														<bone name="trunk_9_joint" />
+													</bone>
+													<bone name="trunk_8_joint" />
+												</bone>
+												<bone name="trunk_7_joint" />
+											</bone>
+											<bone name="trunk_6_joint" />
+										</bone>
+									</bone>
+									<bone name="trunk_4_joint" />
+								</bone>
+								<bone name="trunk_3_joint" />
+							</bone>
+							<bone name="trunk_2_joint" />
+						</bone>
+						<bone name="trunk_1_joint" />
+					</bone>
+					<bone name="head_trunk_joint" />
+					<bone name="ear_left" />
+					<bone name="ear_right" />
+				</bone>
+			</bone>
+		</bone>
+		<bone name="arm_left_target" />
+		<bone name="arm_right_target" />
+		<bone name="leg_left_poletarget" />
+		<bone name="leg_right_poletarget" />
+		<bone name="leg_right_target" />
+		<bone name="leg_left_target" />
+		<bone name="arm_right_kneetarget" />
+		<bone name="arm_left_kneetarget" />
+		<bone name="tail_target" />
+		<bone name="trunk_target" />
+	</standard_skeleton>
+
+	<skeleton title="BlenderElephant" target="BlenderElephant">
+		<identifier><root>Elephant</root></identifier>
+		<bone name="Elephant"><target>Elephant</target>
+			<bone name="body_1"><target>body_1</target>
+				<bone name="body_2"><target>body_2</target>
+					<bone name="butt"><target>butt</target>
+						<bone name="tail_1"><target>tail_1</target>
+							<bone name="tail_2"><target>tail_2</target>
+								<bone name="tail_3"><target>tail_3</target>
+									<bone name="tail_4"><target>tail_4</target></bone>
+									<bone name="tail_3_joint"><target>tail_3_joint</target></bone>
+								</bone>
+								<bone name="tail_2_joint"><target>tail_2_joint</target></bone>
+							</bone>
+							<bone name="tail_1_joint"><target>tail_1_joint</target></bone>
+						</bone>
+					</bone>
+					<bone name="pelvis"><target>pelvis</target></bone>
+					<bone name="Bone_001"><target>Bone_001</target>
+						<bone name="leg_right"><target>leg_right</target>
+							<bone name="shin_right"><target>shin_right</target>
+								<bone name="foot_right"><target>foot_right</target></bone>
+							</bone>
+							<bone name="leg_right_joint"><target>leg_right_joint</target></bone>
+						</bone>
+					</bone>
+					<bone name="Bone_002"><target>Bone_002</target>
+						<bone name="leg_left"><target>leg_left</target>
+							<bone name="shin_left"><target>shin_left</target>
+								<bone name="foot_left"><target>foot_left</target></bone>
+							</bone>
+							<bone name="leg_left_joint"><target>leg_left_joint</target></bone>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="belly"><target>belly</target></bone>
+			</bone>
+			<bone name="shoulder_left"><target>shoulder_left</target>
+				<bone name="arm_left"><target>arm_left</target>
+					<bone name="forearm_left"><target>forearm_left</target>
+						<bone name="hand_left"><target>hand_left</target></bone>
+					</bone>
+					<bone name="arm_left_joint_front"><target>arm_left_joint_front</target>
+						<bone name="arm_left_joint_back"><target>arm_left_joint_back</target></bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="shoulder_right"><target>shoulder_right</target>
+				<bone name="arm_right"><target>arm_right</target>
+					<bone name="forearm_right"><target>forearm_right</target>
+						<bone name="hand_right"><target>hand_right</target></bone>
+					</bone>
+					<bone name="arm_right_joint_front"><target>arm_right_joint_front</target>
+						<bone name="arm_right_joint_back"><target>arm_right_joint_back</target></bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="neck"><target>neck</target>
+				<bone name="head"><target>head</target>
+					<bone name="trunk_1"><target>trunk_1</target>
+						<bone name="trunk_2"><target>trunk_2</target>
+							<bone name="trunk_3"><target>trunk_3</target>
+								<bone name="trunk_4"><target>trunk_4</target>
+									<bone name="trunk_5"><target>trunk_5</target>
+										<bone name="trunk_5_joint"><target>trunk_5_joint</target></bone>
+										<bone name="trunk_6"><target>trunk_6</target>
+											<bone name="trunk_7"><target>trunk_7</target>
+												<bone name="trunk_8"><target>trunk_8</target>
+													<bone name="trunk_9"><target>trunk_9</target>
+														<bone name="trunk_10"><target>trunk_10</target>
+															<bone name="trunk_11"><target>trunk_11</target></bone>
+															<bone name="trunk_10_joint"><target>trunk_10_joint</target></bone>
+														</bone>
+														<bone name="trunk_9_joint"><target>trunk_9_joint</target></bone>
+													</bone>
+													<bone name="trunk_8_joint"><target>trunk_8_joint</target></bone>
+												</bone>
+												<bone name="trunk_7_joint"><target>trunk_7_joint</target></bone>
+											</bone>
+											<bone name="trunk_6_joint"><target>trunk_6_joint</target></bone>
+										</bone>
+									</bone>
+									<bone name="trunk_4_joint"><target>trunk_4_joint</target></bone>
+								</bone>
+								<bone name="trunk_3_joint"><target>trunk_3_joint</target></bone>
+							</bone>
+							<bone name="trunk_2_joint"><target>trunk_2_joint</target></bone>
+						</bone>
+						<bone name="trunk_1_joint"><target>trunk_1_joint</target></bone>
+					</bone>
+					<bone name="head_trunk_joint"><target>head_trunk_joint</target></bone>
+					<bone name="ear_left"><target>ear_left</target></bone>
+					<bone name="ear_right"><target>ear_right</target></bone>
+				</bone>
+			</bone>
+		</bone>
+		<bone name="arm_left_target"><target>arm_left_target</target></bone>
+		<bone name="arm_right_target"><target>arm_right_target</target></bone>
+		<bone name="leg_left_poletarget"><target>leg_left_poletarget</target></bone>
+		<bone name="leg_right_poletarget"><target>leg_right_poletarget</target></bone>
+		<bone name="leg_right_target"><target>leg_right_target</target></bone>
+		<bone name="leg_left_target"><target>leg_left_target</target></bone>
+		<bone name="arm_right_kneetarget"><target>arm_right_kneetarget</target></bone>
+		<bone name="arm_left_kneetarget"><target>arm_left_kneetarget</target></bone>
+		<bone name="tail_target"><target>tail_target</target></bone>
+		<bone name="trunk_target"><target>trunk_target</target></bone>
+	</skeleton>
+</skeletons>

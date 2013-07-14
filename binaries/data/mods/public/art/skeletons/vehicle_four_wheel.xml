@@ -1,0 +1,24 @@
+<skeletons>
+	<standard_skeleton title="Four Wheel Ram" id="Ram">
+		<bone name="RamBone">
+			<bone name="WheelLeftBack"></bone>
+			<bone name="WheelLeftFront"></bone>
+			<bone name="WheelRightBack"></bone>
+			<bone name="WheelRightFront"></bone>
+			<bone name="Weapon"></bone>
+		</bone>
+	</standard_skeleton>
+ 
+	<skeleton title="Four Wheel Ram" target="Ram">
+		<identifier>
+			<root>FourWheelRam</root>
+		</identifier>
+		<bone name="RamBone"><target>RamBone</target>
+			<bone name="WheelLeftBack"><target>WheelLeftBack</target></bone>
+			<bone name="WheelLeftFront"><target>WheelLeftFront</target></bone>
+			<bone name="WheelRightBack"><target>WheelRightBack</target></bone>
+			<bone name="WheelRightFront"><target>WheelRightFront</target></bone>
+			<bone name="Weapon"><target>Weapon</target></bone>
+		</bone>
+	</skeleton>
+</skeletons>

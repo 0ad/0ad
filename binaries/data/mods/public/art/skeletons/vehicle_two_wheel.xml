@@ -1,0 +1,20 @@
+<skeletons>
+	<standard_skeleton title="Two Wheel Vehicle" id="twowheel">
+		<bone name="twowheel">
+			<bone name="l_wheel"></bone>
+			<bone name="r_wheel"></bone>
+			<bone name="weapon"></bone>
+		</bone>
+	</standard_skeleton>
+ 
+	<skeleton title="Two Wheel Vehicle" target="twowheel">
+		<identifier>
+			<root>TwoWheeler</root>
+		</identifier>
+		<bone name="twowheel"><target>twowheel</target>
+			<bone name="l_wheel"><target>l_wheel</target></bone>
+			<bone name="r_wheel"><target>r_wheel</target></bone>
+			<bone name="weapon"><target>weapon</target></bone>
+		</bone>
+	</skeleton>
+</skeletons>

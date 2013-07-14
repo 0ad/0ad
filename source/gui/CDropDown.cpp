@@ -25,6 +25,7 @@ CDropDown
 
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
+#include "lib/timer.h"
 #include "soundmanager/ISoundManager.h"
 
 
@@ -186,7 +187,7 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 			GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
 
 			// Start at the position of the selected item, if possible.
-			GetScrollBar(0).SetPos( m_ItemsYPositions.empty() ? 0 : m_ItemsYPositions[m_ElementHighlight] );
+			GetScrollBar(0).SetPos( m_ItemsYPositions.empty() ? 0 : m_ItemsYPositions[m_ElementHighlight] - 60);
 
 			CStrW soundPath;
 			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_opened", soundPath) == PSRETURN_OK && !soundPath.empty())
@@ -277,6 +278,54 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 		break;
 
 	default:
+		// If we have imputed a character try to get the closest element to it.
+		// TODO: not too nice and doesn't deal with dashes.
+		if (m_Open && ((szChar >= SDLK_a && szChar <= SDLK_z) || szChar == SDLK_SPACE
+					   || (szChar >= SDLK_0 && szChar <= SDLK_9) || (szChar >= SDLK_KP0 && szChar <= SDLK_KP9)))
+		{
+			// arbitrary 1 second limit to add to string or start fresh.
+			// maximal amount of characters is 100, which imo is far more than enough.
+			if (timer_Time() - m_TimeOfLastInput > 1.0 || m_InputBuffer.length() >= 100)
+				m_InputBuffer = szChar;
+			else
+				m_InputBuffer += szChar;
+			
+			m_TimeOfLastInput = timer_Time();
+			
+			CGUIList *pList;
+			GUI<CGUIList>::GetSettingPointer(this, "list", pList);
+			// let's look for the closest element
+			// basically it's alphabetic order and "as many letters as we can get".
+			int closest = -1;
+			int bestIndex = -1;
+			int difference = 1250;
+			for (int i=0; i<(int)pList->m_Items.size(); ++i)
+			{
+				int indexOfDifference = 0;
+				int diff = 0;
+				for (size_t j=0; j < m_InputBuffer.length(); ++j)
+				{
+					diff = abs(pList->m_Items[i].GetOriginalString().LowerCase()[j] - (int)m_InputBuffer[j]);
+					if (diff == 0)
+						indexOfDifference = j+1;
+					else
+						break;
+				}
+				if (indexOfDifference > bestIndex || (indexOfDifference >= bestIndex && diff < difference))
+				{
+					bestIndex = indexOfDifference;
+					closest = i;
+					difference = diff;
+				}
+			}
+			// let's select the closest element. There should basically always be one.
+			if (closest != -1)
+			{
+				GUI<int>::SetSetting(this, "selected", closest);
+				update_highlight = true;
+				GetScrollBar(0).SetPos(m_ItemsYPositions[closest] - 60);
+			}
+		}
 		break;
 	}
 

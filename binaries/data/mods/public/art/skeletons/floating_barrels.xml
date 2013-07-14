@@ -1,0 +1,25 @@
+<skeletons>
+	<standard_skeleton title="FloatingBarrels" id="FloatingBarrels">
+		<bone name="Barrel_2">
+			<bone name="Barrel_2_Controller" />
+		</bone>
+		<bone name="Barrel_3">
+			<bone name="Barrel_3_Controller" />
+		</bone>
+		<bone name="Barrel_1">
+			<bone name="Barrel_1_Controller" />
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="FloatingBarrels" target="FloatingBarrels"><identifier><root>Barrel_2</root></identifier>
+		<bone name="Barrel_2"><target>Barrel_2</target>
+			<bone name="Barrel_2_Controller"><target>Barrel_2_Controller</target></bone>
+		</bone>
+		<bone name="Barrel_3"><target>Barrel_3</target>
+			<bone name="Barrel_3_Controller"><target>Barrel_3_Controller</target></bone>
+		</bone>
+		<bone name="Barrel_1"><target>Barrel_1</target>
+			<bone name="Barrel_1_Controller"><target>Barrel_1_Controller</target></bone>
+		</bone>
+	</skeleton>
+</skeletons>
