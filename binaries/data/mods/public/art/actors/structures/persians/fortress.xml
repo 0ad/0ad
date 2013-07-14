@@ -8,6 +8,7 @@
         <prop actor="props/structures/persians/fortress.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="Persian_Fortress_B">
@@ -16,6 +17,7 @@
         <prop actor="props/structures/persians/fortress_b.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
