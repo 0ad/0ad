@@ -111,6 +111,10 @@ void main()
 	
 	float wavyFactor = waviness * 0.125;
 
+	l = -sunDir;
+	v = normalize(cameraPos - worldPos);
+	h = normalize(l + v);
+		
 	// always done cause this is also used, even when not using normals, by the refraction.
 	vec3 ww = texture2D(normalMap, (gl_TexCoord[0].st) * mix(2.0,0.8,waviness/10.0) +gl_TexCoord[0].zw).xzy;
 
@@ -125,20 +129,15 @@ void main()
 		#else
 			n = normalize(ww - vec3(0.5, 0.5, 0.5));
 		#endif
+		ndoth = dot( mix(vec3(0.0,1.0,0.0),n,clamp(wavyFactor * v.y * 8.0,0.05,1.0)) ,h);
 		n = mix(vec3(0.0,1.0,0.0),n,wavyFactor);
 	#else
 		n = vec3(0.0,1.0,0.0);
 	#endif
 	
-	l = -sunDir;
-	v = normalize(cameraPos - worldPos);
-	h = normalize(l + v);
-	
 	ndotl = (dot(n, l) + 1.0)/2.0;
-	ndoth = dot(n, h);
 	ndotv = dot(n, v);
-	
-	
+
 	#if USE_REAL_DEPTH
 		// Don't change these two. They should match the values in the config (TODO: dec uniforms).
 		float zNear = 2.0;
@@ -205,8 +204,8 @@ void main()
 			refrColor = (0.5 + 0.5*ndotl) * mix(color,mix(refColor,refColor*tint,colorExtinction),luminance*luminance);
 		#else
 			refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * distoFactor) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
-			// fake it. It won't look as good but it will give a similar result.
-			float perceivedDepth = waterDepth / v.y;
+			// cleverly get the perceived depth based on camera tilting (if horizontal, it's likely we will have more water to look at).
+			float perceivedDepth = waterDepth / (v.y*v.y);
 			vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
 			float luminance = (1.0 - clamp((perceivedDepth/mix(300.0,1.0, pow(murkiness,0.2) )), 0.0, 1.0));
 			float colorExtinction = clamp(perceivedDepth*murkiness/5.0,0.0,1.0);
@@ -215,11 +214,11 @@ void main()
 	#else
 		float alphaCoeff = 0.0;
 		#if USE_REAL_DEPTH
-			float luminance = clamp((waterDepth2/mix(300.0,1.0, pow(murkiness,0.2) )), 0.0, 1.0);
+			float luminance = clamp((waterDepth2/mix(150.0,2.0, pow(murkiness,0.2) )), 0.0, 1.0);
 			alphaCoeff = mix(mix(0.0,3.0 - (tint.r + tint.g + tint.b),clamp(waterDepth2*murkiness/5.0,0.0,1.0)),1.0,luminance*luminance);
 		#else
-			float luminance = clamp(((waterDepth / v.y)/mix(300.0,1.0, pow(murkiness,0.2) )), 0.0, 1.0);
-			alphaCoeff = mix(mix(0.0,3.0 - (tint.r + tint.g + tint.b),clamp((waterDepth / v.y)*murkiness/5.0,0.0,1.0)),1.0,luminance*luminance);
+			float luminance = clamp(((waterDepth / v.y)/mix(150.0,2.0, pow(murkiness,0.2) )), 0.0, 1.0);
+			alphaCoeff = mix(mix(0.0,3.0 - (tint.r + tint.g + tint.b),clamp(perceivedDepth*murkiness/5.0,0.0,1.0)),1.0,luminance*luminance);
 		#endif
 		refrColor = color;
 	#endif
@@ -230,14 +229,14 @@ void main()
 	#endif
 	
 	#if USE_REFLECTION
-		reflCoords = clamp( (0.5*gl_TexCoord[1].xy + 10.0*n.xz) / gl_TexCoord[1].w + 0.5,0.0,1.0);	// Unbias texture coords
+		reflCoords = clamp( (0.5*gl_TexCoord[1].xy + distoFactor*1.5*n.xz) / gl_TexCoord[1].w + 0.5,0.0,1.0);	// Unbias texture coords
 		reflColor = mix(texture2D(reflectionMap, reflCoords).rgb, sunColor * reflectionTint, reflectionTintStrength);
 	#else
 		// TODO: implement some sort of skybox rendering.
 		reflColor = mix( (sunColor + vec3(0.565,0.843,0.961))/1.85, reflectionTint, reflectionTintStrength);
 	#endif
 	
-	specular = pow(ndoth, shininess) * sunColor * specularStrength;
+	specular = pow(ndoth, mix(50.0,450.0, v.y*2.0)) * sunColor * 1.5;
 	
 	losMod = texture2D(losMap, gl_TexCoord[3].st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
@@ -247,15 +246,15 @@ void main()
 		float shadow = get_shadow(vec4(v_shadow.xy - 8.0*waviness*n.xz, v_shadow.zw));
 		float fresShadow = mix(fresnel, fresnel*shadow, 0.05 + (murkiness * 0.15));
 		#if USE_FOAM
-			colour = mix(refrColor*(shadow/5.0 + 0.8) + fresnel*shadow*specular, reflColor + fresnel*shadow*specular, fresShadow) + max(ndotl,0.4)*(finalFoam)*(shadow/2.0 + 0.5);
+			colour = mix(refrColor*(shadow/5.0 + 0.8), reflColor, fresShadow) + max(ndotl,0.4)*(finalFoam)*(shadow/2.0 + 0.5);
 		#else
-			colour = mix(refrColor*(shadow/5.0 + 0.8) + fresnel*shadow*specular, reflColor + fresnel*shadow*specular, fresShadow);
+			colour = mix(refrColor*(shadow/5.0 + 0.8), reflColor, fresShadow);
 		#endif
 	#else
 		#if USE_FOAM
-			colour = mix(refrColor + fresnel*specular, reflColor + fresnel*specular, fresnel) + max(ndotl,0.4)*(finalFoam);
+			colour = mix(refrColor, reflColor, fresnel) + max(ndotl,0.4)*(finalFoam);
 		#else
-			colour = mix(refrColor + fresnel*specular, reflColor + fresnel*specular, fresnel);
+			colour = mix(refrColor, reflColor, fresnel);
 		#endif
 	#endif
 	
@@ -267,6 +266,12 @@ void main()
 		#endif
 	#endif
 	
+	#if USE_SHADOWS && USE_SHADOW
+		colour += shadow*specular;
+	#else
+		colour += specular;
+	#endif
+
 	gl_FragColor.rgb = get_fog(colour) * losMod;
 
 	#if USE_REAL_DEPTH

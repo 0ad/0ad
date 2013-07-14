@@ -378,7 +378,8 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			{
 				for (int yy = -4; yy <= 4; yy += 2)
 				{
-					normal += normals[(j+yy)*mapSize + (i+xx)];
+					if (j+yy < mapSize && i+xx < mapSize && i+xx >= 0 && j+yy >= 0)
+						normal += normals[(j+yy)*mapSize + (i+xx)];
 					if (terrain->GetVertexGroundLevel(i+xx,j+yy) < heightmap[j*mapSize + i]*HEIGHT_SCALE)
 						waterRaise += heightmap[j*mapSize + i]*HEIGHT_SCALE - terrain->GetVertexGroundLevel(i+xx,j+yy);
 				}

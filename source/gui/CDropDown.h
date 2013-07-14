@@ -127,6 +127,14 @@ protected:
 	//  it is set to "selected", but then when moving the mouse it will
 	//  change.
 	int m_ElementHighlight;
+	
+	// Stores any text entered by the user for quick access to an element
+	// (ie if you type "acro" it will take you to acropolis).
+	std::string m_InputBuffer;
+	
+	// used to know if we want to restart anew or add to m_inputbuffer.
+	double m_TimeOfLastInput;
+
 };
 
 #endif
