@@ -22,7 +22,7 @@ var EntityTemplate = Class({
 	},
 
 	classes: function() {
-		if (!this._template.Identity || !this._template.Identity.Classes)
+		if (!this._template.Identity || !this._template.Identity.Classes || !this._template.Identity.Classes._string)
 			return undefined;
 		return this._template.Identity.Classes._string.split(/\s+/);
 	},
@@ -272,7 +272,7 @@ var EntityTemplate = Class({
 			return false;
 		
 		for (var i in this._template.Attack) {
-			if (!this._template.Attack[i].RestrictedClasses)
+			if (!this._template.Attack[i].RestrictedClasses || !this._template.Attack[i].RestrictedClasses._string)
 				continue;
 			var cannotAttack = this._template.Attack[i].RestrictedClasses._string.split(" ");
 			if (cannotAttack.indexOf(saidClass) !== -1)
@@ -282,7 +282,7 @@ var EntityTemplate = Class({
 	},
 
 	buildableEntities: function() {
-		if (!this._template.Builder || !this._template.Builder.Entities._string)
+		if (!this._template.Builder || !this._template.Builder.Entities|| !this._template.Builder.Entities._string)
 			return undefined;
 		var civ = this.civ();
 		var templates = this._template.Builder.Entities._string.replace(/\{civ\}/g, civ).split(/\s+/);
@@ -290,7 +290,7 @@ var EntityTemplate = Class({
 	},
 
 	trainableEntities: function() {
-		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Entities) 
+		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Entities || !this._template.ProductionQueue.Entities._string)
 			return undefined;
 		var civ = this.civ();
 		var templates = this._template.ProductionQueue.Entities._string.replace(/\{civ\}/g, civ).split(/\s+/);
@@ -298,7 +298,7 @@ var EntityTemplate = Class({
 	},
 
 	researchableTechs: function() {
-		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Technologies)
+		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Technologies || !this._template.ProductionQueue._string)
 			return undefined;
 		var templates = this._template.ProductionQueue.Technologies._string.split(/\s+/);
 		return templates;
