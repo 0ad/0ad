@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -746,7 +746,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	GLuint FramebufferName = 0;
 
 	// rendering waves to a framebuffer
-	if (WaterMgr->m_WaterCoastalWaves && !g_AtlasGameLoop->running)
+	if (WaterMgr->m_WaterCoastalWaves && WaterMgr->m_VBWaves && !g_AtlasGameLoop->running)
 	{
 		// Save the post-processing framebuffer.
 		GLint fbo;
