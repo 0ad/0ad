@@ -271,17 +271,17 @@ function getActionInfo(action, target)
 
 			var traderData = { "firstMarket": entState.id, "secondMarket": targetState.id, "template": trader };
 			var gain = Engine.GuiInterfaceCall("GetTradingRouteGain", traderData);
-			if (gain !== null)
+			if (gain && gain.traderGain)
 			{
 				data.command = "trade";
 				data.target = traderData.secondMarket;
 				data.source = traderData.firstMarket;
 				cursor = "action-setup-trade-route";
-				tooltip = "Click to establish a default route for new traders.";
+				tooltip = "Right-click to establish a default route for new traders.";
 				if (trader)
-					tooltip += " Gain: " + gain + " metal.";
+					tooltip += "\nGain (metal): " + getTradingTooltip(gain);
 				else // Foundation or cannot produce traders
-					tooltip += " Expected gain: " + gain + " metal.";
+					tooltip += "\nExpected gain (metal): " + getTradingTooltip(gain);
 			}
 		}
 
@@ -348,18 +348,18 @@ function getActionInfo(action, target)
 				case "is first":
 					tooltip = "Origin trade market.";
 					if (tradingDetails.hasBothMarkets)
-						tooltip += " Gain: " + tradingDetails.gain + " " + tradingDetails.goods + ". Right-click to create a new trade route."
+						tooltip += "\nGain (" + tradingDetails.goods + "): " + getTradingTooltip(tradingDetails.gain);
 					else
-						tooltip += " Right-click on another market to set it as a destination trade market."
+						tooltip += "\nRight-click on another market to set it as a destination trade market."
 					break;
 				case "is second":
-					tooltip = "Destination trade market. Gain: " + tradingDetails.gain + " " + tradingDetails.goods + "." + " Right-click to create a new trade route.";
+					tooltip = "Destination trade market.\nGain (" + tradingDetails.goods + "): " + getTradingTooltip(tradingDetails.gain);
 					break;
 				case "set first":
-					tooltip = "Set as origin trade market";
+					tooltip = "Right-click to set as origin trade market";
 					break;
 				case "set second":
-					tooltip = "Set as destination trade market. Gain: " + tradingDetails.gain + " " + tradingDetails.goods + ".";
+					tooltip = "Right-click to set as destination trade market.\nGain (" + tradingDetails.goods + "): " + getTradingTooltip(tradingDetails.gain);
 					break;
 				}
 				return {"possible": true, "tooltip": tooltip};
