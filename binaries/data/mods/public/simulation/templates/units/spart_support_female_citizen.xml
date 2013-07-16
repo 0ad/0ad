@@ -2,18 +2,18 @@
 <Entity parent="template_unit_support_female_citizen">
   <Attack>
     <Melee>
-	  <Bonuses>
-		<BonusSiege>
-		  <Classes>Siege</Classes>
-		  <Multiplier>2.5</Multiplier>
-		</BonusSiege>
-	  </Bonuses>
+      <Bonuses>
+       <BonusSiege>
+          <Classes>Siege</Classes>
+          <Multiplier>2.5</Multiplier>
+        </BonusSiege>
+      </Bonuses>
       <RestrictedClasses datatype="tokens">-Infantry -Cavalry -Champion -CitizenSoldier</RestrictedClasses>
     </Melee>
   </Attack>
   <Builder>
     <Entities datatype="tokens">
-	  other/wallset_palisade
+      other/wallset_palisade
       structures/{civ}_defense_tower
     </Entities>
   </Builder>
@@ -28,7 +28,7 @@
   </Health>
   <Identity>
     <Civ>spart</Civ>
-	<GenericName>Spartan Woman</GenericName>
+    <GenericName>Spartan Woman</GenericName>
     <SpecificName>Gýnē</SpecificName>
     <History>Spartan women were some of the freest in the ancient world. They could own land and slaves and even exercise naked like Spartan men. It is said that only Spartan women gave birth to real men. Such tough as nails women more than once helped save their city from disaster, for example when after a lost battle against Pyrrhus of Epirus they overnight built an earthen rampart to protect the city while their men slept in preparation for the next day's siege.</History>
     <Icon>units/hele_support_female_citizen.png</Icon>

@@ -32,7 +32,7 @@ Trader.prototype.Init = function()
 	this.preferredGoods = "metal";
 	// Currently carried goods
 	this.goods = { "type": null, "amount": null };
-}
+};
 
 Trader.prototype.CalculateGain = function(firstMarket, secondMarket)
 {
@@ -66,7 +66,7 @@ Trader.prototype.CalculateGain = function(firstMarket, secondMarket)
 	}
 	
 	return gain;
-}
+};
 
 Trader.prototype.GetGain = function()
 {

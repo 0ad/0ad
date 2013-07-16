@@ -60,14 +60,13 @@ Heal.prototype.GetRange = function()
 Heal.prototype.GetUnhealableClasses = function()
 {
 	var classes = this.template.UnhealableClasses._string;
-	// If we have no unhealable classes defined classes is undefined
 	return classes ? classes.split(/\s+/) : [];
 };
 
 Heal.prototype.GetHealableClasses = function()
 {
 	var classes = this.template.HealableClasses._string;
-	return classes.split(/\s+/);
+	return classes ? classes.split(/\s+/) : [];
 };
 
 /**

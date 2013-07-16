@@ -12,7 +12,7 @@ var EntityTemplate = Class({
 	},
 
 	classes: function() {
-		if (!this._template.Identity || !this._template.Identity.Classes)
+		if (!this._template.Identity || !this._template.Identity.Classes || !this._template.Identity.Classes._string)
 			return undefined;
 		return this._template.Identity.Classes._string.split(/\s+/);
 	},
@@ -131,23 +131,23 @@ var EntityTemplate = Class({
 		};
 	},
 
-
 	buildableEntities: function() {
-		if (!this._template.Builder || !this._template.Builder.Entities._string)
+		if (!this._template.Builder)
 			return undefined;
+		if (!this._template.Builder.Entities._string)
+			return [];
 		var civ = this.civ();
 		var templates = this._template.Builder.Entities._string.replace(/\{civ\}/g, civ).split(/\s+/);
 		return templates; // TODO: map to Entity?
 	},
 
 	trainableEntities: function() {
-		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Entities) 
+		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Entities || !this._template.ProductionQueue.Entities._string) 
 			return undefined;
 		var civ = this.civ();
 		var templates = this._template.ProductionQueue.Entities._string.replace(/\{civ\}/g, civ).split(/\s+/);
 		return templates;
 	},
-
 
 	resourceSupplyType: function() {
 		if (!this._template.ResourceSupply)
@@ -186,7 +186,7 @@ var EntityTemplate = Class({
 
 
 	garrisonableClasses: function() {
-		if (!this._template.GarrisonHolder)
+		if (!this._template.GarrisonHolder || !this._template.GarrisonHolder.List._string)
 			return undefined;
 		return this._template.GarrisonHolder.List._string.split(/\s+/);
 	},
