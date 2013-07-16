@@ -134,13 +134,18 @@ function displaySingle(entState, template)
 		getGUIObjectByName("resourceCarryingIcon").tooltip = "";
 	}
 	// Use the same indicators for traders
-	else if (entState.trader && entState.trader.goods.amount > 0)
+	else if (entState.trader && entState.trader.goods.amount)
 	{
 		getGUIObjectByName("resourceCarryingIcon").hidden = false;
 		getGUIObjectByName("resourceCarryingText").hidden = false;
 		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+entState.trader.goods.type+".png";
-		getGUIObjectByName("resourceCarryingText").caption = entState.trader.goods.amount;
-		getGUIObjectByName("resourceCarryingIcon").tooltip = "";
+		var totalGain = entState.trader.goods.amount.traderGain;
+		if (entState.trader.goods.amount.market1Gain)
+			totalGain += entState.trader.goods.amount.market1Gain;
+		if (entState.trader.goods.amount.market2Gain)
+			totalGain += entState.trader.goods.amount.market2Gain;
+		getGUIObjectByName("resourceCarryingText").caption = totalGain;
+		getGUIObjectByName("resourceCarryingIcon").tooltip = "Gain: " + getTradingTooltip(entState.trader.goods.amount);
 	}
 	// And for number of workers
 	else if (entState.foundation)

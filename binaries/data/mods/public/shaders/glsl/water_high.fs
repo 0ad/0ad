@@ -169,7 +169,8 @@ void main()
 		
 		float distoFactor = clamp(waterDepth2/3.0,0.0,7.0);
 	#else
-		float distoFactor = clamp((waterDepth/v.y)/4.0,0.0,7.0);
+		float perceivedDepth = waterDepth / (v.y*v.y);
+		float distoFactor = clamp(perceivedDepth/4.0,0.0,7.0);
 	#endif
   	
 	fresnel = pow(1.05 - ndotv, 1.3333); // approximation. I'm using 1.05 and not 1.0 because it causes artifacts, see #1714
@@ -205,7 +206,6 @@ void main()
 		#else
 			refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * distoFactor) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
 			// cleverly get the perceived depth based on camera tilting (if horizontal, it's likely we will have more water to look at).
-			float perceivedDepth = waterDepth / (v.y*v.y);
 			vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
 			float luminance = (1.0 - clamp((perceivedDepth/mix(300.0,1.0, pow(murkiness,0.2) )), 0.0, 1.0));
 			float colorExtinction = clamp(perceivedDepth*murkiness/5.0,0.0,1.0);

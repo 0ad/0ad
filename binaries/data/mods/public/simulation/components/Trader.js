@@ -31,20 +31,22 @@ Trader.prototype.Init = function()
 	// Selected resource for trading
 	this.preferredGoods = "metal";
 	// Currently carried goods
-	this.goods = { "type": null, "amount": 0 };
-};
+	this.goods = { "type": null, "amount": null };
+}
 
 Trader.prototype.CalculateGain = function(firstMarket, secondMarket)
 {
+	var gain = CalculateTraderGain(firstMarket, secondMarket, this.template, this.entity);
+
 	// For ship increase gain for each garrisoned trader
-	// Calculate this here to save passing unnecessary stuff into the CalculatetraderGain function
-	var garrisonMultiplier = 1;
+	// Calculate this here to save passing unnecessary stuff into the CalculateTraderGain function
 	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
 	if (cmpIdentity && cmpIdentity.HasClass("Ship"))
 	{
 		var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 		if (cmpGarrisonHolder)
 		{
+			var garrisonMultiplier = 1;
 			var garrisonedTradersCount = 0;
 			for each (var entity in cmpGarrisonHolder.GetEntities())
 			{
@@ -53,11 +55,18 @@ Trader.prototype.CalculateGain = function(firstMarket, secondMarket)
 					garrisonedTradersCount++;
 			}
 			garrisonMultiplier *= 1 + GARRISONED_TRADER_ADDITION * garrisonedTradersCount / 100;
+
+			if (gain.traderGain)
+				gain.traderGain = Math.round(garrisonMultiplier * gain.traderGain);
+			if (gain.market1Gain)
+				gain.market1Gain = Math.round(garrisonMultiplier * gain.market1Gain);
+			if (gain.market2Gain)
+				gain.market2Gain = Math.round(garrisonMultiplier * gain.market2Gain);
 		}
 	}
 	
-	return Math.round(garrisonMultiplier * CalculateTraderGain(firstMarket, secondMarket, this.template));
-};
+	return gain;
+}
 
 Trader.prototype.GetGain = function()
 {
@@ -116,7 +125,7 @@ Trader.prototype.SetTargetMarket = function(target, source)
 	if (marketsChanged)
 	{
 		// Drop carried goods
-		this.goods.amount = 0;
+		this.goods.amount = null;
 	}
 	return marketsChanged;
 };
@@ -177,14 +186,34 @@ Trader.prototype.CanTrade = function(target)
 
 Trader.prototype.PerformTrade = function()
 {
-	if (this.goods.amount > 0)
+	if (this.goods.amount && this.goods.amount.traderGain)
 	{
 		var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-		cmpPlayer.AddResource(this.goods.type, this.goods.amount);
+		cmpPlayer.AddResource(this.goods.type, this.goods.amount.traderGain);
 
 		var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 		if (cmpStatisticsTracker)
-			cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount);
+			cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.traderGain);
+
+		if (this.goods.amount.market1Gain)
+		{
+			var cmpPlayer = QueryOwnerInterface(this.firstMarket, IID_Player);
+			cmpPlayer.AddResource(this.goods.type, this.goods.amount.market1Gain);
+
+			var cmpStatisticsTracker = QueryOwnerInterface(this.firstMarket, IID_StatisticsTracker);
+			if (cmpStatisticsTracker)
+				cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.market1Gain);
+		}
+
+		if (this.goods.amount.market2Gain)
+		{
+			var cmpPlayer = QueryOwnerInterface(this.secondMarket, IID_Player);
+			cmpPlayer.AddResource(this.goods.type, this.goods.amount.market2Gain);
+
+			var cmpStatisticsTracker = QueryOwnerInterface(this.secondMarket, IID_StatisticsTracker);
+			if (cmpStatisticsTracker)
+				cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.market2Gain);
+		}
 	}
 	this.goods.type = this.preferredGoods;
 	this.goods.amount = this.gain;
@@ -198,7 +227,7 @@ Trader.prototype.GetGoods = function()
 Trader.prototype.StopTrading = function()
 {
 	// Drop carried goods
-	this.goods.amount = 0;
+	this.goods.amount = null;
 	// Reset markets
 	this.firstMarket = INVALID_ENTITY;
 	this.secondMarket = INVALID_ENTITY;

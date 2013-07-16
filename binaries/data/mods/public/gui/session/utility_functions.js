@@ -547,3 +547,23 @@ function getRankIconSprite(entState)
 
 	return "";
 }
+
+/**
+ * Returns a message with the details of the trade gain.
+ */
+function getTradingTooltip(gain)
+{
+	var tooltip = gain.traderGain;
+	if (gain.market1Gain && gain.market1Owner == gain.traderOwner)
+		tooltip += "+" + gain.market1Gain;
+	if (gain.market2Gain && gain.market2Owner == gain.traderOwner)
+		tooltip += "+" + gain.market2Gain;
+	tooltip += " (you)";
+
+	if (gain.market1Gain && gain.market1Owner != gain.traderOwner)
+		tooltip += ", " + gain.market1Gain + " (player " + gain.market1Owner + ")";
+	if (gain.market2Gain && gain.market2Owner != gain.traderOwner)
+		tooltip += ", " + gain.market2Gain + " (player " + gain.market2Owner + ")";
+
+	return tooltip;
+}

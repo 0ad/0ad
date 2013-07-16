@@ -233,6 +233,17 @@ void WaterManager::UnloadWaterTextures()
 // Create information about the terrain and wave vertices.
 void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 {
+	if (m_VBWaves)
+	{
+		g_VBMan.Release(m_VBWaves);
+		m_VBWaves = NULL;
+	}
+	if (m_VBWavesIndices)
+	{
+		g_VBMan.Release(m_VBWavesIndices);
+		m_VBWavesIndices = NULL;
+	}
+
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	ssize_t mapSize = terrain->GetVerticesPerSide();
 	
@@ -548,17 +559,20 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 		waves_vertex_data.push_back(vertex[2]);
 		waves_indices.push_back(waves_vertex_data.size());
 		waves_vertex_data.push_back(vertex[3]);
-
-		// waves
-		// allocate vertex buffer
-		m_VBWaves = g_VBMan.Allocate(sizeof(SWavesVertex), waves_vertex_data.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
-		m_VBWaves->m_Owner->UpdateChunkVertices(m_VBWaves, &waves_vertex_data[0]);
-		
-		// Construct indices buffer
-		m_VBWavesIndices = g_VBMan.Allocate(sizeof(GLushort), waves_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
-		m_VBWavesIndices->m_Owner->UpdateChunkVertices(m_VBWavesIndices, &waves_indices[0]);
-	
 	}
+
+	// no vertex buffers if no data generated
+	if (waves_indices.empty())
+		return;
+
+	// waves
+	// allocate vertex buffer
+	m_VBWaves = g_VBMan.Allocate(sizeof(SWavesVertex), waves_vertex_data.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+	m_VBWaves->m_Owner->UpdateChunkVertices(m_VBWaves, &waves_vertex_data[0]);
+
+	// Construct indices buffer
+	m_VBWavesIndices = g_VBMan.Allocate(sizeof(GLushort), waves_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
+	m_VBWavesIndices->m_Owner->UpdateChunkVertices(m_VBWavesIndices, &waves_indices[0]);
 }
 
 ////////////////////////////////////////////////////////////////////////

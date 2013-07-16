@@ -27,11 +27,15 @@ Looter.prototype.Collect = function(targetEntity)
 	if (cmpTrader)
 	{
 		var carriedGoods = cmpTrader.GetGoods();
-		if (carriedGoods.amount > 0)
+		if (carriedGoods.amount && carriedGoods.amount.traderGain)
 		{
 			// Convert from {type:<type>,amount:<amount>} to {<type>:<amount>}
 			var resourcesToAdd = {};
-			resourcesToAdd[carriedGoods.type] = carriedGoods.amount;
+			resourcesToAdd[carriedGoods.type] = carriedGoods.amount.traderGain;
+			if (carriedGoods.amount.market1Gain)
+				resourcesToAdd[carriedGoods.type] += carriedGoods.amount.market1Gain;
+			if (carriedGoods.amount.market2Gain)
+				resourcesToAdd[carriedGoods.type] += carriedGoods.amount.market2Gain;
 			cmpPlayer.AddResources(resourcesToAdd);
 		}
 	}

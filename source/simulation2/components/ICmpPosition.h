@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,8 +44,12 @@ class CMatrix3D;
  *   - Terrain conformance mode, one of:
  *     - Upright (upwards axis is always the world Y axis, e.g. for humans)
  *     - Pitch (rotates backwards and forwards to match the terrain, e.g. for horses)
- *     - PitchRoll (rotates in all directions to match the terrain, e.g. for carts)
+ *     - Pitch-Roll (rotates in all directions to match the terrain, e.g. for carts)
+ *     - Roll (rotates sideways to match the terrain)
+ *      NOTE: terrain conformance is currently only a local, visual effect; it doesn't change
+ *       the network synchronized rotation or the data returned by GetRotation
  *   - Rotation around relative X (pitch), Z (roll) axes (rare; used for special effects)
+ *      NOTE: if XZ rotation is non-zero, it will override the terrain conformance mode
  *
  * Entities can also be 'outside the world' (e.g. hidden inside a building), in which
  * case they have no position. Callers <b>must</b> check the entity is in the world, before
@@ -137,6 +141,7 @@ public:
 	 * Rotate immediately to the given angles around the X (pitch) and Z (roll) axes.
 	 * @param x radians around the X axis. (TODO: in which direction?)
 	 * @param z radians around the Z axis.
+	 * @note if either x or z is non-zero, it will override terrain conformance mode
 	 */
 	virtual void SetXZRotation(entity_angle_t x, entity_angle_t z) = 0;
 
