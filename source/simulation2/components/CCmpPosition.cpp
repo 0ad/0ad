@@ -568,8 +568,8 @@ private:
 			return;
 		}
 
-		// TODO average normal (average all the tiles?) for big units or for buildings
-		CVector3D normal = cmpTerrain->CalcNormal(m_X, m_Z);
+		// TODO: average normal (average all the tiles?) for big units or for buildings?
+		CVector3D normal = cmpTerrain->CalcExactNormal(m_X.ToFloat(), m_Z.ToFloat());
 
 		// rotate the normal so the positive x direction is in the direction of the unit
 		CVector2D projected = CVector2D(normal.X, normal.Z);
