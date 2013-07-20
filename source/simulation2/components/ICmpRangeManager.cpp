@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -49,5 +49,5 @@ DEFINE_INTERFACE_METHOD_3("GetLosVisibility", std::string, ICmpRangeManager, Get
 DEFINE_INTERFACE_METHOD_1("SetLosCircular", void, ICmpRangeManager, SetLosCircular, bool)
 DEFINE_INTERFACE_METHOD_0("GetLosCircular", bool, ICmpRangeManager, GetLosCircular)
 DEFINE_INTERFACE_METHOD_2("SetSharedLos", void, ICmpRangeManager, SetSharedLos, player_id_t, std::vector<player_id_t>)
-DEFINE_INTERFACE_METHOD_1("GetPercentMapExplored", i32, ICmpRangeManager, GetPercentMapExplored, player_id_t)
+DEFINE_INTERFACE_METHOD_1("GetPercentMapExplored", u8, ICmpRangeManager, GetPercentMapExplored, player_id_t)
 END_INTERFACE_WRAPPER(RangeManager)

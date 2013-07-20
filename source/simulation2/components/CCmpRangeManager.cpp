@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -237,6 +237,10 @@ public:
 
 	// Shared LOS masks, one per player.
 	std::map<player_id_t, u32> m_SharedLosMasks;
+
+	// Cache explored vertices per player (not serialized)
+	u32 m_TotalInworldVertices;
+	std::vector<u32> m_ExploredVertices;
 
 	static std::string GetSchema()
 	{
@@ -514,7 +518,7 @@ public:
 		SpatialSubdivision<entity_id_t> oldSubdivision = m_Subdivision;
 
 		ResetDerivedData(true);
-		
+
 		if (oldPlayerCounts != m_LosPlayerCounts)
 		{
 			for (size_t i = 0; i < oldPlayerCounts.size(); ++i)
@@ -547,7 +551,24 @@ public:
 
 		m_LosPlayerCounts.clear();
 		m_LosPlayerCounts.resize(MAX_LOS_PLAYER_ID+1);
-		if (!skipLosState)
+		m_ExploredVertices.clear();
+		m_ExploredVertices.resize(MAX_LOS_PLAYER_ID+1, 0);
+		if (skipLosState)
+		{
+			// recalc current exploration stats.
+			for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
+			{
+				for (i32 i = 0; i < m_TerrainVerticesPerSide; i++)
+				{
+					if (!LosIsOffWorld(i, j))
+					{
+						for (u8 k = 1; k < MAX_LOS_PLAYER_ID+1; ++k)
+							m_ExploredVertices.at(k) += ((m_LosState[j*m_TerrainVerticesPerSide + i] & (LOS_EXPLORED << (2*(k-1)))) > 0);
+					}
+				}
+			}
+		}
+		else
 		{
 			m_LosState.clear();
 			m_LosState.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
@@ -561,9 +582,18 @@ public:
 				LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
 		}
 
+		m_TotalInworldVertices = 0;
 		for (ssize_t j = 0; j < m_TerrainVerticesPerSide; ++j)
 			for (ssize_t i = 0; i < m_TerrainVerticesPerSide; ++i)
-				m_LosStateRevealed[i + j*m_TerrainVerticesPerSide] = LosIsOffWorld(i, j) ? 0 : 0xFFFFFFFFu;
+			{
+				if (LosIsOffWorld(i,j))
+					m_LosStateRevealed[i + j*m_TerrainVerticesPerSide] = 0;
+				else
+				{
+					m_LosStateRevealed[i + j*m_TerrainVerticesPerSide] = 0xFFFFFFFFu;
+					m_TotalInworldVertices++;
+				}
+			}
 	}
 
 	void ResetSubdivisions(entity_pos_t x1, entity_pos_t z1)
@@ -931,7 +961,7 @@ public:
 		for (size_t i = 0; i < m_DebugOverlayLines.size(); ++i)
 			collector.Submit(&m_DebugOverlayLines[i]);
 	}
-	
+
 	virtual u8 GetEntityFlagMask(std::string identifier)
 	{
 		if (identifier == "normal")
@@ -942,7 +972,7 @@ public:
 		LOGWARNING(L"CCmpRangeManager: Invalid flag identifier %hs", identifier.c_str());
 		return 0;
 	}
-	
+
 	virtual void SetEntityFlag(entity_id_t ent, std::string identifier, bool value)
 	{
 		std::map<entity_id_t, EntityData>::iterator it = m_EntityData.find(ent);
@@ -1085,9 +1115,14 @@ public:
 				u8 p = grid.get(i, j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK;
 				if (p > 0 && p <= MAX_LOS_PLAYER_ID)
 				{
+					u32 &explored = m_ExploredVertices.at(p);
+					explored += !(m_LosState[i + j*m_TerrainVerticesPerSide] & (LOS_EXPLORED << (2*(p-1))));
 					m_LosState[i + j*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
+					explored += !(m_LosState[i+1 + j*m_TerrainVerticesPerSide] & (LOS_EXPLORED << (2*(p-1))));
 					m_LosState[i+1 + j*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
+					explored += !(m_LosState[i + (j+1)*m_TerrainVerticesPerSide] & (LOS_EXPLORED << (2*(p-1))));
 					m_LosState[i + (j+1)*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
+					explored += !(m_LosState[i+1 + (j+1)*m_TerrainVerticesPerSide] & (LOS_EXPLORED << (2*(p-1))));
 					m_LosState[i+1 + (j+1)*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
 				}
 			}
@@ -1135,7 +1170,7 @@ public:
 
 		i32 idx0 = j*m_TerrainVerticesPerSide + i0;
 		i32 idx1 = j*m_TerrainVerticesPerSide + i1;
-
+		u32 &explored = m_ExploredVertices.at(owner);
 		for (i32 idx = idx0; idx <= idx1; ++idx)
 		{
 			// Increasing from zero to non-zero - move from unexplored/explored to visible+explored
@@ -1143,7 +1178,10 @@ public:
 			{
 				i32 i = i0 + idx - idx0;
 				if (!LosIsOffWorld(i, j))
+				{
+					explored += !(m_LosState[idx] & (LOS_EXPLORED << (2*(owner-1))));
 					m_LosState[idx] |= ((LOS_VISIBLE | LOS_EXPLORED) << (2*(owner-1)));
+				}
 			}
 
 			ASSERT(counts[idx] < 65535);
@@ -1161,7 +1199,6 @@ public:
 
 		i32 idx0 = j*m_TerrainVerticesPerSide + i0;
 		i32 idx1 = j*m_TerrainVerticesPerSide + i1;
-
 		for (i32 idx = idx0; idx <= idx1; ++idx)
 		{
 			ASSERT(counts[idx] > 0);
@@ -1432,28 +1469,9 @@ public:
 		}
 	}
 
-	virtual i32 GetPercentMapExplored(player_id_t player)
+	virtual u8 GetPercentMapExplored(player_id_t player)
 	{
-		i32 exploredVertices = 0;
-		i32 overallVisibleVertices = 0;
-		CLosQuerier los(CalcPlayerLosMask(player), m_LosState, m_TerrainVerticesPerSide);
-
-		for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
-		{
-			for (i32 i = 0; i < m_TerrainVerticesPerSide; i++)
-			{
-				if (!LosIsOffWorld(i, j))
-				{
-					overallVisibleVertices++;
-					exploredVertices += (i32)los.IsExplored_UncheckedRange(i, j);
-				}
-			}
-		}
-
-		if (overallVisibleVertices == 0) // avoid divide-by-zero
-			return 0;
-
-		return exploredVertices * 100 / overallVisibleVertices;
+		return m_ExploredVertices.at((u8)player) * 100 / m_TotalInworldVertices;
 	}
 };
 
