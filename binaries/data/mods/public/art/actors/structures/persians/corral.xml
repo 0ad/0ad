@@ -2,12 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Carthaginian Corral">
+    <variant name="Corral">
       <mesh>structural/pers_corral.dae</mesh>
       <props>
         <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/pers_struct.dds" name="baseTex"/>
+		<texture file="structural/ao/pers_corral.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -21,5 +24,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao.xml</material>
 </actor>

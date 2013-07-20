@@ -3,15 +3,25 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Blacksmith">
-      <mesh>structural/temp_blacksmith.dae</mesh>
+      <mesh>structural/pers_blacksmith.dae</mesh>
       <props>
+        <prop actor="props/structures/persians/blacksmith.xml" attachpoint="root"/>
         <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/flame.xml" attachpoint="fire"/>
+        <prop actor="props/units/shields/pers_taka_a.xml" attachpoint="shielda"/>
+        <prop actor="props/units/shields/pers_round_kardakes.xml" attachpoint="shieldb"/>
+        <prop actor="props/units/shields/pers_round_kardakes.xml" attachpoint="shieldc"/>
+        <prop actor="props/units/heads/pers_conical_plume.xml" attachpoint="helmeta"/>
+        <prop actor="props/units/heads/pers_conical_plume.xml" attachpoint="helmetb"/>
+        <prop actor="props/units/heads/pers_conical_plume.xml" attachpoint="helmetc"/>
+        <prop actor="props/units/heads/pers_conical_plume.xml" attachpoint="helmetd"/>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/pers_struct.dds" name="baseTex"/>
+		<texture file="structural/ao/pers_blacksmith.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao.xml</material>
 </actor>

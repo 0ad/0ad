@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 #include "maths/FixedVector3D.h"
 
 class CTerrain;
+class CVector3D;
 
 class ICmpTerrain : public IComponent
 {
@@ -32,6 +33,8 @@ public:
 	virtual bool IsLoaded() = 0;
 
 	virtual CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z) = 0;
+
+	virtual CVector3D CalcExactNormal(float x, float z) = 0;
 
 	virtual entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z) = 0;
 

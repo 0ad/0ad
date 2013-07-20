@@ -64,6 +64,8 @@ PropListEditorListCtrl::PropListEditorListCtrl(wxWindow* parent)
 {
 	AddColumnType(_("Attachment point"), 100, "@attachpoint",	new FieldEditCtrl_List("attachpoints"));
 	AddColumnType(_("Prop model"),		 200, "@actor",			new FieldEditCtrl_File(_T("art/actors/"), _("Actor files (*.xml)|*.xml|All files (*.*)|*.*")));
+	AddColumnType(_("Min Height"),		 100, "@minheight", new FieldEditCtrl_Text());
+	AddColumnType(_("Max Height"),		 200, "@maxheight",	new FieldEditCtrl_Text());
 }
 
 void PropListEditorListCtrl::DoImport(AtObj& in)
