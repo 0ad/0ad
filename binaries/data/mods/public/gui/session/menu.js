@@ -167,6 +167,14 @@ function openDeleteDialog(selection)
 // Menu functions
 // =============================================================================
 
+function openSave()
+{
+	closeMenu();
+	closeOpenDialogs();
+	pauseGame();
+	Engine.PushGuiPage("page_savegame.xml", {"gameDataCallback": getSavedGameData, "closeCallback": resumeGame});
+}
+
 function openSettings(pause)
 {
 	getGUIObjectByName("settingsDialogPanel").hidden = false;

@@ -1,28 +1,8 @@
-function sortDecreasingDate(a, b)
-{
-	return b.metadata.time - a.metadata.time;
-}
-
-function twoDigits(n)
-{
-	return n < 10 ? "0" + n : n;
-}
-
-function generateLabel(metadata)
-{
-	var t = new Date(metadata.time*1000);
-
-	var date = t.getFullYear()+"-"+twoDigits(1+t.getMonth())+"-"+twoDigits(t.getDate());
-	var time = twoDigits(t.getHours())+":"+twoDigits(t.getMinutes())+":"+twoDigits(t.getSeconds());
-	return "["+date+" "+time+"] "+metadata.initAttributes.map;
-}
-
 function init()
 {
-	var savedGames = Engine.GetSavedGames();
-
 	var gameSelection = getGUIObjectByName("gameSelection");
 
+	var savedGames = Engine.GetSavedGames();
 	if (savedGames.length == 0)
 	{
 		gameSelection.list = [ "No saved games found" ];
@@ -81,9 +61,7 @@ function deleteGame()
 function reallyDeleteGame(gameID)
 {
 	if (!Engine.DeleteSavedGame(gameID))
-	{
 		error("Could not delete saved game '"+gameID+"'");
-	}
 
 	// Run init again to refresh saved game list
 	init();

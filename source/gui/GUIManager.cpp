@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -187,7 +187,8 @@ Status CGUIManager::ReloadChangedFiles(const VfsPath& path)
 CScriptVal CGUIManager::GetSavedGameData()
 {
 	CScriptVal data;
-	m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(top()->GetScriptObject()), "getSavedGameData", data);
+	if (!m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(top()->GetScriptObject()), "getSavedGameData", data))
+		LOGERROR(L"Failed to call getSavedGameData() on the current GUI page");
 	return data;
 }
 

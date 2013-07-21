@@ -702,8 +702,7 @@
 		>
 		    Save
 		    <action on="Press">
-			Engine.SaveGame();
-			closeMenu();
+			openSave();
 		    </action>
 		</object>
 
