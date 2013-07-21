@@ -5,7 +5,7 @@
 	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "plough.png",
-	"researchTime": 20,
+	"researchTime": 40,
 	"tooltip": "Equip your workers with iron ploughs. +25% farming rate.",
 	"modifications": [{"value": "ResourceGatherer/Rates/food.grain", "multiplier": 1.25}],
 	"affects": ["Worker"]

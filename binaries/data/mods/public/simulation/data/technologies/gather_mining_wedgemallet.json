@@ -6,7 +6,7 @@
 	"requirements": {"tech": "phase_village"},
 	"requirementsTooltip": "Equip your workers with helpful tools. No requirements.",
 	"icon": "mining_metal.png",
-	"researchTime": 20,
+	"researchTime": 40,
 	"tooltip": "+25% metal gathering rate.",
 	"modifications": [{"value": "ResourceGatherer/Rates/metal.ore", "multiplier": 1.25}],
 	"affects": ["Worker"]

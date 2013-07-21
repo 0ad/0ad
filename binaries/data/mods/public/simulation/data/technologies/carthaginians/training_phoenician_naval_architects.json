@@ -5,7 +5,7 @@
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "calipers.png",
-	"researchTime": 30,
+	"researchTime": 40,
 	"tooltip": "Shipyard increased batch construction speed bonus.",
 	"modifications": [{"value": "ProductionQueue/BatchTimeModifier", "add": -0.1}],
 	"affects": ["Shipyard"]
