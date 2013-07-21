@@ -6,7 +6,7 @@
 	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "crenelations.png",
-	"researchTime": 20,
+	"researchTime": 40,
 	"tooltip": "Install crenellations and murder holes to have 40% more arrows fired per garrisoned soldier.",
 	"modifications": [{"value": "BuildingAI/GarrisonArrowMultiplier", "multiplier": 1.4}],
 	"affects": ["Defensive Tower"]

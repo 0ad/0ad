@@ -4,7 +4,7 @@
 	"cost": {"food": 50, "wood": 0, "stone": 0, "metal": 0},
 	"requirements": {"tech": "phase_village"},
 	"icon": "meat.png",
-	"researchTime": 30,
+	"researchTime": 40,
 	"tooltip": "Breed time -25% for domestic animals (sheep, goats, cattle, etc.).",
 	"modifications": [{"value": "Cost/BuildTime", "multiplier": 0.75}],
 	"affects": ["Domestic"]

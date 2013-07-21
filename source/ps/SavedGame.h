@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,15 +39,28 @@ namespace SavedGames
 {
 
 /**
- * Create new saved game archive with given prefix and simulation data
+ * Create new saved game archive with given name and simulation data
  *
- * @param prefix Create new numbered file starting with this prefix
+ * @param name Name to save the game with
+ * @param description A user-given description of the save
  * @param simulation
  * @param gui if not NULL, store some UI-related data with the saved game
  * @param playerID ID of the player who saved this file
  * @return INFO::OK if successfully saved, else an error Status
  */
-Status Save(const std::wstring& prefix, CSimulation2& simulation, CGUIManager* gui, int playerID);
+Status Save(const std::wstring& name, const std::wstring& description, CSimulation2& simulation, CGUIManager* gui, int playerID);
+
+/**
+ * Create new saved game archive with given prefix and simulation data
+ *
+ * @param prefix Create new numbered file starting with this prefix
+ * @param description A user-given description of the save
+ * @param simulation
+ * @param gui if not NULL, store some UI-related data with the saved game
+ * @param playerID ID of the player who saved this file
+ * @return INFO::OK if successfully saved, else an error Status
+ */
+Status SavePrefix(const std::wstring& prefix, const std::wstring& description, CSimulation2& simulation, CGUIManager* gui, int playerID);
 
 /**
  * Load saved game archive with the given name

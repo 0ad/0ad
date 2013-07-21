@@ -2,42 +2,42 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>cloudless</SkySet>
-		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
-		<SunElevation angle="0.78233"/>
-		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<SkySet>sunset 1</SkySet>
+		<SunColour r="1" g="0.501961" b="0"/>
+		<SunElevation angle="0.371704"/>
+		<SunRotation angle="-0.925107"/>
+		<TerrainAmbientColour r="0.25098" g="0.407843" b="0.584314"/>
+		<UnitsAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.00199219</FogFactor>
 			<FogThickness>0.273438</FogThickness>
-			<FogColour r="0.909804" g="0.831373" b="0.658824"/>
+			<FogColour r="0.745098" g="0.596078" b="0.278431"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Colour r="0.333333" g="0.423529" b="0.501961"/>
 				<Height>20.6689</Height>
 				<Shininess>1.46484</Shininess>
-				<Waviness>8</Waviness>
+				<Waviness>9.99023</Waviness>
 				<Murkiness>0.800781</Murkiness>
-				<Tint r="0.392157" g="0.47451" b="0.654902"/>
-				<ReflectionTint r="0.564706" g="0.513726" b="0.419608"/>
-				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
+				<Tint r="0.745098" g="0.596078" b="0.278431"/>
+				<ReflectionTint r="0.745098" g="0.596078" b="0.278431"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>-0.0419922</Brightness>
 			<Contrast>1.00879</Contrast>
-			<Saturation>0.900391</Saturation>
-			<Bloom>0.155859</Bloom>
-			<PostEffect>default</PostEffect>
+			<Saturation>1</Saturation>
+			<Bloom>0.140625</Bloom>
+			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="690.787" y="113.549" z="643.2"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="704.679" y="71.0388" z="676.779"/>
+		<Rotation angle="-0.0366626"/>
+		<Declination angle="0.741361"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -6522,7 +6522,7 @@
 		<Entity uid="1183">
 			<Template>structures/pers_fortress</Template>
 			<Player>1</Player>
-			<Position x="673.83851" z="502.99286"/>
+			<Position x="673.85853" z="507.82587"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1184">

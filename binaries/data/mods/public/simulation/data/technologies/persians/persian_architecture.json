@@ -4,7 +4,7 @@
 	"cost": {"food": 0, "wood": 200, "stone": 200, "metal": 0},
 	"requirements": {"tech": "phase_village"},
 	"icon": "stone_blocks.png",
-	"researchTime": 30,
+	"researchTime": 60,
 	"tooltip": "All Persian structures +25% health, but also +20% build time.",
 	"modifications": [
 		{"value": "Cost/BuildTime", "multiplier": 1.20},

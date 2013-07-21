@@ -258,11 +258,19 @@ CScriptVal StartSavedGame(void* cbdata, std::wstring name)
 	return metadata.get();
 }
 
-void SaveGame(void* cbdata)
+void SaveGame(void* cbdata, std::wstring filename, std::wstring description)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
-	if (SavedGames::Save(L"quicksave", *g_Game->GetSimulation2(), guiManager, g_Game->GetPlayerID()) < 0)
+	if (SavedGames::Save(filename, description, *g_Game->GetSimulation2(), guiManager, g_Game->GetPlayerID()) < 0)
+		LOGERROR(L"Failed to save game");
+}
+
+void SaveGamePrefix(void* cbdata, std::wstring prefix, std::wstring description)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	if (SavedGames::SavePrefix(prefix, description, *g_Game->GetSimulation2(), guiManager, g_Game->GetPlayerID()) < 0)
 		LOGERROR(L"Failed to save game");
 }
 
@@ -669,7 +677,8 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &StartSavedGame>("StartSavedGame");
 	scriptInterface.RegisterFunction<std::vector<CScriptValRooted>, &GetSavedGames>("GetSavedGames");
 	scriptInterface.RegisterFunction<bool, std::wstring, &DeleteSavedGame>("DeleteSavedGame");
-	scriptInterface.RegisterFunction<void, &SaveGame>("SaveGame");
+	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &SaveGame>("SaveGame");
+	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &SaveGamePrefix>("SaveGamePrefix");
 	scriptInterface.RegisterFunction<void, &QuickSave>("QuickSave");
 	scriptInterface.RegisterFunction<void, &QuickLoad>("QuickLoad");
 

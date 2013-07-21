@@ -6,7 +6,7 @@
 	"requirementsTooltip": "Requires 5 Village Phase structures (except Palisades and Farm Fields).",
 	"supersedes": "phase_village",
 	"icon": "town_phase.png",
-	"researchTime": 30,
+	"researchTime": 80,
 	"tooltip": "Advance to Town Phase, which unlocks more structures and units. Territory radius for Civilisation Centres increased by +25%",
 	"modifications": [{"value": "TerritoryInfluence/Radius", "multiplier": 1.25}],
 	"affects": ["CivCentre"]

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<script file="gui/common/functions_global_object.js" />
+	<script file="gui/common/functions_utility_loadsave.js" />
+	<script file="gui/savedgames/save.js" />
+
+	<!-- Add a translucent black background to fade out the page -->
+	<object type="image" z="0" sprite="BackgroundTranslucent"/>
+
+	<object type="image" style="StoneDialog" size="50%-300 50%-200 50%+300 50%+200">
+		<object type="image" z="0" sprite="BackgroundTranslucent"/>
+		<object type="text" style="TitleText" size="50%-128 0%-16 50%+128 16">
+			Save Game
+		</object>
+
+		<object name="gameSelection"
+			style="StoneList"
+			type="list"
+			
+			size="24 24 100%-24 100%-124">
+			<action on="selectionchange">
+				selectDescription();
+			</action>
+		</object>
+
+		<object size="24 100%-124 100%-24 100%-100" name="descLabel" type="text" style="LeftLabelText">Description:</object>
+
+		<object name="saveGameDesc" size="24 100%-96 100%-24 100%-72" type="input" style="StoneInput"/>
+
+		<object name="saveButton" type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton">
+			Save
+			<action on="Press">saveGame();</action>
+		</object>
+
+		<object name="deleteGameButton" type="button" size="33%+20 100%-60 66%-15 100%-32" style="StoneButton">
+			Delete
+			<action on="Press">deleteGame();</action>
+		</object>
+
+		<object type="button" style="StoneButton" size="66%-5 100%-60 100%-25 100%-32">
+			Cancel
+			<action on="Press">closeSave(true);</action>
+		</object>
+
+	</object>
+
+</objects>

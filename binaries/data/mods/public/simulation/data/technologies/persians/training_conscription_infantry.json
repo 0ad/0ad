@@ -6,7 +6,7 @@
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "fist_spear.png",
-	"researchTime": 30,
+	"researchTime": 40,
 	"tooltip": "Barracks increased batch training speed bonus.",
 	"modifications": [{"value": "ProductionQueue/BatchTimeModifier", "add": -0.1}],
 	"affects": ["Barracks"]
