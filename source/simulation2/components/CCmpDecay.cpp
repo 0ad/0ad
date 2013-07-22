@@ -61,6 +61,10 @@ public:
 	entity_pos_t m_InitialXRotation;
 	entity_pos_t m_InitialZRotation;
 
+	// Used to randomize ship-like sinking
+	float m_SinkingAngleX;
+	float m_SinkingAngleZ;
+
 	float m_CurrentTime;
 	float m_TotalSinkDepth; // distance we need to sink (derived from bounding box), or -1 if undetermined
 
@@ -168,8 +172,12 @@ public:
 
 				// Sink it further down if it sinks like a ship, as it will rotate.
 				if (m_ShipSink)
+				{
+					// lacking randomness we'll trick
+					m_SinkingAngleX = (pos.X.ToInt_RoundToNearest() % 30 - 15) / 15.0;
+					m_SinkingAngleZ = (pos.Z.ToInt_RoundToNearest() % 30) / 40.0;
 					m_TotalSinkDepth += 10.f;
-
+				}
 				// probably 0 in both cases but we'll remember it anyway.
 				m_InitialXRotation = cmpPosition->GetRotation().X;
 				m_InitialZRotation = cmpPosition->GetRotation().Z;
@@ -187,8 +195,8 @@ public:
 					// exponential sinking with tilting
 					float tilt_time = t > 5.f ? 5.f : t;
 					float tiltSink = tilt_time * tilt_time / 5.f;
-					entity_pos_t RotX = entity_pos_t::FromFloat(((m_InitialXRotation.ToFloat() * (5.f - tiltSink)) + (1.5f * tiltSink)) / 5.f);
-					entity_pos_t RotZ = entity_pos_t::FromFloat(((m_InitialZRotation.ToFloat() * (3.f - tilt_time)) + (-0.3f * tilt_time)) / 3.f);
+					entity_pos_t RotX = entity_pos_t::FromFloat(((m_InitialXRotation.ToFloat() * (5.f - tiltSink)) + (m_SinkingAngleX * tiltSink)) / 5.f);
+					entity_pos_t RotZ = entity_pos_t::FromFloat(((m_InitialZRotation.ToFloat() * (3.f - tilt_time)) + (m_SinkingAngleZ * tilt_time)) / 3.f);
 					cmpPosition->SetXZRotation(RotX,RotZ);
 					
 					depth = m_SinkRate * (exp(t - 1.f) - 0.54881163609f) + (m_SinkAccel * exp(t - 4.f) - 0.01831563888f);
