@@ -1657,17 +1657,7 @@ var UnitFsmSpec = {
 			"GATHERING": {
 				"enter": function() {
 					this.gatheringTarget = this.order.data.target;	// deleted in "leave".
-
-					if (this.gatheringTarget) {
-						// Check that we can gather from the resource we're supposed to gather from.
-						// Will only be added if we're not already in.
-						var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-						if (!cmpSupply || !cmpSupply.AddGatherer(this.entity))
-						{
-							this.StartTimer(0);
-							return false;
-						}
-					}
+					
 					// If this order was forced, the player probably gave it, but now we've reached the target
 					//	switch to an unforced order (can be interrupted by attacks)
 					this.order.data.force = false;
@@ -1697,6 +1687,22 @@ var UnitFsmSpec = {
 					// The offset should be at least as long as the repeat time so we use the same value for both.
 					var offset = 1000/rate;
 					var repeat = offset;
+
+					// Check if the resource is full.
+					if (this.gatheringTarget) {
+						// Check that we can gather from the resource we're supposed to gather from.
+						// Will only be added if we're not already in.
+						var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+						if (!cmpSupply || !cmpSupply.AddGatherer(this.entity))
+						{
+							// actually start it like that because sometime the supply will
+							// have become available again once we reach Gather.Gathering.Timer
+							// And this leads to units getting stuck in Gather.Gathering forever.
+							this.StartTimer(offset, repeat);
+							return false;
+						}
+					}
+
 					this.StartTimer(offset, repeat);
 
 					// We want to start the gather animation as soon as possible,
@@ -1718,6 +1724,7 @@ var UnitFsmSpec = {
 					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					if (cmpSupply)
 						cmpSupply.RemoveGatherer(this.entity);
+					this.gatheringTarget = -1;
 					delete this.gatheringTarget;
 					
 					// Show the carried resource, if we've gathered anything.
@@ -1733,6 +1740,7 @@ var UnitFsmSpec = {
 					// Check we can still reach and gather from the target
 					if (this.CheckTargetRange(this.gatheringTarget, IID_ResourceGatherer) && this.CanGather(this.gatheringTarget) && cmpSupply && cmpSupply.IsAvailable(this.entity))
 					{
+						cmpSupply.AddGatherer(this.entity);
 						// Gather the resources:
 
 						var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
