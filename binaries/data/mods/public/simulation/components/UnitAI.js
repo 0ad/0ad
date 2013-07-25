@@ -2276,7 +2276,7 @@ var UnitFsmSpec = {
 				var cmpDamageReceiver = Engine.QueryInterface(this.entity, IID_DamageReceiver);
 				cmpDamageReceiver.SetInvulnerability(true); 
 				this.SelectAnimation("promotion");
-				this.StartTimer(4000, 4000);
+				this.StartTimer(2800, 2800);
 				return false;
 			},
 

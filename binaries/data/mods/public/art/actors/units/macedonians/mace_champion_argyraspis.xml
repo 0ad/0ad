@@ -14,7 +14,7 @@
         <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
-        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="300"/>
+        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
@@ -27,16 +27,24 @@
   </group>
   <group>
     <variant frequency="1" name="hypaspist-armour-thorax">
-      <textures><texture file="skeletal/mace_hypaspist_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/mace_hypaspist_1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="hypaspist-armour-cuirass">
-      <textures><texture file="skeletal/mace_hypaspist_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/mace_hypaspist_2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="hypaspist-armour-cuirass-2">
-      <textures><texture file="skeletal/mace_su1_hypaspist_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/mace_su1_hypaspist_1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="hypaspist-armour-cuirass-3">
-      <textures><texture file="skeletal/mace_su1_hypaspist_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/mace_su1_hypaspist_2.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>
