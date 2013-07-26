@@ -3,7 +3,9 @@ var currentSubmenuType; // contains submenu type
 const MARGIN = 4; // menu border size
 const background = "hellenes1"; // Background type. Currently: 'hellenes1', 'persians1'.
 
-function init(initData)
+var g_ShowSplashScreens;
+
+function init(initData, hotloadData)
 {
 	initMusic();
 	// Play main menu music
@@ -16,24 +18,13 @@ function init(initData)
 
 	EnableUserReport(Engine.IsUserReportEnabled());
 
-	// Only show splash screen(s) once
-	if (initData && initData.isStartup)
-	{
-		if (Engine.IsSplashScreenEnabled())
-			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen" } );
+	// Only show splash screen(s) once at startup, but not again after hotloading
+	g_ShowSplashScreens = hotloadData ? hotloadData.showSplashScreens : initData && initData.isStartup;
+}
 
-		// Warn about removing fixed render path
-		if (renderer.renderpath == "fixed")
-			messageBox(
-				600,
-				300,
-				"[font=\"serif-bold-16\"][color=\"200 20 20\"]Warning:[/color] You appear to be using non-shader (fixed function) graphics. This option will be removed in a future 0 A.D. release, to allow for more advanced graphics features. We advise upgrading your graphics card to a more recent, shader-compatible model.\n\nPlease press \"Read More\" for more information or \"Ok\" to continue.",
-				"WARNING!",
-				0,
-				["Ok", "Read More"],
-				[null, function() { Engine.OpenURL("http://www.wildfiregames.com/forum/index.php?showtopic=16734"); }]
-			);
-	}
+function getHotloadData()
+{
+	return { "showSplashScreens": g_ShowSplashScreens };
 }
 
 var t0 = new Date;
@@ -160,6 +151,27 @@ function onTick()
 		getGUIObjectByName("userReportEnabledText").caption = 
 			userReportEnabledText.replace(/\$status/,
 				formatUserReportStatus(Engine.GetUserReportStatus()));
+	}
+
+	// Show splash screens here, so we don't interfere with main menu hotloading
+	if (g_ShowSplashScreens)
+	{
+		g_ShowSplashScreens = false;
+
+		if (Engine.IsSplashScreenEnabled())
+			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen" } );
+
+		// Warn about removing fixed render path
+		if (renderer.renderpath == "fixed")
+			messageBox(
+				600,
+				300,
+				"[font=\"serif-bold-16\"][color=\"200 20 20\"]Warning:[/color] You appear to be using non-shader (fixed function) graphics. This option will be removed in a future 0 A.D. release, to allow for more advanced graphics features. We advise upgrading your graphics card to a more recent, shader-compatible model.\n\nPlease press \"Read More\" for more information or \"Ok\" to continue.",
+				"WARNING!",
+				0,
+				["Ok", "Read More"],
+				[null, function() { Engine.OpenURL("http://www.wildfiregames.com/forum/index.php?showtopic=16734"); }]
+			);
 	}
 }
 
