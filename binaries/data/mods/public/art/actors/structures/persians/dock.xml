@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/pers_dock.dae</mesh>
-      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/pers_struct.dds" name="baseTex"/>
+		<texture file="structural/ao/pers_dock.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>player_trans.xml</material>
-
+  <material>player_trans_ao.xml</material>
 </actor>

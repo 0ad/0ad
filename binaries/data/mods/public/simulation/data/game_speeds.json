@@ -2,29 +2,29 @@
 	"Speeds":
 	[
 		{
-			"Name": "Turtle",
+			"Name": "Turtle (0.5x)",
 			"Speed": 0.50
 		},
 		{
-			"Name": "Slow",
+			"Name": "Slow (0.75x)",
 			"Speed": 0.75
 		},
 		{
-			"Name": "Normal",
+			"Name": "Normal (1x)",
 			"Speed": 1.0,
 			"Default": true
 		},
 		{
-			"Name": "Fast",
+			"Name": "Fast (1.25x)",
+			"Speed": 1.25
+		},
+		{
+			"Name": "Very Fast (1.5x)",
 			"Speed": 1.5
 		},
 		{
-			"Name": "Very Fast",
+			"Name": "Insane (2x)",
 			"Speed": 2.0
-		},
-		{
-			"Name": "Insane",
-			"Speed": 4.0
 		}
 	]
 }

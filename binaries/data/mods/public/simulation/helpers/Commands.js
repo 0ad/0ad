@@ -650,6 +650,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	//   "x": ...,
 	//   "z": ...,
 	//   "angle": ...,
+	//   "metadata": "...",                 // AI metadata of the building
 	//   "actorSeed": ...,
 	//   "autorepair": true,                // whether to automatically start constructing/repairing the new foundation
 	//   "autocontinue": true,              // whether to automatically gather/build/etc after finishing this
@@ -800,6 +801,10 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
 	cmpFoundation.InitialiseConstruction(player, cmd.template);
 
+	// send Metadata info if any
+	if (cmd.metadata)
+		Engine.PostMessage(ent, MT_AIMetadata, { "id": ent, "metadata" : cmd.metadata, "owner" : player } );
+	
 	// Tell the units to start building this new entity
 	if (cmd.autorepair)
 	{

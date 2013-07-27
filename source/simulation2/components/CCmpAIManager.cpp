@@ -131,6 +131,7 @@ private:
 
 		/**
 		 * Debug function for AI scripts to dump 2D array data (e.g. terrain tile weights).
+		 * TODO: check if this needs to be here too.
 		 */
 		static void DumpImage(void* UNUSED(cbdata), std::wstring name, std::vector<u32> data, u32 w, u32 h, u32 max)
 		{
@@ -328,7 +329,8 @@ public:
 		m_ScriptInterface.RegisterFunction<void, CScriptValRooted, CAIWorker::PostCommand>("PostCommand");
 		m_ScriptInterface.RegisterFunction<void, CAIWorker::DumpHeap>("DumpHeap");
 		m_ScriptInterface.RegisterFunction<void, CAIWorker::ForceGC>("ForceGC");
-
+		
+		m_ScriptInterface.RegisterFunction<void, std::wstring, std::vector<u32>, u32, u32, u32, CAIWorker::DumpImage>("DumpImage");
 	}
 
 	~CAIWorker()
@@ -373,6 +375,45 @@ public:
 		CAIWorker* self = static_cast<CAIWorker*> (cbdata);
 		PROFILE3("AI compute GC");
 		JS_GC(self->m_ScriptInterface.GetContext());
+	}
+	
+	/**
+	 * Debug function for AI scripts to dump 2D array data (e.g. terrain tile weights).
+	 */
+	static void DumpImage(void* UNUSED(cbdata), std::wstring name, std::vector<u32> data, u32 w, u32 h, u32 max)
+	{
+		// TODO: this is totally not threadsafe.
+		VfsPath filename = L"screenshots/aidump/" + name;
+		
+		if (data.size() != w*h)
+		{
+			debug_warn(L"DumpImage: data size doesn't match w*h");
+			return;
+		}
+		
+		if (max == 0)
+		{
+			debug_warn(L"DumpImage: max must not be 0");
+			return;
+		}
+		
+		const size_t bpp = 8;
+		int flags = TEX_BOTTOM_UP|TEX_GREY;
+		
+		const size_t img_size = w * h * bpp/8;
+		const size_t hdr_size = tex_hdr_size(filename);
+		shared_ptr<u8> buf;
+		AllocateAligned(buf, hdr_size+img_size, maxSectorSize);
+		Tex t;
+		if (tex_wrap(w, h, bpp, flags, buf, hdr_size, &t) < 0)
+			return;
+		
+		u8* img = buf.get() + hdr_size;
+		for (size_t i = 0; i < data.size(); ++i)
+			img[i] = (u8)((data[i] * 255) / max);
+		
+		tex_write(&t, filename);
+		tex_free(&t);
 	}
 
 	bool TryLoadSharedComponent(bool hasTechs)
@@ -489,6 +530,7 @@ public:
 	{
 		// this will be run last by InitGame.Js, passing the full game representation.
 		// For now it will run for the shared Component.
+		// This is NOT run during deserialization.
 		CScriptVal state = m_ScriptInterface.ReadStructuredClone(gameState);
 		JSContext* cx = m_ScriptInterface.GetContext();
 

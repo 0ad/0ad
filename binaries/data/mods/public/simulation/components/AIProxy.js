@@ -288,4 +288,10 @@ AIProxy.prototype.OnTrainingFinished = function(msg)
 	cmpAIInterface.PushEvent("TrainingFinished", msg);
 };
 
+AIProxy.prototype.OnAIMetadata = function(msg)
+{
+	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+	cmpAIInterface.PushEvent("AIMetadata", msg);
+};
+
 Engine.RegisterComponentType(IID_AIProxy, "AIProxy", AIProxy);
