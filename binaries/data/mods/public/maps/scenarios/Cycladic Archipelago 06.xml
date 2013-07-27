@@ -1,0 +1,1608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<SkySet>cumulus</SkySet>
+		<SunColour r="0.866667" g="0.776471" b="0.486275"/>
+		<SunElevation angle="0.929592"/>
+		<SunRotation angle="2.01258"/>
+		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
+		<UnitsAmbientColour r="0.439216" g="0.521569" b="0.556863"/>
+		<Fog>
+			<FogFactor>0.00171875</FogFactor>
+			<FogThickness>0.147461</FogThickness>
+			<FogColour r="0.882353" g="0.839216" b="0.701961"/>
+		</Fog>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0" g="0.501961" b="1"/>
+				<Height>26.3344</Height>
+				<Shininess>230.469</Shininess>
+				<Waviness>10</Waviness>
+				<Murkiness>0.492188</Murkiness>
+				<Tint r="0.501961" g="1" b="1"/>
+				<ReflectionTint r="0" g="0.501961" b="1"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1.01563</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.180078</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
+	</Environment>
+	<Camera>
+		<Position x="483.99" y="177.695" z="91.1842"/>
+		<Rotation angle="0.146317"/>
+		<Declination angle="0.943362"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "An islands map good for intense naval combat.",
+  "GameType": "conquest",
+  "Keywords": [
+    "naval"
+  ],
+  "LockTeams": false,
+  "Name": "Cycladic Archipelago 6",
+  "PlayerData": [
+    {
+      "AI": "",
+      "Civ": "cart",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Player 1",
+      "Team": -1
+    },
+    {
+      "AI": "",
+      "Civ": "maur",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
+      "Team": -1
+    }
+  ],
+  "RevealMap": false
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>structures/cart_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="512.50129" z="752.55311"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="6818"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>structures/maur_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="448.3061" z="124.72773"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21302"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="481.9639" z="739.1471"/>
+			<Orientation y="-2.78243"/>
+			<Actor seed="1698"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="479.9296" z="733.0047"/>
+			<Orientation y="2.48591"/>
+			<Actor seed="39802"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="486.09586" z="727.61872"/>
+			<Orientation y="0.03464"/>
+			<Actor seed="45822"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="486.90384" z="736.86786"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26798"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="488.6294" z="731.39393"/>
+			<Orientation y="3.02196"/>
+			<Actor seed="22474"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="557.97553" z="761.99561"/>
+			<Orientation y="-2.79287"/>
+			<Actor seed="52050"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="554.78504" z="753.7422"/>
+			<Orientation y="-2.40066"/>
+			<Actor seed="55818"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="547.37958" z="746.53919"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28232"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="544.97577" z="740.18458"/>
+			<Orientation y="0.42693"/>
+			<Actor seed="64318"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="548.03681" z="752.1966"/>
+			<Orientation y="0.2023"/>
+			<Actor seed="22188"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="430.14267" z="101.48586"/>
+			<Orientation y="2.88797"/>
+			<Actor seed="8020"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="434.29227" z="94.84067"/>
+			<Orientation y="2.07383"/>
+			<Actor seed="3810"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="439.10666" z="94.46947"/>
+			<Orientation y="-0.21032"/>
+			<Actor seed="21638"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="435.16202" z="103.72951"/>
+			<Orientation y="-0.5948"/>
+			<Actor seed="62486"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="429.91953" z="115.59482"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="15314"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="500.3495" z="138.27825"/>
+			<Orientation y="-2.5191"/>
+			<Actor seed="2496"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="511.86445" z="134.42196"/>
+			<Orientation y="-1.40752"/>
+			<Actor seed="59254"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="505.69086" z="136.32421"/>
+			<Orientation y="1.9447"/>
+			<Actor seed="21298"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="509.22385" z="137.35912"/>
+			<Orientation y="0.60682"/>
+			<Actor seed="61240"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="505.94028" z="129.94678"/>
+			<Orientation y="3.044"/>
+			<Actor seed="13276"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="338.22587" z="532.97266"/>
+			<Orientation y="-2.5967"/>
+			<Actor seed="56098"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="758.1128" z="356.22654"/>
+			<Orientation y="0.81653"/>
+			<Actor seed="25798"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="142.46543" z="230.50355"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27030"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="773.23475" z="863.44599"/>
+			<Orientation y="-2.51334"/>
+			<Actor seed="55510"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="222.97397" z="210.701"/>
+			<Orientation y="0.75693"/>
+			<Actor seed="34002"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="302.94324" z="309.2417"/>
+			<Orientation y="-1.10944"/>
+			<Actor seed="41408"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="454.52036" z="339.4604"/>
+			<Orientation y="0.81629"/>
+			<Actor seed="14678"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="540.17243" z="319.23353"/>
+			<Orientation y="-2.54165"/>
+			<Actor seed="14154"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="640.48871" z="224.56878"/>
+			<Orientation y="1.22616"/>
+			<Actor seed="49060"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="655.2046" z="122.32711"/>
+			<Orientation y="2.97197"/>
+			<Actor seed="44754"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="564.48469" z="33.37516"/>
+			<Orientation y="1.05314"/>
+			<Actor seed="39922"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="373.64917" z="43.38752"/>
+			<Orientation y="-1.29456"/>
+			<Actor seed="10878"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="241.14066" z="261.69382"/>
+			<Orientation y="1.13369"/>
+			<Actor seed="27520"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="316.6342" z="87.48795"/>
+			<Orientation y="-1.967"/>
+			<Actor seed="38756"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="274.91776" z="792.29792"/>
+			<Orientation y="0.59708"/>
+			<Actor seed="43098"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="378.09876" z="872.80726"/>
+			<Orientation y="1.10357"/>
+			<Actor seed="4968"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="487.45402" z="948.71216"/>
+			<Orientation y="3.0735"/>
+			<Actor seed="25806"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="616.28016" z="963.47889"/>
+			<Orientation y="-1.8826"/>
+			<Actor seed="62408"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="703.04511" z="886.84333"/>
+			<Orientation y="1.60195"/>
+			<Actor seed="36024"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="715.12378" z="753.21387"/>
+			<Orientation y="2.99515"/>
+			<Actor seed="568"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="663.80756" z="643.91846"/>
+			<Orientation y="-2.24827"/>
+			<Actor seed="11052"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="440.09" z="594.43458"/>
+			<Orientation y="1.2596"/>
+			<Actor seed="46296"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="336.50806" z="645.28357"/>
+			<Orientation y="-2.48205"/>
+			<Actor seed="42908"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>0</Player>
+			<Position x="658.60303" z="707.06098"/>
+			<Orientation y="1.51572"/>
+			<Actor seed="51154"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>1</Player>
+			<Position x="434.71274" z="678.76026"/>
+			<Orientation y="0.21906"/>
+			<Actor seed="4592"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>1</Player>
+			<Position x="429.4174" z="695.86976"/>
+			<Orientation y="-1.94133"/>
+			<Actor seed="63524"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>1</Player>
+			<Position x="566.2981" z="844.3335"/>
+			<Orientation y="-3.12327"/>
+			<Actor seed="7586"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>1</Player>
+			<Position x="567.85877" z="826.05243"/>
+			<Orientation y="0.46363"/>
+			<Actor seed="12720"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>2</Player>
+			<Position x="493.96595" z="102.71587"/>
+			<Orientation y="-2.16831"/>
+			<Actor seed="49492"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>2</Player>
+			<Position x="490.37354" z="94.67162"/>
+			<Orientation y="1.04311"/>
+			<Actor seed="8932"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>2</Player>
+			<Position x="516.31037" z="190.96662"/>
+			<Orientation y="-2.25715"/>
+			<Actor seed="61728"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>2</Player>
+			<Position x="504.95087" z="181.78785"/>
+			<Orientation y="0.95716"/>
+			<Actor seed="49302"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="460.2494" z="762.86243"/>
+			<Orientation y="-2.9527"/>
+			<Actor seed="19158"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="453.25306" z="741.09107"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4156"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="445.36207" z="755.3686"/>
+			<Orientation y="0.55871"/>
+			<Actor seed="2798"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="457.79026" z="749.83124"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53122"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="439.03858" z="747.01404"/>
+			<Orientation y="0.2344"/>
+			<Actor seed="9116"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="450.44504" z="761.17304"/>
+			<Orientation y="-1.91951"/>
+			<Actor seed="33328"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="430.81641" z="763.01307"/>
+			<Orientation y="0.42919"/>
+			<Actor seed="5294"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="434.65043" z="778.8689"/>
+			<Orientation y="2.6465"/>
+			<Actor seed="38376"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="447.59913" z="777.08814"/>
+			<Orientation y="-3.03127"/>
+			<Actor seed="7678"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="460.2812" z="736.23145"/>
+			<Orientation y="-0.77375"/>
+			<Actor seed="49362"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="584.55005" z="820.10553"/>
+			<Orientation y="3.08013"/>
+			<Actor seed="24812"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="585.45405" z="802.96229"/>
+			<Orientation y="2.71288"/>
+			<Actor seed="51880"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="598.44196" z="788.65284"/>
+			<Orientation y="0.85418"/>
+			<Actor seed="45104"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="607.66572" z="797.4021"/>
+			<Orientation y="-0.30997"/>
+			<Actor seed="33344"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="596.94306" z="807.7881"/>
+			<Orientation y="-0.35212"/>
+			<Actor seed="17272"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="615.22046" z="797.75965"/>
+			<Orientation y="-2.1006"/>
+			<Actor seed="39806"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="606.72309" z="785.3935"/>
+			<Orientation y="0.30901"/>
+			<Actor seed="31434"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="588.3761" z="831.71167"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30632"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="582.30842" z="854.7317"/>
+			<Orientation y="0.69001"/>
+			<Actor seed="35674"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="593.62262" z="865.6095"/>
+			<Orientation y="-2.00168"/>
+			<Actor seed="47658"/>
+		</Entity>
+		<Entity uid="92">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="412.97135" z="701.10987"/>
+			<Orientation y="-2.77183"/>
+			<Actor seed="33072"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="410.16785" z="693.22748"/>
+			<Orientation y="3.00911"/>
+			<Actor seed="60692"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="411.23835" z="684.74805"/>
+			<Orientation y="2.91942"/>
+			<Actor seed="46170"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="413.62073" z="675.7505"/>
+			<Orientation y="2.64153"/>
+			<Actor seed="54292"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="417.84272" z="668.84131"/>
+			<Orientation y="1.66718"/>
+			<Actor seed="53548"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="427.56516" z="673.7928"/>
+			<Orientation y="-0.44938"/>
+			<Actor seed="3706"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="422.03129" z="684.1031"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23722"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="419.98603" z="693.37781"/>
+			<Orientation y="0.15877"/>
+			<Actor seed="62508"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="422.02576" z="704.08283"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27212"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="422.44837" z="716.14734"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="35164"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="417.26615" z="722.92096"/>
+			<Orientation y="-2.07119"/>
+			<Actor seed="33218"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="407.23942" z="717.77991"/>
+			<Orientation y="3.03295"/>
+			<Actor seed="35362"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="487.7753" z="674.58686"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7444"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="384.42743" z="782.61127"/>
+			<Orientation y="-1.81386"/>
+			<Actor seed="27196"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="369.86655" z="785.85767"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="46162"/>
+		</Entity>
+		<Entity uid="107">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="366.762" z="783.93091"/>
+			<Orientation y="2.64803"/>
+			<Actor seed="45124"/>
+		</Entity>
+		<Entity uid="108">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="378.65571" z="768.86792"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24880"/>
+		</Entity>
+		<Entity uid="109">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="383.14997" z="767.50556"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17934"/>
+		</Entity>
+		<Entity uid="110">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="379.48728" z="781.17774"/>
+			<Orientation y="-0.35413"/>
+			<Actor seed="32500"/>
+		</Entity>
+		<Entity uid="111">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="374.6996" z="798.46668"/>
+			<Orientation y="1.27404"/>
+			<Actor seed="12960"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="385.49454" z="795.84864"/>
+			<Orientation y="2.02558"/>
+			<Actor seed="15832"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="394.58368" z="791.8866"/>
+			<Orientation y="0.89121"/>
+			<Actor seed="25946"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="405.74912" z="801.1656"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24510"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="358.51838" z="784.89417"/>
+			<Orientation y="2.75559"/>
+			<Actor seed="33980"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="362.94791" z="773.12781"/>
+			<Orientation y="2.89412"/>
+			<Actor seed="3512"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="364.85224" z="762.02387"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54798"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="376.205" z="760.26655"/>
+			<Orientation y="1.07418"/>
+			<Actor seed="21514"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="389.91758" z="765.19349"/>
+			<Orientation y="1.12964"/>
+			<Actor seed="53876"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="396.72074" z="769.58265"/>
+			<Orientation y="0.30091"/>
+			<Actor seed="30198"/>
+		</Entity>
+		<Entity uid="121">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="400.58921" z="779.10218"/>
+			<Orientation y="1.37323"/>
+			<Actor seed="38806"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="408.63169" z="782.28779"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21802"/>
+		</Entity>
+		<Entity uid="123">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="403.22852" z="810.08161"/>
+			<Orientation y="-1.67714"/>
+			<Actor seed="24690"/>
+		</Entity>
+		<Entity uid="124">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="394.52628" z="809.36445"/>
+			<Orientation y="-2.55605"/>
+			<Actor seed="61544"/>
+		</Entity>
+		<Entity uid="125">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="387.456" z="801.17463"/>
+			<Orientation y="-1.67714"/>
+			<Actor seed="12668"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="375.37562" z="802.47217"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2108"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="387.33463" z="783.90162"/>
+			<Orientation y="-1.80817"/>
+			<Actor seed="61280"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="367.40525" z="770.86902"/>
+			<Orientation y="-2.18303"/>
+			<Actor seed="52138"/>
+		</Entity>
+		<Entity uid="129">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="399.34025" z="788.0625"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34316"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="576.55585" z="736.74915"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56328"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="579.19642" z="725.8885"/>
+			<Orientation y="-1.5161"/>
+			<Actor seed="29200"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>gaia/flora_tree_cypress</Template>
+			<Player>0</Player>
+			<Position x="491.67963" z="723.9397"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3798"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>gaia/flora_tree_cypress</Template>
+			<Player>0</Player>
+			<Position x="494.04377" z="720.07624"/>
+			<Orientation y="2.60213"/>
+			<Actor seed="15222"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>gaia/flora_tree_cypress</Template>
+			<Player>0</Player>
+			<Position x="498.19404" z="714.30152"/>
+			<Orientation y="1.93944"/>
+			<Actor seed="41180"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>gaia/flora_tree_cypress</Template>
+			<Player>0</Player>
+			<Position x="504.50895" z="713.24976"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="52922"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>gaia/flora_tree_cypress</Template>
+			<Player>0</Player>
+			<Position x="551.39509" z="775.15076"/>
+			<Orientation y="1.21969"/>
+			<Actor seed="19292"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>gaia/flora_tree_cypress</Template>
+			<Player>0</Player>
+			<Position x="569.67896" z="782.19526"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57764"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>gaia/flora_tree_cypress</Template>
+			<Player>0</Player>
+			<Position x="570.5943" z="792.69459"/>
+			<Orientation y="-1.01731"/>
+			<Actor seed="7574"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>gaia/flora_tree_cypress</Template>
+			<Player>0</Player>
+			<Position x="562.01038" z="798.41694"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33596"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>gaia/flora_tree_cypress</Template>
+			<Player>0</Player>
+			<Position x="555.68519" z="800.07081"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17464"/>
+		</Entity>
+		<Entity uid="141">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="587.37165" z="812.85303"/>
+			<Orientation y="-0.49756"/>
+			<Actor seed="20462"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="576.97565" z="819.45344"/>
+			<Orientation y="2.89718"/>
+			<Actor seed="61708"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="581.62055" z="804.57782"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="35524"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="595.14985" z="799.21296"/>
+			<Orientation y="-1.35825"/>
+			<Actor seed="37182"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="457.52228" z="660.10389"/>
+			<Orientation y="-1.69552"/>
+			<Actor seed="41844"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="437.24918" z="657.77051"/>
+			<Orientation y="1.14184"/>
+			<Actor seed="40262"/>
+		</Entity>
+		<Entity uid="147">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="446.79053" z="671.7721"/>
+			<Orientation y="0.68934"/>
+			<Actor seed="26894"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="482.96564" z="818.6283"/>
+			<Orientation y="-0.72416"/>
+			<Actor seed="18278"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="471.64792" z="832.75776"/>
+			<Orientation y="-1.67716"/>
+			<Actor seed="7992"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="457.84998" z="831.65436"/>
+			<Orientation y="-2.46636"/>
+			<Actor seed="6032"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="456.53974" z="825.03705"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42486"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="468.40958" z="818.91205"/>
+			<Orientation y="0.6519"/>
+			<Actor seed="12248"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="472.76661" z="829.56464"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41180"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="462.91895" z="842.9397"/>
+			<Orientation y="1.46445"/>
+			<Actor seed="38960"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="480.37195" z="836.78992"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61426"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="481.30729" z="834.9026"/>
+			<Orientation y="2.88494"/>
+			<Actor seed="22746"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="459.16907" z="826.54804"/>
+			<Orientation y="2.97938"/>
+			<Actor seed="53620"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="474.01291" z="824.14008"/>
+			<Orientation y="-3.09672"/>
+			<Actor seed="49680"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="491.4752" z="820.25196"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="986"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="461.50593" z="712.77997"/>
+			<Orientation y="1.21082"/>
+			<Actor seed="17064"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="586.46381" z="790.00367"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41386"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="496.93107" z="652.29194"/>
+			<Orientation y="2.1767"/>
+			<Actor seed="28670"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="505.16507" z="630.51789"/>
+			<Orientation y="-1.7305"/>
+			<Actor seed="20632"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="478.77286" z="636.26777"/>
+			<Orientation y="1.00361"/>
+			<Actor seed="60898"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="462.33234" z="786.2948"/>
+			<Orientation y="0.55994"/>
+			<Actor seed="50864"/>
+		</Entity>
+		<Entity uid="166">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="465.67289" z="798.40552"/>
+			<Orientation y="1.11417"/>
+			<Actor seed="47978"/>
+		</Entity>
+		<Entity uid="167">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="472.49949" z="805.08808"/>
+			<Orientation y="-2.42956"/>
+			<Actor seed="12196"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="454.71146" z="804.36371"/>
+			<Orientation y="-2.15116"/>
+			<Actor seed="26390"/>
+		</Entity>
+		<Entity uid="169">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="455.30005" z="792.88404"/>
+			<Orientation y="0.47976"/>
+			<Actor seed="57928"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="551.435" z="719.12775"/>
+			<Orientation y="-2.159"/>
+			<Actor seed="62074"/>
+		</Entity>
+		<Entity uid="171">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="544.0539" z="711.93311"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2396"/>
+		</Entity>
+		<Entity uid="172">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="544.1222" z="703.67194"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1972"/>
+		</Entity>
+		<Entity uid="173">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="550.98938" z="705.89124"/>
+			<Orientation y="-2.27479"/>
+			<Actor seed="30616"/>
+		</Entity>
+		<Entity uid="174">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="533.81373" z="706.02076"/>
+			<Orientation y="-0.48641"/>
+			<Actor seed="52102"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="178.28016" z="478.67933"/>
+			<Orientation y="-1.27067"/>
+			<Actor seed="20966"/>
+		</Entity>
+		<Entity uid="176">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="619.35499" z="476.45163"/>
+			<Orientation y="-2.28785"/>
+			<Actor seed="4258"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="837.24811" z="747.54767"/>
+			<Orientation y="0.26166"/>
+			<Actor seed="11854"/>
+		</Entity>
+		<Entity uid="178">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="830.41681" z="286.1691"/>
+			<Orientation y="-2.1921"/>
+			<Actor seed="18316"/>
+		</Entity>
+		<Entity uid="179">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="511.6197" z="156.61425"/>
+			<Orientation y="-2.03739"/>
+			<Actor seed="42340"/>
+		</Entity>
+		<Entity uid="180">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="523.23688" z="728.38422"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20742"/>
+		</Entity>
+		<Entity uid="181">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="527.67725" z="733.107"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34618"/>
+		</Entity>
+		<Entity uid="182">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="530.86304" z="735.60767"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1380"/>
+		</Entity>
+		<Entity uid="183">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="533.76764" z="738.33948"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19834"/>
+		</Entity>
+		<Entity uid="184">
+			<Template>units/cart_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="499.09995" z="734.14136"/>
+			<Orientation y="-2.62401"/>
+			<Actor seed="22968"/>
+		</Entity>
+		<Entity uid="185">
+			<Template>units/cart_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="494.0044" z="737.90644"/>
+			<Orientation y="-2.4316"/>
+			<Actor seed="55430"/>
+		</Entity>
+		<Entity uid="186">
+			<Template>units/cart_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="534.93714" z="764.94501"/>
+			<Orientation y="1.14322"/>
+			<Actor seed="11194"/>
+		</Entity>
+		<Entity uid="187">
+			<Template>units/cart_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="528.57673" z="771.04401"/>
+			<Orientation y="1.19639"/>
+			<Actor seed="39128"/>
+		</Entity>
+		<Entity uid="196">
+			<Template>units/cart_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="490.55457" z="778.97547"/>
+			<Orientation y="-0.86722"/>
+			<Actor seed="60628"/>
+		</Entity>
+		<Entity uid="197">
+			<Template>gaia/flora_tree_poplar_lombardy</Template>
+			<Player>0</Player>
+			<Position x="506.62674" z="799.10523"/>
+			<Orientation y="2.11818"/>
+			<Actor seed="61666"/>
+		</Entity>
+		<Entity uid="198">
+			<Template>gaia/flora_tree_poplar_lombardy</Template>
+			<Player>0</Player>
+			<Position x="514.77259" z="788.95411"/>
+			<Orientation y="1.20846"/>
+			<Actor seed="52636"/>
+		</Entity>
+		<Entity uid="199">
+			<Template>gaia/flora_tree_poplar_lombardy</Template>
+			<Player>0</Player>
+			<Position x="522.06745" z="795.4651"/>
+			<Orientation y="0.53731"/>
+			<Actor seed="7576"/>
+		</Entity>
+		<Entity uid="200">
+			<Template>gaia/flora_tree_poplar_lombardy</Template>
+			<Player>0</Player>
+			<Position x="530.74433" z="791.18622"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="11010"/>
+		</Entity>
+		<Entity uid="201">
+			<Template>gaia/flora_tree_poplar_lombardy</Template>
+			<Player>0</Player>
+			<Position x="460.3029" z="673.82404"/>
+			<Orientation y="0.56772"/>
+			<Actor seed="31492"/>
+		</Entity>
+		<Entity uid="202">
+			<Template>gaia/flora_tree_poplar_lombardy</Template>
+			<Player>0</Player>
+			<Position x="461.93256" z="685.17237"/>
+			<Orientation y="1.02855"/>
+			<Actor seed="20774"/>
+		</Entity>
+		<Entity uid="203">
+			<Template>gaia/flora_tree_poplar_lombardy</Template>
+			<Player>0</Player>
+			<Position x="471.43573" z="680.50104"/>
+			<Orientation y="0.71009"/>
+			<Actor seed="28590"/>
+		</Entity>
+		<Entity uid="204">
+			<Template>gaia/flora_tree_poplar_lombardy</Template>
+			<Player>0</Player>
+			<Position x="474.11371" z="688.08021"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55078"/>
+		</Entity>
+		<Entity uid="205">
+			<Template>gaia/flora_tree_poplar_lombardy</Template>
+			<Player>0</Player>
+			<Position x="430.65564" z="694.24122"/>
+			<Orientation y="-1.98293"/>
+			<Actor seed="58858"/>
+		</Entity>
+		<Entity uid="206">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="107.05204" z="406.43635"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26154"/>
+		</Entity>
+		<Entity uid="207">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="62.37482" z="552.10273"/>
+			<Orientation y="-1.79635"/>
+			<Actor seed="59414"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="157.67682" z="679.78077"/>
+			<Orientation y="1.14304"/>
+			<Actor seed="23410"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="283.28928" z="456.38642"/>
+			<Orientation y="-2.88619"/>
+			<Actor seed="54488"/>
+		</Entity>
+		<Entity uid="210">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="202.44462" z="373.92252"/>
+			<Orientation y="0.97893"/>
+			<Actor seed="12700"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="519.38581" z="423.97925"/>
+			<Orientation y="1.4143"/>
+			<Actor seed="30290"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="559.56092" z="410.96674"/>
+			<Orientation y="3.03351"/>
+			<Actor seed="62854"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="574.12494" z="369.55768"/>
+			<Orientation y="1.87563"/>
+			<Actor seed="62670"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="584.55384" z="529.19153"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53672"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="673.78193" z="546.80005"/>
+			<Orientation y="-1.5562"/>
+			<Actor seed="14050"/>
+		</Entity>
+		<Entity uid="216">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="720.55512" z="568.61054"/>
+			<Orientation y="0.40084"/>
+			<Actor seed="61492"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="767.35584" z="480.4864"/>
+			<Orientation y="-2.69457"/>
+			<Actor seed="62502"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="719.7906" z="411.61042"/>
+			<Orientation y="-2.39637"/>
+			<Actor seed="6138"/>
+		</Entity>
+		<Entity uid="219">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="753.8531" z="457.27808"/>
+			<Orientation y="1.48662"/>
+			<Actor seed="24424"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="806.11536" z="214.03292"/>
+			<Orientation y="-2.18644"/>
+			<Actor seed="10936"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="739.21985" z="192.10701"/>
+			<Orientation y="-1.95971"/>
+			<Actor seed="13518"/>
+		</Entity>
+		<Entity uid="222">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="697.40613" z="186.46714"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24548"/>
+		</Entity>
+		<Entity uid="223">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="668.01532" z="235.71836"/>
+			<Orientation y="0.44315"/>
+			<Actor seed="55938"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="722.5558" z="318.78834"/>
+			<Orientation y="0.7508"/>
+			<Actor seed="28510"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="811.03687" z="371.00412"/>
+			<Orientation y="-2.55488"/>
+			<Actor seed="14722"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="859.32264" z="354.0489"/>
+			<Orientation y="1.2791"/>
+			<Actor seed="64596"/>
+		</Entity>
+		<Entity uid="227">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="896.92493" z="310.25217"/>
+			<Orientation y="-2.73937"/>
+			<Actor seed="40462"/>
+		</Entity>
+		<Entity uid="228">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="699.20563" z="296.00168"/>
+			<Orientation y="-0.74349"/>
+			<Actor seed="37036"/>
+		</Entity>
+		<Entity uid="229">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="349.19465" z="464.28083"/>
+			<Orientation y="0.89512"/>
+			<Actor seed="61012"/>
+		</Entity>
+		<Entity uid="230">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="421.63965" z="548.8313"/>
+			<Orientation y="-1.58805"/>
+			<Actor seed="32306"/>
+		</Entity>
+		<Entity uid="231">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="321.65333" z="593.5495"/>
+			<Orientation y="-1.52526"/>
+			<Actor seed="30706"/>
+		</Entity>
+		<Entity uid="232">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="287.37931" z="529.7674"/>
+			<Orientation y="3.10112"/>
+			<Actor seed="8964"/>
+		</Entity>
+		<Entity uid="233">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="318.09861" z="461.6667"/>
+			<Orientation y="0.1675"/>
+			<Actor seed="7094"/>
+		</Entity>
+		<Entity uid="234">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="381.11039" z="508.89982"/>
+			<Orientation y="-2.89042"/>
+			<Actor seed="31560"/>
+		</Entity>
+		<Entity uid="235">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="150.01096" z="781.34583"/>
+			<Orientation y="-2.70377"/>
+			<Actor seed="22894"/>
+		</Entity>
+		<Entity uid="236">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="37.71949" z="470.05298"/>
+			<Orientation y="-2.63884"/>
+			<Actor seed="47828"/>
+		</Entity>
+		<Entity uid="237">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="154.39652" z="272.95957"/>
+			<Orientation y="-2.8227"/>
+			<Actor seed="19458"/>
+		</Entity>
+		<Entity uid="238">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="202.13868" z="166.86924"/>
+			<Orientation y="1.34635"/>
+			<Actor seed="64946"/>
+		</Entity>
+		<Entity uid="239">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="895.01362" z="680.08277"/>
+			<Orientation y="0.53043"/>
+			<Actor seed="43220"/>
+		</Entity>
+		<Entity uid="240">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="916.83796" z="774.30152"/>
+			<Orientation y="-0.96361"/>
+			<Actor seed="5946"/>
+		</Entity>
+		<Entity uid="241">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="817.01404" z="657.48633"/>
+			<Orientation y="0.63891"/>
+			<Actor seed="60284"/>
+		</Entity>
+		<Entity uid="242">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="762.07111" z="749.41688"/>
+			<Orientation y="-2.13324"/>
+			<Actor seed="17338"/>
+		</Entity>
+		<Entity uid="243">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>0</Player>
+			<Position x="822.50647" z="824.42951"/>
+			<Orientation y="0.40932"/>
+			<Actor seed="41438"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>

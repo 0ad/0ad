@@ -9,33 +9,33 @@
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<Fog>
-			<FogFactor>0</FogFactor>
-			<FogThickness>0.5</FogThickness>
+			<FogFactor>0.00203125</FogFactor>
+			<FogThickness>0.151367</FogThickness>
 			<FogColour r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.192157" g="0.239216" b="0.341176"/>
+				<Colour r="0.192157" g="0.239216" b="0.337255"/>
 				<Height>33.0492</Height>
-				<Shininess>8.54492</Shininess>
-				<Waviness>4.77539</Waviness>
+				<Shininess>250</Shininess>
+				<Waviness>8.4375</Waviness>
 				<Murkiness>0.628906</Murkiness>
 				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0.00392157" g="0.921569" b="0.992157"/>
-				<ReflectionTintStrength>0.302734</ReflectionTintStrength>
+				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
-			<Contrast>0.991211</Contrast>
+			<Contrast>1.0625</Contrast>
 			<Saturation>1</Saturation>
 			<Bloom>0.179688</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="466.156" y="86.2014" z="334.236"/>
+		<Position x="486.108" y="96.7293" z="839.404"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
