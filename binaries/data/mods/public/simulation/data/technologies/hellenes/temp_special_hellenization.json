@@ -1,0 +1,12 @@
+{
+	"genericName": "Hellenization",
+	"description": "The Hellenic culture was very influential. Greek became the spoken language of commerce and politics for much of the Mediterranean basin and Middle East for centuries.",
+	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 1000},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "political_face.png",
+	"researchTime": 60,
+	"tooltip": "The Hellenic culture is very influential. +50% territory effect for all buildings.",
+	"modifications": [{"value": "TerritoryInfluence/Radius", "multiplier": 1.50}],
+	"affects": ["Structure"]
+}

@@ -31,11 +31,11 @@
 			<Contrast>1</Contrast>
 			<Saturation>0.99</Saturation>
 			<Bloom>0.1999</Bloom>
-			<PostEffect>hdr</PostEffect>
+			<PostEffect>default</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="434.436" y="110.442" z="99.7125"/>
+		<Position x="591.403" y="101.319" z="740.262"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -2276,6 +2276,7 @@
 			<Player>0</Player>
 			<Position x="634.01789" z="780.89313"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="4500"/>
 		</Entity>
 		<Entity uid="411">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
@@ -17421,49 +17422,25 @@
 		<Entity uid="3349">
 			<Template>units/iber_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="590.34516" z="812.87403"/>
+			<Position x="591.90455" z="811.08045"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3350">
 			<Template>units/iber_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="592.66492" z="815.44886"/>
+			<Position x="594.22431" z="813.65528"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3351">
 			<Template>units/iber_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="595.27857" z="817.70673"/>
+			<Position x="596.83796" z="815.91315"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3352">
 			<Template>units/iber_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="598.05152" z="820.25733"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3353">
-			<Template>units/iber_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="593.94855" z="808.18775"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3354">
-			<Template>units/iber_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="596.78907" z="810.77057"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3355">
-			<Template>units/iber_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="598.68012" z="813.55762"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3357">
-			<Template>units/iber_cavalry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="604.92756" z="820.6916"/>
+			<Position x="599.61091" z="818.46375"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3358">
@@ -23572,24 +23549,6 @@
 			<Position x="451.0561" z="188.75289"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4553">
-			<Template>units/spart_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="444.09995" z="173.95347"/>
-			<Orientation y="2.638"/>
-		</Entity>
-		<Entity uid="4554">
-			<Template>units/spart_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="447.23911" z="177.99125"/>
-			<Orientation y="2.55262"/>
-		</Entity>
-		<Entity uid="4555">
-			<Template>units/spart_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="451.17545" z="181.47492"/>
-			<Orientation y="2.78022"/>
-		</Entity>
 		<Entity uid="4557">
 			<Template>units/spart_cavalry_javelinist_e</Template>
 			<Player>1</Player>
@@ -23694,6 +23653,69 @@
 			<Template>actor|flora/trees/pine.xml</Template>
 			<Position x="210.95147" z="537.34583"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4582">
+			<Template>units/spart_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="420.81183" z="182.8761"/>
+			<Orientation y="-2.81513"/>
+			<Actor seed="49460"/>
+		</Entity>
+		<Entity uid="4583">
+			<Template>units/spart_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="425.35474" z="176.44335"/>
+			<Orientation y="-2.27337"/>
+			<Actor seed="44312"/>
+		</Entity>
+		<Entity uid="4584">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="414.26984" z="209.20035"/>
+			<Orientation y="-0.97361"/>
+			<Actor seed="59512"/>
+		</Entity>
+		<Entity uid="4585">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="418.47745" z="212.01966"/>
+			<Orientation y="-0.87621"/>
+			<Actor seed="6320"/>
+		</Entity>
+		<Entity uid="4587">
+			<Template>units/iber_infantry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="567.32453" z="807.9217"/>
+			<Orientation y="-2.72336"/>
+			<Actor seed="38298"/>
+		</Entity>
+		<Entity uid="4588">
+			<Template>units/iber_infantry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="564.52601" z="811.44953"/>
+			<Orientation y="-2.61696"/>
+			<Actor seed="11744"/>
+		</Entity>
+		<Entity uid="4589">
+			<Template>units/iber_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="560.93128" z="842.88062"/>
+			<Orientation y="-1.05466"/>
+			<Actor seed="41380"/>
+		</Entity>
+		<Entity uid="4590">
+			<Template>units/iber_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="565.45618" z="847.59907"/>
+			<Orientation y="-1.32898"/>
+			<Actor seed="8044"/>
+		</Entity>
+		<Entity uid="4591">
+			<Template>units/iber_cavalry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="606.15076" z="821.6283"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1304"/>
 		</Entity>
 	</Entities>
 	<Paths/>
