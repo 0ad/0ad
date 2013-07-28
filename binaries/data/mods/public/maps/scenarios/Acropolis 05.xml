@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.741176" g="0.721569" b="0.643137"/>
+		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
 		<SunElevation angle="0.717903"/>
 		<SunRotation angle="-0.693359"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
+		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<Fog>
 			<FogFactor>0.00223633</FogFactor>
 			<FogThickness>0.298828</FogThickness>
-			<FogColour r="0.752941" g="0.752941" b="0.752941"/>
+			<FogColour r="0.74902" g="0.74902" b="0.74902"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.211765" g="0.25098" b="0.505882"/>
+				<Colour r="0.211765" g="0.247059" b="0.501961"/>
 				<Height>20.0394</Height>
 				<Shininess>229.004</Shininess>
 				<Waviness>2.1875</Waviness>
@@ -31,12 +31,12 @@
 			<Contrast>0.974609</Contrast>
 			<Saturation>1</Saturation>
 			<Bloom>0.186523</Bloom>
-			<PostEffect>hdr</PostEffect>
+			<PostEffect>default</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="606.872" y="80.269" z="762.391"/>
-		<Rotation angle="0"/>
+		<Position x="580.789" y="83.6561" z="767.546"/>
+		<Rotation angle="0.12338"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -22847,58 +22847,28 @@
 			<Position x="466.23438" z="189.70945"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4490">
-			<Template>units/athen_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="476.50391" z="164.16276"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4491">
-			<Template>units/athen_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="478.25736" z="165.95273"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4492">
-			<Template>units/athen_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="480.70505" z="168.82816"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4493">
-			<Template>units/athen_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="482.65235" z="171.27207"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="4495">
 			<Template>units/athen_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="472.60648" z="169.65537"/>
+			<Position x="476.67985" z="170.49225"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4496">
 			<Template>units/athen_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="474.58729" z="172.45817"/>
+			<Position x="478.65781" z="173.6495"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4497">
 			<Template>units/athen_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="477.04926" z="174.62945"/>
+			<Position x="481.12262" z="175.46633"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4498">
 			<Template>units/athen_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="479.18308" z="176.81913"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4500">
-			<Template>units/athen_cavalry_javelinist_e</Template>
-			<Player>1</Player>
-			<Position x="488.4611" z="177.96183"/>
+			<Position x="483.25644" z="177.65601"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4501">
@@ -22907,71 +22877,111 @@
 			<Position x="579.02625" z="828.5251"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4502">
-			<Template>units/spart_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="594.41596" z="797.66468"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4503">
-			<Template>units/spart_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="596.82215" z="800.02643"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4504">
-			<Template>units/spart_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="598.66016" z="802.0373"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4505">
-			<Template>units/spart_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="600.6648" z="804.1435"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="4506">
 			<Template>units/spart_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="590.38257" z="802.64655"/>
+			<Position x="589.7157" z="808.68769"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4507">
 			<Template>units/spart_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="592.58881" z="805.04004"/>
+			<Position x="591.92194" z="811.08118"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4508">
 			<Template>units/spart_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="593.9499" z="807.02204"/>
+			<Position x="593.28303" z="813.06318"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4509">
 			<Template>units/spart_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="596.4621" z="808.95063"/>
+			<Position x="595.79523" z="814.99177"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4510">
 			<Template>units/spart_hero_leonidas</Template>
 			<Player>2</Player>
-			<Position x="603.12208" z="806.66486"/>
-			<Orientation y="3.10683"/>
-		</Entity>
-		<Entity uid="4511">
-			<Template>units/spart_cavalry_javelinist_e</Template>
-			<Player>2</Player>
-			<Position x="608.46534" z="814.13776"/>
-			<Orientation y="2.35621"/>
+			<Position x="570.25025" z="809.1933"/>
+			<Orientation y="-2.59855"/>
 		</Entity>
 		<Entity uid="4512">
 			<Template>units/athen_hero_pericles</Template>
 			<Player>1</Player>
-			<Position x="485.35654" z="174.85204"/>
-			<Orientation y="2.54337"/>
+			<Position x="481.56626" z="203.3042"/>
+			<Orientation y="0.69027"/>
+		</Entity>
+		<Entity uid="4516">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="457.76215" z="172.38758"/>
+			<Orientation y="-2.44735"/>
+			<Actor seed="20330"/>
+		</Entity>
+		<Entity uid="4518">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="454.3029" z="175.77146"/>
+			<Orientation y="-2.46792"/>
+			<Actor seed="7464"/>
+		</Entity>
+		<Entity uid="4519">
+			<Template>units/athen_infantry_slinger_b</Template>
+			<Player>1</Player>
+			<Position x="443.82428" z="204.9358"/>
+			<Orientation y="-1.10224"/>
+			<Actor seed="43154"/>
+		</Entity>
+		<Entity uid="4520">
+			<Template>units/athen_infantry_slinger_b</Template>
+			<Player>1</Player>
+			<Position x="447.18769" z="209.13556"/>
+			<Orientation y="-0.92217"/>
+			<Actor seed="40174"/>
+		</Entity>
+		<Entity uid="4521">
+			<Template>units/athen_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="473.21036" z="212.30498"/>
+			<Orientation y="0.78672"/>
+			<Actor seed="20188"/>
+		</Entity>
+		<Entity uid="4522">
+			<Template>units/spart_cavalry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="564.16987" z="814.49854"/>
+			<Orientation y="-2.34707"/>
+			<Actor seed="37572"/>
+		</Entity>
+		<Entity uid="4523">
+			<Template>units/spart_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="595.45636" z="841.71192"/>
+			<Orientation y="0.88753"/>
+			<Actor seed="7700"/>
+		</Entity>
+		<Entity uid="4524">
+			<Template>units/spart_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="590.77863" z="846.37226"/>
+			<Orientation y="0.88581"/>
+			<Actor seed="64222"/>
+		</Entity>
+		<Entity uid="4525">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="558.55268" z="838.0251"/>
+			<Orientation y="-0.92722"/>
+			<Actor seed="29314"/>
+		</Entity>
+		<Entity uid="4526">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="562.07605" z="843.03132"/>
+			<Orientation y="-0.68126"/>
+			<Actor seed="42690"/>
 		</Entity>
 	</Entities>
 	<Paths/>

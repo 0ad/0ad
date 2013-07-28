@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="barrel">
+      <mesh>props/rome_blacksmith_bucket_water.dae</mesh>
+      <textures>
+<texture file="structural/rome_struct_2.dds" name="baseTex"/>
+</textures>
+    </variant>
+  </group>
+  <material>player_water.xml</material>
+</actor>

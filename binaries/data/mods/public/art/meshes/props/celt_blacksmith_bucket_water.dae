@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
+    </contributor>
+    <created>2013-07-27T15:17:30</created>
+    <modified>2013-07-27T15:17:30</modified>
+    <unit name="meter" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="celt_helmet_a-Geometry_001-mesh" name="celt_helmet_a-Geometry.001">
+      <mesh>
+        <source id="celt_helmet_a-Geometry_001-mesh-positions">
+          <float_array id="celt_helmet_a-Geometry_001-mesh-positions-array" count="48">0.4474092 0.2918453 1.04113 -0.1715598 0.3883791 1.086517 -0.6846604 0.05850791 0.9368057 -0.7913241 -0.5045338 0.6796913 -0.429071 -0.9709234 0.4657898 0.189898 -1.067457 0.4204025 0.7029967 -0.737586 0.5701141 0.8096624 -0.1745443 0.8272286 0.009169101 -0.3395395 0.7534599 0.009169101 -0.3395395 0.7534599 0.009169101 -0.3395395 0.7534599 0.009169101 -0.3395395 0.7534599 0.009169101 -0.3395395 0.7534599 0.009169101 -0.3395395 0.7534599 0.009169101 -0.3395395 0.7534599 0.009169101 -0.3395395 0.7534599</float_array>
+          <technique_common>
+            <accessor source="#celt_helmet_a-Geometry_001-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="celt_helmet_a-Geometry_001-mesh-normals">
+          <float_array id="celt_helmet_a-Geometry_001-mesh-normals-array" count="48">0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821 0.001861572 -0.4156621 0.9094821</float_array>
+          <technique_common>
+            <accessor source="#celt_helmet_a-Geometry_001-mesh-normals-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="celt_helmet_a-Geometry_001-mesh-map-0">
+          <float_array id="celt_helmet_a-Geometry_001-mesh-map-0-array" count="64">0.05563294 0.6592174 0.04752737 0.6787862 0.02795857 0.6592174 0.02795857 0.6592174 2.84213e-4 0.6592174 0.00838983 0.6396486 0.02795857 0.6592174 0.02795857 0.6592174 0.04752737 0.6396486 0.05563294 0.6592174 0.02795857 0.6592174 0.02795857 0.6592174 0.00838983 0.6787862 2.84213e-4 0.6592174 0.02795857 0.6592174 0.02795857 0.6592174 0.02795857 0.631543 0.04752737 0.6396486 0.02795857 0.6592174 0.02795857 0.6592174 0.04752737 0.6787862 0.02795857 0.6868919 0.02795857 0.6592174 0.02795857 0.6592174 0.02795857 0.6868919 0.00838983 0.6787862 0.02795857 0.6592174 0.02795857 0.6592174 0.00838983 0.6396486 0.02795857 0.631543 0.02795857 0.6592174 0.02795857 0.6592174</float_array>
+          <technique_common>
+            <accessor source="#celt_helmet_a-Geometry_001-mesh-map-0-array" count="32" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="celt_helmet_a-Geometry_001-mesh-map-1">
+          <float_array id="celt_helmet_a-Geometry_001-mesh-map-1-array" count="64">0.1122679 0.3827015 0.1241244 0.3945598 0.1038844 0.4029486 0.1038828 0.4029425 0.09549659 0.4231888 0.08363729 0.4113289 0.103882 0.4029436 0.1038823 0.4029436 0.0954979 0.3826994 0.1122679 0.3827015 0.1038828 0.4029425 0.1038808 0.4029429 0.1122688 0.4231888 0.09549659 0.4231888 0.1038823 0.4029436 0.1038821 0.402944 0.08363813 0.3945573 0.0954979 0.3826994 0.1038808 0.4029429 0.1038815 0.4029435 0.1241244 0.3945598 0.1241275 0.411329 0.1038824 0.402945 0.1038844 0.4029486 0.1241275 0.411329 0.1122688 0.4231888 0.1038821 0.402944 0.1038824 0.402945 0.08363729 0.4113289 0.08363813 0.3945573 0.1038815 0.4029435 0.103882 0.4029436</float_array>
+          <technique_common>
+            <accessor source="#celt_helmet_a-Geometry_001-mesh-map-1-array" count="32" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="celt_helmet_a-Geometry_001-mesh-vertices">
+          <input semantic="POSITION" source="#celt_helmet_a-Geometry_001-mesh-positions"/>
+        </vertices>
+        <polylist count="8">
+          <input semantic="VERTEX" source="#celt_helmet_a-Geometry_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#celt_helmet_a-Geometry_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#celt_helmet_a-Geometry_001-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#celt_helmet_a-Geometry_001-mesh-map-1" offset="2" set="1"/>
+          <vcount>4 4 4 4 4 4 4 4 </vcount>
+          <p>6 0 0 7 1 1 15 2 2 14 3 3 2 4 4 3 5 5 11 6 6 10 7 7 5 8 8 6 0 9 14 3 10 13 9 11 1 10 12 2 4 13 10 7 14 9 11 15 4 12 16 5 8 17 13 9 18 12 13 19 7 1 20 0 14 21 8 15 22 15 2 23 0 14 24 1 10 25 9 11 26 8 15 27 3 5 28 4 12 29 12 13 30 11 6 31</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="celt_helmet_a_000" name="celt_helmet_a_000" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 32.27755</rotate>
+        <rotate sid="rotationY">0 1 0 -0.1067463</rotate>
+        <rotate sid="rotationX">1 0 0 -24.56226</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#celt_helmet_a-Geometry_001-mesh"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

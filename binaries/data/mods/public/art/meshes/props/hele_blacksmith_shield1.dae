@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
+    </contributor>
+    <created>2013-07-27T16:23:11</created>
+    <modified>2013-07-27T16:23:11</modified>
+    <unit name="meter" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="hele-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+    <effect id="helle_struct-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+    <effect id="hele_props_a-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+    <effect id="hele_shields-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+    <effect id="armor-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+    <effect id="material_004_trans-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <transparency>
+              <float sid="transparency">0</float>
+            </transparency>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+    <effect id="banner-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+    <effect id="rooftiles_broken-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <transparency>
+              <float sid="transparency">0</float>
+            </transparency>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+    <effect id="celt_struct_1-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+    <effect id="Material_005-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+    <effect id="_0_800000__0_800000__0_800000_-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="hele-material" name="hele">
+      <instance_effect url="#hele-effect"/>
+    </material>
+    <material id="helle_struct-material" name="helle_struct">
+      <instance_effect url="#helle_struct-effect"/>
+    </material>
+    <material id="hele_props_a-material" name="hele_props_a">
+      <instance_effect url="#hele_props_a-effect"/>
+    </material>
+    <material id="hele_shields-material" name="hele_shields">
+      <instance_effect url="#hele_shields-effect"/>
+    </material>
+    <material id="armor-material" name="armor">
+      <instance_effect url="#armor-effect"/>
+    </material>
+    <material id="material_004_trans-material" name="material_004_trans">
+      <instance_effect url="#material_004_trans-effect"/>
+    </material>
+    <material id="banner-material" name="banner">
+      <instance_effect url="#banner-effect"/>
+    </material>
+    <material id="rooftiles_broken-material" name="rooftiles_broken">
+      <instance_effect url="#rooftiles_broken-effect"/>
+    </material>
+    <material id="celt_struct_1-material" name="celt_struct_1">
+      <instance_effect url="#celt_struct_1-effect"/>
+    </material>
+    <material id="Material_005-material" name="Material_005">
+      <instance_effect url="#Material_005-effect"/>
+    </material>
+    <material id="_0_800000__0_800000__0_800000_-material" name="_0_800000__0_800000__0_800000_">
+      <instance_effect url="#_0_800000__0_800000__0_800000_-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cube_007-mesh" name="Cube.007">
+      <mesh>
+        <source id="Cube_007-mesh-positions">
+          <float_array id="Cube_007-mesh-positions-array" count="111">0.005515813 -0.3417058 1.77055 -0.4636161 -0.3139978 1.648842 -0.8075092 -0.2313008 1.31633 -0.9340189 -0.1157755 0.8621101 -0.8092465 0.00162363 0.4078941 -0.4666252 0.08944082 0.07538223 0.002041101 0.124145 -0.04632186 0.4711723 0.09643697 0.07538223 0.8150663 0.01374006 0.4078941 0.941576 -0.1017842 0.862114 0.8168037 -0.2191853 1.31633 0.4741824 -0.3070016 1.648842 0.003666162 -0.09373712 1.55872 -0.3320115 -0.07391023 1.471634 -0.5780778 -0.01473951 1.233711 -0.6686001 0.06792306 0.9087067 -0.5793209 0.1519265 0.5836983 -0.3341646 0.2147622 0.3457756 0.001179933 0.239593 0.2586937 0.3368576 0.219768 0.3457756 0.5829239 0.1605963 0.5836983 0.6734462 0.07793378 0.9087067 0.584167 -0.00606966 1.233711 0.3390119 -0.06890535 1.471634 0.001920223 0.1403193 1.163757 -0.1132948 0.1471247 1.133869 -0.1977522 0.1674342 1.052208 -0.2288222 0.195806 0.9406548 -0.198179 0.2246384 0.8291016 -0.1140339 0.2462058 0.7474403 0.001066923 0.2547288 0.7175484 0.1162819 0.2479243 0.7474403 0.2007393 0.2276139 0.8291016 0.2318096 0.1992421 0.9406548 0.2011661 0.1704096 1.052208 0.117021 0.1488423 1.133869 0.001354932 0.2161202 0.9454231</float_array>
+          <technique_common>
+            <accessor source="#Cube_007-mesh-positions-array" count="37" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_007-mesh-normals">
+          <float_array id="Cube_007-mesh-normals-array" count="111">-0.4001282 0.8030335 0.4415723 -0.5034944 0.717185 0.4817346 -0.233253 0.7629017 0.6029542 0.3872799 0.9219337 7.01926e-4 0.2807397 0.9182104 -0.2793359 0.2203741 0.9620655 -0.1606189 -0.4615314 0.8590961 0.2211371 -0.5810725 0.7880489 0.2031617 0.4486526 0.8658711 0.2211371 0.4916532 0.8674886 -0.0754112 -0.4009827 0.9160741 7.01926e-4 -0.5045625 0.8600421 -0.0754112 0.3881039 0.8088931 0.4415723 0.5692617 0.7966247 0.2031617 -0.2347179 0.958678 -0.1606189 0.221839 0.7662892 0.6029542 0.4927213 0.7246315 0.4817346 -0.007263362 0.9755241 -0.2196722 -0.006958186 0.9352092 -0.3539842 -0.2925505 0.6664632 0.6856899 -0.005584836 0.7494431 0.6620075 0.2826014 0.6707663 0.6856899 0.09250158 0.9073458 0.4100162 0.1650441 0.9259621 0.3395795 -0.007446467 0.9986572 0.05105745 -0.1066622 0.9913023 0.07681506 -0.1060213 0.9058809 0.4100162 -0.006683528 0.9000214 0.4357738 0.09186071 0.9927976 0.07681506 -0.178869 0.9233986 0.3395795 0.1646779 0.97528 0.1472213 -0.2056337 0.9478439 0.2434156 0.1914731 0.9508042 0.2434156 -0.1792352 0.9727165 0.1472213 -0.007202327 0.968627 0.2483596 -0.294412 0.9139073 -0.2793359 -0.004821896 0.649495 0.7603381</float_array>
+          <technique_common>
+            <accessor source="#Cube_007-mesh-normals-array" count="37" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_007-mesh-map-0">
+          <float_array id="Cube_007-mesh-map-0-array" count="360">0.8049482 0.9160947 0.7689543 0.9379436 0.8352258 0.9458767 0.9466243 0.833312 0.9365811 0.7668961 0.9163471 0.8035603 0.7936075 0.8750796 0.7510733 0.8758018 0.8049482 0.9160947 0.9579566 0.874301 0.9825958 0.81147 0.9466243 0.833312 0.8046442 0.834086 0.7680025 0.8134064 0.7936075 0.8750796 0.9469028 0.9152726 1.000468 0.8735839 0.9579566 0.874301 0.8345426 0.804254 0.7680025 0.8134064 0.8046442 0.834086 0.9169539 0.9450857 0.9835321 0.9359508 0.9469028 0.9152726 0.8752732 0.7928194 0.874801 0.750949 0.8345426 0.804254 0.8352258 0.9458767 0.8149789 0.9825464 0.8762788 0.9566684 0.9169539 0.9450857 0.8762788 0.9566684 0.9381242 0.9811081 0.9163471 0.8035603 0.9365811 0.7668961 0.8752732 0.7928194 0.8894396 0.8982731 0.9169539 0.9450857 0.8994763 0.8883706 0.875934 0.8473526 0.8752732 0.7928194 0.8621997 0.8509938 0.8620575 0.8983484 0.8352258 0.9458767 0.8757897 0.9020769 0.8894396 0.8982731 0.8757897 0.9020769 0.9169539 0.9450857 0.8896068 0.8510736 0.8752732 0.7928194 0.875934 0.8473526 0.8520293 0.8882768 0.8049482 0.9160947 0.8620575 0.8983484 0.8996011 0.8611198 0.9466243 0.833312 0.8896068 0.8510736 0.8484041 0.8745746 0.8049482 0.9160947 0.8520293 0.8882768 0.9032103 0.8747887 0.9579566 0.874301 0.8996011 0.8611198 0.8521381 0.8609501 0.8046442 0.834086 0.8484041 0.8745746 0.8994763 0.8883706 0.9579566 0.874301 0.9032103 0.8747887 0.8621997 0.8509938 0.8046442 0.834086 0.8521381 0.8609501 0.8758237 0.8746833 0.8484041 0.8745746 0.8520293 0.8882768 0.8758237 0.8746833 0.9032103 0.8747887 0.8996011 0.8611198 0.8758237 0.8746833 0.8521381 0.8609501 0.8484041 0.8745746 0.8758237 0.8746833 0.8994763 0.8883706 0.9032103 0.8747887 0.8758237 0.8746833 0.8621997 0.8509938 0.8521381 0.8609501 0.8758237 0.8746833 0.8894396 0.8982731 0.8994763 0.8883706 0.8758237 0.8746833 0.875934 0.8473526 0.8621997 0.8509938 0.8758237 0.8746833 0.8620575 0.8983484 0.8757897 0.9020769 0.8758237 0.8746833 0.8757897 0.9020769 0.8894396 0.8982731 0.8758237 0.8746833 0.8896068 0.8510736 0.875934 0.8473526 0.8758237 0.8746833 0.8520293 0.8882768 0.8620575 0.8983484 0.8758237 0.8746833 0.8996011 0.8611198 0.8896068 0.8510736 0.8352258 0.9458767 0.7689543 0.9379436 0.8149789 0.9825464 0.9825958 0.81147 0.9365811 0.7668961 0.9466243 0.833312 0.8049482 0.9160947 0.7510733 0.8758018 0.7689543 0.9379436 1.000468 0.8735839 0.9825958 0.81147 0.9579566 0.874301 0.7936075 0.8750796 0.7680025 0.8134064 0.7510733 0.8758018 0.9835321 0.9359508 1.000468 0.8735839 0.9469028 0.9152726 0.8134153 0.7682386 0.7680025 0.8134064 0.8345426 0.804254 0.9381242 0.9811081 0.9835321 0.9359508 0.9169539 0.9450857 0.8345426 0.804254 0.874801 0.750949 0.8134153 0.7682386 0.8149789 0.9825464 0.8767724 0.9985039 0.8762788 0.9566684 0.8762788 0.9566684 0.8767724 0.9985039 0.9381242 0.9811081 0.8752732 0.7928194 0.9365811 0.7668961 0.874801 0.750949 0.8994763 0.8883706 0.9169539 0.9450857 0.9469028 0.9152726 0.8621997 0.8509938 0.8752732 0.7928194 0.8345426 0.804254 0.8757897 0.9020769 0.8352258 0.9458767 0.8762788 0.9566684 0.9169539 0.9450857 0.8757897 0.9020769 0.8762788 0.9566684 0.9163471 0.8035603 0.8752732 0.7928194 0.8896068 0.8510736 0.8620575 0.8983484 0.8049482 0.9160947 0.8352258 0.9458767 0.8896068 0.8510736 0.9466243 0.833312 0.9163471 0.8035603 0.7936075 0.8750796 0.8049482 0.9160947 0.8484041 0.8745746 0.8996011 0.8611198 0.9579566 0.874301 0.9466243 0.833312 0.8484041 0.8745746 0.8046442 0.834086 0.7936075 0.8750796 0.9469028 0.9152726 0.9579566 0.874301 0.8994763 0.8883706 0.8345426 0.804254 0.8046442 0.834086 0.8621997 0.8509938</float_array>
+          <technique_common>
+            <accessor source="#Cube_007-mesh-map-0-array" count="180" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_007-mesh-map-1">
+          <float_array id="Cube_007-mesh-map-1-array" count="360">0.03209066 0.7086164 0.03388726 0.7125859 0.02592444 0.7084302 0.02588814 0.6855036 0.03383666 0.6805444 0.0320543 0.6856898 0.03742581 0.7057061 0.04134368 0.7085186 0.03209066 0.7086164 0.02055281 0.6884139 0.02521884 0.6802842 0.02588814 0.6855036 0.04050064 0.7004789 0.04564076 0.7012134 0.03742581 0.7057061 0.01747804 0.693641 0.01776248 0.6843517 0.02055281 0.6884139 0.04049086 0.6943357 0.04564076 0.7012134 0.04050064 0.7004789 0.01748794 0.6997841 0.01346534 0.6916567 0.01747804 0.693641 0.03739923 0.6889227 0.04130643 0.6850627 0.04049086 0.6943357 0.5254858 0.8561229 0.5211461 0.8585204 0.5250603 0.8500785 0.5254754 0.8440412 0.5250603 0.8500785 0.5211317 0.8416354 0.0320543 0.6856898 0.03383666 0.6805444 0.03739923 0.6889227 0.02465516 0.6984235 0.01748794 0.6997841 0.0246517 0.6963151 0.03148931 0.6946955 0.03739923 0.6889227 0.03255045 0.6965535 0.02755087 0.7013911 0.02592444 0.7084302 0.0257163 0.7002815 0.02465516 0.6984235 0.0257163 0.7002815 0.01748794 0.6997841 0.0296548 0.6935859 0.03739923 0.6889227 0.03148931 0.6946955 0.02966713 0.7014551 0.03209066 0.7086164 0.02755087 0.7013911 0.02753829 0.693522 0.02588814 0.6855036 0.0296548 0.6935859 0.03149849 0.7004562 0.03209066 0.7086164 0.02966713 0.7014551 0.02570718 0.6945208 0.02055281 0.6884139 0.02753829 0.693522 0.03255367 0.698662 0.04050064 0.7004789 0.03149849 0.7004562 0.0246517 0.6963151 0.02055281 0.6884139 0.02570718 0.6945208 0.03255045 0.6965535 0.04050064 0.7004789 0.03255367 0.698662 0.02854508 0.6975525 0.03149849 0.7004562 0.02966713 0.7014551 0.02854508 0.6975525 0.02570718 0.6945208 0.02753829 0.693522 0.02854508 0.6975525 0.03255367 0.698662 0.03149849 0.7004562 0.02854508 0.6975525 0.0246517 0.6963151 0.02570718 0.6945208 0.02854508 0.6975525 0.03255045 0.6965535 0.03255367 0.698662 0.02854508 0.6975525 0.02465516 0.6984235 0.0246517 0.6963151 0.02854508 0.6975525 0.03148931 0.6946955 0.03255045 0.6965535 0.02854508 0.6975525 0.02755087 0.7013911 0.0257163 0.7002815 0.02854508 0.6975525 0.0257163 0.7002815 0.02465516 0.6984235 0.02854508 0.6975525 0.0296548 0.6935859 0.03148931 0.6946955 0.02854508 0.6975525 0.02966713 0.7014551 0.02755087 0.7013911 0.02854508 0.6975525 0.02753829 0.693522 0.0296548 0.6935859 0.02592444 0.7084302 0.03388726 0.7125859 0.02526956 0.7123256 0.02521884 0.6802842 0.03383666 0.6805444 0.02588814 0.6855036 0.03209066 0.7086164 0.04134368 0.7085186 0.03388726 0.7125859 0.01776248 0.6843517 0.02521884 0.6802842 0.02055281 0.6884139 0.03742581 0.7057061 0.04564076 0.7012134 0.04134368 0.7085186 0.01346534 0.6916567 0.01776248 0.6843517 0.01747804 0.693641 0.04562717 0.6926279 0.04564076 0.7012134 0.04049086 0.6943357 0.01347887 0.7002422 0.01346534 0.6916567 0.01748794 0.6997841 0.04049086 0.6943357 0.04130643 0.6850627 0.04562717 0.6926279 0.5211461 0.8585204 0.5205516 0.8500729 0.5250603 0.8500785 0.5250603 0.8500785 0.5205516 0.8500729 0.5211317 0.8416354 0.03739923 0.6889227 0.03383666 0.6805444 0.04130643 0.6850627 0.0246517 0.6963151 0.01748794 0.6997841 0.01747804 0.693641 0.03255045 0.6965535 0.03739923 0.6889227 0.04049086 0.6943357 0.0257163 0.7002815 0.02592444 0.7084302 0.02057933 0.7051974 0.01748794 0.6997841 0.0257163 0.7002815 0.02057933 0.7051974 0.0320543 0.6856898 0.03739923 0.6889227 0.0296548 0.6935859 0.02755087 0.7013911 0.03209066 0.7086164 0.02592444 0.7084302 0.0296548 0.6935859 0.02588814 0.6855036 0.0320543 0.6856898 0.03742581 0.7057061 0.03209066 0.7086164 0.03149849 0.7004562 0.02753829 0.693522 0.02055281 0.6884139 0.02588814 0.6855036 0.03149849 0.7004562 0.04050064 0.7004789 0.03742581 0.7057061 0.01747804 0.693641 0.02055281 0.6884139 0.0246517 0.6963151 0.04049086 0.6943357 0.04050064 0.7004789 0.03255045 0.6965535</float_array>
+          <technique_common>
+            <accessor source="#Cube_007-mesh-map-1-array" count="180" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_007-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_007-mesh-positions"/>
+        </vertices>
+        <polylist material="hele_shields-material" count="60">
+          <input semantic="VERTEX" source="#Cube_007-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_007-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cube_007-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#Cube_007-mesh-map-1" offset="2" set="1"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>14 0 0 2 1 1 13 2 2 20 3 3 7 4 4 19 5 5 15 6 6 3 7 7 14 0 8 21 8 9 8 9 10 20 3 11 16 10 12 4 11 13 15 6 14 22 12 15 9 13 16 21 8 17 17 14 18 4 11 19 16 10 20 23 15 21 10 16 22 22 12 23 18 17 24 6 18 25 17 14 26 13 2 27 1 19 28 12 20 29 23 15 30 12 20 31 11 21 32 19 5 33 7 4 34 18 17 35 35 22 36 23 15 37 34 23 38 30 24 39 18 17 40 29 25 41 25 26 42 13 2 43 24 27 44 35 22 45 24 27 46 23 15 47 31 28 48 18 17 49 30 24 50 26 29 51 14 0 52 25 26 53 32 30 54 20 3 55 31 28 56 27 31 57 14 0 58 26 29 59 33 32 60 21 8 61 32 30 62 28 33 63 16 10 64 27 31 65 34 23 66 21 8 67 33 32 68 29 25 69 16 10 70 28 33 71 36 34 72 27 31 73 26 29 74 36 34 75 33 32 76 32 30 77 36 34 78 28 33 79 27 31 80 36 34 81 34 23 82 33 32 83 36 34 84 29 25 85 28 33 86 36 34 87 35 22 88 34 23 89 36 34 90 30 24 91 29 25 92 36 34 93 25 26 94 24 27 95 36 34 96 24 27 97 35 22 98 36 34 99 31 28 100 30 24 101 36 34 102 26 29 103 25 26 104 36 34 105 32 30 106 31 28 107 13 2 108 2 1 109 1 19 110 8 9 111 7 4 112 20 3 113 14 0 114 3 7 115 2 1 116 9 13 117 8 9 118 21 8 119 15 6 120 4 11 121 3 7 122 10 16 123 9 13 124 22 12 125 5 35 126 4 11 127 17 14 128 11 21 129 10 16 130 23 15 131 17 14 132 6 18 133 5 35 134 1 19 135 0 36 136 12 20 137 12 20 138 0 36 139 11 21 140 18 17 141 7 4 142 6 18 143 34 23 144 23 15 145 22 12 146 29 25 147 18 17 148 17 14 149 24 27 150 13 2 151 12 20 152 23 15 153 24 27 154 12 20 155 19 5 156 18 17 157 31 28 158 25 26 159 14 0 160 13 2 161 31 28 162 20 3 163 19 5 164 15 6 165 14 0 166 27 31 167 32 30 168 21 8 169 20 3 170 27 31 171 16 10 172 15 6 173 22 12 174 21 8 175 34 23 176 17 14 177 16 10 178 29 25 179</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Cube_000" name="Cube_000" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#Cube_007-mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="hele-material" target="#hele-material">
+                <bind_vertex_input semantic="Spear03-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="helle_struct-material" target="#helle_struct-material">
+                <bind_vertex_input semantic="Spear03-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="hele_props_a-material" target="#hele_props_a-material">
+                <bind_vertex_input semantic="Spear03-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="hele_shields-material" target="#hele_shields-material">
+                <bind_vertex_input semantic="Spear03-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="armor-material" target="#armor-material">
+                <bind_vertex_input semantic="Spear03-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="material_004_trans-material" target="#material_004_trans-material">
+                <bind_vertex_input semantic="Spear03-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="banner-material" target="#banner-material">
+                <bind_vertex_input semantic="Spear03-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="rooftiles_broken-material" target="#rooftiles_broken-material">
+                <bind_vertex_input semantic="Spear03-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="celt_struct_1-material" target="#celt_struct_1-material">
+                <bind_vertex_input semantic="Spear03-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="Material_005-material" target="#Material_005-material">
+                <bind_vertex_input semantic="Spear03-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="_0_800000__0_800000__0_800000_-material" target="#_0_800000__0_800000__0_800000_-material">
+                <bind_vertex_input semantic="Spear03-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

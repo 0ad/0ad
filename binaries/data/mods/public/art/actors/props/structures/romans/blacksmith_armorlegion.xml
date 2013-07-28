@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="barrel">
+      <mesh>props/rome_blacksmith_rome_su4_imperial_legion.dae</mesh>
+      <textures>
+<texture file="skeletal/rome_su4_imperial_legion.dds" name="baseTex"/>
+	    <texture file="structural/ao/rome_blacksmith.png" name="aoTex"/>
+</textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

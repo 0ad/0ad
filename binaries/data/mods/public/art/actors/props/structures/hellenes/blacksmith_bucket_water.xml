@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="bucket">
+      <mesh>props/hele_blacksmith_bucket_water.dae</mesh>
+      <textures>
+<texture file="structural/hele_struct_b.dds" name="baseTex"/>        
+</textures>
+    </variant>
+  </group>
+  <material>player_water.xml</material>
+</actor>

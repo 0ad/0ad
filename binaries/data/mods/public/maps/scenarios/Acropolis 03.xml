@@ -11,12 +11,12 @@
 		<Fog>
 			<FogFactor>0.00199219</FogFactor>
 			<FogThickness>0.350586</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.898039"/>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.262745" g="0.239216" b="0.196078"/>
+				<Colour r="0.258824" g="0.239216" b="0.192157"/>
 				<Height>20.0394</Height>
 				<Shininess>229.004</Shininess>
 				<Waviness>2.1875</Waviness>
@@ -31,11 +31,11 @@
 			<Contrast>1</Contrast>
 			<Saturation>0.99</Saturation>
 			<Bloom>0.1999</Bloom>
-			<PostEffect>hdr</PostEffect>
+			<PostEffect>default</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="481.446" y="122.072" z="80.626"/>
+		<Position x="464.808" y="103.419" z="110.349"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -23178,36 +23178,6 @@
 			<Position x="598.68531" z="816.17615"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4494">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="591.80256" z="803.34687"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4495">
-			<Template>units/rome_infantry_swordsman_a</Template>
-			<Player>1</Player>
-			<Position x="594.91138" z="806.38874"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4496">
-			<Template>units/rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="598.0896" z="809.52131"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4497">
-			<Template>units/rome_hero_marcellus</Template>
-			<Player>1</Player>
-			<Position x="601.766" z="813.32691"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4498">
-			<Template>units/rome_cavalry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="605.83021" z="817.136"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="4499">
 			<Template>gaia/special_treasure_stone_statues_roman</Template>
 			<Player>0</Player>
@@ -23271,37 +23241,7 @@
 		<Entity uid="4514">
 			<Template>structures/cart_civil_centre</Template>
 			<Player>2</Player>
-			<Position x="467.31083" z="187.18596"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4516">
-			<Template>units/cart_cavalry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="491.2469" z="177.51886"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4517">
-			<Template>units/cart_hero_hamilcar</Template>
-			<Player>2</Player>
-			<Position x="488.02717" z="174.15181"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4518">
-			<Template>units/cart_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="478.99781" z="164.01713"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4519">
-			<Template>units/cart_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="481.42298" z="166.74659"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4520">
-			<Template>units/cart_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="483.76886" z="168.63071"/>
+			<Position x="467.33881" z="187.2956"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4521">
@@ -24855,6 +24795,76 @@
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
 			<Position x="570.56403" z="318.55616"/>
 			<Orientation y="-2.20907"/>
+		</Entity>
+		<Entity uid="4839">
+			<Template>units/rome_infantry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="577.13056" z="801.14625"/>
+			<Orientation y="-2.26967"/>
+			<Actor seed="47792"/>
+		</Entity>
+		<Entity uid="4840">
+			<Template>units/rome_infantry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="570.68006" z="806.00892"/>
+			<Orientation y="-2.14438"/>
+			<Actor seed="58896"/>
+		</Entity>
+		<Entity uid="4841">
+			<Template>units/rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="553.92823" z="821.31116"/>
+			<Orientation y="-2.53763"/>
+			<Actor seed="13520"/>
+		</Entity>
+		<Entity uid="4842">
+			<Template>units/rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="548.2486" z="825.4834"/>
+			<Orientation y="-2.4148"/>
+			<Actor seed="17174"/>
+		</Entity>
+		<Entity uid="4843">
+			<Template>units/cart_cavalry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="478.4997" z="217.22168"/>
+			<Orientation y="0.88453"/>
+			<Actor seed="36612"/>
+		</Entity>
+		<Entity uid="4844">
+			<Template>units/cart_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="450.10965" z="169.76705"/>
+			<Orientation y="-2.3087"/>
+			<Actor seed="1426"/>
+		</Entity>
+		<Entity uid="4845">
+			<Template>units/cart_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="454.6988" z="164.89649"/>
+			<Orientation y="-2.2048"/>
+			<Actor seed="13482"/>
+		</Entity>
+		<Entity uid="4847">
+			<Template>units/cart_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="442.43891" z="203.35071"/>
+			<Orientation y="-0.77167"/>
+			<Actor seed="58488"/>
+		</Entity>
+		<Entity uid="4848">
+			<Template>units/cart_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="446.27656" z="208.5695"/>
+			<Orientation y="-0.74723"/>
+			<Actor seed="32510"/>
+		</Entity>
+		<Entity uid="4849">
+			<Template>units/rome_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="604.1562" z="820.76001"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27698"/>
 		</Entity>
 	</Entities>
 	<Paths/>

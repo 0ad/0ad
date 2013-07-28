@@ -47,7 +47,7 @@ const aBushes = [aBush1, aBush2, aBush3, aBush4];
 const aDecorativeRock = "actor|geology/stone_granite_med.xml";
 
 // terrain + entity (for painting)
-var pForest = [tForestFloor, tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
+const pForest = [tForestFloor, tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 
 const BUILDING_ANGlE = -PI/4;
 
@@ -55,9 +55,9 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
+const mapArea = mapSize*mapSize;
 
 // create tile classes
 
@@ -499,6 +499,17 @@ group = new SimpleGroup([new SimpleObject(oDeer, 2,4, 0,2)], true, clFood);
 createObjectGroups(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 7, clWater, 1, clFood, 10, clHill, 1),
 	scaleByMapSize(5,20), 50
+);
+
+// create berry bush
+log("Creating berry bush...");
+group = new SimpleGroup(
+	[new SimpleObject(oBerryBush, 5,7, 0,4)],
+	true, clFood
+);
+createObjectGroups(group, 0,
+	[avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10), stayClasses(clLand, 2)],
+	randInt(1, 4) * numPlayers + 2, 50
 );
 
 RMS.SetProgress(90);
