@@ -547,10 +547,10 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 				targets = this.defaultTargetFinder(gameState, militaryManager);
 			}
 			if (targets.length) {
-				var rand = Math.floor((Math.random()*targets.length));
 				this.targetPos = undefined;
 				var count = 0;
 				while (!this.targetPos){
+					var rand = Math.floor((Math.random()*targets.length));
 					var target = targets.toEntityArray()[rand];
 					this.targetPos = target.position();
 					count++;
@@ -1270,10 +1270,10 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 				debug ("Seems like our target has been destroyed. Switching.");
 				debug ("Aiming for " + targets);
 				// picking a target
-				var rand = Math.floor((Math.random()*targets.length));
 				this.targetPos = undefined;
 				var count = 0;
 				while (!this.targetPos){
+					var rand = Math.floor((Math.random()*targets.length));
 					this.target = targets.toEntityArray()[rand];
 					this.targetPos = this.target.position();
 					count++;

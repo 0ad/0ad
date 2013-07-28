@@ -73,14 +73,14 @@ AttackMoveToLocation.prototype.execute = function(gameState, militaryManager){
 		var curPos = pending.getCentrePosition();
 		
 		// pick a random target from the list 
-		var rand = Math.floor((Math.random()*targets.length));
 		this.targetPos = undefined;
 		var count = 0;
-		while (!this.targetPos){
+		while (!this.targetPos) {
+			var rand = Math.floor((Math.random()*targets.length));
 			var target = targets.toEntityArray()[rand];
 			this.targetPos = target.position();
 			count++;
-			if (count > 1000){
+			if (count > 1000) {
 				warn("No target with a valid position found");
 				return;
 			}
@@ -89,12 +89,12 @@ AttackMoveToLocation.prototype.execute = function(gameState, militaryManager){
 		// Find possible distinct paths to the enemy 
 		var pathFinder = new PathFinder(gameState);
 		var pathsToEnemy = pathFinder.getPaths(curPos, this.targetPos);
-		if (!pathsToEnemy || !pathsToEnemy[0] || pathsToEnemy[0][0] === undefined || pathsToEnemy[0][1] === undefined){
+		if (!pathsToEnemy || !pathsToEnemy[0] || pathsToEnemy[0][0] === undefined || pathsToEnemy[0][1] === undefined) {
 			pathsToEnemy = [[this.targetPos]];
 		}
 		
-		var rand = Math.floor(Math.random() * pathsToEnemy.length);
-		this.path = pathsToEnemy[rand];
+		var randPath = Math.floor(Math.random() * pathsToEnemy.length);
+		this.path = pathsToEnemy[randPath];
 
 		pending.move(this.path[0][0], this.path[0][1]);
 	} else if (targets.length == 0 ) {

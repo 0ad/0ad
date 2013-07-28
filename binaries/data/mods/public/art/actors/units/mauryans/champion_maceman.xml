@@ -29,8 +29,18 @@
         <prop actor="props/units/heads/maur_earrings_2.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/mace_mauryan.xml" attachpoint="r_hand"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Scale Iron">
       <textures>
         <texture file="skeletal/maur_champion_infantry.png" name="baseTex"/>
+        <texture file="skeletal/maur_champion_infantry_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Scale Gold">
+      <textures>
+        <texture file="skeletal/maur_champion_infantry_2.png" name="baseTex"/>
         <texture file="skeletal/maur_champion_infantry_spec.png" name="specTex"/>
       </textures>
     </variant>

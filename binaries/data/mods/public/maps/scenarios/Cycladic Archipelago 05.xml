@@ -2,16 +2,16 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>cloudless</SkySet>
-		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
-		<SunElevation angle="0.773126"/>
-		<SunRotation angle="0.693359"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<SkySet>stormy</SkySet>
+		<SunColour r="0.866667" g="0.776471" b="0.490196"/>
+		<SunElevation angle="1.2548"/>
+		<SunRotation angle="-0.883573"/>
+		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.00199219</FogFactor>
 			<FogThickness>0.450195</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.898039"/>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -19,11 +19,11 @@
 				<Colour r="0.027451" g="0.129412" b="0.4"/>
 				<Height>33.0492</Height>
 				<Shininess>2.19727</Shininess>
-				<Waviness>7.75391</Waviness>
-				<Murkiness>0.643555</Murkiness>
+				<Waviness>8.00781</Waviness>
+				<Murkiness>0.804688</Murkiness>
 				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0.00392157" g="0.921569" b="0.992157"/>
-				<ReflectionTintStrength>0.519531</ReflectionTintStrength>
+				<ReflectionTintStrength>0.585938</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="439.137" y="108.081" z="285.484"/>
+		<Position x="424.138" y="97.3863" z="289.43"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>

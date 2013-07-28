@@ -9,21 +9,22 @@
       <mesh>structural/rome_camp_palisade.dae</mesh>
       <props>
         <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/camp_turf.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_struct2.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_tents.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_tentflaps.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_struct2_trans.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_7x7.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_turf.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
       <textures>
-	    <texture file="props/palisade_main.png" name="baseTex"/>
-	    <texture file="props/palisade_main_norm.png" name="normTex"/>
-	    <texture file="props/palisade_main_spec.png" name="specTex"/>
-<texture file="structural/ao/rome_camp_ao.png" name="aoTex"/>
-	  </textures>
+        <texture file="props/palisade_main.png" name="baseTex"/>
+        <texture file="props/palisade_main_norm.png" name="normTex"/>
+        <texture file="props/palisade_main_spec.png" name="specTex"/>
+        <texture file="structural/ao/rome_camp_ao.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
