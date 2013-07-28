@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
+    </contributor>
+    <created>2013-07-27T14:45:23</created>
+    <modified>2013-07-27T14:45:23</modified>
+    <unit name="meter" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="iber_struct-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+    <effect id="iber_props-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="iber_struct-material" name="iber_struct">
+      <instance_effect url="#iber_struct-effect"/>
+    </material>
+    <material id="iber_props-material" name="iber_props">
+      <instance_effect url="#iber_props-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Spear03Mesh_001-mesh" name="Spear03Mesh.001">
+      <mesh>
+        <source id="Spear03Mesh_001-mesh-positions">
+          <float_array id="Spear03Mesh_001-mesh-positions-array" count="54">-0.5070562 -0.2752221 -0.03652572 -0.6928949 -0.382478 0.89468 -0.001099586 -0.7819153 0.89468 -0.001098632 -0.5673059 -0.03652572 -0.5070562 0.3090425 -0.03652572 -0.6928949 0.4162994 0.89468 -0.001097679 0.601131 -0.03652572 -0.001097679 0.8157356 0.89468 0.5047674 0.309042 -0.03652572 0.6906061 0.4162994 0.89468 0.5047674 -0.2752221 -0.03652572 0.6906061 -0.3824785 0.89468 -0.5070562 -0.2752216 1.825779 -0.001099586 -0.5673064 1.825779 -0.5070562 0.3090425 1.825779 -0.001098632 0.6011317 1.825779 0.5047674 0.3090425 1.825779 0.5047674 -0.2752221 1.825779</float_array>
+          <technique_common>
+            <accessor source="#Spear03Mesh_001-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Spear03Mesh_001-mesh-normals">
+          <float_array id="Spear03Mesh_001-mesh-normals-array" count="66">-0.8438978 -0.487228 -0.2245551 0 -1 0 -0.8660237 -0.4999542 0 3.05185e-5 -0.974456 -0.2245551 -0.8438673 0.4872585 -0.2245246 -0.8660237 0.4999542 0 0 0.974456 -0.2245246 0 1 0 0.8438978 0.4871975 -0.2245246 0.8660237 0.4999542 0 0.8438978 -0.487228 -0.2245246 0.8660237 -0.4999542 0 0 -0.7202979 0.6936247 -0.6237983 -0.3601794 0.6936247 -0.6237983 0.3601489 0.6936247 3.05185e-5 0.7202979 0.6936247 0.6237983 0.3601489 0.6936247 0.6237983 -0.3601184 0.6936247 0 0 1 0 0 1 0 0 1 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Spear03Mesh_001-mesh-normals-array" count="22" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Spear03Mesh_001-mesh-map-0">
+          <float_array id="Spear03Mesh_001-mesh-map-0-array" count="168">0.9992 0.9367 0.9674 0.9038 0.9674 0.9367 0.9992 0.9367 0.9992 0.9038 0.9674 0.9038 0.9992 0.9677 0.9674 0.9367 0.9674 0.9677 0.9992 0.9677 0.9992 0.9367 0.9674 0.9367 0.9992 0.8108 0.9674 0.7817 0.9674 0.8108 0.9992 0.8108 0.9992 0.7817 0.9674 0.7817 0.9992 0.8418 0.9674 0.8108 0.9674 0.8418 0.9992 0.8418 0.9992 0.8108 0.9674 0.8108 0.9992 0.8767 0.9674 0.8418 0.9674 0.8767 0.9992 0.8767 0.9992 0.8418 0.9674 0.8418 0.9992 0.9038 0.9674 0.8767 0.9674 0.9038 0.9992 0.9038 0.9992 0.8767 0.9674 0.8767 0.9674 0.9367 0.9376 0.9038 0.9376 0.9367 0.9674 0.9367 0.9674 0.9038 0.9376 0.9038 0.9674 0.9677 0.9376 0.9367 0.9376 0.9677 0.9674 0.9677 0.9674 0.9367 0.9376 0.9367 0.9674 0.8108 0.9376 0.7817 0.9376 0.8108 0.9674 0.8108 0.9674 0.7817 0.9376 0.7817 0.9674 0.8418 0.9376 0.8108 0.9376 0.8418 0.9674 0.8418 0.9674 0.8108 0.9376 0.8108 0.9674 0.8767 0.9376 0.8418 0.9376 0.8767 0.9674 0.8767 0.9674 0.8418 0.9376 0.8418 0.9674 0.9038 0.9376 0.8767 0.9376 0.9038 0.9674 0.9038 0.9674 0.8767 0.9376 0.8767 0.8398 0.6228 0.8629 0.7042 0.8744 0.6615 0.8398 0.6228 0.8398 0.7042 0.8629 0.7042 0.8398 0.6228 0.8744 0.6615 0.8629 0.6228 0.8398 0.6228 0.8282 0.6615 0.8398 0.7042</float_array>
+          <technique_common>
+            <accessor source="#Spear03Mesh_001-mesh-map-0-array" count="84" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Spear03Mesh_001-mesh-map-1">
+          <float_array id="Spear03Mesh_001-mesh-map-1-array" count="168">0.8380604 0.3268051 0.8276402 0.3092429 0.8417161 0.3083612 0.8380604 0.3268051 0.8277657 0.3274499 0.8276402 0.3092429 0.920241 0.7735232 0.9342764 0.7918688 0.9181689 0.7919053 0.920241 0.7735232 0.9320228 0.7734965 0.9342764 0.7918688 0.8795139 0.6905925 0.8932384 0.7091218 0.879638 0.7095969 0.8795139 0.6905925 0.8894608 0.690245 0.8932384 0.7091218 0.8690744 0.6902341 0.879638 0.7095969 0.8653632 0.7091065 0.8690744 0.6902341 0.8795139 0.6905925 0.879638 0.7095969 0.9205181 0.3519406 0.934377 0.3697832 0.9182691 0.3697576 0.9205181 0.3519406 0.9323 0.3519594 0.934377 0.3697832 0.8277657 0.3274499 0.8138199 0.3083988 0.8276402 0.3092429 0.8277657 0.3274499 0.8176586 0.3268327 0.8138199 0.3083988 0.8417161 0.3083612 0.8276512 0.2901107 0.8379457 0.289466 0.8417161 0.3083612 0.8276402 0.3092429 0.8276512 0.2901107 0.9181689 0.7919053 0.9321376 0.8109068 0.9203558 0.8109335 0.9181689 0.7919053 0.9342764 0.7918688 0.9321376 0.8109068 0.879638 0.7095969 0.8893457 0.7277328 0.8793988 0.7280805 0.879638 0.7095969 0.8932384 0.7091218 0.8893457 0.7277328 0.8653632 0.7091065 0.8793988 0.7280805 0.8689593 0.7277218 0.8653632 0.7091065 0.879638 0.7095969 0.8793988 0.7280805 0.9182691 0.3697576 0.9321867 0.3889232 0.9204048 0.3889043 0.9182691 0.3697576 0.934377 0.3697832 0.9321867 0.3889232 0.8276402 0.3092429 0.817544 0.2894935 0.8276512 0.2901107 0.8276402 0.3092429 0.8138199 0.3083988 0.817544 0.2894935 0.3096817 0.9296272 0.3300835 0.9414086 0.3198813 0.9472973 0.3096817 0.9296272 0.3300857 0.9296283 0.3300835 0.9414086 0.3096817 0.9296272 0.3198813 0.9472973 0.3096795 0.9414076 0.3096817 0.9296272 0.3198857 0.9237385 0.3300857 0.9296283</float_array>
+          <technique_common>
+            <accessor source="#Spear03Mesh_001-mesh-map-1-array" count="84" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Spear03Mesh_001-mesh-vertices">
+          <input semantic="POSITION" source="#Spear03Mesh_001-mesh-positions"/>
+        </vertices>
+        <polylist material="iber_struct-material" count="28">
+          <input semantic="VERTEX" source="#Spear03Mesh_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Spear03Mesh_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Spear03Mesh_001-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#Spear03Mesh_001-mesh-map-1" offset="2" set="1"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>0 0 0 2 1 1 1 2 2 0 0 3 3 3 4 2 1 5 4 4 6 1 2 7 5 5 8 4 4 9 0 0 10 1 2 11 6 6 12 5 5 13 7 7 14 6 6 15 4 4 16 5 5 17 8 8 18 7 7 19 9 9 20 8 8 21 6 6 22 7 7 23 10 10 24 9 9 25 11 11 26 10 10 27 8 8 28 9 9 29 3 3 30 11 11 31 2 1 32 3 3 33 10 10 34 11 11 35 1 2 36 13 12 37 12 13 38 1 2 39 2 1 40 13 12 41 5 5 42 12 13 43 14 14 44 5 5 45 1 2 46 12 13 47 7 7 48 14 14 49 15 15 50 7 7 51 5 5 52 14 14 53 9 9 54 15 15 55 16 16 56 9 9 57 7 7 58 15 15 59 11 11 60 16 16 61 17 17 62 11 11 63 9 9 64 16 16 65 2 1 66 17 17 67 13 12 68 2 1 69 11 11 70 17 17 71 12 18 72 16 18 73 15 18 74 12 19 75 17 19 76 16 19 77 12 20 78 15 20 79 14 20 80 12 21 81 13 21 82 17 21 83</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Spear03_001" name="Spear03_001" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 -90</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#Spear03Mesh_001-mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="iber_struct-material" target="#iber_struct-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+              <instance_material symbol="iber_props-material" target="#iber_props-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="lightmap" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
