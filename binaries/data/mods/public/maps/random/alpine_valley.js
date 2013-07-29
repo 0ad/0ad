@@ -1,5 +1,3 @@
-//we still have got some problems in 4269
-
 RMS.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
@@ -323,10 +321,8 @@ while (possibleEdges.length > 0)
 	while (q.length > 0)
 	{
 		selected = q.shift();
-		//log ("Selected " + selected + " from the queue");
 		if (tree.indexOf(selected) == -1)
 		{
-			//log ("First time of then new tree.")
 			tree.push(selected);
 			backtree.push(-1);
 		}
@@ -335,11 +331,8 @@ while (possibleEdges.length > 0)
 		{
 			if (matrix[selected][i])
 			{
-				//log ("Current tree is:" + "[" + tree.toString() + "]");
-				//log ("Checking " + i + ", comparing with " + selected); 
 				if (i == backtree[tree.lastIndexOf(selected)]) 
 				{
-					//log (i + " is a child of " + selected);
 					continue;
 				}
 				else if (tree.indexOf(i) == -1)
@@ -347,12 +340,9 @@ while (possibleEdges.length > 0)
 					tree.push(i);
 					backtree.push(selected);
 					q.unshift(i);
-					//log ("Added " + i + " to the queue");
-					//log ("Current tree is:" + "[" + tree.toString() + "]");
 				}
 				else
 				{
-					//log (i + " already exists in the tree. Not Accepting.");
 					accept = false;
 					matrix[possibleEdges[index][0]][possibleEdges[index][1]] = false;
 					matrix[possibleEdges[index][1]][possibleEdges[index][0]] = false;
@@ -417,10 +407,7 @@ while (possibleEdges.length > 0)
 		);
 		createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill)], avoidClasses(clPlayer, 5));
 	}
-	
-	log (possibleEdges[index][0] + ", " + possibleEdges[index][1]);
-	log (points[possibleEdges[index][0]][0] + ", " + points[possibleEdges[index][0]][1] + ", " + points[possibleEdges[index][1]][0] + ", " + points[possibleEdges[index][1]][1]);
-	
+		
 	for (var i = 0; i < possibleEdges.length; ++i)
 	{
 		if (possibleEdges[index][0] != possibleEdges[i][0] && possibleEdges[index][1] != possibleEdges[i][0] &&
@@ -437,6 +424,29 @@ while (possibleEdges.length > 0)
 					--index;
 			}
 		}
+		else if (((possibleEdges[index][0] == possibleEdges[i][0] && possibleEdges[index][1] != possibleEdges[i][1]) ||
+			(possibleEdges[index][1] == possibleEdges[i][0] && possibleEdges[index][0] != possibleEdges[i][1])) && 
+			distanceOfPointFromLine(points[possibleEdges[index][0]][0],points[possibleEdges[index][0]][1],
+			points[possibleEdges[index][1]][0], points[possibleEdges[index][1]][1],points[possibleEdges[i][1]][0], points[possibleEdges[i][1]][1])
+			< scaleByMapSize(9,15) + scaleByMapSize(10,15))
+		{
+			possibleEdges.splice(i,1);
+			--i;
+			if (index > i)
+				--index;
+		}
+		else if (((possibleEdges[index][0] == possibleEdges[i][1] && possibleEdges[index][1] != possibleEdges[i][0]) ||
+			(possibleEdges[index][1] == possibleEdges[i][1] && possibleEdges[index][0] != possibleEdges[i][0])) && 
+			distanceOfPointFromLine(points[possibleEdges[index][0]][0],points[possibleEdges[index][0]][1],
+			points[possibleEdges[index][1]][0], points[possibleEdges[index][1]][1],points[possibleEdges[i][0]][0], points[possibleEdges[i][0]][1])
+			< scaleByMapSize(9,15) + scaleByMapSize(10,15))
+		{
+			possibleEdges.splice(i,1);
+			--i;
+			if (index > i)
+				--index;
+		}
+
 	}
 	
 	edgesConncetedToPoints[possibleEdges[index][0]] += 1;
