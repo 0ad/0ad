@@ -168,6 +168,12 @@ int GetPlayerID(void* UNUSED(cbdata))
 	return -1;
 }
 
+void SetPlayerID(void* UNUSED(cbdata), int id)
+{
+	if (g_Game)
+		g_Game->SetPlayerID(id);
+}
+
 std::wstring GetDefaultPlayerName(void* UNUSED(cbdata))
 {
 	CStr playername;
@@ -685,6 +691,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	// Misc functions
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
+	scriptInterface.RegisterFunction<void, int, &SetPlayerID>("SetPlayerID");
 	scriptInterface.RegisterFunction<std::wstring, &GetDefaultPlayerName>("GetDefaultPlayerName");
 	scriptInterface.RegisterFunction<std::wstring, &GetDefaultMPServer>("GetDefaultMPServer");
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &SaveMPConfig>("SaveMPConfig");
