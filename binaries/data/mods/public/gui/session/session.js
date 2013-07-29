@@ -139,7 +139,7 @@ function init(initData, hotloadData)
 	var viewPlayerDropdown = getGUIObjectByName("viewPlayer");
 	viewPlayerDropdown.list = playerNames;
 	viewPlayerDropdown.list_data = playerIDs;
-	viewPlayerDropdown.selected = 1;
+	viewPlayerDropdown.selected = Engine.GetPlayerID();
 
 	// If in Atlas editor, disable the exit button
 	if (Engine.IsAtlasRunning())
