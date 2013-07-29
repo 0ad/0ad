@@ -337,7 +337,7 @@ while (possibleEdges.length > 0)
 			{
 				//log ("Current tree is:" + "[" + tree.toString() + "]");
 				//log ("Checking " + i + ", comparing with " + selected); 
-				if (i == backtree[tree.indexOf(selected)]) 
+				if (i == backtree[tree.lastIndexOf(selected)]) 
 				{
 					//log (i + " is a child of " + selected);
 					continue;
@@ -419,6 +419,7 @@ while (possibleEdges.length > 0)
 	}
 	
 	log (possibleEdges[index][0] + ", " + possibleEdges[index][1]);
+	log (points[possibleEdges[index][0]][0] + ", " + points[possibleEdges[index][0]][1] + ", " + points[possibleEdges[index][1]][0] + ", " + points[possibleEdges[index][1]][1]);
 	
 	for (var i = 0; i < possibleEdges.length; ++i)
 	{
