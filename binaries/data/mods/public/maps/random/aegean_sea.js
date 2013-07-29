@@ -366,7 +366,7 @@ RMS.SetProgress(60);
 //create the undersea bumps
 log("Creating undersea bumps...");
 placer = new ClumpPlacer(scaleByMapSize(40, 100), 0.3, 0.06, 1);
-painter = new SmoothElevationPainter(ELEVATION_SET, -1.1, 3);
+painter = new SmoothElevationPainter(ELEVATION_SET, -1.6, 3);
 createAreas(
 	placer,
 	[painter, paintClass(clCorals)], 
@@ -392,7 +392,7 @@ createAreas(
 //paint the seabed
 paintTerrainBasedOnHeight(-20, -3, 3, tSeaDepths);
 paintTerrainBasedOnHeight(-3, -2, 2, tCorals2);
-paintTerrainBasedOnHeight(-2, -1, 2, tCorals1);
+paintTerrainBasedOnHeight(-2, -1.5, 2, tCorals1);
 
 log("Creating island stone mines...");
 // create island large stone quarries
