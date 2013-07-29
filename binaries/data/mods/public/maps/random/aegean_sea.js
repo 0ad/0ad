@@ -540,13 +540,13 @@ for (var i = 0; i < types.length; ++i)
 }
 
 // Set environment
-setSkySet("sunny");
-setSunColour(0.917, 0.828, 0.734);	
-setWaterColour(0.292, 0.347, 0.691);		
-setWaterTint(0.192, 0.347, 0.691);
-setWaterWaviness(4);
-setWaterMurkiness(0.82);
-setWaterReflectionTintStrength(0.1);
+setSkySet("cumulus");
+setSunColour(0.866667, 0.776471, 0.486275);	
+setWaterColour(0, 0.501961, 1);		
+setWaterTint(0.501961, 1, 1);
+setWaterWaviness(10);
+setWaterMurkiness(0.49);
+setWaterReflectionTintStrength(0.0);
 
 // Export map data
 ExportMap();
