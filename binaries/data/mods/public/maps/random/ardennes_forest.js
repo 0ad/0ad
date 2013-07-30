@@ -27,8 +27,8 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
 
 const tGrass = ["new_alpine_grass_b", "new_alpine_grass_c", "new_alpine_grass_d"];
 const tPineForestFloor = "temp_forestfloor_pine";
@@ -537,7 +537,7 @@ for (var i = 0; i < sizes.length; i++)
 	createAreas(
 		placer,
 		painter,
-		avoidClasses(clForest, 0, clHill, 2, clPlayer, 5),
+		avoidClasses(clForest, 1, clHill, 2, clPlayer, 5),
 		scaleByMapSize(4, 12)
 	);
 }
@@ -606,6 +606,17 @@ createObjectGroupsByAreas(group, 0,
 );
 
 RMS.SetProgress(85);
+
+// create berry bush
+log("Creating berry bush...");
+group = new SimpleGroup(
+	[new SimpleObject(oBerryBush, 5,7, 0,4)],
+	true, clFood
+);
+createObjectGroups(group, 0,
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 20),
+	randInt(3, 12) * numPlayers + 2, 50
+);
 
 log("Creating decorative props...");
 group = new SimpleGroup(
