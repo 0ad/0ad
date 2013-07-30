@@ -263,6 +263,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpResourceSupply)
 	{
 		ret.resourceSupply = {
+			"isInfinite": cmpResourceSupply.IsInfinite(),
 			"max": cmpResourceSupply.GetMaxAmount(),
 			"amount": cmpResourceSupply.GetCurrentAmount(),
 			"type": cmpResourceSupply.GetType(),

@@ -10,7 +10,7 @@ ResourceSupply.prototype.Schema =
 		"<data type='boolean'/>" +
 	"</element>" +
 	"<element name='Amount' a:help='Amount of resources available from this entity'>" +
-		"<data type='nonNegativeInteger'/>" +
+		"<choice><data type='nonNegativeInteger'/><value>Infinity</value></choice>" +
 	"</element>" +
 	"<element name='Type' a:help='Type of resources'>" +
 		"<choice>" +
@@ -32,13 +32,24 @@ ResourceSupply.prototype.Schema =
 	"</element>" +
 	"<element name='MaxGatherers' a:help='Amount of gatherers who can gather resources from this entity at the same time'>" +
 		"<data type='nonNegativeInteger'/>" +
-	"</element>";
+	"</element>" +
+	"<optional>" +
+		"<element name='DiminishingReturns' a:help='The rate at which adding more gatherers decreases overall efficiency. Lower numbers = faster dropoff. Leave the element out for no diminishing returns.'>" +
+			"<ref name='positiveDecimal'/>" +
+		"</element>" +
+	"</optional>";
 
 ResourceSupply.prototype.Init = function()
 {
 	// Current resource amount (non-negative)
 	this.amount = this.GetMaxAmount();
     this.gatherers = [];	// list of IDs
+    this.infinite = !isFinite(+this.template.Amount);
+};
+
+ResourceSupply.prototype.IsInfinite = function()
+{
+	return this.infinite;
 };
 
 ResourceSupply.prototype.GetKillBeforeGather = function()
@@ -66,8 +77,18 @@ ResourceSupply.prototype.GetGatherers = function()
 	return this.gatherers;
 };
 
+ResourceSupply.prototype.GetDiminishingReturns = function()
+{
+	if ("DiminishingReturns" in this.template)
+		return ApplyTechModificationsToEntity("ResourceSupply/DiminishingReturns", +this.template.DiminishingReturns, this.entity);
+	return null;
+};
+
 ResourceSupply.prototype.TakeResources = function(rate)
 {
+	if (this.infinite)
+		return { "amount": rate, "exhausted": false };
+
 	// 'rate' should be a non-negative integer
 
 	var old = this.amount;

@@ -256,7 +256,12 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	{
 		rate = rates[type.generic] / cmpPlayer.GetCheatTimeMultiplier();
 	}
-	
+
+	// Apply diminishing returns with more gatherers, e.g. for infinite farms. For most resources this has no effect. (GetDiminishingReturns will return null.)
+	var diminishingReturns = cmpResourceSupply.GetDiminishingReturns();
+	if (diminishingReturns)
+		rate = +(rate - Math.pow((cmpResourceSupply.GetGatherers().length || 1) - 1, 2) / diminishingReturns).toFixed(2);
+
 	return (rate || 0);
 };
 
