@@ -31,7 +31,7 @@ Player.prototype.Init = function()
 	this.controlAllUnits = false;
 	this.isAI = false;
 	this.gatherRateMultiplier = 1;
-	this.cheatsEnabled = true;
+	this.cheatsEnabled = false;
 	this.cheatTimeMultiplier = 1;
 	this.heroes = [];
 };
@@ -550,12 +550,12 @@ Player.prototype.OnDiplomacyChanged = function()
 	this.UpdateSharedLos();
 };
 
-Player.prototype.SetCheatEnabled = function(flag)
+Player.prototype.SetCheatsEnabled = function(flag)
 {
 	this.cheatsEnabled = flag;
 };
 
-Player.prototype.GetCheatEnabled = function()
+Player.prototype.GetCheatsEnabled = function()
 {
 	return this.cheatsEnabled;
 };

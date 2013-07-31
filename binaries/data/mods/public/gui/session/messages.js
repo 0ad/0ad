@@ -9,7 +9,22 @@ const NOTIFICATION_TIMEOUT = 10000;
 const MAX_NUM_NOTIFICATION_LINES = 3;
 var notifications = [];
 var notificationsTimers = [];
-var cheatList = parseJSONData("simulation/data/cheats.json").Cheats;
+var cheats = getCheatsData();
+
+function getCheatsData()
+{
+	var cheats = {};
+	var cheatFileList = getJSONFileList("simulation/data/cheats/");
+	for each (var fileName in cheatFileList)
+	{
+		var currentCheat = parseJSONData("simulation/data/cheats/"+fileName+".json");
+		if (Object.keys(cheats).indexOf(currentCheat.Name) !== -1)
+			warn("Cheat name '"+currentCheat.Name+"' is already present");
+		else
+			cheats[currentCheat.Name] = currentCheat.Data;
+	}
+	return cheats;
+}
 
 // Notifications
 function handleNotifications()
@@ -219,32 +234,33 @@ function submitChatInput()
 	var isCheat = false;
 	if (text.length)
 	{
-		for (var i = 0; i < cheatList.length; i++)
+		if (g_Players[Engine.GetPlayerID()].cheatsEnabled)
 		{
-			var cheat = cheatList[i];
-
-			// Line must start with the cheat.
-			if (text.indexOf(cheat.Name) == 0)
+			for each (var cheat in Object.keys(cheats))
 			{
+				// Line must start with the cheat.
+				if (text.indexOf(cheat) !== 0)
+					continue
+
 				var number;
-				if (cheat.IsNumeric)
+				if (cheats[cheat].DefaultNumber !== undefined)
 				{
 					// Match the first word in the substring.
-					var match = text.substr(cheat.Name.length).match(/\S+/);
+					var match = text.substr(cheat.length).match(/\S+/);
 					if (match && match[0])
 						number = Math.floor(match[0]);
 
 					if (number <= 0 || isNaN(number))
-						number = cheat.DefaultNumber;
+						number = cheats[cheat].DefaultNumber;
 				}
 
 				Engine.PostNetworkCommand({
 					"type": "cheat",
-					"action": cheat.Action,
+					"action": cheats[cheat].Action,
 					"number": number,
-					"text": cheat.Type,
+					"text": cheats[cheat].Type,
 					"selected": g_Selection.toList(),
-					"templates": cheat.Templates,
+					"templates": cheats[cheat].Templates,
 					"player": Engine.GetPlayerID()});
 				isCheat = true;
 				break;
@@ -420,62 +436,62 @@ function parseChatCommands(msg, playerAssignments)
 	// Parse commands embedded in the message.
 	switch (split[0])
 	{
-		case "/all":
-			// Resets values that 'team' or 'enemy' may have set.
-			msg.prefix = "";
-			msg.hide = false;
-			recurse = true;
-			break;
-		case "/team":
-			var playerData = getPlayerData();
-			if (hasAllies(sender, playerData))
-			{
-				if (playerData[Engine.GetPlayerID()].team != playerData[sender].team)
-					msg.hide = true;
-				else
-					msg.prefix = "(Team) ";
-			} else {
+	case "/all":
+		// Resets values that 'team' or 'enemy' may have set.
+		msg.prefix = "";
+		msg.hide = false;
+		recurse = true;
+		break;
+	case "/team":
+		// Check if we are in a team.
+		if (g_Players[Engine.GetPlayerID()] && g_Players[Engine.GetPlayerID()].team != -1)
+		{
+			if (g_Players[Engine.GetPlayerID()].team != g_Players[sender].team)
 				msg.hide = true;
-			}
-			recurse = true;
-			break;
-		case "/enemy":
-			var playerData = getPlayerData();
-			if (hasAllies(sender, playerData))
-			{
-				if (playerData[Engine.GetPlayerID()].team == playerData[sender].team && sender != Engine.GetPlayerID())
-					msg.hide = true;
-				else
-					msg.prefix = "(Enemy) ";
-			}
-			recurse = true;
-			break;
-		case "/me":
-			msg.action = true;
-			break;
-		case "/msg":
-			var trimmed = msg.text.substr(split[0].length + 1);
-			var matched = "";
-
-			// Reject names which don't match or are a superset of the intended name.
-			for each (var player in playerAssignments)
-				if (trimmed.indexOf(player.name + " ") == 0 && player.name.length > matched.length)
-					matched = player.name;
-
-			// If the local player's name was the longest one matched, show the message.
-			var playerName = g_Players[Engine.GetPlayerID()].name;
-			if (matched.length && (matched == playerName || sender == Engine.GetPlayerID()))
-			{
-				msg.prefix = "(Private) ";
-				msg.text = trimmed.substr(matched.length + 1);
-				msg.hide = false; // Might override team message hiding.
-				return;
-			}
 			else
+				msg.prefix = "(Team) ";
+		}
+		else
+			msg.hide = true;
+		recurse = true;
+		break;
+	case "/enemy":
+		// Check if we are in a team.
+		if (g_Players[Engine.GetPlayerID()] && g_Players[Engine.GetPlayerID()].team != -1)
+		{
+			if (g_Players[Engine.GetPlayerID()].team == g_Players[sender].team && sender != Engine.GetPlayerID())
 				msg.hide = true;
-			break;
-		default:
+			else
+				msg.prefix = "(Enemy) ";
+		}
+		recurse = true;
+		break;
+	case "/me":
+		msg.action = true;
+		break;
+	case "/msg":
+		var trimmed = msg.text.substr(split[0].length + 1);
+		var matched = "";
+
+		// Reject names which don't match or are a superset of the intended name.
+		for each (var player in playerAssignments)
+			if (trimmed.indexOf(player.name + " ") == 0 && player.name.length > matched.length)
+				matched = player.name;
+
+		// If the local player's name was the longest one matched, show the message.
+		var playerName = g_Players[Engine.GetPlayerID()].name;
+		if (matched.length && (matched == playerName || sender == Engine.GetPlayerID()))
+		{
+			msg.prefix = "(Private) ";
+			msg.text = trimmed.substr(matched.length + 1);
+			msg.hide = false; // Might override team message hiding.
 			return;
+		}
+		else
+			msg.hide = true;
+		break;
+	default:
+		return;
 	}
 
 	msg.text = msg.text.substr(split[0].length + 1);

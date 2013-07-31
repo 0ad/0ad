@@ -11,7 +11,7 @@ function Cheat(input)
 		return;
 
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	if (!cmpPlayer.GetCheatEnabled())
+	if (!cmpPlayer.GetCheatsEnabled())
 	{
 		cmpGuiInterface.PushNotification({"type": "chat", "player": input.player, "message": "Cheats are disbaled in this match"});
 		return;

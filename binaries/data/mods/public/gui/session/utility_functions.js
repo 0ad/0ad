@@ -60,6 +60,7 @@ function getPlayerData(playerAssignments)
 		    "color": color,
 		    "team": playerState.team,
 		    "teamsLocked": playerState.teamsLocked,
+		    "cheatsEnabled": playerState.cheatsEnabled,
 		    "state": playerState.state,
 		    "isAlly": playerState.isAlly,
 		    "isMutualAlly": playerState.isMutualAlly,
@@ -86,18 +87,6 @@ function getPlayerData(playerAssignments)
 	}
 
 	return players;
-}
-
-// Returns whether a player has physical allies.
-function hasAllies(playerID, playerData)
-{
-	if (playerData[playerID] && playerData[playerID].team != -1)
-	{
-		for (var i = 0; i < playerData.length; i++)
-			if (playerData[i].team == playerData[playerID].team)
-				return true;
-	}
-	return false;
 }
 
 function findGuidForPlayerID(playerAssignments, player)
