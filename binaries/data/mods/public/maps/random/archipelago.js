@@ -5,50 +5,50 @@ TILE_CENTERED_HEIGHT_MAP = true;
 //random terrain textures
 var random_terrain = randomizeBiome();
 
-var tMainTerrain = rBiomeT1();
-var tForestFloor1 = rBiomeT2();
-var tForestFloor2 = rBiomeT3();
-var tCliff = rBiomeT4();
-var tTier1Terrain = rBiomeT5();
-var tTier2Terrain = rBiomeT6();
-var tTier3Terrain = rBiomeT7();
-var tHill = rBiomeT8();
-var tTier4Terrain = rBiomeT9();
-var tRoad = rBiomeT10();
-var tRoadWild = rBiomeT11();
-var tTier5Terrain = rBiomeT12();
-var tShoreBlend = rBiomeT13();
-var tShore = rBiomeT14();
-var tWater = rBiomeT15();
+const tMainTerrain = rBiomeT1();
+const tForestFloor1 = rBiomeT2();
+const tForestFloor2 = rBiomeT3();
+const tCliff = rBiomeT4();
+const tTier1Terrain = rBiomeT5();
+const tTier2Terrain = rBiomeT6();
+const tTier3Terrain = rBiomeT7();
+const tHill = rBiomeT8();
+const tTier4Terrain = rBiomeT9();
+const tRoad = rBiomeT10();
+const tRoadWild = rBiomeT11();
+const tTier5Terrain = rBiomeT12();
+const tShoreBlend = rBiomeT13();
+const tShore = rBiomeT14();
+const tWater = rBiomeT15();
 
 // gaia entities
-var oTree1 = rBiomeE1();
-var oTree2 = rBiomeE2();
-var oTree3 = rBiomeE3();
-var oTree4 = rBiomeE4();
-var oTree5 = rBiomeE5();
-var oFruitBush = rBiomeE6();
-var oChicken = rBiomeE7();
-var oMainHuntableAnimal = rBiomeE8();
-var oFish = rBiomeE9();
-var oSecondaryHuntableAnimal = rBiomeE10();
-var oStoneLarge = rBiomeE11();
-var oStoneSmall = rBiomeE12();
-var oMetalLarge = rBiomeE13();
-var oWood = "gaia/special_treasure_wood";
+const oTree1 = rBiomeE1();
+const oTree2 = rBiomeE2();
+const oTree3 = rBiomeE3();
+const oTree4 = rBiomeE4();
+const oTree5 = rBiomeE5();
+const oFruitBush = rBiomeE6();
+const oChicken = rBiomeE7();
+const oMainHuntableAnimal = rBiomeE8();
+const oFish = rBiomeE9();
+const oSecondaryHuntableAnimal = rBiomeE10();
+const oStoneLarge = rBiomeE11();
+const oStoneSmall = rBiomeE12();
+const oMetalLarge = rBiomeE13();
+const oWood = "gaia/special_treasure_wood";
 
 // decorative props
-var aGrass = rBiomeA1();
-var aGrassShort = rBiomeA2();
-var aReeds = rBiomeA3();
-var aLillies = rBiomeA4();
-var aRockLarge = rBiomeA5();
-var aRockMedium = rBiomeA6();
-var aBushMedium = rBiomeA7();
-var aBushSmall = rBiomeA8();
+const aGrass = rBiomeA1();
+const aGrassShort = rBiomeA2();
+const aReeds = rBiomeA3();
+const aLillies = rBiomeA4();
+const aRockLarge = rBiomeA5();
+const aRockMedium = rBiomeA6();
+const aBushMedium = rBiomeA7();
+const aBushSmall = rBiomeA8();
 
-var pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
-var pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
+const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
+const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 const BUILDING_ANGlE = -PI/4;
 
 // initialize map

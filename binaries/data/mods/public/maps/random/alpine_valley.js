@@ -312,6 +312,17 @@ while (possibleEdges.length > 0)
 		continue;
 	}
 	
+	//we don't want ranges that are longer than half of the map's size
+	if ((((points[possibleEdges[index][0]][0] - points[possibleEdges[index][1]][0]) * 
+		(points[possibleEdges[index][0]][0] - points[possibleEdges[index][1]][0])) + 
+		((points[possibleEdges[index][0]][1] - points[possibleEdges[index][1]][1]) * 
+		(points[possibleEdges[index][0]][1] - points[possibleEdges[index][1]][1]))) >
+		mapArea)
+	{
+		possibleEdges.splice(index,1);
+		continue;
+	}
+	
 	//dfs
 	var q = [possibleEdges[index][0]];
 

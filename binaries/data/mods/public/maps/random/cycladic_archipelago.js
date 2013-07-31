@@ -65,10 +65,10 @@ const aRockSmall = "actor|geology/stone_granite_small.xml";
 
 
 // terrain + entity (for painting)
-var pPalmForest = [tForestFloor+TERRAIN_SEPARATOR+oPalm, tGrass];
-var pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
-var pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
-var pMainForest = [tForestFloor+TERRAIN_SEPARATOR+oCarob, tForestFloor+TERRAIN_SEPARATOR+oBeech, tGrass, tGrass];
+const pPalmForest = [tForestFloor+TERRAIN_SEPARATOR+oPalm, tGrass];
+const pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
+const pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
+const pMainForest = [tForestFloor+TERRAIN_SEPARATOR+oCarob, tForestFloor+TERRAIN_SEPARATOR+oBeech, tGrass, tGrass];
 
 const BUILDING_ANGlE = -PI/4;
 
@@ -78,8 +78,8 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
 
 // create tile classes
 

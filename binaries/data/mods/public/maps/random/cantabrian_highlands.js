@@ -29,9 +29,9 @@ const oChicken = "gaia/fauna_chicken";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fauna_fish";
 const oSheep = "gaia/fauna_sheep";
-const oStoneLarge = "gaia/geology_stonemine_medit_quarry";
-const oStoneSmall = "gaia/geology_stone_mediterranean";
-const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
+const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
+const oStoneSmall = "gaia/geology_stone_temperate";
+const oMetalLarge = "gaia/geology_metal_temperate_slabs";
 
 // decorative props
 const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
@@ -374,7 +374,7 @@ for (var i = 0; i < sizes.length; i++)
 		scaleByMapSize(15, 45)
 	);
 }
-tGrassPatchBlend
+
 RMS.SetProgress(50);
 
 log("Creating stone mines...");
