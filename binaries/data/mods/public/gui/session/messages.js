@@ -240,7 +240,7 @@ function submitChatInput()
 			{
 				// Line must start with the cheat.
 				if (text.indexOf(cheat) !== 0)
-					continue
+					continue;
 
 				var number;
 				if (cheats[cheat].DefaultNumber !== undefined)
