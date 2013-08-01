@@ -1,20 +1,21 @@
 RMS.LoadLibrary("rmgen");
 
 // terrain textures
-const tGrass = ["temp_grass_long_b"];
-const tGrassPForest = "temp_forestfloor_pine";
-const tGrassDForest = "temp_forestfloor_a";
-const tCliff = ["temp_cliff_a", "temp_cliff_b"];
-const tGrassA = "temp_grass_d";
-const tGrassB = "temp_grass_c";
-const tGrassC = "temp_grass_clovers_2";
+const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
+const tGrassPForest = "temp_plants_bog";
+const tGrassDForest = "temp_plants_bog";
+const tGrassA = "temp_grass_plants";
+const tGrassB = "temp_plants_bog";
+const tGrassC = "temp_mud_a";
+const tDirt = ["temp_plants_bog", "temp_mud_a"];
 const tHill = ["temp_highlands", "temp_grass_long_b"];
-const tDirt = ["temp_dirt_gravel", "temp_dirt_gravel_b"];
+const tCliff = ["temp_cliff_a", "temp_cliff_b"];
 const tRoad = "temp_road";
 const tRoadWild = "temp_road_overgrown";
-const tGrassPatch = "temp_grass_plants";
-const tShoreBlend = "temp_mud_plants";
-const tShore = "temp_mud_a";
+const tGrassPatchBlend = "temp_grass_long_b";
+const tGrassPatch = ["temp_grass_d", "temp_grass_clovers"];
+const tShoreBlend = "temp_grass_plants";
+const tShore = "temp_plants_bog";
 const tWater = "temp_mud_a";
 
 // gaia entities
@@ -28,9 +29,9 @@ const oChicken = "gaia/fauna_chicken";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fauna_fish";
 const oSheep = "gaia/fauna_sheep";
-const oStoneLarge = "gaia/geology_stonemine_medit_quarry";
-const oStoneSmall = "gaia/geology_stone_mediterranean";
-const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
+const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
+const oStoneSmall = "gaia/geology_stone_temperate";
+const oMetalLarge = "gaia/geology_metal_temperate_slabs";
 
 // decorative props
 const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
@@ -128,19 +129,19 @@ for (var i = 0; i < numPlayers; i++)
 	// create the ramp
 	var rampAngle = playerAngle[i] + PI + randFloat(-PI/8, PI/8);
 	var rampDist = radius;
-	var rampX = round(fx + rampDist * cos(rampAngle));
-	var rampZ = round(fz + rampDist * sin(rampAngle));
-	placer = new ClumpPlacer(100, 0.9, 0.5, 1, rampX, rampZ);
-	var painter = new SmoothElevationPainter(ELEVATION_SET, elevation-6, 5);
-	createArea(placer, painter, null);
-	placer = new ClumpPlacer(75, 0.9, 0.5, 1, rampX, rampZ);
-	painter = new TerrainPainter(tGrass);
-	createArea(placer, painter, null);
+	var rampLength = 15;
+	var rampWidth = 12;
+	var rampX1 = round(fx + (rampDist + rampLength) * cos(rampAngle));
+	var rampZ1 = round(fz + (rampDist + rampLength) * sin(rampAngle));
+	var rampX2 = round(fx + (rampDist - 3) * cos(rampAngle));
+	var rampZ2 = round(fz + (rampDist - 3) * sin(rampAngle));
+	
+	createRamp (rampX1, rampZ1, rampX2, rampZ2, 3, 20, rampWidth, 2, tHill, tCliff, clPlayer)
 	
 	// create the city patch
 	var cityRadius = radius/3;
 	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
-	painter = new LayeredPainter([tRoadWild, tRoad], [1]);
+	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 	
 	// create starting units
@@ -234,7 +235,7 @@ terrainPainter = new LayeredPainter(
 	[tShoreBlend, tShore, tWater],		// terrains
 	[1,1]							// widths
 );
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -7, 3);
+elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -7, 6);
 var waterAreas = createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clWater)], 
@@ -292,7 +293,7 @@ terrainPainter = new LayeredPainter(
 	[tCliff, tHill],		// terrains
 	[2]								// widths
 );
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 12, 2);
+elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 16, 2);
 createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
@@ -362,7 +363,10 @@ var sizes = [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)
 for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new TerrainPainter(tGrassPatch);
+	painter = new LayeredPainter(
+		[tGrassPatchBlend, tGrassPatch], 		// terrains
+		[1]															// widths
+	);
 	createAreas(
 		placer,
 		painter,
@@ -448,6 +452,17 @@ group = new SimpleGroup(
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 0, clForest, 0, clPlayer, 1, clHill, 1, clFood, 20),
 	3 * numPlayers, 50
+);
+
+// create berry bush
+log("Creating berry bush...");
+group = new SimpleGroup(
+	[new SimpleObject(oBerryBush, 5,7, 0,4)],
+	true, clFood
+);
+createObjectGroups(group, 0,
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
+	randInt(1, 4) * numPlayers + 2, 50
 );
 
 RMS.SetProgress(80);

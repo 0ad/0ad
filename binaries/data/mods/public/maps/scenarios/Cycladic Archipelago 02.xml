@@ -4,13 +4,13 @@
 	<Environment>
 		<SkySet>cumulus</SkySet>
 		<SunColour r="0.858824" g="0.803922" b="0.639216"/>
-		<SunElevation angle="0.809942"/>
+		<SunElevation angle="1.12287"/>
 		<SunRotation angle="-2.55254"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
-			<FogFactor>0</FogFactor>
-			<FogThickness>0.5</FogThickness>
+			<FogFactor>0.0015625</FogFactor>
+			<FogThickness>0.400391</FogThickness>
 			<FogColour r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
@@ -19,7 +19,7 @@
 				<Colour r="0.027451" g="0.129412" b="0.4"/>
 				<Height>33.0492</Height>
 				<Shininess>2.19727</Shininess>
-				<Waviness>4.77539</Waviness>
+				<Waviness>8.51563</Waviness>
 				<Murkiness>0.643555</Murkiness>
 				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0.00392157" g="0.921569" b="0.992157"/>
@@ -28,15 +28,15 @@
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
-			<Contrast>1</Contrast>
+			<Contrast>1.00781</Contrast>
 			<Saturation>0.99</Saturation>
 			<Bloom>0.1999</Bloom>
-			<PostEffect>default</PostEffect>
+			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="639.187" y="90.6599" z="773.236"/>
-		<Rotation angle="1.08794"/>
+		<Position x="997.14" y="101.847" z="187.031"/>
+		<Rotation angle="0.454215"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[

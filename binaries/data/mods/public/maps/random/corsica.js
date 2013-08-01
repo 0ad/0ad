@@ -336,7 +336,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, [painter,paintClass(clSettlement),elevationPainter], null);
 	
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
+	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE, {'iberWall' : false});
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)

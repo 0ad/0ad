@@ -127,6 +127,20 @@ function init(initData, hotloadData)
 	getGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[Engine.GetPlayerID()].civ].Name;
 	initMenuPosition(); // set initial position
 
+	// Populate player selection dropdown
+	var playerNames = [];
+	var playerIDs = [];
+	for (var player in g_Players)
+	{
+		playerNames.push(g_Players[player].name);
+		playerIDs.push(player);
+	}
+
+	var viewPlayerDropdown = getGUIObjectByName("viewPlayer");
+	viewPlayerDropdown.list = playerNames;
+	viewPlayerDropdown.list_data = playerIDs;
+	viewPlayerDropdown.selected = Engine.GetPlayerID();
+
 	// If in Atlas editor, disable the exit button
 	if (Engine.IsAtlasRunning())
 		getGUIObjectByName("menuExitButton").enabled = false;
@@ -155,6 +169,14 @@ function init(initData, hotloadData)
 	setTimeout(function() { reportPerformance(60); }, 60000);
 }
 
+function selectViewPlayer(playerID)
+{
+	Engine.SetPlayerID(playerID);
+	if (playerID != 0) {
+		getGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
+		getGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[playerID].civ].Name;
+	}
+}
 
 function reportPerformance(time)
 {

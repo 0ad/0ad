@@ -366,7 +366,7 @@ RMS.SetProgress(60);
 //create the undersea bumps
 log("Creating undersea bumps...");
 placer = new ClumpPlacer(scaleByMapSize(40, 100), 0.3, 0.06, 1);
-painter = new SmoothElevationPainter(ELEVATION_SET, -1.1, 3);
+painter = new SmoothElevationPainter(ELEVATION_SET, -1.6, 3);
 createAreas(
 	placer,
 	[painter, paintClass(clCorals)], 
@@ -392,7 +392,7 @@ createAreas(
 //paint the seabed
 paintTerrainBasedOnHeight(-20, -3, 3, tSeaDepths);
 paintTerrainBasedOnHeight(-3, -2, 2, tCorals2);
-paintTerrainBasedOnHeight(-2, -1, 2, tCorals1);
+paintTerrainBasedOnHeight(-2, -1.5, 2, tCorals1);
 
 log("Creating island stone mines...");
 // create island large stone quarries
@@ -508,7 +508,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10), stayClasses(clLand, 2)],
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
 	randInt(1, 4) * numPlayers + 2, 50
 );
 
@@ -540,13 +540,13 @@ for (var i = 0; i < types.length; ++i)
 }
 
 // Set environment
-setSkySet("sunny");
-setSunColour(0.917, 0.828, 0.734);	
-setWaterColour(0.292, 0.347, 0.691);		
-setWaterTint(0.192, 0.347, 0.691);
-setWaterWaviness(4);
-setWaterMurkiness(0.82);
-setWaterReflectionTintStrength(0.1);
+setSkySet("cumulus");
+setSunColour(0.866667, 0.776471, 0.486275);	
+setWaterColour(0, 0.501961, 1);		
+setWaterTint(0.501961, 1, 1);
+setWaterWaviness(10);
+setWaterMurkiness(0.49);
+setWaterReflectionTintStrength(0.0);
 
 // Export map data
 ExportMap();

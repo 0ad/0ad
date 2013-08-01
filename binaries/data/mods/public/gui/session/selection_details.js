@@ -96,7 +96,8 @@ function displaySingle(entState, template)
 	// Resource stats
 	if (entState.resourceSupply)
 	{
-		var resources = Math.ceil(+entState.resourceSupply.amount) + " / " + entState.resourceSupply.max;
+		var resources = entState.resourceSupply.isInfinite ? "\u221E" :  // Infinity symbol
+						Math.ceil(+entState.resourceSupply.amount) + " / " + entState.resourceSupply.max;
 		var resourceType = entState.resourceSupply.type["generic"];
 		if (resourceType == "treasure")
 			resourceType = entState.resourceSupply.type["specific"];
@@ -104,7 +105,8 @@ function displaySingle(entState, template)
 		var unitResourceBar = getGUIObjectByName("resourceBar");
 		var resourceSize = unitResourceBar.size;
 
-		resourceSize.rright = 100 * Math.max(0, Math.min(1, +entState.resourceSupply.amount / +entState.resourceSupply.max));
+		resourceSize.rright = entState.resourceSupply.isInfinite ? 100 :
+						100 * Math.max(0, Math.min(1, +entState.resourceSupply.amount / +entState.resourceSupply.max));
 		unitResourceBar.size = resourceSize;
 		getGUIObjectByName("resourceLabel").caption = toTitleCase(resourceType) + ":";
 		getGUIObjectByName("resourceStats").caption = resources;

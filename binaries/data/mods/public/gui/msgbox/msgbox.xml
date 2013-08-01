@@ -90,10 +90,6 @@
 		<action on="Press">Engine.PopGuiPage();</action>
 	</object>
 
-	<object hotkey="chat">
-		<action on="Press">getGUIObjectByName("mbButton1").onPress();</action>
-	</object>
-
 	<object>
 		<object name="mbMain"
 			style="StoneDialog"
