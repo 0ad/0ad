@@ -1,50 +1,50 @@
 RMS.LoadLibrary("rmgen");
 
-var tGrass = ["temp_grass_aut", "temp_grass_aut", "temp_grass_d_aut"];
-var tGrassPForest = "temp_grass_aut";
-var tGrassDForest = "temp_grass_aut";
-var tGrassA = "temp_grass_plants_aut";
-var tGrassB = "temp_plants_bog_aut";
-var tGrassC = ["temp_grass_b_aut", "temp_grass_c_aut"];
-var tDirt = ["temp_plants_bog_aut", "temp_mud_a"];
-var tHill = ["temp_highlands_aut", "temp_grass_long_b_aut"];
-var tCliff = ["temp_cliff_a", "temp_cliff_b"];
-var tRoad = "temp_road_aut";
-var tRoadWild = "temp_road_overgrown_aut";
-var tGrassPatch = "temp_grass_plants_aut";
-var tShoreBlend = "temp_grass_plants_aut";
-var tShore = "temp_plants_bog_aut";
-var tWater = "temp_mud_a";
+const tGrass = ["temp_grass_aut", "temp_grass_aut", "temp_grass_d_aut"];
+const tForestFloor = "temp_grass_aut";
+const tGrassA = "temp_grass_plants_aut";
+const tGrassB = "temp_grass_b_aut";
+const tGrassC = "temp_grass_c_aut";
+const tDirt = ["temp_plants_bog_aut", "temp_mud_a"];
+const tHill = ["temp_highlands_aut", "temp_grass_long_b_aut"];
+const tCliff = ["temp_cliff_a", "temp_cliff_b"];
+const tRoad = "temp_road_aut";
+const tRoadWild = "temp_road_overgrown_aut";
+const tGrassPatch = "temp_grass_plants_aut";
+const tShoreBlend = "temp_grass_plants_aut";
+const tShore = "temp_plants_bog_aut";
+const tWater = "temp_mud_a";
 
 // gaia entities
-var oBeech = "gaia/flora_tree_euro_beech_aut";
-var oOak = "gaia/flora_tree_oak_aut";
-var oPine = "gaia/flora_tree_pine";
-var oChicken = "gaia/fauna_chicken";
-var oDeer = "gaia/fauna_deer";
-var oFish = "gaia/fauna_fish";
-var oSheep = "gaia/fauna_rabbit";
-var oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
-var oStoneSmall = "gaia/geology_stone_temperate";
-var oMetalLarge = "gaia/geology_metal_temperate_slabs";
-var oWood = "gaia/special_treasure_wood";
-var oFood = "gaia/special_treasure_food_bin";
-var oMetal = "gaia/special_treasure_metal";
-var oStone = "gaia/special_treasure_stone";
+const oBeech = "gaia/flora_tree_euro_beech_aut";
+const oOak = "gaia/flora_tree_oak_aut";
+const oPine = "gaia/flora_tree_pine";
+const oChicken = "gaia/fauna_chicken";
+const oDeer = "gaia/fauna_deer";
+const oFish = "gaia/fauna_fish";
+const oSheep = "gaia/fauna_rabbit";
+const oBerryBush = "gaia/flora_bush_berry";
+const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
+const oStoneSmall = "gaia/geology_stone_temperate";
+const oMetalLarge = "gaia/geology_metal_temperate_slabs";
+const oWood = "gaia/special_treasure_wood";
+const oFood = "gaia/special_treasure_food_bin";
+const oMetal = "gaia/special_treasure_metal";
+const oStone = "gaia/special_treasure_stone";
 
 // decorative props
-var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
-var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
-var aRockLarge = "actor|geology/stone_granite_med.xml";
-var aRockMedium = "actor|geology/stone_granite_med.xml";
-var aReeds = "actor|props/flora/reeds_pond_dry.xml";
-var aLillies = "actor|props/flora/water_lillies.xml";
-var aBushMedium = "actor|props/flora/bush_medit_me_dry.xml";
-var aBushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
+const aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
+const aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
+const aRockLarge = "actor|geology/stone_granite_med.xml";
+const aRockMedium = "actor|geology/stone_granite_med.xml";
+const aReeds = "actor|props/flora/reeds_pond_dry.xml";
+const aLillies = "actor|props/flora/water_lillies.xml";
+const aBushMedium = "actor|props/flora/bush_medit_me_dry.xml";
+const aBushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 
-var pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest];
-var pForestO = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
-var pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oPine, tGrassPForest];
+const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oBeech, tForestFloor];
+const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
+const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
 const BUILDING_ANGlE = -PI/4;
 
@@ -54,9 +54,9 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
+const mapArea = mapSize*mapSize;
 
 // create tile classes
 
@@ -97,7 +97,6 @@ for (var i = 0; i < numPlayers; i++)
 
 for (var i=0; i < numPlayers; i++)
 {
-	var civ = g_MapSettings.PlayerData[i].Civ;
 	var startEntities = getStartingEntities(i);
 	// Place starting entities
 	createStartingPlayerEntities(playerX[i], playerZ[i], i+1, startEntities, BUILDING_ANGlE)
@@ -153,8 +152,26 @@ for (var i=0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 	
 	// Base texture
-	var placer = new ClumpPlacer(PI*baseRadius*baseRadius/4, 1/2, 1/8, 10, playerX[i], playerZ[i]);
-	createArea(placer,[new TerrainPainter(tRoad), paintClass(clPlayer)]);
+	var civ = g_MapSettings.PlayerData[i].Civ;
+	var tilesSize = (civ == "cart" ? 27 : 22);
+	
+	const minBoundX = (playerX[i] > tilesSize ? playerX[i] - tilesSize : 0);
+	const minBoundY = (playerZ[i] > tilesSize ? playerZ[i] - tilesSize : 0);
+	const maxBoundX = (playerX[i] < mapSize - tilesSize ? playerX[i] + tilesSize : mapSize);
+	const maxBoundY = (playerZ[i] < mapSize - tilesSize ? playerZ[i] + tilesSize : mapSize);
+	
+	for (var tx = minBoundX; tx < maxBoundX; ++tx)
+	{
+		for (var ty = minBoundY; ty < maxBoundY; ++ty)
+		{
+			var unboundSumOfXY = tx + ty - minBoundX - minBoundY;
+			if ((unboundSumOfXY > tilesSize) && (unboundSumOfXY < 3 * tilesSize) && (tx - ty + minBoundY - minBoundX < tilesSize) && (ty - tx - minBoundY + minBoundX < tilesSize))
+			{
+				placeTerrain(floor(tx), floor(ty), tRoad);
+				addToClass(floor(tx), floor(ty), clPlayer);
+			}
+		}
+	}
 	
 	// Place custom fortress
 	if (civ == "brit" || civ == "celt" || civ == "gaul" || civ == "iber")
@@ -264,9 +281,9 @@ var numStragglers = totalTrees * (1.0 - P_FOREST);
 // create forests
 log("Creating forests...");
 var types = [
-	[[tGrassDForest, tGrass, pForestD], [tGrassDForest, pForestD]],
-	[[tGrassDForest, tGrass, pForestO], [tGrassDForest, pForestO]],
-	[[tGrassPForest, tGrass, pForestP], [tGrassPForest, pForestP]]
+	[[tForestFloor, tGrass, pForestD], [tForestFloor, pForestD]],
+	[[tForestFloor, tGrass, pForestO], [tForestFloor, pForestO]],
+	[[tForestFloor, tGrass, pForestP], [tForestFloor, pForestP]]
 ];	// some variation
 var size = numForest / (scaleByMapSize(2,8) * numPlayers);
 var num = floor(size / types.length);
@@ -399,6 +416,17 @@ group = new SimpleGroup(
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 0, clForest, 0, clPlayer, 6, clHill, 1, clFood, 20),
 	3 * numPlayers, 50
+);
+
+// create berry bush
+log("Creating berry bush...");
+group = new SimpleGroup(
+	[new SimpleObject(oBerryBush, 5,7, 0,4)],
+	true, clFood
+);
+createObjectGroups(group, 0,
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
+	randInt(1, 4) * numPlayers + 2, 50
 );
 
 RMS.SetProgress(80);
