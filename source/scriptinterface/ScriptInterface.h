@@ -38,7 +38,7 @@ class AutoGCRooter;
 // Set the maximum number of function arguments that can be handled
 // (This should be as small as possible (for compiler efficiency),
 // but as large as necessary for all wrapped functions)
-#define SCRIPT_INTERFACE_MAX_ARGS 7
+#define SCRIPT_INTERFACE_MAX_ARGS 8
 
 // TODO: what's a good default?
 #define DEFAULT_RUNTIME_SIZE 16 * 1024 * 1024

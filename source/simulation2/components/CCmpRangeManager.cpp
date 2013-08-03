@@ -20,10 +20,12 @@
 #include "simulation2/system/Component.h"
 #include "ICmpRangeManager.h"
 
+#include "ICmpTerrain.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
 #include "simulation2/components/ICmpVision.h"
+#include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Spatial.h"
 
@@ -44,9 +46,11 @@
 struct Query
 {
 	bool enabled;
+	bool parabolic;
 	entity_id_t source;
 	entity_pos_t minRange;
 	entity_pos_t maxRange;
+	entity_pos_t elevationBonus;
 	u32 ownersMask;
 	i32 interface;
 	std::vector<entity_id_t> lastMatch;
@@ -88,6 +92,44 @@ static u32 CalcSharedLosMask(std::vector<player_id_t> players)
 }
 
 /**
+ * Checks whether v is in a parabolic range of (0,0,0)
+ * The highest point of the paraboloid is (0,range/2,0)
+ * and the circle of distance 'range' around (0,0,0) on height y=0 is part of the paraboloid
+ * 
+ * Avoids sqrting and overflowing.
+ */
+static bool InParabolicRange(CFixedVector3D v, fixed range) 
+{
+	i64 x = (i64)v.X.GetInternalValue(); // abs(x) <= 2^31
+	i64 z = (i64)v.Z.GetInternalValue();
+	i64 xx = (x * x); // xx <= 2^62
+	i64 zz = (z * z);
+	i64 d2 = (xx + zz) >> 1; // d2 <= 2^62 (no overflow)
+	
+	i64 y = (i64)v.Y.GetInternalValue();
+
+	i64 c = (i64)range.GetInternalValue();
+	i64 c_2 = c >> 1; 
+
+	i64 c2 = (c_2-y)*c;
+
+	if (d2 <= c2)
+		return true;
+
+	return false;
+}
+
+struct EntityParabolicRangeOutline
+{
+	entity_id_t source;
+	CFixedVector3D position;
+	entity_pos_t range;
+	std::vector<entity_pos_t> outline;
+};
+
+static std::map<entity_id_t, EntityParabolicRangeOutline> ParabolicRangesOutlines;
+
+/**
  * Representation of an entity, with the data needed for queries.
  */
 struct EntityData
@@ -113,9 +155,11 @@ struct SerializeQuery
 	void operator()(S& serialize, const char* UNUSED(name), Query& value)
 	{
 		serialize.Bool("enabled", value.enabled);
+		serialize.Bool("parabolic",value.parabolic);
 		serialize.NumberU32_Unbounded("source", value.source);
 		serialize.NumberFixed_Unbounded("min range", value.minRange);
 		serialize.NumberFixed_Unbounded("max range", value.maxRange);
+		serialize.NumberFixed_Unbounded("elevation bonus", value.elevationBonus);
 		serialize.NumberU32_Unbounded("owners mask", value.ownersMask);
 		serialize.NumberI32_Unbounded("interface", value.interface);
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "last match", value.lastMatch);
@@ -619,6 +663,16 @@ public:
 		return id;
 	}
 
+	virtual tag_t CreateActiveParabolicQuery(entity_id_t source,
+		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus,
+		std::vector<int> owners, int requiredInterface, u8 flags)
+	{
+		tag_t id = m_QueryNext++;
+		m_Queries[id] = ConstructParabolicQuery(source, minRange, maxRange, elevationBonus, owners, requiredInterface, flags);
+
+		return id;
+	}
+
 	virtual void DestroyActiveQuery(tag_t tag)
 	{
 		if (m_Queries.find(tag) == m_Queries.end())
@@ -842,7 +896,48 @@ public:
 				r.push_back(it->first);
 			}
 		}
-		else
+		// Not the entire world, so check a parabolic range, or a regular range
+		else if (q.parabolic) 
+		{
+			// elevationBonus is part of the 3D position, as the source is really that much heigher
+			CFixedVector3D pos3d = cmpSourcePosition->GetPosition()+
+			    CFixedVector3D(entity_pos_t::Zero(), q.elevationBonus, entity_pos_t::Zero()) ;
+			// Get a quick list of entities that are potentially in range, with a cutoff of 2*maxRange
+			std::vector<entity_id_t> ents = m_Subdivision.GetNear(pos, q.maxRange*2);
+
+			for (size_t i = 0; i < ents.size(); ++i)
+			{
+				std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.find(ents[i]);
+				ENSURE(it != m_EntityData.end());
+
+				if (!TestEntityQuery(q, it->first, it->second))
+					continue;
+				
+				CmpPtr<ICmpPosition> cmpSecondPosition(GetSimContext(), ents[i]);
+				if (!cmpSecondPosition || !cmpSecondPosition->IsInWorld())
+					continue;
+				CFixedVector3D secondPosition = cmpSecondPosition->GetPosition();
+
+				// Restrict based on precise distance
+				if (!InParabolicRange(
+						CFixedVector3D(it->second.x, secondPosition.Y, it->second.z) 
+							- pos3d, 
+						q.maxRange))
+					continue;
+
+				if (!q.minRange.IsZero())
+				{
+					int distVsMin = (CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.minRange);
+					if (distVsMin < 0)
+						continue;
+				}
+
+				r.push_back(it->first);
+
+			}
+		}
+		// check a regular range (i.e. not the entire world, and not parabolic)
+		else 
 		{
 			// Get a quick list of entities that are potentially in range
 			std::vector<entity_id_t> ents = m_Subdivision.GetNear(pos, q.maxRange);
@@ -868,10 +963,116 @@ public:
 				}
 
 				r.push_back(it->first);
+
 			}
 		}
 	}
 
+
+	virtual entity_pos_t GetElevationAdaptedRange(CFixedVector3D pos, CFixedVector3D rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle)
+	{
+		entity_pos_t r = entity_pos_t::Zero() ;
+		
+		pos.Y += elevationBonus;
+		entity_pos_t orientation = rot.Y;
+
+		entity_pos_t maxAngle = orientation + angle/2;
+		entity_pos_t minAngle = orientation - angle/2;
+
+		int numberOfSteps = 16;
+
+		if (angle == entity_pos_t::Zero())
+			numberOfSteps = 1;
+
+		std::vector<entity_pos_t> coords = getParabolicRangeForm(pos, range, range*2, minAngle, maxAngle, numberOfSteps);
+
+		entity_pos_t part =  entity_pos_t::FromInt(numberOfSteps);
+
+		for (int i = 0; i < numberOfSteps; i++)
+		{
+			r = r + CFixedVector2D(coords[2*i],coords[2*i+1]).Length() / part;
+		}
+		
+		return r;
+		
+	}
+
+	virtual std::vector<entity_pos_t> getParabolicRangeForm(CFixedVector3D pos, entity_pos_t maxRange, entity_pos_t cutoff, entity_pos_t minAngle, entity_pos_t maxAngle, int numberOfSteps) 
+	{
+		
+		// angle = 0 goes in the positive Z direction
+		entity_pos_t precision = entity_pos_t::FromInt((int)TERRAIN_TILE_SIZE)/8;
+
+		std::vector<entity_pos_t> r;
+		
+
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
+		entity_pos_t waterLevel = cmpWaterManager->GetWaterLevel(pos.X,pos.Z);
+		entity_pos_t thisHeight = pos.Y > waterLevel ? pos.Y : waterLevel;
+
+		if (cmpTerrain) 
+		{
+			for (int i = 0; i < numberOfSteps; i++)
+			{
+				entity_pos_t angle = minAngle + (maxAngle - minAngle) / numberOfSteps * i;
+				entity_pos_t sin;
+				entity_pos_t cos;
+				entity_pos_t minDistance = entity_pos_t::Zero();
+				entity_pos_t maxDistance = cutoff;
+				sincos_approx(angle,sin,cos);
+
+				CFixedVector2D minVector = CFixedVector2D(entity_pos_t::Zero(),entity_pos_t::Zero());
+				CFixedVector2D maxVector = CFixedVector2D(sin,cos).Multiply(cutoff);
+				entity_pos_t targetHeight = cmpTerrain->GetGroundLevel(pos.X+maxVector.X,pos.Z+maxVector.Y);
+				// use water level to display range on water
+				targetHeight = targetHeight > waterLevel ? targetHeight : waterLevel;
+
+				if (InParabolicRange(CFixedVector3D(maxVector.X,targetHeight-thisHeight,maxVector.Y),maxRange))
+				{
+					r.push_back(maxVector.X);
+					r.push_back(maxVector.Y);
+					continue;
+				}
+				
+				// Loop until vectors come close enough
+				while ((maxVector - minVector).CompareLength(precision) > 0)
+				{
+					// difference still bigger than precision, bisect to get smaller difference
+					entity_pos_t newDistance = (minDistance+maxDistance)/entity_pos_t::FromInt(2);
+
+					CFixedVector2D newVector = CFixedVector2D(sin,cos).Multiply(newDistance);
+
+					// get the height of the ground
+					targetHeight = cmpTerrain->GetGroundLevel(pos.X+newVector.X,pos.Z+newVector.Y);
+					targetHeight = targetHeight > waterLevel ? targetHeight : waterLevel;
+
+					if (InParabolicRange(CFixedVector3D(newVector.X,targetHeight-thisHeight,newVector.Y),maxRange))
+					{
+						// new vector is in parabolic range, so this is a new minVector
+						minVector = newVector;
+						minDistance = newDistance;
+					}
+					else 
+					{
+						// new vector is out parabolic range, so this is a new maxVector
+						maxVector = newVector;
+						maxDistance = newDistance;
+					}
+					
+				}
+				r.push_back(maxVector.X);
+				r.push_back(maxVector.Y);
+				
+			}
+			r.push_back(r[0]);
+			r.push_back(r[1]); 
+
+		}
+		return r;
+
+	}
+	
 	Query ConstructQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
 		const std::vector<int>& owners, int requiredInterface, u8 flagsMask)
@@ -886,9 +1087,11 @@ public:
 
 		Query q;
 		q.enabled = false;
+		q.parabolic = false;
 		q.source = source;
 		q.minRange = minRange;
 		q.maxRange = maxRange;
+		q.elevationBonus = entity_pos_t::Zero();
 
 		q.ownersMask = 0;
 		for (size_t i = 0; i < owners.size(); ++i)
@@ -900,11 +1103,21 @@ public:
 		return q;
 	}
 
+	Query ConstructParabolicQuery(entity_id_t source,
+		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus,
+		const std::vector<int>& owners, int requiredInterface, u8 flagsMask)
+	{
+		Query q = ConstructQuery(source,minRange,maxRange,owners,requiredInterface,flagsMask);
+		q.parabolic = true;
+		q.elevationBonus = elevationBonus;
+		return q;
+	}
+
+
 	void RenderSubmit(SceneCollector& collector)
 	{
 		if (!m_DebugOverlayEnabled)
 			return;
-
 		CColor enabledRingColour(0, 1, 0, 1);
 		CColor disabledRingColour(1, 0, 0, 1);
 		CColor rayColour(1, 1, 0, 0.2f);
@@ -923,15 +1136,74 @@ public:
 				CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
 
 				// Draw the max range circle
-				m_DebugOverlayLines.push_back(SOverlayLine());
-				m_DebugOverlayLines.back().m_Color = (q.enabled ? enabledRingColour : disabledRingColour);
-				SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToFloat(), q.maxRange.ToFloat(), m_DebugOverlayLines.back(), true);
+				if (!q.parabolic)
+				{
+					m_DebugOverlayLines.push_back(SOverlayLine());
+					m_DebugOverlayLines.back().m_Color = (q.enabled ? enabledRingColour : disabledRingColour);
+					SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToFloat(), q.maxRange.ToFloat(), m_DebugOverlayLines.back(), true);
+				}
+				else 
+				{ 
+					// elevation bonus is part of the 3D position. As if the unit is really that much higher
+					CFixedVector3D pos = cmpSourcePosition->GetPosition(); 
+					pos.Y += q.elevationBonus;
+
+					std::vector<entity_pos_t> coords;
+					
+					// Get the outline from cache if possible
+					if (ParabolicRangesOutlines.find(q.source) != ParabolicRangesOutlines.end())
+					{
+						EntityParabolicRangeOutline e = ParabolicRangesOutlines[q.source];
+						if (e.position == pos && e.range == q.maxRange) 
+						{
+							// outline is cached correctly, use it
+							coords = e.outline;	
+						}
+						else
+						{
+							// outline was cached, but important parameters changed 
+							// (position, elevation, range)
+							// update it
+							coords = getParabolicRangeForm(pos,q.maxRange,q.maxRange*2, entity_pos_t::Zero(), entity_pos_t::FromFloat(2.0f*3.14f),70);
+							e.outline = coords;
+							e.range = q.maxRange;
+							e.position = pos;
+							ParabolicRangesOutlines[q.source] = e;
+						}
+					}
+					else 
+					{
+						// outline wasn't cached (first time you enable the range overlay 
+						// or you created a new entiy)
+						// cache a new outline
+						coords = getParabolicRangeForm(pos,q.maxRange,q.maxRange*2, entity_pos_t::Zero(), entity_pos_t::FromFloat(2.0f*3.14f),70);
+						EntityParabolicRangeOutline e;
+						e.source = q.source;
+						e.range = q.maxRange;
+						e.position = pos;
+						e.outline = coords;
+						ParabolicRangesOutlines[q.source] = e;
+					}
+					
+					CColor thiscolor = q.enabled ? enabledRingColour : disabledRingColour;
+					
+					// draw the outline (piece by piece)	
+					for (size_t i = 3; i < coords.size(); i += 2)
+					{
+						std::vector<float> c;
+						c.push_back((coords[i-3]+pos.X).ToFloat());
+						c.push_back((coords[i-2]+pos.Z).ToFloat());
+						c.push_back((coords[i-1]+pos.X).ToFloat());
+						c.push_back((coords[i]+pos.Z).ToFloat());
+						m_DebugOverlayLines.push_back(SOverlayLine());
+						m_DebugOverlayLines.back().m_Color = thiscolor;
+						SimRender::ConstructLineOnGround(GetSimContext(), c, m_DebugOverlayLines.back(), true);
+					}
+				}
 
 				// Draw the min range circle
 				if (!q.minRange.IsZero())
 				{
-					m_DebugOverlayLines.push_back(SOverlayLine());
-					m_DebugOverlayLines.back().m_Color = (q.enabled ? enabledRingColour : disabledRingColour);
 					SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToFloat(), q.minRange.ToFloat(), m_DebugOverlayLines.back(), true);
 				}
 

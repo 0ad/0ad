@@ -211,13 +211,31 @@ function displaySingle(entState, template)
 
 	// Attack and Armor
 	var type = "";
+	var attack = "[font=\"serif-bold-13\"]"+type+"Attack:[/font] " + damageTypeDetails(entState.attack);
 	if (entState.attack)
+	{
 		type = entState.attack.type + " ";
 
-	attack = "[font=\"serif-bold-13\"]"+type+"Attack:[/font] " + damageTypeDetails(entState.attack);
-	// Show max attack range if ranged attack, also convert to tiles (4m per tile)
-	if (entState.attack && entState.attack.type == "Ranged")
-		attack += ", [font=\"serif-bold-13\"]Range:[/font] " + Math.round(entState.attack.maxRange/4);
+		// Show max attack range if ranged attack, also convert to tiles (4m per tile)
+		if (entState.attack.type == "Ranged")
+		{
+			var realRange = entState.attack.elevationAdaptedRange;
+			var range =  entState.attack.maxRange;
+			attack += ", [font=\"serif-bold-13\"]Range:[/font] " + 
+				Math.round(range/4);
+
+			if (Math.round((realRange - range)/4) > 0)
+			{ 
+				attack += " (+" + Math.round((realRange - range)/4) + ")";
+			}
+			else if (Math.round((realRange - range)/4) < 0)
+			{
+				attack += " (" + Math.round((realRange - range)/4) + ")";
+			} // don't show when it's 0
+
+		}
+	}
+	
 	getGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n[font=\"serif-bold-13\"]Armor:[/font] " + armorTypeDetails(entState.armour);
 
 	// Icon Tooltip

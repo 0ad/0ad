@@ -174,6 +174,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpPosition && cmpPosition.IsInWorld())
 	{
 		ret.position = cmpPosition.GetPosition();
+		ret.rotation = cmpPosition.GetRotation();
 	}
 
 	var cmpHealth = Engine.QueryInterface(ent, IID_Health);
@@ -185,7 +186,10 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.needsHeal = !cmpHealth.IsUnhealable();
 	}
 
+	var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
+
 	if (cmpAttack)
 	{
 		var type = cmpAttack.GetBestAttack(); // TODO: how should we decide which attack to show? show all?
@@ -194,6 +198,32 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.attack.type = type;
 		ret.attack.minRange = range.min;
 		ret.attack.maxRange = range.max;
+		if (type == "Ranged")
+		{
+			ret.attack.elevationBonus = range.elevationBonus;
+			if (cmpUnitAI && cmpPosition && cmpPosition.IsInWorld())
+			{
+				// For units, take the rage in front of it, no spread. So angle = 0
+				ret.attack.elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(ret.position, ret.rotation, range.max, range.elevationBonus, 0);
+			}
+			else if(cmpPosition && cmpPosition.IsInWorld())
+			{
+				// For buildings, take the average elevation around it. So angle = 2*pi
+				ret.attack.elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(ret.position, ret.rotation, range.max, range.elevationBonus, 2*Math.PI);
+			}
+			else
+			{
+				// not in world, set a default?
+				ret.attack.elevationAdaptedRange = ret.attack.maxRange;
+			}
+			
+		}
+		else
+		{
+			// not a ranged attack, set some defaults
+			ret.attack.elevationBonus = 0;
+			ret.attack.elevationAdaptedRange = ret.attack.maxRange;
+		}
 	}
 
 	var cmpArmour = Engine.QueryInterface(ent, IID_DamageReceiver);
@@ -313,8 +343,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"req": cmpPromotion.GetRequiredXp()
 		};
 	}
-	
-	var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+
 	if (cmpUnitAI)
 	{
 		ret.unitAI = {
@@ -325,7 +354,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		if (cmpUnitAI.isGarrisoned && ret.player)
 			ret.template = "p" + ret.player + "&" + ret.template;
 	}
-	
+
 	var cmpGate = Engine.QueryInterface(ent, IID_Gate);
 	if (cmpGate)
 	{
@@ -349,11 +378,25 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		};
 	}
 
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	ret.visibility = cmpRangeManager.GetLosVisibility(ent, player, false);
 
 	return ret;
 };
+
+GuiInterface.prototype.GetAverageRangeForBuildings = function(player, cmd)
+{
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
+	var rot = {x:0, y:0, z:0};
+	var pos = {x:cmd.x,z:cmd.z};
+	pos.y = cmpTerrain.GetGroundLevel(cmd.x, cmd.z);
+	var elevationBonus = cmd.elevationBonus || 0;
+	var range = cmd.range;
+
+	return cmpRangeManager.GetElevationAdaptedRange(pos, rot, range, elevationBonus, 2*Math.PI);
+};
+
+
 
 GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 {
@@ -393,6 +436,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 				"crush": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/Crush", +(template.Attack[type].Crush || 0)),
 				"minRange": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/MinRange", +(template.Attack[type].MinRange || 0)),
 				"maxRange": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/MaxRange", +template.Attack[type].MaxRange),
+				"elevationBonus": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/ElevationBonus", +(template.Attack[type].ElevationBonus || 0)),
 			};
 		}
 	}
@@ -1729,6 +1773,7 @@ var exposedFunctions = {
 	"GetRenamedEntities": 1,
 	"ClearRenamedEntities": 1,
 	"GetEntityState": 1,
+	"GetAverageRangeForBuildings": 1,
 	"GetTemplateData": 1,
 	"GetTechnologyData": 1,
 	"IsTechnologyResearched": 1,
