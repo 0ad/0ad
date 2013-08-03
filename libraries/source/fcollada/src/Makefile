@@ -8,7 +8,7 @@ PIC_FLAGS ?= -fpic
 endif
 
 CXX ?= g++
-CXXFLAGS += -fvisibility=hidden -W -Wall -Wno-unused-parameter -Wno-unused-function $(OS_DEFINE) $(PIC_FLAGS) $(CPPFLAGS)
+CXXFLAGS += -fvisibility=hidden -W -Wall -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable $(OS_DEFINE) $(PIC_FLAGS) $(CPPFLAGS)
 CXXFLAGS_DEBUG := -O0 -g -D_DEBUG -DRETAIL
 CXXFLAGS_RELEASE := -O1 -DNDEBUG -DRETAIL
 # (-O2 with gcc 4.3 causes linker errors when using this library, for unknown reasons, so stick with -O1)
