@@ -55,9 +55,9 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
+const mapArea = mapSize*mapSize;
 
 // create tile classes
 
@@ -300,11 +300,11 @@ var terrainPainter = new LayeredPainter(
 	[tCliff, tHill],		// terrains
 	[2]								// widths
 );
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 12, 2);
+var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 15, 2);
 createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
-	avoidClasses(clSea, 5, clPlayer, 15, clWater, 5, clHill, 15, clHighlands, 5),
+	avoidClasses(clSea, 5, clPlayer, 20, clWater, 5, clHill, 15, clHighlands, 5),
 	scaleByMapSize(1, 4) * numPlayers
 );
 
@@ -336,7 +336,7 @@ for (var i = 0; i < types.length; ++i)
 	createAreas(
 		placer,
 		[painter, paintClass(clForest)], 
-		avoidClasses(clPlayer, 6, clWater, 3, clForest, 10, clHill, 0, clSea, 6, clBaseResource, 3),
+		avoidClasses(clPlayer, 20, clWater, 3, clForest, 10, clHill, 0, clSea, 6, clBaseResource, 3),
 		num
 	);
 }
@@ -358,7 +358,7 @@ for (var i = 0; i < types.length; ++i)
 	createAreas(
 		placer,
 		[painter, paintClass(clForest)], 
-		avoidClasses(clPlayer, 6, clWater, 3, clForest, 2, clHill, 0, clSea, 6, clFlatlands, 3),
+		avoidClasses(clPlayer, 20, clWater, 3, clForest, 2, clHill, 0, clSea, 6, clFlatlands, 3),
 		num
 	);
 }
@@ -379,7 +379,7 @@ for (var i = 0; i < sizes.length; i++)
 	createAreas(
 		placer,
 		[painter, paintClass(clDirt)],
-		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0, clSea, 0),
+		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 4, clSea, 0),
 		scaleByMapSize(15, 45)
 	);
 }
@@ -392,11 +392,11 @@ var sizes = [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)
 for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new TerrainPainter(tGrassPatch);
+	painter = new LayeredPainter([tGrassC, tGrassPatch], [2]);
 	createAreas(
 		placer,
 		painter,
-		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0, clSea, 0),
+		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 4, clSea, 0),
 		scaleByMapSize(15, 45)
 	);
 }
@@ -407,14 +407,14 @@ log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clRock, 10, clSea, 2, clHill, 2)],
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clRock, 10, clSea, 2, clHill, 2)],
 	scaleByMapSize(4,16), 100
 );
 
 // create small stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clRock, 10, clSea, 2, clHill, 2)],
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clRock, 10, clSea, 2, clHill, 2)],
 	scaleByMapSize(4,16), 100
 );
 
@@ -422,7 +422,7 @@ log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clMetal, 10, clRock, 5, clSea, 0, clHill, 2)],
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clSea, 0, clHill, 2)],
 	scaleByMapSize(4,16), 100
 );
 
@@ -462,7 +462,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0, clFood, 5, clSea, 0, clFlatlands, 0),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 0, clFood, 5, clSea, 0, clFlatlands, 0),
 	6 * numPlayers, 50
 );
 
@@ -474,8 +474,19 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0, clFood, 20, clSea, 0),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 0, clFood, 20, clSea, 0),
 	3 * numPlayers, 50
+);
+
+// create berry bush
+log("Creating berry bush...");
+group = new SimpleGroup(
+	[new SimpleObject(oBerryBush, 5,7, 0,4)],
+	true, clFood
+);
+createObjectGroups(group, 0,
+	avoidClasses(clWater, 6, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
+	randInt(1, 4) * numPlayers + 2, 50
 );
 
 // create boar
@@ -485,7 +496,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0, clFood, 20, clSea, 0, clFlatlands, 0),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 0, clFood, 20, clSea, 0, clFlatlands, 0),
 	2 * numPlayers, 50
 );
 
@@ -501,7 +512,7 @@ for (var i = 0; i < types.length; ++i)
 		true, clForest
 	);
 	createObjectGroups(group, 0,
-		avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clMetal, 1, clRock, 1, clSea, 1, clHighlands, 25),
+		avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 10, clMetal, 1, clRock, 1, clSea, 1, clHighlands, 25),
 		num
 	);
 }
