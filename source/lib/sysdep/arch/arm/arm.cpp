@@ -28,7 +28,6 @@
 
 #include "lib/sysdep/cpu.h"
 
-#include <android/log.h>
 intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 {
 	return __sync_fetch_and_add(location, increment);
@@ -41,21 +40,7 @@ bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
 
 bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue)
 {
-	// Current versions of GCC don't implement this on ARM:
-	//   return __sync_bool_compare_and_swap(location, expected, newValue);
-	
-	// http://git.kernel.org/?p=linux/kernel/git/torvalds/linux-2.6.git;a=commit;h=40fb79c8a88625504857d44de1bc89dc0341e618
-	// adds support for
-	//   return __kernel_cmpxchg64(&expected, &newValue, (long long*)location) == 0;
-	// but only for Linux kernel 3.1
-	
-	// Maybe we can do it with user-space assembly assuming a modern-enough CPU?
-	// That sounds non-trivial so let's just cheat
-#warning TODO: atomic cpu_CAS64 on ARM
-	if (*location != expected)
-		return false;
-	*location = newValue;
-	return true;
+	return __sync_bool_compare_and_swap(location, expected, newValue);
 }
 
 const char* cpu_IdentifierString()
