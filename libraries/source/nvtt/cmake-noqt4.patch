@@ -1,0 +1,12 @@
+Index: src/src/CMakeLists.txt
+===================================================================
+--- src/src/CMakeLists.txt	(revision 13634)
++++ src/src/CMakeLists.txt	(working copy)
+@@ -128,6 +128,7 @@
+ ENDIF(OPENEXR)
+ 
+ # Qt
++# We don't actually use this and it requires having Qt4 installed, so why is this in here?
+ #FIND_PACKAGE(Qt4)
+ 
+ # Threads
