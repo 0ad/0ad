@@ -2,6 +2,6 @@
 	"genericName": "City Phase",
 	"requirements": { "any": [{"tech":"phase_city_generic"}, {"tech":"phase_city_spart"}, {"tech":"phase_city_britons"}, {"tech":"city_phase_gauls"}, {"tech":"phase_city_pair_celts"}] },
 	"autoResearch": true,
-	"modifications": [{"value": "TerritoryInfluence/Radius", "multiplier": 1.25}],
+	"modifications": [{"value": "TerritoryInfluence/Radius", "multiplier": 1.50}],
 	"affects": ["CivCentre"]
 }
