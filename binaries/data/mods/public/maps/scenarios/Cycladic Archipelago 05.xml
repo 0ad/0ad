@@ -2,11 +2,11 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>stormy</SkySet>
-		<SunColour r="0.866667" g="0.776471" b="0.490196"/>
+		<SkySet>cumulus</SkySet>
+		<SunColour r="0.866667" g="0.776471" b="0.486275"/>
 		<SunElevation angle="1.2548"/>
 		<SunRotation angle="-0.883573"/>
-		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
+		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.00199219</FogFactor>
@@ -20,10 +20,10 @@
 				<Height>33.0492</Height>
 				<Shininess>2.19727</Shininess>
 				<Waviness>8.00781</Waviness>
-				<Murkiness>0.804688</Murkiness>
+				<Murkiness>0.71875</Murkiness>
 				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0.00392157" g="0.921569" b="0.992157"/>
-				<ReflectionTintStrength>0.585938</ReflectionTintStrength>
+				<ReflectionTintStrength>0.1875</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="464.7" y="124.973" z="163.477"/>
+		<Position x="452.689" y="97.4959" z="332.614"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -3089,8 +3089,8 @@
 		<Entity uid="579">
 			<Template>gaia/fauna_boar</Template>
 			<Player>0</Player>
-			<Position x="497.5377" z="403.53196"/>
-			<Orientation y="2.35621"/>
+			<Position x="464.79957" z="291.42658"/>
+			<Orientation y="-1.8949"/>
 		</Entity>
 		<Entity uid="580">
 			<Template>gaia/fauna_chicken</Template>
@@ -16540,7 +16540,7 @@
 		<Entity uid="3103">
 			<Template>gaia/fauna_boar</Template>
 			<Player>0</Player>
-			<Position x="1461.32691" z="1024.51319"/>
+			<Position x="1389.724" z="985.77973"/>
 			<Orientation y="-0.68575"/>
 		</Entity>
 		<Entity uid="3104">
@@ -19380,6 +19380,30 @@
 			<Player>1</Player>
 			<Position x="459.91001" z="387.02683"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3671">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="564.56067" z="465.24457"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="38586"/>
+		</Entity>
+		<Entity uid="3672">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="567.86304" z="444.62327"/>
+			<Orientation y="1.72287"/>
+			<Actor seed="38654"/>
+		</Entity>
+		<Entity uid="3673">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="551.1792" z="497.98151"/>
+			<Orientation y="-2.17026"/>
+			<Actor seed="49166"/>
+		</Entity>
+		<Entity uid="3674">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="535.62873" z="531.08387"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61656"/>
 		</Entity>
 	</Entities>
 	<Paths/>
