@@ -1,0 +1,16 @@
+{
+	"genericName": "City Phase",
+	"specificName": {
+		"athen": "Megalopolis"
+	},
+	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Athenian city phase, where metal gathering rates are boosted because of the 'Silver Owls' bonus.",
+	"cost": {"food": 0, "wood": 0, "stone": 1000, "metal": 1000},
+	"requirements": { "class": "Town", "number": 4 },
+	"requirementsTooltip": "Requires 4 new Town Phase structures (except Walls and Civic Centers).",
+	"supersedes": "phase_town_athen",
+	"icon": "city_phase.png",
+	"researchTime": 80,
+	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civilisation Centres increased by another +50%. Silver Owls civ bonus grants an extra +10% metal gather rate to all workers.",
+	"modifications": [{"value": "ResourceGatherer/Rates/metal.ore", "multiplier": 1.1}],
+	"affects": ["Worker"]
+}

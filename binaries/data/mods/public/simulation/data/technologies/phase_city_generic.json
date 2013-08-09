@@ -1,7 +1,6 @@
 {
 	"genericName": "City Phase",
 	"specificName": {
-		"generic": "City Phase Upgrade",
 		"hele": "Megalopolis",
 		"mace": "Megalopolis",
 		"spart": "Megalopolis",
@@ -11,7 +10,7 @@
 	"cost": {"food": 0, "wood": 0, "stone": 1000, "metal": 1000},
 	"requirements": { "class": "Town", "number": 4 },
 	"requirementsTooltip": "Requires 4 new Town Phase structures (except Walls and Civ Centres).",
-	"supersedes": "phase_town",
+	"supersedes": "phase_town_generic",
 	"icon": "city_phase.png",
 	"researchTime": 80,
 	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civilisation Centres increased by another +50%"
