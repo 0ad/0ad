@@ -100,7 +100,7 @@ for (var i = 0; i < numPlayers; i++)
 	log("Creating base for player " + id + "...");
 	
 	// some constants
-	var radius = scaleByMapSize(17,29);
+	var radius = scaleByMapSize(20,29);
 	var shoreRadius = 6;
 	var elevation = 3;
 

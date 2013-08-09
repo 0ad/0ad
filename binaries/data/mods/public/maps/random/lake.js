@@ -235,6 +235,19 @@ createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoi
 
 // create shore jaggedness
 log("Creating shore jaggedness...");
+placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
+terrainPainter = new LayeredPainter(
+	[tCliff, tHill],		// terrains
+	[2]								// widths
+);
+elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -5, 4);
+createAreas(
+	placer,
+	[terrainPainter, elevationPainter, paintClass(clWater)], 
+	[avoidClasses(clPlayer, 20), borderClasses(clWater, 6, 4)],
+	scaleByMapSize(7, 130) * 2, 150
+);
+
 placer = new ClumpPlacer(scaleByMapSize(15, 80), 0.2, 0.1, 1);
 terrainPainter = new LayeredPainter(
 	[tCliff, tHill],		// terrains

@@ -1,49 +1,43 @@
 RMS.LoadLibrary("rmgen");
 
 //random terrain textures
-var tGrass = ["desert_sand_dunes_100", "desert_dirt_cracks","desert_sand_smooth", "desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_smooth"];
-var tDune = ["desert_sand_dunes_50"];
-var tBigDune = ["desert_sand_dunes_50"];
-var tGrassPForest = "forestfloor_dirty";
-var tForestFloor = "desert_forestfloor_palms";
-var tGrassA = ["desert_dirt_persia_1", "desert_dirt_persia_2"];
-var tGrassB = "dirta";
-var tGrassC = "medit_dirt_dry";
-var tHill = ["desert_dirt_rocks_1", "desert_dirt_rocks_2", "desert_dirt_rocks_3"];
-var tDirt = ["desert_dirt_rough","desert_dirt_rough","desert_dirt_rough", "desert_dirt_rough_2", "desert_dirt_rocks_2"];
-var tRoad = "desert_city_tile";;
-var tRoadWild = "desert_city_tile";;
-var tGrassPatch = "desert_dirt_rough";;
-var tShoreBlend = "desert_sand_wet";
-var tShore = "dirta";
-var tWater = "desert_sand_wet";
+const tSand = ["desert_sand_dunes_100", "desert_dirt_cracks","desert_sand_smooth", "desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_smooth"];
+const tDune = ["desert_sand_dunes_50"];
+const tBigDune = ["desert_sand_dunes_50"];
+const tForestFloor = "desert_forestfloor_palms";
+const tHill = ["desert_dirt_rocks_1", "desert_dirt_rocks_2", "desert_dirt_rocks_3"];
+const tDirt = ["desert_dirt_rough","desert_dirt_rough","desert_dirt_rough", "desert_dirt_rough_2", "desert_dirt_rocks_2"];
+const tRoad = "desert_city_tile";;
+const tRoadWild = "desert_city_tile";;
+const tShoreBlend = "desert_sand_wet";
+const tShore = "dirta";
+const tWater = "desert_sand_wet";
 
 // gaia entities
-var ePalmShort = "gaia/flora_tree_cretan_date_palm_short";
-var ePalmTall = "gaia/flora_tree_cretan_date_palm_tall";
-var eBush = "gaia/flora_bush_berry";
-var eChicken = "gaia/fauna_chicken";
-var eCamel = "gaia/fauna_camel";
-var eGazelle = "gaia/fauna_gazelle";
-var eLion = "gaia/fauna_lion";
-var eLioness = "gaia/fauna_lioness";
-var eStoneMine = "gaia/geology_stonemine_desert_quarry";
-var eStoneMineSmall = "gaia/geology_stone_desert_small";
-var eMetalMine = "gaia/geology_metal_desert_slabs";
+const ePalmShort = "gaia/flora_tree_cretan_date_palm_short";
+const ePalmTall = "gaia/flora_tree_cretan_date_palm_tall";
+const eBush = "gaia/flora_bush_grapes";
+const eChicken = "gaia/fauna_chicken";
+const eCamel = "gaia/fauna_camel";
+const eGazelle = "gaia/fauna_gazelle";
+const eLion = "gaia/fauna_lion";
+const eLioness = "gaia/fauna_lioness";
+const eStoneMine = "gaia/geology_stonemine_desert_quarry";
+const eStoneMineSmall = "gaia/geology_stone_desert_small";
+const eMetalMine = "gaia/geology_metal_desert_slabs";
 
 // decorative props
-var aFlower1 = "actor|props/flora/decals_flowers_daisies.xml";
-var aWaterFlower = "actor|props/flora/water_lillies.xml";
-var aReedsA = "actor|props/flora/reeds_pond_lush_a.xml";
-var aReedsB = "actor|props/flora/reeds_pond_lush_b.xml";
-var aRock = "actor|geology/stone_desert_med.xml";
-var rba6 = "actor|geology/stone_desert_med";
-var aBushA = "actor|props/flora/bush_desert_dry_a.xml";
-var aBushB = "actor|props/flora/bush_desert_dry_a.xml";
-var aSand = "actor|particle/blowing_sand.xml";
+const aFlower1 = "actor|props/flora/decals_flowers_daisies.xml";
+const aWaterFlower = "actor|props/flora/water_lillies.xml";
+const aReedsA = "actor|props/flora/reeds_pond_lush_a.xml";
+const aReedsB = "actor|props/flora/reeds_pond_lush_b.xml";
+const aRock = "actor|geology/stone_desert_med.xml";
+const aBushA = "actor|props/flora/bush_desert_dry_a.xml";
+const aBushB = "actor|props/flora/bush_desert_dry_a.xml";
+const aSand = "actor|particle/blowing_sand.xml";
 
-var pForestD = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor + TERRAIN_SEPARATOR + ePalmTall, tForestFloor];
-var pOasisForestLight = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor + TERRAIN_SEPARATOR + ePalmTall, tForestFloor,tForestFloor,tForestFloor
+const pForestMain = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor + TERRAIN_SEPARATOR + ePalmTall, tForestFloor];
+const pOasisForestLight = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor + TERRAIN_SEPARATOR + ePalmTall, tForestFloor,tForestFloor,tForestFloor
 					,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
 const BUILDING_ANGlE = -PI/4;
 
@@ -53,9 +47,9 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
+const mapArea = mapSize*mapSize;
 
 // create tile classes
 
@@ -77,7 +71,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	{
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
-			placeTerrain(ix, iz, tGrass);
+			placeTerrain(ix, iz, tSand);
 	}
 }
 
@@ -198,7 +192,7 @@ for (var i = 0; i < numPlayers; i++)
 							);
 	createObjectGroup(group, 0);	
 	// Create starting batches of wood
-	var types = [tForestFloor, pForestD];	// some variation
+	var types = [tForestFloor, pForestMain];	// some variation
 	var forestX = 0;
 	var forestY = 0;
 	var forestAngle = 0;
@@ -273,7 +267,7 @@ if(mapSize > 150 && randInt(0,1)) {
 	var pex = round(fx) + round(fractionToTiles(0.13 * -cos(pAngle)));
 	var pey = round(fz) + round(fractionToTiles(0.13 * sin(pAngle + PI)));
 	var path = new PathPlacer(px,py,pex,pey,scaleByMapSize(7,18), 0.4,1,0.2,0)
-	terrainPainter = new TerrainPainter(tGrass);
+	terrainPainter = new TerrainPainter(tSand);
 	elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 4, 5 );
 	createArea(path, [terrainPainter, elevationPainter, paintClass(clPassage)], null);
 }

@@ -17,7 +17,7 @@ const tShore = "desert_shore_stones";
 const tWaterDeep = "desert_shore_stones_wet";
 
 // gaia entities
-const oBerryBush = "gaia/flora_bush_berry";
+const oBerryBush = "gaia/flora_bush_grapes";
 const oChicken = "gaia/fauna_chicken";
 const oCamel = "gaia/fauna_camel";
 const oFish = "gaia/fauna_fish";
@@ -40,8 +40,8 @@ const aBushes = [aBush1, aBush2, aBush3, aBush4];
 const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 
 // terrain + entity (for painting)
-var pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
-var pForestOasis = [tGrass + TERRAIN_SEPARATOR + oDatePalm, tGrass + TERRAIN_SEPARATOR + oSDatePalm, tGrass];
+const pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
+const pForestOasis = [tGrass + TERRAIN_SEPARATOR + oDatePalm, tGrass + TERRAIN_SEPARATOR + oSDatePalm, tGrass];
 
 const BUILDING_ANGlE = -PI/4;
 
@@ -51,9 +51,9 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
+const mapArea = mapSize*mapSize;
 
 // create tile classes
 

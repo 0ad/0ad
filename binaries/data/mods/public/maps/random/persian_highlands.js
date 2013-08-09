@@ -1,19 +1,19 @@
 RMS.LoadLibrary("rmgen");
 
 const tCity = "desert_city_tile_plaza";
-const tSand = ["desert_dirt_persia_1", "desert_dirt_persia_2", "grass_field_dry"];
-const tDunes = ["desert_lakebed_dry_b", "desert_dirt_persia_1", "desert_dirt_persia_2", "desert_lakebed_dry"];
-const tDunes2 = ["desert_lakebed_dry_b", "desert_dirt_persia_1", "desert_dirt_persia_2", "desert_lakebed_dry", "desert_dirt_persia_2", "desert_dirt_persia_1"];
-const tFineSand = "desert_pebbles_rough";
+const tDirtMain = ["desert_dirt_persia_1", "desert_dirt_persia_2", "grass_field_dry"];
+const tLakebed1 = ["desert_lakebed_dry_b", "desert_lakebed_dry"];
+const tLakebed2 = ["desert_lakebed_dry_b", "desert_lakebed_dry", "desert_shore_stones", "desert_shore_stones"];
+const tPebbles = "desert_pebbles_rough";
 const tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_2"];
 const tForestFloor = "medit_grass_field_dry";
 const tRocky = "desert_dirt_persia_rocky";
 const tRocks = "desert_dirt_persia_rocks";
-const tDirt = ["desert_pebbles_rough", "grass_field_brown"];
+const tGrass = "grass_field_dry";
 const tHill = "desert_cliff_persia_base";
 
 // gaia entities
-const oBerryBush = "gaia/flora_bush_grapes";
+const oGrapesBush = "gaia/flora_bush_grapes";
 const oChicken = "gaia/fauna_chicken";
 const oCamel = "gaia/fauna_camel";
 const oFish = "gaia/fauna_fish";
@@ -23,7 +23,7 @@ const oLion = "gaia/fauna_lioness";
 const oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
 const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_desert_slabs";
-const oDead = "gaia/flora_tree_tamarix";
+const oTamarix = "gaia/flora_tree_tamarix";
 const oOak = "gaia/flora_tree_oak";
 
 // decorative props
@@ -35,8 +35,7 @@ const aBushes = [aBush1, aBush2, aBush3, aBush4];
 const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 
 // terrain + entity (for painting)
-const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor, tSand, tSand];
-const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oDead, tForestFloor + TERRAIN_SEPARATOR + oDead, tForestFloor, tSand, tSand];
+const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor, tDirtMain, tDirtMain];
 
 const BUILDING_ANGlE = -PI/4;
 
@@ -44,9 +43,9 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
+const mapArea = mapSize*mapSize;
 
 // create tile classes
 
@@ -133,7 +132,7 @@ for (var i = 0; i < numPlayers; i++)
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oBerryBush, 5,5, 0,3)],
+		[new SimpleObject(oGrapesBush, 5,5, 0,3)],
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
@@ -192,7 +191,7 @@ RMS.SetProgress(15);
 var placer = new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0);
 var painter = new TerrainPainter([tRocky, tRocks]);
 createAreas(placer, [painter, paintClass(clPatch)], 
-	avoidClasses(clPatch, 2, clPlayer, 0),
+	avoidClasses(clPatch, 2, clPlayer, 4),
 	scaleByMapSize(15, 50)
 );
 
@@ -200,9 +199,9 @@ RMS.SetProgress(20);
 
 log("Creating dirt patches...");
 placer = new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0);
-painter = new TerrainPainter([tDirt]);
+painter = new TerrainPainter([tGrass]);
 createAreas(placer, [painter, paintClass(clPatch)], 
-	avoidClasses(clPatch, 2, clPlayer, 0),
+	avoidClasses(clPatch, 2, clPlayer, 4),
 	scaleByMapSize(15, 50)
 );
 
@@ -212,7 +211,7 @@ RMS.SetProgress(25);
 log("Creating centeral plateau...");
 var oRadius = scaleByMapSize(18, 68);
 placer = new ClumpPlacer(PI*oRadius*oRadius, 0.6, 0.15, 0, mapSize/2, mapSize/2);
-painter = new LayeredPainter([tDunes2, tDunes], [8]);
+painter = new LayeredPainter([tLakebed2, tLakebed1], [8]);
 var elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, -10, 8);
 createArea(placer, [painter, elevationPainter, paintClass(clCP)], null);
 
@@ -231,7 +230,7 @@ var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 22, 2);
 createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
-	avoidClasses(clPlayer, 3, clCP, 5, clHill, 10),
+	avoidClasses(clPlayer, 7, clCP, 5, clHill, 10),
 	scaleByMapSize(1, 4) * numPlayers * 3
 );
 
@@ -249,8 +248,8 @@ var numStragglers = totalTrees * (1.0 - P_FOREST);
 // create forests
 log("Creating forests...");
 var types = [
-	[[tSand, tForestFloor, pForestO], [tForestFloor, pForestO]],
-	[[tSand, tForestFloor, pForestO], [tForestFloor, pForestO]]
+	[[tDirtMain, tForestFloor, pForestO], [tForestFloor, pForestO]],
+	[[tDirtMain, tForestFloor, pForestO], [tForestFloor, pForestO]]
 ];	// some variation
 var size = numForest / (scaleByMapSize(2,8) * numPlayers);
 var num = floor(size / types.length);
@@ -264,7 +263,7 @@ for (var i = 0; i < types.length; ++i)
 	createAreas(
 		placer,
 		[painter, paintClass(clForest)], 
-		avoidClasses(clPlayer, 1, clWater, 3, clForest, 10, clHill, 1, clCP, 1),
+		avoidClasses(clPlayer, 6, clWater, 3, clForest, 10, clHill, 1, clCP, 1),
 		num
 	);
 }
@@ -371,6 +370,17 @@ createObjectGroups(group, 0,
 	3 * numPlayers, 50
 );
 
+// create grape bush
+log("Creating grape bush...");
+group = new SimpleGroup(
+	[new SimpleObject(oGrapesBush, 5,7, 0,4)],
+	true, clFood
+);
+createObjectGroups(group, 0,
+	avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10, clCP, 2),
+	randInt(1, 4) * numPlayers + 2, 50
+);
+
 // create camels
 log("Creating camels...");
 group = new SimpleGroup(
@@ -386,7 +396,7 @@ RMS.SetProgress(85);
 
 // create dead trees
 log("Creating dead trees...");
-var types = [oDead];	// some variation
+var types = [oTamarix];	// some variation
 var num = floor(numStragglers / types.length);
 for (var i = 0; i < types.length; ++i)
 {
