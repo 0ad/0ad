@@ -22,6 +22,8 @@ PlacementSupport.prototype.Reset = function()
 	
 	this.SetDefaultAngle();
 	this.RandomizeActorSeed();
+
+	this.attack = null;
 	
 	Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
 	Engine.GuiInterfaceCall("SetWallPlacementPreview", {"wallSet": null});

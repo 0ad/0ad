@@ -418,14 +418,6 @@ bool FArchiveXML::ImportFileFromMemory(const fchar* filePath, FCDocument* fcdocu
     {
 		fcdocument->SetFileUrl(fstring(filePath));
 
-		fm::string textBuffer;
-		const xmlChar* text = (const xmlChar*) contents;
-		if (length != 0)
-		{
-			textBuffer = fm::string((const char*)contents, length);
-			text = (const xmlChar*) textBuffer.c_str();
-		}
-
 		// Parse the document into a XML tree
 		FUXmlDocument daeDocument((const char*) contents, length);
 		xmlNode* rootNode = daeDocument.GetRootNode();

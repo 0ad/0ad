@@ -44,6 +44,8 @@ bool FUAssertion::OnAssertionFailed(const char* file, uint32 line)
 #elif defined (__APPLE__)
 		Debugger();
 		//SysBreak();
+#elif defined (__arm__)
+		__asm__("bkpt 0");
 #else
 		// AFAIK This is available on all X86 platforms
 		__asm__("int $0x03");

@@ -6,7 +6,7 @@
 		<SunColour r="0.858824" g="0.803922" b="0.639216"/>
 		<SunElevation angle="1.12287"/>
 		<SunRotation angle="-2.55254"/>
-		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
+		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.0015625</FogFactor>
@@ -16,14 +16,14 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.027451" g="0.129412" b="0.4"/>
+				<Colour r="0" g="0.356863" b="0.717647"/>
 				<Height>33.0492</Height>
 				<Shininess>2.19727</Shininess>
 				<Waviness>8.51563</Waviness>
 				<Murkiness>0.643555</Murkiness>
 				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0.00392157" g="0.921569" b="0.992157"/>
-				<ReflectionTintStrength>0.519531</ReflectionTintStrength>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="997.14" y="101.847" z="187.031"/>
-		<Rotation angle="0.454215"/>
+		<Position x="472.308" y="107.537" z="507.863"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[

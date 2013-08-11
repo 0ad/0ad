@@ -387,6 +387,9 @@ AddMock(10, IID_Position, {
 	GetPosition: function() {
 		return {x:1, y:2, z:3};
 	},
+	GetRotation: function() {
+		return {x:4, y:5, z:6};
+	},
 	IsInWorld: function() {
 		return true;
 	},
@@ -404,6 +407,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 		selectionGroupName: "Selection Group Name",
 	},
 	position: {x:1, y:2, z:3},
+	rotation: {x:4, y:5, z:6},
 	hitpoints: 50,
 	maxHitpoints: 60,
 	needsRepair: false,

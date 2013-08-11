@@ -67,6 +67,9 @@ Attack.prototype.Schema =
 			"<Crush>0.0</Crush>" +
 			"<MaxRange>44.0</MaxRange>" +
 			"<MinRange>20.0</MinRange>" +
+			"<optional>"+
+				"<element name='ElevationBonus' a:help='give an elevation advantage (in meters)'><ref name='nonNegativeDecimal'/></element>" +
+			"</optional>" +
 			"<PrepareTime>800</PrepareTime>" +
 			"<RepeatTime>1600</RepeatTime>" +
 			"<ProjectileSpeed>50.0</ProjectileSpeed>" +
@@ -125,6 +128,9 @@ Attack.prototype.Schema =
 				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MinRange' a:help='Minimum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
+				"<optional>"+
+					"<element name='ElevationBonus' a:help='give an elevation advantage (in meters)'><ref name='nonNegativeDecimal'/></element>" +
+				"</optional>" +
 				"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
 					"<data type='nonNegativeInteger'/>" +
 				"</element>" +
@@ -360,8 +366,11 @@ Attack.prototype.GetRange = function(type)
 	
 	var min = +(this.template[type].MinRange || 0);
 	min = ApplyTechModificationsToEntity("Attack/" + type + "/MinRange", min, this.entity);
+
+	var elevationBonus = +(this.template[type].ElevationBonus || 0);
+	elevationBonus = ApplyTechModificationsToEntity("Attack/" + type + "/ElevationBonus", elevationBonus, this.entity);
 	
-	return { "max": max, "min": min };
+	return { "max": max, "min": min, "elevationBonus": elevationBonus};
 };
 
 // Calculate the attack damage multiplier against a target

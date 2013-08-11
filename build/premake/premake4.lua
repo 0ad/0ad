@@ -26,7 +26,7 @@ rootdir = "../.."
 
 dofile("extern_libs4.lua")
 
--- detect CPU architecture (simplistic, currently only supports x86 and amd64)
+-- detect CPU architecture (simplistic, currently only supports x86, amd64 and ARM)
 arch = "x86"
 if _OPTIONS["android"] then
 	arch = "arm"
@@ -47,6 +47,8 @@ else
 			arch = "amd64"
 		elseif string.find(machine, "i.86") == 1 then
 			arch = "x86"
+		elseif string.find(machine, "arm") == 1 then
+			arch = "arm"
 		else
 			print("WARNING: Cannot determine architecture from GCC, assuming x86")
 		end
@@ -262,9 +264,13 @@ function project_set_build_flags()
 			if arch == "arm" then
 				-- disable warnings about va_list ABI change
 				buildoptions { "-Wno-psabi" }
-
-				-- target Cortex-A9 CPUs with NEON
-				buildoptions { "-mthumb -mcpu=cortex-a9 -mfpu=neon -mfloat-abi=softfp" }
+				if _OPTIONS["android"] then
+					-- target generic arm CPUs with NEON
+					buildoptions { "-mtune=generic-arm -mfpu=neon -mfloat-abi=softfp" }
+				else
+					-- target Cortex-A15 CPUs with NEON
+					buildoptions { "-mtune=cortex-a15 -mfpu=neon-vfpv4 -mfloat-abi=hard" }
+				end
 			end
 
 			if _OPTIONS["coverage"] then

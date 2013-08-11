@@ -13,3 +13,4 @@ plus some patches:
   cmake-devflags.patch (from https://407191.bugs.gentoo.org/attachment.cgi?id=308589 - allows disabling various dependencies)
   cmake-devflags2.patch - allows disabling more dependencies
   issue182.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=182)
+  cmake-noqt4.patch (removes unused dependency on Qt4, fixes build on systems without Qt)

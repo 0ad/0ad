@@ -18,6 +18,8 @@
 #ifndef INCLUDED_ICMPRANGEMANAGER
 #define INCLUDED_ICMPRANGEMANAGER
 
+#include "maths/FixedVector3D.h"
+
 #include "simulation2/system/Interface.h"
 #include "simulation2/helpers/Position.h"
 #include "simulation2/helpers/Player.h"
@@ -101,6 +103,32 @@ public:
 	 */
 	virtual tag_t CreateActiveQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface, u8 flags) = 0;
+
+    /**
+	 * Construct an active query of a paraboloic form around the unit. 
+	 * The query will be disabled by default.
+	 * @param source the entity around which the range will be computed.
+	 * @param minRange non-negative minimum horizontal distance in metres (inclusive). MinRange doesn't do parabolic checks.
+	 * @param maxRange non-negative maximum distance in metres (inclusive) for units on the same elevation; 
+	 *      or -1.0 to ignore distance. 
+	 *      For units on a different elevation, a physical correct paraboloid with height=maxRange/2 above the unit is used to query them
+	 * @param elevationBonus extra bonus so the source can be placed higher and shoot further
+	 * @param owners list of player IDs that matching entities may have; -1 matches entities with no owner.
+	 * @param requiredInterface if non-zero, an interface ID that matching entities must implement.
+	 * @param flags if a entity in range has one of the flags set it will show up.
+	 * @return unique non-zero identifier of query.
+	 */
+	virtual tag_t CreateActiveParabolicQuery(entity_id_t source,
+		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus, std::vector<int> owners, int requiredInterface, u8 flags) = 0;
+
+
+	/**
+	 * Get the average elevation over 8 points on distance range around the entity
+	 * @param id the entity id to look around
+	 * @param range the distance to compare terrain height with
+	 * @return a fixed number representing the average difference. It's positive when the entity is on average higher than the terrain surrounding it.
+	 */
+	virtual entity_pos_t GetElevationAdaptedRange(CFixedVector3D pos, CFixedVector3D rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle) = 0;
 
 	/**
 	 * Destroy a query and clean up resources. This must be called when an entity no longer needs its

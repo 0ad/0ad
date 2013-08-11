@@ -537,6 +537,16 @@ createObjectGroups(group, 0,
 	2 * numPlayers, 50
 );
 
+// create berry bush
+log("Creating berry bush...");
+group = new SimpleGroup(
+	[new SimpleObject(oBerryBush, 5,7, 0,4)],
+	true, clFood
+);
+createObjectGroups(group, 0,
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
+	randInt(1, 4) * numPlayers + 2, 50
+);
 
 // create straggler trees
 log("Creating straggler trees...");

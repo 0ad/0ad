@@ -128,7 +128,8 @@ IF(OPENEXR)
 ENDIF(OPENEXR)
 
 # Qt
-FIND_PACKAGE(Qt4)
+# We don't actually use this and it requires having Qt4 installed, so why is this in here?
+#FIND_PACKAGE(Qt4)
 
 # Threads
 FIND_PACKAGE(Threads REQUIRED)

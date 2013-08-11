@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
   <Cost>
-    <BuildTime>220</BuildTime>
+    <BuildTime>200</BuildTime>
     <Resources>
       <food>0</food>
       <wood>0</wood>
@@ -14,13 +14,13 @@
     <Height>8.0</Height>
   </Footprint>
   <Health>
-    <Max>2200</Max>
+    <Max>2000</Max>
   </Health>
   <Identity>
     <Civ>athen</Civ>
     <GenericName>Council Chamber</GenericName>
     <SpecificName>Prytaneîon</SpecificName>
-    <Tooltip>Train heroes.</Tooltip>
+    <Tooltip>Train heroes. Research special technologies.</Tooltip>
     <History>The Prytaneion is the meeting place for the city elders to dine and to make swift decisions.</History>
     <Icon>structures/tholos.png</Icon>
   </Identity>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Cost>
+    <BuildTime>300</BuildTime>
+    <PopulationBonus>10</PopulationBonus>
+    <Resources>
+      <food>0</food>
+      <wood>200</wood>
+      <stone>400</stone>
+      <metal>00</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="40.0" depth="24.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>3000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>pers</Civ>
+    <GenericName>Persian Palace</GenericName>
+    <SpecificName>Palace</SpecificName>
+    <Classes datatype="tokens">
+	  Palace
+	</Classes>
+    <History></History>
+    <Icon>structures/palace.png</Icon>
+    <Tooltip>Build Limit: 1.</Tooltip>
+  </Identity>
+  <Obstruction>
+    <Static width="38.5" depth="22.5"/>
+  </Obstruction>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>48</Radius>
+  </TerritoryInfluence>
+  <VisualActor>
+    <Actor>structures/persians/palace.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
+</Entity>

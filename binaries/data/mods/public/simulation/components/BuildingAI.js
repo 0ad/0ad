@@ -12,6 +12,7 @@ BuildingAI.prototype.Schema =
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 
+
 /**
  * Initialize BuildingAI Component
  */
@@ -99,7 +100,7 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
 	if (cmpAttack)
 	{
 		var range = cmpAttack.GetRange("Ranged");
-		this.enemyUnitsQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver, cmpRangeManager.GetEntityFlagMask("normal"));
+		this.enemyUnitsQuery = cmpRangeManager.CreateActiveParabolicQuery(this.entity, range.min, range.max, range.elevationBonus, players, IID_DamageReceiver, cmpRangeManager.GetEntityFlagMask("normal"));
 		cmpRangeManager.EnableActiveQuery(this.enemyUnitsQuery);
 	}
 };
@@ -133,7 +134,7 @@ BuildingAI.prototype.SetupGaiaRangeQuery = function()
 		var range = cmpAttack.GetRange("Ranged");
 
 		// This query is only interested in Gaia entities that can attack.
-		this.gaiaUnitsQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, [0], IID_Attack, rangeMan.GetEntityFlagMask("normal"));
+		this.gaiaUnitsQuery = rangeMan.CreateActiveParabolicQuery(this.entity, range.min, range.max, range.elevationBonus, [0], IID_Attack, rangeMan.GetEntityFlagMask("normal"));
 		rangeMan.EnableActiveQuery(this.gaiaUnitsQuery);
 	}
 };
@@ -214,6 +215,7 @@ BuildingAI.prototype.FireArrows = function()
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (cmpAttack)
 	{
+
 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		this.timer = cmpTimer.SetTimeout(this.entity, IID_BuildingAI, "FireArrows", timerInterval, {});
 		var arrowsToFire = 0;
@@ -239,17 +241,56 @@ BuildingAI.prototype.FireArrows = function()
 			//Fire N arrows, 0 <= N <= Number of arrows left
 			arrowsToFire = Math.floor(Math.random() * this.arrowsLeft);
 		}
+
 		if (this.targetUnits.length > 0)
 		{
+			var clonedTargets = this.targetUnits.slice();
 			for (var i = 0;i < arrowsToFire;i++)
 			{
-				cmpAttack.PerformAttack("Ranged", this.targetUnits[Math.floor(Math.random() * this.targetUnits.length)]);
-				PlaySound("arrowfly", this.entity);
+				var target = clonedTargets[Math.floor(Math.random() * this.targetUnits.length)];
+				if (
+					target && 
+					this.CheckTargetVisible(target) 
+				   ) 
+				{
+					cmpAttack.PerformAttack("Ranged", target);
+					PlaySound("arrowfly", this.entity);
+
+				}
+				else 
+				{
+					clonedTargets.splice(clonedTargets.indexOf(target),1);
+					i--; // one extra arrow left to fire
+					if(clonedTargets.length < 1) 
+					{
+						this.arrowsLeft += arrowsToFire;
+						// no targets found in this round, save arrows and go to next round
+						break;
+					}
+				}
 			}
 			this.arrowsLeft -= arrowsToFire;
 		}
 		this.currentRound++;
 	}
+};
+
+/**
+ * Returns true if the target entity is visible through the FoW/SoD.
+ */
+BuildingAI.prototype.CheckTargetVisible = function(target)
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
+		return false;
+
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+
+	if (cmpRangeManager.GetLosVisibility(target, cmpOwnership.GetOwner(), false) == "hidden")
+		return false;
+
+	// Either visible directly, or visible in fog
+	return true;
 };
 
 Engine.RegisterComponentType(IID_BuildingAI, "BuildingAI", BuildingAI);

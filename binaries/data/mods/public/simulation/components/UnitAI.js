@@ -367,7 +367,7 @@ var UnitFsmSpec = {
 		this.order.data.attackType = type;
 
 		// If we are already at the target, try attacking it from here
-		if (this.CheckTargetRange(this.order.data.target, IID_Attack, this.order.data.attackType))
+		if (this.CheckTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType))
 		{
 			this.StopMoving();
 			// For packable units within attack range:
@@ -428,7 +428,7 @@ var UnitFsmSpec = {
 		}
 
 		// Try to move within attack range
-		if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.order.data.attackType))
+		if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType,0.5))
 		{
 			// We've started walking to the given point
 			if (this.IsAnimal())
@@ -1315,11 +1315,27 @@ var UnitFsmSpec = {
 				},
 
 				"MoveCompleted": function() {
-					// If the unit needs to unpack, do so
-					if (this.CanUnpack())
-						this.SetNextState("UNPACKING");
-					else
-						this.SetNextState("ATTACKING");
+
+					if (this.CheckTargetAttackRange(this.order.data.target, IID_Attack , this.order.data.attackType)) 
+					{
+						// If the unit needs to unpack, do so
+						if (this.CanUnpack())
+							this.SetNextState("UNPACKING");
+						else
+							this.SetNextState("ATTACKING");
+					} 
+					else 
+					{
+						if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType,0))
+						{
+							this.SetNextState("APPROACHING");
+						}
+						else
+						{
+							// Give up
+							this.FinishOrder();
+						}
+					}
 				},
 
 				"Attacked": function(msg) {
@@ -1335,9 +1351,9 @@ var UnitFsmSpec = {
 			"UNPACKING": {
 				"enter": function() {
 					// If we're not in range yet (maybe we stopped moving), move to target again
-					if (!this.CheckTargetRange(this.order.data.target, IID_Attack, this.order.data.attackType))
+					if (!this.CheckTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType))
 					{
-						if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.order.data.attackType))
+						if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType,0.5))
 							this.SetNextState("APPROACHING");
 						else
 						{
@@ -1403,7 +1419,7 @@ var UnitFsmSpec = {
 					if (this.TargetIsAlive(target) && this.CanAttack(target, this.order.data.forceResponse || null))
 					{
 						// Check we can still reach the target
-						if (this.CheckTargetRange(target, IID_Attack, this.order.data.attackType))
+						if (this.CheckTargetAttackRange(target, IID_Attack, this.order.data.attackType))
 						{
 							var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 							this.lastAttacked = cmpTimer.GetTime() - msg.lateness;
@@ -3289,6 +3305,53 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 	return cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
 };
 
+/**
+ * Move unit so we hope the target is in the attack range
+ * for melee attacks, this goes straight to the default range checks
+ * for ranged attacks, the parabolic range is used, so we can't know exactly at what horizontal range the target can be reached
+ * That's why a guess is needed
+ * a guess of 1 will take the maximum of the possible ranges, and stay far away
+ * a guess of 0 will take the minimum of the possible ranges and, in most cases, will have the target in range.
+ * every guess inbetween is a linear interpollation
+ */
+UnitAI.prototype.MoveToTargetAttackRange = function(target, iid, type,guess)
+{
+
+	if(type!= "Ranged") 
+		return this.MoveToTargetRange(target, iid, type);
+	
+	if (!this.CheckTargetVisible(target)) 
+		return false;
+	
+	var cmpRanged = Engine.QueryInterface(this.entity, iid);
+	var range = cmpRanged.GetRange(type);
+
+	var thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	var s = thisCmpPosition.GetPosition();
+
+	var targetCmpPosition = Engine.QueryInterface(target, IID_Position);
+	if(!targetCmpPosition.IsInWorld()) 
+		return false;   
+
+	var t = targetCmpPosition.GetPosition();
+	// h is positive when I'm higher than the target
+	var h = s.y-t.y+range.elevationBonus;
+
+	// No negative roots please
+	if(h>-range.max/2) 
+		var parabolicMaxRange = Math.sqrt(range.max*range.max+2*range.max*h);
+	else 
+		// return false? Or hope you come close enough?
+		var parabolicMaxRange = 0;
+		//return false;
+
+	// the parabole changes while walking, take something in the middle
+	var guessedMaxRange = Math.max(range.max, parabolicMaxRange)*guess+Math.min(range.max, parabolicMaxRange)*(1-guess) ;
+	
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.MoveToTargetRange(target, range.min, guessedMaxRange);
+};
+
 UnitAI.prototype.MoveToTargetRangeExplicit = function(target, min, max)
 {
 	if (!this.CheckTargetVisible(target))
@@ -3311,6 +3374,43 @@ UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpUnitMotion.IsInTargetRange(target, range.min, range.max);
+};
+
+/**
+ * Check if the target is inside the attack range 
+ * For melee attacks, this goes straigt to the regular range calculation
+ * For ranged attacks, the parabolic formula is used to accout for bigger ranges
+ * when the target is lower, and smaller ranges when the target is higher
+ */ 
+UnitAI.prototype.CheckTargetAttackRange = function(target, iid, type)
+{
+
+	if (type != "Ranged") 
+		return this.CheckTargetRange(target,iid,type);
+	
+	var targetCmpPosition = Engine.QueryInterface(target, IID_Position);
+	if (!targetCmpPosition || !targetCmpPosition.IsInWorld()) 
+		return false; 
+
+	var cmpRanged = Engine.QueryInterface(this.entity, iid);
+	var range = cmpRanged.GetRange(type);
+
+	var thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	var s = thisCmpPosition.GetPosition();
+
+	var t = targetCmpPosition.GetPosition();
+
+	var h = s.y-t.y+range.elevationBonus;
+	var maxRangeSq = 2*range.max*(h + range.max/2);
+
+	if (maxRangeSq < 0)
+		return false;
+
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.IsInTargetRange(target, range.min, Math.sqrt(maxRangeSq));
+
+	return maxRangeSq >= distanceSq && range.min*range.min <= distanceSq;
+
 };
 
 UnitAI.prototype.CheckTargetRangeExplicit = function(target, min, max)
