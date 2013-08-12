@@ -28,6 +28,7 @@
   </Footprint>
   <Health>
     <Max>500</Max>
+    <RegenRate>-3</RegenRate>
   </Health>
   <Identity>
     <GenericName>Fire Ship</GenericName>
@@ -42,9 +43,6 @@
     <BarHeight>0.5</BarHeight>
     <HeightOffset>6.0</HeightOffset>
   </StatusBars>
-  <TerritoryDecay>
-    <HealthDecayRate>3</HealthDecayRate>
-  </TerritoryDecay>
   <ResourceGatherer disable=""/>
   <UnitMotion>
     <WalkSpeed>16.0</WalkSpeed>

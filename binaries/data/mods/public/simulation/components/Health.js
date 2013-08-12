@@ -20,8 +20,8 @@ Health.prototype.Schema =
 			"<text/>" +
 		"</element>" +
 	"</optional>" +
-	"<element name='RegenRate' a:help='Hitpoint regeneration rate per second. Not yet implemented'>" +
-		"<ref name='nonNegativeDecimal'/>" +
+	"<element name='RegenRate' a:help='Hitpoint regeneration rate per second.'>" +
+		"<data type='decimal'/>" +
 	"</element>" +
 	"<element name='DeathType' a:help='Behaviour when the unit dies'>" +
 		"<choice>" +
@@ -44,6 +44,7 @@ Health.prototype.Init = function()
 	// Default to <Initial>, but use <Max> if it's undefined or zero
 	// (Allowing 0 initial HP would break our death detection code)
 	this.hitpoints = +(this.template.Initial || this.GetMaxHitpoints());
+	this.regenRate = +this.template.RegenRate;
 };
 
 //// Interface functions ////
@@ -93,6 +94,48 @@ Health.prototype.IsUnhealable = function()
 	return (this.template.Unhealable == "true"
 		|| this.GetHitpoints() <= 0
 		|| this.GetHitpoints() >= this.GetMaxHitpoints());
+};
+
+Health.prototype.GetRegenRate = function()
+{
+	return this.regenRate;
+};
+
+Health.prototype.ExecuteRegeneration = function()
+{
+	var regen = this.GetRegenRate();
+	if (regen > 0)
+		this.Increase(regen);
+	else 
+		this.Reduce(-regen);
+};
+
+/*
+ * Check if the regeneration timer needs to be started or stopped
+ */
+Health.prototype.CheckRegenTimer = function()
+{
+	// check if we need a timer
+	if (this.GetRegenRate() == 0 ||
+		this.GetHitpoints() == this.GetMaxHitpoints() && this.GetRegenRate() > 0 ||
+		this.GetHitpoints() == 0)
+	{
+		// we don't need a timer, disable if one exists
+		if (this.regenTimer)
+		{
+			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+			cmpTimer.CancelTimer(this.regenTimer);
+			this.regenTimer = undefined;
+		}
+		return;
+	}
+
+	// we need a timer, enable is one doesn't exist
+	if (this.regenTimer)
+		return;
+
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.regenTimer = cmpTimer.SetInterval(this.entity, IID_Health, "ExecuteRegeneration", 1000, 1000, null);
 };
 
 Health.prototype.Kill = function()
@@ -164,6 +207,9 @@ Health.prototype.Reduce = function(amount)
 
 Health.prototype.Increase = function(amount)
 {
+	if (this.hitpoints == this.GetMaxHitpoints())
+		return {"old": this.hitpoints, "new":this.hitpoints};
+
 	// If we're already dead, don't allow resurrection
 	if (this.hitpoints == 0)
 		return undefined;
@@ -284,19 +330,26 @@ Health.prototype.OnTechnologyModification = function(msg)
 {
 	if (msg.component == "Health")
 	{
-		var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-		if (cmpTechnologyManager)
+		var oldMaxHitpoints = this.GetMaxHitpoints();
+		var newMaxHitpoints = Math.round(ApplyTechModificationsToEntity("Health/Max", +this.template.Max, this.entity));
+		if (oldMaxHitpoints != newMaxHitpoints)
 		{
-			var oldMaxHitpoints = this.GetMaxHitpoints();
-			var newMaxHitpoints = Math.round(ApplyTechModificationsToEntity("Health/Max", +this.template.Max, this.entity));
-			if (oldMaxHitpoints != newMaxHitpoints)
-			{
-				var newHitpoints = Math.round(this.GetHitpoints() * newMaxHitpoints/oldMaxHitpoints);
-				this.maxHitpoints = newMaxHitpoints;
-				this.SetHitpoints(newHitpoints);
-			}
+			var newHitpoints = Math.round(this.GetHitpoints() * newMaxHitpoints/oldMaxHitpoints);
+			this.maxHitpoints = newMaxHitpoints;
+			this.SetHitpoints(newHitpoints);
 		}
+
+		var oldRegenRate = this.regenRate;
+		this.regenRate = ApplyTechModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
+		
+		if (this.regenRate != oldRegenRate)
+			this.CheckRegenTimer();
 	}
+};
+
+Health.prototype.OnHealthChanged = function()
+{
+	this.CheckRegenTimer();
 };
 
 Engine.RegisterComponentType(IID_Health, "Health", Health);
