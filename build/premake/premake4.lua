@@ -1183,7 +1183,8 @@ function configure_cxxtestgen()
 		-- Don't include sysdep tests on the wrong sys
 		-- Don't include Atlas tests unless Atlas is being built
 		if not (string.find(v, "/sysdep/os/win/") and not os.is("windows")) and
-		   not (string.find(v, "/tools/atlas/") and not _OPTIONS["atlas"])
+		   not (string.find(v, "/tools/atlas/") and not _OPTIONS["atlas"]) and
+		   not (string.find(v, "/sysdep/arch/x86_x64/") and ((arch ~= "amd64") or (arch ~= "x86")))
 		then
 			local src_file = string.sub(v, 1, -3) .. ".cpp"
 			cxxtestsrcfiles { src_file }
