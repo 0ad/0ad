@@ -2,16 +2,16 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunset</SkySet>
-		<SunColour r="1.24922" g="1.03367" b="0.67115"/>
-		<SunElevation angle="0.34668"/>
-		<SunRotation angle="1.81623"/>
-		<TerrainAmbientColour r="0.329412" g="0.403922" b="0.576471"/>
-		<UnitsAmbientColour r="0.34902" g="0.403922" b="0.439216"/>
+		<SkySet>fog</SkySet>
+		<SunColour r="0.745098" g="0.596078" b="0.278431"/>
+		<SunElevation angle="0.441786"/>
+		<SunRotation angle="-0.441786"/>
+		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
+		<UnitsAmbientColour r="0.360784" g="0.415686" b="0.470588"/>
 		<Fog>
-			<FogFactor>0.00237305</FogFactor>
-			<FogThickness>0.400391</FogThickness>
-			<FogColour r="0.819608" g="0.74902" b="0.513726"/>
+			<FogFactor>0.0046875</FogFactor>
+			<FogThickness>0.363281</FogThickness>
+			<FogColour r="0.882353" g="0.839216" b="0.701961"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -19,23 +19,23 @@
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>26.859</Height>
 				<Shininess>150</Shininess>
-				<Waviness>8</Waviness>
-				<Murkiness>0.84082</Murkiness>
+				<Waviness>8.94531</Waviness>
+				<Murkiness>0.585938</Murkiness>
 				<Tint r="0" g="0.501961" b="0.74902"/>
 				<ReflectionTint r="0.866667" g="0.737255" b="0.466667"/>
-				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>0.0253906</Brightness>
 			<Contrast>1.05762</Contrast>
 			<Saturation>1</Saturation>
-			<Bloom>0.186523</Bloom>
+			<Bloom>0.0869141</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="648.405" y="109.968" z="1336.29"/>
+		<Position x="651.026" y="129.754" z="1249.63"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -4200,7 +4200,7 @@
 			<Template>structures/spart_blacksmith</Template>
 			<Player>1</Player>
 			<Position x="678.62073" z="1380.67408"/>
-			<Orientation y="-2.27233"/>
+			<Orientation y="2.38872"/>
 			<Actor seed="10926"/>
 		</Entity>
 		<Entity uid="845">
