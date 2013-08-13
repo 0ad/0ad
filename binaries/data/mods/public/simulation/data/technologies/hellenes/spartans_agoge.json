@@ -1,15 +1,15 @@
 {
 	"genericName": "The Agoge",
 	"description": "Spartans were housed and trained from a young age to be superlative warriors and to endure any hardship a military life can give them.",
-	"cost": {"food": 0, "wood": 200, "stone": 0, "metal": 200},
+	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 500},
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "agoge.png",
 	"researchTime": 60,
-	"tooltip": "Barracks and Syssiton -50% build time, but also -1 crush armor level.",
+	"tooltip": "+25% health for spear infantry, but also +10% train time.",
 	"modifications": [
-		{"value": "Cost/BuildTime", "multiplier": 0.5},
-		{"value": "Armour/Crush", "add": -1.0}
+		{"value": "Health/Max", "multiplier": 1.25},
+		{"value": "Cost/BuildTime", "multiplier": 1.1}
 	],
-	"affects": ["Barracks", "Syssiton"]
+	"affects": ["Spear Infantry"]
 }

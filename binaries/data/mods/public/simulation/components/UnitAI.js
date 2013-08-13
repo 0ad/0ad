@@ -428,7 +428,7 @@ var UnitFsmSpec = {
 		}
 
 		// Try to move within attack range
-		if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType,0.5))
+		if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType))
 		{
 			// We've started walking to the given point
 			if (this.IsAnimal())
@@ -1326,7 +1326,7 @@ var UnitFsmSpec = {
 					} 
 					else 
 					{
-						if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType,0))
+						if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType))
 						{
 							this.SetNextState("APPROACHING");
 						}
@@ -1353,7 +1353,7 @@ var UnitFsmSpec = {
 					// If we're not in range yet (maybe we stopped moving), move to target again
 					if (!this.CheckTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType))
 					{
-						if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType,0.5))
+						if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType))
 							this.SetNextState("APPROACHING");
 						else
 						{
@@ -3308,13 +3308,9 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 /**
  * Move unit so we hope the target is in the attack range
  * for melee attacks, this goes straight to the default range checks
- * for ranged attacks, the parabolic range is used, so we can't know exactly at what horizontal range the target can be reached
- * That's why a guess is needed
- * a guess of 1 will take the maximum of the possible ranges, and stay far away
- * a guess of 0 will take the minimum of the possible ranges and, in most cases, will have the target in range.
- * every guess inbetween is a linear interpollation
+ * for ranged attacks, the parabolic range is used
  */
-UnitAI.prototype.MoveToTargetAttackRange = function(target, iid, type,guess)
+UnitAI.prototype.MoveToTargetAttackRange = function(target, iid, type)
 {
 
 	if(type!= "Ranged") 
@@ -3346,10 +3342,14 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, iid, type,guess)
 		//return false;
 
 	// the parabole changes while walking, take something in the middle
-	var guessedMaxRange = Math.max(range.max, parabolicMaxRange)*guess+Math.min(range.max, parabolicMaxRange)*(1-guess) ;
-	
+	var guessedMaxRange = (range.max + parabolicMaxRange)/2;
+
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.MoveToTargetRange(target, range.min, guessedMaxRange);
+	if (cmpUnitMotion.MoveToTargetRange(target, range.min, guessedMaxRange))
+		return true;
+
+	// if that failed, try closer
+	return cmpUnitMotion.MoveToTargetRange(target, range.min, Math.min(range.max, parabolicMaxRange));
 };
 
 UnitAI.prototype.MoveToTargetRangeExplicit = function(target, min, max)

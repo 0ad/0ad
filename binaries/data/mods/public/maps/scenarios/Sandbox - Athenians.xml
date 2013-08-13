@@ -19,11 +19,11 @@
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>26.859</Height>
 				<Shininess>150</Shininess>
-				<Waviness>8.99414</Waviness>
-				<Murkiness>0.84082</Murkiness>
+				<Waviness>10</Waviness>
+				<Murkiness>0.679688</Murkiness>
 				<Tint r="0" g="0.501961" b="0.74902"/>
 				<ReflectionTint r="0.866667" g="0.737255" b="0.466667"/>
-				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="772.894" y="73.8063" z="1091.98"/>
-		<Rotation angle="-0.0539139"/>
+		<Position x="854.023" y="110.394" z="1026.45"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
