@@ -277,7 +277,6 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	var diminishingReturns = cmpResourceSupply.GetDiminishingReturns();
 	if (diminishingReturns)
 		rate = (0.5 * Math.cos((cmpResourceSupply.GetGatherers().length - 1) * Math.PI / diminishingReturns) + 0.5) * rate;
-		//rate = +(rate - Math.pow((cmpResourceSupply.GetGatherers().length || 1) - 1, 2) / diminishingReturns).toFixed(2);
 
 	return rate || 0;
 };
