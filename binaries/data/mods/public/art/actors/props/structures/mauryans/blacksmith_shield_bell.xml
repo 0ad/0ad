@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="blacksmith shield bell">
+      <mesh>props/maur_blacksmith_shield_bell.dae</mesh>
+      <textures>
+<texture file="props/shield/maur_shield_bell_c.png" name="baseTex"/>
+	    <texture file="structural/ao/maur_blacksmith.png" name="aoTex"/>
+</textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>
