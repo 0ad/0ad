@@ -27,8 +27,12 @@
   </Position>
   <UnitMotion disable=""/>
   <UnitMotionFlying>
-    <MaxSpeed>40.0</MaxSpeed>
-    <AccelRate>15.0</AccelRate>
+    <MaxSpeed>60.0</MaxSpeed>
+    <TakeoffSpeed>50.0</TakeoffSpeed>
+    <LandingSpeed>40.0</LandingSpeed>
+    <AccelRate>25.0</AccelRate>
+    <SlowingRate>5.0</SlowingRate>
+    <BrakingRate>10.0</BrakingRate>
     <TurnRate>1.0</TurnRate>
     <OvershootTime>2.0</OvershootTime>
     <FlyingHeight>50.0</FlyingHeight>
