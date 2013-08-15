@@ -71,7 +71,7 @@ public:
 	// m_LastX/Z contain the position from the start of the most recent turn
 	// m_PrevX/Z conatain the position from the turn before that
 	entity_pos_t m_X, m_Z, m_LastX, m_LastZ, m_PrevX, m_PrevZ; // these values contain undefined junk if !InWorld
-	entity_pos_t m_YOffset;
+	entity_pos_t m_YOffset, m_LastYOffset;
 	bool m_RelativeToGround; // whether m_YOffset is relative to terrain/water plane, or an absolute height
 
 	entity_angle_t m_RotX, m_RotY, m_RotZ;
@@ -125,7 +125,7 @@ public:
 
 		m_InWorld = false;
 
-		m_YOffset = paramNode.GetChild("Altitude").ToFixed();
+		m_LastYOffset = m_YOffset = paramNode.GetChild("Altitude").ToFixed();
 		m_RelativeToGround = true;
 		m_Floating = paramNode.GetChild("Floating").ToBool();
 
@@ -205,6 +205,7 @@ public:
 		// TODO: should there be range checks on all these values?
 
 		m_InterpolatedRotY = m_RotY.ToFloat();
+		m_LastYOffset = m_YOffset;
 
 		if (m_InWorld)
 			UpdateXZRotation();
@@ -253,8 +254,16 @@ public:
 
 	virtual void SetHeightOffset(entity_pos_t dy)
 	{
-		m_YOffset = dy;
-		m_RelativeToGround = true;
+		if (m_RelativeToGround)
+		{
+			m_LastYOffset = m_YOffset;
+			m_YOffset = dy;
+		}
+		else 
+		{
+			m_LastYOffset = m_YOffset = dy;
+			m_RelativeToGround = true;
+		}
 
 		AdvertisePositionChanges();
 	}
@@ -266,8 +275,16 @@ public:
 
 	virtual void SetHeightFixed(entity_pos_t y)
 	{
-		m_YOffset = y;
-		m_RelativeToGround = false;
+		if (m_RelativeToGround)
+		{
+			m_LastYOffset = m_YOffset = y;
+			m_RelativeToGround = false;
+		}
+		else
+		{
+			m_LastYOffset = m_YOffset;
+			m_YOffset = y;	
+		}
 	}
 
 	virtual bool IsFloating()
@@ -446,7 +463,7 @@ public:
 			}
 		}
 
-		float y = baseY + m_YOffset.ToFloat();
+		float y = baseY + Interpolate(m_LastYOffset.ToFloat(), m_YOffset.ToFloat(), frameOffset);
 
 		CMatrix3D m;
 		
@@ -519,6 +536,7 @@ public:
 
 			m_LastX = m_X;
 			m_LastZ = m_Z;
+			m_LastYOffset = m_YOffset;
 
 			break;
 		}
