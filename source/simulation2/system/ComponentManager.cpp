@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -54,7 +54,7 @@ public:
 
 CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFunctions) :
 	m_NextScriptComponentTypeId(CID__LastNative),
-	m_ScriptInterface("Engine", "Simulation", ScriptInterface::CreateRuntime()),
+	m_ScriptInterface("Engine", "Simulation", ScriptInterface::CreateRuntime(32*MiB)),
 	m_SimContext(context), m_CurrentlyHotloading(false)
 {
 	context.SetComponentManager(this);
