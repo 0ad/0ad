@@ -54,7 +54,7 @@ bool CComponentManager::DumpDebugState(std::ostream& stream, bool includeDebugIn
 
 	// We want the output to be grouped by entity ID, so invert the CComponentManager data structures
 	std::map<entity_id_t, std::map<ComponentTypeId, IComponent*> > components;
-	std::map<ComponentTypeId, std::string> names;
+	//std::map<ComponentTypeId, std::string> names;
 
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator ctit = m_ComponentsByTypeId.begin();
 	for (; ctit != m_ComponentsByTypeId.end(); ++ctit)

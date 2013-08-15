@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -165,8 +165,7 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 // 	while (0 != (err = sem_timedwait(psem, &abs_timeout)))
 // #endif
 
-	int err;
-	while (0 != (err = sem_wait(m_Semaphore)))
+	while (0 != sem_wait(m_Semaphore))
 	{
 		// If timed out, call callback and try again
 // 		if (errno == ETIMEDOUT)

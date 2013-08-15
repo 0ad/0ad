@@ -118,13 +118,27 @@ private:
 	struct Projectile
 	{
 		CUnit* unit;
+		CVector3D origin;
 		CVector3D pos;
-		CVector3D target;
-		float timeLeft;
-		float speedFactor;
+		CVector3D v;
+		float time;
+		float timeHit;
 		float gravity;
 		bool stopped;
 		uint32_t id;
+		
+		CVector3D position(float t)
+		{
+			float t2 = t;
+			if (t2 > timeHit)
+				t2 = timeHit + logf(1.f + t2 - timeHit);
+			
+			CVector3D ret(origin);
+			ret.X += v.X * t2;
+			ret.Z += v.Z * t2;
+			ret.Y += v.Y * t2 - 0.5f * gravity * t * t;
+			return ret;
+		}
 	};
 
 	std::vector<Projectile> m_Projectiles;
@@ -165,44 +179,36 @@ uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVecto
 		return 0;
 	}
 
-	CVector3D sourceVec(cmpSourceVisual->GetProjectileLaunchPoint());
-	if (!sourceVec)
+	Projectile projectile;
+	projectile.id = currentId;
+	projectile.time = 0.f;
+	projectile.stopped = false;
+	projectile.gravity = gravity.ToFloat();
+	
+	projectile.origin = cmpSourceVisual->GetProjectileLaunchPoint();
+	if (!projectile.origin)
 	{
 		// If there's no explicit launch point, take a guess based on the entity position
-
 		CmpPtr<ICmpPosition> sourcePos(GetSimContext(), source);
 		if (!sourcePos)
 			return 0;
-
-		sourceVec = sourcePos->GetPosition();
-		sourceVec.Y += 3.f;
+		projectile.origin = sourcePos->GetPosition();
+		projectile.origin.Y += 3.f;
 	}
 
-	CVector3D targetVec;
-
-    targetVec = CVector3D(targetPoint);
-
-	Projectile projectile;
 	std::set<CStr> selections;
 	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(name, m_ActorSeed++, selections);
-	projectile.id = currentId;
-	if (!projectile.unit)
-	{
-		// The error will have already been logged
+	if (!projectile.unit) // The error will have already been logged
 		return 0;
-	}
 
-	projectile.pos = sourceVec;
-	projectile.target = targetVec;
-
-	CVector3D offset = projectile.target - projectile.pos;
+	projectile.pos = projectile.origin;
+	CVector3D offset(targetPoint);
+	offset -= projectile.pos;
 	float horizDistance = sqrtf(offset.X*offset.X + offset.Z*offset.Z);
+	projectile.timeHit = horizDistance / speed.ToFloat();
+	projectile.v = offset * (1.f / projectile.timeHit);
 
-	projectile.speedFactor = 1.f;
-	projectile.timeLeft = horizDistance / speed.ToFloat();
-	projectile.stopped = false;
-
-	projectile.gravity = gravity.ToFloat();
+	projectile.v.Y = offset.Y / projectile.timeHit  + 0.5f * projectile.gravity * projectile.timeHit;
 
 	m_Projectiles.push_back(projectile);
 	
@@ -211,37 +217,23 @@ uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVecto
 
 void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt)
 {
-	// Do special processing if we've already reached the target
-	if (projectile.timeLeft <= 0)
-	{
-		if (projectile.stopped)
-		{
-			projectile.timeLeft -= dt;
-			return;
-		}
-		// else continue moving the projectile
+	projectile.time += dt;
+	if (projectile.stopped)
+		return;
 
-		// To prevent arrows going crazily far after missing the target,
-		// apply a bit of drag to them
-		projectile.speedFactor *= powf(1.0f - 0.4f*projectile.speedFactor, dt);
-	}
+	CVector3D delta;
+	if (dt < 0.1f)
+		delta = projectile.pos;
+	else // For big dt delta is unprecise
+		delta = projectile.position(projectile.time - 0.1f);
+	
+	projectile.pos = projectile.position(projectile.time);
 
-	CVector3D offset = (projectile.target - projectile.pos) * projectile.speedFactor;
-
-	// Compute the vertical velocity that's needed so we travel in a ballistic curve and
-	// reach the target after timeLeft.
-	// (This is just a linear approximation to the curve, but it'll converge to hit the target)
-	float vh = (projectile.gravity / 2.f) * projectile.timeLeft + offset.Y / projectile.timeLeft;
-
-	// Move an appropriate fraction towards the target
-	CVector3D delta (offset.X * dt/projectile.timeLeft, vh * dt, offset.Z * dt/projectile.timeLeft);
-
-	projectile.pos += delta;
-	projectile.timeLeft -= dt;
+	delta = projectile.pos - delta;
 
 	// If we've passed the target position and haven't stopped yet,
 	// carry on until we reach solid land
-	if (projectile.timeLeft <= 0)
+	if (projectile.time >= projectile.timeHit)
 	{
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
 		if (cmpTerrain)
@@ -292,13 +284,9 @@ void CCmpProjectileManager::Interpolate(float frameTime)
 	{
 		// Projectiles hitting targets get removed immediately.
 		// Those hitting the ground stay for a while, because it looks pretty.
-		if (m_Projectiles[i].timeLeft <= 0.f)
+		if (m_Projectiles[i].stopped)
 		{
-			if (m_Projectiles[i].timeLeft > -PROJECTILE_DECAY_TIME)
-			{
-				// Keep the projectile until it exceeds the decay time
-			}
-			else
+			if (m_Projectiles[i].time - m_Projectiles[i].timeHit > PROJECTILE_DECAY_TIME)
 			{
 				// Delete in-place by swapping with the last in the list
 				std::swap(m_Projectiles[i], m_Projectiles.back());
