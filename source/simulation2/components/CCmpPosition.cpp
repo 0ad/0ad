@@ -233,6 +233,7 @@ public:
 			m_InWorld = true;
 			m_LastX = m_PrevX = m_X;
 			m_LastZ = m_PrevZ = m_Z;
+			m_LastYOffset = m_YOffset;
 		}
 
 		AdvertisePositionChanges();
