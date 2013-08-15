@@ -1454,9 +1454,7 @@ int CMapReader::ParseEnvironment()
 	// If we have graphics, get rest of settings
 	if (pWaterMan)
 	{
-		std::wstring waterType;
 		// TODO: Water type not implemented
-		//GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Type, waterType)
 
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Colour, pWaterMan->m_WaterColor)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Shininess, pWaterMan->m_Shininess)

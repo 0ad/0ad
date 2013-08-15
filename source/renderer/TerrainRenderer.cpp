@@ -712,6 +712,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 			glGenTextures(1, (GLuint*)&depthTex);
 			WaterMgr->m_depthTT = depthTex;
 			glBindTexture(GL_TEXTURE_2D, WaterMgr->m_depthTT);
+			// TODO: use POT texture
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
 						 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE,NULL);
 		}
@@ -762,9 +763,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 			WaterMgr->m_waveTT = renderedTexture;
 			
 			glBindTexture(GL_TEXTURE_2D, WaterMgr->m_waveTT);
-			int size = (int)round_up_to_pow2((unsigned)g_Renderer.GetHeight());
-			if(size > g_Renderer.GetHeight()) size /= 2;
-			
+			// TODO: use POT texture
 			glTexImage2D(GL_TEXTURE_2D, 0,GL_RGBA, (float)g_Renderer.GetWidth(), (float)g_Renderer.GetHeight(), 0,GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
 		}

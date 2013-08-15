@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,10 +58,6 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 	std::vector<TextChunk>::const_iterator itTextChunk;
 	for (itTextChunk=m_TextChunks.begin(); itTextChunk!=m_TextChunks.end(); ++itTextChunk)
 	{
-		// - GL - Temp
-		TextChunk tc = *itTextChunk;
-		// -- GL
-
 		// Get the area that is overlapped by both the TextChunk and
 		//  by the from/to inputted.
 		int _from, _to;
