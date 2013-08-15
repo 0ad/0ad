@@ -1,0 +1,14 @@
+Index: E:/devel/ps/libraries/source/nvtt/src/src/CMakeLists.txt
+===================================================================
+--- E:/devel/ps/libraries/source/nvtt/src/src/CMakeLists.txt	(revision 13170)
++++ E:/devel/ps/libraries/source/nvtt/src/src/CMakeLists.txt	(revision 13635)
+@@ -128,7 +128,8 @@
+ ENDIF(OPENEXR)
+ 
+ # Qt
+-FIND_PACKAGE(Qt4)
++# We don't actually use this and it requires having Qt4 installed, so why is this in here?
++#FIND_PACKAGE(Qt4)
+ 
+ # Threads
+ FIND_PACKAGE(Threads REQUIRED)
