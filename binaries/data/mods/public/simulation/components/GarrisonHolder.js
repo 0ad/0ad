@@ -78,14 +78,14 @@ GarrisonHolder.prototype.GetHealRate = function()
  * Get number of garrisoned units capable of shooting arrows
  * Not necessarily archers
  */
-GarrisonHolder.prototype.GetGarrisonedArcherCount = function()
+GarrisonHolder.prototype.GetGarrisonedArcherCount = function(garrisonArrowClasses)
 {
 	var count = 0;
 	for each (var entity in this.entities)
 	{
 		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
 		var classes = cmpIdentity.GetClassesList();
-		if (classes.indexOf("Infantry") != -1 || classes.indexOf("Ranged") != -1)
+		if (classes.some(function(c){return garrisonArrowClasses.indexOf(c) > -1;}))
 			count++;
 	}
 	return count;
