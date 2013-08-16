@@ -496,6 +496,11 @@ COMMAND(FlattenElevation, MERGE,
 		((float, amount))
 		);
 
+COMMAND(PikeElevation, MERGE,
+		((Position, pos))
+		((float, amount))
+		);
+
 struct ePaintTerrainPriority { enum { HIGH, LOW }; };
 COMMAND(PaintTerrain, MERGE,
 		((Position, pos))
