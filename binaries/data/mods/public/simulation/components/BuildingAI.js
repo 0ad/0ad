@@ -215,8 +215,10 @@ BuildingAI.prototype.GetGarrisonArrowMultiplier = function()
 
 BuildingAI.prototype.GetGarrisonArrowClasses = function()
 {
-	var string = this.template.GarrisonArrowClasses || "";
-	return string.split(/\s+/);
+	var string = this.template.GarrisonArrowClasses;
+	if (string)
+		return string.split(/\s+/);
+	return [];
 };
 
 /**
