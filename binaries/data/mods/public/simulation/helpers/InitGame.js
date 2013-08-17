@@ -17,9 +17,9 @@ function InitGame(settings)
 		cmpPlayer.SetCheatsEnabled(!!settings.CheatsEnabled);
 		if (settings.PlayerData[i] && settings.PlayerData[i].AI && settings.PlayerData[i].AI != "")
 		{
-			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i+1, settings.PlayerData[i].AIDiff);
+			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i+1, +settings.PlayerData[i].AIDiff);
 			cmpPlayer.SetAI(true);
-			cmpPlayer.SetGatherRateMultiplier((+settings.PlayerData[i].AIDiff+2)/3.0)	// Medium is 1, easy is 66%, hard is 133%, very hard 166%
+			cmpPlayer.SetGatherRateMultiplier(+Math.max(0.5,(+settings.PlayerData[i].AIDiff+1)/3.0));	// Sandbox: 50%, easy: 66%, Medium: 100%, hard: 133%, very hard: 166%
 		}
 		if (settings.PopulationCap)
 			cmpPlayer.SetMaxPopulation(settings.PopulationCap);

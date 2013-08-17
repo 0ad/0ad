@@ -24,7 +24,7 @@ function init(settings)
 	aiSelection.selected = selected;
 	
 	var aiDiff = getGUIObjectByName("aiDifficulty");
-	aiDiff.list = [ "Easy", "Medium", "Hard", "Very Hard" ];
+	aiDiff.list = [ "Sandbox", "Easy", "Medium", "Hard", "Very Hard" ];
 	aiDiff.selected = settings.difficulty;
 }
 

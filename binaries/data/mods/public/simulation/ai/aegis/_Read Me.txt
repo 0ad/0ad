@@ -1,0 +1,13 @@
+Aegis. AI for 0 A.D. ( http://play0ad.com/ ). An effort to improve over two bots: qBot (by Quantumstate, based on TestBot) and Marilyn (by Wraitii, itself based on qBot).
+
+Install by placing files into the data/mods/public/simulation/ai/qbot-wc folder.
+
+You may want to set "debug : true" in config.js if you are developping, you will get a better understanding of what the AI does. There are also many commented debug outputs, and many commented map outputs that you may want to uncomment.
+
+This bot has been made default as of Alpha 13. It features some technological support, early naval support, better economic management, better defense and better attack management (over qBot). It is generally much stronger than the former, and should hopefully be able to handle more situations properly. It is, however, not faultless.
+
+Please report any error to the wildfire games forum ( http://www.wildfiregames.com/forum/index.php?act=idx ), and thanks for playing!
+
+Requires common-api-v3.
+
+(note: no saved game support as of yet).
