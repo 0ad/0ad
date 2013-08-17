@@ -13,6 +13,26 @@
       <Spread>1.5</Spread>
     </Ranged>
   </Attack>
+  <BuildingAI>
+    <DefaultArrowCount>3</DefaultArrowCount>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+    <GarrisonArrowClasses>Infantry</GarrisonArrowClasses>
+  </BuildingAI>
+  <GarrisonHolder>
+    <Max>1</Max>
+    <EjectHealth>0</EjectHealth>
+    <List datatype="tokens">Support Infantry</List>
+    <BuffHeal>1</BuffHeal>
+    <LoadingRange>5</LoadingRange>
+    <EjectEntitiesOnDestroy>false</EjectEntitiesOnDestroy> 
+  </GarrisonHolder>
+  <Decay>
+    <Inactive/>
+	<SinkingAnim/>
+    <DelayTime>0.0</DelayTime>
+    <SinkRate>3.0</SinkRate>
+    <SinkAccel>7.0</SinkAccel>
+  </Decay>
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>P-51 Mustang</SpecificName>
@@ -21,9 +41,15 @@
     <Icon>units/global_mustang.png</Icon>
     <Formations datatype="tokens" replace=""/>
   </Identity>
+  <Health>
+	 <Max>100</Max>
+    <Unhealable>true</Unhealable>
+    <Repairable>true</Repairable>
+  </Health>
   <Obstruction disable=""/>
   <Position>
     <TurnRate>1.0</TurnRate>
+    <Floating>true</Floating>
   </Position>
   <UnitMotion disable=""/>
   <UnitMotionFlying>
@@ -36,7 +62,8 @@
     <TurnRate>1.0</TurnRate>
     <OvershootTime>2.0</OvershootTime>
     <FlyingHeight>50.0</FlyingHeight>
-    <ClimbRate>5.0</ClimbRate>
+    <ClimbRate>15.0</ClimbRate>
+    <DiesInWater>true</DiesInWater>
   </UnitMotionFlying>
   <Vision>
     <Range>100</Range>
