@@ -5,10 +5,11 @@
     <variant frequency="1" name="barrel">
       <mesh>props/rome_blacksmith_bucket.dae</mesh>
       <textures>
-<texture file="structural/rome_struct_2.dds" name="baseTex"/><texture file="structural/rome_struct_2_norm.png" name="normTex"/>
-<texture file="structural/rome_struct_2_spec.png" name="specTex"/>
-<texture file="structural/ao/rome_blacksmith.png" name="aoTex"/>
-</textures>
+        <texture file="structural/rome_struct_2.png" name="baseTex"/>
+        <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
+        <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
+        <texture file="structural/ao/rome_blacksmith.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
