@@ -296,7 +296,7 @@ var EntityTemplate = Class({
 	},
 
 	researchableTechs: function() {
-		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Technologies || !this._template.ProductionQueue._string)
+		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Technologies || !this._template.ProductionQueue.Technologies._string)
 			return undefined;
 		var templates = this._template.ProductionQueue.Technologies._string.split(/\s+/);
 		return templates;
@@ -327,7 +327,7 @@ var EntityTemplate = Class({
 	maxGatherers: function()
 	{
 		if (this._template.ResourceSupply !== undefined)
-			return this._template.ResourceSupply.MaxGatherers;
+			return +this._template.ResourceSupply.MaxGatherers;
 		return 0;
 	},
 

@@ -127,10 +127,7 @@ EconomyManager.prototype.trainMoreWorkers = function(gameState, queues) {
 	var numQueued = queues.villager.countTotalQueuedUnits() + queues.citizenSoldier.countTotalQueuedUnits();
 	var numTotal = numWorkers + numQueued;
 	
-	if (gameState.currentPhase() > 1 || gameState.isResearching("phase_town"))
-		this.targetNumFields = numWorkers/10.0;	// 5 workers per field max.
-	else
-		this.targetNumFields = 1;
+	this.targetNumFields = numWorkers/10.0;	// 5 workers per field max.
 	
 	// ought to refine this.
 	if ((gameState.ai.playedTurn+2) % 3 === 0) {
@@ -1230,9 +1227,9 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 		gameState.ai.queueManager.changePriority("citizenSoldier", Config.priorities.citizenSoldier);
 	}
 	
-	if (this.baseNeed["food"] === 300 && (this.numWorkers >= 15 || gameState.isResearching("phase_town"))) {
+	if (this.baseNeed["food"] === 300 && (this.numWorkers >= 15 || gameState.isResearching("phase_town_generic") || gameState.isResearching("phase_town_athens"))) {
 		this.baseNeed["food"] -= 150;
-	} else if (this.baseNeed["metal"] === 0 && (gameState.currentPhase() === 2 || gameState.isResearching("phase_town"))) {
+	} else if (this.baseNeed["metal"] === 0 && (gameState.currentPhase() === 2 || gameState.isResearching("phase_town_generic") || gameState.isResearching("phase_town_athens"))) {
 		// for the little while in town phase, we want a little more more stone/wood than usual
 		this.baseNeed["food"] = 100;
 		this.baseNeed["wood"] = 100;

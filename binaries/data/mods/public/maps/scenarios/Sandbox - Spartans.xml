@@ -3,14 +3,14 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>fog</SkySet>
-		<SunColour r="0.745098" g="0.596078" b="0.278431"/>
+		<SunColour r="0.741176" g="0.592157" b="0.27451"/>
 		<SunElevation angle="0.441786"/>
 		<SunRotation angle="-0.441786"/>
-		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
-		<UnitsAmbientColour r="0.360784" g="0.415686" b="0.470588"/>
+		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
+		<UnitsAmbientColour r="0.356863" g="0.411765" b="0.466667"/>
 		<Fog>
-			<FogFactor>0.0046875</FogFactor>
-			<FogThickness>0.363281</FogThickness>
+			<FogFactor>0.00285156</FogFactor>
+			<FogThickness>0.453125</FogThickness>
 			<FogColour r="0.882353" g="0.839216" b="0.701961"/>
 		</Fog>
 		<Water>
@@ -35,9 +35,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="651.026" y="129.754" z="1249.63"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="596.559" y="111.578" z="1340.87"/>
+		<Rotation angle="0.102504"/>
+		<Declination angle="0.688204"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -4143,23 +4143,16 @@
 		<Entity uid="836">
 			<Template>structures/spart_barracks</Template>
 			<Player>1</Player>
-			<Position x="588.2436" z="1357.84461"/>
-			<Orientation y="0.80428"/>
+			<Position x="664.42621" z="1399.03309"/>
+			<Orientation y="-2.28444"/>
 			<Actor seed="63214"/>
 		</Entity>
 		<Entity uid="837">
 			<Template>structures/spart_barracks</Template>
 			<Player>1</Player>
-			<Position x="605.32343" z="1334.68458"/>
+			<Position x="604.576" z="1338.45228"/>
 			<Orientation y="0.83603"/>
 			<Actor seed="54820"/>
-		</Entity>
-		<Entity uid="838">
-			<Template>structures/spart_syssiton</Template>
-			<Player>1</Player>
-			<Position x="666.20282" z="1394.61097"/>
-			<Orientation y="-2.29555"/>
-			<Actor seed="54368"/>
 		</Entity>
 		<Entity uid="839">
 			<Template>structures/spart_syssiton</Template>
@@ -4199,7 +4192,7 @@
 		<Entity uid="844">
 			<Template>structures/spart_blacksmith</Template>
 			<Player>1</Player>
-			<Position x="678.62073" z="1380.67408"/>
+			<Position x="586.01679" z="1357.97498"/>
 			<Orientation y="2.38872"/>
 			<Actor seed="10926"/>
 		</Entity>

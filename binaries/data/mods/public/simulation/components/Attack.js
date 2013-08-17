@@ -67,9 +67,7 @@ Attack.prototype.Schema =
 			"<Crush>0.0</Crush>" +
 			"<MaxRange>44.0</MaxRange>" +
 			"<MinRange>20.0</MinRange>" +
-			"<optional>"+
-				"<element name='ElevationBonus' a:help='give an elevation advantage (in meters)'><ref name='nonNegativeDecimal'/></element>" +
-			"</optional>" +
+			"<ElevationBonus>15.0</ElevationBonus>" +
 			"<PrepareTime>800</PrepareTime>" +
 			"<RepeatTime>1600</RepeatTime>" +
 			"<ProjectileSpeed>50.0</ProjectileSpeed>" +

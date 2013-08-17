@@ -185,7 +185,8 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 	Engine.ProfileStart("Build buildings");
 	var workersNumber = gameState.getOwnEntitiesByRole("worker").filter(Filters.not(Filters.byHasMetadata(PlayerID, "plan"))).length;
 	
-	if (workersNumber > 30 && (gameState.currentPhase() > 1 || gameState.isResearching("phase_town"))) {
+	if (workersNumber > 30 && (gameState.currentPhase() > 1 || gameState.isResearching("phase_town_generic")
+							    || gameState.isResearching("phase_town_athens"))) {
 		if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) + queues.militaryBuilding.totalLength() < 1) {
 			debug ("Trying to build barracks");
 			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));

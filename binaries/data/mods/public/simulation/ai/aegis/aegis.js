@@ -198,10 +198,14 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 			}
 		}
 		
+		var sfx = "_generic";
+		if (gameState.civ() == "athen")
+			sfx = "_athen"
+
 		// try going up phases.
-		if (gameState.canResearch("phase_town",true) && gameState.getTimeElapsed() > (Config.Economy.townPhase*1000)
-			&& gameState.findResearchers("phase_town",true).length != 0 && this.queues.majorTech.totalLength() === 0) {
-			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_town",true));	// we rush the town phase.
+		if (gameState.canResearch("phase_town" + sfx,true) && gameState.getTimeElapsed() > (Config.Economy.townPhase*1000)
+			&& gameState.findResearchers("phase_town" + sfx,true).length != 0 && this.queues.majorTech.totalLength() === 0) {
+			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_town" + sfx,true));	// we rush the town phase.
 			debug ("Trying to reach town phase");
 			var nb = gameState.getOwnEntities().filter(Filters.byClass("Village")).length-1;
 			if (nb < 5)

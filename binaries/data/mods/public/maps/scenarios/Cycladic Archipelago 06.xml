@@ -2,41 +2,41 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>cumulus</SkySet>
-		<SunColour r="0.866667" g="0.776471" b="0.486275"/>
-		<SunElevation angle="0.929592"/>
-		<SunRotation angle="2.01258"/>
-		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
-		<UnitsAmbientColour r="0.439216" g="0.521569" b="0.556863"/>
+		<SkySet>sunset</SkySet>
+		<SunColour r="1.34559" g="0.955105" b="0.385208"/>
+		<SunElevation angle="0.397857"/>
+		<SunRotation angle="2.35619"/>
+		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
+		<UnitsAmbientColour r="0.305882" g="0.384314" b="0.454902"/>
 		<Fog>
-			<FogFactor>0.00171875</FogFactor>
-			<FogThickness>0.147461</FogThickness>
-			<FogColour r="0.882353" g="0.839216" b="0.701961"/>
+			<FogFactor>0.0040625</FogFactor>
+			<FogThickness>0.248047</FogThickness>
+			<FogColour r="0.866667" g="0.776471" b="0.486275"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0" g="0.501961" b="1"/>
+				<Colour r="0.329412" g="0.419608" b="0.501961"/>
 				<Height>26.3344</Height>
 				<Shininess>230.469</Shininess>
 				<Waviness>10</Waviness>
-				<Murkiness>0.492188</Murkiness>
-				<Tint r="0.501961" g="1" b="1"/>
+				<Murkiness>0.701172</Murkiness>
+				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0" g="0.501961" b="1"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
+				<ReflectionTintStrength>0.0859375</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
-			<Contrast>1.03906</Contrast>
+			<Contrast>1.20898</Contrast>
 			<Saturation>0.99</Saturation>
-			<Bloom>0.180078</Bloom>
+			<Bloom>0.139453</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="551.714" y="150.058" z="523.609"/>
-		<Rotation angle="-0.212301"/>
+		<Position x="466.539" y="98.1459" z="605.036"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -236,7 +236,6 @@
 			<Player>0</Player>
 			<Position x="338.22587" z="532.97266"/>
 			<Orientation y="-2.5967"/>
-			<Actor seed="56098"/>
 		</Entity>
 		<Entity uid="41">
 			<Template>gaia/fauna_whale_fin</Template>
@@ -1151,15 +1150,15 @@
 		<Entity uid="171">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="544.0539" z="711.93311"/>
-			<Orientation y="2.35621"/>
+			<Position x="544.01844" z="711.9867"/>
+			<Orientation y="-1.06711"/>
 			<Actor seed="2396"/>
 		</Entity>
 		<Entity uid="172">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="544.1222" z="703.67194"/>
-			<Orientation y="2.35621"/>
+			<Position x="544.18805" z="703.69605"/>
+			<Orientation y="-1.93389"/>
 			<Actor seed="1972"/>
 		</Entity>
 		<Entity uid="173">
@@ -1363,7 +1362,6 @@
 			<Player>0</Player>
 			<Position x="283.28928" z="456.38642"/>
 			<Orientation y="-2.88619"/>
-			<Actor seed="54488"/>
 		</Entity>
 		<Entity uid="210">
 			<Template>gaia/fauna_fish_tilapia</Template>
@@ -1503,42 +1501,36 @@
 			<Player>0</Player>
 			<Position x="349.19465" z="464.28083"/>
 			<Orientation y="0.89512"/>
-			<Actor seed="61012"/>
 		</Entity>
 		<Entity uid="230">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
 			<Position x="421.63965" z="548.8313"/>
 			<Orientation y="-1.58805"/>
-			<Actor seed="32306"/>
 		</Entity>
 		<Entity uid="231">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
 			<Position x="321.65333" z="593.5495"/>
 			<Orientation y="-1.52526"/>
-			<Actor seed="30706"/>
 		</Entity>
 		<Entity uid="232">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
 			<Position x="287.37931" z="529.7674"/>
 			<Orientation y="3.10112"/>
-			<Actor seed="8964"/>
 		</Entity>
 		<Entity uid="233">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
 			<Position x="318.09861" z="461.6667"/>
 			<Orientation y="0.1675"/>
-			<Actor seed="7094"/>
 		</Entity>
 		<Entity uid="234">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
 			<Position x="381.11039" z="508.89982"/>
 			<Orientation y="-2.89042"/>
-			<Actor seed="31560"/>
 		</Entity>
 		<Entity uid="235">
 			<Template>gaia/fauna_fish_tilapia</Template>

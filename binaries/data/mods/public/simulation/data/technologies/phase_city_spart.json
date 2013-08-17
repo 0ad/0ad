@@ -10,7 +10,7 @@
 	"supersedes": "phase_town_generic",
 	"icon": "city_phase.png",
 	"researchTime": 80,
-	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civilisation Centres increased by another +50%. All citizen-soldiers promote directly to Elite rank after 1 kill, but population cap reduced -10%.",
+	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civilization Centers increased by another +50%. All citizen-soldiers promote directly to Elite rank after 1 kill, but population cap reduced -10%.",
 	"modifications": [
 		{"value": "Promotion/RequiredXp", "multiplier": 0.1, "affects": ["CitizenSoldier"]},
 		{"value": "Player/MaxPopulation", "multiplier": 0.9}

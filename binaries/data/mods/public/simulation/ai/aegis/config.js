@@ -72,12 +72,12 @@ var Config = {
 	{
 		Config.difficulty = difficulty;
 		// changing settings based on difficulty.
-		if (Config.difficulty === 1 && 0)	// deactivated for the time being. Medium is basic mode.
+		if (Config.difficulty === 1)
 		{
 			Config["Military"] = {
 				"fortressLapseTime" : 900,
 				"defenceBuildingTime" : 720,
-				"attackPlansStartTime" : 600
+				"attackPlansStartTime" : 1200
 			};
 			Config["Economy"] = {
 				"townPhase" : 360,
@@ -99,7 +99,7 @@ var Config = {
 			Config["Military"] = {
 				"fortressLapseTime" : 1000000,	// never
 				"defenceBuildingTime" : 900,
-				"attackPlansStartTime" : 1200	// 20 minutes ought to give enough times for beginners
+				"attackPlansStartTime" : 120000	// never
 			};
 			Config["Economy"] = {
 				"townPhase" : 480,
@@ -109,7 +109,7 @@ var Config = {
 				"techStartTime" : 600000,	// never
 				"targetNumBuilders" : 1,
 				"femaleRatio" : 0.0,	// makes us slower, but also less sucky at defending so it's still fun to attack it.
-				"targetNumWorkers" : 80	// we will make advanced buildings and a fortress (and a market), but nothing more.
+				"targetNumWorkers" : 70
 			};
 			Config["Defence"] = {
 				"defenceRatio" : 2.0,

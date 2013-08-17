@@ -12,7 +12,10 @@ GarrisonHolder.prototype.Schema =
 	"</element>" +
 	"<element name='EjectHealth' a:help='Percentage of maximum health below which this holder no longer allows garrisoning'>" +
 		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" + 
+	"</element>" +
+	"<element name='EjectEntitiesOnDestroy' a:help='Whether the entity should eject or kill all garrisoned entities on destroy'>" +
+		"<data type='boolean'/>" +
+	"</element>" +
 	"<element name='BuffHeal' a:help='Number of hit points that will be restored to this holder&apos;s garrisoned units each second'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
@@ -74,18 +77,25 @@ GarrisonHolder.prototype.GetHealRate = function()
 	return ApplyTechModificationsToEntity("GarrisonHolder/BuffHeal", +this.template.BuffHeal, this.entity);
 };
 
+GarrisonHolder.prototype.EjectEntitiesOnDestroy = function()
+{
+	if (this.template.EjectEntitiesOnDestroy == "true")
+		return true;
+	return false;
+}
+
 /**
  * Get number of garrisoned units capable of shooting arrows
  * Not necessarily archers
  */
-GarrisonHolder.prototype.GetGarrisonedArcherCount = function()
+GarrisonHolder.prototype.GetGarrisonedArcherCount = function(garrisonArrowClasses)
 {
 	var count = 0;
 	for each (var entity in this.entities)
 	{
 		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
 		var classes = cmpIdentity.GetClassesList();
-		if (classes.indexOf("Infantry") != -1 || classes.indexOf("Ranged") != -1)
+		if (classes.some(function(c){return garrisonArrowClasses.indexOf(c) > -1;}))
 			count++;
 	}
 	return count;
@@ -337,15 +347,12 @@ GarrisonHolder.prototype.OnHealthChanged = function(msg)
 {
 	if (!this.HasEnoughHealth())
 	{
-		// We have to be careful of our passability
-		//	ships: not land passable, so assume units have drowned in a shipwreck
-		//  building: land passable, so units can be ejected freely
-		var classes = (Engine.QueryInterface(this.entity, IID_Identity)).GetClassesList();
 		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 
-		// Destroy the garrisoned units if the holder is a ship or is not in the
-		// world (generally means this holder is inside a ship which has sunk).
-		if (classes.indexOf("Ship") != -1 || !cmpPosition.IsInWorld())
+		// Destroy the garrisoned units if the holder kill his entities on destroy or
+		// is not in the world (generally means this holder is inside 
+		// a holder which kills its entities which has sunk).
+		if (!this.EjectEntitiesOnDestroy() || !cmpPosition.IsInWorld())
 		{
 			for each (var entity in this.entities)
 			{

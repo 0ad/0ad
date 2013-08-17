@@ -2,52 +2,51 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>cumulus</SkySet>
+		<SkySet>sunny 1</SkySet>
 		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
-		<SunElevation angle="0.874369"/>
-		<SunRotation angle="-0.785396"/>
+		<SunElevation angle="0.944932"/>
+		<SunRotation angle="-1.23946"/>
 		<TerrainAmbientColour r="0.329412" g="0.411765" b="0.584314"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<Fog>
-			<FogFactor>0</FogFactor>
-			<FogThickness>0.5</FogThickness>
+			<FogFactor>0.00234375</FogFactor>
+			<FogThickness>0.375</FogThickness>
 			<FogColour r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.392157" g="0.47451" b="0.654902"/>
+				<Colour r="0.203922" g="0.513726" b="0.701961"/>
 				<Height>22.2426</Height>
 				<Shininess>2.92969</Shininess>
-				<Waviness>8</Waviness>
-				<Murkiness>0.644531</Murkiness>
-				<Tint r="0.137255" g="0.603922" b="0.854902"/>
-				<ReflectionTint r="0.0901961" g="0.619608" b="0.901961"/>
-				<ReflectionTintStrength>0.398438</ReflectionTintStrength>
+				<Waviness>8.98438</Waviness>
+				<Murkiness>0.617188</Murkiness>
+				<Tint r="0" g="1" b="0.776471"/>
+				<ReflectionTint r="0" g="0.501961" b="1"/>
+				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
-			<Contrast>1</Contrast>
-			<Saturation>0.99</Saturation>
-			<Bloom>0.1999</Bloom>
-			<PostEffect>default</PostEffect>
+			<Contrast>1.125</Contrast>
+			<Saturation>1</Saturation>
+			<Bloom>0.167187</Bloom>
+			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="1388.91" y="124.086" z="894.162"/>
+		<Position x="1424.26" y="74.7701" z="1034.23"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview": "peloponnese_scenario.png",
   "Description": "A real-world map of the Greek homeland.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
-  "Name": "Peloponnese",
+  "Name": "Peloponnesian Wars",
   "PlayerData": [
     {
       "Civ": "athen",
@@ -170,6 +169,7 @@
       "Team": -1
     }
   ],
+  "Preview": "peloponnese_scenario.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -33574,6 +33574,48 @@
 			<Player>0</Player>
 			<Position x="1495.06724" z="1080.73604"/>
 			<Orientation y="-1.19298"/>
+		</Entity>
+		<Entity uid="6235">
+			<Template>units/athen_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="1389.71448" z="1016.26685"/>
+			<Orientation y="1.92016"/>
+			<Actor seed="47052"/>
+		</Entity>
+		<Entity uid="6237">
+			<Template>units/spart_ship_trireme</Template>
+			<Player>2</Player>
+			<Position x="934.4372" z="400.35584"/>
+			<Orientation y="-0.52605"/>
+			<Actor seed="924"/>
+		</Entity>
+		<Entity uid="6238">
+			<Template>units/hele_ship_trireme</Template>
+			<Player>3</Player>
+			<Position x="373.67542" z="863.12031"/>
+			<Orientation y="1.45075"/>
+			<Actor seed="37656"/>
+		</Entity>
+		<Entity uid="6239">
+			<Template>units/hele_ship_trireme</Template>
+			<Player>4</Player>
+			<Position x="1142.84449" z="1498.91724"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53032"/>
+		</Entity>
+		<Entity uid="6240">
+			<Template>units/hele_ship_trireme</Template>
+			<Player>5</Player>
+			<Position x="938.22236" z="1128.07532"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4236"/>
+		</Entity>
+		<Entity uid="6241">
+			<Template>units/hele_ship_trireme</Template>
+			<Player>6</Player>
+			<Position x="1053.91932" z="1794.78064"/>
+			<Orientation y="-2.57662"/>
+			<Actor seed="56066"/>
 		</Entity>
 	</Entities>
 	<Paths/>

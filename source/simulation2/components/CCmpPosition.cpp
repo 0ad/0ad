@@ -567,17 +567,13 @@ private:
 			return;
 		}
 
-		if (!m_RotZ.IsZero() || !m_RotX.IsZero())
+		if (m_AnchorType == UPRIGHT || !m_RotZ.IsZero() || !m_RotX.IsZero())
 		{
 			// set the visual rotations to the ones fixed by the interface
 			m_InterpolatedRotX = m_RotX.ToFloat();
 			m_InterpolatedRotZ = m_RotZ.ToFloat();
 			return;
 		}
-
-		// change nothing if anchor is upright
-		if (m_AnchorType == UPRIGHT)
-			return;
 
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpTerrain || !cmpTerrain->IsLoaded())

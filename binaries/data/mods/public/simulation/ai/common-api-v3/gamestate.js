@@ -589,7 +589,8 @@ GameState.prototype.findAvailableTech = function() {
 			if (this.canResearch(techs[1]._templateName))
 				ret.push([techs[1]._templateName, techs[1]] );
 		} else {
-			if (this.canResearch(allResearchable[i]) && template._templateName != "phase_town" && template._templateName != "phase_city_generic")
+			if (this.canResearch(allResearchable[i]) && template._templateName != "phase_town_generic"
+				&& template._templateName != "phase_town_athens" && template._templateName != "phase_city_generic")
 				ret.push( [allResearchable[i], template] );
 		}
 	}

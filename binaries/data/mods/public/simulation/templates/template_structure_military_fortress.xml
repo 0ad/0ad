@@ -35,6 +35,7 @@
   <GarrisonHolder>
     <Max>20</Max>
     <EjectHealth>0.075</EjectHealth>
+    <EjectEntitiesOnDestroy>true</EjectEntitiesOnDestroy>
     <List datatype="tokens">Support Infantry Cavalry Siege</List>
     <BuffHeal>0</BuffHeal>
     <LoadingRange>6</LoadingRange>

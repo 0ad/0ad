@@ -16,6 +16,7 @@
   <BuildingAI>
     <DefaultArrowCount>2</DefaultArrowCount>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+	<GarrisonArrowClasses>Infantry Ranged</GarrisonArrowClasses>
   </BuildingAI>
   <Cost>
     <Population>2</Population>
@@ -32,6 +33,7 @@
   <GarrisonHolder>
     <Max>20</Max>
     <EjectHealth>0</EjectHealth>
+    <EjectEntitiesOnDestroy>false</EjectEntitiesOnDestroy>
     <List datatype="tokens">Support Infantry Cavalry</List>
     <BuffHeal>1</BuffHeal>
     <LoadingRange>10</LoadingRange>
@@ -48,6 +50,7 @@
   <ResourceGatherer disable=""/>
   <Sound>
     <SoundGroups>
+      <attack>attack/weapon/arrowfly.xml</attack>
       <attack_impact>attack/impact/arrow_metal.xml</attack_impact>
     </SoundGroups>
   </Sound>

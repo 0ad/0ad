@@ -178,8 +178,10 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		/////////////////////////////////////////////////////////////////////////
 		// Terrain elevation
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Elevation tools"));
-		wxSizer* gridSizer = new wxGridSizer(3);
+		wxSizer* gridSizer = new wxGridSizer(4);
 		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Modify"), _T("AlterElevation")),
+			_("Brush with left mouse buttons to raise terrain,\nright mouse button to lower it")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Ridge"), _T("PikeElevation")),
 			_("Brush with left mouse buttons to raise terrain,\nright mouse button to lower it")), wxSizerFlags().Expand());
 		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T("SmoothElevation")),
 			_("Brush with left mouse button to smooth terrain,\nright mouse button to roughen it")), wxSizerFlags().Expand());
