@@ -28,6 +28,7 @@ class PikeElevation : public StateDrivenTool<PikeElevation>
 {
 	DECLARE_DYNAMIC_CLASS(PikeElevation);
 
+	int m_Direction; // +1 = raise, -1 = lower
 	Position m_Pos;
 
 public:
@@ -55,7 +56,13 @@ public:
 			if (evt.LeftDown())
 			{
 				obj->m_Pos = Position(evt.GetPosition());
-				SET_STATE(Piking);
+				SET_STATE(PikeRaising);
+				return true;
+			}
+			else if (evt.RightDown())
+			{
+				obj->m_Pos = Position(evt.GetPosition());
+				SET_STATE(PikeLowering);
 				return true;
 			}
 			else if (evt.Moving())
@@ -86,7 +93,7 @@ public:
 
 		bool OnMouse(PikeElevation* obj, wxMouseEvent& evt)
 		{
-			if (evt.LeftUp())
+			if (IsMouseUp(evt))
 			{
 				SET_STATE(Waiting);
 				return true;
@@ -106,11 +113,27 @@ public:
 
 		void OnTick(PikeElevation* obj, float dt)
 		{
-			POST_COMMAND(PikeElevation, (obj->m_Pos, dt*4096.f*g_Brush_Elevation.GetStrength()));
+			POST_COMMAND(PikeElevation, (obj->m_Pos, dt*4096.f*GetDirection()*g_Brush_Elevation.GetStrength()));
 			obj->m_Pos = Position::Unchanged();
 		}
+
+		virtual bool IsMouseUp(wxMouseEvent& evt) = 0;
+		virtual int GetDirection() = 0;
+	};
+
+	struct sPikeRaising : public sPiking
+	{
+		bool IsMouseUp(wxMouseEvent& evt) { return evt.LeftUp(); }
+		int GetDirection() { return +1; }
 	}
-	Piking;
+	PikeRaising;
+
+	struct sPikeLowering : public sPiking
+	{
+		bool IsMouseUp(wxMouseEvent& evt) { return evt.RightUp(); }
+		int GetDirection() { return -1; }
+	}
+	PikeLowering;
 };
 
 IMPLEMENT_DYNAMIC_CLASS(PikeElevation, StateDrivenTool<PikeElevation>);

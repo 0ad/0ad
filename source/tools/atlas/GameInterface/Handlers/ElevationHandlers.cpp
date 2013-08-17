@@ -415,7 +415,8 @@ BEGIN_COMMAND(PikeElevation)
 				{
 					float x = (float)dx - ((float)g_CurrentBrush.m_H - 1) / 2.f;
 					float y = (float)dy - ((float)g_CurrentBrush.m_W - 1) / 2.f;
-					float distance = clamp(1 - (float)sqrt(x * x + y * y) / h, 0.f, 1.f);
+					float distance = clamp(1 - (float)sqrt(x * x + y * y) / h, 0.01f, 1.0f);
+					distance *= distance;
 					m_TerrainDelta.RaiseVertex(x0 + dx, y0 + dy, (int)(amount * distance));
 				}
 			}
