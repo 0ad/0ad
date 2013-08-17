@@ -20,7 +20,7 @@
 				<Height>33.0492</Height>
 				<Shininess>2.19727</Shininess>
 				<Waviness>8.00781</Waviness>
-				<Murkiness>0.71875</Murkiness>
+				<Murkiness>0.664063</Murkiness>
 				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0.00392157" g="0.921569" b="0.992157"/>
 				<ReflectionTintStrength>0.1875</ReflectionTintStrength>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="452.689" y="97.4959" z="332.614"/>
+		<Position x="625.347" y="88.5569" z="147.266"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -19404,6 +19404,62 @@
 			<Position x="535.62873" z="531.08387"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="61656"/>
+		</Entity>
+		<Entity uid="3675">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="959.20215" z="171.56708"/>
+			<Orientation y="-1.7468"/>
+			<Actor seed="14400"/>
+		</Entity>
+		<Entity uid="3676">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="645.24366" z="224.3299"/>
+			<Orientation y="1.14812"/>
+			<Actor seed="22144"/>
+		</Entity>
+		<Entity uid="3677">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="825.32026" z="847.72889"/>
+			<Orientation y="-1.6486"/>
+			<Actor seed="16746"/>
+		</Entity>
+		<Entity uid="3678">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="762.54224" z="1371.7295"/>
+			<Orientation y="-1.91802"/>
+			<Actor seed="61844"/>
+		</Entity>
+		<Entity uid="3679">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="1296.51966" z="1459.95057"/>
+			<Orientation y="-2.22745"/>
+			<Actor seed="18616"/>
+		</Entity>
+		<Entity uid="3680">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="1545.41761" z="647.06617"/>
+			<Orientation y="-2.33156"/>
+			<Actor seed="23890"/>
+		</Entity>
+		<Entity uid="3681">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="1413.00684" z="289.85315"/>
+			<Orientation y="0.98269"/>
+			<Actor seed="24280"/>
+		</Entity>
+		<Entity uid="3682">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="116.76719" z="845.6319"/>
+			<Orientation y="-2.65635"/>
+			<Actor seed="29736"/>
 		</Entity>
 	</Entities>
 	<Paths/>
