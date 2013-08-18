@@ -25,8 +25,8 @@
 #include "simulation2/MessageTypes.h"
 
 #include "graphics/Terrain.h"
-#include "Renderer/Renderer.h"
-#include "Renderer/WaterManager.h"
+#include "renderer/Renderer.h"
+#include "renderer/WaterManager.h"
 #include "maths/Vector3D.h"
 
 class CCmpTerrain : public ICmpTerrain
