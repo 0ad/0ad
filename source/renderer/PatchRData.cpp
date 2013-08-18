@@ -45,10 +45,6 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpWaterManager.h"
 
-#include "tools/atlas/GameInterface/GameLoop.h"
-
-extern GameLoopState* g_AtlasGameLoop;
-
 const ssize_t BlendOffsets[9][2] = {
 	{  0, -1 },
 	{ -1, -1 },
@@ -1311,9 +1307,9 @@ void CPatchRData::BuildWater()
 	// TODO: This is not (yet) exported via the ICmp interface so... we stick to these values which can be compiled in defaults
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 
-	if (WaterMgr->m_NeedsFullReloading && !g_AtlasGameLoop->running)
+	if (WaterMgr->m_NeedInfoUpdate)
 	{
-		WaterMgr->m_NeedsFullReloading = false;
+		WaterMgr->m_NeedInfoUpdate = false;
 		WaterMgr->CreateSuperfancyInfo(m_Simulation);
 	}
 	CPatch* patch = m_Patch;

@@ -83,9 +83,14 @@ public:
 				// Tell the renderer to redraw the map.
 				if (CRenderer::IsInitialised())
 				{
-					g_Renderer.GetWaterManager()->m_NeedsFullReloading = true;
-					g_Renderer.GetWaterManager()->m_NeedsReloading = true;
-					g_Renderer.GetWaterManager()->m_TerrainChangeThisTurn = true;
+					const CMessageTerrainChanged& msgData = static_cast<const CMessageTerrainChanged&> (msg);
+					g_Renderer.GetWaterManager()->m_NeedInfoUpdate = true;
+					g_Renderer.GetWaterManager()->m_updatei0 = msgData.i0;
+					g_Renderer.GetWaterManager()->m_updatej0 = msgData.j0;
+					g_Renderer.GetWaterManager()->m_updatei1 = msgData.i1;
+					g_Renderer.GetWaterManager()->m_updatej1 = msgData.j1;
+					
+					GetSimContext().GetTerrain().MakeDirty(msgData.i0,msgData.j0,msgData.i1,msgData.j1,RENDERDATA_UPDATE_VERTICES);
 				}
 				break;
 			}
