@@ -48,6 +48,15 @@ sub find_files
     return @files;
 }
 
+sub parse_json_file
+{
+    my ($vfspath) = @_;
+    open my $fh, vfs_to_physical($vfspath) or die "Failed to open '$vfspath': $!";
+    # decode_json expects a UTF-8 string and doesn't handle BOMs, so we strip those
+    # (see http://trac.wildfiregames.com/ticket/1556)
+    return decode_json(do { local $/; my $file = <$fh>; $file =~ s/^\xEF\xBB\xBF//; $file });
+}
+
 sub add_entities
 {
     print "Loading entities...\n";
@@ -374,10 +383,7 @@ sub add_civs
 
         push @roots, $f;
 
-        open my $fh, vfs_to_physical($f) or die "Failed to open '$f': $!";
-        # decode_json expects a UTF-8 string and doesn't handle BOMs, so we strip those
-        # (see http://trac.wildfiregames.com/ticket/1556)
-        my $civ = decode_json(do { local $/; my $file = <$fh>; $file =~ s/^\xEF\xBB\xBF//; $file });
+        my $civ = parse_json_file($f);
 
         push @deps, [ $f, "art/textures/ui/" . $civ->{Emblem} ];
 
@@ -398,15 +404,29 @@ sub add_rms
 
         push @roots, $f;
 
-        open my $fh, vfs_to_physical($f) or die "Failed to open '$f': $!";
-        # decode_json expects a UTF-8 string and doesn't handle BOMs, so we strip those
-        # (see http://trac.wildfiregames.com/ticket/1556)
-        my $rms = decode_json(do { local $/; my $file = <$fh>; $file =~ s/^\xEF\xBB\xBF//; $file });
+        my $rms = parse_json_file($f);
 
         push @deps, [ $f, "maps/random/" . $rms->{settings}{Script} ];
 
         # Map previews
         push @deps, [ $f, "art/textures/ui/session/icons/mappreview/" . $rms->{settings}{Preview} ] if $rms->{settings}{Preview};
+    }
+}
+
+sub add_techs
+{
+    print "Loading techs...\n";
+
+    my @techfiles = find_files('simulation/data/technologies', 'json');
+    for my $f (sort @techfiles)
+    {
+        push @files, $f;
+        push @roots, $f;
+
+        my $tech = parse_json_file($f);
+
+        push @deps, [ $f, "art/textures/ui/session/portraits/technologies/" . $tech->{icon} ] if $tech->{icon};
+        push @deps, [ $f, "simulation/data/technologies/" . $tech->{supersedes} . ".json" ] if $tech->{supersedes};
     }
 }
 
@@ -513,6 +533,8 @@ add_gui_data();
 add_civs();
 
 add_rms();
+
+add_techs();
 
 add_terrains();
 
