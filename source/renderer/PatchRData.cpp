@@ -45,10 +45,6 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpWaterManager.h"
 
-#include "tools/atlas/GameInterface/GameLoop.h"
-
-extern GameLoopState* g_AtlasGameLoop;
-
 const ssize_t BlendOffsets[9][2] = {
 	{  0, -1 },
 	{ -1, -1 },
@@ -1311,9 +1307,9 @@ void CPatchRData::BuildWater()
 	// TODO: This is not (yet) exported via the ICmp interface so... we stick to these values which can be compiled in defaults
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 
-	if (WaterMgr->m_NeedsFullReloading && !g_AtlasGameLoop->running)
+	if (WaterMgr->m_NeedInfoUpdate)
 	{
-		WaterMgr->m_NeedsFullReloading = false;
+		WaterMgr->m_NeedInfoUpdate = false;
 		WaterMgr->CreateSuperfancyInfo(m_Simulation);
 	}
 	CPatch* patch = m_Patch;
@@ -1388,18 +1384,11 @@ void CPatchRData::BuildWater()
 					int tx = x+x1;
 					int ty = z+z1 + j*water_cell_size;
 
-					if (g_AtlasGameLoop->running)
-					{
-						// currently no foam is used so push whatever
-						vertex.m_WaterData = CVector4D(0.0f,0.0f,0.0f,0.0f);
-					}
-					else
-					{
-						vertex.m_WaterData = CVector4D(WaterMgr->m_WaveX[tx + ty*mapSize],
+					vertex.m_WaterData = CVector4D(WaterMgr->m_WaveX[tx + ty*mapSize],
 												   WaterMgr->m_WaveZ[tx + ty*mapSize],
 												   WaterMgr->m_DistanceToShore[tx + ty*mapSize],
 												   WaterMgr->m_FoamFactor[tx + ty*mapSize]);
-					}
+
 					water_index_map[z+j*water_cell_size][x] = water_vertex_data.size();
 					water_vertex_data.push_back(vertex);
 				}

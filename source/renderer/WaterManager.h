@@ -58,11 +58,17 @@ public:
 	float* m_DistanceToShore;
 	float* m_FoamFactor;
 	
+	size_t m_MapSize;
 	ssize_t m_TexSize;
 
 	GLuint m_depthTT;
 	GLuint m_waveTT;
 
+	// used to know what to update when updating parts of the terrain only.
+	i32 m_updatei0;
+	i32 m_updatej0;
+	i32 m_updatei1;
+	i32 m_updatej1;
 	
 	int m_WaterCurrentTex;
 	CColor m_WaterColor;
@@ -79,9 +85,7 @@ public:
 	
 	bool m_NeedsReloading;
 	// requires also recreating the super fancy information.
-	bool m_NeedsFullReloading;
-	// used only by Atlas to know when to update the water map.
-	bool m_TerrainChangeThisTurn;
+	bool m_NeedInfoUpdate;
 
 	bool m_WaterScroll;
 	float m_WaterHeight;
@@ -148,9 +152,14 @@ public:
 	void CreateSuperfancyInfo(CSimulation2* simulation);
 
 	/**
+	 * Updates the map size. Will trigger a complete recalculation of fancy water information the next turn.
+	 */
+	void SetMapSize(size_t size);
+
+	/**
 	 * Updates the settings to the one from the renderer, and sets m_NeedsReloading.
 	 */
-	void updateQuality();
+	void UpdateQuality();
 	
 	/**
 	 * Returns true if fancy water shaders will be used (i.e. the hardware is capable

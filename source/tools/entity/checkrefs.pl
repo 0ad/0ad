@@ -48,6 +48,15 @@ sub find_files
     return @files;
 }
 
+sub parse_json_file
+{
+    my ($vfspath) = @_;
+    open my $fh, vfs_to_physical($vfspath) or die "Failed to open '$vfspath': $!";
+    # decode_json expects a UTF-8 string and doesn't handle BOMs, so we strip those
+    # (see http://trac.wildfiregames.com/ticket/1556)
+    return decode_json(do { local $/; my $file = <$fh>; $file =~ s/^\xEF\xBB\xBF//; $file });
+}
+
 sub add_entities
 {
     print "Loading entities...\n";
@@ -212,11 +221,16 @@ sub add_scenarios_pmp
 
     # Need to generate terrain texture filename=>path lookup first
     my %terrains;
-    for my $f (find_files('art/textures/terrain/types', 'dds|png|jpg|tga'))
+    for my $f (find_files('art/terrains', 'xml'))
     {
-        $f =~ /([^\/]+)\.(dds|png|jpg|tga)/ or die;
-        warn "Duplicate terrain name '$1' (from '$terrains{$1}' and '$f')\n" if $terrains{$1};
-        $terrains{$1} = $f;
+        $f =~ /([^\/]+)\.xml/ or die;
+
+        # ignore terrains.xml
+        if ($f !~ /terrains.xml$/)
+        {
+            warn "Duplicate terrain name '$1' (from '$terrains{$1}' and '$f')\n" if $terrains{$1};
+            $terrains{$1} = $f;
+        }
     }
 
     my @mapfiles = find_files('maps/scenarios', 'pmp');
@@ -256,7 +270,7 @@ sub add_scenarios_pmp
             my $str;
             read $fh, $str, $len;
 
-            push @deps, [ $f, $terrains{$str} || "art/textures/terrain/types/(unknown)/$str" ];
+            push @deps, [ $f, $terrains{$str} || "art/terrains/(unknown)/$str" ];
         }
 
         # ignore patches data
@@ -369,10 +383,7 @@ sub add_civs
 
         push @roots, $f;
 
-        open my $fh, vfs_to_physical($f) or die "Failed to open '$f': $!";
-        # decode_json expects a UTF-8 string and doesn't handle BOMs, so we strip those
-        # (see http://trac.wildfiregames.com/ticket/1556)
-        my $civ = decode_json(do { local $/; my $file = <$fh>; $file =~ s/^\xEF\xBB\xBF//; $file });
+        my $civ = parse_json_file($f);
 
         push @deps, [ $f, "art/textures/ui/" . $civ->{Emblem} ];
 
@@ -393,15 +404,52 @@ sub add_rms
 
         push @roots, $f;
 
-        open my $fh, vfs_to_physical($f) or die "Failed to open '$f': $!";
-        # decode_json expects a UTF-8 string and doesn't handle BOMs, so we strip those
-        # (see http://trac.wildfiregames.com/ticket/1556)
-        my $rms = decode_json(do { local $/; my $file = <$fh>; $file =~ s/^\xEF\xBB\xBF//; $file });
+        my $rms = parse_json_file($f);
 
         push @deps, [ $f, "maps/random/" . $rms->{settings}{Script} ];
 
         # Map previews
         push @deps, [ $f, "art/textures/ui/session/icons/mappreview/" . $rms->{settings}{Preview} ] if $rms->{settings}{Preview};
+    }
+}
+
+sub add_techs
+{
+    print "Loading techs...\n";
+
+    my @techfiles = find_files('simulation/data/technologies', 'json');
+    for my $f (sort @techfiles)
+    {
+        push @files, $f;
+        push @roots, $f;
+
+        my $tech = parse_json_file($f);
+
+        push @deps, [ $f, "art/textures/ui/session/portraits/technologies/" . $tech->{icon} ] if $tech->{icon};
+        push @deps, [ $f, "simulation/data/technologies/" . $tech->{supersedes} . ".json" ] if $tech->{supersedes};
+    }
+}
+
+sub add_terrains
+{
+    print "Loading terrains...\n";
+
+    my @terrains = find_files('art/terrains', 'xml');
+    for my $f (sort @terrains)
+    {
+        # ignore terrains.xml
+        if ($f !~ /terrains.xml$/)
+        {
+            push @files, $f;
+            
+            my $terrain = XMLin(vfs_to_physical($f), ForceArray => [qw(texture)], KeyAttr => []) or die "Failed to parse '$f': $!";
+
+            for my $texture (@{$terrain->{textures}{texture}})
+            {
+                push @deps, [ $f, "art/textures/terrain/$texture->{file}" ] if $texture->{file};
+            }
+            push @deps, [ $f, "art/materials/$terrain->{material}" ] if $terrain->{material};
+        }
     }
 }
 
@@ -485,6 +533,10 @@ add_gui_data();
 add_civs();
 
 add_rms();
+
+add_techs();
+
+add_terrains();
 
 # TODO: add non-skin textures, and all the references to them
 

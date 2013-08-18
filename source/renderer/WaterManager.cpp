@@ -92,8 +92,7 @@ WaterManager::WaterManager()
 	m_WaterShadows = false;
 	
 	m_NeedsReloading = false;
-	m_NeedsFullReloading = true;
-	m_TerrainChangeThisTurn = false;
+	m_NeedInfoUpdate = true;
 	
 	m_VBWaves = NULL;
 	m_VBWavesIndices = NULL;
@@ -101,6 +100,12 @@ WaterManager::WaterManager()
 	m_depthTT = 0;
 	m_waveTT = 0;
 
+	m_MapSize = 0;
+	
+	m_updatei0 = 0;
+	m_updatej0 = 0;
+	m_updatei1 = 0;
+	m_updatej1 = 0;
 }
 
 WaterManager::~WaterManager()
@@ -245,7 +250,6 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	}
 
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	ssize_t mapSize = terrain->GetVerticesPerSide();
 	
 	CmpPtr<ICmpWaterManager> cmpWaterManager(*simulation, SYSTEM_ENTITY);
 	if (!cmpWaterManager)
@@ -256,34 +260,38 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	if (!cmpRangeManager)
 		return;
 	bool circular = cmpRangeManager->GetLosCircular();
-	float mSize = mapSize*mapSize;
-	float halfSize = (mapSize/2.0);
+	float mSize = m_MapSize*m_MapSize;
+	float halfSize = (m_MapSize/2.0);
 
 	// Warning: this won't work with multiple water planes
 	m_WaterHeight = cmpWaterManager->GetExactWaterLevel(0,0);
 	
-	// TODO: change this whenever we incrementally update because it's def. not too efficient
-	delete[] m_WaveX;
-	delete[] m_WaveZ;
-	delete[] m_DistanceToShore;
-	delete[] m_FoamFactor;
-	
-	m_WaveX = new float[mapSize*mapSize];
-	m_WaveZ = new float[mapSize*mapSize];
-	m_DistanceToShore = new float[mapSize*mapSize];
-	m_FoamFactor = new float[mapSize*mapSize];
+	// Get the square we want to work on.
+	i32 Xstart = m_updatei0;
+	i32 Xend = m_updatei1;
+	i32 Zstart = m_updatej0;
+	i32 Zend = m_updatej1;
+
+	if (m_WaveX == NULL)
+	{
+		m_WaveX = new float[m_MapSize*m_MapSize];
+		m_WaveZ = new float[m_MapSize*m_MapSize];
+		m_DistanceToShore = new float[m_MapSize*m_MapSize];
+		m_FoamFactor = new float[m_MapSize*m_MapSize];
+	}
 
 	u16* heightmap = terrain->GetHeightMap();
 	
 	// some temporary stuff for wave intensity
 	// not really used too much right now.
-	u8* waveForceHQ = new u8[mapSize*mapSize];
-	u16 waterHeightInu16 = m_WaterHeight/HEIGHT_SCALE;
+	//u8* waveForceHQ = new u8[mapSize*mapSize];
 
 	// used to cache terrain normals since otherwise we'd recalculate them a lot (I'm blurring the "normal" map).
 	// this might be updated to actually cache in the terrain manager but that's not for now.
-	CVector3D* normals = new CVector3D[mapSize*mapSize];
+	CVector3D* normals = new CVector3D[m_MapSize*m_MapSize];
 
+	// TODO: reactivate?
+	/*
 	// calculate wave force (not really used right now)
 	// and puts into "normals" the terrain normal at that point
 	// so as to avoid recalculating terrain normals too often.
@@ -310,20 +318,21 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			waveForceHQ[j*mapSize + i] = 255 - color * 40;
 		}
 	}
+	 */
 	// this creates information for waves and stores it in float arrays. PatchRData then puts it in the vertex info for speed.
-	for (ssize_t i = 0; i < mapSize; ++i)
+	for (ssize_t i = Xstart; i < Xend; ++i)
 	{
-		for (ssize_t j = 0; j < mapSize; ++j)
+		for (ssize_t j = Zstart; j < Zend; ++j)
 		{
 			if (circular && (i-halfSize)*(i-halfSize)+(j-halfSize)*(j-halfSize) > mSize)
 			{
-				m_WaveX[j*mapSize + i] = 0.0f;
-				m_WaveZ[j*mapSize + i] = 0.0f;
-				m_DistanceToShore[j*mapSize + i] = 100;
-				m_FoamFactor[j*mapSize + i] = 0.0f;
+				m_WaveX[j*m_MapSize + i] = 0.0f;
+				m_WaveZ[j*m_MapSize + i] = 0.0f;
+				m_DistanceToShore[j*m_MapSize + i] = 100;
+				m_FoamFactor[j*m_MapSize + i] = 0.0f;
 				continue;
 			}
-			float depth = m_WaterHeight - heightmap[j*mapSize + i]*HEIGHT_SCALE;
+			float depth = m_WaterHeight - heightmap[j*m_MapSize + i]*HEIGHT_SCALE;
 			int distanceToShore = 10000;
 			
 			// calculation of the distance to the shore.
@@ -336,10 +345,10 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 				{
 					for (int yy = -5; yy <= 5; ++yy)
 					{
-						if (i+xx >= 0 && i + xx < mapSize)
-							if (j + yy >= 0 && j + yy < mapSize)
+						if (i+xx >= 0 && i + xx < (long)m_MapSize)
+							if (j + yy >= 0 && j + yy < (long)m_MapSize)
 							{
-								float hereDepth = m_WaterHeight - heightmap[(j+yy)*mapSize + (i+xx)]*HEIGHT_SCALE;
+								float hereDepth = m_WaterHeight - heightmap[(j+yy)*m_MapSize + (i+xx)]*HEIGHT_SCALE;
 								if (hereDepth < 0 && xx*xx + yy*yy < distanceToShore)
 									distanceToShore = xx*xx + yy*yy;
 							}
@@ -375,10 +384,10 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			// speedup with default values for land squares
 			if (distanceToShore == 10000)
 			{
-				m_WaveX[j*mapSize + i] = 0.0f;
-				m_WaveZ[j*mapSize + i] = 0.0f;
-				m_DistanceToShore[j*mapSize + i] = 100;
-				m_FoamFactor[j*mapSize + i] = 0.0f;
+				m_WaveX[j*m_MapSize + i] = 0.0f;
+				m_WaveZ[j*m_MapSize + i] = 0.0f;
+				m_DistanceToShore[j*m_MapSize + i] = 100;
+				m_FoamFactor[j*m_MapSize + i] = 0.0f;
 				continue;
 			}
 			// We'll compute the normals and the "water raise", to know about foam
@@ -389,10 +398,10 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			{
 				for (int yy = -4; yy <= 4; yy += 2)
 				{
-					if (j+yy < mapSize && i+xx < mapSize && i+xx >= 0 && j+yy >= 0)
-						normal += normals[(j+yy)*mapSize + (i+xx)];
-					if (terrain->GetVertexGroundLevel(i+xx,j+yy) < heightmap[j*mapSize + i]*HEIGHT_SCALE)
-						waterRaise += heightmap[j*mapSize + i]*HEIGHT_SCALE - terrain->GetVertexGroundLevel(i+xx,j+yy);
+					if (j+yy < (long)m_MapSize && i+xx < (long)m_MapSize && i+xx >= 0 && j+yy >= 0)
+						normal += normals[(j+yy)*m_MapSize + (i+xx)];
+					if (terrain->GetVertexGroundLevel(i+xx,j+yy) < heightmap[j*m_MapSize + i]*HEIGHT_SCALE)
+						waterRaise += heightmap[j*m_MapSize + i]*HEIGHT_SCALE - terrain->GetVertexGroundLevel(i+xx,j+yy);
 				}
 			}
 			// normalizes the terrain info to avoid foam moving at too different speeds.
@@ -400,25 +409,25 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			normal[1] = 0.1f;
 			normal = normal.Normalized();
 
-			m_WaveX[j*mapSize + i] = normal[0];
-			m_WaveZ[j*mapSize + i] = normal[2];
+			m_WaveX[j*m_MapSize + i] = normal[0];
+			m_WaveZ[j*m_MapSize + i] = normal[2];
 			// distance is /5.0 to be a [0,1] value.
 
-			m_DistanceToShore[j*mapSize + i] = sqrtf(distanceToShore)/5.0f; // TODO: this can probably be cached as I'm integer here.
+			m_DistanceToShore[j*m_MapSize + i] = sqrtf(distanceToShore)/5.0f; // TODO: this can probably be cached as I'm integer here.
 
 			// computing the amount of foam I want
 
 			depth = clamp(depth,0.0f,10.0f);
-			float foamAmount = (waterRaise/255.0f) * (1.0f - depth/10.0f) * (waveForceHQ[j*mapSize+i]/255.0f) * (m_Waviness/8.0f);
+			float foamAmount = (waterRaise/255.0f) * (1.0f - depth/10.0f) /** (waveForceHQ[j*m_MapSize+i]/255.0f)*/ * (m_Waviness/8.0f);
 			foamAmount += clamp(m_Waviness/2.0f - distanceToShore,0.0f,m_Waviness/2.0f)/(m_Waviness/2.0f) * clamp(m_Waviness/9.0f,0.3f,1.0f);
 			foamAmount = foamAmount > 1.0f ? 1.0f: foamAmount;
 			
-			m_FoamFactor[j*mapSize + i] = foamAmount;
+			m_FoamFactor[j*m_MapSize + i] = foamAmount;
 		}
 	}
 
 	delete[] normals;
-	delete[] waveForceHQ;
+	//delete[] waveForceHQ;
 	
 	// TODO: The rest should be cleaned up
 	
@@ -430,9 +439,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	std::vector<CVector2D> waveSquares;
 	
 	int size = 8;	// I think this is the size of the squares.
-	for (int i = 0; i < mapSize/size; ++i)
+	for (size_t i = 0; i < m_MapSize/size; ++i)
 	{
-		for (int j = 0; j < mapSize/size; ++j)
+		for (size_t j = 0; j < m_MapSize/size; ++j)
 		{
 			
 			int landTexel = 0;
@@ -576,8 +585,26 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 }
 
 ////////////////////////////////////////////////////////////////////////
+// This will always recalculate for now
+void WaterManager::SetMapSize(size_t size)
+{
+	// TODO: Im' blindly trusting the user here.
+	m_MapSize = size;
+	m_NeedInfoUpdate = true;
+	m_updatei0 = 0;
+	m_updatei1 = size;
+	m_updatej0 = 0;
+	m_updatej1 = size;
+	
+	SAFE_ARRAY_DELETE(m_WaveX);
+	SAFE_ARRAY_DELETE(m_WaveZ);
+	SAFE_ARRAY_DELETE(m_DistanceToShore);
+	SAFE_ARRAY_DELETE(m_FoamFactor);
+}
+
+////////////////////////////////////////////////////////////////////////
 // This will set the bools properly
-void WaterManager::updateQuality()
+void WaterManager::UpdateQuality()
 {
 	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERNORMAL) != m_WaterNormal) {
 		m_WaterNormal = g_Renderer.GetOptionBool(CRenderer::OPT_WATERNORMAL);
@@ -590,12 +617,12 @@ void WaterManager::updateQuality()
 	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERFOAM) != m_WaterFoam) {
 		m_WaterFoam = g_Renderer.GetOptionBool(CRenderer::OPT_WATERFOAM);
 		m_NeedsReloading = true;
-		m_NeedsFullReloading = true;
+		m_NeedInfoUpdate = true;
 	}
 	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERCOASTALWAVES) != m_WaterCoastalWaves) {
 		m_WaterCoastalWaves = g_Renderer.GetOptionBool(CRenderer::OPT_WATERCOASTALWAVES);
 		m_NeedsReloading = true;
-		m_NeedsFullReloading = true;
+		m_NeedInfoUpdate = true;
 	}
 	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERREFRACTION) != m_WaterRefraction) {
 		m_WaterRefraction = g_Renderer.GetOptionBool(CRenderer::OPT_WATERREFRACTION);

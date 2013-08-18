@@ -1,6 +1,6 @@
 // (A serious implementation of this might want to use C++ instead of JS
 // for performance; this is just for fun.)
-const shortFinal = 2.5;
+const SHORT_FINAL = 2.5;
 function UnitMotionFlying() {}
 
 UnitMotionFlying.prototype.Schema =
@@ -33,6 +33,9 @@ UnitMotionFlying.prototype.Schema =
 	"</element>" +
 	"<element name='ClimbRate'>" +
 		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<element name='DiesInWater'>" +
+		"<data type='boolean'/>" +
 	"</element>";
 
 UnitMotionFlying.prototype.Init = function()
@@ -46,30 +49,89 @@ UnitMotionFlying.prototype.Init = function()
 	this.speed = 0;
 	this.landing = false;
 	this.onGround = true;
+	this.pitch = 0;
+	this.roll = 0;
+	this.waterDeath = false;
 };
 
 UnitMotionFlying.prototype.OnUpdate = function(msg)
 {
 	var turnLength = msg.turnLength;
-
 	if (!this.hasTarget)
 		return;
-
+	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var pos = cmpPosition.GetPosition();
-	var angle = cmpPosition.GetRotation().y;
-
+	var angle = cmpPosition.GetRotation().y;	
+	var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
+	var cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
+	var ground = Math.max(cmpTerrain.GetGroundLevel(pos.x, pos.z), cmpWaterManager.GetWaterLevel(pos.x, pos.z));
+	var newangle = angle;
 	var canTurn = true;
-
-	if (!this.landing)
+	if (this.landing)
+	{
+		if (this.speed > 0 && this.onGround)
+		{			
+			this.pitch = 0;
+			// Deaccelerate forwards...at a very reduced pace.
+			if (this.waterDeath)
+				this.speed = Math.max(0, this.speed - turnLength * this.template.BrakingRate * 10);
+			else
+				this.speed = Math.max(0, this.speed - turnLength * this.template.BrakingRate);
+			canTurn = false;
+			// Clamp to ground if below it, or descend if above 		
+			if (pos.y < ground)
+				pos.y = ground;
+			else if (pos.y > ground)
+				pos.y = Math.max(ground, pos.y - turnLength * this.template.ClimbRate);	
+		}
+		else if (this.speed == 0 && this.onGround)
+		{
+			if (this.waterDeath)
+				cmpHealth.Kill();
+			this.pitch = 0;
+			// We've stopped.
+			cmpGarrisonHolder.AllowGarrisoning(true,"UnitMotionFlying")
+			canTurn = false;
+			this.hasTarget = false;
+			this.landing = false;					
+		}
+		else
+		{
+			// Final Approach
+			// We need to slow down to land!
+			this.speed = Math.max(this.template.LandingSpeed, this.speed - turnLength * this.template.SlowingRate);
+			canTurn = false;			
+			var targetHeight = ground;
+			// Steep, then gradual descent.
+			if ((pos.y - targetHeight) / this.template.FlyingHeight > 1 / SHORT_FINAL)
+				this.pitch = - Math.PI / 18;
+			else
+				this.pitch = Math.PI / 18;
+			var descentRate = ((pos.y - targetHeight) / this.template.FlyingHeight * this.template.ClimbRate + SHORT_FINAL) * SHORT_FINAL;
+			if (pos.y < targetHeight)
+				pos.y = Math.max(targetHeight, pos.y + turnLength * descentRate);
+			else if (pos.y > targetHeight)
+				pos.y = Math.max(targetHeight, pos.y - turnLength * descentRate);
+			if (targetHeight == pos.y)
+			{
+				this.onGround = true;	
+				if (targetHeight == cmpWaterManager.GetWaterLevel(pos.x, pos.z) && this.template.DiesInWater)
+					this.waterDeath = true;				
+			}
+		}		
+	}
+	else
 	{
 		// If we haven't reached max speed yet then we're still on the ground;
 		// otherwise we're taking off or flying
 		// this.onGround in case of a go-around after landing (but not fully stopped)
-		var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
-		var ground = cmpTerrain.GetGroundLevel(pos.x, pos.z);
+
 		if (this.speed < this.template.TakeoffSpeed && this.onGround)
 		{
+			cmpGarrisonHolder.AllowGarrisoning(false,"UnitMotionFlying")	
+			this.pitch = 0;
 			// Accelerate forwards
 			this.speed = Math.min(this.template.MaxSpeed, this.speed + turnLength * this.template.AccelRate);
 			canTurn = false;
@@ -85,57 +147,23 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 			// Climb/sink to max height above ground
 			this.speed = Math.min(this.template.MaxSpeed, this.speed + turnLength * this.template.AccelRate);
 			var targetHeight = ground + (+this.template.FlyingHeight);
+			if (Math.abs(pos.y-targetHeight) > this.template.FlyingHeight/5)
+			{
+				this.pitch = Math.PI / 9;
+				canTurn = false;
+			}
+			else
+				this.pitch = 0;
 			if (pos.y < targetHeight)
 				pos.y = Math.min(targetHeight, pos.y + turnLength * this.template.ClimbRate);
 			else if (pos.y > targetHeight)
-				pos.y = Math.max(targetHeight, pos.y - turnLength * this.template.ClimbRate);			
+			{
+				pos.y = Math.max(targetHeight, pos.y - turnLength * this.template.ClimbRate);	
+				this.pitch = -1 * this.pitch;
+			}			
 		}
-		cmpPosition.SetHeightFixed(pos.y);
 	}
-	else
-	{
-		if (this.speed > 0 && this.onGround)
-		{
-			// Deaccelerate forwards...at a very reduced pace.
-			this.speed = Math.max(0, this.speed - turnLength * this.template.BrakingRate);
-			canTurn = false;
-			// Clamp to ground if below it, or descend if above
-			var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
-			var ground = cmpTerrain.GetGroundLevel(pos.x, pos.z);
-			if (pos.y < ground)
-				pos.y = ground;
-			else if (pos.y > ground)
-				pos.y = Math.max(ground, pos.y - turnLength * this.template.ClimbRate);
-			cmpPosition.SetHeightFixed(pos.y);			
-		}
-		else if (this.speed == 0)
-		{
-			// We've stopped.
-			canTurn = false;
-			this.hasTarget = false;
-			this.landing = false;					
-		}
-		else
-		{
-			// Final Approach
-			// We need to slow down to land!
-			this.speed = Math.max(this.template.LandingSpeed, this.speed - turnLength * this.template.SlowingRate);
-			canTurn = false;
-			var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
-			var ground = cmpTerrain.GetGroundLevel(pos.x, pos.z);
-			var targetHeight = ground;
-			// Steep, then gradual descent.
-			var descentRate = ((pos.y - targetHeight) / this.template.FlyingHeight * this.template.ClimbRate + shortFinal) * shortFinal;
-			if (pos.y < targetHeight)
-				pos.y = Math.max(targetHeight, pos.y + turnLength * descentRate);
-			else if (pos.y > targetHeight)
-				pos.y = Math.max(targetHeight, pos.y - turnLength * descentRate);
-			if (targetHeight == pos.y)
-				this.onGround = true;
-			cmpPosition.SetHeightFixed(pos.y);
-		}		
-	}
-
+	
 	// If we're in range of the target then tell people that we've reached it
 	// (TODO: quantisation breaks this)
 	var distFromTarget = Math.sqrt(Math.pow(this.targetX - pos.x, 2) + Math.pow(this.targetZ - pos.z, 2));
@@ -165,13 +193,22 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 		var deltaClamped = Math.min(Math.max(delta, -this.template.TurnRate * turnLength), this.template.TurnRate * turnLength);
 		// Calculate new orientation, in a peculiar way in order to make sure the
 		// result gets close to targetAngle (rather than being n*2*pi out)
-		angle = targetAngle + deltaClamped - delta;
+		newangle = targetAngle + deltaClamped - delta;
+		if (newangle - angle > Math.PI / 18)
+			this.roll = Math.PI / 9;
+		else if (newangle - angle < -Math.PI / 18)
+			this.roll = - Math.PI / 9;
+		else
+			this.roll = newangle - angle;
 	}
+	else
+		this.roll = 0;
 
 	pos.x += this.speed * turnLength * Math.sin(angle);
 	pos.z += this.speed * turnLength * Math.cos(angle);
-
-	cmpPosition.TurnTo(angle);
+	cmpPosition.SetHeightFixed(pos.y);
+	cmpPosition.TurnTo(newangle);
+	cmpPosition.SetXZRotation(this.pitch, this.roll);
 	cmpPosition.MoveTo(pos.x, pos.z);
 };
 
@@ -251,7 +288,9 @@ UnitMotionFlying.prototype.FaceTowardsPoint = function(x, z)
 UnitMotionFlying.prototype.StopMoving = function()
 {
 	//Invert
-	this.landing = !this.landing;
+	if (!this.waterDeath)
+		this.landing = !this.landing;
+
 };
 
 UnitMotionFlying.prototype.SetDebugOverlay = function(enabled)

@@ -25,6 +25,8 @@
 #include "simulation2/MessageTypes.h"
 
 #include "graphics/Terrain.h"
+#include "renderer/Renderer.h"
+#include "renderer/WaterManager.h"
 #include "maths/Vector3D.h"
 
 class CCmpTerrain : public ICmpTerrain
@@ -132,6 +134,9 @@ public:
 					entity_pos_t::FromInt(tiles*(int)TERRAIN_TILE_SIZE),
 					vertices);
 		}
+		
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetWaterManager()->SetMapSize(vertices);
 
 		MakeDirty(0, 0, tiles+1, tiles+1);
 	}
