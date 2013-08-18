@@ -70,7 +70,7 @@ varying vec3 v_normal;
 float get_shadow()
 {
   float shadowBias = 0.0005;
-  #if USE_SHADOW
+  #if USE_SHADOW && !DISABLE_RECEIVE_SHADOWS
     float biasedShdwZ = v_shadow.z - shadowBias;
     #if USE_SHADOW_SAMPLER
       #if USE_SHADOW_PCF

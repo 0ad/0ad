@@ -123,6 +123,9 @@ public:
 	int GetFlags() const { return m_Flags; }
 	// add object flags, recursively through props
 	void AddFlagsRec(int flags);
+	// remove shadow casting and receiving, recursively through props
+	// TODO: replace with more generic shader define + flags setting
+	void RemoveShadowsRec();
 
 	// recurse down tree setting dirty bits
 	virtual void SetDirtyRec(int dirtyflags) {
