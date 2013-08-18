@@ -1384,18 +1384,11 @@ void CPatchRData::BuildWater()
 					int tx = x+x1;
 					int ty = z+z1 + j*water_cell_size;
 
-					if (g_AtlasGameLoop->running)
-					{
-						// currently no foam is used so push whatever
-						vertex.m_WaterData = CVector4D(0.0f,0.0f,0.0f,0.0f);
-					}
-					else
-					{
-						vertex.m_WaterData = CVector4D(WaterMgr->m_WaveX[tx + ty*mapSize],
+					vertex.m_WaterData = CVector4D(WaterMgr->m_WaveX[tx + ty*mapSize],
 												   WaterMgr->m_WaveZ[tx + ty*mapSize],
 												   WaterMgr->m_DistanceToShore[tx + ty*mapSize],
 												   WaterMgr->m_FoamFactor[tx + ty*mapSize]);
-					}
+
 					water_index_map[z+j*water_cell_size][x] = water_vertex_data.size();
 					water_vertex_data.push_back(vertex);
 				}
