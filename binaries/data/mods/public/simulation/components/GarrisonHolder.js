@@ -32,7 +32,7 @@ GarrisonHolder.prototype.Init = function()
 	this.entities = [];
 	this.spaceOccupied = 0;
 	this.timer = undefined;
-	this.allowGarrisoning = [];
+	this.allowGarrisoning = {};
 };
 
 /**
@@ -106,7 +106,12 @@ GarrisonHolder.prototype.AllowGarrisoning = function(allow, callerID)
  */
 GarrisonHolder.prototype.IsGarrisoningAllowed = function()
 {
-	return this.allowGarrisoning.every(function (x) x);
+	for each (var allow in this.allowGarrisoning)
+	{
+		if (!allow)
+			return false;
+	}
+	return true;
 };
 
 /**
