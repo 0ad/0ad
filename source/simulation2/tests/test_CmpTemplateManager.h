@@ -86,7 +86,7 @@ public:
 		TS_ASSERT_WSTR_EQUALS(preview->ToXML(),
 				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating><TurnRate>6.0</TurnRate></Position>"
 				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
-				L"<VisualActor><Actor>example</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
+				L"<VisualActor><Actor>example</Actor><DisableShadows></DisableShadows><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
 
 		const CParamNode* previewobstruct = tempMan->LoadTemplate(ent2, "preview|unitobstruct", -1);
 		TS_ASSERT(previewobstruct != NULL);
@@ -100,14 +100,14 @@ public:
 				L"</Obstruction>"
 				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating><TurnRate>6.0</TurnRate></Position>"
 				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
-				L"<VisualActor><Actor>example</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
+				L"<VisualActor><Actor>example</Actor><DisableShadows></DisableShadows><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
 
 		const CParamNode* previewactor = tempMan->LoadTemplate(ent2, "preview|actor|example2", -1);
 		TS_ASSERT(previewactor != NULL);
 		TS_ASSERT_WSTR_EQUALS(previewactor->ToXML(),
 				// the actor's <Selectable> element is not part of the preview element subset, hence not included
 				L"<Footprint><Circle radius=\"2.0\"></Circle><Height>1.0</Height></Footprint><Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
-				L"<VisualActor><Actor>example2</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
+				L"<VisualActor><Actor>example2</Actor><DisableShadows></DisableShadows><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
 	}
 
 	void test_LoadTemplate_scriptcache()

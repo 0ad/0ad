@@ -271,7 +271,8 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
 GarrisonHolder.prototype.PerformEject = function(entities, forced)
 {
 	if (!this.IsGarrisoningAllowed() && !forced)
-		return false
+		return false;
+
 	var ejectedEntities = [];
 	var success = true;
 	for each (var entity in entities)
