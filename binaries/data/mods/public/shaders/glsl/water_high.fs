@@ -132,6 +132,7 @@ void main()
 		ndoth = dot( mix(vec3(0.0,1.0,0.0),n,clamp(wavyFactor * v.y * 8.0,0.05,1.0)) ,h);
 		n = mix(vec3(0.0,1.0,0.0),n,wavyFactor);
 	#else
+		ndoth = dot(vec3(0.0,1.0,0.0), h);
 		n = vec3(0.0,1.0,0.0);
 	#endif
 	
@@ -236,7 +237,11 @@ void main()
 		reflColor = mix( (sunColor + vec3(0.565,0.843,0.961))/1.85, reflectionTint, reflectionTintStrength);
 	#endif
 	
-	specular = pow(ndoth, mix(50.0,450.0, v.y*2.0)) * sunColor * 1.5;
+	#if USE_NORMALS
+		specular = pow(ndoth, mix(50.0,450.0, v.y*2.0)) * sunColor * 1.5;
+	#else
+	specular = pow(ndoth, mix(50.0,450.0, v.y*2.0)) * sunColor * 1.5 * ww.r;
+	#endif
 	
 	losMod = texture2D(losMap, gl_TexCoord[3].st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
