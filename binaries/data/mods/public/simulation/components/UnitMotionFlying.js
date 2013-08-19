@@ -72,7 +72,9 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 	if (this.landing)
 	{
 		if (this.speed > 0 && this.onGround)
-		{			
+		{
+			if (pos.y <= cmpWaterManager.GetWaterLevel(pos.x, pos.z) && this.template.DiesInWater)
+				this.waterDeath = true;
 			this.pitch = 0;
 			// Deaccelerate forwards...at a very reduced pace.
 			if (this.waterDeath)
