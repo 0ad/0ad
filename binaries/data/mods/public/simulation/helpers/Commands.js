@@ -727,7 +727,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		{
 			if (g_DebugCommands)
 			{
-				warn("Invalid command: build restrictions check failed for player "+player+": "+uneval(cmd));
+				warn("Invalid command: build restrictions check failed with '"+ret.message+"' for player "+player+": "+uneval(cmd));
 			}
 
 			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
