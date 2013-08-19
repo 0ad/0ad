@@ -267,10 +267,10 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	m_WaterHeight = cmpWaterManager->GetExactWaterLevel(0,0);
 	
 	// Get the square we want to work on.
-	i32 Xstart = m_updatei0;
-	i32 Xend = m_updatei1;
-	i32 Zstart = m_updatej0;
-	i32 Zend = m_updatej1;
+	i32 Xstart = clamp(m_updatei0, 0, (i32)m_MapSize);
+	i32 Xend = clamp(m_updatei1, 0, (i32)m_MapSize);
+	i32 Zstart = clamp(m_updatej0, 0, (i32)m_MapSize);
+	i32 Zend = clamp(m_updatej1, 0, (i32)m_MapSize);
 
 	if (m_WaveX == NULL)
 	{
