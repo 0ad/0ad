@@ -4,8 +4,11 @@
   <group>
     <variant frequency="1" name="hellenes_civic_centre_round roof">
       <mesh>structural/hele_civic_round.dae</mesh>
-      <textures><texture file="structural/hele_roof_round.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_roof_round.dds" name="baseTex"/>
+        <texture file="structural/hele_roof_round_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>basic_specmap.xml</material>
 </actor>
