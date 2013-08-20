@@ -320,9 +320,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	}
 	 */
 	// this creates information for waves and stores it in float arrays. PatchRData then puts it in the vertex info for speed.
-	for (ssize_t i = Xstart; i < Xend; ++i)
+	for (ssize_t j = Zstart; j < Zend; ++j)
 	{
-		for (ssize_t j = Zstart; j < Zend; ++j)
+		for (ssize_t i = Xstart; i < Xend; ++i)
 		{
 			if (circular && (i-halfSize)*(i-halfSize)+(j-halfSize)*(j-halfSize) > mSize)
 			{
@@ -341,9 +341,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			if (depth >= 0)
 			{
 				// check in the square around.
-				for (int xx = -5; xx <= 5; ++xx)
+				for (int yy = -5; yy <= 5; ++yy)
 				{
-					for (int yy = -5; yy <= 5; ++yy)
+					for (int xx = -5; xx <= 5; ++xx)
 					{
 						if (i+xx >= 0 && i + xx < (long)m_MapSize)
 							if (j + yy >= 0 && j + yy < (long)m_MapSize)
@@ -357,9 +357,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 				// refine the calculation if we're close enough
 				if (distanceToShore < 9)
 				{
-					for (float xx = -2.5f; xx <= 2.5f; ++xx)
+					for (float yy = -2.5f; yy <= 2.5f; ++yy)
 					{
-						for (float yy = -2.5f; yy <= 2.5f; ++yy)
+						for (float xx = -2.5f; xx <= 2.5f; ++xx)
 						{
 							float hereDepth = m_WaterHeight - terrain->GetExactGroundLevel( (i+xx)*4, (j+yy)*4 );
 							if (hereDepth < 0 && xx*xx + yy*yy < distanceToShore)
@@ -370,9 +370,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			}
 			else
 			{
-				for (int xx = -2; xx <= 2; ++xx)
+				for (int yy = -2; yy <= 2; ++yy)
 				{
-					for (int yy = -2; yy <= 2; ++yy)
+					for (int xx = -2; xx <= 2; ++xx)
 					{
 						float hereDepth = m_WaterHeight - terrain->GetVertexGroundLevel(i+xx, j+yy);
 						if (hereDepth > 0)
@@ -394,9 +394,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			// Normals are a pretty good calculation but it's slow since we normalize so much.
 			CVector3D normal;
 			int waterRaise = 0;
-			for (int xx = -4; xx <= 4; xx += 2)	// every 2 tile is good enough.
+			for (int yy = -4; yy <= 4; yy += 2)
 			{
-				for (int yy = -4; yy <= 4; yy += 2)
+				for (int xx = -4; xx <= 4; xx += 2)	// every 2 tile is good enough.
 				{
 					if (j+yy < (long)m_MapSize && i+xx < (long)m_MapSize && i+xx >= 0 && j+yy >= 0)
 						normal += normals[(j+yy)*m_MapSize + (i+xx)];
@@ -439,19 +439,18 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	std::vector<CVector2D> waveSquares;
 	
 	int size = 8;	// I think this is the size of the squares.
-	for (size_t i = 0; i < m_MapSize/size; ++i)
+	for (size_t j = 0; j < m_MapSize/size; ++j)
 	{
-		for (size_t j = 0; j < m_MapSize/size; ++j)
+		for (size_t i = 0; i < m_MapSize/size; ++i)
 		{
-			
 			int landTexel = 0;
 			int waterTexel = 0;
 			CVector3D avnormal (0.0f,0.0f,0.0f);
 			CVector2D landPosition(0.0f,0.0f);
 			CVector2D waterPosition(0.0f,0.0f);
-			for (int xx = 0; xx < size; ++xx)
+			for (int yy = 0; yy < size; ++yy)
 			{
-				for (int yy = 0; yy < size; ++yy)
+				for (int xx = 0; xx < size; ++xx)
 				{
 					if (terrain->GetVertexGroundLevel(i*size+xx,j*size+yy) > m_WaterHeight)
 					{
@@ -521,9 +520,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 		CVector2D pos(waveSquares[i]);
 		
 		CVector3D avgnorm(0.0f,0.0f,0.0f);
-		for (int xx = -size/2; xx < size/2; ++xx)
+		for (int yy = -size/2; yy < size/2; ++yy)
 		{
-			for (int yy = -size/2; yy < size/2; ++yy)
+			for (int xx = -size/2; xx < size/2; ++xx)
 			{
 				avgnorm += terrain->CalcExactNormal((pos.X+xx)*4.0f,(pos.Y+yy)*4.0f);
 			}
