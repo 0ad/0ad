@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
+    </contributor>
+    <created>2013-08-20T16:40:18</created>
+    <modified>2013-08-20T16:40:18</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="hele_house_courtyard01Mesh_005-mesh" name="hele_house_courtyard01Mesh.005">
+      <mesh>
+        <source id="hele_house_courtyard01Mesh_005-mesh-positions">
+          <float_array id="hele_house_courtyard01Mesh_005-mesh-positions-array" count="48">3.101572 -0.0634706 2.50977 3.101572 -0.06347119 4.107653 3.101572 -1.8964 4.107652 3.101571 -1.896399 2.50977 3.017923 -0.2301149 2.655045 3.017923 -0.2301154 3.962378 3.017923 -1.729755 3.962378 3.017922 -1.729755 2.655045 -1.212725 1.672375 4.300511 -0.237715 1.672375 4.30051 -1.212726 1.672375 3.266816 -0.2377157 1.672375 3.266815 -1.267346 1.70982 4.358419 -0.1830936 1.70982 4.358418 -1.267347 1.70982 3.208907 -0.1830944 1.70982 3.208906</float_array>
+          <technique_common>
+            <accessor source="#hele_house_courtyard01Mesh_005-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_house_courtyard01Mesh_005-mesh-normals">
+          <float_array id="hele_house_courtyard01Mesh_005-mesh-normals-array" count="60">-0.8937252 0.448615 3.21503e-7 -0.8666065 0 0.4989921 -0.893725 -0.4486152 0 -0.8666074 2.96371e-7 -0.4989908 -1 1.58984e-7 1.8237e-7 -1.22265e-7 -1 -2.30647e-7 -0.5654308 -0.8247957 2.39393e-7 -5.69924e-7 -0.8397378 -0.5429921 0.5654301 -0.8247963 -6.52408e-7 2.92947e-7 -0.8397374 0.5429926 -0.893725 0.4486151 2.90704e-7 -0.8666077 -2.60666e-7 0.49899 -0.8937246 -0.4486159 0 -0.8666073 3.07443e-7 -0.4989907 -1 1.58984e-7 1.8237e-7 -1.22265e-7 -1 -2.30647e-7 -0.5654303 -0.8247961 2.01008e-7 -5.01002e-7 -0.8397383 -0.5429912 0.5654289 -0.8247971 -5.65179e-7 4.28442e-7 -0.8397364 0.5429944</float_array>
+          <technique_common>
+            <accessor source="#hele_house_courtyard01Mesh_005-mesh-normals-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_house_courtyard01Mesh_005-mesh-map-0">
+          <float_array id="hele_house_courtyard01Mesh_005-mesh-map-0-array" count="120">0.02704435 0.272149 0.02704435 0.4757809 0.001087605 0.4984091 0.02704435 0.4757809 0.2606303 0.4757809 0.2865869 0.4984091 0.2606303 0.4757809 0.2606303 0.272149 0.2865869 0.2495208 0.02704435 0.272149 0.001087605 0.2495208 0.2606303 0.272149 0.2606303 0.272149 0.2606303 0.4757809 0.02704435 0.4757809 0.4989026 0.004529714 0.7215055 0.004529714 0.7215055 0.2463936 0.2688763 0.2250066 0.2530502 0.2363514 0.2530502 0.01115459 0.2688763 0.2256507 0.2530502 0.2363514 0.2530502 0.02393925 0.2688763 0.2250066 0.2530502 0.2363514 0.2530502 0.01115459 0.2688763 0.2256507 0.2530502 0.2363514 0.2530502 0.02393925 0.001087605 0.2495208 0.02704435 0.272149 0.001087605 0.4984091 0.001087605 0.4984091 0.02704435 0.4757809 0.2865869 0.4984091 0.2865869 0.4984091 0.2606303 0.4757809 0.2865869 0.2495208 0.2606303 0.272149 0.001087605 0.2495208 0.2865869 0.2495208 0.02704435 0.272149 0.2606303 0.272149 0.02704435 0.4757809 0.4989026 0.2463936 0.4989026 0.004529714 0.7215055 0.2463936 0.2688763 0.02249932 0.2688763 0.2250066 0.2530502 0.01115459 0.2688763 0.03463989 0.2688763 0.2256507 0.2530502 0.02393925 0.2688763 0.02249932 0.2688763 0.2250066 0.2530502 0.01115459 0.2688763 0.03463995 0.2688763 0.2256507 0.2530502 0.02393925</float_array>
+          <technique_common>
+            <accessor source="#hele_house_courtyard01Mesh_005-mesh-map-0-array" count="60" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_house_courtyard01Mesh_005-mesh-map-1">
+          <float_array id="hele_house_courtyard01Mesh_005-mesh-map-1-array" count="120">0.9004834 0.007928073 0.87375 0.008010089 0.8707258 0.004582881 0.87375 0.008010089 0.873831 0.03868222 0.8708248 0.04207181 0.873831 0.03868222 0.9005644 0.0386002 0.9034996 0.04197156 0.9004834 0.007928073 0.9034006 0.004482686 0.9005644 0.0386002 0.9005644 0.0386002 0.873831 0.03868222 0.87375 0.008010089 0.283797 0.9472495 0.2638663 0.9473065 0.2638013 0.9261618 0.2837321 0.9261049 0.2848735 0.9249127 0.2849457 0.9484264 0.283797 0.9472495 0.2849457 0.9484264 0.2627818 0.9484897 0.2638663 0.9473065 0.2627818 0.9484897 0.2627096 0.924976 0.2638013 0.9261618 0.2627096 0.924976 0.2848735 0.9249127 0.9034006 0.004482686 0.9004834 0.007928073 0.8707258 0.004582881 0.8707258 0.004582881 0.87375 0.008010089 0.8708248 0.04207181 0.8708248 0.04207181 0.873831 0.03868222 0.9034996 0.04197156 0.9005644 0.0386002 0.9034006 0.004482686 0.9034996 0.04197156 0.9004834 0.007928073 0.9005644 0.0386002 0.87375 0.008010089 0.2837321 0.9261049 0.283797 0.9472495 0.2638013 0.9261618 0.283797 0.9472495 0.2837321 0.9261049 0.2849457 0.9484264 0.2638663 0.9473065 0.283797 0.9472495 0.2627818 0.9484897 0.2638013 0.9261618 0.2638663 0.9473065 0.2627096 0.924976 0.2837321 0.9261049 0.2638013 0.9261618 0.2848735 0.9249127</float_array>
+          <technique_common>
+            <accessor source="#hele_house_courtyard01Mesh_005-mesh-map-1-array" count="60" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="hele_house_courtyard01Mesh_005-mesh-vertices">
+          <input semantic="POSITION" source="#hele_house_courtyard01Mesh_005-mesh-positions"/>
+        </vertices>
+        <polylist count="20">
+          <input semantic="VERTEX" source="#hele_house_courtyard01Mesh_005-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#hele_house_courtyard01Mesh_005-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#hele_house_courtyard01Mesh_005-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#hele_house_courtyard01Mesh_005-mesh-map-1" offset="2" set="1"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>4 0 0 5 0 1 1 0 2 5 1 3 6 1 4 2 1 5 6 2 6 7 2 7 3 2 8 4 3 9 0 3 10 7 3 11 7 4 12 6 4 13 5 4 14 10 5 15 11 5 16 9 5 17 8 6 18 12 6 19 14 6 20 10 7 21 14 7 22 15 7 23 11 8 24 15 8 25 13 8 26 9 9 27 13 9 28 12 9 29 0 10 30 4 10 31 1 10 32 1 11 33 5 11 34 2 11 35 2 12 36 6 12 37 3 12 38 7 13 39 0 13 40 3 13 41 4 14 42 7 14 43 5 14 44 8 15 45 10 15 46 9 15 47 10 16 48 8 16 49 14 16 50 11 17 51 10 17 52 15 17 53 9 18 54 11 18 55 13 18 56 8 19 57 9 19 58 12 19 59</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="hele_house_courtyard01_000" name="hele_house_courtyard01_000" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 90</rotate>
+        <rotate sid="rotationY">0 1 0 -180</rotate>
+        <rotate sid="rotationX">1 0 0 -180</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#hele_house_courtyard01Mesh_005-mesh"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
