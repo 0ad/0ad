@@ -41,8 +41,12 @@ Builder.prototype.GetEntitiesList = function()
 
 Builder.prototype.GetRange = function()
 {
-	return { "max": 2, "min": 0 };
-	// maybe this should depend on the unit or target or something?
+	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	var max = 2;
+	if (cmpObstruction)
+		max += cmpObstruction.GetUnitRadius();
+
+	return { "max": max, "min": 0 };
 };
 
 /**
