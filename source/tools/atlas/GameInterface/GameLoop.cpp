@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -117,9 +117,12 @@ static void* RunEngine(void* data)
 	RegisterHandlers();
 	
 	// Override ah_display_error to pass all errors to the Atlas UI
+	// TODO: this doesn't work well because it doesn't pause the game thread
+	//  and the error box is ugly, so only use it if we fix those issues
+	//  (use INIT_HAVE_DISPLAY_ERROR init flag to test this)
 	AppHooks hooks = {0};
 	hooks.display_error = AtlasDisplayError;
-	app_hooks_update(&hooks);
+	//app_hooks_update(&hooks);
 	
 	// Disable the game's cursor rendering
 	extern CStrW g_CursorName;

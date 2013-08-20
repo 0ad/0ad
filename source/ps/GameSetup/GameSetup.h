@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,7 +42,11 @@ enum InitFlags
 
 	// skip initializing the in-game GUI.
 	// needed by map editor because it uses its own GUI.
-	INIT_NO_GUI = 2
+	INIT_NO_GUI = 2,
+
+	// avoid setting display_error app hook
+	// needed by map editor because it has its own wx error display
+	INIT_HAVE_DISPLAY_ERROR = 4
 };
 
 /**

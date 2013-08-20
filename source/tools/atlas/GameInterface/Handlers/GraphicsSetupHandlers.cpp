@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,6 +37,7 @@
 
 namespace AtlasMessage {
 
+// see comment in GameLoop.cpp about ah_display_error before using INIT_HAVE_DISPLAY_ERROR
 const int g_InitFlags = INIT_HAVE_VMODE|INIT_NO_GUI;
 
 MESSAGEHANDLER(Init)
