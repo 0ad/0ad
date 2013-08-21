@@ -122,7 +122,7 @@ static void* RunEngine(void* data)
 	//  (use INIT_HAVE_DISPLAY_ERROR init flag to test this)
 	AppHooks hooks = {0};
 	hooks.display_error = AtlasDisplayError;
-	//app_hooks_update(&hooks);
+	app_hooks_update(&hooks);
 	
 	// Disable the game's cursor rendering
 	extern CStrW g_CursorName;
