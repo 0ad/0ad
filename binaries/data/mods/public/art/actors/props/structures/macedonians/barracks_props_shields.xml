@@ -2,10 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="barracks props shields">
-      <mesh>structural/helle_barracks_propsb.dae</mesh>
-      <textures><texture file="props/mace_prop_shields.png" name="baseTex"/></textures>
+    <variant name="barracks props a">
+      <mesh>props/mace_barracks_shields.dae</mesh>
+      <textures>
+<texture file="props/mace_prop_shields.png" name="baseTex"/>
+</textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+<material>playercolor_spec.xml</material>
 </actor>
