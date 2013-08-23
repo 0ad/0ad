@@ -457,6 +457,7 @@ static const Characteristics characteristicsTable[] =
 	TLB  (0x5D, L1|D,   4*MiB,  F, 256),
 
 	CACHE(0x60, L1|D,  16*KiB,  8,  64),
+	TLB  (0x63, L1|D,   1*GiB,  4,   4),    // speculation
 	CACHE(0x66, L1|D,   8*KiB,  4,  64),
 	CACHE(0x67, L1|D,  16*KiB,  4,  64),
 	CACHE(0x68, L1|D,  32*KiB,  4,  64),
@@ -494,11 +495,16 @@ static const Characteristics characteristicsTable[] =
 	TLB  (0xB3, L1|D,   4*MiB,  4, 128),
 	TLB  (0xB4, L1|D,   4*KiB,  4, 256),
 	TLB  (0xB4, L1|D,   4*MiB,  4, 256),
+	TLB  (0xB5, L1|I,   4*KiB,  4, 128),    // speculation
+	TLB  (0xB6, L1|I,   4*KiB,  8, 128),    // http://software.intel.com/en-us/forums/topic/401012
+
 	TLB  (0xBA, L1|D,   4*KiB,  4,  64),
 	TLB  (0xC0, L1|D,   4*KiB,  4,   8),
 	TLB  (0xC0, L1|D,   4*MiB,  4,   8),
-
-	TLB  (0xCA, L2|U,    4*KiB, 4, 512),
+	TLB  (0xC1, L2|U,   4*KiB,  8, 1024),   // http://software.intel.com/en-us/forums/topic/401012
+	TLB  (0xC1, L2|U,   4*MiB,  8, 1024),
+	TLB  (0xC1, L2|U,   2*MiB,  8, 1024),
+	TLB  (0xCA, L2|U,   4*KiB,  4, 512),
 
 	CACHE(0xD0, L3|U, 512*KiB,  4,  64),
 	CACHE(0xD1, L3|U,   1*MiB,  4,  64),
