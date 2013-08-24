@@ -11,8 +11,7 @@
       <PrepareTime>2000</PrepareTime>
       <RepeatTime>5000</RepeatTime>
       <Spread>6.0</Spread>
-    </Ranged>
-    <Splash>
+      <Splash>
         <Shape>Circular</Shape>
         <Range>8</Range>
         <FriendlyFire>true</FriendlyFire>
@@ -20,6 +19,7 @@
         <Pierce>0.0</Pierce>
         <Crush>40.0</Crush>
       </Splash>
+    </Ranged>
   </Attack>
   <BuildingAI>
     <DefaultArrowCount>0</DefaultArrowCount>
