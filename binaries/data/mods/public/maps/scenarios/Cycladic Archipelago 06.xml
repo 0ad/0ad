@@ -16,11 +16,11 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.329412" g="0.419608" b="0.501961"/>
+				<Colour r="0.164706" g="0.258824" b="0.419608"/>
 				<Height>26.3344</Height>
 				<Shininess>230.469</Shininess>
 				<Waviness>10</Waviness>
-				<Murkiness>0.701172</Murkiness>
+				<Murkiness>0.601563</Murkiness>
 				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0" g="0.501961" b="1"/>
 				<ReflectionTintStrength>0.0859375</ReflectionTintStrength>
@@ -35,9 +35,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="497.703" y="131.705" z="551.416"/>
-		<Rotation angle="-0.0173609"/>
-		<Declination angle="0.610866"/>
+		<Position x="131.711" y="94.7697" z="360.263"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -58,7 +58,7 @@
         "g": 46,
         "r": 46
       },
-      "Name": "Player 1",
+      "Name": "Dienekes",
       "Team": -1
     },
     {
@@ -69,10 +69,11 @@
         "g": 20,
         "r": 150
       },
-      "Name": "Player 2",
+      "Name": "Kautilya",
       "Team": -1
     }
   ],
+  "Preview": "cycladic_archipelago_6.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -7451,8 +7452,8 @@
 		<Entity uid="1201">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="144.59708" z="451.14673"/>
-			<Orientation y="-1.48395"/>
+			<Position x="149.30315" z="396.65635"/>
+			<Orientation y="0.9245"/>
 			<Actor seed="21846"/>
 		</Entity>
 		<Entity uid="1202">
@@ -7985,6 +7986,737 @@
 			<Position x="471.7245" z="727.56537"/>
 			<Orientation y="-1.07479"/>
 			<Actor seed="39316"/>
+		</Entity>
+		<Entity uid="1288">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="134.7052" z="394.9878"/>
+			<Orientation y="0.4076"/>
+			<Actor seed="39310"/>
+		</Entity>
+		<Entity uid="1289">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="135.34417" z="405.30015"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22414"/>
+		</Entity>
+		<Entity uid="1290">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="136.32978" z="415.27363"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="756"/>
+		</Entity>
+		<Entity uid="1291">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="141.89092" z="412.83863"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17394"/>
+		</Entity>
+		<Entity uid="1292">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="143.31064" z="408.40482"/>
+			<Orientation y="1.56501"/>
+			<Actor seed="23882"/>
+		</Entity>
+		<Entity uid="1293">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="152.87406" z="404.03309"/>
+			<Orientation y="1.75171"/>
+			<Actor seed="2734"/>
+		</Entity>
+		<Entity uid="1294">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="159.37514" z="405.49982"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60180"/>
+		</Entity>
+		<Entity uid="1295">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="161.29734" z="406.96"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37264"/>
+		</Entity>
+		<Entity uid="1296">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="146.5906" z="416.61442"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17144"/>
+		</Entity>
+		<Entity uid="1297">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="145.65433" z="424.18036"/>
+			<Orientation y="-0.99874"/>
+			<Actor seed="19608"/>
+		</Entity>
+		<Entity uid="1298">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="140.11002" z="427.86701"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12556"/>
+		</Entity>
+		<Entity uid="1299">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="192.35343" z="506.91657"/>
+			<Orientation y="0.82193"/>
+			<Actor seed="61200"/>
+		</Entity>
+		<Entity uid="1300">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="203.81484" z="514.0271"/>
+			<Orientation y="2.72132"/>
+			<Actor seed="42170"/>
+		</Entity>
+		<Entity uid="1301">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="210.67334" z="499.25611"/>
+			<Orientation y="0.71837"/>
+			<Actor seed="40696"/>
+		</Entity>
+		<Entity uid="1302">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="215.15462" z="513.64502"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="8044"/>
+		</Entity>
+		<Entity uid="1303">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="200.69837" z="507.93146"/>
+			<Orientation y="-1.75165"/>
+			<Actor seed="36322"/>
+		</Entity>
+		<Entity uid="1304">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="203.87989" z="510.9517"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="15090"/>
+		</Entity>
+		<Entity uid="1305">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="204.47107" z="504.97513"/>
+			<Orientation y="0.50298"/>
+			<Actor seed="29394"/>
+		</Entity>
+		<Entity uid="1306">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="195.34296" z="514.19727"/>
+			<Orientation y="0.59903"/>
+			<Actor seed="5334"/>
+		</Entity>
+		<Entity uid="1307">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="208.67101" z="504.63505"/>
+			<Orientation y="-0.61057"/>
+			<Actor seed="48448"/>
+		</Entity>
+		<Entity uid="1308">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="133.81298" z="418.61966"/>
+			<Orientation y="2.23725"/>
+			<Actor seed="22148"/>
+		</Entity>
+		<Entity uid="1309">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="130.99366" z="412.79493"/>
+			<Orientation y="-0.92121"/>
+			<Actor seed="39324"/>
+		</Entity>
+		<Entity uid="1310">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="147.74883" z="407.3751"/>
+			<Orientation y="-1.23684"/>
+			<Actor seed="53378"/>
+		</Entity>
+		<Entity uid="1311">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="214.02976" z="460.28077"/>
+			<Orientation y="-0.68062"/>
+			<Actor seed="37616"/>
+		</Entity>
+		<Entity uid="1312">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="147.04386" z="509.14618"/>
+			<Orientation y="-0.52224"/>
+			<Actor seed="10560"/>
+		</Entity>
+		<Entity uid="1313">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="144.69639" z="459.03223"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48886"/>
+		</Entity>
+		<Entity uid="1314">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="187.94884" z="442.99625"/>
+			<Orientation y="0.38514"/>
+			<Actor seed="40622"/>
+		</Entity>
+		<Entity uid="1315">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="135.51246" z="361.74833"/>
+			<Orientation y="-2.25055"/>
+			<Actor seed="48288"/>
+		</Entity>
+		<Entity uid="1316">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="149.06377" z="364.67185"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24496"/>
+		</Entity>
+		<Entity uid="1317">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="153.40253" z="364.81983"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="64426"/>
+		</Entity>
+		<Entity uid="1318">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="156.81693" z="389.22074"/>
+			<Orientation y="-1.7423"/>
+			<Actor seed="30494"/>
+		</Entity>
+		<Entity uid="1319">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="200.25377" z="358.89014"/>
+			<Orientation y="1.1896"/>
+			<Actor seed="64000"/>
+		</Entity>
+		<Entity uid="1320">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="214.63901" z="388.15577"/>
+			<Orientation y="-2.13929"/>
+			<Actor seed="26502"/>
+		</Entity>
+		<Entity uid="1321">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="201.60692" z="397.11512"/>
+			<Orientation y="0.62305"/>
+			<Actor seed="15052"/>
+		</Entity>
+		<Entity uid="1322">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="204.2173" z="365.89997"/>
+			<Orientation y="-1.93964"/>
+			<Actor seed="62022"/>
+		</Entity>
+		<Entity uid="1323">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="190.50586" z="366.59852"/>
+			<Orientation y="0.13701"/>
+			<Actor seed="10580"/>
+		</Entity>
+		<Entity uid="1324">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="180.01662" z="351.05997"/>
+			<Orientation y="0.39284"/>
+			<Actor seed="6048"/>
+		</Entity>
+		<Entity uid="1325">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="185.83542" z="354.78663"/>
+			<Orientation y="-2.66436"/>
+			<Actor seed="3778"/>
+		</Entity>
+		<Entity uid="1326">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="185.59591" z="352.59275"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60970"/>
+		</Entity>
+		<Entity uid="1327">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="195.949" z="358.29133"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24800"/>
+		</Entity>
+		<Entity uid="1328">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="202.79751" z="363.66898"/>
+			<Orientation y="0.64943"/>
+			<Actor seed="14292"/>
+		</Entity>
+		<Entity uid="1329">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="213.19701" z="389.4726"/>
+			<Orientation y="-0.37641"/>
+			<Actor seed="32796"/>
+		</Entity>
+		<Entity uid="1330">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="209.01261" z="395.0145"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45232"/>
+		</Entity>
+		<Entity uid="1331">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="203.00901" z="376.701"/>
+			<Orientation y="-0.61736"/>
+			<Actor seed="12304"/>
+		</Entity>
+		<Entity uid="1332">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="193.1166" z="390.49473"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30330"/>
+		</Entity>
+		<Entity uid="1333">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="191.16675" z="399.11118"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60928"/>
+		</Entity>
+		<Entity uid="1334">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="198.80456" z="391.0488"/>
+			<Orientation y="-1.44211"/>
+			<Actor seed="24076"/>
+		</Entity>
+		<Entity uid="1335">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="191.84324" z="384.96848"/>
+			<Orientation y="1.55704"/>
+			<Actor seed="58732"/>
+		</Entity>
+		<Entity uid="1336">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="141.33275" z="361.11155"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13990"/>
+		</Entity>
+		<Entity uid="1337">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="96.444" z="363.2584"/>
+			<Orientation y="-0.74431"/>
+			<Actor seed="49994"/>
+		</Entity>
+		<Entity uid="1338">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="82.58121" z="379.30048"/>
+			<Orientation y="-0.24598"/>
+			<Actor seed="31046"/>
+		</Entity>
+		<Entity uid="1339">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="82.19678" z="390.99326"/>
+			<Orientation y="-3.09145"/>
+			<Actor seed="11502"/>
+		</Entity>
+		<Entity uid="1340">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="90.37415" z="372.88834"/>
+			<Orientation y="0.58313"/>
+			<Actor seed="21752"/>
+		</Entity>
+		<Entity uid="1341">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="95.49099" z="369.89225"/>
+			<Orientation y="-1.51807"/>
+			<Actor seed="18486"/>
+		</Entity>
+		<Entity uid="1342">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="92.41666" z="373.85801"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3916"/>
+		</Entity>
+		<Entity uid="1343">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="100.17664" z="364.56983"/>
+			<Orientation y="-1.36619"/>
+			<Actor seed="44798"/>
+		</Entity>
+		<Entity uid="1344">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="137.75321" z="359.67344"/>
+			<Orientation y="-1.5874"/>
+			<Actor seed="60136"/>
+		</Entity>
+		<Entity uid="1345">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="95.2747" z="367.92975"/>
+			<Orientation y="0.29944"/>
+			<Actor seed="30858"/>
+		</Entity>
+		<Entity uid="1346">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="92.37983" z="370.65806"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54378"/>
+		</Entity>
+		<Entity uid="1347">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="91.0008" z="370.63895"/>
+			<Orientation y="3.07383"/>
+			<Actor seed="55244"/>
+		</Entity>
+		<Entity uid="1348">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="91.30662" z="368.85465"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39040"/>
+		</Entity>
+		<Entity uid="1349">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="90.47158" z="368.7537"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17982"/>
+		</Entity>
+		<Entity uid="1350">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="89.25382" z="368.96464"/>
+			<Orientation y="-2.19315"/>
+			<Actor seed="64610"/>
+		</Entity>
+		<Entity uid="1351">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="86.32575" z="368.96009"/>
+			<Orientation y="-2.13924"/>
+			<Actor seed="28478"/>
+		</Entity>
+		<Entity uid="1352">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="84.09008" z="369.01453"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23730"/>
+		</Entity>
+		<Entity uid="1353">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="80.61721" z="367.66071"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12444"/>
+		</Entity>
+		<Entity uid="1354">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="84.38085" z="370.46164"/>
+			<Orientation y="0.35726"/>
+			<Actor seed="5348"/>
+		</Entity>
+		<Entity uid="1355">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="85.82177" z="371.3559"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10578"/>
+		</Entity>
+		<Entity uid="1356">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="87.8355" z="371.67017"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33816"/>
+		</Entity>
+		<Entity uid="1357">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="146.2919" z="363.83484"/>
+			<Orientation y="-2.4031"/>
+			<Actor seed="38904"/>
+		</Entity>
+		<Entity uid="1358">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="138.82876" z="351.86121"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43688"/>
+		</Entity>
+		<Entity uid="1359">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="155.89655" z="357.02326"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55058"/>
+		</Entity>
+		<Entity uid="1360">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="236.00847" z="440.51951"/>
+			<Orientation y="0.67153"/>
+			<Actor seed="46658"/>
+		</Entity>
+		<Entity uid="1361">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="238.92341" z="459.84604"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="46532"/>
+		</Entity>
+		<Entity uid="1362">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="249.65094" z="463.32435"/>
+			<Orientation y="-1.51807"/>
+			<Actor seed="228"/>
+		</Entity>
+		<Entity uid="1363">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="250.28895" z="470.8682"/>
+			<Orientation y="1.24363"/>
+			<Actor seed="24558"/>
+		</Entity>
+		<Entity uid="1364">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="243.89257" z="470.41868"/>
+			<Orientation y="-2.86239"/>
+			<Actor seed="43382"/>
+		</Entity>
+		<Entity uid="1365">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="245.49657" z="465.06174"/>
+			<Orientation y="0.98566"/>
+			<Actor seed="41292"/>
+		</Entity>
+		<Entity uid="1366">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="257.94141" z="520.6443"/>
+			<Orientation y="-1.8779"/>
+			<Actor seed="41826"/>
+		</Entity>
+		<Entity uid="1367">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="255.97313" z="525.47761"/>
+			<Orientation y="1.37372"/>
+			<Actor seed="11184"/>
+		</Entity>
+		<Entity uid="1368">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="107.90503" z="439.73945"/>
+			<Orientation y="-2.10753"/>
+			<Actor seed="34046"/>
+		</Entity>
+		<Entity uid="1369">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="109.95919" z="430.25397"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="18640"/>
+		</Entity>
+		<Entity uid="1370">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="115.79192" z="429.34485"/>
+			<Orientation y="-1.76778"/>
+			<Actor seed="6914"/>
+		</Entity>
+		<Entity uid="1371">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="112.21567" z="427.82856"/>
+			<Orientation y="0.65496"/>
+			<Actor seed="9432"/>
+		</Entity>
+		<Entity uid="1372">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="128.13595" z="504.55637"/>
+			<Orientation y="-2.31914"/>
+			<Actor seed="31216"/>
+		</Entity>
+		<Entity uid="1373">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="126.1972" z="519.16877"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50992"/>
+		</Entity>
+		<Entity uid="1374">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="124.15972" z="526.74561"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36030"/>
+		</Entity>
+		<Entity uid="1375">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="123.54777" z="533.51374"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="64402"/>
+		</Entity>
+		<Entity uid="1376">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="115.64216" z="531.9101"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39540"/>
+		</Entity>
+		<Entity uid="1377">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="121.2338" z="527.96448"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="65044"/>
+		</Entity>
+		<Entity uid="1378">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="123.68352" z="529.3058"/>
+			<Orientation y="1.10755"/>
+			<Actor seed="35644"/>
+		</Entity>
+		<Entity uid="1379">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="127.939" z="525.29389"/>
+			<Orientation y="-1.84603"/>
+			<Actor seed="53520"/>
+		</Entity>
+		<Entity uid="1380">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="129.96589" z="531.2096"/>
+			<Orientation y="-2.11315"/>
+			<Actor seed="30604"/>
+		</Entity>
+		<Entity uid="1381">
+			<Template>actor|geology/stone_medit_med.xml</Template>
+			<Position x="130.9604" z="525.24921"/>
+			<Orientation y="1.42353"/>
+			<Actor seed="56472"/>
+		</Entity>
+		<Entity uid="1386">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="789.57313" z="223.01488"/>
+			<Orientation y="-1.09626"/>
+			<Actor seed="43796"/>
+		</Entity>
+		<Entity uid="1387">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="268.29035" z="178.87134"/>
+			<Orientation y="-0.01951"/>
+			<Actor seed="3244"/>
+		</Entity>
+		<Entity uid="1388">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="111.4125" z="434.03803"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12122"/>
+		</Entity>
+		<Entity uid="1389">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="291.15159" z="166.78574"/>
+			<Orientation y="1.67617"/>
+			<Actor seed="11396"/>
+		</Entity>
+		<Entity uid="1390">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="720.11213" z="424.49006"/>
+			<Orientation y="1.79253"/>
+			<Actor seed="56108"/>
+		</Entity>
+		<Entity uid="1391">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="805.4314" z="722.81135"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28446"/>
+		</Entity>
+		<Entity uid="1392">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="803.09467" z="283.66431"/>
+			<Orientation y="0.43171"/>
+			<Actor seed="2862"/>
+		</Entity>
+		<Entity uid="1393">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="604.72132" z="448.6548"/>
+			<Orientation y="0.11837"/>
+			<Actor seed="49874"/>
+		</Entity>
+		<Entity uid="1394">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="188.48673" z="499.55927"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55784"/>
+		</Entity>
+		<Entity uid="1395">
+			<Template>gaia/special_treasure_food_jars</Template>
+			<Player>0</Player>
+			<Position x="203.19623" z="492.50562"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48004"/>
+		</Entity>
+		<Entity uid="1396">
+			<Template>gaia/special_treasure_food_crate</Template>
+			<Player>0</Player>
+			<Position x="437.69996" z="87.45052"/>
+			<Orientation y="-1.51787"/>
+			<Actor seed="24926"/>
+		</Entity>
+		<Entity uid="1397">
+			<Template>gaia/special_treasure_food_jars</Template>
+			<Player>0</Player>
+			<Position x="431.9534" z="88.39113"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26994"/>
+		</Entity>
+		<Entity uid="1398">
+			<Template>gaia/special_treasure_food_jars</Template>
+			<Player>0</Player>
+			<Position x="450.65076" z="717.68512"/>
+			<Orientation y="-2.14774"/>
+			<Actor seed="16940"/>
+		</Entity>
+		<Entity uid="1399">
+			<Template>gaia/special_treasure_food_crate</Template>
+			<Player>0</Player>
+			<Position x="450.46479" z="710.36634"/>
+			<Orientation y="-0.32097"/>
+			<Actor seed="39950"/>
+		</Entity>
+		<Entity uid="1401">
+			<Template>gaia/special_treasure_metal_persian_bigl</Template>
+			<Player>0</Player>
+			<Position x="642.06684" z="449.28684"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21882"/>
+		</Entity>
+		<Entity uid="1402">
+			<Template>gaia/special_treasure_metal_persian_small</Template>
+			<Player>0</Player>
+			<Position x="147.89106" z="438.21833"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1508"/>
+		</Entity>
+		<Entity uid="1403">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="142.30353" z="442.50657"/>
+			<Orientation y="-1.38132"/>
+			<Actor seed="57274"/>
+		</Entity>
+		<Entity uid="1404">
+			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Player>0</Player>
+			<Position x="784.784" z="229.31418"/>
+			<Orientation y="2.44352"/>
+			<Actor seed="460"/>
+		</Entity>
+		<Entity uid="1405">
+			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Player>0</Player>
+			<Position x="789.95655" z="753.91901"/>
+			<Orientation y="-2.8873"/>
+			<Actor seed="6934"/>
+		</Entity>
+		<Entity uid="1406">
+			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Player>0</Player>
+			<Position x="138.80408" z="491.00098"/>
+			<Orientation y="0.61388"/>
+			<Actor seed="28468"/>
 		</Entity>
 	</Entities>
 	<Paths/>
