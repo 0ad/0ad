@@ -24,6 +24,8 @@ varying vec3 worldPos;
 varying float waterDepth;
 varying vec4 waterInfo;
 
+uniform samplerCube skyCube;
+
 uniform sampler2D normalMap;
 uniform sampler2D normalMap2;
 
@@ -246,8 +248,9 @@ void main()
 		reflCoords = clamp( (0.5*gl_TexCoord[1].xy + distoFactor*1.5*n.xz) / gl_TexCoord[1].w + 0.5,0.0,1.0);	// Unbias texture coords
 		reflColor = mix(texture2D(reflectionMap, reflCoords).rgb, sunColor * reflectionTint, reflectionTintStrength);
 	#else
-		// TODO: implement some sort of skybox rendering.
-		reflColor = mix( (sunColor + vec3(0.565,0.843,0.961))/1.85, reflectionTint, reflectionTintStrength);
+		vec3 eye = reflect(v, mix(vec3(0.0,1.0,0.0),n,0.2));
+		vec3 tex = textureCube(skyCube, eye).rgb;
+		reflColor = mix(tex, sunColor * reflectionTint, reflectionTintStrength);
 	#endif
 	
 	#if USE_NORMALS

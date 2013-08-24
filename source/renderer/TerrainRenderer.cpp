@@ -31,6 +31,7 @@
 #include "graphics/Model.h"
 #include "graphics/ShaderManager.h"
 #include "renderer/ShadowMap.h"
+#include "renderer/SkyManager.h"
 #include "graphics/TerritoryTexture.h"
 #include "graphics/TextRenderer.h"
 
@@ -846,7 +847,8 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	m->fancyWaterShader->Uniform("fogParams", lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 	m->fancyWaterShader->Uniform("time", (float)time);
 	m->fancyWaterShader->Uniform("screenSize", (float)g_Renderer.GetWidth(), (float)g_Renderer.GetHeight(), 0.0f, 0.0f);
-	
+	m->fancyWaterShader->BindTexture("skyCube", g_Renderer.GetSkyManager()->GetSkyCube());
+
 	if (shadow && WaterMgr->m_WaterShadows)
 	{
 		m->fancyWaterShader->BindTexture("shadowTex", shadow->GetTexture());

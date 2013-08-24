@@ -244,7 +244,7 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	postProcSizer->Add(m_PostEffectList = new VariableListBox(scrolledWindow, _("Post Effect"), g_EnvironmentSettings.posteffect), wxSizerFlags().Expand());
 	postProcSizer->Add(new VariableSliderBox(scrolledWindow, _("Brightness"), g_EnvironmentSettings.brightness, -0.5f, 0.5f), wxSizerFlags().Expand());
 	postProcSizer->Add(new VariableSliderBox(scrolledWindow, _("Contrast (HDR)"), g_EnvironmentSettings.contrast, 0.5f, 1.5f), wxSizerFlags().Expand());
-	postProcSizer->Add(new VariableSliderBox(scrolledWindow, _("Saturation"), g_EnvironmentSettings.saturation, 0.0f, 1.0f), wxSizerFlags().Expand());
+	postProcSizer->Add(new VariableSliderBox(scrolledWindow, _("Saturation"), g_EnvironmentSettings.saturation, 0.0f, 2.0f), wxSizerFlags().Expand());
 	postProcSizer->Add(new VariableSliderBox(scrolledWindow, _("Bloom"), g_EnvironmentSettings.bloom, 0.2f, 0.0f), wxSizerFlags().Expand());
 
 	m_Conn = g_EnvironmentSettings.RegisterObserver(0, &SendToGame);
