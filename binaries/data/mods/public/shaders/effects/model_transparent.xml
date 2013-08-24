@@ -115,7 +115,6 @@
     <technique>
         <require context="ALPHABLEND_PASS_BLEND"/>
         <require shaders="arb"/>
-        <sort_by_distance/>
         <pass shader="arb/model_common">
             <define name="USE_TRANSPARENT" value="1"/>
             <define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
@@ -127,7 +126,6 @@
     <technique>
         <require context="ALPHABLEND_PASS_BLEND"/>
         <require shaders="glsl"/>
-        <sort_by_distance/>
         <pass shader="glsl/model_common">
             <define name="USE_TRANSPARENT" value="1"/>
             <define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
@@ -139,7 +137,6 @@
     <technique>
         <require context="ALPHABLEND_PASS_BLEND"/>
         <require shaders="fixed"/>
-        <sort_by_distance/>
         <pass shader="fixed:model">
             <define name="USE_TRANSPARENT" value="1"/>
             <alpha func="gequal" ref="0.05"/>
