@@ -390,10 +390,20 @@ var UnitFsmSpec = {
 				return;
 			}
 
-			if (this.IsAnimal())
-				this.SetNextState("ANIMAL.COMBAT.ATTACKING");
+			if (this.order.data.attackTypeUnchanged)
+			{
+				if (this.IsAnimal())
+					this.SetNextState("ANIMAL.COMBAT.ATTACKING");
+				else
+					this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
+			}
 			else
-				this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
+			{
+				if (this.IsAnimal())
+					this.SetNextStateAlwaysEntering("ANIMAL.COMBAT.ATTACKING");
+				else
+					this.SetNextStateAlwaysEntering("INDIVIDUAL.COMBAT.ATTACKING");
+			}
 			return;
 		}
 
@@ -1460,7 +1470,12 @@ var UnitFsmSpec = {
 					if (this.FindNewTargets())
 					{
 						// Attempt to immediately re-enter the timer function, to avoid wasting the attack.
-						this.TimerHandler(msg.data, msg.lateness);
+						// Only do so if the new target has the same attackType as the current one
+						if (this.order.data.attackType == this.orderQueue[0].data.attackType)
+						{
+							this.TimerHandler(msg.data, msg.lateness);
+							this.orderQueue[0].data.attackTypeUnchanged = true;
+						}
 						return;
 					}
 
