@@ -157,7 +157,8 @@ int WaterManager::LoadWaterTextures()
 		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal%02d.dds", water_type, (int)i+1);
 		CTextureProperties textureProps(pathname);
 		textureProps.SetWrap(GL_REPEAT);
-
+		textureProps.SetMaxAnisotropy(4);
+		
 		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 		texture->Prefetch();
 		m_NormalMap[i] = texture;
@@ -197,8 +198,8 @@ int WaterManager::LoadWaterTextures()
 		0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 	
 	// Create refraction texture
 	glGenTextures(1, &m_RefractionTexture);
@@ -267,10 +268,10 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	m_WaterHeight = cmpWaterManager->GetExactWaterLevel(0,0);
 	
 	// Get the square we want to work on.
-	i32 Xstart = clamp(m_updatei0, 0, (i32)m_MapSize);
-	i32 Xend = clamp(m_updatei1, 0, (i32)m_MapSize);
-	i32 Zstart = clamp(m_updatej0, 0, (i32)m_MapSize);
-	i32 Zend = clamp(m_updatej1, 0, (i32)m_MapSize);
+	i32 Xstart = clamp(m_updatei0, 0, (i32)m_MapSize-1);
+	i32 Xend = clamp(m_updatei1, 0, (i32)m_MapSize-1);
+	i32 Zstart = clamp(m_updatej0, 0, (i32)m_MapSize-1);
+	i32 Zend = clamp(m_updatej1, 0, (i32)m_MapSize-1);
 
 	if (m_WaveX == NULL)
 	{
@@ -290,6 +291,20 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	// this might be updated to actually cache in the terrain manager but that's not for now.
 	CVector3D* normals = new CVector3D[m_MapSize*m_MapSize];
 
+	
+	// taken out of the bottom loop, blurs the normal map
+	// To remove if below is reactivated
+	ssize_t blurZstart = Zstart-4 < 0 ? 0 : Zstart - 4;
+	ssize_t blurZend = Zend+4 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : Zend + 4;
+	ssize_t blurXstart = Xstart-4 < 0 ? 0 : Xstart - 4;
+	ssize_t blurXend = Xend+4 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : Xend + 4;
+	for (ssize_t j = blurZstart; j < blurZend; ++j)
+	{
+		for (ssize_t i = blurXstart; i < blurXend; ++i)
+		{
+			normals[j*m_MapSize + i] = terrain->CalcExactNormal(((float)i)*4.0f,((float)j)*4.0f);
+		}
+	}
 	// TODO: reactivate?
 	/*
 	// calculate wave force (not really used right now)
