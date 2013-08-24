@@ -14,7 +14,11 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/hele_struct_b.dds" name="baseTex"/></textures>
+      <textures>
+<texture file="structural/hele_struct_b.dds" name="baseTex"/>
+<texture file="structural/hele_struct_b_norm.png" name="normTex"/>
+<texture file="structural/hele_struct_b_spec.png" name="specTex"/>
+<texture file="structural/ao/hele_scout_tower.png" name="aoTex"/></textures>
     </variant>
   </group>
   <group>
@@ -32,8 +36,9 @@
         <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/scout_tower_fancy.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/scout_tower_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
