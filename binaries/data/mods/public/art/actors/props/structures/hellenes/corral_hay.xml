@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="farmstead hay">
+      <mesh>props/hele_corral_hay.dae</mesh>
+      <textures>
+<texture file="props/wrld_hay_a.dds" name="baseTex"/>
+<texture file="structural/ao/hele_corral.png" name="aoTex"/>
+</textures>
+    </variant>
+  </group>
+<material>player_trans_ao.xml</material>
+</actor>

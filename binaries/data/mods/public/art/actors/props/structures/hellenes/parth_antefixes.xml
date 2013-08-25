@@ -4,8 +4,11 @@
   <group>
     <variant>
       <mesh>props/parth_antefixes.dae</mesh>
-      <textures><texture file="props/hele_props_a.dds" name="baseTex"/></textures>
+      <textures>
+<texture file="props/hele_props_a.dds" name="baseTex"/>
+<texture file="structural/ao/athen_parthenon.png" name="aoTex"/> 
+</textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_ao.xml</material>
 </actor>
