@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
+  <castshadow/>
   <group>
     <variant frequency="1" name="prytaneion struct b">
       <mesh>structural/hele_Prytaneion_structB.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/prytaneion.xml" attachpoint="root"/>
         <prop actor="structures/hellenes/prytaneion_struct.xml" attachpoint="root"/>
-<prop actor="structures/hellenes/prytaneion_decor.xml" attachpoint="root"/>
+        <prop actor="structures/hellenes/prytaneion_decor.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/prytaneion_tiles.xml" attachpoint="root"/>
       </props>
       <textures>
-<texture file="structural/hele_struct_b.dds" name="baseTex"/>
-<texture file="structural/hele_struct_b_norm.png" name="normTex"/>
-<texture file="structural/hele_struct_b_spec.png" name="specTex"/>
-<texture file="structural/ao/athen_prytaneion.png" name="aoTex"/>
-</textures>
+        <texture file="structural/hele_struct_b.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_b_spec.png" name="specTex"/>
+        <texture file="structural/ao/athen_prytaneion.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -31,9 +32,9 @@
         <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
-<prop actor="props/structures/hellenes/prytaneion.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/prytaneion.xml" attachpoint="root"/>
         <prop actor="structures/hellenes/prytaneion_struct.xml" attachpoint="root"/>
-<prop actor="structures/hellenes/prytaneion_decor.xml" attachpoint="root"/>
+        <prop actor="structures/hellenes/prytaneion_decor.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/prytaneion_tiles.xml" attachpoint="root"/>
       </props>
     </variant>
