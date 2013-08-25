@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_farmstead">
   <Footprint>
-    <Square width="20.0" depth="18.0"/>
+    <Square width="20.0" depth="15.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Health>
-    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x2</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>mace</Civ>
@@ -17,6 +17,6 @@
   </Obstruction>
   <VisualActor>
     <Actor>structures/hellenes/farmstead_new.xml</Actor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+    <FoundationActor>structures/fndn_4x2.xml</FoundationActor>
   </VisualActor>
 </Entity>

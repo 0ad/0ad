@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -74,6 +74,9 @@ public:
 	virtual void ValidatePosition();
 	virtual void InvalidatePosition();
 	virtual void SetTransform(const CMatrix3D& transform);
+
+	// remove shadow receiving
+	void RemoveShadows();
 
 	/**
 	 * Compute the terrain vertex indexes that bound the decal's

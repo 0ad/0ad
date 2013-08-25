@@ -1,285 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset>
     <contributor>
-      <author></author>
-      <authoring_tool>FBX COLLADA exporter</authoring_tool>
-      <comments></comments>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
     </contributor>
-    <created>2012-02-19T02:12:03Z</created>
-    <modified>2012-02-19T02:12:03Z</modified>
-    <revision></revision>
-    <title></title>
-    <subject></subject>
-    <keywords></keywords>
-    <unit meter="0.025400"/>
+    <created>2013-08-25T02:16:05</created>
+    <modified>2013-08-25T02:16:05</modified>
+    <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__301-image" name="Map__301">
-      <init_from>file://C:\Users\Michael\Wildfire Games\Art SVN\art\meshes\structural\hellenes\Map__50_Mix.tga</init_from>
-    </image>
-    <image id="Map__302-image" name="Map__302">
-      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\hele_wonder_rooftile.png</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_08___Default" name="_08___Default">
-      <instance_effect url="#_08___Default-fx"/>
-    </material>
-  </library_materials>
-  <library_effects>
-    <effect id="_08___Default-fx" name="_08___Default">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <texture texture="Map__301-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </ambient>
-            <diffuse>
-              <texture texture="Map__302-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">32.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
+  <library_images/>
   <library_geometries>
-    <geometry id="par_roof_1_-lib" name="par_roof_1_Mesh">
+    <geometry id="par_stairsMesh_003-mesh" name="par_stairsMesh.003">
       <mesh>
-        <source id="par_roof_1_-lib-Position">
-          <float_array id="par_roof_1_-lib-Position-array" count="60">
-1.230797 -2.640428 1.569476
-1.230797 2.638993 1.569476
-1.230797 -2.640428 1.625885
-1.230797 2.638993 1.625885
-0.001074 -0.880616 1.969976
-1.230797 -0.880555 1.625885
-1.230797 0.879297 1.625885
-1.230797 -0.880555 1.569476
-1.230797 0.879297 1.569476
--1.228643 0.879297 1.569476
--1.228643 -0.880555 1.569476
--1.228643 0.879297 1.625885
--1.228643 -0.880555 1.625885
-0.001077 0.879350 1.969976
-0.001077 -2.640583 1.969976
-0.001077 2.639317 1.969976
--1.228643 2.638993 1.625885
--1.228643 -2.640428 1.625885
--1.228643 2.638993 1.569476
--1.228643 -2.640428 1.569476
-</float_array>
+        <source id="par_stairsMesh_003-mesh-positions">
+          <float_array id="par_stairsMesh_003-mesh-positions-array" count="60">12.13834 -26.04037 15.47845 12.13834 26.02622 15.47845 12.13834 -26.04037 16.03477 12.13834 26.02622 16.03477 0.01059198 -8.684792 19.42825 12.13834 -8.68419 16.03477 12.13834 8.671784 16.03477 12.13834 -8.68419 15.47845 12.13834 8.671784 15.47845 -12.11709 8.671784 15.47845 -12.11709 -8.68419 15.47845 -12.11709 8.671784 16.03477 -12.11709 -8.68419 16.03477 0.01062154 8.672307 19.42825 0.01062154 -26.0419 19.42825 0.01062154 26.02941 19.42825 -12.11709 26.02622 16.03477 -12.11709 -26.04037 16.03477 -12.11709 26.02622 15.47845 -12.11709 -26.04037 15.47845</float_array>
           <technique_common>
-            <accessor source="#par_roof_1_-lib-Position-array" count="20" stride="3">
+            <accessor source="#par_stairsMesh_003-mesh-positions-array" count="20" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="par_roof_1_-lib-Normal0">
-          <float_array id="par_roof_1_-lib-Normal0-array" count="216">
-0.269461 -0.000000 0.963011
--0.000001 0.000000 1.000000
-0.269462 0.000000 0.963011
--0.000001 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.269462 0.000000 0.963011
-0.269462 0.000000 0.963011
-0.000000 -0.000000 1.000000
-0.269461 -0.000000 0.963011
-0.000000 -0.000000 1.000000
--0.000001 0.000000 1.000000
-0.269461 -0.000000 0.963011
-0.269462 0.000000 0.963011
-0.269462 0.000000 0.963011
-0.000000 -0.000000 1.000000
-0.269462 0.000000 0.963011
-0.000000 0.000000 1.000000
-0.000000 -0.000000 1.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
-1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--1.000000 0.000000 0.000000
--0.269462 0.000000 0.963011
-0.000000 -0.000000 1.000000
--0.269462 0.000000 0.963011
-0.000000 -0.000000 1.000000
-0.000000 0.000000 1.000000
--0.269462 0.000000 0.963011
--0.000001 0.000000 1.000000
-0.000000 -0.000000 1.000000
--0.269462 0.000000 0.963011
-0.000000 -0.000000 1.000000
--0.269462 0.000000 0.963011
--0.269462 0.000000 0.963011
-0.000000 0.000000 1.000000
--0.000001 0.000000 1.000000
--0.269462 -0.000000 0.963011
--0.000001 0.000000 1.000000
--0.269462 0.000000 0.963011
--0.269462 -0.000000 0.963011
-</float_array>
+        <source id="par_stairsMesh_003-mesh-normals">
+          <float_array id="par_stairsMesh_003-mesh-normals-array" count="72">0.2694618 0 0.9630112 0.2694624 4.5933e-7 0.9630109 0.2694624 0 0.9630109 0.2694618 -4.59329e-7 0.963011 0.2694624 0 0.963011 0.2694624 0 0.9630109 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -0.2694624 0 0.9630109 -0.2694624 0 0.9630109 -0.2694631 4.59331e-7 0.9630107 -0.2694624 0 0.9630109 -0.2694624 -4.5933e-7 0.9630109 -0.2694631 0 0.9630108</float_array>
           <technique_common>
-            <accessor source="#par_roof_1_-lib-Normal0-array" count="72" stride="3">
+            <accessor source="#par_stairsMesh_003-mesh-normals-array" count="24" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="par_roof_1_-lib-UV0">
-          <float_array id="par_roof_1_-lib-UV0-array" count="42">
-0.998882 0.072530
-0.998882 1.003816
-0.001177 0.072530
-0.001177 1.003814
-0.999823 0.072530
-0.999823 1.003819
-0.002118 0.072530
-0.002118 1.003816
-0.001177 1.003819
-0.998882 1.003821
-0.000580 0.071613
-0.000580 0.001032
-1.001179 0.001032
-1.001179 0.071613
-0.000933 0.072522
-0.000933 0.001453
-1.000067 0.001453
-1.000067 0.072522
-0.000933 0.072523
-0.000933 -0.002453
-1.000067 -0.002453
-</float_array>
+        <source id="par_stairsMesh_003-mesh-map-0">
+          <float_array id="par_stairsMesh_003-mesh-map-0-array" count="144">0.998882 0.07252997 0.998882 1.003816 0.001176953 0.07252997 0.998882 1.003816 0.001176953 1.003814 0.001176953 0.07252997 0.999823 0.07252997 0.999823 1.003819 0.002117991 0.07252997 0.999823 1.003819 0.002117991 1.003816 0.002117991 0.07252997 0.001176953 0.07252997 0.998882 0.07252997 0.001176953 1.003819 0.998882 0.07252997 0.998882 1.003821 0.001176953 1.003819 5.8e-4 0.07161295 5.8e-4 0.001031994 1.001179 0.001031994 5.8e-4 0.07161295 1.001179 0.001031994 1.001179 0.07161295 9.33e-4 0.07252198 9.33e-4 0.001452982 1.000067 0.001452982 9.33e-4 0.07252198 1.000067 0.001452982 1.000067 0.07252198 9.33e-4 0.07252299 9.33e-4 -0.002452969 1.000067 -0.002452969 9.33e-4 0.07252299 1.000067 -0.002452969 1.000067 0.07252198 1.000067 -0.002452969 9.33e-4 -0.002452969 9.33e-4 0.07252299 1.000067 -0.002452969 9.33e-4 0.07252299 1.000067 0.07252198 1.000067 0.001452982 9.33e-4 0.001452982 9.33e-4 0.07252198 1.000067 0.001452982 9.33e-4 0.07252198 1.000067 0.07252198 1.001179 0.001031994 5.8e-4 0.001031994 5.8e-4 0.07161295 1.001179 0.001031994 5.8e-4 0.07161295 1.001179 0.07161295 0.001176953 0.07252997 0.001176953 1.003819 0.998882 0.07252997 0.001176953 1.003819 0.998882 1.003821 0.998882 0.07252997 0.002117991 1.003816 0.999823 1.003819 0.002117991 0.07252997 0.999823 1.003819 0.999823 0.07252997 0.002117991 0.07252997 0.001176953 1.003814 0.998882 1.003816 0.001176953 0.07252997 0.998882 1.003816 0.998882 0.07252997 0.001176953 0.07252997</float_array>
           <technique_common>
-            <accessor source="#par_roof_1_-lib-UV0-array" count="21" stride="2">
+            <accessor source="#par_stairsMesh_003-mesh-map-0-array" count="72" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="par_roof_1_-lib-Vertex">
-          <input semantic="POSITION" source="#par_roof_1_-lib-Position"/>
+        <source id="par_stairsMesh_003-mesh-map-1">
+          <float_array id="par_stairsMesh_003-mesh-map-1-array" count="144">0.255326 0.1829805 0.1285939 0.1825878 0.2558785 0.001815974 0.1285939 0.1825878 0.1291468 0.001413524 0.2558785 0.001815974 0.2547734 0.3641429 0.1280416 0.3637619 0.255326 0.1829805 0.1280416 0.3637619 0.1285939 0.1825878 0.255326 0.1829805 0.2547734 0.3641429 0.254221 0.5452892 0.1280416 0.3637619 0.254221 0.5452892 0.1274891 0.544936 0.1280416 0.3637619 0.758677 0.1822043 0.7540528 0.1821901 0.7546084 0.001043796 0.758677 0.1822043 0.7546084 0.001043796 0.7592325 0.001057982 0.7581213 0.3633666 0.7534971 0.3633525 0.7540528 0.1821901 0.7581213 0.3633666 0.7540528 0.1821901 0.758677 0.1822043 0.7575657 0.5445311 0.7529414 0.5445169 0.7534971 0.3633525 0.7575657 0.5445311 0.7534971 0.3633525 0.7581213 0.3633666 0.7670261 0.3633525 0.767577 0.544517 0.7629729 0.5445311 0.7670261 0.3633525 0.7629729 0.5445311 0.7624219 0.3633666 0.7664752 0.1821901 0.7670261 0.3633525 0.7624219 0.3633666 0.7664752 0.1821901 0.7624219 0.3633666 0.761871 0.1822041 0.7659243 0.001043796 0.7664752 0.1821901 0.761871 0.1822041 0.7659243 0.001043796 0.761871 0.1822041 0.7613201 0.001057863 0.001596271 0.3633707 0.1280416 0.3637619 0.001043796 0.544517 0.1280416 0.3637619 0.1274891 0.544936 0.001043796 0.544517 0.1285939 0.1825878 0.1280416 0.3637619 0.002148807 0.1822083 0.1280416 0.3637619 0.001596271 0.3633707 0.002148807 0.1822083 0.1291468 0.001413524 0.1285939 0.1825878 0.002701342 0.001043796 0.1285939 0.1825878 0.002148807 0.1822083 0.002701342 0.001043796</float_array>
+          <technique_common>
+            <accessor source="#par_stairsMesh_003-mesh-map-1-array" count="72" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="par_stairsMesh_003-mesh-vertices">
+          <input semantic="POSITION" source="#par_stairsMesh_003-mesh-positions"/>
         </vertices>
-        <polygons material="_08___Default" count="24">
-          <input semantic="VERTEX" offset="0" source="#par_roof_1_-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#par_roof_1_-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#par_roof_1_-lib-UV0"/>
-          <p>5 0 0 4 1 1 2 2 2</p>
-          <p>4 3 1 14 4 3 2 5 2</p>
-          <p>6 6 4 13 7 5 5 8 6</p>
-          <p>13 9 5 4 10 7 5 11 6</p>
-          <p>6 12 2 3 13 0 13 14 8</p>
-          <p>3 15 0 15 16 9 13 17 8</p>
-          <p>6 18 10 8 19 11 1 20 12</p>
-          <p>6 21 10 1 22 12 3 23 13</p>
-          <p>5 24 14 7 25 15 8 26 16</p>
-          <p>5 27 14 8 28 16 6 29 17</p>
-          <p>2 30 18 0 31 19 7 32 20</p>
-          <p>2 33 18 7 34 20 5 35 17</p>
-          <p>10 36 20 19 37 19 17 38 18</p>
-          <p>10 39 20 17 40 18 12 41 17</p>
-          <p>9 42 16 10 43 15 12 44 14</p>
-          <p>9 45 16 12 46 14 11 47 17</p>
-          <p>18 48 12 9 49 11 11 50 10</p>
-          <p>18 51 12 11 52 10 16 53 13</p>
-          <p>11 54 2 13 55 8 16 56 0</p>
-          <p>13 57 8 15 58 9 16 59 0</p>
-          <p>4 60 7 13 61 5 12 62 6</p>
-          <p>13 63 5 11 64 4 12 65 6</p>
-          <p>14 66 3 4 67 1 17 68 2</p>
-          <p>4 69 1 12 70 0 17 71 2</p>
-        </polygons>
+        <polylist count="24">
+          <input semantic="VERTEX" source="#par_stairsMesh_003-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#par_stairsMesh_003-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#par_stairsMesh_003-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#par_stairsMesh_003-mesh-map-1" offset="2" set="1"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>5 0 0 4 0 1 2 0 2 4 1 3 14 1 4 2 1 5 6 2 6 13 2 7 5 2 8 13 3 9 4 3 10 5 3 11 6 4 12 3 4 13 13 4 14 3 5 15 15 5 16 13 5 17 6 6 18 8 6 19 1 6 20 6 7 21 1 7 22 3 7 23 5 8 24 7 8 25 8 8 26 5 9 27 8 9 28 6 9 29 2 10 30 0 10 31 7 10 32 2 11 33 7 11 34 5 11 35 10 12 36 19 12 37 17 12 38 10 13 39 17 13 40 12 13 41 9 14 42 10 14 43 12 14 44 9 15 45 12 15 46 11 15 47 18 16 48 9 16 49 11 16 50 18 17 51 11 17 52 16 17 53 11 18 54 13 18 55 16 18 56 13 19 57 15 19 58 16 19 59 4 20 60 13 20 61 12 20 62 13 21 63 11 21 64 12 21 65 14 22 66 4 22 67 17 22 68 4 23 69 12 23 70 17 23 71</p>
+        </polylist>
       </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
     </geometry>
   </library_geometries>
   <library_visual_scenes>
-    <visual_scene id="RootNode" name="RootNode">
-      <node id="par_roof_1_" name="par_roof_1_">
-        <matrix sid="matrix">9.862178 0.000000 0.000000 0.000000 0.000000 9.862178 0.000000 0.000000 0.000000 0.000000 9.862178 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
-        <instance_geometry url="#par_roof_1_-lib">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="_08___Default" target="#_08___Default"/>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+    <visual_scene id="Scene" name="Scene">
+      <node id="par_stairs_001" name="par_stairs_001" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#par_stairsMesh_003-mesh"/>
       </node>
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#RootNode"/>
+    <instance_visual_scene url="#Scene"/>
   </scene>
 </COLLADA>
-

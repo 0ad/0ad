@@ -36,7 +36,7 @@ TEX color, fragment.texcoord[0], texture[0], 2D;
 
 // Compute color = texture * (ambient + diffuse*shadow)
 // (diffuse is 2*fragment.color due to clamp-avoidance in the vertex program)
-#if USE_SHADOW
+#if USE_SHADOW && !DISABLE_RECEIVE_SHADOWS
   TEMP shadowBias;
   TEMP biasedShdw;
   MOV shadowBias.x, 0.0005;

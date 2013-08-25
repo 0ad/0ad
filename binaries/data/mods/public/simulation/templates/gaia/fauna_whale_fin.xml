@@ -1,62 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_whale">
-  <Footprint>
-    <Circle radius="10.0"/>
-    <Height>2.5</Height>
-  </Footprint>
-  <Health>
-    <Max>300</Max>
-  </Health>
   <Identity>
-    <Civ>gaia</Civ>
-    <GenericName>Whale</GenericName>
     <SpecificName>Fin Whale</SpecificName>
-	<Tooltip>Kill, then collect food from this bountiful oceanic resource.</Tooltip>
-    <Icon>gaia/fauna_fish.png</Icon>
   </Identity>
-  <Obstruction>
-    <Unit radius="4.0"/>
-  </Obstruction>
-  <Position>
-	<Altitude>-0.5</Altitude>
-	<Floating>true</Floating>
-  </Position>
-  <ResourceSupply>
-    <KillBeforeGather>true</KillBeforeGather>
-    <Amount>2000</Amount>
-    <Type>food.fish</Type>
-  </ResourceSupply>
-  <Selectable>
-    <Overlay>
-	  <Texture disable=""/>
-      <Outline>
-        <LineTexture>outline_border.png</LineTexture>
-        <LineTextureMask>outline_border_mask.png</LineTextureMask>
-        <LineThickness>0.4</LineThickness>
-      </Outline>
-    </Overlay>
-  </Selectable>
-  <StatusBars>
-    <BarWidth>4.0</BarWidth>
-    <BarHeight>0.666</BarHeight>
-    <HeightOffset>5.0</HeightOffset>
-  </StatusBars>
-  <UnitAI>
-    <NaturalBehaviour>skittish</NaturalBehaviour>
-    <RoamDistance>30.0</RoamDistance>
-    <FleeDistance>60.0</FleeDistance>
-    <RoamTimeMin>100000</RoamTimeMin>
-    <RoamTimeMax>300000</RoamTimeMax>
-    <FeedTimeMin>1000</FeedTimeMin>
-    <FeedTimeMax>2000</FeedTimeMax>
-  </UnitAI>
-  <UnitMotion>
-    <PassabilityClass>ship</PassabilityClass>
-    <WalkSpeed>10.0</WalkSpeed>
-    <Run>
-      <Speed>15.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>fauna/whale_fin.xml</Actor>
   </VisualActor>

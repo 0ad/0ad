@@ -32,6 +32,7 @@
 #include "ICmpUnitMotion.h"
 #include "ICmpVision.h"
 
+#include "graphics/Decal.h"
 #include "graphics/Frustum.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectBase.h"
@@ -118,6 +119,11 @@ public:
 			"</optional>"
 			"<optional>"
 				"<element name='ConstructionPreview' a:help='If present, the unit should have a construction preview'>"
+					"<empty/>"
+				"</element>"
+			"</optional>"
+			"<optional>"
+				"<element name='DisableShadows' a:help='Used internally; if present, shadows will be disabled'>"
 					"<empty/>"
 				"</element>"
 			"</optional>"
@@ -524,6 +530,14 @@ void CCmpVisualActor::InitModel(const CParamNode& paramNode)
 					modelFlags |= MODELFLAG_IGNORE_LOS;
 
 				model.ToCModel()->AddFlagsRec(modelFlags);
+			}
+
+			if (paramNode.GetChild("DisableShadows").IsOk())
+			{
+				if (model.ToCModel())
+					model.ToCModel()->RemoveShadowsRec();
+				else if (model.ToCModelDecal())
+					model.ToCModelDecal()->RemoveShadows();
 			}
 
 			// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,7 +84,13 @@
 #include <limits>
 #include <cassert>
 
-#include <boost/signals.hpp>
+#include <boost/version.hpp>
+#if BOOST_VERSION >= 105400
+// Signals is deprecated since 1.54
+# include <boost/signals2.hpp>
+#else
+# include <boost/signals.hpp> 
+#endif
 #include <boost/bind.hpp>
 
 // Nicer memory-leak detection:
@@ -95,12 +101,12 @@
 # endif
 #endif
 
-#endif // HAVE_PCH
+#else // HAVE_PCH
 
-#if !HAVE_PCH
 // If no PCH, just include the most common headers anyway
 # include "wx/wx.h"
-#endif
+
+#endif // HAVE_PCH
 
 #ifdef _WIN32
 # define ATLASDLLIMPEXP extern "C" __declspec(dllexport)

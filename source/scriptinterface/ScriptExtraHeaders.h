@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,8 +26,14 @@
 
 // Ignore some harmless warnings
 #if GCC_VERSION >= 402 // (older GCCs don't support this pragma)
+# if GCC_VERSION >= 406 // store user flags
+#  pragma GCC diagnostic push
+# endif
 # pragma GCC diagnostic ignored "-Wunused-parameter"
 # pragma GCC diagnostic ignored "-Wredundant-decls"
+# if GCC_VERSION >= 408
+#  pragma GCC diagnostic ignored "-Wunused-local-typedefs" // caused by js/debug.h
+# endif
 #endif
 #if MSC_VERSION
 # pragma warning(push)
@@ -49,8 +55,11 @@
 # pragma warning(pop)
 #endif
 #if GCC_VERSION >= 402
-# pragma GCC diagnostic ignored "-Wunused-parameter"
+# pragma GCC diagnostic warning "-Wunused-parameter"
 # pragma GCC diagnostic warning "-Wredundant-decls"
+# if GCC_VERSION >= 406
+#  pragma GCC diagnostic pop // restore user flags
+# endif
 #endif
 
 #endif // INCLUDED_SCRIPTEXTRAHEADERS

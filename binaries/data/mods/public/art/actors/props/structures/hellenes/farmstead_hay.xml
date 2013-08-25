@@ -4,7 +4,10 @@
   <group>
     <variant frequency="1" name="farmstead hay">
       <mesh>props/hele_farmstead_hay.dae</mesh>
-      <textures><texture file="props/celt_prop_1.dds" name="baseTex"/></textures>
+      <textures><texture file="props/wrld_hay_a.dds" name="baseTex"/>
+<texture file="structural/ao/hele_farmstead.png" name="aoTex"/>
+</textures>
     </variant>
   </group>
+<material>player_trans_ao.xml</material>
 </actor>

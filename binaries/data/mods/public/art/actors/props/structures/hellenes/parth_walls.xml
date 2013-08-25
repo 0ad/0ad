@@ -4,7 +4,13 @@
   <group>
     <variant>
       <mesh>props/parth_walls.dae</mesh>
-      <textures><texture file="structural/hele_blocks.png" name="baseTex"/></textures>
+      <textures>
+<texture file="structural/hele_blocks.png" name="baseTex"/>
+<texture file="structural/hele_blocks_norm.png" name="normTex"/>
+<texture file="structural/hele_blocks_spec.png" name="specTex"/>
+<texture file="structural/ao/athen_parthenon.png" name="aoTex"/>
+</textures>
     </variant>
   </group>
+<material>player_trans_ao_parallax_spec.xml</material>
 </actor>

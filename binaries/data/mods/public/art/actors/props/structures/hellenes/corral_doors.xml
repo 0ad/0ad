@@ -4,8 +4,13 @@
   <group>
     <variant frequency="1">
       <mesh>props/hele_corral_doors.dae</mesh>
-      <textures><texture file="props/hele_props_a.dds" name="baseTex"/></textures>
+      <textures>
+<texture file="props/hele_props_a.dds" name="baseTex"/>
+<texture file="props/hele_props_a_norm.png" name="normTex"/>
+<texture file="props/hele_props_a_spec.png" name="specTex"/>
+<texture file="structural/ao/hele_corral.png" name="aoTex"/>
+</textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

@@ -22,6 +22,8 @@
 #include "precompiled.h"
 
 #include "Model.h"
+
+#include "Decal.h"
 #include "ModelDef.h"
 #include "maths/Quaternion.h"
 #include "maths/BoundingBoxAligned.h"
@@ -629,6 +631,21 @@ void CModel::AddFlagsRec(int flags)
 	for (size_t i = 0; i < m_Props.size(); ++i)
 		if (m_Props[i].m_Model->ToCModel())
 			m_Props[i].m_Model->ToCModel()->AddFlagsRec(flags);
+}
+
+void CModel::RemoveShadowsRec()
+{
+	m_Flags &= ~MODELFLAG_CASTSHADOWS;
+
+	m_Material.AddShaderDefine("DISABLE_RECEIVE_SHADOWS", "1");
+
+	for (size_t i = 0; i < m_Props.size(); ++i)
+	{
+		if (m_Props[i].m_Model->ToCModel())
+			m_Props[i].m_Model->ToCModel()->RemoveShadowsRec();
+		else if (m_Props[i].m_Model->ToCModelDecal())
+			m_Props[i].m_Model->ToCModelDecal()->RemoveShadows();
+	}
 }
 
 void CModel::SetMaterial(const CMaterial &material)

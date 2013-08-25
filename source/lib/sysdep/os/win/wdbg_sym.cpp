@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -1442,6 +1442,12 @@ static bool udt_fits_on_one_line(const wchar_t* type_name, size_t child_count, s
 
 static Status udt_dump_normal(const wchar_t* type_name, const u8* p, size_t size, DumpState state, ULONG numChildren, const DWORD* children)
 {
+	// special case: boost::unordered types are complex and may cause a stack overflow
+	// see http://trac.wildfiregames.com/ticket/1813
+	// TODO: at least give some info about them
+	if(!wcsncmp(type_name, L"boost::unordered", 16))
+		return INFO::CANNOT_HANDLE;
+
 	const bool fits_on_one_line = udt_fits_on_one_line(type_name, numChildren, size);
 
 	// prevent infinite recursion just to be safe (shouldn't happen)

@@ -68,7 +68,7 @@
 		{
 			"Name":"Hellenization",
 			"History":"The Greeks were highly successful in Hellenising various foreigners. During the Hellenistic Age, Greek was the lingua franca of the Ancient World, spoken widely from Spain to India.",
-			"Description":"Constructing an expensive Theatron increases the territory expanse of all buildings by 20%."
+			"Description":"Constructing an expensive Theatron increases the territory expanse of all buildings by 25%."
 		}
 	],
 	"TeamBonuses":
@@ -88,7 +88,7 @@
 			"History":"Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.",
 			"Requirements":"",
 			"Phase":"City",
-			"Special":"The Hellenisation civ bonus. Building a Theatron increases the territory effect of all buildings by 20%."
+			"Special":"The Hellenisation civ bonus. Building a Theatron increases the territory effect of all buildings by 25%."
 		},
 		{
 			"Name":"Gymnasion",
@@ -119,15 +119,15 @@
 			"Count": 4
 		},
 		{
-			"Template": "units/athen_infantry_spearman_e",
+			"Template": "units/athen_infantry_spearman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/athen_infantry_slinger_e",
+			"Template": "units/athen_infantry_slinger_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/athen_cavalry_javelinist_e"
+			"Template": "units/athen_cavalry_javelinist_b"
 		}
 	],
 	"Formations":

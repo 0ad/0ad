@@ -2,10 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="house e shields 1">
+    <variant>
       <mesh>props/hele_house_e_shields.dae</mesh>
-      <textures><texture file="props/hele_props_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/hele_props_b.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>playercolor_spec.xml</material>
 </actor>

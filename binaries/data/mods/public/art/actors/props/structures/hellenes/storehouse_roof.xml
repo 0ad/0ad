@@ -4,8 +4,10 @@
   <group>
     <variant>
       <mesh>props/hele_storehouse_roof.dae</mesh>
-      <textures><texture file="structural/rooftiles_broken.png" name="baseTex"/></textures>
+      <textures><texture file="structural/rooftiles_broken.png" name="baseTex"/>
+<texture file="structural/ao/hele_storehouse.png" name="aoTex"/>
+</textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_ao.xml</material>
 </actor>

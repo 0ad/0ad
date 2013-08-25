@@ -1,4 +1,4 @@
-/* Copyright (c) 2011 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -37,7 +37,7 @@ struct Cache	// POD (may be used before static constructors)
 		// note: further values are "reserved"
 	};
 
-	static const size_t maxLevels = 3;
+	static const size_t maxLevels = 4;
 
 	static const size_t fullyAssociative = 0xFF;	// (CPUID.4 definition)
 
@@ -125,9 +125,11 @@ enum IdxCache
 	L1D = 1,
 	L2D,
 	L3D,
+	L4D,
 	L1I,
 	L2I,
 	L3I,
+	L4I,
 	TLB
 };
 

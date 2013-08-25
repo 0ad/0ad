@@ -727,7 +727,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		{
 			if (g_DebugCommands)
 			{
-				warn("Invalid command: build restrictions check failed for player "+player+": "+uneval(cmd));
+				warn("Invalid command: build restrictions check failed with '"+ret.message+"' for player "+player+": "+uneval(cmd));
 			}
 
 			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
@@ -1249,38 +1249,31 @@ function GetFormationRequirements(formationName)
 
 function CanMoveEntsIntoFormation(ents, formationName)
 {
-	var count = ents.length;
-
 	// TODO: should check the player's civ is allowed to use this formation
 	// See simulation/components/Player.js GetFormations() for a list of all allowed formations
 
 	var requirements = GetFormationRequirements(formationName);
 	if (!requirements)
 		return false;
-	
-	if (count < requirements.count)
-		return false;
 
-	var scatterOnlyUnits = true;
+	formationName = formationName.replace(/\s+/g,"");
+
+	var count = 0;
+	var reqClasses = requirements.classesRequired || [];
 	for each (var ent in ents)
 	{
 		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		if (cmpIdentity)
-		{
-			var classes = cmpIdentity.GetClassesList();
-			if (scatterOnlyUnits && (classes.indexOf("Worker") == -1 || classes.indexOf("Support") == -1))
-				scatterOnlyUnits = false;
-			for each (var classRequired in requirements.classesRequired)
-			{
-				if (classes.indexOf(classRequired) == -1)
-				{
-					return false;
-				}
-			}
-		}
+		if (!cmpIdentity || !cmpIdentity.CanUseFormation(formationName))
+			continue;
+
+		var classes = cmpIdentity.GetClassesList();
+		if (reqClasses.some(function(c){return classes.indexOf(c) == -1;}))
+			return false;
+
+		count++;
 	}
 
-	if (scatterOnlyUnits)
+	if (count < requirements.count)
 		return false;
 
 	return true;

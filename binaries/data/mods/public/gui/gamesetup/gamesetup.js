@@ -114,7 +114,6 @@ function initMain()
 	addFilter("Default", function(settings) { return settings && !keywordTestOR(settings.Keywords, ["naval", "demo", "hidden"]); });
 	addFilter("Naval Maps", function(settings) { return settings && keywordTestAND(settings.Keywords, ["naval"]); });
 	addFilter("Demo Maps", function(settings) { return settings && keywordTestAND(settings.Keywords, ["demo"]); });
-	addFilter("Old Maps", function(settings) { return !settings; });
 	addFilter("All Maps", function(settings) { return true; });
 
 	// Populate map filters dropdown

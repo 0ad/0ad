@@ -157,7 +157,8 @@ int WaterManager::LoadWaterTextures()
 		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal%02d.dds", water_type, (int)i+1);
 		CTextureProperties textureProps(pathname);
 		textureProps.SetWrap(GL_REPEAT);
-
+		textureProps.SetMaxAnisotropy(4);
+		
 		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 		texture->Prefetch();
 		m_NormalMap[i] = texture;
@@ -197,8 +198,8 @@ int WaterManager::LoadWaterTextures()
 		0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 	
 	// Create refraction texture
 	glGenTextures(1, &m_RefractionTexture);
@@ -267,10 +268,10 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	m_WaterHeight = cmpWaterManager->GetExactWaterLevel(0,0);
 	
 	// Get the square we want to work on.
-	i32 Xstart = m_updatei0;
-	i32 Xend = m_updatei1;
-	i32 Zstart = m_updatej0;
-	i32 Zend = m_updatej1;
+	i32 Xstart = clamp(m_updatei0, 0, (i32)m_MapSize-1);
+	i32 Xend = clamp(m_updatei1, 0, (i32)m_MapSize-1);
+	i32 Zstart = clamp(m_updatej0, 0, (i32)m_MapSize-1);
+	i32 Zend = clamp(m_updatej1, 0, (i32)m_MapSize-1);
 
 	if (m_WaveX == NULL)
 	{
@@ -290,6 +291,20 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	// this might be updated to actually cache in the terrain manager but that's not for now.
 	CVector3D* normals = new CVector3D[m_MapSize*m_MapSize];
 
+	
+	// taken out of the bottom loop, blurs the normal map
+	// To remove if below is reactivated
+	ssize_t blurZstart = Zstart-4 < 0 ? 0 : Zstart - 4;
+	ssize_t blurZend = Zend+4 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : Zend + 4;
+	ssize_t blurXstart = Xstart-4 < 0 ? 0 : Xstart - 4;
+	ssize_t blurXend = Xend+4 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : Xend + 4;
+	for (ssize_t j = blurZstart; j < blurZend; ++j)
+	{
+		for (ssize_t i = blurXstart; i < blurXend; ++i)
+		{
+			normals[j*m_MapSize + i] = terrain->CalcExactNormal(((float)i)*4.0f,((float)j)*4.0f);
+		}
+	}
 	// TODO: reactivate?
 	/*
 	// calculate wave force (not really used right now)
@@ -320,9 +335,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	}
 	 */
 	// this creates information for waves and stores it in float arrays. PatchRData then puts it in the vertex info for speed.
-	for (ssize_t i = Xstart; i < Xend; ++i)
+	for (ssize_t j = Zstart; j < Zend; ++j)
 	{
-		for (ssize_t j = Zstart; j < Zend; ++j)
+		for (ssize_t i = Xstart; i < Xend; ++i)
 		{
 			if (circular && (i-halfSize)*(i-halfSize)+(j-halfSize)*(j-halfSize) > mSize)
 			{
@@ -341,9 +356,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			if (depth >= 0)
 			{
 				// check in the square around.
-				for (int xx = -5; xx <= 5; ++xx)
+				for (int yy = -5; yy <= 5; ++yy)
 				{
-					for (int yy = -5; yy <= 5; ++yy)
+					for (int xx = -5; xx <= 5; ++xx)
 					{
 						if (i+xx >= 0 && i + xx < (long)m_MapSize)
 							if (j + yy >= 0 && j + yy < (long)m_MapSize)
@@ -357,9 +372,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 				// refine the calculation if we're close enough
 				if (distanceToShore < 9)
 				{
-					for (float xx = -2.5f; xx <= 2.5f; ++xx)
+					for (float yy = -2.5f; yy <= 2.5f; ++yy)
 					{
-						for (float yy = -2.5f; yy <= 2.5f; ++yy)
+						for (float xx = -2.5f; xx <= 2.5f; ++xx)
 						{
 							float hereDepth = m_WaterHeight - terrain->GetExactGroundLevel( (i+xx)*4, (j+yy)*4 );
 							if (hereDepth < 0 && xx*xx + yy*yy < distanceToShore)
@@ -370,9 +385,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			}
 			else
 			{
-				for (int xx = -2; xx <= 2; ++xx)
+				for (int yy = -2; yy <= 2; ++yy)
 				{
-					for (int yy = -2; yy <= 2; ++yy)
+					for (int xx = -2; xx <= 2; ++xx)
 					{
 						float hereDepth = m_WaterHeight - terrain->GetVertexGroundLevel(i+xx, j+yy);
 						if (hereDepth > 0)
@@ -394,9 +409,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			// Normals are a pretty good calculation but it's slow since we normalize so much.
 			CVector3D normal;
 			int waterRaise = 0;
-			for (int xx = -4; xx <= 4; xx += 2)	// every 2 tile is good enough.
+			for (int yy = -4; yy <= 4; yy += 2)
 			{
-				for (int yy = -4; yy <= 4; yy += 2)
+				for (int xx = -4; xx <= 4; xx += 2)	// every 2 tile is good enough.
 				{
 					if (j+yy < (long)m_MapSize && i+xx < (long)m_MapSize && i+xx >= 0 && j+yy >= 0)
 						normal += normals[(j+yy)*m_MapSize + (i+xx)];
@@ -439,19 +454,18 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	std::vector<CVector2D> waveSquares;
 	
 	int size = 8;	// I think this is the size of the squares.
-	for (size_t i = 0; i < m_MapSize/size; ++i)
+	for (size_t j = 0; j < m_MapSize/size; ++j)
 	{
-		for (size_t j = 0; j < m_MapSize/size; ++j)
+		for (size_t i = 0; i < m_MapSize/size; ++i)
 		{
-			
 			int landTexel = 0;
 			int waterTexel = 0;
 			CVector3D avnormal (0.0f,0.0f,0.0f);
 			CVector2D landPosition(0.0f,0.0f);
 			CVector2D waterPosition(0.0f,0.0f);
-			for (int xx = 0; xx < size; ++xx)
+			for (int yy = 0; yy < size; ++yy)
 			{
-				for (int yy = 0; yy < size; ++yy)
+				for (int xx = 0; xx < size; ++xx)
 				{
 					if (terrain->GetVertexGroundLevel(i*size+xx,j*size+yy) > m_WaterHeight)
 					{
@@ -521,9 +535,9 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 		CVector2D pos(waveSquares[i]);
 		
 		CVector3D avgnorm(0.0f,0.0f,0.0f);
-		for (int xx = -size/2; xx < size/2; ++xx)
+		for (int yy = -size/2; yy < size/2; ++yy)
 		{
-			for (int yy = -size/2; yy < size/2; ++yy)
+			for (int xx = -size/2; xx < size/2; ++xx)
 			{
 				avgnorm += terrain->CalcExactNormal((pos.X+xx)*4.0f,(pos.Y+yy)*4.0f);
 			}
