@@ -3,11 +3,11 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="prytaneion struct">
-      <mesh>structural/hele_Prytaneion_struct.dae</mesh>
+      <mesh>structural/hele_Prytaneion_decor.dae</mesh>
       <textures>
-<texture file="structural/hele_struct.dds" name="baseTex"/>
-<texture file="structural/hele_struct_norm.png" name="normTex"/>
-<texture file="structural/hele_struct_spec.png" name="specTex"/>
+<texture file="props/hele_decor.png" name="baseTex"/>
+<texture file="props/hele_decor_norm.png" name="normTex"/>
+<texture file="props/hele_decor_spec.png" name="specTex"/>
 <texture file="structural/ao/athen_prytaneion.png" name="aoTex"/>
 </textures>
     </variant>
