@@ -3,40 +3,40 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
+		<SunColour r="0.780392" g="0.733333" b="0.596078"/>
 		<SunElevation angle="0.717903"/>
 		<SunRotation angle="-0.693359"/>
 		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<Fog>
-			<FogFactor>0.00223633</FogFactor>
-			<FogThickness>0.298828</FogThickness>
-			<FogColour r="0.74902" g="0.74902" b="0.74902"/>
+			<FogFactor>0.00203125</FogFactor>
+			<FogThickness>0.249023</FogThickness>
+			<FogColour r="0.882353" g="0.839216" b="0.701961"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.211765" g="0.247059" b="0.501961"/>
+				<Colour r="0.439216" g="0.345098" b="0.152941"/>
 				<Height>20.0394</Height>
 				<Shininess>229.004</Shininess>
-				<Waviness>2.1875</Waviness>
-				<Murkiness>0.734375</Murkiness>
-				<Tint r="0" g="0" b="0"/>
+				<Waviness>4.17969</Waviness>
+				<Murkiness>0.796875</Murkiness>
+				<Tint r="0.745098" g="0.596078" b="0.278431"/>
 				<ReflectionTint r="0" g="0.501961" b="1"/>
-				<ReflectionTintStrength>0.304688</ReflectionTintStrength>
+				<ReflectionTintStrength>0.105469</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>0.0253906</Brightness>
-			<Contrast>0.974609</Contrast>
+			<Contrast>0.96875</Contrast>
 			<Saturation>1</Saturation>
 			<Bloom>0.186523</Bloom>
-			<PostEffect>default</PostEffect>
+			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="580.789" y="83.6561" z="767.546"/>
-		<Rotation angle="0.12338"/>
+		<Position x="756.952" y="83.5756" z="179.053"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[

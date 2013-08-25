@@ -21,12 +21,6 @@
   <TerritoryInfluence>
     <Radius>25</Radius>
   </TerritoryInfluence>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}_support_female_citizen
-    </Entities>
-  </ProductionQueue>
   <VisualActor>
     <Actor>props/structures/persians/alt_building_03.xml</Actor>
   </VisualActor>
