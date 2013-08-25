@@ -1,27 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_swordsman">
-  <Attack>
-    <Melee>
-      <Hack>12.0</Hack>
-    </Melee>
-    <Charge>
-      <Hack>24.0</Hack>
-    </Charge>
-  </Attack>
   <Builder>
     <Entities datatype="tokens">
-      structures/iber_sb1
+      structures/iber_monument
     </Entities>
   </Builder>
-  <Cost>
-    <Resources>
-      <metal>60</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>iber</Civ>
 	<SelectionGroupName>units/iber_infantry_swordsman_b</SelectionGroupName>
-    <SpecificName>Caetrati</SpecificName>
+    <SpecificName>Ezpatari</SpecificName>
     <Icon>units/iber_infantry_swordsman.png</Icon>
     <History>The Iberians were master sword-smiths and the falcata was their greatest creation. Wielded by superb swordsmen equipped with light armor and a buckler known as a caetra, they caused untold carnage. Thanks to this Iberian infantry were fast and agile unlike many of their opponents and could bite hard when they attacked. Their skill with sword and buckler were legendary, allowing them to go toe-to-toe with heavy infantry.</History>
   </Identity>
