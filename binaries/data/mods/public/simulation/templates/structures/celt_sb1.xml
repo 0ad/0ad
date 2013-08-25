@@ -6,7 +6,7 @@
     <Resources>
       <food>0</food>
       <wood>200</wood>
-      <stone>0</stone>
+      <stone>100</stone>
       <metal>0</metal>
     </Resources>
   </Cost>
@@ -22,13 +22,19 @@
     <Civ>celt</Civ>
     <GenericName>Rotary Mill</GenericName>
     <SpecificName>Melonas</SpecificName>
-    <Tooltip>Increase farming output +15%. (Currently a useless structure)</Tooltip>
+    <Tooltip>Increase nearby farming output +25%. (Currently, a special technology can be researched to serve this function)</Tooltip>
     <History>The Celts developed the first rotary flour mill.</History>
     <Icon>structures/sb1.png</Icon>
   </Identity>
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Technologies datatype="tokens">
+      celts/special_gather_crop_rotation
+    </Technologies>
+  </ProductionQueue>
   <RallyPoint disable=""/>
   <Sound>
     <SoundGroups>

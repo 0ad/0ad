@@ -473,6 +473,13 @@ CityAttack.prototype.updatePreparation = function(gameState, militaryManager,eve
 	} else if (!this.mustStart(gameState)) {
 		// We still have time left to recruit units and do stuffs.
 		
+		// TODO: check why this can happen instead of resorting to this "hack".
+		if (this.buildOrder.length === 0 || this.buildOrder[0] === undefined) {
+			debug ("Ending plan: no build orders");
+			return 0;	// will abort the plan, should return something else
+		}
+
+		
 		// let's sort by training advancement, ie 'current size / target size'
 		// count the number of queued units too.
 		// substract priority.
