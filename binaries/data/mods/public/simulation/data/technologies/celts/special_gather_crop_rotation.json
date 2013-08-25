@@ -1,0 +1,12 @@
+{
+	"genericName": "Crop Rotation",
+	"description": "Crop rotation increases yield by preventing the depletion of vital nutrients and minerals from the soil.",
+	"cost": {"food": 300, "wood": 300, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "crop_rotation.png",
+	"researchTime": 40,
+	"tooltip": "Increase the yield of your farms. +25% farming rate.",
+	"modifications": [{"value": "ResourceGatherer/Rates/food.grain", "multiplier": 1.25}],
+	"affects": ["Worker"]
+}
