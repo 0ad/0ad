@@ -390,7 +390,8 @@ var UnitFsmSpec = {
 				return;
 			}
 
-			if (this.order.data.attackTypeUnchanged)
+			
+			if (this.order.data.attackType == this.oldAttackType)
 			{
 				if (this.IsAnimal())
 					this.SetNextState("ANIMAL.COMBAT.ATTACKING");
@@ -1457,12 +1458,13 @@ var UnitFsmSpec = {
 						}
 					}
 
+					this.oldAttackType = this.order.data.attackType;
 					// Can't reach it, no longer owned by enemy, or it doesn't exist any more - give up
 					// Except if in WalkAndFight mode where we look for more ennemies around before moving again
 					if (this.FinishOrder())
 					{
 						if (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight")
-	    						this.FindNewTargets();
+							this.FindNewTargets();
 						return;
 					}
 
@@ -1470,12 +1472,8 @@ var UnitFsmSpec = {
 					if (this.FindNewTargets())
 					{
 						// Attempt to immediately re-enter the timer function, to avoid wasting the attack.
-						// Only do so if the new target has the same attackType as the current one
-						if (this.order.data.attackType == this.orderQueue[0].data.attackType)
-						{
+						if (this.order.data.attackType == this.oldAttackType)
 							this.TimerHandler(msg.data, msg.lateness);
-							this.orderQueue[0].data.attackTypeUnchanged = true;
-						}
 						return;
 					}
 
