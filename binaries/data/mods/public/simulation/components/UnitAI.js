@@ -1472,7 +1472,7 @@ var UnitFsmSpec = {
 					if (this.FindNewTargets())
 					{
 						// Attempt to immediately re-enter the timer function, to avoid wasting the attack.
-						if (this.order.data.attackType == this.oldAttackType)
+						if (this.orderQueue.length > 0 && this.orderQueue[0].data.attackType == this.oldAttackType)
 							this.TimerHandler(msg.data, msg.lateness);
 						return;
 					}
