@@ -22,7 +22,13 @@
     <KillBeforeGather>false</KillBeforeGather>
     <Amount>1000</Amount>
     <Type>food.fish</Type>
-	<MaxGatherers>4</MaxGatherers>
+    <MaxGatherers>4</MaxGatherers>
+    <Regeneration>
+      <Rate>1</Rate>
+      <Acceleration>1.03</Acceleration>
+      <Delay>5</Delay>
+      <Growth>quadratic</Growth>
+    </Regeneration>
   </ResourceSupply>
   <Selectable>
     <Overlay>

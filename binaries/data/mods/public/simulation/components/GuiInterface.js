@@ -28,9 +28,9 @@ GuiInterface.prototype.Init = function()
 /*
  * All of the functions defined below are called via Engine.GuiInterfaceCall(name, arg)
  * from GUI scripts, and executed here with arguments (player, arg).
- * 
- * CAUTION: The input to the functions in this module is not network-synchronised, so it 
- * mustn't affect the simulation state (i.e. the data that is serialised and can affect 
+ *
+ * CAUTION: The input to the functions in this module is not network-synchronised, so it
+ * mustn't affect the simulation state (i.e. the data that is serialised and can affect
  * the behaviour of the rest of the simulation) else it'll cause out-of-sync errors.
  */
 
@@ -43,7 +43,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	var ret = {
 		"players": []
 	};
-	
+
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var n = cmpPlayerMan.GetNumPlayers();
 	for (var i = 0; i < n; ++i)
@@ -51,7 +51,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
 		var cmpPlayerEntityLimits = Engine.QueryInterface(playerEnt, IID_EntityLimits);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
-		
+
 		// Work out what phase we are in
 		var cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
 		var phase = "";
@@ -61,7 +61,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			phase = "town";
 		else if (cmpTechnologyManager.IsTechnologyResearched("phase_village"))
 			phase = "village";
-		
+
 		// store player ally/neutral/enemy data as arrays
 		var allies = [];
 		var mutualAllies = [];
@@ -110,7 +110,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	{
 		ret.circularMap = cmpRangeManager.GetLosCircular();
 	}
-	
+
 	// Add timeElapsed
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	ret.timeElapsed = cmpTimer.GetTime();
@@ -169,7 +169,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"selectionGroupName": cmpIdentity.GetSelectionGroupName()
 		};
 	}
-	
+
 	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
 	if (cmpPosition && cmpPosition.IsInWorld())
 	{
@@ -216,7 +216,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 				// not in world, set a default?
 				ret.attack.elevationAdaptedRange = ret.attack.maxRange;
 			}
-			
+
 		}
 		else
 		{
@@ -300,7 +300,10 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"type": cmpResourceSupply.GetType(),
 			"killBeforeGather": cmpResourceSupply.GetKillBeforeGather(),
 			"maxGatherers": cmpResourceSupply.GetMaxGatherers(),
-			"gatherers": cmpResourceSupply.GetGatherers()
+			"gatherers": cmpResourceSupply.GetGatherers(),
+            "throughput": cmpResourceSupply.GetGatherers().reduce(function (total, e)
+                total + Engine.QueryInterface(e, IID_ResourceGatherer).GetTargetGatherRate(ent)
+            , 0)
 		};
 	}
 
@@ -334,7 +337,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"capacity": cmpGarrisonHolder.GetCapacity()
 		};
 	}
-	
+
 	var cmpPromotion = Engine.QueryInterface(ent, IID_Promotion);
 	if (cmpPromotion)
 	{
@@ -361,7 +364,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.gate = {
 			"locked": cmpGate.IsLocked(),
 		};
-	}	
+	}
 
 	if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("BarterMarket"))
 	{
@@ -372,7 +375,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	var cmpHeal = Engine.QueryInterface(ent, IID_Heal);
 	if (cmpHeal)
 	{
-		ret.Healer = { 
+		ret.Healer = {
 			"unhealableClasses": cmpHeal.GetUnhealableClasses(),
 			"healableClasses": cmpHeal.GetHealableClasses(),
 		};
@@ -424,7 +427,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 			"crush": GetTechModifiedProperty(techMods, template, "Armour/Crush", +template.Armour.Crush),
 		};
 	}
-	
+
 	if (template.Attack)
 	{
 		ret.attack = {};
@@ -440,7 +443,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 			};
 		}
 	}
-	
+
 	if (template.BuildRestrictions)
 	{
 		// required properties
@@ -449,7 +452,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 			"territory": template.BuildRestrictions.Territory,
 			"category": template.BuildRestrictions.Category,
 		};
-		
+
 		// optional properties
 		if (template.BuildRestrictions.Distance)
 		{
@@ -479,11 +482,11 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 		if (template.Cost.PopulationBonus) ret.cost.populationBonus = GetTechModifiedProperty(techMods, template, "Cost/PopulationBonus", +template.Cost.PopulationBonus);
 		if (template.Cost.BuildTime) ret.cost.time = GetTechModifiedProperty(techMods, template, "Cost/BuildTime", +template.Cost.BuildTime);
 	}
-	
+
 	if (template.Footprint)
 	{
 		ret.footprint = {"height": template.Footprint.Height};
-		
+
 		if (template.Footprint.Square)
 			ret.footprint.square = {"width": +template.Footprint.Square["@width"], "depth": +template.Footprint.Square["@depth"]};
 		else if (template.Footprint.Circle)
@@ -491,7 +494,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 		else
 			warn("[GetTemplateData] Unrecognized Footprint type");
 	}
-	
+
 	if (template.Obstruction)
 	{
 		ret.obstruction = {
@@ -504,7 +507,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 			"disableBlockPathfinding": ("" + template.Obstruction.DisableBlockPathfinding == "true"),
 			"shape": {}
 		};
-		
+
 		if (template.Obstruction.Static)
 		{
 			ret.obstruction.shape.type = "static";
@@ -573,7 +576,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 			"minTowerOverlap": +template.WallSet.MinTowerOverlap,
 		};
 	}
-	
+
 	if (template.WallPiece)
 	{
 		ret.wallPiece = {"length": +template.WallPiece.Length};
@@ -586,16 +589,16 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 {
 	var cmpTechTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
 	var template = cmpTechTempMan.GetTemplate(name);
-	
+
 	if (!template)
 	{
 		warn("Tried to get data for invalid technology: " + name);
 		return null;
 	}
-	
+
 	var ret = {};
-	
-	// Get specific name for this civ or else the generic specific name 
+
+	// Get specific name for this civ or else the generic specific name
 	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
 	var specific = undefined;
 	if (template.specificName)
@@ -605,7 +608,7 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 		else
 			specific = template.specificName['generic'];
 	}
-	
+
 	ret.name = {
 		"specific": specific,
 		"generic": template.genericName,
@@ -619,24 +622,24 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 		"time": template.researchTime ? (+template.researchTime) : 0,
 	}
 	ret.tooltip = template.tooltip;
-	
+
 	if (template.requirementsTooltip)
 		ret.requirementsTooltip = template.requirementsTooltip;
 	else
 		ret.requirementsTooltip = "";
-	
+
 	ret.description = template.description;
-	
+
 	return ret;
 };
 
 GuiInterface.prototype.IsTechnologyResearched = function(player, tech)
 {
 	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
-	
+
 	if (!cmpTechnologyManager)
 		return false;
-	
+
 	return cmpTechnologyManager.IsTechnologyResearched(tech);
 };
 
@@ -644,10 +647,10 @@ GuiInterface.prototype.IsTechnologyResearched = function(player, tech)
 GuiInterface.prototype.CheckTechnologyRequirements = function(player, tech)
 {
 	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
-	
+
 	if (!cmpTechnologyManager)
 		return false;
-	
+
 	return cmpTechnologyManager.CanResearch(tech);
 };
 
@@ -751,7 +754,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd, selected)
 {
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var playerColours = {}; // cache of owner -> colour map
-	
+
 	for each (var ent in cmd.entities)
 	{
 		var cmpSelectable = Engine.QueryInterface(ent, IID_Selectable);
@@ -796,11 +799,11 @@ GuiInterface.prototype.GetPlayerEntities = function(player)
 
 /**
  * Displays the rally points of a given list of entities (carried in cmd.entities).
- * 
- * The 'cmd' object may carry its own x/z coordinate pair indicating the location where the rally point should 
- * be rendered, in order to support instantaneously rendering a rally point marker at a specified location 
+ *
+ * The 'cmd' object may carry its own x/z coordinate pair indicating the location where the rally point should
+ * be rendered, in order to support instantaneously rendering a rally point marker at a specified location
  * instead of incurring a delay while PostNetworkCommand processes the set-rallypoint command (see input.js).
- * If cmd doesn't carry a custom location, then the position to render the marker at will be read from the 
+ * If cmd doesn't carry a custom location, then the position to render the marker at will be read from the
  * RallyPoint component.
  */
 GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
@@ -815,16 +818,16 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 		if (cmpRallyPointRenderer)
 			cmpRallyPointRenderer.SetDisplayed(false);
 	}
-	
+
 	this.entsRallyPointsDisplayed = [];
-	
+
 	// Show the rally points for the passed entities
 	for each (var ent in cmd.entities)
 	{
 		var cmpRallyPointRenderer = Engine.QueryInterface(ent, IID_RallyPointRenderer);
 		if (!cmpRallyPointRenderer)
 			continue;
-		
+
 		// entity must have a rally point component to display a rally point marker
 		// (regardless of whether cmd specifies a custom location)
 		var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
@@ -841,7 +844,7 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 		// override the real rally point position; otherwise use the real position
 		var pos;
 		if (cmd.x && cmd.z)
-			pos = cmd; 
+			pos = cmd;
 		else
 			pos = cmpRallyPoint.GetPositions()[0]; // may return undefined if no rally point is set
 
@@ -853,7 +856,7 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 			else if (cmd.queued == false)
 				cmpRallyPointRenderer.SetPosition({'x': pos.x, 'y': pos.z}); // SetPosition takes a CFixedVector2D which has X/Y components, not X/Z
 			cmpRallyPointRenderer.SetDisplayed(true);
-			
+
 			// remember which entities have their rally points displayed so we can hide them again
 			this.entsRallyPointsDisplayed.push(ent);
 		}
@@ -864,7 +867,7 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
  * Display the building placement preview.
  * cmd.template is the name of the entity template, or "" to disable the preview.
  * cmd.x, cmd.z, cmd.angle give the location.
- * 
+ *
  * Returns result object from CheckPlacement:
  * 	{
  *		"success":	true iff the placement is valid, else false
@@ -936,34 +939,34 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 };
 
 /**
- * Previews the placement of a wall between cmd.start and cmd.end, or just the starting piece of a wall if cmd.end is not 
+ * Previews the placement of a wall between cmd.start and cmd.end, or just the starting piece of a wall if cmd.end is not
  * specified. Returns an object with information about the list of entities that need to be newly constructed to complete
  * at least a part of the wall, or false if there are entities required to build at least part of the wall but none of
  * them can be validly constructed.
- * 
+ *
  * It's important to distinguish between three lists of entities that are at play here, because they may be subsets of one
  * another depending on things like snapping and whether some of the entities inside them can be validly positioned.
  * We have:
  *    - The list of entities that previews the wall. This list is usually equal to the entities required to construct the
  *      entire wall. However, if there is snapping to an incomplete tower (i.e. a foundation), it includes extra entities
  *      to preview the completed tower on top of its foundation.
- *      
+ *
  *    - The list of entities that need to be newly constructed to build the entire wall. This list is regardless of whether
  *      any of them can be validly positioned. The emphasishere here is on 'newly'; this list does not include any existing
  *      towers at either side of the wall that we snapped to. Or, more generally; it does not include any _entities_ that we
  *      snapped to; we might still snap to e.g. terrain, in which case the towers on either end will still need to be newly
  *      constructed.
- *      
+ *
  *    - The list of entities that need to be newly constructed to build at least a part of the wall. This list is the same
  *      as the one above, except that it is truncated at the first entity that cannot be validly positioned. This happens
  *      e.g. if the player tries to build a wall straight through an obstruction. Note that any entities that can be validly
  *      constructed but come after said first invalid entity are also truncated away.
- * 
+ *
  * With this in mind, this method will return false if the second list is not empty, but the third one is. That is, if there
  * were entities that are needed to build the wall, but none of them can be validly constructed. False is also returned in
  * case of unexpected errors (typically missing components), and when clearing the preview by passing an empty wallset
  * argument (see below). Otherwise, it will return an object with the following information:
- * 
+ *
  * result: {
  *   'startSnappedEnt':   ID of the entity that we snapped to at the starting side of the wall. Currently only supports towers.
  *   'endSnappedEnt':     ID of the entity that we snapped to at the (possibly truncated) ending side of the wall. Note that this
@@ -972,7 +975,7 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
  *                        supports towers.
  *   'pieces':            Array with the following data for each of the entities in the third list:
  *    [{
- *       'template':      Template name of the entity. 
+ *       'template':      Template name of the entity.
  *       'x':             X coordinate of the entity's position.
  *       'z':             Z coordinate of the entity's position.
  *       'angle':         Rotation around the Y axis of the entity (in radians).
@@ -987,7 +990,7 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
  *     'populationBonus': ...,
  *   }
  * }
- * 
+ *
  * @param cmd.wallSet Object holding the set of wall piece template names. Set to an empty value to clear the preview.
  * @param cmd.start Starting point of the wall segment being created.
  * @param cmd.end (Optional) Ending point of the wall segment being created. If not defined, it is understood that only
@@ -999,27 +1002,27 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 {
 	var wallSet = cmd.wallSet;
-	
+
 	var start = {
 		"pos": cmd.start,
 		"angle": 0,
 		"snapped": false,                       // did the start position snap to anything?
 		"snappedEnt": INVALID_ENTITY,           // if we snapped, was it to an entity? if yes, holds that entity's ID
 	};
-	
+
 	var end = {
 		"pos": cmd.end,
 		"angle": 0,
 		"snapped": false,                       // did the start position snap to anything?
 		"snappedEnt": INVALID_ENTITY,           // if we snapped, was it to an entity? if yes, holds that entity's ID
 	};
-	
+
 	// --------------------------------------------------------------------------------
 	// do some entity cache management and check for snapping
-	
+
 	if (!this.placementWallEntities)
 		this.placementWallEntities = {};
-	
+
 	if (!wallSet)
 	{
 		// we're clearing the preview, clear the entity cache and bail
@@ -1028,12 +1031,12 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 		{
 			for each (var ent in this.placementWallEntities[tpl].entities)
 				Engine.DestroyEntity(ent);
-			
+
 			this.placementWallEntities[tpl].numUsed = 0;
 			this.placementWallEntities[tpl].entities = [];
 			// keep template data around
 		}
-		
+
 		return false;
 	}
 	else
@@ -1047,10 +1050,10 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 				if (pos)
 					pos.MoveOutOfWorld();
 			}
-			
+
 			this.placementWallEntities[tpl].numUsed = 0;
 		}
-		
+
 		// Create cache entries for templates we haven't seen before
 		for each (var tpl in wallSet.templates)
 		{
@@ -1061,7 +1064,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 					"entities": [],
 					"templateData": this.GetTemplateData(player, tpl),
 				};
-				
+
 				// ensure that the loaded template data contains a wallPiece component
 				if (!this.placementWallEntities[tpl].templateData.wallPiece)
 				{
@@ -1071,11 +1074,11 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			}
 		}
 	}
-	
+
 	// prevent division by zero errors further on if the start and end positions are the same
 	if (end.pos && (start.pos.x === end.pos.x && start.pos.z === end.pos.z))
 		end.pos = undefined;
-	
+
 	// See if we need to snap the start and/or end coordinates to any of our list of snap entities. Note that, despite the list
 	// of snapping candidate entities, it might still snap to e.g. terrain features. Use the "ent" key in the returned snapping
 	// data to determine whether it snapped to an entity (if any), and to which one (see GetFoundationSnapData).
@@ -1089,18 +1092,18 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			"snapEntities": cmd.snapEntities,
 			"snapRadius": snapRadius,
 		});
-		
+
 		if (startSnapData)
 		{
 			start.pos.x = startSnapData.x;
 			start.pos.z = startSnapData.z;
 			start.angle = startSnapData.angle;
 			start.snapped = true;
-			
+
 			if (startSnapData.ent)
-				start.snappedEnt = startSnapData.ent; 
+				start.snappedEnt = startSnapData.ent;
 		}
-		
+
 		if (end.pos)
 		{
 			var endSnapData = this.GetFoundationSnapData(player, {
@@ -1110,41 +1113,41 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 				"snapEntities": cmd.snapEntities,
 				"snapRadius": snapRadius,
 			});
-			
+
 			if (endSnapData)
 			{
 				end.pos.x = endSnapData.x;
 				end.pos.z = endSnapData.z;
 				end.angle = endSnapData.angle;
 				end.snapped = true;
-				
+
 				if (endSnapData.ent)
 					end.snappedEnt = endSnapData.ent;
 			}
 		}
 	}
-	
+
 	// clear the single-building preview entity (we'll be rolling our own)
 	this.SetBuildingPlacementPreview(player, {"template": ""});
-	
+
 	// --------------------------------------------------------------------------------
 	// calculate wall placement and position preview entities
-	
+
 	var result = {
 		"pieces": [],
 		"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 0, "population": 0, "populationBonus": 0, "time": 0},
 	};
-	
+
 	var previewEntities = [];
 	if (end.pos)
 		previewEntities = GetWallPlacement(this.placementWallEntities, wallSet, start, end); // see helpers/Walls.js
-	
-	// For wall placement, we may (and usually do) need to have wall pieces overlap each other more than would 
+
+	// For wall placement, we may (and usually do) need to have wall pieces overlap each other more than would
 	// otherwise be allowed by their obstruction shapes. However, during this preview phase, this is not so much of
-	// an issue, because all preview entities have their obstruction components deactivated, meaning that their 
+	// an issue, because all preview entities have their obstruction components deactivated, meaning that their
 	// obstruction shapes do not register in the simulation and hence cannot affect it. This implies that the preview
 	// entities cannot be found to obstruct each other, which largely solves the issue of overlap between wall pieces.
-	
+
 	// Note that they will still be obstructed by existing shapes in the simulation (that have the BLOCK_FOUNDATION
 	// flag set), which is what we want. The only exception to this is when snapping to existing towers (or
 	// foundations thereof); the wall segments that connect up to these will be found to be obstructed by the
@@ -1152,17 +1155,17 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 	// we manually set the control group of the outermost wall pieces equal to those of the snapped-to towers, so
 	// that they are free from mutual obstruction (per definition of obstruction control groups). This is done by
 	// assigning them an extra "controlGroup" field, which we'll then set during the placement loop below.
-	
+
 	// Additionally, in the situation that we're snapping to merely a foundation of a tower instead of a fully
 	// constructed one, we'll need an extra preview entity for the starting tower, which also must not be obstructed
 	// by the foundation it snaps to.
-	
+
 	if (start.snappedEnt && start.snappedEnt != INVALID_ENTITY)
 	{
 		var startEntObstruction = Engine.QueryInterface(start.snappedEnt, IID_Obstruction);
 		if (previewEntities.length > 0 && startEntObstruction)
 			previewEntities[0].controlGroups = [startEntObstruction.GetControlGroup()];
-		
+
 		// if we're snapping to merely a foundation, add an extra preview tower and also set it to the same control group
 		var startEntState = this.GetEntityState(player, start.snappedEnt);
 		if (startEntState.foundation)
@@ -1182,19 +1185,19 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 	}
 	else
 	{
-		// Didn't snap to an existing entity, add the starting tower manually. To prevent odd-looking rotation jumps 
-		// when shift-clicking to build a wall, reuse the placement angle that was last seen on a validly positioned 
+		// Didn't snap to an existing entity, add the starting tower manually. To prevent odd-looking rotation jumps
+		// when shift-clicking to build a wall, reuse the placement angle that was last seen on a validly positioned
 		// wall piece.
-		
+
 		// To illustrate the last point, consider what happens if we used some constant instead, say, 0. Issuing the
 		// build command for a wall is asynchronous, so when the preview updates after shift-clicking, the wall piece
 		// foundations are not registered yet in the simulation. This means they cannot possibly be picked in the list
 		// of candidate entities for snapping. In the next preview update, we therefore hit this case, and would rotate
-		// the preview to 0 radians. Then, after one or two simulation updates or so, the foundations register and 
+		// the preview to 0 radians. Then, after one or two simulation updates or so, the foundations register and
 		// onSimulationUpdate in session.js updates the preview again. It first grabs a new list of snapping candidates,
 		// which this time does include the new foundations; so we snap to the entity, and rotate the preview back to
 		// the foundation's angle.
-		
+
 		// The result is a noticeable rotation to 0 and back, which is undesirable. So, for a split second there until
 		// the simulation updates, we fake it by reusing the last angle and hope the player doesn't notice.
 		previewEntities.unshift({
@@ -1203,14 +1206,14 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			"angle": (previewEntities.length > 0 ? previewEntities[0].angle : this.placementWallLastAngle)
 		});
 	}
-	
+
 	if (end.pos)
 	{
 		// Analogous to the starting side case above
 		if (end.snappedEnt && end.snappedEnt != INVALID_ENTITY)
 		{
 			var endEntObstruction = Engine.QueryInterface(end.snappedEnt, IID_Obstruction);
-			
+
 			// Note that it's possible for the last entity in previewEntities to be the same as the first, i.e. the
 			// same wall piece snapping to both a starting and an ending tower. And it might be more common than you would
 			// expect; the allowed overlap between wall segments and towers facilitates this to some degree. To deal with
@@ -1221,7 +1224,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 				previewEntities[previewEntities.length-1].controlGroups = (previewEntities[previewEntities.length-1].controlGroups || []);
 				previewEntities[previewEntities.length-1].controlGroups.push(endEntObstruction.GetControlGroup());
 			}
-			
+
 			// if we're snapping to a foundation, add an extra preview tower and also set it to the same control group
 			var endEntState = this.GetEntityState(player, end.snappedEnt);
 			if (endEntState.foundation)
@@ -1248,37 +1251,37 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			});
 		}
 	}
-	
+
 	var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
 	if (!cmpTerrain)
 	{
 		error("[SetWallPlacementPreview] System Terrain component not found");
 		return false;
 	}
-	
+
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (!cmpRangeManager)
 	{
 		error("[SetWallPlacementPreview] System RangeManager component not found");
 		return false;
 	}
-	
+
 	// Loop through the preview entities, and construct the subset of them that need to be, and can be, validly constructed
 	// to build at least a part of the wall (meaning that the subset is truncated after the first entity that needs to be,
 	// but cannot validly be, constructed). See method-level documentation for more details.
-	
+
 	var allPiecesValid = true;
 	var numRequiredPieces = 0; // number of entities that are required to build the entire wall, regardless of validity
-	
+
 	for (var i = 0; i < previewEntities.length; ++i)
 	{
 		var entInfo = previewEntities[i];
-		
+
 		var ent = null;
 		var tpl = entInfo.template;
 		var tplData = this.placementWallEntities[tpl].templateData;
 		var entPool = this.placementWallEntities[tpl];
-		
+
 		if (entPool.numUsed >= entPool.entities.length)
 		{
 			// allocate new entity
@@ -1290,13 +1293,13 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			 // reuse an existing one
 			ent = entPool.entities[entPool.numUsed];
 		}
-		
+
 		if (!ent)
 		{
 			error("[SetWallPlacementPreview] Failed to allocate or reuse preview entity of template '" + tpl + "'");
 			continue;
 		}
-		
+
 		// move piece to right location
 		// TODO: consider reusing SetBuildingPlacementReview for this, enhanced to be able to deal with multiple entities
 		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
@@ -1304,18 +1307,18 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 		{
 			cmpPosition.JumpTo(entInfo.pos.x, entInfo.pos.z);
 			cmpPosition.SetYRotation(entInfo.angle);
-			
+
 			// if this piece is a tower, then it should have a Y position that is at least as high as its surrounding pieces
 			if (tpl === wallSet.templates.tower)
 			{
 				var terrainGroundPrev = null;
 				var terrainGroundNext = null;
-				
+
 				if (i > 0)
 					terrainGroundPrev = cmpTerrain.GetGroundLevel(previewEntities[i-1].pos.x, previewEntities[i-1].pos.z);
 				if (i < previewEntities.length - 1)
 					terrainGroundNext = cmpTerrain.GetGroundLevel(previewEntities[i+1].pos.x, previewEntities[i+1].pos.z);
-				
+
 				if (terrainGroundPrev != null || terrainGroundNext != null)
 				{
 					var targetY = Math.max(terrainGroundPrev, terrainGroundNext);
@@ -1323,27 +1326,27 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 				}
 			}
 		}
-		
+
 		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
 		if (!cmpObstruction)
 		{
 			error("[SetWallPlacementPreview] Preview entity of template '" + tpl + "' does not have an Obstruction component");
 			continue;
 		}
-		
+
 		// Assign any predefined control groups. Note that there can only be 0, 1 or 2 predefined control groups; if there are
 		// more, we've made a programming error. The control groups are assigned from the entInfo.controlGroups array on a
 		// first-come first-served basis; the first value in the array is always assigned as the primary control group, and
 		// any second value as the secondary control group.
-		
+
 		// By default, we reset the control groups to their standard values. Remember that we're reusing entities; if we don't
 		// reset them, then an ending wall segment that was e.g. at one point snapped to an existing tower, and is subsequently
 		// reused as a non-snapped ending wall segment, would no longer be capable of being obstructed by the same tower it was
 		// once snapped to.
-		
+
 		var primaryControlGroup = ent;
 		var secondaryControlGroup = INVALID_ENTITY;
-		
+
 		if (entInfo.controlGroups && entInfo.controlGroups.length > 0)
 		{
 			if (entInfo.controlGroups.length > 2)
@@ -1351,21 +1354,21 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 				error("[SetWallPlacementPreview] Encountered preview entity of template '" + tpl + "' with more than 2 initial control groups");
 				break;
 			}
-			
+
 			primaryControlGroup = entInfo.controlGroups[0];
 			if (entInfo.controlGroups.length > 1)
 				secondaryControlGroup = entInfo.controlGroups[1];
 		}
-		
+
 		cmpObstruction.SetControlGroup(primaryControlGroup);
 		cmpObstruction.SetControlGroup2(secondaryControlGroup);
-		
+
 		// check whether this wall piece can be validly positioned here
 		var validPlacement = false;
-		
+
 		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		cmpOwnership.SetOwner(player);
-		
+
 		// Check whether it's in a visible or fogged region
 		//  tell GetLosVisibility to force RetainInFog because preview entities set this to false,
 		//	which would show them as hidden instead of fogged
@@ -1379,7 +1382,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 				error("[SetWallPlacementPreview] cmpBuildRestrictions not defined for preview entity of template '" + tpl + "'");
 				continue;
 			}
-			
+
 			// TODO: Handle results of CheckPlacement
 			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement().success);
 
@@ -1391,18 +1394,18 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 		}
 
 		allPiecesValid = allPiecesValid && validPlacement;
-		
+
 		// The requirement below that all pieces so far have to have valid positions, rather than only this single one,
 		// ensures that no more foundations will be placed after a first invalidly-positioned piece. (It is possible
-		// for pieces past some invalidly-positioned ones to still have valid positions, e.g. if you drag a wall 
+		// for pieces past some invalidly-positioned ones to still have valid positions, e.g. if you drag a wall
 		// through and past an existing building).
-		
+
 		// Additionally, the excludeFromResult flag is set for preview entities that were manually added to be placed
 		// on top of foundations of incompleted towers that we snapped to; they must not be part of the result.
-		
+
 		if (!entInfo.excludeFromResult)
 			numRequiredPieces++;
-		
+
 		if (allPiecesValid && !entInfo.excludeFromResult)
 		{
 			result.pieces.push({
@@ -1412,7 +1415,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 				"angle": entInfo.angle,
 			});
 			this.placementWallLastAngle = entInfo.angle;
-			
+
 			// grab the cost of this wall piece and add it up (note; preview entities don't have their Cost components
 			// copied over, so we need to fetch it from the template instead).
 			// TODO: we should really use a Cost object or at least some utility functions for this, this is mindless
@@ -1442,27 +1445,27 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 
 		entPool.numUsed++;
 	}
-	
+
 	// If any were entities required to build the wall, but none of them could be validly positioned, return failure
 	// (see method-level documentation).
 	if (numRequiredPieces > 0 && result.pieces.length == 0)
 		return false;
-	
+
 	if (start.snappedEnt && start.snappedEnt != INVALID_ENTITY)
 		result.startSnappedEnt = start.snappedEnt;
-	
+
 	// We should only return that we snapped to an entity if all pieces up until that entity can be validly constructed,
 	// i.e. are included in result.pieces (see docs for the result object).
 	if (end.pos && end.snappedEnt && end.snappedEnt != INVALID_ENTITY && allPiecesValid)
 		result.endSnappedEnt = end.snappedEnt;
-	
+
 	return result;
 };
 
 /**
  * Given the current position {data.x, data.z} of an foundation of template data.template, returns the position and angle to snap
  * it to (if necessary/useful).
- * 
+ *
  * @param data.x            The X position of the foundation to snap.
  * @param data.z            The Z position of the foundation to snap.
  * @param data.template     The template to get the foundation snapping data for.
@@ -1484,38 +1487,38 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 		warn("[GetFoundationSnapData] Failed to load template '" + data.template + "'");
 		return false;
 	}
-	
+
 	if (data.snapEntities && data.snapRadius && data.snapRadius > 0)
 	{
 		// see if {data.x, data.z} is inside the snap radius of any of the snap entities; and if so, to which it is closest
 		// (TODO: break unlikely ties by choosing the lowest entity ID)
-		
+
 		var minDist2 = -1;
 		var minDistEntitySnapData = null;
 		var radius2 = data.snapRadius * data.snapRadius;
-		
+
 		for each (var ent in data.snapEntities)
 		{
 			var cmpPosition = Engine.QueryInterface(ent, IID_Position);
 			if (!cmpPosition || !cmpPosition.IsInWorld())
 				continue;
-			
+
 			var pos = cmpPosition.GetPosition();
 			var dist2 = (data.x - pos.x) * (data.x - pos.x) + (data.z - pos.z) * (data.z - pos.z);
 			if (dist2 > radius2)
 				continue;
-			
+
 			if (minDist2 < 0 || dist2 < minDist2)
 			{
 				minDist2 = dist2;
 				minDistEntitySnapData = {"x": pos.x, "z": pos.z, "angle": cmpPosition.GetRotation().y, "ent": ent};
 			}
 		}
-		
+
 		if (minDistEntitySnapData != null)
 			return minDistEntitySnapData;
 	}
-	
+
 	if (template.BuildRestrictions.Category == "Dock")
 	{
 		// warning: copied almost identically in helpers/command.js , "GetDockAngle".
@@ -1525,7 +1528,7 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 		{
 			return false;
 		}
-		
+
 		// Get footprint size
 		var halfSize = 0;
 		if (template.Footprint.Square)
@@ -1536,7 +1539,7 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 		{
 			halfSize = template.Footprint.Circle["@radius"];
 		}
-		
+
 		/* Find direction of most open water, algorithm:
 		 *	1. Pick points in a circle around dock
 		 *	2. If point is in water, add to array
@@ -1556,7 +1559,7 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 				var d = halfSize*(dist+1);
 				var nx = data.x - d*Math.sin(angle);
 				var nz = data.z + d*Math.cos(angle);
-				
+
 				if (cmpTerrain.GetGroundLevel(nx, nz) < cmpWaterManager.GetWaterLevel(nx, nz))
 				{
 					waterPoints.push(i);
@@ -1590,7 +1593,7 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 					count = consec[c];
 				}
 			}
-			
+
 			// If we've found a shoreline, stop searching
 			if (count != numPoints-1)
 			{
@@ -1615,7 +1618,7 @@ function isIdleUnit(ent, idleClass)
 {
 	var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-	
+
 	// TODO: Do something with garrisoned idle units
 	return (cmpUnitAI && cmpIdentity && cmpUnitAI.IsIdle() && !cmpUnitAI.IsGarrisoned() && idleClass && cmpIdentity.HasClass(idleClass));
 }
@@ -1767,7 +1770,7 @@ GuiInterface.prototype.OnGlobalEntityRenamed = function(msg)
 // trusted and indicates the player associated with the current client; no data should
 // be returned unless this player is meant to be able to see it.)
 var exposedFunctions = {
-	
+
 	"GetSimulationState": 1,
 	"GetExtendedSimulationState": 1,
 	"GetRenamedEntities": 1,

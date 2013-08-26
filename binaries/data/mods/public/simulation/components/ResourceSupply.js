@@ -30,6 +30,29 @@ ResourceSupply.prototype.Schema =
 			"<value>treasure.food</value>" +
 		"</choice>" +
 	"</element>" +
+	"<optional>" +
+		"<element name='Regeneration' a:help='Controls whether this resource can regenerate its remaining amount.'>" +
+			"<interleave>" +
+				"<element name='Rate' a:help='Optional regeneration rate. Resources/second if the growth is linear or the rate of quadratic growth if the growth is quadratic.'>" +
+					"<ref name='nonNegativeDecimal'/>" +
+				"</element>" +
+				"<optional>" +
+					"<element name='Acceleration' a:help='Controls the curve the regeneration rate will follow for quadratic growth; does nothing for linear growth.'>" +
+						"<ref name='nonNegativeDecimal'/>" +
+					"</element>" +
+				"</optional>" +
+				"<element name='Delay' a:help='Seconds between when the number of gatherers hit 0 and the resource starts regenerating.'>" +
+					"<data type='nonNegativeInteger'/>" +
+				"</element>" +
+				"<element name='Growth' a:help='Growth formula for regeneration. Either linear or quadratic. Linear continues at a steady rate, while quadratic gets faster over time.'>" +
+					"<choice>" +
+						"<value>linear</value>" +
+						"<value>quadratic</value>" +
+					"</choice>" +
+				"</element>" +
+			"</interleave>" +
+		"</element>" +
+	"</optional>" +
 	"<element name='MaxGatherers' a:help='Amount of gatherers who can gather resources from this entity at the same time'>" +
 		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
@@ -45,6 +68,14 @@ ResourceSupply.prototype.Init = function()
 	this.amount = this.GetMaxAmount();
     this.gatherers = [];	// list of IDs
     this.infinite = !isFinite(+this.template.Amount);
+	if (this.template.Regeneration) {
+		this.regenRate = +this.template.Regeneration.Rate;
+		if (this.template.Regeneration.Acceleration)
+			this.regenAccel = +this.template.Regeneration.Acceleration;
+		this.regenDelay = +this.template.Regeneration.Delay;
+	}
+	if (this.IsRegenerative())
+		this.RegenerateResources();
 };
 
 ResourceSupply.prototype.IsInfinite = function()
@@ -96,12 +127,49 @@ ResourceSupply.prototype.TakeResources = function(rate)
 	var change = old - this.amount;
 
 	// Remove entities that have been exhausted
-	if (this.amount == 0)
+	if (this.amount == 0 && !this.IsRegenerative())
 		Engine.DestroyEntity(this.entity);
 
 	Engine.PostMessage(this.entity, MT_ResourceSupplyChanged, { "from": old, "to": this.amount });
 
-	return { "amount": change, "exhausted": (this.amount == 0) };
+	return { "amount": change, "exhausted": this.amount == 0 };
+};
+
+ResourceSupply.prototype.RegenerateResources = function(data, lateness)
+{
+	var max = this.GetMaxAmount();
+	if (this.gatherers.length == 0 && !this.regenDelayTimer && this.amount < max)
+	{
+		var old = this.amount;
+		if (this.regenGrowth == "linear")
+			this.amount = Math.min(max, this.amount + data.rate);
+		else
+			this.amount = Math.min(max, this.amount + Math.max(1, data.rate * max * (data.acceleration * this.amount / max -Math.pow(this.amount / max, 2)) / 100));
+		Engine.PostMessage(this.entity, MT_ResourceSupplyChanged, { "from": old, "to": this.amount });
+	}
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	var regenRate = this.GetRegenerationRate();
+	var absRegen = Math.abs(regenRate);
+	if (Math.floor(regenRate) == regenRate || this.regenGrowth == "quadratic")
+		cmpTimer.SetTimeout(this.entity, IID_ResourceSupply, "RegenerateResources", 1000, { "rate": regenRate, "acceleration": this.GetRegenerationAcceleration() });
+	else
+		cmpTimer.SetTimeout(this.entity, IID_ResourceSupply, "RegenerateResources", 1000 / absRegen,
+				{ "rate": absRegen == regenRate ? 1 : -1 });
+};
+
+ResourceSupply.prototype.StartRegenerationDelayTimer = function()
+{
+	if (!this.regenDelayTimer) {
+		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		this.regenDelayTimer = cmpTimer.SetTimeout(this.entity, IID_ResourceSupply, "CancelRegenerationDelayTimer", this.GetRegenerationDelay() * 1000, null);
+	}
+};
+
+ResourceSupply.prototype.CancelRegenerationDelayTimer = function()
+{
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	cmpTimer.CancelTimer(this.regenDelayTimer);
+	this.regenDelayTimer = null;
 };
 
 ResourceSupply.prototype.GetType = function()
@@ -119,18 +187,50 @@ ResourceSupply.prototype.IsAvailable = function(gathererID)
 	return false;
 };
 
+ResourceSupply.prototype.IsRegenerative = function()
+{
+	return this.GetRegenerationRate() != 0;
+};
+
+ResourceSupply.prototype.GetTerritoryOwner = function ()
+{
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!(cmpPosition && cmpPosition.IsInWorld()))
+		return 0;  // Something's wrong, just say we're in neutral territory.
+	var pos = cmpPosition.GetPosition2D();
+	return cmpPlayerManager.GetPlayerByID(cmpTerritoryManager.GetOwner(pos.x, pos.y));
+};
+
+ResourceSupply.prototype.GetRegenerationRate = function()
+{
+	return ApplyTechModificationsToPlayer("ResourceSupply/Regeneration/Rate", this.regenRate, this.GetTerritoryOwner());
+};
+
+ResourceSupply.prototype.GetRegenerationAcceleration = function()
+{
+	return ApplyTechModificationsToPlayer("ResourceSupply/Regeneration/Acceleration", this.regenAccel, this.GetTerritoryOwner());
+};
+
+ResourceSupply.prototype.GetRegenerationDelay = function()
+{
+	return ApplyTechModificationsToPlayer("ResourcesSupply/Regeneration/Delay", this.regenDelay, this.GetTerritoryOwner());
+};
+
 ResourceSupply.prototype.AddGatherer = function(gathererID)
 {
 	if (!this.IsAvailable(gathererID))
 		return false;
- 	
+
 	if (this.gatherers.indexOf(gathererID) === -1)
 	{
 		this.gatherers.push(gathererID);
+		this.CancelRegenerationDelayTimer();
 		// broadcast message, mainly useful for the AIs.
 		Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.gatherers });
 	}
-	
+
 	return true;
 };
 
@@ -143,6 +243,8 @@ ResourceSupply.prototype.RemoveGatherer = function(gathererID)
 		// broadcast message, mainly useful for the AIs.
 		Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.gatherers });
 	}
+	if (this.gatherers.length == 0)
+		this.StartRegenerationDelayTimer();
 };
 
 Engine.RegisterComponentType(IID_ResourceSupply, "ResourceSupply", ResourceSupply);
