@@ -98,10 +98,7 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 {
 	var cmpTargetEntityIdentity = Engine.QueryInterface(targetEntity, IID_Identity);
 	var cmpCost = Engine.QueryInterface(targetEntity, IID_Cost);
-    if (cmpCost)
-        var costs = cmpCost.GetResourceCosts();
-    else
-        var costs = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	var costs = cmpCost.GetResourceCosts();
 	if (cmpTargetEntityIdentity)
 	{
 		var cmpFoundation = Engine.QueryInterface(targetEntity, IID_Foundation);
@@ -113,7 +110,7 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 		var targetIsCivCentre = cmpTargetEntityIdentity.HasClass("CivCentre");
 
 		var cmpTargetOwnership = Engine.QueryInterface(targetEntity, IID_Ownership);
-
+	    
 		// Don't increase counters if target player is gaia (player 0)
 		if (cmpTargetOwnership.GetOwner() != 0)
 		{
@@ -124,7 +121,7 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 				{
 					this.enemyUnitsKilledValue += costs[r];
 				}
-			}
+			}	
 			if (targetIsStructure)
 			{
 				this.enemyBuildingsDestroyed++;
@@ -143,10 +140,7 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 {
 	var cmpLostEntityIdentity = Engine.QueryInterface(lostEntity, IID_Identity);
 	var cmpCost = Engine.QueryInterface(lostEntity, IID_Cost);
-    if (cmpCost)
-        var costs = cmpCost.GetResourceCosts();
-    else
-        var costs = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	var costs = cmpCost.GetResourceCosts();
 	if (cmpLostEntityIdentity)
 	{
 		var cmpFoundation = Engine.QueryInterface(lostEntity, IID_Foundation);
@@ -162,8 +156,8 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 			for (var r in costs)
 			{
 				this.unitsLostValue += costs[r];
-			}
-		}
+			}	
+		}	
 		if (lostEntityIsStructure)
 		{
 			this.buildingsLost++;
@@ -183,7 +177,7 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amount, specificType)
 {
 	this.resourcesGathered[type] += amount;
-
+	
 	if (type == "food" && (specificType == "fruit" || specificType == "grain"))
 		this.resourcesGathered["vegetarianFood"] += amount;
 };

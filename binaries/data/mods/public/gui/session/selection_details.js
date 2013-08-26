@@ -37,7 +37,7 @@ function displaySingle(entState, template)
 	if (entState.identity && entState.identity.rank && entState.identity.classes)
 	{
 		getGUIObjectByName("rankIcon").tooltip = entState.identity.rank + " Rank";
-		getGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);
+		getGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);					
 		getGUIObjectByName("rankIcon").hidden = false;
 	}
 	else
@@ -45,7 +45,7 @@ function displaySingle(entState, template)
 		getGUIObjectByName("rankIcon").hidden = true;
 		getGUIObjectByName("rankIcon").tooltip = "";
 	}
-
+								
 	// Hitpoints
 	if (entState.hitpoints)
 	{
@@ -62,7 +62,7 @@ function displaySingle(entState, template)
 	{
 		getGUIObjectByName("healthSection").hidden = true;
 	}
-
+	
 	// TODO: Stamina
 	var player = Engine.GetPlayerID();
 	if (entState.stamina && (entState.player == player || g_DevSettings.controlAll))
@@ -81,7 +81,7 @@ function displaySingle(entState, template)
 		var experienceSize = experienceBar.size;
 		experienceSize.rtop = 100 - (100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / +entState.promotion.req)));
 		experienceBar.size = experienceSize;
-
+ 
 		var experience = "[font=\"serif-bold-13\"]Experience: [/font]" + Math.floor(entState.promotion.curr);
 		if (entState.promotion.curr < entState.promotion.req)
 			experience += " / " + entState.promotion.req;
@@ -123,10 +123,6 @@ function displaySingle(entState, template)
 		getGUIObjectByName("resourceSection").hidden = true;
 	}
 
-    var activeResource = entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints)
-    getGUIObjectByName("resourceThroughputIcon").hidden = !activeResource;
-    getGUIObjectByName("resourceThroughputText").hidden = !activeResource;
-
 	// Resource carrying
 	if (entState.resourceCarrying && entState.resourceCarrying.length)
 	{
@@ -153,28 +149,22 @@ function displaySingle(entState, template)
 		getGUIObjectByName("resourceCarryingText").caption = totalGain;
 		getGUIObjectByName("resourceCarryingIcon").tooltip = "Gain: " + getTradingTooltip(entState.trader.goods.amount);
 	}
+	// And for number of workers
 	else if (entState.foundation)
 	{
-        // Number of builders
 		getGUIObjectByName("resourceCarryingIcon").hidden = false;
 		getGUIObjectByName("resourceCarryingText").hidden = false;
 		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
 		getGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders + "    ";
 		getGUIObjectByName("resourceCarryingIcon").tooltip = "Number of builders";
 	}
-	else if (activeResource)
+	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints))
 	{
-        // Number of gatherers
 		getGUIObjectByName("resourceCarryingIcon").hidden = false;
 		getGUIObjectByName("resourceCarryingText").hidden = false;
 		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
 		getGUIObjectByName("resourceCarryingText").caption = entState.resourceSupply.gatherers.length + " / " + entState.resourceSupply.maxGatherers + "    ";
 		getGUIObjectByName("resourceCarryingIcon").tooltip = "Current/max gatherers";
-
-        // Current total resource output in resources/second
-        getGUIObjectByName("resourceThroughputIcon").sprite = "stretched:session/icons/production.png";
-        getGUIObjectByName("resourceThroughputText").caption = entState.resourceSupply.throughput.toFixed(2);
-        getGUIObjectByName("resourceThroughputIcon").tooltip = "Currently producing " + entState.resourceSupply.throughput.toFixed(2) + " resources/second.";
 	}
 	else
 	{
@@ -186,7 +176,7 @@ function displaySingle(entState, template)
 	getGUIObjectByName("specific").caption = specificName;
 	getGUIObjectByName("player").caption = playerName;
 	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
-
+	
 	if (genericName)
 	{
 		getGUIObjectByName("generic").caption = "(" + genericName + ")";
@@ -231,11 +221,11 @@ function displaySingle(entState, template)
 		{
 			var realRange = entState.attack.elevationAdaptedRange;
 			var range =  entState.attack.maxRange;
-			attack += ", [font=\"serif-bold-13\"]Range:[/font] " +
+			attack += ", [font=\"serif-bold-13\"]Range:[/font] " + 
 				Math.round(range/4);
 
 			if (Math.round((realRange - range)/4) > 0)
-			{
+			{ 
 				attack += " (+" + Math.round((realRange - range)/4) + ")";
 			}
 			else if (Math.round((realRange - range)/4) < 0)
@@ -245,7 +235,7 @@ function displaySingle(entState, template)
 
 		}
 	}
-
+	
 	getGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n[font=\"serif-bold-13\"]Armor:[/font] " + armorTypeDetails(entState.armour);
 
 	// Icon Tooltip
@@ -286,7 +276,7 @@ function displayMultiple(selection, template)
 	if (averageHealth > 0)
 	{
 		var unitHealthBar = getGUIObjectByName("healthBarMultiple");
-		var healthSize = unitHealthBar.size;
+		var healthSize = unitHealthBar.size;	
 		healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
 		unitHealthBar.size = healthSize;
 
@@ -299,7 +289,7 @@ function displayMultiple(selection, template)
 	{
 		getGUIObjectByName("healthMultiple").hidden = true;
 	}
-
+	
 	// TODO: Stamina
 	// getGUIObjectByName("staminaBarMultiple");
 
@@ -319,13 +309,13 @@ function updateSelectionDetails()
 
 	g_Selection.update();
 	var selection = g_Selection.toList();
-
+	
 	if (selection.length == 0)
 	{
 		getGUIObjectByName("detailsAreaMultiple").hidden = true;
 		getGUIObjectByName("detailsAreaSingle").hidden = true;
 		hideUnitCommands();
-
+	
 		supplementalDetailsPanel.hidden = true;
 		detailsPanel.hidden = true;
 		commandsPanel.hidden = true;

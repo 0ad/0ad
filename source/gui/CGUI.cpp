@@ -1775,15 +1775,6 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 				scrollbar.m_MinimumBarSize = f;
 		}
 		else
-		if (attr_name == "maximum_bar_size")
-		{
-			float f;
-			if (!GUI<float>::ParseString(attr_value.FromUTF8(), f))
-				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
-			else
-				scrollbar.m_MaximumBarSize = f;
-		}
-		else
 		if (attr_name == "sprite_button_top")
 			scrollbar.m_SpriteButtonTop = attr_value;
 		else

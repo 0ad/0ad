@@ -90,13 +90,6 @@ struct SGUIScrollBarStyle
 	 */
 	float m_MinimumBarSize;
 
-	/**
-	 * Sometimes you would like your scroll bar to have a fixed maximum size
-	 * so that the texture does not get too stretched, you can set a maximum
-	 * in pixels.
-	 */
-	float m_MaximumBarSize;
-
 	//@}
 	//--------------------------------------------------------
 	/** @name Horizontal Sprites */
@@ -206,27 +199,27 @@ public:
 	virtual void SetPos(float f) { m_Pos = f; UpdatePosBoundaries(); }
 
 	/**
-	 * Get the value of m_Pos that corresponds to the bottom of the scrollable region
+	 * Get the value of Pos that corresponds to the bottom of the scrollable region
 	 */
-	float GetMaxPos() const { return std::max(1.f, m_ScrollRange - m_ScrollSpace); }
+	float GetMaxPos() const { return m_ScrollRange - m_ScrollSpace;	}
 
 	/**
-	 * Increase scroll one step
+	 * Scroll towards 1.0 one step
 	 */
 	virtual void ScrollPlus() { m_Pos += 30.f; UpdatePosBoundaries(); }
 
 	/**
-	 * Decrease scroll one step
+	 * Scroll towards 0.0 one step
 	 */
 	virtual void ScrollMinus() { m_Pos -= 30.f; UpdatePosBoundaries(); }
 
 	/**
-	 * Increase scroll three steps
+	 * Scroll towards 1.0 one step
 	 */
 	virtual void ScrollPlusPlenty() { m_Pos += 90.f; UpdatePosBoundaries(); }
 
 	/**
-	 * Decrease scroll three steps
+	 * Scroll towards 0.0 one step
 	 */
 	virtual void ScrollMinusPlenty() { m_Pos -= 90.f; UpdatePosBoundaries(); }
 

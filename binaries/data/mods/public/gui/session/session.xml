@@ -177,12 +177,12 @@
 	<object hotkey="camera.jump.set.10">
 		<action on="Press">setJumpCamera(10);</action>
 	</object>
-
+	
 	<!-- Stop the selected units -->
 	<object hotkey="session.stop">
 	    <action on="Press">stopUnits(g_Selection.toList());</action>
 	</object>
-
+	
 	<!-- queue first unit in the training queue  -->
 	<object hotkey="session.queueunit.1">
 	    <action on="Press">addTrainingByPosition(0);</action>
@@ -202,7 +202,7 @@
 	<object hotkey="session.queueunit.4">
 	    <action on="Press">addTrainingByPosition(3);</action>
 	</object>
-
+	
 	<!-- queue 5th unit in the training queue  -->
 	<object hotkey="session.queueunit.5">
 	    <action on="Press">addTrainingByPosition(4);</action>
@@ -315,7 +315,7 @@
 	<!-- ================================  ================================ -->
 	<!-- Time elapsed counter -->
 	<!-- ================================  ================================ -->
-
+	
 	<object size="100%-120 45 100%-10 65" type="text" name="timeElapsedCounter" style="SettingsText" hotkey="timeelapsedcounter.toggle" hidden="true">
 	    <action on="Press">this.hidden = !this.hidden;</action>
 	</object>
@@ -442,7 +442,7 @@
 			z="200"
 			>
 			<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Settings</object>
-
+			
 			<object style="TranslucentPanelThinBorder"
 				type="image"
 				size="32 32 100%-32 100%-70"
@@ -453,21 +453,21 @@
 					<action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.shadows = this.checked;</action>
 				</object>
-
+				
 				<!-- Settings / Shadow PCF -->
 				<object size="0 35 100%-80 60" type="text" style="RightLabelText" ghost="true">Enable Shadow Filtering</object>
 				<object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.shadowPCF = this.checked;</action>
 				</object>
-
+				
 				<!-- Settings / Water Normals -->
 				<object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Water - HQ Waviness</object>
 				<object name="waterNormalCheckox" size="100%-56 65 100%-30 90"  type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.waternormal) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.waternormal = this.checked;</action>
 				</object>
-
+				
 				<!-- Settings / Real Depth -->
 				<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Water - Use Actual Depth</object>
 				<object name="waterRealDepthCheckbox" size="100%-56 90 100%-30 115"  type="checkbox" style="StoneCrossBox" checked="true">
@@ -481,28 +481,28 @@
 					<action on="Load">if (renderer.waterreflection) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.waterreflection = this.checked; </action>
 				</object>
-
+				
 				<!-- Settings / Refraction -->
 				<object size="0 135 100%-80 160" type="text" style="RightLabelText" ghost="true">Water - Enable Refraction</object>
 				<object name="waterRefractionCheckbox" size="100%-56 140 100%-30 165"  type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.waterrefraction) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.waterrefraction = this.checked; </action>
 				</object>
-
+				
 				<!-- Settings / Foam -->
 				<object size="0 160 100%-80 185" type="text" style="RightLabelText" ghost="true">Water - Enable Shore Foam</object>
 				<object name="waterFoamCheckbox" size="100%-56 165 100%-30 190"  type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.waterfoam) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.waterfoam = this.checked; </action>
 				</object>
-
+				
 				<!-- Settings / Waves -->
 				<object size="0 185 100%-80 210" type="text" style="RightLabelText" ghost="true">Water - Enable Shore Waves</object>
 				<object name="waterCoastalWavesCheckbox" size="100%-56 190 100%-30 215"  type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.watercoastalwaves) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.watercoastalwaves = this.checked; </action>
 				</object>
-
+				
 				<!-- Settings / Shadows -->
 				<object size="0 210 100%-80 235" type="text" style="RightLabelText" ghost="true">Water - Use Surface Shadows</object>
 				<object name="waterShadowsCheckbox" size="100%-56 215 100%-30 240"  type="checkbox" style="StoneCrossBox" checked="true">
@@ -516,27 +516,27 @@
 					<action on="Load">if (renderer.particles) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.particles = this.checked;</action>
 				</object>
-
+				
 				<!-- Settings / Unit Silhouettes -->
 				<object size="0 260 100%-80 285" type="text" style="RightLabelText" ghost="true">Enable Unit Silhouettes</object>
 				<object name="silhouettesCheckbox" size="100%-56 265 100%-30 290" type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.silhouettes) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.silhouettes = this.checked;</action>
 				</object>
-
+				
 				<!-- Settings / Music-->
 				<object size="0 285 100%-80 310" type="text" style="RightLabelText" ghost="true">Enable Music</object>
 				<object name="musicCheckbox" size="100%-56 290 100%-30 315" type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Press">if (this.checked) global.music.start(); else global.music.stop();</action>
 				</object>
-
+				
 				<!-- Settings / Dev Overlay -->
 				<object size="0 310 100%-80 335" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
 				<object name="developerOverlayCheckbox" size="100%-56 315 100%-30 340" type="checkbox" style="StoneCrossBox" checked="false">
 					<action on="Press">toggleDeveloperOverlay();</action>
 				</object>
 			</object>
-
+			
 			<!-- Close button -->
 			<object type="button"
 				style="StoneButton"
@@ -640,7 +640,7 @@
 	    </object>
 
 		<object size="100%-348 40 100%-198 65" name="gameSpeed" type="dropdown" buffer_zone="5" style="StoneDropDown" hidden="true" tooltip="Choose game speed" tooltip_style="sessionToolTip"/>
-
+		
 	    <!-- ================================  ================================ -->
 	    <!-- Diplomacy Button -->
 	    <!-- ================================  ================================ -->
@@ -790,12 +790,12 @@
 	    name="unitHeroPanel"
 	    size="0 36 50 86"
 	>
-		<object name="unitHeroButton" size="0 0 50 50" type="button" hidden="false" style="iconButton"
+		<object name="unitHeroButton" size="0 0 50 50" type="button" hidden="false" style="iconButton" 
 			tooltip_style="sessionToolTip" tooltip="Attack and Armor">
 			<object name="unitHeroImage" size="5 5 100%-5 100%-5" type="image" ghost="true"/>
 		</object>
 	</object>
-
+	
 	<!-- ================================  ================================ -->
 	<!-- Unit Selection Groups -->
 	<!-- ================================  ================================ -->
@@ -896,7 +896,7 @@
 		    </object>
 		</object>
 
-		<object name="unitBarterPanel"
+		<object name="unitBarterPanel" 
 			size="6 36 100% 100%"
 			hidden="true"
 		>
@@ -950,10 +950,10 @@
 	    >
 		<!-- Unit details for Single Unit -->
 		<object size="50%-112 0 50%+112 100%" name="detailsAreaSingle">
-
+		    
 		    <!-- Stats Bars -->
 		    <object size= "2 0 100%-2 98" type="image" tooltip_style="sessionToolTip">
-
+			
 			<object size="0 8 100% 60" type="image" sprite="edgedPanelShader">
 			    <!-- Health bar -->
 			    <object size="88 0 100% 24" name="healthSection">
@@ -991,25 +991,21 @@
 				</object>
 			    </object>
 			</object>
-
+			
 			<object size="0 60 100% 96" type="image" sprite="edgedPanelShader">
 			    <!-- Attack and Armor -->
 			    <object size="90 -2 126 34" name="attackAndArmorStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip="Attack and Armor" tooltip_style="sessionToolTip"/>
 
 			    <!-- Resource carrying icon/counter -->
 			    <!-- Used also for number of gatherers/builders -->
-			    <object size="100%-78 -2 100%-84 34" type="text" name="resourceCarryingText" style="CarryingTextRight"/>
-			    <object size="100%-36 -2 100%-56 34" type="image" name="resourceCarryingIcon" tooltip_style="sessionToolTip"/>
-
-				<!-- Throughput of this resource in resources/second -->
-				<object size="100%-10 -2 100%-28 34" type="text" name="resourceThroughputText" style="CarryingTextRight"/>
-				<object size="100%-5 -2 100% 34" type="text" name="resourceThroughputIcon" tooltip_style="sessionToolTip"/>
+			    <object size="100%-98 -2 100%-28 34" type="text" name="resourceCarryingText" style="CarryingTextRight"/>
+			    <object size="100%-36 -2 100% 34" type="image" name="resourceCarryingIcon" tooltip_style="sessionToolTip"/>
 			</object>
-
+			
 			<!-- Big unit icon -->
 			<object size="-8 -8 88 88" type="image" name="iconBorder" sprite="iconBorder" tooltip_style="sessionToolTip">
 			    <object size="1 1 100%-1 100%-1" type="image" name="icon" ghost="true"/>
-
+			
 			    <!-- Experience bar -->
 			    <object size="2 2 6 100%-2" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
 				<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
@@ -1017,18 +1013,18 @@
 				<object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
 				<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
 			    </object>
-
+			
 			    <object z="20" size="4 4 20 20" name="rankIcon" type="image" tooltip="Rank" tooltip_style="sessionToolTip"/>
 			</object>
 		    </object>
-
+		    
 		    <!-- Names (this must come before the attack and armor icon to avoid clipping issues) -->
 		    <object size="2 96 100%-2 100%-36" name="statsArea" type="image" sprite="edgedPanelShader">
-
+			
 			<!-- These images are used to clip off the top and bottom of the civ icon -->
 			<object z="30" size="0 -5 100% 40" ghost="true" type="image" sprite="remove"/>
 			<object z="30" size="0 100%-5 100% 100%+40" ghost="true" type="image" sprite="remove"/>
-
+			
 			<object z="30" size="0 2 100% 45" ghost="true">
 			    <!-- Specific Name -->
 			    <object size="0 0 100% 20" name="specific" ghost="true" type="text" style="SpecificNameCentered"/>
@@ -1036,13 +1032,13 @@
 			    <!-- Generic Name -->
 			    <object size="0 15 100% 36" name="generic" ghost="true" type="text" style="GenericNameCentered"/>
 			</object>
-
+			
 			<!-- Player Name and Civ -->
 			<object size="0 40 100% 100%">
 			    <object size="50%-64 50%-64 50%+64 50%+64" name="playerCivIcon" type="image" ghost="true"/>
 			    <object size="0 0 100% 100%" name="playerColorBackground" type="image" sprite="playerColorBackground" ghost="true"/>
 			    <object size="0 0 100% 100%" type="image" sprite="bottomEdgedPanelShader" ghost="true"/>
-
+			    
 			    <!-- Why is this being automatically ghosted? In the mean time, set ghost to false -->
 			    <object ghost="false" size="0 0 100% 100%-5" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTip"/>
 			</object>
@@ -1216,7 +1212,7 @@
 			</repeat>
 		    </object>
 		</object>
-
+    
     <object name="unitPackPanel"
 			size="10 12 100% 100%"
 		>
