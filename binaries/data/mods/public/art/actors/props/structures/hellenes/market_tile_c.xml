@@ -4,8 +4,12 @@
   <group>
     <variant>
       <mesh>structural/hele_market_tile_c.dae</mesh>
-      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
+      <textures>
+<texture file="props/hele_tile_c.dds" name="baseTex"/>
+<texture file="props/hele_tile_c_norm.png" name="normTex"/>
+<texture file="props/hele_tile_c_spec.png" name="specTex"/>
+<texture file="structural/ao/hele_market.png" name="aoTex"/></textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

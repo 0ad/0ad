@@ -3,13 +3,13 @@
   <castshadow/>
   <group>
     <variant>
-      <mesh>structural/hele_market_struct_b.dae</mesh>
+      <mesh>structural/hele_market_decor.dae</mesh>
       <textures>
-<texture file="structural/hele_struct_b.dds" name="baseTex"/>
-<texture file="structural/hele_struct_b_norm.png" name="normTex"/>
-<texture file="structural/hele_struct_b_spec.png" name="specTex"/>
+        <texture file="props/hele_decor.png" name="baseTex"/>
+<texture file="props/hele_decor_norm.png" name="normTex"/>
+<texture file="props/hele_decor_spec.png" name="specTex"/>
 <texture file="structural/ao/hele_market.png" name="aoTex"/>
-</textures>
+      </textures>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
