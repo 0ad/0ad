@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="macedonian temple tile b">
+      <mesh>props/mace_temple_tile_b.dae</mesh>
+      <textures>
+<texture file="props/hele_tile_b.dds" name="baseTex"/>
+<texture file="props/hele_tile_b_norm.png" name="normTex"/>
+<texture file="props/hele_tile_b_spec.png" name="specTex"/>
+<texture file="structural/ao/mace_temple.png" name="aoTex"/>
+</textures>
+    </variant>
+  </group>
+<material>player_trans_ao_parallax_spec.xml</material>
+</actor>
