@@ -222,6 +222,11 @@ void ISoundManager::SetEnabled(bool doEnable)
 		ISoundManager::CreateSoundManager();
 	}
 }
+void ISoundManager::CloseGame()
+{
+	if ( CSoundManager* aSndMgr = (CSoundManager*)g_SoundManager )
+		aSndMgr->SetAmbientItem( NULL );
+}
 
 void CSoundManager::al_ReportError(ALenum err, const char* caller, int line)
 {
@@ -578,17 +583,20 @@ void CSoundManager::IdleTask()
 					{
 						m_PlaylistGap = 0;
 						PlayList::iterator it = find (m_PlayListItems->begin(), m_PlayListItems->end(), *(m_CurrentTune->GetName()) );
-						++it;
+						if ( it != m_PlayListItems->end() )
+						{
+							++it;
 
-						Path nextPath;
-						if ( it == m_PlayListItems->end() )
-							nextPath = m_PlayListItems->at( 0 );
-						else
-							nextPath = *it;
+							Path nextPath;
+							if ( it == m_PlayListItems->end() )
+								nextPath = m_PlayListItems->at( 0 );
+							else
+								nextPath = *it;
 
-						ISoundItem* aSnd = LoadItem( nextPath );
-						if ( aSnd )
-							SetMusicItem( aSnd );
+							ISoundItem* aSnd = LoadItem( nextPath );
+							if ( aSnd )
+								SetMusicItem( aSnd );
+						}
 					}
 				}
 			}
@@ -808,6 +816,7 @@ void CSoundManager::SetAmbientItem(ISoundItem* anItem)
 
 void ISoundManager::CreateSoundManager(){}
 void ISoundManager::SetEnabled(bool UNUSED(doEnable)){}
+void ISoundManager::CloseGame(){}
 
 #endif // CONFIG2_AUDIO
 

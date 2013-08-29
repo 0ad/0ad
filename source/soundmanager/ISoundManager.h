@@ -32,6 +32,7 @@ public:
 
   static void CreateSoundManager();
   static void SetEnabled(bool doEnable);
+  static void CloseGame();
 
   virtual void IdleTask() = 0;
   virtual void Pause(bool pauseIt) = 0;

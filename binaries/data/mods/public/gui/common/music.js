@@ -157,7 +157,9 @@ Music.prototype.startPlayList = function(tracks, fadeInPeriod, isLooping)
 
 Music.prototype.switchMusic = function(track, fadeInPeriod, isLooping)
 {
-		Engine.PlayMusic(this.RELATIVE_MUSIC_PATH + track, isLooping);
+  Engine.ClearPlaylist();
+	Engine.AddPlaylistItem( this.RELATIVE_MUSIC_PATH + track );
+	Engine.StartPlaylist(isLooping);
 };
 
 Music.prototype.isPlaying = function()

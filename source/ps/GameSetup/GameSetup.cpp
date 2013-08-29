@@ -684,6 +684,8 @@ void EndGame()
 	SAFE_DELETE(g_NetServer);
 	SAFE_DELETE(g_NetClient);
 	SAFE_DELETE(g_Game);
+
+	ISoundManager::CloseGame();
 }
 
 

@@ -109,7 +109,8 @@ public:
 	static void ScriptingInit();
 	static void CreateSoundManager();
 	static void SetEnabled(bool doEnable);
-	
+	static void CloseGame();
+
 	static void al_ReportError(ALenum err, const char* caller, int line);
 	static void al_check(const char* caller, int line);
 
@@ -146,12 +147,12 @@ public:
 	void PauseMusic (bool pauseIt);
 	void PauseAmbient (bool pauseIt);
 	void PauseAction (bool pauseIt);
+	void SetAmbientItem(ISoundItem* anItem);
 
 protected:
 	void InitListener();
 	Status AlcInit();
 	void SetMusicItem(ISoundItem* anItem);
-	void SetAmbientItem(ISoundItem* anItem);
 	void SetMasterGain(float gain);
 	void SetMusicGain(float gain);
 	void SetAmbientGain(float gain);
