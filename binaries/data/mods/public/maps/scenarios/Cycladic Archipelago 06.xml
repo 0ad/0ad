@@ -5,7 +5,7 @@
 		<SkySet>sunset</SkySet>
 		<SunColour r="1.34559" g="0.939275" b="0.374655"/>
 		<SunElevation angle="0.392699"/>
-		<SunRotation angle="1.91441"/>
+		<SunRotation angle="2.25802"/>
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<UnitsAmbientColour r="0.301961" g="0.384314" b="0.454902"/>
 		<Fog>
@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="131.711" y="94.7697" z="360.263"/>
-		<Rotation angle="0"/>
+		<Position x="498.34" y="94.8612" z="643.404"/>
+		<Rotation angle="-0.0713687"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -102,8 +102,8 @@
 		<Entity uid="22">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="486.09586" z="727.61872"/>
-			<Orientation y="0.03464"/>
+			<Position x="480.58735" z="735.81684"/>
+			<Orientation y="1.2894"/>
 			<Actor seed="45822"/>
 		</Entity>
 		<Entity uid="23">
@@ -116,7 +116,7 @@
 		<Entity uid="24">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="488.6294" z="731.39393"/>
+			<Position x="483.29435" z="735.0896"/>
 			<Orientation y="3.02196"/>
 			<Actor seed="22474"/>
 		</Entity>
@@ -1291,13 +1291,13 @@
 		<Entity uid="209">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
-			<Position x="283.28928" z="456.38642"/>
+			<Position x="227.5186" z="394.75391"/>
 			<Orientation y="-2.88619"/>
 		</Entity>
 		<Entity uid="210">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
-			<Position x="202.44462" z="373.92252"/>
+			<Position x="149.4871" z="344.66462"/>
 			<Orientation y="0.97893"/>
 			<Actor seed="12700"/>
 		</Entity>
@@ -1339,15 +1339,15 @@
 		<Entity uid="216">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
-			<Position x="720.55512" z="568.61054"/>
+			<Position x="712.17023" z="582.57416"/>
 			<Orientation y="0.40084"/>
 			<Actor seed="61492"/>
 		</Entity>
 		<Entity uid="217">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
-			<Position x="767.35584" z="480.4864"/>
-			<Orientation y="-2.69457"/>
+			<Position x="774.14832" z="463.21756"/>
+			<Orientation y="0.02192"/>
 			<Actor seed="62502"/>
 		</Entity>
 		<Entity uid="218">
@@ -1360,7 +1360,7 @@
 		<Entity uid="219">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
-			<Position x="753.8531" z="457.27808"/>
+			<Position x="755.11353" z="453.84971"/>
 			<Orientation y="1.48662"/>
 			<Actor seed="24424"/>
 		</Entity>
@@ -1430,7 +1430,7 @@
 		<Entity uid="229">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
-			<Position x="349.19465" z="464.28083"/>
+			<Position x="374.95743" z="422.18137"/>
 			<Orientation y="0.89512"/>
 		</Entity>
 		<Entity uid="230">
@@ -7920,7 +7920,7 @@
 		<Entity uid="1278">
 			<Template>structures/spart_civil_centre</Template>
 			<Player>1</Player>
-			<Position x="488.85029" z="712.4549"/>
+			<Position x="488.4054" z="712.90625"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="53598"/>
 		</Entity>
@@ -8602,8 +8602,8 @@
 		<Entity uid="1389">
 			<Template>other/special_treasure_shipwreck</Template>
 			<Player>0</Player>
-			<Position x="291.15159" z="166.78574"/>
-			<Orientation y="1.67617"/>
+			<Position x="255.05005" z="184.94193"/>
+			<Orientation y="-0.5305"/>
 			<Actor seed="11396"/>
 		</Entity>
 		<Entity uid="1390">

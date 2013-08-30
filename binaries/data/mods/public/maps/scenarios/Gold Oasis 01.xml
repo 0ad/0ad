@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="1.01581" g="0.949969" b="0.710126"/>
+		<SunColour r="1.01581" g="0.944106" b="0.705092"/>
 		<SunElevation angle="0.613592"/>
 		<SunRotation angle="-1.22718"/>
 		<TerrainAmbientColour r="0.364706" g="0.364706" b="0.294118"/>
@@ -16,7 +16,7 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.501961" g="0.501961" b="0.25098"/>
+				<Colour r="0.501961" g="0.501961" b="0.247059"/>
 				<Height>19.9</Height>
 				<Shininess>1.46484</Shininess>
 				<Waviness>2</Waviness>
@@ -27,17 +27,17 @@
 			</WaterBody>
 		</Water>
 		<Postproc>
-			<Brightness>0</Brightness>
-			<Contrast>1.02539</Contrast>
-			<Saturation>1</Saturation>
-			<Bloom>0.2</Bloom>
+			<Brightness>-0.046875</Brightness>
+			<Contrast>1.02441</Contrast>
+			<Saturation>1.01563</Saturation>
+			<Bloom>0.155078</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="570.344" y="93.1977" z="87.8181"/>
-		<Rotation angle="-0.0455103"/>
-		<Declination angle="0.604607"/>
+		<Position x="558.192" y="80.5457" z="68.4861"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -129,25 +129,13 @@
 		<Entity uid="155">
 			<Template>units/cart_infantry_spearman_b</Template>
 			<Player>2</Player>
-			<Position x="478.72239" z="842.50261"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="156">
-			<Template>units/cart_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="484.37925" z="848.15947"/>
+			<Position x="482.98398" z="847.7342"/>
 			<Orientation y="-3.927"/>
 		</Entity>
 		<Entity uid="157">
 			<Template>units/cart_infantry_spearman_b</Template>
 			<Player>2</Player>
-			<Position x="490.0361" z="853.81632"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="158">
-			<Template>units/cart_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="495.69295" z="859.47318"/>
+			<Position x="486.87601" z="853.06666"/>
 			<Orientation y="-3.927"/>
 		</Entity>
 		<Entity uid="159">
@@ -666,25 +654,13 @@
 		<Entity uid="250">
 			<Template>units/rome_infantry_swordsman_b</Template>
 			<Player>1</Player>
-			<Position x="562.24819" z="130.58571"/>
+			<Position x="566.98157" z="135.53048"/>
 			<Orientation y="-3.927"/>
 		</Entity>
 		<Entity uid="251">
 			<Template>units/rome_infantry_swordsman_b</Template>
 			<Player>1</Player>
-			<Position x="567.90503" z="136.24256"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="252">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="573.5619" z="141.89942"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="253">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="579.21874" z="147.55626"/>
+			<Position x="572.63843" z="141.18732"/>
 			<Orientation y="-3.927"/>
 		</Entity>
 		<Entity uid="254">
@@ -4513,12 +4489,6 @@
 			<Position x="139.57444" z="595.7381"/>
 			<Orientation y="0.84723"/>
 		</Entity>
-		<Entity uid="946">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="678" z="342"/>
-			<Orientation y="5.33376"/>
-		</Entity>
 		<Entity uid="947">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
@@ -4650,13 +4620,13 @@
 		<Entity uid="970">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="149.82265" z="491.19031"/>
+			<Position x="142.11873" z="496.0045"/>
 			<Orientation y="3.56792"/>
 		</Entity>
 		<Entity uid="971">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="196.70177" z="456.65253"/>
+			<Position x="201.19726" z="451.10932"/>
 			<Orientation y="5.90818"/>
 		</Entity>
 		<Entity uid="972">
@@ -4707,12 +4677,6 @@
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="196.17635" z="544.10859"/>
 			<Orientation y="1.99935"/>
-		</Entity>
-		<Entity uid="981">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="202" z="818"/>
-			<Orientation y="2.7325"/>
 		</Entity>
 		<Entity uid="982">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
@@ -7824,55 +7788,55 @@
 		<Entity uid="1595">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="840.81775" z="511.91611"/>
+			<Position x="851.51526" z="508.68229"/>
 			<Orientation y="-2.0085"/>
 		</Entity>
 		<Entity uid="1596">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="807.66828" z="483.4604"/>
+			<Position x="803.10383" z="470.92585"/>
 			<Orientation y="0.55523"/>
 		</Entity>
 		<Entity uid="1597">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="818.55646" z="530.13294"/>
+			<Position x="822.85535" z="544.87855"/>
 			<Orientation y="0.39307"/>
 		</Entity>
 		<Entity uid="1598">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="836.02485" z="479.80234"/>
+			<Position x="840.59864" z="480.2859"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1599">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="786.52454" z="509.84498"/>
+			<Position x="777.33863" z="506.09501"/>
 			<Orientation y="-0.0799"/>
 		</Entity>
 		<Entity uid="1600">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="199.44118" z="475.27982"/>
+			<Position x="213.54274" z="474.8412"/>
 			<Orientation y="0.02427"/>
 		</Entity>
 		<Entity uid="1601">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="201.046" z="505.27137"/>
+			<Position x="201.84354" z="521.05182"/>
 			<Orientation y="-2.14095"/>
 		</Entity>
 		<Entity uid="1602">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="162.14264" z="463.5235"/>
+			<Position x="156.0641" z="456.55762"/>
 			<Orientation y="0.36228"/>
 		</Entity>
 		<Entity uid="1603">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="168.17112" z="519.72278"/>
+			<Position x="153.5482" z="526.69898"/>
 			<Orientation y="-1.95044"/>
 		</Entity>
 		<Entity uid="1604">
@@ -8335,12 +8299,12 @@
 		</Entity>
 		<Entity uid="1686">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="217.84383" z="527.53791"/>
+			<Position x="199.79868" z="511.64649"/>
 			<Orientation y="2.87304"/>
 		</Entity>
 		<Entity uid="1687">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="199.85215" z="482.07758"/>
+			<Position x="213.73411" z="480.05671"/>
 			<Orientation y="-3.07902"/>
 		</Entity>
 		<Entity uid="1688">
@@ -8355,7 +8319,7 @@
 		</Entity>
 		<Entity uid="1690">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="204.03263" z="468.55832"/>
+			<Position x="205.65464" z="469.8885"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1691">
@@ -10385,7 +10349,7 @@
 		</Entity>
 		<Entity uid="2096">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="201.20997" z="469.18229"/>
+			<Position x="215.61437" z="469.28693"/>
 			<Orientation y="-2.0913"/>
 		</Entity>
 		<Entity uid="2097">
@@ -11622,6 +11586,34 @@
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="618.42316" z="257.61832"/>
 			<Orientation y="0.95408"/>
+		</Entity>
+		<Entity uid="2344">
+			<Template>units/rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="530.19214" z="175.20553"/>
+			<Orientation y="-0.72178"/>
+			<Actor seed="62916"/>
+		</Entity>
+		<Entity uid="2345">
+			<Template>units/rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="533.28522" z="178.48823"/>
+			<Orientation y="-0.74738"/>
+			<Actor seed="35440"/>
+		</Entity>
+		<Entity uid="2346">
+			<Template>units/cart_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="448.38944" z="879.42182"/>
+			<Orientation y="-0.83051"/>
+			<Actor seed="20236"/>
+		</Entity>
+		<Entity uid="2347">
+			<Template>units/cart_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="453.89655" z="885.06452"/>
+			<Orientation y="-0.8587"/>
+			<Actor seed="726"/>
 		</Entity>
 	</Entities>
 	<Paths/>
