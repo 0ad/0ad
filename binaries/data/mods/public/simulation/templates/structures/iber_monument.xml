@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Category>Monument</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>120</BuildTime>
     <Resources>
@@ -20,9 +23,10 @@
   </Health>
   <Identity>
     <Civ>iber</Civ>
-    <SpecificName>Monumento Venerado</SpecificName>
+    <GenericName>Revered Monument</GenericName>
+    <SpecificName>Gur Oroigarri</SpecificName>
     <Icon>structures/iberian_bull.png</Icon>
-    <Tooltip>All units within vision of this monument will fight harder (not implemented yet). Build limit: 1 per territory.</Tooltip>
+    <Tooltip>All units within vision of this monument will fight harder (not implemented yet). Build limit: 5.</Tooltip>
     <History>The Iberians were a religious people who built small monuments to their various gods. These monuments could also serve as family tombs.</History>
   </Identity>
   <Obstruction>

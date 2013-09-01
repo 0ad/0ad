@@ -4,7 +4,13 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/hele_wall_tower_props.dae</mesh>
-      <textures><texture file="props/hele_props_a.dds" name="baseTex"/></textures>
+      <textures>
+		<texture file="props/hele_props_a.dds" name="baseTex"/>
+		<texture file="props/hele_props_a_norm.png" name="normTex"/>
+		<texture file="props/hele_props_a_spec.png" name="specTex"/>
+		<texture file="structural/ao/hele_wall_tower.png" name="aoTex"/>
+		</textures>
     </variant>
   </group>
+ <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

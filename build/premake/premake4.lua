@@ -177,6 +177,12 @@ function project_set_build_flags()
 		-- use native wchar_t type (not typedef to unsigned short)
 		flags { "NativeWChar" }
 
+		-- VC++ 2008 has implied FPO as the default (newer versions default to /Oy-)
+		-- disable it explicitly since it breaks our stack walker in release build
+		if _ACTION == "vs2008" then
+			buildoptions { "/Oy-" }
+		end
+
 	else	-- *nix
 		if _OPTIONS["icc"] and not _OPTIONS["minimal-flags"] then
 			buildoptions {

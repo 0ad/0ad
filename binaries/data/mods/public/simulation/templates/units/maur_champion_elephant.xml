@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_elephant_melee">
+  <!-- temporary let the elephant sink into the ground pretty fast. Remove this section when there is a proper corpse -->
+  <Decay>
+    <DelayTime>0</DelayTime>
+    <SinkRate>0.2</SinkRate>
+  </Decay>
   <Identity>
     <Civ>maur</Civ>
     <GenericName>Indian War Elephant</GenericName>

@@ -21,7 +21,8 @@ IGUIScrollBar
 
 #include "precompiled.h"
 #include "GUI.h"
-
+#include "maths/MathUtil.h"
+#include "ps/CLogger.h"
 
 //-------------------------------------------------------------------
 //	IGUIScrollBar
@@ -30,7 +31,7 @@ IGUIScrollBar::IGUIScrollBar() : m_pStyle(NULL), m_pGUI(NULL),
 								 m_X(300.f), m_Y(300.f),
 								 m_ScrollRange(1.f), m_ScrollSpace(0.f), // MaxPos: not 0, due to division.
 								 m_Length(200.f), m_Width(20.f), 
-								 m_BarSize(0.5f), m_Pos(0.f),
+								 m_BarSize(0.f), m_Pos(0.f),
 								 m_UseEdgeButtons(true),
 								 m_ButtonPlusPressed(false),
 								 m_ButtonMinusPressed(false),
@@ -47,7 +48,25 @@ IGUIScrollBar::~IGUIScrollBar()
 
 void IGUIScrollBar::SetupBarSize()
 {
-	m_BarSize = std::min((float)m_ScrollSpace/(float)m_ScrollRange, 1.f);
+	float min = GetStyle()->m_MinimumBarSize;
+	float max = GetStyle()->m_MaximumBarSize;
+	float length = m_Length;
+
+	// Check for edge buttons
+	if (m_UseEdgeButtons)
+		length -= GetStyle()->m_Width * 2.f;
+
+	// Check min and max are valid
+	if (min > length)
+	{
+		LOGWARNING(L"Minimum scrollbar size of %g is larger than the total scrollbar size of %g", min, length);
+		min = 0.f;
+	}
+	if (max < min)
+		max = length;
+
+	// Clamp size to not exceed a minimum or maximum.
+	m_BarSize = clamp(length * std::min((float)m_ScrollSpace / (float)m_ScrollRange, 1.f), min, max);
 }
 
 const SGUIScrollBarStyle *IGUIScrollBar::GetStyle() const
@@ -72,8 +91,8 @@ void IGUIScrollBar::UpdatePosBoundaries()
 		m_ScrollRange < m_ScrollSpace) // <= scrolling not applicable
 		m_Pos = 0.f;
 	else
-	if (m_Pos > m_ScrollRange - m_ScrollSpace)
-		m_Pos = m_ScrollRange - m_ScrollSpace;
+	if (m_Pos > GetMaxPos())
+		m_Pos = GetMaxPos();
 }
 
 void IGUIScrollBar::HandleMessage(SGUIMessage &Message)
@@ -93,12 +112,10 @@ void IGUIScrollBar::HandleMessage(SGUIMessage &Message)
 				UpdatePosBoundaries();
 			}
 
-			CRect bar_rect = GetBarRect();
 			// check if components are being hovered
-			m_BarHovered = bar_rect.PointInside(mouse);
-
-			m_ButtonMinusHovered = HoveringButtonMinus(m_pHostObject->GetMousePos());
-			m_ButtonPlusHovered =  HoveringButtonPlus(m_pHostObject->GetMousePos());
+			m_BarHovered = GetBarRect().PointInside(mouse);
+			m_ButtonMinusHovered = HoveringButtonMinus(mouse);
+			m_ButtonPlusHovered =  HoveringButtonPlus(mouse);
 
 			if (!m_ButtonMinusHovered)
 				m_ButtonMinusPressed = false;

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/athen_dock_fishboat.dae</mesh>
+      <textures>
+        <texture file="structural/hele_fishing_boat.dds" name="baseTex"/>
+		<texture file="structural/ao/athen_dock.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

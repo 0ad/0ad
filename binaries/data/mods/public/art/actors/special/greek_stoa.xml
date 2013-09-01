@@ -9,7 +9,12 @@
         <prop actor="props/special/greek_stoa_props_a.xml" attachpoint="root"/>
         <prop actor="props/special/greek_stoa_props_b.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="props/hele_tile_b.dds" name="baseTex"/></textures>
+      <textures>
+		<texture file="props/hele_tile_b.dds" name="baseTex"/>
+		<texture file="props/hele_tile_b_norm.png" name="normTex"/>
+		<texture file="props/hele_tile_b_spec.png" name="specTex"/>
+		<texture file="structural/ao/hele_stoa.png" name="aoTex"/>
+		</textures>
     </variant>
   </group>
   <group>
@@ -25,5 +30,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

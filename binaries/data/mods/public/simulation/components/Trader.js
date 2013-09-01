@@ -189,7 +189,8 @@ Trader.prototype.PerformTrade = function()
 	if (this.goods.amount && this.goods.amount.traderGain)
 	{
 		var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-		cmpPlayer.AddResource(this.goods.type, this.goods.amount.traderGain);
+		if (cmpPlayer)
+			cmpPlayer.AddResource(this.goods.type, this.goods.amount.traderGain);
 
 		var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 		if (cmpStatisticsTracker)
@@ -198,7 +199,8 @@ Trader.prototype.PerformTrade = function()
 		if (this.goods.amount.market1Gain)
 		{
 			var cmpPlayer = QueryOwnerInterface(this.firstMarket, IID_Player);
-			cmpPlayer.AddResource(this.goods.type, this.goods.amount.market1Gain);
+			if (cmpPlayer)
+				cmpPlayer.AddResource(this.goods.type, this.goods.amount.market1Gain);
 
 			var cmpStatisticsTracker = QueryOwnerInterface(this.firstMarket, IID_StatisticsTracker);
 			if (cmpStatisticsTracker)
@@ -208,7 +210,8 @@ Trader.prototype.PerformTrade = function()
 		if (this.goods.amount.market2Gain)
 		{
 			var cmpPlayer = QueryOwnerInterface(this.secondMarket, IID_Player);
-			cmpPlayer.AddResource(this.goods.type, this.goods.amount.market2Gain);
+			if (cmpPlayer)
+				cmpPlayer.AddResource(this.goods.type, this.goods.amount.market2Gain);
 
 			var cmpStatisticsTracker = QueryOwnerInterface(this.secondMarket, IID_StatisticsTracker);
 			if (cmpStatisticsTracker)

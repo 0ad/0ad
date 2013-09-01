@@ -2,36 +2,47 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.87451" g="0.811765" b="0.611765"/>
+		<SunColour r="0.983824" g="0.913235" b="0.688235"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-1.11674"/>
 		<TerrainAmbientColour r="0.203922" g="0.254902" b="0.356863"/>
 		<UnitsAmbientColour r="0.403922" g="0.403922" b="0.403922"/>
+		<Fog>
+			<FogFactor>0.00359375</FogFactor>
+			<FogThickness>0</FogThickness>
+			<FogColour r="0.866667" g="0.776471" b="0.490196"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.482353" g="0.584314" b="0.815686"/>
+				<Colour r="0.745098" g="0.596078" b="0.278431"/>
 				<Height>20.6689</Height>
-				<Shininess>51.0254</Shininess>
-				<Waviness>2.1875</Waviness>
+				<Shininess>99.6094</Shininess>
+				<Waviness>10</Waviness>
 				<Murkiness>0.71875</Murkiness>
-				<Tint r="0.545098" g="0.745098" b="0.898039"/>
+				<Tint r="0.745098" g="0.596078" b="0.278431"/>
 				<ReflectionTint r="0.564706" g="0.513726" b="0.419608"/>
-				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>-0.0390625</Brightness>
+			<Contrast>1.07813</Contrast>
+			<Saturation>1.10938</Saturation>
+			<Bloom>0.160156</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="778.454" y="82.2893" z="516.738"/>
-		<Rotation angle="0"/>
+		<Position x="302.331" y="63.8603" z="197.303"/>
+		<Rotation angle="-0.0730348"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "oasis_10.png",
+  "Preview": "oasis_10.png",
   "Description": "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.",
   "GameType": "conquest",
   "Keywords": [],
@@ -132,7 +143,7 @@
 		<Entity uid="30">
 			<Template>gaia/geology_stonemine_desert_quarry</Template>
 			<Player>0</Player>
-			<Position x="781.50721" z="593.44776"/>
+			<Position x="794.47791" z="601.81824"/>
 			<Orientation y="1.18834"/>
 		</Entity>
 		<Entity uid="31">
@@ -5702,11 +5713,6 @@
 			<Position x="221.9759" z="790.38782"/>
 			<Orientation y="-2.66222"/>
 		</Entity>
-		<Entity uid="1093">
-			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
-			<Position x="226.9278" z="786.63135"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1094">
 			<Template>actor|props/special/eyecandy/basket_celt_a.xml</Template>
 			<Position x="217.90961" z="792.16236"/>
@@ -5966,7 +5972,7 @@
 		<Entity uid="1155">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="794.26075" z="599.61951"/>
+			<Position x="779.61304" z="603.72175"/>
 			<Orientation y="-0.23321"/>
 		</Entity>
 		<Entity uid="1169">
@@ -6022,6 +6028,7 @@
 			<Player>0</Player>
 			<Position x="846.35029" z="727.63642"/>
 			<Orientation y="-1.30506"/>
+			<Obstruction group="1523"/>
 		</Entity>
 		<Entity uid="1190">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
@@ -7372,7 +7379,7 @@
 		<Entity uid="1483">
 			<Template>structures/iber_wall</Template>
 			<Player>2</Player>
-			<Position x="758.1277" z="593.77912"/>
+			<Position x="759.44574" z="592.42225"/>
 			<Orientation y="-2.4876"/>
 			<Obstruction group="1491" group2="1514"/>
 		</Entity>
@@ -7485,25 +7492,25 @@
 		<Entity uid="1511">
 			<Template>structures/iber_wall_tower</Template>
 			<Player>2</Player>
-			<Position x="724.63227" z="716.3838"/>
+			<Position x="723.31849" z="716.12855"/>
 			<Orientation y="3.08713"/>
 		</Entity>
 		<Entity uid="1512">
 			<Template>structures/iber_wall_tower</Template>
 			<Player>2</Player>
-			<Position x="760.08204" z="720.6167"/>
+			<Position x="761.74341" z="720.99366"/>
 			<Orientation y="-2.31144"/>
 		</Entity>
 		<Entity uid="1513">
 			<Template>structures/iber_wall_tower</Template>
 			<Player>2</Player>
-			<Position x="722.14338" z="621.1678"/>
+			<Position x="719.99958" z="623.56043"/>
 			<Orientation y="-0.94658"/>
 		</Entity>
 		<Entity uid="1514">
 			<Template>structures/iber_wall_tower</Template>
 			<Player>2</Player>
-			<Position x="745.4214" z="603.23719"/>
+			<Position x="749.06598" z="601.22468"/>
 			<Orientation y="-2.57845"/>
 		</Entity>
 		<Entity uid="1516">
@@ -7534,13 +7541,13 @@
 		<Entity uid="1520">
 			<Template>structures/iber_wall_tower</Template>
 			<Player>2</Player>
-			<Position x="893.84449" z="664.65717"/>
+			<Position x="894.15754" z="663.07862"/>
 			<Orientation y="1.57081"/>
 		</Entity>
 		<Entity uid="1521">
 			<Template>structures/iber_wall_tower</Template>
 			<Player>2</Player>
-			<Position x="890.64216" z="695.95972"/>
+			<Position x="889.12146" z="698.64515"/>
 			<Orientation y="-1.88596"/>
 		</Entity>
 		<Entity uid="1522">
@@ -7612,7 +7619,7 @@
 		<Entity uid="1535">
 			<Template>structures/iber_wall_long</Template>
 			<Player>2</Player>
-			<Position x="710.11023" z="636.48664"/>
+			<Position x="709.925" z="637.57563"/>
 			<Orientation y="-2.23484"/>
 			<Obstruction group="1484" group2="1513"/>
 		</Entity>
@@ -7636,6 +7643,13 @@
 			<Position x="814.4433" z="566.91944"/>
 			<Orientation y="-2.72765"/>
 			<Obstruction group="1489" group2="1490"/>
+		</Entity>
+		<Entity uid="1541">
+			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Player>0</Player>
+			<Position x="226.8747" z="785.99518"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49364"/>
 		</Entity>
 	</Entities>
 	<Paths/>

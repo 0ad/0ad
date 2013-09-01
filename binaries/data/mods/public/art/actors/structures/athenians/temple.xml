@@ -2,37 +2,19 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Temple A">
-      <mesh>structural/hele_temple_a_base.dae</mesh>
+    <variant frequency="1" name="Athenian temple">
+      <mesh>structural/athen_temple_struct.dae</mesh>
       <props>
-        <prop actor="props/structures/hellenes/temple_a_columns.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/temple_a_struct.xml" attachpoint="root"/>
+		<prop actor="props/structures/athenians/temple_decor.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/temple_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/temple_tile_c.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="Temple B">
-      <mesh>structural/hele_temple_b_base.dae</mesh>
-      <props>
-        <prop actor="props/structures/hellenes/temple_b_struct.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/temple_b_columns.xml" attachpoint="root"/>
-      </props>
-      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="Temple C">
-      <mesh>structural/hele_temple_c_base.dae</mesh>
-      <props>
-        <prop actor="props/structures/hellenes/temple_b_struct.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/temple_c_columns.xml" attachpoint="root"/>
-      </props>
-      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="garrisoned">
-      <props>
-        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
-      </props>
+      <textures>
+			<texture file="structural/hele_struct.dds" name="baseTex"/>
+			<texture file="structural/hele_struct_norm.png" name="normTex"/>
+			<texture file="structural/hele_struct_spec.png" name="specTex"/>
+			<texture file="structural/ao/athen_temple.png" name="aoTex"/>
+		</textures>
     </variant>
     <variant name="death">
       <props>
@@ -40,7 +22,11 @@
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="smoke"/>
         <prop actor="particle/destruction_dust_med.xml" attachpoint="smoke"/>
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="smoke"/>
+		<prop actor="props/structures/athenians/temple_decor.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/temple_propsa.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/temple_tile_c.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

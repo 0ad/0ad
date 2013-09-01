@@ -5,9 +5,12 @@
     <variant>
       <mesh>structural/mace_library_struct_b.dae</mesh>
       <textures>
-        <texture file="structural/hele_struct_b.dds" name="baseTex"/>
+<texture file="structural/hele_struct_b.dds" name="baseTex"/>
+<texture file="structural/hele_struct_b_norm.png" name="normTex"/>
+<texture file="structural/hele_struct_b_spec.png" name="specTex"/>
+<texture file="structural/ao/mace_library.png" name="aoTex"/>name="baseTex"/>
       </textures>
     </variant>
   </group>
-  <material>default.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
