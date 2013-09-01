@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunset</SkySet>
-		<SunColour r="1.03932" g="0.929274" b="0.58691"/>
+		<SunColour r="1.03932" g="0.925199" b="0.578759"/>
 		<SunElevation angle="0.34668"/>
 		<SunRotation angle="-2.45437"/>
 		<TerrainAmbientColour r="0.329412" g="0.403922" b="0.576471"/>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="619.07" y="128.668" z="1253.06"/>
+		<Position x="1097.41" y="146.967" z="920.403"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -4198,6 +4198,34 @@
 			<Position x="678.39917" z="1369.68433"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="27844"/>
+		</Entity>
+		<Entity uid="850">
+			<Template>structures/mace_dock</Template>
+			<Player>1</Player>
+			<Position x="981.22486" z="1646.7173"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45920"/>
+		</Entity>
+		<Entity uid="851">
+			<Template>structures/mace_dock</Template>
+			<Player>1</Player>
+			<Position x="994.8011" z="1515.49292"/>
+			<Orientation y="1.57081"/>
+			<Actor seed="47894"/>
+		</Entity>
+		<Entity uid="852">
+			<Template>structures/mace_dock</Template>
+			<Player>1</Player>
+			<Position x="1093.97584" z="1013.74061"/>
+			<Orientation y="1.22828"/>
+			<Actor seed="29380"/>
+		</Entity>
+		<Entity uid="853">
+			<Template>structures/mace_dock</Template>
+			<Player>1</Player>
+			<Position x="1167.3202" z="1008.29017"/>
+			<Orientation y="-0.719"/>
+			<Actor seed="28202"/>
 		</Entity>
 	</Entities>
 	<Paths/>
