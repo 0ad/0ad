@@ -54,7 +54,7 @@ public:
 
 CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFunctions) :
 	m_NextScriptComponentTypeId(CID__LastNative),
-	m_ScriptInterface("Engine", "Simulation", ScriptInterface::CreateRuntime(32*MiB)),
+	m_ScriptInterface("Engine", "Simulation", ScriptInterface::CreateRuntime(128*MiB)),
 	m_SimContext(context), m_CurrentlyHotloading(false)
 {
 	context.SetComponentManager(this);
