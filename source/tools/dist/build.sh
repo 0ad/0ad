@@ -3,13 +3,13 @@
 set -ev
 
 # Compiled executable for archive-builder tool
-EXE=~/0ad/hg/ps/binaries/system/pyrogenesis
+EXE=/mnt/0ad/0ad/binaries/system/pyrogenesis
 
 # Location of clean checkout
-SVNWC=~/0ad/public-trunk/
+SVNWC=/mnt/0ad/0ad/
 
 SVNREV=`svnversion -n ${SVNWC}`
-PREFIX=0ad-r${SVNREV}-alpha
+PREFIX=0ad-0.0.XXX-alpha
 
 XZOPTS="-9 -e"
 BZ2OPTS="-9"
@@ -47,15 +47,11 @@ tar cf $PREFIX-unix-data.tar \
 # Compress
 xz -kv ${XZOPTS} $PREFIX-unix-build.tar
 xz -kv ${XZOPTS} $PREFIX-unix-data.tar
-#bzip2 -kp ${BZ2OPTS} $PREFIX-unix-build.tar
-#bzip2 -kp ${BZ2OPTS} $PREFIX-unix-data.tar
-#gzip -cv ${GZIPOPTS} $PREFIX-unix-build.tar > $PREFIX-unix-build.tar.gz
-#gzip -cv ${GZIPOPTS} $PREFIX-unix-data.tar > $PREFIX-unix-data.tar.gz
 7z a ${GZIP7ZOPTS} $PREFIX-unix-build.tar.gz $PREFIX-unix-build.tar
 7z a ${GZIP7ZOPTS} $PREFIX-unix-data.tar.gz $PREFIX-unix-data.tar
 
 # Create Windows installer
-wine ~/.wine/drive_c/Program\ Files/NSIS/makensis.exe /nocd /dcheckoutpath=export-win32 /drevision=${SVNREV} export-win32/source/tools/dist/0ad.nsi
+makensis -nocd -dcheckoutpath=export-win32 -drevision=${SVNREV} -dprefix=${PREFIX} export-win32/source/tools/dist/0ad.nsi
 
 # Fix permissions
 chmod -f 644 ${PREFIX}-{unix-{build,data}.tar.{xz,bz2,gz},win32.exe}
