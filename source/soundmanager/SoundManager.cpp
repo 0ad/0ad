@@ -781,6 +781,7 @@ void CSoundManager::SetMusicItem(ISoundItem* anItem)
 			else
 				m_CurrentTune->PlayLoop();
 
+			m_MusicPaused = false;
 			m_CurrentTune->FadeToIn( m_MusicGain, 1.00);
 		}
 		else
