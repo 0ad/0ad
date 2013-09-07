@@ -15,3 +15,4 @@ plus some patches (see patches/):
   issue182.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=182)
   cmake-noqt4.patch (removes unused dependency on Qt4, fixes build on systems without Qt)
   arm-fix.patch (from NVTT SVN r1173 - fixes ARM build)
+  issue188.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=188)
