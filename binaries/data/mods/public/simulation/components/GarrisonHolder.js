@@ -80,9 +80,7 @@ GarrisonHolder.prototype.GetHealRate = function()
 
 GarrisonHolder.prototype.EjectEntitiesOnDestroy = function()
 {
-	if (this.template.EjectEntitiesOnDestroy == "true")
-		return true;
-	return false;
+	return this.template.EjectEntitiesOnDestroy == "true";
 };
 
 /**
