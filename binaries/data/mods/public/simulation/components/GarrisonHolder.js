@@ -385,8 +385,7 @@ GarrisonHolder.prototype.UnloadAll = function(forced)
 GarrisonHolder.prototype.OnHealthChanged = function(msg)
 {
 	if (!this.HasEnoughHealth())
-		for each (var entity in this.entities)
-			this.EjectOrKill(entity);
+		this.EjectOrKill(this.entities);
 };
 
 /**
@@ -465,12 +464,13 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 	// the ownership change may be on the garrisonholder
 	if (this.entity == msg.entity)
 	{
+		var entities = [];
 		for each (var entity in this.entities)
 		{
 			if (!IsOwnedByMutualAllyOfEntity(this.entity, entity))
-				this.EjectOrKill(entity);
+				entities.push(entity);
 		}
-		this.UpdateGarrisonFlag();
+		this.EjectOrKill(entities);
 		return;
 	}
 
@@ -486,7 +486,7 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 		}
 		else if(!IsOwnedByMutualAllyOfEntity(this.entity, this.entities[entityIndex]))
-			this.EjectOrKill(this.entities[entityIndex]);
+			this.EjectOrKill([this.entities[entityIndex]]);
 		this.UpdateGarrisonFlag();
 	}
 };
@@ -510,19 +510,20 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
  */
 GarrisonHolder.prototype.OnDiplomacyChanged = function()
 {
+	var entities = []
 	for each (var entity in this.entities)
 	{
 		if (!IsOwnedByMutualAllyOfEntity(this.entity, entity))
-			this.EjectOrKill(entity);
+			entities.push(entity);
 	}
-	this.UpdateGarrisonFlag();
+	this.EjectOrKill(entities);
 };
 
 /**
  * Eject or kill a garrisoned unit which can no more be garrisoned
  * (garrisonholder's health too small or ownership changed)
  */
-GarrisonHolder.prototype.EjectOrKill = function(entity)
+GarrisonHolder.prototype.EjectOrKill = function(entities)
 {
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	// Destroy the garrisoned units if the holder kill his entities on destroy or
@@ -530,16 +531,19 @@ GarrisonHolder.prototype.EjectOrKill = function(entity)
 	// a holder which kills its entities which has sunk).
 	if (!this.EjectEntitiesOnDestroy() || !cmpPosition.IsInWorld())
 	{
-		var cmpHealth = Engine.QueryInterface(entity, IID_Health);
-		if (cmpHealth)
-			cmpHealth.Kill();
-		var entityIndex = this.entities.indexOf(entity);
-		this.entities.splice(entityIndex, 1);
-		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+		for each (var entity in entities)
+		{
+			var cmpHealth = Engine.QueryInterface(entity, IID_Health);
+			if (cmpHealth)
+				cmpHealth.Kill();
+			var entityIndex = this.entities.indexOf(entity);
+			this.entities.splice(entityIndex, 1);
+			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+		}
 	}
 	else
 	{	// Building - force ejection
-		this.Eject(entity, true);
+		this.PerformEject(entities, true);
 	}
 };
 
