@@ -42,7 +42,7 @@ static int DEFAULT_FULLSCREEN_H = 768;
 CVideoMode g_VideoMode;
 
 CVideoMode::CVideoMode() :
-	m_IsInitialised(false), m_Window(NULL),
+	m_IsFullscreen(false), m_IsInitialised(false), m_Window(NULL),
 	m_PreferredW(0), m_PreferredH(0), m_PreferredBPP(0), m_PreferredFreq(0),
 	m_ConfigW(0), m_ConfigH(0), m_ConfigBPP(0), m_ConfigFullscreen(false), m_ConfigForceS3TCEnable(true),
 	m_WindowedW(DEFAULT_WINDOW_W), m_WindowedH(DEFAULT_WINDOW_H)
@@ -309,6 +309,7 @@ void CVideoMode::Shutdown()
 {
 	ENSURE(m_IsInitialised);
 
+	m_IsFullscreen = false;
 	m_IsInitialised = false;
 }
 

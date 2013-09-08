@@ -20,9 +20,9 @@ function ApplyTechModificationsToPlayer(tech_type, current_value, player_entity)
 	return cmpTechMan.ApplyModifications(tech_type, current_value, player_entity);
 }
 
-function ApplyTechModificationsToTemplate(tech_type, current_value, owner_entity, template)
+function ApplyTechModificationsToTemplate(tech_type, current_value, playerID, template)
 {
-	var cmpTechMan = QueryOwnerInterface(owner_entity, IID_TechnologyManager);
+	var cmpTechMan = QueryPlayerIDInterface(playerID, IID_TechnologyManager);
 
 	if (!cmpTechMan)
 		return current_value;

@@ -1,0 +1,13 @@
+Index: src/cmake/OptimalOptions.cmake
+===================================================================
+--- src/cmake/OptimalOptions.cmake	(revision 13805)
++++ src/cmake/OptimalOptions.cmake	(working copy)
+@@ -15,7 +15,7 @@
+ 	ENDIF(NV_SYSTEM_PROCESSOR STREQUAL "i686")
+ 
+ 	IF(NV_SYSTEM_PROCESSOR STREQUAL "x86_64")
+-		SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=athlon64")
++		#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=athlon64")
+ 		#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=athlon64 -msse3")
+ 	ENDIF(NV_SYSTEM_PROCESSOR STREQUAL "x86_64")
+ 

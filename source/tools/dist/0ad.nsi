@@ -1,6 +1,6 @@
 ; To generate the installer (on Linux):
 ;  Do an 'svn export' into a directory called e.g. "export-win32"
-;  wine ~/.wine/drive_c/Program\ Files/NSIS/makensis.exe /nocd /dcheckoutpath=export-win32 /drevision=1234 export-win32/source/tools/dist/0ad.nsi
+;  makensis -nocd -dcheckoutpath=export-win32 -drevision=1234 -dprefix=0ad-0.1.2-alpha export-win32/source/tools/dist/0ad.nsi
 
   SetCompressor /SOLID lzma
 
@@ -15,7 +15,7 @@
 
   ;Name and file
   Name "0 A.D."
-  OutFile "0ad-r${REVISION}-alpha-win32.exe"
+  OutFile "${PREFIX}-win32.exe"
 
   ;Default installation folder
   InstallDir "$LOCALAPPDATA\0 A.D. alpha"
@@ -76,7 +76,7 @@ Section "!Game and data files" GameSection
   SetOutPath "$INSTDIR"
   File "${CHECKOUTPATH}\*.txt"
   File "${CHECKOUTPATH}\source\tools\openlogsfolder\*.*"
-  File /r /x "public" "${CHECKOUTPATH}\binaries"
+  File /r /x "public" /x "dev.cfg" "${CHECKOUTPATH}\binaries"
 
   SetOutPath "$INSTDIR\binaries\data\mods\public"
   File "${CHECKOUTPATH}\binaries\data\mods\public\public.zip"
