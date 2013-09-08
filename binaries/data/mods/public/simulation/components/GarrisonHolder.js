@@ -278,7 +278,12 @@ GarrisonHolder.prototype.PerformEject = function(entities, forced)
 	for each (var entity in entities)
 	{
 		if (this.Eject(entity, forced))
-			ejectedEntities.push(entity);
+		{
+			var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+			var cmpEntOwnership = Engine.QueryInterface(entity, IID_Ownership);
+			if (cmpOwnership && cmpEntOwnership && cmpOwnership.GetOwner() == cmpEntOwnership.GetOwner())
+				ejectedEntities.push(entity);
+		}
 		else
 			success = false;
 	}
@@ -382,30 +387,8 @@ GarrisonHolder.prototype.UnloadAll = function(forced)
 GarrisonHolder.prototype.OnHealthChanged = function(msg)
 {
 	if (!this.HasEnoughHealth())
-	{
-		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-
-		// Destroy the garrisoned units if the holder kill his entities on destroy or
-		// is not in the world (generally means this holder is inside 
-		// a holder which kills its entities which has sunk).
-		if (!this.EjectEntitiesOnDestroy() || !cmpPosition.IsInWorld())
-		{
-			for each (var entity in this.entities)
-			{
-				var cmpHealth = Engine.QueryInterface(entity, IID_Health);
-				if (cmpHealth)
-				{
-					cmpHealth.Kill();
-				}
-			}
-			this.entities = [];
-			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
-		}
-		else
-		{	// Building - force ejection
-			this.UnloadAll(true);
-		}
-	}
+		for each (var entity in this.entities)
+			this.EjectOrKill(entity);
 };
 
 /**
@@ -481,6 +464,19 @@ GarrisonHolder.prototype.OnDestroy = function()
  */
 GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 {
+	// the ownership change may be on the garrisonholder
+	if (this.entity == msg.entity)
+	{
+		for each (var entity in this.entities)
+		{
+			if (!IsOwnedByMutualAllyOfEntity(this.entity, entity))
+				this.EjectOrKill(entity);
+		}
+		this.UpdateGarrisonFlag();
+		return;
+	}
+
+	// or on some of its garrisoned units
 	var entityIndex = this.entities.indexOf(msg.entity);
 	if (entityIndex != -1)
 	{
@@ -491,27 +487,9 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 			this.entities.splice(entityIndex, 1);
 			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 		}
-		else
-		{
-			// We have to be careful of our passability
-			//	ships: not land passable, assume unit was thrown overboard or something
-			//  building: land passable, unit can be ejected freely
-			var classes = (Engine.QueryInterface(this.entity, IID_Identity)).GetClassesList();
-			if (classes.indexOf("Ship") != -1)
-			{	// Ship - kill unit
-				var cmpHealth = Engine.QueryInterface(msg.entity, IID_Health);
-				if (cmpHealth)
-				{
-					cmpHealth.Kill();
-				}
-				this.entities.splice(entityIndex, 1);
-				Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
-			}
-			else
-			{	// Building - force ejection
-				this.Eject(msg.entity, true);
-			}
-		}
+		else if(!IsOwnedByMutualAllyOfEntity(this.entity, this.entities[entityIndex]))
+			this.EjectOrKill(this.entities[entityIndex]);
+		this.UpdateGarrisonFlag();
 	}
 };
 
@@ -534,12 +512,37 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
  */
 GarrisonHolder.prototype.OnDiplomacyChanged = function()
 {
-	for (var i = this.entities.length; i > 0; --i)
+	for each (var entity in this.entities)
 	{
-		if (!IsOwnedByMutualAllyOfEntity(this.entity, this.entities[i-1]))
-			this.Eject(this.entities[i-1], true);
+		if (!IsOwnedByMutualAllyOfEntity(this.entity, entity))
+			this.EjectOrKill(entity);
 	}
 	this.UpdateGarrisonFlag();
+};
+
+/**
+ * Eject or kill a garrisoned unit which can no more be garrisoned
+ * (garrisonholder's health too small or ownership changed)
+ */
+GarrisonHolder.prototype.EjectOrKill = function(entity)
+{
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	// Destroy the garrisoned units if the holder kill his entities on destroy or
+	// is not in the world (generally means this holder is inside 
+	// a holder which kills its entities which has sunk).
+	if (!this.EjectEntitiesOnDestroy() || !cmpPosition.IsInWorld())
+	{
+		var cmpHealth = Engine.QueryInterface(entity, IID_Health);
+		if (cmpHealth)
+			cmpHealth.Kill();
+		var entityIndex = this.entities.indexOf(entity);
+		this.entities.splice(entityIndex, 1);
+		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+	}
+	else
+	{	// Building - force ejection
+		this.Eject(entity, true);
+	}
 };
 
 Engine.RegisterComponentType(IID_GarrisonHolder, "GarrisonHolder", GarrisonHolder);

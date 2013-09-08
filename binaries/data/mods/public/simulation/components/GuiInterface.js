@@ -351,7 +351,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"orders": cmpUnitAI.GetOrders(),
 		};
 		// Add some information needed for ungarrisoning
-		if (cmpUnitAI.isGarrisoned && ret.player)
+		if (cmpUnitAI.isGarrisoned && ret.player !== undefined)
 			ret.template = "p" + ret.player + "&" + ret.template;
 	}
 

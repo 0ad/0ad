@@ -2626,11 +2626,12 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 {
 	this.SetupRangeQueries();
 
-	// If the unit isn't being created or dying, clear orders and reset stance.
+	// If the unit isn't being created or dying, reset stance and clear orders (if not garrisoned).
 	if (msg.to != -1 && msg.from != -1)
 	{
 		this.SetStance(this.template.DefaultStance);
-		this.Stop(false);
+		if(!this.isGarrisoned)
+			this.Stop(false);
 	}
 };
 
