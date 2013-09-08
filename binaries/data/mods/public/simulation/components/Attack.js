@@ -437,7 +437,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		var horizSpeed = +this.template[type].ProjectileSpeed;
 		var gravity = 9.81; // this affects the shape of the curve; assume it's constant for now
 		
-		var spread = this.template.Ranged.Spread;
+		var spread = +this.template.Ranged.Spread;
 		spread = ApplyTechModificationsToEntity("Attack/Ranged/Spread", spread, this.entity);
 		
 		//horizSpeed /= 2; gravity /= 2; // slow it down for testing
