@@ -18,7 +18,9 @@
     <Icon>gaia/special_blank.png</Icon>
   </Identity>
   <Obstruction>
-    <Static width="59" depth="15"/>
+    <Obstructions>
+      <Edge width="59" depth="4" x="0" z="5"/> 
+    </Obstructions>
   </Obstruction>
   <Selectable>
     <EditorOnly/>
