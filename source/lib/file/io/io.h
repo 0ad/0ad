@@ -301,7 +301,7 @@ static inline Status Store(const OsPath& pathname, const void* data, size_t size
 	int oflag = O_WRONLY;
 	if(p.queueDepth != 1)
 		oflag |= O_DIRECT;
-	WARN_RETURN_STATUS_IF_ERR(file.Open(pathname, oflag));
+	RETURN_STATUS_IF_ERR(file.Open(pathname, oflag));
 	io::Operation op(file, (void*)data, size);
 
 #if OS_WIN

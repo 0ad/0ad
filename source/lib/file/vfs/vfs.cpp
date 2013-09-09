@@ -132,7 +132,12 @@ public:
 	{
 		ScopedLock s;
 		VfsDirectory* directory;
-		WARN_RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_CREATE_ALWAYS));
+		Status st;
+		st = vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_CREATE_ALWAYS);
+		if (st == ERR::FILE_ACCESS)
+			return ERR::FILE_ACCESS;
+
+		WARN_RETURN_STATUS_IF_ERR(st);
 
 		const PRealDirectory& realDirectory = directory->AssociatedDirectory();
 		const OsPath name = pathname.Filename();
@@ -163,8 +168,8 @@ public:
 			s.~ScopedLock();
 			return CreateFile(pathname, fileContents, size);
 		}
-		else
-			WARN_RETURN_STATUS_IF_ERR(st);
+
+		WARN_RETURN_STATUS_IF_ERR(st);
 
 		RealDirectory realDirectory(file->Loader()->Path(), file->Priority(), directory->AssociatedDirectory()->Flags());
 		RETURN_STATUS_IF_ERR(realDirectory.Store(pathname.Filename(), fileContents, size));
