@@ -55,7 +55,7 @@ struct IArchiveReader
 	 * called for each archive entry.
 	 * @param pathname full pathname of entry; only valid during the callback.
 	 **/
-	typedef void (*ArchiveEntryCallback)(const VfsPath& pathname, const FileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData);
+	typedef void (*ArchiveEntryCallback)(const VfsPath& pathname, const CFileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData);
 	virtual Status ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData) = 0;
 };
 

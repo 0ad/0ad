@@ -27,6 +27,37 @@
 
 TIMER_ADD_CLIENT(xml_validation);
 
+/*
+ * libxml2 leaks memory when parsing schemas: https://bugzilla.gnome.org/show_bug.cgi?id=615767
+ * To minimise that problem, keep a global cache of parsed schemas, so we don't
+ * leak an indefinitely large amount of memory when repeatedly restarting the simulation.
+ */
+
+class RelaxNGSchema
+{
+public:
+	xmlRelaxNGPtr m_Schema;
+
+	RelaxNGSchema(const std::string& grammar)
+	{
+		xmlRelaxNGParserCtxtPtr ctxt = xmlRelaxNGNewMemParserCtxt(grammar.c_str(), (int)grammar.size());
+		m_Schema = xmlRelaxNGParse(ctxt);
+		xmlRelaxNGFreeParserCtxt(ctxt);
+
+		if (m_Schema == NULL)
+			LOGERROR(L"RelaxNGValidator: Failed to compile schema");
+	}
+
+	~RelaxNGSchema()
+	{
+		if (m_Schema)
+			xmlRelaxNGFree(m_Schema);
+	}
+};
+
+static std::map<std::string, shared_ptr<RelaxNGSchema> > g_SchemaCache;
+static CMutex g_SchemaCacheLock;
+
 RelaxNGValidator::RelaxNGValidator() :
 	m_Schema(NULL)
 {
@@ -34,26 +65,32 @@ RelaxNGValidator::RelaxNGValidator() :
 
 RelaxNGValidator::~RelaxNGValidator()
 {
-	if (m_Schema)
-		xmlRelaxNGFree(m_Schema);
 }
 
 bool RelaxNGValidator::LoadGrammar(const std::string& grammar)
 {
 	TIMER_ACCRUE(xml_validation);
 
-	ENSURE(m_Schema == NULL);
+	shared_ptr<RelaxNGSchema> schema;
 
-	xmlRelaxNGParserCtxtPtr ctxt = xmlRelaxNGNewMemParserCtxt(grammar.c_str(), (int)grammar.size());
-	m_Schema = xmlRelaxNGParse(ctxt);
-	xmlRelaxNGFreeParserCtxt(ctxt);
-
-	if (m_Schema == NULL)
 	{
-		LOGERROR(L"RelaxNGValidator: Failed to compile schema");
-		return false;
+		CScopeLock lock(g_SchemaCacheLock);
+		std::map<std::string, shared_ptr<RelaxNGSchema> >::iterator it = g_SchemaCache.find(grammar);
+		if (it == g_SchemaCache.end())
+		{
+			schema = shared_ptr<RelaxNGSchema>(new RelaxNGSchema(grammar));
+			g_SchemaCache[grammar] = schema;
+		}
+		else
+		{
+			schema = it->second;
+		}
 	}
 
+	m_Schema = schema->m_Schema;
+
+	if (!m_Schema)
+		return false;
 	return true;
 }
 

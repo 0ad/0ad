@@ -279,7 +279,7 @@ public:
 			m_skeletonHashes.clear();
 			m_skeletonHashes.resize(paths.size()*2);
 
-			FileInfo fileInfo;
+			CFileInfo fileInfo;
 			for (VfsPaths::const_iterator it = paths.begin(); it != paths.end(); ++it)
 			{
 				// This will cause an assertion failure if *it doesn't exist,

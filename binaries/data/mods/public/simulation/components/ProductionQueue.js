@@ -637,6 +637,16 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 			cmpTechnologyManager.ResearchTechnology(item.technologyTemplate);
 			
+			var template = cmpTechnologyManager.GetTechnologyTemplate(item.technologyTemplate);
+			
+			if (template && template.soundComplete)
+			{
+				var cmpSoundManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_SoundManager);
+				
+				if (cmpSoundManager)
+					cmpSoundManager.PlaySoundGroup(template.soundComplete, this.entity);
+			}
+			
 			time -= item.timeRemaining;
 			
 			this.queue.shift();

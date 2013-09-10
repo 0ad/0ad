@@ -30,6 +30,7 @@
 #include "lib/external_libraries/suppress_boost_warnings.h"
 
 #include "lib/sysdep/filesystem.h"
+#include "lib/file/file.h"
 #include "lib/file/vfs/vfs.h"	// error codes
 #include "lib/file/vfs/vfs_tree.h"
 #include "lib/file/vfs/vfs_populate.h"
@@ -60,6 +61,9 @@ static Status CreateDirectory(const OsPath& path)
 		ENSURE(S_ISDIR(s.st_mode));
 		return INFO::OK;
 	}
+
+	if (errno == EACCES)
+		return ERR::FILE_ACCESS;
 
 	// unexpected failure
 	debug_printf(L"wmkdir failed with errno=%d\n", errno);

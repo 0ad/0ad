@@ -38,14 +38,14 @@ LIB_API u64 FileSize(const OsPath& pathname);
 
 
 // (bundling size and mtime avoids a second expensive call to stat())
-class FileInfo
+class CFileInfo
 {
 public:
-	FileInfo()
+	CFileInfo()
 	{
 	}
 
-	FileInfo(const OsPath& name, off_t size, time_t mtime)
+	CFileInfo(const OsPath& name, off_t size, time_t mtime)
 		: name(name), size(size), mtime(mtime)
 	{
 	}
@@ -71,12 +71,12 @@ private:
 	time_t mtime;
 };
 
-LIB_API Status GetFileInfo(const OsPath& pathname, FileInfo* fileInfo);
+LIB_API Status GetFileInfo(const OsPath& pathname, CFileInfo* fileInfo);
 
-typedef std::vector<FileInfo> FileInfos;
+typedef std::vector<CFileInfo> CFileInfos;
 typedef std::vector<OsPath> DirectoryNames;
 
-LIB_API Status GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames);
+LIB_API Status GetDirectoryEntries(const OsPath& path, CFileInfos* files, DirectoryNames* subdirectoryNames);
 
 // same as boost::filesystem::create_directories, except that mkdir is invoked with
 // <mode> instead of 0755.

@@ -109,7 +109,7 @@ enum ZipMethod
 class LFH
 {
 public:
-	void Init(const FileInfo& fileInfo, off_t csize, ZipMethod method, u32 checksum, const Path& pathname)
+	void Init(const CFileInfo& fileInfo, off_t csize, ZipMethod method, u32 checksum, const Path& pathname)
 	{
 		const std::string pathnameUTF8 = utf8_from_wstring(pathname.string());
 		const size_t pathnameSize = pathnameUTF8.length();
@@ -157,7 +157,7 @@ cassert(sizeof(LFH) == 30);
 class CDFH
 {
 public:
-	void Init(const FileInfo& fileInfo, off_t ofs, off_t csize, ZipMethod method, u32 checksum, const Path& pathname, size_t slack)
+	void Init(const CFileInfo& fileInfo, off_t ofs, off_t csize, ZipMethod method, u32 checksum, const Path& pathname, size_t slack)
 	{
 		const std::string pathnameUTF8 = utf8_from_wstring(pathname.string());
 		const size_t pathnameLength = pathnameUTF8.length();
@@ -415,7 +415,7 @@ private:
 
 	PFile m_file;
 
-	// all relevant LFH/CDFH fields not covered by FileInfo
+	// all relevant LFH/CDFH fields not covered by CFileInfo
 	mutable off_t m_ofs;
 	off_t m_csize;
 	u32 m_checksum;
@@ -434,7 +434,7 @@ public:
 	ArchiveReader_Zip(const OsPath& pathname)
 		: m_file(new File(pathname, O_RDONLY))
 	{
-		FileInfo fileInfo;
+		CFileInfo fileInfo;
 		GetFileInfo(pathname, &fileInfo);
 		m_fileSize = fileInfo.Size();
 		const size_t minFileSize = sizeof(LFH)+sizeof(CDFH)+sizeof(ECDR);
@@ -466,7 +466,7 @@ public:
 			if(!relativePathname.IsDirectory())
 			{
 				const OsPath name = relativePathname.Filename();
-				FileInfo fileInfo(name, cdfh->USize(), cdfh->MTime());
+				CFileInfo fileInfo(name, cdfh->USize(), cdfh->MTime());
 				shared_ptr<ArchiveFile_Zip> archiveFile(new ArchiveFile_Zip(m_file, cdfh->HeaderOffset(), cdfh->CSize(), cdfh->Checksum(), cdfh->Method()));
 				cb(relativePathname, fileInfo, archiveFile, cbData);
 			}
@@ -612,7 +612,7 @@ public:
 
 	Status AddFile(const OsPath& pathname, const OsPath& pathnameInArchive)
 	{
-		FileInfo fileInfo;
+		CFileInfo fileInfo;
 		RETURN_STATUS_IF_ERR(GetFileInfo(pathname, &fileInfo));
 
 		PFile file(new File);
@@ -623,12 +623,12 @@ public:
 
 	Status AddMemory(const u8* data, size_t size, time_t mtime, const OsPath& pathnameInArchive)
 	{
-		FileInfo fileInfo(pathnameInArchive, size, mtime);
+		CFileInfo fileInfo(pathnameInArchive, size, mtime);
 
 		return AddFileOrMemory(fileInfo, pathnameInArchive, PFile(), data);
 	}
 
-	Status AddFileOrMemory(const FileInfo& fileInfo, const OsPath& pathnameInArchive, const PFile& file, const u8* data)
+	Status AddFileOrMemory(const CFileInfo& fileInfo, const OsPath& pathnameInArchive, const PFile& file, const u8* data)
 	{
 		ENSURE((file && !data) || (data && !file));
 

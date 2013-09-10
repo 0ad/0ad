@@ -30,6 +30,7 @@
 
 #include "maths/MathUtil.h"
 #include "maths/NUSpline.h"
+#include "ps/CLogger.h"
 #include "ps/Loader.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/XMLWriter.h"
@@ -63,8 +64,16 @@ void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 	// build necessary data
 	PackMap(packer, pTerrain);
 
-	// write it out
-	packer.Write(pathname);
+	try
+	{
+		// write it out
+		packer.Write(pathname);
+	}
+	catch (PSERROR_File_WriteFailed&)
+	{
+		LOGERROR(L"Failed to write map '%ls'", pathname.string().c_str());
+		return;
+	}
 
 	VfsPath pathnameXML = pathname.ChangeExtension(L".xml");
 	WriteXML(pathnameXML, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pPostproc, pSimulation2);
@@ -170,7 +179,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 		packer.PackString(terrainTextures[i]);
 	
 	// pack tile data
-	packer.PackRaw(&tiles[0],sizeof(STileDesc)*tiles.size());	
+	packer.PackRaw(&tiles[0],sizeof(STileDesc)*tiles.size());
 }
 
 void CMapWriter::WriteXML(const VfsPath& filename,
@@ -444,8 +453,8 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			}
 		}
 	}
-	if (! XML_StoreVFS(g_VFS, filename))
-		DEBUG_WARN_ERR(ERR::LOGIC);	// failed to write map XML file
+	if (!XML_StoreVFS(g_VFS, filename))
+		LOGERROR(L"Failed to write map '%ls'", filename.string().c_str());
 }
 
 /*

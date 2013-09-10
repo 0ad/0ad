@@ -28,7 +28,7 @@
 #ifndef INCLUDED_VFS
 #define INCLUDED_VFS
 
-#include "lib/file/file_system.h"	// FileInfo
+#include "lib/file/file_system.h"	// CFileInfo
 #include "lib/file/vfs/vfs_path.h"
 
 namespace ERR
@@ -109,7 +109,7 @@ struct IVFS
 	 * 
 	 * @return Status.
 	 **/
-	virtual Status GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const = 0;
+	virtual Status GetFileInfo(const VfsPath& pathname, CFileInfo* pfileInfo) const = 0;
 
 	/**
 	 * Retrieve mount priority for a file.
@@ -132,7 +132,7 @@ struct IVFS
 	 * - we cannot efficiently provide routines for returning files and
 	 *   subdirectories separately due to the underlying POSIX interface.
 	 **/
-	virtual Status GetDirectoryEntries(const VfsPath& path, FileInfos* fileInfos, DirectoryNames* subdirectoryNames) const = 0;
+	virtual Status GetDirectoryEntries(const VfsPath& path, CFileInfos* fileInfos, DirectoryNames* subdirectoryNames) const = 0;
 
 	/**
 	 * Create a file with the given contents.

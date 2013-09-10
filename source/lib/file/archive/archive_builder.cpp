@@ -141,7 +141,7 @@ static IdMgr id_mgr;
 // optimizations like reading from vfs_tree container directly.
 class FileGatherer
 {
-	static void EntCb(const char* path, const FileInfo* ent, uintptr_t cbData)
+	static void EntCb(const char* path, const CFileInfo* ent, uintptr_t cbData)
 	{
 		FileNodes* file_nodes = (FileNodes*)cbData;
 
@@ -544,7 +544,7 @@ public:
 		archive_ext = path_extension(archive_fn);
 	}
 
-	bool operator()(FileInfo& ent) const
+	bool operator()(CFileInfo& ent) const
 	{
 		// remove if not file
 		if(ent.IsDirectory)

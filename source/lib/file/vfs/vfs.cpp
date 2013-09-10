@@ -77,7 +77,7 @@ public:
 		return INFO::OK;
 	}
 
-	virtual Status GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const
+	virtual Status GetFileInfo(const VfsPath& pathname, CFileInfo* pfileInfo) const
 	{
 		ScopedLock s;
 		VfsDirectory* directory; VfsFile* file;
@@ -85,7 +85,7 @@ public:
 		if(!pfileInfo)	// just indicate if the file exists without raising warnings.
 			return ret;
 		WARN_RETURN_STATUS_IF_ERR(ret);
-		*pfileInfo = FileInfo(file->Name(), file->Size(), file->MTime());
+		*pfileInfo = CFileInfo(file->Name(), file->Size(), file->MTime());
 		return INFO::OK;
 	}
 
@@ -98,7 +98,7 @@ public:
 		return INFO::OK;
 	}
 
-	virtual Status GetDirectoryEntries(const VfsPath& path, FileInfos* fileInfos, DirectoryNames* subdirectoryNames) const
+	virtual Status GetDirectoryEntries(const VfsPath& path, CFileInfos* fileInfos, DirectoryNames* subdirectoryNames) const
 	{
 		ScopedLock s;
 		VfsDirectory* directory;
@@ -112,7 +112,7 @@ public:
 			for(VfsDirectory::VfsFiles::const_iterator it = files.begin(); it != files.end(); ++it)
 			{
 				const VfsFile& file = it->second;
-				fileInfos->push_back(FileInfo(file.Name(), file.Size(), file.MTime()));
+				fileInfos->push_back(CFileInfo(file.Name(), file.Size(), file.MTime()));
 			}
 		}
 
@@ -132,7 +132,12 @@ public:
 	{
 		ScopedLock s;
 		VfsDirectory* directory;
-		WARN_RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_CREATE_ALWAYS));
+		Status st;
+		st = vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_CREATE_ALWAYS);
+		if (st == ERR::FILE_ACCESS)
+			return ERR::FILE_ACCESS;
+
+		WARN_RETURN_STATUS_IF_ERR(st);
 
 		const PRealDirectory& realDirectory = directory->AssociatedDirectory();
 		const OsPath name = pathname.Filename();
@@ -163,8 +168,8 @@ public:
 			s.~ScopedLock();
 			return CreateFile(pathname, fileContents, size);
 		}
-		else
-			WARN_RETURN_STATUS_IF_ERR(st);
+
+		WARN_RETURN_STATUS_IF_ERR(st);
 
 		RealDirectory realDirectory(file->Loader()->Path(), file->Priority(), directory->AssociatedDirectory()->Flags());
 		RETURN_STATUS_IF_ERR(realDirectory.Store(pathname.Filename(), fileContents, size));

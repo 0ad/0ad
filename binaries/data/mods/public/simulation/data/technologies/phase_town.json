@@ -3,5 +3,6 @@
 	"requirements": { "any": [{"tech":"phase_town_generic"}, {"tech":"phase_town_athen"}]},
 	"autoResearch": true,
 	"modifications": [{"value": "TerritoryInfluence/Radius", "multiplier": 1.30}],
-	"affects": ["CivCentre"]
+	"affects": ["CivCentre"],
+	"soundComplete": "interface/alarm/alarm_techcomplete.xml"
 }

@@ -173,7 +173,7 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 	}
 }
 
-Status CArchiveBuilder::CollectFileCB(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+Status CArchiveBuilder::CollectFileCB(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	CArchiveBuilder* self = static_cast<CArchiveBuilder*>((void*)cbData);
 	self->m_Files.push_back(pathname);

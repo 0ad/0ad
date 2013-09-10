@@ -484,10 +484,10 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 		{
 			this.entities.splice(entityIndex, 1);
 			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+			this.UpdateGarrisonFlag();
 		}
 		else if(!IsOwnedByMutualAllyOfEntity(this.entity, this.entities[entityIndex]))
 			this.EjectOrKill([this.entities[entityIndex]]);
-		this.UpdateGarrisonFlag();
 	}
 };
 
@@ -540,6 +540,7 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 			this.entities.splice(entityIndex, 1);
 			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 		}
+		this.UpdateGarrisonFlag();
 	}
 	else
 	{	// Building - force ejection

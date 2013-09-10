@@ -98,7 +98,7 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	archiveWriter.reset(); // close the file
 
 	WriteBuffer buffer;
-	FileInfo tempSaveFile;
+	CFileInfo tempSaveFile;
 	WARN_RETURN_STATUS_IF_ERR(GetFileInfo(tempSaveFileRealPath, &tempSaveFile));
 	buffer.Reserve(tempSaveFile.Size());
 	WARN_RETURN_STATUS_IF_ERR(io::Load(tempSaveFileRealPath, buffer.Data().get(), buffer.Size()));
@@ -123,12 +123,12 @@ public:
 	{
 	}
 
-	static void ReadEntryCallback(const VfsPath& pathname, const FileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData)
+	static void ReadEntryCallback(const VfsPath& pathname, const CFileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData)
 	{
 		((CGameLoader*)cbData)->ReadEntry(pathname, fileInfo, archiveFile);
 	}
 
-	void ReadEntry(const VfsPath& pathname, const FileInfo& fileInfo, PIArchiveFile archiveFile)
+	void ReadEntry(const VfsPath& pathname, const CFileInfo& fileInfo, PIArchiveFile archiveFile)
 	{
 		if (pathname == L"metadata.json" && m_Metadata)
 		{

@@ -39,7 +39,7 @@ namespace vfs {
 
 Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter, VfsPaths& pathnames)
 {
-	std::vector<FileInfo> files;
+	std::vector<CFileInfo> files;
 	RETURN_STATUS_IF_ERR(fs->GetDirectoryEntries(path, &files, 0));
 
 	pathnames.clear();
@@ -58,7 +58,7 @@ Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter,
 Status ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const wchar_t* pattern, size_t flags)
 {
 	// (declare here to avoid reallocations)
-	FileInfos files; DirectoryNames subdirectoryNames;
+	CFileInfos files; DirectoryNames subdirectoryNames;
 
 	// (a FIFO queue is more efficient than recursion because it uses less
 	// stack space and avoids seeks due to breadth-first traversal.)
@@ -72,11 +72,11 @@ Status ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, u
 
 		for(size_t i = 0; i < files.size(); i++)
 		{
-			const FileInfo fileInfo = files[i];
+			const CFileInfo fileInfo = files[i];
 			if(!match_wildcard(fileInfo.Name().string().c_str(), pattern))
 				continue;
 
-			const VfsPath pathname(path / fileInfo.Name());	// (FileInfo only stores the name)
+			const VfsPath pathname(path / fileInfo.Name());	// (CFileInfo only stores the name)
 			cb(pathname, fileInfo, cbData);
 		}
 
@@ -105,7 +105,7 @@ void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t
 		const VfsPath path = pathnameFormat.Parent()/"";
 
 		size_t maxNumber = 0;
-		FileInfos files;
+		CFileInfos files;
 		fs->GetDirectoryEntries(path, &files, 0);
 		for(size_t i = 0; i < files.size(); i++)
 		{

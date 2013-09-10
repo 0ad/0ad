@@ -1494,13 +1494,15 @@
 			<Orientation y="-2.08684"/>
 		</Entity>
 		<Entity uid="598">
-			<Template>actor|props/special/eyecandy/bridge_edge_hele.xml</Template>
-			<Position x="1358.20044" z="634.0243"/>
+			<Template>other/bridge_hele</Template>
+			<Player>0</Player>
+			<Position x="1369.75806" z="640.25141"/>
 			<Orientation y="-2.35868"/>
 		</Entity>
 		<Entity uid="599">
-			<Template>actor|props/special/eyecandy/bridge_edge_hele.xml</Template>
-			<Position x="1382.19764" z="657.86756"/>
+			<Template>other/bridge_hele</Template>
+			<Player>0</Player>
+			<Position x="1375.65699" z="646.32117"/>
 			<Orientation y="0.78431"/>
 		</Entity>
 		<Entity uid="600">
@@ -2770,12 +2772,14 @@
 			<Orientation y="-2.31571"/>
 		</Entity>
 		<Entity uid="833">
-			<Template>actor|props/special/eyecandy/bridge_edge_wooden.xml</Template>
+			<Template>other/bridge_wooden</Template>
+			<Player>0</Player>
 			<Position x="815.3263" z="776.36982"/>
 			<Orientation y="-1.57053"/>
 		</Entity>
 		<Entity uid="834">
-			<Template>actor|props/special/eyecandy/bridge_edge_wooden.xml</Template>
+			<Template>other/bridge_wooden</Template>
+			<Player>0</Player>
 			<Position x="820.74518" z="776.95618"/>
 			<Orientation y="1.5738"/>
 		</Entity>
