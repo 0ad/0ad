@@ -20,6 +20,8 @@
 #include "ISoundManager.h"
 #include "SoundManager.h"
 
+#include "ps/Filesystem.h"
+
 #include "soundmanager/data/SoundData.h"
 #include "soundmanager/items/CSoundItem.h"
 #include "soundmanager/items/CBufferItem.h"
@@ -208,7 +210,8 @@ private:
 
 void ISoundManager::CreateSoundManager()
 {
-	g_SoundManager = new CSoundManager();
+	if ( !g_SoundManager )
+		g_SoundManager = new CSoundManager();
 }
 
 void ISoundManager::SetEnabled(bool doEnable)
@@ -217,7 +220,7 @@ void ISoundManager::SetEnabled(bool doEnable)
 	{
 		SAFE_DELETE(g_SoundManager);
 	}
-	else if ( ! g_SoundManager && doEnable ) 
+	else if ( !g_SoundManager && doEnable ) 
 	{
 		ISoundManager::CreateSoundManager();
 	}
@@ -238,6 +241,18 @@ void CSoundManager::al_check(const char* caller, int line)
 	ALenum err = alGetError();
 	if (err != AL_NO_ERROR)
 		al_ReportError(err, caller, line);
+}
+
+Status CSoundManager::ReloadChangedFiles(const VfsPath& UNUSED(path))
+{
+//	LOGERROR(L"GUI file '%ls' changed - reloading page", path.string().c_str());
+
+	return INFO::OK;
+}
+
+/*static*/ Status CSoundManager::ReloadChangedFileCB(void* param, const VfsPath& path)
+{
+	return static_cast<CSoundManager*>(param)->ReloadChangedFiles(path);
 }
 
 CSoundManager::CSoundManager()
@@ -282,10 +297,14 @@ CSoundManager::CSoundManager()
 		m_Worker = new CSoundManagerWorker();
 		m_Worker->SetEnabled( true );
 	}
+
+	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
 CSoundManager::~CSoundManager()
 {
+	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
+
 	if (m_Worker )
 	{
 		AL_CHECK
@@ -649,11 +668,14 @@ void CSoundManager::PlayGroupItem(ISoundItem* anItem, ALfloat groupGain )
 
 void CSoundManager::SetMusicEnabled (bool isEnabled)
 {
+	LOGERROR(L"entering enabled area", isEnabled);
+
 	if (m_CurrentTune && !isEnabled)
 	{
 		m_CurrentTune->FadeAndDelete(1.00);
 		m_CurrentTune = 0L;
 	}
+	LOGERROR(L"exiting enabled area", isEnabled);
 	m_MusicEnabled = isEnabled;
 }
 

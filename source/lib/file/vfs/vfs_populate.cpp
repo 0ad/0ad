@@ -41,7 +41,7 @@ static size_t s_numArchivedFiles;
 
 struct CompareFileInfoByName
 {
-	bool operator()(const FileInfo& a, const FileInfo& b)
+	bool operator()(const CFileInfo& a, const CFileInfo& b)
 	{
 		return a.Name() < b.Name();
 	}
@@ -64,7 +64,7 @@ public:
 		s_looseFiles.reserve(10000);
 #endif
 
-		FileInfos files; files.reserve(500);
+		CFileInfos files; files.reserve(500);
 		DirectoryNames subdirectoryNames; subdirectoryNames.reserve(50);
 		RETURN_STATUS_IF_ERR(GetDirectoryEntries(m_realDirectory->Path(), &files, &subdirectoryNames));
 
@@ -82,7 +82,7 @@ public:
 	}
 
 private:
-	void AddFile(const FileInfo& fileInfo) const
+	void AddFile(const CFileInfo& fileInfo) const
 	{
 		const VfsPath name = fileInfo.Name();
 		if(name.Extension() == L".DELETED")
@@ -108,7 +108,7 @@ private:
 #endif
 	}
 
-	static void AddArchiveFile(const VfsPath& pathname, const FileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData)
+	static void AddArchiveFile(const VfsPath& pathname, const CFileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData)
 	{
 		PopulateHelper* this_ = (PopulateHelper*)cbData;
 
@@ -133,7 +133,7 @@ private:
 #endif
 	}
 
-	Status AddFiles(const FileInfos& files) const
+	Status AddFiles(const CFileInfos& files) const
 	{
 		const OsPath path(m_realDirectory->Path());
 

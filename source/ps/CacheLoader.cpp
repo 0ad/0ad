@@ -95,7 +95,7 @@ bool CCacheLoader::CanUseArchiveCache(const VfsPath& sourcePath, const VfsPath& 
 
 	// If source file is more recent than the archive cache (i.e. the user has edited it),
 	// don't use the old cache
-	FileInfo sourceInfo, archiveCacheInfo;
+	CFileInfo sourceInfo, archiveCacheInfo;
 	if (m_VFS->GetFileInfo(sourcePath, &sourceInfo) >= 0 &&
 		m_VFS->GetFileInfo(archiveCachePath, &archiveCacheInfo) >= 0)
 	{
@@ -116,7 +116,7 @@ VfsPath CCacheLoader::ArchiveCachePath(const VfsPath& sourcePath)
 
 VfsPath CCacheLoader::LooseCachePath(const VfsPath& sourcePath, const MD5& initialHash, u32 version)
 {
-	FileInfo fileInfo;
+	CFileInfo fileInfo;
 	if (m_VFS->GetFileInfo(sourcePath, &fileInfo) < 0)
 	{
 		debug_warn(L"source file disappeared"); // this should never happen

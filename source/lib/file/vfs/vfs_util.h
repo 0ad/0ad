@@ -37,7 +37,7 @@ extern Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* 
 /**
  * called for files in a directory.
  *
- * @param pathname full pathname (since FileInfo only gives the name).
+ * @param pathname full pathname (since CFileInfo only gives the name).
  * @param fileInfo file information
  * @param cbData user-specified context
  * @return INFO::CONTINUE on success; any other value will immediately
@@ -46,7 +46,7 @@ extern Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* 
  * CAVEAT: pathname and fileInfo are only valid until the function
  * returns!
  **/
-typedef Status (*FileCallback)(const VfsPath& pathname, const FileInfo& fileInfo, const uintptr_t cbData);
+typedef Status (*FileCallback)(const VfsPath& pathname, const CFileInfo& fileInfo, const uintptr_t cbData);
 
 enum DirFlags
 {

@@ -29,7 +29,7 @@
 
 #include <map>
 
-#include "lib/file/file_system.h"	// FileInfo
+#include "lib/file/file_system.h"	// CFileInfo
 #include "lib/file/common/file_loader.h"	// PIFileLoader
 #include "lib/file/common/real_directory.h"	// PRealDirectory
 #include "lib/file/vfs/vfs_path.h"

@@ -77,7 +77,7 @@ public:
 		return INFO::OK;
 	}
 
-	virtual Status GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const
+	virtual Status GetFileInfo(const VfsPath& pathname, CFileInfo* pfileInfo) const
 	{
 		ScopedLock s;
 		VfsDirectory* directory; VfsFile* file;
@@ -85,7 +85,7 @@ public:
 		if(!pfileInfo)	// just indicate if the file exists without raising warnings.
 			return ret;
 		WARN_RETURN_STATUS_IF_ERR(ret);
-		*pfileInfo = FileInfo(file->Name(), file->Size(), file->MTime());
+		*pfileInfo = CFileInfo(file->Name(), file->Size(), file->MTime());
 		return INFO::OK;
 	}
 
@@ -98,7 +98,7 @@ public:
 		return INFO::OK;
 	}
 
-	virtual Status GetDirectoryEntries(const VfsPath& path, FileInfos* fileInfos, DirectoryNames* subdirectoryNames) const
+	virtual Status GetDirectoryEntries(const VfsPath& path, CFileInfos* fileInfos, DirectoryNames* subdirectoryNames) const
 	{
 		ScopedLock s;
 		VfsDirectory* directory;
@@ -112,7 +112,7 @@ public:
 			for(VfsDirectory::VfsFiles::const_iterator it = files.begin(); it != files.end(); ++it)
 			{
 				const VfsFile& file = it->second;
-				fileInfos->push_back(FileInfo(file.Name(), file.Size(), file.MTime()));
+				fileInfos->push_back(CFileInfo(file.Name(), file.Size(), file.MTime()));
 			}
 		}
 

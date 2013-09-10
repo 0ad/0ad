@@ -29,7 +29,7 @@ namespace RunFColladaTests
 
 			// test for file existence
 			String fullName = path + exe;
-			FileInfo file = new FileInfo( fullName );
+			CFileInfo file = new CFileInfo( fullName );
 			
 			Assert.IsTrue( file.Exists, "Unable to find executable : " + fullName );
 
@@ -50,7 +50,7 @@ namespace RunFColladaTests
 			String procErr = proc.StandardError.ReadToEnd();
 			Assert.IsTrue( (procErr.Length == 0), procErr );
 
-			FileInfo outFile = new FileInfo( path + outputName );
+			CFileInfo outFile = new CFileInfo( path + outputName );
 
 			// test for outFile existence
 			Assert.IsTrue( outFile.Exists, exe + " was unable to create output file." );

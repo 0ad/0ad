@@ -62,7 +62,7 @@ u64 FileSize(const OsPath& pathname)
 }
 
 
-Status GetFileInfo(const OsPath& pathname, FileInfo* pfileInfo)
+Status GetFileInfo(const OsPath& pathname, CFileInfo* pPtrInfo)
 {
 	errno = 0;
 	struct stat s;
@@ -70,7 +70,7 @@ Status GetFileInfo(const OsPath& pathname, FileInfo* pfileInfo)
 	if(wstat(pathname, &s) != 0)
 		WARN_RETURN(StatusFromErrno());
 
-	*pfileInfo = FileInfo(pathname.Filename(), s.st_size, s.st_mtime);
+	*pPtrInfo = CFileInfo(pathname.Filename(), s.st_size, s.st_mtime);
 	return INFO::OK;
 }
 
@@ -84,7 +84,7 @@ struct DirDeleter
 	}
 };
 
-Status GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames)
+Status GetDirectoryEntries(const OsPath& path, CFileInfos* files, DirectoryNames* subdirectoryNames)
 {
 	// open directory
 	errno = 0;
@@ -123,7 +123,7 @@ Status GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryNames*
 #endif
 
 		if(files && S_ISREG(s.st_mode))
-			files->push_back(FileInfo(name, s.st_size, s.st_mtime));
+			files->push_back(CFileInfo(name, s.st_size, s.st_mtime));
 		else if(subdirectoryNames && S_ISDIR(s.st_mode) && name != L"." && name != L"..")
 			subdirectoryNames->push_back(name);
 	}
@@ -166,7 +166,7 @@ Status DeleteDirectory(const OsPath& path)
 	// note: we have to recursively empty the directory before it can
 	// be deleted (required by Windows and POSIX rmdir()).
 
-	FileInfos files; DirectoryNames subdirectoryNames;
+	CFileInfos files; DirectoryNames subdirectoryNames;
 	RETURN_STATUS_IF_ERR(GetDirectoryEntries(path, &files, &subdirectoryNames));
 
 	// delete files

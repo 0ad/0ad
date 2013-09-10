@@ -245,7 +245,7 @@ private:
 	static CScriptVal ReadJSONFile(void *cbdata, std::wstring filePath, std::wstring fileName);
 	
 	// callback function to handle recursively finding files in a directory
-	static Status FindJSONFilesCallback(const VfsPath&, const FileInfo&, const uintptr_t);
+	static Status FindJSONFilesCallback(const VfsPath&, const CFileInfo&, const uintptr_t);
 
 	CMessage* ConstructMessage(int mtid, CScriptVal data);
 	void SendGlobalMessage(entity_id_t ent, const CMessage& msg) const;

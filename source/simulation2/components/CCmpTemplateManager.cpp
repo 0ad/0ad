@@ -429,7 +429,7 @@ void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, C
 	CParamNode::LoadXMLString(out, xml.c_str(), actorNameW.c_str());
 }
 
-static Status AddToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+static Status AddToTemplates(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
 
@@ -446,7 +446,7 @@ static Status AddToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(fil
 	return INFO::OK;
 }
 
-static Status AddActorToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+static Status AddActorToTemplates(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
 

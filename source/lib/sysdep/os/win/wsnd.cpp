@@ -55,7 +55,7 @@ typedef std::set<Path::String> StringSet;
 // same name in the system directory.
 static void add_oal_dlls_in_dir(const OsPath& path, StringSet& dlls, VersionList& versionList)
 {
-	FileInfos files;
+	CFileInfos files;
 	(void)GetDirectoryEntries(path, &files, 0);
 	for(size_t i = 0; i < files.size(); i++)
 	{

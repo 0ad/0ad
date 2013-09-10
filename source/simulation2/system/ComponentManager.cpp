@@ -962,7 +962,7 @@ CScriptVal CComponentManager::ReadJSONFile(void* cbdata, std::wstring filePath, 
 	return componentManager->GetScriptInterface().ReadJSONFile(path).get();
 }
 	
-Status CComponentManager::FindJSONFilesCallback(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+Status CComponentManager::FindJSONFilesCallback(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	FindJSONFilesCallbackData* data = (FindJSONFilesCallbackData*)cbData;
 	

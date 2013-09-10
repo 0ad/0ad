@@ -57,7 +57,7 @@ public:
 	void Build(const OsPath& archive, bool compress);
 
 private:
-	static Status CollectFileCB(const VfsPath& pathname, const FileInfo& fileInfo, const uintptr_t cbData);
+	static Status CollectFileCB(const VfsPath& pathname, const CFileInfo& fileInfo, const uintptr_t cbData);
 
 	PIVFS m_VFS;
 	std::vector<VfsPath> m_Files;

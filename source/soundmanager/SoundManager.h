@@ -102,6 +102,8 @@ public:
 	ISoundItem* ItemForData(CSoundData* itemData);
 	ISoundItem* ItemForEntity( entity_id_t source, CSoundData* sndData);
 
+	Status ReloadChangedFiles(const VfsPath& path);
+
 	void ClearPlayListItems();
 	void StartPlayList( bool doLoop );
 	void AddPlayListItem( const VfsPath* itemPath);
@@ -109,6 +111,8 @@ public:
 	static void ScriptingInit();
 	static void CreateSoundManager();
 	static void SetEnabled(bool doEnable);
+	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
+
 	static void CloseGame();
 
 	static void al_ReportError(ALenum err, const char* caller, int line);

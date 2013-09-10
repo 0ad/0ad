@@ -176,7 +176,7 @@ bool CDebuggingServer::GetSettingSimultaneousThreadBreak()
 }
 
 
-static Status AddFileResponse(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+static Status AddFileResponse(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
 	std::wstring str(pathname.string());
