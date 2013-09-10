@@ -358,7 +358,8 @@ std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(void* cbdata
 	std::vector<int> ret;
 	const InterfaceListUnordered& ents = componentManager->GetEntitiesWithInterfaceUnordered(iid);
 	for (InterfaceListUnordered::const_iterator it = ents.begin(); it != ents.end(); ++it)
-		ret.push_back(it->first); // TODO: maybe we should exclude local entities
+		if (!ENTITY_IS_LOCAL(it->first))
+			ret.push_back(it->first);
 	std::sort(ret.begin(), ret.end());
 	return ret;
 }
