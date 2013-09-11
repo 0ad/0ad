@@ -290,7 +290,7 @@ BuildingAI.prototype.FireArrows = function()
 	{
 		var target = this.targetUnits[i],
 		    weight = (cmpAttack.GetPreference(target) || 0) + 1
-		targets.add(target, weight);
+		targets.push(target, weight);
 	}
 	for (var i = 0;i < arrowsToFire;i++)
 	{
