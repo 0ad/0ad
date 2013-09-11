@@ -124,6 +124,22 @@ public:
 	std::string LookupComponentTypeName(ComponentTypeId cid) const;
 
 	/**
+	 * Set up an empty SYSTEM_ENTITY. Must be called after ResetState() and before GetSystemEntity().
+	 */
+	void InitSystemEntity();
+
+	/**
+	 * Returns a CEntityHandle with id SYSTEM_ENTITY.
+	 */
+	CEntityHandle GetSystemEntity() { ASSERT(m_SystemEntity.GetId() == SYSTEM_ENTITY); return m_SystemEntity; }
+
+	/**
+	 * Returns a CEntityHandle with id @p ent.
+	 * If @p allowCreate is true and there is no existing CEntityHandle, a new handle will be allocated.
+	 */
+	CEntityHandle LookupEntityHandle(entity_id_t ent, bool allowCreate = false);
+
+	/**
 	 * Returns a new entity ID that has never been used before.
 	 * This affects the simulation state so it must only be called in network-synchronised ways.
 	 */
@@ -148,7 +164,7 @@ public:
 	 *
 	 * @return true on success; false on failure, and logs an error message
 	 */
-	bool AddComponent(entity_id_t ent, ComponentTypeId cid, const CParamNode& paramNode);
+	bool AddComponent(CEntityHandle ent, ComponentTypeId cid, const CParamNode& paramNode);
 
 	/**
 	 * Adds an externally-created component, so that it is returned by QueryInterface
@@ -156,14 +172,14 @@ public:
 	 * (This is intended for unit tests that need to add mock objects the tested components
 	 * expect to exist.)
 	 */
-	void AddMockComponent(entity_id_t ent, InterfaceId iid, IComponent& component);
+	void AddMockComponent(CEntityHandle ent, InterfaceId iid, IComponent& component);
 
 	/**
 	 * Allocates a component object of type 'cid', and attaches it to entity 'ent'.
 	 * (The component's Init is not called here - either Init or Deserialize must be called
 	 * before using the returned object.)
 	 */
-	IComponent* ConstructComponent(entity_id_t ent, ComponentTypeId cid);
+	IComponent* ConstructComponent(CEntityHandle ent, ComponentTypeId cid);
 
 	/**
 	 * Constructs an entity based on the given template, and adds it the world with
@@ -252,8 +268,12 @@ private:
 
 	ComponentTypeId GetScriptWrapper(InterfaceId iid);
 
+	CEntityHandle AllocateEntityHandle(entity_id_t ent);
+
 	ScriptInterface m_ScriptInterface;
-	const CSimContext& m_SimContext;
+	CSimContext& m_SimContext;
+
+	CEntityHandle m_SystemEntity;
 
 	ComponentTypeId m_CurrentComponent; // used when loading component types
 	bool m_CurrentlyHotloading;
@@ -268,6 +288,8 @@ private:
 	std::map<std::string, MessageTypeId> m_MessageTypeIdsByName;
 	std::map<MessageTypeId, std::string> m_MessageTypeNamesById;
 	std::map<std::string, InterfaceId> m_InterfaceIdsByName;
+
+	std::map<entity_id_t, SEntityComponentCache*> m_ComponentCaches;
 
 	// TODO: maintaining both ComponentsBy* is nasty; can we get rid of one,
 	// while keeping QueryInterface and PostMessage sufficiently efficient?

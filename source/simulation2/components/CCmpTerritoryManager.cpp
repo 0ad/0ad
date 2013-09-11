@@ -336,7 +336,7 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 	PROFILE("CalculateTerritories");
 
-	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 
 	// If the terrain hasn't been loaded (e.g. this is called during map initialisation),
 	// abort the computation (and assume callers can cope with m_Territories == NULL)
@@ -351,7 +351,7 @@ void CCmpTerritoryManager::CalculateTerritories()
 	// Compute terrain-passability-dependent costs per tile
 	Grid<u8> influenceGrid(tilesW, tilesH);
 
-	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 	ICmpPathfinder::pass_class_t passClassDefault = cmpPathfinder->GetPassabilityClass("default");
 	ICmpPathfinder::pass_class_t passClassUnrestricted = cmpPathfinder->GetPassabilityClass("unrestricted");
 
@@ -628,7 +628,7 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 	texturePropsMask.SetMaxAnisotropy(2.f);
 	CTexturePtr textureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
 
-	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
 	if (!cmpPlayerManager)
 		return;
 

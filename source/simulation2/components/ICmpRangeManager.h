@@ -303,6 +303,7 @@ public:
 	 * TODO: This is a hack to allow preview entities in FoW to return fogged instead of hidden,
 	 *	see http://trac.wildfiregames.com/ticket/958
 	 */
+	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player, bool forceRetainInFog = false) = 0;
 	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player, bool forceRetainInFog = false) = 0;
 
 	/**

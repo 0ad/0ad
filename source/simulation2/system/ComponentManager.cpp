@@ -468,6 +468,13 @@ void CComponentManager::ResetState()
 
 	m_ComponentsByTypeId.clear();
 
+	// Delete all SEntityComponentCaches
+	std::map<entity_id_t, SEntityComponentCache*>::iterator ccit = m_ComponentCaches.begin();
+	for (; ccit != m_ComponentCaches.end(); ++ccit)
+		free(ccit->second);
+	m_ComponentCaches.clear();
+	m_SystemEntity = CEntityHandle();
+
 	m_DestructionQueue.clear();
 
 	// Reset IDs
@@ -573,7 +580,7 @@ entity_id_t CComponentManager::AllocateNewEntity(entity_id_t preferredId)
 	return id;
 }
 
-bool CComponentManager::AddComponent(entity_id_t ent, ComponentTypeId cid, const CParamNode& paramNode)
+bool CComponentManager::AddComponent(CEntityHandle ent, ComponentTypeId cid, const CParamNode& paramNode)
 {
 	IComponent* component = ConstructComponent(ent, cid);
 	if (!component)
@@ -583,7 +590,7 @@ bool CComponentManager::AddComponent(entity_id_t ent, ComponentTypeId cid, const
 	return true;
 }
 
-IComponent* CComponentManager::ConstructComponent(entity_id_t ent, ComponentTypeId cid)
+IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTypeId cid)
 {
 	std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.find(cid);
 	if (it == m_ComponentTypesById.end())
@@ -597,7 +604,7 @@ IComponent* CComponentManager::ConstructComponent(entity_id_t ent, ComponentType
 	ENSURE((size_t)ct.iid < m_ComponentsByInterface.size());
 
 	boost::unordered_map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface[ct.iid];
-	if (emap1.find(ent) != emap1.end())
+	if (emap1.find(ent.GetId()) != emap1.end())
 	{
 		LOGERROR(L"Multiple components for interface %d", ct.iid);
 		return NULL;
@@ -621,30 +628,75 @@ IComponent* CComponentManager::ConstructComponent(entity_id_t ent, ComponentType
 	IComponent* component = ct.alloc(m_ScriptInterface, obj);
 	ENSURE(component);
 
-	component->SetEntityId(ent);
+	component->SetEntityHandle(ent);
 	component->SetSimContext(m_SimContext);
 
 	// Store a reference to the new component
-	emap1.insert(std::make_pair(ent, component));
-	emap2.insert(std::make_pair(ent, component));
+	emap1.insert(std::make_pair(ent.GetId(), component));
+	emap2.insert(std::make_pair(ent.GetId(), component));
 	// TODO: We need to more careful about this - if an entity is constructed by a component
 	// while we're iterating over all components, this will invalidate the iterators and everything
 	// will break.
 	// We probably need some kind of delayed addition, so they get pushed onto a queue and then
 	// inserted into the world later on. (Be careful about immediation deletion in that case, too.)
 
+	SEntityComponentCache* cache = ent.GetComponentCache();
+	ENSURE(cache != NULL && ct.iid < (int)cache->numInterfaces && cache->interfaces[ct.iid] == NULL);
+	cache->interfaces[ct.iid] = component;
+
 	return component;
 }
 
-void CComponentManager::AddMockComponent(entity_id_t ent, InterfaceId iid, IComponent& component)
+void CComponentManager::AddMockComponent(CEntityHandle ent, InterfaceId iid, IComponent& component)
 {
 	// Just add it into the by-interface map, not the by-component-type map,
 	// so it won't be considered for messages or deletion etc
 
 	boost::unordered_map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface.at(iid);
-	if (emap1.find(ent) != emap1.end())
+	if (emap1.find(ent.GetId()) != emap1.end())
 		debug_warn(L"Multiple components for interface");
-	emap1.insert(std::make_pair(ent, &component));
+	emap1.insert(std::make_pair(ent.GetId(), &component));
+
+	SEntityComponentCache* cache = ent.GetComponentCache();
+	ENSURE(cache != NULL && iid < (int)cache->numInterfaces && cache->interfaces[iid] == NULL);
+	cache->interfaces[iid] = &component;
+}
+
+CEntityHandle CComponentManager::AllocateEntityHandle(entity_id_t ent)
+{
+	// Interface IDs start at 1, and SEntityComponentCache is defined with a 1-sized array,
+	// so we need space for an extra m_InterfaceIdsByName.size() items
+	SEntityComponentCache* cache = (SEntityComponentCache*)calloc(1,
+		sizeof(SEntityComponentCache) + sizeof(IComponent*) * m_InterfaceIdsByName.size());
+	ENSURE(cache != NULL);
+	cache->numInterfaces = m_InterfaceIdsByName.size() + 1;
+
+	ENSURE(m_ComponentCaches.find(ent) == m_ComponentCaches.end());
+	m_ComponentCaches[ent] = cache;
+
+	return CEntityHandle(ent, cache);
+}
+
+CEntityHandle CComponentManager::LookupEntityHandle(entity_id_t ent, bool allowCreate)
+{
+	std::map<entity_id_t, SEntityComponentCache*>::iterator it;
+	it = m_ComponentCaches.find(ent);
+	if (it == m_ComponentCaches.end())
+	{
+		if (allowCreate)
+			return AllocateEntityHandle(ent);
+		else
+			return CEntityHandle(ent, NULL);
+	}
+	else
+		return CEntityHandle(ent, it->second);
+}
+
+void CComponentManager::InitSystemEntity()
+{
+	ENSURE(m_SystemEntity.GetId() == INVALID_ENTITY);
+	m_SystemEntity = AllocateEntityHandle(SYSTEM_ENTITY);
+	m_SimContext.SetSystemEntity(m_SystemEntity);
 }
 
 entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entity_id_t ent)
@@ -662,6 +714,8 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 	if (!tmpl)
 		return INVALID_ENTITY; // LoadTemplate will have reported the error
 
+	CEntityHandle handle = AllocateEntityHandle(ent);
+
 	// Construct a component for each child of the root element
 	const CParamNode::ChildrenMap& tmplChilds = tmpl->GetChildren();
 	for (CParamNode::ChildrenMap::const_iterator it = tmplChilds.begin(); it != tmplChilds.end(); ++it)
@@ -677,12 +731,11 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 			return INVALID_ENTITY;
 		}
 
-		if (!AddComponent(ent, cid, it->second))
+		if (!AddComponent(handle, cid, it->second))
 		{
 			LOGERROR(L"Failed to construct component type name '%hs' in entity template '%ls'", it->first.c_str(), templateName.c_str());
 			return INVALID_ENTITY;
 		}
-
 		// TODO: maybe we should delete already-constructed components if one of them fails?
 	}
 
@@ -699,7 +752,7 @@ void CComponentManager::DestroyComponentsSoon(entity_id_t ent)
 
 void CComponentManager::FlushDestroyedComponents()
 {
-	while(!m_DestructionQueue.empty())
+	while (!m_DestructionQueue.empty())
 	{
 		// Make a copy of the destruction queue, so that the iterators won't be invalidated if the
 		// CMessageDestroy handlers try to destroy more entities themselves
@@ -709,6 +762,7 @@ void CComponentManager::FlushDestroyedComponents()
 		for (std::vector<entity_id_t>::iterator it = queue.begin(); it != queue.end(); ++it)
 		{
 			entity_id_t ent = *it;
+			CEntityHandle handle = LookupEntityHandle(ent);
 
 			CMessageDestroy msg(ent);
 			PostMessage(ent, msg);
@@ -723,8 +777,12 @@ void CComponentManager::FlushDestroyedComponents()
 					eit->second->Deinit();
 					m_ComponentTypesById[iit->first].dealloc(eit->second);
 					iit->second.erase(ent);
+					handle.GetComponentCache()->interfaces[m_ComponentTypesById[iit->first].iid] = NULL;
 				}
 			}
+
+			free(handle.GetComponentCache());
+			m_ComponentCaches.erase(ent);
 
 			// Remove from m_ComponentsByInterface
 			std::vector<boost::unordered_map<entity_id_t, IComponent*> >::iterator ifcit = m_ComponentsByInterface.begin();

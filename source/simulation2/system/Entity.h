@@ -21,6 +21,8 @@
 
 #include "lib/types.h"
 
+class IComponent;
+
 /**
  * Entity ID type.
  * ID numbers are never reused within a simulation run.
@@ -58,5 +60,38 @@ const entity_id_t SYSTEM_ENTITY = 1;
 #define ENTITY_IS_LOCAL(id) (((id) & ENTITY_TAGMASK) == ENTITY_TAGMASK)
 const entity_id_t FIRST_LOCAL_ENTITY = ENTITY_TAGMASK;
 
+struct SEntityComponentCache
+{
+	size_t numInterfaces;
+	IComponent* interfaces[1]; /* variable length array */
+};
+
+/**
+ * Object wrapping an entity_id_t, with a SEntityComponentCache to support fast
+ * QueryInterface() / CmpPtr<>() calls.
+ *
+ * Components can use IComponent::GetSystemEntity() and IComponent::GetEntityHandle()
+ * to get handles to SYSTEM_ENTITY and themselves, and then pass those handles around.
+ *
+ * Be careful not to store a CEntityHandle for longer than the lifetime of the entity
+ * (listen to MT_Destroy messages to know when to release it) - otherwise the handle will
+ * contain a dangling pointer and will probably crash.
+ */
+class CEntityHandle
+{
+public:
+	CEntityHandle() : m_Id(0), m_ComponentCache(NULL) { }
+	CEntityHandle(entity_id_t id, SEntityComponentCache* componentCache)
+		: m_Id(id), m_ComponentCache(componentCache)
+	{
+	}
+
+	entity_id_t GetId() const { return m_Id; }
+	SEntityComponentCache* GetComponentCache() const { return m_ComponentCache; }
+
+private:
+	entity_id_t m_Id;
+	SEntityComponentCache* m_ComponentCache;
+};
 
 #endif // INCLUDED_SIM2_ENTITY

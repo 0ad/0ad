@@ -130,11 +130,11 @@ public:
 
 		const CFixedVector3D error(fixed::FromInt(-1), fixed::FromInt(-1), fixed::FromInt(-1));
 
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition || !cmpPosition->IsInWorld())
 			return error;
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 		if (!cmpObstructionManager)
 			return error;
 
@@ -155,7 +155,7 @@ public:
 			return error;
 
 		ICmpPathfinder::pass_class_t spawnedPass = cmpUnitMotion->GetPassabilityClass();
-		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (!cmpPathfinder)
 			return error;
 		

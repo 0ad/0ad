@@ -580,7 +580,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	}
 
 	// Find all the obstruction squares that might affect us
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	std::vector<ICmpObstructionManager::ObstructionSquare> squares;
 	cmpObstructionManager->GetObstructionsInRange(filter, rangeXMin - r, rangeZMin - r, rangeXMax + r, rangeZMax + r, squares);
 
@@ -854,7 +854,7 @@ bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r,
 	pass_class_t passClass)
 {
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	if (!cmpObstructionManager)
 		return false;
 

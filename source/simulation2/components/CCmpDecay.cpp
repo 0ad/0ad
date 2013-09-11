@@ -136,7 +136,7 @@ public:
 
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 
-			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 			if (!cmpPosition || !cmpPosition->IsInWorld())
 			{
 				// If there's no position (this usually shouldn't happen), destroy the unit immediately
@@ -151,7 +151,7 @@ public:
 			{
 				m_TotalSinkDepth = 1.f; // minimum so we always sink at least a little
 
-				CmpPtr<ICmpVisual> cmpVisual(GetSimContext(), GetEntityId());
+				CmpPtr<ICmpVisual> cmpVisual(GetEntityHandle());
 				if (cmpVisual)
 				{
 					CBoundingBoxAligned bound = cmpVisual->GetBounds();
@@ -163,7 +163,7 @@ public:
 
 				CFixedVector3D pos = cmpPosition->GetPosition();
 
-				CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+				CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 				if (cmpTerrain)
 				{
 					fixed ground = cmpTerrain->GetGroundLevel(pos.X, pos.Z);

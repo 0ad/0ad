@@ -500,14 +500,14 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 		}
 
 		// set rally point flag selection based on player civilization
-		CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
 		if (cmpOwnership)
 		{
 			player_id_t ownerId = cmpOwnership->GetOwner();
 			if (ownerId != INVALID_PLAYER && (ownerId != previousOwner || m_LastMarkerCount < i))
 			{
 				m_LastOwner = ownerId;
-				CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+				CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
 				// cmpPlayerManager should not be null as long as this method is called on-demand instead of at Init() time
 				// (we can't rely on component initialization order in Init())
 				if (cmpPlayerManager)
@@ -542,12 +542,12 @@ void CCmpRallyPointRenderer::RecomputeAllRallyPointPaths()
 	if (!IsSet())
 		return; // no use computing a path if the rally point isn't set
 
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return; // no point going on if this entity doesn't have a position or is outside of the world
 
-	CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), GetEntityId());
-	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpFootprint> cmpFootprint(GetEntityHandle());
+	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 
 	for (size_t i = 0; i < m_RallyPoints.size(); ++i)
 	{
@@ -560,12 +560,12 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath_wrapper(size_t index)
 	if (!IsSet())
 		return; // no use computing a path if the rally point isn't set
 
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return; // no point going on if this entity doesn't have a position or is outside of the world
 
-	CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), GetEntityId());
-	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpFootprint> cmpFootprint(GetEntityHandle());
+	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 
 	RecomputeRallyPointPath(index, cmpPosition, cmpFootprint, cmpPathfinder);
 }
@@ -726,7 +726,7 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 	if (m_Path[index].size() < 2)
 		return;
 
-	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 	LineCapType dashesLineCapType = SOverlayTexturedLine::LINECAP_ROUND; // line caps to use for the dashed segments (and any other segment's edges that border it)
 
 	for (std::deque<SVisibilitySegment>::const_iterator it = m_VisibilitySegments[index].begin(); it != m_VisibilitySegments[index].end(); ++it)
@@ -984,9 +984,9 @@ void CCmpRallyPointRenderer::FixFootprintWaypoints(std::vector<CVector2D>& coord
 
 void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& coords, unsigned maxSegmentLinks, bool floating)
 {
-	CmpPtr<ICmpPathfinder> cmpPathFinder(GetSimContext(), SYSTEM_ENTITY);
-	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-	CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpPathfinder> cmpPathFinder(GetSystemEntity());
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
+	CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 	ENSURE(cmpPathFinder && cmpTerrain && cmpWaterManager);
 
 	if (coords.size() < 3)
@@ -1083,7 +1083,7 @@ void CCmpRallyPointRenderer::GetVisibilitySegments(std::deque<SVisibilitySegment
 	if (m_Path[index].size() < 2)
 		return;
 
-	CmpPtr<ICmpRangeManager> cmpRangeMgr(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpRangeManager> cmpRangeMgr(GetSystemEntity());
 
 	player_id_t currentPlayer = GetSimContext().GetCurrentDisplayedPlayer();
 	CLosQuerier losQuerier(cmpRangeMgr->GetLosQuerier(currentPlayer));

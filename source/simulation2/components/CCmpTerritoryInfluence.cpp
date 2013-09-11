@@ -103,10 +103,10 @@ public:
 	{
 		u32 newRadius = m_Radius;
 
-		CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
 		if (cmpOwnership && cmpOwnership->GetOwner() != INVALID_PLAYER)
 		{
-			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
 			entity_id_t playerEnt = cmpPlayerManager->GetPlayerByID(cmpOwnership->GetOwner());
 
 			if (playerEnt != INVALID_ENTITY)

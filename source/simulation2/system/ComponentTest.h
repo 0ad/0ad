@@ -76,9 +76,19 @@ public:
 	{
 		TS_ASSERT(m_Cmp == NULL);
 
+		CEntityHandle handle;
+		if (ent == SYSTEM_ENTITY)
+		{
+			m_ComponentManager.InitSystemEntity();
+			handle = m_ComponentManager.GetSystemEntity();
+			m_Context.SetSystemEntity(handle);
+		}
+		else
+			handle = m_ComponentManager.LookupEntityHandle(ent, true);
+
 		m_Cid = cid;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(m_Param, ("<test>" + xml + "</test>").c_str()), PSRETURN_OK);
-		TS_ASSERT(m_ComponentManager.AddComponent(ent, m_Cid, m_Param.GetChild("test")));
+		TS_ASSERT(m_ComponentManager.AddComponent(handle, m_Cid, m_Param.GetChild("test")));
 		m_Cmp = m_ComponentManager.QueryInterface(ent, T::GetInterfaceId());
 		TS_ASSERT(m_Cmp != NULL);
 		return static_cast<T*> (m_Cmp);
@@ -86,7 +96,17 @@ public:
 
 	void AddMock(entity_id_t ent, EInterfaceId iid, IComponent& component)
 	{
-		m_ComponentManager.AddMockComponent(ent, iid, component);
+		CEntityHandle handle;
+		if (ent == SYSTEM_ENTITY)
+		{
+			m_ComponentManager.InitSystemEntity();
+			handle = m_ComponentManager.GetSystemEntity();
+			m_Context.SetSystemEntity(handle);
+		}
+		else
+			handle = m_ComponentManager.LookupEntityHandle(ent, true);
+
+		m_ComponentManager.AddMockComponent(handle, iid, component);
 	}
 
 	void HandleMessage(IComponent* cmp, const CMessage& msg, bool global)
@@ -101,8 +121,6 @@ public:
 	 */
 	void Roundtrip(bool verbose = false)
 	{
-		entity_id_t ent = 1;
-
 		std::stringstream dbgstr1;
 		CDebugSerializer dbg1(GetScriptInterface(), dbgstr1);
 		m_Cmp->Serialize(dbg1);
@@ -120,6 +138,8 @@ public:
 		ComponentTestHelper test2;
 		// (We should never need to add any mock objects etc to test2, since deserialization
 		// mustn't depend on other components already existing)
+
+		CEntityHandle ent = test2.m_ComponentManager.LookupEntityHandle(10, true);
 
 		CStdDeserializer stdde2(test2.GetScriptInterface(), stdstr1);
 

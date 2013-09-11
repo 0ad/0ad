@@ -18,6 +18,8 @@
 #ifndef INCLUDED_SIMCONTEXT
 #define INCLUDED_SIMCONTEXT
 
+#include "Entity.h"
+
 class CComponentManager;
 class CUnitManager;
 class CTerrain;
@@ -43,6 +45,9 @@ public:
 
 	ScriptInterface& GetScriptInterface() const;
 
+	void SetSystemEntity(CEntityHandle ent) { m_SystemEntity = ent; }
+	CEntityHandle GetSystemEntity() const { ASSERT(m_SystemEntity.GetId() == SYSTEM_ENTITY); return m_SystemEntity; }
+
 	/**
 	 * Returns the player ID that the current display is being rendered for.
 	 * Currently relies on g_Game being initialised (evil globals...)
@@ -53,6 +58,8 @@ private:
 	CComponentManager* m_ComponentManager;
 	CUnitManager* m_UnitManager;
 	CTerrain* m_Terrain;
+
+	CEntityHandle m_SystemEntity;
 
 	friend class CSimulation2Impl;
 };

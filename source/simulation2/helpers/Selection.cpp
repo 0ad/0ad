@@ -43,16 +43,17 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 	for (CSimulation2::InterfaceListUnordered::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{
 		entity_id_t ent = it->first;
+		CEntityHandle handle = it->second->GetEntityHandle();
 
 		// Check if this entity is only selectable in Atlas
 		if (!allowEditorSelectables && static_cast<ICmpSelectable*>(it->second)->IsEditorOnly())
 			continue;
 
 		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
-		if (cmpRangeManager->GetLosVisibility(ent, player) == ICmpRangeManager::VIS_HIDDEN)
+		if (cmpRangeManager->GetLosVisibility(handle, player) == ICmpRangeManager::VIS_HIDDEN)
 			continue;
 
-		CmpPtr<ICmpVisual> cmpVisual(simulation.GetSimContext(), ent);
+		CmpPtr<ICmpVisual> cmpVisual(handle);
 		if (!cmpVisual)
 			continue;
 
@@ -121,17 +122,18 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 	for (CSimulation2::InterfaceListUnordered::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{
 		entity_id_t ent = it->first;
+		CEntityHandle handle = it->second->GetEntityHandle();
 
 		// Check if this entity is only selectable in Atlas
 		if (static_cast<ICmpSelectable*>(it->second)->IsEditorOnly() && !allowEditorSelectables)
 			continue;
 
 		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
-		if (cmpRangeManager->GetLosVisibility(ent, owner) == ICmpRangeManager::VIS_HIDDEN)
+		if (cmpRangeManager->GetLosVisibility(handle, owner) == ICmpRangeManager::VIS_HIDDEN)
 			continue;
 
 		// Ignore entities not owned by 'owner'
-		CmpPtr<ICmpOwnership> cmpOwnership(simulation.GetSimContext(), ent);
+		CmpPtr<ICmpOwnership> cmpOwnership(handle);
 		if (owner != INVALID_PLAYER && (!cmpOwnership || cmpOwnership->GetOwner() != owner))
 			continue;
 
@@ -139,7 +141,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 		// (We just use the centre position and not the whole bounding box, because maybe
 		// that's better for users trying to select objects in busy areas)
 
-		CmpPtr<ICmpVisual> cmpVisual(simulation.GetSimContext(), ent);
+		CmpPtr<ICmpVisual> cmpVisual(handle);
 		if (!cmpVisual)
 			continue;
 
@@ -175,6 +177,7 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 	for (CSimulation2::InterfaceListUnordered::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{
  		entity_id_t ent = it->first;
+		CEntityHandle handle = it->second->GetEntityHandle();
 
 		// Check if this entity is only selectable in Atlas
 		if (static_cast<ICmpSelectable*>(it->second)->IsEditorOnly() && !allowEditorSelectables)
@@ -192,7 +195,7 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 
 		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
 		// In this case, the checking is done to avoid selecting garrisoned units
-		if (cmpRangeManager->GetLosVisibility(ent, owner) == ICmpRangeManager::VIS_HIDDEN)
+		if (cmpRangeManager->GetLosVisibility(handle, owner) == ICmpRangeManager::VIS_HIDDEN)
 			continue;
 
 		// Ignore entities not owned by 'owner'

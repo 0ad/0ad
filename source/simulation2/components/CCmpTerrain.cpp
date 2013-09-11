@@ -118,7 +118,7 @@ public:
 		u16 tiles = GetTilesPerSide();
 		u16 vertices = GetVerticesPerSide();
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 		if (cmpObstructionManager)
 		{
 			cmpObstructionManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),
@@ -126,7 +126,7 @@ public:
 					entity_pos_t::FromInt(tiles*(int)TERRAIN_TILE_SIZE));
 		}
 
-		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
 		if (cmpRangeManager)
 		{
 			cmpRangeManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),

@@ -235,7 +235,7 @@ void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt)
 	// carry on until we reach solid land
 	if (projectile.time >= projectile.timeHit)
 	{
-		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 		if (cmpTerrain)
 		{
 			float h = cmpTerrain->GetExactGroundLevel(projectile.pos.X, projectile.pos.Z);
@@ -318,7 +318,7 @@ void CCmpProjectileManager::RemoveProjectile(uint32_t id)
 
 void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
 {
-	CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
 	int player = GetSimContext().GetCurrentDisplayedPlayer();
 	ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(player));
 	bool losRevealAll = cmpRangeManager->GetLosRevealAll(player);

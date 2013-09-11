@@ -101,19 +101,20 @@ public:
 		CSimContext context;
 		CComponentManager man(context);
 		man.LoadComponentTypes();
+		CEntityHandle hnd1 = man.AllocateEntityHandle(1);
 
 		CParamNode noParam;
-		TS_ASSERT(man.AddComponent(1, CID_Test1A, noParam));
+		TS_ASSERT(man.AddComponent(hnd1, CID_Test1A, noParam));
 
 		{
 			TestLogger log;
-			TS_ASSERT(! man.AddComponent(1, 12345, noParam));
+			TS_ASSERT(! man.AddComponent(hnd1, 12345, noParam));
 			TS_ASSERT_WSTR_CONTAINS(log.GetOutput(), L"ERROR: Invalid component id 12345");
 		}
 
 		{
 			TestLogger log;
-			TS_ASSERT(! man.AddComponent(1, CID_Test1B, noParam));
+			TS_ASSERT(! man.AddComponent(hnd1, CID_Test1B, noParam));
 			TS_ASSERT_WSTR_CONTAINS(log.GetOutput(), L"ERROR: Multiple components for interface ");
 		}
 	}
@@ -125,18 +126,20 @@ public:
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
 		CParamNode noParam;
 
-		man.AddComponent(ent1, CID_Test1A, noParam);
+		man.AddComponent(hnd1, CID_Test1A, noParam);
 		TS_ASSERT(man.QueryInterface(ent1, IID_Test1) != NULL);
 		TS_ASSERT(man.QueryInterface(ent1, IID_Test2) == NULL);
 		TS_ASSERT(man.QueryInterface(ent2, IID_Test1) == NULL);
 		TS_ASSERT(man.QueryInterface(ent2, IID_Test2) == NULL);
 
-		man.AddComponent(ent2, CID_Test1B, noParam);
+		man.AddComponent(hnd2, CID_Test1B, noParam);
 		TS_ASSERT(man.QueryInterface(ent2, IID_Test1) != NULL);
 		TS_ASSERT(man.QueryInterface(ent2, IID_Test2) == NULL);
-		man.AddComponent(ent2, CID_Test2A, noParam);
+		man.AddComponent(hnd2, CID_Test2A, noParam);
 		TS_ASSERT(man.QueryInterface(ent2, IID_Test1) != NULL);
 		TS_ASSERT(man.QueryInterface(ent2, IID_Test2) != NULL);
 	}
@@ -148,13 +151,17 @@ public:
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2, ent3 = 3, ent4 = 4;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
+		CEntityHandle hnd3 = man.AllocateEntityHandle(ent3);
+		CEntityHandle hnd4 = man.AllocateEntityHandle(ent4);
 		CParamNode noParam;
 
-		man.AddComponent(ent1, CID_Test1A, noParam);
-		man.AddComponent(ent2, CID_Test1B, noParam);
-		man.AddComponent(ent3, CID_Test2A, noParam);
-		man.AddComponent(ent4, CID_Test1A, noParam);
-		man.AddComponent(ent4, CID_Test2A, noParam);
+		man.AddComponent(hnd1, CID_Test1A, noParam);
+		man.AddComponent(hnd2, CID_Test1B, noParam);
+		man.AddComponent(hnd3, CID_Test2A, noParam);
+		man.AddComponent(hnd4, CID_Test1A, noParam);
+		man.AddComponent(hnd4, CID_Test2A, noParam);
 
 		CMessageTurnStart msg1;
 		CMessageUpdate msg2(fixed::FromInt(100));
@@ -218,13 +225,15 @@ public:
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
 		CParamNode noParam;
 
 		CParamNode testParam;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(testParam, "<x>1234</x>"), PSRETURN_OK);
 
-		man.AddComponent(ent1, CID_Test1A, noParam);
-		man.AddComponent(ent2, CID_Test1A, testParam);
+		man.AddComponent(hnd1, CID_Test1A, noParam);
+		man.AddComponent(hnd2, CID_Test1A, testParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 11000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 1234);
@@ -241,12 +250,15 @@ public:
 		TS_ASSERT_EQUALS(man.LookupCID("TestScript1B"), (int)CID__LastNative+1);
 
 		entity_id_t ent1 = 1, ent2 = 2, ent3 = 3;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
+		CEntityHandle hnd3 = man.AllocateEntityHandle(ent3);
 		CParamNode noParam;
 
-		man.AddComponent(ent1, CID_Test1A, noParam);
-		man.AddComponent(ent2, man.LookupCID("TestScript1A"), noParam);
-		man.AddComponent(ent3, man.LookupCID("TestScript1B"), noParam);
-		man.AddComponent(ent3, man.LookupCID("TestScript2A"), noParam);
+		man.AddComponent(hnd1, CID_Test1A, noParam);
+		man.AddComponent(hnd2, man.LookupCID("TestScript1A"), noParam);
+		man.AddComponent(hnd3, man.LookupCID("TestScript1B"), noParam);
+		man.AddComponent(hnd3, man.LookupCID("TestScript2A"), noParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 11000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 101000);
@@ -280,9 +292,10 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/helpers/test-helper.js"));
 
 		entity_id_t ent1 = 1;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
 		CParamNode noParam;
 
-		man.AddComponent(ent1, man.LookupCID("TestScript1_Helper"), noParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript1_Helper"), noParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 3);
 	}
@@ -295,9 +308,10 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-global-helper.js"));
 
 		entity_id_t ent1 = 1;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
 		CParamNode noParam;
 
-		man.AddComponent(ent1, man.LookupCID("TestScript1_GlobalHelper"), noParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript1_GlobalHelper"), noParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 2);
 	}
@@ -311,10 +325,11 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-interface.js"));
 
 		entity_id_t ent1 = 1;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
 		CParamNode noParam;
 
-		man.AddComponent(ent1, man.LookupCID("TestScript1_Interface"), noParam);
-		man.AddComponent(ent1, man.LookupCID("TestScript2_Interface"), noParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript1_Interface"), noParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript2_Interface"), noParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 1000 + IID__LastNative);
 	}
@@ -345,10 +360,12 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-entityid.js"));
 
 		entity_id_t ent1 = 1, ent2 = 234;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
 		CParamNode noParam;
 
-		man.AddComponent(ent1, man.LookupCID("TestScript1A"), noParam);
-		man.AddComponent(ent2, man.LookupCID("TestScript1A"), noParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript1A"), noParam);
+		man.AddComponent(hnd2, man.LookupCID("TestScript1A"), noParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), (int)ent1);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), (int)ent2);
@@ -362,12 +379,14 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-query.js"));
 
 		entity_id_t ent1 = 1, ent2 = 2;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
 		CParamNode noParam;
 
-		man.AddComponent(ent1, man.LookupCID("TestScript1A"), noParam);
-		man.AddComponent(ent1, man.LookupCID("TestScript2A"), noParam);
-		man.AddComponent(ent2, man.LookupCID("TestScript1A"), noParam);
-		man.AddComponent(ent2, CID_Test2A, noParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript1A"), noParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript2A"), noParam);
+		man.AddComponent(hnd2, man.LookupCID("TestScript1A"), noParam);
+		man.AddComponent(hnd2, CID_Test2A, noParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 400);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 21000);
@@ -380,14 +399,16 @@ public:
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-addentity.js"));
 		TS_ASSERT(man.LoadScript(L"simulation/components/addentity/test-addentity.js"));
+		man.InitSystemEntity();
 
 		entity_id_t ent1 = man.AllocateNewEntity();
 		entity_id_t ent2 = ent1 + 2;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
 		CParamNode noParam;
 
-		TS_ASSERT(man.AddComponent(SYSTEM_ENTITY, CID_TemplateManager, noParam));
+		TS_ASSERT(man.AddComponent(man.GetSystemEntity(), CID_TemplateManager, noParam));
 
-		TS_ASSERT(man.AddComponent(ent1, man.LookupCID("TestScript1_AddEntity"), noParam));
+		TS_ASSERT(man.AddComponent(hnd1, man.LookupCID("TestScript1_AddEntity"), noParam));
 
 		TS_ASSERT(man.QueryInterface(ent2, IID_Test1) == NULL);
 		TS_ASSERT(man.QueryInterface(ent2, IID_Test2) == NULL);
@@ -411,14 +432,16 @@ public:
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-addentity.js"));
 		TS_ASSERT(man.LoadScript(L"simulation/components/addentity/test-addentity.js"));
+		man.InitSystemEntity();
 
-		entity_id_t ent1 = 1;
+		entity_id_t ent1 = man.AllocateNewEntity();
 		entity_id_t ent2 = man.AllocateNewLocalEntity() + 2;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
 		CParamNode noParam;
 
-		TS_ASSERT(man.AddComponent(SYSTEM_ENTITY, CID_TemplateManager, noParam));
+		TS_ASSERT(man.AddComponent(man.GetSystemEntity(), CID_TemplateManager, noParam));
 
-		TS_ASSERT(man.AddComponent(ent1, man.LookupCID("TestScript1_AddLocalEntity"), noParam));
+		TS_ASSERT(man.AddComponent(hnd1, man.LookupCID("TestScript1_AddLocalEntity"), noParam));
 
 		TS_ASSERT(man.QueryInterface(ent2, IID_Test1) == NULL);
 		TS_ASSERT(man.QueryInterface(ent2, IID_Test2) == NULL);
@@ -443,9 +466,10 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-destroyentity.js"));
 
 		entity_id_t ent1 = 10;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
 		CParamNode noParam;
 
-		TS_ASSERT(man.AddComponent(ent1, man.LookupCID("TestScript1_DestroyEntity"), noParam));
+		TS_ASSERT(man.AddComponent(hnd1, man.LookupCID("TestScript1_DestroyEntity"), noParam));
 
 		TS_ASSERT(man.QueryInterface(ent1, IID_Test1) != NULL);
 		static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX();
@@ -462,13 +486,16 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-msg.js"));
 
 		entity_id_t ent1 = 1, ent2 = 2, ent3 = 3;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
+		CEntityHandle hnd3 = man.AllocateEntityHandle(ent3);
 		CParamNode noParam;
 
-		man.AddComponent(ent1, man.LookupCID("TestScript1A"), noParam);
-		man.AddComponent(ent1, man.LookupCID("TestScript2A"), noParam);
-		man.AddComponent(ent2, man.LookupCID("TestScript1A"), noParam);
-		man.AddComponent(ent2, CID_Test2A, noParam);
-		man.AddComponent(ent3, man.LookupCID("TestScript1B"), noParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript1A"), noParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript2A"), noParam);
+		man.AddComponent(hnd2, man.LookupCID("TestScript1A"), noParam);
+		man.AddComponent(hnd2, CID_Test2A, noParam);
+		man.AddComponent(hnd3, man.LookupCID("TestScript1B"), noParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 100);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 100);
@@ -492,13 +519,15 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-param.js"));
 
 		entity_id_t ent1 = 1, ent2 = 2;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
 		CParamNode noParam;
 
 		CParamNode testParam;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(testParam, "<node><x>1</x><y>1<z w='100'><a>1000</a></z>0</y></node>"), PSRETURN_OK);
 
-		man.AddComponent(ent1, man.LookupCID("TestScript1_Init"), noParam);
-		man.AddComponent(ent2, man.LookupCID("TestScript1_Init"), testParam.GetChild("node"));
+		man.AddComponent(hnd1, man.LookupCID("TestScript1_Init"), noParam);
+		man.AddComponent(hnd2, man.LookupCID("TestScript1_Init"), testParam.GetChild("node"));
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 100);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 1+10+100+1000);
@@ -512,13 +541,15 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-param.js"));
 
 		entity_id_t ent1 = 1, ent2 = 2;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
 		CParamNode noParam;
 
 		CParamNode testParam;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(testParam, "<x>100</x>"), PSRETURN_OK);
 
-		man.AddComponent(ent1, man.LookupCID("TestScript1_readonly"), testParam);
-		man.AddComponent(ent2, man.LookupCID("TestScript1_readonly"), testParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript1_readonly"), testParam);
+		man.AddComponent(hnd2, man.LookupCID("TestScript1_readonly"), testParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 102);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 102);
@@ -533,13 +564,17 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-hotload1.js"));
 
 		entity_id_t ent1 = 1, ent2 = 2, ent3 = 3, ent4 = 4;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
+		CEntityHandle hnd3 = man.AllocateEntityHandle(ent3);
+		CEntityHandle hnd4 = man.AllocateEntityHandle(ent4);
 
 		CParamNode testParam;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(testParam, "<x>100</x>"), PSRETURN_OK);
 
-		man.AddComponent(ent1, man.LookupCID("HotloadA"), testParam);
-		man.AddComponent(ent2, man.LookupCID("HotloadB"), testParam);
-		man.AddComponent(ent2, man.LookupCID("HotloadC"), testParam);
+		man.AddComponent(hnd1, man.LookupCID("HotloadA"), testParam);
+		man.AddComponent(hnd2, man.LookupCID("HotloadB"), testParam);
+		man.AddComponent(hnd2, man.LookupCID("HotloadC"), testParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 100);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 200);
@@ -549,8 +584,8 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 1000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 200);
 
-		man.AddComponent(ent3, man.LookupCID("HotloadA"), testParam);
-		man.AddComponent(ent4, man.LookupCID("HotloadB"), testParam);
+		man.AddComponent(hnd3, man.LookupCID("HotloadA"), testParam);
+		man.AddComponent(hnd4, man.LookupCID("HotloadB"), testParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent3, IID_Test1))->GetX(), 1000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent4, IID_Test1))->GetX(), 200);
@@ -563,15 +598,18 @@ public:
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2, ent3 = FIRST_LOCAL_ENTITY;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
+		CEntityHandle hnd3 = man.AllocateEntityHandle(ent3);
 		CParamNode noParam;
 
 		CParamNode testParam;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(testParam, "<x>1234</x>"), PSRETURN_OK);
 
-		man.AddComponent(ent1, CID_Test1A, noParam);
-		man.AddComponent(ent1, CID_Test2A, noParam);
-		man.AddComponent(ent2, CID_Test1A, testParam);
-		man.AddComponent(ent3, CID_Test2A, noParam);
+		man.AddComponent(hnd1, CID_Test1A, noParam);
+		man.AddComponent(hnd1, CID_Test2A, noParam);
+		man.AddComponent(hnd2, CID_Test1A, testParam);
+		man.AddComponent(hnd3, CID_Test2A, noParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 11000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent1, IID_Test2))->GetX(), 21000);
@@ -651,15 +689,19 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-serialize.js"));
 
 		entity_id_t ent1 = 1, ent2 = 2, ent3 = 3, ent4 = 4;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
+		CEntityHandle hnd3 = man.AllocateEntityHandle(ent3);
+		CEntityHandle hnd4 = man.AllocateEntityHandle(ent4);
 		CParamNode noParam;
 
 		CParamNode testParam;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(testParam, "<x>1234</x>"), PSRETURN_OK);
 
-		man.AddComponent(ent1, man.LookupCID("TestScript1_values"), testParam);
-		man.AddComponent(ent2, man.LookupCID("TestScript1_entity"), testParam);
-		man.AddComponent(ent3, man.LookupCID("TestScript1_nontree"), testParam);
-		man.AddComponent(ent4, man.LookupCID("TestScript1_custom"), testParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript1_values"), testParam);
+		man.AddComponent(hnd2, man.LookupCID("TestScript1_entity"), testParam);
+		man.AddComponent(hnd3, man.LookupCID("TestScript1_nontree"), testParam);
+		man.AddComponent(hnd4, man.LookupCID("TestScript1_custom"), testParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 1234);
 		{
@@ -734,9 +776,10 @@ public:
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-serialize.js"));
 
 		entity_id_t ent1 = 1;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
 		CParamNode noParam;
 
-		man.AddComponent(ent1, man.LookupCID("TestScript1_getter"), noParam);
+		man.AddComponent(hnd1, man.LookupCID("TestScript1_getter"), noParam);
 
 		std::stringstream stateStream;
 		TS_ASSERT(man.SerializeState(stateStream));
@@ -749,18 +792,20 @@ public:
 		CComponentManager man(context);
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-serialize.js"));
+		man.InitSystemEntity();
 
 		entity_id_t ent2 = 2;
+		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
 		CParamNode noParam;
 
 		// The template manager takes care of reloading templates on deserialization,
 		// so we need to use it here
-		TS_ASSERT(man.AddComponent(SYSTEM_ENTITY, CID_TemplateManager, noParam));
+		TS_ASSERT(man.AddComponent(man.GetSystemEntity(), CID_TemplateManager, noParam));
 		ICmpTemplateManager* tempMan = static_cast<ICmpTemplateManager*> (man.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager));
 
 		const CParamNode* testParam = tempMan->LoadTemplate(ent2, "template-serialize", -1);
 
-		man.AddComponent(ent2, man.LookupCID("TestScript1_consts"), testParam->GetChild("TestScript1_consts"));
+		man.AddComponent(hnd2, man.LookupCID("TestScript1_consts"), testParam->GetChild("TestScript1_consts"));
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 12347);
 

@@ -169,7 +169,7 @@ public:
 				break;
 
 			// Find the new player's colour
-			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
 			if (!cmpPlayerManager)
 				break;
 			CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(msgData.to));

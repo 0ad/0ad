@@ -21,11 +21,11 @@
 #include "Components.h"
 #include "Message.h"
 #include "Entity.h"
+#include "SimContext.h"
 
 #include "scriptinterface/ScriptTypes.h"
 
 class CParamNode;
-class CSimContext;
 class CMessage;
 class ISerializer;
 class IDeserializer;
@@ -42,8 +42,12 @@ public:
 
 	virtual void HandleMessage(const CMessage& msg, bool global);
 
-	entity_id_t GetEntityId() const { return m_EntityId; }
-	void SetEntityId(entity_id_t ent) { m_EntityId = ent; }
+	CEntityHandle GetEntityHandle() const { return m_EntityHandle; }
+	void SetEntityHandle(CEntityHandle ent) { m_EntityHandle = ent; }
+
+	entity_id_t GetEntityId() const { return m_EntityHandle.GetId(); }
+
+	CEntityHandle GetSystemEntity() const { return m_SimContext->GetSystemEntity(); }
 
 	const CSimContext& GetSimContext() const { return *m_SimContext; }
 	void SetSimContext(const CSimContext& context) { m_SimContext = &context; }
@@ -56,7 +60,7 @@ public:
 	virtual jsval GetJSInstance() const;
 
 private:
-	entity_id_t m_EntityId;
+	CEntityHandle m_EntityHandle;
 	const CSimContext* m_SimContext;
 };
 

@@ -68,6 +68,18 @@ struct SerializeMap
 		}
 	}
 
+	template<typename K, typename V, typename C>
+	void operator()(ISerializer& serialize, const char* UNUSED(name), std::map<K, V>& value, C& context)
+	{
+		size_t len = value.size();
+		serialize.NumberU32_Unbounded("length", (u32)len);
+		for (typename std::map<K, V>::iterator it = value.begin(); it != value.end(); ++it)
+		{
+			KS()(serialize, "key", it->first);
+			VS()(serialize, "value", it->second, context);
+		}
+	}
+
 	template<typename M>
 	void operator()(IDeserializer& deserialize, const char* UNUSED(name), M& value)
 	{
@@ -82,6 +94,24 @@ struct SerializeMap
 			V v;
 			KS()(deserialize, "key", k);
 			VS()(deserialize, "value", v);
+			value.insert(std::make_pair(k, v));
+		}
+	}
+
+	template<typename M, typename C>
+	void operator()(IDeserializer& deserialize, const char* UNUSED(name), M& value, C& context)
+	{
+		typedef typename M::key_type K;
+		typedef typename M::value_type::second_type V; // M::data_type gives errors with gcc
+		value.clear();
+		u32 len;
+		deserialize.NumberU32_Unbounded("length", len);
+		for (size_t i = 0; i < len; ++i)
+		{
+			K k;
+			V v;
+			KS()(deserialize, "key", k);
+			VS()(deserialize, "value", v, context);
 			value.insert(std::make_pair(k, v));
 		}
 	}

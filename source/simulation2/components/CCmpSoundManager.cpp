@@ -65,7 +65,7 @@ public:
 		if ( ! g_SoundManager || (source == INVALID_ENTITY) )
 			return;
 
-		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
 		int currentPlayer = GetSimContext().GetCurrentDisplayedPlayer();
 
 		if ( !cmpRangeManager || 

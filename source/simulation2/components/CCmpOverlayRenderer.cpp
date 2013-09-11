@@ -123,7 +123,7 @@ public:
 		}
 
 		// Disable rendering of the unit if it has no position
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition || !cmpPosition->IsInWorld())
 		{
 			m_Enabled = false;

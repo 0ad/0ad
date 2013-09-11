@@ -84,7 +84,7 @@ public:
 
 void CCmpMotionBall::Move(fixed dt)
 {
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition)
 		return;
 
