@@ -34,6 +34,7 @@
 #include "graphics/TerritoryTexture.h"
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
+#include "graphics/scripting/JSInterface_GameView.h"
 #include "lib/input.h"
 #include "lib/timer.h"
 #include "maths/BoundingBoxAligned.h"
@@ -54,7 +55,6 @@
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
-#include "scripting/ScriptableObject.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
@@ -148,7 +148,7 @@ public:
 	float m_Smoothness;
 };
 
-class CGameViewImpl : public CJSObject<CGameViewImpl>
+class CGameViewImpl
 {
 	NONCOPYABLE(CGameViewImpl);
 public:
@@ -308,9 +308,24 @@ public:
 	CSmoothedValue Zoom;
 	CSmoothedValue RotateX; // inclination around x axis (relative to camera)
 	CSmoothedValue RotateY; // rotation around y (vertical) axis
-
-	static void ScriptingInit();
 };
+
+#define IMPLEMENT_BOOLEAN_SETTING(NAME) \
+bool CGameView::Get##NAME##Enabled() \
+{ \
+	return m->NAME; \
+} \
+\
+void CGameView::Set##NAME##Enabled(bool Enabled) \
+{ \
+	m->NAME = Enabled; \
+}
+
+IMPLEMENT_BOOLEAN_SETTING(Culling);
+IMPLEMENT_BOOLEAN_SETTING(LockCullCamera);
+IMPLEMENT_BOOLEAN_SETTING(ConstrainCamera);
+
+#undef IMPLEMENT_BOOLEAN_SETTING
 
 static void SetupCameraMatrixSmooth(CGameViewImpl* m, CMatrix3D* orientation)
 {
@@ -372,16 +387,6 @@ CObjectManager& CGameView::GetObjectManager() const
 	return m->ObjectManager;
 }
 
-JSObject* CGameView::GetScript()
-{
-	return m->GetScript();
-}
-
-/*static*/ void CGameView::ScriptingInit()
-{
-	return CGameViewImpl::ScriptingInit();
-}
-
 CCamera* CGameView::GetCamera()
 {
 	return &m->ViewCamera;
@@ -400,16 +405,6 @@ CLOSTexture& CGameView::GetLOSTexture()
 CTerritoryTexture& CGameView::GetTerritoryTexture()
 {
 	return m->TerritoryTexture;
-}
-
-
-void CGameViewImpl::ScriptingInit()
-{
-	AddProperty(L"culling", &CGameViewImpl::Culling);
-	AddProperty(L"lockCullCamera", &CGameViewImpl::LockCullCamera);
-	AddProperty(L"constrainCamera", &CGameViewImpl::ConstrainCamera);
-
-	CJSObject<CGameViewImpl>::ScriptingInit("GameView");
 }
 
 int CGameView::Initialize()

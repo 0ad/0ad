@@ -23,6 +23,7 @@
 #include "graphics/GameView.h"
 #include "graphics/MapReader.h"
 #include "gui/GUIManager.h"
+#include "graphics/scripting/JSInterface_GameView.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "lib/sysdep/sysdep.h"
@@ -650,6 +651,8 @@ void SetBoundingBoxDebugOverlay(void* UNUSED(cbdata), bool enabled)
 
 void GuiScriptingInit(ScriptInterface& scriptInterface)
 {
+	JSI_GameView::RegisterScriptFunctions(scriptInterface);
+
 	// GUI manager functions:
 	scriptInterface.RegisterFunction<CScriptVal, &GetActiveGui>("GetActiveGui");
 	scriptInterface.RegisterFunction<void, std::wstring, CScriptVal, &PushGuiPage>("PushGuiPage");
