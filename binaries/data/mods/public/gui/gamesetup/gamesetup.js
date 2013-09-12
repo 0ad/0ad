@@ -337,7 +337,7 @@ function handleNetMessage(message)
 		{
 		case "disconnected":
 			Engine.DisconnectNetworkGame();
-			Engine.PopGuiPage();
+			Engine.SwitchGuiPage("page_pregame.xml")();
 			reportDisconnect(message.reason);
 			break;
 

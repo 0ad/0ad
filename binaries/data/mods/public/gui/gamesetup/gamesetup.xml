@@ -308,7 +308,7 @@
 			<action on="Press">
 				<![CDATA[
 					cancelSetup();
-					Engine.PopGuiPage();
+					Engine.SwitchGuiPage("page_pregame.xml");
 				]]>
 			</action>
 		</object>
