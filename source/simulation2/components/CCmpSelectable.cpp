@@ -306,7 +306,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 				break;
 
 			// update the selection highlight color
-			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
 			if (!cmpPlayerManager)
 				break;
 
@@ -352,13 +352,12 @@ void CCmpSelectable::UpdateStaticOverlay()
 	if (!CRenderer::IsInitialised())
 		return;
 
-	entity_id_t entityId = GetEntityId();
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), entityId);
-	CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), entityId);
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+	CmpPtr<ICmpFootprint> cmpFootprint(GetEntityHandle());
 	if (!cmpFootprint || !cmpPosition || !cmpPosition->IsInWorld())
 		return;
 
-	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 	if (!cmpTerrain)
 		return; // should never happen
 
@@ -450,9 +449,8 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 	if (!CRenderer::IsInitialised())
 		return;
 
-	entity_id_t entityId = GetEntityId();
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), entityId);
-	CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), entityId);
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+	CmpPtr<ICmpFootprint> cmpFootprint(GetEntityHandle());
 	if (!cmpFootprint || !cmpPosition || !cmpPosition->IsInWorld())
 		return;
 
@@ -460,8 +458,8 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 	CVector2D position;
 	cmpPosition->GetInterpolatedPosition2D(frameOffset, position.X, position.Y, rotY);
 
-	CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
-	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 	ENSURE(cmpWaterManager && cmpTerrain);
 
 	CTerrain* terrain = cmpTerrain->GetCTerrain();
@@ -534,7 +532,7 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 		{
 			// Default to white if there's no owner (e.g. decorative, editor-only actors)
 			CColor color = CColor(1.0, 1.0, 1.0, 1.0);
-			CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+			CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
 			if (cmpOwnership)
 			{
 				player_id_t owner = cmpOwnership->GetOwner();
@@ -542,7 +540,7 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 					return;
 
 				// Try to initialize m_Color to the owning player's colour.
-				CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+				CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
 				if (!cmpPlayerManager)
 					return;
 
@@ -588,7 +586,7 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 			if (!m_DebugBoundingBoxOverlay) m_DebugBoundingBoxOverlay = new SOverlayLine;
 			if (!m_DebugSelectionBoxOverlay) m_DebugSelectionBoxOverlay = new SOverlayLine;
 
-			CmpPtr<ICmpVisual> cmpVisual(GetSimContext(), GetEntityId()); 
+			CmpPtr<ICmpVisual> cmpVisual(GetEntityHandle());
 			if (cmpVisual) 
 			{
 				SimRender::ConstructBoxOutline(cmpVisual->GetBounds(), *m_DebugBoundingBoxOverlay);

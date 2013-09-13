@@ -292,7 +292,7 @@ public:
 			if (!data.inWorld && !m_Tag.valid())
 				break; // nothing needs to change
 
-			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 			if (!cmpObstructionManager)
 				break; // error
 
@@ -336,7 +336,7 @@ public:
 		{
 			if (m_Tag.valid())
 			{
-				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 				if (!cmpObstructionManager)
 					break; // error
 
@@ -358,11 +358,11 @@ public:
 
 			// Construct the obstruction shape
 
-			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 			if (!cmpObstructionManager)
 				return; // error
 
-			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 			if (!cmpPosition)
 				return; // error
 
@@ -389,7 +389,7 @@ public:
 			// TODO: code duplication from message handlers
 			if (m_Tag.valid())
 			{
-				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 				if (!cmpObstructionManager)
 					return; // error
 
@@ -444,11 +444,11 @@ public:
 
 	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out)
 	{
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition)
 			return false; // error
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 		if (!cmpObstructionManager)
 			return false; // error
 
@@ -485,7 +485,7 @@ public:
 
 	virtual EFoundationCheck CheckFoundation(std::string className, bool onlyCenterPoint)
 	{
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition)
 			return FOUNDATION_CHECK_FAIL_ERROR; // error
 
@@ -494,7 +494,7 @@ public:
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
-		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (!cmpPathfinder)
 			return FOUNDATION_CHECK_FAIL_ERROR; // error
 
@@ -522,7 +522,7 @@ public:
 
 	virtual bool CheckDuplicateFoundation()
 	{
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition)
 			return false; // error
 
@@ -531,7 +531,7 @@ public:
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 		if (!cmpObstructionManager)
 			return false; // error
 
@@ -556,7 +556,7 @@ public:
 	{
 		std::vector<entity_id_t> ret;
 
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition)
 			return ret; // error
 
@@ -565,7 +565,7 @@ public:
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 		if (!cmpObstructionManager)
 			return ret; // error
 
@@ -620,7 +620,7 @@ public:
 
 		if (m_Tag.valid() && m_Type == UNIT)
 		{
-			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 			if (cmpObstructionManager)
 				cmpObstructionManager->SetUnitMovingFlag(m_Tag, m_Moving);
 		}
@@ -652,7 +652,7 @@ public:
 	{
 		if (m_Tag.valid())
 		{
-			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 			if (cmpObstructionManager)
 			{
 				if (m_Type == UNIT)
@@ -680,11 +680,11 @@ public:
 		if (m_Type == UNIT)
 			return;
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 		if (!cmpObstructionManager)
 			return;
 
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition)
 			return; // error
 
@@ -750,7 +750,7 @@ protected:
 
 	inline void AddClusterShapes(entity_pos_t x, entity_pos_t z, entity_angle_t a)
 	{
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 		if (!cmpObstructionManager)
 			return; // error
 
@@ -776,7 +776,7 @@ protected:
 
 	inline void RemoveClusterShapes()
 	{
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 		if (!cmpObstructionManager)
 			return; // error
 

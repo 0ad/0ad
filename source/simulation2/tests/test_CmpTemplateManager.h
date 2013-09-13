@@ -56,9 +56,10 @@ public:
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
+		CEntityHandle hnd1 = man.LookupEntityHandle(ent1, true);
 		CParamNode noParam;
 
-		TS_ASSERT(man.AddComponent(ent1, CID_TemplateManager, noParam));
+		TS_ASSERT(man.AddComponent(hnd1, CID_TemplateManager, noParam));
 
 		ICmpTemplateManager* tempMan = static_cast<ICmpTemplateManager*> (man.QueryInterface(ent1, IID_TemplateManager));
 		TS_ASSERT(tempMan != NULL);
@@ -117,9 +118,10 @@ public:
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
+		CEntityHandle hnd1 = man.LookupEntityHandle(ent1, true);
 		CParamNode noParam;
 
-		TS_ASSERT(man.AddComponent(ent1, CID_TemplateManager, noParam));
+		TS_ASSERT(man.AddComponent(hnd1, CID_TemplateManager, noParam));
 
 		ICmpTemplateManager* tempMan = static_cast<ICmpTemplateManager*> (man.QueryInterface(ent1, IID_TemplateManager));
 		TS_ASSERT(tempMan != NULL);
@@ -154,9 +156,10 @@ public:
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
+		CEntityHandle hnd1 = man.LookupEntityHandle(ent1, true);
 		CParamNode noParam;
 
-		TS_ASSERT(man.AddComponent(ent1, CID_TemplateManager, noParam));
+		TS_ASSERT(man.AddComponent(hnd1, CID_TemplateManager, noParam));
 
 		ICmpTemplateManager* tempMan = static_cast<ICmpTemplateManager*> (man.QueryInterface(ent1, IID_TemplateManager));
 		TS_ASSERT(tempMan != NULL);
@@ -185,9 +188,10 @@ public:
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
+		CEntityHandle hnd1 = man.LookupEntityHandle(ent1, true);
 		CParamNode noParam;
 
-		TS_ASSERT(man.AddComponent(ent1, CID_TemplateManager, noParam));
+		TS_ASSERT(man.AddComponent(hnd1, CID_TemplateManager, noParam));
 
 		ICmpTemplateManager* tempMan = static_cast<ICmpTemplateManager*> (man.QueryInterface(ent1, IID_TemplateManager));
 		TS_ASSERT(tempMan != NULL);

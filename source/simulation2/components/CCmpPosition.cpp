@@ -304,13 +304,13 @@ public:
 		entity_pos_t baseY;
 		if (m_RelativeToGround)
 		{
-			CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+			CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 			if (cmpTerrain)
 				baseY = cmpTerrain->GetGroundLevel(m_X, m_Z);
 
 			if (m_Floating)
 			{
-				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
+				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 				if (cmpWaterManager)
 					baseY = std::max(baseY, cmpWaterManager->GetWaterLevel(m_X, m_Z));
 			}
@@ -341,13 +341,13 @@ public:
 		entity_pos_t baseY; 
 		if (m_RelativeToGround) 
 		{ 
-			CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY); 
+			CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 			if (cmpTerrain) 
 				baseY = cmpTerrain->GetGroundLevel(m_PrevX, m_PrevZ); 
 
 			if (m_Floating) 
 			{ 
-				CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY); 
+				CmpPtr<ICmpWaterManager> cmpWaterMan(GetSystemEntity());
 				if (cmpWaterMan) 
 					baseY = std::max(baseY, cmpWaterMan->GetWaterLevel(m_PrevX, m_PrevZ)); 
 			} 
@@ -452,13 +452,13 @@ public:
 		float baseY = 0;
 		if (m_RelativeToGround)
 		{
-			CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+			CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 			if (cmpTerrain)
 				baseY = cmpTerrain->GetExactGroundLevel(x, z);
 
 			if (m_Floating || forceFloating)
 			{
-				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
+				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 				if (cmpWaterManager)
 					baseY = std::max(baseY, cmpWaterManager->GetExactWaterLevel(x, z));
 			}
@@ -575,7 +575,7 @@ private:
 			return;
 		}
 
-		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 		if (!cmpTerrain || !cmpTerrain->IsLoaded())
 		{
 			// try again when terrain is loaded

@@ -260,6 +260,7 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 		CStdDeserializer deserializer(m_ScriptInterface, stream);
 
 		ResetState();
+		InitSystemEntity();
 
 		std::string rng;
 		deserializer.StringASCII("rng", rng, 0, 32);
@@ -292,7 +293,7 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 			{
 				entity_id_t ent;
 				deserializer.NumberU32_Unbounded("entity id", ent);
-				IComponent* component = ConstructComponent(ent, ctid);
+				IComponent* component = ConstructComponent(LookupEntityHandle(ent, true), ctid);
 				if (!component)
 					return false;
 

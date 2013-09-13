@@ -74,6 +74,15 @@ public:
 		m = static_cast<T*>(QueryInterface(simulation, ent, T::GetInterfaceId()));
 	}
 
+	CmpPtr(CEntityHandle ent)
+	{
+		SEntityComponentCache* cache = ent.GetComponentCache();
+		if (cache != NULL && T::GetInterfaceId() < (int)cache->numInterfaces)
+			m = static_cast<T*>(cache->interfaces[T::GetInterfaceId()]);
+		else
+			m = NULL;
+	}
+
 	T* operator->() { return m; }
 
 	operator bool_type() const

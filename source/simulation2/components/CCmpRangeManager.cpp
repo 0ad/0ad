@@ -47,7 +47,7 @@ struct Query
 {
 	bool enabled;
 	bool parabolic;
-	entity_id_t source;
+	CEntityHandle source; // TODO: this could crash if an entity is destroyed while a Query is still referencing it
 	entity_pos_t minRange;
 	entity_pos_t maxRange;
 	entity_pos_t elevationBonus;
@@ -145,18 +145,16 @@ struct EntityData
 
 cassert(sizeof(EntityData) == 16);
 
-
 /**
  * Serialization helper template for Query
  */
 struct SerializeQuery
 {
 	template<typename S>
-	void operator()(S& serialize, const char* UNUSED(name), Query& value)
+	void Common(S& serialize, const char* UNUSED(name), Query& value)
 	{
 		serialize.Bool("enabled", value.enabled);
 		serialize.Bool("parabolic",value.parabolic);
-		serialize.NumberU32_Unbounded("source", value.source);
 		serialize.NumberFixed_Unbounded("min range", value.minRange);
 		serialize.NumberFixed_Unbounded("max range", value.maxRange);
 		serialize.NumberFixed_Unbounded("elevation bonus", value.elevationBonus);
@@ -164,6 +162,25 @@ struct SerializeQuery
 		serialize.NumberI32_Unbounded("interface", value.interface);
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "last match", value.lastMatch);
 		serialize.NumberU8_Unbounded("flagsMask", value.flagsMask);
+	}
+
+	void operator()(ISerializer& serialize, const char* name, Query& value, const CSimContext& UNUSED(context))
+	{
+		Common(serialize, name, value);
+
+		uint32_t id = value.source.GetId();
+		serialize.NumberU32_Unbounded("source", id);
+	}
+
+	void operator()(IDeserializer& deserialize, const char* name, Query& value, const CSimContext& context)
+	{
+		Common(deserialize, name, value);
+
+		uint32_t id;
+		deserialize.NumberU32_Unbounded("source", id);
+		value.source = context.GetComponentManager().LookupEntityHandle(id, true);
+			// the referenced entity might not have been deserialized yet,
+			// so tell LookupEntityHandle to allocate the handle if necessary
 	}
 };
 
@@ -331,7 +348,7 @@ public:
 		serialize.NumberFixed_Unbounded("world z1", m_WorldZ1);
 
 		serialize.NumberU32_Unbounded("query next", m_QueryNext);
-		SerializeMap<SerializeU32_Unbounded, SerializeQuery>()(serialize, "queries", m_Queries);
+		SerializeMap<SerializeU32_Unbounded, SerializeQuery>()(serialize, "queries", m_Queries, GetSimContext());
 		SerializeMap<SerializeU32_Unbounded, SerializeEntityData>()(serialize, "entity data", m_EntityData);
 
 		SerializeMap<SerializeI32_Unbounded, SerializeBool>()(serialize, "los reveal all", m_LosRevealAll);
@@ -720,7 +737,7 @@ public:
 
 		std::vector<entity_id_t> r;
 
-		CmpPtr<ICmpPosition> cmpSourcePosition(GetSimContext(), q.source);
+		CmpPtr<ICmpPosition> cmpSourcePosition(q.source);
 		if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
 		{
 			// If the source doesn't have a position, then the result is just the empty list
@@ -752,7 +769,7 @@ public:
 		Query& q = it->second;
 		q.enabled = true;
 
-		CmpPtr<ICmpPosition> cmpSourcePosition(GetSimContext(), q.source);
+		CmpPtr<ICmpPosition> cmpSourcePosition(q.source);
 		if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
 		{
 			// If the source doesn't have a position, then the result is just the empty list
@@ -813,7 +830,7 @@ public:
 			if (!q.enabled)
 				continue;
 
-			CmpPtr<ICmpPosition> cmpSourcePosition(GetSimContext(), q.source);
+			CmpPtr<ICmpPosition> cmpSourcePosition(q.source);
 			if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
 				continue;
 
@@ -836,7 +853,7 @@ public:
 			CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
 			std::stable_sort(added.begin(), added.end(), EntityDistanceOrdering(m_EntityData, pos));
 
-			messages.push_back(std::make_pair(q.source, CMessageRangeUpdate(it->first)));
+			messages.push_back(std::make_pair(q.source.GetId(), CMessageRangeUpdate(it->first)));
 			messages.back().second.added.swap(added);
 			messages.back().second.removed.swap(removed);
 
@@ -865,7 +882,7 @@ public:
 			return false;
 
 		// Ignore self
-		if (id == q.source)
+		if (id == q.source.GetId())
 			return false;
 
 		// Ignore if it's missing the required interface
@@ -880,7 +897,7 @@ public:
 	 */
 	void PerformQuery(const Query& q, std::vector<entity_id_t>& r)
 	{
-		CmpPtr<ICmpPosition> cmpSourcePosition(GetSimContext(), q.source);
+		CmpPtr<ICmpPosition> cmpSourcePosition(q.source);
 		if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
 			return;
 		CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
@@ -1006,8 +1023,8 @@ public:
 		std::vector<entity_pos_t> r;
 		
 
-		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
+		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 		entity_pos_t waterLevel = cmpWaterManager->GetWaterLevel(pos.X,pos.Z);
 		entity_pos_t thisHeight = pos.Y > waterLevel ? pos.Y : waterLevel;
 
@@ -1088,7 +1105,7 @@ public:
 		Query q;
 		q.enabled = false;
 		q.parabolic = false;
-		q.source = source;
+		q.source = GetSimContext().GetComponentManager().LookupEntityHandle(source);
 		q.minRange = minRange;
 		q.maxRange = maxRange;
 		q.elevationBonus = entity_pos_t::Zero();
@@ -1130,7 +1147,7 @@ public:
 			{
 				Query& q = it->second;
 
-				CmpPtr<ICmpPosition> cmpSourcePosition(GetSimContext(), q.source);
+				CmpPtr<ICmpPosition> cmpSourcePosition(q.source);
 				if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
 					continue;
 				CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
@@ -1151,9 +1168,9 @@ public:
 					std::vector<entity_pos_t> coords;
 					
 					// Get the outline from cache if possible
-					if (ParabolicRangesOutlines.find(q.source) != ParabolicRangesOutlines.end())
+					if (ParabolicRangesOutlines.find(q.source.GetId()) != ParabolicRangesOutlines.end())
 					{
-						EntityParabolicRangeOutline e = ParabolicRangesOutlines[q.source];
+						EntityParabolicRangeOutline e = ParabolicRangesOutlines[q.source.GetId()];
 						if (e.position == pos && e.range == q.maxRange) 
 						{
 							// outline is cached correctly, use it
@@ -1168,7 +1185,7 @@ public:
 							e.outline = coords;
 							e.range = q.maxRange;
 							e.position = pos;
-							ParabolicRangesOutlines[q.source] = e;
+							ParabolicRangesOutlines[q.source.GetId()] = e;
 						}
 					}
 					else 
@@ -1178,11 +1195,11 @@ public:
 						// cache a new outline
 						coords = getParabolicRangeForm(pos,q.maxRange,q.maxRange*2, entity_pos_t::Zero(), entity_pos_t::FromFloat(2.0f*3.14f),70);
 						EntityParabolicRangeOutline e;
-						e.source = q.source;
+						e.source = q.source.GetId();
 						e.range = q.maxRange;
 						e.position = pos;
 						e.outline = coords;
-						ParabolicRangesOutlines[q.source] = e;
+						ParabolicRangesOutlines[q.source.GetId()] = e;
 					}
 					
 					CColor thiscolor = q.enabled ? enabledRingColour : disabledRingColour;
@@ -1280,12 +1297,14 @@ public:
 			return CLosQuerier(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 	}
 
-	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player, bool forceRetainInFog)
+	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player, bool forceRetainInFog)
 	{
 		// (We can't use m_EntityData since this needs to handle LOCAL entities too)
 
 		// Entities not with positions in the world are never visible
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
+		if (ent.GetId() == INVALID_ENTITY)
+			return VIS_HIDDEN;
+		CmpPtr<ICmpPosition> cmpPosition(ent);
 		if (!cmpPosition || !cmpPosition->IsInWorld())
 			return VIS_HIDDEN;
 
@@ -1312,7 +1331,7 @@ public:
 		// Fogged if the 'retain in fog' flag is set, and in a non-visible explored region
 		if (los.IsExplored(i, j))
 		{
-			CmpPtr<ICmpVision> cmpVision(GetSimContext(), ent);
+			CmpPtr<ICmpVision> cmpVision(ent);
 			if (forceRetainInFog || (cmpVision && cmpVision->GetRetainInFog()))
 				return VIS_FOGGED;
 		}
@@ -1320,6 +1339,13 @@ public:
 		// Otherwise not visible
 		return VIS_HIDDEN;
 	}
+
+	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player, bool forceRetainInFog)
+	{
+		CEntityHandle handle = GetSimContext().GetComponentManager().LookupEntityHandle(ent);
+		return GetLosVisibility(handle, player, forceRetainInFog);
+	}
+
 
 	virtual void SetLosRevealAll(player_id_t player, bool enabled)
 	{
@@ -1370,7 +1396,7 @@ public:
 
 	void UpdateTerritoriesLos()
 	{
-		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
 		if (!cmpTerritoryManager || !cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
 			return;
 

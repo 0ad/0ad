@@ -96,6 +96,16 @@ public:
 	float GetFar() const;
 	float GetFOV() const;
 	float GetCullFOV() const;
+	
+	#define DECLARE_BOOLEAN_SETTING(NAME) \
+	bool Get##NAME##Enabled(); \
+	void Set##NAME##Enabled(bool Enabled);
+
+	DECLARE_BOOLEAN_SETTING(Culling);
+	DECLARE_BOOLEAN_SETTING(LockCullCamera);
+	DECLARE_BOOLEAN_SETTING(ConstrainCamera);
+
+	#undef DECLARE_BOOLEAN_SETTING
 
 	// Set projection of current camera using near, far, and FOV values
 	void SetCameraProjection();
@@ -104,8 +114,6 @@ public:
 	CCinemaManager* GetCinema();
 
 	JSObject* GetScript();
-	static void ScriptingInit();
 };
 extern InReaction game_view_handler(const SDL_Event_* ev);
-
 #endif

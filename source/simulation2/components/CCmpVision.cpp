@@ -85,13 +85,13 @@ public:
 			const CMessageTechnologyModification& msgData = static_cast<const CMessageTechnologyModification&> (msg);
 			if (msgData.component == L"Vision")
 			{
-				CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+				CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
 				if (cmpOwnership)
 				{
 					player_id_t owner = cmpOwnership->GetOwner();
 					if (owner != INVALID_PLAYER && owner == msgData.player)
 					{
-						CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+						CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
 						entity_id_t playerEnt = cmpPlayerManager->GetPlayerByID(owner);
 						CmpPtr<ICmpTechnologyManager> cmpTechnologyManager(GetSimContext(), playerEnt);
 						if (playerEnt != INVALID_ENTITY && cmpTechnologyManager)

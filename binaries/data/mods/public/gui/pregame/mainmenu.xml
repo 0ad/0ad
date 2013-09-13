@@ -169,8 +169,7 @@ Status: $status.
 				>
 					Matches
 					<action on="Press">
-						closeMenu();
-						Engine.PushGuiPage("page_gamesetup.xml", { type: "offline" });
+						Engine.SwitchGuiPage("page_gamesetup.xml", { type: "offline" });
 					</action>
 				</object>
 

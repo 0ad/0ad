@@ -261,7 +261,7 @@ public:
 
 		if (m_Unit)
 		{
-			CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+			CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
 			if (cmpOwnership)
 				m_Unit->GetModel().SetPlayerID(cmpOwnership->GetOwner());
 		}
@@ -525,7 +525,7 @@ void CCmpVisualActor::InitModel(const CParamNode& paramNode)
 				if (paramNode.GetChild("SilhouetteOccluder").ToBool())
 					modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
 
-				CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
+				CmpPtr<ICmpVision> cmpVision(GetEntityHandle());
 				if (cmpVision && cmpVision->GetAlwaysVisible())
 					modelFlags |= MODELFLAG_IGNORE_LOS;
 
@@ -566,7 +566,7 @@ void CCmpVisualActor::InitSelectionShapeDescriptor(const CParamNode& paramNode)
 		}
 		else if (shapeNode.GetChild("Footprint").IsOk())
 		{
-			CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), GetEntityId());
+			CmpPtr<ICmpFootprint> cmpFootprint(GetEntityHandle());
 			if (cmpFootprint)
 			{
 				ICmpFootprint::EShape fpShape;				// fp stands for "footprint"
@@ -643,7 +643,7 @@ void CCmpVisualActor::ReloadActor()
 
 	// HACK: selection shape needs template data, but rather than storing all that data
 	//	in the component, we load the template here and pass it into a helper function
-	CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSystemEntity());
 	const CParamNode* node = cmpTemplateManager->LoadLatestTemplate(GetEntityId());
 	ENSURE(node && node->GetChild("VisualActor").IsOk());
 
@@ -673,11 +673,11 @@ void CCmpVisualActor::Update(fixed UNUSED(turnLength))
 	// If we're in the special movement mode, select an appropriate animation
 	if (!m_AnimRunThreshold.IsZero())
 	{
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition || !cmpPosition->IsInWorld())
 			return;
 
-		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetEntityHandle());
 		if (!cmpUnitMotion)
 			return;
 
@@ -712,23 +712,23 @@ void CCmpVisualActor::Update(fixed UNUSED(turnLength))
 void CCmpVisualActor::UpdateVisibility()
 {
 	ICmpRangeManager::ELosVisibility oldVisibility = m_Visibility;
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (cmpPosition && cmpPosition->IsInWorld())
 	{
 		// The 'always visible' flag means we should always render the unit
 		// (regardless of whether the LOS system thinks it's visible)
-		CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpVision> cmpVision(GetEntityHandle());
 		if (cmpVision && cmpVision->GetAlwaysVisible())
 			m_Visibility = ICmpRangeManager::VIS_VISIBLE;
 		else
 		{
-			CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+			CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
 			// Uncomment the following lines to prevent the models from popping into existence
 			// near the LOS boundary. Is rather resource intensive.
 			//if (cmpVision->GetRetainInFog())
 			//	m_Visibility = ICmpRangeManager::VIS_VISIBLE;
 			//else
-				m_Visibility = cmpRangeManager->GetLosVisibility(GetEntityId(), 	
+				m_Visibility = cmpRangeManager->GetLosVisibility(GetEntityHandle(),
 					GetSimContext().GetCurrentDisplayedPlayer());
 		}
 	}
@@ -738,7 +738,7 @@ void CCmpVisualActor::UpdateVisibility()
 	if (m_Visibility != oldVisibility)
 	{
 		// Change the visibility of the visual actor's selectable if it has one.
-		CmpPtr<ICmpSelectable> cmpSelectable(GetSimContext(), GetEntityId());
+		CmpPtr<ICmpSelectable> cmpSelectable(GetEntityHandle());
 		if (cmpSelectable)
 			cmpSelectable->SetVisibility(m_Visibility == ICmpRangeManager::VIS_HIDDEN ? false : true);
 	}
@@ -750,7 +750,7 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 		return;
 
 	// Disable rendering of the unit if it has no position
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return;
 	else if (!m_PreviouslyRendered)
@@ -778,7 +778,7 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 			// If this is a floating unit, we want it to start all the way under the terrain,
 			// so find the difference between its current position and the terrain
 
-			CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+			CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 			if (floating && cmpTerrain)
 			{
 				CVector3D pos = transform.GetTranslation();

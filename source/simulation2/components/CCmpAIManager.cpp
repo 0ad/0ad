@@ -967,7 +967,7 @@ public:
 		// AI players can cheat and see through FoW/SoD, since that greatly simplifies
 		// their implementation.
 		// (TODO: maybe cleverer AIs should be able to optionally retain FoW/SoD)
-		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
 		if (cmpRangeManager)
 			cmpRangeManager->SetLosRevealAll(player, true);
 	}
@@ -976,7 +976,7 @@ public:
 	{
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		// load the technology templates
-		CmpPtr<ICmpTechnologyTemplateManager> cmpTechTemplateManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpTechnologyTemplateManager> cmpTechTemplateManager(GetSystemEntity());
 		ENSURE(cmpTechTemplateManager);
 		
 		// Get the game state from AIInterface
@@ -990,7 +990,7 @@ public:
 	{
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		
-		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSystemEntity());
 		ENSURE(cmpAIInterface);
 		
 		// Get the game state from AIInterface
@@ -999,7 +999,7 @@ public:
 		// Get the passability data
 		Grid<u16> dummyGrid;
 		const Grid<u16>* passabilityMap = &dummyGrid;
-		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
 			passabilityMap = &cmpPathfinder->GetPassabilityGrid();
 		
@@ -1007,7 +1007,7 @@ public:
 		//	Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
 		Grid<u8> dummyGrid2;
 		const Grid<u8>* territoryMap = &dummyGrid2;
-		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
 		if (cmpTerritoryManager && cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
 		{
 			territoryMap = &cmpTerritoryManager->GetTerritoryGrid();
@@ -1029,7 +1029,7 @@ public:
 		if (m_Worker.getPlayerSize() == 0)
 			return;
 		
-		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSystemEntity());
 		ENSURE(cmpAIInterface);
 
 		// Get the game state from AIInterface
@@ -1038,7 +1038,7 @@ public:
 		// Get the passability data
 		Grid<u16> dummyGrid;
 		const Grid<u16>* passabilityMap = &dummyGrid;
-		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
 			passabilityMap = &cmpPathfinder->GetPassabilityGrid();
 
@@ -1047,7 +1047,7 @@ public:
 		bool territoryMapDirty = false;
 		Grid<u8> dummyGrid2;
 		const Grid<u8>* territoryMap = &dummyGrid2;
-		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
 		if (cmpTerritoryManager && cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
 		{
 			territoryMap = &cmpTerritoryManager->GetTerritoryGrid();
@@ -1066,7 +1066,7 @@ public:
 		std::vector<CAIWorker::SCommandSets> commands;
 		m_Worker.GetCommands(commands);
 
-		CmpPtr<ICmpCommandQueue> cmpCommandQueue(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpCommandQueue> cmpCommandQueue(GetSystemEntity());
 		if (!cmpCommandQueue)
 			return;
 
@@ -1088,7 +1088,7 @@ private:
 
 	void StartLoadEntityTemplates()
 	{
-		CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSystemEntity());
 		ENSURE(cmpTemplateManager);
 
 		m_TemplateNames = cmpTemplateManager->FindAllTemplates(false);
@@ -1102,7 +1102,7 @@ private:
 		if (m_TemplateLoadedIdx >= m_TemplateNames.size())
 			return false;
 
-		CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSystemEntity());
 		ENSURE(cmpTemplateManager);
 
 		const CParamNode* node = cmpTemplateManager->GetTemplateWithoutValidation(m_TemplateNames[m_TemplateLoadedIdx]);
@@ -1127,7 +1127,7 @@ private:
 
 	void LoadPathfinderClasses(CScriptVal state)
 	{
-		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (!cmpPathfinder)
 			return;
 

@@ -306,7 +306,7 @@ const Grid<u16>& CCmpPathfinder::GetPassabilityGrid()
 
 void CCmpPathfinder::UpdateGrid()
 {
-	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 	if (!cmpTerrain)
 		return; // error
 
@@ -326,7 +326,7 @@ void CCmpPathfinder::UpdateGrid()
 		m_ObstructionGrid = new Grid<u8>(m_MapSize, m_MapSize);
 	}
 
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 
 	bool obstructionsDirty = cmpObstructionManager->Rasterise(*m_ObstructionGrid);
 
@@ -372,7 +372,7 @@ void CCmpPathfinder::UpdateGrid()
 		// Obstructions or terrain changed - we need to recompute passability
 		// TODO: only bother recomputing the region that has actually changed
 
-		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 
 		// TOOD: these bits should come from ICmpTerrain
 		CTerrain& terrain = GetSimContext().GetTerrain();
@@ -666,7 +666,7 @@ ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObst
 	entity_pos_t x, entity_pos_t z, entity_pos_t r,	pass_class_t passClass, bool onlyCenterPoint)
 {
 	// Check unit obstruction
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	if (!cmpObstructionManager)
 		return ICmpObstruction::FOUNDATION_CHECK_FAIL_ERROR;
 
@@ -717,7 +717,7 @@ ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckBuildingPlacement(const I
 	entity_pos_t h, entity_id_t id, pass_class_t passClass, bool onlyCenterPoint)
 {
 	// Check unit obstruction
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	if (!cmpObstructionManager)
 		return ICmpObstruction::FOUNDATION_CHECK_FAIL_ERROR;
 

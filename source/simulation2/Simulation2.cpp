@@ -97,19 +97,22 @@ public:
 		CParamNode noParam;
 		CComponentManager::ComponentTypeId cid;
 
-		// Add native system components:
-		componentManager.AddComponent(SYSTEM_ENTITY, CID_TemplateManager, noParam);
+		componentManager.InitSystemEntity();
+		CEntityHandle systemEntity = componentManager.GetSystemEntity();
 
-		componentManager.AddComponent(SYSTEM_ENTITY, CID_CommandQueue, noParam);
-		componentManager.AddComponent(SYSTEM_ENTITY, CID_ObstructionManager, noParam);
-		componentManager.AddComponent(SYSTEM_ENTITY, CID_ParticleManager, noParam);
-		componentManager.AddComponent(SYSTEM_ENTITY, CID_Pathfinder, noParam);
-		componentManager.AddComponent(SYSTEM_ENTITY, CID_ProjectileManager, noParam);
-		componentManager.AddComponent(SYSTEM_ENTITY, CID_RangeManager, noParam);
-		componentManager.AddComponent(SYSTEM_ENTITY, CID_SoundManager, noParam);
-		componentManager.AddComponent(SYSTEM_ENTITY, CID_Terrain, noParam);
-		componentManager.AddComponent(SYSTEM_ENTITY, CID_TerritoryManager, noParam);
-		componentManager.AddComponent(SYSTEM_ENTITY, CID_WaterManager, noParam);
+		// Add native system components:
+		componentManager.AddComponent(systemEntity, CID_TemplateManager, noParam);
+
+		componentManager.AddComponent(systemEntity, CID_CommandQueue, noParam);
+		componentManager.AddComponent(systemEntity, CID_ObstructionManager, noParam);
+		componentManager.AddComponent(systemEntity, CID_ParticleManager, noParam);
+		componentManager.AddComponent(systemEntity, CID_Pathfinder, noParam);
+		componentManager.AddComponent(systemEntity, CID_ProjectileManager, noParam);
+		componentManager.AddComponent(systemEntity, CID_RangeManager, noParam);
+		componentManager.AddComponent(systemEntity, CID_SoundManager, noParam);
+		componentManager.AddComponent(systemEntity, CID_Terrain, noParam);
+		componentManager.AddComponent(systemEntity, CID_TerritoryManager, noParam);
+		componentManager.AddComponent(systemEntity, CID_WaterManager, noParam);
 
 		// Add scripted system components:
 		if (!skipScriptedComponents)
@@ -120,7 +123,7 @@ public:
 			cid = componentManager.LookupCID(name); \
 			if (cid == CID__Invalid) \
 				LOGERROR(L"Can't find component type " L##name); \
-			componentManager.AddComponent(SYSTEM_ENTITY, cid, noParam)
+			componentManager.AddComponent(systemEntity, cid, noParam)
 
 			LOAD_SCRIPTED_COMPONENT("AIInterface");
 			LOAD_SCRIPTED_COMPONENT("Barter");
@@ -134,7 +137,7 @@ public:
 
 			if (!skipAI)
 			{
-				componentManager.AddComponent(SYSTEM_ENTITY, CID_AIManager, noParam);
+				componentManager.AddComponent(systemEntity, CID_AIManager, noParam);
 			}
 		
 		}
