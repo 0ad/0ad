@@ -191,14 +191,14 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 		batchDetailsString += ")";
 	}
 
-	return "\n\n[font=\"serif-bold-13\"]Shift-click[/font][font=\"serif-13\"] to train "
+	return "\n[font=\"serif-bold-13\"]Shift-click[/font][font=\"serif-13\"] to train "
 		+ totalBatchTrainingCount + batchDetailsString + ".[/font]";
 }
 
 /**
  * Helper function for updateUnitCommands; sets up "unit panels" (i.e. panels with rows of icons) for the currently selected
  * unit.
- * 
+ *
  * @param guiName Short identifier string of this panel; see constants defined at the top of this file.
  * @param usedPanels Output object; usedPanels[guiName] will be set to 1 to indicate that this panel was used during this
  * 				run of updateUnitCommands and should not be hidden. TODO: why is this done this way instead of having
@@ -305,7 +305,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 	for (i = 0; i < numberOfItems; i++)
 	{
 		var item = items[i];
-		
+
 		// If a tech has been researched it leaves an empty slot
 		if (guiName == RESEARCH && !item)
 		{
@@ -315,7 +315,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			getGUIObjectByName("unit"+guiName+"Pair["+i+"]").hidden = true;
 			continue;
 		}
-		
+
 		// Get the entity type and load the template for that type if necessary
 		var entType;
 		var template;
@@ -336,7 +336,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 					entType = item.technologyTemplate;
 					template = GetTechnologyData(entType);
 				}
-			
+
 				if (!template)
 					continue; 	// ignore attempts to use invalid templates (an error should have been
 								// reported already)
@@ -349,7 +349,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 					if (!template1)
 						continue; 	// ignore attempts to use invalid templates (an error should have been
 									// reported already)
-					
+
 					entType = item.bottom;
 				}
 				else
@@ -360,7 +360,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				if (!template)
 					continue; 	// ignore attempts to use invalid templates (an error should have been
 								// reported already)
-				
+
 				break;
 			case SELECTION:
 			case GARRISON:
@@ -416,7 +416,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 					var template = GetTemplateData(item.template);
 					var wallCount = g_Selection.toList().reduce(function (count, ent) {
 							var state = GetEntityState(ent);
-							if (hasClass(state, "LongWall") && !state.gate) 
+							if (hasClass(state, "LongWall") && !state.gate)
 								count++;
 							return count;
 						}, 0);
@@ -446,6 +446,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 
 			case TRAINING:
 				var tooltip = getEntityNamesFormatted(template);
+				var key = g_ConfigDB.system["hotkey.session.queueunit." + (i + 1)];
+				if (key)
+					tooltip = "[color=\"255 251 131\"][font=\"serif-bold-16\"][" + key + "][/font][/color] " + tooltip;
 
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
@@ -453,33 +456,17 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
 					getTrainingBatchStatus(playerState, unitEntState.id, entType, selection);
 				if (Engine.HotkeyIsPressed("session.batchtrain"))
-				{
 					trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
-				}
 
-				tooltip += "\n" + getEntityCostTooltip(template, trainNum, unitEntState.id);
-
-				if (template.health)
-					tooltip += "\n[font=\"serif-bold-13\"]Health:[/font] " + template.health;
-				if (template.armour)
-					tooltip += "\n[font=\"serif-bold-13\"]Armour:[/font] " + armorTypesToText(template.armour);
-				if (template.attack)
-					tooltip += "\n" + getEntityAttack(template);
-				if (template.speed)
-					tooltip += "\n" + getEntitySpeed(template);
+				tooltip += "\n" + getEntityCostTooltip(template, trainNum, unitEntState.id, "");
 
 				var [trainEntLimit, trainEntCount, canBeAddedCount] =
 					getEntityLimitAndCount(playerState, entType);
 				tooltip += formatLimitString(trainEntLimit, trainEntCount);
 
-				tooltip += formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch);
-				var key = g_ConfigDB.system["hotkey.session.queueunit." + (i+1)];
-				if (key !== undefined)
-				{
-					tooltip += "\n[font=\"serif-bold-13\"]HotKey (" + key  + ").[/font]";
-				}
+				tooltip += "[color=\"255 251 131\"]" + formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch) + "[/color]";
 				break;
-				
+
 			case RESEARCH:
 				var tooltip = getEntityNamesFormatted(template);
 				if (template.tooltip)
@@ -502,11 +489,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
-				tooltip += "\n" + getEntityCostTooltip(template);
+				tooltip += "\n" + getEntityCostTooltip(template, null, null, "");
 				tooltip += getPopulationBonusTooltip(template);
-
-				if (template.health)
-					tooltip += "\n[font=\"serif-bold-13\"]Health:[/font] " + template.health;
 
 				var [entLimit, entCount, canBeAddedCount] =
 					getEntityLimitAndCount(playerState, entType);
@@ -598,7 +582,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			if (!formationOk)
  			{
 				grayscale = "grayscale:";
-				
+
 				// Display a meaningful tooltip why the formation is disabled
 				var requirements = Engine.GuiInterfaceCall("GetFormationRequirements", {
 					"formationName": item
@@ -625,7 +609,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 
 			selection.hidden = !formationSelected;
 			icon.sprite = "stretched:"+grayscale+"session/icons/formations/"+item.replace(/\s+/,'').toLowerCase()+".png";
-			
+
  		}
 		else if (guiName == STANCE)
 		{
@@ -691,7 +675,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				affordableMask.hidden = false;
 				affordableMask.sprite = "colour: 0 0 0 127";
 			}
-			
+
 			if (guiName == RESEARCH && !Engine.GuiInterfaceCall("CheckTechnologyRequirements", entType))
 			{
 				button.enabled = false;
@@ -717,16 +701,16 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				var player = Engine.GetPlayerID();
 				if(player != unitEntState.player && !g_DevSettings.controlAll)
 				{
-					if (entplayer != player) 
+					if (entplayer != player)
 					{
 						button.enabled = false;
 						grayscale = "grayscale:";
 					}
 				}
 			}
-			
+
 			icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
-			
+
 			if (guiName == RESEARCH)
 			{
 				// Check resource requirements
@@ -737,7 +721,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 					{
 						button.enabled = false;
 						affordableMask.hidden = false;
-						
+
 						var totalCost = 0;
 						for each (var resource in neededResources)
 							totalCost += resource;
@@ -854,7 +838,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		buttonSideLength = getGUIObjectByName("unit"+guiName+"Button["+(rowLength*numRows)+"]").size.bottom;
 
 	var buttonSpacer = buttonSideLength+1;
-	
+
 	// Layout buttons
 	if (guiName == COMMAND)
 	{
@@ -875,7 +859,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		for (var i = 0; i < numRows; i++)
 			layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
 	}
-	
+
 	// Layout pair icons
 	if (guiName == RESEARCH)
 	{
@@ -989,7 +973,7 @@ function setupUnitBarterPanel(unitEntState, playerState)
 				if (i == g_barterSell)
 				{
 					amount = "-" + amountToSell;
-					
+
 					var neededRes = {};
 					neededRes[resource] = amountToSell;
 					var neededResources = Engine.GuiInterfaceCall("GetNeededResources", neededRes);
@@ -1018,7 +1002,7 @@ function setupUnitBarterPanel(unitEntState, playerState)
  * Updates the right hand side "Unit Commands" panel. Runs in the main session loop via updateSelectionDetails().
  * Delegates to setupUnitPanel to set up individual subpanels, appropriately activated depending on the selected
  * unit's state.
- * 
+ *
  * @param entState Entity state of the (first) selected unit.
  * @param supplementalDetailsPanel Reference to the "supplementalSelectionDetails" GUI Object
  * @param commandsPanel Reference to the "commandsPanel" GUI Object
@@ -1093,7 +1077,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 
 		// The first selected entity's type has priority.
 		if (entState.buildEntities)
-			setupUnitPanel(CONSTRUCTION, usedPanels, entState, playerState, buildableEnts, 
+			setupUnitPanel(CONSTRUCTION, usedPanels, entState, playerState, buildableEnts,
 				function (trainEntType) { startBuildingPlacement(trainEntType, playerState); } );
 		else if (entState.production && entState.production.entities)
 			setupUnitPanel(TRAINING, usedPanels, entState, playerState, trainableEnts,
@@ -1200,7 +1184,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			// The right pane is empty. Fill the pane with a sane type.
 			// Prefer buildables for units and trainables for structures.
 			if (buildableEnts.length && (hasClass(entState, "Unit") || !trainableEnts.length))
-				setupUnitPanel(CONSTRUCTION, usedPanels, entState, playerState, buildableEnts, 
+				setupUnitPanel(CONSTRUCTION, usedPanels, entState, playerState, buildableEnts,
 					function (trainEntType) { startBuildingPlacement(trainEntType, playerState); });
 			else if (trainableEnts.length)
 				setupUnitPanel(TRAINING, usedPanels, entState, playerState, trainableEnts,
@@ -1218,7 +1202,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		if (entState.production && entState.production.queue.length)
 			setupUnitPanel(QUEUE, usedPanels, entState, playerState, entState.production.queue,
 				function (item) { removeFromProductionQueue(entState.id, item.id); } );
-		
+
 		supplementalDetailsPanel.hidden = false;
 		commandsPanel.hidden = false;
 	}
@@ -1282,7 +1266,7 @@ function getAllTrainableEntities(selection)
 		if ((state = GetEntityState(selection[i])) && state.production && state.production.entities.length)
 			trainableEnts = trainableEnts.concat(state.production.entities);
 	}
-	
+
 	// Remove duplicates
 	removeDupes(trainableEnts);
 	return trainableEnts;
@@ -1299,7 +1283,7 @@ function getAllBuildableEntities(selection)
 		if ((state = GetEntityState(selection[i])) && state.buildEntities && state.buildEntities.length)
 			buildableEnts = buildableEnts.concat(state.buildEntities);
 	}
-	
+
 	// Remove duplicates
 	removeDupes(buildableEnts);
 	return buildableEnts;

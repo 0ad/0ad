@@ -48,9 +48,9 @@ function getPlayerData(playerAssignments)
 		var name = playerState.name;
 		var civ = playerState.civ;
 		var color = {
-		    "r": playerState.colour.r*255, 
-		    "g": playerState.colour.g*255, 
-		    "b": playerState.colour.b*255, 
+		    "r": playerState.colour.r*255,
+		    "g": playerState.colour.g*255,
+		    "b": playerState.colour.b*255,
 		    "a": playerState.colour.a*255
 		};
 
@@ -400,9 +400,12 @@ function getWallPieceTooltip(wallTypes)
 /**
  * Returns the cost information to display in the specified entity's construction button tooltip.
  */
-function getEntityCostTooltip(template, trainNum, entity)
+function getEntityCostTooltip(template, trainNum, entity, prefix)
 {
-	var cost = "[font=\"serif-bold-13\"]Costs:[/font] ";
+    if (prefix == null)
+		prefix = "[font=\"serif-bold-13\"]Costs:[/font] ";
+
+	var cost = prefix;
 
 	// Entities with a wallset component are proxies for initiating wall placement and as such do not have a cost of
 	// their own; the individual wall pieces within it do.
@@ -512,7 +515,10 @@ function getEntityNames(template)
 
 function getEntityNamesFormatted(template)
 {
-	return '[font="serif-bold-16"]' + getEntityNames(template) + "[/font]";
+	var names = getEntityNames(template).split(' (');
+	return '[font="serif-bold-16"]' + names[0][0] + '[/font]' +
+		'[font="serif-bold-12"]' + names[0].slice(1).toUpperCase() + '[/font]' +
+		'[font="serif-bold-16"] (' + names[1] + '[/font]';
 }
 
 function getEntityRankedName(entState)
