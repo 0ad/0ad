@@ -2,14 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>props/celt_fortress_keep.dae</mesh>
+    <variant name="broch top">
+      <mesh>props/brit_fortress_tower.dae</mesh>
       <textures>
 	    <texture file="structural/celt_broch.dds" name="baseTex"/>
 	    <texture file="structural/celt_broch_norm.png" name="normTex"/>
 	    <texture file="structural/celt_broch_spec.png" name="specTex"/>
+		<texture file="structural/ao/brit_fortress.png" name="aoTex"/>
 	  </textures>
     </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

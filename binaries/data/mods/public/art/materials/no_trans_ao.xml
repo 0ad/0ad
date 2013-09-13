@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
     <shader effect="model"/>
-    
+    <alternative material="default.xml" quality="2"/>
 
     <!--<conditional_define name="USE_PARALLAX_MAP" value="1" type="draw_range" conf="PARALLAX_DIST"/>
     <conditional_define name="USE_HQ_PARALLAX" value="1" type="draw_range" conf="PARALLAX_HQ_DIST"/>
