@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Brythonic Broch">
+      <animations>
+        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
+      </animations>
+      <mesh>structural/celt_broch.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/broch_wall.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/broch_top.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/celt_round_a.xml" attachpoint="shielda"/>
+        <prop actor="props/units/shields/celt_round_b.xml" attachpoint="shieldb"/>
+        <prop actor="props/units/shields/celt_round_e.xml" attachpoint="shieldc"/>
+        <prop actor="props/units/shields/celt_round_a.xml" attachpoint="shieldd"/>
+        <prop actor="props/units/shields/celt_scutum_a.xml" attachpoint="shielde"/>
+        <prop actor="props/units/shields/celt_scutum_b.xml" attachpoint="shieldf"/>
+        <prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="basketa"/>
+        <prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="basketb"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrela"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrelb"/>
+        <prop actor="particle/smoke_small_light.xml" attachpoint="smokea"/>
+        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+      <textures>
+	    <texture file="structural/celt_broch.dds" name="baseTex"/>
+	    <texture file="structural/celt_broch_norm.png" name="normTex"/>
+	    <texture file="structural/celt_broch_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/broch_wall.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/broch_top.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
