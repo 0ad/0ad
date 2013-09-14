@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="437.179" y="83.0559" z="128.188"/>
+		<Position x="453.635" y="110.575" z="105.697"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -49,6 +49,7 @@
   "Name": "Acropolis 1",
   "PlayerData": [
     {
+      "AI": "",
       "Civ": "maur",
       "Colour": {
         "b": 200,
@@ -57,11 +58,15 @@
       },
       "Name": "Player 1",
       "Resources": {
-        "stone": 200
+        "food": 500,
+        "metal": 500,
+        "stone": 500,
+        "wood": 500
       },
       "Team": -1
     },
     {
+      "AI": "aegis",
       "Civ": "pers",
       "Colour": {
         "b": 20,
@@ -70,7 +75,10 @@
       },
       "Name": "Player 2",
       "Resources": {
-        "stone": 200
+        "food": 500,
+        "metal": 500,
+        "stone": 500,
+        "wood": 500
       },
       "Team": -1
     }
@@ -23075,6 +23083,13 @@
 			<Position x="567.47303" z="812.35956"/>
 			<Orientation y="-2.51066"/>
 			<Actor seed="44300"/>
+		</Entity>
+		<Entity uid="4685">
+			<Template>units/maur_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="413.00058" z="184.93931"/>
+			<Orientation y="-2.49578"/>
+			<Actor seed="49228"/>
 		</Entity>
 	</Entities>
 	<Paths/>

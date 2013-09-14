@@ -19,7 +19,7 @@
 		</BonusPrimary>
 		<BonusSecondary>
 		  <Classes>Infantry Bow</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>2.0</Multiplier>
 		</BonusSecondary>
 		<BonusSiege>
 		  <Classes>Siege</Classes>
@@ -50,7 +50,7 @@
 		</BonusPrimary>
 		<BonusSecondary>
 		  <Classes>Infantry Bow</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>2.0</Multiplier>
 		</BonusSecondary>
 		<ElephantStench>
 		  <Classes>Elephant</Classes>
@@ -78,7 +78,7 @@
     <Classes datatype="tokens">Melee Sword</Classes>
     <GenericName>Champion Cavalry Swordsman</GenericName>
 	<Tooltip>Champion Cavalry Swordsman.
-Counters: 2x vs. All Support Units and Siege Weapons, 1.5x vs. Archers.
+Counters: 2x vs. Archers, All Support Units, and Siege Weapons.
 Countered by: Spearmen, Cavalry Skirmishers, and Elephants.</Tooltip>
   </Identity>
 </Entity>
