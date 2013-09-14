@@ -32,37 +32,14 @@ BuildRestrictions.prototype.Schema =
 			"</oneOrMore>" +
 		"</list>" +
 	"</element>" +
-	"<element name='Category' a:help='Specifies the category of this building, for satisfying special constraints.'>" +
-		"<choice>" +
-			"<value>CivilCentre</value>" +
-			"<value>House</value>" +
-			"<value>DefenseTower</value>" +
-			"<value>Farmstead</value>" +
-			"<value>Market</value>" +
-			"<value>Barracks</value>" +
-			"<value>Dock</value>" +
-			"<value>Fortress</value>" +
-			"<value>Field</value>" +
-			"<value>Temple</value>" +
-			"<value>Wall</value>" +
-			"<value>Fence</value>" +
-			"<value>Storehouse</value>" +
-			"<value>Stoa</value>" +
-			"<value>Resource</value>" +
-			"<value>Special</value>" +
-			"<value>Wonder</value>" +
-			"<value>Apadana</value>" +
-			"<value>Embassy</value>" +
-			"<value>Monument</value>" +
-		"</choice>" +
+	"<element name='Category' a:help='Specifies the category of this building, for satisfying special constraints. Choices include: CivilCentre, House, DefenseTower, Farmstead, Market, Barracks, Dock, Fortress, Field, Temple, Wall, Fence, Storehouse, Stoa, Resource, Special, Wonder, Apadana, Embassy, Monument'>" +
+		"<text/>" +
 	"</element>" +
 	"<optional>" +
 		"<element name='Distance' a:help='Specifies distance restrictions on this building, relative to buildings from the given category.'>" +
 			"<interleave>" +
 				"<element name='FromCategory'>" +
-					"<choice>" +
-						"<value>CivilCentre</value>" +
-					"</choice>" +
+					"<text/>" +
 				"</element>" +
 				"<optional><element name='MinDistance'><data type='positiveInteger'/></element></optional>" +
 				"<optional><element name='MaxDistance'><data type='positiveInteger'/></element></optional>" +
