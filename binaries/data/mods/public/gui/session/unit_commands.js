@@ -458,7 +458,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				if (Engine.HotkeyIsPressed("session.batchtrain"))
 					trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
 
-				tooltip += "\n" + getEntityCostTooltip(template, trainNum, unitEntState.id, "");
+				tooltip += "\n" + getEntityCostTooltip(template, trainNum, unitEntState.id);
 
 				var [trainEntLimit, trainEntCount, canBeAddedCount] =
 					getEntityLimitAndCount(playerState, entType);
@@ -489,7 +489,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
-				tooltip += "\n" + getEntityCostTooltip(template, null, null, "");
+				tooltip += "\n" + getEntityCostTooltip(template);
 				tooltip += getPopulationBonusTooltip(template);
 
 				var [entLimit, entCount, canBeAddedCount] =

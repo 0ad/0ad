@@ -400,12 +400,9 @@ function getWallPieceTooltip(wallTypes)
 /**
  * Returns the cost information to display in the specified entity's construction button tooltip.
  */
-function getEntityCostTooltip(template, trainNum, entity, prefix)
+function getEntityCostTooltip(template, trainNum, entity)
 {
-    if (prefix == null)
-		prefix = "[font=\"serif-bold-13\"]Costs:[/font] ";
-
-	var cost = prefix;
+	var cost = "";
 
 	// Entities with a wallset component are proxies for initiating wall placement and as such do not have a cost of
 	// their own; the individual wall pieces within it do.
