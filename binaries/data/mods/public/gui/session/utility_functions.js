@@ -512,14 +512,24 @@ function getEntityNames(template)
 
 function getEntityNamesFormatted(template)
 {
-	var name = getEntityNames(template);
-	// Return if there's no generic/specific name combo.
-	if (!~name.indexOf(' ('))
-		return name;
-	var names = name.split(' (');
-	return '[font="serif-bold-16"]' + names[0][0] + '[/font]' +
-		'[font="serif-bold-12"]' + names[0].slice(1).toUpperCase() + '[/font]' +
-		'[font="serif-bold-16"] (' + names[1] + '[/font]';
+	var names = "";
+	var generic = template.name.generic;
+	var specific = template.name.specific;
+	if (specific)
+	{
+		// drop caps for specific name
+		names += '[font="serif-bold-16"]' + specific[0] + '[/font]' + 
+			'[font="serif-bold-12"]' + specific.slice(1).toUpperCase() + '[/font]';
+
+		if (generic)
+			names += '[font="serif-bold-16"] (' + generic + ')[/font]';
+	}
+	else if (generic)
+		names = '[font="serif-bold-16"]' + generic + "[/font]";
+	else
+		names = "???";
+
+	return names;
 }
 
 function getEntityRankedName(entState)
