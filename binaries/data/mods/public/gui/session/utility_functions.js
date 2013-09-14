@@ -515,7 +515,11 @@ function getEntityNames(template)
 
 function getEntityNamesFormatted(template)
 {
-	var names = getEntityNames(template).split(' (');
+	var name = getEntityNames(template);
+	// Return if there's no generic/specific name combo.
+	if (!~name.indexOf(' ('))
+		return name;
+	var names = name.split(' (');
 	return '[font="serif-bold-16"]' + names[0][0] + '[/font]' +
 		'[font="serif-bold-12"]' + names[0].slice(1).toUpperCase() + '[/font]' +
 		'[font="serif-bold-16"] (' + names[1] + '[/font]';
