@@ -1,0 +1,28 @@
+{
+	"pair": "pair_inf_armor_01",
+	"genericName": "Plywood Shield Construction",
+	"specificName": {
+		"hele": "Aspidiskè",
+		"mace": "Aspidiskè",
+		"spart": "Aspidiskè",
+		"athen": "Aspidiskè",
+		"pers": "Plywood Shield Construction",
+		"rome": "Plywood Shield Construction",
+		"cart": "Plywood Shield Construction",
+		"iber": "Plywood Shield Construction",
+		"maur": "Plywood Shield Construction",
+		"celt": "Plywood Shield Construction",
+		"brit": "Plywood Shield Construction",
+		"gaul": "Plywood Shield Construction"
+	},
+	"description": "Plywood construction for large shields.",
+	"cost": {"food": 0, "wood": 50, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "shields_generic_wood.png",
+	"researchTime": 40,
+	"tooltip": "Infantry Spearmen +2 Pierce Armor Levels.",
+	"modifications": [{"value": "Armour/Pierce", "add": 2.0}],
+	"affects": ["Infantry Spear"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

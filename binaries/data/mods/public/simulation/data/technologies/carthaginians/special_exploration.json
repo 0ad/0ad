@@ -8,5 +8,6 @@
 	"researchTime": 60,
 	"tooltip": "Carthaginians were explorers. All Traders and Ships +25% vision range.",
 	"modifications": [{"value": "Vision/Range", "multiplier": 1.25}],
-	"affects": ["Trader", "Ship"]
+	"affects": ["Trader", "Ship"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

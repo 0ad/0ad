@@ -8,5 +8,6 @@
 	"researchTime": 40,
 	"tooltip": "Bolt shooter accuracy increased 25%",
 	"modifications": [{"value": "Attack/Ranged/Spread", "multiplier": 0.75}],
-	"affects": ["Bolt Shooter"]
+	"affects": ["Bolt Shooter"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

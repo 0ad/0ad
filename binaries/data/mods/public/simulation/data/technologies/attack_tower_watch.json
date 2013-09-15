@@ -9,5 +9,6 @@
 	"researchTime": 40,
 	"tooltip": "Post night's watchmen to double the number of default arrows in ungarrisoned Towers.",
 	"modifications": [{"value": "BuildingAI/DefaultArrowCount", "add": 1.0}],
-	"affects": ["Defensive Tower"]
+	"affects": ["Defensive Tower"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -7,5 +7,6 @@
 	"researchTime": 40,
 	"tooltip": "Vision Range +50% for Outposts.",
 	"modifications": [{"value": "Vision/Range", "multiplier": 1.5}],
-	"affects": ["Outpost"]
+	"affects": ["Outpost"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

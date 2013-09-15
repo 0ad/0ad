@@ -12,5 +12,6 @@
 		{"value": "Cost/BuildTime", "multiplier": 0.9},
 		{"value": "Health/Max", "add": -5}
 	],
-	"affects": ["Infantry"]  
+	"affects": ["Infantry"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

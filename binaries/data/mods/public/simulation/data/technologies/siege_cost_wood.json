@@ -8,5 +8,6 @@
 	"researchTime": 40,
 	"tooltip": "Siege weapons cost 20% less wood",
 	"modifications": [{"value": "Cost/Resources/wood", "multiplier": 0.80}],
-	"affects": ["Siege"]
+	"affects": ["Siege"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

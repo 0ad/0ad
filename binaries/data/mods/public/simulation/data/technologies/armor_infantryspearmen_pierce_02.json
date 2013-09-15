@@ -1,0 +1,20 @@
+{
+	"pair": "pair_inf_armor_02",
+	"genericName": "Reinforced Shield",
+	"specificName": {
+		"hele": "Aspides",
+		"mace": "Aspides",
+		"spart": "Aspides",
+		"athen": "Aspides"
+	},
+	"description": "Plywood construction for large shields.",
+	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 100},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "shields_generic_bronze.png",
+	"researchTime": 40,
+	"tooltip": "Infantry Spearmen +1 Pierce Armor Levels.",
+	"modifications": [{"value": "Armour/Pierce", "add": 2.0}],
+	"affects": ["Infantry Spear"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

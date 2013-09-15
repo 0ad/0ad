@@ -10,5 +10,6 @@
 	"modifications": [
 		{"value": "BuildRestrictions/Territory", "replace": ["own", "neutral"]}
 	],
-	"affects": ["StoneWall"]
+	"affects": ["StoneWall"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -8,5 +8,6 @@
 	"researchTime": 40,
 	"tooltip": "Territory decay -50% for Outposts.",
 	"modifications": [{"value": "TerritoryDecay/HealthDecayRate", "multiplier": 0.5}],
-	"affects": ["Outpost"]
+	"affects": ["Outpost"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

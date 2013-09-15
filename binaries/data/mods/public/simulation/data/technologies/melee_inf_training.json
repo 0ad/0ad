@@ -16,5 +16,6 @@
 	"researchTime": 40,
 	"tooltip": "Melee infantry +1 hack attack.",
 	"modifications": [{"value": "Attack/Melee/Hack", "add": 1.0}],
-	"affects": ["Infantry Melee"]
+	"affects": ["Infantry Melee"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
