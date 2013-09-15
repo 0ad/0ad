@@ -21,6 +21,31 @@
 #include "simulation2/serialization/SerializeTemplates.h"
 
 /**
+ * A simple fixed-size array that works similar to an std::vector
+ * but is obviously limited in its max items
+ */
+struct SpatialQueryArray
+{
+	enum { MAX_COUNT = 1024 };
+	int count;
+	uint32_t items[MAX_COUNT];
+
+	inline SpatialQueryArray() : count(0) {}
+	inline const uint32_t& operator[](int index) const { return items[index]; }
+	inline uint32_t& operator[](int index) { return items[index]; }
+	inline int size() const { return count; }
+	inline void clear() { count = 0; }
+	void make_unique() // removes any duplicate entries
+	{
+		if (count)
+		{
+			std::sort(items, items + count); // we need a sorted list for std::unique to work
+			count = int(std::unique(items, items + count) - items);
+		}
+	}
+};
+
+/**
  * A very basic subdivision scheme for finding items in ranges.
  * Items are stored in lists in fixed-size divisions.
  * Items have a size (min/max values of their axis-aligned bounding box)
@@ -34,13 +59,95 @@
  *
  * (TODO: maybe an adaptive quadtree would be better than fixed sizes?)
  */
-template<typename T>
 class SpatialSubdivision
 {
-public:
-	SpatialSubdivision() :
-		m_DivisionsW(0), m_DivisionsH(0)
+	struct SubDivisionGrid
 	{
+		std::vector<uint32_t> items;
+
+		inline void push_back(uint32_t value)
+		{
+			items.push_back(value);
+		}
+
+		inline void erase(int index)
+		{
+			// Delete by swapping with the last element then popping
+			if ((int)items.size() > 1) // but only if we have more than 1 elements
+				items[index] = items.back();
+			items.pop_back();
+		}
+
+		void copy_items(SpatialQueryArray& out)
+		{
+			if (items.empty()) 
+				return; // nothing to copy
+
+			int dsti = out.count;				// the index in [out] where to start copying
+			int count = (int)items.size();
+			if ((dsti + count) > SpatialQueryArray::MAX_COUNT)
+				count = SpatialQueryArray::MAX_COUNT - dsti; // silently fail to copy overflowing items
+
+			uint32_t* dst = &out.items[dsti];
+			uint32_t* src = &items[0];
+			for (int i = 0; i < count; ++i) // copy all items
+				dst[i] = src[i];
+			out.count += count;
+		}
+	};
+
+
+	entity_pos_t m_DivisionSize;
+	SubDivisionGrid* m_Divisions;
+	uint32_t m_DivisionsW;
+	uint32_t m_DivisionsH;
+
+	friend struct SerializeSubDivisionGrid;
+	friend struct SerializeSpatialSubdivision;
+
+public:
+	SpatialSubdivision() : m_Divisions(NULL), m_DivisionsW(0), m_DivisionsH(0)
+	{
+	}
+	~SpatialSubdivision()
+	{
+		delete[] m_Divisions;
+	}
+	SpatialSubdivision(const SpatialSubdivision& rhs)
+	{
+		m_DivisionSize = rhs.m_DivisionSize;
+		m_DivisionsW = rhs.m_DivisionsW;
+		m_DivisionsH = rhs.m_DivisionsH;
+		size_t n = m_DivisionsW * m_DivisionsH;
+		m_Divisions = new SubDivisionGrid[n];
+		for (size_t i = 0; i < n; ++i)
+			m_Divisions[i] = rhs.m_Divisions[i]; // just fall back to piecemeal copy
+	}
+	SpatialSubdivision& operator=(const SpatialSubdivision& rhs)
+	{
+		if (this != &rhs)
+		{
+			m_DivisionSize = rhs.m_DivisionSize;
+			size_t n = rhs.m_DivisionsW * rhs.m_DivisionsH;
+			if (m_DivisionsW != rhs.m_DivisionsW || m_DivisionsH != rhs.m_DivisionsH)
+				Create(n); // size changed, recreate
+			
+			m_DivisionsW = rhs.m_DivisionsW;
+			m_DivisionsH = rhs.m_DivisionsH;
+			for (size_t i = 0; i < n; ++i)
+				m_Divisions[i] = rhs.m_Divisions[i]; // just fall back to piecemeal copy
+		}
+		return *this;
+	}
+
+	inline entity_pos_t GetDivisionSize() const { return m_DivisionSize; }
+	inline uint32_t GetWidth() const { return m_DivisionsW; }
+	inline uint32_t GetHeight() const { return m_DivisionsH; }
+
+	void Create(size_t count)
+	{
+		if (m_Divisions) delete[] m_Divisions;
+		m_Divisions = new SubDivisionGrid[count];
 	}
 
 	/**
@@ -51,23 +158,24 @@ public:
 		if (m_DivisionSize != rhs.m_DivisionSize || m_DivisionsW != rhs.m_DivisionsW || m_DivisionsH != rhs.m_DivisionsH)
 			return false;
 		
-		for (u32 j = 0; j < m_DivisionsH; ++j)
+		uint32_t n = m_DivisionsH * m_DivisionsW;
+		for (uint32_t i = 0; i < n; ++i)
 		{
-			for (u32 i = 0; i < m_DivisionsW; ++i)
-			{
-				std::vector<T> div1 = m_Divisions.at(i + j*m_DivisionsW);
-				std::vector<T> div2 = rhs.m_Divisions.at(i + j*m_DivisionsW);
-				std::sort(div1.begin(), div1.end());
-				std::sort(div2.begin(), div2.end());
-				if (div1 != div2)
-					return false;
-			}
-		}
+			if (m_Divisions[i].items.size() != rhs.m_Divisions[i].items.size())
+				return false;
 
+			// don't bother optimizing this, this is only used in the TESTING SUITE
+			std::vector<uint32_t> a = m_Divisions[i].items;
+			std::vector<uint32_t> b = rhs.m_Divisions[i].items;
+			std::sort(a.begin(), a.end());
+			std::sort(b.begin(), b.end());
+			if (a != b)
+				return false;
+		}
 		return true;
 	}
 
-	bool operator!=(const SpatialSubdivision& rhs)
+	inline bool operator!=(const SpatialSubdivision& rhs)
 	{
 		return !(*this == rhs);
 	}
@@ -77,15 +185,16 @@ public:
 		m_DivisionSize = divisionSize;
 		m_DivisionsW = (maxX / m_DivisionSize).ToInt_RoundToInfinity();
 		m_DivisionsH = (maxZ / m_DivisionSize).ToInt_RoundToInfinity();
-		m_Divisions.clear();
-		m_Divisions.resize(m_DivisionsW * m_DivisionsH);
+
+		Create(m_DivisionsW * m_DivisionsH);
 	}
+
 
 	/**
 	 * Add an item with the given 'to' size.
 	 * The item must not already be present.
 	 */
-	void Add(T item, CFixedVector2D toMin, CFixedVector2D toMax)
+	void Add(uint32_t item, CFixedVector2D toMin, CFixedVector2D toMax)
 	{
 		ENSURE(toMin.X <= toMax.X && toMin.Y <= toMax.Y);
 
@@ -97,8 +206,7 @@ public:
 		{
 			for (u32 i = i0; i <= i1; ++i)
 			{
-				std::vector<T>& div = m_Divisions.at(i + j*m_DivisionsW);
-				div.push_back(item);
+				m_Divisions[i + j*m_DivisionsW].push_back(item);
 			}
 		}
 	}
@@ -108,7 +216,7 @@ public:
 	 * The item should already be present.
 	 * The size must match the size that was last used when adding the item.
 	 */
-	void Remove(T item, CFixedVector2D fromMin, CFixedVector2D fromMax)
+	void Remove(uint32_t item, CFixedVector2D fromMin, CFixedVector2D fromMax)
 	{
 		ENSURE(fromMin.X <= fromMax.X && fromMin.Y <= fromMax.Y);
 
@@ -120,15 +228,13 @@ public:
 		{
 			for (u32 i = i0; i <= i1; ++i)
 			{
-				std::vector<T>& div = m_Divisions.at(i + j*m_DivisionsW);
-
-				for (u32 n = 0; n < div.size(); ++n)
+				SubDivisionGrid& div = m_Divisions[i + j*m_DivisionsW];
+				int size = div.items.size();
+				for (int n = 0; n < size; ++n)
 				{
-					if (div[n] == item)
+					if (div.items[n] == item)
 					{
-						// Delete by swapping with the last element then popping
-						div[n] = div.back();
-						div.pop_back();
+						div.erase(n);
 						break;
 					}
 				}
@@ -139,7 +245,7 @@ public:
 	/**
 	 * Equivalent to Remove() then Add(), but potentially faster.
 	 */
-	void Move(T item, CFixedVector2D fromMin, CFixedVector2D fromMax, CFixedVector2D toMin, CFixedVector2D toMax)
+	void Move(uint32_t item, CFixedVector2D fromMin, CFixedVector2D fromMax, CFixedVector2D toMin, CFixedVector2D toMax)
 	{
 		// Skip the work if we're staying in the same divisions
 		if (GetIndex0(fromMin) == GetIndex0(toMin) && GetIndex1(fromMax) == GetIndex1(toMax))
@@ -153,7 +259,7 @@ public:
 	 * Convenience function for Add() of individual points.
 	 * (Note that points on a boundary may occupy multiple divisions.)
 	 */
-	void Add(T item, CFixedVector2D to)
+	void Add(uint32_t item, CFixedVector2D to)
 	{
 		Add(item, to, to);
 	}
@@ -161,7 +267,7 @@ public:
 	/**
 	 * Convenience function for Remove() of individual points.
 	 */
-	void Remove(T item, CFixedVector2D from)
+	void Remove(uint32_t item, CFixedVector2D from)
 	{
 		Remove(item, from, from);
 	}
@@ -169,7 +275,7 @@ public:
 	/**
 	 * Convenience function for Move() of individual points.
 	 */
-	void Move(T item, CFixedVector2D from, CFixedVector2D to)
+	void Move(uint32_t item, CFixedVector2D from, CFixedVector2D to)
 	{
 		Move(item, from, from, to, to);
 	}
@@ -178,10 +284,9 @@ public:
 	 * Returns a sorted list of unique items that includes all items
 	 * within the given axis-aligned square range.
 	 */
-	std::vector<T> GetInRange(CFixedVector2D posMin, CFixedVector2D posMax)
+	void GetInRange(SpatialQueryArray& out, CFixedVector2D posMin, CFixedVector2D posMax)
 	{
-		std::vector<T> ret;
-
+		out.clear();
 		ENSURE(posMin.X <= posMax.X && posMin.Y <= posMax.Y);
 
 		u32 i0 = GetI0(posMin.X);
@@ -192,28 +297,23 @@ public:
 		{
 			for (u32 i = i0; i <= i1; ++i)
 			{
-				std::vector<T>& div = m_Divisions.at(i + j*m_DivisionsW);
-				ret.insert(ret.end(), div.begin(), div.end());
+				m_Divisions[i + j*m_DivisionsW].copy_items(out);
 			}
 		}
-
-		// Remove duplicates
-		std::sort(ret.begin(), ret.end());
-		ret.erase(std::unique(ret.begin(), ret.end()), ret.end());
-
-		return ret;
+		// some buildings span several tiles, so we need to make it unique
+		out.make_unique();
 	}
 
 	/**
 	 * Returns a sorted list of unique items that includes all items
 	 * within the given circular distance of the given point.
 	 */
-	std::vector<T> GetNear(CFixedVector2D pos, entity_pos_t range)
+	void GetNear(SpatialQueryArray& out, CFixedVector2D pos, entity_pos_t range)
 	{
 		// TODO: be cleverer and return a circular pattern of divisions,
 		// not this square over-approximation
-
-		return GetInRange(pos - CFixedVector2D(range, range), pos + CFixedVector2D(range, range));
+		CFixedVector2D r(range, range);
+		GetInRange(out, pos - r, pos + r);
 	}
 
 private:
@@ -221,70 +321,63 @@ private:
 	// (avoiding out-of-bounds accesses, and rounding correctly so that
 	// points precisely between divisions are counted in both):
 
-	u32 GetI0(entity_pos_t x)
+	uint32_t GetI0(entity_pos_t x)
 	{
 		return Clamp((x / m_DivisionSize).ToInt_RoundToInfinity()-1, 0, (int)m_DivisionsW-1);
 	}
 
-	u32 GetJ0(entity_pos_t z)
+	uint32_t GetJ0(entity_pos_t z)
 	{
 		return Clamp((z / m_DivisionSize).ToInt_RoundToInfinity()-1, 0, (int)m_DivisionsH-1);
 	}
 
-	u32 GetI1(entity_pos_t x)
+	uint32_t GetI1(entity_pos_t x)
 	{
 		return Clamp((x / m_DivisionSize).ToInt_RoundToNegInfinity(), 0, (int)m_DivisionsW-1);
 	}
 
-	u32 GetJ1(entity_pos_t z)
+	uint32_t GetJ1(entity_pos_t z)
 	{
 		return Clamp((z / m_DivisionSize).ToInt_RoundToNegInfinity(), 0, (int)m_DivisionsH-1);
 	}
 
-	u32 GetIndex0(CFixedVector2D pos)
+	uint32_t GetIndex0(CFixedVector2D pos)
 	{
 		return GetI0(pos.X) + GetJ0(pos.Y)*m_DivisionsW;
 	}
 
-	u32 GetIndex1(CFixedVector2D pos)
+	uint32_t GetIndex1(CFixedVector2D pos)
 	{
 		return GetI1(pos.X) + GetJ1(pos.Y)*m_DivisionsW;
 	}
-
-	entity_pos_t m_DivisionSize;
-	std::vector<std::vector<T> > m_Divisions;
-	u32 m_DivisionsW;
-	u32 m_DivisionsH;
-
-	template<typename ELEM> friend struct SerializeSpatialSubdivision;
 };
 
 /**
  * Serialization helper template for SpatialSubdivision
  */
-template<typename ELEM>
 struct SerializeSpatialSubdivision
 {
-	template<typename T>
-	void operator()(ISerializer& serialize, const char* UNUSED(name), SpatialSubdivision<T>& value)
+	void operator()(ISerializer& serialize, const char* UNUSED(name), SpatialSubdivision& value)
 	{
 		serialize.NumberFixed_Unbounded("div size", value.m_DivisionSize);
-		SerializeVector<SerializeVector<ELEM> >()(serialize, "divs", value.m_Divisions);
 		serialize.NumberU32_Unbounded("divs w", value.m_DivisionsW);
 		serialize.NumberU32_Unbounded("divs h", value.m_DivisionsH);
+
+		size_t count = value.m_DivisionsH * value.m_DivisionsW;
+		for (size_t i = 0; i < count; ++i)
+			SerializeVector<SerializeU32_Unbounded>()(serialize, "subdiv items", value.m_Divisions[i].items);
 	}
 
-	template<typename T>
-	void operator()(IDeserializer& serialize, const char* UNUSED(name), SpatialSubdivision<T>& value)
+	void operator()(IDeserializer& serialize, const char* UNUSED(name), SpatialSubdivision& value)
 	{
 		serialize.NumberFixed_Unbounded("div size", value.m_DivisionSize);
-		SerializeVector<SerializeVector<ELEM> >()(serialize, "divs", value.m_Divisions);
+		serialize.NumberU32_Unbounded("divs w", value.m_DivisionsW);
+		serialize.NumberU32_Unbounded("divs h", value.m_DivisionsH);
 
-		u32 w, h;
-		serialize.NumberU32_Unbounded("divs w", w);
-		serialize.NumberU32_Unbounded("divs h", h);
-		value.m_DivisionsW = w;
-		value.m_DivisionsH = h;
+		size_t count = value.m_DivisionsW * value.m_DivisionsH;
+		value.Create(count);
+		for (size_t i = 0; i < count; ++i)
+			SerializeVector<SerializeU32_Unbounded>()(serialize, "subdiv items", value.m_Divisions[i].items);
 	}
 };
 
