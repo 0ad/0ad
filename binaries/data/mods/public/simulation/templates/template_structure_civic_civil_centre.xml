@@ -21,7 +21,7 @@
     <Territory>own neutral</Territory>
     <Category>CivilCentre</Category>
     <Distance>
-      <FromCategory>CivilCentre</FromCategory>
+      <FromClass>CivilCentre</FromClass>
       <MinDistance>180</MinDistance>
     </Distance>
   </BuildRestrictions>
@@ -58,6 +58,7 @@
       Village 
       Defensive
       CivCentre
+      CivilCentre
     </Classes>
     <Icon>structures/civic_centre.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
