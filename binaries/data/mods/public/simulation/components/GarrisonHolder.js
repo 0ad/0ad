@@ -30,7 +30,6 @@ GarrisonHolder.prototype.Init = function()
 {
 	// Garrisoned Units
 	this.entities = [];
-	this.spaceOccupied = 0;
 	this.timer = undefined;
 	this.allowGarrisoning = {};
 };
@@ -165,7 +164,7 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if(!this.AllowedToGarrison(entity))
 		return false;
 
-	if (this.GetCapacity() < this.spaceOccupied + 1)
+	if (this.entities.length >= this.GetCapacity())
 		return false;
 
 	var cmpPosition = Engine.QueryInterface(entity, IID_Position);
@@ -180,7 +179,6 @@ GarrisonHolder.prototype.Garrison = function(entity)
 
 	// Actual garrisoning happens here
 	this.entities.push(entity);
-	this.spaceOccupied += 1;
 	cmpPosition.MoveOutOfWorld();
 	this.UpdateGarrisonFlag();
 	var cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
@@ -221,7 +219,6 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 		}
 	}
 	
-	this.spaceOccupied -= 1;
 	this.entities.splice(entityIndex, 1);
 	
 	var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
