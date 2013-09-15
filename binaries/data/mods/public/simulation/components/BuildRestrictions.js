@@ -240,7 +240,6 @@ BuildRestrictions.prototype.CheckPlacement = function()
 		{
 			var dist = +this.template.Distance.MinDistance
 			var nearEnts = cmpRangeManager.ExecuteQuery(this.entity, 0, dist, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).filter(filter);
-			warn("mindist "+uneval(nearEnts));
 			if (nearEnts.length)
 			{
 				result.message = name+" too close to a "+cat+", must be at least "+ +this.template.Distance.MinDistance+" units away";
@@ -251,7 +250,6 @@ BuildRestrictions.prototype.CheckPlacement = function()
 		{
 			var dist = +this.template.Distance.MaxDistance;
 			var nearEnts = cmpRangeManager.ExecuteQuery(this.entity, 0, dist, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).filter(filter);
-			warn("maxdist "+nearEnts);
 			if (!nearEnts.length)
 			{
 				result.message = name+" too far away from a "+cat+", must be within "+ +this.template.Distance.MaxDistance+" units";
