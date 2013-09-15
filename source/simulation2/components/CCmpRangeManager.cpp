@@ -843,13 +843,10 @@ public:
 			results.clear();
 			results.reserve(query.lastMatch.size());
 			PerformQuery(query, results);
-			if (results.empty())
-				continue;
 
 			// Compute the changes vs the last match
 			added.clear();
 			removed.clear();
-
 			// Return the 'added' list sorted by distance from the entity
 			// (Don't bother sorting 'removed' because they might not even have positions or exist any more)
 			std::set_difference(results.begin(), results.end(), query.lastMatch.begin(), query.lastMatch.end(), 
@@ -859,7 +856,7 @@ public:
 			if (added.empty() && removed.empty())
 				continue;
 
-			std::sort(added.begin(), added.end(), EntityDistanceOrdering(m_EntityData, cmpSourcePosition->GetPosition2D()));
+			std::stable_sort(added.begin(), added.end(), EntityDistanceOrdering(m_EntityData, cmpSourcePosition->GetPosition2D()));
 
 			messages.resize(messages.size() + 1);
 			std::pair<entity_id_t, CMessageRangeUpdate>& back = messages.back();

@@ -126,11 +126,17 @@ public:
 	{
 		if (key >= m_BufferCapacity) // do we need to resize buffer?
 		{
-			do { m_BufferCapacity += 4096; } while (key >= m_BufferCapacity);
-
+			int newCapacity = m_BufferCapacity + 4096;
+			while (key >= newCapacity) newCapacity += 4096;
 			// always allocate +1 behind the scenes, because end() must have a 0xFFFFFFFF key
-			m_Buffer = (value_type*)realloc(m_Buffer, sizeof(value_type) * (m_BufferCapacity + 1));
-
+			value_type* mem = (value_type*)realloc(m_Buffer, sizeof(value_type) * (newCapacity + 1));
+			if (!mem) 
+			{
+				debug_warn("EntityMap::insert() realloc failed! Out of memory.");
+				throw std::bad_alloc(); // fail to expand and insert
+			}
+			m_BufferCapacity = newCapacity;
+			m_Buffer = mem;
 			goto fill_gaps;
 		}
 		else if (key > m_BufferSize) // weird insert far beyond the end

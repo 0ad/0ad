@@ -2,15 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>props/celt_storehouse_shield.dae</mesh>
+    <variant name="shields 1">
+      <mesh>props/gaul_outpost_shields.dae</mesh>
       <textures>
 		<texture file="props/celt_props_new.dds" name="baseTex"/>
 	    <texture file="props/celt_props_new_norm.png" name="normTex"/>
 	    <texture file="props/celt_props_new_spec.png" name="specTex"/>
-		<texture file="structural/ao/celt_storehouse.png" name="aoTex"/>
+		<texture file="structural/ao/gaul_scout_tower.png" name="aoTex"/>
 	  </textures>
     </variant>
   </group>
-  <material>player_trans_ao_parallax_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>

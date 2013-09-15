@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>props/celt_storehouse_silo.dae</mesh>
+    <variant>
+      <mesh>props/gaul_outpost_windows.dae</mesh>
       <textures>
 	    <texture file="structural/celt_broch.dds" name="baseTex"/>
 	    <texture file="structural/celt_broch_norm.png" name="normTex"/>
 	    <texture file="structural/celt_broch_spec.png" name="specTex"/>
-		<texture file="structural/ao/celt_storehouse.png" name="aoTex"/>
+		<texture file="structural/ao/gaul_scout_tower.png" name="aoTex"/>
 	  </textures>
     </variant>
   </group>
