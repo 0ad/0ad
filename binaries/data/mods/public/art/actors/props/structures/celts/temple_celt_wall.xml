@@ -7,8 +7,10 @@
       <textures>
 	  <texture file="structural/celt_wall.dds" name="baseTex"/>
 	  <texture file="structural/celt_wall_norm.png" name="normTex"/>
+	  <texture file="structural/celt_wall_spec.png" name="specTex"/>
+	  <texture file="structural/ao/celt_temple.png" name="aoTex"/>
 	  </textures>
     </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

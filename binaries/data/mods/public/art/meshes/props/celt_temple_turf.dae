@@ -1,185 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset>
     <contributor>
-      <author></author>
-      <authoring_tool>FBX COLLADA exporter</authoring_tool>
-      <comments></comments>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
     </contributor>
-    <created>2011-08-23T05:29:58Z</created>
-    <modified>2011-08-23T05:29:58Z</modified>
-    <revision></revision>
-    <title></title>
-    <subject></subject>
-    <keywords></keywords>
-    <unit meter="0.025400"/>
-    <up_axis>Y_UP</up_axis>
+    <created>2013-09-15T17:56:19</created>
+    <modified>2013-09-15T17:56:19</modified>
+    <unit name="meter" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__329-image" name="Map__329">
-      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\celt_wall_turf.dds</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_14___Default" name="_14___Default">
-      <instance_effect url="#_14___Default-fx"/>
-    </material>
-  </library_materials>
-  <library_effects>
-    <effect id="_14___Default-fx" name="_14___Default">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
-            </ambient>
-            <diffuse>
-              <texture texture="Map__329-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
+  <library_images/>
   <library_geometries>
-    <geometry id="default008-lib" name="default008Mesh">
+    <geometry id="propnewMesh_005-mesh" name="propnewMesh.005">
       <mesh>
-        <source id="default008-lib-Position">
-          <float_array id="default008-lib-Position-array" count="36">
-4.048895 -5.354612 1.769612
-4.048895 -9.530134 1.769612
-9.675475 -9.530134 1.769612
-9.675475 -5.354612 1.769612
--4.072995 -5.289717 1.769612
--4.072995 -9.465306 1.769612
--9.792678 -9.465306 1.769612
--9.792678 -5.289717 1.769612
--9.836704 3.472241 1.843797
--9.836704 -8.404630 1.843797
-9.784397 -8.404630 1.843797
-9.784397 3.472241 1.843797
-</float_array>
+        <source id="propnewMesh_005-mesh-positions">
+          <float_array id="propnewMesh_005-mesh-positions-array" count="36">-6.689204 0.5656567 1.769614 -9.795713 3.355745 1.769615 -13.5554 -0.8303228 1.769615 -10.44889 -3.620411 1.769614 -1.213868 6.564824 1.769614 -4.320426 9.354958 1.769615 -0.498528 13.61029 1.769615 2.60803 10.82016 1.769614 9.156178 4.998164 1.843796 0.3200135 12.9343 1.8438 -12.79083 -1.663422 1.8438 -3.954663 -9.599558 1.843796</float_array>
           <technique_common>
-            <accessor source="#default008-lib-Position-array" count="12" stride="3">
+            <accessor source="#propnewMesh_005-mesh-positions-array" count="12" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="default008-lib-Normal0">
-          <float_array id="default008-lib-Normal0-array" count="54">
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-</float_array>
+        <source id="propnewMesh_005-mesh-normals">
+          <float_array id="propnewMesh_005-mesh-normals-array" count="18">2.40727e-7 -2.44685e-7 1 2.76124e-7 -2.47999e-7 1 2.7612e-7 -2.47995e-7 1 2.40953e-7 -2.44424e-7 1 2.64767e-7 -2.45965e-7 1 2.64767e-7 -2.45965e-7 1</float_array>
           <technique_common>
-            <accessor source="#default008-lib-Normal0-array" count="18" stride="3">
+            <accessor source="#propnewMesh_005-mesh-normals-array" count="6" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="default008-lib-UV0">
-          <float_array id="default008-lib-UV0-array" count="24">
-0.322266 1.000000
-0.171875 1.000000
-0.171875 0.777344
-0.322266 0.777344
-0.683594 0.996094
-0.535156 0.996094
-0.535156 0.773438
-0.683594 0.773438
-0.683594 0.937500
-0.171875 0.937500
-0.171875 0.312500
-0.683594 0.312500
-</float_array>
+        <source id="propnewMesh_005-mesh-map-0">
+          <float_array id="propnewMesh_005-mesh-map-0-array" count="36">0.322266 1 0.171875 1 0.171875 0.777344 0.171875 0.777344 0.322266 0.777344 0.322266 1 0.683594 0.996094 0.535156 0.996094 0.535156 0.773438 0.535156 0.773438 0.683594 0.773438 0.683594 0.996094 0.683594 0.9375 0.171875 0.9375 0.171875 0.3125 0.171875 0.3125 0.683594 0.3125 0.683594 0.9375</float_array>
           <technique_common>
-            <accessor source="#default008-lib-UV0-array" count="12" stride="2">
+            <accessor source="#propnewMesh_005-mesh-map-0-array" count="18" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="default008-lib-Vertex">
-          <input semantic="POSITION" source="#default008-lib-Position"/>
+        <source id="propnewMesh_005-mesh-map-1">
+          <float_array id="propnewMesh_005-mesh-map-1-array" count="36">0.3563027 0.5102428 0.3563947 0.4330043 0.4138088 0.4330812 0.4138088 0.4330812 0.4137169 0.5103196 0.3563027 0.5102428 0.4453691 0.3082823 0.4454625 0.2297658 0.5028777 0.2298427 0.5028777 0.2298427 0.5027843 0.3083591 0.4453691 0.3082823 0.001375019 0.2707219 0.001695513 0.001375019 0.1650047 0.001593649 0.1650047 0.001593649 0.1646842 0.2709406 0.001375019 0.2707219</float_array>
+          <technique_common>
+            <accessor source="#propnewMesh_005-mesh-map-1-array" count="18" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="propnewMesh_005-mesh-vertices">
+          <input semantic="POSITION" source="#propnewMesh_005-mesh-positions"/>
         </vertices>
-        <polygons material="_14___Default" count="6">
-          <input semantic="VERTEX" offset="0" source="#default008-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#default008-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#default008-lib-UV0"/>
-          <p>1 0 0 2 1 1 3 2 2</p>
-          <p>3 3 2 0 4 3 1 5 0</p>
-          <p>6 6 4 5 7 5 4 8 6</p>
-          <p>4 9 6 7 10 7 6 11 4</p>
-          <p>9 12 8 10 13 9 11 14 10</p>
-          <p>11 15 10 8 16 11 9 17 8</p>
-        </polygons>
+        <polylist count="6">
+          <input semantic="VERTEX" source="#propnewMesh_005-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#propnewMesh_005-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#propnewMesh_005-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#propnewMesh_005-mesh-map-1" offset="2" set="1"/>
+          <vcount>3 3 3 3 3 3 </vcount>
+          <p>1 0 0 2 0 1 3 0 2 3 1 3 0 1 4 1 1 5 6 2 6 5 2 7 4 2 8 4 3 9 7 3 10 6 3 11 9 4 12 10 4 13 11 4 14 11 5 15 8 5 16 9 5 17</p>
+        </polylist>
       </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
     </geometry>
   </library_geometries>
   <library_visual_scenes>
-    <visual_scene id="RootNode" name="RootNode">
-      <node id="default008" name="default008">
-        <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
-        <instance_geometry url="#default008-lib">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="_14___Default" target="#_14___Default"/>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+    <visual_scene id="PART_1" name="PART 1">
+      <node id="propnew_000" name="propnew_000" type="NODE">
+        <translate sid="location">-5.96046e-8 -3.85403e-15 0</translate>
+        <rotate sid="rotationZ">0 0 1 131.9284</rotate>
+        <rotate sid="rotationY">0 1 0 -5.00896e-6</rotate>
+        <rotate sid="rotationX">1 0 0 -5.00896e-6</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#propnewMesh_005-mesh"/>
       </node>
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#RootNode"/>
+    <instance_visual_scene url="#PART_1"/>
   </scene>
 </COLLADA>
-
