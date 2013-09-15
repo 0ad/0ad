@@ -86,8 +86,10 @@ class SpatialSubdivision
 			int dsti = out.count;				// the index in [out] where to start copying
 			int count = (int)items.size();
 			if ((dsti + count) > SpatialQueryArray::MAX_COUNT)
-				count = SpatialQueryArray::MAX_COUNT - dsti; // silently fail to copy overflowing items
-
+			{
+				debug_warn("SpatialSubdivision Query too large. Results truncated.");
+				count = SpatialQueryArray::MAX_COUNT - dsti; // don't copy overflowing items
+			}
 			uint32_t* dst = &out.items[dsti];
 			uint32_t* src = &items[0];
 			for (int i = 0; i < count; ++i) // copy all items

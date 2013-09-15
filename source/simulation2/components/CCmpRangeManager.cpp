@@ -859,7 +859,7 @@ public:
 			if (added.empty() && removed.empty())
 				continue;
 
-			std::sort(added.begin(), added.end(), EntityDistanceOrdering(m_EntityData, cmpSourcePosition->GetPosition2D()));
+			std::stable_sort(added.begin(), added.end(), EntityDistanceOrdering(m_EntityData, cmpSourcePosition->GetPosition2D()));
 
 			messages.resize(messages.size() + 1);
 			std::pair<entity_id_t, CMessageRangeUpdate>& back = messages.back();
