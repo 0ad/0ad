@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="brit market wood c">
+      <mesh>props/brit_market_wood_c.dae</mesh>
+      <textures>
+	    <texture file="props/wood_c.png" name="baseTex"/>
+		<texture file="structural/ao/brit_market.png" name="aoTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>basic_trans_ao.xml</material>
+</actor>
