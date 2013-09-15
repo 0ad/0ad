@@ -12,12 +12,6 @@
       <MinRange>12.0</MinRange>
     </Ranged>
   </Attack>
-  <Builder>
-    <Rate>1.0</Rate>
-    <Entities datatype="tokens">
-      structures/maur_pillar_ashoka
-    </Entities>
-  </Builder>
   <Cost>
     <Population>4</Population>
     <BuildTime>50</BuildTime>
@@ -27,6 +21,9 @@
       <metal>100</metal>
     </Resources>
   </Cost>
+  <EntityLimitsChanger>
+    <Pillar>5</Pillar>
+  </EntityLimitsChanger>
   <Footprint replace="">
     <Square width="6.0" depth="12.0"/>
     <Height>5.0</Height>

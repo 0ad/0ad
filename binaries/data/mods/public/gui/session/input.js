@@ -1615,7 +1615,7 @@ function getEntityLimitAndCount(playerState, entType)
 	var entLimit = undefined;
 	var entCount = undefined;
 	var canBeAddedCount = undefined;
-	if (entCategory && playerState.entityLimits[entCategory])
+	if (entCategory && playerState.entityLimits[entCategory] != null)
 	{
 		entLimit = playerState.entityLimits[entCategory];
 		entCount = playerState.entityCounts[entCategory];

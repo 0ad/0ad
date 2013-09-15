@@ -11,6 +11,7 @@ TrainingRestrictions.prototype.Schema =
 		"<choice>" +
 			"<value>Hero</value>" +
 			"<value>FemaleCitizen</value>" +
+			"<value>WarDog</value>" +
 		"</choice>" +
 	"</element>";
 

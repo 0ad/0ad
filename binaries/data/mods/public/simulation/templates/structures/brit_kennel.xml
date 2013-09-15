@@ -18,6 +18,9 @@
       <stone>50</stone>
     </Resources>
   </Cost>
+  <EntityLimitsChanger>
+    <WarDog>10</WarDog>
+  </EntityLimitsChanger>
   <Footprint>
     <Square width="8.0" depth="7.0"/>
     <Height>5.0</Height>
@@ -31,7 +34,7 @@
     <Civ>brit</Civ>
     <GenericName>Special Building</GenericName>
     <SpecificName>Kennel</SpecificName>
-    <Tooltip>Train Celtic war dogs.</Tooltip>
+    <Tooltip>Train Celtic war dogs. One kennel can only house 10 dogs.</Tooltip>
     <Icon>structures/kennel.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
