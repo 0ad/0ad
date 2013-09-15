@@ -12,5 +12,6 @@
 	"researchTime": 60,
 	"tooltip": "+2 attack for all sword units.",
 	"modifications": [{"value": "Attack/Melee/Hack", "add": 2.0}],
-	"affects": ["Sword"]
+	"affects": ["Sword"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

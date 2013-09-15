@@ -11,5 +11,6 @@
 		{"value": "Cost/BuildTime", "multiplier": 0.5},
 		{"value": "Health/Max", "add": -20}
 	],
-	"affects": ["Champion Infantry"]
+	"affects": ["Champion Infantry"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

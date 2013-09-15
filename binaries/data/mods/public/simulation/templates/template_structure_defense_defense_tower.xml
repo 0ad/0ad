@@ -20,10 +20,15 @@
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
   </BuildingAI>
   <BuildRestrictions>
+    <Territory>own</Territory>
     <Category>DefenseTower</Category>
+    <Distance>
+      <FromClass>DefenseTower</FromClass>
+      <MinDistance>50</MinDistance>
+    </Distance>
   </BuildRestrictions>
   <Cost>
-    <BuildTime>120</BuildTime>
+    <BuildTime>150</BuildTime>
     <Resources>
       <wood>100</wood>
       <stone>100</stone>
@@ -42,13 +47,13 @@
     <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>1200</Max>
+    <Max>1000</Max>
     <SpawnEntityOnDeath>rubble/rubble_stone_2x2</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <GenericName>Defense Tower</GenericName>
     <Tooltip>Shoots arrows. Garrison to provide extra defense.</Tooltip>
-    <Classes datatype="tokens">Town Tower GarrisonTower -ConquestCritical</Classes>
+    <Classes datatype="tokens">DefenseTower Town Tower GarrisonTower -ConquestCritical</Classes>
     <Icon>structures/defense_tower.png</Icon>
 	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

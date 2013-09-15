@@ -23,12 +23,7 @@ EntityLimits.prototype.Schema =
 		"<zeroOrMore>" +
 			"<element a:help='Specifies a category of building/unit on which to apply this limit. See BuildRestrictions/TrainingRestrictions for list of categories.'>" +
 				"<anyName />" +
-				"<choice>" +
-					"<text />" +
-					"<element name='LimitPerCivCentre' a:help='Specifies that this limit is per number of civil centres.'>" +
-						"<data type='nonNegativeInteger'/>" +
-					"</element>" +
-				"</choice>" +
+				"<data type='integer'/>" +
 			"</element>" +
 		"</zeroOrMore>" +
 	"</element>";
@@ -46,9 +41,24 @@ EntityLimits.prototype.Init = function()
 	this.count = {};
 	for (var category in this.template.Limits)
 	{
-		this.limit[category] = this.template.Limits[category];
+		this.limit[category] = +this.template.Limits[category];
 		this.count[category] = 0;
 	}
+};
+
+EntityLimits.prototype.IncreaseLimit = function(category, value)
+{
+	if (!this.limit[category])
+		this.limit[category] = 0;
+	this.limit[category] += value;
+};
+
+EntityLimits.prototype.DecreaseLimit = function(category, value)
+{
+	if (!this.limit[category])
+		this.limit[category] = 0;
+	this.limit[category] -= value;
+
 };
 
 EntityLimits.prototype.IncreaseCount = function(category, value)
@@ -92,24 +102,7 @@ EntityLimits.prototype.AllowedToCreate = function(limitType, category, count)
 	if (this.count[category] === undefined || this.limit[category] === undefined)
 		return true;
 	
-	// Rather than complicating the schema unecessarily, just handle special cases here
-	if (this.limit[category].LimitPerCivCentre !== undefined)
-	{
-		if (this.count[category] >= this.count["CivilCentre"] * this.limit[category].LimitPerCivCentre)
-		{
-			var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-			var notification = {
-				"player": cmpPlayer.GetPlayerID(),
-				"message": category + " " + limitType + " limit of " +
-					this.limit[category].LimitPerCivCentre + " per civil centre reached"
-			};
-			var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-			cmpGUIInterface.PushNotification(notification);
-			
-			return false;
-		}
-	}
-	else if (this.count[category] + count > this.limit[category])
+	if (this.count[category] + count > this.limit[category])
 	{
 		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 		var notification = {

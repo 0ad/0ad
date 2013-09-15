@@ -1,0 +1,23 @@
+{
+	"pair": "pair_inf_armor_02",
+	"genericName": "Laminated Linen Body Armor",
+	"specificName": {
+		"hele": "Linothorakes",
+		"mace": "Linothorakes",
+		"spart": "Linothorakes",
+		"athen": "Linothorakes",
+		"pers": "Linothorakes",
+		"rome": "Linothorakes",
+		"cart": "Linothorakes"
+	},
+	"description": "Laminated linen body armor for infantrymen.",
+	"cost": {"food": 100, "wood": 100, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "armor_cuirass_empire.png",
+	"researchTime": 40,
+	"tooltip": "All Infantry +1 Hack Armor Level.",
+	"modifications": [{"value": "Armour/Hack", "add": 1.0}],
+	"affects": ["Infantry"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

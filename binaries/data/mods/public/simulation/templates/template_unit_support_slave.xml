@@ -8,13 +8,16 @@
       structures/{civ}_farmstead
       structures/{civ}_field
       structures/{civ}_corral
+      structures/{civ}_outpost
+      other/wallset_palisade
+      structures/{civ}_dock
+      structures/{civ}_barracks
+      structures/{civ}_blacksmith
       structures/{civ}_temple
       structures/{civ}_market
-      structures/{civ}_civil_centre
-      structures/{civ}_barracks
-      structures/{civ}_dock
       structures/{civ}_defense_tower
-      special/wallsets/{civ}_land
+      structures/{civ}_wallset_stone
+      structures/{civ}_civil_centre
       structures/{civ}_fortress
     </Entities>
   </Builder>
@@ -25,17 +28,19 @@
       <food>0</food>
       <wood>0</wood>
       <stone>0</stone>
-      <metal>100</metal>
+      <metal>50</metal>
     </Resources>
   </Cost>
   <Health>
+    <RegenRate>-0.25</RegenRate>
     <Unhealable>true</Unhealable>
   </Health>
   <Identity>
     <Classes datatype="tokens">Slave Worker</Classes>
     <GenericName>Slave</GenericName>
     <Icon>units/global_slave.png</Icon>
-	<Tooltip>Econ unit with a finite life span.</Tooltip>
+	<Tooltip>Classes: Support Slave.
+Gatherer with a finite life span. Bonused at mining and lumbering.</Tooltip>
   </Identity>
   <Loot>
     <xp>1</xp>
@@ -49,13 +54,15 @@
     <MaxDistance>2.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
-      <food.fish>1</food.fish>
-      <food.fruit>1</food.fruit>
-      <food.grain>2</food.grain>
-      <food.meat>3</food.meat>
-	  <wood.tree>5.0</wood.tree>
-      <stone.rock>5.0</stone.rock>
-      <metal.ore>5.0</metal.ore>
+      <food.fish>0.5</food.fish>
+      <food.fruit>0.5</food.fruit>
+      <food.grain>0.35</food.grain>
+      <food.meat>1</food.meat>
+	  <wood.tree>1.0</wood.tree>
+	  <wood.ruins>5</wood.ruins>
+      <stone.rock>1.0</stone.rock>
+	  <stone.ruins>5</stone.ruins>
+      <metal.ore>1.0</metal.ore>
 	  <treasure disable=""/>
     </Rates>
   </ResourceGatherer>

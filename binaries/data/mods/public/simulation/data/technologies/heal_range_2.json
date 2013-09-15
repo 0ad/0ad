@@ -15,5 +15,6 @@
 	"researchTime": 40,
 	"tooltip": "Healers +4 Healing Range.",
 	"modifications": [{"value": "Heal/Range", "add": 4.0}],
-	"affects": ["Healer"]
+	"affects": ["Healer"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

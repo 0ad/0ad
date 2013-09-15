@@ -8,7 +8,7 @@ BuildRestrictions.prototype.Schema =
 			"<Territory>own</Territory>" +
 			"<Category>Special</Category>" +
 			"<Distance>" +
-				"<FromCategory>CivilCentre</FromCategory>" +
+				"<FromClass>CivilCentre</FromClass>" +
 				"<MaxDistance>40</MaxDistance>" +
 			"</Distance>" +
 		"</BuildRestrictions>" +
@@ -32,37 +32,14 @@ BuildRestrictions.prototype.Schema =
 			"</oneOrMore>" +
 		"</list>" +
 	"</element>" +
-	"<element name='Category' a:help='Specifies the category of this building, for satisfying special constraints.'>" +
-		"<choice>" +
-			"<value>CivilCentre</value>" +
-			"<value>House</value>" +
-			"<value>DefenseTower</value>" +
-			"<value>Farmstead</value>" +
-			"<value>Market</value>" +
-			"<value>Barracks</value>" +
-			"<value>Dock</value>" +
-			"<value>Fortress</value>" +
-			"<value>Field</value>" +
-			"<value>Temple</value>" +
-			"<value>Wall</value>" +
-			"<value>Fence</value>" +
-			"<value>Storehouse</value>" +
-			"<value>Stoa</value>" +
-			"<value>Resource</value>" +
-			"<value>Special</value>" +
-			"<value>Wonder</value>" +
-			"<value>Apadana</value>" +
-			"<value>Embassy</value>" +
-			"<value>Monument</value>" +
-		"</choice>" +
+	"<element name='Category' a:help='Specifies the category of this building, for satisfying special constraints. Choices include: CivilCentre, House, DefenseTower, Farmstead, Market, Barracks, Dock, Fortress, Field, Temple, Wall, Fence, Storehouse, Stoa, Resource, Special, Wonder, Apadana, Embassy, Monument'>" +
+		"<text/>" +
 	"</element>" +
 	"<optional>" +
 		"<element name='Distance' a:help='Specifies distance restrictions on this building, relative to buildings from the given category.'>" +
 			"<interleave>" +
-				"<element name='FromCategory'>" +
-					"<choice>" +
-						"<value>CivilCentre</value>" +
-					"</choice>" +
+				"<element name='FromClass'>" +
+					"<text/>" +
 				"</element>" +
 				"<optional><element name='MinDistance'><data type='positiveInteger'/></element></optional>" +
 				"<optional><element name='MaxDistance'><data type='positiveInteger'/></element></optional>" +
@@ -249,39 +226,35 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	// Check distance restriction
 	if (this.template.Distance)
 	{
-		var nearest = 65535;
-		var ents = Engine.GetEntitiesWithInterface(IID_BuildRestrictions);
-		for each (var ent in ents)
-		{
-			// Ignore ourself
-			if (ent == this.entity)
-				continue;
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+		var cat = this.template.Distance.FromClass;
 
-			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
-			if (cmpBuildRestrictions.GetCategory() == this.template.Distance.FromCategory && IsOwnedByPlayer(cmpPlayer.GetPlayerID(), ent))
-			{	// Find nearest building matching this category
-				var cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
-				if (cmpEntPosition && cmpEntPosition.IsInWorld())
-				{
-					var entPos = cmpEntPosition.GetPosition2D();
-					var dist = Math.sqrt((pos.x-entPos.x)*(pos.x-entPos.x) + (pos.y-entPos.y)*(pos.y-entPos.y));
-					if (dist < nearest)
-					{
-						nearest = dist;
-					}
-				}
+		var filter = function(id)
+		{
+			var cmpIdentity = Engine.QueryInterface(id, IID_Identity);
+			return cmpIdentity.GetClassesList().indexOf(cat) > -1;
+		}
+		
+		if (this.template.Distance.MinDistance)
+		{
+			var dist = +this.template.Distance.MinDistance
+			var nearEnts = cmpRangeManager.ExecuteQuery(this.entity, 0, dist, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).filter(filter);
+			if (nearEnts.length)
+			{
+				result.message = name+" too close to a "+cat+", must be at least "+ +this.template.Distance.MinDistance+" units away";
+				return result;	// Fail
 			}
 		}
-
-		if (this.template.Distance.MinDistance && nearest < +this.template.Distance.MinDistance)
+		if (this.template.Distance.MaxDistance)
 		{
-			result.message = name+" too close to a "+this.GetCategory()+", must be at least "+ +this.template.Distance.MinDistance+" units away";
-			return result;	// Fail
-		}
-		else if (this.template.Distance.MaxDistance && nearest > +this.template.Distance.MaxDistance)
-		{
-			result.message = name+" too far away from a "+this.GetCategory()+", must be within "+ +this.template.Distance.MaxDistance+" units";
-			return result;	// Fail
+			var dist = +this.template.Distance.MaxDistance;
+			var nearEnts = cmpRangeManager.ExecuteQuery(this.entity, 0, dist, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).filter(filter);
+			if (!nearEnts.length)
+			{
+				result.message = name+" too far away from a "+cat+", must be within "+ +this.template.Distance.MaxDistance+" units";
+				return result;	// Fail
+			}
 		}
 	}
 

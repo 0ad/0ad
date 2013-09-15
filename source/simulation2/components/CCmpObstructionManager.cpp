@@ -124,8 +124,8 @@ public:
 	bool m_DebugOverlayDirty;
 	std::vector<SOverlayLine> m_DebugOverlayLines;
 
-	SpatialSubdivision<u32> m_UnitSubdivision;
-	SpatialSubdivision<u32> m_StaticSubdivision;
+	SpatialSubdivision m_UnitSubdivision;
+	SpatialSubdivision m_StaticSubdivision;
 
 	// TODO: using std::map is a bit inefficient; is there a better way to store these?
 	std::map<u32, UnitShape> m_UnitShapes;
@@ -161,7 +161,7 @@ public:
 
 		// Initialise with bogus values (these will get replaced when
 		// SetBounds is called)
-		ResetSubdivisions(entity_pos_t::FromInt(1), entity_pos_t::FromInt(1));
+		ResetSubdivisions(entity_pos_t::FromInt(1024), entity_pos_t::FromInt(1024));
 	}
 
 	virtual void Deinit()
@@ -171,8 +171,8 @@ public:
 	template<typename S>
 	void SerializeCommon(S& serialize)
 	{
-		SerializeSpatialSubdivision<SerializeU32_Unbounded>()(serialize, "unit subdiv", m_UnitSubdivision);
-		SerializeSpatialSubdivision<SerializeU32_Unbounded>()(serialize, "static subdiv", m_StaticSubdivision);
+		SerializeSpatialSubdivision()(serialize, "unit subdiv", m_UnitSubdivision);
+		SerializeSpatialSubdivision()(serialize, "static subdiv", m_StaticSubdivision);
 
 		SerializeMap<SerializeU32_Unbounded, SerializeUnitShape>()(serialize, "unit shapes", m_UnitShapes);
 		SerializeMap<SerializeU32_Unbounded, SerializeStaticShape>()(serialize, "static shapes", m_StaticShapes);
@@ -544,8 +544,9 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 	CFixedVector2D posMin (std::min(x0, x1) - r, std::min(z0, z1) - r);
 	CFixedVector2D posMax (std::max(x0, x1) + r, std::max(z0, z1) + r);
 
-	std::vector<u32> unitShapes = m_UnitSubdivision.GetInRange(posMin, posMax);
-	for (size_t i = 0; i < unitShapes.size(); ++i)
+	SpatialQueryArray unitShapes;
+	m_UnitSubdivision.GetInRange(unitShapes, posMin, posMax);
+	for (int i = 0; i < unitShapes.size(); ++i)
 	{
 		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
 		ENSURE(it != m_UnitShapes.end());
@@ -559,8 +560,9 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 			return true;
 	}
 
-	std::vector<u32> staticShapes = m_StaticSubdivision.GetInRange(posMin, posMax);
-	for (size_t i = 0; i < staticShapes.size(); ++i)
+	SpatialQueryArray staticShapes;
+	m_StaticSubdivision.GetInRange(staticShapes, posMin, posMax);
+	for (int i = 0; i < staticShapes.size(); ++i)
 	{
 		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
 		ENSURE(it != m_StaticShapes.end());
@@ -880,8 +882,9 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 
 	ENSURE(x0 <= x1 && z0 <= z1);
 
-	std::vector<u32> unitShapes = m_UnitSubdivision.GetInRange(CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
-	for (size_t i = 0; i < unitShapes.size(); ++i)
+	SpatialQueryArray unitShapes;
+	m_UnitSubdivision.GetInRange(unitShapes, CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
+	for (int i = 0; i < unitShapes.size(); ++i)
 	{
 		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
 		ENSURE(it != m_UnitShapes.end());
@@ -901,8 +904,9 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 		squares.push_back(s);
 	}
 
-	std::vector<u32> staticShapes = m_StaticSubdivision.GetInRange(CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
-	for (size_t i = 0; i < staticShapes.size(); ++i)
+	SpatialQueryArray staticShapes;
+	m_StaticSubdivision.GetInRange(staticShapes, CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
+	for (int i = 0; i < staticShapes.size(); ++i)
 	{
 		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
 		ENSURE(it != m_StaticShapes.end());

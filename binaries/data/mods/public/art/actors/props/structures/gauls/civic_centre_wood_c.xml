@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="celt house a door">
+      <mesh>props/gaul_civic_centre_wood_c.dae</mesh>
+      <textures>
+	    <texture file="props/wood_c.png" name="baseTex"/>
+		<texture file="structural/ao/gaul_civic_centre.png" name="aoTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>basic_trans_ao.xml</material>
+</actor>

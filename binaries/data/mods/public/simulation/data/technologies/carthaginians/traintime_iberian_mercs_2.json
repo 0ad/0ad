@@ -9,5 +9,6 @@
 	"researchTime": 40,
 	"tooltip": "Subjugate Spain to reduce recruit time -20% for Iberian mercenaries.",
 	"modifications": [{"value": "Cost/BuildTime", "multiplier": 0.8}],
-	"affects": ["Iberian Mercenary"]
+	"affects": ["Iberian Mercenary"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

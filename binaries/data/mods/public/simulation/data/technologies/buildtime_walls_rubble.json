@@ -12,5 +12,6 @@
 		{"value": "Cost/BuildTime", "multiplier": 0.8},
 		{"value": "Armour/Crush", "add": -1.0}
 	],
-	"affects": ["StoneWall"]  
+	"affects": ["StoneWall"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

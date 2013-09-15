@@ -4,7 +4,11 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/celt_farmstead_hoe.dae</mesh>
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+      <textures>
+		<texture file="props/prop_weap.dds" name="baseTex"/>
+		<texture file="structural/ao/celt_farmstead.png" name="aoTex"/>
+	  </textures>
     </variant>
   </group>
+  <material>player_trans_ao.xml</material>
 </actor>

@@ -9,5 +9,6 @@
 	"researchTime": 40,
 	"tooltip": "Barracks increased batch training speed bonus.",
 	"modifications": [{"value": "ProductionQueue/BatchTimeModifier", "add": -0.1}],
-	"affects": ["Barracks"]
+	"affects": ["Barracks"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

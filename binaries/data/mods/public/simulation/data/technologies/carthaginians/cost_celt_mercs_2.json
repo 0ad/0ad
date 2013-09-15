@@ -9,5 +9,6 @@
 	"researchTime": 40,
 	"tooltip": "Hire a Gallic mercenary general to reduce cost -20 metal for Celtic mercenaries.",
 	"modifications": [{"value": "Cost/Resources/metal", "add": -20}],
-	"affects": ["Celt Mercenary"]
+	"affects": ["Celt Mercenary"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

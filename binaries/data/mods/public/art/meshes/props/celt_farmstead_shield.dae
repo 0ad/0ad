@@ -1,240 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset>
     <contributor>
-      <author></author>
-      <authoring_tool>FBX COLLADA exporter</authoring_tool>
-      <comments></comments>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
     </contributor>
-    <created>2010-10-01T07:08:17Z</created>
-    <modified>2010-10-01T07:08:17Z</modified>
-    <revision></revision>
-    <title></title>
-    <subject></subject>
-    <keywords></keywords>
-    <unit meter="0.025400"/>
+    <created>2013-09-15T16:30:46</created>
+    <modified>2013-09-15T16:30:46</modified>
+    <unit name="meter" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__0-image" name="Map__0">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\celt_props_new.dds</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_01___Default" name="_01___Default">
-      <instance_effect url="#_01___Default-fx"/>
-    </material>
-  </library_materials>
-  <library_effects>
-    <effect id="_01___Default-fx" name="_01___Default">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
-            </ambient>
-            <diffuse>
-              <texture texture="Map__0-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
+  <library_images/>
   <library_geometries>
-    <geometry id="Cylinder30-lib" name="Cylinder30Mesh">
+    <geometry id="Box16Mesh_003-mesh" name="Box16Mesh.003">
       <mesh>
-        <source id="Cylinder30-lib-Position">
-          <float_array id="Cylinder30-lib-Position-array" count="54">
-0.000000 -0.734137 0.000000
-0.341170 -0.650046 0.000000
-0.604183 -0.417037 0.000000
-0.728784 -0.088490 0.000000
-0.686430 0.260329 0.000000
-0.486823 0.549509 0.000000
-0.175690 0.712804 0.000000
--0.175691 0.712804 0.000000
--0.486823 0.549509 0.000000
--0.686430 0.260328 0.000000
--0.728784 -0.088491 0.000000
--0.604183 -0.417037 0.000000
--0.341170 -0.650046 0.000000
--0.001590 -0.019618 0.137166
--0.001589 0.303215 -0.018440
-0.330835 -0.019618 -0.018440
--0.334013 -0.019618 -0.018440
--0.001590 -0.342451 -0.018440
-</float_array>
+        <source id="Box16Mesh_003-mesh-positions">
+          <float_array id="Box16Mesh_003-mesh-positions-array" count="108">2.424087 -4.668442 5.401309 2.821371 -4.668442 5.499231 3.127643 -4.668442 5.770564 3.272737 -4.668442 6.153149 3.223417 -4.668442 6.55934 2.99098 -4.668442 6.896082 2.628673 -4.668442 7.086236 2.219499 -4.668442 7.086236 1.857194 -4.668443 6.896083 1.624756 -4.668443 6.559339 1.575436 -4.668442 6.153148 1.720531 -4.668442 5.770564 2.026803 -4.668442 5.499231 2.422235 -4.828169 6.233348 2.422236 -4.646969 6.60928 2.809336 -4.646969 6.233348 2.035137 -4.646969 6.233349 2.422235 -4.646969 5.857418 2.46071 4.60012 5.401309 2.063426 4.60012 5.499231 1.757154 4.60012 5.770564 1.612059 4.60012 6.153149 1.661379 4.60012 6.55934 1.893816 4.60012 6.896082 2.256123 4.60012 7.086236 2.665297 4.60012 7.086236 3.027603 4.60012 6.896083 3.26004 4.60012 6.559339 3.30936 4.60012 6.153148 3.164265 4.60012 5.770564 2.857993 4.60012 5.499231 2.462561 4.759847 6.233348 2.46256 4.578647 6.60928 2.075461 4.578647 6.233348 2.849659 4.578647 6.233349 2.462561 4.578647 5.857418</float_array>
           <technique_common>
-            <accessor source="#Cylinder30-lib-Position-array" count="18" stride="3">
+            <accessor source="#Box16Mesh_003-mesh-positions-array" count="36" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Cylinder30-lib-Normal0">
-          <float_array id="Cylinder30-lib-Normal0-array" count="135">
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
--0.000000 -0.000000 1.000000
-0.423948 -0.000000 0.905686
-0.000000 0.434197 0.900818
--0.000000 -0.000000 1.000000
-0.000000 0.434197 0.900818
--0.423949 0.000000 0.905686
--0.000000 -0.000000 1.000000
--0.423949 0.000000 0.905686
--0.000000 -0.434197 0.900818
--0.000000 -0.000000 1.000000
--0.000000 -0.434197 0.900818
-0.423948 -0.000000 0.905686
-</float_array>
+        <source id="Box16Mesh_003-mesh-normals">
+          <float_array id="Box16Mesh_003-mesh-normals-array" count="96">2.34468e-6 -1 -8.89218e-7 -2.06375e-6 -1 -1.42451e-6 0 -1 0 -1.7451e-7 -1 -7.08013e-7 2.06376e-6 -1 -1.42451e-6 -2.3447e-6 -1 -8.89227e-7 1.20744e-6 -1 -4.5792e-7 3.38877e-7 -1 -1.28519e-7 1.536e-7 -1 6.23178e-7 0 -1 0 0 -1 0 0 -1 0 0.4239326 -0.9056673 0 0 -0.9008148 0.4341868 -0.4239326 -0.9056673 0 0 -0.9008148 -0.4341868 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 -0.4239326 0.9056673 0 0 0.9008148 0.4341868 0.4239326 0.9056673 0 0 0.9008148 -0.4341868</float_array>
           <technique_common>
-            <accessor source="#Cylinder30-lib-Normal0-array" count="45" stride="3">
+            <accessor source="#Box16Mesh_003-mesh-normals-array" count="32" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Cylinder30-lib-UV0">
-          <float_array id="Cylinder30-lib-UV0-array" count="36">
-0.312716 0.250172
-0.341876 0.264679
-0.364356 0.304878
-0.375005 0.361559
-0.371385 0.421738
-0.354325 0.471628
-0.327733 0.499799
-0.297700 0.499799
-0.271107 0.471628
-0.254047 0.421738
-0.250427 0.361559
-0.261077 0.304878
-0.283556 0.264679
-0.312580 0.373441
-0.312580 0.429137
-0.340993 0.373441
-0.284168 0.373441
-0.312580 0.317746
-</float_array>
+        <source id="Box16Mesh_003-mesh-map-0">
+          <float_array id="Box16Mesh_003-mesh-map-0-array" count="180">0.341876 0.264679 0.364356 0.304878 0.375005 0.361559 0.375005 0.361559 0.371385 0.421738 0.354325 0.471628 0.354325 0.471628 0.327733 0.499799 0.2977 0.499799 0.375005 0.361559 0.354325 0.471628 0.2977 0.499799 0.2977 0.499799 0.271107 0.471628 0.254047 0.421738 0.254047 0.421738 0.250427 0.361559 0.261077 0.304878 0.2977 0.499799 0.254047 0.421738 0.261077 0.304878 0.375005 0.361559 0.2977 0.499799 0.261077 0.304878 0.341876 0.264679 0.375005 0.361559 0.261077 0.304878 0.312716 0.250172 0.341876 0.264679 0.261077 0.304878 0.283556 0.264679 0.312716 0.250172 0.261077 0.304878 0.31258 0.373441 0.340993 0.373441 0.31258 0.429137 0.31258 0.373441 0.31258 0.429137 0.284168 0.373441 0.31258 0.373441 0.284168 0.373441 0.31258 0.317746 0.31258 0.373441 0.31258 0.317746 0.340993 0.373441 0.341876 0.264679 0.364356 0.304878 0.375005 0.361559 0.375005 0.361559 0.371385 0.421738 0.354325 0.471628 0.354325 0.471628 0.327733 0.499799 0.2977 0.499799 0.375005 0.361559 0.354325 0.471628 0.2977 0.499799 0.2977 0.499799 0.271107 0.471628 0.254047 0.421738 0.254047 0.421738 0.250427 0.361559 0.261077 0.304878 0.2977 0.499799 0.254047 0.421738 0.261077 0.304878 0.375005 0.361559 0.2977 0.499799 0.261077 0.304878 0.341876 0.264679 0.375005 0.361559 0.261077 0.304878 0.312716 0.250172 0.341876 0.264679 0.261077 0.304878 0.283556 0.264679 0.312716 0.250172 0.261077 0.304878 0.31258 0.373441 0.340993 0.373441 0.31258 0.429137 0.31258 0.373441 0.31258 0.429137 0.284168 0.373441 0.31258 0.373441 0.284168 0.373441 0.31258 0.317746 0.31258 0.373441 0.31258 0.317746 0.340993 0.373441</float_array>
           <technique_common>
-            <accessor source="#Cylinder30-lib-UV0-array" count="18" stride="2">
+            <accessor source="#Box16Mesh_003-mesh-map-0-array" count="90" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Cylinder30-lib-Vertex">
-          <input semantic="POSITION" source="#Cylinder30-lib-Position"/>
+        <source id="Box16Mesh_003-mesh-map-1">
+          <float_array id="Box16Mesh_003-mesh-map-1-array" count="180">0.4809961 0.8204871 0.4708925 0.8243377 0.4601601 0.8230537 0.4601601 0.8230537 0.4512578 0.8169296 0.4462247 0.8073681 0.4462247 0.8073681 0.446214 0.7965597 0.4512282 0.7869805 0.4601601 0.8230537 0.4462247 0.8073681 0.4512282 0.7869805 0.4512282 0.7869805 0.4601184 0.7808249 0.4708482 0.7795032 0.4708482 0.7795032 0.4809593 0.7833181 0.4881355 0.7913957 0.4512282 0.7869805 0.4708482 0.7795032 0.4881355 0.7913957 0.4601601 0.8230537 0.4512282 0.7869805 0.4881355 0.7913957 0.4809961 0.8204871 0.4601601 0.8230537 0.4881355 0.7913957 0.4881563 0.8123843 0.4809961 0.8204871 0.4881355 0.7913957 0.4907329 0.8018854 0.4881563 0.8123843 0.4881355 0.7913957 0.4364899 0.01177877 0.4434536 0.01917487 0.4292082 0.01878345 0.4364899 0.01177877 0.4292082 0.01878345 0.4291745 0.004524827 0.4364899 0.01177877 0.4291745 0.004524827 0.4434199 0.004916191 0.4364899 0.01177877 0.4434199 0.004916191 0.4434536 0.01917487 0.3581469 0.7987706 0.355545 0.8092629 0.3483639 0.817343 0.3483639 0.817343 0.3382487 0.82116 0.3275167 0.8198393 0.3275167 0.8198393 0.3186266 0.8136836 0.3136148 0.804103 0.3483639 0.817343 0.3275167 0.8198393 0.3136148 0.804103 0.3136148 0.804103 0.3136295 0.7932924 0.3186675 0.7837283 0.3186675 0.7837283 0.3275744 0.7776017 0.3383099 0.7763162 0.3136148 0.804103 0.3186675 0.7837283 0.3383099 0.7763162 0.3483639 0.817343 0.3136148 0.804103 0.3383099 0.7763162 0.3581469 0.7987706 0.3483639 0.817343 0.3383099 0.7763162 0.3555737 0.7882698 0.3581469 0.7987706 0.3383099 0.7763162 0.3484147 0.7801662 0.3555737 0.7882698 0.3383099 0.7763162 0.4168677 0.01187342 0.4096061 0.01917487 0.4096385 0.00491482 0.4168677 0.01187342 0.4096385 0.00491482 0.423889 0.004528164 0.4168677 0.01187342 0.423889 0.004528164 0.4238567 0.01878821 0.4168677 0.01187342 0.4238567 0.01878821 0.4096061 0.01917487</float_array>
+          <technique_common>
+            <accessor source="#Box16Mesh_003-mesh-map-1-array" count="90" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Box16Mesh_003-mesh-vertices">
+          <input semantic="POSITION" source="#Box16Mesh_003-mesh-positions"/>
         </vertices>
-        <polygons material="_01___Default" count="15">
-          <input semantic="VERTEX" offset="0" source="#Cylinder30-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Cylinder30-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Cylinder30-lib-UV0"/>
-          <p>1 0 1 2 1 2 3 2 3</p>
-          <p>3 3 3 4 4 4 5 5 5</p>
-          <p>5 6 5 6 7 6 7 8 7</p>
-          <p>3 9 3 5 10 5 7 11 7</p>
-          <p>7 12 7 8 13 8 9 14 9</p>
-          <p>9 15 9 10 16 10 11 17 11</p>
-          <p>7 18 7 9 19 9 11 20 11</p>
-          <p>3 21 3 7 22 7 11 23 11</p>
-          <p>1 24 1 3 25 3 11 26 11</p>
-          <p>0 27 0 1 28 1 11 29 11</p>
-          <p>12 30 12 0 31 0 11 32 11</p>
-          <p>13 33 13 15 34 15 14 35 14</p>
-          <p>13 36 13 14 37 14 16 38 16</p>
-          <p>13 39 13 16 40 16 17 41 17</p>
-          <p>13 42 13 17 43 17 15 44 15</p>
-        </polygons>
+        <polylist count="30">
+          <input semantic="VERTEX" source="#Box16Mesh_003-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Box16Mesh_003-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Box16Mesh_003-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#Box16Mesh_003-mesh-map-1" offset="2" set="1"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>1 0 0 2 0 1 3 0 2 3 1 3 4 1 4 5 1 5 5 2 6 6 2 7 7 2 8 3 3 9 5 3 10 7 3 11 7 4 12 8 4 13 9 4 14 9 5 15 10 5 16 11 5 17 7 6 18 9 6 19 11 6 20 3 7 21 7 7 22 11 7 23 1 8 24 3 8 25 11 8 26 0 9 27 1 9 28 11 9 29 12 10 30 0 10 31 11 10 32 13 11 33 15 12 34 14 13 35 13 11 36 14 13 37 16 14 38 13 11 39 16 14 40 17 15 41 13 11 42 17 15 43 15 12 44 19 16 45 20 16 46 21 16 47 21 17 48 22 17 49 23 17 50 23 18 51 24 18 52 25 18 53 21 19 54 23 19 55 25 19 56 25 20 57 26 20 58 27 20 59 27 21 60 28 21 61 29 21 62 25 22 63 27 22 64 29 22 65 21 23 66 25 23 67 29 23 68 19 24 69 21 24 70 29 24 71 18 25 72 19 25 73 29 25 74 30 26 75 18 26 76 29 26 77 31 27 78 33 28 79 32 29 80 31 27 81 32 29 82 34 30 83 31 27 84 34 30 85 35 31 86 31 27 87 35 31 88 33 28 89</p>
+        </polylist>
       </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
     </geometry>
   </library_geometries>
   <library_visual_scenes>
-    <visual_scene id="RootNode" name="RootNode">
-      <node id="Cylinder30" name="Cylinder30">
-        <translate sid="translate">2.424087 -4.640248 6.256193</translate>
-        <rotate sid="rotateX">1 0 0 90.000003</rotate>
-        <scale sid="scale">1.164475 1.164475 1.164475</scale>
-        <node id="Cylinder30-Pivot" name="Cylinder30-Pivot">
-          <translate>0.000000 0.000000 0.024212</translate>
-          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
-          <instance_geometry url="#Cylinder30-lib">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="Map__0-Material" target="#Map__0-Material"/>
-                <instance_material symbol="_01___Default" target="#_01___Default"/>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
-        </node>
+    <visual_scene id="PART_1" name="PART 1">
+      <node id="Box16_001" name="Box16_001" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#Box16Mesh_003-mesh"/>
       </node>
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#RootNode"/>
+    <instance_visual_scene url="#PART_1"/>
   </scene>
 </COLLADA>
-

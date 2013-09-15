@@ -15,5 +15,6 @@
 	"researchTime": 40,
 	"tooltip": "Compel serfs to help your workers mine stone. +25% stone gathering rate.",
 	"modifications": [{"value": "ResourceGatherer/Rates/stone.rock", "multiplier": 1.25}],
-	"affects": ["Worker"]
+	"affects": ["Worker"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

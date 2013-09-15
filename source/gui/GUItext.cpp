@@ -63,7 +63,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 		int _from, _to;
 		_from = std::max(from, itTextChunk->m_From);
 		_to = std::min(to, itTextChunk->m_To);
-		
+
 		// If from is larger than to, than they are not overlapping
 		if (_to == _from && itTextChunk->m_From == itTextChunk->m_To)
 		{
@@ -75,8 +75,8 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			//  in the words-list, it can be counted twice if placed on an
 			//  edge. But there is always only one logical preference that
 			//  we want. This check filters the unwanted.
-			
-			// it's in the end of one word, and the icon 
+
+			// it's in the end of one word, and the icon
 			//  should really belong to the beginning of the next one
 			if (_to == to && to >= 1)
 			{
@@ -88,8 +88,8 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			// This std::string is just a break
 			if (_from == from && from >= 1)
 			{
-				if (GetRawString()[from] == '\n' && 
-					GetRawString()[from-1] != '\n' && 
+				if (GetRawString()[from] == '\n' &&
+					GetRawString()[from-1] != '\n' &&
 					GetRawString()[from-1] != ' ' &&
 					GetRawString()[from-1] != '-')
 					continue;
@@ -204,7 +204,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 
 			// Extract substd::string from RawString.
 			TextCall.m_String = GetRawString().substr(_from, _to-_from);
-			
+
 			// Go through tags and apply changes.
 			std::vector<CGUIString::TextChunk::Tag>::const_iterator it2;
 			for (it2 = itTextChunk->m_Tags.begin(); it2 != itTextChunk->m_Tags.end(); ++it2)
@@ -213,7 +213,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 				{
 					// Set custom color
 					TextCall.m_UseCustomColor = true;
-					
+
 					// Try parsing the color std::string
 					if (!GUI<CColor>::ParseString(CStr(it2->m_TagValue).FromUTF8(), TextCall.m_Color))
 					{
@@ -265,20 +265,8 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 
 bool CGUIString::TextChunk::Tag::SetTagType(const CStr& tagtype)
 {
-	CStr _tagtype = tagtype.UpperCase();	
+	CStr _tagtype = tagtype.UpperCase();
 
-	if (_tagtype == CStr("B"))
-	{
-		m_TagType = TAG_B;
-		return true;
-	}
-	else
-	if (_tagtype == CStr("I"))
-	{
-		m_TagType = TAG_I;
-		return true;
-	}
-	else
 	if (_tagtype == CStr("COLOR"))
 	{
 		m_TagType = TAG_COLOR;
@@ -412,9 +400,9 @@ void CGUIString::SetValue(const CStrW& str)
 							//Handle arbitrary number of additional parameters
 							size_t argn;
 							for(argn = 2; argn < Line.GetArgCount(); argn += 2)
-							{	
+							{
 								TextChunk::Tag::TagAttribute a;
-								
+
 								Line.GetArgString(argn, a.attrib);
 								Line.GetArgString(argn+1, a.value);
 
@@ -462,7 +450,7 @@ void CGUIString::SetValue(const CStrW& str)
 										break;
 									}
 								}
-		
+
 								// Add!
 								CurrentTextChunk.m_Tags.push_back(tag);
 							}
@@ -493,7 +481,7 @@ void CGUIString::SetValue(const CStrW& str)
 							}
 							from_nonraw = pos_right+1;
 
-							// Search for the tag, if it's not added, then 
+							// Search for the tag, if it's not added, then
 							//  pass it as plain text.
 							std::vector<TextChunk::Tag>::iterator it;
 							for (it = CurrentTextChunk.m_Tags.begin(); it != CurrentTextChunk.m_Tags.end(); ++it)
@@ -567,7 +555,7 @@ void CGUIString::SetValue(const CStrW& str)
 
 		curpos = dl;
 
-		// Add before and 
+		// Add before and
 		m_Words.push_back((int)dl);
 		m_Words.push_back((int)dl+1);
 	}

@@ -1,0 +1,16 @@
+{
+	"pair": "pair_inf_armor_04",
+	"genericName": "Bronze Cuirass Body Armor",
+	"description": "Body armor fashioned completely of bronze.",
+	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 600},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "armor_cuirass_bronze.png",
+	"researchTime": 40,
+	"tooltip": "All Infantry +1 Hack Armor Level, but also +10 Metal Cost.",
+	"modifications": [
+	{"value": "Armour/Hack", "add": 1.0},
+	{"value": "Cost/Resources/metal", "add": 10}],
+	"affects": ["Infantry"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

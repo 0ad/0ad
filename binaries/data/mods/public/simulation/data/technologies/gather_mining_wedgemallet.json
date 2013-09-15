@@ -9,5 +9,6 @@
 	"researchTime": 40,
 	"tooltip": "+25% metal gathering rate.",
 	"modifications": [{"value": "ResourceGatherer/Rates/metal.ore", "multiplier": 1.25}],
-	"affects": ["Worker"]
+	"affects": ["Worker"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

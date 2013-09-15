@@ -59,7 +59,7 @@
   </Attack>
   <Cost>
     <BuildTime>10</BuildTime>
-    <Population>1</Population>
+    <Population>0</Population>
     <Resources>
       <food>100</food>
       <wood>0</wood>
@@ -119,6 +119,9 @@
   <StatusBars>
     <HeightOffset>6.5</HeightOffset>
   </StatusBars>
+  <TrainingRestrictions>
+    <Category>WarDog</Category>
+  </TrainingRestrictions>
   <UnitMotion>
     <WalkSpeed>13.0</WalkSpeed>
     <Run>

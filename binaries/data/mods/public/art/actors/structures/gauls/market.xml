@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Gaullic Market">
+      <mesh>structural/gaul_market_struct_1.dae</mesh>
+      <props>
+        <prop actor="props/structures/gauls/market_props_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/market_props_new.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop actor="particle/smoke_light_delay.xml" attachpoint="smoke"/>
+      </props>
+      <textures>
+	    <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+	    <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
+	    <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
+		<texture file="structural/ao/gaul_market.png" name="aoTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/market_props_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/market_props_new.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop attachpoint="smoke"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

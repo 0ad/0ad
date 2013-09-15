@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="broch top">
+      <mesh>props/gaul_fortress_turf.dae</mesh>
+      <textures>
+		<texture file="props/celt_barracks_decal.png" name="baseTex"/>
+		<texture file="props/celt_barracks_decal_norm.png" name="normTex"/>
+		<texture file="structural/ao/gaul_fortress.png" name="aoTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>no_trans_parallax_ao.xml</material>
+</actor>

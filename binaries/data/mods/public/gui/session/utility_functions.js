@@ -48,9 +48,9 @@ function getPlayerData(playerAssignments)
 		var name = playerState.name;
 		var civ = playerState.civ;
 		var color = {
-		    "r": playerState.colour.r*255, 
-		    "g": playerState.colour.g*255, 
-		    "b": playerState.colour.b*255, 
+		    "r": playerState.colour.r*255,
+		    "g": playerState.colour.g*255,
+		    "b": playerState.colour.b*255,
 		    "a": playerState.colour.a*255
 		};
 
@@ -402,7 +402,7 @@ function getWallPieceTooltip(wallTypes)
  */
 function getEntityCostTooltip(template, trainNum, entity)
 {
-	var cost = "[font=\"serif-bold-13\"]Costs:[/font] ";
+	var cost = "";
 
 	// Entities with a wallset component are proxies for initiating wall placement and as such do not have a cost of
 	// their own; the individual wall pieces within it do.
@@ -512,7 +512,24 @@ function getEntityNames(template)
 
 function getEntityNamesFormatted(template)
 {
-	return '[font="serif-bold-16"]' + getEntityNames(template) + "[/font]";
+	var names = "";
+	var generic = template.name.generic;
+	var specific = template.name.specific;
+	if (specific)
+	{
+		// drop caps for specific name
+		names += '[font="serif-bold-16"]' + specific[0] + '[/font]' + 
+			'[font="serif-bold-12"]' + specific.slice(1).toUpperCase() + '[/font]';
+
+		if (generic)
+			names += '[font="serif-bold-16"] (' + generic + ')[/font]';
+	}
+	else if (generic)
+		names = '[font="serif-bold-16"]' + generic + "[/font]";
+	else
+		names = "???";
+
+	return names;
 }
 
 function getEntityRankedName(entState)

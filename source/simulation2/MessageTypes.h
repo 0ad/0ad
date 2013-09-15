@@ -314,10 +314,7 @@ class CMessageRangeUpdate : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(RangeUpdate)
 
-	CMessageRangeUpdate(u32 tag, const std::vector<entity_id_t>& added, const std::vector<entity_id_t>& removed) :
-		tag(tag), added(added), removed(removed)
-	{
-	}
+
 
 	u32 tag;
 	std::vector<entity_id_t> added;
@@ -327,16 +324,21 @@ public:
 	// swap vectors instead of copying (to save on memory allocations),
 	// so add some constructors for it:
 
-	CMessageRangeUpdate(u32 tag) :
-		tag(tag)
+	// don't init tag in empty ctor
+	CMessageRangeUpdate() 
 	{
 	}
-
-	CMessageRangeUpdate(const CMessageRangeUpdate& other) :
-		CMessage(), tag(other.tag), added(other.added), removed(other.removed)
+	CMessageRangeUpdate(u32 tag) : tag(tag)
 	{
 	}
-
+	CMessageRangeUpdate(u32 tag, const std::vector<entity_id_t>& added, const std::vector<entity_id_t>& removed)
+		: tag(tag), added(added), removed(removed)
+	{
+	}
+	CMessageRangeUpdate(const CMessageRangeUpdate& other) 
+		: CMessage(), tag(other.tag), added(other.added), removed(other.removed)
+	{
+	}
 	CMessageRangeUpdate& operator=(const CMessageRangeUpdate& other)
 	{
 		tag = other.tag;

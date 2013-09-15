@@ -16,5 +16,6 @@
 	"researchTime": 30,
 	"tooltip": "Skirmisher infantry +2 pierce attack.",
 	"modifications": [{"value": "Attack/Ranged/Pierce", "add": 2.0}],
-	"affects": ["Infantry Javelin"]
+	"affects": ["Infantry Javelin"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -3,45 +3,9 @@
   <Attack>
     <Melee>
       <Hack>14.0</Hack>
-	  <Bonuses>
-		<BonusSupport>
-		  <Classes>Support</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusSupport>
-		<BonusPrimary>
-		  <Classes>Spear</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Ranged</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusSecondary>
-		<BonusTertiary>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusTertiary>
-	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>28.0</Hack>
-	  <Bonuses>
-		<BonusSupport>
-		  <Classes>Support</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusSupport>
-		<BonusRanged>
-		  <Classes>Ranged</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusRanged>
-		<BonusPrimary>
-		  <Classes>Spear</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusSecondary>
-	  </Bonuses>
     </Charge>
   </Attack>
   <Builder>
@@ -64,9 +28,6 @@
 	<GenericName>Skiritai Commando</GenericName>
     <SpecificName>Ékdromos Skiritis</SpecificName>
     <Rank>Elite</Rank>
-    <Tooltip>A swordsman trained at the Elite rank.
-Counters: 1.25x vs. Support Units, Spear units, and Ranged Units (if they can catch them).
-Countered by: Archers, Cavalry Spearmen.</Tooltip>
     <History>The Skiritai were commandos in the Spartan army. They lead the vanguard on campaign and held the vital left flank of the Spartan infantry line.</History>
     <Icon>units/spart_champion_infantry_sword.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>

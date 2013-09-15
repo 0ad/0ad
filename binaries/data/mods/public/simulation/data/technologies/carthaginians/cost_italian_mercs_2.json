@@ -9,5 +9,6 @@
 	"researchTime": 40,
 	"tooltip": "Hire an Italiote mercenary general to reduce cost -20 metal for Italian mercenaries.",
 	"modifications": [{"value": "Cost/Resources/metal", "add": -20}],
-	"affects": ["Italian Mercenary"]
+	"affects": ["Italian Mercenary"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

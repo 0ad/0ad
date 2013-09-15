@@ -3,8 +3,12 @@
   <castshadow/>
   <group>
     <variant>
-      <mesh>structural/celt_kennel_props_beef.dae</mesh>
-      <textures><texture file="props/beefslab.png" name="baseTex"/></textures>
+      <mesh>props/celt_kennel_props_beef.dae</mesh>
+      <textures>
+	  <texture file="props/beefslab.png" name="baseTex"/>
+	  <texture file="structural/ao/celt_kennel.png" name="aoTex"/>
+	  </textures>
     </variant>
   </group>
+  <material>player_trans_ao.xml</material>
 </actor>

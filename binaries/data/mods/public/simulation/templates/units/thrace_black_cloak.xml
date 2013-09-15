@@ -2,24 +2,25 @@
 <Entity parent="template_unit_champion_infantry_swordsman">
   <Attack>
     <Melee>
-      <Hack>30.0</Hack>
+      <Hack>25.0</Hack>
     </Melee>
     <Charge>
-      <Hack>60.0</Hack>
+      <Hack>50.0</Hack>
     </Charge>
   </Attack>
   <Cost>
     <Resources>
       <food>0</food>
-      <metal>150</metal>
+      <metal>125</metal>
     </Resources>
   </Cost>
   <Identity>
     <Civ>hele</Civ>
     <GenericName>Thracian Black Cloak</GenericName>
     <SpecificName>Rhomphaiaphoros</SpecificName>
-    <Tooltip>Mercenary Champion Swordsman.
-Counters Spear Units and Elephants. Countered by Sword Units and Archers.</Tooltip>
+	<Tooltip>Classes: Mercenary Champion Melee Infantry Swordsman.
+Counters: 2x vs. Spearmen, 1.5x vs. Elephants. 
+Countered by: Archers, Cavalry Spearmen, and Cavalry Archers.</Tooltip>
     <History>Thracian tribesmen who wield the fiercesome rhomphaia polearm weapon in combat. They were ubiquitous mercenary swordsmen throughout Hellenistic times, sometimes even serving in two opposing armies.</History>
     <Icon>units/thracian_rhomphaia.png</Icon>
 	<RequiredTechnology>phase_city</RequiredTechnology>

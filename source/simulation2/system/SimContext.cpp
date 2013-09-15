@@ -34,7 +34,6 @@ CSimContext::~CSimContext()
 
 CComponentManager& CSimContext::GetComponentManager() const
 {
-	ENSURE(m_ComponentManager);
 	return *m_ComponentManager;
 }
 
