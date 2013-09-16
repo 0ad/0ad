@@ -27,7 +27,8 @@
 class CBreakPoint
 {
 public:
-	CBreakPoint() { m_UserLine = 0; m_Filename = ""; }
+	CBreakPoint() : m_UserLine(0) { }
+	
 	uint m_UserLine;
 	std::string m_Filename;
 };
@@ -36,26 +37,20 @@ public:
 class CActiveBreakPoint : public CBreakPoint
 {
 public:
-	CActiveBreakPoint() : 
-		CBreakPoint()
-	{
-		Initialize();
-	}
+	CActiveBreakPoint()
+		: m_ActualLine(m_UserLine)
+		, m_Script(NULL)
+		, m_Pc(NULL)
+		, m_ToRemove(false)
+	{ }
 
 	CActiveBreakPoint(CBreakPoint breakPoint)
-	{
-		m_Filename = breakPoint.m_Filename;
-		m_UserLine = breakPoint.m_UserLine;
-		Initialize();
-	}
-
-	void Initialize()
-	{
-		m_ToRemove = false;
-		m_Script = NULL;
-		m_Pc = NULL;
-		m_ActualLine = m_UserLine;
-	}
+		: CBreakPoint(breakPoint) // using default copy constructor
+		, m_ActualLine(m_UserLine)
+		, m_Script(NULL)
+		, m_Pc(NULL)
+		, m_ToRemove(false)
+	{ }
 	
 	uint m_ActualLine;
 	JSScript* m_Script;
@@ -151,7 +146,7 @@ public:
 	/** @brief Compares the object's associated scriptinterface with the pointer passed as parameter.
 	 * @return true if equal
 	 */
-	bool CompareScriptInterfacePtr(ScriptInterface* pScriptInterface);
+	bool CompareScriptInterfacePtr(ScriptInterface* pScriptInterface) const;
 	
 	// Getter/Setters for members that need to be threadsafe
 	std::string GetBreakFileName();

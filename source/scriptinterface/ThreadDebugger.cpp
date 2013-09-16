@@ -168,10 +168,13 @@ public:
 	uint m_ID;
 };
 
-ThreadDebugger_impl::ThreadDebugger_impl() :
-	m_NextDbgCmd(DBG_CMD_NONE), m_IsInBreak(false), m_pLastBreakFrame(new JSStackFrame*)
-{
-}
+ThreadDebugger_impl::ThreadDebugger_impl()
+	: m_NextDbgCmd(DBG_CMD_NONE)
+	, m_pScriptInterface(NULL)
+	, m_pDebuggingServer(NULL)
+	, m_pLastBreakFrame(new JSStackFrame*)
+	, m_IsInBreak(false)
+{ }
 
 ThreadDebugger_impl::~ThreadDebugger_impl()
 {
@@ -188,11 +191,10 @@ void CThreadDebugger::ClearTrapsToRemove()
 	{
 		if ((*itr)->m_ToRemove)
 		{
-				ClearTrap((*itr));
-				// Remove the breakpoint
-				delete (*itr);
-				itr = m->m_ActiveBreakPoints.erase(itr);
-
+			ClearTrap((*itr));
+			// Remove the breakpoint
+			delete (*itr);
+			itr = m->m_ActiveBreakPoints.erase(itr);
 		}
 		else
 			++itr;
@@ -527,7 +529,7 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 	SetAllNewTraps();
 	SetNextDbgCmd(DBG_CMD_NONE);
 	SetIsInBreak(false);
-	SetBreakFileName("");
+	SetBreakFileName(std::string());
 	
 	// All saved stack data becomes invalid
 	{
@@ -542,7 +544,7 @@ void CThreadDebugger::NewScriptHook(JSContext* cx, const char* filename, unsigne
 {
 	uint scriptExtent = JS_GetScriptLineExtent (cx, script);
 	std::string stringFileName(filename);
-	if (stringFileName == "")
+	if (stringFileName.empty())
 		return;
 
 	for (uint line = lineno; line < scriptExtent + lineno; ++line) 
@@ -648,7 +650,6 @@ void CThreadDebugger::SaveCallstack()
 	
 	JSStackFrame *fp;
 	JSStackFrame *iter = 0;
-	std::string functionName;
 	jsint counter = 0;
 	
 	JSObject* jsArray;
@@ -676,7 +677,7 @@ void CThreadDebugger::SaveCallstack()
 		counter++;
 	}
 	
-	m->m_Callstack = "";
+	m->m_Callstack.clear();
 	m->m_Callstack = m->m_pScriptInterface->StringifyJSON(OBJECT_TO_JSVAL(jsArray), false).c_str();
 }
 
@@ -699,7 +700,7 @@ void CThreadDebugger::GetStackFrameData(std::stringstream& response, uint nestin
 	
 	CScopeLock lock(m->m_Mutex);
 	{
-		response.str("");
+		response.str(std::string());
 		response << m->m_StackFrameData[stackInfoKind][nestingLevel];
 	}
 }
@@ -718,7 +719,6 @@ void CThreadDebugger::SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel
 	ENSURE(GetIsInBreak());
 	
 	CScopeLock lock(m->m_Mutex);
-	JSStackFrame *fp;
 	JSStackFrame *iter = 0;
 	uint counter = 0;
 	jsval val;
@@ -731,7 +731,7 @@ void CThreadDebugger::SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel
 	}
 	else
 	{
-		fp = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
+		JSStackFrame *fp = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 		while (fp)
 		{
 			if (counter == nestingLevel)
@@ -766,20 +766,20 @@ void CThreadDebugger::SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel
  * Unfortunately this seems to require writing (or embedding) a new serializer to JSON or something similar.
  * 
  * Some things about the implementation which aren't optimal:
- * 1. It uses globabl variables (they are limited to a namespace though)
+ * 1. It uses global variables (they are limited to a namespace though).
  * 2. It has to work around a bug in Spidermonkey.
  * 3. It copies code from CScriptInterface. I did this to separate it cleanly because the debugger should not affect
  *    the rest of the game and because this part of code should be replaced anyway in the future.
  */
  
- namespace CyclicRefWorkaround
- {
+namespace CyclicRefWorkaround
+{
 	std::set<JSObject*> g_ProcessedObjects;
 	jsval g_LastKey;
 	jsval g_LastValue;
 	bool g_RecursionDetectedInPrevReplacer = false;
 	uint g_countSameKeys = 0;
-
+	
 	struct Stringifier
 	{
 		static JSBool callback(const jschar* buf, uint32 len, void* data)
@@ -794,7 +794,7 @@ void CThreadDebugger::SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel
 
 		std::stringstream stream;
 	};
-	 
+	
 	JSBool replacer(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 	{
 		jsval value = JS_ARGV(cx, vp)[1];
@@ -830,8 +830,8 @@ void CThreadDebugger::SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel
 		JS_SET_RVAL(cx, vp, JS_ARGV(cx, vp)[1]);
 		return JS_TRUE;
 	}
- }
- 
+}
+
 std::string CThreadDebugger::StringifyCyclicJSON(jsval obj, bool indent)
 {
 	CyclicRefWorkaround::Stringifier str;
@@ -861,14 +861,14 @@ std::string CThreadDebugger::StringifyCyclicJSON(jsval obj, bool indent)
 			
 		}			
 		JS_ClearPendingException(m->m_pScriptInterface->GetContext());
-		return "";
+		return std::string();
 	}
 
 	return str.stream.str();
 }
 
 
-bool CThreadDebugger::CompareScriptInterfacePtr(ScriptInterface* pScriptInterface)
+bool CThreadDebugger::CompareScriptInterfacePtr(ScriptInterface* pScriptInterface) const
 {
 	return (pScriptInterface == m->m_pScriptInterface);
 }
