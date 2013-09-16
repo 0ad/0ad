@@ -126,7 +126,7 @@ public:
 	{
 		if (key >= m_BufferCapacity) // do we need to resize buffer?
 		{
-			int newCapacity = m_BufferCapacity + 4096;
+			size_t newCapacity = m_BufferCapacity + 4096;
 			while (key >= newCapacity) newCapacity += 4096;
 			// always allocate +1 behind the scenes, because end() must have a 0xFFFFFFFF key
 			value_type* mem = (value_type*)realloc(m_Buffer, sizeof(value_type) * (newCapacity + 1));
