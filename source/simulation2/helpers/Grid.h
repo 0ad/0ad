@@ -48,16 +48,8 @@ public:
 
 	Grid(const Grid& g)
 	{
-		m_W = g.m_W;
-		m_H = g.m_H;
-		m_DirtyID = g.m_DirtyID;
-		if (g.m_Data)
-		{
-			m_Data = new T[m_W * m_H];
-			memcpy(m_Data, g.m_Data, m_W*m_H*sizeof(T));
-		}
-		else
-			m_Data = NULL;
+		m_Data = NULL;
+		*this = g;
 	}
 
 	Grid& operator=(const Grid& g)
@@ -67,12 +59,11 @@ public:
 			m_W = g.m_W;
 			m_H = g.m_H;
 			m_DirtyID = g.m_DirtyID;
+			delete[] m_Data;
 			if (g.m_Data)
 			{
-				T* ptr = new T[m_W * m_H];
-				memcpy(ptr, g.m_Data, m_W*m_H*sizeof(T));
-				delete[] m_Data;
-				m_Data = ptr;
+				m_Data = new T[m_W * m_H];
+				memcpy(m_Data, g.m_Data, m_W*m_H*sizeof(T));
 			}
 			else
 				m_Data = NULL;
