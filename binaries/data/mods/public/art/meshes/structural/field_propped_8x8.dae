@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
+    </contributor>
+    <created>2013-09-19T17:11:40</created>
+    <modified>2013-09-19T17:11:40</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="Plane_008-mesh" name="Plane.008">
+      <mesh>
+        <source id="Plane_008-mesh-positions">
+          <float_array id="Plane_008-mesh-positions-array" count="12">1.82575 -3.754496 -27.11541 -5.683242 -3.754496 -27.11541 1.82575 3.754496 -27.11541 -5.683242 3.754496 -27.11541</float_array>
+          <technique_common>
+            <accessor source="#Plane_008-mesh-positions-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_008-mesh-normals">
+          <float_array id="Plane_008-mesh-normals-array" count="6">0 0 1 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Plane_008-mesh-normals-array" count="2" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_008-mesh-map-0">
+          <float_array id="Plane_008-mesh-map-0-array" count="12">9.99799e-5 9.99799e-5 0.9998989 1.00933e-4 0.9998981 0.9999001 9.99799e-5 0.9999001 9.99799e-5 9.99799e-5 0.9998981 0.9999001</float_array>
+          <technique_common>
+            <accessor source="#Plane_008-mesh-map-0-array" count="6" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane_008-mesh-vertices">
+          <input semantic="POSITION" source="#Plane_008-mesh-positions"/>
+        </vertices>
+        <polylist count="2">
+          <input semantic="VERTEX" source="#Plane_008-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane_008-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane_008-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 </vcount>
+          <p>1 0 0 0 0 1 2 0 2 3 1 3 1 1 4 2 1 5</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="PART_1" name="PART 1">
+      <node id="Plane" name="Plane" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">0.8768002 1 1</scale>
+        <instance_geometry url="#Plane_008-mesh"/>
+        <node id="prop-patch" name="prop-patch" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-13.92105 -14.35967 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -45.389</rotate>
+          <rotate sid="rotationY">0 1 0 -0.1941962</rotate>
+          <rotate sid="rotationX">1 0 0 -3.95656</rotate>
+          <scale sid="scale">6.857766 7.13154 8.728304</scale>
+        </node>
+        <node id="prop-patch_001" name="prop-patch_001" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-9.992586 -14.35967 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2087.114</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857766 7.131541 8.728302</scale>
+        </node>
+        <node id="prop-patch_002" name="prop-patch_002" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-6.06412 -14.35967 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -180</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728302</scale>
+        </node>
+        <node id="prop-patch_003" name="prop-patch_003" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-2.135656 -14.35967 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2476.793</rotate>
+          <rotate sid="rotationY">0 1 0 0.7607853</rotate>
+          <rotate sid="rotationX">1 0 0 -3.215381</rotate>
+          <scale sid="scale">6.857764 7.131539 8.728304</scale>
+        </node>
+        <node id="prop-patch_004" name="prop-patch_004" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">1.792809 -14.35967 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1823.451</rotate>
+          <rotate sid="rotationY">0 1 0 1.643088</rotate>
+          <rotate sid="rotationX">1 0 0 3.781764</rotate>
+          <scale sid="scale">6.857766 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_005" name="prop-patch_005" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">5.721276 -14.35967 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -220.2502</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857764 7.131538 8.728302</scale>
+        </node>
+        <node id="prop-patch_006" name="prop-patch_006" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">9.649739 -14.35967 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2029.851</rotate>
+          <rotate sid="rotationY">0 1 0 0.5018853</rotate>
+          <rotate sid="rotationX">1 0 0 3.929447</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728304</scale>
+        </node>
+        <node id="prop-patch_007" name="prop-patch_007" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-13.92105 -10.27437 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1211.246</rotate>
+          <rotate sid="rotationY">0 1 0 -1.951834</rotate>
+          <rotate sid="rotationX">1 0 0 3.386962</rotate>
+          <scale sid="scale">6.857764 7.131539 8.728302</scale>
+        </node>
+        <node id="prop-patch_008" name="prop-patch_008" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-9.992586 -10.27437 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2071.484</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857764 7.13154 8.728302</scale>
+        </node>
+        <node id="prop-patch_009" name="prop-patch_009" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-6.06412 -10.27437 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -3369.046</rotate>
+          <rotate sid="rotationY">0 1 0 -0.6024028</rotate>
+          <rotate sid="rotationX">1 0 0 -5.409436</rotate>
+          <scale sid="scale">6.857766 7.13154 8.728302</scale>
+        </node>
+        <node id="prop-patch_010" name="prop-patch_010" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-2.135656 -10.27437 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -351.4071</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728302</scale>
+        </node>
+        <node id="prop-patch_011" name="prop-patch_011" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">1.792809 -10.27437 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1.02485e-5</rotate>
+          <rotate sid="rotationY">0 1 0 -1.26351</rotate>
+          <rotate sid="rotationX">1 0 0 -3.698986</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_012" name="prop-patch_012" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">5.721276 -10.27437 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 664.956</rotate>
+          <rotate sid="rotationY">0 1 0 5.03667</rotate>
+          <rotate sid="rotationX">1 0 0 -2.065623</rotate>
+          <scale sid="scale">6.857764 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_013" name="prop-patch_013" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">9.649739 -10.27437 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1571.228</rotate>
+          <rotate sid="rotationY">0 1 0 -0.8085093</rotate>
+          <rotate sid="rotationX">1 0 0 -5.38257</rotate>
+          <scale sid="scale">6.857765 7.131538 8.728302</scale>
+        </node>
+        <node id="prop-patch_014" name="prop-patch_014" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">9.649739 -6.189073 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2126.191</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728302</scale>
+        </node>
+        <node id="prop-patch_015" name="prop-patch_015" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">5.721276 -6.189073 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 1981.33</rotate>
+          <rotate sid="rotationY">0 1 0 0.09590261</rotate>
+          <rotate sid="rotationX">1 0 0 -4.121694</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_016" name="prop-patch_016" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">1.792809 -6.189073 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -61.21743</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728302</scale>
+        </node>
+        <node id="prop-patch_017" name="prop-patch_017" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-2.135656 -6.189073 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2039.026</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728302</scale>
+        </node>
+        <node id="prop-patch_018" name="prop-patch_018" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-6.06412 -6.189073 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -109.0647</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857765 7.131538 8.728302</scale>
+        </node>
+        <node id="prop-patch_019" name="prop-patch_019" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-9.992586 -6.189075 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 1009.559</rotate>
+          <rotate sid="rotationY">0 1 0 -3.250409</rotate>
+          <rotate sid="rotationX">1 0 0 0.5933213</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728302</scale>
+        </node>
+        <node id="prop-patch_020" name="prop-patch_020" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-13.92105 -6.189075 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1807.855</rotate>
+          <rotate sid="rotationY">0 1 0 0.5643985</rotate>
+          <rotate sid="rotationX">1 0 0 4.08406</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728303</scale>
+        </node>
+        <node id="prop-patch_021" name="prop-patch_021" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-13.92105 -2.103778 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 885.4147</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857764 7.131538 8.728302</scale>
+        </node>
+        <node id="prop-patch_022" name="prop-patch_022" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-9.992586 -2.103778 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -3050.356</rotate>
+          <rotate sid="rotationY">0 1 0 0.625102</rotate>
+          <rotate sid="rotationX">1 0 0 3.85831</rotate>
+          <scale sid="scale">6.857766 7.131539 8.728302</scale>
+        </node>
+        <node id="prop-patch_023" name="prop-patch_023" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-6.06412 -2.103777 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2168.007</rotate>
+          <rotate sid="rotationY">0 1 0 2.250487</rotate>
+          <rotate sid="rotationX">1 0 0 -3.260798</rotate>
+          <scale sid="scale">6.857764 7.131539 8.728303</scale>
+        </node>
+        <node id="prop-patch_024" name="prop-patch_024" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-2.135656 -2.103777 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 41.60226</rotate>
+          <rotate sid="rotationY">0 1 0 3.941002</rotate>
+          <rotate sid="rotationX">1 0 0 -0.4009786</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728303</scale>
+        </node>
+        <node id="prop-patch_025" name="prop-patch_025" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">1.792809 -2.103777 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -822.5366</rotate>
+          <rotate sid="rotationY">0 1 0 -3.33861</rotate>
+          <rotate sid="rotationX">1 0 0 2.033491</rotate>
+          <scale sid="scale">6.857766 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_026" name="prop-patch_026" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">5.721276 -2.103776 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2051.521</rotate>
+          <rotate sid="rotationY">0 1 0 3.238666</rotate>
+          <rotate sid="rotationX">1 0 0 -0.6544736</rotate>
+          <scale sid="scale">6.857766 7.13154 8.728305</scale>
+        </node>
+        <node id="prop-patch_027" name="prop-patch_027" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">9.649739 -2.103776 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -531.4247</rotate>
+          <rotate sid="rotationY">0 1 0 0.697096</rotate>
+          <rotate sid="rotationX">1 0 0 3.845976</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_028" name="prop-patch_028" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-13.92105 1.981517 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1916.937</rotate>
+          <rotate sid="rotationY">0 1 0 0.5491114</rotate>
+          <rotate sid="rotationX">1 0 0 -5.415089</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728301</scale>
+        </node>
+        <node id="prop-patch_029" name="prop-patch_029" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-9.992586 1.981519 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 67.08059</rotate>
+          <rotate sid="rotationY">0 1 0 -0.9282512</rotate>
+          <rotate sid="rotationX">1 0 0 5.363275</rotate>
+          <scale sid="scale">6.857767 7.131541 8.728303</scale>
+        </node>
+        <node id="prop-patch_030" name="prop-patch_030" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-6.06412 1.981519 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -195.6296</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728302</scale>
+        </node>
+        <node id="prop-patch_031" name="prop-patch_031" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-2.135656 1.981519 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1366.258</rotate>
+          <rotate sid="rotationY">0 1 0 -1.545769</rotate>
+          <rotate sid="rotationX">1 0 0 5.219294</rotate>
+          <scale sid="scale">6.857765 7.131541 8.728302</scale>
+        </node>
+        <node id="prop-patch_032" name="prop-patch_032" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">1.792809 1.981519 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2111.722</rotate>
+          <rotate sid="rotationY">0 1 0 1.042249</rotate>
+          <rotate sid="rotationX">1 0 0 -3.135541</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_033" name="prop-patch_033" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">5.721276 1.981523 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1576.216</rotate>
+          <rotate sid="rotationY">0 1 0 -1.650849</rotate>
+          <rotate sid="rotationX">1 0 0 3.543288</rotate>
+          <scale sid="scale">6.857764 7.131539 8.728302</scale>
+        </node>
+        <node id="prop-patch_034" name="prop-patch_034" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">9.649739 1.981523 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 139.823</rotate>
+          <rotate sid="rotationY">0 1 0 -2.662515</rotate>
+          <rotate sid="rotationX">1 0 0 -3.148921</rotate>
+          <scale sid="scale">6.857766 7.131541 8.728304</scale>
+        </node>
+        <node id="prop-patch_035" name="prop-patch_035" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-13.92105 6.066817 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1843.068</rotate>
+          <rotate sid="rotationY">0 1 0 -3.159617</rotate>
+          <rotate sid="rotationX">1 0 0 -0.9667404</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_036" name="prop-patch_036" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-9.992586 6.066817 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -943.9823</rotate>
+          <rotate sid="rotationY">0 1 0 -2.86559</rotate>
+          <rotate sid="rotationX">1 0 0 -2.965348</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728303</scale>
+        </node>
+        <node id="prop-patch_037" name="prop-patch_037" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-6.06412 6.066817 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -101.4381</rotate>
+          <rotate sid="rotationY">0 1 0 4.041203</rotate>
+          <rotate sid="rotationX">1 0 0 -0.8169112</rotate>
+          <scale sid="scale">6.857765 7.131541 8.728303</scale>
+        </node>
+        <node id="prop-patch_038" name="prop-patch_038" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-2.135656 6.066817 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -43.36142</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728302</scale>
+        </node>
+        <node id="prop-patch_039" name="prop-patch_039" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">1.792809 6.066817 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 1065.29</rotate>
+          <rotate sid="rotationY">0 1 0 1.854283</rotate>
+          <rotate sid="rotationX">1 0 0 -3.501134</rotate>
+          <scale sid="scale">6.857766 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_040" name="prop-patch_040" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">5.721276 6.066817 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2183.418</rotate>
+          <rotate sid="rotationY">0 1 0 -2.651115</rotate>
+          <rotate sid="rotationX">1 0 0 -1.972612</rotate>
+          <scale sid="scale">6.857766 7.131541 8.728304</scale>
+        </node>
+        <node id="prop-patch_041" name="prop-patch_041" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">9.649739 6.066817 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2293.073</rotate>
+          <rotate sid="rotationY">0 1 0 3.014092</rotate>
+          <rotate sid="rotationX">1 0 0 -2.814268</rotate>
+          <scale sid="scale">6.857766 7.131539 8.728304</scale>
+        </node>
+        <node id="prop-patch_042" name="prop-patch_042" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-13.92105 10.1521 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -15.59118</rotate>
+          <rotate sid="rotationY">0 1 0 1.109872</rotate>
+          <rotate sid="rotationX">1 0 0 3.970859</rotate>
+          <scale sid="scale">6.857766 7.131539 8.728303</scale>
+        </node>
+        <node id="prop-patch_043" name="prop-patch_043" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-9.992586 10.1521 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -3801.43</rotate>
+          <rotate sid="rotationY">0 1 0 -1.431565</rotate>
+          <rotate sid="rotationX">1 0 0 3.693972</rotate>
+          <scale sid="scale">6.857765 7.131538 8.728303</scale>
+        </node>
+        <node id="prop-patch_044" name="prop-patch_044" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-6.06412 10.15211 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1211.136</rotate>
+          <rotate sid="rotationY">0 1 0 -1.074275</rotate>
+          <rotate sid="rotationX">1 0 0 3.124724</rotate>
+          <scale sid="scale">6.857764 7.13154 8.728304</scale>
+        </node>
+        <node id="prop-patch_045" name="prop-patch_045" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-2.135656 10.15211 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 89.99976</rotate>
+          <rotate sid="rotationY">0 1 0 -4.122809</rotate>
+          <rotate sid="rotationX">1 0 0 1.76309e-5</rotate>
+          <scale sid="scale">6.857766 7.131539 8.728303</scale>
+        </node>
+        <node id="prop-patch_046" name="prop-patch_046" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">1.792809 10.15211 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 520.2905</rotate>
+          <rotate sid="rotationY">0 1 0 -1.541872</rotate>
+          <rotate sid="rotationX">1 0 0 3.649366</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728303</scale>
+        </node>
+        <node id="prop-patch_047" name="prop-patch_047" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">5.721276 10.15211 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 45.54914</rotate>
+          <rotate sid="rotationY">0 1 0 3.959219</rotate>
+          <rotate sid="rotationX">1 0 0 -0.1289795</rotate>
+          <scale sid="scale">6.857763 7.131539 8.728303</scale>
+        </node>
+        <node id="prop-patch_048" name="prop-patch_048" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">9.649739 10.15211 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -5260.593</rotate>
+          <rotate sid="rotationY">0 1 0 -5.391643</rotate>
+          <rotate sid="rotationX">1 0 0 0.7454213</rotate>
+          <scale sid="scale">6.857763 7.131538 8.728302</scale>
+        </node>
+        <node id="prop-patch_055" name="prop-patch_055" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">9.649739 14.18697 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -4026.849</rotate>
+          <rotate sid="rotationY">0 1 0 3.791802</rotate>
+          <rotate sid="rotationX">1 0 0 1.619761</rotate>
+          <scale sid="scale">6.857764 7.131538 8.728303</scale>
+        </node>
+        <node id="prop-patch_054" name="prop-patch_054" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">5.721276 14.18697 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -45.32744</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728302</scale>
+        </node>
+        <node id="prop-patch_053" name="prop-patch_053" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">1.792809 14.18697 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1907.121</rotate>
+          <rotate sid="rotationY">0 1 0 -2.253428</rotate>
+          <rotate sid="rotationX">1 0 0 2.417004</rotate>
+          <scale sid="scale">6.857766 7.13154 8.728304</scale>
+        </node>
+        <node id="prop-patch_052" name="prop-patch_052" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-2.135656 14.18697 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1928.584</rotate>
+          <rotate sid="rotationY">0 1 0 -2.10715</rotate>
+          <rotate sid="rotationX">1 0 0 3.292646</rotate>
+          <scale sid="scale">6.857766 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_051" name="prop-patch_051" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-6.06412 14.18697 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 139.6762</rotate>
+          <rotate sid="rotationY">0 1 0 -0.156438</rotate>
+          <rotate sid="rotationX">1 0 0 3.95823</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728303</scale>
+        </node>
+        <node id="prop-patch_050" name="prop-patch_050" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-9.992586 14.18696 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2071.716</rotate>
+          <rotate sid="rotationY">0 1 0 -2.808959</rotate>
+          <rotate sid="rotationX">1 0 0 4.663799</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728303</scale>
+        </node>
+        <node id="prop-patch_049" name="prop-patch_049" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">-13.92105 14.18696 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2028.125</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857764 7.131539 8.728302</scale>
+        </node>
+        <node id="prop-patch_056" name="prop-patch_056" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">13.5297 14.18697 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -225.2628</rotate>
+          <rotate sid="rotationY">0 1 0 3.194269</rotate>
+          <rotate sid="rotationX">1 0 0 0.8451039</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_057" name="prop-patch_057" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">13.5297 10.15211 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -4.05008e-5</rotate>
+          <rotate sid="rotationY">0 1 0 -1.263512</rotate>
+          <rotate sid="rotationX">1 0 0 -3.698986</rotate>
+          <scale sid="scale">6.857765 7.13154 8.728303</scale>
+        </node>
+        <node id="prop-patch_058" name="prop-patch_058" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">13.5297 6.066817 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -138.3157</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857766 7.13154 8.728302</scale>
+        </node>
+        <node id="prop-patch_059" name="prop-patch_059" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">13.5297 1.981523 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 1065.373</rotate>
+          <rotate sid="rotationY">0 1 0 5.175439</rotate>
+          <rotate sid="rotationX">1 0 0 1.687136</rotate>
+          <scale sid="scale">6.857766 7.131541 8.728303</scale>
+        </node>
+        <node id="prop-patch_060" name="prop-patch_060" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">13.5297 -2.103776 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -1092.394</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857764 7.13154 8.728302</scale>
+        </node>
+        <node id="prop-patch_061" name="prop-patch_061" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">13.5297 -6.189073 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -180.0008</rotate>
+          <rotate sid="rotationY">0 1 0 -4.58396</rotate>
+          <rotate sid="rotationX">1 0 0 -2.937739</rotate>
+          <scale sid="scale">6.857765 7.131539 8.728303</scale>
+        </node>
+        <node id="prop-patch_062" name="prop-patch_062" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">13.5297 -10.27437 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -2291.734</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857765 7.131541 8.728302</scale>
+        </node>
+        <node id="prop-patch_063" name="prop-patch_063" type="NODE">
+          <matrix sid="parentinverse">1.140511 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <translate sid="location">13.5297 -14.35967 -2.44733e-8</translate>
+          <rotate sid="rotationZ">0 0 1 -4099.611</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">6.857764 7.131538 8.728302</scale>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#PART_1"/>
+  </scene>
+</COLLADA>
