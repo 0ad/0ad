@@ -103,18 +103,17 @@ static u32 CalcSharedLosMask(std::vector<player_id_t> players)
  */
 static bool InParabolicRange(CFixedVector3D v, fixed range) 
 {
-	i64 x = (i64)v.X.GetInternalValue(); // abs(x) <= 2^31
-	i64 z = (i64)v.Z.GetInternalValue();
-	i64 xx = (x * x); // xx <= 2^62
-	i64 zz = (z * z);
+	i32 x = v.X.GetInternalValue(); // abs(x) <= 2^31
+	i32 z = v.Z.GetInternalValue();
+	u64 xx = (u64)FIXED_MUL_I64_I32_I32(x, x); // xx <= 2^62
+	u64 zz = (u64)FIXED_MUL_I64_I32_I32(z, z);
 	i64 d2 = (xx + zz) >> 1; // d2 <= 2^62 (no overflow)
 	
-	i64 y = (i64)v.Y.GetInternalValue();
+	i32 y = v.Y.GetInternalValue();
+	i32 c = range.GetInternalValue();
+	i32 c_2 = c >> 1;
 
-	i64 c = (i64)range.GetInternalValue();
-	i64 c_2 = c >> 1; 
-
-	i64 c2 = (c_2-y)*c;
+	i64 c2 = FIXED_MUL_I64_I32_I32(c_2 - y, c);
 
 	if (d2 <= c2)
 		return true;
