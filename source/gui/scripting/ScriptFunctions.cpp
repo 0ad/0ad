@@ -45,6 +45,7 @@
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/ConfigDB.h"
+#include "renderer/scripting/JSInterface_Renderer.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 
 #include "simulation2/Simulation2.h"
@@ -652,6 +653,7 @@ void SetBoundingBoxDebugOverlay(void* UNUSED(cbdata), bool enabled)
 void GuiScriptingInit(ScriptInterface& scriptInterface)
 {
 	JSI_GameView::RegisterScriptFunctions(scriptInterface);
+	JSI_Renderer::RegisterScriptFunctions(scriptInterface);
 
 	// GUI manager functions:
 	scriptInterface.RegisterFunction<CScriptVal, &GetActiveGui>("GetActiveGui");

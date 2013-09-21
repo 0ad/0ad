@@ -408,15 +408,6 @@ JSFunctionSpec ScriptFunctionTable[] =
 // property accessors
 //-----------------------------------------------------------------------------
 
-JSBool GetRenderer(JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsid UNUSED(id), jsval* vp)
-{
-	if (CRenderer::IsInitialised())
-		*vp = OBJECT_TO_JSVAL(g_Renderer.GetScript());
-	else
-		*vp = JSVAL_NULL;
-	return JS_TRUE;
-}
-
 
 enum ScriptGlobalTinyIDs
 {
@@ -430,7 +421,6 @@ enum ScriptGlobalTinyIDs
 JSPropertySpec ScriptGlobalTable[] =
 {
 	{ "console"    , GLOBAL_CONSOLE,     JSPROP_PERMANENT|JSPROP_READONLY, JSI_Console::getConsole, 0 },
-	{ "renderer"   , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetRenderer, 0 },
 
 	// end of table marker
 	{ 0, 0, 0, 0, 0 },
