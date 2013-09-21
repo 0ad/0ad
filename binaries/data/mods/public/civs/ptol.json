@@ -1,17 +1,19 @@
 {
 	"Code":"ptol",
-	"Culture": "hele",
-	"Name":"Ptolemaic Egyptians",
-	"Emblem":"session/portraits/emblems/emblem_thebans.png",
+	"Culture":"ptol",
+	"Name":"Ptolemies",
+	"Emblem":"session/portraits/emblems/emblem_ptolemies.png",
 	"History":"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient Egypt.",
 	"Music":[
-			{"File":"Land_between_the_two_Seas.ogg", "Type":"peace"}
+			{"File":"Rise_of_Macedon.ogg", "Type":"peace"},
+			{"File":"In_the_Shadow_of_Olympus.ogg", "Type":"peace"},
+			{"File":"The_Hellespont.ogg", "Type":"peace"}
 		],
 	"Factions":
 	[
 		{
 			"Name":"Ptolemaic Egyptians",
-			"Description":"The great power of Central Greece and leader of the Boeotian confederacy.",
+			"Description":"The great Greek Macedonian dynastic rule over Ancient Egypt.",
 			"Technologies":
 			[
 				{
@@ -56,17 +58,17 @@
 		{
 			"Name":"Cleruchy",
 			"History":"The Ptolemies invited Greeks and Galatians (Gauls) alike to settle in Egypt within military settlements called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the pharaoh's army when called to duty.",
-			"Description":"The Ptolemies receive a barracks structure that is constructed in neutral territory and trains Greek and Galatian 'settler' soldiers."
+			"Description":"The Ptolemies receive a barracks structure that trains Greek and Galatian 'settler' soldiers."
 		},
 		{
 			"Name":"Nile Delta",
 			"History":"Unknown.",
-			"Description":"The Ptolemaic Egyptians receive 3 additional farming technologies above and beyond the maximum number of farming technologies usually available to a faction."
+			"Description":"The Ptolemaic Egyptians receive 3 additional farming technologies."
 		},
 		{
 			"Name":"Roundup",
 			"History":"Unknown.",
-			"Description":"Can capture gaia elephants and camels. Hosting these animals at the corral structure reduces the cost of training elephant and camel units."
+			"Description":"Can capture gaia elephants and camels to reduce their training cost."
 		}
 	],
 	"TeamBonuses":
@@ -74,20 +76,11 @@
 		{
 			"Name":"Breadbasket of the Mediterranean",
 			"History":"Egypt was a net exporter of grain, so much so that large cities such as Athens, Antioch, and Rome came to rely upon Egyptian grain in order to feed their masses.",
-			"Description":"All allies automatically gain increased farming income."
+			"Description":"All allies automatically gain a slow trickle of food income."
 		}
 	],
 	"Structures":
 	[
-		{
-			"Name":"Klēroukhia",
-			"Class":"Barracks",
-			"Emblem":"",
-			"History":"The Ptolemies invited Greeks and Galatians (Gauls) alike to settle in Egypt within military settlements called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the pharaoh's army when called to duty. This created a upper-middle class of military settlers who owed their livelihoods and fortunes to the pharaoh and helped grow the available manpower for the Egyptian army. A side effect of this system was that it drained the Greek homeland of military-aged men, a contributing factor to Greece's inevitable conquest by Rome.",
-			"Requirements":"",
-			"Phase":"Town",
-			"Special":" Must be constructed in neutral territory. Has no territory radius effect. Trains all 'settler' units: Galatian Settler Swordsman, Macedonian Settler Cavalry, Tarantine Settler Cavalry."
-		},
 		{
 			"Name":"Library",
 			"Class":"",
@@ -98,6 +91,15 @@
 			"Special":"Maximum of 1 built. All Special Technologies and some regular city-phase technologies are researched here. Building one reduces the cost of all other remaining technologies by 10%."
 		},
 		{
+			"Name":"Klēroukhia",
+			"Class":"",
+			"Emblem":"",
+			"History":"The Ptolemies invited Greeks and Galatians (Gauls) alike to settle in Egypt within military settlements called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the pharaoh's army when called to duty. This created a upper-middle class of military settlers who owed their livelihoods and fortunes to the pharaoh and helped grow the available manpower for the Egyptian army. A side effect of this system was that it drained the Greek homeland of military-aged men, a contributing factor to Greece's inevitable conquest by Rome.",
+			"Requirements":"",
+			"Phase":"Town",
+			"Special":" Must be constructed in neutral territory. Has no territory radius effect. Trains all 'settler' units: Galatian Settler Swordsman, Macedonian Settler Cavalry, Tarantine Settler Cavalry."
+		},
+		{
 			"Name":"Lighthouse",
 			"Class":"",
 			"Emblem":"",
@@ -105,6 +107,7 @@
 			"Requirements":".",
 			"Phase":"City",
 			"Special":"When built along the shoreline, removes shroud of darkness over all the water, revealing all the coast lines on the map. Limit: 1."
+		}
 	],
 	"StartEntities":
 	[
