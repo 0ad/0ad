@@ -321,9 +321,6 @@ static void RegisterJavascriptInterfaces()
 	// maths
 	JSI_Vector3D::init();
 
-	// ps
-	JSI_Console::init();
-
 	// GUI
 	CGUI::ScriptingInit();
 

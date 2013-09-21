@@ -402,26 +402,3 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{0}
 };
 #undef JS_FUNC
-
-
-//-----------------------------------------------------------------------------
-// property accessors
-//-----------------------------------------------------------------------------
-
-
-enum ScriptGlobalTinyIDs
-{
-	GLOBAL_SELECTION,
-	GLOBAL_GROUPSARRAY,
-	GLOBAL_CAMERA,
-	GLOBAL_CONSOLE,
-	GLOBAL_LIGHTENV
-};
-
-JSPropertySpec ScriptGlobalTable[] =
-{
-	{ "console"    , GLOBAL_CONSOLE,     JSPROP_PERMANENT|JSPROP_READONLY, JSI_Console::getConsole, 0 },
-
-	// end of table marker
-	{ 0, 0, 0, 0, 0 },
-};

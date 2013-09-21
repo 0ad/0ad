@@ -11,7 +11,7 @@
 function removeItem (objectName, pos)
 {
 	if (getGUIObjectByName (objectName) == null)
-		console.write ("removeItem(): " + objectName + " not found.");
+		Engine.Console_Write ("removeItem(): " + objectName + " not found.");
 
 	var list = getGUIObjectByName (objectName).list;
 	var selected = getGUIObjectByName (objectName).selected;
@@ -41,7 +41,7 @@ function removeItem (objectName, pos)
 function addItem (objectName, pos, value)
 {
 	if (getGUIObjectByName (objectName) == null)
-		console.write ("addItem(): " + objectName + " not found.");
+		Engine.Console_Write ("addItem(): " + objectName + " not found.");
 
 	var list = getGUIObjectByName (objectName).list;
 	var selected = getGUIObjectByName (objectName).selected;
@@ -66,7 +66,7 @@ function addItem (objectName, pos, value)
 function pushItem (objectName, value)
 {
 	if (getGUIObjectByName (objectName) == null)
-		console.write ("pushItem(): " + objectName + " not found.");
+		Engine.Console_Write ("pushItem(): " + objectName + " not found.");
 
 	var list = getGUIObjectByName (objectName).list;
 	list.push (value);
@@ -81,7 +81,7 @@ function pushItem (objectName, value)
 function popItem (objectName)
 {
 	if (getGUIObjectByName (objectName) == null)
-		console.write ("popItem(): " + objectName + " not found.");
+		Engine.Console_Write ("popItem(): " + objectName + " not found.");
 
 	var selected = getGUIObjectByName (objectName).selected;
 	removeItem(objectName, getNumItems(objectName)-1);
@@ -98,7 +98,7 @@ function popItem (objectName)
 function getNumItems (objectName)
 {
 	if (getGUIObjectByName (objectName) == null)
-		console.write ("getNumItems(): " + objectName + " not found.");
+		Engine.Console_Write ("getNumItems(): " + objectName + " not found.");
 
 	var list = getGUIObjectByName(objectName).list;
 	return list.length;
@@ -110,7 +110,7 @@ function getNumItems (objectName)
 function getItemValue (objectName, pos)
 {
 	if (getGUIObjectByName (objectName) == null)
-		console.write ("getItemValue(): " + objectName + " not found.");
+		Engine.Console_Write ("getItemValue(): " + objectName + " not found.");
 
 	var list = getGUIObjectByName(objectName).list;
 	return list[pos];
@@ -122,7 +122,7 @@ function getItemValue (objectName, pos)
 function getCurrItemValue (objectName)
 {
 	if (getGUIObjectByName (objectName) == null)
-		console.write ("getCurrItemValue(): " + objectName + " not found.");
+		Engine.Console_Write ("getCurrItemValue(): " + objectName + " not found.");
 
 	if (getGUIObjectByName(objectName).selected == -1)
 		return "";
@@ -137,7 +137,7 @@ function getCurrItemValue (objectName)
 function setCurrItemValue (objectName, string)
 {
 	if (getGUIObjectByName(objectName) == null) {
-		console.write ("setCurrItemValue(): " + objectName + " not found.");
+		Engine.Console_Write ("setCurrItemValue(): " + objectName + " not found.");
 		return -1;
 	}
 
@@ -157,7 +157,7 @@ function setCurrItemValue (objectName, string)
 	}
 
 	// Return -2 if failed to find value in list.
-	console.write ("Requested string '" + string + "' not found in " + objectName + "'s list.");
+	Engine.Console_Write ("Requested string '" + string + "' not found in " + objectName + "'s list.");
 	return -2;
 }
 

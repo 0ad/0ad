@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,33 +15,19 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// JSInterface_Console.h
-//
-// The JavaScript wrapper around the console system
-
-#include "scripting/ScriptingHost.h"
-
 #ifndef INCLUDED_JSI_CONSOLE
 #define INCLUDED_JSI_CONSOLE
 
+class ScriptInterface;
+
 namespace JSI_Console
 {
-	enum
-	{
-		console_visible
-	};
-	extern JSClass JSI_class;
-	extern JSPropertySpec JSI_props[];
-	extern JSFunctionSpec JSI_methods[];
-
-	JSBool getProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp);
-	JSBool setProperty(JSContext* cx, JSObject* obj, jsid id, JSBool strict, jsval* vp);
-
-	JSBool getConsole(JSContext* context, JSObject* obj, jsid id, jsval* vp);
-
-	void init();
-
-	JSBool writeConsole(JSContext* cx, uintN argc, jsval* vp);
+	bool CheckGlobalInitialized();
+	bool GetVisibleEnabled(void* cbdata);
+	void SetVisibleEnabled(void* cbdata, bool Enabled);
+	void Write(void* cbdata, std::wstring output);
+	
+	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
 }
 
 #endif
