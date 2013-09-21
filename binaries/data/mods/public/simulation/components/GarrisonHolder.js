@@ -464,7 +464,7 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 		var entities = [];
 		for each (var entity in this.entities)
 		{
-			if (!IsOwnedByMutualAllyOfEntity(this.entity, entity))
+			if (msg.to == -1 || !IsOwnedByMutualAllyOfEntity(this.entity, entity))
 				entities.push(entity);
 		}
 		this.EjectOrKill(entities);
