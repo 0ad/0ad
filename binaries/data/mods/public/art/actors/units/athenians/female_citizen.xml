@@ -24,52 +24,13 @@
         <animation event="0.6" file="female/f_build_01.dae" name="Build" speed="70"/>
         <animation file="female/f_death_01.dae" name="Death" speed="130"/>
       </animations>
+      <mesh>skeletal/f_dress.dae</mesh>
       <props>
         <prop actor="props/units/heads/dudette_head.xml" attachpoint="head"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="2" name="Dress-Light Brown">
-      <mesh>skeletal/f_dress.dae</mesh>
       <textures>
-        <texture file="skeletal/hele_fem_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="Dress-Dark Brown">
-      <mesh>skeletal/f_dress.dae</mesh>
-      <textures>
-        <texture file="skeletal/hele_fem_b.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="Dress-Gold">
-      <mesh>skeletal/f_dress.dae</mesh>
-      <textures>
-        <texture file="skeletal/hele_fem_c.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="Dress-Player Tint">
-      <mesh>skeletal/f_dress.dae</mesh>
-      <textures>
-        <texture file="skeletal/hele_fem_d.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Dress-linen">
-      <mesh>skeletal/f_dress.dae</mesh>
-      <textures>
-        <texture file="skeletal/hele_fem_e.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="3" name="Dress-Chiton">
-      <mesh>skeletal/f_tunic.dae</mesh>
-      <textures>
-        <texture file="skeletal/hele_fem_chiton.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Dress-Chiton-Linen">
-      <mesh>skeletal/f_tunic.dae</mesh>
-      <textures>
-        <texture file="skeletal/hele_fem_chiton_linen.dds" name="baseTex"/>
+        <texture file="skeletal/hele_fem_f.png" name="baseTex"/>
+        <texture file="skeletal/hele_fem_f_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -181,5 +142,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
