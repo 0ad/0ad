@@ -8,7 +8,9 @@
   </group>
   <group>
     <variant name="red">
-      <textures><texture file="gaia/wrld_dankleberrybush_red.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/wrld_dankleberrybush_blue.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>
