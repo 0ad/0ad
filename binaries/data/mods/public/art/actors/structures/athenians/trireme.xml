@@ -16,11 +16,9 @@
         <prop actor="props/structures/hellenes/trireme_foresail.xml" attachpoint="sail"/>
         <prop actor="props/structures/hellenes/trireme_shroud.xml" attachpoint="sail"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Blue Eye">
-      <textures><texture file="structural/hele_trireme_big.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_trireme_big.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>
