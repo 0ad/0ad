@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Category>Theater</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>500</BuildTime>
     <Resources>
