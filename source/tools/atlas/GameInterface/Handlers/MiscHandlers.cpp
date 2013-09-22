@@ -33,6 +33,7 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"
+#include "scripting/ScriptingHost.h"
 
 extern void (*Atlas_GLSwapBuffers)(void* context);
 

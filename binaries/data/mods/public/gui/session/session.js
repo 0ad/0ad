@@ -668,7 +668,7 @@ function playRandomAmbient(type)
 			break;
 
 		default:
-			console.write("Unrecognized ambient type: " + type);
+			Engine.Console_Write("Unrecognized ambient type: " + type);
 			break;
 	}
 }

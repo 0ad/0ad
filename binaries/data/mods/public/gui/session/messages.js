@@ -386,12 +386,12 @@ function addChatMessage(msg, playerAssignments)
 
 		if (msg.action)
 		{
-			console.write(msg.prefix + "* " + username + " " + message);
+			Engine.Console_Write(msg.prefix + "* " + username + " " + message);
 			formatted = msg.prefix + "* [color=\"" + playerColor + "\"]" + username + "[/color] " + message;
 		}
 		else
 		{
-			console.write(msg.prefix + "<" + username + "> " + message);
+			Engine.Console_Write(msg.prefix + "<" + username + "> " + message);
 			formatted = msg.prefix + "<[color=\"" + playerColor + "\"]" + username + "[/color]> " + message;
 		}
 		break;

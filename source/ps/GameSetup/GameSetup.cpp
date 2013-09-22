@@ -321,12 +321,6 @@ static void RegisterJavascriptInterfaces()
 	// maths
 	JSI_Vector3D::init();
 
-	// renderer
-	CRenderer::ScriptingInit();
-
-	// ps
-	JSI_Console::init();
-
 	// GUI
 	CGUI::ScriptingInit();
 
@@ -1344,7 +1338,7 @@ void CancelLoad(const CStrW& message)
 		JSBool ok = JS_GetProperty(cx, g_GUI->GetScriptObject(), "cancelOnError", &fval);
 		ENSURE(ok);
 
-		jsval msgval = ToJSVal(message);
+		jsval msgval = ScriptInterface::ToJSVal(cx, message);
 
 		if (ok && !JSVAL_IS_VOID(fval))
 			JS_CallFunctionValue(cx, g_GUI->GetScriptObject(), fval, 1, &msgval, &rval);

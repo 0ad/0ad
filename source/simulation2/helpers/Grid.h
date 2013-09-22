@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,6 +48,7 @@ public:
 
 	Grid(const Grid& g)
 	{
+		m_Data = NULL;
 		*this = g;
 	}
 
@@ -58,6 +59,7 @@ public:
 			m_W = g.m_W;
 			m_H = g.m_H;
 			m_DirtyID = g.m_DirtyID;
+			delete[] m_Data;
 			if (g.m_Data)
 			{
 				m_Data = new T[m_W * m_H];

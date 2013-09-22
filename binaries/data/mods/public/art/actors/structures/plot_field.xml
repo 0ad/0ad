@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant>
       <mesh>structural/field_plot.dae</mesh>
       <props>
         <prop actor="props/special/common/field_grain.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/field_01.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/field_01.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

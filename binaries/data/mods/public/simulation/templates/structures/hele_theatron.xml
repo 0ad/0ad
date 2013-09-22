@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Category>Theater</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>550</BuildTime>
     <Resources>
@@ -18,6 +21,7 @@
     <Civ>hele</Civ>
 	<GenericName>Greek Theater</GenericName>
     <SpecificName>Théātron</SpecificName>
+    <Classes>Theater</Classes>
     <Tooltip>Take advantage of the Hellenisation special technology.</Tooltip>
     <History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture and spreading its influence.</History>
     <Icon>structures/theatron.png</Icon>

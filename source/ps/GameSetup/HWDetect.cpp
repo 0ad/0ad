@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -225,7 +225,6 @@ void RunHardwareDetection()
 
 	scriptInterface.SetProperty(settings.get(), "gfx_card", gfx::CardName());
 	scriptInterface.SetProperty(settings.get(), "gfx_drv_ver", gfx::DriverInfo());
-	scriptInterface.SetProperty(settings.get(), "gfx_mem", (u32)gfx::MemorySizeMiB());
 
 	scriptInterface.SetProperty(settings.get(), "snd_card", std::wstring(snd_card));
 	scriptInterface.SetProperty(settings.get(), "snd_drv_ver", std::wstring(snd_drv_ver));

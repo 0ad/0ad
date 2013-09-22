@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Category>Library</Category>
+  </BuildRestrictions>
   <Footprint>
     <Square width="29.0" depth="34.0"/>
     <Height>9.0</Height>

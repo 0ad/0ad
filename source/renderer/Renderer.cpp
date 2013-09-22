@@ -472,25 +472,6 @@ CRenderer::CRenderer()
 	m_hCompositeAlphaMap = 0;
 
 	m_Stats.Reset();
-	AddLocalProperty(L"particles", &m_Options.m_Particles, false);
-
-	AddLocalProperty(L"waternormal", &m_Options.m_WaterNormal, false);
-	AddLocalProperty(L"waterrealdepth", &m_Options.m_WaterRealDepth, false);
-	AddLocalProperty(L"waterreflection", &m_Options.m_WaterReflection, false);
-	AddLocalProperty(L"waterrefraction", &m_Options.m_WaterRefraction, false);
-	AddLocalProperty(L"waterfoam", &m_Options.m_WaterFoam, false);
-	AddLocalProperty(L"watercoastalwaves", &m_Options.m_WaterCoastalWaves, false);
-	AddLocalProperty(L"watershadow", &m_Options.m_WaterShadow, false);
-
-	AddLocalProperty(L"horizonHeight", &m->skyManager.m_HorizonHeight, false);
-	AddLocalProperty(L"waterMurkiness", &m->waterManager.m_Murkiness, false);
-	AddLocalProperty(L"waterReflTintStrength", &m->waterManager.m_ReflectionTintStrength, false);
-	AddLocalProperty(L"waterRepeatPeriod", &m->waterManager.m_RepeatPeriod, false);
-	AddLocalProperty(L"waterShininess", &m->waterManager.m_Shininess, false);
-	AddLocalProperty(L"waterSpecularStrength", &m->waterManager.m_SpecularStrength, false);
-	AddLocalProperty(L"waterWaviness", &m->waterManager.m_Waviness, false);
-	AddLocalProperty(L"silhouettes", &m_Options.m_Silhouettes, false);
-	AddLocalProperty(L"showsky", &m_Options.m_ShowSky, false);
 
 	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 }
@@ -721,6 +702,10 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_PARTICLES:
 			m_Options.m_Particles = value;
 			break;
+		case OPT_PREFERGLSL:
+			m_Options.m_PreferGLSL = value;
+			MakeShadersDirty();
+			break;
 		case OPT_SILHOUETTES:
 			m_Options.m_Silhouettes = value;
 			break;
@@ -760,6 +745,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_ShadowPCF;
 		case OPT_PARTICLES:
 			return m_Options.m_Particles;
+		case OPT_PREFERGLSL:
+			return m_Options.m_PreferGLSL;
 		case OPT_SILHOUETTES:
 			return m_Options.m_Silhouettes;
 		case OPT_SHOWSKY:
@@ -1982,115 +1969,6 @@ void CRenderer::MakeShadersDirty()
 {
 	m->ShadersDirty = true;
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Scripting Interface
-
-jsval CRenderer::JSI_GetRenderPath(JSContext*)
-{
-	return ToJSVal(GetRenderPathName(m_Options.m_RenderPath));
-}
-
-void CRenderer::JSI_SetRenderPath(JSContext* ctx, jsval newval)
-{
-	CStr name;
-
-	if (!ToPrimitive(ctx, newval, name))
-		return;
-
-	SetRenderPath(GetRenderPathByName(name));
-}
-
-jsval CRenderer::JSI_GetDepthTextureBits(JSContext*)
-{
-	return ToJSVal(m->shadow.GetDepthTextureBits());
-}
-
-void CRenderer::JSI_SetDepthTextureBits(JSContext* ctx, jsval newval)
-{
-	int depthTextureBits;
-
-	if (!ToPrimitive(ctx, newval, depthTextureBits))
-		return;
-
-	m->shadow.SetDepthTextureBits(depthTextureBits);
-}
-
-jsval CRenderer::JSI_GetShadows(JSContext*)
-{
-	return ToJSVal(m_Options.m_Shadows);
-}
-
-void CRenderer::JSI_SetShadows(JSContext* ctx, jsval newval)
-{
-	ToPrimitive(ctx, newval, m_Options.m_Shadows);
-	ReloadShaders();
-}
-
-jsval CRenderer::JSI_GetShadowAlphaFix(JSContext*)
-{
-	return ToJSVal(m_Options.m_ShadowAlphaFix);
-}
-
-void CRenderer::JSI_SetShadowAlphaFix(JSContext* ctx, jsval newval)
-{
-	if (!ToPrimitive(ctx, newval, m_Options.m_ShadowAlphaFix))
-		return;
-
-	m->shadow.RecreateTexture();
-}
-
-jsval CRenderer::JSI_GetShadowPCF(JSContext*)
-{
-	return ToJSVal(m_Options.m_ShadowPCF);
-}
-
-void CRenderer::JSI_SetShadowPCF(JSContext* ctx, jsval newval)
-{
-	ToPrimitive(ctx, newval, m_Options.m_ShadowPCF);
-	ReloadShaders();
-}
-
-jsval CRenderer::JSI_GetPreferGLSL(JSContext*)
-{
-	return ToJSVal(m_Options.m_PreferGLSL);
-}
-
-void CRenderer::JSI_SetPreferGLSL(JSContext* ctx, jsval newval)
-{
-	ToPrimitive(ctx, newval, m_Options.m_PreferGLSL);
-	ReloadShaders();
-}
-
-jsval CRenderer::JSI_GetSky(JSContext*)
-{
-	return ToJSVal(m->skyManager.GetSkySet());
-}
-
-void CRenderer::JSI_SetSky(JSContext* ctx, jsval newval)
-{
-	CStrW skySet;
-	if (!ToPrimitive<CStrW>(ctx, newval, skySet)) return;
-	m->skyManager.SetSkySet(skySet);
-}
-
-void CRenderer::ScriptingInit()
-{
-	AddProperty(L"renderpath", &CRenderer::JSI_GetRenderPath, &CRenderer::JSI_SetRenderPath);
-	AddProperty(L"displayFrustum", &CRenderer::m_DisplayFrustum);
-	AddProperty(L"shadowZBias", &CRenderer::m_ShadowZBias);
-	AddProperty(L"shadowMapSize", &CRenderer::m_ShadowMapSize);
-	AddProperty(L"shadows", &CRenderer::JSI_GetShadows, &CRenderer::JSI_SetShadows);
-	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
-	AddProperty(L"shadowAlphaFix", &CRenderer::JSI_GetShadowAlphaFix, &CRenderer::JSI_SetShadowAlphaFix);
-	AddProperty(L"shadowPCF", &CRenderer::JSI_GetShadowPCF, &CRenderer::JSI_SetShadowPCF);
-	AddProperty(L"preferGLSL", &CRenderer::JSI_GetPreferGLSL, &CRenderer::JSI_SetPreferGLSL);
-	AddProperty(L"skipSubmit", &CRenderer::m_SkipSubmit);
-	AddProperty(L"skySet", &CRenderer::JSI_GetSky, &CRenderer::JSI_SetSky);
-
-	CJSObject<CRenderer>::ScriptingInit("Renderer");
-}
-
 
 CTextureManager& CRenderer::GetTextureManager()
 {

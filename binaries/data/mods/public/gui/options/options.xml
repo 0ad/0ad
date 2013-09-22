@@ -28,22 +28,22 @@
                         <!-- Settings / shadows -->
                         <object size="0 10 100%-80 35" type="text" style="RightLabelText" ghost="true">Enable Shadows</object>
                         <object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="StoneCrossBox" checked="true">
-                                <action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
-                                <action on="Press">renderer.shadows = this.checked;</action>
+                                <action on="Load">this.checked = Engine.Renderer_GetShadowsEnabled();</action>
+                                <action on="Press">Engine.Renderer_SetShadowsEnabled(this.checked);</action>
                         </object>	
 
                         <!-- Settings / Shadow PCF -->
                         <object size="0 35 100%-80 60" type="text" style="RightLabelText" ghost="true">Enable Shadow Filtering</object>
                         <object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="StoneCrossBox" checked="true">
-                                <action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
-                                <action on="Press">renderer.shadowPCF = this.checked;</action>
+                                <action on="Load">this.checked = Engine.Renderer_GetShadowPCFEnabled();</action>
+                                <action on="Press">Engine.Renderer_SetShadowPCFEnabled(this.checked);</action>
                         </object>
 
                         <!-- Settings / Water -->
 <!--                        <object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Enable Water Reflections</object>
                         <object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="StoneCrossBox" checked="true">
-                                <action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
-                                <action on="Press">renderer.fancyWater = this.checked;</action>
+                                <action on="Load">this.checked = Engine.Renderer_GetWaterNormalEnabled();</action>
+                                <action on="Press">Engine.Renderer_SetWaterNormalEnabled(this.checked);</action>
                         </object>-->
 
                         <!-- Settings / Music-->

@@ -47,8 +47,9 @@
     </Charge>
   </Attack>
   <Identity>
-    <Tooltip>Classes: Champion War Elephant.
-Good sieging capability. "Stench" Aura vs. Horses. Can run amok.
-Countered by Skirmishers and Swordsmen.</Tooltip>
+    <Classes datatype="tokens">Melee</Classes>
+    <Tooltip>Classes: Champion Melee Elephant.
+Counters: 2x vs. All Structures, 2x vs. All Cavalry. Extra 1.5x vs. Gates.
+Countered by: Skirmishers and Swordsmen. Can run amok.</Tooltip>
   </Identity>
 </Entity>

@@ -64,14 +64,18 @@
 	<!-- Unit silhouettes -->
 	<object hotkey="silhouettes">
 	    <action on="Press">
-		renderer.silhouettes = !renderer.silhouettes;
-		getGUIObjectByName("silhouettesCheckbox").checked = renderer.silhouettes;
+		var newSetting = !Engine.Renderer_GetSilhouettesEnabled();
+		Engine.Renderer_SetSilhouettesEnabled(newSetting);
+		getGUIObjectByName("silhouettesCheckbox").checked = newSetting;
 	    </action>
 	</object>
 
 	<!-- Sky -->
 	<object hotkey="showsky">
-	    <action on="Press">renderer.showsky = !renderer.showsky;</action>
+	    <action on="Press">
+		var newSetting =  !Engine.Renderer_GetShowSkyEnabled();
+		Engine.Renderer_SetShowSkyEnabled(newSetting);
+	    </action>
 	</object>
 
 	<!-- Pause -->
@@ -450,78 +454,78 @@
 				<!-- Settings / shadows -->
 				<object size="0 10 100%-80 35" type="text" style="RightLabelText" ghost="true">Enable Shadows</object>
 				<object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.shadows = this.checked;</action>
+					<action on="Load">this.checked = Engine.Renderer_GetShadowsEnabled();</action>
+					<action on="Press">Engine.Renderer_SetShadowsEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Shadow PCF -->
 				<object size="0 35 100%-80 60" type="text" style="RightLabelText" ghost="true">Enable Shadow Filtering</object>
 				<object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.shadowPCF = this.checked;</action>
+					<action on="Load">this.checked = Engine.Renderer_GetShadowPCFEnabled();</action>
+					<action on="Press">Engine.Renderer_SetShadowPCFEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Water Normals -->
 				<object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Water - HQ Waviness</object>
 				<object name="waterNormalCheckox" size="100%-56 65 100%-30 90"  type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.waternormal) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.waternormal = this.checked;</action>
+					<action on="Load">this.checked = Engine.Renderer_GetWaterNormalEnabled();</action>
+					<action on="Press">Engine.Renderer_SetWaterNormalEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Real Depth -->
 				<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Water - Use Actual Depth</object>
 				<object name="waterRealDepthCheckbox" size="100%-56 90 100%-30 115"  type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.waterrealdepth) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.waterrealdepth = this.checked; </action>
+					<action on="Load">this.checked = Engine.Renderer_GetWaterRealDepthEnabled();</action>
+					<action on="Press">Engine.Renderer_SetWaterRealDepthEnabled(this.checked);</action>
 				</object>
 
 				<!-- Settings / Reflection -->
 				<object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Water - Enable Reflections</object>
 				<object name="waterReflectionCheckbox" size="100%-56 115 100%-30 140"  type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.waterreflection) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.waterreflection = this.checked; </action>
+					<action on="Load">this.checked = Engine.Renderer_GetWaterReflectionEnabled();</action>
+					<action on="Press">Engine.Renderer_SetWaterReflectionEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Refraction -->
 				<object size="0 135 100%-80 160" type="text" style="RightLabelText" ghost="true">Water - Enable Refraction</object>
 				<object name="waterRefractionCheckbox" size="100%-56 140 100%-30 165"  type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.waterrefraction) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.waterrefraction = this.checked; </action>
+					<action on="Load">this.checked = Engine.Renderer_GetWaterRefractionEnabled();</action>
+					<action on="Press">Engine.Renderer_SetWaterRefractionEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Foam -->
 				<object size="0 160 100%-80 185" type="text" style="RightLabelText" ghost="true">Water - Enable Shore Foam</object>
 				<object name="waterFoamCheckbox" size="100%-56 165 100%-30 190"  type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.waterfoam) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.waterfoam = this.checked; </action>
+					<action on="Load">this.checked = Engine.Renderer_GetWaterFoamEnabled();</action>
+					<action on="Press">Engine.Renderer_SetWaterFoamEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Waves -->
 				<object size="0 185 100%-80 210" type="text" style="RightLabelText" ghost="true">Water - Enable Shore Waves</object>
 				<object name="waterCoastalWavesCheckbox" size="100%-56 190 100%-30 215"  type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.watercoastalwaves) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.watercoastalwaves = this.checked; </action>
+					<action on="Load">this.checked = Engine.Renderer_GetWaterCoastalWavesEnabled();</action>
+					<action on="Press">Engine.Renderer_SetWaterCoastalWavesEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Shadows -->
 				<object size="0 210 100%-80 235" type="text" style="RightLabelText" ghost="true">Water - Use Surface Shadows</object>
 				<object name="waterShadowsCheckbox" size="100%-56 215 100%-30 240"  type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.watershadow) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.watershadow = this.checked; </action>
+					<action on="Load">if (Engine.Renderer_GetWaterShadowEnabled()) this.checked = true; else this.checked = false;</action>
+					<action on="Press">Engine.Renderer_SetWaterShadowEnabled(this.checked);</action>
 				</object>
 
 				<!-- Settings / Particles -->
 				<object size="0 235 100%-80 260" type="text" style="RightLabelText" ghost="true">Enable Particles</object>
 				<object name="particlesCheckbox" size="100%-56 240 100%-30 265" type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.particles) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.particles = this.checked;</action>
+					<action on="Load">this.checked = Engine.Renderer_GetParticlesEnabled();</action>
+					<action on="Press">Engine.Renderer_SetParticlesEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Unit Silhouettes -->
 				<object size="0 260 100%-80 285" type="text" style="RightLabelText" ghost="true">Enable Unit Silhouettes</object>
 				<object name="silhouettesCheckbox" size="100%-56 265 100%-30 290" type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.silhouettes) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.silhouettes = this.checked;</action>
+					<action on="Load">this.checked = Engine.Renderer_GetSilhouettesEnabled();</action>
+					<action on="Press">Engine.Renderer_SetSilhouettesEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Music-->

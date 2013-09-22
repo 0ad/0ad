@@ -162,7 +162,7 @@ function onTick()
 			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen" } );
 
 		// Warn about removing fixed render path
-		if (renderer.renderpath == "fixed")
+		if (Engine.Renderer_GetRenderPath() == "fixed")
 			messageBox(
 				600,
 				300,

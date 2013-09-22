@@ -600,6 +600,7 @@ function setup_all_libs ()
 		"graphics",
 		"graphics/scripting",
 		"renderer",
+		"renderer/scripting",
 		"third_party/mikktspace"
 	}
 	extern_libs = {
