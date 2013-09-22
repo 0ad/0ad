@@ -26,7 +26,7 @@
  */
 struct SpatialQueryArray
 {
-	enum { MAX_COUNT = 1024 };
+	enum { MAX_COUNT = 2048 };
 	int count;
 	uint32_t items[MAX_COUNT];
 
