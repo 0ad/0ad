@@ -20,7 +20,6 @@ GuiInterface.prototype.Init = function()
 	this.placementEntity = undefined; // = undefined or [templateName, entityID]
 	this.placementWallEntities = undefined;
 	this.placementWallLastAngle = 0;
-	this.rallyPoints = undefined;
 	this.notifications = [];
 	this.renamedEntities = [];
 };

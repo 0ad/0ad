@@ -43,4 +43,12 @@ RallyPoint.prototype.Unset = function()
 	this.data = [];
 };
 
+RallyPoint.prototype.Reset = function()
+{
+	this.Unset();
+	var cmpRallyPointRenderer = Engine.QueryInterface(this.entity, IID_RallyPointRenderer);
+	if (cmpRallyPointRenderer)
+		cmpRallyPointRenderer.Reset();
+};
+
 Engine.RegisterComponentType(IID_RallyPoint, "RallyPoint", RallyPoint);
