@@ -11,7 +11,7 @@
 		<Fog>
 			<FogFactor>0.00386719</FogFactor>
 			<FogThickness>0.101563</FogThickness>
-			<FogColour r="0.745098" g="0.596078" b="0.278431"/>
+			<FogColour r="0.741176" g="0.592157" b="0.27451"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="544.735" y="91.8918" z="361.044"/>
+		<Position x="545.093" y="92.525" z="355.921"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -48,7 +48,7 @@
     "demo"
   ],
   "LockTeams": false,
-  "Name": "Sandbox - Gauls",
+  "Name": "Sandbox - The Gauls",
   "PlayerData": [
     {
       "AI": "",
@@ -67,14 +67,14 @@
       },
       "StartingCamera": {
         "Position": {
-          "x": 317.2,
-          "y": 29.474,
-          "z": 370.841
+          "x": 545.093,
+          "y": 22.3825,
+          "z": 454.219
         },
         "Rotation": {
-          "x": 32.1729,
-          "y": 4.9014,
-          "z": -0.00101826
+          "x": 35,
+          "y": 0,
+          "z": 0
         }
       },
       "Team": 0
