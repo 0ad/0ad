@@ -11,7 +11,7 @@
 		<Fog>
 			<FogFactor>0.00386719</FogFactor>
 			<FogThickness>0.101563</FogThickness>
-			<FogColour r="0.741176" g="0.592157" b="0.27451"/>
+			<FogColour r="0.737255" g="0.592157" b="0.27451"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="545.093" y="92.525" z="355.921"/>
-		<Rotation angle="0"/>
+		<Position x="525.127" y="123.479" z="314.32"/>
+		<Rotation angle="-0.00016578"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -149,7 +149,7 @@
       "Team": -1
     }
   ],
-  "Preview": "gallic_fields.png",
+  "Preview": "sandbox-thegauls.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -14845,12 +14845,6 @@
 			<Position x="58.78185" z="554.14234"/>
 			<Orientation y="1.03289"/>
 		</Entity>
-		<Entity uid="2532">
-			<Template>gaia/fauna_boar</Template>
-			<Player>0</Player>
-			<Position x="563.05787" z="363.61033"/>
-			<Orientation y="-2.72547"/>
-		</Entity>
 		<Entity uid="2533">
 			<Template>gaia/fauna_boar</Template>
 			<Player>0</Player>
@@ -14866,7 +14860,7 @@
 		<Entity uid="2535">
 			<Template>gaia/fauna_boar</Template>
 			<Player>0</Player>
-			<Position x="860.02308" z="394.66578"/>
+			<Position x="671.0929" z="172.1031"/>
 			<Orientation y="-2.49073"/>
 		</Entity>
 		<Entity uid="2536">
@@ -17592,79 +17586,79 @@
 		<Entity uid="2999">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="970.68488" z="556.81086"/>
+			<Position x="799.47986" z="639.85499"/>
 			<Orientation y="3.03232"/>
 		</Entity>
 		<Entity uid="3000">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="972.51838" z="558.22272"/>
+			<Position x="801.31336" z="641.26685"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3001">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="973.98511" z="559.8733"/>
+			<Position x="802.7801" z="642.91742"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3002">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="975.47876" z="561.45289"/>
+			<Position x="804.27375" z="644.49701"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3003">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="977.06482" z="563.13013"/>
+			<Position x="805.85981" z="646.17426"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3004">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="978.44092" z="564.00824"/>
+			<Position x="807.23591" z="647.05237"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3005">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="980.35376" z="565.84992"/>
+			<Position x="809.14875" z="648.89405"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3006">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="972.39826" z="554.17463"/>
+			<Position x="801.19324" z="637.21875"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3007">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="973.7862" z="555.21351"/>
+			<Position x="802.58118" z="638.25763"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3008">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="975.35413" z="556.52253"/>
+			<Position x="804.05079" z="640.03003"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3009">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="977.14277" z="557.90491"/>
+			<Position x="805.93775" z="640.94904"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3010">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="979.14362" z="560.13013"/>
+			<Position x="807.9386" z="643.17426"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3011">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
-			<Position x="981.0542" z="562.00068"/>
+			<Position x="809.84919" z="645.0448"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3012">
@@ -21751,7 +21745,7 @@
 		<Entity uid="3819">
 			<Template>structures/gaul_fortress</Template>
 			<Player>1</Player>
-			<Position x="556.81147" z="356.67304"/>
+			<Position x="566.80835" z="348.8165"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="38296"/>
 		</Entity>
