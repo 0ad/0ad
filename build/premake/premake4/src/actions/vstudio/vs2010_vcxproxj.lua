@@ -731,6 +731,15 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 	function premake.vs2010_vcxproj_user(prj)
 		_p(xml_version_and_encoding)
 		_p('<Project ' ..tool_version_and_xmlns ..'>')
+
+		for _, cfginfo in ipairs(prj.solution.vstudio_configs) do
+			local cfg = premake.getconfig(prj, cfginfo.src_buildcfg, cfginfo.src_platform)
+			if cfg.flags.NoDebugHeap then
+				_p(1,'<PropertyGroup Condition="\'$(Configuration)|$(Platform)\'==\'%s\'">', premake.esc(cfginfo.name))
+				_p(2,'<LocalDebuggerEnvironment>_NO_DEBUG_HEAP=1</LocalDebuggerEnvironment>')
+				_p(1,'</PropertyGroup>')
+			end
+		end
 		_p('</Project>')
 	end
 	

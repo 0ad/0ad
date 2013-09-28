@@ -144,6 +144,12 @@ function project_set_build_flags()
 		flags { "ExtraWarnings" } -- this causes far too many warnings/remarks on ICC
 	end
 
+	-- disable Windows debug heap, since it makes malloc/free hugely slower when
+	-- running inside a debugger
+	if os.is("windows") then
+		flags { "NoDebugHeap" }
+	end
+
 	configuration "Debug"
 		defines { "DEBUG" }
 

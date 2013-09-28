@@ -118,6 +118,7 @@
 				"MFC",
 				"NativeWChar",
 				"No64BitChecks",
+				"NoDebugHeap",
 				"NoEditAndContinue",
 				"NoExceptions",
 				"NoFramePointer",
