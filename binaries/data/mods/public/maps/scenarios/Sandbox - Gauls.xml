@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="525.127" y="123.479" z="314.32"/>
-		<Rotation angle="-0.00016578"/>
+		<Position x="529.948" y="64.9461" z="331.776"/>
+		<Rotation angle="0.0716245"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -60,10 +60,10 @@
       },
       "Name": "Player 1",
       "Resources": {
-        "food": 400,
-        "metal": 400,
-        "stone": 400,
-        "wood": 400
+        "food": 20000,
+        "metal": 20000,
+        "stone": 20000,
+        "wood": 20000
       },
       "StartingCamera": {
         "Position": {
@@ -21745,7 +21745,7 @@
 		<Entity uid="3819">
 			<Template>structures/gaul_fortress</Template>
 			<Player>1</Player>
-			<Position x="566.80835" z="348.8165"/>
+			<Position x="564.50385" z="352.33631"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="38296"/>
 		</Entity>
