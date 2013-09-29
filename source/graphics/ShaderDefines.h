@@ -118,6 +118,10 @@ private:
 	 * for any subsequent requests for an equal items list.
 	 */
 	static SItems* GetInterned(const SItems& items);
+
+	CShaderParams(SItems* items);
+	static CShaderParams CreateEmpty();
+	static CShaderParams s_Empty;
 };
 
 /**

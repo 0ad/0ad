@@ -121,12 +121,12 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 				
 			if (material.GetSamplers().size() != 0)
 			{
-				CMaterial::SamplersVector samplers = material.GetSamplers();
+				const CMaterial::SamplersVector& samplers = material.GetSamplers();
 				size_t samplersNum = samplers.size();
 				
 				for (size_t s = 0; s < samplersNum; ++s)
 				{
-					CMaterial::TextureSampler &samp = samplers[s];
+					const CMaterial::TextureSampler& samp = samplers[s];
 					shader->BindTexture(samp.Name, samp.Sampler);
 				}
 				

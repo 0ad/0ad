@@ -787,12 +787,12 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 			
 			if (itt->first->GetMaterial().GetSamplers().size() != 0)
 			{
-				CMaterial::SamplersVector samplers = itt->first->GetMaterial().GetSamplers();
+				const CMaterial::SamplersVector& samplers = itt->first->GetMaterial().GetSamplers();
 				size_t samplersNum = samplers.size();
 				
 				for (size_t s = 0; s < samplersNum; ++s)
 				{
-					CMaterial::TextureSampler &samp = samplers[s];
+					const CMaterial::TextureSampler& samp = samplers[s];
 					shader->BindTexture(samp.Name, samp.Sampler);
 				}
 				
@@ -1017,12 +1017,12 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 				
 			if (itt->m_Texture)
 			{
-				CMaterial::SamplersVector samplers = itt->m_Texture->GetMaterial().GetSamplers();
+				const CMaterial::SamplersVector& samplers = itt->m_Texture->GetMaterial().GetSamplers();
 				size_t samplersNum = samplers.size();
 				
 				for (size_t s = 0; s < samplersNum; ++s)
 				{
-					CMaterial::TextureSampler &samp = samplers[s];
+					const CMaterial::TextureSampler& samp = samplers[s];
 					shader->BindTexture(samp.Name, samp.Sampler);
 				}
 

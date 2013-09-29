@@ -105,9 +105,20 @@ typename CShaderParams<value_t>::SItems* CShaderParams<value_t>::GetInterned(con
 template<typename value_t>
 CShaderParams<value_t>::CShaderParams()
 {
+	*this = s_Empty;
+}
+
+template<typename value_t>
+CShaderParams<value_t>::CShaderParams(SItems* items) : m_Items(items)
+{
+}
+
+template<typename value_t>
+CShaderParams<value_t> CShaderParams<value_t>::CreateEmpty()
+{
 	SItems items;
 	items.RecalcHash();
-	m_Items = GetInterned(items);
+	return CShaderParams(GetInterned(items));
 }
 
 template<typename value_t>
@@ -266,6 +277,9 @@ void CShaderConditionalDefines::Add(const char* defname, const char* defvalue, i
 
 template<> CShaderParams<CStrIntern>::InternedItems_t CShaderParams<CStrIntern>::s_InternedItems = CShaderParams<CStrIntern>::InternedItems_t();
 template<> CShaderParams<CVector4D>::InternedItems_t CShaderParams<CVector4D>::s_InternedItems = CShaderParams<CVector4D>::InternedItems_t();
+
+template<> CShaderParams<CStrIntern> CShaderParams<CStrIntern>::s_Empty = CShaderParams<CStrIntern>::CreateEmpty();
+template<> CShaderParams<CVector4D> CShaderParams<CVector4D>::s_Empty = CShaderParams<CVector4D>::CreateEmpty();
 
 template class CShaderParams<CStrIntern>;
 template class CShaderParams<CVector4D>;

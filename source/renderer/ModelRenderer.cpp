@@ -17,6 +17,8 @@
 
 #include "precompiled.h"
 
+#include "lib/allocators/allocator_adapters.h"
+#include "lib/allocators/arena.h"
 #include "lib/ogl.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
@@ -417,8 +419,13 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 	 * list in each, rebinding the GL state whenever it changes.
 	 */
 
- 	typedef boost::unordered_map<SMRMaterialBucketKey, std::vector<CModel*>, SMRMaterialBucketKeyHash> MaterialBuckets_t;
-	MaterialBuckets_t materialBuckets;
+	Allocators::Arena<> arena(1*MiB);
+	typedef ProxyAllocator<void*, Allocators::Arena<> > ArenaProxyAllocator;
+	typedef std::vector<CModel*, ArenaProxyAllocator> ModelList_t;
+	typedef boost::unordered_map<SMRMaterialBucketKey, ModelList_t, SMRMaterialBucketKeyHash,
+		std::equal_to<SMRMaterialBucketKey>, ProxyAllocator<void*, Allocators::Arena<> >
+	> MaterialBuckets_t;
+	MaterialBuckets_t materialBuckets((MaterialBuckets_t::allocator_type(arena)));
 
 	{
 		PROFILE3("bucketing by material");
@@ -432,7 +439,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 			const CShaderConditionalDefines& condefs = model->GetMaterial().GetConditionalDefines();
 			for (size_t j = 0; j < condefs.GetSize(); ++j)
 			{
-				const CShaderConditionalDefines::CondDefine &item = condefs.GetItem(j);
+				const CShaderConditionalDefines::CondDefine& item = condefs.GetItem(j);
 				int type = item.m_CondType;
 				switch (type)
 				{
@@ -454,21 +461,32 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 
 			CShaderDefines defs = model->GetMaterial().GetShaderDefines(condFlags);
 			SMRMaterialBucketKey key(model->GetMaterial().GetShaderEffect(), defs);
-			std::vector<CModel*>& bucketItems = materialBuckets[key];
-			bucketItems.push_back(model);
+
+			MaterialBuckets_t::iterator it = materialBuckets.find(key);
+			if (it == materialBuckets.end())
+			{
+				std::pair<MaterialBuckets_t::iterator, bool> inserted = materialBuckets.insert(
+					std::make_pair(key, ModelList_t(ModelList_t::allocator_type(arena))));
+				inserted.first->second.reserve(32);
+				inserted.first->second.push_back(model);
+			}
+			else
+			{
+				it->second.push_back(model);
+			}
 		}
 	}
 
-	std::vector<SMRSortByDistItem> sortByDistItems;
+	std::vector<SMRSortByDistItem, ArenaProxyAllocator> sortByDistItems((ArenaProxyAllocator(arena)));
 
-	std::vector<CShaderTechniquePtr> sortByDistTechs;
+	std::vector<CShaderTechniquePtr, ArenaProxyAllocator> sortByDistTechs((ArenaProxyAllocator(arena)));
 		// indexed by sortByDistItems[i].techIdx
 		// (which stores indexes instead of CShaderTechniquePtr directly
 		// to avoid the shared_ptr copy cost when sorting; maybe it'd be better
 		// if we just stored raw CShaderTechnique* and assumed the shader manager
 		// will keep it alive long enough)
 
-	std::vector<SMRTechBucket> techBuckets;
+	std::vector<SMRTechBucket, ArenaProxyAllocator> techBuckets((ArenaProxyAllocator(arena)));
 
 	{
 		PROFILE3("processing material buckets");
@@ -528,7 +546,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 	// (This exists primarily because techBuckets wants a CModel**;
 	// we could avoid the cost of copying into this list by adding
 	// a stride length into techBuckets and not requiring contiguous CModel*s)
-	std::vector<CModel*> sortByDistModels;
+	std::vector<CModel*, ArenaProxyAllocator> sortByDistModels((ArenaProxyAllocator(arena)));
 
 	if (!sortByDistItems.empty())
 	{
@@ -577,15 +595,15 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		// This vector keeps track of texture changes during rendering. It is kept outside the
 		// loops to avoid excessive reallocations. The token allocation of 64 elements 
 		// should be plenty, though it is reallocated below (at a cost) if necessary.
-		std::vector<CTexture*> currentTexs;
+		std::vector<CTexture*, ArenaProxyAllocator> currentTexs((ArenaProxyAllocator(arena)));
 		currentTexs.reserve(64);
 		
 		// texBindings holds the identifier bindings in the shader, which can no longer be defined 
 		// statically in the ShaderRenderModifier class. texBindingNames uses interned strings to
 		// keep track of when bindings need to be reevaluated.
-		std::vector<CShaderProgram::Binding> texBindings;
+		std::vector<CShaderProgram::Binding, ArenaProxyAllocator> texBindings((ArenaProxyAllocator(arena)));
 		texBindings.reserve(64);
-		std::vector<CStrIntern> texBindingNames;
+		std::vector<CStrIntern, ArenaProxyAllocator> texBindingNames((ArenaProxyAllocator(arena)));
 		texBindingNames.reserve(64);
 
 		while (idxTechStart < techBuckets.size())
@@ -633,7 +651,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						if (flags && !(model->GetFlags() & flags))
 							continue;
 
-						CMaterial::SamplersVector samplers = model->GetMaterial().GetSamplers();
+						const CMaterial::SamplersVector& samplers = model->GetMaterial().GetSamplers();
 						size_t samplersNum = samplers.size();
 						
 						// make sure the vectors are the right virtual sizes, and also
@@ -653,7 +671,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						// bind the samplers to the shader
 						for (size_t s = 0; s < samplersNum; ++s)
 						{
-							CMaterial::TextureSampler &samp = samplers[s];
+							const CMaterial::TextureSampler& samp = samplers[s];
 							
 							CShaderProgram::Binding bind = texBindings[s];
 							// check that the handles are current
@@ -694,7 +712,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							currentStaticUniforms.BindUniforms(shader);
 						}
 						
-						CShaderRenderQueries renderQueries = model->GetMaterial().GetRenderQueries();
+						const CShaderRenderQueries& renderQueries = model->GetMaterial().GetRenderQueries();
 						
 						for (size_t q = 0; q < renderQueries.GetSize(); q++)
 						{
