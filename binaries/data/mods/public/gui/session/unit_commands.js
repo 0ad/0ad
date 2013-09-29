@@ -446,7 +446,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 
 			case TRAINING:
 				var tooltip = getEntityNamesFormatted(template);
-				var key = g_ConfigDB.system["hotkey.session.queueunit." + (i + 1)];
+				var key = Engine.ConfigDB_GetValue("user", "hotkey.session.queueunit." + (i + 1));
 				if (key)
 					tooltip = "[color=\"255 251 131\"][font=\"serif-bold-16\"][" + key + "][/font][/color] " + tooltip;
 

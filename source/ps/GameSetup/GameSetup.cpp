@@ -919,8 +919,6 @@ void Init(const CmdLineArgs& args, int flags)
 
 	InitScripting();	// before GUI
 
-	g_ConfigDB.RegisterJSConfigDB(); 	// after scripting 
-
 	// Optionally start profiler HTTP output automatically
 	// (By default it's only enabled by a hotkey, for security/performance)
 	bool profilerHTTPEnable = false;
