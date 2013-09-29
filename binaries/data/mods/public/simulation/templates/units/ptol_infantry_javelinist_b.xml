@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_ranged_javelinist">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/ptol_military_settlement
+      structures/ptol_lighthouse
+      structures/ptol_library
+      structures/ptol_wonder
+    </Entities>
+  </Builder>
+  <Identity>
+    <Civ>ptol</Civ>
+	<SelectionGroupName>units/ptol_infantry_javelinist_b</SelectionGroupName>
+	<GenericName>Libyan Mercenary</GenericName>
+    <SpecificName>?</SpecificName>
+    <History>?</History>
+    <Icon>units/mace_infantry_javelinist.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Promotion>
+    <Entity>units/ptol_infantry_javelinist_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/macedonians/infantry_javelinist_b.xml</Actor>
+  </VisualActor>
+</Entity>

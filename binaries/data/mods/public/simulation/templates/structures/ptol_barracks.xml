@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <Cost>
+    <Resources>
+      <wood>100</wood>
+      <stone>200</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="25.0" depth="25.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_5x5</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>ptol</Civ>
+    <SpecificName>?</SpecificName>
+    <History>?</History>
+  </Identity>
+  <Obstruction>
+    <Static width="20.0" depth="20.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/ptol_infantry_spearman_b
+      units/ptol_infantry_javelinist_b
+      units/ptol_infantry_archer_b
+      units/ptol_infantry_slinger_b
+      units/ptol_cavalry_archer_b
+    </Entities>
+    <Technologies datatype="tokens">
+	  -unlock_champion_units
+    </Technologies>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/macedonians/barracks.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
+</Entity>

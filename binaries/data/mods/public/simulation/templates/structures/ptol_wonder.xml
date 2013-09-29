@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_wonder">
+  <Footprint>
+    <Square width="28.0" depth="58.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>30</Max>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectEntitiesOnDestroy>true</EjectEntitiesOnDestroy>
+    <List datatype="tokens">Support Infantry Cavalry</List>
+    <BuffHeal>3</BuffHeal>
+    <LoadingRange>2</LoadingRange>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>ptol</Civ>
+    <SpecificName>Temple of Edfu</SpecificName>
+    <History>?</History>
+  </Identity>
+  <Obstruction>
+    <Static width="27.0" depth="57.0"/>
+  </Obstruction>
+  <RallyPoint/>
+  <VisualActor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
+    <Actor>structures/hellenes/temple_epic.xml</Actor>
+  </VisualActor>
+</Entity>

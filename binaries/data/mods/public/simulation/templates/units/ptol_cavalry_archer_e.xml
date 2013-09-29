@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/ptol_cavalry_archer_a">
+  <Armour>
+    <Hack>7</Hack>
+    <Pierce>9</Pierce>
+    <Crush>10</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Spread>1.0</Spread>
+      <MaxRange>64.0</MaxRange>
+      <MinRange>12.0</MinRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>240</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>9.5</WalkSpeed>
+    <Run>
+      <Speed>27.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/persians/cavalry_archer_e.xml</Actor>
+  </VisualActor>
+</Entity>
