@@ -6,10 +6,6 @@
       <stone>200</stone>
     </Resources>
   </Cost>
-  <Footprint>
-    <Square width="25.0" depth="25.0"/>
-    <Height>12.0</Height>
-  </Footprint>
   <Health>
     <SpawnEntityOnDeath>rubble/rubble_stone_5x5</SpawnEntityOnDeath>
   </Health>
@@ -17,6 +13,7 @@
     <Civ>ptol</Civ>
     <SpecificName>?</SpecificName>
     <History>?</History>
+    <Tooltip>Train Egyptian and Middle-Eastern citizen-soldiers. Research training improvements. Garrison: 10.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
@@ -34,7 +31,6 @@
     </Technologies>
   </ProductionQueue>
   <VisualActor>
-    <Actor>structures/macedonians/barracks.xml</Actor>
-    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+    <Actor>structures/persians/barracks.xml</Actor>
   </VisualActor>
 </Entity>

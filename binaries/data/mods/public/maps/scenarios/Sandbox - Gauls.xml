@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="529.948" y="64.9461" z="331.776"/>
-		<Rotation angle="0.0716245"/>
+		<Position x="537.225" y="64.9477" z="443.847"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -342,42 +342,6 @@
 			<Position x="539.58967" z="383.23609"/>
 			<Orientation y="-2.54506"/>
 			<Obstruction group="25"/>
-		</Entity>
-		<Entity uid="48">
-			<Template>units/celt_fanatic</Template>
-			<Player>1</Player>
-			<Position x="548.69526" z="468.25345"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="49">
-			<Template>units/celt_fanatic</Template>
-			<Player>1</Player>
-			<Position x="547.55951" z="465.04899"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="50">
-			<Template>units/celt_fanatic</Template>
-			<Player>1</Player>
-			<Position x="538.04303" z="462.86027"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="51">
-			<Template>units/celt_fanatic</Template>
-			<Player>1</Player>
-			<Position x="543.11664" z="465.83048"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="52">
-			<Template>units/celt_fanatic</Template>
-			<Player>1</Player>
-			<Position x="543.52778" z="467.35776"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="53">
-			<Template>units/celt_fanatic</Template>
-			<Player>1</Player>
-			<Position x="542.15595" z="461.37595"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="58">
 			<Template>other/palisades_tall_spikes</Template>
@@ -17577,12 +17541,6 @@
 			<Position x="687.87037" z="350.25312"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2993">
-			<Template>other/celt_tavern</Template>
-			<Player>1</Player>
-			<Position x="518.59192" z="519.93"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2999">
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
@@ -22018,77 +21976,77 @@
 		<Entity uid="3858">
 			<Template>units/gaul_champion_infantry</Template>
 			<Player>1</Player>
-			<Position x="533.13166" z="500.30692"/>
+			<Position x="547.30604" z="459.64957"/>
 			<Orientation y="-3.13271"/>
 			<Actor seed="13060"/>
 		</Entity>
 		<Entity uid="3859">
 			<Template>units/gaul_champion_infantry</Template>
 			<Player>1</Player>
-			<Position x="530.38746" z="498.8347"/>
+			<Position x="544.56183" z="458.17734"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="63370"/>
 		</Entity>
 		<Entity uid="3860">
 			<Template>units/gaul_champion_infantry</Template>
 			<Player>1</Player>
-			<Position x="531.74347" z="494.44672"/>
+			<Position x="545.91785" z="453.78937"/>
 			<Orientation y="1.09035"/>
 			<Actor seed="52072"/>
 		</Entity>
 		<Entity uid="3861">
 			<Template>units/gaul_champion_infantry</Template>
 			<Player>1</Player>
-			<Position x="535.5301" z="492.17551"/>
+			<Position x="549.70447" z="451.51816"/>
 			<Orientation y="-0.53303"/>
 			<Actor seed="10464"/>
 		</Entity>
 		<Entity uid="3862">
 			<Template>units/gaul_champion_infantry</Template>
 			<Player>1</Player>
-			<Position x="536.40766" z="495.13923"/>
+			<Position x="550.58204" z="454.48188"/>
 			<Orientation y="-1.51746"/>
 			<Actor seed="19750"/>
 		</Entity>
 		<Entity uid="3863">
 			<Template>units/gaul_champion_infantry</Template>
 			<Player>1</Player>
-			<Position x="535.82081" z="498.8347"/>
+			<Position x="549.99518" z="458.17734"/>
 			<Orientation y="-2.09527"/>
 			<Actor seed="21162"/>
 		</Entity>
 		<Entity uid="3864">
 			<Template>units/gaul_champion_infantry</Template>
 			<Player>1</Player>
-			<Position x="532.72254" z="497.25062"/>
+			<Position x="546.89692" z="456.59327"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="61952"/>
 		</Entity>
 		<Entity uid="3865">
 			<Template>units/gaul_champion_infantry</Template>
 			<Player>1</Player>
-			<Position x="533.83991" z="494.53217"/>
+			<Position x="548.01429" z="453.87482"/>
 			<Orientation y="0.43418"/>
 			<Actor seed="28594"/>
 		</Entity>
 		<Entity uid="3866">
 			<Template>units/gaul_champion_infantry</Template>
 			<Player>1</Player>
-			<Position x="529.22773" z="496.30979"/>
+			<Position x="543.4021" z="455.65244"/>
 			<Orientation y="2.98131"/>
 			<Actor seed="8540"/>
 		</Entity>
 		<Entity uid="3867">
 			<Template>units/gaul_champion_infantry</Template>
 			<Player>1</Player>
-			<Position x="531.05121" z="500.85361"/>
+			<Position x="545.2256" z="460.19626"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="21126"/>
 		</Entity>
 		<Entity uid="3868">
 			<Template>units/gaul_champion_infantry</Template>
 			<Player>1</Player>
-			<Position x="537.6316" z="496.30979"/>
+			<Position x="551.80597" z="455.65244"/>
 			<Orientation y="-2.08127"/>
 			<Actor seed="6518"/>
 		</Entity>
@@ -22581,6 +22539,83 @@
 			<Position x="571.64783" z="587.35029"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="15244"/>
+		</Entity>
+		<Entity uid="3940">
+			<Template>structures/gaul_tavern</Template>
+			<Player>1</Player>
+			<Position x="520.21973" z="517.41022"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57224"/>
+		</Entity>
+		<Entity uid="3941">
+			<Template>units/gaul_champion_fanatic</Template>
+			<Player>1</Player>
+			<Position x="524.57752" z="504.01511"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1692"/>
+		</Entity>
+		<Entity uid="3942">
+			<Template>units/gaul_champion_fanatic</Template>
+			<Player>1</Player>
+			<Position x="533.65601" z="511.2956"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41300"/>
+		</Entity>
+		<Entity uid="3943">
+			<Template>units/gaul_champion_fanatic</Template>
+			<Player>1</Player>
+			<Position x="526.57355" z="505.98923"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26334"/>
+		</Entity>
+		<Entity uid="3944">
+			<Template>units/gaul_champion_fanatic</Template>
+			<Player>1</Player>
+			<Position x="531.44666" z="509.54014"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30856"/>
+		</Entity>
+		<Entity uid="3945">
+			<Template>units/gaul_champion_fanatic</Template>
+			<Player>1</Player>
+			<Position x="528.7917" z="507.65558"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12936"/>
+		</Entity>
+		<Entity uid="3946">
+			<Template>units/gaul_champion_fanatic</Template>
+			<Player>1</Player>
+			<Position x="531.45429" z="505.08976"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7240"/>
+		</Entity>
+		<Entity uid="3947">
+			<Template>units/gaul_champion_fanatic</Template>
+			<Player>1</Player>
+			<Position x="528.96338" z="503.3953"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2266"/>
+		</Entity>
+		<Entity uid="3948">
+			<Template>units/gaul_champion_fanatic</Template>
+			<Player>1</Player>
+			<Position x="533.56354" z="507.24766"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36968"/>
+		</Entity>
+		<Entity uid="3949">
+			<Template>units/gaul_champion_fanatic</Template>
+			<Player>1</Player>
+			<Position x="535.46369" z="509.01114"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="52818"/>
+		</Entity>
+		<Entity uid="3950">
+			<Template>units/gaul_champion_fanatic</Template>
+			<Player>1</Player>
+			<Position x="526.85407" z="501.39164"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57784"/>
 		</Entity>
 	</Entities>
 	<Paths/>

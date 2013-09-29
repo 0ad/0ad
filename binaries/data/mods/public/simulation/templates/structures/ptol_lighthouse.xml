@@ -16,7 +16,8 @@
     <Civ>ptol</Civ>
     <GenericName>Lighthouse</GenericName>
     <SpecificName>Pharos</SpecificName>
-    <Tooltip>Build along the shore to reveal the shorelines over the entire map.</Tooltip>
+    <Classes datatype="tokens">Lighthouse</Classes>
+    <Tooltip>Build along the shore to reveal the shorelines over the entire map (Not implemented). Very large vision range: 180 meters.</Tooltip>
     <History>The Ptolemaic dynasty in Egypt built the magnificent Lighthouse of Alexandria near the harbor mouth of that Nile Delta city. This structure could be seen for many kilometers out to sea and was one of the Seven Wonders of the World.</History>
     <Icon>structures/library_scroll.png</Icon>
   </Identity>
@@ -39,11 +40,15 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <TerritoryDecay disable=""/>
   <TerritoryInfluence>
-    <Radius>50</Radius>
+    <Radius>0</Radius>
   </TerritoryInfluence>
+  <Vision>
+    <Range>180</Range>
+  </Vision>
   <VisualActor>
     <Actor>structures/macedonians/library.xml</Actor>
-    <FoundationActor>structures/fndn_4x6.xml</FoundationActor>
+    <FoundationActor>structures/fndn_4x4_dock.xml</FoundationActor>
   </VisualActor>
 </Entity>

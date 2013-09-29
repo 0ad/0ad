@@ -26,6 +26,12 @@
   <Stamina>
     <Max>700</Max>
   </Stamina>
+  <UnitMotion>
+    <WalkSpeed>9.5</WalkSpeed>
+    <Run>
+      <Speed>19.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/macedonians/infantry_archer_a.xml</Actor>
   </VisualActor>
