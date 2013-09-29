@@ -6,5 +6,5 @@ function EntityCollectionFromIds(gameState, idList){
 			ents[id] = gameState.entities._entities[id];
 		}
 	}
-	return new EntityCollection(gameState.ai, ents);
+	return new EntityCollection(gameState.sharedScript, ents);
 }

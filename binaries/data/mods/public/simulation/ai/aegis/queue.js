@@ -4,14 +4,12 @@
 
 var Queue = function() {
 	this.queue = [];
-	this.outQueue = [];
+	this.paused = false;
 };
 
 Queue.prototype.empty = function() {
 	this.queue = [];
-	this.outQueue = [];
 };
-
 
 Queue.prototype.addItem = function(plan) {
 	for (var i in this.queue)
@@ -33,18 +31,26 @@ Queue.prototype.getNext = function() {
 	}
 };
 
-Queue.prototype.outQueueNext = function(){
-	if (this.outQueue.length > 0) {
-		return this.outQueue[0];
+Queue.prototype.startNext = function(gameState) {
+	if (this.queue.length > 0) {
+		this.queue.shift().start(gameState);
+		return true;
 	} else {
-		return null;
+		return false;
 	}
 };
 
-Queue.prototype.outQueueCost = function(){
+// returns the maximal account we'll accept for this queue.
+// Currently 100% of the cost of the first element and 80% of that of the second
+Queue.prototype.maxAccountWanted = function(gameState) {
 	var cost = new Resources();
-	for (var key in this.outQueue){
-		cost.add(this.outQueue[key].getCost());
+	if (this.queue.length > 0 && this.queue[0].isGo(gameState))
+		cost.add(this.queue[0].getCost());
+	if (this.queue.length > 1 && this.queue[1].isGo(gameState))
+	{
+		var costs = this.queue[1].getCost();
+		costs.multiply(0.8);
+		cost.add(costs);
 	}
 	return cost;
 };
@@ -55,21 +61,6 @@ Queue.prototype.queueCost = function(){
 		cost.add(this.queue[key].getCost());
 	}
 	return cost;
-};
-
-Queue.prototype.nextToOutQueue = function(){
-	if (this.queue.length > 0){
-		this.outQueue.push(this.queue.shift());
-	}
-};
-
-Queue.prototype.executeNext = function(gameState) {
-	if (this.outQueue.length > 0) {
-		this.outQueue.shift().execute(gameState);
-		return true;
-	} else {
-		return false;
-	}
 };
 
 Queue.prototype.length = function() {
@@ -84,55 +75,21 @@ Queue.prototype.countQueuedUnits = function(){
 	return count;
 };
 
-Queue.prototype.countOutQueuedUnits = function(){
-	var count = 0;
-	for (var i in this.outQueue){
-		count += this.outQueue[i].number;
-	}
-	return count;
-};
-
-Queue.prototype.countTotalQueuedUnits = function(){
-	var count = 0;
-	for (var i in this.queue){
-		count += this.queue[i].number;
-	}
-	for (var i in this.outQueue){
-		count += this.outQueue[i].number;
-	}
-	return count;
-};
-Queue.prototype.countTotalQueuedUnitsWithClass = function(classe){
+Queue.prototype.countQueuedUnitsWithClass = function(classe){
 	var count = 0;
 	for (var i in this.queue){
 		if (this.queue[i].template && this.queue[i].template.hasClass(classe))
 			count += this.queue[i].number;
 	}
-	for (var i in this.outQueue){
-		if (this.outQueue[i].template && this.outQueue[i].template.hasClass(classe))
-			count += this.outQueue[i].number;
-	}
 	return count;
 };
-Queue.prototype.countTotalQueuedUnitsWithMetadata = function(data,value){
+Queue.prototype.countQueuedUnitsWithMetadata = function(data,value){
 	var count = 0;
 	for (var i in this.queue){
 		if (this.queue[i].metadata[data] && this.queue[i].metadata[data] == value)
 			count += this.queue[i].number;
 	}
-	for (var i in this.outQueue){
-		if (this.outQueue[i].metadata[data] && this.outQueue[i].metadata[data] == value)
-			count += this.outQueue[i].number;
-	}
 	return count;
-};
-
-Queue.prototype.totalLength = function(){
-	return this.queue.length + this.outQueue.length;
-};
-
-Queue.prototype.outQueueLength = function(){
-	return this.outQueue.length;
 };
 
 Queue.prototype.countAllByType = function(t){
@@ -141,11 +98,6 @@ Queue.prototype.countAllByType = function(t){
 	for (var i = 0; i < this.queue.length; i++){
 		if (this.queue[i].type === t){
 			count += this.queue[i].number;
-		} 
-	}
-	for (var i = 0; i < this.outQueue.length; i++){
-		if (this.outQueue[i].type === t){
-			count += this.outQueue[i].number;
 		} 
 	}
 	return count;

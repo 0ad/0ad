@@ -1,35 +1,55 @@
-var BuildingConstructionPlan = function(gameState, type, position) {
+var ConstructionPlan = function(gameState, type, metadata, startTime, expectedTime, position) {
 	this.type = gameState.applyCiv(type);
 	this.position = position;
 
+	this.metadata = metadata;
+
+	this.ID = uniqueIDBOPlans++;
+
 	this.template = gameState.getTemplate(this.type);
 	if (!this.template) {
-		this.invalidTemplate = true;
-		this.template = undefined;
-		debug("Cannot build " + this.type);
-		return;
+		return false;
 	}
+	
 	this.category = "building";
 	this.cost = new Resources(this.template.cost());
 	this.number = 1; // The number of buildings to build
+	
+	if (!startTime)
+		this.startTime = 0;
+	else
+		this.startTime = startTime;
+
+	if (!expectedTime)
+		this.expectedTime = -1;
+	else
+		this.expectedTime = expectedTime;
+	return true;
 };
 
-BuildingConstructionPlan.prototype.canExecute = function(gameState) {
-	if (this.invalidTemplate){
-		return false;
-	}
+// return true if we willstart amassing resource for this plan
+ConstructionPlan.prototype.isGo = function(gameState) {
+	return (gameState.getTimeElapsed() > this.startTime);
+};
 
-	// TODO: verify numeric limits etc
-	if (this.template.requiredTech() && !gameState.isResearched(this.template.requiredTech()))
+// checks other than resource ones.
+// TODO: change this.
+ConstructionPlan.prototype.canStart = function(gameState) {
+	if (gameState.buildingsBuilt > 0)
 		return false;
 	
+	// TODO: verify numeric limits etc
+	if (this.template.requiredTech() && !gameState.isResearched(this.template.requiredTech()))
+	{
+		return false;
+	}
 	var builders = gameState.findBuilders(this.type);
 
 	return (builders.length != 0);
 };
 
-BuildingConstructionPlan.prototype.execute = function(gameState) {
-
+ConstructionPlan.prototype.start = function(gameState) {
+	
 	var builders = gameState.findBuilders(this.type).toEntityArray();
 
 	// We don't care which builder we assign, since they won't actually
@@ -39,45 +59,52 @@ BuildingConstructionPlan.prototype.execute = function(gameState) {
 	var pos = this.findGoodPosition(gameState);
 	if (!pos){
 		if (this.template.hasClass("Naval"))
-			gameState.ai.modules.economy.dockFailed = true;
+			gameState.ai.HQ.dockFailed = true;
 		debug("No room to place " + this.type);
 		return;
 	}
+	if (this.template.hasClass("Naval"))
+		debug (pos);
+	gameState.buildingsBuilt++;
 
 	if (gameState.getTemplate(this.type).buildCategory() === "Dock")
 	{
 		for (var angle = 0; angle < Math.PI * 2; angle += Math.PI/4)
 		{
-			builders[0].construct(this.type, pos.x, pos.z, angle);
+			builders[0].construct(this.type, pos.x, pos.z, angle, this.metadata);
 		}
 	} else
-		builders[0].construct(this.type, pos.x, pos.z, pos.angle);
+		builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
 };
 
-BuildingConstructionPlan.prototype.getCost = function() {
-	return this.cost;
+ConstructionPlan.prototype.getCost = function() {
+	var costs = new Resources();
+	costs.add(this.cost);
+	return costs;
 };
 
-BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
+ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	var template = gameState.getTemplate(this.type);
 
 	var cellSize = gameState.cellSize; // size of each tile
 
 	// First, find all tiles that are far enough away from obstructions:
 
-	var obstructionMap = Map.createObstructionMap(gameState,template);
+	var obstructionMap = Map.createObstructionMap(gameState,0, template);
 	
-	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions.png");
+	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions_pre.png");
 
 	if (template.buildCategory() !== "Dock")
 		obstructionMap.expandInfluences();
 
+	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions.png");
+
 	// Compute each tile's closeness to friendly structures:
 
-	var friendlyTiles = new Map(gameState);
+	var friendlyTiles = new Map(gameState.sharedScript);
 	
 	var alreadyHasHouses = false;
-	
+
 	// If a position was specified then place the building as close to it as possible
 	if (this.position){
 		var x = Math.round(this.position[0] / cellSize);
@@ -116,7 +143,6 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 					{
 						friendlyTiles.addInfluence(x, z, 30, -50);
 					} else if (template.genericName() == "House") {
-						friendlyTiles.addInfluence(x, z, Math.ceil(infl/2.0),infl);	// houses are farther away from other buildings but houses
 						friendlyTiles.addInfluence(x, z, Math.ceil(infl/4.0),-infl/2.0);	// houses are farther away from other buildings but houses
 					} else if (template.hasClass("GarrisonFortress"))
 					{
@@ -139,6 +165,11 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 				}
 			}
 		});
+		if (this.metadata && this.metadata.base !== undefined)
+			for (var base in gameState.ai.HQ.baseManagers)
+				if (base != this.metadata.base)
+					for (var j in gameState.ai.HQ.baseManagers[base].territoryIndices)
+						friendlyTiles.map[gameState.ai.HQ.baseManagers[base].territoryIndices[j]] = 0;
 	}
 	
 	//friendlyTiles.dumpIm(template.buildCategory() + "_" +gameState.getTimeElapsed() + ".png",	200);
@@ -149,7 +180,7 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	// also not for fields who can be stacked quite a bit
 	var radius = 0;
 	if (template.genericName() == "Field")
-		radius = Math.ceil(template.obstructionRadius() / cellSize) - 0.4;
+		radius = Math.ceil(template.obstructionRadius() / cellSize);
 	else if (template.hasClass("GarrisonFortress"))
 		radius = Math.ceil(template.obstructionRadius() / cellSize) + 2;
 	else if (template.buildCategory() === "Dock")
@@ -191,8 +222,8 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	var angle = 3*Math.PI/4;
 	
 	return {
-		"x" : x,
-		"z" : z,
+		"x" : x+2,
+		"z" : z+2,
 		"angle" : angle
 	};
 };

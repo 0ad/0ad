@@ -22,7 +22,15 @@ function SharedScript(settings)
 	this._entityCollectionsName = {};
 	this._entityCollectionsByDynProp = {};
 	this._entityCollectionsUID = 0;
-		
+	
+	// A few notes about these maps. They're updated by checking for "create" and "destroy" events for all resources
+	// TODO: change the map when the resource amounts change for at least stone and metal mines.
+	this.resourceMaps = {}; // Contains maps showing the density of wood, stone and metal
+	this.CCResourceMaps = {}; // Contains maps showing the density of wood, stone and metal, optimized for CC placement.
+	// Resource maps data.
+	// By how much to divide the resource amount for plotting (ie a tree having 200 wood is "4").
+	this.decreaseFactor = {'wood': 50.0, 'stone': 90.0, 'metal': 90.0, 'food': 40.0};
+
 	this.turn = 0;
 }
 
@@ -160,31 +168,44 @@ SharedScript.prototype.GetTemplate = function(name)
 // initialize the shared component using a given gamestate (the initial gamestate after map creation, usually)
 // this is called right at the end of map generation, before you actually reach the map.
 SharedScript.prototype.initWithState = function(state) {	
+	this.events = state.events;
 	this.passabilityClasses = state.passabilityClasses;
 	this.passabilityMap = state.passabilityMap;
+	this.players = this._players;
+	this.playersData = state.players;
 	this.territoryMap = state.territoryMap;
+	this.timeElapsed = state.timeElapsed;
 
 	for (var o in state.players)
 		this._techModifications[o] = state.players[o].techModifications;
 	
-	this.techModifications = this._techModifications;
-	
 	this._entities = {};
-	for (var id in state.entities)
+	this.entities = new EntityCollection(this);
+
+	/* (var id in state.entities)
 	{
 		this._entities[id] = new Entity(this, state.entities[id]);
 	}
 	// entity collection updated on create/destroy event.
 	this.entities = new EntityCollection(this, this._entities);
+	*/
 	
+	this.ApplyEntitiesDelta(state);
+
 	// create the terrain analyzer
-	this.terrainAnalyzer = new TerrainAnalysis(this, state);
-	this.accessibility = new Accessibility(state, this.terrainAnalyzer);
+	this.terrainAnalyzer = new TerrainAnalysis();
+	this.terrainAnalyzer.init(this, state);
+	this.accessibility = new Accessibility();
+	this.accessibility.init(state, this.terrainAnalyzer);
 	
+	// defined in TerrainAnalysis.js
+	this.updateResourceMaps(this, this.events);
+
 	this.gameState = {};
 	for (var i in this._players)
 	{
-		this.gameState[this._players[i]] = new GameState(this,state,this._players[i]);
+		this.gameState[this._players[i]] = new GameState();
+		this.gameState[this._players[i]].init(this,state,this._players[i]);
 	}
 
 };
@@ -193,8 +214,9 @@ SharedScript.prototype.initWithState = function(state) {
 // applies entity deltas, and each gamestate.
 SharedScript.prototype.onUpdate = function(state)
 {
-	this.ApplyEntitiesDelta(state);
-	
+	if (this.turn !== 0)
+		this.ApplyEntitiesDelta(state);
+
 	Engine.ProfileStart("onUpdate");
 	
 	this.events = state.events;
@@ -211,6 +233,8 @@ SharedScript.prototype.onUpdate = function(state)
 	for (var i in this.gameState)
 		this.gameState[i].update(this,state);
 
+	if (this.turn !== 0)
+		this.updateResourceMaps(this, this.events);
 	this.terrainAnalyzer.updateMapWithEvents(this);
 	
 	//this.OnUpdate();
@@ -223,6 +247,8 @@ SharedScript.prototype.onUpdate = function(state)
 SharedScript.prototype.ApplyEntitiesDelta = function(state)
 {
 	Engine.ProfileStart("Shared ApplyEntitiesDelta");
+
+	var foundationFinished = {};
 	
 	for each (var evt in state.events)
 	{
@@ -236,11 +262,10 @@ SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			this.entities.addEnt(this._entities[evt.msg.entity]);
 
 			// Update all the entity collections since the create operation affects static properties as well as dynamic
-			for each (var entCollection in this._entityCollections)
+			for (var entCollection in this._entityCollections)
 			{
-				entCollection.updateEnt(this._entities[evt.msg.entity]);
+				this._entityCollections[entCollection].updateEnt(this._entities[evt.msg.entity]);
 			}
-
 		}
 		else if (evt.type == "Destroy")
 		{
@@ -251,6 +276,9 @@ SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			
 			if (!this._entities[evt.msg.entity])
 				continue;
+			
+			if (foundationFinished[evt.msg.entity])
+				evt.msg["SuccessfulFoundation"] = true;
 			
 			// The entity was destroyed but its data may still be useful, so
 			// remember the entity and this AI's metadata concerning it
@@ -280,15 +308,41 @@ SharedScript.prototype.ApplyEntitiesDelta = function(state)
 				}
 			}
 		}
+		else if (evt.type == "ConstructionFinished")
+		{
+			// we can rely on this being before the "Destroy" command as this is the order defined by FOundation.js
+			// we'll move metadata.
+			if (!this._entities[evt.msg.entity])
+				continue;
+			var ent = this._entities[evt.msg.entity];
+			var newEnt = this._entities[evt.msg.newentity];
+			if (this._entityMetadata[ent.owner()] && this._entityMetadata[ent.owner()][evt.msg.entity] !== undefined)
+				for (var key in this._entityMetadata[ent.owner()][evt.msg.entity])
+				{
+					this.setMetadata(ent.owner(), newEnt, key, this._entityMetadata[ent.owner()][evt.msg.entity][key])
+				}
+			foundationFinished[evt.msg.entity] = true;
+		}
+		else if (evt.type == "AIMetadata")
+		{
+			if (!this._entities[evt.msg.id])
+				continue;	// might happen in some rare cases of foundations getting destroyed, perhaps.
+			// Apply metadata (here for buildings for example)
+			for (var key in evt.msg.metadata)
+			{
+				this.setMetadata(evt.msg.owner, this._entities[evt.msg.id], key, evt.msg.metadata[key])
+			}
+		}
 	}
 	
 	for (var id in state.entities)
 	{
 		var changes = state.entities[id];
-		
+
 		for (var prop in changes)
 		{
 			this._entities[id]._entity[prop] = changes[prop];
+			
 			this.updateEntityCollections(prop, this._entities[id]);
 		}
 	}
@@ -335,9 +389,9 @@ SharedScript.prototype.updateEntityCollections = function(property, ent)
 {
 	if (this._entityCollectionsByDynProp[property] !== undefined)
 	{
-		for each (var entCollection in this._entityCollectionsByDynProp[property])
+		for (var entCollectionid in this._entityCollectionsByDynProp[property])
 		{
-			entCollection.updateEnt(ent);
+			this._entityCollectionsByDynProp[property][entCollectionid].updateEnt(ent);
 		}
 	}
 }
@@ -359,6 +413,16 @@ SharedScript.prototype.getMetadata = function(player, ent, key)
 	if (!metadata || !(key in metadata))
 		return undefined;
 	return metadata[key];
+};
+SharedScript.prototype.deleteMetadata = function(player, ent, key)
+{
+	var metadata = this._entityMetadata[player][ent.id()];
+	
+	if (!metadata || !(key in metadata))
+		return true;
+	metadata[key] = undefined;
+	delete metadata[key];
+	return true;
 };
 
 function copyPrototype(descendant, parent) {
