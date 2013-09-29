@@ -186,8 +186,8 @@ public:
 	typedef std::pair<int, CStrIntern> RenderQuery;
 	
 	void Add(const char* name);
-	size_t GetSize();
-	RenderQuery GetItem(size_t i);
+	size_t GetSize() const { return m_Items.size(); }
+	RenderQuery GetItem(size_t i) const { return m_Items[i]; }
 private:
 	std::vector<RenderQuery> m_Items;
 };
@@ -210,8 +210,8 @@ public:
 	};
 	
 	void Add(const char* defname, const char* defvalue, int type, std::vector<float> &args);
-	size_t GetSize();
-	CondDefine& GetItem(size_t i);
+	size_t GetSize() const { return m_Defines.size(); }
+	const CondDefine& GetItem(size_t i) const { return m_Defines[i]; }
 	
 private:
 	std::vector<CondDefine> m_Defines;

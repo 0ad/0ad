@@ -80,7 +80,7 @@ void CMaterial::RecomputeCombinedShaderDefines()
 		{
 			if (i & (1 << j))
 			{
-				CShaderConditionalDefines::CondDefine& def = m_ConditionalDefines.GetItem(j);
+				const CShaderConditionalDefines::CondDefine& def = m_ConditionalDefines.GetItem(j);
 				defs.Add(def.m_DefName.c_str(), def.m_DefValue.c_str());
 			}
 		}

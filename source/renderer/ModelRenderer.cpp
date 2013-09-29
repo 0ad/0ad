@@ -429,10 +429,10 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 
 			uint32_t condFlags = 0;
 
-			CShaderConditionalDefines condefs = model->GetMaterial().GetConditionalDefines();
+			const CShaderConditionalDefines& condefs = model->GetMaterial().GetConditionalDefines();
 			for (size_t j = 0; j < condefs.GetSize(); ++j)
 			{
-				CShaderConditionalDefines::CondDefine &item = condefs.GetItem(j);
+				const CShaderConditionalDefines::CondDefine &item = condefs.GetItem(j);
 				int type = item.m_CondType;
 				switch (type)
 				{

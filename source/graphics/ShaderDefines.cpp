@@ -250,16 +250,6 @@ void CShaderRenderQueries::Add(const char* name)
 	}
 }
 
-size_t CShaderRenderQueries::GetSize()
-{
-	return m_Items.size();
-}
-
-CShaderRenderQueries::RenderQuery CShaderRenderQueries::GetItem(size_t i)
-{
-	return m_Items[i];
-}
-
 void CShaderConditionalDefines::Add(const char* defname, const char* defvalue, int type, std::vector<float> &args)
 {
 	CondDefine cd;
@@ -269,16 +259,6 @@ void CShaderConditionalDefines::Add(const char* defname, const char* defvalue, i
 	cd.m_CondType = type;
 	
 	m_Defines.push_back(cd);
-}
-
-size_t CShaderConditionalDefines::GetSize()
-{
-	return m_Defines.size();
-}
-
-CShaderConditionalDefines::CondDefine& CShaderConditionalDefines::GetItem(size_t i)
-{
-	return m_Defines[i];
 }
 
 
