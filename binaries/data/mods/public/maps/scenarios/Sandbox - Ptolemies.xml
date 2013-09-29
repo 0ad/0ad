@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunset</SkySet>
-		<SunColour r="1.21875" g="0.850735" b="0.339338"/>
+		<SunColour r="1.21875" g="0.845956" b="0.334559"/>
 		<SunElevation angle="0.392699"/>
 		<SunRotation angle="-1.5708"/>
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
@@ -11,7 +11,7 @@
 		<Fog>
 			<FogFactor>0.0040625</FogFactor>
 			<FogThickness>0.248047</FogThickness>
-			<FogColour r="0.866667" g="0.776471" b="0.490196"/>
+			<FogColour r="0.866667" g="0.776471" b="0.486275"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="494.054" y="112.941" z="619.472"/>
+		<Position x="493.831" y="86.2699" z="644.498"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -682,7 +682,7 @@
 		<Entity uid="114">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="539.85676" z="852.17316"/>
+			<Position x="544.54175" z="850.51264"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="24510"/>
 		</Entity>
@@ -703,7 +703,7 @@
 		<Entity uid="117">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="382.30143" z="766.24708"/>
+			<Position x="383.65964" z="757.56428"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="54798"/>
 		</Entity>
@@ -5608,7 +5608,7 @@
 		<Entity uid="920">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="564.58143" z="880.79041"/>
+			<Position x="375.49711" z="809.51124"/>
 			<Orientation y="-1.06061"/>
 			<Actor seed="49840"/>
 		</Entity>
@@ -8812,7 +8812,7 @@
 		<Entity uid="1453">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="497.16025" z="892.91761"/>
+			<Position x="342.07734" z="865.91492"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="55178"/>
 		</Entity>
@@ -8917,7 +8917,7 @@
 		<Entity uid="1501">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="348.47742" z="922.13172"/>
+			<Position x="342.67756" z="913.78803"/>
 			<Orientation y="-2.13161"/>
 			<Actor seed="45604"/>
 		</Entity>
@@ -9036,7 +9036,7 @@
 		<Entity uid="1520">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
-			<Position x="355.39774" z="893.08942"/>
+			<Position x="356.42103" z="896.90186"/>
 			<Orientation y="1.44605"/>
 			<Actor seed="53740"/>
 		</Entity>
@@ -9113,7 +9113,7 @@
 		<Entity uid="1543">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="343.58042" z="881.21253"/>
+			<Position x="366.3657" z="881.74433"/>
 			<Orientation y="-0.46697"/>
 			<Actor seed="23658"/>
 		</Entity>
@@ -9295,7 +9295,7 @@
 		<Entity uid="1582">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="298.1276" z="943.44397"/>
+			<Position x="346.06449" z="907.79932"/>
 			<Orientation y="1.84884"/>
 			<Actor seed="25718"/>
 		</Entity>
@@ -9351,7 +9351,7 @@
 		<Entity uid="1590">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="381.46592" z="768.33313"/>
+			<Position x="380.9752" z="764.25452"/>
 			<Orientation y="1.89014"/>
 			<Actor seed="31752"/>
 		</Entity>
@@ -9365,8 +9365,8 @@
 		<Entity uid="1592">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="398.4297" z="766.3844"/>
-			<Orientation y="0.27666"/>
+			<Position x="396.04954" z="761.30646"/>
+			<Orientation y="-1.22101"/>
 			<Actor seed="16606"/>
 		</Entity>
 		<Entity uid="1593">
@@ -9393,7 +9393,7 @@
 		<Entity uid="1596">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="402.85804" z="773.68091"/>
+			<Position x="405.69639" z="777.64924"/>
 			<Orientation y="-2.07622"/>
 			<Actor seed="4396"/>
 		</Entity>
@@ -10170,6 +10170,20 @@
 			<Position x="283.84736" z="838.14704"/>
 			<Orientation y="0.93296"/>
 			<Actor seed="47458"/>
+		</Entity>
+		<Entity uid="1721">
+			<Template>other/pyramid_great</Template>
+			<Player>0</Player>
+			<Position x="315.19874" z="889.56641"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59794"/>
+		</Entity>
+		<Entity uid="1722">
+			<Template>other/pyramid_minor</Template>
+			<Player>0</Player>
+			<Position x="352.74238" z="828.95276"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59236"/>
 		</Entity>
 	</Entities>
 	<Paths/>
