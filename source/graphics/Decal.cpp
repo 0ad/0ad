@@ -111,4 +111,5 @@ void CModelDecal::SetTransform(const CMatrix3D& transform)
 void CModelDecal::RemoveShadows()
 {
 	m_Decal.m_Material.AddShaderDefine(str_DISABLE_RECEIVE_SHADOWS, str_1);
+	m_Decal.m_Material.RecomputeCombinedShaderDefines();
 }

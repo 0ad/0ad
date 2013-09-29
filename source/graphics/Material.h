@@ -52,6 +52,7 @@ public:
 	void SetShaderEffect(const CStr& effect);
 	CStrIntern GetShaderEffect() const { return m_ShaderEffect; }
 
+	// Must call RecomputeCombinedShaderDefines after this, before rendering with this material
 	void AddShaderDefine(CStrIntern key, CStrIntern value);
 
 	// conditionFlags is a bitmask representing which indexes of the
@@ -59,7 +60,9 @@ public:
 	// Use 0 if you don't care about conditional defines.
 	const CShaderDefines& GetShaderDefines(uint32_t conditionFlags) const { return m_CombinedShaderDefines.at(conditionFlags); }
 	
+	// Must call RecomputeCombinedShaderDefines after this, before rendering with this material
 	void AddConditionalDefine(const char* defname, const char* defvalue, int type, std::vector<float> &args);
+
 	const CShaderConditionalDefines& GetConditionalDefines() const { return m_ConditionalDefines; }
 
 	void AddStaticUniform(const char* key, const CVector4D& value);
