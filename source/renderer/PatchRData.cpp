@@ -793,7 +793,7 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 				for (size_t s = 0; s < samplersNum; ++s)
 				{
 					CMaterial::TextureSampler &samp = samplers[s];
-					shader->BindTexture(samp.Name.c_str(), samp.Sampler);
+					shader->BindTexture(samp.Name, samp.Sampler);
 				}
 				
 				itt->first->GetMaterial().GetStaticUniforms().BindUniforms(shader);
@@ -810,12 +810,12 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 				{
 					float c = itt->first->GetTextureMatrix()[0];
 					float ms = itt->first->GetTextureMatrix()[8];
-					shader->Uniform("textureTransform", c, ms, -ms, 0.f);
+					shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
 				}
 			}
 			else
 			{
-				shader->BindTexture("baseTex", g_Renderer.GetTextureManager().GetErrorTexture());
+				shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture());
 			}
 
 			for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
@@ -906,7 +906,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 	BatchesStack batches((BatchesStack::allocator_type(arena)));
 	
 	CShaderDefines contextBlend = context;
-	contextBlend.Add("BLEND", "1");
+	contextBlend.Add(str_BLEND, str_1);
 
  	PROFILE_START("compute batches");
 
@@ -1023,10 +1023,10 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 				for (size_t s = 0; s < samplersNum; ++s)
 				{
 					CMaterial::TextureSampler &samp = samplers[s];
-					shader->BindTexture(samp.Name.c_str(), samp.Sampler);
+					shader->BindTexture(samp.Name, samp.Sampler);
 				}
 
-				shader->BindTexture("blendTex", itt->m_Texture->m_TerrainAlpha->second.m_hCompositeAlphaMap);
+				shader->BindTexture(str_blendTex, itt->m_Texture->m_TerrainAlpha->second.m_hCompositeAlphaMap);
 
 				itt->m_Texture->GetMaterial().GetStaticUniforms().BindUniforms(shader);
 				
@@ -1043,12 +1043,12 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 				{
 					float c = itt->m_Texture->GetTextureMatrix()[0];
 					float ms = itt->m_Texture->GetTextureMatrix()[8];
-					shader->Uniform("textureTransform", c, ms, -ms, 0.f);
+					shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
 				}
 			}
 			else
 			{
-				shader->BindTexture("baseTex", g_Renderer.GetTextureManager().GetErrorTexture());
+				shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture());
 			}
 
 			for (VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)

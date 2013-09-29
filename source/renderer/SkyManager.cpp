@@ -260,10 +260,10 @@ void SkyManager::RenderSky()
 	
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 	{
-		skytech = g_Renderer.GetShaderManager().LoadEffect("sky_simple");
+		skytech = g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
 		skytech->BeginPass();
 		shader = skytech->GetShader();
-		shader->BindTexture("baseTex", m_SkyCubeMap);
+		shader->BindTexture(str_baseTex, m_SkyCubeMap);
 	}
 	else
 	{

@@ -183,7 +183,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 	{
 		if (Child.GetNodeName() == el_define)
 		{
-			defines.Add(Child.GetAttributes().GetNamedItem(at_name).c_str(), Child.GetAttributes().GetNamedItem(at_value).c_str());
+			defines.Add(CStrIntern(Child.GetAttributes().GetNamedItem(at_name)), CStrIntern(Child.GetAttributes().GetNamedItem(at_value)));
 		}
 		else if (Child.GetNodeName() == el_vertex)
 		{
@@ -347,9 +347,9 @@ bool CShaderManager::EffectCacheKey::operator==(const EffectCacheKey& b) const
 	return (name == b.name && defines1 == b.defines1 && defines2 == b.defines2);
 }
 
-CShaderTechniquePtr CShaderManager::LoadEffect(const char* name)
+CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name)
 {
-	return LoadEffect(CStrIntern(name), g_Renderer.GetSystemShaderDefines(), CShaderDefines());
+	return LoadEffect(name, g_Renderer.GetSystemShaderDefines(), CShaderDefines());
 }
 
 CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDefines& defines1, const CShaderDefines& defines2)
@@ -499,7 +499,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	{
 		if (Child.GetNodeName() == el_define)
 		{
-			techDefines.Add(Child.GetAttributes().GetNamedItem(at_name).c_str(), Child.GetAttributes().GetNamedItem(at_value).c_str());
+			techDefines.Add(CStrIntern(Child.GetAttributes().GetNamedItem(at_name)), CStrIntern(Child.GetAttributes().GetNamedItem(at_value)));
 		}
 		else if (Child.GetNodeName() == el_sort_by_distance)
 		{
@@ -515,7 +515,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 			{
 				if (Element.GetNodeName() == el_define)
 				{
-					passDefines.Add(Element.GetAttributes().GetNamedItem(at_name).c_str(), Element.GetAttributes().GetNamedItem(at_value).c_str());
+					passDefines.Add(CStrIntern(Element.GetAttributes().GetNamedItem(at_name)), CStrIntern(Element.GetAttributes().GetNamedItem(at_value)));
 				}
 				else if (Element.GetNodeName() == el_alpha)
 				{

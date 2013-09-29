@@ -468,30 +468,30 @@ void TerrainRenderer::RenderTerrainOverlayTexture(CMatrix3D& textureMatrix)
  */
 void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow)
 {
-	shader->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection());
-	shader->Uniform("cameraPos", g_Renderer.GetViewCamera().GetOrientation().GetTranslation());
+	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	shader->Uniform(str_cameraPos, g_Renderer.GetViewCamera().GetOrientation().GetTranslation());
 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
 	if (shadow)
 	{
-		shader->BindTexture("shadowTex", shadow->GetTexture());
-		shader->Uniform("shadowTransform", shadow->GetTextureMatrix());
+		shader->BindTexture(str_shadowTex, shadow->GetTexture());
+		shader->Uniform(str_shadowTransform, shadow->GetTextureMatrix());
 		int width = shadow->GetWidth();
 		int height = shadow->GetHeight();
-		shader->Uniform("shadowScale", width, height, 1.0f / width, 1.0f / height);
+		shader->Uniform(str_shadowScale, width, height, 1.0f / width, 1.0f / height);
 	}
 
 	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
-	shader->BindTexture("losTex", los.GetTextureSmooth());
-	shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+	shader->BindTexture(str_losTex, los.GetTextureSmooth());
+	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
-	shader->Uniform("ambient", lightEnv.m_TerrainAmbientColor);
-	shader->Uniform("sunColor", lightEnv.m_SunColor);
-	shader->Uniform("sunDir", lightEnv.GetSunDir());
+	shader->Uniform(str_ambient, lightEnv.m_TerrainAmbientColor);
+	shader->Uniform(str_sunColor, lightEnv.m_SunColor);
+	shader->Uniform(str_sunDir, lightEnv.GetSunDir());
 	
-	shader->Uniform("fogColor", lightEnv.m_FogColor);
-	shader->Uniform("fogParams", lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
+	shader->Uniform(str_fogColor, lightEnv.m_FogColor);
+	shader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 }
 
 void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, ShadowMap* shadow, bool filtered)
@@ -504,11 +504,11 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, ShadowM
 		return;
 
 	// render the solid black sides of the map first
-	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
+	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
 	techSolid->BeginPass();
 	CShaderProgramPtr shaderSolid = techSolid->GetShader();
-	shaderSolid->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection());
-	shaderSolid->Uniform("color", 0.0f, 0.0f, 0.0f, 1.0f);
+	shaderSolid->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	shaderSolid->Uniform(str_color, 0.0f, 0.0f, 0.0f, 1.0f);
 
 	PROFILE_START("render terrain sides");
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
@@ -655,27 +655,27 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	// If we're using fancy water, make sure its shader is loaded
 	if (!m->fancyWaterShader || WaterMgr->m_NeedsReloading)
 	{
-		if(WaterMgr->m_WaterNormal)
-			defines.Add("USE_NORMALS","1");
-		if(WaterMgr->m_WaterRealDepth)
-			defines.Add("USE_REAL_DEPTH","1");
-		if(WaterMgr->m_WaterFoam && !g_AtlasGameLoop->running)
-			defines.Add("USE_FOAM","1");
-		if(WaterMgr->m_WaterCoastalWaves && !g_AtlasGameLoop->running)
-			defines.Add("USE_WAVES","1");
-		if(WaterMgr->m_WaterRefraction)
-			defines.Add("USE_REFRACTION","1");
-		if(WaterMgr->m_WaterReflection)
-			defines.Add("USE_REFLECTION","1");
-		if(shadow && WaterMgr->m_WaterShadows)
-			defines.Add("USE_SHADOWS","1");
+		if (WaterMgr->m_WaterNormal)
+			defines.Add(str_USE_NORMALS, str_1);
+		if (WaterMgr->m_WaterRealDepth)
+			defines.Add(str_USE_REAL_DEPTH, str_1);
+		if (WaterMgr->m_WaterFoam && !g_AtlasGameLoop->running)
+			defines.Add(str_USE_FOAM, str_1);
+		if (WaterMgr->m_WaterCoastalWaves && !g_AtlasGameLoop->running)
+			defines.Add(str_USE_WAVES, str_1);
+		if (WaterMgr->m_WaterRefraction)
+			defines.Add(str_USE_REFRACTION, str_1);
+		if (WaterMgr->m_WaterReflection)
+			defines.Add(str_USE_REFLECTION, str_1);
+		if (shadow && WaterMgr->m_WaterShadows)
+			defines.Add(str_USE_SHADOWS, str_1);
 
 		m->wavesShader = g_Renderer.GetShaderManager().LoadProgram("glsl/waves", defines);
 		if (!m->wavesShader)
 		{
 			LOGERROR(L"Failed to load waves shader. Deactivating waves.\n");
 			g_Renderer.SetOptionBool(CRenderer::OPT_WATERCOASTALWAVES, false);
-			defines.Add("USE_WAVES","0");
+			defines.Add(str_USE_WAVES, str_0);
 		}
 		
 		// haven't updated the ARB shader yet so I'll always load the GLSL
@@ -771,10 +771,10 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 		
 		// rendering
 		m->wavesShader->Bind();
-		m->wavesShader->BindTexture("waveTex", WaterMgr->m_Wave);
-		m->wavesShader->Uniform("time", (float)time);
-		m->wavesShader->Uniform("waviness", WaterMgr->m_Waviness);
-		m->wavesShader->Uniform("mapSize", (float)(WaterMgr->m_TexSize));
+		m->wavesShader->BindTexture(str_waveTex, WaterMgr->m_Wave);
+		m->wavesShader->Uniform(str_time, (float)time);
+		m->wavesShader->Uniform(str_waviness, WaterMgr->m_Waviness);
+		m->wavesShader->Uniform(str_mapSize, (float)(WaterMgr->m_TexSize));
 		
 		SWavesVertex *base=(SWavesVertex *)WaterMgr->m_VBWaves->m_Owner->Bind();
 		GLsizei stride = sizeof(SWavesVertex);
@@ -805,57 +805,57 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	const CCamera& camera = g_Renderer.GetViewCamera();
 	CVector3D camPos = camera.m_Orientation.GetTranslation();
 
-	m->fancyWaterShader->BindTexture("normalMap", WaterMgr->m_NormalMap[curTex]);
-	m->fancyWaterShader->BindTexture("normalMap2", WaterMgr->m_NormalMap[nexTex]);
+	m->fancyWaterShader->BindTexture(str_normalMap, WaterMgr->m_NormalMap[curTex]);
+	m->fancyWaterShader->BindTexture(str_normalMap2, WaterMgr->m_NormalMap[nexTex]);
 	
 	if (WaterMgr->m_WaterFoam || WaterMgr->m_WaterCoastalWaves)
 	{
-		m->fancyWaterShader->BindTexture("Foam", WaterMgr->m_Foam);
-		m->fancyWaterShader->Uniform("mapSize", (float)(WaterMgr->m_TexSize));
+		m->fancyWaterShader->BindTexture(str_Foam, WaterMgr->m_Foam);
+		m->fancyWaterShader->Uniform(str_mapSize, (float)(WaterMgr->m_TexSize));
 	}
 	if (WaterMgr->m_WaterRealDepth)
-		m->fancyWaterShader->BindTexture("depthTex", WaterMgr->m_depthTT);
+		m->fancyWaterShader->BindTexture(str_depthTex, WaterMgr->m_depthTT);
 	if (WaterMgr->m_WaterCoastalWaves)
-		m->fancyWaterShader->BindTexture("waveTex", WaterMgr->m_waveTT);
+		m->fancyWaterShader->BindTexture(str_waveTex, WaterMgr->m_waveTT);
 	if (WaterMgr->m_WaterReflection)
-	m->fancyWaterShader->BindTexture("reflectionMap", WaterMgr->m_ReflectionTexture);
+	m->fancyWaterShader->BindTexture(str_reflectionMap, WaterMgr->m_ReflectionTexture);
 	if (WaterMgr->m_WaterRefraction)
-	m->fancyWaterShader->BindTexture("refractionMap", WaterMgr->m_RefractionTexture);
+	m->fancyWaterShader->BindTexture(str_refractionMap, WaterMgr->m_RefractionTexture);
 
-	m->fancyWaterShader->BindTexture("losMap", losTexture.GetTextureSmooth());
+	m->fancyWaterShader->BindTexture(str_losMap, losTexture.GetTextureSmooth());
 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
 	// TODO: only bind what's really needed for that.
-	m->fancyWaterShader->Uniform("sunDir", lightEnv.GetSunDir());
-	m->fancyWaterShader->Uniform("sunColor", lightEnv.m_SunColor.X);
-	m->fancyWaterShader->Uniform("color", WaterMgr->m_WaterColor);
-	m->fancyWaterShader->Uniform("shininess", WaterMgr->m_Shininess);
-	m->fancyWaterShader->Uniform("specularStrength", WaterMgr->m_SpecularStrength);
-	m->fancyWaterShader->Uniform("waviness", WaterMgr->m_Waviness);
-	m->fancyWaterShader->Uniform("murkiness", WaterMgr->m_Murkiness);
-	m->fancyWaterShader->Uniform("tint", WaterMgr->m_WaterTint);
-	m->fancyWaterShader->Uniform("reflectionTintStrength", WaterMgr->m_ReflectionTintStrength);
-	m->fancyWaterShader->Uniform("reflectionTint", WaterMgr->m_ReflectionTint);
-	m->fancyWaterShader->Uniform("translation", tx, ty);
-	m->fancyWaterShader->Uniform("repeatScale", 1.0f / repeatPeriod);
-	m->fancyWaterShader->Uniform("reflectionMatrix", WaterMgr->m_ReflectionMatrix);
-	m->fancyWaterShader->Uniform("refractionMatrix", WaterMgr->m_RefractionMatrix);
-	m->fancyWaterShader->Uniform("losMatrix", losTexture.GetTextureMatrix());
-	m->fancyWaterShader->Uniform("cameraPos", camPos);
-	m->fancyWaterShader->Uniform("fogColor", lightEnv.m_FogColor);
-	m->fancyWaterShader->Uniform("fogParams", lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
-	m->fancyWaterShader->Uniform("time", (float)time);
-	m->fancyWaterShader->Uniform("screenSize", (float)g_Renderer.GetWidth(), (float)g_Renderer.GetHeight(), 0.0f, 0.0f);
-	m->fancyWaterShader->BindTexture("skyCube", g_Renderer.GetSkyManager()->GetSkyCube());
+	m->fancyWaterShader->Uniform(str_sunDir, lightEnv.GetSunDir());
+	m->fancyWaterShader->Uniform(str_sunColor, lightEnv.m_SunColor.X);
+	m->fancyWaterShader->Uniform(str_color, WaterMgr->m_WaterColor);
+	m->fancyWaterShader->Uniform(str_shininess, WaterMgr->m_Shininess);
+	m->fancyWaterShader->Uniform(str_specularStrength, WaterMgr->m_SpecularStrength);
+	m->fancyWaterShader->Uniform(str_waviness, WaterMgr->m_Waviness);
+	m->fancyWaterShader->Uniform(str_murkiness, WaterMgr->m_Murkiness);
+	m->fancyWaterShader->Uniform(str_tint, WaterMgr->m_WaterTint);
+	m->fancyWaterShader->Uniform(str_reflectionTintStrength, WaterMgr->m_ReflectionTintStrength);
+	m->fancyWaterShader->Uniform(str_reflectionTint, WaterMgr->m_ReflectionTint);
+	m->fancyWaterShader->Uniform(str_translation, tx, ty);
+	m->fancyWaterShader->Uniform(str_repeatScale, 1.0f / repeatPeriod);
+	m->fancyWaterShader->Uniform(str_reflectionMatrix, WaterMgr->m_ReflectionMatrix);
+	m->fancyWaterShader->Uniform(str_refractionMatrix, WaterMgr->m_RefractionMatrix);
+	m->fancyWaterShader->Uniform(str_losMatrix, losTexture.GetTextureMatrix());
+	m->fancyWaterShader->Uniform(str_cameraPos, camPos);
+	m->fancyWaterShader->Uniform(str_fogColor, lightEnv.m_FogColor);
+	m->fancyWaterShader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
+	m->fancyWaterShader->Uniform(str_time, (float)time);
+	m->fancyWaterShader->Uniform(str_screenSize, (float)g_Renderer.GetWidth(), (float)g_Renderer.GetHeight(), 0.0f, 0.0f);
+	m->fancyWaterShader->BindTexture(str_skyCube, g_Renderer.GetSkyManager()->GetSkyCube());
 
 	if (shadow && WaterMgr->m_WaterShadows)
 	{
-		m->fancyWaterShader->BindTexture("shadowTex", shadow->GetTexture());
-		m->fancyWaterShader->Uniform("shadowTransform", shadow->GetTextureMatrix());
+		m->fancyWaterShader->BindTexture(str_shadowTex, shadow->GetTexture());
+		m->fancyWaterShader->Uniform(str_shadowTransform, shadow->GetTextureMatrix());
 		int width = shadow->GetWidth();
 		int height = shadow->GetHeight();
-		m->fancyWaterShader->Uniform("shadowScale", width, height, 1.0f / width, 1.0f / height);
+		m->fancyWaterShader->Uniform(str_shadowScale, width, height, 1.0f / width, 1.0f / height);
 	}
 
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
@@ -996,7 +996,7 @@ void TerrainRenderer::RenderPriorities()
 
 	ENSURE(m->phase == Phase_Render);
 
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	tech->BeginPass();
 	CTextRenderer textRenderer(tech->GetShader());
 

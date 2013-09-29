@@ -99,11 +99,6 @@ public:
 
 	virtual Binding GetUniformBinding(uniform_id_t id)
 	{
-		return Binding(-1, GetUniformIndex(CStrIntern(id)));
-	}
-
-	virtual Binding GetUniformBinding(CStrIntern id)
-	{
 		return Binding(-1, GetUniformIndex(id));
 	}
 

@@ -32,7 +32,7 @@ void CMaterial::SetShaderEffect(const CStr& effect)
 	m_ShaderEffect = CStrIntern(effect);
 }
 
-void CMaterial::AddShaderDefine(const char* key, const char* value)
+void CMaterial::AddShaderDefine(CStrIntern key, CStrIntern value)
 {
 	m_ShaderDefines.Add(key, value);
 	m_CombinedShaderDefines.clear();
@@ -52,7 +52,7 @@ void CMaterial::AddStaticUniform(const char* key, const CVector4D& value)
 void CMaterial::AddSampler(const TextureSampler& texture)
 {
 	m_Samplers.push_back(texture);
-	if (texture.Name == CStrIntern("baseTex"))
+	if (texture.Name == str_baseTex)
 		m_DiffuseTexture = texture.Sampler;
 }
 
@@ -81,7 +81,7 @@ void CMaterial::RecomputeCombinedShaderDefines()
 			if (i & (1 << j))
 			{
 				const CShaderConditionalDefines::CondDefine& def = m_ConditionalDefines.GetItem(j);
-				defs.Add(def.m_DefName.c_str(), def.m_DefValue.c_str());
+				defs.Add(def.m_DefName, def.m_DefValue);
 			}
 		}
 		m_CombinedShaderDefines.push_back(defs);

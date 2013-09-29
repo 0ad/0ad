@@ -52,7 +52,7 @@ public:
 	void SetShaderEffect(const CStr& effect);
 	CStrIntern GetShaderEffect() const { return m_ShaderEffect; }
 
-	void AddShaderDefine(const char* key, const char* value);
+	void AddShaderDefine(CStrIntern key, CStrIntern value);
 
 	// conditionFlags is a bitmask representing which indexes of the
 	// GetConditionalDefines() list are currently matching.

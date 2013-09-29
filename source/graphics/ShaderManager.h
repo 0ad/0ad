@@ -65,7 +65,7 @@ public:
 	/**
 	 * Load a shader effect, with default system defines (from CRenderer::GetSystemShaderDefines).
 	 */
-	CShaderTechniquePtr LoadEffect(const char* name);
+	CShaderTechniquePtr LoadEffect(CStrIntern name);
 
 	/**
 	 * Returns the number of shader effects that are currently loaded.

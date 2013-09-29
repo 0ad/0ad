@@ -133,7 +133,7 @@ public:
 	 * Add a name and associated value to the map of defines.
 	 * If the name is already defined, its value will be replaced.
 	 */
-	void Add(const char* name, const char* value);
+	void Add(CStrIntern name, CStrIntern value);
 
 	/**
 	 * Return the value for the given name as an integer, or 0 if not defined.

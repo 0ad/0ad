@@ -664,7 +664,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							}
 							else
 							{
-								bind = shader->GetTextureBinding(samp.Name.c_str());		
+								bind = shader->GetTextureBinding(samp.Name);
 								texBindings[s] = bind;
 								texBindingNames[s] = samp.Name;
 							}
@@ -716,13 +716,13 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 								int curTex = (int)(time*60/period) % 60;
 								
 								if (WaterMgr->m_RenderWater && WaterMgr->WillRenderFancyWater())
-									shader->BindTexture("waterTex", WaterMgr->m_NormalMap[curTex]);
+									shader->BindTexture(str_waterTex, WaterMgr->m_NormalMap[curTex]);
 								else
-									shader->BindTexture("waterTex", g_Renderer.GetTextureManager().GetErrorTexture());
+									shader->BindTexture(str_waterTex, g_Renderer.GetTextureManager().GetErrorTexture());
 							}
 							else if (rq.first == RQUERY_SKY_CUBE)
 							{
-								shader->BindTexture("skyCube", g_Renderer.GetSkyManager()->GetSkyCube());
+								shader->BindTexture(str_skyCube, g_Renderer.GetSkyManager()->GetSkyCube());
 							}
 						}
 

@@ -86,8 +86,8 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 		// RenderParticles will never be called so it's safe to leave the shaders as null
 		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 		{
-			m->shader = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("particle"), context, CShaderDefines());
-			m->shaderSolid = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("particle_solid"), context, CShaderDefines());
+			m->shader = g_Renderer.GetShaderManager().LoadEffect(str_particle, context, CShaderDefines());
+			m->shaderSolid = g_Renderer.GetShaderManager().LoadEffect(str_particle_solid, context, CShaderDefines());
 		}
 	}
 
@@ -117,7 +117,7 @@ void ParticleRenderer::RenderParticles(bool solidColor)
 
 	shader->BeginPass();
 
-	shader->GetShader()->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection());
+	shader->GetShader()->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 
 	if (!solidColor)
 		glEnable(GL_BLEND);

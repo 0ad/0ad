@@ -55,7 +55,7 @@ CLOSTexture::CLOSTexture(CSimulation2& simulation) :
 {
 	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS)
 	{
-		m_smoothShader = g_Renderer.GetShaderManager().LoadEffect("los_interp");
+		m_smoothShader = g_Renderer.GetShaderManager().LoadEffect(str_los_interp);
 		CShaderProgramPtr shader = m_smoothShader->GetShader();
 
 		if (m_smoothShader && shader)
@@ -142,10 +142,10 @@ void CLOSTexture::InterpolateLOS()
 	
 	shader->Bind();
 	
-	shader->BindTexture("losTex1", m_Texture);
-	shader->BindTexture("losTex2", whichTex ? m_TextureSmooth1 : m_TextureSmooth2);
+	shader->BindTexture(str_losTex1, m_Texture);
+	shader->BindTexture(str_losTex2, whichTex ? m_TextureSmooth1 : m_TextureSmooth2);
 	
-	shader->Uniform("delta", (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
+	shader->Uniform(str_delta, (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
 	
 	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, m_TextureSize, m_TextureSize);

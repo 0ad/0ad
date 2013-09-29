@@ -175,8 +175,8 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	
 	// Get bloom shader with instructions to simply copy texels.
 	CShaderDefines defines;
-	defines.Add("BLOOM_NOP", "1");
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("bloom"),
+	defines.Add(str_BLOOM_NOP, str_1);
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom,
 			g_Renderer.GetSystemShaderDefines(), defines);
 	
 	tech->BeginPass();
@@ -192,7 +192,7 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	
-	shader->BindTexture("renderedTex", renderedTex);
+	shader->BindTexture(str_renderedTex, renderedTex);
 	
 	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, inWidth / 2, inHeight / 2);
@@ -217,14 +217,14 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	
 	// Get bloom shader, for a horizontal Gaussian blur pass.
 	CShaderDefines defines2;
-	defines2.Add("BLOOM_PASS_H", "1");
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("bloom"),
+	defines2.Add(str_BLOOM_PASS_H, str_1);
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom,
 			g_Renderer.GetSystemShaderDefines(), defines2);
 	
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
-	shader->BindTexture("renderedTex", inOutTex);
-	shader->Uniform("texSize", inWidth, inHeight, 0.0f, 0.0f);
+	shader->BindTexture(str_renderedTex, inOutTex);
+	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
 	
 	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, inWidth, inHeight);
@@ -246,16 +246,16 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	
 	// Get bloom shader, for a vertical Gaussian blur pass.
 	CShaderDefines defines3;
-	defines3.Add("BLOOM_PASS_V", "1");
-	tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("bloom"),
+	defines3.Add(str_BLOOM_PASS_V, str_1);
+	tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom,
 			g_Renderer.GetSystemShaderDefines(), defines3);
 	
 	tech->BeginPass();
 	shader = tech->GetShader();
 	
 	// Our input texture to the shader is the output of the horizontal pass.
-	shader->BindTexture("renderedTex", tempTex);
-	shader->Uniform("texSize", inWidth, inHeight, 0.0f, 0.0f);
+	shader->BindTexture(str_renderedTex, tempTex);
+	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
 	
 	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, inWidth, inHeight);
@@ -344,7 +344,7 @@ void CPostprocManager::LoadEffect(CStrW &name)
 	if (name != L"default")
 	{
 		CStrW n = L"postproc/" + name;
-		m_PostProcTech = g_Renderer.GetShaderManager().LoadEffect(n.ToUTF8().c_str());
+		m_PostProcTech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern(n.ToUTF8()));
 	}
 	
 	m_PostProcEffect = name;
@@ -371,25 +371,25 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	// We also bind a bunch of other textures and parameters, but since
 	// this only happens once per frame the overhead is negligible.
 	if (m_WhichBuffer)
-		shader->BindTexture("renderedTex", m_ColourTex1);
+		shader->BindTexture(str_renderedTex, m_ColourTex1);
 	else
-		shader->BindTexture("renderedTex", m_ColourTex2);
+		shader->BindTexture(str_renderedTex, m_ColourTex2);
 	
-	shader->BindTexture("depthTex", m_DepthTex);
+	shader->BindTexture(str_depthTex, m_DepthTex);
 	
-	shader->BindTexture("blurTex2", m_BlurTex2a);
-	shader->BindTexture("blurTex4", m_BlurTex4a);
-	shader->BindTexture("blurTex8", m_BlurTex8a);
+	shader->BindTexture(str_blurTex2, m_BlurTex2a);
+	shader->BindTexture(str_blurTex4, m_BlurTex4a);
+	shader->BindTexture(str_blurTex8, m_BlurTex8a);
 	
-	shader->Uniform("width", m_Width);
-	shader->Uniform("height", m_Height);
-	shader->Uniform("zNear", g_Game->GetView()->GetNear());
-	shader->Uniform("zFar", g_Game->GetView()->GetFar());
+	shader->Uniform(str_width, m_Width);
+	shader->Uniform(str_height, m_Height);
+	shader->Uniform(str_zNear, g_Game->GetView()->GetNear());
+	shader->Uniform(str_zFar, g_Game->GetView()->GetFar());
 	
-	shader->Uniform("brightness", g_LightEnv.m_Brightness);
-	shader->Uniform("hdr", g_LightEnv.m_Contrast);
-	shader->Uniform("saturation", g_LightEnv.m_Saturation);
-	shader->Uniform("bloom", g_LightEnv.m_Bloom);
+	shader->Uniform(str_brightness, g_LightEnv.m_Brightness);
+	shader->Uniform(str_hdr, g_LightEnv.m_Contrast);
+	shader->Uniform(str_saturation, g_LightEnv.m_Saturation);
+	shader->Uniform(str_bloom, g_LightEnv.m_Bloom);
 	
 	glBegin(GL_QUADS);
 	    glColor4f(1.f, 1.f, 1.f, 1.f);

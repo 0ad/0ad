@@ -180,9 +180,9 @@ void CShaderParams<value_t>::SItems::RecalcHash()
 }
 
 
-void CShaderDefines::Add(const char* name, const char* value)
+void CShaderDefines::Add(CStrIntern name, CStrIntern value)
 {
-	Set(CStrIntern(name), CStrIntern(value));
+	Set(name, value);
 }
 
 int CShaderDefines::GetInt(const char* name) const

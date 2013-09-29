@@ -86,6 +86,11 @@ struct StringsKeyProxyEq
 
 static boost::unordered_map<StringsKey, shared_ptr<CStrInternInternals>, StringsKeyHash> g_Strings;
 
+#define X(id) CStrIntern str_##id(#id);
+#define X2(id, str) CStrIntern str_##id(str);
+#include "CStrInternStatic.h"
+#undef X
+#undef X2
 
 static CStrInternInternals* GetString(const char* str, size_t len)
 {
@@ -114,7 +119,7 @@ static CStrInternInternals* GetString(const char* str, size_t len)
 
 CStrIntern::CStrIntern()
 {
-	m = GetString("", 0);
+	*this = str__emptystring;
 }
 
 CStrIntern::CStrIntern(const char* str)

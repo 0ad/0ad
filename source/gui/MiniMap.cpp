@@ -384,8 +384,8 @@ void CMiniMap::Draw()
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 	{
 		CShaderDefines defines;
-		defines.Add("MINIMAP_BASE", "1");
-		tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("minimap"), g_Renderer.GetSystemShaderDefines(), defines);
+		defines.Add(str_MINIMAP_BASE, str_1);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), defines);
 		tech->BeginPass();
 		shader = tech->GetShader();
 	}
@@ -398,7 +398,7 @@ void CMiniMap::Draw()
 
 	// Draw the main textured quad
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
-		shader->BindTexture("baseTex", m_TerrainTexture);
+		shader->BindTexture(str_baseTex, m_TerrainTexture);
 	else
 		g_Renderer.BindTexture(0, m_TerrainTexture);
 	
@@ -412,7 +412,7 @@ void CMiniMap::Draw()
 	CTerritoryTexture& territoryTexture = g_Game->GetView()->GetTerritoryTexture();
 	
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
-		shader->BindTexture("baseTex", territoryTexture.GetTexture());
+		shader->BindTexture(str_baseTex, territoryTexture.GetTexture());
 	else
 		territoryTexture.BindTexture(0);
 	
@@ -437,11 +437,11 @@ void CMiniMap::Draw()
 		tech->EndPass();
 
 		CShaderDefines defines;
-		defines.Add("MINIMAP_LOS", "1");
-		tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("minimap"), g_Renderer.GetSystemShaderDefines(), defines);
+		defines.Add(str_MINIMAP_LOS, str_1);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), defines);
 		tech->BeginPass();
 		shader = tech->GetShader();
-		shader->BindTexture("baseTex", losTexture.GetTexture());
+		shader->BindTexture(str_baseTex, losTexture.GetTexture());
 	}
 	else
 	{
@@ -476,8 +476,8 @@ void CMiniMap::Draw()
 		tech->EndPass();
 
 		CShaderDefines defines;
-		defines.Add("MINIMAP_POINT", "1");
-		tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("minimap"), g_Renderer.GetSystemShaderDefines(), defines);
+		defines.Add(str_MINIMAP_POINT, str_1);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), defines);
 		tech->BeginPass();
 		shader = tech->GetShader();
 	}
@@ -585,8 +585,8 @@ void CMiniMap::Draw()
 		tech->EndPass();
 
 		CShaderDefines defines;
-		defines.Add("MINIMAP_LINE", "1");
-		tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("minimap"), g_Renderer.GetSystemShaderDefines(), defines);
+		defines.Add(str_MINIMAP_LINE, str_1);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), defines);
 		tech->BeginPass();
 		shader = tech->GetShader();
 	}

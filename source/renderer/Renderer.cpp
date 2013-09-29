@@ -352,15 +352,15 @@ public:
 		CShaderDefines contextSkinned = context;
 		if (g_Renderer.m_Options.m_GPUSkinning)
 		{
-			contextSkinned.Add("USE_INSTANCING", "1");
-			contextSkinned.Add("USE_GPU_SKINNING", "1");
+			contextSkinned.Add(str_USE_INSTANCING, str_1);
+			contextSkinned.Add(str_USE_GPU_SKINNING, str_1);
 		}
 		Model.NormalSkinned->Render(Model.ModShader, contextSkinned, flags);
 
 		if (Model.NormalUnskinned != Model.NormalSkinned)
 		{
 			CShaderDefines contextUnskinned = context;
-			contextUnskinned.Add("USE_INSTANCING", "1");
+			contextUnskinned.Add(str_USE_INSTANCING, str_1);
 			Model.NormalUnskinned->Render(Model.ModShader, contextUnskinned, flags);
 		}
 	}
@@ -373,15 +373,15 @@ public:
 		CShaderDefines contextSkinned = context;
 		if (g_Renderer.m_Options.m_GPUSkinning)
 		{
-			contextSkinned.Add("USE_INSTANCING", "1");
-			contextSkinned.Add("USE_GPU_SKINNING", "1");
+			contextSkinned.Add(str_USE_INSTANCING, str_1);
+			contextSkinned.Add(str_USE_GPU_SKINNING, str_1);
 		}
 		Model.TranspSkinned->Render(Model.ModShader, contextSkinned, flags);
 
 		if (Model.TranspUnskinned != Model.TranspSkinned)
 		{
 			CShaderDefines contextUnskinned = context;
-			contextUnskinned.Add("USE_INSTANCING", "1");
+			contextUnskinned.Add(str_USE_INSTANCING, str_1);
 			Model.TranspUnskinned->Render(Model.ModShader, contextUnskinned, flags);
 		}
 	}
@@ -539,13 +539,13 @@ CShaderDefines CRenderer::ComputeSystemShaderDefines()
 	CShaderDefines defines;
 
 	if (GetRenderPath() == RP_SHADER && m_Caps.m_ARBProgram)
-		defines.Add("SYS_HAS_ARB", "1");
+		defines.Add(str_SYS_HAS_ARB, str_1);
 
 	if (GetRenderPath() == RP_SHADER && m_Caps.m_VertexShader && m_Caps.m_FragmentShader)
-		defines.Add("SYS_HAS_GLSL", "1");
+		defines.Add(str_SYS_HAS_GLSL, str_1);
 
 	if (m_Options.m_PreferGLSL)
-		defines.Add("SYS_PREFER_GLSL", "1");
+		defines.Add(str_SYS_PREFER_GLSL, str_1);
 
 	return defines;
 }
@@ -560,18 +560,18 @@ void CRenderer::ReloadShaders()
 
 	if (m_Caps.m_Shadows && m_Options.m_Shadows)
 	{
-		m->globalContext.Add("USE_SHADOW", "1");
+		m->globalContext.Add(str_USE_SHADOW, str_1);
 		if (m_Caps.m_ARBProgramShadow && m_Options.m_ARBProgramShadow)
-			m->globalContext.Add("USE_FP_SHADOW", "1");
+			m->globalContext.Add(str_USE_FP_SHADOW, str_1);
 		if (m_Options.m_ShadowPCF)
-			m->globalContext.Add("USE_SHADOW_PCF", "1");
+			m->globalContext.Add(str_USE_SHADOW_PCF, str_1);
 #if !CONFIG2_GLES
-		m->globalContext.Add("USE_SHADOW_SAMPLER", "1");
+		m->globalContext.Add(str_USE_SHADOW_SAMPLER, str_1);
 #endif
 	}
 
 	if (m_LightEnv)
-		m->globalContext.Add(("LIGHTING_MODEL_" + m_LightEnv->GetLightingModel()).c_str(), "1");
+		m->globalContext.Add(CStrIntern("LIGHTING_MODEL_" + m_LightEnv->GetLightingModel()), str_1);
 
 	m->Model.ModShader = LitRenderModifierPtr(new ShaderRenderModifier());
 
@@ -875,7 +875,7 @@ void CRenderer::RenderShadowMap(const CShaderDefines& context)
 	}
 
 	CShaderDefines contextCast = context;
-	contextCast.Add("MODE_SHADOWCAST", "1");
+	contextCast.Add(str_MODE_SHADOWCAST, str_1);
 
 	{
 		PROFILE("render models");
@@ -1003,7 +1003,7 @@ void CRenderer::RenderModels(const CShaderDefines& context, const CFrustum* frus
 	else if (m_ModelRenderMode == EDGED_FACES)
 	{
 		CShaderDefines contextWireframe = context;
-		contextWireframe.Add("MODE_WIREFRAME", "1");
+		contextWireframe.Add(str_MODE_WIREFRAME, str_1);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glDisable(GL_TEXTURE_2D);
@@ -1040,10 +1040,10 @@ void CRenderer::RenderTransparentModels(const CShaderDefines& context, ETranspar
 		glDisable(GL_CULL_FACE);
 
 	CShaderDefines contextOpaque = context;
-	contextOpaque.Add("ALPHABLEND_PASS_OPAQUE", "1");
+	contextOpaque.Add(str_ALPHABLEND_PASS_OPAQUE, str_1);
 
 	CShaderDefines contextBlend = context;
-	contextBlend.Add("ALPHABLEND_PASS_BLEND", "1");
+	contextBlend.Add(str_ALPHABLEND_PASS_BLEND, str_1);
 
 	if (transparentMode == TRANSPARENT || transparentMode == TRANSPARENT_OPAQUE)
 		m->CallTranspModelRenderers(contextOpaque, flags);
@@ -1063,7 +1063,7 @@ void CRenderer::RenderTransparentModels(const CShaderDefines& context, ETranspar
 	else if (m_ModelRenderMode == EDGED_FACES)
 	{
 		CShaderDefines contextWireframe = contextOpaque;
-		contextWireframe.Add("MODE_WIREFRAME", "1");
+		contextWireframe.Add(str_MODE_WIREFRAME, str_1);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glDisable(GL_TEXTURE_2D);
@@ -1284,10 +1284,10 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 	PROFILE3_GPU("silhouettes");
 
 	CShaderDefines contextOccluder = context;
-	contextOccluder.Add("MODE_SILHOUETTEOCCLUDER", "1");
+	contextOccluder.Add(str_MODE_SILHOUETTEOCCLUDER, str_1);
 
 	CShaderDefines contextDisplay = context;
-	contextDisplay.Add("MODE_SILHOUETTEDISPLAY", "1");
+	contextDisplay.Add(str_MODE_SILHOUETTEDISPLAY, str_1);
 
 	// Render silhouettes of units hidden behind terrain or occluders.
 	// To avoid breaking the standard rendering of alpha-blended objects, this
@@ -1401,11 +1401,11 @@ void CRenderer::RenderParticles()
 
 		m->particleRenderer.RenderParticles(true);
 
-		CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
+		CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
 		shaderTech->BeginPass();
 		CShaderProgramPtr shader = shaderTech->GetShader();
-		shader->Uniform("color", 0.0f, 1.0f, 0.0f, 1.0f);
-		shader->Uniform("transform", m_ViewCamera.GetViewProjection());
+		shader->Uniform(str_color, 0.0f, 1.0f, 0.0f, 1.0f);
+		shader->Uniform(str_transform, m_ViewCamera.GetViewProjection());
 
 		m->particleRenderer.RenderBounds(shader);
 

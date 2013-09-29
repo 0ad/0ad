@@ -21,6 +21,7 @@
 
 #include "lib/ogl.h"
 #include "lib/res/graphics/unifont.h"
+#include "ps/CStrIntern.h"
 #include "ps/Font.h"
 
 extern int g_xres, g_yres;
@@ -156,18 +157,18 @@ void CTextRenderer::Render()
 
 		const std::map<u16, UnifontGlyphData>& glyphs = batch.font->GetGlyphs();
 
-		m_Shader->BindTexture("tex", batch.font->GetTexture());
+		m_Shader->BindTexture(str_tex, batch.font->GetTexture());
 
-		m_Shader->Uniform("transform", batch.transform);
+		m_Shader->Uniform(str_transform, batch.transform);
 
 		// ALPHA-only textures will have .rgb sampled as 0, so we need to
 		// replace it with white (but not affect RGBA textures)
 		if (batch.font->HasRGB())
-			m_Shader->Uniform("colorAdd", CColor(0.0f, 0.0f, 0.0f, 0.0f));
+			m_Shader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 0.0f));
 		else
-			m_Shader->Uniform("colorAdd", CColor(1.0f, 1.0f, 1.0f, 0.0f));
+			m_Shader->Uniform(str_colorAdd, CColor(1.0f, 1.0f, 1.0f, 0.0f));
 
-		m_Shader->Uniform("colorMul", batch.color);
+		m_Shader->Uniform(str_colorMul, batch.color);
 
 		vertexes.clear();
 		vertexes.resize(batch.text.size()*4);
