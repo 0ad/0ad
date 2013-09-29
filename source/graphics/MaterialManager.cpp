@@ -182,6 +182,8 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 		}
 	}
 
+	material.RecomputeCombinedShaderDefines();
+
 	m_Materials[pathname] = material;
 	return material;
 }

@@ -35,11 +35,13 @@ void CMaterial::SetShaderEffect(const CStr& effect)
 void CMaterial::AddShaderDefine(const char* key, const char* value)
 {
 	m_ShaderDefines.Add(key, value);
+	m_CombinedShaderDefines.clear();
 }
 
 void CMaterial::AddConditionalDefine(const char* defname, const char* defvalue, int type, std::vector<float> &args)
 {
 	m_ConditionalDefines.Add(defname, defvalue, type, args);
+	m_CombinedShaderDefines.clear();
 }
 
 void CMaterial::AddStaticUniform(const char* key, const CVector4D& value)
@@ -57,4 +59,31 @@ void CMaterial::AddSampler(const TextureSampler& texture)
 void CMaterial::AddRenderQuery(const char* key)
 {
 	m_RenderQueries.Add(key);
+}
+
+// Set up m_CombinedShaderDefines so that index i contains m_ShaderDefines, plus
+// the extra defines from m_ConditionalDefines[j] for all j where bit j is set in i.
+// This lets GetShaderDefines() cheaply return the defines for any combination of conditions.
+//
+// (This might scale badly if we had a large number of conditional defines per material,
+// but currently we don't expect to have many.)
+void CMaterial::RecomputeCombinedShaderDefines()
+{
+	m_CombinedShaderDefines.clear();
+	int size = m_ConditionalDefines.GetSize();
+
+	// Loop over all 2^n combinations of flags
+	for (int i = 0; i < (1 << size); i++)
+	{
+		CShaderDefines defs = m_ShaderDefines;
+		for (int j = 0; j < size; j++)
+		{
+			if (i & (1 << j))
+			{
+				CShaderConditionalDefines::CondDefine& def = m_ConditionalDefines.GetItem(j);
+				defs.Add(def.m_DefName.c_str(), def.m_DefValue.c_str());
+			}
+		}
+		m_CombinedShaderDefines.push_back(defs);
+	}
 }

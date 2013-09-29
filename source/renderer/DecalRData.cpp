@@ -94,7 +94,7 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 		if (!isDummyShader)
 		{
 			techBase = g_Renderer.GetShaderManager().LoadEffect(
-				material.GetShaderEffect(), contextDecal, material.GetShaderDefines());
+				material.GetShaderEffect(), contextDecal, material.GetShaderDefines(0));
 			
 			if (!techBase)
 			{

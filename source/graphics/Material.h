@@ -53,7 +53,11 @@ public:
 	CStrIntern GetShaderEffect() const { return m_ShaderEffect; }
 
 	void AddShaderDefine(const char* key, const char* value);
-	const CShaderDefines& GetShaderDefines() const { return m_ShaderDefines; }
+
+	// conditionFlags is a bitmask representing which indexes of the
+	// GetConditionalDefines() list are currently matching.
+	// Use 0 if you don't care about conditional defines.
+	const CShaderDefines& GetShaderDefines(uint32_t conditionFlags) const { return m_CombinedShaderDefines.at(conditionFlags); }
 	
 	void AddConditionalDefine(const char* defname, const char* defvalue, int type, std::vector<float> &args);
 	const CShaderConditionalDefines& GetConditionalDefines() const { return m_ConditionalDefines; }
@@ -67,6 +71,9 @@ public:
 	void AddRenderQuery(const char* key);
 	const CShaderRenderQueries& GetRenderQueries() const { return m_RenderQueries; }
 
+	// Must be called after all AddShaderDefine and AddConditionalDefine
+	void RecomputeCombinedShaderDefines();
+
 private:
 	
 	// This pointer is kept to make it easier for the fixed pipeline to 
@@ -78,6 +85,7 @@ private:
 	CStrIntern m_ShaderEffect;
 	CShaderDefines m_ShaderDefines;
 	CShaderConditionalDefines m_ConditionalDefines;
+	std::vector<CShaderDefines> m_CombinedShaderDefines;
 	CShaderUniforms m_StaticUniforms;
 	CShaderRenderQueries m_RenderQueries;
 

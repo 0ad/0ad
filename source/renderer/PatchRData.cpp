@@ -770,7 +770,7 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 			}
 						
 			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->first->GetMaterial().GetShaderEffect(),
-						context, itt->first->GetMaterial().GetShaderDefines());
+						context, itt->first->GetMaterial().GetShaderDefines(0));
 			
 			numPasses = techBase->GetNumPasses();
 		}
@@ -996,7 +996,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 		
 		if (!isDummyShader)
 		{
-			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->m_Texture->GetMaterial().GetShaderEffect(), contextBlend, itt->m_Texture->GetMaterial().GetShaderDefines());
+			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->m_Texture->GetMaterial().GetShaderEffect(), contextBlend, itt->m_Texture->GetMaterial().GetShaderDefines(0));
 			
 			numPasses = techBase->GetNumPasses();
 		}
