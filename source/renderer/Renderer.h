@@ -29,6 +29,7 @@
 #include "lib/res/handle.h"
 #include "ps/Singleton.h"
 
+#include "graphics/ShaderDefines.h"
 #include "renderer/PostprocManager.h"
 #include "renderer/Scene.h"
 #include "renderer/TimeManager.h"
@@ -41,7 +42,6 @@ class CMaterialManager;
 class CModel;
 class CParticleManager;
 class CPatch;
-class CShaderDefines;
 class CShaderManager;
 class CSimulation2;
 class CTextureManager;
@@ -304,7 +304,7 @@ public:
 
 	CMaterialManager& GetMaterialManager();
 
-	CShaderDefines GetSystemShaderDefines();
+	CShaderDefines GetSystemShaderDefines() { return m_SystemShaderDefines; }
 	
 	CTimeManager& GetTimeManager();
 	
@@ -374,6 +374,7 @@ protected:
 	void SetObliqueFrustumClipping(const CVector4D& clipPlane);
 
 	void ReloadShaders();
+	CShaderDefines ComputeSystemShaderDefines();
 
 	// hotloading
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
@@ -389,6 +390,8 @@ protected:
 	ERenderMode m_TerrainRenderMode;
 	// current model rendering mode
 	ERenderMode m_ModelRenderMode;
+
+	CShaderDefines m_SystemShaderDefines;
 
 	/**
 	 * m_ViewCamera: determines the eye position for rendering

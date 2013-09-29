@@ -534,7 +534,7 @@ void CRenderer::EnumCaps()
 #endif
 }
 
-CShaderDefines CRenderer::GetSystemShaderDefines()
+CShaderDefines CRenderer::ComputeSystemShaderDefines()
 {
 	CShaderDefines defines;
 
@@ -554,7 +554,9 @@ void CRenderer::ReloadShaders()
 {
 	ENSURE(m->IsOpen);
 
-	m->globalContext = GetSystemShaderDefines();
+	m_SystemShaderDefines = ComputeSystemShaderDefines();
+
+	m->globalContext = m_SystemShaderDefines;
 
 	if (m_Caps.m_Shadows && m_Options.m_Shadows)
 	{
