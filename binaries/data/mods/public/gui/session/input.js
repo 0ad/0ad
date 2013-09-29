@@ -1539,7 +1539,7 @@ var jumpCameraPositions = [], jumpCameraLast;
 
 function jumpCamera(index)
 {
-	var position = jumpCameraPositions[index], distanceThreshold = g_ConfigDB.system["camerajump.threshold"];
+	var position = jumpCameraPositions[index], distanceThreshold = Engine.ConfigDB_GetValue("user", "camerajump.threshold");
 	if (position)
 	{
 		if (jumpCameraLast &&

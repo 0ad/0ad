@@ -35,6 +35,9 @@
       <metal>500</metal>
     </Resources>
   </Cost>
+  <EntityLimitsChanger>
+    <Field>2</Field>
+  </EntityLimitsChanger>
   <Footprint>
     <Square width="32.0" depth="32.0"/>
     <Height>8.0</Height>
@@ -55,13 +58,13 @@
     <GenericName>Civic Centre</GenericName>
     <Tooltip>Build to acquire large tracts of territory. Train citizens. Garrison: 20.</Tooltip>
     <Classes datatype="tokens">
-      Village 
+      City
       Defensive
       CivCentre
       CivilCentre
     </Classes>
     <Icon>structures/civic_centre.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>200</xp>

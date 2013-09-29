@@ -225,13 +225,13 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 
 		if (!Call.m_HasTexture)
 		{
-			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
+			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
 		}
 		else if (cit->m_Effects)
 		{
 			if (cit->m_Effects->m_AddColor != CColor())
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_add");
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_add);
 				Call.m_ShaderColorParameter = cit->m_Effects->m_AddColor;
 				// Always enable blending if something's being subtracted from
 				// the alpha channel
@@ -240,16 +240,16 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			}
 			else if (cit->m_Effects->m_Greyscale)
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_grayscale");
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_grayscale);
 			}
 			else /* Slight confusion - why no effects? */
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_basic");
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_basic);
 			}
 		}
 		else
 		{
-			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_basic");
+			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_basic);
 		}
 
 		Calls.push_back(Call);
@@ -350,12 +350,12 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 	{
 		cit->m_Shader->BeginPass();
 		CShaderProgramPtr shader = cit->m_Shader->GetShader();
-		shader->Uniform("transform", matrix);
+		shader->Uniform(str_transform, matrix);
 
 		if (cit->m_HasTexture)
 		{
-			shader->Uniform("color", cit->m_ShaderColorParameter);
-			shader->BindTexture("tex", cit->m_Texture);
+			shader->Uniform(str_color, cit->m_ShaderColorParameter);
+			shader->BindTexture(str_tex, cit->m_Texture);
 
 			if (cit->m_EnableBlending || cit->m_Texture->HasAlpha()) // (shouldn't call HasAlpha before BindTexture)
 			{
@@ -395,7 +395,7 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 		}
 		else
 		{
-			shader->Uniform("color", cit->m_BackColor);
+			shader->Uniform(str_color, cit->m_BackColor);
 
 			if (cit->m_EnableBlending)
 			{
@@ -425,7 +425,7 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 
 			if (cit->m_BorderColor != CColor())
 			{
-				shader->Uniform("color", cit->m_BorderColor);
+				shader->Uniform(str_color, cit->m_BorderColor);
 
 				data.clear();
 				ADD(Verts.left + 0.5f, Verts.top + 0.5f, Z + cit->m_DeltaZ);

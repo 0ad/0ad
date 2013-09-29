@@ -67,9 +67,9 @@ class CShaderProgram
 	NONCOPYABLE(CShaderProgram);
 
 public:
-	typedef const char* attrib_id_t;
-	typedef const char* texture_id_t;
-	typedef const char* uniform_id_t;
+	typedef CStrIntern attrib_id_t;
+	typedef CStrIntern texture_id_t;
+	typedef CStrIntern uniform_id_t;
 	typedef std::pair<int, GLenum> frag_index_pair_t;
 	
 	/**
@@ -144,9 +144,6 @@ public:
 	 */
 	int GetStreamFlags() const;
 
-	// TODO: implement vertex attributes
-	GLuint GetAttribIndex(attrib_id_t id);
-
 
 	virtual Binding GetTextureBinding(texture_id_t id) = 0;
 
@@ -158,7 +155,6 @@ public:
 
 
 	virtual Binding GetUniformBinding(uniform_id_t id) = 0;
-	virtual Binding GetUniformBinding(CStrIntern id) = 0;
 
 	// Uniform-setting methods that subclasses must define:
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3) = 0;
@@ -188,8 +184,8 @@ public:
 	virtual void NormalPointer(GLenum type, GLsizei stride, void* pointer);
 	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, void* pointer);
 	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer);
-	virtual void VertexAttribPointer(const char* id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, void* pointer);
-	virtual void VertexAttribIPointer(const char* id, GLint size, GLenum type, GLsizei stride, void* pointer);
+	virtual void VertexAttribPointer(attrib_id_t id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, void* pointer);
+	virtual void VertexAttribIPointer(attrib_id_t id, GLint size, GLenum type, GLsizei stride, void* pointer);
 
 	/**
 	 * Checks that all the required vertex attributes have been set.

@@ -941,7 +941,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor, 
 					const CPos &pos, const float &z, const CRect &clipping)
 {
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 
 	tech->BeginPass();
 

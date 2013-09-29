@@ -167,15 +167,15 @@ void CParticleEmitter::UpdateArrayData()
 void CParticleEmitter::Bind(const CShaderProgramPtr& shader)
 {
 	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
-	shader->BindTexture("losTex", los.GetTextureSmooth());
-	shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+	shader->BindTexture(str_losTex, los.GetTextureSmooth());
+	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 	
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
-	shader->Uniform("sunColor", lightEnv.m_SunColor);
-	shader->Uniform("fogColor", lightEnv.m_FogColor);
-	shader->Uniform("fogParams", lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
+	shader->Uniform(str_sunColor, lightEnv.m_SunColor);
+	shader->Uniform(str_fogColor, lightEnv.m_FogColor);
+	shader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 
-	shader->BindTexture("baseTex", m_Type->m_Texture);
+	shader->BindTexture(str_baseTex, m_Type->m_Texture);
 	pglBlendEquationEXT(m_Type->m_BlendEquation);
 	glBlendFunc(m_Type->m_BlendFuncSrc, m_Type->m_BlendFuncDst);
 }

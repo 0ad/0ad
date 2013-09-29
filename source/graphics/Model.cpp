@@ -626,7 +626,10 @@ void CModel::AddFlagsRec(int flags)
 	m_Flags |= flags;
 
 	if (flags & MODELFLAG_IGNORE_LOS)
-		m_Material.AddShaderDefine("IGNORE_LOS", "1");
+	{
+		m_Material.AddShaderDefine(str_IGNORE_LOS, str_1);
+		m_Material.RecomputeCombinedShaderDefines();
+	}
 
 	for (size_t i = 0; i < m_Props.size(); ++i)
 		if (m_Props[i].m_Model->ToCModel())
@@ -637,7 +640,8 @@ void CModel::RemoveShadowsRec()
 {
 	m_Flags &= ~MODELFLAG_CASTSHADOWS;
 
-	m_Material.AddShaderDefine("DISABLE_RECEIVE_SHADOWS", "1");
+	m_Material.AddShaderDefine(str_DISABLE_RECEIVE_SHADOWS, str_1);
+	m_Material.RecomputeCombinedShaderDefines();
 
 	for (size_t i = 0; i < m_Props.size(); ++i)
 	{

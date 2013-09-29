@@ -1,4 +1,10 @@
-function QBotAI(settings) {
+// "local" global variables for stuffs that will need a unique ID
+// Note that since order of loading is alphabetic, this means this file must go before any other file using them.
+var uniqueIDBOPlans = 0;	// training/building/research plans
+var uniqueIDBases = 1;	// base manager ID. Starts at one because "0" means "no base" on the map
+var uniqueIDTPlans = 1;	// transport plans. starts at 1 because 0 might be used as none.
+
+function AegisBot(settings) {
 	BaseAI.call(this, settings);
 
 	Config.updateDifficulty(settings.difficulty);
@@ -6,47 +12,33 @@ function QBotAI(settings) {
 	this.turn = 0;
 
 	this.playedTurn = 0;
-
-	this.modules = {
-			"economy": new EconomyManager(), 
-			"military": new MilitaryAttackManager()
-	};
+		
+	this.priorities = Config.priorities;
 
 	// this.queues can only be modified by the queue manager or things will go awry.
-	this.queues = {
-		house : new Queue(),
-		citizenSoldier : new Queue(),
-		villager : new Queue(),
-		economicBuilding : new Queue(),
-		dropsites : new Queue(),
-		field : new Queue(),
-		militaryBuilding : new Queue(),
-		defenceBuilding : new Queue(),
-		civilCentre: new Queue(),
-		majorTech: new Queue(),
-		minorTech: new Queue()
-	};
-	
-	this.productionQueues = [];
-	
-	this.priorities = Config.priorities;
-	
+	this.queues = {};
+	for (i in this.priorities)
+		this.queues[i] = new Queue();
+
 	this.queueManager = new QueueManager(this.queues, this.priorities);
-	
+
+	this.HQ = new HQ();
+
 	this.firstTime = true;
 
 	this.savedEvents = [];
-	
-	this.waterMap = false;
 	
 	this.defcon = 5;
 	this.defconChangeTime = -10000000;
 }
 
-QBotAI.prototype = new BaseAI();
+AegisBot.prototype = new BaseAI();
 
-// Bit of a hack: I run the pathfinder early, before the map apears, to avoid a sometimes substantial lag right at the start.
-QBotAI.prototype.InitShared = function(gameState, sharedScript) {
+AegisBot.prototype.InitShared = function(gameState, sharedScript) {
+	
+	this.HQ.init(gameState,sharedScript.events,this.queues);
+	debug ("Initialized with the difficulty " + Config.difficulty);
+
 	var ents = gameState.getEntities().filter(Filters.byOwner(PlayerID));
 	var myKeyEntities = ents.filter(function(ent) {
 			return ent.hasClass("CivCentre");
@@ -63,6 +55,8 @@ QBotAI.prototype.InitShared = function(gameState, sharedScript) {
 		enemyKeyEntities = gameState.getEntities().filter(Filters.not(Filters.byOwner(PlayerID)));
 	}
 
+	this.myIndex = this.accessibility.getAccessValue(myKeyEntities.toEntityArray()[0].position());
+	
 	this.pathFinder = new aStarPath(gameState, false, true);
 	this.pathsToMe = [];
 	this.pathInfo = { "angle" : 0, "needboat" : true, "mkeyPos" : myKeyEntities.toEntityArray()[0].position(), "ekeyPos" : enemyKeyEntities.toEntityArray()[0].position() };
@@ -82,92 +76,28 @@ QBotAI.prototype.InitShared = function(gameState, sharedScript) {
 	}
 
 	this.pathInfo.angle += Math.PI/3.0;
-}
-
-//Some modules need the gameState to fully initialise
-QBotAI.prototype.runInit = function(gameState, events){
 
 	this.chooseRandomStrategy();
+}
 
-	for (var i in this.modules){
-		if (this.modules[i].init){
-			this.modules[i].init(gameState, events);
-		}
-	}
-	debug ("Inited, diff is " + Config.difficulty);
-	this.timer = new Timer();
-	
-	
-	var ents = gameState.getOwnEntities();
-	var myKeyEntities = gameState.getOwnEntities().filter(function(ent) {
-														  return ent.hasClass("CivCentre");
-														  });
-	
-	if (myKeyEntities.length == 0){
-		myKeyEntities = gameState.getOwnEntities();
-	}
-	
-	// disband the walls themselves
-	if (gameState.playerData.civ == "iber") {
-		gameState.getOwnEntities().filter(function(ent) { //}){
-										  if (ent.hasClass("StoneWall") && !ent.hasClass("Tower"))
-										  ent.destroy();
-										  });
-	}
-	
-	var filter = Filters.byClass("CivCentre");
-	var enemyKeyEntities = gameState.getEnemyEntities().filter(filter);
-	
-	if (enemyKeyEntities.length == 0){
-		enemyKeyEntities = gameState.getEnemyEntities();
-	}
-	
-	//this.accessibility = new Accessibility(gameState, myKeyEntities.toEntityArray()[0].position());
-	
-	this.myIndex = this.accessibility.getAccessValue(myKeyEntities.toEntityArray()[0].position());
-	
-	if (enemyKeyEntities.length == 0)
-		return;
-		
-	this.templateManager = new TemplateManager(gameState);
-};
-
-QBotAI.prototype.OnUpdate = function(sharedScript) {
+AegisBot.prototype.OnUpdate = function(sharedScript) {
 	if (this.gameFinished){
 		return;
 	}
 	
-	if (this.events.length > 0){
+	if (this.events.length > 0 && this.turn !== 0){
 		this.savedEvents = this.savedEvents.concat(this.events);
 	}
 	
 	
-	
 	// Run the update every n turns, offset depending on player ID to balance the load
-	// this also means that init at turn 0 always happen and is never run in parallel to the first played turn so I use an else if.
-	if (this.turn == 0) {
+	if ((this.turn + this.player) % 8 == 5) {
 		
-		//Engine.DumpImage("terrain.png", this.accessibility.map, this.accessibility.width,this.accessibility.height,255)
-		//Engine.DumpImage("Access.png", this.accessibility.passMap, this.accessibility.width,this.accessibility.height,this.accessibility.regionID+1)
-
-		var gameState = sharedScript.gameState[PlayerID];
-		gameState.ai = this;
-		
-		this.runInit(gameState, this.savedEvents);
-		
-		// Delete creation events
-		delete this.savedEvents;
-		this.savedEvents = [];
-	} else if ((this.turn + this.player) % 8 == 5) {
-		
-		Engine.ProfileStart("Aegis bot");
+		Engine.ProfileStart("Aegis bot (player " + this.player +")");
 		
 		this.playedTurn++;
 		
-		var gameState = sharedScript.gameState[PlayerID];
-		gameState.ai = this;
-		
-		if (gameState.getOwnEntities().length === 0){
+		if (this.gameState.getOwnEntities().length === 0){
 			Engine.ProfileStop();
 			return; // With no entities to control the AI cannot do anything 
 		}
@@ -175,7 +105,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 		if (this.pathInfo !== undefined)
 		{
 			var pos = [this.pathInfo.mkeyPos[0] + 150*Math.cos(this.pathInfo.angle),this.pathInfo.mkeyPos[1] + 150*Math.sin(this.pathInfo.angle)];
-			var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 6, 5);// uncomment for debug:*/, 300000, gameState);
+			var path = this.pathFinder.getPath(this.pathInfo.ekeyPos, pos, 6, 5);// uncomment for debug:*/, 300000, this.gameState);
 			if (path !== undefined && path[1] !== undefined && path[1] == false) {
 				// path is viable and doesn't require boating.
 				// blackzone the last two waypoints.
@@ -191,55 +121,52 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 				if (this.pathInfo.needboat)
 				{
 					debug ("Assuming this is a water map");
-					this.waterMap = true;
+					this.HQ.waterMap = true;
 				}
 				delete this.pathFinder;
 				delete this.pathInfo;
 			}
 		}
 		
-		var sfx = "_generic";
-		if (gameState.civ() == "athen")
-			sfx = "_athen"
-
+		var townPhase = this.gameState.townPhase();
+		var cityPhase = this.gameState.cityPhase();
 		// try going up phases.
-		if (gameState.canResearch("phase_town" + sfx,true) && gameState.getTimeElapsed() > (Config.Economy.townPhase*1000)
-			&& gameState.findResearchers("phase_town" + sfx,true).length != 0 && this.queues.majorTech.totalLength() === 0) {
-			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_town" + sfx,true));	// we rush the town phase.
+		// TODO: softcode this.
+		if (this.gameState.canResearch(townPhase,true) && this.gameState.getTimeElapsed() > (Config.Economy.townPhase*1000) && this.gameState.getPopulation() > 40
+			&& this.gameState.findResearchers(townPhase,true).length != 0 && this.queues.majorTech.length() === 0
+			&& this.gameState.getOwnEntities().filter(Filters.byClass("Village")).length > 5)
+		{
+			this.queueManager.pauseQueue("villager", true);
+			this.queueManager.pauseQueue("citizenSoldier", true);
+			this.queueManager.pauseQueue("house", true);
+			this.queues.majorTech.addItem(new ResearchPlan(this.gameState, townPhase,0,-1,true));	// we rush the town phase.
 			debug ("Trying to reach town phase");
-			var nb = gameState.getOwnEntities().filter(Filters.byClass("Village")).length-1;
-			if (nb < 5)
-			{
-				while (nb < 5 && ++nb)
-					this.queues.house.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_house"));
-			}
-		} else if (gameState.canResearch("phase_city_generic",true) && gameState.getTimeElapsed() > (Config.Economy.cityPhase*1000)
-				&& gameState.getOwnEntitiesByRole("worker").length > 85
-				&& gameState.findResearchers("phase_city_generic", true).length != 0 && this.queues.majorTech.totalLength() === 0) {
+		}
+		else if (this.gameState.canResearch(cityPhase,true) && this.gameState.getTimeElapsed() > (Config.Economy.cityPhase*1000)
+				&& this.gameState.getOwnEntitiesByRole("worker").length > 85
+				&& this.gameState.findResearchers(cityPhase, true).length != 0 && this.queues.majorTech.length() === 0) {
 			debug ("Trying to reach city phase");
-			this.queues.majorTech.addItem(new ResearchPlan(gameState, "phase_city_generic"));
+			this.queues.majorTech.addItem(new ResearchPlan(this.gameState, cityPhase));
 		}
 		// defcon cooldown
-		if (this.defcon < 5 && gameState.timeSinceDefconChange() > 20000)
+		if (this.defcon < 5 && this.gameState.timeSinceDefconChange() > 20000)
 		{
 			this.defcon++;
 			debug ("updefconing to " +this.defcon);
-			if (this.defcon >= 4 && this.modules.military.hasGarrisonedFemales)
-				this.modules.military.ungarrisonAll(gameState);
+			if (this.defcon >= 4 && this.HQ.hasGarrisonedFemales)
+				this.HQ.ungarrisonAll(this.gameState);
 		}
 		
-		for (var i in this.modules){
-			this.modules[i].update(gameState, this.queues, this.savedEvents);
-		}
-		
-		this.queueManager.update(gameState);
-		
+		this.HQ.update(this.gameState, this.queues, this.savedEvents);
+
+		this.queueManager.update(this.gameState);
+
 		/*
 		 // Use this to debug informations about the metadata.
 		if (this.playedTurn % 10 === 0)
 		{
 			// some debug informations about units.
-			var units = gameState.getOwnEntities();
+			var units = this.gameState.getOwnEntities();
 			for (var i in units._entities)
 			{
 				var ent = units._entities[i];
@@ -265,7 +192,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 
 			
 		//if (this.playedTurn % 5 === 0)
-		//	this.queueManager.printQueues(gameState);
+		//	this.queueManager.printQueues(this.gameState);
 		
 		// Generate some entropy in the random numbers (against humans) until the engine gets random initialised numbers
 		// TODO: remove this when the engine gives a random seed
@@ -283,7 +210,7 @@ QBotAI.prototype.OnUpdate = function(sharedScript) {
 	this.turn++;
 };
 
-QBotAI.prototype.chooseRandomStrategy = function()
+AegisBot.prototype.chooseRandomStrategy = function()
 {
 	// deactivated for now.
 	this.strategy = "normal";
@@ -292,7 +219,7 @@ QBotAI.prototype.chooseRandomStrategy = function()
 	{
 		this.strategy = "rush";
 		// going to rush.
-		this.modules.economy.targetNumWorkers = 0;
+		this.HQ.targetNumWorkers = 0;
 		Config.Economy.townPhase = 480;
 		Config.Economy.cityPhase = 900;
 		Config.Economy.farmsteadStartTime = 600;
@@ -302,7 +229,7 @@ QBotAI.prototype.chooseRandomStrategy = function()
 
 // TODO: Remove override when the whole AI state is serialised
 // TODO: this currently is very much equivalent to "rungamestateinit" with a few hacks. Should deserialize/serialize properly someday.
-QBotAI.prototype.Deserialize = function(data, sharedScript)
+AegisBot.prototype.Deserialize = function(data, sharedScript)
 {
 	BaseAI.prototype.Deserialize.call(this, data);
 	
@@ -345,7 +272,7 @@ QBotAI.prototype.Deserialize = function(data, sharedScript)
 };
 
 // Override the default serializer
-QBotAI.prototype.Serialize = function()
+AegisBot.prototype.Serialize = function()
 {
 	//var ret = BaseAI.prototype.Serialize.call(this);
 	return {};

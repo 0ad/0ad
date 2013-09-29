@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_ship_quinquereme">
+  <Cost>
+    <Population>8</Population>
+    <BuildTime>60</BuildTime>
+    <Resources>
+      <wood>300</wood>
+      <metal>300</metal>
+    </Resources>
+  </Cost>
+  <GarrisonHolder>
+    <Max>100</Max>
+  </GarrisonHolder>
+  <Health>
+    <Max>4000</Max>
+  </Health>
+  <Identity>
+    <Civ>ptol</Civ>
+	<GenericName>Juggernaut Warship</GenericName>
+    <SpecificName>Tessarakontḗrēs</SpecificName>
+    <Classes datatype="tokens">Juggernaut</Classes>
+    <Icon>units/rome_ship_quinquereme.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/romans/quinquereme.xml</Actor>
+  </VisualActor>
+</Entity>

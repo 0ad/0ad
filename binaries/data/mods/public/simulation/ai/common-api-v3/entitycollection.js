@@ -3,6 +3,9 @@ function EntityCollection(sharedAI, entities, filters)
 	this._ai = sharedAI;
 	this._entities = entities || {};
 	this._filters = filters || [];
+	
+	this._quickIter = false;	// will make the entity collection store an array (not associative) of entities used when calling "foreach".
+	// probably should not be usde for very dynamic entity collections.
 
 	// Compute length lazily on demand, since it can be
 	// expensive for large collections
@@ -23,6 +26,8 @@ function EntityCollection(sharedAI, entities, filters)
 
 // If an entitycollection is frozen, it will never automatically add a unit.
 // But can remove one.
+// this makes it easy to create entity collection that will auto-remove dead units
+// but never add new ones.
 EntityCollection.prototype.freeze = function()
 {
 	this.frozen = true;
@@ -30,6 +35,14 @@ EntityCollection.prototype.freeze = function()
 EntityCollection.prototype.defreeze = function()
 {
 	this.frozen = false;
+};
+
+EntityCollection.prototype.allowQuickIter = function()
+{
+	this._quickIter = true;
+	this._entitiesArray = [];
+	for each (var ent in this._entities)
+		this._entitiesArray.push(ent);
 };
 
 EntityCollection.prototype.toIdArray = function()
@@ -42,6 +55,8 @@ EntityCollection.prototype.toIdArray = function()
 
 EntityCollection.prototype.toEntityArray = function()
 {
+	if (this._quickIter === true)
+		return this._entitiesArray;
 	var ret = [];
 	for each (var ent in this._entities)
 		ret.push(ent);
@@ -59,12 +74,23 @@ EntityCollection.prototype.toString = function()
 EntityCollection.prototype.filterNearest = function(targetPos, n)
 {
 	// Compute the distance of each entity
-	var data = []; // [ [id, ent, distance], ... ]
-	for (var id in this._entities)
+	var data = []; // [id, ent, distance]
+	
+	if (this._quickIter === true)
 	{
-		var ent = this._entities[id];
-		if (ent.position())
-			data.push([id, ent, VectorDistance(targetPos, ent.position())]);
+		for (var i in this._entitiesArray)
+		{
+			var ent = this._entitiesArray[i];
+			if (ent.position() !== -1)
+				data.push([ent.id(), ent, SquareVectorDistance(targetPos, ent.position())]);
+		}
+	} else {
+		for (var id in this._entities)
+		{
+			var ent = this._entities[id];
+			if (ent.position() !== -1)
+				data.push([id, ent, SquareVectorDistance(targetPos, ent.position())]);
+		}
 	}
 
 	// Sort by increasing distance
@@ -72,8 +98,9 @@ EntityCollection.prototype.filterNearest = function(targetPos, n)
 
 	// Extract the first n
 	var ret = {};
-	for each (var val in data.slice(0, n))
-		ret[val[0]] = val[1];
+	var length = Math.min(n, entData.length);
+	for (var i = 0; i < length; ++i)
+		ret[data[i][0]] = data[i][1];
 
 	return new EntityCollection(this._ai, ret);
 };
@@ -84,11 +111,22 @@ EntityCollection.prototype.filter = function(filter, thisp)
 		filter = {"func": filter, "dynamicProperties": []};
 	
 	var ret = {};
-	for (var id in this._entities)
+	if (this._quickIter === true)
 	{
-		var ent = this._entities[id];
-		if (filter.func.call(thisp, ent, id, this))
-			ret[id] = ent;
+		for (var i in this._entitiesArray)
+		{
+			var ent = this._entitiesArray[i];
+			var id = ent.id();
+			if (filter.func.call(thisp, ent, id, this))
+				ret[id] = ent;
+		}
+	} else {
+		for (var id in this._entities)
+		{
+			var ent = this._entities[id];
+			if (filter.func.call(thisp, ent, id, this))
+				ret[id] = ent;
+		}
 	}
 	
 	return new EntityCollection(this._ai, ret, this._filters.concat([filter]));
@@ -105,6 +143,23 @@ EntityCollection.prototype.filter_raw = function(callback, thisp)
 			ret[id] = ent;
 	}
 	return new EntityCollection(this._ai, ret);
+};
+
+EntityCollection.prototype.forEach = function(callback)
+{
+	if (this._quickIter === true)
+	{
+		for (var id in this._entitiesArray)
+		{
+			callback(this._entitiesArray[id]);
+		}
+		return this;
+	}
+	for (var id in this._entities)
+	{
+		callback(this._entities[id]);
+	}
+	return this;
 };
 
 EntityCollection.prototype.filterNearest = function(targetPos, n)
@@ -128,16 +183,6 @@ EntityCollection.prototype.filterNearest = function(targetPos, n)
 		ret[val[0]] = val[1];
 	
 	return new EntityCollection(this._ai, ret);
-};
-
-EntityCollection.prototype.forEach = function(callback, thisp)
-{
-	for (var id in this._entities)
-	{
-		var ent = this._entities[id];
-		callback.call(thisp, ent, id, this);
-	}
-	return this;
 };
 
 EntityCollection.prototype.move = function(x, z, queued)
@@ -241,6 +286,8 @@ EntityCollection.prototype.removeEnt = function(ent)
 		// Checking length may initialize it, so do it before deleting.
 		if (this.length !== undefined)
 			this._length--;
+		if (this._quickIter === true)
+			this._entitiesArray.splice(this._entitiesArray.indexOf(ent),1);
 		delete this._entities[ent.id()];
 		return true;
 	}
@@ -263,6 +310,8 @@ EntityCollection.prototype.addEnt = function(ent)
 		if (this.length !== undefined)
 			this._length++;
 		this._entities[ent.id()] = ent;
+		if (this._quickIter === true)
+			this._entitiesArray.push(ent);
 		return true;
 	}
 };
@@ -295,6 +344,11 @@ EntityCollection.prototype.updateEnt = function(ent, force)
 EntityCollection.prototype.registerUpdates = function(noPush)
 {
 	this._ai.registerUpdatingEntityCollection(this,noPush);
+};
+
+EntityCollection.prototype.unregister = function()
+{
+	this._ai.removeUpdatingEntityCollection(this);
 };
 
 EntityCollection.prototype.dynamicProperties = function()

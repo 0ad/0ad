@@ -296,7 +296,7 @@ function ProcessCommand(player, cmd)
 		{
 			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
 			if (cmpRallyPoint)
-				cmpRallyPoint.Unset();
+				cmpRallyPoint.Reset();
 		}
 		break;
 

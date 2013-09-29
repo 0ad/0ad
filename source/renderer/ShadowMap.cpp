@@ -570,7 +570,7 @@ int ShadowMap::GetHeight() const
 
 void ShadowMap::RenderDebugBounds()
 {
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
 	shaderTech->BeginPass();
 	CShaderProgramPtr shader = shaderTech->GetShader();
 
@@ -578,15 +578,15 @@ void ShadowMap::RenderDebugBounds()
 	glDisable(GL_CULL_FACE);
 
 	// Render shadow bound
-	shader->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection() * m->InvLightTransform);
+	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection() * m->InvLightTransform);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	shader->Uniform("color", 0.0f, 0.0f, 1.0f, 0.25f);
+	shader->Uniform(str_color, 0.0f, 0.0f, 1.0f, 0.25f);
 	m->ShadowBound.Render(shader);
 	glDisable(GL_BLEND);
 
-	shader->Uniform("color", 0.0f, 0.0f, 1.0f, 1.0f);
+	shader->Uniform(str_color, 0.0f, 0.0f, 1.0f, 1.0f);
 	m->ShadowBound.RenderOutline(shader);
 
 	// Draw a funny line/triangle direction indicator thing for unknown reasons
@@ -656,12 +656,12 @@ void ShadowMap::RenderDebugTexture()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 #endif
 
-	CShaderTechniquePtr texTech = g_Renderer.GetShaderManager().LoadEffect("gui_basic");
+	CShaderTechniquePtr texTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_basic);
 	texTech->BeginPass();
 	CShaderProgramPtr texShader = texTech->GetShader();
 
-	texShader->Uniform("transform", GetDefaultGuiMatrix());
-	texShader->BindTexture("tex", m->Texture);
+	texShader->Uniform(str_transform, GetDefaultGuiMatrix());
+	texShader->BindTexture(str_tex, m->Texture);
 
 	float s = 256.f;
 	float boxVerts[] = {

@@ -6,10 +6,11 @@ var Worker = function(ent) {
 	this.ent = ent;
 	this.maxApproachTime = 45000;
 	this.unsatisfactoryResource = false;	// if true we'll reguarly check if we can't have better now.
+	this.baseID = 0;
 };
 
-Worker.prototype.update = function(gameState) {
-	
+Worker.prototype.update = function(baseManager, gameState) {
+	this.baseID = baseManager.ID;
 	var subrole = this.ent.getMetadata(PlayerID, "subrole");
 
 	if (!this.ent.position() || (this.ent.getMetadata(PlayerID,"fleeing") && gameState.getTimeElapsed() - this.ent.getMetadata(PlayerID,"fleeing") < 8000)){
@@ -19,14 +20,30 @@ Worker.prototype.update = function(gameState) {
 	if (this.ent.getMetadata(PlayerID,"fleeing"))
 		this.ent.setMetadata(PlayerID,"fleeing", undefined);
 	
+	// Okay so we have a few tasks.
+	// If we're gathering, we'll check that we haven't run idle.
+	// ANd we'll also check that we're gathering a resource we want to gather.
+	
+	// If we're fighting, let's not start gathering, heh?
+	// TODO: remove this when we're hunting?
+	if (this.ent.unitAIState().split(".")[1] === "COMBAT" || this.ent.getMetadata(PlayerID, "role") === "transport")
+	{
+		return;
+	}
+	
 	if (subrole === "gatherer") {
-		if (this.ent.unitAIState().split(".")[1] !== "GATHER" && this.ent.unitAIState().split(".")[1] !== "COMBAT" && this.ent.unitAIState().split(".")[1] !== "RETURNRESOURCE"){
-			// TODO: handle combat for hunting animals
-			if (!this.ent.resourceCarrying() || this.ent.resourceCarrying().length === 0 || 
+		if (this.ent.isIdle()) {
+			// if we aren't storing resources or it's the same type as what we're about to gather,
+			// let's just pick a new resource.
+			if (!this.ent.resourceCarrying() || this.ent.resourceCarrying().length === 0 ||
 					this.ent.resourceCarrying()[0].type === this.ent.getMetadata(PlayerID, "gather-type")){
 				Engine.ProfileStart("Start Gathering");
-				this.startGathering(gameState);
+				this.unsatisfactoryResource = false;
+				this.startGathering(baseManager,gameState);
 				Engine.ProfileStop();
+
+				this.startApproachingResourceTime = gameState.getTimeElapsed();
+
 			} else {
 				// Should deposit resources
 				Engine.ProfileStart("Return Resources");
@@ -34,10 +51,12 @@ Worker.prototype.update = function(gameState) {
 				{
 					// no dropsite, abandon cargo.
 					
-					// if we have a new order
+					// if we were ordered to gather something else, try that.
 					if (this.ent.resourceCarrying()[0].type !== this.ent.getMetadata(PlayerID, "gather-type"))
-						this.startGathering(gameState);
+						this.startGathering(baseManager,gameState);
 					else {
+						// okay so we haven't found a proper dropsite for the resource we're supposed to gather
+						// so let's get idle and the base manager will reassign us, hopefully well.
 						this.ent.setMetadata(PlayerID, "gather-type",undefined);
 						this.ent.setMetadata(PlayerID, "subrole", "idle");
 						this.ent.stopMoving();
@@ -45,16 +64,53 @@ Worker.prototype.update = function(gameState) {
 				}
 				Engine.ProfileStop();
 			}
-			this.startApproachingResourceTime = gameState.getTimeElapsed();
-			
+			// debug: show the resource we're gathering from
 			//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [10,0,0]});
 		} else if (this.ent.unitAIState().split(".")[1] === "GATHER") {
-			if (this.unsatisfactoryResource && (this.ent.id() + gameState.ai.playedTurn) % 20 === 0)
+			
+			// check for transport.
+			if (gameState.ai.playedTurn % 5 === 0)
+			{
+				if (this.ent.unitAIOrderData().length && this.ent.unitAIState().split(".")[2] === "APPROACHING" && this.ent.unitAIOrderData()[0]["target"])
+				{
+					var ress = gameState.getEntityById(this.ent.unitAIOrderData()[0]["target"]);
+					if (ress !== undefined)
+					{
+						var index = gameState.ai.accessibility.getAccessValue(ress.position());
+						var mIndex = gameState.ai.accessibility.getAccessValue(this.ent.position());
+						if (index !== mIndex && index !== 1)
+						{
+							//gameState.ai.HQ.navalManager.askForTransport(this.ent.id(), this.ent.position(), ress.position());
+						}
+					}
+				}
+			}
+			
+			/*
+			if (gameState.getTimeElapsed() - this.startApproachingResourceTime > this.maxApproachTime)
+			{
+				if (this.ent.unitAIOrderData().length && this.ent.unitAIState().split(".")[1] === "GATHER"
+					&& this.ent.unitAIOrderData()[0]["target"])
+				{
+					var ent = gameState.getEntityById(this.ent.unitAIOrderData()[0]["target"]);
+					debug ("here " + this.startApproachingResourceAmount + "," + ent.resourceSupplyAmount());
+					if (ent && this.startApproachingResourceAmount == ent.resourceSupplyAmount() && this.startEnt == ent.id()) {
+						debug (ent.toString() + " is inaccessible");
+						ent.setMetadata(PlayerID, "inaccessible", true);
+						this.ent.flee(ent);
+						this.ent.setMetadata(PlayerID, "subrole", "idle");
+					}
+				}
+			}*/
+			
+			// we're gathering. Let's check that it's not a resource we'd rather not gather from.
+			if ((this.ent.id() + gameState.ai.playedTurn) % 6 === 0 && this.checkUnsatisfactoryResource(gameState))
 			{
 				Engine.ProfileStart("Start Gathering");
-				this.startGathering(gameState);
+				this.startGathering(baseManager,gameState);
 				Engine.ProfileStop();
 			}
+			// TODO: reimplement the "reaching time" check.
 			/*if (gameState.getTimeElapsed() - this.startApproachingResourceTime > this.maxApproachTime) {
 				if (this.gatheringFrom) {
 					var ent = gameState.getEntityById(this.gatheringFrom);
@@ -67,7 +123,7 @@ Worker.prototype.update = function(gameState) {
 						this.gatheringFrom = undefined;
 					}
 				}
-			}*/
+			 }*/
 		} else if (this.ent.unitAIState().split(".")[1] === "COMBAT") {
 			/*if (gameState.getTimeElapsed() - this.startApproachingResourceTime > this.maxApproachTime) {
 				var ent = gameState.getEntityById(this.ent.unitAIOrderData()[0].target);
@@ -80,41 +136,78 @@ Worker.prototype.update = function(gameState) {
 					this.gatheringFrom = undefined;
 				}
 			}*/
-		} else {
-			this.startApproachingResourceTime = gameState.getTimeElapsed();
 		}
 	} else if(subrole === "builder") {
-		if (this.ent.unitAIState().split(".")[1] !== "REPAIR"){
-			var target = this.ent.getMetadata(PlayerID, "target-foundation");
-			if (target.foundationProgress() === undefined && target.needsRepair() == false)
-				this.ent.setMetadata(PlayerID, "subrole", "idle");
+		
+		// check for transport.
+		if (gameState.ai.playedTurn % 5 === 0)
+		{
+			if (this.ent.unitAIOrderData().length && this.ent.unitAIState().split(".")[2] === "APPROACHING" && this.ent.unitAIOrderData()[0]["target"])
+			{
+				var ress = gameState.getEntityById(this.ent.unitAIOrderData()[0]["target"]);
+				if (ress !== undefined)
+				{
+					var index = gameState.ai.accessibility.getAccessValue(ress.position());
+					var mIndex = gameState.ai.accessibility.getAccessValue(this.ent.position());
+					if (index !== mIndex && index !== 1)
+					{
+						//gameState.ai.HQ.navalManager.askForTransport(this.ent.id(), this.ent.position(), ress.position());
+					}
+				}
+			}
+		}
+
+		
+		if (this.ent.unitAIState().split(".")[1] !== "REPAIR") {
+			var target = gameState.getEntityById(this.ent.getMetadata(PlayerID, "target-foundation"));
+			// okay so apparently we aren't working.
+			// Unless we've been explicitely told to keep our role, make us idle.
+			if (!target || target.foundationProgress() === undefined && target.needsRepair() == false)
+			{
+				if (!this.ent.getMetadata(PlayerID, "keepSubrole"))
+					this.ent.setMetadata(PlayerID, "subrole", "idle");
+			}
 			else
 				this.ent.repair(target);
 		}
 		this.startApproachingResourceTime = gameState.getTimeElapsed();
 		//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [0,10,0]});
+		// TODO: we should maybe decide on our own to build other buildings, not rely on the assigntofoundation stuff.
 	}  else if(subrole === "hunter") {
-		if (!this.ent.resourceCarrying() || this.ent.resourceCarrying().length === 0){
+		if (this.ent.isIdle()){
 			Engine.ProfileStart("Start Hunting");
-			this.startHunting(gameState);
+			this.startHunting(gameState, baseManager);
 			Engine.ProfileStop();
 		}
-	} else {
-		this.startApproachingResourceTime = gameState.getTimeElapsed();
 	}
 };
 
-Worker.prototype.startGathering = function(gameState){
+// check if our current resource is unsatisfactory
+// this can happen in two ways:
+//		-either we were on an unsatisfactory resource last time we started gathering (this.unsatisfactoryResource)
+//		-Or we auto-moved to a bad resource thanks to the great UnitAI.
+Worker.prototype.checkUnsatisfactoryResource = function(gameState) {
+	if (this.unsatisfactoryResource)
+		return true;
+	if (this.ent.unitAIOrderData().length && this.ent.unitAIState().split(".")[1] === "GATHER" && this.ent.unitAIState().split(".")[2] === "GATHERING" && this.ent.unitAIOrderData()[0]["target"])
+	{
+		var ress = gameState.getEntityById(this.ent.unitAIOrderData()[0]["target"]);
+		if (!ress || !ress.getMetadata(PlayerID,"linked-dropsite") || !ress.getMetadata(PlayerID,"linked-dropsite-nearby") || gameState.ai.accessibility.getAccessValue(ress.position()) === -1)
+			return true;
+	}
+	return false;
+};
+
+Worker.prototype.startGathering = function(baseManager, gameState) {
 	var resource = this.ent.getMetadata(PlayerID, "gather-type");
 	var ent = this.ent;
+	var self = this;
 	
 	if (!ent.position()){
 		// TODO: work out what to do when entity has no position
 		return;
 	}
 	
-	this.unsatisfactoryResource = false;
-
 	// TODO: this is not necessarily optimal.
 	
 	// find closest dropsite which has nearby resources of the correct type
@@ -125,67 +218,77 @@ Worker.prototype.startGathering = function(gameState){
 	// first step: count how many dropsites we have that have enough resources "close" to them.
 	// TODO: this is a huge part of multi-base support. Count only those in the same base as the worker.
 	var number = 0;
-	var ourDropsites = gameState.getOwnDropsites(resource);
 	
+	var ourDropsites = EntityCollectionFromIds(gameState,Object.keys(baseManager.dropsites));
 	if (ourDropsites.length === 0)
 	{
 		debug ("We do not have a dropsite for " + resource + ", aborting");
 		return;
 	}
 	
-	ourDropsites.forEach(function (dropsite) {
-		if (dropsite.getMetadata(PlayerID, "linked-resources-" +resource) !== undefined
-			&& dropsite.getMetadata(PlayerID, "resource-quantity-" +resource) !== undefined && dropsite.getMetadata(PlayerID, "resource-quantity-" +resource) > 200) {
-			number++;
-		}
-	});
+	var maxPerDP = 20;
+	if (resource === "food")
+		maxPerDP = 200;
 	
-	//debug ("Available " +resource + " dropsites: " +ourDropsites.length);
+	ourDropsites.forEach(function (dropsite) {
+		if (baseManager.dropsites[dropsite.id()][resource] && baseManager.dropsites[dropsite.id()][resource][4] > 1000
+			&& baseManager.dropsites[dropsite.id()][resource][5].length < maxPerDP)
+			number++;
+	});
 	
 	// Allright second step, if there are any such dropsites, we pick the closest.
 	// we pick one with a lot of resource, or we pick the only one available (if it's high enough, otherwise we'll see with "far" below).
 	if (number > 0)
 	{
 		ourDropsites.forEach(function (dropsite) { //}){
-			if (dropsite.getMetadata(PlayerID, "resource-quantity-" +resource) == undefined)
+			if (baseManager.dropsites[dropsite.id()][resource] === undefined)
 				return;
-			if (dropsite.position() && (dropsite.getMetadata(PlayerID, "resource-quantity-" +resource) > 700 || (number === 1 && dropsite.getMetadata(PlayerID, "resource-quantity-" +resource) > 200) ) ) {
+			if (dropsite.position() && (baseManager.dropsites[dropsite.id()][resource][4] > 1000 || (number === 1 && baseManager.dropsites[dropsite.id()][resource][4] > 200) )
+				&& baseManager.dropsites[dropsite.id()][resource][5].length < maxPerDP) {
 				var dist = SquareVectorDistance(ent.position(), dropsite.position());
 				if (dist < minDropsiteDist){
 					minDropsiteDist = dist;
-					nearestResources = dropsite.getMetadata(PlayerID, "linked-resources-" + resource);
+					nearestResources = baseManager.dropsites[dropsite.id()][resource][1];
 					nearestDropsite = dropsite;
 				}
 			}
 		});
 	}
-	//debug ("Nearest dropsite: " +nearestDropsite);
-	
-	// Now if we have no dropsites, we repeat the process with resources "far" from dropsites but still linked with them.
-	// I add the "close" value for code sanity.
-	// Again, we choose a dropsite with a lot of resources left, or we pick the only one available (in this case whatever happens).
+	// we've found no fitting dropsites close enough from us.
+	// So'll try with far away.
 	if (!nearestResources || nearestResources.length === 0) {
-		//debug ("here(1)");
-		gameState.getOwnDropsites(resource).forEach(function (dropsite){ //}){
-			var quantity = dropsite.getMetadata(PlayerID, "resource-quantity-" +resource)+dropsite.getMetadata(PlayerID, "resource-quantity-far-" +resource);
-			if (dropsite.position() && (quantity) > 700 || number === 1) {
+		ourDropsites.forEach(function (dropsite) { //}){
+			if (baseManager.dropsites[dropsite.id()][resource] === undefined)
+				return;
+			if (dropsite.position() && baseManager.dropsites[dropsite.id()][resource][4] > 400
+				&& baseManager.dropsites[dropsite.id()][resource][5].length < maxPerDP) {
 				var dist = SquareVectorDistance(ent.position(), dropsite.position());
 				if (dist < minDropsiteDist){
 					minDropsiteDist = dist;
-					nearestResources = dropsite.getMetadata(PlayerID, "linked-resources-" + resource);
+					nearestResources = baseManager.dropsites[dropsite.id()][resource][1];
 					nearestDropsite = dropsite;
 				}
 			}
 		});
-		this.unsatisfactoryResource = true;
-		//debug ("Nearest dropsite: " +nearestDropsite);
 	}
-	// If we still haven't found any fitting dropsite...
-	// Then we'll just pick any resource, and we'll check for the closest dropsite to that one
+
 	if (!nearestResources || nearestResources.length === 0){
+		if (resource === "food")
+			if (this.buildAnyField(gameState))
+				return;
+
+		if (this.unsatisfactoryResource == true)
+			return;	// we were already not satisfied, we're still not, change not.
+
+		if (gameState.ai.HQ.switchWorkerBase(gameState, this.ent, resource))
+			return;
+
 		//debug ("No fitting dropsite for " + resource + " found, iterating the map.");
 		nearestResources = gameState.getResourceSupplies(resource);
 		this.unsatisfactoryResource = true;
+		// TODO: should try setting up dropsites.
+	} else {
+		this.unsatisfactoryResource = false;
 	}
 	
 	if (nearestResources.length === 0){
@@ -193,10 +296,16 @@ Worker.prototype.startGathering = function(gameState){
 		{
 			if (this.buildAnyField(gameState))
 				return;
+			if (gameState.ai.HQ.switchWorkerBase(gameState, this.ent, resource))
+				return;
 			debug("No " + resource + " found! (1)");
 		}
 		else
+		{
+			if (gameState.ai.HQ.switchWorkerBase(gameState, this.ent, resource))
+				return;
 			debug("No " + resource + " found! (1)");
+		}
 		return;
 	}
 	//debug("Found " + nearestResources.length + "spots for " + resource);
@@ -213,7 +322,6 @@ Worker.prototype.startGathering = function(gameState){
 	// filter resources
 	// TODo: add a bonus for resources with a lot of resources left, perhaps, to spread gathering?
 	nearestResources.forEach(function(supply) { //}){
-
 		// sanity check, perhaps sheep could be garrisoned?
 		if (!supply.position()) {
 			//debug ("noposition");
@@ -224,28 +332,28 @@ Worker.prototype.startGathering = function(gameState){
 			//debug ("inaccessible");
 			return;
 		}
-									 
-		if (supply.isFull() === true || (supply.maxGatherers() - supply.resourceSupplyGatherers().length == 0) ||
-			(gameState.turnCache["ressGathererNB"] && gameState.turnCache["ressGathererNB"][supply.id()]
-				&& gameState.turnCache["ressGathererNB"][supply.id()] + supply.resourceSupplyGatherers().length >= supply.maxGatherers())) {
+
+		if (supply.isFull() === true
+			|| (gameState.turnCache["ressGathererNB"] && gameState.turnCache["ressGathererNB"][supply.id()]
+				&& gameState.turnCache["ressGathererNB"][supply.id()] + supply.resourceSupplyGatherers().length >= supply.maxGatherers))
 			return;
-		}
+
 							 
-		// Don't gather enemy farms
-		if (!supply.isOwn(PlayerID) && supply.owner() !== 0) {
+		// Don't gather enemy farms or farms from another base
+		if ((!supply.isOwn(PlayerID) && supply.owner() !== 0) || (supply.isOwn(PlayerID) && supply.getMetadata(PlayerID,"base") !== self.baseID)) {
 			//debug ("enemy");
 			return;
 		}
 		
 		// quickscope accessbility check.
-		if (!gameState.ai.accessibility.pathAvailable(gameState, ent.position(), supply.position(), true)) {
+		if (!gameState.ai.accessibility.pathAvailable(gameState, ent.position(), supply.position())) {
 			//debug ("nopath");
 			return;
 		}
 		// some simple check for chickens: if they're in a square that's inaccessible, we won't gather from them.
 		if (supply.footprintRadius() < 1)
 		{
-			var fakeMap = new Map(gameState,gameState.getMap().data);
+			var fakeMap = new Map(gameState.sharedScript,gameState.getMap().data);
 			var id = fakeMap.gamePosToMapPos(supply.position())[0] + fakeMap.width*fakeMap.gamePosToMapPos(supply.position())[1];
 			if ( (gameState.sharedScript.passabilityClasses["pathfinderObstruction"] & gameState.getMap().data[id]) )
 			{
@@ -268,12 +376,10 @@ Worker.prototype.startGathering = function(gameState){
 					
 		var territoryOwner = Map.createTerritoryMap(gameState).getOwner(supply.position());
 		if (territoryOwner != PlayerID && territoryOwner != 0) {
-			dist *= 3.0;
+			dist *= 5.0;
 			//return;
-		}
-		
-		// Go for treasure as a priority
-		if (dist < 40000 && supply.resourceSupplyType().generic == "treasure"){
+		} else if (dist < 40000 && supply.resourceSupplyType().generic == "treasure"){
+			// go for treasures if they're not in enemy territory
 			dist /= 1000;
 		}
 
@@ -282,7 +388,6 @@ Worker.prototype.startGathering = function(gameState){
 			nearestSupply = supply;
 		} 
 	});
-	
 	if (nearestSupply) {
 		var pos = nearestSupply.position();
 		
@@ -310,11 +415,11 @@ Worker.prototype.startGathering = function(gameState){
 		{
 			tried = this.buildAnyField(gameState);
 			if (!tried && SquareVectorDistance(pos,this.ent.position()) > 62500) {
+				// TODO: ought to change behavior here.
 				return; // wait. a farm should appear.
 			}
 		}
 		if (!tried) {
-			
 			if (!gameState.turnCache["ressGathererNB"])
 			{
 				gameState.turnCache["ressGathererNB"] = {};
@@ -324,41 +429,28 @@ Worker.prototype.startGathering = function(gameState){
 			else
 				gameState.turnCache["ressGathererNB"][nearestSupply.id()]++;
 			
-			this.maxApproachTime = Math.max(25000, VectorDistance(pos,this.ent.position()) * 1000);
+			this.maxApproachTime = Math.max(30000, VectorDistance(pos,this.ent.position()) * 5000);
+			this.startApproachingResourceAmount = ent.resourceSupplyAmount();
+			this.startEnt = ent.id();
 			ent.gather(nearestSupply);
 			ent.setMetadata(PlayerID, "target-foundation", undefined);
-
-			// check if the resource we've started gathering from is now full, in which case inform the dropsite.
-			if (gameState.turnCache["ressGathererNB"][nearestSupply.id()] + nearestSupply.resourceSupplyGatherers().length >= nearestSupply.maxGatherers()
-				&& nearestSupply.getMetadata(PlayerID, "linked-dropsite") != undefined)
-			{
-				var dropsite = gameState.getEntityById(nearestSupply.getMetadata(PlayerID, "linked-dropsite"));
-				if (dropsite == undefined || dropsite.getMetadata(PlayerID, "linked-resources-" + resource) === undefined)
-					return;
-				if (nearestSupply.getMetadata(PlayerID, "linked-dropsite-nearby") == true) {
-					dropsite.setMetadata(PlayerID, "resource-quantity-" + resource, +dropsite.getMetadata(PlayerID, "resource-quantity-" + resource) - (+nearestSupply.getMetadata(PlayerID, "dp-update-value")));
-					dropsite.getMetadata(PlayerID, "linked-resources-" + resource).updateEnt(nearestSupply);
-					dropsite.getMetadata(PlayerID, "nearby-resources-" + resource).updateEnt(nearestSupply);
-				} else {
-					dropsite.setMetadata(PlayerID, "resource-quantity-far-" + resource, +dropsite.getMetadata(PlayerID, "resource-quantity-" + resource) - (+nearestSupply.getMetadata(PlayerID, "dp-update-value")));
-					dropsite.getMetadata(PlayerID, "linked-resources-" + resource).updateEnt(nearestSupply);
-				}
-
-			}
-		
 		}
 	} else {
 		if (resource === "food" && this.buildAnyField(gameState))
 			return;
 
-		debug("No " + resource + " found! (2)");
+		if (gameState.ai.HQ.switchWorkerBase(gameState, this.ent, resource))
+			return;
+		
+		if (resource !== "food")
+			debug("No " + resource + " found! (2)");
 		// If we had a fitting closest dropsite with a lot of resources, mark it as not good. It means it's probably full. Then retry.
 		// it'll be resetted next time it's counted anyway.
 		if (nearestDropsite && nearestDropsite.getMetadata(PlayerID, "resource-quantity-" +resource)+nearestDropsite.getMetadata(PlayerID, "resource-quantity-far-" +resource) > 400)
 		{
 			nearestDropsite.setMetadata(PlayerID, "resource-quantity-" +resource, 0);
 			nearestDropsite.setMetadata(PlayerID, "resource-quantity-far-" +resource, 0);
-			this.startGathering(gameState);
+			this.startGathering(baseManager, gameState);
 		}
 	}
 };
@@ -397,10 +489,10 @@ Worker.prototype.returnResources = function(gameState){
 	return true;
 };
 
-Worker.prototype.startHunting = function(gameState){
+Worker.prototype.startHunting = function(gameState, baseManager){
 	var ent = this.ent;
 	
-	if (!ent.position() || ent.getMetadata(PlayerID, "stoppedHunting"))
+	if (!ent.position() || !baseManager.isHunting)
 		return;
 	
 	// So here we're doing it basic. We check what we can hunt, we hunt it. No fancies.
@@ -438,7 +530,7 @@ Worker.prototype.startHunting = function(gameState){
 		}
 		
 		// quickscope accessbility check
-		if (!gameState.ai.accessibility.pathAvailable(gameState, ent.position(), supply.position(), true))
+		if (!gameState.ai.accessibility.pathAvailable(gameState, ent.position(), supply.position(),false, true))
 			return;
 		
 		if (dist < nearestSupplyDist) {
@@ -464,20 +556,20 @@ Worker.prototype.startHunting = function(gameState){
 		});
 		if (!nearestDropsite)
 		{
-			ent.setMetadata(PlayerID, "stoppedHunting", true);
+			baseManager.isHunting = false;
 			ent.setMetadata(PlayerID, "role", undefined);
 			debug ("No dropsite for hunting food");
 			return;
 		}
-		if (minDropsiteDist > 45000) {
-			ent.setMetadata(PlayerID, "stoppedHunting", true);
+		if (minDropsiteDist > 35000) {
+			baseManager.isHunting = false;
 			ent.setMetadata(PlayerID, "role", undefined);
 		} else {
 			ent.gather(nearestSupply);
 			ent.setMetadata(PlayerID, "target-foundation", undefined);
 		}
 	} else {
-		ent.setMetadata(PlayerID, "stoppedHunting", true);
+		baseManager.isHunting = false;
 		ent.setMetadata(PlayerID, "role", undefined);
 		debug("No food found for hunting! (2)");
 	}
@@ -495,10 +587,32 @@ Worker.prototype.getResourceType = function(type){
 	}
 };
 
+Worker.prototype.getGatherRate = function(gameState) {
+	if (this.ent.getMetadata(PlayerID,"subrole") !== "gatherer")
+		return 0;
+	var rates = this.ent.resourceGatherRates();
+	
+	if (this.ent.unitAIOrderData().length && this.ent.unitAIState().split(".")[1] === "GATHER" && this.ent.unitAIOrderData()[0]["target"])
+	{
+		var ress = gameState.getEntityById(this.ent.unitAIOrderData()[0]["target"]);
+		if (!ress)
+			return 0;
+		var type = ress.resourceSupplyType();
+		if (type.generic == "treasure")
+			return 1000;
+		var tstring = type.generic + "." + type.specific;
+		//debug (+rates[tstring] + " for " + tstring + " for " + this.ent._templateName);
+		if (rates[tstring])
+			return rates[tstring];
+		return 0;
+	}
+	return 0;
+};
+
 Worker.prototype.buildAnyField = function(gameState){
 	var self = this;
 	var okay = false;
-	var foundations = gameState.getOwnFoundations();
+	var foundations = gameState.getOwnFoundations().filter(Filters.byMetadata(PlayerID,"base",this.baseID));
 	foundations.filterNearest(this.ent.position(), foundations.length);
 	foundations.forEach(function (found) {
 		if (found._template.BuildRestrictions.Category === "Field" && !okay) {
@@ -507,5 +621,18 @@ Worker.prototype.buildAnyField = function(gameState){
 			return;
 		}
 	});
+	if (!okay)
+	{
+		var foundations = gameState.getOwnFoundations();
+		foundations.filterNearest(this.ent.position(), foundations.length);
+		foundations.forEach(function (found) {
+			if (found._template.BuildRestrictions.Category === "Field" && !okay) {
+				self.ent.repair(found);
+				self.ent.setMetadata(PlayerID,"base", found.getMetadata(PlayerID,"base"));
+				okay = true;
+				return;
+			}
+		});
+	}
 	return okay;
 };

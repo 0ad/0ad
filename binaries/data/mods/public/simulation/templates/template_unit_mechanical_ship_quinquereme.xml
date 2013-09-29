@@ -23,7 +23,7 @@
   </Attack>
   <BuildingAI>
     <DefaultArrowCount>0</DefaultArrowCount>
-    <GarrisonArrowMultiplier>0.5</GarrisonArrowMultiplier>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
     <GarrisonArrowClasses>Catapult</GarrisonArrowClasses>
   </BuildingAI>
   <Cost>
@@ -51,7 +51,8 @@
   </Health>
   <Identity>
     <GenericName>Heavy Warship</GenericName>
-    <Tooltip>Heavy Warship. Garrison with siege catapults to increase fire power.</Tooltip>
+    <Tooltip>Classes: Heavy Warship.
+Garrison with siege catapults to increase fire power.</Tooltip>
     <Classes datatype="tokens">Warship</Classes>
 	<RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>

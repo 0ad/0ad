@@ -3,16 +3,22 @@ var baseConfig = {
 	"Military" : {
 		"fortressLapseTime" : 540, // Time to wait between building 2 fortresses
 		"defenceBuildingTime" : 600, // Time to wait before building towers or fortresses
-		"attackPlansStartTime" : 0	// time to wait before attacking. Start as soon as possible (first barracks)
+		"attackPlansStartTime" : 0,	// time to wait before attacking. Start as soon as possible (first barracks)
+		"techStartTime" : 120,	// time to wait before teching. Will only start after town phase so it's irrelevant.
+		"popForBarracks1" : 15,
+		"popForBarracks2" : 95,
+		"timeForBlacksmith" : 900,
 	},
 	"Economy" : {
 		"townPhase" : 180,	// time to start trying to reach town phase (might be a while after. Still need the requirements + ress )
-		"cityPhase" : 540,	// time to start trying to reach city phase
-		"farmsteadStartTime" : 400,	// Time to wait before building a farmstead.
+		"cityPhase" : 840000,	// time to start trying to reach city phase
+		"popForMarket" : 80,
+		"popForFarmstead" : 45,
 		"dockStartTime" : 240,	// Time to wait before building the dock
-		"techStartTime" : 600,	// time to wait before teching.
-		"targetNumBuilders" : 1.5, // Base number of builders per foundation. Later updated, but this remains a multiplier.
-		"femaleRatio" : 0.6 // percent of females among the workforce.
+		"techStartTime" : 0,	// time to wait before teching.
+		"targetNumBuilders" : 1.5, // Base number of builders per foundation.
+		"femaleRatio" : 0.4, // percent of females among the workforce.
+		"initialFields" : 2
 	},
 	
 	// Note: attack settings are set directly in attack_plan.js
@@ -49,19 +55,20 @@ var baseConfig = {
 
 	// qbot
 	"priorities" : {  // Note these are dynamic, you are only setting the initial values
-		"house" : 200,
-		"citizenSoldier" : 70,
-		"villager" : 55,
-		"economicBuilding" : 70,
+		"house" : 350,
+		"villager" : 40,
+		"citizenSoldier" : 60,
+		"ships" : 70,
+		"economicBuilding" : 90,
 		"dropsites" : 120,
-		"field" : 1000,
-		"militaryBuilding" : 90,
+		"field" : 500,
+		"militaryBuilding" : 110,
 		"defenceBuilding" : 70,
-		"majorTech" : 400,
-		"minorTech" : 40,
-		"civilCentre" : 10000	// will hog all resources
+		"majorTech" : 700,
+		"minorTech" : 50,
+		"civilCentre" : 400
 	},
-	"difficulty" : 2,	// for now 2 is "hard", ie default. 1 is normal, 0 is easy. 3 is very hard
+	"difficulty" : 2,	// 0 is sandbox, 1 is easy, 2 is medium, 3 is hard, 4 is very hard.
 	"debug" : false
 };
 
@@ -74,48 +81,33 @@ var Config = {
 		// changing settings based on difficulty.
 		if (Config.difficulty === 1)
 		{
-			Config["Military"] = {
-				"fortressLapseTime" : 900,
-				"defenceBuildingTime" : 720,
-				"attackPlansStartTime" : 1200
-			};
-			Config["Economy"] = {
-				"townPhase" : 360,
-				"cityPhase" : 900,
-				"farmsteadStartTime" : 600,
-				"dockStartTime" : 240,
-				"techStartTime" : 1320,
-				"targetNumBuilders" : 2,
-				"femaleRatio" : 0.5,
-				"targetNumWorkers" : 110	// should not make more than 2 barracks.
-			};
-			Config["Defence"] = {
-				"defenceRatio" : 4.0,
-				"armyCompactSize" : 700,
-				"armyBreakawaySize" : 900
-			};
-		} else if (Config.difficulty === 0)
+			Config.Military.defenceBuildingTime = 1200;
+			Config.Military.attackPlansStartTime = 960;
+			Config.Military.popForBarracks1 = 35;
+			Config.Military.popForBarracks2 = 150;	// shouldn't reach it
+			Config.Military.popForBlacksmith = 150;	// shouldn't reach it
+
+			Config.Economy.cityPhase = 1800;
+			Config.Economy.popForMarket = 80;
+			Config.Economy.techStartTime = 600;
+			Config.Economy.femaleRatio = 0.6;
+			Config.Economy.initialFields = 1;
+			// Config.Economy.targetNumWorkers will be set by AI scripts.
+		}
+		else if (Config.difficulty === 0)
 		{
-			Config["Military"] = {
-				"fortressLapseTime" : 1000000,	// never
-				"defenceBuildingTime" : 900,
-				"attackPlansStartTime" : 120000	// never
-			};
-			Config["Economy"] = {
-				"townPhase" : 480,
-				"cityPhase" : 1200,
-				"farmsteadStartTime" : 1200,
-				"dockStartTime" : 240,
-				"techStartTime" : 600000,	// never
-				"targetNumBuilders" : 1,
-				"femaleRatio" : 0.0,	// makes us slower, but also less sucky at defending so it's still fun to attack it.
-				"targetNumWorkers" : 70
-			};
-			Config["Defence"] = {
-				"defenceRatio" : 2.0,
-				"armyCompactSize" : 700,
-				"armyBreakawaySize" : 900
-			};
+			Config.Military.defenceBuildingTime = 450;
+			Config.Military.attackPlansStartTime = 9600000;	// never
+			Config.Military.popForBarracks1 = 60;
+			Config.Military.popForBarracks2 = 150;	// shouldn't reach it
+			Config.Military.popForBlacksmith = 150;	// shouldn't reach it
+
+			Config.Economy.cityPhase = 240000;
+			Config.Economy.popForMarket = 200;
+			Config.Economy.techStartTime = 1800;
+			Config.Economy.femaleRatio = 0.2;
+			Config.Economy.initialFields = 1;
+			// Config.Economy.targetNumWorkers will be set by AI scripts.
 		}
 	}
 };

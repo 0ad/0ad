@@ -1102,7 +1102,7 @@ void CInput::Draw()
 		float h = (float)font.GetHeight();
 		float ls = (float)font.GetLineSpacing();
 
-		CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+		CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 		
 		CTextRenderer textRenderer(tech->GetShader());
 		textRenderer.Font(font_name);

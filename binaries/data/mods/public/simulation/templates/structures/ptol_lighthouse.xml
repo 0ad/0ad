@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Territory>own ally neutral</Territory>
+    <PlacementType>shore</PlacementType>
+    <Category>Dock</Category>
+  </BuildRestrictions>
+  <Footprint>
+    <Square width="29.0" depth="34.0"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x6</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>ptol</Civ>
+    <GenericName>Lighthouse</GenericName>
+    <SpecificName>Pharos</SpecificName>
+    <Classes datatype="tokens">Lighthouse</Classes>
+    <Tooltip>Build along the shore to reveal the shorelines over the entire map (Not implemented). Very large vision range: 180 meters.</Tooltip>
+    <History>The Ptolemaic dynasty in Egypt built the magnificent Lighthouse of Alexandria near the harbor mouth of that Nile Delta city. This structure could be seen for many kilometers out to sea and was one of the Seven Wonders of the World.</History>
+    <Icon>structures/library_scroll.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="25.0" depth="30.0"/>
+  </Obstruction>
+  <Position>
+    <Floating>true</Floating>
+  </Position>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_temple.xml</select>
+      <constructed>interface/complete/building/complete_temple.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryDecay disable=""/>
+  <TerritoryInfluence>
+    <Radius>0</Radius>
+  </TerritoryInfluence>
+  <Vision>
+    <Range>180</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>structures/macedonians/library.xml</Actor>
+    <FoundationActor>structures/fndn_4x4_dock.xml</FoundationActor>
+  </VisualActor>
+</Entity>

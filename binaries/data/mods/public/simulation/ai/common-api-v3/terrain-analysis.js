@@ -12,12 +12,16 @@
  * But truly separating optimizes.
  */
 
-function TerrainAnalysis(sharedScript,rawState){
-	var self = this;
+function TerrainAnalysis() {
 	this.cellSize = 4;
+}
+
+copyPrototype(TerrainAnalysis, Map);
+
+TerrainAnalysis.prototype.init = function(sharedScript,rawState) {
+	var self = this;
 
 	var passabilityMap = rawState.passabilityMap;
-
 	this.width = passabilityMap.width;
 	this.height = passabilityMap.height;
 	
@@ -98,9 +102,10 @@ function TerrainAnalysis(sharedScript,rawState){
 	this.obstructionMaskLand = null;
 	this.obstructionMaskWater = null;
 	this.obstructionMask = null;
+	delete this.obstructionMaskLand;
+	delete this.obstructionMaskWater;
+	delete this.obstructionMask;
 };
-
-copyPrototype(TerrainAnalysis, Map);
 
 // Returns the (approximately) closest point which is passable by searching in a spiral pattern 
 TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, onLand, limitDistance, quickscope){
@@ -238,34 +243,102 @@ TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI) {
  * so this can use the land regions already.
 
  */
-function Accessibility(rawState, terrainAnalyser){
+function Accessibility() {
+	
+}
+
+copyPrototype(Accessibility, TerrainAnalysis);
+
+Accessibility.prototype.init = function(rawState, terrainAnalyser){
 	var self = this;
 	
 	this.Map(rawState, terrainAnalyser.map);
-	this.passMap = new Uint8Array(terrainAnalyser.length);
+	this.landPassMap = new Uint8Array(terrainAnalyser.length);
+	this.navalPassMap = new Uint8Array(terrainAnalyser.length);
 
 	this.regionSize = [];
-	this.regionSize.push(0);
+	this.regionType = []; // "inaccessible", "land" or "water";
+	// ID of the region associated with an array of region IDs.
+	this.regionLinks = [];
 	
 	// initialized to 0, it's more optimized to start at 1 (I'm checking that if it's not 0, then it's already aprt of a region, don't touch);
 	// However I actually store all unpassable as region 1 (because if I don't, on some maps the toal nb of region is over 256, and it crashes as the mapis 8bit.)
 	// So start at 2.
 	this.regionID = 2;
-	for (var i = 0; i < this.passMap.length; ++i) {
-		if (this.passMap[i] === 0 && this.map[i] !== 0) {	// any non-painted, non-inacessible area.
-			this.regionSize.push(0);	// updated
-			this.floodFill(i,this.regionID,false);
-			this.regionID++;
-		} else if (this.passMap[i] === 0) {	// any non-painted, inacessible area.
+	
+	for (var i = 0; i < this.landPassMap.length; ++i) {
+		if (this.map[i] !== 0) {	// any non-painted, non-inacessible area.
+			if (this.landPassMap[i] === 0 && this.floodFill(i,this.regionID,false))
+				this.regionType[this.regionID++] = "land";
+			if (this.navalPassMap[i] === 0 && this.floodFill(i,this.regionID,true))
+				this.regionType[this.regionID++] = "water";
+		} else if (this.landPassMap[i] === 0) {	// any non-painted, inacessible area.
 			this.floodFill(i,1,false);
+			this.floodFill(i,1,true);
 		}
 	}
-}
-copyPrototype(Accessibility, TerrainAnalysis);
+	
+	// calculating region links. Regions only touching diagonaly are not linked.
+	// since we're checking all of them, we'll check from the top left to the bottom right
+	var w = this.width;
+	for (var x = 0; x < this.width-1; ++x)
+	{
+		for (var y = 0; y < this.height-1; ++y)
+		{
+			// checking right.
+			var thisLID = this.landPassMap[x+y*w];
+			var thisNID = this.navalPassMap[x+y*w];
+			var rightLID = this.landPassMap[x+1+y*w];
+			var rightNID = this.navalPassMap[x+1+y*w];
+			var bottomLID = this.landPassMap[x+y*w+w];
+			var bottomNID = this.navalPassMap[x+y*w+w];
+			if (thisLID > 1)
+			{
+				if (rightNID > 1)
+					if (this.regionLinks[thisLID].indexOf(rightNID) === -1)
+						this.regionLinks[thisLID].push(rightNID);
+				if (bottomNID > 1)
+					if (this.regionLinks[thisLID].indexOf(bottomNID) === -1)
+						this.regionLinks[thisLID].push(bottomNID);
+			}
+			if (thisNID > 1)
+			{
+				if (rightLID > 1)
+					if (this.regionLinks[thisNID].indexOf(rightLID) === -1)
+						this.regionLinks[thisNID].push(rightLID);
+				if (bottomLID > 1)
+					if (this.regionLinks[thisNID].indexOf(bottomLID) === -1)
+						this.regionLinks[thisNID].push(bottomLID);
+				if (thisLID > 1)
+					if (this.regionLinks[thisNID].indexOf(thisLID) === -1)
+						this.regionLinks[thisNID].push(thisLID);
+			}
+		}
+	}
+	
+	//warn(uneval(this.regionLinks));
 
-Accessibility.prototype.getAccessValue = function(position){
+	//Engine.DumpImage("LandPassMap.png", this.landPassMap, this.width, this.height, 255);
+	//Engine.DumpImage("NavalPassMap.png", this.navalPassMap, this.width, this.height, 255);
+}
+
+Accessibility.prototype.getAccessValue = function(position, onWater) {
 	var gamePos = this.gamePosToMapPos(position);
-	return this.passMap[gamePos[0] + this.width*gamePos[1]];
+	if (onWater === true)
+		return this.navalPassMap[gamePos[0] + this.width*gamePos[1]];
+	var ret = this.landPassMap[gamePos[0] + this.width*gamePos[1]];
+	if (ret === 1)
+	{
+		// quick spiral search.
+		var indx = [ [-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1]]
+		for (i in indx)
+		{
+			ret = this.landPassMap[gamePos[0]+indx[0] + this.width*(gamePos[1]+indx[0])]
+			if (ret !== undefined && ret !== 1)
+				return ret;
+		}
+	}
+	return ret;
 };
 
 // Returns true if a point is deemed currently accessible (is not blocked by surrounding trees...)
@@ -283,49 +356,233 @@ Accessibility.prototype.isAccessible = function(gameState, position, onLand){
 // Return true if you can go from a point to a point without switching means of transport
 // Hardcore means is also checks for isAccessible at the end (it checks for either water or land though, beware).
 // This is a blind check and not a pathfinder: for all it knows there is a huge block of trees in the middle.
-Accessibility.prototype.pathAvailable = function(gameState, start,end, hardcore){
+Accessibility.prototype.pathAvailable = function(gameState, start, end, onWater, hardcore){
 	var pstart = this.gamePosToMapPos(start);
 	var istart = pstart[0] + pstart[1]*this.width;
 	var pend = this.gamePosToMapPos(end);
 	var iend = pend[0] + pend[1]*this.width;
-
-	if (this.passMap[istart] === this.passMap[iend]) {
-		if (hardcore && (this.isAccessible(gameState, end,true) || this.isAccessible(gameState, end,false)))
+	if (onWater)
+	{
+		if (this.navalPassMap[istart] === this.navalPassMap[iend]) {
+			if (hardcore && this.isAccessible(gameState, end,false))
+				return true;
+			else if (hardcore)
+				return false;
 			return true;
-		else if (hardcore)
-			return false;
-		return true;
+		}
+	} else {
+		if (this.landPassMap[istart] === this.landPassMap[iend]) {
+			if (hardcore && this.isAccessible(gameState, end,true))
+				return true;
+			else if (hardcore)
+				return false;
+			return true;
+		}
 	}
 	return false;
 };
-Accessibility.prototype.getRegionSize = function(position){
-	var pos = this.gamePosToMapPos(position);
-	var index = pos[0] + pos[1]*this.width;
-	if (this.regionSize[this.passMap[index]] === undefined)
-		return 0;
-	return this.regionSize[this.passMap[index]];
-};
-Accessibility.prototype.getRegionSizei = function(index) {
-	if (this.regionSize[this.passMap[index]] === undefined)
-		return 0;
-	return this.regionSize[this.passMap[index]];
+
+Accessibility.prototype.getTrajectTo = function(start, end, noBound) {
+	var pstart = this.gamePosToMapPos(start);
+	var istart = pstart[0] + pstart[1]*this.width;
+	var pend = this.gamePosToMapPos(end);
+	var iend = pend[0] + pend[1]*this.width;
+	
+	var onLand = true;
+	if (this.landPassMap[istart] <= 1 && this.navalPassMap[istart] > 1)
+		onLand = false;
+	if (this.landPassMap[istart] <= 1 && this.navalPassMap[istart] <= 1)
+		return false;
+	
+	var endRegion = this.landPassMap[iend];
+	if (endRegion <= 1 && this.navalPassMap[iend] > 1)
+		endRegion = this.navalPassMap[iend];
+	else if (endRegion <= 1)
+		return false;
+	
+	if (onLand)
+		var startRegion = this.landPassMap[istart];
+	else
+		var startRegion = this.navalPassMap[istart];
+
+	return this.getTrajectToIndex(startRegion, endRegion, noBound);
+}
+
+// Return a "path" of accessibility indexes from one point to another, including the start and the end indexes (unless specified otherwise)
+// this can tell you what sea zone you need to have a dock on, for example.
+// assumes a land unit unless start point is over deep water.
+// if the path is more complicated than "land->sea->land" (or "sea->land->sea"), it will run A* to try and figure it out
+// Thus it can handle arbitrarily complicated paths (theoretically).
+Accessibility.prototype.getTrajectToIndex = function(istart, iend, noBound){
+	var startRegion = istart;
+	var currentRegion = istart;
+	
+	var endRegion = iend;
+	
+	// optimizations to avoid needless memory usage
+	// if it's the same, return the path
+	if (startRegion === endRegion)
+		return [startRegion];
+	else if (this.regionLinks[startRegion].indexOf(endRegion) !== -1)
+		return [startRegion, endRegion];
+	else
+	{
+		var rgs = this.regionLinks[startRegion];
+		for (p in rgs)
+		{
+			if (this.regionLinks[rgs[p]].indexOf(endRegion) !== -1)
+				return [startRegion, rgs[p], endRegion];
+		}
+	}
+	// it appears to be difficult.
+	// computing A* over a graph with all nodes equally good (might want to change this sometimes), currently it returns the shortest path switch-wise.
+	this.openList = [];
+	this.parentSquare = new Uint8Array(this.regionSize.length);
+	this.isOpened = new Boolean(this.regionSize.length);
+	this.gCostArray = new Uint8Array(this.regionSize.length);
+
+	this.isOpened[currentRegion] = true;
+	this.openList.push(currentRegion);
+	this.gCostArray[currentRegion] = 0;
+	this.parentSquare[currentRegion] = currentRegion;
+
+	var w = this.width;
+	var h = this.height;
+	
+	//creation of variables used in the loop
+	var found = false;
+
+	// on to A*
+	while (found === false && this.openList.length !== 0) {
+		var currentDist = 300;
+		var ti = 0;
+		for (var i in this.openList)
+		{
+			var sum = this.gCostArray[this.openList[i]];
+			if (sum < currentDist)
+			{
+				ti = i;
+				currentRegion = this.openList[i];
+				currentDist = sum;
+			}
+		}
+		this.openList.splice(ti,1);
+		this.isOpened[currentRegion] = false;
+
+		// special case, might make it faster (usually oceans connect multiple land masses, sometimes all of them)
+		if (this.regionType[currentRegion] == "water" && endLand)
+		{
+			var idx = this.regionLinks[currentRegion].indexOf(endRegion);
+			if (idx !== -1)
+			{
+				this.parentSquare[endRegion] = currentRegion;
+				this.gCostArray[endRegion] = this.gCostArray[currentRegion] + 1;
+				found = true;
+				break;
+			}
+		}
+		for (var i in this.regionLinks[currentRegion])
+		{
+			var region = this.regionLinks[currentRegion][i];
+			if(this.isOpened[region] === undefined)
+			{
+				this.parentSquare[region] = currentRegion;
+				this.gCostArray[region] = this.gCostArray[currentRegion] + 1;
+				this.openList.push(region);
+				this.isOpened[region] = true;
+				if (region === endRegion)
+				{
+					found = true;
+					break;
+				}
+			} else {
+				if (this.gCostArray[region] > 1 + this.gCostArray[currentRegion])
+				{
+					this.parentSquare[region] = currentRegion;
+					this.gCostArray[region] = 1 + this.gCostArray[currentRegion];
+				}
+			}
+		}
+	}
+	var path = [];
+	if (found) {
+		currentRegion = endRegion;
+		if (!noBound)
+			path.push(currentRegion);
+		while (this.parentSquare[currentRegion] !== startRegion)
+		{
+			currentRegion = this.parentSquare[currentRegion];
+			path.push(currentRegion);
+		}
+		if (!noBound)
+			path.push(startRegion);
+	} else {
+		delete this.parentSquare;
+		delete this.isOpened;
+		delete this.gCostArray;
+		return false;
+	}
+	
+	delete this.parentSquare;
+	delete this.isOpened;
+	delete this.gCostArray;
+	
+	return path;
 };
 
-// Implementation of a fast flood fill. Reasonably good performances. Runs once at startup.
+Accessibility.prototype.getRegionSize = function(position, onWater){
+	var pos = this.gamePosToMapPos(position);
+	var index = pos[0] + pos[1]*this.width;
+	var ID = (onWater === true) ? this.navalPassMap[index] : this.landPassMap[index];
+	if (this.regionSize[ID] === undefined)
+		return 0;
+	return this.regionSize[ID];
+};
+
+Accessibility.prototype.getRegionSizei = function(index, onWater) {
+	if (this.regionSize[this.landPassMap[index]] === undefined && (!onWater || this.regionSize[this.navalPassMap[index]] === undefined))
+		return 0;
+	if (onWater && this.regionSize[this.navalPassMap[index]] > this.regionSize[this.landPassMap[index]])
+		return this.regionSize[this.navalPassMap[index]];
+	return this.regionSize[this.landPassMap[index]];
+};
+
+// Implementation of a fast flood fill. Reasonably good performances for JS.
 // TODO: take big zones of impassable trees into account?
 Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 {
 	this.s = startIndex;
-	if (this.passMap[this.s] !== 0) {
+	if ((!onWater && this.landPassMap[this.s] !== 0) || (onWater && this.navalPassMap[this.s] !== 0) ) {
 		return false;	// already painted.
 	}
 	
 	this.floodFor = "land";
-	if (this.map[this.s] === 200 || (this.map[this.s] === 201 && onWater === true))
+	if (this.map[this.s] === 0)
+	{
+		this.landPassMap[this.s] = 1;
+		this.navalPassMap[this.s] = 1;
+		return false;
+	}
+	if (onWater === true)
+	{
+		if (this.map[this.s] !== 200 && this.map[this.s] !== 201)
+		{
+			this.navalPassMap[this.s] = 1;	// impassable for naval
+			return false;	// do nothing
+		}
 		this.floodFor = "water";
-	else if (this.map[this.s] === 0)
-		this.floodFor = "impassable";
-
+	} else if (this.map[this.s] === 200) {
+		this.landPassMap[this.s] = 1;	// impassable for land
+		return false;
+	}
+	
+	// here we'll be able to start.
+	for (var i = this.regionSize.length; i <= value; ++i)
+	{
+		this.regionLinks.push([]);
+		this.regionSize.push(0);
+		this.regionType.push("inaccessible");
+	}
 	var w = this.width;
 	var h = this.height;
 		
@@ -347,11 +604,9 @@ Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 			var index = +newIndex + w*y;
 			if (index < 0)
 				break;
-			if (this.floodFor === "impassable" && this.map[index] === 0 && this.passMap[index] === 0) {
+			if (this.floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200) {
 				loop = true;
-			} else if (this.floodFor === "land" && this.passMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200) {
-				loop = true;
-			} else if (this.floodFor === "water" && this.passMap[index] === 0 && (this.map[index] === 200 || (this.map[index] === 201 && this.onWater)) ) {
+			} else if (this.floodFor === "water" && this.navalPassMap[index] === 0 && (this.map[index] === 200 || this.map[index] === 201)) {
 				loop = true;
 			} else {
 				break;
@@ -363,14 +618,12 @@ Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		loop = true;
 		do {
 			var index = +newIndex + w*y;
-			if (this.floodFor === "impassable" && this.map[index] === 0 && this.passMap[index] === 0) {
-				this.passMap[index] = value;
+			
+			if (this.floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200) {
+				this.landPassMap[index] = value;
 				this.regionSize[value]++;
-			} else if (this.floodFor === "land" && this.passMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200) {
-				this.passMap[index] = value;
-				this.regionSize[value]++;
-			} else if (this.floodFor === "water" && this.passMap[index] === 0 && (this.map[index] === 200 || (this.map[index] === 201 && this.onWater)) ) {
-				this.passMap[index] = value;
+			} else if (this.floodFor === "water" && this.navalPassMap[index] === 0 && (this.map[index] === 200 || this.map[index] === 201)) {
+				this.navalPassMap[index] = value;
 				this.regionSize[value]++;
 			} else {
 				break;
@@ -378,17 +631,12 @@ Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 			
 			if (index%w > 0)
 			{
-				if (this.floodFor === "impassable" && this.map[index -1] === 0 && this.passMap[index -1] === 0) {
+				if (this.floodFor === "land" && this.landPassMap[index -1] === 0 && this.map[index -1] !== 0 && this.map[index -1] !== 200) {
 					if(!reachLeft) {
 						IndexArray.push(index -1);
 						reachLeft = true;
 					}
-				} else if (this.floodFor === "land" && this.passMap[index -1] === 0 && this.map[index -1] !== 0 && this.map[index -1] !== 200) {
-					if(!reachLeft) {
-						IndexArray.push(index -1);
-						reachLeft = true;
-					}
-				} else if (this.floodFor === "water" && this.passMap[index -1] === 0 && (this.map[index -1] === 200 || (this.map[index -1] === 201 && this.onWater)) ) {
+				} else if (this.floodFor === "water" && this.navalPassMap[index -1] === 0 && (this.map[index -1] === 200 || this.map[index -1] === 201)) {
 					if(!reachLeft) {
 						IndexArray.push(index -1);
 						reachLeft = true;
@@ -399,17 +647,12 @@ Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 			}
 			if (index%w < w - 1)
 			{
-				if (this.floodFor === "impassable" && this.map[index +1] === 0 && this.passMap[index +1] === 0) {
+				if (this.floodFor === "land" && this.landPassMap[index +1] === 0 && this.map[index +1] !== 0 && this.map[index +1] !== 200) {
 					if(!reachRight) {
 						IndexArray.push(index +1);
 						reachRight = true;
 					}
-				} else if (this.floodFor === "land" && this.passMap[index +1] === 0 && this.map[index +1] !== 0 && this.map[index +1] !== 200) {
-					if(!reachRight) {
-						IndexArray.push(index +1);
-						reachRight = true;
-					}
-				} else if (this.floodFor === "water" && this.passMap[index +1] === 0 && (this.map[index +1] === 200 || (this.map[index +1] === 201 && this.onWater)) ) {
+				} else if (this.floodFor === "water" && this.navalPassMap[index +1] === 0 && (this.map[index +1] === 200 || this.map[index +1] === 201)) {
 					if(!reachRight) {
 						IndexArray.push(index +1);
 						reachRight = true;
@@ -419,157 +662,81 @@ Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 				}
 			}
 			++y;
-		} while (index/w < w)	// should actually break
+		} while (index/w < w-1)	// should actually break
 	}
 	return true;
 }
 
-function landSizeCounter(rawState,terrainAnalyzer) {
-	var self = this;
+// TODO: make it regularly update stone+metal mines and their resource levels.
+// creates and maintains a map of unused resource density
+// this also takes dropsites into account.
+// resources that are "part" of a dropsite are not counted.
+SharedScript.prototype.updateResourceMaps = function(sharedScript, events) {
 	
-	this.passMap = terrainAnalyzer.map;
-
-	var map = new Uint8Array(this.passMap.length);
-	this.Map(rawState,map);
-
-	
-	for (var i = 0; i < this.passMap.length; ++i) {
-		if (this.passMap[i] !== 0)
-			this.map[i] = 255;
-		else
-			this.map[i] = 0;
-	}
-	
-	this.expandInfluences();
-}
-copyPrototype(landSizeCounter, TerrainAnalysis);
-
-// Implementation of A* as a flood fill. Possibility of (clever) oversampling
-// for efficiency or for disregarding too small passages.
-// can operate over several turns, though default is only one turn.
-landSizeCounter.prototype.getAccessibleLandSize = function(position, sampling, mode, OnlyBuildable, sizeLimit, iterationLimit)
-{
-	if (sampling === undefined)
-		this.Sampling = 1;
-	else
-		this.Sampling = sampling < 1 ? 1 : sampling;
-	
-	// this checks from the actual starting point. If that is inaccessible (0), it returns undefined;
-	if (position.length !== undefined) {
-		// this is an array
-		if (position[0] < 0 || this.gamePosToMapPos(position)[0] >= this.width || position[1] < 0 || this.gamePosToMapPos(position)[1] >= this.height)
-			return undefined;
-		
-		var s = this.gamePosToMapPos(position);
-		this.s = s[0] + w*s[1];
-		if (this.map[this.s] === 0 || this.map[this.s] === 200 || (OnlyBuildable === true && this.map[this.s] === 201) ) {
-			return undefined;
-		}
-	} else {
-		this.s = position;
-		if (this.map[this.s] === 0 || this.map[this.s] === 200 || (OnlyBuildable === true && this.map[this.s] === 201) ) {
-			return undefined;
+	for (var resource in this.decreaseFactor){
+		// if there is no resourceMap create one with an influence for everything with that resource
+		if (! this.resourceMaps[resource]){
+			// We're creting them 8-bit. Things could go above 255 if there are really tons of resources
+			// But at that point the precision is not really important anyway. And it saves memory.
+			this.resourceMaps[resource] = new Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
+			this.resourceMaps[resource].setMaxVal(255);
+			this.CCResourceMaps[resource] = new Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
+			this.CCResourceMaps[resource].setMaxVal(255);
 		}
 	}
-		
-	if (mode === undefined)
-		this.mode = "default";
-	else
-		this.mode = mode;
-
-	if (sizeLimit === undefined)
-		this.sizeLimit = 300000;
-	else
-		this.sizeLimit = sizeLimit;
-
-	var w = this.width;
-	var h = this.height;
 	
-	// max map size is 512*512, this is higher.
-	this.iterationLimit = 300000;
-	if (iterationLimit !== undefined)
-		this.iterationLimit = iterationLimit;
-	
-	this.openList = [];
-	this.isOpened = new Boolean(this.map.length);
-	this.gCostArray = new Uint16Array(this.map.length);
-
-	this.currentSquare = this.s;
-	this.isOpened[this.s] = true;
-	this.openList.push(this.s);
-	this.gCostArray[this.s] = 0;
-	
-	this.countedValue = 1;
-	this.countedArray = [this.s];
-	
-	if (OnlyBuildable !== undefined)
-		this.onlyBuildable = OnlyBuildable;
-	else
-		this.onlyBuildable = true;
-	
-	return this.continueLandSizeCalculation();
-}
-landSizeCounter.prototype.continueLandSizeCalculation = function()
-{
-	var w = this.width;
-	var h = this.height;
-	var positions = [[0,1], [0,-1], [1,0], [-1,0], [1,1], [-1,-1], [1,-1], [-1,1]];
-	var cost = [10,10,10,10,15,15,15,15];
-	
-	//creation of variables used in the loop
-	var nouveau = false;
-	var shortcut = false;
-	var Sampling = this.Sampling;
-	var infinity = Math.min();
-	var currentDist = infinity;
-	
-	var iteration = 0;
-	while (this.openList.length !== 0 && iteration < this.iterationLimit && this.countedValue < this.sizeLimit && this.countedArray.length < this.sizeLimit){
-		currentDist = infinity;
-		for (var i in this.openList)
-		{
-			var sum = this.gCostArray[this.openList[i]];
-			if (sum < currentDist)
-			{
-				this.currentSquare = this.openList[i];
-				currentDist = sum;
+	// Look for destroy events and subtract the entities original influence from the resourceMap
+	// TODO: perhaps do something when dropsites appear/disappear.
+	for (var key in events) {
+		var e = events[key];
+		if (e.type === "Destroy") {
+			if (e.msg.entityObj){
+				var ent = e.msg.entityObj;
+				if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
+					var resource = ent.resourceSupplyType().generic;
+					var x = Math.floor(ent.position()[0] / 4);
+					var z = Math.floor(ent.position()[1] / 4);
+					var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
+					
+					if (resource === "wood" || resource === "food")
+					{
+						this.resourceMaps[resource].addInfluence(x, z, 2, 5,'constant');
+						this.resourceMaps[resource].addInfluence(x, z, 9.0, -strength,'constant');
+						this.CCResourceMaps[resource].addInfluence(x, z, 15, -strength/2.0,'constant');
+					}
+					else if (resource === "stone" || resource === "metal")
+					{
+						this.resourceMaps[resource].addInfluence(x, z, 8, 50);
+						this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/1.5);
+						this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/2.0,'constant');
+						this.CCResourceMaps[resource].addInfluence(x, z, 30, -strength,'constant');
+					}
+				}
 			}
-		}
-		this.openList.splice(this.openList.indexOf(this.currentSquare),1);
-
-		shortcut = false;
-		this.isOpened[this.currentSquare] = false;
-		for (var i in positions) {
-			var index = 0 + this.currentSquare + positions[i][0]*Sampling + w*Sampling*positions[i][1];
-			if (this.passMap[index] !== 0 && this.passMap[index] !== 200 && this.map[index] >= Sampling && (!this.onlyBuildable || this.passMap[index] !== 201)) {
-				if(this.isOpened[index] === undefined) {
-					if (this.mode === "default")
-						this.countedValue++;
-					else if (this.mode === "array")
-						this.countedArray.push(index);
-					this.gCostArray[index] = this.gCostArray[this.currentSquare] + cost[i] * Sampling;
-					this.openList.push(index);
-					this.isOpened[index] = true;
+		} else if (e.type === "Create") {
+			if (e.msg.entity){
+				var ent = sharedScript._entities[e.msg.entity];
+				if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure"){
+					var resource = ent.resourceSupplyType().generic;
+					
+					var x = Math.floor(ent.position()[0] / 4);
+					var z = Math.floor(ent.position()[1] / 4);
+					var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
+					if (resource === "wood" || resource === "food")
+					{
+						this.CCResourceMaps[resource].addInfluence(x, z, 15, strength/2.0,'constant');
+						this.resourceMaps[resource].addInfluence(x, z, 9.0, strength,'constant');
+						this.resourceMaps[resource].addInfluence(x, z, 2, -5,'constant');
+					}
+					else if (resource === "stone" || resource === "metal")
+					{
+						this.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
+						this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);
+						this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/2.0,'constant');
+						this.resourceMaps[resource].addInfluence(x, z, 8, -50);
+					}
 				}
 			}
 		}
-		iteration++;
 	}
-	
-	if (iteration === this.iterationLimit && this.openList.length !== 0 && this.countedValue !== this.sizeLimit && this.countedArray.length !== this.sizeLimit)
-	{
-		// we've got to assume that we stopped because we reached the upper limit of iterations
-		return "toBeContinued";
-	}
-		
-	delete this.parentSquare;
-	delete this.isOpened;
-	delete this.fCostArray;
-	delete this.gCostArray;
-	
-	if (this.mode === "default")
-		return this.countedValue;
-	else if (this.mode === "array")
-		return this.countedArray;
-	return undefined;
-}
+};

@@ -19,14 +19,21 @@
 
 #include "ThreadUtil.h"
 
+static bool g_MainThreadSet;
 static pthread_t g_MainThread;
 
 bool ThreadUtil::IsMainThread()
 {
+	// If SetMainThread hasn't been called yet, this is probably being
+	// called at static initialisation time, so it must be the main thread
+	if (!g_MainThreadSet)
+		return true;
+
 	return pthread_equal(pthread_self(), g_MainThread) ? true : false;
 }
 
 void ThreadUtil::SetMainThread()
 {
 	g_MainThread = pthread_self();
+	g_MainThreadSet = true;
 }

@@ -138,9 +138,9 @@ OverlayRendererInternals::OverlayRendererInternals()
 	// is because their code is almost identical; the only difference is that for the quad overlays
 	// we want to use a vertex color stream as opposed to an objectColor uniform. To this end, the
 	// shader has been set up to switch between the two behaviours based on the USE_OBJECTCOLOR define.
-	defsOverlayLineNormal.Add("USE_OBJECTCOLOR", "1");
-	defsOverlayLineAlwaysVisible.Add("USE_OBJECTCOLOR", "1");
-	defsOverlayLineAlwaysVisible.Add("IGNORE_LOS", "1");
+	defsOverlayLineNormal.Add(str_USE_OBJECTCOLOR, str_1);
+	defsOverlayLineAlwaysVisible.Add(str_USE_OBJECTCOLOR, str_1);
+	defsOverlayLineAlwaysVisible.Add(str_IGNORE_LOS, str_1);
 }
 
 void OverlayRendererInternals::Initialize()
@@ -418,8 +418,8 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 	if (shaderTexLineNormal)
 	{
 		shaderTexLineNormal->Bind();
-		shaderTexLineNormal->BindTexture("losTex", los.GetTexture());
-		shaderTexLineNormal->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+		shaderTexLineNormal->BindTexture(str_losTex, los.GetTexture());
+		shaderTexLineNormal->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
 		// batch render only the non-always-visible overlay lines using the normal shader
 		RenderTexturedOverlayLines(shaderTexLineNormal, false);
@@ -433,8 +433,8 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 	{
 		shaderTexLineAlwaysVisible->Bind();
 		// TODO: losTex and losTransform are unused in the always visible shader; see if these can be safely omitted
-		shaderTexLineAlwaysVisible->BindTexture("losTex", los.GetTexture());
-		shaderTexLineAlwaysVisible->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+		shaderTexLineAlwaysVisible->BindTexture(str_losTex, los.GetTexture());
+		shaderTexLineAlwaysVisible->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
 		// batch render only the always-visible overlay lines using the LoS-ignored shader
 		RenderTexturedOverlayLines(shaderTexLineAlwaysVisible, true);
@@ -496,8 +496,8 @@ void OverlayRenderer::RenderQuadOverlays()
 	if (shader)
 	{
 		shader->Bind();
-		shader->BindTexture("losTex", los.GetTexture());
-		shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+		shader->BindTexture(str_losTex, los.GetTexture());
+		shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
 		// Base offsets (in bytes) of the two backing stores relative to their owner VBO
 		u8* indexBase = m->quadIndices.Bind();
@@ -516,8 +516,8 @@ void OverlayRenderer::RenderQuadOverlays()
 
 			const QuadBatchKey& maskPair = it->first;
 
-			shader->BindTexture("baseTex", maskPair.m_Texture->GetHandle());
-			shader->BindTexture("maskTex", maskPair.m_TextureMask->GetHandle());
+			shader->BindTexture(str_baseTex, maskPair.m_Texture->GetHandle());
+			shader->BindTexture(str_maskTex, maskPair.m_TextureMask->GetHandle());
 
 			int streamflags = shader->GetStreamFlags();
 
@@ -579,7 +579,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 	{
-		tech = g_Renderer.GetShaderManager().LoadEffect("foreground_overlay");
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_foreground_overlay);
 		tech->BeginPass();
 		shader = tech->GetShader();
 	}
@@ -596,7 +596,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 		SOverlaySprite* sprite = m->sprites[i];
 		
 		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
-			shader->BindTexture("baseTex", sprite->m_Texture);
+			shader->BindTexture(str_baseTex, sprite->m_Texture);
 		else
 			sprite->m_Texture->Bind();
 

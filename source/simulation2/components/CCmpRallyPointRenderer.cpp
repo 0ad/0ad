@@ -293,6 +293,12 @@ public:
 		}
 	}
 
+	virtual void Reset()
+	{
+		m_RallyPoints.clear();
+		RecomputeAllRallyPointPaths();
+	}
+
 private:
 
 	/**

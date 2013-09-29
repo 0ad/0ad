@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_pikeman">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/ptol_military_settlement
+      structures/ptol_lighthouse
+      structures/ptol_library
+      structures/ptol_wonder
+    </Entities>
+  </Builder>
+  <Identity>
+    <Civ>ptol</Civ>
+    <SelectionGroupName>units/ptol_infantry_spearman_b</SelectionGroupName>
+	<GenericName>Egyptian Pikeman</GenericName>
+    <SpecificName>Makhimos Phalangites</SpecificName>
+    <History>When pressed hard by the fellow successor states, the Ptolemies of Egypt began to arm and train the Egyptian people in "Macedonian fashion." These levies of indigenous Egyptians were crucial in turning back the Seleucid tide at the Battle of Raphia, cementing nationalist pride and threatening the rule of the Ptolemies over their own kingdom.</History>
+    <Icon>units/hele_champion_infantry_mace.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/ptol_infantry_spearman_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/macedonians/infantry_spearman_b.xml</Actor>
+  </VisualActor>
+</Entity>

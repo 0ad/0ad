@@ -41,6 +41,7 @@
 #include "ps/ProfileViewer.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/SavedGame.h"
+#include "ps/scripting/JSInterface_ConfigDB.h"
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/UserReport.h"
 #include "ps/GameSetup/Atlas.h"
@@ -656,6 +657,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_GameView::RegisterScriptFunctions(scriptInterface);
 	JSI_Renderer::RegisterScriptFunctions(scriptInterface);
 	JSI_Console::RegisterScriptFunctions(scriptInterface);
+	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
 
 	// GUI manager functions:
 	scriptInterface.RegisterFunction<CScriptVal, &GetActiveGui>("GetActiveGui");

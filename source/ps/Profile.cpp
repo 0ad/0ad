@@ -25,8 +25,8 @@
 #include "ProfileViewer.h"
 #include "lib/timer.h"
 
-#if OS_WIN
-#include "lib/sysdep/os/win/wdbg_heap.h"
+#if OS_WIN && !defined(NDEBUG)
+# define USE_CRT_SET_ALLOC_HOOK
 #endif
 
 #if defined(__GLIBC__) && !defined(NDEBUG)
@@ -428,14 +428,31 @@ void CProfileNode::Turn()
 }
 
 // TODO: these should probably only count allocations that occur in the thread being profiled
-#if OS_WIN
+#if defined(USE_CRT_SET_ALLOC_HOOK)
+
+static long malloc_count = 0;
+static _CRT_ALLOC_HOOK prev_hook;
+
+static int crt_alloc_hook(int allocType, void* userData, size_t size, int blockType,
+	long requestNumber, const unsigned char* filename, int lineNumber)
+{
+	if (allocType == _HOOK_ALLOC && ThreadUtil::IsMainThread())
+		++malloc_count;
+
+	if (prev_hook)
+		return prev_hook(allocType, userData, size, blockType, requestNumber, filename, lineNumber);
+	else
+		return 1;
+}
 
 static void alloc_hook_initialize()
 {
+	prev_hook = _CrtSetAllocHook(crt_alloc_hook);
 }
+
 static long get_memory_alloc_count()
 {
-	return (long)wdbg_heap_NumberOfAllocations();
+	return malloc_count;
 }
 
 #elif defined(USE_GLIBC_MALLOC_HOOK)

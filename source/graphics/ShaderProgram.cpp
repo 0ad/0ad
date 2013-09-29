@@ -157,7 +157,7 @@ public:
 
 	virtual Binding GetTextureBinding(texture_id_t id)
 	{
-		frag_index_pair_t fPair = GetUniformFragmentIndex(CStrIntern(id));
+		frag_index_pair_t fPair = GetUniformFragmentIndex(id);
 		int index = fPair.first;
 		if (index == -1)
 			return Binding();
@@ -167,7 +167,7 @@ public:
 
 	virtual void BindTexture(texture_id_t id, Handle tex)
 	{
-		frag_index_pair_t fPair = GetUniformFragmentIndex(CStrIntern(id));
+		frag_index_pair_t fPair = GetUniformFragmentIndex(id);
 		int index = fPair.first;
 		if (index != -1)
 		{
@@ -180,7 +180,7 @@ public:
 
 	virtual void BindTexture(texture_id_t id, GLuint tex)
 	{
-		frag_index_pair_t fPair = GetUniformFragmentIndex(CStrIntern(id));
+		frag_index_pair_t fPair = GetUniformFragmentIndex(id);
 		int index = fPair.first;
 		if (index != -1)
 		{
@@ -197,12 +197,6 @@ public:
 	}
 
 	virtual Binding GetUniformBinding(uniform_id_t id)
-	{
-		CStrIntern idIntern(id);
-		return Binding(GetUniformVertexIndex(idIntern), GetUniformFragmentIndex(idIntern).first);
-	}
-
-	virtual Binding GetUniformBinding(CStrIntern id)
 	{
 		return Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id).first);
 	}
@@ -547,15 +541,6 @@ public:
 
 	virtual Binding GetUniformBinding(uniform_id_t id)
 	{
-		std::map<CStrIntern, std::pair<int, GLenum> >::iterator it = m_Uniforms.find(CStrIntern(id));
-		if (it == m_Uniforms.end())
-			return Binding();
-		else
-			return Binding(it->second.first, (int)it->second.second);
-	}
-
-	virtual Binding GetUniformBinding(CStrIntern id)
-	{
 		std::map<CStrIntern, std::pair<int, GLenum> >::iterator it = m_Uniforms.find(id);
 		if (it == m_Uniforms.end())
 			return Binding();
@@ -629,18 +614,18 @@ public:
 		m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
 	}
 
-	virtual void VertexAttribPointer(const char* id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, void* pointer)
+	virtual void VertexAttribPointer(attrib_id_t id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, void* pointer)
 	{
-		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(CStrIntern(id));
+		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
 		if (it != m_VertexAttribs.end())
 		{
 			pglVertexAttribPointerARB(it->second, size, type, normalized, stride, pointer);
 		}
 	}
 
-	virtual void VertexAttribIPointer(const char* id, GLint size, GLenum type, GLsizei stride, void* pointer)
+	virtual void VertexAttribIPointer(attrib_id_t id, GLint size, GLenum type, GLsizei stride, void* pointer)
 	{
-		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(CStrIntern(id));
+		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
 		if (it != m_VertexAttribs.end())
 		{
 #if CONFIG2_GLES
@@ -784,13 +769,13 @@ void CShaderProgram::Uniform(uniform_id_t id, size_t count, const CMatrix3D* v)
 // These should all be overridden by CShaderProgramGLSL, and not used
 // if a non-GLSL shader was loaded instead:
 
-void CShaderProgram::VertexAttribPointer(const char* UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
+void CShaderProgram::VertexAttribPointer(attrib_id_t UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
 	GLboolean UNUSED(normalized), GLsizei UNUSED(stride), void* UNUSED(pointer))
 {
 	debug_warn("Shader type doesn't support VertexAttribPointer");
 }
 
-void CShaderProgram::VertexAttribIPointer(const char* UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
+void CShaderProgram::VertexAttribIPointer(attrib_id_t UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
 	GLsizei UNUSED(stride), void* UNUSED(pointer))
 {
 	debug_warn("Shader type doesn't support VertexAttribIPointer");

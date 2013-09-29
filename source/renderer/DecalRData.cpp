@@ -74,7 +74,7 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 			       ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
 {
 	CShaderDefines contextDecal = context;
-	contextDecal.Add("DECAL", "1");
+	contextDecal.Add(str_DECAL, str_1);
 
 	for (size_t i = 0; i < decals.size(); ++i)
 	{
@@ -94,7 +94,7 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 		if (!isDummyShader)
 		{
 			techBase = g_Renderer.GetShaderManager().LoadEffect(
-				material.GetShaderEffect(), contextDecal, material.GetShaderDefines());
+				material.GetShaderEffect(), contextDecal, material.GetShaderDefines(0));
 			
 			if (!techBase)
 			{
@@ -121,13 +121,13 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 				
 			if (material.GetSamplers().size() != 0)
 			{
-				CMaterial::SamplersVector samplers = material.GetSamplers();
+				const CMaterial::SamplersVector& samplers = material.GetSamplers();
 				size_t samplersNum = samplers.size();
 				
 				for (size_t s = 0; s < samplersNum; ++s)
 				{
-					CMaterial::TextureSampler &samp = samplers[s];
-					shader->BindTexture(samp.Name.c_str(), samp.Sampler);
+					const CMaterial::TextureSampler& samp = samplers[s];
+					shader->BindTexture(samp.Name, samp.Sampler);
 				}
 				
 				material.GetStaticUniforms().BindUniforms(shader);
@@ -157,7 +157,7 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 #endif
 				{
 					
-					shader->Uniform("shadingColor", decal->m_Decal->GetShadingColor());
+					shader->Uniform(str_shadingColor, decal->m_Decal->GetShadingColor());
 				}
 
 				shader->VertexPointer(3, GL_FLOAT, stride, base + decal->m_Position.offset);

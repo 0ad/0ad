@@ -41,6 +41,15 @@ var Filters = {
 		}, 
 		"dynamicProperties": ['metadata.' + key]};
 	},
+
+	// can be used for stuffs which won't change once entities are created.
+	byStaticMetadata: function(player, key, value){
+		return {"func" : function(ent){
+			return (ent.getMetadata(player, key) == value);
+		},
+			"dynamicProperties": []};
+	},
+	
 	byHasMetadata: function(player, key){
 		return {"func" : function(ent){
 			return (ent.getMetadata(player, key) != undefined);
@@ -97,7 +106,7 @@ var Filters = {
 
 	byCanGarrison: function(){
 		return {"func" : function(ent){
-			return ent.garrisonMax();
+			return ent.garrisonMax() > 0;
 		},
 			"dynamicProperties": []};
 	},
@@ -123,6 +132,13 @@ var Filters = {
 	byCanAttack: function(saidClass){
 		return {"func" : function(ent){
 			return ent.canAttackClass(saidClass);
+		},
+			"dynamicProperties": []};
+	},
+	
+	isGarrisoned: function(){
+		return {"func" : function(ent){
+			return ent.position() == -1;	// assumes garrisoned
 		},
 			"dynamicProperties": []};
 	},
@@ -184,7 +200,7 @@ var Filters = {
 
 	isDropsite: function(resourceType){
 		return {"func": function(ent){
-			return (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf(resourceType) !== -1);
+			return (ent.resourceDropsiteTypes() && (resourceType === undefined || ent.resourceDropsiteTypes().indexOf(resourceType) !== -1));
 		},
 		"dynamicProperties": []};
 	},
@@ -203,7 +219,7 @@ var Filters = {
 				return false;
 			
 			// And don't go for the bloody fish! TODO: better accessibility checks 
-			if (ent.hasClass("SeaCreature")){
+			if (ent.hasClass("SeaCreature")) {
 				return false;
 			}
 			

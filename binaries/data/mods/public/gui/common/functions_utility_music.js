@@ -118,7 +118,7 @@ function crossFade (outHandle, inHandle, fadeDuration)
 	if (inHandle)
 	{
 		inHandle.play();
-		fadeIn(inHandle, g_ConfigDB.system["sound.mastergain"], fadeDuration);
+		fadeIn(inHandle, Engine.ConfigDB_GetValue("user", "sound.mastergain"), fadeDuration);
 	}
 
 	return true;

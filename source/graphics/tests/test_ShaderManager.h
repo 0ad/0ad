@@ -33,7 +33,7 @@ public:
 		TS_ASSERT(defines1.GetHash() == defines2.GetHash());
 		TS_ASSERT(!(defines1 < defines2 || defines2 < defines1));
 
-		defines1.Add("FOO", "1");
+		defines1.Add(CStrIntern("FOO"), CStrIntern("1"));
 
 		TS_ASSERT_EQUALS(defines1.GetInt("FOO"), 1);
 		TS_ASSERT_EQUALS(defines2.GetInt("FOO"), 0);
@@ -42,7 +42,7 @@ public:
 		TS_ASSERT(!(defines1.GetHash() == defines2.GetHash()));
 		TS_ASSERT(defines1 < defines2 || defines2 < defines1);
 
-		defines2.Add("FOO", "2");
+		defines2.Add(CStrIntern("FOO"), CStrIntern("2"));
 		
 		TS_ASSERT_EQUALS(defines1.GetInt("FOO"), 1);
 		TS_ASSERT_EQUALS(defines2.GetInt("FOO"), 2);
@@ -51,7 +51,7 @@ public:
 		TS_ASSERT(!(defines1.GetHash() == defines2.GetHash()));
 
 		defines3 = defines2;
-		defines2.Add("FOO", "1"); // override old value
+		defines2.Add(CStrIntern("FOO"), CStrIntern("1")); // override old value
 
 		TS_ASSERT_EQUALS(defines1.GetInt("FOO"), 1);
 		TS_ASSERT_EQUALS(defines2.GetInt("FOO"), 1);
@@ -64,20 +64,20 @@ public:
 	void test_defines_order()
 	{
 		CShaderDefines defines1;
-		defines1.Add("A", "1");
-		defines1.Add("B", "1");
-		defines1.Add("C", "1");
-		defines1.Add("D", "1");
+		defines1.Add(CStrIntern("A"), CStrIntern("1"));
+		defines1.Add(CStrIntern("B"), CStrIntern("1"));
+		defines1.Add(CStrIntern("C"), CStrIntern("1"));
+		defines1.Add(CStrIntern("D"), CStrIntern("1"));
 
 		CShaderDefines defines2;
-		defines2.Add("C", "2");
-		defines2.Add("C", "1");
-		defines2.Add("B", "2");
-		defines2.Add("B", "1");
-		defines2.Add("D", "2");
-		defines2.Add("D", "1");
-		defines2.Add("A", "2");
-		defines2.Add("A", "1");
+		defines2.Add(CStrIntern("C"), CStrIntern("2"));
+		defines2.Add(CStrIntern("C"), CStrIntern("1"));
+		defines2.Add(CStrIntern("B"), CStrIntern("2"));
+		defines2.Add(CStrIntern("B"), CStrIntern("1"));
+		defines2.Add(CStrIntern("D"), CStrIntern("2"));
+		defines2.Add(CStrIntern("D"), CStrIntern("1"));
+		defines2.Add(CStrIntern("A"), CStrIntern("2"));
+		defines2.Add(CStrIntern("A"), CStrIntern("1"));
 
 		TS_ASSERT(defines1 == defines2);
 

@@ -284,7 +284,7 @@ void CLogger::Render()
 	CFont font(font_name);
 	int lineSpacing = font.GetLineSpacing();
 
-	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	textTech->BeginPass();
 
 	CTextRenderer textRenderer(textTech->GetShader());
