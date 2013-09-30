@@ -534,7 +534,7 @@ void CRenderer::EnumCaps()
 #endif
 }
 
-CShaderDefines CRenderer::ComputeSystemShaderDefines()
+void CRenderer::RecomputeSystemShaderDefines()
 {
 	CShaderDefines defines;
 
@@ -547,14 +547,12 @@ CShaderDefines CRenderer::ComputeSystemShaderDefines()
 	if (m_Options.m_PreferGLSL)
 		defines.Add(str_SYS_PREFER_GLSL, str_1);
 
-	return defines;
+	m_SystemShaderDefines = defines;
 }
 
 void CRenderer::ReloadShaders()
 {
 	ENSURE(m->IsOpen);
-
-	m_SystemShaderDefines = ComputeSystemShaderDefines();
 
 	m->globalContext = m_SystemShaderDefines;
 
@@ -641,6 +639,8 @@ bool CRenderer::Open(int width, int height)
 	// Validate the currently selected render path
 	SetRenderPath(m_Options.m_RenderPath);
 
+	RecomputeSystemShaderDefines();
+
 	// Let component renderers perform one-time initialization after graphics capabilities and
 	// the shader path have been determined.
 	m->overlayRenderer.Initialize();
@@ -707,6 +707,7 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_PREFERGLSL:
 			m_Options.m_PreferGLSL = value;
 			MakeShadersDirty();
+			RecomputeSystemShaderDefines();
 			break;
 		case OPT_SILHOUETTES:
 			m_Options.m_Silhouettes = value;
@@ -795,6 +796,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 	m_Options.m_RenderPath = rp;
 
 	MakeShadersDirty();
+	RecomputeSystemShaderDefines();
 
 	// We might need to regenerate some render data after changing path
 	if (g_Game)
