@@ -684,12 +684,12 @@ void CPatchRData::Update(CSimulation2* simulation)
 
 // std::map types with appropriate arena allocators and default comparison operator
 #define POOLED_BATCH_MAP(Key, Value) \
-	std::map<Key, Value, std::less<Key>, ProxyAllocator<std::pair<Key const, Value>, Allocators::Arena<> > >
+	std::map<Key, Value, std::less<Key>, ProxyAllocator<std::pair<Key const, Value>, Allocators::DynamicArena > >
 
 // Equivalent to "m[k]", when it returns a arena-allocated std::map (since we can't
 // use the default constructor in that case)
 template<typename M>
-typename M::mapped_type& PooledMapGet(M& m, const typename M::key_type& k, Allocators::Arena<>& arena)
+typename M::mapped_type& PooledMapGet(M& m, const typename M::key_type& k, Allocators::DynamicArena& arena)
 {
 	return m.insert(std::make_pair(k,
 		typename M::mapped_type(typename M::mapped_type::key_compare(), typename M::mapped_type::allocator_type(arena))
@@ -698,7 +698,7 @@ typename M::mapped_type& PooledMapGet(M& m, const typename M::key_type& k, Alloc
 
 // Equivalent to "m[k]", when it returns a std::pair of arena-allocated std::vectors
 template<typename M>
-typename M::mapped_type& PooledPairGet(M& m, const typename M::key_type& k, Allocators::Arena<>& arena)
+typename M::mapped_type& PooledPairGet(M& m, const typename M::key_type& k, Allocators::DynamicArena& arena)
 {
 	return m.insert(std::make_pair(k, std::make_pair(
 			typename M::mapped_type::first_type(typename M::mapped_type::first_type::allocator_type(arena)),
@@ -706,10 +706,8 @@ typename M::mapped_type& PooledPairGet(M& m, const typename M::key_type& k, Allo
 	))).first->second;
 }
 
-static const size_t ARENA_SIZE = 4*MiB; // this should be enough for fairly huge maps
-
 // Each multidraw batch has a list of index counts, and a list of pointers-to-first-indexes
-typedef std::pair<std::vector<GLint, ProxyAllocator<GLint, Allocators::Arena<> > >, std::vector<void*, ProxyAllocator<void*, Allocators::Arena<> > > > BatchElements;
+typedef std::pair<std::vector<GLint, ProxyAllocator<GLint, Allocators::DynamicArena > >, std::vector<void*, ProxyAllocator<void*, Allocators::DynamicArena > > > BatchElements;
 
 // Group batches by index buffer
 typedef POOLED_BATCH_MAP(CVertexBuffer*, BatchElements) IndexBufferBatches;
@@ -723,7 +721,7 @@ typedef POOLED_BATCH_MAP(CTerrainTextureEntry*, VertexBufferBatches) TextureBatc
 void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
 			      ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
 {
-	Allocators::Arena<> arena(ARENA_SIZE);
+	Allocators::DynamicArena arena(1 * MiB);
 
 	TextureBatches batches (TextureBatches::key_compare(), (TextureBatches::allocator_type(arena)));
 
@@ -871,7 +869,7 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
  */
 struct SBlendBatch
 {
-	SBlendBatch(Allocators::Arena<>& arena) :
+	SBlendBatch(Allocators::DynamicArena& arena) :
 		m_Batches(VertexBufferBatches::key_compare(), VertexBufferBatches::allocator_type(arena))
 	{
 	}
@@ -886,12 +884,12 @@ struct SBlendBatch
 struct SBlendStackItem
 {
 	SBlendStackItem(CVertexBuffer::VBChunk* v, CVertexBuffer::VBChunk* i,
-			const std::vector<CPatchRData::SSplat>& s, Allocators::Arena<>& arena) :
+			const std::vector<CPatchRData::SSplat>& s, Allocators::DynamicArena& arena) :
 		vertices(v), indices(i), splats(s.begin(), s.end(), SplatStack::allocator_type(arena))
 	{
 	}
 
-	typedef std::vector<CPatchRData::SSplat, ProxyAllocator<CPatchRData::SSplat, Allocators::Arena<> > > SplatStack;
+	typedef std::vector<CPatchRData::SSplat, ProxyAllocator<CPatchRData::SSplat, Allocators::DynamicArena > > SplatStack;
 	CVertexBuffer::VBChunk* vertices;
 	CVertexBuffer::VBChunk* indices;
 	SplatStack splats;
@@ -900,9 +898,9 @@ struct SBlendStackItem
 void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
 			      ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
 {
-	Allocators::Arena<> arena(ARENA_SIZE);
+	Allocators::DynamicArena arena(1 * MiB);
 
-	typedef std::vector<SBlendBatch, ProxyAllocator<SBlendBatch, Allocators::Arena<> > > BatchesStack;
+	typedef std::vector<SBlendBatch, ProxyAllocator<SBlendBatch, Allocators::DynamicArena > > BatchesStack;
 	BatchesStack batches((BatchesStack::allocator_type(arena)));
 	
 	CShaderDefines contextBlend = context;
@@ -914,7 +912,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
  	// to avoid heavy reallocations
  	batches.reserve(256);
 
-	typedef std::vector<SBlendStackItem, ProxyAllocator<SBlendStackItem, Allocators::Arena<> > > BlendStacks;
+	typedef std::vector<SBlendStackItem, ProxyAllocator<SBlendStackItem, Allocators::DynamicArena > > BlendStacks;
 	BlendStacks blendStacks((BlendStacks::allocator_type(arena)));
 	blendStacks.reserve(patches.size());
 
