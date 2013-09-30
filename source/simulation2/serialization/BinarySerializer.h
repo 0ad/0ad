@@ -65,10 +65,10 @@ private:
 	ISerializer& m_Serializer;
 
 	// Pooling helps since we do a lot of short-lived allocations
-	typedef ProxyAllocator<std::pair<JSObject* const, u32>, Allocators::Arena<> > ScriptBackrefsAlloc;
+	typedef ProxyAllocator<std::pair<JSObject* const, u32>, Allocators::DynamicArena> ScriptBackrefsAlloc;
 	typedef std::map<JSObject*, u32, std::less<JSObject*>, ScriptBackrefsAlloc> backrefs_t;
 
-	Allocators::Arena<> m_ScriptBackrefsArena;
+	Allocators::DynamicArena m_ScriptBackrefsArena;
 	backrefs_t m_ScriptBackrefs;
 	u32 m_ScriptBackrefsNext;
 	u32 GetScriptBackrefTag(JSObject* obj);
