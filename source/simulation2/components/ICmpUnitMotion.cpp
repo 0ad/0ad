@@ -35,6 +35,7 @@ DEFINE_INTERFACE_METHOD_1("SetSpeed", void, ICmpUnitMotion, SetSpeed, fixed)
 DEFINE_INTERFACE_METHOD_0("IsMoving", bool, ICmpUnitMotion, IsMoving)
 DEFINE_INTERFACE_METHOD_0("GetWalkSpeed", fixed, ICmpUnitMotion, GetWalkSpeed)
 DEFINE_INTERFACE_METHOD_0("GetRunSpeed", fixed, ICmpUnitMotion, GetRunSpeed)
+DEFINE_INTERFACE_METHOD_1("SetFacePointAfterMove", void, ICmpUnitMotion, SetFacePointAfterMove, bool)
 DEFINE_INTERFACE_METHOD_1("SetUnitRadius", void, ICmpUnitMotion, SetUnitRadius, fixed)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpUnitMotion, SetDebugOverlay, bool)
 END_INTERFACE_WRAPPER(UnitMotion)
@@ -102,6 +103,11 @@ public:
 	virtual fixed GetRunSpeed()
 	{
 		return m_Script.Call<fixed>("GetRunSpeed");
+	}
+
+	virtual void SetFacePointAfterMove(bool facePointAfterMove)
+	{
+		m_Script.CallVoid("SetFacePointAfterMove", facePointAfterMove);
 	}
 
 	virtual ICmpPathfinder::pass_class_t GetPassabilityClass()

@@ -2431,10 +2431,12 @@ var UnitFsmSpec = {
 				this.MoveRandomly(+this.template.RoamDistance);
 				// Set a random timer to switch to feeding state
 				this.StartTimer(RandomInt(+this.template.RoamTimeMin, +this.template.RoamTimeMax));
+				this.SetFacePointAfterMove(false);
 			},
 
 			"leave": function() {
 				this.StopTimer();
+				this.SetFacePointAfterMove(true);
 			},
 
 			"LosRangeUpdate": function(msg) {
@@ -4581,6 +4583,13 @@ UnitAI.prototype.MoveRandomly = function(distance)
 
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	cmpMotion.MoveToPointRange(tx, tz, distance, distance);
+};
+
+UnitAI.prototype.SetFacePointAfterMove = function(val)
+{
+	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	if (cmpMotion)
+		cmpMotion.SetFacePointAfterMove(val);
 };
 
 UnitAI.prototype.AttackEntitiesByPreference = function(ents)

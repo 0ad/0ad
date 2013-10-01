@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="Base">
+      <mesh>props/shield/ptol_thureos.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="G">
+      <textures>
+		<texture file="props/shield/ptol_thureos_galatian_g.png" name="baseTex"/>
+		<texture file="props/shield/ptol_thureos_a_metal_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+    <variant name="H">
+      <textures>
+		<texture file="props/shield/ptol_thureos_galatian_h.png" name="baseTex"/>
+		<texture file="props/shield/ptol_thureos_b_metal_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+    <variant name="I">
+      <textures>
+		<texture file="props/shield/ptol_thureos_galatian_i.png" name="baseTex"/>
+		<texture file="props/shield/ptol_thureos_c_metal_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+	<variant name="J">
+      <textures>
+		<texture file="props/shield/ptol_thureos_galatian_j.png" name="baseTex"/>
+		<texture file="props/shield/ptol_thureos_a_metal_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+	<variant name="K">
+      <textures>
+		<texture file="props/shield/ptol_thureos_galatian_k.png" name="baseTex"/>
+		<texture file="props/shield/ptol_thureos_b_metal_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+	<variant name="L">
+      <textures>
+		<texture file="props/shield/ptol_thureos_galatian_l.png" name="baseTex"/>
+		<texture file="props/shield/ptol_thureos_c_metal_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+  </group>
+
+  <material>player_trans_spec.xml</material>
+
+</actor>

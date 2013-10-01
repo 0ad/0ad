@@ -374,7 +374,7 @@ protected:
 	void SetObliqueFrustumClipping(const CVector4D& clipPlane);
 
 	void ReloadShaders();
-	CShaderDefines ComputeSystemShaderDefines();
+	void RecomputeSystemShaderDefines();
 
 	// hotloading
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
