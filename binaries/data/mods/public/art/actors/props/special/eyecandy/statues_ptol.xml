@@ -4,6 +4,9 @@
   <group>
     <variant frequency="1" name="ptolemaic Statue 1">
       <mesh>structural/ptol_statue_standing_male.dae</mesh>
+	  <props>
+        <prop actor="props/special/eyecandy/ptol_statues_standing_male_base.xml" attachpoint="root"/>
+      </props>
 	  <textures>
 			<texture file="structural/ptol_statues_male.png" name="baseTex"/>
 			<texture file="structural/ao/ptol_statue_standing_male.png" name="aoTex"/>
@@ -11,6 +14,9 @@
     </variant>
     <variant frequency="1" name="ptolemaic Statue 2">
       <mesh>structural/ptol_statue_walking_male.dae</mesh>
+	  <props>
+        <prop actor="props/special/eyecandy/ptol_statues_walking_male_base.xml" attachpoint="root"/>
+      </props>
 	  <textures>
 			<texture file="structural/ptol_statues_male.png" name="baseTex"/>
 			<texture file="structural/ao/ptol_statue_walking_male.png" name="aoTex"/>
@@ -18,6 +24,9 @@
     </variant>
     <variant frequency="1" name="ptolemaic Statue 3">
       <mesh>structural/ptol_statue_walking_female.dae</mesh>
+	  <props>
+        <prop actor="props/special/eyecandy/ptol_statues_walking_female_base.xml" attachpoint="root"/>
+      </props>
 	  <textures>
 			<texture file="structural/ptol_statues_female.png" name="baseTex"/>
 			<texture file="structural/ao/ptol_statue_walking_female.png" name="aoTex"/>
@@ -25,6 +34,9 @@
     </variant>
     <variant frequency="1" name="ptolemaic Statue 4">
       <mesh>structural/ptol_statue_sit_male.dae</mesh>
+	  <props>
+        <prop actor="props/special/eyecandy/ptol_statues_sit_male_base.xml" attachpoint="root"/>
+      </props>
 	  <textures>
 			<texture file="structural/ptol_statues_male.png" name="baseTex"/>
 			<texture file="structural/ao/ptol_statue_sit_male.png" name="aoTex"/>
@@ -32,6 +44,9 @@
     </variant>
     <variant frequency="1" name="ptolemaic Statue 5">
       <mesh>structural/ptol_statue_sit_female.dae</mesh>
+	  <props>
+        <prop actor="props/special/eyecandy/ptol_statues_sit_female_base.xml" attachpoint="root"/>
+      </props>
 	  <textures>
 			<texture file="structural/ptol_statues_female.png" name="baseTex"/>
 			<texture file="structural/ao/ptol_statue_sit_female.png" name="aoTex"/>
@@ -39,6 +54,9 @@
     </variant>
 	<variant frequency="1" name="ptolemaic Statue 6">
       <mesh>structural/ptol_statue_sphynx.dae</mesh>
+	  <props>
+        <prop actor="props/special/eyecandy/ptol_statues_sphynx_base.xml" attachpoint="root"/>
+      </props>
 	  <textures>
 			<texture file="structural/ptol_statues_sphynx.png" name="baseTex"/>
 			<texture file="structural/ao/ptol_statue_sphynx.png" name="aoTex"/>
@@ -46,6 +64,9 @@
     </variant>
 	<variant frequency="1" name="ptolemaic Statue 7">
       <mesh>structural/ptol_statue_dog.dae</mesh>
+	  <props>
+        <prop actor="props/special/eyecandy/ptol_statues_dog_base.xml" attachpoint="root"/>
+      </props>
 	  <textures>
 			<texture file="structural/ptol_statues_dog.png" name="baseTex"/>
 			<texture file="structural/ao/ptol_statue_dog.png" name="aoTex"/>
