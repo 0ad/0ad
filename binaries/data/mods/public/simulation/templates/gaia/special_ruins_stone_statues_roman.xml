@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_treasure">
+<Entity parent="template_gaia_ruins">
   <Footprint>
     <Square width="4.0" depth="4.0"/>
     <Height>12.0</Height>
   </Footprint>
   <Identity>
     <Civ>gaia</Civ>
-    <GenericName>Stone Treasure</GenericName>
-    <SpecificName>Ptolemaic Statues</SpecificName>
+    <GenericName>Stone Ruins</GenericName>
+    <SpecificName>Roman Statues</SpecificName>
     <Icon>gaia/special_treasure.png</Icon>
   </Identity>
   <Obstruction>
@@ -15,7 +15,7 @@
   </Obstruction>
   <ResourceSupply>
     <Amount>300</Amount>
-    <Type>treasure.stone</Type>
+    <Type>stone.ruins</Type>
   </ResourceSupply>
   <Sound>
     <SoundGroups>
@@ -23,6 +23,6 @@
     </SoundGroups>
   </Sound>
   <VisualActor>
-    <Actor>props/special/eyecandy/statues_ptol.xml</Actor>
+    <Actor>props/special/eyecandy/statues_roman.xml</Actor>
   </VisualActor>
 </Entity>
