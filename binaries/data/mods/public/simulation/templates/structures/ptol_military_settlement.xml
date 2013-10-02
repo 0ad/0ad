@@ -9,8 +9,9 @@
   </BuildRestrictions>
   <Cost>
     <Resources>
-      <wood>200</wood>
+      <wood>0</wood>
       <stone>200</stone>
+      <metal>200</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -50,6 +51,10 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <TerritoryDecay>
+    <HealthDecayRate>1</HealthDecayRate>
+  </TerritoryDecay>
+  <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>structures/athenians/barracks.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
