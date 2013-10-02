@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="ptolemaic Statue 1">
+      <mesh>structural/ptol_statue_standing_male.dae</mesh>
+	  <textures>
+			<texture file="structural/ptol_statues_male.png" name="baseTex"/>
+			<texture file="structural/ao/ptol_statue_standing_male.png" name="aoTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="ptolemaic Statue 2">
+      <mesh>structural/ptol_statue_walking_male.dae</mesh>
+	  <textures>
+			<texture file="structural/ptol_statues_male.png" name="baseTex"/>
+			<texture file="structural/ao/ptol_statue_walking_male.png" name="aoTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="ptolemaic Statue 3">
+      <mesh>structural/ptol_statue_walking_female.dae</mesh>
+	  <textures>
+			<texture file="structural/ptol_statues_female.png" name="baseTex"/>
+			<texture file="structural/ao/ptol_statue_walking_female.png" name="aoTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="ptolemaic Statue 4">
+      <mesh>structural/ptol_statue_sit_male.dae</mesh>
+	  <textures>
+			<texture file="structural/ptol_statues_male.png" name="baseTex"/>
+			<texture file="structural/ao/ptol_statue_sit_male.png" name="aoTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="ptolemaic Statue 5">
+      <mesh>structural/ptol_statue_sit_female.dae</mesh>
+	  <textures>
+			<texture file="structural/ptol_statues_female.png" name="baseTex"/>
+			<texture file="structural/ao/ptol_statue_sit_female.png" name="aoTex"/>
+	  </textures>
+    </variant>
+	<variant frequency="1" name="ptolemaic Statue 6">
+      <mesh>structural/ptol_statue_sphynx.dae</mesh>
+	  <textures>
+			<texture file="structural/ptol_statues_sphynx.png" name="baseTex"/>
+			<texture file="structural/ao/ptol_statue_sphynx.png" name="aoTex"/>
+	  </textures>
+    </variant>
+	<variant frequency="1" name="ptolemaic Statue 7">
+      <mesh>structural/ptol_statue_dog.dae</mesh>
+	  <textures>
+			<texture file="structural/ptol_statues_dog.png" name="baseTex"/>
+			<texture file="structural/ao/ptol_statue_dog.png" name="aoTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

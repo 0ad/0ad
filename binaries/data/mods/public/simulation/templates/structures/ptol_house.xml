@@ -7,12 +7,12 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="12.0" depth="12.0"/>
+    <Square width="14.0" depth="14.0"/>
     <Height>5.0</Height>
   </Footprint>
   <Health>
     <Max>500</Max>
-    <SpawnEntityOnDeath>rubble/rubble_stone_2x2</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>rubble/rubble_stone_3x3</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>ptol</Civ>
@@ -23,7 +23,7 @@
     <Static width="10.0" depth="10.0"/>
   </Obstruction>
   <VisualActor>
-    <Actor>structures/iberians/house.xml</Actor>
-    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
+    <Actor>structures/ptolemies/house.xml</Actor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
   </VisualActor>
 </Entity>
