@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="493.831" y="86.2699" z="644.498"/>
-		<Rotation angle="0"/>
+		<Position x="500.01" y="94.8207" z="620.608"/>
+		<Rotation angle="-0.100505"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -61,10 +61,10 @@
       },
       "Name": "Ptolemaios A' Soter",
       "Resources": {
-        "food": 100000,
-        "metal": 100000,
-        "stone": 100000,
-        "wood": 100000
+        "food": 10000,
+        "metal": 10000,
+        "stone": 10000,
+        "wood": 10000
       },
       "Team": -1
     },
@@ -804,34 +804,6 @@
 			<Position x="579.19642" z="725.8885"/>
 			<Orientation y="-1.5161"/>
 			<Actor seed="29200"/>
-		</Entity>
-		<Entity uid="132">
-			<Template>gaia/flora_tree_cypress</Template>
-			<Player>0</Player>
-			<Position x="496.75422" z="729.84754"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="3798"/>
-		</Entity>
-		<Entity uid="133">
-			<Template>gaia/flora_tree_cypress</Template>
-			<Player>0</Player>
-			<Position x="499.11835" z="725.98407"/>
-			<Orientation y="2.60213"/>
-			<Actor seed="15222"/>
-		</Entity>
-		<Entity uid="134">
-			<Template>gaia/flora_tree_cypress</Template>
-			<Player>0</Player>
-			<Position x="503.90848" z="737.28235"/>
-			<Orientation y="1.93944"/>
-			<Actor seed="41180"/>
-		</Entity>
-		<Entity uid="135">
-			<Template>gaia/flora_tree_cypress</Template>
-			<Player>0</Player>
-			<Position x="509.55646" z="719.34449"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="52922"/>
 		</Entity>
 		<Entity uid="136">
 			<Template>gaia/flora_tree_cypress</Template>
@@ -8518,7 +8490,7 @@
 		<Entity uid="1407">
 			<Template>structures/ptol_civil_centre</Template>
 			<Player>1</Player>
-			<Position x="486.82853" z="711.86841"/>
+			<Position x="491.05488" z="711.99244"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32344"/>
 		</Entity>
@@ -8553,28 +8525,28 @@
 		<Entity uid="1416">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="494.79557" z="691.41443"/>
+			<Position x="499.02192" z="691.53846"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="26088"/>
 		</Entity>
 		<Entity uid="1417">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="497.07026" z="694.79645"/>
+			<Position x="501.29661" z="694.92048"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="43942"/>
 		</Entity>
 		<Entity uid="1418">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="499.69568" z="698.58747"/>
+			<Position x="503.92203" z="698.7115"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="54262"/>
 		</Entity>
 		<Entity uid="1419">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="503.72764" z="701.00672"/>
+			<Position x="507.95398" z="701.13074"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32462"/>
 		</Entity>
@@ -9530,7 +9502,7 @@
 		</Entity>
 		<Entity uid="1617">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="452.71573" z="650.97944"/>
+			<Position x="488.52317" z="646.7093"/>
 			<Orientation y="2.05262"/>
 			<Actor seed="40646"/>
 		</Entity>
@@ -9776,7 +9748,7 @@
 		</Entity>
 		<Entity uid="1658">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="474.39722" z="636.82355"/>
+			<Position x="490.60837" z="658.74091"/>
 			<Orientation y="1.85938"/>
 			<Actor seed="42796"/>
 		</Entity>
@@ -10184,6 +10156,938 @@
 			<Position x="352.74238" z="828.95276"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="59236"/>
+		</Entity>
+		<Entity uid="1723">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>0</Player>
+			<Position x="367.25522" z="812.70301"/>
+			<Orientation y="2.38584"/>
+			<Actor seed="14742"/>
+		</Entity>
+		<Entity uid="1724">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="431.69416" z="712.26172"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="6390"/>
+		</Entity>
+		<Entity uid="1725">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="509.4496" z="676.7688"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41366"/>
+		</Entity>
+		<Entity uid="1726">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="481.41413" z="690.75574"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21976"/>
+		</Entity>
+		<Entity uid="1727">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="435.19507" z="714.9549"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17288"/>
+		</Entity>
+		<Entity uid="1728">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="437.81086" z="718.1349"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23658"/>
+		</Entity>
+		<Entity uid="1729">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="440.52475" z="721.23151"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50620"/>
+		</Entity>
+		<Entity uid="1730">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="370.95121" z="816.8064"/>
+			<Orientation y="2.29337"/>
+			<Actor seed="62900"/>
+		</Entity>
+		<Entity uid="1731">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="512.46113" z="680.95044"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49500"/>
+		</Entity>
+		<Entity uid="1732">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="516.5644" z="684.47193"/>
+			<Orientation y="2.33788"/>
+			<Actor seed="15478"/>
+		</Entity>
+		<Entity uid="1733">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="512.16059" z="756.04151"/>
+			<Orientation y="2.4294"/>
+			<Actor seed="27792"/>
+		</Entity>
+		<Entity uid="1734">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="415.1377" z="818.32099"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="11624"/>
+		</Entity>
+		<Entity uid="1735">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="666.02332" z="789.27356"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57428"/>
+		</Entity>
+		<Entity uid="1736">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>0</Player>
+			<Position x="817.65552" z="722.1579"/>
+			<Orientation y="-1.90638"/>
+			<Actor seed="58076"/>
+		</Entity>
+		<Entity uid="1737">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>0</Player>
+			<Position x="497.57398" z="127.41898"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63586"/>
+		</Entity>
+		<Entity uid="1738">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>0</Player>
+			<Position x="499.63688" z="131.59604"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="64928"/>
+		</Entity>
+		<Entity uid="1739">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>0</Player>
+			<Position x="152.53747" z="472.52714"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34106"/>
+		</Entity>
+		<Entity uid="1740">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>0</Player>
+			<Position x="157.12073" z="481.00638"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56908"/>
+		</Entity>
+		<Entity uid="1741">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>0</Player>
+			<Position x="372.95649" z="149.36023"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61280"/>
+		</Entity>
+		<Entity uid="1742">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>0</Player>
+			<Position x="377.58979" z="151.03386"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="25372"/>
+		</Entity>
+		<Entity uid="1743">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>0</Player>
+			<Position x="379.9871" z="155.72286"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40806"/>
+		</Entity>
+		<Entity uid="1744">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>0</Player>
+			<Position x="450.2374" z="93.30771"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="65276"/>
+		</Entity>
+		<Entity uid="1745">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>0</Player>
+			<Position x="595.58851" z="465.55802"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37436"/>
+		</Entity>
+		<Entity uid="1746">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="334.84964" z="649.23938"/>
+			<Orientation y="-2.42542"/>
+			<Actor seed="3938"/>
+		</Entity>
+		<Entity uid="1747">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="256.38852" z="766.65326"/>
+			<Orientation y="-2.41807"/>
+			<Actor seed="22652"/>
+		</Entity>
+		<Entity uid="1748">
+			<Template>gaia/special_ruins_stone_statues_ptol</Template>
+			<Player>1</Player>
+			<Position x="198.15561" z="835.3722"/>
+			<Orientation y="-2.53447"/>
+			<Actor seed="60344"/>
+		</Entity>
+		<Entity uid="1749">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="143.72043" z="864.60016"/>
+			<Orientation y="-2.2694"/>
+			<Actor seed="6208"/>
+		</Entity>
+		<Entity uid="1750">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="137.54471" z="863.5224"/>
+			<Orientation y="2.52782"/>
+			<Actor seed="1432"/>
+		</Entity>
+		<Entity uid="1751">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="161.89061" z="827.24195"/>
+			<Orientation y="2.46764"/>
+			<Actor seed="44054"/>
+		</Entity>
+		<Entity uid="1752">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="170.4723" z="814.55713"/>
+			<Orientation y="2.59327"/>
+			<Actor seed="6634"/>
+		</Entity>
+		<Entity uid="1753">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="175.3249" z="812.43409"/>
+			<Orientation y="-0.19228"/>
+			<Actor seed="9700"/>
+		</Entity>
+		<Entity uid="1754">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="205.38971" z="829.36121"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5500"/>
+		</Entity>
+		<Entity uid="1755">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="193.91471" z="858.59003"/>
+			<Orientation y="0.33295"/>
+			<Actor seed="20614"/>
+		</Entity>
+		<Entity uid="1756">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="202.00603" z="851.0572"/>
+			<Orientation y="2.8828"/>
+			<Actor seed="13528"/>
+		</Entity>
+		<Entity uid="1757">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="191.75753" z="845.53058"/>
+			<Orientation y="-0.28698"/>
+			<Actor seed="12008"/>
+		</Entity>
+		<Entity uid="1758">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="258.80631" z="851.37812"/>
+			<Orientation y="-1.80741"/>
+			<Actor seed="38274"/>
+		</Entity>
+		<Entity uid="1759">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="249.35421" z="850.87067"/>
+			<Orientation y="-2.48504"/>
+			<Actor seed="1476"/>
+		</Entity>
+		<Entity uid="1760">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="243.76096" z="845.5467"/>
+			<Orientation y="2.89676"/>
+			<Actor seed="25000"/>
+		</Entity>
+		<Entity uid="1761">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="245.52422" z="836.78223"/>
+			<Orientation y="2.04622"/>
+			<Actor seed="64856"/>
+		</Entity>
+		<Entity uid="1762">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="254.47056" z="836.45539"/>
+			<Orientation y="0.08684"/>
+			<Actor seed="31780"/>
+		</Entity>
+		<Entity uid="1763">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="256.60499" z="842.3465"/>
+			<Orientation y="0.66327"/>
+			<Actor seed="27272"/>
+		</Entity>
+		<Entity uid="1764">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="261.89841" z="845.43866"/>
+			<Orientation y="1.66674"/>
+			<Actor seed="48606"/>
+		</Entity>
+		<Entity uid="1765">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="269.75513" z="841.51307"/>
+			<Orientation y="-2.73363"/>
+			<Actor seed="52148"/>
+		</Entity>
+		<Entity uid="1766">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="291.16749" z="838.81531"/>
+			<Orientation y="-1.77527"/>
+			<Actor seed="57472"/>
+		</Entity>
+		<Entity uid="1767">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="283.99354" z="838.5094"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26006"/>
+		</Entity>
+		<Entity uid="1768">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="281.42038" z="840.34388"/>
+			<Orientation y="-2.53136"/>
+			<Actor seed="37056"/>
+		</Entity>
+		<Entity uid="1769">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="279.9438" z="833.2516"/>
+			<Orientation y="1.24428"/>
+			<Actor seed="20828"/>
+		</Entity>
+		<Entity uid="1770">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="290.56125" z="835.25397"/>
+			<Orientation y="-0.5884"/>
+			<Actor seed="29982"/>
+		</Entity>
+		<Entity uid="1771">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="282.31336" z="848.0077"/>
+			<Orientation y="-1.86146"/>
+			<Actor seed="54654"/>
+		</Entity>
+		<Entity uid="1772">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="276.79303" z="847.44886"/>
+			<Orientation y="-2.78867"/>
+			<Actor seed="56396"/>
+		</Entity>
+		<Entity uid="1773">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="274.8389" z="841.03968"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12146"/>
+		</Entity>
+		<Entity uid="1774">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="285.5564" z="813.70722"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57652"/>
+		</Entity>
+		<Entity uid="1775">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="282.5211" z="816.98993"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42162"/>
+		</Entity>
+		<Entity uid="1776">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="280.63297" z="813.59632"/>
+			<Orientation y="-2.41475"/>
+			<Actor seed="49352"/>
+		</Entity>
+		<Entity uid="1777">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="278.22272" z="810.54011"/>
+			<Orientation y="-2.87069"/>
+			<Actor seed="58948"/>
+		</Entity>
+		<Entity uid="1778">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="276.78904" z="806.88971"/>
+			<Orientation y="-2.52993"/>
+			<Actor seed="32890"/>
+		</Entity>
+		<Entity uid="1779">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="271.94239" z="806.70026"/>
+			<Orientation y="-1.38242"/>
+			<Actor seed="43572"/>
+		</Entity>
+		<Entity uid="1780">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="269.95334" z="811.45093"/>
+			<Orientation y="2.87786"/>
+			<Actor seed="31430"/>
+		</Entity>
+		<Entity uid="1781">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="273.82593" z="805.22205"/>
+			<Orientation y="-2.5594"/>
+			<Actor seed="64308"/>
+		</Entity>
+		<Entity uid="1782">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="279.00309" z="809.99811"/>
+			<Orientation y="1.35314"/>
+			<Actor seed="37220"/>
+		</Entity>
+		<Entity uid="1783">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="436.9545" z="949.51874"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16066"/>
+		</Entity>
+		<Entity uid="1784">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="436.23041" z="953.06605"/>
+			<Orientation y="-1.7892"/>
+			<Actor seed="17330"/>
+		</Entity>
+		<Entity uid="1785">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="428.31418" z="953.86799"/>
+			<Orientation y="-1.99929"/>
+			<Actor seed="30498"/>
+		</Entity>
+		<Entity uid="1786">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="422.04245" z="950.04365"/>
+			<Orientation y="3.01148"/>
+			<Actor seed="23028"/>
+		</Entity>
+		<Entity uid="1787">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="422.6587" z="946.12647"/>
+			<Orientation y="1.86042"/>
+			<Actor seed="61050"/>
+		</Entity>
+		<Entity uid="1788">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="430.18967" z="943.71436"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56536"/>
+		</Entity>
+		<Entity uid="1789">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="433.45063" z="946.77887"/>
+			<Orientation y="0.19213"/>
+			<Actor seed="25940"/>
+		</Entity>
+		<Entity uid="1790">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="435.33402" z="957.20826"/>
+			<Orientation y="0.85117"/>
+			<Actor seed="19198"/>
+		</Entity>
+		<Entity uid="1791">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="443.60096" z="960.82374"/>
+			<Orientation y="-3.10865"/>
+			<Actor seed="12032"/>
+		</Entity>
+		<Entity uid="1792">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="443.24317" z="952.52094"/>
+			<Orientation y="-2.69422"/>
+			<Actor seed="3300"/>
+		</Entity>
+		<Entity uid="1793">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="437.85218" z="945.81977"/>
+			<Orientation y="-2.04647"/>
+			<Actor seed="31450"/>
+		</Entity>
+		<Entity uid="1794">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="428.76371" z="944.90632"/>
+			<Orientation y="-0.4016"/>
+			<Actor seed="43502"/>
+		</Entity>
+		<Entity uid="1795">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="426.9397" z="954.89484"/>
+			<Orientation y="0.23537"/>
+			<Actor seed="33322"/>
+		</Entity>
+		<Entity uid="1796">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="430.40024" z="968.43317"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55286"/>
+		</Entity>
+		<Entity uid="1797">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="463.79096" z="893.31397"/>
+			<Orientation y="-0.94118"/>
+			<Actor seed="36474"/>
+		</Entity>
+		<Entity uid="1798">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="457.0972" z="894.4665"/>
+			<Orientation y="-2.05016"/>
+			<Actor seed="51478"/>
+		</Entity>
+		<Entity uid="1799">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="451.72785" z="891.33967"/>
+			<Orientation y="2.9138"/>
+			<Actor seed="60710"/>
+		</Entity>
+		<Entity uid="1800">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="454.76142" z="884.52802"/>
+			<Orientation y="1.75617"/>
+			<Actor seed="47650"/>
+		</Entity>
+		<Entity uid="1801">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="458.21204" z="885.0464"/>
+			<Orientation y="0.21915"/>
+			<Actor seed="2322"/>
+		</Entity>
+		<Entity uid="1802">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="459.37668" z="890.34516"/>
+			<Orientation y="0.5716"/>
+			<Actor seed="22130"/>
+		</Entity>
+		<Entity uid="1803">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="462.22614" z="894.93018"/>
+			<Orientation y="1.36437"/>
+			<Actor seed="11298"/>
+		</Entity>
+		<Entity uid="1804">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="466.99036" z="895.0182"/>
+			<Orientation y="-2.55814"/>
+			<Actor seed="44156"/>
+		</Entity>
+		<Entity uid="1805">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="463.90937" z="890.15552"/>
+			<Orientation y="2.52057"/>
+			<Actor seed="63116"/>
+		</Entity>
+		<Entity uid="1806">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="467.7717" z="885.34321"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51438"/>
+		</Entity>
+		<Entity uid="1807">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="469.63703" z="887.36652"/>
+			<Orientation y="-0.20005"/>
+			<Actor seed="35450"/>
+		</Entity>
+		<Entity uid="1808">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="467.22068" z="897.07276"/>
+			<Orientation y="-1.70875"/>
+			<Actor seed="15518"/>
+		</Entity>
+		<Entity uid="1809">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="461.75608" z="898.18055"/>
+			<Orientation y="-1.49328"/>
+			<Actor seed="57144"/>
+		</Entity>
+		<Entity uid="1810">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="453.68451" z="901.48481"/>
+			<Orientation y="-2.89966"/>
+			<Actor seed="29746"/>
+		</Entity>
+		<Entity uid="1811">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="453.70282" z="890.57392"/>
+			<Orientation y="1.7954"/>
+			<Actor seed="51024"/>
+		</Entity>
+		<Entity uid="1812">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="461.38096" z="889.62378"/>
+			<Orientation y="1.10267"/>
+			<Actor seed="32432"/>
+		</Entity>
+		<Entity uid="1813">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="463.51359" z="896.71326"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4542"/>
+		</Entity>
+		<Entity uid="1814">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="461.6605" z="895.03003"/>
+			<Orientation y="2.92678"/>
+			<Actor seed="19176"/>
+		</Entity>
+		<Entity uid="1815">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="465.77799" z="892.48609"/>
+			<Orientation y="-2.70466"/>
+			<Actor seed="61128"/>
+		</Entity>
+		<Entity uid="1816">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="464.93946" z="890.5146"/>
+			<Orientation y="1.62027"/>
+			<Actor seed="8688"/>
+		</Entity>
+		<Entity uid="1817">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="467.76886" z="890.29255"/>
+			<Orientation y="1.24299"/>
+			<Actor seed="34180"/>
+		</Entity>
+		<Entity uid="1818">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="586.2079" z="791.64905"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55176"/>
+		</Entity>
+		<Entity uid="1819">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="582.40296" z="785.89753"/>
+			<Orientation y="-2.8231"/>
+			<Actor seed="36770"/>
+		</Entity>
+		<Entity uid="1820">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="466.57636" z="649.21338"/>
+			<Orientation y="0.59157"/>
+			<Actor seed="28604"/>
+		</Entity>
+		<Entity uid="1821">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="431.85593" z="758.70411"/>
+			<Orientation y="-1.59908"/>
+			<Actor seed="29590"/>
+		</Entity>
+		<Entity uid="1822">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="470.30561" z="745.63196"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13672"/>
+		</Entity>
+		<Entity uid="1823">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="489.77436" z="771.85737"/>
+			<Orientation y="-1.76883"/>
+			<Actor seed="32024"/>
+		</Entity>
+		<Entity uid="1824">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="554.52833" z="737.36402"/>
+			<Orientation y="1.0292"/>
+			<Actor seed="37876"/>
+		</Entity>
+		<Entity uid="1825">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="523.91956" z="698.88904"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17782"/>
+		</Entity>
+		<Entity uid="1826">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="532.188" z="710.73383"/>
+			<Orientation y="-2.33904"/>
+			<Actor seed="36626"/>
+		</Entity>
+		<Entity uid="1827">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="437.60706" z="699.91834"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22198"/>
+		</Entity>
+		<Entity uid="1828">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="437.11075" z="693.90766"/>
+			<Orientation y="1.0617"/>
+			<Actor seed="21950"/>
+		</Entity>
+		<Entity uid="1829">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="440.99936" z="697.09314"/>
+			<Orientation y="-1.72292"/>
+			<Actor seed="3244"/>
+		</Entity>
+		<Entity uid="1830">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="269.20435" z="848.37323"/>
+			<Orientation y="0.41544"/>
+			<Actor seed="10806"/>
+		</Entity>
+		<Entity uid="1831">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="257.40809" z="921.2049"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28544"/>
+		</Entity>
+		<Entity uid="1832">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="263.6211" z="913.73041"/>
+			<Orientation y="0.17574"/>
+			<Actor seed="5970"/>
+		</Entity>
+		<Entity uid="1833">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="266.74924" z="919.27265"/>
+			<Orientation y="-2.63306"/>
+			<Actor seed="17576"/>
+		</Entity>
+		<Entity uid="1834">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="376.34482" z="980.76221"/>
+			<Orientation y="-2.55703"/>
+			<Actor seed="10914"/>
+		</Entity>
+		<Entity uid="1835">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="369.92646" z="968.29444"/>
+			<Orientation y="2.71753"/>
+			<Actor seed="6554"/>
+		</Entity>
+		<Entity uid="1836">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="376.04673" z="962.60022"/>
+			<Orientation y="0.9242"/>
+			<Actor seed="10584"/>
+		</Entity>
+		<Entity uid="1837">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="383.33225" z="968.63483"/>
+			<Orientation y="1.89826"/>
+			<Actor seed="42506"/>
+		</Entity>
+		<Entity uid="1838">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="395.26206" z="968.73755"/>
+			<Orientation y="2.89756"/>
+			<Actor seed="59030"/>
+		</Entity>
+		<Entity uid="1839">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="398.93378" z="964.29743"/>
+			<Orientation y="1.76751"/>
+			<Actor seed="20982"/>
+		</Entity>
+		<Entity uid="1840">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="319.34916" z="969.37629"/>
+			<Orientation y="-2.47474"/>
+			<Actor seed="5674"/>
+		</Entity>
+		<Entity uid="1841">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="320.37363" z="952.30091"/>
+			<Orientation y="1.08797"/>
+			<Actor seed="36462"/>
+		</Entity>
+		<Entity uid="1842">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="333.93934" z="951.09113"/>
+			<Orientation y="-2.35878"/>
+			<Actor seed="53082"/>
+		</Entity>
+		<Entity uid="1843">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="365.77479" z="912.04871"/>
+			<Orientation y="1.08518"/>
+			<Actor seed="42572"/>
+		</Entity>
+		<Entity uid="1844">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="372.83515" z="916.25855"/>
+			<Orientation y="2.84907"/>
+			<Actor seed="4018"/>
+		</Entity>
+		<Entity uid="1845">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="376.32923" z="909.10645"/>
+			<Orientation y="1.7541"/>
+			<Actor seed="22196"/>
+		</Entity>
+		<Entity uid="1846">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="386.39917" z="913.86744"/>
+			<Orientation y="-2.26594"/>
+			<Actor seed="36470"/>
+		</Entity>
+		<Entity uid="1847">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="395.13846" z="917.91218"/>
+			<Orientation y="1.45023"/>
+			<Actor seed="32178"/>
+		</Entity>
+		<Entity uid="1848">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="388.01313" z="832.25062"/>
+			<Orientation y="0.63282"/>
+			<Actor seed="13782"/>
+		</Entity>
+		<Entity uid="1849">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="395.76307" z="835.08606"/>
+			<Orientation y="3.11124"/>
+			<Actor seed="8132"/>
+		</Entity>
+		<Entity uid="1850">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="396.1348" z="821.76362"/>
+			<Orientation y="3.0741"/>
+			<Actor seed="48974"/>
+		</Entity>
+		<Entity uid="1851">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="404.91654" z="824.67695"/>
+			<Orientation y="0.86545"/>
+			<Actor seed="35736"/>
+		</Entity>
+		<Entity uid="1852">
+			<Template>actor|geology/stone_desert_med.xml</Template>
+			<Position x="409.26813" z="823.87739"/>
+			<Orientation y="-3.07255"/>
+			<Actor seed="23908"/>
+		</Entity>
+		<Entity uid="1853">
+			<Template>structures/ptol_barracks</Template>
+			<Player>1</Player>
+			<Position x="514.9806" z="767.65711"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="11596"/>
+		</Entity>
+		<Entity uid="1854">
+			<Template>structures/ptol_blacksmith</Template>
+			<Player>1</Player>
+			<Position x="481.85477" z="774.10785"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32628"/>
+		</Entity>
+		<Entity uid="1855">
+			<Template>structures/ptol_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="562.0033" z="718.90662"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="65170"/>
+		</Entity>
+		<Entity uid="1856">
+			<Template>structures/ptol_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="454.51392" z="645.71338"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12850"/>
+		</Entity>
+		<Entity uid="1857">
+			<Template>structures/ptol_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="375.67869" z="742.16547"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31060"/>
+		</Entity>
+		<Entity uid="1858">
+			<Template>structures/ptol_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="442.48688" z="824.37696"/>
+			<Orientation y="-2.82918"/>
+			<Actor seed="58322"/>
+		</Entity>
+		<Entity uid="1859">
+			<Template>structures/ptol_dock</Template>
+			<Player>1</Player>
+			<Position x="634.08075" z="739.28834"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="11754"/>
+		</Entity>
+		<Entity uid="1860">
+			<Template>structures/ptol_farmstead</Template>
+			<Player>1</Player>
+			<Position x="536.50824" z="721.70411"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9552"/>
+		</Entity>
+		<Entity uid="1861">
+			<Template>structures/ptol_fortress</Template>
+			<Player>1</Player>
+			<Position x="419.73688" z="752.76783"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="46520"/>
+		</Entity>
+		<Entity uid="1862">
+			<Template>structures/ptol_house</Template>
+			<Player>1</Player>
+			<Position x="427.00034" z="669.4422"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="6938"/>
+		</Entity>
+		<Entity uid="1863">
+			<Template>structures/ptol_house</Template>
+			<Player>1</Player>
+			<Position x="418.88852" z="689.83259"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4440"/>
+		</Entity>
+		<Entity uid="1864">
+			<Template>structures/ptol_house</Template>
+			<Player>1</Player>
+			<Position x="415.71497" z="707.60163"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14302"/>
+		</Entity>
+		<Entity uid="1865">
+			<Template>structures/ptol_house</Template>
+			<Player>1</Player>
+			<Position x="528.68775" z="777.63355"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9708"/>
+		</Entity>
+		<Entity uid="1866">
+			<Template>structures/ptol_house</Template>
+			<Player>1</Player>
+			<Position x="540.6371" z="773.1474"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16064"/>
+		</Entity>
+		<Entity uid="1867">
+			<Template>structures/ptol_house</Template>
+			<Player>1</Player>
+			<Position x="544.8188" z="789.16248"/>
+			<Orientation y="-0.78904"/>
+			<Actor seed="45988"/>
+		</Entity>
+		<Entity uid="1868">
+			<Template>structures/ptol_house</Template>
+			<Player>1</Player>
+			<Position x="434.14118" z="681.02784"/>
+			<Orientation y="0.7844"/>
+			<Actor seed="23980"/>
+		</Entity>
+		<Entity uid="1869">
+			<Template>structures/ptol_military_settlement</Template>
+			<Player>1</Player>
+			<Position x="424.83161" z="903.6305"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="344"/>
+		</Entity>
+		<Entity uid="1870">
+			<Template>structures/ptol_storehouse</Template>
+			<Player>1</Player>
+			<Position x="384.55222" z="702.20197"/>
+			<Orientation y="1.74306"/>
+			<Actor seed="34826"/>
 		</Entity>
 	</Entities>
 	<Paths/>

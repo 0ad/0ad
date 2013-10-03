@@ -16,7 +16,7 @@
     </Resources>
   </Cost>
   <Health>
-    <RegenRate>-0.25</RegenRate>
+    <Max>50</Max>
   </Health>
   <Identity>
     <Civ>ptol</Civ>
@@ -27,8 +27,7 @@
     <History>?</History>
     <Tooltip>Classes: Ranged Mercenary Infantry Archer.
 Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.
-Countered by: Cavalry Swordsmen, Cavalry Skirmishers.
-Constantly loses health.</Tooltip>
+Countered by: Cavalry Swordsmen, Cavalry Skirmishers.</Tooltip>
     <Icon>units/hele_infantry_archer.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>

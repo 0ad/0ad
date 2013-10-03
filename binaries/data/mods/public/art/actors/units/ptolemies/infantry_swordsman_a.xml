@@ -185,6 +185,11 @@
         <prop attachpoint="shield"/>
       </props>
     </variant>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>
