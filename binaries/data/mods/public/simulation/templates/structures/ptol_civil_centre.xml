@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre">
   <Footprint>
-    <Square width="40.0" depth="25"/>
+    <Square width="40.0" depth="32.5"/>
     <Height>8.0</Height>
   </Footprint>
   <Health>
     <SpawnEntityOnDeath>rubble/rubble_hele_cc</SpawnEntityOnDeath>
   </Health>
   <Obstruction>
-    <Static width="37.0" depth="22.0"/>
+    <Static width="37.0" depth="29"/>
   </Obstruction>
   <Identity>
     <Civ>ptol</Civ>

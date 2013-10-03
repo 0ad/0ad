@@ -17,7 +17,9 @@
         <prop actor="particle/flame_firepit_1.xml" attachpoint="fire2"/>
         <prop actor="particle/flame_firepit_2.xml" attachpoint="fire2"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="fire2"/>
-        <prop actor="props/structures/decals/dirt_7x5.xml" attachpoint="root"/>
+		<prop actor="props/special/eyecandy/obelisk.xml" attachpoint="obelisk1" minheight="-20" maxheight="20"/>
+		<prop actor="props/special/eyecandy/obelisk.xml" attachpoint="obelisk2" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/decals/dirt_7x7.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
