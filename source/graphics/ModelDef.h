@@ -216,7 +216,7 @@ public:
 		const size_t* blendIndices,
 		const CMatrix3D newPoseMatrices[]);
 
-#if ARCH_X86_X64
+#if HAVE_SSE
 	/**
 	 * SSE-optimised version of SkinPointsAndNormals.
 	 */

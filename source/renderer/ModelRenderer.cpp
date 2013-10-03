@@ -101,7 +101,7 @@ void ModelRenderer::BuildPositionAndNormals(
 			return;
 		}
 
-#if ARCH_X86_X64
+#if HAVE_SSE
 		if (g_EnableSSE)
 		{
 			CModelDef::SkinPointsAndNormals_SSE(numVertices, Position, Normal, vertices, mdef->GetBlendIndices(), model->GetAnimatedBoneMatrices());
