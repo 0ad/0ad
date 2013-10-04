@@ -65,19 +65,19 @@ CWorld::CWorld(CGame *pGame):
 /**
  * Initializes the game world with the attributes provided.
  **/
-void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
+void CWorld::RegisterInit(const CStrW& mapFile, const CScriptValRooted& settings, int playerID)
 {
 	// Load the map, if one was specified
 	if (mapFile.length())
 	{
-		VfsPath mapfilename(VfsPath("maps/scenarios") / (mapFile + L".pmp"));
+		VfsPath mapfilename = VfsPath(mapFile).ChangeExtension(L".pmp");
 		CMapReader* reader = 0;
 
 		try
 		{
 			reader = new CMapReader;
 			CTriggerManager* pTriggerManager = NULL;
-			reader->LoadMap(mapfilename, m_Terrain,
+			reader->LoadMap(mapfilename, settings, m_Terrain,
 				CRenderer::IsInitialised() ? g_Renderer.GetWaterManager() : NULL,
 				CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
 				&g_LightEnv, m_pGame->GetView(),
@@ -89,8 +89,8 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 		catch (PSERROR_File& err)
 		{
 			delete reader;
-			LOGERROR(L"Failed to load scenario %ls: %hs", mapfilename.string().c_str(), err.what());
-			throw PSERROR_Game_World_MapLoadFailed("Failed to load scenario.\nCheck application log for details.");
+			LOGERROR(L"Failed to load map %ls: %hs", mapfilename.string().c_str(), err.what());
+			throw PSERROR_Game_World_MapLoadFailed("Failed to load map.\nCheck application log for details.");
 		}
 	}
 }

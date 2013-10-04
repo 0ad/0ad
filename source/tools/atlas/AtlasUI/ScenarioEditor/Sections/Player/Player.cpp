@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,8 +35,18 @@ enum
 	ID_PlayerStone,
 	ID_PlayerPop,
 	ID_PlayerColour,
-	ID_PlayerHuman,
-	ID_PlayerAI,
+
+	ID_DefaultName,
+	ID_DefaultCiv,
+	ID_DefaultColour,
+	ID_DefaultAI,
+	ID_DefaultFood,
+	ID_DefaultWood,
+	ID_DefaultMetal,
+	ID_DefaultStone,
+	ID_DefaultPop,
+	ID_DefaultTeam,
+
 	ID_CameraSet,
 	ID_CameraView,
 	ID_CameraClear
@@ -53,6 +63,39 @@ static wxWindow* Tooltipped(wxWindow* window, const wxString& tip)
 }
 
 //////////////////////////////////////////////////////////////////////////
+
+class DefaultCheckbox : public wxCheckBox
+{
+public:
+	DefaultCheckbox(wxWindow* parent, wxWindowID id, wxWindow* control, bool initialValue = false)
+		: wxCheckBox(parent, id, wxEmptyString), m_Control(control)
+	{
+		SetValue(initialValue);
+	}
+
+	virtual void SetValue(bool value)
+	{
+		m_Control->Enable(value);
+		wxCheckBox::SetValue(value);
+	}
+
+	void OnChecked(wxCommandEvent& evt)
+	{
+		m_Control->Enable(evt.IsChecked());
+
+		evt.Skip();
+	}
+
+private:
+	wxWindow* m_Control;
+
+	DECLARE_EVENT_TABLE();
+};
+
+BEGIN_EVENT_TABLE(DefaultCheckbox, wxCheckBox)
+	EVT_CHECKBOX(wxID_ANY, DefaultCheckbox::OnChecked)
+END_EVENT_TABLE();
+
 
 class PlayerNotebookPage : public wxPanel
 {
@@ -73,25 +116,33 @@ public:
 			/////////////////////////////////////////////////////////////////////////
 			// Player Info
 			wxStaticBoxSizer* playerInfoSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Player info"));
-			wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
-			gridSizer->AddGrowableCol(1);
-			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Name")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxFlexGridSizer* gridSizer = new wxFlexGridSizer(3, 5, 5);
+			gridSizer->AddGrowableCol(2);
+
 			wxTextCtrl* nameCtrl = new wxTextCtrl(this, wxID_ANY);
+			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultName, nameCtrl), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Name")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			gridSizer->Add(nameCtrl, wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
 			m_Controls.name = nameCtrl;
-			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Civilisation")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+
 			wxChoice* civChoice = new wxChoice(this, wxID_ANY);
+			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultCiv, civChoice), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Civilisation")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			gridSizer->Add(civChoice, wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
 			m_Controls.civ = civChoice;
-			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Colour")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+
 			wxButton* colourButton = new wxButton(this, ID_PlayerColour);
+			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultColour, colourButton), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Colour")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			gridSizer->Add(Tooltipped(colourButton,
 				_("Set player colour")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
 			m_Controls.colour = colourButton;
-			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Default AI")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+
 			wxChoice* aiChoice = new wxChoice(this, wxID_ANY);
+			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultAI, aiChoice), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("AI")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			gridSizer->Add(Tooltipped(aiChoice,
-				_("Select default AI")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
+				_("Select AI")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
 			m_Controls.ai = aiChoice;
 
 			playerInfoSizer->Add(gridSizer, wxSizerFlags(1).Expand());
@@ -102,30 +153,40 @@ public:
 			/////////////////////////////////////////////////////////////////////////
 			// Resources
 			wxStaticBoxSizer* resourceSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Resources"));
-			wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
-			gridSizer->AddGrowableCol(1);
-			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Food")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxFlexGridSizer* gridSizer = new wxFlexGridSizer(3, 5, 5);
+			gridSizer->AddGrowableCol(2);
+
 			wxSpinCtrl* foodCtrl = new wxSpinCtrl(this, ID_PlayerFood, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
+			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultFood, foodCtrl), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Food")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			gridSizer->Add(Tooltipped(foodCtrl,
 				_("Initial value of food resource")), wxSizerFlags().Expand());
 			m_Controls.food = foodCtrl;
-			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Wood")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+
 			wxSpinCtrl* woodCtrl = new wxSpinCtrl(this, ID_PlayerWood, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
+			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultWood, woodCtrl), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Wood")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			gridSizer->Add(Tooltipped(woodCtrl,
 				_("Initial value of wood resource")), wxSizerFlags().Expand());
 			m_Controls.wood = woodCtrl;
-			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Metal")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+
 			wxSpinCtrl* metalCtrl = new wxSpinCtrl(this, ID_PlayerMetal, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
+			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultMetal, metalCtrl), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Metal")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			gridSizer->Add(Tooltipped(metalCtrl,
 				_("Initial value of metal resource")), wxSizerFlags().Expand());
 			m_Controls.metal = metalCtrl;
-			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Stone")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+
 			wxSpinCtrl* stoneCtrl = new wxSpinCtrl(this, ID_PlayerStone, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
+			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultStone, stoneCtrl), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Stone")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			gridSizer->Add(Tooltipped(stoneCtrl,
 				_("Initial value of stone resource")), wxSizerFlags().Expand());
 			m_Controls.stone = stoneCtrl;
-			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Pop limit")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+
 			wxSpinCtrl* popCtrl = new wxSpinCtrl(this, ID_PlayerPop, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
+			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultPop, popCtrl), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Pop limit")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			gridSizer->Add(Tooltipped(popCtrl,
 				_("Population limit for this player")), wxSizerFlags().Expand());
 			m_Controls.pop = popCtrl;
@@ -138,8 +199,11 @@ public:
 			// Diplomacy
 			wxStaticBoxSizer* diplomacySizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Diplomacy"));
 			wxBoxSizer* boxSizer = new wxBoxSizer(wxHORIZONTAL);
-			boxSizer->Add(new wxStaticText(this, wxID_ANY, _("Team")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			wxChoice* teamCtrl = new wxChoice(this, wxID_ANY);
+			boxSizer->Add(new DefaultCheckbox(this, ID_DefaultTeam, teamCtrl), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			boxSizer->AddSpacer(5);
+			boxSizer->Add(new wxStaticText(this, wxID_ANY, _("Team")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			boxSizer->AddSpacer(5);
 			teamCtrl->Append(_("None"));
 			teamCtrl->Append(_T("1"));
 			teamCtrl->Append(_T("2"));
@@ -479,6 +543,7 @@ BEGIN_EVENT_TABLE(PlayerSettingsControl, wxPanel)
 	EVT_BUTTON(ID_PlayerColour, PlayerSettingsControl::OnPlayerColour)
 	EVT_BUTTON(ID_CameraSet, PlayerSettingsControl::OnEdit)
 	EVT_BUTTON(ID_CameraClear, PlayerSettingsControl::OnEdit)
+	EVT_CHECKBOX(wxID_ANY, PlayerSettingsControl::OnEdit)
 	EVT_CHOICE(wxID_ANY, PlayerSettingsControl::OnEdit)
 	EVT_TEXT(ID_NumPlayers, PlayerSettingsControl::OnNumPlayersText)
 	EVT_TEXT(wxID_ANY, PlayerSettingsControl::OnEdit)
@@ -596,7 +661,8 @@ void PlayerSettingsControl::ReadFromEngine()
 		m_MapSettings = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qry.settings);
 	}
 	else
-	{	// Use blank object, it will be created next
+	{
+		// Use blank object, it will be created next
 		m_MapSettings = AtObj();
 	}
 
@@ -607,9 +673,7 @@ void PlayerSettingsControl::ReadFromEngine()
 		m_NumPlayers = MAX_NUM_PLAYERS;
 	}
 	else
-	{
 		m_NumPlayers = player.count();
-	}
 
 	wxASSERT(m_NumPlayers <= MAX_NUM_PLAYERS && m_NumPlayers != 0);
 
@@ -628,21 +692,24 @@ void PlayerSettingsControl::ReadFromEngine()
 
 	for (size_t i = 0; i < MAX_NUM_PLAYERS; ++i)
 	{
-		PlayerPageControls controls = m_PlayerControls[i];
+		const PlayerPageControls& controls = m_PlayerControls[i];
 
 		// name
 		wxString name(_("Unknown"));
-		if (player["Name"].defined())
+		bool defined = player["Name"].defined();
+		if (defined)
 			name = wxString(player["Name"]);
 		else if (playerDefs["Name"].defined())
 			name = wxString(playerDefs["Name"]);
 
 		controls.name->SetValue(name);
+		wxDynamicCast(FindWindowById(ID_DefaultName, controls.page), DefaultCheckbox)->SetValue(defined);
 
 		// civ
 		wxChoice* choice = controls.civ;
 		wxString civCode;
-		if (player["Civ"].defined())
+		defined = player["Civ"].defined();
+		if (defined)
 			civCode = wxString(player["Civ"]);
 		else
 			civCode = wxString(playerDefs["Civ"]);
@@ -656,31 +723,30 @@ void PlayerSettingsControl::ReadFromEngine()
 				break;
 			}
 		}
+		wxDynamicCast(FindWindowById(ID_DefaultCiv, controls.page), DefaultCheckbox)->SetValue(defined);
 
 		// colour
 		wxColour colour;
 		AtObj clrObj = *player["Colour"];
-		if (clrObj.defined())
-		{
-			colour = wxColor((*clrObj["r"]).getInt(), (*clrObj["g"]).getInt(), (*clrObj["b"]).getInt());
-		}
-		else
-		{
+		defined = clrObj.defined();
+		if (!defined)
 			clrObj = *playerDefs["Colour"];
-			colour = wxColor((*clrObj["r"]).getInt(), (*clrObj["g"]).getInt(), (*clrObj["b"]).getInt());
-		}
+		colour = wxColor((*clrObj["r"]).getInt(), (*clrObj["g"]).getInt(), (*clrObj["b"]).getInt());
 		controls.colour->SetBackgroundColour(colour);
+		wxDynamicCast(FindWindowById(ID_DefaultColour, controls.page), DefaultCheckbox)->SetValue(defined);
 
 		// player type
 		wxString aiID;
-		if (player["AI"].defined())
+		defined = player["AI"].defined();
+		if (defined)
 			aiID = wxString(player["AI"]);
 		else
 			aiID = wxString(playerDefs["AI"]);
 
 		choice = controls.ai;
 		if (!aiID.empty())
-		{	// AI
+		{
+			// AI
 			for (size_t j = 0; j < choice->GetCount(); ++j)
 			{
 				wxStringClientData* str = dynamic_cast<wxStringClientData*>(choice->GetClientObject(j));
@@ -691,44 +757,55 @@ void PlayerSettingsControl::ReadFromEngine()
 				}
 			}
 		}
-		else
-		{	// Human
+		else // Human
 			choice->SetSelection(0);
-		}
+		wxDynamicCast(FindWindowById(ID_DefaultAI, controls.page), DefaultCheckbox)->SetValue(defined);
 
 		// resources
 		AtObj resObj = *player["Resources"];
-		if (resObj.defined() && resObj["food"].defined())
+		defined = resObj.defined() && resObj["food"].defined();
+		if (defined)
 			controls.food->SetValue(wxString(resObj["food"]));
 		else
 			controls.food->SetValue(0);
+		wxDynamicCast(FindWindowById(ID_DefaultFood, controls.page), DefaultCheckbox)->SetValue(defined);
 
-		if (resObj.defined() && resObj["wood"].defined())
+		defined = resObj.defined() && resObj["wood"].defined();
+		if (defined)
 			controls.wood->SetValue(wxString(resObj["wood"]));
 		else
 			controls.wood->SetValue(0);
+		wxDynamicCast(FindWindowById(ID_DefaultWood, controls.page), DefaultCheckbox)->SetValue(defined);
 
-		if (resObj.defined() && resObj["metal"].defined())
+		defined = resObj.defined() && resObj["metal"].defined();
+		if (defined)
 			controls.metal->SetValue(wxString(resObj["metal"]));
 		else
 			controls.metal->SetValue(0);
+		wxDynamicCast(FindWindowById(ID_DefaultMetal, controls.page), DefaultCheckbox)->SetValue(defined);
 
-		if (resObj.defined() && resObj["stone"].defined())
+		defined = resObj.defined() && resObj["stone"].defined();
+		if (defined)
 			controls.stone->SetValue(wxString(resObj["stone"]));
 		else
 			controls.stone->SetValue(0);
+		wxDynamicCast(FindWindowById(ID_DefaultStone, controls.page), DefaultCheckbox)->SetValue(defined);
 
 		// population limit
-		if (player["PopulationLimit"].defined())
+		defined = player["PopulationLimit"].defined();
+		if (defined)
 			controls.pop->SetValue(wxString(player["PopulationLimit"]));
 		else
 			controls.pop->SetValue(0);
+		wxDynamicCast(FindWindowById(ID_DefaultPop, controls.page), DefaultCheckbox)->SetValue(defined);
 
 		// team
-		if (player["Team"].defined())
+		defined = player["Team"].defined();
+		if (defined)
 			controls.team->SetSelection((*player["Team"]).getInt() + 1);
 		else
 			controls.team->SetSelection(0);
+		wxDynamicCast(FindWindowById(ID_DefaultTeam, controls.page), DefaultCheckbox)->SetValue(defined);
 
 		// camera
 		if (player["StartingCamera"].defined())
@@ -767,7 +844,6 @@ void PlayerSettingsControl::ReadFromEngine()
 AtObj PlayerSettingsControl::UpdateSettingsObject()
 {
 	// Update player data in the map settings
-	AtIter oldPlayer = m_MapSettings["PlayerData"]["item"];
 	AtObj players;
 	players.set("@array", L"");
 
@@ -777,66 +853,67 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 	{
 		PlayerPageControls controls = m_PlayerControls[i];
 
-		AtObj player = *oldPlayer;
+		AtObj player;
 
 		// name
 		wxTextCtrl* text = controls.name;
-		if (!text->GetValue().empty())
-		{
+		if (text->IsEnabled())
 			player.set("Name", text->GetValue());
-		}
 
 		// civ
 		wxChoice* choice = controls.civ;
-		if (choice->GetSelection() >= 0)
+		if (choice->IsEnabled() && choice->GetSelection() >= 0)
 		{
 			wxStringClientData* str = dynamic_cast<wxStringClientData*>(choice->GetClientObject(choice->GetSelection()));
 			player.set("Civ", str->GetData());
 		}
 
 		// colour
-		wxColour colour = controls.colour->GetBackgroundColour();
-		AtObj clrObj;
-		clrObj.setInt("r", (int)colour.Red());
-		clrObj.setInt("g", (int)colour.Green());
-		clrObj.setInt("b", (int)colour.Blue());
-		player.set("Colour", clrObj);
+		if (controls.colour->IsEnabled())
+		{
+			wxColour colour = controls.colour->GetBackgroundColour();
+			AtObj clrObj;
+			clrObj.setInt("r", (int)colour.Red());
+			clrObj.setInt("g", (int)colour.Green());
+			clrObj.setInt("b", (int)colour.Blue());
+			player.set("Colour", clrObj);
+		}
 
 		// player type
 		choice = controls.ai;
-		if (choice->GetSelection() > 0)
-		{	// ai - get id
-			wxStringClientData* str = dynamic_cast<wxStringClientData*>(choice->GetClientObject(choice->GetSelection()));
-			player.set("AI", str->GetData());
-		}
-		else
-		{	// human
-			player.set("AI", _T(""));
+		if (choice->IsEnabled())
+		{
+			if (choice->GetSelection() > 0)
+			{
+				// ai - get id
+				wxStringClientData* str = dynamic_cast<wxStringClientData*>(choice->GetClientObject(choice->GetSelection()));
+				player.set("AI", str->GetData());
+			}
+			else // human
+				player.set("AI", _T(""));
 		}
 
 		// resources
 		AtObj resObj;
-		if (controls.food->GetValue() > 0)
+		if (controls.food->IsEnabled())
 			resObj.setInt("food", controls.food->GetValue());
-		if (controls.wood->GetValue() > 0)
+		if (controls.wood->IsEnabled())
 			resObj.setInt("wood", controls.wood->GetValue());
-		if (controls.metal->GetValue() > 0)
+		if (controls.metal->IsEnabled())
 			resObj.setInt("metal", controls.metal->GetValue());
-		if (controls.stone->GetValue() > 0)
+		if (controls.stone->IsEnabled())
 			resObj.setInt("stone", controls.stone->GetValue());
 		if (resObj.defined())
 			player.set("Resources", resObj);
 
 		// population limit
-		if (controls.pop->GetValue() > 0)
+		if (controls.pop->IsEnabled())
 			player.setInt("PopulationLimit", controls.pop->GetValue());
 
 		// team
 		choice = controls.team;
-		if (choice->GetSelection() >= 0)
-		{	// valid selection
+		if (choice->IsEnabled() && choice->GetSelection() >= 0)
 			player.setInt("Team", choice->GetSelection() - 1);
-		}
 
 		// camera
 		AtObj camObj;
@@ -858,8 +935,6 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 		player.set("StartingCamera", camObj);
 
 		players.add("item", player);
-		if (oldPlayer.defined())
-			++oldPlayer;
 	}
 	
 	m_MapSettings.set("PlayerData", players);

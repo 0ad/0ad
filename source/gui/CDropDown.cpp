@@ -182,6 +182,11 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 
 		if (!m_Open)
 		{
+			CGUIList *pList;
+			GUI<CGUIList>::GetSettingPointer(this, "list", pList);
+			if (pList->m_Items.empty())
+				return;
+
 			m_Open = true;
 			GetScrollBar(0).SetZ(GetBufferedZ());
 			GUI<int>::GetSetting(this, "selected", m_ElementHighlight);

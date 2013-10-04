@@ -421,7 +421,7 @@ CScriptVal LoadMapSettings(void* cbdata, VfsPath pathname)
 
 	CMapSummaryReader reader;
 
-	if (reader.LoadMap(pathname.ChangeExtension(L".xml")) != PSRETURN_OK)
+	if (reader.LoadMap(pathname) != PSRETURN_OK)
 		return CScriptVal();
 
 	return reader.GetMapSettings(guiManager->GetScriptInterface()).get();

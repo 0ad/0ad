@@ -26,7 +26,7 @@
 #include "ps/FileIo.h"
 #include "maths/Vector4D.h"
 
-#if ARCH_X86_X64
+#if HAVE_SSE
 # include <xmmintrin.h>
 #endif
 
@@ -121,7 +121,7 @@ void CModelDef::SkinPointsAndNormals(
 	}
 }
 
-#if ARCH_X86_X64
+#if HAVE_SSE
 void CModelDef::SkinPointsAndNormals_SSE(
 		size_t numVertices,
 		const VertexArrayIterator<CVector3D>& Position,
