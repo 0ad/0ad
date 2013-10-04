@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@ public:
 	/*
 	Initialize the World - load the map and all objects
 	*/
-	void RegisterInit(const CStrW& mapFile, int playerID);
+	void RegisterInit(const CStrW& mapFile, const CScriptValRooted& settings, int playerID);
 
 	/*
 	Initialize the World - generate and load the random map

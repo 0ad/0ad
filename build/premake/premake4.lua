@@ -951,6 +951,7 @@ function setup_atlas_projects()
 		"CustomControls/EditableListCtrl",
 		"CustomControls/FileHistory",
 		"CustomControls/HighResTimer",
+		"CustomControls/MapDialog",
 		"CustomControls/SnapSplitterWindow",
 		"CustomControls/VirtualDirTreeCtrl",
 		"CustomControls/Windows",

@@ -142,15 +142,7 @@ void CGame::RegisterInit(const CScriptValRooted& attribs, const std::string& sav
 	if (m_GameView)
 		m_GameView->RegisterInit();
 
-	if (mapType == "scenario")
-	{
-		// Load scenario attributes
-		std::wstring mapFile;
-		m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "map", mapFile);
-
-		m_World->RegisterInit(mapFile, m_PlayerID);
-	}
-	else if (mapType == "random")
+	if (mapType == "random")
 	{
 		// Load random map attributes
 		std::wstring scriptFile;
@@ -160,6 +152,16 @@ void CGame::RegisterInit(const CScriptValRooted& attribs, const std::string& sav
 		m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "settings", settings);
 
 		m_World->RegisterInitRMS(scriptFile, settings, m_PlayerID);
+	}
+	else
+	{
+		std::wstring mapFile;
+		m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "map", mapFile);
+		CScriptValRooted settings;
+		if (mapType == "skirmish")
+			m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "settings", settings);
+
+		m_World->RegisterInit(mapFile, settings, m_PlayerID);
 	}
 
 	if (m_IsSavedGame)

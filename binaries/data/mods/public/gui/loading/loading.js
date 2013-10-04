@@ -46,6 +46,7 @@ function init(data)
 		var mapName = data.attribs.settings.Name;
 		switch (data.attribs.mapType)
 		{
+		case "skirmish":
 		case "scenario":
 			loadingMapName.caption = "Loading \"" + mapName + "\"";
 			break;

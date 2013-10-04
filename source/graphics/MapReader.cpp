@@ -64,7 +64,7 @@ CMapReader::CMapReader()
 }
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
+void CMapReader::LoadMap(const VfsPath& pathname,  const CScriptValRooted& settings, CTerrain *pTerrain_,
 						 WaterManager* pWaterMan_, SkyManager* pSkyMan_,
 						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_, CPostprocManager* pPostproc_,
 						 CSimulation2 *pSimulation2_, const CSimContext* pSimContext_, int playerID_, bool skipEntities)
@@ -83,6 +83,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	m_PlayerID = playerID_;
 	m_SkipEntities = skipEntities;
 	m_StartingCameraTarget = INVALID_ENTITY;
+	m_ScriptSettings = settings;
 
 	filename_xml = pathname.ChangeExtension(L".xml");
 
@@ -116,8 +117,11 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	if (pPostproc)
 		pPostproc->SetPostEffect(L"default");
 
-	// load map settings script
-	RegMemFun(this, &CMapReader::LoadScriptSettings, L"CMapReader::LoadScriptSettings", 50);
+	// load map or script settings script
+	if (settings.undefined())
+		RegMemFun(this, &CMapReader::LoadScriptSettings, L"CMapReader::LoadScriptSettings", 50);
+	else
+		RegMemFun(this, &CMapReader::LoadRMSettings, L"CMapReader::LoadRMSettings", 50);
 
 	// load player settings script (must be done before reading map)
 	RegMemFun(this, &CMapReader::LoadPlayerSettings, L"CMapReader::LoadPlayerSettings", 50);
@@ -137,7 +141,6 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 
 	RegMemFun(this, &CMapReader::DelayLoadFinished, L"CMapReader::DelayLoadFinished", 5);
 }
-
 
 // LoadRandomMap: try to load the map data; reinitialise the scene to new data if successful
 void CMapReader::LoadRandomMap(const CStrW& scriptFile, const CScriptValRooted& settings, CTerrain *pTerrain_,
@@ -1196,6 +1199,7 @@ int CMapReader::DelayLoadFinished()
 int CMapReader::LoadRMSettings()
 {
 	// copy random map settings over to sim
+	ENSURE(pSimulation2);
 	pSimulation2->SetMapSettings(m_ScriptSettings);
 
 	return 0;

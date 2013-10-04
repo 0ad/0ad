@@ -1081,6 +1081,7 @@ bool Autostart(const CmdLineArgs& args)
 	 * -autostart-ip=127.0.0.1			-- multiplayer connect to 127.0.0.1
 	 * -autostart-random=104			-- random map, optional seed value = 104 (default is 0, random is -1)
 	 * -autostart-size=192				-- random map size in tiles = 192 (default is 192)
+	 * -autostart-civ=1:hele			-- set player #1 civ to "hele"
 	 *
 	 * Examples:
 	 * -autostart=Acropolis -autostart-host -autostart-players=2		-- Host game on Acropolis map, 2 players
@@ -1131,8 +1132,7 @@ bool Autostart(const CmdLineArgs& args)
 		}
 		
 		// Random map definition will be loaded from JSON file, so we need to parse it
-		std::wstring mapPath = L"maps/random/";
-		std::wstring scriptPath = mapPath + autoStartName.FromUTF8() + L".json";
+		std::wstring scriptPath = L"maps/random/" + autoStartName.FromUTF8() + L".json";
 		CScriptValRooted scriptData = scriptInterface.ReadJSONFile(scriptPath);
 		if (!scriptData.undefined() && scriptInterface.GetProperty(scriptData.get(), "settings", settings))
 		{
@@ -1157,7 +1157,6 @@ bool Autostart(const CmdLineArgs& args)
 		}
 
 		scriptInterface.SetProperty(attrs.get(), "map", std::string(autoStartName));
-		scriptInterface.SetProperty(attrs.get(), "mapPath", mapPath);
 		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("random"));
 		scriptInterface.SetProperty(settings.get(), "Seed", seed);									// Random seed
 		scriptInterface.SetProperty(settings.get(), "Size", mapSize);								// Random map size (in patches)
@@ -1184,7 +1183,9 @@ bool Autostart(const CmdLineArgs& args)
 	}
 	else
 	{
-		scriptInterface.SetProperty(attrs.get(), "map", std::string(autoStartName));
+		// TODO: support akirmish maps
+		std::string mapFile = "maps/scenarios/" + autoStartName;
+		scriptInterface.SetProperty(attrs.get(), "map", mapFile);
 		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"));
 	}
 
