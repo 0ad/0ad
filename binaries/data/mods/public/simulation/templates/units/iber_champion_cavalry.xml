@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_javelinist">
   <Armour>
-    <Pierce>10</Pierce>
+    <Pierce>7</Pierce>
   </Armour>
   <Attack>
     <Ranged>
       <Pierce>0.0</Pierce>
-      <Crush>30.0</Crush>
+      <Crush>10.0</Crush>
       <MaxRange>48</MaxRange>
     </Ranged>
+    <Bonuses>
+      <BonusPrimary>
+        <Classes>Structure</Classes>
+        <Multiplier>2.0</Multiplier>
+      </BonusPrimary>
+      <BonusSecondary>
+        <Classes>Infantry Bow</Classes>
+        <Multiplier>1.5</Multiplier>
+      </BonusSecondary>
+    </Bonuses>
+  <RestrictedClasses datatype="tokens">-StoneWall</RestrictedClasses>
   </Attack>
   <Cost>
     <Resources>
@@ -24,13 +35,13 @@
     <History>Elite warriors known as The Devoted were adept warriors who could be either infantry or cavalry. Adding to their already considerable skill, The Devoted were renowned for the experience in foreign wars, often in the service of the Carthaginians. Considering that Iberian troops were commonly used as cannon fodder gives some idea of just how good these fierce warriors had to be in order to survive. These cavalrymen skirmish with flaming javelins, giving them a rare siege ability.</History>
 	<Tooltip>Classes: Champion Ranged Cavalry Skirmisher.
 Special: Flaming javelins. Good vs. Buildings.
-Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.
+Counters: 2x vs. Buildings, 1.5x vs. Archers.
 Countered by: Spearmen and Elephants.</Tooltip>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>9.5</WalkSpeed>
+    <WalkSpeed>8.5</WalkSpeed>
     <Run>
-      <Speed>24.0</Speed>
+      <Speed>20.0</Speed>
       <Range>1000.0</Range>
       <RangeMin>10.0</RangeMin>
     </Run>
