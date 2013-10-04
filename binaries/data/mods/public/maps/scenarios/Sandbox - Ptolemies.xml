@@ -5,7 +5,7 @@
 		<SkySet>sunset</SkySet>
 		<SunColour r="1.21875" g="0.845956" b="0.334559"/>
 		<SunElevation angle="0.392699"/>
-		<SunRotation angle="-1.5708"/>
+		<SunRotation angle="-1.52171"/>
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<UnitsAmbientColour r="0.301961" g="0.384314" b="0.454902"/>
 		<Fog>
@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="500.01" y="94.8207" z="620.608"/>
-		<Rotation angle="-0.100505"/>
+		<Position x="492.45" y="102.876" z="632.287"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -8497,56 +8497,56 @@
 		<Entity uid="1412">
 			<Template>units/ptol_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="476.61887" z="695.53785"/>
+			<Position x="475.53467" z="692.8136"/>
 			<Orientation y="-1.85767"/>
 			<Actor seed="3406"/>
 		</Entity>
 		<Entity uid="1413">
 			<Template>units/ptol_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="471.88151" z="700.29151"/>
+			<Position x="470.79731" z="697.56727"/>
 			<Orientation y="-2.213"/>
 			<Actor seed="46178"/>
 		</Entity>
 		<Entity uid="1414">
 			<Template>units/ptol_infantry_archer_b</Template>
 			<Player>1</Player>
-			<Position x="506.19343" z="722.74451"/>
+			<Position x="508.83075" z="726.30286"/>
 			<Orientation y="1.08265"/>
 			<Actor seed="54566"/>
 		</Entity>
 		<Entity uid="1415">
 			<Template>units/ptol_infantry_archer_b</Template>
 			<Player>1</Player>
-			<Position x="502.62153" z="727.70521"/>
+			<Position x="505.25886" z="731.26355"/>
 			<Orientation y="0.78563"/>
 			<Actor seed="57908"/>
 		</Entity>
 		<Entity uid="1416">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="499.02192" z="691.53846"/>
+			<Position x="507.94498" z="688.10688"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="26088"/>
 		</Entity>
 		<Entity uid="1417">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="501.29661" z="694.92048"/>
+			<Position x="510.21967" z="691.4889"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="43942"/>
 		</Entity>
 		<Entity uid="1418">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="503.92203" z="698.7115"/>
+			<Position x="512.8451" z="695.27991"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="54262"/>
 		</Entity>
 		<Entity uid="1419">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="507.95398" z="701.13074"/>
+			<Position x="516.87732" z="697.69916"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32462"/>
 		</Entity>
@@ -10174,8 +10174,8 @@
 		<Entity uid="1725">
 			<Template>gaia/special_ruins_stone_statues_ptol</Template>
 			<Player>1</Player>
-			<Position x="509.4496" z="676.7688"/>
-			<Orientation y="2.35621"/>
+			<Position x="502.14597" z="683.42078"/>
+			<Orientation y="0.79123"/>
 			<Actor seed="41366"/>
 		</Entity>
 		<Entity uid="1726">
@@ -10216,15 +10216,15 @@
 		<Entity uid="1731">
 			<Template>gaia/special_ruins_stone_statues_ptol</Template>
 			<Player>1</Player>
-			<Position x="512.46113" z="680.95044"/>
+			<Position x="571.53443" z="756.94385"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="49500"/>
 		</Entity>
 		<Entity uid="1732">
 			<Template>gaia/special_ruins_stone_statues_ptol</Template>
 			<Player>1</Player>
-			<Position x="516.5644" z="684.47193"/>
-			<Orientation y="2.33788"/>
+			<Position x="522.34809" z="703.98871"/>
+			<Orientation y="-2.29787"/>
 			<Actor seed="15478"/>
 		</Entity>
 		<Entity uid="1733">
@@ -11088,6 +11088,20 @@
 			<Position x="384.55222" z="702.20197"/>
 			<Orientation y="1.74306"/>
 			<Actor seed="34826"/>
+		</Entity>
+		<Entity uid="1871">
+			<Template>other/obelisk</Template>
+			<Player>1</Player>
+			<Position x="530.7657" z="693.32575"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="64266"/>
+		</Entity>
+		<Entity uid="1872">
+			<Template>other/obelisk</Template>
+			<Player>1</Player>
+			<Position x="512.3039" z="675.77991"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19674"/>
 		</Entity>
 	</Entities>
 	<Paths/>

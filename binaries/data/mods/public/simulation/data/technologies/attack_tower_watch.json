@@ -1,6 +1,15 @@
 {
 	"pair": "pair_tower_01",	
 	"genericName": "Sentries",
+	"specificName": {
+		"hele": "Nyktophylakes",
+		"mace": "Nyktophylakes",
+		"spart": "Nyktophylakes",
+		"athen": "Nyktophylakes",
+		"ptol": "Nyktophylakes",
+		"sele": "Nyktophylakes",
+		"rome": "Vigiles"
+	},
 	"description": "A night's watch increases vigilance.",
 	"cost": {"food": 100, "wood": 100, "stone": 0, "metal": 0},
 	"requirements": {"tech": "phase_town"},
