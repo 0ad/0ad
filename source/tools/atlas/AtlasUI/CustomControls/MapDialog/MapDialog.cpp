@@ -22,6 +22,9 @@
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
 
+#include <wx/filename.h>
+#include <wx/notebook.h>
+
 enum {
 	ID_MapDialogFilename = 1,
 	ID_MapDialogNotebook,
