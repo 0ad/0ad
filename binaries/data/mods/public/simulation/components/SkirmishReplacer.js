@@ -1,18 +1,16 @@
-const civList = ["general", "athen", "brit", "cart", "celt", "gaul", "hele", "iber", "mace", "maur", "pers", "rome", "spart"];
-
 function SkirmishReplacer() {}
 
-
-SkirmishReplacer.prototype.Schema = "";
-for each (var civ in civList)
-	SkirmishReplacer.prototype.Schema += 
-		"<optional>" +
-			"<element name='"+civ+"' a:help='Replacement template for this civ. If this element is not present, the \"general\" element (with {civ} replaced by the civ code) is taken. If this element is empty, or not defined, and also no general element, this entity is just deleted.'>" +
-				"<text/>" +
+SkirmishReplacer.prototype.Schema = 
+	"<optional>" +
+		"<oneOrMore>" +
+			"<element a:help='Replacement template for the civ which this element is named after or general. If no element is defined for a civ the general element is used instead. If this element is empty the entity is just deleted. The general element gets used if no civ specific element is present and replaces {civ} with the civ code.'>" +
+				"<anyName/>" +
+				"<interleave>" +
+					"<text/>" +
+				"</interleave>" +
 			"</element>" +
-		"</optional>";
-
-
+		"</oneOrMore>" +
+	"</optional>";
 
 SkirmishReplacer.prototype.Init = function()
 {
