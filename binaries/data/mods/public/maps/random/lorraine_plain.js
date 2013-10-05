@@ -265,7 +265,7 @@ for (var i = 0; i <= randInt(8, (scaleByMapSize(12,20))); i++)
 			placer = new ClumpPlacer(floor(PI*scaleByMapSize(10,20)*scaleByMapSize(10,20)/4), 0.95, 0.6, 10, fractionToTiles(0.5 + 0.49*cos(tang)), fractionToTiles(0.5 + 0.49*sin(tang)));
 			var painter = new LayeredPainter([tWater, tWater], [1]);
 			var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 2);
-			createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 15));
+			createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 3));
 		}
 	}
 }

@@ -169,76 +169,76 @@ SemiRandomElevationPainter.prototype.paint = function(area)
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
-var tGrassSpecific = ["new_alpine_grass_d","new_alpine_grass_d", "new_alpine_grass_e"];
-var tGrass = ["new_alpine_grass_d", "new_alpine_grass_b", "new_alpine_grass_e"];
-var tGrassMidRange = ["new_alpine_grass_b", "alpine_grass_a"];
-var tGrassHighRange = ["new_alpine_grass_a", "alpine_grass_a", "alpine_grass_rocky"];
-var tHighRocks = ["alpine_cliff_b", "alpine_cliff_c","alpine_cliff_c", "alpine_grass_rocky"];
-var tSnowedRocks = ["alpine_cliff_b", "alpine_cliff_snow"];
-var tTopSnow = ["alpine_snow_rocky","alpine_snow_a"];
-var tTopSnowOnly = ["alpine_snow_a"];
+const tGrassSpecific = ["new_alpine_grass_d","new_alpine_grass_d", "new_alpine_grass_e"];
+const tGrass = ["new_alpine_grass_d", "new_alpine_grass_b", "new_alpine_grass_e"];
+const tGrassMidRange = ["new_alpine_grass_b", "alpine_grass_a"];
+const tGrassHighRange = ["new_alpine_grass_a", "alpine_grass_a", "alpine_grass_rocky"];
+const tHighRocks = ["alpine_cliff_b", "alpine_cliff_c","alpine_cliff_c", "alpine_grass_rocky"];
+const tSnowedRocks = ["alpine_cliff_b", "alpine_cliff_snow"];
+const tTopSnow = ["alpine_snow_rocky","alpine_snow_a"];
+const tTopSnowOnly = ["alpine_snow_a"];
 
-var tDirtyGrass = ["new_alpine_grass_d","alpine_grass_d","alpine_grass_c", "alpine_grass_b"];
-var tLushGrass = ["new_alpine_grass_a","new_alpine_grass_d"];
+const tDirtyGrass = ["new_alpine_grass_d","alpine_grass_d","alpine_grass_c", "alpine_grass_b"];
+const tLushGrass = ["new_alpine_grass_a","new_alpine_grass_d"];
 
-var tMidRangeCliffs = ["alpine_cliff_b","alpine_cliff_c"];
-var tHighRangeCliffs = ["alpine_mountainside","alpine_cliff_snow" ];
-var tPass = ["alpine_cliff_b", "alpine_cliff_c", "alpine_grass_rocky", "alpine_grass_rocky", "alpine_grass_rocky"];
+const tMidRangeCliffs = ["alpine_cliff_b","alpine_cliff_c"];
+const tHighRangeCliffs = ["alpine_mountainside","alpine_cliff_snow" ];
+const tPass = ["alpine_cliff_b", "alpine_cliff_c", "alpine_grass_rocky", "alpine_grass_rocky", "alpine_grass_rocky"];
 
-var tSand = ["beach_c", "beach_d"];
-var tWetSand = ["sand_wet_a", "sand_wet_b"];
-var tSandTransition = ["beach_scrub_50_"];
-var tWater = ["sand_wet_a","sand_wet_b","sand_wet_b","sand_wet_b"];
+const tSand = ["beach_c", "beach_d"];
+const tWetSand = ["sand_wet_a", "sand_wet_b"];
+const tSandTransition = ["beach_scrub_50_"];
+const tWater = ["sand_wet_a","sand_wet_b","sand_wet_b","sand_wet_b"];
 
-var tGrassLandForest = "alpine_forrestfloor";
-var tGrassLandForest2 = "alpine_grass_d";
-var tForestTransition = ["new_alpine_grass_d", "new_alpine_grass_b","alpine_grass_d"];
+const tGrassLandForest = "alpine_forrestfloor";
+const tGrassLandForest2 = "alpine_grass_d";
+const tForestTransition = ["new_alpine_grass_d", "new_alpine_grass_b","alpine_grass_d"];
 
-var tGrassDForest = "alpine_forrestfloor_snow";
-var tCliff = ["alpine_cliff_a", "alpine_cliff_b"];
-var tGrassA = "alpine_grass_snow_50";
-var tGrassB = ["alpine_grass_snow_50", "alpine_dirt_snow"];
-var tGrassC = ["alpine_snow_rocky"];
-var tDirt = ["alpine_dirt_snow", "alpine_snow_a"];
-var tRoad = "new_alpine_citytile";
-var tRoadWild = "new_alpine_citytile";
-var tShore = "alpine_shore_rocks_icy";
+const tGrassDForest = "alpine_forrestfloor_snow";
+const tCliff = ["alpine_cliff_a", "alpine_cliff_b"];
+const tGrassA = "alpine_grass_snow_50";
+const tGrassB = ["alpine_grass_snow_50", "alpine_dirt_snow"];
+const tGrassC = ["alpine_snow_rocky"];
+const tDirt = ["alpine_dirt_snow", "alpine_snow_a"];
+const tRoad = "new_alpine_citytile";
+const tRoadWild = "new_alpine_citytile";
+const tShore = "alpine_shore_rocks_icy";
 
 // gaia entities
-var oBeech = "gaia/flora_tree_euro_beech";
-var oPine = "gaia/flora_tree_aleppo_pine";
-var oBerryBush = "gaia/flora_bush_berry";
-var oChicken = "gaia/fauna_chicken";
-var oDeer = "gaia/fauna_deer";
-var oGoat = "gaia/fauna_goat";
-var oFish = "gaia/fauna_fish";
-var oRabbit = "gaia/fauna_rabbit";
-var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-var oStoneSmall = "gaia/geology_stone_alpine_a";
-var oMetalLarge = "gaia/geology_metal_alpine_slabs";
+const oBeech = "gaia/flora_tree_euro_beech";
+const oPine = "gaia/flora_tree_aleppo_pine";
+const oBerryBush = "gaia/flora_bush_berry";
+const oChicken = "gaia/fauna_chicken";
+const oDeer = "gaia/fauna_deer";
+const oGoat = "gaia/fauna_goat";
+const oFish = "gaia/fauna_fish";
+const oRabbit = "gaia/fauna_rabbit";
+const oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
+const oStoneSmall = "gaia/geology_stone_alpine_a";
+const oMetalLarge = "gaia/geology_metal_alpine_slabs";
 
 
 
 // decorative props
-var aRain = "actor|particle/rain_shower.xml";
-var aGrass = "actor|props/flora/grass_soft_small_tall.xml";
-var aGrassShort = "actor|props/flora/grass_soft_large.xml";
-var aRockLarge = "actor|geology/stone_granite_med.xml";
-var aRockMedium = "actor|geology/stone_granite_med.xml";
-var aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
-var aLillies = "actor|props/flora/water_lillies.xml";
-var aBushMedium = "actor|props/flora/bush_medit_me.xml";
-var aBushSmall = "actor|props/flora/bush_medit_sm.xml";
+const aRain = "actor|particle/rain_shower.xml";
+const aGrass = "actor|props/flora/grass_soft_small_tall.xml";
+const aGrassShort = "actor|props/flora/grass_soft_large.xml";
+const aRockLarge = "actor|geology/stone_granite_med.xml";
+const aRockMedium = "actor|geology/stone_granite_med.xml";
+const aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
+const aLillies = "actor|props/flora/water_lillies.xml";
+const aBushMedium = "actor|props/flora/bush_medit_me.xml";
+const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
-var pForestLand = [tGrassLandForest + TERRAIN_SEPARATOR + oPine,tGrassLandForest + TERRAIN_SEPARATOR + oBeech,
+const pForestLand = [tGrassLandForest + TERRAIN_SEPARATOR + oPine,tGrassLandForest + TERRAIN_SEPARATOR + oBeech,
 				   tGrassLandForest2 + TERRAIN_SEPARATOR + oPine,tGrassLandForest2 + TERRAIN_SEPARATOR + oBeech,
 				   tGrassLandForest,tGrassLandForest2,tGrassLandForest2,tGrassLandForest2];
-var pForestLandLight = [tGrassLandForest + TERRAIN_SEPARATOR + oPine,tGrassLandForest + TERRAIN_SEPARATOR + oBeech,
+const pForestLandLight = [tGrassLandForest + TERRAIN_SEPARATOR + oPine,tGrassLandForest + TERRAIN_SEPARATOR + oBeech,
 				   tGrassLandForest2 + TERRAIN_SEPARATOR + oPine,tGrassLandForest2 + TERRAIN_SEPARATOR + oBeech,
 				   tGrassLandForest,tGrassLandForest2,tForestTransition,tGrassLandForest2,
 					tGrassLandForest,tForestTransition,tGrassLandForest2,tForestTransition,
 						tGrassLandForest2,tGrassLandForest2,tGrassLandForest2,tGrassLandForest2];
-var pForestLandVeryLight = [ tGrassLandForest2 + TERRAIN_SEPARATOR + oPine,tGrassLandForest2 + TERRAIN_SEPARATOR + oBeech,
+const pForestLandVeryLight = [ tGrassLandForest2 + TERRAIN_SEPARATOR + oPine,tGrassLandForest2 + TERRAIN_SEPARATOR + oBeech,
 						tForestTransition,tGrassLandForest2,tForestTransition,tForestTransition,tForestTransition,
 						tGrassLandForest,tForestTransition,tGrassLandForest2,tForestTransition,
 						tGrassLandForest2,tGrassLandForest2,tGrassLandForest2,tGrassLandForest2];
@@ -250,9 +250,9 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
+const mapArea = mapSize*mapSize;
 
 // create tile classes
 
@@ -275,7 +275,7 @@ var clWater = createTileClass();
 // I'll use very basic noised sinusoidal functions to give the terrain a way aspect
 // It looks like we can't go higher than ≈ 75. Given this I'll lower the ground
 
-var baseHeight = -6;
+const baseHeight = -6;
 setWaterHeight(8);
 
 // let's choose the angle of the pyreneans
@@ -593,7 +593,7 @@ log ("Creating hills...");
 placer = new ClumpPlacer(scaleByMapSize(60, 120), 0.3, 0.06, 5);
 painter = new SemiRandomElevationPainter(7, 4,1);
 var terrainPainter = new TerrainPainter(tGrassSpecific);
-createAreas( placer, [painter,terrainPainter, paintClass(clHill)],  avoidClasses(clWater, 5, clPlayer, 10, clBaseResource, 6, clPyrenneans, 2), scaleByMapSize(5, 35) );
+createAreas( placer, [painter,terrainPainter, paintClass(clHill)],  avoidClasses(clWater, 5, clPlayer, 20, clBaseResource, 6, clPyrenneans, 2), scaleByMapSize(5, 35) );
 
 
 // create forests
@@ -605,7 +605,7 @@ for (var i = 0; i < types.length; ++i)
 {
 	placer = new ClumpPlacer(size, 0.2, 0.1, 1);
 	painter = new LayeredPainter( types[i], [scaleByMapSize(1,2),scaleByMapSize(3,6),scaleByMapSize(3,6)] );
-	createAreas( placer, [painter, paintClass(clForest)], avoidClasses(clPlayer, 12, clPyrenneans,0, clForest, 7, clWater, 2), num);
+	createAreas( placer, [painter, paintClass(clForest)], avoidClasses(clPlayer, 20, clPyrenneans,0, clForest, 7, clWater, 2), num);
 }
 RMS.SetProgress(60);
 
@@ -721,12 +721,12 @@ RMS.SetProgress(70);
 // making more in dirt areas so as to appear different
 log("Creating small grass tufts...");
 var group = new SimpleGroup( [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)] );
-createObjectGroups(group, 0, avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0, clPyrenneans,2), scaleByMapSize(13, 200) );
+createObjectGroups(group, 0, avoidClasses(clWater, 2, clHill, 2, clPlayer, 5, clDirt, 0, clPyrenneans,2), scaleByMapSize(13, 200) );
 createObjectGroups(group, 0, stayClasses(clDirt,1), scaleByMapSize(13, 200),10);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup( [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)] );
-createObjectGroups(group, 0, avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0, clPyrenneans,2), scaleByMapSize(13, 200) );
+createObjectGroups(group, 0, avoidClasses(clWater, 3, clHill, 2, clPlayer, 5, clDirt, 1, clForest, 0, clPyrenneans,2), scaleByMapSize(13, 200) );
 createObjectGroups(group, 0, stayClasses(clDirt,1), scaleByMapSize(13, 200),10);
 RMS.SetProgress(75);
 
@@ -740,15 +740,15 @@ RMS.SetProgress(80);
 log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
-createObjectGroups(group, 0,  avoidClasses(clWater, 3, clForest, 1, clPlayer, 10, clRock, 8, clPyrenneans, 1),  scaleByMapSize(4,16), 100 );
+createObjectGroups(group, 0,  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 8, clPyrenneans, 1),  scaleByMapSize(4,16), 100 );
 
 // create small stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
-createObjectGroups(group, 0,  avoidClasses(clWater, 3, clForest, 1, clPlayer, 10, clRock, 8, clPyrenneans, 1),  scaleByMapSize(4,16), 100 );
+createObjectGroups(group, 0,  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 8, clPyrenneans, 1),  scaleByMapSize(4,16), 100 );
 
 log("Creating metal mines...");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
-createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 1, clPlayer, 10, clMetal, 8, clRock, 5, clPyrenneans, 1), scaleByMapSize(4,16), 100  );
+createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 8, clRock, 5, clPyrenneans, 1), scaleByMapSize(4,16), 100  );
 
 RMS.SetProgress(85);
 
@@ -764,16 +764,19 @@ RMS.SetProgress(90);
 
 log("Creating deer...");
 group = new SimpleGroup( [new SimpleObject(oDeer, 5,7, 0,4)], true, clFood );
-createObjectGroups(group, 0,  avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clPyrenneans, 1, clFood, 15),  3 * numPlayers, 50 );
+createObjectGroups(group, 0,  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clPyrenneans, 1, clFood, 15),  3 * numPlayers, 50 );
 
 log("Creating rabbit...");
 group = new SimpleGroup( [new SimpleObject(oRabbit, 2,3, 0,2)], true, clFood );
-createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clPyrenneans, 1, clFood,15), 3 * numPlayers, 50 );
+createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clPyrenneans, 1, clFood,15), 3 * numPlayers, 50 );
+
+log("Creating berry bush...");
+group = new SimpleGroup( [new SimpleObject(oBerryBush, 5,7, 0,4)],true, clFood );
+createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clPyrenneans, 1, clFood, 10), randInt(1, 4) * numPlayers + 2, 50 );
 
 log("Creating fish...");
 group = new SimpleGroup( [new SimpleObject(oFish, 2,3, 0,2)], true, clFood );
 createObjectGroups(group, 0, [avoidClasses(clFood, 15), stayClasses(clWater, 6)], 20 * numPlayers, 60 );
-
 
 setSunElevation(randFloat(PI/5, PI / 3));
 setSunRotation(randFloat(0, TWO_PI));
