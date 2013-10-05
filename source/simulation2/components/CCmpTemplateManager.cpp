@@ -525,11 +525,12 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
 		CParamNode::LoadXMLString(out, "<Entity><Obstruction><Active>false</Active></Obstruction></Entity>");
 
-	if (out.GetChild("Entity").GetChild("VisualActor").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><VisualActor><DisableShadows/></VisualActor></Entity>");
-
 	if (!corpse)
 	{
+		// Previews should not cast shadows
+		if (out.GetChild("Entity").GetChild("VisualActor").IsOk())
+			CParamNode::LoadXMLString(out, "<Entity><VisualActor><DisableShadows/></VisualActor></Entity>");
+
 		// Previews should always be visible in fog-of-war/etc
 		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range><RetainInFog>false</RetainInFog><AlwaysVisible>true</AlwaysVisible></Vision></Entity>");
 	}
