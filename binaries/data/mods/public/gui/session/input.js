@@ -201,11 +201,26 @@ function getActionInfo(action, target)
 		return entState && entState.rallyPoint;
 	});
 
+	// Work out whether at least part of the selection have UnitAI
+	var haveUnitAI = selection.some(function(ent) {
+		var entState = GetEntityState(ent);
+		return entState && entState.unitAI;
+	});
+
 	if (!target)
 	{
 		if (action == "set-rallypoint" && haveRallyPoints)
-			return {"possible": true};
-		else if (action == "move" || action == "attack-move")
+		{
+			var cursor = "";
+			var data = {command: "walk"};
+			if (Engine.HotkeyIsPressed("session.attackmove"))
+			{
+				data = {command: "attack-walk"};
+				cursor = "action-attack-move";
+			}
+			return {"possible": true, "data": data, "cursor": cursor};
+		}
+		else if (haveUnitAI && (action == "move" || action == "attack-move"))
 			return {"possible": true};
 		else
 			return {"possible": false};
@@ -238,6 +253,12 @@ function getActionInfo(action, target)
 
 		// default to walking there
 		var data = {command: "walk"};
+		if (Engine.HotkeyIsPressed("session.attackmove"))
+		{
+			data = {command: "attack-walk"};
+			cursor = "action-attack-move";
+		}
+
 		if (targetState.garrisonHolder && (playerOwned || mutualAllyOwned))
 		{
 			data.command = "garrison";
@@ -434,7 +455,7 @@ function getActionInfo(action, target)
 			break;
 		}
 	}
-	if (action == "move" || action == "attack-move")
+	if (haveUnitAI && (action == "move" || action == "attack-move"))
 		return {"possible": true};
 	else
 		return {"possible": false};
