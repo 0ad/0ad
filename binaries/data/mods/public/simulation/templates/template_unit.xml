@@ -88,6 +88,11 @@
       </Texture>
     </Overlay>
   </Selectable>
+  <Sound>
+    <SoundGroups>
+      <attacked>interface/alarm/alarm_attackplayer.xml</attacked>
+    </SoundGroups>
+  </Sound>
   <StatusBars>
     <BarWidth>2.0</BarWidth>
     <BarHeight>0.333</BarHeight>

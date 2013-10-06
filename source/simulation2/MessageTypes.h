@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -398,6 +398,19 @@ public:
 	entity_id_t entity;
 	entity_pos_t oldRange;
 	entity_pos_t newRange;
+};
+
+/**
+ * Sent when an entity pings the minimap
+ */
+class CMessageMinimapPing : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(MinimapPing)
+
+	CMessageMinimapPing() 
+	{
+	}
 };
 
 #endif // INCLUDED_MESSAGETYPES

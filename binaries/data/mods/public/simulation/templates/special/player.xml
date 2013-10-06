@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
+  <AttackDetection>
+    <SuppressionTransferRange>50</SuppressionTransferRange>
+    <SuppressionRange>150</SuppressionRange>
+    <SuppressionTime>40000</SuppressionTime>
+  </AttackDetection>
+  <BattleDetection>
+    <TimerInterval>200</TimerInterval>
+    <RecordLength>12</RecordLength>
+    <DamageRateThreshold>0.04</DamageRateThreshold>
+    <AlertnessBattleThreshold>4</AlertnessBattleThreshold>
+    <AlertnessPeaceThreshold>0</AlertnessPeaceThreshold>
+    <AlertnessMax>8</AlertnessMax>
+  </BattleDetection>
   <EntityLimits>
     <LimitMultiplier>1.0</LimitMultiplier>
     <Limits>
@@ -12,22 +25,14 @@
       <Monument>5</Monument>
       <Pillar>0</Pillar>
       <WarDog>0</WarDog>
-	  <Theater>1</Theater>
-	  <Council>1</Council>
-	  <Library>1</Library>
-	  <Field>0</Field>
-	  <Lighthouse>1</Lighthouse>
+      <Theater>1</Theater>
+      <Council>1</Council>
+      <Library>1</Library>
+      <Field>0</Field>
+      <Lighthouse>1</Lighthouse>
     </Limits>
   </EntityLimits>
   <Player/>
   <StatisticsTracker/>
   <TechnologyManager/>
-  <BattleDetection>
-    <TimerInterval>200</TimerInterval>
-    <RecordLength>12</RecordLength>
-    <DamageRateThreshold>0.04</DamageRateThreshold>
-    <AlertnessBattleThreshold>4</AlertnessBattleThreshold>
-    <AlertnessPeaceThreshold>0</AlertnessPeaceThreshold>
-    <AlertnessMax>8</AlertnessMax>
-  </BattleDetection>
 </Entity>

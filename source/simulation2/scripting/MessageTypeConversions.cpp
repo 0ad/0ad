@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -334,6 +334,19 @@ CMessage* CMessageVisionRangeChanged::FromJSVal(ScriptInterface& scriptInterface
 	GET_MSG_PROPERTY(entity_pos_t, oldRange);
 	GET_MSG_PROPERTY(entity_pos_t, newRange);
 	return new CMessageVisionRangeChanged(entity, oldRange, newRange);
+}
+
+////////////////////////////////
+
+jsval CMessageMinimapPing::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	return OBJECT_TO_JSVAL(obj);
+}
+
+CMessage* CMessageMinimapPing::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	return new CMessageMinimapPing();
 }
 
 ////////////////////////////////////////////////////////////////

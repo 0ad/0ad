@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPlayer.h"
+#include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/MessageTypes.h"
 
 #include "ps/Overlay.h"
@@ -33,6 +34,7 @@ public:
 	{
 		componentManager.SubscribeToMessageType(MT_PositionChanged);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
+		componentManager.SubscribeToMessageType(MT_MinimapPing);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Minimap)
@@ -47,6 +49,11 @@ public:
 
 	bool m_Active;
 	entity_pos_t m_X, m_Z; // cache the latest position for more efficient rendering; only valid when m_Active true
+
+	// Not serialized (based on renderer timing):
+	// TODO: eventually ping state should be serialized and tied into simulation time, but currently lag causes too many problems
+	double m_PingEndTime;
+	bool m_IsPinging;
 
 	static std::string GetSchema()
 	{
@@ -82,6 +89,8 @@ public:
 	virtual void Init(const CParamNode& paramNode)
 	{
 		m_Active = true;
+		m_IsPinging = false;
+		m_PingEndTime = 0.0;
 
 		const CParamNode& colour = paramNode.GetChild("Colour");
 		if (colour.IsOk())
@@ -183,6 +192,18 @@ public:
 
 			break;
 		}
+		case MT_MinimapPing:
+		{
+			CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+			if (!cmpOwnership || cmpOwnership->GetOwner() != (player_id_t)GetSimContext().GetCurrentDisplayedPlayer())
+				break;
+
+			m_Active = true;
+			m_IsPinging = true;
+			m_PingEndTime = 0.0;
+
+			break;
+		}
 		}
 	}
 
@@ -197,6 +218,23 @@ public:
 		x = m_X;
 		z = m_Z;
 		return true;
+	}
+
+	virtual bool CheckPing(double currentTime, double pingDuration)
+	{
+		if (!m_Active || !m_IsPinging)
+			return false;
+
+		// We're currently pinging
+		if (m_PingEndTime == 0.0)
+			m_PingEndTime = currentTime + pingDuration;
+		else if (currentTime > m_PingEndTime)
+		{
+			m_IsPinging = false;
+			m_PingEndTime = 0;
+		}
+
+		return m_IsPinging;
 	}
 };
 
