@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_defense_tower">
   <Footprint>
-    <Square width="10.0" depth="10.5"/>
-    <Height>15.0</Height>
+    <Square width="10.0" depth="10.0"/>
+    <Height>18.0</Height>
   </Footprint>
   <Identity>
     <Civ>ptol</Civ>
@@ -10,7 +10,7 @@
     <History>Towers were an important part of city fortifications. The defending troops shot arrows at the enemy and poured boiling oil over the assailants.</History>
   </Identity>
   <Obstruction>
-    <Static width="7.0" depth="8.0"/>
+    <Static width="9.0" depth="9.0"/>
   </Obstruction>
   <StatusBars>
     <BarWidth>6.0</BarWidth>
@@ -18,6 +18,6 @@
     <HeightOffset>22.0</HeightOffset>
   </StatusBars>
   <VisualActor>
-    <Actor>structures/hellenes/scout_tower.xml</Actor>
+    <Actor>structures/carthaginians/scout_tower.xml</Actor>
   </VisualActor>
 </Entity>

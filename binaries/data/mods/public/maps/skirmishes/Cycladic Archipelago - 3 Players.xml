@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="614.407" y="104.746" z="1384.21"/>
+		<Position x="462.851" y="77.3313" z="351.922"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -19166,7 +19166,7 @@
 		<Entity uid="3673">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="1401.54932" z="1125.04871"/>
+			<Position x="1414.4198" z="1129.15601"/>
 			<Orientation y="0.93551"/>
 		</Entity>
 		<Entity uid="3674">
@@ -20719,7 +20719,7 @@
 		<Entity uid="3985">
 			<Template>skirmish/units/default_cavalry</Template>
 			<Player>1</Player>
-			<Position x="588.1761" z="1504.95496"/>
+			<Position x="590.44666" z="1498.80921"/>
 			<Orientation y="-0.90433"/>
 			<Actor seed="18878"/>
 		</Entity>
@@ -20803,7 +20803,7 @@
 		<Entity uid="3997">
 			<Template>skirmish/units/default_cavalry</Template>
 			<Player>3</Player>
-			<Position x="426.46528" z="429.45661"/>
+			<Position x="423.93308" z="425.49323"/>
 			<Orientation y="-0.81395"/>
 			<Actor seed="61518"/>
 		</Entity>
@@ -20831,21 +20831,21 @@
 		<Entity uid="4001">
 			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="461.79654" z="392.44095"/>
+			<Position x="461.17438" z="392.41657"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="51130"/>
 		</Entity>
 		<Entity uid="4002">
 			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="466.181" z="396.1276"/>
+			<Position x="465.4582" z="396.18595"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="23502"/>
 		</Entity>
 		<Entity uid="4003">
 			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="469.75614" z="398.08118"/>
+			<Position x="469.00956" z="399.58536"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="52426"/>
 		</Entity>
@@ -20862,6 +20862,48 @@
 			<Position x="464.27646" z="427.344"/>
 			<Orientation y="1.12706"/>
 			<Actor seed="2518"/>
+		</Entity>
+		<Entity uid="4006">
+			<Template>skirmish/units/brit_war_dog_b</Template>
+			<Player>1</Player>
+			<Position x="596.36768" z="1505.69751"/>
+			<Orientation y="-0.74782"/>
+			<Actor seed="11118"/>
+		</Entity>
+		<Entity uid="4007">
+			<Template>skirmish/units/maur_support_elephant</Template>
+			<Player>1</Player>
+			<Position x="596.11286" z="1505.91675"/>
+			<Orientation y="-0.92858"/>
+			<Actor seed="36166"/>
+		</Entity>
+		<Entity uid="4008">
+			<Template>skirmish/units/maur_support_elephant</Template>
+			<Player>2</Player>
+			<Position x="1404.05127" z="1120.43018"/>
+			<Orientation y="-0.92379"/>
+			<Actor seed="64462"/>
+		</Entity>
+		<Entity uid="4009">
+			<Template>skirmish/units/brit_war_dog_b</Template>
+			<Player>2</Player>
+			<Position x="1403.85792" z="1120.20691"/>
+			<Orientation y="-1.0142"/>
+			<Actor seed="54754"/>
+		</Entity>
+		<Entity uid="4010">
+			<Template>skirmish/units/brit_war_dog_b</Template>
+			<Player>3</Player>
+			<Position x="427.58762" z="430.2664"/>
+			<Orientation y="-0.74576"/>
+			<Actor seed="26218"/>
+		</Entity>
+		<Entity uid="4011">
+			<Template>skirmish/units/maur_support_elephant</Template>
+			<Player>3</Player>
+			<Position x="427.47983" z="430.3679"/>
+			<Orientation y="-0.81243"/>
+			<Actor seed="28840"/>
 		</Entity>
 	</Entities>
 	<Paths/>

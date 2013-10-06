@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="879.121" y="91.2117" z="388.789"/>
+		<Position x="875.423" y="73.077" z="413.142"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -13603,13 +13603,13 @@
 		<Entity uid="2496">
 			<Template>gaia/special_treasure_stone</Template>
 			<Player>0</Player>
-			<Position x="849.04773" z="514.23456"/>
+			<Position x="843.06782" z="501.23917"/>
 			<Orientation y="3.07627"/>
 		</Entity>
 		<Entity uid="2497">
 			<Template>gaia/special_treasure_stone</Template>
 			<Player>0</Player>
-			<Position x="848.24866" z="508.67066"/>
+			<Position x="842.26874" z="495.6753"/>
 			<Orientation y="0.93262"/>
 		</Entity>
 		<Entity uid="2498">
@@ -22406,9 +22406,37 @@
 		<Entity uid="4280">
 			<Template>skirmish/units/default_cavalry</Template>
 			<Player>1</Player>
-			<Position x="855.84089" z="511.18769"/>
-			<Orientation y="-0.52704"/>
+			<Position x="851.85596" z="505.7331"/>
+			<Orientation y="-1.00353"/>
 			<Actor seed="4892"/>
+		</Entity>
+		<Entity uid="4281">
+			<Template>skirmish/units/brit_war_dog_b</Template>
+			<Player>1</Player>
+			<Position x="858.46491" z="513.43921"/>
+			<Orientation y="-0.98104"/>
+			<Actor seed="56714"/>
+		</Entity>
+		<Entity uid="4282">
+			<Template>skirmish/units/maur_support_elephant</Template>
+			<Player>1</Player>
+			<Position x="858.04987" z="513.55115"/>
+			<Orientation y="-0.8198"/>
+			<Actor seed="8442"/>
+		</Entity>
+		<Entity uid="4283">
+			<Template>skirmish/units/maur_support_elephant</Template>
+			<Player>2</Player>
+			<Position x="136.42777" z="556.12562"/>
+			<Orientation y="-0.92878"/>
+			<Actor seed="16132"/>
+		</Entity>
+		<Entity uid="4284">
+			<Template>skirmish/units/brit_war_dog_b</Template>
+			<Player>2</Player>
+			<Position x="136.72892" z="556.12562"/>
+			<Orientation y="-0.85395"/>
+			<Actor seed="31078"/>
 		</Entity>
 	</Entities>
 	<Paths/>
