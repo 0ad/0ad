@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="549.041" y="89.8292" z="61.7681"/>
+		<Position x="452.803" y="53.1773" z="849.311"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -11542,8 +11542,8 @@
 		<Entity uid="2357">
 			<Template>skirmish/units/default_cavalry</Template>
 			<Player>1</Player>
-			<Position x="527.33075" z="179.59989"/>
-			<Orientation y="-0.90058"/>
+			<Position x="526.37116" z="176.05973"/>
+			<Orientation y="-0.75052"/>
 			<Actor seed="5970"/>
 		</Entity>
 		<Entity uid="2358">
@@ -11612,7 +11612,7 @@
 		<Entity uid="2369">
 			<Template>skirmish/units/default_cavalry</Template>
 			<Player>2</Player>
-			<Position x="445.9521" z="889.06055"/>
+			<Position x="443.11356" z="886.28711"/>
 			<Orientation y="-0.8493"/>
 			<Actor seed="20738"/>
 		</Entity>
@@ -12065,6 +12065,34 @@
 			<Orientation y="-1.14525"/>
 			<Obstruction group="2407" group2="2417"/>
 			<Actor seed="42786"/>
+		</Entity>
+		<Entity uid="2435">
+			<Template>skirmish/units/brit_war_dog_b</Template>
+			<Player>1</Player>
+			<Position x="531.4734" z="182.27814"/>
+			<Orientation y="-1.06554"/>
+			<Actor seed="54962"/>
+		</Entity>
+		<Entity uid="2436">
+			<Template>skirmish/units/maur_support_elephant</Template>
+			<Player>1</Player>
+			<Position x="531.2682" z="181.88941"/>
+			<Orientation y="-0.72625"/>
+			<Actor seed="63366"/>
+		</Entity>
+		<Entity uid="2437">
+			<Template>skirmish/units/maur_support_elephant</Template>
+			<Player>2</Player>
+			<Position x="448.25135" z="890.22687"/>
+			<Orientation y="-0.8466"/>
+			<Actor seed="7646"/>
+		</Entity>
+		<Entity uid="2438">
+			<Template>skirmish/units/brit_war_dog_b</Template>
+			<Player>2</Player>
+			<Position x="447.75495" z="890.11042"/>
+			<Orientation y="-0.6546"/>
+			<Actor seed="11744"/>
 		</Entity>
 	</Entities>
 	<Paths/>

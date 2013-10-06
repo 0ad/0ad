@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="321.172" y="91.2159" z="863.173"/>
+		<Position x="317.872" y="100.394" z="213.233"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -12365,8 +12365,8 @@
 		<Entity uid="2307">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="920.95765" z="297.60499"/>
-			<Orientation y="0.46987"/>
+			<Position x="926.55073" z="309.43302"/>
+			<Orientation y="-1.39652"/>
 		</Entity>
 		<Entity uid="2308">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
@@ -15939,6 +15939,62 @@
 			<Position x="318.60453" z="340.44425"/>
 			<Orientation y="1.01305"/>
 			<Actor seed="16762"/>
+		</Entity>
+		<Entity uid="3047">
+			<Template>skirmish/units/maur_support_elephant</Template>
+			<Player>1</Player>
+			<Position x="303.73917" z="984.7215"/>
+			<Orientation y="-0.82888"/>
+			<Actor seed="30978"/>
+		</Entity>
+		<Entity uid="3048">
+			<Template>skirmish/units/brit_war_dog_b</Template>
+			<Player>1</Player>
+			<Position x="303.65345" z="984.25959"/>
+			<Orientation y="-0.93606"/>
+			<Actor seed="39822"/>
+		</Entity>
+		<Entity uid="3049">
+			<Template>skirmish/units/brit_war_dog_b</Template>
+			<Player>4</Player>
+			<Position x="963.08021" z="1001.19013"/>
+			<Orientation y="-0.79973"/>
+			<Actor seed="17552"/>
+		</Entity>
+		<Entity uid="3050">
+			<Template>skirmish/units/maur_support_elephant</Template>
+			<Player>4</Player>
+			<Position x="962.54084" z="1001.33545"/>
+			<Orientation y="-0.84676"/>
+			<Actor seed="34112"/>
+		</Entity>
+		<Entity uid="3051">
+			<Template>skirmish/units/maur_support_elephant</Template>
+			<Player>2</Player>
+			<Position x="917.75" z="295.03025"/>
+			<Orientation y="-0.88877"/>
+			<Actor seed="44974"/>
+		</Entity>
+		<Entity uid="3052">
+			<Template>skirmish/units/brit_war_dog_b</Template>
+			<Player>2</Player>
+			<Position x="917.67634" z="295.03028"/>
+			<Orientation y="-0.71398"/>
+			<Actor seed="58478"/>
+		</Entity>
+		<Entity uid="3053">
+			<Template>skirmish/units/brit_war_dog_b</Template>
+			<Player>3</Player>
+			<Position x="286.28083" z="351.13523"/>
+			<Orientation y="-0.75211"/>
+			<Actor seed="53796"/>
+		</Entity>
+		<Entity uid="3054">
+			<Template>skirmish/units/maur_support_elephant</Template>
+			<Player>3</Player>
+			<Position x="286.34284" z="351.1352"/>
+			<Orientation y="-0.81289"/>
+			<Actor seed="28928"/>
 		</Entity>
 	</Entities>
 	<Paths/>
