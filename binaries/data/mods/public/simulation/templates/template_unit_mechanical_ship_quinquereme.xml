@@ -51,9 +51,10 @@
   </Health>
   <Identity>
     <GenericName>Heavy Warship</GenericName>
-    <Tooltip>Classes: Heavy Warship.
-Garrison with siege catapults to increase fire power.</Tooltip>
-    <Classes datatype="tokens">Warship</Classes>
+    <Tooltip>Classes: Heavy Warship Ranged Melee
+Garrison with catapults to increase ranged fire power.
+Secondary Attack: Ramming.</Tooltip>
+    <Classes datatype="tokens">Warship Heavy</Classes>
 	<RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Sound>

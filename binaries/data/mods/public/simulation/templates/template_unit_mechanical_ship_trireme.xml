@@ -43,8 +43,9 @@
   </Health>
   <Identity>
     <GenericName>Medium Warship</GenericName>
-    <Tooltip>Medium Warship.</Tooltip>
-    <Classes datatype="tokens">Warship</Classes>
+    <Tooltip>Classes: Medium Warship Ranged Melee
+Secondary Attack: Ramming.</Tooltip>
+    <Classes datatype="tokens">Warship Medium</Classes>
 	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <ResourceGatherer disable=""/>

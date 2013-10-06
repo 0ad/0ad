@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="800"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="400"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="350"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="600"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="666"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="333"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="222"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="250"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
+        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="400"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="300"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="40"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="100"/>
+        <animation file="quadraped/horse_attack_a.psa" name="attack_melee" speed="202"/>
+        <animation file="quadraped/horse_attack_b.psa" name="attack_melee" speed="215"/>
+        <animation file="quadraped/horse_attack_a.psa" name="attack_slaughter" speed="202"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/ptolemies/cavalry_spearman_b_r.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="horse texture black">
+      <textures>
+        <texture file="skeletal/horse_black_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="horse texture brown">
+      <textures>
+        <texture file="skeletal/horse_brown_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="4" name="horse texture chestnut">
+      <textures>
+        <texture file="skeletal/horse_chestnut_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="horse texture dun">
+      <textures>
+        <texture file="skeletal/horse_dun_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="horse texture white">
+      <textures>
+        <texture file="skeletal/horse_white_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>
