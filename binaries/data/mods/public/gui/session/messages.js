@@ -101,7 +101,8 @@ function handleNotifications()
 			{
 				addChatMessage({
 					"type": "attack",
-					"player": notification.player
+					"player": notification.player,
+					"attacker": notification.attacker
 				});
 			}
 		}
@@ -136,6 +137,17 @@ function displayNotifications()
 	for each (var n in notifications)
 		messages.push(n.message);
 	getGUIObjectByName("notificationText").caption = messages.join("\n");
+}
+
+// Returns [username, playercolor] for the given player
+function getUsernameAndColor(player)
+{
+	// This case is hit for AIs, whose names don't exist in playerAssignments.
+	var color = g_Players[player].color;
+	return [
+		escapeText(g_Players[player].name),
+		color.r + " " + color.g + " " + color.b,
+	];
 }
 
 // Messages
@@ -322,14 +334,11 @@ function addChatMessage(msg, playerAssignments)
 	}
 	else if (msg.type == "defeat" && msg.player)
 	{
-		// This case is hit for AIs, whose names don't exist in playerAssignments.
-		playerColor = g_Players[msg.player].color.r + " " + g_Players[msg.player].color.g + " " + g_Players[msg.player].color.b;
-		username = escapeText(g_Players[msg.player].name);
-	} else if (msg.type == "message")
+		[username, playerColor] = getUsernameAndColor(msg.player);
+	}
+	else if (msg.type == "message")
 	{
-		// This case is hit for AIs, whose names don't exist in playerAssignments.
-		playerColor = g_Players[msg.player].color.r + " " + g_Players[msg.player].color.g + " " + g_Players[msg.player].color.b;
-		username = escapeText(g_Players[msg.player].name);
+		[username, playerColor] = getUsernameAndColor(msg.player);
 		parseChatCommands(msg, playerAssignments);
 	}
 	else
@@ -359,14 +368,12 @@ function addChatMessage(msg, playerAssignments)
 		var status = (msg.status == "ally" ? "allied" : (msg.status == "enemy" ? "at war" : "neutral"));
 		if (msg.player == Engine.GetPlayerID())
 		{
-			username= escapeText(g_Players[msg.player1].name);
-			playerColor = g_Players[msg.player1].color.r + " " + g_Players[msg.player1].color.g + " " + g_Players[msg.player1].color.b;
+			[username, playerColor] = getUsernameAndColor(msg.player1);
 			formatted = "You are now "+status+" with [color=\"" + playerColor + "\"]"+username + "[/color].";
 		}
 		else if (msg.player1 == Engine.GetPlayerID())
 		{
-			username= escapeText(g_Players[msg.player].name);
-			playerColor = g_Players[msg.player].color.r + " " + g_Players[msg.player].color.g + " " + g_Players[msg.player].color.b;
+			[username, playerColor] = getUsernameAndColor(msg.player);
 			formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] is now " + status + " with you."
 		}
 		else // No need for other players to know of this.
@@ -376,8 +383,7 @@ function addChatMessage(msg, playerAssignments)
 		if (msg.player != Engine.GetPlayerID()) 
 			return;
 
-		username = escapeText(g_Players[msg.player1].name);
-		playerColor = g_Players[msg.player1].color.r + " " + g_Players[msg.player1].color.g + " " + g_Players[msg.player1].color.b;
+		[username, playerColor] = getUsernameAndColor(msg.player1);
 
 		// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
 		var amounts = Object.keys(msg.amounts)
@@ -396,7 +402,8 @@ function addChatMessage(msg, playerAssignments)
 		if (msg.player != Engine.GetPlayerID()) 
 			return;
 
-		formatted = "You are under attack.";
+		[username, playerColor] = getUsernameAndColor(msg.attacker);
+		formatted = "You have been attacked by [color=\"" + playerColor + "\"]" + username + "[/color]!";
 		break;
 	case "message":
 		// May have been hidden by the 'team' command.
