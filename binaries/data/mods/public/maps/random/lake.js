@@ -44,8 +44,8 @@ const aRockMedium = rBiomeA6();
 const aBushMedium = rBiomeA7();
 const aBushSmall = rBiomeA8();
 
-const pForestD = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
-const pForestP = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
+const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
+const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 const BUILDING_ANGlE = -PI/4;
 
 // initialize map
@@ -320,8 +320,8 @@ var numStragglers = totalTrees * (1.0 - P_FOREST);
 // create forests
 log("Creating forests...");
 var types = [
-	[[tForestFloor2, tMainTerrain, pForestD], [tForestFloor2, pForestD]],
-	[[tForestFloor1, tMainTerrain, pForestP], [tForestFloor1, pForestP]]
+	[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
+	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];	// some variation
 
 if (random_terrain == 6)

@@ -20,6 +20,8 @@
 
 #include <wx/dialog.h>
 
+class wxNotebookEvent;
+
 enum MapDialogType { MAPDIALOG_OPEN, MAPDIALOG_SAVE };
 
 class MapDialog : public wxDialog

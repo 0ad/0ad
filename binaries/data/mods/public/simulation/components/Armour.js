@@ -34,6 +34,7 @@ Armour.prototype.Schema =
 
 Armour.prototype.Init = function()
 {
+	this.nextAlertTime = 0;
 	this.invulnerable = false;
 };
 
@@ -46,8 +47,19 @@ Armour.prototype.SetInvulnerability = function(invulnerability)
  * Take damage according to the entity's armor.
  * Returns object of the form { "killed": false, "change": -12 }
  */
-Armour.prototype.TakeDamage = function(hack, pierce, crush)
+Armour.prototype.TakeDamage = function(hack, pierce, crush, source)
 {
+	// Alert target owner of attack
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	var cmpAttackDetection = QueryPlayerIDInterface(cmpOwnership.GetOwner(), IID_AttackDetection);
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	var now = cmpTimer.GetTime();
+	if (now > this.nextAlertTime)
+	{
+		this.nextAlertTime = now + cmpAttackDetection.GetSuppressionTime();
+		cmpAttackDetection.AttackAlert(this.entity, source);
+	}
+
 	if (this.invulnerable) 
 		return { "killed": false, "change": 0 };
 

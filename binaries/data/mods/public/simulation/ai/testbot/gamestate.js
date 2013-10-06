@@ -292,12 +292,6 @@ var GameState = Class({
 	{
 		if (this.playerData.entityLimits[category] === undefined || this.playerData.entityCounts[category] === undefined)
 			return false;
-		
-		// There's a special case of build limits per civ centre, so check that first
-		if (this.playerData.entityLimits[category].LimitPerCivCentre !== undefined)
-			return (this.playerData.entityCounts[category] >=
-				this.playerData.entityCounts["CivilCentre"] * this.playerData.entityLimits[category].LimitPerCivCentre);
-		else
-			return (this.playerData.entityCounts[category] >= this.playerData.entityLimits[category]);
+		return (this.playerData.entityCounts[category] >= this.playerData.entityLimits[category]);
 	},
 });

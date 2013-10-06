@@ -20,7 +20,7 @@ var bonusesSchema =
 
 var preferredClassesSchema =
 	"<optional>" +
-		"<element name='PreferredClasses' a:help='Space delimited list of classes preferred for attacking. If an entity has any of theses classes, it is preferred. The classes are in decending order of preference.'>" +
+		"<element name='PreferredClasses' a:help='Space delimited list of classes preferred for attacking. If an entity has any of theses classes, it is preferred. The classes are in decending order of preference'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
 			"</attribute>" +
@@ -700,7 +700,7 @@ Attack.prototype.CauseDamage = function(data)
 	var cmpDamageReceiver = Engine.QueryInterface(data.target, IID_DamageReceiver);
 	if (!cmpDamageReceiver)
 		return;
-	var targetState = cmpDamageReceiver.TakeDamage(strengths.hack * damageMultiplier, strengths.pierce * damageMultiplier, strengths.crush * damageMultiplier);
+	var targetState = cmpDamageReceiver.TakeDamage(strengths.hack * damageMultiplier, strengths.pierce * damageMultiplier, strengths.crush * damageMultiplier, this.entity);
 	// if target killed pick up loot and credit experience
 	if (targetState.killed == true)
 	{

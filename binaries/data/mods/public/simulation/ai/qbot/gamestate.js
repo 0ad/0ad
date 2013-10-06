@@ -315,9 +315,5 @@ GameState.prototype.getEntityCounts = function() {
 GameState.prototype.isEntityLimitReached = function(category) {
 	if(this.playerData.entityLimits[category] === undefined || this.playerData.entityCounts[category] === undefined)
 		return false;
-	if(this.playerData.entityLimits[category].LimitsPerCivCentre != undefined)
-		return (this.playerData.entityCounts[category] >=
-			this.playerData.entityCounts["CivilCentre"] * this.playerData.entityLimits[category].LimitPerCivCentre);
-	else
-		return (this.playerData.entityCounts[category] >= this.playerData.entityLimits[category]);
+	return (this.playerData.entityCounts[category] >= this.playerData.entityLimits[category]);
 };

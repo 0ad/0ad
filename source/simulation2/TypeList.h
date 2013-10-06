@@ -49,6 +49,7 @@ MESSAGE(TerritoriesChanged)
 MESSAGE(PathResult)
 MESSAGE(TechnologyModification)
 MESSAGE(VisionRangeChanged)
+MESSAGE(MinimapPing)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized

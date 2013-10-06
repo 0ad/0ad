@@ -1,46 +1,45 @@
 RMS.LoadLibrary("rmgen");
 
 //terrain textures
-var tGrass = ["desert_dirt_rocks_1", "desert_dirt_cracks"];
-var tGrassPForest = "forestfloor_dirty";
-var tForestFloor = "desert_forestfloor_palms";
-var tGrassA = "desert_grass_a_sand";
-var tGrassB = "desert_grass_a";
-var tGrassC = "medit_dirt_dry";
-var tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_2"];
-var tHill = ["desert_dirt_rocks_1", "desert_dirt_rocks_2", "desert_dirt_rocks_3"];
-var tDirt = ["desert_dirt_rough", "desert_dirt_rough_2"];
-var tRoad = "desert_shore_stones";;
-var tRoadWild = "desert_grass_a_stones";;
+const tMainDirt = ["desert_dirt_rocks_1", "desert_dirt_cracks"];
+const tForestFloor1 = "forestfloor_dirty";
+const tForestFloor2 = "desert_forestfloor_palms";
+const tGrassSands = "desert_grass_a_sand";
+const tGrass = "desert_grass_a";
+const tSecondaryDirt = "medit_dirt_dry";
+const tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_2"];
+const tHill = ["desert_dirt_rocks_1", "desert_dirt_rocks_2", "desert_dirt_rocks_3"];
+const tDirt = ["desert_dirt_rough", "desert_dirt_rough_2"];
+const tRoad = "desert_shore_stones";;
+const tRoadWild = "desert_grass_a_stones";;
 
 // gaia entities
-var oTamarix = "gaia/flora_tree_tamarix";
-var oPalm = "gaia/flora_tree_date_palm";
-var oPine = "gaia/flora_tree_aleppo_pine";
-var oBush = "gaia/flora_bush_grapes";
-var oChicken = "gaia/fauna_chicken";
-var oCamel = "gaia/fauna_camel";
-var oGazelle = "gaia/fauna_gazelle";
-var oLion = "gaia/fauna_lion";
-var oLioness = "gaia/fauna_lioness";
-var oStoneLarge = "gaia/geology_stonemine_desert_quarry";
-var oStoneSmall = "gaia/geology_stone_desert_small";
-var oMetalLarge = "gaia/geology_metal_desert_slabs";
+const oTamarix = "gaia/flora_tree_tamarix";
+const oPalm = "gaia/flora_tree_date_palm";
+const oPine = "gaia/flora_tree_aleppo_pine";
+const oBush = "gaia/flora_bush_grapes";
+const oChicken = "gaia/fauna_chicken";
+const oCamel = "gaia/fauna_camel";
+const oGazelle = "gaia/fauna_gazelle";
+const oLion = "gaia/fauna_lion";
+const oLioness = "gaia/fauna_lioness";
+const oStoneLarge = "gaia/geology_stonemine_desert_quarry";
+const oStoneSmall = "gaia/geology_stone_desert_small";
+const oMetalLarge = "gaia/geology_metal_desert_slabs";
 
 // decorative props
-var aFlower1 = "actor|props/flora/decals_flowers_daisies.xml";
-var aWaterFlower = "actor|props/flora/water_lillies.xml";
-var aReedsA = "actor|props/flora/reeds_pond_lush_a.xml";
-var aReedsB = "actor|props/flora/reeds_pond_lush_b.xml";
-var aRock = "actor|geology/stone_desert_med.xml";
-var rba6 = "actor|geology/stone_desert_med";
-var aBushA = "actor|props/flora/bush_desert_dry_a.xml";
-var aBushB = "actor|props/flora/bush_desert_dry_a.xml";
-var aBushes = [aBushA, aBushB];
-var aSand = "actor|particle/blowing_sand.xml";
+const aFlower1 = "actor|props/flora/decals_flowers_daisies.xml";
+const aWaterFlower = "actor|props/flora/water_lillies.xml";
+const aReedsA = "actor|props/flora/reeds_pond_lush_a.xml";
+const aReedsB = "actor|props/flora/reeds_pond_lush_b.xml";
+const aRock = "actor|geology/stone_desert_med.xml";
+const aBushA = "actor|props/flora/bush_desert_dry_a.xml";
+const aBushB = "actor|props/flora/bush_desert_dry_a.xml";
+const aBushes = [aBushA, aBushB];
+const aSand = "actor|particle/blowing_sand.xml";
 
-var pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPalm, tForestFloor];
-var pForestT = [tGrassPForest + TERRAIN_SEPARATOR + oTamarix,tForestFloor];
+const pForestP = [tForestFloor2 + TERRAIN_SEPARATOR + oPalm, tForestFloor2];
+const pForestT = [tForestFloor1 + TERRAIN_SEPARATOR + oTamarix,tForestFloor2];
 const BUILDING_ANGlE = -PI/4;
 
 
@@ -50,9 +49,9 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
+const mapArea = mapSize*mapSize;
 
 // create tile classes
 
@@ -113,7 +112,7 @@ for (var i = 0; i < numPlayers; i++)
 	// create the grass patches
 	var grassRadius = scaleByMapSize(13 ,30);
 	placer = new ClumpPlacer(PI*grassRadius*grassRadius, 0.3, 0.2, 10, ix, iz);
-	var painter = new LayeredPainter([tGrassA, tGrassB], [3]);
+	var painter = new LayeredPainter([tGrassSands, tGrass], [3]);
 	createArea(placer, [painter, paintClass(clGrass)], null);
 	
 	// create the city patch
@@ -230,8 +229,8 @@ var numStragglers = totalTrees * (1.0 - P_FOREST);
 // create forests
 log("Creating forests...");
 var types = [
-	[[tGrass, tForestFloor, pForestP], [tForestFloor, pForestP]],
-	[[tGrass, tGrassPForest, pForestT], [tGrassPForest, pForestT]]
+	[[tMainDirt, tForestFloor2, pForestP], [tForestFloor2, pForestP]],
+	[[tMainDirt, tForestFloor1, pForestT], [tForestFloor1, pForestT]]
 ];	// some variation
 var size = numForest / (scaleByMapSize(2,8) * numPlayers);
 var num = floor(size / types.length);
@@ -259,7 +258,7 @@ for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
 	painter = new LayeredPainter(
-		[tGrassC ,tDirt], 		// terrains
+		[tSecondaryDirt ,tDirt], 		// terrains
 		[1]															// widths
 	);
 	createAreas(
@@ -278,7 +277,7 @@ for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
 	painter = new LayeredPainter(
-		[tGrassC ,tDirt], 		// terrains
+		[tSecondaryDirt ,tDirt], 		// terrains
 		[1]															// widths
 	);
 	createAreas(
@@ -373,6 +372,8 @@ createObjectGroups(group, 0,
 	3 * numPlayers, 50
 );
 
+
+
 RMS.SetProgress(85);
 
 // create straggler trees
@@ -409,6 +410,8 @@ for (var i = 0; i < types.length; ++i)
 
 // Set environment
 setSkySet("sunny");
+setSunElevation(PI / 6);
+setSunRotation(randFloat(0, TWO_PI));
 setSunColour(0.746, 0.718, 0.539);	
 setWaterColour(0.292, 0.347, 0.691);		
 setWaterTint(0.550, 0.543, 0.437);				

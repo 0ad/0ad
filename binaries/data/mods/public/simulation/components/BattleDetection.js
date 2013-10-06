@@ -3,22 +3,22 @@ function BattleDetection() {}
 BattleDetection.prototype.Schema =
 	"<a:help>Detects the occurence of battles.</a:help>" +
 	"<a:example/>" +
-	"<element name='TimerInterval' a:help='Duration of one timer period. Interval over which damage should be recorded in milliseconds.'>" +
+	"<element name='TimerInterval' a:help='Duration of one timer period. Interval over which damage should be recorded in milliseconds'>" +
 		"<data type='positiveInteger'/>" +
 	"</element>" +
-	"<element name='RecordLength' a:help='Record length. Number of timer cycles over which damage rate should be calculated.'>" +
+	"<element name='RecordLength' a:help='Record length. Number of timer cycles over which damage rate should be calculated'>" +
 		"<data type='positiveInteger'/>" +
 	"</element>" +
-	"<element name='DamageRateThreshold' a:help='Damage rate at which alertness is increased.'>" +
+	"<element name='DamageRateThreshold' a:help='Damage rate at which alertness is increased'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>" +
-	"<element name='AlertnessBattleThreshold' a:help='Alertness at which the player is considered in battle.'>" +
+	"<element name='AlertnessBattleThreshold' a:help='Alertness at which the player is considered in battle'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>" +
-	"<element name='AlertnessPeaceThreshold' a:help='Alertness at which the player is considered at peace.'>" +
+	"<element name='AlertnessPeaceThreshold' a:help='Alertness at which the player is considered at peace'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='AlertnessMax' a:help='Maximum alertness level.'>" +
+	"<element name='AlertnessMax' a:help='Maximum alertness level'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>";
 
