@@ -201,8 +201,8 @@ function getCurrentGlobalObject (threadId)
 		},
 		error: function(jqXHR, textStatus, errorThrown)
 		{
-			DEBUG(textStatus);
-			DEBUG('error');
+			debug('ERROR : getCurrentGlobalObject: ' + errorThrown);
+			alert('getCurrentGlobalObject failed:\n' + errorThrown);
 		}
 	});
 }
@@ -219,8 +219,8 @@ function getStackFrame (threadId, nestingLevel)
 		},
 		error: function(jqXHR, textStatus, errorThrown)
 		{
-			DEBUG(textStatus);
-			DEBUG('error');
+			debug('ERROR : getStackFrame: ' + errorThrown);
+			alert('getStackFrame failed:\n' + errorThrown);
 		}
 	});
 }
@@ -237,8 +237,8 @@ function getStackFrameThis (threadId, nestingLevel)
 		},
 		error: function(jqXHR, textStatus, errorThrown)
 		{
-			DEBUG(textStatus);
-			DEBUG('error');
+			debug('ERROR : getStackFrameThis: ' + errorThrown);
+			alert('getStackFrameThis failed:\n' + errorThrown);
 		}
 	});
 }
