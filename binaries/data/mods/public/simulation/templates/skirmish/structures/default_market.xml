@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_economic_market">
+  <Identity>
+    <Civ>skirm</Civ>
+  </Identity>
+  <SkirmishReplacer>
+    <general>structures/{civ}_market</general>
+  </SkirmishReplacer>
+  <VisualActor>
+    <Actor>structures/hellenes/market.xml</Actor>
+  </VisualActor>
+</Entity>
