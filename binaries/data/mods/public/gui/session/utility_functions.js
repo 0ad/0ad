@@ -518,7 +518,7 @@ function getEntityNamesFormatted(template)
 	if (specific)
 	{
 		// drop caps for specific name
-		names += '[font="serif-bold-16"]' + specific[0] + '[/font]' + 
+		names += '[font="serif-bold-16"]' + specific[0] + '[/font]' +
 			'[font="serif-bold-12"]' + specific.slice(1).toUpperCase() + '[/font]';
 
 		if (generic)
@@ -572,4 +572,17 @@ function getTradingTooltip(gain)
 		tooltip += ", " + gain.market2Gain + " (player " + gain.market2Owner + ")";
 
 	return tooltip;
+}
+
+/**
+ * Returns the entity itself except when garrisoned where it returns its garrisonHolder
+ */
+function getEntityOrHolder(ent)
+{
+	var entState = GetEntityState(ent);
+	if (entState && !entState.position && entState.unitAI && entState.unitAI.orders.length > 0 &&
+			entState.unitAI.orders[0].type == "Garrison")
+		return entState.unitAI.orders[0].data.target;
+
+	return ent;
 }
