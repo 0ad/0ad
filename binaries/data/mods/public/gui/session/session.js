@@ -273,6 +273,9 @@ function getSavedGameData()
 
 function restoreSavedGameData(data)
 {
+	// Clear selection when loading a game
+	g_Selection.reset();
+
 	// Restore control groups
 	for (var groupNumber in data.groups)
 	{
