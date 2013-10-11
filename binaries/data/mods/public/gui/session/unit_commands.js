@@ -523,7 +523,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		var affordableMask = getGUIObjectByName("unit"+guiName+"Unaffordable["+i+"]");
 		var affordableMask1 = getGUIObjectByName("unit"+guiName+"Unaffordable["+(i+rowLength)+"]");
 		var icon = getGUIObjectByName("unit"+guiName+"Icon["+i+"]");
-		var selection = getGUIObjectByName("unit"+guiName+"Selection["+i+"]");
+		var guiSelection = getGUIObjectByName("unit"+guiName+"Selection["+i+"]");
 		var pair = getGUIObjectByName("unit"+guiName+"Pair["+i+"]");
 		button.hidden = false;
 		button.tooltip = tooltip;
@@ -607,7 +607,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				"formationName": item
 			});
 
-			selection.hidden = !formationSelected;
+			guiSelection.hidden = !formationSelected;
 			icon.sprite = "stretched:"+grayscale+"session/icons/formations/"+item.replace(/\s+/,'').toLowerCase()+".png";
 
  		}
@@ -618,7 +618,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				"stance": item
 			});
 
-			selection.hidden = !stanceSelected;
+			guiSelection.hidden = !stanceSelected;
 			icon.sprite = "stretched:session/icons/stances/"+item+".png";
 		}
 		else if (guiName == COMMAND)
@@ -632,14 +632,14 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			if (item.gate)
 			{
 				gateIcon = "icons/lock_" + GATE_ACTIONS[item.locked ? 0 : 1].toLowerCase() + "ed.png";
-				selection.hidden = item.gate.locked === undefined ? false : item.gate.locked != item.locked;
+				guiSelection.hidden = item.gate.locked === undefined ? false : item.gate.locked != item.locked;
 			}
 			// otherwise show gate upgrade icon
 			else
 			{
 				template = GetTemplateData(item.template);
 				gateIcon = template.icon ?  "portraits/" + template.icon : "icons/gate_closed.png";
-				selection.hidden = true;
+				guiSelection.hidden = true;
 			}
 
 			icon.sprite = "stretched:session/" + gateIcon;
