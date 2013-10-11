@@ -293,6 +293,15 @@ function getEntityCommandsList(entState)
 		    "icon": "focus-rally.png"
 		});
 	}
+	
+	if (entState.unitAI && entState.unitAI.lastWorkOrder)
+	{
+		commands.push({
+		    "name": "back-to-work",
+		    "tooltip": "Back to Work",
+		    "icon": "production.png"
+		});
+	}
 
 	return commands;
 }

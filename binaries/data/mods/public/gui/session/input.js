@@ -1869,6 +1869,9 @@ function performCommand(entity, commandName)
 					Engine.CameraMoveTo(focusTarget.x, focusTarget.z);
 				
 				break;
+			case "back-to-work":
+				backToWork();
+				break;
 			default:
 				break;
 			}
@@ -2129,6 +2132,18 @@ function unloadAll()
 	});
 
 	Engine.PostNetworkCommand({"type": "unload-all", "garrisonHolders": garrisonHolders});
+}
+
+function backToWork()
+{
+	// Filter out all entities that can't go back to work.
+	var workers = g_Selection.toList().filter(function(e) {
+		var state = GetEntityState(e);
+		return (state && state.unitAI && state.unitAI.lastWorkOrder);
+	});
+	
+	Engine.PostNetworkCommand({"type": "back-to-work", "workers": workers});
+	
 }
 
 function clearSelection()
