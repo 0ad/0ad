@@ -12052,61 +12052,33 @@
 			<Obstruction group="2351" group2="2352"/>
 			<Actor seed="31532"/>
 		</Entity>
-		<Entity uid="2364">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>1</Player>
-			<Position x="684.05146" z="228.7527"/>
-			<Orientation y="-0.73736"/>
-			<Actor seed="18906"/>
-		</Entity>
 		<Entity uid="2365">
-			<Template>skirmish/units/maur_support_elephant</Template>
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>1</Player>
 			<Position x="683.68567" z="228.56312"/>
 			<Orientation y="-0.93102"/>
 			<Actor seed="54810"/>
 		</Entity>
 		<Entity uid="2366">
-			<Template>skirmish/units/maur_support_elephant</Template>
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>3</Player>
 			<Position x="834.7605" z="376.31586"/>
 			<Orientation y="-0.8508"/>
 			<Actor seed="13116"/>
 		</Entity>
-		<Entity uid="2367">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>3</Player>
-			<Position x="834.15827" z="376.31586"/>
-			<Orientation y="-0.84043"/>
-			<Actor seed="5126"/>
-		</Entity>
-		<Entity uid="2368">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>4</Player>
-			<Position x="293.13242" z="822.38074"/>
-			<Orientation y="-0.8892"/>
-			<Actor seed="51156"/>
-		</Entity>
 		<Entity uid="2369">
-			<Template>skirmish/units/maur_support_elephant</Template>
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>4</Player>
 			<Position x="292.85688" z="822.38074"/>
 			<Orientation y="-0.90983"/>
 			<Actor seed="37212"/>
 		</Entity>
 		<Entity uid="2370">
-			<Template>skirmish/units/maur_support_elephant</Template>
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>2</Player>
 			<Position x="145.17917" z="686.14844"/>
 			<Orientation y="-0.89983"/>
 			<Actor seed="17882"/>
-		</Entity>
-		<Entity uid="2371">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>2</Player>
-			<Position x="145.09997" z="685.92402"/>
-			<Orientation y="-1.01713"/>
-			<Actor seed="1876"/>
 		</Entity>
 	</Entities>
 	<Paths/>

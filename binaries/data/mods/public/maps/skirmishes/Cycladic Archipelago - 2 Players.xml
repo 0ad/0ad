@@ -15474,32 +15474,18 @@
 			<Actor seed="57982"/>
 		</Entity>
 		<Entity uid="2891">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>1</Player>
-			<Position x="1058.91211" z="698.85077"/>
-			<Orientation y="-0.70905"/>
-			<Actor seed="23172"/>
-		</Entity>
-		<Entity uid="2892">
-			<Template>skirmish/units/maur_support_elephant</Template>
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>1</Player>
 			<Position x="1058.97278" z="698.97834"/>
 			<Orientation y="-0.90426"/>
 			<Actor seed="24270"/>
 		</Entity>
-		<Entity uid="2893">
-			<Template>skirmish/units/maur_support_elephant</Template>
+		<Entity uid="2892">
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>2</Player>
 			<Position x="422.61402" z="425.71311"/>
 			<Orientation y="-0.85448"/>
 			<Actor seed="8154"/>
-		</Entity>
-		<Entity uid="2894">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>2</Player>
-			<Position x="422.58082" z="424.92978"/>
-			<Orientation y="-0.85787"/>
-			<Actor seed="31104"/>
 		</Entity>
 	</Entities>
 	<Paths/>

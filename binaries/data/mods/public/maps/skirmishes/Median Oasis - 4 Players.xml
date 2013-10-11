@@ -14905,61 +14905,33 @@
 			<Orientation y="2.35621"/>
 			<Actor seed="3084"/>
 		</Entity>
-		<Entity uid="3098">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>1</Player>
-			<Position x="499.4628" z="850.04706"/>
-			<Orientation y="-2.41977"/>
-			<Actor seed="4074"/>
-		</Entity>
 		<Entity uid="3099">
-			<Template>skirmish/units/maur_support_elephant</Template>
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>1</Player>
 			<Position x="499.37696" z="849.7063"/>
 			<Orientation y="-2.27067"/>
 			<Actor seed="8790"/>
 		</Entity>
 		<Entity uid="3100">
-			<Template>skirmish/units/maur_support_elephant</Template>
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>3</Player>
 			<Position x="853.97547" z="492.87696"/>
 			<Orientation y="-2.17612"/>
 			<Actor seed="60808"/>
 		</Entity>
-		<Entity uid="3101">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>3</Player>
-			<Position x="853.70777" z="492.96055"/>
-			<Orientation y="-1.98743"/>
-			<Actor seed="25596"/>
-		</Entity>
-		<Entity uid="3102">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>2</Player>
-			<Position x="486.45563" z="133.18648"/>
-			<Orientation y="-2.27968"/>
-			<Actor seed="30250"/>
-		</Entity>
 		<Entity uid="3103">
-			<Template>skirmish/units/maur_support_elephant</Template>
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>2</Player>
 			<Position x="486.5753" z="133.43407"/>
 			<Orientation y="-2.23307"/>
 			<Actor seed="37800"/>
 		</Entity>
 		<Entity uid="3104">
-			<Template>skirmish/units/maur_support_elephant</Template>
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>4</Player>
 			<Position x="130.60645" z="499.25535"/>
 			<Orientation y="-2.16997"/>
 			<Actor seed="49040"/>
-		</Entity>
-		<Entity uid="3105">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>4</Player>
-			<Position x="130.41678" z="499.25535"/>
-			<Orientation y="-2.10912"/>
-			<Actor seed="8590"/>
 		</Entity>
 	</Entities>
 	<Paths/>
