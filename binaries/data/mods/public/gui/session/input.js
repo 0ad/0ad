@@ -1487,7 +1487,7 @@ function handleMinimapEvent(target)
 			return true;
 
 		case "set-rallypoint":
-			Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": target.x, "z": target.z});
+			Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
 			// Display rally point at the new coordinates, to avoid display lag
 			Engine.GuiInterfaceCall("DisplayRallyPoint", {
 				"entities": selection,
