@@ -185,31 +185,9 @@ function getActionInfo(action, target)
 	if (!entState)
 		return {"possible": false};
 
-	// If the selection isn't friendly units, no action
-	var playerID = Engine.GetPlayerID();
-	var allOwnedByPlayer = selection.every(function(ent) {
-		var entState = GetEntityState(ent);
-		return entState && entState.player == playerID;
-	});
-
-	if (!g_DevSettings.controlAll && !allOwnedByPlayer)
-		return {"possible": false};
-
-	// Work out whether the selection can have rally points
-	var haveRallyPoints = selection.every(function(ent) {
-		var entState = GetEntityState(ent);
-		return entState && entState.rallyPoint;
-	});
-
-	// Work out whether at least part of the selection have UnitAI
-	var haveUnitAI = selection.some(function(ent) {
-		var entState = GetEntityState(ent);
-		return entState && entState.unitAI;
-	});
-
 	if (!target)
 	{
-		if (action == "set-rallypoint" && haveRallyPoints)
+		if (action == "set-rallypoint")
 		{
 			var cursor = "";
 			var data = {command: "walk"};
@@ -220,13 +198,13 @@ function getActionInfo(action, target)
 			}
 			return {"possible": true, "data": data, "cursor": cursor};
 		}
-		else if (haveUnitAI && (action == "move" || action == "attack-move"))
+		else if (action == "move" || action == "attack-move")
 			return {"possible": true};
 		else
 			return {"possible": false};
 	}
 
-	if (haveRallyPoints && selection.indexOf(target) != -1 && action == "unset-rallypoint")
+	if (action == "unset-rallypoint" && selection.indexOf(target) != -1)
 		return {"possible": true};
 
 	// Look at the first targeted entity
@@ -234,10 +212,11 @@ function getActionInfo(action, target)
 	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
 	var targetState = GetEntityState(target);
 
+	var gaiaOwned = (targetState.player == 0);
+
 	// Look to see what type of command units going to the rally point should use
-	if (haveRallyPoints && action == "set-rallypoint")
+	if (action == "set-rallypoint")
 	{
-		// haveRallyPoints ensures all selected entities can have rally points.
 		// We assume that all entities are owned by the same player.
 		var entState = GetEntityState(selection[0]);
 
@@ -246,13 +225,11 @@ function getActionInfo(action, target)
 		var allyOwned = playerState.isAlly[targetState.player];
 		var mutualAllyOwned = playerState.isMutualAlly[targetState.player];
 		var enemyOwned = playerState.isEnemy[targetState.player];
-		var gaiaOwned = (targetState.player == 0);
 
-		var cursor = "";
 		var tooltip;
-
-		// default to walking there
+		// default to walking there (or attack-walking if hotkey pressed)
 		var data = {command: "walk"};
+		var cursor = "";
 		if (Engine.HotkeyIsPressed("session.attackmove"))
 		{
 			data = {command: "attack-walk"};
@@ -273,13 +250,9 @@ function getActionInfo(action, target)
 		{
 			var resourceType = targetState.resourceSupply.type;
 			if (resourceType.generic == "treasure")
-			{
 				cursor = "action-gather-" + resourceType.generic;
-			}
 			else
-			{
 				cursor = "action-gather-" + resourceType.specific;
-			}
 			data.command = "gather";
 			data.resourceType = resourceType;
 			data.resourceTemplate = targetState.template;
@@ -345,7 +318,6 @@ function getActionInfo(action, target)
 		var mutualAllyOwned = playerState.isMutualAlly[targetState.player];
 		var neutralOwned = playerState.isNeutral[targetState.player];
 		var enemyOwned = playerState.isEnemy[targetState.player];
-		var gaiaOwned = (targetState.player == 0);
 
 		// Find the resource type we're carrying, if any
 		var carriedType = undefined;
@@ -364,9 +336,7 @@ function getActionInfo(action, target)
 				for each (var unitClass in entState.identity.classes)
 				{
 					if (allowedClasses.indexOf(unitClass) != -1)
-					{
 						return {"possible": true, "tooltip": tooltip};
-					}
 				}
 			}
 			break;
@@ -414,18 +384,14 @@ function getActionInfo(action, target)
 				for each (var unitClass in targetState.identity.classes)
 				{
 					if (unhealableClasses.indexOf(unitClass) != -1)
-					{
 						return {"possible": false};
-					}
 				}
-				
+
 				var healableClasses = entState.Healer.healableClasses;
 				for each (var unitClass in targetState.identity.classes)
 				{
 					if (healableClasses.indexOf(unitClass) != -1)
-					{
 						return {"possible": true};
-					}
 				}
 			}
 			break;
@@ -455,7 +421,7 @@ function getActionInfo(action, target)
 			break;
 		}
 	}
-	if (haveUnitAI && (action == "move" || action == "attack-move"))
+	if (action == "move" || action == "attack-move")
 		return {"possible": true};
 	else
 		return {"possible": false};
@@ -490,24 +456,27 @@ function determineAction(x, y, fromMinimap)
 	if (!g_DevSettings.controlAll && !allOwnedByPlayer)
 		return undefined;
 
-	// Work out whether the selection can have rally points
-	var haveRallyPoints = selection.every(function(ent) {
+	// Work out whether at least part of the selection have UnitAI
+	var haveUnitAI = selection.some(function(ent) {
+		var entState = GetEntityState(ent);
+		return entState && entState.unitAI;
+	});
+
+	// Work out whether at least part the selection have rally points
+	// while none have UnitAI
+	var haveRallyPoints = !haveUnitAI && selection.some(function(ent) {
 		var entState = GetEntityState(ent);
 		return entState && entState.rallyPoint;
 	});
 
 	var targets = [];
 	var target = undefined;
-	var type = "none";
-	var cursor = "";
 	var targetState = undefined;
 	if (!fromMinimap)
 		targets = Engine.PickEntitiesAtPoint(x, y);
 
 	if (targets.length)
-	{
 		target = targets[0];
-	}
 
 	var actionInfo = undefined;
 	if (preSelectedAction != ACTION_NONE)
@@ -536,7 +505,7 @@ function determineAction(x, y, fromMinimap)
 	{
 		return {"type": "garrison", "cursor": "action-garrison", "tooltip": actionInfo.tooltip, "target": target};
 	}
-	else if (Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target).possible)
+	else if (haveUnitAI && Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target).possible)
 	{
 			return {"type": "attack-move", "cursor": "action-attack-move"};
 	}
@@ -552,18 +521,18 @@ function determineAction(x, y, fromMinimap)
 			return {"type": "build", "cursor": "action-build", "target": target};
 		else if (getActionInfo("repair", target).possible)
 			return {"type": "build", "cursor": "action-repair", "target": target};
-		else if ((actionInfo = getActionInfo("set-rallypoint", target)).possible)
+		else if (haveRallyPoints && (actionInfo = getActionInfo("set-rallypoint", target)).possible)
 			return {"type": "set-rallypoint", "cursor": actionInfo.cursor, "data": actionInfo.data, "tooltip": actionInfo.tooltip, "position": actionInfo.position};
 		else if (getActionInfo("heal", target).possible)
 			return {"type": "heal", "cursor": "action-heal", "target": target};
 		else if (getActionInfo("attack", target).possible)
 			return {"type": "attack", "cursor": "action-attack", "target": target};
-		else if (getActionInfo("unset-rallypoint", target).possible)
+		else if (haveRallyPoints && getActionInfo("unset-rallypoint", target).possible)
 			return {"type": "unset-rallypoint"};
-		else if (getActionInfo("move", target).possible)
+		else if (haveUnitAI && getActionInfo("move", target).possible)
 			return {"type": "move"};
 	}
-	return {"type": type, "cursor": cursor, "target": target};
+	return {"type": "none", "cursor": "", "target": target};
 }
 
 
@@ -577,8 +546,6 @@ function tryPlaceBuilding(queued)
 		return false;
 	}
 
-	var selection = g_Selection.toList();
-
 	// Use the preview to check it's a valid build location
 	if (!updateBuildingPlacementPreview())
 	{
@@ -586,6 +553,8 @@ function tryPlaceBuilding(queued)
 		// TODO: play a sound?
 		return false;
 	}
+
+	var selection = g_Selection.toList();
 
 	// Start the construction
 	Engine.PostNetworkCommand({
@@ -879,8 +848,8 @@ function handleInputBeforeGui(ev, hoveredObject)
 		case "mousebuttonup":
 			if (ev.button === SDL_BUTTON_LEFT)
 			{
-    			inputState = INPUT_BUILDING_WALL_PATHING;
-    			return true;
+				inputState = INPUT_BUILDING_WALL_PATHING;
+				return true;
 			}
 			break;
 			
@@ -1323,8 +1292,8 @@ function handleInputAfterGui(ev)
 				else
 				{
 					placementSupport.position = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
-    				dragStart = [ ev.x, ev.y ];
-    				inputState = INPUT_BUILDING_CLICK;
+					dragStart = [ ev.x, ev.y ];
+					inputState = INPUT_BUILDING_CLICK;
 				}
 				return true;
 			}

@@ -1092,7 +1092,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			var gates = [];
 			for (var i in selection)
 			{
-				state = GetEntityState(selection[i]);
+				var state = GetEntityState(selection[i]);
 				if (hasClass(state, "LongWall") && !state.gate && !longWallTypes[state.template])
 				{
 					var gateTemplate = getWallGateTemplate(state.id);
