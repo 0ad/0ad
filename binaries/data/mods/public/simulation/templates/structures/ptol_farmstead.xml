@@ -7,12 +7,12 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="20.0" depth="15.0"/>
+    <Square width="20.0" depth="17.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Health>
     <Max>400</Max>
-    <SpawnEntityOnDeath>rubble/rubble_stone_4x2</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>ptol</Civ>
@@ -20,10 +20,10 @@
     <History>?</History>
   </Identity>
   <Obstruction>
-    <Static width="18.0" depth="16.0"/>
+    <Static width="18.0" depth="18.0"/>
   </Obstruction>
   <VisualActor>
-    <Actor>structures/hellenes/farmstead_new.xml</Actor>
-    <FoundationActor>structures/fndn_4x2.xml</FoundationActor>
+    <Actor>structures/ptolemies/farmstead.xml</Actor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
   </VisualActor>
 </Entity>
