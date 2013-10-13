@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="492.45" y="102.876" z="632.287"/>
-		<Rotation angle="0"/>
+		<Position x="492.333" y="104.358" z="637.964"/>
+		<Rotation angle="-0.0963749"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -724,7 +724,7 @@
 		<Entity uid="120">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="455.67991" z="738.40815"/>
+			<Position x="469.39808" z="750.27082"/>
 			<Orientation y="0.30091"/>
 			<Actor seed="30198"/>
 		</Entity>
@@ -745,7 +745,7 @@
 		<Entity uid="123">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="462.18769" z="778.90711"/>
+			<Position x="475.90586" z="790.76978"/>
 			<Orientation y="-1.67714"/>
 			<Actor seed="24690"/>
 		</Entity>
@@ -885,7 +885,7 @@
 		<Entity uid="147">
 			<Template>gaia/flora_tree_medit_fan_palm</Template>
 			<Player>0</Player>
-			<Position x="446.79053" z="671.7721"/>
+			<Position x="441.55005" z="669.18073"/>
 			<Orientation y="0.68934"/>
 			<Actor seed="26894"/>
 		</Entity>
@@ -1004,28 +1004,28 @@
 		<Entity uid="166">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="465.67289" z="798.40552"/>
+			<Position x="362.19709" z="935.31336"/>
 			<Orientation y="1.11417"/>
 			<Actor seed="47978"/>
 		</Entity>
 		<Entity uid="167">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="472.49949" z="805.08808"/>
-			<Orientation y="-2.42956"/>
+			<Position x="369.02369" z="941.99592"/>
+			<Orientation y="-3.0646"/>
 			<Actor seed="12196"/>
 		</Entity>
 		<Entity uid="168">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="454.71146" z="804.36371"/>
-			<Orientation y="-2.15116"/>
+			<Position x="351.23566" z="941.27155"/>
+			<Orientation y="2.7427"/>
 			<Actor seed="26390"/>
 		</Entity>
 		<Entity uid="169">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="455.30005" z="792.88404"/>
+			<Position x="351.82425" z="929.79188"/>
 			<Orientation y="0.47976"/>
 			<Actor seed="57928"/>
 		</Entity>
@@ -1130,7 +1130,7 @@
 		<Entity uid="205">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="430.65564" z="694.24122"/>
+			<Position x="417.18558" z="674.88807"/>
 			<Orientation y="-1.98293"/>
 			<Actor seed="58858"/>
 		</Entity>
@@ -9113,7 +9113,7 @@
 		<Entity uid="1548">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="436.59003" z="804.99115"/>
+			<Position x="425.6626" z="845.43915"/>
 			<Orientation y="0.63541"/>
 			<Actor seed="29146"/>
 		</Entity>
@@ -9421,30 +9421,16 @@
 		<Entity uid="1604">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="454.8086" z="771.99244"/>
+			<Position x="468.52677" z="783.85511"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="47618"/>
 		</Entity>
 		<Entity uid="1605">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="452.16086" z="766.08545"/>
+			<Position x="465.87903" z="777.94813"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="60196"/>
-		</Entity>
-		<Entity uid="1606">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="447.23664" z="761.91602"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="65415"/>
-		</Entity>
-		<Entity uid="1607">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="450.55436" z="748.31745"/>
-			<Orientation y="0.94394"/>
-			<Actor seed="58852"/>
 		</Entity>
 		<Entity uid="1608">
 			<Template>actor|geology/stone_desert_med.xml</Template>
@@ -10230,21 +10216,21 @@
 		<Entity uid="1733">
 			<Template>gaia/special_ruins_stone_statues_ptol</Template>
 			<Player>1</Player>
-			<Position x="512.16059" z="756.04151"/>
+			<Position x="511.73801" z="753.862"/>
 			<Orientation y="2.4294"/>
 			<Actor seed="27792"/>
 		</Entity>
 		<Entity uid="1734">
 			<Template>gaia/special_ruins_stone_statues_ptol</Template>
-			<Player>1</Player>
-			<Position x="415.1377" z="818.32099"/>
+			<Player>0</Player>
+			<Position x="375.56308" z="820.18653"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="11624"/>
 		</Entity>
 		<Entity uid="1735">
 			<Template>gaia/special_ruins_stone_statues_ptol</Template>
 			<Player>1</Player>
-			<Position x="666.02332" z="789.27356"/>
+			<Position x="655.63971" z="793.7793"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="57428"/>
 		</Entity>
@@ -11001,7 +10987,7 @@
 		<Entity uid="1858">
 			<Template>structures/ptol_defense_tower</Template>
 			<Player>1</Player>
-			<Position x="442.48688" z="824.37696"/>
+			<Position x="443.29029" z="836.82355"/>
 			<Orientation y="-2.82918"/>
 			<Actor seed="58322"/>
 		</Entity>
@@ -11015,14 +11001,14 @@
 		<Entity uid="1860">
 			<Template>structures/ptol_farmstead</Template>
 			<Player>1</Player>
-			<Position x="536.50824" z="721.70411"/>
+			<Position x="536.13398" z="724.44996"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="9552"/>
 		</Entity>
 		<Entity uid="1861">
 			<Template>structures/ptol_fortress</Template>
 			<Player>1</Player>
-			<Position x="419.73688" z="752.76783"/>
+			<Position x="411.43857" z="744.6543"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="46520"/>
 		</Entity>
@@ -11071,8 +11057,8 @@
 		<Entity uid="1868">
 			<Template>structures/ptol_house</Template>
 			<Player>1</Player>
-			<Position x="434.14118" z="681.02784"/>
-			<Orientation y="0.7844"/>
+			<Position x="410.15412" z="663.86933"/>
+			<Orientation y="2.76903"/>
 			<Actor seed="23980"/>
 		</Entity>
 		<Entity uid="1869">
@@ -11085,8 +11071,8 @@
 		<Entity uid="1870">
 			<Template>structures/ptol_storehouse</Template>
 			<Player>1</Player>
-			<Position x="384.55222" z="702.20197"/>
-			<Orientation y="1.74306"/>
+			<Position x="388.32441" z="704.94495"/>
+			<Orientation y="-2.98101"/>
 			<Actor seed="34826"/>
 		</Entity>
 		<Entity uid="1871">
@@ -11102,6 +11088,76 @@
 			<Position x="512.3039" z="675.77991"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19674"/>
+		</Entity>
+		<Entity uid="1873">
+			<Template>structures/ptol_temple</Template>
+			<Player>1</Player>
+			<Position x="444.08994" z="689.40717"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32676"/>
+		</Entity>
+		<Entity uid="1874">
+			<Template>structures/ptol_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="391.53797" z="855.59595"/>
+			<Orientation y="-0.0994"/>
+			<Actor seed="7414"/>
+		</Entity>
+		<Entity uid="1875">
+			<Template>structures/ptol_field</Template>
+			<Player>1</Player>
+			<Position x="553.5777" z="740.02741"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2746"/>
+		</Entity>
+		<Entity uid="1876">
+			<Template>structures/ptol_field</Template>
+			<Player>1</Player>
+			<Position x="449.82535" z="802.97657"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23278"/>
+		</Entity>
+		<Entity uid="1877">
+			<Template>structures/ptol_field</Template>
+			<Player>1</Player>
+			<Position x="426.34662" z="781.9604"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54460"/>
+		</Entity>
+		<Entity uid="1878">
+			<Template>structures/ptol_field</Template>
+			<Player>1</Player>
+			<Position x="427.54508" z="823.01221"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="38630"/>
+		</Entity>
+		<Entity uid="1880">
+			<Template>structures/ptol_field</Template>
+			<Player>1</Player>
+			<Position x="401.67188" z="826.83265"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48778"/>
+		</Entity>
+		<Entity uid="1883">
+			<Template>structures/ptol_farmstead</Template>
+			<Player>1</Player>
+			<Position x="411.07184" z="801.12055"/>
+			<Orientation y="0.7951"/>
+			<Actor seed="25480"/>
+		</Entity>
+		<Entity uid="1884">
+			<Template>structures/ptol_storehouse</Template>
+			<Player>1</Player>
+			<Position x="574.04456" z="771.36463"/>
+			<Orientation y="3.00577"/>
+			<Actor seed="48612"/>
+		</Entity>
+		<Entity uid="1885">
+			<Template>structures/ptol_dock</Template>
+			<Player>1</Player>
+			<Position x="558.67475" z="922.04053"/>
+			<Orientation y="0.4083"/>
+			<Actor seed="6348"/>
 		</Entity>
 	</Entities>
 	<Paths/>
