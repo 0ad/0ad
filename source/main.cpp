@@ -539,7 +539,7 @@ extern "C" int main(int argc, char* argv[])
 				  << "WARNING: Attempted to run the game with root permission!\n"
 				  << "This is not allowed because it can alter home directory \n"
 				  << "permissions and opens your system to vulnerabilities.   \n"
-				  << "(You received this message because you were ether       \n"
+				  << "(You received this message because you were either      \n"
 				  <<"  logged in as root or used e.g. the 'sudo' command.) \n"
 				  << "********************************************************\n\n";
 		return EXIT_FAILURE;
