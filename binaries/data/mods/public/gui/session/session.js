@@ -273,6 +273,9 @@ function getSavedGameData()
 
 function restoreSavedGameData(data)
 {
+	// Clear selection when loading a game
+	g_Selection.reset();
+
 	// Restore control groups
 	for (var groupNumber in data.groups)
 	{
@@ -462,13 +465,13 @@ function updateHero()
 	heroImage.sprite = "stretched:session/portraits/" + template.icon;
 	var hero = playerState.heroes[0];
 
-	heroButton.onpress = function() 
-	{ 
+	heroButton.onpress = function()
+	{
 		if (!Engine.HotkeyIsPressed("selection.add"))
-			g_Selection.reset(); 
-		g_Selection.addList([hero]); 
+			g_Selection.reset();
+		g_Selection.addList([hero]);
 	};
-	heroButton.ondoublepress = function() { selectAndMoveTo(hero) };
+	heroButton.ondoublepress = function() { selectAndMoveTo(getEntityOrHolder(hero)); };
 	heroButton.hidden = false;
 
 	// Setup tooltip

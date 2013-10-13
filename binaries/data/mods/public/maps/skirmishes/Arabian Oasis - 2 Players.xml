@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="685.651" y="63.796" z="725.442"/>
-		<Rotation angle="0"/>
+		<Position x="673.123" y="91.2148" z="698.35"/>
+		<Rotation angle="0.1997"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -55,7 +55,7 @@
         "g": 46,
         "r": 46
       },
-      "Name": "",
+      "Name": "Player 1",
       "Resources": {
         "food": 300,
         "metal": 300,
@@ -83,7 +83,7 @@
         "g": 20,
         "r": 150
       },
-      "Name": "",
+      "Name": "Player 2",
       "Resources": {
         "food": 300,
         "metal": 300,
@@ -8756,32 +8756,18 @@
 			<Actor seed="38254"/>
 		</Entity>
 		<Entity uid="1589">
-			<Template>skirmish/units/maur_support_elephant</Template>
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>1</Player>
 			<Position x="677.03241" z="767.17194"/>
 			<Orientation y="-2.31159"/>
 			<Actor seed="24656"/>
 		</Entity>
 		<Entity uid="1590">
-			<Template>skirmish/units/maur_support_elephant</Template>
+			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>2</Player>
 			<Position x="283.94956" z="284"/>
 			<Orientation y="-0.87375"/>
 			<Actor seed="47906"/>
-		</Entity>
-		<Entity uid="1591">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>1</Player>
-			<Position x="677.28766" z="767.72675"/>
-			<Orientation y="-2.15458"/>
-			<Actor seed="28940"/>
-		</Entity>
-		<Entity uid="1592">
-			<Template>skirmish/units/brit_war_dog_b</Template>
-			<Player>2</Player>
-			<Position x="283.65662" z="283.91443"/>
-			<Orientation y="-0.79235"/>
-			<Actor seed="41358"/>
 		</Entity>
 	</Entities>
 	<Paths/>

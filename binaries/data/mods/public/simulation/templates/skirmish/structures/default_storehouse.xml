@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_dog">
+<Entity parent="template_structure_economic_storehouse">
   <Identity>
     <Civ>skirm</Civ>
   </Identity>
-  <Promotion disable=""/>
   <SkirmishReplacer>
-    <brit>units/brit_war_dog_b</brit>
+    <general>structures/{civ}_storehouse</general>
   </SkirmishReplacer>
   <VisualActor>
-    <Actor>units/celts/cavalry_spearman_b.xml</Actor>
+    <Actor>structures/athenians/storehouse.xml</Actor>
   </VisualActor>
 </Entity>

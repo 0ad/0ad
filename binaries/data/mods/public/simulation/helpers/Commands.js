@@ -390,6 +390,16 @@ function ProcessCommand(player, cmd)
 				notifyUnloadFailure(player, garrisonHolder)
 		}
 		break;
+		
+	case "back-to-work":
+		var entities = FilterEntityList(cmd.workers, player, controlAllUnits);
+		for each (var worker in entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(worker, IID_UnitAI);
+			if (!cmpUnitAI || !cmpUnitAI.BackToWork())
+				notifyBackToWorkFailure(player, worker)
+		}
+		break;
 
 	case "formation":
 		GetFormationUnitAIs(entities, player, cmd.name).forEach(function(cmpUnitAI) {
@@ -513,6 +523,17 @@ function notifyUnloadFailure(player, garrisonHolder)
 {
 	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
 	var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Unable to ungarrison unit(s)" };
+	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGUIInterface.PushNotification(notification);
+}
+
+/**
+ * Sends a GUI notification about worker(s) that failed to go back to work.
+ */
+function notifyBackToWorkFailure(player, worker)
+{
+	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+	var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Some unit(s) can't go back to work" };
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification(notification);
 }

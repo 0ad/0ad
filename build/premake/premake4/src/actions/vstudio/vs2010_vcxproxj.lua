@@ -105,6 +105,11 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 			_p(2,'<ProjectGuid>{%s}</ProjectGuid>',prj.uuid)
 			_p(2,'<RootNamespace>%s</RootNamespace>',prj.name)
 			_p(2,'<Keyword>Win32Proj</Keyword>')
+
+			if _ACTION == "vs2012" then
+				_p(2,[[<VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>]])
+			end
+			
 		_p(1,'</PropertyGroup>')
 	end
 	
@@ -144,12 +149,16 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 					, premake.esc(cfginfo.name))
 				_p(2,'<ConfigurationType>%s</ConfigurationType>',vs10_helpers.config_type(cfg))
 				_p(2,'<CharacterSet>%s</CharacterSet>',iif(cfg.flags.Unicode,"Unicode","MultiByte"))
-			
-			if cfg.flags.MFC then
-				_p(2,'<UseOfMfc>Dynamic</UseOfMfc>')
-			end
 				_p(2,'<UseDebugLibraries>%s</UseDebugLibraries>'
-						,iif(optimisation(cfg) == "Disabled","true","false"))				
+					,iif(optimisation(cfg) == "Disabled","true","false"))
+
+				if _ACTION == "vs2012" then
+					_p(2, '<PlatformToolset>v110</PlatformToolset>')			
+				end
+			
+				if cfg.flags.MFC then
+					_p(2,'<UseOfMfc>Dynamic</UseOfMfc>')
+				end
 			_p(1,'</PropertyGroup>')
 		end
 	end
@@ -726,7 +735,6 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 
 		_p('</Project>')
 	end
-	
 
 	function premake.vs2010_vcxproj_user(prj)
 		_p(xml_version_and_encoding)

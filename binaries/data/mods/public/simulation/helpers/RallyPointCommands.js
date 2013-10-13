@@ -60,6 +60,15 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"queued": true
 			});
 			break;
+		case "attack-walk":
+			ret.push( {
+				"type": "attack-walk",
+				"entities": spawnedEnts,
+				"x": rallyPos[i].x,
+				"z": rallyPos[i].z,
+				"queued": true
+			});
+			break;
 		case "trade":
 			ret.push( {
 				"type": "setup-trade-route",

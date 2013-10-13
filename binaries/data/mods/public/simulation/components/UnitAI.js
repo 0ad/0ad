@@ -2525,6 +2525,9 @@ UnitAI.prototype.Init = function()
 	this.isIdle = false;
 	this.lastFormationName = "";
 	this.finishedOrder = false; // used to find if all formation members finished the order
+	
+	// To go back to work later
+	this.lastWorkOrder = undefined;
 
 	// For preventing increased action rate due to Stop orders or target death.
 	this.lastAttacked = undefined;
@@ -2801,6 +2804,17 @@ UnitAI.prototype.FsmStateNameChanged = function(state)
 	Engine.PostMessage(this.entity, MT_UnitAIStateChanged, { "to": state });
 };
 
+UnitAI.prototype.BackToWork = function()
+{
+	if(this.lastWorkOrder)
+	{
+		this.ReplaceOrder(this.lastWorkOrder.type, this.lastWorkOrder.data);
+		return true;
+	}
+	else
+		return false;
+};
+
 /**
  * Call when the current order has been completed (or failed).
  * Removes the current order from the queue, and processes the
@@ -2817,8 +2831,17 @@ UnitAI.prototype.FinishOrder = function()
 		error("FinishOrder called for entity " + this.entity + " (" + template + ") when order queue is empty\n" + stack);
 	}
 
-	this.orderQueue.shift();
+	// Remove the order from the queue, then forget it if it was a work to avoid trying to go back to it later.
+	var finishedOrder = this.orderQueue.shift();
+	if(finishedOrder.type == "Gather" || finishedOrder.type == "Trade" || finishedOrder.type == "Repair")
+		this.lastWorkOrder = undefined;
+	
 	this.order = this.orderQueue[0];
+	// If the worker was returning a resource, we shall 
+	//	-> (if the worker is gathering) keep remembering the "Gather" order which is this.order
+	//	-> (if the worker was directly ordered to return a resource) forget the "ReturnResource" order which is finished
+	if(finishedOrder.type == "ReturnResource" && (!this.order || this.order.type != "Gather"))
+		this.lastWorkOrder = undefined;
 
 	if (this.orderQueue.length)
 	{
@@ -2869,6 +2892,9 @@ UnitAI.prototype.PushOrder = function(type, data)
 {
 	var order = { "type": type, "data": data };
 	this.orderQueue.push(order);
+	
+	if(type == "Gather" || type == "Trade" || type == "Repair" || type == "ReturnResource")
+		this.lastWorkOrder = order;
 
 	// If we didn't already have an order, then process this new one
 	if (this.orderQueue.length == 1)
@@ -2970,6 +2996,16 @@ UnitAI.prototype.GetOrderData = function()
 			orders.push(deepcopy(this.orderQueue[i].data));
 		}
 	return orders;
+};
+
+UnitAI.prototype.GetLastWorkOrder = function()
+{
+	return this.lastWorkOrder;
+};
+
+UnitAI.prototype.SetLastWorkOrder = function(order)
+{
+	this.lastWorkOrder = order;
 };
 
 UnitAI.prototype.TimerHandler = function(data, lateness)

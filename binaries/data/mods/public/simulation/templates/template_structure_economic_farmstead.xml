@@ -9,9 +9,6 @@
       <wood>100</wood>
     </Resources>
   </Cost>
-  <EntityLimitsChanger>
-    <Field>8</Field>
-  </EntityLimitsChanger>
   <Footprint>
     <Square width="14.0" depth="14.0"/>
     <Height>8.0</Height>
@@ -22,7 +19,7 @@
   </Health>
   <Identity>
     <GenericName>Farmstead</GenericName>
-    <Tooltip>Dropsite for the food resource. Research food gathering improvements. Unlocks 8 farm fields per Farmstead built.</Tooltip>
+    <Tooltip>Dropsite for the food resource. Research food gathering improvements.</Tooltip>
     <Classes datatype="tokens">Village -ConquestCritical DropsiteFood Farmstead</Classes>
     <Icon>structures/farmstead.png</Icon>
   </Identity>

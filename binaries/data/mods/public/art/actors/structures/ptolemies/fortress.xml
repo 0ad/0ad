@@ -11,6 +11,8 @@
       </props>
       <textures>
         <texture file="structural/ptol_struct.png" name="baseTex"/>
+		<texture file="structural/ptol_struct_norm.png" name="normTex"/>
+        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
 		<texture file="structural/ao/ptol_fortress.png" name="aoTex"/>
       </textures>
     </variant>
@@ -33,5 +35,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
