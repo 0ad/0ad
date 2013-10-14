@@ -12,6 +12,7 @@ Formation.prototype.Init = function()
 	this.columnar = false; // whether we're travelling in column (vs box) formation
 	this.formationName = "Line Closed";
 	this.rearrange = true; // whether we should rearrange all formation members
+	this.formationMemebersWithAura = []; // Members with a formation aura
 };
 
 Formation.prototype.GetMemberCount = function()
@@ -86,12 +87,20 @@ Formation.prototype.SetMembers = function(ents)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(this.entity);
+		
+		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		if (cmpAuras && cmpAuras.HasFormationAura())
+		{
+			this.formationMemebersWithAura.push(ent);
+			cmpAuras.ApplyFormationBonus(ents);
+		}
 	}
 
 	// Locate this formation controller in the middle of its members
 	this.MoveToMembersCenter();
 
 	this.ComputeMotionParameters();
+
 };
 
 /**
@@ -108,6 +117,18 @@ Formation.prototype.RemoveMembers = function(ents)
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(INVALID_ENTITY);
 	}
+
+	for each (var ent in this.formationMemebersWithAura)
+	{
+		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		cmpAuras.RemoveFormationBonus(ents);
+
+		// the unit with the aura is also removed from the formation
+		if (ents.indexOf(ent) !== -1)
+			cmpAuras.RemoveFormationBonus(this.members);
+	}
+
+	this.formationMemebersWithAura = this.formationMemebersWithAura.filter(function(e) { return ents.indexOf(e) == -1; });
 
 	// If there's nobody left, destroy the formation
 	if (this.members.length == 0)
@@ -155,8 +176,16 @@ Formation.prototype.Disband = function()
 		cmpUnitAI.SetFormationController(INVALID_ENTITY);
 	}
 
+	for each (var ent in this.formationMemebersWithAura)
+	{
+		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		cmpAuras.RemoveFormationBonus(this.members);
+	}
+
+
 	this.members = [];
 	this.inPosition = [];
+	this.formationMemebersWithAura = [];
 
 	Engine.DestroyEntity(this.entity);
 };
