@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
+    </contributor>
+    <created>2013-10-13T16:19:03</created>
+    <modified>2013-10-13T16:19:03</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="Plane_005-mesh" name="Plane.005">
+      <mesh>
+        <source id="Plane_005-mesh-positions">
+          <float_array id="Plane_005-mesh-positions-array" count="144">-5.786212 12.76061 3.474355 -5.786212 8.685158 3.474355 -5.786212 12.76061 13.48029 -5.786212 8.685158 13.48029 -5.786212 3.329158 13.48029 -5.786212 7.40461 13.48029 -5.786212 3.329158 3.474355 -5.786212 7.40461 3.474355 -5.786212 2.048608 3.474355 -5.786212 -2.026844 3.474355 -5.786212 2.048608 13.48029 -5.786212 -2.026844 13.48029 -4.654745 12.76061 3.474355 -4.654745 8.685158 3.474355 -4.654745 12.76061 13.48029 -4.654745 8.685158 13.48029 -4.654745 3.329158 13.48029 -4.654745 7.40461 13.48029 -4.654745 3.329158 3.474355 -4.654745 7.40461 3.474355 -4.654745 2.048608 3.474355 -4.654745 -2.026844 3.474355 -4.654745 2.048608 13.48029 -4.654745 -2.026844 13.48029 5.431809 12.76061 3.474355 5.431809 8.685158 3.474355 5.431809 12.76061 13.48029 5.431809 8.685158 13.48029 5.431809 3.329158 13.48029 5.431809 7.40461 13.48029 5.431809 3.329158 3.474355 5.431809 7.40461 3.474355 5.431809 2.048608 3.474355 5.431809 -2.026844 3.474355 5.431809 2.048608 13.48029 5.431809 -2.026844 13.48029 4.376584 12.76061 3.474355 4.376584 8.685158 3.474355 4.376584 12.76061 13.48029 4.376584 8.685158 13.48029 4.376584 3.329158 13.48029 4.376584 7.40461 13.48029 4.376584 3.329158 3.474355 4.376584 7.40461 3.474355 4.376584 2.048608 3.474355 4.376584 -2.026844 3.474355 4.376584 2.048608 13.48029 4.376584 -2.026844 13.48029</float_array>
+          <technique_common>
+            <accessor source="#Plane_005-mesh-positions-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_005-mesh-normals">
+          <float_array id="Plane_005-mesh-normals-array" count="36">-1 0 0 -1 0 0 -1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 -1 0 0 -1 0 0 -1 0 0</float_array>
+          <technique_common>
+            <accessor source="#Plane_005-mesh-normals-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_005-mesh-map-0">
+          <float_array id="Plane_005-mesh-map-0-array" count="96">0.1789029 0.4918131 0.1789028 0.1954815 0.001511931 0.1954815 0.001511931 0.4918131 0.1789029 0.4918131 0.1789028 0.1954815 0.001511931 0.1954815 0.001511931 0.4918131 0.1789029 0.4918131 0.1789028 0.1954815 0.001511931 0.1954815 0.001511931 0.4918131 0.1789029 0.4918131 0.001511931 0.4918131 0.001511931 0.1954815 0.1789028 0.1954815 0.1789029 0.4918131 0.001511931 0.4918131 0.001511931 0.1954815 0.1789028 0.1954815 0.1789029 0.4918131 0.001511931 0.4918131 0.001511931 0.1954815 0.1789028 0.1954815 0.1789029 0.4918131 0.001511931 0.4918131 0.001511931 0.1954815 0.1789028 0.1954815 0.1789029 0.4918131 0.001511931 0.4918131 0.001511931 0.1954815 0.1789028 0.1954815 0.1789029 0.4918131 0.001511931 0.4918131 0.001511931 0.1954815 0.1789028 0.1954815 0.1789029 0.4918131 0.1789028 0.1954815 0.001511931 0.1954815 0.001511931 0.4918131 0.1789029 0.4918131 0.1789028 0.1954815 0.001511931 0.1954815 0.001511931 0.4918131 0.1789029 0.4918131 0.1789028 0.1954815 0.001511931 0.1954815 0.001511931 0.4918131</float_array>
+          <technique_common>
+            <accessor source="#Plane_005-mesh-map-0-array" count="48" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_005-mesh-map-1">
+          <float_array id="Plane_005-mesh-map-1-array" count="96">0.6594441 0.290925 0.6590864 0.1743159 0.7065833 0.1741788 0.706941 0.2907878 0.1826104 0.7410895 0.1822527 0.6244805 0.2297495 0.6243433 0.2301073 0.7409523 0.4111299 0.7491258 0.4107722 0.6325168 0.458269 0.6323797 0.4586268 0.7489887 0.1501963 0.7601473 0.102697 0.7602841 0.1023393 0.6437098 0.1498387 0.643573 0.09001088 0.7601473 0.04251146 0.7602841 0.04215383 0.6437098 0.08965325 0.643573 0.757129 0.2907531 0.7096297 0.2908899 0.709272 0.1743156 0.7567714 0.1741788 0.5088149 0.7521979 0.4613155 0.7523347 0.4609578 0.6357604 0.5084573 0.6356236 0.3984263 0.7489539 0.3509269 0.7490907 0.3505693 0.6325165 0.3980686 0.6323797 0.5903468 0.7521979 0.5428473 0.7523347 0.5424897 0.6357604 0.5899891 0.6356236 0.6892403 0.4619947 0.6888825 0.3453857 0.7363794 0.3452485 0.7367371 0.4618575 0.6630073 0.6959964 0.6626496 0.5793874 0.7101464 0.5792502 0.7105042 0.6958592 0.6952556 0.1292772 0.6948979 0.01266825 0.7423948 0.0125311 0.7427525 0.1291401</float_array>
+          <technique_common>
+            <accessor source="#Plane_005-mesh-map-1-array" count="48" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane_005-mesh-vertices">
+          <input semantic="POSITION" source="#Plane_005-mesh-positions"/>
+        </vertices>
+        <polylist count="12">
+          <input semantic="VERTEX" source="#Plane_005-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane_005-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane_005-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#Plane_005-mesh-map-1" offset="2" set="1"/>
+          <vcount>4 4 4 4 4 4 4 4 4 4 4 4 </vcount>
+          <p>2 0 0 0 0 1 1 0 2 3 0 3 5 1 4 7 1 5 6 1 6 4 1 7 10 2 8 8 2 9 9 2 10 11 2 11 14 3 12 15 3 13 13 3 14 12 3 15 17 4 16 16 4 17 18 4 18 19 4 19 22 5 20 23 5 21 21 5 22 20 5 23 26 6 24 27 6 25 25 6 26 24 6 27 29 7 28 28 7 29 30 7 30 31 7 31 34 8 32 35 8 33 33 8 34 32 8 35 38 9 36 36 9 37 37 9 38 39 9 39 41 10 40 43 10 41 42 10 42 40 10 43 46 11 44 44 11 45 45 11 46 47 11 47</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Plane_000" name="Plane_000" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#Plane_005-mesh"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

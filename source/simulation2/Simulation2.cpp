@@ -125,6 +125,7 @@ public:
 				LOGERROR(L"Can't find component type " L##name); \
 			componentManager.AddComponent(systemEntity, cid, noParam)
 
+			LOAD_SCRIPTED_COMPONENT("AuraManager");
 			LOAD_SCRIPTED_COMPONENT("AIInterface");
 			LOAD_SCRIPTED_COMPONENT("Barter");
 			LOAD_SCRIPTED_COMPONENT("EndGameManager");

@@ -185,6 +185,10 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if (cmpProductionQueue)
 		cmpProductionQueue.PauseProduction();
 
+	var cmpAura = Engine.QueryInterface(entity, IID_Auras);
+	if (cmpAura && cmpAura.HasGarrisonAura())
+		cmpAura.ApplyGarrisonBonus(this.entity);	
+
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 	return true;
 };
@@ -228,6 +232,11 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 	var cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
 	if (cmpProductionQueue)
 		cmpProductionQueue.UnpauseProduction();
+
+	var cmpAura = Engine.QueryInterface(entity, IID_Auras);
+	if (cmpAura && cmpAura.HasGarrisonAura())
+		cmpAura.RemoveGarrisonBonus(this.entity);	
+
 	
 	var cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
 	cmpNewPosition.JumpTo(pos.x, pos.z);

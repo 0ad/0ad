@@ -9,6 +9,7 @@ TechnologyTemplateManager.prototype.Schema =
 TechnologyTemplateManager.prototype.Init = function()
 {
 	this.allTechs = {};
+	this.allAuras = {};
 	var techNames = this.ListAllTechs();
 	for (var i in techNames)
 		this.GetTemplate(techNames[i]);
@@ -24,6 +25,18 @@ TechnologyTemplateManager.prototype.GetTemplate = function(template)
 	}
 	
 	return this.allTechs[template];
+};
+
+TechnologyTemplateManager.prototype.GetAuraTemplate = function(template)
+{
+	if (!this.allAuras[template])
+	{
+		this.allAuras[template] = Engine.ReadJSONFile("auras/" + template + ".json");
+		if (! this.allAuras[template])
+			error("Failed to load aura \"" + template + "\"");
+	}
+	
+	return this.allAuras[template];
 };
 
 TechnologyTemplateManager.prototype.ListAllTechs = function()
