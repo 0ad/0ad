@@ -4,7 +4,7 @@ function ApplyTechModificationsToEntity(tech_type, current_value, entity)
 {
 	var cmpTechMan = QueryOwnerInterface(entity, IID_TechnologyManager);
 	if (cmpTechMan)
-		var value = cmpTechMan.ApplyModificationsTemplate(tech_type, current_value, entity);
+		var value = cmpTechMan.ApplyModifications(tech_type, current_value, entity);
 	else
 		var value = current_value;
 
