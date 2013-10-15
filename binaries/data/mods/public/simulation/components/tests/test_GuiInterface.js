@@ -15,6 +15,7 @@ Engine.LoadComponentScript("interfaces/RallyPoint.js");
 Engine.LoadComponentScript("interfaces/ResourceDropsite.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
+Engine.LoadComponentScript("interfaces/TechnologyManager.js")
 Engine.LoadComponentScript("interfaces/Trader.js")
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");

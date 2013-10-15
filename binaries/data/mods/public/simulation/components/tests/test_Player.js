@@ -1,5 +1,6 @@
-Engine.LoadHelperScript("Technology.js");
+Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("Player.js");
+Engine.LoadComponentScript("interfaces/TechnologyManager.js")
 
 var cmp = ConstructComponent(10, "Player");
 
