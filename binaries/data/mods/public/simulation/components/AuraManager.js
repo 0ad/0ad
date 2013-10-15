@@ -37,6 +37,7 @@ AuraManager.prototype.ApplyBonus = function(value, ent, data, key)
 
 	if (this.modifications[value][ent][key].length > 1)
 		return;
+
 	// first time added this aura
 	if (data.multiply)
 		this.modificationsCache[value][ent].multiply *= data.multiply;
@@ -45,12 +46,7 @@ AuraManager.prototype.ApplyBonus = function(value, ent, data, key)
 		this.modificationsCache[value][ent].add += data.add;
 
 	// post message to the entity to notify it about the change
-	// TODO MT_TechnologyModification expects a player ID, so we have to provide something.
-    // Use -1 until this is changed not to require one.
-	// This player info is not needed, as the message gets send to the correct entities immediately
-	// A better way of handling this would be to remove the player info from the message data.
-	var component = value.split("/")[0];
-	Engine.PostMessage(ent, MT_TechnologyModification, { "component": component, "player": -1 });
+	Engine.PostMessage(ent, MT_ValueModification, { "component": value.split("/")[0] });
 };
 
 AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data, key)
@@ -78,10 +74,6 @@ AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data
 			this.templateModificationsCache[value][player][c][key].add += data.add;
 
 	}
-
-	// post message to notify about the change
-	var component = value.split("/")[0];
-	Engine.BroadcastMessage(MT_TechnologyModification, { "component": component, "player": player});
 };
 
 AuraManager.prototype.RemoveBonus = function(value, ent, key)
@@ -106,12 +98,7 @@ AuraManager.prototype.RemoveBonus = function(value, ent, key)
 		this.modificationsCache[value][ent].multiply /= data.multiply;
 
 	// post message to the entity to notify it about the change
-	// TODO MT_TechnologyModification expects a player ID, so we have to provide something.
-    // Use -1 until this is changed not to require one.
-	// This player info is not needed, as the message gets send to the correct entities immediately
-	// A better way of handling this would be to remove the player info from the message data.
-	var component = value.split("/")[0];
-	Engine.PostMessage(ent, MT_TechnologyModification, { "component": component, "player": -1 });
+	Engine.PostMessage(ent, MT_ValueModification, { "component": value.split("/")[0] });
 };
 
 AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key)
@@ -132,10 +119,6 @@ AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key
 		this.templateModificationsCache[value][player][c][key].multiply = 1;
 		this.templateModificationsCache[value][player][c][key].add = 0;
 	}
-
-	// post message to notify about the change
-	var component = value.split("/")[0];
-	Engine.BroadcastMessage(MT_TechnologyModification, { "component": component, "player": player });
 };
 
 AuraManager.prototype.ApplyModifications = function(valueName, value, ent)

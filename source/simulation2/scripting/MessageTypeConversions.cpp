@@ -300,20 +300,18 @@ CMessage* CMessagePathResult::FromJSVal(ScriptInterface& UNUSED(scriptInterface)
 
 ////////////////////////////////
 
-jsval CMessageTechnologyModification::ToJSVal(ScriptInterface& scriptInterface) const
+jsval CMessageValueModification::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(component);
-	SET_MSG_PROPERTY(player);
 	return OBJECT_TO_JSVAL(obj);
 }
 
-CMessage* CMessageTechnologyModification::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageValueModification::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(std::wstring, component);
-	GET_MSG_PROPERTY(player_id_t, player);
-	return new CMessageTechnologyModification(component, player);
+	return new CMessageValueModification(component);
 }
 
 ////////////////////////////////

@@ -416,9 +416,9 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 	if (template.Armour)
 	{
 		ret.armour = {
-			"hack": ApplyTechModificationsToTemplate("Armour/Hack", +template.Armour.Hack, player, template),
-			"pierce": ApplyTechModificationsToTemplate("Armour/Pierce", +template.Armour.Hack, player, template),
-			"crush": ApplyTechModificationsToTemplate("Armour/Crush", +template.Armour.Hack, player, template),
+			"hack": ApplyValueModificationsToTemplate("Armour/Hack", +template.Armour.Hack, player, template),
+			"pierce": ApplyValueModificationsToTemplate("Armour/Pierce", +template.Armour.Hack, player, template),
+			"crush": ApplyValueModificationsToTemplate("Armour/Crush", +template.Armour.Hack, player, template),
 		};
 	}
 	
@@ -428,12 +428,12 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 		for (var type in template.Attack)
 		{
 			ret.attack[type] = {
-				"hack": ApplyTechModificationsToTemplate("Attack/"+type+"/Hack", +(template.Attack[type].Hack || 0), player, template),
-				"pierce": ApplyTechModificationsToTemplate("Attack/"+type+"/Pierce", +(template.Attack[type].Pierce || 0), player, template),
-				"crush": ApplyTechModificationsToTemplate("Attack/"+type+"/Crush", +(template.Attack[type].Crush || 0), player, template),
-				"minRange": ApplyTechModificationsToTemplate("Attack/"+type+"/MinRange", +(template.Attack[type].MinRange || 0), player, template),
-				"maxRange": ApplyTechModificationsToTemplate("Attack/"+type+"/MaxRange", +template.Attack[type].MaxRange, player, template),
-				"elevationBonus": ApplyTechModificationsToTemplate("Attack/"+type+"/ElevationBonus", +(template.Attack[type].ElevationBonus || 0), player, template),
+				"hack": ApplyValueModificationsToTemplate("Attack/"+type+"/Hack", +(template.Attack[type].Hack || 0), player, template),
+				"pierce": ApplyValueModificationsToTemplate("Attack/"+type+"/Pierce", +(template.Attack[type].Pierce || 0), player, template),
+				"crush": ApplyValueModificationsToTemplate("Attack/"+type+"/Crush", +(template.Attack[type].Crush || 0), player, template),
+				"minRange": ApplyValueModificationsToTemplate("Attack/"+type+"/MinRange", +(template.Attack[type].MinRange || 0), player, template),
+				"maxRange": ApplyValueModificationsToTemplate("Attack/"+type+"/MaxRange", +template.Attack[type].MaxRange, player, template),
+				"elevationBonus": ApplyValueModificationsToTemplate("Attack/"+type+"/ElevationBonus", +(template.Attack[type].ElevationBonus || 0), player, template),
 			};
 		}
 	}
@@ -468,13 +468,13 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 	if (template.Cost)
 	{
 		ret.cost = {};
-		if (template.Cost.Resources.food) ret.cost.food = ApplyTechModificationsToTemplate("Cost/Resources/food", +template.Cost.Resources.food, player, template);
-		if (template.Cost.Resources.wood) ret.cost.wood = ApplyTechModificationsToTemplate("Cost/Resources/wood", +template.Cost.Resources.wood, player, template);
-		if (template.Cost.Resources.stone) ret.cost.stone = ApplyTechModificationsToTemplate("Cost/Resources/stone", +template.Cost.Resources.stone, player, template);
-		if (template.Cost.Resources.metal) ret.cost.metal = ApplyTechModificationsToTemplate("Cost/Resources/metal", +template.Cost.Resources.metal, player, template);
-		if (template.Cost.Population) ret.cost.population = ApplyTechModificationsToTemplate("Cost/Population", +template.Cost.Population, player, template);
-		if (template.Cost.PopulationBonus) ret.cost.populationBonus = ApplyTechModificationsToTemplate("Cost/PopulationBonus", +template.Cost.PopulationBonus, player, template);
-		if (template.Cost.BuildTime) ret.cost.time = ApplyTechModificationsToTemplate("Cost/BuildTime", +template.Cost.BuildTime, player, template);
+		if (template.Cost.Resources.food) ret.cost.food = ApplyValueModificationsToTemplate("Cost/Resources/food", +template.Cost.Resources.food, player, template);
+		if (template.Cost.Resources.wood) ret.cost.wood = ApplyValueModificationsToTemplate("Cost/Resources/wood", +template.Cost.Resources.wood, player, template);
+		if (template.Cost.Resources.stone) ret.cost.stone = ApplyValueModificationsToTemplate("Cost/Resources/stone", +template.Cost.Resources.stone, player, template);
+		if (template.Cost.Resources.metal) ret.cost.metal = ApplyValueModificationsToTemplate("Cost/Resources/metal", +template.Cost.Resources.metal, player, template);
+		if (template.Cost.Population) ret.cost.population = ApplyValueModificationsToTemplate("Cost/Population", +template.Cost.Population, player, template);
+		if (template.Cost.PopulationBonus) ret.cost.populationBonus = ApplyValueModificationsToTemplate("Cost/PopulationBonus", +template.Cost.PopulationBonus, player, template);
+		if (template.Cost.BuildTime) ret.cost.time = ApplyValueModificationsToTemplate("Cost/BuildTime", +template.Cost.BuildTime, player, template);
 	}
 	
 	if (template.Footprint)
@@ -523,13 +523,13 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 	{
 		ret.pack = {
 			"state": template.Pack.State,
-			"time": ApplyTechModificationsToTemplate("Pack/Time", +template.Pack.Time, player, template),
+			"time": ApplyValueModificationsToTemplate("Pack/Time", +template.Pack.Time, player, template),
 		};
 	}
 
 	if (template.Health)
 	{
-		ret.health = Math.round(ApplyTechModificationsToTemplate("Health/Max", +template.Health.Max, player, template));
+		ret.health = Math.round(ApplyValueModificationsToTemplate("Health/Max", +template.Health.Max, player, template));
 	}
 
 	if (template.Identity)

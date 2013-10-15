@@ -199,13 +199,13 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
 BuildingAI.prototype.GetDefaultArrowCount = function()
 {
 	var arrowCount = +this.template.DefaultArrowCount;
-	return ApplyTechModificationsToEntity("BuildingAI/DefaultArrowCount", arrowCount, this.entity);
+	return ApplyValueModificationsToEntity("BuildingAI/DefaultArrowCount", arrowCount, this.entity);
 };
 
 BuildingAI.prototype.GetGarrisonArrowMultiplier = function()
 {
 	var arrowMult = +this.template.GarrisonArrowMultiplier;
-	return ApplyTechModificationsToEntity("BuildingAI/GarrisonArrowMultiplier", arrowMult, this.entity);
+	return ApplyValueModificationsToEntity("BuildingAI/GarrisonArrowMultiplier", arrowMult, this.entity);
 };
 
 BuildingAI.prototype.GetGarrisonArrowClasses = function()

@@ -354,9 +354,9 @@ Auras.prototype.OnDiplomacyChanged = function(msg)
 		this.Clean();
 };
 
-Auras.prototype.OnTechnologyModification = function(msg)
+Auras.prototype.OnValueModification = function(msg)
 {
-	if (msg.component =="Auras")
+	if (msg.component == "Auras")
 		this.Clean();
 };
 

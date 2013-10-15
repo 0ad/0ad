@@ -1,6 +1,6 @@
 // Little helper functions to make applying tehnology more covenient
 
-function ApplyTechModificationsToEntity(tech_type, current_value, entity)
+function ApplyValueModificationsToEntity(tech_type, current_value, entity)
 {
 	var cmpTechMan = QueryOwnerInterface(entity, IID_TechnologyManager);
 	if (cmpTechMan)
@@ -14,7 +14,7 @@ function ApplyTechModificationsToEntity(tech_type, current_value, entity)
 	return cmpAuraManager.ApplyModifications(tech_type, value, entity);
 }
 
-function ApplyTechModificationsToPlayer(tech_type, current_value, player_entity)
+function ApplyValueModificationsToPlayer(tech_type, current_value, player_entity)
 {
 	var cmpTechMan = Engine.QueryInterface(player_entity, IID_TechnologyManager);
 
@@ -24,7 +24,7 @@ function ApplyTechModificationsToPlayer(tech_type, current_value, player_entity)
 	return cmpTechMan.ApplyModifications(tech_type, current_value, player_entity);
 }
 
-function ApplyTechModificationsToTemplate(tech_type, current_value, playerID, template)
+function ApplyValueModificationsToTemplate(tech_type, current_value, playerID, template)
 {
 	var cmpTechMan = QueryPlayerIDInterface(playerID, IID_TechnologyManager);
 	if (cmpTechMan)
@@ -38,6 +38,6 @@ function ApplyTechModificationsToTemplate(tech_type, current_value, playerID, te
 	return cmpAuraManager.ApplyTemplateModifications(tech_type, value, playerID, template);
 }
 
-Engine.RegisterGlobal("ApplyTechModificationsToEntity", ApplyTechModificationsToEntity);
-Engine.RegisterGlobal("ApplyTechModificationsToPlayer", ApplyTechModificationsToPlayer);
-Engine.RegisterGlobal("ApplyTechModificationsToTemplate", ApplyTechModificationsToTemplate);
+Engine.RegisterGlobal("ApplyValueModificationsToEntity", ApplyValueModificationsToEntity);
+Engine.RegisterGlobal("ApplyValueModificationsToPlayer", ApplyValueModificationsToPlayer);
+Engine.RegisterGlobal("ApplyValueModificationsToTemplate", ApplyValueModificationsToTemplate);

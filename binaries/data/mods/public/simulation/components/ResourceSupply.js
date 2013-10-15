@@ -80,7 +80,7 @@ ResourceSupply.prototype.GetGatherers = function()
 ResourceSupply.prototype.GetDiminishingReturns = function()
 {
 	if ("DiminishingReturns" in this.template)
-		return ApplyTechModificationsToEntity("ResourceSupply/DiminishingReturns", +this.template.DiminishingReturns, this.entity);
+		return ApplyValueModificationsToEntity("ResourceSupply/DiminishingReturns", +this.template.DiminishingReturns, this.entity);
 	return null;
 };
 

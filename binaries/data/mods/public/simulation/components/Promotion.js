@@ -15,7 +15,7 @@ Promotion.prototype.Init = function()
 
 Promotion.prototype.GetRequiredXp = function()
 {
-	return ApplyTechModificationsToEntity("Promotion/RequiredXp", +this.template.RequiredXp, this.entity);
+	return ApplyValueModificationsToEntity("Promotion/RequiredXp", +this.template.RequiredXp, this.entity);
 };
 
 Promotion.prototype.GetCurrentXp = function()
