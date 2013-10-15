@@ -221,6 +221,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 			{
 				cmpPreviewVisual.SetConstructionProgress(0.0);
 				cmpPreviewVisual.SetActorSeed(cmpFoundationVisual.GetActorSeed());
+				cmpPreviewVisual.SelectAnimation("scaffold", false, 1.0, "");
 			}
 
 			var cmpFoundationPosition = Engine.QueryInterface(this.entity, IID_Position);
