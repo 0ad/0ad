@@ -15,6 +15,7 @@ BuildingAI.prototype.Schema =
 		"<text/>" +
 	"</element>";
 
+BuildingAI.prototype.MAX_PREFERENCE_BONUS = 2;
 
 /**
  * Initialize BuildingAI Component
@@ -288,14 +289,21 @@ BuildingAI.prototype.FireArrows = function()
 	var targets = new WeightedList();
 	for (var i = 0; i < this.targetUnits.length; i++)
 	{
-		var target = this.targetUnits[i],
-		    weight = (cmpAttack.GetPreference(target) || 0) + 1
+		var target = this.targetUnits[i];
+		var preference = cmpAttack.GetPreference(target);
+		var weight = 1;
+		if (preference !== null && preference !== undefined)
+		{
+			// Lower preference scores indicate a higher preference so they
+			// should result in a higher weight.
+			weight = 1 + this.MAX_PREFERENCE_BONUS / (1 + preference);
+		}
 		targets.push(target, weight);
 	}
 	for (var i = 0;i < arrowsToFire;i++)
 	{
-		var selectedIndex = targets.randomIndex(),
-		    selectedTarget = targets.itemAt(selectedIndex);
+		var selectedIndex = targets.randomIndex();
+		var selectedTarget = targets.itemAt(selectedIndex);
 		if (selectedTarget && this.CheckTargetVisible(selectedTarget))
 		{
 			cmpAttack.PerformAttack(attackType, selectedTarget);
