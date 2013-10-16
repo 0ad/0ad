@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/maur_infantry_archer_a">
+<Entity parent="units/rome_cavalry_javelinist_a">
   <Armour>
     <Hack>3</Hack>
-    <Pierce>4</Pierce>
-    <Crush>5</Crush>
+    <Pierce>5</Pierce>
+    <Crush>3</Crush>
   </Armour>
   <Attack>
     <Ranged>
+      <MaxRange>52</MaxRange>
       <Spread>1.0</Spread>
-      <MaxRange>58.0</MaxRange>
     </Ranged>
   </Attack>
   <Health>
-    <Max>105</Max>
+    <Max>170</Max>
   </Health>
   <Identity>
     <Rank>Elite</Rank>
@@ -21,10 +21,13 @@
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
-  <Vision>
-    <Range>70</Range>
-  </Vision>
+  <UnitMotion>
+    <WalkSpeed>13.0</WalkSpeed>
+    <Run>
+      <Speed>26.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
-    <Actor>units/mauryans/infantry_archer_e.xml</Actor>
+    <Actor>units/romans/cavalry_javelinist_e.xml</Actor>
   </VisualActor>
 </Entity>

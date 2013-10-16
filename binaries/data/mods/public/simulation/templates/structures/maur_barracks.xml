@@ -23,6 +23,9 @@
       units/maur_cavalry_javelinist_b
 	  units/maur_champion_chariot_barracks
     </Entities>
+    <Technologies datatype="tokens">
+	  mauryans/special_archery_tradition
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/mauryans/barracks.xml</Actor>

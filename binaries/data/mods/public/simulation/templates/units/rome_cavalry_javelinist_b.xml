@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_ranged_javelinist">
+  <Identity>
+    <Civ>rome</Civ>
+	<SelectionGroupName>units/rome_cavalry_javelinist_b</SelectionGroupName>
+    <GenericName>Italian Allied Cavalry</GenericName>
+	<SpecificName>Sociae Equitis</SpecificName>
+    <History>Rome's Italian allies frequently supplied Rome's armies with light cavalry, an arm in which Rome was often deficient.</History>
+    <Icon>units/hele_cavalry_javelinist.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/rome_cavalry_javelinist_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/romans/cavalry_javelinist_b.xml</Actor>
+  </VisualActor>
+</Entity>
