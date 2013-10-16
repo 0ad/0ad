@@ -150,10 +150,8 @@ public:
 	 * Initialise a new game, based on some script data. (Called on CGame instantiation)
 	 * (This mustn't be used when e.g. loading saved games, only when starting new ones.)
 	 * This calls the InitGame function defined in helpers/InitGame.js.
-	 * Saved games are initialized with InitSavedGame.
 	 */
 	void InitGame(const CScriptVal& data);
-	void InitSavedGame();
 
 	void Update(int turnLength);
 	void Update(int turnLength, const std::vector<SimulationCommand>& commands);

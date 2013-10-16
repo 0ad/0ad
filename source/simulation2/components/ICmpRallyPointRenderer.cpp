@@ -27,4 +27,5 @@ DEFINE_INTERFACE_METHOD_1("SetDisplayed", void, ICmpRallyPointRenderer, SetDispl
 DEFINE_INTERFACE_METHOD_1("SetPosition", void, ICmpRallyPointRenderer, SetPosition, CFixedVector2D)
 DEFINE_INTERFACE_METHOD_1("AddPosition", void, ICmpRallyPointRenderer, AddPosition_wrapper, CFixedVector2D)
 DEFINE_INTERFACE_METHOD_0("Reset", void, ICmpRallyPointRenderer, Reset)
+DEFINE_INTERFACE_METHOD_0("IsSet", bool, ICmpRallyPointRenderer, IsSet)
 END_INTERFACE_WRAPPER(RallyPointRenderer)

@@ -652,11 +652,6 @@ void CSimulation2::InitGame(const CScriptVal& data)
 	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "InitGame", data);
 }
 
-void CSimulation2::InitSavedGame()
-{
-	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "InitSavedGame");
-}
-
 void CSimulation2::Update(int turnLength)
 {
 	std::vector<SimulationCommand> commands;

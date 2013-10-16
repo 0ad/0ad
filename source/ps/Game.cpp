@@ -197,16 +197,12 @@ int CGame::LoadInitialState()
  **/
 PSRETURN CGame::ReallyStartGame()
 {
-	// Call the script function InitGame only for new games, and InitSavedGame for saved games
+	// Call the script function InitGame only for new games, not saved games
 	if (!m_IsSavedGame)
 	{
 		CScriptVal settings;
 		m_Simulation2->GetScriptInterface().GetProperty(m_Simulation2->GetInitAttributes().get(), "settings", settings);
 		m_Simulation2->InitGame(settings);
-	}
-	else
-	{
-		m_Simulation2->InitSavedGame();
 	}
 
 	// We need to do an initial Interpolate call to set up all the models etc,

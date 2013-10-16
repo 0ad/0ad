@@ -278,13 +278,10 @@ Foundation.prototype.Build = function(builderEnt, work)
 		{
 			var rallyCoords = cmpRallyPoint.GetPositions();
 			var rallyData = cmpRallyPoint.GetData();
-			var cmpBuildingRallyPointRenderer = Engine.QueryInterface(building, IID_RallyPointRenderer);
 			for (var i = 0; i < rallyCoords.length; ++i)
 			{
 				cmpBuildingRallyPoint.AddPosition(rallyCoords[i].x, rallyCoords[i].z);
 				cmpBuildingRallyPoint.AddData(rallyData[i]);
-				if (cmpBuildingRallyPointRenderer)
-					cmpBuildingRallyPointRenderer.AddPosition({'x': rallyCoords[i].x, 'y': rallyCoords[i].z});
 			}
 		}
 
