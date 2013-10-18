@@ -42,6 +42,14 @@ public:
 	void Translate(float x, float y, float z);
 
 	/**
+	 * Set clipping rectangle, in pre-transform coordinates (i.e. text is clipped against
+	 * this rect based purely on the x,y values passed into Put()). Text fully outside the
+	 * clipping rectangle may not be rendered. Should be used in conjunction with glScissor
+	 * for precise clipping - this is just an optimisation.
+	 */
+	void SetClippingRect(const CRect& rect);
+
+	/**
 	 * Set the color for subsequent print calls.
 	 */
 	void Color(const CColor& color);
@@ -149,6 +157,7 @@ private:
 	CShaderProgramPtr m_Shader;
 
 	CMatrix3D m_Transform;
+	CRect m_Clipping;
 
 	CColor m_Color;
 	CStrW m_FontName;

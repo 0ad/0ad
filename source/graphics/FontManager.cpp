@@ -88,6 +88,11 @@ bool CFontManager::ReadFont(CFont* font, const CStrW& fontName)
 	FNTStream >> font->m_LineSpacing;
 	FNTStream >> font->m_Height;
 
+	font->m_BoundsX0 = FLT_MAX;
+	font->m_BoundsY0 = FLT_MAX;
+	font->m_BoundsX1 = -FLT_MAX;
+	font->m_BoundsY1 = -FLT_MAX;
+
 	for (int i = 0; i < NumGlyphs; ++i)
 	{
 		int          Codepoint, TextureX, TextureY, Width, Height, OffsetX, OffsetY, Advance;
@@ -106,6 +111,11 @@ bool CFontManager::ReadFont(CFont* font, const CStrW& fontName)
 
 		CFont::GlyphData g = { u, -v, u+w, -v+h, (i16)OffsetX, (i16)-OffsetY, (i16)(OffsetX+Width), (i16)(-OffsetY+Height), (i16)Advance };
 		font->m_Glyphs.set((u16)Codepoint, g);
+
+		font->m_BoundsX0 = std::min(font->m_BoundsX0, (float)g.x0);
+		font->m_BoundsY0 = std::min(font->m_BoundsY0, (float)g.y0);
+		font->m_BoundsX1 = std::max(font->m_BoundsX1, (float)g.x1);
+		font->m_BoundsY1 = std::max(font->m_BoundsY1, (float)g.y1);
 	}
 
 	ENSURE(font->m_Height); // Ensure the height has been found (which should always happen if the font includes an 'I')

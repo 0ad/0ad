@@ -66,6 +66,11 @@ void CTextRenderer::Translate(float x, float y, float z)
 	m_Dirty = true;
 }
 
+void CTextRenderer::SetClippingRect(const CRect& rect)
+{
+	m_Clipping = rect;
+}
+
 void CTextRenderer::Color(const CColor& color)
 {
 	if (m_Color != color)
@@ -150,6 +155,16 @@ void CTextRenderer::PutString(float x, float y, const std::wstring* buf, bool ow
 {
 	if (!m_Font)
 		return; // invalid font; can't render
+
+	if (m_Clipping != CRect())
+	{
+		float x0, y0, x1, y1;
+		m_Font->GetGlyphBounds(x0, y0, x1, y1);
+		if (y + y1 < m_Clipping.top)
+			return;
+		if (y + y0 > m_Clipping.bottom)
+			return;
+	}
 
 	// If any state has changed since the last batch, start a new batch
 	if (m_Dirty)

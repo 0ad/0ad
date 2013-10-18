@@ -945,13 +945,15 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 
 	tech->BeginPass();
 
-	if (clipping != CRect())
+	bool isClipped = (clipping != CRect());
+	if (isClipped)
 	{
 		glEnable(GL_SCISSOR_TEST);
 		glScissor(clipping.left, g_yres - clipping.bottom, clipping.GetWidth(), clipping.GetHeight());
 	}
 
 	CTextRenderer textRenderer(tech->GetShader());
+	textRenderer.SetClippingRect(clipping);
 	textRenderer.Translate(0.0f, 0.0f, z);
 
 	for (std::vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
@@ -978,7 +980,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 		DrawSprite(it->m_Sprite, it->m_CellID, z, it->m_Area + pos);
 	}
 
-	if (clipping != CRect())
+	if (isClipped)
 		glDisable(GL_SCISSOR_TEST);
 
 	tech->EndPass();

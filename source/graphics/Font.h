@@ -74,6 +74,13 @@ public:
 	int GetHeight() const { return m_Height; }
 	int GetCharacterWidth(wchar_t c) const;
 	void CalculateStringSize(const wchar_t* string, int& w, int& h) const;
+	void GetGlyphBounds(float& x0, float& y0, float& x1, float& y1) const
+	{
+		x0 = m_BoundsX0;
+		y0 = m_BoundsY0;
+		x1 = m_BoundsX1;
+		y1 = m_BoundsY1;
+	}
 	const GlyphMap& GetGlyphs() const { return m_Glyphs; }
 	CTexturePtr GetTexture() const { return m_Texture; }
 
@@ -86,6 +93,12 @@ private:
 
 	int m_LineSpacing;
 	int m_Height; // height of a capital letter, roughly
+
+	// Bounding box of all glyphs
+	float m_BoundsX0;
+	float m_BoundsY0;
+	float m_BoundsX1;
+	float m_BoundsY1;
 };
 
 #endif // INCLUDED_FONT
