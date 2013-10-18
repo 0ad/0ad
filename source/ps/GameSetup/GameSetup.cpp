@@ -507,7 +507,7 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, CScriptVal initData)
 		g_Console->UpdateScreenSize(g_xres, g_yres);
 
 		// Calculate and store the line spacing
-		CFontMetrics font(CONSOLE_FONT);
+		CFontMetrics font(CStrIntern(CONSOLE_FONT));
 		g_Console->m_iFontHeight = font.GetLineSpacing();
 		g_Console->m_iFontWidth = font.GetCharacterWidth(L'C');
 		g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);

@@ -1030,12 +1030,13 @@ void CInput::Draw()
 
 	if (GetGUI())
 	{	
-		CStrW font_name;
+		CStrW font_name_w;
 		CColor color, color_selected;
 		//CStrW caption;
-		GUI<CStrW>::GetSetting(this, "font", font_name);
+		GUI<CStrW>::GetSetting(this, "font", font_name_w);
 		GUI<CColor>::GetSetting(this, "textcolor", color);
 		GUI<CColor>::GetSetting(this, "textcolor_selected", color_selected);
+		CStrIntern font_name(font_name_w.ToUTF8());
 		
 		// Get pointer of caption, it might be very large, and we don't
 		//  want to copy it continuously.
@@ -1378,13 +1379,14 @@ void CInput::Draw()
 void CInput::UpdateText(int from, int to_before, int to_after)
 {
 	CStrW caption;
-	CStrW font_name;
+	CStrW font_name_w;
 	float buffer_zone;
 	bool multiline;
-	GUI<CStrW>::GetSetting(this, "font", font_name);
+	GUI<CStrW>::GetSetting(this, "font", font_name_w);
 	GUI<CStrW>::GetSetting(this, "caption", caption);
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 	GUI<bool>::GetSetting(this, "multiline", multiline);
+	CStrIntern font_name(font_name_w.ToUTF8());
 
 	// Ensure positions are valid after caption changes
 	m_iBufferPos = std::min(m_iBufferPos, (int)caption.size());
@@ -1765,10 +1767,11 @@ int CInput::GetMouseHoveringTextPosition()
 
 	if (multiline)
 	{
-		CStrW font_name;
+		CStrW font_name_w;
 		bool scrollbar;
-		GUI<CStrW>::GetSetting(this, "font", font_name);
+		GUI<CStrW>::GetSetting(this, "font", font_name_w);
 		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+		CStrIntern font_name(font_name_w.ToUTF8());
 		
 		float scroll=0.f;
 		if (scrollbar)
@@ -1917,10 +1920,11 @@ void CInput::UpdateAutoScroll()
 	// Autoscrolling up and down
 	if (multiline)
 	{
-		CStrW font_name;
+		CStrW font_name_w;
 		bool scrollbar;
-		GUI<CStrW>::GetSetting(this, "font", font_name);
+		GUI<CStrW>::GetSetting(this, "font", font_name_w);
 		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+		CStrIntern font_name(font_name_w.ToUTF8());
 		
 		float scroll=0.f;
 		if (!scrollbar)

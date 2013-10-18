@@ -24,11 +24,6 @@
 
 #include <sstream>
 
-size_t hash_value(const CStrIntern& v)
-{
-	return v.GetHash();
-}
-
 size_t hash_value(const CVector4D& v)
 {
 	size_t hash = 0;

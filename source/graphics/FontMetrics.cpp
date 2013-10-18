@@ -24,7 +24,7 @@
 #include "ps/CLogger.h"
 #include "renderer/Renderer.h"
 
-CFontMetrics::CFontMetrics(const CStrW& font)
+CFontMetrics::CFontMetrics(CStrIntern font)
 {
 	m_Font = g_Renderer.GetFontManager().LoadFont(font);
 }

@@ -170,7 +170,7 @@ void CProfileViewer::RenderProfile()
 	const std::vector<ProfileColumn>& columns = table->GetColumns();
 	size_t numrows = table->GetNumberRows();
 
-	CStrW font_name = L"mono-stroke-10";
+	CStrIntern font_name("mono-stroke-10");
 	CFontMetrics font(font_name);
 	int lineSpacing = font.GetLineSpacing();
 

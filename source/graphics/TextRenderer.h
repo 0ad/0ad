@@ -20,7 +20,7 @@
 
 #include "graphics/ShaderProgram.h"
 #include "maths/Matrix3D.h"
-#include "ps/CStr.h"
+#include "ps/CStrIntern.h"
 #include "ps/Overlay.h"
 
 class CFont;
@@ -62,7 +62,7 @@ public:
 	/**
 	 * Set the font for subsequent print calls.
 	 */
-	void Font(const CStrW& font);
+	void Font(CStrIntern font);
 
 	/**
 	 * Print formatted text at (0,0) under the current transform,
@@ -160,7 +160,7 @@ private:
 	CRect m_Clipping;
 
 	CColor m_Color;
-	CStrW m_FontName;
+	CStrIntern m_FontName;
 	shared_ptr<CFont> m_Font;
 
 	bool m_Dirty;

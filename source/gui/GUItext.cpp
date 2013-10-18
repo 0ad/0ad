@@ -43,7 +43,7 @@ void CGUIString::SFeedback::Reset()
 }
 
 void CGUIString::GenerateTextCall(SFeedback &Feedback,
-								  const CStrW& DefaultFont,
+								  CStrIntern DefaultFont,
 								  const int &from, const int &to,
 								  const bool FirstLine,
 								  const IGUIObject *pObject) const
@@ -224,7 +224,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 				if (it2->m_TagType == CGUIString::TextChunk::Tag::TAG_FONT)
 				{
 					// TODO Gee: (2004-08-15) Check if Font exists?
-					TextCall.m_Font = CStr(it2->m_TagValue).FromUTF8();
+					TextCall.m_Font = CStrIntern(it2->m_TagValue);
 				}
 			}
 

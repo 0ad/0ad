@@ -32,7 +32,7 @@ CTextRenderer::CTextRenderer(const CShaderProgramPtr& shader) :
 {
 	ResetTransform();
 	Color(CColor(1.0f, 1.0f, 1.0f, 1.0f));
-	Font(L"sans-10");
+	Font(str_sans_10);
 }
 
 void CTextRenderer::ResetTransform()
@@ -85,7 +85,7 @@ void CTextRenderer::Color(float r, float g, float b, float a)
 	Color(CColor(r, g, b, a));
 }
 
-void CTextRenderer::Font(const CStrW& font)
+void CTextRenderer::Font(CStrIntern font)
 {
 	if (font != m_FontName)
 	{

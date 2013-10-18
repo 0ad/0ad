@@ -642,10 +642,12 @@ struct SGenerateTextImage
 };
 
 SGUIText CGUI::GenerateText(const CGUIString &string,
-							const CStrW& Font, const float &Width, const float &BufferZone,
+							const CStrW& FontW, const float &Width, const float &BufferZone,
 							const IGUIObject *pObject)
 {
 	SGUIText Text; // object we're generating
+
+	CStrIntern Font(FontW.ToUTF8());
 	
 	if (string.m_Words.size() == 0)
 		return Text;

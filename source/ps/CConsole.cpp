@@ -214,7 +214,7 @@ void CConsole::Render()
 	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	textTech->BeginPass();
 	CTextRenderer textRenderer(textTech->GetShader());
-	textRenderer.Font(CONSOLE_FONT);
+	textRenderer.Font(CStrIntern(CONSOLE_FONT));
 	textRenderer.SetTransform(transform);
 
 	DrawHistory(textRenderer);

@@ -21,7 +21,7 @@
 #include <boost/unordered_map.hpp>
 
 class CFont;
-class CStrW;
+class CStrIntern;
 
 /**
  * Font manager: loads and caches bitmap fonts.
@@ -29,12 +29,12 @@ class CStrW;
 class CFontManager
 {
 public:
-	shared_ptr<CFont> LoadFont(const CStrW& fontName);
+	shared_ptr<CFont> LoadFont(CStrIntern fontName);
 
 private:
-	bool ReadFont(CFont* font, const CStrW& fontName);
+	bool ReadFont(CFont* font, CStrIntern fontName);
 
-	typedef boost::unordered_map<CStrW, shared_ptr<CFont> > FontsMap;
+	typedef boost::unordered_map<CStrIntern, shared_ptr<CFont> > FontsMap;
 	FontsMap m_Fonts;
 };
 

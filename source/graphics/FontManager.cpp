@@ -26,7 +26,7 @@
 #include "ps/Filesystem.h"
 #include "renderer/Renderer.h"
 
-shared_ptr<CFont> CFontManager::LoadFont(const CStrW& fontName)
+shared_ptr<CFont> CFontManager::LoadFont(CStrIntern fontName)
 {
 	FontsMap::iterator it = m_Fonts.find(fontName);
 	if (it != m_Fonts.end())
@@ -37,24 +37,24 @@ shared_ptr<CFont> CFontManager::LoadFont(const CStrW& fontName)
 	if (!ReadFont(font.get(), fontName))
 	{
 		// Fall back to default font (unless this is the default font)
-		if (fontName == L"sans-10")
+		if (fontName == str_sans_10)
 			font.reset();
 		else
-			font = LoadFont(L"sans-10");
+			font = LoadFont(str_sans_10);
 	}
 
 	m_Fonts[fontName] = font;
 	return font;
 }
 
-bool CFontManager::ReadFont(CFont* font, const CStrW& fontName)
+bool CFontManager::ReadFont(CFont* font, CStrIntern fontName)
 {
 	const VfsPath path(L"fonts/");
 
 	// Read font definition file into a stringstream
 	shared_ptr<u8> buf;
 	size_t size;
-	const VfsPath fntName(fontName + L".fnt");
+	const VfsPath fntName(fontName.string() + ".fnt");
 	if (g_VFS->LoadFile(path / fntName, buf, size) < 0)
 	{
 		LOGERROR(L"Failed to open font file %ls", (path / fntName).string().c_str());
@@ -66,7 +66,7 @@ bool CFontManager::ReadFont(CFont* font, const CStrW& fontName)
 	FNTStream >> Version;
 	if (Version != 101) // Make sure this is from a recent version of the font builder
 	{
-		LOGERROR(L"Font %ls has invalid version", fontName.c_str());
+		LOGERROR(L"Font %hs has invalid version", fontName.c_str());
 		return 0;
 	}
 
@@ -100,7 +100,7 @@ bool CFontManager::ReadFont(CFont* font, const CStrW& fontName)
 
 		if (Codepoint < 0 || Codepoint > 0xFFFF)
 		{
-			LOGWARNING(L"Font %ls has invalid codepoint 0x%x", fontName.c_str(), Codepoint);
+			LOGWARNING(L"Font %hs has invalid codepoint 0x%x", fontName.c_str(), Codepoint);
 			continue;
 		}
 
@@ -121,7 +121,7 @@ bool CFontManager::ReadFont(CFont* font, const CStrW& fontName)
 	ENSURE(font->m_Height); // Ensure the height has been found (which should always happen if the font includes an 'I')
 
 	// Load glyph texture
-	const VfsPath imgName(fontName + L".png");
+	const VfsPath imgName(fontName.string() + ".png");
 	CTextureProperties textureProps(path / imgName);
 	textureProps.SetFilter(GL_NEAREST);
 	if (!font->m_HasRGB)

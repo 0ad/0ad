@@ -40,7 +40,7 @@ class CTextRenderer;
 #define CONSOLE_BUFFER_SIZE 1024 // for text being typed into the console
 #define CONSOLE_MESSAGE_SIZE 1024 // for messages being printed into the console
 
-#define CONSOLE_FONT L"mono-10"
+#define CONSOLE_FONT "mono-10"
 
 /**
  * In-game console.

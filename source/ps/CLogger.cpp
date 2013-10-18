@@ -280,7 +280,7 @@ void CLogger::Render()
 
 	CleanupRenderQueue();
 
-	CStrW font_name(L"mono-stroke-10");
+	CStrIntern font_name("mono-stroke-10");
 	CFontMetrics font(font_name);
 	int lineSpacing = font.GetLineSpacing();
 

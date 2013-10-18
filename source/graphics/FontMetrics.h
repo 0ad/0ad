@@ -19,7 +19,7 @@
 #define INCLUDED_FONTMETRICS
 
 class CFont;
-class CStrW;
+class CStrIntern;
 
 /**
  * Helper class for measuring sizes of text.
@@ -29,7 +29,7 @@ class CStrW;
 class CFontMetrics
 {
 public:
-	CFontMetrics(const CStrW& font);
+	CFontMetrics(CStrIntern font);
 
 	int GetLineSpacing() const;
 	int GetHeight() const;
