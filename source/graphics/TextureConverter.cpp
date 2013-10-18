@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,6 +65,7 @@ struct CTextureConverter::ConversionRequest
 	nvtt::CompressionOptions compressionOptions;
 	nvtt::OutputOptions outputOptions;
 	bool isDXT1a; // see comment in RunThread
+	bool is8bpp;
 };
 
 /**
@@ -148,6 +149,8 @@ CTextureConverter::SettingsFile* CTextureConverter::LoadSettings(const VfsPath& 
 						p.settings.format = FMT_DXT5;
 					else if (v == "rgba")
 						p.settings.format = FMT_RGBA;
+					else if (v == "alpha")
+						p.settings.format = FMT_ALPHA;
 					else
 						LOGERROR(L"Invalid attribute value <file format='%hs'>", v.c_str());
 				}
@@ -337,20 +340,34 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	// Check whether there's any alpha channel
 	bool hasAlpha = ((tex.flags & TEX_ALPHA) != 0);
 
-	// TODO: grayscale images will fail on some systems
-	// see http://trac.wildfiregames.com/ticket/1640
-	if (tex.flags & TEX_GREY)
+	if (settings.format == FMT_ALPHA)
 	{
-		LOGERROR(L"Failed to convert grayscale texture \"%ls\" - only RGB textures are currently supported", src.string().c_str());
-		return false;
+		// Convert to uncompressed 8-bit with no mipmaps
+		if (tex_transform_to(&tex, (tex.flags | TEX_GREY) & ~(TEX_DXT | TEX_MIPMAPS | TEX_ALPHA)) < 0)
+		{
+			LOGERROR(L"Failed to transform texture \"%ls\"", src.string().c_str());
+			tex_free(&tex);
+			return false;
+		}
 	}
-
-	// Convert to uncompressed BGRA with no mipmaps
-	if (tex_transform_to(&tex, (tex.flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
+	else
 	{
-		LOGERROR(L"Failed to transform texture \"%ls\"", src.string().c_str());
-		tex_free(&tex);
-		return false;
+		// TODO: grayscale images will fail on some systems
+		// see http://trac.wildfiregames.com/ticket/1640
+		// (plain_transform doesn't know how to construct the alpha channel)
+		if (tex.flags & TEX_GREY)
+		{
+			LOGERROR(L"Failed to convert grayscale texture \"%ls\" - only RGB textures are currently supported", src.string().c_str());
+			return false;
+		}
+
+		// Convert to uncompressed BGRA with no mipmaps
+		if (tex_transform_to(&tex, (tex.flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
+		{
+			LOGERROR(L"Failed to transform texture \"%ls\"", src.string().c_str());
+			tex_free(&tex);
+			return false;
+		}
 	}
 
 	// Check if the texture has all alpha=255, so we can automatically
@@ -385,12 +402,19 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 		request->inputOptions.setAlphaMode(nvtt::AlphaMode_None);
 
 	request->isDXT1a = false;
+	request->is8bpp = false;
 
 	if (settings.format == FMT_RGBA)
 	{
 		request->compressionOptions.setFormat(nvtt::Format_RGBA);
 		// Change the default component order (see tex_dds.cpp decode_pf)
 		request->compressionOptions.setPixelFormat(32, 0xFF, 0xFF00, 0xFF0000, 0xFF000000u);
+	}
+	else if (settings.format == FMT_ALPHA)
+	{
+		request->compressionOptions.setFormat(nvtt::Format_RGBA);
+		request->compressionOptions.setPixelFormat(8, 0x00, 0x00, 0x00, 0xFF);
+		request->is8bpp = true;
 	}
 	else if (!hasAlpha)
 	{
@@ -431,7 +455,24 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 
 	// Load the texture data
 	request->inputOptions.setTextureLayout(nvtt::TextureType_2D, tex.w, tex.h);
-	request->inputOptions.setMipmapData(tex_get_data(&tex), tex.w, tex.h);
+	if (tex.bpp == 32)
+	{
+		request->inputOptions.setMipmapData(tex_get_data(&tex), tex.w, tex.h);
+	}
+	else // bpp == 8
+	{
+		// NVTT requires 32-bit input data, so convert
+		const u8* input = tex_get_data(&tex);
+		u8* rgba = new u8[tex.w * tex.h * 4];
+		u8* p = rgba;
+		for (size_t i = 0; i < tex.w * tex.h; i++)
+		{
+			p[0] = p[1] = p[2] = p[3] = *input++;
+			p += 4;
+		}
+		request->inputOptions.setMipmapData(rgba, tex.w, tex.h);
+		delete[] rgba;
+	}
 
 	// NVTT copies the texture data so we can free it now
 	tex_free(&tex);
@@ -562,6 +603,10 @@ void* CTextureConverter::RunThread(void* data)
 		// set the flag here.
 		if (request->isDXT1a && result->ret && result->output.buffer.size() > 80)
 			result->output.buffer[80] |= 1; // DDPF_ALPHAPIXELS in DDS_PIXELFORMAT.dwFlags
+		// Ugly hack: NVTT always sets DDPF_RGB, even if we're trying to output 8-bit
+		// alpha-only DDS with no RGB components. Unset that flag.
+		if (request->is8bpp)
+			result->output.buffer[80] &= ~0x40; // DDPF_RGB in DDS_PIXELFORMAT.dwFlags
 
 		// Push the result onto the queue
 		pthread_mutex_lock(&textureConverter->m_WorkerMutex);
