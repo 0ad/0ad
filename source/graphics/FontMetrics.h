@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,33 +15,29 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_FONT
-#define INCLUDED_FONT
+#ifndef INCLUDED_FONTMETRICS
+#define INCLUDED_FONTMETRICS
 
-#include "lib/res/handle.h"
-
-#include <map>
-
+class CFont;
 class CStrW;
-struct UnifontGlyphData;
 
-class CFont
+/**
+ * Helper class for measuring sizes of text.
+ * This will load the font when necessary, and will return plausible values
+ * if loading fails (since misrendering is better than crashing).
+ */
+class CFontMetrics
 {
 public:
-	CFont(const CStrW& name);
-	~CFont();
+	CFontMetrics(const CStrW& font);
 
-	bool HasRGB();
-	int GetLineSpacing();
-	int GetHeight();
-	int GetCharacterWidth(wchar_t c);
-	void CalculateStringSize(const wchar_t* string, int& w, int& h);
-	const std::map<u16, UnifontGlyphData>& GetGlyphs();
-	Handle GetTexture();
+	int GetLineSpacing() const;
+	int GetHeight() const;
+	int GetCharacterWidth(wchar_t c) const;
+	void CalculateStringSize(const wchar_t* string, int& w, int& h) const;
 
 private:
-	Handle h;
+	shared_ptr<CFont> m_Font;
 };
 
-
-#endif // INCLUDED_FONT
+#endif // INCLUDED_FONTMETRICS

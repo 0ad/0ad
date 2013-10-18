@@ -24,6 +24,7 @@ CInput
 #include "CInput.h"
 #include "CGUIScrollBarVertical.h"
 
+#include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "lib/ogl.h"
@@ -31,7 +32,6 @@ CInput
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
-#include "ps/Font.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "renderer/Renderer.h"
@@ -1057,7 +1057,7 @@ void CInput::Draw()
 			scroll = GetScrollBar(0).GetPos();
 		}
 
-		CFont font(font_name);
+		CFontMetrics font(font_name);
 
 		// We'll have to setup clipping manually, since we're doing the rendering manually.
 		CRect cliparea(m_CachedActualSize);
@@ -1406,7 +1406,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	if (to_before == -1)
 		to = (int)caption.length();
 
-	CFont font(font_name);
+	CFontMetrics font(font_name);
 
 	std::list<SRow>::iterator current_line;
 
@@ -1782,7 +1782,7 @@ int CInput::GetMouseHoveringTextPosition()
 
 		// Now get the height of the font.
 						// TODO: Get the real font
-		CFont font(font_name);
+		CFontMetrics font(font_name);
 		float spacing = (float)font.GetLineSpacing();
 		//float height = (float)font.GetHeight();	// unused
 
@@ -1930,7 +1930,7 @@ void CInput::UpdateAutoScroll()
 		
 		// Now get the height of the font.
 						// TODO: Get the real font
-		CFont font(font_name);
+		CFontMetrics font(font_name);
 		float spacing = (float)font.GetLineSpacing();
 		//float height = font.GetHeight();
 

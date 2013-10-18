@@ -93,7 +93,9 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 		ENSURE(ret == INFO::OK);
 
 		// Compress textures and store the new cached version instead of the original
-		if (boost::algorithm::starts_with(path.string(), L"art/textures/") &&
+		if ((boost::algorithm::starts_with(path.string(), L"art/textures/") ||
+			 boost::algorithm::starts_with(path.string(), L"fonts/")
+			) &&
 			tex_is_known_extension(path) &&
 			// Skip some subdirectories where the engine doesn't use CTextureManager yet:
 			!boost::algorithm::starts_with(path.string(), L"art/textures/cursors/") &&

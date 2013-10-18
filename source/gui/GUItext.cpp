@@ -23,11 +23,10 @@ GUI text
 
 #include "GUI.h"
 #include "GUIManager.h"
+#include "graphics/FontMetrics.h"
 #include "ps/CLogger.h"
 #include "ps/Parser.h"
 #include <algorithm>
-
-#include "ps/Font.h"
 
 
 static const wchar_t TagStart = '[';
@@ -232,7 +231,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			// Calculate the size of the font
 			CSize size;
 			int cx, cy;
-			CFont font (TextCall.m_Font);
+			CFontMetrics font (TextCall.m_Font);
 			font.CalculateStringSize(TextCall.m_String.c_str(), cx, cy);
 			// For anything other than the first line, the line spacing
 			// needs to be considered rather than just the height of the text

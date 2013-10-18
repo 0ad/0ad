@@ -19,10 +19,11 @@
 
 #include "TextRenderer.h"
 
+#include "graphics/Font.h"
+#include "graphics/FontManager.h"
 #include "lib/ogl.h"
-#include "lib/res/graphics/unifont.h"
 #include "ps/CStrIntern.h"
-#include "ps/Font.h"
+#include "renderer/Renderer.h"
 
 extern int g_xres, g_yres;
 
@@ -74,10 +75,7 @@ void CTextRenderer::Color(float r, float g, float b, float a)
 
 void CTextRenderer::Font(const CStrW& font)
 {
-	if (!m_Fonts[font])
-		m_Fonts[font] = shared_ptr<CFont>(new CFont(font));
-
-	m_Font = m_Fonts[font];
+	m_Font = g_Renderer.GetFontManager().LoadFont(font);
 }
 
 void CTextRenderer::PrintfAdvance(const wchar_t* fmt, ...)
@@ -125,6 +123,9 @@ void CTextRenderer::Put(float x, float y, const wchar_t* buf)
 	if (buf[0] == 0)
 		return; // empty string; don't bother storing
 
+	if (!m_Font)
+		return; // invalid font; can't render
+
 	CMatrix3D translate;
 	translate.SetTranslation(x, y, 0.0f);
 
@@ -155,7 +156,7 @@ void CTextRenderer::Render()
 		if (batch.text.empty()) // avoid zero-length arrays
 			continue;
 
-		const std::map<u16, UnifontGlyphData>& glyphs = batch.font->GetGlyphs();
+		const CFont::GlyphMap& glyphs = batch.font->GetGlyphs();
 
 		m_Shader->BindTexture(str_tex, batch.font->GetTexture());
 
@@ -179,7 +180,7 @@ void CTextRenderer::Render()
 		i16 x = 0;
 		for (size_t i = 0; i < batch.text.size(); ++i)
 		{
-			std::map<u16, UnifontGlyphData>::const_iterator it = glyphs.find(batch.text[i]);
+			CFont::GlyphMap::const_iterator it = glyphs.find(batch.text[i]);
 
 			if (it == glyphs.end())
 				it = glyphs.find(0xFFFD); // Use the missing glyph symbol
@@ -187,7 +188,7 @@ void CTextRenderer::Render()
 			if (it == glyphs.end()) // Missing the missing glyph symbol - give up
 				continue;
 
-			const UnifontGlyphData& g = it->second;
+			const CFont::GlyphData& g = it->second;
 
 			vertexes[i*4].u = g.u1;
 			vertexes[i*4].v = g.v0;

@@ -24,7 +24,7 @@ CCheckBox
 #include "CCheckBox.h"
 
 #include "ps/CLogger.h"
-#include "ps/Font.h"
+#include "graphics/FontMetrics.h"
 
 
 //-------------------------------------------------------------------
@@ -130,7 +130,7 @@ void CCheckBox::Draw()
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 
 	// Get line height
-	CFont font (font_name);
+	CFontMetrics font (font_name);
 	float line_height = (float)font.GetHeight();
 
 	float bz = GetBufferedZ();

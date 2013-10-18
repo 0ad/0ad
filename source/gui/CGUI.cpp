@@ -41,6 +41,7 @@ CGUI
 #include "MiniMap.h"
 #include "scripting/JSInterface_GUITypes.h"
 
+#include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "lib/input.h"
@@ -49,7 +50,6 @@ CGUI
 #include "lib/sysdep/sysdep.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/Font.h"
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
 #include "ps/Overlay.h"

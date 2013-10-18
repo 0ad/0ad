@@ -36,6 +36,7 @@
 #endif
 
 #include "graphics/CinemaTrack.h"
+#include "graphics/FontMetrics.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/MapReader.h"
@@ -55,7 +56,6 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
-#include "ps/Font.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/GameSetup.h"
@@ -507,7 +507,7 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, CScriptVal initData)
 		g_Console->UpdateScreenSize(g_xres, g_yres);
 
 		// Calculate and store the line spacing
-		CFont font(CONSOLE_FONT);
+		CFontMetrics font(CONSOLE_FONT);
 		g_Console->m_iFontHeight = font.GetLineSpacing();
 		g_Console->m_iFontWidth = font.GetCharacterWidth(L'C');
 		g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);

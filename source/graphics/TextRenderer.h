@@ -101,8 +101,6 @@ private:
 	CColor m_Color;
 	shared_ptr<CFont> m_Font;
 
-	std::map<CStrW, shared_ptr<CFont> > m_Fonts;
-
 	std::vector<SBatch> m_Batches;
 };
 

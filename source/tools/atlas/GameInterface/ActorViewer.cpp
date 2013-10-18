@@ -38,7 +38,6 @@
 #include "graphics/Overlay.h"
 #include "maths/MathUtil.h"
 #include "ps/Filesystem.h"
-#include "ps/Font.h"
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/ProfileViewer.h"

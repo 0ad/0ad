@@ -39,7 +39,6 @@
 
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
-#include "ps/Font.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
