@@ -966,7 +966,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 
 		textRenderer.Color(color);
 		textRenderer.Font(it->m_Font);
-		textRenderer.Put((float)(int)(pos.x+it->m_Pos.x), (float)(int)(pos.y+it->m_Pos.y), it->m_String.c_str());
+		textRenderer.Put((float)(int)(pos.x+it->m_Pos.x), (float)(int)(pos.y+it->m_Pos.y), &it->m_String);
 	}
 
 	textRenderer.Render();

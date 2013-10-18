@@ -44,6 +44,7 @@ void CTextRenderer::ResetTransform()
 	CMatrix3D proj;
 	proj.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
 	m_Transform = proj * m_Transform;
+	m_Dirty = true;
 }
 
 CMatrix3D CTextRenderer::GetTransform()
@@ -54,6 +55,7 @@ CMatrix3D CTextRenderer::GetTransform()
 void CTextRenderer::SetTransform(const CMatrix3D& transform)
 {
 	m_Transform = transform;
+	m_Dirty = true;
 }
 
 void CTextRenderer::Translate(float x, float y, float z)
@@ -61,21 +63,31 @@ void CTextRenderer::Translate(float x, float y, float z)
 	CMatrix3D m;
 	m.SetTranslation(x, y, z);
 	m_Transform = m_Transform * m;
+	m_Dirty = true;
 }
 
 void CTextRenderer::Color(const CColor& color)
 {
-	m_Color = color;
+	if (m_Color != color)
+	{
+		m_Color = color;
+		m_Dirty = true;
+	}
 }
 
 void CTextRenderer::Color(float r, float g, float b, float a)
 {
-	m_Color = CColor(r, g, b, a);
+	Color(CColor(r, g, b, a));
 }
 
 void CTextRenderer::Font(const CStrW& font)
 {
-	m_Font = g_Renderer.GetFontManager().LoadFont(font);
+	if (font != m_FontName)
+	{
+		m_FontName = font;
+		m_Font = g_Renderer.GetFontManager().LoadFont(font);
+		m_Dirty = true;
+	}
 }
 
 void CTextRenderer::PrintfAdvance(const wchar_t* fmt, ...)
@@ -123,19 +135,44 @@ void CTextRenderer::Put(float x, float y, const wchar_t* buf)
 	if (buf[0] == 0)
 		return; // empty string; don't bother storing
 
+	PutString(x, y, new std::wstring(buf), true);
+}
+
+void CTextRenderer::Put(float x, float y, const std::wstring* buf)
+{
+	if (buf->empty())
+		return; // empty string; don't bother storing
+
+	PutString(x, y, buf, false);
+}
+
+void CTextRenderer::PutString(float x, float y, const std::wstring* buf, bool owned)
+{
 	if (!m_Font)
 		return; // invalid font; can't render
 
-	CMatrix3D translate;
-	translate.SetTranslation(x, y, 0.0f);
+	// If any state has changed since the last batch, start a new batch
+	if (m_Dirty)
+	{
+		SBatch batch;
+		batch.chars = 0;
+		batch.transform = m_Transform;
+		batch.color = m_Color;
+		batch.font = m_Font;
+		m_Batches.push_back(batch);
+		m_Dirty = false;
+	}
 
-	SBatch batch;
-	batch.transform = m_Transform * translate;
-	batch.color = m_Color;
-	batch.font = m_Font;
-	batch.text = buf;
-	m_Batches.push_back(batch);
+	// Push a new run onto the latest batch
+	SBatchRun run;
+	run.x = x;
+	run.y = y;
+	m_Batches.back().runs.push_back(run);
+	m_Batches.back().runs.back().text = buf;
+	m_Batches.back().runs.back().owned = owned;
+	m_Batches.back().chars += buf->size();
 }
+
 
 struct t2f_v2i
 {
@@ -144,17 +181,44 @@ struct t2f_v2i
 	i16 x, y;
 };
 
+struct SBatchCompare
+{
+	bool operator()(const CTextRenderer::SBatch& a, const CTextRenderer::SBatch& b)
+	{
+		if (a.font < b.font)
+			return true;
+		if (b.font < a.font)
+			return false;
+		// TODO: is it worth sorting by color/transform too?
+		return false;
+	}
+};
+
 void CTextRenderer::Render()
 {
 	std::vector<u16> indexes;
 	std::vector<t2f_v2i> vertexes;
 
-	for (size_t i = 0; i < m_Batches.size(); ++i)
+	// Try to merge non-consecutive batches that share the same font/color/transform:
+	// sort the batch list by font, then merge the runs of adjacent compatible batches
+	m_Batches.sort(SBatchCompare());
+	for (std::list<SBatch>::iterator it = m_Batches.begin(); it != m_Batches.end(); )
 	{
-		SBatch& batch = m_Batches[i];
+		std::list<SBatch>::iterator next = it;
+		++next;
+		if (next != m_Batches.end() && it->font == next->font && it->color == next->color && it->transform == next->transform)
+		{
+			it->chars += next->chars;
+			it->runs.splice(it->runs.end(), next->runs);
+			m_Batches.erase(next);
+		}
+		else
+			++it;
+	}
 
-		if (batch.text.empty()) // avoid zero-length arrays
-			continue;
+	for (std::list<SBatch>::iterator it = m_Batches.begin(); it != m_Batches.end(); ++it)
+	{
+		SBatch& batch = *it;
 
 		const CFont::GlyphMap& glyphs = batch.font->GetGlyphs();
 
@@ -171,50 +235,56 @@ void CTextRenderer::Render()
 
 		m_Shader->Uniform(str_colorMul, batch.color);
 
-		vertexes.clear();
-		vertexes.resize(batch.text.size()*4);
+		vertexes.resize(batch.chars*4);
+		indexes.resize(batch.chars*6);
 
-		indexes.clear();
-		indexes.resize(batch.text.size()*6);
+		size_t idx = 0;
 
-		i16 x = 0;
-		for (size_t i = 0; i < batch.text.size(); ++i)
+		for (std::list<SBatchRun>::iterator runit = batch.runs.begin(); runit != batch.runs.end(); ++runit)
 		{
-			const CFont::GlyphData* g = glyphs.get(batch.text[i]);
+			SBatchRun& run = *runit;
+			i16 x = run.x;
+			i16 y = run.y;
+			for (size_t i = 0; i < run.text->size(); ++i)
+			{
+				const CFont::GlyphData* g = glyphs.get((*run.text)[i]);
 
-			if (!g)
-				g = glyphs.get(0xFFFD); // Use the missing glyph symbol
-			if (!g) // Missing the missing glyph symbol - give up
-				continue;
+				if (!g)
+					g = glyphs.get(0xFFFD); // Use the missing glyph symbol
+				if (!g) // Missing the missing glyph symbol - give up
+					continue;
 
-			vertexes[i*4].u = g->u1;
-			vertexes[i*4].v = g->v0;
-			vertexes[i*4].x = g->x1 + x;
-			vertexes[i*4].y = g->y0;
+				vertexes[idx*4].u = g->u1;
+				vertexes[idx*4].v = g->v0;
+				vertexes[idx*4].x = g->x1 + x;
+				vertexes[idx*4].y = g->y0 + y;
 
-			vertexes[i*4+1].u = g->u0;
-			vertexes[i*4+1].v = g->v0;
-			vertexes[i*4+1].x = g->x0 + x;
-			vertexes[i*4+1].y = g->y0;
+				vertexes[idx*4+1].u = g->u0;
+				vertexes[idx*4+1].v = g->v0;
+				vertexes[idx*4+1].x = g->x0 + x;
+				vertexes[idx*4+1].y = g->y0 + y;
 
-			vertexes[i*4+2].u = g->u0;
-			vertexes[i*4+2].v = g->v1;
-			vertexes[i*4+2].x = g->x0 + x;
-			vertexes[i*4+2].y = g->y1;
+				vertexes[idx*4+2].u = g->u0;
+				vertexes[idx*4+2].v = g->v1;
+				vertexes[idx*4+2].x = g->x0 + x;
+				vertexes[idx*4+2].y = g->y1 + y;
 
-			vertexes[i*4+3].u = g->u1;
-			vertexes[i*4+3].v = g->v1;
-			vertexes[i*4+3].x = g->x1 + x;
-			vertexes[i*4+3].y = g->y1;
+				vertexes[idx*4+3].u = g->u1;
+				vertexes[idx*4+3].v = g->v1;
+				vertexes[idx*4+3].x = g->x1 + x;
+				vertexes[idx*4+3].y = g->y1 + y;
 
-			indexes[i*6+0] = i*4+0;
-			indexes[i*6+1] = i*4+1;
-			indexes[i*6+2] = i*4+2;
-			indexes[i*6+3] = i*4+2;
-			indexes[i*6+4] = i*4+3;
-			indexes[i*6+5] = i*4+0;
+				indexes[idx*6+0] = idx*4+0;
+				indexes[idx*6+1] = idx*4+1;
+				indexes[idx*6+2] = idx*4+2;
+				indexes[idx*6+3] = idx*4+2;
+				indexes[idx*6+4] = idx*4+3;
+				indexes[idx*6+5] = idx*4+0;
 
-			x += g->xadvance;
+				x += g->xadvance;
+
+				idx++;
+			}
 		}
 
 		m_Shader->VertexPointer(2, GL_SHORT, sizeof(t2f_v2i), &vertexes[0].x);
