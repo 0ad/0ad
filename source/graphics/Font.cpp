@@ -26,17 +26,36 @@
 #include <map>
 #include <string>
 
+CFont::GlyphMap::GlyphMap()
+{
+	memset(m_Data, 0, sizeof(m_Data));
+}
+
+CFont::GlyphMap::~GlyphMap()
+{
+	for (size_t i = 0; i < ARRAY_SIZE(m_Data); i++)
+		delete[] m_Data[i];
+}
+
+void CFont::GlyphMap::set(u16 i, const GlyphData& val)
+{
+	if (!m_Data[i >> 8])
+		m_Data[i >> 8] = new GlyphData[256]();
+	m_Data[i >> 8][i & 0xff] = val;
+	m_Data[i >> 8][i & 0xff].defined = 1;
+}
+
 int CFont::GetCharacterWidth(wchar_t c) const
 {
-	GlyphMap::const_iterator it = m_Glyphs.find(c);
+	const GlyphData* g = m_Glyphs.get(c);
 
-	if (it == m_Glyphs.end())
-		it = m_Glyphs.find(0xFFFD); // Use the missing glyph symbol
+	if (!g)
+		g = m_Glyphs.get(0xFFFD); // Use the missing glyph symbol
 
-	if (it == m_Glyphs.end())
+	if (!g)
 		return 0;
 
-	return it->second.xadvance;
+	return g->xadvance;
 }
 
 void CFont::CalculateStringSize(const wchar_t* string, int& width, int& height) const
@@ -46,12 +65,12 @@ void CFont::CalculateStringSize(const wchar_t* string, int& width, int& height) 
 
 	for (const wchar_t* c = string; *c != '\0'; c++)
 	{
-		GlyphMap::const_iterator it = m_Glyphs.find(*c);
+		const GlyphData* g = m_Glyphs.get(*c);
 
-		if (it == m_Glyphs.end())
-			it = m_Glyphs.find(0xFFFD); // Use the missing glyph symbol
+		if (!g)
+			g = m_Glyphs.get(0xFFFD); // Use the missing glyph symbol
 
-		if (it != m_Glyphs.end())
-			width += it->second.xadvance; // Add the character's advance distance
+		if (g)
+			width += g->xadvance; // Add the character's advance distance
 	}
 }

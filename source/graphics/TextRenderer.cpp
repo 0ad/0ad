@@ -180,35 +180,32 @@ void CTextRenderer::Render()
 		i16 x = 0;
 		for (size_t i = 0; i < batch.text.size(); ++i)
 		{
-			CFont::GlyphMap::const_iterator it = glyphs.find(batch.text[i]);
+			const CFont::GlyphData* g = glyphs.get(batch.text[i]);
 
-			if (it == glyphs.end())
-				it = glyphs.find(0xFFFD); // Use the missing glyph symbol
-
-			if (it == glyphs.end()) // Missing the missing glyph symbol - give up
+			if (!g)
+				g = glyphs.get(0xFFFD); // Use the missing glyph symbol
+			if (!g) // Missing the missing glyph symbol - give up
 				continue;
 
-			const CFont::GlyphData& g = it->second;
+			vertexes[i*4].u = g->u1;
+			vertexes[i*4].v = g->v0;
+			vertexes[i*4].x = g->x1 + x;
+			vertexes[i*4].y = g->y0;
 
-			vertexes[i*4].u = g.u1;
-			vertexes[i*4].v = g.v0;
-			vertexes[i*4].x = g.x1 + x;
-			vertexes[i*4].y = g.y0;
+			vertexes[i*4+1].u = g->u0;
+			vertexes[i*4+1].v = g->v0;
+			vertexes[i*4+1].x = g->x0 + x;
+			vertexes[i*4+1].y = g->y0;
 
-			vertexes[i*4+1].u = g.u0;
-			vertexes[i*4+1].v = g.v0;
-			vertexes[i*4+1].x = g.x0 + x;
-			vertexes[i*4+1].y = g.y0;
+			vertexes[i*4+2].u = g->u0;
+			vertexes[i*4+2].v = g->v1;
+			vertexes[i*4+2].x = g->x0 + x;
+			vertexes[i*4+2].y = g->y1;
 
-			vertexes[i*4+2].u = g.u0;
-			vertexes[i*4+2].v = g.v1;
-			vertexes[i*4+2].x = g.x0 + x;
-			vertexes[i*4+2].y = g.y1;
-
-			vertexes[i*4+3].u = g.u1;
-			vertexes[i*4+3].v = g.v1;
-			vertexes[i*4+3].x = g.x1 + x;
-			vertexes[i*4+3].y = g.y1;
+			vertexes[i*4+3].u = g->u1;
+			vertexes[i*4+3].v = g->v1;
+			vertexes[i*4+3].x = g->x1 + x;
+			vertexes[i*4+3].y = g->y1;
 
 			indexes[i*6+0] = i*4+0;
 			indexes[i*6+1] = i*4+1;
@@ -217,7 +214,7 @@ void CTextRenderer::Render()
 			indexes[i*6+4] = i*4+3;
 			indexes[i*6+5] = i*4+0;
 
-			x += g.xadvance;
+			x += g->xadvance;
 		}
 
 		m_Shader->VertexPointer(2, GL_SHORT, sizeof(t2f_v2i), &vertexes[0].x);

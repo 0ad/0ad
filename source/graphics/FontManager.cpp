@@ -105,7 +105,7 @@ bool CFontManager::ReadFont(CFont* font, const CStrW& fontName)
 		float h = (float)Height / (float)TextureHeight;
 
 		CFont::GlyphData g = { u, -v, u+w, -v+h, (i16)OffsetX, (i16)-OffsetY, (i16)(OffsetX+Width), (i16)(-OffsetY+Height), (i16)Advance };
-		font->m_Glyphs[(u16)Codepoint] = g;
+		font->m_Glyphs.set((u16)Codepoint, g);
 	}
 
 	ENSURE(font->m_Height); // Ensure the height has been found (which should always happen if the font includes an 'I')
