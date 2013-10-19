@@ -9,10 +9,10 @@
 	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology.",
 	"cost": {"food": 0, "wood": 0, "stone": 1000, "metal": 1000},
 	"requirements": { "class": "Town", "number": 4 },
-	"requirementsTooltip": "Requires 4 new Town Phase structures (except Walls and Civ Centres).",
+	"requirementsTooltip": "Requires 4 new Town Phase structures (except Walls and Civic Centers).",
 	"supersedes": "phase_town_generic",
 	"icon": "city_phase.png",
 	"researchTime": 80,
-	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civilisation Centres increased by another +50%",
+	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by another +50%",
 	"soundComplete": "interface/alarm/alarm_phase.xml"
 }
