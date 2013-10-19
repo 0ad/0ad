@@ -26,6 +26,8 @@
 #include "ps/Filesystem.h"
 #include "renderer/Renderer.h"
 
+#include <cfloat>
+
 shared_ptr<CFont> CFontManager::LoadFont(CStrIntern fontName)
 {
 	FontsMap::iterator it = m_Fonts.find(fontName);
