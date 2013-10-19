@@ -20,20 +20,25 @@
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
-        <prop actor="props/units/cape_m_med.xml" attachpoint="shoulders"/>
         <prop actor="props/units/shields/samn_scutum_adv.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="2" name="pectoral-tripledisc">
-      <textures><texture file="skeletal/kart_csp_a_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/kart_csp_a_1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="pectoral-square">
-      <textures><texture file="skeletal/kart_csp_a_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/kart_csp_a_2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="pectoral-muscle">
-      <textures><texture file="skeletal/kart_csp_a_3.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/kart_csp_a_3.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
