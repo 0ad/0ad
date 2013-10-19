@@ -83,7 +83,7 @@ Armour.prototype.GetArmourStrengths = function()
 	// Work out the armour values with technology effects
 	var self = this;
 	
-	var applyTechs = function(type, foundation)
+	var applyMods = function(type, foundation)
 	{
 		var strength;
 		if (foundation) 
@@ -96,26 +96,24 @@ Armour.prototype.GetArmourStrengths = function()
 			strength = +self.template[type];
 		}
 		
-		// All causes caching problems so disable it for now.
-		// var allComponent = ApplyTechModificationsToEntity("Armour/All", strength, self.entity) - self.template[type];
-		strength = ApplyTechModificationsToEntity("Armour/" + type, strength, self.entity);
+		strength = ApplyValueModificationsToEntity("Armour/" + type, strength, self.entity);
 		return strength;
 	};
 	
 	if (Engine.QueryInterface(this.entity, IID_Foundation) && this.template.Foundation) 
 	{
 		return {
-			hack: applyTechs("Hack", true),
-			pierce: applyTechs("Pierce", true),
-			crush: applyTechs("Crush", true)
+			hack: applyMods("Hack", true),
+			pierce: applyMods("Pierce", true),
+			crush: applyMods("Crush", true)
 		};
 	}
 	else
 	{
 		return {
-			hack: applyTechs("Hack"),
-			pierce: applyTechs("Pierce"),
-			crush: applyTechs("Crush")
+			hack: applyMods("Hack"),
+			pierce: applyMods("Pierce"),
+			crush: applyMods("Crush")
 		};
 	}
 };

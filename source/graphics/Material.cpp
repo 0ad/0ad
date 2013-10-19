@@ -22,8 +22,7 @@
 static CColor BrokenColor(0.3f, 0.3f, 0.3f, 1.0f);
 
 CMaterial::CMaterial() :
-	m_AlphaBlending(false),
-	m_PlayerID(INVALID_PLAYER)
+	m_AlphaBlending(false)
 {
 }
 

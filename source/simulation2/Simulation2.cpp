@@ -125,14 +125,15 @@ public:
 				LOGERROR(L"Can't find component type " L##name); \
 			componentManager.AddComponent(systemEntity, cid, noParam)
 
-			LOAD_SCRIPTED_COMPONENT("AuraManager");
 			LOAD_SCRIPTED_COMPONENT("AIInterface");
+			LOAD_SCRIPTED_COMPONENT("AuraManager");
 			LOAD_SCRIPTED_COMPONENT("Barter");
 			LOAD_SCRIPTED_COMPONENT("EndGameManager");
 			LOAD_SCRIPTED_COMPONENT("GuiInterface");
 			LOAD_SCRIPTED_COMPONENT("PlayerManager");
 			LOAD_SCRIPTED_COMPONENT("TechnologyTemplateManager");
 			LOAD_SCRIPTED_COMPONENT("Timer");
+			LOAD_SCRIPTED_COMPONENT("ValueModificationManager");
 
 #undef LOAD_SCRIPTED_COMPONENT
 
@@ -649,11 +650,6 @@ ScriptInterface& CSimulation2::GetScriptInterface() const
 void CSimulation2::InitGame(const CScriptVal& data)
 {
 	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "InitGame", data);
-}
-
-void CSimulation2::InitSavedGame()
-{
-	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "InitSavedGame");
 }
 
 void CSimulation2::Update(int turnLength)

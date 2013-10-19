@@ -41,6 +41,7 @@ CGUI
 #include "MiniMap.h"
 #include "scripting/JSInterface_GUITypes.h"
 
+#include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "lib/input.h"
@@ -49,7 +50,6 @@ CGUI
 #include "lib/sysdep/sysdep.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/Font.h"
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
 #include "ps/Overlay.h"
@@ -642,10 +642,12 @@ struct SGenerateTextImage
 };
 
 SGUIText CGUI::GenerateText(const CGUIString &string,
-							const CStrW& Font, const float &Width, const float &BufferZone,
+							const CStrW& FontW, const float &Width, const float &BufferZone,
 							const IGUIObject *pObject)
 {
 	SGUIText Text; // object we're generating
+
+	CStrIntern Font(FontW.ToUTF8());
 	
 	if (string.m_Words.size() == 0)
 		return Text;
@@ -945,13 +947,15 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 
 	tech->BeginPass();
 
-	if (clipping != CRect())
+	bool isClipped = (clipping != CRect());
+	if (isClipped)
 	{
 		glEnable(GL_SCISSOR_TEST);
 		glScissor(clipping.left, g_yres - clipping.bottom, clipping.GetWidth(), clipping.GetHeight());
 	}
 
 	CTextRenderer textRenderer(tech->GetShader());
+	textRenderer.SetClippingRect(clipping);
 	textRenderer.Translate(0.0f, 0.0f, z);
 
 	for (std::vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
@@ -966,7 +970,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 
 		textRenderer.Color(color);
 		textRenderer.Font(it->m_Font);
-		textRenderer.Put((float)(int)(pos.x+it->m_Pos.x), (float)(int)(pos.y+it->m_Pos.y), it->m_String.c_str());
+		textRenderer.Put((float)(int)(pos.x+it->m_Pos.x), (float)(int)(pos.y+it->m_Pos.y), &it->m_String);
 	}
 
 	textRenderer.Render();
@@ -978,7 +982,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 		DrawSprite(it->m_Sprite, it->m_CellID, z, it->m_Area + pos);
 	}
 
-	if (clipping != CRect())
+	if (isClipped)
 		glDisable(GL_SCISSOR_TEST);
 
 	tech->EndPass();

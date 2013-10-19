@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,33 +15,27 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_FONT
-#define INCLUDED_FONT
+#ifndef INCLUDED_FONTMANAGER
+#define INCLUDED_FONTMANAGER
 
-#include "lib/res/handle.h"
+#include <boost/unordered_map.hpp>
 
-#include <map>
+class CFont;
+class CStrIntern;
 
-class CStrW;
-struct UnifontGlyphData;
-
-class CFont
+/**
+ * Font manager: loads and caches bitmap fonts.
+ */
+class CFontManager
 {
 public:
-	CFont(const CStrW& name);
-	~CFont();
-
-	bool HasRGB();
-	int GetLineSpacing();
-	int GetHeight();
-	int GetCharacterWidth(wchar_t c);
-	void CalculateStringSize(const wchar_t* string, int& w, int& h);
-	const std::map<u16, UnifontGlyphData>& GetGlyphs();
-	Handle GetTexture();
+	shared_ptr<CFont> LoadFont(CStrIntern fontName);
 
 private:
-	Handle h;
+	bool ReadFont(CFont* font, CStrIntern fontName);
+
+	typedef boost::unordered_map<CStrIntern, shared_ptr<CFont> > FontsMap;
+	FontsMap m_Fonts;
 };
 
-
-#endif // INCLUDED_FONT
+#endif // INCLUDED_FONTMANAGER

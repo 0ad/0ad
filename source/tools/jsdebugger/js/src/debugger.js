@@ -580,6 +580,14 @@ function addLocalValues(parent, obj)
 $(document).ready(function () 
 {
 	var debugUpdate = 150;
+	var keydownToClick = { //calls the appropriate click handler on a keydown
+		116: $('a#step'),
+		117: $('a#step_into'),
+		118: $('a#step_out'),
+		119: $('a#continue'),
+		120: $('a#continue_thread'),
+		121: $('a#break'),
+	}; 
 
 	$('a#step').click(function () 
 	{
@@ -621,6 +629,13 @@ $(document).ready(function ()
 		send('/Break');
 		setTimeout(function(){ updateThreads(); }, debugUpdate);
 		return false;
+	});
+
+	$(document).bind('keydown', function(e) {
+		if (keydownToClick[e.which] != undefined) {
+			keydownToClick[e.which].click();
+			return false;
+		}
 	});
 
 	$('#threads').datagrid(

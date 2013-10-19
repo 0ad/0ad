@@ -19,13 +19,13 @@
 
 #include "CLogger.h"
 #include "CConsole.h"
+#include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "lib/sysdep/sysdep.h"
-#include "ps/Font.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
 
@@ -280,8 +280,8 @@ void CLogger::Render()
 
 	CleanupRenderQueue();
 
-	CStrW font_name(L"mono-stroke-10");
-	CFont font(font_name);
+	CStrIntern font_name("mono-stroke-10");
+	CFontMetrics font(font_name);
 	int lineSpacing = font.GetLineSpacing();
 
 	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);

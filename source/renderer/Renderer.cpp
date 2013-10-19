@@ -44,6 +44,7 @@
 #include "ps/Loader.h"
 #include "ps/ProfileViewer.h"
 #include "graphics/Camera.h"
+#include "graphics/FontManager.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/LOSTexture.h"
@@ -280,6 +281,8 @@ public:
 	
 	/// Postprocessing effect manager
 	CPostprocManager postprocManager;
+
+	CFontManager fontManager;
 
 	/// Various model renderers
 	struct Models
@@ -2007,4 +2010,9 @@ CMaterialManager& CRenderer::GetMaterialManager()
 CPostprocManager& CRenderer::GetPostprocManager()
 {
 	return m->postprocManager;
+}
+
+CFontManager& CRenderer::GetFontManager()
+{
+	return m->fontManager;
 }

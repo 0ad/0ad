@@ -36,6 +36,7 @@
 #include "scriptinterface/ScriptInterface.h"
 
 // necessary declarations
+class CFontManager;
 class CLightEnv;
 class CMaterial;
 class CMaterialManager;
@@ -303,6 +304,8 @@ public:
 	TerrainRenderer& GetTerrainRenderer();
 
 	CMaterialManager& GetMaterialManager();
+
+	CFontManager& GetFontManager();
 
 	CShaderDefines GetSystemShaderDefines() { return m_SystemShaderDefines; }
 	

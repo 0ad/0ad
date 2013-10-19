@@ -17,18 +17,18 @@
 
 #include "precompiled.h"
 
-#include "ICmpTechnologyManager.h"
+#include "ICmpValueModificationManager.h"
 
 #include "simulation2/system/InterfaceScripted.h"
 #include "simulation2/scripting/ScriptComponent.h"
 
-BEGIN_INTERFACE_WRAPPER(TechnologyManager)
-END_INTERFACE_WRAPPER(TechnologyManager)
+BEGIN_INTERFACE_WRAPPER(ValueModificationManager)
+END_INTERFACE_WRAPPER(ValueModificationManager)
 
-class CCmpTechnologyManagerScripted : public ICmpTechnologyManager
+class CCmpValueModificationManagerScripted : public ICmpValueModificationManager
 {
 public:
-	DEFAULT_SCRIPT_WRAPPER(TechnologyManagerScripted)
+	DEFAULT_SCRIPT_WRAPPER(ValueModificationManagerScripted)
 
 	virtual fixed ApplyModifications(std::wstring valueName, fixed currentValue, entity_id_t entity)
 	{
@@ -41,4 +41,4 @@ public:
 	}
 };
 
-REGISTER_COMPONENT_SCRIPT_WRAPPER(TechnologyManagerScripted)
+REGISTER_COMPONENT_SCRIPT_WRAPPER(ValueModificationManagerScripted)

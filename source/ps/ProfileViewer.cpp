@@ -27,12 +27,12 @@
 
 #include "ProfileViewer.h"
 
+#include "graphics/FontMetrics.h"
 #include "gui/GUIutil.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/Font.h"
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
 #include "lib/external_libraries/libsdl.h"
@@ -170,8 +170,8 @@ void CProfileViewer::RenderProfile()
 	const std::vector<ProfileColumn>& columns = table->GetColumns();
 	size_t numrows = table->GetNumberRows();
 
-	CStrW font_name = L"mono-stroke-10";
-	CFont font(font_name);
+	CStrIntern font_name("mono-stroke-10");
+	CFontMetrics font(font_name);
 	int lineSpacing = font.GetLineSpacing();
 
 	// Render background

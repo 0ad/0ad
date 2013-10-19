@@ -322,10 +322,10 @@ Attack.prototype.CompareEntitiesByPreference = function(a, b)
 Attack.prototype.GetTimers = function(type)
 {
 	var prepare = +(this.template[type].PrepareTime || 0);
-	prepare = ApplyTechModificationsToEntity("Attack/" + type + "/PrepareTime", prepare, this.entity);
+	prepare = ApplyValueModificationsToEntity("Attack/" + type + "/PrepareTime", prepare, this.entity);
 	
 	var repeat = +(this.template[type].RepeatTime || 1000);
-	repeat = ApplyTechModificationsToEntity("Attack/" + type + "/RepeatTime", repeat, this.entity);
+	repeat = ApplyValueModificationsToEntity("Attack/" + type + "/RepeatTime", repeat, this.entity);
 
 	return { "prepare": prepare, "repeat": repeat, "recharge": repeat - prepare };
 };
@@ -343,30 +343,28 @@ Attack.prototype.GetAttackStrengths = function(type)
 		splash = "/Splash";
 	}
 	
-	var applyTechs = function(damageType)
+	var applyMods = function(damageType)
 	{
-		// All causes caching problems so disable it for now.
-		//var allComponent = ApplyTechModificationsToEntity("Attack/" + type + splash + "/All", +(template[damageType] || 0), self.entity) - self.template[type][damageType];
-		return ApplyTechModificationsToEntity("Attack/" + type + splash + "/" + damageType, +(template[damageType] || 0), self.entity);
+		return ApplyValueModificationsToEntity("Attack/" + type + splash + "/" + damageType, +(template[damageType] || 0), self.entity);
 	};
 	
 	return {
-		hack: applyTechs("Hack"),
-		pierce: applyTechs("Pierce"),
-		crush: applyTechs("Crush")
+		hack: applyMods("Hack"),
+		pierce: applyMods("Pierce"),
+		crush: applyMods("Crush")
 	};
 };
 
 Attack.prototype.GetRange = function(type)
 {
 	var max = +this.template[type].MaxRange;
-	max = ApplyTechModificationsToEntity("Attack/" + type + "/MaxRange", max, this.entity);
+	max = ApplyValueModificationsToEntity("Attack/" + type + "/MaxRange", max, this.entity);
 	
 	var min = +(this.template[type].MinRange || 0);
-	min = ApplyTechModificationsToEntity("Attack/" + type + "/MinRange", min, this.entity);
+	min = ApplyValueModificationsToEntity("Attack/" + type + "/MinRange", min, this.entity);
 
 	var elevationBonus = +(this.template[type].ElevationBonus || 0);
-	elevationBonus = ApplyTechModificationsToEntity("Attack/" + type + "/ElevationBonus", elevationBonus, this.entity);
+	elevationBonus = ApplyValueModificationsToEntity("Attack/" + type + "/ElevationBonus", elevationBonus, this.entity);
 	
 	return { "max": max, "min": min, "elevationBonus": elevationBonus};
 };
@@ -438,7 +436,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		var gravity = 9.81; // this affects the shape of the curve; assume it's constant for now
 		
 		var spread = +this.template.Ranged.Spread;
-		spread = ApplyTechModificationsToEntity("Attack/Ranged/Spread", spread, this.entity);
+		spread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", spread, this.entity);
 		
 		//horizSpeed /= 2; gravity /= 2; // slow it down for testing
 		

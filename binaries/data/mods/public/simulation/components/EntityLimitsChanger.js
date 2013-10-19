@@ -18,7 +18,7 @@ EntityLimitsChanger.prototype.OnOwnershipChanged = function(msg)
 	{
 		this.changes = {};
 		for (var cat in this.template)
-			this.changes[cat] = ApplyTechModificationsToEntity("EntityLimitsChanger/Value", +this.template[cat], this.entity);
+			this.changes[cat] = ApplyValueModificationsToEntity("EntityLimitsChanger/Value", +this.template[cat], this.entity);
 	}
 
 	if (msg.from > -1)
@@ -38,7 +38,7 @@ EntityLimitsChanger.prototype.OnOwnershipChanged = function(msg)
 	}
 }
 
-EntityLimitsChanger.prototype.OnTechnologyModification = function(msg)
+EntityLimitsChanger.prototype.OnValueModification = function(msg)
 {
 	if (msg.component != "EntityLimitsChanger")
 		return;
@@ -50,7 +50,7 @@ EntityLimitsChanger.prototype.OnTechnologyModification = function(msg)
 	for (var cat in this.changes)
 	{
 		cmpEntityLimits.DecreaseLimit(cat, this.changes[cat]);
-		this.changes[cat] = ApplyTechModificationsToEntity("EntityLimitsChanger/Value", +this.template[cat], this.entity);
+		this.changes[cat] = ApplyValueModificationsToEntity("EntityLimitsChanger/Value", +this.template[cat], this.entity);
 		cmpEntityLimits.IncreaseLimit(cat, this.changes[cat]);
 	}
 };

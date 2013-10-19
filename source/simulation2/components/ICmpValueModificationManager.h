@@ -15,25 +15,25 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_ICMPTECHNOLOGYMANAGER
-#define INCLUDED_ICMPTECHNOLOGYMANAGER
+#ifndef INCLUDED_ICMPVALUEMODIFICATIONMANAGER
+#define INCLUDED_ICMPVALUEMODIFICATIONMANAGER
 
 #include "simulation2/system/Interface.h"
 
 #include "maths/Fixed.h"
 
 /**
- * Technology manager interface.
+ * value modification manager interface.
  * (This interface only includes the functions needed by native code for accessing
- *	technology modification data, the associated logic is handled in scripts)
+ *	value modification data, the associated logic is handled in scripts)
  */
-class ICmpTechnologyManager : public IComponent
+class ICmpValueModificationManager : public IComponent
 {
 public:
 	virtual fixed ApplyModifications(std::wstring valueName, fixed currentValue, entity_id_t entity) = 0;
 	virtual u32 ApplyModifications(std::wstring valueName, u32 currentValue, entity_id_t entity) = 0;
 
-	DECLARE_INTERFACE_TYPE(TechnologyManager)
+	DECLARE_INTERFACE_TYPE(ValueModificationManager)
 };
 
-#endif // INCLUDED_ICMPTECHNOLOGYMANAGER
+#endif // INCLUDED_ICMPVALUEMODIFICATIONMANAGER

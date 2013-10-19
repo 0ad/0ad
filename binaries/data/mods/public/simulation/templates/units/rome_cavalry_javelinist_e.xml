@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/rome_cavalry_javelinist_a">
+  <Armour>
+    <Hack>3</Hack>
+    <Pierce>5</Pierce>
+    <Crush>3</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <MaxRange>52</MaxRange>
+      <Spread>1.0</Spread>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>170</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>13.0</WalkSpeed>
+    <Run>
+      <Speed>26.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/romans/cavalry_javelinist_e.xml</Actor>
+  </VisualActor>
+</Entity>

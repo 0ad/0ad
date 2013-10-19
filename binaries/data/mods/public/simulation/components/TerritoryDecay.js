@@ -72,7 +72,7 @@ TerritoryDecay.prototype.Decay = function()
 	if (!cmpHealth)
 		return; // error
 
-	var decayRate = ApplyTechModificationsToEntity("TerritoryDecay/HealthDecayRate", +this.template.HealthDecayRate, this.entity);
+	var decayRate = ApplyValueModificationsToEntity("TerritoryDecay/HealthDecayRate", +this.template.HealthDecayRate, this.entity);
 
 	cmpHealth.Reduce(Math.round(decayRate));
 };

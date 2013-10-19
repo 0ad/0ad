@@ -23,14 +23,14 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPlayerManager.h"
-#include "simulation2/components/ICmpTechnologyManager.h"
+#include "simulation2/components/ICmpValueModificationManager.h"
 
 class CCmpVision : public ICmpVision
 {
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeGloballyToMessageType(MT_TechnologyModification);
+		componentManager.SubscribeGloballyToMessageType(MT_ValueModification);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Vision)
@@ -80,33 +80,20 @@ public:
 	{
 		switch (msg.GetType())
 		{
-		case MT_TechnologyModification:
+		case MT_ValueModification:
 		{
-			const CMessageTechnologyModification& msgData = static_cast<const CMessageTechnologyModification&> (msg);
+			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg);
 			if (msgData.component == L"Vision")
 			{
-				CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
-				if (cmpOwnership)
+				CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+				entity_pos_t newRange = cmpValueModificationManager->ApplyModifications(L"Vision/Range", m_BaseRange, GetEntityId());
+				if (newRange != m_Range)
 				{
-					player_id_t owner = cmpOwnership->GetOwner();
-					if (owner != INVALID_PLAYER && owner == msgData.player)
-					{
-						CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
-						entity_id_t playerEnt = cmpPlayerManager->GetPlayerByID(owner);
-						CmpPtr<ICmpTechnologyManager> cmpTechnologyManager(GetSimContext(), playerEnt);
-						if (playerEnt != INVALID_ENTITY && cmpTechnologyManager)
-						{
-							entity_pos_t newRange = cmpTechnologyManager->ApplyModifications(L"Vision/Range", m_BaseRange, GetEntityId());
-							if (newRange != m_Range)
-							{
-								// Update our vision range and broadcast message
-								entity_pos_t oldRange = m_Range;
-								m_Range = newRange;
-								CMessageVisionRangeChanged msg(GetEntityId(), oldRange, newRange);
-								GetSimContext().GetComponentManager().BroadcastMessage(msg);
-							}
-						}
-					}
+					// Update our vision range and broadcast message
+					entity_pos_t oldRange = m_Range;
+					m_Range = newRange;
+					CMessageVisionRangeChanged msg(GetEntityId(), oldRange, newRange);
+					GetSimContext().GetComponentManager().BroadcastMessage(msg);
 				}
 			}
 			break;

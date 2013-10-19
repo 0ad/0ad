@@ -24,6 +24,7 @@
 
 #include "CConsole.h"
 
+#include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "gui/GUIutil.h"
@@ -35,7 +36,6 @@
 #include "network/NetServer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/Font.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Pyrogenesis.h"
@@ -214,7 +214,7 @@ void CConsole::Render()
 	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	textTech->BeginPass();
 	CTextRenderer textRenderer(textTech->GetShader());
-	textRenderer.Font(CONSOLE_FONT);
+	textRenderer.Font(CStrIntern(CONSOLE_FONT));
 	textRenderer.SetTransform(transform);
 
 	DrawHistory(textRenderer);

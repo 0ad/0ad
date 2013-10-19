@@ -1,0 +1,15 @@
+{
+	"genericName": "Archery Tradition",
+	"description": "The Indians had a tradition of fine archery and a penchant for using massed archers in battle.",
+	"cost": {"food": 200, "wood": 300, "stone": 0, "metal": 150},
+	"requirements": {"tech": "phase_village"},
+	"requirementsTooltip": "Unlocked in Village Phase.",
+	"icon": "armor_plates_ranged.png",
+	"researchTime": 60,
+	"tooltip": "Range +10 meters for bow-wielding units. Archer units train time -20%, but also -20% health.",
+	"modifications": [
+		{"value": "Attack/Ranged/MaxRange", "add": 10.0, "affects": ["Bow"]},
+		{"value": "Cost/BuildTime", "multiplier": 0.8, "affects": ["Archer"]},
+		{"value": "Health/Max", "multiplier": 0.8, "affects": ["Archer"]}],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,6 +48,7 @@ struct TPhash
 		boost::hash_combine(seed, a.m_WrapS);
 		boost::hash_combine(seed, a.m_WrapT);
 		boost::hash_combine(seed, a.m_Aniso);
+		boost::hash_combine(seed, a.m_Format);
 		return seed;
 	}
 	std::size_t operator()(CTexturePtr const& a) const
@@ -64,7 +65,7 @@ struct TPequal_to
 	{
 		return a.m_Path == b.m_Path && a.m_Filter == b.m_Filter
 			&& a.m_WrapS == b.m_WrapS && a.m_WrapT == b.m_WrapT
-			&& a.m_Aniso == b.m_Aniso;
+			&& a.m_Aniso == b.m_Aniso && a.m_Format == b.m_Format;
 	}
 	bool operator()(CTexturePtr const& a, CTexturePtr const& b) const
 	{
@@ -215,7 +216,7 @@ public:
 		(void)ogl_tex_set_filter(h, filter);
 
 		// Upload to GL
-		if (!m_DisableGL && ogl_tex_upload(h) < 0)
+		if (!m_DisableGL && ogl_tex_upload(h, texture->m_Properties.m_Format) < 0)
 		{
 			LOGERROR(L"Texture failed to upload: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
 

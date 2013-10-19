@@ -42,7 +42,7 @@ Heal.prototype.GetTimers = function()
 	var prepare = 1000;
 	var repeat = +this.template.Rate;
 
-	repeat = ApplyTechModificationsToEntity("Heal/Rate", repeat, this.entity);
+	repeat = ApplyValueModificationsToEntity("Heal/Rate", repeat, this.entity);
 	
 	return { "prepare": prepare, "repeat": repeat };
 };
@@ -52,7 +52,7 @@ Heal.prototype.GetRange = function()
 	var min = 0;
 	var max = +this.template.Range;
 	
-	max = ApplyTechModificationsToEntity("Heal/Range", max, this.entity);
+	max = ApplyValueModificationsToEntity("Heal/Range", max, this.entity);
 
 	return { "max": max, "min": min };
 };
@@ -80,7 +80,7 @@ Heal.prototype.PerformHeal = function(target)
 	if (!cmpHealth)
 		return;
 
-	var targetState = cmpHealth.Increase(ApplyTechModificationsToEntity("Heal/HP", +this.template.HP, this.entity));
+	var targetState = cmpHealth.Increase(ApplyValueModificationsToEntity("Heal/HP", +this.template.HP, this.entity));
 
 	// Add XP
 	var cmpLoot = Engine.QueryInterface(target, IID_Loot);

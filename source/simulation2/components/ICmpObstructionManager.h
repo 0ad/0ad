@@ -427,7 +427,6 @@ private:
  */
 class SkipTagRequireControlGroupsAndFlagObstructionFilter : public IObstructionTestFilter
 {
-	bool m_Exclude;
 	tag_t m_Tag;
 	entity_id_t m_Group;
 	entity_id_t m_Group2;

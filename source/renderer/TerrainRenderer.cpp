@@ -39,7 +39,6 @@
 
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
-#include "ps/Font.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
@@ -1000,7 +999,7 @@ void TerrainRenderer::RenderPriorities()
 	tech->BeginPass();
 	CTextRenderer textRenderer(tech->GetShader());
 
-	textRenderer.Font(L"mono-stroke-10");
+	textRenderer.Font(CStrIntern("mono-stroke-10"));
 	textRenderer.Color(1.0f, 1.0f, 0.0f);
 
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)

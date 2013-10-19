@@ -66,7 +66,7 @@ GarrisonHolder.prototype.GetAllowedClassesList = function()
  */
 GarrisonHolder.prototype.GetCapacity = function()
 {
-	return ApplyTechModificationsToEntity("GarrisonHolder/Max", +this.template.Max, this.entity);
+	return ApplyValueModificationsToEntity("GarrisonHolder/Max", +this.template.Max, this.entity);
 };
 
 /**
@@ -74,7 +74,7 @@ GarrisonHolder.prototype.GetCapacity = function()
  */
 GarrisonHolder.prototype.GetHealRate = function()
 {
-	return ApplyTechModificationsToEntity("GarrisonHolder/BuffHeal", +this.template.BuffHeal, this.entity);
+	return ApplyValueModificationsToEntity("GarrisonHolder/BuffHeal", +this.template.BuffHeal, this.entity);
 };
 
 GarrisonHolder.prototype.EjectEntitiesOnDestroy = function()

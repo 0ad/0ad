@@ -147,6 +147,11 @@ size_t CStrIntern::length() const
 	return m->data.length();
 }
 
+bool CStrIntern::empty() const
+{
+	return m->data.empty();
+}
+
 const std::string& CStrIntern::string() const
 {
 	return m->data;

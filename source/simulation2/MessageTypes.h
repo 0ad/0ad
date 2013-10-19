@@ -366,20 +366,19 @@ public:
 };
 
 /**
- * Sent by technology manager when a technology is researched that modifies a component.
+ * Sent by value modification manager when a value of a certain component is changed
  */
-class CMessageTechnologyModification : public CMessage
+class CMessageValueModification : public CMessage
 {
 public:
-	DEFAULT_MESSAGE_IMPL(TechnologyModification)
+	DEFAULT_MESSAGE_IMPL(ValueModification)
 
-	CMessageTechnologyModification(std::wstring component, player_id_t player) :
-		component(component), player(player)
+	CMessageValueModification(std::wstring component) :
+		component(component)
 	{
 	}
 
 	std::wstring component;
-	player_id_t player;
 };
 
 /**

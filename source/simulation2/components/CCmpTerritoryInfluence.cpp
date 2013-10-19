@@ -22,7 +22,7 @@
 
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPlayerManager.h"
-#include "simulation2/components/ICmpTechnologyManager.h"
+#include "simulation2/components/ICmpValueModificationManager.h"
 
 class CCmpTerritoryInfluence : public ICmpTerritoryInfluence
 {
@@ -103,19 +103,8 @@ public:
 	{
 		u32 newRadius = m_Radius;
 
-		CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
-		if (cmpOwnership && cmpOwnership->GetOwner() != INVALID_PLAYER)
-		{
-			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
-			entity_id_t playerEnt = cmpPlayerManager->GetPlayerByID(cmpOwnership->GetOwner());
-
-			if (playerEnt != INVALID_ENTITY)
-			{
-				CmpPtr<ICmpTechnologyManager> cmpTechnologyManager(GetSimContext(), playerEnt);
-				if (cmpTechnologyManager)
-					newRadius = cmpTechnologyManager->ApplyModifications(L"TerritoryInfluence/Radius", m_Radius, GetEntityId());
-			}
-		}
+		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+		newRadius = cmpValueModificationManager->ApplyModifications(L"TerritoryInfluence/Radius", m_Radius, GetEntityId());
 
 		return newRadius;
 	}

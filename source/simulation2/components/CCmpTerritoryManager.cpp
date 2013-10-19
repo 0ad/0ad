@@ -66,7 +66,7 @@ public:
 	{
 		componentManager.SubscribeGloballyToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeGloballyToMessageType(MT_PositionChanged);
-		componentManager.SubscribeGloballyToMessageType(MT_TechnologyModification);
+		componentManager.SubscribeGloballyToMessageType(MT_ValueModification);
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 		componentManager.SubscribeToMessageType(MT_Update);
 		componentManager.SubscribeToMessageType(MT_Interpolate);
@@ -165,9 +165,9 @@ public:
 			MakeDirtyIfRelevantEntity(msgData.entity);
 			break;
 		}
-		case MT_TechnologyModification:
+		case MT_ValueModification:
 		{
-			const CMessageTechnologyModification& msgData = static_cast<const CMessageTechnologyModification&> (msg);
+			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg);
 			if (msgData.component == L"TerritoryInfluence")
 				MakeDirty();
 			break;

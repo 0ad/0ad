@@ -39,6 +39,7 @@ GUI text, handles text stuff
 #include <list>
 
 #include "CGUISprite.h"
+#include "ps/CStrIntern.h"
 
 //--------------------------------------------------------
 //  Declarations
@@ -130,7 +131,7 @@ struct SGUIText
 		/**
 		 * Font name
 		 */
-		CStrW m_Font;
+		CStrIntern m_Font;
 
 		/**
 		 * Settings
@@ -318,7 +319,7 @@ public:
 	 *		  it avoids duplicates.
 	 */
 	void GenerateTextCall(SFeedback &Feedback,
-						  const CStrW& DefaultFont,
+						  CStrIntern DefaultFont,
 						  const int &from, const int &to,
 						  const bool FirstLine,
 						  const IGUIObject *pObject=NULL) const;
