@@ -93,8 +93,6 @@ private:
 	CShaderRenderQueries m_RenderQueries;
 
 	bool m_AlphaBlending;
-
-	player_id_t m_PlayerID;
 };
 
 #endif
