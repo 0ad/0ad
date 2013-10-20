@@ -176,7 +176,7 @@ int usleep(useconds_t us)
 // strptime from NetBSD
 
 /*
-* Copyright (c) 1999 Kungliga Tekniska Högskolan
+* Copyright (c) 1999 Kungliga Tekniska Hogskolan
 * (Royal Institute of Technology, Stockholm, Sweden). 
 * All rights reserved. 
 *

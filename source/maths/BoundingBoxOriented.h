@@ -53,7 +53,7 @@ public:
 
 	/**
 	 * Check if a given ray intersects this box. Must not be used if IsEmpty() is true.
-	 * See Real-Time Rendering, Third Edition by T. Akenine-Möller, p. 741--744.
+	 * See Real-Time Rendering, Third Edition by T. Akenine-Moller, p. 741--744.
 	 *
 	 * @param[in] origin Origin of the ray.
 	 * @param[in] dir Direction vector of the ray, defining the positive direction of the ray.

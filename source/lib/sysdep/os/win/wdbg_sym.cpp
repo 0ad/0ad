@@ -245,7 +245,7 @@ static Status ResolveSymbol_lk(void* ptr_of_interest, wchar_t* sym_name, wchar_t
 }
 
 // file is the base name only, not path (see rationale in wdbg_sym).
-// the PDB implementation is rather slow (~500µs).
+// the PDB implementation is rather slow (~500us).
 Status debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* file, int* line)
 {
 	WinScopedLock lock(WDBG_SYM_CS);
