@@ -48,7 +48,6 @@
 #include "gui/scripting/JSInterface_GUITypes.h"
 #include "gui/scripting/ScriptFunctions.h"
 #include "maths/MathUtil.h"
-#include "maths/scripting/JSInterface_Vector3D.h"
 #include "network/NetServer.h"
 #include "network/NetClient.h"
 
@@ -318,9 +317,6 @@ void Render()
 
 static void RegisterJavascriptInterfaces()
 {
-	// maths
-	JSI_Vector3D::init();
-
 	// GUI
 	CGUI::ScriptingInit();
 

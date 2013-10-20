@@ -21,7 +21,6 @@
 #include "ThreadDebugger.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "scripting/JSConversions.h"
 
 CDebuggingServer* g_DebuggingServer = NULL;
 
