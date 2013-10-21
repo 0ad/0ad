@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,6 +100,49 @@ template<> bool ScriptInterface::FromJSVal<u8>(JSContext* cx, jsval v, u8& out)
 	return true;
 }
 
+template<> bool ScriptInterface::FromJSVal<long>(JSContext* cx, jsval v, long& out)
+{
+	int32 tmp;
+	JSBool ok = JS_ValueToInt32(cx, v, &tmp);
+	out = (long)tmp;
+	return ok == JS_TRUE;
+}
+
+template<> bool ScriptInterface::FromJSVal<unsigned long>(JSContext* cx, jsval v, unsigned long& out)
+{
+	int32 tmp;
+	JSBool ok = JS_ValueToInt32(cx, v, &tmp);
+	out = (unsigned long)tmp;
+	return ok == JS_TRUE;
+}
+
+// see comment below (where the same preprocessor condition is used)
+#if MSC_VERSION && ARCH_AMD64
+
+template<> bool ScriptInterface::FromJSVal<size_t>(JSContext* cx, jsval v, size_t& out)
+{
+	int temp;
+	if(!FromJSVal<int>(cx, v, temp))
+		return false;
+	if(temp < 0)
+		return false;
+	out = (size_t)temp;
+	return true;
+}
+
+template<> bool ScriptInterface::FromJSVal<ssize_t>(JSContext* cx, jsval v, ssize_t& out)
+{
+	int temp;
+	if(!FromJSVal<int>(cx, v, temp))
+		return false;
+	if(temp < 0)
+		return false;
+	out = (ssize_t)temp;
+	return true;
+}
+
+#endif
+
 // NOTE: we can't define a jsval specialisation, because that conflicts with integer types
 template<> bool ScriptInterface::FromJSVal<CScriptVal>(JSContext* UNUSED(cx), jsval v, CScriptVal& out)
 {
@@ -148,6 +191,16 @@ template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, jsval v, 
 	out = std::string(ch, ch + JS_GetStringLength(ret));
 	JS_free(cx, ch);
 	return true;
+}
+
+template<> bool ScriptInterface::FromJSVal<CStr8>(JSContext* cx, jsval v, CStr8& out)
+{
+	return ScriptInterface::FromJSVal(cx, v, static_cast<std::string&>(out));
+}
+
+template<> bool ScriptInterface::FromJSVal<CStrW>(JSContext* cx, jsval v, CStrW& out)
+{
+	return ScriptInterface::FromJSVal(cx, v, static_cast<std::wstring&>(out));
 }
 
 template<> bool ScriptInterface::FromJSVal<Entity>(JSContext* cx, jsval v, Entity& out)
@@ -220,6 +273,35 @@ template<> jsval ScriptInterface::ToJSVal<u32>(JSContext* cx, const u32& val)
 	return rval;
 }
 
+template<> jsval ScriptInterface::ToJSVal<long>(JSContext* UNUSED(cx), const long& val)
+{
+	return INT_TO_JSVAL((int)val);
+}
+
+template<> jsval ScriptInterface::ToJSVal<unsigned long>(JSContext* UNUSED(cx), const unsigned long& val)
+{
+	return INT_TO_JSVAL((int)val);
+}
+
+// (s)size_t are considered to be identical to (unsigned) int by GCC and 
+// their specializations would cause conflicts there. On x86_64 GCC, s/size_t 
+// is equivalent to (unsigned) long, but the same solution applies; use the 
+// long and unsigned long specializations instead of s/size_t. 
+// for some reason, x64 MSC treats size_t as distinct from unsigned long:
+#if MSC_VERSION && ARCH_AMD64
+
+template<> jsval ScriptInterface::ToJSVal<size_t>(JSContext* UNUSED(cx), const size_t& val)
+{
+	return INT_TO_JSVAL((int)val);
+}
+
+template<> jsval ScriptInterface::ToJSVal<ssize_t>(JSContext* UNUSED(cx), const ssize_t& val)
+{
+	return INT_TO_JSVAL((int)val);
+}
+
+#endif
+
 // NOTE: we can't define a jsval specialisation, because that conflicts with integer types
 template<> jsval ScriptInterface::ToJSVal<CScriptVal>(JSContext* UNUSED(cx), const CScriptVal& val)
 {
@@ -281,7 +363,7 @@ template<> jsval ScriptInterface::ToJSVal<CStr8>(JSContext* cx, const CStr8& val
 
 template<typename T> static jsval ToJSVal_vector(JSContext* cx, const std::vector<T>& val)
 {
-	JSObject* obj = JS_NewArrayObject(cx, val.size(), NULL);
+	JSObject* obj = JS_NewArrayObject(cx, (jsint)val.size(), NULL);
 	if (!obj)
 		return JSVAL_VOID;
 	for (size_t i = 0; i < val.size(); ++i)

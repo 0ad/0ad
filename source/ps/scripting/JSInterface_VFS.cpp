@@ -23,7 +23,7 @@
 #include "ps/Filesystem.h"
 //#include "lib/res/file/archive/vfs_optimizer.h"	// ArchiveBuilderCancel
 #include "scripting/ScriptingHost.h"
-#include "scripting/JSConversions.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "lib/file/vfs/vfs_util.h"
 
@@ -70,7 +70,7 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 {
 	BuildDirEntListState* s = (BuildDirEntListState*)cbData;
 
-	jsval val = ToJSVal( CStrW(pathname.string()) );
+	jsval val = ScriptInterface::ToJSVal(s->cx, CStrW(pathname.string()));
 	JS_SetElement(s->cx, s->filename_array, s->cur_idx++, &val);
 	return INFO::OK;
 }
@@ -95,13 +95,13 @@ JSBool JSI_VFS::BuildDirEntList(JSContext* cx, uintN argc, jsval* vp)
 	JSU_REQUIRE_MIN_PARAMS(1);
 
 	CStrW path;
-	if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[0], path))
+	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], path))
 		return JS_FALSE;
 
 	CStrW filter_str = L"";
 	if (argc >= 2)
 	{
-		if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[1], filter_str))
+		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[1], filter_str))
 			return JS_FALSE;
 	}
 	// convert to const wchar_t*; if there's no filter, pass 0 for speed
@@ -113,7 +113,7 @@ JSBool JSI_VFS::BuildDirEntList(JSContext* cx, uintN argc, jsval* vp)
 	bool recursive = false;
 	if (argc >= 3)
 	{
-		if (!ToPrimitive<bool> (cx, JS_ARGV(cx, vp)[2], recursive))
+		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[2], recursive))
 			return JS_FALSE;
 	}
 	int flags = recursive ? vfs::DIR_RECURSIVE : 0;
@@ -137,14 +137,14 @@ JSBool JSI_VFS::GetFileMTime(JSContext* cx, uintN argc, jsval* vp)
 	JSU_REQUIRE_MIN_PARAMS(1);
 
 	CStrW filename;
-	if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[0], filename))
+	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))
 		return JS_FALSE;
 
 	CFileInfo fileInfo;
 	Status err = g_VFS->GetFileInfo(filename, &fileInfo);
 	JS_CHECK_FILE_ERR(err);
 
-	JS_SET_RVAL(cx, vp, ToJSVal((double)fileInfo.MTime()));
+	JS_SET_RVAL(cx, vp, ScriptInterface::ToJSVal(cx, (double)fileInfo.MTime()));
 	return JS_TRUE;
 }
 
@@ -158,14 +158,14 @@ JSBool JSI_VFS::GetFileSize(JSContext* cx, uintN argc, jsval* vp)
 	JSU_REQUIRE_MIN_PARAMS(1);
 
 	CStrW filename;
-	if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[0], filename))
+	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))
 		return JS_FALSE;
 
 	CFileInfo fileInfo;
 	Status err = g_VFS->GetFileInfo(filename, &fileInfo);
 	JS_CHECK_FILE_ERR(err);
 
-	JS_SET_RVAL(cx, vp, ToJSVal( (unsigned)fileInfo.Size() ));
+	JS_SET_RVAL(cx, vp, ScriptInterface::ToJSVal(cx, (unsigned)fileInfo.Size()));
 	return JS_TRUE;
 }
 
@@ -179,7 +179,7 @@ JSBool JSI_VFS::ReadFile(JSContext* cx, uintN argc, jsval* vp)
 	JSU_REQUIRE_MIN_PARAMS(1);
 
 	CStrW filename;
-	if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[0], filename))
+	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))
 		return JS_FALSE;
 
 	//
@@ -198,7 +198,7 @@ JSBool JSI_VFS::ReadFile(JSContext* cx, uintN argc, jsval* vp)
 	contents.Replace("\r\n", "\n");
 
 	// Decode as UTF-8
-	JS_SET_RVAL(cx, vp, ToJSVal( contents.FromUTF8() ));
+	JS_SET_RVAL(cx, vp, ScriptInterface::ToJSVal(cx, contents.FromUTF8()));
 	return JS_TRUE;
 }
 
@@ -212,7 +212,7 @@ JSBool JSI_VFS::ReadFileLines(JSContext* cx, uintN argc, jsval* vp)
 	JSU_REQUIRE_MIN_PARAMS(1);
 
 	CStrW filename;
-	if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[0], filename))
+	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))
 		return (JS_FALSE);
 
 	//
@@ -243,7 +243,7 @@ JSBool JSI_VFS::ReadFileLines(JSContext* cx, uintN argc, jsval* vp)
 	while (std::getline(ss, line))
 	{
 		// Decode each line as UTF-8
-		jsval val = ToJSVal(CStr(line).FromUTF8());
+		jsval val = ScriptInterface::ToJSVal(cx, CStr(line).FromUTF8());
 		JS_SetElement(cx, line_array, cur_line++, &val);
 	}
 

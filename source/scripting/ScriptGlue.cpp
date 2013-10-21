@@ -24,7 +24,6 @@
 #include "precompiled.h"
 
 #include "ScriptGlue.h"
-#include "JSConversions.h"
 
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
@@ -37,7 +36,6 @@
 #include "lib/svn_revision.h"
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"	// sys_OpenFile
-#include "maths/scripting/JSInterface_Vector3D.h"
 #include "network/NetServer.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
@@ -111,7 +109,8 @@ JSBool StartJsTimer(JSContext* cx, uintN argc, jsval* vp)
 	ONCE(InitJsTimers());
 
 	JSU_REQUIRE_PARAMS(1);
-	size_t slot = ToPrimitive<size_t>(JS_ARGV(cx, vp)[0]);
+	size_t slot;
+	ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], slot);
 	if (slot >= MAX_JS_TIMERS)
 		return JS_FALSE;
 
@@ -125,7 +124,8 @@ JSBool StartJsTimer(JSContext* cx, uintN argc, jsval* vp)
 JSBool StopJsTimer(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_PARAMS(1);
-	size_t slot = ToPrimitive<size_t>(JS_ARGV(cx, vp)[0]);
+	size_t slot;
+	ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], slot);
 	if (slot >= MAX_JS_TIMERS)
 		return JS_FALSE;
 
@@ -215,7 +215,8 @@ JSBool GetGUIObjectByName(JSContext* cx, uintN argc, jsval* vp)
 
 	try
 	{
-		CStr name = ToPrimitive<CStr>(cx, JS_ARGV(cx, vp)[0]);
+		CStr name;
+		ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], name);
 		IGUIObject* guiObj = g_GUI->FindObjectByName(name);
 		if (guiObj)
 			JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(guiObj->GetJSObject()));
@@ -340,7 +341,7 @@ JSBool SetPaused(JSContext* cx, uintN argc, jsval* vp)
 
 	try
 	{
-		g_Game->m_Paused = ToPrimitive<bool> (JS_ARGV(cx, vp)[0]);
+		ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], g_Game->m_Paused);
 
 		if ( g_SoundManager )
 			g_SoundManager->Pause(g_Game->m_Paused);
