@@ -43,7 +43,7 @@ RemoveGlobalHandler(  string event_name, function handler ) -  Removes a global 
 Class Timer:
 
 setTimeout( code, int time ) - time is a delay in milliseconds.  When this time has elapsed, "code" is executed once.  Code can be a fragment or function 
-Example: setTimeout( console.write("1 second passed"), 1000 ); Returns the ID of the timer (int).
+Example: setTimeout( Engine.Console_Write("1 second passed"), 1000 ); Returns the ID of the timer (int).
 
 setIntervel( code, int time ) - nearly the same as setTimeout(), but "code" is executed every "time" milliseconds instead of once after a single delay.
 cancelIntervel() - causes all functions registered with setInterval to no longer be called.

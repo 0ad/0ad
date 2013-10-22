@@ -9,11 +9,19 @@
   </group>
   <group>
     <variant frequency="1" name="trireme-sail-zoroaster">
-      <textures><texture file="props/pers_trireme_sail.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/pers_trireme_sail.dds" name="baseTex"/>
+        <texture file="props/sail_norm_1.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="trireme-sail-royal standard">
-      <textures><texture file="props/pers_trireme_sail_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/pers_trireme_sail_b.dds" name="baseTex"/>
+        <texture file="props/sail_norm_1.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

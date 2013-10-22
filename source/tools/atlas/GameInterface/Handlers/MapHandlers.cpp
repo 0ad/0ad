@@ -116,7 +116,7 @@ QUERYHANDLER(GenerateMap)
 		CScriptValRooted atts;
 		si.Eval("({})", atts);
 		si.SetProperty(atts.get(), "mapType", std::string("scenario"));
-		si.SetProperty(atts.get(), "map", std::wstring(L"_default"));
+		si.SetProperty(atts.get(), "map", std::wstring(L"maps/scenarios/_default"));
 		StartGame(atts);
 
 		msg->status = -1;
@@ -226,7 +226,7 @@ MESSAGEHANDLER(ImportHeightmap)
 MESSAGEHANDLER(SaveMap)
 {
 	CMapWriter writer;
-	const VfsPath pathname = VfsPath("maps/scenarios") / *msg->filename;
+	VfsPath pathname = VfsPath(*msg->filename).ChangeExtension(L".pmp");
 	writer.SaveMap(pathname,
 		g_Game->GetWorld()->GetTerrain(),
 		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
@@ -350,6 +350,24 @@ END_COMMAND(ResizeMap)
 QUERYHANDLER(VFSFileExists)
 {
 	msg->exists = VfsFileExists(*msg->path);
+}
+
+static Status AddToFilenames(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+{
+	std::vector<std::wstring>& filenames = *(std::vector<std::wstring>*)cbData;
+	filenames.push_back(pathname.string().c_str());
+	return INFO::OK;
+}
+
+QUERYHANDLER(GetMapList)
+{
+	std::vector<std::wstring> scenarioFilenames;
+	vfs::ForEachFile(g_VFS, L"maps/scenarios/", AddToFilenames, (uintptr_t)&scenarioFilenames, L"*.xml", vfs::DIR_RECURSIVE);
+	msg->scenarioFilenames = scenarioFilenames;
+	
+	std::vector<std::wstring> skirmishFilenames;
+	vfs::ForEachFile(g_VFS, L"maps/skirmishes/", AddToFilenames, (uintptr_t)&skirmishFilenames, L"*.xml", vfs::DIR_RECURSIVE);
+	msg->skirmishFilenames = skirmishFilenames;
 }
 
 }

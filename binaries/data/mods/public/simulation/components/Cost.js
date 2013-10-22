@@ -51,7 +51,7 @@ Cost.prototype.GetBuildTime = function()
 {
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	var buildTime = (+this.template.BuildTime) * cmpPlayer.cheatTimeMultiplier;
-	return ApplyTechModificationsToEntity("Cost/BuildTime", buildTime, this.entity);
+	return ApplyValueModificationsToEntity("Cost/BuildTime", buildTime, this.entity);
 }
 
 Cost.prototype.GetResourceCosts = function()
@@ -60,7 +60,7 @@ Cost.prototype.GetResourceCosts = function()
 	for (var r in this.template.Resources)
 	{
 		costs[r] = +this.template.Resources[r];
-		costs[r] = ApplyTechModificationsToEntity("Cost/Resources/"+r, costs[r], this.entity);
+		costs[r] = ApplyValueModificationsToEntity("Cost/Resources/"+r, costs[r], this.entity);
 	}
 	return costs;
 };

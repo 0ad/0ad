@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Category>Theater</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>550</BuildTime>
     <Resources>
@@ -34,8 +37,8 @@
   </ProductionQueue>
   <Sound>
     <SoundGroups>
-      <select>interface/select/building/sel_theater.xml</select>
-      <constructed>interface/complete/building/complete_theatre.xml</constructed>
+      <select>interface/select/building/sel_greek_theater.xml</select>
+      <constructed>interface/complete/building/complete_greek_theater.xml</constructed>
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>

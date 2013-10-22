@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <BuildRestrictions>
+    <Territory>own neutral</Territory>
+    <Distance>
+      <FromClass>MilitarySettlement</FromClass>
+      <MinDistance>80</MinDistance>
+    </Distance>
+  </BuildRestrictions>
+  <Cost>
+    <Resources>
+      <wood>0</wood>
+      <stone>200</stone>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="25.0" depth="25.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_5x5</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>ptol</Civ>
+    <GenericName>Military Settlement</GenericName>
+	<SpecificName>Klēroukhia</SpecificName>
+    <Classes datatype="tokens">Town MilitarySettlement</Classes>
+    <History>The Ptolemies invited Greeks and Galatians (Gauls) alike to settle in Egypt within military settlements called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the pharaoh's army when called to duty. This created a upper-middle class of military settlers who owed their livelihoods and fortunes to the pharaoh and helped grow the available manpower for the Egyptian army. A side effect of this system was that it drained the Greek homeland of military-aged men, a contributing factor to Greece's inevitable conquest by Rome.</History>
+    <Tooltip>Train Galatian and Hellenic settler-soldiers. Research training improvements. Garrison: 10. Can be built in Neutral territory. Min. distance from other Military Settlements: 80 meters.</Tooltip>
+    <Icon>structures/italian_embassy.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Obstruction>
+    <Static width="20.0" depth="20.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/ptol_infantry_swordsman_b
+      units/ptol_cavalry_spearman_b
+      units/ptol_cavalry_javelinist_b
+    </Entities>
+    <Technologies datatype="tokens">
+	  -unlock_champion_units
+    </Technologies>
+  </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_gymnasium.xml</select>
+      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryDecay>
+    <HealthDecayRate>1</HealthDecayRate>
+  </TerritoryDecay>
+  <TerritoryInfluence disable=""/>
+  <VisualActor>
+    <Actor>structures/athenians/barracks.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
+</Entity>

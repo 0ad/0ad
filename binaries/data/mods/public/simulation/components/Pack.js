@@ -95,7 +95,7 @@ Pack.prototype.CancelPack = function()
 
 Pack.prototype.GetPackTime = function()
 {
-	return ApplyTechModificationsToEntity("Pack/Time", +this.template.Time, this.entity);
+	return ApplyValueModificationsToEntity("Pack/Time", +this.template.Time, this.entity);
 };
 
 Pack.prototype.GetElapsedTime = function()

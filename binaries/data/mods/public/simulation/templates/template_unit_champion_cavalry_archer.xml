@@ -27,7 +27,6 @@
 		</BonusSecondary>
 	  </Bonuses>
       <PreferredClasses datatype="tokens">Organic</PreferredClasses>
-      <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
     </Ranged>
   </Attack>
   <Cost>
@@ -36,7 +35,7 @@
     </Resources>
   </Cost>
   <Identity>
-    <Classes datatype="tokens">Ranged Archer</Classes>
+    <Classes datatype="tokens">Ranged Archer Bow</Classes>
     <GenericName>Champion Cavalry Archer.</GenericName>
 	<Tooltip>Classes: Champion Ranged Cavalry Archer.
 Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. 

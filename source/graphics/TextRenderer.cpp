@@ -19,9 +19,11 @@
 
 #include "TextRenderer.h"
 
+#include "graphics/Font.h"
+#include "graphics/FontManager.h"
 #include "lib/ogl.h"
-#include "lib/res/graphics/unifont.h"
-#include "ps/Font.h"
+#include "ps/CStrIntern.h"
+#include "renderer/Renderer.h"
 
 extern int g_xres, g_yres;
 
@@ -30,7 +32,7 @@ CTextRenderer::CTextRenderer(const CShaderProgramPtr& shader) :
 {
 	ResetTransform();
 	Color(CColor(1.0f, 1.0f, 1.0f, 1.0f));
-	Font(L"sans-10");
+	Font(str_sans_10);
 }
 
 void CTextRenderer::ResetTransform()
@@ -42,6 +44,7 @@ void CTextRenderer::ResetTransform()
 	CMatrix3D proj;
 	proj.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
 	m_Transform = proj * m_Transform;
+	m_Dirty = true;
 }
 
 CMatrix3D CTextRenderer::GetTransform()
@@ -52,6 +55,7 @@ CMatrix3D CTextRenderer::GetTransform()
 void CTextRenderer::SetTransform(const CMatrix3D& transform)
 {
 	m_Transform = transform;
+	m_Dirty = true;
 }
 
 void CTextRenderer::Translate(float x, float y, float z)
@@ -59,24 +63,36 @@ void CTextRenderer::Translate(float x, float y, float z)
 	CMatrix3D m;
 	m.SetTranslation(x, y, z);
 	m_Transform = m_Transform * m;
+	m_Dirty = true;
+}
+
+void CTextRenderer::SetClippingRect(const CRect& rect)
+{
+	m_Clipping = rect;
 }
 
 void CTextRenderer::Color(const CColor& color)
 {
-	m_Color = color;
+	if (m_Color != color)
+	{
+		m_Color = color;
+		m_Dirty = true;
+	}
 }
 
 void CTextRenderer::Color(float r, float g, float b, float a)
 {
-	m_Color = CColor(r, g, b, a);
+	Color(CColor(r, g, b, a));
 }
 
-void CTextRenderer::Font(const CStrW& font)
+void CTextRenderer::Font(CStrIntern font)
 {
-	if (!m_Fonts[font])
-		m_Fonts[font] = shared_ptr<CFont>(new CFont(font));
-
-	m_Font = m_Fonts[font];
+	if (font != m_FontName)
+	{
+		m_FontName = font;
+		m_Font = g_Renderer.GetFontManager().LoadFont(font);
+		m_Dirty = true;
+	}
 }
 
 void CTextRenderer::PrintfAdvance(const wchar_t* fmt, ...)
@@ -124,16 +140,54 @@ void CTextRenderer::Put(float x, float y, const wchar_t* buf)
 	if (buf[0] == 0)
 		return; // empty string; don't bother storing
 
-	CMatrix3D translate;
-	translate.SetTranslation(x, y, 0.0f);
-
-	SBatch batch;
-	batch.transform = m_Transform * translate;
-	batch.color = m_Color;
-	batch.font = m_Font;
-	batch.text = buf;
-	m_Batches.push_back(batch);
+	PutString(x, y, new std::wstring(buf), true);
 }
+
+void CTextRenderer::Put(float x, float y, const std::wstring* buf)
+{
+	if (buf->empty())
+		return; // empty string; don't bother storing
+
+	PutString(x, y, buf, false);
+}
+
+void CTextRenderer::PutString(float x, float y, const std::wstring* buf, bool owned)
+{
+	if (!m_Font)
+		return; // invalid font; can't render
+
+	if (m_Clipping != CRect())
+	{
+		float x0, y0, x1, y1;
+		m_Font->GetGlyphBounds(x0, y0, x1, y1);
+		if (y + y1 < m_Clipping.top)
+			return;
+		if (y + y0 > m_Clipping.bottom)
+			return;
+	}
+
+	// If any state has changed since the last batch, start a new batch
+	if (m_Dirty)
+	{
+		SBatch batch;
+		batch.chars = 0;
+		batch.transform = m_Transform;
+		batch.color = m_Color;
+		batch.font = m_Font;
+		m_Batches.push_back(batch);
+		m_Dirty = false;
+	}
+
+	// Push a new run onto the latest batch
+	SBatchRun run;
+	run.x = x;
+	run.y = y;
+	m_Batches.back().runs.push_back(run);
+	m_Batches.back().runs.back().text = buf;
+	m_Batches.back().runs.back().owned = owned;
+	m_Batches.back().chars += buf->size();
+}
+
 
 struct t2f_v2i
 {
@@ -142,80 +196,110 @@ struct t2f_v2i
 	i16 x, y;
 };
 
+struct SBatchCompare
+{
+	bool operator()(const CTextRenderer::SBatch& a, const CTextRenderer::SBatch& b)
+	{
+		if (a.font < b.font)
+			return true;
+		if (b.font < a.font)
+			return false;
+		// TODO: is it worth sorting by color/transform too?
+		return false;
+	}
+};
+
 void CTextRenderer::Render()
 {
 	std::vector<u16> indexes;
 	std::vector<t2f_v2i> vertexes;
 
-	for (size_t i = 0; i < m_Batches.size(); ++i)
+	// Try to merge non-consecutive batches that share the same font/color/transform:
+	// sort the batch list by font, then merge the runs of adjacent compatible batches
+	m_Batches.sort(SBatchCompare());
+	for (std::list<SBatch>::iterator it = m_Batches.begin(); it != m_Batches.end(); )
 	{
-		SBatch& batch = m_Batches[i];
+		std::list<SBatch>::iterator next = it;
+		++next;
+		if (next != m_Batches.end() && it->font == next->font && it->color == next->color && it->transform == next->transform)
+		{
+			it->chars += next->chars;
+			it->runs.splice(it->runs.end(), next->runs);
+			m_Batches.erase(next);
+		}
+		else
+			++it;
+	}
 
-		if (batch.text.empty()) // avoid zero-length arrays
-			continue;
+	for (std::list<SBatch>::iterator it = m_Batches.begin(); it != m_Batches.end(); ++it)
+	{
+		SBatch& batch = *it;
 
-		const std::map<u16, UnifontGlyphData>& glyphs = batch.font->GetGlyphs();
+		const CFont::GlyphMap& glyphs = batch.font->GetGlyphs();
 
-		m_Shader->BindTexture("tex", batch.font->GetTexture());
+		m_Shader->BindTexture(str_tex, batch.font->GetTexture());
 
-		m_Shader->Uniform("transform", batch.transform);
+		m_Shader->Uniform(str_transform, batch.transform);
 
 		// ALPHA-only textures will have .rgb sampled as 0, so we need to
 		// replace it with white (but not affect RGBA textures)
 		if (batch.font->HasRGB())
-			m_Shader->Uniform("colorAdd", CColor(0.0f, 0.0f, 0.0f, 0.0f));
+			m_Shader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 0.0f));
 		else
-			m_Shader->Uniform("colorAdd", CColor(1.0f, 1.0f, 1.0f, 0.0f));
+			m_Shader->Uniform(str_colorAdd, CColor(1.0f, 1.0f, 1.0f, 0.0f));
 
-		m_Shader->Uniform("colorMul", batch.color);
+		m_Shader->Uniform(str_colorMul, batch.color);
 
-		vertexes.clear();
-		vertexes.resize(batch.text.size()*4);
+		vertexes.resize(batch.chars*4);
+		indexes.resize(batch.chars*6);
 
-		indexes.clear();
-		indexes.resize(batch.text.size()*6);
+		size_t idx = 0;
 
-		i16 x = 0;
-		for (size_t i = 0; i < batch.text.size(); ++i)
+		for (std::list<SBatchRun>::iterator runit = batch.runs.begin(); runit != batch.runs.end(); ++runit)
 		{
-			std::map<u16, UnifontGlyphData>::const_iterator it = glyphs.find(batch.text[i]);
+			SBatchRun& run = *runit;
+			i16 x = run.x;
+			i16 y = run.y;
+			for (size_t i = 0; i < run.text->size(); ++i)
+			{
+				const CFont::GlyphData* g = glyphs.get((*run.text)[i]);
 
-			if (it == glyphs.end())
-				it = glyphs.find(0xFFFD); // Use the missing glyph symbol
+				if (!g)
+					g = glyphs.get(0xFFFD); // Use the missing glyph symbol
+				if (!g) // Missing the missing glyph symbol - give up
+					continue;
 
-			if (it == glyphs.end()) // Missing the missing glyph symbol - give up
-				continue;
+				vertexes[idx*4].u = g->u1;
+				vertexes[idx*4].v = g->v0;
+				vertexes[idx*4].x = g->x1 + x;
+				vertexes[idx*4].y = g->y0 + y;
 
-			const UnifontGlyphData& g = it->second;
+				vertexes[idx*4+1].u = g->u0;
+				vertexes[idx*4+1].v = g->v0;
+				vertexes[idx*4+1].x = g->x0 + x;
+				vertexes[idx*4+1].y = g->y0 + y;
 
-			vertexes[i*4].u = g.u1;
-			vertexes[i*4].v = g.v0;
-			vertexes[i*4].x = g.x1 + x;
-			vertexes[i*4].y = g.y0;
+				vertexes[idx*4+2].u = g->u0;
+				vertexes[idx*4+2].v = g->v1;
+				vertexes[idx*4+2].x = g->x0 + x;
+				vertexes[idx*4+2].y = g->y1 + y;
 
-			vertexes[i*4+1].u = g.u0;
-			vertexes[i*4+1].v = g.v0;
-			vertexes[i*4+1].x = g.x0 + x;
-			vertexes[i*4+1].y = g.y0;
+				vertexes[idx*4+3].u = g->u1;
+				vertexes[idx*4+3].v = g->v1;
+				vertexes[idx*4+3].x = g->x1 + x;
+				vertexes[idx*4+3].y = g->y1 + y;
 
-			vertexes[i*4+2].u = g.u0;
-			vertexes[i*4+2].v = g.v1;
-			vertexes[i*4+2].x = g.x0 + x;
-			vertexes[i*4+2].y = g.y1;
+				indexes[idx*6+0] = idx*4+0;
+				indexes[idx*6+1] = idx*4+1;
+				indexes[idx*6+2] = idx*4+2;
+				indexes[idx*6+3] = idx*4+2;
+				indexes[idx*6+4] = idx*4+3;
+				indexes[idx*6+5] = idx*4+0;
 
-			vertexes[i*4+3].u = g.u1;
-			vertexes[i*4+3].v = g.v1;
-			vertexes[i*4+3].x = g.x1 + x;
-			vertexes[i*4+3].y = g.y1;
+				x += g->xadvance;
 
-			indexes[i*6+0] = i*4+0;
-			indexes[i*6+1] = i*4+1;
-			indexes[i*6+2] = i*4+2;
-			indexes[i*6+3] = i*4+2;
-			indexes[i*6+4] = i*4+3;
-			indexes[i*6+5] = i*4+0;
-
-			x += g.xadvance;
+				idx++;
+			}
 		}
 
 		m_Shader->VertexPointer(2, GL_SHORT, sizeof(t2f_v2i), &vertexes[0].x);

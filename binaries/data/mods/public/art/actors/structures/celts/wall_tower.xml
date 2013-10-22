@@ -13,6 +13,7 @@
 	    <texture file="structural/celt_murus.png" name="baseTex"/>
 	    <texture file="structural/celt_murus_norm.png" name="normTex"/>
 	    <texture file="structural/celt_murus_spec.png" name="specTex"/>
+		<texture file="structural/ao/celt_wall_tower.png" name="aoTex"/>
 	  </textures>
     </variant>
   </group>
@@ -31,5 +32,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

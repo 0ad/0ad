@@ -23,7 +23,7 @@
   </Attack>
   <BuildingAI>
     <DefaultArrowCount>0</DefaultArrowCount>
-    <GarrisonArrowMultiplier>0.5</GarrisonArrowMultiplier>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
     <GarrisonArrowClasses>Catapult</GarrisonArrowClasses>
   </BuildingAI>
   <Cost>
@@ -51,8 +51,10 @@
   </Health>
   <Identity>
     <GenericName>Heavy Warship</GenericName>
-    <Tooltip>Heavy Warship. Garrison with siege catapults to increase fire power.</Tooltip>
-    <Classes datatype="tokens">Warship</Classes>
+    <Tooltip>Classes: Heavy Warship Ranged Melee
+Garrison with catapults to increase ranged fire power.
+Secondary Attack: Ramming.</Tooltip>
+    <Classes datatype="tokens">Warship Heavy</Classes>
 	<RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Sound>

@@ -118,6 +118,10 @@ private:
 	 * for any subsequent requests for an equal items list.
 	 */
 	static SItems* GetInterned(const SItems& items);
+
+	CShaderParams(SItems* items);
+	static CShaderParams CreateEmpty();
+	static CShaderParams s_Empty;
 };
 
 /**
@@ -133,7 +137,7 @@ public:
 	 * Add a name and associated value to the map of defines.
 	 * If the name is already defined, its value will be replaced.
 	 */
-	void Add(const char* name, const char* value);
+	void Add(CStrIntern name, CStrIntern value);
 
 	/**
 	 * Return the value for the given name as an integer, or 0 if not defined.
@@ -186,8 +190,8 @@ public:
 	typedef std::pair<int, CStrIntern> RenderQuery;
 	
 	void Add(const char* name);
-	size_t GetSize();
-	RenderQuery GetItem(size_t i);
+	size_t GetSize() const { return m_Items.size(); }
+	RenderQuery GetItem(size_t i) const { return m_Items[i]; }
 private:
 	std::vector<RenderQuery> m_Items;
 };
@@ -210,8 +214,8 @@ public:
 	};
 	
 	void Add(const char* defname, const char* defvalue, int type, std::vector<float> &args);
-	size_t GetSize();
-	CondDefine& GetItem(size_t i);
+	size_t GetSize() const { return m_Defines.size(); }
+	const CondDefine& GetItem(size_t i) const { return m_Defines[i]; }
 	
 private:
 	std::vector<CondDefine> m_Defines;

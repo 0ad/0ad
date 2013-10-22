@@ -12,6 +12,7 @@ function BaseAI(settings)
 	PlayerID = this._player;
 
 	this.turn = 0;
+	this.timeElapsed = 0;
 }
 
 //Return a simple object (using no classes etc) that will be serialized
@@ -35,13 +36,14 @@ BaseAI.prototype.InitWithSharedScript = function(state, sharedAI)
 	this.terrainAnalyzer = sharedAI.terrainAnalyzer;
 	this.passabilityClasses = sharedAI.passabilityClasses;
 	this.passabilityMap = sharedAI.passabilityMap;
+	this.territoryMap = sharedAI.territoryMap;
+	this.timeElapsed = state.timeElapsed;
 
-	var gameState = sharedAI.gameState[PlayerID];
-	gameState.ai = this;
+	this.gameState = sharedAI.gameState[PlayerID];
+	this.gameState.ai = this;
+	this.sharedScript = sharedAI;
 		
-	this.InitShared(gameState, sharedAI);
-	
-	delete gameState.ai;
+	this.InitShared(this.gameState, this.sharedScript);
 }
 
 BaseAI.prototype.HandleMessage = function(state, sharedAI)
@@ -59,7 +61,7 @@ BaseAI.prototype.HandleMessage = function(state, sharedAI)
 	this.timeElapsed = sharedAI.timeElapsed;
 	this.accessibility = sharedAI.accessibility;
 	this.terrainAnalyzer = sharedAI.terrainAnalyzer;
-	this.techModifications = sharedAI.techModifications[this._player];
+	this.techModifications = sharedAI._techModifications[this._player];
 
 	Engine.ProfileStop();
 	

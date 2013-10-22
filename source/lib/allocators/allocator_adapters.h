@@ -115,6 +115,9 @@ public:
 		typedef ProxyAllocator<U, Allocator> other;
 	};
 
+	// (required to be declared by boost::unordered_map, but should never be called)
+	explicit NOTHROW_DEFINE ProxyAllocator();
+
 	explicit NOTHROW_DEFINE ProxyAllocator(Allocator& allocator)
 		: allocator(&allocator)
 	{

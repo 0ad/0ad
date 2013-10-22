@@ -1,54 +1,51 @@
 RMS.LoadLibrary("rmgen");
 
-var tCity = "desert_city_tile";
-var tCityPlaza = "desert_city_tile_plaza";
-var tSand = ["desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_dunes_50", "desert_sand_smooth"];
-var tDunes = "desert_sand_dunes_100";
-var tFineSand = "desert_sand_smooth";
-var tCliff = ["desert_cliff_badlands", "desert_cliff_badlands_2"];
-var tForestFloor = "desert_forestfloor_palms";
-var tGrass = "desert_dirt_rough_2";
-var tGrassSand50 = "desert_sand_dunes_50";
-var tGrassSand25 = "desert_dirt_rough";
-var tDirt = "desert_dirt_rough";
-var tDirtCracks = "desert_dirt_cracks";
-var tShore = "desert_shore_stones";
-var tWaterDeep = "desert_shore_stones_wet";
-var tLush = "desert_grass_a";
-var tSLush = "desert_grass_a_sand";
-var tSDry = "desert_plants_b";
+const tCity = "desert_city_tile";
+const tCityPlaza = "desert_city_tile_plaza";
+const tMain = ["desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_dunes_50", "desert_sand_smooth"];
+const tDunes = "desert_sand_dunes_100";
+const tFineSand = "desert_sand_smooth";
+const tCliff = ["desert_cliff_badlands", "desert_cliff_badlands_2"];
+const tForestFloor = "desert_forestfloor_palms";
+const tDirt1 = "desert_dirt_rough_2";
+const tSandDunes = "desert_sand_dunes_50";
+const tDirt2 = "desert_dirt_rough";
+const tDirtCracks = "desert_dirt_cracks";
+const tShore = "desert_shore_stones";
+const tWaterDeep = "desert_shore_stones_wet";
+const tLush = "desert_grass_a";
+const tSLush = "desert_grass_a_sand";
+const tSDry = "desert_plants_b";
+
 // gaia entities
-var oBerryBush = "gaia/flora_bush_berry";
-var oChicken = "gaia/fauna_chicken";
-var oCamel = "gaia/fauna_camel";
-var oFish = "gaia/fauna_fish";
-var oGazelle = "gaia/fauna_gazelle";
-var oGiraffe = "gaia/fauna_giraffe";
-var oGoat = "gaia/fauna_goat";
-var oWildebeest = "gaia/fauna_wildebeest";
-var oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
-var oStoneSmall = "gaia/geology_stone_desert_small";
-var oMetalLarge = "gaia/geology_metal_desert_slabs";
-var oDatePalm = "gaia/flora_tree_date_palm";
-var oSDatePalm = "gaia/flora_tree_cretan_date_palm_short";
-var eObelisk = "other/obelisk";
-var ePyramid = "other/pyramid_minor";
-var oWood = "gaia/special_treasure_wood";
-var oFood = "gaia/special_treasure_food_bin";
+const oGrapeBush = "gaia/flora_bush_grapes";
+const oChicken = "gaia/fauna_chicken";
+const oCamel = "gaia/fauna_camel";
+const oFish = "gaia/fauna_fish";
+const oGazelle = "gaia/fauna_gazelle";
+const oGiraffe = "gaia/fauna_giraffe";
+const oGoat = "gaia/fauna_goat";
+const oWildebeest = "gaia/fauna_wildebeest";
+const oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
+const oStoneSmall = "gaia/geology_stone_desert_small";
+const oMetalLarge = "gaia/geology_metal_desert_slabs";
+const oDatePalm = "gaia/flora_tree_date_palm";
+const oSDatePalm = "gaia/flora_tree_cretan_date_palm_short";
+const oWood = "gaia/special_treasure_wood";
+const oFood = "gaia/special_treasure_food_bin";
 
 // decorative props
-var aBush1 = "actor|props/flora/bush_desert_a.xml";
-var aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
-var aBush3 = "actor|props/flora/bush_medit_sm_dry.xml";
-var aBush4 = "actor|props/flora/plant_desert_a.xml";
-var aBushes = [aBush1, aBush2, aBush3, aBush4];
-var aDecorativeRock = "actor|geology/stone_desert_med.xml";
-var aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
-var aLillies = "actor|props/flora/water_lillies.xml";
+const aBush1 = "actor|props/flora/bush_desert_a.xml";
+const aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
+const aBush3 = "actor|props/flora/bush_medit_sm_dry.xml";
+const aBush4 = "actor|props/flora/plant_desert_a.xml";
+const aBushes = [aBush1, aBush2, aBush3, aBush4];
+const aDecorativeRock = "actor|geology/stone_desert_med.xml";
+const aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
+const aLillies = "actor|props/flora/water_lillies.xml";
 
 // terrain + entity (for painting)
-var pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATOR + oSDatePalm, tLush];
-var pForestOasis = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATOR + oSDatePalm, tLush];
+const pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATOR + oSDatePalm, tLush];
 
 const BUILDING_ANGlE = -PI/4;
 
@@ -56,9 +53,9 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
+const numPlayers = getNumPlayers();
+const mapSize = getMapSize();
+const mapArea = mapSize*mapSize;
 
 // create tile classes
 
@@ -143,7 +140,7 @@ for (var i = 0; i < numPlayers; i++)
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oBerryBush, 5,5, 0,3)],
+		[new SimpleObject(oGrapeBush, 5,5, 0,3)],
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
@@ -209,8 +206,8 @@ for (var i = 0; i < numPlayers; i++)
 	log("Creating oases...");
 	var oRadius = scaleByMapSize(16, 60);
 	placer = new ClumpPlacer(PI*oRadius*oRadius*0.185, 0.6, 0.15, 0, mapSize*(0.5 + 0.18*cos(playerAngle[i]) + scaleByMapSize(1, 4)*cos(playerAngle[i])/100), mapSize*(0.5 + 0.18*sin(playerAngle[i]) + scaleByMapSize(1, 4)*sin(playerAngle[i])/100));
-	painter = new LayeredPainter([tSLush ,[tLush, pForest], [tLush, pForestOasis], tShore, tShore, tWaterDeep], [2, 2, 1, 3, 1]);
-	var elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, -3, 8);
+	painter = new LayeredPainter([tSLush ,[tLush, pForest], [tLush, pForest], tShore, tShore, tWaterDeep], [2, 2, 1, 3, 1]);
+	var elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, -3, 10);
 	createArea(placer, [painter, elevationPainter, paintClass(clWater)], null);
 }
 
@@ -221,7 +218,7 @@ for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
 	painter = new LayeredPainter(
-		[[tGrass,tGrassSand50],[tGrassSand50,tGrassSand25], [tGrassSand25,tGrass]], 		// terrains
+		[[tDirt1,tSandDunes],[tSandDunes,tDirt2], [tDirt2,tDirt1]], 		// terrains
 		[1,1]															// widths
 	);
 	createAreas(
@@ -241,7 +238,7 @@ for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
 	painter = new LayeredPainter(
-		[[tDirt,tDirtCracks],[tDirt,tFineSand], [tDirtCracks,tFineSand]], 		// terrains
+		[[tDirt2,tDirtCracks],[tDirt2,tFineSand], [tDirtCracks,tFineSand]], 		// terrains
 		[1,1]															// widths
 	);
 	createAreas(
@@ -286,7 +283,7 @@ group = new SimpleGroup(
 createObjectGroups(
 	group, 0,
 	avoidClasses(clWater, 1, clForest, 0, clPlayer, 0, clPond, 1),
-	5*scaleByMapSize(16, 262), 50
+	scaleByMapSize(16, 262), 50
 );
 
 // create shrubs

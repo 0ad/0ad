@@ -53,7 +53,7 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 	var soundArray = buildDirEntList(randomSoundPath, "*" + soundSubType + "*", false);
 	if (soundArray.length == 0)
 	{
-		console.write ("Failed to find sounds matching '*"+soundSubType+"*'");
+		Engine.Console_Write ("Failed to find sounds matching '*"+soundSubType+"*'");
 		return undefined;
 	}
 	// Get a random number within the sound's range.
@@ -64,7 +64,7 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 	// Build path to random audio file.
 	randomSoundPath = randomFileName;
 
-	//console.write("Playing " + randomSoundPath + " ...");
+	//Engine.Console_Write("Playing " + randomSoundPath + " ...");
 
 	switch (soundType)
 	{
@@ -75,7 +75,7 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 			return new AmbientSound(randomSoundPath);
 		break;
 		case "effect":
-			console.write("am loading effect '*"+randomSoundPath+"*'");
+			Engine.Console_Write("am loading effect '*"+randomSoundPath+"*'");
 		break;
 		default:
 		break;
@@ -118,7 +118,7 @@ function crossFade (outHandle, inHandle, fadeDuration)
 	if (inHandle)
 	{
 		inHandle.play();
-		fadeIn(inHandle, g_ConfigDB.system["sound.mastergain"], fadeDuration);
+		fadeIn(inHandle, Engine.ConfigDB_GetValue("user", "sound.mastergain"), fadeDuration);
 	}
 
 	return true;
@@ -149,7 +149,7 @@ function crossFade (outHandle, inHandle, fadeDuration)
 //			break;
 //
 //		default:
-//			console.write("Unrecognized ambient type: " + type);
+//			Engine.Console_Write("Unrecognized ambient type: " + type);
 //			break;
 //	}
 //}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_wall_long">
+  <Footprint>
+    <Square width="37" depth="9"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>skirm</Civ>
+  </Identity>
+  <Obstruction>
+    <Static width="36.0" depth="8"/>
+  </Obstruction>
+  <SkirmishReplacer>
+    <iber>structures/iber_wall_long</iber>
+  </SkirmishReplacer>
+  <VisualActor>
+    <Actor>structures/iberians/wall_long.xml</Actor>
+  </VisualActor>
+  <WallPiece>
+  	<Length>36.0</Length>
+  </WallPiece>
+</Entity>

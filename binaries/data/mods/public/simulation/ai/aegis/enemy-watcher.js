@@ -12,7 +12,10 @@ var enemyWatcher = function(gameState, playerToWatch) {
 	
 	var filter = Filters.and(Filters.byClass("Structure"), Filters.byOwner(this.watched));
 	this.enemyBuildings = gameState.updatingGlobalCollection("player-" +this.watched + "-structures", filter);
-							 
+
+	filter = Filters.and(Filters.byClass("Unit"), Filters.byOwner(this.watched));
+	this.enemyUnits = gameState.updatingGlobalCollection("player-" +this.watched + "-units", filter);
+
 	filter = Filters.and(Filters.byClass("Worker"), Filters.byOwner(this.watched));
 	this.enemyCivilians = gameState.updatingGlobalCollection("player-" +this.watched + "-civilians", filter);
 							 

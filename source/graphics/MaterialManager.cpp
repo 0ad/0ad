@@ -114,7 +114,7 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 		}
 		else if (token == el_define)
 		{
-			material.AddShaderDefine(attrs.GetNamedItem(at_name).c_str(), attrs.GetNamedItem(at_value).c_str());
+			material.AddShaderDefine(CStrIntern(attrs.GetNamedItem(at_name)), CStrIntern(attrs.GetNamedItem(at_value)));
 		}
 		else if (token == el_conditional_define)
 		{
@@ -154,14 +154,14 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 				{
 					std::stringstream sstr;
 					sstr << valmin;
-					material.AddShaderDefine((conf + "_MIN").c_str(), sstr.str().c_str());
+					material.AddShaderDefine(CStrIntern(conf + "_MIN"), CStrIntern(sstr.str()));
 				}
 				
 				if (valmax >= 0.0f)
 				{	
 					std::stringstream sstr;
 					sstr << valmax;
-					material.AddShaderDefine((conf + "_MAX").c_str(), sstr.str().c_str());
+					material.AddShaderDefine(CStrIntern(conf + "_MAX"), CStrIntern(sstr.str()));
 				}
 			}
 			
@@ -181,6 +181,8 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 			material.AddRenderQuery(attrs.GetNamedItem(at_name).c_str());
 		}
 	}
+
+	material.RecomputeCombinedShaderDefines();
 
 	m_Materials[pathname] = material;
 	return material;

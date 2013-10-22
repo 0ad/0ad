@@ -56,6 +56,8 @@ public:
 	 */
 	size_t length() const;
 
+	bool empty() const;
+
 	/**
 	 * Returns as std::string.
 	 */
@@ -67,6 +69,11 @@ public:
 	bool operator==(const CStrIntern& b) const
 	{
 		return m == b.m;
+	}
+
+	bool operator!=(const CStrIntern& b) const
+	{
+		return m != b.m;
 	}
 
 	/**
@@ -82,5 +89,16 @@ public:
 private:
 	CStrInternInternals* m;
 };
+
+static inline size_t hash_value(const CStrIntern& str)
+{
+	return str.GetHash();
+}
+
+#define X(id) extern CStrIntern str_##id;
+#define X2(id, str) extern CStrIntern str_##id;
+#include "CStrInternStatic.h"
+#undef X
+#undef X2
 
 #endif // INCLUDED_CSTRINTERN

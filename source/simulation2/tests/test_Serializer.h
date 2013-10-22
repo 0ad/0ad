@@ -25,6 +25,7 @@
 
 #include "graphics/MapReader.h"
 #include "graphics/Terrain.h"
+#include "graphics/TerrainTextureManager.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
@@ -635,6 +636,12 @@ public:
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods"/"public", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(g_VFS->Mount(L"cache/", DataDir()/"cache"));
 
+		// Need some stuff for terrain movement costs:
+		// (TODO: this ought to be independent of any graphics code)
+		tex_codec_register_all();
+		new CTerrainTextureManager;
+		g_TexMan.LoadTerrainTextures();
+
 		CTerrain terrain;
 
 		CSimulation2 sim2(NULL, &terrain);
@@ -644,7 +651,7 @@ public:
 		CMapReader* mapReader = new CMapReader(); // it'll call "delete this" itself
 
 		LDR_BeginRegistering();
-		mapReader->LoadMap(L"maps/scenarios/Latium.pmp", &terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+		mapReader->LoadMap(L"maps/scenarios/Acropolis 01.pmp", CScriptValRooted(), &terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();
 		TS_ASSERT_OK(LDR_NonprogressiveLoad());
@@ -677,6 +684,8 @@ public:
 		debug_printf(L"# time = %f (%f/%d)\n", t/reps, t, (int)reps);
 
 		// Shut down the world
+		delete &g_TexMan;
+		tex_codec_unregister_all();
 		g_VFS.reset();
 		CXeromyces::Terminate();
 	}

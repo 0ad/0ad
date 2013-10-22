@@ -7,7 +7,6 @@
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
         <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="attack_melee" speed="300"/>
         <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_melee" speed="300"/>
         <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_slaughter" speed="300"/>
         <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="gather_meat" speed="300"/>
@@ -25,10 +24,14 @@
   </group>
   <group>
     <variant frequency="1" name="Chainmail-Plain">
-      <textures><texture file="skeletal/rome_csp_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/rome_csp_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Chainmail-Shoulder detail">
-      <textures><texture file="skeletal/rome_isp_e_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/rome_isp_e_2.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

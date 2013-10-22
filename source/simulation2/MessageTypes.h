@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -366,20 +366,19 @@ public:
 };
 
 /**
- * Sent by technology manager when a technology is researched that modifies a component.
+ * Sent by value modification manager when a value of a certain component is changed
  */
-class CMessageTechnologyModification : public CMessage
+class CMessageValueModification : public CMessage
 {
 public:
-	DEFAULT_MESSAGE_IMPL(TechnologyModification)
+	DEFAULT_MESSAGE_IMPL(ValueModification)
 
-	CMessageTechnologyModification(std::wstring component, player_id_t player) :
-		component(component), player(player)
+	CMessageValueModification(std::wstring component) :
+		component(component)
 	{
 	}
 
 	std::wstring component;
-	player_id_t player;
 };
 
 /**
@@ -398,6 +397,19 @@ public:
 	entity_id_t entity;
 	entity_pos_t oldRange;
 	entity_pos_t newRange;
+};
+
+/**
+ * Sent when an entity pings the minimap
+ */
+class CMessageMinimapPing : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(MinimapPing)
+
+	CMessageMinimapPing() 
+	{
+	}
 };
 
 #endif // INCLUDED_MESSAGETYPES

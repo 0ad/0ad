@@ -1,13 +1,22 @@
 {
 	"pair": "pair_tower_01",	
-	"genericName": "Night's Watch",
-	"description": "Night's watch increases vigilance.",
+	"genericName": "Sentries",
+	"specificName": {
+		"hele": "Nyktophylakes",
+		"mace": "Nyktophylakes",
+		"spart": "Nyktophylakes",
+		"athen": "Nyktophylakes",
+		"ptol": "Nyktophylakes",
+		"sele": "Nyktophylakes",
+		"rome": "Vigiles"
+	},
+	"description": "A night's watch increases vigilance.",
 	"cost": {"food": 100, "wood": 100, "stone": 0, "metal": 0},
 	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "helmet_corinthian_bronze.png",
 	"researchTime": 40,
-	"tooltip": "Post night's watchmen to double the number of default arrows in ungarrisoned Towers.",
+	"tooltip": "Post sentries to double the number of default arrows in ungarrisoned Towers.",
 	"modifications": [{"value": "BuildingAI/DefaultArrowCount", "add": 1.0}],
 	"affects": ["Defensive Tower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

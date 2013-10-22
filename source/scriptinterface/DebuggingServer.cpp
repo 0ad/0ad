@@ -21,7 +21,6 @@
 #include "ThreadDebugger.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "scripting/JSConversions.h"
 
 CDebuggingServer* g_DebuggingServer = NULL;
 
@@ -33,7 +32,7 @@ const char* CDebuggingServer::header400 =
 void CDebuggingServer::GetAllCallstacks(std::stringstream& response)
 {
 	CScopeLock lock(m_Mutex);
-	response.str("");
+	response.str(std::string());
 	std::stringstream stream;
 	uint nbrCallstacksWritten = 0;
 	std::list<CThreadDebugger*>::iterator itr;
@@ -44,15 +43,13 @@ void CDebuggingServer::GetAllCallstacks(std::stringstream& response)
 		{
 			if ((*itr)->GetIsInBreak())
 			{
-				stream.str("");
-				std::string str = stream.str();
+				stream.str(std::string());
 				(*itr)->GetCallstack(stream);
-				str = stream.str();
-				if (stream.str() != "")
+				if ((int)stream.tellp() != 0)
 				{
 					if (nbrCallstacksWritten != 0)
 						response << ",";
-					response << "{" << "\"ThreadDebuggerID\" : " << (*itr)->GetID() << ", \"CallStack\" : " <<  stream.str() << "}";
+					response << "{" << "\"ThreadDebuggerID\" : " << (*itr)->GetID() << ", \"CallStack\" : " << stream.str() << "}";
 					nbrCallstacksWritten++;
 				}
 
@@ -65,17 +62,17 @@ void CDebuggingServer::GetAllCallstacks(std::stringstream& response)
 void CDebuggingServer::GetStackFrameData(std::stringstream& response, uint nestingLevel, uint threadDebuggerID, STACK_INFO stackInfoKind)
 {
 	CScopeLock lock(m_Mutex);
-	response.str("");
+	response.str(std::string());
 	std::stringstream stream;
 	std::list<CThreadDebugger*>::iterator itr;
 	for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); ++itr)
 	{
-		if ( (*itr)->GetID() == threadDebuggerID && (*itr)->GetIsInBreak())
+		if ((*itr)->GetID() == threadDebuggerID && (*itr)->GetIsInBreak())
 		{
 			(*itr)->GetStackFrameData(stream, nestingLevel, stackInfoKind);
-			if (stream.str() != "")
+			if ((int)stream.tellp() != 0)
 			{
-				response <<  stream.str();
+				response << stream.str();
 			}
 		}
 	}
@@ -114,7 +111,7 @@ bool CDebuggingServer::SetNextDbgCmd(uint threadDebuggerID, DBGCMD dbgCmd)
 	std::list<CThreadDebugger*>::iterator itr;
 	for (itr = m_ThreadDebuggers.begin(); itr != m_ThreadDebuggers.end(); ++itr)
 	{
-		if ( (*itr)->GetID() == threadDebuggerID || threadDebuggerID == 0)
+		if ((*itr)->GetID() == threadDebuggerID || threadDebuggerID == 0)
 		{
 			if (DBG_CMD_NONE == (*itr)->GetNextDbgCmd() && (*itr)->GetIsInBreak())
 			{
@@ -188,7 +185,7 @@ void CDebuggingServer::EnumVfsJSFiles(std::stringstream& response)
 {
 	VfsPath path = L"";
 	VfsPaths pathnames;
-	response.str("");
+	response.str(std::string());
 	
 	std::vector<std::string> templates;
 	vfs::ForEachFile(g_VFS, "", AddFileResponse, (uintptr_t)&templates, L"*.js", vfs::DIR_RECURSIVE);
@@ -438,8 +435,8 @@ bool CDebuggingServer::GetWebArgs(struct mg_connection *conn, const struct mg_re
 	int len = mg_get_var(request_info->query_string, strlen(request_info->query_string), argName.c_str(), buf, ARRAY_SIZE(buf));
 	if (len < 0)
 	{
-			mg_printf(conn, "%s (no '%s')", header400, argName.c_str());
-			return false;
+		mg_printf(conn, "%s (no '%s')", header400, argName.c_str());
+		return false;
 	}
 	arg = atoi(buf);
 	return true;
@@ -492,7 +489,7 @@ void CDebuggingServer::UnRegisterScriptinterface(ScriptInterface* pScriptInterfa
 void CDebuggingServer::GetThreadDebuggerStatus(std::stringstream& response)
 {
 	CScopeLock lock(m_Mutex);
-	response.str("");
+	response.str(std::string());
 	std::list<CThreadDebugger*>::iterator itr;
 
 	response << "[";
@@ -529,11 +526,10 @@ void CDebuggingServer::ToggleBreakPoint(std::string filename, uint line)
 	// If the breakpoint isn't handled yet search the breakpoints registered in this class
 	std::list<CBreakPoint>* pBreakPoints = NULL;
 	double breakPointsLockID = AquireBreakPointAccess(&pBreakPoints);
-	std::list<CBreakPoint>::iterator itr;
 
 	// If set, delete
 	bool deleted = false;
-	for (itr = pBreakPoints->begin(); itr != pBreakPoints->end(); ++itr)
+	for (std::list<CBreakPoint>::iterator itr = pBreakPoints->begin(); itr != pBreakPoints->end(); ++itr)
 	{
 		if ((*itr).m_Filename == filename && (*itr).m_UserLine == line)
 		{
@@ -560,7 +556,7 @@ double CDebuggingServer::AquireBreakPointAccess(std::list<CBreakPoint>** breakPo
 {
 	int ret;
 	ret = SDL_SemWait(m_BreakPointsSem);
-	ENSURE(0 == ret);
+	ENSURE(ret == 0);
 	(*breakPoints) = &m_BreakPoints;
 	m_BreakPointsLockID = timer_Time();
 	return m_BreakPointsLockID;

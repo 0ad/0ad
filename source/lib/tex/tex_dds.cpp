@@ -398,7 +398,7 @@ static Status decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 
 	// determine type
 	const size_t pf_flags = (size_t)read_le32(&pf->dwFlags);
-	// .. uncompressed
+	// .. uncompressed RGB/RGBA
 	if(pf_flags & DDPF_RGB)
 	{
 		const size_t pf_bpp    = (size_t)read_le32(&pf->dwRGBBitCount);
@@ -415,7 +415,7 @@ static Status decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 		{
 			// something weird other than RGBA or BGRA
 			if(pf_a_mask != 0xFF000000)
-				goto unsupported_component_ordering;
+				WARN_RETURN(ERR::TEX_FMT_INVALID);
 			flags |= TEX_ALPHA;
 		}
 
@@ -429,9 +429,25 @@ static Status decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 			// DDS is storing images in a format that requires no processing,
 			// we do not allow any weird orderings that require runtime work.
 			// instead, the artists must export with the correct settings.
-		unsupported_component_ordering:
 			WARN_RETURN(ERR::TEX_FMT_INVALID);
 		}
+
+		RETURN_STATUS_IF_ERR(tex_validate_plain_format(bpp, (int)flags));
+	}
+	// .. uncompressed 8bpp greyscale
+	else if(pf_flags & DDPF_ALPHAPIXELS)
+	{
+		const size_t pf_bpp    = (size_t)read_le32(&pf->dwRGBBitCount);
+		const size_t pf_a_mask = (size_t)read_le32(&pf->dwABitMask);
+
+		bpp = pf_bpp;
+
+		if(pf_bpp != 8)
+			WARN_RETURN(ERR::TEX_FMT_INVALID);
+
+		if(pf_a_mask != 0xFF)
+			WARN_RETURN(ERR::TEX_FMT_INVALID);
+		flags |= TEX_GREY;
 
 		RETURN_STATUS_IF_ERR(tex_validate_plain_format(bpp, (int)flags));
 	}

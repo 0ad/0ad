@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -82,6 +82,91 @@ private:
 };
 
 LIB_API void TestArena();
+
+
+/**
+ * allocator design parameters:
+ * - grow dynamically with a fixed chunkSize
+ * - for frequent allocations of size << chunkSize
+ * - no reallocations, pointers remain valid
+ **/
+class DynamicArena
+{
+	struct ArenaChunk
+	{
+		bool Available(size_t size) const
+		{
+			return size <= (capacity - end);
+		}
+
+		// Must check Available first or this may return an invalid address
+		uintptr_t Allocate(size_t size)
+		{
+			uintptr_t ptr = storage + end;
+			end += size;
+			return ptr;
+		}
+
+		uintptr_t storage;
+		size_t end;
+		size_t capacity;
+		ArenaChunk* next;
+	};
+
+	NONCOPYABLE(DynamicArena);
+public:
+	DynamicArena(size_t chunkSize) : chunkSize(chunkSize), head(NULL)
+	{
+		AllocateNewChunk();
+	}
+
+	~DynamicArena()
+	{
+		ArenaChunk* chunk = head;
+		while (chunk != NULL)
+		{
+			ArenaChunk* next = chunk->next;
+			free(chunk);
+			chunk = next;
+		}
+	}
+
+	void AllocateNewChunk()
+	{
+		// For efficiency, do a single allocation with the ArenaChunk and its storage
+		ArenaChunk* next = head;
+		head = (ArenaChunk*)malloc(sizeof(ArenaChunk) + chunkSize);
+		ENSURE(head);
+		head->storage = sizeof(ArenaChunk) + uintptr_t(head);
+		head->end = 0;
+		head->capacity = chunkSize;
+		head->next = next;
+	}
+
+	void* allocate(size_t size)
+	{
+		if (size > chunkSize)
+		{
+			debug_warn(L"DynamicArena cannot allocate more than chunk size");
+			throw std::bad_alloc();
+		}
+		else if (!head->Available(size))
+			AllocateNewChunk();
+
+		return (void*)head->Allocate(size);
+	}
+
+	void deallocate(void* UNUSED(p), size_t UNUSED(size))
+	{
+		// ignored
+	}
+
+private:
+
+	const size_t chunkSize;
+	ArenaChunk *head;
+};
+
 
 }	// namespace Allocators
 

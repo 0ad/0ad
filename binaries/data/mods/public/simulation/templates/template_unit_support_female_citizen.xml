@@ -16,15 +16,6 @@
       <MaxRange>4.0</MaxRange>
     </Slaughter>
   </Attack>
-  <Auras>
-    <Allure>
-      <Radius>25</Radius>
-    </Allure>
-    <Infidelity>
-      <Radius>10</Radius>
-      <Time>10</Time>
-    </Infidelity>
-  </Auras>
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">
@@ -67,7 +58,7 @@ Gather resources, build civic structures, and inspire nearby males to work faste
       <wood.tree>0.7</wood.tree>
       <wood.ruins>5</wood.ruins>
       <stone.rock>0.5</stone.rock>
-      <stone.ruins>5</stone.ruins>
+      <stone.ruins>2</stone.ruins>
       <metal.ore>0.5</metal.ore>
     </Rates>
   </ResourceGatherer>

@@ -19,6 +19,7 @@
 #define INCLUDED_SPATIAL
 
 #include "simulation2/serialization/SerializeTemplates.h"
+#include "ps/CLogger.h"
 
 /**
  * A simple fixed-size array that works similar to an std::vector
@@ -26,7 +27,7 @@
  */
 struct SpatialQueryArray
 {
-	enum { MAX_COUNT = 1024 };
+	enum { MAX_COUNT = 2048 };
 	int count;
 	uint32_t items[MAX_COUNT];
 
@@ -87,7 +88,7 @@ class SpatialSubdivision
 			int count = (int)items.size();
 			if ((dsti + count) > SpatialQueryArray::MAX_COUNT)
 			{
-				debug_warn("SpatialSubdivision Query too large. Results truncated.");
+				LOGWARNING(L"SpatialSubdivision Query too large. Results truncated.");
 				count = SpatialQueryArray::MAX_COUNT - dsti; // don't copy overflowing items
 			}
 			uint32_t* dst = &out.items[dsti];

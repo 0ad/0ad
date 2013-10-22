@@ -1,0 +1,182 @@
+{
+	"Code":"sele",
+	"Culture":"sele",
+	"Name":"Seleucids",
+	"Emblem":"session/portraits/emblems/emblem_ptolemies.png",
+	"History":"The Macedonian Greek kingdom that ruled most of Alexander's former empire.",
+	"Music":[
+			{"File":"Rise_of_Macedon.ogg", "Type":"peace"},
+			{"File":"In_the_Shadow_of_Olympus.ogg", "Type":"peace"},
+			{"File":"The_Hellespont.ogg", "Type":"peace"}
+		],
+	"Factions":
+	[
+		{
+			"Name":"Seleucids",
+			"Description":"The Macedonian Greek kingdom that ruled the Eastern part of Alexander's former empire.",
+			"Technologies":
+			[
+				{
+					"Name":"Pharaonic Cult.",
+					"History":"The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient Egyptian traditions in order to satiate the local populace and ingratiate themselves to the powerful priestly class in the country.",
+					"Description":"Hero aura range boosted by 50%."
+				},
+				{
+					"Name":"Nile Delta",
+					"History":"The Nile Delta had rich soil for farming, due to centuries of seasonal floods from the Nile depositing rich silt across the landscape.",
+					"Description":"The Ptolemaic Egyptians receive 3 additional farming technologies above and beyond the maximum number of farming technologies usually available to a faction."
+				}
+			],
+			"Heroes":
+			[
+				{
+					"Name":"Ptolemaios A' Soter",
+					"Class":"",
+					"Armament":"",
+					"Emblem":"",
+					"History":"."
+				},
+				{
+					"Name":"Ptolemaios D' Philopater",
+					"Class":"",
+					"Armament":"",
+					"Emblem":"",
+					"History":"."
+				},
+				{
+					"Name":"Kleopatra H' Philopater",
+					"Class":"",
+					"Armament":"",
+					"Emblem":"",
+					"History":"."
+				}
+			]
+		}
+	],
+	"CivBonuses":
+	[
+		{
+			"Name":"Cleruchy",
+			"History":"The Ptolemies invited Greeks and Galatians (Gauls) alike to settle in Egypt within military settlements called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the pharaoh's army when called to duty.",
+			"Description":"The Ptolemies receive a barracks structure that trains Greek and Galatian 'settler' soldiers."
+		},
+		{
+			"Name":"Nile Delta",
+			"History":"Unknown.",
+			"Description":"The Ptolemaic Egyptians receive 3 additional farming technologies."
+		},
+		{
+			"Name":"Roundup",
+			"History":"Unknown.",
+			"Description":"Can capture gaia elephants and camels to reduce their training cost."
+		}
+	],
+	"TeamBonuses":
+	[
+		{
+			"Name":"Breadbasket of the Mediterranean",
+			"History":"Egypt was a net exporter of grain, so much so that large cities such as Athens, Antioch, and Rome came to rely upon Egyptian grain in order to feed their masses.",
+			"Description":"All allies automatically gain a slow trickle of food income."
+		}
+	],
+	"Structures":
+	[
+		{
+			"Name":"Library",
+			"Class":"",
+			"Emblem":"",
+			"History":"Alexander the Great founded libraries all over his new empire. These became a center of learning for an entirely new synthesized culture: the Hellenistic culture.",
+			"Requirements":".",
+			"Phase":"City",
+			"Special":"Maximum of 1 built. All Special Technologies and some regular city-phase technologies are researched here. Building one reduces the cost of all other remaining technologies by 10%."
+		},
+		{
+			"Name":"Klēroukhia",
+			"Class":"",
+			"Emblem":"",
+			"History":"The Ptolemies invited Greeks and Galatians (Gauls) alike to settle in Egypt within military settlements called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the pharaoh's army when called to duty. This created a upper-middle class of military settlers who owed their livelihoods and fortunes to the pharaoh and helped grow the available manpower for the Egyptian army. A side effect of this system was that it drained the Greek homeland of military-aged men, a contributing factor to Greece's inevitable conquest by Rome.",
+			"Requirements":"",
+			"Phase":"Town",
+			"Special":" Must be constructed in neutral territory. Has no territory radius effect. Trains all 'settler' units: Galatian Settler Swordsman, Macedonian Settler Cavalry, Tarantine Settler Cavalry."
+		},
+		{
+			"Name":"Lighthouse",
+			"Class":"",
+			"Emblem":"",
+			"History":"The Ptolemaic dynasty in Egypt built the magnificent Lighthouse of Alexandria near the harbor mouth of that Nile Delta city. This structure could be seen for many kilometers out to sea and was one of the Seven Wonders of the World.",
+			"Requirements":".",
+			"Phase":"City",
+			"Special":"When built along the shoreline, removes shroud of darkness over all the water, revealing all the coast lines on the map. Limit: 1."
+		}
+	],
+	"StartEntities":
+	[
+		{
+			"Template": "structures/ptol_civil_centre"
+		},
+		{
+			"Template": "units/ptol_support_female_citizen",
+			"Count": 4
+		},
+		{
+			"Template": "units/ptol_infantry_spearman_b",
+			"Count": 2
+		},
+		{
+			"Template": "units/ptol_infantry_archer_b",
+			"Count": 2
+		},
+		{
+			"Template": "units/ptol_cavalry_swordsman_b"
+		}
+	],
+	"Formations":
+	[
+		"Scatter",
+		"Box",
+		"Column Closed",
+		"Line Closed",
+		"Column Open",
+		"Line Open",
+		"Flank",
+		"Skirmish",
+		"Wedge",
+		"Battle Line",
+		"Phalanx",
+		"Syntagma"
+	],
+	"AINames":
+	[
+		"Seleucus I Nicator",
+		"Antiochus I Soter",
+		"Antiochus II Theos",
+		"Seleucus II Callinicus",
+		"Seleucus III Ceraunus",
+		"Antiochus III Megas",
+		"Seleucus IV Philopator",
+		"Antiochus IV Epiphanes",
+		"Antiochus V Eupator",
+		"Demetrius I Soter",
+		"Alexander I Balas",
+		"Demetrius II Nicator",
+		"Antiochus VI Dionysus",
+		"Diodotus Tryphon",
+		"Antiochus VII Sidetes",
+		"Demetrius II Nicator",
+		"Alexander II Zabinas",
+		"Cleopatra Thea",
+		"Seleucus V Philometor",
+		"Antiochus VIII Grypus",
+		"Antiochus IX Cyzicenus",
+		"Seleucus VI Epiphanes",
+		"Antiochus X Eusebes",
+		"Demetrius III Eucaerus",
+		"Antiochus XI Epiphanes",
+		"Philip I Philadelphus",
+		"Antiochus XII Dionysus",
+		"Seleucus VII Kybiosaktes",
+		"Antiochus XIII Asiaticus",
+		"Philip II Philoromaeus"
+	],
+	"SelectableInGameSetup": false
+}

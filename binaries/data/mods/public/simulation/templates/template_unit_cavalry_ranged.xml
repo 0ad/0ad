@@ -16,8 +16,13 @@
       <PrepareTime>900</PrepareTime>
       <RepeatTime>1500</RepeatTime>
       <PreferredClasses datatype="tokens">Organic</PreferredClasses>
-      <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
       <Spread>1.6</Spread>
+      <Bonuses>
+        <Hunting>
+          <Classes>Animal</Classes>
+          <Multiplier>2</Multiplier>
+        </Hunting>
+      </Bonuses>
     </Ranged>
   </Attack>
   <Identity>

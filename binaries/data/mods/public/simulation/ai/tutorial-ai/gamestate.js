@@ -322,8 +322,5 @@ GameState.prototype.getBuildCounts = function() {
 GameState.prototype.isBuildLimitReached = function(category) {
 	if(this.playerData.buildLimits[category] === undefined || this.playerData.buildCounts[category] === undefined)
 		return false;
-	if(this.playerData.buildLimits[category].LimitsPerCivCentre != undefined)
-		return (this.playerData.buildCounts[category] >= this.playerData.buildCounts["CivilCentre"]*this.playerData.buildLimits[category].LimitPerCivCentre);
-	else
-		return (this.playerData.buildCounts[category] >= this.playerData.buildLimits[category]);
+	return (this.playerData.buildCounts[category] >= this.playerData.buildLimits[category]);
 };

@@ -36,10 +36,10 @@ function CalculateTraderGain(firstMarket, secondMarket, template, trader)
 	var ownerSecondMarket = Engine.QueryInterface(secondMarket, IID_Ownership).GetOwner();
 	if (ownerFirstMarket != ownerSecondMarket)
 	{
-		var internationalGain1 = ApplyTechModificationsToEntity("Trade/International", INTERNATIONAL_TRADING_ADDITION, firstMarket);
+		var internationalGain1 = ApplyValueModificationsToEntity("Trade/International", INTERNATIONAL_TRADING_ADDITION, firstMarket);
 		gain.market1Gain = Math.round(gain.traderGain * internationalGain1 / 100);
 		gain.market1Owner = ownerFirstMarket;
-		var internationalGain2 = ApplyTechModificationsToEntity("Trade/International", INTERNATIONAL_TRADING_ADDITION, secondMarket);
+		var internationalGain2 = ApplyValueModificationsToEntity("Trade/International", INTERNATIONAL_TRADING_ADDITION, secondMarket);
 		gain.market2Gain = Math.round(gain.traderGain * internationalGain2 / 100);
 		gain.market2Owner = ownerSecondMarket;
 

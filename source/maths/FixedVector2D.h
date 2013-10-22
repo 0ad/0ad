@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -95,10 +95,10 @@ public:
 	fixed Length() const
 	{
 		// Do intermediate calculations with 64-bit ints to avoid overflows
-		i64 x = (i64)X.GetInternalValue();
-		i64 y = (i64)Y.GetInternalValue();
-		u64 xx = (u64)(x * x);
-		u64 yy = (u64)(y * y);
+		i32 x = X.GetInternalValue();
+		i32 y = Y.GetInternalValue();
+		u64 xx = (u64)FIXED_MUL_I64_I32_I32(x, x);
+		u64 yy = (u64)FIXED_MUL_I64_I32_I32(y, y);
 		u64 d2 = xx + yy;
 		CheckUnsignedAdditionOverflow(d2, xx, L"Overflow in CFixedVector2D::Length() part 1")
 
@@ -117,14 +117,14 @@ public:
 	 */
 	int CompareLength(fixed cmp) const
 	{
-		i64 x = (i64)X.GetInternalValue(); // abs(x) <= 2^31
-		i64 y = (i64)Y.GetInternalValue();
-		u64 xx = (u64)(x * x); // xx <= 2^62
-		u64 yy = (u64)(y * y);
+		i32 x = X.GetInternalValue(); // abs(x) <= 2^31
+		i32 y = Y.GetInternalValue();
+		u64 xx = (u64)FIXED_MUL_I64_I32_I32(x, x); // xx <= 2^62
+		u64 yy = (u64)FIXED_MUL_I64_I32_I32(y, y);
 		u64 d2 = xx + yy; // d2 <= 2^63 (no overflow)
 
-		i64 c = (i64)cmp.GetInternalValue();
-		u64 c2 = (u64)(c * c);
+		i32 c = cmp.GetInternalValue();
+		u64 c2 = (u64)FIXED_MUL_I64_I32_I32(c, c);
 		if (d2 < c2)
 			return -1;
 		else if (d2 > c2)
@@ -140,13 +140,13 @@ public:
 	 */
 	int CompareLength(const CFixedVector2D& other) const
 	{
-		i64 x = (i64)X.GetInternalValue();
-		i64 y = (i64)Y.GetInternalValue();
-		u64 d2 = (u64)(x * x) + (u64)(y * y);
+		i32 x = X.GetInternalValue();
+		i32 y = Y.GetInternalValue();
+		u64 d2 = (u64)FIXED_MUL_I64_I32_I32(x, x) + (u64)FIXED_MUL_I64_I32_I32(y, y);
 
-		i64 ox = (i64)other.X.GetInternalValue();
-		i64 oy = (i64)other.Y.GetInternalValue();
-		u64 od2 = (u64)(ox * ox) + (u64)(oy * oy);
+		i32 ox = other.X.GetInternalValue();
+		i32 oy = other.Y.GetInternalValue();
+		u64 od2 = (u64)FIXED_MUL_I64_I32_I32(ox, ox) + (u64)FIXED_MUL_I64_I32_I32(oy, oy);
 
 		if (d2 < od2)
 			return -1;
@@ -194,8 +194,8 @@ public:
 	 */
 	fixed Dot(const CFixedVector2D& v)
 	{
-		i64 x = (i64)X.GetInternalValue() * (i64)v.X.GetInternalValue();
-		i64 y = (i64)Y.GetInternalValue() * (i64)v.Y.GetInternalValue();
+		i64 x = FIXED_MUL_I64_I32_I32(X.GetInternalValue(), v.X.GetInternalValue());
+		i64 y = FIXED_MUL_I64_I32_I32(Y.GetInternalValue(), v.Y.GetInternalValue());
 		CheckSignedAdditionOverflow(i64, x, y, L"Overflow in CFixedVector2D::Dot() part 1", L"Underflow in CFixedVector2D::Dot() part 1")
 		i64 sum = x + y;
 		sum >>= fixed::fract_bits;

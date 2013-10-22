@@ -110,6 +110,11 @@ public:
 	virtual fixed GetRunSpeed() = 0;
 
 	/**
+	 * Set whether the unit will turn to face the target point after finishing moving.
+	 */
+	virtual void SetFacePointAfterMove(bool facePointAfterMove) = 0;
+
+	/**
 	 * Get the unit's passability class.
 	 */
 	virtual ICmpPathfinder::pass_class_t GetPassabilityClass() = 0;

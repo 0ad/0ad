@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre">
+  <Footprint>
+    <Square width="40.0" depth="35"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_hele_cc</SpawnEntityOnDeath>
+  </Health>
+  <Obstruction>
+    <Static width="37.0" depth="37"/>
+  </Obstruction>
+  <Identity>
+    <Civ>ptol</Civ>
+    <SpecificName>?</SpecificName>
+    <History>?</History>
+  </Identity>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/ptol_infantry_spearman_b
+      units/ptol_infantry_archer_b
+      units/ptol_cavalry_archer_b
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/ptolemies/civic_centre.xml</Actor>
+  </VisualActor>
+</Entity>

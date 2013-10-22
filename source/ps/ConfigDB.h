@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,30 +21,7 @@
 	TDD		:	http://www.wildfiregames.com/forum/index.php?showtopic=1125
 	OVERVIEW:
 
-	JavaScript:
-		All the javascript interfaces are provided through the global object
-		g_ConfigDB.
-
-		g_ConfigDB Properties:
-		system:
-			All CFG_SYSTEM values are linked to properties of this object.
-			a=g_ConfigDB.system.foo; is equivalent to C++ code
-			g_ConfigDB.GetValue(CFG_SYSTEM, "foo");
-		mod: Ditto, but linked to CFG_MOD
-		user: Ditto, but linked to CFG_USER
-		default: Ditto, but linked to CFG_DEFAULT
-
-		g_ConfigDB Functions: None so far
-
-		ConfigNamespace Functions: (applicable to the system, mod or user
-			properties of g_ConfigDB)
-
-		boolean WriteFile(boolean useVFS, string path):
-			JS interface to g_ConfigDB.WriteFile - should work exactly the
-			same.
-
-		boolean Reload() => g_ConfigDB.Reload()
-		void SetFile() => g_ConfigDB.SetConfigFile()
+	JavaScript: Check this documentation: http://trac.wildfiregames.com/wiki/Exposed_ConfigDB_Functions
 */
 
 #ifndef INCLUDED_CONFIGDB
@@ -81,11 +58,6 @@ class CConfigDB: public Singleton<CConfigDB>
 
 public:
 	CConfigDB();
-	
-	// NOTE: Construct the Singleton Object *after* JavaScript init, so that
-	// the JS interface can be registered. ConfigDB (C++) needs to be initialized before
-	// The ScriptInterface because the ScriptInterface requires some configuration information too.
-	void RegisterJSConfigDB();
 
 	/**
 	 * Attempt to find a config variable with the given name; will search

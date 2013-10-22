@@ -293,6 +293,20 @@ public:
 		}
 	}
 
+	virtual void Reset()
+	{
+		m_RallyPoints.clear();
+		RecomputeAllRallyPointPaths();
+	}
+
+	/**
+	 * Returns true if at least one display rally point is set; i.e., if we have a point to render our marker/line at.
+	 */
+	bool IsSet()
+	{
+		return !m_RallyPoints.empty();
+	}
+
 private:
 
 	/**
@@ -307,14 +321,6 @@ private:
 			RecomputeAllRallyPointPaths();
 		else
 			RecomputeRallyPointPath_wrapper(m_RallyPoints.size()-1);
-	}
-
-	/**
-	 * Returns true iff at least one display rally point is set; i.e., if we have a point to render our marker/line at.
-	 */
-	bool IsSet()
-	{
-		return !m_RallyPoints.empty();
 	}
 
 	/**

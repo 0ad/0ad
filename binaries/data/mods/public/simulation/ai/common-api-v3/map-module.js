@@ -2,6 +2,8 @@
  * Copied with changes from QuantumState's original for qBot, it's a component for storing 8 bit values.
  */
 
+const TERRITORY_PLAYER_MASK = 0x3F;
+
 function Map(sharedScript, originalMap, actualCopy){
 	// get the map to find out the correct dimensions
 	var gameMap = sharedScript.passabilityMap;
@@ -9,6 +11,8 @@ function Map(sharedScript, originalMap, actualCopy){
 	this.height = gameMap.height;
 	this.length = gameMap.data.length;
 	
+	this.maxVal = 255;
+
 	if (originalMap && actualCopy){
 		this.map = new Uint8Array(this.length);
 		for (var i = 0; i < originalMap.length; ++i)
@@ -21,8 +25,12 @@ function Map(sharedScript, originalMap, actualCopy){
 	this.cellSize = 4;
 }
 
+Map.prototype.setMaxVal = function(val){
+	this.maxVal = val;
+};
+
 Map.prototype.gamePosToMapPos = function(p){
-	return [Math.round(p[0]/this.cellSize), Math.round(p[1]/this.cellSize)];
+	return [Math.floor(p[0]/this.cellSize), Math.floor(p[1]/this.cellSize)];
 };
 
 Map.prototype.point = function(p){
@@ -43,13 +51,13 @@ Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 	switch (type){
 		case 'linear':
 			str = +strength / +maxDist;
-			break;
+		break;
 		case 'quadratic':
 			str = +strength / +maxDist2;
-			break;
+		break;
 		case 'constant':
 			str = +strength;
-			break;
+		break;
 	}
 		
 	for ( var y = y0; y < y1; ++y) {
@@ -71,13 +79,12 @@ Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 						quant = str;
 						break;
 				}
-				if (this.map[x + y * this.width] + quant > 255){
-					this.map[x + y * this.width] = 255;
-				} else if (this.map[x + y * this.width] + quant < 0){
+				if (this.map[x + y * this.width] + quant < 0)
 					this.map[x + y * this.width] = 0;
-				} else {
+				else if (this.map[x + y * this.width] + quant > this.maxVal)
+					this.map[x + y * this.width] = this.maxVal;	// avoids overflow.
+				else
 					this.map[x + y * this.width] += quant;
-				}
 			}
 		}
 	}
@@ -126,15 +133,18 @@ Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type) {
 						break;
 				}
 				var machin = this.map[x + y * this.width] * quant;
-				if (machin <= 0){
-					this.map[x + y * this.width] = 0; //set anything which would have gone negative to 0
-				}else{
+				if (machin < 0)
+					this.map[x + y * this.width] = 0;
+				else if (machin > this.maxVal)
+					this.map[x + y * this.width] = this.maxVal;
+				else
 					this.map[x + y * this.width] = machin;
-				}
 			}
 		}
 	}
 };
+
+// doesn't check for overflow.
 Map.prototype.setInfluence = function(cx, cy, maxDist, value) {
 	value = value ? value : 0;
 	
@@ -178,8 +188,9 @@ Map.prototype.sumInfluence = function(cx, cy, radius){
 	return sum;
 };
 /**
- * Make each cell's 8-bit value at least one greater than each of its
- * neighbours' values. Possible assignment of a cap (maximum).
+ * Make each cell's 16-bit/8-bit value at least one greater than each of its
+ * neighbours' values. (If the grid is initialised with 0s and 65535s or 255s, the
+ * result of each cell is its Manhattan distance to the nearest 0.)
  */
 Map.prototype.expandInfluences = function(maximum, map) {
 	var grid = this.map;
@@ -187,7 +198,7 @@ Map.prototype.expandInfluences = function(maximum, map) {
 		grid = map;
 	
 	if (maximum == undefined)
-		maximum = 255;
+		maximum = this.maxVal;
 	var w = this.width;
 	var h = this.height;
 	for ( var y = 0; y < h; ++y) {
@@ -266,7 +277,18 @@ Map.prototype.multiply = function(map, onlyBetter, divider, maxMultiplier){
 };
 // add to current map by the parameter map pixelwise
 Map.prototype.add = function(map){
-	for (var i = 0; i < this.length; ++i){
-		this.map[i] += +map.map[i];
+	for (var i = 0; i < this.length; ++i) {
+		if (this.map[i] + map.map[i] < 0)
+			this.map[i] = 0;
+		else if (this.map[i] + map.map[i] > this.maxVal)
+			this.map[i] = this.maxVal;
+		else
+			this.map[i] += map.map[i];
 	}
+};
+
+Map.prototype.dumpIm = function(name, threshold){
+	name = name ? name : "default.png";
+	threshold = threshold ? threshold : this.maxVal;
+	Engine.DumpImage(name, this.map, this.width, this.height, threshold);
 };

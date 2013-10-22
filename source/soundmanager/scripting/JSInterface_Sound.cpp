@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ namespace JSI_Sound
   void AddPlaylistItem(void* UNUSED(cbdata), std::wstring filename)
   {  
     if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
-      sndManager->AddPlayListItem( new VfsPath( filename ) );
+      sndManager->AddPlayListItem(VfsPath(filename));
   }
 
   void StartPlaylist(void* UNUSED(cbdata), bool looping)

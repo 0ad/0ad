@@ -23,7 +23,6 @@
 
 // referenced by ScriptingHost.cpp
 extern JSFunctionSpec ScriptFunctionTable[];
-extern JSPropertySpec ScriptGlobalTable[];
 
 // dependencies (moved to header to avoid L4 warnings)
 // .. from main.cpp:

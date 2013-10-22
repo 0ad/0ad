@@ -34,9 +34,10 @@ enum
 	ID_MapDescription,
 	ID_MapReveal,
 	ID_MapType,
+	ID_MapPreview,
 	ID_MapTeams,
 	ID_MapKW_Demo,
-	ID_MapKW_Hidden,
+	ID_MapKW_Naval,
 	ID_RandomScript,
 	ID_RandomSize,
 	ID_RandomSeed,
@@ -109,6 +110,7 @@ private:
 BEGIN_EVENT_TABLE(MapSettingsControl, wxPanel)
 	EVT_TEXT(ID_MapName, MapSettingsControl::OnEdit)
 	EVT_TEXT(ID_MapDescription, MapSettingsControl::OnEdit)
+	EVT_TEXT(ID_MapPreview, MapSettingsControl::OnEdit)
 	EVT_CHECKBOX(wxID_ANY, MapSettingsControl::OnEdit)
 	EVT_CHOICE(wxID_ANY, MapSettingsControl::OnEdit)
 END_EVENT_TABLE();
@@ -147,6 +149,10 @@ void MapSettingsControl::CreateWidgets()
 
 	wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
 	gridSizer->AddGrowableCol(1);
+	// TODO: have preview selector tool?
+	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Preview")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+	gridSizer->Add(Tooltipped(new wxTextCtrl(this, ID_MapPreview, wxEmptyString),
+		_("Texture used for map preview")), wxSizerFlags().Expand());
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Reveal map")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	gridSizer->Add(Tooltipped(new wxCheckBox(this, ID_MapReveal, wxEmptyString),
 		_("If checked, players won't need to explore")));
@@ -161,12 +167,12 @@ void MapSettingsControl::CreateWidgets()
 	sizer->AddSpacer(5);
 
 	wxStaticBoxSizer* keywordsSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Keywords"));
-	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(2, 5, 5);
+	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(4, 5, 5);
 	kwGridSizer->Add(new wxStaticText(this, wxID_ANY, _("Demo")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	kwGridSizer->Add(Tooltipped(new wxCheckBox(this, ID_MapKW_Demo, wxEmptyString),
 		_("If checked, map will only be visible using filters in game setup")));
-	kwGridSizer->Add(new wxStaticText(this, wxID_ANY, _("Hidden")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-	kwGridSizer->Add(Tooltipped(new wxCheckBox(this, ID_MapKW_Hidden, wxEmptyString),
+	kwGridSizer->Add(new wxStaticText(this, wxID_ANY, _("Naval")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+	kwGridSizer->Add(Tooltipped(new wxCheckBox(this, ID_MapKW_Naval, wxEmptyString),
 		_("If checked, map will only be visible using filters in game setup")));
 	keywordsSizer->Add(kwGridSizer);
 	sizer->Add(keywordsSizer, wxSizerFlags().Expand());
@@ -188,6 +194,9 @@ void MapSettingsControl::ReadFromEngine()
 	// map description
 	wxDynamicCast(FindWindow(ID_MapDescription), wxTextCtrl)->ChangeValue(wxString(m_MapSettings["Description"]));
 
+	// map preview
+	wxDynamicCast(FindWindow(ID_MapPreview), wxTextCtrl)->ChangeValue(wxString(m_MapSettings["Preview"]));
+
 	// reveal map
 	wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->SetValue(wxString(m_MapSettings["RevealMap"]) == L"true");
 
@@ -207,7 +216,7 @@ void MapSettingsControl::ReadFromEngine()
 			m_MapSettingsKeywords.insert(std::wstring(keyword));
 
 		wxDynamicCast(FindWindow(ID_MapKW_Demo), wxCheckBox)->SetValue(m_MapSettingsKeywords.count(L"demo") != 0);
-		wxDynamicCast(FindWindow(ID_MapKW_Hidden), wxCheckBox)->SetValue(m_MapSettingsKeywords.count(L"hidden") != 0);
+		wxDynamicCast(FindWindow(ID_MapKW_Naval), wxCheckBox)->SetValue(m_MapSettingsKeywords.count(L"naval") != 0);
 	}
 }
 
@@ -227,6 +236,9 @@ AtObj MapSettingsControl::UpdateSettingsObject()
 	// map description
 	m_MapSettings.set("Description", wxDynamicCast(FindWindow(ID_MapDescription), wxTextCtrl)->GetValue());
 
+	// map preview
+	m_MapSettings.set("Preview", wxDynamicCast(FindWindow(ID_MapPreview), wxTextCtrl)->GetValue());
+
 	// reveal map
 	m_MapSettings.setBool("RevealMap", wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->GetValue());
 
@@ -240,10 +252,10 @@ AtObj MapSettingsControl::UpdateSettingsObject()
 		else
 			m_MapSettingsKeywords.erase(L"demo");
 
-		if (wxDynamicCast(FindWindow(ID_MapKW_Hidden), wxCheckBox)->GetValue())
-			m_MapSettingsKeywords.insert(L"hidden");
+		if (wxDynamicCast(FindWindow(ID_MapKW_Naval), wxCheckBox)->GetValue())
+			m_MapSettingsKeywords.insert(L"naval");
 		else
-			m_MapSettingsKeywords.erase(L"hidden");
+			m_MapSettingsKeywords.erase(L"naval");
 
 		AtObj keywords;
 		keywords.set("@array", L"");

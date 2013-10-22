@@ -1,0 +1,2 @@
+Engine.RegisterInterface("TechnologyManager");
+

@@ -1092,7 +1092,7 @@ std::string ScriptInterface::StringifyJSON(jsval obj, bool indent)
 		JS_ClearPendingException(m->m_cx);
 		LOGERROR(L"StringifyJSON failed");
 		JS_ClearPendingException(m->m_cx);
-		return "";
+		return std::string();
 	}
 
 	return str.stream.str();

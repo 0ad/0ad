@@ -293,9 +293,7 @@
 		local extension
 		if (prj.language == "C#") then
 			extension = ".csproj"
-		elseif (_ACTION == "vs2010"  and prj.language == "C++" )then
-			extension = ".vcxproj"
-		elseif (_ACTION == "vs2010"  and prj.language == "C" )then
+		elseif (_ACTION == "vs2010" or _ACTION == "vs2012") then
 			extension = ".vcxproj"
 		else
 			extension = ".vcproj"
@@ -487,3 +485,36 @@
 		oncleanproject  = premake.vstudio.cleanproject,
 		oncleantarget   = premake.vstudio.cleantarget
 	}
+	
+	newaction 
+	{
+		trigger         = "vs2012",
+		shortname       = "Visual Studio 2012",
+		description     = "Generate Visual Studio 2012 project files (experimental)",
+		os              = "windows",
+
+		valid_kinds     = { "ConsoleApp", "WindowedApp", "StaticLib", "SharedLib" },
+		
+		valid_languages = { "C++","C"},
+		
+		valid_tools     = {
+			cc     = { "msc"   },
+			--dotnet = { "msnet" },
+		},
+
+		onsolution = function(sln)
+			premake.generate(sln, "%%.sln", premake.vs_generic_solution)
+		end,
+		
+		onproject = function(prj)
+			premake.generate(prj, "%%.vcxproj", premake.vs2010_vcxproj)
+			premake.generate(prj, "%%.vcxproj.user", premake.vs2010_vcxproj_user)
+			premake.generate(prj, "%%.vcxproj.filters", premake.vs2010_vcxproj_filters)
+		end,
+		
+
+		oncleansolution = premake.vstudio.cleansolution,
+		oncleanproject  = premake.vstudio.cleanproject,
+		oncleantarget   = premake.vstudio.cleantarget
+	}
+	

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Category>Theater</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>500</BuildTime>
     <Resources>
@@ -19,6 +22,7 @@
     <Civ>athen</Civ>
 	<GenericName>Greek Theater</GenericName>
     <SpecificName>Théātron</SpecificName>
+    <Classes>Theater</Classes>
     <Tooltip>Take advantage of the Hellenisation special technology.</Tooltip>
     <History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture and spreading its influence.</History>
     <Icon>structures/theatron.png</Icon>
@@ -34,8 +38,8 @@
   </ProductionQueue>
   <Sound>
     <SoundGroups>
-      <select>interface/select/building/sel_theater.xml</select>
-      <constructed>interface/complete/building/complete_theatre.xml</constructed>
+      <select>interface/select/building/sel_greek_theater.xml</select>
+      <constructed>interface/complete/building/complete_greek_theater.xml</constructed>
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>

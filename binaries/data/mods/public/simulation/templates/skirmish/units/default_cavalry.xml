@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry">
+  <Identity>
+    <Civ>skirm</Civ>
+  </Identity>
+  <Promotion disable=""/>
+  <SkirmishReplacer>
+    <general>units/{civ}_cavalry_javelinist_b</general>
+    <celt>units/celt_cavalry_swordsman_b</celt>
+    <gaul>units/gaul_cavalry_swordsman_b</gaul>
+    <hele>units/hele_cavalry_swordsman_b</hele>
+    <ptol>units/ptol_cavalry_archer_b</ptol>
+    <rome>units/rome_cavalry_spearman_b</rome>
+  </SkirmishReplacer>
+  <VisualActor>
+    <Actor>units/athenians/cavalry_javelinist_b.xml</Actor>
+  </VisualActor>
+</Entity>

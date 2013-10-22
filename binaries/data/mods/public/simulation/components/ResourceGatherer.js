@@ -130,11 +130,11 @@ ResourceGatherer.prototype.GetGatherRates = function()
 	var ret = {};
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
-	var baseSpeed = ApplyTechModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity) * cmpPlayer.GetGatherRateMultiplier();
+	var baseSpeed = ApplyValueModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity) * cmpPlayer.GetGatherRateMultiplier();
 
 	for (var r in this.template.Rates)
 	{
-		var rate = ApplyTechModificationsToEntity("ResourceGatherer/Rates/" + r, +this.template.Rates[r], this.entity);
+		var rate = ApplyValueModificationsToEntity("ResourceGatherer/Rates/" + r, +this.template.Rates[r], this.entity);
 		ret[r] = rate * baseSpeed;
 	}
 
@@ -147,7 +147,7 @@ ResourceGatherer.prototype.GetCapacities = function()
 
 	for (var r in this.template.Capacities)
 	{
-		ret[r] = ApplyTechModificationsToEntity("ResourceGatherer/Capacities/" + r, +this.template.Capacities[r], this.entity);
+		ret[r] = ApplyValueModificationsToEntity("ResourceGatherer/Capacities/" + r, +this.template.Capacities[r], this.entity);
 	}
 
 	return ret;

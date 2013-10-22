@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_house">
+  <Identity>
+    <Civ>skirm</Civ>
+    <Tooltip>Changes in a 10-pop house for civilisations with those houses, is deleted for other civs</Tooltip>
+  </Identity>
+  <SkirmishReplacer>
+    <athen>structures/{civ}_house</athen>
+    <cart>structures/{civ}_house</cart>
+    <hele>structures/{civ}_house</hele>
+    <mace>structures/{civ}_house</mace>
+    <pers>structures/{civ}_house</pers>
+    <rome>structures/{civ}_house</rome>
+    <spart>structures/{civ}_house</spart>
+  </SkirmishReplacer>
+  <VisualActor>
+    <Actor>structures/athenians/house.xml</Actor>
+  </VisualActor>
+</Entity>

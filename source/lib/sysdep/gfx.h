@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -41,6 +41,9 @@ LIB_API std::wstring CardName();
  **/
 LIB_API std::wstring DriverInfo();
 
+/**
+ * not implemented
+ **/
 LIB_API size_t MemorySizeMiB();
 
 /**

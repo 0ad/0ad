@@ -472,9 +472,9 @@ long CSoundManager::GetBufferSize()
 	return m_BufferSize;
 }
 
-void CSoundManager::AddPlayListItem( const VfsPath* itemPath)
+void CSoundManager::AddPlayListItem(const VfsPath& itemPath)
 {
-  m_PlayListItems->push_back( *itemPath );
+  m_PlayListItems->push_back(itemPath);
 }
 
 void CSoundManager::ClearPlayListItems()
@@ -668,14 +668,11 @@ void CSoundManager::PlayGroupItem(ISoundItem* anItem, ALfloat groupGain )
 
 void CSoundManager::SetMusicEnabled (bool isEnabled)
 {
-	LOGERROR(L"entering enabled area", isEnabled);
-
 	if (m_CurrentTune && !isEnabled)
 	{
 		m_CurrentTune->FadeAndDelete(1.00);
 		m_CurrentTune = 0L;
 	}
-	LOGERROR(L"exiting enabled area", isEnabled);
 	m_MusicEnabled = isEnabled;
 }
 

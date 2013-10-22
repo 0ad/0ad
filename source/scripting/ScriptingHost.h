@@ -68,8 +68,6 @@ private:
 	JSContext *		m_Context;
 	JSObject *		m_GlobalObject;
 
-	JSErrorReport	m_ErrorReport;
-
 	std::map < std::string, CustomType >		m_CustomObjectTypes;
 
 	// The long-term plan is to migrate from ScriptingHost to the newer shinier ScriptInterface.

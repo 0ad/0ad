@@ -129,6 +129,7 @@ public:
 
 	entity_pos_t m_Radius;
 	bool m_Moving;
+	bool m_FacePointAfterMove;
 
 	enum State
 	{
@@ -281,6 +282,8 @@ public:
 		m_FormationController = paramNode.GetChild("FormationController").ToBool();
 
 		m_Moving = false;
+		m_FacePointAfterMove = true;
+
 		m_WalkSpeed = paramNode.GetChild("WalkSpeed").ToFixed();
 		m_Speed = m_WalkSpeed;
 		m_CurSpeed = fixed::Zero();
@@ -342,6 +345,7 @@ public:
 		serialize.NumberFixed_Unbounded("speed", m_Speed);
 
 		serialize.Bool("moving", m_Moving);
+		serialize.Bool("facePointAfterMove", m_FacePointAfterMove);
 
 		SerializeVector<SerializeWaypoint>()(serialize, "long path", m_LongPath.m_Waypoints);
 		SerializeVector<SerializeWaypoint>()(serialize, "short path", m_ShortPath.m_Waypoints);
@@ -426,6 +430,11 @@ public:
 	virtual void SetSpeed(fixed speed)
 	{
 		m_Speed = speed;
+	}
+
+	virtual void SetFacePointAfterMove(bool facePointAfterMove)
+	{
+		m_FacePointAfterMove = facePointAfterMove;
 	}
 
 	virtual void SetDebugOverlay(bool enabled)
@@ -963,7 +972,9 @@ void CCmpUnitMotion::Move(fixed dt)
 
 							StopMoving();
 
-							FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
+
+							if (m_FacePointAfterMove)
+								FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
 							// TODO: if the goal was a square building, we ought to point towards the
 							// nearest point on the square, not towards its center
 						}
@@ -1312,7 +1323,8 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 		else
 		{
 			// We're already in range - no need to move anywhere
-			FaceTowardsPointFromPos(pos, x, z);
+			if (m_FacePointAfterMove)
+				FaceTowardsPointFromPos(pos, x, z);
 			return false;
 		}
 
@@ -1474,7 +1486,8 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 		else if (maxRange < entity_pos_t::Zero() || distance < maxRange)
 		{
 			// We're already in range - no need to move anywhere
-			FaceTowardsPointFromPos(pos, goal.x, goal.z);
+			if (m_FacePointAfterMove)
+				FaceTowardsPointFromPos(pos, goal.x, goal.z);
 			return false;
 		}
 		else
@@ -1496,7 +1509,8 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 				if (circleDistance < maxRange)
 				{
 					// We're already in range - no need to move anywhere
-					FaceTowardsPointFromPos(pos, goal.x, goal.z);
+					if (m_FacePointAfterMove)
+						FaceTowardsPointFromPos(pos, goal.x, goal.z);
 					return false;
 				}
 

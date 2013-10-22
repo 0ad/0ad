@@ -41,6 +41,12 @@ public:
 	/// to the previous one.
 	virtual void AddPosition_wrapper(CFixedVector2D position) = 0;
 
+	/// Reset the positions of this rally point marker
+	virtual void Reset() = 0;
+
+	/// Returns true if at least one display rally point is set
+	virtual bool IsSet() = 0;
+
 	DECLARE_INTERFACE_TYPE(RallyPointRenderer)
 };
 

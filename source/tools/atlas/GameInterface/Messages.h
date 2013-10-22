@@ -159,6 +159,12 @@ MESSAGE(SaveMap,
 		((std::wstring, filename))
 		);
 
+QUERY(GetMapList,
+		,
+		((std::vector<std::wstring>, scenarioFilenames))
+		((std::vector<std::wstring>, skirmishFilenames))
+		);
+
 QUERY(GetMapSettings,
 		,
 		((std::string, settings))

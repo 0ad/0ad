@@ -36,6 +36,7 @@
 #endif
 
 #include "graphics/CinemaTrack.h"
+#include "graphics/FontMetrics.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/MapReader.h"
@@ -47,7 +48,6 @@
 #include "gui/scripting/JSInterface_GUITypes.h"
 #include "gui/scripting/ScriptFunctions.h"
 #include "maths/MathUtil.h"
-#include "maths/scripting/JSInterface_Vector3D.h"
 #include "network/NetServer.h"
 #include "network/NetClient.h"
 
@@ -55,7 +55,6 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
-#include "ps/Font.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/GameSetup.h"
@@ -318,15 +317,6 @@ void Render()
 
 static void RegisterJavascriptInterfaces()
 {
-	// maths
-	JSI_Vector3D::init();
-
-	// renderer
-	CRenderer::ScriptingInit();
-
-	// ps
-	JSI_Console::init();
-
 	// GUI
 	CGUI::ScriptingInit();
 
@@ -513,7 +503,7 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, CScriptVal initData)
 		g_Console->UpdateScreenSize(g_xres, g_yres);
 
 		// Calculate and store the line spacing
-		CFont font(CONSOLE_FONT);
+		CFontMetrics font(CStrIntern(CONSOLE_FONT));
 		g_Console->m_iFontHeight = font.GetLineSpacing();
 		g_Console->m_iFontWidth = font.GetCharacterWidth(L'C');
 		g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);
@@ -925,8 +915,6 @@ void Init(const CmdLineArgs& args, int flags)
 
 	InitScripting();	// before GUI
 
-	g_ConfigDB.RegisterJSConfigDB(); 	// after scripting 
-
 	// Optionally start profiler HTTP output automatically
 	// (By default it's only enabled by a hotkey, for security/performance)
 	bool profilerHTTPEnable = false;
@@ -1089,6 +1077,7 @@ bool Autostart(const CmdLineArgs& args)
 	 * -autostart-ip=127.0.0.1			-- multiplayer connect to 127.0.0.1
 	 * -autostart-random=104			-- random map, optional seed value = 104 (default is 0, random is -1)
 	 * -autostart-size=192				-- random map size in tiles = 192 (default is 192)
+	 * -autostart-civ=1:hele			-- set player #1 civ to "hele"
 	 *
 	 * Examples:
 	 * -autostart=Acropolis -autostart-host -autostart-players=2		-- Host game on Acropolis map, 2 players
@@ -1139,8 +1128,7 @@ bool Autostart(const CmdLineArgs& args)
 		}
 		
 		// Random map definition will be loaded from JSON file, so we need to parse it
-		std::wstring mapPath = L"maps/random/";
-		std::wstring scriptPath = mapPath + autoStartName.FromUTF8() + L".json";
+		std::wstring scriptPath = L"maps/random/" + autoStartName.FromUTF8() + L".json";
 		CScriptValRooted scriptData = scriptInterface.ReadJSONFile(scriptPath);
 		if (!scriptData.undefined() && scriptInterface.GetProperty(scriptData.get(), "settings", settings))
 		{
@@ -1165,7 +1153,6 @@ bool Autostart(const CmdLineArgs& args)
 		}
 
 		scriptInterface.SetProperty(attrs.get(), "map", std::string(autoStartName));
-		scriptInterface.SetProperty(attrs.get(), "mapPath", mapPath);
 		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("random"));
 		scriptInterface.SetProperty(settings.get(), "Seed", seed);									// Random seed
 		scriptInterface.SetProperty(settings.get(), "Size", mapSize);								// Random map size (in patches)
@@ -1192,7 +1179,9 @@ bool Autostart(const CmdLineArgs& args)
 	}
 	else
 	{
-		scriptInterface.SetProperty(attrs.get(), "map", std::string(autoStartName));
+		// TODO: support akirmish maps
+		std::string mapFile = "maps/scenarios/" + autoStartName;
+		scriptInterface.SetProperty(attrs.get(), "map", mapFile);
 		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"));
 	}
 
@@ -1344,7 +1333,7 @@ void CancelLoad(const CStrW& message)
 		JSBool ok = JS_GetProperty(cx, g_GUI->GetScriptObject(), "cancelOnError", &fval);
 		ENSURE(ok);
 
-		jsval msgval = ToJSVal(message);
+		jsval msgval = ScriptInterface::ToJSVal(cx, message);
 
 		if (ok && !JSVAL_IS_VOID(fval))
 			JS_CallFunctionValue(cx, g_GUI->GetScriptObject(), fval, 1, &msgval, &rval);

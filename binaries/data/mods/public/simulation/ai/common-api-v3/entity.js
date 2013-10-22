@@ -32,7 +32,14 @@ var EntityTemplate = Class({
 			return undefined;
 		return this._template.Identity.RequiredTechnology;
 	},
-
+						   
+	available: function(gameState) {
+		if (!this._template.Identity || !this._template.Identity.RequiredTechnology)
+			return true;
+		return gameState.isResearched(this._template.Identity.RequiredTechnology);
+	},
+						   
+	// specifically
 	phase: function() {
 		if (!this._template.Identity || !this._template.Identity.RequiredTechnology)
 			return 0;
@@ -412,7 +419,25 @@ var EntityTemplate = Class({
 		var territories = this.buildTerritories();
 		return (territories && territories.indexOf(territory) != -1);
 	},
-	
+
+	hasTerritoryInfluence: function() {
+		return (this._template.TerritoryInfluence !== undefined);
+	},
+
+	territoryInfluenceRadius: function() {
+		if (this._template.TerritoryInfluence !== undefined)
+			return (this._template.TerritoryInfluence.Radius);
+		else
+			return -1;
+	},
+
+	territoryInfluenceWeight: function() {
+		if (this._template.TerritoryInfluence !== undefined)
+			return (this._template.TerritoryInfluence.Weight);
+		else
+			return -1;
+	},
+
 	visionRange: function() {
 		if (!this._template.Vision)
 			return undefined;
@@ -427,7 +452,7 @@ var Entity = Class({
 
 	_init: function(sharedAI, entity)
 	{
-		this._super.call(this, sharedAI.GetTemplate(entity.template), sharedAI.techModifications[entity.owner]);
+		this._super.call(this, sharedAI.GetTemplate(entity.template), sharedAI._techModifications[entity.owner]);
 
 		this._ai = sharedAI;
 		this._templateName = entity.template;
@@ -462,8 +487,12 @@ var Entity = Class({
 		this._ai.setMetadata(player, this, key, value);
 	},
 	
-	deleteMetadata: function(player) {
+	deleteAllMetadata: function(player) {
 		delete this._ai._entityMetadata[player][this.id()];
+	},
+				   
+	deleteMetadata: function(player, key) {
+		this._ai.deleteMetadata(player, this, key);
 	},
 
 	position: function() { return this._entity.position; },
@@ -500,7 +529,7 @@ var Entity = Class({
 	},
 
 	foundationProgress: function() {
-		if (typeof this._entity.foundationProgress === "undefined")
+		if (this._entity.foundationProgress == undefined)
 			return undefined;
 		return this._entity.foundationProgress;
 	},
@@ -537,6 +566,7 @@ var Entity = Class({
 	{
 		if (this._entity.resourceSupplyGatherers !== undefined)
 			return (this.maxGatherers() === this._entity.resourceSupplyGatherers.length);
+
 		return undefined;
 	},
 
@@ -547,6 +577,8 @@ var Entity = Class({
 	},
 
 	garrisoned: function() { return new EntityCollection(this._ai, this._entity.garrisoned); },
+	
+	canGarrisonInside: function() { return this._entity.garrisoned.length < this.garrisonMax(); },
 
 	// TODO: visibility
 
@@ -658,7 +690,7 @@ var Entity = Class({
 		return this;
 	},
 
-	construct: function(template, x, z, angle) {
+	construct: function(template, x, z, angle, metadata) {
 		// TODO: verify this unit can construct this, just for internal
 		// sanity-checking and error reporting
 
@@ -671,7 +703,8 @@ var Entity = Class({
 			"angle": angle,
 			"autorepair": false,
 			"autocontinue": false,
-			"queued": false
+			"queued": false,
+			"metadata" : metadata	// can be undefined
 		});
 		return this;
 	},

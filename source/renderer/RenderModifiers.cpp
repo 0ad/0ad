@@ -73,39 +73,39 @@ ShaderRenderModifier::ShaderRenderModifier()
 
 void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 {
-	shader->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection());
-	shader->Uniform("cameraPos", g_Renderer.GetViewCamera().GetOrientation().GetTranslation());
+	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	shader->Uniform(str_cameraPos, g_Renderer.GetViewCamera().GetOrientation().GetTranslation());
 
-	if (GetShadowMap() && shader->GetTextureBinding("shadowTex").Active())
+	if (GetShadowMap() && shader->GetTextureBinding(str_shadowTex).Active())
 	{
-		shader->BindTexture("shadowTex", GetShadowMap()->GetTexture());
-		shader->Uniform("shadowTransform", GetShadowMap()->GetTextureMatrix());
+		shader->BindTexture(str_shadowTex, GetShadowMap()->GetTexture());
+		shader->Uniform(str_shadowTransform, GetShadowMap()->GetTextureMatrix());
 		int width = GetShadowMap()->GetWidth();
 		int height = GetShadowMap()->GetHeight();
-		shader->Uniform("shadowScale", width, height, 1.0f / width, 1.0f / height); 
+		shader->Uniform(str_shadowScale, width, height, 1.0f / width, 1.0f / height); 
 	}
 
 	if (GetLightEnv())
 	{
-		shader->Uniform("ambient", GetLightEnv()->m_UnitsAmbientColor);
-		shader->Uniform("sunDir", GetLightEnv()->GetSunDir());
-		shader->Uniform("sunColor", GetLightEnv()->m_SunColor);
+		shader->Uniform(str_ambient, GetLightEnv()->m_UnitsAmbientColor);
+		shader->Uniform(str_sunDir, GetLightEnv()->GetSunDir());
+		shader->Uniform(str_sunColor, GetLightEnv()->m_SunColor);
 		
-		shader->Uniform("fogColor", GetLightEnv()->m_FogColor);
-		shader->Uniform("fogParams", GetLightEnv()->m_FogFactor, GetLightEnv()->m_FogMax, 0.f, 0.f);
+		shader->Uniform(str_fogColor, GetLightEnv()->m_FogColor);
+		shader->Uniform(str_fogParams, GetLightEnv()->m_FogFactor, GetLightEnv()->m_FogMax, 0.f, 0.f);
 	}
 
-	if (shader->GetTextureBinding("losTex").Active())
+	if (shader->GetTextureBinding(str_losTex).Active())
 	{
 		CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
-		shader->BindTexture("losTex", los.GetTextureSmooth());
+		shader->BindTexture(str_losTex, los.GetTextureSmooth());
 		// Don't bother sending the whole matrix, we just need two floats (scale and translation)
-		shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+		shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 	}
 
-	m_BindingInstancingTransform = shader->GetUniformBinding("instancingTransform");
-	m_BindingShadingColor = shader->GetUniformBinding("shadingColor");
-	m_BindingPlayerColor = shader->GetUniformBinding("playerColor");
+	m_BindingInstancingTransform = shader->GetUniformBinding(str_instancingTransform);
+	m_BindingShadingColor = shader->GetUniformBinding(str_shadingColor);
+	m_BindingPlayerColor = shader->GetUniformBinding(str_playerColor);
 }
 
 void ShaderRenderModifier::PrepareModel(const CShaderProgramPtr& shader, CModel* model)

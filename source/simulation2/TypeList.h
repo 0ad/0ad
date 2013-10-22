@@ -47,8 +47,9 @@ MESSAGE(RangeUpdate)
 MESSAGE(TerrainChanged)
 MESSAGE(TerritoriesChanged)
 MESSAGE(PathResult)
-MESSAGE(TechnologyModification)
+MESSAGE(ValueModification)
 MESSAGE(VisionRangeChanged)
+MESSAGE(MinimapPing)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized
@@ -138,8 +139,8 @@ COMPONENT(SettlementScripted)
 INTERFACE(SoundManager)
 COMPONENT(SoundManager)
 
-INTERFACE(TechnologyManager)
-COMPONENT(TechnologyManagerScripted)
+INTERFACE(ValueModificationManager)
+COMPONENT(ValueModificationManagerScripted)
 
 INTERFACE(TechnologyTemplateManager)
 COMPONENT(TechnologyTemplateManagerScripted)

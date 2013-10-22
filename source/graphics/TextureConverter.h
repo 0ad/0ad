@@ -69,7 +69,8 @@ public:
 		FMT_DXT1,
 		FMT_DXT3,
 		FMT_DXT5,
-		FMT_RGBA
+		FMT_RGBA,
+		FMT_ALPHA
 	};
 
 	enum EMipmap

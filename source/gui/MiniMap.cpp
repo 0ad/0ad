@@ -32,6 +32,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/bits.h"
 #include "lib/timer.h"
+#include "ps/ConfigDB.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
@@ -58,7 +59,8 @@ static unsigned int ScaleColor(unsigned int color, float x)
 
 CMiniMap::CMiniMap() :
 	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true), m_MapScale(1.f),
-	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW)
+	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW),
+	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false)
 {
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_CStrW,		"tooltip");
@@ -114,6 +116,16 @@ CMiniMap::CMiniMap() :
 		
 	}
 	m_VertexArray.Upload();
+
+	double blinkDuration = 1.0;
+
+	// Tests won't have config initialised
+	if (CConfigDB::IsInitialised())
+	{
+		CFG_GET_VAL("gui.session.minimap.pingduration", Double, m_PingDuration);
+		CFG_GET_VAL("gui.session.minimap.blinkduration", Double, blinkDuration);
+	}
+	m_HalfBlinkDuration = blinkDuration/2;
 }
 
 CMiniMap::~CMiniMap()
@@ -302,6 +314,24 @@ struct MinimapUnitVertex
 	float x, y;
 };
 
+// Adds a vertex to the passed VertexArray
+static void inline addVertex(const MinimapUnitVertex& v,
+					  VertexArrayIterator<u8[4]>& attrColor,
+					  VertexArrayIterator<float[2]>& attrPos)
+{
+	(*attrColor)[0] = v.r;
+	(*attrColor)[1] = v.g;
+	(*attrColor)[2] = v.b;
+	(*attrColor)[3] = v.a;
+	++attrColor;
+
+	(*attrPos)[0] = v.x;
+	(*attrPos)[1] = v.y;
+
+	++attrPos;
+}
+
+
 void CMiniMap::DrawTexture(float coordMax, float angle, float x, float y, float x2, float y2, float z)
 {
 	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
@@ -384,8 +414,8 @@ void CMiniMap::Draw()
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 	{
 		CShaderDefines defines;
-		defines.Add("MINIMAP_BASE", "1");
-		tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("minimap"), g_Renderer.GetSystemShaderDefines(), defines);
+		defines.Add(str_MINIMAP_BASE, str_1);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), defines);
 		tech->BeginPass();
 		shader = tech->GetShader();
 	}
@@ -398,7 +428,7 @@ void CMiniMap::Draw()
 
 	// Draw the main textured quad
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
-		shader->BindTexture("baseTex", m_TerrainTexture);
+		shader->BindTexture(str_baseTex, m_TerrainTexture);
 	else
 		g_Renderer.BindTexture(0, m_TerrainTexture);
 	
@@ -412,7 +442,7 @@ void CMiniMap::Draw()
 	CTerritoryTexture& territoryTexture = g_Game->GetView()->GetTerritoryTexture();
 	
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
-		shader->BindTexture("baseTex", territoryTexture.GetTexture());
+		shader->BindTexture(str_baseTex, territoryTexture.GetTexture());
 	else
 		territoryTexture.BindTexture(0);
 	
@@ -437,11 +467,11 @@ void CMiniMap::Draw()
 		tech->EndPass();
 
 		CShaderDefines defines;
-		defines.Add("MINIMAP_LOS", "1");
-		tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("minimap"), g_Renderer.GetSystemShaderDefines(), defines);
+		defines.Add(str_MINIMAP_LOS, str_1);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), defines);
 		tech->BeginPass();
 		shader = tech->GetShader();
-		shader->BindTexture("baseTex", losTexture.GetTexture());
+		shader->BindTexture(str_baseTex, losTexture.GetTexture());
 	}
 	else
 	{
@@ -476,8 +506,8 @@ void CMiniMap::Draw()
 		tech->EndPass();
 
 		CShaderDefines defines;
-		defines.Add("MINIMAP_POINT", "1");
-		tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("minimap"), g_Renderer.GetSystemShaderDefines(), defines);
+		defines.Add(str_MINIMAP_POINT, str_1);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), defines);
 		tech->BeginPass();
 		shader = tech->GetShader();
 	}
@@ -509,6 +539,17 @@ void CMiniMap::Draw()
 
 		m_EntitiesDrawn = 0;
 		MinimapUnitVertex v;
+		std::vector<MinimapUnitVertex> pingingVertices;
+		pingingVertices.reserve(MAX_ENTITIES_DRAWN/2);
+
+		const double time = timer_Time();
+
+		if (time > m_NextBlinkTime)
+		{
+			m_BlinkState = !m_BlinkState;
+			m_NextBlinkTime = time + m_HalfBlinkDuration;
+		}
+
 		entity_pos_t posX, posZ;
 		for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 		{
@@ -521,23 +562,32 @@ void CMiniMap::Draw()
 					v.a = 255;
 					v.x = posX.ToFloat()*sx;
 					v.y = -posZ.ToFloat()*sy;
-
 					
-					(*attrColor)[0] = v.r;
-					(*attrColor)[1] = v.g;
-					(*attrColor)[2] = v.b;
-					(*attrColor)[3] = v.a;
-					++attrColor;
+					// Check minimap pinging to indicate something
+					if (m_BlinkState && cmpMinimap->CheckPing(time, m_PingDuration))
+					{
+						v.r = 255; // ping color is white
+						v.g = 255;
+						v.b = 255;
 
-					(*attrPos)[0] = v.x;
-					(*attrPos)[1] = v.y;
-		
-					++attrPos;
-
-					m_EntitiesDrawn++;
+						pingingVertices.push_back(v);
+					}
+					else
+					{
+						addVertex(v, attrColor, attrPos);
+						++m_EntitiesDrawn;
+					}
 				}
 			}
 		}
+
+		// Add the pinged vertices at the end, so they are drawn on top
+		for (size_t v = 0; v < pingingVertices.size(); ++v)
+		{
+			addVertex(pingingVertices[v], attrColor, attrPos);
+			++m_EntitiesDrawn;
+		}
+
 		ENSURE(m_EntitiesDrawn < MAX_ENTITIES_DRAWN);
 		m_VertexArray.Upload();
 	}
@@ -579,14 +629,14 @@ void CMiniMap::Draw()
 	}
 
 	PROFILE_END("minimap units");
-	
+
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 	{
 		tech->EndPass();
 
 		CShaderDefines defines;
-		defines.Add("MINIMAP_LINE", "1");
-		tech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("minimap"), g_Renderer.GetSystemShaderDefines(), defines);
+		defines.Add(str_MINIMAP_LINE, str_1);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), defines);
 		tech->BeginPass();
 		shader = tech->GetShader();
 	}

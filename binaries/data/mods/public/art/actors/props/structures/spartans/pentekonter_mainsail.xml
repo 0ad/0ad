@@ -8,14 +8,26 @@
   </group>
   <group>
     <variant frequency="1" name="sail_scorpion">
-      <textures><texture file="props/spart_sail_a.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/spart_sail_a.png" name="baseTex"/>
+        <texture file="props/sail_norm_1.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="sail_dokana">
-      <textures><texture file="props/spart_sail_b.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/spart_sail_b.png" name="baseTex"/>
+        <texture file="props/sail_norm_1.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="sail_lamda">
-      <textures><texture file="props/spart_sail_c.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/spart_sail_c.png" name="baseTex"/>
+        <texture file="props/sail_norm_1.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

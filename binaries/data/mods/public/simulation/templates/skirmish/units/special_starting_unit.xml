@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support">
+  <Footprint>
+    <Circle radius="4.0"/>
+    <Height>6.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>skirm</Civ>
+  </Identity>
+  <Obstruction>
+    <Unit radius="3.0"/>
+  </Obstruction>
+  <Promotion disable=""/>
+  <SkirmishReplacer>
+    <brit>units/brit_war_dog_b</brit>
+    <maur>units/maur_support_elephant</maur>
+  </SkirmishReplacer>
+  <VisualActor>
+    <Actor>units/mauryans/support_elephant.xml</Actor>
+  </VisualActor>
+</Entity>

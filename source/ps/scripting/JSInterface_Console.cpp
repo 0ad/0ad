@@ -15,110 +15,47 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// JavaScript interface to native code selection and group objects
-
 #include "precompiled.h"
+
+#include "scriptinterface/ScriptInterface.h"
 #include "JSInterface_Console.h"
 #include "ps/CConsole.h"
-#include "scripting/JSConversions.h"
+#include "ps/CLogger.h"
 
-JSClass JSI_Console::JSI_class =
-{
-	"Console", 0,
-	JS_PropertyStub, JS_PropertyStub,
-	JSI_Console::getProperty, JSI_Console::setProperty,
-	JS_EnumerateStub, JS_ResolveStub,
-	JS_ConvertStub, JS_FinalizeStub,
-	NULL, NULL, NULL, NULL
-};
-
-JSPropertySpec JSI_Console::JSI_props[] =
-{
-	{ "visible", JSI_Console::console_visible, JSPROP_ENUMERATE },
-	{ 0 }
-};
-
-JSFunctionSpec JSI_Console::JSI_methods[] = 
-{
-	{ "write", JSI_Console::writeConsole, 1, 0 },
-	{ 0 },
-};
-
-JSBool JSI_Console::getProperty(JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsid id, jsval* vp)
-{
-	if (!JSID_IS_INT(id))
-		return JS_TRUE;
-
-	int i = JSID_TO_INT(id);
-
-	switch (i)
+bool JSI_Console::CheckGlobalInitialized()
+{	
+	if (!g_Console)
 	{
-	case console_visible:
-		*vp = BOOLEAN_TO_JSVAL(g_Console->IsActive());
-		return JS_TRUE;
-	default:
-		*vp = JSVAL_NULL;
-		return JS_TRUE;
+		LOGERROR(L"Trying to access the console when it's not initialized!");
+		return false;
 	}
+	return true;
 }
 
-JSBool JSI_Console::setProperty(JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsid id, JSBool UNUSED(strict), jsval* vp)
+bool JSI_Console::GetVisibleEnabled(void* UNUSED(cbdata))
 {
-	if (!JSID_IS_INT(id))
-		return JS_TRUE;
-
-	int i = JSID_TO_INT(id);
-
-	switch (i)
-	{
-	case console_visible:
-		try
-		{
-			g_Console->SetVisible(ToPrimitive<bool> (*vp));
-			return JS_TRUE;
-		}
-		catch (PSERROR_Scripting_ConversionFailed&)
-		{
-			return JS_TRUE;
-		}
-	default:
-		return JS_TRUE;
-	}
+	if (!CheckGlobalInitialized())
+		return false;
+	return g_Console->IsActive();
 }
 
-void JSI_Console::init()
+void JSI_Console::SetVisibleEnabled(void* UNUSED(cbdata), bool Enabled)
 {
-	g_ScriptingHost.DefineCustomObjectType(&JSI_class, NULL, 0, JSI_props, JSI_methods, NULL, NULL);
+	if (!CheckGlobalInitialized())
+		return;
+	g_Console->SetVisible(Enabled);
 }
 
-JSBool JSI_Console::getConsole(JSContext* cx, JSObject* UNUSED(obj), jsid UNUSED(id), jsval* vp)
+void JSI_Console::Write(void* UNUSED(cbdata), std::wstring output)
 {
-	JSObject* console = JS_NewObject(cx, &JSI_Console::JSI_class, NULL, NULL);
-	*vp = OBJECT_TO_JSVAL(console);
-	return JS_TRUE;
+	if (!CheckGlobalInitialized())
+		return;
+	g_Console->InsertMessage(L"%ls", output.c_str());
 }
 
-JSBool JSI_Console::writeConsole(JSContext* cx, uintN argc, jsval* vp)
+void JSI_Console::RegisterScriptFunctions(ScriptInterface& scriptInterface)
 {
-	UNUSED2(cx);
-
-	CStrW output;
-	for (uintN i = 0; i < argc; i++)
-	{
-		try
-		{
-			CStrW arg = g_ScriptingHost.ValueToUCString(JS_ARGV(cx, vp)[i]);
-			output += arg;
-		}
-		catch (PSERROR_Scripting_ConversionFailed&)
-		{
-		}
-	}
-
-	// TODO: What if the console has been destroyed already?
-	if (g_Console)
-		g_Console->InsertMessage(L"%ls", output.c_str());
-
-	JS_SET_RVAL(cx, vp, JSVAL_VOID);
-	return JS_TRUE;
+	scriptInterface.RegisterFunction<bool, &JSI_Console::GetVisibleEnabled>("Console_GetVisibleEnabled");
+	scriptInterface.RegisterFunction<void, bool, &JSI_Console::SetVisibleEnabled>("Console_SetVisibleEnabled");
+	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Console::Write>("Console_Write");
 }

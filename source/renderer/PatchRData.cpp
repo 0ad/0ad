@@ -684,12 +684,12 @@ void CPatchRData::Update(CSimulation2* simulation)
 
 // std::map types with appropriate arena allocators and default comparison operator
 #define POOLED_BATCH_MAP(Key, Value) \
-	std::map<Key, Value, std::less<Key>, ProxyAllocator<std::pair<Key const, Value>, Allocators::Arena<> > >
+	std::map<Key, Value, std::less<Key>, ProxyAllocator<std::pair<Key const, Value>, Allocators::DynamicArena > >
 
 // Equivalent to "m[k]", when it returns a arena-allocated std::map (since we can't
 // use the default constructor in that case)
 template<typename M>
-typename M::mapped_type& PooledMapGet(M& m, const typename M::key_type& k, Allocators::Arena<>& arena)
+typename M::mapped_type& PooledMapGet(M& m, const typename M::key_type& k, Allocators::DynamicArena& arena)
 {
 	return m.insert(std::make_pair(k,
 		typename M::mapped_type(typename M::mapped_type::key_compare(), typename M::mapped_type::allocator_type(arena))
@@ -698,7 +698,7 @@ typename M::mapped_type& PooledMapGet(M& m, const typename M::key_type& k, Alloc
 
 // Equivalent to "m[k]", when it returns a std::pair of arena-allocated std::vectors
 template<typename M>
-typename M::mapped_type& PooledPairGet(M& m, const typename M::key_type& k, Allocators::Arena<>& arena)
+typename M::mapped_type& PooledPairGet(M& m, const typename M::key_type& k, Allocators::DynamicArena& arena)
 {
 	return m.insert(std::make_pair(k, std::make_pair(
 			typename M::mapped_type::first_type(typename M::mapped_type::first_type::allocator_type(arena)),
@@ -706,10 +706,8 @@ typename M::mapped_type& PooledPairGet(M& m, const typename M::key_type& k, Allo
 	))).first->second;
 }
 
-static const size_t ARENA_SIZE = 4*MiB; // this should be enough for fairly huge maps
-
 // Each multidraw batch has a list of index counts, and a list of pointers-to-first-indexes
-typedef std::pair<std::vector<GLint, ProxyAllocator<GLint, Allocators::Arena<> > >, std::vector<void*, ProxyAllocator<void*, Allocators::Arena<> > > > BatchElements;
+typedef std::pair<std::vector<GLint, ProxyAllocator<GLint, Allocators::DynamicArena > >, std::vector<void*, ProxyAllocator<void*, Allocators::DynamicArena > > > BatchElements;
 
 // Group batches by index buffer
 typedef POOLED_BATCH_MAP(CVertexBuffer*, BatchElements) IndexBufferBatches;
@@ -723,7 +721,7 @@ typedef POOLED_BATCH_MAP(CTerrainTextureEntry*, VertexBufferBatches) TextureBatc
 void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
 			      ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
 {
-	Allocators::Arena<> arena(ARENA_SIZE);
+	Allocators::DynamicArena arena(1 * MiB);
 
 	TextureBatches batches (TextureBatches::key_compare(), (TextureBatches::allocator_type(arena)));
 
@@ -770,7 +768,7 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 			}
 						
 			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->first->GetMaterial().GetShaderEffect(),
-						context, itt->first->GetMaterial().GetShaderDefines());
+						context, itt->first->GetMaterial().GetShaderDefines(0));
 			
 			numPasses = techBase->GetNumPasses();
 		}
@@ -787,13 +785,13 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 			
 			if (itt->first->GetMaterial().GetSamplers().size() != 0)
 			{
-				CMaterial::SamplersVector samplers = itt->first->GetMaterial().GetSamplers();
+				const CMaterial::SamplersVector& samplers = itt->first->GetMaterial().GetSamplers();
 				size_t samplersNum = samplers.size();
 				
 				for (size_t s = 0; s < samplersNum; ++s)
 				{
-					CMaterial::TextureSampler &samp = samplers[s];
-					shader->BindTexture(samp.Name.c_str(), samp.Sampler);
+					const CMaterial::TextureSampler& samp = samplers[s];
+					shader->BindTexture(samp.Name, samp.Sampler);
 				}
 				
 				itt->first->GetMaterial().GetStaticUniforms().BindUniforms(shader);
@@ -810,12 +808,12 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 				{
 					float c = itt->first->GetTextureMatrix()[0];
 					float ms = itt->first->GetTextureMatrix()[8];
-					shader->Uniform("textureTransform", c, ms, -ms, 0.f);
+					shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
 				}
 			}
 			else
 			{
-				shader->BindTexture("baseTex", g_Renderer.GetTextureManager().GetErrorTexture());
+				shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture());
 			}
 
 			for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
@@ -871,7 +869,7 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
  */
 struct SBlendBatch
 {
-	SBlendBatch(Allocators::Arena<>& arena) :
+	SBlendBatch(Allocators::DynamicArena& arena) :
 		m_Batches(VertexBufferBatches::key_compare(), VertexBufferBatches::allocator_type(arena))
 	{
 	}
@@ -886,12 +884,12 @@ struct SBlendBatch
 struct SBlendStackItem
 {
 	SBlendStackItem(CVertexBuffer::VBChunk* v, CVertexBuffer::VBChunk* i,
-			const std::vector<CPatchRData::SSplat>& s, Allocators::Arena<>& arena) :
+			const std::vector<CPatchRData::SSplat>& s, Allocators::DynamicArena& arena) :
 		vertices(v), indices(i), splats(s.begin(), s.end(), SplatStack::allocator_type(arena))
 	{
 	}
 
-	typedef std::vector<CPatchRData::SSplat, ProxyAllocator<CPatchRData::SSplat, Allocators::Arena<> > > SplatStack;
+	typedef std::vector<CPatchRData::SSplat, ProxyAllocator<CPatchRData::SSplat, Allocators::DynamicArena > > SplatStack;
 	CVertexBuffer::VBChunk* vertices;
 	CVertexBuffer::VBChunk* indices;
 	SplatStack splats;
@@ -900,13 +898,13 @@ struct SBlendStackItem
 void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
 			      ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
 {
-	Allocators::Arena<> arena(ARENA_SIZE);
+	Allocators::DynamicArena arena(1 * MiB);
 
-	typedef std::vector<SBlendBatch, ProxyAllocator<SBlendBatch, Allocators::Arena<> > > BatchesStack;
+	typedef std::vector<SBlendBatch, ProxyAllocator<SBlendBatch, Allocators::DynamicArena > > BatchesStack;
 	BatchesStack batches((BatchesStack::allocator_type(arena)));
 	
 	CShaderDefines contextBlend = context;
-	contextBlend.Add("BLEND", "1");
+	contextBlend.Add(str_BLEND, str_1);
 
  	PROFILE_START("compute batches");
 
@@ -914,7 +912,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
  	// to avoid heavy reallocations
  	batches.reserve(256);
 
-	typedef std::vector<SBlendStackItem, ProxyAllocator<SBlendStackItem, Allocators::Arena<> > > BlendStacks;
+	typedef std::vector<SBlendStackItem, ProxyAllocator<SBlendStackItem, Allocators::DynamicArena > > BlendStacks;
 	BlendStacks blendStacks((BlendStacks::allocator_type(arena)));
 	blendStacks.reserve(patches.size());
 
@@ -996,7 +994,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 		
 		if (!isDummyShader)
 		{
-			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->m_Texture->GetMaterial().GetShaderEffect(), contextBlend, itt->m_Texture->GetMaterial().GetShaderDefines());
+			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->m_Texture->GetMaterial().GetShaderEffect(), contextBlend, itt->m_Texture->GetMaterial().GetShaderDefines(0));
 			
 			numPasses = techBase->GetNumPasses();
 		}
@@ -1017,16 +1015,16 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 				
 			if (itt->m_Texture)
 			{
-				CMaterial::SamplersVector samplers = itt->m_Texture->GetMaterial().GetSamplers();
+				const CMaterial::SamplersVector& samplers = itt->m_Texture->GetMaterial().GetSamplers();
 				size_t samplersNum = samplers.size();
 				
 				for (size_t s = 0; s < samplersNum; ++s)
 				{
-					CMaterial::TextureSampler &samp = samplers[s];
-					shader->BindTexture(samp.Name.c_str(), samp.Sampler);
+					const CMaterial::TextureSampler& samp = samplers[s];
+					shader->BindTexture(samp.Name, samp.Sampler);
 				}
 
-				shader->BindTexture("blendTex", itt->m_Texture->m_TerrainAlpha->second.m_hCompositeAlphaMap);
+				shader->BindTexture(str_blendTex, itt->m_Texture->m_TerrainAlpha->second.m_hCompositeAlphaMap);
 
 				itt->m_Texture->GetMaterial().GetStaticUniforms().BindUniforms(shader);
 				
@@ -1043,12 +1041,12 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 				{
 					float c = itt->m_Texture->GetTextureMatrix()[0];
 					float ms = itt->m_Texture->GetTextureMatrix()[8];
-					shader->Uniform("textureTransform", c, ms, -ms, 0.f);
+					shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
 				}
 			}
 			else
 			{
-				shader->BindTexture("baseTex", g_Renderer.GetTextureManager().GetErrorTexture());
+				shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture());
 			}
 
 			for (VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)

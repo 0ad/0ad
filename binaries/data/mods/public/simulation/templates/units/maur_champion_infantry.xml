@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
+  <Armour>
+    <Hack>7</Hack>
+    <Pierce>3</Pierce>
+    <Crush>1</Crush>
+  </Armour>
   <Attack>
     <Melee>
       <Hack>0.0</Hack>
@@ -40,8 +45,9 @@
     <SpecificName>Yōddha</SpecificName>
     <History>Lightly armoured or no armour.</History>
     <Icon>units/maur_champion_maceman.png</Icon>
-	<Tooltip>Champion Swordsman. Good against buildings.
-Counters: 2x vs. Structures, 1.25x vs. Spearmen, Elephants. Countered by: Archers, Cavalry Spearmen.</Tooltip>
+	<Tooltip>Classes: Champion Melee Infantry Swordsman.
+Counters: 2x vs. Structures, 1.25x vs. Spearmen and Elephants.
+Countered by: Archers and Cavalry Spearmen.</Tooltip>
   </Identity>
   <VisualActor>
     <Actor>units/mauryans/champion_maceman.xml</Actor>

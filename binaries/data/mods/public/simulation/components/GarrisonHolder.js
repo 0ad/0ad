@@ -66,7 +66,7 @@ GarrisonHolder.prototype.GetAllowedClassesList = function()
  */
 GarrisonHolder.prototype.GetCapacity = function()
 {
-	return ApplyTechModificationsToEntity("GarrisonHolder/Max", +this.template.Max, this.entity);
+	return ApplyValueModificationsToEntity("GarrisonHolder/Max", +this.template.Max, this.entity);
 };
 
 /**
@@ -74,7 +74,7 @@ GarrisonHolder.prototype.GetCapacity = function()
  */
 GarrisonHolder.prototype.GetHealRate = function()
 {
-	return ApplyTechModificationsToEntity("GarrisonHolder/BuffHeal", +this.template.BuffHeal, this.entity);
+	return ApplyValueModificationsToEntity("GarrisonHolder/BuffHeal", +this.template.BuffHeal, this.entity);
 };
 
 GarrisonHolder.prototype.EjectEntitiesOnDestroy = function()
@@ -185,6 +185,10 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if (cmpProductionQueue)
 		cmpProductionQueue.PauseProduction();
 
+	var cmpAura = Engine.QueryInterface(entity, IID_Auras);
+	if (cmpAura && cmpAura.HasGarrisonAura())
+		cmpAura.ApplyGarrisonBonus(this.entity);	
+
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 	return true;
 };
@@ -228,6 +232,11 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 	var cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
 	if (cmpProductionQueue)
 		cmpProductionQueue.UnpauseProduction();
+
+	var cmpAura = Engine.QueryInterface(entity, IID_Auras);
+	if (cmpAura && cmpAura.HasGarrisonAura())
+		cmpAura.RemoveGarrisonBonus(this.entity);	
+
 	
 	var cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
 	cmpNewPosition.JumpTo(pos.x, pos.z);
@@ -464,7 +473,7 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 		var entities = [];
 		for each (var entity in this.entities)
 		{
-			if (!IsOwnedByMutualAllyOfEntity(this.entity, entity))
+			if (msg.to == -1 || !IsOwnedByMutualAllyOfEntity(this.entity, entity))
 				entities.push(entity);
 		}
 		this.EjectOrKill(entities);

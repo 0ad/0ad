@@ -44,6 +44,7 @@
 #include "ps/Loader.h"
 #include "ps/ProfileViewer.h"
 #include "graphics/Camera.h"
+#include "graphics/FontManager.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/LOSTexture.h"
@@ -281,6 +282,8 @@ public:
 	/// Postprocessing effect manager
 	CPostprocManager postprocManager;
 
+	CFontManager fontManager;
+
 	/// Various model renderers
 	struct Models
 	{
@@ -352,15 +355,15 @@ public:
 		CShaderDefines contextSkinned = context;
 		if (g_Renderer.m_Options.m_GPUSkinning)
 		{
-			contextSkinned.Add("USE_INSTANCING", "1");
-			contextSkinned.Add("USE_GPU_SKINNING", "1");
+			contextSkinned.Add(str_USE_INSTANCING, str_1);
+			contextSkinned.Add(str_USE_GPU_SKINNING, str_1);
 		}
 		Model.NormalSkinned->Render(Model.ModShader, contextSkinned, flags);
 
 		if (Model.NormalUnskinned != Model.NormalSkinned)
 		{
 			CShaderDefines contextUnskinned = context;
-			contextUnskinned.Add("USE_INSTANCING", "1");
+			contextUnskinned.Add(str_USE_INSTANCING, str_1);
 			Model.NormalUnskinned->Render(Model.ModShader, contextUnskinned, flags);
 		}
 	}
@@ -373,15 +376,15 @@ public:
 		CShaderDefines contextSkinned = context;
 		if (g_Renderer.m_Options.m_GPUSkinning)
 		{
-			contextSkinned.Add("USE_INSTANCING", "1");
-			contextSkinned.Add("USE_GPU_SKINNING", "1");
+			contextSkinned.Add(str_USE_INSTANCING, str_1);
+			contextSkinned.Add(str_USE_GPU_SKINNING, str_1);
 		}
 		Model.TranspSkinned->Render(Model.ModShader, contextSkinned, flags);
 
 		if (Model.TranspUnskinned != Model.TranspSkinned)
 		{
 			CShaderDefines contextUnskinned = context;
-			contextUnskinned.Add("USE_INSTANCING", "1");
+			contextUnskinned.Add(str_USE_INSTANCING, str_1);
 			Model.TranspUnskinned->Render(Model.ModShader, contextUnskinned, flags);
 		}
 	}
@@ -472,25 +475,6 @@ CRenderer::CRenderer()
 	m_hCompositeAlphaMap = 0;
 
 	m_Stats.Reset();
-	AddLocalProperty(L"particles", &m_Options.m_Particles, false);
-
-	AddLocalProperty(L"waternormal", &m_Options.m_WaterNormal, false);
-	AddLocalProperty(L"waterrealdepth", &m_Options.m_WaterRealDepth, false);
-	AddLocalProperty(L"waterreflection", &m_Options.m_WaterReflection, false);
-	AddLocalProperty(L"waterrefraction", &m_Options.m_WaterRefraction, false);
-	AddLocalProperty(L"waterfoam", &m_Options.m_WaterFoam, false);
-	AddLocalProperty(L"watercoastalwaves", &m_Options.m_WaterCoastalWaves, false);
-	AddLocalProperty(L"watershadow", &m_Options.m_WaterShadow, false);
-
-	AddLocalProperty(L"horizonHeight", &m->skyManager.m_HorizonHeight, false);
-	AddLocalProperty(L"waterMurkiness", &m->waterManager.m_Murkiness, false);
-	AddLocalProperty(L"waterReflTintStrength", &m->waterManager.m_ReflectionTintStrength, false);
-	AddLocalProperty(L"waterRepeatPeriod", &m->waterManager.m_RepeatPeriod, false);
-	AddLocalProperty(L"waterShininess", &m->waterManager.m_Shininess, false);
-	AddLocalProperty(L"waterSpecularStrength", &m->waterManager.m_SpecularStrength, false);
-	AddLocalProperty(L"waterWaviness", &m->waterManager.m_Waviness, false);
-	AddLocalProperty(L"silhouettes", &m_Options.m_Silhouettes, false);
-	AddLocalProperty(L"showsky", &m_Options.m_ShowSky, false);
 
 	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 }
@@ -553,42 +537,42 @@ void CRenderer::EnumCaps()
 #endif
 }
 
-CShaderDefines CRenderer::GetSystemShaderDefines()
+void CRenderer::RecomputeSystemShaderDefines()
 {
 	CShaderDefines defines;
 
 	if (GetRenderPath() == RP_SHADER && m_Caps.m_ARBProgram)
-		defines.Add("SYS_HAS_ARB", "1");
+		defines.Add(str_SYS_HAS_ARB, str_1);
 
 	if (GetRenderPath() == RP_SHADER && m_Caps.m_VertexShader && m_Caps.m_FragmentShader)
-		defines.Add("SYS_HAS_GLSL", "1");
+		defines.Add(str_SYS_HAS_GLSL, str_1);
 
 	if (m_Options.m_PreferGLSL)
-		defines.Add("SYS_PREFER_GLSL", "1");
+		defines.Add(str_SYS_PREFER_GLSL, str_1);
 
-	return defines;
+	m_SystemShaderDefines = defines;
 }
 
 void CRenderer::ReloadShaders()
 {
 	ENSURE(m->IsOpen);
 
-	m->globalContext = GetSystemShaderDefines();
+	m->globalContext = m_SystemShaderDefines;
 
 	if (m_Caps.m_Shadows && m_Options.m_Shadows)
 	{
-		m->globalContext.Add("USE_SHADOW", "1");
+		m->globalContext.Add(str_USE_SHADOW, str_1);
 		if (m_Caps.m_ARBProgramShadow && m_Options.m_ARBProgramShadow)
-			m->globalContext.Add("USE_FP_SHADOW", "1");
+			m->globalContext.Add(str_USE_FP_SHADOW, str_1);
 		if (m_Options.m_ShadowPCF)
-			m->globalContext.Add("USE_SHADOW_PCF", "1");
+			m->globalContext.Add(str_USE_SHADOW_PCF, str_1);
 #if !CONFIG2_GLES
-		m->globalContext.Add("USE_SHADOW_SAMPLER", "1");
+		m->globalContext.Add(str_USE_SHADOW_SAMPLER, str_1);
 #endif
 	}
 
 	if (m_LightEnv)
-		m->globalContext.Add(("LIGHTING_MODEL_" + m_LightEnv->GetLightingModel()).c_str(), "1");
+		m->globalContext.Add(CStrIntern("LIGHTING_MODEL_" + m_LightEnv->GetLightingModel()), str_1);
 
 	m->Model.ModShader = LitRenderModifierPtr(new ShaderRenderModifier());
 
@@ -658,6 +642,8 @@ bool CRenderer::Open(int width, int height)
 	// Validate the currently selected render path
 	SetRenderPath(m_Options.m_RenderPath);
 
+	RecomputeSystemShaderDefines();
+
 	// Let component renderers perform one-time initialization after graphics capabilities and
 	// the shader path have been determined.
 	m->overlayRenderer.Initialize();
@@ -721,6 +707,11 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_PARTICLES:
 			m_Options.m_Particles = value;
 			break;
+		case OPT_PREFERGLSL:
+			m_Options.m_PreferGLSL = value;
+			MakeShadersDirty();
+			RecomputeSystemShaderDefines();
+			break;
 		case OPT_SILHOUETTES:
 			m_Options.m_Silhouettes = value;
 			break;
@@ -760,6 +751,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_ShadowPCF;
 		case OPT_PARTICLES:
 			return m_Options.m_Particles;
+		case OPT_PREFERGLSL:
+			return m_Options.m_PreferGLSL;
 		case OPT_SILHOUETTES:
 			return m_Options.m_Silhouettes;
 		case OPT_SHOWSKY:
@@ -806,6 +799,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 	m_Options.m_RenderPath = rp;
 
 	MakeShadersDirty();
+	RecomputeSystemShaderDefines();
 
 	// We might need to regenerate some render data after changing path
 	if (g_Game)
@@ -886,7 +880,7 @@ void CRenderer::RenderShadowMap(const CShaderDefines& context)
 	}
 
 	CShaderDefines contextCast = context;
-	contextCast.Add("MODE_SHADOWCAST", "1");
+	contextCast.Add(str_MODE_SHADOWCAST, str_1);
 
 	{
 		PROFILE("render models");
@@ -1014,7 +1008,7 @@ void CRenderer::RenderModels(const CShaderDefines& context, const CFrustum* frus
 	else if (m_ModelRenderMode == EDGED_FACES)
 	{
 		CShaderDefines contextWireframe = context;
-		contextWireframe.Add("MODE_WIREFRAME", "1");
+		contextWireframe.Add(str_MODE_WIREFRAME, str_1);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glDisable(GL_TEXTURE_2D);
@@ -1051,10 +1045,10 @@ void CRenderer::RenderTransparentModels(const CShaderDefines& context, ETranspar
 		glDisable(GL_CULL_FACE);
 
 	CShaderDefines contextOpaque = context;
-	contextOpaque.Add("ALPHABLEND_PASS_OPAQUE", "1");
+	contextOpaque.Add(str_ALPHABLEND_PASS_OPAQUE, str_1);
 
 	CShaderDefines contextBlend = context;
-	contextBlend.Add("ALPHABLEND_PASS_BLEND", "1");
+	contextBlend.Add(str_ALPHABLEND_PASS_BLEND, str_1);
 
 	if (transparentMode == TRANSPARENT || transparentMode == TRANSPARENT_OPAQUE)
 		m->CallTranspModelRenderers(contextOpaque, flags);
@@ -1074,7 +1068,7 @@ void CRenderer::RenderTransparentModels(const CShaderDefines& context, ETranspar
 	else if (m_ModelRenderMode == EDGED_FACES)
 	{
 		CShaderDefines contextWireframe = contextOpaque;
-		contextWireframe.Add("MODE_WIREFRAME", "1");
+		contextWireframe.Add(str_MODE_WIREFRAME, str_1);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glDisable(GL_TEXTURE_2D);
@@ -1295,10 +1289,10 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 	PROFILE3_GPU("silhouettes");
 
 	CShaderDefines contextOccluder = context;
-	contextOccluder.Add("MODE_SILHOUETTEOCCLUDER", "1");
+	contextOccluder.Add(str_MODE_SILHOUETTEOCCLUDER, str_1);
 
 	CShaderDefines contextDisplay = context;
-	contextDisplay.Add("MODE_SILHOUETTEDISPLAY", "1");
+	contextDisplay.Add(str_MODE_SILHOUETTEDISPLAY, str_1);
 
 	// Render silhouettes of units hidden behind terrain or occluders.
 	// To avoid breaking the standard rendering of alpha-blended objects, this
@@ -1412,11 +1406,11 @@ void CRenderer::RenderParticles()
 
 		m->particleRenderer.RenderParticles(true);
 
-		CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
+		CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
 		shaderTech->BeginPass();
 		CShaderProgramPtr shader = shaderTech->GetShader();
-		shader->Uniform("color", 0.0f, 1.0f, 0.0f, 1.0f);
-		shader->Uniform("transform", m_ViewCamera.GetViewProjection());
+		shader->Uniform(str_color, 0.0f, 1.0f, 0.0f, 1.0f);
+		shader->Uniform(str_transform, m_ViewCamera.GetViewProjection());
 
 		m->particleRenderer.RenderBounds(shader);
 
@@ -1983,115 +1977,6 @@ void CRenderer::MakeShadersDirty()
 	m->ShadersDirty = true;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Scripting Interface
-
-jsval CRenderer::JSI_GetRenderPath(JSContext*)
-{
-	return ToJSVal(GetRenderPathName(m_Options.m_RenderPath));
-}
-
-void CRenderer::JSI_SetRenderPath(JSContext* ctx, jsval newval)
-{
-	CStr name;
-
-	if (!ToPrimitive(ctx, newval, name))
-		return;
-
-	SetRenderPath(GetRenderPathByName(name));
-}
-
-jsval CRenderer::JSI_GetDepthTextureBits(JSContext*)
-{
-	return ToJSVal(m->shadow.GetDepthTextureBits());
-}
-
-void CRenderer::JSI_SetDepthTextureBits(JSContext* ctx, jsval newval)
-{
-	int depthTextureBits;
-
-	if (!ToPrimitive(ctx, newval, depthTextureBits))
-		return;
-
-	m->shadow.SetDepthTextureBits(depthTextureBits);
-}
-
-jsval CRenderer::JSI_GetShadows(JSContext*)
-{
-	return ToJSVal(m_Options.m_Shadows);
-}
-
-void CRenderer::JSI_SetShadows(JSContext* ctx, jsval newval)
-{
-	ToPrimitive(ctx, newval, m_Options.m_Shadows);
-	ReloadShaders();
-}
-
-jsval CRenderer::JSI_GetShadowAlphaFix(JSContext*)
-{
-	return ToJSVal(m_Options.m_ShadowAlphaFix);
-}
-
-void CRenderer::JSI_SetShadowAlphaFix(JSContext* ctx, jsval newval)
-{
-	if (!ToPrimitive(ctx, newval, m_Options.m_ShadowAlphaFix))
-		return;
-
-	m->shadow.RecreateTexture();
-}
-
-jsval CRenderer::JSI_GetShadowPCF(JSContext*)
-{
-	return ToJSVal(m_Options.m_ShadowPCF);
-}
-
-void CRenderer::JSI_SetShadowPCF(JSContext* ctx, jsval newval)
-{
-	ToPrimitive(ctx, newval, m_Options.m_ShadowPCF);
-	ReloadShaders();
-}
-
-jsval CRenderer::JSI_GetPreferGLSL(JSContext*)
-{
-	return ToJSVal(m_Options.m_PreferGLSL);
-}
-
-void CRenderer::JSI_SetPreferGLSL(JSContext* ctx, jsval newval)
-{
-	ToPrimitive(ctx, newval, m_Options.m_PreferGLSL);
-	ReloadShaders();
-}
-
-jsval CRenderer::JSI_GetSky(JSContext*)
-{
-	return ToJSVal(m->skyManager.GetSkySet());
-}
-
-void CRenderer::JSI_SetSky(JSContext* ctx, jsval newval)
-{
-	CStrW skySet;
-	if (!ToPrimitive<CStrW>(ctx, newval, skySet)) return;
-	m->skyManager.SetSkySet(skySet);
-}
-
-void CRenderer::ScriptingInit()
-{
-	AddProperty(L"renderpath", &CRenderer::JSI_GetRenderPath, &CRenderer::JSI_SetRenderPath);
-	AddProperty(L"displayFrustum", &CRenderer::m_DisplayFrustum);
-	AddProperty(L"shadowZBias", &CRenderer::m_ShadowZBias);
-	AddProperty(L"shadowMapSize", &CRenderer::m_ShadowMapSize);
-	AddProperty(L"shadows", &CRenderer::JSI_GetShadows, &CRenderer::JSI_SetShadows);
-	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
-	AddProperty(L"shadowAlphaFix", &CRenderer::JSI_GetShadowAlphaFix, &CRenderer::JSI_SetShadowAlphaFix);
-	AddProperty(L"shadowPCF", &CRenderer::JSI_GetShadowPCF, &CRenderer::JSI_SetShadowPCF);
-	AddProperty(L"preferGLSL", &CRenderer::JSI_GetPreferGLSL, &CRenderer::JSI_SetPreferGLSL);
-	AddProperty(L"skipSubmit", &CRenderer::m_SkipSubmit);
-	AddProperty(L"skySet", &CRenderer::JSI_GetSky, &CRenderer::JSI_SetSky);
-
-	CJSObject<CRenderer>::ScriptingInit("Renderer");
-}
-
-
 CTextureManager& CRenderer::GetTextureManager()
 {
 	return m->textureManager;
@@ -2125,4 +2010,9 @@ CMaterialManager& CRenderer::GetMaterialManager()
 CPostprocManager& CRenderer::GetPostprocManager()
 {
 	return m->postprocManager;
+}
+
+CFontManager& CRenderer::GetFontManager()
+{
+	return m->fontManager;
 }

@@ -21,6 +21,7 @@
     <GenericName>Elephant Stables</GenericName>
     <SpecificName>Vāraṇaśālā</SpecificName>
     <History>Elephant Stables.</History>
+    <RequiredTechnology>phase_town</RequiredTechnology>
     <Icon>structures/elephant_stables.png</Icon>
     <Tooltip>Train elephant units.</Tooltip>
   </Identity>
@@ -37,8 +38,8 @@
   </ProductionQueue>
   <Sound>
     <SoundGroups>
-      <select>interface/select/building/sel_broch.xml</select>
-      <constructed>interface/complete/building/complete_broch.xml</constructed>
+      <select>interface/select/building/sel_elephant_stables.xml</select>
+      <constructed>interface/complete/building/complete_elephant_stables.xml</constructed>
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>

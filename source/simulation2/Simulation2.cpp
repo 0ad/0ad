@@ -126,12 +126,14 @@ public:
 			componentManager.AddComponent(systemEntity, cid, noParam)
 
 			LOAD_SCRIPTED_COMPONENT("AIInterface");
+			LOAD_SCRIPTED_COMPONENT("AuraManager");
 			LOAD_SCRIPTED_COMPONENT("Barter");
 			LOAD_SCRIPTED_COMPONENT("EndGameManager");
 			LOAD_SCRIPTED_COMPONENT("GuiInterface");
 			LOAD_SCRIPTED_COMPONENT("PlayerManager");
 			LOAD_SCRIPTED_COMPONENT("TechnologyTemplateManager");
 			LOAD_SCRIPTED_COMPONENT("Timer");
+			LOAD_SCRIPTED_COMPONENT("ValueModificationManager");
 
 #undef LOAD_SCRIPTED_COMPONENT
 
@@ -387,22 +389,20 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		// TODO: this duplicates CWorld::RegisterInit and could probably be cleaned up a bit
 		std::string mapType;
 		m_ComponentManager.GetScriptInterface().GetProperty(m_InitAttributes.get(), "mapType", mapType);
-		if (mapType == "scenario")
-		{
-			// Load scenario attributes
-			std::wstring mapFile;
-			m_ComponentManager.GetScriptInterface().GetProperty(m_InitAttributes.get(), "map", mapFile);
-
-			VfsPath mapfilename(VfsPath("maps/scenarios") / (mapFile + L".pmp"));
-			mapReader->LoadMap(mapfilename, &secondaryTerrain, NULL, NULL, NULL, NULL, NULL, NULL,
-				NULL, NULL, &secondaryContext, INVALID_PLAYER, true); // throws exception on failure
-		}
-		else
+		if (mapType == "random")
 		{
 			// TODO: support random map scripts
 			debug_warn(L"Serialization test mode only supports scenarios");
 		}
+		else
+		{
+			std::wstring mapFile;
+			m_ComponentManager.GetScriptInterface().GetProperty(m_InitAttributes.get(), "map", mapFile);
 
+			VfsPath mapfilename = VfsPath(mapFile).ChangeExtension(L".pmp");
+			mapReader->LoadMap(mapfilename, CScriptValRooted(), &secondaryTerrain, NULL, NULL, NULL, NULL, NULL, NULL,
+				NULL, NULL, &secondaryContext, INVALID_PLAYER, true); // throws exception on failure
+		}
 		LDR_EndRegistering();
 		ENSURE(LDR_NonprogressiveLoad() == INFO::OK);
 

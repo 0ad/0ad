@@ -13,7 +13,7 @@
 	[
 		{
 			"Name":"Macedonians",
-			"Description":"A Hellenistic kingdom bordering Greek city-states",
+			"Description":"A Hellenistic kingdom bordering the Greek city-states",
 			"Technologies":
 			[
 				{
@@ -23,7 +23,7 @@
 				},
 				{
 					"Name":"Hellenistic Metropolises",
-					"History":"Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilisation.",
+					"History":"Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilization.",
 					"Description":"Civic Centres have double Health."
 				}
 			],
@@ -66,7 +66,7 @@
 			"Description":"Infantry pike units can use the slow and powerful Syntagma formation."
 		},
 		{
-			"Name":"Hellenisation",
+			"Name":"Hellenization",
 			"History":"The Greeks were highly successful in Hellenising various foreigners. During the Hellenistic Age, Greek was the lingua franca of the Ancient World, spoken widely from Spain to India.",
 			"Description":"Constructing a Theatron increases the territory expanse of all buildings by +25%."
 		}
@@ -88,7 +88,7 @@
 			"History":"Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.",
 			"Requirements":"",
 			"Phase":"City",
-			"Special":"The Hellenisation civ bonus. Building a Theatron increases the territory effect of all buildings by 25%."
+			"Special":"The Hellenization civ bonus. Building a Theatron increases the territory effect of all buildings by 25%. Build limit: 1."
 		},
 		{
 			"Name":"Library",
@@ -97,16 +97,16 @@
 			"History":"Alexander the Great founded libraries all over his new empire. These became a center of learning for an entirely new synthesized culture: the Hellenistic culture.",
 			"Requirements":"",
 			"Phase":"City",
-			"Special":"Maximum of 1 built. All Special Technologies are researched here. Building one reduces the cost of all other remaining technologies by 10%."
+			"Special":"All Special Technologies are researched here. Building one reduces the cost of all other remaining technologies by 10%. Build limit: 1."
 		},
 		{
-			"Name":"Lighthouse",
+			"Name":"Siege Workshop",
 			"Class":"",
 			"Emblem":"",
-			"History":"The Ptolemaic dynasty in Egypt built the magnificent Lighthouse of Alexandria near the harbour mouth of that Nile Delta city. This structure could be seen for many kilometers out to sea and was one of the Seven Wonders of the World.",
+			"History":"The Macedonians were innovators in area of siegecraft.",
 			"Requirements":"",
 			"Phase":"City",
-			"Special":"When built along the shoreline, removes shroud of darkness over all the water, revealing all the coast lines on the map. Limit: 1."
+			"Special":"Constructs and upgrades all Macedonian siege engines."
 		}
 	],
 	"StartEntities":

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_fortress">
+  <Footprint>
+    <Square width="26.0" depth="28.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>ptol</Civ>
+    <SpecificName>?</SpecificName>
+    <History>?</History>
+  </Identity>
+  <Obstruction>
+    <Static width="24.0" depth="26.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+	  units/ptol_hero_ptolemy_I
+	  units/ptol_hero_ptolemy_IV
+	  units/ptol_hero_cleopatra
+      units/ptol_champion_cavalry
+      units/ptol_champion_elephant
+      units/ptol_mechanical_siege_polybolos_packed
+      units/ptol_mechanical_siege_lithobolos_packed
+      units/ptol_mechanical_siege_tower
+    </Entities>
+    <Technologies datatype="tokens">
+	  pair_siege_attack_pack
+	  pair_siege_cost_armor
+	  siege_bolt_accuracy
+    </Technologies>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/ptolemies/fortress.xml</Actor>
+  </VisualActor>
+</Entity>

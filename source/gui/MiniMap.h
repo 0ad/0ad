@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -97,6 +97,11 @@ protected:
 	VertexArray::Attribute m_AttributeColor;
 
 	size_t m_EntitiesDrawn;
+
+	double m_PingDuration;
+	double m_HalfBlinkDuration;
+	double m_NextBlinkTime;
+	bool m_BlinkState;
 };
 
 #endif

@@ -37,9 +37,6 @@ ScriptingHost::ScriptingHost()
 
 	if (!JS_DefineFunctions(m_Context, m_GlobalObject, ScriptFunctionTable))
 		throw PSERROR_Scripting_SetupFailed();
-
-	if (!JS_DefineProperties(m_Context, m_GlobalObject, ScriptGlobalTable))
-		throw PSERROR_Scripting_SetupFailed();
 }
 
 ScriptingHost::~ScriptingHost()

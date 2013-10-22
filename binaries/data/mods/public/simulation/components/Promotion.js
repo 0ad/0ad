@@ -15,7 +15,7 @@ Promotion.prototype.Init = function()
 
 Promotion.prototype.GetRequiredXp = function()
 {
-	return ApplyTechModificationsToEntity("Promotion/RequiredXp", +this.template.RequiredXp, this.entity);
+	return ApplyValueModificationsToEntity("Promotion/RequiredXp", +this.template.RequiredXp, this.entity);
 };
 
 Promotion.prototype.GetCurrentXp = function()
@@ -78,6 +78,8 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	cmpPromotedUnitAI.Cheer();
 	var orders = cmpCurrentUnitAI.GetOrders();
 	cmpPromotedUnitAI.AddOrders(orders);
+	var lastWorkOrder = cmpCurrentUnitAI.GetLastWorkOrder();
+	cmpPromotedUnitAI.SetLastWorkOrder(lastWorkOrder);
 
 	Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: promotedUnitEntity });
 

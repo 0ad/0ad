@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -286,7 +286,11 @@ CFsmTransition* CFsm::AddTransition(
 
 	// Create new transition
 	CFsmTransition* pNewTransition = new CFsmTransition( state );
-	if ( !pNewTransition ) return NULL;
+	if ( !pNewTransition )
+	{
+		delete pEvent;
+		return NULL;
+	}
 
 	// Setup new transition
 	pNewTransition->SetEvent( pEvent );

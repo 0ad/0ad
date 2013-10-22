@@ -55,13 +55,13 @@
     <GenericName>Civic Centre</GenericName>
     <Tooltip>Build to acquire large tracts of territory. Train citizens. Garrison: 20.</Tooltip>
     <Classes datatype="tokens">
-      Village 
+      City
       Defensive
       CivCentre
       CivilCentre
     </Classes>
     <Icon>structures/civic_centre.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>200</xp>

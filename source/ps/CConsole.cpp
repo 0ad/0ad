@@ -24,6 +24,7 @@
 
 #include "CConsole.h"
 
+#include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "gui/GUIutil.h"
@@ -35,7 +36,6 @@
 #include "network/NetServer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/Font.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Pyrogenesis.h"
@@ -196,7 +196,7 @@ void CConsole::Render()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
+	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
 	solidTech->BeginPass();
 	CShaderProgramPtr solidShader = solidTech->GetShader();
 
@@ -205,16 +205,16 @@ void CConsole::Render()
 	// animation: slide in from top of screen
 	const float DeltaY = (1.0f - m_fVisibleFrac) * m_fHeight;
 	transform.PostTranslate(m_fX, m_fY - DeltaY, 0.0f); // move to window position
-	solidShader->Uniform("transform", transform);
+	solidShader->Uniform(str_transform, transform);
 	
 	DrawWindow(solidShader);
 
 	solidTech->EndPass();
 	
-	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	textTech->BeginPass();
 	CTextRenderer textRenderer(textTech->GetShader());
-	textRenderer.Font(CONSOLE_FONT);
+	textRenderer.Font(CStrIntern(CONSOLE_FONT));
 	textRenderer.SetTransform(transform);
 
 	DrawHistory(textRenderer);
@@ -241,13 +241,13 @@ void CConsole::DrawWindow(CShaderProgramPtr& shader)
 
 	// Draw Background
 	// Set the color to a translucent blue
-	shader->Uniform("color", 0.0f, 0.0f, 0.5f, 0.6f);
+	shader->Uniform(str_color, 0.0f, 0.0f, 0.5f, 0.6f);
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	// Draw Border
 	// Set the color to a translucent yellow
-	shader->Uniform("color", 0.5f, 0.5f, 0.0f, 0.6f);
+	shader->Uniform(str_color, 0.5f, 0.5f, 0.0f, 0.6f);
 	shader->AssertPointersBound();
 	glDrawArrays(GL_LINE_LOOP, 0, 4);
 

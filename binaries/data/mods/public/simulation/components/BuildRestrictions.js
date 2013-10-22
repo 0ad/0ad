@@ -271,7 +271,7 @@ BuildRestrictions.prototype.GetCategory = function()
 
 BuildRestrictions.prototype.GetTerritories = function()
 {
-	return ApplyTechModificationsToEntity("BuildRestrictions/Territory", this.territories, this.entity);
+	return ApplyValueModificationsToEntity("BuildRestrictions/Territory", this.territories, this.entity);
 };
 
 BuildRestrictions.prototype.HasTerritory = function(territory)

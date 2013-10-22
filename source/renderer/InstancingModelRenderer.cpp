@@ -335,7 +335,7 @@ void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, i
 		shader->NormalPointer(GL_FLOAT, stride, base + m->imodeldef->m_Normal.offset);
 	
 	if (m->calculateTangents)
-		shader->VertexAttribPointer("a_tangent", 4, GL_FLOAT, GL_TRUE, stride, base + m->imodeldef->m_Tangent.offset);
+		shader->VertexAttribPointer(str_a_tangent, 4, GL_FLOAT, GL_TRUE, stride, base + m->imodeldef->m_Tangent.offset);
 
 	if (streamflags & STREAM_UV0)
 		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->imodeldef->m_UVs[0].offset);
@@ -346,8 +346,8 @@ void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, i
 	// GPU skinning requires extra attributes to compute positions/normals
 	if (m->gpuSkinning)
 	{
-		shader->VertexAttribPointer("a_skinJoints", 4, GL_UNSIGNED_BYTE, GL_FALSE, stride, base + m->imodeldef->m_BlendJoints.offset);
-		shader->VertexAttribPointer("a_skinWeights", 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, base + m->imodeldef->m_BlendWeights.offset);
+		shader->VertexAttribPointer(str_a_skinJoints, 4, GL_UNSIGNED_BYTE, GL_FALSE, stride, base + m->imodeldef->m_BlendJoints.offset);
+		shader->VertexAttribPointer(str_a_skinWeights, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, base + m->imodeldef->m_BlendWeights.offset);
 	}
 
 	shader->AssertPointersBound();
@@ -366,8 +366,8 @@ void InstancingModelRenderer::RenderModel(const CShaderProgramPtr& shader, int U
 		// HACK: NVIDIA drivers return uniform name with "[0]", Intel Windows drivers without;
 		// try uploading both names since one of them should work, and this is easier than
 		// canonicalising the uniform names in CShaderProgramGLSL
- 		shader->Uniform("skinBlendMatrices[0]", mdldef->GetNumBones() + 1, model->GetAnimatedBoneMatrices());
-		shader->Uniform("skinBlendMatrices", mdldef->GetNumBones() + 1, model->GetAnimatedBoneMatrices());
+		shader->Uniform(str_skinBlendMatrices_0, mdldef->GetNumBones() + 1, model->GetAnimatedBoneMatrices());
+		shader->Uniform(str_skinBlendMatrices, mdldef->GetNumBones() + 1, model->GetAnimatedBoneMatrices());
 	}
 
 	// render the lot

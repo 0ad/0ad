@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_cavalry_spearman">
+  <Identity>
+    <Civ>ptol</Civ>
+	<GenericName>King's Guard Cavalry</GenericName>
+    <SpecificName>Agema Basilikos</SpecificName>
+    <History>?</History>
+    <Icon>units/hele_champion_cavalry_mace.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/ptolemies/champion_cavalry.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -327,25 +327,25 @@ Health.prototype.Repair = function(builderEnt, work)
 	}
 };
 
-Health.prototype.OnTechnologyModification = function(msg)
+Health.prototype.OnValueModification = function(msg)
 {
-	if (msg.component == "Health")
-	{
-		var oldMaxHitpoints = this.GetMaxHitpoints();
-		var newMaxHitpoints = Math.round(ApplyTechModificationsToEntity("Health/Max", +this.template.Max, this.entity));
-		if (oldMaxHitpoints != newMaxHitpoints)
-		{
-			var newHitpoints = Math.round(this.GetHitpoints() * newMaxHitpoints/oldMaxHitpoints);
-			this.maxHitpoints = newMaxHitpoints;
-			this.SetHitpoints(newHitpoints);
-		}
+	if (msg.component != "Health")
+		return;
 
-		var oldRegenRate = this.regenRate;
-		this.regenRate = ApplyTechModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
-		
-		if (this.regenRate != oldRegenRate)
-			this.CheckRegenTimer();
+	var oldMaxHitpoints = this.GetMaxHitpoints();
+	var newMaxHitpoints = Math.round(ApplyValueModificationsToEntity("Health/Max", +this.template.Max, this.entity));
+	if (oldMaxHitpoints != newMaxHitpoints)
+	{
+		var newHitpoints = Math.round(this.GetHitpoints() * newMaxHitpoints/oldMaxHitpoints);
+		this.maxHitpoints = newMaxHitpoints;
+		this.SetHitpoints(newHitpoints);
 	}
+
+	var oldRegenRate = this.regenRate;
+	this.regenRate = ApplyValueModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
+	
+	if (this.regenRate != oldRegenRate)
+		this.CheckRegenTimer();
 };
 
 Health.prototype.OnHealthChanged = function()

@@ -27,12 +27,12 @@
 
 #include "ProfileViewer.h"
 
+#include "graphics/FontMetrics.h"
 #include "gui/GUIutil.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/Font.h"
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
 #include "lib/external_libraries/libsdl.h"
@@ -170,8 +170,8 @@ void CProfileViewer::RenderProfile()
 	const std::vector<ProfileColumn>& columns = table->GetColumns();
 	size_t numrows = table->GetNumberRows();
 
-	CStrW font_name = L"mono-stroke-10";
-	CFont font(font_name);
+	CStrIntern font_name("mono-stroke-10");
+	CFontMetrics font(font_name);
 	int lineSpacing = font.GetLineSpacing();
 
 	// Render background
@@ -187,14 +187,14 @@ void CProfileViewer::RenderProfile()
 		estimate_height += 2;
 	estimate_height = lineSpacing*estimate_height;
 
-	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
+	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
 	solidTech->BeginPass();
 	CShaderProgramPtr solidShader = solidTech->GetShader();
 
-	solidShader->Uniform("color", 0.0f, 0.0f, 0.0f, 0.5f);
+	solidShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.5f);
 
 	CMatrix3D transform = GetDefaultGuiMatrix();
-	solidShader->Uniform("transform", transform);
+	solidShader->Uniform(str_transform, transform);
 
 	float backgroundVerts[] = {
 		(float)estimate_width, 0.0f,
@@ -209,15 +209,15 @@ void CProfileViewer::RenderProfile()
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	transform.PostTranslate(22.0f, lineSpacing*3.0f, 0.0f);
-	solidShader->Uniform("transform", transform);
+	solidShader->Uniform(str_transform, transform);
 
 	// Draw row backgrounds
 	for (size_t row = 0; row < numrows; ++row)
 	{
 		if (row % 2)
-			solidShader->Uniform("color", 1.0f, 1.0f, 1.0f, 0.1f);
+			solidShader->Uniform(str_color, 1.0f, 1.0f, 1.0f, 0.1f);
 		else
-			solidShader->Uniform("color", 0.0f, 0.0f, 0.0f, 0.1f);
+			solidShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.1f);
 
 		float rowVerts[] = {
 			-22.f, 2.f,
@@ -233,14 +233,14 @@ void CProfileViewer::RenderProfile()
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		transform.PostTranslate(0.0f, lineSpacing, 0.0f);
-		solidShader->Uniform("transform", transform);
+		solidShader->Uniform(str_transform, transform);
 	}
 
 	solidTech->EndPass();
 
 	// Print table and column titles
 
-	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	textTech->BeginPass();
 
 	CTextRenderer textRenderer(textTech->GetShader());

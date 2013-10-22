@@ -2,28 +2,28 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunset 1</SkySet>
-		<SunColour r="1" g="0.501961" b="0"/>
-		<SunElevation angle="0.371704"/>
-		<SunRotation angle="-0.925107"/>
-		<TerrainAmbientColour r="0.25098" g="0.407843" b="0.584314"/>
-		<UnitsAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
+		<SkySet>cumulus</SkySet>
+		<SunColour r="0.961458" g="0.861397" b="0.543811"/>
+		<SunElevation angle="0.694003"/>
+		<SunRotation angle="0.429178"/>
+		<TerrainAmbientColour r="0.247059" g="0.403922" b="0.584314"/>
+		<UnitsAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.00199219</FogFactor>
 			<FogThickness>0.273438</FogThickness>
-			<FogColour r="0.745098" g="0.596078" b="0.278431"/>
+			<FogColour r="0.882353" g="0.839216" b="0.701961"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.333333" g="0.423529" b="0.501961"/>
+				<Colour r="0.329412" g="0.419608" b="0.501961"/>
 				<Height>20.6689</Height>
 				<Shininess>1.46484</Shininess>
-				<Waviness>9.99023</Waviness>
-				<Murkiness>0.800781</Murkiness>
-				<Tint r="0.745098" g="0.596078" b="0.278431"/>
-				<ReflectionTint r="0.745098" g="0.596078" b="0.278431"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
+				<Waviness>7.98828</Waviness>
+				<Murkiness>0.899414</Murkiness>
+				<Tint r="0.741176" g="0.592157" b="0.27451"/>
+				<ReflectionTint r="0.741176" g="0.592157" b="0.27451"/>
+				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,15 +35,16 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="704.679" y="71.0388" z="676.779"/>
-		<Rotation angle="-0.0366626"/>
-		<Declination angle="0.741361"/>
+		<Position x="662.787" y="109.736" z="544.795"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
   "Description": "Demo Map. Play with the Persian civilisation in a sandbox setting.",
   "GameType": "endless",
+  "Preview": "sandbox-thepersians.png",
   "Keywords": [
     "demo"
   ],

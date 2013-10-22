@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/ptol_infantry_slinger_b">
+  <Armour>
+    <Hack>2</Hack>
+    <Pierce>3</Pierce>
+    <Crush>4</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Spread>0.9</Spread>
+      <MaxRange>52.0</MaxRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>100</Max>
+  </Health>
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/ptol_infantry_slinger_e</Entity>
+  </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>7.5</WalkSpeed>
+    <Run>
+      <Speed>21.6</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/macedonians/infantry_slinger_a.xml</Actor>
+  </VisualActor>
+</Entity>

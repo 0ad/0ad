@@ -1,7 +1,7 @@
 function EntityLimits() {}
 
 EntityLimits.prototype.Schema =
-	"<a:help>Specifies per category limits on number of entities (buildings or units) that can be created for each player.</a:help>" +
+	"<a:help>Specifies per category limits on number of entities (buildings or units) that can be created for each player</a:help>" +
 	"<a:example>" +
 		"<Limits>" +
 		  "<CivilCentre/>" +
@@ -9,9 +9,6 @@ EntityLimits.prototype.Schema =
 		  "<Fortress>10</Fortress>" +
 		  "<Wonder>1</Wonder>" +
 		  "<Hero>1</Hero>" +
-		  "<Special>" +
-			"<LimitPerCivCentre>1</LimitPerCivCentre>" +
-		  "</Special>" +
 		  "<Apadana>1</Apadana>" +
 		  "<Monument>5</Monument>" +
 		"</Limits>" +
@@ -21,7 +18,7 @@ EntityLimits.prototype.Schema =
 	"</element>" +
 	"<element name='Limits'>" +
 		"<zeroOrMore>" +
-			"<element a:help='Specifies a category of building/unit on which to apply this limit. See BuildRestrictions/TrainingRestrictions for list of categories.'>" +
+			"<element a:help='Specifies a category of building/unit on which to apply this limit. See BuildRestrictions/TrainingRestrictions for possible categories'>" +
 				"<anyName />" +
 				"<data type='integer'/>" +
 			"</element>" +

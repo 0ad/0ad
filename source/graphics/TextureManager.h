@@ -132,7 +132,7 @@ public:
 	 */
 	explicit CTextureProperties(const VfsPath& path) :
 		m_Path(path), m_Filter(GL_LINEAR_MIPMAP_LINEAR),
-		m_WrapS(GL_REPEAT), m_WrapT(GL_REPEAT), m_Aniso(1.0f)
+		m_WrapS(GL_REPEAT), m_WrapT(GL_REPEAT), m_Aniso(1.0f), m_Format(0)
 	{
 	}
 
@@ -157,6 +157,12 @@ public:
 	 */
 	void SetMaxAnisotropy(float aniso) { m_Aniso = aniso; }
 
+	/**
+	 * Set GL texture upload format, to override the default.
+	 * Typically GL_ALPHA or GL_LUMINANCE for 8-bit textures.
+	 */
+	void SetFormatOverride(GLenum format) { m_Format = format; }
+
 	// TODO: rather than this static definition of texture properties
 	// (especially anisotropy), maybe we want something that can be more
 	// easily tweaked in an Options menu? e.g. the caller just specifies
@@ -175,11 +181,13 @@ public:
 	// or something a bit like that.
 
 private:
+	// Must update TPhash, TPequal_to when changing these fields
 	VfsPath m_Path;
 	GLint m_Filter;
 	GLint m_WrapS;
 	GLint m_WrapT;
 	float m_Aniso;
+	GLenum m_Format;
 };
 
 /**

@@ -48,7 +48,7 @@ function Defence(){
 // 1: Huge army in the base, outnumbering us.
 
 
-Defence.prototype.update = function(gameState, events, militaryManager){
+Defence.prototype.update = function(gameState, events, HQ){
 	
 	Engine.ProfileStart("Defence Manager");
 	
@@ -80,13 +80,13 @@ Defence.prototype.update = function(gameState, events, militaryManager){
 	this.territoryMap = Map.createTerritoryMap(gameState);	// used by many func
 
 	// First step: we deal with enemy armies, those are the highest priority.
-	this.defendFromEnemies(gameState, events, militaryManager);
+	this.defendFromEnemies(gameState, events, HQ);
 
 	// second step: we loop through messages, and sort things as needed (dangerous buildings, attack by animals, ships, lone units, whatever).
 	// TODO : a lot.
-	this.MessageProcess(gameState,events,militaryManager);
+	this.MessageProcess(gameState,events,HQ);
 	
-	this.DealWithWantedUnits(gameState,events,militaryManager);
+	this.DealWithWantedUnits(gameState,events,HQ);
 
 	/*
 	var self = this;
@@ -138,7 +138,7 @@ Defence.prototype.evaluateArmies = function(gameState, armies) {
 }*/
 // Incorporates an entity in an army. If no army fits, it creates a new one around this one.
 // an army is basically an entity collection.
-Defence.prototype.armify = function(gameState, entity, militaryManager, minNBForArmy) {
+Defence.prototype.armify = function(gameState, entity, HQ, minNBForArmy) {
 	if (entity.position() === undefined)
 		return;
 	if (this.enemyArmy[entity.owner()] === undefined)
@@ -160,10 +160,10 @@ Defence.prototype.armify = function(gameState, entity, militaryManager, minNBFor
 			}
 		}
 	}
-	if (militaryManager)
+	if (HQ)
 	{
 		var self = this;
-		var close = militaryManager.enemyWatchers[entity.owner()].enemySoldiers.filter(Filters.byDistance(entity.position(), self.armyCompactSize));
+		var close = HQ.enemyWatchers[entity.owner()].enemySoldiers.filter(Filters.byDistance(entity.position(), self.armyCompactSize));
 		if (!minNBForArmy || close.length >= minNBForArmy)
 		{
 			// if we're here, we need to create an army for it, and freeze it to make sure no unit will be added automatically
@@ -223,7 +223,7 @@ Defence.prototype.reevaluateEntity = function(gameState, entity) {
 }
 // This deals with incoming enemy armies, setting the defcon if needed. It will take new soldiers, and assign them to attack
 // TODO: still is still pretty dumb, it could use improvements.
-Defence.prototype.defendFromEnemies = function(gameState, events, militaryManager) {
+Defence.prototype.defendFromEnemies = function(gameState, events, HQ) {
 	var self = this;
 	
 	// New, faster system will loop for enemy soldiers, and also females on occasions ( TODO )
@@ -264,10 +264,10 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 	// When it's finished it'll start over.
 	for (var enemyID in this.enemyArmy)
 	{
-		//this.enemyUnits[enemyID] = militaryManager.enemyWatchers[enemyID].getAllEnemySoldiers();
+		//this.enemyUnits[enemyID] = HQ.enemyWatchers[enemyID].getAllEnemySoldiers();
 		if (this.enemyUnits[enemyID] === undefined || this.enemyUnits[enemyID].length === 0)
 		{
-			this.enemyUnits[enemyID] = militaryManager.enemyWatchers[enemyID].enemySoldiers.toEntityArray();
+			this.enemyUnits[enemyID] = HQ.enemyWatchers[enemyID].enemySoldiers.toEntityArray();
 		} else {
 			// we have some units still to check in this array. Check 15 (TODO: DIFFLEVEL)
 			// Note: given the way memory works, if the entity has been recently deleted, its reference may still exist.
@@ -283,7 +283,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 					} else {
 						var dangerous = this.evaluateEntity(gameState, this.enemyUnits[enemyID][0]);
 						if (dangerous)
-							this.armify(gameState, this.enemyUnits[enemyID][0], militaryManager,2);
+							this.armify(gameState, this.enemyUnits[enemyID][0], HQ,2);
 						this.enemyUnits[enemyID].splice(0,1);
 					}
 				} else if (this.enemyUnits[enemyID].length > 0 && gameState.getEntityById(this.enemyUnits[enemyID][0].id()) === undefined)
@@ -379,8 +379,8 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 			defender.setMetadata(PlayerID, "subrole", undefined);
 			self.nbDefenders--;
 		});
-		militaryManager.ungarrisonAll(gameState);
-		militaryManager.unpauseAllPlans(gameState);
+		HQ.ungarrisonAll(gameState);
+		HQ.unpauseAllPlans(gameState);
 		return;
 	} else if (this.nbAttackers === 0 && this.nbDefenders !== 0) {
 		// Release all our units
@@ -393,12 +393,12 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 			defender.setMetadata(PlayerID, "subrole", undefined);
 			self.nbDefenders--;
 		});
-		militaryManager.ungarrisonAll(gameState);
-		militaryManager.unpauseAllPlans(gameState);
+		HQ.ungarrisonAll(gameState);
+		HQ.unpauseAllPlans(gameState);
 		return;
 	}
 	if ( (this.nbDefenders < 4 && this.nbAttackers >= 5) || this.nbDefenders === 0) {
-		militaryManager.ungarrisonAll(gameState);
+		HQ.ungarrisonAll(gameState);
 	}
 	
 	//debug ("total number of attackers:"+ this.nbAttackers);
@@ -449,7 +449,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 	//debug ("nonDefenders.length "+ nonDefenders.length);
 		
 	if (gameState.defcon() > 3)
-		militaryManager.unpauseAllPlans(gameState);
+		HQ.unpauseAllPlans(gameState);
 	
 	if ( (nonDefenders.length + this.nbDefenders > newEnemies.length + this.nbAttackers)
 		|| this.nbDefenders + nonDefenders.length < 4)
@@ -467,9 +467,9 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 	/*
 	if (gameState.defcon() < 2 && (this.nbAttackers-this.nbDefenders) > 15)
 	{
-		militaryManager.pauseAllPlans(gameState);
+		HQ.pauseAllPlans(gameState);
 	} else if (gameState.defcon() < 3 && this.nbDefenders === 0 && newEnemies.length === 0) {
-		militaryManager.ungarrisonAll(gameState);
+		HQ.ungarrisonAll(gameState);
 	}*/
 	
 	// A little sorting to target sieges/champions first.
@@ -549,7 +549,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 		// successfully sorted
 		defs.forEach(function (defender) { //}){
 			if (defender.getMetadata(PlayerID, "plan") != undefined && (gameState.defcon() < 4 || defender.getMetadata(PlayerID,"subrole") == "walking"))
-				militaryManager.pausePlan(gameState, defender.getMetadata(PlayerID, "plan"));
+				HQ.pausePlan(gameState, defender.getMetadata(PlayerID, "plan"));
 			//debug ("Against " +enemy.id() + " Assigning " + defender.id());
 			if (defender.getMetadata(PlayerID, "role") == "worker" || defender.getMetadata(PlayerID, "role") == "attack")
 				defender.setMetadata(PlayerID, "formerrole", defender.getMetadata(PlayerID, "role"));
@@ -605,7 +605,7 @@ Defence.prototype.defendFromEnemies = function(gameState, events, militaryManage
 // this processes the attackmessages
 // So that a unit that gets attacked will not be completely dumb.
 // warning: huge levels of indentation coming.
-Defence.prototype.MessageProcess = function(gameState,events, militaryManager) {
+Defence.prototype.MessageProcess = function(gameState,events, HQ) {
 	var self = this;
 	
 	for (var key in events){
@@ -677,7 +677,7 @@ Defence.prototype.MessageProcess = function(gameState,events, militaryManager) {
 									if (this.reevaluateEntity(gameState, attacker))
 									{
 										var position = attacker.position();
-										var close = militaryManager.enemyWatchers[attacker.owner()].enemySoldiers.filter(Filters.byDistance(position, self.armyCompactSize));
+										var close = HQ.enemyWatchers[attacker.owner()].enemySoldiers.filter(Filters.byDistance(position, self.armyCompactSize));
 										
 										if (close.length > 2 || ourUnit.hasClass("Support") || attacker.hasClass("Siege"))
 										{
@@ -736,7 +736,7 @@ Defence.prototype.MessageProcess = function(gameState,events, militaryManager) {
 }; // nice sets of closing brackets, isn't it?
 
 // At most, this will put defcon to 4
-Defence.prototype.DealWithWantedUnits = function(gameState, events, militaryManager) {
+Defence.prototype.DealWithWantedUnits = function(gameState, events, HQ) {
 	//if (gameState.defcon() < 3)
 	//	return;
 	
