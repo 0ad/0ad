@@ -14,7 +14,7 @@
 		</BonusStructures>
 		<BonusCav>
 		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>2</Multiplier>
 		</BonusCav>
 		<BonusGates>
 		  <Classes>Gates</Classes>
@@ -36,7 +36,7 @@
 		</BonusStructures>
 		<BonusCav>
 		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>2</Multiplier>
 		</BonusCav>
 		<BonusGates>
 		  <Classes>Gates</Classes>
@@ -49,7 +49,7 @@
   <Identity>
     <Classes datatype="tokens">Melee</Classes>
     <Tooltip>Classes: Champion Melee Elephant.
-Counters: 2x vs. All Structures, 2x vs. All Cavalry. Extra 1.5x vs. Gates.
+Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.
 Countered by: Skirmishers and Swordsmen. Can run amok.</Tooltip>
   </Identity>
 </Entity>
