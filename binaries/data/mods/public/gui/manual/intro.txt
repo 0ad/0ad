@@ -1,9 +1,9 @@
-﻿[font="serif-bold-18"]0 A.D. in-game manual
+[font="serif-bold-18"]0 A.D. in-game manual
 [font="serif-14"]
 Thank you for installing 0 A.D.! This page will give a brief overview of the features available in this incomplete, under-development, alpha version of the game.
 
 [font="serif-bold-16"]Graphics settings
-[font="serif-14"]You can switch between fullscreen and windowed mode by pressing Alt+Enter. In windowed mode, you can resize the window. If the game runs too slowly, you can change some settings in the configuration file: look for binaries/data/config/default.cfg in the location where the game is installed, which gives instructions for editing, and try disabling the "fancywater" and "shadows" options.
+[font="serif-14"]You can switch between fullscreen and windowed mode by pressing Alt + Enter. In windowed mode, you can resize the window. If the game runs too slowly, you can change some settings in the configuration file: look for binaries/data/config/default.cfg in the location where the game is installed, which gives instructions for editing, and try disabling the "fancywater" and "shadows" options.
 
 [font="serif-bold-16"]Playing the game
 [font="serif-14"]The controls and gameplay should be familiar to players of traditional RTS games. There are currently a lot of missing features and poorly-balanced stats – you will probably have to wait until a beta release for it to work well.
@@ -28,7 +28,7 @@ To set up a multiplayer game, one player must select the "Host game" option. The
 [font="serif-bold-16"]Game setup
 [font="serif-14"]In a multiplayer game, only the host can alter the game setup options.
 
-First, select whether you want to play on a random map (created automatically from a random map script) or a scenario (created by a map designer). Scenarios can be filtered to show only some maps. The default maps are shown immediately, but custom maps are often not so select "All maps" to see a list of all available maps. Then select a map to play on. The "techdemo" maps are designed for testing particular gameplay features and are probably not generally useful.
+First, select whether you want to play on a random map (created automatically from a random map script) or a scenario (created by a map designer). Scenarios can be filtered to show only some maps. The default maps are shown immediately, but custom maps are often not so select "All maps" to see a list of all available maps. Then select a map to play on. The "Demo Maps" are designed for testing particular gameplay features and are probably not generally useful.
 
 Finally change the settings. For random maps this includes the number of players, the size of a map, etc. For scenarios you can only select who controls which player (decides where you start on the map etc). The options are either a human player, an AI or no player at all (existing units will attack enemies that come into sight, but no new units will be created, nor will the units be sent to attack anyone).
 
@@ -36,14 +36,14 @@ When you are ready to start, click the "Start game" button.
 
 [font="serif-bold-16"]Hotkeys:
 [font="serif-bold-14"]Always
-[font="serif-14"]Alt+F4: Close the game, without confirmation
+[font="serif-14"]Alt + F4: Close the game, without confirmation
 Alt + Enter: Toggle between fullscreen and windowed
 ~ or F9: Show/hide console
 Alt + F: Show/hide frame counter (FPS)
 F11: Enable/disable real-time profiler (toggles through the displays of information)
 Shift + F11: Save current profiler data to "logs/profile.txt"
 F2: Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
-Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there) 
+Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
 
 [font="serif-bold-14"]In Game
 [font="serif-14"]
@@ -58,7 +58,7 @@ F12: Show/hide time elapsed counter
 ESC: Close all dialogs (chat, menu) or clear selected units
 Enter/return: Open/send chat
 T: Send team chat
-Pause: Pause/unpause the game
+Pause: Pause/resume the game
 Delete: Delete currently selected unit/units/building/buildings
 ,: Select idle fighters
 .: Select idle workers (including citizen soldiers)
@@ -78,7 +78,7 @@ Shift + Left Click or Left Drag over unit on map: Add unit to selection
 Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection
 Alt + Left Drag over units on map: Only select military units
 Ctrl + Left Click on unit/group icon with multiple units selected: Deselect
-Right Click with a building/buildings selected: sets a rally point for units created/ungarrisoned from that building. 
+Right Click with a building/buildings selected: sets a rally point for units created/ungarrisoned from that building.
 Ctrl + Right Click with units selected:
     - If the cursor is over a structure: Garrison
     - Otherwise: Attack move
@@ -107,8 +107,8 @@ F: Follow the selected unit (move the camera to stop the camera from following t
 R: Reset camera zoom/orientation
 +: Zoom in (keep pressed for continuous zoom)
 -: Zoom out (keep pressed for continuous zoom)
-Alt+W: Toggle through wireframe modes
-Middle Mouse Button or / (ForwardSlash): Keep pressed and move the mouse to pan
+Alt + W: Toggle through wireframe modes
+Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to pan
 
 [font="serif-bold-14"]During Building Placement
 [font="serif-14"][: Rotate building 15 degrees counter-clockwise

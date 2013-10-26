@@ -107,8 +107,8 @@ function initMain()
 
 	// Init map types
 	var mapTypes = getGUIObjectByName("mapTypeSelection");
-	mapTypes.list = ["Scenario","Skirmish","Random"];
-	mapTypes.list_data = ["scenario","skirmish","random"];
+	mapTypes.list = ["Skirmish","Random","Scenario"];
+	mapTypes.list_data = ["skirmish","random","scenario"];
 
 	// Setup map filters - will appear in order they are added
 	addFilter("Default", function(settings) { return settings && !keywordTestOR(settings.Keywords, ["naval", "demo", "hidden"]); });

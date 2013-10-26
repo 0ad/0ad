@@ -6,17 +6,17 @@
 		<SunColour r="0.847059" g="0.792157" b="0.592157"/>
 		<SunElevation angle="0.923456"/>
 		<SunRotation angle="-1.86532"/>
-		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
+		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<UnitsAmbientColour r="0.509804" g="0.47451" b="0.4"/>
 		<Fog>
 			<FogFactor>0.00232422</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="0.866667" g="0.776471" b="0.490196"/>
+			<FogColour r="0.866667" g="0.776471" b="0.486275"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0" g="0.501961" b="0.752941"/>
+				<Colour r="0" g="0.501961" b="0.74902"/>
 				<Height>19.9</Height>
 				<Shininess>187.5</Shininess>
 				<Waviness>8.51563</Waviness>
@@ -35,9 +35,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="568.735" y="103.031" z="347.787"/>
-		<Rotation angle="-0.116101"/>
-		<Declination angle="0.680457"/>
+		<Position x="554.01" y="89.8292" z="57.8568"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -49,7 +49,7 @@
   ],
   "CircularMap": true,
   "Description": "A sandbox scenario for players to try out the Roman civilisation.",
-  "GameType": "conquest",
+  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -91,9 +91,9 @@
       "Team": -1
     }
   ],
+  "Preview": "sandbox-theromans.png",
   "RevealMap": false,
   "Script": "oasis.js",
-  "Preview": "sandbox-theromans.png",
   "Seed": 4278,
   "Size": 256,
   "XXXXXX": "Optionally define other things here, like we would for a scenario"
@@ -8116,16 +8116,6 @@
 			<Position x="481.3794" z="244.58121"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1862">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="612.2375" z="319.68793"/>
-			<Orientation y="-2.61854"/>
-		</Entity>
-		<Entity uid="1863">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="607.00831" z="310.80842"/>
-			<Orientation y="2.94906"/>
-		</Entity>
 		<Entity uid="1864">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="613.28058" z="296.75727"/>
@@ -8150,16 +8140,6 @@
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="618.70606" z="325.46924"/>
 			<Orientation y="-2.05701"/>
-		</Entity>
-		<Entity uid="1869">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="609.19745" z="321.34012"/>
-			<Orientation y="-2.63767"/>
-		</Entity>
-		<Entity uid="1870">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="602.98292" z="307.90348"/>
-			<Orientation y="2.88202"/>
 		</Entity>
 		<Entity uid="1871">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
@@ -10151,26 +10131,6 @@
 			<Position x="637.81745" z="268.92228"/>
 			<Orientation y="-1.83642"/>
 		</Entity>
-		<Entity uid="2269">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="552.6922" z="301.40867"/>
-			<Orientation y="-0.96052"/>
-		</Entity>
-		<Entity uid="2270">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="518.59089" z="308.32172"/>
-			<Orientation y="-2.36464"/>
-		</Entity>
-		<Entity uid="2271">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="492.38233" z="287.0828"/>
-			<Orientation y="-1.5293"/>
-		</Entity>
-		<Entity uid="2272">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="580.63422" z="288.81937"/>
-			<Orientation y="0.4444"/>
-		</Entity>
 		<Entity uid="2273">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="715.74091" z="859.474"/>
@@ -10391,41 +10351,6 @@
 			<Position x="483.44617" z="382.05"/>
 			<Orientation y="0.847"/>
 		</Entity>
-		<Entity uid="2317">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="488.15577" z="330.18531"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2318">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="479.67307" z="314.89811"/>
-			<Orientation y="1.08246"/>
-		</Entity>
-		<Entity uid="2319">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="508.96445" z="339.25513"/>
-			<Orientation y="-1.62035"/>
-		</Entity>
-		<Entity uid="2320">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="497.96912" z="314.45145"/>
-			<Orientation y="0.87002"/>
-		</Entity>
-		<Entity uid="2321">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="506.90891" z="289.31922"/>
-			<Orientation y="-2.87571"/>
-		</Entity>
-		<Entity uid="2322">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="502.54993" z="272.23862"/>
-			<Orientation y="1.30298"/>
-		</Entity>
-		<Entity uid="2323">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="525.53345" z="271.9354"/>
-			<Orientation y="-2.41413"/>
-		</Entity>
 		<Entity uid="2324">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="512.61658" z="257.42814"/>
@@ -10505,11 +10430,6 @@
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="600.25446" z="253.95171"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2340">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="601.67066" z="266.26563"/>
-			<Orientation y="0.62058"/>
 		</Entity>
 		<Entity uid="2341">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
@@ -10631,7 +10551,7 @@
 		<Entity uid="2361">
 			<Template>structures/rome_outpost</Template>
 			<Player>1</Player>
-			<Position x="367.55485" z="714.45716"/>
+			<Position x="360.82609" z="736.66138"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2362">
@@ -10727,19 +10647,19 @@
 		<Entity uid="2379">
 			<Template>gaia/special_ruins_stone_statues_roman</Template>
 			<Player>1</Player>
-			<Position x="498.03782" z="136.48882"/>
+			<Position x="548.87006" z="99.8287"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2380">
 			<Template>gaia/special_ruins_stone_statues_roman</Template>
 			<Player>1</Player>
-			<Position x="504.25886" z="142.32448"/>
+			<Position x="555.09113" z="105.66436"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2381">
 			<Template>gaia/special_ruins_stone_statues_roman</Template>
 			<Player>1</Player>
-			<Position x="510.12302" z="147.59008"/>
+			<Position x="560.95527" z="110.92994"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2382">
@@ -10793,7 +10713,7 @@
 		<Entity uid="2390">
 			<Template>structures/rome_wonder</Template>
 			<Player>1</Player>
-			<Position x="579.83552" z="236.63303"/>
+			<Position x="587.41877" z="230.43543"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="35296"/>
 		</Entity>
@@ -10835,14 +10755,14 @@
 		<Entity uid="2396">
 			<Template>structures/rome_defense_tower</Template>
 			<Player>1</Player>
-			<Position x="693.82428" z="258.73542"/>
+			<Position x="662.86506" z="216.55152"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="28036"/>
 		</Entity>
 		<Entity uid="2397">
 			<Template>structures/rome_temple</Template>
 			<Player>1</Player>
-			<Position x="565.38086" z="213.04065"/>
+			<Position x="571.40314" z="206.52921"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="1010"/>
 		</Entity>
@@ -10929,6 +10849,454 @@
 			<Position x="563.21613" z="430.48084"/>
 			<Orientation y="-0.14286"/>
 			<Actor seed="42384"/>
+		</Entity>
+		<Entity uid="2410">
+			<Template>structures/rome_field</Template>
+			<Player>1</Player>
+			<Position x="492.44938" z="296.77292"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1872"/>
+		</Entity>
+		<Entity uid="2411">
+			<Template>structures/rome_field</Template>
+			<Player>1</Player>
+			<Position x="513.00831" z="276.31202"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28932"/>
+		</Entity>
+		<Entity uid="2412">
+			<Template>structures/rome_field</Template>
+			<Player>1</Player>
+			<Position x="534.77088" z="296.3884"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9600"/>
+		</Entity>
+		<Entity uid="2413">
+			<Template>structures/rome_field</Template>
+			<Player>1</Player>
+			<Position x="552.04004" z="317.35364"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="18982"/>
+		</Entity>
+		<Entity uid="2414">
+			<Template>structures/rome_house</Template>
+			<Player>1</Player>
+			<Position x="479.79514" z="48.77244"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43622"/>
+		</Entity>
+		<Entity uid="2415">
+			<Template>structures/rome_house</Template>
+			<Player>1</Player>
+			<Position x="499.81806" z="35.92232"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27080"/>
+		</Entity>
+		<Entity uid="2416">
+			<Template>structures/rome_house</Template>
+			<Player>1</Player>
+			<Position x="555.64252" z="30.40406"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2184"/>
+		</Entity>
+		<Entity uid="2417">
+			<Template>structures/rome_fortress</Template>
+			<Player>1</Player>
+			<Position x="711.60828" z="305.21076"/>
+			<Orientation y="-2.30413"/>
+			<Actor seed="59228"/>
+		</Entity>
+		<Entity uid="2418">
+			<Template>structures/rome_corral</Template>
+			<Player>1</Player>
+			<Position x="563.51288" z="286.68116"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9862"/>
+		</Entity>
+		<Entity uid="2419">
+			<Template>structures/rome_army_camp</Template>
+			<Player>1</Player>
+			<Position x="759.42042" z="734.94636"/>
+			<Orientation y="-2.5284"/>
+			<Actor seed="33174"/>
+		</Entity>
+		<Entity uid="2420">
+			<Template>units/rome_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="497.43256" z="122.17431"/>
+			<Orientation y="-2.21137"/>
+			<Actor seed="22670"/>
+		</Entity>
+		<Entity uid="2421">
+			<Template>units/rome_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="494.27204" z="124.9248"/>
+			<Orientation y="-2.21164"/>
+			<Actor seed="946"/>
+		</Entity>
+		<Entity uid="2422">
+			<Template>units/rome_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="487.11503" z="124.44745"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54044"/>
+		</Entity>
+		<Entity uid="2423">
+			<Template>units/rome_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="489.06919" z="126.81348"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42430"/>
+		</Entity>
+		<Entity uid="2424">
+			<Template>units/rome_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="491.53861" z="128.72019"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53528"/>
+		</Entity>
+		<Entity uid="2425">
+			<Template>units/rome_cavalry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="473.71518" z="124.16482"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29432"/>
+		</Entity>
+		<Entity uid="2426">
+			<Template>units/rome_cavalry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="475.79337" z="125.21502"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49512"/>
+		</Entity>
+		<Entity uid="2427">
+			<Template>units/rome_cavalry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="478.19001" z="126.81348"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27876"/>
+		</Entity>
+		<Entity uid="2428">
+			<Template>units/rome_cavalry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="477.46604" z="120.0745"/>
+			<Orientation y="-2.89634"/>
+			<Actor seed="29302"/>
+		</Entity>
+		<Entity uid="2429">
+			<Template>units/rome_cavalry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="481.0102" z="120.31798"/>
+			<Orientation y="-2.87136"/>
+			<Actor seed="25734"/>
+		</Entity>
+		<Entity uid="2430">
+			<Template>units/rome_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="483.39649" z="134.42808"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16230"/>
+		</Entity>
+		<Entity uid="2431">
+			<Template>units/rome_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="486.04218" z="136.77196"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54744"/>
+		</Entity>
+		<Entity uid="2432">
+			<Template>units/rome_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="491.16245" z="141.71875"/>
+			<Orientation y="-2.20138"/>
+			<Actor seed="63012"/>
+		</Entity>
+		<Entity uid="2433">
+			<Template>units/rome_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="492.40833" z="137.28922"/>
+			<Orientation y="-2.36045"/>
+			<Actor seed="59326"/>
+		</Entity>
+		<Entity uid="2434">
+			<Template>units/rome_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="495.35813" z="135.7682"/>
+			<Orientation y="-2.0672"/>
+			<Actor seed="41808"/>
+		</Entity>
+		<Entity uid="2435">
+			<Template>units/rome_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="494.5611" z="141.35093"/>
+			<Orientation y="-2.54673"/>
+			<Actor seed="42974"/>
+		</Entity>
+		<Entity uid="2436">
+			<Template>units/rome_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="501.563" z="150.10917"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="18742"/>
+		</Entity>
+		<Entity uid="2437">
+			<Template>units/rome_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="503.41157" z="152.127"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17618"/>
+		</Entity>
+		<Entity uid="2438">
+			<Template>units/rome_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="504.7128" z="153.54741"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59412"/>
+		</Entity>
+		<Entity uid="2439">
+			<Template>units/rome_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="506.40452" z="155.67194"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10480"/>
+		</Entity>
+		<Entity uid="2440">
+			<Template>units/rome_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="508.33188" z="156.98786"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40926"/>
+		</Entity>
+		<Entity uid="2441">
+			<Template>units/rome_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="497.4311" z="154.40571"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43294"/>
+		</Entity>
+		<Entity uid="2442">
+			<Template>units/rome_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="500.09925" z="156.85395"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40138"/>
+		</Entity>
+		<Entity uid="2443">
+			<Template>units/rome_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="501.7212" z="159.2042"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37346"/>
+		</Entity>
+		<Entity uid="2444">
+			<Template>units/rome_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="504.01398" z="160.3671"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="52268"/>
+		</Entity>
+		<Entity uid="2445">
+			<Template>units/rome_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="505.50351" z="162.18514"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45810"/>
+		</Entity>
+		<Entity uid="2446">
+			<Template>units/rome_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="494.66718" z="158.77776"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39172"/>
+		</Entity>
+		<Entity uid="2447">
+			<Template>units/rome_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="496.64972" z="160.81315"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43386"/>
+		</Entity>
+		<Entity uid="2448">
+			<Template>units/rome_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="498.0178" z="162.3408"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20846"/>
+		</Entity>
+		<Entity uid="2449">
+			<Template>units/rome_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="499.87153" z="165.09166"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27748"/>
+		</Entity>
+		<Entity uid="2450">
+			<Template>units/rome_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="501.54987" z="166.28496"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34416"/>
+		</Entity>
+		<Entity uid="2451">
+			<Template>units/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="586.64515" z="144.2222"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14224"/>
+		</Entity>
+		<Entity uid="2452">
+			<Template>units/rome_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="697.94465" z="278.5384"/>
+			<Orientation y="-2.26844"/>
+			<Actor seed="48952"/>
+		</Entity>
+		<Entity uid="2453">
+			<Template>units/rome_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="694.47535" z="279.77384"/>
+			<Orientation y="-2.32308"/>
+			<Actor seed="57702"/>
+		</Entity>
+		<Entity uid="2454">
+			<Template>units/rome_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="690.32264" z="282.41266"/>
+			<Orientation y="-2.40851"/>
+			<Actor seed="57104"/>
+		</Entity>
+		<Entity uid="2455">
+			<Template>units/rome_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="687.39924" z="284.15885"/>
+			<Orientation y="-2.5154"/>
+			<Actor seed="33874"/>
+		</Entity>
+		<Entity uid="2456">
+			<Template>units/rome_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="683.26966" z="285.07007"/>
+			<Orientation y="-2.37853"/>
+			<Actor seed="55596"/>
+		</Entity>
+		<Entity uid="2457">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="678.91388" z="279.96866"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19604"/>
+		</Entity>
+		<Entity uid="2458">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="677.3791" z="277.80384"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51358"/>
+		</Entity>
+		<Entity uid="2459">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="675.84021" z="276.56293"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49226"/>
+		</Entity>
+		<Entity uid="2460">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="679.41926" z="273.60987"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19906"/>
+		</Entity>
+		<Entity uid="2461">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="680.52515" z="275.79371"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41036"/>
+		</Entity>
+		<Entity uid="2462">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="682.13685" z="277.71335"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="11960"/>
+		</Entity>
+		<Entity uid="2463">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="682.82105" z="271.11585"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3238"/>
+		</Entity>
+		<Entity uid="2464">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="684.27674" z="273.4944"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1318"/>
+		</Entity>
+		<Entity uid="2465">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="685.57355" z="275.1922"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23338"/>
+		</Entity>
+		<Entity uid="2466">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="681.32941" z="269.18403"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14204"/>
+		</Entity>
+		<Entity uid="2467">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="677.41077" z="271.30683"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45266"/>
+		</Entity>
+		<Entity uid="2468">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="673.52417" z="273.59775"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40390"/>
+		</Entity>
+		<Entity uid="2469">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="672.55604" z="270.36432"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49270"/>
+		</Entity>
+		<Entity uid="2470">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="675.55665" z="268.83063"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16036"/>
+		</Entity>
+		<Entity uid="2471">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="678.40546" z="266.88263"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43198"/>
+		</Entity>
+		<Entity uid="2472">
+			<Template>structures/rome_outpost</Template>
+			<Player>1</Player>
+			<Position x="908.71369" z="465.1537"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="15366"/>
+		</Entity>
+		<Entity uid="2473">
+			<Template>structures/rome_outpost</Template>
+			<Player>1</Player>
+			<Position x="261.9803" z="472.60126"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59468"/>
 		</Entity>
 	</Entities>
 	<Paths/>

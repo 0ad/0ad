@@ -11,7 +11,7 @@
 		<Fog>
 			<FogFactor>0.00199219</FogFactor>
 			<FogThickness>0.400391</FogThickness>
-			<FogColour r="0.882353" g="0.843137" b="0.690196"/>
+			<FogColour r="0.882353" g="0.839216" b="0.686275"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -35,17 +35,18 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="550.535" y="73.0101" z="333.961"/>
+		<Position x="526.37" y="91.2669" z="253.197"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview": "nile_river.png",
   "Description": "A desert map, generally wide open, except for the Nile River running through the middle.",
   "GameType": "conquest",
-  "Keywords": [],
+  "Keywords": [
+    "naval"
+  ],
   "LockTeams": false,
   "Name": "Nile River",
   "PlayerData": [
@@ -114,6 +115,7 @@
       "Team": 1
     }
   ],
+  "Preview": "nile_river.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>

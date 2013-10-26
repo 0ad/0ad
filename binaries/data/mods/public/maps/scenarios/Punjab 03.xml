@@ -2,36 +2,47 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>stormy</SkySet>
-		<SunColour r="0.658824" g="0.647059" b="0.521569"/>
+		<SunColour r="0.866667" g="0.776471" b="0.490196"/>
 		<SunElevation angle="0.628932"/>
-		<SunRotation angle="-0.374291"/>
-		<TerrainAmbientColour r="0.564706" g="0.513726" b="0.419608"/>
-		<UnitsAmbientColour r="0.564706" g="0.513726" b="0.419608"/>
+		<SunRotation angle="-1.12901"/>
+		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
+		<UnitsAmbientColour r="0.443137" g="0.521569" b="0.556863"/>
+		<Fog>
+			<FogFactor>0.00298828</FogFactor>
+			<FogThickness>0.0742188</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.572549" g="0.517647" b="0.435294"/>
+				<Colour r="0.568627" g="0.513726" b="0.431373"/>
 				<Height>21.823</Height>
 				<Shininess>250</Shininess>
-				<Waviness>1.28906</Waviness>
+				<Waviness>4.02344</Waviness>
 				<Murkiness>0.946289</Murkiness>
-				<Tint r="0.435294" g="0.305882" b="0.101961"/>
-				<ReflectionTint r="0.603922" g="0.529412" b="0.384314"/>
-				<ReflectionTintStrength>0.525391</ReflectionTintStrength>
+				<Tint r="0.431373" g="0.301961" b="0.101961"/>
+				<ReflectionTint r="0.745098" g="0.596078" b="0.278431"/>
+				<ReflectionTintStrength>0.242188</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.988281</Saturation>
+			<Bloom>0.0890625</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="210.395" y="91.211" z="539.362"/>
+		<Position x="250.908" y="91.5911" z="162.309"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "punjab_3.png",
+  "Preview": "punjab_3.png",
   "Description": "Clouds darken the horizon in Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\u000a\u000aThe rivers are heavily forested, while grasslands carpet the surrounding countryside.",
   "GameType": "conquest",
   "Keywords": [],

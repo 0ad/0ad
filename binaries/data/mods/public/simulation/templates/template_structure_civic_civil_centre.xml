@@ -27,7 +27,7 @@
   </BuildRestrictions>
   <Cost>
     <PopulationBonus>20</PopulationBonus>
-    <BuildTime>300</BuildTime>
+    <BuildTime>600</BuildTime>
     <Resources>
       <food>0</food>
       <wood>500</wood>
@@ -52,16 +52,15 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
     <Identity>
-    <GenericName>Civic Centre</GenericName>
+    <GenericName>Civic Center</GenericName>
     <Tooltip>Build to acquire large tracts of territory. Train citizens. Garrison: 20.</Tooltip>
     <Classes datatype="tokens">
-      City
       Defensive
       CivCentre
       CivilCentre
     </Classes>
     <Icon>structures/civic_centre.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>200</xp>
