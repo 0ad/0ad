@@ -35,14 +35,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="408.035" y="136.987" z="583.618"/>
+		<Position x="451.683" y="72.9154" z="698.464"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.",
+  "Description": "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\u000a\u000aThis represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -8824,6 +8824,48 @@
 			<Position x="218.35834" z="275.16254"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="3396"/>
+		</Entity>
+		<Entity uid="1601">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>0</Player>
+			<Position x="614.74604" z="97.65754"/>
+			<Orientation y="-0.8007"/>
+			<Actor seed="30430"/>
+		</Entity>
+		<Entity uid="1602">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>0</Player>
+			<Position x="618.29743" z="101.1806"/>
+			<Orientation y="-0.78611"/>
+			<Actor seed="54608"/>
+		</Entity>
+		<Entity uid="1603">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>0</Player>
+			<Position x="609.42511" z="93.03632"/>
+			<Orientation y="-0.5896"/>
+			<Actor seed="16870"/>
+		</Entity>
+		<Entity uid="1604">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>0</Player>
+			<Position x="449.2482" z="877.1482"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29364"/>
+		</Entity>
+		<Entity uid="1605">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>0</Player>
+			<Position x="453.48584" z="880.80567"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53630"/>
+		</Entity>
+		<Entity uid="1607">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>0</Player>
+			<Position x="442.50599" z="869.91968"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39840"/>
 		</Entity>
 	</Entities>
 	<Paths/>
