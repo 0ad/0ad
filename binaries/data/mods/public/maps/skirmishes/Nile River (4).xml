@@ -3,15 +3,15 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="1.03932" g="0.925199" b="0.578759"/>
+		<SunColour r="1" g="0.890196" b="0.556863"/>
 		<SunElevation angle="0.61666"/>
 		<SunRotation angle="0.834486"/>
 		<TerrainAmbientColour r="0.203922" g="0.258824" b="0.301961"/>
 		<UnitsAmbientColour r="0.458824" g="0.458824" b="0.458824"/>
 		<Fog>
-			<FogFactor>0.00132813</FogFactor>
+			<FogFactor>0.00231445</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="0.882353" g="0.839216" b="0.686275"/>
+			<FogColour r="0.866667" g="0.776471" b="0.490196"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -27,15 +27,15 @@
 			</WaterBody>
 		</Water>
 		<Postproc>
-			<Brightness>0</Brightness>
-			<Contrast>1.03906</Contrast>
-			<Saturation>0.921875</Saturation>
+			<Brightness>-0.015625</Brightness>
+			<Contrast>1.1377</Contrast>
+			<Saturation>1.01563</Saturation>
 			<Bloom>0.160938</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="632.096" y="73.0163" z="580.4"/>
+		<Position x="638.922" y="64.1607" z="877.12"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -2593,8 +2593,8 @@
 		<Entity uid="3395">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="293.43808" z="613.3891"/>
-			<Orientation y="0.48987"/>
+			<Position x="296.20069" z="608.37208"/>
+			<Orientation y="-1.7163"/>
 			<Obstruction group="4522"/>
 		</Entity>
 		<Entity uid="3396">
@@ -7168,7 +7168,7 @@
 		<Entity uid="4191">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="299.99494" z="607.71991"/>
+			<Position x="313.248" z="608.61005"/>
 			<Orientation y="-2.66443"/>
 		</Entity>
 		<Entity uid="4192">
@@ -8061,7 +8061,7 @@
 		<Entity uid="4356">
 			<Template>skirmish/structures/default_civil_centre</Template>
 			<Player>3</Player>
-			<Position x="333.43345" z="573.86573"/>
+			<Position x="338.32197" z="564.02265"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="46616"/>
 		</Entity>
@@ -8215,70 +8215,70 @@
 		<Entity uid="4378">
 			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>3</Player>
-			<Position x="353.4199" z="587.95844"/>
+			<Position x="358.30842" z="578.11536"/>
 			<Orientation y="0.26563"/>
 			<Actor seed="55252"/>
 		</Entity>
 		<Entity uid="4379">
 			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>3</Player>
-			<Position x="348.46644" z="593.52643"/>
+			<Position x="353.35495" z="583.68335"/>
 			<Orientation y="0.7163"/>
 			<Actor seed="43482"/>
 		</Entity>
 		<Entity uid="4380">
 			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>3</Player>
-			<Position x="346.6308" z="552.37488"/>
+			<Position x="351.51932" z="542.5318"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="34498"/>
 		</Entity>
 		<Entity uid="4381">
 			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>3</Player>
-			<Position x="350.27671" z="555.85358"/>
+			<Position x="355.16523" z="546.0105"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="56326"/>
 		</Entity>
 		<Entity uid="4382">
 			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="312.57663" z="560.03022"/>
+			<Position x="317.46515" z="550.18714"/>
 			<Orientation y="-2.32068"/>
 			<Actor seed="53398"/>
 		</Entity>
 		<Entity uid="4383">
 			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="317.00687" z="555.17975"/>
+			<Position x="321.8954" z="545.33667"/>
 			<Orientation y="-2.54381"/>
 			<Actor seed="4062"/>
 		</Entity>
 		<Entity uid="4384">
 			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="320.05808" z="552.20337"/>
+			<Position x="324.9466" z="542.3603"/>
 			<Orientation y="-2.45627"/>
 			<Actor seed="35646"/>
 		</Entity>
 		<Entity uid="4385">
 			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="322.9195" z="550.14673"/>
+			<Position x="327.80802" z="540.30365"/>
 			<Orientation y="-1.91976"/>
 			<Actor seed="47950"/>
 		</Entity>
 		<Entity uid="4386">
 			<Template>skirmish/units/default_cavalry</Template>
 			<Player>3</Player>
-			<Position x="309.49421" z="589.33735"/>
+			<Position x="314.38273" z="579.49427"/>
 			<Orientation y="-0.71641"/>
 			<Actor seed="10648"/>
 		</Entity>
 		<Entity uid="4387">
 			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>3</Player>
-			<Position x="314.56254" z="595.06873"/>
+			<Position x="319.45105" z="585.22565"/>
 			<Orientation y="-0.777"/>
 			<Actor seed="24922"/>
 		</Entity>
