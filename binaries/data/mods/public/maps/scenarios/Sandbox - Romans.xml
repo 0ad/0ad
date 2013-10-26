@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="530.624" y="81.1011" z="60.336"/>
+		<Position x="554.01" y="89.8292" z="57.8568"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -49,7 +49,7 @@
   ],
   "CircularMap": true,
   "Description": "A sandbox scenario for players to try out the Roman civilisation.",
-  "GameType": "conquest",
+  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
@@ -91,9 +91,9 @@
       "Team": -1
     }
   ],
+  "Preview": "sandbox-theromans.png",
   "RevealMap": false,
   "Script": "oasis.js",
-  "Preview": "sandbox-theromans.png",
   "Seed": 4278,
   "Size": 256,
   "XXXXXX": "Optionally define other things here, like we would for a scenario"

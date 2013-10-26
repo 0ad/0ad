@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="1" g="0.890196" b="0.556863"/>
+		<SunColour r="1" g="0.886275" b="0.556863"/>
 		<SunElevation angle="0.61666"/>
 		<SunRotation angle="0.834486"/>
 		<TerrainAmbientColour r="0.203922" g="0.258824" b="0.301961"/>
@@ -11,7 +11,7 @@
 		<Fog>
 			<FogFactor>0.00231445</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="0.866667" g="0.776471" b="0.490196"/>
+			<FogColour r="0.866667" g="0.776471" b="0.486275"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="638.922" y="64.1607" z="877.12"/>
+		<Position x="643.915" y="91.2171" z="852.554"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -44,7 +44,9 @@
   "CircularMap": true,
   "Description": "An Egyptian desert map bisected by the broad Nile River. Organic resources cluster near the river, while mineral resources can be found in the desert hinterlands.",
   "GameType": "conquest",
-  "Keywords": [],
+  "Keywords": [
+    "naval"
+  ],
   "LockTeams": false,
   "Name": "Nile River (4)",
   "PlayerData": [
@@ -14725,6 +14727,174 @@
 			<Position x="947.04926" z="704.82789"/>
 			<Orientation y="-2.62381"/>
 			<Actor seed="1886"/>
+		</Entity>
+		<Entity uid="5435">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>1</Player>
+			<Position x="595.33924" z="322.06894"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12040"/>
+		</Entity>
+		<Entity uid="5436">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>1</Player>
+			<Position x="598.83313" z="326.85157"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57908"/>
+		</Entity>
+		<Entity uid="5437">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>1</Player>
+			<Position x="602.65967" z="331.0395"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20206"/>
+		</Entity>
+		<Entity uid="5438">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>1</Player>
+			<Position x="694.7975" z="331.0395"/>
+			<Orientation y="-2.37354"/>
+			<Actor seed="46298"/>
+		</Entity>
+		<Entity uid="5439">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>1</Player>
+			<Position x="611.38764" z="296.25092"/>
+			<Orientation y="0.69523"/>
+			<Actor seed="16938"/>
+		</Entity>
+		<Entity uid="5440">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>1</Player>
+			<Position x="690.43299" z="335.47394"/>
+			<Orientation y="-2.26456"/>
+			<Actor seed="37598"/>
+		</Entity>
+		<Entity uid="5441">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>4</Player>
+			<Position x="885.79517" z="764.32752"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39218"/>
+		</Entity>
+		<Entity uid="5442">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>4</Player>
+			<Position x="889.7909" z="769.03565"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37564"/>
+		</Entity>
+		<Entity uid="5443">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>4</Player>
+			<Position x="894.04175" z="772.74378"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12864"/>
+		</Entity>
+		<Entity uid="5444">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>4</Player>
+			<Position x="977.25782" z="809.95429"/>
+			<Orientation y="-2.34293"/>
+			<Actor seed="58930"/>
+		</Entity>
+		<Entity uid="5445">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>4</Player>
+			<Position x="910.48078" z="743.88361"/>
+			<Orientation y="0.79964"/>
+			<Actor seed="60988"/>
+		</Entity>
+		<Entity uid="5446">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>4</Player>
+			<Position x="948.71882" z="730.26069"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22618"/>
+		</Entity>
+		<Entity uid="5447">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>3</Player>
+			<Position x="333.16147" z="612.90503"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44118"/>
+		</Entity>
+		<Entity uid="5448">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>3</Player>
+			<Position x="377.78495" z="557.98011"/>
+			<Orientation y="-2.26816"/>
+			<Actor seed="28270"/>
+		</Entity>
+		<Entity uid="5449">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>3</Player>
+			<Position x="327.13898" z="528.57776"/>
+			<Orientation y="0.6871"/>
+			<Actor seed="9078"/>
+		</Entity>
+		<Entity uid="5450">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>3</Player>
+			<Position x="323.74543" z="532.83631"/>
+			<Orientation y="0.72921"/>
+			<Actor seed="47826"/>
+		</Entity>
+		<Entity uid="5451">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>3</Player>
+			<Position x="337.51679" z="618.44349"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22592"/>
+		</Entity>
+		<Entity uid="5452">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>3</Player>
+			<Position x="343.55954" z="623.54517"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16590"/>
+		</Entity>
+		<Entity uid="5453">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>2</Player>
+			<Position x="582.87574" z="961.12183"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37286"/>
+		</Entity>
+		<Entity uid="5454">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>2</Player>
+			<Position x="587.59034" z="965.72681"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5196"/>
+		</Entity>
+		<Entity uid="5455">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>2</Player>
+			<Position x="673.47272" z="984.48694"/>
+			<Orientation y="-2.20614"/>
+			<Actor seed="30096"/>
+		</Entity>
+		<Entity uid="5456">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>2</Player>
+			<Position x="679.7779" z="976.28687"/>
+			<Orientation y="-2.30132"/>
+			<Actor seed="43528"/>
+		</Entity>
+		<Entity uid="5457">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>2</Player>
+			<Position x="663.53187" z="923.9051"/>
+			<Orientation y="-0.7758"/>
+			<Actor seed="18478"/>
+		</Entity>
+		<Entity uid="5458">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>2</Player>
+			<Position x="660.41498" z="920.68317"/>
+			<Orientation y="-0.76992"/>
+			<Actor seed="28142"/>
 		</Entity>
 	</Entities>
 	<Paths/>
