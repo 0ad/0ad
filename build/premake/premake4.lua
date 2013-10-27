@@ -283,14 +283,12 @@ function project_set_build_flags()
 			end
 
 			if arch == "arm" then
-				-- disable warnings about va_list ABI change
+				-- disable warnings about va_list ABI change and use
+				-- compile-time flags for futher configuration.
 				buildoptions { "-Wno-psabi" }
 				if _OPTIONS["android"] then
-					-- target generic arm CPUs with NEON
-					buildoptions { "-mtune=generic-arm -mfpu=neon -mfloat-abi=softfp" }
-				else
-					-- target Cortex-A15 CPUs with NEON
-					buildoptions { "-mtune=cortex-a15 -mfpu=neon-vfpv4 -mfloat-abi=hard" }
+					-- Android uses softfp, so we should too.
+					buildoptions { "-mfloat-abi=softfp" }
 				end
 			end
 
