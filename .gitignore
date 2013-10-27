@@ -1,5 +1,44 @@
+# Excluded to make the git repo smaller (those are present in SVN)
 binaries/system/ActorEditor.exe
 binaries/system/AtlasUI.dll
 binaries/system/Collada.dll
 binaries/system/pyrogenesis.exe
 binaries/system/pyrogenesis.pdb
+
+# Build files
+*.so
+*.so.*
+*.a
+binaries/system/ActorEditor
+binaries/system/pyrogenesis
+binaries/system/test
+binaries/system/ActorEditor_dbg
+binaries/system/pyrogenesis_dbg
+binaries/system/test_dbg
+
+build/workspaces/gcc/
+build/workspaces/codeblocks/
+build/premake/premake4/bin/release/premake4
+build/premake/premake4/build/gmake.unix/obj/
+
+# Exclude test .cpp files (generated during the build)
+test_*.cpp
+source/ps/tests/stub_impl_hack.cpp
+
+# Build files (libs)
+*.o
+*.lo
+*.la
+libraries/source/fcollada/src/output/
+libraries/source/spidermonkey/.already-built
+libraries/source/spidermonkey/include-unix/
+libraries/source/spidermonkey/js-1.8.5/
+libraries/source/enet/src/.deps/
+libraries/source/enet/src/.libs/
+libraries/source/enet/src/Makefile
+libraries/source/enet/src/autom4te.cache/
+libraries/source/enet/src/config.log
+libraries/source/enet/src/config.status
+libraries/source/enet/src/libenet.pc
+libraries/source/enet/src/libtool
+libraries/source/nvtt/src/build/
