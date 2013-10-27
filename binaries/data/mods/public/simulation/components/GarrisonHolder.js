@@ -380,7 +380,7 @@ GarrisonHolder.prototype.UnloadAllOwn = function(forced)
  */
 GarrisonHolder.prototype.UnloadAll = function(forced)
 {
-	var entities = this.entities.slice(0);
+	var entities = this.entities.slice();
 	return this.PerformEject(entities, forced);
 };
 
@@ -390,8 +390,11 @@ GarrisonHolder.prototype.UnloadAll = function(forced)
  */
 GarrisonHolder.prototype.OnHealthChanged = function(msg)
 {
-	if (!this.HasEnoughHealth())
-		this.EjectOrKill(this.entities);
+	if (!this.HasEnoughHealth() && this.entities.length)
+	{
+		var entities = this.entities.slice();
+		this.EjectOrKill(entities);
+	}
 };
 
 /**
@@ -532,26 +535,25 @@ GarrisonHolder.prototype.OnDiplomacyChanged = function()
 GarrisonHolder.prototype.EjectOrKill = function(entities)
 {
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	// Destroy the garrisoned units if the holder kill his entities on destroy or
-	// is not in the world (generally means this holder is inside 
-	// a holder which kills its entities which has sunk).
-	if (!this.EjectEntitiesOnDestroy() || !cmpPosition.IsInWorld())
-	{
-		for each (var entity in entities)
-		{
-			var cmpHealth = Engine.QueryInterface(entity, IID_Health);
-			if (cmpHealth)
-				cmpHealth.Kill();
-			var entityIndex = this.entities.indexOf(entity);
-			this.entities.splice(entityIndex, 1);
-			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
-		}
-		this.UpdateGarrisonFlag();
-	}
-	else
-	{	// Building - force ejection
+	// Eject the units which can be ejected (if not in world, it generally means this holder
+	// is inside a holder which kills its entities, so do not eject)
+	if (cmpPosition.IsInWorld() && this.EjectEntitiesOnDestroy())
 		this.PerformEject(entities, true);
+
+	// And destroy all remaining entities
+	for each (var entity in entities)
+	{
+		var entityIndex = this.entities.indexOf(entity);
+		if (entityIndex == -1)
+			continue;
+		var cmpHealth = Engine.QueryInterface(entity, IID_Health);
+		if (cmpHealth)
+			cmpHealth.Kill();
+		this.entities.splice(entityIndex, 1);
 	}
+
+	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+	this.UpdateGarrisonFlag();
 };
 
 Engine.RegisterComponentType(IID_GarrisonHolder, "GarrisonHolder", GarrisonHolder);
