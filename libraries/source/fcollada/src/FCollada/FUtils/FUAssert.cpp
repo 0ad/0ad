@@ -2,14 +2,21 @@
 	Copyright (C) 2005-2007 Feeling Software Inc.
 	Portions of the code are:
 	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	Portions of the code are:
+	Copyright (C) 2013 Wildfire Games
 	
 	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 #include "StdAfx.h"
 #include "FUAssert.h"
+
+#ifndef WIN32
+	#include "sys/signal.h" // Used for throw(SIGTRAP) on UNIX-like systems
+#endif
+
 #ifdef __APPLE__
-#include <CoreServices/CoreServices.h>
+	#include <CoreServices/CoreServices.h>
 #endif
 
 
@@ -30,7 +37,8 @@ bool FUAssertion::OnAssertionFailed(const char* file, uint32 line)
 #ifdef _DEBUG
 	else
 	{
-#ifdef WIN32
+	#ifdef WIN32
+		// Use windows builtins
 		int32 buttonPressed = MessageBoxA(NULL, message, "Assertion failed.", MB_ABORTRETRYIGNORE | MB_ICONWARNING);
 		if (buttonPressed == IDABORT)
 		{
@@ -41,15 +49,16 @@ bool FUAssertion::OnAssertionFailed(const char* file, uint32 line)
 		{ 
 			return true; 
 		}
-#elif defined (__APPLE__)
+	#elif defined(__APPLE__)
+		// Use apple builtins
 		Debugger();
-		//SysBreak();
-#elif defined (__arm__)
-		__asm__("bkpt 0");
-#else
-		// AFAIK This is available on all X86 platforms
+	#elif defined(__i386__) or defined(__LP64__)
+		// Use hardware breakpoints on UNIX-like x86 based hardware
 		__asm__("int $0x03");
-#endif // WIN32
+	#else
+		// Use software breakpoints as a fallback on UNIX-like systems
+		throw(SIGTRAP);
+	#endif
 		return false;
 	}
 #else // _DEBUG

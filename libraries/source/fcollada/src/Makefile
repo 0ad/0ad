@@ -1,19 +1,14 @@
 OS_ARCH := $(shell uname -s)
-OS_CPU := $(shell uname -p)
 
 ifeq ($(OS_ARCH),Darwin)
-PIC_FLAGS ?= -fPIC
+	PIC_FLAGS ?= -fPIC
 else
-OS_DEFINE ?= -DLINUX
-PIC_FLAGS ?= -fpic
+	OS_DEFINE ?= -DLINUX
+	PIC_FLAGS ?= -fpic
 endif
 
 CXX ?= g++
 CXXFLAGS += -fvisibility=hidden -W -Wall -Wno-unused-parameter -Wno-unused-function $(OS_DEFINE) $(PIC_FLAGS) $(CPPFLAGS)
-# If we're compiling on *nix ARM, target Cortex-A15 CPUs with NEON ***mfloat-abi setting must be the same on everything linked to FCollada***
-ifeq ($(OS_CPU),armv7l)
-CXXFLAGS += -mtune=cortex-a15 -mfpu=neon-vfpv4 -mfloat-abi=hard
-endif
 CXXFLAGS_DEBUG := -O0 -g -D_DEBUG -DRETAIL
 CXXFLAGS_RELEASE := -O1 -DNDEBUG -DRETAIL
 # (-O2 with gcc 4.3 causes linker errors when using this library, for unknown reasons, so stick with -O1 until gcc >4.3 is typical.)
