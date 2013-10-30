@@ -180,7 +180,7 @@ static void PumpEvents()
 	PROFILE3("dispatch events");
 
 	SDL_Event_ ev;
-	while (SDL_PollEvent(&ev.ev))
+	while (in_poll_event(&ev))
 	{
 		PROFILE2("event");
 		if (g_GUI)

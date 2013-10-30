@@ -213,6 +213,14 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 		return IN_PASS;
 #endif
 
+	case SDL_HOTKEYDOWN:
+		g_HotkeyStatus[static_cast<const char*>(ev->ev.user.data1)] = true;
+		return IN_PASS;
+
+	case SDL_HOTKEYUP:
+		g_HotkeyStatus[static_cast<const char*>(ev->ev.user.data1)] = false;
+		return IN_PASS;
+
 	default:
 		return IN_PASS;
 	}
@@ -321,10 +329,6 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 		if( accept && !( consoleCapture && it->name != "console.toggle" ) )
 		{
-			// Tentatively set status to un-pressed, since it may be overridden by
-			// a closer match. (The closest matches will be set to pressed later.)
-			g_HotkeyStatus[it->name] = false;
-
 			// Check if this is an equally precise or more precise match
 			if( it->requires.size() + 1 >= closestMapMatch )
 			{
@@ -343,12 +347,10 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 	for (size_t i = 0; i < closestMapNames.size(); ++i)
 	{
-		g_HotkeyStatus[closestMapNames[i]] = true;
-
-		SDL_Event hotkeyNotification;
-		hotkeyNotification.type = SDL_HOTKEYDOWN;
-		hotkeyNotification.user.data1 = const_cast<char*>(closestMapNames[i]);
-		SDL_PushEvent(&hotkeyNotification);
+		SDL_Event_ hotkeyNotification;
+		hotkeyNotification.ev.type = SDL_HOTKEYDOWN;
+		hotkeyNotification.ev.user.data1 = const_cast<char*>(closestMapNames[i]);
+		in_push_priority_event(&hotkeyNotification);
 	}
 
 	// -- KEYUP SECTION --
@@ -386,11 +388,10 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 		if( accept )
 		{
-			g_HotkeyStatus[it->name] = false;
-			SDL_Event hotkeyNotification;
-			hotkeyNotification.type = SDL_HOTKEYUP;
-			hotkeyNotification.user.data1 = const_cast<char*>(it->name.c_str());
-			SDL_PushEvent( &hotkeyNotification );
+			SDL_Event_ hotkeyNotification;
+			hotkeyNotification.ev.type = SDL_HOTKEYUP;
+			hotkeyNotification.ev.user.data1 = const_cast<char*>(it->name.c_str());
+			in_push_priority_event(&hotkeyNotification);
 		}
 	}
 

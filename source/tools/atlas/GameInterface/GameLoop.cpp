@@ -219,7 +219,7 @@ static void* RunEngine(void* data)
 
 		// Pump SDL events (e.g. hotkeys)
 		SDL_Event_ ev;
-		while (SDL_PollEvent(&ev.ev))
+		while (in_poll_event(&ev))
 			in_dispatch_event(&ev);
 
 		if (g_GUI)
