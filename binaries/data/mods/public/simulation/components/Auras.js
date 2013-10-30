@@ -103,12 +103,12 @@ Auras.prototype.GetType = function(name)
 
 Auras.prototype.IsFormationAura = function(name)
 {
-	return this.GetType(name) == "Formation";
+	return this.GetType(name) == "formation";
 };
 
 Auras.prototype.IsGarrisonAura = function(name)
 {
-	return this.GetType(name) == "GarrisoningStructure";
+	return this.GetType(name) == "garrison";
 };
 
 Auras.prototype.IsRangeAura = function(name)
@@ -244,7 +244,7 @@ Auras.prototype.ApplyFormationBonus = function(memberList)
 		var validList = this.GiveMembersWithValidClass(name, memberList);
 		for each (var ent in validList)
 		{
-			targetUnits.push(e);
+			this[name].targetUnits.push(e);
 			this.ApplyBonus(name,e);
 		}
 	}
@@ -261,7 +261,7 @@ Auras.prototype.ApplyGarrisonBonus = function(structure)
 		var validList = this.GiveMembersWithValidClass(name, [structure]);
 		if (validList.length)
 		{
-			targetUnits.push(validList[0]);
+			this[name].targetUnits.push(validList[0]);
 			this.ApplyBonus(name,validList[0]);
 		}
 	}

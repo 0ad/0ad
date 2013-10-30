@@ -548,9 +548,9 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 	if (template.UnitMotion)
 	{
 		ret.speed = {
-			"walk": +template.UnitMotion.WalkSpeed,
+			"walk": ApplyValueModificationsToTemplate("UnitMotion/WalkSpeed", +template.UnitMotion.WalkSpeed, player, template),
 		};
-		if (template.UnitMotion.Run) ret.speed.run = +template.UnitMotion.Run.Speed;
+		if (template.UnitMotion.Run) ret.speed.run = ApplyValueModificationsToTemplate("UnitMotion/Run/Speed", +template.UnitMotion.Run.Speed, player, template);
 	}
 
 	if (template.Trader)
