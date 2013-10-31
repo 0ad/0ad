@@ -13,8 +13,10 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "shields_generic_gold.png",
 	"researchTime": 40,
-	"tooltip": "Infantry Spearmen +1 Pierce Armor Levels.",
-	"modifications": [{"value": "Armour/Pierce", "add": 1.0}],
+	"tooltip": "Infantry Spearmen +1 Pierce Armor Levels, but -10% Walk Speed.",
+	"modifications": [
+		{"value": "Armour/Pierce", "add": 1.0},
+		{"value":"UnitMotion/WalkSpeed", "multiply": 0.9}],
 	"affects": ["Infantry Spear"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
