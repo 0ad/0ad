@@ -26,6 +26,7 @@
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpPathfinder.h"
 #include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/components/ICmpValueModificationManager.h"
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/MessageTypes.h"
@@ -109,6 +110,7 @@ public:
 		componentManager.SubscribeToMessageType(MT_Update_MotionUnit);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit); // for debug overlays
 		componentManager.SubscribeToMessageType(MT_PathResult);
+		componentManager.SubscribeToMessageType(MT_ValueModification);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(UnitMotion)
@@ -120,8 +122,8 @@ public:
 	// Template state:
 
 	bool m_FormationController;
-	fixed m_WalkSpeed; // in metres per second
-	fixed m_RunSpeed;
+	fixed m_WalkSpeed, m_OriginalWalkSpeed; // in metres per second
+	fixed m_RunSpeed, m_OriginalRunSpeed;
 	ICmpPathfinder::pass_class_t m_PassClass;
 	ICmpPathfinder::cost_class_t m_CostClass;
 
@@ -284,18 +286,14 @@ public:
 		m_Moving = false;
 		m_FacePointAfterMove = true;
 
-		m_WalkSpeed = paramNode.GetChild("WalkSpeed").ToFixed();
+		m_WalkSpeed = m_OriginalWalkSpeed = paramNode.GetChild("WalkSpeed").ToFixed();
 		m_Speed = m_WalkSpeed;
 		m_CurSpeed = fixed::Zero();
 
 		if (paramNode.GetChild("Run").IsOk())
-		{
-			m_RunSpeed = paramNode.GetChild("Run").GetChild("Speed").ToFixed();
-		}
+			m_RunSpeed = m_OriginalRunSpeed = paramNode.GetChild("Run").GetChild("Speed").ToFixed();
 		else
-		{
-			m_RunSpeed = m_WalkSpeed;
-		}
+			m_RunSpeed = m_OriginalRunSpeed = m_WalkSpeed;
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
@@ -398,6 +396,26 @@ public:
 			const CMessagePathResult& msgData = static_cast<const CMessagePathResult&> (msg);
 			PathResult(msgData.ticket, msgData.path);
 			break;
+		}
+		case MT_ValueModification:
+		{
+			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg); 
+			if (msgData.component != L"UnitMotion")
+				break;
+
+			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSimContext(), SYSTEM_ENTITY);
+
+			fixed newWalkSpeed = cmpValueModificationManager->ApplyModifications(L"UnitMotion/WalkSpeed", m_OriginalWalkSpeed, GetEntityId());
+			fixed newRunSpeed = cmpValueModificationManager->ApplyModifications(L"UnitMotion/Run/Speed", m_OriginalRunSpeed, GetEntityId());
+
+			// update m_Speed (the actual speed) if set to one of the variables
+			if (m_Speed == m_WalkSpeed)
+				m_Speed = newWalkSpeed;
+			else if (m_Speed == m_RunSpeed)
+				m_Speed = newRunSpeed;
+
+			m_WalkSpeed = newWalkSpeed;
+			m_RunSpeed = newRunSpeed;
 		}
 		}
 	}

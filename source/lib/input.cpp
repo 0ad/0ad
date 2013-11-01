@@ -36,6 +36,8 @@ const size_t MAX_HANDLERS = 8;
 static InHandler handler_stack[MAX_HANDLERS];
 static size_t handler_stack_top = 0;
 
+static std::list<SDL_Event_> priority_events;
+
 void in_add_handler(InHandler handler)
 {
 	ENSURE(handler);
@@ -68,4 +70,21 @@ void in_dispatch_event(const SDL_Event_* ev)
 		else
 			DEBUG_WARN_ERR(ERR::LOGIC);	// invalid handler return value
 	}
+}
+
+void in_push_priority_event(const SDL_Event_* event)
+{
+	priority_events.push_back(*event);
+}
+
+int in_poll_event(SDL_Event_* event)
+{
+	if (!priority_events.empty())
+	{
+		*event = priority_events.front();
+		priority_events.pop_front();
+		return 1;
+	}
+
+	return SDL_PollEvent(&event->ev);
 }
