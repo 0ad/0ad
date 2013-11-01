@@ -2108,10 +2108,10 @@ function backToWork()
 	// Filter out all entities that can't go back to work.
 	var workers = g_Selection.toList().filter(function(e) {
 		var state = GetEntityState(e);
-		return (state && state.unitAI && state.unitAI.lastWorkOrder);
+		return (state && state.unitAI && state.unitAI.hasWorkOrders);
 	});
 	
-	Engine.PostNetworkCommand({"type": "back-to-work", "workers": workers});
+	Engine.PostNetworkCommand({"type": "back-to-work", "entities": workers});
 	
 }
 

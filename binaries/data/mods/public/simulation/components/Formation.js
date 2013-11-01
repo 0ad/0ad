@@ -115,6 +115,7 @@ Formation.prototype.RemoveMembers = function(ents)
 	for each (var ent in ents)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		cmpUnitAI.UpdateWorkOrders();
 		cmpUnitAI.SetFormationController(INVALID_ENTITY);
 	}
 

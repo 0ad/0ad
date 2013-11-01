@@ -294,7 +294,7 @@ function getEntityCommandsList(entState)
 		});
 	}
 	
-	if (entState.unitAI && entState.unitAI.lastWorkOrder)
+	if (entState.unitAI && entState.unitAI.hasWorkOrders)
 	{
 		commands.push({
 		    "name": "back-to-work",
