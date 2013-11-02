@@ -837,6 +837,8 @@ function setup_main_exe ()
 		if _OPTIONS["android"] then
 			-- NDK's STANDALONE-TOOLCHAIN.html says this is required
 			linkoptions { "-Wl,--fix-cortex-a8" }
+
+			links { "log" }
 		end
 
 		if os.is("linux") or os.getversion().description == "GNU/kFreeBSD" then

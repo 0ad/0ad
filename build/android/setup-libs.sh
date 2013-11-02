@@ -4,7 +4,7 @@ set -e
 set -o nounset
 
 ANDROID=$HOME/android
-NDK=$ANDROID/android-ndk-r7-crystax-5.beta2
+NDK=$ANDROID/android-ndk-r8-crystax-1
 SDK=$ANDROID/android-sdk-linux
 TOOLCHAIN=$ANDROID/toolchain-0ad
 
@@ -31,8 +31,8 @@ if [ ! -e boost_1_45_0.tar.bz2 ]; then
   wget http://downloads.sourceforge.net/project/boost/boost/1.45.0/boost_1_45_0.tar.bz2
 fi
 
-if [ ! -e curl-7.24.0.tar.bz2 ]; then
-  wget http://curl.haxx.se/download/curl-7.24.0.tar.bz2
+if [ ! -e curl-7.33.0.tar.bz2 ]; then
+  wget http://curl.haxx.se/download/curl-7.33.0.tar.bz2
 fi
 
 if [ ! -e MysticTreeGames-Boost-for-Android-70838fc.tar.gz ]; then
@@ -44,11 +44,11 @@ if [ ! -e enet-1.3.3.tar.gz ]; then
 fi
 
 if [ ! -e js185-1.0.0.tar.gz ]; then
-  cp ../../../libraries/spidermonkey/js185-1.0.0.tar.gz .
+  cp ../../../libraries/source/spidermonkey/js185-1.0.0.tar.gz .
 fi
 
-if [ ! -e libjpeg-turbo-1.1.1.tar.gz ]; then
-  wget http://downloads.sourceforge.net/project/libjpeg-turbo/1.1.1/libjpeg-turbo-1.1.1.tar.gz
+if [ ! -e libjpeg-turbo-1.3.0.tar.gz ]; then
+  wget http://downloads.sourceforge.net/project/libjpeg-turbo/1.3.0/libjpeg-turbo-1.3.0.tar.gz
 fi
 
 if [ ! -e libpng-1.5.8.tar.xz ]; then
@@ -65,10 +65,10 @@ popd
 if [ "$build_toolchain" = "true" ]; then
 
   rm -r $TOOLCHAIN || true
-  $NDK/build/tools/make-standalone-toolchain.sh --platform=android-9 --toolchain=arm-linux-androideabi-4.4.3 --install-dir=$TOOLCHAIN
+  $NDK/build/tools/make-standalone-toolchain.sh --platform=android-14 --toolchain=arm-linux-androideabi-4.6 --install-dir=$TOOLCHAIN --system=linux-x86_64
 
   mkdir -p $SYSROOT/usr/local
-  
+
   # Set up some symlinks to make the SpiderMonkey build system happy
   ln -sfT ../platforms $NDK/build/platforms
   for f in $TOOLCHAIN/bin/arm-linux-androideabi-*; do
@@ -96,10 +96,10 @@ if [ "$build_boost" = "true" ]; then
 fi
 
 if [ "$build_curl" = "true" ]; then
-  rm -rf temp/curl-7.24.0
-  tar xvf files/curl-7.24.0.tar.bz2 -C temp/
-  pushd temp/curl-7.24.0
-  ./configure --host=arm-linux-androideabi --with-sysroot=$SYSROOT --prefix=$SYSROOT/usr/local CFLAGS="$CFLAGS" --disable-shared
+  rm -rf temp/curl-7.33.0
+  tar xvf files/curl-7.33.0.tar.bz2 -C temp/
+  pushd temp/curl-7.33.0
+  ./configure --host=arm-linux-androideabi --with-sysroot=$SYSROOT --prefix=$SYSROOT/usr/local CFLAGS="$CFLAGS" LDFLAGS="-lm" --disable-shared
   make -j3
   make install
   popd
@@ -116,10 +116,10 @@ if [ "$build_libpng" = "true" ]; then
 fi
 
 if [ "$build_libjpeg" = "true" ]; then
-  rm -rf temp/libjpeg-turbo-1.1.1
-  tar xvf files/libjpeg-turbo-1.1.1.tar.gz -C temp/
-  pushd temp/libjpeg-turbo-1.1.1
-  ./configure --host=arm-linux-eabi --with-sysroot=$SYSROOT --prefix=$SYSROOT/usr/local CFLAGS="$CFLAGS"
+  rm -rf temp/libjpeg-turbo-1.3.0
+  tar xvf files/libjpeg-turbo-1.3.0.tar.gz -C temp/
+  pushd temp/libjpeg-turbo-1.3.0
+  ./configure --host=arm-linux-eabi --with-sysroot=$SYSROOT --prefix=$SYSROOT/usr/local CFLAGS="$CFLAGS" LDFLAGS="-lm"
   make $JOBS
   make install
   popd
