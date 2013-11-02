@@ -209,6 +209,11 @@ public:
 	 *			will be unchanged.
 	 */
 	bool SetClientArea(const CStr& Value);
+
+	bool operator==(const CClientArea& other) const
+	{
+		return pixel == other.pixel && percent == other.percent;
+	}
 };
 
 //--------------------------------------------------------
