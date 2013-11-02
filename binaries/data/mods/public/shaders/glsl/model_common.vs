@@ -2,8 +2,13 @@
 
 uniform mat4 transform;
 uniform vec3 cameraPos;
+#ifdef GL_ES
+uniform mediump vec3 sunDir;
+uniform mediump vec3 sunColor;
+#else
 uniform vec3 sunDir;
 uniform vec3 sunColor;
+#endif
 uniform vec2 losTransform;
 uniform mat4 shadowTransform;
 uniform mat4 instancingTransform;
@@ -107,7 +112,7 @@ void main()
     // fractional part of model position, clamped to >.4
     vec4 modelPos = instancingTransform[3];
     modelPos = fract(modelPos);
-    modelPos = clamp(modelPos, 0.4, 1);
+    modelPos = clamp(modelPos, 0.4, 1.0);
 
     // crude measure of wind intensity
     float abswind = abs(wind.x) + abs(wind.y);
@@ -115,16 +120,16 @@ void main()
     vec4 cosVec;
     // these determine the speed of the wind's "cosine" waves.
     cosVec.x = sim_time.x * modelPos[0] + position.x;
-    cosVec.y = sim_time.x * modelPos[2] / 3 + instancingTransform[3][0];
-    cosVec.z = sim_time.x * abswind / 4 + position.z;
+    cosVec.y = sim_time.x * modelPos[2] / 3.0 + instancingTransform[3][0];
+    cosVec.z = sim_time.x * abswind / 4.0 + position.z;
 
     // calculate "cosines" in parallel, using a smoothed triangle wave
     cosVec = fakeCos(cosVec);
 
-    float limit = clamp((a_vertex.x * a_vertex.z * a_vertex.y) / 3000, 0, 0.2);
+    float limit = clamp((a_vertex.x * a_vertex.z * a_vertex.y) / 3000.0, 0.0, 0.2);
 
     float diff = cosVec.x * limit; 
-    float diff2 = cosVec.y * clamp(a_vertex.y / 60, 0, 0.25);
+    float diff2 = cosVec.y * clamp(a_vertex.y / 60.0, 0.0, 0.25);
 
     // fluttering of model parts based on distance from model center (ie longer branches)
     position.xyz += cosVec.z * limit * clamp(abswind, 1.2, 1.7);
