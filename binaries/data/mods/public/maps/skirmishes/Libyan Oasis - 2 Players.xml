@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="451.683" y="72.9154" z="698.464"/>
+		<Position x="694.973" y="82.0991" z="681.852"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -254,12 +254,12 @@
 		</Entity>
 		<Entity uid="50">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="826.98108" z="583.22815"/>
+			<Position x="658.91205" z="506.08228"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="51">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="815.75495" z="719.73658"/>
+			<Position x="852.36945" z="611.85499"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="52">
@@ -8866,6 +8866,48 @@
 			<Position x="442.50599" z="869.91968"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="39840"/>
+		</Entity>
+		<Entity uid="1608">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="191.74158" z="533.78022"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="52700"/>
+		</Entity>
+		<Entity uid="1609">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="558.08576" z="429.71698"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1888"/>
+		</Entity>
+		<Entity uid="1610">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="609.79926" z="393.33603"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44698"/>
+		</Entity>
+		<Entity uid="1611">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="613.53724" z="141.23313"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="11250"/>
+		</Entity>
+		<Entity uid="1612">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="452.85431" z="107.94701"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36790"/>
+		</Entity>
+		<Entity uid="1613">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="176.31247" z="337.09662"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45678"/>
+		</Entity>
+		<Entity uid="1614">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="372.15506" z="785.36438"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="15378"/>
 		</Entity>
 	</Entities>
 	<Paths/>

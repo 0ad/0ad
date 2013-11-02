@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunset 2</SkySet>
-		<SunColour r="0.94902" g="0.756863" b="0.34902"/>
+		<SunColour r="0.745098" g="0.596078" b="0.278431"/>
 		<SunElevation angle="1.25786"/>
 		<SunRotation angle="1.71806"/>
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
-			<FogFactor>0.00203125</FogFactor>
+			<FogFactor>0.00411133</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.894118"/>
+			<FogColour r="0.752941" g="0.752941" b="0.752941"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.745098" g="0.596078" b="0.278431"/>
+				<Colour r="0.741176" g="0.592157" b="0.27451"/>
 				<Height>21.823</Height>
 				<Shininess>250</Shininess>
 				<Waviness>4.23828</Waviness>
@@ -27,17 +27,17 @@
 			</WaterBody>
 		</Water>
 		<Postproc>
-			<Brightness>-0.123047</Brightness>
-			<Contrast>0.910156</Contrast>
-			<Saturation>0.90625</Saturation>
-			<Bloom>0.154688</Bloom>
+			<Brightness>-0.0244141</Brightness>
+			<Contrast>1.1084</Contrast>
+			<Saturation>0.78125</Saturation>
+			<Bloom>0.134961</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="701.084" y="63.9493" z="618.634"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="236.759" y="86.355" z="535.019"/>
+		<Rotation angle="-0.00463647"/>
+		<Declination angle="0.572167"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -30035,6 +30035,90 @@
 			<Position x="721.41871" z="386.8737"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="11976"/>
+		</Entity>
+		<Entity uid="5523">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="774.8827" z="378.39444"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48660"/>
+		</Entity>
+		<Entity uid="5524">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="697.37952" z="237.85792"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37724"/>
+		</Entity>
+		<Entity uid="5525">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="524.6902" z="106.04044"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56754"/>
+		</Entity>
+		<Entity uid="5526">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="276.36399" z="173.85431"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27270"/>
+		</Entity>
+		<Entity uid="5527">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="79.98218" z="423.2093"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41328"/>
+		</Entity>
+		<Entity uid="5528">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="345.504" z="668.90192"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33244"/>
+		</Entity>
+		<Entity uid="5529">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="551.97846" z="681.32337"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30974"/>
+		</Entity>
+		<Entity uid="5530">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="443.62183" z="286.7183"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53954"/>
+		</Entity>
+		<Entity uid="5531">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="379.38953" z="43.93126"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28370"/>
+		</Entity>
+		<Entity uid="5532">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="683.92469" z="651.77417"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59890"/>
+		</Entity>
+		<Entity uid="5533">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="754.64911" z="500.20142"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="846"/>
+		</Entity>
+		<Entity uid="5534">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="342.20743" z="508.86997"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3686"/>
+		</Entity>
+		<Entity uid="5535">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="240.36014" z="816.12183"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5272"/>
+		</Entity>
+		<Entity uid="5536">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="211.63605" z="601.2541"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57408"/>
 		</Entity>
 	</Entities>
 	<Paths/>
