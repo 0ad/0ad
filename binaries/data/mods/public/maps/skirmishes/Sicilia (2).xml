@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="768.724" y="91.576" z="14.8972"/>
+		<Position x="788.504" y="73.2782" z="353.082"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -16145,6 +16145,34 @@
 			<Position x="720.50434" z="89.5867"/>
 			<Orientation y="-0.3315"/>
 			<Actor seed="7610"/>
+		</Entity>
+		<Entity uid="3466">
+			<Template>skirmish/structures/default_house_5</Template>
+			<Player>1</Player>
+			<Position x="232.94619" z="648.3631"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22754"/>
+		</Entity>
+		<Entity uid="3467">
+			<Template>skirmish/structures/default_house_5</Template>
+			<Player>1</Player>
+			<Position x="218.77616" z="657.13465"/>
+			<Orientation y="-0.78945"/>
+			<Actor seed="17080"/>
+		</Entity>
+		<Entity uid="3468">
+			<Template>skirmish/structures/default_house_5</Template>
+			<Player>2</Player>
+			<Position x="769.06653" z="411.24451"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14940"/>
+		</Entity>
+		<Entity uid="3469">
+			<Template>skirmish/structures/default_house_5</Template>
+			<Player>2</Player>
+			<Position x="798.02118" z="404.5098"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="47882"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -7,8 +7,23 @@
       <props>
         <prop actor="props/units/shields/mace_pez_back.xml" attachpoint="back"/>
       </props>
-      <textures><texture file="props/shield/mace_round_e.png" name="baseTex"/></textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <group>
+    <variant frequency="1" name="Shield Bronze D2">
+      <textures>
+        <texture file="props/shield/mace_bronze_d_player2.png" name="baseTex"/>
+        <texture file="props/shield/mace_silver_c_norm.png" name="normTex"/>
+        <texture file="props/shield/mace_silver_c_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Shield">
+      <textures>
+        <texture file="props/shield/mace_round_c_bronze.png" name="baseTex"/>
+        <texture file="props/shield/mace_round_c_norm.png" name="normTex"/>
+        <texture file="props/shield/mace_round_c_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>
