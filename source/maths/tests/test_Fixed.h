@@ -52,13 +52,13 @@ public:
 		TS_ASSERT_EQUALS(b.ToFloat(), -123.125f);
 		TS_ASSERT_EQUALS(b.ToDouble(), -123.125);
 
-		fixed c = fixed::FromFloat(INFINITY);
+		fixed c = fixed::FromFloat(std::numeric_limits<float>::infinity());
 		TS_ASSERT_EQUALS(c.GetInternalValue(), (i32)0);
 
-		fixed d = fixed::FromFloat(-INFINITY);
+		fixed d = fixed::FromFloat(-std::numeric_limits<float>::infinity());
 		TS_ASSERT_EQUALS(d.GetInternalValue(), (i32)0);
 
-		fixed e = fixed::FromFloat(NAN);
+		fixed e = fixed::FromFloat(std::numeric_limits<float>::quiet_NaN());
 		TS_ASSERT_EQUALS(e.GetInternalValue(), (i32)0);
 	}
 
@@ -72,13 +72,13 @@ public:
 		TS_ASSERT_EQUALS(b.ToFloat(), -123.125f);
 		TS_ASSERT_EQUALS(b.ToDouble(), -123.125);
 
-		fixed c = fixed::FromDouble(INFINITY);
+		fixed c = fixed::FromDouble(std::numeric_limits<double>::infinity());
 		TS_ASSERT_EQUALS(c.GetInternalValue(), (i32)0);
 
-		fixed d = fixed::FromDouble(-INFINITY);
+		fixed d = fixed::FromDouble(-std::numeric_limits<double>::infinity());
 		TS_ASSERT_EQUALS(d.GetInternalValue(), (i32)0);
 
-		fixed e = fixed::FromDouble(NAN);
+		fixed e = fixed::FromDouble(std::numeric_limits<double>::quiet_NaN());
 		TS_ASSERT_EQUALS(e.GetInternalValue(), (i32)0);
 	}
 

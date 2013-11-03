@@ -44,6 +44,7 @@
 #include <vector>
 #include <limits>
 #include <iterator>
+#include <algorithm>
 
 class PSAConvert
 {

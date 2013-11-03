@@ -140,9 +140,9 @@ public:
 
 	void test_nonfinite()
 	{
-		roundtrip<float>(INFINITY, "Infinity");
-		roundtrip<float>(-INFINITY, "-Infinity");
-		convert_to<float>(NAN, "NaN"); // can't use roundtrip since nan != nan
+		roundtrip<float>(std::numeric_limits<float>::infinity(), "Infinity");
+		roundtrip<float>(-std::numeric_limits<float>::infinity(), "-Infinity");
+		convert_to<float>(std::numeric_limits<float>::quiet_NaN(), "NaN"); // can't use roundtrip since nan != nan
 
 		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		JSContext* cx = script.GetContext();
