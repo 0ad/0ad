@@ -8,7 +8,7 @@
 	"researchTime": 60,
 	"tooltip": "Anusiya Champion Infantry -50% train time, but also -20 health.",
 	"modifications": [
-		{"value": "Cost/BuildTime", "multiplier": 0.5},
+		{"value": "Cost/BuildTime", "multiply": 0.5},
 		{"value": "Health/Max", "add": -20}
 	],
 	"affects": ["Champion Infantry"],

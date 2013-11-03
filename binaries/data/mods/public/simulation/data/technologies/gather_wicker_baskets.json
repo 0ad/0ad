@@ -6,7 +6,7 @@
 	"icon": "gather_basket.png",
 	"researchTime": 40,
 	"tooltip": "Equip your foragers with wicker baskets. +50% fruit foraging rate.",
-	"modifications": [{"value": "ResourceGatherer/Rates/food.fruit", "multiplier": 1.5}],
+	"modifications": [{"value": "ResourceGatherer/Rates/food.fruit", "multiply": 1.5}],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

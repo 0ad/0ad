@@ -7,7 +7,7 @@
 	"icon": "political_face.png",
 	"researchTime": 60,
 	"tooltip": "The Hellenic culture is very influential. +25% territory effect for all buildings.",
-	"modifications": [{"value": "TerritoryInfluence/Radius", "multiplier": 1.25}],
+	"modifications": [{"value": "TerritoryInfluence/Radius", "multiply": 1.25}],
 	"affects": ["Structure"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

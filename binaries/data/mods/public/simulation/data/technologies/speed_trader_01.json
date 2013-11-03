@@ -7,7 +7,7 @@
 	"icon": "wheel.png",
 	"researchTime": 40,
 	"tooltip": "Traders +25% Walk Speed, which quickly increases trade income.",
-	"modifications": [{"value": "UnitMotion/WalkSpeed", "multiplier": 1.25}],
+	"modifications": [{"value": "UnitMotion/WalkSpeed", "multiply": 1.25}],
 	"affects": ["Trader"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
