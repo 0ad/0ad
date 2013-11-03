@@ -10,6 +10,8 @@
     <variant frequency="1" name="ptol_round_a_bronze_player">
       <textures>
         <texture file="props/shield/ptol_round_e_bronze_face_player.png" name="baseTex"/>
+        <texture file="props/shield/ptol_round_e_face_norm.png" name="normTex"/>
+        <texture file="props/shield/ptol_round_e_face_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -20,5 +22,5 @@
       </props>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

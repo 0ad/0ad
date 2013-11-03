@@ -10,21 +10,29 @@
     <variant frequency="1" name="ptol_round_a_bronze_player">
       <textures>
         <texture file="props/shield/ptol_round_a_bronze_player.png" name="baseTex"/>
+        <texture file="props/shield/ptol_round_a_norm.png" name="normTex"/>
+        <texture file="props/shield/ptol_round_a_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="ptol_round_f_eagle_player">
       <textures>
         <texture file="props/shield/ptol_round_f_eagle_player.png" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="ptol_round_b_bronze_player">
       <textures>
         <texture file="props/shield/ptol_round_b_bronze_player.png" name="baseTex"/>
+        <texture file="props/shield/ptol_round_b_norm.png" name="normTex"/>
+        <texture file="props/shield/ptol_round_b_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="ptol_round_j_eagle2_bronze_player">
       <textures>
         <texture file="props/shield/ptol_round_j_eagle2_bronze_player.png" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -40,5 +48,5 @@
       </props>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>
