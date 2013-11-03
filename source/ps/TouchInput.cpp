@@ -267,7 +267,7 @@ InReaction CTouchInput::HandleEvent(const SDL_Event_* ev)
 	case SDL_FINGERMOTION:
 	{
 		// Map finger events onto the mouse, for basic testing
-		debug_printf(L"finger %s tid=%lld fid=%lld x=%d y=%d dx=%d dy=%d p=%d\n",
+		debug_printf(L"finger %s tid=%lld fid=%lld x=%f y=%f dx=%f dy=%f p=%f\n",
 			ev->ev.type == SDL_FINGERDOWN ? "down" :
 			ev->ev.type == SDL_FINGERUP ? "up" :
 			ev->ev.type == SDL_FINGERMOTION ? "motion" : "?",
@@ -275,11 +275,11 @@ InReaction CTouchInput::HandleEvent(const SDL_Event_* ev)
 			ev->ev.tfinger.x, ev->ev.tfinger.y, ev->ev.tfinger.dx, ev->ev.tfinger.dy, ev->ev.tfinger.pressure);
 
 		if (ev->ev.type == SDL_FINGERDOWN)
-			OnFingerDown(ev->ev.tfinger.fingerId, g_xres * (ev->ev.tfinger.x/32767.0f), g_yres * (ev->ev.tfinger.y/32767.0f));
+			OnFingerDown(ev->ev.tfinger.fingerId, g_xres * ev->ev.tfinger.x, g_yres * ev->ev.tfinger.y);
 		else if (ev->ev.type == SDL_FINGERUP)
-			OnFingerUp(ev->ev.tfinger.fingerId, g_xres * (ev->ev.tfinger.x/32767.0f), g_yres * (ev->ev.tfinger.y/32767.0f));
+			OnFingerUp(ev->ev.tfinger.fingerId, g_xres * ev->ev.tfinger.x, g_yres * ev->ev.tfinger.y);
 		else if (ev->ev.type == SDL_FINGERMOTION)
-			OnFingerMotion(ev->ev.tfinger.fingerId, g_xres * (ev->ev.tfinger.x/32767.0f), g_yres * (ev->ev.tfinger.y/32767.0f));
+			OnFingerMotion(ev->ev.tfinger.fingerId, g_xres * ev->ev.tfinger.x, g_yres * ev->ev.tfinger.y);
 		return IN_HANDLED;
 	}
 	}

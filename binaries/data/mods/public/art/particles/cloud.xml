@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+
+    <texture>art/textures/particles/cloud_1_512.png</texture>
+    <blend mode="over"/>
+
+    <start_full/>
+
+    <constant name="emissionrate" value="0.1"/>
+    <uniform name="lifetime" min="50.0" max="75.0"/>
+    <constant name="position.y" value="85.0"/>
+	
+	<uniform name="angle" min="-10" max="10"/>
+
+    <uniform name="velocity.x" min="2.0" max="2.5"/>
+    <uniform name="velocity.angle" min="-0.05" max="0.05"/>
+	
+    <uniform name="size" min="25.0" max="60.0"/>
+
+</particles>

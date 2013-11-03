@@ -2,8 +2,13 @@
 
 uniform mat4 transform;
 uniform vec3 cameraPos;
+#ifdef GL_ES
+uniform mediump vec3 sunDir;
+uniform mediump vec3 sunColor;
+#else
 uniform vec3 sunDir;
 uniform vec3 sunColor;
+#endif
 uniform vec2 textureTransform;
 uniform vec2 losTransform;
 uniform mat4 shadowTransform;
@@ -76,7 +81,11 @@ void main()
 
     #if GL_ES
       // XXX: Ugly hack to hide some precision issues in GLES
-      v_tex = mod(v_tex, vec2(9.0, 9.0));
+      #if USE_TRIPLANAR
+        v_tex = mod(v_tex, vec3(9.0, 9.0, 9.0));
+      #else
+        v_tex = mod(v_tex, vec2(9.0, 9.0));
+      #endif
     #endif
   #endif
 

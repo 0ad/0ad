@@ -280,8 +280,12 @@ void Render()
 			glLoadMatrixf(&transform._11);
 #endif
 
+#if OS_ANDROID
+#warning TODO: cursors for Android
+#else
 			if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y, forceGL) < 0)
 				LOGWARNING(L"Failed to draw cursor '%ls'", cursorName.c_str());
+#endif
 
 #if CONFIG2_GLES
 #warning TODO: implement cursors for GLES

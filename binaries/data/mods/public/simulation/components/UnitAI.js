@@ -2526,8 +2526,8 @@ UnitAI.prototype.Init = function()
 	this.lastFormationName = "";
 	this.finishedOrder = false; // used to find if all formation members finished the order
 	
-	// To go back to work later
-	this.lastWorkOrder = undefined;
+	// Queue of remembered works
+	this.workOrders = [];
 
 	// For preventing increased action rate due to Stop orders or target death.
 	this.lastAttacked = undefined;
@@ -2804,17 +2804,6 @@ UnitAI.prototype.FsmStateNameChanged = function(state)
 	Engine.PostMessage(this.entity, MT_UnitAIStateChanged, { "to": state });
 };
 
-UnitAI.prototype.BackToWork = function()
-{
-	if(this.lastWorkOrder)
-	{
-		this.ReplaceOrder(this.lastWorkOrder.type, this.lastWorkOrder.data);
-		return true;
-	}
-	else
-		return false;
-};
-
 /**
  * Call when the current order has been completed (or failed).
  * Removes the current order from the queue, and processes the
@@ -2831,17 +2820,9 @@ UnitAI.prototype.FinishOrder = function()
 		error("FinishOrder called for entity " + this.entity + " (" + template + ") when order queue is empty\n" + stack);
 	}
 
-	// Remove the order from the queue, then forget it if it was a work to avoid trying to go back to it later.
+	// Remove the order from the queue
 	var finishedOrder = this.orderQueue.shift();
-	if(finishedOrder.type == "Gather" || finishedOrder.type == "Trade" || finishedOrder.type == "Repair")
-		this.lastWorkOrder = undefined;
-	
 	this.order = this.orderQueue[0];
-	// If the worker was returning a resource, we shall 
-	//	-> (if the worker is gathering) keep remembering the "Gather" order which is this.order
-	//	-> (if the worker was directly ordered to return a resource) forget the "ReturnResource" order which is finished
-	if(finishedOrder.type == "ReturnResource" && (!this.order || this.order.type != "Gather"))
-		this.lastWorkOrder = undefined;
 
 	if (this.orderQueue.length)
 	{
@@ -2892,9 +2873,6 @@ UnitAI.prototype.PushOrder = function(type, data)
 {
 	var order = { "type": type, "data": data };
 	this.orderQueue.push(order);
-	
-	if(type == "Gather" || type == "Trade" || type == "Repair" || type == "ReturnResource")
-		this.lastWorkOrder = order;
 
 	// If we didn't already have an order, then process this new one
 	if (this.orderQueue.length == 1)
@@ -2952,6 +2930,15 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 
 UnitAI.prototype.ReplaceOrder = function(type, data)
 {
+	// Remember the previous work orders to be able to go back to them later if required
+	if (data && data.force)
+	{
+		if (this.IsFormationController())
+			Engine.QueryInterface(this.entity, IID_Formation).CallMemberFunction("UpdateWorkOrders", [type]);
+		else
+			this.UpdateWorkOrders(type);
+	}
+
 	// Special cases of orders that shouldn't be replaced:
 	// 1. Cheering - we're invulnerable, add order after we finish
 	// 2. Packing/unpacking - we're immobile, add order after we finish (unless it's cancel)
@@ -2960,13 +2947,13 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 	{
 		var order = { "type": type, "data": data };
 		var cheeringOrder = this.orderQueue.shift();
-		this.orderQueue = [ cheeringOrder, order ];
+		this.orderQueue = [cheeringOrder, order];
 	}
 	else if (this.IsPacking() && type != "CancelPack" && type != "CancelUnpack")
 	{
 		var order = { "type": type, "data": data };
 		var packingOrder = this.orderQueue.shift();
-		this.orderQueue = [ packingOrder, order ];
+		this.orderQueue = [packingOrder, order];
 	}
 	else
 	{
@@ -2998,14 +2985,85 @@ UnitAI.prototype.GetOrderData = function()
 	return orders;
 };
 
-UnitAI.prototype.GetLastWorkOrder = function()
+UnitAI.prototype.UpdateWorkOrders = function(type)
 {
-	return this.lastWorkOrder;
+	var isWorkType = function(type){
+		return (type == "Gather" || type == "Trade" || type == "Repair" || type == "ReturnResource");
+	};
+	
+	// If we are being reaffected to a work order, forgot the previous ones
+	if (isWorkType(type))
+	{
+		this.workOrders = [];
+		return;
+	}
+	
+	// Then if we already have work orders, keep them
+	if (this.workOrders.length)
+		return;
+	
+	// First if the unit is in a formation, get its workOrders from it
+	if (this.IsFormationMember())
+	{
+		var cmpUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
+		for (var i = 0; i < cmpUnitAI.orderQueue.length; ++i)
+		{
+			if (isWorkType(cmpUnitAI.orderQueue[i].type))
+			{
+				this.workOrders = cmpUnitAI.orderQueue.slice(i);
+				return;
+			}
+		}
+	}
+
+	// If nothing found, take the unit orders
+	for (var i = 0; i < this.orderQueue.length; ++i)
+	{
+		if (isWorkType(this.orderQueue[i].type))
+		{
+			this.workOrders = this.orderQueue.slice(i);
+			return;
+		}
+	}
 };
 
-UnitAI.prototype.SetLastWorkOrder = function(order)
+UnitAI.prototype.BackToWork = function()
+{	
+	if (this.workOrders.length == 0)
+		return false;
+	
+	// Clear the order queue considering special orders not to avoid
+	if (this.order && this.order.type == "Cheering")
+	{
+		var cheeringOrder = this.orderQueue.shift();
+		this.orderQueue = [cheeringOrder];
+	}
+	else
+		this.orderQueue = [];
+		
+	this.AddOrders(this.workOrders);
+		
+	// And if the unit is in a formation, remove it from the formation
+	if (this.IsFormationMember())
+		Engine.QueryInterface(this.formationController, IID_Formation).RemoveMembers([this.entity]);
+		
+	this.workOrders = [];
+	return true;
+};
+
+UnitAI.prototype.HasWorkOrders = function()
 {
-	this.lastWorkOrder = order;
+	return this.workOrders.length > 0;
+};
+
+UnitAI.prototype.GetWorkOrders = function()
+{
+	return this.workOrders;
+};
+
+UnitAI.prototype.SetWorkOrders = function(orders)
+{
+	this.workOrders = orders;
 };
 
 UnitAI.prototype.TimerHandler = function(data, lateness)

@@ -130,7 +130,7 @@ void main()
     float height = 1.0;
     float scale = effectSettings.z;
       
-    scale = (scale * (PARALLAX_DIST_MAX - dist)) / PARALLAX_DIST_MAX;
+    scale = (scale * (float(PARALLAX_DIST_MAX) - dist)) / float(PARALLAX_DIST_MAX);
 
     float iter = 8.0;
     #if USE_HQ_PARALLAX

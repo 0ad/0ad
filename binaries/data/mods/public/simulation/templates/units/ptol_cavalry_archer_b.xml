@@ -17,7 +17,13 @@ Countered by: Skirmishers and Elephants.
   <Promotion>
     <Entity>units/ptol_cavalry_archer_a</Entity>
   </Promotion>
+  <UnitMotion>
+    <WalkSpeed>8.0</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
-    <Actor>units/persians/cavalry_archer_b.xml</Actor>
+    <Actor>units/ptolemies/cavalry_archer_b.xml</Actor>
   </VisualActor>
 </Entity>

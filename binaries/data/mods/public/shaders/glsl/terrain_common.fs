@@ -98,7 +98,7 @@ float get_shadow()
 #if USE_TRIPLANAR
 vec4 triplanar(sampler2D sampler, vec3 wpos)
 {
-	float tighten = 0.4679f;
+	float tighten = 0.4679;
 
 	vec3 blending = abs(normalize(v_normal)) - tighten;
 	blending = max(blending, 0.0);
@@ -121,7 +121,7 @@ vec4 triplanar(sampler2D sampler, vec3 wpos)
 
 vec4 triplanarNormals(sampler2D sampler, vec3 wpos)
 {
-	float tighten = 0.4679f;
+	float tighten = 0.4679;
 
 	vec3 blending = abs(normalize(v_normal)) - tighten;
 	blending = max(blending, 0.0);

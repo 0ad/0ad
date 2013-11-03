@@ -78,8 +78,8 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	cmpPromotedUnitAI.Cheer();
 	var orders = cmpCurrentUnitAI.GetOrders();
 	cmpPromotedUnitAI.AddOrders(orders);
-	var lastWorkOrder = cmpCurrentUnitAI.GetLastWorkOrder();
-	cmpPromotedUnitAI.SetLastWorkOrder(lastWorkOrder);
+	var workOrders = cmpCurrentUnitAI.GetWorkOrders();
+	cmpPromotedUnitAI.SetWorkOrders(workOrders);
 
 	Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: promotedUnitEntity });
 

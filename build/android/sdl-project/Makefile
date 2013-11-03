@@ -1,16 +1,17 @@
 ANDROID=${HOME}/android
-NDK=${ANDROID}/android-ndk-r7-crystax-5.beta2
+NDK=${ANDROID}/android-ndk-r8-crystax-1
 SDK=${ANDROID}/android-sdk-linux
 TOOLCHAIN=${ANDROID}/toolchain-0ad
 SYSROOT=${TOOLCHAIN}/sysroot
 
-AAPT=${SDK}/platform-tools/aapt
+BUILDTOOLS=${SDK}/build-tools/18.1.1
+AAPT=${BUILDTOOLS}/aapt
 ADB=${SDK}/platform-tools/adb
-DX=${SDK}/platform-tools/dx
+DX=${BUILDTOOLS}/dx
 ZIPALIGN=${SDK}/tools/zipalign
 NDKBUILD=${NDK}/ndk-build
 
-ANDROIDJAR=${SDK}/platforms/android-10/android.jar
+ANDROIDJAR=${SDK}/platforms/android-18/android.jar
 
 LIBPYRO=libpyrogenesis_dbg.so
 #LIBPYRO=libpyrogenesis.so
@@ -60,10 +61,14 @@ bin/0ad.apk: bin/0ad.unaligned.apk
 push-apk: bin/0ad.apk
 	${ADB} push $< /sdcard/
 
+install-apk: bin/0ad.apk
+	${ADB} install -r $<
+
 push-so:
 	cp ../../../binaries/system/${LIBPYRO} libs/armeabi/
 	${TOOLCHAIN}/bin/arm-linux-androideabi-strip libs/armeabi/${LIBPYRO}
-	${ADB} push libs/armeabi/${LIBPYRO} /data/local/
+	${ADB} push libs/armeabi/${LIBPYRO} /sdcard/
+	${ADB} shell su -c 'cp /sdcard/${LIBPYRO} /data/local && chmod 777 /data/local/${LIBPYRO}'
 	
 clean:
 	rm -rf bin gen lib libs obj

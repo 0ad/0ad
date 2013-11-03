@@ -170,6 +170,15 @@ function ProcessCommand(player, cmd)
 			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
 		});
 		break;
+		
+	case "back-to-work":
+		for each (var ent in entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if(!cmpUnitAI || !cmpUnitAI.BackToWork())
+				notifyBackToWorkFailure(player);
+		}
+		break;
 
 	case "train":
 		// Check entity limits
@@ -390,16 +399,6 @@ function ProcessCommand(player, cmd)
 				notifyUnloadFailure(player, garrisonHolder)
 		}
 		break;
-		
-	case "back-to-work":
-		var entities = FilterEntityList(cmd.workers, player, controlAllUnits);
-		for each (var worker in entities)
-		{
-			var cmpUnitAI = Engine.QueryInterface(worker, IID_UnitAI);
-			if (!cmpUnitAI || !cmpUnitAI.BackToWork())
-				notifyBackToWorkFailure(player, worker)
-		}
-		break;
 
 	case "formation":
 		GetFormationUnitAIs(entities, player, cmd.name).forEach(function(cmpUnitAI) {
@@ -530,7 +529,7 @@ function notifyUnloadFailure(player, garrisonHolder)
 /**
  * Sends a GUI notification about worker(s) that failed to go back to work.
  */
-function notifyBackToWorkFailure(player, worker)
+function notifyBackToWorkFailure(player)
 {
 	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
 	var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Some unit(s) can't go back to work" };

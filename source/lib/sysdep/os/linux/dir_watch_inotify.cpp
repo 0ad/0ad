@@ -84,7 +84,11 @@ static void inotify_deinit()
 {
 	close(inotifyfd);
 
+#ifdef __BIONIC__
+	#warning TODO: pthread_cancel not supported on Bionic
+#else
 	pthread_cancel(g_event_loop_thread);
+#endif
 	// NOTE: POSIX threads are (by default) only cancellable inside particular
 	// functions (like 'select'), so this should safely terminate while it's
 	// in select/etc (and won't e.g. cancel while it's holding the
