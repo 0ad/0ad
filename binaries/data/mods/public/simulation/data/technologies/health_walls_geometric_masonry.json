@@ -9,7 +9,7 @@
 	"researchTime": 40,
 	"tooltip": "City walls +2 crush armor levels, but +10% build time.",
 	"modifications": [
-		{"value": "Cost/BuildTime", "multiplier": 1.1},
+		{"value": "Cost/BuildTime", "multiply": 1.1},
 		{"value": "Armour/Crush", "add": 2.0}
 	],
 	"affects": ["StoneWall"],

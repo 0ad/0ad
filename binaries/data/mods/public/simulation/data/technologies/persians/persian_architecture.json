@@ -7,8 +7,8 @@
 	"researchTime": 60,
 	"tooltip": "All Persian structures +25% health, but also +20% build time.",
 	"modifications": [
-		{"value": "Cost/BuildTime", "multiplier": 1.20},
-		{"value": "Health/Max", "multiplier": 1.25}
+		{"value": "Cost/BuildTime", "multiply": 1.20},
+		{"value": "Health/Max", "multiply": 1.25}
 	],
 	"affects": ["Structure"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

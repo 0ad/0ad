@@ -19,8 +19,8 @@
     </Ranged>
   </Attack>
   <BuildingAI>
-    <DefaultArrowCount>1</DefaultArrowCount>
-    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+    <DefaultArrowCount>2</DefaultArrowCount>
+    <GarrisonArrowMultiplier>0.5</GarrisonArrowMultiplier>
 	<GarrisonArrowClasses>Infantry Ranged</GarrisonArrowClasses>
   </BuildingAI>
   <Cost>
@@ -48,7 +48,9 @@
   </Health>
   <Identity>
     <GenericName>Siege Tower</GenericName>
-    <Tooltip>A mobile missile platform.</Tooltip>
+	<Classes datatype="tokens">Ranged SiegeTower</Classes>
+    <Tooltip>Classes: Ranged Siege Tower.
+Garrison up to 20 infantry inside to increase arrow count by 10.</Tooltip>
   </Identity>
   <Obstruction>
     <Unit radius="4.0"/>

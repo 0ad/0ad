@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="463.96" y="101.517" z="94.8426"/>
+		<Position x="450.623" y="120.347" z="83.9606"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -46,7 +46,7 @@
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
-  "Name": "Acropolis 7",
+  "Name": "Acropolis Night",
   "PlayerData": [
     {
       "Civ": "iber",
@@ -22477,6 +22477,48 @@
 			<Position x="446.98365" z="257.26679"/>
 			<Orientation y="-0.2593"/>
 			<Obstruction group="4670" group2="4671"/>
+		</Entity>
+		<Entity uid="4717">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="216.26667" z="404.28296"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39176"/>
+		</Entity>
+		<Entity uid="4718">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="726.63636" z="623.16272"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48496"/>
+		</Entity>
+		<Entity uid="4719">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="302.29871" z="755.96479"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28970"/>
+		</Entity>
+		<Entity uid="4720">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="538.31568" z="369.19236"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45950"/>
+		</Entity>
+		<Entity uid="4721">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="614.68207" z="60.4836"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4830"/>
+		</Entity>
+		<Entity uid="4722">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="830.94123" z="342.9557"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17684"/>
+		</Entity>
+		<Entity uid="4723">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="509.61341" z="568.60022"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62294"/>
 		</Entity>
 	</Entities>
 	<Paths/>

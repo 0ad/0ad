@@ -7,8 +7,10 @@
       <props>
         <prop actor="props/units/shields/mace_pez_back.xml" attachpoint="back"/>
       </props>
-      <textures><texture file="props/shield/mace_round_f.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/pelte_round_bronze.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>basic_spec.xml</material>
 </actor>

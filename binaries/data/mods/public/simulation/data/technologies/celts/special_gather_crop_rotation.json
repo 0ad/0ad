@@ -7,7 +7,7 @@
 	"icon": "crop_rotation.png",
 	"researchTime": 40,
 	"tooltip": "Increase the yield of your farms. +25% farming rate.",
-	"modifications": [{"value": "ResourceGatherer/Rates/food.grain", "multiplier": 1.25}],
+	"modifications": [{"value": "ResourceGatherer/Rates/food.grain", "multiply": 1.25}],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

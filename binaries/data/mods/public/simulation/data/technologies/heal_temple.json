@@ -13,7 +13,7 @@
 	"icon": "cauldron.png",
 	"researchTime": 40,
 	"tooltip": "Temples +50% garrisoned healing rate.",
-	"modifications": [{"value": "GarrisonHolder/BuffHeal", "multiplier": 1.5}],
+	"modifications": [{"value": "GarrisonHolder/BuffHeal", "multiply": 1.5}],
 	"affects": ["Temple"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

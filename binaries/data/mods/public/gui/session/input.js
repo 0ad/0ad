@@ -241,9 +241,9 @@ function getActionInfo(action, target)
 			data.command = "garrison";
 			data.target = target;
 			cursor = "action-garrison";
-			tooltip = "Current garrison: " + targetState.garrisonHolder.entities.length
+			tooltip = "Current garrison: " + targetState.garrisonHolder.garrisonedEntitiesCount
 				+ "/" + targetState.garrisonHolder.capacity;
-			if (targetState.garrisonHolder.entities.length >= targetState.garrisonHolder.capacity)
+			if (targetState.garrisonHolder.garrisonedEntitiesCount >= targetState.garrisonHolder.capacity)
 				tooltip = "[color=\"orange\"]" + tooltip + "[/color]";
 		}
 		else if (targetState.resourceSupply)
@@ -328,9 +328,12 @@ function getActionInfo(action, target)
 		case "garrison":
 			if (hasClass(entState, "Unit") && targetState.garrisonHolder && (playerOwned || mutualAllyOwned))
 			{
-				var tooltip = "Current garrison: " + targetState.garrisonHolder.entities.length
+				var tooltip = "Current garrison: " + targetState.garrisonHolder.garrisonedEntitiesCount
 					+ "/" + targetState.garrisonHolder.capacity;
-				if (targetState.garrisonHolder.entities.length >= targetState.garrisonHolder.capacity)
+				var extraCount = 0;
+				if (entState.garrisonHolder)
+					extraCount += entState.garrisonHolder.garrisonedEntitiesCount;
+				if (targetState.garrisonHolder.garrisonedEntitiesCount + extraCount >= targetState.garrisonHolder.capacity)
 					tooltip = "[color=\"orange\"]" + tooltip + "[/color]";
 				var allowedClasses = targetState.garrisonHolder.allowedClasses;
 				for each (var unitClass in entState.identity.classes)

@@ -7,7 +7,7 @@
 	"icon": "military_engineers.png",
 	"researchTime": 40,
 	"tooltip": "Immobile siege weapons pack/unpack 25% faster",
-	"modifications": [{"value": "Pack/Time", "multiplier": 0.75}],
+	"modifications": [{"value": "Pack/Time", "multiply": 0.75}],
 	"affects": ["Siege"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

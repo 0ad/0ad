@@ -39,8 +39,8 @@ function GetTechModifiedProperty(currentTechModifications, entityTemplateData, p
 			// We found a match, apply the modification
 
 			// Nothing is cumulative so that ordering doesn't matter as much as possible
-			if (modification.multiplier)
-				retValue += (modification.multiplier - 1) * propertyValue;
+			if (modification.multiply)
+				retValue += (modification.multiply - 1) * propertyValue;
 			else if (modification.add)
 				retValue += modification.add;
 			else if (modification.replace !== undefined) // This will depend on ordering because there is no choice

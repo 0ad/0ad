@@ -8,8 +8,8 @@
 	"researchTime": 60,
 	"tooltip": "Civic centers +100% health and double default arrows.",
 	"modifications": [
-		{"value": "BuildingAI/DefaultArrowCount", "multiplier": 2.0},
-		{"value": "Health/Max", "multiplier": 2.0}
+		{"value": "BuildingAI/DefaultArrowCount", "multiply": 2.0},
+		{"value": "Health/Max", "multiply": 2.0}
 	],
 	"affects": ["CivCentre"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

@@ -2934,7 +2934,11 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 	if (data && data.force)
 	{
 		if (this.IsFormationController())
-			Engine.QueryInterface(this.entity, IID_Formation).CallMemberFunction("UpdateWorkOrders", [type]);
+		{
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			if (cmpFormation)
+				cmpFormation.CallMemberFunction("UpdateWorkOrders", [type]);
+		}
 		else
 			this.UpdateWorkOrders(type);
 	}
@@ -3006,12 +3010,15 @@ UnitAI.prototype.UpdateWorkOrders = function(type)
 	if (this.IsFormationMember())
 	{
 		var cmpUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
-		for (var i = 0; i < cmpUnitAI.orderQueue.length; ++i)
+		if (cmpUnitAI)
 		{
-			if (isWorkType(cmpUnitAI.orderQueue[i].type))
+			for (var i = 0; i < cmpUnitAI.orderQueue.length; ++i)
 			{
-				this.workOrders = cmpUnitAI.orderQueue.slice(i);
-				return;
+				if (isWorkType(cmpUnitAI.orderQueue[i].type))
+				{
+					this.workOrders = cmpUnitAI.orderQueue.slice(i);
+					return;
+				}
 			}
 		}
 	}
@@ -3045,7 +3052,11 @@ UnitAI.prototype.BackToWork = function()
 		
 	// And if the unit is in a formation, remove it from the formation
 	if (this.IsFormationMember())
-		Engine.QueryInterface(this.formationController, IID_Formation).RemoveMembers([this.entity]);
+	{
+		var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+		if (cmpFormation)
+			cmpFormation.RemoveMembers([this.entity]);
+	}
 		
 	this.workOrders = [];
 	return true;

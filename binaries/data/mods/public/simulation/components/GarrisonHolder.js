@@ -112,6 +112,22 @@ GarrisonHolder.prototype.IsGarrisoningAllowed = function()
 };
 
 /**
+ * Return the number of recursively garrisoned units
+ */
+GarrisonHolder.prototype.GetGarrisonedEntitiesCount = function()
+{
+	var count = 0;
+	for each (var ent in this.entities)
+	{
+		count++;
+		var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
+		if (cmpGarrisonHolder)
+			count += cmpGarrisonHolder.GetGarrisonedEntitiesCount();
+	}
+	return count;
+};
+
+/**
  * Get number of garrisoned units capable of shooting arrows
  * Not necessarily archers
  */
@@ -164,7 +180,12 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if(!this.AllowedToGarrison(entity))
 		return false;
 
-	if (this.entities.length >= this.GetCapacity())
+	// check the capacity
+	var extraCount = 0;
+	var cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
+	if (cmpGarrisonHolder)
+		extraCount += cmpGarrisonHolder.GetGarrisonedEntitiesCount();
+	if (this.GetGarrisonedEntitiesCount() + extraCount >= this.GetCapacity())
 		return false;
 
 	var cmpPosition = Engine.QueryInterface(entity, IID_Position);

@@ -16,12 +16,12 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.129412" g="0.156863" b="0.188235"/>
+				<Colour r="0.129412" g="0.156863" b="0.184314"/>
 				<Height>20.0394</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8.00781</Waviness>
 				<Murkiness>0.818359</Murkiness>
-				<Tint r="0.333333" g="0.423529" b="0.501961"/>
+				<Tint r="0.329412" g="0.419608" b="0.501961"/>
 				<ReflectionTint r="0.564706" g="0.513726" b="0.419608"/>
 				<ReflectionTintStrength>0.238281</ReflectionTintStrength>
 			</WaterBody>
@@ -35,14 +35,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="885.66" y="106.4" z="613.67"/>
+		<Position x="328.602" y="80.2536" z="728.698"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "Two teams face off across  a long, very large saltwater lake.\u000a\u000aFashing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits.",
+  "Description": "Two teams face off across  a long, very large saltwater lake.\u000a\u000aFishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -27555,6 +27555,22 @@
 			<Orientation y="-2.74138"/>
 			<Obstruction group="5395" group2="5407"/>
 			<Actor seed="42596"/>
+		</Entity>
+		<Entity uid="5409">
+			<Template>skirmish/structures/iber_wall_long</Template>
+			<Player>1</Player>
+			<Position x="278.73652" z="456.59614"/>
+			<Orientation y="1.8038"/>
+			<Obstruction group="5342" group2="5353"/>
+			<Actor seed="606"/>
+		</Entity>
+		<Entity uid="5410">
+			<Template>skirmish/structures/iber_wall_long</Template>
+			<Player>3</Player>
+			<Position x="325.83252" z="803.98938"/>
+			<Orientation y="2.35621"/>
+			<Obstruction group="5316" group2="5317"/>
+			<Actor seed="46950"/>
 		</Entity>
 	</Entities>
 	<Paths/>

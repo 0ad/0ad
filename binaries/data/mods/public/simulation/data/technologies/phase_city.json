@@ -2,7 +2,7 @@
 	"genericName": "City Phase",
 	"requirements": { "any": [{"tech":"phase_city_generic"}, {"tech":"phase_city_britons"}, {"tech":"city_phase_gauls"}, {"tech":"phase_city_pair_celts"}, {"tech":"phase_city_athen"}]},
 	"autoResearch": true,
-	"modifications": [{"value": "TerritoryInfluence/Radius", "multiplier": 1.50}],
+	"modifications": [{"value": "TerritoryInfluence/Radius", "multiply": 1.50}],
 	"affects": ["CivCentre"],
 	"soundComplete": "interface/alarm/alarm_phase.xml"
 }

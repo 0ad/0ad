@@ -13,18 +13,24 @@
     <variant frequency="1" name="Shield Bronze B">
       <textures>
         <texture file="props/shield/mace_bronze_b_player.png" name="baseTex"/>
+        <texture file="props/shield/mace_bronze_b_norm.png" name="normTex"/>
+        <texture file="props/shield/mace_bronze_b_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Shield Bronze C">
       <textures>
         <texture file="props/shield/mace_bronze_c_player.png" name="baseTex"/>
+        <texture file="props/shield/mace_silver_b_norm.png" name="normTex"/>
+        <texture file="props/shield/mace_silver_b_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Shield Bronze D">
       <textures>
         <texture file="props/shield/mace_bronze_d_player.png" name="baseTex"/>
+        <texture file="props/shield/mace_silver_c_norm.png" name="normTex"/>
+        <texture file="props/shield/mace_silver_c_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

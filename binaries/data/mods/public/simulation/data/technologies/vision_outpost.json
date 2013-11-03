@@ -6,7 +6,7 @@
 	"icon": "pigeon.png",
 	"researchTime": 40,
 	"tooltip": "Vision Range +50% for Outposts.",
-	"modifications": [{"value": "Vision/Range", "multiplier": 1.5}],
+	"modifications": [{"value": "Vision/Range", "multiply": 1.5}],
 	"affects": ["Outpost"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -42,6 +42,7 @@
 
 #include <cassert>
 #include <vector>
+#include <algorithm>
 
 const size_t maxInfluences = 4;
 struct VertexBlend

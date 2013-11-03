@@ -6,7 +6,7 @@
 	"icon": "meat.png",
 	"researchTime": 40,
 	"tooltip": "Breed time -25% for domestic animals (sheep, goats, cattle, etc.).",
-	"modifications": [{"value": "Cost/BuildTime", "multiplier": 0.75}],
+	"modifications": [{"value": "Cost/BuildTime", "multiply": 0.75}],
 	"affects": ["Domestic"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

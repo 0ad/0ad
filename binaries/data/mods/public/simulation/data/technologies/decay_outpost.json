@@ -7,7 +7,7 @@
 	"icon": "blocks_three.png",
 	"researchTime": 40,
 	"tooltip": "Territory decay -50% for Outposts.",
-	"modifications": [{"value": "TerritoryDecay/HealthDecayRate", "multiplier": 0.5}],
+	"modifications": [{"value": "TerritoryDecay/HealthDecayRate", "multiply": 0.5}],
 	"affects": ["Outpost"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

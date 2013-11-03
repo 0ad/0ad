@@ -4,9 +4,9 @@
 	"description": "Carthaginians built their city walls in three concentric circuits. These walls were never breached. Even when the city was taken by the Romans, it was via the city's harbor, not by storming its walls. Consequently, Carthaginian walls, gates, and wall towers have 3x the health of a standard wall, but also cost twice as much and take twice as long to build.",
 	"requirements": {"civ": "cart"},
 	"modifications": [
-		{"value": "Health/Max", "multiplier": 3.0},
-		{"value": "Cost/BuildTime", "multiplier": 2.0},
-		{"value": "Cost/Resources/stone", "multiplier": 2.0}
+		{"value": "Health/Max", "multiply": 3.0},
+		{"value": "Cost/BuildTime", "multiply": 2.0},
+		{"value": "Cost/Resources/stone", "multiply": 2.0}
 	],
 	"affects": ["StoneWall"]
 }

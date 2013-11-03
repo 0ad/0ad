@@ -355,7 +355,7 @@ EntitySelection.prototype.reset = function()
 EntitySelection.prototype.rebuildSelection = function(renamed)
 {
 	var oldSelection = this.selected;
-	g_Selection.reset();
+	this.reset();
 
 	var toAdd = [];
 	for each (var ent in oldSelection)
