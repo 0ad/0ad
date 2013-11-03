@@ -119,8 +119,8 @@ GarrisonHolder.prototype.GetGarrisonedEntitiesCount = function()
 	var count = 0;
 	for each (var ent in this.entities)
 	{
-		count++
-		var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder)
+		count++;
+		var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
 		if (cmpGarrisonHolder)
 			count += cmpGarrisonHolder.GetGarrisonedEntitiesCount();
 	}
