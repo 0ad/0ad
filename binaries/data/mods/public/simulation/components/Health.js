@@ -343,6 +343,9 @@ Health.prototype.OnValueModification = function(msg)
 
 	var oldRegenRate = this.regenRate;
 	this.regenRate = ApplyValueModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
+
+	if (this.IsUnhealable())
+		this.regenRate = Math.min(0,this.regenRate);
 	
 	if (this.regenRate != oldRegenRate)
 		this.CheckRegenTimer();
