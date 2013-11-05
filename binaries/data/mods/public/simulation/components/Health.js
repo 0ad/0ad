@@ -208,12 +208,12 @@ Health.prototype.Reduce = function(amount)
 
 Health.prototype.Increase = function(amount)
 {
+	if (this.hitpoints == this.GetMaxHitpoints())
+		return {"old": this.hitpoints, "new":this.hitpoints};
+
 	// If we're already dead, don't allow resurrection
 	if (this.hitpoints == 0)
 		return undefined;
-
-	if (this.IsUnhealable())
-		return {"old": this.hitpoints, "new":this.hitpoints};
 
 	var old = this.hitpoints;
 	this.hitpoints = Math.min(this.hitpoints + amount, this.GetMaxHitpoints());
@@ -343,6 +343,9 @@ Health.prototype.OnValueModification = function(msg)
 
 	var oldRegenRate = this.regenRate;
 	this.regenRate = ApplyValueModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
+
+	if (this.IsUnhealable())
+		this.regenRate = Math.min(0,this.regenRate);
 	
 	if (this.regenRate != oldRegenRate)
 		this.CheckRegenTimer();
