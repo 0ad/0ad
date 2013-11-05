@@ -38,10 +38,7 @@ function LoadMapSettings(settings)
 
 	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	if (settings.GameType)
-	{
 		cmpEndGameManager.SetGameType(settings.GameType);
-	}
-	cmpEndGameManager.Start();
 }
 
 Engine.RegisterGlobal("LoadMapSettings", LoadMapSettings);

@@ -482,6 +482,13 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cmpIdentity && cmpIdentity.HasClass("ConquestCritical"))
 			this.conquestCriticalEntitiesCount--;
 
+		if (this.conquestCriticalEntitiesCount == 0)
+		{
+			// end game when needed
+			var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
+			cmpEndGameManager.PlayerLostAllConquestCriticalEntities(this.playerID);
+		}
+
 		if (cmpCost)
 		{
 			this.popUsed -= cmpCost.GetPopCost();
