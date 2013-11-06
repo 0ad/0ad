@@ -25,6 +25,11 @@ build/premake/premake4/build/gmake.unix/obj/
 test_*.cpp
 source/ps/tests/stub_impl_hack.cpp
 
+# Build files (tools)
+*.pyc
+*.pyo
+__pycache__/
+
 # Build files (libs)
 *.o
 *.lo
