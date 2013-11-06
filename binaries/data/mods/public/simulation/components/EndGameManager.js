@@ -31,103 +31,52 @@ EndGameManager.prototype.SetAlliedVictory = function(flag)
 	this.alliedVictory = flag;
 };
 
-/**
- * Begin checking the end-game conditions.
- * Must be called once, after calling SetGameType.
- */
-EndGameManager.prototype.Start = function()
+EndGameManager.prototype.PlayerLostAllConquestCriticalEntities = function(playerID)
 {
-	if (this.gameType != "endless")
-	{
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		this.timer = cmpTimer.SetTimeout(this.entity, IID_EndGameManager, "ProgressTimeout", g_ProgressInterval, {});
-	}
-};
+	if (this.gameType == "endless")
+		return; 
 
-EndGameManager.prototype.OnDestroy = function()
-{
-	if (this.timer)
-	{
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(this.timer);
-	}
-};
-
-EndGameManager.prototype.ProgressTimeout = function(data)
-{
-	this.UpdatePlayerStates();
-	
-	// Repeat the timer
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	this.timer = cmpTimer.SetTimeout(this.entity, IID_EndGameManager, "ProgressTimeout", g_ProgressInterval, data);
-};
-
-EndGameManager.prototype.UpdatePlayerStates = function()
-{
+	// for all other game types, defeat that player
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	switch (this.gameType)
+	
+	// Ignore gaia
+	var numPlayers = cmpPlayerManager.GetNumPlayers();
+	var cmpPlayers = [];
+	
+	var allies = [];
+	var onlyAlliesLeft = true;
+	// If the player is currently active but needs to be defeated,
+	// mark that player as defeated
+	// cache the cmpPlayer instances of the other players and search the allies
+	for (var i = 1; i < numPlayers; i++)
 	{
-	case "conquest":
-
-		// Ignore gaia
-		var numPlayers = cmpPlayerManager.GetNumPlayers() - 1;
-		var cmpPlayers = new Array(numPlayers);
-		
-		// If a player is currently active but has no suitable units left,
-		// mark that player as defeated
-		for (var i = 0; i < numPlayers; i++)
+		// cmpPlayer should always exist for the player ids from 1 to numplayers
+		// so no tests on the existance of cmpPlayer are needed
+		var playerEntityId = cmpPlayerManager.GetPlayerByID(i);
+		cmpPlayers[i] = Engine.QueryInterface(playerEntityId, IID_Player);
+		if (cmpPlayers[i].GetState() != "active") 
+			continue;
+		if (i == playerID)
+			Engine.PostMessage(playerEntityId, MT_PlayerDefeated, { "playerId": i } );
+		else
 		{
-			var playerEntityId = cmpPlayerManager.GetPlayerByID(i+1);
-			cmpPlayers[i] = Engine.QueryInterface(playerEntityId, IID_Player);
-			if (cmpPlayers[i].GetState() == "active")
-			{
-				if (cmpPlayers[i].GetConquestCriticalEntitiesCount() == 0)
-				{	// Defeated - notify AIs by sending playerId
-					Engine.PostMessage(playerEntityId, MT_PlayerDefeated, { "playerId": i } );
-				}
-			}
+			if (!allies.length || cmpPlayers[allies[0]].IsMutualAlly(i))
+				allies.push(i);
+			else
+				onlyAlliesLeft = false;
 		}
-
-		var onlyAlliesLeft = true;
-		var allies = [];
-		for (var i = 0; i < numPlayers && onlyAlliesLeft; i++)
-		{
-			if (cmpPlayers[i].GetState() == "active")
-			{	//Active player
-				for (var j = 0; j < numPlayers && onlyAlliesLeft; j++)
-				{
-					if (cmpPlayers[j].GetState() == "active"
-						&& (cmpPlayers[i].IsEnemy(j+1) || cmpPlayers[j].IsEnemy(i+1)
-						    || cmpPlayers[i].IsNeutral(j+1) || cmpPlayers[j].IsNeutral(i+1)))
-					{	// Only need to find an active non-allied player
-						onlyAlliesLeft = false;
-					}
-				}
-				
-				if (onlyAlliesLeft)
-					allies.push(i);
-			}
-		}
-
-		// If only allies left and allied victory set (or only one player left)
-		if (onlyAlliesLeft && (this.alliedVictory || allies.length == 1))
-		{
-			for each (var p in allies)
-			{
-				cmpPlayers[p].SetState("won");
-			}
-
-			// Reveal the map to all players
-			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-			cmpRangeManager.SetLosRevealAll(-1, true);
-		}
-
-		break;
-
-	default:
-		error("Invalid game type "+this.gameType);
-		break;
 	}
+
+	// check if there are winners, or the game needs to continue
+	if (!allies.length || !onlyAlliesLeft || !(this.alliedVictory || allies.length == 1))
+		return; 
+
+	for each (var p in allies)
+		cmpPlayers[p].SetState("won");
+
+	// Reveal the map to all players
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	cmpRangeManager.SetLosRevealAll(-1, true);
 };
 
 Engine.RegisterComponentType(IID_EndGameManager, "EndGameManager", EndGameManager);
