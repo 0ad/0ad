@@ -31,7 +31,7 @@ Trader.prototype.Init = function()
 	// Selected resource for trading
 	this.preferredGoods = "metal";
 	// Currently carried goods
-	this.goods = { "type": null, "amount": null };
+	this.goods = { "type": null, "amount": null, "origin": null };
 };
 
 Trader.prototype.CalculateGain = function(firstMarket, secondMarket)
@@ -184,7 +184,7 @@ Trader.prototype.CanTrade = function(target)
 	return true;
 };
 
-Trader.prototype.PerformTrade = function()
+Trader.prototype.PerformTrade = function(currentMarket)
 {
 	if (this.goods.amount && this.goods.amount.traderGain)
 	{
@@ -220,11 +220,20 @@ Trader.prototype.PerformTrade = function()
 	}
 	this.goods.type = this.preferredGoods;
 	this.goods.amount = this.gain;
+	this.goods.origin = currentMarket;
 };
 
 Trader.prototype.GetGoods = function()
 {
 	return this.goods;
+};
+
+Trader.prototype.GetNextMarket = function()
+{
+	if (this.goods.amount && this.goods.origin == this.firstMarket)
+		return this.secondMarket;
+	else
+		return this.firstMarket;
 };
 
 Trader.prototype.StopTrading = function()
