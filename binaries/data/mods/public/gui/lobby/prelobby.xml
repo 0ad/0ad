@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+	<script file="gui/lobby/prelobby.js"/>
+
+	<script file="gui/common/functions_global_object.js"/>
+	<script file="gui/common/functions_utility.js"/>
+
+	<object name="dialog" type="image" style="StoneDialog" size="50%-190 50%-140 50%+190 50%+140">
+
+		<action on="Tick">
+			onTick();
+		</action>
+
+		<object name="pageConnecting" hidden="true">
+			<object name="connectionStatus" type="text" text_align="center" size="0 100 100% 120">
+				[Connection status]
+			</object>
+		</object>
+
+		<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">
+			Multiplayer Lobby
+		</object>
+
+		<object name="pageConnect" size="0 32 100% 100%">
+			<object type="text" style="CenteredLabelText" size="0 0 400 30">
+				Connect to the game lobby.
+			</object>
+			<object type="text" size="0 40 200 70" style="RightLabelText">
+				Login:
+			</object>
+			<object name="connectUsername" type="input" size="210 40 100%-32 64" style="StoneInput">
+				<action on="Load">
+					this.caption = Engine.ConfigDB_GetValue("user", "lobby.login");
+				</action>
+			</object>
+			<object type="text" size="0 80 200 110" style="RightLabelText">
+				Password:
+			</object>
+			<object name="connectPassword" type="input" size="210 80 100%-32 104" style="StonePasswordInput">
+				<action on="Load">
+					this.caption = Engine.ConfigDB_GetValue("user", "lobby.password");
+				</action>
+				<action on="Press">
+					lobbyStart();
+				</action>
+			</object>
+			<object name="nickPanel" size="64 120 100%-32 144" hidden="true">
+				<object type="text" size="0 0 136 100%" style="RightLabelText">
+					Nickname:
+				</object>
+				<object name="joinPlayerName" type="input" size="146 0 100% 100%" style="StoneInput">
+					<action on="Load">
+						this.caption = Engine.ConfigDB_GetValue("user", "playername");
+					</action>
+				</object>
+			</object>
+			<object name="nickToggle" type="button" style="StoneButton" size="100%-64 120 100%-32 144">
+				<![CDATA[<<]]>
+				<action on="Press"><![CDATA[
+					this.hidden = true;
+					getGUIObjectByName("nickPanel").hidden = false;
+				]]></action>
+			</object>
+			<object name="connectFeedback" type="text" style="CenteredLabelText" size="32 150 100%-32 180" textcolor="red"/>
+			<object type="button" size="32 100%-60 122 100%-32" style="StoneButton">
+				Cancel
+				<action on="Press">
+					lobbyStop();
+					Engine.PopGuiPage();
+				</action>
+			</object>
+			<object type="button" size="145 100%-60 235 100%-32" style="StoneButton">
+				Register
+				<action on="Press">
+					lobbyStop();
+					getGUIObjectByName("pageConnect").hidden = true;
+					getGUIObjectByName("pageRegister").hidden = false;
+				</action>
+			</object>
+			<object type="button" size="258 100%-60 100%-32 100%-32" style="StoneButton">
+				Connect
+				<action on="Press">
+					lobbyStart();
+				</action>
+			</object>
+		</object>
+
+		<object name="pageRegister" size="0 32 100% 100%" hidden="true">
+			<object type="text" style="CenteredLabelText" size="0 0 400 30">
+				Registration.
+			</object>
+			<object type="text" size="0 40 200 70" style="RightLabelText">
+				Password again:
+			</object>
+			<object name="registerPasswordAgain" type="input" size="210 40 100%-32 64" style="StonePasswordInput">
+				<action on="Press">
+					lobbyStartRegister()
+				</action>
+			</object>
+			<object name="registerFeedback" type="text" style="CenteredLabelText" size="32 150 100%-32 180" textcolor="red"/>
+			<object type="button" size="32 100%-60 122 100%-32" style="StoneButton">
+				Back
+				<action on="Press">
+					lobbyStop();
+					getGUIObjectByName("pageRegister").hidden = true;
+					getGUIObjectByName("pageConnect").hidden = false;
+				</action>
+			</object>
+			<object type="button" size="258 100%-60 100%-32 100%-32" style="StoneButton">
+				Register
+				<action on="Press">
+					lobbyStartRegister()
+				</action>
+			</object>
+		</object>
+
+	</object>
+
+</objects>

@@ -243,6 +243,15 @@
 		textcolor_selected="gold"
 	/>
 
+	<style  name="StonePasswordInput"
+		sprite="BackgroundIndentFillDark"
+		sprite_selectarea="BackgroundRed"
+		textcolor="white"
+		textcolor_selected="gold"
+		mask="true"
+		mask_char="*"
+	/>
+
 	<style 	name="StoneDropDown"
 		dropdown_buffer="1"
 		font="serif-bold-stroke-14"

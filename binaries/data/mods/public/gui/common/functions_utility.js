@@ -1,6 +1,6 @@
 /*
 	DESCRIPTION	: Generic utility functions.
-	NOTES	: 
+	NOTES	:
 */
 
 // ====================================================================
@@ -11,7 +11,7 @@ function getRandom(randomMin, randomMax)
 	// NOTE: There should probably be an engine function for this,
 	// since we'd need to keep track of random seeds for replays.
 
-	var randomNum = randomMin + (randomMax-randomMin)*Math.random();  // num is random, from A to B 
+	var randomNum = randomMin + (randomMax-randomMin)*Math.random();  // num is random, from A to B
 	return Math.round(randomNum);
 }
 
@@ -23,7 +23,7 @@ function getXMLFileList(pathname)
 	var files = buildDirEntList(pathname, "*.xml", true);
 
 	var result = [];
-	
+
 	// Get only subpath from filename and discard extension
 	for (var i = 0; i < files.length; ++i)
 	{
@@ -32,7 +32,7 @@ function getXMLFileList(pathname)
 
 		// Split path into directories so we can check for beginning _ character
 		var tokens = file.split("/");
-		
+
 		if (tokens[tokens.length-1][0] != "_")
 			result.push(file);
 	}
@@ -47,7 +47,7 @@ function getJSONFileList(pathname)
 {
 	var files = buildDirEntList(pathname, "*.json", false);
 
-	// Remove the path and extension from each name, since we just want the filename      
+	// Remove the path and extension from each name, since we just want the filename
 	files = [ n.substring(pathname.length, n.length-5) for each (n in files) ];
 
 	return files;
@@ -60,7 +60,7 @@ function getJSONFileList(pathname)
 function parseJSONData(pathname)
 {
 	var data = {};
-		
+
 	var rawData = readFile(pathname);
 	if (!rawData)
 	{
@@ -74,15 +74,15 @@ function parseJSONData(pathname)
 			data = JSON.parse(rawData);
 			if (!data)
 				error("Failed to parse JSON data in: "+pathname+" (check for valid JSON data)");
-			
-			
+
+
 		}
 		catch(err)
 		{
 			error(err.toString()+": parsing JSON data in "+pathname);
 		}
 	}
-	
+
 	return data;
 }
 
@@ -93,7 +93,7 @@ function sortNameIgnoreCase(x, y)
 {
 	var lowerX = x.name.toLowerCase();
 	var lowerY = y.name.toLowerCase();
-	
+
 	if (lowerX < lowerY)
 		return -1;
 	else if (lowerX > lowerY)
@@ -110,12 +110,12 @@ function escapeText(text)
 {
 	if (!text)
 		return text;
-	
+
 	var out = text.replace(/[\[\]]+/g,"");
 	out = out.replace(/\s+/g, " ");
-	
+
 	return out.substr(0, 255);
-	
+
 }
 
 // ====================================================================
@@ -128,7 +128,7 @@ function toTitleCase (string)
 	// Returns the title-case version of a given string.
 	string = string.toString();
 	string = string[0].toUpperCase() + string.substring(1).toLowerCase();
-	
+
 	return string;
 }
 
@@ -180,6 +180,7 @@ function initPlayerDefaults()
 function initMapSizes()
 {
 	var sizes = {
+		"shortNames":[],
 		"names":[],
 		"tiles": [],
 		"default": 0
@@ -192,6 +193,7 @@ function initMapSizes()
 	{
 		for (var i = 0; i < data.Sizes.length; ++i)
 		{
+			sizes.shortNames.push(data.Sizes[i].Name);
 			sizes.names.push(data.Sizes[i].LongName);
 			sizes.tiles.push(data.Sizes[i].Tiles);
 
@@ -241,7 +243,7 @@ function iColorToString(color)
 	var string = "0 0 0";
 	if (color && ("r" in color) && ("g" in color) && ("b" in color))
 		string = color.r + " " + color.g + " " + color.b;
-	
+
 	return string;
 }
 
@@ -289,4 +291,23 @@ function shuffleArray(source)
 		result[j] = source[i];
 	}
 	return result;
+}
+
+// ====================================================================
+// Filter out conflicting characters and limit the length of a given name.
+// @param name Name to be filtered.
+// @param stripUnicode Whether or not to remove unicode characters.
+// @param stripSpaces Whether or not to remove whitespace.
+function sanitizePlayerName(name, stripUnicode, stripSpaces)
+{
+	// We delete the '[', ']' characters (GUI tags) and delete the ',' characters (player name separators) by default.
+	var sanitizedName = name.replace(/[\[\],]/g, "");
+	// Optionally strip unicode
+	if (stripUnicode)
+		sanitizedName = sanitizedName.replace(/[^\x20-\x7f]/g, "");
+	// Optionally strip whitespace
+	if (stripSpaces)
+		sanitizedName = sanitizedName.replace(/\s/g, "");
+	// Limit the length to 20 characters
+	return sanitizedName.substr(0,20);
 }

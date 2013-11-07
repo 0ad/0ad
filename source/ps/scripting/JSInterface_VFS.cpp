@@ -92,7 +92,7 @@ JSBool JSI_VFS::BuildDirEntList(JSContext* cx, uintN argc, jsval* vp)
 	// get arguments
 	//
 
-	JSU_REQUIRE_MIN_PARAMS(1);
+	JSU_REQUIRE_PARAM_RANGE(1, 3);
 
 	CStrW path;
 	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], path))
@@ -127,6 +127,22 @@ JSBool JSI_VFS::BuildDirEntList(JSContext* cx, uintN argc, jsval* vp)
 	return JS_TRUE;
 }
 
+// Return true iff the file exits
+//
+// if (fileExists(filename)) { ... }
+//   filename: VFS filename (may include path)
+JSBool JSI_VFS::FileExists(JSContext* cx, uintN argc, jsval* vp)
+{
+	JSU_REQUIRE_PARAMS(1);
+
+	CStrW filename;
+	if (!ScriptInterface::FromJSVal<CStrW> (cx, JS_ARGV(cx, vp)[0], filename))
+		return JS_FALSE;
+
+	JS_SET_RVAL(cx, vp, g_VFS->GetFileInfo(filename, 0) == INFO::OK ? JSVAL_TRUE : JSVAL_FALSE);
+	return JS_TRUE;
+}
+
 
 // Return time [seconds since 1970] of the last modification to the specified file.
 //
@@ -134,7 +150,7 @@ JSBool JSI_VFS::BuildDirEntList(JSContext* cx, uintN argc, jsval* vp)
 //   filename: VFS filename (may include path)
 JSBool JSI_VFS::GetFileMTime(JSContext* cx, uintN argc, jsval* vp)
 {
-	JSU_REQUIRE_MIN_PARAMS(1);
+	JSU_REQUIRE_PARAMS(1);
 
 	CStrW filename;
 	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))
@@ -155,7 +171,7 @@ JSBool JSI_VFS::GetFileMTime(JSContext* cx, uintN argc, jsval* vp)
 //   filename: VFS filename (may include path)
 JSBool JSI_VFS::GetFileSize(JSContext* cx, uintN argc, jsval* vp)
 {
-	JSU_REQUIRE_MIN_PARAMS(1);
+	JSU_REQUIRE_PARAMS(1);
 
 	CStrW filename;
 	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))
@@ -176,7 +192,7 @@ JSBool JSI_VFS::GetFileSize(JSContext* cx, uintN argc, jsval* vp)
 //   filename: VFS filename (may include path)
 JSBool JSI_VFS::ReadFile(JSContext* cx, uintN argc, jsval* vp)
 {
-	JSU_REQUIRE_MIN_PARAMS(1);
+	JSU_REQUIRE_PARAMS(1);
 
 	CStrW filename;
 	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))
@@ -209,7 +225,7 @@ JSBool JSI_VFS::ReadFile(JSContext* cx, uintN argc, jsval* vp)
 //   filename: VFS filename (may include path)
 JSBool JSI_VFS::ReadFileLines(JSContext* cx, uintN argc, jsval* vp)
 {
-	JSU_REQUIRE_MIN_PARAMS(1);
+	JSU_REQUIRE_PARAMS(1);
 
 	CStrW filename;
 	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))

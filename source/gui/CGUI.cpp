@@ -35,6 +35,7 @@ CGUI
 #include "CRadioButton.h"
 #include "CInput.h"
 #include "CList.h"
+#include "COList.h"
 #include "CDropDown.h"
 #include "CProgressBar.h"
 #include "CTooltip.h"
@@ -442,6 +443,7 @@ void CGUI::Initialize()
 	AddObjectType("minimap",        &CMiniMap::ConstructObject);
 	AddObjectType("input",			&CInput::ConstructObject);
 	AddObjectType("list",			&CList::ConstructObject);
+	AddObjectType("olist",			&COList::ConstructObject);
 	AddObjectType("dropdown",		&CDropDown::ConstructObject);
 	AddObjectType("tooltip",		&CTooltip::ConstructObject);
 }
@@ -1753,7 +1755,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 	{
 		XMBAttribute attr = attributes.Item(i);
 		CStr attr_name = pFile->GetAttributeString(attr.Name);
-		CStr attr_value (attr.Value);
+		CStr attr_value (attr.Value); 
 
 		if (attr_value == "null")
 			continue;
@@ -1761,6 +1763,14 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		if (attr_name == "name")
 			name = attr_value;
 		else
+		if (attr_name == "show_edge_buttons")
+		{
+			bool b;
+			if (!GUI<bool>::ParseString(attr_value.FromUTF8(), b))
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
+			else
+				scrollbar.m_UseEdgeButtons = b;
+		}
 		if (attr_name == "width")
 		{
 			float f;

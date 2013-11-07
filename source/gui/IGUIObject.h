@@ -424,7 +424,7 @@ protected:
 	 * have any additional children (and this function should never be called).
 	 */
 	virtual bool HandleAdditionalChildren(const XMBElement& UNUSED(child), 
-										  CXeromyces* UNUSED(pFile)) { return false; }
+											CXeromyces* UNUSED(pFile)) { return false; }
 
 	/**
 	 * Cached size, real size m_Size is actually dependent on resolution

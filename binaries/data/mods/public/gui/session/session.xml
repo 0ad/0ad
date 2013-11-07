@@ -247,9 +247,9 @@
 	<!-- Dev/cheat commands -->
 	<object name="devCommands" size="100%-156 50%-88 100%-8 50%+104" type="image" sprite="devCommandsBackground" z="40"
 		hidden="true" hotkey="session.devcommands.toggle">
-	    <action on="Press">
-		toggleDeveloperOverlay();
-	    </action>
+		<action on="Press">
+		if (!Engine.IsRankedGame()) toggleDeveloperOverlay();
+		</action>
 
 	    <object size="0 0 100%-18 16" type="text" style="devCommandsText">Control all units</object>
 	    <object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="StoneCrossBox">
@@ -537,6 +537,7 @@
 				<!-- Settings / Dev Overlay -->
 				<object size="0 310 100%-80 335" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
 				<object name="developerOverlayCheckbox" size="100%-56 315 100%-30 340" type="checkbox" style="StoneCrossBox" checked="false">
+					<action on="Load">if (Engine.IsRankedGame()) this.enabled = false;</action>
 					<action on="Press">toggleDeveloperOverlay();</action>
 				</object>
 			</object>
@@ -1250,7 +1251,7 @@
 		size="50%-84 50%+128 50%+84 50%+160"
 		tooltip_style="sessionToolTip"
 	>
-	    <object size="0 0 100% 100%" type="text" style="CenteredButtonText" name="disconnectedExitButtonText" ghost="true">Return to Main Menu</object>
+	    <object size="0 0 100% 100%" type="text" style="CenteredButtonText" name="disconnectedExitButtonText" ghost="true">Exit</object>
 	    <action on="Press">leaveGame()</action>
 	</object>
 

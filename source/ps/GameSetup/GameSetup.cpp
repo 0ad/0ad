@@ -87,6 +87,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
 #include "simulation2/Simulation2.h"
+#include "lobby/IXmppClient.h"
 #include "soundmanager/scripting/JSInterface_Sound.h"
 #include "soundmanager/ISoundManager.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
@@ -683,6 +684,10 @@ void EndGame()
 void Shutdown(int UNUSED(flags))
 {
 	EndGame();
+
+	#if CONFIG2_LOBBY
+		SAFE_DELETE(g_XmppClient);
+	#endif
 
 	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
 

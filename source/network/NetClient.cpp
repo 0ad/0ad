@@ -30,6 +30,7 @@
 #include "ps/Compress.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
+#include "ps/GUID.h"
 #include "ps/Loader.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
@@ -68,7 +69,7 @@ private:
 CNetClient::CNetClient(CGame* game) :
 	m_Session(NULL),
 	m_UserName(L"anonymous"),
-	m_GUID(GenerateGUID()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game)
+	m_GUID(ps_generate_guid()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game)
 {
 	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
 
@@ -250,7 +251,7 @@ void CNetClient::SendChatMessage(const std::wstring& text)
 bool CNetClient::HandleMessage(CNetMessage* message)
 {
 	// Handle non-FSM messages first
-	
+
 	Status status = m_Session->GetFileTransferer().HandleMessageReceive(message);
 	if (status == INFO::OK)
 		return true;
@@ -503,7 +504,7 @@ bool CNetClient::OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event)
 	CEndCommandBatchMessage* endMessage = (CEndCommandBatchMessage*)event->GetParamRef();
 
 	client->m_ClientTurnManager->FinishedAllCommands(endMessage->m_Turn, endMessage->m_TurnLength);
-	
+
 	// Execute all the received commands for the latest turn
 	client->m_ClientTurnManager->UpdateFastForward();
 
@@ -554,26 +555,4 @@ bool CNetClient::OnInGame(void *context, CFsmEvent* event)
 	}
 
 	return true;
-}
-
-CStr CNetClient::GenerateGUID()
-{
-	// TODO: Ideally this will be guaranteed unique (and verified
-	// cryptographically) since we'll rely on it to identify hosts
-	// and associate them with player controls (e.g. to support
-	// leaving/rejoining in-progress games), and we don't want
-	// a host to masquerade as someone else.
-	// For now, just try to pick a very random number.
-
-	CStr guid;
-	for (size_t i = 0; i < 2; ++i)
-	{
-		u32 r = 0;
-		sys_generate_random_bytes((u8*)&r, sizeof(r));
-		char buf[32];
-		sprintf_s(buf, ARRAY_SIZE(buf), "%08X", r);
-		guid += buf;
-	}
-
-	return guid;
 }

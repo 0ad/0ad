@@ -111,4 +111,9 @@
 # define CONFIG2_NVTT 1
 #endif
 
+// allow use of lobby
+#ifndef CONFIG2_LOBBY
+# define CONFIG2_LOBBY 1
+#endif
+
 #endif	// #ifndef INCLUDED_CONFIG2

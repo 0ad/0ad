@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+<!DOCTYPE setup SYSTEM "..\..\gui.dtd">
+
+<setup>
+	==========================================
+	- SCROLLBARS -
+	==========================================
+	<scrollbar	name="ModernScrollBar"
+			width = "15"
+			minimum_bar_size = "30"
+			maximum_bar_size = "30"
+			show_edge_buttons = "false"
+			sprite_back_vertical = "ModernScrollBack"
+			sprite_bar_vertical = "ModernScrollBar"
+	/>
+</setup>

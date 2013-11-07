@@ -40,6 +40,12 @@ namespace JSI_VFS
 	// ready for use as a "filename" for the other functions.
 	JSBool BuildDirEntList(JSContext* cx, uintN argc, jsval* vp);
 
+	// Return true iff the file exists
+	//
+	// if (fileExists(filename) { ... }
+	//   filename: VFS filename (may include path)
+	JSBool FileExists(JSContext* cx, uintN argc, jsval* vp);
+
 	// Return time [seconds since 1970] of the last modification to the specified file.
 	//
 	// mtime = getFileMTime(filename);

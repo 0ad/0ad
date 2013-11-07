@@ -96,6 +96,12 @@ struct SGUIScrollBarStyle
 	 * in pixels.
 	 */
 	float m_MaximumBarSize;
+	
+	/**
+	 * True if you want edge buttons, i.e. buttons that can be pressed in order
+	 * to scroll.
+	 */
+	bool m_UseEdgeButtons;
 
 	//@}
 	//--------------------------------------------------------
@@ -297,12 +303,6 @@ public:
 	void SetBarPressed(bool b) { m_BarPressed = b; }
 
 	/**
-	 * Set use edge buttons
-	 * @param b True if edge buttons should be used
-	 */
-	void SetUseEdgeButtons(bool b) { m_UseEdgeButtons = b; }
-
-	/**
 	 * Set Scroll bar style string
 	 * @param style String with scroll bar style reference name
 	 */
@@ -344,12 +344,6 @@ protected:
 	/** @name Settings */
 	//--------------------------------------------------------
 	//@{
-
-	/**
-	 * True if you want edge buttons, i.e. buttons that can be pressed in order
-	 * to scroll.
-	 */
-	bool m_UseEdgeButtons;
 
 	/**
 	 * Width of the scroll bar

@@ -24,6 +24,9 @@ var g_IsNetworked;
 // Is this user in control of game settings (i.e. is a network server, or offline player)
 var g_IsController;
 
+//Server name, if user is a server, connected to the multiplayer lobby
+var g_ServerName;
+
 // Are we currently updating the GUI in response to network messages instead of user input
 // (and therefore shouldn't send further messages to the network)
 var g_IsInGuiUpdate;
@@ -80,6 +83,23 @@ function init(attribs)
 	default:
 		error("Unexpected 'type' in gamesetup init: "+attribs.type);
 	}
+
+        if (attribs.serverName)
+		g_ServerName = attribs.serverName;
+
+	// Init the Cancel Button caption and tooltip
+	var cancelButton = getGUIObjectByName("cancelGame");
+	if(!Engine.HasXmppClient())
+	{
+		cancelButton.caption = "Main menu";
+		cancelButton.tooltip = "Return to the main menu."
+	}
+	else
+	{
+		cancelButton.caption = "Quit";
+		cancelButton.tooltip = "Return to the lobby."
+	}
+
 }
 
 // Called after the map data is loaded and cached
@@ -126,6 +146,10 @@ function initMain()
 	{
 		mapTypes.selected = 0;
 		mapFilters.selected = 0;
+
+		// Create a unique ID for this match, to be used for identifying the same game reports
+		// for the lobby.
+		g_GameAttributes.matchID = Engine.GetMatchID();
 
 		initMapNameList();
 
@@ -203,6 +227,7 @@ function initMain()
 			if (!g_IsInGuiUpdate)
 				updateGameAttributes();
 		};
+		mapSize.selected = 0;
 
 		getGUIObjectByName("revealMap").onPress = function()
 		{	// Update attributes so other players can see change
@@ -336,7 +361,7 @@ function handleNetMessage(message)
 		switch (message.status)
 		{
 		case "disconnected":
-			Engine.DisconnectNetworkGame();
+			cancelSetup();
 			Engine.SwitchGuiPage("page_pregame.xml");
 			reportDisconnect(message.reason);
 			break;
@@ -367,13 +392,22 @@ function handleNetMessage(message)
 		// Update the player list
 		g_PlayerAssignments = message.hosts;
 		updatePlayerList();
+
+		if (g_IsController)
+			sendRegisterGameStanza();
 		break;
 
 	case "start":
+		if (g_IsController)
+		{
+			var players = [ assignment.name for each (assignment in g_PlayerAssignments) ]
+			Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
+		}
 		Engine.SwitchGuiPage("page_loading.xml", {
 			"attribs": g_GameAttributes,
 			"isNetworked" : g_IsNetworked,
-			"playerAssignments": g_PlayerAssignments
+			"playerAssignments": g_PlayerAssignments,
+			"isController": g_IsController
 		});
 		break;
 
@@ -434,11 +468,11 @@ function initCivNameList()
 
 	// Extract name/code, and skip civs that are explicitly disabled
 	// (intended for unusable incomplete civs)
-	var civList = [ 
-		{ "name": civ.Name, "code": civ.Code } 
-		for each (civ in g_CivData) 
-			if (civ.SelectableInGameSetup !== false) 
-	]; 
+	var civList = [
+		{ "name": civ.Name, "code": civ.Code }
+		for each (civ in g_CivData)
+			if (civ.SelectableInGameSetup !== false)
+	];
 
 	// Alphabetically sort the list, ignoring case
 	civList.sort(sortNameIgnoreCase);
@@ -446,9 +480,9 @@ function initCivNameList()
 	var civListNames = [ civ.name for each (civ in civList) ];
 	var civListCodes = [ civ.code for each (civ in civList) ];
 
-	//  Add random civ to beginning of list 
-	civListNames.unshift("[color=\"orange\"]Random"); 
-	civListCodes.unshift("random"); 
+	//  Add random civ to beginning of list
+	civListNames.unshift("[color=\"orange\"]Random");
+	civListCodes.unshift("random");
 
 	// Update the dropdowns
 	for (var i = 0; i < MAX_PLAYERS; ++i)
@@ -553,6 +587,15 @@ function loadMapData(name)
 function cancelSetup()
 {
 	Engine.DisconnectNetworkGame();
+
+	// Set player presence
+	Engine.LobbySetPlayerPresence("available");
+
+	if(g_IsController)
+	{
+		// Unregister the game
+		Engine.SendUnregisterGame();
+	}
 }
 
 function onTick()
@@ -772,9 +815,9 @@ function launchGame()
 			(getGUIObjectByName("mapSelection").list.length - 1)) + 1]);
 
 	g_GameAttributes.settings.mapType = g_GameAttributes.mapType;
-	var numPlayers = g_GameAttributes.settings.PlayerData.length; 
-	// Assign random civilizations to players with that choice 
-	//  (this is synchronized because we're the host) 
+	var numPlayers = g_GameAttributes.settings.PlayerData.length;
+	// Assign random civilizations to players with that choice
+	//  (this is synchronized because we're the host)
 	var cultures = [];
 	for each (var civ in g_CivData)
 		if (civ.Culture !== undefined && cultures.indexOf(civ.Culture) < 0 && (civ.SelectableInGameSetup === undefined || civ.SelectableInGameSetup))
@@ -787,12 +830,12 @@ function launchGame()
 			allcivs[cultures.indexOf(civ.Culture)].push(civ.Code);
 
 	const romanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
-	for (var i = 0; i < numPlayers; ++i) 
-	{ 
+	for (var i = 0; i < numPlayers; ++i)
+	{
 		civs = allcivs[Math.floor(Math.random()*allcivs.length)];
-		
-		if (!g_GameAttributes.settings.PlayerData[i].Civ || g_GameAttributes.settings.PlayerData[i].Civ == "random") 
-			g_GameAttributes.settings.PlayerData[i].Civ = civs[Math.floor(Math.random()*civs.length)]; 
+
+		if (!g_GameAttributes.settings.PlayerData[i].Civ || g_GameAttributes.settings.PlayerData[i].Civ == "random")
+			g_GameAttributes.settings.PlayerData[i].Civ = civs[Math.floor(Math.random()*civs.length)];
 		// Setting names for AI players. Check if the player is AI and the match is not a scenario
 		if (g_GameAttributes.mapType !== "scenario" && g_GameAttributes.settings.PlayerData[i].AI)
 		{
@@ -805,20 +848,20 @@ function launchGame()
 			var usedName = 0;
 			if (i < civAINames.length)
 				var chosenName = civAINames[i];
-			else 
+			else
 				var chosenName = civAINames[Math.floor(Math.random() * civAINames.length)];
 			for (var j = 0; j < numPlayers; ++j)
 				if (g_GameAttributes.settings.PlayerData[j].Name && g_GameAttributes.settings.PlayerData[j].Name.indexOf(chosenName) !== -1)
 					usedName++;
-			
+
 			// Assign civ specific names to AI players
 			if (usedName)
 				g_GameAttributes.settings.PlayerData[i].Name = chosenName + " " + romanNumbers[usedName+1];
 			else
 				g_GameAttributes.settings.PlayerData[i].Name = chosenName;
 		}
-	} 
-	
+	}
+
 	if (g_IsNetworked)
 	{
 		Engine.SetNetworkGameAttributes(g_GameAttributes);
@@ -885,7 +928,7 @@ function onGameAttributesChange()
 	var enableCheats = getGUIObjectByName("enableCheats");
 	var populationCap = getGUIObjectByName("populationCap");
 	var startingResources = getGUIObjectByName("startingResources");
-	
+
 	var numPlayersText= getGUIObjectByName("numPlayersText");
 	var mapSizeText = getGUIObjectByName("mapSizeText");
 	var revealMapText = getGUIObjectByName("revealMapText");
@@ -925,7 +968,7 @@ function onGameAttributesChange()
 			lockTeams.hidden = false;
 			populationCap.hidden = false;
 			startingResources.hidden = false;
-			
+
 			numPlayersText.hidden = true;
 			mapSizeText.hidden = true;
 			revealMapText.hidden = true;
@@ -933,7 +976,7 @@ function onGameAttributesChange()
 			lockTeamsText.hidden = true;
 			populationCapText.hidden = true;
 			startingResourcesText.hidden = true;
-			
+
 			mapSizeText.caption = "Map size:";
 			mapSize.selected = sizeIdx;
 			revealMapText.caption = "Reveal map:";
@@ -1050,7 +1093,7 @@ function onGameAttributesChange()
 
 	// Display map name
 	getGUIObjectByName("mapInfoName").caption = getMapDisplayName(mapName);
-	
+
 	// Load the description from the map file, if there is one
 	var description = mapSettings.Description || "Sorry, no description available.";
 
@@ -1125,9 +1168,15 @@ function onGameAttributesChange()
 function updateGameAttributes()
 {
 	if (g_IsNetworked)
+    {
 		Engine.SetNetworkGameAttributes(g_GameAttributes);
+		if (g_IsController && g_LoadingState >= 2)
+			sendRegisterGameStanza();
+	}
 	else
+    {
 		onGameAttributesChange();
+    }
 }
 
 function updatePlayerList()
@@ -1161,7 +1210,7 @@ function updatePlayerList()
 
 	for each (var ai in g_AIs)
 	{
-		if (ai.data.hidden) 
+		if (ai.data.hidden)
 		{
 			// If the map uses a hidden AI then don't hide it
 			var usedByMap = false;
@@ -1239,16 +1288,13 @@ function updatePlayerList()
 				};
 			}
 		}
-		else
+		// There was a human, so make sure we don't have any AI left
+		// over in their slot, if we're in charge of the attributes
+		else if (g_IsController && g_GameAttributes.settings.PlayerData[playerSlot].AI && g_GameAttributes.settings.PlayerData[playerSlot].AI != "")
 		{
-			// There was a human, so make sure we don't have any AI left
-			// over in their slot, if we're in charge of the attributes
-			if (g_IsController && g_GameAttributes.settings.PlayerData[playerSlot].AI && g_GameAttributes.settings.PlayerData[playerSlot].AI != "")
-			{
-				g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
-				if (g_IsNetworked)
-					Engine.SetNetworkGameAttributes(g_GameAttributes);
-			}
+			g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
+			if (g_IsNetworked)
+				Engine.SetNetworkGameAttributes(g_GameAttributes);
 		}
 
 		var assignBox = getGUIObjectByName("playerAssignment["+i+"]");
@@ -1476,4 +1522,36 @@ function keywordTestOR(keywords, matches)
 			return true;
 
 	return false;
+}
+
+function sendRegisterGameStanza()
+{
+	var selectedMapSize = getGUIObjectByName("mapSize").selected;
+	var selectedVictoryCondition = getGUIObjectByName("victoryCondition").selected;
+
+	// Map sizes only apply to random maps.
+	if (g_GameAttributes.mapType == "random")
+		var mapSize = getGUIObjectByName("mapSize").list[selectedMapSize];
+	else
+		var mapSize = "Default";
+
+	var victoryCondition = getGUIObjectByName("victoryCondition").list[selectedVictoryCondition];
+	var numberOfPlayers = Object.keys(g_PlayerAssignments).length;
+	var players = [ assignment.name for each (assignment in g_PlayerAssignments) ].join(", ");
+
+	var nbp = numberOfPlayers ? numberOfPlayers : 1;
+	var tnbp = g_GameAttributes.settings.PlayerData.length;
+
+	gameData = {
+		"name":g_ServerName,
+		"mapName":g_GameAttributes.map,
+		"niceMapName":getMapDisplayName(g_GameAttributes.map),
+		"mapSize":mapSize,
+		"mapType":g_GameAttributes.mapType,
+		"victoryCondition":victoryCondition,
+		"nbp":nbp,
+		"tnbp":tnbp,
+		"players":players
+	};
+	Engine.SendRegisterGame(gameData);
 }

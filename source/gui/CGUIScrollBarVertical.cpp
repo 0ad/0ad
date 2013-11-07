@@ -41,7 +41,10 @@ void CGUIScrollBarVertical::SetPosFromMousePos(const CPos &mouse)
 	/**
 	 * Calculate the position for the top of the item being scrolled
 	 */
-	m_Pos = m_PosWhenPressed + GetMaxPos() * (mouse.y - m_BarPressedAtPos.y) / (m_Length - GetStyle()->m_Width * 2 - m_BarSize);
+	float emptyBackground = m_Length - m_BarSize;
+	if (GetStyle()->m_UseEdgeButtons)
+		emptyBackground -= GetStyle()->m_Width * 2;
+	m_Pos = m_PosWhenPressed + GetMaxPos() * (mouse.y - m_BarPressedAtPos.y) / emptyBackground;
 }
 
 void CGUIScrollBarVertical::Draw()
@@ -52,7 +55,6 @@ void CGUIScrollBarVertical::Draw()
 		return;
 	}
 
-	// Only draw the scrollbar if the GUI exists and there is something to scroll.
 	if (GetGUI() && GetMaxPos() != 1)
 	{
 		CRect outline = GetOuterRect();
@@ -62,12 +64,12 @@ void CGUIScrollBarVertical::Draw()
 							 0,
 							 m_Z+0.1f, 
 							 CRect(outline.left,
-								   outline.top+(m_UseEdgeButtons?GetStyle()->m_Width:0),
+								   outline.top+(GetStyle()->m_UseEdgeButtons?GetStyle()->m_Width:0),
 								   outline.right,
-								   outline.bottom-(m_UseEdgeButtons?GetStyle()->m_Width:0))
+								   outline.bottom-(GetStyle()->m_UseEdgeButtons?GetStyle()->m_Width:0))
 							 );
 
-		if (m_UseEdgeButtons)
+		if (GetStyle()->m_UseEdgeButtons)
 		{
 			// Get Appropriate sprites
 			const CGUISpriteInstance *button_top, *button_bottom;
@@ -136,7 +138,7 @@ CRect CGUIScrollBarVertical::GetBarRect() const
 	float from = m_Y;
 	float to = m_Y + m_Length - m_BarSize;
 
-	if (m_UseEdgeButtons)
+	if (GetStyle()->m_UseEdgeButtons)
 	{
 		from += GetStyle()->m_Width;
 		to -= GetStyle()->m_Width;

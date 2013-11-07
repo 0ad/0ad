@@ -141,16 +141,15 @@
 					tooltip="Select a map to play on.">
 					<action on="SelectionChange">selectMap(this.list_data[this.selected]);</action>
 				</object>
-
 			</object>
-			
-			<object name="mapSize" size="100%-325 459 100%-25 487" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size. (Larger sizes may reduce performance.)"/>		
-			
+
+			<object name="mapSize" size="100%-325 459 100%-25 487" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size. (Larger sizes may reduce performance.)"/>
+
 			<!-- Map Preview -->
 			<object  type="image" sprite="BackgroundIndentFillDark" name="gamePreviewBox" size="100%-426 57 100%-24 359">
 				<object type="image" sprite="snMapPreview" size="1 1 401 301" name="mapPreview"/>
 			</object>
-			
+
 			<!-- Map Description -->
 			<object size="100%-425 497 100%-25 100%-60">
 				<object name="mapInfoName" type="text" style="LeftLabelText" size="0 0 100%-120 30"/>
@@ -158,7 +157,7 @@
 					<object name="mapInfoDescription" type="text" style="MapDescription" size="0 0 100% 100%"/>
 				</object>
 			</object>
-			
+
 			<!-- Options -->
 			<object name="gameOptionsBox" size="100%-425 497 100%-25 525">
 				<!-- More Options Button -->
@@ -173,7 +172,7 @@
 					More Options
 					<action on="Press">toggleMoreOptions();</action>
 				</object>
-				
+
 			<!-- End Options -->
 			</object>
 
@@ -182,7 +181,7 @@
 				<object style="TitleText" type="text" size="50%-128 11 50%+128 27">
 					More Options
 				</object>
-				
+
 				<object size="14 38 94% 66">
 					<object size="0 0 40% 28">
 						<object size="0 0 100% 100%" type="text" style="RightLabelText">Game Speed:</object>
@@ -198,7 +197,7 @@
 					<object name="victoryConditionText" size="40% 0 100% 100%" type="text" style="LeftLabelText"/>
 					<object name="victoryCondition" size="40% 0 100% 28" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select victory condition."/>
 				</object>
-				
+
 				<object size="14 98 94% 126">
 					<object size="0 0 40% 28">
 						<object size="0 0 100% 100%" type="text" style="RightLabelText">Population Cap:</object>
@@ -206,7 +205,7 @@
 					<object name="populationCapText" size="40% 0 100% 100%" type="text" style="LeftLabelText"/>
 					<object name="populationCap" size="40% 0 100% 28" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select population cap."/>
 				</object>
-				
+
 				<object size="14 128 94% 156">
 					<object size="0 0 40% 28">
 						<object size="0 0 100% 100%" type="text" style="RightLabelText">Starting Resources:</object>
@@ -214,7 +213,7 @@
 					<object name="startingResourcesText" size="40% 0 100% 100%" type="text" style="LeftLabelText"/>
 					<object name="startingResources" size="40% 0 100% 28" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select the game's starting resources."/>
 				</object>
-				
+
 				<object size="14 158 94% 246">
 					<object size="0 0 40% 28">
 						<object size="0 0 100% 100%" type="text" style="RightLabelText">Reveal Map:</object>
@@ -225,7 +224,7 @@
 					<object size="0 60 40% 88" name="enableCheatsDesc" hidden="true">
 						<object size="0 0 100% 100%" type="text" style="RightLabelText">Cheats:</object>
 					</object>
-					
+
 					<object size="40% 0 100% 28">
 						<object name="revealMapText" size="0 0 100% 100%" type="text" style="LeftLabelText"/>
 						<object name="revealMap" size="4 50%-8 20 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map."/>
@@ -254,7 +253,6 @@
 				</object>
 			<!-- End More Options -->
 			</object>
-			
 
 
 			<!-- Chat window -->
@@ -280,7 +278,7 @@
 				hidden="true"
 				size="100%-700 100%-56 100%-312 100%-24"
 			>[Tooltip text]</object>
-			
+
 			<!-- Start Button -->
 			<object
 				name="startGame"
@@ -302,19 +300,17 @@
 				style="StoneButton"
 				size="100%-164 100%-52 100%-24 100%-24"
 				tooltip_style="onscreenToolTip"
-				tooltip="Return to the main menu."
 			>
-				Main menu
 				<action on="Press">
 					<![CDATA[
 						cancelSetup();
-						Engine.SwitchGuiPage("page_pregame.xml");
+						if(!Engine.HasXmppClient())
+							Engine.SwitchGuiPage("page_pregame.xml");
+						else
+							Engine.SwitchGuiPage("page_lobby.xml");
 					]]>
 				</action>
 			</object>
-
 		</object>
-			
 	</object>
-
 </objects>
