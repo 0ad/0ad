@@ -256,22 +256,6 @@ extern_lib_defs = {
 			})
 		end,
 	},
-	cryptopp = {
-		compile_settings = function()
-			if os.is("windows") then
-				add_default_include_paths("cryptopp")
-			end
-		end,
-		link_settings = function()
-			if os.is("windows") then
-				add_default_lib_paths("cryptopp")
-			end
-			add_default_links({
-				win_names  = { "cryptopp" },
-				unix_names = { "cryptopp" },
-			})
-		end,
-	},
 	cxxtest = {
 		compile_settings = function()
 			add_source_include_paths("cxxtest")
