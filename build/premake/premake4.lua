@@ -18,6 +18,9 @@ newoption { trigger = "sysroot", description = "Set compiler system root path, u
 newoption { trigger = "macosx-version-min", description = "Set minimum required version of the OS X API, the build will possibly fail if an older SDK is used, while newer API functions will be weakly linked (i.e. resolved at runtime)" }
 newoption { trigger = "macosx-bundle", description = "Enable OSX bundle, the argument is the bundle identifier string (e.g. com.wildfiregames.0ad)" }
 
+newoption { trigger = "build-shared-glooxwrapper", description = "Rebuild glooxwrapper DLL for Windows. Requires the same compiler version that gloox was built with" }
+newoption { trigger = "use-shared-glooxwrapper", description = "Use prebuilt glooxwrapper DLL for Windows" }
+
 newoption { trigger = "bindir", description = "Directory for executables (typically '/usr/games'); default is to be relocatable" }
 newoption { trigger = "datadir", description = "Directory for data files (typically '/usr/share/games/0ad'); default is ../data/ relative to executable" }
 newoption { trigger = "libdir", description = "Directory for libraries (typically '/usr/lib/games/0ad'); default is ./ relative to executable" }
@@ -523,6 +526,24 @@ function setup_static_lib_project (project_name, rel_source_dirs, extern_libs, e
 	end
 end
 
+function setup_shared_lib_project (project_name, rel_source_dirs, extern_libs, extra_params)
+
+	local target_type = "SharedLib"
+	project_create(project_name, target_type)
+	project_add_contents(source_root, rel_source_dirs, {}, extra_params)
+	project_add_extern_libs(extern_libs, target_type)
+	project_add_x11_dirs()
+
+	if not extra_params["no_default_link"] then
+		table.insert(static_lib_names, project_name)
+	end
+
+	if os.is("windows") then
+		flags { "NoRTTI" }
+		links { "delayimp" }
+	end
+end
+
 
 -- this is where the source tree is chopped up into static libs.
 -- can be changed very easily; just copy+paste a new setup_static_lib_project,
@@ -546,6 +567,23 @@ function setup_all_libs ()
 	}
 	setup_static_lib_project("network", source_dirs, extern_libs, {})
 
+	if _OPTIONS["use-shared-glooxwrapper"] and not _OPTIONS["build-shared-glooxwrapper"] then
+		table.insert(static_lib_names_debug, "glooxwrapper_dbg")
+		table.insert(static_lib_names_release, "glooxwrapper")
+	else
+		source_dirs = {
+			"lobby/glooxwrapper",
+		}
+		extern_libs = {
+			"boost",
+			"gloox",
+		}
+		if _OPTIONS["build-shared-glooxwrapper"] then
+			setup_shared_lib_project("glooxwrapper", source_dirs, extern_libs, {})
+		else
+			setup_static_lib_project("glooxwrapper", source_dirs, extern_libs, {})
+		end
+	end
 
 	source_dirs = {
 		"simulation2",
@@ -1240,6 +1278,12 @@ function setup_tests()
 	configure_cxxtestgen()
 
 	links { static_lib_names }
+	configuration "Debug"
+		links { static_lib_names_debug }
+	configuration "Release"
+		links { static_lib_names_release }
+	configuration { }
+
 	links { "mocks_test" }
 	if _OPTIONS["atlas"] then
 		links { "AtlasObject" }
@@ -1320,6 +1364,11 @@ setup_all_libs()
 -- work when changing the static lib breakdown.
 project("pyrogenesis") -- Set the main project active
 	links { static_lib_names }
+	configuration "Debug"
+		links { static_lib_names_debug }
+	configuration "Release"
+		links { static_lib_names_release }
+	configuration { }
 
 if _OPTIONS["atlas"] then
 	setup_atlas_projects()

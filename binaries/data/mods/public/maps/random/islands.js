@@ -1,5 +1,6 @@
 RMS.LoadLibrary("rmgen");
-
+var nh = new Date();
+var ti = nh.getTime();
 TILE_CENTERED_HEIGHT_MAP = true;
 //random terrain textures
 var random_terrain = randomizeBiome();
@@ -220,36 +221,92 @@ for (var i = 0; i < numPlayers; i++)
 		placeObject(dockLocation[0], dockLocation[1], "structures/" + g_MapSettings.PlayerData[id-1].Civ + "_dock", id, playerAngle[i] + PI);
 }
 
-// create big islands
+var landAreas = [];
+var playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(12,16)));
+var landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(12,16)));
+
+for (var x = 0; x < mapSize; ++x)
+	for (var z = 0; z < mapSize; ++z)
+		if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
+			landAreas.unshift([x, z]);
+
+var chosenPoint;
+var landAreLen;
+
 log("Creating big islands...");
-placer = new ClumpPlacer(floor(hillSize*randFloat(0.9,2.1)), 0.80, 0.1, 0.07);
-terrainPainter = new LayeredPainter(
-	[tMainTerrain, tMainTerrain],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
-createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clLand)], 
-	avoidClasses(clLand, 3, clPlayer, 3),
-	scaleByMapSize(2, 6)*randInt(6,15), 28
-);
+var numIslands = scaleByMapSize(4, 14)
+for (var i = 0; i < numIslands; ++i)
+{
+	landAreLen = landAreas.length;
+	if (!landAreLen)
+		break;
+	
+	chosenPoint = landAreas[randInt(0, landAreLen)];
+	
+	// create big islands
+	placer = new ChainPlacer(floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(8, 14)), floor(scaleByMapSize(25, 60)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(30,70));
+	//placer = new ClumpPlacer(floor(hillSize*randFloat(0.9,2.1)), 0.80, 0.1, 0.07, chosenPoint[0], chosenPoint[1]);
+	terrainPainter = new LayeredPainter(
+		[tMainTerrain, tMainTerrain],		// terrains
+		[2]								// widths
+	);
+	elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
+	var newIsland = createAreas(
+		placer,
+		[terrainPainter, elevationPainter, paintClass(clLand)], 
+		avoidClasses(clLand, 3, clPlayer, 3),
+		1, 1
+	);
+	if (newIsland !== undefined)
+	{
+		var temp = []
+		for (var j = 0; j < landAreLen; ++j)
+		{
+			var x = landAreas[j][0], z = landAreas[j][1];
+			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
+					temp.push([x, z]);
+		}
+		landAreas = temp;
+	}
+}
 
-// create small islands
+playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(9,12)));
+landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(9,12)));
+
 log("Creating small islands...");
-placer = new ClumpPlacer(floor(hillSize*randFloat(0.3,0.7)), 0.80, 0.1, 0.07);
-terrainPainter = new LayeredPainter(
-	[tMainTerrain, tMainTerrain],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
-createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clLand)], 
-	avoidClasses(clLand, 3, clPlayer, 3),
-	scaleByMapSize(2, 6)*randInt(6,15), 25
-);
-
+numIslands = scaleByMapSize(6, 18)*scaleByMapSize(1,3)
+for (var i = 0; i < numIslands; ++i)
+{
+	landAreLen = landAreas.length;
+	if (!landAreLen)
+		break;
+	
+	chosenPoint = landAreas[randInt(0, landAreLen)];
+	
+	placer = new ChainPlacer(floor(scaleByMapSize(4, 7)), floor(scaleByMapSize(7, 10)), floor(scaleByMapSize(16, 40)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(22,40));
+	terrainPainter = new LayeredPainter(
+		[tMainTerrain, tMainTerrain],		// terrains
+		[2]								// widths
+	);
+	elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
+	createAreas(
+		placer,
+		[terrainPainter, elevationPainter, paintClass(clLand)], 
+		avoidClasses(clLand, 3, clPlayer, 3),
+		1, 1
+	);
+	if (newIsland !== undefined)
+	{
+		var temp = []
+		for (var j = 0; j < landAreLen; ++j)
+		{
+			var x = landAreas[j][0], z = landAreas[j][1];
+			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
+					temp.push([x, z]);
+		}
+		landAreas = temp;
+	}
+}
 paintTerrainBasedOnHeight(1, 3, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
@@ -274,12 +331,12 @@ createAreas(
 	placer,
 	painter, 
 	[avoidClasses(clWater, 2, clPlayer, 0), stayClasses(clLand, 3)],
-	scaleByMapSize(100, 200)
+	scaleByMapSize(20, 100)
 );
 
 // create hills
 log("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 1);
 terrainPainter = new LayeredPainter(
 	[tCliff, tHill],		// terrains
 	[2]								// widths
@@ -469,7 +526,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 2)],
+	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 5)],
 	randInt(1, 4) * numPlayers + 2, 50
 );
 
@@ -555,5 +612,7 @@ else if (random_terrain ==3){
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
 
+nh = new Date();
+log (nh.getTime() - ti);
 // Export map data
 ExportMap();

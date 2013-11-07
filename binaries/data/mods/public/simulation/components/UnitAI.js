@@ -573,10 +573,24 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Trade": function(msg) {
-		if (this.MoveToMarket(this.order.data.firstMarket))
+		// We must check if this trader has both markets in case it was a back-to-work order
+		var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+		if (!cmpTrader || ! cmpTrader.HasBothMarkets())
 		{
-			// We've started walking to the first market
-			this.SetNextState("INDIVIDUAL.TRADE.APPROACHINGFIRSTMARKET");
+			this.FinishOrder();
+			return;
+		}
+
+		var nextMarket = cmpTrader.GetNextMarket();
+		if (nextMarket == this.order.data.firstMarket)
+			var state = "INDIVIDUAL.TRADE.APPROACHINGFIRSTMARKET";
+		else
+			var state = "INDIVIDUAL.TRADE.APPROACHINGSECONDMARKET";
+
+		if (this.MoveToMarket(nextMarket))
+		{
+			// We've started walking to the next market
+			this.SetNextState(state);
 		}
 	},
 
@@ -4184,7 +4198,7 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextM
 
 	if (this.CheckTargetRange(currentMarket, IID_Trader))
 	{
-		this.PerformTrade();
+		this.PerformTrade(currentMarket);
 		if (this.MoveToMarket(nextMarket))
 		{
 			// We've started walking to the next market
@@ -4198,10 +4212,10 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextM
 	}
 };
 
-UnitAI.prototype.PerformTrade = function()
+UnitAI.prototype.PerformTrade = function(currentMarket)
 {
 	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-	cmpTrader.PerformTrade();
+	cmpTrader.PerformTrade(currentMarket);
 };
 
 UnitAI.prototype.StopTrading = function()

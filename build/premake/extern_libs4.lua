@@ -256,19 +256,19 @@ extern_lib_defs = {
 			})
 		end,
 	},
-	cryptopp = {
+	gloox = {
 		compile_settings = function()
 			if os.is("windows") then
-				add_default_include_paths("cryptopp")
+				add_default_include_paths("gloox")
 			end
 		end,
 		link_settings = function()
 			if os.is("windows") then
-				add_default_lib_paths("cryptopp")
+				add_default_lib_paths("gloox")
 			end
 			add_default_links({
-				win_names  = { "cryptopp" },
-				unix_names = { "cryptopp" },
+				win_names  = { "gloox-1.0" },
+				unix_names = { "gloox" },
 			})
 		end,
 	},
