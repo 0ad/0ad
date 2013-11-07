@@ -1,5 +1,7 @@
 RMS.LoadLibrary("rmgen");
 
+var nh = new Date();
+
 TILE_CENTERED_HEIGHT_MAP = true;
 //random terrain textures
 var random_terrain = randomizeBiome();
@@ -220,36 +222,92 @@ for (var i = 0; i < numPlayers; i++)
 		placeObject(dockLocation[0], dockLocation[1], "structures/" + g_MapSettings.PlayerData[id-1].Civ + "_dock", id, playerAngle[i] + PI);
 }
 
-// create big islands
+var landAreas = [];
+var playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(12,16)));
+var landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(12,16)));
+
+for (var x = 0; x < mapSize; ++x)
+	for (var z = 0; z < mapSize; ++z)
+		if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
+			landAreas.unshift([x, z]);
+
+var chosenPoint;
+var landAreLen;
+
 log("Creating big islands...");
-placer = new ClumpPlacer(floor(hillSize*randFloat(0.9,2.1)), 0.80, 0.1, 0.07);
-terrainPainter = new LayeredPainter(
-	[tMainTerrain, tMainTerrain],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
-createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clLand)], 
-	avoidClasses(clLand, 3, clPlayer, 3),
-	scaleByMapSize(2, 6)*randInt(6,15), 28
-);
+nh = new Date()
+log (nh.getTime());
+var numIslands = scaleByMapSize(4, 14)
+for (var i = 0; i < numIslands; ++i)
+{
+	landAreLen = landAreas.length;
+	if (!landAreLen)
+		break;
+	
+	chosenPoint = landAreas[randInt(0, landAreLen)];
+	
+	// create big islands
 
-// create small islands
+	placer = new ClumpPlacer(floor(hillSize*randFloat(0.9,2.1)), 0.80, 0.1, 0.07, chosenPoint[0], chosenPoint[1]);
+	terrainPainter = new LayeredPainter(
+		[tMainTerrain, tMainTerrain],		// terrains
+		[2]								// widths
+	);
+	elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
+	var newIsland = createAreas(
+		placer,
+		[terrainPainter, elevationPainter, paintClass(clLand)], 
+		avoidClasses(clLand, 3, clPlayer, 3),
+		1, 1
+	);
+	if (newIsland !== undefined)
+	{
+		landAreas = [];
+		for (var x = 0; x < mapSize; ++x)
+			for (var z = 0; z < mapSize; ++z)
+				if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
+					landAreas.unshift([x, z]);
+	}
+}
+
+playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(9,12)));
+landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(9,12)));
+
 log("Creating small islands...");
-placer = new ClumpPlacer(floor(hillSize*randFloat(0.3,0.7)), 0.80, 0.1, 0.07);
-terrainPainter = new LayeredPainter(
-	[tMainTerrain, tMainTerrain],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
-createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clLand)], 
-	avoidClasses(clLand, 3, clPlayer, 3),
-	scaleByMapSize(2, 6)*randInt(6,15), 25
-);
-
+nh = new Date()
+log (nh.getTime());
+numIslands = scaleByMapSize(6, 18)*scaleByMapSize(1,3)
+for (var i = 0; i < numIslands; ++i)
+{
+	landAreLen = landAreas.length;
+	if (!landAreLen)
+		break;
+	
+	chosenPoint = landAreas[randInt(0, landAreLen)];
+	
+	placer = new ClumpPlacer(floor(hillSize*randFloat(0.3,0.7)), 0.80, 0.1, 0.07, chosenPoint[0], chosenPoint[1]);
+	terrainPainter = new LayeredPainter(
+		[tMainTerrain, tMainTerrain],		// terrains
+		[2]								// widths
+	);
+	elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
+	createAreas(
+		placer,
+		[terrainPainter, elevationPainter, paintClass(clLand)], 
+		avoidClasses(clLand, 3, clPlayer, 3),
+		1, 1
+	);
+	if (newIsland !== undefined)
+	{
+		landAreas = [];
+		for (var x = 0; x < mapSize; ++x)
+			for (var z = 0; z < mapSize; ++z)
+				if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
+					landAreas.unshift([x, z]);
+	}
+}
+nh = new Date()
+log (nh.getTime());
 paintTerrainBasedOnHeight(1, 3, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
@@ -274,7 +332,7 @@ createAreas(
 	placer,
 	painter, 
 	[avoidClasses(clWater, 2, clPlayer, 0), stayClasses(clLand, 3)],
-	scaleByMapSize(100, 200)
+	scaleByMapSize(20, 100)
 );
 
 // create hills
