@@ -574,7 +574,6 @@ function setup_all_libs ()
 	}
 	setup_static_lib_project("network", source_dirs, extern_libs, {})
 
-<<<<<<< HEAD
 	if not _OPTIONS["without-lobby"] then
 		source_dirs = {
 			"lobby",
@@ -588,8 +587,6 @@ function setup_all_libs ()
 		setup_static_lib_project("lobby", source_dirs, extern_libs, {})
 	end
 
-=======
->>>>>>> 1a7a32ad84f645a7a907472ab2d3fd9be00d50c2
 	if _OPTIONS["use-shared-glooxwrapper"] and not _OPTIONS["build-shared-glooxwrapper"] then
 		table.insert(static_lib_names_debug, "glooxwrapper_dbg")
 		table.insert(static_lib_names_release, "glooxwrapper")
