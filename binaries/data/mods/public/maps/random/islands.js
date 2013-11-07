@@ -1,7 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-var nh = new Date();
-
 TILE_CENTERED_HEIGHT_MAP = true;
 //random terrain textures
 var random_terrain = randomizeBiome();
@@ -235,8 +233,6 @@ var chosenPoint;
 var landAreLen;
 
 log("Creating big islands...");
-nh = new Date()
-log (nh.getTime());
 var numIslands = scaleByMapSize(4, 14)
 for (var i = 0; i < numIslands; ++i)
 {
@@ -266,7 +262,7 @@ for (var i = 0; i < numIslands; ++i)
 		for (var x = 0; x < mapSize; ++x)
 			for (var z = 0; z < mapSize; ++z)
 				if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-					landAreas.unshift([x, z]);
+					landAreas.push([x, z]);
 	}
 }
 
@@ -274,8 +270,6 @@ playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(9
 landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(9,12)));
 
 log("Creating small islands...");
-nh = new Date()
-log (nh.getTime());
 numIslands = scaleByMapSize(6, 18)*scaleByMapSize(1,3)
 for (var i = 0; i < numIslands; ++i)
 {
@@ -303,11 +297,9 @@ for (var i = 0; i < numIslands; ++i)
 		for (var x = 0; x < mapSize; ++x)
 			for (var z = 0; z < mapSize; ++z)
 				if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-					landAreas.unshift([x, z]);
+					landAreas.push([x, z]);
 	}
 }
-nh = new Date()
-log (nh.getTime());
 paintTerrainBasedOnHeight(1, 3, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
