@@ -32,6 +32,7 @@ my $ec2 = new Net::Amazon::EC2(
 my @build_options = (
     { name => 'atlas', title => 'Atlas DLL' },
     { name => 'collada', title => 'Collada DLL' },
+#    { name => 'glooxwrapper', title => 'Glooxwrapper DLL' }, # this requires the autobuilder to use the same VS version gloox-1.0.dll was built with
 );
 
 my $action = $cgi->url_param('action');
