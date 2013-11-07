@@ -159,6 +159,9 @@ function init(initData, hotloadData)
 		playRandomAmbient("temperate");
 	}
 
+	if (Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") === "true")
+		getGUIObjectByName("timeElapsedCounter").hidden = false;
+
 	onSimulationUpdate();
 
 	// Report the performance after 5 seconds (when we're still near
