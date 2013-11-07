@@ -143,14 +143,6 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 	// TODO: all these options (and the ones processed elsewhere) should
 	// be documented somewhere for users.
 
-	if (args.Has("buildarchive"))
-	{
-		// note: VFS init is sure to have been completed by now
-		// (since CONFIG_Init reads from file); therefore,
-		// it is safe to call this from here directly.
-//		vfs_opt_rebuild_main_archive("mods/official/official1.zip", "../logs/trace.txt");
-	}
-
 	// Handle "-conf=key:value" (potentially multiple times)
 	std::vector<CStr> conf = args.GetMultiple("conf");
 	for (size_t i = 0; i < conf.size(); ++i)

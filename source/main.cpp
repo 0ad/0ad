@@ -196,36 +196,6 @@ static void PumpEvents()
 }
 
 
-// return indication of whether archive is currently being built; this is
-// used to prevent reloading during that time (see call site).
-static bool ProgressiveBuildArchive()
-{
-ONCE(g_GUI->SendEventToAll("archivebuildercomplete"));
-return false;
-#if 0
-	int ret = vfs_opt_auto_build("../logs/trace.txt", "mods/official/official%02d.zip", "mods/official/mini%02d.zip");
-	if(ret == INFO::ALL_COMPLETE)
-	{
-		// nothing to do; will return false below
-	}
-	else if(ret < 0)
-		DEBUG_DISPLAY_ERROR(L"Archive build failed");
-	else if(ret == INFO::OK)
-		g_GUI.SendEventToAll("archivebuildercomplete");
-	// in progress
-	else
-	{
-		int percent = (int)ret;
-		g_ScriptingHost.SetGlobal("g_ArchiveBuilderProgress", INT_TO_JSVAL(percent));
-		g_GUI.SendEventToAll("archivebuilderprogress");
-		return true;
-	}
-
-	return false;
-#endif
-}
-
-
 static int ProgressiveLoad()
 {
 	PROFILE3("progressive load");
@@ -334,15 +304,10 @@ static void Frame()
 	// this is mostly relevant for "inactive" state, so that other windows
 	// get enough CPU time, but it's always nice for power+thermal management.
 
-	bool is_building_archive = ProgressiveBuildArchive();
 
 	// this scans for changed files/directories and reloads them, thus
 	// allowing hotloading (changes are immediately assimilated in-game).
-	// must not be done during archive building because it changes the
-	// archive file each iteration, but keeps it locked; reloading
-	// would trigger a warning because the file can't be opened.
-	if(!is_building_archive)
-		ReloadChangedFiles();
+	ReloadChangedFiles();
 
 	ProgressiveLoad();
 
