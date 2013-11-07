@@ -71,5 +71,4 @@ Archive builder:
 -archivebuild-output=PATH		system PATH to output of the resulting .zip archive (use with archivebuild)
 -archivebuild-compress			enable deflate compression in the .zip
 								(no zip compression by default since it hurts compression of release packages)
--buildarchive					(disabled)
 

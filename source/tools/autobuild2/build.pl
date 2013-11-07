@@ -14,6 +14,8 @@ my $temp_trunk = "d:\\0ad\\svn";
 my $log_dir = "d:\\0ad\\buildlogs";
 my $vcbuild = "$svn_trunk\\source\\tools\\autobuild2\\vcbuild_env.bat";
 
+my @gloox_libs = qw(glooxwrapper.dll glooxwrapper.lib glooxwrapper.pdb glooxwrapper_dbg.dll glooxwrapper_dbg.lib glooxwrapper_dbg.pdb);
+
 my $time_start = time();
 
 eval { # catch deaths
@@ -66,6 +68,7 @@ for (qw(build source libraries))
 my $updateworkspaces_args = '';
 $updateworkspaces_args .= ' --atlas' if $build_options->{atlas};
 $updateworkspaces_args .= ' --collada' if $build_options->{collada};
+$updateworkspaces_args .= ' --build-shared-glooxwrapper' if $build_options->{glooxwrapper};
 add_to_buildlog("Running update-workspaces$updateworkspaces_args");
 chdir "$temp_trunk\\build\\workspaces" or die $!;
 my $updateworkspaces_output = `update-workspaces.bat$updateworkspaces_args 2>&1`;
@@ -77,12 +80,31 @@ die $? if $?;
 mkdir "$temp_trunk\\binaries" or die $!;
 mkdir "$temp_trunk\\binaries\\system" or die $!;
 
+# Copy the prebuilt glooxwrapper, if needed
+
+if (not $build_options->{glooxwrapper}) {
+    add_to_buildlog("copying glooxwrapper");
+    for (@gloox_libs) {
+        `copy $svn_trunk\\binaries\\system\\$_ $temp_trunk\\binaries\\system\\`;
+        die "Failed to copy $_: $?" if $?;
+    }
+}
+
 # Do the Release build
 
-add_to_buildlog("Running vcbuild");
+add_to_buildlog("Running vcbuild (release)");
 my $build_output = `$vcbuild /time /M2 /logfile:$log_dir\\build_vcbuild.txt vc2008\\pyrogenesis.sln "Release|Win32" 2>&1`;
 add_to_buildlog($build_output);
 die $? if ($? and $? != 32768);
+
+# Do the Debug build of glooxwrapper, if needed
+
+if ($build_options->{glooxwrapper}) {
+    add_to_buildlog("Running vcbuild (debug glooxwrapper)");
+    my $build_output = `$vcbuild /time /M2 /logfile:$log_dir\\build_vcbuild.txt vc2008\\glooxwrapper.vcproj "Debug|Win32" 2>&1`;
+    add_to_buildlog($build_output);
+    die $? if ($? and $? != 32768);
+}
 
 # Copy the output
 
@@ -90,6 +112,7 @@ add_to_buildlog("Copying generated binaries");
 my @binaries = qw(pyrogenesis.exe pyrogenesis.pdb);
 push @binaries, 'AtlasUI.dll' if $build_options->{atlas};
 push @binaries, 'Collada.dll' if $build_options->{collada};
+push @binaries, @gloox_libs if $build_options->{glooxwrapper};
 for (@binaries) {
     `copy $temp_trunk\\binaries\\system\\$_ $svn_trunk\\binaries\\system\\`;
     die "Failed to copy $_: $?" if $?;

@@ -69,11 +69,6 @@ namespace JSI_VFS
 	// lines = readFileLines(filename);
 	//   filename: VFS filename (may include path)
 	JSBool ReadFileLines(JSContext* cx, uintN argc, jsval* vp);
-
-	// Abort the current archive build operation (no-op if not currently active).
-	//
-	// archiveBuilderCancel();
-	JSBool ArchiveBuilderCancel(JSContext* cx, uintN argc, jsval* vp);
 }
 
 #endif

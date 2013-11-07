@@ -21,7 +21,6 @@
 
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
-//#include "lib/res/file/archive/vfs_optimizer.h"	// ArchiveBuilderCancel
 #include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "ps/scripting/JSInterface_VFS.h"
@@ -265,18 +264,4 @@ JSBool JSI_VFS::ReadFileLines(JSContext* cx, uintN argc, jsval* vp)
 
 	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL( line_array ));
 	return JS_TRUE ;
-}
-
-
-// vfs_optimizer
-
-JSBool JSI_VFS::ArchiveBuilderCancel(JSContext* cx, uintN argc, jsval* vp)
-{
-	UNUSED2(cx);
-	UNUSED2(argc);
-
-//	vfs_opt_auto_build_cancel();
-
-	JS_SET_RVAL(cx, vp, JSVAL_VOID);
-	return JS_TRUE;
 }

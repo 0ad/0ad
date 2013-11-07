@@ -77,7 +77,7 @@ function lobbyStartRegister()
 
 	feedback.caption = "Registering...";
 	if (password != g_EncrytedPassword)
-		g_EncrytedPassword = Engine.EncryptPassword(password, username);
+		g_EncrytedPassword = Engine.EncryptPassword(password, account);
 	Engine.StartRegisterXmppClient(account, g_EncrytedPassword);
 	g_LobbyIsConnecting = true;
 	Engine.ConnectXmppClient();

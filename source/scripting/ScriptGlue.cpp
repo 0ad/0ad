@@ -386,7 +386,6 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("getFileSize", JSI_VFS::GetFileSize, 1)
 	JS_FUNC("readFile", JSI_VFS::ReadFile, 1)
 	JS_FUNC("readFileLines", JSI_VFS::ReadFileLines, 1)
-	JS_FUNC("archiveBuilderCancel", JSI_VFS::ArchiveBuilderCancel, 1)
 
 	// Misc. Engine Interface
 	JS_FUNC("exit", ExitProgram, 0)
