@@ -251,11 +251,11 @@ var types = [
 	[[tDirtMain, tForestFloor, pForestO], [tForestFloor, pForestO]],
 	[[tDirtMain, tForestFloor, pForestO], [tForestFloor, pForestO]]
 ];	// some variation
-var size = numForest / (scaleByMapSize(2,8) * numPlayers);
+var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
 {
-	placer = new ChainPlacer(1, floor(scaleByMapSize(2, 5)), floor(size / 8), 1);
+	placer = new ChainPlacer(floor(scaleByMapSize(1, 2)), floor(scaleByMapSize(2, 5)), floor(size / floor(scaleByMapSize(8, 3))), 1);
 	painter = new LayeredPainter(
 		types[i],		// terrains
 		[2]											// widths

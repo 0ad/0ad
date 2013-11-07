@@ -129,10 +129,11 @@ ClumpPlacer.prototype.place = function(constraint)
 //	numCircles: the number of the circles
 //	failfraction: Percentage of place attempts allowed to fail (optional)
 //	x, z: Tile coordinates of placer center (optional)
+//  fcc: Farthest circle center (optional)
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, x, z)
+function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, x, z, fcc)
 {
 	this.minRadius = minRadius;
 	this.maxRadius = maxRadius;
@@ -140,6 +141,7 @@ function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, x, z)
 	this.failFraction = (failFraction !== undefined ? failFraction : 0);
 	this.x = (x !== undefined ? x : -1);
 	this.z = (z !== undefined ? z : -1);
+	this.fcc = (fcc !== undefined ? fcc : 0);
 }
 
 ChainPlacer.prototype.place = function(constraint)
@@ -209,15 +211,21 @@ ChainPlacer.prototype.place = function(constraint)
 							retVec.push(new PointXZ(ix, iz));
 							gotRet[ix][iz] = -2;
 						}
-						/*else if (state >= 0)
+						else if (state >= 0)
 						{
-							log (uneval(edges));
-							log (state)
+							//log (uneval(edges));
+							//log (state)
 							var s = edges.splice(state, 1);
-							log (uneval(s));
-							log (uneval(edges));
+							//log (uneval(s));
+							//log (uneval(edges));
 							gotRet[ix][iz] = -2;
-						}*/
+							
+							var edgesLength = edges.length;
+							for (var k = state; k < edges.length; ++k)
+							{
+								--gotRet[edges[k][0]][edges[k][1]];
+							}
+						}
 					}
 					else
 					{
@@ -227,10 +235,15 @@ ChainPlacer.prototype.place = function(constraint)
 				}
 			}
 		}
+		
 		for (var ix = sx; ix <= lx; ++ix)
 		{
 			for (var iz = sz; iz <= lz; ++ iz)
 			{
+				if (this.fcc)
+					if ((this.x - ix) > this.fcc || (ix - this.x) > this.fcc || (this.z - iz) > this.fcc || (iz - this.z) > this.fcc)
+						continue;
+				
 				if (gotRet[ix][iz] == -2)
 				{
 					if (ix > 0)

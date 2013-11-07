@@ -1,5 +1,6 @@
 RMS.LoadLibrary("rmgen");
-
+var nh = new Date();
+var ti = nh.getTime();
 TILE_CENTERED_HEIGHT_MAP = true;
 //random terrain textures
 var random_terrain = randomizeBiome();
@@ -243,8 +244,8 @@ for (var i = 0; i < numIslands; ++i)
 	chosenPoint = landAreas[randInt(0, landAreLen)];
 	
 	// create big islands
-
-	placer = new ClumpPlacer(floor(hillSize*randFloat(0.9,2.1)), 0.80, 0.1, 0.07, chosenPoint[0], chosenPoint[1]);
+	placer = new ChainPlacer(floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(8, 14)), floor(scaleByMapSize(25, 60)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(30,70));
+	//placer = new ClumpPlacer(floor(hillSize*randFloat(0.9,2.1)), 0.80, 0.1, 0.07, chosenPoint[0], chosenPoint[1]);
 	terrainPainter = new LayeredPainter(
 		[tMainTerrain, tMainTerrain],		// terrains
 		[2]								// widths
@@ -258,11 +259,14 @@ for (var i = 0; i < numIslands; ++i)
 	);
 	if (newIsland !== undefined)
 	{
-		landAreas = [];
-		for (var x = 0; x < mapSize; ++x)
-			for (var z = 0; z < mapSize; ++z)
-				if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-					landAreas.push([x, z]);
+		var temp = []
+		for (var j = 0; j < landAreLen; ++j)
+		{
+			var x = landAreas[j][0], z = landAreas[j][1];
+			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
+					temp.push([x, z]);
+		}
+		landAreas = temp;
 	}
 }
 
@@ -279,7 +283,7 @@ for (var i = 0; i < numIslands; ++i)
 	
 	chosenPoint = landAreas[randInt(0, landAreLen)];
 	
-	placer = new ClumpPlacer(floor(hillSize*randFloat(0.3,0.7)), 0.80, 0.1, 0.07, chosenPoint[0], chosenPoint[1]);
+	placer = new ChainPlacer(floor(scaleByMapSize(4, 7)), floor(scaleByMapSize(7, 10)), floor(scaleByMapSize(16, 40)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(22,40));
 	terrainPainter = new LayeredPainter(
 		[tMainTerrain, tMainTerrain],		// terrains
 		[2]								// widths
@@ -293,11 +297,14 @@ for (var i = 0; i < numIslands; ++i)
 	);
 	if (newIsland !== undefined)
 	{
-		landAreas = [];
-		for (var x = 0; x < mapSize; ++x)
-			for (var z = 0; z < mapSize; ++z)
-				if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-					landAreas.push([x, z]);
+		var temp = []
+		for (var j = 0; j < landAreLen; ++j)
+		{
+			var x = landAreas[j][0], z = landAreas[j][1];
+			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
+					temp.push([x, z]);
+		}
+		landAreas = temp;
 	}
 }
 paintTerrainBasedOnHeight(1, 3, 0, tShore);
@@ -329,7 +336,7 @@ createAreas(
 
 // create hills
 log("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 1);
 terrainPainter = new LayeredPainter(
 	[tCliff, tHill],		// terrains
 	[2]								// widths
@@ -519,7 +526,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 2)],
+	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 5)],
 	randInt(1, 4) * numPlayers + 2, 50
 );
 
@@ -605,5 +612,7 @@ else if (random_terrain ==3){
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
 
+nh = new Date();
+log (nh.getTime() - ti);
 // Export map data
 ExportMap();
