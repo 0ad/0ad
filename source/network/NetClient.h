@@ -210,8 +210,6 @@ private:
 
 	/// Globally unique identifier to distinguish users beyond the lifetime of a single network session
 	CStr m_GUID;
-	/// Initialise m_GUID with a random value
-	CStr GenerateGUID();
 
 	/// Queue of messages for GuiPoll
 	std::deque<CScriptValRooted> m_GuiMessageQueue;

@@ -1,0 +1,86 @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@ Install ejabberd and the erlang compiler @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# apt-get install ejabberd erlang-dev?
+
+Configure it
+# dpkg-reconfigure ejabberd 
+set the domain name (e.g. localhost if you installed it on your development computer)
+and a login / password
+
+You should now be able to connect to this XMPP server using a normal XMPP client (e.g. Empathy).
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@ Installation of the custom XMPP module @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Go to it's source directory
+$ cd source/tools/XpartaMuPP
+
+Edit the file to set the domain on which is run the ejabberd server. (e.g. localhost)
+
+Build and install it
+$ make
+# make install
+
+Tell ejabberd that you want it to load the module
+In /etc/ejabberd/ejabberd.cfg, add {mod_ipstamp, []}
+in the Modules list "Modules enabled in all ejabberd virtual hosts"
+
+Restart ejabberd
+# service ejabberd restart
+
+If something goes wrong read /var/log/ejabberd/ejabberd.log
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@ Ejabberd administration @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Go http://localhost:5280/admin and connect 
+(the login looks like login@domain (e.g. adminjabber@localhost))
+
+In "Acces rules" check that "register" is set to "[{allow,all}]"
+
+You can see the list of registered / connected users in
+"Virtual Hosts" >> domain name >> "users"
+
+You must manually add a new user for XpartaMuPP.
+Enter a login (use "xpartamupp" since that's what clients and the ipstamp module expect) 
+and password, then press "Add user"
+
+Alternative - Command line :
+Edit /etc/ejabberd.ejabberd.cfg and change {register, [{deny,all}]} to {register, [{allow,all}]}.
+Register xpartamupp : # ejabberdctl register xpartamupp <domain> <Xpartamupp password>
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@ Run XpartaMuPP - XMPP Multiplayer Game Manager @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+You need to have python 3 installed
+$ sudo apt-get install python3
+
+You also need the SleekXmpp Python library
+Go to to github and follow their instructions
+https://github.com/fritzy/SleekXMPP
+
+If you would like to run the leaderboard database,
+$ sudo apt-get install sqlalchemy
+
+Then execute the following command to setup the database.
+$ ./source/tools/XpartaMuPP/LobbyRankings.py
+
+Execute the following command to run the bot with default options
+$ ./source/tools/XpartaMuPP/XpartaMuPP.py
+
+or rather a similar command to run a properly configured program
+$ ./source/tools/XpartaMuPP/XpartaMuPP.py --domain localhost --password XXXXXX --nickname WFGbot
+
+Run ./source/tools/XpartaMuPP/XpartaMuPP.py -h for the full list of options
+
+If everything is fine you should see something along these lines in your console
+<<<<
+INFO     Negotiating TLS
+INFO     Using SSL version: 3
+INFO     Node set to: xpartamupp@lobby.wildfiregames.com/CC
+INFO     XpartaMuPP started
+<<<<
+
+Congratulations, you are running XpartaMuPP - the 0ad Multiplayer Game Manager.
+

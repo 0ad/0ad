@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+	<script file="gui/common/functions_global_object.js"/>
+	<script file="gui/common/functions_utility.js"/>
+	<script file="gui/common/timer.js"/>
+
+	<script file="gui/lobby/lobby.js"/>
+
+	<object name="sn">
+	<object hotkey="complete.playername">
+		<action on="Press">completeNick();</action>
+	</object>
+	</object>
+
+	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="lobbyWindow">
+
+		<object style="TitleText" type="text" size="50%-128 0%+4 50%+128 36">
+			Multiplayer Lobby
+		</object>
+
+		<action on="Tick">
+			onTick();
+		</action>
+
+		<!-- Left panel: Player list. -->
+		<object name="leftPanel" size="20 30 15% 100%-50">
+			<object name="playersBox" style="ModernList" type="olist" size="0 0 100% 100%">
+				<def id="status" heading="Status" width="40%"/>
+				<def id="name" heading="Name" width="60%"/>
+			</object>
+		</object>
+
+		<object name="leftButtonPanel" size="20 100%-45 15% 100%-20">
+			<object type="button" style="StoneButton" size="0 0 100% 100%">
+				Leaderboard
+				<action on="Press">getGUIObjectByName("leaderboard").hidden = false;getGUIObjectByName("leaderboardFade").hidden = false;</action>
+			</object>
+		</object>
+
+		<!-- Right panel: Game details. -->
+		<object name="rightPanel" size="100%-300 30 100%-20 100%-20">
+			<object name="gameInfoEmpty" size="0 0 100% 100%-60" type="image" sprite="ModernDarkBoxGold" hidden="false">
+				<object size="50%-110 50%-50 50%+110 50%+50" type="image" sprite="productLogo"/>
+			</object>
+			<object name="gameInfo" size="0 0 100% 100%-90" type="image" sprite="ModernDarkBoxGold" hidden="true">
+
+				<!-- Map Name -->
+				<object name="sgMapName" size="0 5 100% 20" type="text" style="ModernCenteredLabelText"/>
+
+				<!-- Map Preview -->
+				<object name="sgMapPreview" size="5 25 100%-5 235"  type="image" sprite=""/>
+
+				<object size="5 239 100%-5 240" type="image" sprite="ModernWhiteLine" z="25"/>
+
+				<!-- Map Type -->
+				<object size="5 240 50% 265" type="image" sprite="ModernItemBackShadeLeft">
+					<object size="0 0 100%-10 100%" type="text" style="ModernRightLabelText">Map Type:</object>
+				</object>
+				<object size="50% 240 100%-5 265" type="image" sprite="ModernItemBackShadeRight">
+					<object name="sgMapType" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+				</object>
+
+				<object size="5 264 100%-5 265" type="image" sprite="ModernWhiteLine" z="25"/>
+
+				<!-- Map Size -->
+				<object size="5 265 50% 290" type="image" sprite="ModernItemBackShadeLeft">
+					<object size="0 0 100%-10 100%" type="text" style="ModernRightLabelText">Map Size:</object>
+				</object>
+				<object size="50% 265 100%-5 290" type="image" sprite="ModernItemBackShadeRight">
+					<object name="sgMapSize" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+				</object>
+
+				<object size="5 289 100%-5 290" type="image" sprite="ModernWhiteLine" z="25"/>
+
+				<!-- Map Description -->
+				<object type="image" sprite="ModernDarkBoxWhite" size="3% 295 97% 75%">
+					<object name="sgMapDescription" size="0 0 100% 100%" type="text" style="MapDescription"/>
+				</object>
+
+				<object type="image" sprite="ModernDarkBoxWhite" size="3% 76% 97% 99%">
+					<!-- Number of Players -->
+					<object size="32% 3% 57% 12%" type="text" style="ModernLeftLabelText">Players:</object>
+					<object name="sgNbPlayers" size="52% 3% 62% 12%" type="text" style="ModernLeftLabelText"/>
+
+					<!-- Player Names -->
+					<object name="sgPlayersNames" size="0 15% 100% 100%" type="text" style="MapPlayerList"/>
+				</object>
+			</object>
+			<object name="joinGameButton" type="button" style="StoneButton" size="0 100%-85 100% 100%-60" hidden="true">
+				Join Game
+				<action on="Press">
+					joinSelectedGame();
+				</action>
+			</object>
+			<object name="hostButton" type="button" style="StoneButton" size="0 100%-55 100% 100%-30">
+				Host Game
+				<action on="Press">
+					// Open Multiplayer connection window with host option.
+					Engine.PushGuiPage("page_gamesetup_mp.xml", { multiplayerGameType: "host", name: g_Name });
+				</action>
+			</object>
+
+			<object type="button" style="StoneButton" size="0 100%-25 100% 100%">
+				Main Menu
+				<action on="Press">
+					lobbyStop();
+					Engine.SwitchGuiPage("page_pregame.xml");
+				</action>
+			</object>
+		</object>
+
+		<!-- Middle panel: Filters, game list, chat box. -->
+		<object name="middlePanel" size="15%+5 5% 100%-305 97.2%">
+			<object name="gamesBox" style="ModernList" type="olist" size="0 25 100% 48%">
+				<action on="SelectionChange">selectGame(this.selected);</action>
+				<def id="name" heading="Name" color="0 60 0" width="25%"/>
+				<!--<def id="ip" heading="IP" color="0 128 128" width="170"/>-->
+				<def id="mapName" heading="Map Name" color="128 128 128" width="25%"/>
+				<def id="mapSize" heading="Map Size" color="128 128 128" width="20%"/>
+				<def id="mapType" heading="Map Type" color="0 128 128" width="20%"/>
+				<def id="nPlayers" heading="Players" color="0 128 128" width="10%"/>
+			</object>
+
+			<object name="filterPanel" size="0 0 100% 20">
+				<object name="mapSizeFilter"
+					type="dropdown"
+					style="ModernDropDown"
+					size="49.7% 0 62% 100%">
+					<action on="SelectionChange">applyFilters();</action>
+				</object>
+
+				<object name="mapTypeFilter"
+					type="dropdown"
+					style="ModernDropDown"
+					size="69.3% 0 82% 100%">
+					<action on="SelectionChange">applyFilters();</action>
+				</object>
+
+				<object name="playersNumberFilter"
+					type="dropdown"
+					style="ModernDropDown"
+					size="89% 0 100% 100%">
+					<action on="SelectionChange">applyFilters();</action>
+				</object>
+
+				<object type="text" size="15 0 35% 100%" text_align="left" textcolor="white">Show full servers</object>
+				<object name="showFullFilter"
+					type="checkbox"
+					checked="false"
+					style="StoneCrossBox"
+					size="0% 3 10 100%-3">
+					<action on="Press">applyFilters();</action>
+				</object>
+			</object>
+
+			<object name="chatPanel" size="0 49% 100% 100%" type="image" sprite="ModernDarkBoxGold">
+				<object name="chatText" size="0 0 100% 94%" type="text" style="ChatPanel"/>
+				<object name="chatInput" size="0 94% 100% 100%" type="input" style="ModernInput">
+					<action on="Press">submitChatInput();</action>
+				</object>
+			</object>
+		</object>
+
+		<!-- START Window for leaderboard stats -->
+		<!-- Add a translucent black background to fade out the menu page -->
+		<object hidden="true" name="leaderboardFade" type="image" z="100" sprite="modernFade"/>
+		<object hidden="true" name="leaderboard" type="image" style="ModernDialog" size="50%-224 50%-160 50%+224 50%+160" z="101">
+			<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">Leaderboard</object>
+			<object name="leaderboardBox"
+				style="ModernList"
+				type="olist"
+				size="19 19 100%-19 100%-58">
+				<def id="rank" heading="Rank" color="255 255 255" width="15%"/>
+				<def id="rating" heading="Rating" color="255 255 255" width="20%"/>
+				<def id="name" heading="Name" color="255 255 255" width="65%"/>
+			</object>
+			<object type="button" style="StoneButton" size="50%+5 100%-45 50%+133 100%-17">
+				Back
+				<action on="Press">getGUIObjectByName("leaderboard").hidden = true;getGUIObjectByName("leaderboardFade").hidden = true;</action>
+			</object>
+			<object type="button" style="StoneButton" size="50%-133 100%-45 50%-5 100%-17">
+				Update
+				<action on="Press">Engine.SendGetBoardList();</action>
+			</object>
+		</object>
+		<!-- END Window for leaderboard stats -->
+	</object>
+</objects>

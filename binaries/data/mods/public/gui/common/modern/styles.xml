@@ -1,0 +1,81 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<styles>
+	<style 	name = "ModernWindow"
+		sprite = "ModernWindow"
+		buffer_zone = "12"
+		text_align = "left"
+		text_valign = "top"
+	/>
+	<style 	name = "ModernDialog"
+		sprite = "ModernDialog"
+		buffer_zone = "12"
+		text_align = "left"
+		text_valign = "top"
+	/>
+	<style 	name = "ModernList"
+		buffer_zone = "5"
+		font = "serif-bold-stroke-14"
+		scrollbar = "true"
+		scrollbar_style = "ModernScrollBar"
+		sprite = "ModernDarkBoxGoldNoTop"
+		sprite_selectarea = "ModernDarkBoxWhite"
+		sprite_heading = "ModernDarkBoxGoldNoBottom"
+		textcolor = "white"
+		textcolor_selected = "white"
+		text_align = "left"
+		text_valign = "center"
+		sound_selected = "audio/interface/ui/ui_button_click.ogg"
+	/>
+	<style 	name="ModernDropDown"
+		dropdown_buffer="1"
+		font="serif-14"
+		textcolor="white"
+		text_align="left"
+		text_valign="center"
+
+		sprite="colour:0 0 0"
+		button_width="16"
+		sprite2="ModernDropDownArrow"
+		sprite2_pressed="ModernDropDownArrowHighlight"
+
+		buffer_zone="5"
+		dropdown_size="200"
+		sprite_list="colour:12 12 12"
+		sprite_selectarea="ModernDarkBoxWhite"
+		textcolor_selected="white"
+
+		scrollbar="true"
+		scrollbar_style="ModernScrollBar"
+
+		sound_opened="audio/interface/ui/ui_button_click.ogg"
+		sound_closed="audio/interface/ui/ui_button_click.ogg"
+		sound_selected="audio/interface/ui/ui_button_click.ogg"
+	/>
+	<style name="ModernLeftLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="left"
+		text_valign="center"
+	/>
+
+	<style name="ModernRightLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="right"
+		text_valign="center"
+	/>
+
+	<style name="ModernCenteredLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+	/>
+	<style  name="ModernInput"
+		sprite="ModernDarkBoxWhite"
+		sprite_selectarea="colour:150 0 0"
+		textcolor="white"
+		textcolor_selected="white"
+	/>
+</styles>

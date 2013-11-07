@@ -1,6 +1,9 @@
 // Network Mode
 var g_IsNetworked = false;
 
+// Is this user in control of game settings (i.e. is a network server, or offline player)
+var g_IsController;
+
 // Cache the basic player data (name, civ, color)
 var g_Players = [];
 // Cache the useful civ data
@@ -33,6 +36,9 @@ var g_EntityStates = {}; // {id:entState}
 var g_GameEnded = false;
 
 var g_Disconnected = false; // Lost connection to server
+
+// Holds player states from the last tick
+var g_CachedLastStates = "";
 
 // Colors to flash when pop limit reached
 const DEFAULT_POPULATION_COLOR = "white";
@@ -94,7 +100,9 @@ function init(initData, hotloadData)
 	if (initData)
 	{
 		g_IsNetworked = initData.isNetworked; // Set network mode
+		g_IsController = initData.isController; // Set controller mode
 		g_PlayerAssignments = initData.playerAssignments;
+		g_MatchID = initData.attribs.matchID;
 
 		// Cache the player data
 		// (This may be updated at runtime by handleNetMessage)
@@ -217,8 +225,9 @@ function leaveGame()
 {
 	var extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
 	var playerState = extendedSimState.players[Engine.GetPlayerID()];
-
+	var mapSettings = Engine.GetMapSettings();
 	var gameResult;
+
 	if (g_Disconnected)
 	{
 		gameResult = "You have been disconnected."
@@ -244,11 +253,13 @@ function leaveGame()
 		global.music.setState(global.music.states.DEFEAT);
 	}
 
-	var mapSettings = Engine.GetMapSettings();
-
 	stopAmbient();
 	endGame();
 
+	if (g_IsController)
+	{
+		Engine.SendUnregisterGame();
+	}
 	Engine.SwitchGuiPage("page_summary.xml", {
 							"gameResult"  : gameResult,
 							"timeElapsed" : extendedSimState.timeElapsed,
@@ -339,68 +350,64 @@ function onTick()
 
 function checkPlayerState()
 {
-	var simState = GetSimState();
-	var playerState = simState.players[Engine.GetPlayerID()];
+	// Once the game ends, we're done here.
+	if (g_GameEnded)
+		return;
 
-	if (!g_GameEnded)
+	// Send a game report for each player in this game.
+	var m_simState = GetSimState();
+	var playerState = m_simState.players[Engine.GetPlayerID()];
+	var tempStates = "";
+	for each (var player in m_simState.players) {tempStates += player.state + ",";}
+
+	if (g_CachedLastStates != tempStates)
 	{
-		// If the game is about to end, disable the ability to resign.
-		if (playerState.state != "active")
-			getGUIObjectByName("menuResignButton").enabled = false;
-		else
-			return;
-
-		if (playerState.state == "defeated")
-		{
-			g_GameEnded = true;
-			// TODO: DEFEAT_CUE is missing?
-			global.music.setState(global.music.states.DEFEAT);
-
-			closeMenu();
-			closeOpenDialogs();
-
-			if (Engine.IsAtlasRunning())
-			{
-				// If we're in Atlas, we can't leave the game
-				var btCaptions = ["OK"];
-				var btCode = [null];
-				var message = "Press OK to continue";
-			}
-			else
-			{
-				var btCaptions = ["Yes", "No"];
-				var btCode = [leaveGame, null];
-				var message = "Do you want to quit?";
-			}
-			messageBox(400, 200, message, "DEFEATED!", 0, btCaptions, btCode);
-		}
-		else if (playerState.state == "won")
-		{
-			g_GameEnded = true;
-			global.music.setState(global.music.states.VICTORY);
-
-			closeMenu();
-			closeOpenDialogs();
-
-			if (!getGUIObjectByName("devCommandsRevealMap").checked)
-				getGUIObjectByName("devCommandsRevealMap").checked = true;
-
-			if (Engine.IsAtlasRunning())
-			{
-				// If we're in Atlas, we can't leave the game
-				var btCaptions = ["OK"];
-				var btCode = [null];
-				var message = "Press OK to continue";
-			}
-			else
-			{
-				var btCaptions = ["Yes", "No"];
-				var btCode = [leaveGame, null];
-				var message = "Do you want to quit?";
-			}
-			messageBox(400, 200, message, "VICTORIOUS!", 0, btCaptions, btCode);
-		}
+		g_CachedLastStates = tempStates;
+		reportGame(Engine.GuiInterfaceCall("GetExtendedSimulationState"));
 	}
+
+	// If the local player hasn't finished playing, we return here to avoid the victory/defeat messages.
+	if (playerState.state == "active")
+		return;
+
+	// We can't resign once the game is over.
+	getGUIObjectByName("menuResignButton").enabled = false;
+
+	// Make sure nothing is open to avoid stacking.
+	closeMenu();
+	closeOpenDialogs();
+
+	// Make sure this doesn't run again.
+	g_GameEnded = true;
+
+	if (Engine.IsAtlasRunning())
+	{
+		// If we're in Atlas, we can't leave the game
+		var btCaptions = ["OK"];
+		var btCode = [null];
+		var message = "Press OK to continue";
+	}
+	else
+	{
+		var btCaptions = ["Yes", "No"];
+		var btCode = [leaveGame, null];
+		var message = "Do you want to quit?";
+	}
+
+	if (playerState.state == "defeated")
+	{
+		global.music.setState(global.music.states.DEFEAT);
+		messageBox(400, 200, message, "DEFEATED!", 0, btCaptions, btCode);
+	}
+	else if (playerState.state == "won")
+	{
+		global.music.setState(global.music.states.VICTORY);
+		// TODO: Reveal map directly instead of this silly proxy.
+		if (!getGUIObjectByName("devCommandsRevealMap").checked)
+			getGUIObjectByName("devCommandsRevealMap").checked = true;
+		messageBox(400, 200, message, "VICTORIOUS!", 0, btCaptions, btCode);
+	}
+
 }
 
 function changeGameSpeed(speed)
@@ -687,4 +694,121 @@ function stopAmbient()
 		currentAmbient.free();
 		currentAmbient = null;
 	}
+}
+// Send a report on the game status to the lobby
+function reportGame(extendedSimState)
+{
+	// Resources gathered and used
+	var playerFoodGatheredString = "";
+	var playerWoodGatheredString  = "";
+	var playerStoneGatheredString = "";
+	var playerMetalGatheredString = "";
+	var playerFoodUsedString = "";
+	var playerWoodUsedString  = "";
+	var playerStoneUsedString = "";
+	var playerMetalUsedString = "";
+	// Resources exchanged
+	var playerFoodBoughtString = "";
+	var playerWoodBoughtString = "";
+	var playerStoneBoughtString = "";
+	var playerMetalBoughtString = "";
+	var playerFoodSoldString = "";
+	var playerWoodSoldString = "";
+	var playerStoneSoldString = "";
+	var playerMetalSoldString = "";
+	var playerTradeIncomeString = "";
+	// Unit Stats
+	var playerUnitsLostString = "";
+	var playerUnitsTrainedString = "";
+	var playerEnemyUnitsKilledString = "";
+	// Building stats
+	var playerBuildingsConstructedString = "";
+	var playerBuildingsLostString = "";
+	var playerEnemyBuildingsDestroyedString = "";
+	var playerCivCentersBuiltString = "";
+	var playerEnemyCivCentersDestroyedString = "";
+	// Tribute
+	var playerTributeSentString = "";
+	var playerTributeReceivedString = "";
+	// Various
+	var mapName = Engine.GetMapSettings().Name;
+	var playerStatesString = "";
+	var playerCivsString = "";
+	var playerPercentMapExploredString = "";
+	var playerTreasuresCollectedString = "";
+
+	// Serialize the statistics for each player into a comma-separated list.
+	for each (var player in extendedSimState.players)
+	{
+		playerStatesString += player.state + ",";
+		playerCivsString += player.civ + ",";
+		playerFoodGatheredString += player.statistics.resourcesGathered.food + ",";
+		playerWoodGatheredString += player.statistics.resourcesGathered.wood + ",";
+		playerStoneGatheredString += player.statistics.resourcesGathered.stone + ",";
+		playerMetalGatheredString += player.statistics.resourcesGathered.metal + ",";
+		playerFoodUsedString += player.statistics.resourcesUsed.food + ",";
+		playerWoodUsedString += player.statistics.resourcesUsed.wood + ",";
+		playerStoneUsedString += player.statistics.resourcesUsed.stone + ",";
+		playerMetalUsedString += player.statistics.resourcesUsed.metal + ",";
+		playerUnitsLostString += player.statistics.unitsLost + ",";
+		playerUnitsTrainedString += player.statistics.unitsTrained + ",";
+		playerEnemyUnitsKilledString += player.statistics.enemyUnitsKilled + ",";
+		playerBuildingsConstructedString += player.statistics.buildingsConstructed + ",";
+		playerBuildingsLostString += player.statistics.buildingsLost + ",";
+		playerEnemyBuildingsDestroyedString += player.statistics.enemyBuildingsDestroyed + ",";
+		playerFoodBoughtString += player.statistics.resourcesBought.food + ",";
+		playerWoodBoughtString += player.statistics.resourcesBought.wood + ",";
+		playerStoneBoughtString += player.statistics.resourcesBought.stone + ",";
+		playerMetalBoughtString += player.statistics.resourcesBought.metal + ",";
+		playerFoodSoldString += player.statistics.resourcesSold.food + ",";
+		playerWoodSoldString += player.statistics.resourcesSold.wood + ",";
+		playerStoneSoldString += player.statistics.resourcesSold.stone + ",";
+		playerMetalSoldString += player.statistics.resourcesSold.metal + ",";
+		playerTributeSentString += player.statistics.tributesSent + ",";
+		playerTributeReceivedString += player.statistics.tributesReceived + ",";
+		playerPercentMapExploredString += player.statistics.precentMapExplored = ",";
+		playerCivCentersBuiltString += player.statistics.civCentresBuilt + ",";
+		playerEnemyCivCentersDestroyedString += player.statistics.enemyCivCentresDestroyed + ",";
+		playerTreasuresCollectedString += player.statistics.treasuresCollected + ",";
+		playerTradeIncomeString += player.statistics.tradeIncome + ",";
+	}
+
+	// Send the report with serialized data
+	Engine.SendGameReport({
+			"timeElapsed" : extendedSimState.timeElapsed,
+			"playerStates" : playerStatesString,
+			"playerID": Engine.GetPlayerID(),
+			"matchID": g_MatchID,
+			"civs" : playerCivsString,
+			"mapName" : mapName,
+			"foodGathered": playerFoodGatheredString,
+			"woodGathered": playerWoodGatheredString,
+			"stoneGathered": playerStoneGatheredString,
+			"metalGathered": playerMetalGatheredString,
+			"foodUsed": playerFoodUsedString,
+			"woodUsed": playerWoodUsedString,
+			"stoneUsed": playerStoneUsedString,
+			"metalUsed": playerMetalUsedString,
+			"unitsLost": playerUnitsLostString,
+			"unitsTrained": playerUnitsTrainedString,
+			"enemyUnitsKilled": playerEnemyUnitsKilledString,
+			"buildingsLost": playerBuildingsLostString,
+			"buildingsConstructed": playerBuildingsConstructedString,
+			"enemyBuildingsDestroyed": playerEnemyBuildingsDestroyedString,
+			"foodBought": playerFoodBoughtString,
+			"woodBought": playerWoodBoughtString,
+			"stoneBought": playerStoneBoughtString,
+			"metalBought": playerMetalBoughtString,
+			"foodSold": playerFoodSoldString,
+			"woodSold": playerWoodSoldString,
+			"stoneSold": playerStoneSoldString,
+			"metalSold": playerMetalSoldString,
+			"tributeSent": playerTributeSentString,
+			"tributeReceived": playerTributeReceivedString,
+			"precentMapExplored": playerPercentMapExploredString,
+			"civCentersBuilt": playerCivCentersBuiltString,
+			"enemyCivCentersDestroyed": playerEnemyCivCentersDestroyedString,
+			"treasuresCollected": playerTreasuresCollectedString,
+			"tradeIncome": playerTradeIncomeString
+		});
 }

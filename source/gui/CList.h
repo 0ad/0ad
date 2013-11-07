@@ -86,7 +86,7 @@ protected:
 	 * Sets up text, should be called every time changes has been
 	 * made that can change the visual.
 	 */
-	void SetupText();
+	virtual void SetupText();
 
 	/**
 	 * @see IGUIObject#HandleMessage()
@@ -121,7 +121,7 @@ protected:
 
 	// Extended drawing interface, this is so that classes built on the this one
 	//  can use other sprite names.
-	void DrawList(const int &selected, const CStr& _sprite, 
+	virtual void DrawList(const int &selected, const CStr& _sprite,
 				  const CStr& _sprite_selected, const CStr& _textcolor);
 
 	// Get the area of the list. This is so that it can easily be changed, like in CDropDown

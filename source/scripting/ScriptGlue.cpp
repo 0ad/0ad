@@ -381,6 +381,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 	// VFS (external)
 	JS_FUNC("buildDirEntList", JSI_VFS::BuildDirEntList, 1)
+	JS_FUNC("fileExists", JSI_VFS::FileExists, 1)
 	JS_FUNC("getFileMTime", JSI_VFS::GetFileMTime, 1)
 	JS_FUNC("getFileSize", JSI_VFS::GetFileSize, 1)
 	JS_FUNC("readFile", JSI_VFS::ReadFile, 1)

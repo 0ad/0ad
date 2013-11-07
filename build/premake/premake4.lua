@@ -10,6 +10,7 @@ newoption { trigger = "minimal-flags", description = "Only set compiler/linker f
 newoption { trigger = "without-nvtt", description = "Disable use of NVTT" }
 newoption { trigger = "without-tests", description = "Disable generation of test projects" }
 newoption { trigger = "without-pch", description = "Disable generation and usage of precompiled headers" }
+newoption { trigger = "without-lobby", description = "Disable the use of gloox and the multiplayer lobby" }
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
 newoption { trigger = "with-system-enet", description = "Search standard paths for libenet, instead of using bundled copy" }
 newoption { trigger = "with-system-mozjs185", description = "Search standard paths for libmozjs185, instead of using bundled copy" }
@@ -175,6 +176,10 @@ function project_set_build_flags()
 
 	if _OPTIONS["without-nvtt"] then
 		defines { "CONFIG2_NVTT=0" }
+	end
+
+	if _OPTIONS["without-lobby"] then
+		defines { "CONFIG2_LOBBY=0" }
 	end
 
 	-- required for the lowlevel library. must be set from all projects that use it, otherwise it assumes it is
@@ -503,6 +508,8 @@ end
 -- names of all static libs created. automatically added to the
 -- main app project later (see explanation at end of this file)
 static_lib_names = {}
+static_lib_names_debug = {}
+static_lib_names_release = {}
 
 -- set up one of the static libraries into which the main engine code is split.
 -- extra_params:
@@ -567,6 +574,22 @@ function setup_all_libs ()
 	}
 	setup_static_lib_project("network", source_dirs, extern_libs, {})
 
+<<<<<<< HEAD
+	if not _OPTIONS["without-lobby"] then
+		source_dirs = {
+			"lobby",
+		}
+
+		extern_libs = {
+			"spidermonkey",
+			"boost",
+			"gloox",
+		}
+		setup_static_lib_project("lobby", source_dirs, extern_libs, {})
+	end
+
+=======
+>>>>>>> 1a7a32ad84f645a7a907472ab2d3fd9be00d50c2
 	if _OPTIONS["use-shared-glooxwrapper"] and not _OPTIONS["build-shared-glooxwrapper"] then
 		table.insert(static_lib_names_debug, "glooxwrapper_dbg")
 		table.insert(static_lib_names_release, "glooxwrapper")
@@ -636,7 +659,7 @@ function setup_all_libs ()
 		"zlib",
 		"boost",
 		"enet",
-		"libcurl"
+		"libcurl",
 	}
 	
 	if not _OPTIONS["without-audio"] then
@@ -686,7 +709,7 @@ function setup_all_libs ()
 		"spidermonkey",
 		"sdl",	-- key definitions
 		"opengl",
-		"boost"
+		"boost",
 	}
 	setup_static_lib_project("gui", source_dirs, extern_libs, {})
 
@@ -825,6 +848,10 @@ end
 
 if not _OPTIONS["without-nvtt"] then
 	table.insert(used_extern_libs, "nvtt")
+end
+
+if not _OPTIONS["without-lobby"] then
+	table.insert(used_extern_libs, "gloox")
 end
 
 -- Bundles static libs together with main.cpp and builds game executable.

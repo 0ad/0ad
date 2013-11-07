@@ -32,7 +32,6 @@ IGUIScrollBar::IGUIScrollBar() : m_pStyle(NULL), m_pGUI(NULL),
 								 m_ScrollRange(1.f), m_ScrollSpace(0.f), // MaxPos: not 0, due to division.
 								 m_Length(200.f), m_Width(20.f), 
 								 m_BarSize(0.f), m_Pos(0.f),
-								 m_UseEdgeButtons(true),
 								 m_ButtonPlusPressed(false),
 								 m_ButtonMinusPressed(false),
 								 m_ButtonPlusHovered(false),
@@ -48,20 +47,21 @@ IGUIScrollBar::~IGUIScrollBar()
 
 void IGUIScrollBar::SetupBarSize()
 {
+	if (!GetStyle())
+	{
+		return;
+	}
 	float min = GetStyle()->m_MinimumBarSize;
 	float max = GetStyle()->m_MaximumBarSize;
 	float length = m_Length;
 
 	// Check for edge buttons
-	if (m_UseEdgeButtons)
+	if (GetStyle()->m_UseEdgeButtons)
 		length -= GetStyle()->m_Width * 2.f;
 
 	// Check min and max are valid
 	if (min > length)
-	{
-		LOGWARNING(L"Minimum scrollbar size of %g is larger than the total scrollbar size of %g", min, length);
 		min = 0.f;
-	}
 	if (max < min)
 		max = length;
 

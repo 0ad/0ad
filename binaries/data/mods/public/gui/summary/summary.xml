@@ -287,8 +287,17 @@
 
 		<object type="button" style="StoneButton" size="100%-164 100%-52 100%-24 100%-24">
 			Continue
-			<action on="Press">
-				Engine.SwitchGuiPage("page_pregame.xml");
+			<action on="Press"><![CDATA[
+				if(!Engine.HasXmppClient())
+				{
+					Engine.SwitchGuiPage("page_pregame.xml");
+				}
+				else
+				{
+					Engine.LobbySetPlayerPresence("available");
+					Engine.SwitchGuiPage("page_lobby.xml");
+				}
+				]]>
 			</action>
 		</object>
 	</object>
