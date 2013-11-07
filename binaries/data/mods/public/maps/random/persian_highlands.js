@@ -179,7 +179,7 @@ RMS.SetProgress(10);
 
 // create patches
 log("Creating rock patches...");
-placer = new ClumpPlacer(scaleByMapSize(40, 150), 0.2, 0.1, 0);
+placer = new ChainPlacer(1, floor(scaleByMapSize(3, 6)), floor(scaleByMapSize(20, 45)), 0);
 painter = new TerrainPainter(tRocky);
 createAreas(placer, [painter, paintClass(clPatch)], 
 	avoidClasses(clPatch, 2, clPlayer, 0),
@@ -188,7 +188,7 @@ createAreas(placer, [painter, paintClass(clPatch)],
 
 RMS.SetProgress(15);
 
-var placer = new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0);
+var placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), floor(scaleByMapSize(15, 40)), 0);
 var painter = new TerrainPainter([tRocky, tRocks]);
 createAreas(placer, [painter, paintClass(clPatch)], 
 	avoidClasses(clPatch, 2, clPlayer, 4),
@@ -198,7 +198,7 @@ createAreas(placer, [painter, paintClass(clPatch)],
 RMS.SetProgress(20);
 
 log("Creating dirt patches...");
-placer = new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0);
+placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), floor(scaleByMapSize(15, 40)), 0);
 painter = new TerrainPainter([tGrass]);
 createAreas(placer, [painter, paintClass(clPatch)], 
 	avoidClasses(clPatch, 2, clPlayer, 4),
@@ -221,7 +221,7 @@ RMS.SetProgress(30);
 
 // create hills
 log("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 1);
 var terrainPainter = new LayeredPainter(
 	[tCliff, tHill],		// terrains
 	[2]								// widths
@@ -255,7 +255,7 @@ var size = numForest / (scaleByMapSize(2,8) * numPlayers);
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
 {
-	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(2, 5)), floor(size / 8), 1);
 	painter = new LayeredPainter(
 		types[i],		// terrains
 		[2]											// widths
@@ -427,7 +427,6 @@ for (var i = 0; i < types.length; ++i)
 		num
 	);
 }
-
 
 setSunColour(0.733, 0.746, 0.574);	
 ExportMap();

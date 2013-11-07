@@ -120,6 +120,166 @@ ClumpPlacer.prototype.place = function(constraint)
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
+//	Chain Placer
+//
+//	Class for generating a more random clump of points it randomly creates circles around the edges of the current clump
+//
+//	minRadius: minimum radius of the circles
+//	maxRadius: maximum radius of the circles
+//	numCircles: the number of the circles
+//	failfraction: Percentage of place attempts allowed to fail (optional)
+//	x, z: Tile coordinates of placer center (optional)
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
+function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, x, z)
+{
+	this.minRadius = minRadius;
+	this.maxRadius = maxRadius;
+	this.numCircles = numCircles
+	this.failFraction = (failFraction !== undefined ? failFraction : 0);
+	this.x = (x !== undefined ? x : -1);
+	this.z = (z !== undefined ? z : -1);
+}
+
+ChainPlacer.prototype.place = function(constraint)
+{
+	// Preliminary bounds check
+	if (!g_Map.inMapBounds(this.x, this.z) || !constraint.allows(this.x, this.z))
+	{
+		return undefined;
+	}
+
+	var retVec = [];
+	var size = getMapSize();
+	var failed = 0, count = 0;
+	
+	var gotRet = new Array(size);
+	for (var i = 0; i < size; ++i)
+	{
+		gotRet[i] = new Array(size);
+		for (var j = 0; j < size; ++j)
+		{
+			gotRet[i][j] = -1;
+		}
+	}
+	
+	--size;
+	
+	if (this.minRadius < 1) this.minRadius = 1;
+	if (this.minRadius > this.maxRadius) this.minRadius = this.maxRadius;
+	
+	var edges = [[this.x, this.z]]
+	
+	for (var i = 0; i < this.numCircles; ++i)
+	{
+		var point = edges[randInt(edges.length)];
+		var cx = point[0], cz = point[1];
+	
+		var radius = randInt(this.minRadius, this.maxRadius);
+		
+		//log (edges);
+		
+		var sx = cx - radius, lx = cx + radius;
+		var sz = cz - radius, lz = cz + radius;
+		
+		sx = (sx < 0 ? 0 : sx);
+		sz = (sz < 0 ? 0 : sz);
+		lx = (lx > size ? size : lx);
+		lz = (lz > size ? size : lz);
+		
+		var radius2 = radius * radius;
+		var dx, dz;
+		
+		//log (uneval([sx, sz, lx, lz]));
+		
+		for (var ix = sx; ix <= lx; ++ix)
+		{
+			for (var iz = sz; iz <= lz; ++ iz)
+			{
+				dx = ix - cx;
+				dz = iz - cz;
+				if (dx * dx + dz * dz <= radius2)
+				{
+					if (g_Map.inMapBounds(ix, iz) && constraint.allows(ix, iz))
+					{
+						var state = gotRet[ix][iz];
+						if (state == -1)
+						{
+							retVec.push(new PointXZ(ix, iz));
+							gotRet[ix][iz] = -2;
+						}
+						/*else if (state >= 0)
+						{
+							log (uneval(edges));
+							log (state)
+							var s = edges.splice(state, 1);
+							log (uneval(s));
+							log (uneval(edges));
+							gotRet[ix][iz] = -2;
+						}*/
+					}
+					else
+					{
+						++failed;
+					}
+					++count;
+				}
+			}
+		}
+		for (var ix = sx; ix <= lx; ++ix)
+		{
+			for (var iz = sz; iz <= lz; ++ iz)
+			{
+				if (gotRet[ix][iz] == -2)
+				{
+					if (ix > 0)
+					{
+						if (gotRet[ix-1][iz] == -1)
+						{
+							edges.push([ix, iz]);
+							gotRet[ix][iz] = edges.length - 1;
+							continue;
+						}
+					}
+					if (iz > 0)
+					{
+						if (gotRet[ix][iz-1] == -1)
+						{
+							edges.push([ix, iz]);
+							gotRet[ix][iz] = edges.length - 1;
+							continue;
+						}
+					}
+					if (ix < size)
+					{
+						if (gotRet[ix+1][iz] == -1)
+						{
+							edges.push([ix, iz]);
+							gotRet[ix][iz] = edges.length - 1;
+							continue;
+						}
+					}
+					if (iz < size)
+					{
+						if (gotRet[ix][iz+1] == -1)
+						{
+							edges.push([ix, iz]);
+							gotRet[ix][iz] = edges.length - 1;
+							continue;
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	
+	
+	return ((failed > count*this.failFraction) ? undefined : retVec);
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
 //	RectPlacer
 //
 //	Class for generating a rectangular block of points
