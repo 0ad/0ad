@@ -256,6 +256,22 @@ extern_lib_defs = {
 			})
 		end,
 	},
+	gloox = {
+		compile_settings = function()
+			if os.is("windows") then
+				add_default_include_paths("gloox")
+			end
+		end,
+		link_settings = function()
+			if os.is("windows") then
+				add_default_lib_paths("gloox")
+			end
+			add_default_links({
+				win_names  = { "gloox-1.0" },
+				unix_names = { "gloox" },
+			})
+		end,
+	},
 	cxxtest = {
 		compile_settings = function()
 			add_source_include_paths("cxxtest")
