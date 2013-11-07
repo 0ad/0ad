@@ -55,7 +55,7 @@ std::string JSI_ConfigDB::GetValue(void* UNUSED(cbdata), std::wstring cfgNsStrin
 	}
 	else
 	{
-		LOGWARNING(L"Config setting %hs does not exist!", name.c_str());
+		LOGMESSAGE(L"Config setting %hs does not exist!", name.c_str());
 		return std::string();
 	}
 }
