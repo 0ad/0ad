@@ -160,6 +160,10 @@ var UnitFsmSpec = {
 		// ignore
 	},
 
+	"PickupCanceled": function(msg) {
+		// ignore
+	},
+
 	// Formation handlers:
 
 	"FormationLeave": function(msg) {
@@ -325,6 +329,31 @@ var UnitFsmSpec = {
 			// We are already at the target, or can't move at all
 			this.StopMoving();
 			this.FinishOrder();
+		}
+	},
+
+	"Order.PickupUnit": function(msg) {
+		var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+		if (!cmpGarrisonHolder || cmpGarrisonHolder.IsFull())
+		{
+			this.FinishOrder();
+			return;
+		}
+
+		// TODO improve these movements in case of ship: the MoveToTarget of the units brings
+		// them to the nearest point-on-land from the ship, while the MoveToPoint of the ship
+		// brings it to the nearest point-on-water from the units, and these can be quite
+		// different in some cases leading to weird movements. MoveToTarget should update its path
+		// according to the target movement more often.
+		if (this.MoveToTarget(this.order.data.target))
+		{
+			this.SetNextState("INDIVIDUAL.PICKUP.APPROACHING");
+		}
+		else
+		{
+			// We are already at the target, or can't move at all
+			this.StopMoving();
+			this.SetNextState("INDIVIDUAL.PICKUP.LOADING");
 		}
 	},
 
@@ -622,7 +651,7 @@ var UnitFsmSpec = {
 			return;
 		}
 
-		if (this.MoveToTarget(this.order.data.target))
+		if (this.MoveToGarrisonRange(this.order.data.target))
 		{
 			this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
 		}
@@ -741,26 +770,31 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Garrison": function(msg) {
-			// TODO: on what should we base this range?
-			// Check if we are already in range, otherwise walk there
-			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
+			if (!Engine.QueryInterface(msg.data.target, IID_GarrisonHolder))
 			{
-				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
-					// The target was destroyed
-					this.FinishOrder();
-				else
-					// Out of range; move there in formation
-					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
+				this.FinishOrder();
 				return;
 			}
+			// Check if we are already in range, otherwise walk there
+			if (!this.CheckGarrisonRange(msg.data.target))
+			{
+				if (!this.CheckTargetVisible(msg.data.target))
+				{
+					this.FinishOrder();
+					return;
+				}
+				else
+				{
+					// Out of range; move there in formation
+					if (this.MoveToGarrisonRange(msg.data.target))
+					{
+						this.SetNextState("GARRISON.APPROACHING");
+						return;
+					}
+				}
+			}
 
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			// We don't want to rearrange the formation if the individual units are carrying
-			// out a task and one of the members dies/leaves the formation.
-			cmpFormation.SetRearrange(false);
-			cmpFormation.CallMemberFunction("Garrison", [msg.data.target, false]);
-
-			this.SetNextStateAlwaysEntering("MEMBER");
+			this.SetNextState("GARRISON.GARRISONING");
 		},
 
 		"Order.Gather": function(msg) {
@@ -988,6 +1022,57 @@ var UnitFsmSpec = {
 
 				// No more orders left.
 				cmpFormation.Disband();
+			},
+		},
+
+		"GARRISON":{
+			"enter": function() {
+				// If the garrisonholder should pickup, warn it so it can take needed action
+				var cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
+				if (cmpGarrisonHolder && cmpGarrisonHolder.CanPickup(this.entity))
+				{
+					this.pickup = this.order.data.target;       // temporary, deleted in "leave"
+					Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
+				}
+			},
+
+			"leave": function() {
+				// If a pickup has been requested and not yet canceled, cancel it
+				if (this.pickup)
+				{
+					Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
+					delete this.pickup;
+				}
+			},
+
+
+			"APPROACHING": {
+				"MoveStarted": function(msg) {
+					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(true);
+					cmpFormation.MoveMembersIntoFormation(true, true);
+				},
+
+				"MoveCompleted": function(msg) {
+					this.SetNextState("GARRISONING");
+				},
+			},
+
+			"GARRISONING": {
+				"enter": function() {
+					// If a pickup has been requested, cancel it as it will be requested by members
+					if (this.pickup)
+					{
+						Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
+						delete this.pickup;
+					}
+					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					// We don't want to rearrange the formation if the individual units are carrying
+					// out a task and one of the members dies/leaves the formation.
+					cmpFormation.SetRearrange(false);
+					cmpFormation.CallMemberFunction("Garrison", [this.order.data.target, false]);
+					this.SetNextStateAlwaysEntering("MEMBER");
+				},
 			},
 		},
 
@@ -2271,6 +2356,26 @@ var UnitFsmSpec = {
 		},
 
 		"GARRISON": {
+			"enter": function() {
+				// If the garrisonholder should pickup, warn it so it can take needed action
+				var cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
+				if (cmpGarrisonHolder && cmpGarrisonHolder.CanPickup(this.entity))
+				{
+					this.pickup = this.order.data.target;       // temporary, deleted in "leave"
+					Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
+				}
+			},
+
+			"leave": function() {
+				// If a pickup has been requested and not yet canceled, cancel it
+				if (this.pickup)
+				{
+					Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
+					delete this.pickup;
+				}
+
+			},
+
 			"APPROACHING": {
 				"enter": function() {
 					this.SelectAnimation("move");
@@ -2279,10 +2384,6 @@ var UnitFsmSpec = {
 				"MoveCompleted": function() {
 					this.SetNextState("GARRISONED");
 				},
-				
-				"leave": function() {
-					this.StopTimer();
-				}
 			},
 
 			"GARRISONED": {
@@ -2314,14 +2415,31 @@ var UnitFsmSpec = {
 										this.SetGathererAnimationOverride();
 									}
 								}
+
+								// If a pickup has been requested, remove it
+								if (this.pickup)
+								{
+									Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
+									delete this.pickup;
+								}
 								
 								return false;
 							}
 						}
 						else
 						{
-							// Unable to reach the target, try again
-							// (or follow if it's a moving target)
+							// Unable to reach the target, try again (or follow if it is a moving target)
+							// except if the does not exits anymore or its orders have changed
+							if (this.pickup)
+							{
+								var cmpUnitAI = Engine.QueryInterface(this.pickup, IID_UnitAI);
+								if (!cmpUnitAI || !cmpUnitAI.HasPickupOrder(this.entity))
+								{
+									this.FinishOrder();
+									return true;
+								}
+
+							}
 							if (this.MoveToTarget(target))
 							{
 								this.SetNextState("APPROACHING");
@@ -2399,6 +2517,40 @@ var UnitFsmSpec = {
 
 			"Attacked": function(msg) {
 				// Ignore attacks while unpacking
+			},
+		},
+
+		"PICKUP": {
+			"APPROACHING": {
+				"enter": function() {
+					this.SelectAnimation("move");
+				},
+
+				"MoveCompleted": function() {
+					this.SetNextState("LOADING");
+				},
+
+				"PickupCanceled": function() {
+					this.StopMoving();
+					this.FinishOrder();
+				},
+			},
+
+			"LOADING": {
+				"enter": function() {
+					this.SelectAnimation("idle");
+					var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+					if (!cmpGarrisonHolder || cmpGarrisonHolder.IsFull())
+					{
+						this.FinishOrder();
+						return true;
+					}
+					return false;
+				},
+
+				"PickupCanceled": function() {
+					this.FinishOrder();
+				},
 			},
 		},
 	},
@@ -2676,6 +2828,39 @@ UnitAI.prototype.OnVisionRangeChanged = function(msg)
 		this.SetupRangeQueries();
 };
 
+UnitAI.prototype.HasPickupOrder = function(entity)
+{
+	for each (var order in this.orderQueue)
+		if (order.type == "PickupUnit" && order.data.target == entity)
+			return true;
+	return false;
+};
+
+UnitAI.prototype.OnPickupRequested = function(msg)
+{
+	// First check if we already have such a request
+	if (this.HasPickupOrder(msg.entity))
+		return;
+	// Otherwise, insert the PickUp order after the last forced order
+	this.PushOrderAfterForced("PickupUnit", { "target": msg.entity });
+};
+
+UnitAI.prototype.OnPickupCanceled = function(msg)
+{
+	var cmpUnitAI = Engine.QueryInterface(msg.entity, IID_UnitAI);
+	for (var i = 0; i < this.orderQueue.length; ++i)
+	{
+		if (this.orderQueue[i].type == "PickupUnit" && this.orderQueue[i].data.target == msg.entity)
+		{
+			if (i == 0)
+				UnitFsm.ProcessMessage(this, {"type": "PickupCanceled", "data": msg});
+			else
+				this.orderQueue.splice(i, 1);
+			break;
+		}
+	}
+};
+
 // Wrapper function that sets up the normal, healer, and Gaia range queries.
 UnitAI.prototype.SetupRangeQueries = function()
 {
@@ -2939,6 +3124,31 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 			this.orderQueue.shift();
 			this.order = this.orderQueue[0];
 		}
+	}
+};
+
+/**
+ * Insert an order after the last forced order onto the queue
+ * and after the other orders of the same type
+ */
+UnitAI.prototype.PushOrderAfterForced = function(type, data)
+{
+	if (!this.order || ((!this.order.data || !this.order.data.force) && this.order.type != type))
+	{
+		this.PushOrderFront(type, data);
+	}
+	else
+	{
+		for (var i = 1; i < this.orderQueue.length; ++i)
+		{
+			if (this.orderQueue[i].data && this.orderQueue[i].data.force)
+				continue;
+			if (this.orderQueue[i].type == type)
+				continue;
+			this.orderQueue.splice(i, 0, {"type": type, "data": data});
+			return;
+		}
+		this.PushOrder(type, data);
 	}
 };
 
@@ -3528,6 +3738,20 @@ UnitAI.prototype.MoveToTargetRangeExplicit = function(target, min, max)
 	return cmpUnitMotion.MoveToTargetRange(target, min, max);
 };
 
+UnitAI.prototype.MoveToGarrisonRange = function(target)
+{
+	if (!this.CheckTargetVisible(target))
+		return false;
+
+	var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
+	if (!cmpGarrisonHolder)
+		return false;
+	var range = cmpGarrisonHolder.GetLoadingRange();
+
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
+};
+
 UnitAI.prototype.CheckPointRangeExplicit = function(x, z, min, max)
 {
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
@@ -3589,6 +3813,8 @@ UnitAI.prototype.CheckTargetRangeExplicit = function(target, min, max)
 UnitAI.prototype.CheckGarrisonRange = function(target)
 {
 	var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
+	if (!cmpGarrisonHolder)
+		return false;
 	var range = cmpGarrisonHolder.GetLoadingRange();
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);

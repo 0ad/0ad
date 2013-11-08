@@ -21,7 +21,12 @@ GarrisonHolder.prototype.Schema =
 	"</element>" +
 	"<element name='LoadingRange' a:help='The maximum distance from this holder at which entities are allowed to garrison. Should be about 2.0 for land entities and preferably greater for ships'>" +
 		"<ref name='nonNegativeDecimal'/>" +
-	"</element>";
+	"</element>" +
+	"<optional>" +
+		"<element name='Pickup' a:help='This garrisonHolder will move to pick up units to be garrisoned'>" +
+			"<data type='boolean'/>" +
+		"</element>" +
+	"</optional>";
 
 /**
  * Initialize GarrisonHolder Component
@@ -42,6 +47,21 @@ GarrisonHolder.prototype.GetLoadingRange = function()
 	var max = +this.template.LoadingRange;
 	return { "max": max, "min": 0 };
 };
+
+/**
+ * Return true if this garrisonHolder can pickup ent
+ */
+GarrisonHolder.prototype.CanPickup = function(ent)
+{
+	if (!this.template.Pickup || this.IsFull())
+		return false;
+	var cmpOwner = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwner)
+		return false;
+	var player = cmpOwner.GetOwner();
+	return IsOwnedByPlayer(player, ent);
+};
+
 
 /**
  * Return the list of entities garrisoned inside
@@ -67,6 +87,14 @@ GarrisonHolder.prototype.GetAllowedClassesList = function()
 GarrisonHolder.prototype.GetCapacity = function()
 {
 	return ApplyValueModificationsToEntity("GarrisonHolder/Max", +this.template.Max, this.entity);
+};
+
+/**
+ * Return true if this garrisonHolder is full
+ */
+GarrisonHolder.prototype.IsFull = function()
+{
+	return this.GetGarrisonedEntitiesCount() >= this.GetCapacity();
 };
 
 /**
