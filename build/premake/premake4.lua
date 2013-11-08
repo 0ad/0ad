@@ -574,6 +574,7 @@ function setup_all_libs ()
 	}
 	setup_static_lib_project("network", source_dirs, extern_libs, {})
 
+
 	if not _OPTIONS["without-lobby"] then
 		source_dirs = {
 			"lobby",
@@ -585,25 +586,29 @@ function setup_all_libs ()
 			"gloox",
 		}
 		setup_static_lib_project("lobby", source_dirs, extern_libs, {})
+
+		if _OPTIONS["use-shared-glooxwrapper"] and not _OPTIONS["build-shared-glooxwrapper"] then
+			table.insert(static_lib_names_debug, "glooxwrapper_dbg")
+			table.insert(static_lib_names_release, "glooxwrapper")
+		else
+			source_dirs = {
+				"lobby/glooxwrapper",
+			}
+			extern_libs = {
+				"boost",
+				"gloox",
+			}
+			if _OPTIONS["build-shared-glooxwrapper"] then
+				setup_shared_lib_project("glooxwrapper", source_dirs, extern_libs, {})
+			else
+				setup_static_lib_project("glooxwrapper", source_dirs, extern_libs, {})
+			end
+		end
+	else
+		setup_static_lib_project("lobby", {}, {}, {})
+		files { source_root.."lobby/Globals.cpp" }
 	end
 
-	if _OPTIONS["use-shared-glooxwrapper"] and not _OPTIONS["build-shared-glooxwrapper"] then
-		table.insert(static_lib_names_debug, "glooxwrapper_dbg")
-		table.insert(static_lib_names_release, "glooxwrapper")
-	else
-		source_dirs = {
-			"lobby/glooxwrapper",
-		}
-		extern_libs = {
-			"boost",
-			"gloox",
-		}
-		if _OPTIONS["build-shared-glooxwrapper"] then
-			setup_shared_lib_project("glooxwrapper", source_dirs, extern_libs, {})
-		else
-			setup_static_lib_project("glooxwrapper", source_dirs, extern_libs, {})
-		end
-	end
 
 	source_dirs = {
 		"simulation2",
@@ -684,6 +689,7 @@ function setup_all_libs ()
 		table.insert(extern_libs, "nvtt")
 	end
 	setup_static_lib_project("graphics", source_dirs, extern_libs, {})
+
 
 	source_dirs = {
 		"tools/atlas/GameInterface",
@@ -772,7 +778,7 @@ function setup_all_libs ()
 	end
 
 	-- runtime-library-specific
-	if _ACTION == "vs2005" or _ACTION == "vs2008" or _ACTION == "vs2010" or _ACTION == "vs2012" then
+	if _ACTION == "vs2005" or _ACTION == "vs2008" or _ACTION == "vs2010" or _ACTION == "vs2012" or _ACTION == "vs2013" then
 		table.insert(source_dirs, "lib/sysdep/rtl/msc");
 	else
 		table.insert(source_dirs, "lib/sysdep/rtl/gcc");
@@ -1258,7 +1264,7 @@ function configure_cxxtestgen()
 		lcxxtestpath = path.translate(lcxxtestpath, "\\")
 	end
 
-	if _ACTION ~= "gmake" and _ACTION ~= "vs2010" and _ACTION ~= "vs2012" then
+	if _ACTION ~= "gmake" and _ACTION ~= "vs2010" and _ACTION ~= "vs2012" and _ACTION ~= "vs2013" then
 		prebuildcommands { lcxxtestpath.." --root "..lcxxtestrootoptions.." -o "..lcxxtestrootfile }
 	end
 
@@ -1276,7 +1282,7 @@ function configure_cxxtestgen()
 			files { src_file }
 			cxxtesthdrfiles { v }
 
-			if _ACTION ~= "gmake" and _ACTION ~= "vs2010" and _ACTION ~= "vs2012" then
+			if _ACTION ~= "gmake" and _ACTION ~= "vs2010" and _ACTION ~= "vs2012" and _ACTION ~= "vs2013" then
 				-- see detailed comment above.
 				src_file = path.rebase(src_file, path.getabsolute("."), _OPTIONS["outpath"])
 				v = path.rebase(v, path.getabsolute("."), _OPTIONS["outpath"])

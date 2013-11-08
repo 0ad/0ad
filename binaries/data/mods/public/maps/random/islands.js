@@ -1,6 +1,5 @@
 RMS.LoadLibrary("rmgen");
-var nh = new Date();
-var ti = nh.getTime();
+
 TILE_CENTERED_HEIGHT_MAP = true;
 //random terrain textures
 var random_terrain = randomizeBiome();
@@ -346,7 +345,7 @@ createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
 	[avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)],
-	scaleByMapSize(8, 25)
+	scaleByMapSize(4, 13)
 );
 
 
@@ -355,13 +354,13 @@ if (random_terrain == 6)
 {
 	var MIN_TREES = 200;
 	var MAX_TREES = 1250;
-	var P_FOREST = 0.02;
+	var P_FOREST = 0;
 }
 else if (random_terrain == 7)
 {
 	var MIN_TREES = 1000;
 	var MAX_TREES = 6000;
-	var P_FOREST = 0.6;
+	var P_FOREST = 0.52;
 }
 else
 {
@@ -380,40 +379,36 @@ var types = [
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];	// some variation
 
-if (random_terrain == 6)
+if (random_terrain != 6)
 {
-	var size = numForest / (0.5 * scaleByMapSize(2,8) * numPlayers);
-}
-else
-{
-	var size = numForest / (scaleByMapSize(2,8) * numPlayers);
-}
-var num = floor(size / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
-	painter = new LayeredPainter(
-		types[i],		// terrains
-		[2]											// widths
+	var size = numForest / (scaleByMapSize(3,6) * numPlayers);
+	var num = floor(size / types.length);
+	for (var i = 0; i < types.length; ++i)
+	{
+		placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / (num * floor(scaleByMapSize(2,5))), 0.5);
+		painter = new LayeredPainter(
+			types[i],		// terrains
+			[2]											// widths
+			);
+		createAreas(
+			placer,
+			[painter, paintClass(clForest)], 
+			[avoidClasses(clPlayer, 0, clForest, 10, clHill, 0), stayClasses(clLand, 6)],
+			num
 		);
-	createAreas(
-		placer,
-		[painter, paintClass(clForest)], 
-		[avoidClasses(clPlayer, 0, clForest, 10, clHill, 0), stayClasses(clLand, 6)],
-		num
-	);
+	}
 }
 
 RMS.SetProgress(50);
 // create dirt patches
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
+var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
 var numb = 1;
 if (random_terrain == 6)
 	numb = 3
 for (var i = 0; i < sizes.length; i++)
 {
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
 	painter = new LayeredPainter(
 		[[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]], 		// terrains
 		[1,1]															// widths
@@ -428,10 +423,10 @@ for (var i = 0; i < sizes.length; i++)
 
 // create grass patches
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)];
+var sizes = [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)];
 for (var i = 0; i < sizes.length; i++)
 {
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
 	painter = new TerrainPainter(tTier4Terrain);
 	createAreas(
 		placer,
@@ -612,7 +607,5 @@ else if (random_terrain ==3){
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
 
-nh = new Date();
-log (nh.getTime() - ti);
 // Export map data
 ExportMap();

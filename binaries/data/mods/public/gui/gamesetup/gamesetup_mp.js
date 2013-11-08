@@ -45,7 +45,8 @@ function cancelSetup()
 	if (g_IsConnecting)
 		Engine.DisconnectNetworkGame();
 	// Set player lobby presence
-	Engine.LobbySetPlayerPresence("available");
+	if (Engine.HasXmppClient())
+		Engine.LobbySetPlayerPresence("available");
 	Engine.PopGuiPage();
 }
 
@@ -200,7 +201,8 @@ function startHost(playername, servername)
 	startConnectionStatus("server");
 	g_ServerName = servername;
 	// Set player lobby presence
-	Engine.LobbySetPlayerPresence("playing");
+	if (Engine.HasXmppClient())
+		Engine.LobbySetPlayerPresence("playing");
 	return true;
 }
 
@@ -221,6 +223,7 @@ function startJoin(playername, ip)
 
 	startConnectionStatus("client");
 	// Set player lobby presence
-	Engine.LobbySetPlayerPresence("playing");
+	if (Engine.HasXmppClient())
+		Engine.LobbySetPlayerPresence("playing");
 	return true;
 }

@@ -420,6 +420,9 @@ function openManual()
 
 function toggleDeveloperOverlay()
 {
+	if (Engine.HasXmppClient() && Engine.IsRankedGame())
+		return;
+
 	var devCommands = getGUIObjectByName("devCommands");
 	var text = devCommands.hidden ? "opened." : "closed.";
 	submitChatDirectly("The Developer Overlay was " + text);

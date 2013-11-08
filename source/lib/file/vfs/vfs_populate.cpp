@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -33,12 +33,6 @@
 #include "lib/file/vfs/vfs.h"	// error codes
 
 
-#define ENABLE_ARCHIVE_STATS 0
-#if ENABLE_ARCHIVE_STATS
-static std::vector<const VfsFile*> s_looseFiles;
-static size_t s_numArchivedFiles;
-#endif
-
 struct CompareFileInfoByName
 {
 	bool operator()(const CFileInfo& a, const CFileInfo& b)
@@ -60,10 +54,6 @@ public:
 
 	Status AddEntries() const
 	{
-#if ENABLE_ARCHIVE_STATS
-		s_looseFiles.reserve(10000);
-#endif
-
 		CFileInfos files; files.reserve(500);
 		DirectoryNames subdirectoryNames; subdirectoryNames.reserve(50);
 		RETURN_STATUS_IF_ERR(GetDirectoryEntries(m_realDirectory->Path(), &files, &subdirectoryNames));
@@ -93,19 +83,7 @@ private:
 		}
 
 		const VfsFile file(name, (size_t)fileInfo.Size(), fileInfo.MTime(), m_realDirectory->Priority(), m_realDirectory);
-		const VfsFile* pfile = m_directory->AddFile(file);
-
-#if ENABLE_ARCHIVE_STATS
-		// notify archive builder that this file could be archived but
-		// currently isn't; if there are too many of these, archive will
-		// be rebuilt.
-		// note: check if archivable to exclude stuff like screenshots
-		// from counting towards the threshold.
-		if(m_realDirectory->Flags() & VFS_MOUNT_ARCHIVABLE)
-			s_looseFiles.push_back(pfile);
-#else
-		UNUSED2(pfile);
-#endif
+		m_directory->AddFile(file);
 	}
 
 	static void AddArchiveFile(const VfsPath& pathname, const CFileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData)
@@ -128,9 +106,6 @@ private:
 
 		const VfsFile file(name, (size_t)fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);
 		directory->AddFile(file);
-#if ENABLE_ARCHIVE_STATS
-		s_numArchivedFiles++;
-#endif
 	}
 
 	Status AddFiles(const CFileInfos& files) const

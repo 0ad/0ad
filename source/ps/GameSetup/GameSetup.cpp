@@ -685,9 +685,7 @@ void Shutdown(int UNUSED(flags))
 {
 	EndGame();
 
-	#if CONFIG2_LOBBY
-		SAFE_DELETE(g_XmppClient);
-	#endif
+	SAFE_DELETE(g_XmppClient);
 
 	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
 

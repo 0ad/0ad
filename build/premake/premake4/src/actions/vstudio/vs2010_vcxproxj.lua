@@ -153,8 +153,11 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 					,iif(optimisation(cfg) == "Disabled","true","false"))
 
 				if _ACTION == "vs2012" then
-					_p(2, '<PlatformToolset>v110</PlatformToolset>')			
+					_p(2, '<PlatformToolset>v110_xp</PlatformToolset>')			
+				elseif _ACTION == "vs2013" then
+					_p(2, '<PlatformToolset>v120_xp</PlatformToolset>')
 				end
+				
 			
 				if cfg.flags.MFC then
 					_p(2,'<UseOfMfc>Dynamic</UseOfMfc>')

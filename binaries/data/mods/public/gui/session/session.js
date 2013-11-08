@@ -3,6 +3,8 @@ var g_IsNetworked = false;
 
 // Is this user in control of game settings (i.e. is a network server, or offline player)
 var g_IsController;
+// Match ID for tracking
+var g_MatchID;
 
 // Cache the basic player data (name, civ, color)
 var g_Players = [];
@@ -256,10 +258,9 @@ function leaveGame()
 	stopAmbient();
 	endGame();
 
-	if (g_IsController)
-	{
+	if (g_IsController && Engine.HasXmppClient())
 		Engine.SendUnregisterGame();
-	}
+
 	Engine.SwitchGuiPage("page_summary.xml", {
 							"gameResult"  : gameResult,
 							"timeElapsed" : extendedSimState.timeElapsed,
@@ -698,6 +699,9 @@ function stopAmbient()
 // Send a report on the game status to the lobby
 function reportGame(extendedSimState)
 {
+	if (!Engine.HasXmppClient())
+		return;
+
 	// Resources gathered and used
 	var playerFoodGatheredString = "";
 	var playerWoodGatheredString  = "";
