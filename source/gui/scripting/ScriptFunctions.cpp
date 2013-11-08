@@ -27,6 +27,8 @@
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "lib/sysdep/sysdep.h"
+#include "lobby/IXmppClient.h"
+#include "lobby/sha.h"
 #include "maths/FixedVector3D.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
@@ -50,8 +52,6 @@
 #include "ps/ConfigDB.h"
 #include "renderer/scripting/JSInterface_Renderer.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
-#include "lobby/IXmppClient.h"
-#include "lobby/sha.h"
 
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpAIManager.h"
@@ -615,6 +615,11 @@ void RewindTimeWarp(void* UNUSED(cbdata))
 
 /* Begin lobby related functions */
 
+bool HasXmppClient(void* UNUSED(cbdata))
+{
+	return (g_XmppClient ? true : false);
+}
+
 void StartXmppClient(void* cbdata, std::string sUsername, std::string sPassword, std::string sRoom, std::string sNick)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
@@ -632,11 +637,6 @@ void StartRegisterXmppClient(void* cbdata, std::string sUsername, std::string sP
 	ENSURE(!g_XmppClient);
 
 	g_XmppClient = IXmppClient::create(guiManager->GetScriptInterface(), sUsername, sPassword, "", "", true);
-}
-
-bool HasXmppClient(void* UNUSED(cbdata))
-{
-	return (g_XmppClient ? true : false);
 }
 
 void StopXmppClient(void* UNUSED(cbdata))
@@ -964,11 +964,11 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &RewindTimeWarp>("RewindTimeWarp");
 	scriptInterface.RegisterFunction<void, bool, &SetBoundingBoxDebugOverlay>("SetBoundingBoxDebugOverlay");
 
-#if CONFIG2_LOBBY // Allow the lobby to be disabled
 	// Lobby functions
+	scriptInterface.RegisterFunction<bool, &HasXmppClient>("HasXmppClient");
+#if CONFIG2_LOBBY // Allow the lobby to be disabled
 	scriptInterface.RegisterFunction<void, std::string, std::string, std::string, std::string, &StartXmppClient>("StartXmppClient");
 	scriptInterface.RegisterFunction<void, std::string, std::string, &StartRegisterXmppClient>("StartRegisterXmppClient");
-	scriptInterface.RegisterFunction<bool, &HasXmppClient>("HasXmppClient");
 	scriptInterface.RegisterFunction<void, &StopXmppClient>("StopXmppClient");
 	scriptInterface.RegisterFunction<void, &ConnectXmppClient>("ConnectXmppClient");
 	scriptInterface.RegisterFunction<void, &DisconnectXmppClient>("DisconnectXmppClient");

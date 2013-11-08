@@ -574,6 +574,7 @@ function setup_all_libs ()
 	}
 	setup_static_lib_project("network", source_dirs, extern_libs, {})
 
+
 	if not _OPTIONS["without-lobby"] then
 		source_dirs = {
 			"lobby",
@@ -585,25 +586,29 @@ function setup_all_libs ()
 			"gloox",
 		}
 		setup_static_lib_project("lobby", source_dirs, extern_libs, {})
+
+		if _OPTIONS["use-shared-glooxwrapper"] and not _OPTIONS["build-shared-glooxwrapper"] then
+			table.insert(static_lib_names_debug, "glooxwrapper_dbg")
+			table.insert(static_lib_names_release, "glooxwrapper")
+		else
+			source_dirs = {
+				"lobby/glooxwrapper",
+			}
+			extern_libs = {
+				"boost",
+				"gloox",
+			}
+			if _OPTIONS["build-shared-glooxwrapper"] then
+				setup_shared_lib_project("glooxwrapper", source_dirs, extern_libs, {})
+			else
+				setup_static_lib_project("glooxwrapper", source_dirs, extern_libs, {})
+			end
+		end
+	else
+		setup_static_lib_project("lobby", {}, {}, {})
+		files { source_root.."lobby/Globals.cpp" }
 	end
 
-	if _OPTIONS["use-shared-glooxwrapper"] and not _OPTIONS["build-shared-glooxwrapper"] then
-		table.insert(static_lib_names_debug, "glooxwrapper_dbg")
-		table.insert(static_lib_names_release, "glooxwrapper")
-	else
-		source_dirs = {
-			"lobby/glooxwrapper",
-		}
-		extern_libs = {
-			"boost",
-			"gloox",
-		}
-		if _OPTIONS["build-shared-glooxwrapper"] then
-			setup_shared_lib_project("glooxwrapper", source_dirs, extern_libs, {})
-		else
-			setup_static_lib_project("glooxwrapper", source_dirs, extern_libs, {})
-		end
-	end
 
 	source_dirs = {
 		"simulation2",
@@ -684,6 +689,7 @@ function setup_all_libs ()
 		table.insert(extern_libs, "nvtt")
 	end
 	setup_static_lib_project("graphics", source_dirs, extern_libs, {})
+
 
 	source_dirs = {
 		"tools/atlas/GameInterface",

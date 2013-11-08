@@ -398,7 +398,7 @@ function handleNetMessage(message)
 		break;
 
 	case "start":
-		if (g_IsController)
+		if (g_IsController && Engine.HasXmppClient())
 		{
 			var players = [ assignment.name for each (assignment in g_PlayerAssignments) ]
 			Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
@@ -588,13 +588,14 @@ function cancelSetup()
 {
 	Engine.DisconnectNetworkGame();
 
-	// Set player presence
-	Engine.LobbySetPlayerPresence("available");
-
-	if(g_IsController)
+	if (Engine.HasXmppClient())
 	{
+		// Set player presence
+		Engine.LobbySetPlayerPresence("available");
+
 		// Unregister the game
-		Engine.SendUnregisterGame();
+		if (g_IsController)
+			Engine.SendUnregisterGame();
 	}
 }
 
@@ -1526,6 +1527,9 @@ function keywordTestOR(keywords, matches)
 
 function sendRegisterGameStanza()
 {
+	if (!Engine.HasXmppClient())
+		return;
+
 	var selectedMapSize = getGUIObjectByName("mapSize").selected;
 	var selectedVictoryCondition = getGUIObjectByName("victoryCondition").selected;
 

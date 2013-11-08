@@ -33,10 +33,6 @@
 // Configuration
 #include "ps/ConfigDB.h"
 
-//global
-IXmppClient *g_XmppClient = NULL;
-bool g_rankedGame = false;
-
 //debug
 #if 1
 #define DbgXMPP(x)

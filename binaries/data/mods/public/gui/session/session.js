@@ -258,10 +258,9 @@ function leaveGame()
 	stopAmbient();
 	endGame();
 
-	if (g_IsController)
-	{
+	if (g_IsController && Engine.HasXmppClient())
 		Engine.SendUnregisterGame();
-	}
+
 	Engine.SwitchGuiPage("page_summary.xml", {
 							"gameResult"  : gameResult,
 							"timeElapsed" : extendedSimState.timeElapsed,
@@ -700,6 +699,9 @@ function stopAmbient()
 // Send a report on the game status to the lobby
 function reportGame(extendedSimState)
 {
+	if (!Engine.HasXmppClient())
+		return;
+
 	// Resources gathered and used
 	var playerFoodGatheredString = "";
 	var playerWoodGatheredString  = "";
