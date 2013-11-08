@@ -130,10 +130,11 @@ ClumpPlacer.prototype.place = function(constraint)
 //	failfraction: Percentage of place attempts allowed to fail (optional)
 //	x, z: Tile coordinates of placer center (optional)
 //  fcc: Farthest circle center (optional)
+//  q: a list containing numbers. each time if the list still contains values, pops one from the end and uses it as the radius (optional)
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, x, z, fcc)
+function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, x, z, fcc, q)
 {
 	this.minRadius = minRadius;
 	this.maxRadius = maxRadius;
@@ -142,6 +143,7 @@ function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, x, z, fcc)
 	this.x = (x !== undefined ? x : -1);
 	this.z = (z !== undefined ? z : -1);
 	this.fcc = (fcc !== undefined ? fcc : 0);
+	this.q = (q !== undefined ? q : []);
 }
 
 ChainPlacer.prototype.place = function(constraint)
@@ -155,6 +157,7 @@ ChainPlacer.prototype.place = function(constraint)
 	var retVec = [];
 	var size = getMapSize();
 	var failed = 0, count = 0;
+	var queueEmpty = (this.q.length ? false : true);
 	
 	var gotRet = new Array(size);
 	for (var i = 0; i < size; ++i)
@@ -178,7 +181,15 @@ ChainPlacer.prototype.place = function(constraint)
 		var point = edges[randInt(edges.length)];
 		var cx = point[0], cz = point[1];
 	
-		var radius = randInt(this.minRadius, this.maxRadius);
+		if (queueEmpty)
+		{
+			var radius = randInt(this.minRadius, this.maxRadius);
+		}
+		else
+		{
+			var radius = this.q.pop();
+			queueEmpty = (this.q.length ? false : true);
+		}
 		
 		//log (edges);
 		
