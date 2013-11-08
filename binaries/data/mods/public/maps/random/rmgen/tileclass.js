@@ -33,11 +33,11 @@ RangeOp.prototype.add = function(pos, amt)
 RangeOp.prototype.get = function(start, end)
 {
 	var ret = 0;
-	var i;
+	var i = 1;
 	var nn = this.nn;
 	
 	// Count from start to end by powers of 2
-	for (i = 1; start+i <= end; i *= 2)
+	for (; start+i <= end; i *= 2)
 	{
 		if (start & i)
 		{	// For each bit in start
