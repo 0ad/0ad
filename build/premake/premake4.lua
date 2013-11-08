@@ -772,7 +772,7 @@ function setup_all_libs ()
 	end
 
 	-- runtime-library-specific
-	if _ACTION == "vs2005" or _ACTION == "vs2008" or _ACTION == "vs2010" or _ACTION == "vs2012" then
+	if _ACTION == "vs2005" or _ACTION == "vs2008" or _ACTION == "vs2010" or _ACTION == "vs2012" or _ACTION == "vs2013" then
 		table.insert(source_dirs, "lib/sysdep/rtl/msc");
 	else
 		table.insert(source_dirs, "lib/sysdep/rtl/gcc");
@@ -1258,7 +1258,7 @@ function configure_cxxtestgen()
 		lcxxtestpath = path.translate(lcxxtestpath, "\\")
 	end
 
-	if _ACTION ~= "gmake" and _ACTION ~= "vs2010" and _ACTION ~= "vs2012" then
+	if _ACTION ~= "gmake" and _ACTION ~= "vs2010" and _ACTION ~= "vs2012" and _ACTION ~= "vs2013" then
 		prebuildcommands { lcxxtestpath.." --root "..lcxxtestrootoptions.." -o "..lcxxtestrootfile }
 	end
 
@@ -1276,7 +1276,7 @@ function configure_cxxtestgen()
 			files { src_file }
 			cxxtesthdrfiles { v }
 
-			if _ACTION ~= "gmake" and _ACTION ~= "vs2010" and _ACTION ~= "vs2012" then
+			if _ACTION ~= "gmake" and _ACTION ~= "vs2010" and _ACTION ~= "vs2012" and _ACTION ~= "vs2013" then
 				-- see detailed comment above.
 				src_file = path.rebase(src_file, path.getabsolute("."), _OPTIONS["outpath"])
 				v = path.rebase(v, path.getabsolute("."), _OPTIONS["outpath"])
