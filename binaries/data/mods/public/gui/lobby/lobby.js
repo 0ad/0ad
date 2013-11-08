@@ -557,12 +557,6 @@ function handleSpecialCommand(text)
 
 function addChatMessage(msg)
 {
-	// Set sender color
-	if (msg.color)
-		msg.from = '[color="' + msg.color + '"]' + msg.from + '[/color]';
-	else if (msg.from)
-		msg.from = colorPlayerName(msg.from);
-
 	// Highlight local user's nick
 	if (msg.text.indexOf(g_Name) != -1 && g_Name != msg.from)
 		msg.text = msg.text.replace(new RegExp('\\b' + '\\' + g_Name + '\\b', "g"), colorPlayerName(g_Name));
@@ -572,7 +566,7 @@ function addChatMessage(msg)
 		return;
 
 	// Format Text
-	var formatted = ircFormat(msg.text, msg.from, msg.key);
+	var formatted = ircFormat(msg.text, msg.from, msg.color, msg.key);
 
 	// If there is text, add it to the chat box.
 	if (formatted)
@@ -591,15 +585,23 @@ function ircSplit(string)
 }
 
 // The following formats text in an IRC-like way
-function ircFormat(text, from, key)
+function ircFormat(text, from, color, key)
 {
-	time = new Date(Date.now());
 	function warnUnsupportedCommand(command, from) // Function to warn only local player
 	{
 		if (from === g_Name)
-			addChatMessage({ "from": "system", "text": "We're sorry, the '" + command + "' command is not supported." });
+			addChatMessage({ "from":"system", "text":"We're sorry, the '" + command + "' command is not supported." });
 		return;
 	}
+
+	// Generate and apply color to uncolored names,
+	if (!color && from)
+		coloredFrom = colorPlayerName(from);
+	else if (from)
+		coloredFrom = "[color='" + color + "']" + from + "[/color]";
+
+	// Time for optional time header
+	time = new Date(Date.now());
 
 	// Build time header if enabled
 	if (g_timestamp)
@@ -614,18 +616,18 @@ function ircFormat(text, from, key)
 		switch (command)
 		{
 			case "me":
-				return formatted + '[font="serif-bold-13"]* ' + from + '[/font] ' + message;
+				return formatted + '[font="serif-bold-13"]* ' + coloredFrom + '[/font] ' + message;
 			case "say":
-				return formatted + '[font="serif-bold-13"]<' + from + '>[/font] ' + message;
+				return formatted + '[font="serif-bold-13"]<' + coloredFrom + '>[/font] ' + message;
 			case "special":
 				if (key === g_specialKey)
 					return formatted + '[font="serif-bold-13"] == ' + message + '[/font]';
 				break;
 			default:
-				return warnUnsupportedCommand(command, from)
+				return warnUnsupportedCommand(command, from);
 		}
 	}
-	return formatted + '[font="serif-bold-13"]<' + from + '>[/font] ' + text;
+	return formatted + '[font="serif-bold-13"]<' + coloredFrom + '>[/font] ' + text;
 }
 
 // The following function tracks message stats and returns true if the input text is spam.
@@ -645,9 +647,7 @@ function updateSpamandDetect(text, from)
 	if(from in g_spammers)
 	{
 		if (from == g_Name)
-		{
 			addChatMessage({ "from": "system", "text": "Please do not spam. You have been blocked for thirty seconds." });
-		}
 		return true;
 	}
 	// Return false if everything is clear.
