@@ -4,7 +4,7 @@ var g_IsNetworked = false;
 // Is this user in control of game settings (i.e. is a network server, or offline player)
 var g_IsController;
 // Match ID for tracking
-var g_MatchID
+var g_MatchID;
 
 // Cache the basic player data (name, civ, color)
 var g_Players = [];
