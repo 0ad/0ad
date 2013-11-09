@@ -31,8 +31,25 @@ EndGameManager.prototype.SetAlliedVictory = function(flag)
 	this.alliedVictory = flag;
 };
 
-EndGameManager.prototype.PlayerLostAllConquestCriticalEntities = function(playerID)
+/*
+ * Check players the next turn. Avoids problems in Atlas, with promoting entities etc
+ */
+EndGameManager.prototype.CheckPlayers = function()
 {
+	if (this.timeout)
+		return;
+	// wait a turn for actually checking the players
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.timeout = cmpTimer.SetTimeout(this.entity, IID_EndGameManager, "CheckPlayersNow", 100, null);	
+};
+
+/*
+ * Check players immediately. Might cause problems with converting/promoting entities.
+ */
+EndGameManager.prototype.CheckPlayersNow = function()
+{
+	if (this.timeout)
+		this.timeout = null;
 	if (this.gameType == "endless")
 		return; 
 
@@ -56,7 +73,7 @@ EndGameManager.prototype.PlayerLostAllConquestCriticalEntities = function(player
 		cmpPlayers[i] = Engine.QueryInterface(playerEntityId, IID_Player);
 		if (cmpPlayers[i].GetState() != "active") 
 			continue;
-		if (i == playerID)
+		if (cmpPlayers[i].GetConquestCriticalEntitiesCount() == 0)
 			Engine.PostMessage(playerEntityId, MT_PlayerDefeated, { "playerId": i } );
 		else
 		{
