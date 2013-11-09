@@ -425,7 +425,7 @@ struct OglTex
 
 	u16 flags;
 
-	size_t uploaded_size;
+	u32 uploaded_size;
 };
 
 H_TYPE_DEFINE(OglTex);
@@ -870,28 +870,28 @@ struct UploadParams
 {
 	GLenum fmt;
 	GLint int_fmt;
-	size_t* uploaded_size;
+	u32* uploaded_size;
 };
 
 static void upload_level(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
 	const UploadParams* up = (const UploadParams*)cbData;
 	glTexImage2D(GL_TEXTURE_2D, (GLint)level, up->int_fmt, (GLsizei)level_w, (GLsizei)level_h, 0, up->fmt, GL_UNSIGNED_BYTE, level_data);
-	*up->uploaded_size += level_data_size;
+	*up->uploaded_size += (u32)level_data_size;
 }
 
 static void upload_compressed_level(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
 	const UploadParams* up = (const UploadParams*)cbData;
 	pglCompressedTexImage2DARB(GL_TEXTURE_2D, (GLint)level, up->fmt, (GLsizei)level_w, (GLsizei)level_h, 0, (GLsizei)level_data_size, level_data);
-	*up->uploaded_size += level_data_size;
+	*up->uploaded_size += (u32)level_data_size;
 }
 
 // upload the texture in the specified (internal) format.
 // split out of ogl_tex_upload because it was too big.
 //
 // pre: <t> is valid for OpenGL use; texture is bound.
-static void upload_impl(Tex* t, GLenum fmt, GLint int_fmt, int levels_to_skip, size_t* uploaded_size)
+static void upload_impl(Tex* t, GLenum fmt, GLint int_fmt, int levels_to_skip, u32* uploaded_size)
 {
 	const GLsizei w  = (GLsizei)t->w;
 	const GLsizei h  = (GLsizei)t->h;
