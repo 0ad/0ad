@@ -190,6 +190,13 @@ public:
 	bool SetProperty(jsval obj, const char* name, const T& value, bool constant = false, bool enumerate = true);
 
 	/**
+	 * Set the named property on the given object.
+	 * Optionally makes it {ReadOnly, DontDelete, DontEnum}.
+	 */
+	template<typename T>
+	bool SetProperty(jsval obj, const wchar_t* name, const T& value, bool constant = false, bool enumerate = true);
+
+	/**
 	 * Set the integer-named property on the given object.
 	 * Optionally makes it {ReadOnly, DontDelete, DontEnum}.
 	 */
@@ -327,6 +334,7 @@ private:
 	bool Eval_(const wchar_t* code, jsval& ret);
 	bool SetGlobal_(const char* name, jsval value, bool replace);
 	bool SetProperty_(jsval obj, const char* name, jsval value, bool readonly, bool enumerate);
+	bool SetProperty_(jsval obj, const wchar_t* name, jsval value, bool readonly, bool enumerate);
 	bool SetPropertyInt_(jsval obj, int name, jsval value, bool readonly, bool enumerate);
 	bool GetProperty_(jsval obj, const char* name, jsval& value);
 	bool GetPropertyInt_(jsval obj, int name, jsval& value);
@@ -460,6 +468,12 @@ bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace)
 
 template<typename T>
 bool ScriptInterface::SetProperty(jsval obj, const char* name, const T& value, bool readonly, bool enumerate)
+{
+	return SetProperty_(obj, name, ToJSVal(GetContext(), value), readonly, enumerate);
+}
+
+template<typename T>
+bool ScriptInterface::SetProperty(jsval obj, const wchar_t* name, const T& value, bool readonly, bool enumerate)
 {
 	return SetProperty_(obj, name, ToJSVal(GetContext(), value), readonly, enumerate);
 }

@@ -803,6 +803,24 @@ bool ScriptInterface::SetProperty_(jsval obj, const char* name, jsval value, boo
 	return true;
 }
 
+bool ScriptInterface::SetProperty_(jsval obj, const wchar_t* name, jsval value, bool constant, bool enumerate)
+{
+	uintN attrs = 0;
+	if (constant)
+		attrs |= JSPROP_READONLY | JSPROP_PERMANENT;
+	if (enumerate)
+		attrs |= JSPROP_ENUMERATE;
+
+	if (! JSVAL_IS_OBJECT(obj))
+		return false;
+	JSObject* object = JSVAL_TO_OBJECT(obj);
+
+	utf16string name16(name, name + wcslen(name));
+	if (! JS_DefineUCProperty(m->m_cx, object, reinterpret_cast<const jschar*>(name16.c_str()), name16.length(), value, NULL, NULL, attrs))
+		return false;
+	return true;
+}
+
 bool ScriptInterface::SetPropertyInt_(jsval obj, int name, jsval value, bool constant, bool enumerate)
 {
 	uintN attrs = 0;

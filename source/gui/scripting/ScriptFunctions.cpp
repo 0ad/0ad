@@ -621,23 +621,27 @@ bool HasXmppClient(void* UNUSED(cbdata))
 }
 
 #if CONFIG2_LOBBY
-void StartXmppClient(void* cbdata, std::string sUsername, std::string sPassword, std::string sRoom, std::string sNick)
+void StartXmppClient(void* cbdata, std::wstring username, std::wstring password, std::wstring room, std::wstring nick)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
 	ENSURE(!g_XmppClient);
 
-	g_XmppClient = IXmppClient::create(guiManager->GetScriptInterface(), sUsername, sPassword, sRoom, sNick);
+	g_XmppClient = IXmppClient::create(guiManager->GetScriptInterface(),
+		utf8_from_wstring(username), utf8_from_wstring(password),
+		utf8_from_wstring(room), utf8_from_wstring(nick));
 	g_rankedGame = true;
 }
 
-void StartRegisterXmppClient(void* cbdata, std::string sUsername, std::string sPassword)
+void StartRegisterXmppClient(void* cbdata, std::wstring username, std::wstring password)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
 	ENSURE(!g_XmppClient);
 
-	g_XmppClient = IXmppClient::create(guiManager->GetScriptInterface(), sUsername, sPassword, "", "", true);
+	g_XmppClient = IXmppClient::create(guiManager->GetScriptInterface(),
+		utf8_from_wstring(username), utf8_from_wstring(password),
+		"", "", true);
 }
 
 void StopXmppClient(void* UNUSED(cbdata))
@@ -701,11 +705,11 @@ void SendUnregisterGame(void* UNUSED(cbdata))
 	g_XmppClient->SendIqUnregisterGame();
 }
 
-void SendChangeStateGame(void* UNUSED(cbdata), std::string nbp, std::string players)
+void SendChangeStateGame(void* UNUSED(cbdata), std::wstring nbp, std::wstring players)
 {
 	if (!g_XmppClient)
 		return;
-	g_XmppClient->SendIqChangeStateGame(nbp, players);
+	g_XmppClient->SendIqChangeStateGame(utf8_from_wstring(nbp), utf8_from_wstring(players));
 }
 
 CScriptVal GetPlayerList(void* UNUSED(cbdata))
@@ -748,102 +752,101 @@ CScriptVal LobbyGuiPollMessage(void* UNUSED(cbdata))
 	return poll.get();
 }
 
-void LobbySendMessage(void* UNUSED(cbdata), std::string message)
+void LobbySendMessage(void* UNUSED(cbdata), std::wstring message)
 {
 	if (!g_XmppClient)
 		return;
 
-	g_XmppClient->SendMUCMessage(message);
+	g_XmppClient->SendMUCMessage(utf8_from_wstring(message));
 }
 
-void LobbySetPlayerPresence(void* UNUSED(cbdata), std::string presence)
+void LobbySetPlayerPresence(void* UNUSED(cbdata), std::wstring presence)
 {
 	if (!g_XmppClient)
 		return;
 
-	g_XmppClient->SetPresence(presence);
+	g_XmppClient->SetPresence(utf8_from_wstring(presence));
 }
 
-void LobbySetNick(void* UNUSED(cbdata), std::string nick)
+void LobbySetNick(void* UNUSED(cbdata), std::wstring nick)
 {
 	if (!g_XmppClient)
 		return;
 
-	g_XmppClient->SetNick(nick);
+	g_XmppClient->SetNick(utf8_from_wstring(nick));
 }
 
-std::string LobbyGetNick(void* UNUSED(cbdata))
+std::wstring LobbyGetNick(void* UNUSED(cbdata))
 {
 	if (!g_XmppClient)
-		return "";
+		return L"";
 
 	std::string nick;
 	g_XmppClient->GetNick(nick);
-	return nick;
+	return wstring_from_utf8(nick);
 }
 
-void LobbyKick(void* UNUSED(cbdata), std::string nick, std::string reason)
+void LobbyKick(void* UNUSED(cbdata), std::wstring nick, std::wstring reason)
 {
 	if (!g_XmppClient)
 		return;
 
-	g_XmppClient->kick(nick, reason);
+	g_XmppClient->kick(utf8_from_wstring(nick), utf8_from_wstring(reason));
 }
 
-void LobbyBan(void* UNUSED(cbdata), std::string nick, std::string reason)
+void LobbyBan(void* UNUSED(cbdata), std::wstring nick, std::wstring reason)
 {
 	if (!g_XmppClient)
 		return;
 
-	g_XmppClient->ban(nick, reason);
+	g_XmppClient->ban(utf8_from_wstring(nick), utf8_from_wstring(reason));
 }
 
-std::string LobbyGetPlayerPresence(void* UNUSED(cbdata), std::string nickname)
+std::wstring LobbyGetPlayerPresence(void* UNUSED(cbdata), std::wstring nickname)
 {
 	if (!g_XmppClient)
-		return "";
+		return L"";
 
 	std::string presence;
-	g_XmppClient->GetPresence(nickname, presence);
-	return presence;
+	g_XmppClient->GetPresence(utf8_from_wstring(nickname), presence);
+	return wstring_from_utf8(presence);
 }
 
 // Non-public secure PBKDF2 hash function with salting and 1,337 iterations
-void EncryptPassword(const std::string& username, std::string& password)
+static std::string EncryptPassword(const std::string& password, const std::string& username)
 {
-		const int DIGESTSIZE = SHA_DIGEST_SIZE;
-		const int ITERATIONS = 1337;
+	const int DIGESTSIZE = SHA_DIGEST_SIZE;
+	const int ITERATIONS = 1337;
 
-		static const byte salt_base[DIGESTSIZE] = {
-				244, 243, 249, 244, 32, 33, 34, 35, 10, 11, 12, 13, 14, 15, 16, 17,
-				18, 19, 20, 32, 33, 244, 224, 127, 129, 130, 140, 153, 133, 123, 234, 123 };
+	static const byte salt_base[DIGESTSIZE] = {
+			244, 243, 249, 244, 32, 33, 34, 35, 10, 11, 12, 13, 14, 15, 16, 17,
+			18, 19, 20, 32, 33, 244, 224, 127, 129, 130, 140, 153, 133, 123, 234, 123 };
 
-		// initialize the salt buffer
-		byte salt_buffer[DIGESTSIZE] = {0};
-		SHA256 hash;
-		hash.update(salt_base, username.length());
-		hash.update(username.c_str(), username.length());
-		hash.finish(salt_buffer);
+	// initialize the salt buffer
+	byte salt_buffer[DIGESTSIZE] = {0};
+	SHA256 hash;
+	hash.update(salt_base, sizeof(salt_base));
+	hash.update(username.c_str(), username.length());
+	hash.finish(salt_buffer);
 
-		// PBKDF2 to create the buffer
-		byte encrypted[DIGESTSIZE];
-		pbkdf2(encrypted, (byte*)password.c_str(), password.length(), salt_buffer, DIGESTSIZE, ITERATIONS);
+	// PBKDF2 to create the buffer
+	byte encrypted[DIGESTSIZE];
+	pbkdf2(encrypted, (byte*)password.c_str(), password.length(), salt_buffer, DIGESTSIZE, ITERATIONS);
 
-		static const char base16[] = "0123456789ABCDEF";
-		char hex[2 * DIGESTSIZE];
-		for(int i = 0; i < DIGESTSIZE; ++i)
-		{
-				hex[i*2] = base16[encrypted[i] >> 4];		   // 4 high bits
-				hex[i*2 + 1] = base16[encrypted[i] & 0x0F];// 4 low bits
-		}
-		password.assign(hex, sizeof(hex));
+	static const char base16[] = "0123456789ABCDEF";
+	char hex[2 * DIGESTSIZE];
+	for (int i = 0; i < DIGESTSIZE; ++i)
+	{
+		hex[i*2] = base16[encrypted[i] >> 4];		   // 4 high bits
+		hex[i*2 + 1] = base16[encrypted[i] & 0x0F];// 4 low bits
+	}
+	return std::string(hex, sizeof(hex));
 }
 
 // Public hash interface.
-std::string EncryptPassword(void* UNUSED(cbdata), std::string user, std::string pass)
+std::wstring EncryptPassword(void* UNUSED(cbdata), std::wstring pass, std::wstring user)
 {
-		EncryptPassword(user, pass);
-		return pass;
+	return wstring_from_utf8(EncryptPassword(utf8_from_wstring(pass), utf8_from_wstring(user)));
 }
 
 bool IsRankedGame(void* UNUSED(cbdata))
@@ -969,8 +972,8 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	// Lobby functions
 	scriptInterface.RegisterFunction<bool, &HasXmppClient>("HasXmppClient");
 #if CONFIG2_LOBBY // Allow the lobby to be disabled
-	scriptInterface.RegisterFunction<void, std::string, std::string, std::string, std::string, &StartXmppClient>("StartXmppClient");
-	scriptInterface.RegisterFunction<void, std::string, std::string, &StartRegisterXmppClient>("StartRegisterXmppClient");
+	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, std::wstring, std::wstring, &StartXmppClient>("StartXmppClient");
+	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &StartRegisterXmppClient>("StartRegisterXmppClient");
 	scriptInterface.RegisterFunction<void, &StopXmppClient>("StopXmppClient");
 	scriptInterface.RegisterFunction<void, &ConnectXmppClient>("ConnectXmppClient");
 	scriptInterface.RegisterFunction<void, &DisconnectXmppClient>("DisconnectXmppClient");
@@ -980,19 +983,19 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, CScriptVal, &SendRegisterGame>("SendRegisterGame");
 	scriptInterface.RegisterFunction<void, CScriptVal, &SendGameReport>("SendGameReport");
 	scriptInterface.RegisterFunction<void, &SendUnregisterGame>("SendUnregisterGame");
-	scriptInterface.RegisterFunction<void, std::string, std::string, &SendChangeStateGame>("SendChangeStateGame");
+	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &SendChangeStateGame>("SendChangeStateGame");
 	scriptInterface.RegisterFunction<CScriptVal, &GetPlayerList>("GetPlayerList");
 	scriptInterface.RegisterFunction<CScriptVal, &GetGameList>("GetGameList");
 	scriptInterface.RegisterFunction<CScriptVal, &GetBoardList>("GetBoardList");
 	scriptInterface.RegisterFunction<CScriptVal, &LobbyGuiPollMessage>("LobbyGuiPollMessage");
-	scriptInterface.RegisterFunction<void, std::string, &LobbySendMessage>("LobbySendMessage");
-	scriptInterface.RegisterFunction<void, std::string, &LobbySetPlayerPresence>("LobbySetPlayerPresence");
-	scriptInterface.RegisterFunction<void, std::string, &LobbySetNick>("LobbySetNick");
-	scriptInterface.RegisterFunction<std::string, &LobbyGetNick>("LobbyGetNick");
-	scriptInterface.RegisterFunction<void, std::string, std::string, &LobbyKick>("LobbyKick");
-	scriptInterface.RegisterFunction<void, std::string, std::string, &LobbyBan>("LobbyBan");
-	scriptInterface.RegisterFunction<std::string, std::string, &LobbyGetPlayerPresence>("LobbyGetPlayerPresence");
-	scriptInterface.RegisterFunction<std::string, std::string, std::string, &EncryptPassword>("EncryptPassword");
+	scriptInterface.RegisterFunction<void, std::wstring, &LobbySendMessage>("LobbySendMessage");
+	scriptInterface.RegisterFunction<void, std::wstring, &LobbySetPlayerPresence>("LobbySetPlayerPresence");
+	scriptInterface.RegisterFunction<void, std::wstring, &LobbySetNick>("LobbySetNick");
+	scriptInterface.RegisterFunction<std::wstring, &LobbyGetNick>("LobbyGetNick");
+	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &LobbyKick>("LobbyKick");
+	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &LobbyBan>("LobbyBan");
+	scriptInterface.RegisterFunction<std::wstring, std::wstring, &LobbyGetPlayerPresence>("LobbyGetPlayerPresence");
+	scriptInterface.RegisterFunction<std::wstring, std::wstring, std::wstring, &EncryptPassword>("EncryptPassword");
 	scriptInterface.RegisterFunction<bool, &IsRankedGame>("IsRankedGame");
 	scriptInterface.RegisterFunction<void, bool, &SetRankedGame>("SetRankedGame");
 #endif // CONFIG2_LOBBY
