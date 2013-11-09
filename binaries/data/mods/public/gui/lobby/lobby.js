@@ -281,8 +281,13 @@ function selectGame(selected)
 	var g = getGUIObjectByName("gamesBox").list_data[selected];
 
 	// Load map data
-	if (g_GameList[g].mapType == "random" && fileExists(g_GameList[g].mapName + ".json"))
-		mapData = parseJSONData(g_GameList[g].mapName + ".json");
+	if (g_GameList[g].mapType == "random")
+	{
+		if (g_GameList[g].mapName == "random")
+			mapData = {"settings": {"Description": "A randomly selected map."}};
+		else if (fileExists(g_GameList[g].mapName + ".json"))
+			mapData = parseJSONData(g_GameList[g].mapName + ".json");
+	}
 	else if (fileExists(g_GameList[g].mapName + ".xml"))
 		mapData = Engine.LoadMapSettings(g_GameList[g].mapName + ".xml");
 	else
