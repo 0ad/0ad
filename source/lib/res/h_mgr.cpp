@@ -134,7 +134,7 @@ static inline Handle handle(size_t idx, u64 tag)
 //
 
 // chosen so that all current resource structs are covered.
-static const size_t HDATA_USER_SIZE = 100;
+static const size_t HDATA_USER_SIZE = 104;
 
 
 struct HDATA
