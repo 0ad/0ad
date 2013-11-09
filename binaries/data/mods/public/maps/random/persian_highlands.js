@@ -221,7 +221,7 @@ RMS.SetProgress(30);
 
 // create hills
 log("Creating hills...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
 var terrainPainter = new LayeredPainter(
 	[tCliff, tHill],		// terrains
 	[2]								// widths

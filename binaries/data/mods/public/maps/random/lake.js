@@ -278,7 +278,7 @@ createAreas(
 
 // create hills
 log("Creating hills...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
 terrainPainter = new LayeredPainter(
 	[tMainTerrain, tCliff, tHill],		// terrains
 	[1, 2]								// widths
