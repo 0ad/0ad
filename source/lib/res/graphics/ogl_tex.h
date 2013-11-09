@@ -397,6 +397,16 @@ extern Status ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt);
 extern Status ogl_tex_get_data(Handle ht, u8** p);
 
 /**
+* Retrieve number of bytes uploaded for the texture, including mipmaps.
+* size will be 0 if the texture has not been uploaded yet.
+*
+* @param ht Texture handle
+* @param size Will be filled with size in bytes
+* @return Status
+*/
+extern Status ogl_tex_get_uploaded_size(Handle ht, size_t* size);
+
+/**
  * Retrieve ARGB value of 1x1 mipmap level of the texture,
  * i.e. the average colour of the whole texture.
  *

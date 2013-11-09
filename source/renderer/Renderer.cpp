@@ -113,6 +113,7 @@ private:
 		Row_Particles,
 		Row_VBReserved,
 		Row_VBAllocated,
+		Row_TextureMemory,
 		Row_ShadersLoaded,
 
 		// Must be last to count number of rows
@@ -199,14 +200,20 @@ CStr CRendererStatsTable::GetCellText(size_t row, size_t col)
 
 	case Row_VBReserved:
 		if (col == 0)
-			return "VB bytes reserved";
-		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)g_VBMan.GetBytesReserved());
+			return "VB reserved";
+		sprintf_s(buf, sizeof(buf), "%lu kB", (unsigned long)g_VBMan.GetBytesReserved() / 1024);
 		return buf;
 
 	case Row_VBAllocated:
 		if (col == 0)
-			return "VB bytes allocated";
-		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)g_VBMan.GetBytesAllocated());
+			return "VB allocated";
+		sprintf_s(buf, sizeof(buf), "%lu kB", (unsigned long)g_VBMan.GetBytesAllocated() / 1024);
+		return buf;
+
+	case Row_TextureMemory:
+		if (col == 0)
+			return "textures uploaded";
+		sprintf_s(buf, sizeof(buf), "%lu kB", (unsigned long)g_Renderer.GetTextureManager().GetBytesUploaded() / 1024);
 		return buf;
 
 	case Row_ShadersLoaded:

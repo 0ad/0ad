@@ -111,6 +111,11 @@ public:
 	 */
 	bool GenerateCachedTexture(const VfsPath& path, VfsPath& outputPath);
 
+	/**
+	 * Returns total number of bytes uploaded for all current texture.
+	 */
+	size_t GetBytesUploaded() const;
+
 private:
 	CTextureManagerImpl* m;
 };
@@ -233,6 +238,11 @@ public:
 	 * Returns 0 if the texture has no mipmaps.
 	 */
 	u32 GetBaseColour() const;
+
+	/**
+	 * Returns total number of bytes uploaded for this texture.
+	 */
+	size_t GetUploadedSize() const;
 
 	/**
 	 * Bind the texture to the given GL texture unit.

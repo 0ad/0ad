@@ -424,6 +424,8 @@ struct OglTex
 	u8 tmu;
 
 	u16 flags;
+
+	size_t uploaded_size;
 };
 
 H_TYPE_DEFINE(OglTex);
@@ -456,6 +458,7 @@ static void OglTex_dtor(OglTex* ot)
 	glDeleteTextures(1, &ot->id);
 	ot->id = 0;
 	ot->flags &= ~OT_IS_UPLOADED;
+	ot->uploaded_size = 0;
 }
 
 static Status OglTex_reload(OglTex* ot, const PIVFS& vfs, const VfsPath& pathname, Handle h)
@@ -867,31 +870,34 @@ struct UploadParams
 {
 	GLenum fmt;
 	GLint int_fmt;
+	size_t* uploaded_size;
 };
 
-static void upload_level(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t UNUSED(level_data_size), void* RESTRICT cbData)
+static void upload_level(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
 	const UploadParams* up = (const UploadParams*)cbData;
 	glTexImage2D(GL_TEXTURE_2D, (GLint)level, up->int_fmt, (GLsizei)level_w, (GLsizei)level_h, 0, up->fmt, GL_UNSIGNED_BYTE, level_data);
+	*up->uploaded_size += level_data_size;
 }
 
 static void upload_compressed_level(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
 	const UploadParams* up = (const UploadParams*)cbData;
 	pglCompressedTexImage2DARB(GL_TEXTURE_2D, (GLint)level, up->fmt, (GLsizei)level_w, (GLsizei)level_h, 0, (GLsizei)level_data_size, level_data);
+	*up->uploaded_size += level_data_size;
 }
 
 // upload the texture in the specified (internal) format.
 // split out of ogl_tex_upload because it was too big.
 //
 // pre: <t> is valid for OpenGL use; texture is bound.
-static void upload_impl(Tex* t, GLenum fmt, GLint int_fmt, int levels_to_skip)
+static void upload_impl(Tex* t, GLenum fmt, GLint int_fmt, int levels_to_skip, size_t* uploaded_size)
 {
 	const GLsizei w  = (GLsizei)t->w;
 	const GLsizei h  = (GLsizei)t->h;
 	const size_t bpp   = t->bpp;
 	const u8* data = (const u8*)tex_get_data(t);
-	const UploadParams up = { fmt, int_fmt };
+	const UploadParams up = { fmt, int_fmt, uploaded_size };
 
 	if(t->flags & TEX_DXT)
 		tex_util_foreach_mipmap(w, h, bpp, data, levels_to_skip, 4, upload_compressed_level, (void*)&up);
@@ -936,6 +942,8 @@ Status ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint in
 		ot->int_fmt = choose_int_fmt(ot->fmt, ot->q_flags);
 		if(int_fmt_ovr) ot->int_fmt = int_fmt_ovr;
 
+		ot->uploaded_size = 0;
+
 		// now actually send to OpenGL:
 		ogl_WarnIfError();
 		{
@@ -949,7 +957,7 @@ Status ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint in
 			// (note: if first time, applies our defaults/previous overrides;
 			// otherwise, replays all state changes)
 			state_latch(&ot->state);
-			upload_impl(t, ot->fmt, ot->int_fmt, levels_to_skip);
+			upload_impl(t, ot->fmt, ot->int_fmt, levels_to_skip, &ot->uploaded_size);
 		}
 		ogl_WarnIfError();
 
@@ -1023,6 +1031,14 @@ Status ogl_tex_get_data(Handle ht, u8** p)
 	H_DEREF(ht, OglTex, ot);
 
 	*p = tex_get_data(&ot->t);
+	return INFO::OK;
+}
+
+Status ogl_tex_get_uploaded_size(Handle ht, size_t* size)
+{
+	H_DEREF(ht, OglTex, ot);
+
+	*size = ot->uploaded_size;
 	return INFO::OK;
 }
 
