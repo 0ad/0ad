@@ -605,7 +605,10 @@ function setup_all_libs ()
 			end
 		end
 	else
-		setup_static_lib_project("lobby", {}, {}, {})
+		extern_libs = {
+			"boost"
+		}
+		setup_static_lib_project("lobby", {}, extern_libs, {})
 		files { source_root.."lobby/Globals.cpp" }
 	end
 

@@ -482,6 +482,14 @@ public:
 		return INFO::OK;
 	}
 
+	size_t GetBytesUploaded() const
+	{
+		size_t size = 0;
+		for (TextureCache::const_iterator it = m_TextureCache.begin(); it != m_TextureCache.end(); ++it)
+			size += (*it)->GetUploadedSize();
+		return size;
+	}
+
 private:
 	PIVFS m_VFS;
 	CCacheLoader m_CacheLoader;
@@ -493,7 +501,7 @@ private:
 	CTexturePtr m_ErrorTexture;
 
 	// Cache of all loaded textures
-	typedef boost::unordered_set<CTexturePtr, TPhash, TPequal_to > TextureCache;
+	typedef boost::unordered_set<CTexturePtr, TPhash, TPequal_to> TextureCache;
 	TextureCache m_TextureCache;
 	// TODO: we ought to expire unused textures from the cache eventually
 
@@ -610,6 +618,13 @@ u32 CTexture::GetBaseColour() const
 	return m_BaseColour;
 }
 
+size_t CTexture::GetUploadedSize() const
+{
+	size_t size = 0;
+	(void)ogl_tex_get_uploaded_size(m_Handle, &size);
+	return size;
+}
+
 
 // CTextureManager: forward all calls to impl:
 
@@ -641,4 +656,9 @@ bool CTextureManager::MakeProgress()
 bool CTextureManager::GenerateCachedTexture(const VfsPath& path, VfsPath& outputPath)
 {
 	return m->GenerateCachedTexture(path, outputPath);
+}
+
+size_t CTextureManager::GetBytesUploaded() const
+{
+	return m->GetBytesUploaded();
 }

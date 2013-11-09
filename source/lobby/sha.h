@@ -19,28 +19,29 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+
 #ifndef SHA_INCLUDED
 #define SHA_INCLUDED
- 
+
 #define SHA_DIGEST_SIZE 32
 typedef unsigned char byte;
 typedef unsigned int uint;
- 
- 
+
+
 /**
  * Structure for performing SHA256 encryption on arbitrary data
  */
 struct SHA256
 {
-    uint total[2];
-    uint state[8];
-    byte buffer[64];
+	uint total[2];
+	uint state[8];
+	byte buffer[64];
  
-        SHA256();
-        void init();
-        void transform(byte (&data)[64]);
-        void update(const void* input, uint len);
-        void finish(byte (&digest)[32]);
+	SHA256();
+	void init();
+	void transform(byte (&data)[64]);
+	void update(const void* input, uint len);
+	void finish(byte (&digest)[32]);
 };
  
  
@@ -55,8 +56,8 @@ struct SHA256
  * @return 0 on success, -1 on error
  */
 int pbkdf2(byte (&output)[SHA_DIGEST_SIZE],
-                        const byte* key, size_t key_len,
-                        const byte* salt, size_t salt_len,
-                        unsigned iterations);
+			const byte* key, size_t key_len,
+			const byte* salt, size_t salt_len,
+			unsigned iterations);
  
-#endif
+#endif // SHA_INCLUDED

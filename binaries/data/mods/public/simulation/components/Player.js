@@ -34,6 +34,7 @@ Player.prototype.Init = function()
 	this.cheatsEnabled = false;
 	this.cheatTimeMultiplier = 1;
 	this.heroes = [];
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).CheckPlayers();
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -482,12 +483,8 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cmpIdentity && cmpIdentity.HasClass("ConquestCritical"))
 			this.conquestCriticalEntitiesCount--;
 
-		if (this.conquestCriticalEntitiesCount == 0)
-		{
-			// end game when needed
-			var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-			cmpEndGameManager.PlayerLostAllConquestCriticalEntities(this.playerID);
-		}
+		if (this.conquestCriticalEntitiesCount == 0) // end game when needed
+			Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).CheckPlayers();
 
 		if (cmpCost)
 		{
