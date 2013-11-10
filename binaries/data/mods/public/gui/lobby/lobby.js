@@ -412,6 +412,11 @@ function onTick()
 			case "nick":
 				if (nickIndex == -1) // This shouldn't ever happen
 					break;
+				if (!isValidNick(message.data))
+				{
+					addChatMessage({ "from": "system", "text": "Invalid nickname: " + message.data });
+					break;
+				}
 				var [name, status] = formatPlayerListEntry(message.data, presence); // TODO: actually we don't want to change the presence here, so use what was used before
 				playerList[nickIndex] = name;
 				// presence stays the same
@@ -514,6 +519,12 @@ function completeNick()
 				break;
 		}
 	}
+}
+
+function isValidNick(nick)
+{
+	var prohibitedNicks = ["system"];
+	return prohibitedNicks.indexOf(nick) == -1;
 }
 
 function handleSpecialCommand(text)
@@ -775,21 +786,21 @@ function r(times, hex) {
 	return repeatString(times, hexToRgb(hex));
 }
 
-fixedColors["Twilight Sparkle"] = r(2, "d19fe3") + r(2, "b689c8") + r(2, "a76bc2") +
+fixedColors["Twilight_Sparkle"] = r(2, "d19fe3") + r(2, "b689c8") + r(2, "a76bc2") +
 	r(4, "263773") + r(2, "131f46") + r(2, "662d8a") + r(2, "ed438a");
 fixedColors["Applejack"] = r(3, "ffc261") + r(3, "efb05d") + r(3, "f26f31");
 fixedColors["Rarity"] = r(1, "ebeff1") + r(1, "dee3e4") + r(1, "bec2c3") +
 	r(1, "83509f") + r(1, "4b2568") + r(1, "4917d6");
-fixedColors["Rainbow Dash"] = r(2, "ee4144") + r(1, "f37033") + r(1, "fdf6af") +
+fixedColors["Rainbow_Dash"] = r(2, "ee4144") + r(1, "f37033") + r(1, "fdf6af") +
 	r(1, "62bc4d") + r(1, "1e98d3") + r(2, "672f89") + r(1, "9edbf9") +
 	r(1, "88c4eb") + r(1, "77b0e0") + r(1, "1e98d3");
-fixedColors["Pinkie Pie"] = r(2, "f3b6cf") + r(2, "ec9dc4") + r(4, "eb81b4") +
+fixedColors["Pinkie_Pie"] = r(2, "f3b6cf") + r(2, "ec9dc4") + r(4, "eb81b4") +
 	r(1, "ed458b") + r(1, "be1d77");
 fixedColors["Fluttershy"] = r(2, "fdf6af") + r(2, "fee78f") + r(2, "ead463") +
 	r(2, "f3b6cf") + r(2, "eb81b4");
-fixedColors["Sweetie Belle"] = r(2, "efedee") + r(3, "e2dee3") + r(3, "cfc8d1") +
+fixedColors["Sweetie_Belle"] = r(2, "efedee") + r(3, "e2dee3") + r(3, "cfc8d1") +
 	r(2, "b28dc0") + r(2, "f6b8d2") + r(1, "795b8a");
-fixedColors["Apple Bloom"] = r(2, "f4f49b") + r(2, "e7e793") + r(2, "dac582") +
+fixedColors["Apple_Bloom"] = r(2, "f4f49b") + r(2, "e7e793") + r(2, "dac582") +
 	r(2, "f46091") + r(2, "f8415f") + r(1, "c52451");
 fixedColors["Scootaloo"] = r(2, "fbba64") + r(2, "f2ab56") + r(2, "f37003") +
 	r(2, "bf5d95") + r(1, "bf1f79");
