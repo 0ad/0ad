@@ -3,10 +3,24 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="maur_elephant_asian_archer">
+	<animations>
+        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
+        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
+        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
+        <animation file="quadraped/elephant_asian_idle_02.dae" name="Idle" speed="85"/>
+        <animation file="quadraped/elephant_asian_idle_03.dae" name="Idle" speed="75"/>
+        <animation file="quadraped/elephant_asian_idle_03.dae" name="Idle" speed="75"/>
+        <animation file="quadraped/elephant_asian_walk.dae" name="Walk" speed="20"/>
+        <animation file="quadraped/elephant_asian_walk.dae" name="Run" speed="20"/>
+        <animation file="quadraped/elephant_asian_attack.dae" name="attack_melee" speed="75"/>
+        <animation file="quadraped/elephant_asian_death.dae" name="Death" speed="75"/>
+      </animations>
       <mesh>skeletal/maur_elephant_archer.dae</mesh>
       <props>
-		<prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+		<prop actor="units/mauryans/cavalry_archer_b_driver.xml" attachpoint="rider"/>
+		<prop actor="units/mauryans/cavalry_archer_b_archer1.xml" attachpoint="rider1"/>
+		<prop actor="units/mauryans/cavalry_archer_b_archer1.xml" attachpoint="rider2"/>
+		<prop actor="units/mauryans/cavalry_archer_b_archer1.xml" attachpoint="rider3"/>
       </props>
       <textures>
         <texture file="skeletal/maur_elephant_archer.png" name="baseTex"/>
