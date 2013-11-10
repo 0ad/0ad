@@ -29,8 +29,8 @@ function init(attribs)
 	playersNumberFilter.list_data = [2,3,4,5,6,7,8,""];
 
 	var mapTypeFilter = getGUIObjectByName("mapTypeFilter");
-	mapTypeFilter.list = ["Random", "Scenario", "Any"];
-	mapTypeFilter.list_data = ["conquest", "scenario", ""];
+	mapTypeFilter.list = ["Skirmish", "Random", "Scenario", "Any"];
+	mapTypeFilter.list_data = ["skirmish", "random", "scenario", ""];
 
 	Engine.LobbySetPlayerPresence("available");
 	Engine.SendGetGameList();
@@ -281,13 +281,10 @@ function selectGame(selected)
 	var g = getGUIObjectByName("gamesBox").list_data[selected];
 
 	// Load map data
-	if (g_GameList[g].mapType == "random")
-	{
-		if (g_GameList[g].mapName == "random")
-			mapData = {"settings": {"Description": "A randomly selected map."}};
-		else if (fileExists(g_GameList[g].mapName + ".json"))
-			mapData = parseJSONData(g_GameList[g].mapName + ".json");
-	}
+	if (g_GameList[g].mapType == "random" && g_GameList[g].mapName == "random")
+		mapData = {"settings": {"Description": "A randomly selected map."}};
+	else if (g_GameList[g].mapType == "random" && fileExists(g_GameList[g].mapName + ".json"))
+		mapData = parseJSONData(g_GameList[g].mapName + ".json");
 	else if (fileExists(g_GameList[g].mapName + ".xml"))
 		mapData = Engine.LoadMapSettings(g_GameList[g].mapName + ".xml");
 	else
