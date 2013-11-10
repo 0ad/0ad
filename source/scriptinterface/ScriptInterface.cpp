@@ -316,10 +316,10 @@ JSBool print(JSContext* cx, uintN argc, jsval* vp)
 {
 	for (uintN i = 0; i < argc; ++i)
 	{
-		std::string str;
+		std::wstring str;
 		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[i], str))
 			return JS_FALSE;
-		debug_printf(L"%hs", str.c_str());
+		debug_printf(L"%ls", str.c_str());
 	}
 	fflush(stdout);
 	JS_SET_RVAL(cx, vp, JSVAL_VOID);
