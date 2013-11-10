@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="maur_elephant_asian_archer">
-	<animations>
+      <animations>
         <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
         <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
         <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
@@ -17,14 +17,14 @@
       </animations>
       <mesh>skeletal/maur_elephant_archer.dae</mesh>
       <props>
-		<prop actor="units/mauryans/cavalry_archer_b_driver.xml" attachpoint="rider"/>
-		<prop actor="units/mauryans/cavalry_archer_b_archer1.xml" attachpoint="rider1"/>
-		<prop actor="units/mauryans/cavalry_archer_b_archer1.xml" attachpoint="rider2"/>
+        <prop actor="units/mauryans/cavalry_archer_b_driver.xml" attachpoint="rider"/>
+        <prop actor="units/mauryans/cavalry_archer_b_archer1.xml" attachpoint="rider1"/>
+        <prop actor="units/mauryans/cavalry_archer_b_archer2.xml" attachpoint="rider2"/>
       </props>
       <textures>
         <texture file="skeletal/maur_elephant_archer.png" name="baseTex"/>
         <texture file="skeletal/maur_elephant_archer_spec.png" name="specTex"/>
-<texture file="skeletal/maur_elephant_archer_normal.png" name="normTex"/>
+        <texture file="skeletal/maur_elephant_archer_normal.png" name="normTex"/>
       </textures>
     </variant>
   </group>
