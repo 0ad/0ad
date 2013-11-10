@@ -89,7 +89,7 @@ var fz = fractionToTiles(0.5);
 ix = round(fx);
 iz = round(fz);
 
-var placer = new ChainPlacer(2, floor(scaleByMapSize(5, 16)), floor(scaleByMapSize(40, 400)), 1, ix, iz, 0, [floor(mapSize * 0.3)]);
+var placer = new ChainPlacer(2, floor(scaleByMapSize(5, 12)), floor(scaleByMapSize(60, 700)), 1, ix, iz, 0, [floor(mapSize * 0.33)]);
 var terrainPainter = new LayeredPainter(
 	[tMainTerrain, tMainTerrain],		// terrains
 	[3]		// widths
@@ -144,7 +144,7 @@ for (var i = 0; i < numPlayers; i++)
 	addToClass(ix-5, iz, clPlayer);
 	addToClass(ix, iz-5, clPlayer);
 	
-	var placer = new ChainPlacer(2, floor(scaleByMapSize(4, 11)), floor(scaleByMapSize(5, 20)), 1, ix, iz, 0, [floor(scaleByMapSize(30, 50))]);
+	var placer = new ChainPlacer(2, floor(scaleByMapSize(5, 9)), floor(scaleByMapSize(5, 20)), 1, ix, iz, 0, [floor(scaleByMapSize(23, 50))]);
 	var elevationPainter = new SmoothElevationPainter(
 		ELEVATION_SET,			// type
 		3,				// elevation
@@ -240,18 +240,18 @@ for (var i = 0; i < numPlayers; i++)
 }
 
 RMS.SetProgress(20);
-
+/*
 // create shore jaggedness
 log("Creating shore jaggedness...");
-placer = new ChainPlacer(2, floor(scaleByMapSize(4, 6)), 3, 1);
+placer = new ChainPlacer(2, floor(scaleByMapSize(6, 8)), 3, 1);
 elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -5, 4);
 createAreas(
 	placer,
 	[elevationPainter, unPaintClass(clLand)], 
-	[avoidClasses(clPlayer, 20), borderClasses(clLand, 7, 7)],
+	[avoidClasses(clPlayer, 20), borderClasses(clLand, 4, 4)],
 	scaleByMapSize(25, 180) * 2, 150
 );
-
+*/
 paintTerrainBasedOnHeight(3, 4, 3, tMainTerrain);
 paintTerrainBasedOnHeight(1, 3, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
