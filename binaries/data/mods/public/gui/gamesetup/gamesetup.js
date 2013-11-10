@@ -362,7 +362,10 @@ function handleNetMessage(message)
 		{
 		case "disconnected":
 			cancelSetup();
-			Engine.SwitchGuiPage("page_pregame.xml");
+			if (Engine.HasXmppClient())
+				Engine.SwitchGuiPage("page_lobby.xml");
+			else
+				Engine.SwitchGuiPage("page_pregame.xml");
 			reportDisconnect(message.reason);
 			break;
 
