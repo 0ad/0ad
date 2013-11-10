@@ -316,10 +316,10 @@ JSBool print(JSContext* cx, uintN argc, jsval* vp)
 {
 	for (uintN i = 0; i < argc; ++i)
 	{
-		std::string str;
+		std::wstring str;
 		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[i], str))
 			return JS_FALSE;
-		debug_printf(L"%hs", str.c_str());
+		debug_printf(L"%ls", str.c_str());
 	}
 	fflush(stdout);
 	JS_SET_RVAL(cx, vp, JSVAL_VOID);
@@ -799,6 +799,24 @@ bool ScriptInterface::SetProperty_(jsval obj, const char* name, jsval value, boo
 	JSObject* object = JSVAL_TO_OBJECT(obj);
 
 	if (! JS_DefineProperty(m->m_cx, object, name, value, NULL, NULL, attrs))
+		return false;
+	return true;
+}
+
+bool ScriptInterface::SetProperty_(jsval obj, const wchar_t* name, jsval value, bool constant, bool enumerate)
+{
+	uintN attrs = 0;
+	if (constant)
+		attrs |= JSPROP_READONLY | JSPROP_PERMANENT;
+	if (enumerate)
+		attrs |= JSPROP_ENUMERATE;
+
+	if (! JSVAL_IS_OBJECT(obj))
+		return false;
+	JSObject* object = JSVAL_TO_OBJECT(obj);
+
+	utf16string name16(name, name + wcslen(name));
+	if (! JS_DefineUCProperty(m->m_cx, object, reinterpret_cast<const jschar*>(name16.c_str()), name16.length(), value, NULL, NULL, attrs))
 		return false;
 	return true;
 }

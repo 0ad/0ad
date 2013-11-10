@@ -24,6 +24,7 @@
 #include "lib/svn_revision.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
+#include "lib/external_libraries/libsdl.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/posix/posix_utsname.h"
 #include "lib/sysdep/cpu.h"
@@ -41,6 +42,30 @@
 #include "ps/UserReport.h"
 #include "ps/VideoMode.h"
 #include "ps/GameSetup/Config.h"
+
+#ifdef SDL_VIDEO_DRIVER_X11
+#include <GL/glx.h>
+#include <SDL/SDL_syswm.h>
+
+// Define the GLX_MESA_query_renderer macros if built with
+// an old Mesa (<10.0) that doesn't provide them
+#ifndef GLX_MESA_query_renderer
+#define GLX_MESA_query_renderer 1
+#define GLX_RENDERER_VENDOR_ID_MESA                      0x8183
+#define GLX_RENDERER_DEVICE_ID_MESA                      0x8184
+#define GLX_RENDERER_VERSION_MESA                        0x8185
+#define GLX_RENDERER_ACCELERATED_MESA                    0x8186
+#define GLX_RENDERER_VIDEO_MEMORY_MESA                   0x8187
+#define GLX_RENDERER_UNIFIED_MEMORY_ARCHITECTURE_MESA    0x8188
+#define GLX_RENDERER_PREFERRED_PROFILE_MESA              0x8189
+#define GLX_RENDERER_OPENGL_CORE_PROFILE_VERSION_MESA    0x818A
+#define GLX_RENDERER_OPENGL_COMPATIBILITY_PROFILE_VERSION_MESA    0x818B
+#define GLX_RENDERER_OPENGL_ES_PROFILE_VERSION_MESA      0x818C
+#define GLX_RENDERER_OPENGL_ES2_PROFILE_VERSION_MESA     0x818D
+#define GLX_RENDERER_ID_MESA                             0x818E
+#endif /* GLX_MESA_query_renderer */
+
+#endif
 
 static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted settings);
 
@@ -651,4 +676,68 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	INTEGER(MAX_RENDERBUFFER_SIZE);
 
 #endif // CONFIG2_GLES
+
+
+#ifdef SDL_VIDEO_DRIVER_X11
+
+#define GLXQCR_INTEGER(id) do { \
+	unsigned int i = UINT_MAX; \
+	if (pglXQueryCurrentRendererIntegerMESA(id, &i)) \
+		scriptInterface.SetProperty(settings.get(), #id, i); \
+	} while (false)
+
+#define GLXQCR_INTEGER2(id) do { \
+	unsigned int i[2] = { UINT_MAX, UINT_MAX }; \
+	if (pglXQueryCurrentRendererIntegerMESA(id, i)) { \
+		scriptInterface.SetProperty(settings.get(), #id "[0]", i[0]); \
+		scriptInterface.SetProperty(settings.get(), #id "[1]", i[1]); \
+	} \
+	} while (false)
+
+#define GLXQCR_INTEGER3(id) do { \
+	unsigned int i[3] = { UINT_MAX, UINT_MAX, UINT_MAX }; \
+	if (pglXQueryCurrentRendererIntegerMESA(id, i)) { \
+		scriptInterface.SetProperty(settings.get(), #id "[0]", i[0]); \
+		scriptInterface.SetProperty(settings.get(), #id "[1]", i[1]); \
+		scriptInterface.SetProperty(settings.get(), #id "[2]", i[2]); \
+	} \
+	} while (false)
+
+#define GLXQCR_STRING(id) do { \
+	const char* str = pglXQueryCurrentRendererStringMESA(id); \
+	if (str) \
+		scriptInterface.SetProperty(settings.get(), #id ".string", str); \
+	} while (false)
+
+
+	SDL_SysWMinfo wminfo;
+	SDL_VERSION(&wminfo.version);
+	if (SDL_GetWMInfo(&wminfo) && wminfo.subsystem == SDL_SYSWM_X11)
+	{
+		Display* dpy = wminfo.info.x11.gfxdisplay;
+		int scrnum = DefaultScreen(dpy);
+
+		const char* glxexts = glXQueryExtensionsString(dpy, scrnum);
+
+		scriptInterface.SetProperty(settings.get(), "glx_extensions", glxexts);
+
+		if (strstr(glxexts, "GLX_MESA_query_renderer") && pglXQueryCurrentRendererIntegerMESA && pglXQueryCurrentRendererStringMESA)
+		{
+			GLXQCR_INTEGER(GLX_RENDERER_VENDOR_ID_MESA);
+			GLXQCR_INTEGER(GLX_RENDERER_DEVICE_ID_MESA);
+			GLXQCR_INTEGER3(GLX_RENDERER_VERSION_MESA);
+			GLXQCR_INTEGER(GLX_RENDERER_ACCELERATED_MESA);
+			GLXQCR_INTEGER(GLX_RENDERER_VIDEO_MEMORY_MESA);
+			GLXQCR_INTEGER(GLX_RENDERER_UNIFIED_MEMORY_ARCHITECTURE_MESA);
+			GLXQCR_INTEGER(GLX_RENDERER_PREFERRED_PROFILE_MESA);
+			GLXQCR_INTEGER2(GLX_RENDERER_OPENGL_CORE_PROFILE_VERSION_MESA);
+			GLXQCR_INTEGER2(GLX_RENDERER_OPENGL_COMPATIBILITY_PROFILE_VERSION_MESA);
+			GLXQCR_INTEGER2(GLX_RENDERER_OPENGL_ES_PROFILE_VERSION_MESA);
+			GLXQCR_INTEGER2(GLX_RENDERER_OPENGL_ES2_PROFILE_VERSION_MESA);
+			GLXQCR_STRING(GLX_RENDERER_VENDOR_ID_MESA);
+			GLXQCR_STRING(GLX_RENDERER_DEVICE_ID_MESA);
+		}
+	}
+#endif // SDL_VIDEO_DRIVER_X11
+
 }

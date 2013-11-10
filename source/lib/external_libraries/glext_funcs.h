@@ -395,3 +395,12 @@ FUNC(int, wglGetPixelFormatAttribivARB, (HDC, int, int, unsigned int, const int*
 FUNC(int, wglGetPixelFormatAttribfvARB, (HDC, int, int, unsigned int, const int*, float*))
 FUNC(int, wglChoosePixelFormatARB, (HDC, const int *, const float*, unsigned int, int*, unsigned int*))
 #endif // OS_WIN
+
+
+#if OS_LINUX
+// GLX_MESA_query_renderer
+FUNC(int /*Bool*/, glXQueryRendererIntegerMESA, (void /*Display*/ *dpy, int screen, int renderer, int attribute, unsigned int *value))
+FUNC(int /*Bool*/, glXQueryCurrentRendererIntegerMESA, (int attribute, unsigned int *value))
+FUNC(const char *, glXQueryRendererStringMESA, (void /*Display*/ *dpy, int screen, int renderer, int attribute))
+FUNC(const char *, glXQueryCurrentRendererStringMESA, (int attribute))
+#endif // OS_LINUX

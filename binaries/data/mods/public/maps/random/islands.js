@@ -227,20 +227,20 @@ var landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(1
 for (var x = 0; x < mapSize; ++x)
 	for (var z = 0; z < mapSize; ++z)
 		if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-			landAreas.unshift([x, z]);
+			landAreas.push([x, z]);
 
 var chosenPoint;
-var landAreLen;
+var landAreaLen;
 
 log("Creating big islands...");
 var numIslands = scaleByMapSize(4, 14)
 for (var i = 0; i < numIslands; ++i)
 {
-	landAreLen = landAreas.length;
-	if (!landAreLen)
+	landAreaLen = landAreas.length;
+	if (!landAreaLen)
 		break;
 	
-	chosenPoint = landAreas[randInt(0, landAreLen)];
+	chosenPoint = landAreas[randInt(0, landAreaLen)];
 	
 	// create big islands
 	placer = new ChainPlacer(floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(8, 14)), floor(scaleByMapSize(25, 60)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(30,70));
@@ -259,7 +259,7 @@ for (var i = 0; i < numIslands; ++i)
 	if (newIsland !== undefined)
 	{
 		var temp = []
-		for (var j = 0; j < landAreLen; ++j)
+		for (var j = 0; j < landAreaLen; ++j)
 		{
 			var x = landAreas[j][0], z = landAreas[j][1];
 			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
@@ -276,11 +276,11 @@ log("Creating small islands...");
 numIslands = scaleByMapSize(6, 18)*scaleByMapSize(1,3)
 for (var i = 0; i < numIslands; ++i)
 {
-	landAreLen = landAreas.length;
-	if (!landAreLen)
+	landAreaLen = landAreas.length;
+	if (!landAreaLen)
 		break;
 	
-	chosenPoint = landAreas[randInt(0, landAreLen)];
+	chosenPoint = landAreas[randInt(0, landAreaLen)];
 	
 	placer = new ChainPlacer(floor(scaleByMapSize(4, 7)), floor(scaleByMapSize(7, 10)), floor(scaleByMapSize(16, 40)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(22,40));
 	terrainPainter = new LayeredPainter(
@@ -297,7 +297,7 @@ for (var i = 0; i < numIslands; ++i)
 	if (newIsland !== undefined)
 	{
 		var temp = []
-		for (var j = 0; j < landAreLen; ++j)
+		for (var j = 0; j < landAreaLen; ++j)
 		{
 			var x = landAreas[j][0], z = landAreas[j][1];
 			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))

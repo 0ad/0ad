@@ -19,6 +19,8 @@
 #include "XmppClient.h"
 #include "StanzaExtensions.h"
 
+#include "lib/utf8.h"
+
 // Debug
 // TODO: Use builtin error/warning/logging functions.
 #include <iostream>
@@ -301,9 +303,9 @@ void XmppClient::SendIqGameReport(CScriptVal data)
 	m_ScriptInterface.EnumeratePropertyNamesWithPrefix(dataval, "", properties);
 	for (std::vector<int>::size_type i = 0; i != properties.size(); i++)
 	{
-		std::string value;
+		std::wstring value;
 		m_ScriptInterface.GetProperty(dataval, properties[i].c_str(), value);
-		report->addAttribute(properties[i], value);
+		report->addAttribute(properties[i], utf8_from_wstring(value));
 	}
 
 	// Add stanza to IQ
@@ -338,9 +340,9 @@ void XmppClient::SendIqRegisterGame(CScriptVal data)
 	m_ScriptInterface.EnumeratePropertyNamesWithPrefix(dataval, "", properties);
 	for (std::vector<int>::size_type i = 0; i != properties.size(); i++)
 	{
-		std::string value;
+		std::wstring value;
 		m_ScriptInterface.GetProperty(dataval, properties[i].c_str(), value);
-		game->addAttribute(properties[i], value);
+		game->addAttribute(properties[i], utf8_from_wstring(value));
 	}
 
 	// Push the stanza onto the IQ
@@ -470,10 +472,10 @@ CScriptValRooted XmppClient::GUIGetPlayerList()
 		CScriptValRooted player;
 		GetPresenceString(it->second, presence);
 		m_ScriptInterface.Eval("({})", player);
-		m_ScriptInterface.SetProperty(player.get(), "name", it->first.c_str());
-		m_ScriptInterface.SetProperty(player.get(), "presence", presence.c_str());
+		m_ScriptInterface.SetProperty(player.get(), "name", wstring_from_utf8(it->first));
+		m_ScriptInterface.SetProperty(player.get(), "presence", wstring_from_utf8(presence));
 
-		m_ScriptInterface.SetProperty(playerList.get(), it->first.c_str(), player);
+		m_ScriptInterface.SetProperty(playerList.get(), wstring_from_utf8(it->first).c_str(), player);
 	}
 
 	return playerList;
@@ -496,7 +498,7 @@ CScriptValRooted XmppClient::GUIGetGameList()
 		const char* stats[] = { "name", "ip", "state", "nbp", "tnbp", "players", "mapName", "niceMapName", "mapSize", "mapType", "victoryCondition" };
 		short stats_length = 11;
 		for (short i = 0; i < stats_length; i++)
-			m_ScriptInterface.SetProperty(game.get(), stats[i], (*it)->findAttribute(stats[i]).c_str());
+			m_ScriptInterface.SetProperty(game.get(), stats[i], wstring_from_utf8((*it)->findAttribute(stats[i]).to_string()));
 
 		m_ScriptInterface.CallFunctionVoid(gameList.get(), "push", game);
 	}
@@ -521,7 +523,7 @@ CScriptValRooted XmppClient::GUIGetBoardList()
 		const char* attributes[] = { "name", "rank", "rating" };
 		short attributes_length = 3;
 		for (short i = 0; i < attributes_length; i++)
-			m_ScriptInterface.SetProperty(board.get(), attributes[i], (*it)->findAttribute(attributes[i]).c_str());
+			m_ScriptInterface.SetProperty(board.get(), attributes[i], wstring_from_utf8((*it)->findAttribute(attributes[i]).to_string()));
 
 		m_ScriptInterface.CallFunctionVoid(boardList.get(), "push", board);
 	}
@@ -574,8 +576,8 @@ void XmppClient::handleMUCMessage(glooxwrapper::MUCRoom*, const glooxwrapper::Me
 
 	CScriptValRooted message;
 	m_ScriptInterface.Eval("({ 'type':'mucmessage'})", message);
-	m_ScriptInterface.SetProperty(message.get(), "from", msg.from().resource().to_string());
-	m_ScriptInterface.SetProperty(message.get(), "text", msg.body().to_string());
+	m_ScriptInterface.SetProperty(message.get(), "from", wstring_from_utf8(msg.from().resource().to_string()));
+	m_ScriptInterface.SetProperty(message.get(), "text", wstring_from_utf8(msg.body().to_string()));
 	PushGuiMessage(message);
 }
 
@@ -589,8 +591,8 @@ void XmppClient::handleMessage(const glooxwrapper::Message& msg, glooxwrapper::M
 
 	CScriptValRooted message;
 	m_ScriptInterface.Eval("({'type':'message'})", message);
-	m_ScriptInterface.SetProperty(message.get(), "from", msg.from().username().to_string());
-	m_ScriptInterface.SetProperty(message.get(), "text", msg.body().to_string());
+	m_ScriptInterface.SetProperty(message.get(), "from", wstring_from_utf8(msg.from().username().to_string()));
+	m_ScriptInterface.SetProperty(message.get(), "text", wstring_from_utf8(msg.body().to_string()));
 	PushGuiMessage(message);
 }
 
@@ -654,10 +656,10 @@ void XmppClient::CreateSimpleMessage(const std::string& type, const std::string&
 {
 	CScriptValRooted message;
 	m_ScriptInterface.Eval("({})", message);
-	m_ScriptInterface.SetProperty(message.get(), "type", type);
-	m_ScriptInterface.SetProperty(message.get(), "level", level);
-	m_ScriptInterface.SetProperty(message.get(), "text", text);
-	m_ScriptInterface.SetProperty(message.get(), "data", data);
+	m_ScriptInterface.SetProperty(message.get(), "type", wstring_from_utf8(type));
+	m_ScriptInterface.SetProperty(message.get(), "level", wstring_from_utf8(level));
+	m_ScriptInterface.SetProperty(message.get(), "text", wstring_from_utf8(text));
+	m_ScriptInterface.SetProperty(message.get(), "data", wstring_from_utf8(data));
 	PushGuiMessage(message);
 }
 

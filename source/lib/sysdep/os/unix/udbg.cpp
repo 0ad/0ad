@@ -105,7 +105,12 @@ void debug_puts(const wchar_t* text)
 
 void debug_puts(const wchar_t* text)
 {
-	printf("%ls", text); // must not use printf, since stdout is byte-oriented
+	// printf doesn't like %ls strings that contain non-ASCII characters
+	// (it tends to print nothing and return an error), so convert to
+	// UTF-8 before outputting
+	Status err;
+	std::string str = utf8_from_wstring(text, &err);
+	printf("%s", str.c_str());
 	fflush(stdout);
 }
 

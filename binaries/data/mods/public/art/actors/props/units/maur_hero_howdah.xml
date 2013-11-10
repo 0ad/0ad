@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="maur_hero_howdah">
+      <mesh>props/maur_maurya_howdah.dae</mesh>
+	  <props>
+		<prop actor="units/mauryans/hero_maurya_r.xml" attachpoint="maurya"/>
+      </props>
+      <textures>
+		<texture file="props/maur_howdah.png" name="baseTex"/>
+		<texture file="props/maur_howdah_spec.png" name="specTex"/>
+        <texture file="props/maur_howdah_norm.png" name="normTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
