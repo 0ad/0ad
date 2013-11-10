@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege">
   <Armour>
-    <Hack>2</Hack>
+    <Hack>5</Hack>
     <Pierce>20</Pierce>
-    <Crush>10</Crush>
+    <Crush>2</Crush>
   </Armour>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>25.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>65.0</MaxRange>
+      <Pierce>10.0</Pierce>
+      <Crush>5.0</Crush>
+      <MaxRange>55.0</MaxRange>
       <MinRange>2.0</MinRange>
+      <ElevationBonus>10</ElevationBonus>
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
-      <Spread>1.5</Spread>
+      <Spread>2.0</Spread>
+      <PreferredClasses datatype="tokens">Structure</PreferredClasses>
+      <Bonuses>
+        <BonusPrimary>
+          <Classes>Structure</Classes>
+          <Multiplier>2.0</Multiplier>
+        </BonusPrimary>
+      </Bonuses>
     </Ranged>
   </Attack>
   <BuildingAI>
-    <DefaultArrowCount>2</DefaultArrowCount>
+    <DefaultArrowCount>0</DefaultArrowCount>
     <GarrisonArrowMultiplier>0.5</GarrisonArrowMultiplier>
-	<GarrisonArrowClasses>Infantry Ranged</GarrisonArrowClasses>
+	<GarrisonArrowClasses>Infantry</GarrisonArrowClasses>
   </BuildingAI>
   <Cost>
     <Population>5</Population>
-    <BuildTime>50</BuildTime>
+    <BuildTime>60</BuildTime>
     <Resources>
       <wood>500</wood>
       <metal>300</metal>
@@ -40,17 +48,18 @@
     <EjectHealth>0.1</EjectHealth>
     <EjectEntitiesOnDestroy>true</EjectEntitiesOnDestroy>
     <List datatype="tokens">Support Infantry</List>
-    <BuffHeal>1</BuffHeal>
+    <BuffHeal>0</BuffHeal>
     <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>800</Max>
+    <Max>500</Max>
   </Health>
   <Identity>
     <GenericName>Siege Tower</GenericName>
 	<Classes datatype="tokens">Ranged SiegeTower</Classes>
     <Tooltip>Classes: Ranged Siege Tower.
-Garrison up to 20 infantry inside to increase arrow count by 10.</Tooltip>
+Garrison up to 20 infantry inside to increase arrow count by 10. Good vs. Buildings.
+Counters: 2x vs. Buildings.</Tooltip>
   </Identity>
   <Obstruction>
     <Unit radius="4.0"/>
@@ -77,7 +86,7 @@ Garrison up to 20 infantry inside to increase arrow count by 10.</Tooltip>
     <HeightOffset>12.0</HeightOffset>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>6.0</WalkSpeed>
+    <WalkSpeed>5.0</WalkSpeed>
     <Run>
       <Speed>10.0</Speed>
     </Run>
