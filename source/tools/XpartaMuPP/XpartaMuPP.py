@@ -17,8 +17,7 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import logging
-import time
+import logging, time, traceback
 from optparse import OptionParser
 
 import sleekxmpp
@@ -443,6 +442,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         self.sendGameList(iq['from'])
         self.sendBoardList(iq['from'])
       except:
+        traceback.print_exc()
         logging.error("Failed to initilize %s" % iq['from'].bare)
     elif iq['type'] == 'result':
       """
@@ -461,6 +461,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
             self.gameList.addGame(iq['from'], iq['gamelist']['game'])
             self.sendGameList()
           except:
+            traceback.print_exc()
             logging.error("Failed to process game registration data")
         elif command == 'unregister':
           # Remove game
@@ -468,6 +469,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
             self.gameList.removeGame(iq['from'])
             self.sendGameList()
           except:
+            traceback.print_exc()
             logging.error("Failed to process game unregistration data")
 
         elif command == 'changestate':
@@ -476,6 +478,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
             self.gameList.changeGameState(iq['from'], iq['gamelist']['game'])
             self.sendGameList()
           except:
+            traceback.print_exc()
             logging.error("Failed to process changestate data")
         else:
           logging.error("Failed to process command '%s' received from %s" % command, iq['from'].bare)
@@ -487,6 +490,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
           self.reportManager.addReport(iq['from'], iq['gamereport']['game'])
           self.sendBoardList()
         except:
+          traceback.print_exc()
           logging.error("Failed to update game statistics for %s" % iq['from'].bare)
     else:
        logging.error("Failed to process stanza type '%s' received from %s" % iq['type'], iq['from'].bare)
