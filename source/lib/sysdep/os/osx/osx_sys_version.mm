@@ -20,48 +20,50 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-
 #import <AvailabilityMacros.h> // MAC_OS_X_VERSION_MIN_REQUIRED
 #import <Foundation/Foundation.h>
+#import <dispatch/dispatch.h>
 #import <string>
 
-#import "osx_bundle.h"
+#import "osx_sys_version.h"
 
-#define STRINGIZE2(id) # id
-#define STRINGIZE(id) STRINGIZE2(id)
-
-// Pass the bundle identifier string as a build option
-#ifdef BUNDLE_IDENTIFIER
-static const char* BUNDLE_ID_STR = STRINGIZE(BUNDLE_IDENTIFIER);
-#else
-static const char* BUNDLE_ID_STR = "";
-#endif
-
-
-void GetSystemVersion( int &major, int &minor, int &bugfix )
+void GetSystemVersion(int &major, int &minor, int &bugfix)
 {
-  // sensible default
-  static int mMajor = 10;
-  static int mMinor = 8;
-  static int mBugfix = 0;
+	// grand central dispatch only available on 10.6+
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
+	if (dispatch_once != nil)
+	{
+		// sensible default
+		static int mMajor = 10;
+		static int mMinor = 8;
+		static int mBugfix = 0;
 
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    NSString* versionString = [[NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"] objectForKey:@"ProductVersion"];
-    NSArray* versions = [versionString componentsSeparatedByString:@"."];
-    check( versions.count >= 2 );
-    if ( versions.count >= 1 ) {
-      mMajor = [[versions objectAtIndex:0] integerValue];
-    }
-    if ( versions.count >= 2 ) {
-      mMinor = [[versions objectAtIndex:1] integerValue];
-    }
-    if ( versions.count >= 3 ) {
-      mBugfix = [[versions objectAtIndex:2] integerValue];
-    }
-  });
+		static dispatch_once_t onceToken;
+		dispatch_once(&onceToken, ^{
+			NSString* versionString = [[NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"] objectForKey:@"ProductVersion"];
+			NSArray* versions = [versionString componentsSeparatedByString:@"."];
+			check(versions.count >= 2);
+			if (versions.count >= 1)
+				mMajor = [[versions objectAtIndex:0] integerValue];
+			if (versions.count >= 2)
+				mMinor = [[versions objectAtIndex:1] integerValue];
+			if (versions.count >= 3)
+				mBugfix = [[versions objectAtIndex:2] integerValue];
+		});
 
-  major = mMajor;
-  minor = mMinor;
-  bugfix = mBugfix;
+		major = mMajor;
+		minor = mMinor;
+		bugfix = mBugfix;
+	}
+	else
+	{
+#endif 	// fallback to 10.5 API
+		// just return 10.5.0, it's unlikely we support an earlier OS
+		// and unlikely we care about bugfix versions
+		major = 10;
+		minor = 5;
+		bugfix = 0;
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
+	}
+#endif
 }

@@ -295,10 +295,14 @@ function getActionInfo(action, target)
 			}
 		}
 
-		// Don't allow the rally point to be set on any of the currently selected entities
-		for (var i = 0; i < selection.length; i++)
-			if (target === selection[i])
-				return {"possible": false};
+		// Don't allow the rally point to be set on any of the currently selected entities (used for unset)
+		// except if the autorallypoint hotkey is pressed and the target can produce entities
+		if (!Engine.HotkeyIsPressed("session.autorallypoint") || !targetState.production || !targetState.production.entities.length)
+		{
+			for (var i = 0; i < selection.length; i++)
+				if (target === selection[i])
+					return {"possible": false};
+		}
 
 		return {"possible": true, "data": data, "position": targetState.position, "cursor": cursor, "tooltip": tooltip};
 	}
@@ -1791,8 +1795,6 @@ function performCommand(entity, commandName)
 	if (entity)
 	{
 		var entState = GetEntityState(entity);
-		var template = GetTemplateData(entState.template);
-		var unitName = getEntityName(template);
 
 		var playerID = Engine.GetPlayerID();
 		var simState = GetSimState();

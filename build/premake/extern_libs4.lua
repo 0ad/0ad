@@ -256,22 +256,6 @@ extern_lib_defs = {
 			})
 		end,
 	},
-	gloox = {
-		compile_settings = function()
-			if os.is("windows") then
-				add_default_include_paths("gloox")
-			end
-		end,
-		link_settings = function()
-			if os.is("windows") then
-				add_default_lib_paths("gloox")
-			end
-			add_default_links({
-				win_names  = { "gloox-1.0" },
-				unix_names = { "gloox" },
-			})
-		end,
-	},
 	cxxtest = {
 		compile_settings = function()
 			add_source_include_paths("cxxtest")
@@ -343,14 +327,46 @@ extern_lib_defs = {
 			})
 		end,
 	},
-	libcurl = {
+	gloox = {
 		compile_settings = function()
 			if os.is("windows") then
-				add_default_include_paths("libcurl")
+				add_default_include_paths("gloox")
+			elseif os.is("macosx") then
+				-- Support GLOOX_CONFIG for overriding the default PATH-based gloox-config
+				gloox_config_path = os.getenv("GLOOX_CONFIG")
+				if not gloox_config_path then
+					gloox_config_path = "gloox-config"
+				end
+				pkgconfig_cflags(nil, gloox_config_path.." --cflags")
 			end
 		end,
 		link_settings = function()
 			if os.is("windows") then
+				add_default_lib_paths("gloox")
+			end
+			if os.is("macosx") then
+				gloox_config_path = os.getenv("GLOOX_CONFIG")
+				if not gloox_config_path then
+					gloox_config_path = "gloox-config"
+				end
+				pkgconfig_libs(nil, gloox_config_path.." --libs")
+			else
+				-- TODO: consider using pkg-config on non-Windows (for compile_settings too)
+				add_default_links({
+					win_names  = { "gloox-1.0" },
+					unix_names = { "gloox" },
+				})
+			end
+		end,
+	},
+	libcurl = {
+		compile_settings = function()
+			if os.is("windows") or os.is("macosx") then
+				add_default_include_paths("libcurl")
+			end
+		end,
+		link_settings = function()
+			if os.is("windows") or os.is("macosx") then
 				add_default_lib_paths("libcurl")
 			end
 			add_default_links({
@@ -651,12 +667,12 @@ extern_lib_defs = {
 	},
 	zlib = {
 		compile_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_include_paths("zlib")
 			end
 		end,
 		link_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_lib_paths("zlib")
 			end
 			add_default_links({

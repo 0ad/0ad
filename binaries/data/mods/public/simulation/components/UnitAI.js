@@ -663,6 +663,10 @@ var UnitFsmSpec = {
 		}
 	},
 
+	"Order.Autogarrison": function(msg) {
+		this.SetNextState("INDIVIDUAL.AUTOGARRISON");
+	},
+
 	"Order.Cheering": function(msg) {
 		this.SetNextState("INDIVIDUAL.CHEERING");
 	},
@@ -2463,6 +2467,22 @@ var UnitFsmSpec = {
 			},
 		},
 
+		"AUTOGARRISON": {
+			"enter": function() {
+				this.isGarrisoned = true;
+				return false;
+			},
+				
+			"Order.Ungarrison": function() {
+				if (this.FinishOrder())
+					return;
+			},
+
+			"leave": function() {
+				this.isGarrisoned = false;
+			}
+		},
+
 		"CHEERING": {
 			"enter": function() {
 				// Unit is invulnerable while cheering
@@ -3676,6 +3696,8 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 		return false;
 
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
+	if (!cmpRanged)
+		return false;
 	var range = cmpRanged.GetRange(type);
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
@@ -3761,6 +3783,8 @@ UnitAI.prototype.CheckPointRangeExplicit = function(x, z, min, max)
 UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 {
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
+	if (!cmpRanged)
+		return false;
 	var range = cmpRanged.GetRange(type);
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
@@ -4286,6 +4310,14 @@ UnitAI.prototype.Ungarrison = function()
 	{
 		this.AddOrder("Ungarrison", null, false);
 	}
+};
+
+/**
+ * Adds autogarrison order to the queue (only used by ProductionQueue for auto-garrisoning)
+ */
+UnitAI.prototype.Autogarrison = function()
+{
+	this.AddOrder("Autogarrison", null, false);
 };
 
 /**

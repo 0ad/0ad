@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -34,6 +34,13 @@
 #include <CoreFoundation/CoreFoundation.h>
 #include <mach-o/dyld.h> // _NSGetExecutablePath
 
+// Ignore deprecation warnings for 10.5 backwards compatibility
+#if GCC_VERSION >= 402 // (older GCCs don't support this pragma)
+# if GCC_VERSION >= 406 // store user flags
+#  pragma GCC diagnostic push
+# endif
+# pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
 
 Status sys_clipboard_set(const wchar_t* text)
 {
@@ -75,12 +82,6 @@ namespace gfx {
 
 Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 {
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
-	CGDisplayModeRef currentMode = CGDisplayCopyDisplayMode(kCGDirectMainDisplay);
-#else
-	CFDictionaryRef currentMode = CGDisplayCurrentMode(kCGDirectMainDisplay);
-#endif
-
 	if(xres)
 		*xres = (int)CGDisplayPixelsWide(kCGDirectMainDisplay);
 
@@ -91,38 +92,55 @@ Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 	{
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 		// CGDisplayBitsPerPixel was deprecated in OS X 10.6
-		CFStringRef pixelEncoding = CGDisplayModeCopyPixelEncoding(currentMode);
-		if (CFStringCompare(pixelEncoding, CFSTR(IO32BitDirectPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo)
-			*bpp = 32;
-		else if (CFStringCompare(pixelEncoding, CFSTR(IO16BitDirectPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo)
-			*bpp = 16;
-		else if (CFStringCompare(pixelEncoding, CFSTR(IO8BitIndexedPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo)
-			*bpp = 8;
-		else	// error
-			*bpp = 0;
+		if (CGDisplayCopyDisplayMode != NULL)
+		{
+			CGDisplayModeRef currentMode = CGDisplayCopyDisplayMode(kCGDirectMainDisplay);
+			CFStringRef pixelEncoding = CGDisplayModeCopyPixelEncoding(currentMode);
+			if (CFStringCompare(pixelEncoding, CFSTR(IO32BitDirectPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo)
+				*bpp = 32;
+			else if (CFStringCompare(pixelEncoding, CFSTR(IO16BitDirectPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo)
+				*bpp = 16;
+			else if (CFStringCompare(pixelEncoding, CFSTR(IO8BitIndexedPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo)
+				*bpp = 8;
+			else	// error
+				*bpp = 0;
 
-		// We're responsible for this
-		CFRelease(pixelEncoding);
-#else
-		CFNumberRef num = (CFNumberRef)CFDictionaryGetValue(currentMode, kCGDisplayBitsPerPixel);
-		CFNumberGetValue(num, kCFNumberIntType, bpp);
+			// We're responsible for this
+			CFRelease(pixelEncoding);
+			CGDisplayModeRelease(currentMode);
+		}
+		else
+		{
+#endif		// fallback to 10.5 API
+			CFDictionaryRef currentMode = CGDisplayCurrentMode(kCGDirectMainDisplay);
+			CFNumberRef num = (CFNumberRef)CFDictionaryGetValue(currentMode, kCGDisplayBitsPerPixel);
+			CFNumberGetValue(num, kCFNumberIntType, bpp);
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
+		}
 #endif
 	}
 
 	if(freq)
 	{
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
-		*freq = (int)CGDisplayModeGetRefreshRate(currentMode);
-#else
-		CFNumberRef num = (CFNumberRef)CFDictionaryGetValue(currentMode, kCGDisplayRefreshRate);
-		CFNumberGetValue(num, kCFNumberIntType, freq);
+		if (CGDisplayCopyDisplayMode != NULL)
+		{
+			CGDisplayModeRef currentMode = CGDisplayCopyDisplayMode(kCGDirectMainDisplay);
+			*freq = (int)CGDisplayModeGetRefreshRate(currentMode);
+			
+			// We're responsible for this
+			CGDisplayModeRelease(currentMode);
+		}
+		else
+		{
+#endif		// fallback to 10.5 API
+			CFDictionaryRef currentMode = CGDisplayCurrentMode(kCGDirectMainDisplay);
+			CFNumberRef num = (CFNumberRef)CFDictionaryGetValue(currentMode, kCGDisplayRefreshRate);
+			CFNumberGetValue(num, kCFNumberIntType, freq);
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
+		}
 #endif
 	}
-
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
-	// We're responsible for this
-	CGDisplayModeRelease(currentMode);
-#endif
 
 	return INFO::OK;
 }
@@ -161,3 +179,10 @@ OsPath sys_ExecutablePathname()
 
 	return path;
 }
+
+#if GCC_VERSION >= 402
+# pragma GCC diagnostic warning "-Wdeprecated-declarations"
+# if GCC_VERSION >= 406
+#  pragma GCC diagnostic pop // restore user flags
+# endif
+#endif

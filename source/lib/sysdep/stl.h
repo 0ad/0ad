@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -70,6 +70,12 @@
 # else
 #  define STL_NO_EXCEPTIONS
 # endif
+#endif
+
+
+// OS X - fix some stream template instantiations that break 10.5 compatibility on newer SDKs
+#if OS_MACOSX
+# include "os/osx/osx_stl_fixes.h"
 #endif
 
 #endif	// #ifndef INCLUDED_STL

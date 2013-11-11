@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,6 +30,7 @@
 #include "lib/file/file.h"
 #include "lib/posix/posix_filesystem.h" // mode_t
 
+#include <AvailabilityMacros.h> // MAC_OS_X_VERSION_MIN_REQUIRED
 #include <CoreFoundation/CoreFoundation.h> 
 #include <CoreServices/CoreServices.h> 
 
@@ -63,8 +64,7 @@ bool  CanRunNotifications()
   return false;
 }
 
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1070
-#else
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 1070
   #define kFSEventStreamCreateFlagFileEvents  0x00000010
   #define kFSEventStreamEventFlagItemIsFile   0x00010000
   #define kFSEventStreamEventFlagItemRemoved  0x00000200

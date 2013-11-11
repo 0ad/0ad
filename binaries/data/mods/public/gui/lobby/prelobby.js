@@ -23,6 +23,9 @@ function lobbyStart()
 	if (g_LobbyIsConnecting != false)
 		return;
 
+	if (Engine.HasXmppClient())
+		Engine.StopXmppClient();
+
 	var username = getGUIObjectByName("connectUsername").caption;
 	var password = getGUIObjectByName("connectPassword").caption;
 	var feedback = getGUIObjectByName("connectFeedback");
@@ -50,6 +53,10 @@ function lobbyStartRegister()
 {
 	if (g_LobbyIsConnecting != false)
 		return;
+
+	if (Engine.HasXmppClient())
+		Engine.StopXmppClient();
+
 	var account = getGUIObjectByName("connectUsername").caption;
 	var password = getGUIObjectByName("connectPassword").caption;
 	var passwordAgain = getGUIObjectByName("registerPasswordAgain").caption;
