@@ -36,6 +36,8 @@ JPEG_DIR="jpeg-8d" # Must match directory name inside source tarball
 PNG_VERSION="libpng-1.5.13"
 OGG_VERSION="libogg-1.3.0"
 VORBIS_VERSION="libvorbis-1.3.3"
+# gloox is necessary for multiplayer lobby
+GLOOX_VERSION="gloox-1.0.9"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey 1.8.5
@@ -152,7 +154,7 @@ then
 
   # patch zlib's configure script to use our CFLAGS and LDFLAGS
   # TODO: could be done with sed...
-  (patch -p0 -i ../../patches/zlib_flags.diff && CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" ./configure --prefix="$ZLIB_DIR" && make ${JOBS} && make install) || die "zlib build failed"
+  (patch -p0 -i ../../patches/zlib_flags.diff && CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" ./configure --prefix="$ZLIB_DIR" --static && make ${JOBS} && make install) || die "zlib build failed"
   popd
   touch .already-built
 else
@@ -181,7 +183,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-ipv6 --without-gnutls --without-gssapi --without-libmetalink --without-librtmp --without-libssh2 --without-nss --without-polarssl --without-spnego --without-ssl --disable-ares --disable-ldap --disable-ldaps --with-libidn --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libcurl build failed"
+  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-ipv6 --without-gnutls --without-gssapi --without-libmetalink --without-librtmp --without-libssh2 --without-nss --without-polarssl --without-spnego --without-ssl --disable-ares --disable-ldap --disable-ldaps --without-libidn --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libcurl build failed"
   popd
   touch .already-built
 else
@@ -456,6 +458,38 @@ then
   pushd $LIB_DIRECTORY
 
   (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no --with-ogg="$INSTALL_DIR" && make ${JOBS} && make install) || die "libvorbis build failed"
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building gloox..."
+
+LIB_VERSION="${GLOOX_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
+LIB_DIRECTORY="$LIB_VERSION"
+LIB_URL="http://camaya.net/download/"
+
+mkdir -p gloox
+pushd gloox > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  # patch gloox to fix build error (fixed upstream in r4529)
+  # TODO: pulls in libresolv dependency from /usr/lib
+  # TODO: if we ever use SSL/TLS, that will add yet another dependency...
+  (patch -p0 -i ../../patches/gloox-r4529.diff && ./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no --with-zlib="${ZLIB_DIR}" --without-libidn --without-gnutls --without-openssl --without-tests --without-examples && make ${JOBS} && make install) || die "gloox build failed"
   popd
   touch .already-built
 else
