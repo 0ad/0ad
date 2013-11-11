@@ -66,8 +66,7 @@ if [ "`uname -s`" = "Darwin" ]; then
   # Set *_CONFIG variables on OS X, to override the path to e.g. sdl-config
   export SDL_CONFIG=${SDL_CONFIG:="$(pwd)/../../libraries/osx/sdl/bin/sdl-config"}
   export WX_CONFIG=${WX_CONFIG:="$(pwd)/../../libraries/osx/wxwidgets/bin/wx-config"}
-  # use xml2-config from system or SDK
-  export XML2_CONFIG=${XML2_CONFIG:="$SYSROOT/usr/bin/xml2-config"}
+  export XML2_CONFIG=${XML2_CONFIG:="$(pwd)/../../libraries/osx/libxml2/bin/xml2-config"}
 fi
 
 # Don't want to build bundled libs on OS X

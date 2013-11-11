@@ -1,0 +1,14 @@
+--- configure
++++ configure
+@@ -775,9 +775,9 @@
+ # udpate Makefile with the configure results
+ sed < Makefile.in "
+ /^CC *=/s#=.*#=$CC#
+-/^CFLAGS *=/s#=.*#=$CFLAGS#
++/^CFLAGS *=/s#=.*#+=$CFLAGS#
+ /^SFLAGS *=/s#=.*#=$SFLAGS#
+-/^LDFLAGS *=/s#=.*#=$LDFLAGS#
++/^LDFLAGS *=/s#=.*#+=$LDFLAGS#
+ /^LDSHARED *=/s#=.*#=$LDSHARED#
+ /^CPP *=/s#=.*#=$CPP#
+ /^STATICLIB *=/s#=.*#=$STATICLIB#

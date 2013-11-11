@@ -345,12 +345,12 @@ extern_lib_defs = {
 	},
 	libcurl = {
 		compile_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_include_paths("libcurl")
 			end
 		end,
 		link_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_lib_paths("libcurl")
 			end
 			add_default_links({
@@ -651,12 +651,12 @@ extern_lib_defs = {
 	},
 	zlib = {
 		compile_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_include_paths("zlib")
 			end
 		end,
 		link_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_lib_paths("zlib")
 			end
 			add_default_links({

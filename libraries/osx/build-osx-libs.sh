@@ -20,6 +20,10 @@
 #
 # --------------------------------------------------------------
 # Library versions for ease of updating:
+ZLIB_VERSION="zlib-1.2.8"
+CURL_VERSION="curl-7.32.0"
+ICONV_VERSION="libiconv-1.14"
+XML2_VERSION="libxml2-2.9.1"
 # * SDL 1.2.15+ required for Lion support
 SDL_VERSION="SDL-1.2.15"
 BOOST_VERSION="boost_1_52_0"
@@ -40,11 +44,8 @@ VORBIS_VERSION="libvorbis-1.3.3"
 # * FCollada
 # --------------------------------------------------------------
 # Provided by OS X:
-# * curl
-# * libxml2
 # * OpenAL
 # * OpenGL
-# * zlib
 # --------------------------------------------------------------
 
 # Force build architecture, as sometimes environment is broken.
@@ -74,6 +75,8 @@ fi
 # Check if MIN_OSX_VERSION is set and not empty
 if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
   CFLAGS="$CFLAGS -mmacosx-version-min=$MIN_OSX_VERSION"
+  # clang and llvm-gcc look at mmacosx-version-min to determine link target
+  # and CRT version, and use it to set the macosx_version_min linker flag
   LDFLAGS="$LDFLAGS -mmacosx-version-min=$MIN_OSX_VERSION"
 fi
 CFLAGS="$CFLAGS -arch $ARCH"
@@ -102,6 +105,11 @@ download_lib()
   fi
 }
 
+already_built()
+{
+  echo -e "Skipping - already built (use --force-rebuild to override)"
+}
+
 # Check that we're actually on OS X
 if [ "`uname -s`" != "Darwin" ]; then
   die "This script is intended for OS X only"
@@ -122,8 +130,126 @@ cd "$(dirname $0)"
 # Now in libraries/osx/ (where we assume this script resides)
 
 # --------------------------------------------------------------
+echo -e "Building zlib..."
 
-echo -e "\nBuilding SDL...\n"
+LIB_VERSION="${ZLIB_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.gz"
+LIB_DIRECTORY=$LIB_VERSION
+LIB_URL="http://zlib.net/"
+
+mkdir -p zlib
+pushd zlib > /dev/null
+
+ZLIB_DIR="$(pwd)"
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  # patch zlib's configure script to use our CFLAGS and LDFLAGS
+  # TODO: could be done with sed...
+  (patch -p0 -i ../../patches/zlib_flags.diff && CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" ./configure --prefix="$ZLIB_DIR" && make ${JOBS} && make install) || die "zlib build failed"
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building libcurl..."
+
+LIB_VERSION="${CURL_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
+LIB_DIRECTORY="$LIB_VERSION"
+LIB_URL="http://curl.haxx.se/download/"
+
+mkdir -p libcurl
+pushd libcurl > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-ipv6 --without-gnutls --without-gssapi --without-libmetalink --without-librtmp --without-libssh2 --without-nss --without-polarssl --without-spnego --without-ssl --disable-ares --disable-ldap --disable-ldaps --with-libidn --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libcurl build failed"
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building libiconv..."
+
+LIB_VERSION="${ICONV_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.gz"
+LIB_DIRECTORY="$LIB_VERSION"
+LIB_URL="http://ftp.gnu.org/pub/gnu/libiconv/"
+
+mkdir -p libiconv
+pushd libiconv > /dev/null
+
+ICONV_DIR="$(pwd)"
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$ICONV_DIR" --without-libiconv-prefix --without-libintl-prefix --disable-nls --enable-shared=no && make ${JOBS} && make install) || die "libiconv build failed"
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building libxml2..."
+
+LIB_VERSION="${XML2_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.gz"
+LIB_DIRECTORY="$LIB_VERSION"
+LIB_URL="ftp://xmlsoft.org/libxml2/"
+
+mkdir -p libxml2
+pushd libxml2 > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --without-lzma --without-python --with-iconv="${ICONV_DIR}" --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libxml2 build failed"
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+
+echo -e "Building SDL..."
 
 LIB_VERSION="${SDL_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.gz"
@@ -131,7 +257,7 @@ LIB_DIRECTORY=$LIB_VERSION
 LIB_URL="http://www.libsdl.org/release/"
 
 mkdir -p sdl
-pushd sdl
+pushd sdl > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
 then
@@ -148,12 +274,12 @@ then
   popd
   touch .already-built
 else
-  echo -e "\nSkipping - already built\n"
+  already_built
 fi
-popd
+popd > /dev/null
 
 # --------------------------------------------------------------
-echo -e "\nBuilding Boost...\n"
+echo -e "Building Boost..."
 
 LIB_VERSION="${BOOST_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
@@ -161,7 +287,7 @@ LIB_DIRECTORY="$LIB_VERSION"
 LIB_URL="http://download.sourceforge.net/boost/"
 
 mkdir -p boost
-pushd boost
+pushd boost > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
 then
@@ -179,13 +305,13 @@ then
   popd
   touch .already-built
 else
-  echo -e "\nSkipping - already built\n"
+  already_built
 fi
-popd
+popd > /dev/null
 
 # --------------------------------------------------------------
 # TODO: This build takes ages, anything we can exlude?
-echo -e "\nBuilding wxWidgets...\n"
+echo -e "Building wxWidgets..."
 
 LIB_VERSION="${WXWIDGETS_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
@@ -193,7 +319,7 @@ LIB_DIRECTORY="$LIB_VERSION"
 LIB_URL="http://download.sourceforge.net/wxwindows/"
 
 mkdir -p wxwidgets
-pushd wxwidgets
+pushd wxwidgets > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
 then
@@ -207,18 +333,18 @@ then
 
   mkdir -p build-release
   pushd build-release
-
-  (../configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix=$INSTALL_DIR --disable-shared --enable-unicode --with-cocoa --with-opengl && make ${JOBS} && make install) || die "wxWidgets build failed"
+  # disable XML and richtext support, to avoid dependency on expat
+  (../configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix=$INSTALL_DIR --disable-shared --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix="${ICONV_DIR}" --disable-richtext --without-expat --without-sdl && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
   popd
   touch .already-built
 else
-  echo -e "\nSkipping - already built\n"
+  already_built
 fi
-popd
+popd > /dev/null
 
 # --------------------------------------------------------------
-echo -e "\nBuilding libjpg...\n"
+echo -e "Building libjpg..."
 
 LIB_VERSION="${JPEG_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.gz"
@@ -226,7 +352,7 @@ LIB_DIRECTORY="${JPEG_DIR}"
 LIB_URL="http://www.ijg.org/files/"
 
 mkdir -p libjpg
-pushd libjpg
+pushd libjpg > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
 then
@@ -242,12 +368,12 @@ then
   popd
   touch .already-built
 else
-  echo -e "\nSkipping - already built\n"
+  already_built
 fi
-popd
+popd > /dev/null
 
 # --------------------------------------------------------------
-echo -e "\nBuilding libpng...\n"
+echo -e "Building libpng..."
 
 LIB_VERSION="${PNG_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.gz"
@@ -255,7 +381,7 @@ LIB_DIRECTORY="$LIB_VERSION"
 LIB_URL="http://download.sourceforge.net/libpng/"
 
 mkdir -p libpng
-pushd libpng
+pushd libpng > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
 then
@@ -271,12 +397,12 @@ then
   popd
   touch .already-built
 else
-  echo -e "\nSkipping - already built\n"
+  already_built
 fi
-popd
+popd > /dev/null
 
 # --------------------------------------------------------------
-echo -e "\nBuilding libogg...\n"
+echo -e "Building libogg..."
 
 LIB_VERSION="${OGG_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.gz"
@@ -289,7 +415,7 @@ mkdir -p libogg
 mkdir -p vorbis
 
 INSTALL_DIR="$(pwd)/vorbis"
-pushd libogg
+pushd libogg > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
 then
@@ -303,19 +429,19 @@ then
   popd
   touch .already-built
 else
-  echo -e "\nSkipping - already built\n"
+  already_built
 fi
-popd
+popd > /dev/null
 
 # --------------------------------------------------------------
-echo -e "\nBuilding libvorbis...\n"
+echo -e "Building libvorbis..."
 
 LIB_VERSION="${VORBIS_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.gz"
 LIB_DIRECTORY="$LIB_VERSION"
 LIB_URL="http://downloads.xiph.org/releases/vorbis/"
 
-pushd vorbis
+pushd vorbis > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
 then
@@ -331,21 +457,21 @@ then
   popd
   touch .already-built
 else
-  echo -e "\nSkipping - already built\n"
+  already_built
 fi
-popd
+popd > /dev/null
 
 # --------------------------------------------------------------------
 # The following libraries are shared on different OSes and may
 # be customzied, so we build and install them from bundled sources
 # --------------------------------------------------------------------
-echo -e "\nBuilding Spidermonkey...\n"
+echo -e "Building Spidermonkey..."
 
 LIB_VERSION="js185-1.0.0"
 LIB_ARCHIVE="$LIB_VERSION.tar.gz"
 LIB_DIRECTORY="js-1.8.5"
 
-pushd ../source/spidermonkey/
+pushd ../source/spidermonkey/ > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
 then
@@ -386,14 +512,14 @@ then
   popd
   touch .already-built
 else
-  echo -e "\nSkipping - already built\n"
+  already_built
 fi
-popd
+popd > /dev/null
 
 # --------------------------------------------------------------
-echo -e "\nBuilding ENet...\n"
+echo -e "Building ENet..."
 
-pushd ../source/enet/
+pushd ../source/enet/ > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
 then
@@ -404,15 +530,15 @@ then
   popd
   touch .already-built
 else
-  echo -e "\nSkipping - already built\n"
+  already_built
 fi
-popd
+popd > /dev/null
 
 # --------------------------------------------------------------
 # NVTT - no install
-echo -e "\nBuilding NVTT...\n"
+echo -e "Building NVTT..."
 
-pushd ../source/nvtt
+pushd ../source/nvtt > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
 then
@@ -434,15 +560,15 @@ then
   popd
   touch .already-built
 else
-  echo -e "\nSkipping - already built\n"
+  already_built
 fi
-popd
+popd > /dev/null
 
 # --------------------------------------------------------------
 # FCollada - no install
-echo -e "\nBuilding FCollada...\n"
+echo -e "Building FCollada..."
 
-pushd ../source/fcollada
+pushd ../source/fcollada > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
 then
@@ -459,6 +585,6 @@ then
   popd
   touch .already-built
 else
-  echo -e "\nSkipping - already built\n"
+  already_built
 fi
-popd
+popd > /dev/null
