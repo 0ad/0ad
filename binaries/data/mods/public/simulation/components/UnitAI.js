@@ -663,6 +663,10 @@ var UnitFsmSpec = {
 		}
 	},
 
+	"Order.Autogarrison": function(msg) {
+		this.SetNextState("INDIVIDUAL.AUTOGARRISON");
+	},
+
 	"Order.Cheering": function(msg) {
 		this.SetNextState("INDIVIDUAL.CHEERING");
 	},
@@ -770,31 +774,26 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Garrison": function(msg) {
-			if (!Engine.QueryInterface(msg.data.target, IID_GarrisonHolder))
+			// TODO: on what should we base this range?
+			// Check if we are already in range, otherwise walk there
+			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				this.FinishOrder();
+				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
+					// The target was destroyed
+					this.FinishOrder();
+				else
+					// Out of range; move there in formation
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
 				return;
 			}
-			// Check if we are already in range, otherwise walk there
-			if (!this.CheckGarrisonRange(msg.data.target))
-			{
-				if (!this.CheckTargetVisible(msg.data.target))
-				{
-					this.FinishOrder();
-					return;
-				}
-				else
-				{
-					// Out of range; move there in formation
-					if (this.MoveToGarrisonRange(msg.data.target))
-					{
-						this.SetNextState("GARRISON.APPROACHING");
-						return;
-					}
-				}
-			}
 
-			this.SetNextState("GARRISON.GARRISONING");
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			// We don't want to rearrange the formation if the individual units are carrying
+			// out a task and one of the members dies/leaves the formation.
+			cmpFormation.SetRearrange(false);
+			cmpFormation.CallMemberFunction("Garrison", [msg.data.target, false]);
+
+			this.SetNextStateAlwaysEntering("MEMBER");
 		},
 
 		"Order.Gather": function(msg) {
@@ -2461,6 +2460,22 @@ var UnitFsmSpec = {
 					this.isGarrisoned = false;
 				}
 			},
+		},
+
+		"AUTOGARRISON": {
+			"enter": function() {
+				this.isGarrisoned = true;
+				return false;
+			},
+				
+			"Order.Ungarrison": function() {
+				if (this.FinishOrder())
+					return;
+			},
+
+			"leave": function() {
+				this.isGarrisoned = false;
+			}
 		},
 
 		"CHEERING": {
@@ -4290,6 +4305,14 @@ UnitAI.prototype.Ungarrison = function()
 	{
 		this.AddOrder("Ungarrison", null, false);
 	}
+};
+
+/**
+ * Adds autogarrison order to the queue (only used by ProductionQueue for auto-garrisoning)
+ */
+UnitAI.prototype.Autogarrison = function()
+{
+	this.AddOrder("Autogarrison", null, false);
 };
 
 /**

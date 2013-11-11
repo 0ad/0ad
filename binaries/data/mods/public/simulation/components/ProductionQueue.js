@@ -442,8 +442,9 @@ ProductionQueue.prototype.OnDestroy = function()
 };
 
 /*
- * This function creates the entities and places them in world if possible.
- * returns the number of successfully spawned entities.
+ * This function creates the entities and places them in world if possible
+ * and returns the number of successfully created entities.
+ * (some of these entities may be garrisoned directly if autogarrison, the others are spawned).
  */
 ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 {
@@ -452,6 +453,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
 	
+	var createdEnts = [];
 	var spawnedEnts = [];
 	
 	if (this.entityCache.length == 0)
@@ -476,35 +478,52 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		}
 	}
 
+	var cmpAutoGarrison = undefined;
+	if (cmpRallyPoint)
+	{
+		var data = cmpRallyPoint.GetData()[0];
+		if (data && data.target == this.entity && data.command == "garrison")
+			cmpAutoGarrison = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+	}
+
 	for (var i = 0; i < count; ++i)
 	{
 		var ent = this.entityCache[0];
-		var pos = cmpFootprint.PickSpawnPoint(ent);
-		if (pos.y < 0)
+		var cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
+
+		if (cmpAutoGarrison && cmpAutoGarrison.PerformGarrison(ent))
 		{
-			// Fail: there wasn't any space to spawn the unit
-			break;
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			cmpUnitAI.Autogarrison();
 		}
 		else
 		{
-			// Successfully spawned
-			var cmpNewPosition = Engine.QueryInterface(ent, IID_Position);
-			cmpNewPosition.JumpTo(pos.x, pos.z);
-			// TODO: what direction should they face in?
-
-			var cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
-			cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
-			
-			var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
-			cmpPlayerStatisticsTracker.IncreaseTrainedUnitsCounter();
-
-			// Play a sound, but only for the first in the batch (to avoid nasty phasing effects)
-			if (spawnedEnts.length == 0)
-				PlaySound("trained", ent);
-			
-			this.entityCache.shift();
-			spawnedEnts.push(ent);
+			var pos = cmpFootprint.PickSpawnPoint(ent);
+			if (pos.y < 0)
+			{
+				// Fail: there wasn't any space to spawn the unit
+				break;
+			}
+			else
+			{
+				// Successfully spawned
+				var cmpNewPosition = Engine.QueryInterface(ent, IID_Position);
+				cmpNewPosition.JumpTo(pos.x, pos.z);
+				// TODO: what direction should they face in?
+				spawnedEnts.push(ent);
+			}
 		}
+
+		var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+		cmpPlayerStatisticsTracker.IncreaseTrainedUnitsCounter();
+
+		// Play a sound, but only for the first in the batch (to avoid nasty phasing effects)
+		if (createdEnts.length == 0)
+			PlaySound("trained", ent);
+			
+		this.entityCache.shift();
+		createdEnts.push(ent);
 	}
 
 	if (spawnedEnts.length > 0)
@@ -518,20 +537,21 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			{
 				var commands = GetRallyPointCommands(cmpRallyPoint, spawnedEnts);
 				for each(var com in commands)
-				{
 					ProcessCommand(cmpOwnership.GetOwner(), com);
-				}
 			}
 		}
+	}
 
+	if (createdEnts.length > 0)
+	{
 		Engine.PostMessage(this.entity, MT_TrainingFinished, {
-			"entities": spawnedEnts,
+			"entities": createdEnts,
 			"owner": cmpOwnership.GetOwner(),
 			"metadata": metadata,
 		});
 	}
 	
-	return spawnedEnts.length;
+	return createdEnts.length;
 };
 
 /*

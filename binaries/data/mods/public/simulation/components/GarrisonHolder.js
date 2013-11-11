@@ -201,6 +201,19 @@ GarrisonHolder.prototype.AllowedToGarrison = function(entity)
  */
 GarrisonHolder.prototype.Garrison = function(entity)
 {
+	var cmpPosition = Engine.QueryInterface(entity, IID_Position);
+	if (!cmpPosition)
+		return false;
+
+	if (!this.PerformGarrison(entity))
+		return false;
+
+	cmpPosition.MoveOutOfWorld();
+	return true;
+};
+
+GarrisonHolder.prototype.PerformGarrison = function(entity)
+{
 	if (!this.HasEnoughHealth())
 		return false;
 
@@ -216,10 +229,6 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if (this.GetGarrisonedEntitiesCount() + extraCount >= this.GetCapacity())
 		return false;
 
-	var cmpPosition = Engine.QueryInterface(entity, IID_Position);
-	if (!cmpPosition)
-		return false;
-
 	if (!this.timer && this.GetHealRate() > 0)
 	{
  		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
@@ -228,7 +237,6 @@ GarrisonHolder.prototype.Garrison = function(entity)
 
 	// Actual garrisoning happens here
 	this.entities.push(entity);
-	cmpPosition.MoveOutOfWorld();
 	this.UpdateGarrisonFlag();
 	var cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
 	if (cmpProductionQueue)
@@ -309,6 +317,9 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
 		if (rallyPos)
 		{
 			var commands = GetRallyPointCommands(cmpRallyPoint, entities);
+			// ignore the rally point if it is autogarrison
+			if (commands[0].type == "garrison" && commands[0].target == this.entity)
+				return;
 			for each (var com in commands)
 			{
 				ProcessCommand(cmpOwnership.GetOwner(), com);
