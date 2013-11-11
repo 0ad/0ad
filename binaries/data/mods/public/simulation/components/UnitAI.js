@@ -774,26 +774,31 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Garrison": function(msg) {
-			// TODO: on what should we base this range?
-			// Check if we are already in range, otherwise walk there
-			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
+			if (!Engine.QueryInterface(msg.data.target, IID_GarrisonHolder))
 			{
-				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
-					// The target was destroyed
-					this.FinishOrder();
-				else
-					// Out of range; move there in formation
-					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
+				this.FinishOrder();
 				return;
 			}
+			// Check if we are already in range, otherwise walk there
+			if (!this.CheckGarrisonRange(msg.data.target))
+			{
+				if (!this.CheckTargetVisible(msg.data.target))
+				{
+					this.FinishOrder();
+					return;
+				}
+				else
+				{
+					// Out of range; move there in formation
+					if (this.MoveToGarrisonRange(msg.data.target))
+					{
+						this.SetNextState("GARRISON.APPROACHING");
+						return;
+					}
+				}
+			}
 
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			// We don't want to rearrange the formation if the individual units are carrying
-			// out a task and one of the members dies/leaves the formation.
-			cmpFormation.SetRearrange(false);
-			cmpFormation.CallMemberFunction("Garrison", [msg.data.target, false]);
-
-			this.SetNextStateAlwaysEntering("MEMBER");
+			this.SetNextState("GARRISON.GARRISONING");
 		},
 
 		"Order.Gather": function(msg) {

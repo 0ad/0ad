@@ -526,7 +526,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		createdEnts.push(ent);
 	}
 
-	if (spawnedEnts.length > 0)
+	if (spawnedEnts.length > 0 && !cmpAutoGarrison)
 	{
 		// If a rally point is set, walk towards it (in formation) using a suitable command based on where the 
 		// rally point is placed.
