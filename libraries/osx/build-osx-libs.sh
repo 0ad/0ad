@@ -269,8 +269,10 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
+
+  # patch SDL to fix Mavericks build (fixed upstream, see https://bugzilla.libsdl.org/show_bug.cgi?id=2085 )
   # Don't use X11 - we don't need it and Mountain Lion removed it
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --without-x --enable-shared=no && make $JOBS && make install) || die "SDL build failed"
+  (patch -p0 -i ../../patches/sdl-mavericks-quartz-fix.diff && ./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --without-x --enable-shared=no && make $JOBS && make install) || die "SDL build failed"
   popd
   touch .already-built
 else
