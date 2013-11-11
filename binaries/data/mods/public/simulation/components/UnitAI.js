@@ -3676,6 +3676,8 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 		return false;
 
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
+	if (!cmpRanged)
+		return false;
 	var range = cmpRanged.GetRange(type);
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
@@ -3761,6 +3763,8 @@ UnitAI.prototype.CheckPointRangeExplicit = function(x, z, min, max)
 UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 {
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
+	if (!cmpRanged)
+		return false;
 	var range = cmpRanged.GetRange(type);
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
