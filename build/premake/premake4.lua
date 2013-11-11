@@ -320,6 +320,8 @@ function project_set_build_flags()
 			-- On OS X, sometimes we need to specify the minimum API version to use
 			if _OPTIONS["macosx-version-min"] then
 				buildoptions { "-mmacosx-version-min=" .. _OPTIONS["macosx-version-min"] }
+				-- clang and llvm-gcc look at mmacosx-version-min to determine link target
+				-- and CRT version, and use it to set the macosx_version_min linker flag
 				linkoptions { "-mmacosx-version-min=" .. _OPTIONS["macosx-version-min"] }
 			end
 
