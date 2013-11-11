@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2013 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -32,22 +32,28 @@ static std::string getUserDirectoryPath(NSSearchPathDirectory directory)
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	std::string result;
 
+	NSArray* paths;
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 	// Returns array of NSURL objects which are preferred for file paths
-	NSArray* paths = [[NSFileManager defaultManager] URLsForDirectory:directory inDomains:NSUserDomainMask];
-#else
-	NSArray* paths = NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, true);
-#endif
+	if ([NSFileManager instancesRespondToSelector:@selector(URLsForDirectory)])
+		paths = [[NSFileManager defaultManager] URLsForDirectory:directory inDomains:NSUserDomainMask];
+	else
+#endif	// fallback to 10.5 API
+		paths = NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, true);
+
 	if ([paths count] > 0)
 	{
+		NSString* pathStr;
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 		// Retrieve first NSURL and convert to POSIX path, then get C-string
 		//	encoded as UTF-8, and use it to construct std::string
 		// NSURL:path "If the receiver does not conform to RFC 1808, returns nil."
-		NSString* pathStr = [[paths objectAtIndex:0] path];
-#else
-		NSString* pathStr = [paths objectAtIndex:0];
-#endif
+		if ([NSFileManager instancesRespondToSelector:@selector(URLsForDirectory)])
+			pathStr = [[paths objectAtIndex:0] path];
+		else
+#endif		// fallback to 10.5 API
+			pathStr = [paths objectAtIndex:0];
+
 		if (pathStr != nil)
 			result = std::string([pathStr UTF8String]);
 	}
