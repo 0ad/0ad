@@ -195,18 +195,33 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	
 	shader->BindTexture(str_renderedTex, renderedTex);
 	
-	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, inWidth / 2, inHeight / 2);
 	
-	glBegin(GL_QUADS);
-	    glColor4f(1.f, 1.f, 1.f, 1.f);
-	    glTexCoord2f(1.0, 1.0);	glVertex2f(1,1);
-	    glTexCoord2f(0.0, 1.0);	glVertex2f(-1,1);	    
-	    glTexCoord2f(0.0, 0.0);	glVertex2f(-1,-1);
-	    glTexCoord2f(1.0, 0.0);	glVertex2f(1,-1);
-	glEnd();
+	float quadVerts[] = {
+		1.0f, 1.0f,
+		-1.0f, 1.0f,
+		-1.0f, -1.0f,
+
+		-1.0f, -1.0f,
+		1.0f, -1.0f,
+		1.0f, 1.0f
+	};
+	float quadTex[] = {
+		1.0f, 1.0f,
+		0.0f, 1.0f,
+		0.0f, 0.0f,
+
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f
+	};
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
+	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glViewport(0, 0, g_xres, g_yres);
 	
-	glPopAttrib(); 
 	tech->EndPass();
 }
 
@@ -227,18 +242,33 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	shader->BindTexture(str_renderedTex, inOutTex);
 	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
 	
-	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, inWidth, inHeight);
 	
-	glBegin(GL_QUADS);
-	    glColor4f(1.f, 1.f, 1.f, 1.f);
-	    glTexCoord2f(1.0, 1.0);	glVertex2f(1,1);
-	    glTexCoord2f(0.0, 1.0);	glVertex2f(-1,1);
-	    glTexCoord2f(0.0, 0.0);	glVertex2f(-1,-1);
-	    glTexCoord2f(1.0, 0.0);	glVertex2f(1,-1);
-	glEnd();
-	
-	glPopAttrib(); 
+	float quadVerts[] = {
+		1.0f, 1.0f,
+		-1.0f, 1.0f,
+		-1.0f, -1.0f,
+
+		-1.0f, -1.0f,
+		1.0f, -1.0f,
+		1.0f, 1.0f
+	};
+	float quadTex[] = {
+		1.0f, 1.0f,
+		0.0f, 1.0f,
+		0.0f, 0.0f,
+
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f
+	};
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
+	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glViewport(0, 0, g_xres, g_yres);
+
 	tech->EndPass();
 	
 	// Set result texture as our render target.
@@ -258,18 +288,15 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	shader->BindTexture(str_renderedTex, tempTex);
 	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
 	
-	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, inWidth, inHeight);
 	
-	glBegin(GL_QUADS);
-	    glColor4f(1.f, 1.f, 1.f, 1.f);
-	    glTexCoord2f(1.0, 1.0);	glVertex2f(1,1);
-	    glTexCoord2f(0.0, 1.0);	glVertex2f(-1,1);
-	    glTexCoord2f(0.0, 0.0);	glVertex2f(-1,-1);
-	    glTexCoord2f(1.0, 0.0);	glVertex2f(1,-1);
-	glEnd();
-	
-	glPopAttrib(); 
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
+	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glViewport(0, 0, g_xres, g_yres);
+
 	tech->EndPass();
 }
 
@@ -392,13 +419,28 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	shader->Uniform(str_saturation, g_LightEnv.m_Saturation);
 	shader->Uniform(str_bloom, g_LightEnv.m_Bloom);
 	
-	glBegin(GL_QUADS);
-	    glColor4f(1.f, 1.f, 1.f, 1.f);
-	    glTexCoord2f(1.0, 1.0);	glVertex2f(1,1);
-	    glTexCoord2f(0.0, 1.0);	glVertex2f(-1,1);	    
-	    glTexCoord2f(0.0, 0.0);	glVertex2f(-1,-1);
-	    glTexCoord2f(1.0, 0.0);	glVertex2f(1,-1);
-	glEnd();
+	float quadVerts[] = {
+		1.0f, 1.0f,
+		-1.0f, 1.0f,
+		-1.0f, -1.0f,
+
+		-1.0f, -1.0f,
+		1.0f, -1.0f,
+		1.0f, 1.0f
+	};
+	float quadTex[] = {
+		1.0f, 1.0f,
+		0.0f, 1.0f,
+		0.0f, 0.0f,
+
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f
+	};
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
+	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 	
 	shader->Unbind();
 	
