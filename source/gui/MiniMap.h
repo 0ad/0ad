@@ -83,7 +83,7 @@ protected:
 	// maximal water height to allow the passage of a unit (for underwater shallows).
 	float m_ShallowPassageHeight;
 
-	void DrawTexture(float coordMax, float angle, float x, float y, float x2, float y2, float z);
+	void DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2, float z);
 
 	void DrawViewRect();
 
