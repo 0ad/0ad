@@ -54,7 +54,7 @@ static unsigned int ScaleColor(unsigned int color, float x)
 	unsigned int r = unsigned(float(color & 0xff) * x);
 	unsigned int g = unsigned(float((color>>8) & 0xff) * x);
 	unsigned int b = unsigned(float((color>>16) & 0xff) * x);
-	return (0xff000000 | r | g<<8 | b<<16);
+	return (0xff000000 | b | g<<8 | r<<16);
 }
 
 CMiniMap::CMiniMap() :
@@ -682,7 +682,7 @@ void CMiniMap::CreateTextures()
 	u32* texData = new u32[m_TextureSize * m_TextureSize];
 	for (ssize_t i = 0; i < m_TextureSize * m_TextureSize; ++i)
 		texData[i] = 0xFF000000;
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, texData);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
 	delete[] texData;
 
 	m_TerrainData = new u32[(m_MapSize - 1) * (m_MapSize - 1)];
@@ -717,14 +717,15 @@ void CMiniMap::RebuildTerrainTexture()
 					+ m_Terrain->GetVertexGroundLevel((int)i+1, (int)j+1)
 				) / 4.0f;
 
-			if(avgHeight < waterHeight && avgHeight > waterHeight - m_ShallowPassageHeight)
+			if (avgHeight < waterHeight && avgHeight > waterHeight - m_ShallowPassageHeight)
 			{
 				// shallow water
-				*dataPtr++ = 0xff7098c0;
-			} else if (avgHeight < waterHeight)
+				*dataPtr++ = 0xffc09870;
+			}
+			else if (avgHeight < waterHeight)
 			{
 				// Set water as constant color for consistency on different maps
-				*dataPtr++ = 0xff5078a0;
+				*dataPtr++ = 0xffa07850;
 			}
 			else
 			{
@@ -755,7 +756,7 @@ void CMiniMap::RebuildTerrainTexture()
 
 	// Upload the texture
 	g_Renderer.BindTexture(0, m_TerrainTexture);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_TerrainData);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_RGBA, GL_UNSIGNED_BYTE, m_TerrainData);
 }
 
 void CMiniMap::Destroy()
