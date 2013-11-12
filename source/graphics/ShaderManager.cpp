@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 #include "ShaderManager.h"
 
 #include "graphics/ShaderTechnique.h"
+#include "lib/config2.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
@@ -246,11 +247,19 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 					GLenum type = GL_TEXTURE_2D;
 					CStr t = Attrs.GetNamedItem(at_type);
 					if (t == "sampler1D")
+#if CONFIG2_GLES
+						debug_warn(L"sampler1D not implemented on GLES");
+#else
 						type = GL_TEXTURE_1D;
+#endif
 					else if (t == "sampler2D")
 						type = GL_TEXTURE_2D;
 					else if (t == "sampler3D")
+#if CONFIG2_GLES
+						debug_warn(L"sampler3D not implemented on GLES");
+#else
 						type = GL_TEXTURE_3D;
+#endif
 					else if (t == "samplerCube")
 						type = GL_TEXTURE_CUBE_MAP;
 					

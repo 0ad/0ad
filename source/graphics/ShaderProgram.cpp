@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -660,7 +660,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 #if CONFIG2_GLES
 /*static*/ CShaderProgram* CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const CShaderDefines& UNUSED(defines),
-	const std::map<CStrIntern, int>& UNUSED(vertexIndexes), const std::map<CStrIntern, int>& UNUSED(fragmentIndexes),
+	const std::map<CStrIntern, int>& UNUSED(vertexIndexes), const std::map<CStrIntern, frag_index_pair_t>& UNUSED(fragmentIndexes),
 	int UNUSED(streamflags))
 {
 	LOGERROR(L"CShaderProgram::ConstructARB: '%ls'+'%ls': ARB shaders not supported on this device",

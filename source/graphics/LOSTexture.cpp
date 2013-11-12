@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "lib/bits.h"
+#include "lib/config2.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
@@ -147,6 +148,9 @@ void CLOSTexture::InterpolateLOS()
 	
 	shader->Uniform(str_delta, (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
 	
+#if CONFIG2_GLES
+#warning TODO: fix CLOSTexture::InterpolateLOS for GLES (avoid GL_QUADS/glPushAttrib)
+#else
 	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, m_TextureSize, m_TextureSize);
 	
@@ -159,6 +163,7 @@ void CLOSTexture::InterpolateLOS()
 	glEnd();
 	
 	glPopAttrib(); 
+#endif
 	shader->Unbind();
 	m_smoothShader->EndPass();
 	
