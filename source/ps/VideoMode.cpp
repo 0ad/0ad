@@ -234,12 +234,13 @@ bool CVideoMode::InitSDL()
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-#if !SDL_VERSION_ATLEAST(1, 3, 0)
+#if !SDL_VERSION_ATLEAST(2, 0, 0)
 	SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, g_VSync ? 1 : 0);
 #endif
 
-#if CONFIG2_GLES && SDL_VERSION_ATLEAST(1, 3, 0)
+#if CONFIG2_GLES && SDL_VERSION_ATLEAST(2, 0, 0)
 	// Require GLES 2.0
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 #endif
@@ -254,7 +255,7 @@ bool CVideoMode::InitSDL()
 			return false;
 	}
 
-#if SDL_VERSION_ATLEAST(1, 3, 0)
+#if SDL_VERSION_ATLEAST(2, 0, 0)
 	SDL_GL_SetSwapInterval(g_VSync ? 1 : 0);
 #endif
 
