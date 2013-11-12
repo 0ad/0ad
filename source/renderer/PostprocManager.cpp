@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 #include "renderer/PostprocManager.h"
 #include "renderer/Renderer.h"
 
+#if !CONFIG2_GLES
 
 CPostprocManager::CPostprocManager()
 	: m_IsInitialised(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"), m_ColourTex1(0), m_ColourTex2(0), 
@@ -194,18 +195,33 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	
 	shader->BindTexture(str_renderedTex, renderedTex);
 	
-	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, inWidth / 2, inHeight / 2);
 	
-	glBegin(GL_QUADS);
-	    glColor4f(1.f, 1.f, 1.f, 1.f);
-	    glTexCoord2f(1.0, 1.0);	glVertex2f(1,1);
-	    glTexCoord2f(0.0, 1.0);	glVertex2f(-1,1);	    
-	    glTexCoord2f(0.0, 0.0);	glVertex2f(-1,-1);
-	    glTexCoord2f(1.0, 0.0);	glVertex2f(1,-1);
-	glEnd();
+	float quadVerts[] = {
+		1.0f, 1.0f,
+		-1.0f, 1.0f,
+		-1.0f, -1.0f,
+
+		-1.0f, -1.0f,
+		1.0f, -1.0f,
+		1.0f, 1.0f
+	};
+	float quadTex[] = {
+		1.0f, 1.0f,
+		0.0f, 1.0f,
+		0.0f, 0.0f,
+
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f
+	};
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
+	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glViewport(0, 0, g_xres, g_yres);
 	
-	glPopAttrib(); 
 	tech->EndPass();
 }
 
@@ -226,18 +242,33 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	shader->BindTexture(str_renderedTex, inOutTex);
 	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
 	
-	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, inWidth, inHeight);
 	
-	glBegin(GL_QUADS);
-	    glColor4f(1.f, 1.f, 1.f, 1.f);
-	    glTexCoord2f(1.0, 1.0);	glVertex2f(1,1);
-	    glTexCoord2f(0.0, 1.0);	glVertex2f(-1,1);
-	    glTexCoord2f(0.0, 0.0);	glVertex2f(-1,-1);
-	    glTexCoord2f(1.0, 0.0);	glVertex2f(1,-1);
-	glEnd();
-	
-	glPopAttrib(); 
+	float quadVerts[] = {
+		1.0f, 1.0f,
+		-1.0f, 1.0f,
+		-1.0f, -1.0f,
+
+		-1.0f, -1.0f,
+		1.0f, -1.0f,
+		1.0f, 1.0f
+	};
+	float quadTex[] = {
+		1.0f, 1.0f,
+		0.0f, 1.0f,
+		0.0f, 0.0f,
+
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f
+	};
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
+	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glViewport(0, 0, g_xres, g_yres);
+
 	tech->EndPass();
 	
 	// Set result texture as our render target.
@@ -257,18 +288,15 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	shader->BindTexture(str_renderedTex, tempTex);
 	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
 	
-	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, inWidth, inHeight);
 	
-	glBegin(GL_QUADS);
-	    glColor4f(1.f, 1.f, 1.f, 1.f);
-	    glTexCoord2f(1.0, 1.0);	glVertex2f(1,1);
-	    glTexCoord2f(0.0, 1.0);	glVertex2f(-1,1);
-	    glTexCoord2f(0.0, 0.0);	glVertex2f(-1,-1);
-	    glTexCoord2f(1.0, 0.0);	glVertex2f(1,-1);
-	glEnd();
-	
-	glPopAttrib(); 
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
+	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glViewport(0, 0, g_xres, g_yres);
+
 	tech->EndPass();
 }
 
@@ -391,13 +419,28 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	shader->Uniform(str_saturation, g_LightEnv.m_Saturation);
 	shader->Uniform(str_bloom, g_LightEnv.m_Bloom);
 	
-	glBegin(GL_QUADS);
-	    glColor4f(1.f, 1.f, 1.f, 1.f);
-	    glTexCoord2f(1.0, 1.0);	glVertex2f(1,1);
-	    glTexCoord2f(0.0, 1.0);	glVertex2f(-1,1);	    
-	    glTexCoord2f(0.0, 0.0);	glVertex2f(-1,-1);
-	    glTexCoord2f(1.0, 0.0);	glVertex2f(1,-1);
-	glEnd();
+	float quadVerts[] = {
+		1.0f, 1.0f,
+		-1.0f, 1.0f,
+		-1.0f, -1.0f,
+
+		-1.0f, -1.0f,
+		1.0f, -1.0f,
+		1.0f, 1.0f
+	};
+	float quadTex[] = {
+		1.0f, 1.0f,
+		0.0f, 1.0f,
+		0.0f, 0.0f,
+
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f
+	};
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
+	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 	
 	shader->Unbind();
 	
@@ -486,3 +529,66 @@ void CPostprocManager::SetPostEffect(CStrW name)
 {
 	LoadEffect(name);
 }
+
+#else
+
+#warning TODO: implement PostprocManager for GLES
+
+void ApplyBlurDownscale2x(GLuint UNUSED(inTex), GLuint UNUSED(outTex), int UNUSED(inWidth), int UNUSED(inHeight))
+{
+}
+
+void CPostprocManager::ApplyBlurGauss(GLuint UNUSED(inOutTex), GLuint UNUSED(tempTex), int UNUSED(inWidth), int UNUSED(inHeight))
+{
+}
+
+void CPostprocManager::ApplyEffect(CShaderTechniquePtr &UNUSED(shaderTech1), int UNUSED(pass))
+{
+}
+	
+CPostprocManager::CPostprocManager()
+{
+}
+
+CPostprocManager::~CPostprocManager()
+{
+}
+
+void CPostprocManager::Initialize()
+{
+}
+
+void CPostprocManager::Cleanup()
+{
+}
+
+void CPostprocManager::RecreateBuffers()
+{
+}
+
+void CPostprocManager::LoadEffect(CStrW &UNUSED(name))
+{
+}
+
+std::vector<CStrW> CPostprocManager::GetPostEffects() const
+{
+	return std::vector<CStrW>();
+}
+
+void CPostprocManager::SetPostEffect(CStrW UNUSED(name))
+{
+}
+
+void CPostprocManager::CaptureRenderOutput()
+{
+}
+	
+void CPostprocManager::ApplyPostproc()
+{
+}
+
+void CPostprocManager::ReleaseRenderOutput()
+{
+}
+
+#endif

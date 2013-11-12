@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ extern CStr8 FindKeyName( int keycode );
 extern int FindKeyCode( const CStr8& keyname );
 
 // Pick a code which is greater than any keycodes used by SDL itself
-#if SDL_VERSION_ATLEAST(1, 3, 0)
+#if SDL_VERSION_ATLEAST(2, 0, 0)
 # define CUSTOM_SDL_KEYCODE SDL_SCANCODE_TO_KEYCODE(SDL_NUM_SCANCODES)
 #else
 # define CUSTOM_SDL_KEYCODE SDLK_LAST

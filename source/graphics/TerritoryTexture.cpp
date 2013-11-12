@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -103,7 +103,7 @@ void CTerritoryTexture::ConstructTexture(int unit)
 	// overwrite with glTexSubImage2D later
 	u8* texData = new u8[m_TextureSize * m_TextureSize * 4];
 	memset(texData, 0x00, m_TextureSize * m_TextureSize * 4);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, texData);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
 	delete[] texData;
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -166,7 +166,7 @@ void CTerritoryTexture::RecomputeTexture(int unit)
 	GenerateBitmap(territories, &bitmap[0], m_MapSize, m_MapSize);
 
 	g_Renderer.BindTexture(unit, m_Texture);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize, m_MapSize, GL_BGRA_EXT, GL_UNSIGNED_BYTE, &bitmap[0]);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize, m_MapSize, GL_RGBA, GL_UNSIGNED_BYTE, &bitmap[0]);
 }
 
 void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, ssize_t w, ssize_t h)
@@ -201,9 +201,9 @@ void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, 
 			else if (val < colors.size())
 				color = colors[val];
 
-			*p++ = (int)(color.b*255.f);
-			*p++ = (int)(color.g*255.f);
 			*p++ = (int)(color.r*255.f);
+			*p++ = (int)(color.g*255.f);
+			*p++ = (int)(color.b*255.f);
 
 			if ((i > 0 && (territories.get(i-1, j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK) != val)
 			 || (i < w-1 && (territories.get(i+1, j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK) != val)

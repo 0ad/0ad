@@ -703,16 +703,25 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 			glGenTextures(1, (GLuint*)&depthTex);
 			WaterMgr->m_depthTT = depthTex;
 			glBindTexture(GL_TEXTURE_2D, WaterMgr->m_depthTT);
+			
+#if CONFIG2_GLES
+			GLenum format = GL_DEPTH_COMPONENT;
+#else
+			GLenum format = GL_DEPTH_COMPONENT32;
+#endif
+			
 			// TODO: use POT texture
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
+			glTexImage2D(GL_TEXTURE_2D, 0, format, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
 						 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE,NULL);
 		}
 		glBindTexture(GL_TEXTURE_2D, WaterMgr->m_depthTT);
+#if !CONFIG2_GLES
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+#endif
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		
 		glCopyTexImage2D(GL_TEXTURE_2D,0,GL_DEPTH_COMPONENT, 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight(), 0);
 		
@@ -780,8 +789,10 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 		m->wavesShader->VertexPointer(3, GL_FLOAT, stride, &base[WaterMgr->m_VBWaves->m_Index].m_Position);
 		m->wavesShader->TexCoordPointer(GL_TEXTURE0,2,GL_BYTE, stride,&base[WaterMgr->m_VBWaves->m_Index].m_UV);
 		m->wavesShader->AssertPointersBound();
+
 		u8* indexBase = WaterMgr->m_VBWavesIndices->m_Owner->Bind();
-		glDrawElements(GL_QUADS, (GLsizei) WaterMgr->m_VBWavesIndices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(WaterMgr->m_VBWavesIndices->m_Index));
+		glDrawElements(GL_TRIANGLES, (GLsizei) WaterMgr->m_VBWavesIndices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(WaterMgr->m_VBWavesIndices->m_Index));
+
 		g_Renderer.m_Stats.m_DrawCalls++;
 		CVertexBuffer::Unbind();
 		m->wavesShader->Unbind();

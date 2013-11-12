@@ -1399,8 +1399,11 @@ void CPatchRData::BuildWater()
 
 				water_indices.push_back(water_index_map[z + water_cell_size][x - water_cell_size]);
 				water_indices.push_back(water_index_map[z][x - water_cell_size]);
-				water_indices.push_back(water_index_map[z][x]);
 				water_indices.push_back(water_index_map[z + water_cell_size][x]);
+
+				water_indices.push_back(water_index_map[z + water_cell_size][x]);
+				water_indices.push_back(water_index_map[z][x - water_cell_size]);
+				water_indices.push_back(water_index_map[z][x]);
 			}
 		}
 	}
@@ -1439,12 +1442,8 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader)
 	if (!g_Renderer.m_SkipSubmit)
 	{
 		u8* indexBase = m_VBWaterIndices->m_Owner->Bind();
-#if CONFIG2_GLES
-#warning TODO: fix CPatchRData::RenderWater for GLES (avoid GL_QUADS)
-#else
-		glDrawElements(GL_QUADS, (GLsizei) m_VBWaterIndices->m_Count,
+		glDrawElements(GL_TRIANGLES, (GLsizei) m_VBWaterIndices->m_Count,
 			GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndices->m_Index));
-#endif
 	}
 
 	// bump stats

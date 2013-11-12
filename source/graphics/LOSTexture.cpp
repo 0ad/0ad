@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "lib/bits.h"
+#include "lib/config2.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
@@ -147,18 +148,33 @@ void CLOSTexture::InterpolateLOS()
 	
 	shader->Uniform(str_delta, (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
 	
-	glPushAttrib(GL_VIEWPORT_BIT); 
 	glViewport(0, 0, m_TextureSize, m_TextureSize);
 	
-	glBegin(GL_QUADS);
-	    glColor4f(1.f, 1.f, 1.f, 1.f);
-	    glTexCoord2f(1.0, 1.0);	glVertex2f(1,1);
-	    glTexCoord2f(0.0, 1.0);	glVertex2f(-1,1);	    
-	    glTexCoord2f(0.0, 0.0);	glVertex2f(-1,-1);
-	    glTexCoord2f(1.0, 0.0);	glVertex2f(1,-1);
-	glEnd();
+	float quadVerts[] = {
+		1.0f, 1.0f,
+		-1.0f, 1.0f,
+		-1.0f, -1.0f,
+
+		-1.0f, -1.0f,
+		1.0f, -1.0f,
+		1.0f, 1.0f
+	};
+	float quadTex[] = {
+		1.0f, 1.0f,
+		0.0f, 1.0f,
+		0.0f, 0.0f,
+
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f
+	};
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
+	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 	
-	glPopAttrib(); 
+	glViewport(0, 0, g_xres, g_yres);
+
 	shader->Unbind();
 	m_smoothShader->EndPass();
 	

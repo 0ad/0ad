@@ -54,7 +54,7 @@ static unsigned int ScaleColor(unsigned int color, float x)
 	unsigned int r = unsigned(float(color & 0xff) * x);
 	unsigned int g = unsigned(float((color>>8) & 0xff) * x);
 	unsigned int b = unsigned(float((color>>16) & 0xff) * x);
-	return (0xff000000 | r | g<<8 | b<<16);
+	return (0xff000000 | b | g<<8 | r<<16);
 }
 
 CMiniMap::CMiniMap() :
@@ -332,7 +332,7 @@ static void inline addVertex(const MinimapUnitVertex& v,
 }
 
 
-void CMiniMap::DrawTexture(float coordMax, float angle, float x, float y, float x2, float y2, float z)
+void CMiniMap::DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2, float z)
 {
 	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
 	// Scale square maps to fit in circular minimap area
@@ -340,16 +340,47 @@ void CMiniMap::DrawTexture(float coordMax, float angle, float x, float y, float 
 	const float c = cos(angle) * m_MapScale;
 	const float m = coordMax / 2.f;
 
-	glBegin(GL_QUADS);
-	glTexCoord2f(m*(-c + s + 1.f), m*(-c + -s + 1.f));
-	glVertex3f(x, y, z);
-	glTexCoord2f(m*(c + s + 1.f), m*(-c + s + 1.f));
-	glVertex3f(x2, y, z);
-	glTexCoord2f(m*(c + -s + 1.f), m*(c + s + 1.f));
-	glVertex3f(x2, y2, z);
-	glTexCoord2f(m*(-c + -s + 1.f), m*(c + -s + 1.f));
-	glVertex3f(x, y2, z);
-	glEnd();
+	float quadTex[] = {
+		m*(-c + s + 1.f), m*(-c + -s + 1.f),
+		m*(c + s + 1.f), m*(-c + s + 1.f),
+		m*(c + -s + 1.f), m*(c + s + 1.f),
+
+		m*(c + -s + 1.f), m*(c + s + 1.f),
+		m*(-c + -s + 1.f), m*(c + -s + 1.f),
+		m*(-c + s + 1.f), m*(-c + -s + 1.f)
+	};
+	float quadVerts[] = {
+		x, y, z,
+		x2, y, z,
+		x2, y2, z,
+
+		x2, y2, z,
+		x, y2, z,
+		x, y, z
+	};
+
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	{
+		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
+		shader->VertexPointer(3, GL_FLOAT, 0, quadVerts);
+		shader->AssertPointersBound();
+	}
+	else
+	{
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glEnableClientState(GL_VERTEX_ARRAY);
+
+		glTexCoordPointer(2, GL_FLOAT, 0, quadTex);
+		glVertexPointer(3, GL_FLOAT, 0, quadVerts);
+	}
+
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_FIXED)
+	{
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	}
 }
 
 // TODO: render the minimap in a framebuffer and just draw the frambuffer texture
@@ -435,7 +466,7 @@ void CMiniMap::Draw()
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	DrawTexture(texCoordMax, angle, x, y, x2, y2, z);
+	DrawTexture(shader, texCoordMax, angle, x, y, x2, y2, z);
 
 
 	// Draw territory boundaries
@@ -451,7 +482,7 @@ void CMiniMap::Draw()
 	glLoadMatrixf(territoryTexture.GetMinimapTextureMatrix());
 	glMatrixMode(GL_MODELVIEW);
 
-	DrawTexture(1.0f, angle, x, y, x2, y2, z);
+	DrawTexture(shader, 1.0f, angle, x, y, x2, y2, z);
 
 	glMatrixMode(GL_TEXTURE);
 	glLoadIdentity();
@@ -493,7 +524,7 @@ void CMiniMap::Draw()
 	glLoadMatrixf(losTexture.GetMinimapTextureMatrix());
 	glMatrixMode(GL_MODELVIEW);
 
-	DrawTexture(1.0f, angle, x, y, x2, y2, z);
+	DrawTexture(shader, 1.0f, angle, x, y, x2, y2, z);
 
 	glMatrixMode(GL_TEXTURE);
 	glLoadIdentity();
@@ -682,7 +713,7 @@ void CMiniMap::CreateTextures()
 	u32* texData = new u32[m_TextureSize * m_TextureSize];
 	for (ssize_t i = 0; i < m_TextureSize * m_TextureSize; ++i)
 		texData[i] = 0xFF000000;
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, texData);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
 	delete[] texData;
 
 	m_TerrainData = new u32[(m_MapSize - 1) * (m_MapSize - 1)];
@@ -717,14 +748,15 @@ void CMiniMap::RebuildTerrainTexture()
 					+ m_Terrain->GetVertexGroundLevel((int)i+1, (int)j+1)
 				) / 4.0f;
 
-			if(avgHeight < waterHeight && avgHeight > waterHeight - m_ShallowPassageHeight)
+			if (avgHeight < waterHeight && avgHeight > waterHeight - m_ShallowPassageHeight)
 			{
 				// shallow water
-				*dataPtr++ = 0xff7098c0;
-			} else if (avgHeight < waterHeight)
+				*dataPtr++ = 0xffc09870;
+			}
+			else if (avgHeight < waterHeight)
 			{
 				// Set water as constant color for consistency on different maps
-				*dataPtr++ = 0xff5078a0;
+				*dataPtr++ = 0xffa07850;
 			}
 			else
 			{
@@ -755,7 +787,7 @@ void CMiniMap::RebuildTerrainTexture()
 
 	// Upload the texture
 	g_Renderer.BindTexture(0, m_TerrainTexture);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_TerrainData);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_RGBA, GL_UNSIGNED_BYTE, m_TerrainData);
 }
 
 void CMiniMap::Destroy()

@@ -3,7 +3,8 @@
 
     <vertex file="arb/minimap.vp">
         <stream name="pos"/>
-	<stream name="color" if="MINIMAP_POINT"/>
+        <stream name="uv0" if="MINIMAP_BASE || MINIMAP_LOS"/>
+        <stream name="color" if="MINIMAP_POINT"/>
     </vertex>
 
     <fragment file="arb/minimap.fp">
