@@ -789,12 +789,10 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 		m->wavesShader->VertexPointer(3, GL_FLOAT, stride, &base[WaterMgr->m_VBWaves->m_Index].m_Position);
 		m->wavesShader->TexCoordPointer(GL_TEXTURE0,2,GL_BYTE, stride,&base[WaterMgr->m_VBWaves->m_Index].m_UV);
 		m->wavesShader->AssertPointersBound();
+
 		u8* indexBase = WaterMgr->m_VBWavesIndices->m_Owner->Bind();
-#if CONFIG2_GLES
-#warning TODO: fix TerrainRenderer::RenderFancyWater for GLES (avoid GL_QUADS)
-#else
-		glDrawElements(GL_QUADS, (GLsizei) WaterMgr->m_VBWavesIndices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(WaterMgr->m_VBWavesIndices->m_Index));
-#endif
+		glDrawElements(GL_TRIANGLES, (GLsizei) WaterMgr->m_VBWavesIndices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(WaterMgr->m_VBWavesIndices->m_Index));
+
 		g_Renderer.m_Stats.m_DrawCalls++;
 		CVertexBuffer::Unbind();
 		m->wavesShader->Unbind();

@@ -549,39 +549,47 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 		perp = perp.Normalized();
 		avgnorm = avgnorm.Normalized();
 		
+		GLushort index[4];
 		SWavesVertex vertex[4];
 		vertex[0].m_Position = CVector3D(pos.X + perp.X*(size/2.2f) - avgnorm[0]*1.0f, 0.0f,pos.Y + perp.Y*(size/2.2f) - avgnorm[2]*1.0f);
 		vertex[0].m_Position *= 4.0f;
 		vertex[0].m_Position.Y = m_WaterHeight + 1.0f;
 		vertex[0].m_UV[1] = 1;
 		vertex[0].m_UV[0] = 0;
+		index[0] = waves_vertex_data.size();
+		waves_vertex_data.push_back(vertex[0]);
 		
 		vertex[1].m_Position = CVector3D(pos.X - perp.X*(size/2.2f) - avgnorm[0]*1.0f, 0.0f,pos.Y - perp.Y*(size/2.2f) - avgnorm[2]*1.0f);
 		vertex[1].m_Position *= 4.0f;
 		vertex[1].m_Position.Y = m_WaterHeight + 1.0f;
 		vertex[1].m_UV[1] = 1;
 		vertex[1].m_UV[0] = 1;
+		index[1] = waves_vertex_data.size();
+		waves_vertex_data.push_back(vertex[1]);
 		
 		vertex[3].m_Position = CVector3D(pos.X + perp.X*(size/2.2f) + avgnorm[0]*(size/1.5f), 0.0f,pos.Y + perp.Y*(size/2.2f) + avgnorm[2]*(size/1.5f));
 		vertex[3].m_Position *= 4.0f;
 		vertex[3].m_Position.Y = m_WaterHeight + 1.0f;
 		vertex[3].m_UV[1] = 0;
 		vertex[3].m_UV[0] = 0;
+		index[3] = waves_vertex_data.size();
+		waves_vertex_data.push_back(vertex[3]);
 		
 		vertex[2].m_Position = CVector3D(pos.X - perp.X*(size/2.2f) + avgnorm[0]*(size/1.5f), 0.0f,pos.Y - perp.Y*(size/2.2f) + avgnorm[2]*(size/1.5f));
 		vertex[2].m_Position *= 4.0f;
 		vertex[2].m_Position.Y = m_WaterHeight + 1.0f;
 		vertex[2].m_UV[1] = 0;
 		vertex[2].m_UV[0] = 1;
-		
-		waves_indices.push_back(waves_vertex_data.size());
-		waves_vertex_data.push_back(vertex[0]);
-		waves_indices.push_back(waves_vertex_data.size());
-		waves_vertex_data.push_back(vertex[1]);
-		waves_indices.push_back(waves_vertex_data.size());
+		index[2] = waves_vertex_data.size();
 		waves_vertex_data.push_back(vertex[2]);
-		waves_indices.push_back(waves_vertex_data.size());
-		waves_vertex_data.push_back(vertex[3]);
+
+		waves_indices.push_back(index[0]);
+		waves_indices.push_back(index[1]);
+		waves_indices.push_back(index[2]);
+
+		waves_indices.push_back(index[2]);
+		waves_indices.push_back(index[3]);
+		waves_indices.push_back(index[0]);
 	}
 
 	// no vertex buffers if no data generated
