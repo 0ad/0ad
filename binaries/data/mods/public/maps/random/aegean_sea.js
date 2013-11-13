@@ -293,11 +293,11 @@ var numStragglers = totalTrees * (1.0 - P_FOREST);
 // create forests
 log("Creating forests...");
 var num = scaleByMapSize(10,30);
-placer = new ClumpPlacer(numForest / num, 0.15, 0.1, 0.5);
+placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / (num * floor(scaleByMapSize(2,5))), 0.5);
 painter = new TerrainPainter([tForestFloor, pForest]);
 createAreas(placer, [painter, paintClass(clForest)], 
 	avoidClasses(clPlayer, 20, clForest, 10, clWater, 2, clBaseResource, 3),
-	num, 50
+	num, 10
 );
 
 RMS.SetProgress(50);
@@ -305,7 +305,7 @@ RMS.SetProgress(50);
 
 // create hills
 log("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
 var terrainPainter = new LayeredPainter(
 	[tCliff, tHill],		// terrains
 	[2]								// widths
@@ -315,7 +315,7 @@ createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
 	avoidClasses(clPlayer, 20, clForest, 1, clHill, 15, clWater, 3),
-	scaleByMapSize(1, 4) * numPlayers
+	scaleByMapSize(1, 4) * numPlayers, 1
 );
 
 
@@ -323,10 +323,10 @@ createAreas(
 // create grass patches
 
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
+var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
 for (var i = 0; i < sizes.length; i++)
 {
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
 	painter = new LayeredPainter(
 		[[tGrass,tGrassSand50],[tGrassSand50,tGrassSand25], [tGrassSand25,tGrass]], 		// terrains
 		[1,1]															// widths
@@ -343,10 +343,10 @@ RMS.SetProgress(55);
 
 // create dirt patches
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
+var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
 for (var i = 0; i < sizes.length; i++)
 {
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
 	painter = new LayeredPainter(
 		[tDirt3, tDirt2,[tDirt,tMainDirt], [tDirtCracks,tMainDirt]], 		// terrains
 		[1,1,1]															// widths
@@ -365,7 +365,7 @@ RMS.SetProgress(60);
 
 //create the undersea bumps
 log("Creating undersea bumps...");
-placer = new ClumpPlacer(scaleByMapSize(40, 100), 0.3, 0.06, 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
 painter = new SmoothElevationPainter(ELEVATION_SET, -1.6, 3);
 createAreas(
 	placer,
@@ -376,7 +376,7 @@ createAreas(
 
 // create islands
 log("Creating islands...");
-placer = new ClumpPlacer(scaleByMapSize(60, 240), 0.2, 0.1, 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(30, 80)), 0.5);
 var terrainPainter = new LayeredPainter(
 	[tWater, tShore, tHill],		// terrains
 	[2 ,1]								// widths
