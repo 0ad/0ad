@@ -271,6 +271,8 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(20);
 
+//create the gulf
+
 if (random_terrain == 3)
 {
 	var seaHeight = 0;
@@ -280,6 +282,8 @@ else
 	var seaHeight = -3;
 }
 
+//create the upper part
+
 var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);
 ix = round(fx);
@@ -287,7 +291,7 @@ iz = round(fz);
 
 var lSize = 1;
 
-var placer = new ClumpPlacer(mapArea * 0.08 * lSize, 0.7, 0.05, 10, ix, iz);
+var placer = new ChainPlacer(2, floor(scaleByMapSize(5, 16)), floor(scaleByMapSize(35, 200)), 1, ix, iz, 0, [floor(mapSize * 0.17 * lSize)]);
 var terrainPainter = new LayeredPainter(
 	[tPrimary, tPrimary, tPrimary, tPrimary],		// terrains
 	[1, 4, 2]		// widths
@@ -299,6 +303,8 @@ var elevationPainter = new SmoothElevationPainter(
 	4				// blend radius
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,scaleByMapSize(20,28)));
+
+//the middle part
 
 var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.3);
@@ -307,7 +313,7 @@ iz = round(fz);
 
 var lSize = sqrt(sqrt(sqrt(scaleByMapSize(1, 6))));
 
-var placer = new ClumpPlacer(mapArea * 0.13 * lSize, 0.7, 0.05, 10, ix, iz);
+var placer = new ChainPlacer(2, floor(scaleByMapSize(5, 16)), floor(scaleByMapSize(35, 120)), 1, ix, iz, 0, [floor(mapSize * 0.18 * lSize)]);
 var terrainPainter = new LayeredPainter(
 	[tPrimary, tPrimary, tPrimary, tPrimary],		// terrains
 	[1, 4, 2]		// widths
@@ -319,20 +325,7 @@ var elevationPainter = new SmoothElevationPainter(
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,scaleByMapSize(20,28)));
 
-// create islands
-log("Creating islands...");
-placer = new ClumpPlacer(floor(hillSize*randFloat(0.05,0.3)), 0.80, 0.1, 10);
-terrainPainter = new LayeredPainter(
-	[tPrimary, tPrimary],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 4);
-createAreas(
-	placer,
-	[terrainPainter, elevationPainter, unPaintClass(clWater)], 
-	borderClasses(clWater, 10, 1),
-	scaleByMapSize(2, 5)*randInt(8,14), 30
-);
+//the lower part
 
 var fx = fractionToTiles(0.5);
 var fz = 0;
@@ -341,7 +334,7 @@ iz = round(fz)+1;
 
 var lSize = sqrt(sqrt(sqrt(scaleByMapSize(1, 6))));
 
-var placer = new ClumpPlacer(mapArea * 0.15 * lSize, 0.7, 0.05, 10, ix, iz);
+var placer = new ChainPlacer(2, floor(scaleByMapSize(5, 16)), floor(scaleByMapSize(35, 100)), 1, ix, iz, 0, [floor(mapSize * 0.19 * lSize)]);
 var terrainPainter = new LayeredPainter(
 	[tPrimary, tPrimary, tPrimary, tPrimary],		// terrains
 	[1, 4, 2]		// widths
@@ -377,7 +370,7 @@ createAreas(
 
 // create hills
 log("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
 var terrainPainter = new LayeredPainter(
 	[tPrimary, tCliff, tPrimary],		// terrains
 	[1, 2]								// widths
@@ -409,12 +402,12 @@ var types = [
 
 
 
-var size = numForest / (scaleByMapSize(2,8) * numPlayers);
+var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
 {
-	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / (num * floor(scaleByMapSize(2,5))), 0.5);
 	painter = new LayeredPainter(
 		types[i],		// terrains
 		[2]											// widths
@@ -431,10 +424,10 @@ RMS.SetProgress(60);
 
 // create dirt patches
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
+var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
 for (var i = 0; i < sizes.length; i++)
 {
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
 	painter = new LayeredPainter(
 		[[tPrimary,tSecondary],[tSecondary,tHalfSnow], [tHalfSnow,tSnowLimited]], 		// terrains
 		[1,1]															// widths
@@ -449,10 +442,10 @@ for (var i = 0; i < sizes.length; i++)
 
 // create grass patches
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)];
+var sizes = [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)];
 for (var i = 0; i < sizes.length; i++)
 {
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
 	painter = new TerrainPainter(tHalfSnow);
 	createAreas(
 		placer,
