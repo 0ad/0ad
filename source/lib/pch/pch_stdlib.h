@@ -68,18 +68,4 @@
 #include <valarray>
 #endif // !MINIMAL_PCH
 
-#if !MINIMAL_PCH
-// STL extensions
-#if GCC_VERSION >= 402 // (see comment in stl.h about GCC versions)
-# include <tr1/unordered_map>
-# include <tr1/unordered_set>
-#elif GCC_VERSION
-# include <ext/hash_map>
-# include <ext/hash_set>
-#else
-# include <hash_map>
-# include <hash_set>
-#endif
-#endif // !MINIMAL_PCH
-
 #endif	// #ifndef INCLUDED_PCH_STDLIB
