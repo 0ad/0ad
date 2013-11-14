@@ -340,11 +340,8 @@ var UnitFsmSpec = {
 			return;
 		}
 
-		// TODO improve these movements in case of ship: the MoveToTarget of the units brings
-		// them to the nearest point-on-land from the ship, while the MoveToPoint of the ship
-		// brings it to the nearest point-on-water from the units, and these can be quite
-		// different in some cases leading to weird movements. MoveToTarget should update its path
-		// according to the target movement more often.
+		// TODO: what if the units are on a cliff ? the ship will go below the cliff
+		// and the units won't be able to garrison. Should go to the nearest (accessible) shore
 		if (this.MoveToTarget(this.order.data.target))
 		{
 			this.SetNextState("INDIVIDUAL.PICKUP.APPROACHING");
