@@ -183,7 +183,7 @@ for (var ix = 0; ix < mapSize; ix++)
 log("Creating shores...");
 for (var i = 0; i < scaleByMapSize(20,120); i++)
 {
-	placer = new ClumpPlacer(scaleByMapSize(50, 70), 0.2, 0.1, 10, randFloat(0.1,0.9)*mapSize, randFloat(0.67,0.74)*mapSize);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 30)), 1, floor(randFloat(0.1,0.9)*mapSize), floor(randFloat(0.67,0.74)*mapSize));
 	var terrainPainter = new LayeredPainter(
 		[tSnowA, tSnowA],		// terrains
 		[2]								// widths
@@ -198,7 +198,7 @@ for (var i = 0; i < scaleByMapSize(20,120); i++)
 
 // create islands
 log("Creating islands...");
-placer = new ClumpPlacer(scaleByMapSize(40, 180), 0.2, 0.1, 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.1);
 var terrainPainter = new LayeredPainter(
 	[tSnowA, tSnowA],		// terrains
 	[3]								// widths
@@ -216,7 +216,7 @@ paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 // create lakes
 log("Creating lakes...");
 var numLakes = round(scaleByMapSize(1,4) * numPlayers);
-var placer = new ClumpPlacer(scaleByMapSize(100,250), 0.8, 0.1, 10);
+var placer = new ChainPlacer(1, floor(scaleByMapSize(5, 7)), floor(scaleByMapSize(20, 50)), 0.1);
 var terrainPainter = new LayeredPainter(
 	[tShoreBlend, tShore, tWater],		// terrains
 	[1,1]							// widths
@@ -236,7 +236,7 @@ RMS.SetProgress(45);
 
 // create hills
 log("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.1);
 var terrainPainter = new LayeredPainter(
 	[tCliff, tSnowA],		// terrains
 	[3]								// widths
@@ -246,7 +246,7 @@ createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
 	avoidClasses(clPlayer, 20, clHill, 15, clWater, 2, clBaseResource, 2),
-	scaleByMapSize(2, 8) * numPlayers
+	scaleByMapSize(1, 4) * numPlayers
 );
 
 
@@ -268,12 +268,12 @@ var types = [
 ];	// some variation
 
 
-var size = numForest / (scaleByMapSize(2,8) * numPlayers);
+var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
 {
-	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / (num * floor(scaleByMapSize(2,4))), 1);
 	painter = new LayeredPainter(
 		types[i],		// terrains
 		[2]											// widths
@@ -298,10 +298,10 @@ RMS.SetProgress(70);
 
 // create dirt patches
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 9), scaleByMapSize(5, 15), scaleByMapSize(8, 24)];
+var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
 for (var i = 0; i < sizes.length; i++)
 {
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
 	painter = new LayeredPainter(
 		[tSnowD,tSnowB,tSnowC], 		// terrains
 		[2,1]															// widths
@@ -313,10 +313,10 @@ for (var i = 0; i < sizes.length; i++)
 		scaleByMapSize(20, 80)
 	);
 }
-var sizes = [scaleByMapSize(3, 9), scaleByMapSize(5, 15), scaleByMapSize(8, 24)];
+var sizes = [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)];
 for (var i = 0; i < sizes.length; i++)
 {
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
 	painter = new LayeredPainter(
 		[tSnowE,tSnowE], 		// terrains
 		[1]															// widths
@@ -334,14 +334,14 @@ log("Creating stone mines...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
-	scaleByMapSize(4,16), 100
+	scaleByMapSize(8,32), 100
 );
 
 // create small stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
-	scaleByMapSize(4,16), 100
+	scaleByMapSize(8,32), 100
 );
 
 log("Creating metal mines...");
@@ -349,7 +349,7 @@ log("Creating metal mines...");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
-	scaleByMapSize(4,16), 100
+	scaleByMapSize(8,32), 100
 );
 
 
@@ -409,12 +409,17 @@ createObjectGroups(group, 0,
 setSunColour(0.6, 0.6, 0.6);	
 setSunElevation(PI/ 6);
 
-setWaterColour(0.0, 0.047, 0.286);				// dark majestic blue
-setWaterTint(0.471, 0.776, 0.863);				// light blue
-setWaterReflectionTint(0.0, 0.047, 0.286);
+setWaterColour(0.3, 0.347, 0.386);				// dark majestic blue
+setWaterTint(0.171, 0.236, 0.263);				// light blue
+setWaterReflectionTint(0.0, 0.047, 0.086);
 setWaterMurkiness(0.82);
 setWaterWaviness(3);
 setWaterReflectionTintStrength(0.15);
+
+setFogFactor(0.95);
+setFogThickness(0.09);
+setPPSaturation(0.28);
+setPPEffect("hdr");
 
 setSkySet("fog");
 ExportMap();

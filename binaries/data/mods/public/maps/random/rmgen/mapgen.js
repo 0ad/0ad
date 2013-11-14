@@ -25,14 +25,14 @@ var g_Environment = {
 	},
 	Fog: {
 		FogFactor: 0.0,
-		FogThickness: 0.0,
+		FogThickness: 0.5,
 		FogColor: {r: 0.8, g: 0.8, b: 0.8, a: 0}
 	},
 	Postproc: {
 		Brightness: 0.0,
-		Contrast: 0.0,
-		Saturation: 0.5,
-		Bloom: 0.0,
+		Contrast: 1.0,
+		Saturation: 1.0,
+		Bloom: 0.2,
 		PostprocEffect: "default"
 	}
 };
