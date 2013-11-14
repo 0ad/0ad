@@ -216,7 +216,7 @@ for (var ix = 0; ix < mapSize; ix++)
 log("Creating shores...");
 for (var i = 0; i < scaleByMapSize(20,120); i++)
 {
-	placer = new ClumpPlacer(scaleByMapSize(50, 70), 0.2, 0.1, 10, randFloat(0.28,0.34)*mapSize, randFloat(0.1,0.9)*mapSize);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 30)), 1, floor(randFloat(0.28,0.34)*mapSize), floor(randFloat(0.1,0.9)*mapSize));
 	var terrainPainter = new LayeredPainter(
 		[tGrass, tGrass],		// terrains
 		[2]								// widths
@@ -238,7 +238,7 @@ RMS.SetProgress(45);
 
 // create hills
 log("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
+placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.1);
 var terrainPainter = new LayeredPainter(
 	[tCliff, tGrass],		// terrains
 	[3]								// widths
@@ -270,12 +270,12 @@ var types = [
 ];	// some variation
 
 
-var size = numForest / (scaleByMapSize(2,8) * numPlayers);
+var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
 {
-	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / (num * floor(scaleByMapSize(2,4))), 0.5);
 	painter = new LayeredPainter(
 		types[i],		// terrains
 		[2]											// widths
@@ -292,10 +292,10 @@ RMS.SetProgress(70);
 
 // create grass patches
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(3, 9), scaleByMapSize(5, 15), scaleByMapSize(8, 24)];
+var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
 for (var i = 0; i < sizes.length; i++)
 {
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
 	painter = new LayeredPainter(
 		[tGrassC,tGrassA,tGrassB], 		// terrains
 		[2,1]															// widths
@@ -307,10 +307,10 @@ for (var i = 0; i < sizes.length; i++)
 		scaleByMapSize(20, 80)
 	);
 }
-var sizes = [scaleByMapSize(3, 9), scaleByMapSize(5, 15), scaleByMapSize(8, 24)];
+var sizes = [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)];
 for (var i = 0; i < sizes.length; i++)
 {
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
 	painter = new LayeredPainter(
 		[tPlants,tPlants], 		// terrains
 		[1]															// widths
@@ -454,7 +454,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 22, clHill, 1, clFood, 20),
 	3 * numPlayers, 50
 );
 
@@ -478,6 +478,14 @@ setWaterReflectionTint(1,1,1);
 setWaterWaviness(1.5);
 setWaterMurkiness(0.35);
 setWaterReflectionTintStrength(0.0);
+
+setFogFactor(0.4);
+setFogThickness(0.2);
+
+setPPEffect("hdr");
+setPPContrast(0.7);
+setPPSaturation(0.65);
+setPPBloom(0.6);
 
 setSkySet("cirrus");
 ExportMap();
