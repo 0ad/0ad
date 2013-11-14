@@ -11,6 +11,7 @@ const CELL_SIZE = 4;
 const HEIGHT_UNITS_PER_METRE = 732;
 const MIN_MAP_SIZE = 128;
 const MAX_MAP_SIZE = 512;
+const FALLBACK_CIV = "athen";
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 //	Utility functions
@@ -395,7 +396,11 @@ function getNumPlayers()
 
 function getCivCode(player)
 {
-	return g_MapSettings.PlayerData[player].Civ;
+	if (g_MapSettings.PlayerData[player].Civ)
+		return g_MapSettings.PlayerData[player].Civ;
+
+	warn("undefined civ specified for player " + (player + 1) + ", falling back to '" + FALLBACK_CIV + "'");
+	return FALLBACK_CIV;
 }
 
 function areAllies(player1, player2)
@@ -470,8 +475,8 @@ function getStartingEntities(player)
 	var civ = getCivCode(player);
 	if (!g_CivData[civ] || !g_CivData[civ].StartEntities || !g_CivData[civ].StartEntities.length)
 	{
-		warn("Invalid or unimplemented civ '"+civ+"' specified, falling back to 'athen'");
-		civ = "athen";
+		warn("Invalid or unimplemented civ '"+civ+"' specified, falling back to '" + FALLBACK_CIV + "'");
+		civ = FALLBACK_CIV;
 	}
 	
 	return g_CivData[civ].StartEntities;
