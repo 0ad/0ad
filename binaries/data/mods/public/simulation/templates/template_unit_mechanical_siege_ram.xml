@@ -9,17 +9,13 @@
     <Melee>
       <Hack>0.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>50.0</Crush>
+      <Crush>80.0</Crush>
       <MaxRange>6.5</MaxRange>
       <RepeatTime>1500</RepeatTime>
 	  <Bonuses>
-		<BonusStruct>
-		  <Classes>Structure -Gates</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusStruct>
 		<BonusGates>
 		  <Classes>Gates</Classes>
-		  <Multiplier>3.0</Multiplier>
+		  <Multiplier>1.5</Multiplier>
 		</BonusGates>
 	  </Bonuses>
       <RestrictedClasses datatype="tokens">Organic</RestrictedClasses>
@@ -28,17 +24,13 @@
     <Charge>
       <Hack>0.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>40.0</Crush>
+      <Crush>100.0</Crush>
       <MaxRange>6.5</MaxRange>
       <MinRange>0.0</MinRange>
 	  <Bonuses>
-		<BonusStruct>
-		  <Classes>Structure -Gates</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusStruct>
 		<BonusGates>
 		  <Classes>Gates</Classes>
-		  <Multiplier>3.0</Multiplier>
+		  <Multiplier>1.5</Multiplier>
 		</BonusGates>
 	  </Bonuses>
       <RestrictedClasses datatype="tokens">Organic</RestrictedClasses>
