@@ -1,6 +1,8 @@
 <skeletons>
 	<standard_skeleton title="BlenderElephant" id="BlenderElephant">
 		<bone name="Elephant">
+            <bone name="armor_left" />
+			<bone name="armor_right" />
 			<bone name="body_1">
 				<bone name="body_2">
 					<bone name="butt">
@@ -201,6 +203,8 @@
 					<bone name="ear_right"><target>ear_right</target></bone>
 				</bone>
 			</bone>
+			<bone name="armor_left"><target>armor_left</target></bone>
+			<bone name="armor_right"><target>armor_right</target></bone>
 		</bone>
 		<bone name="arm_left_target"><target>arm_left_target</target></bone>
 		<bone name="arm_right_target"><target>arm_right_target</target></bone>

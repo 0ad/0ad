@@ -1469,6 +1469,30 @@ int CMapReader::ParseEnvironment()
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), ReflectionTintStrength, pWaterMan->m_ReflectionTintStrength)
 	}
 
+	CScriptValRooted fogObject;
+	GET_ENVIRONMENT_PROPERTY(envObj.get(), Fog, fogObject);
+
+	GET_ENVIRONMENT_PROPERTY(fogObject.get(), FogFactor, m_LightEnv.m_FogFactor);
+	GET_ENVIRONMENT_PROPERTY(fogObject.get(), FogThickness, m_LightEnv.m_FogMax);
+
+	CColor fogColor;
+	GET_ENVIRONMENT_PROPERTY(fogObject.get(), FogColor, fogColor);
+	m_LightEnv.m_FogColor = RGBColor(fogColor.r, fogColor.g, fogColor.b);
+
+	CScriptValRooted postprocObject;
+	GET_ENVIRONMENT_PROPERTY(envObj.get(), Postproc, postprocObject);
+
+	std::wstring postProcEffect;
+	GET_ENVIRONMENT_PROPERTY(postprocObject.get(), PostprocEffect, postProcEffect);
+
+	if (pPostproc)
+		pPostproc->SetPostEffect(postProcEffect);
+
+	GET_ENVIRONMENT_PROPERTY(postprocObject.get(), Brightness, m_LightEnv.m_Brightness);
+	GET_ENVIRONMENT_PROPERTY(postprocObject.get(), Contrast, m_LightEnv.m_Contrast);
+	GET_ENVIRONMENT_PROPERTY(postprocObject.get(), Saturation, m_LightEnv.m_Saturation);
+	GET_ENVIRONMENT_PROPERTY(postprocObject.get(), Bloom, m_LightEnv.m_Bloom);
+
 	m_LightEnv.CalculateSunDirection();
 
 #undef GET_ENVIRONMENT_PROPERTY

@@ -67,7 +67,7 @@ class CColladaManagerImpl
 
 public:
 	CColladaManagerImpl(const PIVFS& vfs)
-		: dll("Collada"), m_VFS(vfs), m_skeletonHashInvalidated(false)
+		: dll("Collada"), m_VFS(vfs), m_skeletonHashInvalidated(true)
 	{
 		// Support hotloading
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
@@ -265,7 +265,7 @@ public:
 		if (m_skeletonHashInvalidated)
 		{
 			VfsPaths paths;
-			if (vfs::GetPathnames(m_VFS, L"art/skeletons/", L".xml", paths) != INFO::OK)
+			if (vfs::GetPathnames(m_VFS, L"art/skeletons/", L"*.xml", paths) != INFO::OK)
 			{
 				LOGWARNING(L"Failed to load skeleton definitions");
 				return;
@@ -277,7 +277,7 @@ public:
 
 			// We need two u64s per file
 			m_skeletonHashes.clear();
-			m_skeletonHashes.resize(paths.size()*2);
+			m_skeletonHashes.reserve(paths.size()*2);
 
 			CFileInfo fileInfo;
 			for (VfsPaths::const_iterator it = paths.begin(); it != paths.end(); ++it)

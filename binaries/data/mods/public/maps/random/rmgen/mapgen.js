@@ -22,6 +22,18 @@ var g_Environment = {
 			ReflectionTint: {r: 0.28, g: 0.3, b: 0.59, a: 0},
 			ReflectionTintStrength: 0.0
 		}
+	},
+	Fog: {
+		FogFactor: 0.0,
+		FogThickness: 0.5,
+		FogColor: {r: 0.8, g: 0.8, b: 0.8, a: 0}
+	},
+	Postproc: {
+		Brightness: 0.0,
+		Contrast: 1.0,
+		Saturation: 1.0,
+		Bloom: 0.2,
+		PostprocEffect: "default"
 	}
 };
 

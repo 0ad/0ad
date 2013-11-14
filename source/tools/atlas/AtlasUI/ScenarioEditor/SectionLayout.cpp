@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,12 +28,10 @@
 #include "AtlasScript/ScriptInterface.h"
 
 #include "Sections/Environment/Environment.h"
-#include "Sections/Cinematic/Cinematic.h"
 #include "Sections/Map/Map.h"
 #include "Sections/Object/Object.h"
 #include "Sections/Player/Player.h"
 #include "Sections/Terrain/Terrain.h"
-#include "Sections/Trigger/Trigger.h"
 
 #include "General/Datafile.h"
 
@@ -293,9 +291,6 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 	ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));
 	ADD_SIDEBAR(ObjectSidebar,          _T("object.png"),      _("Object"));
 	ADD_SIDEBAR(EnvironmentSidebar,     _T("environment.png"), _("Environment"));
-	
-//	ADD_SIDEBAR(CinematicSidebar,   _T("cinematic.png"),   _("Cinema"));
-//	ADD_SIDEBAR(TriggerSidebar,		_T("trigger.png"),	   _("Trigger"));
 
 	#undef ADD_SIDEBAR
 

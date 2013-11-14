@@ -5,9 +5,9 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
     </contributor>
-    <created>2013-08-26T23:38:23</created>
-    <modified>2013-08-26T23:38:23</modified>
-    <unit name="meter" meter="0.0254"/>
+    <created>2013-11-14T17:27:54</created>
+    <modified>2013-11-14T17:27:54</modified>
+    <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images/>
@@ -70,8 +70,8 @@
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
       <node id="tower_props_0012" name="tower_props_0012" type="NODE">
-        <translate sid="location">9.31323e-10 0 0</translate>
-        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <translate sid="location">-9.31323e-10 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 180</rotate>
         <rotate sid="rotationY">0 1 0 0</rotate>
         <rotate sid="rotationX">1 0 0 -1.36604e-5</rotate>
         <scale sid="scale">1 1 1</scale>

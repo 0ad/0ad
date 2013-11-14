@@ -210,7 +210,7 @@ createAreas(
 log("Creating marshes...");
 for (var i = 0; i < 7; i++)
 {
-	placer = new ClumpPlacer(9*scaleByMapSize(50,130)*randFloat(0.6,1.4), 0.8, 0.1, 10);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(6, 12)), floor(scaleByMapSize(15, 60)), 0.8);
 	var terrainPainter = new LayeredPainter(
 		[tShoreBlend, tShore, tWater],		// terrains
 		[1,1]							// widths
@@ -265,11 +265,11 @@ var types = [
 	[[tForestFloor, tGrass, pForestD], [tForestFloor, pForestD]],
 	[[tForestFloor, tGrass, pForestP], [tForestFloor, pForestP]]
 ];	// some variation
-var size = numForest / (scaleByMapSize(2,8) * numPlayers);
+var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
 {
-	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / (num * floor(scaleByMapSize(2,4))), 1);
 	painter = new LayeredPainter(
 		types[i],		// terrains
 		[2]											// widths
@@ -286,10 +286,10 @@ RMS.SetProgress(50);
 
 // create mud patches
 log("Creating mud patches...");
-var sizes = [scaleByMapSize(3, 21), scaleByMapSize(5, 37), scaleByMapSize(8, 50)];
+var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
 for (var i = 0; i < sizes.length; i++)
 {
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 1);
 	painter = new LayeredPainter(
 		[tGrassA, tGrassB, tMud], 		// terrains
 		[1,1]															// widths
@@ -475,5 +475,12 @@ setWaterReflectionTint(0.561,0.435,0.196);		// muddy brown
 setWaterMurkiness(0.8);
 setWaterWaviness(0.8);
 setWaterReflectionTintStrength(0.4);
+
+setFogThickness(0.25);
+setFogFactor(0.6);
+
+setPPEffect("hdr");
+setPPSaturation(0.44);
+setPPBloom(0.3);
 
 ExportMap();

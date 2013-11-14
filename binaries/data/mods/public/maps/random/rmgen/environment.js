@@ -91,3 +91,52 @@ function setWaterReflectionTintStrength(s)
 {
 	g_Environment.Water.WaterBody.WaterReflectionTintStrength = s;
 }
+
+
+// Set fog factor (0,1)
+function setFogFactor(s)
+{
+	g_Environment.Fog.FogFactor = s / 100.0;
+}
+
+// Set fog thickness (0,1)
+function setFogThickness(s)
+{
+	g_Environment.Fog.FogThickness = s;
+}
+
+// Set fog color RGB (0,1)
+function setFogColor(r, g, b)
+{
+	g_Environment.Fog.FogColor = { "r" : r, "g" : g, "b" : b, "a" : 0};
+}
+
+// Set postproc brightness (0,1)
+function setPPBrightness(s)
+{
+	g_Environment.Postproc.Brightness = s - 0.5;
+}
+
+// Set postproc contrast (0,1)
+function setPPContrast(s)
+{
+	g_Environment.Postproc.Contrast = s + 0.5;
+}
+
+// Set postproc saturation (0,1)
+function setPPSaturation(s)
+{
+	g_Environment.Postproc.Saturation = s * 2;
+}
+
+// Set postproc bloom (0,1)
+function setPPBloom(s)
+{
+	g_Environment.Postproc.Bloom = (1 - s) * 0.2;
+}
+
+// Set postproc effect ("default", "hdr", "DOF", "HQDOF")
+function setPPEffect(s)
+{
+	g_Environment.Postproc.PostprocEffect = s;
+}

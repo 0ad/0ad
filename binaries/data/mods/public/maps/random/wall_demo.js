@@ -63,7 +63,7 @@ var actualX = distToMapBorder;
 var actualY = distToMapBorder;
 // Wall styles are chosen by strings so the civ strings got by g_MapSettings.PlayerData[playerId - 1].Civ can be used
 // Other styles may be present as well but besides the civ styles only 'palisades' includes all wall element types (yet)
-const wallStyleList = ["athen", "brit", "cart", "celt", "gaul", "hele", "iber", "mace", "maur", "pers", "rome", "spart", "rome_siege", "palisades"];
+const wallStyleList = ["athen", "brit", "cart", "celt", "gaul", "hele", "iber", "mace", "maur", "pers", "ptol", "rome", "spart", "rome_siege", "palisades"];
 
 
 ////////////////////////////////////////

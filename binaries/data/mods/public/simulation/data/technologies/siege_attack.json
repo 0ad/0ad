@@ -6,10 +6,10 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "siege_ram.png",
 	"researchTime": 40,
-	"tooltip": "All siege weapons +3 Crush damage.",
+	"tooltip": "All siege weapons +5 Crush damage.",
 	"modifications": [
-		{"value": "Attack/Melee/Crush", "add": 3},
-		{"value": "Attack/Ranged/Crush", "add": 3}],
+		{"value": "Attack/Melee/Crush", "add": 5},
+		{"value": "Attack/Ranged/Crush", "add": 5}],
 	"affects": ["Siege"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

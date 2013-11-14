@@ -96,6 +96,14 @@ static const entity_pos_t CHECK_TARGET_MOVEMENT_MIN_DELTA_FORMATION = entity_pos
  */
 static const entity_pos_t CHECK_TARGET_MOVEMENT_AT_MAX_DIST = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*16);
 
+/**
+ * If we're following something and the angle between the (straight-line) directions to its previous target
+ * position and its present target position is greater than a given angle, recompute the path even far away
+ * (i.e. even if CHECK_TARGET_MOVEMENT_AT_MAX_DIST condition is not fulfilled). The actual check is done
+ * on the cosine of this angle, with a PI/6 angle.
+ */
+static const fixed CHECK_TARGET_MOVEMENT_MIN_COS = fixed::FromInt(866)/1000;
+
 static const CColor OVERLAY_COLOUR_LONG_PATH(1, 1, 1, 1);
 static const CColor OVERLAY_COLOUR_SHORT_PATH(1, 0, 0, 1);
 
@@ -539,6 +547,8 @@ private:
 		CMessageMotionChanged msg(false, false);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
+
+	bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange, entity_id_t target);
 
 	/**
 	 * Handle the result of an asynchronous path query.
@@ -1088,8 +1098,18 @@ bool CCmpUnitMotion::CheckTargetMovement(CFixedVector2D from, entity_pos_t minDe
 	if ((targetPos - oldTargetPos).CompareLength(minDelta) < 0)
 		return false;
 
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+	if (!cmpPosition || !cmpPosition->IsInWorld())
+		return false;
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
+	CFixedVector2D oldDir = (oldTargetPos - pos);
+	CFixedVector2D newDir = (targetPos - pos);
+	oldDir.Normalize();
+	newDir.Normalize();
+
 	// Fail unless we're close enough to the target to care about its movement
-	if (!PathIsShort(m_LongPath, from, CHECK_TARGET_MOVEMENT_AT_MAX_DIST))
+	// and the angle between the (straight-line) directions of the previous and new target positions is small
+	if (oldDir.Dot(newDir) > CHECK_TARGET_MOVEMENT_MIN_COS && !PathIsShort(m_LongPath, from, CHECK_TARGET_MOVEMENT_AT_MAX_DIST))
 		return false;
 
 	// Fail if the target is no longer visible to this entity's owner
@@ -1280,8 +1300,12 @@ bool CCmpUnitMotion::PickNextLongWaypoint(const CFixedVector2D& pos, bool avoidM
 	return true;
 }
 
-
 bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
+{
+	return MoveToPointRange(x, z, minRange, maxRange, INVALID_ENTITY);
+}
+
+bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange, entity_id_t target)
 {
 	PROFILE("MoveToPointRange");
 
@@ -1357,7 +1381,7 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 	}
 
 	m_State = STATE_INDIVIDUAL_PATH;
-	m_TargetEntity = INVALID_ENTITY;
+	m_TargetEntity = target;
 	m_TargetOffset = CFixedVector2D();
 	m_TargetMinRange = minRange;
 	m_TargetMaxRange = maxRange;
@@ -1574,7 +1598,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 
 		CFixedVector2D targetPos = cmpTargetPosition->GetPosition2D();
 
-		return MoveToPointRange(targetPos.X, targetPos.Y, minRange, maxRange);
+		return MoveToPointRange(targetPos.X, targetPos.Y, minRange, maxRange, target);
 	}
 }
 
