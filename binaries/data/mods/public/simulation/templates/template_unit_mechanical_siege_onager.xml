@@ -2,15 +2,15 @@
 <Entity parent="template_unit_mechanical_siege">
   <Armour>
     <Hack>2</Hack>
-    <Pierce>10</Pierce>
-    <Crush>5</Crush>
+    <Pierce>30</Pierce>
+    <Crush>10</Crush>
   </Armour>
   <Attack>
     <Ranged>
-      <Hack>30.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>30.0</Crush>
-      <MaxRange>68</MaxRange>
+      <Hack>0.0</Hack>
+      <Pierce>20.0</Pierce>
+      <Crush>35.0</Crush>
+      <MaxRange>75</MaxRange>
       <MinRange>12.0</MinRange>
       <ProjectileSpeed>28.0</ProjectileSpeed>
       <PrepareTime>5000</PrepareTime>
@@ -30,9 +30,9 @@
         <Shape>Circular</Shape>
         <Range>8</Range>
         <FriendlyFire>true</FriendlyFire>
-        <Hack>40.0</Hack>
-        <Pierce>0.0</Pierce>
-        <Crush>40.0</Crush>
+        <Hack>0.0</Hack>
+        <Pierce>15.0</Pierce>
+        <Crush>30.0</Crush>
       </Splash>
     </Ranged>
   </Attack>
