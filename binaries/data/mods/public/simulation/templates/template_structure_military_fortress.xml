@@ -5,14 +5,19 @@
       <Hack>0.0</Hack>
       <Pierce>25.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>80.0</MaxRange>
-      <MinRange>12.0</MinRange>
+      <MaxRange>85.0</MaxRange>
+      <MinRange>8.0</MinRange>
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
       <Spread>1.5</Spread>
       <PreferredClasses datatype="tokens">Organic</PreferredClasses>
-      <RestrictedClasses datatype="tokens">Siege</RestrictedClasses>
+      <Bonuses>
+          <NerfSiege>
+              <Classes>Siege</Classes>
+              <Multiplier>0.5</Multiplier>
+          </NerfSiege>
+      </Bonuses>
     </Ranged>
   </Attack>
   <BuildingAI>
@@ -20,7 +25,12 @@
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
   </BuildingAI>
   <BuildRestrictions>
+    <Territory>own</Territory>
     <Category>Fortress</Category>
+    <Distance>
+      <FromClass>Fortress</FromClass>
+      <MinDistance>60</MinDistance>
+    </Distance>
   </BuildRestrictions>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
