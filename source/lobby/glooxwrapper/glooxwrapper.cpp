@@ -88,12 +88,14 @@ public:
 
 	virtual bool handleIq(const gloox::IQ& iq)
 	{
-		return m_Wrapped->handleIq(glooxwrapper::IQ(iq));
+		glooxwrapper::IQ iqWrapper(iq);
+		return m_Wrapped->handleIq(iqWrapper);
 	}
 
 	virtual void handleIqID(const gloox::IQ& iq, int context)
 	{
-		m_Wrapped->handleIqID(glooxwrapper::IQ(iq), context);
+		glooxwrapper::IQ iqWrapper(iq);
+		m_Wrapped->handleIqID(iqWrapper, context);
 	}
 };
 
