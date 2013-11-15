@@ -106,13 +106,13 @@ Map.prototype.validT = function(x, z, distance)
 {
 	if (g_MapSettings.CircularMap)
 	{	// Within map circle
-		if (distance == undefined)
-			var halfSize = Math.floor(0.5*this.size);
-		else
-			var halfSize = Math.floor(0.5*this.size)-distance;
+		var halfSize = Math.floor(0.5*this.size);
 		var dx = (x - halfSize);
 		var dz = (z - halfSize);
-		return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize - 1;
+		if (distance === undefined)
+			return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize - 1;
+		else
+			return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize - distance - 1;
 	}
 	else
 	{	// Within map square
@@ -197,7 +197,7 @@ Map.prototype.getTerrainObjects = function(x, z)
 
 Map.prototype.setTerrainObject = function(x, z, object)
 {
-	if (!this.validT(x, z))
+	if (!this.validT(x, z, 2))
 	{
 		throw("setTerrainObject: invalid tile position ("+x+", "+z+")");
 	}

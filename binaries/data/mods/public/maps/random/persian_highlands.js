@@ -1,16 +1,33 @@
 RMS.LoadLibrary("rmgen");
 
-const tCity = "desert_city_tile_plaza";
-const tDirtMain = ["desert_dirt_persia_1", "desert_dirt_persia_2", "grass_field_dry"];
-const tLakebed1 = ["desert_lakebed_dry_b", "desert_lakebed_dry"];
-const tLakebed2 = ["desert_lakebed_dry_b", "desert_lakebed_dry", "desert_shore_stones", "desert_shore_stones"];
-const tPebbles = "desert_pebbles_rough";
-const tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_2"];
-const tForestFloor = "medit_grass_field_dry";
-const tRocky = "desert_dirt_persia_rocky";
-const tRocks = "desert_dirt_persia_rocks";
-const tGrass = "grass_field_dry";
-const tHill = "desert_cliff_persia_base";
+const tCity = "desert_city_tile_pers_dirt";
+var random_season = randInt(0,1);
+if (random_season) //summer
+{
+	var tDirtMain = ["desert_dirt_persia_1", "desert_dirt_persia_2", "grass_field_dry"];
+	var tLakebed1 = ["desert_lakebed_dry_b", "desert_lakebed_dry"];
+	var tLakebed2 = ["desert_lakebed_dry_b", "desert_lakebed_dry", "desert_shore_stones", "desert_shore_stones"];
+	var tPebbles = "desert_pebbles_rough";
+	var tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_crumbling"];
+	var tForestFloor = "medit_grass_field_dry";
+	var tRocky = "desert_dirt_persia_rocky";
+	var tRocks = "desert_dirt_persia_rocks";
+	var tGrass = "grass_field_dry";
+	var tHill = "desert_cliff_persia_base";
+}
+else //spring
+{
+	var tDirtMain = ["desert_grass_a", "desert_grass_a", "desert_grass_a", "desert_plants_a"];
+	var tLakebed1 = ["desert_lakebed_dry_b", "desert_lakebed_dry"];
+	var tLakebed2 = "desert_grass_a_sand";
+	var tPebbles = "desert_pebbles_rough";
+	var tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_crumbling"];
+	var tForestFloor = "desert_plants_b_persia";
+	var tRocky = "desert_plants_b_persia";
+	var tRocks = "desert_plants_a";
+	var tGrass = "desert_dirt_persia_rocky";
+	var tHill = "desert_cliff_persia_base";
+}
 
 // gaia entities
 const oGrapesBush = "gaia/flora_bush_grapes";
@@ -60,6 +77,15 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clCP = createTileClass();
 
+for (var ix = 0; ix < mapSize; ix++)
+{
+	for (var iz = 0; iz < mapSize; iz++)
+	{
+		var x = ix / (mapSize + 1.0);
+		var z = iz / (mapSize + 1.0);
+			placeTerrain(ix, iz, tDirtMain);
+	}
+}
 
 var playerIDs = [];
 for (var i = 0; i < numPlayers; i++)
@@ -209,30 +235,35 @@ RMS.SetProgress(25);
 
 // create centeral plateau
 log("Creating centeral plateau...");
+var halfSize = mapSize / 2;
 var oRadius = scaleByMapSize(18, 68);
-placer = new ClumpPlacer(PI*oRadius*oRadius, 0.6, 0.15, 0, mapSize/2, mapSize/2);
-painter = new LayeredPainter([tLakebed2, tLakebed1], [8]);
+placer = new ChainPlacer(2, floor(scaleByMapSize(5, 13)), floor(scaleByMapSize(35, 200)), 1, halfSize, halfSize, 0, [floor(oRadius)]);
+painter = new LayeredPainter([tLakebed2, tLakebed1], [6]);
 var elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, -10, 8);
-createArea(placer, [painter, elevationPainter, paintClass(clCP)], null);
+createArea(placer, [painter, elevationPainter, paintClass(clCP)], avoidClasses(clPlayer, 18));
 
 
 RMS.SetProgress(30);
 
-
 // create hills
 log("Creating hills...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
-var terrainPainter = new LayeredPainter(
-	[tCliff, tHill],		// terrains
-	[2]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 22, 2);
-createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)], 
-	avoidClasses(clPlayer, 7, clCP, 5, clHill, 10),
-	scaleByMapSize(1, 4) * numPlayers * 3
-);
+var numHills = scaleByMapSize(20, 80)
+for (var i = 0; i < numHills; ++i)
+{
+	
+	createMountain(
+		floor(scaleByMapSize(40, 60)),
+		floor(scaleByMapSize(3, 4)),
+		floor(scaleByMapSize(6, 12)),
+		floor(scaleByMapSize(4, 10)),
+		avoidClasses(clPlayer, 7, clCP, 5, clHill, floor(scaleByMapSize(18, 25))),
+		randInt(mapSize),
+		randInt(mapSize),
+		tCliff,
+		clHill,
+		14
+	);
+}
 
 RMS.SetProgress(35);
 
@@ -299,23 +330,23 @@ log("Creating centeral stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
 createObjectGroups(group, 0,
-	stayClasses(clCP, 3),
-	5*scaleByMapSize(10,30), 100
+	stayClasses(clCP, 6),
+	5*scaleByMapSize(5,30), 50
 );
 
 // create small stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
 createObjectGroups(group, 0,
-	stayClasses(clCP, 3),
-	5*scaleByMapSize(10,30), 100
+	stayClasses(clCP, 6),
+	5*scaleByMapSize(5,30), 50
 );
 
 log("Creating centeral metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clMetal);
 createObjectGroups(group, 0,
-	stayClasses(clCP, 3),
-	5*scaleByMapSize(10,30), 100
+	stayClasses(clCP, 6),
+	5*scaleByMapSize(5,30), 50
 );
 
 RMS.SetProgress(60);
@@ -392,23 +423,6 @@ createObjectGroups(group, 0,
 	3 * numPlayers, 50
 );
 
-RMS.SetProgress(85);
-
-// create dead trees
-log("Creating dead trees...");
-var types = [oTamarix];	// some variation
-var num = floor(numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup(
-		[new SimpleObject(types[i], 1,1, 0,3)],
-		true, clForest
-	);
-	createObjectGroups(group, 0,
-		[avoidClasses(clMetal, 1, clRock, 1), stayClasses(clCP, 2)],
-		num
-	);
-}
 
 RMS.SetProgress(90);
 
@@ -428,5 +442,20 @@ for (var i = 0; i < types.length; ++i)
 	);
 }
 
-setSunColour(0.733, 0.746, 0.574);	
+if (!random_season)
+	setTerrainAmbientColour(0.329412, 0.419608, 0.501961);
+
+setSunColour(1.0, 0.796, 0.374);	
+setSunElevation(PI / 6);
+setSunRotation(-1.86532);
+
+setFogFactor(0.2);
+setFogThickness(0.0);
+setFogColor(0.852, 0.746, 0.493);
+
+setPPEffect("hdr");
+setPPContrast(0.75);
+setPPSaturation(0.45);
+setPPBloom(0.3);
+
 ExportMap();

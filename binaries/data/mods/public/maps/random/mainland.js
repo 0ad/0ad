@@ -236,7 +236,7 @@ createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
 	avoidClasses(clPlayer, 20, clHill, 15),
-	scaleByMapSize(1, 4) * numPlayers
+	scaleByMapSize(3, 15)
 );
 
 
