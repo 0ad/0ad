@@ -5,9 +5,9 @@
     <PlacementType>shore</PlacementType>
     <Category>Dock</Category>
   </BuildRestrictions>
-  <Footprint>
-    <Square width="29.0" depth="34.0"/>
-    <Height>9.0</Height>
+  <Footprint replace="">
+    <Circle radius="14.0"/>
+    <Height>8.0</Height>
   </Footprint>
   <Health>
     <SpawnEntityOnDeath>rubble/rubble_stone_4x6</SpawnEntityOnDeath>
@@ -22,7 +22,7 @@
     <Icon>structures/library_scroll.png</Icon>
   </Identity>
   <Obstruction>
-    <Static width="25.0" depth="30.0"/>
+    <Static width="20.0" depth="25.0"/>
   </Obstruction>
   <Position>
     <Floating>true</Floating>
