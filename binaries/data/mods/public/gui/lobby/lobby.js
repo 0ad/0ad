@@ -12,6 +12,7 @@ var g_mapSizes = {};
 function init(attribs)
 {
 	// Play menu music
+	initMusic();
 	global.music.setState(global.music.states.MENU);
 
 	g_Name = Engine.LobbyGetNick();
@@ -38,8 +39,8 @@ function init(attribs)
 	updatePlayerList();
 
 	resetFilters();
-	var spamMonitorTimer = setTimeout(clearSpamMonitor, 5000);
-	var spammerTimer = setTimeout(clearSpammers, 30000);
+	setTimeout(clearSpamMonitor, 5000);
+	setTimeout(clearSpammers, 30000);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -609,18 +610,18 @@ function ircFormat(text, from, color, key)
 
 	// Generate and apply color to uncolored names,
 	if (!color && from)
-		coloredFrom = colorPlayerName(from);
+		var coloredFrom = colorPlayerName(from);
 	else if (from)
-		coloredFrom = "[color='" + color + "']" + from + "[/color]";
+		var coloredFrom = "[color='" + color + "']" + from + "[/color]";
 
 	// Time for optional time header
 	var time = new Date(Date.now());
 
 	// Build time header if enabled
 	if (g_timestamp)
-		formatted = '[font="serif-bold-13"]\x5B' + twoDigits(time.getHours() % 12) + ":" + twoDigits(time.getMinutes()) + '\x5D[/font] '
+		var formatted = '[font="serif-bold-13"]\x5B' + twoDigits(time.getHours() % 12) + ":" + twoDigits(time.getMinutes()) + '\x5D[/font] '
 	else
-		formatted = "";
+		var formatted = "";
 
 	// Handle commands
 	if (text[0] == '/')
@@ -671,13 +672,13 @@ function updateSpamandDetect(text, from)
 function clearSpamMonitor()
 {
 	g_spamMonitor = {};
-	spamTimer = setTimeout(clearSpamMonitor, 5000);
+	setTimeout(clearSpamMonitor, 5000);
 }
 
 function clearSpammers()
 {
 	g_spammers = {};
-	spammerTimer = setTimeout(clearSpammers, 30000);
+	setTimeout(clearSpammers, 30000);
 }
 
 /* Utilities */

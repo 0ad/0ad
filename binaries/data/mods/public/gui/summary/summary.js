@@ -195,7 +195,7 @@ function init(data)
 			militaryScore.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			explorationScore.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			totalScore.size = left + " 2 " + (left + width) + " 100%"; left += width;
-			size = getGUIObjectByName("playerBox0["+i+"]").size;
+			var size = getGUIObjectByName("playerBox0["+i+"]").size;
 			size.right = left + 10;
 			getGUIObjectByName("playerBox0["+i+"]").size = size;
 			
