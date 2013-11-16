@@ -5,16 +5,24 @@
     <variant frequency="1" name="Macedonian temple">
       <mesh>structural/mace_temple_struct.dae</mesh>
       <props>
-		<prop actor="props/structures/macedonians/temple_decor.xml" attachpoint="root"/>
+        <prop actor="props/structures/macedonians/temple_decor.xml" attachpoint="root"/>
         <prop actor="props/structures/macedonians/temple_props_a.xml" attachpoint="root"/>
         <prop actor="props/structures/macedonians/temple_tile_b.xml" attachpoint="root"/>
       </props>
       <textures>
-			<texture file="structural/hele_struct.dds" name="baseTex"/>
-			<texture file="structural/hele_struct_norm.png" name="normTex"/>
-			<texture file="structural/hele_struct_spec.png" name="specTex"/>
-			<texture file="structural/ao/mace_temple.png" name="aoTex"/>
-		</textures>
+        <texture file="structural/hele_struct.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/mace_temple.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
     </variant>
     <variant name="death">
       <props>
@@ -22,8 +30,8 @@
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="smoke"/>
         <prop actor="particle/destruction_dust_med.xml" attachpoint="smoke"/>
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="smoke"/>
-		<prop actor="props/structures/macedonians/temple_decor.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/temple_propsa.xml" attachpoint="root"/>
+        <prop actor="props/structures/macedonians/temple_decor.xml" attachpoint="root"/>
+        <prop actor="props/structures/macedonians/temple_props_a.xml" attachpoint="root"/>
         <prop actor="props/structures/macedonians/temple_tile_b.xml" attachpoint="root"/>
       </props>
     </variant>
