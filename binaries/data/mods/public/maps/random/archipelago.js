@@ -555,6 +555,7 @@ else if (random_sky ==3){
 }
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
+setWaterWaviness(10);
 
 // Export map data
 ExportMap();
