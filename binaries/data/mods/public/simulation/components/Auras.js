@@ -328,7 +328,7 @@ Auras.prototype.ApplyBonus = function(name, ent)
 	var modifications = this.GetModifications(name);
 	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
 
-	for each (mod in modifications)
+	for each (var mod in modifications)
 		cmpAuraManager.ApplyBonus(mod.value, ent, mod, this.templateName + "/" + name + "/" + mod.value);
 
 };
@@ -338,7 +338,7 @@ Auras.prototype.RemoveBonus = function(name, ent)
 	var modifications = this.GetModifications(name);
 	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
 
-	for each (mod in modifications)
+	for each (var mod in modifications)
 		cmpAuraManager.RemoveBonus(mod.value, ent, this.templateName + "/" + name + "/" + mod.value);
 };
 
