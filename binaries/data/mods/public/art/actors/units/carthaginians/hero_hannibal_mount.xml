@@ -2,27 +2,28 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="elephant_african_forest [adult]">
+    <variant frequency="1" name="elephant_asian [adult male]">
       <animations>
-        <animation file="quadraped/elephant_african_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_african_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_african_idle_01.dae" name="Idle" speed="25"/>
-        <animation file="quadraped/elephant_african_idle_02.dae" name="Idle" speed="85"/>
-        <animation file="quadraped/elephant_african_idle_03.dae" name="Idle" speed="75"/>
-        <animation file="quadraped/elephant_african_idle_03.dae" name="Idle" speed="75"/>
-        <animation file="quadraped/elephant_african_walk.dae" name="Walk" speed="30"/>
-        <animation file="quadraped/elephant_african_walk.dae" name="Run" speed="20"/>
-        <animation file="quadraped/elephant_african_attack.dae" name="attack_melee" speed="75"/>
-        <animation file="quadraped/elephant_african_death.dae" name="Death" speed="50"/>
+        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
+        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
+        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
+        <animation file="quadraped/elephant_asian_idle_02.dae" name="Idle" speed="85"/>
+        <animation file="quadraped/elephant_asian_idle_03.dae" name="Idle" speed="75"/>
+        <animation file="quadraped/elephant_asian_idle_03.dae" name="Idle" speed="75"/>
+        <animation file="quadraped/elephant_asian_walk.dae" name="Walk" speed="20"/>
+        <animation file="quadraped/elephant_asian_walk.dae" name="Run" speed="20"/>
+        <animation file="quadraped/elephant_asian_attack.dae" name="attack_melee" speed="75"/>
+        <animation file="quadraped/elephant_asian_death.dae" name="Death" speed="75"/>
       </animations>
-      <mesh>skeletal/elephant_african_forest.dae</mesh>
+      <mesh>skeletal/elephant_asian_male.dae</mesh>
       <props>
         <prop actor="units/carthaginians/hero_hannibal_mahout.xml" attachpoint="rider"/>
         <prop actor="props/units/turret_hannibal.xml" attachpoint="turret"/>
       </props>
       <textures>
-        <texture file="skeletal/ptol_elephant_a.png" name="baseTex"/>
-        <texture file="skeletal/ptol_elephant_a_spec.png" name="specTex"/>
+        <texture file="skeletal/maur_elephant_worker.png" name="baseTex"/>
+        <texture file="skeletal/maur_elephant_worker_spec.png" name="specTex"/>
+        <texture file="skeletal/maur_elephant_worker_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -39,5 +40,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

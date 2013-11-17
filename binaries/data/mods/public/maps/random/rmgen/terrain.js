@@ -43,7 +43,7 @@ SimpleTerrain.prototype = new Terrain();
 SimpleTerrain.prototype.constructor = SimpleTerrain;
 SimpleTerrain.prototype.placeNew = function(x, z)
 {
-	if (this.treeType !== undefined)
+	if (this.treeType !== undefined && g_Map.validT(round(x), round(z), 3))
 	{
 		g_Map.terrainObjects[x][z] = new Entity(this.treeType, 0, x+0.5, z+0.5, randFloat()*TWO_PI);
 	}

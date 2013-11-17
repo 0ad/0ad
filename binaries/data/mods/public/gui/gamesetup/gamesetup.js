@@ -836,7 +836,7 @@ function launchGame()
 	const romanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
 	for (var i = 0; i < numPlayers; ++i)
 	{
-		civs = allcivs[Math.floor(Math.random()*allcivs.length)];
+		var civs = allcivs[Math.floor(Math.random()*allcivs.length)];
 
 		if (!g_GameAttributes.settings.PlayerData[i].Civ || g_GameAttributes.settings.PlayerData[i].Civ == "random")
 			g_GameAttributes.settings.PlayerData[i].Civ = civs[Math.floor(Math.random()*civs.length)];
@@ -1549,7 +1549,7 @@ function sendRegisterGameStanza()
 	var nbp = numberOfPlayers ? numberOfPlayers : 1;
 	var tnbp = g_GameAttributes.settings.PlayerData.length;
 
-	gameData = {
+	var gameData = {
 		"name":g_ServerName,
 		"mapName":g_GameAttributes.map,
 		"niceMapName":getMapDisplayName(g_GameAttributes.map),

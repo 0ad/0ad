@@ -5,9 +5,9 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
     </contributor>
-    <created>2013-11-11T16:34:40</created>
-    <modified>2013-11-11T16:34:40</modified>
-    <unit name="meter" meter="0.0254"/>
+    <created>2013-11-16T15:18:46</created>
+    <modified>2013-11-16T15:18:46</modified>
+    <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images/>
@@ -107,256 +107,259 @@
         <rotate sid="rotationX">1 0 0 0</rotate>
         <scale sid="scale">1 1 1</scale>
         <node id="Elephant" name="Elephant" sid="Elephant" type="JOINT">
-          <matrix sid="transform">1 -2.51481e-14 3.33097e-7 0 3.33097e-7 7.54979e-8 -1 -1.812382 0 1 7.54979e-8 4.010655 0 0 0 1</matrix>
+          <matrix sid="transform">1 -2.51481e-14 3.33097e-7 1.35014e-12 3.33097e-7 7.54979e-8 -1 -1.817217 0 1 7.54979e-8 4.010642 0 0 0 1</matrix>
           <node id="body_1" name="body.1" sid="body_1" type="JOINT">
-            <matrix sid="transform">-1 3.26235e-7 -1.09479e-8 0 -5.51569e-8 -0.2019378 -0.9793983 1.5 -3.21725e-7 -0.9793987 0.2019377 -1.19209e-7 0 0 0 1</matrix>
+            <matrix sid="transform">-1 3.26235e-7 -1.09479e-8 0 -5.51569e-8 -0.2019379 -0.9793984 1.5 -3.21725e-7 -0.9793987 0.2019377 0 0 0 0 1</matrix>
             <node id="body_2" name="body.2" sid="body_2" type="JOINT">
-              <matrix sid="transform">1 -1.51537e-8 -3.19582e-8 0 2.04639e-8 0.9848625 0.1733385 1.565726 2.88477e-8 -0.1733382 0.9848624 0 0 0 0 1</matrix>
+              <matrix sid="transform">1 -1.51537e-8 -3.19582e-8 0 2.04639e-8 0.9848621 0.1733386 1.565726 2.88477e-8 -0.1733387 0.9848623 0 0 0 0 1</matrix>
               <node id="butt" name="butt" sid="butt" type="JOINT">
-                <matrix sid="transform">1 2.44438e-9 1.74661e-7 5.68434e-14 2.44017e-9 0.9996092 -0.02796048 1.629042 -1.74661e-7 0.02796048 0.9996091 0 0 0 0 1</matrix>
+                <matrix sid="transform">1 2.44438e-9 1.74661e-7 -2.84217e-14 2.44017e-9 0.999609 -0.02796048 1.629042 -1.74661e-7 0.02796048 0.999609 -4.76837e-7 0 0 0 1</matrix>
                 <node id="tail_1" name="tail.1" sid="tail_1" type="JOINT">
-                  <matrix sid="transform">0.9999999 -7.8628e-8 1.0795e-7 -5.68434e-14 1.31456e-7 0.4369638 -0.8994789 1.108403 2.35541e-8 0.8994793 0.4369636 0 0 0 0 1</matrix>
+                  <matrix sid="transform">0.9999999 -7.86263e-8 1.07946e-7 -2.84217e-14 1.31453e-7 0.4370068 -0.8994579 1.108404 2.35479e-8 0.8994584 0.4370062 9.53674e-7 0 0 0 1</matrix>
                   <node id="tail_2" name="tail.2" sid="tail_2" type="JOINT">
-                    <matrix sid="transform">1 -4.24783e-8 6.97025e-9 -1.13687e-13 4.25563e-8 0.9512028 -0.3085664 0.5665319 6.47721e-9 0.3085664 0.9512029 4.76837e-7 0 0 0 1</matrix>
+                    <matrix sid="transform">1 -4.15513e-8 6.67553e-9 0 4.1627e-8 0.9532968 -0.3020352 0.5665309 6.1861e-9 0.3020352 0.9532968 4.76837e-7 0 0 0 1</matrix>
                     <node id="tail_3" name="tail.3" sid="tail_3" type="JOINT">
-                      <matrix sid="transform">1 -1.61534e-8 9.67936e-10 0 1.61417e-8 0.9914619 -0.1303961 1.185034 1.14661e-9 0.1303959 0.9914619 0 0 0 0 1</matrix>
+                      <matrix sid="transform">1 -1.72302e-8 1.10794e-9 -5.68434e-14 1.72183e-8 0.990439 -0.1379494 1.185034 1.27963e-9 0.1379494 0.9904391 2.38419e-7 0 0 0 1</matrix>
                       <node id="tail_4" name="tail.4" sid="tail_4" type="JOINT">
-                        <matrix sid="transform">1 4.63346e-9 6.63475e-11 -2.84217e-14 -4.63391e-9 0.999831 0.01838827 1.217641 1.87972e-11 -0.0183882 0.9998308 2.38419e-7 0 0 0 1</matrix>
+                        <matrix sid="transform">1 4.34669e-9 5.78235e-11 2.84217e-14 -4.34704e-9 0.9998722 0.01598379 1.217642 1.15426e-11 -0.01598381 0.9998722 -2.38419e-7 0 0 0 1</matrix>
                       </node>
                       <node id="tail_3_joint" name="tail.3.joint" sid="tail_3_joint" type="JOINT">
-                        <matrix sid="transform">1 1.50108e-7 1.7654e-7 -2.84217e-14 -1.51204e-7 -0.1546385 0.9879712 1.217641 1.75602e-7 -0.987971 -0.1546381 2.38419e-7 0 0 0 1</matrix>
+                        <matrix sid="transform">0.9999994 1.50675e-7 1.76269e-7 0 -1.51166e-7 -0.1528558 0.9882474 1.217641 1.75848e-7 -0.9882482 -0.1528551 0 0 0 0 1</matrix>
                       </node>
                     </node>
                     <node id="tail_2_joint" name="tail.2.joint" sid="tail_2_joint" type="JOINT">
-                      <matrix sid="transform">1 1.52099e-7 -7.1048e-8 2.84217e-14 8.49974e-8 -0.09377236 0.9955936 1.185034 1.44766e-7 -0.9955935 -0.09377208 2.38419e-7 0 0 0 1</matrix>
+                      <matrix sid="transform">0.9999912 1.5176e-7 -7.19192e-8 -2.84217e-14 8.50062e-8 -0.08807747 0.9961046 1.185034 1.44835e-7 -0.9961132 -0.08807643 2.38419e-7 0 0 0 1</matrix>
                     </node>
                   </node>
                   <node id="tail_1_joint" name="tail.1.joint" sid="tail_1_joint" type="JOINT">
-                    <matrix sid="transform">1 1.52773e-7 1.62706e-7 0 -1.53101e-7 -0.06089351 0.9981446 0.5665321 1.62397e-7 -0.9981441 -0.06089312 0 0 0 0 1</matrix>
+                    <matrix sid="transform">0.9999927 1.53692e-7 1.63576e-7 0 -1.53071e-7 -0.06602782 0.9978108 0.5665314 1.64156e-7 -0.9978172 -0.06602758 4.76837e-7 0 0 0 1</matrix>
                   </node>
                 </node>
               </node>
               <node id="Bone_001" name="Bone.001" sid="Bone_001" type="JOINT">
-                <matrix sid="transform">-0.7238035 0.5975236 0.3450713 5.68434e-14 0.6490906 0.4199733 0.6342747 1.629042 0.2340734 0.6830724 -0.6918251 0 0 0 0 1</matrix>
+                <matrix sid="transform">-0.7238035 0.5975236 0.3450712 -2.84217e-14 0.6492947 0.4205699 0.6336699 1.629042 0.2335061 0.6827052 -0.6923788 -4.76837e-7 0 0 0 1</matrix>
                 <node id="leg_right" name="leg.right" sid="leg_right" type="JOINT">
-                  <matrix sid="transform">-0.8729992 0.1572495 -0.461676 -2.98023e-8 0.4413964 0.6573913 -0.6107419 1.673574 0.2074629 -0.7369596 -0.6433117 0 0 0 0 1</matrix>
+                  <matrix sid="transform">-0.872921 0.1583548 -0.4614458 -8.9407e-8 0.4416982 0.6581489 -0.6097072 1.673574 0.2071498 -0.7360461 -0.644457 4.76837e-7 0 0 0 1</matrix>
                   <node id="shin_right" name="shin.right" sid="shin_right" type="JOINT">
-                    <matrix sid="transform">0.9897132 -0.06501306 0.1274411 -5.96046e-8 0.03363183 0.9715483 0.2344406 1.746442 -0.1390566 -0.227743 0.9637408 0 0 0 0 1</matrix>
+                    <matrix sid="transform">0.989739 -0.06427023 0.1276193 0 0.03324802 0.9722042 0.2317617 1.746442 -0.1389674 -0.2251405 0.9643654 1.19209e-7 0 0 0 1</matrix>
                     <node id="foot_right" name="foot.right" sid="foot_right" type="JOINT">
-                      <matrix sid="transform">0.999987 -0.004663712 0.002043531 1.78814e-7 0.005078224 0.9430061 -0.3327367 1.772554 -3.75091e-4 0.3327428 0.9430175 0 0 0 0 1</matrix>
+                      <matrix sid="transform">0.9999872 -0.004642515 0.00203974 -5.96046e-8 0.00505666 0.942942 -0.3329182 1.772554 -3.77883e-4 0.3329243 0.9429534 -2.38419e-7 0 0 0 1</matrix>
                     </node>
                   </node>
                   <node id="leg_right_joint" name="leg.right.joint" sid="leg_right_joint" type="JOINT">
-                    <matrix sid="transform">0.9910563 0.1297733 0.03108451 -0.006547332 0.0107421 0.1546016 -0.9879183 1.749491 -0.1330117 0.9794167 0.1518249 -0.04524398 0 0 0 1</matrix>
+                    <matrix sid="transform">0.9913402 0.1291422 0.02380815 -0.00654757 0.003781203 0.1531541 -0.9881951 1.749492 -0.1312641 0.9797277 0.1513395 -0.0452441 0 0 0 1</matrix>
                   </node>
                 </node>
               </node>
               <node id="Bone_002" name="Bone.002" sid="Bone_002" type="JOINT">
-                <matrix sid="transform">-0.7238035 -0.5975234 -0.3450714 5.68434e-14 -0.6490906 0.4199733 0.6342745 1.629042 -0.2340731 0.6830726 -0.6918248 0 0 0 0 1</matrix>
+                <matrix sid="transform">-0.7238035 -0.5975235 -0.3450714 -2.84217e-14 -0.6488765 0.4193494 0.6349059 1.629042 -0.2346657 0.6834558 -0.6912454 -4.76837e-7 0 0 0 1</matrix>
                 <node id="leg_left" name="leg.left" sid="leg_left" type="JOINT">
-                  <matrix sid="transform">-0.8730001 -0.1572511 0.4616742 5.96046e-7 -0.4413956 0.6573923 -0.6107404 1.673573 -0.2074623 -0.7369583 -0.6433142 1.90735e-6 0 0 0 1</matrix>
+                  <matrix sid="transform">-0.873578 -0.1480164 0.4636301 -2.98023e-8 -0.4389395 0.6511073 -0.6191869 1.673574 -0.2102231 -0.7444136 -0.6337628 9.53674e-7 0 0 0 1</matrix>
                   <node id="shin_left" name="shin.left" sid="shin_left" type="JOINT">
-                    <matrix sid="transform">0.9897131 0.06501178 -0.1274414 -1.19209e-7 -0.03363119 0.9715497 0.234436 1.746443 0.1390566 -0.2277386 0.963742 0 0 0 0 1</matrix>
+                    <matrix sid="transform">0.9894381 0.07249542 -0.1255247 1.78814e-7 -0.03750294 0.9644961 0.2614224 1.746443 0.1400199 -0.2539538 0.9570277 0 0 0 0 1</matrix>
                     <node id="foot_left" name="foot.left" sid="foot_left" type="JOINT">
-                      <matrix sid="transform">0.999987 0.004663702 -0.002043208 1.19209e-7 -0.005077827 0.943006 -0.3327366 1.772554 3.74887e-4 0.3327427 0.9430175 0 0 0 0 1</matrix>
+                      <matrix sid="transform">0.999987 0.004663696 -0.002043233 5.96046e-8 -0.005078011 0.943006 -0.3327366 1.772555 3.74845e-4 0.3327427 0.9430172 2.38419e-7 0 0 0 1</matrix>
                     </node>
                   </node>
                   <node id="leg_left_joint" name="leg.left.joint" sid="leg_left_joint" type="JOINT">
-                    <matrix sid="transform">0.9910563 -0.129775 -0.03108161 0.006547272 -0.01073994 0.1545963 -0.9879193 1.749492 0.1330127 0.9794173 0.1518201 -0.04524398 0 0 0 1</matrix>
+                    <matrix sid="transform">0.9915894 -0.1268401 -0.02571822 0.006547391 -0.00414614 0.1674832 -0.9858662 1.749491 0.1293546 0.9776814 0.1655484 -0.04524434 0 0 0 1</matrix>
                   </node>
                 </node>
               </node>
               <node id="pelvis" name="pelvis" sid="pelvis" type="JOINT">
-                <matrix sid="transform">1 8.77686e-8 1.33071e-7 2.15367e-8 1.43308e-7 -0.1293793 -0.9915953 1.554821 -6.98143e-8 0.9915951 -0.1293793 0.2463503 0 0 0 1</matrix>
+                <matrix sid="transform">1 8.77686e-8 1.33071e-7 2.15366e-8 1.43308e-7 -0.1293793 -0.9915951 1.554821 -6.98143e-8 0.9915951 -0.1293793 0.2463498 0 0 0 1</matrix>
               </node>
               <node id="prop-turret" name="prop-turret" sid="prop-turret" type="JOINT">
-                <matrix sid="transform">-1 -2.54519e-9 -1.50959e-7 -1.29045e-7 1.85083e-9 0.9995766 -0.02911354 0.3838981 1.50969e-7 -0.02911354 -0.9995762 -1.596441 0 0 0 1</matrix>
+                <matrix sid="transform">-1 -2.54519e-9 -1.50959e-7 -1.29045e-7 1.85083e-9 0.9995764 -0.02911353 0.3838981 1.50969e-7 -0.02911354 -0.999576 -1.596442 0 0 0 1</matrix>
               </node>
               <node id="prop-egret_2" name="prop-egret.2" sid="prop-egret_2" type="JOINT">
-                <matrix sid="transform">-1 6.93914e-16 -1.50996e-7 0.5697865 4.39602e-9 0.9995766 -0.02911354 -0.3368551 1.50932e-7 -0.02911354 -0.9995762 -1.200592 0 0 0 1</matrix>
+                <matrix sid="transform">-1 8.34428e-16 -1.50996e-7 0.5697864 4.39602e-9 0.9995764 -0.02911353 -0.336855 1.50932e-7 -0.02911354 -0.999576 -1.200593 0 0 0 1</matrix>
               </node>
               <node id="prop-egret_1" name="prop-egret.1" sid="prop-egret_1" type="JOINT">
-                <matrix sid="transform">-1 5.89836e-16 -1.50996e-7 -0.6059138 4.39602e-9 0.9995766 -0.02911354 -1.362498 1.50932e-7 -0.02911355 -0.9995762 -1.296951 0 0 0 1</matrix>
+                <matrix sid="transform">-1 5.08306e-16 -1.50996e-7 -0.6059139 4.39602e-9 0.9995764 -0.02911353 -1.362498 1.50932e-7 -0.02911354 -0.999576 -1.296952 0 0 0 1</matrix>
               </node>
               <node id="prop-egret_3" name="prop-egret.3" sid="prop-egret_3" type="JOINT">
-                <matrix sid="transform">-1 4.26581e-16 -1.50996e-7 -0.08498048 4.396e-9 0.9995763 -0.02911342 1.016117 1.50932e-7 -0.02911342 -0.9995761 -1.545535 0 0 0 1</matrix>
+                <matrix sid="transform">-1 0 -1.50996e-7 -0.08498048 4.396e-9 0.9995762 -0.02911342 1.016117 1.50932e-7 -0.02911342 -0.999576 -1.545535 0 0 0 1</matrix>
               </node>
               <node id="prop-rider1" name="prop-rider1" sid="prop-rider1" type="JOINT">
-                <matrix sid="transform">-1 -2.54519e-9 -1.50959e-7 -1.63519e-7 1.85083e-9 0.9995766 -0.02911354 -1.106193 1.50969e-7 -0.02911354 -0.9995762 -1.797983 0 0 0 1</matrix>
+                <matrix sid="transform">-1 -2.54519e-9 -1.50959e-7 -1.6352e-7 1.85083e-9 0.9995764 -0.02911353 -1.106193 1.50969e-7 -0.02911354 -0.999576 -1.797983 0 0 0 1</matrix>
               </node>
               <node id="prop-rider2" name="prop-rider2" sid="prop-rider2" type="JOINT">
-                <matrix sid="transform">-1 -2.54519e-9 -1.50959e-7 -1.70356e-7 1.85083e-9 0.9995763 -0.02911354 0.02401638 1.50969e-7 -0.02911353 -0.9995762 -1.876188 0 0 0 1</matrix>
+                <matrix sid="transform">-1 -2.54519e-9 -1.50959e-7 -1.70357e-7 1.85083e-9 0.9995762 -0.02911353 0.02401638 1.50969e-7 -0.02911353 -0.999576 -1.876187 0 0 0 1</matrix>
               </node>
               <node id="prop-rider3" name="prop-rider3" sid="prop-rider3" type="JOINT">
-                <matrix sid="transform">-1 -2.54518e-9 -1.50959e-7 -1.54854e-7 1.85084e-9 0.9995766 -0.02911354 1.191527 1.50969e-7 -0.02911354 -0.9995762 -1.698857 0 0 0 1</matrix>
+                <matrix sid="transform">-1 -2.54518e-9 -1.50959e-7 -1.54854e-7 1.85084e-9 0.9995764 -0.02911353 1.191527 1.50969e-7 -0.02911354 -0.999576 -1.698857 0 0 0 1</matrix>
               </node>
             </node>
             <node id="belly" name="belly" sid="belly" type="JOINT">
-              <matrix sid="transform">1 2.0482e-7 -3.03911e-8 0 -6.06154e-8 0.1492269 -0.9888031 1.565726 -1.97991e-7 0.9888029 0.1492269 0 0 0 0 1</matrix>
+              <matrix sid="transform">1 1.45632e-7 -8.64914e-8 -2.84217e-14 -1.07255e-7 0.1492271 -0.9888028 1.565726 -1.31094e-7 0.988803 0.1492274 0 0 0 0 1</matrix>
             </node>
           </node>
           <node id="shoulder_left" name="shoulder.left" sid="shoulder_left" type="JOINT">
-            <matrix sid="transform">-0.9396341 0.3375221 0.05627085 0 -0.3359045 -0.9411938 0.03636549 1.5 0.06523586 0.01526854 0.9977531 -1.19209e-7 0 0 0 1</matrix>
+            <matrix sid="transform">-0.9396339 0.3375221 0.05627086 1.93344e-8 -0.3359896 -0.9412129 0.0350588 1.5 0.0647959 0.01403593 0.9977998 0 0 0 0 1</matrix>
             <node id="arm_left" name="arm.left" sid="arm_left" type="JOINT">
-              <matrix sid="transform">0.9425598 0.3230982 0.08478424 0 -0.3155866 0.944524 -0.09099316 2.582378 -0.1094805 0.05900953 0.992236 0 0 0 0 1</matrix>
+              <matrix sid="transform">0.9426237 0.3230396 0.08429399 0 -0.3154027 0.9444491 -0.09239616 2.582377 -0.1094589 0.06050826 0.9921476 -4.76837e-7 0 0 0 1</matrix>
               <node id="forearm_left" name="forearm.left" sid="forearm_left" type="JOINT">
-                <matrix sid="transform">0.9997639 0.02113282 0.005024961 2.38419e-7 -0.02156159 0.993524 0.1115572 1.310402 -0.002634938 -0.1116393 0.9937454 4.76837e-7 0 0 0 1</matrix>
+                <matrix sid="transform">0.9997567 0.02146941 0.005063223 3.57628e-7 -0.02190502 0.9933154 0.1133345 1.310403 -0.002596081 -0.1134175 0.9935439 0 0 0 0 1</matrix>
                 <node id="hand_left" name="hand.left" sid="hand_left" type="JOINT">
-                  <matrix sid="transform">1 2.11876e-8 3.16126e-7 0 1.90921e-8 0.9909607 -0.1341529 1.17274 -3.02702e-7 0.1341529 0.9909606 -2.38419e-7 0 0 0 1</matrix>
+                  <matrix sid="transform">1 2.09548e-8 3.03422e-7 0 2.28174e-8 0.9909605 -0.1341528 1.17274 -3.15071e-7 0.1341528 0.9909607 1.19209e-7 0 0 0 1</matrix>
                 </node>
               </node>
               <node id="arm_left_joint_front" name="arm.left.joint.front" sid="arm_left_joint_front" type="JOINT">
-                <matrix sid="transform">0.9997642 -8.0436e-4 -0.0217087 2.38419e-7 -0.02156302 -0.1579342 -0.9872141 1.310402 -0.002634366 0.9874496 -0.1579143 0 0 0 0 1</matrix>
+                <matrix sid="transform">0.999764 -5.16351e-4 -0.02170915 0 -0.02152189 -0.1566116 -0.9874258 1.310403 -0.002890023 0.9876598 -0.156586 -2.38419e-7 0 0 0 1</matrix>
                 <node id="arm_left_joint_back" name="arm.left.joint.back" sid="arm_left_joint_back" type="JOINT">
-                  <matrix sid="transform">0.9999998 2.61934e-8 -4.42378e-9 0 2.2701e-9 -0.9997506 -0.02233428 0 3.25963e-9 0.02233434 -0.9997506 0 0 0 0 1</matrix>
+                  <matrix sid="transform">0.9999998 -5.2969e-9 6.51926e-9 -1.19209e-7 6.34464e-9 -0.9997504 -0.02233428 0 4.88944e-9 0.02233435 -0.9997506 -2.38419e-7 0 0 0 1</matrix>
                 </node>
               </node>
             </node>
           </node>
           <node id="shoulder_right" name="shoulder.right" sid="shoulder_right" type="JOINT">
-            <matrix sid="transform">-0.9396341 -0.3375221 -0.05627152 0 0.3359045 -0.9411938 0.03636549 1.5 -0.06523653 0.01526832 0.997753 -1.19209e-7 0 0 0 1</matrix>
+            <matrix sid="transform">-0.939634 -0.337522 -0.05627151 1.24168e-8 0.3358364 -0.9411774 0.03740452 1.5 -0.06558628 0.01624845 0.9977146 0 0 0 0 1</matrix>
             <node id="arm_right" name="arm.right" sid="arm_right" type="JOINT">
-              <matrix sid="transform">0.9425599 -0.3230981 -0.08478285 1.19209e-7 0.3155865 0.944524 -0.09099322 2.582378 0.1094792 0.05901003 0.9922362 4.76837e-7 0 0 0 1</matrix>
+              <matrix sid="transform">0.9447508 -0.3194264 -0.07357567 0 0.3092663 0.9430034 -0.1228799 2.582378 0.1086331 0.09333628 0.9896908 0 0 0 0 1</matrix>
               <node id="forearm_right" name="forearm.right" sid="forearm_right" type="JOINT">
-                <matrix sid="transform">0.9997641 -0.02113301 -0.005024964 0 0.02156181 0.9935239 0.1115585 1.310402 0.002634896 -0.1116405 0.9937452 2.38419e-7 0 0 0 1</matrix>
+                <matrix sid="transform">0.99935 -0.03532123 -0.007165499 -1.19209e-7 0.03603796 0.9818022 0.1864564 1.310401 4.4926e-4 -0.1865937 0.9824371 0 0 0 0 1</matrix>
                 <node id="hand_right" name="hand.right" sid="hand_right" type="JOINT">
-                  <matrix sid="transform">1 -2.49129e-8 -3.47063e-7 1.19209e-7 -2.25846e-8 0.9909607 -0.1341529 1.17274 3.14485e-7 0.1341529 0.9909607 2.38419e-7 0 0 0 1</matrix>
+                  <matrix sid="transform">1 -1.66878e-4 1.50168e-5 1.19209e-7 1.67384e-4 0.9911641 -0.132639 1.17274 7.24746e-6 0.1326389 0.9911644 0 0 0 0 1</matrix>
                 </node>
               </node>
               <node id="arm_right_joint_front" name="arm.right.joint.front" sid="arm_right_joint_front" type="JOINT">
-                <matrix sid="transform">0.8960816 -0.4433584 0.02171052 1.19209e-7 -0.05083216 -0.1510799 -0.9872137 1.310402 0.4409693 0.8835205 -0.157917 4.76837e-7 0 0 0 1</matrix>
+                <matrix sid="transform">0.8911523 -0.453689 -0.003794096 -1.19209e-7 -0.05218007 -0.09417935 -0.9941867 1.310402 0.4506943 0.88617 -0.1076016 7.15256e-7 0 0 0 1</matrix>
                 <node id="arm_right_joint_back" name="arm.right.joint.back" sid="arm_right_joint_back" type="JOINT">
-                  <matrix sid="transform">0.8959356 -0.4440733 -0.009920605 1.19209e-7 -0.4441842 -0.895712 -0.02001032 0 1.23633e-7 0.02233452 -0.9997509 0 0 0 0 1</matrix>
+                  <matrix sid="transform">0.8959357 -0.4440734 -0.009920582 0 -0.4441844 -0.8957118 -0.02001031 0 1.22935e-7 0.02233453 -0.9997509 0 0 0 0 1</matrix>
                 </node>
               </node>
             </node>
           </node>
           <node id="neck" name="neck" sid="neck" type="JOINT">
-            <matrix sid="transform">-1 -3.04714e-7 -4.75527e-8 0 -1.66585e-7 0.4039327 0.9147887 1.5 -2.59541e-7 0.9147889 -0.4039325 -1.19209e-7 0 0 0 1</matrix>
+            <matrix sid="transform">-1 -3.04714e-7 -4.75527e-8 0 -1.66584e-7 0.4039328 0.914789 1.5 -2.59541e-7 0.914789 -0.4039326 0 0 0 0 1</matrix>
             <node id="head" name="head" sid="head" type="JOINT">
-              <matrix sid="transform">1 1.29783e-7 -2.40251e-7 1.13687e-13 1.42438e-7 0.5027274 0.8644449 1.65551 2.32971e-7 -0.8644449 0.5027276 0 0 0 0 1</matrix>
+              <matrix sid="transform">0.9999146 4.31674e-4 0.01305135 -5.68434e-14 -0.01143485 0.5116006 0.8591472 1.65551 -0.006306207 -0.8592232 0.5115619 -4.76837e-7 0 0 0 1</matrix>
               <node id="trunk_1" name="trunk.1" sid="trunk_1" type="JOINT">
-                <matrix sid="transform">1 -6.77597e-8 -1.14246e-8 0 6.4771e-8 0.8739468 0.4860217 1.537359 -2.29482e-8 -0.4860219 0.8739467 -4.76837e-7 0 0 0 1</matrix>
+                <matrix sid="transform">1 4.49834e-4 -2.24043e-4 0 -2.88751e-4 0.8792115 0.4764316 1.537359 4.11301e-4 -0.4764315 0.8792117 0 0 0 0 1</matrix>
                 <node id="trunk_2" name="trunk.2" sid="trunk_2" type="JOINT">
-                  <matrix sid="transform">1 -3.92912e-8 1.54757e-9 1.13687e-13 3.71998e-8 0.9580572 0.2865772 0.7365792 -1.27427e-8 -0.2865771 0.9580572 4.76837e-7 0 0 0 1</matrix>
+                  <matrix sid="transform">0.9999983 0.001729225 -4.00055e-4 0 -0.001552026 0.9612787 0.2755737 0.7365792 8.61087e-4 -0.2755729 0.9612799 9.53674e-7 0 0 0 1</matrix>
                   <node id="trunk_3" name="trunk.3" sid="trunk_3" type="JOINT">
-                    <matrix sid="transform">1 9.32221e-9 3.0001e-7 -5.68434e-14 -2.30128e-8 0.9989567 0.04566604 0.5162439 -2.99271e-7 -0.04566609 0.9989567 0 0 0 0 1</matrix>
+                    <matrix sid="transform">0.9999899 0.004417752 -8.83035e-4 0 -0.00437608 0.9990807 0.04264322 0.5162446 0.001070612 -0.04263914 0.9990901 -9.53674e-7 0 0 0 1</matrix>
                     <node id="trunk_4" name="trunk.4" sid="trunk_4" type="JOINT">
-                      <matrix sid="transform">1 4.26524e-8 7.11889e-9 -1.13687e-13 -4.32192e-8 0.980431 0.1968642 0.6020052 1.41713e-9 -0.1968642 0.9804308 0 0 0 0 1</matrix>
+                      <matrix sid="transform">0.9999932 0.003745668 -7.16258e-5 0 -0.00363728 0.9752813 0.2209372 0.6020057 8.9742e-4 -0.2209353 0.9752877 -4.76837e-7 0 0 0 1</matrix>
                       <node id="trunk_5" name="trunk.5" sid="trunk_5" type="JOINT">
-                        <matrix sid="transform">1 7.61823e-9 -7.08707e-10 5.68434e-14 -7.62769e-9 0.9998954 -0.01446823 0.5290635 5.9842e-10 0.01446819 0.9998953 -9.53674e-7 0 0 0 1</matrix>
+                        <matrix sid="transform">0.9999956 0.002949406 -1.13596e-4 0 -0.002948377 0.9999621 0.008190565 0.5290644 1.37747e-4 -0.008190237 0.9999667 0 0 0 0 1</matrix>
                         <node id="trunk_5_joint" name="trunk.5.joint" sid="trunk_5_joint" type="JOINT">
-                          <matrix sid="transform">1 -1.43115e-7 1.46911e-7 0 1.28566e-7 -0.1206779 -0.9926918 0.5237265 1.59798e-7 0.9926919 -0.1206779 0 0 0 0 1</matrix>
+                          <matrix sid="transform">0.9999235 0.001549147 -2.14995e-4 0 -5.21035e-5 -0.1044056 -0.9945336 0.523726 -0.001563141 0.9944577 -0.1044134 4.76837e-7 0 0 0 1</matrix>
                         </node>
                         <node id="trunk_6" name="trunk.6" sid="trunk_6" type="JOINT">
-                          <matrix sid="transform">1 -3.08344e-10 -1.57574e-9 5.68434e-14 2.34955e-10 0.9989256 -0.04634417 0.5237265 1.58843e-9 0.04634422 0.9989256 0 0 0 0 1</matrix>
+                          <matrix sid="transform">0.9999982 0.002068407 -2.13279e-4 0 -0.002073016 0.9996969 -0.02453075 0.523726 1.62483e-4 0.0245311 0.9996989 4.76837e-7 0 0 0 1</matrix>
                           <node id="trunk_7" name="trunk.7" sid="trunk_7" type="JOINT">
-                            <matrix sid="transform">1 2.65365e-8 -2.97155e-7 0 1.78718e-8 0.9889193 0.1484554 0.446213 2.97801e-7 -0.1484553 0.9889191 -4.76837e-7 0 0 0 1</matrix>
+                            <matrix sid="transform">0.999999 0.001249113 9.81537e-5 -9.31323e-9 -0.001246748 0.9841841 0.1771445 0.4462125 1.24673e-4 -0.1771445 0.9841847 9.53674e-7 0 0 0 1</matrix>
                             <node id="trunk_8" name="trunk.8" sid="trunk_8" type="JOINT">
-                              <matrix sid="transform">1 -6.60228e-9 3.00288e-7 0 -1.69014e-8 0.9969375 0.07820323 0.4703553 -2.99884e-7 -0.07820329 0.9969374 0 0 0 0 1</matrix>
+                              <matrix sid="transform">1 4.2828e-4 2.5467e-6 0 -4.26786e-4 0.9959822 0.08954844 0.4703553 3.58168e-5 -0.0895485 0.9959822 -4.76837e-7 0 0 0 1</matrix>
                               <node id="trunk_9" name="trunk.9" sid="trunk_9" type="JOINT">
-                                <matrix sid="transform">1 1.35273e-9 6.67822e-9 0 -1.73845e-9 0.9983107 0.05810006 0.2293098 -6.58833e-9 -0.05810009 0.9983107 0 0 0 0 1</matrix>
+                                <matrix sid="transform">1 2.32831e-9 5.12227e-9 0 -2.32831e-9 0.998311 0.05810016 0.2293098 -7.91624e-9 -0.05810013 0.9983107 -4.76837e-7 0 0 0 1</matrix>
                                 <node id="trunk_10" name="trunk.10" sid="trunk_10" type="JOINT">
-                                  <matrix sid="transform">1 1.45399e-8 -2.18094e-10 0 -1.44856e-8 0.9973575 0.07265106 0.2706192 1.27382e-9 -0.07265106 0.9973575 4.76837e-7 0 0 0 1</matrix>
+                                  <matrix sid="transform">0.9999999 1.49012e-8 -2.32831e-10 1.86265e-9 -1.49012e-8 0.9973574 0.07265106 0.2706196 1.39698e-9 -0.07265103 0.9973574 -2.38419e-7 0 0 0 1</matrix>
                                   <node id="trunk_11" name="trunk.11" sid="trunk_11" type="JOINT">
-                                    <matrix sid="transform">1 1.69916e-8 -2.98648e-7 -5.68434e-14 1.66099e-8 0.993691 0.112153 0.2371817 2.98669e-7 -0.112153 0.993691 0 0 0 0 1</matrix>
+                                    <matrix sid="transform">1 1.62981e-8 -3.00584e-7 1.86265e-9 1.67638e-8 0.993691 0.1121529 0.2371819 2.9942e-7 -0.1121529 0.993691 -2.38419e-7 0 0 0 1</matrix>
                                   </node>
                                   <node id="trunk_10_joint" name="trunk.10.joint" sid="trunk_10_joint" type="JOINT">
-                                    <matrix sid="transform">1 -7.72026e-8 -1.77962e-7 -5.68434e-14 -1.5822e-7 0.2061828 -0.9785135 0.2371817 1.12237e-7 0.9785136 0.2061832 0 0 0 0 1</matrix>
+                                    <matrix sid="transform">0.9999994 6.52997e-6 1.99219e-5 1.86265e-9 1.81505e-5 0.2061824 -0.9785132 0.2371819 -1.05172e-5 0.9785131 0.2061826 -2.38419e-7 0 0 0 1</matrix>
+                                  </node>
+                                  <node id="prop-beam" name="prop-beam" sid="prop-beam" type="JOINT">
+                                    <matrix sid="transform">1 1.5134e-7 1.06636e-7 2.98023e-8 -1.08033e-7 0.001973242 0.9999983 0.01553559 1.51573e-7 -0.9999979 0.001973242 -0.1764226 0 0 0 1</matrix>
                                   </node>
                                 </node>
                                 <node id="trunk_9_joint" name="trunk.9.joint" sid="trunk_9_joint" type="JOINT">
-                                  <matrix sid="transform">1 -2.22672e-7 1.00871e-7 0 1.21125e-7 0.09292057 -0.9956736 0.2706192 2.12336e-7 0.9956737 0.09292096 4.76837e-7 0 0 0 1</matrix>
+                                  <matrix sid="transform">0.9999999 1.83005e-6 -7.31926e-6 1.86265e-9 -7.45431e-6 0.09292004 -0.9956739 0.2706196 -1.16089e-6 0.9956734 0.09292006 -2.38419e-7 0 0 0 1</matrix>
                                   <node id="prop-trunk_grasp" name="prop-trunk.grasp" sid="prop-trunk_grasp" type="JOINT">
-                                    <matrix sid="transform">-1 6.19731e-8 -1.41842e-7 -1.42409e-7 8.02405e-10 -0.9142655 -0.4051154 -0.8300686 -1.54787e-7 -0.4051153 0.9142656 0.9073348 0 0 0 1</matrix>
+                                    <matrix sid="transform">-0.9999999 6.30971e-8 -1.41095e-7 -1.37836e-7 2.32831e-10 -0.9142655 -0.4051154 -0.8300688 -1.54134e-7 -0.4051153 0.9142656 0.907335 0 0 0 1</matrix>
                                   </node>
                                 </node>
                               </node>
                               <node id="trunk_8_joint" name="trunk.8.joint" sid="trunk_8_joint" type="JOINT">
-                                <matrix sid="transform">1 -1.17913e-7 -1.74919e-7 0 -1.82453e-7 -0.0672605 -0.9977355 0.2293098 1.05881e-7 0.9977356 -0.06726025 0 0 0 0 1</matrix>
+                                <matrix sid="transform">1 -2.43994e-5 -4.68194e-5 0 -4.83533e-5 -0.06726122 -0.9977356 0.2293098 2.11736e-5 0.9977353 -0.06726152 -4.76837e-7 0 0 0 1</matrix>
                               </node>
                             </node>
                             <node id="trunk_7_joint" name="trunk.7.joint" sid="trunk_7_joint" type="JOINT">
-                              <matrix sid="transform">1 1.28051e-7 1.22778e-7 0 1.26615e-7 -0.03041385 -0.9995373 0.4703555 -1.24258e-7 0.9995375 -0.03041351 0 0 0 0 1</matrix>
+                              <matrix sid="transform">0.9999801 3.10512e-4 -4.19091e-5 0 -3.51248e-5 -0.02187784 -0.99976 0.4703555 -3.11376e-4 0.9997407 -0.02187933 -4.76837e-7 0 0 0 1</matrix>
                             </node>
                           </node>
                           <node id="trunk_6_joint" name="trunk.6.joint" sid="trunk_6_joint" type="JOINT">
-                            <matrix sid="transform">1 -1.56147e-7 1.23529e-7 0 1.28769e-7 0.03401709 -0.9994212 0.4462128 1.51855e-7 0.9994215 0.03401722 -4.76837e-7 0 0 0 1</matrix>
+                            <matrix sid="transform">0.9999729 9.18576e-4 2.24938e-5 -5.58794e-9 -2.89269e-5 0.05580115 -0.9984416 0.4462128 -9.18421e-4 0.9984142 0.05579894 4.76837e-7 0 0 0 1</matrix>
                           </node>
                         </node>
                       </node>
                       <node id="trunk_4_joint" name="trunk.4.joint" sid="trunk_4_joint" type="JOINT">
-                        <matrix sid="transform">1 -1.33213e-7 -1.77705e-7 5.68434e-14 -1.7289e-7 0.03531967 -0.999376 0.5290637 1.39407e-7 0.9993761 0.03531989 -4.76837e-7 0 0 0 1</matrix>
+                        <matrix sid="transform">0.9999157 0.0021993 -1.31174e-4 0 -2.45998e-4 0.05229355 -0.9986309 0.5290642 -0.002189444 0.9985482 0.05229566 0 0 0 0 1</matrix>
                       </node>
                     </node>
                     <node id="trunk_3_joint" name="trunk.3.joint" sid="trunk_3_joint" type="JOINT">
-                      <matrix sid="transform">1 -1.3603e-7 1.29413e-7 0 1.28055e-7 -0.009938315 -0.9999505 0.6020055 1.37309e-7 0.9999509 -0.009938329 0 0 0 0 1</matrix>
+                      <matrix sid="transform">0.9998989 0.002800846 -1.02113e-4 0 -1.25918e-4 0.008521341 -0.9999629 0.6020055 -0.002799879 0.9998628 0.00852444 0 0 0 0 1</matrix>
                     </node>
                   </node>
                   <node id="trunk_2_joint" name="trunk.2.joint" sid="trunk_2_joint" type="JOINT">
-                    <matrix sid="transform">1 1.66073e-7 1.26557e-7 -5.68434e-14 1.26524e-7 1.96308e-4 -0.9999998 0.5162439 -1.66098e-7 1 1.96323e-4 0 0 0 0 1</matrix>
+                    <matrix sid="transform">0.9999897 0.003308906 -6.84244e-4 0 -6.77381e-4 -0.002073705 -0.9999976 0.5162442 -0.003310318 0.9999881 -0.002071559 -4.76837e-7 0 0 0 1</matrix>
                   </node>
                 </node>
                 <node id="trunk_1_joint" name="trunk.1.joint" sid="trunk_1_joint" type="JOINT">
-                  <matrix sid="transform">1 1.983e-7 1.45945e-7 0 1.14617e-7 0.1496894 -0.988733 0.7365789 -2.17912e-7 0.9887331 0.1496893 -4.76837e-7 0 0 0 1</matrix>
+                  <matrix sid="transform">0.9999781 0.001297686 -3.09275e-4 0 -4.89357e-4 0.1411788 -0.9899827 0.7365789 -0.001241038 0.9899626 0.1411833 4.76837e-7 0 0 0 1</matrix>
                 </node>
               </node>
               <node id="head_trunk_joint" name="head.trunk.joint" sid="head_trunk_joint" type="JOINT">
-                <matrix sid="transform">1 1.48273e-7 1.35525e-7 0 1.23041e-7 0.08118415 -0.9966991 1.537359 -1.58786e-7 0.9966991 0.08118418 -4.76837e-7 0 0 0 1</matrix>
+                <matrix sid="transform">1 1.49943e-7 1.35973e-7 0 1.22469e-7 0.08118412 -0.996699 1.537359 -1.59256e-7 0.9966991 0.08118415 0 0 0 0 1</matrix>
               </node>
               <node id="ear_left" name="ear.left" sid="ear_left" type="JOINT">
-                <matrix sid="transform">-0.6592922 -0.6071447 -0.4435192 -0.6385648 0.6248798 -0.1143885 -0.7722956 0.0552029 0.4181617 -0.7863146 0.4548079 0.5836124 0 0 0 1</matrix>
+                <matrix sid="transform">-0.6522486 -0.6101821 -0.4497216 -0.6351616 0.6341493 -0.1142446 -0.764724 0.0652023 0.4152428 -0.783981 0.4614624 0.5836349 0 0 0 1</matrix>
               </node>
               <node id="ear_right" name="ear.right" sid="ear_right" type="JOINT">
-                <matrix sid="transform">-0.6592923 0.6071445 0.4435193 0.6385651 -0.6248798 -0.1143886 -0.7722957 0.05520314 -0.4181615 -0.7863147 0.4548078 0.5836124 0 0 0 1</matrix>
+                <matrix sid="transform">-0.6592924 0.6071447 0.4435193 0.6385652 -0.6248798 -0.1143887 -0.7722958 0.05520302 -0.4181615 -0.7863148 0.4548078 0.5836124 0 0 0 1</matrix>
               </node>
               <node id="prop-head" name="prop-head" sid="prop-head" type="JOINT">
-                <matrix sid="transform">-1 -8.7998e-8 1.19873e-7 1.39635e-7 7.44764e-10 -0.8090672 -0.5877166 0.7164025 1.48703e-7 -0.5877166 0.809067 0.9603181 0 0 0 1</matrix>
+                <matrix sid="transform">-1 -8.80827e-8 1.21072e-7 1.41561e-7 9.31323e-10 -0.8090672 -0.5877165 0.7164016 1.49012e-7 -0.5877168 0.8090669 0.960319 0 0 0 1</matrix>
               </node>
               <node id="prop-tusk_left" name="prop-tusk.left" sid="prop-tusk_left" type="JOINT">
-                <matrix sid="transform">-1 -8.7998e-8 1.19873e-7 -5.48075e-8 7.44741e-10 -0.8090669 -0.5877166 1.547849 1.48703e-7 -0.5877165 0.8090669 -0.3763213 0 0 0 1</matrix>
+                <matrix sid="transform">-1 -8.83883e-8 1.20141e-7 -5.96046e-8 9.31323e-10 -0.809067 -0.5877166 1.547849 1.49012e-7 -0.5877167 0.809067 -0.3763204 0 0 0 1</matrix>
               </node>
             </node>
             <node id="prop-rider" name="prop-rider" sid="prop-rider" type="JOINT">
-              <matrix sid="transform">-1 -6.09921e-8 -1.38129e-7 -1.39315e-7 3.4639e-14 -0.9147888 0.4039328 1.452847 -1.50996e-7 0.4039328 0.9147887 0.8866663 0 0 0 1</matrix>
+              <matrix sid="transform">-1 -6.09921e-8 -1.38129e-7 -1.39316e-7 1.95399e-14 -0.9147886 0.4039328 1.452847 -1.50996e-7 0.4039328 0.9147888 0.8866658 0 0 0 1</matrix>
             </node>
           </node>
           <node id="armor_right" name="armor.right" sid="armor_right" type="JOINT">
-            <matrix sid="transform">1 7.94166e-14 -3.33097e-7 -1.650814 2.72641e-15 1 7.54979e-8 -0.3434253 3.33097e-7 1.39091e-8 1 -3.889781 0 0 0 1</matrix>
+            <matrix sid="transform">1 7.94166e-14 -3.33097e-7 -1.650814 -5.42684e-14 1 7.54979e-8 -0.3434248 3.33097e-7 1.39091e-8 1 -3.889781 0 0 0 1</matrix>
           </node>
           <node id="armor_left" name="armor.left" sid="armor_left" type="JOINT">
-            <matrix sid="transform">1 7.94166e-14 -3.33097e-7 1.650819 2.72641e-15 1 7.54979e-8 -0.3434267 3.33097e-7 1.39091e-8 1 -3.889781 0 0 0 1</matrix>
+            <matrix sid="transform">1 7.94166e-14 -3.33097e-7 1.650819 -5.42684e-14 1 7.54979e-8 -0.3434262 3.33097e-7 1.39091e-8 1 -3.889781 0 0 0 1</matrix>
           </node>
         </node>
         <node id="arm_left_target" name="arm.left.target" sid="arm_left_target" type="JOINT">
-          <matrix sid="transform">-1 -1.33227e-15 -1.50996e-7 0.8998659 1.5099e-7 -0.008494221 -0.9999639 -1.953983 -1.28259e-9 -0.9999642 0.008494217 0.603274 0 0 0 1</matrix>
+          <matrix sid="transform">-1 -1.37298e-15 -1.50996e-7 0.8998659 1.5099e-7 -0.008494221 -0.9999639 -1.953983 -1.28259e-9 -0.9999642 0.008494217 0.603274 0 0 0 1</matrix>
         </node>
         <node id="arm_right_target" name="arm.right.target" sid="arm_right_target" type="JOINT">
-          <matrix sid="transform">1 0 0 -0.8998659 0 -0.008494199 0.9999639 -1.953983 0 -0.9999639 -0.008494199 0.603274 0 0 0 1</matrix>
+          <matrix sid="transform">1 0 0 -0.8998659 0 -0.008494199 0.9999639 -1.958897 0 -0.9999639 -0.008494199 0.610487 0 0 0 1</matrix>
         </node>
         <node id="leg_left_poletarget" name="leg.left.poletarget" sid="leg_left_poletarget" type="JOINT">
-          <matrix sid="transform">0.9999877 -0.004419259 0.002312096 1.076198 0.00498755 0.8860471 -0.4635679 0.009589911 2.32831e-10 0.4635735 0.8860584 1.306589 0 0 0 1</matrix>
+          <matrix sid="transform">0.999988 -0.004419259 0.002312097 1.076198 0.004987552 0.8860472 -0.463568 0.009589911 2.32831e-10 0.4635735 0.8860587 1.306589 0 0 0 1</matrix>
         </node>
         <node id="leg_right_poletarget" name="leg.right.poletarget" sid="leg_right_poletarget" type="JOINT">
-          <matrix sid="transform">0.9999877 0.004419142 -0.002312035 -1.076198 -0.004987418 0.8860471 -0.4635679 0.009589911 -2.32831e-10 0.4635735 0.8860584 1.306589 0 0 0 1</matrix>
+          <matrix sid="transform">0.9999878 0.004419142 -0.002312035 -1.076198 -0.004987419 0.8860471 -0.4635679 0.009589911 -2.32831e-10 0.4635735 0.8860586 1.306589 0 0 0 1</matrix>
         </node>
         <node id="leg_right_target" name="leg.right.target" sid="leg_right_target" type="JOINT">
           <matrix sid="transform">-1 -1.13999e-14 -1.50996e-7 -1.076198 1.50996e-7 -7.54979e-8 -1 2.025366 0 -1 7.54979e-8 0.4908563 0 0 0 1</matrix>
         </node>
         <node id="leg_left_target" name="leg.left.target" sid="leg_left_target" type="JOINT">
-          <matrix sid="transform">-1 -1.13999e-14 -1.50996e-7 1.076198 1.50996e-7 -7.54979e-8 -1 2.025366 0 -1 7.54979e-8 0.4908563 0 0 0 1</matrix>
+          <matrix sid="transform">-1 -1.13999e-14 -1.50996e-7 1.076198 1.50996e-7 -7.54979e-8 -1 2.018917 0 -1 7.54979e-8 0.4964887 0 0 0 1</matrix>
         </node>
         <node id="arm_right_kneetarget" name="arm.right.kneetarget" sid="arm_right_kneetarget" type="JOINT">
-          <matrix sid="transform">0.9981018 -0.06015254 -0.01321861 -0.6939226 0.06158783 0.9748412 0.2142228 -5.312382 0 -0.2146303 0.9766954 2.510655 0 0 0 1</matrix>
+          <matrix sid="transform">0.9981017 -0.06015254 -0.01321861 -0.6939226 0.06158781 0.9748414 0.2142228 -5.312382 0 -0.2146303 0.9766952 2.510655 0 0 0 1</matrix>
         </node>
         <node id="arm_left_kneetarget" name="arm.left.kneetarget" sid="arm_left_kneetarget" type="JOINT">
-          <matrix sid="transform">0.9981018 0.06015256 0.01321861 0.6939226 -0.06158784 0.9748412 0.2142228 -5.312382 0 -0.2146303 0.9766954 2.510655 0 0 0 1</matrix>
+          <matrix sid="transform">0.9981017 0.06015256 0.01321862 0.6939226 -0.06158784 0.9748414 0.2142228 -5.312382 0 -0.2146303 0.9766955 2.510655 0 0 0 1</matrix>
         </node>
         <node id="tail_target" name="tail.target" sid="tail_target" type="JOINT">
-          <matrix sid="transform">-1 2.10942e-14 -1.50996e-7 -9.45308e-16 1.50983e-7 -0.01320777 -0.9999128 2.679908 -1.99434e-9 -0.9999129 0.01320777 1.174391 0 0 0 1</matrix>
+          <matrix sid="transform">-1 2.11349e-14 -1.50996e-7 -7.15555e-14 1.50983e-7 -0.01320777 -0.9999128 2.679295 -1.99434e-9 -0.9999129 0.01320777 1.175227 0 0 0 1</matrix>
         </node>
         <node id="trunk_target" name="trunk.target" sid="trunk_target" type="JOINT">
-          <matrix sid="transform">-1 8.52194e-9 -1.56651e-7 -1.13815e-9 1.47652e-7 0.3885703 -0.9214191 -4.752439 5.30175e-8 -0.9214191 -0.3885703 1.320405 0 0 0 1</matrix>
+          <matrix sid="transform">-1 8.52194e-9 -1.56651e-7 0.002093829 1.47652e-7 0.3885703 -0.9214191 -4.75868 5.30175e-8 -0.9214191 -0.3885703 1.357504 0 0 0 1</matrix>
         </node>
       </node>
       <node id="Plane_001" name="Plane_001" type="NODE">

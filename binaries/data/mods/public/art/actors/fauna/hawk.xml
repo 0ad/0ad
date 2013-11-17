@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
+  <float/>
   <group>
     <variant>
       <mesh>skeletal/hawk.dae</mesh>
@@ -8,13 +9,19 @@
   </group>
   <group>
     <variant name="hawk a">
-      <textures><texture file="skeletal/animal_falcon_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_falcon_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="hawk b">
-      <textures><texture file="skeletal/animal_falcon_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_falcon_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="hawk c">
-      <textures><texture file="skeletal/animal_falcon_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_falcon_c.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

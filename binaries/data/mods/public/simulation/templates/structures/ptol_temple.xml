@@ -4,6 +4,9 @@
     <Square width="21" depth="23"/>
     <Height>12.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>ptol</Civ>
     <SpecificName>?</SpecificName>

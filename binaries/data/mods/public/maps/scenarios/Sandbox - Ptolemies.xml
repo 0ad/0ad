@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="492.333" y="104.358" z="637.964"/>
-		<Rotation angle="-0.0963749"/>
+		<Position x="512.375" y="112.989" z="651.452"/>
+		<Rotation angle="-0.114703"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -11158,6 +11158,20 @@
 			<Position x="558.67475" z="922.04053"/>
 			<Orientation y="0.4083"/>
 			<Actor seed="6348"/>
+		</Entity>
+		<Entity uid="1887">
+			<Template>structures/ptol_lighthouse</Template>
+			<Player>1</Player>
+			<Position x="364.53083" z="602.03882"/>
+			<Orientation y="-2.7284"/>
+			<Actor seed="56196"/>
+		</Entity>
+		<Entity uid="1888">
+			<Template>structures/ptol_library</Template>
+			<Player>1</Player>
+			<Position x="450.76206" z="760.75434"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32296"/>
 		</Entity>
 	</Entities>
 	<Paths/>

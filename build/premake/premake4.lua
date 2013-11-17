@@ -580,6 +580,7 @@ function setup_all_libs ()
 	if not _OPTIONS["without-lobby"] then
 		source_dirs = {
 			"lobby",
+			"lobby/scripting",
 		}
 
 		extern_libs = {

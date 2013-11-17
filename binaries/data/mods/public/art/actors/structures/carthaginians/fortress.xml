@@ -6,12 +6,8 @@
       <animations>
         <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
       </animations>
-      <mesh>structural/kart_fortress.dae</mesh>
+      <mesh>structural/kart_fortress_b.dae</mesh>
       <props>
-        <prop actor="props/structures/carthaginians/fortress_doors.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/fortress_windows.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/fortress_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/fortress_weapons.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
@@ -20,7 +16,7 @@
         <texture file="structural/kart_struct.dds" name="baseTex"/>
         <texture file="structural/kart_struct_norm.png" name="normTex"/>
         <texture file="structural/kart_struct_spec.png" name="specTex"/>
-        <texture file="structural/ao/kart_fortress.png" name="aoTex"/>
+        <texture file="structural/ao/kart_fortress_b.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
@@ -29,6 +25,7 @@
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_kart.xml" attachpoint="garrisoned"/>
+        <prop actor="props/special/common/garrison_flag_kart.xml" attachpoint="garrisoned_1"/>
       </props>
     </variant>
     <variant name="death">

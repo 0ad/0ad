@@ -6,8 +6,10 @@
       <mesh>props/shield/ptol_thureos_curved.dae</mesh>
       <textures>
         <texture file="props/shield/seleucid_thureos_face.png" name="baseTex"/>
+        <texture file="props/shield/seleucid_thureos_face_norm.png" name="normTex"/>
+        <texture file="props/shield/seleucid_thureos_face_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

@@ -25,7 +25,7 @@ class CScriptValRooted;
 class IXmppClient
 {
 public:
-	static IXmppClient* create(ScriptInterface& scriptInterface, const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, bool regOpt = false);
+	static IXmppClient* create(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, bool regOpt = false);
 	virtual ~IXmppClient() {}
 
 	virtual void connect() = 0;
@@ -33,8 +33,8 @@ public:
 	virtual void recv() = 0;
 	virtual void SendIqGetGameList() = 0;
 	virtual void SendIqGetBoardList() = 0;
-	virtual void SendIqGameReport(CScriptVal data) = 0;
-	virtual void SendIqRegisterGame(CScriptVal data) = 0;
+	virtual void SendIqGameReport(ScriptInterface& scriptInterface, CScriptVal data) = 0;
+	virtual void SendIqRegisterGame(ScriptInterface& scriptInterface, CScriptVal data) = 0;
 	virtual void SendIqUnregisterGame() = 0;
 	virtual void SendIqChangeStateGame(const std::string& nbp, const std::string& players) = 0;
 	virtual void SetNick(const std::string& nick) = 0;
@@ -44,13 +44,11 @@ public:
 	virtual void SetPresence(const std::string& presence) = 0;
 	virtual void GetPresence(const std::string& nickname, std::string& presence) = 0;
 
-	virtual CScriptValRooted GUIGetPlayerList() = 0;
-	virtual CScriptValRooted GUIGetGameList() = 0;
-	virtual CScriptValRooted GUIGetBoardList() = 0;
+	virtual CScriptValRooted GUIGetPlayerList(ScriptInterface& scriptInterface) = 0;
+	virtual CScriptValRooted GUIGetGameList(ScriptInterface& scriptInterface) = 0;
+	virtual CScriptValRooted GUIGetBoardList(ScriptInterface& scriptInterface) = 0;
 
-	virtual ScriptInterface& GetScriptInterface() = 0;
-
-	virtual CScriptValRooted GuiPollMessage() = 0;
+	virtual CScriptValRooted GuiPollMessage(ScriptInterface& scriptInterface) = 0;
 	virtual void SendMUCMessage(const std::string& message) = 0;
 };
 

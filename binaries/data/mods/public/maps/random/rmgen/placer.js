@@ -612,7 +612,8 @@ SimpleGroup.prototype.place = function(player, constraint)
 	length = resultObjs.length;
 	for (var i=0; i < length; i++)
 	{
-		g_Map.addObject(resultObjs[i]);
+		if (g_Map.validT(round(resultObjs[i].position.x/CELL_SIZE), round(resultObjs[i].position.z/CELL_SIZE), 3))
+			g_Map.addObject(resultObjs[i]);
 		
 		if (this.tileClass !== undefined)
 		{	// Convert position to integer number of tiles

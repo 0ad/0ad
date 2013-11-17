@@ -9,8 +9,10 @@
       </props>
       <textures>
         <texture file="props/shield/pelte_round_bronze.png" name="baseTex"/>
+        <texture file="props/shield/pelte_round_norm.png" name="normTex"/>
+        <texture file="props/shield/pelte_round_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

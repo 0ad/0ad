@@ -229,7 +229,7 @@ function createObjectGroups(placer, player, constraint, num, retryFactor)
 	var maxFail = num * retryFactor;
 	var good = 0;
 	var bad = 0;
-	var halfSize = getMapSize()/2;
+	var halfSize = getMapSize()/2 - 3;
 	while(good < num && bad <= maxFail)
 	{
 		if (isCircularMap())
@@ -334,14 +334,14 @@ function createSimpleTerrain(terrain)
 
 function placeObject(x, z, type, player, angle)
 {
-	g_Map.addObject(new Entity(type, player, x, z, angle));
+	if (g_Map.validT(x, z, 3))
+		g_Map.addObject(new Entity(type, player, x, z, angle));
 }
 
 function placeTerrain(x, z, terrain)
 {
 	// convert terrain param into terrain object
 	g_Map.placeTerrain(x, z, createTerrain(terrain));
-	
 }
 
 function isCircularMap()

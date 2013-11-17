@@ -20,8 +20,8 @@ function init(data)
 		if (tipText)
 		{
 			var index = tipText.indexOf("\n");
-			tipTextTitle = tipText.substring(0, index);
-			tipTextMessage = tipText.substring(index);
+			var tipTextTitle = tipText.substring(0, index);
+			var tipTextMessage = tipText.substring(index);
 			getGUIObjectByName("tipTitle").caption = tipTextTitle? tipTextTitle : "";
 			getGUIObjectByName("tipText").caption = tipTextMessage? tipTextMessage : "";
 		}

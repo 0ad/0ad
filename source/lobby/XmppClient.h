@@ -39,8 +39,6 @@ class XmppClient : public IXmppClient, public glooxwrapper::ConnectionListener, 
 {
 	NONCOPYABLE(XmppClient);
 private:
-	//Game - script
-	ScriptInterface& m_ScriptInterface;
 	//Components
 	glooxwrapper::Client* m_client;
 	glooxwrapper::MUCRoom* m_mucRoom;
@@ -53,7 +51,7 @@ private:
 
 public:
 	//Basic
-	XmppClient(ScriptInterface& scriptInterface, const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, bool regOpt = false);
+	XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, bool regOpt = false);
 	virtual ~XmppClient();
 
 	//Network
@@ -62,8 +60,8 @@ public:
 	void recv();
 	void SendIqGetGameList();
 	void SendIqGetBoardList();
-	void SendIqGameReport(CScriptVal data);
-	void SendIqRegisterGame(CScriptVal data);
+	void SendIqGameReport(ScriptInterface& scriptInterface, CScriptVal data);
+	void SendIqRegisterGame(ScriptInterface& scriptInterface, CScriptVal data);
 	void SendIqUnregisterGame();
 	void SendIqChangeStateGame(const std::string& nbp, const std::string& players);
 	void SetNick(const std::string& nick);
@@ -73,9 +71,9 @@ public:
 	void SetPresence(const std::string& presence);
 	void GetPresence(const std::string& nickname, std::string& presence);
 
-	CScriptValRooted GUIGetPlayerList();
-	CScriptValRooted GUIGetGameList();
-	CScriptValRooted GUIGetBoardList();
+	CScriptValRooted GUIGetPlayerList(ScriptInterface& scriptInterface);
+	CScriptValRooted GUIGetGameList(ScriptInterface& scriptInterface);
+	CScriptValRooted GUIGetBoardList(ScriptInterface& scriptInterface);
 
 	//Script
 	ScriptInterface& GetScriptInterface();
@@ -120,10 +118,19 @@ protected:
 	std::string StanzaErrorToString(gloox::StanzaError err);
 public:
 	/* Messages */
-	CScriptValRooted GuiPollMessage();
+	struct GUIMessage
+	{
+		std::wstring type;
+		std::wstring level;
+		std::wstring text;
+		std::wstring data;
+		std::wstring from;
+		std::wstring message;
+	};
+	CScriptValRooted GuiPollMessage(ScriptInterface& scriptInterface);
 	void SendMUCMessage(const std::string& message);
 	protected:
-	void PushGuiMessage(const CScriptValRooted& message);
+	void PushGuiMessage(XmppClient::GUIMessage message);
 	void CreateSimpleMessage(const std::string& type, const std::string& text, const std::string& level = "standard", const std::string& data = "");
 
 private:
@@ -134,7 +141,7 @@ private:
 	/// List of rankings
 	std::vector<const glooxwrapper::Tag*> m_BoardList;
 	/// Queue of messages
-	std::deque<CScriptValRooted> m_GuiMessageQueue;
+	std::deque<GUIMessage> m_GuiMessageQueue;
 };
 
 #endif // XMPPCLIENT_H
