@@ -608,10 +608,14 @@ function setup_all_libs ()
 			end
 		end
 	else
+		source_dirs = {
+			"lobby/scripting",
+		}
 		extern_libs = {
+			"spidermonkey",
 			"boost"
 		}
-		setup_static_lib_project("lobby", {}, extern_libs, {})
+		setup_static_lib_project("lobby", source_dirs, extern_libs, {})
 		files { source_root.."lobby/Globals.cpp" }
 	end
 

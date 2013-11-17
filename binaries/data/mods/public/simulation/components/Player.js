@@ -97,6 +97,11 @@ Player.prototype.GetPopulationCount = function()
 	return this.popUsed;
 };
 
+Player.prototype.SetPopulationBonuses = function(num)
+{
+	this.popBonuses = num;
+};
+
 Player.prototype.GetPopulationLimit = function()
 {
 	return Math.min(this.GetMaxPopulation(), this.popBonuses);

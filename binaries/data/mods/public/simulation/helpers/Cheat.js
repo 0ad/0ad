@@ -27,10 +27,10 @@ function Cheat(input)
 		cmpRangeManager.SetLosRevealAll(-1, true);
 		break;
 	case "maxpopulation":
-		cmpPlayer.popBonuses += 500;
+		cmpPlayer.SetPopulationBonuses(500);
 		break;
 	case "changemaxpopulation":
-		cmpPlayer.maxPop = 500;
+		cmpPlayer.SetMaxPopulation(500);
 		break;
 	case "convertunit":
 		for each (var ent in input.selected)
@@ -81,10 +81,6 @@ function Cheat(input)
 		warn("Cheat '" + input.action + "' is not implemented");
 		break;
 	}
-
-	// Brand the player
-	if (cmpPlayer.name.indexOf(" the Cheater") == -1)
-		cmpPlayer.name = cmpPlayer.name + " the Cheater";
 }
 
 Engine.RegisterGlobal("Cheat", Cheat);
