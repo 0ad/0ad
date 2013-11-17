@@ -33,7 +33,7 @@ TechnologyManager.prototype.Init = function ()
 	//                 ]}
 	this.modifications = {};
 	this.modificationCache = {}; // Caches the values after technologies have been applied
-	                             // e.g. { "Attack/Melee/Hack" : {5: 10, 7: 12, ...}, ...}
+	                             // e.g. { "Attack/Melee/Hack" : {5: {"origValue": 8, "newValue": 10}, 7: {"origValue": 9, "newValue": 12}, ...}, ...}
 	                             // where 5 and 7 are entity id's
 	
 	this.typeCounts = {}; // stores the number of entities of each type 
@@ -351,17 +351,18 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 	if (!this.modificationCache[valueName])
 		this.modificationCache[valueName] = {};
 	
-	if (!this.modificationCache[valueName][ent])
+	if (!this.modificationCache[valueName][ent] || this.modificationCache[valueName][ent].origValue != curValue)
 	{
+		this.modificationCache[valueName][ent] = {"origValue": curValue};
 		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		var templateName = cmpTemplateManager.GetCurrentTemplateName(ent);
 		// Ensure that preview entites have the same properties as the final building
 		if (templateName.indexOf("preview|") != -1)
 			templateName = templateName.slice(8);
-		this.modificationCache[valueName][ent] = GetTechModifiedProperty(this.modifications, cmpTemplateManager.GetTemplate(templateName), valueName, curValue);
+		this.modificationCache[valueName][ent].newValue = GetTechModifiedProperty(this.modifications, cmpTemplateManager.GetTemplate(templateName), valueName, curValue);
 	}
 	
-	return this.modificationCache[valueName][ent];
+	return this.modificationCache[valueName][ent].newValue;
 };
 
 // Alternative version of ApplyModifications, applies to templates instead of entities
