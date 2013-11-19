@@ -357,8 +357,8 @@ var UnitFsmSpec = {
 	"Order.Flee": function(msg) {
 		// We use the distance between the enities to account for ranged attacks
 		var distance = DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
-		var ok = this.MoveToTargetRangeExplicit(this.order.data.target, distance, -1);
-		if (ok)
+		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+		if (cmpUnitMotion.MoveToTargetRange(this.order.data.target, distance, -1))
 		{
 			// We've started fleeing from the given target
 			if (this.IsAnimal())
