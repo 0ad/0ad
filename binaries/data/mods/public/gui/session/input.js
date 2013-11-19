@@ -1795,9 +1795,7 @@ function performCommand(entity, commandName)
 	if (entity)
 	{
 		var entState = GetEntityState(entity);
-
 		var playerID = Engine.GetPlayerID();
-		var simState = GetSimState();
 
 		if (entState.player == playerID || g_DevSettings.controlAll)
 		{
@@ -1845,18 +1843,6 @@ function performCommand(entity, commandName)
 				break;
 			case "back-to-work":
 				backToWork();
-				break;
-			default:
-				break;
-			}
-		}
-		else if (simState.players[playerID].isMutualAlly[entState.player])
-		{
-			switch (commandName)
-			{
-			case "garrison":
-				inputState = INPUT_PRESELECTEDACTION;
-				preSelectedAction = ACTION_GARRISON;
 				break;
 			default:
 				break;

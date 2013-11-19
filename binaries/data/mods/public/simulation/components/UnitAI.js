@@ -3037,7 +3037,7 @@ UnitAI.prototype.FinishOrder = function()
 	}
 
 	// Remove the order from the queue
-	var finishedOrder = this.orderQueue.shift();
+	this.orderQueue.shift();
 	this.order = this.orderQueue[0];
 
 	if (this.orderQueue.length)
