@@ -184,7 +184,6 @@ static Status AddFileResponse(const VfsPath& pathname, const CFileInfo& UNUSED(f
 void CDebuggingServer::EnumVfsJSFiles(std::stringstream& response)
 {
 	VfsPath path = L"";
-	VfsPaths pathnames;
 	response.str(std::string());
 	
 	std::vector<std::string> templates;
