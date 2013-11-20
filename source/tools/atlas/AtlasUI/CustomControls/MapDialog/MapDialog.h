@@ -19,8 +19,12 @@
 #define INCLUDED_MAPDIALOG
 
 #include <wx/dialog.h>
+#include <wx/version.h>
 
-class wxNotebookEvent;
+#if !wxCHECK_VERSION(2, 9, 0)
+#define wxBookCtrlEvent wxNotebookEvent
+#endif
+class wxBookCtrlEvent;
 
 enum MapDialogType { MAPDIALOG_OPEN, MAPDIALOG_SAVE };
 
@@ -41,7 +45,7 @@ private:
 	void OnSave(wxCommandEvent& evt);
 	void OnListBox(wxCommandEvent& evt);
 	void OnFilename(wxCommandEvent& evt);
-	void OnNotebookChanged(wxNotebookEvent& evt);
+	void OnNotebookChanged(wxBookCtrlEvent& evt);
 
 	void OpenFile();
 	void SaveFile();

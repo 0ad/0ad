@@ -169,7 +169,7 @@ void MapDialog::OnFilename(wxCommandEvent& evt)
 	m_Filename = evt.GetString();
 }
 
-void MapDialog::OnNotebookChanged(wxNotebookEvent& evt)
+void MapDialog::OnNotebookChanged(wxBookCtrlEvent& evt)
 {
 	m_SelectedPage = evt.GetSelection();
 }
