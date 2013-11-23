@@ -1346,6 +1346,9 @@ var UnitFsmSpec = {
 
 		"WALKINGANDFIGHTING": {
 			"enter": function () {
+				// Show weapons rather than carried resources.
+				this.SetGathererAnimationOverride(true);
+
 				this.StartTimer(0, 1000);
 				this.SelectAnimation("move");
 			},

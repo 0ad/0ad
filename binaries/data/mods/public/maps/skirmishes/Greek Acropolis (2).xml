@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="581.555" y="111.239" z="720.17"/>
+		<Position x="573.106" y="147.149" z="125.601"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -24054,6 +24054,60 @@
 			<Position x="558.54725" z="846.00611"/>
 			<Orientation y="-0.80243"/>
 			<Actor seed="40166"/>
+		</Entity>
+		<Entity uid="4662">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="767.6084" z="247.20734"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21576"/>
+		</Entity>
+		<Entity uid="4663">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="297.46393" z="512.89985"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56728"/>
+		</Entity>
+		<Entity uid="4664">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="693.16193" z="624.37806"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42496"/>
+		</Entity>
+		<Entity uid="4665">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="312.56012" z="111.90294"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="46106"/>
+		</Entity>
+		<Entity uid="4666">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="344.09266" z="756.44568"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5812"/>
+		</Entity>
+		<Entity uid="4667">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="585.4839" z="81.12894"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32660"/>
+		</Entity>
+		<Entity uid="4668">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="113.54564" z="584.86677"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27852"/>
+		</Entity>
+		<Entity uid="4669">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="120.43477" z="591.81897"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="8184"/>
+		</Entity>
+		<Entity uid="4670">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="139.59194" z="587.08472"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16088"/>
 		</Entity>
 	</Entities>
 	<Paths/>

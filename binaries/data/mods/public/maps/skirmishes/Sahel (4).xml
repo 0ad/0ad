@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="355.574" y="91.3378" z="526.808"/>
+		<Position x="437.21" y="164.235" z="288.193"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -46,7 +46,7 @@
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
-  "Name": "Sahel",
+  "Name": "Sahel (4)",
   "PlayerData": [
     {
       "Name": "Player 1"
@@ -213,8 +213,8 @@
 		<Entity uid="65">
 			<Template>gaia/flora_tree_baobab</Template>
 			<Player>0</Player>
-			<Position x="436.66523" z="245.18778"/>
-			<Orientation y="0.9302"/>
+			<Position x="451.41962" z="231.73505"/>
+			<Orientation y="-1.91276"/>
 		</Entity>
 		<Entity uid="66">
 			<Template>gaia/flora_tree_baobab</Template>
@@ -21837,6 +21837,48 @@
 			<Position x="651.92469" z="284.28101"/>
 			<Orientation y="0.48496"/>
 			<Actor seed="8874"/>
+		</Entity>
+		<Entity uid="3602">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1070.10193" z="925.41285"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54828"/>
+		</Entity>
+		<Entity uid="3603">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1084.10792" z="928.11164"/>
+			<Orientation y="0.08736"/>
+			<Actor seed="60500"/>
+		</Entity>
+		<Entity uid="3604">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1069.13416" z="913.3589"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="58484"/>
+		</Entity>
+		<Entity uid="3605">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1133.58411" z="810.78834"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49450"/>
+		</Entity>
+		<Entity uid="3606">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1072.37354" z="956.78754"/>
+			<Orientation y="-1.47828"/>
+			<Actor seed="64798"/>
+		</Entity>
+		<Entity uid="3607">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1046.09937" z="862.02405"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61154"/>
 		</Entity>
 	</Entities>
 	<Paths/>
