@@ -1,5 +1,12 @@
 {
 	"genericName": "Town Phase",
+	"specificName": {
+		"athen": "Komópolis",
+		"hele": "Komópolis",
+		"mace": "Komópolis",
+		"spart": "Komópolis",
+		"theb": "Komópolis"
+	},
 	"description": "Advances from a small village to a bustling town, ready to expand rapidly.",
 	"cost": { "food": 1000, "wood": 1000, "stone": 0, "metal": 0 },
 	"requirements": { "class": "Village", "number": 5 },
