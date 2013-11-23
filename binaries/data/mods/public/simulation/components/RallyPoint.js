@@ -51,4 +51,11 @@ RallyPoint.prototype.Reset = function()
 		cmpRallyPointRenderer.Reset();
 };
 
+RallyPoint.prototype.OnGlobalEntityRenamed = function(msg)
+{
+	for each (var data in this.data)
+		if (data.target == msg.entity)
+			data.target = msg.newentity;
+};
+
 Engine.RegisterComponentType(IID_RallyPoint, "RallyPoint", RallyPoint);
