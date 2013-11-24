@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="328.602" y="80.2536" z="728.698"/>
+		<Position x="206.039" y="98.6694" z="500.1"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -27571,6 +27571,34 @@
 			<Orientation y="2.35621"/>
 			<Obstruction group="5316" group2="5317"/>
 			<Actor seed="46950"/>
+		</Entity>
+		<Entity uid="5411">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="695.66761" z="151.59823"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13342"/>
+		</Entity>
+		<Entity uid="5412">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="1180.51282" z="524.22693"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23960"/>
+		</Entity>
+		<Entity uid="5413">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="611.37867" z="1128.80018"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="8368"/>
+		</Entity>
+		<Entity uid="5414">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="148.26893" z="625.02161"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="18492"/>
 		</Entity>
 	</Entities>
 	<Paths/>

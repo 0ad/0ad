@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunset 2</SkySet>
-		<SunColour r="0.745098" g="0.596078" b="0.278431"/>
+		<SunColour r="0.741176" g="0.592157" b="0.27451"/>
 		<SunElevation angle="1.25786"/>
 		<SunRotation angle="1.71806"/>
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
@@ -11,12 +11,12 @@
 		<Fog>
 			<FogFactor>0.00411133</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="0.752941" g="0.752941" b="0.752941"/>
+			<FogColour r="0.74902" g="0.74902" b="0.74902"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.741176" g="0.592157" b="0.27451"/>
+				<Colour r="0.737255" g="0.592157" b="0.27451"/>
 				<Height>21.823</Height>
 				<Shininess>250</Shininess>
 				<Waviness>4.23828</Waviness>
@@ -35,9 +35,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="236.759" y="86.355" z="535.019"/>
-		<Rotation angle="-0.00463647"/>
-		<Declination angle="0.572167"/>
+		<Position x="181.493" y="109.573" z="113.107"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -30119,6 +30119,69 @@
 			<Position x="211.63605" z="601.2541"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="57408"/>
+		</Entity>
+		<Entity uid="5537">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="812.17542" z="259.77002"/>
+			<Orientation y="0.68026"/>
+			<Actor seed="38406"/>
+		</Entity>
+		<Entity uid="5538">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="847.41828" z="265.49704"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42916"/>
+		</Entity>
+		<Entity uid="5539">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="191.65082" z="767.91297"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="15522"/>
+		</Entity>
+		<Entity uid="5540">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="227.5744" z="763.48597"/>
+			<Orientation y="-1.89615"/>
+			<Actor seed="43514"/>
+		</Entity>
+		<Entity uid="5541">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="115.46552" z="384.57111"/>
+			<Orientation y="0.5373"/>
+			<Actor seed="48980"/>
+		</Entity>
+		<Entity uid="5542">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="934.38715" z="550.25757"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16390"/>
+		</Entity>
+		<Entity uid="5543">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="796.89167" z="880.97968"/>
+			<Orientation y="-1.77405"/>
+			<Actor seed="28952"/>
+		</Entity>
+		<Entity uid="5544">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="347.30918" z="177.42832"/>
+			<Orientation y="0.95365"/>
+			<Actor seed="25674"/>
+		</Entity>
+		<Entity uid="5545">
+			<Template>gaia/fauna_tiger</Template>
+			<Player>0</Player>
+			<Position x="512.41041" z="477.35004"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="38864"/>
 		</Entity>
 	</Entities>
 	<Paths/>
