@@ -1,0 +1,143 @@
+<skeletons>
+	<standard_skeleton title="BlenderFeline" id="BlenderFeline">
+		<bone name="pelvis">
+			<bone name="head">
+									<bone name="ear_L" />
+									<bone name="ear_R" />
+								</bone>
+			<bone name="jaw" />
+			<bone name="spine_1">
+				<bone name="spine_2">
+					<bone name="chest">
+						<bone name="neck_1">
+							<bone name="neck_2">
+								
+							</bone>
+						</bone>
+						<bone name="leg_front_top_R">
+							<bone name="leg_front_mid_R">
+								<bone name="leg_front_bot_R">
+									<bone name="leg_front_foot_R" />
+								</bone>
+							</bone>
+						</bone>
+						<bone name="leg_front_top_L">
+							<bone name="leg_front_mid_L">
+								<bone name="leg_front_bot_L">
+									<bone name="leg_front_foot_L" />
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="belly" />
+			</bone>
+			<bone name="leg_back_top_R">
+				<bone name="leg_back_mid_R">
+					<bone name="leg_back_bot_R">
+						<bone name="leg_back_foot_R" />
+					</bone>
+				</bone>
+			</bone>
+			<bone name="leg_back_top_L">
+				<bone name="leg_back_mid_L">
+					<bone name="leg_back_bot_L">
+						<bone name="leg_back_foot_L" />
+					</bone>
+				</bone>
+			</bone>
+			<bone name="tail_1">
+				<bone name="tail_2">
+					<bone name="tail_3">
+						<bone name="tail_4">
+							<bone name="tail_5">
+								<bone name="tail_6">
+									<bone name="tail_7" />
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+		<bone name="leg_back_pole_R" />
+		<bone name="leg_back_pole_L" />
+		<bone name="back_foot_IK_R" />
+		<bone name="back_foot_IK_L" />
+		<bone name="tail_IK" />
+		<bone name="front_leg_IK_R" />
+		<bone name="front_leg_IK_L" />
+	</standard_skeleton>
+
+	<skeleton title="BlenderFeline" target="BlenderFeline">
+		<identifier><root>pelvis</root></identifier>
+		<bone name="pelvis"><target>pelvis</target>
+			<bone name="head"><target>head</target>
+									<bone name="ear_L"><target>ear_L</target></bone>
+									<bone name="ear_R"><target>ear_R</target></bone>
+								</bone>
+			<bone name="jaw"><target>jaw</target></bone>
+			<bone name="spine_1"><target>spine_1</target>
+				<bone name="spine_2"><target>spine_2</target>
+					<bone name="chest"><target>chest</target>
+						<bone name="neck_1"><target>neck_1</target>
+							<bone name="neck_2"><target>neck_2</target>
+								
+								
+							</bone>
+						</bone>
+						<bone name="leg_front_top_R"><target>leg_front_top_R</target>
+							<bone name="leg_front_mid_R"><target>leg_front_mid_R</target>
+								<bone name="leg_front_bot_R"><target>leg_front_bot_R</target>
+									<bone name="leg_front_foot_R"><target>leg_front_foot_R</target></bone>
+								</bone>
+							</bone>
+						</bone>
+						<bone name="leg_front_top_L"><target>leg_front_top_L</target>
+							<bone name="leg_front_mid_L"><target>leg_front_mid_L</target>
+								<bone name="leg_front_bot_L"><target>leg_front_bot_L</target>
+									<bone name="leg_front_foot_L"><target>leg_front_foot_L</target></bone>
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="belly"><target>belly</target></bone>
+			</bone>
+			<bone name="leg_back_top_R"><target>leg_back_top_R</target>
+				<bone name="leg_back_mid_R"><target>leg_back_mid_R</target>
+					<bone name="leg_back_bot_R"><target>leg_back_bot_R</target>
+						<bone name="leg_back_foot_R"><target>leg_back_foot_R</target></bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="leg_back_top_L"><target>leg_back_top_L</target>
+				<bone name="leg_back_mid_L"><target>leg_back_mid_L</target>
+					<bone name="leg_back_bot_L"><target>leg_back_bot_L</target>
+						<bone name="leg_back_foot_L"><target>leg_back_foot_L</target></bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="tail_1"><target>tail_1</target>
+				<bone name="tail_2"><target>tail_2</target>
+					<bone name="tail_3"><target>tail_3</target>
+						<bone name="tail_4"><target>tail_4</target>
+							<bone name="tail_5"><target>tail_5</target>
+								<bone name="tail_6"><target>tail_6</target>
+									<bone name="tail_7"><target>tail_7</target></bone>
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+		<bone name="leg_back_pole_R"><target>leg_back_pole_R</target></bone>
+		<bone name="leg_back_pole_L"><target>leg_back_pole_L</target></bone>
+		<bone name="back_foot_IK_R"><target>back_foot_IK_R</target></bone>
+		<bone name="back_foot_IK_L"><target>back_foot_IK_L</target></bone>
+		<bone name="tail_IK"><target>tail_IK</target></bone>
+		<bone name="front_leg_IK_R"><target>front_leg_IK_R</target></bone>
+		<bone name="front_leg_IK_L"><target>front_leg_IK_L</target></bone>
+	</skeleton>
+</skeletons>
