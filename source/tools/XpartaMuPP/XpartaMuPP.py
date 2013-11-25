@@ -34,7 +34,7 @@ from config import default_rating, leaderboard_minimum_games, leaderboard_active
 class LeaderboardList():
   def __init__(self, room):
     self.room = room
-
+    self.lastRated = ""
   def getOrCreatePlayer(self, JID):
     """
       Stores a player(JID) in the database if they don't yet exist.
@@ -122,13 +122,33 @@ class LeaderboardList():
     # the database model, and therefore this code, requires a winner.
     # The Elo implementation does not, however.
     result = 1 if player1 == game.winner else -1
-    rating_adjustment = get_rating_adjustment(player1.rating, player2.rating,
+    rating_adjustment1 = get_rating_adjustment(player1.rating, player2.rating,
       len(player1.games), len(player2.games), result)
-    player1.rating += rating_adjustment
-    player2.rating -= rating_adjustment
+    rating_adjustment2 = get_rating_adjustment(player2.rating, player1.rating,
+      len(player2.games), len(player1.games), result * -1)
+    if result == 1:
+      resultQualitative = "won"
+    elif result == 0:
+      resultQualitative = "drew"
+    else:
+      resultQualitative = "lost"
+    name1 = '@'.join(player1.jid.split('@')[:-1])
+    name2 = '@'.join(player2.jid.split('@')[:-1])
+    self.lastRated = "A rated game has ended. %s %s against %s. Rating Adjustment: %s (%s -> %s) and %s (%s -> %s)."%(name1, 
+      resultQualitative, name2, name1, player1.rating, player1.rating + rating_adjustment1,
+      name2, player2.rating, player2.rating + rating_adjustment2)
+    player1.rating += rating_adjustment1
+    player2.rating += rating_adjustment2
     db.commit()
     return self
-
+    
+  def getLastRatedMessage(self):
+    """
+      Gets the string of the last rated game. Triggers an update
+      chat for the bot.
+    """
+    return self.lastRated
+    
   def addAndRateGame(self, gamereport):
     """
       Calls addGame and if the game has only two
@@ -138,6 +158,8 @@ class LeaderboardList():
     game = self.addGame(gamereport)
     if game and len(game.players) == 2:
       self.rateGame(game)
+    else:
+      self.lastRated = ""
     return game
 
   def getBoard(self):
@@ -269,6 +291,7 @@ class ReportManager():
         length -= 1
       else:
         i += 1
+        self.leaderboard.lastRated = ""
 
   def getNumPlayers(self, rawGameReport):
     """
@@ -405,7 +428,10 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         # Send Gamelist to new player
         self.sendGameList(presence['muc']['jid'])
       # Store player JID mapped to their nick
-      self.nicks[str(presence['muc']['jid'])] = presence['muc']['nick']
+      if presence['muc']['nick'] not in self.nicks:
+        self.nicks[str(presence['muc']['jid'])] = presence['muc']['nick']
+      if presence['muc']['jid'] not in self.JIDs:
+        self.JIDs.append(presence['muc']['jid'])
       logging.debug("Client '%s' connected with a nick of '%s'." %(presence['muc']['jid'], presence['muc']['nick']))
 
   def muc_offline(self, presence):
@@ -415,11 +441,12 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     # Clean up after a player leaves
     if presence['muc']['nick'] != self.nick:
       for JID in self.gameList.getAllGames():
-        if self.gameList.getAllGames()[JID]['players'].split(',')[0] == presence['muc']['nick']:
+        if JID == str(presence['muc']['jid']):
           self.gameList.removeGame(JID)
           self.sendGameList()
           break
       self.lastLeft = str(presence['muc']['jid'])
+      self.JIDs.remove(presence['muc']['jid'])
       del self.nicks[str(presence['muc']['jid'])]
 
   def iqhandler(self, iq):
@@ -450,15 +477,15 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       """
       pass
     elif iq['type'] == 'set':
-      if 'gamelist' in iq.values:
+      if 'gamelist|en' in iq.values:
         """
         Register-update / unregister a game
         """
-        command = iq['gamelist']['command']
+        command = iq['gamelist|en']['command']
         if command == 'register':
           # Add game
           try:
-            self.gameList.addGame(iq['from'], iq['gamelist']['game'])
+            self.gameList.addGame(iq['from'], iq['gamelist|en']['game'])
             self.sendGameList()
           except:
             traceback.print_exc()
@@ -475,19 +502,22 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         elif command == 'changestate':
           # Change game status (waiting/running)
           try:
-            self.gameList.changeGameState(iq['from'], iq['gamelist']['game'])
+            self.gameList.changeGameState(iq['from'], iq['gamelist|en']['game'])
             self.sendGameList()
           except:
             traceback.print_exc()
             logging.error("Failed to process changestate data")
         else:
           logging.error("Failed to process command '%s' received from %s" % command, iq['from'].bare)
-      elif 'gamereport' in iq.values:
+      elif 'gamereport|en' in iq.values:
         """
         Client is reporting end of game statistics
         """
         try:
-          self.reportManager.addReport(iq['from'], iq['gamereport']['game'])
+          self.reportManager.addReport(iq['from'], iq['gamereport|en']['game'])
+          if self.leaderboard.getLastRatedMessage() != "":
+            self.send_message(mto=self.room, mbody=self.leaderboard.getLastRatedMessage(), mtype="groupchat",
+              mnick=self.nick)
           self.sendBoardList()
         except:
           traceback.print_exc()
