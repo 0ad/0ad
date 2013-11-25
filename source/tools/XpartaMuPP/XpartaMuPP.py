@@ -265,7 +265,6 @@ class ReportManager():
         for i, part in enumerate(split):
            statToJID[JIDs[i]] = part
         processedGameReport[key] = statToJID
-    #processedGameReport["numPlayers"] = self.getNumPlayers(rawGameReport)
     return processedGameReport
 
   def checkFull(self):
@@ -382,8 +381,6 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
 
     # Store mapping of nicks and XmppIDs, attached via presence stanza
     self.nicks = {}
-    # Store client JIDs, attached via client request
-    self.JIDs = []
     
     self.lastLeft = ""
 
@@ -422,16 +419,20 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     Process presence stanza from a chat room.
     """
     if presence['muc']['nick'] != self.nick:
+      # If it doesn't already exist, store player JID mapped to their nick.
+      if str(presence['muc']['jid']) not in self.nicks:
+        self.nicks[str(presence['muc']['jid'])] = presence['muc']['nick']
       # Check the jid isn't already in the lobby.
       if str(presence['muc']['jid']) != self.lastLeft:
         self.send_message(mto=presence['from'], mbody="Hello %s, welcome to the 0 A.D. lobby. Polish your weapons and get ready to fight!" %(presence['muc']['nick']), mtype='')
-        # Send Gamelist to new player
+        # Send Gamelist to new player.
         self.sendGameList(presence['muc']['jid'])
-      # Store player JID mapped to their nick
-      if presence['muc']['nick'] not in self.nicks:
-        self.nicks[str(presence['muc']['jid'])] = presence['muc']['nick']
-      if presence['muc']['jid'] not in self.JIDs:
-        self.JIDs.append(presence['muc']['jid'])
+        # Following two calls make sqlalchemy complain about using objects in the
+        #  incorrect thread. TODO: Figure out how to fix this.
+        # Send Leaderboard to new player.
+        #self.sendBoardList(presence['muc']['jid'])
+        # Register on leaderboard.
+        #self.leaderboard.getOrCreatePlayer(presence['muc']['jid'])
       logging.debug("Client '%s' connected with a nick of '%s'." %(presence['muc']['jid'], presence['muc']['nick']))
 
   def muc_offline(self, presence):
@@ -440,14 +441,16 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     """
     # Clean up after a player leaves
     if presence['muc']['nick'] != self.nick:
+      # Delete any games they were hosting.
       for JID in self.gameList.getAllGames():
         if JID == str(presence['muc']['jid']):
           self.gameList.removeGame(JID)
           self.sendGameList()
           break
+      # Remove them from the local player list.
       self.lastLeft = str(presence['muc']['jid'])
-      self.JIDs.remove(presence['muc']['jid'])
-      del self.nicks[str(presence['muc']['jid'])]
+      if str(presence['muc']['jid']) in self.nicks:
+        del self.nicks[str(presence['muc']['jid'])]
 
   def iqhandler(self, iq):
     """
@@ -461,16 +464,15 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       """
       Request lists.
       """
-      # We expect each client to register for future updates by sending at least one get request.
+      # Send lists/register on leaderboard; depreciated once muc_online
+      #  can send lists/register automatically on joining the room.
       try:
-        self.leaderboard.getOrCreatePlayer(iq['from'])
-        if iq['from'] not in self.JIDs:
-          self.JIDs.append(iq['from'])
         self.sendGameList(iq['from'])
+        self.leaderboard.getOrCreatePlayer(iq['from'])
         self.sendBoardList(iq['from'])
       except:
         traceback.print_exc()
-        logging.error("Failed to initilize %s" % iq['from'].bare)
+        logging.error("Failed to process list request from %s" % iq['from'].bare)
     elif iq['type'] == 'result':
       """
       Iq successfully received
@@ -533,8 +535,8 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     """
     if to != "":
       ## Check recipient exists
-      if to not in self.JIDs:
-        logging.error("No player with the xmpp id '%s' known" % to.bare)
+      if str(to) not in self.nicks:
+        logging.error("No player with the XmPP ID '%s' known" % str(to))
         return
 
       stz = GameListXmppPlugin()
@@ -560,7 +562,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       except:
         logging.error("Failed to send game list")
     else:
-      for JID in self.JIDs:
+      for JID in self.nicks.keys():
         self.sendGameList(JID)
 
   def sendBoardList(self, to = ""):
@@ -571,8 +573,8 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     """
     if to != "":
       ## Check recipiant exists
-      if to not in self.JIDs:
-        logging.error("No player with the XmPP ID '%s' known" % to.bare)
+      if str(to) not in self.nicks:
+        logging.error("No player with the XmPP ID '%s' known" % str(to))
         return
 
       stz = BoardListXmppPlugin()
@@ -594,7 +596,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       except:
         logging.error("Failed to send leaderboard list")
     else:
-      for JID in self.JIDs:
+      for JID in self.nicks.keys():
         self.sendBoardList(JID)
 
 ## Main Program ##
