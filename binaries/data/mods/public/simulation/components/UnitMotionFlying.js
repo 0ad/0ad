@@ -92,12 +92,37 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 		{
 			if (this.waterDeath)
 				cmpHealth.Kill();
-			this.pitch = 0;
-			// We've stopped.
-			cmpGarrisonHolder.AllowGarrisoning(true,"UnitMotionFlying")
-			canTurn = false;
-			this.hasTarget = false;
-			this.landing = false;					
+			else
+			{
+				this.pitch = 0;
+				// We've stopped.
+				cmpGarrisonHolder.AllowGarrisoning(true,"UnitMotionFlying")
+				canTurn = false;
+				this.hasTarget = false;
+				this.landing = false;					
+				// summon planes back from the edge of the map
+				var terrainSize = cmpTerrain.GetTilesPerSide() * 4;
+				var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+				if (cmpRangeManager.GetLosCircular())
+				{
+					var mapRadius = terrainSize/2;
+					var x = pos.x - mapRadius;
+					var z = pos.z - mapRadius;
+					var div = (mapRadius - 12) / Math.sqrt(x*x + z*z);
+					if (div < 1)
+					{
+						pos.x = mapRadius + x*div;
+						pos.z = mapRadius + z*div;
+						newangle += Math.PI;
+					}
+				}
+				else
+				{
+					pos.x = Math.max(Math.min(pos.x, terrainSize - 12), 12);
+					pos.z = Math.max(Math.min(pos.z, terrainSize - 12), 12);
+					newangle += Math.PI;
+				}
+			}
 		}
 		else
 		{
