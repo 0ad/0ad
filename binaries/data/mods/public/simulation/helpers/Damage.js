@@ -159,3 +159,6 @@ Damage.VectorCross = function(p1, p2)
 {
 	return p1.x * p2.z - p1.z * p2.x;
 };
+
+Engine.RegisterGlobal("Damage", Damage);
+
