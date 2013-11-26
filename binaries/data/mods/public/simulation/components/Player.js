@@ -451,6 +451,18 @@ Player.prototype.SetEnemy = function(id)
 };
 
 /**
+ * Get all enemies of a given player.
+ */
+Player.prototype.GetEnemies = function()
+{
+	var enemies = [];
+	for (var i = 0; i < this.diplomacy.length; i++)
+		if (this.diplomacy[i] < 0)
+			enemies.push(i);
+	return enemies;
+};
+
+/**
  * Check if given player is our enemy
  */
 Player.prototype.IsEnemy = function(id)
