@@ -110,8 +110,8 @@ Damage.EntitiesNearPoint = function(origin, radius, players)
 	{
 		var playerEntities = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayerEntities();
 		players = [];
-			for (var entity in playerEntities)
-			players.append(Engine.QueryInterface(entity, IID_Player).GetPlayerID());
+		for each (var entity in playerEntities)
+			players.push(Engine.QueryInterface(entity, IID_Player).GetPlayerID());
 	}
 
 	// Call RangeManager with dummy entity and return the result.
