@@ -22,7 +22,7 @@ def get_rating_adjustment(rating, opponent_rating, games_played, opponent_games_
   rating_k_factor = 0.75 * pow(elo_k_factor_constant_rating / min(elo_k_factor_constant_rating, (rating + opponent_rating) / 2), 0.5)
   player_volatility = min(pow(1.1, games_played + 16), 25)
   volatility = opponent_volatility_influence * player_volatility / rating_k_factor
-  difference = rating - opponent_rating
+  difference = opponent_rating - rating
   if result == 1:
     return round(max(0, (difference + result * elo_sure_win_difference) / volatility))
   elif result == -1:

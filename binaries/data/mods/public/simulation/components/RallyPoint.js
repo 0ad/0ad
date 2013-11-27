@@ -54,7 +54,7 @@ RallyPoint.prototype.Reset = function()
 RallyPoint.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	for each (var data in this.data)
-		if (data.target == msg.entity)
+		if (data && data.target && data.target == msg.entity)
 			data.target = msg.newentity;
 };
 

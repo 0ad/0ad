@@ -24,4 +24,5 @@
 BEGIN_INTERFACE_WRAPPER(Terrain)
 DEFINE_INTERFACE_METHOD_2("GetGroundLevel", entity_pos_t, ICmpTerrain, GetGroundLevel, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_2("CalcNormal", CFixedVector3D, ICmpTerrain, CalcNormal, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_0("GetTilesPerSide", u16, ICmpTerrain, GetTilesPerSide)
 END_INTERFACE_WRAPPER(Terrain)

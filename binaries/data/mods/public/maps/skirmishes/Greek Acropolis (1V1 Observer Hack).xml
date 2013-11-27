@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="442.649" y="111.197" z="95.2411"/>
+		<Position x="85.3327" y="65.1985" z="477.237"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -46,7 +46,7 @@
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
-  "Name": "Greek Acropolis (2)",
+  "Name": "Greek Acropolis (1V1 Observer Hack)",
   "PlayerData": [
     {
       "Colour": {
@@ -63,6 +63,9 @@
         "r": 150
       },
       "Name": "Player 2"
+    },
+    {
+      "Name": "Observer"
     }
   ],
   "Preview": "acropolis_3.png",
@@ -24066,6 +24069,13 @@
 			<Position x="139.59194" z="587.08472"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="16088"/>
+		</Entity>
+		<Entity uid="4671">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>3</Player>
+			<Position x="69.40964" z="530.00727"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9824"/>
 		</Entity>
 	</Entities>
 	<Paths/>
