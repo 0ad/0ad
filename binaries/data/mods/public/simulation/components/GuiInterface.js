@@ -752,7 +752,7 @@ GuiInterface.prototype.IsStanceSelected = function(player, data)
 	return false;
 };
 
-GuiInterface.prototype.SetSelectionHighlight = function(player, cmd, selected)
+GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var playerColours = {}; // cache of owner -> colour map

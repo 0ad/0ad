@@ -12,7 +12,7 @@ Formation.prototype.Init = function()
 	this.columnar = false; // whether we're travelling in column (vs box) formation
 	this.formationName = "Line Closed";
 	this.rearrange = true; // whether we should rearrange all formation members
-	this.formationMemebersWithAura = []; // Members with a formation aura
+	this.formationMembersWithAura = []; // Members with a formation aura
 };
 
 Formation.prototype.GetMemberCount = function()
@@ -91,7 +91,7 @@ Formation.prototype.SetMembers = function(ents)
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		if (cmpAuras && cmpAuras.HasFormationAura())
 		{
-			this.formationMemebersWithAura.push(ent);
+			this.formationMembersWithAura.push(ent);
 			cmpAuras.ApplyFormationBonus(ents);
 		}
 	}
@@ -119,7 +119,7 @@ Formation.prototype.RemoveMembers = function(ents)
 		cmpUnitAI.SetFormationController(INVALID_ENTITY);
 	}
 
-	for each (var ent in this.formationMemebersWithAura)
+	for each (var ent in this.formationMembersWithAura)
 	{
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		cmpAuras.RemoveFormationBonus(ents);
@@ -129,7 +129,7 @@ Formation.prototype.RemoveMembers = function(ents)
 			cmpAuras.RemoveFormationBonus(this.members);
 	}
 
-	this.formationMemebersWithAura = this.formationMemebersWithAura.filter(function(e) { return ents.indexOf(e) == -1; });
+	this.formationMembersWithAura = this.formationMembersWithAura.filter(function(e) { return ents.indexOf(e) == -1; });
 
 	// If there's nobody left, destroy the formation
 	if (this.members.length == 0)
@@ -177,7 +177,7 @@ Formation.prototype.Disband = function()
 		cmpUnitAI.SetFormationController(INVALID_ENTITY);
 	}
 
-	for each (var ent in this.formationMemebersWithAura)
+	for each (var ent in this.formationMembersWithAura)
 	{
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		cmpAuras.RemoveFormationBonus(this.members);
@@ -186,7 +186,7 @@ Formation.prototype.Disband = function()
 
 	this.members = [];
 	this.inPosition = [];
-	this.formationMemebersWithAura = [];
+	this.formationMembersWithAura = [];
 
 	Engine.DestroyEntity(this.entity);
 };
