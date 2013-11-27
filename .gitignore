@@ -20,6 +20,8 @@ build/workspaces/gcc/
 build/workspaces/codeblocks/
 build/premake/premake4/bin/release/premake4
 build/premake/premake4/build/gmake.unix/obj/
+build/premake/.gccmachine.tmp
+build/premake/.gccver.tmp
 
 # Exclude test .cpp files (generated during the build)
 test_*.cpp
