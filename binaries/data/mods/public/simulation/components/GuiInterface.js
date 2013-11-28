@@ -1738,6 +1738,12 @@ GuiInterface.prototype.GetBatchTime = function(player, data)
 	return cmpProductionQueue.GetBatchTime(data.batchSize);
 };
 
+GuiInterface.prototype.IsMapRevealed = function(player)
+{
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	return cmpRangeManager.GetLosRevealAll(-1);
+};
+
 GuiInterface.prototype.SetPathfinderDebugOverlay = function(player, enabled)
 {
 	var cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
@@ -1814,6 +1820,7 @@ var exposedFunctions = {
 	"CanAttack": 1,
 	"GetBatchTime": 1,
 
+	"IsMapRevealed": 1,
 	"SetPathfinderDebugOverlay": 1,
 	"SetObstructionDebugOverlay": 1,
 	"SetMotionDebugOverlay": 1,
