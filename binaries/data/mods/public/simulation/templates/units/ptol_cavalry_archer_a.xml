@@ -12,13 +12,6 @@
       <MinRange>16.0</MinRange>
     </Ranged>
   </Attack>
-  <Cost>
-    <Population>6</Population>
-  </Cost>
-  <Footprint replace="">
-    <Square width="8.0" depth="11.0"/>
-    <Height>5.0</Height>
-  </Footprint>
   <Health>
     <Max>230</Max>
   </Health>
@@ -29,7 +22,7 @@
     <Unit radius="2.5"/>
   </Obstruction>
   <Promotion>
-    <Entity>units/pers_cavalry_archer_e</Entity>
+    <Entity>units/ptol_cavalry_archer_e</Entity>
   </Promotion>
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
