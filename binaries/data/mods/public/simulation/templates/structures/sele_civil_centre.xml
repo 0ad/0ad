@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre">
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_hele_cc</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>sele</Civ>
+    <SpecificName>Agorā́</SpecificName>
+    <History>The most important place in most Classical Greek poleis, the Agora served many purposes; it was a place for public speeches and was the stage for civic life and commercial interests.</History>
+  </Identity>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/sele_infantry_spearman_b
+      units/sele_infantry_archer_b
+      units/sele_cavalry_javelinist
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/macedonians/civic_centre.xml</Actor>
+  </VisualActor>
+</Entity>
