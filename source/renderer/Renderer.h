@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -220,6 +220,9 @@ public:
 	// set the viewport
 	void SetViewport(const SViewPort &);
 
+	// get the last viewport
+	SViewPort GetViewport();
+
 	/**
 	 * Render the given scene immediately.
 	 * @param scene a Scene object describing what should be rendered.
@@ -395,6 +398,8 @@ protected:
 	ERenderMode m_ModelRenderMode;
 
 	CShaderDefines m_SystemShaderDefines;
+
+	SViewPort m_Viewport;
 
 	/**
 	 * m_ViewCamera: determines the eye position for rendering

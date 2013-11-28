@@ -195,7 +195,9 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	
 	shader->BindTexture(str_renderedTex, renderedTex);
 	
-	glViewport(0, 0, inWidth / 2, inHeight / 2);
+	const SViewPort oldVp = g_Renderer.GetViewport();
+	const SViewPort vp = { 0, 0, inWidth / 2, inHeight / 2 };
+	g_Renderer.SetViewport(vp);
 	
 	float quadVerts[] = {
 		1.0f, 1.0f,
@@ -220,7 +222,7 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
-	glViewport(0, 0, g_xres, g_yres);
+	g_Renderer.SetViewport(oldVp);
 	
 	tech->EndPass();
 }
@@ -242,7 +244,9 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	shader->BindTexture(str_renderedTex, inOutTex);
 	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
 	
-	glViewport(0, 0, inWidth, inHeight);
+	const SViewPort oldVp = g_Renderer.GetViewport();
+	const SViewPort vp = { 0, 0, inWidth, inHeight };
+	g_Renderer.SetViewport(vp);
 	
 	float quadVerts[] = {
 		1.0f, 1.0f,
@@ -267,7 +271,7 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
-	glViewport(0, 0, g_xres, g_yres);
+	g_Renderer.SetViewport(oldVp);
 
 	tech->EndPass();
 	
@@ -288,14 +292,14 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	shader->BindTexture(str_renderedTex, tempTex);
 	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
 	
-	glViewport(0, 0, inWidth, inHeight);
+	g_Renderer.SetViewport(vp);
 	
 	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
 	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
-	glViewport(0, 0, g_xres, g_yres);
+	g_Renderer.SetViewport(oldVp);
 
 	tech->EndPass();
 }
