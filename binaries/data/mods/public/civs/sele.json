@@ -3,7 +3,7 @@
 	"Culture":"sele",
 	"Name":"Seleucids",
 	"Emblem":"session/portraits/emblems/emblem_seleucids.png",
-	"History":"The Macedonian Greek kingdom that ruled most of Alexander's former empire.",
+	"History":"The Macedonian-Greek dynasty that ruled most of Alexander's former empire.",
 	"Music":[
 			{"File":"Rise_of_Macedon.ogg", "Type":"peace"},
 			{"File":"In_the_Shadow_of_Olympus.ogg", "Type":"peace"},
@@ -13,42 +13,42 @@
 	[
 		{
 			"Name":"Seleucids",
-			"Description":"The Macedonian Greek kingdom that ruled the Eastern part of Alexander's former empire.",
+			"Description":"The Macedonian-Greek dynasty that ruled the Eastern part of Alexander's former empire.",
 			"Technologies":
 			[
 				{
-					"Name":"Pharaonic Cult.",
-					"History":"The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient Egyptian traditions in order to satiate the local populace and ingratiate themselves to the powerful priestly class in the country.",
-					"Description":"Hero aura range boosted by 50%."
+					"Name":"Hellenistic Metropolises",
+					"History":"Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilization.",
+					"Description":"Civic Centers have double Health and double default arrows."
 				},
 				{
-					"Name":"Nile Delta",
-					"History":"The Nile Delta had rich soil for farming, due to centuries of seasonal floods from the Nile depositing rich silt across the landscape.",
-					"Description":"The Ptolemaic Egyptians receive 3 additional farming technologies above and beyond the maximum number of farming technologies usually available to a faction."
+					"Name":"Marriage Alliance",
+					"History":"Seleucus I Nicator invaded the Punjab region region of India in 305 BC, confronting Chandragupta Maurya (Sandrokottos), founder of the Mauryan empire. It is said that Chandragupta fielded an army of 600,000 men and 9,000 war elephants (Pliny, Natural History VI, 22.4). Seleucus met with no success and to establish peace between the two great powers and to formalize their alliance, he married his daughter to Chandragupta. In return, Chandragupta gifted Seleucus a corps of 500 war elephants, which would prove a decisive military asset for Seleucus as he fought the rest of Alexander's successors.",
+					"Description":"A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
 				}
 			],
 			"Heroes":
 			[
 				{
-					"Name":"Ptolemaios A' Soter",
+					"Name":"Seleukos A' Nikator",
 					"Class":"",
 					"Armament":"",
 					"Emblem":"",
-					"History":"."
+					"History":"Always lying in wait for the neighboring nations, strong in arms and persuasive in council, he (Seleucus) acquired Mesopotamia, Armenia, 'Seleucid' Cappadocia, Persis, Parthia, Bactria, Arabia, Tapouria, Sogdia, Arachosia, Hyrcania, and other adjacent peoples that had been subdued by Alexander, as far as the river Indus, so that the boundaries of his empire were the most extensive in Asia after that of Alexander. The whole region from Phrygia to the Indus was subject to Seleucus. — Appian, 'The Syrian Wars'."
 				},
 				{
-					"Name":"Ptolemaios D' Philopater",
+					"Name":"Antiokhos G' Megas",
 					"Class":"",
 					"Armament":"",
 					"Emblem":"",
-					"History":"."
+					"History":"Antiochus inherited a troubled kingdom upon the beginning of his reign. From the verge of collapse he managed to weld back together the empire Seleukus I so hard to found. The rebellious eastern satraps of Bactria and Parthia were brought to heel , temporarily securing his eastern borders. He then turned his attention to mother Greece, attempting to fulfill the dreams of his fathers by invading Greece under the pretext of liberation. The Achaean League and the Kingdom of Pergamon banded together with the Romans to defeat him at the Battle of Magnesia, forever burying the dream of reuniting Alexander's empire."
 				},
 				{
-					"Name":"Kleopatra H' Philopater",
+					"Name":"Antiokhos D' Epiphanes",
 					"Class":"",
 					"Armament":"",
 					"Emblem":"",
-					"History":"."
+					"History":"Antiochus IV Epiphanes was a son of Antiochus III the Great and brother of Seleucus IV Philopator. Originally named Mithridates, he assumed the name Antiochus either upon his accession to the throne or after the death of his elder brother Antiochus. Notable events during his reign include the near-conquest of Egypt (twice), which was halted by the threat of Roman intervention, and the beginning of the Jewish revolt of the Maccabees. He died of sudden illness while fighting off a Parthian invasion from the East."
 				}
 			]
 		}
@@ -56,27 +56,22 @@
 	"CivBonuses":
 	[
 		{
-			"Name":"Cleruchy",
-			"History":"The Ptolemies invited Greeks and Galatians (Gauls) alike to settle in Egypt within military settlements called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the pharaoh's army when called to duty.",
-			"Description":"The Ptolemies receive a barracks structure that trains Greek and Galatian 'settler' soldiers."
+			"Name":"A Synergy of East and West ('Synergia')",
+			"History":".",
+			"Description":"Eastern (non-Greek) units are free of cost, but take 3x longer to train (subject to balancing)."
 		},
 		{
-			"Name":"Nile Delta",
-			"History":"Unknown.",
-			"Description":"The Ptolemaic Egyptians receive 3 additional farming technologies."
-		},
-		{
-			"Name":"Roundup",
-			"History":"Unknown.",
-			"Description":"Can capture gaia elephants and camels to reduce their training cost."
+			"Name":"Military Reforms",
+			"History":"Seleucid and indeed Successor warfare evolved over the course of the 3rd and 2nd centuries. Contact with Eastern upstarts such as the Parthians and constant revolts of peripheral satrapies such as Bactria caused the Seleucids to reform their military and change their tactics, specifically in the cavalry arm. War with the Romans from the West and invasions from the Galatians also forced the Seleucids to reform their infantry regiments to be more flexible.",
+			"Description":"Champions automatically become available at the Barracks and Stables without needing to unlock them."
 		}
 	],
 	"TeamBonuses":
 	[
 		{
-			"Name":"Breadbasket of the Mediterranean",
-			"History":"Egypt was a net exporter of grain, so much so that large cities such as Athens, Antioch, and Rome came to rely upon Egyptian grain in order to feed their masses.",
-			"Description":"All allies automatically gain a slow trickle of food income."
+			"Name":"Syrian Tetrapolis",
+			"History":"The political core of the Seleucid Empire consisted of four 'sister' cities: Antioch (the capital), Seleucia Pieria, Apamea, and Laodicea.",
+			"Description":"Allies can build Civic Centers 10% faster and within each others territory."
 		}
 	],
 	"Structures":
@@ -91,43 +86,34 @@
 			"Special":"Maximum of 1 built. All Special Technologies and some regular city-phase technologies are researched here. Building one reduces the cost of all other remaining technologies by 10%."
 		},
 		{
-			"Name":"Klēroukhia",
+			"Name":"Cavalry Stables",
 			"Class":"",
 			"Emblem":"",
-			"History":"The Ptolemies invited Greeks and Galatians (Gauls) alike to settle in Egypt within military settlements called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the pharaoh's army when called to duty. This created a upper-middle class of military settlers who owed their livelihoods and fortunes to the pharaoh and helped grow the available manpower for the Egyptian army. A side effect of this system was that it drained the Greek homeland of military-aged men, a contributing factor to Greece's inevitable conquest by Rome.",
+			"History":".",
 			"Requirements":"",
-			"Phase":"Town",
-			"Special":" Must be constructed in neutral territory. Has no territory radius effect. Trains all 'settler' units: Galatian Settler Swordsman, Macedonian Settler Cavalry, Tarantine Settler Cavalry."
-		},
-		{
-			"Name":"Lighthouse",
-			"Class":"",
-			"Emblem":"",
-			"History":"The Ptolemaic dynasty in Egypt built the magnificent Lighthouse of Alexandria near the harbor mouth of that Nile Delta city. This structure could be seen for many kilometers out to sea and was one of the Seven Wonders of the World.",
-			"Requirements":".",
-			"Phase":"City",
-			"Special":"When built along the shoreline, removes shroud of darkness over all the water, revealing all the coast lines on the map. Limit: 1."
+			"Phase":"Village",
+			"Special":"Trains all cavalry units except Citizen-Militia Cavalry."
 		}
 	],
 	"StartEntities":
 	[
 		{
-			"Template": "structures/ptol_civil_centre"
+			"Template": "structures/sele_civil_centre"
 		},
 		{
-			"Template": "units/ptol_support_female_citizen",
+			"Template": "units/sele_support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/ptol_infantry_spearman_b",
+			"Template": "units/sele_infantry_spearman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/ptol_infantry_archer_b",
+			"Template": "units/sele_infantry_archer_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/ptol_cavalry_swordsman_b"
+			"Template": "units/sele_cavalry_javelinist"
 		}
 	],
 	"Formations":

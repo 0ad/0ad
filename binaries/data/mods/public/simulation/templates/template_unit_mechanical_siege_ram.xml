@@ -58,7 +58,10 @@
   </Health>
   <Identity>
     <GenericName>Battering Ram</GenericName>
-    <Tooltip>Counters: 3x vs. gates, 2x vs. other structures. Countered by: Melee cavalry. Cannot attack organic units.</Tooltip>
+    <Classes datatype="tokens">Melee Ram</Classes>
+    <Tooltip>Classes: Siege Melee Ram.
+Counters: 1.5x vs. Gates. Generally good vs. Buildings. 
+Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships).</Tooltip>
   </Identity>
   <Sound>
     <SoundGroups>

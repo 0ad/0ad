@@ -28,6 +28,13 @@
       units/sele_infantry_javelinist_b
       units/sele_infantry_archer_b
     </Entities>
+    <Technologies datatype="tokens">
+	  persians/training_levy_infantry
+	  persians/training_conscription_infantry
+	  -pair_levy_01
+	  -training_conscription
+	  -unlock_champion_units
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/macedonians/barracks.xml</Actor>

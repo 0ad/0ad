@@ -52,8 +52,10 @@
   </Health>
   <Identity>
     <GenericName>Siege Catapult</GenericName>
-    <Tooltip>Bonused vs. Structures and Massed Infantry.</Tooltip>
-    <Classes datatype="tokens">Catapult</Classes>
+    <Tooltip>Classes: Siege Ranged Catapult.
+Counters: Structures and Massed Infantry. Causes splash damage.
+Countered by: Melee Cavalry.</Tooltip>
+    <Classes datatype="tokens">Ranged Catapult</Classes>
   </Identity>
   <Loot>
     <xp>300</xp>

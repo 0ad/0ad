@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_ship_bireme">
+  <Identity>
+    <Civ>sele</Civ>
+    <SpecificName>Biḗrēs</SpecificName>
+    <History>The design of the bireme was modified from the penteconter, a ship that had only one set of oars on each side, the bireme having two sets of oars on each side.</History>
+    <Icon>units/hele_ship_bireme.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/carthaginians/bireme.xml</Actor>
+  </VisualActor>
+</Entity>
