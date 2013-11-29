@@ -76,6 +76,11 @@
         <texture file="props/banner_ptolemies.png" name="baseTex"/>
       </textures>
     </variant>
+    <variant name="sele">
+      <textures>
+        <texture file="props/banner_seleucids.png" name="baseTex"/>
+      </textures>
+    </variant>
   </group>
   <material>basic_trans.xml</material>
 </actor>
