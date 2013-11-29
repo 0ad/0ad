@@ -155,11 +155,9 @@ Auras.prototype.Clean = function()
 		if (!affectedPlayers.length)
 			continue;
 
-		if (this.IsGlobalAura(name))
-			this.ApplyTemplateBonus(name, affectedPlayers);
-
 		if (!this.IsRangeAura(name))
 			continue;
+
 		this[name].rangeQuery = cmpRangeManager.CreateActiveQuery(
 		    this.entity,
 		    0,
@@ -169,8 +167,14 @@ Auras.prototype.Clean = function()
 		    cmpRangeManager.GetEntityFlagMask("normal")
 		);
 		cmpRangeManager.EnableActiveQuery(this[name].rangeQuery);
-		// Add self to your own query for consistency with templates.
-		this.OnRangeUpdate({"tag":this[name].rangeQuery, "added":[this.entity], "removed":[]});
+
+		if (this.IsGlobalAura(name))
+		{
+			// update stats in for all templates 
+			this.ApplyTemplateBonus(name, affectedPlayers);
+			// Add self to your own query for consistency with templates.
+			this.OnRangeUpdate({"tag":this[name].rangeQuery, "added":[this.entity], "removed":[]});
+		}
 	}
 };
 

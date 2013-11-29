@@ -44,7 +44,7 @@ Health.prototype.Init = function()
 	// Default to <Initial>, but use <Max> if it's undefined or zero
 	// (Allowing 0 initial HP would break our death detection code)
 	this.hitpoints = +(this.template.Initial || this.GetMaxHitpoints());
-	this.regenRate = +this.template.RegenRate;
+	this.regenRate = ApplyValueModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
     this.CheckRegenTimer();
 };
 
@@ -131,7 +131,7 @@ Health.prototype.CheckRegenTimer = function()
 		return;
 	}
 
-	// we need a timer, enable is one doesn't exist
+	// we need a timer, enable if one doesn't exist
 	if (this.regenTimer)
 		return;
 
@@ -344,9 +344,6 @@ Health.prototype.OnValueModification = function(msg)
 	var oldRegenRate = this.regenRate;
 	this.regenRate = ApplyValueModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
 
-	if (this.IsUnhealable())
-		this.regenRate = Math.min(0,this.regenRate);
-	
 	if (this.regenRate != oldRegenRate)
 		this.CheckRegenTimer();
 };
