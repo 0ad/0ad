@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
+  <Auras>
+    <cav_attack_2>
+      <Type>range</Type>
+      <Radius>60</Radius>
+    </cav_attack_2>
+  </Auras>
   <Identity>
     <Civ>pers</Civ>
     <GenericName>Cyrus II The Great</GenericName>
