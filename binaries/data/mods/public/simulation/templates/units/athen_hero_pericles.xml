@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_spearman">
+  <Auras>
+    <construction_speed_15>
+      <Type>range</Type>
+      <Radius>60</Radius>
+    </construction_speed_15>
+    <temple_cost-50>
+      <Type>global</Type>
+    </temple_cost-50>
+  </Auras>
   <Identity>
     <Civ>athen</Civ>
 	<GenericName>Pericles</GenericName>
     <SpecificName>Periklēs</SpecificName>
-    <Tooltip>Hero Aura: Buildings construct much faster within his vision. Temples are much cheaper during his lifetime.
+    <Tooltip>Hero Aura: Buildings construct 15% faster within his vision. Temples are 50 stone cheaper during his lifetime.
 Melee 2x vs. all cavalry.</Tooltip>
     <History>Pericles was the foremost Athenian politician of the 5th Century.</History>
     <Icon>units/athen_hero_pericles.png</Icon>
