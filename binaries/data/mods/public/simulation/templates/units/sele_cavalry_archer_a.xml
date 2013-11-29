@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/sele_cavalry_archer_b">
+  <Armour>
+    <Hack>2</Hack>
+    <Pierce>4</Pierce>
+    <Crush>2</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Spread>1.3</Spread>
+      <MaxRange>60.0</MaxRange>
+      <MinRange>16.0</MinRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>160</Max>
+  </Health>
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/sele_cavalry_archer_e</Entity>
+  </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <VisualActor>
+    <Actor>units/seleucids/cavalry_archer_a.xml</Actor>
+  </VisualActor>
+</Entity>
