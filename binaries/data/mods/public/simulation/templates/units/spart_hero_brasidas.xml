@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
+  <Auras>
+    <javelin_attack_2>
+      <Type>global</Type>
+    </javelin_attack_2>
+    <javelin_armor_1>
+      <Type>global</Type>
+    </javelin_armor_1>
+  </Auras>
   <Identity>
     <Civ>spart</Civ>
 	<GenericName>Brasidas</GenericName>
