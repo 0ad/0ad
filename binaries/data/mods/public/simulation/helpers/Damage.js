@@ -93,14 +93,16 @@ Damage.CauseDamage = function(data)
  */
 Damage.EntitiesNearPoint = function(origin, radius, players)
 {
+	// Path to dummy template.
+	var dummyPath = "special/dummy";
 	// If there is insufficient data return an empty array.
 	if (!origin || !radius)
 		return [];
-	// Create the dummy entity used for range calculations.
-	// TODO: Figure out a way to not constantly have to create/delete entities for these calculations.
-	var dummyTargetEntity = Engine.AddEntity('special/dummy');
+	// Create/recycle the dummy entity used for range calculations.
+	if (!Damage.dummyTargetEntity || dummyPath != Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetCurrentTemplateName(Damage.dummyTargetEntity))
+		Damage.dummyTargetEntity = Engine.AddEntity(dummyPath);
 	// Move the dummy entity to the origin of the query.
-	var cmpDummyPosition = Engine.QueryInterface(dummyTargetEntity, IID_Position);
+	var cmpDummyPosition = Engine.QueryInterface(Damage.dummyTargetEntity, IID_Position);
 	if (!cmpDummyPosition)
 		return [];
 	cmpDummyPosition.JumpTo(origin.x, origin.z);
@@ -116,10 +118,7 @@ Damage.EntitiesNearPoint = function(origin, radius, players)
 
 	// Call RangeManager with dummy entity and return the result.
 	var rangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var rangeQuery = rangeManager.ExecuteQuery(dummyTargetEntity, 0, radius, players, IID_DamageReceiver);
-	
-	// Delete the temperary entity used for range calculations.
-	Engine.DestroyEntity(dummyTargetEntity);
+	var rangeQuery = rangeManager.ExecuteQuery(Damage.dummyTargetEntity, 0, radius, players, IID_DamageReceiver);
 	return rangeQuery;
 };
 
@@ -137,7 +136,7 @@ Damage.TargetKilled = function(killerEntity, targetEntity)
 	// Add to loser statistics.
 	var cmpTargetPlayerStatisticsTracker = QueryOwnerInterface(targetEntity, IID_StatisticsTracker);
 	if (cmpTargetPlayerStatisticsTracker)
-	    cmpTargetPlayerStatisticsTracker.LostEntity(targetEntity);
+		cmpTargetPlayerStatisticsTracker.LostEntity(targetEntity);
 
 	// If killer can collect loot, let's try to collect it.
 	var cmpLooter = Engine.QueryInterface(killerEntity, IID_Looter);
