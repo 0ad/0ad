@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/sele_infantry_spearman_b">
+  <Armour>
+    <Hack>12</Hack>
+    <Pierce>9</Pierce>
+    <Crush>9</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>6.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>12.0</Hack>
+    </Charge>
+  </Attack>
+  <Health>
+    <Max>110</Max>
+  </Health>
+  <Identity>
+    <Rank>Advanced</Rank>
+	<GenericName>Gold Shield Pikeman</GenericName>
+    <SpecificName>Chrysaspides</SpecificName>
+  </Identity>
+  <Promotion>
+    <Entity>units/sele_infantry_spearman_e</Entity>
+  </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>6.0</WalkSpeed>
+    <Run>
+      <Speed>12.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/seleucids/infantry_spearman_a.xml</Actor>
+  </VisualActor>
+</Entity>

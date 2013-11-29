@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_elephant_melee">
+  <Identity>
+    <Civ>sele</Civ>
+    <GenericName>Armored War Elephant</GenericName>
+    <SpecificName>Thorakisménos Eléphantos</SpecificName>
+    <Icon>units/maur_champion_elephant.png</Icon>
+    <History>The Seleucids, having access to the East, specifically India after the war with the Mauryans, imported gigantic war elephants to augment their phalanxes. The beasts were armoured and were used as giant battering rams to smash enemy infantry formations.</History>
+    <RequiredTechnology>phase_city</RequiredTechnology>
+  </Identity>
+  <VisualActor>
+    <Actor>units/seleucids/champion_elephant.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -297,6 +297,7 @@
 
 	    <object size="0 144 100%-18 160" type="text" style="devCommandsText">Reveal map</object>
 	    <object size="100%-16 144 100% 160" type="checkbox" name="devCommandsRevealMap" style="StoneCrossBox">
+		<action on="Load">this.checked = Engine.GuiInterfaceCall("IsMapRevealed");</action>
 		<action on="Press">Engine.PostNetworkCommand({"type": "reveal-map", "enable": this.checked});</action>
 	    </object>
 

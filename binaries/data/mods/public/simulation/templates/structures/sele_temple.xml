@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_temple">
+  <Footprint>
+    <Square width="19.0" depth="31.5"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>sele</Civ>
+    <SpecificName>Naós</SpecificName>
+    <History>.</History>
+  </Identity>
+  <Obstruction>
+    <Static width="17.5" depth="30.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/macedonians/temple.xml</Actor>
+    <FoundationActor>props/special/eyecandy/greek_temple_unfinished.xml</FoundationActor>
+  </VisualActor>
+</Entity>

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support">
+  <Auras>
+    <male_gatheringRate_10>
+      <Type>range</Type>
+      <Radius>10</Radius>
+    </male_gatheringRate_10>
+    <male_buildRate_10>
+      <Type>range</Type>
+      <Radius>10</Radius>
+    </male_buildRate_10>
+  </Auras>
   <Attack>
     <Melee>
       <Hack>6.0</Hack>

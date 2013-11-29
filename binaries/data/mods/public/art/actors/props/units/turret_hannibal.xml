@@ -7,9 +7,10 @@
       <props>
         <prop actor="units/carthaginians/hero_hannibal_r.xml" attachpoint="root"/>
         <prop actor="props/units/shields/kart_turret_hannibal.xml" attachpoint="root"/>
-        <prop actor="props/units/shields/kart_turret_hannibal.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="props/turret_hannibal.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/turret_hannibal.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
 </actor>

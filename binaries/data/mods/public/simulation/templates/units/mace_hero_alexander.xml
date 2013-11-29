@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
+  <Auras>
+    <struct_territory_25>
+      <Type>global</Type>
+    </struct_territory_25>
+  </Auras>
   <Armour>
     <Crush>20</Crush>
   </Armour>

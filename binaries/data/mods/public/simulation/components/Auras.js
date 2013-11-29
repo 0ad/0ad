@@ -155,11 +155,9 @@ Auras.prototype.Clean = function()
 		if (!affectedPlayers.length)
 			continue;
 
-		if (this.IsGlobalAura(name))
-			this.ApplyTemplateBonus(name, affectedPlayers);
-
 		if (!this.IsRangeAura(name))
 			continue;
+
 		this[name].rangeQuery = cmpRangeManager.CreateActiveQuery(
 		    this.entity,
 		    0,
@@ -169,8 +167,14 @@ Auras.prototype.Clean = function()
 		    cmpRangeManager.GetEntityFlagMask("normal")
 		);
 		cmpRangeManager.EnableActiveQuery(this[name].rangeQuery);
-		// Add self to your own query for consistency with templates.
-		this.OnRangeUpdate({"tag":this[name].rangeQuery, "added":[this.entity], "removed":[]});
+
+		if (this.IsGlobalAura(name))
+		{
+			// update stats in for all templates 
+			this.ApplyTemplateBonus(name, affectedPlayers);
+			// Add self to your own query for consistency with templates.
+			this.OnRangeUpdate({"tag":this[name].rangeQuery, "added":[this.entity], "removed":[]});
+		}
 	}
 };
 
@@ -244,8 +248,8 @@ Auras.prototype.ApplyFormationBonus = function(memberList)
 		var validList = this.GiveMembersWithValidClass(name, memberList);
 		for each (var ent in validList)
 		{
-			this[name].targetUnits.push(e);
-			this.ApplyBonus(name,e);
+			this[name].targetUnits.push(ent);
+			this.ApplyBonus(name,ent);
 		}
 	}
 };
@@ -283,7 +287,7 @@ Auras.prototype.ApplyTemplateBonus = function(name, players)
 Auras.prototype.RemoveFormationBonus = function(memberList)
 {
 	var auraNames = this.GetAuraNames();
-	for each (var name in auraName)
+	for each (var name in auraNames)
 	{
 		if (!this.IsFormationAura(name))
 			continue;
@@ -317,9 +321,10 @@ Auras.prototype.RemoveTemplateBonus = function(name)
 	var modifications = this.GetModifications(name);
 	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
 	var classes = this.GetClasses(name);
+	var players =  this.GetAffectedPlayers(name);
 
 	for each (var mod in modifications)
-		for each (var player in this.GetAffectedPlayers())
+		for each (var player in players)
 			cmpAuraManager.RemoveTemplateBonus(mod.value, player, classes, this.templateName + "/" + name + "/" + mod.value);
 };
 

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <Cost>
+    <Resources>
+      <wood>0</wood>
+      <stone>200</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="22.0" depth="20.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>sele</Civ>
+    <GenericName>Cavalry Stables</GenericName>
+    <SpecificName>Stávlous</SpecificName>
+    <Classes datatype="tokens">
+	  -Barracks
+	  Stables
+	</Classes>
+    <History>Cavalry was primarily used as an elite assault force by the Seleucids.</History>
+    <Tooltip>Train cavalry units.</Tooltip>
+    <Icon>structures/pers_stable.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="18.0" depth="16.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/sele_cavalry_spearman_b
+      units/sele_cavalry_javelinist_b
+      units/sele_cavalry_archer_b
+      units/sele_champion_cavalry
+      units/sele_champion_chariot
+    </Entities>
+    <Technologies datatype="tokens">
+	  -pair_levy_01
+	  -training_conscription
+	  -unlock_champion_units
+	  persians/training_levy_cavalry
+	  persians/training_conscription_cavalry
+    </Technologies>
+  </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_cavalry_stables.xml</select>
+      <constructed>interface/complete/building/complete_cavalry_stables.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <VisualActor>
+    <Actor>structures/persians/stables.xml</Actor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+  </VisualActor>
+</Entity>

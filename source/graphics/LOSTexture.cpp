@@ -148,7 +148,9 @@ void CLOSTexture::InterpolateLOS()
 	
 	shader->Uniform(str_delta, (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
 	
-	glViewport(0, 0, m_TextureSize, m_TextureSize);
+	const SViewPort oldVp = g_Renderer.GetViewport();
+	const SViewPort vp = { 0, 0, m_TextureSize, m_TextureSize };
+	g_Renderer.SetViewport(vp);
 	
 	float quadVerts[] = {
 		1.0f, 1.0f,
@@ -173,7 +175,7 @@ void CLOSTexture::InterpolateLOS()
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	
-	glViewport(0, 0, g_xres, g_yres);
+	g_Renderer.SetViewport(oldVp);
 
 	shader->Unbind();
 	m_smoothShader->EndPass();

@@ -19,11 +19,11 @@
 	  <Bonuses>
 		<BonusInfantryRanged>
 		  <Classes>Infantry Ranged</Classes>
-		  <Multiplier>2.0</Multiplier>
+		  <Multiplier>1.5</Multiplier>
 		</BonusInfantryRanged>
 		<BonusInfantryMelee>
 		  <Classes>Infantry Melee</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>1.25</Multiplier>
 		</BonusInfantryMelee>
 	  </Bonuses>
     </Ranged>
@@ -36,8 +36,8 @@
   <Identity>
     <Classes datatype="tokens">Sling</Classes>
     <GenericName>Slinger</GenericName>
-    <Tooltip>Classes: Ranged Infantry Slinger.
-Counters: 2x vs. Ranged Infantry, 1.5x vs. Melee Infantry.
+    <Tooltip>Classes: Citizen Ranged Infantry Slinger.
+Counters: 1.5x vs. Ranged Infantry, 1.25x vs. Melee Infantry.
 Countered by: Cavalry.</Tooltip>
   </Identity>
   <Loot>

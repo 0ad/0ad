@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_cavalry_archer">
+  <Armour>
+    <Hack>6.0</Hack>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>35.0</Pierce>
+    </Ranged>
+  </Attack>
+  <Cost>
+    <Population>3</Population>
+    <BuildTime>19</BuildTime>
+    <Resources>
+      <food>200</food>
+      <wood>200</wood>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Footprint replace="">
+    <Square width="7.5" depth="15.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Health>
+    <Max>200</Max>
+  </Health>
+  <Identity>
+    <Civ>sele</Civ>
+    <Classes datatype="tokens">Champion Chariot</Classes>
+	<GenericName>Scythed Chariot</GenericName>
+    <SpecificName>Drepanèphoros</SpecificName>
+    <History>Expensive "suicide" unit. Mostly used to rush into infantry and cavalry formations to slaughter a bunch of enemies with scythes ("Trample Damage" aura) before getting destroyed themselves. Countered by: Skirmishers and Elephants.</History>
+	<Icon>units/maur_champion_chariot.png</Icon>
+	<Tooltip>Classes: Champion Ranged Cavalry Chariot Archer.
+Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. Deals Trample Damage.
+Countered by: Skirmishers and Elephants.</Tooltip>
+  </Identity>
+  <Loot>
+    <xp>200</xp>
+    <food>0</food>
+    <wood>20</wood>
+    <stone>0</stone>
+    <metal>20</metal>
+  </Loot>
+  <Obstruction>
+    <Unit radius="2.0"/>
+  </Obstruction>
+  <ResourceGatherer>
+    <MaxDistance>5.0</MaxDistance>
+    <Capacities>
+      <food>50</food>
+    </Capacities>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>11.0</WalkSpeed>
+    <Run>
+      <Speed>33.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/persians/cavalry_archer_e.xml</Actor>
+  </VisualActor>
+</Entity>

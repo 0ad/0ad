@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
+  <Auras>
+    <unit_speed_15>
+      <Type>global</Type>
+    </unit_speed_15>
+  </Auras>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Ḥimelqart Baraq</SpecificName>

@@ -20,7 +20,12 @@ Looter.prototype.Collect = function(targetEntity)
 			cmpPromotion.IncreaseXp(xp);
 	}
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-	cmpPlayer.AddResources(cmpLoot.GetResources());
+	var resources = cmpLoot.GetResources();
+	for (var type in resources)
+	{
+		resources[type] = ApplyValueModificationsToEntity("Looter/Resource/"+type, resources[type], this.entity);
+	}
+	cmpPlayer.AddResources(resources);
 
 	// If target entity has trader component, add carried goods to loot too
 	var cmpTrader = Engine.QueryInterface(targetEntity, IID_Trader);

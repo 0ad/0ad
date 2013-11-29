@@ -46,6 +46,7 @@ DEFINE_INTERFACE_METHOD_1("GetEntityFlagMask", u8, ICmpRangeManager, GetEntityFl
 DEFINE_INTERFACE_METHOD_1("GetEntitiesByPlayer", std::vector<entity_id_t>, ICmpRangeManager, GetEntitiesByPlayer, player_id_t)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpRangeManager, SetDebugOverlay, bool)
 DEFINE_INTERFACE_METHOD_2("SetLosRevealAll", void, ICmpRangeManager, SetLosRevealAll, player_id_t, bool)
+DEFINE_INTERFACE_METHOD_1("GetLosRevealAll", bool, ICmpRangeManager, GetLosRevealAll, player_id_t)
 DEFINE_INTERFACE_METHOD_5("GetElevationAdaptedRange", entity_pos_t, ICmpRangeManager, GetElevationAdaptedRange, CFixedVector3D, CFixedVector3D, entity_pos_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_3("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, player_id_t, bool)
 DEFINE_INTERFACE_METHOD_1("SetLosCircular", void, ICmpRangeManager, SetLosCircular, bool)

@@ -350,8 +350,7 @@ public:
 		glLoadMatrixf(&view._11);
 #endif
 
-		const SViewPort &vp = camera.GetViewPort();
-		glViewport((GLint)vp.m_X,(GLint)vp.m_Y,(GLsizei)vp.m_Width,(GLsizei)vp.m_Height);
+		g_Renderer.SetViewport(camera.GetViewPort());
 	}
 
 	/**
@@ -1696,7 +1695,13 @@ void CRenderer::SetSceneCamera(const CCamera& viewCamera, const CCamera& cullCam
 
 void CRenderer::SetViewport(const SViewPort &vp)
 {
+	m_Viewport = vp;
 	glViewport((GLint)vp.m_X,(GLint)vp.m_Y,(GLsizei)vp.m_Width,(GLsizei)vp.m_Height);
+}
+
+SViewPort CRenderer::GetViewport()
+{
+	return m_Viewport;
 }
 
 void CRenderer::Submit(CPatch* patch)

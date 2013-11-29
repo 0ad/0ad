@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_ship_trireme">
+  <Identity>
+    <Civ>sele</Civ>
+    <SpecificName>Triḗrēs</SpecificName>
+    <Tooltip>Medium Warship.
+Ramming Secondary Attack.</Tooltip>
+    <History>.</History>
+    <Icon>units/hele_ship_trireme.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/hellenes/trireme.xml</Actor>
+  </VisualActor>
+</Entity>

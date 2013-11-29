@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -479,7 +479,8 @@ void ShadowMap::BeginRender()
 	}
 
 	// setup viewport
-	glViewport(0, 0, m->EffectiveWidth, m->EffectiveHeight);
+	const SViewPort vp = { 0, 0, m->EffectiveWidth, m->EffectiveHeight };
+	g_Renderer.SetViewport(vp);
 
 	m->SavedViewCamera = g_Renderer.GetViewCamera();
 
@@ -513,7 +514,8 @@ void ShadowMap::EndRender()
 		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m->SavedViewFBO);
 	}
 
-	glViewport(0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight());
+	const SViewPort vp = { 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight() };
+	g_Renderer.SetViewport(vp);
 
 	glColorMask(1,1,1,1);
 }
