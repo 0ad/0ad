@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_ranged_javelinist">
+  <Identity>
+    <Civ>sele</Civ>
+	<SelectionGroupName>units/sele_cavalry_javelinist_b</SelectionGroupName>
+    <GenericName>Citizen-Militia Cavalry</GenericName>
+    <SpecificName>Hippakontistès Politès</SpecificName>
+    <History>.</History>
+    <Icon>units/hele_cavalry_javelinist.png</Icon>
+  </Identity>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/athenians/cavalry_javelinist_b.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.866667" g="0.776471" b="0.490196"/>
+		<SunColour r="0.866667" g="0.776471" b="0.486275"/>
 		<SunElevation angle="0.671884"/>
 		<SunRotation angle="-0.582913"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="516.696" y="86.5553" z="483.881"/>
+		<Position x="886.862" y="692.288" z="-453.269"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -20883,6 +20883,66 @@
 			<Position x="427.47983" z="430.3679"/>
 			<Orientation y="-0.81243"/>
 			<Actor seed="28840"/>
+		</Entity>
+		<Entity uid="4009">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="617.01526" z="281.69605"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="6758"/>
+		</Entity>
+		<Entity uid="4010">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="990.32691" z="474.76423"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39262"/>
+		</Entity>
+		<Entity uid="4011">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1336.68958" z="330.17975"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24610"/>
+		</Entity>
+		<Entity uid="4012">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1342.15625" z="869.32062"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62910"/>
+		</Entity>
+		<Entity uid="4013">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="966.67756" z="1337.28345"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55436"/>
+		</Entity>
+		<Entity uid="4014">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="210.67255" z="1124.14136"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41232"/>
+		</Entity>
+		<Entity uid="4015">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="666.94172" z="848.01838"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24854"/>
+		</Entity>
+		<Entity uid="4016">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="132.62696" z="664.52778"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3890"/>
+		</Entity>
+		<Entity uid="4017">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="948.86664" z="84.4563"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2488"/>
+		</Entity>
+		<Entity uid="4018">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="836.26685" z="785.05585"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7544"/>
 		</Entity>
 	</Entities>
 	<Paths/>
