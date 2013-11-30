@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_barracks">
+<Footprint>
+    <Square width="23" depth="23"/>
+  </Footprint>
   <Cost>
     <Resources>
       <wood>200</wood>
