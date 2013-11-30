@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="386.252" y="97.8188" z="657.211"/>
-		<Rotation angle="-0.481209"/>
+		<Position x="554.226" y="143.212" z="64.458"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -9992,7 +9992,7 @@
 		</Entity>
 		<Entity uid="1592">
 			<Template>actor|geology/stone_granite_med.xml</Template>
-			<Position x="585.16889" z="629.96851"/>
+			<Position x="585.23096" z="672.74549"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="6948"/>
 		</Entity>
@@ -11300,8 +11300,8 @@
 		</Entity>
 		<Entity uid="1803">
 			<Template>actor|geology/stone_granite_med.xml</Template>
-			<Position x="567.47712" z="581.49616"/>
-			<Orientation y="2.07746"/>
+			<Position x="541.17444" z="605.3241"/>
+			<Orientation y="-2.50904"/>
 			<Actor seed="40012"/>
 		</Entity>
 		<Entity uid="1804">
@@ -13298,8 +13298,8 @@
 		</Entity>
 		<Entity uid="2131">
 			<Template>actor|geology/snow1.xml</Template>
-			<Position x="476.22953" z="612.5777"/>
-			<Orientation y="-2.38985"/>
+			<Position x="539.92414" z="581.61188"/>
+			<Orientation y="-2.96305"/>
 			<Actor seed="14754"/>
 		</Entity>
 		<Entity uid="2132">
@@ -13316,8 +13316,8 @@
 		</Entity>
 		<Entity uid="2134">
 			<Template>actor|geology/snow1.xml</Template>
-			<Position x="505.36869" z="601.04834"/>
-			<Orientation y="-2.15429"/>
+			<Position x="485.47529" z="631.66315"/>
+			<Orientation y="0.5743"/>
 			<Actor seed="61246"/>
 		</Entity>
 		<Entity uid="2135">
@@ -13424,7 +13424,7 @@
 		</Entity>
 		<Entity uid="2152">
 			<Template>actor|geology/snow2.xml</Template>
-			<Position x="499.60929" z="620.9015"/>
+			<Position x="484.97962" z="626.5611"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="46914"/>
 		</Entity>
@@ -13592,7 +13592,7 @@
 		</Entity>
 		<Entity uid="2180">
 			<Template>actor|particle/blowing_snow.xml</Template>
-			<Position x="435.18573" z="998.8589"/>
+			<Position x="458.72931" z="930.44397"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32872"/>
 		</Entity>
@@ -13610,7 +13610,7 @@
 		</Entity>
 		<Entity uid="2183">
 			<Template>actor|particle/blowing_snow.xml</Template>
-			<Position x="437.46924" z="917.50062"/>
+			<Position x="471.84723" z="876.25855"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="21524"/>
 		</Entity>
@@ -14349,6 +14349,448 @@
 			<Position x="837.3064" z="269.22568"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="35236"/>
+		</Entity>
+		<Entity uid="2300">
+			<Template>actor|geology/snow2.xml</Template>
+			<Position x="521.97944" z="758.55896"/>
+			<Orientation y="-0.18815"/>
+			<Actor seed="10656"/>
+		</Entity>
+		<Entity uid="2301">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="538.5904" z="753.52015"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22472"/>
+		</Entity>
+		<Entity uid="2302">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="539.4828" z="763.10828"/>
+			<Orientation y="0.24962"/>
+			<Actor seed="22502"/>
+		</Entity>
+		<Entity uid="2303">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="593.1391" z="632.82447"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63614"/>
+		</Entity>
+		<Entity uid="2304">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="855.85157" z="325.34363"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2246"/>
+		</Entity>
+		<Entity uid="2305">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="867.94709" z="371.4568"/>
+			<Orientation y="0.50304"/>
+			<Actor seed="792"/>
+		</Entity>
+		<Entity uid="2306">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="389.75416" z="76.75792"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3708"/>
+		</Entity>
+		<Entity uid="2307">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="361.16221" z="70.12708"/>
+			<Orientation y="0.70722"/>
+			<Actor seed="2478"/>
+		</Entity>
+		<Entity uid="2308">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="309.62748" z="141.16037"/>
+			<Orientation y="0.75887"/>
+			<Actor seed="6890"/>
+		</Entity>
+		<Entity uid="2309">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="338.71698" z="146.49027"/>
+			<Orientation y="-2.37426"/>
+			<Actor seed="19988"/>
+		</Entity>
+		<Entity uid="2310">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="304.80237" z="115.57241"/>
+			<Orientation y="0.72997"/>
+			<Actor seed="45518"/>
+		</Entity>
+		<Entity uid="2311">
+			<Template>actor|geology/snow2.xml</Template>
+			<Position x="331.95481" z="110.86968"/>
+			<Orientation y="-1.54258"/>
+			<Actor seed="2912"/>
+		</Entity>
+		<Entity uid="2312">
+			<Template>actor|geology/snow2.xml</Template>
+			<Position x="357.45173" z="97.53144"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55464"/>
+		</Entity>
+		<Entity uid="2313">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="365.36002" z="104.68662"/>
+			<Orientation y="-2.58797"/>
+			<Actor seed="39694"/>
+		</Entity>
+		<Entity uid="2314">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="357.02424" z="92.78901"/>
+			<Orientation y="0.88816"/>
+			<Actor seed="37190"/>
+		</Entity>
+		<Entity uid="2315">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="346.26868" z="104.42197"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59536"/>
+		</Entity>
+		<Entity uid="2316">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="348.30362" z="111.78107"/>
+			<Orientation y="-1.79854"/>
+			<Actor seed="29360"/>
+		</Entity>
+		<Entity uid="2317">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="359.38044" z="100.46708"/>
+			<Orientation y="0.25445"/>
+			<Actor seed="60086"/>
+		</Entity>
+		<Entity uid="2318">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="366.54719" z="101.01816"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27734"/>
+		</Entity>
+		<Entity uid="2319">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="369.71613" z="99.4237"/>
+			<Orientation y="-1.69858"/>
+			<Actor seed="9162"/>
+		</Entity>
+		<Entity uid="2320">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="404.7357" z="101.14405"/>
+			<Orientation y="0.70266"/>
+			<Actor seed="56400"/>
+		</Entity>
+		<Entity uid="2321">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="591.4065" z="126.86925"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55920"/>
+		</Entity>
+		<Entity uid="2322">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="634.21418" z="136.25356"/>
+			<Orientation y="-1.8506"/>
+			<Actor seed="39906"/>
+		</Entity>
+		<Entity uid="2323">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="614.97596" z="153.89008"/>
+			<Orientation y="0.31614"/>
+			<Actor seed="2934"/>
+		</Entity>
+		<Entity uid="2324">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="528.49573" z="147.4762"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27356"/>
+		</Entity>
+		<Entity uid="2325">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="508.32532" z="147.09052"/>
+			<Orientation y="-1.6671"/>
+			<Actor seed="25758"/>
+		</Entity>
+		<Entity uid="2326">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="493.52741" z="141.99244"/>
+			<Orientation y="-0.79178"/>
+			<Actor seed="18534"/>
+		</Entity>
+		<Entity uid="2327">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="495.30188" z="149.14676"/>
+			<Orientation y="-2.00948"/>
+			<Actor seed="24384"/>
+		</Entity>
+		<Entity uid="2328">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="673.64094" z="399.71583"/>
+			<Orientation y="-2.20392"/>
+			<Actor seed="46062"/>
+		</Entity>
+		<Entity uid="2329">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="660.25391" z="372.46171"/>
+			<Orientation y="0.35007"/>
+			<Actor seed="51856"/>
+		</Entity>
+		<Entity uid="2330">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="648.65302" z="398.80127"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10128"/>
+		</Entity>
+		<Entity uid="2331">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="627.86567" z="404.47794"/>
+			<Orientation y="-0.41718"/>
+			<Actor seed="4426"/>
+		</Entity>
+		<Entity uid="2332">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="629.69758" z="396.73313"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10182"/>
+		</Entity>
+		<Entity uid="2333">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="318.43879" z="774.28388"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26544"/>
+		</Entity>
+		<Entity uid="2334">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="300.37732" z="741.1236"/>
+			<Orientation y="-2.3143"/>
+			<Actor seed="41660"/>
+		</Entity>
+		<Entity uid="2335">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="301.54581" z="726.5821"/>
+			<Orientation y="0.26197"/>
+			<Actor seed="62098"/>
+		</Entity>
+		<Entity uid="2336">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="412.05442" z="739.4881"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44038"/>
+		</Entity>
+		<Entity uid="2337">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="417.84296" z="730.77839"/>
+			<Orientation y="-0.12238"/>
+			<Actor seed="300"/>
+		</Entity>
+		<Entity uid="2338">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="418.25257" z="739.51655"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34830"/>
+		</Entity>
+		<Entity uid="2339">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="401.44605" z="775.05945"/>
+			<Orientation y="-1.9583"/>
+			<Actor seed="49112"/>
+		</Entity>
+		<Entity uid="2340">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="390.61945" z="812.04511"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5388"/>
+		</Entity>
+		<Entity uid="2341">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="383.68741" z="817.80079"/>
+			<Orientation y="0.26642"/>
+			<Actor seed="31252"/>
+		</Entity>
+		<Entity uid="2342">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="388.04053" z="813.43274"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36328"/>
+		</Entity>
+		<Entity uid="2343">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="393.70466" z="809.49323"/>
+			<Orientation y="-1.7159"/>
+			<Actor seed="46860"/>
+		</Entity>
+		<Entity uid="2344">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="387.59076" z="803.42225"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1450"/>
+		</Entity>
+		<Entity uid="2345">
+			<Template>actor|geology/snow1.xml</Template>
+			<Position x="393.1843" z="806.51398"/>
+			<Orientation y="0.40989"/>
+			<Actor seed="21518"/>
+		</Entity>
+		<Entity uid="2346">
+			<Template>actor|geology/snow2.xml</Template>
+			<Position x="389.77079" z="808.62049"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23856"/>
+		</Entity>
+		<Entity uid="2347">
+			<Template>actor|geology/snow2.xml</Template>
+			<Position x="387.80451" z="816.18915"/>
+			<Orientation y="-0.35718"/>
+			<Actor seed="15734"/>
+		</Entity>
+		<Entity uid="2357">
+			<Template>gaia/fauna_wolf_snow</Template>
+			<Player>0</Player>
+			<Position x="281.57392" z="687.32337"/>
+			<Orientation y="-2.51017"/>
+			<Actor seed="54262"/>
+		</Entity>
+		<Entity uid="2358">
+			<Template>gaia/fauna_wolf_snow</Template>
+			<Player>0</Player>
+			<Position x="526.83594" z="811.26185"/>
+			<Orientation y="0.56771"/>
+			<Actor seed="49240"/>
+		</Entity>
+		<Entity uid="2359">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="588.9803" z="97.0677"/>
+			<Orientation y="-1.92197"/>
+			<Actor seed="27796"/>
+		</Entity>
+		<Entity uid="2360">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="583.76905" z="88.55512"/>
+			<Orientation y="0.8882"/>
+			<Actor seed="65172"/>
+		</Entity>
+		<Entity uid="2361">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="595.18891" z="93.6665"/>
+			<Orientation y="-2.8954"/>
+			<Actor seed="12830"/>
+		</Entity>
+		<Entity uid="2362">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="592.25" z="79.21589"/>
+			<Orientation y="0.31063"/>
+			<Actor seed="48196"/>
+		</Entity>
+		<Entity uid="2363">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="600.66639" z="84.1947"/>
+			<Orientation y="-1.47442"/>
+			<Actor seed="35684"/>
+		</Entity>
+		<Entity uid="2364">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="601.55341" z="103.5896"/>
+			<Orientation y="1.07917"/>
+			<Actor seed="49588"/>
+		</Entity>
+		<Entity uid="2365">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>2</Player>
+			<Position x="994.76142" z="541.86512"/>
+			<Orientation y="-1.74796"/>
+			<Actor seed="18430"/>
+		</Entity>
+		<Entity uid="2366">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>2</Player>
+			<Position x="818.80475" z="776.28882"/>
+			<Orientation y="-2.33866"/>
+			<Actor seed="11678"/>
+		</Entity>
+		<Entity uid="2367">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>2</Player>
+			<Position x="696.71924" z="508.69758"/>
+			<Orientation y="0.76429"/>
+			<Actor seed="29008"/>
+		</Entity>
+		<Entity uid="2368">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>1</Player>
+			<Position x="355.08716" z="398.64786"/>
+			<Orientation y="-1.6252"/>
+			<Actor seed="59744"/>
+		</Entity>
+		<Entity uid="2369">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>1</Player>
+			<Position x="89.49036" z="456.29157"/>
+			<Orientation y="-2.05472"/>
+			<Actor seed="54556"/>
+		</Entity>
+		<Entity uid="2370">
+			<Template>gaia/fauna_sheep</Template>
+			<Player>1</Player>
+			<Position x="169.54242" z="199.42957"/>
+			<Orientation y="-0.29743"/>
+			<Actor seed="15882"/>
+		</Entity>
+		<Entity uid="2371">
+			<Template>gaia/fauna_deer</Template>
+			<Player>1</Player>
+			<Position x="490.95408" z="858.28156"/>
+			<Orientation y="0.78965"/>
+			<Actor seed="34522"/>
+		</Entity>
+		<Entity uid="2372">
+			<Template>gaia/fauna_deer</Template>
+			<Player>1</Player>
+			<Position x="520.45057" z="850.16236"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16872"/>
+		</Entity>
+		<Entity uid="2373">
+			<Template>gaia/fauna_deer</Template>
+			<Player>1</Player>
+			<Position x="476.42304" z="814.87305"/>
+			<Orientation y="-2.23238"/>
+			<Actor seed="32882"/>
+		</Entity>
+		<Entity uid="2374">
+			<Template>gaia/fauna_deer</Template>
+			<Player>1</Player>
+			<Position x="323.52637" z="631.81281"/>
+			<Orientation y="-2.42771"/>
+			<Actor seed="7186"/>
+		</Entity>
+		<Entity uid="2375">
+			<Template>gaia/fauna_deer</Template>
+			<Player>1</Player>
+			<Position x="323.6059" z="605.4007"/>
+			<Orientation y="0.98565"/>
+			<Actor seed="53342"/>
+		</Entity>
+		<Entity uid="2376">
+			<Template>gaia/fauna_deer</Template>
+			<Player>1</Player>
+			<Position x="335.21714" z="615.69031"/>
+			<Orientation y="-1.26107"/>
+			<Actor seed="63332"/>
+		</Entity>
+		<Entity uid="2377">
+			<Template>gaia/fauna_deer</Template>
+			<Player>1</Player>
+			<Position x="540.65448" z="452.74344"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43630"/>
+		</Entity>
+		<Entity uid="2378">
+			<Template>gaia/fauna_deer</Template>
+			<Player>1</Player>
+			<Position x="526.08674" z="453.20301"/>
+			<Orientation y="0.66745"/>
+			<Actor seed="48470"/>
 		</Entity>
 	</Entities>
 	<Paths/>

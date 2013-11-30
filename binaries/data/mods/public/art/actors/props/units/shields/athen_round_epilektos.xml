@@ -11,17 +11,33 @@
   </group>
   <group>
     <variant frequency="1" name="h">
-      <textures><texture file="props/shield/hele_round_h.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/hele_round_h.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="k">
-      <textures><texture file="props/shield/hele_round_k.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/hele_round_k.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="m">
-      <textures><texture file="props/shield/hele_round_m.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/hele_round_m.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="shield-ah-alpha">
-      <textures><texture file="props/shield/hele_round_ah.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/hele_round_ah.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

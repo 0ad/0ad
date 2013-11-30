@@ -2,12 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant frequency="100" name="civic center shields">
       <mesh>structural/mace_cc_shields.dae</mesh>
       <textures>
         <texture file="props/mace_prop_shields.png" name="baseTex"/>
+        <texture file="props/mace_prop_shields_norm.png" name="normTex"/>
+        <texture file="props/mace_prop_shields_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>
