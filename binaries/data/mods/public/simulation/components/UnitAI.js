@@ -1011,21 +1011,7 @@ var UnitFsmSpec = {
 
 			"Timer": function(msg) {
 				// check if there are no enemies to attack
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				for each (var ent in cmpFormation.members)
-				{
-					var cmpUnitAI =  Engine.QueryInterface(ent, IID_UnitAI);
-	    				if (cmpUnitAI.FindNewTargets())
-					{
-						if (cmpUnitAI.orderQueue[0] && cmpUnitAI.orderQueue[0].type == "Attack")
-						{
-							var data = cmpUnitAI.orderQueue[0].data;
-							cmpUnitAI.FinishOrder();
-							this.PushOrderFront("Attack", { "target": data.target, "force": false, "forceResponse": data.forceResponse });
-							break;
-						}
-					}
-				}
+				this.FindNewTargets();
 			},
 
 			"leave": function(msg) {
@@ -1144,22 +1130,7 @@ var UnitFsmSpec = {
 				{
 					// if WalkAndFight order, look for new target before moving again
 					if (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight")
-					{
-						for each (var ent in cmpFormation.members)
-						{
-							var cmpUnitAI =  Engine.QueryInterface(ent, IID_UnitAI);
-	    						if (cmpUnitAI.FindNewTargets())
-							{
-								if (cmpUnitAI.orderQueue[0] && cmpUnitAI.orderQueue[0].type == "Attack")
-								{
-									var data = cmpUnitAI.orderQueue[0].data;
-									cmpUnitAI.FinishOrder();
-									this.PushOrderFront("Attack", { "target": data.target, "force": false, "forceResponse": data.forceResponse });
-									break;
-								}
-							}
-						}
-					}
+						this.FindNewTargets();
 					return;
 				}
 
@@ -4879,6 +4850,25 @@ UnitAI.prototype.SwitchToStance = function(stance)
  */
 UnitAI.prototype.FindNewTargets = function()
 {
+	if (this.IsFormationController())
+	{
+		var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+		for each (var ent in cmpFormation.members)
+		{
+			var cmpUnitAI =  Engine.QueryInterface(ent, IID_UnitAI);
+	    		if (cmpUnitAI.FindNewTargets())
+			{
+				if (!cmpUnitAI.orderQueue[0] || cmpUnitAI.orderQueue[0].type != "Attack")
+					continue;
+				var data = cmpUnitAI.orderQueue[0].data;
+				cmpUnitAI.FinishOrder();
+				this.PushOrderFront("Attack", { "target": data.target, "force": false, "forceResponse": data.forceResponse });
+				return true;
+			}
+		}
+		return false;
+	}
+
 	if (!this.losRangeQuery)
 		return false;
 
