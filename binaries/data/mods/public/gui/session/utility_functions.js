@@ -303,6 +303,24 @@ function getEntityCommandsList(entState)
 		});
 	}
 
+	if (entState.unitAI && entState.unitAI.canGuard && !entState.unitAI.isGuarding)
+	{
+		commands.push({
+		    "name": "add-guard",
+		    "tooltip": "Guard",
+		    "icon": "add-guard.png"
+		});
+	}
+
+	if (entState.unitAI && entState.unitAI.isGuarding)
+	{
+		commands.push({
+		    "name": "remove-guard",
+		    "tooltip": "Remove guard",
+		    "icon": "remove-guard.png"
+		});
+	}
+
 	return commands;
 }
 

@@ -13,6 +13,9 @@
     <GenericName>Siege</GenericName>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
+  <UnitAI>
+    <CanGuard>false</CanGuard>
+  </UnitAI>
   <Position>
     <Anchor>pitch-roll</Anchor>
   </Position>

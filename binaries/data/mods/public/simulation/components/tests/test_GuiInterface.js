@@ -6,6 +6,7 @@ Engine.LoadComponentScript("interfaces/EntityLimits.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Gate.js");
+Engine.LoadComponentScript("interfaces/Guard.js");
 Engine.LoadComponentScript("interfaces/Heal.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Pack.js");

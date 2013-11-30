@@ -180,6 +180,15 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
+	case "remove-guard":
+		for each (var ent in entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if(cmpUnitAI)
+				cmpUnitAI.RemoveGuard();
+		}
+		break;
+
 	case "train":
 		// Check entity limits
 		var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
@@ -325,6 +334,20 @@ function ProcessCommand(player, cmd)
 		else if (g_DebugCommands)
 		{
 			warn("Invalid command: garrison target cannot be controlled by player "+player+" (or ally): "+uneval(cmd));
+		}
+		break;
+
+	case "guard":
+		// Verify that the target can be controlled by the player or is mutualAlly
+		if (CanControlUnitOrIsAlly(cmd.target, player, controlAllUnits))
+		{
+			GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
+				cmpUnitAI.Guard(cmd.target, cmd.queued);
+			});
+		}
+		else if (g_DebugCommands)
+		{
+			warn("Invalid command: guard/escort target cannot be controlled by player "+player+": "+uneval(cmd));
 		}
 		break;
 

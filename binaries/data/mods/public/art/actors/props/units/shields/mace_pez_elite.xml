@@ -10,6 +10,13 @@
     </variant>
   </group>
   <group>
+    <variant frequency="2" name="Shield Bronze A">
+      <textures>
+        <texture file="props/shield/mace_bronze_a_player.png" name="baseTex"/>
+        <texture file="props/shield/mace_silver_a_norm.png" name="normTex"/>
+        <texture file="props/shield/mace_silver_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
     <variant frequency="1" name="Shield Bronze B">
       <textures>
         <texture file="props/shield/mace_bronze_b_player.png" name="baseTex"/>

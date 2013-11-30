@@ -46,6 +46,11 @@ var g_CachedLastStates = "";
 const DEFAULT_POPULATION_COLOR = "white";
 const POPULATION_ALERT_COLOR = "orange";
 
+// List of additional entities to highlight
+var g_ShowGuarding = false;
+var g_ShowGuarded = false;
+var g_AdditionalHighlight = [];
+
 function GetSimState()
 {
 	if (!g_SimState)
@@ -443,6 +448,9 @@ function onSimulationUpdate()
 	if (g_ShowAllStatusBars)
 		recalculateStatusBarDisplay();
 
+	if (g_ShowGuarding || g_ShowGuarded)
+		updateAdditionalHighlight();
+
 	updateHero();
 	updateGroups();
 	updateDebug();
@@ -663,6 +671,53 @@ function recalculateStatusBarDisplay()
 	}
 
 	Engine.GuiInterfaceCall("SetStatusBars", { "entities": entities, "enabled": g_ShowAllStatusBars });
+}
+
+// Update the additional list of entities to be highlighted.
+function updateAdditionalHighlight()
+{
+	var entsAdd = [];    // list of entities units to be highlighted
+	var entsRemove = [];
+	var highlighted = g_Selection.toList();
+	for each (var ent in g_Selection.highlighted)
+		highlighted.push(ent);
+
+	if (g_ShowGuarding)
+	{
+		// flag the guarding entities to add in this additional highlight
+		for each (var sel in g_Selection.selected)
+		{
+			var state = GetEntityState(sel);
+			if (!state.guard || !state.guard.entities.length)
+				continue;
+			for each (var ent in state.guard.entities)
+				if (highlighted.indexOf(ent) == -1 && entsAdd.indexOf(ent) == -1)
+					entsAdd.push(ent);
+		}
+	}
+
+	if (g_ShowGuarded)
+	{
+		// flag the guarded entities to add in this additional highlight
+		for each (var sel in g_Selection.selected)
+		{
+			var state = GetEntityState(sel);
+			if (!state.unitAI || !state.unitAI.isGuarding)
+				continue;
+			var ent = state.unitAI.isGuarding;
+			if (highlighted.indexOf(ent) == -1 && entsAdd.indexOf(ent) == -1)
+				entsAdd.push(ent);
+		}
+	}
+
+	// flag the entities to remove (from the previously added) from this additional highlight
+	for each (var ent in g_AdditionalHighlight)
+	    if (highlighted.indexOf(ent) == -1 && entsAdd.indexOf(ent) == -1 && entsRemove.indexOf(ent) == -1)
+			entsRemove.push(ent);
+
+	_setHighlight(entsAdd   , HIGHLIGHTED_ALPHA, true );
+	_setHighlight(entsRemove, 0                , false);
+	g_AdditionalHighlight = entsAdd;
 }
 
 // Temporarily adding this here

@@ -15,6 +15,7 @@ const SDLK_LALT = 308;
 const ACTION_NONE = 0;
 const ACTION_GARRISON = 1;
 const ACTION_REPAIR = 2;
+const ACTION_GUARD = 3;
 var preSelectedAction = ACTION_NONE;
 
 const INPUT_NORMAL = 0;
@@ -199,6 +200,8 @@ function getActionInfo(action, target)
 			return {"possible": true, "data": data, "cursor": cursor};
 		}
 		else if (action == "move" || action == "attack-move")
+			return {"possible": true};
+		else if (action == "remove-guard")
 			return {"possible": true};
 		else
 			return {"possible": false};
@@ -426,6 +429,10 @@ function getActionInfo(action, target)
 			if (entState.attack && targetState.hitpoints && (enemyOwned || neutralOwned))
 				return {"possible": Engine.GuiInterfaceCall("CanAttack", {"entity": entState.id, "target": target})};
 			break;
+		case "guard":
+			if (targetState.guard && (playerOwned || mutualAllyOwned))
+				return {"possible": (entState.unitAI && entState.unitAI.canGuard && !(targetState.unitAI && targetState.unitAI.isGuarding))};
+			break;
 		}
 	}
 	if (action == "move" || action == "attack-move")
@@ -502,6 +509,12 @@ function determineAction(x, y, fromMinimap)
 			else
 				return {"type": "none", "cursor": "action-repair-disabled", "target": undefined};
 			break;
+		case ACTION_GUARD:
+			if (getActionInfo("guard", target).possible)
+				return {"type": "guard", "cursor": "action-guard", "target": target};
+			else
+				return {"type": "none", "cursor": "action-guard-disabled", "target": undefined};
+			break;
 		}
 	}
 	else if (Engine.HotkeyIsPressed("session.attack") && getActionInfo("attack", target).possible)
@@ -515,6 +528,19 @@ function determineAction(x, y, fromMinimap)
 	else if (haveUnitAI && Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target).possible)
 	{
 			return {"type": "attack-move", "cursor": "action-attack-move"};
+	}
+	else if (Engine.HotkeyIsPressed("session.guard") && getActionInfo("guard", target).possible)
+	{
+		return {"type": "guard", "cursor": "action-guard", "target": target};
+	}
+	else if (Engine.HotkeyIsPressed("session.guard") && getActionInfo("remove-guard", target).possible)
+	{
+		var isGuarding = selection.some(function(ent) {
+			var entState = GetEntityState(ent);
+			return entState && entState.unitAI && entState.unitAI.isGuarding;
+		});
+		if (isGuarding)
+			return {"type": "remove-guard", "cursor": "action-remove-guard"};
 	}
 	else
 	{
@@ -1053,6 +1079,18 @@ function handleInputAfterGui(ev)
 		recalculateStatusBarDisplay();
 	}
 
+	if (ev.hotkey == "session.highlightguarding")
+	{
+		g_ShowGuarding = (ev.type == "hotkeydown");
+		updateAdditionalHighlight();
+	}
+
+	if (ev.hotkey == "session.highlightguarded")
+	{
+		g_ShowGuarded = (ev.type == "hotkeydown");
+		updateAdditionalHighlight();
+	}
+
 	// State-machine processing:
 
 	switch (inputState)
@@ -1114,6 +1152,16 @@ function handleInputAfterGui(ev)
 	case INPUT_PRESELECTEDACTION:
 		switch (ev.type)
 		{
+		case "mousemotion":
+			// Highlight the first hovered entity (if any)
+			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y);
+			if (ents.length)
+				g_Selection.setHighlightList([ents[0]]);
+			else
+				g_Selection.setHighlightList([]);
+
+			return false;
+
 		case "mousebuttondown":
 			if (ev.button == SDL_BUTTON_LEFT && preSelectedAction != ACTION_NONE)
 			{
@@ -1392,6 +1440,16 @@ function doAction(action, ev)
 	case "garrison":
 		Engine.PostNetworkCommand({"type": "garrison", "entities": selection, "target": action.target, "queued": queued});
 		Engine.GuiInterfaceCall("PlaySound", { "name": "order_garrison", "entity": selection[0] });
+		return true;
+
+	case "guard":
+		Engine.PostNetworkCommand({"type": "guard", "entities": selection, "target": action.target, "queued": queued});
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_guard", "entity": selection[0] });
+		return true;
+
+	case "remove-guard":
+		Engine.PostNetworkCommand({"type": "remove-guard", "entities": selection, "target": action.target, "queued": queued});
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_guard", "entity": selection[0] });
 		return true;
 
 	case "set-rallypoint":
@@ -1820,6 +1878,13 @@ function performCommand(entity, commandName)
 				inputState = INPUT_PRESELECTEDACTION;
 				preSelectedAction = ACTION_REPAIR;
 				break;
+			case "add-guard":
+				inputState = INPUT_PRESELECTEDACTION;
+				preSelectedAction = ACTION_GUARD;
+				break;
+			case "remove-guard":
+				removeGuard();
+				break;
 			case "unload-all":
 				unloadAll();
 				break;
@@ -2104,6 +2169,17 @@ function backToWork()
 	
 	Engine.PostNetworkCommand({"type": "back-to-work", "entities": workers});
 	
+}
+
+function removeGuard()
+{
+	// Filter out all entities that are currently guarding/escorting.
+	var entities = g_Selection.toList().filter(function(e) {
+		var state = GetEntityState(e);
+		return (state && state.unitAI && state.unitAI.isGuarding);
+	});
+	
+	Engine.PostNetworkCommand({"type": "remove-guard", "entities": entities});
 }
 
 function clearSelection()

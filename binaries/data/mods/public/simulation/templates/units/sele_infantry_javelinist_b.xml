@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_ranged_javelinist">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/sele_stables
+      structures/sele_library
+      structures/sele_wonder
+    </Entities>
+  </Builder>
+  <Identity>
+    <Civ>sele</Civ>
+	<SelectionGroupName>units/sele_infantry_javelinist_b</SelectionGroupName>
+	<GenericName>Arab Javelineer</GenericName>
+    <SpecificName>Pezakontistès Aravikós</SpecificName>
+    <History>.</History>
+    <Icon>units/pers_infantry_javelinist.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Promotion>
+    <Entity>units/sele_infantry_javelinist_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/persians/infantry_javelinist_b.xml</Actor>
+  </VisualActor>
+</Entity>

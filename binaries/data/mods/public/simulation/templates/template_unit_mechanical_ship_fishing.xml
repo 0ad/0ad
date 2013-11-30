@@ -51,6 +51,9 @@ Fish the waters for Food. Garrison a support or infantry unit inside to boost fi
       <order_attack>actor/ship/boat_move.xml</order_attack>
     </SoundGroups>
   </Sound>
+  <UnitAI>
+    <CanGuard>false</CanGuard>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed>8.5</WalkSpeed>
   </UnitMotion>

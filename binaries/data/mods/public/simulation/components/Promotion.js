@@ -80,6 +80,12 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	cmpPromotedUnitAI.AddOrders(orders);
 	var workOrders = cmpCurrentUnitAI.GetWorkOrders();
 	cmpPromotedUnitAI.SetWorkOrders(workOrders);
+	cmpPromotedUnitAI.SetGuardOf(cmpCurrentUnitAI.IsGuardOf());
+
+	var cmpCurrentUnitGuard = Engine.QueryInterface(this.entity, IID_Guard);
+	var cmpPromotedUnitGuard = Engine.QueryInterface(promotedUnitEntity, IID_Guard);
+	if (cmpCurrentUnitGuard && cmpPromotedUnitGuard)
+		cmpPromotedUnitGuard.SetEntities(cmpCurrentUnitGuard.GetEntities());
 
 	Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: promotedUnitEntity });
 

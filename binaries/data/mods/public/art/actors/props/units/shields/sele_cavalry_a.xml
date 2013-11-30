@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="back">
+      <mesh>props/shield/round_noboss_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/round_noboss_back.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Bronze Rim">
+      <textures>
+        <texture file="props/shield/sele_cavalry_a_bronze.png" name="baseTex"/>
+        <texture file="props/shield/sele_cavalry_a_norm.png" name="normTex"/>
+        <texture file="props/shield/sele_cavalry_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Silver Rim">
+      <textures>
+        <texture file="props/shield/sele_cavalry_a_silver.png" name="baseTex"/>
+        <texture file="props/shield/sele_cavalry_a_norm.png" name="normTex"/>
+        <texture file="props/shield/sele_cavalry_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

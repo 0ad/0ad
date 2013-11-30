@@ -48,6 +48,9 @@ Trade between docks. Garrison a Trader aboard for additional profit (+20% for ea
     <MaxDistance>10.0</MaxDistance>
     <GainMultiplier>1.0</GainMultiplier>
   </Trader>
+  <UnitAI>
+    <CanGuard>false</CanGuard>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed>10.5</WalkSpeed>
   </UnitMotion>

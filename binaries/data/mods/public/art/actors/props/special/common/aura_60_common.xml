@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="field_foliagebush">
+      <mesh>props/special/aura_60.dae</mesh>
+      <props>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_001" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_002" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_003" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_004" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_005" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_006" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_007" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_008" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_009" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_010" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_011" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_012" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_013" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_014" maxheight="90" minheight="-90"/>
+        <prop actor="fauna/elephant_african_baby.xml" attachpoint="patch_015" maxheight="90" minheight="-90"/>
+      </props>
+      <textures>
+        <texture file="gaia/decal_farmland.png" name="baseTex"/>
+      </textures>
+    </variant>
+   </group>
+  <material>basic_trans.xml</material>
+</actor>
