@@ -18,6 +18,9 @@ UnitAI.prototype.Schema =
 	"<element name='FleeDistance'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>" +
+	"<element name='CanGuard'>" +
+		"<data type='boolean'/>" +
+	"</element>" +
 	"<optional>" +
 		"<interleave>" +
 			"<element name='NaturalBehaviour' a:help='Behaviour of the unit in the absence of player commands (intended for animals)'>" +
@@ -161,6 +164,10 @@ var UnitFsmSpec = {
 	},
 
 	"PickupCanceled": function(msg) {
+		// ignore
+	},
+
+	"GuardedAttacked": function(msg) {
 		// ignore
 	},
 
@@ -354,8 +361,21 @@ var UnitFsmSpec = {
 		}
 	},
 
+	"Order.Guard": function(msg) {
+		if (!this.AddGuard(this.order.data.target))
+		{
+			this.FinishOrder();
+			return;
+		}
+
+		if (this.MoveToTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
+			this.SetNextState("INDIVIDUAL.GUARD.ESCORTING");
+		else
+			this.SetNextState("INDIVIDUAL.GUARD.GUARDING");
+	},
+
 	"Order.Flee": function(msg) {
-		// We use the distance between the enities to account for ranged attacks
+		// We use the distance between the entities to account for ranged attacks
 		var distance = DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
 		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 		if (cmpUnitMotion.MoveToTargetRange(this.order.data.target, distance, -1))
@@ -738,6 +758,12 @@ var UnitFsmSpec = {
 				this.SetNextState("WALKING");
 			else
 				this.FinishOrder();
+		},
+
+		"Order.Guard": function(msg) {
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.CallMemberFunction("Guard", [msg.data.target, false]);
+			cmpFormation.Disband();
 		},
 
 		"Order.Stop": function(msg) {
@@ -1259,11 +1285,55 @@ var UnitFsmSpec = {
 			}
 		},
 
+		"GuardedAttacked": function(msg) {
+			// do nothing if we have a forced order in queue before the guard order
+			for (var i = 0; i < this.orderQueue.length; ++i)
+			{
+				if (this.orderQueue[i].type == "Guard")
+					break;
+				if (this.orderQueue[i].data && this.orderQueue[i].data.force)
+					return;
+			}
+			// if we already are targeting another unit still alive, finish with it first
+			if (this.order && this.order.type == "WalkAndFight")
+				if (this.order.data.target != msg.data.attacker && this.TargetIsAlive(msg.data.attacker)) 
+					return;
+
+			var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+			var cmpHealth = Engine.QueryInterface(this.isGuardOf, IID_Health);
+			if (cmpIdentity && cmpIdentity.HasClass("Support") &&
+				cmpHealth && cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints())
+			{
+				if (this.CanHeal(this.isGuardOf))
+					this.PushOrderFront("Heal", { "target": this.isGuardOf, "force": false });
+				else if (this.CanRepair(this.isGuardOf) && cmpHealth.IsRepairable())
+					this.PushOrderFront("Repair", { "target": this.isGuardOf, "autocontinue": false, "force": false });
+				return;
+			}
+
+			// target the unit
+			var cmpPosition = Engine.QueryInterface(msg.data.attacker, IID_Position);
+			if (!cmpPosition || !cmpPosition.IsInWorld())
+				return;
+			var pos = cmpPosition.GetPosition();
+			this.PushOrderFront("WalkAndFight", { "x": pos.x, "z": pos.z, "target": msg.data.attacker, "force": false });
+			// if we already had a WalkAndFight, keep only the most recent one in case the target has moved
+			if (this.orderQueue[1] && this.orderQueue[1].type == "WalkAndFight")
+				this.orderQueue.splice(1, 1);
+		},
+
 		"IDLE": {
 			"enter": function() {
 				// Switch back to idle animation to guarantee we won't
 				// get stuck with an incorrect animation
 				this.SelectAnimation("idle");
+
+				// If the unit is guarding/escorting, go back to its duty
+				if (this.isGuardOf)
+				{
+					this.Guard(this.isGuardOf, false);
+					return true;
+				}
 
 				// The GUI and AI want to know when a unit is idle, but we don't
 				// want to send frequent spurious messages if the unit's only
@@ -1363,6 +1433,111 @@ var UnitFsmSpec = {
 
 			"MoveCompleted": function() {
 				this.FinishOrder();
+			},
+		},
+
+		"GUARD": {
+			"RemoveGuard": function() {
+				this.StopMoving();
+				this.FinishOrder();
+			},
+
+			"ESCORTING": {
+				"enter": function () {
+					// Show weapons rather than carried resources.
+					this.SetGathererAnimationOverride(true);
+
+					this.StartTimer(0, 1000);
+					this.SelectAnimation("move");
+					this.SetHeldPositionOnEntity(this.isGuardOf);
+					return false;
+				},
+
+				"Timer": function(msg) {
+					// Check the target is alive
+					if (!this.TargetIsAlive(this.isGuardOf))
+					{
+						this.StopMoving();
+						this.FinishOrder();
+						return;
+					}
+					this.SetHeldPositionOnEntity(this.isGuardOf);
+				},
+
+				"leave": function(msg) {
+					this.SetMoveSpeed(this.GetWalkSpeed());
+					this.StopTimer();
+				},
+
+				"MoveStarted": function(msg) {
+					// Adapt the speed to the one of the target if needed
+					var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+					if (cmpUnitMotion.IsInTargetRange(this.isGuardOf, 0, 3*this.guardRange))
+					{
+						var cmpUnitAI = Engine.QueryInterface(this.isGuardOf, IID_UnitAI);
+						if (cmpUnitAI)
+						{
+							var speed = cmpUnitAI.GetWalkSpeed();
+							if (speed < this.GetWalkSpeed())
+								this.SetMoveSpeed(speed);
+						}
+					}
+				},
+
+				"MoveCompleted": function() {
+					this.SetMoveSpeed(this.GetWalkSpeed());
+					if (!this.MoveToTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
+						this.SetNextState("GUARDING");
+				},
+			},
+
+			"GUARDING": {
+				"enter": function () {
+					this.StartTimer(1000, 1000);
+					this.SetHeldPositionOnEntity(this.entity);
+					this.SelectAnimation("idle");
+					return false;
+				},
+
+				"LosRangeUpdate": function(msg) {
+					// Start attacking one of the newly-seen enemy (if any)
+					if (this.GetStance().targetVisibleEnemies)
+						this.AttackEntitiesByPreference(msg.data.added);
+				},
+
+				"LosGaiaRangeUpdate": function(msg) {
+					// Start attacking one of the newly-seen enemy (if any)
+					if (this.GetStance().targetVisibleEnemies)
+						this.AttackGaiaEntitiesByPreference(msg.data.added);
+				},
+
+				"Timer": function(msg) {
+					// Check the target is alive
+					if (!this.TargetIsAlive(this.isGuardOf))
+					{
+						this.FinishOrder();
+						return;
+					}
+					// then check is the target has moved
+					if (this.MoveToTargetRangeExplicit(this.isGuardOf, 0, this.guardRange)) 
+						this.SetNextState("ESCORTING");
+					else
+					{
+						// if nothing better to do, check if the guarded needs to be healed or repaired
+						var cmpHealth = Engine.QueryInterface(this.isGuardOf, IID_Health);
+						if (cmpHealth && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints()))
+						{
+							if (this.CanHeal(this.isGuardOf))
+								this.PushOrderFront("Heal", { "target": this.isGuardOf, "force": false });
+							else if (this.CanRepair(this.isGuardOf) && cmpHealth.IsRepairable())
+								this.PushOrderFront("Repair", { "target": this.isGuardOf, "autocontinue": false, "force": false });
+						}
+					}
+				},
+
+				"leave": function(msg) {
+					this.StopTimer();
+				},
 			},
 		},
 
@@ -2715,6 +2890,8 @@ UnitAI.prototype.Init = function()
 	// Queue of remembered works
 	this.workOrders = [];
 
+	this.isGuardOf = undefined;
+
 	// For preventing increased action rate due to Stop orders or target death.
 	this.lastAttacked = undefined;
 	this.lastHealed = undefined;
@@ -3039,7 +3216,6 @@ UnitAI.prototype.FinishOrder = function()
 		error("FinishOrder called for entity " + this.entity + " (" + template + ") when order queue is empty\n" + stack);
 	}
 
-	// Remove the order from the queue
 	this.orderQueue.shift();
 	this.order = this.orderQueue[0];
 
@@ -3391,11 +3567,19 @@ UnitAI.prototype.OnGlobalEntityRenamed = function(msg)
 	for each (var order in this.orderQueue)
 		if (order.data && order.data.target && order.data.target == msg.entity)
 			order.data.target = msg.newentity;
+
+	if (this.isGuardOf && this.isGuardOf == msg.entity)
+		this.isGuardOf = msg.newentity;
 };
 
 UnitAI.prototype.OnAttacked = function(msg)
 {
 	UnitFsm.ProcessMessage(this, {"type": "Attacked", "data": msg});
+};
+
+UnitAI.prototype.OnGuardedAttacked = function(msg)
+{
+	UnitFsm.ProcessMessage(this, {"type": "GuardedAttacked", "data": msg.data});
 };
 
 UnitAI.prototype.OnHealthChanged = function(msg)
@@ -4043,6 +4227,19 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
 	if (force)
 		return false;
 
+	// If we are guarding/escorting, don't abandon as long as the guarded unit is in target range of the attacker
+	if (this.isGuardOf)
+	{
+		var cmpUnitAI =  Engine.QueryInterface(target, IID_UnitAI);
+		var cmpAttack = Engine.QueryInterface(target, IID_Attack);
+		if (cmpUnitAI && cmpAttack)
+		{
+			for each (var type in cmpAttack.GetAttackTypes())
+				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, IID_Attack, type))
+					return false;
+		}
+	}
+
 	// Stop if we're in hold-ground mode and it's too far from the holding point
 	if (this.GetStance().respondHoldGround)
 	{
@@ -4076,6 +4273,19 @@ UnitAI.prototype.ShouldChaseTargetedEntity = function(target, force)
 
 	if (this.GetStance().respondChase)
 		return true;
+
+	// If we are guarding/escorting, chase at least as long as the guarded unit is in target range of the attacker
+	if (this.isGuardOf)
+	{
+		var cmpUnitAI =  Engine.QueryInterface(target, IID_UnitAI);
+		var cmpAttack = Engine.QueryInterface(target, IID_Attack);
+		if (cmpUnitAI && cmpAttack)
+		{
+			for each (var type in cmpAttack.GetAttackTypes())
+				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, IID_Attack, type))
+					return true;
+		}
+	}
 
 	if (force)
 		return true;
@@ -4177,6 +4387,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 
 		case "WalkToTarget":
 		case "WalkToTargetRange": // This doesn't move to the target (just into range), but a later order will.
+		case "Guard":
 		case "Flee":
 		case "LeaveFoundation":
 		case "Attack":
@@ -4219,6 +4430,99 @@ UnitAI.prototype.AddOrder = function(type, data, queued)
 		this.PushOrder(type, data);
 	else
 		this.ReplaceOrder(type, data);
+};
+
+/**
+ * Adds guard/escort order to the queue, forced by the player.
+ */
+UnitAI.prototype.Guard = function(target, queued)
+{
+	if (!this.CanGuard())
+	{
+		this.WalkToTarget(target, queued);
+		return;
+	}
+
+	// if we already had an old guard order, do nothing if the target is the same
+	// and the order is running, otherwise remove the previous order
+	if (this.isGuardOf)
+	{
+		if (this.isGuardOf == target && this.order && this.order.type == "Guard")
+			return;
+		else
+			this.RemoveGuard();
+	}
+
+	this.AddOrder("Guard", { "target": target, "force": false }, queued);
+};
+
+UnitAI.prototype.AddGuard = function(target)
+{
+	if (!this.CanGuard())
+		return false;
+
+	var cmpGuard = Engine.QueryInterface(target, IID_Guard);
+	if (!cmpGuard)
+		return false;
+
+	// Do not allow to guard a unit already guarding
+	var cmpUnitAI = Engine.QueryInterface(target, IID_UnitAI);
+	if (cmpUnitAI && cmpUnitAI.IsGuardOf())
+		return false;
+
+	this.isGuardOf = target;
+	this.guardRange = cmpGuard.GetRange(this.entity);
+	cmpGuard.AddGuard(this.entity);
+	return true;
+};
+
+UnitAI.prototype.RemoveGuard = function()
+{
+	if (this.isGuardOf)
+	{
+		var cmpGuard = Engine.QueryInterface(this.isGuardOf, IID_Guard);
+		if (cmpGuard)
+			cmpGuard.RemoveGuard(this.entity);
+		this.guardRange = undefined;
+		this.isGuardOf = undefined;
+	}
+
+	if (!this.order)
+		return;
+
+	if (this.order.type == "Guard")
+		UnitFsm.ProcessMessage(this, {"type": "RemoveGuard"});
+	else
+		for (var i = 1; i < this.orderQueue.length; ++i)
+			if (this.orderQueue[i].type == "Guard")
+				this.orderQueue.splice(i, 1);
+};
+
+UnitAI.prototype.IsGuardOf = function()
+{
+	return this.isGuardOf;
+};
+
+UnitAI.prototype.SetGuardOf = function(entity)
+{
+	// entity may be undefined
+	this.isGuardOf = entity;
+};
+
+UnitAI.prototype.CanGuard = function()
+{
+	// Formation controllers should always respond to commands
+	// (then the individual units can make up their own minds)
+	if (this.IsFormationController())
+		return true;
+
+	// Do not let a unit already guarded to guard. This would work in principle,
+	// but would clutter the gui with too much buttons to take all cases into account
+	var cmpGuard = Engine.QueryInterface(this.entity, IID_Guard);
+	if (cmpGuard && cmpGuard.GetEntities().length)
+		return false;
+
+	return (this.template.CanGuard == "true");
 };
 
 /**
@@ -4680,6 +4984,15 @@ UnitAI.prototype.SetMoveSpeed = function(speed)
 UnitAI.prototype.SetHeldPosition = function(x, z)
 {
 	this.heldPosition = {"x": x, "z": z};
+};
+
+UnitAI.prototype.SetHeldPositionOnEntity = function(entity)
+{
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition || !cmpPosition.IsInWorld())
+		return;
+	var pos = cmpPosition.GetPosition();
+	this.SetHeldPosition(pos.x, pos.z);
 };
 
 UnitAI.prototype.GetHeldPosition = function(pos)

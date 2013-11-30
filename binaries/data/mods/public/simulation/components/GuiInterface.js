@@ -350,12 +350,22 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"state": cmpUnitAI.GetCurrentState(),
 			"orders": cmpUnitAI.GetOrders(),
 			"hasWorkOrders": cmpUnitAI.HasWorkOrders(),
+			"canGuard": cmpUnitAI.CanGuard(),
+			"isGuarding": cmpUnitAI.IsGuardOf(),
 		};
 		// Add some information needed for ungarrisoning
 		if (cmpUnitAI.isGarrisoned && ret.player !== undefined)
 			ret.template = "p" + ret.player + "&" + ret.template;
 	}
 
+	var cmpGuard = Engine.QueryInterface(ent, IID_Guard);
+	if (cmpGuard)
+	{
+		ret.guard = {
+			"entities": cmpGuard.GetEntities(),
+		};
+	}
+	
 	var cmpGate = Engine.QueryInterface(ent, IID_Gate);
 	if (cmpGate)
 	{

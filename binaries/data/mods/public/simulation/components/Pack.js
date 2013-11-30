@@ -162,7 +162,14 @@ Pack.prototype.PackProgress = function(data, lateness)
 			if (cmpUnitAI.GetStanceName())
 				cmpNewUnitAI.SwitchToStance(cmpUnitAI.GetStanceName());
 			cmpNewUnitAI.AddOrders(cmpUnitAI.GetOrders());
+			cmpNewUnitAI.SetGuardOf(cmpUnitAI.IsGuardOf());
 		}
+
+		// Maintain the list of guards
+		var cmpGuard = Engine.QueryInterface(this.entity, IID_Guard);
+		var cmpNewGuard = Engine.QueryInterface(newEntity, IID_Guard);
+		if (cmpGuard && cmpNewGuard)
+			cmpNewGuard.SetEntities(cmpGuard.GetEntities());
 
 		Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: newEntity });
 
