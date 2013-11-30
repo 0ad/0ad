@@ -24,6 +24,13 @@
         <texture file="props/shield/mace_silver_c_spec.png" name="specTex"/>
       </textures>
     </variant>
+    <variant frequency="1" name="Shield Silver K">
+      <textures>
+        <texture file="props/shield/mace_round_k_silver.png" name="baseTex"/>
+        <texture file="props/shield/mace_round_k_norm.png" name="normTex"/>
+        <texture file="props/shield/mace_round_k_spec.png" name="specTex"/>
+      </textures>
+    </variant>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

@@ -11,10 +11,18 @@
   </group>
   <group>
     <variant frequency="1" name="shield-dokana-a">
-      <textures><texture file="props/shield/hele_spartan_dokana_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/hele_spartan_dokana_a.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="shield-dokana-b">
-      <textures><texture file="props/shield/hele_spartan_dokana_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/hele_spartan_dokana_b.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>
