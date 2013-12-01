@@ -20,6 +20,9 @@
       units/pers_ship_bireme
       units/pers_ship_trireme
     </Entities>
+    <Technologies datatype="tokens">
+      persians/special_equine_transports
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/dock.xml</Actor>

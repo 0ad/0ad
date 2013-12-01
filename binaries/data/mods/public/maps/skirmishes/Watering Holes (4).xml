@@ -11,7 +11,7 @@
 		<Fog>
 			<FogFactor>0.00140625</FogFactor>
 			<FogThickness>0.00195313</FogThickness>
-			<FogColour r="0.839216" g="0.847059" b="0.878431"/>
+			<FogColour r="0.839216" g="0.847059" b="0.87451"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -21,7 +21,7 @@
 				<Shininess>150</Shininess>
 				<Waviness>2.51953</Waviness>
 				<Murkiness>0.863281</Murkiness>
-				<Tint r="0.741176" g="0.592157" b="0.27451"/>
+				<Tint r="0.737255" g="0.592157" b="0.27451"/>
 				<ReflectionTint r="0.611765" g="0.447059" b="0.219608"/>
 				<ReflectionTintStrength>0.258789</ReflectionTintStrength>
 			</WaterBody>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="118.876" y="72.9172" z="72.5732"/>
+		<Position x="380.288" y="91.0823" z="242.556"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -61,7 +61,7 @@
       "Name": "Player 4"
     }
   ],
-  "Preview": "sahel_watering_holes_scn.png",
+  "Preview": "watering_holes_skirmish.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
