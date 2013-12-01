@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="1.21198" g="1.08365" b="0.684412"/>
+		<SunColour r="1.21198" g="1.0789" b="0.679659"/>
 		<SunElevation angle="0.510983"/>
 		<SunRotation angle="-1.15355"/>
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
@@ -35,9 +35,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="560.351" y="133.751" z="267.229"/>
-		<Rotation angle="-0.218608"/>
-		<Declination angle="0.584622"/>
+		<Position x="466.047" y="128.234" z="437.526"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -18662,6 +18662,167 @@
 			<Position x="916.15644" z="688.98823"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="25388"/>
+		</Entity>
+		<Entity uid="3198">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="586.20105" z="690.55317"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10866"/>
+		</Entity>
+		<Entity uid="3199">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="962.27381" z="524.81122"/>
+			<Orientation y="0.85901"/>
+			<Actor seed="56822"/>
+		</Entity>
+		<Entity uid="3200">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="740.41736" z="150.14853"/>
+			<Orientation y="0.43592"/>
+			<Actor seed="11936"/>
+		</Entity>
+		<Entity uid="3201">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="346.24033" z="260.66495"/>
+			<Orientation y="-1.3354"/>
+			<Actor seed="50662"/>
+		</Entity>
+		<Entity uid="3202">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="249.09452" z="606.97693"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33716"/>
+		</Entity>
+		<Entity uid="3203">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="588.77076" z="447.52018"/>
+			<Orientation y="1.08558"/>
+			<Actor seed="57676"/>
+		</Entity>
+		<Entity uid="3204">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="733.30665" z="583.2234"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7640"/>
+		</Entity>
+		<Entity uid="3205">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="282.75522" z="960.00135"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39186"/>
+		</Entity>
+		<Entity uid="3206">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="458.66932" z="1041.76648"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33326"/>
+		</Entity>
+		<Entity uid="3207">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="790.90857" z="1159.13648"/>
+			<Orientation y="-1.3165"/>
+			<Actor seed="28244"/>
+		</Entity>
+		<Entity uid="3208">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="1061.00916" z="880.89673"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3030"/>
+		</Entity>
+		<Entity uid="3211">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="943.03132" z="810.50342"/>
+			<Orientation y="-0.07491"/>
+			<Actor seed="52640"/>
+		</Entity>
+		<Entity uid="3212">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="458.86036" z="752.88563"/>
+			<Orientation y="0.17025"/>
+			<Actor seed="54682"/>
+		</Entity>
+		<Entity uid="3213">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="303.42664" z="425.77436"/>
+			<Orientation y="-2.72591"/>
+			<Actor seed="28216"/>
+		</Entity>
+		<Entity uid="3214">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="519.3924" z="124.11945"/>
+			<Orientation y="-2.08144"/>
+			<Actor seed="13722"/>
+		</Entity>
+		<Entity uid="3215">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="642.73255" z="371.80604"/>
+			<Orientation y="-2.64977"/>
+			<Actor seed="49946"/>
+		</Entity>
+		<Entity uid="3216">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="869.66523" z="254.11786"/>
+			<Orientation y="0.03745"/>
+			<Actor seed="10636"/>
+		</Entity>
+		<Entity uid="3217">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="1096.18458" z="472.02631"/>
+			<Orientation y="-1.8281"/>
+			<Actor seed="7102"/>
+		</Entity>
+		<Entity uid="3218">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="879.14258" z="656.5135"/>
+			<Orientation y="-3.13227"/>
+			<Actor seed="23908"/>
+		</Entity>
+		<Entity uid="3219">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="215.67327" z="863.29358"/>
+			<Orientation y="2.27981"/>
+			<Actor seed="13606"/>
+		</Entity>
+		<Entity uid="3220">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="647.79291" z="1003.98304"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29472"/>
+		</Entity>
+		<Entity uid="3221">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="597.97388" z="1205.61353"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63118"/>
+		</Entity>
+		<Entity uid="3222">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="962.1756" z="1020.01539"/>
+			<Orientation y="0.43659"/>
+			<Actor seed="20024"/>
 		</Entity>
 	</Entities>
 	<Paths/>

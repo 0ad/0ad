@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/pers_cavalry_swordsman_a_trireme">
+  <Armour>
+    <Hack>3</Hack>
+    <Pierce>7</Pierce>
+    <Crush>6</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>25.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>30.0</Hack>
+    </Charge>
+  </Attack>
+  <Health>
+    <Max>170</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>12.0</WalkSpeed>
+    <Run>
+      <Speed>24.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/persians/cavalry_swordsman_e.xml</Actor>
+  </VisualActor>
+</Entity>
