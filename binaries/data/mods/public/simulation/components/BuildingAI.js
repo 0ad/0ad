@@ -92,21 +92,20 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
 		this.enemyUnitsQuery = undefined;
 	}
 	var players = [];
-	
+
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
-		
+
 	for (var i = 1; i < numPlayers; ++i)
 	{	// Exclude gaia, allies, and self
 		// TODO: How to handle neutral players - Special query to attack military only?
 		if (cmpPlayer.IsEnemy(i))
 			players.push(i);
 	}
-	
+
 	var range = cmpAttack.GetRange(attackType);
 	this.enemyUnitsQuery = cmpRangeManager.CreateActiveParabolicQuery(this.entity, range.min, range.max, range.elevationBonus, players, IID_DamageReceiver, cmpRangeManager.GetEntityFlagMask("normal"));
 	cmpRangeManager.EnableActiveQuery(this.enemyUnitsQuery);
-	
 };
 
 // Set up a range query for Gaia units within LOS range which can be attacked.
@@ -187,14 +186,14 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
 				this.targetUnits.splice(index, 1);
 		}
 	}
-	
+
 	if (!this.targetUnits.length || this.timer)
 		return;
-	// units entered the range, prepare to shoot	
+
+	// units entered the range, prepare to shoot
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	var attackTimers = cmpAttack.GetTimers(attackType);
 	this.timer = cmpTimer.SetInterval(this.entity, IID_BuildingAI, "FireArrows", attackTimers.prepare, attackTimers.repeat / roundCount, null);
-	
 };
 
 BuildingAI.prototype.GetDefaultArrowCount = function()
@@ -238,7 +237,6 @@ BuildingAI.prototype.GetArrowCount = function()
  */
 BuildingAI.prototype.FireArrows = function()
 {
-
 	if (!this.targetUnits.length)
 	{
 		if (this.timer)
@@ -254,7 +252,7 @@ BuildingAI.prototype.FireArrows = function()
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
 		return;
-	
+
 	var arrowsToFire = 0;
 	if (this.currentRound > (roundCount - 1))
 	{
@@ -321,9 +319,9 @@ BuildingAI.prototype.FireArrows = function()
 			}
 		}
 	}
+
 	this.arrowsLeft -= arrowsToFire;
 	this.currentRound++;
-	
 };
 
 /**

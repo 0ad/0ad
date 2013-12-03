@@ -1,4 +1,3 @@
-
 function initMusic()
 {
 	// Probably will need to put this in a place where it won't get
@@ -25,8 +24,7 @@ function Music()
 		PEACE: "peace",
 		BATTLE: "battle",
 		VICTORY: "victory",
-		DEFEAT: "defeat",
-		DEFEAT_CUE: "defeat_cue"
+		DEFEAT: "defeat"
 	};
 
 	this.resetTracks();
@@ -37,8 +35,7 @@ function Music()
 		PEACE : 2,
 		BATTLE : 3,
 		VICTORY :4,
-		DEFEAT : 5,
-		DEFEAT_CUE : 6
+		DEFEAT : 5
 	};
 
 	this.musicGain = 0.3;
@@ -58,8 +55,7 @@ Music.prototype.resetTracks = function()
 		PEACE: [],
 		BATTLE: ["Taiko_1.ogg", "Taiko_2.ogg"],
 		VICTORY : ["You_are_Victorious!.ogg"],
-		DEFEAT : ["Dried_Tears.ogg"],
-		DEFEAT_CUE : ["gen_loss_cue.ogg"]
+		DEFEAT : ["Dried_Tears.ogg"]
 	};
 };
 
@@ -102,11 +98,6 @@ Music.prototype.updateState = function()
 			this.startPlayList(this.tracks.DEFEAT, 2.0, true);
 			break;
 
-		case this.states.DEFEAT_CUE:
-			this.startPlayList(this.tracks.DEFEAT_CUE, 2.0, false);
-			this.setDelay(this.states.DEFEAT, 7000);
-			break;
-
 		default:
 			warn("Music.updateState(): Unknown music state: " + this.currentState);
 			break;
@@ -146,11 +137,11 @@ Music.prototype.getRandomTrack = function(tracks)
 
 Music.prototype.startPlayList = function(tracks, fadeInPeriod, isLooping)
 {
-  Engine.ClearPlaylist();
-  for (var i in tracks)
-  {
+	Engine.ClearPlaylist();
+	for (var i in tracks)
+	{
 		Engine.AddPlaylistItem( this.RELATIVE_MUSIC_PATH + tracks[i] );
-  }
+	}
 
 	Engine.StartPlaylist(isLooping);
 };

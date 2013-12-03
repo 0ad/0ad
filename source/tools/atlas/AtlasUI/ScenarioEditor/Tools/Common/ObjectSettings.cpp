@@ -153,6 +153,9 @@ void ObjectSettings::PostToGame()
 {
 	if (m_SelectedObjects.empty())
 		return;
-
-	POST_COMMAND(SetObjectSettings, (m_View, m_SelectedObjects[0], GetSettings()));
+	
+	for (std::vector<AtlasMessage::ObjectID>::iterator it = m_SelectedObjects.begin(); it != m_SelectedObjects.end(); it++)
+	{
+		POST_COMMAND(SetObjectSettings, (m_View, *it, GetSettings()));
+	}
 }
