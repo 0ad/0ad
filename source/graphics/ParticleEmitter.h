@@ -21,6 +21,7 @@
 #include "graphics/ModelAbstract.h"
 #include "graphics/ParticleEmitterType.h"
 #include "graphics/Texture.h"
+#include "maths/Quaternion.h"
 #include "renderer/VertexArray.h"
 
 #include <map>
@@ -35,6 +36,7 @@ struct SParticle
 	float angle;
 	float angleSpeed;
 	float size;
+	float sizeGrowthRate;
 	SColor4ub color;
 	float age;
 	float maxAge;
@@ -81,6 +83,19 @@ public:
 	}
 
 	/**
+	 * Set the rotation to be used for emission of new particles (note: depends on particles).
+	 */
+	void SetRotation(const CQuaternion& rot)
+	{
+		m_Rot = rot;
+	}
+	
+	CQuaternion GetRotation() const
+	{
+		return m_Rot;
+	}
+
+	/**
 	 * Get the bounding box of the center points of particles at their current positions.
 	 */
 	CBoundingBoxAligned GetParticleBounds() { return m_ParticleBounds; }
@@ -122,6 +137,7 @@ public:
 	bool m_Active;
 
 	CVector3D m_Pos;
+	CQuaternion m_Rot;
 
 	std::map<std::string, float> m_EntityVariables;
 

@@ -11,7 +11,7 @@ var baseConfig = {
 	},
 	"Economy" : {
 		"townPhase" : 180,	// time to start trying to reach town phase (might be a while after. Still need the requirements + ress )
-		"cityPhase" : 840000,	// time to start trying to reach city phase
+		"cityPhase" : 840,	// time to start trying to reach city phase
 		"popForMarket" : 80,
 		"popForFarmstead" : 45,
 		"dockStartTime" : 240,	// Time to wait before building the dock

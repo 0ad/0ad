@@ -994,7 +994,8 @@ public:
 		ENSURE(cmpAIInterface);
 		
 		// Get the game state from AIInterface
-		CScriptVal state = cmpAIInterface->GetFullRepresentation();
+		// We flush events from the initialization so we get a clean state now.
+		CScriptVal state = cmpAIInterface->GetFullRepresentation(true);
 
 		// Get the passability data
 		Grid<u16> dummyGrid;

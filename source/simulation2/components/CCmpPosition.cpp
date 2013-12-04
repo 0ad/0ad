@@ -238,6 +238,23 @@ public:
 
 		AdvertisePositionChanges();
 	}
+	
+	virtual void MoveAndTurnTo(entity_pos_t x, entity_pos_t z, entity_angle_t ry)
+	{
+		m_X = x;
+		m_Z = z;
+		m_RotY = ry;
+		
+		if (!m_InWorld)
+		{
+			m_InWorld = true;
+			m_LastX = m_PrevX = m_X;
+			m_LastZ = m_PrevZ = m_Z;
+			m_LastYOffset = m_YOffset;
+		}
+		
+		AdvertisePositionChanges();
+	}
 
 	virtual void JumpTo(entity_pos_t x, entity_pos_t z)
 	{

@@ -33,7 +33,6 @@
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
 #include "lib/timer.h"
-#include "maths/FixedVector2D.h"
 #include "ps/CLogger.h"
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
@@ -729,6 +728,20 @@ public:
 		q.enabled = false;
 	}
 
+	virtual std::vector<entity_id_t> ExecuteQueryAroundPos(CFixedVector2D pos,
+		entity_pos_t minRange, entity_pos_t maxRange,
+		std::vector<int> owners, int requiredInterface)
+	{
+		Query q = ConstructQuery(INVALID_ENTITY, minRange, maxRange, owners, requiredInterface, GetEntityFlagMask("normal"));
+		std::vector<entity_id_t> r;
+		PerformQuery(q, r, pos);
+
+		// Return the list sorted by distance from the entity
+		std::stable_sort(r.begin(), r.end(), EntityDistanceOrdering(m_EntityData, pos));
+
+		return r;
+	}
+
 	virtual std::vector<entity_id_t> ExecuteQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
 		std::vector<int> owners, int requiredInterface)
@@ -746,10 +759,10 @@ public:
 			return r;
 		}
 
-		PerformQuery(q, r);
+		CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
+		PerformQuery(q, r, pos);
 
 		// Return the list sorted by distance from the entity
-		CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
 		std::stable_sort(r.begin(), r.end(), EntityDistanceOrdering(m_EntityData, pos));
 
 		return r;
@@ -779,12 +792,12 @@ public:
 			return r;
 		}
 
-		PerformQuery(q, r);
+		CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
+		PerformQuery(q, r, pos);
 
 		q.lastMatch = r;
 
 		// Return the list sorted by distance from the entity
-		CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
 		std::stable_sort(r.begin(), r.end(), EntityDistanceOrdering(m_EntityData, pos));
 
 		return r;
@@ -841,7 +854,8 @@ public:
 
 			results.clear();
 			results.reserve(query.lastMatch.size());
-			PerformQuery(query, results);
+			CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
+			PerformQuery(query, results, pos);
 
 			// Compute the changes vs the last match
 			added.clear();
@@ -902,12 +916,8 @@ public:
 	/**
 	 * Returns a list of distinct entity IDs that match the given query, sorted by ID.
 	 */
-	void PerformQuery(const Query& q, std::vector<entity_id_t>& r)
+	void PerformQuery(const Query& q, std::vector<entity_id_t>& r, CFixedVector2D pos)
 	{
-		CmpPtr<ICmpPosition> cmpSourcePosition(q.source);
-		if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
-			return;
-		CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
 
 		// Special case: range -1.0 means check all entities ignoring distance
 		if (q.maxRange == entity_pos_t::FromInt(-1))
@@ -924,6 +934,7 @@ public:
 		else if (q.parabolic) 
 		{
 			// elevationBonus is part of the 3D position, as the source is really that much heigher
+			CmpPtr<ICmpPosition> cmpSourcePosition(q.source);
 			CFixedVector3D pos3d = cmpSourcePosition->GetPosition()+
 			    CFixedVector3D(entity_pos_t::Zero(), q.elevationBonus, entity_pos_t::Zero()) ;
 			// Get a quick list of entities that are potentially in range, with a cutoff of 2*maxRange
@@ -991,7 +1002,6 @@ public:
 			}
 		}
 	}
-
 
 	virtual entity_pos_t GetElevationAdaptedRange(CFixedVector3D pos, CFixedVector3D rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle)
 	{

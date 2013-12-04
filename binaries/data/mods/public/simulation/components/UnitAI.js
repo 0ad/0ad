@@ -4319,22 +4319,9 @@ UnitAI.prototype.MoveIntoFormation = function(cmd)
 	this.PushOrderFront("MoveIntoFormation", { "x": pos.x, "z": pos.z, "force": true });
 };
 
-/**
- * Returns the estimated distance that this unit will travel before either
- * finishing all of its orders, or reaching a non-walk target (attack, gather, etc).
- * Intended for Formation to switch to column layout on long walks.
- */
-UnitAI.prototype.ComputeWalkingDistance = function()
+UnitAI.prototype.GetTargetPositions = function()
 {
-	var distance = 0;
-
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (!cmpPosition || !cmpPosition.IsInWorld())
-		return 0;
-
-	// Keep track of the position at the start of each order
-	var pos = cmpPosition.GetPosition();
-
+	var targetPositions = [];
 	for (var i = 0; i < this.orderQueue.length; ++i)
 	{
 		var order = this.orderQueue[i];
@@ -4345,15 +4332,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 		case "WalkToPointRange":
 		case "MoveIntoFormation":
 		case "GatherNearPosition":
-			// Add the distance to the target point
-			var dx = order.data.x - pos.x;
-			var dz = order.data.z - pos.z;
-			var d = Math.sqrt(dx*dx + dz*dz);
-			distance += d;
-
-			// Remember this as the start position for the next order
-			pos = order.data;
-
+			targetPositions.push({"x" : order.data.x, "z" : order.data.z})
 			break; // and continue the loop
 
 		case "WalkToTarget":
@@ -4370,25 +4349,46 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 			// Find the target unit's position
 			var cmpTargetPosition = Engine.QueryInterface(order.data.target, IID_Position);
 			if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
-				return distance;
-			var targetPos = cmpTargetPosition.GetPosition();
-
-			// Add the distance to the target unit
-			var dx = targetPos.x - pos.x;
-			var dz = targetPos.z - pos.z;
-			var d = Math.sqrt(dx*dx + dz*dz);
-			distance += d;
-
-			// Return the total distance to the target
-			return distance;
+				return targetPositions;
+			var targetPos = cmpTargetPosition.GetPosition2D();
+			targetPositions.push({"x" : targetPos.x, "z" : targetPos.y})
+			return targetPositions;
 
 		case "Stop":
-			return 0;
+			return [];
 
 		default:
-			error("ComputeWalkingDistance: Unrecognised order type '"+order.type+"'");
-			return distance;
+			error("GetTargetPositions: Unrecognised order type '"+order.type+"'");
+			return [];
 		}
+	}
+	return targetPositions;
+};
+
+/**
+ * Returns the estimated distance that this unit will travel before either
+ * finishing all of its orders, or reaching a non-walk target (attack, gather, etc).
+ * Intended for Formation to switch to column layout on long walks.
+ */
+UnitAI.prototype.ComputeWalkingDistance = function()
+{
+	var distance = 0;
+
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition || !cmpPosition.IsInWorld())
+		return 0;
+
+	// Keep track of the position at the start of each order
+	var pos = cmpPosition.GetPosition();
+	var targetPositions = this.GetTargetPositions();
+	for (var i = 0; i < targetPositions; i++)
+	{
+		var dx = targetPositions[i].x - pos.x;
+		var dz = targetPositions[i].z - pos.z;
+		distance += Math.sqrt(dx*dx + dz*dz);
+
+		// Remember this as the start position for the next order
+		pos = targetPositions[i];
 	}
 
 	// Return the total distance to the end of the order queue

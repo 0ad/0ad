@@ -67,6 +67,7 @@ private:
 		VAR_VELOCITY_Z,
 		VAR_VELOCITY_ANGLE,
 		VAR_SIZE,
+		VAR_SIZE_GROWTHRATE,
 		VAR_COLOR_R,
 		VAR_COLOR_G,
 		VAR_COLOR_B,
@@ -96,7 +97,8 @@ private:
 	GLenum m_BlendFuncSrc;
 	GLenum m_BlendFuncDst;
 	bool m_StartFull;
-
+	bool m_UseRelativeVelocity;
+	
 	float m_MaxLifetime;
 	size_t m_MaxParticles;
 	CBoundingBoxAligned m_MaxBounds;

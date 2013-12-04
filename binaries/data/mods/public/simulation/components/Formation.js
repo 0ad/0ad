@@ -266,10 +266,8 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 	var walkingDistance = cmpUnitAI.ComputeWalkingDistance();
 	this.columnar = (walkingDistance > g_ColumnDistanceThreshold) && this.formationName != "Column Open";
 
-	var offsets = this.ComputeFormationOffsets(active, this.columnar);
 
 	var avgpos = this.ComputeAveragePosition(positions);
-	var avgoffset = this.ComputeAveragePosition(offsets);
 
 	// Reposition the formation if we're told to or if we don't already have a position
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
@@ -285,6 +283,8 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		}
 	}
 
+	var offsets = this.ComputeFormationOffsets(active, this.columnar);
+
 	for (var i = 0; i < offsets.length; ++i)
 	{
 		var offset = offsets[i];
@@ -295,16 +295,16 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		{
 			cmpUnitAI.ReplaceOrder("FormationWalk", {
 				"target": this.entity,
-				"x": offset.x - avgoffset.x,
-				"z": offset.z - avgoffset.z
+				"x": offset.x,
+				"z": offset.z
 			});
 		}
 		else
 		{
 			cmpUnitAI.PushOrderFront("FormationWalk", {
 				"target": this.entity,
-				"x": offset.x - avgoffset.x,
-				"z": offset.z - avgoffset.z
+				"x": offset.x,
+				"z": offset.z
 			});
 		}
 	}
@@ -341,6 +341,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 {
 	var separation = 4; // TODO: don't hardcode this
 
+	// the entities will be assigned to positions in the formation in 
+	// the same order as the types list is ordered
 	var types = {
 		"Cavalry" : [],
 		"Hero" : [],
@@ -348,7 +350,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 		"Ranged" : [],
 		"Support" : [],
 		"Unknown": []
-	}; // TODO: make this work so we put ranged behind infantry etc
+	}; 
 
 	for each (var ent in active)
 	{
@@ -591,7 +593,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 			cols = Math.ceil(count/6);
 		shape = "opensquare";
 		separation /= 1.5;
-		ordering = "cavalryOnTheSides";
+		ordering = "FillFromTheSides";
 		break;
 	default:
 		warn("Unknown formation: " + this.formationName);
@@ -630,77 +632,99 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 			left -= n;
 		}
 	}
-
-	// TODO: assign to minimise worst-case distances or whatever
-	if (ordering == "default")
+	// make sure the average offset is zero, as the formation is centered around that
+	// calculating offset distances without a zero average makes no sense, as the formation
+	// will jump to a different position any time
+	var avgoffset = this.ComputeAveragePosition(offsets);
+	for each (var offset in offsets)
 	{
-		for each (var offset in offsets)
+		offset.x -= avgoffset.x;
+		offset.z -= avgoffset.z;
+	}
+	// sort the offsets to the sides are filled first (with cavalry, then heroes ...)
+	if (ordering == "FillFromTheSides")
+		offsets.sort(function(o1, o2) { return Math.abs(o1.x) < Math.abs(o2.x);});
+
+	// use naive but realistic place assignment,
+	// every soldier searches the closest available place in the formation
+	// this isn't the overall smallest walking distance, but the result is realistic
+	var newOffsets = [];
+	var realPositions = this.GetRealOffsetPositions(offsets);
+	for each (var t in types)
+	{
+		var usedOffsets = offsets.splice(0,t.length);
+		var usedRealPositions = realPositions.splice(0, t.length);
+		for each (var ent in t)
 		{
-			var ent = undefined;
-			for (var t in types)
-			{
-				if (types[t].length)
-				{
-					ent = types[t].pop();
-					offset.ent = ent;
-					break;
-				}
-			}
+			var closestOffsetId = this.TakeClosestOffset(ent, usedRealPositions);
+			usedRealPositions.splice(closestOffsetId, 1);
+			newOffsets.push(usedOffsets.splice(closestOffsetId, 1)[0]);
+			newOffsets[newOffsets.length - 1].ent = ent;
 		}
 	}
-	else if (ordering == "cavalryOnTheSides")
+
+	return newOffsets;
+};
+
+/**
+ * Search the closest position in the realPositions list to the given entity
+ * @param ent, the queried entity
+ * @param realPositions, the world coordinates of the available offsets
+ * @return the index of the closest offset position
+ */
+Formation.prototype.TakeClosestOffset = function(ent, realPositions)
+{
+	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+	var pos = cmpPosition.GetPosition2D();
+	var closestOffsetId = -1;
+	var offsetDistanceSq = Infinity;
+	for (var i = 0; i < realPositions.length; i++)
 	{
-		var noffset = [];
-		var cavalrycount = types["Cavalry"].length;
-		offsets.sort(function (a, b) {
-			if (a.x < b.x) return -1;
-			else if (a.x == b.x && a.z < b.z) return -1;
-			return 1;
-		});
-
-		while (offsets.length && types["Cavalry"].length && types["Cavalry"].length > cavalrycount/2)
+		var dx = realPositions[i].x - pos.x;
+		var dz = realPositions[i].z - pos.y;
+		var distSq = dx * dx + dz * dz;
+		if (distSq < offsetDistanceSq)
 		{
-			var offset = offsets.pop();
-			offset.ent = types["Cavalry"].pop();
-			noffset.push(offset);
+			offsetDistanceSq = distSq;
+			closestOffsetId = i;
 		}
-
-		offsets.sort(function (a, b) {
-			if (a.x > b.x) return -1;
-			else if (a.x == b.x && a.z < b.z) return -1;
-			return 1;
-		});
-
-		while (offsets.length && types["Cavalry"].length)
-		{
-			var offset = offsets.pop();
-			offset.ent = types["Cavalry"].pop();
-			noffset.push(offset);
-		}
-
-		offsets.sort(function (a, b) {
-			if (a.z < b.z) return -1;
-			else if (a.z == b.z && a.x < b.x) return -1;
-			return 1;
-		});
-
-		while (offsets.length)
-		{
-			var offset = offsets.pop();
-			for (var t in types)
-			{
-				if (types[t].length)
-				{
-					offset.ent = types[t].pop();
-					break;
-				}
-			}
-			noffset.push(offset);
-		}
-		offsets = noffset;
 	}
+	return closestOffsetId;
+};
 
-	return offsets;
+/**
+ * Get the world positions for a list of offsets in this formation
+ */
+Formation.prototype.GetRealOffsetPositions = function(offsets)
+{
+	var offsetPositions = [];
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	var pos = cmpPosition.GetPosition2D();
+	// calculate the rotation of the formation based on the first unitAI target position
+	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	var targetPos = cmpUnitAI.GetTargetPositions();
+	// start with default rotation (for formations without target)
+	var sin = 1;
+	var cos = 0;
+	if (targetPos.length)
+	{
+		var dx = targetPos[0].x - pos.x;
+		var dz = targetPos[0].z - pos.y;
+		if (dx || dz)
+		{
+			var dist = Math.sqrt(dx * dx + dz * dz);
+			cos = dx / dist;
+			sin = dz / dist;
+		}
+	}
+	// calculate the world positions
+	for each (var o in offsets)
+		offsetPositions.push({
+			"x" : pos.x + o.z * cos + o.x * sin, 
+			"z" : pos.y + o.z * sin - o.x * cos
+		});
+
+	return offsetPositions;
 };
 
 Formation.prototype.ComputeAveragePosition = function(positions)

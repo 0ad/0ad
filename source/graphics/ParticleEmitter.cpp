@@ -277,4 +277,5 @@ void CModelParticleEmitter::InvalidatePosition()
 void CModelParticleEmitter::SetTransform(const CMatrix3D& transform)
 {
 	m_Emitter->SetPosition(transform.GetTranslation());
+	m_Emitter->SetRotation(transform.GetRotation());
 }

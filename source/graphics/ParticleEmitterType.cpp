@@ -314,20 +314,21 @@ CParticleEmitterType::CParticleEmitterType(const VfsPath& path, CParticleManager
 
 int CParticleEmitterType::GetVariableID(const std::string& name)
 {
-	if (name == "emissionrate")	return VAR_EMISSIONRATE;
-	if (name == "lifetime")		return VAR_LIFETIME;
-	if (name == "position.x")	return VAR_POSITION_X;
-	if (name == "position.y")	return VAR_POSITION_Y;
-	if (name == "position.z")	return VAR_POSITION_Z;
-	if (name == "angle")		return VAR_ANGLE;
-	if (name == "velocity.x")	return VAR_VELOCITY_X;
-	if (name == "velocity.y")	return VAR_VELOCITY_Y;
-	if (name == "velocity.z")	return VAR_VELOCITY_Z;
+	if (name == "emissionrate")		return VAR_EMISSIONRATE;
+	if (name == "lifetime")			return VAR_LIFETIME;
+	if (name == "position.x")		return VAR_POSITION_X;
+	if (name == "position.y")		return VAR_POSITION_Y;
+	if (name == "position.z")		return VAR_POSITION_Z;
+	if (name == "angle")			return VAR_ANGLE;
+	if (name == "velocity.x")		return VAR_VELOCITY_X;
+	if (name == "velocity.y")		return VAR_VELOCITY_Y;
+	if (name == "velocity.z")		return VAR_VELOCITY_Z;
 	if (name == "velocity.angle")	return VAR_VELOCITY_ANGLE;
-	if (name == "size")			return VAR_SIZE;
-	if (name == "color.r")		return VAR_COLOR_R;
-	if (name == "color.g")		return VAR_COLOR_G;
-	if (name == "color.b")		return VAR_COLOR_B;
+	if (name == "size")				return VAR_SIZE;
+	if (name == "size.growthRate")	return VAR_SIZE_GROWTHRATE;
+	if (name == "color.r")			return VAR_COLOR_R;
+	if (name == "color.g")			return VAR_COLOR_G;
+	if (name == "color.b")			return VAR_COLOR_B;
 	LOGWARNING(L"Particle sets unknown variable '%hs'", name.c_str());
 	return -1;
 }
@@ -348,6 +349,7 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 	m_Variables[VAR_VELOCITY_Z] = IParticleVarPtr(new CParticleVarConstant(0.f));
 	m_Variables[VAR_VELOCITY_ANGLE] = IParticleVarPtr(new CParticleVarConstant(0.f));
 	m_Variables[VAR_SIZE] = IParticleVarPtr(new CParticleVarConstant(1.f));
+	m_Variables[VAR_SIZE_GROWTHRATE] = IParticleVarPtr(new CParticleVarConstant(0.f));
 	m_Variables[VAR_COLOR_R] = IParticleVarPtr(new CParticleVarConstant(1.f));
 	m_Variables[VAR_COLOR_G] = IParticleVarPtr(new CParticleVarConstant(1.f));
 	m_Variables[VAR_COLOR_B] = IParticleVarPtr(new CParticleVarConstant(1.f));
@@ -355,6 +357,7 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 	m_BlendFuncSrc = GL_SRC_ALPHA;
 	m_BlendFuncDst = GL_ONE_MINUS_SRC_ALPHA;
 	m_StartFull = false;
+	m_UseRelativeVelocity = false;
 	m_Texture = g_Renderer.GetTextureManager().GetErrorTexture();
 
 	CXeromyces XeroFile;
@@ -370,6 +373,7 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 	EL(texture);
 	EL(blend);
 	EL(start_full);
+	EL(use_relative_velocity);
 	EL(constant);
 	EL(uniform);
 	EL(copy);
@@ -429,6 +433,10 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 		else if (Child.GetNodeName() == el_start_full)
 		{
 			m_StartFull = true;
+		}
+		else if (Child.GetNodeName() == el_use_relative_velocity)
+		{
+			m_UseRelativeVelocity = true;
 		}
 		else if (Child.GetNodeName() == el_constant)
 		{
@@ -530,14 +538,25 @@ void CParticleEmitterType::UpdateEmitterStep(CParticleEmitter& emitter, float dt
 			particle.pos.Z = m_Variables[VAR_POSITION_Z]->Evaluate(emitter);
 			particle.pos += emitter.m_Pos;
 
-			particle.velocity.X = m_Variables[VAR_VELOCITY_X]->Evaluate(emitter);
-			particle.velocity.Y = m_Variables[VAR_VELOCITY_Y]->Evaluate(emitter);
-			particle.velocity.Z = m_Variables[VAR_VELOCITY_Z]->Evaluate(emitter);
-
+			if (m_UseRelativeVelocity)
+			{
+				float xVel = m_Variables[VAR_VELOCITY_X]->Evaluate(emitter);
+				float yVel = m_Variables[VAR_VELOCITY_Y]->Evaluate(emitter);
+				float zVel = m_Variables[VAR_VELOCITY_Z]->Evaluate(emitter);
+				CVector3D EmitterAngle = emitter.GetRotation().ToMatrix().Transform(CVector3D(xVel,yVel,zVel));
+				particle.velocity.X = EmitterAngle.X;
+				particle.velocity.Y = EmitterAngle.Y;
+				particle.velocity.Z = EmitterAngle.Z;
+			} else {
+				particle.velocity.X = m_Variables[VAR_VELOCITY_X]->Evaluate(emitter);
+				particle.velocity.Y = m_Variables[VAR_VELOCITY_Y]->Evaluate(emitter);
+				particle.velocity.Z = m_Variables[VAR_VELOCITY_Z]->Evaluate(emitter);
+			}
 			particle.angle = m_Variables[VAR_ANGLE]->Evaluate(emitter);
 			particle.angleSpeed = m_Variables[VAR_VELOCITY_ANGLE]->Evaluate(emitter);
 
 			particle.size = m_Variables[VAR_SIZE]->Evaluate(emitter);
+			particle.sizeGrowthRate = m_Variables[VAR_SIZE_GROWTHRATE]->Evaluate(emitter);
 
 			RGBColor color;
 			color.X = m_Variables[VAR_COLOR_R]->Evaluate(emitter);
@@ -564,6 +583,7 @@ void CParticleEmitterType::UpdateEmitterStep(CParticleEmitter& emitter, float dt
 		p.pos += p.velocity * dt;
 		p.angle += p.angleSpeed * dt;
 		p.age += dt;
+		p.size += p.sizeGrowthRate * dt;
 
 		// Make alpha fade in/out nicely
 		// TODO: this should probably be done as a variable or something,

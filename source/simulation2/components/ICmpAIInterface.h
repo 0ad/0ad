@@ -32,7 +32,7 @@ public:
 	 * Returns a script object that represents the current world state,
 	 * to be passed to AI scripts. No caching for initialization
 	 */
-	virtual CScriptVal GetFullRepresentation() = 0;
+	virtual CScriptVal GetFullRepresentation(bool flushEvents) = 0;
 
 	DECLARE_INTERFACE_TYPE(AIInterface)
 };

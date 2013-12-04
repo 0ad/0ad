@@ -647,6 +647,11 @@ ScriptInterface& CSimulation2::GetScriptInterface() const
 	return m->m_ComponentManager.GetScriptInterface();
 }
 
+void CSimulation2::ReplaceSkirmishGlobals()
+{
+	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "ReplaceSkirmishGlobals");
+}
+
 void CSimulation2::InitGame(const CScriptVal& data)
 {
 	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "InitGame", data);

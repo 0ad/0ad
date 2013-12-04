@@ -19,6 +19,7 @@
 #define INCLUDED_ICMPRANGEMANAGER
 
 #include "maths/FixedVector3D.h"
+#include "maths/FixedVector2D.h"
 
 #include "simulation2/system/Interface.h"
 #include "simulation2/helpers/Position.h"
@@ -89,6 +90,18 @@ public:
 	 * @return list of entities matching the query, ordered by increasing distance from the source entity.
 	 */
 	virtual std::vector<entity_id_t> ExecuteQuery(entity_id_t source,
+		entity_pos_t minRange, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface) = 0;
+
+	/**
+	 * Execute a passive query.
+	 * @param pos the position around which the range will be computed.
+	 * @param minRange non-negative minimum distance in metres (inclusive).
+	 * @param maxRange non-negative maximum distance in metres (inclusive); or -1.0 to ignore distance.
+	 * @param owners list of player IDs that matching entities may have; -1 matches entities with no owner.
+	 * @param requiredInterface if non-zero, an interface ID that matching entities must implement.
+	 * @return list of entities matching the query, ordered by increasing distance from the source entity.
+	 */
+	virtual std::vector<entity_id_t> ExecuteQueryAroundPos(CFixedVector2D pos,
 		entity_pos_t minRange, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface) = 0;
 
 	/**

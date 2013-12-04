@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant>
+      <mesh>props/special/aura_rays.dae</mesh>
+      <textures>
+        <texture file="temp/aura_heal_test.png" name="baseTex"/>
+		<texture file="temp/aura_heal_test.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>aura.xml</material>
+</actor>

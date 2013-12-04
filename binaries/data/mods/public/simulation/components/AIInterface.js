@@ -37,7 +37,7 @@ AIInterface.prototype.GetRepresentation = function()
 	return state;
 };
 // Intended to be called first, during the map initialization: no caching
-AIInterface.prototype.GetFullRepresentation = function()
+AIInterface.prototype.GetFullRepresentation = function(flushEvents)
 {
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	
@@ -46,6 +46,11 @@ AIInterface.prototype.GetFullRepresentation = function()
 	
 	// Add some extra AI-specific data
 	state.events = this.events;
+	if (flushEvents)
+	{
+		state.events = [];
+		this.events = [];
+	}
 	
 	// Add entity representations
 	Engine.ProfileStart("proxy representations");
@@ -79,6 +84,11 @@ AIInterface.prototype.PushEvent = function(type, msg)
 AIInterface.prototype.OnGlobalPlayerDefeated = function(msg)
 {
 	this.events.push({"type": "PlayerDefeated", "msg": msg});
+};
+
+AIInterface.prototype.OnGlobalEntityRenamed = function(msg)
+{
+	this.events.push({"type": "EntityRenamed", "msg": msg});
 };
 
 Engine.RegisterComponentType(IID_AIInterface, "AIInterface", AIInterface);

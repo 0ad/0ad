@@ -74,6 +74,11 @@ public:
 	virtual void MoveTo(entity_pos_t x, entity_pos_t z) = 0;
 
 	/**
+	 * Combines MoveTo and TurnTo to avoid an uncessary "AdvertisePositionChange"
+	 */
+	virtual void MoveAndTurnTo(entity_pos_t x, entity_pos_t z, entity_angle_t ry) = 0;
+
+	/**
 	 * Move immediately to the given location, with no interpolation.
 	 */
 	virtual void JumpTo(entity_pos_t x, entity_pos_t z) = 0;

@@ -180,18 +180,14 @@ SharedScript.prototype.initWithState = function(state) {
 		this._techModifications[o] = state.players[o].techModifications;
 	
 	this._entities = {};
-	this.entities = new EntityCollection(this);
 
-	/* (var id in state.entities)
+	for (var id in state.entities)
 	{
 		this._entities[id] = new Entity(this, state.entities[id]);
 	}
 	// entity collection updated on create/destroy event.
 	this.entities = new EntityCollection(this, this._entities);
-	*/
 	
-	this.ApplyEntitiesDelta(state);
-
 	// create the terrain analyzer
 	this.terrainAnalyzer = new TerrainAnalysis();
 	this.terrainAnalyzer.init(this, state);
@@ -214,8 +210,7 @@ SharedScript.prototype.initWithState = function(state) {
 // applies entity deltas, and each gamestate.
 SharedScript.prototype.onUpdate = function(state)
 {
-	if (this.turn !== 0)
-		this.ApplyEntitiesDelta(state);
+	this.ApplyEntitiesDelta(state);
 
 	Engine.ProfileStart("onUpdate");
 	
@@ -296,6 +291,16 @@ SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			delete this._entities[evt.msg.entity];
 			for (var i in this._players)
 				delete this._entityMetadata[this._players[i]][evt.msg.entity];
+		}
+		else if (evt.type == "EntityRenamed")
+		{
+			// Switch the metadata
+			for (var i in this._players)
+			{
+				warn (uneval(this._entityMetadata[this._players[i]][evt.msg.entity]));
+				this._entityMetadata[this._players[i]][evt.msg.newentity] = this._entityMetadata[this._players[i]][evt.msg.entity];
+				this._entityMetadata[this._players[i]][evt.msg.entity] = {};
+			}
 		}
 		else if (evt.type == "TrainingFinished")
 		{
