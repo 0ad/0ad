@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="1.10938" g="0.983215" b="0.613422"/>
+		<SunColour r="1.10938" g="0.987561" b="0.61777"/>
 		<SunElevation angle="0.510983"/>
 		<SunRotation angle="-1.15355"/>
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
@@ -35,20 +35,18 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="262.913" y="171.479" z="338.42"/>
+		<Position x="653.35" y="505.375" z="-348.025"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "Give an interesting description of your map.",
-  "GameType": "endless",
-  "Keywords": [
-    "demo"
-  ],
+  "Description": "A barren wasteland with little wood and few animals.",
+  "GameType": "conquest",
+  "Keywords": [],
   "LockTeams": false,
-  "Name": "Wasteland",
+  "Name": "Wasteland (2)",
   "PlayerData": [
     {
       "Civ": "athen"
@@ -18825,6 +18823,20 @@
 			<Position x="962.1756" z="1020.01539"/>
 			<Orientation y="0.43659"/>
 			<Actor seed="20024"/>
+		</Entity>
+		<Entity uid="3223">
+			<Template>skirmish/structures/default_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="302.81766" z="532.04822"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="25144"/>
+		</Entity>
+		<Entity uid="3224">
+			<Template>skirmish/structures/default_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="1040.65931" z="501.01801"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="35812"/>
 		</Entity>
 	</Entities>
 	<Paths/>
