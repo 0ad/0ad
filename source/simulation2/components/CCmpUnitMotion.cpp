@@ -802,9 +802,7 @@ void CCmpUnitMotion::Move(fixed dt)
 	}
 
 	if (m_State == STATE_IDLE)
-	{
 		return;
-	}
 
 	switch (m_PathState)
 	{
@@ -870,8 +868,9 @@ void CCmpUnitMotion::Move(fixed dt)
 		// We want to move (at most) maxSpeed*dt units from pos towards the next waypoint
 
 		fixed timeLeft = dt;
-
-		while (timeLeft > fixed::Zero())
+		fixed zero = fixed::Zero();
+		
+		while (timeLeft > zero)
 		{
 			// If we ran out of short path, we have to stop
 			if (m_ShortPath.m_Waypoints.empty())
@@ -879,13 +878,6 @@ void CCmpUnitMotion::Move(fixed dt)
 
 			CFixedVector2D target(m_ShortPath.m_Waypoints.back().x, m_ShortPath.m_Waypoints.back().z);
 			CFixedVector2D offset = target - pos;
-
-			// Face towards the target
-			if (!offset.IsZero())
-			{
-				entity_angle_t angle = atan2_approx(offset.X, offset.Y);
-				cmpPosition->TurnTo(angle);
-			}
 
 			// Work out how far we can travel in timeLeft
 			fixed maxdist = maxSpeed.Multiply(timeLeft);
@@ -933,18 +925,25 @@ void CCmpUnitMotion::Move(fixed dt)
 
 		// Update the Position component after our movement (if we actually moved anywhere)
 		if (pos != initialPos)
-			cmpPosition->MoveTo(pos.X, pos.Y);
+		{
+			CFixedVector2D offset = pos - initialPos;
+			
+			// Face towards the target
+			entity_angle_t angle = atan2_approx(offset.X, offset.Y);
+			cmpPosition->MoveAndTurnTo(pos.X,pos.Y, angle);
 
-		// Calculate the mean speed over this past turn.
-		m_CurSpeed = cmpPosition->GetDistanceTravelled() / dt;
-
+			// Calculate the mean speed over this past turn.
+			m_CurSpeed = cmpPosition->GetDistanceTravelled() / dt;
+		}
+		
 		if (wasObstructed)
 		{
 			// Oops, we hit something (very likely another unit).
 			// Stop, and recompute the whole path.
 			// TODO: if the target has UnitMotion and is higher priority,
 			// we should wait a little bit.
-
+			
+			m_CurSpeed = zero;
 			RequestLongPath(pos, m_FinalGoal);
 			m_PathState = PATHSTATE_WAITING_REQUESTING_LONG;
 
@@ -1138,20 +1137,19 @@ bool CCmpUnitMotion::CheckTargetMovement(CFixedVector2D from, entity_pos_t minDe
 
 bool CCmpUnitMotion::PathIsShort(const ICmpPathfinder::Path& path, CFixedVector2D from, entity_pos_t minDistance)
 {
-	CFixedVector2D pos = from;
 	entity_pos_t distLeft = minDistance;
 
 	for (ssize_t i = (ssize_t)path.m_Waypoints.size()-1; i >= 0; --i)
 	{
 		// Check if the next path segment is longer than the requested minimum
 		CFixedVector2D waypoint(path.m_Waypoints[i].x, path.m_Waypoints[i].z);
-		CFixedVector2D delta = waypoint - pos;
+		CFixedVector2D delta = waypoint - from;
 		if (delta.CompareLength(distLeft) > 0)
 			return false;
 
 		// Still short enough - prepare to check the next segment
 		distLeft -= delta.Length();
-		pos = waypoint;
+		from = waypoint;
 	}
 
 	// Reached the end of the path before exceeding minDistance
