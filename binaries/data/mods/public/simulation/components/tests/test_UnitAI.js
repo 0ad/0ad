@@ -68,7 +68,8 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(unit, IID_Position, {
-		GetPosition: function() { return { "x": 0, "z": 0 }; },
+		GetPosition: function() { return { "x": 0, "y": 0,"z": 0 }; },
+		GetPosition2D: function() { return { "x": 0, "y": 0 }; },
 		IsInWorld: function() { return true; },
 	});
 
@@ -113,6 +114,7 @@ function TestFormationExiting(mode)
 	AddMock(controller, IID_Position, {
 		JumpTo: function(x, z) { this.x = x; this.z = z; },
 		GetPosition: function() { return { "x": this.x, "z": this.z }; },
+		GetPosition2D: function() { return { "x": this.x, "y": this.z }; },
 		IsInWorld: function() { return true; },
 	});
 
