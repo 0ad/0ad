@@ -48,7 +48,10 @@
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "soundmanager/ISoundManager.h"
 
+#include "tools/atlas/GameInterface/GameLoop.h"
+
 extern bool g_GameRestarted;
+extern GameLoopState* g_AtlasGameLoop;
 
 /**
  * Globally accessible pointer to the CGame object.
@@ -200,6 +203,16 @@ PSRETURN CGame::ReallyStartGame()
 	// Call the script function InitGame only for new games, not saved games
 	if (!m_IsSavedGame)
 	{
+		if (!g_AtlasGameLoop->running)
+		{
+			// We need to replace skirmish "default" entities with real ones.
+			// This needs to happen before AI initialization (in InitGame).
+			// And we need to flush destroyed entities otherwise the AI
+			// gets the wrong game state in the beginning and a bunch of
+			// "destroy" messages on turn 0, which just shouldn't happen.
+			m_Simulation2->ReplaceSkirmishGlobals();
+			m_Simulation2->FlushDestroyedEntities();
+		}
 		CScriptVal settings;
 		m_Simulation2->GetScriptInterface().GetProperty(m_Simulation2->GetInitAttributes().get(), "settings", settings);
 		m_Simulation2->InitGame(settings);

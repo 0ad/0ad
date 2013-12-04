@@ -22,10 +22,7 @@ SkirmishReplacer.prototype.OnOwnershipChanged = function(msg)
 		warn("Skirmish map elements can only be owned by regular players. Please delete entity "+this.entity+" or change the ownership to a non-gaia player.");
 };
 
-/**
- * Replace this entity with a civ-specific entity on the first turn
- */
-SkirmishReplacer.prototype.OnUpdate = function(msg)
+SkirmishReplacer.prototype.ReplaceEntities = function()
 {
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	var civ = cmpPlayer.GetCiv();
@@ -54,8 +51,28 @@ SkirmishReplacer.prototype.OnUpdate = function(msg)
 	var cmpCurOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var cmpReplacementOwnership = Engine.QueryInterface(replacement, IID_Ownership);
 	cmpReplacementOwnership.SetOwner(cmpCurOwnership.GetOwner());
-
+	
+	Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: replacement});
 	Engine.DestroyEntity(this.entity);
+};
+/**
+ * Replace this entity with a civ-specific entity
+ * Message is sent right before InitGame() is called, in InitGame.js
+ * Replacement needs to happen early on real games to not confuse the AI
+ */
+SkirmishReplacer.prototype.OnSkirmishReplace = function(msg)
+{
+	this.ReplaceEntities();
+};
+
+/**
+ * Replace this entity with a civ-specific entity
+ * This is needed for Atlas, when the entity isn't replaced before the game starts,
+ * so it needs to be replaced on the first turn.
+ */
+SkirmishReplacer.prototype.OnUpdate = function(msg)
+{
+	this.ReplaceEntities();
 };
 
 Engine.RegisterComponentType(IID_SkirmishReplacer, "SkirmishReplacer", SkirmishReplacer);

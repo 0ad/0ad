@@ -34,9 +34,9 @@ public:
 	{
 		return m_Script.Call<CScriptVal> ("GetRepresentation");
 	}
-	virtual CScriptVal GetFullRepresentation()
+	virtual CScriptVal GetFullRepresentation(bool flushEvents = false)
 	{
-		return m_Script.Call<CScriptVal> ("GetFullRepresentation");
+		return m_Script.Call<CScriptVal> ("GetFullRepresentation",flushEvents);
 	}
 	
 };

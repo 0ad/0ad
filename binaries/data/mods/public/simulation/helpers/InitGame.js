@@ -1,10 +1,14 @@
-function InitGame(settings)
+function ReplaceSkirmishGlobals()
 {
 	// This will be called after the map settings have been loaded,
 	// before the simulation has started.
 	// This is only called at the start of a new game, not when loading
 	// a saved game.
+	Engine.BroadcastMessage(MT_SkirmishReplace, {});
+}
 
+function InitGame(settings)
+{
 	// No settings when loading a map in Atlas, so do nothing
 	if (!settings)
 		return;
@@ -37,4 +41,5 @@ function InitGame(settings)
 	cmpAIManager.RunGamestateInit();
 }
 
+Engine.RegisterGlobal("ReplaceSkirmishGlobals", ReplaceSkirmishGlobals);
 Engine.RegisterGlobal("InitGame", InitGame);
