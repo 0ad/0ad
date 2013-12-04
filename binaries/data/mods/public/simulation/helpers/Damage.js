@@ -99,14 +99,6 @@ Damage.EntitiesNearPoint = function(origin, radius, players)
 	// If there is insufficient data return an empty array.
 	if (!origin || !radius)
 		return [];
-	// Create/recycle the dummy entity used for range calculations.
-	if (!Damage.dummyTargetEntity || dummyPath != Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetCurrentTemplateName(Damage.dummyTargetEntity))
-		Damage.dummyTargetEntity = Engine.AddEntity(dummyPath);
-	// Move the dummy entity to the origin of the query.
-	var cmpDummyPosition = Engine.QueryInterface(Damage.dummyTargetEntity, IID_Position);
-	if (!cmpDummyPosition)
-		return [];
-	cmpDummyPosition.JumpTo(origin.x, origin.z);
 
 	// If the players parameter is not specified use all players.
 	if (!players)
@@ -119,7 +111,7 @@ Damage.EntitiesNearPoint = function(origin, radius, players)
 
 	// Call RangeManager with dummy entity and return the result.
 	var rangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var rangeQuery = rangeManager.ExecuteQuery(Damage.dummyTargetEntity, 0, radius, players, IID_DamageReceiver);
+	var rangeQuery = rangeManager.ExecuteQueryAroundPos({"x": origin.x, "y": origin.z}, 0, radius, players, IID_DamageReceiver);
 	return rangeQuery;
 };
 
