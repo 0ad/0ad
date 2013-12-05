@@ -13,6 +13,13 @@ Formation.prototype.Init = function()
 	this.formationName = "Line Closed";
 	this.rearrange = true; // whether we should rearrange all formation members
 	this.formationMembersWithAura = []; // Members with a formation aura
+	this.width = 0;
+	this.depth = 0;
+};
+
+Formation.prototype.GetSize = function()
+{
+	return {"width": this.width, "depth": this.depth};
 };
 
 Formation.prototype.GetMemberCount = function()
@@ -289,6 +296,8 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 	}
 
 	var offsets = this.ComputeFormationOffsets(active, positions, this.columnar);
+	var xMax = 0;
+	var zMax = 0;
 
 	for (var i = 0; i < offsets.length; ++i)
 	{
@@ -312,7 +321,11 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 				"z": offset.z
 			});
 		}
+		xMax = Math.max(xMax, offset.x);
+		zMax = Math.max(zMax, offset.z);
 	}
+	this.width = xMax * 2;
+	this.depth = zMax * 2;
 };
 
 Formation.prototype.MoveToMembersCenter = function()

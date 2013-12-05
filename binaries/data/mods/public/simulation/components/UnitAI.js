@@ -776,6 +776,7 @@ var UnitFsmSpec = {
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 
 			var maxRange = cmpFormation.GetMaxAttackRangeFunction(msg.data.target);
+			maxRange += cmpFormation.GetSize().depth / 2;
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, maxRange))
 			{
