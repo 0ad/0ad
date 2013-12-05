@@ -692,10 +692,9 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 	{
 		var usedOffsets = offsets.splice(0,t.length);
 		var usedRealPositions = realPositions.splice(0, t.length);
-		// sort t so the entities far away and/or with a slow speed can pick 
+		// sort t so the entities far away can pick 
 		// their position first. This reduces the maximum distance run, 
 		// and thus the time to form a position
-		// use a quick manhatten distance calculation instead of an exact one
 		t.sort(function(entPos1, entPos2)
 			{
 				var dx1 = entPos1.pos.x - formationPos.x;
