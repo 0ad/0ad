@@ -1689,7 +1689,7 @@ function addTrainingByPosition(position)
 	if (!selection.length)
 		return;
 	
-	var trainableEnts = getAllTrainableEntities(selection);
+	var trainableEnts = getAllTrainableEntitiesFromSelection();
 	
 	// Check if the position is valid
 	if (!trainableEnts.length || trainableEnts.length <= position) 
