@@ -258,7 +258,12 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 			continue;
 
 		active.push(ent);
-		positions.push(cmpPosition.GetPosition());
+		// query the 2D position as exact hight calculation isn't needed
+		// but bring the position to the right coordinates
+		var pos = cmpPosition.GetPosition2D();
+		pos.z = pos.y;
+		pos.y = undefined;
+		positions.push(pos);
 	}
 
 	// Work out whether this should be a column or box formation
@@ -283,7 +288,7 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		}
 	}
 
-	var offsets = this.ComputeFormationOffsets(active, this.columnar);
+	var offsets = this.ComputeFormationOffsets(active, positions, this.columnar);
 
 	for (var i = 0; i < offsets.length; ++i)
 	{
@@ -337,9 +342,24 @@ Formation.prototype.MoveToMembersCenter = function()
 	}
 };
 
-Formation.prototype.ComputeFormationOffsets = function(active, columnar)
+Formation.prototype.GetAvgObstructionRange = function(active)
 {
-	var separation = 4; // TODO: don't hardcode this
+	var obstructions = [];
+	for each (var ent in active)
+	{
+		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
+		if (cmpObstruction)
+			obstructions.push(cmpObstruction.GetUnitRadius());
+	}
+	if (!obstructions.length)
+		return 1;
+	return obstructions.reduce(function(m,v) {return m + v;}, 0) / obstructions.length;
+};
+
+Formation.prototype.ComputeFormationOffsets = function(active, positions, columnar)
+{
+	// TODO give some sense to this number
+	var separation = this.GetAvgObstructionRange(active) * 4; 
 
 	// the entities will be assigned to positions in the formation in 
 	// the same order as the types list is ordered
@@ -352,30 +372,30 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 		"Unknown": []
 	}; 
 
-	for each (var ent in active)
+	for (var i in active)
 	{
-		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+		var cmpIdentity = Engine.QueryInterface(active[i], IID_Identity);
 		var classes = cmpIdentity.GetClassesList();
 		var done = false;
 		for each (var cla in classes)
 		{
 			if (cla in types)
 			{
-				types[cla].push(ent);
+				types[cla].push({"ent": active[i], "pos": positions[i]});
 				done = true;
 				break;
 			}
 		}
 		if (!done)
 		{
-			types["Unknown"].push(ent);
+			types["Unknown"].push({"ent": active[i], "pos": positions[i]});
 		}
 	}
 
 	var count = active.length;
 
 	var shape = undefined;
-	var ordering = "default";
+	var ordering = [];
 
 	var offsets = [];
 
@@ -418,6 +438,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 		else
 			cols = Math.ceil(count/3);
 		shape = "square";
+		ordering = ["FillFromTheCenter", "FillFromTheFront"];
 		break;
 	case "Testudo":
 		cols = Math.ceil(Math.sqrt(count));
@@ -437,6 +458,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 		else
 			cols = 6;
 		shape = "opensquare";
+		ordering = ["FillFromTheCenter", "FillFromTheFront"];
 		break;
 	case "Scatter":
 		var width = Math.sqrt(count) * separation * 5;
@@ -575,6 +597,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 				left -= n;
 			}
 		}
+		ordering.push("FillFromTheCenter");
 		break;
 	case "Syntagma":
 		cols = Math.ceil(Math.sqrt(count));
@@ -593,7 +616,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 			cols = Math.ceil(count/6);
 		shape = "opensquare";
 		separation /= 1.5;
-		ordering = "FillFromTheSides";
+		ordering.push("FillFromTheSides");
 		break;
 	default:
 		warn("Unknown formation: " + this.formationName);
@@ -641,25 +664,40 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 		offset.x -= avgoffset.x;
 		offset.z -= avgoffset.z;
 	}
-	// sort the offsets to the sides are filled first (with cavalry, then heroes ...)
-	if (ordering == "FillFromTheSides")
-		offsets.sort(function(o1, o2) { return Math.abs(o1.x) < Math.abs(o2.x);});
 
-	// use naive but realistic place assignment,
+	// sort the available places in certain ways
+	// the places first in the list will contain the heaviest units as defined by the order
+	// of the types list
+	for each (var order in ordering)
+	{
+		if (order == "FillFromTheSides")
+			offsets.sort(function(o1, o2) { return Math.abs(o1.x) < Math.abs(o2.x);});
+		else if (order == "FillFromTheCenter")
+			offsets.sort(function(o1, o2) { return Math.abs(o1.x) > Math.abs(o2.x);});
+		else if (order == "FillFromTheFront")
+			offsets.sort(function(o1, o2) { return o1.z < o2.z;});
+	}
+
+	// query the 2D position of the formation, and bring to the right coordinate system
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	var formationPos = cmpPosition.GetPosition2D();
+	formationPos.z = formationPos.y;
+	formationPos.y = undefined;
+
+	// use realistic place assignment,
 	// every soldier searches the closest available place in the formation
-	// this isn't the overall smallest walking distance, but the result is realistic
 	var newOffsets = [];
-	var realPositions = this.GetRealOffsetPositions(offsets);
+	var realPositions = this.GetRealOffsetPositions(offsets, formationPos);
 	for each (var t in types)
 	{
 		var usedOffsets = offsets.splice(0,t.length);
 		var usedRealPositions = realPositions.splice(0, t.length);
-		for each (var ent in t)
+		for each (var entPos in t)
 		{
-			var closestOffsetId = this.TakeClosestOffset(ent, usedRealPositions);
+			var closestOffsetId = this.TakeClosestOffset(entPos, usedRealPositions);
 			usedRealPositions.splice(closestOffsetId, 1);
 			newOffsets.push(usedOffsets.splice(closestOffsetId, 1)[0]);
-			newOffsets[newOffsets.length - 1].ent = ent;
+			newOffsets[newOffsets.length - 1].ent = entPos.ent;
 		}
 	}
 
@@ -672,16 +710,15 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
  * @param realPositions, the world coordinates of the available offsets
  * @return the index of the closest offset position
  */
-Formation.prototype.TakeClosestOffset = function(ent, realPositions)
+Formation.prototype.TakeClosestOffset = function(entPos, realPositions)
 {
-	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
-	var pos = cmpPosition.GetPosition2D();
+	var pos = entPos.pos;
 	var closestOffsetId = -1;
 	var offsetDistanceSq = Infinity;
 	for (var i = 0; i < realPositions.length; i++)
 	{
 		var dx = realPositions[i].x - pos.x;
-		var dz = realPositions[i].z - pos.y;
+		var dz = realPositions[i].z - pos.z;
 		var distSq = dx * dx + dz * dz;
 		if (distSq < offsetDistanceSq)
 		{
@@ -695,11 +732,9 @@ Formation.prototype.TakeClosestOffset = function(ent, realPositions)
 /**
  * Get the world positions for a list of offsets in this formation
  */
-Formation.prototype.GetRealOffsetPositions = function(offsets)
+Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
 {
 	var offsetPositions = [];
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	var pos = cmpPosition.GetPosition2D();
 	// calculate the rotation of the formation based on the first unitAI target position
 	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	var targetPos = cmpUnitAI.GetTargetPositions();
@@ -709,7 +744,7 @@ Formation.prototype.GetRealOffsetPositions = function(offsets)
 	if (targetPos.length)
 	{
 		var dx = targetPos[0].x - pos.x;
-		var dz = targetPos[0].z - pos.y;
+		var dz = targetPos[0].z - pos.z;
 		if (dx || dz)
 		{
 			var dist = Math.sqrt(dx * dx + dz * dz);
@@ -721,7 +756,7 @@ Formation.prototype.GetRealOffsetPositions = function(offsets)
 	for each (var o in offsets)
 		offsetPositions.push({
 			"x" : pos.x + o.z * cos + o.x * sin, 
-			"z" : pos.y + o.z * sin - o.x * cos
+			"z" : pos.z + o.z * sin - o.x * cos
 		});
 
 	return offsetPositions;
