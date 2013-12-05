@@ -692,18 +692,6 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 	{
 		var usedOffsets = offsets.splice(0,t.length);
 		var usedRealPositions = realPositions.splice(0, t.length);
-		// sort t so the entities far away can pick 
-		// their position first. This reduces the maximum distance run, 
-		// and thus the time to form a position
-		t.sort(function(entPos1, entPos2)
-			{
-				var dx1 = entPos1.pos.x - formationPos.x;
-				var dz1 = entPos1.pos.z - formationPos.z;
-				var dx2 = entPos2.pos.x - formationPos.x;
-				var dz2 = entPos2.pos.z - formationPos.z;
-				return dx1 * dx1 + dz1 *dz1 < dx2 * dx2 + dz2 * dz2;
-			});
-
 		for each (var entPos in t)
 		{
 			var closestOffsetId = this.TakeClosestOffset(entPos, usedRealPositions);

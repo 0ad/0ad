@@ -297,7 +297,6 @@ SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			// Switch the metadata
 			for (var i in this._players)
 			{
-				warn (uneval(this._entityMetadata[this._players[i]][evt.msg.entity]));
 				this._entityMetadata[this._players[i]][evt.msg.newentity] = this._entityMetadata[this._players[i]][evt.msg.entity];
 				this._entityMetadata[this._players[i]][evt.msg.entity] = {};
 			}
