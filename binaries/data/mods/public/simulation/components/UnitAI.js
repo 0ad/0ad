@@ -4382,7 +4382,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 	// Keep track of the position at the start of each order
 	var pos = cmpPosition.GetPosition();
 	var targetPositions = this.GetTargetPositions();
-	for (var i = 0; i < targetPositions; i++)
+	for (var i = 0; i < targetPositions.length; i++)
 	{
 		var dx = targetPositions[i].x - pos.x;
 		var dz = targetPositions[i].z - pos.z;
