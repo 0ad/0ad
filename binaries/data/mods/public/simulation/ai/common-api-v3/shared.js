@@ -195,7 +195,7 @@ SharedScript.prototype.initWithState = function(state) {
 	this.accessibility.init(state, this.terrainAnalyzer);
 	
 	// defined in TerrainAnalysis.js
-	this.updateResourceMaps(this, this.events);
+	this.createResourceMaps(this);
 
 	this.gameState = {};
 	for (var i in this._players)
@@ -228,8 +228,7 @@ SharedScript.prototype.onUpdate = function(state)
 	for (var i in this.gameState)
 		this.gameState[i].update(this,state);
 
-	if (this.turn !== 0)
-		this.updateResourceMaps(this, this.events);
+	this.updateResourceMaps(this, this.events);
 	this.terrainAnalyzer.updateMapWithEvents(this);
 	
 	//this.OnUpdate();

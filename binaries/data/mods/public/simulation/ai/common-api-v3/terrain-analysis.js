@@ -667,6 +667,46 @@ Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 	return true;
 }
 
+// creates a map of resource density
+SharedScript.prototype.createResourceMaps = function(sharedScript) {
+	
+	for (var resource in this.decreaseFactor){
+		// if there is no resourceMap create one with an influence for everything with that resource
+		if (! this.resourceMaps[resource]){
+			// We're creting them 8-bit. Things could go above 255 if there are really tons of resources
+			// But at that point the precision is not really important anyway. And it saves memory.
+			this.resourceMaps[resource] = new Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
+			this.resourceMaps[resource].setMaxVal(255);
+			this.CCResourceMaps[resource] = new Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
+			this.CCResourceMaps[resource].setMaxVal(255);
+		}
+	}
+	for (var entI in sharedScript._entities)
+	{
+		var ent = sharedScript._entities[entI];
+		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
+			var resource = ent.resourceSupplyType().generic;
+			var x = Math.floor(ent.position()[0] / 4);
+			var z = Math.floor(ent.position()[1] / 4);
+			var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
+			if (resource === "wood" || resource === "food")
+			{
+				this.CCResourceMaps[resource].addInfluence(x, z, 15, strength/2.0,'constant');
+				this.resourceMaps[resource].addInfluence(x, z, 9.0, strength,'constant');
+				this.resourceMaps[resource].addInfluence(x, z, 2, -5,'constant');
+			}
+			else if (resource === "stone" || resource === "metal")
+			{
+				this.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
+				this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);
+				this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/2.0,'constant');
+				this.resourceMaps[resource].addInfluence(x, z, 8, -50);
+			}
+		}
+	}
+};
+
+
 // TODO: make it regularly update stone+metal mines and their resource levels.
 // creates and maintains a map of unused resource density
 // this also takes dropsites into account.
