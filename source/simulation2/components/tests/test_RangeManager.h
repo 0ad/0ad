@@ -43,6 +43,7 @@ public:
 	virtual bool IsInWorld() { return true; }
 	virtual void MoveOutOfWorld() { }
 	virtual void MoveTo(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) { }
+	virtual void MoveAndTurnTo(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z), entity_angle_t UNUSED(a)) { }
 	virtual void JumpTo(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) { }
 	virtual void SetHeightOffset(entity_pos_t UNUSED(dy)) { }
 	virtual entity_pos_t GetHeightOffset() { return entity_pos_t::Zero(); }
