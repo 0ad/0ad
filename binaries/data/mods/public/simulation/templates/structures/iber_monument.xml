@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <Auras>
+    <melee_attack_2>
+      <Type>range</Type>
+      <Radius>60</Radius>
+    </melee_attack_2>
+    <ranged_attack_3>
+      <Type>range</Type>
+      <Radius>60</Radius>
+    </ranged_attack_3>
+  </Auras>
   <BuildRestrictions>
     <Category>Monument</Category>
   </BuildRestrictions>
@@ -26,7 +36,7 @@
     <GenericName>Revered Monument</GenericName>
     <SpecificName>Gur Oroigarri</SpecificName>
     <Icon>structures/iberian_bull.png</Icon>
-    <Tooltip>All units within vision of this monument will fight harder (not implemented yet). Build limit: 5.</Tooltip>
+    <Tooltip>All units within vision of this monument will fight harder.</Tooltip>
     <History>The Iberians were a religious people who built small monuments to their various gods. These monuments could also serve as family tombs.</History>
   </Identity>
   <Obstruction>
@@ -43,6 +53,9 @@
   <TerritoryInfluence>
     <Root>true</Root>
   </TerritoryInfluence>
+  <Vision>
+    <Range>60</Range>
+  </Vision>
   <VisualActor>
     <Actor>structures/iberians/sb_1.xml</Actor>
     <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
