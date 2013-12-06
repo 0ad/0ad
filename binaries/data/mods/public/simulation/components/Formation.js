@@ -15,6 +15,7 @@ Formation.prototype.Init = function()
 	this.formationMembersWithAura = []; // Members with a formation aura
 	this.width = 0;
 	this.depth = 0;
+	this.oldOrientation = {"sin": 0, "cos": 0};
 };
 
 Formation.prototype.GetSize = function()
@@ -103,6 +104,7 @@ Formation.prototype.SetMembers = function(ents)
 		}
 	}
 
+	this.offsets = undefined;
 	// Locate this formation controller in the middle of its members
 	this.MoveToMembersCenter();
 
@@ -148,6 +150,7 @@ Formation.prototype.RemoveMembers = function(ents)
 	if (!this.rearrange)
 		return;
 
+	this.offsets = undefined;
 	this.ComputeMotionParameters();
 
 	// Rearrange the remaining members
@@ -194,6 +197,7 @@ Formation.prototype.Disband = function()
 	this.members = [];
 	this.inPosition = [];
 	this.formationMembersWithAura = [];
+	this.offsets = undefined;
 
 	Engine.DestroyEntity(this.entity);
 };
@@ -295,13 +299,21 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		}
 	}
 
-	var offsets = this.ComputeFormationOffsets(active, positions, this.columnar);
+	var newOrientation = this.GetTargetOrientation(avgpos);
+	var dSin = Math.abs(newOrientation.sin - this.oldOrientation.sin);
+	var dCos = Math.abs(newOrientation.cos - this.oldOrientation.cos);
+	// If the formation existed, only recalculate positions if the turning agle is somewhat biggish
+	if (!this.offsets || dSin > 1 || dCos > 1)
+		this.offsets = this.ComputeFormationOffsets(active, positions, this.columnar);
+
+	this.oldOrientation = newOrientation;
+
 	var xMax = 0;
 	var zMax = 0;
 
-	for (var i = 0; i < offsets.length; ++i)
+	for (var i = 0; i < this.offsets.length; ++i)
 	{
-		var offset = offsets[i];
+		var offset = this.offsets[i];
 
 		var cmpUnitAI = Engine.QueryInterface(offset.ent, IID_UnitAI);
 		
@@ -748,10 +760,26 @@ Formation.prototype.TakeClosestOffset = function(entPos, realPositions)
 Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
 {
 	var offsetPositions = [];
-	// calculate the rotation of the formation based on the first unitAI target position
+	var {sin, cos} = this.GetTargetOrientation(pos);
+	// calculate the world positions
+	for each (var o in offsets)
+		offsetPositions.push({
+			"x" : pos.x + o.z * sin + o.x * cos, 
+			"z" : pos.z + o.z * cos - o.x * sin
+		});
+
+	return offsetPositions;
+};
+
+/**
+ * calculate the estimated rotation of the formation 
+ * based on the first unitAI target position
+ * Return the sine and cosine of the angle
+ */
+Formation.prototype.GetTargetOrientation = function(pos)
+{
 	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	var targetPos = cmpUnitAI.GetTargetPositions();
-	// start with default rotation (for formations without target)
 	var sin = 1;
 	var cos = 0;
 	if (targetPos.length)
@@ -761,18 +789,11 @@ Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
 		if (dx || dz)
 		{
 			var dist = Math.sqrt(dx * dx + dz * dz);
-			cos = dx / dist;
-			sin = dz / dist;
+			cos = dz / dist;
+			sin = dx / dist;
 		}
 	}
-	// calculate the world positions
-	for each (var o in offsets)
-		offsetPositions.push({
-			"x" : pos.x + o.z * cos + o.x * sin, 
-			"z" : pos.z + o.z * sin - o.x * cos
-		});
-
-	return offsetPositions;
+	return {"sin": sin, "cos": cos};
 };
 
 Formation.prototype.ComputeAveragePosition = function(positions)
@@ -862,6 +883,7 @@ Formation.prototype.LoadFormation = function(formationName)
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetLastFormationName(this.formationName);
 	}
+	this.offsets = undefined;
 };
 
 Engine.RegisterComponentType(IID_Formation, "Formation", Formation);
