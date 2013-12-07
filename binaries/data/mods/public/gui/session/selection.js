@@ -217,6 +217,7 @@ EntitySelection.prototype.getTemplateNames = function()
  */
 EntitySelection.prototype.update = function()
 {
+	var changed = false;
 	this.checkRenamedEntities();
 	for each (var ent in this.selected)
 	{
@@ -227,7 +228,7 @@ EntitySelection.prototype.update = function()
 		{
 			delete this.selected[ent];
 			this.groups.removeEnt(ent);
-			this.dirty = true;
+			changed = true;
 			continue;
 		}
 
@@ -241,10 +242,12 @@ EntitySelection.prototype.update = function()
 
 			delete this.selected[ent];
 			this.groups.removeEnt(ent);
-			this.dirty = true;
+			changed = true;
 			continue;
 		}
 	}
+	if (changed)
+		this.onChange();
 };
 
 /**
@@ -318,7 +321,7 @@ EntitySelection.prototype.addList = function(ents, quiet)
 	}
 
 	this.groups.add(this.toList()); // Create Selection Groups
-	this.dirty = true;
+	this.onChange();
 };
 
 EntitySelection.prototype.removeList = function(ents)
@@ -339,7 +342,7 @@ EntitySelection.prototype.removeList = function(ents)
 	_setStatusBars(removed, false);
 	_setMotionOverlay(removed, false);
 
-	this.dirty = true;
+	this.onChange();
 };
 
 EntitySelection.prototype.reset = function()
@@ -349,7 +352,7 @@ EntitySelection.prototype.reset = function()
 	_setMotionOverlay(this.toList(), false);
 	this.selected = {};
 	this.groups.reset();
-	this.dirty = true;
+	this.onChange();
 };
 
 EntitySelection.prototype.rebuildSelection = function(renamed)
@@ -407,7 +410,31 @@ EntitySelection.prototype.SetMotionDebugOverlay = function(enabled)
 	_setMotionOverlay(this.toList(), enabled);
 };
 
+EntitySelection.prototype.onChange = function()
+{
+	this.dirty = true;
+	if (this == g_Selection)
+		onSelectionChange();
+}
+
+/**
+ * Cache some quantities which depends only on selection
+ */
+
 var g_Selection = new EntitySelection();
+
+var g_canMoveIntoFormation = {};
+var g_allBuildableEntities = undefined;
+var g_allTrainableEntities = undefined;
+
+// Reset cached quantities
+function onSelectionChange()
+{
+	g_canMoveIntoFormation = {};
+	g_allBuildableEntities = undefined;
+	g_allTrainableEntities = undefined;
+}
+
 
 /**
  * EntityGroupsContainer class for managing grouped entities

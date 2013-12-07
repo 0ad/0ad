@@ -332,6 +332,8 @@ function onTick()
 	// simulation state and the current selection).
 	if (g_Selection.dirty)
 	{
+		g_Selection.dirty = false;
+
 		onSimulationUpdate();
 
 		// Display rally points for selected buildings
@@ -432,7 +434,6 @@ function changeGameSpeed(speed)
  */
 function onSimulationUpdate()
 {
-	g_Selection.dirty = false;
 	g_EntityStates = {};
 	g_TemplateData = {};
 	g_TechnologyData = {};

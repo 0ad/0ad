@@ -776,6 +776,7 @@ var UnitFsmSpec = {
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 
 			var maxRange = cmpFormation.GetMaxAttackRangeFunction(msg.data.target);
+			maxRange += cmpFormation.GetSize().depth / 2;
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, maxRange))
 			{
@@ -4381,7 +4382,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 	// Keep track of the position at the start of each order
 	var pos = cmpPosition.GetPosition();
 	var targetPositions = this.GetTargetPositions();
-	for (var i = 0; i < targetPositions; i++)
+	for (var i = 0; i < targetPositions.length; i++)
 	{
 		var dx = targetPositions[i].x - pos.x;
 		var dz = targetPositions[i].z - pos.z;

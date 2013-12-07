@@ -572,11 +572,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		// Get icon image
 		if (guiName == FORMATION)
 		{
-			var formationOk = Engine.GuiInterfaceCall("CanMoveEntsIntoFormation", {
-				"ents": g_Selection.toList(),
-				"formationName": item
-			});
-
+			var formationOk = canMoveSelectionIntoFormation(item);
 			var grayscale = "";
 			button.enabled = formationOk;
 			if (!formationOk)
@@ -1069,8 +1065,8 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			setupUnitBarterPanel(entState, playerState);
 		}
 
-		var buildableEnts = getAllBuildableEntities(selection);
-		var trainableEnts = getAllTrainableEntities(selection);
+		var buildableEnts = getAllBuildableEntitiesFromSelection();
+		var trainableEnts = getAllTrainableEntitiesFromSelection();
 
 		// Whether the GUI's right panel has been filled.
 		var rightUsed = true;
@@ -1272,6 +1268,14 @@ function getAllTrainableEntities(selection)
 	return trainableEnts;
 }
 
+function getAllTrainableEntitiesFromSelection()
+{
+	if (!g_allTrainableEntities)
+		g_allTrainableEntities = getAllTrainableEntities(g_Selection.toList());
+
+	return g_allTrainableEntities;
+}
+
 // Get all of the available entities which can be built by the selected entities
 function getAllBuildableEntities(selection)
 {
@@ -1287,4 +1291,25 @@ function getAllBuildableEntities(selection)
 	// Remove duplicates
 	removeDupes(buildableEnts);
 	return buildableEnts;
+}
+
+function getAllBuildableEntitiesFromSelection()
+{
+	if (!g_allBuildableEntities)
+		g_allBuildableEntities = getAllBuildableEntities(g_Selection.toList());
+
+	return g_allBuildableEntities;
+}
+
+// Check if the selection can move into formation, and cache the result
+function canMoveSelectionIntoFormation(formationName)
+{
+	if (!(formationName in g_canMoveIntoFormation))
+	{
+		g_canMoveIntoFormation[formationName] = Engine.GuiInterfaceCall("CanMoveEntsIntoFormation", {
+			"ents": g_Selection.toList(),
+			"formationName": formationName
+		});
+	}
+	return g_canMoveIntoFormation[formationName];
 }
