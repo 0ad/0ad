@@ -452,53 +452,35 @@ public:
 			return false;
 		}
 		
+		// Set up the data to pass as the constructor argument
+		CScriptVal settings;
+		m_ScriptInterface.Eval(L"({})", settings);
+		CScriptVal playersID;
+		m_ScriptInterface.Eval(L"({})", playersID);
+		
+		for (size_t i = 0; i < m_Players.size(); ++i)
+		{
+			jsval val = m_ScriptInterface.ToJSVal(m_ScriptInterface.GetContext(), m_Players[i]->m_Player);
+			m_ScriptInterface.SetPropertyInt(playersID.get(), i, CScriptVal(val), true);
+		}
+		
+		m_ScriptInterface.SetProperty(settings.get(), "players", playersID);
+		ENSURE(m_HasLoadedEntityTemplates);
+		m_ScriptInterface.SetProperty(settings.get(), "templates", m_EntityTemplates, false);
+		
 		if (hasTechs)
 		{
-			// Set up the data to pass as the constructor argument
-			CScriptVal settings;
-			m_ScriptInterface.Eval(L"({})", settings);
-			CScriptVal playersID;
-			m_ScriptInterface.Eval(L"({})", playersID);
-			
-			for (size_t i = 0; i < m_Players.size(); ++i)
-			{
-				jsval val = m_ScriptInterface.ToJSVal(m_ScriptInterface.GetContext(), m_Players[i]->m_Player);
-				m_ScriptInterface.SetPropertyInt(playersID.get(), i, CScriptVal(val), true);
-			}
-			
-			m_ScriptInterface.SetProperty(settings.get(), "players", playersID);
-			
-			ENSURE(m_HasLoadedEntityTemplates);
-			m_ScriptInterface.SetProperty(settings.get(), "templates", m_EntityTemplates, false);
-		
 			m_ScriptInterface.SetProperty(settings.get(), "techTemplates", m_TechTemplates, false);
-
-			m_SharedAIObj = CScriptValRooted(m_ScriptInterface.GetContext(),m_ScriptInterface.CallConstructor(ctor.get(), settings.get()));
 		}
 		else
 		{
 			// won't get the tech templates directly.
-			// Set up the data to pass as the constructor argument
-			CScriptVal settings;
-			m_ScriptInterface.Eval(L"({})", settings);
-			CScriptVal playersID;
-			m_ScriptInterface.Eval(L"({})", playersID);
-			for (size_t i = 0; i < m_Players.size(); ++i)
-			{
-				jsval val = m_ScriptInterface.ToJSVal(m_ScriptInterface.GetContext(), m_Players[i]->m_Player);
-				m_ScriptInterface.SetPropertyInt(playersID.get(), i, CScriptVal(val), true);
-			}
-			
-			m_ScriptInterface.SetProperty(settings.get(), "players", playersID);
-			
-			CScriptVal m_fakeTech;
-			m_ScriptInterface.Eval("({})", m_fakeTech);
-			m_ScriptInterface.SetProperty(settings.get(), "techTemplates", m_fakeTech, false);
-
-			ENSURE(m_HasLoadedEntityTemplates);
-			m_ScriptInterface.SetProperty(settings.get(), "templates", m_EntityTemplates, false);
-			m_SharedAIObj = CScriptValRooted(m_ScriptInterface.GetContext(),m_ScriptInterface.CallConstructor(ctor.get(), settings.get()));
+			CScriptVal fakeTech;
+			m_ScriptInterface.Eval("({})", fakeTech);
+			m_ScriptInterface.SetProperty(settings.get(), "techTemplates", fakeTech, false);
 		}
+		m_SharedAIObj = CScriptValRooted(m_ScriptInterface.GetContext(),m_ScriptInterface.CallConstructor(ctor.get(), settings.get()));
+	
 		
 		if (m_SharedAIObj.undefined())
 		{
