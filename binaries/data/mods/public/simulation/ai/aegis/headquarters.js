@@ -564,7 +564,7 @@ HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 		{
 			var pos = [j%friendlyTiles.width, Math.floor(j/friendlyTiles.width)];
 			var dist = SquareVectorDistance(friendlyTiles.gamePosToMapPos(ents[i].position()), pos);
-			if (dist < 2025)
+			if (dist < 2120)
 			{
 				canBuild = false;
 				continue;
