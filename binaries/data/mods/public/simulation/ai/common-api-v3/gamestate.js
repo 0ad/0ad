@@ -4,7 +4,7 @@
  */
 var GameState = function() {
 	this.ai = null; // must be updated by the AIs.
-	this.cellSize = 4; // Size of each map tile
+	this.cellSize = 4.0; // Size of each map tile
 
 	this.buildingsBuilt = 0;
 	this.turnCache = {};

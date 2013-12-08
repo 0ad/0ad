@@ -560,10 +560,15 @@ HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 		
 		var canBuild = true;
 		var canBuild2 = false;
+
+		var pos = [j%friendlyTiles.width+0.5, Math.floor(j/friendlyTiles.width)+0.5];
+
 		for (var i in ents)
 		{
-			var pos = [j%friendlyTiles.width, Math.floor(j/friendlyTiles.width)];
-			var dist = SquareVectorDistance(friendlyTiles.gamePosToMapPos(ents[i].position()), pos);
+			var entPos = ents[i].position();
+			entPos = [entPos[0]/4.0,entPos[1]/4.0];
+			
+			var dist = SquareVectorDistance(entPos, pos);
 			if (dist < 2120)
 			{
 				canBuild = false;
@@ -582,9 +587,10 @@ HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 			// Checking for enemy CCs
 			for (var i in eEnts)
 			{
-				var pos = [j%friendlyTiles.width, Math.floor(j/friendlyTiles.width)];
+				var entPos = eEnts[i].position();
+				entPos = [entPos[0]/4.0,entPos[1]/4.0];
 				// 7100 works well as a limit.
-				if (SquareVectorDistance(friendlyTiles.gamePosToMapPos(eEnts[i].position()), pos) < 2500)
+				if (SquareVectorDistance(entPos, pos) < 2500)
 				{
 					canBuild = false;
 					continue;
@@ -599,13 +605,18 @@ HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 
 		for (var i in dps)
 		{
-			var pos = [j%friendlyTiles.width, Math.floor(j/friendlyTiles.width)];
 			var dpPos = dps[i].position();
-			if (dpPos && SquareVectorDistance(friendlyTiles.gamePosToMapPos(dpPos), pos) < 100)
+			if (dpPos === undefined)
+			{
+				// Probably a mauryan elephant, skip
+				continue;
+			}
+			dpPos = [dpPos[0]/4.0,dpPos[1]/4.0];
+			if (SquareVectorDistance(dpPos, pos) < 100)
 			{
 				friendlyTiles.map[j] = 0;
 				continue;
-			} else if (dpPos && SquareVectorDistance(friendlyTiles.gamePosToMapPos(dpPos), pos) < 400)
+			} else if (SquareVectorDistance(dpPos, pos) < 400)
 				friendlyTiles.map[j] /= 2;
 		}
 
@@ -623,16 +634,15 @@ HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 	}
 	
 	
-	var best = friendlyTiles.findBestTile(3, obstructions);
+	var best = friendlyTiles.findBestTile(6, obstructions);
 	var bestIdx = best[0];
 
 	if (Config.debug)
 	{
-		friendlyTiles.map[bestIdx] = 255;
-		friendlyTiles.dumpIm("cc_placement_base_" + gameState.getTimeElapsed() + "_" + resource + "_" + best[1] + ".png", 5000);
-		obstructions.dumpIm("cc_placement_base_" + gameState.getTimeElapsed() + "_" + resource + "_" + best[1] + "_obs.png", 20);
+		friendlyTiles.map[bestIdx] = 270;
+		friendlyTiles.dumpIm("cc_placement_base_" + gameState.getTimeElapsed() + "_" + resource + "_" + best[1] + ".png",301);
+		//obstructions.dumpIm("cc_placement_base_" + gameState.getTimeElapsed() + "_" + resource + "_" + best[1] + "_obs.png", 20);
 	}
-	debug ("Best at " + best[1]);
 	
 	// not good enough.
 	if (best[1] < 60)
@@ -640,6 +650,8 @@ HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 	
 	var x = ((bestIdx % friendlyTiles.width) + 0.5) * gameState.cellSize;
 	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * gameState.cellSize;
+
+	debug ("Best for value " + best[1] + " at " + uneval([x,z]));
 
 	return [x,z];
 };
