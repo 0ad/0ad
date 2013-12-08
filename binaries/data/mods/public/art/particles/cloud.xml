@@ -19,5 +19,6 @@
     <uniform name="velocity.angle" min="-0.05" max="0.05"/>
 	
     <uniform name="size" min="25.0" max="60.0"/>
+	<uniform name="size.growthRate" min="-0.5" max="1.0"/>
 
 </particles>

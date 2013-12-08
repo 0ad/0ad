@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_spearman">
+  <Cost>
+    <Resources>
+      <wood>0</wood>
+	  <metal>80</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>cart</Civ>
 	<GenericName>Sacred Band Cavalry</GenericName>
