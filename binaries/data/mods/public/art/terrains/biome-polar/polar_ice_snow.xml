@@ -1,1 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?> <terrain> <textures> <texture name="baseTex" file="types/polar_ice_snow.dds"/>  </textures> <material>terrain_base.xml</material> </terrain>
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/polar_ice_snow.dds"/>
+		<texture name="normTex" file="types/polar_ice_snow_norm.png"/>
+		<texture name="specTex" file="types/polar_ice_snow_spec.png"/>
+	</textures>
+	<material>terrain_norm_spec.xml</material>
+</terrain>

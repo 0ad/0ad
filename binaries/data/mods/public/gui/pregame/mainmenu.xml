@@ -454,7 +454,7 @@ Status: $status.
 			</object>
 
 			<!-- PRE-RELEASE INFO -->
-			<object size="8 100%-370 100%-8 100%-100"
+			<object size="8 100%-340 100%-8 100%-100"
 				type="image"
 				style="TranslucentPanelThinBorder"
 			>
@@ -472,20 +472,6 @@ Status: $status.
 WARNING: This is an early development version of the game. Many features have not been added yet.
 
 Get involved at: play0ad.com
-				</object>
-
-				<!-- FUNDRAISER -->
-				<object type="button"
-					style="StoneButton"
-					tooltip_style="pgToolTip"
-					tooltip="Click to view fundraiser information."
-					size="8 100%-108 100%-8 100%-80"
-				>
-					Fundraiser
-					<action on="Press"><![CDATA[
-						closeMenu();
-						Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen" });
-					]]></action>
 				</object>
 
 				<!-- CONTACT METHODS -->

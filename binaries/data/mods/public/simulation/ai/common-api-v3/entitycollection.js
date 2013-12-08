@@ -195,7 +195,13 @@ EntityCollection.prototype.moveIndiv = function(x, z, queued)
 {
 	queued = queued || false;
 	for (var id in this._entities)
+	{
+		// The following try {} finally {} block is a workaround for OOS problems in multiplayer games with AI players (check ticket #2000).
+		// It disables JIT compiling of this loop. Don't remove it unless you are sure that the underlying issue has been resolved!
+		// TODO: Check this again after the SpiderMonkey upgrade.
+		try {} finally {}
 		Engine.PostCommand({"type": "walk", "entities": [this._entities[id].id()], "x": x, "z": z, "queued": queued});
+	}
 	return this;
 };
 EntityCollection.prototype.destroy = function()

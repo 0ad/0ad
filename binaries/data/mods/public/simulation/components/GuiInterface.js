@@ -145,6 +145,9 @@ GuiInterface.prototype.ClearRenamedEntities = function(player)
 	this.renamedEntities = [];
 };
 
+/**
+ * Get common entity info, often used in the gui
+ */
 GuiInterface.prototype.GetEntityState = function(player, ent)
 {
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
@@ -183,52 +186,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.maxHitpoints = cmpHealth.GetMaxHitpoints();
 		ret.needsRepair = cmpHealth.IsRepairable() && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints());
 		ret.needsHeal = !cmpHealth.IsUnhealable();
-	}
-
-	var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
-
-	if (cmpAttack)
-	{
-		var type = cmpAttack.GetBestAttack(); // TODO: how should we decide which attack to show? show all?
-		ret.attack = cmpAttack.GetAttackStrengths(type);
-		var range = cmpAttack.GetRange(type);
-		ret.attack.type = type;
-		ret.attack.minRange = range.min;
-		ret.attack.maxRange = range.max;
-		if (type == "Ranged")
-		{
-			ret.attack.elevationBonus = range.elevationBonus;
-			if (cmpUnitAI && cmpPosition && cmpPosition.IsInWorld())
-			{
-				// For units, take the rage in front of it, no spread. So angle = 0
-				ret.attack.elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(ret.position, ret.rotation, range.max, range.elevationBonus, 0);
-			}
-			else if(cmpPosition && cmpPosition.IsInWorld())
-			{
-				// For buildings, take the average elevation around it. So angle = 2*pi
-				ret.attack.elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(ret.position, ret.rotation, range.max, range.elevationBonus, 2*Math.PI);
-			}
-			else
-			{
-				// not in world, set a default?
-				ret.attack.elevationAdaptedRange = ret.attack.maxRange;
-			}
-			
-		}
-		else
-		{
-			// not a ranged attack, set some defaults
-			ret.attack.elevationBonus = 0;
-			ret.attack.elevationAdaptedRange = ret.attack.maxRange;
-		}
-	}
-
-	var cmpArmour = Engine.QueryInterface(ent, IID_DamageReceiver);
-	if (cmpArmour)
-	{
-		ret.armour = cmpArmour.GetArmourStrengths();
 	}
 
 	var cmpBuilder = Engine.QueryInterface(ent, IID_Builder);
@@ -274,6 +231,121 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		};
 	}
 
+	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+	if (cmpOwnership)
+	{
+		ret.player = cmpOwnership.GetOwner();
+	}
+
+	var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
+	if (cmpRallyPoint)
+	{
+		ret.rallyPoint = {'position': cmpRallyPoint.GetPositions()[0]}; // undefined or {x,z} object
+	}
+
+	var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
+	if (cmpGarrisonHolder)
+	{
+		ret.garrisonHolder = {
+			"entities": cmpGarrisonHolder.GetEntities(),
+			"allowedClasses": cmpGarrisonHolder.GetAllowedClassesList(),
+			"capacity": cmpGarrisonHolder.GetCapacity(),
+			"garrisonedEntitiesCount": cmpGarrisonHolder.GetGarrisonedEntitiesCount()
+		};
+	}
+	
+	var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+	if (cmpUnitAI)
+	{
+		ret.unitAI = {
+			"state": cmpUnitAI.GetCurrentState(),
+			"orders": cmpUnitAI.GetOrders(),
+			"hasWorkOrders": cmpUnitAI.HasWorkOrders(),
+			"canGuard": cmpUnitAI.CanGuard(),
+			"isGuarding": cmpUnitAI.IsGuardOf(),
+		};
+		// Add some information needed for ungarrisoning
+		if (cmpUnitAI.isGarrisoned && ret.player !== undefined)
+			ret.template = "p" + ret.player + "&" + ret.template;
+	}
+
+	var cmpGuard = Engine.QueryInterface(ent, IID_Guard);
+	if (cmpGuard)
+	{
+		ret.guard = {
+			"entities": cmpGuard.GetEntities(),
+		};
+	}
+
+	var cmpGate = Engine.QueryInterface(ent, IID_Gate);
+	if (cmpGate)
+	{
+		ret.gate = {
+			"locked": cmpGate.IsLocked(),
+		};
+	}
+
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	ret.visibility = cmpRangeManager.GetLosVisibility(ent, player, false);
+
+	return ret;
+};
+
+/**
+ * Get additionnal entity info, rarely used in the gui
+ */
+GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
+{
+	var ret = {};
+
+	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+
+	var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
+	if (cmpAttack)
+	{
+		var type = cmpAttack.GetBestAttack(); // TODO: how should we decide which attack to show? show all?
+		ret.attack = cmpAttack.GetAttackStrengths(type);
+		var range = cmpAttack.GetRange(type);
+		ret.attack.type = type;
+		ret.attack.minRange = range.min;
+		ret.attack.maxRange = range.max;
+		if (type == "Ranged")
+		{
+			ret.attack.elevationBonus = range.elevationBonus;
+			var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+			if (cmpUnitAI && cmpPosition && cmpPosition.IsInWorld())
+			{
+				// For units, take the rage in front of it, no spread. So angle = 0
+				ret.attack.elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(cmpPosition.GetPosition(), cmpPosition.GetRotation(), range.max, range.elevationBonus, 0);
+			}
+			else if(cmpPosition && cmpPosition.IsInWorld())
+			{
+				// For buildings, take the average elevation around it. So angle = 2*pi
+				ret.attack.elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(cmpPosition.GetPosition(), cmpPosition.GetRotation(), range.max, range.elevationBonus, 2*Math.PI);
+			}
+			else
+			{
+				// not in world, set a default?
+				ret.attack.elevationAdaptedRange = ret.attack.maxRange;
+			}
+			
+		}
+		else
+		{
+			// not a ranged attack, set some defaults
+			ret.attack.elevationBonus = 0;
+			ret.attack.elevationAdaptedRange = ret.attack.maxRange;
+		}
+	}
+
+	var cmpArmour = Engine.QueryInterface(ent, IID_DamageReceiver);
+	if (cmpArmour)
+	{
+		ret.armour = cmpArmour.GetArmourStrengths();
+	}
+
 	var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
 	if (cmpObstruction)
 	{
@@ -281,12 +353,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"controlGroup": cmpObstruction.GetControlGroup(),
 			"controlGroup2": cmpObstruction.GetControlGroup2(),
 		};
-	}
-
-	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-	if (cmpOwnership)
-	{
-		ret.player = cmpOwnership.GetOwner();
 	}
 
 	var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
@@ -317,23 +383,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"types": cmpResourceDropsite.GetTypes()
 		};
 	}
-
-	var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
-	if (cmpRallyPoint)
-	{
-		ret.rallyPoint = {'position': cmpRallyPoint.GetPositions()[0]}; // undefined or {x,z} object
-	}
-
-	var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
-	if (cmpGarrisonHolder)
-	{
-		ret.garrisonHolder = {
-			"entities": cmpGarrisonHolder.GetEntities(),
-			"allowedClasses": cmpGarrisonHolder.GetAllowedClassesList(),
-			"capacity": cmpGarrisonHolder.GetCapacity(),
-			"garrisonedEntitiesCount": cmpGarrisonHolder.GetGarrisonedEntitiesCount()
-		};
-	}
 	
 	var cmpPromotion = Engine.QueryInterface(ent, IID_Promotion);
 	if (cmpPromotion)
@@ -342,38 +391,9 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"curr": cmpPromotion.GetCurrentXp(),
 			"req": cmpPromotion.GetRequiredXp()
 		};
-	}
-
-	if (cmpUnitAI)
-	{
-		ret.unitAI = {
-			"state": cmpUnitAI.GetCurrentState(),
-			"orders": cmpUnitAI.GetOrders(),
-			"hasWorkOrders": cmpUnitAI.HasWorkOrders(),
-			"canGuard": cmpUnitAI.CanGuard(),
-			"isGuarding": cmpUnitAI.IsGuardOf(),
-		};
-		// Add some information needed for ungarrisoning
-		if (cmpUnitAI.isGarrisoned && ret.player !== undefined)
-			ret.template = "p" + ret.player + "&" + ret.template;
-	}
-
-	var cmpGuard = Engine.QueryInterface(ent, IID_Guard);
-	if (cmpGuard)
-	{
-		ret.guard = {
-			"entities": cmpGuard.GetEntities(),
-		};
-	}
-	
-	var cmpGate = Engine.QueryInterface(ent, IID_Gate);
-	if (cmpGate)
-	{
-		ret.gate = {
-			"locked": cmpGate.IsLocked(),
-		};
 	}	
 
+	var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
 	if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("BarterMarket"))
 	{
 		var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
@@ -383,13 +403,11 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	var cmpHeal = Engine.QueryInterface(ent, IID_Heal);
 	if (cmpHeal)
 	{
-		ret.Healer = { 
+		ret.healer = { 
 			"unhealableClasses": cmpHeal.GetUnhealableClasses(),
 			"healableClasses": cmpHeal.GetHealableClasses(),
 		};
 	}
-
-	ret.visibility = cmpRangeManager.GetLosVisibility(ent, player, false);
 
 	return ret;
 };
@@ -406,8 +424,6 @@ GuiInterface.prototype.GetAverageRangeForBuildings = function(player, cmd)
 
 	return cmpRangeManager.GetElevationAdaptedRange(pos, rot, range, elevationBonus, 2*Math.PI);
 };
-
-
 
 GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 {
@@ -1799,6 +1815,7 @@ var exposedFunctions = {
 	"GetRenamedEntities": 1,
 	"ClearRenamedEntities": 1,
 	"GetEntityState": 1,
+	"GetExtendedEntityState": 1,
 	"GetAverageRangeForBuildings": 1,
 	"GetTemplateData": 1,
 	"GetTechnologyData": 1,

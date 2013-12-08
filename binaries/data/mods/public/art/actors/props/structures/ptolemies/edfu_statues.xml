@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="ptolemaic Statue 1">
+      <mesh>props/ptol_edfu_statues.dae</mesh>
+	  <textures>
+			<texture file="structural/ptol_horus_statue.png" name="baseTex"/>
+			<texture file="structural/ptol_horus_statue_norm.png" name="normTex"/>
+            <texture file="structural/ptol_horus_statue_spec.png" name="specTex"/>
+			<texture file="structural/ao/ptol_edfu.png" name="aoTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

@@ -415,8 +415,11 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	needsRepair: false,
 	needsHeal: true,
 	buildEntities: ["test1", "test2"],
+	visibility: "visible",
+});
+
+TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {
 	barterMarket: {
 		prices: { "buy": {"food":150}, "sell": {"food":25} },
 	},
-	visibility: "visible",
 });

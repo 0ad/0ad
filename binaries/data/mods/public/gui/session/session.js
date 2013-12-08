@@ -66,10 +66,31 @@ function GetEntityState(entId)
 	if (!(entId in g_EntityStates))
 	{
 		var entState = Engine.GuiInterfaceCall("GetEntityState", entId);
+		if (entState)
+			entState.extended = false;
 		g_EntityStates[entId] = entState;
 	}
 
 	return g_EntityStates[entId];
+}
+
+function GetExtendedEntityState(entId)
+{
+	if (entId in g_EntityStates)
+		var entState = g_EntityStates[entId];
+	else
+		var entState = Engine.GuiInterfaceCall("GetEntityState", entId);
+
+	if (!entState || entState.extended)
+		return entState;
+
+	var extension = Engine.GuiInterfaceCall("GetExtendedEntityState", entId);
+	for (var prop in extension)
+		entState[prop] = extension[prop];
+	entState.extended = true;
+	g_EntityStates[entId] = entState;
+
+	return entState;
 }
 
 // Cache TemplateData
@@ -480,7 +501,7 @@ function updateHero()
 	}
 
 	var heroImage = getGUIObjectByName("unitHeroImage");
-	var heroState = GetEntityState(playerState.heroes[0]);
+	var heroState = GetExtendedEntityState(playerState.heroes[0]);
 	var template = GetTemplateData(heroState.template);
 	heroImage.sprite = "stretched:session/portraits/" + template.icon;
 	var hero = playerState.heroes[0];
@@ -555,7 +576,7 @@ function updateDebug()
 	var selection = g_Selection.toList();
 	if (selection.length)
 	{
-		var entState = GetEntityState(selection[0]);
+		var entState = GetExtendedEntityState(selection[0]);
 		if (entState)
 		{
 			var template = GetTemplateData(entState.template);

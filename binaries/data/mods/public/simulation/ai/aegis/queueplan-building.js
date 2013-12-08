@@ -106,10 +106,10 @@ ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	var alreadyHasHouses = false;
 
 	// If a position was specified then place the building as close to it as possible
-	if (this.position){
-		var x = Math.round(this.position[0] / cellSize);
-		var z = Math.round(this.position[1] / cellSize);
-		friendlyTiles.addInfluence(x, z, 200);
+	if (this.position) {
+		var x = Math.floor(this.position[0] / cellSize);
+		var z = Math.floor(this.position[1] / cellSize);
+		friendlyTiles.addInfluence(x, z, 255);
 	} else {
 		// No position was specified so try and find a sensible place to build
 		gameState.getOwnEntities().forEach(function(ent) {
@@ -179,14 +179,13 @@ ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	// note: not for houses and dropsites who ought to be closer to either each other or a resource.
 	// also not for fields who can be stacked quite a bit
 	var radius = 0;
-	if (template.genericName() == "Field")
-		radius = Math.ceil(template.obstructionRadius() / cellSize);
-	else if (template.hasClass("GarrisonFortress"))
-		radius = Math.ceil(template.obstructionRadius() / cellSize) + 2;
+
+	if (template.hasClass("GarrisonFortress"))
+		radius = Math.floor(template.obstructionRadius() / cellSize) + 2;
 	else if (template.buildCategory() === "Dock")
-		radius = 1;//Math.floor(template.obstructionRadius() / cellSize);
-	else if (!template.hasClass("DropsiteWood") && !template.hasClass("DropsiteStone") && !template.hasClass("DropsiteMetal"))
-		radius = Math.ceil(template.obstructionRadius() / cellSize + 1);
+		radius = 1;
+	else if (template.resourceDropsiteTypes() === undefined)
+		radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
 	else
 		radius = Math.ceil(template.obstructionRadius() / cellSize);
 	
@@ -222,8 +221,8 @@ ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	var angle = 3*Math.PI/4;
 	
 	return {
-		"x" : x+2,
-		"z" : z+2,
+		"x" : x,
+		"z" : z,
 		"angle" : angle
 	};
 };

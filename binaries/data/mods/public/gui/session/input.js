@@ -213,16 +213,14 @@ function getActionInfo(action, target)
 	// Look at the first targeted entity
 	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
 	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
-	var targetState = GetEntityState(target);
+	var targetState = GetExtendedEntityState(target);
 
 	var gaiaOwned = (targetState.player == 0);
 
 	// Look to see what type of command units going to the rally point should use
 	if (action == "set-rallypoint")
 	{
-		// We assume that all entities are owned by the same player.
-		var entState = GetEntityState(selection[0]);
-
+		// We assume that all entities are owned by the same player (given par entState of selection[0]).
 		var playerState = simState.players[entState.player];
 		var playerOwned = (targetState.player == entState.player);
 		var allyOwned = playerState.isAlly[targetState.player];
@@ -315,7 +313,7 @@ function getActionInfo(action, target)
 	// can return to the dropsite, can build the foundation, or can attack the enemy
 	for each (var entityID in selection)
 	{
-		var entState = GetEntityState(entityID);
+		var entState = GetExtendedEntityState(entityID);
 		if (!entState)
 			continue;
 
@@ -384,20 +382,20 @@ function getActionInfo(action, target)
 			break;
 		case "heal":
 			// The check if the target is unhealable is done by targetState.needsHeal
-			if (entState.Healer && hasClass(targetState, "Unit") && targetState.needsHeal && (playerOwned || allyOwned))
+			if (entState.healer && hasClass(targetState, "Unit") && targetState.needsHeal && (playerOwned || allyOwned))
 			{
 				// Healers can't heal themselves.
 				if (entState.id == targetState.id)
 					return {"possible": false};
 
-				var unhealableClasses = entState.Healer.unhealableClasses;
+				var unhealableClasses = entState.healer.unhealableClasses;
 				for each (var unitClass in targetState.identity.classes)
 				{
 					if (unhealableClasses.indexOf(unitClass) != -1)
 						return {"possible": false};
 				}
 
-				var healableClasses = entState.Healer.healableClasses;
+				var healableClasses = entState.healer.healableClasses;
 				for each (var unitClass in targetState.identity.classes)
 				{
 					if (healableClasses.indexOf(unitClass) != -1)
@@ -485,7 +483,6 @@ function determineAction(x, y, fromMinimap)
 
 	var targets = [];
 	var target = undefined;
-	var targetState = undefined;
 	if (!fromMinimap)
 		targets = Engine.PickEntitiesAtPoint(x, y);
 
@@ -1852,7 +1849,7 @@ function performCommand(entity, commandName)
 {
 	if (entity)
 	{
-		var entState = GetEntityState(entity);
+		var entState = GetExtendedEntityState(entity);
 		var playerID = Engine.GetPlayerID();
 
 		if (entState.player == playerID || g_DevSettings.controlAll)
