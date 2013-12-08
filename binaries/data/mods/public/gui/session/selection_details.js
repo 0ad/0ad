@@ -325,7 +325,7 @@ function updateSelectionDetails()
 	/* If the unit has no data (e.g. it was killed), don't try displaying any
 	 data for it. (TODO: it should probably be removed from the selection too;
 	 also need to handle multi-unit selections) */
-	var entState = GetEntityState(selection[0]);
+	var entState = GetExtendedEntityState(selection[0]);
 	if (!entState)
 		return;
 
