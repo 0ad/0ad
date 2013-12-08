@@ -7,37 +7,32 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" style="TranslucentPanel"/>
 
-	<object type="image" style="StoneDialog" size="50%-300 50%-200 50%+300 50%+200">
+	<object type="image" style="StoneDialog" size="50%-274 50%-200 50%+274 50%+200">
 		<object type="text" style="TitleText" size="50%-128 0%-16 50%+128 16">Welcome to 0 A.D. !</object>
 
 			<object type="image" sprite="BackgroundTranslucent" size="20 20 100%-20 100%-52">
-				<object name="openFundraiserPage" type="button" style="fundraiserButton" size="5 5 100% 150">
-					<action on="Press"><![CDATA[
-					Engine.OpenURL("http://play0ad.com/fundraiser");
-					]]></action>
-				</object>
-				<object size="0 150 100% 100%">
-					<object name="mainText" type="text" style="textPanel"/>
+				<object name="mainText" type="text" style="textPanel"/>
+				<object size="8 100%-60 100% 100%">
+					<object size="0 20 100% 100%">
+						<object name="displaySplashScreenText" size="20 0 100% 100%" type="text" style="LeftLabelText">Show this message in the future</object>
+						<object name="displaySplashScreen" checked="true" size="0 50%-8 16 50%+8" type="checkbox" style="StoneCrossBox"/>
+					</object>
 				</object>
 			</object>
 		<object name="btnOK" type="button" style="StoneButton" tooltip_style="snToolTip" size="24 100%-52 188 100%-24">
 			OK
 			<action on="Press"><![CDATA[
-			Engine.SetSplashScreenEnabled(!getGUIObjectByName("displaySplashScreen").checked);
+			Engine.SetSplashScreenEnabled(getGUIObjectByName("displaySplashScreen").checked);
 			Engine.PopGuiPage();
 			]]></action>
 		</object>
-		<object name="btnFundraiser" type="button" style="StoneButton" tooltip_style="snToolTip" size="196 100%-52 360 100%-24">
-			Visit Fundraiser
+		<object type="button" style="StoneButton" size="192 100%-52 356 100%-24">
+			Known issues (web)
 			<action on="Press"><![CDATA[
-			Engine.OpenURL("http://play0ad.com/fundraiser");
-			]]></action>
-		</object>
-		<object size="368 100%-52 100%-32 100%-24">
-			<object size="0 0 100% 100%">
-				<object name="displaySplashScreenText" size="0 0 100%-32 100%" type="text" style="RightLabelText">Don't show this again</object>
-				<object name="displaySplashScreen" checked="false" size="100%-16 50%-8 100% 50%+8" type="checkbox" style="StoneCrossBox"/>
-			</object>
+				var url = "http://www.wildfiregames.com/forum/index.php?showtopic=15796";
+				Engine.OpenURL(url);
+				messageBox(600, 200, "Opening "+url+"\n in default web browser. Please wait...", "Opening page", 2);
+				]]></action>
 		</object>
 	</object>
 	
