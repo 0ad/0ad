@@ -192,7 +192,11 @@ BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 					}
 				}
 			}
-		} else if (events[i].type == "ConstructionFinished")
+		}
+	}
+	for (i in events)
+	{
+		if (events[i].type == "ConstructionFinished")
 		{
 			// let's check we haven't lost an important building here.
 			var evt = events[i];
@@ -200,7 +204,10 @@ BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 			{
 				// TODO: we ought to add new resources or do something.
 				var ent = gameState.getEntityById(evt.msg.newentity);
-
+				
+				if (ent === undefined)
+					continue;
+				
 				if (ent.getMetadata(PlayerID,"base") == this.ID)
 				{
 					if(ent.hasTerritoryInfluence())
@@ -219,7 +226,11 @@ BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 			if (evt.msg && evt.msg.entity)
 			{
 				var ent = gameState.getEntityById(evt.msg.entity);
-				if (ent && ent.resourceSupplyAmount() && ent.owner() == 0)
+
+				if (ent === undefined)
+					continue;
+
+				if (ent.resourceSupplyAmount() && ent.owner() == 0)
 					this.assignResourceToDP(gameState,ent);
 			}
 		}
