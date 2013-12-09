@@ -282,10 +282,10 @@ private:
 			m_Commands.clear();
 			m_ScriptInterface.CallFunctionVoid(m_Obj.get(), "HandleMessage", state, SharedAI);
 		}
-		void InitWithSharedScript(CScriptVal state, CScriptValRooted SharedAI)
+		void InitAI(CScriptVal state, CScriptValRooted SharedAI)
 		{
 			m_Commands.clear();
-			m_ScriptInterface.CallFunctionVoid(m_Obj.get(), "InitWithSharedScript", state, SharedAI);
+			m_ScriptInterface.CallFunctionVoid(m_Obj.get(), "Init", state, SharedAI);
 		}
 
 		CAIWorker& m_Worker;
@@ -523,13 +523,13 @@ public:
 			m_ScriptInterface.SetProperty(state.get(), "passabilityMap", m_PassabilityMapVal, true);
 			m_ScriptInterface.SetProperty(state.get(), "territoryMap", m_TerritoryMapVal, true);
 
-			m_ScriptInterface.CallFunctionVoid(m_SharedAIObj.get(), "initWithState", state);
+			m_ScriptInterface.CallFunctionVoid(m_SharedAIObj.get(), "init", state);
 			m_ScriptInterface.MaybeGC();
 			
 			for (size_t i = 0; i < m_Players.size(); ++i)
 			{
 				if (m_HasSharedComponent && m_Players[i]->m_UseSharedComponent)
-					m_Players[i]->InitWithSharedScript(state,m_SharedAIObj);
+					m_Players[i]->InitAI(state,m_SharedAIObj);
 			}
 		}
 		

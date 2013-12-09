@@ -165,10 +165,10 @@ SharedScript.prototype.GetTemplate = function(name)
 	return null;
 };
 
-// initialize the shared component using a given gamestate (the initial gamestate after map creation, usually)
-// this is called right at the end of map generation, before you actually reach the map.
-SharedScript.prototype.initWithState = function(state) {	
-	this.events = state.events;
+// Initialize the shared component.
+// We need to now the initial state of the game for this, as we will use it.
+// This is called right at the end of the map generation.
+SharedScript.prototype.init = function(state) {
 	this.passabilityClasses = state.passabilityClasses;
 	this.passabilityMap = state.passabilityMap;
 	this.players = this._players;
@@ -180,11 +180,9 @@ SharedScript.prototype.initWithState = function(state) {
 		this._techModifications[o] = state.players[o].techModifications;
 	
 	this._entities = {};
-
 	for (var id in state.entities)
-	{
 		this._entities[id] = new Entity(this, state.entities[id]);
-	}
+
 	// entity collection updated on create/destroy event.
 	this.entities = new EntityCollection(this, this._entities);
 	
@@ -203,21 +201,21 @@ SharedScript.prototype.initWithState = function(state) {
 		this.gameState[this._players[i]] = new GameState();
 		this.gameState[this._players[i]].init(this,state,this._players[i]);
 	}
-
 };
 
 // General update of the shared script, before each AI's update
 // applies entity deltas, and each gamestate.
 SharedScript.prototype.onUpdate = function(state)
 {
+	// deals with updating based on create and destroy messages.
 	this.ApplyEntitiesDelta(state);
 
 	Engine.ProfileStart("onUpdate");
-	
+
+	// those are dynamic and need to be reset as the "state" object moves in memory.
 	this.events = state.events;
 	this.passabilityClasses = state.passabilityClasses;
 	this.passabilityMap = state.passabilityMap;
-	this.players = this._players;
 	this.playersData = state.players;
 	this.territoryMap = state.territoryMap;
 	this.timeElapsed = state.timeElapsed;
@@ -228,11 +226,10 @@ SharedScript.prototype.onUpdate = function(state)
 	for (var i in this.gameState)
 		this.gameState[i].update(this,state);
 
+	// TODO: merge those two with "ApplyEntitiesDelta" since after all they do the same.
 	this.updateResourceMaps(this, this.events);
 	this.terrainAnalyzer.updateMapWithEvents(this);
 	
-	//this.OnUpdate();
-
 	this.turn++;
 	
 	Engine.ProfileStop();

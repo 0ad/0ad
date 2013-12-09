@@ -678,6 +678,7 @@ HQ.prototype.buildMarket = function(gameState, queues){
 // Build a farmstead to go to town phase faster and prepare for research. Only really active on higher diff mode.
 HQ.prototype.buildFarmstead = function(gameState, queues){
 	if (gameState.getPopulation() > Config.Economy.popForFarmstead) {
+		// achtung: "DropsiteFood" does not refer to CCs.
 		if (queues.economicBuilding.countQueuedUnitsWithClass("DropsiteFood") === 0 &&
 			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_farmstead")) === 0){
 			//only ever build one storehouse/CC/market at a time
