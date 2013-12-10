@@ -34,7 +34,7 @@ function AegisBot(settings) {
 
 AegisBot.prototype = new BaseAI();
 
-AegisBot.prototype.InitShared = function(gameState, sharedScript) {
+AegisBot.prototype.CustomInit = function(gameState, sharedScript) {
 	
 	this.HQ.init(gameState,sharedScript.events,this.queues);
 	debug ("Initialized with the difficulty " + Config.difficulty);

@@ -1267,7 +1267,7 @@ var UnitFsmSpec = {
 					return;
 			}
 			// if we already are targeting another unit still alive, finish with it first
-			if (this.order && this.order.type == "WalkAndFight")
+			if (this.order && (this.order.type == "WalkAndFight" || this.order.type == "Attack"))
 				if (this.order.data.target != msg.data.attacker && this.TargetIsAlive(msg.data.attacker)) 
 					return;
 
@@ -1283,15 +1283,28 @@ var UnitFsmSpec = {
 				return;
 			}
 
-			// target the unit
-			var cmpPosition = Engine.QueryInterface(msg.data.attacker, IID_Position);
-			if (!cmpPosition || !cmpPosition.IsInWorld())
+			// if the attacker is a building and we can repair the guarded, repair it rather than attacking
+			var cmpBuildingAI = Engine.QueryInterface(msg.data.attacker, IID_BuildingAI);
+			if (cmpBuildingAI && this.CanRepair(this.isGuardOf) && cmpHealth.IsRepairable())
+			{
+				this.PushOrderFront("Repair", { "target": this.isGuardOf, "autocontinue": false, "force": false });
 				return;
-			var pos = cmpPosition.GetPosition();
-			this.PushOrderFront("WalkAndFight", { "x": pos.x, "z": pos.z, "target": msg.data.attacker, "force": false });
-			// if we already had a WalkAndFight, keep only the most recent one in case the target has moved
-			if (this.orderQueue[1] && this.orderQueue[1].type == "WalkAndFight")
-				this.orderQueue.splice(1, 1);
+			}
+
+			// target the unit
+			if (this.CheckTargetVisible(msg.data.attacker))
+				this.PushOrderFront("Attack", { "target": msg.data.attacker, "force": false });
+			else
+			{
+				var cmpPosition = Engine.QueryInterface(msg.data.attacker, IID_Position);
+				if (!cmpPosition || !cmpPosition.IsInWorld())
+					return;
+				var pos = cmpPosition.GetPosition();
+				this.PushOrderFront("WalkAndFight", { "x": pos.x, "z": pos.z, "target": msg.data.attacker, "force": false });
+				// if we already had a WalkAndFight, keep only the most recent one in case the target has moved
+				if (this.orderQueue[1] && this.orderQueue[1].type == "WalkAndFight")
+					this.orderQueue.splice(1, 1);
+			}
 		},
 
 		"IDLE": {

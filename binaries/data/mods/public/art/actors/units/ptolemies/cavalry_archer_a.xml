@@ -20,7 +20,7 @@
   <group>
     <variant frequency="100" name="texture">
       <textures>
-        <texture file="skeletal/animal_camel.png" name="baseTex"/>
+        <texture file="skeletal/ptol_camel_a.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -37,4 +37,5 @@
       </props>
     </variant>
   </group>
+    <material>player_trans.xml</material>
 </actor>

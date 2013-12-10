@@ -186,7 +186,11 @@ HQ.prototype.checkEvents = function (gameState, events, queues) {
 			if (evt.msg && evt.msg.entity)
 			{
 				var ent = gameState.getEntityById(evt.msg.entity);
-				if (ent && ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "base") === -1)
+				
+				if (ent === undefined)
+					continue; // happens when this message is right before a "Destroy" one for the same entity.
+
+				if (ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "base") === -1)
 				{
 					// Okay so let's try to create a new base around this.
 					var bID = uniqueIDBases;
@@ -213,7 +217,11 @@ HQ.prototype.checkEvents = function (gameState, events, queues) {
 			if (evt.msg && evt.msg.newentity)
 			{
 				var ent = gameState.getEntityById(evt.msg.newentity);
-				if (ent && ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "baseAnchor") == true)
+				
+				if (ent === undefined)
+					continue; // happens when this message is right before a "Destroy" one for the same entity.
+				
+				if (ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "baseAnchor") == true)
 				{
 					var base = ent.getMetadata(PlayerID, "base");
 					if (this.baseManagers[base].constructing)
@@ -678,6 +686,7 @@ HQ.prototype.buildMarket = function(gameState, queues){
 // Build a farmstead to go to town phase faster and prepare for research. Only really active on higher diff mode.
 HQ.prototype.buildFarmstead = function(gameState, queues){
 	if (gameState.getPopulation() > Config.Economy.popForFarmstead) {
+		// achtung: "DropsiteFood" does not refer to CCs.
 		if (queues.economicBuilding.countQueuedUnitsWithClass("DropsiteFood") === 0 &&
 			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_farmstead")) === 0){
 			//only ever build one storehouse/CC/market at a time

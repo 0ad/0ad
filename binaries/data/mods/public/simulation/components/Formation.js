@@ -118,6 +118,7 @@ Formation.prototype.SetMembers = function(ents)
  */
 Formation.prototype.RemoveMembers = function(ents)
 {
+	this.offsets = undefined;
 	this.members = this.members.filter(function(e) { return ents.indexOf(e) == -1; });
 	this.inPosition = this.inPosition.filter(function(e) { return ents.indexOf(e) == -1; });
 
@@ -150,7 +151,6 @@ Formation.prototype.RemoveMembers = function(ents)
 	if (!this.rearrange)
 		return;
 
-	this.offsets = undefined;
 	this.ComputeMotionParameters();
 
 	// Rearrange the remaining members
