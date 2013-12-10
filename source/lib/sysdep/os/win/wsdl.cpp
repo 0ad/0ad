@@ -433,7 +433,12 @@ SDL_Surface* SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags)
 			status = ChangeDisplaySettings(0, 0);
 			// don't ShowWindow with SW_MINIMIZE (we just want to update)
 		}
-		ENSURE(status == DISP_CHANGE_SUCCESSFUL);
+		if (status != DISP_CHANGE_SUCCESSFUL)
+		{
+			wchar_t buf[100];
+			swprintf_s(buf, ARRAY_SIZE(buf), L"ChangeDisplaySettings failed with status=%d", status);
+			DEBUG_DISPLAY_ERROR(buf);
+		}
 	}
 
 	// (required for ogl_HaveExtension, but callers should also invoke
@@ -460,7 +465,12 @@ static void video_Shutdown()
 	if(fullscreen)
 	{
 		LONG status = ChangeDisplaySettings(0, 0);
-		ENSURE(status == DISP_CHANGE_SUCCESSFUL);
+		if (status != DISP_CHANGE_SUCCESSFUL)
+		{
+			wchar_t buf[100];
+			swprintf_s(buf, ARRAY_SIZE(buf), L"ChangeDisplaySettings failed with status=%d", status);
+			DEBUG_DISPLAY_ERROR(buf);
+		}
 	}
 
 	if(wutil_IsValidHandle(hGLRC))
@@ -811,7 +821,12 @@ static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL
 		{
 			ShowWindow(g_hWnd, SW_RESTORE);
 			const LONG ret = ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
-			ENSURE(ret == DISP_CHANGE_SUCCESSFUL);
+			if (ret != DISP_CHANGE_SUCCESSFUL)
+			{
+				wchar_t buf[100];
+				swprintf_s(buf, ARRAY_SIZE(buf), L"ChangeDisplaySettings failed with ret=%d", ret);
+				DEBUG_DISPLAY_ERROR(buf);
+			}
 		}
 
 		// re-assert mouse grab state
@@ -831,7 +846,12 @@ static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL
 		if(fullscreen)
 		{
 			const LONG ret = ChangeDisplaySettings(0, 0);
-			ENSURE(ret == DISP_CHANGE_SUCCESSFUL);
+			if (ret != DISP_CHANGE_SUCCESSFUL)
+			{
+				wchar_t buf[100];
+				swprintf_s(buf, ARRAY_SIZE(buf), L"ChangeDisplaySettings failed with ret=%d", ret);
+				DEBUG_DISPLAY_ERROR(buf);
+			}
 			WARN_IF_FALSE(ShowWindow(g_hWnd, SW_MINIMIZE));
 		}
 	}
