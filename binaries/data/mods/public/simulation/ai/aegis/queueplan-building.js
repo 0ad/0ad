@@ -38,6 +38,9 @@ ConstructionPlan.prototype.canStart = function(gameState) {
 	if (gameState.buildingsBuilt > 0)
 		return false;
 	
+	if (!this.isGo(gameState))
+		return false;
+	
 	// TODO: verify numeric limits etc
 	if (this.template.requiredTech() && !gameState.isResearched(this.template.requiredTech()))
 	{

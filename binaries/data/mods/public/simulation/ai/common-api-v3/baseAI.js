@@ -26,6 +26,7 @@ BaseAI.prototype.Deserialize = function(data, sharedScript)
 {
 	// TODO: ought to get the AI script subclass to deserialize its own state
 	// TODO: actually this is part of a larger reflection on wether AIs should or not.
+	this.isDeserialized = true;
 };
 
 BaseAI.prototype.Init = function(state, sharedAI)
@@ -59,6 +60,13 @@ BaseAI.prototype.HandleMessage = function(state, sharedAI)
 {
 	this.events = sharedAI.events;
 	
+	if (this.isDeserialized && this.turn !== 0)
+	{
+		this.isDeserialized = false;
+		this.Init(state, sharedAI);
+		warn("AIs don't work completely with saved games yet. You may run into idle units and unused buildings.");
+	} else if (this.isDeserialized)
+		return;
 	this.OnUpdate(sharedAI);
 };
 

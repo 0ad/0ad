@@ -892,6 +892,7 @@ public:
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 		m_TerritoriesDirtyID = 0;
+		m_JustDeserialized = false;
 
 		StartLoadEntityTemplates();
 	}
@@ -917,6 +918,8 @@ public:
 		ForceLoadEntityTemplates();
 
 		m_Worker.Deserialize(deserialize.GetStream());
+		
+		m_JustDeserialized = true;
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -1016,7 +1019,11 @@ public:
 		ENSURE(cmpAIInterface);
 
 		// Get the game state from AIInterface
-		CScriptVal state = cmpAIInterface->GetRepresentation();
+		CScriptVal state;
+		if (m_JustDeserialized)
+			state = cmpAIInterface->GetFullRepresentation(true);
+		else
+			state = cmpAIInterface->GetRepresentation();
 
 		// Get the passability data
 		Grid<u16> dummyGrid;
@@ -1040,6 +1047,8 @@ public:
 		LoadPathfinderClasses(state);
 
 		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state.get()), *passabilityMap, *territoryMap, territoryMapDirty);
+		
+		m_JustDeserialized = false;
 	}
 
 	virtual void PushCommands()
@@ -1068,6 +1077,8 @@ private:
 	size_t m_TemplateLoadedIdx;
 	std::vector<std::pair<std::string, const CParamNode*> > m_Templates;
 	size_t m_TerritoriesDirtyID;
+
+	bool m_JustDeserialized;
 
 	void StartLoadEntityTemplates()
 	{
