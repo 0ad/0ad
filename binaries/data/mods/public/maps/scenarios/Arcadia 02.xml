@@ -2,48 +2,50 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunrise</SkySet>
-		<SunColour r="1.03932" g="0.88413" b="0.559635"/>
-		<SunElevation angle="0.325204"/>
-		<SunRotation angle="-1.75487"/>
-		<TerrainAmbientColour r="0.243137" g="0.294118" b="0.423529"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
+		<SkySet>rain</SkySet>
+		<SunColour r="0.940564" g="0.771262" b="0.249249"/>
+		<SunElevation angle="0.812077"/>
+		<SunRotation angle="0.632749"/>
+		<TerrainAmbientColour r="0.239216" g="0.294118" b="0.419608"/>
+		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<Fog>
-			<FogFactor>0</FogFactor>
-			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.898039"/>
+			<FogFactor>0.00298828</FogFactor>
+			<FogThickness>0.00195313</FogThickness>
+			<FogColour r="0.74902" g="0.74902" b="0.74902"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.34902" g="0.392157" b="0.447059"/>
-				<Height>17.6262</Height>
+				<Height>15.7377</Height>
 				<Shininess>150</Shininess>
 				<Waviness>2.1875</Waviness>
 				<Murkiness>0.900391</Murkiness>
-				<Tint r="0.819608" g="0.74902" b="0.513726"/>
+				<Tint r="0.329412" g="0.419608" b="0.501961"/>
 				<ReflectionTint r="0.776471" g="0.74902" b="0.576471"/>
-				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
-			<Contrast>1.17773</Contrast>
-			<Saturation>0.99</Saturation>
-			<Bloom>0.1999</Bloom>
+			<Contrast>0.977539</Contrast>
+			<Saturation>0.867188</Saturation>
+			<Bloom>0.127734</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="599.739" y="88.2029" z="444.413"/>
+		<Position x="586.342" y="72.9301" z="544.56"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Description": "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. Players start on either side of a mountainous region rich in resources. A Stoa with a +10 population bonus helps players jumpstart building their new colonies.",
-  "Preview": "arcadia_2.png",
+  "CircularMap": false,
+  "Description": "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \u000a\u000aPlayers start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies.",
+  "GameType": "conquest",
   "Keywords": [],
+  "LockTeams": false,
   "Name": "Arcadia 2",
   "PlayerData": [
     {
@@ -66,7 +68,9 @@
       "Name": "Player 2",
       "Team": -1
     }
-  ]
+  ],
+  "Preview": "arcadia_2.png",
+  "RevealMap": false
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -7122,13 +7126,13 @@
 		</Entity>
 		<Entity uid="1638">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="163.65532" z="307.82029"/>
+			<Position x="173.63233" z="285.66178"/>
 			<Orientation y="-1.44365"/>
 		</Entity>
 		<Entity uid="1639">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="175.10756" z="312.79938"/>
-			<Orientation y="-1.74843"/>
+			<Position x="164.02913" z="330.08436"/>
+			<Orientation y="-0.24126"/>
 		</Entity>
 		<Entity uid="1640">
 			<Template>actor|props/flora/water_log.xml</Template>
@@ -13302,12 +13306,12 @@
 		</Entity>
 		<Entity uid="2875">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="630.9817" z="353.10871"/>
-			<Orientation y="-3.06678"/>
+			<Position x="611.7356" z="359.62967"/>
+			<Orientation y="2.48322"/>
 		</Entity>
 		<Entity uid="2876">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="635.17884" z="372.25776"/>
+			<Position x="653.26471" z="370.80729"/>
 			<Orientation y="-1.8659"/>
 		</Entity>
 		<Entity uid="2877">
@@ -13487,12 +13491,12 @@
 		</Entity>
 		<Entity uid="2912">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="638.9386" z="360.58051"/>
+			<Position x="640.13459" z="360.43458"/>
 			<Orientation y="-2.39522"/>
 		</Entity>
 		<Entity uid="2913">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="631.9546" z="357.5525"/>
+			<Position x="632.40174" z="356.48136"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2914">
@@ -22504,13 +22508,13 @@
 		<Entity uid="4762">
 			<Template>units/gaul_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="112.21822" z="128.14196"/>
+			<Position x="120.08632" z="134.20115"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4763">
 			<Template>units/gaul_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="114.44657" z="129.69855"/>
+			<Position x="122.31467" z="135.75773"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4764">
@@ -22522,13 +22526,13 @@
 		<Entity uid="4765">
 			<Template>units/gaul_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="114.11487" z="122.45823"/>
+			<Position x="121.98298" z="128.51761"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4766">
 			<Template>units/gaul_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="116.08188" z="124.43096"/>
+			<Position x="123.94999" z="130.49024"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4769">
@@ -22536,6 +22540,42 @@
 			<Player>2</Player>
 			<Position x="117.48984" z="114.63974"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4770">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="508.27131" z="489.05253"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24272"/>
+		</Entity>
+		<Entity uid="4771">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="129.06147" z="519.02704"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27164"/>
+		</Entity>
+		<Entity uid="4772">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="393.42487" z="219.17261"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="47768"/>
+		</Entity>
+		<Entity uid="4773">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="612.88233" z="127.46569"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3166"/>
+		</Entity>
+		<Entity uid="4774">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="228.31998" z="80.4924"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="65098"/>
+		</Entity>
+		<Entity uid="4775">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="322.23758" z="450.58039"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57392"/>
 		</Entity>
 	</Entities>
 	<Paths/>
