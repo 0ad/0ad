@@ -21,11 +21,14 @@ case "`uname -s`" in
     # Fix libtool's use of an absolute path
     install_name_tool -id @executable_path/libminiupnpc.1.dylib src/libminiupnpc.1.dylib
     cp src/libminiupnpc.dylib lib/
+    cp src/libminiupnpc.dylib ../../../binaries/system/
     ;;
   "OpenBSD" )
-    cp src/libminiupnpc.so.1.* lib/
+    cp src/libminiupnpc.so lib/
+    cp src/libminiupnpc.so ../../../binaries/system/libminiupnpc.so.9
     ;;
   * )
     cp src/libminiupnpc.so lib/
+    cp src/libminiupnpc.so ../../../binaries/system/libminiupnpc.so.9
     ;;
 esac
