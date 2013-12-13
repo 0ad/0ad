@@ -266,10 +266,14 @@ extern_lib_defs = {
 	},
 	miniupnpc = {
 		compile_settings = function()
-			add_source_include_paths("miniupnpc")
+			if not _OPTIONS["with-system-miniupnpc"] then
+				add_source_include_paths("miniupnpc")
+			end
 		end,
 		link_settings = function()
-			add_source_lib_paths("miniupnpc")
+			if not _OPTIONS["with-system-miniupnpc"] then
+				add_source_lib_paths("miniupnpc")
+			end
 			add_default_links({
 				win_names  = { "miniupnpc" },
 				unix_names = { "miniupnpc" },

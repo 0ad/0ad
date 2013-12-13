@@ -36,6 +36,7 @@ premake_args=""
 without_nvtt=false
 with_system_nvtt=false
 with_system_enet=false
+with_system_miniupnpc=false
 with_system_mozjs185=false
 enable_atlas=true
 
@@ -45,6 +46,7 @@ do
     --without-nvtt ) without_nvtt=true; premake_args="${premake_args} --without-nvtt" ;;
     --with-system-nvtt ) with_system_nvtt=true; premake_args="${premake_args} --with-system-nvtt" ;;
     --with-system-enet ) with_system_enet=true; premake_args="${premake_args} --with-system-enet" ;;
+    --with-system-miniupnpc ) with_system_miniupnpc=true; premake_args="${premake_args} --with-system-miniupnpc" ;;
     --with-system-mozjs185 ) with_system_mozjs185=true; premake_args="${premake_args} --with-system-mozjs185" ;;
     --enable-atlas ) enable_atlas=true ;;
     --disable-atlas ) enable_atlas=false ;;
@@ -89,6 +91,10 @@ if [ "`uname -s`" != "Darwin" ]; then
   echo
   if [ "$with_system_enet" = "false" ]; then
     (cd ../../libraries/source/enet && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "ENet build failed"
+  fi
+  echo
+  if [ "$with_system_miniupnpc" = "false" ]; then
+    (cd ../../libraries/source/miniupnpc && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "MiniUPnPc build failed"
   fi
   echo
 fi
