@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="485.159" y="114.994" z="637.942"/>
+		<Position x="530.277" y="113.322" z="468.715"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -5058,14 +5058,14 @@
 		<Entity uid="835">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="534.53705" z="673.25745"/>
+			<Position x="538.63294" z="666.23249"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="59232"/>
 		</Entity>
 		<Entity uid="836">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="529.6673" z="668.41303"/>
+			<Position x="531.35853" z="662.4535"/>
 			<Orientation y="-2.6031"/>
 			<Actor seed="63760"/>
 		</Entity>
@@ -8525,28 +8525,28 @@
 		<Entity uid="1416">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="507.94498" z="688.10688"/>
+			<Position x="500.25532" z="692.62586"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="26088"/>
 		</Entity>
 		<Entity uid="1417">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="510.21967" z="691.4889"/>
+			<Position x="502.53" z="696.00788"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="43942"/>
 		</Entity>
 		<Entity uid="1418">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="512.8451" z="695.27991"/>
+			<Position x="505.15552" z="699.7989"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="54262"/>
 		</Entity>
 		<Entity uid="1419">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="516.87732" z="697.69916"/>
+			<Position x="509.18787" z="702.21814"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32462"/>
 		</Entity>
@@ -11036,14 +11036,14 @@
 		<Entity uid="1871">
 			<Template>other/obelisk</Template>
 			<Player>1</Player>
-			<Position x="528.81293" z="691.94501"/>
+			<Position x="391.18049" z="821.11744"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="64266"/>
 		</Entity>
 		<Entity uid="1872">
 			<Template>other/obelisk</Template>
 			<Player>1</Player>
-			<Position x="510.61905" z="674.91822"/>
+			<Position x="372.98661" z="804.09064"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19674"/>
 		</Entity>
@@ -11137,6 +11137,62 @@
 			<Position x="357.28061" z="838.60755"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="47374"/>
+		</Entity>
+		<Entity uid="1890">
+			<Template>units/ptol_ship_quinquereme</Template>
+			<Player>1</Player>
+			<Position x="670.93323" z="641.65564"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56964"/>
+		</Entity>
+		<Entity uid="1891">
+			<Template>units/ptol_ship_fishing</Template>
+			<Player>1</Player>
+			<Position x="669.77057" z="725.15845"/>
+			<Orientation y="1.25536"/>
+			<Actor seed="64922"/>
+		</Entity>
+		<Entity uid="1892">
+			<Template>units/ptol_ship_fishing</Template>
+			<Player>1</Player>
+			<Position x="595.72193" z="931.87061"/>
+			<Orientation y="-2.14196"/>
+			<Actor seed="24628"/>
+		</Entity>
+		<Entity uid="1893">
+			<Template>units/ptol_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="591.46589" z="966.96412"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14844"/>
+		</Entity>
+		<Entity uid="1894">
+			<Template>units/ptol_ship_bireme</Template>
+			<Player>1</Player>
+			<Position x="620.68628" z="604.73102"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62558"/>
+		</Entity>
+		<Entity uid="1895">
+			<Template>units/ptol_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="642.87519" z="620.33985"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19502"/>
+		</Entity>
+		<Entity uid="1896">
+			<Template>units/ptol_champion_juggernaut</Template>
+			<Player>1</Player>
+			<Position x="708.85682" z="658.38196"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="52374"/>
+		</Entity>
+		<Entity uid="1897">
+			<Template>structures/ptol_market</Template>
+			<Player>1</Player>
+			<Position x="522.37085" z="682.27717"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20624"/>
 		</Entity>
 	</Entities>
 	<Paths/>
