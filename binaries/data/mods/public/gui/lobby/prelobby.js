@@ -44,7 +44,8 @@ function lobbyStart()
 	// If they enter a different password, re-encrypt.
 	if (password != g_EncrytedPassword)
 		g_EncrytedPassword = Engine.EncryptPassword(password, username);
-	Engine.StartXmppClient(username, g_EncrytedPassword, "arena", nick);
+	var room = Engine.ConfigDB_GetValue("user", "lobby.room");
+	Engine.StartXmppClient(username, g_EncrytedPassword, room, nick);
 	g_LobbyIsConnecting = true;
 	Engine.ConnectXmppClient();
 }
