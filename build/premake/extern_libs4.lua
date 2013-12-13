@@ -264,6 +264,18 @@ extern_lib_defs = {
 			add_source_lib_paths("cxxtest")
 		end,
 	},
+	miniupnpc = {
+		compile_settings = function()
+			add_source_include_paths("miniupnpc")
+		end,
+		link_settings = function()
+			add_source_lib_paths("miniupnpc")
+			add_default_links({
+				win_names  = { "miniupnpc" },
+				unix_names = { "miniupnpc" },
+			})
+		end,
+	},
 	comsuppw = {
 		link_settings = function()
 			add_default_links({

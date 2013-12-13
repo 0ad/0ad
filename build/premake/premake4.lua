@@ -573,6 +573,7 @@ function setup_all_libs ()
 		"spidermonkey",
 		"enet",
 		"boost",	-- dragged in via server->simulation.h->random
+		"miniupnpc"
 	}
 	setup_static_lib_project("network", source_dirs, extern_libs, {})
 
@@ -846,6 +847,7 @@ used_extern_libs = {
 	"libcurl",
 
 	"valgrind",
+	"miniupnpc",
 }
 
 if not os.is("windows") and not _OPTIONS["android"] and not os.is("macosx") then
