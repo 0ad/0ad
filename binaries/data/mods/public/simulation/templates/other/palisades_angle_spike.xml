@@ -9,6 +9,7 @@
   </Footprint>
   <Health>
     <Max>500</Max>
+    <SpawnEntityOnDeath disable=""/>
   </Health>
   <Identity>
     <Civ>gaia</Civ>
@@ -20,6 +21,7 @@
   <Obstruction>
     <Static width="3.5" depth="1.0"/>
   </Obstruction>
+  <TerritoryDecay disable=""/>
   <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>props/special/palisade_angle_spike.xml</Actor>
