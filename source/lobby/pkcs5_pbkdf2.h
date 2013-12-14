@@ -20,23 +20,25 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef SHA_INCLUDED
-#define SHA_INCLUDED
+#ifndef PKCS5_PBKD2_INCLUDED
+#define PKCS5_PBKD2_INCLUDED
+
+#define SHA_DIGEST_SIZE 32
+
 
 /**
- * Structure for performing SHA256 encryption on arbitrary data
+ * Simple PBKDF2 implementation for hard to crack passwords
+ * @param output The output buffer for the digested hash
+ * @param key The initial key we want to hash
+ * @param key_len Length of the key in bytes
+ * @param salt The salt we use to iteratively hash the key.
+ * @param salt_len Length of the salt in bytes
+ * @param iterations Number of salting iterations
+ * @return 0 on success, -1 on error
  */
-struct SHA256
-{
-	unsigned int total[2];
-	unsigned int state[8];
-	unsigned char buffer[64];
- 
-	SHA256();
-	void init();
-	void transform(unsigned char (&data)[64]);
-	void update(const void* input, uint len);
-	void finish(unsigned char (&digest)[32]);
-};
- 
-#endif // SHA_INCLUDED
+int pbkdf2(unsigned char (&output)[SHA_DIGEST_SIZE],
+			const unsigned char* key, size_t key_len,
+			const unsigned char* salt, size_t salt_len,
+			unsigned iterations);
+
+#endif // PKCS5_PBKD2_INCLUDED

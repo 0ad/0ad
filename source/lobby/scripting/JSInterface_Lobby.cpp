@@ -22,6 +22,7 @@
 #include "gui/GUIManager.h"
 #include "lib/utf8.h"
 #include "lobby/IXmppClient.h"
+#include "lobby/pkcs5_pbkdf2.h"
 #include "lobby/sha.h"
 
 #include "scriptinterface/ScriptInterface.h"
