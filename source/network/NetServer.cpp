@@ -244,6 +244,10 @@ bool CNetServerWorker::SetupConnection()
 	if(intClient[0])
 		LOGMESSAGE(L"Net server: External %s:%s %s is redirected to internal %s:%s (duration=%s)\n",
 		       externalIPAddress, externalPort, protocall, intClient, intPort, duration);
+
+	// Make sure everything is properly freed.
+	FreeUPNPUrls(&urls);
+	freeUPNPDevlist(devlist);
 	// End UPnP setup.
 
 	return true;
