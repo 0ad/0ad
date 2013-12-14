@@ -24,24 +24,21 @@
 #define SHA_INCLUDED
 
 #define SHA_DIGEST_SIZE 32
-typedef unsigned char byte;
-typedef unsigned int uint;
-
 
 /**
  * Structure for performing SHA256 encryption on arbitrary data
  */
 struct SHA256
 {
-	uint total[2];
-	uint state[8];
-	byte buffer[64];
+	unsigned int total[2];
+	unsigned int state[8];
+	unsigned char buffer[64];
  
 	SHA256();
 	void init();
-	void transform(byte (&data)[64]);
+	void transform(unsigned char (&data)[64]);
 	void update(const void* input, uint len);
-	void finish(byte (&digest)[32]);
+	void finish(unsigned char (&digest)[32]);
 };
  
  
@@ -55,9 +52,9 @@ struct SHA256
  * @param iterations Number of salting iterations
  * @return 0 on success, -1 on error
  */
-int pbkdf2(byte (&output)[SHA_DIGEST_SIZE],
-			const byte* key, size_t key_len,
-			const byte* salt, size_t salt_len,
+int pbkdf2(unsigned char (&output)[SHA_DIGEST_SIZE],
+			const unsigned char* key, size_t key_len,
+			const unsigned char* salt, size_t salt_len,
 			unsigned iterations);
  
 #endif // SHA_INCLUDED
