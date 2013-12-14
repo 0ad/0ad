@@ -188,12 +188,12 @@ bool CNetServerWorker::SetupConnection()
 	int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
 	ENSURE(ret == 0);
 
-	// Start UPnP Setup.
+	// Start UPnP Setup. TODO: Display results of this in the UI.
 
 	// Values we want to set.
 	const char * internalPort = "20595";
 	const char * externalPort = "20595";
-	const char * leaseDuration = "86400"; // 24 Hours.
+	const char * leaseDuration = "0"; // Indefinite/permanent lease duration.
 	const char * description = "0AD Multiplayer";
 	const char * protocall = "UDP";
 	char internalIPAddress[64];
@@ -208,7 +208,7 @@ bool CNetServerWorker::SetupConnection()
 	struct IGDdatas data;
 	struct UPNPDev * devlist = 0;
 
-	// Try getting the UPnP device for 7 seconds. TODO: Make this asynchronous?
+	// Try getting the UPnP device for 7 seconds. TODO: Make this asynchronous.
 	devlist = upnpDiscover(7000, 0, 0, 0, 0, 0);
 
 	// Get our internal IP address.
