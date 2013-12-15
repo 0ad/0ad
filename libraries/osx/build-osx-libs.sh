@@ -624,3 +624,26 @@ else
   already_built
 fi
 popd > /dev/null
+
+# --------------------------------------------------------------
+# MiniUPnPc - no install
+echo -e "Building MiniUPnPc..."
+
+pushd ../source/miniupnpc > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
+then
+  pushd src
+  rm -rf output
+  mkdir -p ../lib
+
+  (make clean && CFLAGS=$CFLAGS LDFLAGS=$LDFLAGS make ${JOBS}) || die "MiniUPnPc build failed"
+
+  cp libminiupnpc.a ../lib/
+
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
