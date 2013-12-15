@@ -3650,6 +3650,8 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
 	for each (var ent in nearby)
 	{
+		if (!this.CanGather(ent))
+			continue;
 		var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
 		var type = cmpResourceSupply.GetType();
 		var amount = cmpResourceSupply.GetCurrentAmount();

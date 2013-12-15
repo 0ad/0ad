@@ -479,15 +479,15 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       """
       pass
     elif iq['type'] == 'set':
-      if 'gamelist|en' in iq.values:
+      if 'gamelist' in iq.values:
         """
         Register-update / unregister a game
         """
-        command = iq['gamelist|en']['command']
+        command = iq['gamelist']['command']
         if command == 'register':
           # Add game
           try:
-            self.gameList.addGame(iq['from'], iq['gamelist|en']['game'])
+            self.gameList.addGame(iq['from'], iq['gamelist']['game'])
             self.sendGameList()
           except:
             traceback.print_exc()
@@ -504,19 +504,19 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         elif command == 'changestate':
           # Change game status (waiting/running)
           try:
-            self.gameList.changeGameState(iq['from'], iq['gamelist|en']['game'])
+            self.gameList.changeGameState(iq['from'], iq['gamelist']['game'])
             self.sendGameList()
           except:
             traceback.print_exc()
             logging.error("Failed to process changestate data")
         else:
           logging.error("Failed to process command '%s' received from %s" % command, iq['from'].bare)
-      elif 'gamereport|en' in iq.values:
+      elif 'gamereport' in iq.values:
         """
         Client is reporting end of game statistics
         """
         try:
-          self.reportManager.addReport(iq['from'], iq['gamereport|en']['game'])
+          self.reportManager.addReport(iq['from'], iq['gamereport']['game'])
           if self.leaderboard.getLastRatedMessage() != "":
             self.send_message(mto=self.room, mbody=self.leaderboard.getLastRatedMessage(), mtype="groupchat",
               mnick=self.nick)
@@ -647,6 +647,6 @@ if __name__ == '__main__':
   xmpp.register_plugin('xep_0199') # XMPP Ping
 
   if xmpp.connect():
-    xmpp.process(block=False)
+    xmpp.process(threaded=False)
   else:
     logging.error("Unable to connect")
