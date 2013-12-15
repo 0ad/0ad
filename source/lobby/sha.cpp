@@ -22,23 +22,20 @@
 
 #include "sha.h"
 
-#include <string.h>
-#include <stdio.h>
-
-#define GET_UINT32(n,b,i)				\
-{										\
-	(n) = ( (uint) (b)[(i)  ] << 24 )	\
-		| ( (uint) (b)[(i) + 1] << 16 )	\
-		| ( (uint) (b)[(i) + 2] <<  8 )	\
-		| ( (uint) (b)[(i) + 3]    );	\
+#define GET_uint32(n,b,i)						\
+{												\
+	(n) = ( (unsigned int) (b)[(i)  ] << 24 )	\
+		| ( (unsigned int) (b)[(i) + 1] << 16 )	\
+		| ( (unsigned int) (b)[(i) + 2] <<  8 )	\
+		| ( (unsigned int) (b)[(i) + 3]    );	\
 }
  
-#define PUT_UINT32(n,b,i)							\
-{													\
-	(b)[(i) ] = (byte) ( ((n) >> 24) & 0xFF );		\
-	(b)[(i) + 1] = (byte) ( ((n) >> 16) & 0xFF );	\
-	(b)[(i) + 2] = (byte) ( ((n) >>  8) & 0xFF );	\
-	(b)[(i) + 3] = (byte) ( ((n)      ) & 0xFF  );	\
+#define PUT_uint32(n,b,i)									\
+{															\
+	(b)[(i) ] = (unsigned char) ( ((n) >> 24) & 0xFF );		\
+	(b)[(i) + 1] = (unsigned char) ( ((n) >> 16) & 0xFF );	\
+	(b)[(i) + 2] = (unsigned char) ( ((n) >>  8) & 0xFF );	\
+	(b)[(i) + 3] = (unsigned char) ( ((n)      ) & 0xFF  );	\
 }
  
 SHA256::SHA256()
@@ -60,27 +57,27 @@ void SHA256::init()
 	state[7] = 0x5BE0CD19;
 }
  
-void SHA256::transform(byte (&data)[64])
+void SHA256::transform(unsigned char (&data)[64])
 {
-	uint temp1, temp2, W[64];
-	uint A, B, C, D, E, F, G, H;
+	unsigned int temp1, temp2, W[64];
+	unsigned int A, B, C, D, E, F, G, H;
  
-	GET_UINT32( W[0],  data,  0 );
-	GET_UINT32( W[1],  data,  4 );
-	GET_UINT32( W[2],  data,  8 );
-	GET_UINT32( W[3],  data, 12 );
-	GET_UINT32( W[4],  data, 16 );
-	GET_UINT32( W[5],  data, 20 );
-	GET_UINT32( W[6],  data, 24 );
-	GET_UINT32( W[7],  data, 28 );
-	GET_UINT32( W[8],  data, 32 );
-	GET_UINT32( W[9],  data, 36 );
-	GET_UINT32( W[10], data, 40 );
-	GET_UINT32( W[11], data, 44 );
-	GET_UINT32( W[12], data, 48 );
-	GET_UINT32( W[13], data, 52 );
-	GET_UINT32( W[14], data, 56 );
-	GET_UINT32( W[15], data, 60 );
+	GET_uint32( W[0],  data,  0 );
+	GET_uint32( W[1],  data,  4 );
+	GET_uint32( W[2],  data,  8 );
+	GET_uint32( W[3],  data, 12 );
+	GET_uint32( W[4],  data, 16 );
+	GET_uint32( W[5],  data, 20 );
+	GET_uint32( W[6],  data, 24 );
+	GET_uint32( W[7],  data, 28 );
+	GET_uint32( W[8],  data, 32 );
+	GET_uint32( W[9],  data, 36 );
+	GET_uint32( W[10], data, 40 );
+	GET_uint32( W[11], data, 44 );
+	GET_uint32( W[12], data, 48 );
+	GET_uint32( W[13], data, 52 );
+	GET_uint32( W[14], data, 56 );
+	GET_uint32( W[15], data, 60 );
  
 #define  SHR(x,n) ((x & 0xFFFFFFFF) >> n)
 #define ROTR(x,n) (SHR(x,n) | (x << (32 - n)))
@@ -191,9 +188,9 @@ void SHA256::transform(byte (&data)[64])
 	state[7] += H;
 }
  
-void SHA256::update(const void* input, uint length )
+void SHA256::update(const void* input, unsigned int length )
 {
-	uint left, fill;
+	unsigned int left, fill;
  
 	if( ! length ) return;
  
@@ -212,15 +209,15 @@ void SHA256::update(const void* input, uint length )
 				(void *) input, fill );
 		transform(buffer);
 		length -= fill;
-		input  = (byte*)input + fill;
+		input  = (unsigned char*)input + fill;
 		left = 0;
 	}
  
 	while( length >= 64 )
 	{
-		transform((byte(&)[64])input);
+		transform((unsigned char(&)[64])input);
 		length -= 64;
-		input  = (byte*)input + 64;
+		input  = (unsigned char*)input + 64;
 	}
  
 	if( length )
@@ -230,7 +227,7 @@ void SHA256::update(const void* input, uint length )
 	}
 }
  
-static byte sha256_padding[64] =
+static unsigned char sha256_padding[64] =
 {
 	0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -238,18 +235,18 @@ static byte sha256_padding[64] =
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
  
-void SHA256::finish(byte (&digest)[32] )
+void SHA256::finish(unsigned char (&digest)[32] )
 {
-	uint last, padn;
-	uint high, low;
-	byte msglen[8];
+	unsigned int last, padn;
+	unsigned int high, low;
+	unsigned char msglen[8];
  
 	high = ( total[0] >> 29 )
 		 | ( total[1] <<  3 );
 	low  = ( total[0] <<  3 );
  
-	PUT_UINT32( high, msglen, 0 );
-	PUT_UINT32( low,  msglen, 4 );
+	PUT_uint32( high, msglen, 0 );
+	PUT_uint32( low,  msglen, 4 );
  
 	last = total[0] & 0x3F;
 	padn = ( last < 56 ) ? ( 56 - last ) : ( 120 - last );
@@ -257,93 +254,13 @@ void SHA256::finish(byte (&digest)[32] )
 	update(sha256_padding, padn);
 	update(msglen, 8);
  
-	PUT_UINT32( state[0], digest,  0 );
-	PUT_UINT32( state[1], digest,  4 );
-	PUT_UINT32( state[2], digest,  8 );
-	PUT_UINT32( state[3], digest, 12 );
-	PUT_UINT32( state[4], digest, 16 );
-	PUT_UINT32( state[5], digest, 20 );
-	PUT_UINT32( state[6], digest, 24 );
-	PUT_UINT32( state[7], digest, 28 );
+	PUT_uint32( state[0], digest,  0 );
+	PUT_uint32( state[1], digest,  4 );
+	PUT_uint32( state[2], digest,  8 );
+	PUT_uint32( state[3], digest, 12 );
+	PUT_uint32( state[4], digest, 16 );
+	PUT_uint32( state[5], digest, 20 );
+	PUT_uint32( state[6], digest, 24 );
+	PUT_uint32( state[7], digest, 28 );
 }
- 
- 
-/**
- * From BSD's PBKDF implementation:
- */
-static void hmac_sha256(byte (&digest)[SHA_DIGEST_SIZE],
-						const byte* text, size_t text_len, const byte* key, size_t key_len)
-{
-	SHA256 hash;
-	byte tk[SHA_DIGEST_SIZE]; // temporary key incase we need to pad the key with zero bytes
-	if (key_len > SHA_DIGEST_SIZE)
-	{
-		hash.update(key, key_len);
-		hash.finish(tk);
-		key = tk;
-		key_len = SHA_DIGEST_SIZE;
-	}
- 
-	byte k_pad[SHA_DIGEST_SIZE];
- 
-	memset(k_pad, 0, sizeof k_pad);
-	memcpy(k_pad, key, key_len);
-	for (int i = 0; i < SHA_DIGEST_SIZE; ++i)
-		k_pad[i] ^= 0x36;
-	hash.init();
-	hash.update(k_pad, SHA_DIGEST_SIZE);
-	hash.update(text, text_len);
-	hash.finish(digest);
- 
- 
-	memset(k_pad, 0, sizeof k_pad);
-	memcpy(k_pad, key, key_len);
-	for (int i = 0; i < SHA_DIGEST_SIZE; ++i)
-		k_pad[i] ^= 0x5c;
- 
-	hash.init();
-	hash.update(k_pad, SHA_DIGEST_SIZE);
-	hash.update(digest, SHA_DIGEST_SIZE);
-	hash.finish(digest);
-}
- 
- 
-int pbkdf2(byte (&output)[SHA_DIGEST_SIZE],
-			const byte* key, size_t key_len,
-			const byte* salt, size_t salt_len,
-			unsigned rounds)
-{
-	byte asalt[SHA_DIGEST_SIZE + 4], obuf[SHA_DIGEST_SIZE], d1[SHA_DIGEST_SIZE], d2[SHA_DIGEST_SIZE];
- 
-	if (rounds < 1 || key_len == 0 || salt_len == 0)
-		return -1;
- 
-	if (salt_len > SHA_DIGEST_SIZE) salt_len = SHA_DIGEST_SIZE; // length cap for the salt
-	memset(asalt, 0, salt_len);
-	memcpy(asalt, salt, salt_len);
- 
-	for (unsigned count = 1; ; ++count)
-	{
-		asalt[salt_len + 0] = (count >> 24) & 0xff;
-		asalt[salt_len + 1] = (count >> 16) & 0xff;
-		asalt[salt_len + 2] = (count >> 8) & 0xff;
-		asalt[salt_len + 3] = count & 0xff;
-		hmac_sha256(d1, asalt, salt_len + 4, key, key_len);
-		memcpy(obuf, d1, SHA_DIGEST_SIZE);
- 
-		for (unsigned i = 1; i < rounds; i++)
-		{
-			hmac_sha256(d2, d1, SHA_DIGEST_SIZE, key, key_len);
-			memcpy(d1, d2, SHA_DIGEST_SIZE);
-			for (unsigned j = 0; j < SHA_DIGEST_SIZE; j++)
-				obuf[j] ^= d1[j];
-		}
- 
-		memcpy(output, obuf, SHA_DIGEST_SIZE);
-		key += SHA_DIGEST_SIZE;
-		if (key_len < SHA_DIGEST_SIZE)
-			break;
-		key_len -= SHA_DIGEST_SIZE;
-	};
-	return 0;
-}
+

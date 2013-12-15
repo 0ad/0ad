@@ -256,14 +256,6 @@ extern_lib_defs = {
 			})
 		end,
 	},
-	cxxtest = {
-		compile_settings = function()
-			add_source_include_paths("cxxtest")
-		end,
-		link_settings = function()
-			add_source_lib_paths("cxxtest")
-		end,
-	},
 	comsuppw = {
 		link_settings = function()
 			add_default_links({
@@ -271,6 +263,14 @@ extern_lib_defs = {
 				dbg_suffix = "d",
 				no_delayload = 1,
 			})
+		end,
+	},
+	cxxtest = {
+		compile_settings = function()
+			add_source_include_paths("cxxtest")
+		end,
+		link_settings = function()
+			add_source_lib_paths("cxxtest")
 		end,
 	},
 	enet = {
@@ -452,6 +452,22 @@ extern_lib_defs = {
 			end
 		end,
 	},
+	miniupnpc = {
+		compile_settings = function()
+			if not _OPTIONS["with-system-miniupnpc"] then
+				add_source_include_paths("miniupnpc")
+			end
+		end,
+		link_settings = function()
+			if not _OPTIONS["with-system-miniupnpc"] then
+				add_source_lib_paths("miniupnpc")
+			end
+			add_default_links({
+				win_names  = { "miniupnpc" },
+				unix_names = { "miniupnpc" },
+			})
+		end,
+	},
 	nvtt = {
 		compile_settings = function()
 			if not _OPTIONS["with-system-nvtt"] then
@@ -593,12 +609,18 @@ extern_lib_defs = {
 	},
 	vorbis = {
 		compile_settings = function()
-			if os.is("windows") or os.is("macosx") then
+			if os.is("windows") then
+				add_default_include_paths("vorbis")
+			elseif os.is("macosx") then
+				add_default_include_paths("libogg")
 				add_default_include_paths("vorbis")
 			end
 		end,
 		link_settings = function()
-			if os.is("windows") or os.is("macosx") then
+			if os.is("windows") then
+				add_default_lib_paths("vorbis")
+			elseif os.is("macosx") then
+				add_default_lib_paths("libogg")
 				add_default_lib_paths("vorbis")
 			end
 			-- TODO: We need to force linking with these as currently

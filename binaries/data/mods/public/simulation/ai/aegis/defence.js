@@ -361,7 +361,10 @@ Defence.prototype.defendFromEnemies = function(gameState, events, HQ) {
 	for (var o in this.attackerCache) {
 		if ((this.attackerCacheLoopIndicator + o) % 2 === 0) {
 			this.attackerCache[o].forEach(function (ent) {
-				ent.attack(+o);
+				var attackPos = gameState.getEntityById(+o).position()
+				if (attackPos)
+					ent.attackMove(attackPos[0],attackPos[1]);
+				ent.setStance("aggressive");
 			});
 		}
 	}
@@ -555,7 +558,10 @@ Defence.prototype.defendFromEnemies = function(gameState, events, HQ) {
 				defender.setMetadata(PlayerID, "formerrole", defender.getMetadata(PlayerID, "role"));
 			defender.setMetadata(PlayerID, "role","defence");
 			defender.setMetadata(PlayerID, "subrole","defending");
-			defender.attack(+enemy.id());
+			var attackPos = enemy.position();
+			if (attackPos)
+				defender.attackMove(attackPos[0],attackPos[1]);
+			defender.setStance("aggressive");
 			defender._entity.idle = false; // hack to prevent a bug as informations aren't updated during a turn
 			nonDefenders.updateEnt(defender);
 			assigned++;
@@ -785,7 +791,11 @@ Defence.prototype.DealWithWantedUnits = function(gameState, events, HQ) {
 					ent.setMetadata(PlayerID, "formerrole", ent.getMetadata(PlayerID, "role"));
 					ent.setMetadata(PlayerID, "role","defence");
 					ent.setMetadata(PlayerID, "subrole", "defending");
-					ent.attack(+o);
+					var attackPos = gameState.getEntityById(+o).position();
+					if (attackPos)
+						ent.attackMove(attackPos[0],attackPos[1]);
+					// TODO: should probably be an else here, unless it really can't happen
+					ent.setStance("aggressive");
 					if (addedto[o])
 						addedto[o]++; 
 					else
@@ -814,7 +824,10 @@ Defence.prototype.DealWithWantedUnits = function(gameState, events, HQ) {
 						ent.setMetadata(PlayerID, "formerrole", ent.getMetadata(PlayerID, "role"));
 						ent.setMetadata(PlayerID, "role","defence");
 						ent.setMetadata(PlayerID, "subrole", "defending");
-						ent.attack(+o);
+						var attackPos = gameState.getEntityById(+o).position();
+						if (attackPos)
+							ent.attackMove(attackPos[0],attackPos[1]);
+						ent.setStance("aggressive");
 						if (addedto[o])
 							addedto[o]++; 
 						else

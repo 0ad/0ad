@@ -23,41 +23,20 @@
 #ifndef SHA_INCLUDED
 #define SHA_INCLUDED
 
-#define SHA_DIGEST_SIZE 32
-typedef unsigned char byte;
-typedef unsigned int uint;
-
-
 /**
  * Structure for performing SHA256 encryption on arbitrary data
  */
 struct SHA256
 {
-	uint total[2];
-	uint state[8];
-	byte buffer[64];
+	unsigned int total[2];
+	unsigned int state[8];
+	unsigned char buffer[64];
  
 	SHA256();
 	void init();
-	void transform(byte (&data)[64]);
-	void update(const void* input, uint len);
-	void finish(byte (&digest)[32]);
+	void transform(unsigned char (&data)[64]);
+	void update(const void* input,  unsigned int len);
+	void finish(unsigned char (&digest)[32]);
 };
- 
- 
-/**
- * Simple PBKDF2 implementation for hard to crack passwords
- * @param output The output buffer for the digested hash
- * @param key The initial key we want to hash
- * @param key_len Length of the key in bytes
- * @param salt The salt we use to iteratively hash the key.
- * @param salt_len Length of the salt in bytes
- * @param iterations Number of salting iterations
- * @return 0 on success, -1 on error
- */
-int pbkdf2(byte (&output)[SHA_DIGEST_SIZE],
-			const byte* key, size_t key_len,
-			const byte* salt, size_t salt_len,
-			unsigned iterations);
  
 #endif // SHA_INCLUDED

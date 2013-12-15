@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_wall_tower">
+<Entity parent="template_structure_defense_defense_tower">
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>20.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
   <Cost>
     <BuildTime>18</BuildTime>
   </Cost>
@@ -14,7 +19,7 @@
     <Civ>gaia</Civ>
     <SpecificName>Palisade Fort</SpecificName>
     <GenericName>Wooden Tower</GenericName>
-    <Classes datatype="tokens">-StoneWall Palisade</Classes>
+    <Classes datatype="tokens">Palisade</Classes>
     <History>A cheap, quick defensive structure constructed with sharpened tree trunks</History>
     <Icon>gaia/special_palisade.png</Icon>
   </Identity>

@@ -191,6 +191,12 @@ EntityCollection.prototype.move = function(x, z, queued)
 	Engine.PostCommand({"type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
 	return this;
 };
+EntityCollection.prototype.attackMove = function(x, z, queued)
+{
+	queued = queued || false;
+	Engine.PostCommand({"type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
+	return this;
+};
 EntityCollection.prototype.moveIndiv = function(x, z, queued)
 {
 	queued = queued || false;

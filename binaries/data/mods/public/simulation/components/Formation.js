@@ -316,6 +316,8 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		var offset = this.offsets[i];
 
 		var cmpUnitAI = Engine.QueryInterface(offset.ent, IID_UnitAI);
+		if (!cmpUnitAI)
+			continue;
 		
 		if (force)
 		{
@@ -859,6 +861,7 @@ Formation.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	if (this.members.indexOf(msg.entity) != -1)
 	{
+		this.offsets = undefined;
 		var cmpNewUnitAI = Engine.QueryInterface(msg.newentity, IID_UnitAI);
 		if (cmpNewUnitAI)
 			this.members[this.members.indexOf(msg.entity)] = msg.newentity;

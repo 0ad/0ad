@@ -588,6 +588,12 @@ var Entity = Class({
 		return this;
 	},
 	
+	attackMove: function(x, z, queued) {
+		queued = queued || false;
+		Engine.PostCommand({"type": "attack-walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
+		return this;
+	},
+
 	// violent, aggressive, defensive, passive, standground
 	setStance: function(stance,queued){
 		Engine.PostCommand({"type": "stance", "entities": [this.id()], "name" : stance, "queued": queued });

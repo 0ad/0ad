@@ -28,7 +28,7 @@ XML2_VERSION="libxml2-2.9.1"
 SDL_VERSION="SDL-1.2.15"
 BOOST_VERSION="boost_1_52_0"
 # * wxWidgets 2.9+ is necessary for 64-bit OS X build w/ OpenGL support
-WXWIDGETS_VERSION="wxWidgets-2.9.4"
+WXWIDGETS_VERSION="wxWidgets-3.0.0"
 JPEG_VERSION="jpegsrc.v8d"
 JPEG_DIR="jpeg-8d" # Must match directory name inside source tarball
 # * libpng was included as part of X11 but that's removed from Mountain Lion
@@ -146,9 +146,10 @@ ZLIB_DIR="$(pwd)"
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
 then
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY include lib share
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
@@ -177,9 +178,10 @@ if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-b
 then
   INSTALL_DIR="$(pwd)"
 
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY bin include lib share
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
@@ -206,9 +208,10 @@ ICONV_DIR="$(pwd)"
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
 then
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY bin include lib share
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
@@ -235,9 +238,10 @@ if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-b
 then
   INSTALL_DIR="$(pwd)"
 
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY bin include lib share
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
@@ -265,9 +269,10 @@ if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-b
 then
   INSTALL_DIR="$(pwd)"
 
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY bin include lib share
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
@@ -297,9 +302,10 @@ if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-b
 then
   INSTALL_DIR="$(pwd)"
 
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY include lib
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
@@ -329,16 +335,25 @@ if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-b
 then
   INSTALL_DIR="$(pwd)"
 
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY bin include lib share
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
   mkdir -p build-release
   pushd build-release
+
   # disable XML and richtext support, to avoid dependency on expat
-  (../configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix=$INSTALL_DIR --disable-shared --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix="${ICONV_DIR}" --disable-richtext --without-expat --without-sdl && make ${JOBS} && make install) || die "wxWidgets build failed"
+  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=ICONV_DIR --disable-richtext --without-expat --without-sdl"
+  # wxWidgets configure now defaults to targeting 10.5, if not specified,
+  # but that conflicts with our flags
+  if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
+    CONF_OPTS="$CONF_OPTS --with-macosx-version-min=$MIN_OSX_VERSION"
+  fi
+
+  (../configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
   popd
   touch .already-built
@@ -362,9 +377,10 @@ if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-b
 then
   INSTALL_DIR="$(pwd)"
 
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY bin include lib share
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
@@ -391,9 +407,10 @@ if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-b
 then
   INSTALL_DIR="$(pwd)"
 
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY bin include lib share
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
@@ -418,18 +435,19 @@ LIB_URL="http://downloads.xiph.org/releases/ogg/"
 mkdir -p libogg
 mkdir -p vorbis
 
-INSTALL_DIR="$(pwd)/vorbis"
 pushd libogg > /dev/null
+OGG_DIR="$(pwd)"
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
 then
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY include lib share
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix=$INSTALL_DIR --enable-shared=no && make ${JOBS} && make install) || die "libogg build failed"
+  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix=$OGG_DIR --enable-shared=no && make ${JOBS} && make install) || die "libogg build failed"
   popd
   touch .already-built
 else
@@ -451,13 +469,14 @@ if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-b
 then
   INSTALL_DIR="$(pwd)"
 
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY include lib share
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no --with-ogg="$INSTALL_DIR" && make ${JOBS} && make install) || die "libvorbis build failed"
+  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no --with-ogg="$OGG_DIR" && make ${JOBS} && make install) || die "libvorbis build failed"
   popd
   touch .already-built
 else
@@ -480,9 +499,10 @@ if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-b
 then
   INSTALL_DIR="$(pwd)"
 
+  rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
 
-  rm -rf $LIB_DIRECTORY
+  rm -rf $LIB_DIRECTORY bin include lib
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
@@ -513,6 +533,7 @@ if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-b
 then
   INSTALL_DIR="$(pwd)"
 
+  rm -f .already-built
   rm -f lib/*.a
   rm -rf $LIB_DIRECTORY
   tar -xf $LIB_ARCHIVE
@@ -560,6 +581,7 @@ pushd ../source/enet/ > /dev/null
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
 then
   INSTALL_DIR="$(pwd)"
+  rm -f .already-built
 
   pushd src
   (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix=${INSTALL_DIR} --enable-shared=no && make clean && make ${JOBS} && make install) || die "ENet build failed"
@@ -578,6 +600,8 @@ pushd ../source/nvtt > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
 then
+  rm -f .already-built
+  rm lib/*.a
   pushd src
   rm -rf build
   mkdir -p build
@@ -608,6 +632,8 @@ pushd ../source/fcollada > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
 then
+  rm -f .already-built
+  rm lib/*.a
   pushd src
   rm -rf output
   mkdir -p ../lib
@@ -618,6 +644,31 @@ then
   (make clean && CXXFLAGS=$CPPFLAGS make ${JOBS}) || die "FCollada build failed"
   # Undo Makefile change
   mv Makefile.bak Makefile
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+# MiniUPnPc - no install
+echo -e "Building MiniUPnPc..."
+
+pushd ../source/miniupnpc > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
+then
+  rm -f .already-built
+  rm lib/*.a
+  pushd src
+  rm -rf output
+  mkdir -p ../lib
+
+  (make clean && CFLAGS=$CFLAGS LDFLAGS=$LDFLAGS make ${JOBS}) || die "MiniUPnPc build failed"
+
+  cp libminiupnpc.a ../lib/
+
   popd
   touch .already-built
 else

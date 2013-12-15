@@ -22,6 +22,7 @@
 #include "gui/GUIManager.h"
 #include "lib/utf8.h"
 #include "lobby/IXmppClient.h"
+#include "lobby/pkcs5_pbkdf2.h"
 #include "lobby/sha.h"
 
 #include "scriptinterface/ScriptInterface.h"
@@ -232,20 +233,20 @@ std::string JSI_Lobby::EncryptPassword(const std::string& password, const std::s
 	const int DIGESTSIZE = SHA_DIGEST_SIZE;
 	const int ITERATIONS = 1337;
 
-	static const byte salt_base[DIGESTSIZE] = {
+	static const unsigned char salt_base[DIGESTSIZE] = {
 			244, 243, 249, 244, 32, 33, 34, 35, 10, 11, 12, 13, 14, 15, 16, 17,
 			18, 19, 20, 32, 33, 244, 224, 127, 129, 130, 140, 153, 133, 123, 234, 123 };
 
 	// initialize the salt buffer
-	byte salt_buffer[DIGESTSIZE] = {0};
+	unsigned char salt_buffer[DIGESTSIZE] = {0};
 	SHA256 hash;
 	hash.update(salt_base, sizeof(salt_base));
 	hash.update(username.c_str(), username.length());
 	hash.finish(salt_buffer);
 
 	// PBKDF2 to create the buffer
-	byte encrypted[DIGESTSIZE];
-	pbkdf2(encrypted, (byte*)password.c_str(), password.length(), salt_buffer, DIGESTSIZE, ITERATIONS);
+	unsigned char encrypted[DIGESTSIZE];
+	pbkdf2(encrypted, (unsigned char*)password.c_str(), password.length(), salt_buffer, DIGESTSIZE, ITERATIONS);
 
 	static const char base16[] = "0123456789ABCDEF";
 	char hex[2 * DIGESTSIZE];
