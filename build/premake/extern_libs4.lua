@@ -256,30 +256,6 @@ extern_lib_defs = {
 			})
 		end,
 	},
-	cxxtest = {
-		compile_settings = function()
-			add_source_include_paths("cxxtest")
-		end,
-		link_settings = function()
-			add_source_lib_paths("cxxtest")
-		end,
-	},
-	miniupnpc = {
-		compile_settings = function()
-			if not _OPTIONS["with-system-miniupnpc"] then
-				add_source_include_paths("miniupnpc")
-			end
-		end,
-		link_settings = function()
-			if not _OPTIONS["with-system-miniupnpc"] then
-				add_source_lib_paths("miniupnpc")
-			end
-			add_default_links({
-				win_names  = { "miniupnpc" },
-				unix_names = { "miniupnpc" },
-			})
-		end,
-	},
 	comsuppw = {
 		link_settings = function()
 			add_default_links({
@@ -287,6 +263,14 @@ extern_lib_defs = {
 				dbg_suffix = "d",
 				no_delayload = 1,
 			})
+		end,
+	},
+	cxxtest = {
+		compile_settings = function()
+			add_source_include_paths("cxxtest")
+		end,
+		link_settings = function()
+			add_source_lib_paths("cxxtest")
 		end,
 	},
 	enet = {
@@ -466,6 +450,22 @@ extern_lib_defs = {
 			else
 				pkgconfig_libs("libxml-2.0")
 			end
+		end,
+	},
+	miniupnpc = {
+		compile_settings = function()
+			if not _OPTIONS["with-system-miniupnpc"] then
+				add_source_include_paths("miniupnpc")
+			end
+		end,
+		link_settings = function()
+			if not _OPTIONS["with-system-miniupnpc"] then
+				add_source_lib_paths("miniupnpc")
+			end
+			add_default_links({
+				win_names  = { "miniupnpc" },
+				unix_names = { "miniupnpc" },
+			})
 		end,
 	},
 	nvtt = {
