@@ -277,12 +277,6 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		positions.push(pos);
 	}
 
-	// Work out whether this should be a column or box formation
-	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-	var walkingDistance = cmpUnitAI.ComputeWalkingDistance();
-	this.columnar = (walkingDistance > g_ColumnDistanceThreshold) && this.formationName != "Column Open";
-
-
 	var avgpos = this.ComputeAveragePosition(positions);
 
 	// Reposition the formation if we're told to or if we don't already have a position
@@ -430,9 +424,11 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 	var cols;
 
 	if (columnar)
-		this.formationName = "Column Closed";
+		var formationName = "Column Closed";
+	else
+		var formationName = this.formationName;
 
-	switch(this.formationName)
+	switch(formationName)
 	{
 	case "Column Closed":
 		// Have at most 3 files
@@ -646,7 +642,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 		ordering.push("FillFromTheSides");
 		break;
 	default:
-		warn("Unknown formation: " + this.formationName);
+		warn("Unknown formation: " + formationName);
 		break;
 	}
 
@@ -840,12 +836,17 @@ Formation.prototype.OnUpdate_Final = function(msg)
 {
 	// Switch between column and box if necessary
 	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	// TODO do we really need to calculate the distance every turn?
 	var walkingDistance = cmpUnitAI.ComputeWalkingDistance();
-	var columnar = (walkingDistance > g_ColumnDistanceThreshold);
+	var columnar = walkingDistance > g_ColumnDistanceThreshold;
 	if (columnar != this.columnar)
+	{
+		this.offsets = undefined;
+		this.columnar = columnar;
 		this.MoveMembersIntoFormation(false, true);
 		// (disable moveCenter so we can't get stuck in a loop of switching
 		// shape causing center to change causing shape to switch back)
+	}
 };
 
 Formation.prototype.OnGlobalOwnershipChanged = function(msg)
