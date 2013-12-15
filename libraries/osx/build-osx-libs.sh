@@ -601,7 +601,7 @@ pushd ../source/nvtt > /dev/null
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
 then
   rm -f .already-built
-  rm lib/*.a
+  rm -f lib/*.a
   pushd src
   rm -rf build
   mkdir -p build
@@ -633,7 +633,7 @@ pushd ../source/fcollada > /dev/null
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
 then
   rm -f .already-built
-  rm lib/*.a
+  rm -f lib/*.a
   pushd src
   rm -rf output
   mkdir -p ../lib
@@ -660,7 +660,7 @@ pushd ../source/miniupnpc > /dev/null
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
 then
   rm -f .already-built
-  rm lib/*.a
+  rm -f lib/*.a
   pushd src
   rm -rf output
   mkdir -p ../lib
