@@ -609,12 +609,18 @@ extern_lib_defs = {
 	},
 	vorbis = {
 		compile_settings = function()
-			if os.is("windows") or os.is("macosx") then
+			if os.is("windows") then
+				add_default_include_paths("vorbis")
+			elseif os.is("macosx") then
+				add_default_include_paths("libogg")
 				add_default_include_paths("vorbis")
 			end
 		end,
 		link_settings = function()
-			if os.is("windows") or os.is("macosx") then
+			if os.is("windows") then
+				add_default_lib_paths("vorbis")
+			elseif os.is("macosx") then
+				add_default_lib_paths("libogg")
 				add_default_lib_paths("vorbis")
 			end
 			-- TODO: We need to force linking with these as currently
