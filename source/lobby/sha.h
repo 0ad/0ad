@@ -35,7 +35,7 @@ struct SHA256
 	SHA256();
 	void init();
 	void transform(unsigned char (&data)[64]);
-	void update(const void* input, uint len);
+	void update(const void* input,  unsigned int len);
 	void finish(unsigned char (&digest)[32]);
 };
  

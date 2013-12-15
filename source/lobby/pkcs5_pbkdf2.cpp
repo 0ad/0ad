@@ -15,6 +15,8 @@
  */
 // This file is based loosly off libutil/pkcs5_pbkdf2.c in OpenBSD.
 
+#include "precompiled.h"
+
 #include "pkcs5_pbkdf2.h"
 #include "sha.h"
 

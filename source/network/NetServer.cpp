@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -191,63 +191,84 @@ bool CNetServerWorker::SetupConnection()
 	// Start UPnP Setup. TODO: Display results of this in the UI.
 
 	// Values we want to set.
-	const char * internalPort = "20595";
-	const char * externalPort = "20595";
-	const char * leaseDuration = "0"; // Indefinite/permanent lease duration.
-	const char * description = "0AD Multiplayer";
-	const char * protocall = "UDP";
+	char psPort[6];
+	sprintf_s(psPort, ARRAY_SIZE(psPort), "%d", PS_DEFAULT_PORT);
+
+	const char* leaseDuration = "0"; // Indefinite/permanent lease duration.
+	const char* description = "0AD Multiplayer";
+	const char* protocall = "UDP";
 	char internalIPAddress[64];
 	char externalIPAddress[40];
 	// Variables to hold the values that actually get set.
 	char intClient[40];
 	char intPort[6];
 	char duration[16];
-	int r;
 	// Intermediate variables.
 	struct UPNPUrls urls;
 	struct IGDdatas data;
-	struct UPNPDev * devlist = 0;
+	struct UPNPDev* devlist = 0;
 
 	// Try getting the UPnP device for 7 seconds. TODO: Make this asynchronous.
 	devlist = upnpDiscover(7000, 0, 0, 0, 0, 0);
+	if (devlist)
+	{
+		// Get our internal IP address.
+		ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress));
+		if (ret)
+		{
+			switch (ret)
+			{
+			case 1:
+				LOGMESSAGE(L"Net server: found valid IGD = %hs", urls.controlURL);
+				break;
+			case 2:
+				LOGMESSAGE(L"Net server: found a valid, not connected IGD = %hs, will try to continue anyway", urls.controlURL);
+				break;
+			case 3:
+				LOGMESSAGE(L"Net server: found a UPnP device unrecognized as IGD = %hs, will try to continue anyway", urls.controlURL);
+				break;
+			default:
+				debug_warn(L"Unrecognized return value from UPNP_GetValidIGD");
+			}
 
-	// Get our internal IP address.
-	UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress));
+			// Try getting our external/internet facing IP. TODO: Display this on the game-setup page for conviniance.
+			ret = UPNP_GetExternalIPAddress(urls.controlURL, data.first.servicetype, externalIPAddress);
+			if (ret == UPNPCOMMAND_SUCCESS)
+			{
+				LOGMESSAGE(L"Net server: ExternalIPAddress = %hs", externalIPAddress);
 
-	// Try getting our external/internet facing IP. TODO: Display this on the game-setup page for conviniance.
-	UPNP_GetExternalIPAddress(urls.controlURL, data.first.servicetype, externalIPAddress);
+				// Try to setup port forwarding.
+				ret = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
+										psPort, psPort, internalIPAddress, description,
+										protocall, 0, leaseDuration);
+				if (ret == UPNPCOMMAND_SUCCESS)
+				{
+					ret = UPNP_GetSpecificPortMappingEntry(urls.controlURL,
+													 data.first.servicetype,
+													 psPort, protocall,
+													 intClient, intPort, NULL/*desc*/,
+													 NULL/*enabled*/, duration);
+					if (ret == UPNPCOMMAND_SUCCESS)
+						LOGMESSAGE(L"Net server: External %hs:%hs %hs is redirected to internal %hs:%hs (duration=%hs)",
+								   externalIPAddress, psPort, protocall, intClient, intPort, duration);
+					else
+						LOGMESSAGE(L"Net server: GetSpecificPortMappingEntry() failed with code %d (%hs)", ret, strupnperror(ret));
+				}
+				else
+					LOGMESSAGE(L"Net server: AddPortMapping(%hs, %hs, %hs) failed with code %d (%hs)",
+						   psPort, psPort, internalIPAddress, ret, strupnperror(ret));
+			}
+			else
+				LOGMESSAGE(L"Net server: GetExternalIPAddress failed with code %d (%hs)", ret, strupnperror(ret));
 
-	// See if we actually got our address.
-	if(externalIPAddress[0])
-		LOGMESSAGE(L"Net server: ExternalIPAddress = %s\n", externalIPAddress);
+			// Make sure everything is properly freed.
+			FreeUPNPUrls(&urls);
+		}
+		freeUPNPDevlist(devlist);
+	}
 	else
-		LOGMESSAGE(L"Net server: GetExternalIPAddress failed.\n");
+		LOGMESSAGE(L"Net server: upnpDiscover failed");
 
-	// Try to setup port forwarding.
-	r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
-	                        externalPort, internalPort, internalIPAddress, description,
-	                        protocall, 0, leaseDuration);
-
-	// Check the port actually got forwarded.
-	if (r != UPNPCOMMAND_SUCCESS)
-		LOGMESSAGE(L"Net server: AddPortMapping(%s, %s, %s) failed with code %d (%s)\n",
-		       externalPort, internalPort, internalIPAddress, r, strupnperror(r));
-	r = UPNP_GetSpecificPortMappingEntry(urls.controlURL,
-	                                 data.first.servicetype,
-	                                 externalPort, protocall,
-	                                 intClient, intPort, NULL/*desc*/,
-	                                 NULL/*enabled*/, duration);
-	if(r!=UPNPCOMMAND_SUCCESS)
-		LOGMESSAGE(L"Net server: GetSpecificPortMappingEntry() failed with code %d (%s)\n", r, strupnperror(r));
-
-	// If we succeed, log it.
-	if(intClient[0])
-		LOGMESSAGE(L"Net server: External %s:%s %s is redirected to internal %s:%s (duration=%s)\n",
-		       externalIPAddress, externalPort, protocall, intClient, intPort, duration);
-
-	// Make sure everything is properly freed.
-	FreeUPNPUrls(&urls);
-	freeUPNPDevlist(devlist);
 	// End UPnP setup.
 
 	return true;
