@@ -189,12 +189,6 @@ private:
 	bool SetupConnection();
 
 	/**
-	 * Try to find a UPnP root on the network and setup port forwarding.
-	 * @return true on success, false on error (e.g. no UPnP device)
-	 */
-	bool SetupUPnP();
-
-	/**
 	 * Call from the GUI to update the player assignments.
 	 * The given GUID will be (re)assigned to the given player ID.
 	 * Any player currently using that ID will be unassigned.
@@ -304,6 +298,12 @@ private:
 
 private:
 	// Thread-related stuff:
+
+	/**
+	 * Try to find a UPnP root on the network and setup port forwarding.
+	 */
+	static void* SetupUPnP(void*);
+	pthread_t m_UPnPThread;
 
 	static void* RunThread(void* data);
 	void Run();

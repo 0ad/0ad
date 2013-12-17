@@ -189,10 +189,14 @@ bool CNetServerWorker::SetupConnection()
 	int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
 	ENSURE(ret == 0);
 
+	// Launch the UPnP thread
+	ret = pthread_create(&m_UPnPThread, NULL, &SetupUPnP, NULL);
+	ENSURE(ret == 0);
+
 	return true;
 }
 
-bool CNetServerWorker::SetupUPnP()
+void* CNetServerWorker::SetupUPnP(void*)
 {
 	// Values we want to set.
 	char psPort[6];
@@ -210,11 +214,13 @@ bool CNetServerWorker::SetupUPnP()
 	struct UPNPUrls urls;
 	struct IGDdatas data;
 	struct UPNPDev* devlist = 0;
-	// Cached root descripter URL.
+
+	// Cached root descriptor URL.
 	std::string rootDescURL = "";
 	CFG_GET_VAL("network.upnprootdescurl", String, rootDescURL);
 	if (rootDescURL != "")
-		LOGMESSAGE(L"Net server: attempting to use cached root descripter URL: %hs", rootDescURL.c_str());
+		LOGMESSAGE(L"Net server: attempting to use cached root descriptor URL: %hs", rootDescURL.c_str());
+
 	// Init the return variable for UPNP_GetValidIGD to 1 so things behave when using cached URLs.
 	int ret = 1;
 
@@ -223,8 +229,9 @@ bool CNetServerWorker::SetupUPnP()
 	  || ((devlist = upnpDiscover(10000, 0, 0, 0, 0, 0)) && (ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress))))))
 	{
 		LOGMESSAGE(L"Net server: upnpDiscover failed and no working cached URL.");
-		return false;
+		return NULL;
 	}
+
 	switch (ret)
 	{
 	case 1:
@@ -245,7 +252,7 @@ bool CNetServerWorker::SetupUPnP()
 	if (ret != UPNPCOMMAND_SUCCESS)
 	{
 		LOGMESSAGE(L"Net server: GetExternalIPAddress failed with code %d (%hs)", ret, strupnperror(ret));
-		return false;
+		return NULL;
 	}
 	LOGMESSAGE(L"Net server: ExternalIPAddress = %hs", externalIPAddress);
 
@@ -256,7 +263,7 @@ bool CNetServerWorker::SetupUPnP()
 	{
 		LOGMESSAGE(L"Net server: AddPortMapping(%hs, %hs, %hs) failed with code %d (%hs)",
 			   psPort, psPort, internalIPAddress, ret, strupnperror(ret));
-		return false;
+		return NULL;
 	}
 
 	// Check that the port was actually forwarded.
@@ -265,23 +272,26 @@ bool CNetServerWorker::SetupUPnP()
 									 psPort, protocall,
 									 intClient, intPort, NULL/*desc*/,
 									 NULL/*enabled*/, duration);
+
 	if (ret != UPNPCOMMAND_SUCCESS)
 	{
 		LOGMESSAGE(L"Net server: GetSpecificPortMappingEntry() failed with code %d (%hs)", ret, strupnperror(ret));
-		return false;
+		return NULL;
 	}
+
 	LOGMESSAGE(L"Net server: External %hs:%hs %hs is redirected to internal %hs:%hs (duration=%hs)",
 				   externalIPAddress, psPort, protocall, intClient, intPort, duration);
 
-	// Cache root descripter URL to try to avoid discovery next time.
+	// Cache root descriptor URL to try to avoid discovery next time.
 	g_ConfigDB.CreateValue(CFG_USER, "network.upnprootdescurl")->m_String = urls.controlURL;
 	g_ConfigDB.WriteFile(CFG_USER);
-	LOGMESSAGE(L"Net server: cached UPnP root descripter URL as %hs", urls.controlURL);
+	LOGMESSAGE(L"Net server: cached UPnP root descriptor URL as %hs", urls.controlURL);
 
 	// Make sure everything is properly freed.
 	FreeUPNPUrls(&urls);
 	freeUPNPDevlist(devlist);
-	return true;
+
+	return NULL;
 }
 
 bool CNetServerWorker::SendMessage(ENetPeer* peer, const CNetMessage* message)
@@ -326,9 +336,6 @@ void* CNetServerWorker::RunThread(void* data)
 
 void CNetServerWorker::Run()
 {
-	// Try to open the firewall (this could take a few seconds).
-	SetupUPnP();
-
 	// To avoid the need for JS_SetContextThread, we create and use and destroy
 	// the script interface entirely within this network thread
 	m_ScriptInterface = new ScriptInterface("Engine", "Net server", ScriptInterface::CreateRuntime());
