@@ -214,13 +214,13 @@ bool CNetServerWorker::SetupUPnP()
 	std::string rootDescURL = "";
 	CFG_GET_VAL("network.upnprootdescurl", String, rootDescURL);
 	if (rootDescURL != "")
-		LOGMESSAGE(L"Net server: attempting to use cached root decripter URL: %hs", rootDescURL.c_str());
+		LOGMESSAGE(L"Net server: attempting to use cached root descripter URL: %hs", rootDescURL.c_str());
 	// Init the return variable for UPNP_GetValidIGD to 1 so things behave when using cached URLs.
 	int ret = 1;
 
-	// If we have a cached URL, try that first, otherwise try getting a valid UPnP device for 7 seconds. We also get our LAN address here.
+	// If we have a cached URL, try that first, otherwise try getting a valid UPnP device for 10 seconds. We also get our LAN address here.
 	if (!((rootDescURL != "" && UPNP_GetIGDFromUrl(rootDescURL.c_str(), &urls, &data, internalIPAddress, sizeof(internalIPAddress)))
-	  || ((devlist = upnpDiscover(7000, 0, 0, 0, 0, 0)) && (ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress))))))
+	  || ((devlist = upnpDiscover(10000, 0, 0, 0, 0, 0)) && (ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress))))))
 	{
 		LOGMESSAGE(L"Net server: upnpDiscover failed and no working cached URL.");
 		return false;
@@ -326,10 +326,12 @@ void* CNetServerWorker::RunThread(void* data)
 
 void CNetServerWorker::Run()
 {
+	// Try to open the firewall (this could take a few seconds).
+	SetupUPnP();
+
 	// To avoid the need for JS_SetContextThread, we create and use and destroy
 	// the script interface entirely within this network thread
 	m_ScriptInterface = new ScriptInterface("Engine", "Net server", ScriptInterface::CreateRuntime());
-
 	while (true)
 	{
 		if (!RunStep())
@@ -1026,14 +1028,7 @@ CNetServer::~CNetServer()
 
 bool CNetServer::SetupConnection()
 {
-	if(m_Worker->SetupConnection())
-	{
-		// Try to open the firewall.
-		m_Worker->SetupUPnP();
-		return true;
-	}
-	else
-		return false;
+	return m_Worker->SetupConnection();
 }
 
 void CNetServer::AssignPlayer(int playerID, const CStr& guid)
