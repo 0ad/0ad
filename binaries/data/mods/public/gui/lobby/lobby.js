@@ -245,7 +245,7 @@ function formatPlayerListEntry(nickname, presence)
 		var status = color + "Busy" + color_close;
 		break;
 	case "away":
-		var color = '[color="0 0 125"]';
+		var color = '[color="229 76 13"]';
 		var status = color + "Away" + color_close;
 		break;
 	case "available":
