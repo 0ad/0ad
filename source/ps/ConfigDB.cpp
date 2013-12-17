@@ -30,12 +30,30 @@ typedef std::map <CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
 VfsPath CConfigDB::m_ConfigFile[CFG_LAST];
 
+static pthread_mutex_t cfgdb_mutex = PTHREAD_MUTEX_INITIALIZER;
+struct ScopedLock
+{
+	ScopedLock() { pthread_mutex_lock(&cfgdb_mutex); }
+	~ScopedLock() { pthread_mutex_unlock(&cfgdb_mutex); }
+};
+
 CConfigDB::CConfigDB()
 {
+	pthread_mutexattr_t attr;
+	int err;
+	err = pthread_mutexattr_init(&attr);
+	ENSURE(err == 0);
+	err = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+	ENSURE(err == 0);
+	err = pthread_mutex_init(&cfgdb_mutex, &attr);
+	ENSURE(err == 0);
+	err = pthread_mutexattr_destroy(&attr);
+	ENSURE(err == 0);
 }
 
 CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, const CStr& name)
 {
+	ScopedLock s;
 	CConfigValueSet* values = GetValues(ns, name);
 	if (!values)
 		return NULL;
@@ -50,6 +68,7 @@ CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name)
 		return NULL;
 	}
 
+	ScopedLock s;
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
 	if (it != m_Map[CFG_COMMAND].end())
 		return &(it->second);
@@ -72,6 +91,7 @@ EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& n
 		return CFG_LAST;
 	}
 
+	ScopedLock s;
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
 	if (it != m_Map[CFG_COMMAND].end())
 		return CFG_COMMAND;
@@ -88,6 +108,7 @@ EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& n
 
 std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix)
 {
+	ScopedLock s;
 	std::map<CStr, CConfigValueSet> ret;
 
 	if (ns < 0 || ns >= CFG_LAST)
@@ -118,6 +139,7 @@ CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, const CStr& name)
 		return NULL;
 	}
 
+	ScopedLock s;
 	TConfigMap::iterator it = m_Map[ns].find(name);
 	if (it != m_Map[ns].end())
 		return &(it->second[0]);
@@ -134,6 +156,7 @@ void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)
 		return;
 	}
 
+	ScopedLock s;
 	m_ConfigFile[ns]=path;
 }
 
@@ -144,6 +167,8 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		debug_warn(L"CConfigDB: Invalid ns value");
 		return false;
 	}
+
+	ScopedLock s;
 
 	// Set up CParser
 	CParser parser;
@@ -230,6 +255,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns)
 		return false;
 	}
 
+	ScopedLock s;
 	return WriteFile(ns, m_ConfigFile[ns]);
 }
 
@@ -241,6 +267,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path)
 		return false;
 	}
 
+	ScopedLock s;
 	shared_ptr<u8> buf;
 	AllocateAligned(buf, 1*MiB, maxSectorSize);
 	char* pos = (char*)buf.get();
