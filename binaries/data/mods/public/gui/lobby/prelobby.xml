@@ -26,7 +26,7 @@
 			<object type="text" style="CenteredLabelText" size="0 0 400 30">
 				Connect to the game lobby.
 			</object>
-			<object type="text" size="0 40 200 70" style="RightLabelText">
+			<object name="connectUsernameLabel" type="text" size="0 40 200 70" style="RightLabelText">
 				Login:
 			</object>
 			<object name="connectUsername" type="input" size="210 40 100%-32 64" style="StoneInput">
@@ -34,7 +34,7 @@
 					this.caption = Engine.ConfigDB_GetValue("user", "lobby.login");
 				</action>
 			</object>
-			<object type="text" size="0 80 200 110" style="RightLabelText">
+			<object name="connectPasswordLabel" type="text" size="0 80 200 110" style="RightLabelText">
 				Password:
 			</object>
 			<object name="connectPassword" type="input" size="210 80 100%-32 104" style="StonePasswordInput">
@@ -57,10 +57,9 @@
 			</object>
 			<object name="nickToggle" type="button" style="StoneButton" size="100%-64 120 100%-32 144">
 				<![CDATA[<<]]>
-				<action on="Press"><![CDATA[
-					this.hidden = true;
-					getGUIObjectByName("nickPanel").hidden = false;
-				]]></action>
+				<action on="Press">
+					showNickInput();
+				</action>
 			</object>
 			<object name="connectFeedback" type="text" style="CenteredLabelText" size="32 150 100%-32 180" textcolor="red"/>
 			<object type="button" size="32 100%-60 122 100%-32" style="StoneButton">
@@ -90,7 +89,7 @@
 			<object type="text" style="CenteredLabelText" size="0 0 400 30">
 				Registration.
 			</object>
-			<object type="text" size="0 40 200 70" style="RightLabelText">
+			<object type="text" size="0 36 200 70" style="RightLabelText">
 				Password again:
 			</object>
 			<object name="registerPasswordAgain" type="input" size="210 40 100%-32 64" style="StonePasswordInput">

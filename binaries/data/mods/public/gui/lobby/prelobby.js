@@ -1,9 +1,29 @@
 var g_LobbyIsConnecting = false;
 var g_EncrytedPassword = "";
+var g_PasswordInputIsHidden = false;
 
 function init()
 {
 	g_EncrytedPassword = Engine.ConfigDB_GetValue("user", "lobby.password");
+	var connectPassword = getGUIObjectByName("connectPassword");
+	if (connectPassword.caption) {
+		g_PasswordInputIsHidden = true;
+		connectPassword.hidden = true;
+		getGUIObjectByName("connectPasswordLabel").hidden = true;
+		//getGUIObjectByName("nickPanel").size = "64 80 100%-32 104";
+		getGUIObjectByName("nickToggle").size = "100%-64 80 100%-32 104";
+	}
+}
+
+function showNickInput()
+{
+	getGUIObjectByName("nickToggle").hidden = true;
+	getGUIObjectByName("nickPanel").hidden = false;
+	if (g_PasswordInputIsHidden)
+	{
+		getGUIObjectByName("connectPasswordLabel").hidden = false;
+		getGUIObjectByName("connectPassword").hidden = false;
+	}
 }
 
 function lobbyStop()
@@ -20,7 +40,7 @@ function lobbyStop()
 
 function lobbyStart()
 {
-	if (g_LobbyIsConnecting != false)
+	if (g_LobbyIsConnecting)
 		return;
 
 	if (Engine.HasXmppClient())
@@ -30,10 +50,9 @@ function lobbyStart()
 	var password = getGUIObjectByName("connectPassword").caption;
 	var feedback = getGUIObjectByName("connectFeedback");
 	// Use username as nick unless overridden.
-	if (getGUIObjectByName("nickPanel").hidden == true)
-		var nick = sanitizePlayerName(username, true, true);
-	else
-		var nick = sanitizePlayerName(getGUIObjectByName("joinPlayerName").caption, true, true);
+	var nickPanelHidden = getGUIObjectByName("nickPanel").hidden;
+	var nick = sanitizePlayerName(nickPanelHidden ? username :
+			getGUIObjectByName("joinPlayerName").caption, true, true);
 	if (!username || !password)
 	{
 		feedback.caption = "Username or password empty";
