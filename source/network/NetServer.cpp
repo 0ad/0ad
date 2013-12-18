@@ -31,11 +31,13 @@
 #include "simulation2/Simulation2.h"
 #include "ps/ConfigDB.h"
 
+#if CONFIG2_MINIUPNPC
 // Next four files are for UPnP port forwarding.
 #include <miniupnpc/miniwget.h>
 #include <miniupnpc/miniupnpc.h>
 #include <miniupnpc/upnpcommands.h>
 #include <miniupnpc/upnperrors.h>
+#endif
 
 #define	DEFAULT_SERVER_NAME			L"Unnamed Server"
 #define DEFAULT_WELCOME_MESSAGE		L"Welcome"
@@ -189,13 +191,16 @@ bool CNetServerWorker::SetupConnection()
 	int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
 	ENSURE(ret == 0);
 
+#if CONFIG2_MINIUPNPC
 	// Launch the UPnP thread
 	ret = pthread_create(&m_UPnPThread, NULL, &SetupUPnP, NULL);
 	ENSURE(ret == 0);
+#endif
 
 	return true;
 }
 
+#if CONFIG2_MINIUPNPC
 void* CNetServerWorker::SetupUPnP(void*)
 {
 	// Values we want to set.
@@ -293,6 +298,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 
 	return NULL;
 }
+#endif // CONFIG2_MINIUPNPC
 
 bool CNetServerWorker::SendMessage(ENetPeer* peer, const CNetMessage* message)
 {
