@@ -116,4 +116,9 @@
 # define CONFIG2_LOBBY 1
 #endif
 
+// allow use of miniupnpc
+#ifndef CONFIG2_MINIUPNPC
+# define CONFIG2_MINIUPNPC 1
+#endif
+
 #endif	// #ifndef INCLUDED_CONFIG2

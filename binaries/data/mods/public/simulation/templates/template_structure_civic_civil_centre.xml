@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
+  <Armour>
+    <Foundation>
+      <Hack>5</Hack>
+      <Pierce>15</Pierce>
+      <Crush>3</Crush>
+    </Foundation>
+  </Armour>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -27,7 +34,7 @@
   </BuildRestrictions>
   <Cost>
     <PopulationBonus>20</PopulationBonus>
-    <BuildTime>600</BuildTime>
+    <BuildTime>500</BuildTime>
     <Resources>
       <food>0</food>
       <wood>500</wood>

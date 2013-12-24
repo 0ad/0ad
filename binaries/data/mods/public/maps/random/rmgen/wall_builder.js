@@ -161,7 +161,7 @@ wallStyles["iber"]["wallFort"] = new WallElement("wallFort", "structures/iber_fo
 wallStyles["mace"]["wallFort"] = new WallElement("wallFort", "structures/mace_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
 wallStyles["maur"]["wallFort"] = new WallElement("wallFort", "structures/maur_fortress", PI, 5.5);
 wallStyles["pers"]["wallFort"] = new WallElement("wallFort", "structures/pers_fortress", PI, 5.6/*5.5*/, 1.9/*1.7*/);
-wallStyles["ptol"]["wallFort"] = new WallElement("wallFort", "structures/athen_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
+wallStyles["ptol"]["wallFort"] = new WallElement("wallFort", "structures/ptol_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
 wallStyles["rome"]["wallFort"] = new WallElement("wallFort", "structures/rome_fortress", PI, 6.3, 2.1);
 wallStyles["spart"]["wallFort"] = new WallElement("wallFort", "structures/spart_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
 // Adjust "rome_siege" style

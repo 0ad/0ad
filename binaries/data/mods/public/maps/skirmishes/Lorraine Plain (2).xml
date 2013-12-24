@@ -2,17 +2,21 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
 		<SunColour r="0.929412" g="0.894118" b="0.686275"/>
 		<SunElevation angle="0.923456"/>
 		<SunRotation angle="-1.28241"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.329412" g="0.341176" b="0.458824"/>
+				<Colour r="0.329412" g="0.337255" b="0.458824"/>
 				<Height>16.3672</Height>
 				<Shininess>54.9316</Shininess>
 				<Waviness>2.04102</Waviness>
@@ -22,21 +26,27 @@
 				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="618.44" y="91.0758" z="93.8673"/>
-		<Rotation angle="0"/>
+		<Position x="612.604" y="63.8024" z="146.851"/>
+		<Rotation angle="0.0434531"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview": "lorraine_plain_scenario.png",
-  "Description": "The sunset on Celtic dominion of Gaul. \u000a\u000aThe map is cut through the centre by a river traversing east-west with some shallows.\u000a\u000aFairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\u000a\u000aCiv Territories are divided by main river and tributaries (with necessary shallows for crossings).",
+  "Description": "The map is cut through the centre by a river traversing east-west with some shallows.\u000a\u000aFairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\u000a\u000aCiv Territories are divided by main river and tributaries (with necessary shallows for crossings).",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
-  "Name": "Lorraine Plain",
+  "Name": "Lorraine Plain (2)",
   "PlayerData": [
     {
       "Civ": "gaul",
@@ -59,46 +69,11 @@
       "Team": -1
     }
   ],
+  "Preview": "lorraine_plain_scenario.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="14">
-			<Template>structures/rome_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="614.40766" z="218.7358"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="16">
-			<Template>other/celt_tavern</Template>
-			<Player>1</Player>
-			<Position x="422.51053" z="832.66382"/>
-			<Orientation y="-2.70951"/>
-		</Entity>
-		<Entity uid="17">
-			<Template>other/celt_longhouse</Template>
-			<Player>1</Player>
-			<Position x="337.95353" z="822.63221"/>
-			<Orientation y="2.51227"/>
-		</Entity>
-		<Entity uid="18">
-			<Template>other/celt_longhouse</Template>
-			<Player>1</Player>
-			<Position x="334.025" z="798.86908"/>
-			<Orientation y="1.4702"/>
-		</Entity>
-		<Entity uid="19">
-			<Template>other/celt_longhouse</Template>
-			<Player>1</Player>
-			<Position x="351.44513" z="832.53644"/>
-			<Orientation y="3.08114"/>
-		</Entity>
-		<Entity uid="20">
-			<Template>structures/rome_army_camp</Template>
-			<Player>2</Player>
-			<Position x="575.48542" z="340.46351"/>
-			<Orientation y="2.68335"/>
-		</Entity>
 		<Entity uid="21">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
@@ -4532,18 +4507,6 @@
 			<Player>0</Player>
 			<Position x="727.02021" z="539.62317"/>
 			<Orientation y="-1.23847"/>
-		</Entity>
-		<Entity uid="760">
-			<Template>units/rome_ship_trireme</Template>
-			<Player>2</Player>
-			<Position x="921.51771" z="524.27381"/>
-			<Orientation y="-2.21985"/>
-		</Entity>
-		<Entity uid="761">
-			<Template>units/rome_ship_trireme</Template>
-			<Player>2</Player>
-			<Position x="657.69538" z="457.43238"/>
-			<Orientation y="2.81782"/>
 		</Entity>
 		<Entity uid="766">
 			<Template>gaia/flora_tree_oak</Template>
@@ -9415,66 +9378,6 @@
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
 			<Position x="459.01215" z="254.51685"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1578">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>2</Player>
-			<Position x="627.6327" z="188.3769"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1579">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>2</Player>
-			<Position x="629.8266" z="190.8543"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1580">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>2</Player>
-			<Position x="632.53467" z="193.07029"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1581">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>2</Player>
-			<Position x="634.98383" z="196.00261"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1582">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>2</Player>
-			<Position x="636.89557" z="198.66395"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1583">
-			<Template>units/rome_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="623.99549" z="191.47432"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1584">
-			<Template>units/rome_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="626.51117" z="193.61738"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1585">
-			<Template>units/rome_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="628.71607" z="196.83063"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1586">
-			<Template>units/rome_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="630.74537" z="199.04062"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1587">
-			<Template>units/rome_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="632.76044" z="201.6424"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1598">
@@ -17326,84 +17229,6 @@
 			<Position x="265.49262" z="248.48501"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3124">
-			<Template>structures/gaul_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="382.59595" z="810.72461"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3125">
-			<Template>units/gaul_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="357.66617" z="795.20777"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3126">
-			<Template>units/gaul_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="359.07468" z="797.00043"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3127">
-			<Template>units/gaul_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="360.5312" z="798.95844"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3128">
-			<Template>units/gaul_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="362.1381" z="800.64747"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3129">
-			<Template>units/gaul_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="364.3993" z="802.90644"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3130">
-			<Template>units/gaul_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="353.03492" z="799.4798"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3131">
-			<Template>units/gaul_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="354.34162" z="801.70014"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3132">
-			<Template>units/gaul_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="356.06717" z="803.95344"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3133">
-			<Template>units/gaul_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="357.76767" z="805.83448"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3134">
-			<Template>units/gaul_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="359.5506" z="808.3354"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3135">
-			<Template>units/gaul_ship_trireme</Template>
-			<Player>1</Player>
-			<Position x="149.42141" z="590.04249"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3136">
-			<Template>units/gaul_ship_trireme</Template>
-			<Player>1</Player>
-			<Position x="334.65098" z="545.63794"/>
-			<Orientation y="-2.09984"/>
-		</Entity>
 		<Entity uid="3137">
 			<Template>gaia/geology_stonemine_temperate_formation</Template>
 			<Player>0</Player>
@@ -17433,6 +17258,160 @@
 			<Player>0</Player>
 			<Position x="54.19314" z="500.06547"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3142">
+			<Template>skirmish/structures/default_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="368.17783" z="822.27063"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="15822"/>
+		</Entity>
+		<Entity uid="3143">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="349.06913" z="809.97584"/>
+			<Orientation y="-2.00348"/>
+			<Actor seed="51456"/>
+		</Entity>
+		<Entity uid="3144">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="352.97028" z="805.27491"/>
+			<Orientation y="-2.58706"/>
+			<Actor seed="38780"/>
+		</Entity>
+		<Entity uid="3145">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="356.32438" z="802.12916"/>
+			<Orientation y="-2.68583"/>
+			<Actor seed="9930"/>
+		</Entity>
+		<Entity uid="3146">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="359.28315" z="798.66956"/>
+			<Orientation y="-2.36417"/>
+			<Actor seed="49780"/>
+		</Entity>
+		<Entity uid="3147">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>1</Player>
+			<Position x="380.96674" z="802.75355"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42220"/>
+		</Entity>
+		<Entity uid="3148">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>1</Player>
+			<Position x="386.01761" z="807.27851"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21352"/>
+		</Entity>
+		<Entity uid="3149">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="383.28428" z="840.87146"/>
+			<Orientation y="0.52338"/>
+			<Actor seed="23202"/>
+		</Entity>
+		<Entity uid="3150">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="386.23813" z="836.12458"/>
+			<Orientation y="0.82004"/>
+			<Actor seed="36162"/>
+		</Entity>
+		<Entity uid="3151">
+			<Template>skirmish/units/default_cavalry</Template>
+			<Player>1</Player>
+			<Position x="346.45301" z="840.32081"/>
+			<Orientation y="-0.95134"/>
+			<Actor seed="16744"/>
+		</Entity>
+		<Entity uid="3152">
+			<Template>skirmish/units/special_starting_unit</Template>
+			<Player>1</Player>
+			<Position x="348.69556" z="844.05427"/>
+			<Orientation y="-0.92824"/>
+			<Actor seed="4834"/>
+		</Entity>
+		<Entity uid="3153">
+			<Template>skirmish/structures/default_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="616.34913" z="211.09122"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49758"/>
+		</Entity>
+		<Entity uid="3154">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>2</Player>
+			<Position x="630.74079" z="189.76084"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63436"/>
+		</Entity>
+		<Entity uid="3155">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>2</Player>
+			<Position x="635.70881" z="195.86857"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33278"/>
+		</Entity>
+		<Entity uid="3156">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>2</Player>
+			<Position x="632.09864" z="231.53696"/>
+			<Orientation y="1.08542"/>
+			<Actor seed="31588"/>
+		</Entity>
+		<Entity uid="3157">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>2</Player>
+			<Position x="636.38636" z="226.94141"/>
+			<Orientation y="0.62449"/>
+			<Actor seed="40640"/>
+		</Entity>
+		<Entity uid="3158">
+			<Template>skirmish/units/special_starting_unit</Template>
+			<Player>2</Player>
+			<Position x="597.06586" z="233.23058"/>
+			<Orientation y="-0.8958"/>
+			<Actor seed="7444"/>
+		</Entity>
+		<Entity uid="3159">
+			<Template>skirmish/units/default_cavalry</Template>
+			<Player>2</Player>
+			<Position x="592.33014" z="228.69425"/>
+			<Orientation y="-0.94623"/>
+			<Actor seed="14108"/>
+		</Entity>
+		<Entity uid="3160">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="594.81562" z="201.10158"/>
+			<Orientation y="-2.14975"/>
+			<Actor seed="57262"/>
+		</Entity>
+		<Entity uid="3161">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="599.26465" z="195.87507"/>
+			<Orientation y="-2.28982"/>
+			<Actor seed="56430"/>
+		</Entity>
+		<Entity uid="3162">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="603.57795" z="191.35334"/>
+			<Orientation y="-2.0029"/>
+			<Actor seed="45660"/>
+		</Entity>
+		<Entity uid="3163">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="606.7403" z="187.55744"/>
+			<Orientation y="-2.05814"/>
+			<Actor seed="45164"/>
 		</Entity>
 	</Entities>
 	<Paths/>

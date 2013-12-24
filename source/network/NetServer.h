@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "NetFileTransfer.h"
 #include "NetHost.h"
 
+#include "lib/config2.h"
 #include "ps/ThreadUtil.h"
 #include "scriptinterface/ScriptVal.h"
 
@@ -298,6 +299,14 @@ private:
 
 private:
 	// Thread-related stuff:
+
+#if CONFIG2_MINIUPNPC
+	/**
+	 * Try to find a UPnP root on the network and setup port forwarding.
+	 */
+	static void* SetupUPnP(void*);
+	pthread_t m_UPnPThread;
+#endif
 
 	static void* RunThread(void* data);
 	void Run();

@@ -13,7 +13,7 @@
     </variant>
   </group>
   <group>
-    <variant name="Idle"/>
+    <variant frequency="1" name="Idle"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_persians.xml" attachpoint="garrisoned"/>
