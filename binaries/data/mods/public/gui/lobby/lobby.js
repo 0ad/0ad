@@ -217,7 +217,7 @@ function updateGameList()
 	}
 
 	gamesBox.list_name = list_name;
-	// gamesBox.list_ip = list_ip;
+	//gamesBox.list_ip = list_ip;
 	gamesBox.list_mapName = list_mapName;
 	gamesBox.list_mapSize = list_mapSize;
 	gamesBox.list_mapType = list_mapType;
@@ -446,7 +446,7 @@ function onTick()
 			switch (message.level)
 			{
 			case "standard":
-				addChatMessage({ "from": "system", "text": message.text, "color": "0 150 0" });
+				addChatMessage({ "from": "system", "text": message.text, "color": "150 0 0" });
 				if (message.text == "disconnected")
 				{
 					// Clear the list of games and the list of players
@@ -563,8 +563,11 @@ function handleSpecialCommand(text)
 		lobbyStop();
 		Engine.SwitchGuiPage("page_pregame.xml");
 		break;
-	default:
+	case "say":
+	case "me":
 		return false;
+	default:
+		addChatMessage({ "from":"system", "text":"We're sorry, the '" + cmd + "' command is not supported."});
 	}
 	return true;
 }
@@ -601,18 +604,11 @@ function ircSplit(string)
 // The following formats text in an IRC-like way
 function ircFormat(text, from, color, key)
 {
-	function warnUnsupportedCommand(command, from) // Function to warn only local player
-	{
-		if (from === g_Name)
-			addChatMessage({ "from":"system", "text":"We're sorry, the '" + command + "' command is not supported." });
-		return;
-	}
-
 	// Generate and apply color to uncolored names,
 	if (!color && from)
 		var coloredFrom = colorPlayerName(from);
-	else if (from)
-		var coloredFrom = "[color='" + color + "']" + from + "[/color]";
+	else if (color && from)
+		var coloredFrom = '[color="' + color + '"]' + from + "[/color]";
 
 	// Time for optional time header
 	var time = new Date(Date.now());
@@ -623,7 +619,7 @@ function ircFormat(text, from, color, key)
 	else
 		var formatted = "";
 
-	// Handle commands
+	// Handle commands allowed past handleSpecialCommand.
 	if (text[0] == '/')
 	{
 		var [command, message] = ircSplit(text);
@@ -638,7 +634,8 @@ function ircFormat(text, from, color, key)
 					return formatted + '[font="serif-bold-13"] == ' + message + '[/font]';
 				break;
 			default:
-				return warnUnsupportedCommand(command, from);
+				// This should never happen.
+				return "";
 		}
 	}
 	return formatted + '[font="serif-bold-13"]<' + coloredFrom + '>[/font] ' + text;
