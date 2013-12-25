@@ -32,6 +32,12 @@
       units/mace_cavalry_javelinist_b
       units/mace_champion_cavalry_barracks
     </Entities>
+    <Technologies datatype="tokens">
+	  upgrade_rank_advanced_infantry
+	  upgrade_rank_elite_infantry
+	  upgrade_rank_advanced_cavalry
+	  upgrade_rank_elite_cavalry
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/macedonians/barracks.xml</Actor>

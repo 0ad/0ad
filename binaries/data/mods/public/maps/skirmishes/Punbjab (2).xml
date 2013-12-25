@@ -2,8 +2,8 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunset 2</SkySet>
-		<SunColour r="0.741176" g="0.592157" b="0.27451"/>
+		<SkySet>rain</SkySet>
+		<SunColour r="0.737255" g="0.592157" b="0.27451"/>
 		<SunElevation angle="1.25786"/>
 		<SunRotation angle="1.71806"/>
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="181.493" y="109.573" z="113.107"/>
+		<Position x="661.036" y="164.554" z="176.007"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -29618,14 +29618,6 @@
 			<Orientation y="2.50278"/>
 			<Actor seed="27700"/>
 		</Entity>
-		<Entity uid="5463">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>1</Player>
-			<Position x="772.48224" z="460.97297"/>
-			<Orientation y="-0.50034"/>
-			<Obstruction group="5464" group2="5462"/>
-			<Actor seed="48828"/>
-		</Entity>
 		<Entity uid="5464">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>1</Player>
@@ -29703,22 +29695,6 @@
 			<Position x="880.01038" z="367.90995"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="14804"/>
-		</Entity>
-		<Entity uid="5475">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>1</Player>
-			<Position x="747.99207" z="328.6211"/>
-			<Orientation y="-2.5746"/>
-			<Obstruction group="5469" group2="5470"/>
-			<Actor seed="60634"/>
-		</Entity>
-		<Entity uid="5476">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>1</Player>
-			<Position x="865.83613" z="356.39771"/>
-			<Orientation y="2.4049"/>
-			<Obstruction group="5473" group2="5474"/>
-			<Actor seed="48344"/>
 		</Entity>
 		<Entity uid="5477">
 			<Template>skirmish/structures/iber_wall_tower</Template>
@@ -29803,14 +29779,6 @@
 			<Orientation y="2.79097"/>
 			<Obstruction group="5510" group2="5511"/>
 			<Actor seed="8496"/>
-		</Entity>
-		<Entity uid="5490">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>2</Player>
-			<Position x="288.00046" z="587.70435"/>
-			<Orientation y="2.35621"/>
-			<Obstruction group="5497" group2="5512"/>
-			<Actor seed="44378"/>
 		</Entity>
 		<Entity uid="5491">
 			<Template>skirmish/structures/iber_wall_short</Template>
@@ -29971,22 +29939,6 @@
 			<Position x="273.94941" z="576.3083"/>
 			<Orientation y="-0.40336"/>
 			<Actor seed="62432"/>
-		</Entity>
-		<Entity uid="5513">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>2</Player>
-			<Position x="206.44706" z="557.36841"/>
-			<Orientation y="2.9903"/>
-			<Obstruction group="5509" group2="5510"/>
-			<Actor seed="46854"/>
-		</Entity>
-		<Entity uid="5514">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>2</Player>
-			<Position x="134.37266" z="650.99152"/>
-			<Orientation y="-1.29081"/>
-			<Obstruction group="5507" group2="5505"/>
-			<Actor seed="57894"/>
 		</Entity>
 		<Entity uid="5515">
 			<Template>actor|particle/rain_shower.xml</Template>

@@ -11,7 +11,7 @@ Promotion.prototype.Schema =
 Promotion.prototype.Init = function()
 {
 	this.currentXp = 0;
-}
+};
 
 Promotion.prototype.GetRequiredXp = function()
 {
@@ -26,7 +26,7 @@ Promotion.prototype.GetCurrentXp = function()
 Promotion.prototype.GetPromotedTemplateName = function()
 {
 	return this.template.Entity;
-}
+};
 
 Promotion.prototype.Promote = function(promotedTemplateName)
 {
@@ -91,33 +91,52 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 
 	// Destroy current entity
 	Engine.DestroyEntity(this.entity);
-}
+	// save the entity id
+	this.promotedUnitEntity = promotedUnitEntity;
+};
 
 Promotion.prototype.IncreaseXp = function(amount)
 {
-	this.currentXp += +(amount);
+	// if the unit was already promoted, but is waiting for the engine to be destroyed
+	// transfer the gained xp to the promoted unit if applicable
+	if (this.promotedUnitEntity)
+	{
+		var cmpPromotion = Engine.QueryInterface(this.promotedUnitEntity, IID_Promotion);
+		if (cmpPromotion)
+			cmpPromotion.IncreaseXp(amount);
+		return;
+	}
 
-	if (this.currentXp >= this.GetRequiredXp())
+	this.currentXp += +(amount);
+	var requiredXp = this.GetRequiredXp();
+
+	if (this.currentXp >= requiredXp)
 	{
 		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-		var promotionTemplate = this.template;
-		var promotedTemplateName;
-		var requiredXp;
-
-		// We may be able to promote by skipping over multiple templates
-		//	so find the highest level we can reach
-		do
+		var playerID = QueryOwnerInterface(this.entity, IID_Player).GetPlayerID();
+		this.currentXp -= requiredXp;
+		var promotedTemplateName = this.GetPromotedTemplateName();
+		// check if we can upgrade a second time (or even more)
+		while (true)
 		{
-			requiredXp = this.GetRequiredXp();
-			this.currentXp -= requiredXp;
-			promotedTemplateName = promotionTemplate.Entity;
 			var template = cmpTemplateManager.GetTemplate(promotedTemplateName);
-			promotionTemplate = template.Promotion;
+			if (!template.Promotion)
+				break;
+			requiredXp = ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, playerID, template);
+			// compare the current xp to the required xp of the promoted entity
+			if (this.currentXp < requiredXp)
+				break;
+			this.currentXp -= requiredXp;
+			promotedTemplateName = template.Promotion.Entity;
 		}
-		while (promotionTemplate && this.currentXp >= requiredXp);
-
 		this.Promote(promotedTemplateName);
 	}
-}
+};
+
+Promotion.prototype.OnValueModification = function(msg)
+{
+	if (msg.component == "Promotion")
+		this.IncreaseXp(0);
+};
 
 Engine.RegisterComponentType(IID_Promotion, "Promotion", Promotion);

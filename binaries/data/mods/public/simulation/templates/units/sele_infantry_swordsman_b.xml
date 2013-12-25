@@ -17,6 +17,7 @@
 	<Tooltip>Classes: Mercenary Citizen Melee Infantry Swordsman.
 Counters: 2x vs. Spearmen, 1.5x vs. Elephants. 
 Countered by: Archers, Cavalry Spearmen, and Cavalry Archers.</Tooltip>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Promotion>
     <Entity>units/sele_infantry_swordsman_a</Entity>

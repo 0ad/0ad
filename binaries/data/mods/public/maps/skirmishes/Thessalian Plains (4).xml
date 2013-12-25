@@ -16,12 +16,12 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.745098" g="0.596078" b="0.278431"/>
+				<Colour r="0.741176" g="0.592157" b="0.27451"/>
 				<Height>19.3049</Height>
 				<Shininess>150</Shininess>
 				<Waviness>7.44141</Waviness>
 				<Murkiness>0.59082</Murkiness>
-				<Tint r="0.866667" g="0.776471" b="0.490196"/>
+				<Tint r="0.866667" g="0.776471" b="0.486275"/>
 				<ReflectionTint r="0.247059" g="0.501961" b="0.501961"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="1857.12" y="91.0664" z="777.551"/>
-		<Rotation angle="0.0729822"/>
+		<Position x="624.524" y="375.579" z="423.744"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -44099,6 +44099,42 @@
 			<Position x="1492.41553" z="1566.22352"/>
 			<Orientation y="1.57081"/>
 			<Actor seed="23642"/>
+		</Entity>
+		<Entity uid="8500">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="725.28272" z="352.04911"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24174"/>
+		</Entity>
+		<Entity uid="8501">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1161.45643" z="429.90046"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4188"/>
+		</Entity>
+		<Entity uid="8502">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1755.37208" z="936.31983"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31912"/>
+		</Entity>
+		<Entity uid="8503">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1217.34693" z="1148.68677"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="15194"/>
+		</Entity>
+		<Entity uid="8504">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="768.75214" z="1279.25208"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55014"/>
+		</Entity>
+		<Entity uid="8505">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="346.702" z="946.91468"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22078"/>
 		</Entity>
 	</Entities>
 	<Paths/>

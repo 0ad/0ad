@@ -22,6 +22,10 @@
       units/iber_cavalry_javelinist_b
 	  units/iber_champion_cavalry_barracks
     </Entities>
+    <Technologies datatype="tokens">
+	  upgrade_rank_advanced_infantry
+	  upgrade_rank_advanced_cavalry
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/iberians/barracks.xml</Actor>

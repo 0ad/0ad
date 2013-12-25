@@ -5,7 +5,8 @@
     <Height>8.0</Height>
   </Footprint>
   <Health>
-    <SpawnEntityOnDeath>rubble/rubble_hele_cc</SpawnEntityOnDeath>
+    <Max>5000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Obstruction>
     <Static width="40.0" depth="37"/>

@@ -95,14 +95,10 @@ Identity.prototype.GetRank = function()
 Identity.prototype.GetClassesList = function()
 {
 	if (this.template.Classes && "_string" in this.template.Classes)
-	{
-		var string = this.template.Classes._string;
-		return string.split(/\s+/);
-	}
-	else
-	{
-		return [];
-	}
+		return ( this.template.Classes._string + " " + this.GetRank() ).split(/\s+/);
+	if (this.GetRank().length)
+		return [this.GetRank()];
+	return [];
 };
 
 Identity.prototype.HasClass = function(name)

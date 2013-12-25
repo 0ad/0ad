@@ -72,19 +72,44 @@ ProductionQueue.prototype.Init = function()
  */
 ProductionQueue.prototype.GetEntitiesList = function()
 {
+	if (!this.entiesList)
+		this.CalculateEntitiesList();
+	return this.entitiesList;
+};
+
+ProductionQueue.prototype.CalculateEntitiesList = function()
+{
+	this.entitiesList = [];
 	if (!this.template.Entities)
-		return [];
+		return;
 	
 	var string = this.template.Entities._string;
 	if (!string)
-		return [];
+		return;
 	
 	// Replace the "{civ}" codes with this entity's civ ID
 	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
 	if (cmpIdentity)
 		string = string.replace(/\{civ\}/g, cmpIdentity.GetCiv());
 	
-	return string.split(/\s+/);
+	var entitiesList = string.split(/\s+/);
+
+	// check if some templates need to show their advanced or elite version
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var playerID = QueryOwnerInterface(this.entity, IID_Player).GetPlayerID();
+	for each (var templateName in entitiesList)
+	{
+		var template = cmpTemplateManager.GetTemplate(templateName);
+		while (template.Promotion)
+		{
+			var requiredXp = ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, playerID, template);
+			if (requiredXp > 0)
+				break;
+			templateName = template.Promotion.Entity;
+			template = cmpTemplateManager.GetTemplate(templateName);
+		}
+		this.entitiesList.push(templateName);
+	}
 };
 
 /*
@@ -192,7 +217,17 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			var template = cmpTempMan.GetTemplate(templateName);
 			if (!template)
 				return;
-			
+			if (template.Promotion)
+			{
+				var requiredXp = ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, cmpPlayer.GetPlayerID(), template);
+
+				if (requiredXp == 0)
+				{
+					this.AddBatch(template.Promotion.Entity, type, count, metadata);
+					return;
+				}
+			}
+
 			// Apply a time discount to larger batches.
 			var timeMult = this.GetBatchTime(count);
 			
@@ -701,6 +736,15 @@ ProductionQueue.prototype.UnpauseProduction = function()
 	this.paused = false;
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	this.timer = cmpTimer.SetTimeout(this.entity, IID_ProductionQueue, "ProgressTimeout", g_ProgressInterval, {});
+};
+
+ProductionQueue.prototype.OnValueModification = function(msg)
+{
+	// if the promotion requirements of units is changed,
+	// update the entities list so that automatically promoted units are shown
+	// appropriately in the list
+	if (msg.component == "Promotion")
+		this.CalculateEntitiesList();
 };
 
 Engine.RegisterComponentType(IID_ProductionQueue, "ProductionQueue", ProductionQueue);

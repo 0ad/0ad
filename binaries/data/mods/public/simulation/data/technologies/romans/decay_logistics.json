@@ -1,0 +1,13 @@
+{
+	"genericName": "Roman Logistics",
+	"description": "The Romans were masters of the logistics of warfare.",
+	"cost": {"food": 0, "wood": 100, "stone": 100, "metal": 0},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "handcart_empty.png",
+	"researchTime": 40,
+	"tooltip": "Territory decay eliminated for Army Camps and Siege Walls.",
+	"modifications": [{"value": "TerritoryDecay/HealthDecayRate", "replace": 0}],
+	"affects": ["ArmyCamp", "SiegeWall"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

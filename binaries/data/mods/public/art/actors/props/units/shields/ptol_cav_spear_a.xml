@@ -13,13 +13,17 @@
     <variant frequency="1" name="mace_round_j_bronze_player">
       <textures>
         <texture file="props/shield/mace_round_j_bronze_player.png" name="baseTex"/>
+        <texture file="props/shield/mace_round_j_norm.png" name="normTex"/>
+        <texture file="props/shield/mace_round_j_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace_round_a_player">
       <textures>
         <texture file="props/shield/aspis_player_plain.png" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

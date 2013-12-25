@@ -35,14 +35,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="694.973" y="82.0991" z="681.852"/>
+		<Position x="301.802" y="118.747" z="94.8883"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\u000a\u000aThis represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.",
+  "Description": "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\u000a\u000aThis represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\u000a\u000aIberians do not receive their circuit walls here. Instead, all factions receive 4 free Defense Towers.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -115,6 +115,7 @@
 			<Player>0</Player>
 			<Position x="188.99405" z="506.30216"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="3187"/>
 		</Entity>
 		<Entity uid="22">
 			<Template>gaia/geology_metal_desert_slabs</Template>
@@ -355,6 +356,7 @@
 			<Player>0</Player>
 			<Position x="201.1779" z="515.08124"/>
 			<Orientation y="0.25208"/>
+			<Obstruction group="3187"/>
 		</Entity>
 		<Entity uid="70">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
