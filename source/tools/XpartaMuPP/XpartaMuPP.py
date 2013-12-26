@@ -381,7 +381,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
 
     # Store mapping of nicks and XmppIDs, attached via presence stanza
     self.nicks = {}
-    
+
     self.lastLeft = ""
 
     register_stanza_plugin(Iq, GameListXmppPlugin)
@@ -400,7 +400,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
                                        StanzaPath('iq/gamereport'),
                                        self.iqhandler,
                                        instream=True))
-              
+
     self.add_event_handler("session_start", self.start)
     self.add_event_handler("muc::%s::got_online" % self.room, self.muc_online)
     self.add_event_handler("muc::%s::got_offline" % self.room, self.muc_offline)
@@ -572,7 +572,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         logging.error("No player with the XmPP ID '%s' known to send gamelist to." % str(to))
         return
       stz = GameListXmppPlugin()
-      
+
       ## Pull games and add each to the stanza
       for JIDs in games:
         g = games[JIDs]
