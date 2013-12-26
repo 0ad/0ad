@@ -247,6 +247,11 @@ GarrisonHolder.prototype.PerformGarrison = function(entity)
 		cmpAura.ApplyGarrisonBonus(this.entity);	
 
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+	
+	var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
+	if (cmpUnitAI && cmpUnitAI.GetAlertRaiser())
+		Engine.PostMessage(cmpUnitAI.GetAlertRaiser(), MT_UnitGarrisonedAfterAlert, {"holder": this.entity, "unit": entity});
+	
 	return true;
 };
 

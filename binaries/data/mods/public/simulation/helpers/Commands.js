@@ -422,6 +422,24 @@ function ProcessCommand(player, cmd)
 				notifyUnloadFailure(player, garrisonHolder)
 		}
 		break;
+	
+	case "increase-alert-level":
+		for each (var raiser in entities)
+		{
+			var cmpAlertRaiser = Engine.QueryInterface(raiser, IID_AlertRaiser);
+			if (!cmpAlertRaiser || !cmpAlertRaiser.IncreaseAlertLevel())
+				notifyAlertFailure(player);
+		}
+		break;
+	
+	case "alert-end":
+		for each (var raiser in entities)
+		{
+			var cmpAlertRaiser = Engine.QueryInterface(raiser, IID_AlertRaiser);
+			if (cmpAlertRaiser)
+				cmpAlertRaiser.EndOfAlert();
+		}
+		break;
 
 	case "formation":
 		GetFormationUnitAIs(entities, player, cmd.name).forEach(function(cmpUnitAI) {
@@ -556,6 +574,17 @@ function notifyBackToWorkFailure(player)
 {
 	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
 	var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Some unit(s) can't go back to work" };
+	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGUIInterface.PushNotification(notification);
+}
+
+/**
+ * Sends a GUI notification about Alerts that failed to be raised
+ */
+function notifyAlertFailure(player)
+{
+	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+	var notification = {"player": cmpPlayer.GetPlayerID(), "message": "You can't raise the alert to a higher level !" };
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification(notification);
 }

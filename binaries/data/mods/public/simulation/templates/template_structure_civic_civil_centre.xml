@@ -98,6 +98,9 @@
       <constructed>interface/complete/building/complete_civ_center.xml</constructed>
       <attack>attack/weapon/arrowfly.xml</attack>
       <death>attack/destruction/building_collapse_large.xml</death>
+	  <alert0>interface/alarm/alarm_alert_0.xml</alert0>
+	  <alert1>interface/alarm/alarm_alert_1.xml</alert1>
+	  <alert2>interface/alarm/alarm_alert_2.xml</alert2>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
@@ -105,6 +108,10 @@
     <Radius>140</Radius>
     <Weight>65536</Weight>
   </TerritoryInfluence>
+  <AlertRaiser>
+    <MaximumLevel>2</MaximumLevel>
+    <Range>140</Range>
+  </AlertRaiser>
   <Vision>
     <Range>90</Range>
   </Vision>

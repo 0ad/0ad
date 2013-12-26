@@ -375,6 +375,16 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		ret.resourceGatherRates = cmpResourceGatherer.GetGatherRates();
 		ret.resourceCarrying = cmpResourceGatherer.GetCarryingStatus();
 	}
+	
+	var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
+	if(cmpAlertRaiser)
+	{
+		ret.alertRaiser = {
+			"level": cmpAlertRaiser.GetLevel(),
+			"canIncreaseLevel": cmpAlertRaiser.CanIncreaseLevel(),
+			"hasRaisedAlert": cmpAlertRaiser.HasRaisedAlert(),
+		};
+	}
 
 	var cmpResourceDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
 	if (cmpResourceDropsite)
