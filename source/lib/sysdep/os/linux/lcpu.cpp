@@ -182,12 +182,16 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 
 Status os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
 {
+	const uintptr_t previousAffinity = os_cpu_SetThreadAffinityMask(os_cpu_ProcessorMask());
+
 	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 	{
 		const uintptr_t processorMask = uintptr_t(1) << processor;
 		os_cpu_SetThreadAffinityMask(processorMask);
 		cb(processor, cbData);
 	}
+
+	(void)os_cpu_SetThreadAffinityMask(previousAffinity);
 
 	return INFO::OK;
 }

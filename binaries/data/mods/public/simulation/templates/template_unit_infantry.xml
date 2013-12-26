@@ -66,7 +66,7 @@
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
       <food.fruit>0.5</food.fruit>
-      <food.grain>0.35</food.grain>
+      <food.grain>0.25</food.grain>
       <food.meat>1</food.meat>
 	  <wood.tree>0.75</wood.tree>
 	  <wood.ruins>5</wood.ruins>
@@ -115,6 +115,6 @@
     <CostClass>infantry</CostClass>
   </UnitMotion>
   <Vision>
-    <Range>60</Range>
+    <Range>50</Range>
   </Vision>
 </Entity>

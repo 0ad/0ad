@@ -186,8 +186,6 @@ void XmppClient::onConnect()
 	{
 		CreateSimpleMessage("system", "connected");
 		m_mucRoom->join();
-		SendIqGetGameList();
-		SendIqGetBoardList();
 	}
 
 	if (m_registration)

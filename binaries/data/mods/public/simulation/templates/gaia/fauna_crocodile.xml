@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_fauna_wild_aggressive">
+  <Attack>
+    <Melee>
+      <Hack>30.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>8.0</MaxRange>
+      <RepeatTime>2000</RepeatTime>
+    </Melee>
+  </Attack>
+  <Footprint>
+    <Circle radius="2.5"/>
+    <Height>1.5</Height>
+  </Footprint>
+  <Identity>
+    <Civ>gaia</Civ>
+    <SpecificName>Nile Crocodile</SpecificName>
+    <Icon>gaia/fauna_crocodile.png</Icon>
+  </Identity>
+  <Obstruction>
+	  <Unit radius="2.4"/>
+  </Obstruction>
+  <Position>
+    <Anchor>pitch-roll</Anchor>
+  </Position>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/lion_select.xml</select>
+      <attack>actor/fauna/animal/lion_attack.xml</attack>
+      <death>actor/fauna/animal/lion_select.xml</death>
+    </SoundGroups>
+  </Sound>
+  <UnitMotion>
+    <WalkSpeed>2.0</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Vision>
+	  <Range>20</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>fauna/crocodile.xml</Actor>
+  </VisualActor>
+</Entity>

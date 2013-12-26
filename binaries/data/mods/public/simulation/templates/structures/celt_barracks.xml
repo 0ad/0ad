@@ -26,6 +26,11 @@
       units/celt_cavalry_swordsman_b
       units/celt_cavalry_javelinist_b
     </Entities>
+    <Technologies datatype="tokens">
+	  upgrade_rank_advanced_infantry
+	  upgrade_rank_advanced_cavalry
+	  upgrade_rank_elite_cavalry
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/celts/barracks.xml</Actor>

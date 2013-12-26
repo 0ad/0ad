@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="503.07" y="109.791" z="287.39"/>
+		<Position x="507.274" y="109.71" z="319.802"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -86,11 +86,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="431.43863" z="298.09964"/>
 			<Orientation y="2.99366"/>
-		</Entity>
-		<Entity uid="2903">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="430.62314" z="330.16443"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2904">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -144,7 +139,7 @@
 		</Entity>
 		<Entity uid="2914">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="436.62687" z="357.77045"/>
+			<Position x="445.53544" z="373.53116"/>
 			<Orientation y="-3.10079"/>
 		</Entity>
 		<Entity uid="2915">
@@ -349,13 +344,8 @@
 		</Entity>
 		<Entity uid="2955">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="570.37061" z="460.28351"/>
+			<Position x="570.0683" z="460.35569"/>
 			<Orientation y="0.46995"/>
-		</Entity>
-		<Entity uid="2956">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="571.92597" z="513.22144"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2957">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -436,16 +426,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="861.92011" z="925.48627"/>
 			<Orientation y="0.28402"/>
-		</Entity>
-		<Entity uid="2973">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="867.28101" z="955.72901"/>
-			<Orientation y="-2.8969"/>
-		</Entity>
-		<Entity uid="2974">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="877.49555" z="984.9422"/>
-			<Orientation y="2.02503"/>
 		</Entity>
 		<Entity uid="2975">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -1141,8 +1121,8 @@
 		<Entity uid="3113">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="578.15363" z="491.34855"/>
-			<Orientation y="-2.90101"/>
+			<Position x="590.14924" z="497.47138"/>
+			<Orientation y="-0.52718"/>
 		</Entity>
 		<Entity uid="3114">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
@@ -6815,7 +6795,7 @@
 		<Entity uid="4132">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="711.65851" z="238.67333"/>
+			<Position x="714.26294" z="235.01876"/>
 			<Orientation y="-1.35271"/>
 		</Entity>
 		<Entity uid="4133">
@@ -7889,13 +7869,13 @@
 		<Entity uid="4312">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>4</Player>
-			<Position x="867.29523" z="715.96961"/>
+			<Position x="870.95478" z="713.96326"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4313">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>4</Player>
-			<Position x="898.72114" z="700.16126"/>
+			<Position x="897.26453" z="700.47046"/>
 			<Orientation y="0.542"/>
 		</Entity>
 		<Entity uid="4314">
@@ -7913,13 +7893,13 @@
 		<Entity uid="4316">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>4</Player>
-			<Position x="991.3719" z="695.40027"/>
+			<Position x="994.79389" z="697.28858"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4317">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>4</Player>
-			<Position x="1016.40815" z="715.18976"/>
+			<Position x="1016.14142" z="713.43824"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4318">
@@ -8024,13 +8004,13 @@
 		<Entity uid="4335">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>4</Player>
-			<Position x="998.45203" z="849.85084"/>
+			<Position x="1000.31067" z="846.86377"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4336">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>4</Player>
-			<Position x="1019.74183" z="822.26117"/>
+			<Position x="1019.20783" z="822.94727"/>
 			<Orientation y="-1.6743"/>
 		</Entity>
 		<Entity uid="4337">
@@ -8471,8 +8451,8 @@
 		<Entity uid="4420">
 			<Template>skirmish/structures/iber_wall_long</Template>
 			<Player>2</Player>
-			<Position x="680.50831" z="1028.39563"/>
-			<Orientation y="3.07422"/>
+			<Position x="681.06818" z="1029.15711"/>
+			<Orientation y="3.0805"/>
 			<Obstruction group="4428" group2="4429"/>
 			<Actor seed="17496"/>
 		</Entity>
@@ -8509,15 +8489,15 @@
 		<Entity uid="4426">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>2</Player>
-			<Position x="712.6194" z="994.71888"/>
+			<Position x="708.75733" z="996.62977"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32784"/>
 		</Entity>
 		<Entity uid="4427">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>2</Player>
-			<Position x="698.53113" z="1029.73255"/>
-			<Orientation y="0.67779"/>
+			<Position x="698.53327" z="1030.24598"/>
+			<Orientation y="3.11048"/>
 			<Actor seed="9178"/>
 		</Entity>
 		<Entity uid="4428">
@@ -8551,7 +8531,7 @@
 		<Entity uid="4432">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>2</Player>
-			<Position x="552.5929" z="986.69965"/>
+			<Position x="552.44129" z="987.00202"/>
 			<Orientation y="2.1859"/>
 			<Actor seed="33244"/>
 		</Entity>
@@ -8572,14 +8552,14 @@
 		<Entity uid="4435">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>2</Player>
-			<Position x="598.72815" z="889.04065"/>
+			<Position x="600.94678" z="887.10657"/>
 			<Orientation y="-2.79561"/>
 			<Actor seed="7832"/>
 		</Entity>
 		<Entity uid="4436">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>2</Player>
-			<Position x="632.57697" z="880.41413"/>
+			<Position x="632.77302" z="879.57697"/>
 			<Orientation y="0.37594"/>
 			<Actor seed="15746"/>
 		</Entity>
@@ -9016,7 +8996,7 @@
 		<Entity uid="4502">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>3</Player>
-			<Position x="337.90403" z="481.20133"/>
+			<Position x="334.78821" z="481.98472"/>
 			<Orientation y="0.2678"/>
 			<Actor seed="888"/>
 		</Entity>
@@ -9124,14 +9104,14 @@
 		<Entity uid="4518">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>3</Player>
-			<Position x="405.89225" z="609.5882"/>
+			<Position x="405.79896" z="609.22083"/>
 			<Orientation y="1.16916"/>
 			<Actor seed="42670"/>
 		</Entity>
 		<Entity uid="4519">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>3</Player>
-			<Position x="393.84034" z="640.25391"/>
+			<Position x="397.67808" z="639.32929"/>
 			<Orientation y="-2.59554"/>
 			<Actor seed="52218"/>
 		</Entity>
@@ -9159,14 +9139,14 @@
 		<Entity uid="4523">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>3</Player>
-			<Position x="277.46454" z="608.30445"/>
+			<Position x="274.70737" z="605.732"/>
 			<Orientation y="-0.8149"/>
 			<Actor seed="46962"/>
 		</Entity>
 		<Entity uid="4524">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>3</Player>
-			<Position x="256.03336" z="578.02802"/>
+			<Position x="255.89153" z="579.80439"/>
 			<Orientation y="1.24837"/>
 			<Actor seed="300"/>
 		</Entity>
@@ -9187,7 +9167,7 @@
 		<Entity uid="4527">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>3</Player>
-			<Position x="302.2227" z="492.89481"/>
+			<Position x="303.93989" z="492.45917"/>
 			<Orientation y="-2.81678"/>
 			<Actor seed="40500"/>
 		</Entity>
@@ -9325,14 +9305,14 @@
 		<Entity uid="4552">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="602.2162" z="242.98282"/>
+			<Position x="603.91053" z="239.56101"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="15996"/>
 		</Entity>
 		<Entity uid="4553">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="633.43384" z="226.18627"/>
+			<Position x="631.58863" z="226.26868"/>
 			<Orientation y="0.50965"/>
 			<Actor seed="16302"/>
 		</Entity>
@@ -9346,14 +9326,14 @@
 		<Entity uid="4555">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="693.02594" z="239.9107"/>
+			<Position x="693.58832" z="241.17983"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="20746"/>
 		</Entity>
 		<Entity uid="4556">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="719.75306" z="267.55295"/>
+			<Position x="719.15571" z="266.17438"/>
 			<Orientation y="1.55597"/>
 			<Actor seed="13362"/>
 		</Entity>
@@ -9374,14 +9354,14 @@
 		<Entity uid="4559">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="703.8943" z="368.86973"/>
+			<Position x="703.44587" z="369.98652"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="62800"/>
 		</Entity>
 		<Entity uid="4560">
 			<Template>skirmish/structures/iber_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="676.38758" z="394.68604"/>
+			<Position x="678.47272" z="392.60196"/>
 			<Orientation y="0.6467"/>
 			<Actor seed="36310"/>
 		</Entity>
@@ -14798,6 +14778,176 @@
 			<Position x="660.41498" z="920.68317"/>
 			<Orientation y="-0.76992"/>
 			<Actor seed="28142"/>
+		</Entity>
+		<Entity uid="5459">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="852.46222" z="200.08617"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59354"/>
+		</Entity>
+		<Entity uid="5460">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="893.1819" z="650.99537"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29158"/>
+		</Entity>
+		<Entity uid="5461">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="256.52942" z="527.71595"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61982"/>
+		</Entity>
+		<Entity uid="5462">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="462.24595" z="900.12842"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21052"/>
+		</Entity>
+		<Entity uid="5463">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="434.30677" z="206.00428"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56226"/>
+		</Entity>
+		<Entity uid="5464">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="616.81897" z="754.8581"/>
+			<Orientation y="-0.7529"/>
+			<Actor seed="56210"/>
+		</Entity>
+		<Entity uid="5465">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="622.42408" z="763.05524"/>
+			<Orientation y="1.22231"/>
+			<Actor seed="15970"/>
+		</Entity>
+		<Entity uid="5466">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="634.3736" z="774.94703"/>
+			<Orientation y="-2.81234"/>
+			<Actor seed="44444"/>
+		</Entity>
+		<Entity uid="5467">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="604.43665" z="751.39374"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62800"/>
+		</Entity>
+		<Entity uid="5468">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="608.80585" z="765.86921"/>
+			<Orientation y="1.09432"/>
+			<Actor seed="51452"/>
+		</Entity>
+		<Entity uid="5469">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="872.3288" z="958.58997"/>
+			<Orientation y="1.57081"/>
+			<Actor seed="18268"/>
+		</Entity>
+		<Entity uid="5470">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="880.68195" z="965.33063"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36744"/>
+		</Entity>
+		<Entity uid="5471">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="886.7317" z="977.54694"/>
+			<Orientation y="-1.8317"/>
+			<Actor seed="56760"/>
+		</Entity>
+		<Entity uid="5472">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="887.56623" z="967.26825"/>
+			<Orientation y="-2.94274"/>
+			<Actor seed="55022"/>
+		</Entity>
+		<Entity uid="5473">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="878.31336" z="979.65955"/>
+			<Orientation y="-2.41157"/>
+			<Actor seed="47206"/>
+		</Entity>
+		<Entity uid="5474">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="581.2392" z="515.09424"/>
+			<Orientation y="1.30622"/>
+			<Actor seed="52900"/>
+		</Entity>
+		<Entity uid="5475">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="581.97034" z="500.34574"/>
+			<Orientation y="-2.49666"/>
+			<Actor seed="62852"/>
+		</Entity>
+		<Entity uid="5476">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="577.88233" z="493.5831"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48912"/>
+		</Entity>
+		<Entity uid="5477">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="589.83008" z="506.87397"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="58576"/>
+		</Entity>
+		<Entity uid="5478">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="594.18097" z="517.90693"/>
+			<Orientation y="-1.89942"/>
+			<Actor seed="46536"/>
+		</Entity>
+		<Entity uid="5479">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="436.71143" z="344.21552"/>
+			<Orientation y="-2.10332"/>
+			<Actor seed="56798"/>
+		</Entity>
+		<Entity uid="5480">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="435.3191" z="333.3878"/>
+			<Orientation y="1.13793"/>
+			<Actor seed="29004"/>
+		</Entity>
+		<Entity uid="5481">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="429.17374" z="358.15015"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34832"/>
+		</Entity>
+		<Entity uid="5482">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="423.25345" z="346.27274"/>
+			<Orientation y="0.73792"/>
+			<Actor seed="10880"/>
+		</Entity>
+		<Entity uid="5483">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="425.15043" z="331.4607"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="352"/>
 		</Entity>
 	</Entities>
 	<Paths/>

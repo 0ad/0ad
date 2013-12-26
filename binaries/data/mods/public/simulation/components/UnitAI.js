@@ -3,6 +3,9 @@ function UnitAI() {}
 UnitAI.prototype.Schema =
 	"<a:help>Controls the unit's movement, attacks, etc, in response to commands from the player.</a:help>" +
 	"<a:example/>" +
+	"<element name='AlertReactiveLevel'>" +
+		"<data type='nonNegativeInteger'/>" +
+	"</element>" +
 	"<element name='DefaultStance'>" +
 		"<choice>" +
 			"<value>violent</value>" +
@@ -422,10 +425,8 @@ var UnitFsmSpec = {
 			if (this.CanUnpack())
 			{
 				// Ignore unforced attacks
-				// this would prevent attacks from AttackVisibleEntity or AttackEntityInZone ?
-				// so we accept attacks against targets for which we have a bonus
 				// TODO: use special stances instead?
-				if (!this.order.data.force && this.GetAttackBonus(type, this.order.data.target) < 1.5)
+				if (!this.order.data.force)
 				{
 					this.FinishOrder();
 					return;
@@ -684,6 +685,19 @@ var UnitFsmSpec = {
 		this.SetNextState("INDIVIDUAL.AUTOGARRISON");
 	},
 
+    "Order.Alert": function(msg) {
+		this.alertRaiser = this.order.data.raiser;
+		
+		// Find a target to garrison into, if we don't already have one
+		if(!this.alertGarrisoningTarget)
+			this.alertGarrisoningTarget = this.FindNearbyGarrisonHolder();
+		
+		if(this.alertGarrisoningTarget)
+			this.ReplaceOrder("Garrison", {"target": this.alertGarrisoningTarget});
+		else
+			this.FinishOrder();
+    },	
+	
 	"Order.Cheering": function(msg) {
 		this.SetNextState("INDIVIDUAL.CHEERING");
 	},
@@ -1012,7 +1026,7 @@ var UnitFsmSpec = {
 
 			"Timer": function(msg) {
 				// check if there are no enemies to attack
-				this.FindNewTargets();
+				this.FindWalkAndFightTargets();
 			},
 
 			"leave": function(msg) {
@@ -1130,8 +1144,8 @@ var UnitFsmSpec = {
 				if (this.FinishOrder())
 				{
 					// if WalkAndFight order, look for new target before moving again
-					if (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight")
-						this.FindNewTargets();
+					if (this.IsWalkingAndFighting())
+						this.FindWalkAndFightTargets();
 					return;
 				}
 
@@ -1409,7 +1423,7 @@ var UnitFsmSpec = {
 			},
 
 			"Timer": function(msg) {
-				this.FindNewTargets();
+				this.FindWalkAndFightTargets();
 			},
 
 			"leave": function(msg) {
@@ -1741,8 +1755,8 @@ var UnitFsmSpec = {
 					// Except if in WalkAndFight mode where we look for more ennemies around before moving again
 					if (this.FinishOrder())
 					{
-						if (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight")
-							this.FindNewTargets();
+						if (this.IsWalkingAndFighting())
+							this.FindWalkAndFightTargets();
 						return;
 					}
 
@@ -2546,13 +2560,47 @@ var UnitFsmSpec = {
 				},
 
 				"MoveCompleted": function() {
-					this.SetNextState("GARRISONED");
+					if(this.IsUnderAlert())
+					{
+						// check that we can garrison in the building we're supposed to garrison in
+						var cmpGarrisonHolder = Engine.QueryInterface(this.alertGarrisoningTarget, IID_GarrisonHolder);
+						if (!cmpGarrisonHolder || cmpGarrisonHolder.IsFull())
+						{
+							// Try to find another nearby building
+							var nearby = this.FindNearbyGarrisonHolder();
+							if (nearby)
+							{
+								this.alertGarrisoningTarget = nearby;
+								if (this.MoveToTarget(this.alertGarrisoningTarget))
+									this.SetNextState("APPROACHING");
+							}
+							else
+								this.FinishOrder();
+						}
+						else
+							this.SetNextState("GARRISONED");
+					}
+					else
+						this.SetNextState("GARRISONED");
 				},
 			},
 
 			"GARRISONED": {
 				"enter": function() {
-					var target = this.order.data.target;
+					// Target is not handled the same way with Alert and direct garrisoning
+					if(this.order.data.target)
+						var target = this.order.data.target;
+					else
+					{	
+						if(!this.alertGarrisoningTarget)
+						{
+							// We've been unable to find a target nearby, so give up
+							this.FinishOrder();
+							return true;
+						}
+						var target = this.alertGarrisoningTarget;
+					}
+
 					var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
 
 					// Check that we can garrison here
@@ -2877,11 +2925,30 @@ UnitAI.prototype.Init = function()
 
 	this.isGuardOf = undefined;
 
+	// "Town Bell" behaviour
+	this.alertRaiser = undefined;
+	this.alertGarrisoningTarget = undefined;
+
 	// For preventing increased action rate due to Stop orders or target death.
 	this.lastAttacked = undefined;
 	this.lastHealed = undefined;
 
 	this.SetStance(this.template.DefaultStance);
+};
+
+UnitAI.prototype.ReactsToAlert = function(level)
+{
+	return this.template.AlertReactiveLevel <= level;
+};
+
+UnitAI.prototype.IsUnderAlert = function()
+{
+	return this.alertGarrisoningTarget != undefined;
+};
+
+UnitAI.prototype.ResetAlert = function()
+{
+	this.alertGarrisoningTarget = undefined;
 };
 
 UnitAI.prototype.IsFormationController = function()
@@ -2942,6 +3009,20 @@ UnitAI.prototype.IsWalking = function()
 {
 	var state = this.GetCurrentState().split(".").pop();
 	return (state == "WALKING");
+};
+
+/**
+ * return true if in WalkAndFight looking for new targets
+ */
+UnitAI.prototype.IsWalkingAndFighting = function()
+{
+	if (this.IsFormationMember())
+	{
+		var cmpUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
+		return (cmpUnitAI && cmpUnitAI.IsWalkingAndFighting());
+	}
+
+	return (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight");
 };
 
 UnitAI.prototype.CanAttackGaia = function()
@@ -3280,11 +3361,17 @@ UnitAI.prototype.PushOrder = function(type, data)
 UnitAI.prototype.PushOrderFront = function(type, data)
 {
 	var order = { "type": type, "data": data };
-	// If current order is cheering then add new order after it 
+	// If current order is cheering then add new order after it
+	// same thing if current order if packing/unpacking
 	if (this.order && this.order.type == "Cheering")
 	{
 		var cheeringOrder = this.orderQueue.shift();
 		this.orderQueue.unshift(cheeringOrder, order);
+	}
+	else if (this.order && this.IsPacking())
+	{
+		var packingOrder = this.orderQueue.shift();
+		this.orderQueue.unshift = (packingOrder, order);
 	}
 	else
 	{
@@ -3480,6 +3567,11 @@ UnitAI.prototype.GetWorkOrders = function()
 UnitAI.prototype.SetWorkOrders = function(orders)
 {
 	this.workOrders = orders;
+};
+
+UnitAI.prototype.GetAlertRaiser = function()
+{
+	return this.alertRaiser;
 };
 
 UnitAI.prototype.TimerHandler = function(data, lateness)
@@ -3678,7 +3770,7 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 	var players = [];
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (cmpOwnership)
-		players.push(cmpOwnership.GetOwner());
+		players = [cmpOwnership.GetOwner()];
 
 	// Ships are unable to reach land dropsites and shouldn't attempt to do so.
 	var excludeLand = Engine.QueryInterface(this.entity, IID_Identity).HasClass("Ship");
@@ -3716,7 +3808,7 @@ UnitAI.prototype.FindNearbyFoundation = function()
 	var players = [];
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (cmpOwnership)
-		players.push(cmpOwnership.GetOwner());
+		players = [cmpOwnership.GetOwner()];
 
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var nearby = rangeMan.ExecuteQuery(this.entity, 0, range, players, IID_Foundation);
@@ -3730,6 +3822,34 @@ UnitAI.prototype.FindNearbyFoundation = function()
 			continue;
 
 		return ent;
+	}
+
+	return undefined;
+};
+
+/**
+ * Returns the entity ID of the nearest building in which the unit can garrison,
+ * or undefined if none can be found close enough.
+ */
+UnitAI.prototype.FindNearbyGarrisonHolder = function()
+{
+	var range = 128; // TODO: what's a sensible number?
+
+	// Find buildings owned by this unit's player
+	var players = [];
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (cmpOwnership)
+		players = [cmpOwnership.GetOwner()];
+
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var nearby = rangeMan.ExecuteQuery(this.entity, 0, range, players, IID_GarrisonHolder);
+	for each (var ent in nearby)
+	{
+        var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
+		// We only want to garrison in buildings, not in moving units like ships,...
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+        if (!cmpUnitAI && cmpGarrisonHolder.AllowedToGarrison(this.entity) && !cmpGarrisonHolder.IsFull())
+		    return ent;
 	}
 
 	return undefined;
@@ -4866,25 +4986,6 @@ UnitAI.prototype.SwitchToStance = function(stance)
  */
 UnitAI.prototype.FindNewTargets = function()
 {
-	if (this.IsFormationController())
-	{
-		var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-		for each (var ent in cmpFormation.members)
-		{
-			var cmpUnitAI =  Engine.QueryInterface(ent, IID_UnitAI);
-	    		if (cmpUnitAI.FindNewTargets())
-			{
-				if (!cmpUnitAI.orderQueue[0] || cmpUnitAI.orderQueue[0].type != "Attack")
-					continue;
-				var data = cmpUnitAI.orderQueue[0].data;
-				cmpUnitAI.FinishOrder();
-				this.PushOrderFront("Attack", { "target": data.target, "force": false, "forceResponse": data.forceResponse });
-				return true;
-			}
-		}
-		return false;
-	}
-
 	if (!this.losRangeQuery)
 		return false;
 
@@ -4899,6 +5000,69 @@ UnitAI.prototype.FindNewTargets = function()
 		return this.AttackGaiaEntitiesByPreference( rangeMan.ResetActiveQuery(this.losGaiaRangeQuery) );
 
 	return false;
+};
+
+UnitAI.prototype.FindWalkAndFightTargets = function()
+{
+	if (this.IsFormationController())
+	{
+		var cmpUnitAI;
+		var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+		for each (var ent in cmpFormation.members)
+		{
+			if (!(cmpUnitAI =  Engine.QueryInterface(ent, IID_UnitAI)))
+				continue;
+			var targets = cmpUnitAI.GetTargetsFromUnit();
+			for each (var targ in targets)
+			{
+				if (cmpUnitAI.CanAttack(targ))
+				{
+					this.PushOrderFront("Attack", { "target": targ, "force": true });
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	var targets = this.GetTargetsFromUnit();
+	for each (var targ in targets)
+	{
+		if (this.CanAttack(targ))
+		{
+			this.PushOrderFront("Attack", { "target": targ, "force": true });
+			return true;
+		}
+	}
+	return false;
+};
+
+UnitAI.prototype.GetTargetsFromUnit = function()
+{
+	if (!this.losRangeQuery)
+		return [];
+
+	if (!this.GetStance().targetVisibleEnemies)
+		return [];
+
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpAttack)
+		return [];
+
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var entities = rangeMan.ResetActiveQuery(this.losRangeQuery);
+	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })
+		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
+
+	if (targets.length)
+		return targets;
+
+	// if nothing found, look for gaia targets
+	var entities = rangeMan.ResetActiveQuery(this.losGaiaRangeQuery);
+	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })
+		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
+
+	return targets;
 };
 
 /**

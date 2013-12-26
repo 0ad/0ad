@@ -2,6 +2,7 @@
 <Entity parent="template_unit_infantry_ranged_archer">
   <Builder>
     <Entities datatype="tokens">
+      -structures/{civ}_civil_centre
       structures/ptol_military_settlement
       structures/ptol_lighthouse
       structures/ptol_library
@@ -23,7 +24,7 @@
     <Classes datatype="tokens">Mercenary</Classes>
 	<SelectionGroupName>units/ptol_infantry_archer_b</SelectionGroupName>
     <GenericName>Nubian Mercenary Archer</GenericName>
-    <SpecificName>?</SpecificName>
+    <SpecificName>Kousít Misthophóros Toxóti̱s</SpecificName>
     <History>?</History>
     <Tooltip>Classes: Ranged Mercenary Infantry Archer Worker.
 Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.

@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="342.118" y="116.986" z="168.739"/>
+		<Position x="472.376" y="281.997" z="69.527"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -18135,6 +18135,36 @@
 			<Position x="334.6136" z="243.35148"/>
 			<Orientation y="-0.91233"/>
 			<Actor seed="49984"/>
+		</Entity>
+		<Entity uid="3566">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="697.62317" z="397.60688"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17222"/>
+		</Entity>
+		<Entity uid="3567">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="178.51868" z="268.5749"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="46796"/>
+		</Entity>
+		<Entity uid="3568">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="585.59223" z="119.80861"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4734"/>
+		</Entity>
+		<Entity uid="3569">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="466.14652" z="766.61127"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10812"/>
+		</Entity>
+		<Entity uid="3570">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="826.25953" z="576.00495"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5600"/>
 		</Entity>
 	</Entities>
 	<Paths/>

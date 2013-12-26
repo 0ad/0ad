@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="452.803" y="53.1773" z="849.311"/>
+		<Position x="468.651" y="99.0592" z="726.343"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -11632,14 +11632,6 @@
 			<Obstruction group="2383" group2="2384"/>
 			<Actor seed="28054"/>
 		</Entity>
-		<Entity uid="2372">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>1</Player>
-			<Position x="542.16144" z="220.02384"/>
-			<Orientation y="-0.12255"/>
-			<Obstruction group="2385" group2="2386"/>
-			<Actor seed="50046"/>
-		</Entity>
 		<Entity uid="2373">
 			<Template>skirmish/structures/iber_wall_medium</Template>
 			<Player>1</Player>
@@ -11655,14 +11647,6 @@
 			<Orientation y="1.89196"/>
 			<Obstruction group="2378" group2="2383"/>
 			<Actor seed="10632"/>
-		</Entity>
-		<Entity uid="2376">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>1</Player>
-			<Position x="460.03882" z="143.30166"/>
-			<Orientation y="-1.3256"/>
-			<Obstruction group="2378" group2="2381"/>
-			<Actor seed="51950"/>
 		</Entity>
 		<Entity uid="2377">
 			<Template>skirmish/structures/iber_wall_long</Template>
@@ -11832,38 +11816,6 @@
 			<Orientation y="1.06508"/>
 			<Obstruction group="2387" group2="2400"/>
 			<Actor seed="11656"/>
-		</Entity>
-		<Entity uid="2402">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>1</Player>
-			<Position x="590.44556" z="129.80985"/>
-			<Orientation y="2.52263"/>
-			<Obstruction group="2389" group2="2390"/>
-			<Actor seed="55658"/>
-		</Entity>
-		<Entity uid="2404">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>2</Player>
-			<Position x="427.59421" z="905.60608"/>
-			<Orientation y="-0.81109"/>
-			<Obstruction group="2407" group2="2408"/>
-			<Actor seed="21386"/>
-		</Entity>
-		<Entity uid="2405">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>2</Player>
-			<Position x="489.7187" z="812.22834"/>
-			<Orientation y="-0.44376"/>
-			<Obstruction group="2411" group2="2412"/>
-			<Actor seed="2756"/>
-		</Entity>
-		<Entity uid="2406">
-			<Template>skirmish/structures/iber_wall_gate</Template>
-			<Player>2</Player>
-			<Position x="531.84925" z="900.2444"/>
-			<Orientation y="0.84449"/>
-			<Obstruction group="2409" group2="2410"/>
-			<Actor seed="46812"/>
 		</Entity>
 		<Entity uid="2407">
 			<Template>skirmish/structures/iber_wall_tower</Template>

@@ -363,24 +363,40 @@ Formation.prototype.MoveToMembersCenter = function()
 	}
 };
 
-Formation.prototype.GetAvgObstructionRange = function(active)
+Formation.prototype.GetAvgFootprint = function(active)
 {
-	var obstructions = [];
+	var footprints = [];
 	for each (var ent in active)
 	{
-		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
-		if (cmpObstruction)
-			obstructions.push(cmpObstruction.GetUnitRadius());
+		var cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
+		if (cmpFootprint)
+			footprints.push(cmpFootprint.GetShape());
 	}
-	if (!obstructions.length)
-		return 1;
-	return obstructions.reduce(function(m,v) {return m + v;}, 0) / obstructions.length;
+	if (!footprints.length)
+		return {"width":1, "depth": 1};
+
+	var r = {"width": 0, "depth": 0};
+	for each (var shape in footprints)
+	{
+		if (shape.type == "circle")
+		{
+			r.width += shape.radius * 2;
+			r.depth += shape.radius * 2;
+		}
+		else if (shape.type == "square")
+		{
+			r.width += shape.width;
+			r.depth += shape.depth;
+		}
+	}
+	r.width /= footprints.length;
+	r.depth /= footprints.length;
+	return r;
 };
 
 Formation.prototype.ComputeFormationOffsets = function(active, positions, columnar)
 {
-	// TODO give some sense to this number
-	var separation = this.GetAvgObstructionRange(active) * 4; 
+	var separation = this.GetAvgFootprint(active);
 
 	// the entities will be assigned to positions in the formation in 
 	// the same order as the types list is ordered
@@ -451,6 +467,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 			cols = 8;
 		else
 			cols = Math.ceil(count/6);
+		separation.width *= 0.7;
 		shape = "square";
 		break;
 	case "Line Closed":
@@ -484,7 +501,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 		ordering = ["FillFromTheCenter", "FillFromTheFront"];
 		break;
 	case "Scatter":
-		var width = Math.sqrt(count) * separation * 5;
+		var width = Math.sqrt(count) * (separation.width + separation.depth) * 2.5;
 
 		for (var i = 0; i < count; ++i)
 		{
@@ -506,11 +523,11 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 		}
 
 		var left = count;
-		var radius = Math.min(left, pop) * separation / (2 * Math.PI);
+		var radius = Math.min(left, pop) / (2 * Math.PI);
 		for (var c = 0; c < depth; ++c)
 		{
 			var ctodo = Math.min(left, pop);
-			var cradius = radius - c * separation / 2;
+			var cradius = radius - c / 2;
 			var delta = 2 * Math.PI / ctodo;
 			for (var alpha = 0; ctodo; alpha += delta)
 			{
@@ -554,8 +571,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 				{
 					if (Math.abs(r) == sq || Math.abs(c) == sq)
 					{
-						var x = c * separation;
-						var z = -r * separation;
+						var x = c * separation.width;
+						var z = -r * separation.depth;
 						offsets.push({"x": x, "z": z});
 						stodo--;
 						left--;
@@ -582,15 +599,15 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 
 				if (left)
 				{
-						var x = c1 * separation;
-						var z = -r * separation;
+						var x = c1 * separation.width;
+						var z = -r * separation.depth;
 						offsets.push({"x": x, "z": z});
 						left--;
 				}
 				if (left && c1 != c2)
 				{
-						var x = c2 * separation;
-						var z = -r * separation;
+						var x = c2 * separation.width;
+						var z = -r * separation.depth;
 						offsets.push({"x": x, "z": z});
 						left--;
 				}
@@ -603,18 +620,18 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 		leftside[0] = Math.ceil(count/2);
 		leftside[1] = Math.floor(count/2);
 		ranks = Math.ceil(leftside[0] / cols);
-		var off = - separation * 4;
+		var off = - separation.width * 4;
 		for (var side = 0; side < 2; ++side)
 		{
 			var left = leftside[side];
-			off += side * separation * 8;
+			off += side * separation.width * 8;
 			for (var r = 0; r < ranks; ++r)
 			{
 				var n = Math.min(left, cols);
 				for (var c = 0; c < n; ++c)
 				{
-					var x = off + ((n-1)/2 - c) * separation;
-					var z = -r * separation;
+					var x = off + ((n-1)/2 - c) * separation.width;
+					var z = -r * separation.depth;
 					offsets.push({"x": x, "z": z});
 				}
 				left -= n;
@@ -638,7 +655,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 		else
 			cols = Math.ceil(count/6);
 		shape = "opensquare";
-		separation /= 1.5;
+		separation.width /= 2;
+		separation.depth /= 1.5;
 		ordering.push("FillFromTheSides");
 		break;
 	default:
@@ -656,8 +674,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 			var n = Math.min(left, cols);
 			for (var c = 0; c < n; ++c)
 			{
-				var x = ((n-1)/2 - c) * separation;
-				var z = -r * separation;
+				var x = ((n-1)/2 - c) * separation.width;
+				var z = -r * separation.depth;
 				offsets.push({"x": x, "z": z});
 			}
 			left -= n;
@@ -671,8 +689,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 			var n = Math.min(left, cols - (r&1?1:0));
 			for (var c = 0; c < 2*n; c+=2)
 			{
-				var x = (- c - (r&1)) * separation;
-				var z = -r * separation;
+				var x = (- c - (r&1)) * separation.width;
+				var z = -r * separation.depth;
 				offsets.push({"x": x, "z": z});
 			}
 			left -= n;

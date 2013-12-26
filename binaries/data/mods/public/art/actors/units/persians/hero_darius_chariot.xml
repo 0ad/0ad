@@ -18,7 +18,10 @@
         <prop actor="units/persians/hero_darius_chariot_r.xml" attachpoint="rider1"/>
         <prop actor="units/persians/cavalry_archer_e_d.xml" attachpoint="rider2"/>
       </props>
-      <textures><texture file="structural/pers_chariot_darius.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/pers_chariot_darius.png" name="baseTex"/>
+        <texture file="structural/pers_chariot_hero_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -34,5 +37,5 @@
       </props>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

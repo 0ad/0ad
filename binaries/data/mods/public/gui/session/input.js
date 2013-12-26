@@ -1906,6 +1906,12 @@ function performCommand(entity, commandName)
 			case "back-to-work":
 				backToWork();
 				break;
+			case "increase-alert-level":
+				increaseAlertLevel();
+				break;
+			case "alert-end":
+				endOfAlert();
+				break;
 			default:
 				break;
 			}
@@ -2177,6 +2183,26 @@ function removeGuard()
 	});
 	
 	Engine.PostNetworkCommand({"type": "remove-guard", "entities": entities});
+}
+
+function increaseAlertLevel()
+{
+	var raisers = g_Selection.toList().filter(function(e) {
+		var state = GetEntityState(e);
+		return (state && state.alertRaiser && state.alertRaiser.canIncreaseLevel);
+	});
+	
+	Engine.PostNetworkCommand({"type": "increase-alert-level", "entities": raisers});	
+}
+
+function endOfAlert()
+{
+	var raisers = g_Selection.toList().filter(function(e) {
+		var state = GetEntityState(e);
+		return (state && state.alertRaiser && state.alertRaiser.hasRaisedAlert);
+	});
+	
+	Engine.PostNetworkCommand({"type": "alert-end", "entities": raisers});
 }
 
 function clearSelection()

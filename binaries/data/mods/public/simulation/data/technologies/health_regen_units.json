@@ -1,0 +1,14 @@
+{
+	"pair": "pair_heal_03",
+	"genericName": "Battlefield Medics",
+	"description": "Unlock health regeneration for your units.",
+	"cost": {"food": 100, "wood": 0, "stone": 0, "metal": 100},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "bandage.png",
+	"researchTime": 40,
+	"tooltip": "Unlock health regeneration for your units.",
+	"modifications": [{"value": "Health/RegenRate", "add": 0.5}],
+	"affects": ["Unit Organic"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

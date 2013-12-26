@@ -1,21 +1,24 @@
 {
 	"pair": "pair_inf_02",	
-	"genericName": "Ranged Infantry Skirmishers",
+	"genericName": "Javelin Thong",
 	"specificName": {
-		"hele": "Akontistes",
-		"mace": "Akontistes",
-		"spart": "Akontistes",
-		"athen": "Akontistes",
-		"theb": "Akontistes"
+		"hele": "Ankyle",
+		"mace": "Ankyle",
+		"spart": "Ankyle",
+		"athen": "Ankyle",
+		"theb": "Ankyle",
+		"rome": "Amentum"
 	},
-	"description": "Training increases damage of infantry skirmisher units.",
-	"cost": {"food": 0, "wood": 100, "stone": 0, "metal": 0},
+	"description": "The javelin thong (the Greeks also called them loops, or bronkhos) increased the fulcrum action of the throwing arm mid-throw, increasing speed and range of the javelin.",
+	"cost": {"food": 0, "wood": 200, "stone": 0, "metal": 0},
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "arrow.png",
 	"researchTime": 30,
-	"tooltip": "Skirmisher infantry +2 pierce attack.",
-	"modifications": [{"value": "Attack/Ranged/Pierce", "add": 2.0}],
+	"tooltip": "Skirmisher infantry +2 pierce attack and +4 range.",
+	"modifications": [
+		{"value": "Attack/Ranged/Pierce", "add": 2.0},
+		{"value": "Attack/Ranged/MaxRange", "add": 4.0}],
 	"affects": ["Infantry Javelin"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

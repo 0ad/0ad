@@ -122,10 +122,10 @@ class LeaderboardList():
     # the database model, and therefore this code, requires a winner.
     # The Elo implementation does not, however.
     result = 1 if player1 == game.winner else -1
-    rating_adjustment1 = get_rating_adjustment(player1.rating, player2.rating,
-      len(player1.games), len(player2.games), result)
-    rating_adjustment2 = get_rating_adjustment(player2.rating, player1.rating,
-      len(player2.games), len(player1.games), result * -1)
+    rating_adjustment1 = int(get_rating_adjustment(player1.rating, player2.rating,
+      len(player1.games), len(player2.games), result))
+    rating_adjustment2 = int(get_rating_adjustment(player2.rating, player1.rating,
+      len(player2.games), len(player1.games), result * -1))
     if result == 1:
       resultQualitative = "won"
     elif result == 0:
@@ -381,7 +381,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
 
     # Store mapping of nicks and XmppIDs, attached via presence stanza
     self.nicks = {}
-    
+
     self.lastLeft = ""
 
     register_stanza_plugin(Iq, GameListXmppPlugin)
@@ -400,10 +400,11 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
                                        StanzaPath('iq/gamereport'),
                                        self.iqhandler,
                                        instream=True))
-    self.add_event_handler("session_start", self.start)
+
     self.add_event_handler("session_start", self.start)
     self.add_event_handler("muc::%s::got_online" % self.room, self.muc_online)
     self.add_event_handler("muc::%s::got_offline" % self.room, self.muc_offline)
+    
 
   def start(self, event):
     """
@@ -466,20 +467,28 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       """
       # Send lists/register on leaderboard; depreciated once muc_online
       #  can send lists/register automatically on joining the room.
-      try:
-        self.sendGameList(iq['from'])
-        self.leaderboard.getOrCreatePlayer(iq['from'])
-        self.sendBoardList(iq['from'])
-      except:
-        traceback.print_exc()
-        logging.error("Failed to process list request from %s" % iq['from'].bare)
+      if 'gamelist' in iq.plugins:
+        try:
+          self.sendGameList(iq['from'])
+        except:
+          traceback.print_exc()
+          logging.error("Failed to process gamelist request from %s" % iq['from'].bare)
+      elif 'boardlist' in iq.plugins:
+        try:
+          self.leaderboard.getOrCreatePlayer(iq['from'])
+          self.sendBoardList(iq['from'])
+        except:
+          traceback.print_exc()
+          logging.error("Failed to process boardlist request from %s" % iq['from'].bare)
+      else:
+        logging.error("Unknown 'get' type stanza request from %s" % iq['from'].bare)
     elif iq['type'] == 'result':
       """
       Iq successfully received
       """
       pass
     elif iq['type'] == 'set':
-      if 'gamelist' in iq.values:
+      if 'gamelist' in iq.plugins:
         """
         Register-update / unregister a game
         """
@@ -511,7 +520,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
             logging.error("Failed to process changestate data")
         else:
           logging.error("Failed to process command '%s' received from %s" % command, iq['from'].bare)
-      elif 'gamereport' in iq.values:
+      elif 'gamereport' in iq.plugins:
         """
         Client is reporting end of game statistics
         """
@@ -520,7 +529,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
           if self.leaderboard.getLastRatedMessage() != "":
             self.send_message(mto=self.room, mbody=self.leaderboard.getLastRatedMessage(), mtype="groupchat",
               mnick=self.nick)
-          self.sendBoardList()
+            self.sendBoardList()       
         except:
           traceback.print_exc()
           logging.error("Failed to update game statistics for %s" % iq['from'].bare)
@@ -533,18 +542,40 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       If no target is passed the gamelist is broadcasted
         to all clients.
     """
-    if to != "":
+    games = self.gameList.getAllGames()
+    if to == "":      
+      for JID in self.nicks.keys():
+        stz = GameListXmppPlugin()
+
+        ## Pull games and add each to the stanza        
+        for JIDs in games:
+          g = games[JIDs]
+          # Only send the games that are in the 'init' state and games
+          # that are in the 'waiting' state which the receiving player is in. TODO
+          if g['state'] == 'init' or (g['state'] == 'waiting' and self.nicks[str(JID)] in g['players-init']):
+            stz.addGame(g)
+
+        ## Set additional IQ attributes
+        iq = self.Iq()
+        iq['type'] = 'result'
+        iq['to'] = JID
+        iq.setPayload(stz)
+
+        ## Try sending the stanza
+        try:
+          iq.send(block=False, now=True)
+        except:
+          logging.error("Failed to send game list")
+    else:
       ## Check recipient exists
       if str(to) not in self.nicks:
-        logging.error("No player with the XmPP ID '%s' known" % str(to))
+        logging.error("No player with the XmPP ID '%s' known to send gamelist to." % str(to))
         return
-
       stz = GameListXmppPlugin()
 
       ## Pull games and add each to the stanza
-      games = self.gameList.getAllGames()
-      for JID in games:
-        g = games[JID]
+      for JIDs in games:
+        g = games[JIDs]
         # Only send the games that are in the 'init' state and games
         # that are in the 'waiting' state which the receiving player is in. TODO
         if g['state'] == 'init' or (g['state'] == 'waiting' and self.nicks[str(to)] in g['players-init']):
@@ -558,12 +589,9 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
 
       ## Try sending the stanza
       try:
-        iq.send()
+        iq.send(block=False, now=True)
       except:
         logging.error("Failed to send game list")
-    else:
-      for JID in self.nicks.keys():
-        self.sendGameList(JID)
 
   def sendBoardList(self, to = ""):
     """
@@ -571,33 +599,35 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       If no target is passed the boardlist is broadcasted
         to all clients.
     """
-    if to != "":
-      ## Check recipiant exists
+    ## Pull leaderboard data and add it to the stanza  
+    board = self.leaderboard.getBoard()
+    stz = BoardListXmppPlugin()
+    iq = self.Iq()
+    iq['type'] = 'result'
+    for i in board:
+      stz.addItem(board[i]['name'], board[i]['rating'])
+    iq.setPayload(stz)
+    if to == "":    
+      for JID in self.nicks.keys():
+        ## Set aditional IQ attributes
+        iq['to'] = JID
+        ## Try sending the stanza
+        try:
+          iq.send(block=False, now=True)
+        except:
+          logging.error("Failed to send leaderboard list")
+    else:
+      ## Check recipient exists
       if str(to) not in self.nicks:
-        logging.error("No player with the XmPP ID '%s' known" % str(to))
+        logging.error("No player with the XmPP ID '%s' known to send boardlist to" % str(to))
         return
-
-      stz = BoardListXmppPlugin()
-
-      ## Pull leaderboard data and add it to the stanza
-      board = self.leaderboard.getBoard()
-      for i in board:
-        stz.addItem(board[i]['name'], board[i]['rating'])
-
       ## Set aditional IQ attributes
-      iq = self.Iq()
-      iq['type'] = 'result'
       iq['to'] = to
-      iq.setPayload(stz)
-
       ## Try sending the stanza
       try:
-        iq.send()
+        iq.send(block=False, now=True)
       except:
         logging.error("Failed to send leaderboard list")
-    else:
-      for JID in self.nicks.keys():
-        self.sendBoardList(JID)
 
 ## Main Program ##
 if __name__ == '__main__':
@@ -636,7 +666,7 @@ if __name__ == '__main__':
 
   # Setup logging.
   logging.basicConfig(level=opts.loglevel,
-                      format='%(levelname)-8s %(message)s')
+                      format='%(asctime)s        %(levelname)-8s %(message)s', datefmt='%m-%d-%y %H:%M:%S')
 
   # XpartaMuPP
   xmpp = XpartaMuPP(opts.xlogin+'@'+opts.xdomain+'/CC', opts.xpassword, opts.xroom+'@conference.'+opts.xdomain, opts.xnickname)

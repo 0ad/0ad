@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="706.695" y="107.938" z="94.6121"/>
-		<Rotation angle="0.0201044"/>
+		<Position x="491.659" y="282.358" z="-148.844"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -12079,6 +12079,18 @@
 			<Position x="145.17917" z="686.14844"/>
 			<Orientation y="-0.89983"/>
 			<Actor seed="17882"/>
+		</Entity>
+		<Entity uid="2371">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="155.25779" z="384.92942"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63190"/>
+		</Entity>
+		<Entity uid="2372">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="820.90571" z="612.59717"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17326"/>
 		</Entity>
 	</Entities>
 	<Paths/>
