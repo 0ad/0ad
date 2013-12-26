@@ -122,10 +122,10 @@ class LeaderboardList():
     # the database model, and therefore this code, requires a winner.
     # The Elo implementation does not, however.
     result = 1 if player1 == game.winner else -1
-    rating_adjustment1 = get_rating_adjustment(player1.rating, player2.rating,
-      len(player1.games), len(player2.games), result)
-    rating_adjustment2 = get_rating_adjustment(player2.rating, player1.rating,
-      len(player2.games), len(player1.games), result * -1)
+    rating_adjustment1 = int(get_rating_adjustment(player1.rating, player2.rating,
+      len(player1.games), len(player2.games), result))
+    rating_adjustment2 = int(get_rating_adjustment(player2.rating, player1.rating,
+      len(player2.games), len(player1.games), result * -1))
     if result == 1:
       resultQualitative = "won"
     elif result == 0:
