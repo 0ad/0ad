@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
-  <group>
-    <variant name="crocodile">
-      <mesh>skeletal/crocodile.dae</mesh>
-      <textures><texture file="null_gray.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
+	<castshadow/>
+	<group>
+		<variant frequency="1" name="crocodile">
+			<animations>
+				<animation file="quadraped/Croc_fem_idle1.dae" name="idle" speed="11"/>
+				<animation file="quadraped/Croc_fem_idle2.dae" name="idle" speed="11"/>
+				<animation file="quadraped/Croc_fem_idle3.dae" name="idle" speed="25"/>
+				<animation file="quadraped/Croc_fem_idle3.dae" name="idle" speed="20"/>
+				<animation file="quadraped/Croc_fem_walk.dae" name="Walk" speed="20"/>
+				<animation file="quadraped/Croc_fem_run.dae" name="Run" speed="15"/>
+				<animation event="0.47" file="quadraped/Croc_fem_attack.dae" name="attack_melee" speed="70"/>
+				<animation file="quadraped/Croc_fem_death.dae" name="Death" speed="110"/>
+			</animations>
+			<mesh>skeletal/Croc_fem.dae</mesh>
+			<textures>
+				<texture file="skeletal/animal_crocodile.png" name="baseTex"/>
+				<texture file="skeletal/animal_crocodile_norm.png" name="normTex"/>
+				<texture file="skeletal/animal_crocodile_spec.png" name="specTex"/>
+			</textures>
+		</variant>
+	</group>
+	<material>basic_trans_parallax_spec.xml</material>
 </actor>

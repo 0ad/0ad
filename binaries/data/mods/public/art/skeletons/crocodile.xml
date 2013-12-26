@@ -1,0 +1,96 @@
+<skeletons>
+	<standard_skeleton title="Crocodile" id="Crocodile">
+		<bone name="Main">
+			<bone name="Spine1">
+				<bone name="Neck">
+					<bone name="TopJaw">
+					</bone>
+					<bone name="BottomJaw">
+					</bone>
+					<bone name="BottomJaw_helper">
+					</bone>
+				</bone>
+				<bone name="FrontLKnee">
+					<bone name="FrontLLeg">
+						<bone name="FrontLFoot">
+						</bone>
+					</bone>
+				</bone>
+				<bone name="FrontRKnee">
+					<bone name="FrontRLeg">
+						<bone name="FrontRFoot">
+						</bone>
+					</bone>
+				</bone>
+				<bone name="Spine2">
+					<bone name="BackLKnee">
+						<bone name="BackLLeg">
+							<bone name="BackLFoot">
+							</bone>
+						</bone>
+					</bone>
+					<bone name="BackRKnee">
+						<bone name="BackRLeg">
+							<bone name="BackRFoot">
+							</bone>
+						</bone>
+					</bone>
+					<bone name="Tail1">
+						<bone name="Tail2">
+							<bone name="Tail3">
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+	</standard_skeleton>
+	
+	<skeleton title="BlenderCrocodile" target="Crocodile">
+		<identifier><root>crocodile</root></identifier>
+		<bone name="Main"><target>Main</target>
+			<bone name="Spine1"><target>Spine1</target>
+				<bone name="Neck"><target>Neck</target>
+					<bone name="TopJaw"><target>TopJaw</target>
+					</bone>
+					<bone name="BottomJaw"><target>BottomJaw</target>
+					</bone>
+					<bone name="BottomJaw_helper"><target>BottomJaw_helper</target>
+					</bone>
+				</bone>
+				<bone name="FrontLKnee"><target>FrontLKnee</target>
+					<bone name="FrontLLeg"><target>FrontLLeg</target>
+						<bone name="FrontLFoot"><target>FrontLFoot</target>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="FrontRKnee"><target>FrontRKnee</target>
+					<bone name="FrontRLeg"><target>FrontRLeg</target>
+						<bone name="FrontRFoot"><target>FrontRFoot</target>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="Spine2"><target>Spine2</target>
+					<bone name="BackLKnee"><target>BackLKnee</target>
+						<bone name="BackLLeg"><target>BackLLeg</target>
+							<bone name="BackLFoot"><target>BackLFoot</target>
+							</bone>
+						</bone>
+					</bone>
+					<bone name="BackRKnee"><target>BackRKnee</target>
+						<bone name="BackRLeg"><target>BackRLeg</target>
+							<bone name="BackRFoot"><target>BackRFoot</target>
+							</bone>
+						</bone>
+					</bone>
+					<bone name="Tail1"><target>Tail1</target>
+						<bone name="Tail2"><target>Tail2</target>
+							<bone name="Tail3"><target>Tail3</target>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>
