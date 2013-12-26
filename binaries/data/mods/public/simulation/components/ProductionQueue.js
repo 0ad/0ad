@@ -72,7 +72,7 @@ ProductionQueue.prototype.Init = function()
  */
 ProductionQueue.prototype.GetEntitiesList = function()
 {
-	if (!this.entiesList)
+	if (!this.entitiesList)
 		this.CalculateEntitiesList();
 	return this.entitiesList;
 };
