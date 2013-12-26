@@ -84,19 +84,17 @@ function init(attribs)
 		error("Unexpected 'type' in gamesetup init: "+attribs.type);
 	}
 
-        if (attribs.serverName)
+	if (attribs.serverName)
 		g_ServerName = attribs.serverName;
 
 	// Init the Cancel Button caption and tooltip
 	var cancelButton = getGUIObjectByName("cancelGame");
 	if(!Engine.HasXmppClient())
 	{
-		cancelButton.caption = "Main menu";
 		cancelButton.tooltip = "Return to the main menu."
 	}
 	else
 	{
-		cancelButton.caption = "Quit";
 		cancelButton.tooltip = "Return to the lobby."
 	}
 

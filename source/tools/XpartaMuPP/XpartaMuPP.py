@@ -400,10 +400,11 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
                                        StanzaPath('iq/gamereport'),
                                        self.iqhandler,
                                        instream=True))
-    self.add_event_handler("session_start", self.start)
+              
     self.add_event_handler("session_start", self.start)
     self.add_event_handler("muc::%s::got_online" % self.room, self.muc_online)
     self.add_event_handler("muc::%s::got_offline" % self.room, self.muc_offline)
+    
 
   def start(self, event):
     """
@@ -466,20 +467,28 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       """
       # Send lists/register on leaderboard; depreciated once muc_online
       #  can send lists/register automatically on joining the room.
-      try:
-        self.sendGameList(iq['from'])
-        self.leaderboard.getOrCreatePlayer(iq['from'])
-        self.sendBoardList(iq['from'])
-      except:
-        traceback.print_exc()
-        logging.error("Failed to process list request from %s" % iq['from'].bare)
+      if 'gamelist' in iq.plugins:
+        try:
+          self.sendGameList(iq['from'])
+        except:
+          traceback.print_exc()
+          logging.error("Failed to process gamelist request from %s" % iq['from'].bare)
+      elif 'boardlist' in iq.plugins:
+        try:
+          self.leaderboard.getOrCreatePlayer(iq['from'])
+          self.sendBoardList(iq['from'])
+        except:
+          traceback.print_exc()
+          logging.error("Failed to process boardlist request from %s" % iq['from'].bare)
+      else:
+        logging.error("Unknown 'get' type stanza request from %s" % iq['from'].bare)
     elif iq['type'] == 'result':
       """
       Iq successfully received
       """
       pass
     elif iq['type'] == 'set':
-      if 'gamelist' in iq.values:
+      if 'gamelist' in iq.plugins:
         """
         Register-update / unregister a game
         """
@@ -511,7 +520,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
             logging.error("Failed to process changestate data")
         else:
           logging.error("Failed to process command '%s' received from %s" % command, iq['from'].bare)
-      elif 'gamereport' in iq.values:
+      elif 'gamereport' in iq.plugins:
         """
         Client is reporting end of game statistics
         """
@@ -536,15 +545,9 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     games = self.gameList.getAllGames()
     if to == "":      
       for JID in self.nicks.keys():
-        ## Check recipient exists
-        if str(JID) not in self.nicks:
-          logging.error("No player with the XmPP ID '%s' known" % str(JID))
-          return
-
         stz = GameListXmppPlugin()
 
-        ## Pull games and add each to the stanza
-        
+        ## Pull games and add each to the stanza        
         for JIDs in games:
           g = games[JIDs]
           # Only send the games that are in the 'init' state and games
@@ -560,20 +563,19 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
 
         ## Try sending the stanza
         try:
-          iq.send()
+          iq.send(block=False, now=True)
         except:
           logging.error("Failed to send game list")
     else:
       ## Check recipient exists
       if str(to) not in self.nicks:
-        logging.error("No player with the XmPP ID '%s' known" % str(to))
+        logging.error("No player with the XmPP ID '%s' known to send gamelist to." % str(to))
         return
-
       stz = GameListXmppPlugin()
-
+      
       ## Pull games and add each to the stanza
-      for JID in games:
-        g = games[JID]
+      for JIDs in games:
+        g = games[JIDs]
         # Only send the games that are in the 'init' state and games
         # that are in the 'waiting' state which the receiving player is in. TODO
         if g['state'] == 'init' or (g['state'] == 'waiting' and self.nicks[str(to)] in g['players-init']):
@@ -587,7 +589,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
 
       ## Try sending the stanza
       try:
-        iq.send()
+        iq.send(block=False, now=True)
       except:
         logging.error("Failed to send game list")
 
@@ -607,26 +609,23 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     iq.setPayload(stz)
     if to == "":    
       for JID in self.nicks.keys():
-        if str(JID) not in self.nicks:
-          logging.error("No player with the XmPP ID '%s' known" % str(JID))
-          return
         ## Set aditional IQ attributes
         iq['to'] = JID
         ## Try sending the stanza
         try:
-          iq.send()
+          iq.send(block=False, now=True)
         except:
           logging.error("Failed to send leaderboard list")
     else:
       ## Check recipient exists
       if str(to) not in self.nicks:
-        logging.error("No player with the XmPP ID '%s' known" % str(to))
+        logging.error("No player with the XmPP ID '%s' known to send boardlist to" % str(to))
         return
       ## Set aditional IQ attributes
       iq['to'] = to
       ## Try sending the stanza
       try:
-        iq.send()
+        iq.send(block=False, now=True)
       except:
         logging.error("Failed to send leaderboard list")
 
@@ -667,7 +666,7 @@ if __name__ == '__main__':
 
   # Setup logging.
   logging.basicConfig(level=opts.loglevel,
-                      format='%(levelname)-8s %(message)s')
+                      format='%(asctime)s        %(levelname)-8s %(message)s', datefmt='%m-%d-%y %H:%M:%S')
 
   # XpartaMuPP
   xmpp = XpartaMuPP(opts.xlogin+'@'+opts.xdomain+'/CC', opts.xpassword, opts.xroom+'@conference.'+opts.xdomain, opts.xnickname)
