@@ -35,9 +35,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="468.894" y="154.765" z="124.523"/>
-		<Rotation angle="-0.219797"/>
-		<Declination angle="0.728433"/>
+		<Position x="507.274" y="109.71" z="319.802"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -86,11 +86,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="431.43863" z="298.09964"/>
 			<Orientation y="2.99366"/>
-		</Entity>
-		<Entity uid="2903">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="430.62314" z="330.16443"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2904">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -144,7 +139,7 @@
 		</Entity>
 		<Entity uid="2914">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="436.62687" z="357.77045"/>
+			<Position x="445.53544" z="373.53116"/>
 			<Orientation y="-3.10079"/>
 		</Entity>
 		<Entity uid="2915">
@@ -349,13 +344,8 @@
 		</Entity>
 		<Entity uid="2955">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="570.37061" z="460.28351"/>
+			<Position x="570.0683" z="460.35569"/>
 			<Orientation y="0.46995"/>
-		</Entity>
-		<Entity uid="2956">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="571.92597" z="513.22144"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2957">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -436,16 +426,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="861.92011" z="925.48627"/>
 			<Orientation y="0.28402"/>
-		</Entity>
-		<Entity uid="2973">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="867.28101" z="955.72901"/>
-			<Orientation y="-2.8969"/>
-		</Entity>
-		<Entity uid="2974">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="877.49555" z="984.9422"/>
-			<Orientation y="2.02503"/>
 		</Entity>
 		<Entity uid="2975">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -1141,8 +1121,8 @@
 		<Entity uid="3113">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="578.15363" z="491.34855"/>
-			<Orientation y="-2.90101"/>
+			<Position x="590.14924" z="497.47138"/>
+			<Orientation y="-0.52718"/>
 		</Entity>
 		<Entity uid="3114">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
@@ -14828,6 +14808,146 @@
 			<Position x="434.30677" z="206.00428"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="56226"/>
+		</Entity>
+		<Entity uid="5464">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="616.81897" z="754.8581"/>
+			<Orientation y="-0.7529"/>
+			<Actor seed="56210"/>
+		</Entity>
+		<Entity uid="5465">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="622.42408" z="763.05524"/>
+			<Orientation y="1.22231"/>
+			<Actor seed="15970"/>
+		</Entity>
+		<Entity uid="5466">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="634.3736" z="774.94703"/>
+			<Orientation y="-2.81234"/>
+			<Actor seed="44444"/>
+		</Entity>
+		<Entity uid="5467">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="604.43665" z="751.39374"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62800"/>
+		</Entity>
+		<Entity uid="5468">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="608.80585" z="765.86921"/>
+			<Orientation y="1.09432"/>
+			<Actor seed="51452"/>
+		</Entity>
+		<Entity uid="5469">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="872.3288" z="958.58997"/>
+			<Orientation y="1.57081"/>
+			<Actor seed="18268"/>
+		</Entity>
+		<Entity uid="5470">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="880.68195" z="965.33063"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36744"/>
+		</Entity>
+		<Entity uid="5471">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="886.7317" z="977.54694"/>
+			<Orientation y="-1.8317"/>
+			<Actor seed="56760"/>
+		</Entity>
+		<Entity uid="5472">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="887.56623" z="967.26825"/>
+			<Orientation y="-2.94274"/>
+			<Actor seed="55022"/>
+		</Entity>
+		<Entity uid="5473">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="878.31336" z="979.65955"/>
+			<Orientation y="-2.41157"/>
+			<Actor seed="47206"/>
+		</Entity>
+		<Entity uid="5474">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="581.2392" z="515.09424"/>
+			<Orientation y="1.30622"/>
+			<Actor seed="52900"/>
+		</Entity>
+		<Entity uid="5475">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="581.97034" z="500.34574"/>
+			<Orientation y="-2.49666"/>
+			<Actor seed="62852"/>
+		</Entity>
+		<Entity uid="5476">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="577.88233" z="493.5831"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48912"/>
+		</Entity>
+		<Entity uid="5477">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="589.83008" z="506.87397"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="58576"/>
+		</Entity>
+		<Entity uid="5478">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="594.18097" z="517.90693"/>
+			<Orientation y="-1.89942"/>
+			<Actor seed="46536"/>
+		</Entity>
+		<Entity uid="5479">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="436.71143" z="344.21552"/>
+			<Orientation y="-2.10332"/>
+			<Actor seed="56798"/>
+		</Entity>
+		<Entity uid="5480">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="435.3191" z="333.3878"/>
+			<Orientation y="1.13793"/>
+			<Actor seed="29004"/>
+		</Entity>
+		<Entity uid="5481">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="429.17374" z="358.15015"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34832"/>
+		</Entity>
+		<Entity uid="5482">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="423.25345" z="346.27274"/>
+			<Orientation y="0.73792"/>
+			<Actor seed="10880"/>
+		</Entity>
+		<Entity uid="5483">
+			<Template>gaia/fauna_crocodile</Template>
+			<Player>0</Player>
+			<Position x="425.15043" z="331.4607"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="352"/>
 		</Entity>
 	</Entities>
 	<Paths/>
