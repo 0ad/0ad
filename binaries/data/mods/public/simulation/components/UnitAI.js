@@ -425,10 +425,8 @@ var UnitFsmSpec = {
 			if (this.CanUnpack())
 			{
 				// Ignore unforced attacks
-				// this would prevent attacks from AttackVisibleEntity or AttackEntityInZone ?
-				// so we accept attacks against targets for which we have a bonus
 				// TODO: use special stances instead?
-				if (!this.order.data.force && this.GetAttackBonus(type, this.order.data.target) < 1.5)
+				if (!this.order.data.force)
 				{
 					this.FinishOrder();
 					return;
@@ -1028,7 +1026,7 @@ var UnitFsmSpec = {
 
 			"Timer": function(msg) {
 				// check if there are no enemies to attack
-				this.FindNewTargets();
+				this.FindWalkAndFightTargets();
 			},
 
 			"leave": function(msg) {
@@ -1146,8 +1144,8 @@ var UnitFsmSpec = {
 				if (this.FinishOrder())
 				{
 					// if WalkAndFight order, look for new target before moving again
-					if (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight")
-						this.FindNewTargets();
+					if (this.IsWalkingAndFighting())
+						this.FindWalkAndFightTargets();
 					return;
 				}
 
@@ -1425,7 +1423,7 @@ var UnitFsmSpec = {
 			},
 
 			"Timer": function(msg) {
-				this.FindNewTargets();
+				this.FindWalkAndFightTargets();
 			},
 
 			"leave": function(msg) {
@@ -1757,8 +1755,8 @@ var UnitFsmSpec = {
 					// Except if in WalkAndFight mode where we look for more ennemies around before moving again
 					if (this.FinishOrder())
 					{
-						if (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight")
-							this.FindNewTargets();
+						if (this.IsWalkingAndFighting())
+							this.FindWalkAndFightTargets();
 						return;
 					}
 
@@ -3013,6 +3011,20 @@ UnitAI.prototype.IsWalking = function()
 	return (state == "WALKING");
 };
 
+/**
+ * return true if in WalkAndFight looking for new targets
+ */
+UnitAI.prototype.IsWalkingAndFighting = function()
+{
+	if (this.IsFormationMember())
+	{
+		var cmpUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
+		return (cmpUnitAI && cmpUnitAI.IsWalkingAndFighting());
+	}
+
+	return (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight");
+};
+
 UnitAI.prototype.CanAttackGaia = function()
 {
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
@@ -3349,11 +3361,17 @@ UnitAI.prototype.PushOrder = function(type, data)
 UnitAI.prototype.PushOrderFront = function(type, data)
 {
 	var order = { "type": type, "data": data };
-	// If current order is cheering then add new order after it 
+	// If current order is cheering then add new order after it
+	// same thing if current order if packing/unpacking
 	if (this.order && this.order.type == "Cheering")
 	{
 		var cheeringOrder = this.orderQueue.shift();
 		this.orderQueue.unshift(cheeringOrder, order);
+	}
+	else if (this.order && this.IsPacking())
+	{
+		var packingOrder = this.orderQueue.shift();
+		this.orderQueue.unshift = (packingOrder, order);
 	}
 	else
 	{
@@ -4968,25 +4986,6 @@ UnitAI.prototype.SwitchToStance = function(stance)
  */
 UnitAI.prototype.FindNewTargets = function()
 {
-	if (this.IsFormationController())
-	{
-		var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-		for each (var ent in cmpFormation.members)
-		{
-			var cmpUnitAI =  Engine.QueryInterface(ent, IID_UnitAI);
-	    		if (cmpUnitAI.FindNewTargets())
-			{
-				if (!cmpUnitAI.orderQueue[0] || cmpUnitAI.orderQueue[0].type != "Attack")
-					continue;
-				var data = cmpUnitAI.orderQueue[0].data;
-				cmpUnitAI.FinishOrder();
-				this.PushOrderFront("Attack", { "target": data.target, "force": false, "forceResponse": data.forceResponse });
-				return true;
-			}
-		}
-		return false;
-	}
-
 	if (!this.losRangeQuery)
 		return false;
 
@@ -5001,6 +5000,69 @@ UnitAI.prototype.FindNewTargets = function()
 		return this.AttackGaiaEntitiesByPreference( rangeMan.ResetActiveQuery(this.losGaiaRangeQuery) );
 
 	return false;
+};
+
+UnitAI.prototype.FindWalkAndFightTargets = function()
+{
+	if (this.IsFormationController())
+	{
+		var cmpUnitAI;
+		var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+		for each (var ent in cmpFormation.members)
+		{
+			if (!(cmpUnitAI =  Engine.QueryInterface(ent, IID_UnitAI)))
+				continue;
+			var targets = cmpUnitAI.GetTargetsFromUnit();
+			for each (var targ in targets)
+			{
+				if (cmpUnitAI.CanAttack(targ))
+				{
+					this.PushOrderFront("Attack", { "target": targ, "force": true });
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	var targets = this.GetTargetsFromUnit();
+	for each (var targ in targets)
+	{
+		if (this.CanAttack(targ))
+		{
+			this.PushOrderFront("Attack", { "target": targ, "force": true });
+			return true;
+		}
+	}
+	return false;
+};
+
+UnitAI.prototype.GetTargetsFromUnit = function()
+{
+	if (!this.losRangeQuery)
+		return [];
+
+	if (!this.GetStance().targetVisibleEnemies)
+		return [];
+
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpAttack)
+		return [];
+
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var entities = rangeMan.ResetActiveQuery(this.losRangeQuery);
+	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })
+		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
+
+	if (targets.length)
+		return targets;
+
+	// if nothing found, look for gaia targets
+	var entities = rangeMan.ResetActiveQuery(this.losGaiaRangeQuery);
+	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })
+		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
+
+	return targets;
 };
 
 /**
