@@ -142,13 +142,20 @@ function setOverlay(object, value)
 /**
  * Format entity count/limit message for the tooltip
  */
-function formatLimitString(trainEntLimit, trainEntCount)
+function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
 {
 	if (trainEntLimit == undefined)
 		return "";
 	var text = "\n\nCurrent Count: " + trainEntCount + ", Limit: " + trainEntLimit + ".";
 	if (trainEntCount >= trainEntLimit)
 		text = "[color=\"red\"]" + text + "[/color]";
+	for (var c in trainEntLimitChangers)
+	{
+		if (trainEntLimitChangers[c] > 0)
+			text += "\n" + c + " enlarges the limit with " + trainEntLimitChangers[c] + ".";
+		else if (trainEntLimitChangers[c] < 0)
+			text += "\n" + c + " lessens the limit with " + (-trainEntLimitChangers[c]) + ".";
+	}
 	return text;
 }
 
@@ -460,9 +467,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 
 				tooltip += "\n" + getEntityCostTooltip(template, trainNum, unitEntState.id);
 
-				var [trainEntLimit, trainEntCount, canBeAddedCount] =
+				var [trainEntLimit, trainEntCount, canBeAddedCount, trainEntLimitChangers] =
 					getEntityLimitAndCount(playerState, entType);
-				tooltip += formatLimitString(trainEntLimit, trainEntCount);
+				tooltip += formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers);
 
 				tooltip += "[color=\"255 251 131\"]" + formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch) + "[/color]";
 				break;
@@ -492,9 +499,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				tooltip += "\n" + getEntityCostTooltip(template);
 				tooltip += getPopulationBonusTooltip(template);
 
-				var [entLimit, entCount, canBeAddedCount] =
+				var [entLimit, entCount, canBeAddedCount, entLimitChangers] =
 					getEntityLimitAndCount(playerState, entType);
-				tooltip += formatLimitString(entLimit, entCount);
+				tooltip += formatLimitString(entLimit, entCount, entLimitChangers);
 
 				break;
 

@@ -255,7 +255,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			{
 				var unitCategory = template.TrainingRestrictions.Category;
 				var cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
-				cmpPlayerEntityLimits.IncreaseCount(unitCategory, count);
+				cmpPlayerEntityLimits.ChangeCount(unitCategory, count);
 			}
 
 			this.queue.push({
@@ -362,7 +362,7 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 			{
 				var unitCategory = template.TrainingRestrictions.Category;
 				var cmpPlayerEntityLimits = QueryPlayerIDInterface(item.player, IID_EntityLimits);
-				cmpPlayerEntityLimits.DecreaseCount(unitCategory, item.count);
+				cmpPlayerEntityLimits.ChangeCount(unitCategory, -item.count);
 			}
 		}
 
@@ -508,7 +508,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			{
 				var unitCategory = cmpTrainingRestrictions.GetCategory();
 				var cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
-				cmpPlayerEntityLimits.DecrementCount(unitCategory);
+				cmpPlayerEntityLimits.ChangeCount(unitCategory,-1);
 			}
 		}
 	}

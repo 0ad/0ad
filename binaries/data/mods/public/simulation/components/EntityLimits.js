@@ -4,18 +4,19 @@ EntityLimits.prototype.Schema =
 	"<a:help>Specifies per category limits on number of entities (buildings or units) that can be created for each player</a:help>" +
 	"<a:example>" +
 		"<Limits>" +
-		  "<CivilCentre/>" +
-		  "<DefenseTower>25</DefenseTower>" +
-		  "<Fortress>10</Fortress>" +
-		  "<Wonder>1</Wonder>" +
-		  "<Hero>1</Hero>" +
-		  "<Apadana>1</Apadana>" +
-		  "<Monument>5</Monument>" +
+			"<DefenseTower>25</DefenseTower>" +
+			"<Fortress>10</Fortress>" +
+			"<Wonder>1</Wonder>" +
+			"<Hero>1</Hero>" +
+			"<Apadana>1</Apadana>" +
+			"<Monument>5</Monument>" +
 		"</Limits>" +
+		"<LimitChangers>" +
+			"<Monument>" +
+				"<CivCentre>2</CivCentre>" +
+			"</Monument>" +
+		"</LimitChangers>" +
 	"</a:example>" +
-	"<element name='LimitMultiplier'>" +
-		"<ref name='positiveDecimal'/>" +
-	"</element>" +
 	"<element name='Limits'>" +
 		"<zeroOrMore>" +
 			"<element a:help='Specifies a category of building/unit on which to apply this limit. See BuildRestrictions/TrainingRestrictions for possible categories'>" +
@@ -23,7 +24,21 @@ EntityLimits.prototype.Schema =
 				"<data type='integer'/>" +
 			"</element>" +
 		"</zeroOrMore>" +
+	"</element>" +
+	"<element name='LimitChangers'>" +
+		"<zeroOrMore>" +
+			"<element a:help='Specifies a category of building/unit on which to apply this limit. See BuildRestrictions/TrainingRestrictions for possible categories'>" +
+				"<anyName />" +
+				"<zeroOrMore>" +
+					"<element a:help='Specifies the class that changes the entity limit'>" +
+						"<anyName />" +
+						"<data type='integer'/>" +
+					"</element>" +
+				"</zeroOrMore>" +
+			"</element>" +
+		"</zeroOrMore>" +
 	"</element>";
+
 
 /*
  *	TODO: Use an inheriting player_{civ}.xml template for civ-specific limits
@@ -36,48 +51,28 @@ EntityLimits.prototype.Init = function()
 {
 	this.limit = {};
 	this.count = {};
+	this.changers = {};
 	for (var category in this.template.Limits)
 	{
 		this.limit[category] = +this.template.Limits[category];
 		this.count[category] = 0;
+		if (!(category in this.template.LimitChangers))
+			continue;
+		this.changers[category] = {};
+		for (var c in this.template.LimitChangers[category])
+			this.changers[category][c] = +this.template.LimitChangers[category][c];
 	}
 };
 
-EntityLimits.prototype.IncreaseLimit = function(category, value)
+EntityLimits.prototype.ChangeLimit = function(category, value)
 {
-	if (!this.limit[category])
-		this.limit[category] = 0;
 	this.limit[category] += value;
 };
 
-EntityLimits.prototype.DecreaseLimit = function(category, value)
-{
-	if (!this.limit[category])
-		this.limit[category] = 0;
-	this.limit[category] -= value;
-
-};
-
-EntityLimits.prototype.IncreaseCount = function(category, value)
+EntityLimits.prototype.ChangeCount = function(category, value)
 {
 	if (this.count[category] !== undefined)
 		this.count[category] += value;
-};
-
-EntityLimits.prototype.DecreaseCount = function(category, value)
-{
-	if (this.count[category] !== undefined)
-		this.count[category] -= value;
-};
-
-EntityLimits.prototype.IncrementCount = function(category)
-{
-	this.IncreaseCount(category, 1);
-};
-
-EntityLimits.prototype.DecrementCount = function(category)
-{
-	this.DecreaseCount(category, 1);
 };
 
 EntityLimits.prototype.GetLimits = function()
@@ -90,11 +85,13 @@ EntityLimits.prototype.GetCounts = function()
 	return this.count;
 };
 
+EntityLimits.prototype.GetLimitChangers = function()
+{
+	return this.changers;
+};
+
 EntityLimits.prototype.AllowedToCreate = function(limitType, category, count)
 {
-	// TODO: The UI should reflect this before the user tries to place the building,
-	//			since the limits are independent of placement location
-
 	// Allow unspecified categories and those with no limit
 	if (this.count[category] === undefined || this.limit[category] === undefined)
 		return true;
@@ -116,9 +113,6 @@ EntityLimits.prototype.AllowedToCreate = function(limitType, category, count)
 
 EntityLimits.prototype.AllowedToBuild = function(category)
 {
-	// TODO: The UI should reflect this before the user tries to place the building,
-	//			since the limits are independent of placement location
-
 	// We pass count 0 as the creation of the building has already taken place and
 	// the ownership has been set (triggering OnGlobalOwnershipChanged) 
 	return this.AllowedToCreate(BUILD, category, 0);
@@ -130,8 +124,22 @@ EntityLimits.prototype.AllowedToTrain = function(category, count)
 };
 
 EntityLimits.prototype.OnGlobalOwnershipChanged = function(msg)
-{
-	// This automatically updates entity counts
+{	
+	// check if we are adding or removing an entity from this player
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if (!cmpPlayer)
+	{
+		error("EntityLimits component is defined on a non-player entity");
+		return;
+	}
+	if (msg.from == cmpPlayer.GetPlayerID())
+		var modifier = -1;
+	else if (msg.to == cmpPlayer.GetPlayerID())
+		var modifier = 1;
+	else 
+		return;
+
+	// Update entity counts
 	var category = null;
 	var cmpBuildRestrictions = Engine.QueryInterface(msg.entity, IID_BuildRestrictions);
 	if (cmpBuildRestrictions)
@@ -140,13 +148,17 @@ EntityLimits.prototype.OnGlobalOwnershipChanged = function(msg)
 	if (cmpTrainingRestrictions)
 		category = cmpTrainingRestrictions.GetCategory();
 	if (category)
-	{
-		var playerID = (Engine.QueryInterface(this.entity, IID_Player)).GetPlayerID();
-		if (msg.from == playerID)
-			this.DecrementCount(category);
-		if (msg.to == playerID)
-			this.IncrementCount(category);
-	}
+		this.ChangeCount(category,modifier);
+
+	// Update entity limits
+	var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
+	if (!cmpIdentity)
+		return;
+	var classes = cmpIdentity.GetClassesList();
+	for (var category in this.changers)
+		for (var c in this.changers[category])
+			if (classes.indexOf(c) >= 0)
+				this.ChangeLimit(category, modifier * this.changers[category][c]);
 };
 
 Engine.RegisterComponentType(IID_EntityLimits, "EntityLimits", EntityLimits);

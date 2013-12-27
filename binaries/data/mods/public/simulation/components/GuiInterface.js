@@ -94,6 +94,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"isEnemy": enemies,
 			"entityLimits": cmpPlayerEntityLimits.GetLimits(),
 			"entityCounts": cmpPlayerEntityLimits.GetCounts(),
+			"entityLimitChangers": cmpPlayerEntityLimits.GetLimitChangers(),
 			"techModifications": cmpTechnologyManager.GetTechModifications(),
 			"researchQueued": cmpTechnologyManager.GetQueuedResearch(),
 			"researchStarted": cmpTechnologyManager.GetStartedResearch(),

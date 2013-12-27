@@ -1666,14 +1666,16 @@ function getEntityLimitAndCount(playerState, entType)
 		entCategory = template.buildRestrictions.category;
 	var entLimit = undefined;
 	var entCount = undefined;
+	var entLimitChangers = undefined;
 	var canBeAddedCount = undefined;
 	if (entCategory && playerState.entityLimits[entCategory] != null)
 	{
 		entLimit = playerState.entityLimits[entCategory];
 		entCount = playerState.entityCounts[entCategory];
+		entLimitChangers = playerState.entityLimitChangers[entCategory];
 		canBeAddedCount = Math.max(entLimit - entCount, 0);
 	}
-	return [entLimit, entCount, canBeAddedCount];
+	return [entLimit, entCount, canBeAddedCount, entLimitChangers];
 }
 
 // Add the unit shown at position to the training queue for all entities in the selection
