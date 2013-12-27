@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_fauna_wild_passive">
+	<Footprint>
+		<Circle radius="3.0"/>
+		<Height>2.5</Height>
+	</Footprint>
+	<Health>
+		<Max>150</Max>
+		<Unhealable>true</Unhealable>
+		<Repairable>false</Repairable>
+	</Health>
+	<Identity>
+		<Civ>gaia</Civ>
+		<SpecificName>Great White</SpecificName>
+		<GenericName>Shark</GenericName>
+		<Classes datatype="tokens">SeaCreature</Classes>
+		<Icon>gaia/fauna_fish.png</Icon>
+	</Identity>
+	<Minimap disable=""/>
+	<Obstruction>
+		<Unit radius="3.5"/>
+	</Obstruction>
+	<Position>
+		<Altitude>-1</Altitude>
+		<Floating>true</Floating>
+		<TurnRate>5.0</TurnRate>
+	</Position>
+	<Vision>
+		<RetainInFog>false</RetainInFog>
+		<Range>100</Range>
+	</Vision>
+	<VisualActor>
+		<Actor>fauna/shark.xml</Actor>
+	</VisualActor>
+	<UnitAI>
+		<NaturalBehaviour>passive</NaturalBehaviour>
+		<RoamDistance>100.0</RoamDistance>
+		<FleeDistance>60.0</FleeDistance>
+		<RoamTimeMin>100000</RoamTimeMin>
+		<RoamTimeMax>300000</RoamTimeMax>
+		<FeedTimeMin>5000</FeedTimeMin>
+		<FeedTimeMax>60000</FeedTimeMax>
+	</UnitAI>
+	<UnitMotion>
+		<PassabilityClass>ship</PassabilityClass>
+		<WalkSpeed>4.0</WalkSpeed>
+		<Run>
+			<Speed>35.0</Speed>
+		</Run>
+	</UnitMotion>
+</Entity>
