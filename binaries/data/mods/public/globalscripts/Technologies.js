@@ -28,7 +28,7 @@ function GetTechModifiedProperty(currentTechModifications, entityTemplateData, p
 	if (entityTemplateData && entityTemplateData.Identity)
 	{
 		rawClasses = entityTemplateData.Identity.Classes;
-		rawClasses = "_string" in rawClasses ?  rawClasses._string : "";
+		rawClasses = rawClasses && "_string" in rawClasses ?  rawClasses._string : "";
 		if (entityTemplateData.Identity.Rank)
 			rawClasses += " " + entityTemplateData.Identity.Rank;
 	} 
