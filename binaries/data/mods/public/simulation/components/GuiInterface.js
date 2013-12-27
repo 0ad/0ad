@@ -285,6 +285,16 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		};
 	}
 
+	var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
+	if(cmpAlertRaiser)
+	{
+		ret.alertRaiser = {
+			"level": cmpAlertRaiser.GetLevel(),
+			"canIncreaseLevel": cmpAlertRaiser.CanIncreaseLevel(),
+			"hasRaisedAlert": cmpAlertRaiser.HasRaisedAlert(),
+		};
+	}
+
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	ret.visibility = cmpRangeManager.GetLosVisibility(ent, player, false);
 
@@ -376,16 +386,6 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		ret.resourceCarrying = cmpResourceGatherer.GetCarryingStatus();
 	}
 	
-	var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
-	if(cmpAlertRaiser)
-	{
-		ret.alertRaiser = {
-			"level": cmpAlertRaiser.GetLevel(),
-			"canIncreaseLevel": cmpAlertRaiser.CanIncreaseLevel(),
-			"hasRaisedAlert": cmpAlertRaiser.HasRaisedAlert(),
-		};
-	}
-
 	var cmpResourceDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
 	if (cmpResourceDropsite)
 	{

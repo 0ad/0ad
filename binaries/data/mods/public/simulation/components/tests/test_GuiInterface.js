@@ -1,4 +1,5 @@
 Engine.LoadComponentScript("interfaces/Attack.js");
+Engine.LoadComponentScript("interfaces/AlertRaiser.js");
 Engine.LoadComponentScript("interfaces/Barter.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
