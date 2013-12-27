@@ -313,13 +313,14 @@ var types = [
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];	// some variation
 
+
 if (random_terrain != 6)
 {
 	var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 	var num = floor(size / types.length);
 	for (var i = 0; i < types.length; ++i)
 	{
-		placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / (num * floor(scaleByMapSize(2,5))), 0.5);
+		placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / num, 0.5);
 		painter = new LayeredPainter(
 			types[i],		// terrains
 			[2]											// widths
@@ -327,11 +328,12 @@ if (random_terrain != 6)
 		createAreas(
 			placer,
 			[painter, paintClass(clForest)], 
-		[avoidClasses(clPlayer, 20, clForest, 10, clHill, 0, clBaseResource,2), stayClasses(clLand, 4)],
+		[avoidClasses(clPlayer, 20, clForest, 15, clHill, 0, clBaseResource,2), stayClasses(clLand, 4)],
 			num
 		);
 	}
 }
+
 
 RMS.SetProgress(50);
 // create dirt patches
@@ -481,7 +483,7 @@ for (var i = 0; i < types.length; ++i)
 		true, clForest
 	);
 	createObjectGroups(group, 0,
-		[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 9, clMetal, 1, clRock, 1), stayClasses(clLand, 7)],
+		[avoidClasses(clWater, 1, clForest, 7, clHill, 1, clPlayer, 9, clMetal, 1, clRock, 1), stayClasses(clLand, 7)],
 		num
 	);
 }

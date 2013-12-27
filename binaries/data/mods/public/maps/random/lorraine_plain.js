@@ -41,6 +41,7 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
 const pForestB = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest];
 const pForestO = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
+const pForestR = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest, tGrassDForest + TERRAIN_SEPARATOR + oOak, tGrassDForest, tGrassDForest, tGrassDForest];
 const BUILDING_ANGlE = -PI/4;
 
 // initialize map
@@ -274,7 +275,7 @@ passageMaker(floor(fractionToTiles(0.2)), floor(fractionToTiles(0.25)), floor(fr
 passageMaker(floor(fractionToTiles(0.2)), floor(fractionToTiles(0.75)), floor(fractionToTiles(0.8)), floor(fractionToTiles(0.75)), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
 
 paintTerrainBasedOnHeight(-5, 1, 1, tWater);
-paintTerrainBasedOnHeight(1, 2, 1, tShore)
+paintTerrainBasedOnHeight(1, 2, 1, pForestR)
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater)
 
 
@@ -312,7 +313,7 @@ var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
 {
-	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / (num * floor(scaleByMapSize(2,5))), 0.5);
+	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / num, 0.5);
 	painter = new LayeredPainter(
 		types[i],		// terrains
 		[2]											// widths
@@ -320,7 +321,7 @@ for (var i = 0; i < types.length; ++i)
 	createAreas(
 		placer,
 		[painter, paintClass(clForest)], 
-		avoidClasses(clPlayer, 15, clWater, 3, clForest, 8, clHill, 1),
+		avoidClasses(clPlayer, 15, clWater, 3, clForest, 16, clHill, 1),
 		num
 	);
 }
@@ -461,7 +462,7 @@ for (var i = 0; i < types.length; ++i)
 		true, clForest
 	);
 	createObjectGroups(group, 0,
-		avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clMetal, 1, clRock, 1),
+		avoidClasses(clWater, 1, clForest, 7, clHill, 1, clPlayer, 5, clMetal, 1, clRock, 1),
 		num
 	);
 }

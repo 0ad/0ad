@@ -328,7 +328,7 @@ if (random_terrain != 6)
 	var num = floor(size / types.length);
 	for (var i = 0; i < types.length; ++i)
 	{
-		placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / (num * floor(scaleByMapSize(2,5))), 0.5);
+		placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / num, 0.5);
 		painter = new LayeredPainter(
 			types[i],		// terrains
 			[2]											// widths
@@ -336,7 +336,7 @@ if (random_terrain != 6)
 		createAreas(
 			placer,
 			[painter, paintClass(clForest)], 
-			avoidClasses(clPlayer, 20, clForest, 10, clHill, 0, clWater, 2),
+			avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
 			num
 		);
 	}
@@ -489,7 +489,7 @@ for (var i = 0; i < types.length; ++i)
 		true, clForest
 	);
 	createObjectGroups(group, 0,
-		avoidClasses(clWater, 5, clForest, 1, clHill, 1, clPlayer, 12, clMetal, 1, clRock, 1),
+		avoidClasses(clWater, 5, clForest, 7, clHill, 1, clPlayer, 12, clMetal, 1, clRock, 1),
 		num
 	);
 }
