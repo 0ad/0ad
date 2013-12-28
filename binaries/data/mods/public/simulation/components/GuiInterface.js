@@ -22,6 +22,8 @@ GuiInterface.prototype.Init = function()
 	this.placementWallLastAngle = 0;
 	this.notifications = [];
 	this.renamedEntities = [];
+	this.timeNotificationID = 1;
+	this.timeNotifications = [];
 };
 
 /*
@@ -728,6 +730,55 @@ GuiInterface.prototype.GetNeededResources = function(player, amounts)
 	return cmpPlayer.GetNeededResources(amounts);
 };
 
+GuiInterface.prototype.AddTimeNotification = function(notification)
+{
+	var time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
+	notification.endTime = notification.time + time;
+	notification.id = ++this.timeNotificationID;
+	this.timeNotifications.push(notification);
+	this.timeNotifications.sort(function (n1, n2){return n2.endTime - n1.endTime});
+	return this.timeNotificationID;
+};
+
+GuiInterface.prototype.DeleteTimeNotification = function(notificationID)
+{
+	for (var i in this.timeNotifications)
+	{
+		if (this.timeNotifications[i].id == notificationID)
+		{
+			this.timeNotifications.splice(i);
+			return;
+		}
+	}
+};
+
+GuiInterface.prototype.GetTimeNotificationText = function(playerID)
+{	
+	var formatTime = function(time)
+		{
+			// add 1000 ms to get ceiled instead of floored millisecons
+			// displaying 00:00 for a full second isn't nice
+			time += 1000;
+			var hours   = Math.floor(time / 1000 / 60 / 60);
+			var minutes = Math.floor(time / 1000 / 60) % 60;
+			var seconds = Math.floor(time / 1000) % 60;
+			return (hours ? hours + ':' : "") + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
+		};
+	var time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
+	var text = "";
+	for each (var n in this.timeNotifications)
+	{
+		if (time >= n.endTime)
+		{
+			// delete the notification and start over 
+			this.DeleteTimeNotification(n.id);
+			return this.GetTimeNotificationText(playerID);
+		}
+		if (n.players.indexOf(playerID) >= 0)
+			text += n.message.replace("%T",formatTime(n.endTime - time))+"\n";
+	}
+	return text;
+};
 
 GuiInterface.prototype.PushNotification = function(notification)
 {
@@ -1879,6 +1930,7 @@ var exposedFunctions = {
 	"GetIncomingAttacks": 1,
 	"GetNeededResources": 1,
 	"GetNextNotification": 1,
+	"GetTimeNotificationText": 1,
 
 	"GetAvailableFormations": 1,
 	"GetFormationRequirements": 1,

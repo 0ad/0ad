@@ -139,6 +139,11 @@ function displayNotifications()
 	getGUIObjectByName("notificationText").caption = messages.join("\n");
 }
 
+function updateTimeNotifications()
+{
+	getGUIObjectByName("timeNotificationText").caption = Engine.GuiInterfaceCall("GetTimeNotificationText");
+}
+
 // Returns [username, playercolor] for the given player
 function getUsernameAndColor(player)
 {

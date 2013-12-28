@@ -345,6 +345,10 @@
 	<object name="notificationPanel" type="image" size="50%-300 60 50%+300 120" ghost="true">
 	    <object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
 	</object>
+	<object name="timeNotificationPanel" type="image" size="100%-600 60 100%-20 120" ghost="true">
+	    <object name="timeNotificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
+	</object>
+
 
 	<!-- ================================  ================================ -->
 	<!-- Chat -->

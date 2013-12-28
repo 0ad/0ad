@@ -24,6 +24,39 @@ EndGameManager.prototype.Init = function()
 EndGameManager.prototype.SetGameType = function(newGameType)
 {
 	this.gameType = newGameType;
+	Engine.BroadcastMessage(MT_GameTypeChanged, {});
+};
+
+EndGameManager.prototype.CheckGameType = function(type)
+{
+	return this.gameType == type;
+};
+
+EndGameManager.prototype.RegisterWonder = function(entity)
+{
+	if (!this.CheckGameType("wonder"))
+		return;
+
+	var cmpWon = QueryOwnerInterface(entity, IID_Player);
+	cmpWon.SetState("won");
+	
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var numPlayers = cmpPlayerManager.GetNumPlayers();
+	for (var i = 1; i < numPlayers; i++)
+	{
+		var playerEntityId = cmpPlayerManager.GetPlayerByID(i);
+		var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
+		if (cmpPlayer.GetState() != "active")
+			continue;
+		if (this.alliedVictory && cmpPlayer.IsMutualAlly(cmpWon.GetPlayerID()))
+			cmpPlayer.SetState("won")
+		else
+			Engine.PostMessage(playerEntityId, MT_PlayerDefeated, { "playerId": i } );
+	}
+
+	// Reveal the map to all players
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	cmpRangeManager.SetLosRevealAll(-1, true);
 };
 
 EndGameManager.prototype.SetAlliedVictory = function(flag)
