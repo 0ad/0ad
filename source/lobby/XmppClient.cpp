@@ -28,7 +28,6 @@
 
 // Gloox
 #include "glooxwrapper/glooxwrapper.h"
-#include <gloox/client.h>
 
 // Game - script
 #include "scriptinterface/ScriptInterface.h"
@@ -113,7 +112,7 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 	m_client->registerMessageHandler( this );
 
 	// Uncomment to see the raw stanzas
-	m_client->getWrapped()->logInstance().registerLogHandler( gloox::LogLevelDebug, gloox::LogAreaAll, this );
+	//m_client->getWrapped()->logInstance().registerLogHandler( gloox::LogLevelDebug, gloox::LogAreaAll, this );
 
 	if (!regOpt)
 	{

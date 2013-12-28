@@ -19,7 +19,7 @@
 #define XXXMPPCLIENT_H
 
 #include "IXmppClient.h"
-#include <gloox/client.h>
+
 #include "glooxwrapper/glooxwrapper.h"
 
 //game - script
@@ -35,7 +35,7 @@ namespace glooxwrapper
 	struct CertInfo;
 }
 
-class XmppClient : public IXmppClient, public gloox::LogHandler, public glooxwrapper::ConnectionListener, public glooxwrapper::MUCRoomHandler, public glooxwrapper::IqHandler, public glooxwrapper::RegistrationHandler, public glooxwrapper::MessageHandler
+class XmppClient : public IXmppClient, public glooxwrapper::ConnectionListener, public glooxwrapper::MUCRoomHandler, public glooxwrapper::IqHandler, public glooxwrapper::RegistrationHandler, public glooxwrapper::MessageHandler
 {
 	NONCOPYABLE(XmppClient);
 private:
