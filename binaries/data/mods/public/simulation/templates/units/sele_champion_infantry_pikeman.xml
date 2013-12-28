@@ -5,7 +5,8 @@
 	<GenericName>Silver Shield Pikeman</GenericName>
     <SpecificName>Phalangitès Argyraspis</SpecificName>
     <History>The 'Silver Shields' pike corps made up the infantry arm of the Royal Agema, or "guards." They were the élite of the traditional Seleucid and Macedonian infantry.</History>
-    <Icon>units/hele_champion_infantry_mace.png</Icon>
+    <Icon>units/sele_champion_infantry_pikeman.png</Icon>
+    <RequiredTechnology>successors/unlock_traditional_army</RequiredTechnology>
   </Identity>
   <VisualActor>
     <Actor>units/seleucids/champion_infantry_pikeman.xml</Actor>

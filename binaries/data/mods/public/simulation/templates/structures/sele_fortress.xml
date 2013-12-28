@@ -15,14 +15,18 @@
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
+	  units/sele_champion_infantry_pikeman
+	  units/sele_champion_chariot
+	  units/sele_champion_infantry_swordsman
+	  units/sele_champion_cavalry	
       units/sele_champion_elephant
       units/sele_mechanical_siege_lithobolos_packed
       units/sele_mechanical_siege_tower
     </Entities>
     <Technologies datatype="tokens">
+	  successors/pair_unlock_champions
 	  pair_siege_attack_pack
 	  pair_siege_cost_armor
-	  siege_bolt_accuracy
     </Technologies>
   </ProductionQueue>
   <VisualActor>
