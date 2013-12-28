@@ -35,9 +35,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="1138.89" y="164.975" z="187.171"/>
-		<Rotation angle="0.207397"/>
-		<Declination angle="0.610865"/>
+		<Position x="435.611" y="537.145" z="77.3103"/>
+		<Rotation angle="0.0302297"/>
+		<Declination angle="1.05159"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -70421,6 +70421,48 @@
 			<Position x="207.18984" z="1036.23072"/>
 			<Orientation y="-0.71587"/>
 			<Actor seed="24382"/>
+		</Entity>
+		<Entity uid="14553">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="165.64484" z="473.71479"/>
+			<Orientation y="0.50704"/>
+			<Actor seed="28254"/>
+		</Entity>
+		<Entity uid="14554">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="388.79145" z="574.88892"/>
+			<Orientation y="-2.47487"/>
+			<Actor seed="1152"/>
+		</Entity>
+		<Entity uid="14555">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="578.9651" z="163.09049"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50570"/>
+		</Entity>
+		<Entity uid="14556">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="645.85438" z="346.98469"/>
+			<Orientation y="-1.7929"/>
+			<Actor seed="48504"/>
+		</Entity>
+		<Entity uid="14557">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="376.67307" z="314.99668"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21614"/>
+		</Entity>
+		<Entity uid="14558">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="690.86695" z="701.09266"/>
+			<Orientation y="-1.71105"/>
+			<Actor seed="934"/>
 		</Entity>
 	</Entities>
 	<Paths/>

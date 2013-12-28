@@ -6,13 +6,16 @@
   <Identity>
     <Civ>sele</Civ>
     <SpecificName>Agorā́</SpecificName>
-    <History>The most important place in most Classical Greek poleis, the Agora served many purposes; it was a place for public speeches and was the stage for civic life and commercial interests.</History>
+    <History>The most important place in most Hellenistic cities, the Agora served many purposes; it was a place for public speeches and was the stage for civic life and commercial interests.</History>
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/sele_infantry_spearman_b
       units/sele_infantry_archer_b
       units/sele_cavalry_javelinist
+      units/sele_hero_seleucus_victor
+      units/sele_hero_antiochus_great
+      units/sele_hero_antiochus_righteous
     </Entities>
   </ProductionQueue>
   <VisualActor>
