@@ -4,7 +4,7 @@
   <BuildRestrictions>
     <Territory>own neutral</Territory>
     <Distance>
-      <FromClass>MilitarySettlement</FromClass>
+      <FromClass>Colony</FromClass>
       <MinDistance>100</MinDistance>
     </Distance>
   </BuildRestrictions>
@@ -26,13 +26,13 @@
   </Health>
   <Identity>
     <Civ>ptol</Civ>
-    <GenericName>Military Settlement</GenericName>
+    <GenericName>Military Colony</GenericName>
 	<SpecificName>Klēroukhia</SpecificName>
-    <Classes datatype="tokens">Town MilitarySettlement</Classes>
-    <History>The Ptolemies invited Greeks and Galatians (Gauls) alike to settle in Egypt within military settlements called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the pharaoh's army when called to duty. This created a upper-middle class of military settlers who owed their livelihoods and fortunes to the pharaoh and helped grow the available manpower for the Egyptian army. A side effect of this system was that it drained the Greek homeland of military-aged men, a contributing factor to Greece's inevitable conquest by Rome.</History>
-    <Tooltip>This is the Ptolemaic expansion building, similar to civic centers in other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.
-- Train Galatian and Hellenic settler-soldiers. 
-- Min. distance from other Military Settlements: 80 meters.</Tooltip>
+    <Classes datatype="tokens">Town Colony</Classes>
+    <History>The Seleucid kings invited Greeks, Macedonians, Galatians (Gauls), Cretans, and Thracians alike to settle in within the vast territories of the empire. They settled in military colonies called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the great king's army when called to duty. This created a upper-middle class of military settlers who owed their livelihoods and fortunes to the Syrian kings and helped grow the available manpower for the imperial Seleucid army. A side effect of this system was that it drained the Greek homeland of military-aged men, a contributing factor to Greece's eventual conquest by Rome.</History>
+    <Tooltip>This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.
+- Train settler-soldiers of various nationalities.
+- Min. distance from other Military Colonies: 100 meters.</Tooltip>
     <Icon>structures/military_settlement.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

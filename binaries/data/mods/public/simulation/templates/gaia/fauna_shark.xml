@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_wild_passive">
-	<Footprint>
-		<Circle radius="3.0"/>
-		<Height>2.5</Height>
+	<Footprint replace="">
+		<Square width="5" depth="8"/>
+		<Height>7.5</Height>
 	</Footprint>
 	<Health>
 		<Max>150</Max>
@@ -25,6 +25,14 @@
 		<Floating>true</Floating>
 		<TurnRate>5.0</TurnRate>
 	</Position>
+	<Selectable>
+		<Overlay>
+			<Texture>
+				<MainTexture>circle/128x128.png</MainTexture>
+				<MainTextureMask>circle/128x128_mask.png</MainTextureMask>
+			</Texture>
+		</Overlay>
+	</Selectable>
 	<Vision>
 		<RetainInFog>false</RetainInFog>
 		<Range>100</Range>
@@ -38,8 +46,8 @@
 		<FleeDistance>60.0</FleeDistance>
 		<RoamTimeMin>100000</RoamTimeMin>
 		<RoamTimeMax>300000</RoamTimeMax>
-		<FeedTimeMin>5000</FeedTimeMin>
-		<FeedTimeMax>60000</FeedTimeMax>
+		<FeedTimeMin>1</FeedTimeMin>
+		<FeedTimeMax>2</FeedTimeMax>
 	</UnitAI>
 	<UnitMotion>
 		<PassabilityClass>ship</PassabilityClass>

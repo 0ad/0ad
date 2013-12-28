@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_treasure">
   <Footprint replace="">
-    <Circle radius="1.0"/>
+    <Circle radius="1.5"/>
     <Height>2.5</Height>
   </Footprint>
   <Identity>
@@ -14,6 +14,14 @@
     <Amount>100</Amount>
     <Type>treasure.food</Type>
   </ResourceSupply>
+  <Selectable replace="">
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/128x128.png</MainTexture>
+        <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <VisualActor>
     <Actor>props/special/eyecandy/barrel_a.xml</Actor>
   </VisualActor>
