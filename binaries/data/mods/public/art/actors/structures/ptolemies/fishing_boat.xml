@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+	<float/>
+	<group>
+    <variant>
+      <mesh>structural/ptol_fishing_boat.dae</mesh>
+		<props>
+			<prop actor="props/structures/ptolemies/fisherman_body.xml" attachpoint="man"/>
+			<prop actor="props/structures/ptolemies/fishing_boat_basket.xml" attachpoint="basket"/>
+		</props>
+      <textures>
+		<texture file="structural/ptol_fishing_boat.png" name="baseTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
