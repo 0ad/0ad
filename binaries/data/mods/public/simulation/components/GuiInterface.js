@@ -219,7 +219,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	{
 		ret.trader = {
 			"goods": cmpTrader.GetGoods(),
-			"preferredGoods": cmpTrader.GetPreferredGoods()
+			"requiredGoods": cmpTrader.GetRequiredGoods()
 		};
 	}
 
@@ -1720,7 +1720,6 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 	{
 		result = {
 			"type": "is first",
-			"goods": cmpEntityTrader.GetPreferredGoods(),
 			"hasBothMarkets": cmpEntityTrader.HasBothMarkets()
 		};
 		if (cmpEntityTrader.HasBothMarkets())
@@ -1731,7 +1730,6 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 		result = {
 			"type": "is second",
 			"gain": cmpEntityTrader.GetGain(),
-			"goods": cmpEntityTrader.GetPreferredGoods()
 		};
 	}
 	else if (!firstMarket)
@@ -1743,7 +1741,6 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 		result = {
 			"type": "set second",
 			"gain": cmpEntityTrader.CalculateGain(firstMarket, data.target),
-			"goods": cmpEntityTrader.GetPreferredGoods()
 		};
 	}
 	else
@@ -1809,6 +1806,51 @@ GuiInterface.prototype.SetRangeDebugOverlay = function(player, enabled)
 	cmpRangeManager.SetDebugOverlay(enabled);
 };
 
+GuiInterface.prototype.GetTraderNumber = function(player)
+{
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var traders = cmpRangeManager.GetEntitiesByPlayer(player).filter( function(e) {
+		return Engine.QueryInterface(e, IID_Trader);
+	});
+
+	var landTrader = { "total": 0, "trading": 0, "garrisoned": 0 };
+	var shipTrader = { "total": 0, "trading": 0 };
+	for each (var ent in traders)
+	{
+		var cmpIdentity =  Engine.QueryInterface(ent, IID_Identity);
+		var cmpUnitAI =  Engine.QueryInterface(ent, IID_UnitAI);
+		if (!cmpIdentity || !cmpUnitAI)
+			continue;
+		if (cmpIdentity.HasClass("Ship"))
+		{
+			++shipTrader.total;
+			if (cmpUnitAI.order && cmpUnitAI.order.type == "Trade")
+				++shipTrader.trading;
+		}
+		else
+		{
+			++landTrader.total;
+			if (cmpUnitAI.order && cmpUnitAI.order.type == "Trade")
+				++landTrader.trading;
+			if (cmpUnitAI.order && cmpUnitAI.order.type == "Garrison")
+			{
+				var holder = cmpUnitAI.order.data.target;
+				var cmpHolderUnitAI = Engine.QueryInterface(holder, IID_UnitAI);
+				if (cmpHolderUnitAI && cmpHolderUnitAI.order && cmpHolderUnitAI.order.type == "Trade")
+					++landTrader.garrisoned;
+			}
+		}
+	}
+
+	return { "landTrader": landTrader, "shipTrader": shipTrader };
+};
+
+GuiInterface.prototype.GetTradingGoods = function(player, tradingGoods)
+{
+	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+	return cmpPlayer.GetTradingGoods();
+};
+
 GuiInterface.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	this.renamedEntities.push(msg);
@@ -1863,6 +1905,9 @@ var exposedFunctions = {
 	"SetObstructionDebugOverlay": 1,
 	"SetMotionDebugOverlay": 1,
 	"SetRangeDebugOverlay": 1,
+
+	"GetTraderNumber": 1,
+	"GetTradingGoods": 1,
 };
 
 GuiInterface.prototype.ScriptCall = function(player, name, args)

@@ -320,7 +320,16 @@ function getEntityCommandsList(entState)
 		    "icon": "remove-guard.png"
 		});
 	}
-	
+
+	if (hasClass(entState, "Market"))
+	{
+		commands.push({
+		    "name": "select-trading-goods",
+		    "tooltip": "Select trading goods",
+		    "icon": "economics.png"
+		});
+	}
+
 	if(entState.alertRaiser)
 	{
 		if(entState.alertRaiser.canIncreaseLevel)

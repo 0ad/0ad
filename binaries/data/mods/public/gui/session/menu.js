@@ -29,10 +29,15 @@ const INITIAL_MENU_POSITION = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
 // Number of pixels per millisecond to move
 const MENU_SPEED = 1.2;
 
+// Trade menu: available resources and step for probability changes
+const RESOURCES = ["food", "wood", "stone", "metal"];
+const STEP = 5;
+
 var isMenuOpen = false;
 var menu;
 
 var isDiplomacyOpen = false;
+var isTradeOpen = false;
 
 // Redefined every time someone makes a tribute (so we can save some data in a closure). Called in input.js handleInputBeforeGui.
 var flushTributing = function() {};
@@ -238,6 +243,8 @@ function tributeResource(data)
 
 function openDiplomacy()
 {
+	if (isTradeOpen)
+		closeTrade();
 	isDiplomacyOpen = true;
 
 	var we = Engine.GetPlayerID();
@@ -369,6 +376,145 @@ function toggleDiplomacy()
 		openDiplomacy();
 };
 
+function openTrade()
+{
+	if (isDiplomacyOpen)
+		closeDiplomacy();
+	isTradeOpen = true;
+
+	var updateButtons = function()
+	{
+		for (var res in button)
+		{
+			button[res].label.caption = proba[res] + "%";
+			if (res == selec)
+			{
+				button[res].res.enabled = false;
+				button[res].sel.hidden = false;
+				button[res].up.hidden = true;
+				button[res].dn.hidden = true;
+			}
+			else
+			{
+				button[res].res.enabled = true;
+				button[res].sel.hidden = true;
+				button[res].up.hidden = (proba[res] == 100 || proba[selec] == 0);
+				button[res].dn.hidden = (proba[res] == 0 || proba[selec] == 100);
+			}
+		}
+	}
+
+	var proba = Engine.GuiInterfaceCall("GetTradingGoods");
+	var button = {};
+	var selec = RESOURCES[0];
+	for (var i = 0; i < RESOURCES.length; ++i)
+	{
+		var buttonResource = getGUIObjectByName("tradeResource["+i+"]");
+		if (i > 0)
+		{
+			var size = getGUIObjectByName("tradeResource["+(i-1)+"]").size;
+			var width = size.right - size.left;
+			size.left += width;
+			size.right += width;
+			getGUIObjectByName("tradeResource["+i+"]").size = size;
+		}
+		var resource = RESOURCES[i];
+		proba[resource] = (proba[resource] ? proba[resource] : 0);
+		var buttonResource = getGUIObjectByName("tradeResourceButton["+i+"]");
+		var icon = getGUIObjectByName("tradeResourceIcon["+i+"]");
+		icon.sprite = "stretched:session/icons/resources/" + resource + ".png";
+		var label = getGUIObjectByName("tradeResourceText["+i+"]");
+		var buttonUp = getGUIObjectByName("tradeArrowUp["+i+"]");
+		var buttonDn = getGUIObjectByName("tradeArrowDn["+i+"]");
+		var iconSel = getGUIObjectByName("tradeResourceSelection["+i+"]");
+		button[resource] = { "res": buttonResource, "up": buttonUp, "dn": buttonDn, "label": label, "sel": iconSel };
+
+		buttonResource.onpress = (function(resource){
+			return function() {
+				if (selec == resource)
+					return;
+				selec = resource;
+				updateButtons();
+			}
+		})(resource);
+
+		buttonUp.onpress = (function(resource){
+			return function() {
+				proba[resource] += Math.min(STEP, proba[selec]);
+				proba[selec]    -= Math.min(STEP, proba[selec]);
+				Engine.PostNetworkCommand({"type": "set-trading-goods", "tradingGoods": proba});
+				updateButtons();
+			}
+		})(resource);
+
+		buttonDn.onpress = (function(resource){
+			return function() {
+				proba[selec]    += Math.min(STEP, proba[resource]);
+				proba[resource] -= Math.min(STEP, proba[resource]);
+				Engine.PostNetworkCommand({"type": "set-trading-goods", "tradingGoods": proba});
+				updateButtons();
+			}
+		})(resource);
+	}
+	updateButtons();
+
+	var traderNumber = Engine.GuiInterfaceCall("GetTraderNumber");
+	var caption = "";
+	var comma = "";
+	if (traderNumber.landTrader.total == 0)
+		caption += "0";
+	else
+	{
+		if (traderNumber.landTrader.trading > 0)
+		{
+			caption += traderNumber.landTrader.trading + " trading"
+			comma = ", ";
+		}
+		if (traderNumber.landTrader.garrisoned > 0)
+		{
+			caption += comma + traderNumber.landTrader.garrisoned + " garrisoned inside ships";
+			comma = ", ";
+		}
+		var inactive = traderNumber.landTrader.total - traderNumber.landTrader.trading - traderNumber.landTrader.garrisoned;
+		if (inactive > 0)
+			caption += comma + "[color=\"orange\"]" + inactive + " inactive[/color]";
+	}
+	getGUIObjectByName("landTraders").caption = caption;
+
+	caption = "";
+	comma = "";
+	if (traderNumber.shipTrader.total == 0)
+		caption += "0";
+	else
+	{
+		if (traderNumber.shipTrader.trading > 0)
+		{
+			caption += traderNumber.shipTrader.trading + " trading"
+			comma = ", ";
+		}
+		var inactive = traderNumber.shipTrader.total - traderNumber.shipTrader.trading;
+		if (inactive > 0)
+			caption += comma + "[color=\"orange\"]" + inactive + " inactive[/color]";
+	}
+	getGUIObjectByName("shipTraders").caption = caption;
+
+	getGUIObjectByName("tradeDialogPanel").hidden = false;
+}
+
+function closeTrade()
+{
+	isTradeOpen = false;
+	getGUIObjectByName("tradeDialogPanel").hidden = true;
+}
+
+function toggleTrade()
+{
+	if (isTradeOpen)
+		closeTrade();
+	else
+		openTrade();
+};
+
 function toggleGameSpeed()
 {
 	var gameSpeed = getGUIObjectByName("gameSpeed");
@@ -436,6 +582,7 @@ function closeOpenDialogs()
 	closeMenu();
 	closeChat();
 	closeDiplomacy();
+	closeTrade();
 	closeSettings(false);
 }
 

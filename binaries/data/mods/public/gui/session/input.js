@@ -290,9 +290,9 @@ function getActionInfo(action, target)
 				cursor = "action-setup-trade-route";
 				tooltip = "Right-click to establish a default route for new traders.";
 				if (trader)
-					tooltip += "\nGain (metal): " + getTradingTooltip(gain);
+					tooltip += "\nGain: " + getTradingTooltip(gain);
 				else // Foundation or cannot produce traders
-					tooltip += "\nExpected gain (metal): " + getTradingTooltip(gain);
+					tooltip += "\nExpected gain: " + getTradingTooltip(gain);
 			}
 		}
 
@@ -363,18 +363,18 @@ function getActionInfo(action, target)
 				case "is first":
 					tooltip = "Origin trade market.";
 					if (tradingDetails.hasBothMarkets)
-						tooltip += "\nGain (" + tradingDetails.goods + "): " + getTradingTooltip(tradingDetails.gain);
+						tooltip += "\nGain: " + getTradingTooltip(tradingDetails.gain);
 					else
 						tooltip += "\nRight-click on another market to set it as a destination trade market."
 					break;
 				case "is second":
-					tooltip = "Destination trade market.\nGain (" + tradingDetails.goods + "): " + getTradingTooltip(tradingDetails.gain);
+					tooltip = "Destination trade market.\nGain: " + getTradingTooltip(tradingDetails.gain);
 					break;
 				case "set first":
 					tooltip = "Right-click to set as origin trade market";
 					break;
 				case "set second":
-					tooltip = "Right-click to set as destination trade market.\nGain (" + tradingDetails.goods + "): " + getTradingTooltip(tradingDetails.gain);
+					tooltip = "Right-click to set as destination trade market.\nGain: " + getTradingTooltip(tradingDetails.gain);
 					break;
 				}
 				return {"possible": true, "tooltip": tooltip};
@@ -1572,10 +1572,10 @@ function startBuildingPlacement(buildTemplate, playerState)
 	}
 }
 
-// Called by GUI when user changes preferred trading goods
-function selectTradingPreferredGoods(data)
+// Called by GUI when user changes required trading goods
+function selectRequiredGoods(data)
 {
-	Engine.PostNetworkCommand({"type": "select-trading-goods", "entities": data.entities, "preferredGoods": data.preferredGoods});
+	Engine.PostNetworkCommand({"type": "select-required-goods", "entities": data.entities, "requiredGoods": data.requiredGoods});
 }
 
 // Called by GUI when user clicks exchange resources button
@@ -1913,6 +1913,9 @@ function performCommand(entity, commandName)
 				break;
 			case "alert-end":
 				endOfAlert();
+				break;
+			case "select-trading-goods":
+				toggleTrade();
 				break;
 			default:
 				break;

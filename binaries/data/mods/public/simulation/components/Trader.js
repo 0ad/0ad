@@ -29,7 +29,7 @@ Trader.prototype.Init = function()
 	// Gain from one pass between markets
 	this.gain = null;
 	// Selected resource for trading
-	this.preferredGoods = "metal";
+	this.requiredGoods = undefined;
 	// Currently carried goods
 	this.goods = { "type": null, "amount": null, "origin": null };
 };
@@ -145,17 +145,18 @@ Trader.prototype.HasBothMarkets = function()
 	return this.firstMarket && this.secondMarket;
 };
 
-Trader.prototype.GetPreferredGoods = function()
+Trader.prototype.GetRequiredGoods = function()
 {
-	return this.preferredGoods;
+	return this.requiredGoods;
 };
 
-Trader.prototype.SetPreferredGoods = function(preferredGoods)
+Trader.prototype.SetRequiredGoods = function(requiredGoods)
 {
 	// Check that argument is a correct resource name
-	if (RESOURCES.indexOf(preferredGoods) == -1)
-		return;
-	this.preferredGoods = preferredGoods;
+	if (!requiredGoods || RESOURCES.indexOf(requiredGoods) == -1)
+		this.requiredGoods = undefined;
+	else
+		this.requiredGoods = requiredGoods;
 };
 
 Trader.prototype.CanTrade = function(target)
@@ -218,7 +219,21 @@ Trader.prototype.PerformTrade = function(currentMarket)
 				cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.market2Gain);
 		}
 	}
-	this.goods.type = this.preferredGoods;
+
+	// First take the preferred goods of the trader if any,
+	// otherwise choose one according to the player's trading priorities
+	// if still nothing (but should never happen), choose metal
+	var nextGoods = this.GetRequiredGoods();
+	if (!nextGoods || RESOURCES.indexOf(nextGoods) == -1)
+	{
+		var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+		if (cmpPlayer)
+			nextGoods = cmpPlayer.GetNextTradingGoods();
+
+		if (!nextGoods || RESOURCES.indexOf(nextGoods) == -1)
+			nextGoods = "metal";
+	}
+	this.goods.type = nextGoods;
 	this.goods.amount = this.gain;
 	this.goods.origin = currentMarket;
 };

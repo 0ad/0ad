@@ -19,7 +19,10 @@ Player.prototype.Init = function()
 		"metal": 300,
 		"stone": 300
 	};
-	
+	this.tradingGoods = [                      // goods for next trade-route and its proba in % (the sum of probas must be 100)
+		{ "goods":  "wood", "proba": 30 },
+		{ "goods": "stone", "proba": 35 },
+		{ "goods": "metal", "proba": 35 } ];
 	this.team = -1;	// team number of the player, players on the same team will always have ally diplomatic status - also this is useful for team emblems, scoring, etc.
 	this.teamsLocked = false;
 	this.state = "active"; // game state - one of "active", "defeated", "won"
@@ -232,6 +235,45 @@ Player.prototype.TrySubtractResources = function(amounts)
 			cmpStatisticsTracker.IncreaseResourceUsedCounter(type, amounts[type]);
 
 	return true;
+};
+
+Player.prototype.GetNextTradingGoods = function()
+{
+	var value = 100*Math.random();
+	var last = this.tradingGoods.length - 1;
+	var sumProba = 0;
+	for (var i = 0; i < last; ++i)
+	{
+		sumProba += this.tradingGoods[i].proba;
+		if (value < sumProba)
+			return this.tradingGoods[i].goods;
+	}
+	return this.tradingGoods[last].goods;
+};
+
+Player.prototype.GetTradingGoods = function()
+{
+	var tradingGoods = {};
+	for each (var resource in this.tradingGoods)
+		tradingGoods[resource.goods] = resource.proba;
+
+	return tradingGoods;
+};
+
+Player.prototype.SetTradingGoods = function(tradingGoods)
+{
+	var sumProba = 0;
+	for (var resource in tradingGoods)
+		sumProba += tradingGoods[resource];
+	if (sumProba != 100)	// consistency check
+	{
+		error("Player.js SetTradingGoods: " + uneval(tradingGoods));
+		tradingGoods = { "food": 20, "wood":20, "stone":30, "metal":30 };
+	}
+
+	this.tradingGoods = [];
+	for (var resource in tradingGoods)
+		this.tradingGoods.push( {"goods": resource, "proba": tradingGoods[resource]} );
 };
 
 Player.prototype.GetState = function()

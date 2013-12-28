@@ -499,13 +499,17 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
-	case "select-trading-goods":
+	case "select-required-goods":
 		for each (var ent in entities)
 		{
 			var cmpTrader = Engine.QueryInterface(ent, IID_Trader);
 			if (cmpTrader)
-				cmpTrader.SetPreferredGoods(cmd.preferredGoods);
+				cmpTrader.SetRequiredGoods(cmd.requiredGoods);
 		}
+		break;
+
+	case "set-trading-goods":
+		cmpPlayer.SetTradingGoods(cmd.tradingGoods);
 		break;
 
 	case "barter":

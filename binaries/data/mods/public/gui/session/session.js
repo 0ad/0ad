@@ -54,9 +54,7 @@ var g_AdditionalHighlight = [];
 function GetSimState()
 {
 	if (!g_SimState)
-	{
 		g_SimState = Engine.GuiInterfaceCall("GetSimulationState");
-	}
 
 	return g_SimState;
 }
