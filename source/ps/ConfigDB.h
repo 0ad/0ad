@@ -60,23 +60,26 @@ public:
 	CConfigDB();
 
 	/**
-	 * Attempt to find a config variable with the given name; will search
-	 * CFG_COMMAND first, and then all namespaces from the specified namespace
-	 * down to system.
-	 *
-	 * Returns a pointer to the config value structure for the variable, or
-	 * NULL if such a variable could not be found.
+	 * Attempt to retrieve the value of a config variable with the given name;
+	 * will search CFG_COMMAND first, and then all namespaces from the specified
+	 * namespace down.
 	 */
-	CConfigValue *GetValue(EConfigNamespace ns, const CStr& name);
+	void GetValueBool(EConfigNamespace ns, const CStr& name, bool& value);
+	///@copydoc CConfigDB::GetValueBool
+	void GetValueInt(EConfigNamespace ns, const CStr& name, int& value);
+	///@copydoc CConfigDB::GetValueBool
+	void GetValueFloat(EConfigNamespace ns, const CStr& name, float& value);
+	///@copydoc CConfigDB::GetValueBool
+	void GetValueDouble(EConfigNamespace ns, const CStr& name, double& value);
+	///@copydoc CConfigDB::GetValueBool
+	void GetValueString(EConfigNamespace ns, const CStr& name, std::string& value);
 
 	/**
 	 * Attempt to retrieve a vector of values corresponding to the given setting;
 	 * will search CFG_COMMAND first, and then all namespaces from the specified
-	 * namespace down to system.
-	 *
-	 * Returns a pointer to the vector, or NULL if the setting could not be found.
+	 * namespace down.
 	 */
-	CConfigValueSet *GetValues(EConfigNamespace ns, const CStr& name);
+	void GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet& values);
 
 	/**
 	 * Returns the namespace that the value returned by GetValues was defined in,
@@ -87,18 +90,15 @@ public:
 	/**
 	 * Retrieve a map of values corresponding to settings whose names begin
 	 * with the given prefix;
-	 * will search all namespaces from system up to the specified namespace.
+	 * will search all namespaces from default up to the specified namespace.
 	 */
 	std::map<CStr, CConfigValueSet> GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix);
 
 	/**
-	 * Create a new config value in the specified namespace. If such a
-	 * variable already exists in this namespace, the old value is returned.
-	 *
-	 * Returns a pointer to the value of the newly created config variable, or
-	 * that of the already existing config variable.
+	 * Save a config value in the specified namespace. If the config variable
+	 * existed the value is replaced.
 	 */
-	CConfigValue *CreateValue(EConfigNamespace ns, const CStr& name);
+	void SetValueString(EConfigNamespace ns, const CStr& name, const CStr& value);
 	
 	/**
 	 * Set the path to the config file used to populate the specified namespace
@@ -145,11 +145,6 @@ public:
 // convenience wrapper on top of CConfigValue::Get* simplifies user code and
 // avoids "assignment within condition expression" warnings.
 #define CFG_GET_VAL(name, type, destination)\
-STMT(\
-	CConfigValue* val = g_ConfigDB.GetValue(CFG_USER, name);\
-	if(val)\
-		val->Get##type(destination);\
-)
-
+	g_ConfigDB.GetValue##type(CFG_USER, name, destination)
 
 #endif

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -537,7 +537,7 @@ std::string CUserReporter::LoadUserID()
 			userID += hex;
 		}
 
-		g_ConfigDB.CreateValue(CFG_USER, "userreport.id")->m_String = userID;
+		g_ConfigDB.SetValueString(CFG_USER, "userreport.id", userID);
 		g_ConfigDB.WriteFile(CFG_USER);
 	}
 
@@ -554,7 +554,7 @@ bool CUserReporter::IsReportingEnabled()
 void CUserReporter::SetReportingEnabled(bool enabled)
 {
 	CStr val = CStr::FromInt(enabled ? REPORTER_VERSION : 0);
-	g_ConfigDB.CreateValue(CFG_USER, "userreport.enabledversion")->m_String = val;
+	g_ConfigDB.SetValueString(CFG_USER, "userreport.enabledversion", val);
 	g_ConfigDB.WriteFile(CFG_USER);
 
 	if (m_Worker)

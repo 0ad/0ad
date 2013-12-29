@@ -152,7 +152,7 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 		{
 			CStr name = name_value.BeforeFirst(":");
 			CStr value = name_value.AfterFirst(":");
-			g_ConfigDB.CreateValue(CFG_COMMAND, name)->m_String = value;
+			g_ConfigDB.SetValueString(CFG_COMMAND, name, value);
 		}
 	}
 
@@ -167,7 +167,7 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 //		trace_enable(true);
 
 	if (args.Has("profile"))
-		g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = args.Get("profile");
+		g_ConfigDB.SetValueString(CFG_COMMAND, "profile", args.Get("profile"));
 
 	if (args.Has("quickstart"))
 	{
@@ -179,22 +179,22 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 		g_DisableAudio = true;
 
 	if (args.Has("shadows"))
-		g_ConfigDB.CreateValue(CFG_COMMAND, "shadows")->m_String = "true";
+		g_ConfigDB.SetValueString(CFG_COMMAND, "shadows", "true");
 
 	if (args.Has("xres"))
-		g_ConfigDB.CreateValue(CFG_COMMAND, "xres")->m_String = args.Get("xres");
+		g_ConfigDB.SetValueString(CFG_COMMAND, "xres", args.Get("xres"));
 
 	if (args.Has("yres"))
-		g_ConfigDB.CreateValue(CFG_COMMAND, "yres")->m_String = args.Get("yres");
+		g_ConfigDB.SetValueString(CFG_COMMAND, "yres", args.Get("yres"));
 
 	if (args.Has("vsync"))
-		g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String = "true";
+		g_ConfigDB.SetValueString(CFG_COMMAND, "vsync", "true");
 
 	if (args.Has("ooslog"))
-		g_ConfigDB.CreateValue(CFG_COMMAND, "ooslog")->m_String = "true";
+		g_ConfigDB.SetValueString(CFG_COMMAND, "ooslog", "true");
 
 	if (args.Has("serializationtest"))
-		g_ConfigDB.CreateValue(CFG_COMMAND, "serializationtest")->m_String = "true";
+		g_ConfigDB.SetValueString(CFG_COMMAND, "serializationtest", "true");
 }
 
 
