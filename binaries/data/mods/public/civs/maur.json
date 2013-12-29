@@ -17,13 +17,13 @@
 			[
 				{
 					"Name":"Elephant Roundup",
-					"History":"Unknown",
+					"History":".",
 					"Description":"Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to gain up to a 25% bonus in cost and train time of elephant units."
 				},
 				{
-					"Name":"Unknown",
-					"History":"Unknown",
-					"Description":"Unknown"
+					"Name":"Archery Tradition",
+					"History":"India is a land of archery. The bulk of any Indian army is made up of highly skilled archers, armed with bamboo longbows",
+					"Description":"Greater range and faster train time for Mauryan infantry archers."
 				}
 			],
 			"Heroes":
@@ -57,12 +57,12 @@
 		{
 			"Name": "Emperor of Emperors.",
 			"History": "The Mauryan Empire encompassed dozens of formerly independent kingdoms over an area of 5 million square kilometers, with a population of close to 60 million people. The Mauryan regents held the title Emperor of Emperors and commanded a standing army of 600,000 infantry, 9000 elephants, 8000 chariots, and 30,000 cavalry, making it arguably the largest army of its time.",
-			"Description": "Mauryans have a +10% population cap bonus (330 pop cap instead of the usual 300)."
+			"Description": "Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the usual 300)."
 		},
 		{
 			"Name": "Kṣhatriya Warrior Caste.",
 			"History": "Kshatriya or Kashtriya, meaning warrior, is one of the four varnas (social orders) in Hinduism. Traditionally Kshatriya constitute the military and ruling elite of the Vedic-Hindu social system outlined by the Vedas and the Laws of Manu. The earliest Vedic literature listed by organization of function, not of caste, the Kshatriya (holders of kṣatra, or authority) as first in rank, and the Brahmins second (priests and teachers of law), before the Vaisya (Cattle-herders, merchant-traders, farmers and some artisan castes), and the Sudra (labourers, some farming castes and other artisan castes).",
-			"Description": "Mauryans gain access to 4 champion units, instead of the standard 2."
+			"Description": "The Mauryans enjoy access to 4 champions."
 		}
 	],
 	"TeamBonuses":
@@ -70,7 +70,7 @@
 		{
 			"Name": "Unknown.",
 			"History": "Unknown.",
-			"Description": "Unknown." 
+			"Description": "Unknown."
 		} 
 	],
 	"Structures":
@@ -91,7 +91,7 @@
 			"History":".",
 			"Requirements":"Built by the Ashoka hero unit.",
 			"Phase":"City",
-			"Special":"."
+			"Special":"Contentment: +10% Health and +10% resource gathering rates for all citizens and allied citizens within its range. Can be built anywhere except in enemy territory. Max Built: 10."
 		}
 	],
 	"StartEntities":

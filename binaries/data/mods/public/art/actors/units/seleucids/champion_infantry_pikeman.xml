@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Bronze Shield Pikeman">
+      <animations>
+        <animation file="biped/not used/inf_phalanx_b.psa" name="Idle" speed="100"/>
+        <animation file="biped/inf_phalanx_walk_a.psa" name="Walk" speed="140"/>
+        <animation file="biped/inf_phalanx_walk_a.psa" name="run" speed="140"/>
+        <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="attack_melee" speed="350"/>
+        <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="attack_slaughter" speed="350"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_food" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_meat" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
+        <animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
+        <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
+        <animation file="infantry/general/forage.psa" name="gather_fruit" speed="125"/>
+        <animation file="infantry/general/forage.psa" name="gather_meat" speed="125"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_rock" speed="250"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ore" speed="250"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
+        <animation event="0.6" file="infantry/general/dude/dudebuild.psa" name="Build" speed="300"/>
+        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+      </animations>
+      <props>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/sele_silvershield.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/sarissa.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/mace_su1.xml" attachpoint="helmet"/>
+        <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="armor short">
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/mace_su1_hypaspist_2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

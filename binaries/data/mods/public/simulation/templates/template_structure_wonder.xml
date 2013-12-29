@@ -14,7 +14,7 @@
     <Category>Wonder</Category>
   </BuildRestrictions>
   <Cost>
-    <BuildTime>500</BuildTime>
+    <BuildTime>1000</BuildTime>
     <Resources>
       <food>0</food>
       <wood>1000</wood>
@@ -76,4 +76,7 @@
   <VisualActor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
   </VisualActor>
+  <Wonder>
+    <TimeTillVictory>300</TimeTillVictory>
+  </Wonder>
 </Entity>

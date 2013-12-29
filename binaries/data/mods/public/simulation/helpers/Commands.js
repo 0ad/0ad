@@ -424,18 +424,18 @@ function ProcessCommand(player, cmd)
 		break;
 	
 	case "increase-alert-level":
-		for each (var raiser in entities)
+		for each (var ent in entities)
 		{
-			var cmpAlertRaiser = Engine.QueryInterface(raiser, IID_AlertRaiser);
+			var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
 			if (!cmpAlertRaiser || !cmpAlertRaiser.IncreaseAlertLevel())
 				notifyAlertFailure(player);
 		}
 		break;
 	
 	case "alert-end":
-		for each (var raiser in entities)
+		for each (var ent in entities)
 		{
-			var cmpAlertRaiser = Engine.QueryInterface(raiser, IID_AlertRaiser);
+			var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
 			if (cmpAlertRaiser)
 				cmpAlertRaiser.EndOfAlert();
 		}
@@ -499,13 +499,17 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
-	case "select-trading-goods":
+	case "select-required-goods":
 		for each (var ent in entities)
 		{
 			var cmpTrader = Engine.QueryInterface(ent, IID_Trader);
 			if (cmpTrader)
-				cmpTrader.SetPreferredGoods(cmd.preferredGoods);
+				cmpTrader.SetRequiredGoods(cmd.requiredGoods);
 		}
+		break;
+
+	case "set-trading-goods":
+		cmpPlayer.SetTradingGoods(cmd.tradingGoods);
 		break;
 
 	case "barter":

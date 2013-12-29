@@ -18,7 +18,7 @@
 				<Type>default</Type>
 				<Colour r="0" g="0.356863" b="0.713726"/>
 				<Height>33.0492</Height>
-				<Shininess>2.19727</Shininess>
+				<Shininess>250</Shininess>
 				<Waviness>8.51563</Waviness>
 				<Murkiness>0.643555</Murkiness>
 				<Tint r="0" g="1" b="1"/>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="756.635" y="492.227" z="-310.667"/>
+		<Position x="817.802" y="106.895" z="508.658"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -15546,6 +15546,62 @@
 			<Position x="1258.50599" z="873.87714"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="61394"/>
+		</Entity>
+		<Entity uid="2903">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="410.95179" z="207.32862"/>
+			<Orientation y="-1.92211"/>
+			<Actor seed="51938"/>
+		</Entity>
+		<Entity uid="2904">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="427.51575" z="658.67658"/>
+			<Orientation y="0.37827"/>
+			<Actor seed="10798"/>
+		</Entity>
+		<Entity uid="2905">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="868.701" z="1038.87842"/>
+			<Orientation y="-1.66358"/>
+			<Actor seed="16174"/>
+		</Entity>
+		<Entity uid="2906">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="1221.57898" z="395.35206"/>
+			<Orientation y="0.31629"/>
+			<Actor seed="15202"/>
+		</Entity>
+		<Entity uid="2907">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="1017.904" z="510.02393"/>
+			<Orientation y="1.65037"/>
+			<Actor seed="39300"/>
+		</Entity>
+		<Entity uid="2908">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="666.22638" z="462.65748"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63936"/>
+		</Entity>
+		<Entity uid="2909">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="930.23981" z="106.41846"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36996"/>
+		</Entity>
+		<Entity uid="2910">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="180.4231" z="1027.87671"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44978"/>
 		</Entity>
 	</Entities>
 	<Paths/>

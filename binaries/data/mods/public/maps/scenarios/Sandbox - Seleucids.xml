@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="555.557" y="89.8868" z="74.6653"/>
+		<Position x="438.3" y="62.5195" z="101.504"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -586,31 +586,31 @@
 		<Entity uid="255">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="599.21705" z="136.74556"/>
+			<Position x="614.91413" z="120.62322"/>
 			<Orientation y="6.24001"/>
 		</Entity>
 		<Entity uid="256">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="601.5074" z="141.75991"/>
+			<Position x="617.20447" z="125.63756"/>
 			<Orientation y="2.82851"/>
 		</Entity>
 		<Entity uid="257">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="603.26105" z="137.11562"/>
+			<Position x="618.95813" z="120.99328"/>
 			<Orientation y="3.85444"/>
 		</Entity>
 		<Entity uid="258">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="597.96772" z="141.01011"/>
+			<Position x="613.6648" z="124.88776"/>
 			<Orientation y="5.03928"/>
 		</Entity>
 		<Entity uid="259">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="596.133" z="144.06481"/>
+			<Position x="611.83008" z="127.94246"/>
 			<Orientation y="1.91442"/>
 		</Entity>
 		<Entity uid="260">
@@ -6374,13 +6374,13 @@
 		<Entity uid="1596">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="807.66828" z="483.4604"/>
+			<Position x="802.34443" z="464.69544"/>
 			<Orientation y="0.55523"/>
 		</Entity>
 		<Entity uid="1597">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="818.55646" z="530.13294"/>
+			<Position x="802.72443" z="540.32575"/>
 			<Orientation y="0.39307"/>
 		</Entity>
 		<Entity uid="1598">
@@ -6392,7 +6392,7 @@
 		<Entity uid="1599">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="786.52454" z="509.84498"/>
+			<Position x="781.20069" z="491.08002"/>
 			<Orientation y="-0.0799"/>
 		</Entity>
 		<Entity uid="1600">
@@ -6638,13 +6638,13 @@
 		<Entity uid="1643">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="784.08844" z="478.79715"/>
+			<Position x="778.7646" z="460.0322"/>
 			<Orientation y="-2.92511"/>
 		</Entity>
 		<Entity uid="1644">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="795.85126" z="458.90647"/>
+			<Position x="790.52741" z="440.14152"/>
 			<Orientation y="-3.10409"/>
 		</Entity>
 		<Entity uid="1645">
@@ -6680,7 +6680,7 @@
 		<Entity uid="1650">
 			<Template>gaia/fauna_zebra</Template>
 			<Player>0</Player>
-			<Position x="432.19333" z="165.40506"/>
+			<Position x="358.70694" z="190.0247"/>
 			<Orientation y="0.3684"/>
 		</Entity>
 		<Entity uid="1651">
@@ -9946,7 +9946,7 @@
 		<Entity uid="2475">
 			<Template>structures/sele_defense_tower</Template>
 			<Player>1</Player>
-			<Position x="415.59025" z="173.55687"/>
+			<Position x="377.07114" z="187.58014"/>
 			<Orientation y="1.99698"/>
 			<Actor seed="38940"/>
 		</Entity>
@@ -10177,7 +10177,7 @@
 		<Entity uid="2508">
 			<Template>structures/sele_corral</Template>
 			<Player>1</Player>
-			<Position x="462.82184" z="152.17948"/>
+			<Position x="455.59739" z="129.88735"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="15340"/>
 		</Entity>
@@ -10212,7 +10212,7 @@
 		<Entity uid="2513">
 			<Template>structures/sele_temple</Template>
 			<Player>1</Player>
-			<Position x="524.62378" z="147.9533"/>
+			<Position x="524.38978" z="148.00226"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="64438"/>
 		</Entity>
@@ -10776,13 +10776,6 @@
 			<Orientation y="2.35621"/>
 			<Actor seed="22986"/>
 		</Entity>
-		<Entity uid="2594">
-			<Template>units/sele_champion_chariot</Template>
-			<Player>1</Player>
-			<Position x="528.38318" z="209.10257"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="14528"/>
-		</Entity>
 		<Entity uid="2595">
 			<Template>units/sele_champion_elephant</Template>
 			<Player>1</Player>
@@ -10804,101 +10797,80 @@
 			<Orientation y="2.35621"/>
 			<Actor seed="62464"/>
 		</Entity>
-		<Entity uid="2598">
-			<Template>units/sele_champion_cavalry</Template>
-			<Player>1</Player>
-			<Position x="537.68897" z="201.34006"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="14320"/>
-		</Entity>
-		<Entity uid="2599">
-			<Template>units/sele_champion_cavalry</Template>
-			<Player>1</Player>
-			<Position x="536.07422" z="199.31783"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="59352"/>
-		</Entity>
-		<Entity uid="2600">
-			<Template>units/sele_champion_cavalry</Template>
-			<Player>1</Player>
-			<Position x="534.23249" z="196.96767"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="3688"/>
-		</Entity>
 		<Entity uid="2601">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="482.533" z="171.33715"/>
+			<Position x="436.68912" z="157.65371"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="56576"/>
 		</Entity>
 		<Entity uid="2602">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="484.64066" z="173.23986"/>
+			<Position x="438.79679" z="159.55642"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="7738"/>
 		</Entity>
 		<Entity uid="2603">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="486.53486" z="175.25025"/>
+			<Position x="440.69098" z="161.56681"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="35086"/>
 		</Entity>
 		<Entity uid="2604">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="489.10352" z="176.45096"/>
+			<Position x="443.25965" z="162.76752"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="64494"/>
 		</Entity>
 		<Entity uid="2605">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="492.35566" z="172.96164"/>
+			<Position x="446.51178" z="159.2782"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19614"/>
 		</Entity>
 		<Entity uid="2606">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="489.34147" z="171.6027"/>
+			<Position x="443.4976" z="157.91926"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="38004"/>
 		</Entity>
 		<Entity uid="2607">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="487.21106" z="169.91218"/>
+			<Position x="441.3672" z="156.22873"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="60836"/>
 		</Entity>
 		<Entity uid="2608">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="485.78965" z="167.58448"/>
+			<Position x="439.94578" z="153.90104"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="13528"/>
 		</Entity>
 		<Entity uid="2609">
 			<Template>units/sele_hero_antiochus_great</Template>
 			<Player>1</Player>
-			<Position x="468.11515" z="184.20763"/>
+			<Position x="593.6678" z="145.4119"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="44694"/>
 		</Entity>
 		<Entity uid="2610">
 			<Template>units/sele_hero_antiochus_righteous</Template>
 			<Player>1</Player>
-			<Position x="464.13639" z="179.91015"/>
+			<Position x="589.68903" z="141.11445"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="39750"/>
 		</Entity>
 		<Entity uid="2611">
 			<Template>units/sele_hero_seleucus_victor</Template>
 			<Player>1</Player>
-			<Position x="456.80954" z="175.25182"/>
+			<Position x="584.32111" z="134.40409"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="49118"/>
 		</Entity>
@@ -11385,9 +11357,114 @@
 		<Entity uid="2682">
 			<Template>structures/sele_fortress</Template>
 			<Player>1</Player>
-			<Position x="719.93885" z="332.55915"/>
+			<Position x="739.79255" z="354.73908"/>
 			<Orientation y="-2.41706"/>
 			<Actor seed="7434"/>
+		</Entity>
+		<Entity uid="2683">
+			<Template>structures/sele_military_colony</Template>
+			<Player>1</Player>
+			<Position x="809.93421" z="498.51532"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34984"/>
+		</Entity>
+		<Entity uid="2684">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>1</Player>
+			<Position x="426.5897" z="149.74502"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30888"/>
+		</Entity>
+		<Entity uid="2685">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>1</Player>
+			<Position x="428.12146" z="151.5693"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4088"/>
+		</Entity>
+		<Entity uid="2686">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>1</Player>
+			<Position x="429.48578" z="153.64388"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21760"/>
+		</Entity>
+		<Entity uid="2687">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>1</Player>
+			<Position x="431.04834" z="154.80193"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59106"/>
+		</Entity>
+		<Entity uid="2688">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>1</Player>
+			<Position x="434.46494" z="150.14689"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2216"/>
+		</Entity>
+		<Entity uid="2689">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>1</Player>
+			<Position x="432.55597" z="148.58155"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44522"/>
+		</Entity>
+		<Entity uid="2690">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>1</Player>
+			<Position x="431.21589" z="147.26337"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27594"/>
+		</Entity>
+		<Entity uid="2691">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>1</Player>
+			<Position x="429.25495" z="145.88985"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16668"/>
+		</Entity>
+		<Entity uid="2692">
+			<Template>units/sele_champion_chariot</Template>
+			<Player>1</Player>
+			<Position x="431.5182" z="166.84227"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56896"/>
+		</Entity>
+		<Entity uid="2693">
+			<Template>units/sele_champion_chariot</Template>
+			<Player>1</Player>
+			<Position x="419.48026" z="177.82355"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34838"/>
+		</Entity>
+		<Entity uid="2694">
+			<Template>units/sele_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="420.79047" z="155.50344"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40492"/>
+		</Entity>
+		<Entity uid="2695">
+			<Template>units/sele_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="424.01133" z="158.86529"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14394"/>
+		</Entity>
+		<Entity uid="2696">
+			<Template>units/sele_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="418.67402" z="164.77553"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63800"/>
+		</Entity>
+		<Entity uid="2697">
+			<Template>units/sele_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="415.3632" z="160.90741"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60586"/>
 		</Entity>
 	</Entities>
 	<Paths/>

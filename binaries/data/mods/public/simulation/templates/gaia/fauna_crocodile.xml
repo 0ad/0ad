@@ -9,9 +9,9 @@
       <RepeatTime>2000</RepeatTime>
     </Melee>
   </Attack>
-  <Footprint>
-    <Circle radius="2.5"/>
-    <Height>1.5</Height>
+  <Footprint replace="">
+    <Square width="5" depth="8"/>
+    <Height>7.5</Height>
   </Footprint>
   <Identity>
     <Civ>gaia</Civ>
@@ -24,6 +24,14 @@
   <Position>
     <Anchor>pitch-roll</Anchor>
   </Position>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/128x128.png</MainTexture>
+        <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/lion_select.xml</select>

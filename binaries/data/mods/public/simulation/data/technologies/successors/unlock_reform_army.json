@@ -1,0 +1,12 @@
+{
+	"pair": "successors/pair_unlock_champions",
+	"genericName": "Reform Army",
+	"description": "The reform army of the Seleucids.",
+	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "helmet_corinthian_crest.png",
+	"researchTime": 0,
+	"tooltip": "Unlock the Romanized Heavy Swordsman and Seleucid Cataphract.",
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

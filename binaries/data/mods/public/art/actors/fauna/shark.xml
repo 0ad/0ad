@@ -5,9 +5,11 @@
   <group>
     <variant frequency="1" name="shark_great_white">
       <animations>
-        <animation file="quadraped/shark_walk.dae" name="walk" speed="10"/>
+		  <animation file="other/shark_idle.dae" name="idle" speed="10"/>
+        <animation file="other/shark_walk.dae" name="walk" speed="10"/>
+        <animation file="other/shark_run.dae" name="run" speed="12"/>
       </animations>
-      <mesh>skeletal/shark_a.dae</mesh>
+      <mesh>skeletal/shark.dae</mesh>
     </variant>
   </group>
   <group>

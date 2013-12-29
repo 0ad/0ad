@@ -22,6 +22,8 @@ GuiInterface.prototype.Init = function()
 	this.placementWallLastAngle = 0;
 	this.notifications = [];
 	this.renamedEntities = [];
+	this.timeNotificationID = 1;
+	this.timeNotifications = [];
 };
 
 /*
@@ -94,6 +96,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"isEnemy": enemies,
 			"entityLimits": cmpPlayerEntityLimits.GetLimits(),
 			"entityCounts": cmpPlayerEntityLimits.GetCounts(),
+			"entityLimitChangers": cmpPlayerEntityLimits.GetLimitChangers(),
 			"techModifications": cmpTechnologyManager.GetTechModifications(),
 			"researchQueued": cmpTechnologyManager.GetQueuedResearch(),
 			"researchStarted": cmpTechnologyManager.GetStartedResearch(),
@@ -218,7 +221,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	{
 		ret.trader = {
 			"goods": cmpTrader.GetGoods(),
-			"preferredGoods": cmpTrader.GetPreferredGoods()
+			"requiredGoods": cmpTrader.GetRequiredGoods()
 		};
 	}
 
@@ -282,6 +285,16 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	{
 		ret.gate = {
 			"locked": cmpGate.IsLocked(),
+		};
+	}
+
+	var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
+	if (cmpAlertRaiser)
+	{
+		ret.alertRaiser = {
+			"level": cmpAlertRaiser.GetLevel(),
+			"canIncreaseLevel": cmpAlertRaiser.CanIncreaseLevel(),
+			"hasRaisedAlert": cmpAlertRaiser.HasRaisedAlert(),
 		};
 	}
 
@@ -376,16 +389,6 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		ret.resourceCarrying = cmpResourceGatherer.GetCarryingStatus();
 	}
 	
-	var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
-	if(cmpAlertRaiser)
-	{
-		ret.alertRaiser = {
-			"level": cmpAlertRaiser.GetLevel(),
-			"canIncreaseLevel": cmpAlertRaiser.CanIncreaseLevel(),
-			"hasRaisedAlert": cmpAlertRaiser.HasRaisedAlert(),
-		};
-	}
-
 	var cmpResourceDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
 	if (cmpResourceDropsite)
 	{
@@ -727,6 +730,55 @@ GuiInterface.prototype.GetNeededResources = function(player, amounts)
 	return cmpPlayer.GetNeededResources(amounts);
 };
 
+GuiInterface.prototype.AddTimeNotification = function(notification)
+{
+	var time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
+	notification.endTime = notification.time + time;
+	notification.id = ++this.timeNotificationID;
+	this.timeNotifications.push(notification);
+	this.timeNotifications.sort(function (n1, n2){return n2.endTime - n1.endTime});
+	return this.timeNotificationID;
+};
+
+GuiInterface.prototype.DeleteTimeNotification = function(notificationID)
+{
+	for (var i in this.timeNotifications)
+	{
+		if (this.timeNotifications[i].id == notificationID)
+		{
+			this.timeNotifications.splice(i);
+			return;
+		}
+	}
+};
+
+GuiInterface.prototype.GetTimeNotificationText = function(playerID)
+{	
+	var formatTime = function(time)
+		{
+			// add 1000 ms to get ceiled instead of floored millisecons
+			// displaying 00:00 for a full second isn't nice
+			time += 1000;
+			var hours   = Math.floor(time / 1000 / 60 / 60);
+			var minutes = Math.floor(time / 1000 / 60) % 60;
+			var seconds = Math.floor(time / 1000) % 60;
+			return (hours ? hours + ':' : "") + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
+		};
+	var time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
+	var text = "";
+	for each (var n in this.timeNotifications)
+	{
+		if (time >= n.endTime)
+		{
+			// delete the notification and start over 
+			this.DeleteTimeNotification(n.id);
+			return this.GetTimeNotificationText(playerID);
+		}
+		if (n.players.indexOf(playerID) >= 0)
+			text += n.message.replace("%T",formatTime(n.endTime - time))+"\n";
+	}
+	return text;
+};
 
 GuiInterface.prototype.PushNotification = function(notification)
 {
@@ -1719,7 +1771,6 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 	{
 		result = {
 			"type": "is first",
-			"goods": cmpEntityTrader.GetPreferredGoods(),
 			"hasBothMarkets": cmpEntityTrader.HasBothMarkets()
 		};
 		if (cmpEntityTrader.HasBothMarkets())
@@ -1730,7 +1781,6 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 		result = {
 			"type": "is second",
 			"gain": cmpEntityTrader.GetGain(),
-			"goods": cmpEntityTrader.GetPreferredGoods()
 		};
 	}
 	else if (!firstMarket)
@@ -1742,7 +1792,6 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 		result = {
 			"type": "set second",
 			"gain": cmpEntityTrader.CalculateGain(firstMarket, data.target),
-			"goods": cmpEntityTrader.GetPreferredGoods()
 		};
 	}
 	else
@@ -1808,6 +1857,51 @@ GuiInterface.prototype.SetRangeDebugOverlay = function(player, enabled)
 	cmpRangeManager.SetDebugOverlay(enabled);
 };
 
+GuiInterface.prototype.GetTraderNumber = function(player)
+{
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var traders = cmpRangeManager.GetEntitiesByPlayer(player).filter( function(e) {
+		return Engine.QueryInterface(e, IID_Trader);
+	});
+
+	var landTrader = { "total": 0, "trading": 0, "garrisoned": 0 };
+	var shipTrader = { "total": 0, "trading": 0 };
+	for each (var ent in traders)
+	{
+		var cmpIdentity =  Engine.QueryInterface(ent, IID_Identity);
+		var cmpUnitAI =  Engine.QueryInterface(ent, IID_UnitAI);
+		if (!cmpIdentity || !cmpUnitAI)
+			continue;
+		if (cmpIdentity.HasClass("Ship"))
+		{
+			++shipTrader.total;
+			if (cmpUnitAI.order && cmpUnitAI.order.type == "Trade")
+				++shipTrader.trading;
+		}
+		else
+		{
+			++landTrader.total;
+			if (cmpUnitAI.order && cmpUnitAI.order.type == "Trade")
+				++landTrader.trading;
+			if (cmpUnitAI.order && cmpUnitAI.order.type == "Garrison")
+			{
+				var holder = cmpUnitAI.order.data.target;
+				var cmpHolderUnitAI = Engine.QueryInterface(holder, IID_UnitAI);
+				if (cmpHolderUnitAI && cmpHolderUnitAI.order && cmpHolderUnitAI.order.type == "Trade")
+					++landTrader.garrisoned;
+			}
+		}
+	}
+
+	return { "landTrader": landTrader, "shipTrader": shipTrader };
+};
+
+GuiInterface.prototype.GetTradingGoods = function(player, tradingGoods)
+{
+	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+	return cmpPlayer.GetTradingGoods();
+};
+
 GuiInterface.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	this.renamedEntities.push(msg);
@@ -1836,6 +1930,7 @@ var exposedFunctions = {
 	"GetIncomingAttacks": 1,
 	"GetNeededResources": 1,
 	"GetNextNotification": 1,
+	"GetTimeNotificationText": 1,
 
 	"GetAvailableFormations": 1,
 	"GetFormationRequirements": 1,
@@ -1862,6 +1957,9 @@ var exposedFunctions = {
 	"SetObstructionDebugOverlay": 1,
 	"SetMotionDebugOverlay": 1,
 	"SetRangeDebugOverlay": 1,
+
+	"GetTraderNumber": 1,
+	"GetTradingGoods": 1,
 };
 
 GuiInterface.prototype.ScriptCall = function(player, name, args)

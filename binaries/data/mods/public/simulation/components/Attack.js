@@ -138,7 +138,7 @@ Attack.prototype.Schema =
 				"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second). If unspecified, then it is a melee attack instead'>" +
 					"<ref name='nonNegativeDecimal'/>" +
 				"</element>" +
-				"<element name='Spread' a:help='Radius over which missiles will tend to land. Roughly 2/3 will land inside this radius (in metres)'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Spread' a:help='Radius over which missiles will tend to land (when shooting to the maximum range). Roughly 2/3 will land inside this radius (in metres). Spread is linearly diminished as the target gets closer.'><ref name='nonNegativeDecimal'/></element>" +
 				bonusesSchema +
 				preferredClassesSchema +
 				restrictedClassesSchema +
@@ -469,9 +469,14 @@ Attack.prototype.PerformAttack = function(type, target)
 		                         "z": targetPosition.z + targetVelocity.z * timeToTarget};
 
 		// Compute the real target point (based on spread and target speed)
+		var range = this.GetRange(type);
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		var elevationAdaptedMaxRange = cmpRangeManager.GetElevationAdaptedRange(selfPosition, cmpPosition.GetRotation(), range.max, range.elevationBonus, 0);
+		var distanceModifiedSpread = spread * horizDistance/elevationAdaptedMaxRange;
+
 		var randNorm = this.GetNormalDistribution();
-		var offsetX = randNorm[0] * spread * (1 + this.VectorLength(targetVelocity) / 20);
-		var offsetZ = randNorm[1] * spread * (1 + this.VectorLength(targetVelocity) / 20);
+		var offsetX = randNorm[0] * distanceModifiedSpread * (1 + this.VectorLength(targetVelocity) / 20);
+		var offsetZ = randNorm[1] * distanceModifiedSpread * (1 + this.VectorLength(targetVelocity) / 20);
 
 		var realTargetPosition = { "x": predictedPosition.x + offsetX, "y": targetPosition.y, "z": predictedPosition.z + offsetZ };
 

@@ -112,7 +112,7 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 	m_client->registerMessageHandler( this );
 
 	// Uncomment to see the raw stanzas
-	//m_client->logInstance().registerLogHandler( LogLevelDebug, LogAreaAll, this );
+	//m_client->getWrapped()->logInstance().registerLogHandler( gloox::LogLevelDebug, gloox::LogAreaAll, this );
 
 	if (!regOpt)
 	{

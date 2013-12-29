@@ -44,7 +44,7 @@ class LeaderboardList():
     """
     players = db.query(Player).filter_by(jid=str(JID))
     if not players.first():
-      player = Player(jid=str(JID), rating=default_rating)
+      player = Player(jid=str(JID), rating=-1)
       db.add(player)
       db.commit()
       return player
@@ -122,6 +122,12 @@ class LeaderboardList():
     # the database model, and therefore this code, requires a winner.
     # The Elo implementation does not, however.
     result = 1 if player1 == game.winner else -1
+    # Player's ratings are -1 unless they have played a rated game.
+    if player1.rating == -1:
+      player1.rating == default_rating
+    if player2.rating == -1:
+      player2.rating == default_rating
+
     rating_adjustment1 = int(get_rating_adjustment(player1.rating, player2.rating,
       len(player1.games), len(player2.games), result))
     rating_adjustment2 = int(get_rating_adjustment(player2.rating, player1.rating,
@@ -170,6 +176,9 @@ class LeaderboardList():
     board = {}
     players = db.query(Player).order_by(Player.rating.desc()).limit(100).all()
     for rank, player in enumerate(players):
+      # Don't send uninitialized ratings.
+      if player.rating == -1:
+        continue
       board[player.jid] = {'name': '@'.join(player.jid.split('@')[:-1]), 'rating': str(player.rating)}
     return board
 

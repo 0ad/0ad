@@ -142,13 +142,20 @@ function setOverlay(object, value)
 /**
  * Format entity count/limit message for the tooltip
  */
-function formatLimitString(trainEntLimit, trainEntCount)
+function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
 {
 	if (trainEntLimit == undefined)
 		return "";
 	var text = "\n\nCurrent Count: " + trainEntCount + ", Limit: " + trainEntLimit + ".";
 	if (trainEntCount >= trainEntLimit)
 		text = "[color=\"red\"]" + text + "[/color]";
+	for (var c in trainEntLimitChangers)
+	{
+		if (trainEntLimitChangers[c] > 0)
+			text += "\n" + c + " enlarges the limit with " + trainEntLimitChangers[c] + ".";
+		else if (trainEntLimitChangers[c] < 0)
+			text += "\n" + c + " lessens the limit with " + (-trainEntLimitChangers[c]) + ".";
+	}
 	return text;
 }
 
@@ -460,9 +467,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 
 				tooltip += "\n" + getEntityCostTooltip(template, trainNum, unitEntState.id);
 
-				var [trainEntLimit, trainEntCount, canBeAddedCount] =
+				var [trainEntLimit, trainEntCount, canBeAddedCount, trainEntLimitChangers] =
 					getEntityLimitAndCount(playerState, entType);
-				tooltip += formatLimitString(trainEntLimit, trainEntCount);
+				tooltip += formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers);
 
 				tooltip += "[color=\"255 251 131\"]" + formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch) + "[/color]";
 				break;
@@ -492,9 +499,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				tooltip += "\n" + getEntityCostTooltip(template);
 				tooltip += getPopulationBonusTooltip(template);
 
-				var [entLimit, entCount, canBeAddedCount] =
+				var [entLimit, entCount, canBeAddedCount, entLimitChangers] =
 					getEntityLimitAndCount(playerState, entType);
-				tooltip += formatLimitString(entLimit, entCount);
+				tooltip += formatLimitString(entLimit, entCount, entLimitChangers);
 
 				break;
 
@@ -899,20 +906,23 @@ function setupUnitTradingPanel(usedPanels, unitEntState, selection)
 {
 	usedPanels[TRADING] = 1;
 
+	var requiredGoods = unitEntState.trader.requiredGoods;
 	for (var i = 0; i < TRADING_RESOURCES.length; i++)
 	{
 		var resource = TRADING_RESOURCES[i];
 		var button = getGUIObjectByName("unitTradingButton["+i+"]");
 		button.size = (i * 46) + " 0 " + ((i + 1) * 46) + " 46";
-		var selectTradingPreferredGoodsData = { "entities": selection, "preferredGoods": resource };
-		button.onpress = (function(e){ return function() { selectTradingPreferredGoods(e); } })(selectTradingPreferredGoodsData);
+		if (resource == requiredGoods)
+			var selectRequiredGoodsData = { "entities": selection, "requiredGoods": undefined };
+		else
+			var selectRequiredGoodsData = { "entities": selection, "requiredGoods": resource };
+		button.onpress = (function(e){ return function() { selectRequiredGoods(e); } })(selectRequiredGoodsData);
 		button.enabled = true;
-		button.tooltip = "Set " + resource + " as trading goods";
+		button.tooltip = "Set/unset " + resource + " as forced trading goods.";
 		var icon = getGUIObjectByName("unitTradingIcon["+i+"]");
-		var preferredGoods = unitEntState.trader.preferredGoods;
 		var selected = getGUIObjectByName("unitTradingSelection["+i+"]");
-		selected.hidden = !(resource == preferredGoods);
-		var grayscale = (resource != preferredGoods) ? "grayscale:" : "";
+		selected.hidden = !(resource == requiredGoods);
+		var grayscale = (resource != requiredGoods) ? "grayscale:" : "";
 		icon.sprite = "stretched:"+grayscale+"session/icons/resources/" + resource + ".png";
 	}
 }
@@ -1078,8 +1088,8 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		else if (entState.production && entState.production.entities)
 			setupUnitPanel(TRAINING, usedPanels, entState, playerState, trainableEnts,
 				function (trainEntType) { addTrainingToQueue(selection, trainEntType, playerState); } );
-		else if (entState.trader)
-			setupUnitTradingPanel(usedPanels, entState, selection);
+//		else if (entState.trader)
+//			setupUnitTradingPanel(usedPanels, entState, selection);
 		else if (!entState.foundation && entState.gate || hasClass(entState, "LongWall"))
 		{
 			// Allow long wall pieces to be converted to gates

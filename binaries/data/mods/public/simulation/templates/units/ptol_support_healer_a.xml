@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/mace_support_healer_b">
+<Entity parent="units/ptol_support_healer_b">
   <Heal>
     <Range>15</Range>
     <HP>7</HP>
@@ -11,6 +11,6 @@
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
-    <Entity>units/mace_support_healer_e</Entity>
+    <Entity>units/ptol_support_healer_e</Entity>
   </Promotion>
 </Entity>

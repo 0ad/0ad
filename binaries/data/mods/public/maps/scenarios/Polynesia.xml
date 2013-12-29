@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="289.146" y="103.666" z="220.546"/>
-		<Rotation angle="0"/>
+		<Position x="340.167" y="71.9299" z="365.308"/>
+		<Rotation angle="-2.83203"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -2304,6 +2304,13 @@
 			<Player>1</Player>
 			<Position x="301.97812" z="285.99305"/>
 			<Orientation y="2.41422"/>
+		</Entity>
+		<Entity uid="490">
+			<Template>gaia/fauna_shark</Template>
+			<Player>0</Player>
+			<Position x="330.69187" z="328.2111"/>
+			<Orientation y="2.95342"/>
+			<Actor seed="36425"/>
 		</Entity>
 	</Entities>
 	<Paths/>

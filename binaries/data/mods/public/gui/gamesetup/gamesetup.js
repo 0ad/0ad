@@ -4,8 +4,8 @@ const DEFAULT_NETWORKED_MAP = "Acropolis 01";
 const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
 // TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
-const VICTORY_TEXT = ["Conquest", "None"];
-const VICTORY_DATA = ["conquest", "endless"];
+const VICTORY_TEXT = ["Conquest", "Wonder", "None"];
+const VICTORY_DATA = ["conquest", "wonder", "endless"];
 const VICTORY_DEFAULTIDX = 0;
 const POPULATION_CAP = ["50", "100", "150", "200", "250", "300", "Unlimited"];
 const POPULATION_CAP_DATA = [50, 100, 150, 200, 250, 300, 10000];

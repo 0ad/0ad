@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+	<castshadow/>
+	<group>
+		<variant frequency="1" name="basket a">
+			<mesh>props/ptol_fishing_boat_basket_a.dae</mesh>
+		</variant>
+		<variant frequency="1" name="basket b">
+			<mesh>props/ptol_fishing_boat_basket_b.dae</mesh>
+		</variant>
+		<variant frequency="1" name="basket c">
+			<mesh>props/ptol_fishing_boat_basket_c.dae</mesh>
+		</variant>
+	</group>
+	<group>
+		<variant>
+			<textures><texture file="structural/ptol_fishing_boat.png" name="baseTex"/></textures>
+		</variant>
+	</group>
+</actor>

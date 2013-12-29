@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+	<castshadow/>
+	<float/>
+	<group>
+		<variant frequency="100" name="Base">
+			<mesh>props/row.dae</mesh>
+			<textures><texture file="structural/ptol_fishing_boat.png" name="baseTex"/></textures>
+		</variant>
+	</group>
+	<material>player_trans.xml</material>
+</actor>

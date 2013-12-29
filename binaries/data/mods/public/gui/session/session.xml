@@ -345,6 +345,10 @@
 	<object name="notificationPanel" type="image" size="50%-300 60 50%+300 120" ghost="true">
 	    <object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
 	</object>
+	<object name="timeNotificationPanel" type="image" size="100%-600 60 100%-20 120" ghost="true">
+	    <object name="timeNotificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
+	</object>
+
 
 	<!-- ================================  ================================ -->
 	<!-- Chat -->
@@ -431,6 +435,56 @@
 		<object size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
 		    Close
 		    <action on="Press">closeDiplomacy();</action>
+		</object>
+	</object>
+
+	<!-- ================================  ================================ -->
+	<!-- Trade Window -->
+	<!-- ================================  ================================ -->
+	<object name="tradeDialogPanel"
+		size="50%-250 50%-130 50%+250 50%+100"
+		type="image"
+		hidden="true"
+		sprite="ModernDialog"
+	>
+		<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Trade</object>
+
+		<!-- Trading goods -->
+		<object name="tradeGoods" size="20 50 100%-20 82">
+			<object name="tradeHeader" size="0 0 180 100%" type="text" style="ModernLeftLabelText" ghost="true" caption="Trading goods selection:"/>
+
+			<object size="180 0 100% 100%">
+				<repeat count="4">
+					<object name="tradeResource[n]" size="0 0 58 32">
+						<object name="tradeResourceButton[n]" size="4 0 36 100%" type="button" style="StoneButton">
+							<object name="tradeResourceIcon[n]" type="image" ghost="true"/>
+							<object name="tradeResourceSelection[n]" type="image" sprite="stretched:session/icons/corners.png" ghost="true"/>
+							<object name="tradeResourceText[n]" type="text" style="ModernCenteredLabelText" ghost="true"/>
+						</object>
+						<object name="tradeArrowUp[n]" size="36 0 52 50%" type="button" style="iconButton">
+							<object type="image" ghost="true" sprite="wheatArrowUp"/>
+						</object>
+						<object name="tradeArrowDn[n]" size="36 50% 52 100%" type="button" style="iconButton">
+							<object type="image" ghost="true" sprite="wheatArrowDn"/>
+						</object>
+					</object>
+				</repeat>
+				<object name="tradeHelp" size="100%-24 4 100% 28" enabled="false" type="button" style="StoneButton" tooltip_style="sessionToolTipBold" tooltip="Select one goods as origin of the changes, \nthen use the arrows of the target goods to make the changes.">
+					<object size="20% 15% 80% 75%" type="image" ghost="true" sprite="iconInfoWhite"/>
+				</object>
+			</object>
+		</object>
+
+		<object name="tradeStatistics" size="20 120 100%-20 168">
+			<object                    size="0   0   130   50%" type="text" style="ModernLeftLabelText" ghost="true" caption="Traders:"/>
+			<object name="landTraders" size="130 0   100%  50%" type="text" style="ModernLeftLabelText" ghost="true" />
+			<object                    size="0   50% 130  100%" type="text" style="ModernLeftLabelText" ghost="true" caption = "Merchant ships:"/>
+			<object name="shipTraders" size="130 50% 100% 100%" type="text" style="ModernLeftLabelText" ghost="true" />
+		</object>
+
+		<object size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
+		    Close
+		    <action on="Press">closeTrade();</action>
 		</object>
 	</object>
 
@@ -635,7 +689,7 @@
 	    <!-- ================================  ================================ -->
 	    <object type="button"
 		name="gameSpeedButton"
-		size="100%-226 4 100%-198 32"
+		size="100%-258 4 100%-230 32"
 		style="iconButton"
 		tooltip_style="sessionToolTip"
 		tooltip="Game speed"
@@ -646,14 +700,14 @@
 			</action>
 	    </object>
 
-		<object size="100%-348 40 100%-198 65" name="gameSpeed" type="dropdown" buffer_zone="5" style="StoneDropDown" hidden="true" tooltip="Choose game speed" tooltip_style="sessionToolTip"/>
+		<object size="100%-380 40 100%-230 65" name="gameSpeed" type="dropdown" buffer_zone="5" style="StoneDropDown" hidden="true" tooltip="Choose game speed" tooltip_style="sessionToolTip"/>
 		
 	    <!-- ================================  ================================ -->
 	    <!-- Diplomacy Button -->
 	    <!-- ================================  ================================ -->
 	    <object type="button"
 		name="diplomacyButton1"
-		size="100%-194 4 100%-166 32"
+		size="100%-226 4 100%-198 32"
 		style="iconButton"
 		tooltip_style="sessionToolTip"
 		tooltip="Diplomacy"
@@ -662,6 +716,23 @@
 		<object size="0 0 100% 100%" name="diplomacyButtonImage" type="image" sprite="stretched:session/icons/diplomacy.png" ghost="true"/>
 		<action on="Press">
 		    toggleDiplomacy();
+		</action>
+	    </object>
+
+	    <!-- ================================  ================================ -->
+	    <!-- Trade Button -->
+	    <!-- ================================  ================================ -->
+	    <object type="button"
+		name="tradeButton1"
+		size="100%-194 4 100%-166 32"
+		style="iconButton"
+		tooltip_style="sessionToolTip"
+		tooltip="Trade"
+	    >
+		<!-- TODO make the button less ugly -->
+		<object size="0 0 100% 100%" name="tradeButtonImage" type="image" sprite="stretched:session/icons/economics.png" ghost="true"/>
+		<action on="Press">
+		    toggleTrade();
 		</action>
 	    </object>
 

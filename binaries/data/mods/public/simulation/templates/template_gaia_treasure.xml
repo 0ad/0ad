@@ -23,11 +23,6 @@
     <Type>treasure.metal</Type>
 	<MaxGatherers>1</MaxGatherers>
   </ResourceSupply>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_universal.xml</select>
-    </SoundGroups>
-  </Sound>
   <Selectable>
     <EditorOnly disable=""/>
     <Overlay>
@@ -38,4 +33,12 @@
       </Outline>
     </Overlay>
   </Selectable>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_universal.xml</select>
+    </SoundGroups>
+  </Sound>
+   <StatusBars>
+    <HeightOffset>3.75</HeightOffset>
+  </StatusBars>
 </Entity>

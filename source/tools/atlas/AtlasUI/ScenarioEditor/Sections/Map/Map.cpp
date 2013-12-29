@@ -145,6 +145,7 @@ void MapSettingsControl::CreateWidgets()
 
 	wxArrayString gameTypes;
 	gameTypes.Add(_T("conquest"));
+	gameTypes.Add(_T("wonder"));
 	gameTypes.Add(_T("endless"));
 
 	wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);

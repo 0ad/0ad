@@ -54,9 +54,7 @@ var g_AdditionalHighlight = [];
 function GetSimState()
 {
 	if (!g_SimState)
-	{
 		g_SimState = Engine.GuiInterfaceCall("GetSimulationState");
-	}
 
 	return g_SimState;
 }
@@ -481,6 +479,7 @@ function onSimulationUpdate()
 	updateResearchDisplay();
 	updateBuildingPlacementPreview();
 	updateTimeElapsedCounter();
+	updateTimeNotifications();	
 
 	// Update music state on basis of battle state.
 	var battleState = Engine.GuiInterfaceCall("GetBattleState", Engine.GetPlayerID());

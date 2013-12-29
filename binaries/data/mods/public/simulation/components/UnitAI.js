@@ -4131,6 +4131,10 @@ UnitAI.prototype.CheckGarrisonRange = function(target)
 	if (!cmpGarrisonHolder)
 		return false;
 	var range = cmpGarrisonHolder.GetLoadingRange();
+	
+	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	if (cmpObstruction)
+		range.max += cmpObstruction.GetUnitRadius()*1.5; // multiply by something larger than sqrt(2)
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpUnitMotion.IsInTargetRange(target, range.min, range.max);
