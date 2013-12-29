@@ -24,7 +24,6 @@ EndGameManager.prototype.Init = function()
 EndGameManager.prototype.SetGameType = function(newGameType)
 {
 	this.gameType = newGameType;
-	warn(this.gameType);
 	Engine.BroadcastMessage(MT_GameTypeChanged, {});
 };
 
