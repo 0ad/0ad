@@ -543,7 +543,7 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 			this.conquestCriticalEntitiesCount--;
 
 		if (this.conquestCriticalEntitiesCount == 0) // end game when needed
-			Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).CheckPlayers();
+			Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).CheckConquestCriticalEntities();
 
 		if (cmpCost)
 		{
