@@ -40,6 +40,7 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 {
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
+	CStrW soundPath;
 	// TODO Gee: easier access functions
 	switch (Message.type)
 	{
@@ -48,7 +49,6 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 		if (!enabled)
 			break;
 
-		CStrW soundPath;
 		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_enter", soundPath) == PSRETURN_OK && !soundPath.empty())
 			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 	}
@@ -59,7 +59,6 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 		if (!enabled)
 			break;
 
-		CStrW soundPath;
 		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_leave", soundPath) == PSRETURN_OK && !soundPath.empty())
 			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 	}
@@ -70,13 +69,11 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 	{
 		if (!enabled)
 		{
-			CStrW soundPath;
 			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
 				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 			break;
 		}
 
-		CStrW soundPath;
 		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_pressed", soundPath) == PSRETURN_OK && !soundPath.empty())
 			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 
@@ -99,13 +96,11 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 	{
 		if (!enabled)
 		{
-			CStrW soundPath;
 			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
 				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 			break;
 		}
 
-		CStrW soundPath;
 		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_pressed", soundPath) == PSRETURN_OK && !soundPath.empty())
 			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 
@@ -131,7 +126,6 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 		if (m_PressedRight)
 		{
 			m_PressedRight = false;
-			CStrW soundPath;
 			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_released", soundPath) == PSRETURN_OK && !soundPath.empty())
 				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 		}
@@ -146,7 +140,6 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 		if (m_Pressed)
 		{
 			m_Pressed = false;
-			CStrW soundPath;
 			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_released", soundPath) == PSRETURN_OK && !soundPath.empty())
 				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 		}
@@ -204,17 +197,15 @@ void IGUIButtonBehavior::DrawButton(const CRect &rect,
 		GUI<bool>::GetSetting(this, "enabled", enabled);
 
 		if (!enabled)
-		{
 			GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_disabled, sprite), cell_id, z, rect);
-		}
-		else
-		if (m_MouseHovering)
+		else if (m_MouseHovering)
 		{
 			if (m_Pressed)
 				GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_pressed, sprite), cell_id, z, rect);
 			else
 				GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_over, sprite), cell_id, z, rect);
 		}
-		else GetGUI()->DrawSprite(sprite, cell_id, z, rect);
+		else
+			GetGUI()->DrawSprite(sprite, cell_id, z, rect);
 	}
 }
