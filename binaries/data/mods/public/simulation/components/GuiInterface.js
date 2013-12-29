@@ -289,7 +289,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	}
 
 	var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
-	if(cmpAlertRaiser)
+	if (cmpAlertRaiser)
 	{
 		ret.alertRaiser = {
 			"level": cmpAlertRaiser.GetLevel(),

@@ -2192,22 +2192,22 @@ function removeGuard()
 
 function increaseAlertLevel()
 {
-	var raisers = g_Selection.toList().filter(function(e) {
+	var entities = g_Selection.toList().filter(function(e) {
 		var state = GetEntityState(e);
 		return (state && state.alertRaiser && state.alertRaiser.canIncreaseLevel);
 	});
 	
-	Engine.PostNetworkCommand({"type": "increase-alert-level", "entities": raisers});	
+	Engine.PostNetworkCommand({"type": "increase-alert-level", "entities": entities});	
 }
 
 function endOfAlert()
 {
-	var raisers = g_Selection.toList().filter(function(e) {
+	var entities = g_Selection.toList().filter(function(e) {
 		var state = GetEntityState(e);
 		return (state && state.alertRaiser && state.alertRaiser.hasRaisedAlert);
 	});
 	
-	Engine.PostNetworkCommand({"type": "alert-end", "entities": raisers});
+	Engine.PostNetworkCommand({"type": "alert-end", "entities": entities});
 }
 
 function clearSelection()

@@ -24,6 +24,7 @@ EndGameManager.prototype.Init = function()
 EndGameManager.prototype.SetGameType = function(newGameType)
 {
 	this.gameType = newGameType;
+	warn(this.gameType);
 	Engine.BroadcastMessage(MT_GameTypeChanged, {});
 };
 
@@ -32,14 +33,8 @@ EndGameManager.prototype.CheckGameType = function(type)
 	return this.gameType == type;
 };
 
-EndGameManager.prototype.RegisterWonder = function(entity)
+EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 {
-	if (!this.CheckGameType("wonder"))
-		return;
-
-	var cmpWon = QueryOwnerInterface(entity, IID_Player);
-	cmpWon.SetState("won");
-	
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
 	for (var i = 1; i < numPlayers; i++)
@@ -48,7 +43,7 @@ EndGameManager.prototype.RegisterWonder = function(entity)
 		var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
 		if (cmpPlayer.GetState() != "active")
 			continue;
-		if (this.alliedVictory && cmpPlayer.IsMutualAlly(cmpWon.GetPlayerID()))
+		if (playerID == cmpPlayer.GetPlayerID() || this.alliedVictory && cmpPlayer.IsMutualAlly(playerID))
 			cmpPlayer.SetState("won")
 		else
 			Engine.PostMessage(playerEntityId, MT_PlayerDefeated, { "playerId": i } );
@@ -67,19 +62,19 @@ EndGameManager.prototype.SetAlliedVictory = function(flag)
 /*
  * Check players the next turn. Avoids problems in Atlas, with promoting entities etc
  */
-EndGameManager.prototype.CheckPlayers = function()
+EndGameManager.prototype.CheckConquestCriticalEntities = function()
 {
 	if (this.timeout)
 		return;
 	// wait a turn for actually checking the players
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	this.timeout = cmpTimer.SetTimeout(this.entity, IID_EndGameManager, "CheckPlayersNow", 100, null);	
+	this.timeout = cmpTimer.SetTimeout(this.entity, IID_EndGameManager, "CheckConquestCriticalEntitiesNow", 100, null);	
 };
 
 /*
  * Check players immediately. Might cause problems with converting/promoting entities.
  */
-EndGameManager.prototype.CheckPlayersNow = function()
+EndGameManager.prototype.CheckConquestCriticalEntitiesNow = function()
 {
 	if (this.timeout)
 		this.timeout = null;

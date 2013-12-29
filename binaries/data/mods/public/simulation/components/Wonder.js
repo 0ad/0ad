@@ -49,19 +49,17 @@ Wonder.prototype.ResetTimer = function(ownerID)
 		if (i != ownerID)
 			players.push(i);
 
-	this.otherMessage = cmpGuiInterface.AddTimeNotification(
-		{
-			"message": cmpPlayer.GetName() + " will have won in %T",
-			"players": players,
-			"time": +this.template.TimeTillVictory*1000
-		});
-	this.ownMessage = cmpGuiInterface.AddTimeNotification(
-		{
-			"message": "You will have won in %T",
-			"players": [ownerID],
-			"time": +this.template.TimeTillVictory*1000
-		});
-	this.timer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_EndGameManager, "RegisterWonder", +this.template.TimeTillVictory*1000, this.entity);
+	this.otherMessage = cmpGuiInterface.AddTimeNotification({
+		"message": cmpPlayer.GetName() + " will have won in %T",
+		"players": players,
+		"time": +this.template.TimeTillVictory*1000
+	});
+	this.ownMessage = cmpGuiInterface.AddTimeNotification({
+		"message": "You will have won in %T",
+		"players": [ownerID],
+		"time": +this.template.TimeTillVictory*1000
+	});
+	this.timer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_EndGameManager, "MarkPlayerAsWon", +this.template.TimeTillVictory*1000, ownerID);
 };
 
 Engine.RegisterComponentType(IID_Wonder, "Wonder", Wonder);

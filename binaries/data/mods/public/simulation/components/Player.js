@@ -37,7 +37,7 @@ Player.prototype.Init = function()
 	this.cheatsEnabled = false;
 	this.cheatTimeMultiplier = 1;
 	this.heroes = [];
-	Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).CheckPlayers();
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).CheckConquestCriticalEntities();
 };
 
 Player.prototype.SetPlayerID = function(id)
