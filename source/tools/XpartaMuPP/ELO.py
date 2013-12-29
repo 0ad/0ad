@@ -1,5 +1,32 @@
-from config import elo_sure_win_difference, elo_k_factor_constant_rating
+"""Copyright (C) 2013 Wildfire Games.
+ * This file is part of 0 A.D.
+ *
+ * 0 A.D. is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * 0 A.D. is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+"""
 
+############ Constants ############
+# Difference between two ratings such that it is
+# regarded as a "sure win" for the higher player.
+# No points are gained or lost for such a game.
+elo_sure_win_difference = 600
+
+# Lower ratings "move faster" and change more
+# dramatically than higher ones. Anything rating above
+# this value moves at the same rate as this value.
+elo_k_factor_constant_rating = 2200
+
+############ Functions ############
 def get_rating_adjustment(rating, opponent_rating, games_played, opponent_games_played, result):
   """
     Calculates the rating adjustment after a 1v1 game finishes using simplified ELO.
