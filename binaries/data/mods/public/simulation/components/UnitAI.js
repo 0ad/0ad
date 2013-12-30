@@ -602,7 +602,7 @@ var UnitFsmSpec = {
 
 	"Order.ReturnResource": function(msg) {
 		// Try to move to the dropsite
-		if (this.MoveToTarget(this.order.data.target))
+		if (this.MoveToTargetRange(this.order.data.target, IID_ResourceGatherer))
 		{
 			// We've started walking to the target
 			this.SetNextState("INDIVIDUAL.RETURNRESOURCE.APPROACHING");
@@ -1706,31 +1706,32 @@ var UnitFsmSpec = {
 					// Check the target is still alive and attackable
 					if (this.TargetIsAlive(target) && this.CanAttack(target, this.order.data.forceResponse || null))
 					{
-						// Check we can still reach the target
+						// If we are hunting, first update the target position of the gather order so we know where will be the killed animal
+						if (this.order.data.hunting && this.orderQueue[1] && this.orderQueue[1].data.lastPos)
+						{
+							var cmpPosition = Engine.QueryInterface(this.order.data.target, IID_Position);
+							if (cmpPosition && cmpPosition.IsInWorld())
+							{
+								// Store the initial position, so that we can find the rest of the herd later
+								if (!this.orderQueue[1].data.initPos)
+									this.orderQueue[1].data.initPos = this.orderQueue[1].data.lastPos;
+								this.orderQueue[1].data.lastPos = cmpPosition.GetPosition();
+								// We still know where the animal is, so we shouldn't give up before going there
+								this.orderQueue[1].data.secondTry = undefined;
+							}
+						}
+
+						var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+						this.lastAttacked = cmpTimer.GetTime() - msg.lateness;
+
+						this.FaceTowardsTarget(target);
+						var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+						cmpAttack.PerformAttack(this.order.data.attackType, target);
+
+						
+						// Check we can still reach the target for the next attack
 						if (this.CheckTargetAttackRange(target, IID_Attack, this.order.data.attackType))
 						{
-							// If we are hunting, first update the target position of the gather order so we know where will be the killed animal
-							if (this.order.data.hunting && this.orderQueue[1] && this.orderQueue[1].data.lastPos)
-							{
-								var cmpPosition = Engine.QueryInterface(this.order.data.target, IID_Position);
-								if (cmpPosition && cmpPosition.IsInWorld())
-								{
-									// Store the initial position, so that we can find the rest of the herd later
-									if (!this.orderQueue[1].data.initPos)
-										this.orderQueue[1].data.initPos = this.orderQueue[1].data.lastPos;
-									this.orderQueue[1].data.lastPos = cmpPosition.GetPosition();
-									// We still know where the animal is, so we shouldn't give up before going there
-									this.orderQueue[1].data.secondTry = undefined;
-								}
-							}
-
-							var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-							this.lastAttacked = cmpTimer.GetTime() - msg.lateness;
-
-							this.FaceTowardsTarget(target);
-							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-							cmpAttack.PerformAttack(this.order.data.attackType, target);
-
 							if (this.resyncAnimation)
 							{
 								this.SetAnimationSync(this.attackTimers.repeat, this.attackTimers.repeat);

@@ -442,7 +442,17 @@ public:
 		return m_Tag;
 	}
 
+	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& out)
+	{
+		return GetObstructionSquare(out, true);
+	}
+
 	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out)
+	{
+		return GetObstructionSquare(out, false);
+	}
+
+	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out, bool previousPosition)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition)
@@ -455,7 +465,11 @@ public:
 		if (!cmpPosition->IsInWorld())
 			return false; // no obstruction square
 
-		CFixedVector2D pos = cmpPosition->GetPosition2D();
+		CFixedVector2D pos;
+		if (previousPosition)
+			pos = cmpPosition->GetPreviousPosition2D();
+		else
+			pos = cmpPosition->GetPosition2D();
 		if (m_Type == STATIC)
 			out = cmpObstructionManager->GetStaticShapeObstruction(pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1);
 		else if (m_Type == UNIT)
