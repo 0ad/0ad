@@ -113,11 +113,11 @@ m.aStarPath.prototype.getPath = function(start, end, Sampling, preferredWidth, i
 	
 	if (this.waterPathfinder && this.map[this.s] !== 200 && this.map[this.s] !== 201)
 	{
-		debug ("Trying a path over water, but we are on land, aborting");
+		m.debug ("Trying a path over water, but we are on land, aborting");
 		return undefined;
 	} else if (!this.waterPathfinder && this.map[this.s] === 200)
 	{
-		debug ("Trying a path over land, but we are over water, aborting");
+		m.debug ("Trying a path over land, but we are over water, aborting");
 		return undefined;
 	}
 	
@@ -270,7 +270,7 @@ m.aStarPath.prototype.continuePath = function(gamestate)
 		// we've got to assume that we stopped because we reached the upper limit of iterations
 		return "toBeContinued";
 	}
-	//debug (this.totalIteration);
+	//m.debug (this.totalIteration);
 	var paths = [];
 	if (found) {
 		this.currentSquare = e;
@@ -281,12 +281,12 @@ m.aStarPath.prototype.continuePath = function(gamestate)
 			this.currentSquare = this.parentSquare[this.currentSquare];
 			
 			if (!this.onWater && this.map[this.currentSquare] === 200) {
-				//debug ("We must cross water, going " +this.currentSquare + " from parent " + this.parentSquare[this.currentSquare]);
+				//m.debug ("We must cross water, going " +this.currentSquare + " from parent " + this.parentSquare[this.currentSquare]);
 				this.pathChangesTransport = true;
 				changes[this.currentSquare] = true;
 				this.onWater = true;
 			} else if (this.onWater && (this.map[this.currentSquare] !== 200 && this.map[this.currentSquare] !== 201)) {
-				//debug ("We must cross to the ground, going " +this.currentSquare + " from parent " + this.parentSquare[this.currentSquare]);
+				//m.debug ("We must cross to the ground, going " +this.currentSquare + " from parent " + this.parentSquare[this.currentSquare]);
 				this.pathChangesTransport = true;
 				changes[this.currentSquare] = true;
 				this.onWater = false;
