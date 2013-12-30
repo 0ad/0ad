@@ -9,6 +9,9 @@
 	<VisualActor>
 		<Actor>fauna/hawk.xml</Actor>
 	</VisualActor>
+	<UnitAI>
+		<RoamDistance>1000.0</RoamDistance>
+	</UnitAI>
 	<UnitMotion>
 		<WalkSpeed>8.0</WalkSpeed>
 	</UnitMotion>
