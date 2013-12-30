@@ -1,0 +1,36 @@
+<skeletons>
+	<standard_skeleton title="Hawk" id="hawk">
+		<bone name="Body">
+			<bone name="Head"/>
+			<bone name="Tail"/>
+			<bone name="Humerus_R">
+				<bone name="Ulna_R">
+					<bone name="Digit_R"/>
+				</bone>
+			</bone>
+			<bone name="Humerus_L">
+				<bone name="Ulna_L">
+					<bone name="Digit_L"/>
+				</bone>
+			</bone>
+		</bone>
+	</standard_skeleton>
+	
+	<skeleton title="BlenderHawk" target="hawk">
+		<identifier><root>Armature</root></identifier>
+		<bone name="Body"><target>Body</target>
+			<bone name="Head"><target>Head</target></bone>
+			<bone name="Tail"><target>Tail</target></bone>
+			<bone name="Humerus_R"><target>Humerus_R</target>
+				<bone name="Ulna_R"><target>Ulna_R</target>
+					<bone name="Digit_R"><target>Digit_R</target></bone>
+				</bone>
+			</bone>
+			<bone name="Humerus_L"><target>Humerus_L</target>
+				<bone name="Ulna_L"><target>Ulna_L</target>
+					<bone name="Digit_L"><target>Digit_L</target></bone>
+				</bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>

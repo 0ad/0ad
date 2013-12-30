@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This entity file is meant to make animals move
+ on the map instead of just staying there,
+ but not affect the gameplay in any way.
+ They have a minimum number of components. -->
+<Entity>
+	<Position>
+		<Altitude>0</Altitude>
+		<Anchor>upright</Anchor>
+		<Floating>false</Floating>
+		<TurnRate>6.0</TurnRate>
+	</Position>
+	<UnitAI>
+		<AlertReactiveLevel>0</AlertReactiveLevel>
+		<DefaultStance>passive</DefaultStance>
+		<NaturalBehaviour>passive</NaturalBehaviour>
+		<FleeDistance>12.0</FleeDistance>
+		<FormationController>false</FormationController>
+		<CanGuard>false</CanGuard>
+		<RoamDistance>100.0</RoamDistance>
+		<FleeDistance>100.0</FleeDistance>
+		<RoamTimeMin>40000</RoamTimeMin>
+		<RoamTimeMax>50000</RoamTimeMax>
+		<FeedTimeMin>1</FeedTimeMin>
+		<FeedTimeMax>2</FeedTimeMax>
+	</UnitAI>
+	<UnitMotion>
+		<FormationController>false</FormationController>
+		<WalkSpeed>5.0</WalkSpeed>
+		<PassabilityClass>unrestricted</PassabilityClass>
+		<CostClass>default</CostClass>
+	</UnitMotion>
+	<Vision>
+		<RetainInFog>true</RetainInFog>
+		<Range>0</Range>
+		<AlwaysVisible>false</AlwaysVisible>
+	</Vision>
+	<VisualActor>
+		<SilhouetteDisplay>false</SilhouetteDisplay>
+		<SilhouetteOccluder>false</SilhouetteOccluder>
+		<VisibleInAtlasOnly>false</VisibleInAtlasOnly>
+	</VisualActor>
+</Entity>
