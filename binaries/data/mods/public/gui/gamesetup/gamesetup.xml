@@ -103,7 +103,7 @@
 				<object type="text" style="RightLabelText" size="0 0 100% 30">Match Type:</object>
 				<object type="text" style="RightLabelText" size="0 32 100% 62">Map Filter:</object>
 				<object type="text" style="RightLabelText" size="0 64 100% 94">Select Map:</object>
-				<object type="text" style="RightLabelText" size="0 96 100% 126">Map Size:</object>
+				<object name="mapSizeDesc" type="text" style="RightLabelText" size="0 96 100% 126">Map Size:</object>
 			</object>
 
 			<object size="100%-327 363 100%-25 423" name="mapFilterSelectionTooltip">
