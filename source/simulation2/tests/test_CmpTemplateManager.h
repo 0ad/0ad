@@ -80,7 +80,7 @@ public:
 		TS_ASSERT(actor != NULL);
 		TS_ASSERT_WSTR_EQUALS(actor->ToXML(),
 				L"<Footprint><Circle radius=\"2.0\"></Circle><Height>1.0</Height></Footprint><Selectable><EditorOnly></EditorOnly><Overlay><Texture><MainTexture>actor.png</MainTexture><MainTextureMask>actor_mask.png</MainTextureMask></Texture></Overlay></Selectable>"
-				L"<VisualActor><Actor>example1</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
+				L"<VisualActor><Actor>example1</Actor><ActorOnly></ActorOnly><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
 
 		const CParamNode* preview = tempMan->LoadTemplate(ent2, "preview|unit", -1);
 		TS_ASSERT(preview != NULL);
@@ -108,7 +108,7 @@ public:
 		TS_ASSERT_WSTR_EQUALS(previewactor->ToXML(),
 				// the actor's <Selectable> element is not part of the preview element subset, hence not included
 				L"<Footprint><Circle radius=\"2.0\"></Circle><Height>1.0</Height></Footprint><Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
-				L"<VisualActor><Actor>example2</Actor><DisableShadows></DisableShadows><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
+				L"<VisualActor><Actor>example2</Actor><ActorOnly></ActorOnly><DisableShadows></DisableShadows><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
 	}
 
 	void test_LoadTemplate_scriptcache()
@@ -142,11 +142,11 @@ public:
 
 		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1", -1);
 		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, &actor->GetChild("VisualActor")));
-		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\", SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\", VisibleInAtlasOnly:\"false\"})");
+		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\", ActorOnly:(void 0), SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\", VisibleInAtlasOnly:\"false\"})");
 
 		const CParamNode* foundation = tempMan->LoadTemplate(ent2, "foundation|actor|example1", -1);
 		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, &foundation->GetChild("VisualActor")));
-		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\", Foundation:(void 0), SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\", VisibleInAtlasOnly:\"false\"})");
+		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\", ActorOnly:(void 0), Foundation:(void 0), SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\", VisibleInAtlasOnly:\"false\"})");
 	}
 
 	void test_LoadTemplate_errors()
