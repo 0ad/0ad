@@ -243,15 +243,18 @@ class ReportManager():
       appendIndex = len(self.interimReportTracker)
       self.interimReportTracker.append(cleanRawGameReport)
       # Initilize the JIDs and store the initial JID.
-      JIDs = [None] * self.getNumPlayers(rawGameReport)
-      JIDs[int(rawGameReport["playerID"])-1] = str(JID)
+      numPlayers = self.getNumPlayers(rawGameReport)
+      JIDs = [None] * numPlayers
+      if numPlayers - int(rawGameReport["playerID"]) > -1:
+        JIDs[int(rawGameReport["playerID"])-1] = str(JID)
       self.interimJIDTracker.append(JIDs)
     else:
       # We get the index at which the JIDs coresponding to the game are stored.
       index = self.interimReportTracker.index(cleanRawGameReport)
       # We insert the new report JID into the acending list of JIDs for the game.
       JIDs = self.interimJIDTracker[index]
-      JIDs[int(rawGameReport["playerID"])-1] = str(JID)
+      if len(JIDs) - int(rawGameReport["playerID"]) > -1:
+        JIDs[int(rawGameReport["playerID"])-1] = str(JID)
       self.interimJIDTracker[index] = JIDs
 
     self.checkFull()
