@@ -44,6 +44,9 @@ extern bool g_NoGLVBO;
 // flag to pause the game on window focus loss
 extern bool g_PauseOnFocusLoss;
 
+// flag to switch on actor rendering
+extern bool g_RenderActors;
+
 // flag to switch on shadows
 extern bool g_Shadows;
 

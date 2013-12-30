@@ -1187,7 +1187,7 @@ SScreenRect CRenderer::RenderReflections(const CShaderDefines& context, const CB
 		ogl_WarnIfError();
 		RenderModels(context, &m_ViewCamera.GetFrustum());
 		ogl_WarnIfError();
-		RenderTransparentModels(context, TRANSPARENT_BLEND, &m_ViewCamera.GetFrustum());
+		RenderTransparentModels(context, TRANSPARENT_OPAQUE, &m_ViewCamera.GetFrustum());
 		ogl_WarnIfError();
 
 		glFrontFace(GL_CCW);
@@ -1267,7 +1267,7 @@ SScreenRect CRenderer::RenderRefractions(const CShaderDefines& context, const CB
 		ogl_WarnIfError();
 		RenderModels(context, &m_ViewCamera.GetFrustum());
 		ogl_WarnIfError();
-		RenderTransparentModels(context, TRANSPARENT_BLEND, &m_ViewCamera.GetFrustum());
+		RenderTransparentModels(context, TRANSPARENT_OPAQUE, &m_ViewCamera.GetFrustum());
 		ogl_WarnIfError();
 
 		glDisable(GL_SCISSOR_TEST);

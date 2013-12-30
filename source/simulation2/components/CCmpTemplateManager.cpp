@@ -417,7 +417,7 @@ void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, C
 	std::wstring actorNameW = wstring_from_utf8(actorName);
 	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(actorNameW));
 	std::string xml = "<Entity>"
-	                      "<VisualActor><Actor>" + name + "</Actor></VisualActor>"
+	                      "<VisualActor><Actor>" + name + "</Actor><ActorOnly/></VisualActor>"
 						  // arbitrary-sized Footprint definition to make actors' selection outlines show up in Atlas
 						  "<Footprint><Circle radius='2.0'/><Height>1.0</Height></Footprint>"
 	                      "<Selectable>"
