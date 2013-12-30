@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2013 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,6 +39,7 @@ struct ScopedLock
 
 CConfigDB::CConfigDB()
 {
+	// Recursive mutex needed for WriteFile
 	pthread_mutexattr_t attr;
 	int err;
 	err = pthread_mutexattr_init(&attr);
@@ -51,36 +52,66 @@ CConfigDB::CConfigDB()
 	ENSURE(err == 0);
 }
 
-CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, const CStr& name)
-{
-	ScopedLock s;
-	CConfigValueSet* values = GetValues(ns, name);
-	if (!values)
-		return NULL;
-	return &((*values)[0]);
-}
+#define GETVAL(T, type) \
+	void CConfigDB::GetValue##T(EConfigNamespace ns, const CStr& name, type& value) \
+	{ \
+		if (ns < 0 || ns >= CFG_LAST) \
+		{ \
+			debug_warn(L"CConfigDB: Invalid ns value"); \
+			return; \
+		} \
+		ScopedLock s; \
+		TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name); \
+		if (it != m_Map[CFG_COMMAND].end()) \
+		{ \
+			it->second[0].Get##T(value); \
+			return; \
+		} \
+		\
+		for (int search_ns = ns; search_ns >= 0; search_ns--) \
+		{ \
+			it = m_Map[search_ns].find(name); \
+			if (it != m_Map[search_ns].end()) \
+			{ \
+				it->second[0].Get##T(value); \
+				return; \
+			} \
+		} \
+	}
 
-CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name)
+GETVAL(Bool, bool)
+GETVAL(Int, int)
+GETVAL(Float, float)
+GETVAL(Double, double)
+GETVAL(String, std::string)
+
+#undef GETVAL
+
+void CConfigDB::GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet& values)
 {
 	if (ns < 0 || ns >= CFG_LAST)
 	{
 		debug_warn(L"CConfigDB: Invalid ns value");
-		return NULL;
+		return;
 	}
 
 	ScopedLock s;
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
 	if (it != m_Map[CFG_COMMAND].end())
-		return &(it->second);
+	{
+		values = it->second;
+		return;
+	}
 
 	for (int search_ns = ns; search_ns >= 0; search_ns--)
 	{
-		TConfigMap::iterator it = m_Map[search_ns].find(name);
+		it = m_Map[search_ns].find(name);
 		if (it != m_Map[search_ns].end())
-			return &(it->second);
+		{
+			values = it->second;
+			return;
+		}
 	}
-
-	return NULL;
 }
 
 EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& name)
@@ -98,7 +129,7 @@ EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& n
 
 	for (int search_ns = ns; search_ns >= 0; search_ns--)
 	{
-		TConfigMap::iterator it = m_Map[search_ns].find(name);
+		it = m_Map[search_ns].find(name);
 		if (it != m_Map[search_ns].end())
 			return (EConfigNamespace)search_ns;
 	}
@@ -128,24 +159,29 @@ std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace 
 		}
 	}
 
+	for (TConfigMap::iterator it = m_Map[CFG_COMMAND].begin(); it != m_Map[CFG_COMMAND].end(); ++it)
+	{
+		if (boost::algorithm::starts_with(it->first, prefix))
+			ret[it->first] = it->second;
+	}
+
 	return ret;
 }
 
-CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, const CStr& name)
+void CConfigDB::SetValueString(EConfigNamespace ns, const CStr& name, const CStr& value)
 {
 	if (ns < 0 || ns >= CFG_LAST)
 	{
 		debug_warn(L"CConfigDB: Invalid ns value");
-		return NULL;
+		return;
 	}
 
 	ScopedLock s;
 	TConfigMap::iterator it = m_Map[ns].find(name);
-	if (it != m_Map[ns].end())
-		return &(it->second[0]);
+	if (it == m_Map[ns].end())
+		it = m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet(1)));
 
-	it=m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet(1)));
-	return &(it->second[0]);
+	it->second[0].m_String = value;
 }
 
 void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)

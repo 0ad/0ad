@@ -504,21 +504,6 @@ bool IsUserReportEnabled(void* UNUSED(cbdata))
 	return g_UserReporter.IsReportingEnabled();
 }
 
-bool IsSplashScreenEnabled(void* UNUSED(cbdata))
-{
-	bool splashScreenEnable = true;
-	CFG_GET_VAL("splashscreenenable", Bool, splashScreenEnable);
-	return splashScreenEnable;
-}
-
-void SetSplashScreenEnabled(void* UNUSED(cbdata), bool enabled)
-{
-	CStr val = (enabled ? "true" : "false");
-	g_ConfigDB.CreateValue(CFG_USER, "splashscreenenable")->m_String = val;
-	g_ConfigDB.WriteFile(CFG_USER);
-}
-
-
 void SetUserReportEnabled(void* UNUSED(cbdata), bool enabled)
 {
 	g_UserReporter.SetReportingEnabled(enabled);
@@ -700,10 +685,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, bool, &SetUserReportEnabled>("SetUserReportEnabled");
 	scriptInterface.RegisterFunction<std::string, &GetUserReportStatus>("GetUserReportStatus");
 	scriptInterface.RegisterFunction<void, std::string, int, std::wstring, &SubmitUserReport>("SubmitUserReport");
-
-	// Splash screen functions
-	scriptInterface.RegisterFunction<bool, &IsSplashScreenEnabled>("IsSplashScreenEnabled");
-	scriptInterface.RegisterFunction<void, bool, &SetSplashScreenEnabled>("SetSplashScreenEnabled");
 
 	// Development/debugging functions
 	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");

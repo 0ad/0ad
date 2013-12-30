@@ -28,7 +28,9 @@ from sleekxmpp.xmlstream.matcher import StanzaPath
 
 from LobbyRanking import session as db, Game, Player, PlayerInfo
 from ELO import get_rating_adjustment
-from config import default_rating, leaderboard_minimum_games, leaderboard_active_games
+# Rating that new players should be inserted into the
+# database with, before they've played any games.
+leaderboard_default_rating = 1200
 
 ## Class that contains and manages leaderboard data ##
 class LeaderboardList():
@@ -124,9 +126,9 @@ class LeaderboardList():
     result = 1 if player1 == game.winner else -1
     # Player's ratings are -1 unless they have played a rated game.
     if player1.rating == -1:
-      player1.rating == default_rating
+      player1.rating == leaderboard_default_rating
     if player2.rating == -1:
-      player2.rating == default_rating
+      player2.rating == leaderboard_default_rating
 
     rating_adjustment1 = int(get_rating_adjustment(player1.rating, player2.rating,
       len(player1.games), len(player2.games), result))

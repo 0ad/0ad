@@ -48,16 +48,9 @@ std::string JSI_ConfigDB::GetValue(void* UNUSED(cbdata), std::wstring cfgNsStrin
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
 		return std::string();
 
-	CConfigValue *val = g_ConfigDB.GetValue(cfgNs, name);
-	if (val)
-	{
-		return val->m_String;
-	}
-	else
-	{
-		LOGMESSAGE(L"Config setting %hs does not exist!", name.c_str());
-		return std::string();
-	}
+	std::string value;
+	g_ConfigDB.GetValueString(cfgNs, name, value);
+	return value;
 }
 
 bool JSI_ConfigDB::CreateValue(void* UNUSED(cbdata), std::wstring cfgNsString, std::string name, std::string value)
@@ -66,8 +59,7 @@ bool JSI_ConfigDB::CreateValue(void* UNUSED(cbdata), std::wstring cfgNsString, s
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
 		return false;
 
-	CConfigValue *val = g_ConfigDB.CreateValue(cfgNs, name);
-	val->m_String = value;
+	g_ConfigDB.SetValueString(cfgNs, name, value);
 	return true;
 }
 

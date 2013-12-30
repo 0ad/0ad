@@ -38,139 +38,108 @@ IGUIButtonBehavior::~IGUIButtonBehavior()
 
 void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 {
+	bool enabled;
+	GUI<bool>::GetSetting(this, "enabled", enabled);
+	CStrW soundPath;
 	// TODO Gee: easier access functions
 	switch (Message.type)
 	{
 	case GUIM_MOUSE_ENTER:
 	{
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-		if (enabled)
-		{
-			CStrW soundPath;
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_enter", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
-		}
+		if (!enabled)
+			break;
+
+		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_enter", soundPath) == PSRETURN_OK && !soundPath.empty())
+			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 	}
 	break;
 
 	case GUIM_MOUSE_LEAVE:
 	{
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-		if (enabled)
-		{
-			CStrW soundPath;
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_leave", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
-		}
+		if (!enabled)
+			break;
+
+		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_leave", soundPath) == PSRETURN_OK && !soundPath.empty())
+			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 	}
 	break;
 
+	case GUIM_MOUSE_DBLCLICK_LEFT:
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-	
 		if (!enabled)
 		{
-			CStrW soundPath;
 			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
 				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 			break;
 		}
 
-		CStrW soundPath;
 		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_pressed", soundPath) == PSRETURN_OK && !soundPath.empty())
 			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 
+		// Button was clicked
+		SendEvent(GUIM_PRESSED, "press");
+		if (Message.type == GUIM_MOUSE_DBLCLICK_LEFT)
+		{
+			// Button was clicked a second time. We can't tell if the button
+			// expects to receive doublepress events or just a second press
+			// event, so send both of them (and assume the extra unwanted press
+			// is harmless on buttons that expect doublepress)
+			SendEvent(GUIM_DOUBLE_PRESSED, "doublepress");
+		}
 		m_Pressed = true;
 	}
 	break;
 
 	case GUIM_MOUSE_DBLCLICK_RIGHT:
+	case GUIM_MOUSE_PRESS_RIGHT:
+	{
+		if (!enabled)
+		{
+			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
+				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+			break;
+		}
+
+		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_pressed", soundPath) == PSRETURN_OK && !soundPath.empty())
+			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+
+		// Button was right-clicked
+		SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
+		if (Message.type == GUIM_MOUSE_DBLCLICK_RIGHT)
+		{
+			// Button was clicked a second time. We can't tell if the button
+			// expects to receive doublepress events or just a second press
+			// event, so send both of them (and assume the extra unwanted press
+			// is harmless on buttons that expect doublepress)
+			SendEvent(GUIM_DOUBLE_PRESSED_MOUSE_RIGHT, "doublepressright");
+		}
+		m_PressedRight = true;
+	}
+	break;
+
 	case GUIM_MOUSE_RELEASE_RIGHT:
 	{
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-		
 		if (!enabled)
 			break;
-		
+
 		if (m_PressedRight)
 		{
 			m_PressedRight = false;
-			if (Message.type == GUIM_MOUSE_RELEASE_RIGHT)
-			{
-				// Button was right-clicked
-				SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
-			}
-			else
-			{
-				// Button was clicked a second time. We can't tell if the button
-				// expects to receive doublepress events or just a second press
-				// event, so send both of them (and assume the extra unwanted press
-				// is harmless on buttons that expect doublepress)
-				SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
-				SendEvent(GUIM_DOUBLE_PRESSED_MOUSE_RIGHT, "doublepressright");
-			}
-
-			CStrW soundPath;
 			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_released", soundPath) == PSRETURN_OK && !soundPath.empty())
 				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 		}
 	}
 	break;
 
-	case GUIM_MOUSE_PRESS_RIGHT:
-	{
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-		
-		if (!enabled)
-		{
-			CStrW soundPath;
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_disabled", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
-			break;
-		}
-
-		CStrW soundPath;
-		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_pressed", soundPath) == PSRETURN_OK && !soundPath.empty())
-			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
-		
-		m_PressedRight = true;
-	}
-	break;
-
-	case GUIM_MOUSE_DBLCLICK_LEFT:
 	case GUIM_MOUSE_RELEASE_LEFT:
 	{
-		bool enabled;
-		GUI<bool>::GetSetting(this, "enabled", enabled);
-	
 		if (!enabled)
 			break;
 
 		if (m_Pressed)
 		{
 			m_Pressed = false;
-			if (Message.type == GUIM_MOUSE_RELEASE_LEFT)
-			{
-				// Button was clicked
-				SendEvent(GUIM_PRESSED, "press");
-			}
-			else
-			{
-				// Button was clicked a second time. We can't tell if the button
-				// expects to receive doublepress events or just a second press
-				// event, so send both of them (and assume the extra unwanted press
-				// is harmless on buttons that expect doublepress)
-				SendEvent(GUIM_PRESSED, "press");
-				SendEvent(GUIM_DOUBLE_PRESSED, "doublepress");
-			}
-
-			CStrW soundPath;
 			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_released", soundPath) == PSRETURN_OK && !soundPath.empty())
 				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 		}
@@ -228,17 +197,15 @@ void IGUIButtonBehavior::DrawButton(const CRect &rect,
 		GUI<bool>::GetSetting(this, "enabled", enabled);
 
 		if (!enabled)
-		{
 			GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_disabled, sprite), cell_id, z, rect);
-		}
-		else
-		if (m_MouseHovering)
+		else if (m_MouseHovering)
 		{
 			if (m_Pressed)
 				GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_pressed, sprite), cell_id, z, rect);
 			else
 				GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_over, sprite), cell_id, z, rect);
 		}
-		else GetGUI()->DrawSprite(sprite, cell_id, z, rect);
+		else
+			GetGUI()->DrawSprite(sprite, cell_id, z, rect);
 	}
 }

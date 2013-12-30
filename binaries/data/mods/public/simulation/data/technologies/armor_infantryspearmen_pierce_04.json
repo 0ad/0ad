@@ -13,10 +13,10 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "shields_generic_silver.png",
 	"researchTime": 40,
-	"tooltip": "Infantry Spearmen +2 Pierce Armor Levels, but also +10 Metal Cost.",
+	"tooltip": "Champions +2 Pierce Armor Levels, but also +10 Metal Cost.",
 	"modifications": [
 	{"value": "Armour/Pierce", "add": 2.0},
 	{"value": "Cost/Resources/metal", "add": 10}],
-	"affects": ["Infantry Spear"],
+	"affects": ["Champion"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

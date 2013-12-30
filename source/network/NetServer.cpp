@@ -221,16 +221,16 @@ void* CNetServerWorker::SetupUPnP(void*)
 	struct UPNPDev* devlist = 0;
 
 	// Cached root descriptor URL.
-	std::string rootDescURL = "";
+	std::string rootDescURL;
 	CFG_GET_VAL("network.upnprootdescurl", String, rootDescURL);
-	if (rootDescURL != "")
+	if (!rootDescURL.empty())
 		LOGMESSAGE(L"Net server: attempting to use cached root descriptor URL: %hs", rootDescURL.c_str());
 
 	// Init the return variable for UPNP_GetValidIGD to 1 so things behave when using cached URLs.
 	int ret = 1;
 
 	// If we have a cached URL, try that first, otherwise try getting a valid UPnP device for 10 seconds. We also get our LAN address here.
-	if (!((rootDescURL != "" && UPNP_GetIGDFromUrl(rootDescURL.c_str(), &urls, &data, internalIPAddress, sizeof(internalIPAddress)))
+	if (!((!rootDescURL.empty() && UPNP_GetIGDFromUrl(rootDescURL.c_str(), &urls, &data, internalIPAddress, sizeof(internalIPAddress)))
 	  || ((devlist = upnpDiscover(10000, 0, 0, 0, 0, 0)) && (ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress))))))
 	{
 		LOGMESSAGE(L"Net server: upnpDiscover failed and no working cached URL.");
@@ -288,7 +288,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 				   externalIPAddress, psPort, protocall, intClient, intPort, duration);
 
 	// Cache root descriptor URL to try to avoid discovery next time.
-	g_ConfigDB.CreateValue(CFG_USER, "network.upnprootdescurl")->m_String = urls.controlURL;
+	g_ConfigDB.SetValueString(CFG_USER, "network.upnprootdescurl", urls.controlURL);
 	g_ConfigDB.WriteFile(CFG_USER);
 	LOGMESSAGE(L"Net server: cached UPnP root descriptor URL as %hs", urls.controlURL);
 

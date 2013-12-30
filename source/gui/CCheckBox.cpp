@@ -103,11 +103,12 @@ void CCheckBox::HandleMessage(SGUIMessage &Message)
 	{
 		bool checked;
 
+		// Switch to opposite.
 		GUI<bool>::GetSetting(this, "checked", checked);
 		checked = !checked;
 		GUI<bool>::SetSetting(this, "checked", checked);
-		
-	}	break;
+		break;
+	}
 
 	default:
 		break;

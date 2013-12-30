@@ -158,7 +158,7 @@ function onTick()
 	{
 		g_ShowSplashScreens = false;
 
-		if (Engine.IsSplashScreenEnabled())
+		if (Engine.ConfigDB_GetValue("user", "splashscreenenable") !== "false")
 			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen" } );
 
 		// Warn about removing fixed render path
