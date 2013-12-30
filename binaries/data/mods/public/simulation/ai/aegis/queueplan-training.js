@@ -1,15 +1,18 @@
-var TrainingPlan = function(gameState, type, metadata, number, startTime, expectedTime, maxMerge) {
+var AEGIS = function(m)
+{
+
+m.TrainingPlan = function(gameState, type, metadata, number, startTime, expectedTime, maxMerge) {
 	this.type = gameState.applyCiv(type);
 	this.metadata = metadata;
 
-	this.ID = uniqueIDBOPlans++;
+	this.ID = m.playerGlobals[PlayerID].uniqueIDBOPlans++;
 	
 	this.template = gameState.getTemplate(this.type);
 	if (!this.template)
 		return false;
 
 	this.category = "unit";
-	this.cost = new Resources(this.template.cost(), this.template._template.Cost.Population);
+	this.cost = new API3.Resources(this.template.cost(), this.template._template.Cost.Population);
 	if (!number)
 		this.number = 1;
 	else
@@ -33,11 +36,11 @@ var TrainingPlan = function(gameState, type, metadata, number, startTime, expect
 };
 
 // return true if we willstart amassing resource for this plan
-TrainingPlan.prototype.isGo = function(gameState) {
+m.TrainingPlan.prototype.isGo = function(gameState) {
 	return (gameState.getTimeElapsed() > this.startTime);
 };
 
-TrainingPlan.prototype.canStart = function(gameState) {
+m.TrainingPlan.prototype.canStart = function(gameState) {
 	if (this.invalidTemplate)
 		return false;
 
@@ -48,7 +51,7 @@ TrainingPlan.prototype.canStart = function(gameState) {
 	return (trainers.length != 0);
 };
 
-TrainingPlan.prototype.start = function(gameState) {
+m.TrainingPlan.prototype.start = function(gameState) {
 	//warn("Executing TrainingPlan " + uneval(this));
 	var self = this;
 	var trainers = gameState.findTrainers(this.type).toEntityArray();
@@ -72,15 +75,19 @@ TrainingPlan.prototype.start = function(gameState) {
 	}
 };
 
-TrainingPlan.prototype.getCost = function(){
-	var multCost = new Resources();
+m.TrainingPlan.prototype.getCost = function(){
+	var multCost = new API3.Resources();
 	multCost.add(this.cost);
 	multCost.multiply(this.number);
 	return multCost;
 };
 
-TrainingPlan.prototype.addItem = function(amount){
+m.TrainingPlan.prototype.addItem = function(amount){
 	if (amount === undefined)
 		amount = 1;
 	this.number += amount;
 };
+
+
+return m;
+}(AEGIS);

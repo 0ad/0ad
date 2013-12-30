@@ -1,10 +1,13 @@
-var ConstructionPlan = function(gameState, type, metadata, startTime, expectedTime, position) {
+var AEGIS = function(m)
+{
+
+m.ConstructionPlan = function(gameState, type, metadata, startTime, expectedTime, position) {
 	this.type = gameState.applyCiv(type);
 	this.position = position;
 
 	this.metadata = metadata;
 
-	this.ID = uniqueIDBOPlans++;
+	this.ID = m.playerGlobals[PlayerID].uniqueIDBOPlans++;
 
 	this.template = gameState.getTemplate(this.type);
 	if (!this.template) {
@@ -12,7 +15,7 @@ var ConstructionPlan = function(gameState, type, metadata, startTime, expectedTi
 	}
 	
 	this.category = "building";
-	this.cost = new Resources(this.template.cost());
+	this.cost = new API3.Resources(this.template.cost());
 	this.number = 1; // The number of buildings to build
 	
 	if (!startTime)
@@ -28,13 +31,13 @@ var ConstructionPlan = function(gameState, type, metadata, startTime, expectedTi
 };
 
 // return true if we willstart amassing resource for this plan
-ConstructionPlan.prototype.isGo = function(gameState) {
+m.ConstructionPlan.prototype.isGo = function(gameState) {
 	return (gameState.getTimeElapsed() > this.startTime);
 };
 
 // checks other than resource ones.
 // TODO: change this.
-ConstructionPlan.prototype.canStart = function(gameState) {
+m.ConstructionPlan.prototype.canStart = function(gameState) {
 	if (gameState.buildingsBuilt > 0)
 		return false;
 	
@@ -51,7 +54,7 @@ ConstructionPlan.prototype.canStart = function(gameState) {
 	return (builders.length != 0);
 };
 
-ConstructionPlan.prototype.start = function(gameState) {
+m.ConstructionPlan.prototype.start = function(gameState) {
 	
 	var builders = gameState.findBuilders(this.type).toEntityArray();
 
@@ -63,11 +66,11 @@ ConstructionPlan.prototype.start = function(gameState) {
 	if (!pos){
 		if (this.template.hasClass("Naval"))
 			gameState.ai.HQ.dockFailed = true;
-		debug("No room to place " + this.type);
+		m.debug("No room to place " + this.type);
 		return;
 	}
 	if (this.template.hasClass("Naval"))
-		debug (pos);
+		m.debug (pos);
 	gameState.buildingsBuilt++;
 
 	if (gameState.getTemplate(this.type).buildCategory() === "Dock")
@@ -80,20 +83,20 @@ ConstructionPlan.prototype.start = function(gameState) {
 		builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
 };
 
-ConstructionPlan.prototype.getCost = function() {
-	var costs = new Resources();
+m.ConstructionPlan.prototype.getCost = function() {
+	var costs = new API3.Resources();
 	costs.add(this.cost);
 	return costs;
 };
 
-ConstructionPlan.prototype.findGoodPosition = function(gameState) {
+m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	var template = gameState.getTemplate(this.type);
 
 	var cellSize = gameState.cellSize; // size of each tile
 
 	// First, find all tiles that are far enough away from obstructions:
 
-	var obstructionMap = Map.createObstructionMap(gameState,0, template);
+	var obstructionMap = m.createObstructionMap(gameState,0, template);
 	
 	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions_pre.png");
 
@@ -104,7 +107,7 @@ ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 
 	// Compute each tile's closeness to friendly structures:
 
-	var friendlyTiles = new Map(gameState.sharedScript);
+	var friendlyTiles = new API3.Map(gameState.sharedScript);
 	
 	var alreadyHasHouses = false;
 
@@ -229,3 +232,7 @@ ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 		"angle" : angle
 	};
 };
+
+
+return m;
+}(AEGIS);

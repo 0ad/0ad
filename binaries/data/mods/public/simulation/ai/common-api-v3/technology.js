@@ -1,6 +1,9 @@
+var API3 = function(m)
+{
+
 // Wrapper around a technology template
 
-function Technology(allTemplates, templateName)
+m.Technology = function(allTemplates, templateName)
 {
 	this._templateName = templateName;
 	var template = allTemplates[templateName];
@@ -20,7 +23,7 @@ function Technology(allTemplates, templateName)
 	this._techTemplates = allTemplates;
 }
 // returns generic, or specific if civ provided.
-Technology.prototype.name = function(civ)
+m.Technology.prototype.name = function(civ)
 {
 	if (civ === undefined)
 	{
@@ -34,37 +37,37 @@ Technology.prototype.name = function(civ)
 	}
 };
 
-Technology.prototype.pairDef = function()
+m.Technology.prototype.pairDef = function()
 {
 	return this._definesPair;
 };
 // in case this defines a pair only, returns the two paired technologies.
-Technology.prototype.getPairedTechs = function()
+m.Technology.prototype.getPairedTechs = function()
 {
 	if (!this._definesPair)
 		return undefined;
 	
-	var techOne = new Technology(this._techTemplates, this._template.top);
-	var techTwo = new Technology(this._techTemplates, this._template.bottom);
+	var techOne = new m.Technology(this._techTemplates, this._template.top);
+	var techTwo = new m.Technology(this._techTemplates, this._template.bottom);
 	
 	return [techOne,techTwo];
 };
 
-Technology.prototype.pair = function()
+m.Technology.prototype.pair = function()
 {
 	if (!this._isPair)
 		return undefined;
 	return this._template.pair;
 };
 
-Technology.prototype.pairedWith = function()
+m.Technology.prototype.pairedWith = function()
 {
 	if (!this._isPair)
 		return undefined;
 	return this._pairedWith;
 };
 
-Technology.prototype.cost = function()
+m.Technology.prototype.cost = function()
 {
 	if (!this._template.cost)
 		return undefined;
@@ -72,49 +75,49 @@ Technology.prototype.cost = function()
 };
 
 // seconds
-Technology.prototype.researchTime = function()
+m.Technology.prototype.researchTime = function()
 {
 	if (!this._template.researchTime)
 		return undefined;
 	return this._template.researchTime;
 };
 
-Technology.prototype.requirements = function()
+m.Technology.prototype.requirements = function()
 {
 	if (!this._template.requirements)
 		return undefined;
 	return this._template.requirements;
 };
 
-Technology.prototype.autoResearch = function()
+m.Technology.prototype.autoResearch = function()
 {
 	if (!this._template.autoResearch)
 		return undefined;
 	return this._template.autoResearch;
 };
 
-Technology.prototype.supersedes = function()
+m.Technology.prototype.supersedes = function()
 {
 	if (!this._template.supersedes)
 		return undefined;
 	return this._template.supersedes;
 };
 
-Technology.prototype.modifications = function()
+m.Technology.prototype.modifications = function()
 {
 	if (!this._template.modifications)
 		return undefined;
 	return this._template.modifications;
 };
 
-Technology.prototype.affects = function()
+m.Technology.prototype.affects = function()
 {
 	if (!this._template.affects)
 		return undefined;
 	return this._template.affects;
 };
 
-Technology.prototype.isAffected = function(classes)
+m.Technology.prototype.isAffected = function(classes)
 {
 	if (!this._template.affects)
 		return false;
@@ -136,3 +139,7 @@ Technology.prototype.isAffected = function(classes)
 	}
 	return false;
 };
+
+return m;
+
+}(API3);

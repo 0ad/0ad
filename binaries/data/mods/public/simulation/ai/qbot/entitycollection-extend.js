@@ -7,7 +7,7 @@ EntityCollection.prototype.attack = function(unit)
 		unitId = unit;
 	}
 	
-	Engine.PostCommand({"type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": false});
+	Engine.PostCommand(PlayerID, {"type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": false});
 	return this;
 };
 

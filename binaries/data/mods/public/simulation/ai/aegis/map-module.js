@@ -1,6 +1,10 @@
-// other map functions
+var AEGIS = function(m)
+{
 
-Map.createObstructionMap = function(gameState, accessIndex, template){
+// other map functions
+m.TERRITORY_PLAYER_MASK = 0x3F;
+
+m.createObstructionMap = function(gameState, accessIndex, template){
 	var passabilityMap = gameState.getMap();
 	var territoryMap = gameState.ai.territoryMap;
 	
@@ -31,7 +35,7 @@ Map.createObstructionMap = function(gameState, accessIndex, template){
 			for (var y = 0; y < passabilityMap.height; ++y)
 			{
 				var i = x + y*passabilityMap.width;
-				var tilePlayer = (territoryMap.data[i] & TERRITORY_PLAYER_MASK);
+				var tilePlayer = (territoryMap.data[i] & m.TERRITORY_PLAYER_MASK);
 				
 				if (gameState.ai.myIndex !== gameState.ai.accessibility.landPassMap[i])
 				{
@@ -88,7 +92,7 @@ Map.createObstructionMap = function(gameState, accessIndex, template){
 		var obstructionTiles = new Uint8Array(passabilityMap.data.length);
 		for (var i = 0; i < passabilityMap.data.length; ++i)
 		{
-			var tilePlayer = (territoryMap.data[i] & TERRITORY_PLAYER_MASK);
+			var tilePlayer = (territoryMap.data[i] & m.TERRITORY_PLAYER_MASK);
 			var invalidTerritory = (
 									(!buildOwn && tilePlayer == playerID) ||
 									(!buildAlly && gameState.isPlayerAlly(tilePlayer) && tilePlayer != playerID) ||
@@ -105,7 +109,7 @@ Map.createObstructionMap = function(gameState, accessIndex, template){
 		}
 	}
 	
-	var map = new Map(gameState.sharedScript, obstructionTiles);
+	var map = new API3.Map(gameState.sharedScript, obstructionTiles);
 	map.setMaxVal(255);
 	
 	if (template && template.buildDistance()){
@@ -126,17 +130,19 @@ Map.createObstructionMap = function(gameState, accessIndex, template){
 };
 
 
-
-Map.createTerritoryMap = function(gameState) {
+m.createTerritoryMap = function(gameState) {
 	var map = gameState.ai.territoryMap;
 	
-	var ret = new Map(gameState.sharedScript, map.data);
+	var ret = new API3.Map(gameState.sharedScript, map.data);
 	
 	ret.getOwner = function(p) {
-		return this.point(p) & TERRITORY_PLAYER_MASK;
+		return this.point(p) & m.TERRITORY_PLAYER_MASK;
 	}
 	ret.getOwnerIndex = function(p) {
-		return this.map[p] & TERRITORY_PLAYER_MASK;
+		return this.map[p] & m.TERRITORY_PLAYER_MASK;
 	}
 	return ret;
 };
+
+return m;
+}(AEGIS);

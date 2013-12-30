@@ -1,8 +1,10 @@
+var API3 = function(m)
+{
 /**
  * Provides a nicer syntax for defining classes,
  * with support for OO-style inheritance.
  */
-function Class(data)
+m.Class = function(data)
 {
 	var ctor;
 	if (data._init)
@@ -34,3 +36,7 @@ print((new A).foo+" "+(new A).bar+"\n");
 print((new B).foo+" "+(new B).bar+"\n");
 print((new C).foo+" "+(new C).bar+"\n");
 //*/
+
+return m;
+
+}(API3);

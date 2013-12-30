@@ -1,19 +1,22 @@
 var PlayerID = -1;
 
-function BaseAI(settings)
+var API3 = (function() {
+
+var m = {};
+
+m.BaseAI = function(settings)
 {
 	if (!settings)
 		return;
 
 	this.player = settings.player;
-	PlayerID = this.player;
 
 	// played turn, in case you don't want the AI to play every turn.
 	this.turn = 0;
-}
+};
 
 //Return a simple object (using no classes etc) that will be serialized into saved games
-BaseAI.prototype.Serialize = function()
+m.BaseAI.prototype.Serialize = function()
 {
 	// TODO: ought to get the AI script subclass to serialize its own state
 	// TODO: actually this is part of a larger reflection on wether AIs should or not.
@@ -22,15 +25,16 @@ BaseAI.prototype.Serialize = function()
 
 //Called after the constructor when loading a saved game, with 'data' being
 //whatever Serialize() returned
-BaseAI.prototype.Deserialize = function(data, sharedScript)
+m.BaseAI.prototype.Deserialize = function(data, sharedScript)
 {
 	// TODO: ought to get the AI script subclass to deserialize its own state
 	// TODO: actually this is part of a larger reflection on wether AIs should or not.
 	this.isDeserialized = true;
 };
 
-BaseAI.prototype.Init = function(state, sharedAI)
+m.BaseAI.prototype.Init = function(state, playerID, sharedAI)
 {
+	PlayerID = playerID;
 	// define some references
 	this.entities = sharedAI.entities;
 	this.templates = sharedAI.templates;
@@ -43,7 +47,7 @@ BaseAI.prototype.Init = function(state, sharedAI)
 	this.techModifications = sharedAI._techModifications[this.player];
 	this.playerData = sharedAI.playersData[this.player];
 	
-	this.gameState = sharedAI.gameState[PlayerID];
+	this.gameState = sharedAI.gameState[this.player];
 	this.gameState.ai = this;
 	this.sharedScript = sharedAI;
 	
@@ -52,13 +56,14 @@ BaseAI.prototype.Init = function(state, sharedAI)
 	this.CustomInit(this.gameState, this.sharedScript);
 }
 
-BaseAI.prototype.CustomInit = function()
+m.BaseAI.prototype.CustomInit = function()
 {	// AIs override this function
 };
 
-BaseAI.prototype.HandleMessage = function(state, sharedAI)
+m.BaseAI.prototype.HandleMessage = function(state, playerID, sharedAI)
 {
 	this.events = sharedAI.events;
+	PlayerID = playerID;
 	
 	if (this.isDeserialized && this.turn !== 0)
 	{
@@ -70,20 +75,24 @@ BaseAI.prototype.HandleMessage = function(state, sharedAI)
 	this.OnUpdate(sharedAI);
 };
 
-BaseAI.prototype.OnUpdate = function()
+m.BaseAI.prototype.OnUpdate = function()
 {	// AIs override this function
 };
 
-BaseAI.prototype.chat = function(message)
+m.BaseAI.prototype.chat = function(message)
 {
-	Engine.PostCommand({"type": "chat", "message": message});
+	Engine.PostCommand(PlayerID,{"type": "chat", "message": message});
 };
-BaseAI.prototype.chatTeam = function(message)
+m.BaseAI.prototype.chatTeam = function(message)
 {
-	Engine.PostCommand({"type": "chat", "message": "/team " +message});
+	Engine.PostCommand(PlayerID,{"type": "chat", "message": "/team " +message});
 };
-BaseAI.prototype.chatEnemies = function(message)
+m.BaseAI.prototype.chatEnemies = function(message)
 {
-	Engine.PostCommand({"type": "chat", "message": "/enemy " +message});
+	Engine.PostCommand(PlayerID,{"type": "chat", "message": "/enemy " +message});
 };
+
+return m;
+
+}());
 

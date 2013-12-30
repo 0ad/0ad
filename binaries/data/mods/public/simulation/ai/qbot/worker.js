@@ -34,7 +34,7 @@ Worker.prototype.update = function(gameState) {
 			
 			this.startApproachingResourceTime = gameState.getTimeElapsed();
 			
-			//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [10,0,0]});
+			//Engine.PostCommand(PlayerID, {"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [10,0,0]});
 		}else{
 			// If we haven't reached the resource in 2 minutes twice in a row and none of the resource has been 
 			// gathered then mark it as inaccessible.
@@ -61,7 +61,7 @@ Worker.prototype.update = function(gameState) {
 			this.ent.repair(target);
 		}
 		
-		//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [0,10,0]});
+		//Engine.PostCommand(PlayerID, {"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [0,10,0]});
 	}
 	
 	Engine.ProfileStart("Update Gatherer Counts");

@@ -1,17 +1,20 @@
+var AEGIS = function(m)
+{
+
 /*
  * Holds a list of wanted items to train or construct
  */
 
-var Queue = function() {
+m.Queue = function() {
 	this.queue = [];
 	this.paused = false;
 };
 
-Queue.prototype.empty = function() {
+m.Queue.prototype.empty = function() {
 	this.queue = [];
 };
 
-Queue.prototype.addItem = function(plan) {
+m.Queue.prototype.addItem = function(plan) {
 	for (var i in this.queue)
 	{
 		if (plan.category === "unit" && this.queue[i].type == plan.type && this.queue[i].number + plan.number <= this.queue[i].maxMerge)
@@ -23,7 +26,7 @@ Queue.prototype.addItem = function(plan) {
 	this.queue.push(plan);
 };
 
-Queue.prototype.getNext = function() {
+m.Queue.prototype.getNext = function() {
 	if (this.queue.length > 0) {
 		return this.queue[0];
 	} else {
@@ -31,7 +34,7 @@ Queue.prototype.getNext = function() {
 	}
 };
 
-Queue.prototype.startNext = function(gameState) {
+m.Queue.prototype.startNext = function(gameState) {
 	if (this.queue.length > 0) {
 		this.queue.shift().start(gameState);
 		return true;
@@ -42,8 +45,8 @@ Queue.prototype.startNext = function(gameState) {
 
 // returns the maximal account we'll accept for this queue.
 // Currently 100% of the cost of the first element and 80% of that of the second
-Queue.prototype.maxAccountWanted = function(gameState) {
-	var cost = new Resources();
+m.Queue.prototype.maxAccountWanted = function(gameState) {
+	var cost = new API3.Resources();
 	if (this.queue.length > 0 && this.queue[0].isGo(gameState))
 		cost.add(this.queue[0].getCost());
 	if (this.queue.length > 1 && this.queue[1].isGo(gameState))
@@ -55,19 +58,19 @@ Queue.prototype.maxAccountWanted = function(gameState) {
 	return cost;
 };
 
-Queue.prototype.queueCost = function(){
-	var cost = new Resources();
+m.Queue.prototype.queueCost = function(){
+	var cost = new API3.Resources();
 	for (var key in this.queue){
 		cost.add(this.queue[key].getCost());
 	}
 	return cost;
 };
 
-Queue.prototype.length = function() {
+m.Queue.prototype.length = function() {
 	return this.queue.length;
 };
 
-Queue.prototype.countQueuedUnits = function(){
+m.Queue.prototype.countQueuedUnits = function(){
 	var count = 0;
 	for (var i in this.queue){
 		count += this.queue[i].number;
@@ -75,7 +78,7 @@ Queue.prototype.countQueuedUnits = function(){
 	return count;
 };
 
-Queue.prototype.countQueuedUnitsWithClass = function(classe){
+m.Queue.prototype.countQueuedUnitsWithClass = function(classe){
 	var count = 0;
 	for (var i in this.queue){
 		if (this.queue[i].template && this.queue[i].template.hasClass(classe))
@@ -83,7 +86,7 @@ Queue.prototype.countQueuedUnitsWithClass = function(classe){
 	}
 	return count;
 };
-Queue.prototype.countQueuedUnitsWithMetadata = function(data,value){
+m.Queue.prototype.countQueuedUnitsWithMetadata = function(data,value){
 	var count = 0;
 	for (var i in this.queue){
 		if (this.queue[i].metadata[data] && this.queue[i].metadata[data] == value)
@@ -92,7 +95,7 @@ Queue.prototype.countQueuedUnitsWithMetadata = function(data,value){
 	return count;
 };
 
-Queue.prototype.countAllByType = function(t){
+m.Queue.prototype.countAllByType = function(t){
 	var count = 0;
 	
 	for (var i = 0; i < this.queue.length; i++){
@@ -102,3 +105,6 @@ Queue.prototype.countAllByType = function(t){
 	}
 	return count;
 };
+
+return m;
+}(AEGIS);

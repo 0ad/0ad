@@ -1,4 +1,7 @@
-function Resources(amounts, population) {
+var API3 = function(m)
+{
+
+m.Resources = function(amounts, population) {
 	if (amounts === undefined) {
 		amounts = {
 			food : 0,
@@ -19,9 +22,9 @@ function Resources(amounts, population) {
 	}
 }
 
-Resources.prototype.types = [ "food", "wood", "stone", "metal" ];
+m.Resources.prototype.types = [ "food", "wood", "stone", "metal" ];
 
-Resources.prototype.reset = function() {
+m.Resources.prototype.reset = function() {
 	for ( var tKey in this.types) {
 		var t = this.types[tKey];
 		this[t] = 0;
@@ -29,7 +32,7 @@ Resources.prototype.reset = function() {
 	this.population = 0;
 };
 
-Resources.prototype.canAfford = function(that) {
+m.Resources.prototype.canAfford = function(that) {
 	for ( var tKey in this.types) {
 		var t = this.types[tKey];
 		if (this[t] < that[t]) {
@@ -39,7 +42,7 @@ Resources.prototype.canAfford = function(that) {
 	return true;
 };
 
-Resources.prototype.add = function(that) {
+m.Resources.prototype.add = function(that) {
 	for ( var tKey in this.types) {
 		var t = this.types[tKey];
 		this[t] += that[t];
@@ -47,7 +50,7 @@ Resources.prototype.add = function(that) {
 	this.population += that.population;
 };
 
-Resources.prototype.subtract = function(that) {
+m.Resources.prototype.subtract = function(that) {
 	for ( var tKey in this.types) {
 		var t = this.types[tKey];
 		this[t] -= that[t];
@@ -55,7 +58,7 @@ Resources.prototype.subtract = function(that) {
 	this.population += that.population;
 };
 
-Resources.prototype.multiply = function(n) {
+m.Resources.prototype.multiply = function(n) {
 	for ( var tKey in this.types) {
 		var t = this.types[tKey];
 		this[t] *= n;
@@ -63,7 +66,7 @@ Resources.prototype.multiply = function(n) {
 	this.population *= n;
 };
 
-Resources.prototype.toInt = function() {
+m.Resources.prototype.toInt = function() {
 	var sum = 0;
 	for ( var tKey in this.types) {
 		var t = this.types[tKey];
@@ -72,3 +75,7 @@ Resources.prototype.toInt = function() {
 	sum += this.population * 50; // based on typical unit costs
 	return sum;
 };
+
+return m;
+
+}(API3);

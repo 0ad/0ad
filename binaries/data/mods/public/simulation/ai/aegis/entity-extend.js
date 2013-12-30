@@ -1,5 +1,8 @@
+var AEGIS = function(m)
+{
+
 // returns some sort of DPS * health factor. If you specify a class, it'll use the modifiers against that class too.
-function getMaxStrength(ent, againstClass)
+m.getMaxStrength = function(ent, againstClass)
 {
 	var strength = 0.0;
 	var attackTypes = ent.attackTypes();
@@ -61,3 +64,6 @@ function getMaxStrength(ent, againstClass)
 	}
 	return strength * hp;
 };
+
+return m;
+}(AEGIS);

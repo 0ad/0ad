@@ -1,4 +1,7 @@
-function EntityCollection(sharedAI, entities, filters)
+var API3 = function(m)
+{
+
+m.EntityCollection = function(sharedAI, entities, filters)
 {
 	this._ai = sharedAI;
 	this._entities = entities || {};
@@ -22,22 +25,22 @@ function EntityCollection(sharedAI, entities, filters)
 		}
 	});
 	this.frozen = false;
-}
+};
 
 // If an entitycollection is frozen, it will never automatically add a unit.
 // But can remove one.
 // this makes it easy to create entity collection that will auto-remove dead units
 // but never add new ones.
-EntityCollection.prototype.freeze = function()
+m.EntityCollection.prototype.freeze = function()
 {
 	this.frozen = true;
 };
-EntityCollection.prototype.defreeze = function()
+m.EntityCollection.prototype.defreeze = function()
 {
 	this.frozen = false;
 };
 
-EntityCollection.prototype.allowQuickIter = function()
+m.EntityCollection.prototype.allowQuickIter = function()
 {
 	this._quickIter = true;
 	this._entitiesArray = [];
@@ -45,7 +48,7 @@ EntityCollection.prototype.allowQuickIter = function()
 		this._entitiesArray.push(ent);
 };
 
-EntityCollection.prototype.toIdArray = function()
+m.EntityCollection.prototype.toIdArray = function()
 {
 	var ret = [];
 	for (var id in this._entities)
@@ -53,7 +56,7 @@ EntityCollection.prototype.toIdArray = function()
 	return ret;
 };
 
-EntityCollection.prototype.toEntityArray = function()
+m.EntityCollection.prototype.toEntityArray = function()
 {
 	if (this._quickIter === true)
 		return this._entitiesArray;
@@ -63,7 +66,7 @@ EntityCollection.prototype.toEntityArray = function()
 	return ret;
 };
 
-EntityCollection.prototype.toString = function()
+m.EntityCollection.prototype.toString = function()
 {
 	return "[EntityCollection " + this.toEntityArray().join(" ") + "]";
 };
@@ -71,7 +74,7 @@ EntityCollection.prototype.toString = function()
 /**
  * Returns the (at most) n entities nearest to targetPos.
  */
-EntityCollection.prototype.filterNearest = function(targetPos, n)
+m.EntityCollection.prototype.filterNearest = function(targetPos, n)
 {
 	// Compute the distance of each entity
 	var data = []; // [id, ent, distance]
@@ -82,14 +85,14 @@ EntityCollection.prototype.filterNearest = function(targetPos, n)
 		{
 			var ent = this._entitiesArray[i];
 			if (ent.position() !== -1)
-				data.push([ent.id(), ent, SquareVectorDistance(targetPos, ent.position())]);
+				data.push([ent.id(), ent, m.SquareVectorDistance(targetPos, ent.position())]);
 		}
 	} else {
 		for (var id in this._entities)
 		{
 			var ent = this._entities[id];
 			if (ent.position() !== -1)
-				data.push([id, ent, SquareVectorDistance(targetPos, ent.position())]);
+				data.push([id, ent, m.SquareVectorDistance(targetPos, ent.position())]);
 		}
 	}
 
@@ -102,10 +105,10 @@ EntityCollection.prototype.filterNearest = function(targetPos, n)
 	for (var i = 0; i < length; ++i)
 		ret[data[i][0]] = data[i][1];
 
-	return new EntityCollection(this._ai, ret);
+	return new m.EntityCollection(this._ai, ret);
 };
 
-EntityCollection.prototype.filter = function(filter, thisp)
+m.EntityCollection.prototype.filter = function(filter, thisp)
 {
 	if (typeof(filter) == "function")
 		filter = {"func": filter, "dynamicProperties": []};
@@ -129,10 +132,10 @@ EntityCollection.prototype.filter = function(filter, thisp)
 		}
 	}
 	
-	return new EntityCollection(this._ai, ret, this._filters.concat([filter]));
+	return new m.EntityCollection(this._ai, ret, this._filters.concat([filter]));
 };
 
-EntityCollection.prototype.filter_raw = function(callback, thisp)
+m.EntityCollection.prototype.filter_raw = function(callback, thisp)
 {
 	var ret = {};
 	for (var id in this._entities)
@@ -142,10 +145,10 @@ EntityCollection.prototype.filter_raw = function(callback, thisp)
 		if (callback.call(thisp, val, id, this))
 			ret[id] = ent;
 	}
-	return new EntityCollection(this._ai, ret);
+	return new m.EntityCollection(this._ai, ret);
 };
 
-EntityCollection.prototype.forEach = function(callback)
+m.EntityCollection.prototype.forEach = function(callback)
 {
 	if (this._quickIter === true)
 	{
@@ -162,7 +165,7 @@ EntityCollection.prototype.forEach = function(callback)
 	return this;
 };
 
-EntityCollection.prototype.filterNearest = function(targetPos, n)
+m.EntityCollection.prototype.filterNearest = function(targetPos, n)
 {
 	// Compute the distance of each entity
 	var data = []; // [ [id, ent, distance], ... ]
@@ -170,7 +173,7 @@ EntityCollection.prototype.filterNearest = function(targetPos, n)
 	{
 		var ent = this._entities[id];
 		if (ent.position())
-			data.push([id, ent, SquareVectorDistance(targetPos, ent.position())]);
+			data.push([id, ent, m.SquareVectorDistance(targetPos, ent.position())]);
 	}
 	
 	// Sort by increasing distance
@@ -182,22 +185,22 @@ EntityCollection.prototype.filterNearest = function(targetPos, n)
 	for each (var val in data.slice(0, n))
 		ret[val[0]] = val[1];
 	
-	return new EntityCollection(this._ai, ret);
+	return new m.EntityCollection(this._ai, ret);
 };
 
-EntityCollection.prototype.move = function(x, z, queued)
+m.EntityCollection.prototype.move = function(x, z, queued)
 {
 	queued = queued || false;
-	Engine.PostCommand({"type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
+	Engine.PostCommand(PlayerID,{"type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
 	return this;
 };
-EntityCollection.prototype.attackMove = function(x, z, queued)
+m.EntityCollection.prototype.attackMove = function(x, z, queued)
 {
 	queued = queued || false;
 	Engine.PostCommand({"type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
 	return this;
 };
-EntityCollection.prototype.moveIndiv = function(x, z, queued)
+m.EntityCollection.prototype.moveIndiv = function(x, z, queued)
 {
 	queued = queued || false;
 	for (var id in this._entities)
@@ -206,16 +209,16 @@ EntityCollection.prototype.moveIndiv = function(x, z, queued)
 		// It disables JIT compiling of this loop. Don't remove it unless you are sure that the underlying issue has been resolved!
 		// TODO: Check this again after the SpiderMonkey upgrade.
 		try {} finally {}
-		Engine.PostCommand({"type": "walk", "entities": [this._entities[id].id()], "x": x, "z": z, "queued": queued});
+		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this._entities[id].id()], "x": x, "z": z, "queued": queued});
 	}
 	return this;
 };
-EntityCollection.prototype.destroy = function()
+m.EntityCollection.prototype.destroy = function()
 {
-	Engine.PostCommand({"type": "delete-entities", "entities": this.toIdArray()});
+	Engine.PostCommand(PlayerID,{"type": "delete-entities", "entities": this.toIdArray()});
 	return this;
 };
-EntityCollection.prototype.attack = function(unit)
+m.EntityCollection.prototype.attack = function(unit)
 {
 	var unitId;
 	if (typeof(unit) === "Entity")
@@ -226,18 +229,18 @@ EntityCollection.prototype.attack = function(unit)
 	{
 		unitId = unit;
 	}	
-	Engine.PostCommand({"type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": false});
+	Engine.PostCommand(PlayerID,{"type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": false});
 	return this;
 };
 // violent, aggressive, defensive, passive, standground
-EntityCollection.prototype.setStance = function(stance)
+m.EntityCollection.prototype.setStance = function(stance)
 {
-	Engine.PostCommand({"type": "stance", "entities": this.toIdArray(), "name" : stance, "queued": false});
+	Engine.PostCommand(PlayerID,{"type": "stance", "entities": this.toIdArray(), "name" : stance, "queued": false});
 	return this;
 };
 
 // Returns the average position of all units
-EntityCollection.prototype.getCentrePosition = function()
+m.EntityCollection.prototype.getCentrePosition = function()
 {
 	var sumPos = [0, 0];
 	var count = 0;
@@ -263,7 +266,7 @@ EntityCollection.prototype.getCentrePosition = function()
 // returns the average position from the sample first units.
 // This might be faster for huge collections, but there's
 // always a risk that it'll be unprecise.
-EntityCollection.prototype.getApproximatePosition = function(sample)
+m.EntityCollection.prototype.getApproximatePosition = function(sample)
 {
 	var sumPos = [0, 0];
 	var i = 0;
@@ -291,7 +294,7 @@ EntityCollection.prototype.getApproximatePosition = function(sample)
 
 
 // Removes an entity from the collection, returns true if the entity was a member, false otherwise
-EntityCollection.prototype.removeEnt = function(ent)
+m.EntityCollection.prototype.removeEnt = function(ent)
 {
 	if (this._entities[ent.id()])
 	{
@@ -310,7 +313,7 @@ EntityCollection.prototype.removeEnt = function(ent)
 };
 
 // Adds an entity to the collection, returns true if the entity was not member, false otherwise
-EntityCollection.prototype.addEnt = function(ent)
+m.EntityCollection.prototype.addEnt = function(ent)
 {
 	if (this._entities[ent.id()])
 	{
@@ -333,7 +336,7 @@ EntityCollection.prototype.addEnt = function(ent)
 // Force can add a unit despite a freezing.
 // If an entitycollection is frozen, it will never automatically add a unit.
 // But can remove one.
-EntityCollection.prototype.updateEnt = function(ent, force)
+m.EntityCollection.prototype.updateEnt = function(ent, force)
 {	
 	var passesFilters = true;
 	for each (var filter in this._filters)
@@ -353,17 +356,17 @@ EntityCollection.prototype.updateEnt = function(ent, force)
 	}
 };
 
-EntityCollection.prototype.registerUpdates = function(noPush)
+m.EntityCollection.prototype.registerUpdates = function(noPush)
 {
 	this._ai.registerUpdatingEntityCollection(this,noPush);
 };
 
-EntityCollection.prototype.unregister = function()
+m.EntityCollection.prototype.unregister = function()
 {
 	this._ai.removeUpdatingEntityCollection(this);
 };
 
-EntityCollection.prototype.dynamicProperties = function()
+m.EntityCollection.prototype.dynamicProperties = function()
 {
 	var ret = [];
 	for each (var filter in this._filters)
@@ -374,12 +377,16 @@ EntityCollection.prototype.dynamicProperties = function()
 	return ret;
 };
 
-EntityCollection.prototype.setUID = function(id)
+m.EntityCollection.prototype.setUID = function(id)
 {
 	this._UID = id;
 };
 
-EntityCollection.prototype.getUID = function()
+m.EntityCollection.prototype.getUID = function()
 {
 	return this._UID;
 };
+
+return m;
+
+}(API3);

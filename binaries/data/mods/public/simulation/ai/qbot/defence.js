@@ -1,4 +1,4 @@
-function Defence(){
+function Defence(Config){
 	this.ACQUIRE_DIST = Config.defence.acquireDistance;
 	this.RELEASE_DIST = Config.defence.releaseDistance;
 	

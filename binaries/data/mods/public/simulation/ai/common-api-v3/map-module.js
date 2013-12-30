@@ -1,10 +1,12 @@
+var API3 = function(m)
+{
+
 /* The map module.
  * Copied with changes from QuantumState's original for qBot, it's a component for storing 8 bit values.
  */
 
-const TERRITORY_PLAYER_MASK = 0x3F;
-
-function Map(sharedScript, originalMap, actualCopy){
+// The function needs to be named too because of the copyConstructor functionality
+m.Map = function Map(sharedScript, originalMap, actualCopy){
 	// get the map to find out the correct dimensions
 	var gameMap = sharedScript.passabilityMap;
 	this.width = gameMap.width;
@@ -25,19 +27,19 @@ function Map(sharedScript, originalMap, actualCopy){
 	this.cellSize = 4;
 }
 
-Map.prototype.setMaxVal = function(val){
+m.Map.prototype.setMaxVal = function(val){
 	this.maxVal = val;
 };
 
-Map.prototype.gamePosToMapPos = function(p){
+m.Map.prototype.gamePosToMapPos = function(p){
 	return [Math.floor(p[0]/this.cellSize), Math.floor(p[1]/this.cellSize)];
 };
 
-Map.prototype.point = function(p){
+m.Map.prototype.point = function(p){
 	var q = this.gamePosToMapPos(p);
 	return this.map[q[0] + this.width * q[1]];
 };
-Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
+m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 	strength = strength ? +strength : +maxDist;
 	type = type ? type : 'linear';
 	
@@ -90,7 +92,7 @@ Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 	}
 };
 
-Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type) {
+m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type) {
 	strength = strength ? +strength : +maxDist;
 	type = type ? type : 'constant';
 	
@@ -145,7 +147,7 @@ Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type) {
 };
 
 // doesn't check for overflow.
-Map.prototype.setInfluence = function(cx, cy, maxDist, value) {
+m.Map.prototype.setInfluence = function(cx, cy, maxDist, value) {
 	value = value ? value : 0;
 	
 	var x0 = Math.max(0, cx - maxDist);
@@ -166,7 +168,7 @@ Map.prototype.setInfluence = function(cx, cy, maxDist, value) {
 	}
 };
 
-Map.prototype.sumInfluence = function(cx, cy, radius){
+m.Map.prototype.sumInfluence = function(cx, cy, radius){
 	var x0 = Math.max(0, cx - radius);
 	var y0 = Math.max(0, cy - radius);
 	var x1 = Math.min(this.width, cx + radius);
@@ -192,7 +194,7 @@ Map.prototype.sumInfluence = function(cx, cy, radius){
  * neighbours' values. (If the grid is initialised with 0s and 65535s or 255s, the
  * result of each cell is its Manhattan distance to the nearest 0.)
  */
-Map.prototype.expandInfluences = function(maximum, map) {
+m.Map.prototype.expandInfluences = function(maximum, map) {
 	var grid = this.map;
 	if (map !== undefined)
 		grid = map;
@@ -252,7 +254,7 @@ Map.prototype.expandInfluences = function(maximum, map) {
 	}
 };
 
-Map.prototype.findBestTile = function(radius, obstructionTiles){
+m.Map.prototype.findBestTile = function(radius, obstructionTiles){
 	// Find the best non-obstructed tile
 	var bestIdx = 0;
 	var bestVal = -1;
@@ -269,14 +271,14 @@ Map.prototype.findBestTile = function(radius, obstructionTiles){
 	return [bestIdx, bestVal];
 };
 // Multiplies current map by the parameter map pixelwise
-Map.prototype.multiply = function(map, onlyBetter, divider, maxMultiplier){
+m.Map.prototype.multiply = function(map, onlyBetter, divider, maxMultiplier){
 	for (var i = 0; i < this.length; ++i){
 		if (map.map[i]/divider > 1)
 			this.map[i] = Math.min(maxMultiplier*this.map[i], this.map[i] * (map.map[i]/divider));
 	}
 };
 // add to current map by the parameter map pixelwise
-Map.prototype.add = function(map){
+m.Map.prototype.add = function(map){
 	for (var i = 0; i < this.length; ++i) {
 		if (this.map[i] + map.map[i] < 0)
 			this.map[i] = 0;
@@ -287,8 +289,12 @@ Map.prototype.add = function(map){
 	}
 };
 
-Map.prototype.dumpIm = function(name, threshold){
+m.Map.prototype.dumpIm = function(name, threshold){
 	name = name ? name : "default.png";
 	threshold = threshold ? threshold : this.maxVal;
 	Engine.DumpImage(name, this.map, this.width, this.height, threshold);
 };
+
+return m;
+
+}(API3);

@@ -1,4 +1,7 @@
-function AssocArraytoArray(assocArray) {
+var AEGIS = function(m)
+{
+
+m.AssocArraytoArray = function(assocArray) {
 	var endArray = [];
 	for (var i in assocArray)
 		endArray.push(assocArray[i]);
@@ -7,7 +10,7 @@ function AssocArraytoArray(assocArray) {
 
 // A is the reference, B must be in "range" of A
 // this supposes the range is already squared
-function inRange(a, b, range)// checks for X distance
+m.inRange = function(a, b, range)// checks for X distance
 {
 	// will avoid unnecessary checking for position in some rare cases... I'm lazy
 	if (a === undefined || b === undefined || range === undefined)
@@ -18,9 +21,12 @@ function inRange(a, b, range)// checks for X distance
 	return ((dx*dx + dz*dz ) < range);
 }
 // slower than SquareVectorDistance, faster than VectorDistance but not exactly accurate.
-function ManhattanDistance(a, b)
+m.ManhattanDistance = function(a, b)
 {
 	var dx = a[0] - b[0];
 	var dz = a[1] - b[1];
 	return Math.abs(dx) + Math.abs(dz);
 }
+
+return m;
+}(AEGIS);

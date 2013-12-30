@@ -1,3 +1,6 @@
+var AEGIS = function(m)
+{
+
 /*
  Describes a transport plan
  Constructor assign units (units is an ID array, or an ID), a destionation (position, ingame), and a wanted escort size.
@@ -15,10 +18,10 @@
 // TODO: finish the support of multiple accessibility indexes.
 // TODO: this doesn't check we can actually reach in the init, which we might want?
 
-var TransportPlan = function(gameState, units, destination, allAtOnce, escortSize, onlyIfOK) {
+m.TransportPlan = function(gameState, units, destination, allAtOnce, escortSize, onlyIfOK) {
 	var self = this;
 
-	this.ID = uniqueIDTPlans++;
+	this.ID = m.playerGlobals[PlayerID].uniqueIDTPlans++;
 	
 	var unitsID = [];
 	if (units.length !== undefined)
@@ -26,7 +29,7 @@ var TransportPlan = function(gameState, units, destination, allAtOnce, escortSiz
 	else
 		unitsID = [units];
 	
-	this.units = EntityCollectionFromIds(gameState, unitsID);
+	this.units = m.EntityCollectionFromIds(gameState, unitsID);
 	this.units.forEach(function (ent) { //}){
 		ent.setMetadata(PlayerID, "tpplan", self.ID);
 		ent.setMetadata(PlayerID, "formerRole", ent.getMetadata(PlayerID, "role"));
@@ -36,8 +39,8 @@ var TransportPlan = function(gameState, units, destination, allAtOnce, escortSiz
 	this.units.freeze();
 	this.units.registerUpdates();
 
-	debug ("Starting a new plan with ID " +  this.ID + " to " + destination);
-	debug ("units are " + uneval (units));
+	m.debug ("Starting a new plan with ID " +  this.ID + " to " + destination);
+	m.debug ("units are " + uneval (units));
 	
 	this.destination = destination;
 	this.destinationIndex = gameState.ai.accessibility.getAccessValue(destination);
@@ -70,7 +73,7 @@ var TransportPlan = function(gameState, units, destination, allAtOnce, escortSiz
 };
 
 // count available slots
-TransportPlan.prototype.countFreeSlots = function(onlyTrulyFree)
+m.TransportPlan.prototype.countFreeSlots = function(onlyTrulyFree)
 {
 	var slots = 0;
 	this.transportShips.forEach(function (ent) { //}){
@@ -80,12 +83,12 @@ TransportPlan.prototype.countFreeSlots = function(onlyTrulyFree)
 	});
 }
 
-TransportPlan.prototype.assignShip = function(gameState, ship)
+m.TransportPlan.prototype.assignShip = function(gameState, ship)
 {
 	ship.setMetadata(PlayerID,"tpplan", this.ID);
 }
 
-TransportPlan.prototype.releaseAll = function(gameState)
+m.TransportPlan.prototype.releaseAll = function(gameState)
 {
 	this.ships.forEach(function (ent) { ent.setMetadata(PlayerID,"tpplan", undefined) });
 	this.units.forEach(function (ent) {
@@ -96,25 +99,25 @@ TransportPlan.prototype.releaseAll = function(gameState)
 	});
 }
 
-TransportPlan.prototype.releaseAllShips = function(gameState)
+m.TransportPlan.prototype.releaseAllShips = function(gameState)
 {
 	this.ships.forEach(function (ent) { ent.setMetadata(PlayerID,"tpplan", undefined) });
 }
 
-TransportPlan.prototype.needTpShips = function()
+m.TransportPlan.prototype.needTpShips = function()
 {
 	if ((this.allAtOnce && this.countFreeSlots() >= this.units.length) || this.transportShips.length > 0)
 		return false;
 	return true;
 }
 
-TransportPlan.prototype.needEscortShips = function()
+m.TransportPlan.prototype.needEscortShips = function()
 {
 	return !((this.onlyIfOK && this.escortShips.length < this.escortSize) || !this.onlyIfOK);
 }
 
 // returns the zone for which we are needing our ships
-TransportPlan.prototype.neededShipsZone = function()
+m.TransportPlan.prototype.neededShipsZone = function()
 {
 	if (!this.seaZone)
 		return false;
@@ -134,7 +137,7 @@ TransportPlan.prototype.neededShipsZone = function()
 	> there is the possibility that we'll be moving units on land, but that's basically a restart too, with more clearing.
  Grouping Path is basically the same with "grouping" and we never unboard (unless there is a need to)
  */
-TransportPlan.prototype.carryOn = function(gameState, navalManager)
+m.TransportPlan.prototype.carryOn = function(gameState, navalManager)
 {
 	if (this.state === "unstarted")
 	{
@@ -171,7 +174,7 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 		// let's get our index this turn.
 		this.startIndex = unitIndexes[0];
 
-		debug ("plan " +  this.ID + " from " + this.startIndex);
+		m.debug ("plan " +  this.ID + " from " + this.startIndex);
 
 		return true;
 	}
@@ -190,7 +193,7 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 			}
 			// we have a path, register the first sea zone.
 			this.seaZone = this.path[1];
-			debug ("Plan " + this.ID + " over seazone " + this.seaZone);
+			m.debug ("Plan " + this.ID + " over seazone " + this.seaZone);
 		}
 		// if we currently have no baoarding spot, try and find one.
 		if (!this.boardingSpot)
@@ -206,10 +209,10 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 			var passabilityMap = gameState.getMap();
 			var territoryMap = gameState.ai.territoryMap;
 			var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction") | gameState.getPassabilityClassMask("building-shore");
-			var obstructions = new Map(gameState.sharedScript);
+			var obstructions = new API3.Map(gameState.sharedScript);
 			
 			// wanted map.
-			var friendlyTiles = new Map(gameState.sharedScript);
+			var friendlyTiles = new API3.Map(gameState.sharedScript);
 			
 			for (var j = 0; j < friendlyTiles.length; ++j)
 			{
@@ -248,7 +251,7 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 			
 			// we have the spot we want to board at.
 			this.boardingSpot = [x,z];
-			debug ("Plan " + this.ID + " new boarding spot is  " + this.boardingSpot);
+			m.debug ("Plan " + this.ID + " new boarding spot is  " + this.boardingSpot);
 		}
 
 		// if all at once we need to be full, else we just need enough escort ships.
@@ -262,7 +265,7 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 			
 			this.garrisonShipID = -1;
 			
-			debug ("Boarding");
+			m.debug ("Boarding");
 			this.state = "boarding";
 		}
 		return true;
@@ -300,12 +303,12 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 
 		// check if we need to move our units and ships closer together
 		var stillMoving = false;
-		if (SquareVectorDistance(this.ships.getCentrePosition(),this.boardingSpot) > 1600)
+		if (API3.SquareVectorDistance(this.ships.getCentrePosition(),this.boardingSpot) > 1600)
 		{
 			this.ships.move(this.boardingSpot[0],this.boardingSpot[1]);
 			stillMoving = true;	// wait till ships are in position
 		}
-		if (SquareVectorDistance(this.units.getCentrePosition(),this.boardingSpot) > 1600)
+		if (API3.SquareVectorDistance(this.units.getCentrePosition(),this.boardingSpot) > 1600)
 		{
 			this.units.move(this.boardingSpot[0],this.boardingSpot[1]);
 			stillMoving = true;	// wait till units are in position
@@ -365,10 +368,10 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 			var passabilityMap = gameState.getMap();
 			var territoryMap = gameState.ai.territoryMap;
 			var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction") | gameState.getPassabilityClassMask("building-shore");
-			var obstructions = new Map(gameState.sharedScript);
+			var obstructions = new API3.Map(gameState.sharedScript);
 			
 			// wanted map.
-			var friendlyTiles = new Map(gameState.sharedScript);
+			var friendlyTiles = new API3.Map(gameState.sharedScript);
 			
 			var wantedIndex = -1;
 			
@@ -377,7 +380,7 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 				this.path.splice(0,2);
 				wantedIndex = this.path[0];
 			} else {
-				debug ("too short at " +uneval(this.path));
+				m.debug ("too short at " +uneval(this.path));
 				return false; // Incomputable
 			}
 			
@@ -431,7 +434,7 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 			return false;
 		
 		// check if we need to move ships
-		if (SquareVectorDistance(this.ships.getCentrePosition(),this.unboardingSpot) > 400)
+		if (API3.SquareVectorDistance(this.ships.getCentrePosition(),this.unboardingSpot) > 400)
 		{
 			this.ships.move(this.unboardingSpot[0],this.unboardingSpot[1]);
 		} else {
@@ -447,7 +450,7 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 			return false;
 		
 		// check if we need to move ships
-		if (SquareVectorDistance(this.ships.getCentrePosition(),this.unboardingSpot) > 400)
+		if (API3.SquareVectorDistance(this.ships.getCentrePosition(),this.unboardingSpot) > 400)
 		{
 			this.ships.move(this.unboardingSpot[0],this.unboardingSpot[1]);
 		} else {
@@ -455,7 +458,7 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 			// TODO: improve on this.
 			if (this.path.length > 1)
 			{
-				debug ("plan " +  this.ID + " going back for more");
+				m.debug ("plan " +  this.ID + " going back for more");
 				// basically reset.
 				delete this.boardingSpot;
 				delete this.unboardingSpot;
@@ -463,10 +466,13 @@ TransportPlan.prototype.carryOn = function(gameState, navalManager)
 				this.releaseAllShips();
 				return true;
 			}
-			debug ("plan " +  this.ID + " is finished");
+			m.debug ("plan " +  this.ID + " is finished");
 			return false;
 		}
 	}
 
 	return true;
 }
+
+return m;
+}(AEGIS);

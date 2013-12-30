@@ -1,14 +1,18 @@
+var g_debugEnabled = false;
 
 function QBotAI(settings) {
 	BaseAI.call(this, settings);
 
 	this.turn = 0;
 
+	this.Config = new Config();
+
 	this.modules = {
 			"economy": new EconomyManager(), 
-			"military": new MilitaryAttackManager(), 
+			"military": new MilitaryAttackManager(this.Config), 
 			"housing": new HousingManager()
 	};
+
 
 	// this.queues cannot be modified past initialisation or queue-manager will break
 	this.queues = {
@@ -26,7 +30,7 @@ function QBotAI(settings) {
 
 	this.productionQueues = [];
 	
-	this.priorities = Config.priorities;
+	this.priorities = this.Config.priorities;
 	
 	this.queueManager = new QueueManager(this.queues, this.priorities);
 	
@@ -161,7 +165,7 @@ QBotAI.prototype.Serialize = function()
 };
 
 function debug(output){
-	if (Config.debug){
+	if (g_debugEnabled){
 		if (typeof output === "string"){
 			warn(output);
 		}else{

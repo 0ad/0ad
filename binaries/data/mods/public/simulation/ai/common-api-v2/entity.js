@@ -372,40 +372,40 @@ var Entity = Class({
 
 	move: function(x, z, queued) {
 		queued = queued || false;
-		Engine.PostCommand({"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued});
+		Engine.PostCommand(PlayerID, {"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued});
 		return this;
 	},
 
 	garrison: function(target) {
-		Engine.PostCommand({"type": "garrison", "entities": [this.id()], "target": target.id(),"queued": false});
+		Engine.PostCommand(PlayerID, {"type": "garrison", "entities": [this.id()], "target": target.id(),"queued": false});
 		return this;
 	},
 
 	attack: function(unitId) {
-		Engine.PostCommand({"type": "attack", "entities": [this.id()], "target": unitId, "queued": false});
+		Engine.PostCommand(PlayerID, {"type": "attack", "entities": [this.id()], "target": unitId, "queued": false});
 		return this;
 	},
 
 	gather: function(target, queued) {
 		queued = queued || false;
-		Engine.PostCommand({"type": "gather", "entities": [this.id()], "target": target.id(), "queued": queued});
+		Engine.PostCommand(PlayerID, {"type": "gather", "entities": [this.id()], "target": target.id(), "queued": queued});
 		return this;
 	},
 
 	repair: function(target, queued) {
 		queued = queued || false;
-		Engine.PostCommand({"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": false, "queued": queued});
+		Engine.PostCommand(PlayerID, {"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": false, "queued": queued});
 		return this;
 	},
 	
 	returnResources: function(target, queued) {
 		queued = queued || false;
-		Engine.PostCommand({"type": "returnresource", "entities": [this.id()], "target": target.id(), "queued": queued});
+		Engine.PostCommand(PlayerID, {"type": "returnresource", "entities": [this.id()], "target": target.id(), "queued": queued});
 		return this;
 	},
 
 	destroy: function() {
-		Engine.PostCommand({"type": "delete-entities", "entities": [this.id()]});
+		Engine.PostCommand(PlayerID, {"type": "delete-entities", "entities": [this.id()]});
 		return this;
 	},
 
@@ -423,7 +423,7 @@ var Entity = Class({
 			return this;
 		}
 
-		Engine.PostCommand({
+		Engine.PostCommand(PlayerID, {
 			"type": "train",
 			"entities": [this.id()],
 			"template": type,
@@ -437,7 +437,7 @@ var Entity = Class({
 		// TODO: verify this unit can construct this, just for internal
 		// sanity-checking and error reporting
 
-		Engine.PostCommand({
+		Engine.PostCommand(PlayerID, {
 			"type": "construct",
 			"entities": [this.id()],
 			"template": template,

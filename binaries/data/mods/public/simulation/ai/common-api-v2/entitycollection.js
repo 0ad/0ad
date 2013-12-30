@@ -109,13 +109,13 @@ EntityCollection.prototype.forEach = function(callback, thisp)
 EntityCollection.prototype.move = function(x, z, queued)
 {
 	queued = queued || false;
-	Engine.PostCommand({"type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
+	Engine.PostCommand(PlayerID, {"type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
 	return this;
 };
 
 EntityCollection.prototype.destroy = function()
 {
-	Engine.PostCommand({"type": "delete-entities", "entities": this.toIdArray()});
+	Engine.PostCommand(PlayerID, {"type": "delete-entities", "entities": this.toIdArray()});
 	return this;
 };
 
