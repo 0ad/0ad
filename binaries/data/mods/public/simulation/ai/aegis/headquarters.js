@@ -89,7 +89,7 @@ m.HQ.prototype.init = function(gameState, events, queues){
 		this.baseManagers[1].initTerritory(this, gameState);
 		this.baseManagers[1].initGatheringFunctions(this, gameState);
 		
-		if (m.DebugEnabled)
+		if (m.DebugEnabled())
 			this.basesMap.dumpIm("basesMap.png");
 		var self = this;
 
@@ -116,7 +116,7 @@ m.HQ.prototype.init = function(gameState, events, queues){
 	}
 	
 	var map = new API3.Map(gameState.sharedScript, gameState.sharedScript.CCResourceMaps["wood"].map);
-	if (m.DebugEnabled)
+	if (m.DebugEnabled())
 		map.dumpIm("map_CC_Wood.png");
 	
 	//this.reassignIdleWorkers(gameState);
@@ -650,7 +650,7 @@ m.HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 	var best = friendlyTiles.findBestTile(6, obstructions);
 	var bestIdx = best[0];
 
-	if (m.DebugEnabled)
+	if (m.DebugEnabled())
 	{
 		friendlyTiles.map[bestIdx] = 270;
 		friendlyTiles.dumpIm("cc_placement_base_" + gameState.getTimeElapsed() + "_" + resource + "_" + best[1] + ".png",301);

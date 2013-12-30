@@ -67,7 +67,7 @@ m.Worker.prototype.update = function(baseManager, gameState) {
 				}
 				Engine.ProfileStop();
 			}
-			// m.debug: show the resource we're gathering from
+			// debug: show the resource we're gathering from
 			//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [10,0,0]});
 		} else if (this.ent.unitAIState().split(".")[1] === "GATHER") {
 			

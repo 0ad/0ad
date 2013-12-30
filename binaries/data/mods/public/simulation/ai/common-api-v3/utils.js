@@ -1,6 +1,16 @@
 var API3 = function(m)
 {
 
+m.debug = function(output){
+	if (m.DebugEnabled){
+		if (typeof output === "string"){
+			warn(output);
+		}else{
+			warn(uneval(output));
+		}
+	}
+};
+
 m.VectorDistance = function(a, b)
 {
 	var dx = a[0] - b[0];

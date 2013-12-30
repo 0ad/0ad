@@ -5,7 +5,6 @@ var m = {};
 // "local" global variables for stuffs that will need a unique ID
 // Note that since order of loading is alphabetic, this means this file must go before any other file using them.
 m.playerGlobals = [];
-m.DebugEnabled = false;
 
 m.AegisBot = function AegisBot(settings) {
 	API3.BaseAI.call(this, settings);
@@ -248,24 +247,18 @@ AegisBot.prototype.Serialize = function()
 	return {};
 };*/
 
-m.debug = function(output){
-	if (m.DebugEnabled){
-		if (typeof output === "string"){
-			warn(output);
-		}else{
-			warn(uneval(output));
-		}
-	}
-};
+// For the moment we just use the debugging flag and the debugging function from the API.
+// Maybe it will make sense in the future to separate them.
+m.DebugEnabled = function()
+{
+	return API3.DebugEnabled;
+}
 
-m.copyPrototype = function(descendant, parent) {
-    var sConstructor = parent.toString();
-    var aMatch = sConstructor.match( /\s*function (.*)\(/ );
-    if ( aMatch != null ) { descendant.prototype[aMatch[1]] = parent; }
-    for (var m in parent.prototype) {
-        descendant.prototype[m] = parent.prototype[m];
-    }
-};
+m.debug = function(output)
+{
+	API3.debug(output);
+}
+
 
 return m;
 }());

@@ -321,7 +321,7 @@ m.BaseManager.prototype.initializeDropsite = function (gameState, ent, type) {
 		// TODO: get workers on those resources and do something with them.
 	}
 	
-	if (m.DebugEnabled)
+	if (m.DebugEnabled())
 	{
 		// Make resources glow wildly
 		if (type == "food") {
@@ -455,7 +455,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 		}
 	}
 	
-	if (m.DebugEnabled)
+	if (m.DebugEnabled())
 		friendlyTiles.dumpIm("DP_" + resource + "_" + gameState.getTimeElapsed() + ".png");
 	
 	var best = friendlyTiles.findBestTile(2, obstructions);	// try to find a spot to place a DP.
