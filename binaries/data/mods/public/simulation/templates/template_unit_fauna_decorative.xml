@@ -26,10 +26,10 @@
 		<FleeDistance>12.0</FleeDistance>
 		<FormationController>false</FormationController>
 		<CanGuard>false</CanGuard>
-		<RoamDistance>100.0</RoamDistance>
-		<FleeDistance>100.0</FleeDistance>
-		<RoamTimeMin>40000</RoamTimeMin>
-		<RoamTimeMax>50000</RoamTimeMax>
+		<RoamDistance>20</RoamDistance>
+		<FleeDistance>10.0</FleeDistance>
+		<RoamTimeMin>10000</RoamTimeMin>
+		<RoamTimeMax>100000</RoamTimeMax>
 		<FeedTimeMin>1</FeedTimeMin>
 		<FeedTimeMax>2</FeedTimeMax>
 	</UnitAI>
