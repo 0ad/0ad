@@ -24,7 +24,7 @@ function Cheat(input)
 		break;
 	case "revealmap":
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		cmpRangeManager.SetLosRevealAll(-1, true);
+		cmpRangeManager.SetLosRevealAll(0, true);
 		break;
 	case "maxpopulation":
 		cmpPlayer.SetPopulationBonuses(500);
