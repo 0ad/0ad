@@ -1,3 +1,5 @@
+var AEGIS = function(m)
+{
 /* Base Manager
  * Handles lower level economic stuffs.
  * Some tasks:
@@ -10,9 +12,10 @@
 	-updating whatever needs updating, keeping track of stuffs (rebuilding needs…)
  */
 
-var BaseManager = function() {
+m.BaseManager = function(Config) {
+	this.Config = Config;
 	this.farmingFields = false;
-	this.ID = uniqueIDBases++;
+	this.ID = m.playerGlobals[PlayerID].uniqueIDBases++;
 	
 	// anchor building: seen as the main building of the base. Needs to have territorial influence
 	this.anchor = undefined;
@@ -31,13 +34,13 @@ var BaseManager = function() {
 	this.territoryIndices = [];
 };
 
-BaseManager.prototype.init = function(gameState, events, unconstructed){
+m.BaseManager.prototype.init = function(gameState, events, unconstructed){
 	this.constructing = unconstructed;
 	// entitycollections
-	this.units = gameState.getOwnEntities().filter(Filters.and(Filters.byClass("Unit"),Filters.byMetadata(PlayerID, "base", this.ID)));
-	this.buildings = gameState.getOwnEntities().filter(Filters.and(Filters.byClass("Structure"),Filters.byMetadata(PlayerID, "base", this.ID)));
+	this.units = gameState.getOwnEntities().filter(API3.Filters.and(API3.Filters.byClass("Unit"),API3.Filters.byMetadata(PlayerID, "base", this.ID)));
+	this.buildings = gameState.getOwnEntities().filter(API3.Filters.and(API3.Filters.byClass("Structure"),API3.Filters.byMetadata(PlayerID, "base", this.ID)));
 	
-	this.workers = this.units.filter(Filters.byMetadata(PlayerID,"role","worker"));
+	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID,"role","worker"));
 
 	this.workers.allowQuickIter();
 	this.buildings.allowQuickIter();
@@ -62,7 +65,7 @@ BaseManager.prototype.init = function(gameState, events, unconstructed){
 	this.bigRadius = { 'food':70*70,'wood':200*200,'stone':200*200,'metal':200*200 };
 };
 
-BaseManager.prototype.assignEntity = function(unit){
+m.BaseManager.prototype.assignEntity = function(unit){
 	unit.setMetadata(PlayerID, "base", this.ID);
 	this.units.updateEnt(unit);
 	this.workers.updateEnt(unit);
@@ -73,7 +76,7 @@ BaseManager.prototype.assignEntity = function(unit){
 		this.territoryBuildings.push(unit.id());
 };
 
-BaseManager.prototype.setAnchor = function(anchorEntity) {
+m.BaseManager.prototype.setAnchor = function(anchorEntity) {
 	if (!anchorEntity.hasClass("Structure") || !anchorEntity.hasTerritoryInfluence())
 	{
 		warn("Error: Aegis' base " + this.ID + " has been assigned an anchor building that has no territorial influence. Please report this on the forum.")
@@ -90,7 +93,7 @@ BaseManager.prototype.setAnchor = function(anchorEntity) {
 }
 
 // affects the HQ map.
-BaseManager.prototype.initTerritory = function(HQ, gameState) {
+m.BaseManager.prototype.initTerritory = function(HQ, gameState) {
 	if (!this.anchor)
 		warn ("Error: Aegis tried to initialize the territory of base " + this.ID + " without assigning it an anchor building first");
 	var radius = Math.round((this.anchor.territoryInfluenceRadius() / 4.0) * 1.25);
@@ -122,7 +125,7 @@ BaseManager.prototype.initTerritory = function(HQ, gameState) {
 			}
 }
 
-BaseManager.prototype.initGatheringFunctions = function(HQ, gameState, specTypes) {
+m.BaseManager.prototype.initGatheringFunctions = function(HQ, gameState, specTypes) {
 	// init our gathering functions.
 	var types = ["food","wood","stone","metal"];
 	if (specTypes !== undefined)
@@ -136,7 +139,7 @@ BaseManager.prototype.initGatheringFunctions = function(HQ, gameState, specTypes
 		var type = types[i];
 		// TODO: set us as "X" gatherer
 		
-		this.buildings.filter(Filters.isDropsite(type)).forEach(function(ent) { self.initializeDropsite(gameState, ent,type) });
+		this.buildings.filter(API3.Filters.isDropsite(type)).forEach(function(ent) { self.initializeDropsite(gameState, ent,type) });
 
 		if (this.getResourceLevel(gameState, type, "all") > 1000)
 			this.willGather[type] = 1;
@@ -151,13 +154,13 @@ BaseManager.prototype.initGatheringFunctions = function(HQ, gameState, specTypes
 		if (needFarm)
 			this.willGather["food"] = 1;
 	}
-	debug ("food" + this.willGather["food"]);
-	debug (this.willGather["wood"]);
-	debug (this.willGather["stone"]);
-	debug (this.willGather["metal"]);
+	m.debug ("food" + this.willGather["food"]);
+	m.debug (this.willGather["wood"]);
+	m.debug (this.willGather["stone"]);
+	m.debug (this.willGather["metal"]);
 }
 
-BaseManager.prototype.checkEvents = function (gameState, events, queues) {
+m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 	for (i in events)
 	{
 		if (events[i].type == "Destroy")
@@ -185,10 +188,10 @@ BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 					if (ent.hasClass("CivCentre"))
 					{
 						// TODO: might want to tell the queue manager to pause other stuffs if we are the only base.
-						queues.civilCentre.addItem(new ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, 0 , -1,ent.position()));
+						queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, 0 , -1,ent.position()));
 					} else {
 						// TODO
-						queues.civilCentre.addItem(new ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true },0,-1,ent.position()));
+						queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true },0,-1,ent.position()));
 					}
 				}
 			}
@@ -238,7 +241,7 @@ BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 };
 
 // If no specific dropsite, it'll assign to the closest
-BaseManager.prototype.assignResourceToDP = function (gameState, supply, specificDP) {
+m.BaseManager.prototype.assignResourceToDP = function (gameState, supply, specificDP) {
 	var type = supply.resourceSupplyType()["generic"];
 	if (type == "treasure")
 		type = supply.resourceSupplyType()["specific"];
@@ -249,7 +252,7 @@ BaseManager.prototype.assignResourceToDP = function (gameState, supply, specific
 		for (i in this.dropsites)
 		{
 			var dp = gameState.getEntityById(i);
-			var distance = SquareVectorDistance(supply.position(), dp.position());
+			var distance = API3.SquareVectorDistance(supply.position(), dp.position());
 			if (distance < dist && distance < this.bigRadius[type])
 			{
 				closest = dp.id();
@@ -267,7 +270,7 @@ BaseManager.prototype.assignResourceToDP = function (gameState, supply, specific
 	// TODO: ought to recount immediatly.
 }
 
-BaseManager.prototype.initializeDropsite = function (gameState, ent, type) {
+m.BaseManager.prototype.initializeDropsite = function (gameState, ent, type) {
 	var count = 0, farCount = 0;
 	var self = this;
 
@@ -278,7 +281,7 @@ BaseManager.prototype.initializeDropsite = function (gameState, ent, type) {
 		resources.filter( function (supply) { //}){
 			if (!supply.position() || !ent.position())
 				return;
-			var distance = SquareVectorDistance(supply.position(), ent.position());
+			var distance = API3.SquareVectorDistance(supply.position(), ent.position());
 			
 			if (supply.getMetadata(PlayerID, "linked-dropsite") == undefined || supply.getMetadata(PlayerID, "linked-dropsite-dist") > distance) {
 				if (distance < self.bigRadius[type]) {
@@ -294,19 +297,19 @@ BaseManager.prototype.initializeDropsite = function (gameState, ent, type) {
 			}
 		});
 		// This one is both for the nearby and the linked
-		var filter = Filters.byMetadata(PlayerID, "linked-dropsite", ent.id());
+		var filter = API3.Filters.byMetadata(PlayerID, "linked-dropsite", ent.id());
 		var collection = resources.filter(filter);
 		collection.registerUpdates();
 		
-		filter = Filters.byMetadata(PlayerID, "linked-dropsite-close",true);
+		filter = API3.Filters.byMetadata(PlayerID, "linked-dropsite-close",true);
 		var collection2 = collection.filter(filter);
 		collection2.registerUpdates();
 
-		filter = Filters.byMetadata(PlayerID, "linked-dropsite-nearby",true);
+		filter = API3.Filters.byMetadata(PlayerID, "linked-dropsite-nearby",true);
 		var collection3 = collection.filter(filter);
 		collection3.registerUpdates();
 
-		filter = Filters.byMetadata(PlayerID, "linked-to-dropsite", ent.id());
+		filter = API3.Filters.byMetadata(PlayerID, "linked-to-dropsite", ent.id());
 		var WkCollection = this.workers.filter(filter);
 		WkCollection.registerUpdates();
 		
@@ -318,51 +321,51 @@ BaseManager.prototype.initializeDropsite = function (gameState, ent, type) {
 		// TODO: get workers on those resources and do something with them.
 	}
 	
-	if (Config.debug)
+	if (m.DebugEnabled())
 	{
 		// Make resources glow wildly
 		if (type == "food") {
 			self.dropsites[ent.id()][type][2].forEach(function(ent){ 
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0.5,0,0]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0.5,0,0]});
 			});
 			self.dropsites[ent.id()][type][1].forEach(function(ent){
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,0,0]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,0,0]});
 			});
 			self.dropsites[ent.id()][type][0].forEach(function(ent){
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [10,0,0]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [10,0,0]});
 			});
 		}
 		if (type == "wood") {
 			self.dropsites[ent.id()][type][2].forEach(function(ent){
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0.5,0]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0.5,0]});
 			});
 			self.dropsites[ent.id()][type][1].forEach(function(ent){
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,2,0]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,2,0]});
 			});
 			self.dropsites[ent.id()][type][0].forEach(function(ent){
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,10,0]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,10,0]});
 			});
 		}
 		if (type == "stone") {
 			self.dropsites[ent.id()][type][2].forEach(function(ent){
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0.5,0.5,0]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0.5,0.5,0]});
 			});
 			self.dropsites[ent.id()][type][1].forEach(function(ent){
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,2,0]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,2,0]});
 			});
 			self.dropsites[ent.id()][type][0].forEach(function(ent){
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [10,10,0]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [10,10,0]});
 			});
 		}
 		if (type == "metal") {
 			self.dropsites[ent.id()][type][2].forEach(function(ent){
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0.5,0.5]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0.5,0.5]});
 			});
 			self.dropsites[ent.id()][type][1].forEach(function(ent){
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,2,2]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,2,2]});
 			});
 			self.dropsites[ent.id()][type][0].forEach(function(ent){
-				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,10,10]});
+				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,10,10]});
 			});
 		}
 	}
@@ -371,7 +374,7 @@ BaseManager.prototype.initializeDropsite = function (gameState, ent, type) {
 // completely and "safely" remove a dropsite from our list.
 // this also removes any linked resource and so on.
 // TODO: should re-add the resources to another dropsite.
-BaseManager.prototype.scrapDropsite = function (gameState, ent) {
+m.BaseManager.prototype.scrapDropsite = function (gameState, ent) {
 	if (this.dropsites[ent.id()] === undefined)
 		return true;
 	
@@ -398,7 +401,7 @@ BaseManager.prototype.scrapDropsite = function (gameState, ent) {
 };
 
 // Returns the position of the best place to build a new dropsite for the specified resource
-BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource){
+m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource){
 	
 	var storeHousePlate = gameState.getTemplate(gameState.applyCiv("structures/{civ}_storehouse"));
 
@@ -407,15 +410,15 @@ BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource){
 	// Then checks for a good spot in the territory. If none, and town/city phase, checks outside
 	// The AI will currently not build a CC if it wouldn't connect with an existing CC.
 	
-	var territory = Map.createTerritoryMap(gameState);
+	var territory = m.createTerritoryMap(gameState);
 	
-	var obstructions = Map.createObstructionMap(gameState,this.accessIndex,storeHousePlate);
+	var obstructions = m.createObstructionMap(gameState,this.accessIndex,storeHousePlate);
 	obstructions.expandInfluences();
 	
 	// copy the resource map as initialization.
-	var friendlyTiles = new Map(gameState.sharedScript, gameState.sharedScript.resourceMaps[resource].map, true);
+	var friendlyTiles = new API3.Map(gameState.sharedScript, gameState.sharedScript.resourceMaps[resource].map, true);
 
-	var DPFoundations = gameState.getOwnFoundations().filter(Filters.byType(gameState.applyCiv("foundation|structures/{civ}_storehouse")));
+	var DPFoundations = gameState.getOwnFoundations().filter(API3.Filters.byType(gameState.applyCiv("foundation|structures/{civ}_storehouse")));
 	
 	// TODO: might be better to check dropsites someplace else.
 	// loop over this in this.terrytoryindices. It's usually a little too much, but it's always enough.
@@ -434,25 +437,25 @@ BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource){
 		{
 			var pos = [j%friendlyTiles.width, Math.floor(j/friendlyTiles.width)];
 			var dpPos = gameState.getEntityById(i).position();
-			if (dpPos && SquareVectorDistance(friendlyTiles.gamePosToMapPos(dpPos), pos) < 250)
+			if (dpPos && API3.SquareVectorDistance(friendlyTiles.gamePosToMapPos(dpPos), pos) < 250)
 			{
 				friendlyTiles.map[j] = 0;
 				continue;
-			} else if (dpPos && SquareVectorDistance(friendlyTiles.gamePosToMapPos(dpPos), pos) < 450)
+			} else if (dpPos && API3.SquareVectorDistance(friendlyTiles.gamePosToMapPos(dpPos), pos) < 450)
 				friendlyTiles.map[j] /= 2;
 		}
 		for (var i in DPFoundations._entities)
 		{
 			var pos = [j%friendlyTiles.width, Math.floor(j/friendlyTiles.width)];
 			var dpPos = gameState.getEntityById(i).position();
-			if (dpPos && SquareVectorDistance(friendlyTiles.gamePosToMapPos(dpPos), pos) < 250)
+			if (dpPos && API3.SquareVectorDistance(friendlyTiles.gamePosToMapPos(dpPos), pos) < 250)
 				friendlyTiles.map[j] = 0;
-			else if (dpPos && SquareVectorDistance(friendlyTiles.gamePosToMapPos(dpPos), pos) < 450)
+			else if (dpPos && API3.SquareVectorDistance(friendlyTiles.gamePosToMapPos(dpPos), pos) < 450)
 				friendlyTiles.map[j] /= 2;
 		}
 	}
 	
-	if (Config.debug)
+	if (m.DebugEnabled())
 		friendlyTiles.dumpIm("DP_" + resource + "_" + gameState.getTimeElapsed() + ".png");
 	
 	var best = friendlyTiles.findBestTile(2, obstructions);	// try to find a spot to place a DP.
@@ -469,7 +472,7 @@ BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource){
 };
 
 // update the resource level of a dropsite.
-BaseManager.prototype.updateDropsite = function (gameState, ent, type) {
+m.BaseManager.prototype.updateDropsite = function (gameState, ent, type) {
 	if (this.dropsites[ent.id()] === undefined || this.dropsites[ent.id()][type] === undefined)
 		return undefined;	// should initialize it first.
 
@@ -490,7 +493,7 @@ BaseManager.prototype.updateDropsite = function (gameState, ent, type) {
 };
 
 // Updates dropsites.
-BaseManager.prototype.updateDropsites = function (gameState) {
+m.BaseManager.prototype.updateDropsites = function (gameState) {
 	// for each dropsite, recalculate
 	for (i in this.dropsites)
 	{
@@ -507,7 +510,7 @@ BaseManager.prototype.updateDropsites = function (gameState) {
 // we're assuming Max - 3 for metal/stone mines, and 20 for any dropsite that has wood.
 // TODO: for wood might want to count the trees too.
 // TODO: this returns "future" worker capacity, might want to have a current one.
-BaseManager.prototype.getWorkerCapacity = function (gameState, type) {
+m.BaseManager.prototype.getWorkerCapacity = function (gameState, type) {
 	var count = 0;
 	if (type == "food")
 		return 1000000;	// TODO: perhaps return something sensible here.
@@ -530,12 +533,12 @@ BaseManager.prototype.getWorkerCapacity = function (gameState, type) {
 
 // TODO: ought to be cached or something probably
 // Returns the amount of resource left
-BaseManager.prototype.getResourceLevel = function (gameState, type, searchType, threshold) {
+m.BaseManager.prototype.getResourceLevel = function (gameState, type, searchType, threshold) {
 	var count = 0;
 	if (searchType == "all")
 	{
 		// return all resources in the base area.
-		gameState.getResourceSupplies(type).filter(Filters.byTerritory(gameState.ai.HQ.basesMap, this.ID)).forEach( function (ent) { //}){
+		gameState.getResourceSupplies(type).filter(API3.Filters.byTerritory(gameState.ai.HQ.basesMap, this.ID)).forEach( function (ent) { //}){
 			count += ent.resourceSupplyAmount();
 		});
 		return count;
@@ -574,7 +577,7 @@ BaseManager.prototype.getResourceLevel = function (gameState, type, searchType, 
 };
 
 // check our resource levels and react accordingly
-BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
+m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 	for (type in this.willGather)
 	{
 		if (this.willGather[type] === 0)
@@ -589,9 +592,9 @@ BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 			if (!this.isFarming && count < 1600 && queues.field.length === 0)
 			{
 				// tell the queue manager we'll be trying to build fields shortly.
-				for (var  i = 0; i < Config.Economy.initialFields;++i)
+				for (var  i = 0; i < this.Config.Economy.initialFields;++i)
 				{
-					var plan = new ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID });
+					var plan = new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID });
 					plan.isGo = function() { return false; };	// don't start right away.
 					queues.field.addItem(plan);
 				}
@@ -604,7 +607,7 @@ BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 			if (this.isFarming)
 			{
 				var numFarms = 0;
-				this.buildings.filter(Filters.byClass("Field")).forEach(function (field) {
+				this.buildings.filter(API3.Filters.byClass("Field")).forEach(function (field) {
 					if (field.resourceSupplyAmount() > 400)
 						numFarms++;
 				});
@@ -615,7 +618,7 @@ BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 				// let's see if we need to push new farms.
 				if (numFd < 2)
 					if (numFarms < Math.round(this.gatherersByType(gameState, "food").length / 4.6) || numFarms < Math.round(this.workers.length / 15.0))
-						queues.field.addItem(new ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
+						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 				// TODO: refine count to only count my base.
 			}
 		} else if (queues.dropsites.length() === 0 && gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_storehouse")) === 0) {
@@ -626,12 +629,12 @@ BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 				var pos = this.findBestDropsiteLocation(gameState, type);
 				if (!pos)
 				{
-					debug ("Found no right position for a " + type + " dropsite, going into \"noSpot\" mode");
+					m.debug ("Found no right position for a " + type + " dropsite, going into \"noSpot\" mode");
 					this.willGather[type] = 2;	// won't build
 					// TODO: tell the HQ we'll be needing a new base for this resource, or tell it we've ran out of resource Z.
 				} else {
-					debug ("planning new dropsite for " + type);
-					queues.dropsites.addItem(new ConstructionPlan(gameState, "structures/{civ}_storehouse",{ "base" : this.ID }, 0, -1, pos));
+					m.debug ("planning new dropsite for " + type);
+					queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse",{ "base" : this.ID }, 0, -1, pos));
 				}
 			}
 		}
@@ -640,13 +643,13 @@ BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 };
 
 // let's return the estimated gather rates.
-BaseManager.prototype.getGatherRates = function(gameState, currentRates) {
+m.BaseManager.prototype.getGatherRates = function(gameState, currentRates) {
 
 };
 
-BaseManager.prototype.assignRolelessUnits = function(gameState) {
+m.BaseManager.prototype.assignRolelessUnits = function(gameState) {
 	// TODO: make this cleverer.
-	var roleless = this.units.filter(Filters.not(Filters.byHasMetadata(PlayerID, "role")));
+	var roleless = this.units.filter(API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "role")));
 	var self = this;
 	roleless.forEach(function(ent) {
 		if (ent.hasClass("Worker") || ent.hasClass("CitizenSoldier")) {
@@ -660,7 +663,7 @@ BaseManager.prototype.assignRolelessUnits = function(gameState) {
 // If the numbers of workers on the resources is unbalanced then set some of workers to idle so
 // they can be reassigned by reassignIdleWorkers.
 // TODO: actually this probably should be in the HQ.
-BaseManager.prototype.setWorkersIdleByPriority = function(gameState){
+m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState){
 	var self = this;
 	if (gameState.currentPhase() < 2 && gameState.getTimeElapsed() < 360000)
 		return;	// not in the first phase or the first 6 minutes.
@@ -685,7 +688,7 @@ BaseManager.prototype.setWorkersIdleByPriority = function(gameState){
 				this.gatherersByType(gameState,types.types[i]).forEach( function (ent) { //}){
 					if (nb > 0)
 					{
-						//debug ("Moving " +ent.id() + " from " + types.types[i]);
+						//m.debug ("Moving " +ent.id() + " from " + types.types[i]);
 						nb--;
 						// TODO: might want to direct assign.
 						ent.stopMoving();
@@ -693,16 +696,16 @@ BaseManager.prototype.setWorkersIdleByPriority = function(gameState){
 					}
 				});
 			}
-	//debug (currentRates);
+	//m.debug (currentRates);
 };
 
 // TODO: work on this.
-BaseManager.prototype.reassignIdleWorkers = function(gameState) {
+m.BaseManager.prototype.reassignIdleWorkers = function(gameState) {
 	
 	var self = this;
 
 	// Search for idle workers, and tell them to gather resources based on demand
-	var filter = Filters.or(Filters.byMetadata(PlayerID,"subrole","idle"), Filters.not(Filters.byHasMetadata(PlayerID,"subrole")));
+	var filter = API3.Filters.or(API3.Filters.byMetadata(PlayerID,"subrole","idle"), API3.Filters.not(API3.Filters.byHasMetadata(PlayerID,"subrole")));
 	var idleWorkers = gameState.updatingCollection("idle-workers-base-" + this.ID, filter, this.workers);
 
 	if (idleWorkers.length) {
@@ -713,7 +716,7 @@ BaseManager.prototype.reassignIdleWorkers = function(gameState) {
 			}
 			if (ent.hasClass("Worker")) {
 				var types = gameState.ai.HQ.pickMostNeededResources(gameState);
-				//debug ("assigning " +ent.id() + " to " + types[0]);
+				//m.debug ("assigning " +ent.id() + " to " + types[0]);
 				ent.setMetadata(PlayerID, "subrole", "gatherer");
 				ent.setMetadata(PlayerID, "gather-type", types[0]);
 				
@@ -734,21 +737,21 @@ BaseManager.prototype.reassignIdleWorkers = function(gameState) {
 	}
 };
 
-BaseManager.prototype.workersBySubrole = function(gameState, subrole) {
-	return gameState.updatingCollection("subrole-" + subrole +"-base-" + this.ID, Filters.byMetadata(PlayerID, "subrole", subrole), this.workers, true);
+m.BaseManager.prototype.workersBySubrole = function(gameState, subrole) {
+	return gameState.updatingCollection("subrole-" + subrole +"-base-" + this.ID, API3.Filters.byMetadata(PlayerID, "subrole", subrole), this.workers, true);
 };
 
-BaseManager.prototype.gatherersByType = function(gameState, type) {
-	return gameState.updatingCollection("workers-gathering-" + type +"-base-" + this.ID, Filters.byMetadata(PlayerID, "gather-type", type), this.workersBySubrole(gameState, "gatherer"));
+m.BaseManager.prototype.gatherersByType = function(gameState, type) {
+	return gameState.updatingCollection("workers-gathering-" + type +"-base-" + this.ID, API3.Filters.byMetadata(PlayerID, "gather-type", type), this.workersBySubrole(gameState, "gatherer"));
 };
 
 
 // returns an entity collection of workers.
 // They are idled immediatly and their subrole set to idle.
-BaseManager.prototype.pickBuilders = function(gameState, number) {
-	var collec = new EntityCollection(gameState.sharedScript);
+m.BaseManager.prototype.pickBuilders = function(gameState, number) {
+	var collec = new API3.EntityCollection(gameState.sharedScript);
 	// TODO: choose better.
-	var workers = this.workers.filter(Filters.not(Filters.byClass("Cavalry"))).toEntityArray();
+	var workers = this.workers.filter(API3.Filters.not(API3.Filters.byClass("Cavalry"))).toEntityArray();
 	workers.sort(function (a,b) {
 		var vala = 0, valb = 0;
 		if (a.getMetadata(PlayerID,"subrole") == "builder")
@@ -770,7 +773,8 @@ BaseManager.prototype.pickBuilders = function(gameState, number) {
 	return collec;
 }
 
-BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
+m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
+
 	// If we have some foundations, and we don't have enough builder-workers,
 	// try reassigning some other workers who are nearby
 	
@@ -778,21 +782,21 @@ BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 	
 	var self = this;
 	
-	var foundations = this.buildings.filter(Filters.and(Filters.isFoundation(),Filters.not(Filters.byClass("Field")))).toEntityArray();
+	var foundations = this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(),API3.Filters.not(API3.Filters.byClass("Field")))).toEntityArray();
 	var damagedBuildings = this.buildings.filter(function (ent) { if (ent.needsRepair() && ent.getMetadata(PlayerID, "plan") == undefined) { return true; } return false; }).toEntityArray();
 	
 	// Check if nothing to build
 	if (!foundations.length && !damagedBuildings.length){
 		return;
 	}
-	var workers = this.workers.filter(Filters.not(Filters.byClass("Cavalry")));
+	var workers = this.workers.filter(API3.Filters.not(API3.Filters.byClass("Cavalry")));
 	var builderWorkers = this.workersBySubrole(gameState, "builder");
-	var idleBuilderWorkers = this.workersBySubrole(gameState, "builder").filter(Filters.isIdle());
+	var idleBuilderWorkers = this.workersBySubrole(gameState, "builder").filter(API3.Filters.isIdle());
 
 	// if we're constructing and we have the foundations to our base anchor, only try building that.
-	if (this.constructing == true && this.buildings.filter(Filters.and(Filters.isFoundation(), Filters.byMetadata(PlayerID, "baseAnchor", true))).length !== 0)
+	if (this.constructing == true && this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(), API3.Filters.byMetadata(PlayerID, "baseAnchor", true))).length !== 0)
 	{
-		foundations = this.buildings.filter(Filters.byMetadata(PlayerID, "baseAnchor", true)).toEntityArray();
+		foundations = this.buildings.filter(API3.Filters.byMetadata(PlayerID, "baseAnchor", true)).toEntityArray();
 		var tID = foundations[0].id();
 		workers.forEach(function (ent) { //}){
 			var target = ent.getMetadata(PlayerID, "target-foundation");
@@ -832,7 +836,7 @@ BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 		
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 
-		var targetNB = Config.Economy.targetNumBuilders;	// TODO: dynamic that.
+		var targetNB = this.Config.Economy.targetNumBuilders;	// TODO: dynamic that.
 		if (target.hasClass("CivCentre") || target.buildTime() > 150 || target.hasClass("House"))
 			targetNB *= 2;
 		if (target.getMetadata(PlayerID, "baseAnchor") == true)
@@ -844,7 +848,7 @@ BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 				var addedToThis = 0;
 				
 				idleBuilderWorkers.forEach(function(ent) {
-					if (ent.position() && SquareVectorDistance(ent.position(), target.position()) < 10000 && assigned + addedToThis < targetNB)
+					if (ent.position() && API3.SquareVectorDistance(ent.position(), target.position()) < 10000 && assigned + addedToThis < targetNB)
 					{
 						addedWorkers++;
 						addedToThis++;
@@ -876,7 +880,7 @@ BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 		} else if (noRepair && !target.hasClass("CivCentre"))
 			continue;
 		
-		var territory = Map.createTerritoryMap(gameState);
+		var territory = m.createTerritoryMap(gameState);
 		if (territory.getOwner(target.position()) !== PlayerID || territory.getOwner([target.position()[0] + 5, target.position()[1]]) !== PlayerID)
 			continue;
 		
@@ -900,7 +904,7 @@ BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 	}
 };
 
-BaseManager.prototype.update = function(gameState, queues, events) {
+m.BaseManager.prototype.update = function(gameState, queues, events) {
 	Engine.ProfileStart("Base update - base " + this.ID);
 	var self = this;
 	
@@ -957,10 +961,14 @@ BaseManager.prototype.update = function(gameState, queues, events) {
 	Engine.ProfileStart("Run Workers");
 	this.workers.forEach(function(ent) {
 		if (!ent.getMetadata(PlayerID, "worker-object"))
-			ent.setMetadata(PlayerID, "worker-object", new Worker(ent));
+			ent.setMetadata(PlayerID, "worker-object", new m.Worker(ent));
 		ent.getMetadata(PlayerID, "worker-object").update(self, gameState);
 	});
 	Engine.ProfileStop();
 		
 	Engine.ProfileStop();
 };
+
+return m;
+
+}(AEGIS);

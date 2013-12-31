@@ -1,3 +1,6 @@
+var AEGIS = function(m)
+{
+
 /* Naval Manager
  Will deal with anything ships.
  -Basically trade over water (with fleets and goals commissioned by the economy manager)
@@ -9,7 +12,7 @@
  Does not build them though, that's for the base manager to handle.
  */
 
-var NavalManager = function() {
+m.NavalManager = function() {
 	// accessibility zones for which we have a dock.
 	// Connexion is described as [landindex] = [seaIndexes];
 	// technically they also exist for sea zones but I don't care.
@@ -32,16 +35,16 @@ var NavalManager = function() {
 };
 
 // More initialisation for stuff that needs the gameState
-NavalManager.prototype.init = function(gameState, events, queues) {
+m.NavalManager.prototype.init = function(gameState, events, queues) {
 	// finished docks
-	this.docks = gameState.getOwnEntities().filter(Filters.and(Filters.byClass("Dock"), Filters.not(Filters.isFoundation())));
+	this.docks = gameState.getOwnEntities().filter(API3.Filters.and(API3.Filters.byClass("Dock"), API3.Filters.not(API3.Filters.isFoundation())));
 	this.docks.allowQuickIter();
 	this.docks.registerUpdates();
 	
-	this.ships = gameState.getOwnEntities().filter(Filters.byClass("Ship"));
+	this.ships = gameState.getOwnEntities().filter(API3.Filters.byClass("Ship"));
 	// note: those two can overlap (some transport ships are warships too and vice-versa).
-	this.tpShips = this.ships.filter(Filters.byCanGarrison());
-	this.warships = this.ships.filter(Filters.byClass("Warship"));
+	this.tpShips = this.ships.filter(API3.Filters.byCanGarrison());
+	this.warships = this.ships.filter(API3.Filters.byClass("Warship"));
 
 	this.ships.registerUpdates();
 	this.tpShips.registerUpdates();
@@ -52,19 +55,19 @@ NavalManager.prototype.init = function(gameState, events, queues) {
 		if (gameState.ai.accessibility.regionType[i] !== "water")
 		{
 			// push dummies
-			this.seaShips.push(new EntityCollection(gameState.sharedScript));
-			this.seaTpShips.push(new EntityCollection(gameState.sharedScript));
-			this.seaWarships.push(new EntityCollection(gameState.sharedScript));
+			this.seaShips.push(new API3.EntityCollection(gameState.sharedScript));
+			this.seaTpShips.push(new API3.EntityCollection(gameState.sharedScript));
+			this.seaWarships.push(new API3.EntityCollection(gameState.sharedScript));
 			this.wantedTpShips.push(0);
 			this.wantedWarships.push(0);
 		} else {
-			var collec = this.ships.filter(Filters.byStaticMetadata(PlayerID, "sea", i));
+			var collec = this.ships.filter(API3.Filters.byStaticMetadata(PlayerID, "sea", i));
 			collec.registerUpdates();
 			this.seaShips.push(collec);
-			collec = this.tpShips.filter(Filters.byStaticMetadata(PlayerID, "sea", i));
+			collec = this.tpShips.filter(API3.Filters.byStaticMetadata(PlayerID, "sea", i));
 			collec.registerUpdates();
 			this.seaTpShips.push(collec);
-			var collec = this.warships.filter(Filters.byStaticMetadata(PlayerID, "sea", i));
+			var collec = this.warships.filter(API3.Filters.byStaticMetadata(PlayerID, "sea", i));
 			collec.registerUpdates();
 			this.seaWarships.push(collec);
 			
@@ -76,7 +79,7 @@ NavalManager.prototype.init = function(gameState, events, queues) {
 	}
 };
 
-NavalManager.prototype.getUnconnectedSeas = function (gameState, region) {
+m.NavalManager.prototype.getUnconnectedSeas = function (gameState, region) {
 	var seas = gameState.ai.accessibility.regionLinks[region]
 	if (seas.length === 0)
 		return [];
@@ -89,7 +92,7 @@ NavalManager.prototype.getUnconnectedSeas = function (gameState, region) {
 };
 
 // returns true if there is a path from A to B and we have docks.
-NavalManager.prototype.canReach = function (gameState, regionA, regionB) {
+m.NavalManager.prototype.canReach = function (gameState, regionA, regionB) {
 	var path = gameState.ai.accessibility.getTrajectToIndex(regionA, regionB);
 	if (!path)
 	{
@@ -100,7 +103,7 @@ NavalManager.prototype.canReach = function (gameState, regionA, regionB) {
 		if (gameState.ai.accessibility.regionType[path[i]] == "land")
 			if (this.accessibleSeas.indexOf(path[i+1]) === -1)
 			{
-				debug ("cannot reach because of " + path[i+1]);
+				m.debug ("cannot reach because of " + path[i+1]);
 				return false;	// we wn't be able to board on that sea
 			}
 	}
@@ -108,7 +111,7 @@ NavalManager.prototype.canReach = function (gameState, regionA, regionB) {
 };
 
 
-NavalManager.prototype.checkEvents = function (gameState, queues, events) {
+m.NavalManager.prototype.checkEvents = function (gameState, queues, events) {
 	for (i in events)
 	{
 		if (events[i].type == "Destroy")
@@ -137,19 +140,19 @@ NavalManager.prototype.checkEvents = function (gameState, queues, events) {
 	}
 };
 
-NavalManager.prototype.addPlan = function(plan) {
+m.NavalManager.prototype.addPlan = function(plan) {
 	this.transportPlans.push(plan);
 };
 
 // will create a plan at the end of the turn.
 // many units can call this separately and end up in the same plan
 // which can be useful.
-NavalManager.prototype.askForTransport = function(entity, startPos, endPos) {
+m.NavalManager.prototype.askForTransport = function(entity, startPos, endPos) {
 	this.askedPlans.push([entity, startPos, endPos]);
 };
 
 // creates aforementionned plans
-NavalManager.prototype.createPlans = function(gameState) {
+m.NavalManager.prototype.createPlans = function(gameState) {
 	var startID = {};
 
 	for (i in this.askedPlans)
@@ -172,13 +175,13 @@ NavalManager.prototype.createPlans = function(gameState) {
 	for (var i in startID)
 		for (var k in startID[i])
 		{
-			var tpPlan = new TransportPlan(gameState, startID[i][k].units, startID[i][k].dest, false)
+			var tpPlan = new m.TransportPlan(gameState, startID[i][k].units, startID[i][k].dest, false)
 			this.transportPlans.push (tpPlan);
 		}
 };
 
 // TODO: work on this.
-NavalManager.prototype.maintainFleet = function(gameState, queues, events) {
+m.NavalManager.prototype.maintainFleet = function(gameState, queues, events) {
 	// check if we have enough transport ships.
 	// check per region.
 	for (var i = 0; i < this.seaShips.length; ++i)
@@ -188,13 +191,13 @@ NavalManager.prototype.maintainFleet = function(gameState, queues, events) {
 			&& tpNb + queues.ships.length() === 0 && gameState.getTemplate(gameState.applyCiv("units/{civ}_ship_bireme")).available(gameState))
 		{
 			// TODO: check our dock can build the wanted ship types, for Carthage.
-			queues.ships.addItem(new TrainingPlan(gameState, "units/{civ}_ship_bireme", { "sea" : i }, 1, 0, -1, 1 ));
+			queues.ships.addItem(new m.TrainingPlan(gameState, "units/{civ}_ship_bireme", { "sea" : i }, 1, 0, -1, 1 ));
 		}
 	}
 };
 
 // bumps up the number of ships we want if we need more.
-NavalManager.prototype.checkLevels = function(gameState, queues) {
+m.NavalManager.prototype.checkLevels = function(gameState, queues) {
 	if (queues.ships.length() !== 0)
 		return;
 	for (var i = 0; i < this.transportPlans.length; ++i)
@@ -214,7 +217,7 @@ NavalManager.prototype.checkLevels = function(gameState, queues) {
 };
 
 // assigns free ships to plans that need some
-NavalManager.prototype.assignToPlans = function(gameState, queues, events) {
+m.NavalManager.prototype.assignToPlans = function(gameState, queues, events) {
 	for (var i = 0; i < this.transportPlans.length; ++i)
 	{
 		var plan = this.transportPlans[i];
@@ -228,7 +231,7 @@ NavalManager.prototype.assignToPlans = function(gameState, queues, events) {
 				{
 					if (!ship.getMetadata(PlayerID, "tpplan"))
 					{
-						debug ("Assigning ship " + ship.id() + " to plan" + plan.ID);
+						m.debug ("Assigning ship " + ship.id() + " to plan" + plan.ID);
 						plan.assignShip(gameState, ship);
 						return true;
 					}
@@ -239,7 +242,7 @@ NavalManager.prototype.assignToPlans = function(gameState, queues, events) {
 	return false;
 };
 
-NavalManager.prototype.checkActivePlan = function(ID) {
+m.NavalManager.prototype.checkActivePlan = function(ID) {
 	for (var i = 0; i < this.transportPlans.length; ++i)
 		if (this.transportPlans[i].ID === ID)
 			return true;
@@ -249,7 +252,7 @@ NavalManager.prototype.checkActivePlan = function(ID) {
 
 // Some functions are run every turn
 // Others once in a while
-NavalManager.prototype.update = function(gameState, queues, events) {
+m.NavalManager.prototype.update = function(gameState, queues, events) {
 	Engine.ProfileStart("Naval Manager update");
 	
 	this.checkEvents(gameState, queues, events);
@@ -286,3 +289,6 @@ NavalManager.prototype.update = function(gameState, queues, events) {
 	}
 	Engine.ProfileStop();
 };
+
+return m;
+}(AEGIS);

@@ -6,7 +6,9 @@
  *
  */
 
-var MilitaryAttackManager = function() {
+var MilitaryAttackManager = function(Config) {
+
+	this.Config = Config
 	// these use the structure soldiers[unitId] = true|false to register the units
 	this.attackManagers = [AttackMoveToLocation];
 	this.availableAttacks = [];
@@ -16,7 +18,7 @@ var MilitaryAttackManager = function() {
 	this.attackCount = 0;
 	this.lastAttackTime = 0;
 	
-	this.defenceManager = new Defence();
+	this.defenceManager = new Defence(Config);
 };
 
 MilitaryAttackManager.prototype.init = function(gameState) {
@@ -24,22 +26,22 @@ MilitaryAttackManager.prototype.init = function(gameState) {
 	
 	// load units and buildings from the config files
 	
-	if (civ in Config.buildings.moderate){
-		this.bModerate = Config.buildings.moderate[civ];
+	if (civ in this.Config.buildings.moderate){
+		this.bModerate = this.Config.buildings.moderate[civ];
 	}else{
-		this.bModerate = Config.buildings.moderate['default'];
+		this.bModerate = this.Config.buildings.moderate['default'];
 	}
 	
-	if (civ in Config.buildings.advanced){
-		this.bAdvanced = Config.buildings.advanced[civ];
+	if (civ in this.Config.buildings.advanced){
+		this.bAdvanced = this.Config.buildings.advanced[civ];
 	}else{
-		this.bAdvanced = Config.buildings.advanced['default'];
+		this.bAdvanced = this.Config.buildings.advanced['default'];
 	}
 	
-	if (civ in Config.buildings.fort){
-		this.bFort = Config.buildings.fort[civ];
+	if (civ in this.Config.buildings.fort){
+		this.bFort = this.Config.buildings.fort[civ];
 	}else{
-		this.bFort = Config.buildings.fort['default'];
+		this.bFort = this.Config.buildings.fort['default'];
 	}
 
 	for (var i in this.bAdvanced){
@@ -54,7 +56,7 @@ MilitaryAttackManager.prototype.init = function(gameState) {
 	};
 	// TODO: figure out how to make this generic
 	for (var i in this.attackManagers){
-		this.availableAttacks[i] = new this.attackManagers[i](gameState, this);
+		this.availableAttacks[i] = new this.attackManagers[i](gameState, this.Config, this);
 	}
 	
 	var enemies = gameState.getEnemyEntities();
@@ -435,7 +437,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 			this.currentAttacks.push(this.availableAttacks[i]);
 			//debug("Attacking!");
 		}
-		this.availableAttacks.splice(i, 1, new this.attackManagers[i](gameState, this));
+		this.availableAttacks.splice(i, 1, new this.attackManagers[i](gameState, this.Config, this));
 	}
 	Engine.ProfileStop();
 	

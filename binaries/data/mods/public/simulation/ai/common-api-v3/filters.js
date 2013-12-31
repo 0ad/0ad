@@ -1,4 +1,7 @@
-var Filters = {
+var API3 = function(m)
+{
+
+m.Filters = {
 	byType: function(type){
 		return {"func" : function(ent){
 			return ent.templateName() === type;
@@ -169,7 +172,7 @@ var Filters = {
 			if (ent.position() === undefined){
 				return false;
 			}else{
-				return (SquareVectorDistance(startPoint, ent.position()) < dist*dist);
+				return (m.SquareVectorDistance(startPoint, ent.position()) < dist*dist);
 			}
 		},
 		"dynamicProperties": ['position']};
@@ -181,7 +184,7 @@ var Filters = {
 			if (!ent.position()){
 				return false;
 			}else{
-				return (SquareVectorDistance(startPoint, ent.position()) < dist*dist);
+				return (m.SquareVectorDistance(startPoint, ent.position()) < dist*dist);
 			}
 		},
 		"dynamicProperties": []};
@@ -238,3 +241,8 @@ var Filters = {
 		"dynamicProperties": []};
 	}
 };
+
+return m;
+
+}(API3);
+

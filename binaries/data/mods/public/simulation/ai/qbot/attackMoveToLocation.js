@@ -1,4 +1,6 @@
-function AttackMoveToLocation(gameState, militaryManager, minAttackSize, maxAttackSize, targetFinder){
+function AttackMoveToLocation(gameState, Config, militaryManager, minAttackSize, maxAttackSize, targetFinder){
+	
+	this.Config = Config;	
 	this.minAttackSize = minAttackSize || Config.attack.minAttackSize;
 	this.maxAttackSize = maxAttackSize || Config.attack.maxAttackSize;
 	this.idList=[];
@@ -17,7 +19,7 @@ AttackMoveToLocation.prototype.canExecute = function(gameState, militaryManager)
 	var enemyCount = militaryManager.measureEnemyCount(gameState);
 	
 	// We require our army to be >= this strength
-	var targetStrength = enemyStrength * Config.attack.enemyRatio;
+	var targetStrength = enemyStrength * this.Config.attack.enemyRatio;
 	
 	var availableCount = militaryManager.countAvailableUnits();
 	var availableStrength = militaryManager.measureAvailableStrength();

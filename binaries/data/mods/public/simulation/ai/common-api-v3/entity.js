@@ -1,4 +1,7 @@
-var EntityTemplate = Class({
+var API3 = function(m)
+{
+
+m.EntityTemplate = m.Class({
 
 	// techModifications should be the tech modifications of only one player.
 	// gamestates handle "GetTemplate" and should push the player's
@@ -447,8 +450,8 @@ var EntityTemplate = Class({
 
 
 
-var Entity = Class({
-	_super: EntityTemplate,
+m.Entity = m.Class({
+	_super: m.EntityTemplate,
 
 	_init: function(sharedAI, entity)
 	{
@@ -576,7 +579,7 @@ var Entity = Class({
 		return this._entity.resourceCarrying; 
 	},
 
-	garrisoned: function() { return new EntityCollection(this._ai, this._entity.garrisoned); },
+	garrisoned: function() { return new m.EntityCollection(this._ai, this._entity.garrisoned); },
 	
 	canGarrisonInside: function() { return this._entity.garrisoned.length < this.garrisonMax(); },
 
@@ -584,32 +587,32 @@ var Entity = Class({
 
 	move: function(x, z, queued) {
 		queued = queued || false;
-		Engine.PostCommand({"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
+		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
 		return this;
 	},
 	
 	attackMove: function(x, z, queued) {
 		queued = queued || false;
-		Engine.PostCommand({"type": "attack-walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
+		Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
 		return this;
 	},
 
 	// violent, aggressive, defensive, passive, standground
 	setStance: function(stance,queued){
-		Engine.PostCommand({"type": "stance", "entities": [this.id()], "name" : stance, "queued": queued });
+		Engine.PostCommand(PlayerID,{"type": "stance", "entities": [this.id()], "name" : stance, "queued": queued });
 		return this;
 	},
 
 	// TODO: replace this with the proper "STOP" command
 	stopMoving: function() {
 		if (this.position() !== undefined)
-			Engine.PostCommand({"type": "walk", "entities": [this.id()], "x": this.position()[0], "z": this.position()[1], "queued": false});
+			Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": this.position()[0], "z": this.position()[1], "queued": false});
 	},
 
 	unload: function(id) {
 		if (!this._template.GarrisonHolder)
 			return undefined;
-		Engine.PostCommand({"type": "unload", "garrisonHolder": this.id(), "entities": [id]});
+		Engine.PostCommand(PlayerID,{"type": "unload", "garrisonHolder": this.id(), "entities": [id]});
 		return this;
 	},
 
@@ -617,17 +620,17 @@ var Entity = Class({
 	unloadAll: function() {
 		if (!this._template.GarrisonHolder)
 			return undefined;
-		Engine.PostCommand({"type": "unload-all-own", "garrisonHolders": [this.id()]});
+		Engine.PostCommand(PlayerID,{"type": "unload-all-own", "garrisonHolders": [this.id()]});
 		return this;
 	},
 
 	garrison: function(target) {
-		Engine.PostCommand({"type": "garrison", "entities": [this.id()], "target": target.id(),"queued": false});
+		Engine.PostCommand(PlayerID,{"type": "garrison", "entities": [this.id()], "target": target.id(),"queued": false});
 		return this;
 	},
 
 	attack: function(unitId) {
-		Engine.PostCommand({"type": "attack", "entities": [this.id()], "target": unitId, "queued": false});
+		Engine.PostCommand(PlayerID,{"type": "attack", "entities": [this.id()], "target": unitId, "queued": false});
 		return this;
 	},
 	
@@ -635,40 +638,40 @@ var Entity = Class({
 	flee: function(unitToFleeFrom) {
 		if (this.position() !== undefined && unitToFleeFrom.position() !== undefined) {
 			var FleeDirection = [this.position()[0] - unitToFleeFrom.position()[0],this.position()[1] - unitToFleeFrom.position()[1]];
-			var dist = VectorDistance(unitToFleeFrom.position(), this.position() );
+			var dist = m.VectorDistance(unitToFleeFrom.position(), this.position() );
 			FleeDirection[0] = (FleeDirection[0]/dist) * 8;
 			FleeDirection[1] = (FleeDirection[1]/dist) * 8;
 			
-			Engine.PostCommand({"type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0]*5, "z": this.position()[1] + FleeDirection[1]*5, "queued": false});
+			Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0]*5, "z": this.position()[1] + FleeDirection[1]*5, "queued": false});
 		}
 		return this;
 	},
 
 	gather: function(target, queued) {
 		queued = queued || false;
-		Engine.PostCommand({"type": "gather", "entities": [this.id()], "target": target.id(), "queued": queued});
+		Engine.PostCommand(PlayerID,{"type": "gather", "entities": [this.id()], "target": target.id(), "queued": queued});
 		return this;
 	},
 
 	repair: function(target, queued) {
 		queued = queued || false;
-		Engine.PostCommand({"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": false, "queued": queued});
+		Engine.PostCommand(PlayerID,{"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": false, "queued": queued});
 		return this;
 	},
 	
 	returnResources: function(target, queued) {
 		queued = queued || false;
-		Engine.PostCommand({"type": "returnresource", "entities": [this.id()], "target": target.id(), "queued": queued});
+		Engine.PostCommand(PlayerID,{"type": "returnresource", "entities": [this.id()], "target": target.id(), "queued": queued});
 		return this;
 	},
 
 	destroy: function() {
-		Engine.PostCommand({"type": "delete-entities", "entities": [this.id()] });
+		Engine.PostCommand(PlayerID,{"type": "delete-entities", "entities": [this.id()] });
 		return this;
 	},
 	
 	barter: function(buyType, sellType, amount) {
-		Engine.PostCommand({"type": "barter", "sell" : sellType, "buy" : buyType, "amount" : amount });
+		Engine.PostCommand(PlayerID,{"type": "barter", "sell" : sellType, "buy" : buyType, "amount" : amount });
 		return this;
 	},
 	
@@ -686,7 +689,7 @@ var Entity = Class({
 			return this;
 		}
 
-		Engine.PostCommand({
+		Engine.PostCommand(PlayerID,{
 			"type": "train",
 			"entities": [this.id()],
 			"template": type,
@@ -699,8 +702,7 @@ var Entity = Class({
 	construct: function(template, x, z, angle, metadata) {
 		// TODO: verify this unit can construct this, just for internal
 		// sanity-checking and error reporting
-
-		Engine.PostCommand({
+		Engine.PostCommand(PlayerID,{
 			"type": "construct",
 			"entities": [this.id()],
 			"template": template,
@@ -716,12 +718,12 @@ var Entity = Class({
 	},
 				   
 	 research: function(template) {
-		Engine.PostCommand({ "type": "research", "entity": this.id(), "template": template });
+		Engine.PostCommand(PlayerID,{ "type": "research", "entity": this.id(), "template": template });
 		return this;
 	},
 
 	stopProduction: function(id) {
-		Engine.PostCommand({ "type": "stop-production", "entity": this.id(), "id": id });
+		Engine.PostCommand(PlayerID,{ "type": "stop-production", "entity": this.id(), "id": id });
 		return this;
 	},
 	
@@ -732,9 +734,12 @@ var Entity = Class({
 		for (var i in queue)
 		{
 			if (queue[i].progress < percentToStopAt)
-				Engine.PostCommand({ "type": "stop-production", "entity": this.id(), "id": queue[i].id });
+				Engine.PostCommand(PlayerID,{ "type": "stop-production", "entity": this.id(), "id": queue[i].id });
 		}
 		return this;
 	}
 });
 
+return m;
+
+}(API3);

@@ -1,23 +1,25 @@
-var baseConfig = {
-	"attack" : {
+function Config() {
+	this.debug = false
+
+	this.attack = {
 		"minAttackSize" : 20, // attackMoveToLocation
 		"maxAttackSize" : 60, // attackMoveToLocation
 		"enemyRatio" : 1.5, // attackMoveToLocation
 		"groupSize" : 10 // military
-	},
+	};
 	
 	// defence
-	"defence" : {
+	this.defence = {
 		"acquireDistance" : 220,
 		"releaseDistance" : 250,
 		"groupRadius" : 20,
 		"groupBreakRadius" : 40,
 		"groupMergeRadius" : 10,
 		"defenderRatio" : 2
-	},
+	};
 	
 	// military
-	"buildings" : {
+	this.buildings = {
 		"moderate" : {
 			"default" : [ "structures/{civ}_barracks" ]
 		},
@@ -37,10 +39,10 @@ var baseConfig = {
 			"default" : [ "structures/{civ}_fortress" ],
 			"celt" : [ "structures/{civ}_fortress_b", "structures/{civ}_fortress_g" ]
 		}
-	},
+	};
 
 	// qbot
-	"priorities" : {  // Note these are dynamic, you are only setting the initial values
+	this.priorities = {  // Note these are dynamic, you are only setting the initial values
 		"house" : 500,
 		"citizenSoldier" : 100,
 		"villager" : 100,
@@ -51,13 +53,6 @@ var baseConfig = {
 		"militaryBuilding" : 50,
 		"defenceBuilding" : 17,
 		"civilCentre" : 1000
-	},
-	
-	"debug" : false
+	};
 };
 
-var Config = {
-		"debug": false
-};
-
-Config.__proto__ = baseConfig;

@@ -932,6 +932,7 @@ function onGameAttributesChange()
 	var startingResources = getGUIObjectByName("startingResources");
 
 	var numPlayersText= getGUIObjectByName("numPlayersText");
+	var mapSizeDesc = getGUIObjectByName("mapSizeDesc");
 	var mapSizeText = getGUIObjectByName("mapSizeText");
 	var revealMapText = getGUIObjectByName("revealMapText");
 	var victoryConditionText = getGUIObjectByName("victoryConditionText");
@@ -959,6 +960,7 @@ function onGameAttributesChange()
 	switch (g_GameAttributes.mapType)
 	{
 	case "random":
+			mapSizeDesc.hidden = false;
 		if (g_IsController)
 		{
 			//Host
@@ -1016,6 +1018,8 @@ function onGameAttributesChange()
 		numPlayersText.caption = numPlayers;
 		numPlayersSelection.hidden = true;
 		mapSize.hidden = true;
+		mapSizeText.hidden = true;
+		mapSizeDesc.hidden = true;
 		if (g_IsController)
 		{
 			//Host
@@ -1026,7 +1030,6 @@ function onGameAttributesChange()
 			startingResources.hidden = false;
 			
 			numPlayersText.hidden = false;
-			mapSizeText.hidden = false;
 			revealMapText.hidden = true;
 			victoryConditionText.hidden = true;
 			lockTeamsText.hidden = true;
@@ -1045,7 +1048,6 @@ function onGameAttributesChange()
 		{
 			// Client
 			numPlayersText.hidden = false;
-			mapSizeText.hidden = false;
 			revealMapText.hidden = false;
 			victoryConditionText.hidden = false;
 			lockTeamsText.hidden = false;
@@ -1070,7 +1072,8 @@ function onGameAttributesChange()
 		victoryCondition.hidden = true;
 		lockTeams.hidden = true;
 		numPlayersText.hidden = false;
-		mapSizeText.hidden = false;
+		mapSizeText.hidden = true;
+		mapSizeDesc.hidden = true;
 		revealMapText.hidden = false;
 		victoryConditionText.hidden = false;
 		lockTeamsText.hidden = false;

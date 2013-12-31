@@ -1,3 +1,6 @@
+var AEGIS = function(m)
+{
+
 //The Timer class // The instance of this class is created in the qBot object under the name 'timer'
 //The methods that are available to call from this instance are:
 //timer.setTimer           : Creates a new timer with the given interval (miliseconds).
@@ -11,7 +14,7 @@
 
 
 //-EmjeR-// Timer class //
-var Timer = function() {
+m.Timer = function() {
 	///Private array.
 	var alarmList = [];
 	
@@ -94,7 +97,7 @@ var Timer = function() {
 
 
 //-EmjeR-// Alarm class //
-function alarm(gameState, id, interval, delay, repeat) {
+m.alarm = function(gameState, id, interval, delay, repeat) {
 	this.id = id;
 	this.interval = interval;
 	this.delay = delay;
@@ -104,3 +107,6 @@ function alarm(gameState, id, interval, delay, repeat) {
 	this.active = true;
 	this.counter = 0;
 };
+
+return m;
+}(AEGIS);

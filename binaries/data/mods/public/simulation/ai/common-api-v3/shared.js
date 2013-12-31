@@ -1,5 +1,8 @@
+var API3 = function(m)
+{
+
 // Shared script handling templates and basic terrain analysis
-function SharedScript(settings)
+m.SharedScript = function(settings)
 {
 	if (!settings)
 		return;
@@ -37,14 +40,14 @@ function SharedScript(settings)
 //Return a simple object (using no classes etc) that will be serialized
 //into saved games
 //TODO: that
-SharedScript.prototype.Serialize = function()
+m.SharedScript.prototype.Serialize = function()
 {
 	return { "players" : this._players, "templates" : this._templates, "techTp" : this._techTemplates };
 };
 
 // Called after the constructor when loading a saved game, with 'data' being
 // whatever Serialize() returned
-SharedScript.prototype.Deserialize = function(data)
+m.SharedScript.prototype.Deserialize = function(data)
 {
 	this._players = data.players;
 	this._templates = data.templates;
@@ -56,7 +59,7 @@ SharedScript.prototype.Deserialize = function(data)
 // (This is a bit yucky and fragile since it's the inverse of
 // CCmpTemplateManager::CopyFoundationSubset and only includes components
 // that our EntityTemplate class currently uses.)
-var g_FoundationForbiddenComponents = {
+m.g_FoundationForbiddenComponents = {
 	"ProductionQueue": 1,
 	"ResourceSupply": 1,
 	"ResourceDropsite": 1,
@@ -65,7 +68,7 @@ var g_FoundationForbiddenComponents = {
 
 // Components that will be disabled in resource entity templates.
 // Roughly the inverse of CCmpTemplateManager::CopyResourceSubset.
-var g_ResourceForbiddenComponents = {
+m.g_ResourceForbiddenComponents = {
 	"Cost": 1,
 	"Decay": 1,
 	"Health": 1,
@@ -74,7 +77,7 @@ var g_ResourceForbiddenComponents = {
 	"Vision": 1
 };
 
-SharedScript.prototype.GetTemplate = function(name)
+m.SharedScript.prototype.GetTemplate = function(name)
 {	
 	if (this._templates[name])
 		return this._templates[name];
@@ -89,7 +92,7 @@ SharedScript.prototype.GetTemplate = function(name)
 		
 		var foundation = {};
 		for (var key in base)
-			if (!g_FoundationForbiddenComponents[key])
+			if (!m.g_FoundationForbiddenComponents[key])
 				foundation[key] = base[key];
 		
 		this._derivedTemplates[name] = foundation;
@@ -101,7 +104,7 @@ SharedScript.prototype.GetTemplate = function(name)
 		
 		var resource = {};
 		for (var key in base)
-			if (!g_ResourceForbiddenComponents[key])
+			if (!m.g_ResourceForbiddenComponents[key])
 				resource[key] = base[key];
 		
 		this._derivedTemplates[name] = resource;
@@ -115,7 +118,7 @@ SharedScript.prototype.GetTemplate = function(name)
 // Initialize the shared component.
 // We need to now the initial state of the game for this, as we will use it.
 // This is called right at the end of the map generation.
-SharedScript.prototype.init = function(state) {
+m.SharedScript.prototype.init = function(state) {
 	this.passabilityClasses = state.passabilityClasses;
 	this.passabilityMap = state.passabilityMap;
 	this.players = this._players;
@@ -128,15 +131,15 @@ SharedScript.prototype.init = function(state) {
 	
 	this._entities = {};
 	for (var id in state.entities)
-		this._entities[id] = new Entity(this, state.entities[id]);
+		this._entities[id] = new m.Entity(this, state.entities[id]);
 
 	// entity collection updated on create/destroy event.
-	this.entities = new EntityCollection(this, this._entities);
+	this.entities = new m.EntityCollection(this, this._entities);
 	
 	// create the terrain analyzer
-	this.terrainAnalyzer = new TerrainAnalysis();
+	this.terrainAnalyzer = new m.TerrainAnalysis();
 	this.terrainAnalyzer.init(this, state);
-	this.accessibility = new Accessibility();
+	this.accessibility = new m.Accessibility();
 	this.accessibility.init(state, this.terrainAnalyzer);
 	
 	// defined in TerrainAnalysis.js
@@ -145,14 +148,14 @@ SharedScript.prototype.init = function(state) {
 	this.gameState = {};
 	for (var i in this._players)
 	{
-		this.gameState[this._players[i]] = new GameState();
+		this.gameState[this._players[i]] = new m.GameState();
 		this.gameState[this._players[i]].init(this,state,this._players[i]);
 	}
 };
 
 // General update of the shared script, before each AI's update
 // applies entity deltas, and each gamestate.
-SharedScript.prototype.onUpdate = function(state)
+m.SharedScript.prototype.onUpdate = function(state)
 {
 	if (this.isDeserialized && this.turn !== 0)
 	{
@@ -188,7 +191,7 @@ SharedScript.prototype.onUpdate = function(state)
 	Engine.ProfileStop();
 };
 
-SharedScript.prototype.ApplyEntitiesDelta = function(state)
+m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 {
 	Engine.ProfileStart("Shared ApplyEntitiesDelta");
 
@@ -202,7 +205,7 @@ SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			{
 				continue; // Sometimes there are things like foundations which get destroyed too fast
 			}
-			this._entities[evt.msg.entity] = new Entity(this, state.entities[evt.msg.entity]);
+			this._entities[evt.msg.entity] = new m.Entity(this, state.entities[evt.msg.entity]);
 			this.entities.addEnt(this._entities[evt.msg.entity]);
 
 			// Update all the entity collections since the create operation affects static properties as well as dynamic
@@ -302,7 +305,7 @@ SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	Engine.ProfileStop();
 };
 
-SharedScript.prototype.registerUpdatingEntityCollection = function(entCollection, noPush)
+m.SharedScript.prototype.registerUpdatingEntityCollection = function(entCollection, noPush)
 {
 	if (!noPush) {
 		this._entityCollections.push(entCollection);
@@ -316,7 +319,7 @@ SharedScript.prototype.registerUpdatingEntityCollection = function(entCollection
 	this._entityCollectionsUID++;
 };
 
-SharedScript.prototype.removeUpdatingEntityCollection = function(entCollection)
+m.SharedScript.prototype.removeUpdatingEntityCollection = function(entCollection)
 {
 	for (var i in this._entityCollections)
 	{
@@ -338,7 +341,7 @@ SharedScript.prototype.removeUpdatingEntityCollection = function(entCollection)
 	}
 };
 
-SharedScript.prototype.updateEntityCollections = function(property, ent)
+m.SharedScript.prototype.updateEntityCollections = function(property, ent)
 {
 	if (this._entityCollectionsByDynProp[property] !== undefined)
 	{
@@ -349,7 +352,7 @@ SharedScript.prototype.updateEntityCollections = function(property, ent)
 	}
 }
 
-SharedScript.prototype.setMetadata = function(player, ent, key, value)
+m.SharedScript.prototype.setMetadata = function(player, ent, key, value)
 {
 	var metadata = this._entityMetadata[player][ent.id()];
 	if (!metadata)
@@ -359,7 +362,7 @@ SharedScript.prototype.setMetadata = function(player, ent, key, value)
 	this.updateEntityCollections('metadata', ent);
 	this.updateEntityCollections('metadata.' + key, ent);
 };
-SharedScript.prototype.getMetadata = function(player, ent, key)
+m.SharedScript.prototype.getMetadata = function(player, ent, key)
 {
 	var metadata = this._entityMetadata[player][ent.id()];
 	
@@ -367,7 +370,7 @@ SharedScript.prototype.getMetadata = function(player, ent, key)
 		return undefined;
 	return metadata[key];
 };
-SharedScript.prototype.deleteMetadata = function(player, ent, key)
+m.SharedScript.prototype.deleteMetadata = function(player, ent, key)
 {
 	var metadata = this._entityMetadata[player][ent.id()];
 	
@@ -378,7 +381,7 @@ SharedScript.prototype.deleteMetadata = function(player, ent, key)
 	return true;
 };
 
-function copyPrototype(descendant, parent) {
+m.copyPrototype = function(descendant, parent) {
     var sConstructor = parent.toString();
     var aMatch = sConstructor.match( /\s*function (.*)\(/ );
 	if ( aMatch != null ) { descendant.prototype[aMatch[1]] = parent; }
@@ -386,4 +389,8 @@ function copyPrototype(descendant, parent) {
 		descendant.prototype[m] = parent.prototype[m];
 	}
 };
+
+return m;
+
+}(API3);
 

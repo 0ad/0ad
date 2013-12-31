@@ -1,9 +1,12 @@
+var AEGIS = function(m)
+{
+
 /*
  * Used to know which templates I have, which templates I know I can train, things like that.
  * Mostly unused.
  */
 
-var TemplateManager = function(gameState) {
+m.TemplateManager = function(gameState) {
 	var self = this;
 	
 	this.knownTemplatesList = [];
@@ -23,7 +26,7 @@ var TemplateManager = function(gameState) {
 	this.getTemplateCounters(gameState);
 	
 };
-TemplateManager.prototype.AcknowledgeTemplates = function(gameState)
+m.TemplateManager.prototype.AcknowledgeTemplates = function(gameState)
 {
 	var self = this;
 	var myEntities = gameState.getOwnEntities();
@@ -39,7 +42,7 @@ TemplateManager.prototype.AcknowledgeTemplates = function(gameState)
 
 	});
 }
-TemplateManager.prototype.getBuildableSubtemplates = function(gameState)
+m.TemplateManager.prototype.getBuildableSubtemplates = function(gameState)
 {
 	for each (var templateName in this.knownTemplatesList) {
 		var template = gameState.getTemplate(templateName);
@@ -59,7 +62,7 @@ TemplateManager.prototype.getBuildableSubtemplates = function(gameState)
 		}
 	}
 }
-TemplateManager.prototype.getTrainableSubtemplates = function(gameState)
+m.TemplateManager.prototype.getTrainableSubtemplates = function(gameState)
 {
 	for each (var templateName in this.knownTemplatesList) {
 		var template = gameState.getTemplate(templateName);
@@ -79,7 +82,7 @@ TemplateManager.prototype.getTrainableSubtemplates = function(gameState)
 		}
 	}
 }
-TemplateManager.prototype.getTemplateCounters = function(gameState)
+m.TemplateManager.prototype.getTemplateCounters = function(gameState)
 {
 	for (var i in this.unitTemplates)
 	{
@@ -89,7 +92,7 @@ TemplateManager.prototype.getTemplateCounters = function(gameState)
 	}
 }
 // features auto-caching
-TemplateManager.prototype.getCountersToClasses = function(gameState,classes,templateName)
+m.TemplateManager.prototype.getCountersToClasses = function(gameState,classes,templateName)
 {
 	if (templateName !== undefined && this.templateCounteredBy[templateName])
 		return this.templateCounteredBy[templateName];
@@ -114,3 +117,6 @@ TemplateManager.prototype.getCountersToClasses = function(gameState,classes,temp
 	return templates;
 }
 
+
+return m;
+}(AEGIS);

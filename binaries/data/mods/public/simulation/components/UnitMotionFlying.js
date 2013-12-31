@@ -73,7 +73,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 	{
 		if (this.speed > 0 && this.onGround)
 		{
-			if (pos.y <= cmpWaterManager.GetWaterLevel(pos.x, pos.z) && this.template.DiesInWater)
+			if (pos.y <= cmpWaterManager.GetWaterLevel(pos.x, pos.z) && this.template.DiesInWater == "true")
 				this.waterDeath = true;
 			this.pitch = 0;
 			// Deaccelerate forwards...at a very reduced pace.
@@ -90,13 +90,14 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 		}
 		else if (this.speed == 0 && this.onGround)
 		{
-			if (this.waterDeath)
+			if (this.waterDeath && cmpHealth)
 				cmpHealth.Kill();
 			else
 			{
 				this.pitch = 0;
 				// We've stopped.
-				cmpGarrisonHolder.AllowGarrisoning(true,"UnitMotionFlying")
+				if (cmpGarrisonHolder)
+					cmpGarrisonHolder.AllowGarrisoning(true,"UnitMotionFlying")
 				canTurn = false;
 				this.hasTarget = false;
 				this.landing = false;					
@@ -157,7 +158,8 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 
 		if (this.speed < this.template.TakeoffSpeed && this.onGround)
 		{
-			cmpGarrisonHolder.AllowGarrisoning(false,"UnitMotionFlying")	
+			if (cmpGarrisonHolder)
+				cmpGarrisonHolder.AllowGarrisoning(false,"UnitMotionFlying")	
 			this.pitch = 0;
 			// Accelerate forwards
 			this.speed = Math.min(this.template.MaxSpeed, this.speed + turnLength * this.template.AccelRate);
@@ -242,6 +244,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 UnitMotionFlying.prototype.MoveToPointRange = function(x, z, minRange, maxRange)
 {
 	this.hasTarget = true;
+	this.landing = false;
 	this.reachedTarget = false;
 	this.targetX = x;
 	this.targetZ = z;
@@ -308,6 +311,11 @@ UnitMotionFlying.prototype.GetCurrentSpeed = function()
 }
 
 UnitMotionFlying.prototype.FaceTowardsPoint = function(x, z)
+{
+	// Ignore this - angle is controlled by the target-seeking code instead
+};
+
+UnitMotionFlying.prototype.SetFacePointAfterMove = function()
 {
 	// Ignore this - angle is controlled by the target-seeking code instead
 };

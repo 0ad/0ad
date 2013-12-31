@@ -1,11 +1,24 @@
-function VectorDistance(a, b)
+var API3 = function(m)
+{
+
+m.debug = function(output){
+	if (m.DebugEnabled){
+		if (typeof output === "string"){
+			warn(output);
+		}else{
+			warn(uneval(output));
+		}
+	}
+};
+
+m.VectorDistance = function(a, b)
 {
 	var dx = a[0] - b[0];
 	var dz = a[1] - b[1];
 	return Math.sqrt(dx*dx + dz*dz);
 }
 
-function SquareVectorDistance(a, b)
+m.SquareVectorDistance = function(a, b)
 {
 	var dx = a[0] - b[0];
 	var dz = a[1] - b[1];
@@ -13,7 +26,7 @@ function SquareVectorDistance(a, b)
 }
 // A is the reference, B must be in "range" of A
 // this supposes the range is already squared
-function inRange(a, b, range)// checks for X distance
+m.inRange = function(a, b, range)// checks for X distance
 {
 	// will avoid unnecessary checking for position in some rare cases... I'm lazy
 	if (a === undefined || b === undefined || range === undefined)
@@ -24,26 +37,26 @@ function inRange(a, b, range)// checks for X distance
 	return ((dx*dx + dz*dz ) < range);
 }
 // slower than SquareVectorDistance, faster than VectorDistance but not exactly accurate.
-function ManhattanDistance(a, b)
+m.ManhattanDistance = function(a, b)
 {
 	var dx = a[0] - b[0];
 	var dz = a[1] - b[1];
 	return Math.abs(dx) + Math.abs(dz);
 }
 
-function AssocArraytoArray(assocArray) {
+m.AssocArraytoArray = function(assocArray) {
 	var endArray = [];
 	for (var i in assocArray)
 		endArray.push(assocArray[i]);
 	return endArray;
 };
 
-function MemoizeInit(obj)
+m.MemoizeInit = function(obj)
 {
 	obj._memoizeCache = {};
 }
 
-function Memoize(funcname, func)
+m.Memoize = function(funcname, func)
 {
 	return function() {
 		var args = funcname + '|' + Array.prototype.join.call(arguments, '|');
@@ -56,7 +69,7 @@ function Memoize(funcname, func)
 	};
 }
 
-function ShallowClone(obj)
+m.ShallowClone = function(obj)
 {
 	var ret = {};
 	for (var k in obj)
@@ -65,7 +78,7 @@ function ShallowClone(obj)
 }
 
 // Picks a random element from an array
-function PickRandom(list){
+m.PickRandom = function(list){
 	if (list.length === 0)
 	{
 		return undefined;
@@ -75,3 +88,7 @@ function PickRandom(list){
 		return list[Math.floor(Math.random()*list.length)];
 	}
 }
+
+return m;
+
+}(API3);

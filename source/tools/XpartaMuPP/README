@@ -43,12 +43,14 @@ You can see the list of registered / connected users in
 "Virtual Hosts" >> domain name >> "users"
 
 You must manually add a new user for XpartaMuPP.
-Enter a login (use "xpartamupp" since that's what clients and the ipstamp module expect) 
+Enter a login (use "xpartamupp" since that's what clients expect) 
 and password, then press "Add user"
 
 Alternative - Command line :
 Edit /etc/ejabberd.ejabberd.cfg and change {register, [{deny,all}]} to {register, [{allow,all}]}.
 Register xpartamupp : # ejabberdctl register xpartamupp <domain> <Xpartamupp password>
+
+Create an ACL that includes the bot (name it ipbots, since that's what the ipstamp module expects)
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@ Run XpartaMuPP - XMPP Multiplayer Game Manager @@

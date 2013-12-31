@@ -1,6 +1,11 @@
-// Baseconfig is the highest difficulty.
-var baseConfig = {
-	"Military" : {
+var AEGIS = function(m)
+{
+
+m.Config = function() {
+	this.difficulty = 2;	// 0 is sandbox, 1 is easy, 2 is medium, 3 is hard, 4 is very hard.
+				// overriden by the GUI
+
+	this.Military = {
 		"fortressLapseTime" : 540, // Time to wait between building 2 fortresses
 		"defenceBuildingTime" : 600, // Time to wait before building towers or fortresses
 		"attackPlansStartTime" : 0,	// time to wait before attacking. Start as soon as possible (first barracks)
@@ -8,8 +13,8 @@ var baseConfig = {
 		"popForBarracks1" : 15,
 		"popForBarracks2" : 95,
 		"timeForBlacksmith" : 900,
-	},
-	"Economy" : {
+	};
+	this.Economy = {
 		"townPhase" : 180,	// time to start trying to reach town phase (might be a while after. Still need the requirements + ress )
 		"cityPhase" : 840,	// time to start trying to reach city phase
 		"popForMarket" : 80,
@@ -19,19 +24,21 @@ var baseConfig = {
 		"targetNumBuilders" : 1.5, // Base number of builders per foundation.
 		"femaleRatio" : 0.4, // percent of females among the workforce.
 		"initialFields" : 2
-	},
+	};
 	
 	// Note: attack settings are set directly in attack_plan.js
 	
 	// defence
-	"Defence" : {
+	this.Defence =
+	{
 		"defenceRatio" : 5,	// see defence.js for more info.
 		"armyCompactSize" : 700,	// squared. Half-diameter of an army.
 		"armyBreakawaySize" : 900  // squared.
-	},
+	};
 	
 	// military
-	"buildings" : {
+	this.buildings = 
+	{
 		"moderate" : {
 			"default" : [ "structures/{civ}_barracks" ]
 		},
@@ -51,10 +58,11 @@ var baseConfig = {
 			"default" : [ "structures/{civ}_fortress" ],
 			"celt" : [ "structures/{civ}_fortress_b", "structures/{civ}_fortress_g" ]
 		}
-	},
+	};
 
 	// qbot
-	"priorities" : {  // Note these are dynamic, you are only setting the initial values
+	this.priorities = 
+	{  // Note these are dynamic, you are only setting the initial values
 		"house" : 350,
 		"villager" : 40,
 		"citizenSoldier" : 60,
@@ -67,49 +75,46 @@ var baseConfig = {
 		"majorTech" : 700,
 		"minorTech" : 50,
 		"civilCentre" : 400
-	},
-	"difficulty" : 2,	// 0 is sandbox, 1 is easy, 2 is medium, 3 is hard, 4 is very hard.
-	"debug" : false
+	};
 };
 
-var Config = {
-	"debug": false,
-	"difficulty" : 2,	// overriden by the GUI
-	updateDifficulty: function(difficulty)
+//Config.prototype = new BaseConfig();
+
+m.Config.prototype.updateDifficulty = function(difficulty)
+{
+	this.difficulty = difficulty;
+	// changing settings based on difficulty.
+	if (this.difficulty === 1)
 	{
-		Config.difficulty = difficulty;
-		// changing settings based on difficulty.
-		if (Config.difficulty === 1)
-		{
-			Config.Military.defenceBuildingTime = 1200;
-			Config.Military.attackPlansStartTime = 960;
-			Config.Military.popForBarracks1 = 35;
-			Config.Military.popForBarracks2 = 150;	// shouldn't reach it
-			Config.Military.popForBlacksmith = 150;	// shouldn't reach it
+		this.Military.defenceBuildingTime = 1200;
+		this.Military.attackPlansStartTime = 960;
+		this.Military.popForBarracks1 = 35;
+		this.Military.popForBarracks2 = 150;	// shouldn't reach it
+		this.Military.popForBlacksmith = 150;	// shouldn't reach it
 
-			Config.Economy.cityPhase = 1800;
-			Config.Economy.popForMarket = 80;
-			Config.Economy.techStartTime = 600;
-			Config.Economy.femaleRatio = 0.6;
-			Config.Economy.initialFields = 1;
-			// Config.Economy.targetNumWorkers will be set by AI scripts.
-		}
-		else if (Config.difficulty === 0)
-		{
-			Config.Military.defenceBuildingTime = 450;
-			Config.Military.attackPlansStartTime = 9600000;	// never
-			Config.Military.popForBarracks1 = 60;
-			Config.Military.popForBarracks2 = 150;	// shouldn't reach it
-			Config.Military.popForBlacksmith = 150;	// shouldn't reach it
+		this.Economy.cityPhase = 1800;
+		this.Economy.popForMarket = 80;
+		this.Economy.techStartTime = 600;
+		this.Economy.femaleRatio = 0.6;
+		this.Economy.initialFields = 1;
+		// Config.Economy.targetNumWorkers will be set by AI scripts.
+	}
+	else if (this.difficulty === 0)
+	{
+		this.Military.defenceBuildingTime = 450;
+		this.Military.attackPlansStartTime = 9600000;	// never
+		this.Military.popForBarracks1 = 60;
+		this.Military.popForBarracks2 = 150;	// shouldn't reach it
+		this.Military.popForBlacksmith = 150;	// shouldn't reach it
 
-			Config.Economy.cityPhase = 240000;
-			Config.Economy.popForMarket = 200;
-			Config.Economy.techStartTime = 1800;
-			Config.Economy.femaleRatio = 0.2;
-			Config.Economy.initialFields = 1;
-			// Config.Economy.targetNumWorkers will be set by AI scripts.
-		}
+		this.Economy.cityPhase = 240000;
+		this.Economy.popForMarket = 200;
+		this.Economy.techStartTime = 1800;
+		this.Economy.femaleRatio = 0.2;
+		this.Economy.initialFields = 1;
+		// Config.Economy.targetNumWorkers will be set by AI scripts.
 	}
 };
 
-Config.__proto__ = baseConfig;
+return m;
+}(AEGIS);

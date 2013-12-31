@@ -5,31 +5,11 @@ var g_PasswordInputIsHidden = false;
 function init()
 {
 	g_EncrytedPassword = Engine.ConfigDB_GetValue("user", "lobby.password");
-	var connectPassword = getGUIObjectByName("connectPassword");
-	if (connectPassword.caption) {
-		g_PasswordInputIsHidden = true;
-		connectPassword.hidden = true;
-		getGUIObjectByName("connectPasswordLabel").hidden = true;
-		//getGUIObjectByName("nickPanel").size = "64 80 100%-32 104";
-		getGUIObjectByName("nickToggle").size = "100%-64 80 100%-32 104";
-	}
-}
-
-function showNickInput()
-{
-	getGUIObjectByName("nickToggle").hidden = true;
-	getGUIObjectByName("nickPanel").hidden = false;
-	if (g_PasswordInputIsHidden)
-	{
-		getGUIObjectByName("connectPasswordLabel").hidden = false;
-		getGUIObjectByName("connectPassword").hidden = false;
-	}
 }
 
 function lobbyStop()
 {
-	getGUIObjectByName("connectFeedback").caption = "";
-	getGUIObjectByName("registerFeedback").caption = "";
+	getGUIObjectByName("feedback").caption = "";
 
 	if (g_LobbyIsConnecting == false)
 		return;
@@ -48,23 +28,15 @@ function lobbyStart()
 
 	var username = getGUIObjectByName("connectUsername").caption;
 	var password = getGUIObjectByName("connectPassword").caption;
-	var feedback = getGUIObjectByName("connectFeedback");
-	// Use username as nick unless overridden.
-	var nickPanelHidden = getGUIObjectByName("nickPanel").hidden;
-	var nick = sanitizePlayerName(nickPanelHidden ? username :
-			getGUIObjectByName("joinPlayerName").caption, true, true);
-	if (!username || !password)
-	{
-		feedback.caption = "Username or password empty";
-		return;
-	}
-
-	feedback.caption = "Connecting..";
-	// If they enter a different password, re-encrypt.
-	if (password != g_EncrytedPassword)
-		g_EncrytedPassword = Engine.EncryptPassword(password, username);
+	var feedback = getGUIObjectByName("feedback");
 	var room = Engine.ConfigDB_GetValue("user", "lobby.room");
-	Engine.StartXmppClient(username, g_EncrytedPassword, room, nick);
+
+	feedback.caption = "Connecting....";
+	// If they enter a different password, re-encrypt.
+	if (password != g_EncrytedPassword.substring(0, 10))
+		g_EncrytedPassword = Engine.EncryptPassword(password, username);
+	// We just use username as nick for simplicity.
+	Engine.StartXmppClient(username, g_EncrytedPassword, room, username);
 	g_LobbyIsConnecting = true;
 	Engine.ConnectXmppClient();
 }
@@ -80,38 +52,81 @@ function lobbyStartRegister()
 	var account = getGUIObjectByName("connectUsername").caption;
 	var password = getGUIObjectByName("connectPassword").caption;
 	var passwordAgain = getGUIObjectByName("registerPasswordAgain").caption;
-	var feedback = getGUIObjectByName("registerFeedback");
+	var feedback = getGUIObjectByName("feedback");
 
-	if (!account || !password || !passwordAgain)
-	{
-		feedback.caption = "Login or password empty";
-		return;
-	}
+	// Check the passwords match.
 	if (password != passwordAgain)
 	{
-		feedback.caption = "Password mismatch";
+		feedback.caption = "Passwords do not match";
 		getGUIObjectByName("connectPassword").caption = "";
 		getGUIObjectByName("registerPasswordAgain").caption = "";
-		return;
-	}
-	// Check they are using a valid account name.
-	sanitizedName = sanitizePlayerName(account, true, true)
-	if (sanitizedName != account)
-	{
-		feedback.caption = "Sorry, you can't use [, ], unicode, whitespace, or commas.";
+		switchRegister();
 		return;
 	}
 
 	feedback.caption = "Registering...";
-	if (password != g_EncrytedPassword)
+	if (password != g_EncrytedPassword.substring(0, 10))
 		g_EncrytedPassword = Engine.EncryptPassword(password, account);
 	Engine.StartRegisterXmppClient(account, g_EncrytedPassword);
 	g_LobbyIsConnecting = true;
 	Engine.ConnectXmppClient();
 }
 
+function switchRegister()
+{
+	if (getGUIObjectByName("pageRegister").hidden)
+	{
+		lobbyStop();
+		getGUIObjectByName("pageRegister").hidden = false;
+		getGUIObjectByName("pageConnect").hidden = true;
+		getGUIObjectByName("connect").enabled = false;
+	}
+	else
+	{
+		getGUIObjectByName("pageRegister").hidden = true;
+		getGUIObjectByName("pageConnect").hidden = false;
+		getGUIObjectByName("connect").enabled = true;
+	}
+}
+
 function onTick()
 {
+	//
+	var username = getGUIObjectByName("connectUsername").caption;
+	var password = getGUIObjectByName("connectPassword").caption;
+	var passwordAgain = getGUIObjectByName("registerPasswordAgain").caption;
+	var feedback = getGUIObjectByName("feedback");
+	var pageRegisterHidden = getGUIObjectByName("pageRegister").hidden;
+	var connectButton = getGUIObjectByName("connect");
+	var registerButton = getGUIObjectByName("register"); 
+	var sanitizedName = sanitizePlayerName(username, true, true)
+	// If there aren't a username and password entered, we can't start registration or connection.
+	if (!username || !password)
+	{
+		connectButton.enabled = false;
+		registerButton.enabled = false;
+	}
+	// Check they are using a valid account name.
+	else if (username != sanitizedName)
+	{
+		feedback.caption = "Sorry, you can't use [, ], unicode, whitespace, or commas.";
+		connectButton.enabled = false;
+		registerButton.enabled = false;
+	}
+	// Allow them to connect/begin registation if there aren't any problems.
+	else if (pageRegisterHidden)
+	{
+		if (feedback.caption == "Sorry, you can't use [, ], unicode, whitespace, or commas.")
+			feedback.caption = "";
+		connectButton.enabled = true;
+		registerButton.enabled = true;
+	}
+	// If the password hasn't been entered again, we can't complete registation.
+	if (!pageRegisterHidden && !passwordAgain)
+		registerButton.enabled = false;
+	else if (!pageRegisterHidden)
+		registerButton.enabled = true;
+
 	if (!g_LobbyIsConnecting)
 		// The Xmpp Client has not been created
 		return;
@@ -133,13 +148,8 @@ function onTick()
 		{
 			// We are connected, switch to the lobby page
 			Engine.PopGuiPage();
-			var username = getGUIObjectByName("connectUsername").caption;
-			var password = getGUIObjectByName("connectPassword").caption;
-			// Use username as nick unless overridden.
-			if (getGUIObjectByName("nickPanel").hidden == true)
-				var nick = sanitizePlayerName(username, true, true);
-			else
-				var nick = sanitizePlayerName(getGUIObjectByName("joinPlayerName").caption, true, true);
+			// Use username as nick.
+			var nick = sanitizePlayerName(username, true, true);
 
 			// Switch to lobby
 			Engine.SwitchGuiPage("page_lobby.xml");
@@ -147,7 +157,7 @@ function onTick()
 			Engine.ConfigDB_CreateValue("user", "playername", nick);
 			Engine.ConfigDB_CreateValue("user", "lobby.login", username);
 			// We only store the encrypted password, so make sure to re-encrypt it if changed before saving.
-			if (password != g_EncrytedPassword)
+			if (password != g_EncrytedPassword.substring(0, 10))
 				g_EncrytedPassword = Engine.EncryptPassword(password, username);
 			Engine.ConfigDB_CreateValue("user", "lobby.password", g_EncrytedPassword);
 			Engine.ConfigDB_WriteFile("user", "config/user.cfg");
@@ -157,17 +167,14 @@ function onTick()
 		else if (message.type == "system" && message.text == "registered")
 		{
 			// Great, we are registered. Switch to the connection window.
-			getGUIObjectByName("registerFeedback").caption = toTitleCase(message.text);
-			getGUIObjectByName("connectFeedback").caption = toTitleCase(message.text);
+			feedback.caption = toTitleCase(message.text);
 			Engine.StopXmppClient();
 			g_LobbyIsConnecting = false;
-			getGUIObjectByName("pageRegister").hidden = true;
-			getGUIObjectByName("pageConnect").hidden = false;
+			switchRegister();
 		}
 		else if(message.type == "system" && (message.level == "error" || message.text == "disconnected"))
 		{
-			getGUIObjectByName("connectFeedback").caption = toTitleCase(message.text);
-			getGUIObjectByName("registerFeedback").caption = toTitleCase(message.text);
+			feedback.caption = toTitleCase(message.text);
 			Engine.StopXmppClient();
 			g_LobbyIsConnecting = false;
 		}

@@ -1,3 +1,6 @@
+var API3 = function(m)
+{
+
 // An implementation of A* as a pathfinder.
 // It's oversamplable, and has a specific "distance from block"
 // variable to avoid narrow passages if wanted.
@@ -11,7 +14,7 @@
 
 // The initializer creates an expanded influence map for checking.
 // It's not extraordinarily slow, but it might be.
-function aStarPath(gameState, onWater, disregardEntities, targetTerritory) {
+m.aStarPath = function(gameState, onWater, disregardEntities, targetTerritory) {
 	var self = this;
 	
 	// get the terrain analyzer map as a reference.
@@ -52,10 +55,10 @@ function aStarPath(gameState, onWater, disregardEntities, targetTerritory) {
 	}
 	this.expandInfluences(255,this.widthMap);
 }
-copyPrototype(aStarPath, Map);
+m.copyPrototype(m.aStarPath, m.Map);
 
 // marks some points of the map as impassable. This can be used to create different paths, or to avoid going through some areas.
-aStarPath.prototype.markImpassableArea = function(cx, cy, Distance) {
+m.aStarPath.prototype.markImpassableArea = function(cx, cy, Distance) {
 	[cx,cy] = this.gamePosToMapPos([cx,cy]);
 	var x0 = Math.max(0, cx - Distance);
 	var y0 = Math.max(0, cy - Distance);
@@ -78,7 +81,7 @@ aStarPath.prototype.markImpassableArea = function(cx, cy, Distance) {
 
 // sending gamestate creates a map
 // (you run the risk of "jumping" over obstacles or weird behavior.
-aStarPath.prototype.getPath = function(start, end, Sampling, preferredWidth, iterationLimit, gamestate)
+m.aStarPath.prototype.getPath = function(start, end, Sampling, preferredWidth, iterationLimit, gamestate)
 {
 	this.Sampling = Sampling >= 1 ? Sampling : 1;
 	this.minWidth = 1;
@@ -97,7 +100,7 @@ aStarPath.prototype.getPath = function(start, end, Sampling, preferredWidth, ite
 	}
 	if (gamestate !== undefined)
 	{
-		this.TotorMap = new Map(gamestate);
+		this.TotorMap = new m.Map(gamestate);
 		this.TotorMap.addInfluence(s[0],s[1],1,200,'constant');
 		this.TotorMap.addInfluence(e[0],e[1],1,200,'constant');
 	}
@@ -110,11 +113,11 @@ aStarPath.prototype.getPath = function(start, end, Sampling, preferredWidth, ite
 	
 	if (this.waterPathfinder && this.map[this.s] !== 200 && this.map[this.s] !== 201)
 	{
-		debug ("Trying a path over water, but we are on land, aborting");
+		m.debug ("Trying a path over water, but we are on land, aborting");
 		return undefined;
 	} else if (!this.waterPathfinder && this.map[this.s] === 200)
 	{
-		debug ("Trying a path over land, but we are over water, aborting");
+		m.debug ("Trying a path over land, but we are over water, aborting");
 		return undefined;
 	}
 	
@@ -135,7 +138,7 @@ aStarPath.prototype.getPath = function(start, end, Sampling, preferredWidth, ite
 	
 	this.isOpened[this.s] = true;
 	this.openList.push(this.s);
-	this.fCostArray[this.s] = SquareVectorDistance([this.s%w, Math.floor(this.s/w)], [this.e%w, Math.floor(this.e/w)]);
+	this.fCostArray[this.s] = m.SquareVectorDistance([this.s%w, Math.floor(this.s/w)], [this.e%w, Math.floor(this.e/w)]);
 	this.gCostArray[this.s] = 0;
 	this.parentSquare[this.s] = this.s;
 	
@@ -143,7 +146,7 @@ aStarPath.prototype.getPath = function(start, end, Sampling, preferredWidth, ite
 	
 }
 // in case it's not over yet, this can carry on the calculation of a path over multiple turn until it's over
-aStarPath.prototype.continuePath = function(gamestate)
+m.aStarPath.prototype.continuePath = function(gamestate)
 {
 	var w = this.width;
 	var h = this.height;
@@ -208,7 +211,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 				{
 					this.parentSquare[index] = this.currentSquare;
 					
-					this.fCostArray[index] = SquareVectorDistance([index%w, Math.floor(index/w)], target);// * cost[i];
+					this.fCostArray[index] = m.SquareVectorDistance([index%w, Math.floor(index/w)], target);// * cost[i];
 					this.gCostArray[index] = this.gCostArray[this.currentSquare] + cost[i] * this.Sampling;// - this.map[index];
 					
 					if (!this.onWater && this.map[index] === 200) {
@@ -231,7 +234,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 						this.openList.push(index);
 					}
 					this.isOpened[index] = true;
-					if (SquareVectorDistance( [index%w, Math.floor(index/w)] , target) <= this.Sampling*this.Sampling-1) {
+					if (m.SquareVectorDistance( [index%w, Math.floor(index/w)] , target) <= this.Sampling*this.Sampling-1) {
 						if (this.e != index)
 							this.parentSquare[this.e] = index;
 						found = true;
@@ -267,7 +270,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 		// we've got to assume that we stopped because we reached the upper limit of iterations
 		return "toBeContinued";
 	}
-	//debug (this.totalIteration);
+	//m.debug (this.totalIteration);
 	var paths = [];
 	if (found) {
 		this.currentSquare = e;
@@ -278,12 +281,12 @@ aStarPath.prototype.continuePath = function(gamestate)
 			this.currentSquare = this.parentSquare[this.currentSquare];
 			
 			if (!this.onWater && this.map[this.currentSquare] === 200) {
-				//debug ("We must cross water, going " +this.currentSquare + " from parent " + this.parentSquare[this.currentSquare]);
+				//m.debug ("We must cross water, going " +this.currentSquare + " from parent " + this.parentSquare[this.currentSquare]);
 				this.pathChangesTransport = true;
 				changes[this.currentSquare] = true;
 				this.onWater = true;
 			} else if (this.onWater && (this.map[this.currentSquare] !== 200 && this.map[this.currentSquare] !== 201)) {
-				//debug ("We must cross to the ground, going " +this.currentSquare + " from parent " + this.parentSquare[this.currentSquare]);
+				//m.debug ("We must cross to the ground, going " +this.currentSquare + " from parent " + this.parentSquare[this.currentSquare]);
 				this.pathChangesTransport = true;
 				changes[this.currentSquare] = true;
 				this.onWater = false;
@@ -294,7 +297,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 			if (gamestate !== undefined)
 				this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w),1,50,'constant');
 			
-			if (SquareVectorDistance([lastPosx,lastPosy],[this.currentSquare % w, Math.floor(this.currentSquare / w)]) > 300 || changes[this.currentSquare])
+			if (m.SquareVectorDistance([lastPosx,lastPosy],[this.currentSquare % w, Math.floor(this.currentSquare / w)]) > 300 || changes[this.currentSquare])
 			{
 				lastPosx = (this.currentSquare % w);
 				lastPosy = Math.floor(this.currentSquare / w);
@@ -325,3 +328,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 	}
 	
 }
+
+return m;
+
+}(API3);

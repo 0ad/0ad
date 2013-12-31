@@ -1,3 +1,5 @@
+var PlayerID = -1;
+
 function BaseAI(settings)
 {
 	if (!settings)
@@ -112,8 +114,9 @@ BaseAI.prototype.GetTemplate = function(name)
 	return null;
 };
 
-BaseAI.prototype.HandleMessage = function(state)
+BaseAI.prototype.HandleMessage = function(state, playerID)
 {
+	PlayerID = playerID;
 	if (!this._entities)
 	{
 		// Do a (shallow) clone of all the initial entity properties (in order
@@ -237,7 +240,7 @@ BaseAI.prototype.OnUpdate = function()
 
 BaseAI.prototype.chat = function(message)
 {
-	Engine.PostCommand({"type": "chat", "message": message});
+	Engine.PostCommand(PlayerID, {"type": "chat", "message": message});
 };
 
 BaseAI.prototype.registerUpdatingEntityCollection = function(entCollection)

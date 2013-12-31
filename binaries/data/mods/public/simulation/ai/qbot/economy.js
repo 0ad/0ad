@@ -357,17 +357,17 @@ EconomyManager.prototype.updateNearbyResources = function(gameState){
 			// Make resources glow wildly 
 			if (resource == "food"){
 				ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
-					Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [10,0,0]});
+					Engine.PostCommand(PlayerID, {"type": "set-shading-color", "entities": [ent.id()], "rgb": [10,0,0]});
 				});
 			}
 			if (resource == "wood"){
 				ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
-					Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,10,0]});
+					Engine.PostCommand(PlayerID, {"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,10,0]});
 				});
 			}
 			if (resource == "metal"){
 				ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
-					Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0,10]});
+					Engine.PostCommand(PlayerID, {"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0,10]});
 				});
 			}*/
 		});

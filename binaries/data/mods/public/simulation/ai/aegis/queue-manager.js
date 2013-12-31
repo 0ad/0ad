@@ -1,3 +1,6 @@
+var AEGIS = function(m)
+{
+
 // This takes the input queues and picks which items to fund with resources until no more resources are left to distribute.
 //
 // Currently this manager keeps accounts for each queue, split between the 4 main resources
@@ -17,7 +20,8 @@
 //
 // This system should be improved. It's probably not flexible enough.
 
-var QueueManager = function(queues, priorities) {
+m.QueueManager = function(Config, queues, priorities) {
+	this.Config = Config;
 	this.queues = queues;
 	this.priorities = priorities;
 	this.account = {};
@@ -28,7 +32,7 @@ var QueueManager = function(queues, priorities) {
 	this.queueArrays = [];
 	for (var p in this.queues) {
 		this.account[p] = 0;
-		this.accounts[p] = new Resources();
+		this.accounts[p] = new API3.Resources();
 		this.queueArrays.push([p,this.queues[p]]);
 	}
 	this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
@@ -36,7 +40,7 @@ var QueueManager = function(queues, priorities) {
 	this.curItemQueue = [];
 };
 
-QueueManager.prototype.getAvailableResources = function(gameState, noAccounts) {
+m.QueueManager.prototype.getAvailableResources = function(gameState, noAccounts) {
 	var resources = gameState.getResources();
 	if (noAccounts)
 		return resources;
@@ -46,16 +50,16 @@ QueueManager.prototype.getAvailableResources = function(gameState, noAccounts) {
 	return resources;
 };
 
-QueueManager.prototype.getTotalAccountedResources = function(gameState) {
-	var resources = new Resources();
+m.QueueManager.prototype.getTotalAccountedResources = function(gameState) {
+	var resources = new API3.Resources();
 	for (var key in this.queues) {
 		resources.add(this.accounts[key]);
 	}
 	return resources;
 };
 
-QueueManager.prototype.currentNeeds = function(gameState) {
-	var needs = new Resources();
+m.QueueManager.prototype.currentNeeds = function(gameState) {
+	var needs = new API3.Resources();
 	// get out current resources, not removing accounts.
 	var current = this.getAvailableResources(gameState, true);
 	//queueArrays because it's faster.
@@ -82,8 +86,8 @@ QueueManager.prototype.currentNeeds = function(gameState) {
 	};
 };
 
-QueueManager.prototype.futureNeeds = function(gameState) {
-	var needs = new Resources();
+m.QueueManager.prototype.futureNeeds = function(gameState) {
+	var needs = new API3.Resources();
 	// get out current resources, not removing accounts.
 	var current = this.getAvailableResources(gameState, true);
 	//queueArrays because it's faster.
@@ -108,7 +112,7 @@ QueueManager.prototype.futureNeeds = function(gameState) {
 };
 
 // calculate the gather rates we'd want to be able to use all elements in our queues
-QueueManager.prototype.wantedGatherRates = function(gameState) {
+m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 	var rates = { "food" : 0, "wood" : 0, "stone" : 0, "metal" : 0 };
 	var qTime = gameState.getTimeElapsed();
 	var qCosts = { "food" : 0, "wood" : 0, "stone" : 0, "metal" : 0 };
@@ -143,7 +147,9 @@ QueueManager.prototype.wantedGatherRates = function(gameState) {
 				// estimate time based on priority + cost + nb
 				// TODO: work on this.
 				for (type in qCosts)
+				{
 					qCosts[type] += (cost[type] + Math.min(cost[type],this.priorities[name]));
+				}
 				qTime += 30000;
 			} else {
 				// TODO: work on this.
@@ -165,7 +171,7 @@ QueueManager.prototype.wantedGatherRates = function(gameState) {
 	return rates;
 };
 
-/*QueueManager.prototype.logNeeds = function(gameState) {
+/*m.QueueManager.prototype.logNeeds = function(gameState) {
  if (!this.totor)
  {
  this.totor = [];
@@ -255,34 +261,34 @@ QueueManager.prototype.wantedGatherRates = function(gameState) {
 };
 */
 
-QueueManager.prototype.printQueues = function(gameState){
-	debug("QUEUES");
+m.QueueManager.prototype.printQueues = function(gameState){
+	m.debug("QUEUES");
 	for (var i in this.queues){
 		var qStr = "";
 		var q = this.queues[i];
 		if (q.queue.length > 0)
-			debug((i + ":"));
+			m.debug((i + ":"));
 		for (var j in q.queue){
 			qStr = "     " + q.queue[j].type + " ";
 			if (q.queue[j].number)
 				qStr += "x" + q.queue[j].number;
-			debug (qStr);
+			m.debug (qStr);
 		}
 	}
-	debug ("Accounts");
+	m.debug ("Accounts");
 	for (var p in this.accounts)
 	{
-		debug(p + ": " + uneval(this.accounts[p]));
+		m.debug(p + ": " + uneval(this.accounts[p]));
 	}
-	debug("Needed Resources:" + uneval(this.futureNeeds(gameState,false)));
-	debug ("Wanted Gather Rates:" + uneval(this.wantedGatherRates(gameState)));
-	debug ("Current Resources:" + uneval(gameState.getResources()));
-	debug ("Available Resources:" + uneval(this.getAvailableResources(gameState)));
+	m.debug("Needed Resources:" + uneval(this.futureNeeds(gameState,false)));
+	m.debug ("Wanted Gather Rates:" + uneval(this.wantedGatherRates(gameState)));
+	m.debug ("Current Resources:" + uneval(gameState.getResources()));
+	m.debug ("Available Resources:" + uneval(this.getAvailableResources(gameState)));
 };
 
 // nice readable HTML version.
-QueueManager.prototype.HTMLprintQueues = function(gameState){
-	if (!Config.debug)
+m.QueueManager.prototype.HTMLprintQueues = function(gameState){
+	if (!m.DebugEnabled())
 		return;
 	log("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\"> <html> <head> <title>Aegis Queue Manager</title> <link rel=\"stylesheet\" href=\"table.css\">  </head> <body> <table> <caption>Aegis Build Order</caption> ");
 	for (var i in this.queues){
@@ -325,13 +331,13 @@ QueueManager.prototype.HTMLprintQueues = function(gameState){
 	log("</body></html>");
 };
 
-QueueManager.prototype.clear = function(){
+m.QueueManager.prototype.clear = function(){
 	this.curItemQueue = [];
 	for (var i in this.queues)
 		this.queues[i].empty();
 };
 
-QueueManager.prototype.update = function(gameState) {
+m.QueueManager.prototype.update = function(gameState) {
 	var self = this;
 	
 	for (var i in this.priorities){
@@ -430,7 +436,7 @@ QueueManager.prototype.update = function(gameState) {
 							this.accounts[queues[under]] -= amnt;
 							this.accounts[queues[over]] += amnt;
 							--over;
-							debug ("Shifting " + amnt + " from " + queues[under] + " to " +queues[over]);
+							m.debug ("Shifting " + amnt + " from " + queues[under] + " to " +queues[over]);
 							continue;
 						} else {
 							++under;
@@ -447,8 +453,8 @@ QueueManager.prototype.update = function(gameState) {
 	
 	Engine.ProfileStart("Pick items from queues");
 
-	//debug ("start");
-	//debug (uneval(this.accounts));
+	//m.debug ("start");
+	//m.debug (uneval(this.accounts));
 	// Start the next item in the queue if we can afford it.
 	for (var i in this.queueArrays)
 	{
@@ -457,7 +463,7 @@ QueueManager.prototype.update = function(gameState) {
 		if (queue.length() > 0 && !queue.paused)
 		{
 			var item = queue.getNext();
-			var total = new Resources();
+			var total = new API3.Resources();
 			total.add(this.accounts[name]);
 			if (total.canAfford(item.getCost()))
 			{
@@ -471,7 +477,7 @@ QueueManager.prototype.update = function(gameState) {
 			this.accounts[name].reset();
 		}
 	}
-	//debug (uneval(this.accounts));
+	//m.debug (uneval(this.accounts));
 	
 	Engine.ProfileStop();
 	
@@ -481,7 +487,7 @@ QueueManager.prototype.update = function(gameState) {
 	Engine.ProfileStop();
 };
 
-QueueManager.prototype.pauseQueue = function(queue, scrapAccounts) {
+m.QueueManager.prototype.pauseQueue = function(queue, scrapAccounts) {
 	if (this.queues[queue])
 	{
 		this.queues[queue].paused = true;
@@ -490,12 +496,12 @@ QueueManager.prototype.pauseQueue = function(queue, scrapAccounts) {
 	}
 }
 
-QueueManager.prototype.unpauseQueue = function(queue) {
+m.QueueManager.prototype.unpauseQueue = function(queue) {
 	if (this.queues[queue])
 		this.queues[queue].paused = false;
 }
 
-QueueManager.prototype.pauseAll = function(scrapAccounts, but) {
+m.QueueManager.prototype.pauseAll = function(scrapAccounts, but) {
 	for (var p in this.queues)
 		if (p != but)
 		{
@@ -505,28 +511,30 @@ QueueManager.prototype.pauseAll = function(scrapAccounts, but) {
 		}
 }
 
-QueueManager.prototype.unpauseAll = function(but) {
+m.QueueManager.prototype.unpauseAll = function(but) {
 	for (var p in this.queues)
 		if (p != but)
 			this.queues[p].paused = false;
 }
 
 
-QueueManager.prototype.addQueue = function(queueName, priority) {
+m.QueueManager.prototype.addQueue = function(queueName, priority) {
 	if (this.queues[queueName] == undefined) {
-		this.queues[queueName] = new Queue();
+		this.queues[queueName] = new m.Queue();
 		this.priorities[queueName] = priority;
 		this.account[queueName] = 0;
-		this.accounts[queueName] = new Resources();
+		this.accounts[queueName] = new API3.Resources();
 
 		var self = this;
 		this.queueArrays = [];
 		for (var p in this.queues)
+		{
 			this.queueArrays.push([p,this.queues[p]]);
+		}
 		this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
 	}
 }
-QueueManager.prototype.removeQueue = function(queueName) {
+m.QueueManager.prototype.removeQueue = function(queueName) {
 	if (this.queues[queueName] !== undefined) {
 		if ( this.curItemQueue.indexOf(queueName) !== -1) {
 			this.curItemQueue.splice(this.curItemQueue.indexOf(queueName),1);
@@ -539,18 +547,23 @@ QueueManager.prototype.removeQueue = function(queueName) {
 		var self = this;
 		this.queueArrays = [];
 		for (var p in this.queues)
+		{
 			this.queueArrays.push([p,this.queues[p]]);
+		}
 		this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
 	}
 }
-QueueManager.prototype.changePriority = function(queueName, newPriority) {
+m.QueueManager.prototype.changePriority = function(queueName, newPriority) {
 	var self = this;
 	if (this.queues[queueName] !== undefined)
 		this.priorities[queueName] = newPriority;
 	this.queueArrays = [];
-	for (var p in this.queues) {
+	for (var p in this.queues)
+	{
 		this.queueArrays.push([p,this.queues[p]]);
 	}
 	this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
 }
 
+return m;
+}(AEGIS);

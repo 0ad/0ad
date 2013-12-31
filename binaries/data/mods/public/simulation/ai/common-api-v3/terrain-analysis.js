@@ -1,3 +1,6 @@
+var API3 = function(m)
+{
+
 /*
  * TerrainAnalysis, inheriting from the Map Component.
  * 
@@ -12,13 +15,13 @@
  * But truly separating optimizes.
  */
 
-function TerrainAnalysis() {
+m.TerrainAnalysis = function() {
 	this.cellSize = 4;
 }
 
-copyPrototype(TerrainAnalysis, Map);
+m.copyPrototype(m.TerrainAnalysis, m.Map);
 
-TerrainAnalysis.prototype.init = function(sharedScript,rawState) {
+m.TerrainAnalysis.prototype.init = function(sharedScript,rawState) {
 	var self = this;
 
 	var passabilityMap = rawState.passabilityMap;
@@ -108,7 +111,7 @@ TerrainAnalysis.prototype.init = function(sharedScript,rawState) {
 };
 
 // Returns the (approximately) closest point which is passable by searching in a spiral pattern 
-TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, onLand, limitDistance, quickscope){
+m.TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, onLand, limitDistance, quickscope){
 	var w = this.width;
 	var p = startPoint;
 	var direction = 1;
@@ -150,7 +153,7 @@ TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, onLand
 
 // Returns an estimate of a tile accessibility. It checks neighboring cells over two levels.
 // returns a count. It's not integer. About 2 should be fairly accessible already.
-TerrainAnalysis.prototype.countConnected = function(startIndex, byLand){
+m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand){
 	var count = 0.0;
 	
 	var w = this.width;
@@ -181,7 +184,7 @@ TerrainAnalysis.prototype.countConnected = function(startIndex, byLand){
 };
 
 // TODO: for now this resets to 255.
-TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI) {
+m.TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI) {
 	var self = this;
 	
 	var events = sharedAI.events;
@@ -243,13 +246,13 @@ TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI) {
  * so this can use the land regions already.
 
  */
-function Accessibility() {
+m.Accessibility = function() {
 	
 }
 
-copyPrototype(Accessibility, TerrainAnalysis);
+m.copyPrototype(m.Accessibility, m.TerrainAnalysis);
 
-Accessibility.prototype.init = function(rawState, terrainAnalyser){
+m.Accessibility.prototype.init = function(rawState, terrainAnalyser){
 	var self = this;
 	
 	this.Map(rawState, terrainAnalyser.map);
@@ -322,7 +325,7 @@ Accessibility.prototype.init = function(rawState, terrainAnalyser){
 	//Engine.DumpImage("NavalPassMap.png", this.navalPassMap, this.width, this.height, 255);
 }
 
-Accessibility.prototype.getAccessValue = function(position, onWater) {
+m.Accessibility.prototype.getAccessValue = function(position, onWater) {
 	var gamePos = this.gamePosToMapPos(position);
 	if (onWater === true)
 		return this.navalPassMap[gamePos[0] + this.width*gamePos[1]];
@@ -343,7 +346,7 @@ Accessibility.prototype.getAccessValue = function(position, onWater) {
 
 // Returns true if a point is deemed currently accessible (is not blocked by surrounding trees...)
 // NB: accessible means that you can reach it from one side, not necessariliy that you can go ON it.
-Accessibility.prototype.isAccessible = function(gameState, position, onLand){
+m.Accessibility.prototype.isAccessible = function(gameState, position, onLand){
 	var gamePos = this.gamePosToMapPos(position);
 	
 	// quick check
@@ -356,7 +359,7 @@ Accessibility.prototype.isAccessible = function(gameState, position, onLand){
 // Return true if you can go from a point to a point without switching means of transport
 // Hardcore means is also checks for isAccessible at the end (it checks for either water or land though, beware).
 // This is a blind check and not a pathfinder: for all it knows there is a huge block of trees in the middle.
-Accessibility.prototype.pathAvailable = function(gameState, start, end, onWater, hardcore){
+m.Accessibility.prototype.pathAvailable = function(gameState, start, end, onWater, hardcore){
 	var pstart = this.gamePosToMapPos(start);
 	var istart = pstart[0] + pstart[1]*this.width;
 	var pend = this.gamePosToMapPos(end);
@@ -382,7 +385,7 @@ Accessibility.prototype.pathAvailable = function(gameState, start, end, onWater,
 	return false;
 };
 
-Accessibility.prototype.getTrajectTo = function(start, end, noBound) {
+m.Accessibility.prototype.getTrajectTo = function(start, end, noBound) {
 	var pstart = this.gamePosToMapPos(start);
 	var istart = pstart[0] + pstart[1]*this.width;
 	var pend = this.gamePosToMapPos(end);
@@ -413,7 +416,7 @@ Accessibility.prototype.getTrajectTo = function(start, end, noBound) {
 // assumes a land unit unless start point is over deep water.
 // if the path is more complicated than "land->sea->land" (or "sea->land->sea"), it will run A* to try and figure it out
 // Thus it can handle arbitrarily complicated paths (theoretically).
-Accessibility.prototype.getTrajectToIndex = function(istart, iend, noBound){
+m.Accessibility.prototype.getTrajectToIndex = function(istart, iend, noBound){
 	var startRegion = istart;
 	var currentRegion = istart;
 	
@@ -530,7 +533,7 @@ Accessibility.prototype.getTrajectToIndex = function(istart, iend, noBound){
 	return path;
 };
 
-Accessibility.prototype.getRegionSize = function(position, onWater){
+m.Accessibility.prototype.getRegionSize = function(position, onWater){
 	var pos = this.gamePosToMapPos(position);
 	var index = pos[0] + pos[1]*this.width;
 	var ID = (onWater === true) ? this.navalPassMap[index] : this.landPassMap[index];
@@ -539,7 +542,7 @@ Accessibility.prototype.getRegionSize = function(position, onWater){
 	return this.regionSize[ID];
 };
 
-Accessibility.prototype.getRegionSizei = function(index, onWater) {
+m.Accessibility.prototype.getRegionSizei = function(index, onWater) {
 	if (this.regionSize[this.landPassMap[index]] === undefined && (!onWater || this.regionSize[this.navalPassMap[index]] === undefined))
 		return 0;
 	if (onWater && this.regionSize[this.navalPassMap[index]] > this.regionSize[this.landPassMap[index]])
@@ -549,7 +552,7 @@ Accessibility.prototype.getRegionSizei = function(index, onWater) {
 
 // Implementation of a fast flood fill. Reasonably good performances for JS.
 // TODO: take big zones of impassable trees into account?
-Accessibility.prototype.floodFill = function(startIndex, value, onWater)
+m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 {
 	this.s = startIndex;
 	if ((!onWater && this.landPassMap[this.s] !== 0) || (onWater && this.navalPassMap[this.s] !== 0) ) {
@@ -668,16 +671,16 @@ Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 }
 
 // creates a map of resource density
-SharedScript.prototype.createResourceMaps = function(sharedScript) {
+m.SharedScript.prototype.createResourceMaps = function(sharedScript) {
 	
 	for (var resource in this.decreaseFactor){
 		// if there is no resourceMap create one with an influence for everything with that resource
 		if (! this.resourceMaps[resource]){
 			// We're creting them 8-bit. Things could go above 255 if there are really tons of resources
 			// But at that point the precision is not really important anyway. And it saves memory.
-			this.resourceMaps[resource] = new Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
+			this.resourceMaps[resource] = new m.Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
 			this.resourceMaps[resource].setMaxVal(255);
-			this.CCResourceMaps[resource] = new Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
+			this.CCResourceMaps[resource] = new m.Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
 			this.CCResourceMaps[resource].setMaxVal(255);
 		}
 	}
@@ -711,16 +714,16 @@ SharedScript.prototype.createResourceMaps = function(sharedScript) {
 // creates and maintains a map of unused resource density
 // this also takes dropsites into account.
 // resources that are "part" of a dropsite are not counted.
-SharedScript.prototype.updateResourceMaps = function(sharedScript, events) {
+m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events) {
 	
 	for (var resource in this.decreaseFactor){
 		// if there is no resourceMap create one with an influence for everything with that resource
 		if (! this.resourceMaps[resource]){
 			// We're creting them 8-bit. Things could go above 255 if there are really tons of resources
 			// But at that point the precision is not really important anyway. And it saves memory.
-			this.resourceMaps[resource] = new Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
+			this.resourceMaps[resource] = new m.Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
 			this.resourceMaps[resource].setMaxVal(255);
-			this.CCResourceMaps[resource] = new Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
+			this.CCResourceMaps[resource] = new m.Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
 			this.CCResourceMaps[resource].setMaxVal(255);
 		}
 	}
@@ -780,3 +783,7 @@ SharedScript.prototype.updateResourceMaps = function(sharedScript, events) {
 		}
 	}
 };
+
+return m;
+
+}(API3);

@@ -43,6 +43,7 @@
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"
+#include "ps/GameSetup/Config.h"
 #include "renderer/Scene.h"
 
 #include "tools/atlas/GameInterface/GameLoop.h"
@@ -86,6 +87,7 @@ private:
 	fixed m_ConstructionProgress;
 
 	bool m_VisibleInAtlasOnly;
+	bool m_IsActorOnly;	// an in-world entity should not have this or it might not be rendered.
 
 	/// Whether the visual actor has been rendered at least once.
 	/// Necessary because the visibility update runs on simulation update,
@@ -124,6 +126,11 @@ public:
 			"</optional>"
 			"<optional>"
 				"<element name='DisableShadows' a:help='Used internally; if present, shadows will be disabled'>"
+					"<empty/>"
+				"</element>"
+			"</optional>"
+			"<optional>"
+				"<element name='ActorOnly' a:help='Used internally; if present, the unit will only be rendered if the user has high enough graphical settings.'>"
 					"<empty/>"
 				"</element>"
 			"</optional>"
@@ -187,7 +194,8 @@ public:
 			m_ActorName = paramNode.GetChild("Actor").ToString();
 
 		m_VisibleInAtlasOnly = paramNode.GetChild("VisibleInAtlasOnly").ToBool();
-
+		m_IsActorOnly = paramNode.GetChild("ActorOnly").IsOk();
+		
 		InitModel(paramNode);
 
 		// We need to select animation even if graphics are disabled, as this modifies serialized state
@@ -812,6 +820,9 @@ void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& fr
 		return;
 
 	CModelAbstract& model = m_Unit->GetModel();
+	
+	if (!g_AtlasGameLoop->running && !g_RenderActors && m_IsActorOnly)
+		return;
 
 	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetWorldBoundsRec()))
 		return;

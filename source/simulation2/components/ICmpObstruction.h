@@ -47,6 +47,11 @@ public:
 	 */
 	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) = 0;
 
+	/**
+	 * Same as the method above, but returns an obstruction shape for the previous turn
+	 */
+	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) = 0;
+
 	virtual entity_pos_t GetUnitRadius() = 0;
 
 	virtual bool IsControlPersistent() = 0;
