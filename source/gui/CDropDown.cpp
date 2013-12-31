@@ -231,7 +231,7 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 
 	case GUIM_MOUSE_WHEEL_DOWN:
 	{
-		// Don't switch elements be scrolling when open, causes a confusing interaction between this and the scrollbar.
+		// Don't switch elements by scrolling when open, causes a confusing interaction between this and the scrollbar.
 		if (m_Open)
 			break;
 
