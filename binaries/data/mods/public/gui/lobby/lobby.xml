@@ -148,7 +148,7 @@
 				<object type="text" size="15 0 35% 100%" text_align="left" textcolor="white">Show full games</object>
 				<object name="showFullFilter"
 					type="checkbox"
-					checked="false"
+					checked="true"
 					style="StoneCrossBox"
 					size="0% 3 10 100%-3">
 					<action on="Press">applyFilters();</action>

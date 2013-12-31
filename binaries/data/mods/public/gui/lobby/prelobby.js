@@ -101,7 +101,6 @@ function onTick()
 	var registerButton = getGUIObjectByName("register"); 
 	var sanitizedName = sanitizePlayerName(username, true, true)
 	// If there aren't a username and password entered, we can't start registration or connection.
-	
 	if (!username || !password)
 	{
 		connectButton.enabled = false;

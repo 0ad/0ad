@@ -2,12 +2,11 @@
 
 <objects>
 	<script file="gui/lobby/prelobby.js"/>
-
 	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/common/functions_utility.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object hidden="true" name="leaderboardFade" type="image" z="100" sprite="modernFade"/>
+	<object type="image" z="0" sprite="modernFade"/>
 
 	<object name="dialog" type="image" style="ModernDialog" size="50%-190 50%-120 50%+190 50%+120">
 
