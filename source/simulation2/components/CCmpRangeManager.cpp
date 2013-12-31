@@ -325,8 +325,8 @@ public:
 
 		// The whole map should be visible to Gaia by default, else e.g. animals
 		// will get confused when trying to run from enemies
-		m_LosRevealAll.resize(17,false);
-		m_SharedLosMasks.resize(17,0);
+		m_LosRevealAll.resize(MAX_LOS_PLAYER_ID+2,false);
+		m_SharedLosMasks.resize(MAX_LOS_PLAYER_ID+2,0);
 		
 		m_LosCircular = false;
 		m_TerrainVerticesPerSide = 0;
@@ -1381,13 +1381,20 @@ public:
 
 	virtual void SetLosRevealAll(player_id_t player, bool enabled)
 	{
-		m_LosRevealAll[player] = enabled;
+		if (player == -1)
+			m_LosRevealAll[MAX_LOS_PLAYER_ID+1] = enabled;
+		else
+		{
+			ENSURE(player >= 0 && player <= MAX_LOS_PLAYER_ID);
+			m_LosRevealAll[player] = enabled;
+		}
 	}
 
 	virtual bool GetLosRevealAll(player_id_t player)
 	{
+		ENSURE(player >= 0 && player <= MAX_LOS_PLAYER_ID+1);
 		// Special player value can force reveal-all for every player
-		if(m_LosRevealAll[0])
+		if(m_LosRevealAll[MAX_LOS_PLAYER_ID+1])
 			return true;
 
 		// Otherwise check the player-specific flag

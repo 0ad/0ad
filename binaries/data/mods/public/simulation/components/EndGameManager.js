@@ -50,7 +50,7 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 
 	// Reveal the map to all players
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	cmpRangeManager.SetLosRevealAll(0, true);
+	cmpRangeManager.SetLosRevealAll(-1, true);
 };
 
 EndGameManager.prototype.SetAlliedVictory = function(flag)

@@ -1826,7 +1826,7 @@ GuiInterface.prototype.GetBatchTime = function(player, data)
 GuiInterface.prototype.IsMapRevealed = function(player)
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	return cmpRangeManager.GetLosRevealAll(0);
+	return cmpRangeManager.GetLosRevealAll(-1);
 };
 
 GuiInterface.prototype.SetPathfinderDebugOverlay = function(player, enabled)
