@@ -20,7 +20,7 @@ IGUIButtonBehavior
 */
 
 #include "precompiled.h"
-
+#include "ps/CLogger.h"
 #include "GUI.h"
 
 #include "soundmanager/ISoundManager.h"
@@ -51,8 +51,8 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 
 		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_enter", soundPath) == PSRETURN_OK && !soundPath.empty())
 			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		break;
 	}
-	break;
 
 	case GUIM_MOUSE_LEAVE:
 	{
@@ -61,10 +61,20 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 
 		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_leave", soundPath) == PSRETURN_OK && !soundPath.empty())
 			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+		break;
 	}
-	break;
 
 	case GUIM_MOUSE_DBLCLICK_LEFT:
+	{
+		if (!enabled)
+			break;
+
+		// Since GUIM_MOUSE_PRESS_LEFT also gets called twice in a
+		// doubleclick event, we let it handle playing sounds.
+		SendEvent(GUIM_DOUBLE_PRESSED, "doublepress");
+		break;
+	}
+
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
 		if (!enabled)
@@ -74,24 +84,24 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 			break;
 		}
 
+		// Button was clicked
 		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_pressed", soundPath) == PSRETURN_OK && !soundPath.empty())
 			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
-
-		// Button was clicked
 		SendEvent(GUIM_PRESSED, "press");
-		if (Message.type == GUIM_MOUSE_DBLCLICK_LEFT)
-		{
-			// Button was clicked a second time. We can't tell if the button
-			// expects to receive doublepress events or just a second press
-			// event, so send both of them (and assume the extra unwanted press
-			// is harmless on buttons that expect doublepress)
-			SendEvent(GUIM_DOUBLE_PRESSED, "doublepress");
-		}
 		m_Pressed = true;
+		break;
 	}
-	break;
 
 	case GUIM_MOUSE_DBLCLICK_RIGHT:
+	{
+		if (!enabled)
+			break;
+
+		// Since GUIM_MOUSE_PRESS_RIGHT also gets called twice in a
+		// doubleclick event, we let it handle playing sounds.
+		SendEvent(GUIM_DOUBLE_PRESSED_MOUSE_RIGHT, "doublepressright");
+		break;
+	}
 	case GUIM_MOUSE_PRESS_RIGHT:
 	{
 		if (!enabled)
@@ -101,22 +111,13 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 			break;
 		}
 
+		// Button was right-clicked
 		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_pressed", soundPath) == PSRETURN_OK && !soundPath.empty())
 			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
-
-		// Button was right-clicked
 		SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
-		if (Message.type == GUIM_MOUSE_DBLCLICK_RIGHT)
-		{
-			// Button was clicked a second time. We can't tell if the button
-			// expects to receive doublepress events or just a second press
-			// event, so send both of them (and assume the extra unwanted press
-			// is harmless on buttons that expect doublepress)
-			SendEvent(GUIM_DOUBLE_PRESSED_MOUSE_RIGHT, "doublepressright");
-		}
 		m_PressedRight = true;
+		break;
 	}
-	break;
 
 	case GUIM_MOUSE_RELEASE_RIGHT:
 	{
@@ -129,8 +130,8 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_released", soundPath) == PSRETURN_OK && !soundPath.empty())
 				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 		}
+		break;
 	}
-	break;
 
 	case GUIM_MOUSE_RELEASE_LEFT:
 	{
@@ -143,8 +144,8 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_released", soundPath) == PSRETURN_OK && !soundPath.empty())
 				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 		}
+		break;
 	}
-	break;
 
 	default:
 		break;

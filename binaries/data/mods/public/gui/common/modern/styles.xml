@@ -76,4 +76,12 @@
 		textcolor="white"
 		textcolor_selected="white"
 	/>
+	<style name="ModernTickBox"
+		sprite="ModernTickOn"
+		sprite2="ModernTickOff"
+		sprite_disabled="ModernTickDisabled"
+		sprite2_disabled="ModernTickDisabled"
+		square_side="22"
+		sound_pressed="audio/interface/ui/ui_button_click.ogg"
+	/>
 </styles>
