@@ -72,8 +72,6 @@ ProductionQueue.prototype.Init = function()
  */
 ProductionQueue.prototype.GetEntitiesList = function()
 {
-	if (!this.entitiesList)
-		this.CalculateEntitiesList();
 	return this.entitiesList;
 };
 
@@ -455,6 +453,8 @@ ProductionQueue.prototype.OnOwnershipChanged = function(msg)
 		if (cmpPlayer && this.queue.length > 0)
 			cmpPlayer.UnBlockTraining();
 	}
+	if (msg.to != -1)
+		this.CalculateEntitiesList();
 
 	// Reset the production queue whenever the owner changes.
 	// (This should prevent players getting surprised when they capture
