@@ -601,22 +601,37 @@ var UnitFsmSpec = {
 	},
 
 	"Order.ReturnResource": function(msg) {
+		// Check if the dropsite is already in range
+		if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer) && this.CanReturnResource(this.order.data.target, true))
+		{
+			var cmpResourceDropsite = Engine.QueryInterface(this.order.data.target, IID_ResourceDropsite);
+			if (cmpResourceDropsite)
+			{
+				// Dump any resources we can
+				var dropsiteTypes = cmpResourceDropsite.GetTypes();
+
+				Engine.QueryInterface(this.entity, IID_ResourceGatherer).CommitResources(dropsiteTypes);
+
+				// Our next order should always be a Gather,
+				// so just switch back to that order
+				this.FinishOrder();
+				return;
+			}
+		}
 		// Try to move to the dropsite
 		if (this.MoveToTargetRange(this.order.data.target, IID_ResourceGatherer))
 		{
 			// We've started walking to the target
 			this.SetNextState("INDIVIDUAL.RETURNRESOURCE.APPROACHING");
-		}
-		else
-		{
-			// Oops, we can't reach the dropsite.
-			// Maybe we should try to pick another dropsite, to find an
-			// accessible one?
-			// For now, just give up.
-			this.StopMoving();
-			this.FinishOrder();
 			return;
 		}
+		// Oops, we can't reach the dropsite.
+		// Maybe we should try to pick another dropsite, to find an
+		// accessible one?
+		// For now, just give up.
+		this.StopMoving();
+		this.FinishOrder();
+		return;
 	},
 
 	"Order.Trade": function(msg) {
