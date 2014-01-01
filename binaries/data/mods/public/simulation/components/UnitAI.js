@@ -146,10 +146,6 @@ var UnitFsmSpec = {
 		// ignore newly-seen units by default
 	},
 
-	"LosGaiaRangeUpdate": function(msg) {
-		// ignore newly-seen Gaia units by default
-	},
-
 	"LosHealRangeUpdate": function(msg) {
 		// ignore newly-seen injured units by default
 	},
@@ -1397,14 +1393,6 @@ var UnitFsmSpec = {
 				}
 			},
 
-			"LosGaiaRangeUpdate": function(msg) {
-				if (this.GetStance().targetVisibleEnemies)
-				{
-					// Start attacking one of the newly-seen enemy (if any)
-					this.AttackGaiaEntitiesByPreference(msg.data.added);
-				}
-			},
-
 			"LosHealRangeUpdate": function(msg) {
 				this.RespondToHealableEntities(msg.data.added);
 			},
@@ -1517,12 +1505,6 @@ var UnitFsmSpec = {
 					// Start attacking one of the newly-seen enemy (if any)
 					if (this.GetStance().targetVisibleEnemies)
 						this.AttackEntitiesByPreference(msg.data.added);
-				},
-
-				"LosGaiaRangeUpdate": function(msg) {
-					// Start attacking one of the newly-seen enemy (if any)
-					if (this.GetStance().targetVisibleEnemies)
-						this.AttackGaiaEntitiesByPreference(msg.data.added);
 				},
 
 				"Timer": function(msg) {
@@ -3041,20 +3023,6 @@ UnitAI.prototype.IsWalkingAndFighting = function()
 	return (this.orderQueue.length > 0 && this.orderQueue[0].type == "WalkAndFight");
 };
 
-UnitAI.prototype.CanAttackGaia = function()
-{
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	if (!cmpAttack)
-		return false;
-
-	// Rejects Gaia (0) and INVALID_PLAYER (-1)
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() <= 0)
-		return false;
-
-	return true;
-};
-
 UnitAI.prototype.OnCreate = function()
 {
 	if (this.IsAnimal())
@@ -3096,8 +3064,6 @@ UnitAI.prototype.OnDestroy = function()
 		rangeMan.DestroyActiveQuery(this.losRangeQuery);
 	if (this.losHealRangeQuery)
 		rangeMan.DestroyActiveQuery(this.losHealRangeQuery);
-	if (this.losGaiaRangeQuery)
-		rangeMan.DestroyActiveQuery(this.losGaiaRangeQuery);
 };
 
 UnitAI.prototype.OnVisionRangeChanged = function(msg)
@@ -3140,7 +3106,7 @@ UnitAI.prototype.OnPickupCanceled = function(msg)
 	}
 };
 
-// Wrapper function that sets up the normal, healer, and Gaia range queries.
+// Wrapper function that sets up the normal and healer range queries.
 UnitAI.prototype.SetupRangeQueries = function()
 {
 	this.SetupRangeQuery();
@@ -3148,11 +3114,9 @@ UnitAI.prototype.SetupRangeQueries = function()
 	if (this.IsHealer())
 		this.SetupHealRangeQuery();
 
-	if (this.CanAttackGaia() || this.losGaiaRangeQuery)
-		this.SetupGaiaRangeQuery();
 }
 
-// Set up a range query for all enemy units within LOS range
+// Set up a range query for all enemy and gaia units within LOS range
 // which can be attacked.
 // This should be called whenever our ownership changes.
 UnitAI.prototype.SetupRangeQuery = function()
@@ -3176,9 +3140,9 @@ UnitAI.prototype.SetupRangeQuery = function()
 		// If unit not just killed, get enemy players via diplomacy
 		var cmpPlayer = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
 		var numPlayers = playerMan.GetNumPlayers();
-		for (var i = 1; i < numPlayers; ++i)
+		for (var i = 0; i < numPlayers; ++i)
 		{
-			// Exclude gaia, allies, and self
+			// Exclude allies, and self
 			// TODO: How to handle neutral players - Special query to attack military only?
 			if (cmpPlayer.IsEnemy(i))
 				players.push(i);
@@ -3188,6 +3152,7 @@ UnitAI.prototype.SetupRangeQuery = function()
 	var range = this.GetQueryRange(IID_Attack);
 
 	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver, rangeMan.GetEntityFlagMask("normal"));
+	
 	rangeMan.EnableActiveQuery(this.losRangeQuery);
 };
 
@@ -3226,32 +3191,7 @@ UnitAI.prototype.SetupHealRangeQuery = function()
 	rangeMan.EnableActiveQuery(this.losHealRangeQuery);
 };
 
-// Set up a range query for Gaia units within LOS range which can be attacked.
-// This should be called whenever our ownership changes.
-UnitAI.prototype.SetupGaiaRangeQuery = function()
-{
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	var owner = cmpOwnership.GetOwner();
 
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-
-	if (this.losGaiaRangeQuery)
-	{
-		rangeMan.DestroyActiveQuery(this.losGaiaRangeQuery);
-		this.losGaiaRangeQuery = undefined;
-	}
-
-	// Only create the query if Gaia is our enemy and we can attack.
-	if (this.CanAttackGaia())
-	{
-		var range = this.GetQueryRange(IID_Attack);
-	
-		// This query is only interested in Gaia entities that can attack.
-		this.losGaiaRangeQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, [0], IID_Attack, rangeMan.GetEntityFlagMask("normal"));
-		rangeMan.EnableActiveQuery(this.losGaiaRangeQuery);
-	}
-};
 
 //// FSM linkage functions ////
 
@@ -3684,8 +3624,6 @@ UnitAI.prototype.OnRangeUpdate = function(msg)
 {
 	if (msg.tag == this.losRangeQuery)
 		UnitFsm.ProcessMessage(this, {"type": "LosRangeUpdate", "data": msg});
-	else if (msg.tag == this.losGaiaRangeQuery)
-		UnitFsm.ProcessMessage(this, {"type": "LosGaiaRangeUpdate", "data": msg});
 	else if (msg.tag == this.losHealRangeQuery)
 		UnitFsm.ProcessMessage(this, {"type": "LosHealRangeUpdate", "data": msg});
 };
@@ -5015,9 +4953,6 @@ UnitAI.prototype.FindNewTargets = function()
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.AttackEntitiesByPreference( rangeMan.ResetActiveQuery(this.losRangeQuery) ))
 		return true;
-	// If no regular enemies were found, attempt to attack a hostile Gaia entity.
-	else if (this.losGaiaRangeQuery)
-		return this.AttackGaiaEntitiesByPreference( rangeMan.ResetActiveQuery(this.losGaiaRangeQuery) );
 
 	return false;
 };
@@ -5076,11 +5011,6 @@ UnitAI.prototype.GetTargetsFromUnit = function()
 
 	if (targets.length)
 		return targets;
-
-	// if nothing found, look for gaia targets
-	var entities = rangeMan.ResetActiveQuery(this.losGaiaRangeQuery);
-	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })
-		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
 
 	return targets;
 };
@@ -5475,28 +5405,17 @@ UnitAI.prototype.SetFacePointAfterMove = function(val)
 UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 {
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+
 	if (!cmpAttack)
 		return false;
 
-	return this.RespondToTargetedEntities(
-		ents.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })
-		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); })
-	);
-};
-
-UnitAI.prototype.AttackGaiaEntitiesByPreference = function(ents)
-{
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	if (!cmpAttack)
-		return false;
-
-	const filter = function(e) {
+	const animalfilter = function(e) {
 		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
 		return (cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal()));
 	};
 
 	return this.RespondToTargetedEntities(
-		ents.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && filter(v); })
+		ents.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && animalfilter(v); })
 		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); })
 	);
 };
