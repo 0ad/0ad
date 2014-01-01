@@ -8,12 +8,6 @@
 
 	<script file="gui/lobby/lobby.js"/>
 
-	<object name="sn">
-	<object hotkey="complete.playername">
-		<action on="Press">completeNick();</action>
-	</object>
-	</object>
-
 	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="lobbyWindow">
 
 		<object style="TitleText" type="text" size="50%-128 0%+4 50%+128 36">
@@ -148,7 +142,7 @@
 				<object type="text" size="15 0 35% 100%" text_align="left" textcolor="white">Show full games</object>
 				<object name="showFullFilter"
 					type="checkbox"
-					checked="false"
+					checked="true"
 					style="StoneCrossBox"
 					size="0% 3 10 100%-3">
 					<action on="Press">applyFilters();</action>
@@ -159,6 +153,7 @@
 				<object name="chatText" size="0 0 100% 94%" type="text" style="ChatPanel"/>
 				<object name="chatInput" size="0 94% 100% 100%" type="input" style="ModernInput">
 					<action on="Press">submitChatInput();</action>
+					<action on="Tab">completeNick();</action>
 				</object>
 			</object>
 		</object>

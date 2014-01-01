@@ -105,6 +105,8 @@ function onTick()
 	{
 		connectButton.enabled = false;
 		registerButton.enabled = false;
+		if (!username && !password)
+			feedback.caption = "Please enter existing login or desired registration credentials.";
 	}
 	// Check they are using a valid account name.
 	else if (username != sanitizedName)
@@ -116,7 +118,8 @@ function onTick()
 	// Allow them to connect/begin registation if there aren't any problems.
 	else if (pageRegisterHidden)
 	{
-		if (feedback.caption == "Sorry, you can't use [, ], unicode, whitespace, or commas.")
+		if (feedback.caption == "Sorry, you can't use [, ], unicode, whitespace, or commas." ||
+			feedback.caption == "Please enter existing login or desired registration credentials.")
 			feedback.caption = "";
 		connectButton.enabled = true;
 		registerButton.enabled = true;

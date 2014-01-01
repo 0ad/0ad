@@ -22,7 +22,6 @@ IGUIScrollBar
 #include "precompiled.h"
 #include "GUI.h"
 #include "maths/MathUtil.h"
-#include "ps/CLogger.h"
 
 //-------------------------------------------------------------------
 //	IGUIScrollBar
@@ -99,13 +98,13 @@ void IGUIScrollBar::HandleMessage(SGUIMessage &Message)
 {
 	switch (Message.type)
 	{
-	case GUIM_MOUSE_MOTION:
+		case GUIM_MOUSE_MOTION:
 		{
 			// TODO Gee: Optimizations needed!
 
 			CPos mouse = m_pHostObject->GetMousePos();
 
-			// If bar is being dragged
+				// If bar is being dragged
 			if (m_BarPressed)
 			{
 				SetPosFromMousePos(mouse);
@@ -122,9 +121,10 @@ void IGUIScrollBar::HandleMessage(SGUIMessage &Message)
 
 			if (!m_ButtonPlusHovered)
 				m_ButtonPlusPressed = false;
-		} break;
+			break;
+		}
 
-	case GUIM_MOUSE_PRESS_LEFT:
+		case GUIM_MOUSE_PRESS_LEFT:
 		{
 			if (!m_pHostObject)
 				break;
@@ -165,20 +165,42 @@ void IGUIScrollBar::HandleMessage(SGUIMessage &Message)
 						ScrollMinusPlenty();
 					else
 						ScrollPlusPlenty();
-
-					// Simulate mouse movement to see if bar now is hovered
+						// Simulate mouse movement to see if bar now is hovered
 					SGUIMessage msg(GUIM_MOUSE_MOTION);
 					HandleMessage(msg);
 				}
 			}
-		} break;
+			break;
+		}
 
-	case GUIM_MOUSE_RELEASE_LEFT:
-		m_ButtonMinusPressed = false;
-		m_ButtonPlusPressed = false;
-		break;
+		case GUIM_MOUSE_RELEASE_LEFT:
+		{
+			m_ButtonMinusPressed = false;
+			m_ButtonPlusPressed = false;
+			break;
+		}
 
-	default:
-		break;
+		case GUIM_MOUSE_WHEEL_UP:
+		{
+			ScrollMinus();
+			// Since the scroll was changed, let's simulate a mouse movement
+			//  to check if scrollbar now is hovered
+			SGUIMessage msg(GUIM_MOUSE_MOTION);
+			HandleMessage(msg);
+			break;
+		}
+
+		case GUIM_MOUSE_WHEEL_DOWN:
+		{
+			ScrollPlus();
+			// Since the scroll was changed, let's simulate a mouse movement
+			//  to check if scrollbar now is hovered
+			SGUIMessage msg(GUIM_MOUSE_MOTION);
+			HandleMessage(msg);
+			break;
+		}
+
+		default:
+			break;
 	}
 }

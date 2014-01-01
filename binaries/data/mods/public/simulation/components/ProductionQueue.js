@@ -413,7 +413,7 @@ ProductionQueue.prototype.GetQueue = function()
 			"technologyTemplate": item.technologyTemplate,
 			"count": item.count,
 			"neededSlots": item.neededSlots,
-			"progress": 1-(item.timeRemaining/item.timeTotal),
+			"progress": 1 - ( item.timeRemaining / (item.timeTotal || 1) ),
 			"metadata": item.metadata,
 		});
 	}

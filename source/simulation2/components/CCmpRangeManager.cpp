@@ -277,8 +277,9 @@ public:
 	SpatialSubdivision m_Subdivision; // spatial index of m_EntityData
 
 	// LOS state:
+	static const player_id_t MAX_LOS_PLAYER_ID = 16;
 
-	std::map<player_id_t, bool> m_LosRevealAll;
+	std::vector<bool> m_LosRevealAll;
 	bool m_LosCircular;
 	i32 m_TerrainVerticesPerSide;
 	size_t m_TerritoriesDirtyID;
@@ -292,14 +293,13 @@ public:
 
 	// 2-bit ELosState per player, starting with player 1 (not 0!) up to player MAX_LOS_PLAYER_ID (inclusive)
 	std::vector<u32> m_LosState;
-	static const player_id_t MAX_LOS_PLAYER_ID = 16;
 
 	// Special static visibility data for the "reveal whole map" mode
 	// (TODO: this is usually a waste of memory)
 	std::vector<u32> m_LosStateRevealed;
 
 	// Shared LOS masks, one per player.
-	std::map<player_id_t, u32> m_SharedLosMasks;
+	std::vector<u32> m_SharedLosMasks;
 
 	// Cache explored vertices per player (not serialized)
 	u32 m_TotalInworldVertices;
@@ -325,12 +325,9 @@ public:
 
 		// The whole map should be visible to Gaia by default, else e.g. animals
 		// will get confused when trying to run from enemies
-		m_LosRevealAll[0] = true;
-
-		// This is not really an error condition, an entity recently created or destroyed
-		//	might have an owner of INVALID_PLAYER
-		m_SharedLosMasks[INVALID_PLAYER] = 0;
-
+		m_LosRevealAll.resize(MAX_LOS_PLAYER_ID+2,false);
+		m_SharedLosMasks.resize(MAX_LOS_PLAYER_ID+2,0);
+		
 		m_LosCircular = false;
 		m_TerrainVerticesPerSide = 0;
 
@@ -353,7 +350,7 @@ public:
 		SerializeMap<SerializeU32_Unbounded, SerializeQuery>()(serialize, "queries", m_Queries, GetSimContext());
 		SerializeEntityMap<SerializeEntityData>()(serialize, "entity data", m_EntityData);
 
-		SerializeMap<SerializeI32_Unbounded, SerializeBool>()(serialize, "los reveal all", m_LosRevealAll);
+		SerializeVector<SerializeBool>()(serialize, "los reveal all", m_LosRevealAll);
 		serialize.Bool("los circular", m_LosCircular);
 		serialize.NumberI32_Unbounded("terrain verts per side", m_TerrainVerticesPerSide);
 
@@ -362,8 +359,7 @@ public:
 		// m_LosState must be serialized since it depends on the history of exploration
 
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "los state", m_LosState);
-
-		SerializeMap<SerializeI32_Unbounded, SerializeU32_Unbounded>()(serialize, "shared los masks", m_SharedLosMasks);
+		SerializeVector<SerializeU32_Unbounded>()(serialize, "shared los masks", m_SharedLosMasks);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
@@ -1385,21 +1381,25 @@ public:
 
 	virtual void SetLosRevealAll(player_id_t player, bool enabled)
 	{
-		m_LosRevealAll[player] = enabled;
+		if (player == -1)
+			m_LosRevealAll[MAX_LOS_PLAYER_ID+1] = enabled;
+		else
+		{
+			ENSURE(player >= 0 && player <= MAX_LOS_PLAYER_ID);
+			m_LosRevealAll[player] = enabled;
+		}
 	}
 
 	virtual bool GetLosRevealAll(player_id_t player)
 	{
-		std::map<player_id_t, bool>::const_iterator it;
-
 		// Special player value can force reveal-all for every player
-		it = m_LosRevealAll.find(-1);
-		if (it != m_LosRevealAll.end() && it->second)
+		if(m_LosRevealAll[MAX_LOS_PLAYER_ID+1])
 			return true;
-
+		if (player == -1)
+			return false;
+		ENSURE(player >= 0 && player <= MAX_LOS_PLAYER_ID+1);
 		// Otherwise check the player-specific flag
-		it = m_LosRevealAll.find(player);
-		if (it != m_LosRevealAll.end() && it->second)
+		if (m_LosRevealAll[player])
 			return true;
 
 		return false;
@@ -1424,9 +1424,6 @@ public:
 
 	virtual u32 GetSharedLosMask(player_id_t player)
 	{
-		std::map<player_id_t, u32>::const_iterator it = m_SharedLosMasks.find(player);
-		ENSURE(it != m_SharedLosMasks.end());
-
 		return m_SharedLosMasks[player];
 	}
 

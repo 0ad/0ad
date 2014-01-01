@@ -27,7 +27,9 @@
 
 		<object size="24 100%-124 100%-24 100%-100" name="descLabel" type="text" style="LeftLabelText">Description:</object>
 
-		<object name="saveGameDesc" size="24 100%-96 100%-24 100%-72" type="input" style="StoneInput"/>
+		<object name="saveGameDesc" size="24 100%-96 100%-24 100%-72" type="input" style="StoneInput">
+			<action on="Press">saveGame();</action>
+		</object>
 
 		<object name="saveButton" type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton">
 			Save

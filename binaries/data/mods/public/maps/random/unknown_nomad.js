@@ -736,9 +736,9 @@ else if (md == 6) //edge seas
 			{
 				for (var iz = 0; iz < mapSize; iz++)
 				{
-					if (var iz < (0.31-distance) * mapSize)
+					if (iz < (0.31-distance) * mapSize)
 					{
-						if (var iz > (0.31-distance) * mapSize - fadedistance)
+						if (iz > (0.31-distance) * mapSize - fadedistance)
 						{
 							setHeight(ix, iz, 3 - 7 * ((0.31-distance) * mapSize - iz) / fadedistance);
 							if (3 - 7 * ((0.31-distance) * mapSize - iz) / fadedistance < 0.5)

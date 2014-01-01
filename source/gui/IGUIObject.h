@@ -69,9 +69,6 @@ class CScriptValRooted;
 //  Types
 //--------------------------------------------------------
 
-// Map with pointers
-typedef std::map<CStr, SGUISetting> map_Settings;
-
 struct JSObject;
 
 //--------------------------------------------------------

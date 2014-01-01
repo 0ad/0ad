@@ -208,7 +208,16 @@ function getActionInfo(action, target)
 	}
 
 	if (action == "unset-rallypoint" && selection.indexOf(target) != -1)
-		return {"possible": true};
+	{
+		var haveNonEmptyRallyPoints = selection.some(function(ent) {
+			var entState = GetEntityState(ent);
+			return entState && entState.rallyPoint && entState.rallyPoint.position;
+		});
+		if (haveNonEmptyRallyPoints)
+			return {"possible": true};
+		else
+			return {"possible": false};
+	}
 
 	// Look at the first targeted entity
 	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
@@ -558,7 +567,7 @@ function determineAction(x, y, fromMinimap)
 		else if (getActionInfo("attack", target).possible)
 			return {"type": "attack", "cursor": "action-attack", "target": target};
 		else if (haveRallyPoints && getActionInfo("unset-rallypoint", target).possible)
-			return {"type": "unset-rallypoint"};
+			return {"type": "unset-rallypoint", "cursor": "action-unset-rally"};
 		else if (haveUnitAI && getActionInfo("move", target).possible)
 			return {"type": "move"};
 	}

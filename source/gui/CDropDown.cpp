@@ -23,6 +23,7 @@ CDropDown
 
 #include "CDropDown.h"
 
+#include "ps/CLogger.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
@@ -228,6 +229,36 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 		break;
 	}
 
+	case GUIM_MOUSE_WHEEL_DOWN:
+	{
+		// Don't switch elements by scrolling when open, causes a confusing interaction between this and the scrollbar.
+		if (m_Open)
+			break;
+
+		GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
+		if (m_ElementHighlight + 1 >= (int)m_ItemsYPositions.size() - 1)
+			break;
+
+		m_ElementHighlight++;
+		GUI<int>::SetSetting(this, "selected", m_ElementHighlight);
+		break;
+	}
+
+	case GUIM_MOUSE_WHEEL_UP:
+	{
+		// Don't switch elements by scrolling when open, causes a confusing interaction between this and the scrollbar.
+		if (m_Open)
+			break;
+
+		GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
+		if (m_ElementHighlight - 1 < 0)
+			break;
+
+		m_ElementHighlight--;
+		GUI<int>::SetSetting(this, "selected", m_ElementHighlight);
+		break;
+	}
+
 	case GUIM_LOST_FOCUS:
 	{
 		if (m_Open)
@@ -283,7 +314,7 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 		break;
 
 	default:
-		// If we have imputed a character try to get the closest element to it.
+		// If we have inputed a character try to get the closest element to it.
 		// TODO: not too nice and doesn't deal with dashes.
 		if (m_Open && ((szChar >= SDLK_a && szChar <= SDLK_z) || szChar == SDLK_SPACE
 					   || (szChar >= SDLK_0 && szChar <= SDLK_9)

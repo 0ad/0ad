@@ -99,7 +99,8 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		{
 			case SDLK_TAB: // '\t'
 				/* Auto Complete */
-				// TODO Gee: (2004-09-07) What to do with tab?
+				// We just send the tab event to JS and let it figure out autocomplete.
+				SendEvent(GUIM_TAB, "tab");
 				break;
 
 			case SDLK_BACKSPACE: // '\b'
@@ -910,6 +911,7 @@ void CInput::HandleMessage(SGUIMessage &Message)
 			m_SelectingText = false;
 		}
 		break;
+
 	case GUIM_MOUSE_MOTION:
 		// If we just pressed down and started to move before releasing
 		//  this is one way of selecting larger portions of text.
@@ -921,30 +923,10 @@ void CInput::HandleMessage(SGUIMessage &Message)
 				m_SelectingText = false;
 			else
 				m_iBufferPos = GetMouseHoveringTextPosition();
-
 			UpdateAutoScroll();
 		}
-
 		break;
 
-	case GUIM_MOUSE_WHEEL_DOWN:
-		{
-		GetScrollBar(0).ScrollPlus();
-		// Since the scroll was changed, let's simulate a mouse movement
-		//  to check if scrollbar now is hovered
-		SGUIMessage msg(GUIM_MOUSE_MOTION);
-		HandleMessage(msg);
-		break;
-		}
-	case GUIM_MOUSE_WHEEL_UP:
-		{
-		GetScrollBar(0).ScrollMinus();
-		// Since the scroll was changed, let's simulate a mouse movement
-		//  to check if scrollbar now is hovered
-		SGUIMessage msg(GUIM_MOUSE_MOTION);
-		HandleMessage(msg);
-		break;
-		}
 	case GUIM_LOAD:
 		{
 		GetScrollBar(0).SetX( m_CachedActualSize.right );

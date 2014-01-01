@@ -18,20 +18,20 @@ function init(attribs)
 	g_Name = Engine.LobbyGetNick();
 
 	g_mapSizes = initMapSizes();
-	g_mapSizes.shortNames.push("Any");
-	g_mapSizes.tiles.push("");
+	g_mapSizes.shortNames.splice(0, 0, "Any");
+	g_mapSizes.tiles.splice(0, 0, "");
 
 	var mapSizeFilter = getGUIObjectByName("mapSizeFilter");
 	mapSizeFilter.list = g_mapSizes.shortNames;
 	mapSizeFilter.list_data = g_mapSizes.tiles;
 
 	var playersNumberFilter = getGUIObjectByName("playersNumberFilter");
-	playersNumberFilter.list = [2,3,4,5,6,7,8,"Any"];
-	playersNumberFilter.list_data = [2,3,4,5,6,7,8,""];
+	playersNumberFilter.list = ["Any",2,3,4,5,6,7,8];
+	playersNumberFilter.list_data = ["",2,3,4,5,6,7,8];
 
 	var mapTypeFilter = getGUIObjectByName("mapTypeFilter");
-	mapTypeFilter.list = ["Skirmish", "Random", "Scenario", "Any"];
-	mapTypeFilter.list_data = ["skirmish", "random", "scenario", ""];
+	mapTypeFilter.list = ["Any", "Skirmish", "Random", "Scenario"];
+	mapTypeFilter.list_data = ["", "skirmish", "random", "scenario"];
 
 	Engine.LobbySetPlayerPresence("available");
 	Engine.SendGetGameList();
@@ -70,10 +70,10 @@ function lobbyDisconnect()
 function resetFilters()
 {
 	// Reset states of gui objects
-	getGUIObjectByName("mapSizeFilter").selected = getGUIObjectByName("mapSizeFilter").list.length - 1;
-	getGUIObjectByName("playersNumberFilter").selected = getGUIObjectByName("playersNumberFilter").list.length - 1;
-	getGUIObjectByName("mapTypeFilter").selected = getGUIObjectByName("mapTypeFilter").list.length - 1;
-	getGUIObjectByName("showFullFilter").checked = false;
+	getGUIObjectByName("mapSizeFilter").selected = 0
+	getGUIObjectByName("playersNumberFilter").selected = 0;
+	getGUIObjectByName("mapTypeFilter").selected = 0;
+	getGUIObjectByName("showFullFilter").checked = true;
 
 	// Update the list of games
 	updateGameList();
@@ -93,10 +93,14 @@ function applyFilters()
 
 function displayGame(g, mapSizeFilter, playersNumberFilter, mapTypeFilter, showFullFilter)
 {
-	if(mapSizeFilter != "" && g.mapSize != mapSizeFilter) return false;
-	if(playersNumberFilter != "" && g.tnbp != playersNumberFilter) return false;
-	if(mapTypeFilter != "" && g.mapType != mapTypeFilter) return false;
-	if(!showFullFilter && g.tnbp == g.nbp) return false;
+	if(mapSizeFilter != "" && g.mapSize != mapSizeFilter)
+		return false;
+	if(playersNumberFilter != "" && g.tnbp != playersNumberFilter)
+		return false;
+	if(mapTypeFilter != "" && g.mapType != mapTypeFilter)
+		return false;
+	if(!showFullFilter && g.tnbp <= g.nbp)
+		return false;
 
 	return true;
 }
