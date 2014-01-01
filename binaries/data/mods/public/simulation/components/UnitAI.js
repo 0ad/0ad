@@ -5411,7 +5411,7 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 
 	const animalfilter = function(e) {
 		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
-		return (cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal()));
+		return !cmpUnitAI || !cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal();
 	};
 
 	return this.RespondToTargetedEntities(
