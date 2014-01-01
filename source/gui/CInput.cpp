@@ -99,7 +99,8 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		{
 			case SDLK_TAB: // '\t'
 				/* Auto Complete */
-				// TODO Gee: (2004-09-07) What to do with tab?
+				// We just send the tab event to JS and let it figure out autocomplete.
+				SendEvent(GUIM_TAB, "tab");
 				break;
 
 			case SDLK_BACKSPACE: // '\b'
