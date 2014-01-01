@@ -5009,9 +5009,6 @@ UnitAI.prototype.GetTargetsFromUnit = function()
 	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })
 		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
 
-	if (targets.length)
-		return targets;
-
 	return targets;
 };
 
