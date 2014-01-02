@@ -117,40 +117,13 @@ void CCheckBox::HandleMessage(SGUIMessage &Message)
 
 void CCheckBox::Draw() 
 {
-	////////// Gee: janwas, this is just temp to see it
-	glDisable(GL_TEXTURE_2D);
-	//////////
-
-	float square_side, buffer_zone;
-	CStrW font_name;
+	float bz = GetBufferedZ();
 	bool checked;
 	int cell_id;
-	GUI<float>::GetSetting(this, "square_side", square_side);
-	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-	GUI<CStrW>::GetSetting(this, "font", font_name);
+	CGUISpriteInstance *sprite, *sprite_over, *sprite_pressed, *sprite_disabled;
+
 	GUI<bool>::GetSetting(this, "checked", checked);
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
-
-	// Get line height
-	CFontMetrics font (CStrIntern(font_name.ToUTF8()));
-	float line_height = (float)font.GetHeight();
-
-	float bz = GetBufferedZ();
-
-	// Get square
-	CRect rect;
-
-	rect.left =		m_CachedActualSize.left;
-	rect.right =	rect.left + square_side;
-
-	if (square_side >= line_height)
-		rect.top =	m_CachedActualSize.top;
-	else
-		rect.top =	m_CachedActualSize.top + line_height/2.f - square_side/2.f;
-
-	rect.bottom =	rect.top + square_side;
-
-	CGUISpriteInstance *sprite, *sprite_over, *sprite_pressed, *sprite_disabled;
 
 	if (checked)
 	{
@@ -167,20 +140,11 @@ void CCheckBox::Draw()
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_disabled", sprite_disabled);
 	}
 
-	DrawButton(rect, 
+	DrawButton(m_CachedActualSize, 
 			   bz,
 			   *sprite,
 			   *sprite_over,
 			   *sprite_pressed,
 			   *sprite_disabled,
 			   cell_id);
-
-	CColor color = ChooseColor();
-
-	CPos text_pos(m_CachedActualSize.left + square_side + buffer_zone, m_CachedActualSize.top);
-
-	if (square_side > line_height)
-		text_pos.y += square_side/2.f - line_height/2.f;
-
-	DrawText(0, color, text_pos, bz+0.1f, m_CachedActualSize);
 }
