@@ -1202,7 +1202,7 @@ function GetFormationUnitAIs(ents, player, formName)
 	// Find what formations the formationable selected entities are currently in
 	var formation = ExtractFormations(formedEnts);
 
-	var formationEnt = undefined;
+	var formationUnitAIs = [];
 	if (formation.ids.length == 1)
 	{
 		// Selected units either belong to this formation or have no formation
@@ -1212,12 +1212,12 @@ function GetFormationUnitAIs(ents, player, formName)
 		if (cmpFormation && cmpFormation.GetMemberCount() == formation.members[fid].length
 			&& cmpFormation.GetMemberCount() == formation.entities.length)
 		{
+			cmpFormation.DeleteTwinFormations();
 			// The whole formation was selected, so reuse its controller for this command
-			formationEnt = +fid;
+			formationUnitAIs = [Engine.QueryInterface(+fid, IID_UnitAI)];
 		}
 	}
-
-	if (!formationEnt)
+	if (!formationUnitAIs.length)
 	{
 		// We need to give the selected units a new formation controller
 
@@ -1228,52 +1228,141 @@ function GetFormationUnitAIs(ents, player, formName)
 			if (cmpFormation)
 				cmpFormation.RemoveMembers(formation.members[fid]);
 		}
-
-		// Create the new controller
-		formationEnt = Engine.AddEntity("special/formation");
-		var cmpFormation = Engine.QueryInterface(formationEnt, IID_Formation);
-		cmpFormation.SetMembers(formation.entities);
-
-		var cmpOwnership = Engine.QueryInterface(formationEnt, IID_Ownership);
-		cmpOwnership.SetOwner(player);
-
-		// If all the selected units were previously in formations of the same shape,
-		// then set this new formation to that shape too; otherwise use the default shape
-		var lastFormationName = undefined;
-		for each (var ent in formation.entities)
+		// TODO replace the fixed 60 with something sensible, based on vision range f.e.
+		var formationSeparation = 60;
+		var clusters = ClusterEntities(formation.entities, formationSeparation);
+		var formationEnts = [];
+		for each (var cluster in clusters)
 		{
-			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			if (cmpUnitAI)
+			// Create the new controller
+			var formationEnt = Engine.AddEntity("special/formation");
+			var cmpFormation = Engine.QueryInterface(formationEnt, IID_Formation);
+			formationUnitAIs.push(Engine.QueryInterface(formationEnt, IID_UnitAI));
+			cmpFormation.SetFormationSeparation(formationSeparation);
+			cmpFormation.SetMembers(cluster);
+			
+			for each (var ent in formationEnts)
+				cmpFormation.RegisterTwinFormation(ent);
+
+			formationEnts.push(formationEnt);
+			var cmpOwnership = Engine.QueryInterface(formationEnt, IID_Ownership);
+			cmpOwnership.SetOwner(player);
+
+			// If all the selected units were previously in formations of the same shape,
+			// then set this new formation to that shape too; otherwise use the default shape
+			var lastFormationName = undefined;
+			for each (var ent in cluster)
 			{
-				var name = cmpUnitAI.GetLastFormationName();
-				if (lastFormationName === undefined)
+				var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+				if (cmpUnitAI)
 				{
-					lastFormationName = name;
-				}
-				else if (lastFormationName != name)
-				{
-					lastFormationName = undefined;
-					break;
+					var name = cmpUnitAI.GetLastFormationName();
+					if (lastFormationName === undefined)
+					{
+						lastFormationName = name;
+					}
+					else if (lastFormationName != name)
+					{
+						lastFormationName = undefined;
+						break;
+					}
 				}
 			}
-		}
-		var formationName;
-		if (lastFormationName)
-			formationName = lastFormationName;
-		else
-			formationName = "Line Closed";
+			var formationName;
+			if (lastFormationName)
+				formationName = lastFormationName;
+			else
+				formationName = "Line Closed";
 
-		if (CanMoveEntsIntoFormation(formation.entities, formationName))
-		{
-			cmpFormation.LoadFormation(formationName);
-		}
-		else
-		{
-			cmpFormation.LoadFormation("Scatter");
+			if (CanMoveEntsIntoFormation(cluster, formationName))
+				cmpFormation.LoadFormation(formationName);
+			else
+				cmpFormation.LoadFormation("Scatter");
 		}
 	}
 
-	return nonformedUnitAIs.concat(Engine.QueryInterface(formationEnt, IID_UnitAI));
+	return nonformedUnitAIs.concat(formationUnitAIs);
+}
+
+/**
+ * Group a list of entities in clusters via single-links
+ */
+function ClusterEntities(ents, separationDistance)
+{
+	var clusters = [];
+	if (!ents.length)
+		return clusters;
+
+	var distSq = separationDistance * separationDistance;
+	var positions = [];
+	// triangular matrix with the (squared) distances between the different clusters
+	// the other half is not initialised
+	var matrix = [];
+	for (var i = 0; i < ents.length; i++)
+	{
+		matrix[i] = [];
+		clusters.push([ents[i]]);
+		var cmpPosition = Engine.QueryInterface(ents[i], IID_Position);
+		if (!cmpPosition)
+		{
+			error("Asked to cluster entities without position: "+ents[i]);
+			return clusters;
+		}
+		positions.push(cmpPosition.GetPosition2D());
+		for (var j = 0; j < i; j++)
+		{
+			var dx = positions[i].x - positions[j].x;
+			var dy = positions[i].y - positions[j].y;
+			matrix[i][j] = dx * dx + dy * dy;
+		}
+	}
+	while (clusters.length > 1)
+	{
+		// search two clusters that are closer than the required distance
+		var smallDist = Infinity;
+		var closeClusters = undefined;
+
+		for (var i = matrix.length - 1; i >= 0 && !closeClusters; --i)
+			for (var j = i - 1; j >= 0 && !closeClusters; --j)
+				if (matrix[i][j] < distSq)
+					closeClusters = [i,j];
+
+		// if no more close clusters found, just return all found clusters so far
+		if (!closeClusters)
+			return clusters;
+
+		// make a new cluster with the entities from the two found clusters
+		var newCluster = clusters[closeClusters[0]].concat(clusters[closeClusters[1]]);
+
+		// calculate the minimum distance between the new cluster and all other remaining
+		// clusters by taking the minimum of the two distances.
+		var distances = [];
+		for (var i = 0; i < clusters.length; i++)
+		{
+			if (i == closeClusters[1] || i == closeClusters[0])
+				continue;
+			var dist1 = matrix[closeClusters[1]][i] || matrix[i][closeClusters[1]];
+			var dist2 = matrix[closeClusters[0]][i] || matrix[i][closeClusters[0]];
+			distances.push(Math.min(dist1, dist2));
+		}
+		// remove the rows and columns in the matrix for the merged clusters,
+		// and the clusters themselves from the cluster list
+		clusters.splice(closeClusters[0],1);
+		clusters.splice(closeClusters[1],1);
+		matrix.splice(closeClusters[0],1);
+		matrix.splice(closeClusters[1],1);
+		for (var i = 0; i < matrix.length; i++)
+		{
+			if (matrix[i].length > closeClusters[0])
+				matrix[i].splice(closeClusters[0],1);
+			if (matrix[i].length > closeClusters[1])
+				matrix[i].splice(closeClusters[1],1);
+		}
+		// add a new row of distances to the matrix and the new cluster
+		clusters.push(newCluster);
+		matrix.push(distances);
+	}
+	return clusters;
 }
 
 function GetFormationRequirements(formationName)
