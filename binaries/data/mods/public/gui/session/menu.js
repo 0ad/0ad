@@ -86,14 +86,12 @@ function updateMenuPosition(dt)
 // Opens the menu by revealing the screen which contains the menu
 function openMenu()
 {
-//	playButtonSound();
 	isMenuOpen = true;
 }
 
 // Closes the menu and resets position
 function closeMenu()
 {
-//	playButtonSound();
 	isMenuOpen = false;
 }
 
@@ -111,7 +109,7 @@ function settingsMenuButton()
 {
 	closeMenu();
 	closeOpenDialogs();
-	openSettings(true);
+	openSettings();
 }
 
 function chatMenuButton()
@@ -180,11 +178,10 @@ function openSave()
 	Engine.PushGuiPage("page_savegame.xml", {"gameDataCallback": getSavedGameData, "closeCallback": resumeGame});
 }
 
-function openSettings(pause)
+function openSettings()
 {
 	getGUIObjectByName("settingsDialogPanel").hidden = false;
-	if (pause)
-		pauseGame();
+	pauseGame();
 }
 
 function closeSettings(resume)
@@ -198,7 +195,6 @@ function openChat()
 {
 	getGUIObjectByName("chatInput").focus(); // Grant focus to the input area
 	getGUIObjectByName("chatDialogPanel").hidden = false;
-
 }
 
 function closeChat()
@@ -521,8 +517,14 @@ function toggleGameSpeed()
 	gameSpeed.hidden = !gameSpeed.hidden;
 }
 
+/**
+ * Pause the game in single player mode.
+ */
 function pauseGame()
 {
+	if (g_IsNetworked)
+		return;
+
 	getGUIObjectByName("pauseButtonText").caption = RESUME;
 	getGUIObjectByName("pauseOverlay").hidden = false;
 	setPaused(true);
