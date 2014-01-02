@@ -16,7 +16,6 @@
   <Identity>
     <Civ>sele</Civ>
     <SpecificName>Stratones</SpecificName>
-    <History>.</History>
   </Identity>
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
@@ -25,15 +24,17 @@
     <Entities datatype="tokens">
       units/sele_infantry_spearman_b
       units/sele_infantry_javelinist_b
+      units/sele_cavalry_javelinist_b
+      units/sele_cavalry_archer_b
     </Entities>
     <Technologies datatype="tokens">
-	  persians/training_levy_infantry
-	  persians/training_conscription_infantry
 	  -pair_levy_01
 	  -training_conscription
 	  -unlock_champion_units
-	  upgrade_rank_advanced_infantry
-	  upgrade_rank_elite_infantry
+	  persians/training_levy_infantry
+	  persians/training_conscription_infantry
+	  persians/training_levy_cavalry
+	  persians/training_conscription_cavalry
     </Technologies>
   </ProductionQueue>
   <VisualActor>
