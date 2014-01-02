@@ -5004,9 +5004,14 @@ UnitAI.prototype.GetTargetsFromUnit = function()
 	if (!cmpAttack)
 		return [];
 
+	const animalfilter = function(e) {
+		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
+		return !cmpUnitAI || !cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal();
+	};
+
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var entities = rangeMan.ResetActiveQuery(this.losRangeQuery);
-	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })
+	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && animalfilter(v); })
 		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
 
 	return targets;
