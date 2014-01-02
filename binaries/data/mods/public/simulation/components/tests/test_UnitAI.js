@@ -99,7 +99,8 @@ function TestFormationExiting(mode)
 	unitAI.SetupRangeQuery(1);
 
 
-	if (mode == 1) {
+	if (mode == 1) 
+	{
 		AddMock(enemy, IID_Health, {
 			GetHitpoints: function() { return 10; },
 		});
