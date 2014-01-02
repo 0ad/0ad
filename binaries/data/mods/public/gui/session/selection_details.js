@@ -37,7 +37,7 @@ function displaySingle(entState, template)
 	if (entState.identity && entState.identity.rank && entState.identity.classes)
 	{
 		getGUIObjectByName("rankIcon").tooltip = entState.identity.rank + " Rank";
-		getGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);					
+		getGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);
 		getGUIObjectByName("rankIcon").hidden = false;
 	}
 	else
@@ -45,7 +45,7 @@ function displaySingle(entState, template)
 		getGUIObjectByName("rankIcon").hidden = true;
 		getGUIObjectByName("rankIcon").tooltip = "";
 	}
-								
+
 	// Hitpoints
 	if (entState.hitpoints)
 	{

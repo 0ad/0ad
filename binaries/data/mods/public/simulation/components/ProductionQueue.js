@@ -72,8 +72,6 @@ ProductionQueue.prototype.Init = function()
  */
 ProductionQueue.prototype.GetEntitiesList = function()
 {
-	if (!this.entitiesList)
-		this.CalculateEntitiesList();
 	return this.entitiesList;
 };
 
@@ -95,9 +93,7 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 	var entitiesList = string.split(/\s+/);
 
 	// check if some templates need to show their advanced or elite version
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var playerID = QueryOwnerInterface(this.entity, IID_Player).GetPlayerID();
-	for each (var templateName in entitiesList)
+	var upgradeTemplate = function(templateName)
 	{
 		var template = cmpTemplateManager.GetTemplate(templateName);
 		while (template.Promotion)
@@ -108,7 +104,17 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 			templateName = template.Promotion.Entity;
 			template = cmpTemplateManager.GetTemplate(templateName);
 		}
-		this.entitiesList.push(templateName);
+		return templateName;
+	};
+
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var playerID = QueryOwnerInterface(this.entity, IID_Player).GetPlayerID();
+	for each (var templateName in entitiesList)
+		this.entitiesList.push(upgradeTemplate(templateName));
+	for each (var item in this.queue)
+	{
+		if (item.unitTemplate)
+			item.unitTemplate = upgradeTemplate(item.unitTemplate);
 	}
 };
 
@@ -455,6 +461,8 @@ ProductionQueue.prototype.OnOwnershipChanged = function(msg)
 		if (cmpPlayer && this.queue.length > 0)
 			cmpPlayer.UnBlockTraining();
 	}
+	if (msg.to != -1)
+		this.CalculateEntitiesList();
 
 	// Reset the production queue whenever the owner changes.
 	// (This should prevent players getting surprised when they capture

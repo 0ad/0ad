@@ -16,6 +16,19 @@ Formation.prototype.Init = function()
 	this.width = 0;
 	this.depth = 0;
 	this.oldOrientation = {"sin": 0, "cos": 0};
+	this.twinFormations = [];
+	// distance from which two twin formations will merge into one.
+	this.formationSeparation = 0;
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer)
+		.SetInterval(this.entity, IID_Formation, "ShapeUpdate", 1000, 1000, null);
+};
+
+/**
+ * Set the value from which two twin formations will become one.
+ */
+Formation.prototype.SetFormationSeparation = function(value)
+{
+	this.formationSeparation = value;
 };
 
 Formation.prototype.GetSize = function()
@@ -157,6 +170,39 @@ Formation.prototype.RemoveMembers = function(ents)
 	this.MoveMembersIntoFormation(true, true);
 };
 
+Formation.prototype.AddMembers = function(ents)
+{
+	this.offsets = undefined;
+	this.inPosition = []; 
+
+	for each (var ent in this.formationMembersWithAura)
+	{
+		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		cmpAuras.RemoveFormationBonus(ents);
+
+		// the unit with the aura is also removed from the formation
+		if (ents.indexOf(ent) !== -1)
+			cmpAuras.RemoveFormationBonus(this.members);
+	}
+
+	this.members = this.members.concat(ents);
+
+	for each (var ent in this.members)
+	{
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		cmpUnitAI.SetFormationController(this.entity);
+		
+		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		if (cmpAuras && cmpAuras.HasFormationAura())
+		{
+			this.formationMembersWithAura.push(ent);
+			cmpAuras.ApplyFormationBonus(ents);
+		}
+	}
+
+	this.MoveMembersIntoFormation(true, true);
+};
+
 /**
  * Called when the formation stops moving in order to detect
  * units that have already reached their final positions.
@@ -291,6 +337,16 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 			cmpRangeManager.SetEntityFlag(this.entity, "normal", false);
 		}
+	}
+
+	// Switch between column and box if necessary
+	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	var walkingDistance = cmpUnitAI.ComputeWalkingDistance();
+	var columnar = walkingDistance > g_ColumnDistanceThreshold;
+	if (columnar != this.columnar)
+	{
+		this.columnar = columnar;
+		this.offsets = undefined;
 	}
 
 	var newOrientation = this.GetTargetOrientation(avgpos);
@@ -850,11 +906,45 @@ Formation.prototype.ComputeMotionParameters = function()
 	// TODO: we also need to do something about PassabilityClass, CostClass
 };
 
-Formation.prototype.OnUpdate_Final = function(msg)
+Formation.prototype.ShapeUpdate = function()
 {
+	// Check the distance to twin formations, and merge if when 
+	// the formations could collide
+	for (var i = this.twinFormations.length - 1; i >= 0; --i)
+	{
+		// only do the check on one side
+		if (this.twinFormations[i] <= this.entity)
+			continue;
+
+		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+		var cmpOtherPosition = Engine.QueryInterface(this.twinFormations[i], IID_Position);
+		var cmpOtherFormation = Engine.QueryInterface(this.twinFormations[i], IID_Formation);
+		if (!cmpPosition || !cmpOtherPosition || !cmpOtherFormation)
+			continue;
+
+		var thisPosition = cmpPosition.GetPosition2D();
+		var otherPosition = cmpOtherPosition.GetPosition2D();
+		var dx = thisPosition.x - otherPosition.x;
+		var dy = thisPosition.y - otherPosition.y;
+		var dist = Math.sqrt(dx * dx + dy * dy);
+
+		var thisSize = this.GetSize();
+		var otherSize = cmpOtherFormation.GetSize();
+		var minDist = Math.max(thisSize.width / 2, thisSize.depth / 2) +
+			Math.max(otherSize.width / 2, otherSize.depth / 2) +
+			this.formationSeparation;
+
+		if (minDist < dist)
+			continue;
+
+		// merge the members from the twin formation into this one
+		// twin formations should always have exactly the same orders
+		this.AddMembers(cmpOtherFormation.members);
+		Engine.DestroyEntity(this.twinFormations[i]);
+		this.twinFormations.splice(i,1);
+	}
 	// Switch between column and box if necessary
 	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-	// TODO do we really need to calculate the distance every turn?
 	var walkingDistance = cmpUnitAI.ComputeWalkingDistance();
 	var columnar = walkingDistance > g_ColumnDistanceThreshold;
 	if (columnar != this.columnar)
@@ -896,6 +986,26 @@ Formation.prototype.OnGlobalEntityRenamed = function(msg)
 		this.ComputeMotionParameters();
 	}
 }
+
+Formation.prototype.RegisterTwinFormation = function(entity)
+{
+	var cmpFormation = Engine.QueryInterface(entity, IID_Formation);
+	if (!cmpFormation)
+		return;
+	this.twinFormations.push(entity);
+	cmpFormation.twinFormations.push(this.entity);
+};
+
+Formation.prototype.DeleteTwinFormations = function()
+{
+	for each (var ent in this.twinFormations)
+	{
+		var cmpFormation = Engine.QueryInterface(ent, IID_Formation);
+		if (cmpFormation)
+			cmpFormation.twinFormations.splice(cmpFormation.twinFormations.indexOf(this.entity), 1);
+	}
+	this.twinFormations = [];
+};
 
 Formation.prototype.LoadFormation = function(formationName)
 {
