@@ -7,7 +7,7 @@
   <Identity>
     <Civ>athen</Civ>
     <SpecificName>Epiteíchisma</SpecificName>
-    <Tooltip>Build siege engines. Garrison up to 15 soldiers inside for stout defense.</Tooltip>
+    <Tooltip>Build siege engines. Garrison up to 20 soldiers inside for stout defense.</Tooltip>
     <History>Fortresses (also called a "phrourion") were built to guard passes and atop hills in order to command plains and valleys below. One such Athenian fortress, Gyphtokastro, guarded the pass from Attica into Boeotia.</History>
   </Identity>
   <Obstruction>
@@ -22,7 +22,7 @@
       -pair_champ_02
       pair_siege_attack_pack
       pair_siege_cost_armor
-	  siege_bolt_accuracy
+      siege_bolt_accuracy
     </Technologies>
   </ProductionQueue>
   <VisualActor>
