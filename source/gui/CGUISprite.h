@@ -69,7 +69,6 @@ struct SGUIImageEffects
 	bool m_Greyscale;
 };
 
-
 /**
  * A CGUISprite is actually a collage of several <b>real</b>
  * sprites, this struct represents is such real sprite.
@@ -80,6 +79,11 @@ struct SGUIImage
 		m_FixedHAspectRatio(0.f), m_RoundCoordinates(true), m_WrapMode(GL_REPEAT),
 		m_Effects(NULL), m_Border(false), m_DeltaZ(0.f)
 	{
+	}
+	
+	~SGUIImage()
+	{
+		delete m_Effects;
 	}
 
 	// Filename of the texture
@@ -135,8 +139,9 @@ struct SGUIImage
 	 * way of declaring delta-z.
 	 */
 	float			m_DeltaZ;
-};
 
+	NONCOPYABLE(SGUIImage);
+};
 
 /**
  * The GUI sprite, is actually several real sprites (images)
@@ -151,17 +156,19 @@ class CGUISprite
 {
 public:
 	CGUISprite() {}
-	virtual ~CGUISprite() {}
+	virtual ~CGUISprite();
 
 	/**
 	 * Adds an image to the sprite collage.
 	 *
 	 * @param image Adds this image to the sprite collage.
 	 */
-	void AddImage(const SGUIImage &image) { m_Images.push_back(image); }
+	void AddImage(SGUIImage*);
 
 	/// List of images
-	std::vector<SGUIImage> m_Images;
+	std::vector<SGUIImage*> m_Images;
+
+	NONCOPYABLE(CGUISprite);
 };
 
 #include "GUIRenderer.h"
@@ -176,7 +183,7 @@ public:
 	CGUISpriteInstance(const CStr& SpriteName);
 	CGUISpriteInstance(const CGUISpriteInstance &Sprite);
 	CGUISpriteInstance &operator=(const CStr& SpriteName);
-	void Draw(CRect Size, int CellID, std::map<CStr, CGUISprite> &Sprites, float Z) const;
+	void Draw(CRect Size, int CellID, std::map<CStr, CGUISprite*>& Sprites, float Z) const;
 	void Invalidate();
 	bool IsEmpty() const;
 	const CStr& GetName() { return m_SpriteName; }
