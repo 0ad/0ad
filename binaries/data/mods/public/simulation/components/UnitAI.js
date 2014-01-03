@@ -5031,14 +5031,17 @@ UnitAI.prototype.GetTargetsFromUnit = function()
 	if (!cmpAttack)
 		return [];
 
-	const animalfilter = function(e) {
+	const attackfilter = function(e) {
+		var cmpPlayer = Engine.QueryInterface(e, IID_Player);
+		if (cmpPlayer && cmpPlayer.GetPlayerID() > 0)
+			return true;
 		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
-		return !cmpUnitAI || !cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal();
+		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
 	};
 
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var entities = rangeMan.ResetActiveQuery(this.losRangeQuery);
-	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && animalfilter(v); })
+	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && attackfilter(v); })
 		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
 
 	return targets;
@@ -5438,13 +5441,16 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 	if (!cmpAttack)
 		return false;
 
-	const animalfilter = function(e) {
+	const attackfilter = function(e) {
+		var cmpPlayer = Engine.QueryInterface(e, IID_Player);
+		if (cmpPlayer && cmpPlayer.GetPlayerID() > 0)
+			return true;
 		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
-		return !cmpUnitAI || !cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal();
+		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
 	};
 
 	return this.RespondToTargetedEntities(
-		ents.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && animalfilter(v); })
+		ents.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && attackfilter(v); })
 		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); })
 	);
 };
