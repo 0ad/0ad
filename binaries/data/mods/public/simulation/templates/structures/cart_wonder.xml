@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_wonder">
   <Footprint>
-    <Square width="14" depth="14"/>
-    <Height>5.0</Height>
+    <Square width="29.0" depth="59.0"/>
+    <Height>12.0</Height>
   </Footprint>
-  <Health>
-    <Max>2000</Max>
-    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
-  </Health>
+  <GarrisonHolder>
+    <Max>30</Max>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectEntitiesOnDestroy>true</EjectEntitiesOnDestroy>
+    <List datatype="tokens">Support Infantry Cavalry</List>
+    <BuffHeal>3</BuffHeal>
+    <LoadingRange>2</LoadingRange>
+  </GarrisonHolder>
   <Identity>
-    <Civ>cart</Civ>
-    <SpecificName>Mausoleum of Atban</SpecificName>
+   <Civ>cart</Civ>
+    <SpecificName>Temple of Ba'al Hammon</SpecificName>
     <History>Dating from the 2nd Century BC, the Mausoleum of Atban in northern Tunisia is over twenty metres high and was built by the inhabitants of Dougga for a Numidian prince.</History>
   </Identity>
   <Obstruction>
-    <Static width="12.5" depth="12.5"/>
+    <Static width="27.0" depth="57.0"/>
   </Obstruction>
   <VisualActor>
-    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
-    <Actor>structures/carthaginians/mausoleum.xml</Actor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
+    <Actor>structures/carthaginians/wonder.xml</Actor>
   </VisualActor>
 </Entity>
