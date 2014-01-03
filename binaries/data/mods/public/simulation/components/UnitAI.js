@@ -4852,7 +4852,13 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextM
 
 	if (this.CheckTargetRange(currentMarket, IID_Trader))
 	{
-		this.PerformTrade(currentMarket);
+		var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+		cmpTrader.PerformTrade(currentMarket);
+		if (!cmpTrader.GetGain().traderGain)
+		{
+			this.StopTrading();
+			return;
+		}
 		if (this.MoveToMarket(nextMarket))
 		{
 			// We've started walking to the next market
@@ -4864,12 +4870,6 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextM
 		// If the current market is not reached try again
 		this.MoveToMarket(currentMarket);
 	}
-};
-
-UnitAI.prototype.PerformTrade = function(currentMarket)
-{
-	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-	cmpTrader.PerformTrade(currentMarket);
 };
 
 UnitAI.prototype.StopTrading = function()
