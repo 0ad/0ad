@@ -376,8 +376,14 @@ var UnitFsmSpec = {
 	"Order.Flee": function(msg) {
 		// We use the distance between the entities to account for ranged attacks
 		var distance = DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
-		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-		if (cmpUnitMotion.MoveToTargetRange(this.order.data.target, distance, -1))
+		var cmpTargetPosition = Engine.QueryInterface(this.order.data.target, IID_Position);
+		if (!cmpTargetPosition)
+		{
+			this.StopMoving();
+			this.FinishOrder();
+		}
+		var pos = cmpTargetPosition.GetPosition2D();
+		if (this.MoveToPointRange(pos.x, pos.y, distance, -1))
 		{
 			// We've started fleeing from the given target
 			if (this.IsAnimal())
@@ -1668,6 +1674,27 @@ var UnitFsmSpec = {
 
 			"ATTACKING": {
 				"enter": function() {
+					var target = this.order.data.target;
+					// Check the target is still alive and attackable
+					if 
+					(
+						this.TargetIsAlive(target) && 
+						this.CanAttack(target, this.order.data.forceResponse || null) && 
+						!this.CheckTargetAttackRange(target, IID_Attack, this.order.data.attackType)
+					)
+					{
+						// Can't reach it - try to chase after it
+						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
+						{
+							if (this.MoveToTargetRange(target, IID_Attack, this.order.data.attackType))
+							{
+								this.SetNextState("COMBAT.CHASING");
+								return;
+							}
+						}
+					}
+					
+
 					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 					this.attackTimers = cmpAttack.GetTimers(this.order.data.attackType);
 
