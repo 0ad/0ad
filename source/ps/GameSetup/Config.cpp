@@ -134,6 +134,8 @@ static void LoadGlobals()
 	CFG_GET_VAL("jsdebugger.enable", Bool, g_JSDebuggerEnabled);
 	CFG_GET_VAL("profiler2.script.enable", Bool, g_ScriptProfilingEnabled);
 
+	if (g_JSDebuggerEnabled)
+		LOGERROR(L"JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)");
 	// Script Debugging and profiling does not make sense together because of the hooks
 	// that reduce performance a lot - and it wasn't tested if it even works together.
 	if (g_JSDebuggerEnabled && g_ScriptProfilingEnabled)
