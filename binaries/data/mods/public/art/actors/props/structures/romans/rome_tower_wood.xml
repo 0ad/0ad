@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="base">
+      <mesh>structural/rome_tower_wood.dae</mesh>
+      <textures>
+        <texture file="props/palisade_main.png" name="baseTex"/>
+        <texture file="props/palisade_main_norm.png" name="normTex"/>
+        <texture file="props/palisade_main_spec.png" name="specTex"/>
+        <texture file="structural/ao/rome_tower_wood.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>
