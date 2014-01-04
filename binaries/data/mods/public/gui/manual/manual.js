@@ -1,14 +1,16 @@
-var closeCallback;
+var hasCallback = false;
 
 function init(data)
 {
 	Engine.GetGUIObjectByName("mainText").caption = Engine.ReadFile("gui/manual/" + data.page + ".txt");
-	closeCallback = data.closeCallback;
+	if (data.callback)
+		hasCallback = true;
 }
 
 function closeManual()
 {
-	Engine.PopGuiPage();
-	if (closeCallback)
-		closeCallback();
+	if (hasCallback)
+		Engine.PopGuiPageCB();
+	else
+		Engine.PopGuiPage();
 }

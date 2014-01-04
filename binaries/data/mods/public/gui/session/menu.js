@@ -565,7 +565,7 @@ function openManual()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	Engine.PushGuiPage("page_manual.xml", {"page": "intro", "closeCallback": resumeGame});
+	Engine.PushGuiPage("page_manual.xml", {"page": "intro", "callback": "resumeGame"});
 }
 
 function toggleDeveloperOverlay()
