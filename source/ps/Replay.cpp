@@ -127,6 +127,7 @@ void CReplayPlayer::Replay()
 	new CProfileManager;
 	g_ScriptStatsTable = new CScriptStatsTable;
 	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
+	g_ScriptRuntime = ScriptInterface::CreateRuntime(128 * 1024 * 1024);
 
 	CGame game(true);
 	g_Game = &game;

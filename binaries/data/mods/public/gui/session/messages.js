@@ -136,12 +136,12 @@ function displayNotifications()
 	var messages = [];
 	for each (var n in notifications)
 		messages.push(n.message);
-	getGUIObjectByName("notificationText").caption = messages.join("\n");
+	Engine.GetGUIObjectByName("notificationText").caption = messages.join("\n");
 }
 
 function updateTimeNotifications()
 {
-	getGUIObjectByName("timeNotificationText").caption = Engine.GuiInterfaceCall("GetTimeNotificationText");
+	Engine.GetGUIObjectByName("timeNotificationText").caption = Engine.GuiInterfaceCall("GetTimeNotificationText");
 }
 
 // Returns [username, playercolor] for the given player
@@ -167,7 +167,7 @@ function handleNetMessage(message)
 		if (g_Disconnected)
 			return;
 
-		var obj = getGUIObjectByName("netStatus");
+		var obj = Engine.GetGUIObjectByName("netStatus");
 		switch (message.status)
 		{
 		case "waiting_for_players":
@@ -265,7 +265,7 @@ function submitChatDirectly(text)
 
 function submitChatInput()
 {
-	var input = getGUIObjectByName("chatInput");
+	var input = Engine.GetGUIObjectByName("chatInput");
 	var text = input.caption;
 	var isCheat = false;
 	if (text.length)
@@ -305,7 +305,7 @@ function submitChatInput()
 
 		if (!isCheat)
 		{
-			if (getGUIObjectByName("toggleTeamChat").checked)
+			if (Engine.GetGUIObjectByName("toggleTeamChat").checked)
 				text = "/team " + text;
 
 			if (g_IsNetworked)
@@ -443,7 +443,7 @@ function addChatMessage(msg, playerAssignments)
 	if (chatMessages.length > MAX_NUM_CHAT_LINES)
 		removeOldChatMessages();
 	else
-		getGUIObjectByName("chatText").caption = chatMessages.join("\n");
+		Engine.GetGUIObjectByName("chatText").caption = chatMessages.join("\n");
 }
 
 function removeOldChatMessages()
@@ -451,7 +451,7 @@ function removeOldChatMessages()
 	clearTimeout(chatTimers[0]); // The timer only needs to be cleared when new messages bump old messages off
 	chatTimers.shift();
 	chatMessages.shift();
-	getGUIObjectByName("chatText").caption = chatMessages.join("\n");
+	Engine.GetGUIObjectByName("chatText").caption = chatMessages.join("\n");
 }
 
 // Parses chat messages for commands.

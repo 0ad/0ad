@@ -22,8 +22,10 @@
 
 #include "lib/input.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptVal.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #include <set>
 
@@ -46,10 +48,15 @@ class CGUIManager
 {
 	NONCOPYABLE(CGUIManager);
 public:
-	CGUIManager(ScriptInterface& scriptInterface);
+	CGUIManager();
 	~CGUIManager();
 
-	ScriptInterface& GetScriptInterface() { return m_ScriptInterface; }
+	shared_ptr<ScriptInterface> GetScriptInterface() 
+	{ 
+		return m_ScriptInterface; 
+	}
+	shared_ptr<ScriptRuntime> GetRuntime() { return m_ScriptRuntime; }
+	shared_ptr<CGUI> GetActiveGUI() { return top(); }
 
 	/**
 	 * Returns whether there are any current pages.
@@ -59,20 +66,21 @@ public:
 	/**
 	 * Load a new GUI page and make it active. All current pages will be destroyed.
 	 */
-	void SwitchPage(const CStrW& name, CScriptVal initData);
+	void SwitchPage(const CStrW& name, ScriptInterface* srcScriptInterface, CScriptVal initData);
 
 	/**
 	 * Load a new GUI page and make it active. All current pages will be retained,
 	 * and will still be drawn and receive tick events, but will not receive
 	 * user inputs.
 	 */
-	void PushPage(const CStrW& name, CScriptVal initData);
+	void PushPage(const CStrW& pageName, shared_ptr<ScriptInterface::StructuredClone> initData);
 
 	/**
 	 * Unload the currently active GUI page, and make the previous page active.
 	 * (There must be at least two pages when you call this.)
 	 */
 	void PopPage();
+	void PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args);
 
 	/**
 	 * Display a modal message box with an "OK" button.
@@ -115,11 +123,6 @@ public:
 	void SendEventToAll(const CStr& eventName);
 
 	/**
-	 * See CGUI::GetScriptObject; applies to the currently active page.
-	 */
-	JSObject* GetScriptObject();
-
-	/**
 	 * See CGUI::TickObjects; applies to @em all loaded pages.
 	 */
 	void TickObjects();
@@ -134,10 +137,14 @@ public:
 	 */
 	void UpdateResolution();
 
-	/**
-	 * Calls the current page's script function getSavedGameData() and returns the result.
-	 */
-	CScriptVal GetSavedGameData();
+ 	/**
+ 	 * Calls the current page's script function getSavedGameData() and returns the result.
+	 * The first overload also returns a pointer to the ScriptInterface the returned CScriptVal belongs to.
+ 	 */
+	CScriptVal GetSavedGameData(ScriptInterface*& pPageScriptInterface);
+	std::string GetSavedGameData();
+ 
+	void RestoreSavedGameData(std::string jsonData);
 
 private:
 	struct SGUIPage
@@ -146,7 +153,8 @@ private:
 		boost::unordered_set<VfsPath> inputs; // for hotloading
 
 		JSContext* cx;
-		CScriptValRooted initData; // data to be passed to the init() function
+		shared_ptr<ScriptInterface::StructuredClone> initData; // data to be passed to the init() function
+		CStrW callbackPageName;
 
 		shared_ptr<CGUI> gui; // the actual GUI page
 	};
@@ -154,13 +162,13 @@ private:
 	void LoadPage(SGUIPage& page);
 
 	shared_ptr<CGUI> top() const;
+	
+	shared_ptr<CGUI> m_CurrentGUI; // used to latch state during TickObjects/LoadPage (this is kind of ugly)
+	shared_ptr<ScriptRuntime> m_ScriptRuntime;
+	shared_ptr<ScriptInterface> m_ScriptInterface;
 
 	typedef std::vector<SGUIPage> PageStackType;
 	PageStackType m_PageStack;
-
-	shared_ptr<CGUI> m_CurrentGUI; // used to latch state during TickObjects/LoadPage (this is kind of ugly)
-
-	ScriptInterface& m_ScriptInterface;
 };
 
 extern CGUIManager* g_GUI;

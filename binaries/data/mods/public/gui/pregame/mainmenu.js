@@ -11,7 +11,7 @@ function init(initData, hotloadData)
 	// Play main menu music
 	global.music.setState(global.music.states.MENU);
 
-	userReportEnabledText = getGUIObjectByName("userReportEnabledText").caption;
+	userReportEnabledText = Engine.GetGUIObjectByName("userReportEnabledText").caption;
 
 	// initialize currentSubmenuType with placeholder to avoid null when switching
 	currentSubmenuType = "submenuSinglePlayer";
@@ -32,9 +32,9 @@ function scrollBackgrounds(background)
 {
 	if (background == "hellenes1")
 	{
-		var layer1 = getGUIObjectByName("backgroundHele1-1");
-		var layer2 = getGUIObjectByName("backgroundHele1-2");
-		var layer3 = getGUIObjectByName("backgroundHele1-3");
+		var layer1 = Engine.GetGUIObjectByName("backgroundHele1-1");
+		var layer2 = Engine.GetGUIObjectByName("backgroundHele1-2");
+		var layer3 = Engine.GetGUIObjectByName("backgroundHele1-3");
 		
 		layer1.hidden = false;
 		layer2.hidden = false;
@@ -59,10 +59,10 @@ function scrollBackgrounds(background)
 	
 	if (background == "persians1")
 	{
-		var layer1 = getGUIObjectByName("backgroundPers1-1");
-		var layer2 = getGUIObjectByName("backgroundPers1-2");
-		var layer3 = getGUIObjectByName("backgroundPers1-3");
-		var layer4 = getGUIObjectByName("backgroundPers1-4");
+		var layer1 = Engine.GetGUIObjectByName("backgroundPers1-1");
+		var layer2 = Engine.GetGUIObjectByName("backgroundPers1-2");
+		var layer3 = Engine.GetGUIObjectByName("backgroundPers1-3");
+		var layer4 = Engine.GetGUIObjectByName("backgroundPers1-4");
 		
 		layer1.hidden = false;
 		layer2.hidden = false;
@@ -91,7 +91,7 @@ function scrollBackgrounds(background)
 
 function submitUserReportMessage()
 {
-	var input = getGUIObjectByName("userReportMessageInput");
+	var input = Engine.GetGUIObjectByName("userReportMessageInput");
 	var msg = input.caption;
 	if (msg.length)
 		Engine.SubmitUserReport("message", 1, msg);
@@ -148,7 +148,7 @@ function onTick()
 
 	if (Engine.IsUserReportEnabled())
 	{
-		getGUIObjectByName("userReportEnabledText").caption = 
+		Engine.GetGUIObjectByName("userReportEnabledText").caption = 
 			userReportEnabledText.replace(/\$status/,
 				formatUserReportStatus(Engine.GetUserReportStatus()));
 	}
@@ -159,26 +159,37 @@ function onTick()
 		g_ShowSplashScreens = false;
 
 		if (Engine.ConfigDB_GetValue("user", "splashscreenenable") !== "false")
-			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen" } );
-
-		// Warn about removing fixed render path
-		if (Engine.Renderer_GetRenderPath() == "fixed")
-			messageBox(
-				600,
-				300,
-				"[font=\"serif-bold-16\"][color=\"200 20 20\"]Warning:[/color] You appear to be using non-shader (fixed function) graphics. This option will be removed in a future 0 A.D. release, to allow for more advanced graphics features. We advise upgrading your graphics card to a more recent, shader-compatible model.\n\nPlease press \"Read More\" for more information or \"Ok\" to continue.",
-				"WARNING!",
-				0,
-				["Ok", "Read More"],
-				[null, function() { Engine.OpenURL("http://www.wildfiregames.com/forum/index.php?showtopic=16734"); }]
-			);
+			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen", callback : "SplashScreenClosedCallback" } );
+		else
+			ShowRenderPathMessage();
+		
 	}
+}
+
+function ShowRenderPathMessage()
+{
+	// Warn about removing fixed render path
+	if (Engine.Renderer_GetRenderPath() == "fixed")
+		messageBox(
+			600,
+			300,
+			"[font=\"serif-bold-16\"][color=\"200 20 20\"]Warning:[/color] You appear to be using non-shader (fixed function) graphics. This option will be removed in a future 0 A.D. release, to allow for more advanced graphics features. We advise upgrading your graphics card to a more recent, shader-compatible model.\n\nPlease press \"Read More\" for more information or \"Ok\" to continue.",
+			"WARNING!",
+			0,
+			["Ok", "Read More"],
+			[ null, function() { Engine.OpenURL("http://www.wildfiregames.com/forum/index.php?showtopic=16734"); } ]
+		);
+}
+
+function SplashScreenClosedCallback()
+{
+	ShowRenderPathMessage();
 }
 
 function EnableUserReport(Enabled)
 {
-	getGUIObjectByName("userReportDisabled").hidden = Enabled;
- 	getGUIObjectByName("userReportEnabled").hidden = !Enabled;
+	Engine.GetGUIObjectByName("userReportDisabled").hidden = Enabled;
+ 	Engine.GetGUIObjectByName("userReportEnabled").hidden = !Enabled;
  	Engine.SetUserReportEnabled(Enabled);
 }
 
@@ -198,14 +209,14 @@ function EnableUserReport(Enabled)
 // Slide menu
 function updateMenuPosition(dt)
 {
-	var submenu = getGUIObjectByName("submenu");
+	var submenu = Engine.GetGUIObjectByName("submenu");
 
 	if (submenu.hidden == false)
 	{
 		// Number of pixels per millisecond to move
 		const SPEED = 1.2;
 
-		var maxOffset = getGUIObjectByName("mainMenu").size.right - submenu.size.left;
+		var maxOffset = Engine.GetGUIObjectByName("mainMenu").size.right - submenu.size.left;
 		if (maxOffset > 0)
 		{
 			var offset = Math.min(SPEED * dt, maxOffset);
@@ -222,10 +233,10 @@ function openMenu(newSubmenu, position, buttonHeight, numButtons)
 {
 	// switch to new submenu type
 	currentSubmenuType = newSubmenu;
-	getGUIObjectByName(currentSubmenuType).hidden = false;
+	Engine.GetGUIObjectByName(currentSubmenuType).hidden = false;
 
 	// set position of new submenu
-	var submenu = getGUIObjectByName("submenu");
+	var submenu = Engine.GetGUIObjectByName("submenu");
 	var top = position - MARGIN;
 	var bottom = position + ((buttonHeight + MARGIN) * numButtons);
 	submenu.size = submenu.size.left + " " + top + " " + submenu.size.right + " " + bottom;
@@ -234,7 +245,7 @@ function openMenu(newSubmenu, position, buttonHeight, numButtons)
 	blendSubmenuIntoMain(top, bottom);
 
 	// Reveal submenu
-	getGUIObjectByName("submenu").hidden = false;
+	Engine.GetGUIObjectByName("submenu").hidden = false;
 }
 
 // Closes the menu and resets position
@@ -243,24 +254,24 @@ function closeMenu()
 //	playButtonSound();
 
 	// remove old submenu type
-	getGUIObjectByName(currentSubmenuType).hidden = true;
+	Engine.GetGUIObjectByName(currentSubmenuType).hidden = true;
 
 	// hide submenu and reset position
-	var submenu = getGUIObjectByName("submenu");
+	var submenu = Engine.GetGUIObjectByName("submenu");
 	submenu.hidden = true;
-	submenu.size = getGUIObjectByName("mainMenu").size;
+	submenu.size = Engine.GetGUIObjectByName("mainMenu").size;
 
 	// reset main menu panel right border
-	getGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
+	Engine.GetGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
 }
 
 // Sizes right border on main menu panel to match the submenu
 function blendSubmenuIntoMain(topPosition, bottomPosition)
 {
-	var topSprite = getGUIObjectByName("MainMenuPanelRightBorderTop");
+	var topSprite = Engine.GetGUIObjectByName("MainMenuPanelRightBorderTop");
 	topSprite.size = "100%-2 0 100% " + (topPosition + MARGIN);
 
-	var bottomSprite = getGUIObjectByName("MainMenuPanelRightBorderBottom");
+	var bottomSprite = Engine.GetGUIObjectByName("MainMenuPanelRightBorderBottom");
 	bottomSprite.size = "100%-2 " + (bottomPosition) + " 100% 100%";
 }
 
@@ -291,14 +302,14 @@ function blendSubmenuIntoMain(topPosition, bottomPosition)
 //
 //		if (tmpName != tabName)
 //		{
-//			getGUIObjectByName (tmpName + "Window").hidden = true;
-//			getGUIObjectByName (tmpName + "Button").enabled = true;
+//			Engine.GetGUIObjectByName (tmpName + "Window").hidden = true;
+//			Engine.GetGUIObjectByName (tmpName + "Button").enabled = true;
 //		}
 //	}
 //
 //	// Make given tab visible.
-//	getGUIObjectByName (tabName + "Window").hidden = false;
-//	getGUIObjectByName (tabName + "Button").enabled = false;
+//	Engine.GetGUIObjectByName (tabName + "Window").hidden = false;
+//	Engine.GetGUIObjectByName (tabName + "Button").enabled = false;
 //}
 //
 //// Move the credits up the screen.

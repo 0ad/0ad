@@ -22,9 +22,9 @@
 #ifndef INCLUDED_JSI_VFS
 #define INCLUDED_JSI_VFS
 
-#include "scripting/ScriptingHost.h"
+#include "scriptinterface/ScriptInterface.h"
 
-// these are registered in ScriptGlue.cpp, hence the need for a header.
+// these are registered in ScriptFunctions.cpp, hence the need for a header.
 
 namespace JSI_VFS
 {
@@ -38,37 +38,37 @@ namespace JSI_VFS
 	//
 	// note: full pathnames of each file/subdirectory are returned,
 	// ready for use as a "filename" for the other functions.
-	JSBool BuildDirEntList(JSContext* cx, uintN argc, jsval* vp);
+	CScriptVal BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, std::wstring path, std::wstring filterStr, bool recurse);
 
 	// Return true iff the file exists
 	//
 	// if (fileExists(filename) { ... }
 	//   filename: VFS filename (may include path)
-	JSBool FileExists(JSContext* cx, uintN argc, jsval* vp);
+	bool FileExists(ScriptInterface::CxPrivate* pCxPrivate, CStrW filename);
 
 	// Return time [seconds since 1970] of the last modification to the specified file.
 	//
 	// mtime = getFileMTime(filename);
 	//   filename: VFS filename (may include path)
-	JSBool GetFileMTime(JSContext* cx, uintN argc, jsval* vp);
+	double GetFileMTime(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
 
 	// Return current size of file.
 	//
 	// size = getFileSize(filename);
 	//   filename: VFS filename (may include path)
-	JSBool GetFileSize(JSContext* cx, uintN argc, jsval* vp);
+	unsigned int GetFileSize(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
 
 	// Return file contents in a string.
 	//
 	// contents = readFile(filename);
 	//   filename: VFS filename (may include path)
-	JSBool ReadFile(JSContext* cx, uintN argc, jsval* vp);
+	CScriptVal ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
 
 	// Return file contents as an array of lines.
 	//
 	// lines = readFileLines(filename);
 	//   filename: VFS filename (may include path)
-	JSBool ReadFileLines(JSContext* cx, uintN argc, jsval* vp);
+	CScriptVal ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
 }
 
 #endif

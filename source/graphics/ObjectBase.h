@@ -56,7 +56,7 @@ public:
 	struct Prop
 	{
 		// constructor
-		Prop() : m_minHeight(0.f), m_maxHeight(0.f) {}
+		Prop() : m_minHeight(0.f), m_maxHeight(0.f), m_selectable(true) {}
 		// name of the prop point to attach to - "Prop01", "Prop02", "Head", "LeftHand", etc ..
 		CStr m_PropPointName;
 		// name of the model file - art/actors/props/sword.xml or whatever
@@ -64,6 +64,7 @@ public:
 		// allow the prop to ajust the height from minHeight to maxHeight relative to the main model
 		float m_minHeight;
 		float m_maxHeight;
+		bool m_selectable;
 	};
 	
 	struct Samp

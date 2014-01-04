@@ -137,7 +137,7 @@ function init(initData, hotloadData)
 		if (initData.savedGUIData)
 			restoreSavedGameData(initData.savedGUIData);
 
-		getGUIObjectByName("gameSpeedButton").hidden = g_IsNetworked;
+		Engine.GetGUIObjectByName("gameSpeedButton").hidden = g_IsNetworked;
 	}
 	else // Needed for autostart loading option
 	{
@@ -150,15 +150,15 @@ function init(initData, hotloadData)
 
 	g_GameSpeeds = initGameSpeeds();
 	g_CurrentSpeed = Engine.GetSimRate();
-	var gameSpeed = getGUIObjectByName("gameSpeed");
+	var gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 	gameSpeed.list = g_GameSpeeds.names;
 	gameSpeed.list_data = g_GameSpeeds.speeds;
 	var idx = g_GameSpeeds.speeds.indexOf(g_CurrentSpeed);
 	gameSpeed.selected = idx != -1 ? idx : g_GameSpeeds["default"];
 	gameSpeed.onSelectionChange = function() { changeGameSpeed(+this.list_data[this.selected]); }
 
-	getGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
-	getGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[Engine.GetPlayerID()].civ].Name;
+	Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
+	Engine.GetGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[Engine.GetPlayerID()].civ].Name;
 	initMenuPosition(); // set initial position
 
 	// Populate player selection dropdown
@@ -170,14 +170,14 @@ function init(initData, hotloadData)
 		playerIDs.push(player);
 	}
 
-	var viewPlayerDropdown = getGUIObjectByName("viewPlayer");
+	var viewPlayerDropdown = Engine.GetGUIObjectByName("viewPlayer");
 	viewPlayerDropdown.list = playerNames;
 	viewPlayerDropdown.list_data = playerIDs;
 	viewPlayerDropdown.selected = Engine.GetPlayerID();
 
 	// If in Atlas editor, disable the exit button
 	if (Engine.IsAtlasRunning())
-		getGUIObjectByName("menuExitButton").enabled = false;
+		Engine.GetGUIObjectByName("menuExitButton").enabled = false;
 
 	if (hotloadData)
 	{
@@ -194,7 +194,7 @@ function init(initData, hotloadData)
 	}
 
 	if (Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") === "true")
-		getGUIObjectByName("timeElapsedCounter").hidden = false;
+		Engine.GetGUIObjectByName("timeElapsedCounter").hidden = false;
 
 	onSimulationUpdate();
 
@@ -210,8 +210,8 @@ function selectViewPlayer(playerID)
 {
 	Engine.SetPlayerID(playerID);
 	if (playerID != 0) {
-		getGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
-		getGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[playerID].civ].Name;
+		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
+		Engine.GetGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[playerID].civ].Name;
 	}
 }
 
@@ -280,7 +280,7 @@ function leaveGame()
 	}
 
 	stopAmbient();
-	endGame();
+	Engine.EndGame();
 
 	if (g_IsController && Engine.HasXmppClient())
 		Engine.SendUnregisterGame();
@@ -367,9 +367,9 @@ function onTick()
 
 	// When training is blocked, flash population (alternates colour every 500msec)
 	if (g_IsTrainingBlocked && (Date.now() % 1000) < 500)
-		getGUIObjectByName("resourcePop").textcolor = POPULATION_ALERT_COLOR;
+		Engine.GetGUIObjectByName("resourcePop").textcolor = POPULATION_ALERT_COLOR;
 	else
-		getGUIObjectByName("resourcePop").textcolor = DEFAULT_POPULATION_COLOR;
+		Engine.GetGUIObjectByName("resourcePop").textcolor = DEFAULT_POPULATION_COLOR;
 
 	// Clear renamed entities list
 	Engine.GuiInterfaceCall("ClearRenamedEntities");
@@ -398,7 +398,7 @@ function checkPlayerState()
 		return;
 
 	// We can't resign once the game is over.
-	getGUIObjectByName("menuResignButton").enabled = false;
+	Engine.GetGUIObjectByName("menuResignButton").enabled = false;
 
 	// Make sure nothing is open to avoid stacking.
 	closeMenu();
@@ -430,8 +430,8 @@ function checkPlayerState()
 	{
 		global.music.setState(global.music.states.VICTORY);
 		// TODO: Reveal map directly instead of this silly proxy.
-		if (!getGUIObjectByName("devCommandsRevealMap").checked)
-			getGUIObjectByName("devCommandsRevealMap").checked = true;
+		if (!Engine.GetGUIObjectByName("devCommandsRevealMap").checked)
+			Engine.GetGUIObjectByName("devCommandsRevealMap").checked = true;
 		messageBox(400, 200, message, "VICTORIOUS!", 0, btCaptions, btCode);
 	}
 
@@ -491,7 +491,7 @@ function updateHero()
 {
 	var simState = GetSimState();
 	var playerState = simState.players[Engine.GetPlayerID()];
-	var heroButton = getGUIObjectByName("unitHeroButton");
+	var heroButton = Engine.GetGUIObjectByName("unitHeroButton");
 
 	if (!playerState || playerState.heroes.length <= 0)
 	{
@@ -499,7 +499,7 @@ function updateHero()
 		return;
 	}
 
-	var heroImage = getGUIObjectByName("unitHeroImage");
+	var heroImage = Engine.GetGUIObjectByName("unitHeroImage");
 	var heroState = GetExtendedEntityState(playerState.heroes[0]);
 	var template = GetTemplateData(heroState.template);
 	heroImage.sprite = "stretched:session/portraits/" + template.icon;
@@ -535,8 +535,8 @@ function updateGroups()
 	g_Groups.update();
 	for (var i = 0; i < 10; i++)
 	{
-		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
-		var label = getGUIObjectByName("unit"+guiName+"Label["+i+"]").caption = i;
+		var button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
+		var label = Engine.GetGUIObjectByName("unit"+guiName+"Label["+i+"]").caption = i;
 		if (g_Groups.groups[i].getTotalCount() == 0)
 			button.hidden = true;
 		else
@@ -547,7 +547,7 @@ function updateGroups()
 	var numButtons = i;
 	var rowLength = 1;
 	var numRows = Math.ceil(numButtons / rowLength);
-	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
+	var buttonSideLength = Engine.GetGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var buttonSpacer = buttonSideLength+1;
 	for (var i = 0; i < numRows; i++)
 		layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
@@ -556,9 +556,9 @@ function updateGroups()
 function updateDebug()
 {
 	var simState = GetSimState();
-	var debug = getGUIObjectByName("debug");
+	var debug = Engine.GetGUIObjectByName("debug");
 
-	if (getGUIObjectByName("devDisplayState").checked)
+	if (Engine.GetGUIObjectByName("devDisplayState").checked)
 	{
 		debug.hidden = false;
 	}
@@ -596,11 +596,11 @@ function updatePlayerDisplay()
 	if (!playerState)
 		return;
 
-	getGUIObjectByName("resourceFood").caption = playerState.resourceCounts.food;
-	getGUIObjectByName("resourceWood").caption = playerState.resourceCounts.wood;
-	getGUIObjectByName("resourceStone").caption = playerState.resourceCounts.stone;
-	getGUIObjectByName("resourceMetal").caption = playerState.resourceCounts.metal;
-	getGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
+	Engine.GetGUIObjectByName("resourceFood").caption = playerState.resourceCounts.food;
+	Engine.GetGUIObjectByName("resourceWood").caption = playerState.resourceCounts.wood;
+	Engine.GetGUIObjectByName("resourceStone").caption = playerState.resourceCounts.stone;
+	Engine.GetGUIObjectByName("resourceMetal").caption = playerState.resourceCounts.metal;
+	Engine.GetGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
 
 	g_IsTrainingBlocked = playerState.trainingBlocked;
 }
@@ -625,10 +625,10 @@ function updateResearchDisplay()
 		return;
 
 	// Set up initial positioning.
-	var buttonSideLength = getGUIObjectByName("researchStartedButton[0]").size.right;
+	var buttonSideLength = Engine.GetGUIObjectByName("researchStartedButton[0]").size.right;
 	for (var i = 0; i < 10; ++i)
 	{
-		var button = getGUIObjectByName("researchStartedButton[" + i + "]");
+		var button = Engine.GetGUIObjectByName("researchStartedButton[" + i + "]");
 		var size = button.size;
 		size.top = (4 + buttonSideLength) * i;
 		size.bottom = size.top + buttonSideLength;
@@ -643,34 +643,34 @@ function updateResearchDisplay()
 			break;
 
 		var template = GetTechnologyData(tech);
-		var button = getGUIObjectByName("researchStartedButton[" + numButtons + "]");
+		var button = Engine.GetGUIObjectByName("researchStartedButton[" + numButtons + "]");
 		button.hidden = false;
 		button.tooltip = getEntityNames(template);
 		button.onpress = (function(e) { return function() { selectAndMoveTo(e) } })(researchStarted[tech].researcher);
 
 		var icon = "stretched:session/portraits/" + template.icon;
-		getGUIObjectByName("researchStartedIcon[" + numButtons + "]").sprite = icon;
+		Engine.GetGUIObjectByName("researchStartedIcon[" + numButtons + "]").sprite = icon;
 
 		// Scale the progress indicator.
-		var size = getGUIObjectByName("researchStartedProgressSlider[" + numButtons + "]").size;
+		var size = Engine.GetGUIObjectByName("researchStartedProgressSlider[" + numButtons + "]").size;
 
 		// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
 		size.top = size.left + Math.round(researchStarted[tech].progress * (size.right - size.left));
-		getGUIObjectByName("researchStartedProgressSlider[" + numButtons + "]").size = size;
+		Engine.GetGUIObjectByName("researchStartedProgressSlider[" + numButtons + "]").size = size;
 
 		++numButtons;
 	}
 
 	// Hide unused buttons.
 	for (var i = numButtons; i < 10; ++i)
-		getGUIObjectByName("researchStartedButton[" + i + "]").hidden = true;
+		Engine.GetGUIObjectByName("researchStartedButton[" + i + "]").hidden = true;
 }
 
 function updateTimeElapsedCounter()
 {
 	var simState = GetSimState();
 	var speed = g_CurrentSpeed != 1.0 ? " (" + g_CurrentSpeed + "x)" : "";
-	var timeElapsedCounter = getGUIObjectByName("timeElapsedCounter");
+	var timeElapsedCounter = Engine.GetGUIObjectByName("timeElapsedCounter");
 	timeElapsedCounter.caption = timeToString(simState.timeElapsed) + speed;
 }
 

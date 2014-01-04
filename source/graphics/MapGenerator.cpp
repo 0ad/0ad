@@ -147,16 +147,15 @@ shared_ptr<ScriptInterface::StructuredClone> CMapGeneratorWorker::GetResults()
 	return m_MapData;
 }
 
-bool CMapGeneratorWorker::LoadLibrary(void* cbdata, std::wstring name)
+bool CMapGeneratorWorker::LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(cbdata);
-
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	return self->LoadScripts(name);
 }
 
-void CMapGeneratorWorker::ExportMap(void* cbdata, CScriptValRooted data)
+void CMapGeneratorWorker::ExportMap(ScriptInterface::CxPrivate* pCxPrivate, CScriptValRooted data)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(cbdata);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 
 	// Copy results
 	CScopeLock lock(self->m_WorkerMutex);
@@ -164,22 +163,22 @@ void CMapGeneratorWorker::ExportMap(void* cbdata, CScriptValRooted data)
 	self->m_Progress = 0;
 }
 
-void CMapGeneratorWorker::SetProgress(void* cbdata, int progress)
+void CMapGeneratorWorker::SetProgress(ScriptInterface::CxPrivate* pCxPrivate, int progress)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(cbdata);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 
 	// Copy data
 	CScopeLock lock(self->m_WorkerMutex);
 	self->m_Progress = progress;
 }
 
-void CMapGeneratorWorker::MaybeGC(void* cbdata)
+void CMapGeneratorWorker::MaybeGC(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(cbdata);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	self->m_ScriptInterface->MaybeGC();
 }
 
-std::vector<std::string> CMapGeneratorWorker::GetCivData(void* UNUSED(cbdata))
+std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	VfsPath path(L"civs/");
 	VfsPaths pathnames;

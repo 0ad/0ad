@@ -108,7 +108,6 @@ public:
 	void StartPlayList( bool doLoop );
 	void AddPlayListItem(const VfsPath& itemPath);
 
-	static void ScriptingInit();
 	static void CreateSoundManager();
 	static void SetEnabled(bool doEnable);
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path);

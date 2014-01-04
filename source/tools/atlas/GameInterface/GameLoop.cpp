@@ -39,7 +39,6 @@
 #include "ps/Profile.h"
 #include "ps/GameSetup/Paths.h"
 #include "renderer/Renderer.h"
-#include "scripting/ScriptingHost.h"
 
 using namespace AtlasMessage;
 
@@ -329,7 +328,6 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 
 	// Clean up
 	AtlasView::DestroyViews();
-	ScriptingHost::FinalShutdown();
 	AtlasMessage::g_MessagePasser = NULL;
 
 	return true;

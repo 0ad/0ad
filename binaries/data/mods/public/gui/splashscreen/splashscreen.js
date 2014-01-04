@@ -1,4 +1,6 @@
 function init(data)
 {
-	getGUIObjectByName("mainText").caption = readFile("gui/splashscreen/" + data.page + ".txt");
+	Engine.GetGUIObjectByName("mainText").caption = Engine.ReadFile("gui/splashscreen/" + data.page + ".txt");
+
 }
+

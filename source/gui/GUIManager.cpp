@@ -26,7 +26,6 @@
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
-#include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 
 CGUIManager* g_GUI = NULL;
@@ -48,13 +47,12 @@ InReaction gui_handler(const SDL_Event_* ev)
 	return g_GUI->HandleEvent(ev);
 }
 
-CGUIManager::CGUIManager(ScriptInterface& scriptInterface) :
-	m_ScriptInterface(scriptInterface)
+CGUIManager::CGUIManager()
 {
-	ENSURE(ScriptInterface::GetCallbackData(scriptInterface.GetContext()) == NULL);
-	scriptInterface.SetCallbackData(this);
-
-	scriptInterface.LoadGlobalScripts();
+	m_ScriptRuntime = g_ScriptRuntime;
+	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIManager", m_ScriptRuntime));
+	m_ScriptInterface->SetCallbackData(this);
+	m_ScriptInterface->LoadGlobalScripts();
 }
 
 CGUIManager::~CGUIManager()
@@ -66,17 +64,41 @@ bool CGUIManager::HasPages()
 	return !m_PageStack.empty();
 }
 
-void CGUIManager::SwitchPage(const CStrW& pageName, CScriptVal initData)
+void CGUIManager::SwitchPage(const CStrW& pageName, ScriptInterface* srcScriptInterface, CScriptVal initData)
 {
+	// The page stack is cleared (including the script context where initData came from),
+	// therefore we have to clone initData.
+	shared_ptr<ScriptInterface::StructuredClone> initDataClone;
+	if (initData.get() != JSVAL_VOID)
+	{
+		ENSURE(srcScriptInterface);
+		// TODO: Fix this horribly ugly hack as soon as we have integrated the new SpiderMonkey library version. 
+		// In SpiderMonkey 1.8.5, StructuredClone data needs to be freed with JS_Free.
+		// JS_Free takes a JSContext as argument which must be the one the clone was created wtih.
+		// This means we must ensure to call the destructor of all structuredclones before the context is destroyed.
+		// To achieve this, we write all initData structured clones with the GUIManager's JSContext.
+		// That's why we have to clone the value twice here.
+		// Calling WriteStructuredClone with a context in another compartment than the value works, but I don't think that's
+		// supposed to work and will probably break under some conditions.
+		// Newer SpiderMonkey versions introduce JS_ClearStructuredClone instead of JS_Free which does not require a context.
+		if (srcScriptInterface != m_ScriptInterface.get())
+		{		
+			CScriptVal cloneSaveInitData;
+			cloneSaveInitData = m_ScriptInterface->CloneValueFromOtherContext(*srcScriptInterface, initData.get());
+			initDataClone = m_ScriptInterface->WriteStructuredClone(cloneSaveInitData.get());
+		}
+		else
+			initDataClone = m_ScriptInterface->WriteStructuredClone(initData.get());
+	}
 	m_PageStack.clear();
-	PushPage(pageName, initData);
+	PushPage(pageName, initDataClone);
 }
 
-void CGUIManager::PushPage(const CStrW& pageName, CScriptVal initData)
+void CGUIManager::PushPage(const CStrW& pageName, shared_ptr<ScriptInterface::StructuredClone> initData)
 {
 	m_PageStack.push_back(SGUIPage());
 	m_PageStack.back().name = pageName;
-	m_PageStack.back().initData = CScriptValRooted(m_ScriptInterface.GetContext(), initData);
+	m_PageStack.back().initData = initData;
 	LoadPage(m_PageStack.back());
 }
 
@@ -91,30 +113,80 @@ void CGUIManager::PopPage()
 	m_PageStack.pop_back();
 }
 
+void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
+{
+	shared_ptr<ScriptInterface::StructuredClone> initDataClone = m_PageStack.back().initData;
+	PopPage();
+	
+	shared_ptr<ScriptInterface> scriptInterface = m_PageStack.back().gui->GetScriptInterface();
+	CScriptVal initDataVal;
+	if (initDataClone)
+		initDataVal = scriptInterface->ReadStructuredClone(initDataClone);
+	else
+	{
+		LOGERROR(L"Called PopPageCB when initData (which should contain the callback function name) isn't set!");
+		return;
+	}
+	
+	if (!scriptInterface->HasProperty(initDataVal.get(), "callback"))
+	{
+		LOGERROR(L"Called PopPageCB when the callback function name isn't set!");
+		return;
+	}
+	
+	std::string callback;
+	if (!scriptInterface->GetProperty(initDataVal.get(), "callback", callback))
+	{
+		LOGERROR(L"Failed to get the callback property as a string from initData in PopPageCB!");
+		return;
+	}
+	
+	if (!scriptInterface->HasProperty(scriptInterface->GetGlobalObject(), callback.c_str()))
+	{
+		LOGERROR(L"The specified callback function %hs does not exist in the page %ls", callback.c_str(), m_PageStack.back().name.c_str());
+		return;
+	}
+
+	CScriptVal argVal;
+	if (args)
+		argVal = scriptInterface->ReadStructuredClone(args);
+	if (!scriptInterface->CallFunctionVoid(scriptInterface->GetGlobalObject(), callback.c_str(), argVal))
+	{
+		LOGERROR(L"Failed to call the callback function %hs in the page %ls", callback.c_str(), m_PageStack.back().name.c_str());
+		return;
+	}
+}
+
 void CGUIManager::DisplayMessageBox(int width, int height, const CStrW& title, const CStrW& message)
 {
 	// Set up scripted init data for the standard message box window
 	CScriptValRooted data;
-	m_ScriptInterface.Eval("({})", data);
-	m_ScriptInterface.SetProperty(data.get(), "width", width, false);
-	m_ScriptInterface.SetProperty(data.get(), "height", height, false);
-	m_ScriptInterface.SetProperty(data.get(), "mode", 2, false);
-	m_ScriptInterface.SetProperty(data.get(), "title", std::wstring(title), false);
-	m_ScriptInterface.SetProperty(data.get(), "message", std::wstring(message), false);
+	m_ScriptInterface->Eval("({})", data);
+	m_ScriptInterface->SetProperty(data.get(), "width", width, false);
+	m_ScriptInterface->SetProperty(data.get(), "height", height, false);
+	m_ScriptInterface->SetProperty(data.get(), "mode", 2, false);
+	m_ScriptInterface->SetProperty(data.get(), "title", std::wstring(title), false);
+	m_ScriptInterface->SetProperty(data.get(), "message", std::wstring(message), false);
 
 	// Display the message box
-	PushPage(L"page_msgbox.xml", data.get());
+	PushPage(L"page_msgbox.xml", m_ScriptInterface->WriteStructuredClone(data.get()));
 }
 
 void CGUIManager::LoadPage(SGUIPage& page)
 {
 	// If we're hotloading then try to grab some data from the previous page
-	CScriptValRooted hotloadData;
+	shared_ptr<ScriptInterface::StructuredClone> hotloadData;
 	if (page.gui)
-		m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(page.gui->GetScriptObject()), "getHotloadData", hotloadData);
-
+	{	
+		CScriptVal hotloadDataVal;
+		shared_ptr<ScriptInterface> scriptInterface = page.gui->GetScriptInterface();
+		scriptInterface->CallFunction(scriptInterface->GetGlobalObject(), "getHotloadData", hotloadDataVal);
+		hotloadData = scriptInterface->WriteStructuredClone(hotloadDataVal.get());
+	}
+		
 	page.inputs.clear();
-	page.gui.reset(new CGUI());
+	page.gui.reset(new CGUI(m_ScriptRuntime));
+
 	page.gui->Initialize();
 
 	VfsPath path = VfsPath("gui") / page.name;
@@ -160,8 +232,21 @@ void CGUIManager::LoadPage(SGUIPage& page)
 
 	page.gui->SendEventToAll("load");
 
+	shared_ptr<ScriptInterface> scriptInterface = page.gui->GetScriptInterface();
+	CScriptVal initDataVal;
+	CScriptVal hotloadDataVal;
+	if (page.initData) 
+		initDataVal = scriptInterface->ReadStructuredClone(page.initData);
+	if (hotloadData)
+		hotloadDataVal = scriptInterface->ReadStructuredClone(hotloadData);
+	
 	// Call the init() function
-	if (!m_ScriptInterface.CallFunctionVoid(OBJECT_TO_JSVAL(page.gui->GetScriptObject()), "init", page.initData, hotloadData))
+	if (!scriptInterface->CallFunctionVoid(
+			scriptInterface->GetGlobalObject(), 
+			"init", 
+			initDataVal, 
+			hotloadDataVal)
+		)
 	{
 		LOGERROR(L"GUI page '%ls': Failed to call init() function", page.name.c_str());
 	}
@@ -184,12 +269,26 @@ Status CGUIManager::ReloadChangedFiles(const VfsPath& path)
 	return INFO::OK;
 }
 
-CScriptVal CGUIManager::GetSavedGameData()
+CScriptVal CGUIManager::GetSavedGameData(ScriptInterface*& pPageScriptInterface)
 {
 	CScriptVal data;
-	if (!m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(top()->GetScriptObject()), "getSavedGameData", data))
+	if (!top()->GetScriptInterface()->CallFunction(top()->GetGlobalObject(), "getSavedGameData", data))
 		LOGERROR(L"Failed to call getSavedGameData() on the current GUI page");
+	pPageScriptInterface = GetScriptInterface().get();
 	return data;
+}
+
+std::string CGUIManager::GetSavedGameData()
+{
+	CScriptVal data;
+	top()->GetScriptInterface()->CallFunction(top()->GetGlobalObject(), "getSavedGameData", data);
+	return top()->GetScriptInterface()->StringifyJSON(data.get(), false);
+}
+
+void CGUIManager::RestoreSavedGameData(std::string jsonData)
+{
+	top()->GetScriptInterface()->CallFunctionVoid(top()->GetGlobalObject(), "restoreSavedGameData",
+														top()->GetScriptInterface()->ParseJSON(jsonData));
 }
 
 InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
@@ -205,7 +304,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 
 	{
 		PROFILE("handleInputBeforeGui");
-		if (m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(top()->GetScriptObject()), "handleInputBeforeGui", *ev, top()->FindObjectUnderMouse(), handled))
+		if (top()->GetScriptInterface()->CallFunction(top()->GetGlobalObject(), "handleInputBeforeGui", *ev, top()->FindObjectUnderMouse(), handled))
 			if (handled)
 				return IN_HANDLED;
 	}
@@ -219,8 +318,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 
 	{
 		PROFILE("handleInputAfterGui");
-		if (m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(top()->GetScriptObject()), "handleInputAfterGui", *ev, handled))
-			if (handled)
+		if (top()->GetScriptInterface()->CallFunction(top()->GetGlobalObject(), "handleInputAfterGui", *ev, handled))			if (handled)
 				return IN_HANDLED;
 	}
 
@@ -285,11 +383,6 @@ void CGUIManager::UpdateResolution()
 {
 	for (PageStackType::iterator it = m_PageStack.begin(); it != m_PageStack.end(); ++it)
 		it->gui->UpdateResolution();
-}
-
-JSObject* CGUIManager::GetScriptObject()
-{
-	return top()->GetScriptObject();
 }
 
 // This returns a shared_ptr to make sure the CGUI doesn't get deallocated

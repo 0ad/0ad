@@ -9,7 +9,7 @@
 function loadCivData()
 {	// Load all JSON files containing civ data
 	var civData = {};
-	var civFiles = buildDirEntList("civs/", "*.json", false);
+	var civFiles = Engine.BuildDirEntList("civs/", "*.json", false);
 	
 	for each (var filename in civFiles)
 	{	// Parse data if valid file

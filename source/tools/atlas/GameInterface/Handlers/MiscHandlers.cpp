@@ -25,6 +25,7 @@
 #include "graphics/CinemaTrack.h"
 #include "graphics/GameView.h"
 #include "gui/GUIManager.h"
+#include "gui/GUI.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/sysdep/cpu.h"
 #include "maths/MathUtil.h"
@@ -33,7 +34,6 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"
-#include "scripting/ScriptingHost.h"
 
 extern void (*Atlas_GLSwapBuffers)(void* context);
 
@@ -149,12 +149,12 @@ MESSAGEHANDLER(SimPlay)
 
 MESSAGEHANDLER(JavaScript)
 {
-	g_ScriptingHost.ExecuteScript(*msg->command, L"Atlas");
+	g_GUI->GetActiveGUI()->GetScriptInterface()->LoadGlobalScript(L"Atlas", *msg->command);
 }
 
 MESSAGEHANDLER(GuiSwitchPage)
 {
-	g_GUI->SwitchPage(*msg->page, CScriptVal());
+	g_GUI->SwitchPage(*msg->page, NULL, JSVAL_VOID);
 }
 
 MESSAGEHANDLER(GuiMouseButtonEvent)

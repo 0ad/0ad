@@ -28,6 +28,8 @@
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
 #include "graphics/TerritoryTexture.h"
+#include "gui/GUI.h"
+#include "gui/GUIManager.h"
 #include "lib/ogl.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/bits.h"
@@ -241,9 +243,9 @@ void CMiniMap::FireWorldClickEvent(int button, int clicks)
 	GetMouseWorldCoordinates(x, z);
 
 	CScriptValRooted coords;
-	g_ScriptingHost.GetScriptInterface().Eval("({})", coords);
-	g_ScriptingHost.GetScriptInterface().SetProperty(coords.get(), "x", x, false);
-	g_ScriptingHost.GetScriptInterface().SetProperty(coords.get(), "z", z, false);
+	g_GUI->GetActiveGUI()->GetScriptInterface()->Eval("({})", coords);
+	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords.get(), "x", x, false);
+	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords.get(), "z", z, false);
 	ScriptEvent("worldclick", coords);
 
 	UNUSED2(button);

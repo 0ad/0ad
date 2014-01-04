@@ -1,14 +1,14 @@
 function init()
 {
-	var gameSelection = getGUIObjectByName("gameSelection");
+	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
 
 	var savedGames = Engine.GetSavedGames();
 	if (savedGames.length == 0)
 	{
 		gameSelection.list = [ "No saved games found" ];
 		gameSelection.selected = 0;
-		getGUIObjectByName("loadGameButton").enabled = false;
-		getGUIObjectByName("deleteGameButton").enabled = false;
+		Engine.GetGUIObjectByName("loadGameButton").enabled = false;
+		Engine.GetGUIObjectByName("deleteGameButton").enabled = false;
 		return;
 	}
 
@@ -24,7 +24,7 @@ function init()
 
 function loadGame()
 {
-	var gameSelection = getGUIObjectByName("gameSelection");
+	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	var gameID = gameSelection.list_data[gameSelection.selected];
 
 	var metadata = Engine.StartSavedGame(gameID);
@@ -48,7 +48,7 @@ function loadGame()
 
 function deleteGame()
 {
-	var gameSelection = getGUIObjectByName("gameSelection");
+	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	var gameLabel = gameSelection.list[gameSelection.selected];
 	var gameID = gameSelection.list_data[gameSelection.selected];
 

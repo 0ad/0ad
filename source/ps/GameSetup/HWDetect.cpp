@@ -17,7 +17,6 @@
 
 #include "precompiled.h"
 
-#include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include "lib/ogl.h"
@@ -123,30 +122,30 @@ static bool IsOverridden(const char* setting)
 	return !(ns == CFG_LAST || ns == CFG_DEFAULT);
 }
 
-void SetDisableAudio(void* UNUSED(cbdata), bool disabled)
+void SetDisableAudio(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
 {
 	g_DisableAudio = disabled;
 }
 
-void SetDisableS3TC(void* UNUSED(cbdata), bool disabled)
+void SetDisableS3TC(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
 {
 	if (!IsOverridden("nos3tc"))
 		ogl_tex_override(OGL_TEX_S3TC, disabled ? OGL_TEX_DISABLE : OGL_TEX_ENABLE);
 }
 
-void SetDisableShadows(void* UNUSED(cbdata), bool disabled)
+void SetDisableShadows(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
 {
 	if (!IsOverridden("shadows"))
 		g_Shadows = !disabled;
 }
 
-void SetDisableShadowPCF(void* UNUSED(cbdata), bool disabled)
+void SetDisableShadowPCF(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
 {
 	if (!IsOverridden("shadowpcf"))
 		g_ShadowPCF = !disabled;
 }
 
-void SetDisableAllWater(void* UNUSED(cbdata), bool disabled)
+void SetDisableAllWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
 {
 	if (!IsOverridden("waternormals"))
 		g_WaterNormal = !disabled;
@@ -163,7 +162,7 @@ void SetDisableAllWater(void* UNUSED(cbdata), bool disabled)
 	if (!IsOverridden("watershadows"))
 		g_WaterShadows = !disabled;
 }
-void SetDisableFancyWater(void* UNUSED(cbdata), bool disabled)
+void SetDisableFancyWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
 {
 	if (!IsOverridden("waterrealdepth"))
 		g_WaterRealDepth = !disabled;
@@ -174,7 +173,7 @@ void SetDisableFancyWater(void* UNUSED(cbdata), bool disabled)
 	if (!IsOverridden("watershadows"))
 		g_WaterShadows = !disabled;
 }
-void SetDisableFBOWater(void* UNUSED(cbdata), bool disabled)
+void SetDisableFBOWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
 {
 	if (!IsOverridden("waterfoam"))
 		g_WaterFoam = !disabled;
@@ -182,7 +181,7 @@ void SetDisableFBOWater(void* UNUSED(cbdata), bool disabled)
 		g_WaterCoastalWaves = !disabled;
 }
 
-void SetRenderPath(void* UNUSED(cbdata), std::string renderpath)
+void SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string renderpath)
 {
 	g_RenderPath = renderpath;
 }
@@ -191,7 +190,7 @@ void RunHardwareDetection()
 {
 	TIMER(L"RunHardwareDetection");
 
-	ScriptInterface& scriptInterface = g_ScriptingHost.GetScriptInterface();
+	ScriptInterface scriptInterface("Engine", "HWDetect", g_ScriptRuntime);
 
 	scriptInterface.RegisterFunction<void, bool, &SetDisableAudio>("SetDisableAudio");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableS3TC>("SetDisableS3TC");

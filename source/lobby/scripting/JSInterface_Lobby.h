@@ -18,48 +18,47 @@
 #ifndef INCLUDED_JSI_LOBBY
 #define INCLUDED_JSI_LOBBY
 
+#include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptVal.h"
 #include "lib/config2.h" // for CONFIG2_LOBBY
 
-class ScriptInterface;
-
 namespace JSI_Lobby
 {
-	bool HasXmppClient(void* cbdata);
+	bool HasXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	
 #if CONFIG2_LOBBY 
-	void StartXmppClient(void* cbdata, std::wstring username, std::wstring password, std::wstring room, std::wstring nick);
-	void StartRegisterXmppClient(void* cbdata, std::wstring username, std::wstring password);
-	void StopXmppClient(void* cbdata);
-	void ConnectXmppClient(void* cbdata);
-	void DisconnectXmppClient(void* cbdata);
-	void RecvXmppClient(void* cbdata);
-	void SendGetGameList(void* cbdata);
-	void SendGetBoardList(void* cbdata);
-	void SendGameReport(void* cbdata, CScriptVal data);
-	void SendRegisterGame(void* cbdata, CScriptVal data);
-	void SendUnregisterGame(void* cbdata);
-	void SendChangeStateGame(void* cbdata, std::wstring nbp, std::wstring players);
-	CScriptVal GetPlayerList(void* cbdata);
-	CScriptVal GetGameList(void* cbdata);
-	CScriptVal GetBoardList(void* cbdata);
-	CScriptVal LobbyGuiPollMessage(void* cbdata);
-	void LobbySendMessage(void* cbdata, std::wstring message);
-	void LobbySetPlayerPresence(void* cbdata, std::wstring presence);
-	void LobbySetNick(void* cbdata, std::wstring nick);
-	std::wstring LobbyGetNick(void* cbdata);
-	void LobbyKick(void* cbdata, std::wstring nick, std::wstring reason);
-	void LobbyBan(void* cbdata, std::wstring nick, std::wstring reason);
-	std::wstring LobbyGetPlayerPresence(void* cbdata, std::wstring nickname);
+	void StartXmppClient(ScriptInterface::CxPrivate* pCxPrivate, std::wstring username, std::wstring password, std::wstring room, std::wstring nick);
+	void StartRegisterXmppClient(ScriptInterface::CxPrivate* pCxPrivate, std::wstring username, std::wstring password);
+	void StopXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
+	void ConnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
+	void DisconnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
+	void RecvXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
+	void SendGetGameList(ScriptInterface::CxPrivate* pCxPrivate);
+	void SendGetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
+	void SendGameReport(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal data);
+	void SendRegisterGame(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal data);
+	void SendUnregisterGame(ScriptInterface::CxPrivate* pCxPrivate);
+	void SendChangeStateGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nbp, std::wstring players);
+	CScriptVal GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate);
+	CScriptVal GetGameList(ScriptInterface::CxPrivate* pCxPrivate);
+	CScriptVal GetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
+	CScriptVal LobbyGuiPollMessage(ScriptInterface::CxPrivate* pCxPrivate);
+	void LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring message);
+	void LobbySetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, std::wstring presence);
+	void LobbySetNick(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nick);
+	std::wstring LobbyGetNick(ScriptInterface::CxPrivate* pCxPrivate);
+	void LobbyKick(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nick, std::wstring reason);
+	void LobbyBan(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nick, std::wstring reason);
+	std::wstring LobbyGetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nickname);
 
 	// Non-public secure PBKDF2 hash function with salting and 1,337 iterations
 	std::string EncryptPassword(const std::string& password, const std::string& username);
 
 	// Public hash interface.
-	std::wstring EncryptPassword(void* cbdata, std::wstring pass, std::wstring user);
+	std::wstring EncryptPassword(ScriptInterface::CxPrivate* pCxPrivate, std::wstring pass, std::wstring user);
 	
-	bool IsRankedGame(void* cbdata);
-	void SetRankedGame(void* cbdata, bool isRanked);
+	bool IsRankedGame(ScriptInterface::CxPrivate* pCxPrivate);
+	void SetRankedGame(ScriptInterface::CxPrivate* pCxPrivate, bool isRanked);
 #endif // CONFIG2_LOBBY 
 }
 

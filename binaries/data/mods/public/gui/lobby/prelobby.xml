@@ -66,7 +66,7 @@
 		<object type="button" size="18 100%-45 126 100%-17" style="StoneButton">
 			Cancel
 			<action on="Press">
-				if (getGUIObjectByName("pageRegister").hidden)
+				if (Engine.GetGUIObjectByName("pageRegister").hidden)
 				{
 					lobbyStop();
 					Engine.PopGuiPage();
@@ -78,7 +78,7 @@
 		<object name="register" type="button" size="136 100%-45 244 100%-17" style="StoneButton">
 			Register
 			<action on="Press">
-				if (getGUIObjectByName("pageRegister").hidden)
+				if (Engine.GetGUIObjectByName("pageRegister").hidden)
 				{
 					switchRegister();
 				}

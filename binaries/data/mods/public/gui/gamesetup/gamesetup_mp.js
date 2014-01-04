@@ -18,21 +18,21 @@ function init(attribs)
 		}
 		else
 		{
-			getGUIObjectByName("pageJoin").hidden = false;
-			getGUIObjectByName("pageHost").hidden = true;
+			Engine.GetGUIObjectByName("pageJoin").hidden = false;
+			Engine.GetGUIObjectByName("pageHost").hidden = true;
 		}
 		break;
 	case "host":
-		getGUIObjectByName("pageJoin").hidden = true;
-		getGUIObjectByName("pageHost").hidden = false;
+		Engine.GetGUIObjectByName("pageJoin").hidden = true;
+		Engine.GetGUIObjectByName("pageHost").hidden = false;
 		if(Engine.HasXmppClient())
 		{
-			getGUIObjectByName("hostServerNameWrapper").hidden = false;
-			getGUIObjectByName("hostPlayerName").caption = attribs.name;
-			getGUIObjectByName("hostServerName").caption = attribs.name + "'s game";
+			Engine.GetGUIObjectByName("hostServerNameWrapper").hidden = false;
+			Engine.GetGUIObjectByName("hostPlayerName").caption = attribs.name;
+			Engine.GetGUIObjectByName("hostServerName").caption = attribs.name + "'s game";
 		}
 		else
-			getGUIObjectByName("hostPlayerNameWrapper").hidden = false;
+			Engine.GetGUIObjectByName("hostPlayerNameWrapper").hidden = false;
 		break;
 	default:
 		error("Unrecognised multiplayer game type : " + attribs.multiplayerGameType);
@@ -55,7 +55,7 @@ function startConnectionStatus(type)
 	g_GameType = type;
 	g_IsConnecting = true;
 	g_IsRejoining = false;
-	getGUIObjectByName("connectionStatus").caption = "Connecting to server...";
+	Engine.GetGUIObjectByName("connectionStatus").caption = "Connecting to server...";
 }
 
 function onTick()
@@ -131,13 +131,13 @@ function pollAndHandleNetworkClient()
 				switch (message.status)
 				{
 				case "connected":
-					getGUIObjectByName("connectionStatus").caption = "Registering with server...";
+					Engine.GetGUIObjectByName("connectionStatus").caption = "Registering with server...";
 					break;
 
 				case "authenticated":
 					if (message.rejoining)
 					{
-						getGUIObjectByName("connectionStatus").caption = "Game has already started - rejoining...";
+						Engine.GetGUIObjectByName("connectionStatus").caption = "Game has already started - rejoining...";
 						g_IsRejoining = true;
 						return; // we'll process the game setup messages in the next tick
 					}
@@ -167,8 +167,8 @@ function pollAndHandleNetworkClient()
 
 function switchSetupPage(oldpage, newpage)
 {
-	getGUIObjectByName(oldpage).hidden = true;
-	getGUIObjectByName(newpage).hidden = false;
+	Engine.GetGUIObjectByName(oldpage).hidden = true;
+	Engine.GetGUIObjectByName(newpage).hidden = false;
 }
 
 function startHost(playername, servername)
@@ -180,7 +180,7 @@ function startHost(playername, servername)
 		{
 			if (g.name === servername)
 			{
-				getGUIObjectByName("hostFeedback").caption = "Game name already in use.";
+				Engine.GetGUIObjectByName("hostFeedback").caption = "Game name already in use.";
 				return false;
 			}
 		}

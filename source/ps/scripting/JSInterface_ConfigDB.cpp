@@ -42,7 +42,7 @@ bool JSI_ConfigDB::GetConfigNamespace(std::wstring cfgNsString, EConfigNamespace
 	return true;
 }
 
-std::string JSI_ConfigDB::GetValue(void* UNUSED(cbdata), std::wstring cfgNsString, std::string name)
+std::string JSI_ConfigDB::GetValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring cfgNsString, std::string name)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -53,7 +53,7 @@ std::string JSI_ConfigDB::GetValue(void* UNUSED(cbdata), std::wstring cfgNsStrin
 	return value;
 }
 
-bool JSI_ConfigDB::CreateValue(void* UNUSED(cbdata), std::wstring cfgNsString, std::string name, std::string value)
+bool JSI_ConfigDB::CreateValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring cfgNsString, std::string name, std::string value)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -63,7 +63,7 @@ bool JSI_ConfigDB::CreateValue(void* UNUSED(cbdata), std::wstring cfgNsString, s
 	return true;
 }
 
-bool JSI_ConfigDB::WriteFile(void* UNUSED(cbdata), std::wstring cfgNsString, Path path)
+bool JSI_ConfigDB::WriteFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring cfgNsString, Path path)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -73,7 +73,7 @@ bool JSI_ConfigDB::WriteFile(void* UNUSED(cbdata), std::wstring cfgNsString, Pat
 	return ret;
 }
 
-bool JSI_ConfigDB::Reload(void* UNUSED(cbdata), std::wstring cfgNsString)
+bool JSI_ConfigDB::Reload(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring cfgNsString)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -83,7 +83,7 @@ bool JSI_ConfigDB::Reload(void* UNUSED(cbdata), std::wstring cfgNsString)
 	return ret;
 }
 
-bool JSI_ConfigDB::SetFile(void* UNUSED(cbdata), std::wstring cfgNsString, Path path)
+bool JSI_ConfigDB::SetFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring cfgNsString, Path path)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))

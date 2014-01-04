@@ -52,9 +52,9 @@ public:
 	CScriptValRooted msg;
 };
 
-CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFunctions) :
+CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRuntime> rt, bool skipScriptFunctions) :
 	m_NextScriptComponentTypeId(CID__LastNative),
-	m_ScriptInterface("Engine", "Simulation", ScriptInterface::CreateRuntime(128*MiB)),
+	m_ScriptInterface("Engine", "Simulation", rt),
 	m_SimContext(context), m_CurrentlyHotloading(false)
 {
 	context.SetComponentManager(this);
@@ -143,9 +143,9 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 	return ok;
 }
 
-void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std::string cname, CScriptVal ctor)
+void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	// Find the C++ component that wraps the interface
 	int cidWrapper = componentManager->GetScriptWrapper(iid);
@@ -294,9 +294,9 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 	}
 }
 
-void CComponentManager::Script_RegisterInterface(void* cbdata, std::string name)
+void CComponentManager::Script_RegisterInterface(ScriptInterface::CxPrivate* pCxPrivate, std::string name)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	std::map<std::string, InterfaceId>::iterator it = componentManager->m_InterfaceIdsByName.find(name);
 	if (it != componentManager->m_InterfaceIdsByName.end())
@@ -315,9 +315,9 @@ void CComponentManager::Script_RegisterInterface(void* cbdata, std::string name)
 	componentManager->m_ScriptInterface.SetGlobal(("IID_" + name).c_str(), (int)id);
 }
 
-void CComponentManager::Script_RegisterMessageType(void* cbdata, std::string name)
+void CComponentManager::Script_RegisterMessageType(ScriptInterface::CxPrivate* pCxPrivate, std::string name)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	std::map<std::string, MessageTypeId>::iterator it = componentManager->m_MessageTypeIdsByName.find(name);
 	if (it != componentManager->m_MessageTypeIdsByName.end())
@@ -335,25 +335,25 @@ void CComponentManager::Script_RegisterMessageType(void* cbdata, std::string nam
 	componentManager->m_ScriptInterface.SetGlobal(("MT_" + name).c_str(), (int)id);
 }
 
-void CComponentManager::Script_RegisterGlobal(void* cbdata, std::string name, CScriptVal value)
+void CComponentManager::Script_RegisterGlobal(ScriptInterface::CxPrivate* pCxPrivate, std::string name, CScriptVal value)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	// Set the value, and accept duplicates only if hotloading (otherwise it's an error,
 	// in order to detect accidental duplicate definitions of globals)
 	componentManager->m_ScriptInterface.SetGlobal(name.c_str(), value, componentManager->m_CurrentlyHotloading);
 }
 
-IComponent* CComponentManager::Script_QueryInterface(void* cbdata, int ent, int iid)
+IComponent* CComponentManager::Script_QueryInterface(ScriptInterface::CxPrivate* pCxPrivate, int ent, int iid)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 	IComponent* component = componentManager->QueryInterface((entity_id_t)ent, iid);
 	return component;
 }
 
-std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(void* cbdata, int iid)
+std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(ScriptInterface::CxPrivate* pCxPrivate, int iid)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	std::vector<int> ret;
 	const InterfaceListUnordered& ents = componentManager->GetEntitiesWithInterfaceUnordered(iid);
@@ -364,9 +364,9 @@ std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(void* cbdata
 	return ret;
 }
 
-std::vector<IComponent*> CComponentManager::Script_GetComponentsWithInterface(void* cbdata, int iid)
+std::vector<IComponent*> CComponentManager::Script_GetComponentsWithInterface(ScriptInterface::CxPrivate* pCxPrivate, int iid)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	std::vector<IComponent*> ret;
 	InterfaceList ents = componentManager->GetEntitiesWithInterface(iid);
@@ -391,9 +391,9 @@ CMessage* CComponentManager::ConstructMessage(int mtid, CScriptVal data)
 	}
 }
 
-void CComponentManager::Script_PostMessage(void* cbdata, int ent, int mtid, CScriptVal data)
+void CComponentManager::Script_PostMessage(ScriptInterface::CxPrivate* pCxPrivate, int ent, int mtid, CScriptVal data)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	CMessage* msg = componentManager->ConstructMessage(mtid, data);
 	if (!msg)
@@ -404,9 +404,9 @@ void CComponentManager::Script_PostMessage(void* cbdata, int ent, int mtid, CScr
 	delete msg;
 }
 
-void CComponentManager::Script_BroadcastMessage(void* cbdata, int mtid, CScriptVal data)
+void CComponentManager::Script_BroadcastMessage(ScriptInterface::CxPrivate* pCxPrivate, int mtid, CScriptVal data)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	CMessage* msg = componentManager->ConstructMessage(mtid, data);
 	if (!msg)
@@ -417,9 +417,9 @@ void CComponentManager::Script_BroadcastMessage(void* cbdata, int mtid, CScriptV
 	delete msg;
 }
 
-int CComponentManager::Script_AddEntity(void* cbdata, std::string templateName)
+int CComponentManager::Script_AddEntity(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	std::wstring name(templateName.begin(), templateName.end());
 	// TODO: should validate the string to make sure it doesn't contain scary characters
@@ -429,9 +429,9 @@ int CComponentManager::Script_AddEntity(void* cbdata, std::string templateName)
 	return (int)ent;
 }
 
-int CComponentManager::Script_AddLocalEntity(void* cbdata, std::string templateName)
+int CComponentManager::Script_AddLocalEntity(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	std::wstring name(templateName.begin(), templateName.end());
 	// TODO: should validate the string to make sure it doesn't contain scary characters
@@ -441,9 +441,9 @@ int CComponentManager::Script_AddLocalEntity(void* cbdata, std::string templateN
 	return (int)ent;
 }
 
-void CComponentManager::Script_DestroyEntity(void* cbdata, int ent)
+void CComponentManager::Script_DestroyEntity(ScriptInterface::CxPrivate* pCxPrivate, int ent)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	componentManager->DestroyComponentsSoon(ent);
 }
@@ -1001,19 +1001,19 @@ std::string CComponentManager::GenerateSchema()
 	return schema;
 }
 
-CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::wstring fileName)
+CScriptVal CComponentManager::Script_ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName)
 {
-	return ReadJSONFile(cbdata, L"simulation/data", fileName);
+	return ReadJSONFile(pCxPrivate, L"simulation/data", fileName);
 }
 
-CScriptVal CComponentManager::Script_ReadCivJSONFile(void* cbdata, std::wstring fileName)
+CScriptVal CComponentManager::Script_ReadCivJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName)
 {
-	return ReadJSONFile(cbdata, L"civs", fileName);
+	return ReadJSONFile(pCxPrivate, L"civs", fileName);
 }
 
-CScriptVal CComponentManager::ReadJSONFile(void* cbdata, std::wstring filePath, std::wstring fileName)
+CScriptVal CComponentManager::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath, std::wstring fileName)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
 	VfsPath path = VfsPath(filePath) / fileName;
 
@@ -1033,7 +1033,7 @@ Status CComponentManager::FindJSONFilesCallback(const VfsPath& pathname, const C
 	return INFO::OK;
 }
 
-std::vector<std::string> CComponentManager::Script_FindJSONFiles(void* UNUSED(cbdata), std::wstring subPath, bool recursive)
+std::vector<std::string> CComponentManager::Script_FindJSONFiles(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring subPath, bool recursive)
 {
 	FindJSONFilesCallbackData cbData;
 	cbData.path = VfsPath(L"simulation/data/" + subPath + L"/");

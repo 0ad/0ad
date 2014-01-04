@@ -49,14 +49,14 @@
                 <action on="Load">this.caption = Engine.ConfigDB_GetValue("user", "sound.mastergain");</action>
             </object>
             <object size="70%+35 25 70%+75 50" type="button" style="StoneButton">Save
-                <action on="Press">Engine.ConfigDB_CreateValue("user", "sound.mastergain", String(getGUIObjectByName("SMasterCFG").caption));</action>
+                <action on="Press">Engine.ConfigDB_CreateValue("user", "sound.mastergain", String(Engine.GetGUIObjectByName("SMasterCFG").caption));</action>
             </object>
             <object size="0 50 65% 75" type="text" style="RightLabelText" ghost="true">Music Gain</object>
             <object name="SMusicCFG" size="70% 50 70%+35 75" type="input" style="StoneInput">
                 <action on="Load">this.caption = Engine.ConfigDB_GetValue("user", "sound.musicgain");</action>
             </object>
             <object size="70%+35 50 70%+75 75" type="button" style="StoneButton">Save
-                <action on="Press">Engine.ConfigDB_CreateValue("user", "sound.musicgain", String(getGUIObjectByName("SMusicCFG").caption));</action>
+                <action on="Press">Engine.ConfigDB_CreateValue("user", "sound.musicgain", String(Engine.GetGUIObjectByName("SMusicCFG").caption));</action>
             </object>
         </object>
 <!--

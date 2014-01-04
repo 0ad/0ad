@@ -15,7 +15,7 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "scripting/ScriptingHost.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #ifndef INCLUDED_JSI_GUITYPES
 #define INCLUDED_JSI_GUITYPES
@@ -38,7 +38,7 @@ GUISTDTYPE(Mouse)
 
 namespace JSI_GUITypes
 {
-	void init();
+	void init(ScriptInterface& scriptInterface);
 }
 
 #endif

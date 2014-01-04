@@ -1,6 +1,6 @@
 function updateOrbital()
 {
-	if( !getGUIObjectByName( 'arena' ).hidden )
+	if( !Engine.GetGUIObjectByName( 'arena' ).hidden )
 	{
 		g_ballx += g_balldx;
 		g_bally += g_balldy;
@@ -36,7 +36,7 @@ function updateOrbital()
 		g_balldx -= force * vect_x;
 		g_balldy -= force * vect_y;
 
-		var ball = getGUIObjectByName('ball');
+		var ball = Engine.GetGUIObjectByName('ball');
 		var r=5;
 		ball.size = new GUISize(g_ballx-r, g_bally-r, g_ballx+r, g_bally+r);
 	}

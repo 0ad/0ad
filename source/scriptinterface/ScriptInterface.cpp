@@ -69,7 +69,7 @@ class ScriptRuntime
 {
 public:
 	ScriptRuntime(int runtimeSize) :
-		m_rooter(NULL), m_compartmentGlobal(NULL)
+		m_rooter(NULL)
 	{
 		m_rt = JS_NewRuntime(runtimeSize);
 		ENSURE(m_rt); // TODO: error handling
@@ -97,8 +97,6 @@ public:
 
 	JSRuntime* m_rt;
 	AutoGCRooter* m_rooter;
-
-	JSObject* m_compartmentGlobal;
 
 private:
 
@@ -241,7 +239,6 @@ struct ScriptInterface_impl
 	JSContext* m_cx;
 	JSObject* m_glob; // global scope object
 	JSObject* m_nativeScope; // native function scope object
-	JSCrossCompartmentCall* m_call;
 };
 
 namespace
@@ -507,24 +504,9 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	}
 
 	JS_SetOptions(m_cx, options);
-
 	JS_SetVersion(m_cx, JSVERSION_LATEST);
 
-	// Threadsafe SpiderMonkey requires that we have a request before doing anything much
-	JS_BeginRequest(m_cx);
-
-	// We only want a single compartment per runtime
-	if (m_runtime->m_compartmentGlobal)
-	{
-		m_call = JS_EnterCrossCompartmentCall(m_cx, m_runtime->m_compartmentGlobal);
-		m_glob = JS_NewGlobalObject(m_cx, &global_class);
-	}
-	else
-	{
-		m_call = NULL;
-		m_glob = JS_NewCompartmentAndGlobalObject(m_cx, &global_class, NULL);
-		m_runtime->m_compartmentGlobal = m_glob;
-	}
+	m_glob = JS_NewCompartmentAndGlobalObject(m_cx, &global_class, NULL);
 
 	ok = JS_InitStandardClasses(m_cx, m_glob);
 	ENSURE(ok);
@@ -547,9 +529,6 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 
 ScriptInterface_impl::~ScriptInterface_impl()
 {
-	if (m_call)
-		JS_LeaveCrossCompartmentCall(m_call);
-	JS_EndRequest(m_cx);
 	JS_DestroyContext(m_cx);
 }
 
@@ -594,6 +573,9 @@ ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugN
 		else
 			g_DebuggingServer->RegisterScriptinterface(debugName, this);
 	}
+
+	m_CxPrivate.pScriptInterface = this;
+	JS_SetContextPrivate(m->m_cx, (void*)&m_CxPrivate);
 }
 
 ScriptInterface::~ScriptInterface()
@@ -614,14 +596,15 @@ void ScriptInterface::ShutDown()
 	JS_ShutDown();
 }
 
-void ScriptInterface::SetCallbackData(void* cbdata)
+void ScriptInterface::SetCallbackData(void* pCBData)
 {
-	JS_SetContextPrivate(m->m_cx, cbdata);
+	m_CxPrivate.pCBData = pCBData;
 }
 
-void* ScriptInterface::GetCallbackData(JSContext* cx)
+ScriptInterface::CxPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSContext* cx)
 {
-	return JS_GetContextPrivate(cx);
+	CxPrivate* pCxPrivate = (CxPrivate*)JS_GetContextPrivate(cx);
+	return pCxPrivate;
 }
 
 bool ScriptInterface::LoadGlobalScripts()
@@ -674,9 +657,14 @@ JSContext* ScriptInterface::GetContext() const
 	return m->m_cx;
 }
 
-JSRuntime* ScriptInterface::GetRuntime() const
+JSRuntime* ScriptInterface::GetJSRuntime() const
 {
 	return m->m_runtime->m_rt;
+}
+
+shared_ptr<ScriptRuntime> ScriptInterface::GetRuntime() const
+{
+	return m->m_runtime;
 }
 
 AutoGCRooter* ScriptInterface::ReplaceAutoGCRooter(AutoGCRooter* rooter)
@@ -733,6 +721,47 @@ jsval ScriptInterface::NewObjectFromConstructor(jsval ctor)
 
 	return OBJECT_TO_JSVAL(obj);
 }
+
+void ScriptInterface::DefineCustomObjectType(JSClass *clasp, JSNative constructor, uint minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs)
+{
+	std::string typeName = clasp->name;
+
+	if (m_CustomObjectTypes.find(typeName) != m_CustomObjectTypes.end())
+	{
+		// This type already exists
+		throw PSERROR_Scripting_DefineType_AlreadyExists();
+	}
+
+	JSObject * obj = JS_InitClass(	m->m_cx, JSVAL_TO_OBJECT(GetGlobalObject()), 0,
+									clasp,
+									constructor, minArgs,				// Constructor, min args
+									ps, fs,								// Properties, methods
+									static_ps, static_fs);				// Constructor properties, methods
+
+	if (obj == NULL)
+		throw PSERROR_Scripting_DefineType_CreationFailed();
+
+	CustomType type;
+
+	type.m_Object = obj;
+	type.m_Class = clasp;
+	type.m_Constructor = constructor;
+
+	m_CustomObjectTypes[typeName] = type;
+}
+
+JSObject* ScriptInterface::CreateCustomObject(const std::string & typeName)
+{
+	std::map < std::string, CustomType > ::iterator it = m_CustomObjectTypes.find(typeName);
+
+	if (it == m_CustomObjectTypes.end())
+		throw PSERROR_Scripting_TypeDoesNotExist();
+
+	JSFunction* ctor = JS_NewFunction(m->m_cx, (*it).second.m_Constructor, 0, 0,
+               NULL, "ctor_fun");
+	return JS_New(m->m_cx, JS_GetFunctionObject(ctor), 0, NULL);
+}
+
 
 bool ScriptInterface::CallFunctionVoid(jsval val, const char* name)
 {
@@ -951,11 +980,11 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 	return ok ? true : false;
 }
 
-bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::string& code)
+bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstring& code)
 {
 	// Compile the code in strict mode, to encourage better coding practices and
 	// to possibly help SpiderMonkey with optimisations
-	std::wstring codeStrict = L"\"use strict\";\n" + wstring_from_utf8(code);
+	std::wstring codeStrict = L"\"use strict\";\n" + code;
 	utf16string codeUtf16(codeStrict.begin(), codeStrict.end());
 	uintN lineNo = 0; // put the automatic 'use strict' on line 0, so the real code starts at line 1
 
@@ -1187,9 +1216,9 @@ void ScriptInterface::DumpHeap()
 #if MOZJS_DEBUG_ABI
 	JS_DumpHeap(m->m_cx, stderr, NULL, 0, NULL, (size_t)-1, NULL);
 #endif
-	fprintf(stderr, "# Bytes allocated: %u\n", JS_GetGCParameter(GetRuntime(), JSGC_BYTES));
+	fprintf(stderr, "# Bytes allocated: %u\n", JS_GetGCParameter(GetJSRuntime(), JSGC_BYTES));
 	JS_GC(m->m_cx);
-	fprintf(stderr, "# Bytes allocated after GC: %u\n", JS_GetGCParameter(GetRuntime(), JSGC_BYTES));
+	fprintf(stderr, "# Bytes allocated after GC: %u\n", JS_GetGCParameter(GetJSRuntime(), JSGC_BYTES));
 }
 
 void ScriptInterface::MaybeGC()
@@ -1337,9 +1366,10 @@ shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClo
 	uint64* data = NULL;
 	size_t nbytes = 0;
 	if (!JS_WriteStructuredClone(m->m_cx, v, &data, &nbytes, NULL, NULL))
+	{
+		debug_warn(L"Writing a structured clone with JS_WriteStructuredClone failed!");
 		return shared_ptr<StructuredClone>();
-	// TODO: should we have better error handling?
-	// Currently we'll probably continue and then crash in ReadStructuredClone
+	}
 
 	shared_ptr<StructuredClone> ret (new StructuredClone);
 	ret->m_Context = m->m_cx;

@@ -29,7 +29,7 @@
 		<object name="leftButtonPanel" size="20 100%-45 15% 100%-20">
 			<object type="button" style="StoneButton" size="0 0 100% 100%">
 				Leaderboard
-				<action on="Press">getGUIObjectByName("leaderboard").hidden = false;getGUIObjectByName("leaderboardFade").hidden = false;</action>
+				<action on="Press">Engine.GetGUIObjectByName("leaderboard").hidden = false;Engine.GetGUIObjectByName("leaderboardFade").hidden = false;</action>
 			</object>
 		</object>
 
@@ -173,7 +173,7 @@
 			</object>
 			<object type="button" style="StoneButton" size="50%+5 100%-45 50%+133 100%-17">
 				Back
-				<action on="Press">getGUIObjectByName("leaderboard").hidden = true;getGUIObjectByName("leaderboardFade").hidden = true;</action>
+				<action on="Press">Engine.GetGUIObjectByName("leaderboard").hidden = true;Engine.GetGUIObjectByName("leaderboardFade").hidden = true;</action>
 			</object>
 			<object type="button" style="StoneButton" size="50%-133 100%-45 50%-5 100%-17">
 				Update

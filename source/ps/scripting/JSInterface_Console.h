@@ -23,9 +23,9 @@ class ScriptInterface;
 namespace JSI_Console
 {
 	bool CheckGlobalInitialized();
-	bool GetVisibleEnabled(void* cbdata);
-	void SetVisibleEnabled(void* cbdata, bool Enabled);
-	void Write(void* cbdata, std::wstring output);
+	bool GetVisibleEnabled(ScriptInterface::CxPrivate* pCxPrivate);
+	void SetVisibleEnabled(ScriptInterface::CxPrivate* pCxPrivate, bool Enabled);
+	void Write(ScriptInterface::CxPrivate* pCxPrivate, std::wstring output);
 	
 	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
 }

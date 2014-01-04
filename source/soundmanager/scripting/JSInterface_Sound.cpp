@@ -31,55 +31,55 @@ namespace JSI_Sound
 {
   #if CONFIG2_AUDIO
 
-  void StartMusic(void* UNUSED(cbdata))
+  void StartMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
   {
     if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->SetMusicEnabled(true);
   }
 
-  void StopMusic(void* UNUSED(cbdata))
+  void StopMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
   {
     if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->SetMusicEnabled(false);
   }
 
-  void ClearPlaylist(void* UNUSED(cbdata))
+  void ClearPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
   {
     if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->ClearPlayListItems();
   }
 
-  void AddPlaylistItem(void* UNUSED(cbdata), std::wstring filename)
+  void AddPlaylistItem(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring filename)
   {  
     if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->AddPlayListItem(VfsPath(filename));
   }
 
-  void StartPlaylist(void* UNUSED(cbdata), bool looping)
+  void StartPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool looping)
   {
     if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->StartPlayList( looping );
   }
 
-  void PlayMusic(void* UNUSED(cbdata), std::wstring filename, bool looping)
+  void PlayMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring filename, bool looping)
   {
     if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->PlayAsMusic( filename, looping);
   }
 
-  void PlayUISound(void* UNUSED(cbdata), std::wstring filename, bool looping)
+  void PlayUISound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring filename, bool looping)
   {
     if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->PlayAsUI( filename, looping);
   }
 
-  void PlayAmbientSound(void* UNUSED(cbdata), std::wstring filename, bool looping)
+  void PlayAmbientSound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring filename, bool looping)
   {
     if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->PlayAsAmbient( filename, looping);
   }
 
-  bool MusicPlaying(void* UNUSED(cbdata))
+  bool MusicPlaying(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
   {
     return true;
   }
@@ -87,15 +87,15 @@ namespace JSI_Sound
 
 
   #else
-    bool MusicPlaying(void* UNUSED(cbdata) ){ return false; }
-    void PlayAmbientSound(void* UNUSED(cbdata), std::wstring UNUSED(filename), bool UNUSED(looping) ){}
-    void PlayUISound(void* UNUSED(cbdata), std::wstring UNUSED(filename), bool UNUSED(looping) ) {}
-    void PlayMusic(void* UNUSED(cbdata), std::wstring UNUSED(filename), bool UNUSED(looping) ) {}
-    void StartPlaylist(void* UNUSED(cbdata), bool UNUSED(looping) ){}
-    void AddPlaylistItem(void* UNUSED(cbdata), std::wstring UNUSED(filename) ){}
-    void ClearPlaylist(void* UNUSED(cbdata) ){}
-    void StopMusic(void* UNUSED(cbdata) ){}
-    void StartMusic(void* UNUSED(cbdata) ){}
+	bool MusicPlaying(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){ return false; }
+	void PlayAmbientSound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring UNUSED(filename), bool UNUSED(looping) ){}
+	void PlayUISound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring UNUSED(filename), bool UNUSED(looping) ) {}
+	void PlayMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring UNUSED(filename), bool UNUSED(looping) ) {}
+	void StartPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool UNUSED(looping) ){}
+	void AddPlaylistItem(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring UNUSED(filename) ){}
+	void ClearPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
+	void StopMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
+	void StartMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
 
   #endif
 

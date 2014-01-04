@@ -1,16 +1,15 @@
 
 var g_Descriptions;
-var closeCallback;
-var gameDataCallback;
+var savedGameData;
 
 function selectDescription()
 {
-	var gameSelection = getGUIObjectByName("gameSelection");
+	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	if (gameSelection.selected != -1)
 	{
-		getGUIObjectByName("deleteGameButton").enabled = true;
+		Engine.GetGUIObjectByName("deleteGameButton").enabled = true;
 		var gameID = gameSelection.list_data[gameSelection.selected];
-		getGUIObjectByName("saveGameDesc").caption = g_Descriptions[gameID];
+		Engine.GetGUIObjectByName("saveGameDesc").caption = g_Descriptions[gameID];
 	}
 }
 
@@ -18,14 +17,12 @@ function init(data)
 {
 	if (data)
 	{
-		if (data.closeCallback)
-			closeCallback = data.closeCallback;
-		if (data.gameDataCallback)
-			gameDataCallback = data.gameDataCallback;
+		if (data.savedGameData)
+			savedGameData = data.savedGameData;
 	}
 
-	var gameSelection = getGUIObjectByName("gameSelection");
-	getGUIObjectByName("deleteGameButton").enabled = false;
+	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	Engine.GetGUIObjectByName("deleteGameButton").enabled = false;
 
 	var savedGames = Engine.GetSavedGames();
 	if (savedGames.length == 0)
@@ -50,10 +47,10 @@ function init(data)
 
 function saveGame()
 {
-	var gameSelection = getGUIObjectByName("gameSelection");
+	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	var gameLabel = gameSelection.list[gameSelection.selected];
 	var gameID = gameSelection.list_data[gameSelection.selected];
-	var desc = getGUIObjectByName("saveGameDesc").caption;
+	var desc = Engine.GetGUIObjectByName("saveGameDesc").caption;
 	var name = gameID ? gameID : "savegame";
 
 	if (gameSelection.selected != -1)
@@ -70,23 +67,21 @@ function saveGame()
 function reallySaveGame(name, desc, nameIsPrefix)
 {
 	if (nameIsPrefix)
-		Engine.SaveGamePrefix(name, desc);
+		Engine.SaveGamePrefix(name, desc, savedGameData);
 	else
-		Engine.SaveGame(name, desc);
+		Engine.SaveGame(name, desc, savedGameData);
 
 	closeSave();
 }
 
 function closeSave()
 {
-	Engine.PopGuiPage();
-	if (closeCallback)
-		closeCallback();
+	Engine.PopGuiPageCB(0);
 }
 
 function deleteGame()
 {
-	var gameSelection = getGUIObjectByName("gameSelection");
+	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	var gameLabel = gameSelection.list[gameSelection.selected];
 	var gameID = gameSelection.list_data[gameSelection.selected];
 
@@ -105,8 +100,9 @@ function reallyDeleteGame(gameID)
 	init();
 }
 
-// HACK: Engine.SaveGame* expects this function to be defined on the current page
+// HACK: Engine.SaveGame* expects this function to be defined on the current page.
+// That's why we have to pass the data to this page even if we don't need it.
 function getSavedGameData()
 {
-	return gameDataCallback();
+	return savedGameData;
 }

@@ -110,7 +110,12 @@ JSBool JSI_GUISize::toString(JSContext* cx, uintN argc, jsval* vp)
 
 	try
 	{
-#define SIDE(side) buffer += ToPercentString(g_ScriptingHost.GetObjectProperty_Double(JS_THIS_OBJECT(cx, vp), #side), g_ScriptingHost.GetObjectProperty_Double(JS_THIS_OBJECT(cx, vp), "r"#side));
+		ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+		double val, valr;
+#define SIDE(side) \
+		pScriptInterface->GetProperty(JS_THIS_VALUE(cx, vp), #side, val); \
+		pScriptInterface->GetProperty(JS_THIS_VALUE(cx, vp), "r"#side, valr); \
+		buffer += ToPercentString(val, valr);
 		SIDE(left);
 		buffer += " ";
 		SIDE(top);
@@ -191,12 +196,12 @@ JSBool JSI_GUIColor::toString(JSContext* cx, uintN argc, jsval* vp)
 {
 	UNUSED2(argc);
 
-	jsdouble r, g, b, a;
-	if (!JS_ValueToNumber(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "r"), &r)) return JS_FALSE;
-	if (!JS_ValueToNumber(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "g"), &g)) return JS_FALSE;
-	if (!JS_ValueToNumber(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "b"), &b)) return JS_FALSE;
-	if (!JS_ValueToNumber(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "a"), &a)) return JS_FALSE;
-
+	double r, g, b, a;
+	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	pScriptInterface->GetProperty(JS_THIS_VALUE(cx, vp), "r", r);
+	pScriptInterface->GetProperty(JS_THIS_VALUE(cx, vp), "g", g);
+	pScriptInterface->GetProperty(JS_THIS_VALUE(cx, vp), "b", b);
+	pScriptInterface->GetProperty(JS_THIS_VALUE(cx, vp), "a", a);
 	char buffer[256];
 	// Convert to integers, to be compatible with the GUI's string SetSetting
 	snprintf(buffer, 256, "%d %d %d %d",
@@ -261,9 +266,10 @@ JSBool JSI_GUIMouse::toString(JSContext* cx, uintN argc, jsval* vp)
 	UNUSED2(argc);
 
 	int32 x, y, buttons;
-	if (!JS_ValueToECMAInt32(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "x"), &x)) return JS_FALSE;
-	if (!JS_ValueToECMAInt32(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "y"), &y)) return JS_FALSE;
-	if (!JS_ValueToECMAInt32(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "buttons"), &buttons)) return JS_FALSE;
+	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	pScriptInterface->GetProperty(JS_THIS_VALUE(cx, vp), "x", x);
+	pScriptInterface->GetProperty(JS_THIS_VALUE(cx, vp), "y", y);
+	pScriptInterface->GetProperty(JS_THIS_VALUE(cx, vp), "buttons", buttons);
 
 	char buffer[256];
 	snprintf(buffer, 256, "%d %d %d", x, y, buttons);
@@ -273,9 +279,9 @@ JSBool JSI_GUIMouse::toString(JSContext* cx, uintN argc, jsval* vp)
 
 
 // Initialise all the types at once:
-void JSI_GUITypes::init()
+void JSI_GUITypes::init(ScriptInterface& scriptInterface)
 {
-	g_ScriptingHost.DefineCustomObjectType(&JSI_GUISize::JSI_class,  JSI_GUISize::construct,  1, JSI_GUISize::JSI_props,  JSI_GUISize::JSI_methods,  NULL, NULL);
-	g_ScriptingHost.DefineCustomObjectType(&JSI_GUIColor::JSI_class, JSI_GUIColor::construct, 1, JSI_GUIColor::JSI_props, JSI_GUIColor::JSI_methods, NULL, NULL);
-	g_ScriptingHost.DefineCustomObjectType(&JSI_GUIMouse::JSI_class, JSI_GUIMouse::construct, 1, JSI_GUIMouse::JSI_props, JSI_GUIMouse::JSI_methods, NULL, NULL);
+	scriptInterface.DefineCustomObjectType(&JSI_GUISize::JSI_class,  JSI_GUISize::construct,  1, JSI_GUISize::JSI_props,  JSI_GUISize::JSI_methods,  NULL, NULL);
+	scriptInterface.DefineCustomObjectType(&JSI_GUIColor::JSI_class, JSI_GUIColor::construct, 1, JSI_GUIColor::JSI_props, JSI_GUIColor::JSI_methods, NULL, NULL);
+	scriptInterface.DefineCustomObjectType(&JSI_GUIMouse::JSI_class, JSI_GUIMouse::construct, 1, JSI_GUIMouse::JSI_props, JSI_GUIMouse::JSI_methods, NULL, NULL);
 }

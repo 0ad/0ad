@@ -27,6 +27,25 @@
 
 #include "js/jsapi.h"
 
+#include "ps/Errors.h"
+ERROR_GROUP(Scripting);
+ERROR_TYPE(Scripting, SetupFailed);
+
+ERROR_SUBGROUP(Scripting, LoadFile);
+ERROR_TYPE(Scripting_LoadFile, OpenFailed);
+ERROR_TYPE(Scripting_LoadFile, EvalErrors);
+
+ERROR_TYPE(Scripting, ConversionFailed);
+ERROR_TYPE(Scripting, CallFunctionFailed);
+ERROR_TYPE(Scripting, RegisterFunctionFailed);
+ERROR_TYPE(Scripting, DefineConstantFailed);
+ERROR_TYPE(Scripting, CreateObjectFailed);
+ERROR_TYPE(Scripting, TypeDoesNotExist);
+
+ERROR_SUBGROUP(Scripting, DefineType);
+ERROR_TYPE(Scripting_DefineType, AlreadyExists);
+ERROR_TYPE(Scripting_DefineType, CreationFailed);
+
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/Profile.h"
 #include "ps/utf16string.h"
@@ -46,6 +65,8 @@ class AutoGCRooter;
 struct ScriptInterface_impl;
 
 class ScriptRuntime;
+
+extern shared_ptr<ScriptRuntime> g_ScriptRuntime;
 
 class CDebuggingServer;
 
@@ -87,11 +108,18 @@ public:
 	 */
 	static void ShutDown();
 
-	void SetCallbackData(void* cbdata);
-	static void* GetCallbackData(JSContext* cx);
+	struct CxPrivate
+	{
+		ScriptInterface* pScriptInterface; // the ScriptInterface object the current context belongs to
+		void* pCBData; // meant to be used as the "this" object for callback functions
+	} m_CxPrivate;
+
+	void SetCallbackData(void* pCBData);
+	static CxPrivate* GetScriptInterfaceAndCBData(JSContext* cx);
 
 	JSContext* GetContext() const;
-	JSRuntime* GetRuntime() const;
+	JSRuntime* GetJSRuntime() const;
+	shared_ptr<ScriptRuntime> GetRuntime() const;
 
 	/**
 	 * Load global scripts that most script contexts need,
@@ -169,6 +197,9 @@ public:
 	 */
 	template<typename T0, typename T1, typename T2, typename T3, typename R>
 	bool CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2, const T3& a3, R& ret);
+
+	JSObject* CreateCustomObject(const std::string & typeName);
+	void DefineCustomObjectType(JSClass *clasp, JSNative constructor, uint minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs);
 
 	jsval GetGlobalObject();
 
@@ -268,7 +299,7 @@ public:
 	 * @param code JS code to execute
 	 * @return true on successful compilation and execution; false otherwise
 	 */
-	bool LoadGlobalScript(const VfsPath& filename, const std::string& code);
+	bool LoadGlobalScript(const VfsPath& filename, const std::wstring& code);
 
 	/**
 	 * Load and execute the given script in the global scope.
@@ -342,8 +373,17 @@ private:
 	static JSClass* GetClass(JSContext* cx, JSObject* obj);
 	static void* GetPrivate(JSContext* cx, JSObject* obj);
 
+	class CustomType
+	{
+	public:
+		JSObject *	m_Object;
+		JSClass *	m_Class;
+		JSNative 	m_Constructor;
+	};
 	void Register(const char* name, JSNative fptr, size_t nargs);
 	std::auto_ptr<ScriptInterface_impl> m;
+	
+	std::map<std::string, CustomType> m_CustomObjectTypes;
 
 // The nasty macro/template bits are split into a separate file so you don't have to look at them
 public:

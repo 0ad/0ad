@@ -71,7 +71,6 @@ that of Atlas depending on commandline parameters.
 #include "graphics/TextureManager.h"
 #include "gui/GUIManager.h"
 #include "renderer/Renderer.h"
-#include "scripting/ScriptingHost.h"
 #include "simulation2/Simulation2.h"
 
 #if OS_UNIX
@@ -185,8 +184,8 @@ static void PumpEvents()
 		PROFILE2("event");
 		if (g_GUI)
 		{
-			std::string data = g_GUI->GetScriptInterface().StringifyJSON(
-				ScriptInterface::ToJSVal(g_GUI->GetScriptInterface().GetContext(), ev));
+			std::string data = g_GUI->GetScriptInterface()->StringifyJSON(
+				ScriptInterface::ToJSVal(g_GUI->GetScriptInterface()->GetContext(), ev));
 			PROFILE2_ATTR("%s", data.c_str());
 		}
 		in_dispatch_event(&ev);
@@ -472,7 +471,6 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	while(!quit)
 		Frame();
 	Shutdown(0);
-	ScriptingHost::FinalShutdown(); // this can't go in Shutdown() because that could be called multiple times per process, so stick it here instead
 	MainControllerShutdown();
 
 	if (restart_in_atlas)

@@ -53,7 +53,7 @@ class ComponentTestHelper
 
 public:
 	ComponentTestHelper() :
-		m_Context(), m_ComponentManager(m_Context), m_Cmp(NULL)
+		m_Context(), m_ComponentManager(m_Context, ScriptInterface::CreateRuntime()), m_Cmp(NULL)
 	{
 		m_ComponentManager.LoadComponentTypes();
 	}

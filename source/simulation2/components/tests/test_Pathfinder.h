@@ -61,7 +61,7 @@ public:
 	{
 		CTerrain terrain;
 
-		CSimulation2 sim2(NULL, &terrain);
+		CSimulation2 sim2(NULL, ScriptInterface::CreateRuntime(), &terrain);
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
@@ -114,7 +114,7 @@ public:
 		CTerrain terrain;
 		terrain.Initialize(5, NULL);
 
-		CSimulation2 sim2(NULL, &terrain);
+		CSimulation2 sim2(NULL, ScriptInterface::CreateRuntime(), &terrain);
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 

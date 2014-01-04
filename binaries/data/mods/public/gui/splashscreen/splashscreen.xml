@@ -22,9 +22,9 @@
 		<object name="btnOK" type="button" style="StoneButton" tooltip_style="snToolTip" size="24 100%-52 188 100%-24">
 			OK
 			<action on="Press"><![CDATA[
-			Engine.ConfigDB_CreateValue("user", "splashscreenenable", getGUIObjectByName("displaySplashScreen").checked ? "true" : "false");
+			Engine.ConfigDB_CreateValue("user", "splashscreenenable", Engine.GetGUIObjectByName("displaySplashScreen").checked ? "true" : "false");
 			Engine.ConfigDB_WriteFile("user", "config/user.cfg");
-			Engine.PopGuiPage();
+			Engine.PopGuiPage(0);
 			]]></action>
 		</object>
 		<object type="button" style="StoneButton" size="192 100%-52 356 100%-24">

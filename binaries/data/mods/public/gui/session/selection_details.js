@@ -1,13 +1,13 @@
 function layoutSelectionSingle()
 {
-	getGUIObjectByName("detailsAreaSingle").hidden = false;
-	getGUIObjectByName("detailsAreaMultiple").hidden = true;
+	Engine.GetGUIObjectByName("detailsAreaSingle").hidden = false;
+	Engine.GetGUIObjectByName("detailsAreaMultiple").hidden = true;
 }
 
 function layoutSelectionMultiple()
 {
-	getGUIObjectByName("detailsAreaMultiple").hidden = false;
-	getGUIObjectByName("detailsAreaSingle").hidden = true;
+	Engine.GetGUIObjectByName("detailsAreaMultiple").hidden = false;
+	Engine.GetGUIObjectByName("detailsAreaSingle").hidden = true;
 }
 
 // Fills out information that most entities have
@@ -36,48 +36,48 @@ function displaySingle(entState, template)
 	// Rank
 	if (entState.identity && entState.identity.rank && entState.identity.classes)
 	{
-		getGUIObjectByName("rankIcon").tooltip = entState.identity.rank + " Rank";
-		getGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);
-		getGUIObjectByName("rankIcon").hidden = false;
+		Engine.GetGUIObjectByName("rankIcon").tooltip = entState.identity.rank + " Rank";
+		Engine.GetGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);
+		Engine.GetGUIObjectByName("rankIcon").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("rankIcon").hidden = true;
-		getGUIObjectByName("rankIcon").tooltip = "";
+		Engine.GetGUIObjectByName("rankIcon").hidden = true;
+		Engine.GetGUIObjectByName("rankIcon").tooltip = "";
 	}
 
 	// Hitpoints
 	if (entState.hitpoints)
 	{
-		var unitHealthBar = getGUIObjectByName("healthBar");
+		var unitHealthBar = Engine.GetGUIObjectByName("healthBar");
 		var healthSize = unitHealthBar.size;
 		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
 
 		var hitpoints = Math.ceil(entState.hitpoints) + " / " + entState.maxHitpoints;
-		getGUIObjectByName("healthStats").caption = hitpoints;
-		getGUIObjectByName("healthSection").hidden = false;
+		Engine.GetGUIObjectByName("healthStats").caption = hitpoints;
+		Engine.GetGUIObjectByName("healthSection").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("healthSection").hidden = true;
+		Engine.GetGUIObjectByName("healthSection").hidden = true;
 	}
 	
 	// TODO: Stamina
 	var player = Engine.GetPlayerID();
 	if (entState.stamina && (entState.player == player || g_DevSettings.controlAll))
 	{
-		getGUIObjectByName("staminaSection").hidden = false;
+		Engine.GetGUIObjectByName("staminaSection").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("staminaSection").hidden = true;
+		Engine.GetGUIObjectByName("staminaSection").hidden = true;
 	}
 
 	// Experience
 	if (entState.promotion)
 	{
-		var experienceBar = getGUIObjectByName("experienceBar");
+		var experienceBar = Engine.GetGUIObjectByName("experienceBar");
 		var experienceSize = experienceBar.size;
 		experienceSize.rtop = 100 - (100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / +entState.promotion.req)));
 		experienceBar.size = experienceSize;
@@ -85,12 +85,12 @@ function displaySingle(entState, template)
 		var experience = "[font=\"serif-bold-13\"]Experience: [/font]" + Math.floor(entState.promotion.curr);
 		if (entState.promotion.curr < entState.promotion.req)
 			experience += " / " + entState.promotion.req;
-		getGUIObjectByName("experience").tooltip = experience;
-		getGUIObjectByName("experience").hidden = false;
+		Engine.GetGUIObjectByName("experience").tooltip = experience;
+		Engine.GetGUIObjectByName("experience").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("experience").hidden = true;
+		Engine.GetGUIObjectByName("experience").hidden = true;
 	}
 
 	// Resource stats
@@ -102,25 +102,25 @@ function displaySingle(entState, template)
 		if (resourceType == "treasure")
 			resourceType = entState.resourceSupply.type["specific"];
 
-		var unitResourceBar = getGUIObjectByName("resourceBar");
+		var unitResourceBar = Engine.GetGUIObjectByName("resourceBar");
 		var resourceSize = unitResourceBar.size;
 
 		resourceSize.rright = entState.resourceSupply.isInfinite ? 100 :
 						100 * Math.max(0, Math.min(1, +entState.resourceSupply.amount / +entState.resourceSupply.max));
 		unitResourceBar.size = resourceSize;
-		getGUIObjectByName("resourceLabel").caption = toTitleCase(resourceType) + ":";
-		getGUIObjectByName("resourceStats").caption = resources;
+		Engine.GetGUIObjectByName("resourceLabel").caption = toTitleCase(resourceType) + ":";
+		Engine.GetGUIObjectByName("resourceStats").caption = resources;
 
 		if (entState.hitpoints)
-			getGUIObjectByName("resourceSection").size = getGUIObjectByName("staminaSection").size;
+			Engine.GetGUIObjectByName("resourceSection").size = Engine.GetGUIObjectByName("staminaSection").size;
 		else
-			getGUIObjectByName("resourceSection").size = getGUIObjectByName("healthSection").size;
+			Engine.GetGUIObjectByName("resourceSection").size = Engine.GetGUIObjectByName("healthSection").size;
 
-		getGUIObjectByName("resourceSection").hidden = false;
+		Engine.GetGUIObjectByName("resourceSection").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("resourceSection").hidden = true;
+		Engine.GetGUIObjectByName("resourceSection").hidden = true;
 	}
 
 	// Resource carrying
@@ -129,84 +129,84 @@ function displaySingle(entState, template)
 		// We should only be carrying one resource type at once, so just display the first
 		var carried = entState.resourceCarrying[0];
 
-		getGUIObjectByName("resourceCarryingIcon").hidden = false;
-		getGUIObjectByName("resourceCarryingText").hidden = false;
-		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+carried.type+".png";
-		getGUIObjectByName("resourceCarryingText").caption = carried.amount + " / " + carried.max;
-		getGUIObjectByName("resourceCarryingIcon").tooltip = "";
+		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
+		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
+		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+carried.type+".png";
+		Engine.GetGUIObjectByName("resourceCarryingText").caption = carried.amount + " / " + carried.max;
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "";
 	}
 	// Use the same indicators for traders
 	else if (entState.trader && entState.trader.goods.amount)
 	{
-		getGUIObjectByName("resourceCarryingIcon").hidden = false;
-		getGUIObjectByName("resourceCarryingText").hidden = false;
-		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+entState.trader.goods.type+".png";
+		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
+		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
+		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+entState.trader.goods.type+".png";
 		var totalGain = entState.trader.goods.amount.traderGain;
 		if (entState.trader.goods.amount.market1Gain)
 			totalGain += entState.trader.goods.amount.market1Gain;
 		if (entState.trader.goods.amount.market2Gain)
 			totalGain += entState.trader.goods.amount.market2Gain;
-		getGUIObjectByName("resourceCarryingText").caption = totalGain;
-		getGUIObjectByName("resourceCarryingIcon").tooltip = "Gain: " + getTradingTooltip(entState.trader.goods.amount);
+		Engine.GetGUIObjectByName("resourceCarryingText").caption = totalGain;
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "Gain: " + getTradingTooltip(entState.trader.goods.amount);
 	}
 	// And for number of workers
 	else if (entState.foundation)
 	{
-		getGUIObjectByName("resourceCarryingIcon").hidden = false;
-		getGUIObjectByName("resourceCarryingText").hidden = false;
-		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
-		getGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders + "    ";
-		getGUIObjectByName("resourceCarryingIcon").tooltip = "Number of builders";
+		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
+		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
+		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
+		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders + "    ";
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "Number of builders";
 	}
 	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints))
 	{
-		getGUIObjectByName("resourceCarryingIcon").hidden = false;
-		getGUIObjectByName("resourceCarryingText").hidden = false;
-		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
-		getGUIObjectByName("resourceCarryingText").caption = entState.resourceSupply.gatherers.length + " / " + entState.resourceSupply.maxGatherers + "    ";
-		getGUIObjectByName("resourceCarryingIcon").tooltip = "Current/max gatherers";
+		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
+		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
+		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
+		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.resourceSupply.gatherers.length + " / " + entState.resourceSupply.maxGatherers + "    ";
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "Current/max gatherers";
 	}
 	else
 	{
-		getGUIObjectByName("resourceCarryingIcon").hidden = true;
-		getGUIObjectByName("resourceCarryingText").hidden = true;
+		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = true;
+		Engine.GetGUIObjectByName("resourceCarryingText").hidden = true;
 	}
 
 	// Set Player details
-	getGUIObjectByName("specific").caption = specificName;
-	getGUIObjectByName("player").caption = playerName;
-	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
+	Engine.GetGUIObjectByName("specific").caption = specificName;
+	Engine.GetGUIObjectByName("player").caption = playerName;
+	Engine.GetGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
 	
 	if (genericName)
 	{
-		getGUIObjectByName("generic").caption = "(" + genericName + ")";
+		Engine.GetGUIObjectByName("generic").caption = "(" + genericName + ")";
 	}
 	else
 	{
-		getGUIObjectByName("generic").caption = "";
+		Engine.GetGUIObjectByName("generic").caption = "";
 
 	}
 
 	if ("Gaia" != civName)
 	{
-		getGUIObjectByName("playerCivIcon").sprite = "stretched:grayscale:" + civEmblem;
-		getGUIObjectByName("player").tooltip = civName;
+		Engine.GetGUIObjectByName("playerCivIcon").sprite = "stretched:grayscale:" + civEmblem;
+		Engine.GetGUIObjectByName("player").tooltip = civName;
 	}
 	else
 	{
-		getGUIObjectByName("playerCivIcon").sprite = "";
-		getGUIObjectByName("player").tooltip = "";
+		Engine.GetGUIObjectByName("playerCivIcon").sprite = "";
+		Engine.GetGUIObjectByName("player").tooltip = "";
 	}
 
 	// Icon image
 	if (template.icon)
 	{
-		getGUIObjectByName("icon").sprite = "stretched:session/portraits/" + template.icon;
+		Engine.GetGUIObjectByName("icon").sprite = "stretched:session/portraits/" + template.icon;
 	}
 	else
 	{
 		// TODO: we should require all entities to have icons, so this case never occurs
-		getGUIObjectByName("icon").sprite = "bkFillBlack";
+		Engine.GetGUIObjectByName("icon").sprite = "bkFillBlack";
 	}
 
 	// Attack and Armor
@@ -236,7 +236,7 @@ function displaySingle(entState, template)
 		}
 	}
 	
-	getGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n[font=\"serif-bold-13\"]Armor:[/font] " + armorTypeDetails(entState.armour);
+	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n[font=\"serif-bold-13\"]Armor:[/font] " + armorTypeDetails(entState.armour);
 
 	// Icon Tooltip
 	var iconTooltip = "";
@@ -247,11 +247,11 @@ function displaySingle(entState, template)
 	if (template.tooltip)
 		iconTooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
-	getGUIObjectByName("iconBorder").tooltip = iconTooltip;
+	Engine.GetGUIObjectByName("iconBorder").tooltip = iconTooltip;
 
 	// Unhide Details Area
-	getGUIObjectByName("detailsAreaSingle").hidden = false;
-	getGUIObjectByName("detailsAreaMultiple").hidden = true;
+	Engine.GetGUIObjectByName("detailsAreaSingle").hidden = false;
+	Engine.GetGUIObjectByName("detailsAreaMultiple").hidden = true;
 }
 
 // Fills out information for multiple entities
@@ -275,45 +275,45 @@ function displayMultiple(selection, template)
 
 	if (averageHealth > 0)
 	{
-		var unitHealthBar = getGUIObjectByName("healthBarMultiple");
+		var unitHealthBar = Engine.GetGUIObjectByName("healthBarMultiple");
 		var healthSize = unitHealthBar.size;	
 		healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
 		unitHealthBar.size = healthSize;
 
 		var hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + averageHealth + " / " + maxHealth;
-		var healthMultiple = getGUIObjectByName("healthMultiple");
+		var healthMultiple = Engine.GetGUIObjectByName("healthMultiple");
 		healthMultiple.tooltip = hitpoints;
 		healthMultiple.hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("healthMultiple").hidden = true;
+		Engine.GetGUIObjectByName("healthMultiple").hidden = true;
 	}
 	
 	// TODO: Stamina
-	// getGUIObjectByName("staminaBarMultiple");
+	// Engine.GetGUIObjectByName("staminaBarMultiple");
 
-	getGUIObjectByName("numberOfUnits").caption = selection.length;
+	Engine.GetGUIObjectByName("numberOfUnits").caption = selection.length;
 
 	// Unhide Details Area
-	getGUIObjectByName("detailsAreaMultiple").hidden = false;
-	getGUIObjectByName("detailsAreaSingle").hidden = true;
+	Engine.GetGUIObjectByName("detailsAreaMultiple").hidden = false;
+	Engine.GetGUIObjectByName("detailsAreaSingle").hidden = true;
 }
 
 // Updates middle entity Selection Details Panel
 function updateSelectionDetails()
 {
-	var supplementalDetailsPanel = getGUIObjectByName("supplementalSelectionDetails");
-	var detailsPanel = getGUIObjectByName("selectionDetails");
-	var commandsPanel = getGUIObjectByName("unitCommands");
+	var supplementalDetailsPanel = Engine.GetGUIObjectByName("supplementalSelectionDetails");
+	var detailsPanel = Engine.GetGUIObjectByName("selectionDetails");
+	var commandsPanel = Engine.GetGUIObjectByName("unitCommands");
 
 	g_Selection.update();
 	var selection = g_Selection.toList();
 	
 	if (selection.length == 0)
 	{
-		getGUIObjectByName("detailsAreaMultiple").hidden = true;
-		getGUIObjectByName("detailsAreaSingle").hidden = true;
+		Engine.GetGUIObjectByName("detailsAreaMultiple").hidden = true;
+		Engine.GetGUIObjectByName("detailsAreaSingle").hidden = true;
 		hideUnitCommands();
 	
 		supplementalDetailsPanel.hidden = true;

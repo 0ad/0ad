@@ -23,9 +23,13 @@
 #include "graphics/GameView.h"
 #include "graphics/MapReader.h"
 #include "gui/GUIManager.h"
+#include "gui/GUI.h"
+#include "gui/IGUIObject.h"
+#include "gui/scripting/JSInterface_GUITypes.h"
 #include "graphics/scripting/JSInterface_GameView.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
+#include "lib/svn_revision.h"
 #include "lib/sysdep/sysdep.h"
 #include "lobby/scripting/JSInterface_Lobby.h"
 #include "maths/FixedVector3D.h"
@@ -36,6 +40,7 @@
 #include "ps/CConsole.h"
 #include "ps/Errors.h"
 #include "ps/Game.h"
+#include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/GUID.h"
 #include "ps/World.h"
 #include "ps/Hotkey.h"
@@ -45,6 +50,7 @@
 #include "ps/SavedGame.h"
 #include "ps/scripting/JSInterface_ConfigDB.h"
 #include "ps/scripting/JSInterface_Console.h"
+#include "ps/scripting/JSInterface_VFS.h"
 #include "ps/UserReport.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
@@ -60,6 +66,8 @@
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/helpers/Selection.h"
+#include "soundmanager/SoundManager.h"
+#include "soundmanager/scripting/JSInterface_Sound.h"
 
 #include "js/jsapi.h"
 /*
@@ -70,33 +78,39 @@
  */
 
 extern void restart_mainloop_in_atlas(); // from main.cpp
+extern void EndGame();
+extern void kill_mainloop();
 
 namespace {
 
-CScriptVal GetActiveGui(void* UNUSED(cbdata))
+// Note that the initData argument may only contain clonable data.
+// Functions aren't supported for example!
+// TODO: Use LOGERROR to print a friendly error message when the requirements aren't met instead of failing with debug_warn when cloning.
+void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData)
 {
-	return OBJECT_TO_JSVAL(g_GUI->GetScriptObject());
+	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData.get()));
 }
 
-void PushGuiPage(void* UNUSED(cbdata), std::wstring name, CScriptVal initData)
+void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData)
 {
-	g_GUI->PushPage(name, initData);
+	g_GUI->SwitchPage(name, pCxPrivate->pScriptInterface, initData);
 }
 
-void SwitchGuiPage(void* UNUSED(cbdata), std::wstring name, CScriptVal initData)
-{
-	g_GUI->SwitchPage(name, initData);
-}
-
-void PopGuiPage(void* UNUSED(cbdata))
+void PopGuiPage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	g_GUI->PopPage();
 }
 
-CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
+// Note that the args argument may only contain clonable data.
+// Functions aren't supported for example!
+// TODO: Use LOGERROR to print a friendly error message when the requirements aren't met instead of failing with debug_warn when cloning.
+void PopGuiPageCB(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal args)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+	g_GUI->PopPageCB(pCxPrivate->pScriptInterface->WriteStructuredClone(args.get()));
+}
 
+CScriptVal GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal data)
+{
 	if (!g_Game)
 		return JSVAL_VOID;
 	CSimulation2* sim = g_Game->GetSimulation2();
@@ -110,15 +124,13 @@ CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
 	if (g_Game)
 		player = g_Game->GetPlayerID();
 
-	CScriptValRooted arg (sim->GetScriptInterface().GetContext(), sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), data.get()));
+	CScriptValRooted arg (sim->GetScriptInterface().GetContext(), sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), data.get()));
 	CScriptVal ret (cmpGuiInterface->ScriptCall(player, name, arg.get()));
-	return guiManager->GetScriptInterface().CloneValueFromOtherContext(sim->GetScriptInterface(), ret.get());
+	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(sim->GetScriptInterface(), ret.get());
 }
 
-void PostNetworkCommand(void* cbdata, CScriptVal cmd)
+void PostNetworkCommand(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal cmd)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
 	if (!g_Game)
 		return;
 	CSimulation2* sim = g_Game->GetSimulation2();
@@ -128,67 +140,65 @@ void PostNetworkCommand(void* cbdata, CScriptVal cmd)
 	if (!cmpCommandQueue)
 		return;
 
-	jsval cmd2 = sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), cmd.get());
+	jsval cmd2 = sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), cmd.get());
 
 	cmpCommandQueue->PostNetworkCommand(cmd2);
 }
 
-std::vector<entity_id_t> PickEntitiesAtPoint(void* UNUSED(cbdata), int x, int y)
+std::vector<entity_id_t> PickEntitiesAtPoint(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x, int y)
 {
 	return EntitySelection::PickEntitiesAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y, g_Game->GetPlayerID(), false);
 }
 
-std::vector<entity_id_t> PickFriendlyEntitiesInRect(void* UNUSED(cbdata), int x0, int y0, int x1, int y1, int player)
+std::vector<entity_id_t> PickFriendlyEntitiesInRect(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x0, int y0, int x1, int y1, int player)
 {
 	return EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x0, y0, x1, y1, player, false);
 }
 
-std::vector<entity_id_t> PickFriendlyEntitiesOnScreen(void* cbdata, int player)
+std::vector<entity_id_t> PickFriendlyEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate, int player)
 {
-	return PickFriendlyEntitiesInRect(cbdata, 0, 0, g_xres, g_yres, player);
+	return PickFriendlyEntitiesInRect(pCxPrivate, 0, 0, g_xres, g_yres, player);
 }
 
-std::vector<entity_id_t> PickSimilarFriendlyEntities(void* UNUSED(cbdata), std::string templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
+std::vector<entity_id_t> PickSimilarFriendlyEntities(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
 {
 	return EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, g_Game->GetPlayerID(), includeOffScreen, matchRank, false, allowFoundations);
 }
 
-CFixedVector3D GetTerrainAtScreenPoint(void* UNUSED(cbdata), int x, int y)
+CFixedVector3D GetTerrainAtScreenPoint(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x, int y)
 {
 	CVector3D pos = g_Game->GetView()->GetCamera()->GetWorldCoordinates(x, y, true);
 	return CFixedVector3D(fixed::FromFloat(pos.X), fixed::FromFloat(pos.Y), fixed::FromFloat(pos.Z));
 }
 
-std::wstring SetCursor(void* UNUSED(cbdata), std::wstring name)
+std::wstring SetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring name)
 {
 	std::wstring old = g_CursorName;
 	g_CursorName = name;
 	return old;
 }
 
-int GetPlayerID(void* UNUSED(cbdata))
+int GetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	if (g_Game)
 		return g_Game->GetPlayerID();
 	return -1;
 }
 
-void SetPlayerID(void* UNUSED(cbdata), int id)
+void SetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
 {
 	if (g_Game)
 		g_Game->SetPlayerID(id);
 }
 
-void StartNetworkGame(void* UNUSED(cbdata))
+void StartNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	ENSURE(g_NetServer);
 	g_NetServer->StartGame();
 }
 
-void StartGame(void* cbdata, CScriptVal attribs, int playerID)
+void StartGame(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal attribs, int playerID)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
 
@@ -198,16 +208,14 @@ void StartGame(void* cbdata, CScriptVal attribs, int playerID)
 	// Convert from GUI script context to sim script context
 	CSimulation2* sim = g_Game->GetSimulation2();
 	CScriptValRooted gameAttribs (sim->GetScriptInterface().GetContext(),
-			sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), attribs.get()));
+			sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), attribs.get()));
 
 	g_Game->SetPlayerID(playerID);
 	g_Game->StartGame(gameAttribs, "");
 }
 
-CScriptVal StartSavedGame(void* cbdata, std::wstring name)
+CScriptVal StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
 
@@ -216,7 +224,7 @@ CScriptVal StartSavedGame(void* cbdata, std::wstring name)
 	// Load the saved game data from disk
 	CScriptValRooted metadata;
 	std::string savedState;
-	Status err = SavedGames::Load(name, guiManager->GetScriptInterface(), metadata, savedState);
+	Status err = SavedGames::Load(name, *(pCxPrivate->pScriptInterface), metadata, savedState);
 	if (err < 0)
 		return CScriptVal();
 
@@ -225,7 +233,7 @@ CScriptVal StartSavedGame(void* cbdata, std::wstring name)
 	// Convert from GUI script context to sim script context
 	CSimulation2* sim = g_Game->GetSimulation2();
 	CScriptValRooted gameMetadata (sim->GetScriptInterface().GetContext(),
-		sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), metadata.get()));
+		sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), metadata.get()));
 
 	CScriptValRooted gameInitAttributes;
 	sim->GetScriptInterface().GetProperty(gameMetadata.get(), "initAttributes", gameInitAttributes);
@@ -240,35 +248,29 @@ CScriptVal StartSavedGame(void* cbdata, std::wstring name)
 	return metadata.get();
 }
 
-void SaveGame(void* cbdata, std::wstring filename, std::wstring description)
+void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename, std::wstring description, CScriptVal GUIMetadata)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
-	if (SavedGames::Save(filename, description, *g_Game->GetSimulation2(), guiManager, g_Game->GetPlayerID()) < 0)
+	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata.get());
+	if (SavedGames::Save(filename, description, *g_Game->GetSimulation2(), GUIMetadataClone, g_Game->GetPlayerID()) < 0)
 		LOGERROR(L"Failed to save game");
 }
 
-void SaveGamePrefix(void* cbdata, std::wstring prefix, std::wstring description)
+void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, std::wstring prefix, std::wstring description, CScriptVal GUIMetadata)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
-	if (SavedGames::SavePrefix(prefix, description, *g_Game->GetSimulation2(), guiManager, g_Game->GetPlayerID()) < 0)
+	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata.get());
+	if (SavedGames::SavePrefix(prefix, description, *g_Game->GetSimulation2(), GUIMetadataClone, g_Game->GetPlayerID()) < 0)
 		LOGERROR(L"Failed to save game");
 }
 
-void SetNetworkGameAttributes(void* cbdata, CScriptVal attribs)
+void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal attribs)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
 	ENSURE(g_NetServer);
 
-	g_NetServer->UpdateGameAttributes(attribs, guiManager->GetScriptInterface());
+	g_NetServer->UpdateGameAttributes(attribs, *(pCxPrivate->pScriptInterface));
 }
 
-void StartNetworkHost(void* cbdata, std::wstring playerName)
+void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, std::wstring playerName)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
 	ENSURE(!g_Game);
@@ -276,7 +278,7 @@ void StartNetworkHost(void* cbdata, std::wstring playerName)
 	g_NetServer = new CNetServer();
 	if (!g_NetServer->SetupConnection())
 	{
-		guiManager->GetScriptInterface().ReportError("Failed to start server");
+		pCxPrivate->pScriptInterface->ReportError("Failed to start server");
 		SAFE_DELETE(g_NetServer);
 		return;
 	}
@@ -287,16 +289,14 @@ void StartNetworkHost(void* cbdata, std::wstring playerName)
 
 	if (!g_NetClient->SetupConnection("127.0.0.1"))
 	{
-		guiManager->GetScriptInterface().ReportError("Failed to connect to server");
+		pCxPrivate->pScriptInterface->ReportError("Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
 		SAFE_DELETE(g_Game);
 	}
 }
 
-void StartNetworkJoin(void* cbdata, std::wstring playerName, std::string serverAddress)
+void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, std::wstring playerName, std::string serverAddress)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
 	ENSURE(!g_Game);
@@ -306,13 +306,13 @@ void StartNetworkJoin(void* cbdata, std::wstring playerName, std::string serverA
 	g_NetClient->SetUserName(playerName);
 	if (!g_NetClient->SetupConnection(serverAddress))
 	{
-		guiManager->GetScriptInterface().ReportError("Failed to connect to server");
+		pCxPrivate->pScriptInterface->ReportError("Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
 		SAFE_DELETE(g_Game);
 	}
 }
 
-void DisconnectNetworkGame(void* UNUSED(cbdata))
+void DisconnectNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	// TODO: we ought to do async reliable disconnections
 
@@ -321,97 +321,87 @@ void DisconnectNetworkGame(void* UNUSED(cbdata))
 	SAFE_DELETE(g_Game);
 }
 
-CScriptVal PollNetworkClient(void* cbdata)
+CScriptVal PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
 	if (!g_NetClient)
 		return CScriptVal();
 
 	CScriptValRooted poll = g_NetClient->GuiPoll();
 
 	// Convert from net client context to GUI script context
-	return guiManager->GetScriptInterface().CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), poll.get());
+	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), poll.get());
 }
 
-void AssignNetworkPlayer(void* UNUSED(cbdata), int playerID, std::string guid)
+void AssignNetworkPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int playerID, std::string guid)
 {
 	ENSURE(g_NetServer);
 
 	g_NetServer->AssignPlayer(playerID, guid);
 }
 
-void SendNetworkChat(void* UNUSED(cbdata), std::wstring message)
+void SendNetworkChat(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring message)
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendChatMessage(message);
 }
 
-std::vector<CScriptValRooted> GetAIs(void* cbdata)
+std::vector<CScriptValRooted> GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
-	return ICmpAIManager::GetAIs(guiManager->GetScriptInterface());
+	return ICmpAIManager::GetAIs(*(pCxPrivate->pScriptInterface));
 }
 
-std::vector<CScriptValRooted> GetSavedGames(void* cbdata)
+std::vector<CScriptValRooted> GetSavedGames(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
-	return SavedGames::GetSavedGames(guiManager->GetScriptInterface());
+	return SavedGames::GetSavedGames(*(pCxPrivate->pScriptInterface));
 }
 
-bool DeleteSavedGame(void* UNUSED(cbdata), std::wstring name)
+bool DeleteSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring name)
 {
 	return SavedGames::DeleteSavedGame(name);
 }
 
-void OpenURL(void* UNUSED(cbdata), std::string url)
+void OpenURL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string url)
 {
 	sys_open_url(url);
 }
 
-std::wstring GetMatchID(void* UNUSED(cbdata))
+std::wstring GetMatchID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return ps_generate_guid().FromUTF8();
 }
 
-void RestartInAtlas(void* UNUSED(cbdata))
+void RestartInAtlas(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	restart_mainloop_in_atlas();
 }
 
-bool AtlasIsAvailable(void* UNUSED(cbdata))
+bool AtlasIsAvailable(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return ATLAS_IsAvailable();
 }
 
-bool IsAtlasRunning(void* UNUSED(cbdata))
+bool IsAtlasRunning(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return (g_AtlasGameLoop && g_AtlasGameLoop->running);
 }
 
-CScriptVal LoadMapSettings(void* cbdata, VfsPath pathname)
+CScriptVal LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, VfsPath pathname)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
 	CMapSummaryReader reader;
 
 	if (reader.LoadMap(pathname) != PSRETURN_OK)
 		return CScriptVal();
 
-	return reader.GetMapSettings(guiManager->GetScriptInterface()).get();
+	return reader.GetMapSettings(*(pCxPrivate->pScriptInterface)).get();
 }
 
-CScriptVal GetMapSettings(void* cbdata)
+CScriptVal GetMapSettings(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
 	if (!g_Game)
 		return CScriptVal();
 
-	return guiManager->GetScriptInterface().CloneValueFromOtherContext(
+	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(
 		g_Game->GetSimulation2()->GetScriptInterface(),
 		g_Game->GetSimulation2()->GetMapSettings().get());
 }
@@ -419,7 +409,7 @@ CScriptVal GetMapSettings(void* cbdata)
 /**
  * Get the current X coordinate of the camera.
  */
-float CameraGetX(void* UNUSED(cbdata))
+float CameraGetX(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	if (g_Game && g_Game->GetView())
 		return g_Game->GetView()->GetCameraX();
@@ -429,7 +419,7 @@ float CameraGetX(void* UNUSED(cbdata))
 /**
  * Get the current Z coordinate of the camera.
  */
-float CameraGetZ(void* UNUSED(cbdata))
+float CameraGetZ(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	if (g_Game && g_Game->GetView())
 		return g_Game->GetView()->GetCameraZ();
@@ -440,7 +430,7 @@ float CameraGetZ(void* UNUSED(cbdata))
  * Start / stop camera following mode
  * @param entityid unit id to follow. If zero, stop following mode
  */
-void CameraFollow(void* UNUSED(cbdata), entity_id_t entityid)
+void CameraFollow(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), entity_id_t entityid)
 {
 	if (g_Game && g_Game->GetView())
 		g_Game->GetView()->CameraFollow(entityid, false);
@@ -450,14 +440,14 @@ void CameraFollow(void* UNUSED(cbdata), entity_id_t entityid)
  * Start / stop first-person camera following mode
  * @param entityid unit id to follow. If zero, stop following mode
  */
-void CameraFollowFPS(void* UNUSED(cbdata), entity_id_t entityid)
+void CameraFollowFPS(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), entity_id_t entityid)
 {
 	if (g_Game && g_Game->GetView())
 		g_Game->GetView()->CameraFollow(entityid, true);
 }
 
 /// Move camera to a 2D location
-void CameraMoveTo(void* UNUSED(cbdata), entity_pos_t x, entity_pos_t z)
+void CameraMoveTo(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), entity_pos_t x, entity_pos_t z)
 {
 	// called from JS; must not fail
 	if(!(g_Game && g_Game->GetWorld() && g_Game->GetView() && g_Game->GetWorld()->GetTerrain()))
@@ -473,7 +463,7 @@ void CameraMoveTo(void* UNUSED(cbdata), entity_pos_t x, entity_pos_t z)
 	g_Game->GetView()->MoveCameraTarget(target);
 }
 
-entity_id_t GetFollowedEntity(void* UNUSED(cbdata))
+entity_id_t GetFollowedEntity(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	if (g_Game && g_Game->GetView())
 		return g_Game->GetView()->GetFollowedEntity();
@@ -481,57 +471,52 @@ entity_id_t GetFollowedEntity(void* UNUSED(cbdata))
 	return INVALID_ENTITY;
 }
 
-bool HotkeyIsPressed_(void* UNUSED(cbdata), std::string hotkeyName)
+bool HotkeyIsPressed_(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string hotkeyName)
 {
 	return HotkeyIsPressed(hotkeyName);
 }
 
-void DisplayErrorDialog(void* UNUSED(cbdata), std::wstring msg)
+void DisplayErrorDialog(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring msg)
 {
 	debug_DisplayError(msg.c_str(), DE_NO_DEBUG_INFO, NULL, NULL, NULL, 0, NULL, NULL);
 }
 
-CScriptVal GetProfilerState(void* cbdata)
+CScriptVal GetProfilerState(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
-	return g_ProfileViewer.SaveToJS(guiManager->GetScriptInterface());
+	return g_ProfileViewer.SaveToJS(*(pCxPrivate->pScriptInterface));
 }
 
-
-bool IsUserReportEnabled(void* UNUSED(cbdata))
+bool IsUserReportEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return g_UserReporter.IsReportingEnabled();
 }
 
-void SetUserReportEnabled(void* UNUSED(cbdata), bool enabled)
+void SetUserReportEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
 {
 	g_UserReporter.SetReportingEnabled(enabled);
 }
 
-std::string GetUserReportStatus(void* UNUSED(cbdata))
+std::string GetUserReportStatus(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return g_UserReporter.GetStatus();
 }
 
-void SubmitUserReport(void* UNUSED(cbdata), std::string type, int version, std::wstring data)
+void SubmitUserReport(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string type, int version, std::wstring data)
 {
 	g_UserReporter.SubmitReport(type.c_str(), version, utf8_from_wstring(data));
 }
 
-
-
-void SetSimRate(void* UNUSED(cbdata), float rate)
+void SetSimRate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float rate)
 {
 	g_Game->SetSimRate(rate);
 }
 
-float GetSimRate(void* UNUSED(cbdata))
+float GetSimRate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return g_Game->GetSimRate();
 }
 
-void SetTurnLength(void* UNUSED(cbdata), int length)
+void SetTurnLength(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int length)
 {
 	if (g_NetServer)
 		g_NetServer->SetTurnLength(length);
@@ -540,7 +525,7 @@ void SetTurnLength(void* UNUSED(cbdata), int length)
 }
 
 // Focus the game camera on a given position.
-void SetCameraTarget(void* UNUSED(cbdata), float x, float y, float z)
+void SetCameraTarget(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float x, float y, float z)
 {
 	g_Game->GetView()->ResetCameraTarget(CVector3D(x, y, z));
 }
@@ -548,37 +533,35 @@ void SetCameraTarget(void* UNUSED(cbdata), float x, float y, float z)
 // Deliberately cause the game to crash.
 // Currently implemented via access violation (read of address 0).
 // Useful for testing the crashlog/stack trace code.
-int Crash(void* UNUSED(cbdata))
+int Crash(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	debug_printf(L"Crashing at user's request.\n");
 	return *(volatile int*)0;
 }
 
-void DebugWarn(void* UNUSED(cbdata))
+void DebugWarn(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	debug_warn(L"Warning at user's request.");
 }
 
 // Force a JS garbage collection cycle to take place immediately.
 // Writes an indication of how long this took to the console.
-void ForceGC(void* cbdata)
+void ForceGC(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
 	double time = timer_Time();
-	JS_GC(guiManager->GetScriptInterface().GetContext());
+	JS_GC(pCxPrivate->pScriptInterface->GetContext());
 	time = timer_Time() - time;
 	g_Console->InsertMessage(L"Garbage collection completed in: %f", time);
 }
 
-void DumpSimState(void* UNUSED(cbdata))
+void DumpSimState(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	OsPath path = psLogDir()/"sim_dump.txt";
 	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	g_Game->GetSimulation2()->DumpDebugState(file);
 }
 
-void DumpTerrainMipmap(void* UNUSED(cbdata))
+void DumpTerrainMipmap(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	VfsPath filename(L"screenshots/terrainmipmap.png");
 	g_Game->GetWorld()->GetTerrain()->GetHeightMipmap().DumpToDisk(filename);
@@ -587,45 +570,231 @@ void DumpTerrainMipmap(void* UNUSED(cbdata))
 	LOGMESSAGERENDER(L"Terrain mipmap written to '%ls'", realPath.string().c_str());
 }
 
-void EnableTimeWarpRecording(void* UNUSED(cbdata), unsigned int numTurns)
+void EnableTimeWarpRecording(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), unsigned int numTurns)
 {
 	g_Game->GetTurnManager()->EnableTimeWarpRecording(numTurns);
 }
 
-void RewindTimeWarp(void* UNUSED(cbdata))
+void RewindTimeWarp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	g_Game->GetTurnManager()->RewindTimeWarp();
 }
 
-void QuickSave(void* UNUSED(cbdata))
+void QuickSave(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	g_Game->GetTurnManager()->QuickSave();
 }
 
-void QuickLoad(void* UNUSED(cbdata))
+void QuickLoad(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	g_Game->GetTurnManager()->QuickLoad();
 }
 
-void SetBoundingBoxDebugOverlay(void* UNUSED(cbdata), bool enabled)
+void SetBoundingBoxDebugOverlay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
 {
 	ICmpSelectable::ms_EnableDebugOverlays = enabled;
 }
 
+void Script_EndGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	EndGame();
+}
+
+// Cause the game to exit gracefully.
+// params:
+// returns:
+// notes:
+// - Exit happens after the current main loop iteration ends
+//   (since this only sets a flag telling it to end)
+void ExitProgram(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	kill_mainloop();
+}
+
+// Is the game paused?
+bool IsPaused(ScriptInterface::CxPrivate* pCxPrivate)
+{
+	if (!g_Game)
+	{
+		JS_ReportError(pCxPrivate->pScriptInterface->GetContext(), "Game is not started");
+		return false;
+	}
+
+	return g_Game->m_Paused;
+}
+
+// Pause/unpause the game
+void SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause)
+{
+	if (!g_Game)
+	{
+		JS_ReportError(pCxPrivate->pScriptInterface->GetContext(), "Game is not started");
+		return;
+	}
+	g_Game->m_Paused = pause;
+#if CONFIG2_AUDIO
+	if ( g_SoundManager )
+		g_SoundManager->Pause(pause);
+#endif
+}
+
+// Return the global frames-per-second value.
+// params:
+// returns: FPS [int]
+// notes:
+// - This value is recalculated once a frame. We take special care to
+//   filter it, so it is both accurate and free of jitter.
+int GetFps(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	int freq = 0;
+	if (g_frequencyFilter)
+		freq = g_frequencyFilter->StableFrequency();
+	return freq;
+}
+
+CScriptVal GetGUIObjectByName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStr name)
+{
+		IGUIObject* guiObj = g_GUI->FindObjectByName(name);
+		if (guiObj)
+			return OBJECT_TO_JSVAL(guiObj->GetJSObject());
+		else
+			return JSVAL_VOID;
+}
+
+// Return the date/time at which the current executable was compiled.
+// params: mode OR an integer specifying
+//   what to display: -1 for "date time (svn revision)", 0 for date, 1 for time, 2 for svn revision
+// returns: string with the requested timestamp info
+// notes:
+// - Displayed on main menu screen; tells non-programmers which auto-build
+//   they are running. Could also be determined via .EXE file properties,
+//   but that's a bit more trouble.
+// - To be exact, the date/time returned is when scriptglue.cpp was
+//   last compiled, but the auto-build does full rebuilds.
+// - svn revision is generated by calling svnversion and cached in
+//   lib/svn_revision.cpp. it is useful to know when attempting to
+//   reproduce bugs (the main EXE and PDB should be temporarily reverted to
+//   that revision so that they match user-submitted crashdumps).
+CStr GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int mode)
+{
+	char buf[200];
+
+	// see function documentation
+	switch(mode)
+	{
+	case -1:
+		sprintf_s(buf, ARRAY_SIZE(buf), "%s %s (%ls)", __DATE__, __TIME__, svn_revision);
+		break;
+	case 0:
+		sprintf_s(buf, ARRAY_SIZE(buf), "%s", __DATE__);
+		break;
+	case 1:
+		sprintf_s(buf, ARRAY_SIZE(buf), "%s", __TIME__);
+		break;
+	case 2:
+		sprintf_s(buf, ARRAY_SIZE(buf), "%ls", svn_revision);
+		break;
+	}
+
+	return CStr(buf);
+}
+
+//-----------------------------------------------------------------------------
+// Timer
+//-----------------------------------------------------------------------------
+
+
+// Script profiling functions: Begin timing a piece of code with StartJsTimer(num)
+// and stop timing with StopJsTimer(num). The results will be printed to stdout
+// when the game exits.
+
+static const size_t MAX_JS_TIMERS = 20;
+static TimerUnit js_start_times[MAX_JS_TIMERS];
+static TimerUnit js_timer_overhead;
+static TimerClient js_timer_clients[MAX_JS_TIMERS];
+static wchar_t js_timer_descriptions_buf[MAX_JS_TIMERS * 12];	// depends on MAX_JS_TIMERS and format string below
+
+static void InitJsTimers(ScriptInterface& scriptInterface)
+{
+	wchar_t* pos = js_timer_descriptions_buf;
+	for(size_t i = 0; i < MAX_JS_TIMERS; i++)
+	{
+		const wchar_t* description = pos;
+		pos += swprintf_s(pos, 12, L"js_timer %d", (int)i)+1;
+		timer_AddClient(&js_timer_clients[i], description);
+	}
+
+	// call several times to get a good approximation of 'hot' performance.
+	// note: don't use a separate timer slot to warm up and then judge
+	// overhead from another: that causes worse results (probably some
+	// caching effects inside JS, but I don't entirely understand why).
+	std::wstring calibration_script =
+		L"Engine.StartXTimer(0);\n" \
+		L"Engine.StopXTimer (0);\n" \
+		L"\n";
+	scriptInterface.LoadGlobalScript("timer_calibration_script", calibration_script);
+	// slight hack: call LoadGlobalScript twice because we can't average several
+	// TimerUnit values because there's no operator/. this way is better anyway
+	// because it hopefully avoids the one-time JS init overhead.
+	js_timer_clients[0].sum.SetToZero();
+	scriptInterface.LoadGlobalScript("timer_calibration_script", calibration_script);
+	js_timer_clients[0].sum.SetToZero();
+	js_timer_clients[0].num_calls = 0;
+}
+
+void StartJsTimer(ScriptInterface::CxPrivate* pCxPrivate, unsigned int slot)
+{
+	ONCE(InitJsTimers(*(pCxPrivate->pScriptInterface)));
+	
+	if (slot >= MAX_JS_TIMERS)
+		LOGERROR(L"Exceeded the maximum number of timer slots for scripts!");
+
+	js_start_times[slot].SetFromTimer();
+}
+
+
+void StopJsTimer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), unsigned int slot)
+{
+	if (slot >= MAX_JS_TIMERS)
+		LOGERROR(L"Exceeded the maximum number of timer slots for scripts!");
+
+	TimerUnit now;
+	now.SetFromTimer();
+	now.Subtract(js_timer_overhead);
+	BillingPolicy_Default()(&js_timer_clients[slot], js_start_times[slot], now);
+	js_start_times[slot].SetToZero();
+}
+
+
+
 } // namespace
+
+
 
 void GuiScriptingInit(ScriptInterface& scriptInterface)
 {
+	JSI_IGUIObject::init(scriptInterface);
+	JSI_GUITypes::init(scriptInterface);
+	
 	JSI_GameView::RegisterScriptFunctions(scriptInterface);
 	JSI_Renderer::RegisterScriptFunctions(scriptInterface);
 	JSI_Console::RegisterScriptFunctions(scriptInterface);
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
-
+	JSI_Sound::RegisterScriptFunctions(scriptInterface);
+ 
+	// VFS (external)
+	scriptInterface.RegisterFunction<CScriptVal, std::wstring, std::wstring, bool, &JSI_VFS::BuildDirEntList>("BuildDirEntList");
+	scriptInterface.RegisterFunction<bool, CStrW, JSI_VFS::FileExists>("FileExists");
+	scriptInterface.RegisterFunction<double, std::wstring, &JSI_VFS::GetFileMTime>("GetFileMTime");
+	scriptInterface.RegisterFunction<unsigned int, std::wstring, &JSI_VFS::GetFileSize>("GetFileSize");
+	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &JSI_VFS::ReadFile>("ReadFile");
+	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &JSI_VFS::ReadFileLines>("ReadFileLines");
 	// GUI manager functions:
-	scriptInterface.RegisterFunction<CScriptVal, &GetActiveGui>("GetActiveGui");
 	scriptInterface.RegisterFunction<void, std::wstring, CScriptVal, &PushGuiPage>("PushGuiPage");
 	scriptInterface.RegisterFunction<void, std::wstring, CScriptVal, &SwitchGuiPage>("SwitchGuiPage");
 	scriptInterface.RegisterFunction<void, &PopGuiPage>("PopGuiPage");
+	scriptInterface.RegisterFunction<void, CScriptVal, &PopGuiPageCB>("PopGuiPageCB");
+	scriptInterface.RegisterFunction<CScriptVal, CStr, &GetGUIObjectByName>("GetGUIObjectByName");
 
 	// Simulation<->GUI interface functions:
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, CScriptVal, &GuiInterfaceCall>("GuiInterfaceCall");
@@ -641,6 +810,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	// Network / game setup functions
 	scriptInterface.RegisterFunction<void, &StartNetworkGame>("StartNetworkGame");
 	scriptInterface.RegisterFunction<void, CScriptVal, int, &StartGame>("StartGame");
+	scriptInterface.RegisterFunction<void, &Script_EndGame>("EndGame");
 	scriptInterface.RegisterFunction<void, std::wstring, &StartNetworkHost>("StartNetworkHost");
 	scriptInterface.RegisterFunction<void, std::wstring, std::string, &StartNetworkJoin>("StartNetworkJoin");
 	scriptInterface.RegisterFunction<void, &DisconnectNetworkGame>("DisconnectNetworkGame");
@@ -654,8 +824,8 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &StartSavedGame>("StartSavedGame");
 	scriptInterface.RegisterFunction<std::vector<CScriptValRooted>, &GetSavedGames>("GetSavedGames");
 	scriptInterface.RegisterFunction<bool, std::wstring, &DeleteSavedGame>("DeleteSavedGame");
-	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &SaveGame>("SaveGame");
-	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &SaveGamePrefix>("SaveGamePrefix");
+	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, CScriptVal, &SaveGame>("SaveGame");
+	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, CScriptVal, &SaveGamePrefix>("SaveGamePrefix");
 	scriptInterface.RegisterFunction<void, &QuickSave>("QuickSave");
 	scriptInterface.RegisterFunction<void, &QuickLoad>("QuickLoad");
 
@@ -679,6 +849,11 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");
 	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
 	scriptInterface.RegisterFunction<CScriptVal, &GetProfilerState>("GetProfilerState");
+	scriptInterface.RegisterFunction<void, &ExitProgram>("Exit");
+	scriptInterface.RegisterFunction<bool, &IsPaused>("IsPaused");
+	scriptInterface.RegisterFunction<void, bool, &SetPaused>("SetPaused");
+	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
+	scriptInterface.RegisterFunction<CStr, int, &GetBuildTimestamp>("BuildTime");
 
 	// User report functions
 	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");
@@ -687,6 +862,8 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::string, int, std::wstring, &SubmitUserReport>("SubmitUserReport");
 
 	// Development/debugging functions
+	scriptInterface.RegisterFunction<void, unsigned int, &StartJsTimer>("StartXTimer");
+	scriptInterface.RegisterFunction<void, unsigned int, &StopJsTimer>("StopXTimer");
 	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");
 	scriptInterface.RegisterFunction<float, &GetSimRate>("GetSimRate");
 	scriptInterface.RegisterFunction<void, int, &SetTurnLength>("SetTurnLength");

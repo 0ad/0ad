@@ -43,8 +43,7 @@ extern int g_xres, g_yres;
 IGUIObject::IGUIObject() : 
 	m_pGUI(NULL), 
 	m_pParent(NULL),
-	m_MouseHovering(false),
-	m_JSObject(NULL)
+	m_MouseHovering(false)
 {
 	AddSetting(GUIST_bool,			"enabled");
 	AddSetting(GUIST_bool,			"hidden");
@@ -84,18 +83,6 @@ IGUIObject::~IGUIObject()
 			}
 		}
 	}
-
-	{
-		std::map<CStr, JSObject**>::iterator it;
-		for (it = m_ScriptHandlers.begin(); it != m_ScriptHandlers.end(); ++it)
-		{
-			JS_RemoveObjectRoot(g_ScriptingHost.getContext(), it->second);
-			delete it->second;
-		}
-	}
-	
-	if (m_JSObject)
-		JS_RemoveObjectRoot(g_ScriptingHost.getContext(), &m_JSObject);
 }
 
 //-------------------------------------------------------------------
@@ -429,6 +416,11 @@ float IGUIObject::GetBufferedZ() const
 
 void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI* pGUI)
 {
+	if(!GetGUI())
+		throw PSERROR_GUI_OperationNeedsGUIObject();
+		
+	JSContext* cx = pGUI->GetScriptInterface()->GetContext();
+	
 	const int paramCount = 1;
 	const char* paramNames[paramCount] = { "mouse" };
 
@@ -440,7 +432,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	char buf[64];
 	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d (%s)", x++, Action.c_str());
 
-	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), pGUI->m_ScriptObject,
+	JSFunction* func = JS_CompileFunction(cx, JSVAL_TO_OBJECT(pGUI->GetGlobalObject()),
 		buf, paramCount, paramNames, Code.c_str(), Code.length(), CodeName.c_str(), 0);
 
 	if (!func)
@@ -451,16 +443,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 void IGUIObject::SetScriptHandler(const CStr& Action, JSObject* Function)
 {
-	JSObject** obj = new JSObject*;
-	*obj = Function;
-	JS_AddObjectRoot(g_ScriptingHost.getContext(), obj);
-
-	if (m_ScriptHandlers[Action])
-	{
-		JS_RemoveObjectRoot(g_ScriptingHost.getContext(), m_ScriptHandlers[Action]);
-		delete m_ScriptHandlers[Action];
-	}
-	m_ScriptHandlers[Action] = obj;
+	m_ScriptHandlers[Action] = CScriptValRooted(m_pGUI->GetScriptInterface()->GetContext(), OBJECT_TO_JSVAL(Function));
 }
 
 InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
@@ -479,21 +462,23 @@ InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
 
 void IGUIObject::ScriptEvent(const CStr& Action)
 {
-	std::map<CStr, JSObject**>::iterator it = m_ScriptHandlers.find(Action);
+	std::map<CStr, CScriptValRooted>::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
+	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
+
 	// Set up the 'mouse' parameter
 	CScriptVal mouse;
-	g_ScriptingHost.GetScriptInterface().Eval("({})", mouse);
-	g_ScriptingHost.GetScriptInterface().SetProperty(mouse.get(), "x", m_pGUI->m_MousePos.x, false);
-	g_ScriptingHost.GetScriptInterface().SetProperty(mouse.get(), "y", m_pGUI->m_MousePos.y, false);
-	g_ScriptingHost.GetScriptInterface().SetProperty(mouse.get(), "buttons", m_pGUI->m_MouseButtons, false);
+	m_pGUI->GetScriptInterface()->Eval("({})", mouse);
+	m_pGUI->GetScriptInterface()->SetProperty(mouse.get(), "x", m_pGUI->m_MousePos.x, false);
+	m_pGUI->GetScriptInterface()->SetProperty(mouse.get(), "y", m_pGUI->m_MousePos.y, false);
+	m_pGUI->GetScriptInterface()->SetProperty(mouse.get(), "buttons", m_pGUI->m_MouseButtons, false);
 
 	jsval paramData[] = { mouse.get() };
 
 	jsval result;
-	JSBool ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), GetJSObject(), OBJECT_TO_JSVAL(*it->second), ARRAY_SIZE(paramData), paramData, &result);
+	JSBool ok = JS_CallFunctionValue(cx, GetJSObject(), (*it).second.get(), ARRAY_SIZE(paramData), paramData, &result);
 	if (!ok)
 	{
 		// We have no way to propagate the script exception, so just ignore it
@@ -503,7 +488,8 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 
 void IGUIObject::ScriptEvent(const CStr& Action, const CScriptValRooted& Argument)
 {
-	std::map<CStr, JSObject**>::iterator it = m_ScriptHandlers.find(Action);
+	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
+	std::map<CStr, CScriptValRooted>::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
@@ -512,25 +498,26 @@ void IGUIObject::ScriptEvent(const CStr& Action, const CScriptValRooted& Argumen
 	jsval arg = Argument.get();
 
 	jsval result;
-	JSBool ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), object, OBJECT_TO_JSVAL(*it->second), 1, &arg, &result);
+	JSBool ok = JS_CallFunctionValue(cx, object, (*it).second.get(), 1, &arg, &result);
 	if (!ok)
 	{
-		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%s\"", Action.c_str());
+		JS_ReportError(cx, "Errors executing script action \"%s\"", Action.c_str());
 	}
 }
 
 JSObject* IGUIObject::GetJSObject()
 {
+	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
 	// Cache the object when somebody first asks for it, because otherwise
 	// we end up doing far too much object allocation. TODO: Would be nice to
 	// not have these objects hang around forever using up memory, though.
-	if (! m_JSObject)
+	if (m_JSObject.uninitialised())
 	{
-		m_JSObject = JS_NewObject(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, NULL, NULL);
-		JS_AddObjectRoot(g_ScriptingHost.getContext(), &m_JSObject);
-		JS_SetPrivate(g_ScriptingHost.getContext(), m_JSObject, this);
+		JSObject* obj = JS_NewObject(cx, &JSI_IGUIObject::JSI_class, NULL, NULL);
+		m_JSObject = CScriptValRooted(cx, OBJECT_TO_JSVAL(obj));
+		JS_SetPrivate(cx, JSVAL_TO_OBJECT(m_JSObject.get()), this);
 	}
-	return m_JSObject;
+	return JSVAL_TO_OBJECT(m_JSObject.get());;
 }
 
 CStr IGUIObject::GetPresentableName() const

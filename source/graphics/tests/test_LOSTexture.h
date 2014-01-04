@@ -19,6 +19,7 @@
 
 #include "graphics/LOSTexture.h"
 #include "lib/timer.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
 class TestLOSTexture : public CxxTest::TestSuite
@@ -26,7 +27,7 @@ class TestLOSTexture : public CxxTest::TestSuite
 public:
 	void test_basic()
 	{
-		CSimulation2 sim(NULL, NULL);
+		CSimulation2 sim(NULL, ScriptInterface::CreateRuntime(), NULL);
 		CLOSTexture tex(sim);
 
 		const ssize_t size = 8;
@@ -60,7 +61,7 @@ public:
 
 	void test_perf_DISABLED()
 	{
-		CSimulation2 sim(NULL, NULL);
+		CSimulation2 sim(NULL, ScriptInterface::CreateRuntime(), NULL);
 		CLOSTexture tex(sim);
 
 		const ssize_t size = 257;

@@ -9,7 +9,7 @@ function init()
 
 function lobbyStop()
 {
-	getGUIObjectByName("feedback").caption = "";
+	Engine.GetGUIObjectByName("feedback").caption = "";
 
 	if (g_LobbyIsConnecting == false)
 		return;
@@ -26,9 +26,9 @@ function lobbyStart()
 	if (Engine.HasXmppClient())
 		Engine.StopXmppClient();
 
-	var username = getGUIObjectByName("connectUsername").caption;
-	var password = getGUIObjectByName("connectPassword").caption;
-	var feedback = getGUIObjectByName("feedback");
+	var username = Engine.GetGUIObjectByName("connectUsername").caption;
+	var password = Engine.GetGUIObjectByName("connectPassword").caption;
+	var feedback = Engine.GetGUIObjectByName("feedback");
 	var room = Engine.ConfigDB_GetValue("user", "lobby.room");
 
 	feedback.caption = "Connecting....";
@@ -49,17 +49,17 @@ function lobbyStartRegister()
 	if (Engine.HasXmppClient())
 		Engine.StopXmppClient();
 
-	var account = getGUIObjectByName("connectUsername").caption;
-	var password = getGUIObjectByName("connectPassword").caption;
-	var passwordAgain = getGUIObjectByName("registerPasswordAgain").caption;
-	var feedback = getGUIObjectByName("feedback");
+	var account = Engine.GetGUIObjectByName("connectUsername").caption;
+	var password = Engine.GetGUIObjectByName("connectPassword").caption;
+	var passwordAgain = Engine.GetGUIObjectByName("registerPasswordAgain").caption;
+	var feedback = Engine.GetGUIObjectByName("feedback");
 
 	// Check the passwords match.
 	if (password != passwordAgain)
 	{
 		feedback.caption = "Passwords do not match";
-		getGUIObjectByName("connectPassword").caption = "";
-		getGUIObjectByName("registerPasswordAgain").caption = "";
+		Engine.GetGUIObjectByName("connectPassword").caption = "";
+		Engine.GetGUIObjectByName("registerPasswordAgain").caption = "";
 		switchRegister();
 		return;
 	}
@@ -74,31 +74,31 @@ function lobbyStartRegister()
 
 function switchRegister()
 {
-	if (getGUIObjectByName("pageRegister").hidden)
+	if (Engine.GetGUIObjectByName("pageRegister").hidden)
 	{
 		lobbyStop();
-		getGUIObjectByName("pageRegister").hidden = false;
-		getGUIObjectByName("pageConnect").hidden = true;
-		getGUIObjectByName("connect").enabled = false;
+		Engine.GetGUIObjectByName("pageRegister").hidden = false;
+		Engine.GetGUIObjectByName("pageConnect").hidden = true;
+		Engine.GetGUIObjectByName("connect").enabled = false;
 	}
 	else
 	{
-		getGUIObjectByName("pageRegister").hidden = true;
-		getGUIObjectByName("pageConnect").hidden = false;
-		getGUIObjectByName("connect").enabled = true;
+		Engine.GetGUIObjectByName("pageRegister").hidden = true;
+		Engine.GetGUIObjectByName("pageConnect").hidden = false;
+		Engine.GetGUIObjectByName("connect").enabled = true;
 	}
 }
 
 function onTick()
 {
 	//
-	var username = getGUIObjectByName("connectUsername").caption;
-	var password = getGUIObjectByName("connectPassword").caption;
-	var passwordAgain = getGUIObjectByName("registerPasswordAgain").caption;
-	var feedback = getGUIObjectByName("feedback");
-	var pageRegisterHidden = getGUIObjectByName("pageRegister").hidden;
-	var connectButton = getGUIObjectByName("connect");
-	var registerButton = getGUIObjectByName("register"); 
+	var username = Engine.GetGUIObjectByName("connectUsername").caption;
+	var password = Engine.GetGUIObjectByName("connectPassword").caption;
+	var passwordAgain = Engine.GetGUIObjectByName("registerPasswordAgain").caption;
+	var feedback = Engine.GetGUIObjectByName("feedback");
+	var pageRegisterHidden = Engine.GetGUIObjectByName("pageRegister").hidden;
+	var connectButton = Engine.GetGUIObjectByName("connect");
+	var registerButton = Engine.GetGUIObjectByName("register"); 
 	var sanitizedName = sanitizePlayerName(username, true, true)
 	// If there aren't a username and password entered, we can't start registration or connection.
 	if (!username || !password)

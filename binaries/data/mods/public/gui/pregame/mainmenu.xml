@@ -446,7 +446,7 @@ Status: $status.
 						closeMenu();
 						<![CDATA[
 							var btCaptions = ["Yes", "No"];
-							var btCode = [exit, null];
+							var btCode = [Engine.Exit, null]
 							messageBox(400, 200, "Are you sure you want to quit 0 A.D.?", "Confirmation", 0, btCaptions, btCode);
 						]]>
 					</action>
@@ -549,7 +549,7 @@ Get involved at: play0ad.com
 				size="50%-128 100%-36 50%+128 100%"
 			>
 				<action on="Load"><![CDATA[
-					this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);
+					this.caption = "Build: " + Engine.BuildTime(0) + " - " + Engine.BuildTime(2);
 				]]></action>
 			</object>
 		</object>

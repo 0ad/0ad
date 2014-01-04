@@ -82,6 +82,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	AT(offsetz);
 	AT(minheight);
 	AT(maxheight);
+	AT(selectable);
 	#undef AT
 	#undef EL
 
@@ -252,6 +253,8 @@ bool CObjectBase::Load(const VfsPath& pathname)
 									prop.m_minHeight = pe.Value.ToFloat();
 								else if (pe.Name == at_maxheight)
 									prop.m_maxHeight = pe.Value.ToFloat();
+								else if (pe.Name == at_selectable)
+									prop.m_selectable = pe.Value != "false";
 							}
 							currentVariant->m_Props.push_back(prop);
 						}

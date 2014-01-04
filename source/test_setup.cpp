@@ -116,7 +116,7 @@ OsPath DataDir()
 
 namespace
 {
-	void script_TS_FAIL(void*, std::wstring msg)
+	void script_TS_FAIL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring msg)
 	{
 		TS_FAIL(msg);
 	}

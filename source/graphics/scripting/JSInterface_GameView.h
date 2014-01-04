@@ -20,11 +20,11 @@
 #define INCLUDED_JSINTERFACE_GAMEVIEW
 
 #include "ps/CStr.h"
-class ScriptInterface;
+#include "scriptinterface/ScriptInterface.h"
 
 #define DECLARE_BOOLEAN_SCRIPT_SETTING(NAME) \
-	bool Get##NAME##Enabled(void* cbdata); \
-	void Set##NAME##Enabled(void* cbdata, bool Enabled);
+	bool Get##NAME##Enabled(ScriptInterface::CxPrivate* pCxPrivate); \
+	void Set##NAME##Enabled(ScriptInterface::CxPrivate* pCxPrivate, bool Enabled);
 
 namespace JSI_GameView
 {

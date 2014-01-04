@@ -19,9 +19,10 @@
 
 #include <sstream>
 
+#include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
-#include "scripting/ScriptingHost.h"
+#include "scriptinterface/ScriptVal.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "lib/file/vfs/vfs_util.h"
@@ -31,13 +32,11 @@
 	/* this is liable to happen often, so don't complain */\
 	if (err == ERR::VFS_FILE_NOT_FOUND)\
 	{\
-		JS_SET_RVAL(cx, vp, JSVAL_NULL);\
-		return JS_TRUE;\
+		return 0; \
 	}\
-	/* unknown failure. we return an error (akin to an exception in JS) that
-	   stops the script to make sure this error is noticed. */\
+	/* unknown failure. We output an error message. */\
 	else if (err < 0)\
-		return JS_FALSE;\
+		LOGERROR(L"Unknown failure in VFS %i", err );
 	/* else: success */
 
 
@@ -85,61 +84,30 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 //
 // note: full pathnames of each file/subdirectory are returned,
 // ready for use as a "filename" for the other functions.
-JSBool JSI_VFS::BuildDirEntList(JSContext* cx, uintN argc, jsval* vp)
+CScriptVal JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, std::wstring path, std::wstring filterStr, bool recurse)
 {
-	//
-	// get arguments
-	//
-
-	JSU_REQUIRE_PARAM_RANGE(1, 3);
-
-	CStrW path;
-	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], path))
-		return JS_FALSE;
-
-	CStrW filter_str = L"";
-	if (argc >= 2)
-	{
-		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[1], filter_str))
-			return JS_FALSE;
-	}
 	// convert to const wchar_t*; if there's no filter, pass 0 for speed
 	// (interpreted as: "accept all files without comparing").
 	const wchar_t* filter = 0;
-	if (!filter_str.empty())
-		filter = filter_str.c_str();
-
-	bool recursive = false;
-	if (argc >= 3)
-	{
-		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[2], recursive))
-			return JS_FALSE;
-	}
-	int flags = recursive ? vfs::DIR_RECURSIVE : 0;
-
+	if (!filterStr.empty())
+		filter = filterStr.c_str();
+ 
+	int flags = recurse ? vfs::DIR_RECURSIVE : 0;
 
 	// build array in the callback function
-	BuildDirEntListState state(cx);
+	BuildDirEntListState state(pCxPrivate->pScriptInterface->GetContext());
 	vfs::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
-	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(state.filename_array));
-	return JS_TRUE;
+	return OBJECT_TO_JSVAL(state.filename_array);
 }
 
 // Return true iff the file exits
 //
 // if (fileExists(filename)) { ... }
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::FileExists(JSContext* cx, uintN argc, jsval* vp)
+bool JSI_VFS::FileExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW filename)
 {
-	JSU_REQUIRE_PARAMS(1);
-
-	CStrW filename;
-	if (!ScriptInterface::FromJSVal<CStrW> (cx, JS_ARGV(cx, vp)[0], filename))
-		return JS_FALSE;
-
-	JS_SET_RVAL(cx, vp, g_VFS->GetFileInfo(filename, 0) == INFO::OK ? JSVAL_TRUE : JSVAL_FALSE);
-	return JS_TRUE;
+	return (g_VFS->GetFileInfo(filename, 0) == INFO::OK);
 }
 
 
@@ -147,20 +115,13 @@ JSBool JSI_VFS::FileExists(JSContext* cx, uintN argc, jsval* vp)
 //
 // mtime = getFileMTime(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::GetFileMTime(JSContext* cx, uintN argc, jsval* vp)
+double JSI_VFS::GetFileMTime(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring filename)
 {
-	JSU_REQUIRE_PARAMS(1);
-
-	CStrW filename;
-	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))
-		return JS_FALSE;
-
 	CFileInfo fileInfo;
 	Status err = g_VFS->GetFileInfo(filename, &fileInfo);
 	JS_CHECK_FILE_ERR(err);
 
-	JS_SET_RVAL(cx, vp, ScriptInterface::ToJSVal(cx, (double)fileInfo.MTime()));
-	return JS_TRUE;
+	return (double)fileInfo.MTime();
 }
 
 
@@ -168,20 +129,13 @@ JSBool JSI_VFS::GetFileMTime(JSContext* cx, uintN argc, jsval* vp)
 //
 // size = getFileSize(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::GetFileSize(JSContext* cx, uintN argc, jsval* vp)
+unsigned int JSI_VFS::GetFileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring filename)
 {
-	JSU_REQUIRE_PARAMS(1);
-
-	CStrW filename;
-	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))
-		return JS_FALSE;
-
 	CFileInfo fileInfo;
 	Status err = g_VFS->GetFileInfo(filename, &fileInfo);
 	JS_CHECK_FILE_ERR(err);
 
-	JS_SET_RVAL(cx, vp, ScriptInterface::ToJSVal(cx, (unsigned)fileInfo.Size()));
-	return JS_TRUE;
+	return (unsigned int)fileInfo.Size();
 }
 
 
@@ -189,23 +143,11 @@ JSBool JSI_VFS::GetFileSize(JSContext* cx, uintN argc, jsval* vp)
 //
 // contents = readFile(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::ReadFile(JSContext* cx, uintN argc, jsval* vp)
+CScriptVal JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename)
 {
-	JSU_REQUIRE_PARAMS(1);
-
-	CStrW filename;
-	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))
-		return JS_FALSE;
-
-	//
-	// read file
-	//
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
-	{
-		JS_SET_RVAL(cx, vp, JSVAL_NULL);
-		return JS_TRUE;
-	}
+		return JSVAL_NULL;
 
 	CStr contents = file.DecodeUTF8(); // assume it's UTF-8
 
@@ -213,8 +155,7 @@ JSBool JSI_VFS::ReadFile(JSContext* cx, uintN argc, jsval* vp)
 	contents.Replace("\r\n", "\n");
 
 	// Decode as UTF-8
-	JS_SET_RVAL(cx, vp, ScriptInterface::ToJSVal(cx, contents.FromUTF8()));
-	return JS_TRUE;
+	return ScriptInterface::ToJSVal( pCxPrivate->pScriptInterface->GetContext(), contents.FromUTF8() );
 }
 
 
@@ -222,23 +163,14 @@ JSBool JSI_VFS::ReadFile(JSContext* cx, uintN argc, jsval* vp)
 //
 // lines = readFileLines(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::ReadFileLines(JSContext* cx, uintN argc, jsval* vp)
+CScriptVal JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename)
 {
-	JSU_REQUIRE_PARAMS(1);
-
-	CStrW filename;
-	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], filename))
-		return (JS_FALSE);
-
 	//
 	// read file
 	//
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
-	{
-		JS_SET_RVAL(cx, vp, JSVAL_NULL);
-		return JS_TRUE;
-	}
+		return JSVAL_NULL;
 
 	CStr contents = file.DecodeUTF8(); // assume it's UTF-8
 
@@ -251,6 +183,7 @@ JSBool JSI_VFS::ReadFileLines(JSContext* cx, uintN argc, jsval* vp)
 
 	std::stringstream ss(contents);
 
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSObject* line_array = JS_NewArrayObject(cx, 0, NULL);
 
 	std::string line;
@@ -262,6 +195,5 @@ JSBool JSI_VFS::ReadFileLines(JSContext* cx, uintN argc, jsval* vp)
 		JS_SetElement(cx, line_array, cur_line++, &val);
 	}
 
-	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL( line_array ));
-	return JS_TRUE ;
+	return OBJECT_TO_JSVAL( line_array );
 }

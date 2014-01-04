@@ -7,7 +7,7 @@
 function cancelOnError(msg)
 {
 	// Delete game objects
-	endGame();
+	Engine.EndGame();
 	
 	// Return to pregame
 	Engine.SwitchGuiPage("page_pregame.xml");
@@ -25,5 +25,5 @@ function cancelOnError(msg)
 	}
 	
 	// Reset cursor
-	setCursor("arrow-default");
+	Engine.SetCursor("arrow-default");
 }

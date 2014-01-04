@@ -78,7 +78,7 @@ private:
 	};
 
 public:
-	CComponentManager(CSimContext&, bool skipScriptFunctions = false);
+	CComponentManager(CSimContext&, shared_ptr<ScriptRuntime> rt, bool skipScriptFunctions = false);
 	~CComponentManager();
 
 	void LoadComponentTypes();
@@ -242,23 +242,22 @@ public:
 
 private:
 	// Implementations of functions exposed to scripts
-	static void Script_RegisterComponentType(void* cbdata, int iid, std::string cname, CScriptVal ctor);
-	static void Script_RegisterInterface(void* cbdata, std::string name);
-	static void Script_RegisterMessageType(void* cbdata, std::string name);
-	static void Script_RegisterGlobal(void* cbdata, std::string name, CScriptVal value);
-	static IComponent* Script_QueryInterface(void* cbdata, int ent, int iid);
-	static std::vector<int> Script_GetEntitiesWithInterface(void* cbdata, int iid);
-	static std::vector<IComponent*> Script_GetComponentsWithInterface(void* cbdata, int iid);
-	static void Script_PostMessage(void* cbdata, int ent, int mtid, CScriptVal data);
-	static void Script_BroadcastMessage(void* cbdata, int mtid, CScriptVal data);
-	static int Script_AddEntity(void* cbdata, std::string templateName);
-	static int Script_AddLocalEntity(void* cbdata, std::string templateName);
-	static void Script_DestroyEntity(void* cbdata, int ent);
-	static CScriptVal Script_ReadJSONFile(void* cbdata, std::wstring fileName);
-	static CScriptVal Script_ReadCivJSONFile(void* cbdata, std::wstring fileName);
-	static std::vector<std::string> Script_FindJSONFiles(void* cbdata, std::wstring subPath, bool recursive);
-
-	static CScriptVal ReadJSONFile(void *cbdata, std::wstring filePath, std::wstring fileName);
+	static void Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor);
+	static void Script_RegisterInterface(ScriptInterface::CxPrivate* pCxPrivate, std::string name);
+	static void Script_RegisterMessageType(ScriptInterface::CxPrivate* pCxPrivate, std::string name);
+	static void Script_RegisterGlobal(ScriptInterface::CxPrivate* pCxPrivate, std::string name, CScriptVal value);
+	static IComponent* Script_QueryInterface(ScriptInterface::CxPrivate* pCxPrivate, int ent, int iid);
+	static std::vector<int> Script_GetEntitiesWithInterface(ScriptInterface::CxPrivate* pCxPrivate, int iid);
+	static std::vector<IComponent*> Script_GetComponentsWithInterface(ScriptInterface::CxPrivate* pCxPrivate, int iid);
+	static void Script_PostMessage(ScriptInterface::CxPrivate* pCxPrivate, int ent, int mtid, CScriptVal data);
+	static void Script_BroadcastMessage(ScriptInterface::CxPrivate* pCxPrivate, int mtid, CScriptVal data);
+	static int Script_AddEntity(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName);
+	static int Script_AddLocalEntity(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName);
+	static void Script_DestroyEntity(ScriptInterface::CxPrivate* pCxPrivate, int ent);
+	static CScriptVal Script_ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName);
+	static CScriptVal Script_ReadCivJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName);
+	static std::vector<std::string> Script_FindJSONFiles(ScriptInterface::CxPrivate* pCxPrivate, std::wstring subPath, bool recursive);
+	static CScriptVal ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath, std::wstring fileName);
 	
 	// callback function to handle recursively finding files in a directory
 	static Status FindJSONFilesCallback(const VfsPath&, const CFileInfo&, const uintptr_t);
