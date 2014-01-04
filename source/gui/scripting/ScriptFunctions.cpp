@@ -86,9 +86,10 @@ namespace {
 // Note that the initData argument may only contain clonable data.
 // Functions aren't supported for example!
 // TODO: Use LOGERROR to print a friendly error message when the requirements aren't met instead of failing with debug_warn when cloning.
-void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData)
+void PushGuiPage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring name, CScriptVal initData)
 {
-	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData.get()));
+	// TODO: we currently use the ScriptInterface of g_GUI. Check the comment in CGUIManager::SwitchPage for a detailed explanation.	
+	g_GUI->PushPage(name, g_GUI->GetScriptInterface()->WriteStructuredClone(initData.get()));
 }
 
 void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData)
