@@ -270,15 +270,17 @@ public:
 		return true;
 	}
 	
-	static void IncludeModule(void* cbdata, std::wstring name)
+	static void IncludeModule(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name)
 	{
-		CAIWorker* self = static_cast<CAIWorker*> (cbdata);
+		ENSURE(pCxPrivate->pCBData);
+		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
 		self->LoadScripts(name);
 	}
 
-	static void PostCommand(void* cbdata, int playerid, CScriptValRooted cmd)
+	static void PostCommand(ScriptInterface::CxPrivate* pCxPrivate, int playerid, CScriptValRooted cmd)
 	{
-		CAIWorker* self = static_cast<CAIWorker*> (cbdata);
+		ENSURE(pCxPrivate->pCBData);
+		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
 		self->PostCommand(playerid, cmd);
 	}
 	
@@ -296,30 +298,20 @@ public:
 		LOGERROR(L"Invalid playerid in PostCommand!");	
 	}
 	// The next two ought to be implmeneted someday but for now as it returns "null" it can't
-	static void DumpHeap(void* cbdata)
+	static void DumpHeap(ScriptInterface::CxPrivate* pCxPrivate)
 	{
-		if (cbdata == NULL) {
-			debug_warn(L"Warning: the shared component has asked for DumpHeap. Ignoring.");
-			return;
-		}
-		CAIWorker* self = static_cast<CAIWorker*> (cbdata);
-		self->m_ScriptInterface->DumpHeap();
+		pCxPrivate->pScriptInterface->DumpHeap();
 	}
-	static void ForceGC(void* cbdata)
+	static void ForceGC(ScriptInterface::CxPrivate* pCxPrivate)
 	{
-		if (cbdata == NULL) {
-			debug_warn(L"Warning: the shared component has asked for ForceGC. Ignoring.");
-			return;
-		}
-		CAIWorker* self = static_cast<CAIWorker*> (cbdata);
 		PROFILE3("AI compute GC");
-		JS_GC(self->m_ScriptInterface->GetContext());
+		JS_GC(pCxPrivate->pScriptInterface->GetContext());
 	}
 	
 	/**
 	 * Debug function for AI scripts to dump 2D array data (e.g. terrain tile weights).
 	 */
-	static void DumpImage(void* UNUSED(cbdata), std::wstring name, std::vector<u32> data, u32 w, u32 h, u32 max)
+	static void DumpImage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring name, std::vector<u32> data, u32 w, u32 h, u32 max)
 	{
 		// TODO: this is totally not threadsafe.
 		VfsPath filename = L"screenshots/aidump/" + name;
@@ -763,7 +755,7 @@ private:
 		}
 
 		// Run GC if we are about to overflow
-		if (JS_GetGCParameter(m_ScriptInterface->GetRuntime(), JSGC_BYTES) > 33000000)
+		if (JS_GetGCParameter(m_ScriptInterface->GetJSRuntime(), JSGC_BYTES) > 33000000)
 		{
 			PROFILE3("AI compute GC");
 

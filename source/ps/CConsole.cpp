@@ -28,6 +28,7 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "gui/GUIutil.h"
+#include "gui/GUIManager.h"
 #include "lib/ogl.h"
 #include "lib/sysdep/clipboard.h"
 #include "lib/timer.h"
@@ -40,7 +41,6 @@
 #include "ps/Hotkey.h"
 #include "ps/Pyrogenesis.h"
 #include "renderer/Renderer.h"
-#include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 
 CConsole* g_Console = 0;
@@ -603,10 +603,11 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 	               // a crash it's a useful record.
 
 	// Process it as JavaScript
-
-	jsval rval = g_ScriptingHost.ExecuteScript(szLine, L"Console");
-	if (!JSVAL_IS_VOID(rval))
-		InsertMessage(L"%ls", g_ScriptingHost.GetScriptInterface().ToString(rval).c_str());
+	
+	CScriptVal rval;
+	g_GUI->GetActiveGUI()->GetScriptInterface()->Eval(szLine, rval);
+	if (!rval.undefined())
+		InsertMessage(L"%ls", g_GUI->GetActiveGUI()->GetScriptInterface()->ToString(rval.get()).c_str());
 }
 
 void CConsole::LoadHistory()

@@ -88,7 +88,7 @@ function init(attribs)
 		g_ServerName = attribs.serverName;
 
 	// Init the Cancel Button caption and tooltip
-	var cancelButton = getGUIObjectByName("cancelGame");
+	var cancelButton = Engine.GetGUIObjectByName("cancelGame");
 	if(!Engine.HasXmppClient())
 	{
 		cancelButton.tooltip = "Return to the main menu."
@@ -124,7 +124,7 @@ function initMain()
 	initCivNameList();
 
 	// Init map types
-	var mapTypes = getGUIObjectByName("mapTypeSelection");
+	var mapTypes = Engine.GetGUIObjectByName("mapTypeSelection");
 	mapTypes.list = ["Skirmish","Random","Scenario"];
 	mapTypes.list_data = ["skirmish","random","scenario"];
 
@@ -135,7 +135,7 @@ function initMain()
 	addFilter("All Maps", function(settings) { return true; });
 
 	// Populate map filters dropdown
-	var mapFilters = getGUIObjectByName("mapFilterSelection");
+	var mapFilters = Engine.GetGUIObjectByName("mapFilterSelection");
 	mapFilters.list = getFilters();
 	g_GameAttributes.mapFilter = "Default";
 
@@ -151,7 +151,7 @@ function initMain()
 
 		initMapNameList();
 
-		var numPlayersSelection = getGUIObjectByName("numPlayersSelection");
+		var numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
 		var players = [];
 		for (var i = 1; i <= MAX_PLAYERS; ++i)
 			players.push(i);
@@ -159,9 +159,9 @@ function initMain()
 		numPlayersSelection.list_data = players;
 		numPlayersSelection.selected = MAX_PLAYERS - 1;
 
-		var gameSpeed = getGUIObjectByName("gameSpeed");
+		var gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 		gameSpeed.hidden = false;
-		getGUIObjectByName("gameSpeedText").hidden = true;
+		Engine.GetGUIObjectByName("gameSpeedText").hidden = true;
 		gameSpeed.list = g_GameSpeeds.names;
 		gameSpeed.list_data = g_GameSpeeds.speeds;
 		gameSpeed.onSelectionChange = function()
@@ -175,7 +175,7 @@ function initMain()
 		}
 		gameSpeed.selected = g_GameSpeeds["default"];
 
-		var populationCaps = getGUIObjectByName("populationCap");
+		var populationCaps = Engine.GetGUIObjectByName("populationCap");
 		populationCaps.list = POPULATION_CAP;
 		populationCaps.list_data = POPULATION_CAP_DATA;
 		populationCaps.selected = POPULATION_CAP_DEFAULTIDX;
@@ -188,7 +188,7 @@ function initMain()
 				updateGameAttributes();
 		}
 
-		var startingResourcesL = getGUIObjectByName("startingResources");
+		var startingResourcesL = Engine.GetGUIObjectByName("startingResources");
 		startingResourcesL.list = STARTING_RESOURCES;
 		startingResourcesL.list_data = STARTING_RESOURCES_DATA;
 		startingResourcesL.selected = STARTING_RESOURCES_DEFAULTIDX;
@@ -201,7 +201,7 @@ function initMain()
 				updateGameAttributes();
 		}
 
-		var victoryConditions = getGUIObjectByName("victoryCondition");
+		var victoryConditions = Engine.GetGUIObjectByName("victoryCondition");
 		victoryConditions.list = VICTORY_TEXT;
 		victoryConditions.list_data = VICTORY_DATA;
 		victoryConditions.onSelectionChange = function()
@@ -214,7 +214,7 @@ function initMain()
 		};
 		victoryConditions.selected = VICTORY_DEFAULTIDX;
 
-		var mapSize = getGUIObjectByName("mapSize");
+		var mapSize = Engine.GetGUIObjectByName("mapSize");
 		mapSize.list = g_MapSizes.names;
 		mapSize.list_data = g_MapSizes.tiles;
 		mapSize.onSelectionChange = function()
@@ -227,7 +227,7 @@ function initMain()
 		};
 		mapSize.selected = 0;
 
-		getGUIObjectByName("revealMap").onPress = function()
+		Engine.GetGUIObjectByName("revealMap").onPress = function()
 		{	// Update attributes so other players can see change
 			g_GameAttributes.settings.RevealMap = this.checked;
 
@@ -235,7 +235,7 @@ function initMain()
 				updateGameAttributes();
 		};
 
-		getGUIObjectByName("lockTeams").onPress = function()
+		Engine.GetGUIObjectByName("lockTeams").onPress = function()
 		{	// Update attributes so other players can see change
 			g_GameAttributes.settings.LockTeams = this.checked;
 
@@ -243,7 +243,7 @@ function initMain()
 				updateGameAttributes();
 		};
 
-		getGUIObjectByName("enableCheats").onPress = function()
+		Engine.GetGUIObjectByName("enableCheats").onPress = function()
 		{	// Update attributes so other players can see change
 			g_GameAttributes.settings.CheatsEnabled = this.checked;
 
@@ -255,45 +255,45 @@ function initMain()
 	{
 		// If we're a network client, disable all the map controls
 		// TODO: make them look visually disabled so it's obvious why they don't work
-		getGUIObjectByName("mapTypeSelection").hidden = true;
-		getGUIObjectByName("mapTypeText").hidden = false;
-		getGUIObjectByName("mapFilterSelection").hidden = true;
-		getGUIObjectByName("mapFilterText").hidden = false;
-		getGUIObjectByName("mapSelectionText").hidden = false;
-		getGUIObjectByName("mapSelection").hidden = true;
-		getGUIObjectByName("victoryConditionText").hidden = false;
-		getGUIObjectByName("victoryCondition").hidden = true;
-		getGUIObjectByName("gameSpeedText").hidden = false;
-		getGUIObjectByName("gameSpeed").hidden = true;
+		Engine.GetGUIObjectByName("mapTypeSelection").hidden = true;
+		Engine.GetGUIObjectByName("mapTypeText").hidden = false;
+		Engine.GetGUIObjectByName("mapFilterSelection").hidden = true;
+		Engine.GetGUIObjectByName("mapFilterText").hidden = false;
+		Engine.GetGUIObjectByName("mapSelectionText").hidden = false;
+		Engine.GetGUIObjectByName("mapSelection").hidden = true;
+		Engine.GetGUIObjectByName("victoryConditionText").hidden = false;
+		Engine.GetGUIObjectByName("victoryCondition").hidden = true;
+		Engine.GetGUIObjectByName("gameSpeedText").hidden = false;
+		Engine.GetGUIObjectByName("gameSpeed").hidden = true;
 
 		// Disable player and game options controls
 		// TODO: Shouldn't players be able to choose their own assignment?
 		for (var i = 0; i < MAX_PLAYERS; ++i)
 		{
-			getGUIObjectByName("playerAssignment["+i+"]").enabled = false;
-			getGUIObjectByName("playerCiv["+i+"]").hidden = true;
-			getGUIObjectByName("playerTeam["+i+"]").hidden = true;
+			Engine.GetGUIObjectByName("playerAssignment["+i+"]").enabled = false;
+			Engine.GetGUIObjectByName("playerCiv["+i+"]").hidden = true;
+			Engine.GetGUIObjectByName("playerTeam["+i+"]").hidden = true;
 		}
 
-		getGUIObjectByName("numPlayersSelection").hidden = true;
+		Engine.GetGUIObjectByName("numPlayersSelection").hidden = true;
 	}
 
 	// Set up multiplayer/singleplayer bits:
 	if (!g_IsNetworked)
 	{
-		getGUIObjectByName("chatPanel").hidden = true;
-		getGUIObjectByName("enableCheats").checked = true;
+		Engine.GetGUIObjectByName("chatPanel").hidden = true;
+		Engine.GetGUIObjectByName("enableCheats").checked = true;
 		g_GameAttributes.settings.CheatsEnabled = true;
 	}
 	else
 	{
-		getGUIObjectByName("enableCheatsDesc").hidden = false;
-		getGUIObjectByName("enableCheats").checked = false;
+		Engine.GetGUIObjectByName("enableCheatsDesc").hidden = false;
+		Engine.GetGUIObjectByName("enableCheats").checked = false;
 		g_GameAttributes.settings.CheatsEnabled = false;
 		if (g_IsController)
-			getGUIObjectByName("enableCheats").hidden = false;
+			Engine.GetGUIObjectByName("enableCheats").hidden = false;
 		else
-			getGUIObjectByName("enableCheatsText").hidden = false;
+			Engine.GetGUIObjectByName("enableCheatsText").hidden = false;
 	}
 
 	// Settings for all possible player slots
@@ -301,7 +301,7 @@ function initMain()
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
 		// Space player boxes
-		var box = getGUIObjectByName("playerBox["+i+"]");
+		var box = Engine.GetGUIObjectByName("playerBox["+i+"]");
 		var boxSize = box.size;
 		var h = boxSize.bottom - boxSize.top;
 		boxSize.top = i * boxSpacing;
@@ -309,7 +309,7 @@ function initMain()
 		box.size = boxSize;
 
 		// Populate team dropdowns
-		var team = getGUIObjectByName("playerTeam["+i+"]");
+		var team = Engine.GetGUIObjectByName("playerTeam["+i+"]");
 		team.list = ["None", "1", "2", "3", "4"];
 		team.list_data = [-1, 0, 1, 2, 3];
 		team.selected = 0;
@@ -325,7 +325,7 @@ function initMain()
 		};
 
 		// Set events
-		var civ = getGUIObjectByName("playerCiv["+i+"]");
+		var civ = Engine.GetGUIObjectByName("playerCiv["+i+"]");
 		civ.onSelectionChange = function()
 		{	// Update civ
 			if ((this.selected != -1)&&(g_GameAttributes.mapType !== "scenario"))
@@ -339,13 +339,13 @@ function initMain()
 	if (g_IsNetworked)
 	{
 		// For multiplayer, focus the chat input box by default
-		getGUIObjectByName("chatInput").focus();
+		Engine.GetGUIObjectByName("chatInput").focus();
 	}
 	else
 	{
 		// For single-player, focus the map list by default,
 		// to allow easy keyboard selection of maps
-		getGUIObjectByName("mapSelection").focus();
+		Engine.GetGUIObjectByName("mapSelection").focus();
 	}
 }
 
@@ -488,7 +488,7 @@ function initCivNameList()
 	// Update the dropdowns
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
-		var civ = getGUIObjectByName("playerCiv["+i+"]");
+		var civ = Engine.GetGUIObjectByName("playerCiv["+i+"]");
 		civ.list = civListNames;
 		civ.list_data = civListCodes;
 		civ.selected = 0;
@@ -500,7 +500,7 @@ function initMapNameList()
 {
 	// Get a list of map filenames
 	// TODO: Should verify these are valid maps before adding to list
-	var mapSelectionBox = getGUIObjectByName("mapSelection")
+	var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection")
 	var mapFiles;
 
 	switch (g_GameAttributes.mapType)
@@ -609,8 +609,8 @@ function onTick()
 	}
 	else if (g_LoadingState == 1)
 	{
-		getGUIObjectByName("loadingWindow").hidden = true;
-		getGUIObjectByName("setupWindow").hidden = false;
+		Engine.GetGUIObjectByName("loadingWindow").hidden = true;
+		Engine.GetGUIObjectByName("setupWindow").hidden = false;
 		initMain();
 		g_LoadingState++;
 	}
@@ -813,8 +813,8 @@ function launchGame()
 		return;
 
 	if (g_GameAttributes.map == "random")
-		selectMap(getGUIObjectByName("mapSelection").list_data[Math.floor(Math.random() *
-			(getGUIObjectByName("mapSelection").list.length - 1)) + 1]);
+		selectMap(Engine.GetGUIObjectByName("mapSelection").list_data[Math.floor(Math.random() *
+			(Engine.GetGUIObjectByName("mapSelection").list.length - 1)) + 1]);
 
 	g_GameAttributes.settings.mapType = g_GameAttributes.mapType;
 	var numPlayers = g_GameAttributes.settings.PlayerData.length;
@@ -876,7 +876,7 @@ function launchGame()
 		var playerID = -1;
 		for (var i = 0; i < numPlayers; ++i)
 		{
-			var assignBox = getGUIObjectByName("playerAssignment["+i+"]");
+			var assignBox = Engine.GetGUIObjectByName("playerAssignment["+i+"]");
 			if (assignBox.list_data[assignBox.selected] == "local")
 				playerID = i+1;
 		}
@@ -907,40 +907,40 @@ function onGameAttributesChange()
 	// Update some controls for clients
 	if (!g_IsController)
 	{
-		getGUIObjectByName("mapFilterText").caption = g_GameAttributes.mapFilter;
-		var mapTypeSelection = getGUIObjectByName("mapTypeSelection");
+		Engine.GetGUIObjectByName("mapFilterText").caption = g_GameAttributes.mapFilter;
+		var mapTypeSelection = Engine.GetGUIObjectByName("mapTypeSelection");
 		var idx = mapTypeSelection.list_data.indexOf(g_GameAttributes.mapType);
-		getGUIObjectByName("mapTypeText").caption = mapTypeSelection.list[idx];
-		var mapSelectionBox = getGUIObjectByName("mapSelection");
+		Engine.GetGUIObjectByName("mapTypeText").caption = mapTypeSelection.list[idx];
+		var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
-		getGUIObjectByName("mapSelectionText").caption = getMapDisplayName(mapName);
-		var populationCapBox = getGUIObjectByName("populationCap");
+		Engine.GetGUIObjectByName("mapSelectionText").caption = getMapDisplayName(mapName);
+		var populationCapBox = Engine.GetGUIObjectByName("populationCap");
 		populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
-		var startingResourcesBox = getGUIObjectByName("startingResources");
+		var startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
 		startingResourcesBox.selected = startingResourcesBox.list_data.indexOf(mapSettings.StartingResources);
 		initMapNameList();
 	}
 
 	// Controls common to all map types
-	var numPlayersSelection = getGUIObjectByName("numPlayersSelection");
-	var revealMap = getGUIObjectByName("revealMap");
-	var victoryCondition = getGUIObjectByName("victoryCondition");
-	var lockTeams = getGUIObjectByName("lockTeams");
-	var mapSize = getGUIObjectByName("mapSize");
-	var enableCheats = getGUIObjectByName("enableCheats");
-	var populationCap = getGUIObjectByName("populationCap");
-	var startingResources = getGUIObjectByName("startingResources");
+	var numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
+	var revealMap = Engine.GetGUIObjectByName("revealMap");
+	var victoryCondition = Engine.GetGUIObjectByName("victoryCondition");
+	var lockTeams = Engine.GetGUIObjectByName("lockTeams");
+	var mapSize = Engine.GetGUIObjectByName("mapSize");
+	var enableCheats = Engine.GetGUIObjectByName("enableCheats");
+	var populationCap = Engine.GetGUIObjectByName("populationCap");
+	var startingResources = Engine.GetGUIObjectByName("startingResources");
 
-	var numPlayersText= getGUIObjectByName("numPlayersText");
-	var mapSizeDesc = getGUIObjectByName("mapSizeDesc");
-	var mapSizeText = getGUIObjectByName("mapSizeText");
-	var revealMapText = getGUIObjectByName("revealMapText");
-	var victoryConditionText = getGUIObjectByName("victoryConditionText");
-	var lockTeamsText = getGUIObjectByName("lockTeamsText");
-	var enableCheatsText = getGUIObjectByName("enableCheatsText");
-	var populationCapText = getGUIObjectByName("populationCapText");
-	var startingResourcesText = getGUIObjectByName("startingResourcesText");
-	var gameSpeedText = getGUIObjectByName("gameSpeedText");
+	var numPlayersText= Engine.GetGUIObjectByName("numPlayersText");
+	var mapSizeDesc = Engine.GetGUIObjectByName("mapSizeDesc");
+	var mapSizeText = Engine.GetGUIObjectByName("mapSizeText");
+	var revealMapText = Engine.GetGUIObjectByName("revealMapText");
+	var victoryConditionText = Engine.GetGUIObjectByName("victoryConditionText");
+	var lockTeamsText = Engine.GetGUIObjectByName("lockTeamsText");
+	var enableCheatsText = Engine.GetGUIObjectByName("enableCheatsText");
+	var populationCapText = Engine.GetGUIObjectByName("populationCapText");
+	var startingResourcesText = Engine.GetGUIObjectByName("startingResourcesText");
+	var gameSpeedText = Engine.GetGUIObjectByName("gameSpeedText");
 
 	var sizeIdx = (g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
 	var speedIdx = (g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) != -1) ? g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds["default"];
@@ -954,7 +954,7 @@ function onGameAttributesChange()
 	startingResourcesText.caption = STARTING_RESOURCES[startingResources.selected];
 
 	// Update map preview
-	getGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
+	Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
 
 	// Handle map type specific logic
 	switch (g_GameAttributes.mapType)
@@ -1087,7 +1087,7 @@ function onGameAttributesChange()
 		revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
 		victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
 		lockTeamsText.caption = (mapSettings.LockTeams ? "Yes" : "No");
-		getGUIObjectByName("populationCap").selected = POPULATION_CAP_DEFAULTIDX;
+		Engine.GetGUIObjectByName("populationCap").selected = POPULATION_CAP_DEFAULTIDX;
 
 		break;
 
@@ -1097,7 +1097,7 @@ function onGameAttributesChange()
 	}
 
 	// Display map name
-	getGUIObjectByName("mapInfoName").caption = getMapDisplayName(mapName);
+	Engine.GetGUIObjectByName("mapInfoName").caption = getMapDisplayName(mapName);
 
 	// Load the description from the map file, if there is one
 	var description = mapSettings.Description || "Sorry, no description available.";
@@ -1111,18 +1111,18 @@ function onGameAttributesChange()
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
 		// Show only needed player slots
-		getGUIObjectByName("playerBox["+i+"]").hidden = (i >= numPlayers);
+		Engine.GetGUIObjectByName("playerBox["+i+"]").hidden = (i >= numPlayers);
 
 		// Show player data or defaults as necessary
 		if (i >= numPlayers)
 			continue;
 
-		var pName = getGUIObjectByName("playerName["+i+"]");
-		var pCiv = getGUIObjectByName("playerCiv["+i+"]");
-		var pCivText = getGUIObjectByName("playerCivText["+i+"]");
-		var pTeam = getGUIObjectByName("playerTeam["+i+"]");
-		var pTeamText = getGUIObjectByName("playerTeamText["+i+"]");
-		var pColor = getGUIObjectByName("playerColour["+i+"]");
+		var pName = Engine.GetGUIObjectByName("playerName["+i+"]");
+		var pCiv = Engine.GetGUIObjectByName("playerCiv["+i+"]");
+		var pCivText = Engine.GetGUIObjectByName("playerCivText["+i+"]");
+		var pTeam = Engine.GetGUIObjectByName("playerTeam["+i+"]");
+		var pTeamText = Engine.GetGUIObjectByName("playerTeamText["+i+"]");
+		var pColor = Engine.GetGUIObjectByName("playerColour["+i+"]");
 
 		// Player data / defaults
 		var pData = mapSettings.PlayerData ? mapSettings.PlayerData[i] : {};
@@ -1162,7 +1162,7 @@ function onGameAttributesChange()
 		}
 	}
 
-	getGUIObjectByName("mapInfoDescription").caption = playerString + description;
+	Engine.GetGUIObjectByName("mapInfoDescription").caption = playerString + description;
 
 	g_IsInGuiUpdate = false;
 
@@ -1211,7 +1211,7 @@ function updatePlayerList()
 
 	// Only enable start button if we have enough assigned players
 	if (g_IsController)
-		getGUIObjectByName("startGame").enabled = (assignedCount > 0);
+		Engine.GetGUIObjectByName("startGame").enabled = (assignedCount > 0);
 
 	for each (var ai in g_AIs)
 	{
@@ -1247,7 +1247,7 @@ function updatePlayerList()
 
 		var selection = assignments[playerID];
 
-		var configButton = getGUIObjectByName("playerConfig["+i+"]");
+		var configButton = Engine.GetGUIObjectByName("playerConfig["+i+"]");
 		configButton.hidden = true;
 
 		// Look for valid player slots
@@ -1302,7 +1302,7 @@ function updatePlayerList()
 				Engine.SetNetworkGameAttributes(g_GameAttributes);
 		}
 
-		var assignBox = getGUIObjectByName("playerAssignment["+i+"]");
+		var assignBox = Engine.GetGUIObjectByName("playerAssignment["+i+"]");
 		assignBox.list = hostNameList;
 		assignBox.list_data = hostGuidList;
 		if (assignBox.selected != selection)
@@ -1403,7 +1403,7 @@ function swapPlayers(guid, newSlot)
 
 function submitChatInput()
 {
-	var input = getGUIObjectByName("chatInput");
+	var input = Engine.GetGUIObjectByName("chatInput");
 	var text = input.caption;
 	if (text.length)
 	{
@@ -1454,12 +1454,12 @@ function addChatMessage(msg)
 
 	g_ChatMessages.push(formatted);
 
-	getGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
+	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
 function toggleMoreOptions()
 {
-	getGUIObjectByName("moreOptions").hidden = !getGUIObjectByName("moreOptions").hidden;
+	Engine.GetGUIObjectByName("moreOptions").hidden = !Engine.GetGUIObjectByName("moreOptions").hidden;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1534,16 +1534,16 @@ function sendRegisterGameStanza()
 	if (!Engine.HasXmppClient())
 		return;
 
-	var selectedMapSize = getGUIObjectByName("mapSize").selected;
-	var selectedVictoryCondition = getGUIObjectByName("victoryCondition").selected;
+	var selectedMapSize = Engine.GetGUIObjectByName("mapSize").selected;
+	var selectedVictoryCondition = Engine.GetGUIObjectByName("victoryCondition").selected;
 
 	// Map sizes only apply to random maps.
 	if (g_GameAttributes.mapType == "random")
-		var mapSize = getGUIObjectByName("mapSize").list[selectedMapSize];
+		var mapSize = Engine.GetGUIObjectByName("mapSize").list[selectedMapSize];
 	else
 		var mapSize = "Default";
 
-	var victoryCondition = getGUIObjectByName("victoryCondition").list[selectedVictoryCondition];
+	var victoryCondition = Engine.GetGUIObjectByName("victoryCondition").list[selectedVictoryCondition];
 	var numberOfPlayers = Object.keys(g_PlayerAssignments).length;
 	var players = [ assignment.name for each (assignment in g_PlayerAssignments) ].join(", ");
 

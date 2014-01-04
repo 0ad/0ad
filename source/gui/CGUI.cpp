@@ -40,7 +40,7 @@ CGUI
 #include "CProgressBar.h"
 #include "CTooltip.h"
 #include "MiniMap.h"
-#include "scripting/JSInterface_GUITypes.h"
+#include "scripting/ScriptFunctions.h"
 
 #include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
@@ -58,18 +58,11 @@ CGUI
 #include "ps/Pyrogenesis.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
-#include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 
 extern int g_yres;
 
 const double SELECT_DBLCLICK_RATE = 0.5;
-
-void CGUI::ScriptingInit()
-{
-	JSI_IGUIObject::init();
-	JSI_GUITypes::init();
-}
 
 InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 {
@@ -321,83 +314,12 @@ void CGUI::SendEventToAll(const CStr& EventName)
 //  Constructor / Destructor
 //-------------------------------------------------------------------
 
-// To isolate the vars declared by each GUI page, we need to create
-// a pseudo-global object to declare them in. In particular, it must
-// have no parent object, so it must be declared with JS_NewGlobalObject.
-// But GUI scripts should have access to the real global's properties
-// (Array, undefined, getGUIObjectByName, etc), so we add a custom resolver
-// that defers to the real global object when necessary.
-
-static JSBool GetGlobalProperty(JSContext* cx, JSObject* UNUSED(obj), jsid id, jsval* vp)
+CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime) : m_MouseButtons(0), m_FocusedObject(NULL), m_InternalNameNumber(0)
 {
-	return JS_GetPropertyById(cx, g_ScriptingHost.GetGlobalObject(), id, vp);
-}
-
-static JSBool SetGlobalProperty(JSContext* cx, JSObject* UNUSED(obj), jsid id, JSBool UNUSED(strict), jsval* vp)
-{
-	return JS_SetPropertyById(cx, g_ScriptingHost.GetGlobalObject(), id, vp);
-}
-
-static JSBool ResolveGlobalProperty(JSContext* cx, JSObject* obj, jsid id, uintN flags, JSObject** objp)
-{
-	// This gets called when the property can't be resolved in the page_global object.
-
-	// Warning: The interaction between this resolution stuff and the JITs appears
-	// to be quite fragile, and I don't quite understand what the constraints are.
-	// If changing it, be careful to test with each JIT to make sure it works.
-	// (This code is somewhat based on GPSEE's module system.)
-
-	// Declarations and assignments shouldn't affect the real global
-	if (flags & (JSRESOLVE_DECLARING | JSRESOLVE_ASSIGNING))
-	{
-		// Can't be resolved - return NULL
-		*objp = NULL;
-		return JS_TRUE;
-	}
-
-	// Check whether the real global object defined this property
-	uintN attrs;
-	JSBool found;
-	if (!JS_GetPropertyAttrsGetterAndSetterById(cx, g_ScriptingHost.GetGlobalObject(), id, &attrs, &found, NULL, NULL))
-		return JS_FALSE;
-
-	if (!found)
-	{
-		// Not found on real global, so can't be resolved - return NULL
-		*objp = NULL;
-		return JS_TRUE;
-	}
-
-	// Retrieve the property value from the global
-	jsval v;
-	if (!JS_GetPropertyById(cx, g_ScriptingHost.GetGlobalObject(), id, &v))
-		return JS_FALSE;
-
-	// Add the global's property value onto this object, with getter/setter that will
-	// update the global's copy instead of this copy, and then return this object
-	if (!JS_DefinePropertyById(cx, obj, id, v, GetGlobalProperty, SetGlobalProperty, attrs))
-		return JS_FALSE;
-
-	*objp = obj;
-	return JS_TRUE;
-}
-
-static JSClass page_global_class = {
-	"page_global", JSCLASS_GLOBAL_FLAGS | JSCLASS_NEW_RESOLVE,
-	JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_StrictPropertyStub,
-	JS_EnumerateStub, (JSResolveOp)ResolveGlobalProperty, JS_ConvertStub, JS_FinalizeStub,
-	NULL, NULL, NULL, NULL,
-	NULL, NULL, NULL, NULL
-};
-
-CGUI::CGUI() : m_MouseButtons(0), m_FocusedObject(NULL), m_InternalNameNumber(0)
-{
+	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", runtime));
+	GuiScriptingInit(*m_ScriptInterface);
 	m_BaseObject = new CGUIDummyObject;
-	m_BaseObject->SetGUI(this);
-
-	// Construct the root object for all GUI JavaScript things
-	m_ScriptObject = JS_NewGlobalObject(g_ScriptingHost.getContext(), &page_global_class);
-	JS_AddObjectRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
+	m_BaseObject->SetGUI(this);	
 }
 
 CGUI::~CGUI()
@@ -406,12 +328,6 @@ CGUI::~CGUI()
 
 	if (m_BaseObject)
 		delete m_BaseObject;
-
-	if (m_ScriptObject)
-	{
-		// Let it be garbage-collected
-		JS_RemoveObjectRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
-	}
 }
 
 //-------------------------------------------------------------------
@@ -1334,6 +1250,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			code += CStr(child.GetText());
 
 			CStr action = CStr(child.GetAttributes().GetNamedItem(attr_on));
+			
+			// We need to set the GUI this object belongs to because RegisterScriptHandler requires an associated GUI.
+			object->SetGUI(this);
 			object->RegisterScriptHandler(action.LowerCase(), code, this);
 		}
 		else if (element_name == elmt_repeat)
@@ -1427,7 +1346,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 		Paths.insert(file);
 		try
 		{
-			g_ScriptingHost.RunScript(file, m_ScriptObject);
+			m_ScriptInterface->LoadGlobalScriptFile(file);
 		}
 		catch (PSERROR_Scripting& e)
 		{
@@ -1440,7 +1359,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 	{
 		CStr code (Element.GetText());
 		if (! code.empty())
-			g_ScriptingHost.RunMemScript(code.c_str(), code.length(), "Some XML file", Element.GetLineNumber(), m_ScriptObject);
+			m_ScriptInterface->LoadGlobalScript(L"Some XML file", code.FromUTF8());
 	}
 	catch (PSERROR_Scripting& e)
 	{

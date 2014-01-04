@@ -48,8 +48,8 @@
 			<object hotkey="confirm" type="button" size="50%-144 100%-60 50%-16 100%-32" style="StoneButton">
 				Continue
 				<action on="Press">
-					var joinPlayerName = getGUIObjectByName("joinPlayerName").caption;
-					var joinServer = getGUIObjectByName("joinServer").caption;
+					var joinPlayerName = Engine.GetGUIObjectByName("joinPlayerName").caption;
+					var joinServer = Engine.GetGUIObjectByName("joinServer").caption;
 					Engine.ConfigDB_CreateValue("user", "playername", joinPlayerName);
 					Engine.ConfigDB_CreateValue("user", "multiplayerserver", joinServer);
 					Engine.ConfigDB_WriteFile("user", "config/user.cfg");
@@ -94,10 +94,10 @@
 			<object type="button" size="50%-144 100%-60 50%-16 100%-32" style="StoneButton">
 				Continue
 				<action on="Press">
-					var hostPlayerName = getGUIObjectByName("hostPlayerName").caption;
+					var hostPlayerName = Engine.GetGUIObjectByName("hostPlayerName").caption;
 					Engine.ConfigDB_CreateValue("user", "playername", hostPlayerName);
 					Engine.ConfigDB_WriteFile("user", "config/user.cfg");
-					if (startHost(hostPlayerName, getGUIObjectByName("hostServerName").caption))
+					if (startHost(hostPlayerName, Engine.GetGUIObjectByName("hostServerName").caption))
 						switchSetupPage("pageHost", "pageConnecting");
 				</action>
 			</object>

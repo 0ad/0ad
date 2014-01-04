@@ -6,28 +6,62 @@
 // *******************************************
 // messageBox
 // *******************************************
-// @params:     int mbWidth, int mbHeight, string mbMessage, string mbTitle, int mbMode, arr mbButtonCaptions, arr mbButtonsCode
+// @params:     int mbWidth, int mbHeight, string mbMessage, string mbTitle, int mbMode, arr mbButtonCaptions, function mbBtnCode, var mbCallbackArgs
 // @return:     void
 // @desc:       Displays a new modal message box.
 // *******************************************
 
-function messageBox (mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCaptions, mbButtonsCode)
-{
 
-	Engine.PushGuiPage("page_msgbox.xml", {
+// We want to pass callback functions for the different buttons in a convenient way.
+// Because passing functions accross compartment boundaries is a pain, we just store them here together with some optional arguments.
+// The messageBox page will return the code of the pressed button and the according function will be called.
+var g_messageBoxBtnFunctions = [];
+var g_messageBoxCallbackArgs = []; 
+
+var g_messageBoxCallbackFunction = function(btnCode)
+{
+	if (btnCode !== undefined && g_messageBoxBtnFunctions[btnCode])
+	{
+		if (g_messageBoxCallbackArgs[btnCode])
+			g_messageBoxBtnFunctions[btnCode](g_messageBoxCallbackArgs[btnCode]);
+		else
+			g_messageBoxBtnFunctions[btnCode]();
+	}
+
+	g_messageBoxBtnFunctions  = [];
+	g_messageBoxCallbackArgs = [];
+}
+
+function messageBox (mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCaptions, mbBtnCode, mbCallbackArgs)
+{
+	if (g_messageBoxBtnFunctions.length != 0)
+	{
+		warn("A messagebox was called when a previous callback function is still set, aborting!");
+		return;	
+	}
+
+	g_messageBoxBtnFunctions = mbBtnCode;
+	if (mbCallbackArgs)
+		g_messageBoxCallbackArgs = mbCallbackArgs;
+
+	var initData = {
 		width: mbWidth,
 		height: mbHeight,
 		message: mbMessage,
 		title: mbTitle,
 		mode: mbMode,
 		buttonCaptions: mbButtonCaptions,
-		buttonCode: mbButtonsCode
-	});
+	}
+	if (mbBtnCode)
+		initData.callback = "g_messageBoxCallbackFunction";
+		
+
+	Engine.PushGuiPage("page_msgbox.xml", initData);
 }
 
 // ====================================================================
 
 function updateFPS()
 {	
-	getGUIObjectByName("fpsCounter").caption = "FPS: " + getFPS();
+	Engine.GetGUIObjectByName("fpsCounter").caption = "FPS: " + Engine.GetFPS();
 }

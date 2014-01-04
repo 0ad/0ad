@@ -2,7 +2,7 @@ var closeCallback;
 
 function init(data)
 {
-	getGUIObjectByName("mainText").caption = readFile("gui/manual/" + data.page + ".txt");
+	Engine.GetGUIObjectByName("mainText").caption = Engine.ReadFile("gui/manual/" + data.page + ".txt");
 	closeCallback = data.closeCallback;
 }
 

@@ -24,6 +24,7 @@
 #include "graphics/ParticleManager.h"
 #include "graphics/UnitManager.h"
 #include "gui/GUIManager.h"
+#include "gui/CGUI.h"
 #include "lib/config2.h"
 #include "lib/timer.h"
 #include "network/NetClient.h"
@@ -41,7 +42,6 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"
 #include "renderer/TimeManager.h"
-#include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPlayer.h"
@@ -64,7 +64,7 @@ CGame *g_Game=NULL;
  **/
 CGame::CGame(bool disableGraphics):
 	m_World(new CWorld(this)),
-	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), m_World->GetTerrain())),
+	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), g_ScriptRuntime, m_World->GetTerrain())),
 	m_GameView(disableGraphics ? NULL : new CGameView(this)),
 	m_GameStarted(false),
 	m_Paused(false),
@@ -233,11 +233,8 @@ PSRETURN CGame::ReallyStartGame()
 	// Call the reallyStartGame GUI function, but only if it exists
 	if (g_GUI && g_GUI->HasPages())
 	{
-		jsval fval, rval;
-		JSBool ok = JS_GetProperty(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), "reallyStartGame", &fval);
-		ENSURE(ok);
-		if (ok && !JSVAL_IS_VOID(fval))
-			JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), fval, 0, NULL, &rval);
+		if (g_GUI->GetActiveGUI()->GetScriptInterface()->HasProperty(g_GUI->GetActiveGUI()->GetGlobalObject(), "reallyStartGame"))
+			g_GUI->GetActiveGUI()->GetScriptInterface()->CallFunctionVoid(g_GUI->GetActiveGUI()->GetGlobalObject(), "reallyStartGame");
 	}
 
 	if (g_NetClient)

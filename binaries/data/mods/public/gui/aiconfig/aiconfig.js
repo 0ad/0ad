@@ -9,7 +9,7 @@ function init(settings)
 		{id: "", data: {name: "None", description: "AI will be disabled for this player."}}
 	].concat(settings.ais);
 
-	var aiSelection = getGUIObjectByName("aiSelection");
+	var aiSelection = Engine.GetGUIObjectByName("aiSelection");
 	aiSelection.list = [ ai.data.name for each (ai in g_AIs) ];
 
 	var selected = 0;
@@ -23,7 +23,7 @@ function init(settings)
 	}
 	aiSelection.selected = selected;
 	
-	var aiDiff = getGUIObjectByName("aiDifficulty");
+	var aiDiff = Engine.GetGUIObjectByName("aiDifficulty");
 	aiDiff.list = [ "Sandbox", "Easy", "Medium", "Hard", "Very Hard" ];
 	aiDiff.selected = settings.difficulty;
 }
@@ -34,17 +34,17 @@ function selectAI(idx)
 	var name = g_AIs[idx].data.name;
 	var description = g_AIs[idx].data.description;
 
-	getGUIObjectByName("aiDescription").caption = description;
+	Engine.GetGUIObjectByName("aiDescription").caption = description;
 }
 
 function returnAI()
 {
-	var aiSelection = getGUIObjectByName("aiSelection");
+	var aiSelection = Engine.GetGUIObjectByName("aiSelection");
 	var idx = aiSelection.selected;
 	var id = g_AIs[idx].id;
 	var name = g_AIs[idx].data.name;
 
-	var difficulty = getGUIObjectByName("aiDifficulty").selected;
+	var difficulty = Engine.GetGUIObjectByName("aiDifficulty").selected;
 	
 	// Pop the page before calling the callback, so the callback runs
 	// in the parent GUI page's context

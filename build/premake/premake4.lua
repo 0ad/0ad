@@ -733,6 +733,9 @@ function setup_all_libs ()
 		"opengl",
 		"boost",
 	}
+	if not _OPTIONS["without-audio"] then
+		table.insert(extern_libs, "openal")
+	end
 	setup_static_lib_project("gui", source_dirs, extern_libs, {})
 
 

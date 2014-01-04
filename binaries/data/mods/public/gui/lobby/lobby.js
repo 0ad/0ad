@@ -21,15 +21,15 @@ function init(attribs)
 	g_mapSizes.shortNames.splice(0, 0, "Any");
 	g_mapSizes.tiles.splice(0, 0, "");
 
-	var mapSizeFilter = getGUIObjectByName("mapSizeFilter");
+	var mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
 	mapSizeFilter.list = g_mapSizes.shortNames;
 	mapSizeFilter.list_data = g_mapSizes.tiles;
 
-	var playersNumberFilter = getGUIObjectByName("playersNumberFilter");
+	var playersNumberFilter = Engine.GetGUIObjectByName("playersNumberFilter");
 	playersNumberFilter.list = ["Any",2,3,4,5,6,7,8];
 	playersNumberFilter.list_data = ["",2,3,4,5,6,7,8];
 
-	var mapTypeFilter = getGUIObjectByName("mapTypeFilter");
+	var mapTypeFilter = Engine.GetGUIObjectByName("mapTypeFilter");
 	mapTypeFilter.list = ["Any", "Skirmish", "Random", "Scenario"];
 	mapTypeFilter.list_data = ["", "skirmish", "random", "scenario"];
 
@@ -70,16 +70,16 @@ function lobbyDisconnect()
 function resetFilters()
 {
 	// Reset states of gui objects
-	getGUIObjectByName("mapSizeFilter").selected = 0
-	getGUIObjectByName("playersNumberFilter").selected = 0;
-	getGUIObjectByName("mapTypeFilter").selected = 0;
-	getGUIObjectByName("showFullFilter").checked = true;
+	Engine.GetGUIObjectByName("mapSizeFilter").selected = 0
+	Engine.GetGUIObjectByName("playersNumberFilter").selected = 0;
+	Engine.GetGUIObjectByName("mapTypeFilter").selected = 0;
+	Engine.GetGUIObjectByName("showFullFilter").checked = true;
 
 	// Update the list of games
 	updateGameList();
 
 	// Update info box about the game currently selected
-	selectGame(getGUIObjectByName("gamesBox").selected);
+	selectGame(Engine.GetGUIObjectByName("gamesBox").selected);
 }
 
 function applyFilters()
@@ -88,7 +88,7 @@ function applyFilters()
 	updateGameList();
 
 	// Update info box about the game currently selected
-	selectGame(getGUIObjectByName("gamesBox").selected);
+	selectGame(Engine.GetGUIObjectByName("gamesBox").selected);
 }
 
 function displayGame(g, mapSizeFilter, playersNumberFilter, mapTypeFilter, showFullFilter)
@@ -108,7 +108,7 @@ function displayGame(g, mapSizeFilter, playersNumberFilter, mapTypeFilter, showF
 // Do a full update of the player listing **Only call on init**
 function updatePlayerList()
 {
-	var playersBox = getGUIObjectByName("playersBox");
+	var playersBox = Engine.GetGUIObjectByName("playersBox");
 	[playerList, presenceList, nickList] = [[],[],[]];
 	for each (var p in Engine.GetPlayerList())
 	{
@@ -131,7 +131,7 @@ function updateBoardList()
 	// Get list from C++
 	var boardList = Engine.GetBoardList();
 	// Get GUI leaderboard object
-	var leaderboard = getGUIObjectByName("leaderboardBox");
+	var leaderboard = Engine.GetGUIObjectByName("leaderboardBox");
 	// Sort list in acending order by rating
 	boardList.sort(function(a, b) b.rating - a.rating);
 
@@ -161,7 +161,7 @@ function updateBoardList()
 // Update game listing
 function updateGameList()
 {
-	var gamesBox = getGUIObjectByName("gamesBox");
+	var gamesBox = Engine.GetGUIObjectByName("gamesBox");
 	var gameList = Engine.GetGameList();
 	// Store the game whole game list data so that we can access it later
 	// to update the game info panel.
@@ -181,10 +181,10 @@ function updateGameList()
 	var list = [];
 	var list_data = [];
 
-	var mapSizeFilterDD = getGUIObjectByName("mapSizeFilter");
-	var playersNumberFilterDD = getGUIObjectByName("playersNumberFilter");
-	var mapTypeFilterDD = getGUIObjectByName("mapTypeFilter");
-	var showFullFilterCB = getGUIObjectByName("showFullFilter");
+	var mapSizeFilterDD = Engine.GetGUIObjectByName("mapSizeFilter");
+	var playersNumberFilterDD = Engine.GetGUIObjectByName("playersNumberFilter");
+	var mapTypeFilterDD = Engine.GetGUIObjectByName("mapTypeFilter");
+	var showFullFilterCB = Engine.GetGUIObjectByName("showFullFilter");
 
 	// Get filter values
 	var mapSizeFilter = mapSizeFilterDD.selected >= 0 ? mapSizeFilterDD.list_data[mapSizeFilterDD.selected] : "";
@@ -224,8 +224,8 @@ function updateGameList()
 		gamesBox.selected = -1;
 
 	// If game selected, update info box about the game.
-	if(getGUIObjectByName("gamesBox").selected != -1)
-		selectGame(getGUIObjectByName("gamesBox").selected)
+	if(Engine.GetGUIObjectByName("gamesBox").selected != -1)
+		selectGame(Engine.GetGUIObjectByName("gamesBox").selected)
 }
 
 // The following function colorizes and formats the entries in the player list.
@@ -267,37 +267,37 @@ function selectGame(selected)
 	if (selected == -1)
 	{
 		// Hide the game info panel if a game is not selected
-		getGUIObjectByName("gameInfo").hidden = true;
-		getGUIObjectByName("gameInfoEmpty").hidden = false;
-		getGUIObjectByName("joinGameButton").hidden = true;
+		Engine.GetGUIObjectByName("gameInfo").hidden = true;
+		Engine.GetGUIObjectByName("gameInfoEmpty").hidden = false;
+		Engine.GetGUIObjectByName("joinGameButton").hidden = true;
 		return;
 	}
 
 	var mapData;
-	var g = getGUIObjectByName("gamesBox").list_data[selected];
+	var g = Engine.GetGUIObjectByName("gamesBox").list_data[selected];
 
 	// Load map data
 	if (g_GameList[g].mapType == "random" && g_GameList[g].mapName == "random")
 		mapData = {"settings": {"Description": "A randomly selected map."}};
-	else if (g_GameList[g].mapType == "random" && fileExists(g_GameList[g].mapName + ".json"))
+	else if (g_GameList[g].mapType == "random" && Engine.FileExists(g_GameList[g].mapName + ".json"))
 		mapData = parseJSONData(g_GameList[g].mapName + ".json");
-	else if (fileExists(g_GameList[g].mapName + ".xml"))
+	else if (Engine.FileExists(g_GameList[g].mapName + ".xml"))
 		mapData = Engine.LoadMapSettings(g_GameList[g].mapName + ".xml");
 	else
 		// Warn the player if we can't find the map. 
 		warn("Map '"+ g_GameList[g].mapName +"'  not found");
 
 	// Show the game info paneland join button.
-	getGUIObjectByName("gameInfo").hidden = false;
-	getGUIObjectByName("gameInfoEmpty").hidden = true;
-	getGUIObjectByName("joinGameButton").hidden = false;
+	Engine.GetGUIObjectByName("gameInfo").hidden = false;
+	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = true;
+	Engine.GetGUIObjectByName("joinGameButton").hidden = false;
 
 	// Display the map name, number of players, the names of the players, the map size and the map type.
-	getGUIObjectByName("sgMapName").caption = g_GameList[g].niceMapName;
-	getGUIObjectByName("sgNbPlayers").caption = g_GameList[g].nbp + "/" + g_GameList[g].tnbp;
-	getGUIObjectByName("sgPlayersNames").caption = g_GameList[g].players;
-	getGUIObjectByName("sgMapSize").caption = g_GameList[g].mapSize.split("(")[0];
-	getGUIObjectByName("sgMapType").caption = toTitleCase(g_GameList[g].mapType);
+	Engine.GetGUIObjectByName("sgMapName").caption = g_GameList[g].niceMapName;
+	Engine.GetGUIObjectByName("sgNbPlayers").caption = g_GameList[g].nbp + "/" + g_GameList[g].tnbp;
+	Engine.GetGUIObjectByName("sgPlayersNames").caption = g_GameList[g].players;
+	Engine.GetGUIObjectByName("sgMapSize").caption = g_GameList[g].mapSize.split("(")[0];
+	Engine.GetGUIObjectByName("sgMapType").caption = toTitleCase(g_GameList[g].mapType);
 
 	// Display map description if it exists, otherwise display a placeholder.
 	if (mapData && mapData.settings.Description)
@@ -311,13 +311,13 @@ function selectGame(selected)
 	else
 		var mapPreview = "nopreview.png";
 	
-	getGUIObjectByName("sgMapDescription").caption = mapDescription;
-	getGUIObjectByName("sgMapPreview").sprite = "cropped:(0.7812,0.5859)session/icons/mappreview/" + mapPreview;
+	Engine.GetGUIObjectByName("sgMapDescription").caption = mapDescription;
+	Engine.GetGUIObjectByName("sgMapPreview").sprite = "cropped:(0.7812,0.5859)session/icons/mappreview/" + mapPreview;
 }
 
 function joinSelectedGame()
 {
-	var gamesBox = getGUIObjectByName("gamesBox");
+	var gamesBox = Engine.GetGUIObjectByName("gamesBox");
 	if (gamesBox.selected >= 0)
 	{
 		var g = gamesBox.list_data[gamesBox.selected];
@@ -377,7 +377,7 @@ function onTick()
 		case "muc":
 			var nick = message.text;
 			var presence = Engine.LobbyGetPlayerPresence(nick);
-			var playersBox = getGUIObjectByName("playersBox");
+			var playersBox = Engine.GetGUIObjectByName("playersBox");
 			var playerList = playersBox.list_name;
 			var presenceList = playersBox.list_status;
 			var nickList = playersBox.list;
@@ -449,11 +449,11 @@ function onTick()
 					updateBoardList();
 					updatePlayerList();
 					// Disable the 'host' button
-					getGUIObjectByName("hostButton").enabled = false;
+					Engine.GetGUIObjectByName("hostButton").enabled = false;
 				}
 				else if (message.text == "connected")
 				{
-					getGUIObjectByName("hostButton").enabled = true;
+					Engine.GetGUIObjectByName("hostButton").enabled = true;
 				}
 				break;
 			case "error":
@@ -481,7 +481,7 @@ function onTick()
 /* Messages */
 function submitChatInput()
 {
-	var input = getGUIObjectByName("chatInput");
+	var input = Engine.GetGUIObjectByName("chatInput");
 	var text = escapeText(input.caption);
 	if (text.length)
 	{
@@ -493,7 +493,7 @@ function submitChatInput()
 
 function completeNick()
 {
-	var input = getGUIObjectByName("chatInput");
+	var input = Engine.GetGUIObjectByName("chatInput");
 	var text = escapeText(input.caption);
 	if (text.length)
 	{
@@ -584,7 +584,7 @@ function addChatMessage(msg)
 	if (formatted)
 	{
 		g_ChatMessages.push(formatted);
-		getGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
+		Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 	}
 }
 

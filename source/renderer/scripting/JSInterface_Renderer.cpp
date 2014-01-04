@@ -21,12 +21,12 @@
 #include "renderer/Renderer.h"
 
 #define IMPLEMENT_BOOLEAN_SCRIPT_SETTING(NAME, SCRIPTNAME) \
-bool JSI_Renderer::Get##SCRIPTNAME##Enabled(void* UNUSED(cbdata)) \
+bool JSI_Renderer::Get##SCRIPTNAME##Enabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)) \
 { \
 	return g_Renderer.GetOptionBool(CRenderer::OPT_##NAME); \
 } \
 \
-void JSI_Renderer::Set##SCRIPTNAME##Enabled(void* UNUSED(cbdata), bool Enabled) \
+void JSI_Renderer::Set##SCRIPTNAME##Enabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool Enabled) \
 { \
 	g_Renderer.SetOptionBool(CRenderer::OPT_##NAME, Enabled); \
 }
@@ -47,12 +47,12 @@ IMPLEMENT_BOOLEAN_SCRIPT_SETTING(SHOWSKY, ShowSky);
 
 #undef IMPLEMENT_BOOLEAN_SCRIPT_SETTING
 
-std::string JSI_Renderer::GetRenderPath(void* UNUSED(cbdata))
+std::string JSI_Renderer::GetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return CRenderer::GetRenderPathName(g_Renderer.GetRenderPath());
 }
 
-void JSI_Renderer::SetRenderPath(void* UNUSED(cbdata), std::string name)
+void JSI_Renderer::SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string name)
 {
 	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(name));
 }

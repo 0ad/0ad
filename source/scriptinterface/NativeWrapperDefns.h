@@ -27,7 +27,7 @@ struct ScriptInterface_NativeWrapper {
 	#define OVERLOADS(z, i, data) \
 		template<TYPENAME_T0_HEAD(z,i)  typename F> \
 		static void call(JSContext* cx, jsval& rval, F fptr  T0_A0(z,i)) { \
-			rval = ScriptInterface::ToJSVal<R>(cx, fptr(ScriptInterface::GetCallbackData(cx)  A0_TAIL(z,i))); \
+			rval = ScriptInterface::ToJSVal<R>(cx, fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx) A0_TAIL(z,i))); \
 		}
 
 	BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
@@ -40,7 +40,7 @@ struct ScriptInterface_NativeWrapper<void> {
 	#define OVERLOADS(z, i, data) \
 		template<TYPENAME_T0_HEAD(z,i)  typename F> \
 		static void call(JSContext* cx, jsval& /*rval*/, F fptr  T0_A0(z,i)) { \
-			fptr(ScriptInterface::GetCallbackData(cx)  A0_TAIL(z,i)); \
+			fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx) A0_TAIL(z,i)); \
 		}
 	BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 	#undef OVERLOADS
@@ -90,7 +90,7 @@ struct ScriptInterface_NativeMethodWrapper<void, TC> {
 
 // JSFastNative-compatible function that wraps the function identified in the template argument list
 #define OVERLOADS(z, i, data) \
-	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( void* T0_TAIL(z,i) )> \
+	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL(z,i) )> \
 	JSBool ScriptInterface::call(JSContext* cx, uintN argc, jsval* vp) { \
 		UNUSED2(argc); \
 		SCRIPT_PROFILE \

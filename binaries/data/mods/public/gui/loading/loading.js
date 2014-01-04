@@ -6,31 +6,31 @@ function init(data)
 	g_Data = data;
 
 	// Set to "hourglass" cursor.
-	setCursor("cursor-wait");
+	Engine.SetCursor("cursor-wait");
 
 	// Get tip image and corresponding tip text
-	var tipTextLoadingArray = buildDirEntList("gui/text/tips/", "*.txt", false);
+	var tipTextLoadingArray = Engine.BuildDirEntList("gui/text/tips/", "*.txt", false);
 
 	if (tipTextLoadingArray.length > 0)
 	{
 		// Set tip text
 		var tipTextFilePath = tipTextLoadingArray[getRandom (0, tipTextLoadingArray.length-1)];
-		var tipText = readFile(tipTextFilePath);
+		var tipText = Engine.ReadFile(tipTextFilePath);
 
 		if (tipText)
 		{
 			var index = tipText.indexOf("\n");
 			var tipTextTitle = tipText.substring(0, index);
 			var tipTextMessage = tipText.substring(index);
-			getGUIObjectByName("tipTitle").caption = tipTextTitle? tipTextTitle : "";
-			getGUIObjectByName("tipText").caption = tipTextMessage? tipTextMessage : "";
+			Engine.GetGUIObjectByName("tipTitle").caption = tipTextTitle? tipTextTitle : "";
+			Engine.GetGUIObjectByName("tipText").caption = tipTextMessage? tipTextMessage : "";
 		}
 
 		// Set tip image
 		var fileName = tipTextFilePath.substring(tipTextFilePath.lastIndexOf("/")+1).replace(".txt", ".png");
 		var tipImageFilePath = "loading/tips/" + fileName;
 		var sprite = "stretched:" + tipImageFilePath;
-		getGUIObjectByName("tipImage").sprite = sprite? sprite : "";
+		Engine.GetGUIObjectByName("tipImage").sprite = sprite? sprite : "";
 	}
 	else
 	{
@@ -39,7 +39,7 @@ function init(data)
 
 	// janwas: main loop now sets progress / description, but that won't
 	// happen until the first timeslice completes, so set initial values.
-	var loadingMapName = getGUIObjectByName ("loadingMapName");
+	var loadingMapName = Engine.GetGUIObjectByName ("loadingMapName");
 
 	if (data)
 	{
@@ -60,12 +60,12 @@ function init(data)
 		}
 	}
 
-	getGUIObjectByName("progressText").caption = "";
-	getGUIObjectByName("progressbar").caption = 0;
+	Engine.GetGUIObjectByName("progressText").caption = "";
+	Engine.GetGUIObjectByName("progressbar").caption = 0;
 
 	// Pick a random quote of the day (each line is a separate tip).
-	var quoteArray = readFileLines("gui/text/quotes.txt");
-	getGUIObjectByName("quoteText").caption = quoteArray[getRandom(0, quoteArray.length-1)];
+	var quoteArray = Engine.ReadFileLines("gui/text/quotes.txt");
+	Engine.GetGUIObjectByName("quoteText").caption = quoteArray[getRandom(0, quoteArray.length-1)];
 }
 
 // ====================================================================
@@ -77,15 +77,15 @@ function displayProgress()
 		// Show 100 when it is really 99
 		var progress = g_Progress + 1;
 
-		getGUIObjectByName("progressbar").caption = progress; // display current progress
-		getGUIObjectByName("progressText").caption = progress + "%";
+		Engine.GetGUIObjectByName("progressbar").caption = progress; // display current progress
+		Engine.GetGUIObjectByName("progressText").caption = progress + "%";
 
 		// Displays detailed loading info rather than a percent
-		// getGUIObjectByName("progressText").caption = g_LoadDescription; // display current progess details
+		// Engine.GetGUIObjectByName("progressText").caption = g_LoadDescription; // display current progess details
 
 		// Keep curved right edge of progress bar in sync with the rest of the progress bar
-		var middle = getGUIObjectByName("progressbar");
-		var rightSide = getGUIObjectByName("progressbar_right");
+		var middle = Engine.GetGUIObjectByName("progressbar");
+		var rightSide = Engine.GetGUIObjectByName("progressbar_right");
 
 		var middleLength = (middle.size.right - middle.size.left) - (END_PIECE_WIDTH / 2);
 		var increment = Math.round(progress * middleLength / 100);
@@ -112,5 +112,5 @@ function reallyStartGame()
 	Engine.SwitchGuiPage("page_session.xml", g_Data);
 
 	// Restore default cursor.
-	setCursor("arrow-default");
+	Engine.SetCursor("arrow-default");
 }

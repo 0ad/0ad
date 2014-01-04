@@ -59,14 +59,14 @@ public:
 	void test_Load()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 	}
 
 	void test_LookupCID()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 
 		TS_ASSERT_EQUALS(man.LookupCID("Test1A"), (int)CID_Test1A);
@@ -76,7 +76,7 @@ public:
 	void test_AllocateNewEntity()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 
 		TS_ASSERT_EQUALS(man.AllocateNewEntity(), (u32)2);
 		TS_ASSERT_EQUALS(man.AllocateNewEntity(), (u32)3);
@@ -99,7 +99,7 @@ public:
 	void test_AddComponent_errors()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		CEntityHandle hnd1 = man.AllocateEntityHandle(1);
 
@@ -122,7 +122,7 @@ public:
 	void test_QueryInterface()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
@@ -147,7 +147,7 @@ public:
 	void test_SendMessage()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2, ent3 = 3, ent4 = 4;
@@ -221,7 +221,7 @@ public:
 	void test_ParamNode()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
@@ -242,7 +242,7 @@ public:
 	void test_script_basic()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test.js"));
 
@@ -286,7 +286,7 @@ public:
 	void test_script_helper_basic()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-helper.js"));
 		TS_ASSERT(man.LoadScript(L"simulation/helpers/test-helper.js"));
@@ -303,7 +303,7 @@ public:
 	void test_script_global_helper()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-global-helper.js"));
 
@@ -319,7 +319,7 @@ public:
 	void test_script_interface()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/interfaces/test-interface.js"));
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-interface.js"));
@@ -337,7 +337,7 @@ public:
 	void test_script_errors()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		ScriptTestSetup(man.m_ScriptInterface);
 		man.LoadComponentTypes();
 
@@ -354,7 +354,7 @@ public:
 	void test_script_entityID()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		ScriptTestSetup(man.m_ScriptInterface);
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-entityid.js"));
@@ -374,7 +374,7 @@ public:
 	void test_script_QueryInterface()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-query.js"));
 
@@ -395,7 +395,7 @@ public:
 	void test_script_AddEntity()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-addentity.js"));
 		TS_ASSERT(man.LoadScript(L"simulation/components/addentity/test-addentity.js"));
@@ -428,7 +428,7 @@ public:
 	void test_script_AddLocalEntity()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-addentity.js"));
 		TS_ASSERT(man.LoadScript(L"simulation/components/addentity/test-addentity.js"));
@@ -461,7 +461,7 @@ public:
 	void test_script_DestroyEntity()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-destroyentity.js"));
 
@@ -481,7 +481,7 @@ public:
 	void test_script_messages()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-msg.js"));
 
@@ -514,7 +514,7 @@ public:
 	void test_script_template()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-param.js"));
 
@@ -536,7 +536,7 @@ public:
 	void test_script_template_readonly()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-param.js"));
 
@@ -558,7 +558,7 @@ public:
 	void test_script_hotload()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-hotload1.js"));
@@ -594,7 +594,7 @@ public:
 	void test_serialization()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2, ent3 = FIRST_LOCAL_ENTITY;
@@ -664,7 +664,7 @@ public:
 		);
 
 		CSimContext context2;
-		CComponentManager man2(context2);
+		CComponentManager man2(context2, ScriptInterface::CreateRuntime());
 		man2.LoadComponentTypes();
 
 		TS_ASSERT(man2.QueryInterface(ent1, IID_Test1) == NULL);
@@ -683,7 +683,7 @@ public:
 	void test_script_serialization()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		ScriptTestSetup(man.m_ScriptInterface);
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-serialize.js"));
@@ -754,7 +754,7 @@ public:
 		TS_ASSERT(man.SerializeState(stateStream));
 
 		CSimContext context2;
-		CComponentManager man2(context2);
+		CComponentManager man2(context2, ScriptInterface::CreateRuntime());
 		man2.LoadComponentTypes();
 		TS_ASSERT(man2.LoadScript(L"simulation/components/test-serialize.js"));
 
@@ -771,7 +771,7 @@ public:
 	void test_script_serialization_errors()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-serialize.js"));
 
@@ -789,7 +789,7 @@ public:
 	void test_script_serialization_template()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-serialize.js"));
 		man.InitSystemEntity();
@@ -813,7 +813,7 @@ public:
 		TS_ASSERT(man.SerializeState(stateStream));
 
 		CSimContext context2;
-		CComponentManager man2(context2);
+		CComponentManager man2(context2, ScriptInterface::CreateRuntime());
 		man2.LoadComponentTypes();
 		TS_ASSERT(man2.LoadScript(L"simulation/components/test-serialize.js"));
 

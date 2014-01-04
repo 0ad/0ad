@@ -40,6 +40,7 @@ CGUI
 
 #include "GUITooltip.h"
 #include "GUIbase.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #include "ps/Overlay.h" // CPos and CRect
 
@@ -107,13 +108,8 @@ private:
 	typedef IGUIObject *(*ConstructObjectFunction)();
 
 public:
-	CGUI();
+	CGUI(const shared_ptr<ScriptRuntime>& runtime);
 	~CGUI();
-
-	/**
-	 * Initializes GUI script classes
-	 */
-	static void ScriptingInit();
 
 	/**
 	 * Initializes the GUI, needs to be called before the GUI is used
@@ -260,12 +256,6 @@ public:
 						  const float &Width, const float &BufferZone,
 						  const IGUIObject *pObject=NULL);
 
-	/**
-	 * Returns the JSObject* associated with the GUI
-	 *
-	 * @return The relevant JS object
-	 */
-	JSObject* GetScriptObject() { return m_ScriptObject; }
 
 	/**
 	 * Check if an icon exists
@@ -282,6 +272,9 @@ public:
 	 * Returns false if it fails.
 	 */
 	bool GetPreDefinedColor(const CStr& name, CColor &Output);
+	
+	shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
+	jsval GetGlobalObject() { return m_ScriptInterface->GetGlobalObject(); };
 
 private:
 
@@ -581,13 +574,8 @@ private:
 	/** @name Miscellaneous */
 	//--------------------------------------------------------
 	//@{
-
-	/**
-	 * An JSObject* under which all GUI JavaScript things will
-	 * be created, so that they can be garbage-collected
-	 * when the GUI shuts down.
-	 */
-	JSObject* m_ScriptObject;
+	
+	shared_ptr<ScriptInterface> m_ScriptInterface;
 
 	/**
 	 * don't want to pass this around with the 

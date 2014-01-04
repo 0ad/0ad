@@ -86,11 +86,11 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval*
 	if (propName.substr(0, 2) == "on")
 	{
 		CStr eventName (CStr(propName.substr(2)).LowerCase());
-		std::map<CStr, JSObject**>::iterator it = e->m_ScriptHandlers.find(eventName);
+		std::map<CStr, CScriptValRooted>::iterator it = e->m_ScriptHandlers.find(eventName);
 		if (it == e->m_ScriptHandlers.end())
 			*vp = JSVAL_NULL;
 		else
-			*vp = OBJECT_TO_JSVAL(*(it->second));
+			*vp = it->second.get();
 		return JS_TRUE;
 	}
 
@@ -182,7 +182,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval*
 				*vp = OBJECT_TO_JSVAL(obj); // root it
 				try
 				{
-				#define P(x, y, z) g_ScriptingHost.SetObjectProperty_Double(obj, #z, area.x.y)
+					ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+				#define P(x, y, z) pScriptInterface->SetProperty(OBJECT_TO_JSVAL(obj), #z, area.x.y, false, true)
 					P(pixel,	left,	left);
 					P(pixel,	top,	top);
 					P(pixel,	right,	right);
@@ -481,7 +482,8 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsid id, JSBool
 				GUI<CClientArea>::GetSetting(e, propName, area);
 
 				JSObject* obj = JSVAL_TO_OBJECT(*vp);
-				#define P(x, y, z) area.x.y = (float)g_ScriptingHost.GetObjectProperty_Double(obj, #z)
+				ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+				#define P(x, y, z) pScriptInterface->GetProperty(OBJECT_TO_JSVAL(obj), #z, area.x.y)
 					P(pixel,	left,	left);
 					P(pixel,	top,	top);
 					P(pixel,	right,	right);
@@ -603,9 +605,9 @@ JSBool JSI_IGUIObject::construct(JSContext* cx, uintN argc, jsval* vp)
 	return JS_TRUE;
 }
 
-void JSI_IGUIObject::init()
+void JSI_IGUIObject::init(ScriptInterface& scriptInterface)
 {
-	g_ScriptingHost.DefineCustomObjectType(&JSI_class, construct, 1, JSI_props, JSI_methods, NULL, NULL);
+	scriptInterface.DefineCustomObjectType(&JSI_class, construct, 1, JSI_props, JSI_methods, NULL, NULL);
 }
 
 JSBool JSI_IGUIObject::toString(JSContext* cx, uintN argc, jsval* vp)
@@ -654,7 +656,6 @@ JSBool JSI_IGUIObject::blur(JSContext* cx, uintN argc, jsval* vp)
 JSBool JSI_IGUIObject::getComputedSize(JSContext* cx, uintN argc, jsval* vp)
 {
 	UNUSED2(argc);
-
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, JS_THIS_OBJECT(cx, vp), &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return JS_FALSE;
@@ -665,10 +666,11 @@ JSBool JSI_IGUIObject::getComputedSize(JSContext* cx, uintN argc, jsval* vp)
 	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 	try
 	{
-		g_ScriptingHost.SetObjectProperty_Double(obj, "left", size.left);
-		g_ScriptingHost.SetObjectProperty_Double(obj, "right", size.right);
-		g_ScriptingHost.SetObjectProperty_Double(obj, "top", size.top);
-		g_ScriptingHost.SetObjectProperty_Double(obj, "bottom", size.bottom);
+		ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+		pScriptInterface->SetProperty(OBJECT_TO_JSVAL(obj), "left", size.left, false, true);
+		pScriptInterface->SetProperty(OBJECT_TO_JSVAL(obj), "right", size.right, false, true);
+		pScriptInterface->SetProperty(OBJECT_TO_JSVAL(obj), "top", size.top, false, true);
+		pScriptInterface->SetProperty(OBJECT_TO_JSVAL(obj), "bottom", size.bottom, false, true);
 	}
 	catch (PSERROR_Scripting_ConversionFailed&)
 	{

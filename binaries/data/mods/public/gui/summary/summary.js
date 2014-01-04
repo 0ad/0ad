@@ -14,22 +14,22 @@ function selectPanel(panelNumber)
 	{
 		if (i != panelNumber)
 		{
-			getGUIObjectByName(panelNames[i]).hidden = true;
-			getGUIObjectByName(panelButtonNames[i]).sprite = "BackgroundTab";
+			Engine.GetGUIObjectByName(panelNames[i]).hidden = true;
+			Engine.GetGUIObjectByName(panelButtonNames[i]).sprite = "BackgroundTab";
 		}
 		else
 		{
-			getGUIObjectByName(panelNames[i]).hidden = false;
-			getGUIObjectByName(panelButtonNames[i]).sprite = "ForegroundTab";
-			adjustTabDividers(getGUIObjectByName(panelButtonNames[i]).size);
+			Engine.GetGUIObjectByName(panelNames[i]).hidden = false;
+			Engine.GetGUIObjectByName(panelButtonNames[i]).sprite = "ForegroundTab";
+			adjustTabDividers(Engine.GetGUIObjectByName(panelButtonNames[i]).size);
 		}
 	}
 }
 
 function adjustTabDividers(tabSize)
 {
-	var leftSpacer = getGUIObjectByName("tabDividerLeft");
-	var rightSpacer = getGUIObjectByName("tabDividerRight");
+	var leftSpacer = Engine.GetGUIObjectByName("tabDividerLeft");
+	var rightSpacer = Engine.GetGUIObjectByName("tabDividerRight");
 	leftSpacer.size = "20 " + leftSpacer.size.top + " " + (tabSize.left + 2) + " " + leftSpacer.size.bottom;
 	rightSpacer.size = (tabSize.right - 2) + " " + rightSpacer.size.top + " 100%-20 " + rightSpacer.size.bottom;
 }
@@ -39,9 +39,9 @@ function init(data)
 	var civData = loadCivData();
 	var mapSize = "Scenario";
 
-	getGUIObjectByName("timeElapsed").caption = "Time elapsed: " + timeToString(data.timeElapsed);
+	Engine.GetGUIObjectByName("timeElapsed").caption = "Time elapsed: " + timeToString(data.timeElapsed);
 
-	getGUIObjectByName("summaryText").caption = data.gameResult;
+	Engine.GetGUIObjectByName("summaryText").caption = data.gameResult;
 
 	// This is only defined for random maps
 	if (data.mapSettings.Size)
@@ -60,7 +60,7 @@ function init(data)
 		}
 	}
 
-	getGUIObjectByName("mapName").caption = data.mapSettings.Name + " - " + mapSize;
+	Engine.GetGUIObjectByName("mapName").caption = data.mapSettings.Name + " - " + mapSize;
 
 	// Space player boxes
 	var boxSpacing = 32;
@@ -68,7 +68,7 @@ function init(data)
 	{
 		for (var j = 0; j < MAX_SLOTS; ++j)
 		{
-			var box = getGUIObjectByName("playerBox"+i+"["+j+"]");
+			var box = Engine.GetGUIObjectByName("playerBox"+i+"["+j+"]");
 			var boxSize = box.size;
 			var h = boxSize.bottom - boxSize.top;
 			boxSize.top = j * boxSpacing;
@@ -86,46 +86,46 @@ function init(data)
 	var playerNameHeadingWidth = 200;
 	// Special cased to make the (Sent / Received) part fit
 	var tributesWidth = 121;
-	getGUIObjectByName("playerName0Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
-	getGUIObjectByName("economyScoreHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("militaryScoreHeading").size = left +  " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("explorationScoreHeading").size = left +  " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("totalScoreHeading").size = left +  " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("playerName0Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	Engine.GetGUIObjectByName("economyScoreHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("militaryScoreHeading").size = left +  " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("explorationScoreHeading").size = left +  " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("totalScoreHeading").size = left +  " 16 " + (left + width) + " 100%"; left += width;
 	
 	left = 50;
-	getGUIObjectByName("playerName1Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
-	getGUIObjectByName("unitsTrainedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("unitsLostHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("enemyUnitsKilledHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("buildingsConstructedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("buildingsLostHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("enemyBuildingsDestroyedHeading").size = left + " 6 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("playerName1Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	Engine.GetGUIObjectByName("unitsTrainedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("unitsLostHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("enemyUnitsKilledHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("buildingsConstructedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("buildingsLostHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("enemyBuildingsDestroyedHeading").size = left + " 6 " + (left + width) + " 100%"; left += width;
 
 	left = 50;
-	getGUIObjectByName("playerName2Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
-	getGUIObjectByName("civCentresBuiltHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("enemyCivCentresDestroyedHeading").size = left +  " 6 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("mapExplorationHeading").size = left +  " 6 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("playerName2Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	Engine.GetGUIObjectByName("civCentresBuiltHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("enemyCivCentresDestroyedHeading").size = left +  " 6 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("mapExplorationHeading").size = left +  " 6 " + (left + width) + " 100%"; left += width;
 
 	left = 50;
-	getGUIObjectByName("playerName3Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
-	getGUIObjectByName("resourceHeading").size = left + " 16 " + (left + width * 4) + " 100%";
-	getGUIObjectByName("foodGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("woodGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("stoneGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("metalGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("vegetarianRatioHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("treasuresCollectedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("resourcesTributedHeading").size = left + " 16 " + (left + tributesWidth) + " 100%"; left += tributesWidth;
+	Engine.GetGUIObjectByName("playerName3Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	Engine.GetGUIObjectByName("resourceHeading").size = left + " 16 " + (left + width * 4) + " 100%";
+	Engine.GetGUIObjectByName("foodGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("woodGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("stoneGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("metalGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("vegetarianRatioHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("treasuresCollectedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("resourcesTributedHeading").size = left + " 16 " + (left + tributesWidth) + " 100%"; left += tributesWidth;
 
 	left = 50;
-	getGUIObjectByName("playerName4Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
-	getGUIObjectByName("exchangedFoodHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("exchangedWoodHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("exchangedStoneHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("exchangedMetalHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("barterEfficiencyHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("tradeIncomeHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("playerName4Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	Engine.GetGUIObjectByName("exchangedFoodHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("exchangedWoodHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("exchangedStoneHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("exchangedMetalHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("barterEfficiencyHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	Engine.GetGUIObjectByName("tradeIncomeHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 
 	// Show counters
 	for (var i = 0; i < MAX_SLOTS; ++i)
@@ -136,7 +136,7 @@ function init(data)
 
 			for (var k = 0; k < panelNames.length; ++k)
 			{
-				var playerBox = getGUIObjectByName("playerBox"+k+"["+i+"]");
+				var playerBox = Engine.GetGUIObjectByName("playerBox"+k+"["+i+"]");
 				playerBox.hidden = false;
 
 				var colourString = "colour: "
@@ -144,48 +144,48 @@ function init(data)
 					+ Math.floor(playerState.colour.g * 255) + " "
 					+ Math.floor(playerState.colour.b * 255);
 				playerBox.sprite = colourString + " 32";
-				var playerColourBox = getGUIObjectByName("playerColourBox"+k+"["+i+"]");
+				var playerColourBox = Engine.GetGUIObjectByName("playerColourBox"+k+"["+i+"]");
 				playerColourBox.sprite = colourString + " 255";
 
 				// Show the multiplayer name, e.g. "Foobar" rather than "Player 1".
 				// TODO: Perhaps show both the multiplayer and map-specific name?
-				var playerName = getGUIObjectByName("playerName"+k+"["+i+"]");
+				var playerName = Engine.GetGUIObjectByName("playerName"+k+"["+i+"]");
 				playerName.caption = data.players[i+1].name;
 
-				getGUIObjectByName("civIcon"+k+"["+i+"]").sprite = "stretched:"+civData[playerState.civ].Emblem;
-				getGUIObjectByName("civIcon"+k+"["+i+"]").tooltip = civData[playerState.civ].Name;
+				Engine.GetGUIObjectByName("civIcon"+k+"["+i+"]").sprite = "stretched:"+civData[playerState.civ].Emblem;
+				Engine.GetGUIObjectByName("civIcon"+k+"["+i+"]").tooltip = civData[playerState.civ].Name;
 			}
 
-			var economyScore = getGUIObjectByName("economyScore["+i+"]");
-			var militaryScore = getGUIObjectByName("militaryScore["+i+"]");
-			var explorationScore = getGUIObjectByName("explorationScore["+i+"]");
-			var totalScore = getGUIObjectByName("totalScore["+i+"]");
+			var economyScore = Engine.GetGUIObjectByName("economyScore["+i+"]");
+			var militaryScore = Engine.GetGUIObjectByName("militaryScore["+i+"]");
+			var explorationScore = Engine.GetGUIObjectByName("explorationScore["+i+"]");
+			var totalScore = Engine.GetGUIObjectByName("totalScore["+i+"]");
 
-			var unitsTrained = getGUIObjectByName("unitsTrained["+i+"]");
-			var unitsLost = getGUIObjectByName("unitsLost["+i+"]");
-			var enemyUnitsKilled = getGUIObjectByName("enemyUnitsKilled["+i+"]");
-			var buildingsConstructed = getGUIObjectByName("buildingsConstructed["+i+"]");
-			var buildingsLost = getGUIObjectByName("buildingsLost["+i+"]");
-			var enemyBuildingsDestroyed = getGUIObjectByName("enemyBuildingsDestroyed["+i+"]");
+			var unitsTrained = Engine.GetGUIObjectByName("unitsTrained["+i+"]");
+			var unitsLost = Engine.GetGUIObjectByName("unitsLost["+i+"]");
+			var enemyUnitsKilled = Engine.GetGUIObjectByName("enemyUnitsKilled["+i+"]");
+			var buildingsConstructed = Engine.GetGUIObjectByName("buildingsConstructed["+i+"]");
+			var buildingsLost = Engine.GetGUIObjectByName("buildingsLost["+i+"]");
+			var enemyBuildingsDestroyed = Engine.GetGUIObjectByName("enemyBuildingsDestroyed["+i+"]");
 
-			var civCentresBuilt = getGUIObjectByName("civCentresBuilt["+i+"]");
-			var enemyCivCentresDestroyed = getGUIObjectByName("enemyCivCentresDestroyed["+i+"]");
-			var mapExploration = getGUIObjectByName("mapExploration["+i+"]");
+			var civCentresBuilt = Engine.GetGUIObjectByName("civCentresBuilt["+i+"]");
+			var enemyCivCentresDestroyed = Engine.GetGUIObjectByName("enemyCivCentresDestroyed["+i+"]");
+			var mapExploration = Engine.GetGUIObjectByName("mapExploration["+i+"]");
 
-			var foodGathered = getGUIObjectByName("foodGathered["+i+"]");
-			var woodGathered = getGUIObjectByName("woodGathered["+i+"]");
-			var stoneGathered = getGUIObjectByName("stoneGathered["+i+"]");
-			var metalGathered = getGUIObjectByName("metalGathered["+i+"]");
-			var vegetarianRatio = getGUIObjectByName("vegetarianRatio["+i+"]");
-			var treasuresCollected = getGUIObjectByName("treasuresCollected["+i+"]");
-			var resourcesTributed = getGUIObjectByName("resourcesTributed["+i+"]");
+			var foodGathered = Engine.GetGUIObjectByName("foodGathered["+i+"]");
+			var woodGathered = Engine.GetGUIObjectByName("woodGathered["+i+"]");
+			var stoneGathered = Engine.GetGUIObjectByName("stoneGathered["+i+"]");
+			var metalGathered = Engine.GetGUIObjectByName("metalGathered["+i+"]");
+			var vegetarianRatio = Engine.GetGUIObjectByName("vegetarianRatio["+i+"]");
+			var treasuresCollected = Engine.GetGUIObjectByName("treasuresCollected["+i+"]");
+			var resourcesTributed = Engine.GetGUIObjectByName("resourcesTributed["+i+"]");
 
-			var exchangedFood = getGUIObjectByName("exchangedFood["+i+"]");
-			var exchangedWood = getGUIObjectByName("exchangedWood["+i+"]");
-			var exchangedStone = getGUIObjectByName("exchangedStone["+i+"]");
-			var exchangedMetal = getGUIObjectByName("exchangedMetal["+i+"]");
-			var barterEfficiency = getGUIObjectByName("barterEfficiency["+i+"]");
-			var tradeIncome = getGUIObjectByName("tradeIncome["+i+"]");
+			var exchangedFood = Engine.GetGUIObjectByName("exchangedFood["+i+"]");
+			var exchangedWood = Engine.GetGUIObjectByName("exchangedWood["+i+"]");
+			var exchangedStone = Engine.GetGUIObjectByName("exchangedStone["+i+"]");
+			var exchangedMetal = Engine.GetGUIObjectByName("exchangedMetal["+i+"]");
+			var barterEfficiency = Engine.GetGUIObjectByName("barterEfficiency["+i+"]");
+			var tradeIncome = Engine.GetGUIObjectByName("tradeIncome["+i+"]");
 
 			// align counters
 
@@ -195,9 +195,9 @@ function init(data)
 			militaryScore.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			explorationScore.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			totalScore.size = left + " 2 " + (left + width) + " 100%"; left += width;
-			var size = getGUIObjectByName("playerBox0["+i+"]").size;
+			var size = Engine.GetGUIObjectByName("playerBox0["+i+"]").size;
 			size.right = left + 10;
-			getGUIObjectByName("playerBox0["+i+"]").size = size;
+			Engine.GetGUIObjectByName("playerBox0["+i+"]").size = size;
 			
 			left = 240;
 			unitsTrained.size = left + " 2 " + (left + width) + " 100%"; left += width;
@@ -206,17 +206,17 @@ function init(data)
 			buildingsConstructed.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			buildingsLost.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			enemyBuildingsDestroyed.size = left + " 2 " + (left + width) + " 100%"; left += width;
-			size = getGUIObjectByName("playerBox1["+i+"]").size;
+			size = Engine.GetGUIObjectByName("playerBox1["+i+"]").size;
 			size.right = left + 10;
-			getGUIObjectByName("playerBox1["+i+"]").size = size;
+			Engine.GetGUIObjectByName("playerBox1["+i+"]").size = size;
 
 			left = 240;
 			civCentresBuilt.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			enemyCivCentresDestroyed.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			mapExploration.size = left + " 2 " + (left + width) + " 100%"; left += width;
-			size = getGUIObjectByName("playerBox2["+i+"]").size;
+			size = Engine.GetGUIObjectByName("playerBox2["+i+"]").size;
 			size.right = left + 10;
-			getGUIObjectByName("playerBox2["+i+"]").size = size;
+			Engine.GetGUIObjectByName("playerBox2["+i+"]").size = size;
 
 			left = 240;
 			foodGathered.size = left + " 2 " + (left + width) + " 100%"; left += width;
@@ -226,9 +226,9 @@ function init(data)
 			vegetarianRatio.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			treasuresCollected.size	= left + " 2 " + (left + width) + " 100%"; left += width;
 			resourcesTributed.size = left + " 2 " + (left + tributesWidth) + " 100%"; left += tributesWidth;
-			size = getGUIObjectByName("playerBox3["+i+"]").size;
+			size = Engine.GetGUIObjectByName("playerBox3["+i+"]").size;
 			size.right = left + 10;
-			getGUIObjectByName("playerBox3["+i+"]").size = size;
+			Engine.GetGUIObjectByName("playerBox3["+i+"]").size = size;
 
 			left = 240;
 			exchangedFood.size = left + " 2 " + (left + width) + " 100%"; left += width;
@@ -237,9 +237,9 @@ function init(data)
 			exchangedMetal.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			barterEfficiency.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			tradeIncome.size = left + " 2 " + (left + width) + " 100%"; left += width;
-			size = getGUIObjectByName("playerBox4["+i+"]").size;
+			size = Engine.GetGUIObjectByName("playerBox4["+i+"]").size;
 			size.right = left + 10;
-			getGUIObjectByName("playerBox4["+i+"]").size = size;
+			Engine.GetGUIObjectByName("playerBox4["+i+"]").size = size;
 
 			// display counters
 			economyScore.caption = Math.round((playerState.statistics.resourcesGathered.food + playerState.statistics.resourcesGathered.wood + 
@@ -297,7 +297,7 @@ function init(data)
 			// hide player boxes
 			for (var k = 0; k < panelNames.length; ++k)
 			{
-				var playerBox = getGUIObjectByName("playerBox"+k+"["+i+"]");
+				var playerBox = Engine.GetGUIObjectByName("playerBox"+k+"["+i+"]");
 				playerBox.hidden = true;
 			}
 		}

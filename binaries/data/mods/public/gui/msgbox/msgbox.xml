@@ -4,13 +4,13 @@
 	<script><![CDATA[
 	function init(data)
 	{
-		var mbMainObj = getGUIObjectByName("mbMain");
-		var mbTitleObj = getGUIObjectByName("mbTitleBar");
-		var mbTextObj = getGUIObjectByName("mbText");
+		var mbMainObj = Engine.GetGUIObjectByName("mbMain");
+		var mbTitleObj = Engine.GetGUIObjectByName("mbTitleBar");
+		var mbTextObj = Engine.GetGUIObjectByName("mbText");
 
-		var mbButton1Obj = getGUIObjectByName("mbButton1");
-		var mbButton2Obj = getGUIObjectByName("mbButton2");
-		var mbButton3Obj = getGUIObjectByName("mbButton3");
+		var mbButton1Obj = Engine.GetGUIObjectByName("mbButton1");
+		var mbButton2Obj = Engine.GetGUIObjectByName("mbButton2");
+		var mbButton3Obj = Engine.GetGUIObjectByName("mbButton3");
 
 		// Calculate size
 		var mbLRDiff = data.width / 2;     // Message box left/right difference from 50% of screen
@@ -52,19 +52,37 @@
 		if (data.buttonCaptions.length >= 1)
 		{
 			mbButton1Obj.caption = data.buttonCaptions[0];
-			mbButton1Obj.onPress = function () { Engine.PopGuiPage(); if (codes && codes[0]) codes[0](); }
+			mbButton1Obj.onPress = function () 
+			{ 
+				if (data.callback) 
+					Engine.PopGuiPageCB(0); 
+				else
+					Engine.PopGuiPage(); 
+			};
 			mbButton1Obj.hidden = false;
 		}
 		if (data.buttonCaptions.length >= 2)
 		{
 			mbButton2Obj.caption = data.buttonCaptions[1];
-			mbButton2Obj.onPress = function () { Engine.PopGuiPage(); if (codes && codes[1]) codes[1](); }
+			mbButton2Obj.onPress = function () 
+			{ 
+				if (data.callback) 
+					Engine.PopGuiPageCB(1); 
+				else
+					Engine.PopGuiPage(); 
+			};
 			mbButton2Obj.hidden = false;
 		}
 		if (data.buttonCaptions.length >= 3)
 		{
 			mbButton3Obj.caption = data.buttonCaptions[2];
-			mbButton3Obj.onPress = function () { Engine.PopGuiPage(); if (codes && codes[2]) codes[2](); }
+			mbButton3Obj.onPress = function () 
+			{ 
+				if (data.callback) 
+					Engine.PopGuiPageCB(2); 
+				else
+					Engine.PopGuiPage(); 
+			};
 			mbButton3Obj.hidden = false;
 		}
 

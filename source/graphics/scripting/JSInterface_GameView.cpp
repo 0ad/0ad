@@ -24,7 +24,7 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #define IMPLEMENT_BOOLEAN_SCRIPT_SETTING(NAME) \
-bool JSI_GameView::Get##NAME##Enabled(void* UNUSED(cbdata)) \
+bool JSI_GameView::Get##NAME##Enabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)) \
 { \
 	if (!g_Game || !g_Game->GetView()) \
 	{ \
@@ -34,7 +34,7 @@ bool JSI_GameView::Get##NAME##Enabled(void* UNUSED(cbdata)) \
 	return g_Game->GetView()->Get##NAME##Enabled(); \
 } \
 \
-void JSI_GameView::Set##NAME##Enabled(void* UNUSED(cbdata), bool Enabled) \
+void JSI_GameView::Set##NAME##Enabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool Enabled) \
 { \
 	if (!g_Game || !g_Game->GetView()) \
 	{ \

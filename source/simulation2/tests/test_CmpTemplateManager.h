@@ -52,7 +52,7 @@ public:
 	void test_LoadTemplate()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
@@ -114,7 +114,7 @@ public:
 	void test_LoadTemplate_scriptcache()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
@@ -152,7 +152,7 @@ public:
 	void test_LoadTemplate_errors()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
@@ -184,7 +184,7 @@ public:
 	void test_LoadTemplate_multiple()
 	{
 		CSimContext context;
-		CComponentManager man(context);
+		CComponentManager man(context, ScriptInterface::CreateRuntime());
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
@@ -243,7 +243,7 @@ public:
 	void test_load_all_DISABLED() // disabled since it's a bit slow and noisy
 	{
 		CTerrain dummy;
-		CSimulation2 sim(NULL, &dummy);
+		CSimulation2 sim(NULL, ScriptInterface::CreateRuntime(), &dummy);
 		sim.LoadDefaultScripts();
 		sim.ResetState();
 

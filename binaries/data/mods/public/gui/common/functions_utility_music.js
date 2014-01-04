@@ -50,7 +50,7 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 	// Get names of sounds (attack, command, select, hit, pain).
 	// or
 	// Get names of "peace", "menu" (theme) and "battle" tracks.
-	var soundArray = buildDirEntList(randomSoundPath, "*" + soundSubType + "*", false);
+	var soundArray = Engine.BuildDirEntList(randomSoundPath, "*" + soundSubType + "*", false);
 	if (soundArray.length == 0)
 	{
 		Engine.Console_Write ("Failed to find sounds matching '*"+soundSubType+"*'");

@@ -56,7 +56,7 @@ function updateCursorAndTooltip()
 {
 	var cursorSet = false;
 	var tooltipSet = false;
-	var informationTooltip = getGUIObjectByName("informationTooltip");
+	var informationTooltip = Engine.GetGUIObjectByName("informationTooltip");
 	if (!mouseIsOverObject)
 	{
 		var action = determineAction(mouseX, mouseY);
@@ -84,7 +84,7 @@ function updateCursorAndTooltip()
 	if (!tooltipSet)
 		informationTooltip.hidden = true;
 	
-	var placementTooltip = getGUIObjectByName("placementTooltip");
+	var placementTooltip = Engine.GetGUIObjectByName("placementTooltip");
 	if (placementSupport.tooltipMessage)
 	{
 		if (placementSupport.tooltipError)
@@ -757,7 +757,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
 			if (y0 > y1) { var t = y0; y0 = y1; y1 = t; }
 
-			var bandbox = getGUIObjectByName("bandbox");
+			var bandbox = Engine.GetGUIObjectByName("bandbox");
 			bandbox.size = [x0, y0, x1, y1].join(" ");
 			bandbox.hidden = false;
 
@@ -777,7 +777,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
 				if (y0 > y1) { var t = y0; y0 = y1; y1 = t; }
 
-				var bandbox = getGUIObjectByName("bandbox");
+				var bandbox = Engine.GetGUIObjectByName("bandbox");
 				bandbox.hidden = true;
 
 				// Get list of entities limited to preferred entities
@@ -821,7 +821,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			else if (ev.button == SDL_BUTTON_RIGHT)
 			{
 				// Cancel selection
-				var bandbox = getGUIObjectByName("bandbox");
+				var bandbox = Engine.GetGUIObjectByName("bandbox");
 				bandbox.hidden = true;
 
 				g_Selection.setHighlightList([]);
@@ -1071,7 +1071,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 function handleInputAfterGui(ev)
 {
 	// Handle the time-warp testing features, restricted to single-player
-	if (!g_IsNetworked && getGUIObjectByName("devTimeWarp").checked)
+	if (!g_IsNetworked && Engine.GetGUIObjectByName("devTimeWarp").checked)
 	{
 		if (ev.type == "hotkeydown" && ev.hotkey == "timewarp.fastforward")
 			Engine.SetSimRate(20.0);

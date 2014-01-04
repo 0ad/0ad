@@ -18,18 +18,17 @@
 #ifndef INCLUDED_JSI_CONFIGDB
 #define INCLUDED_JSI_CONFIGDB
 
+#include "scriptinterface/ScriptInterface.h"
 #include "ps/ConfigDB.h"
-
-class ScriptInterface;
 
 namespace JSI_ConfigDB
 {
 	bool GetConfigNamespace(std::wstring cfgNsString, EConfigNamespace& cfgNs);
-	std::string GetValue(void* cbdata, std::wstring cfgNsString, std::string name);
-	bool CreateValue(void* cbdata, std::wstring cfgNsString, std::string name, std::string value);
-	bool WriteFile(void* cbdata, std::wstring cfgNsString, Path path);
-	bool Reload(void* cbdata, std::wstring cfgNsString);
-	bool SetFile(void* cbdata, std::wstring cfgNsString, Path path);
+	std::string GetValue(ScriptInterface::CxPrivate* pCxPrivate, std::wstring cfgNsString, std::string name);
+	bool CreateValue(ScriptInterface::CxPrivate* pCxPrivate, std::wstring cfgNsString, std::string name, std::string value);
+	bool WriteFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring cfgNsString, Path path);
+	bool Reload(ScriptInterface::CxPrivate* pCxPrivate, std::wstring cfgNsString);
+	bool SetFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring cfgNsString, Path path);
 	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
 }
 

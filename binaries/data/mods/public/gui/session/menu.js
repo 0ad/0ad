@@ -45,7 +45,7 @@ var flushTributing = function() {};
 // Ignore size defined in XML and set the actual menu size here
 function initMenuPosition()
 {
-	menu = getGUIObjectByName("menu");
+	menu = Engine.GetGUIObjectByName("menu");
 	menu.size = INITIAL_MENU_POSITION;
 }
 
@@ -151,20 +151,21 @@ function exitMenuButton()
 	messageBox(400, 200, "Are you sure you want to quit?", "Confirmation", 0, btCaptions, btCode);
 }
 
+
 function openDeleteDialog(selection)
 {
 	closeMenu();
 	closeOpenDialogs();
 
-	var deleteSelectedEntities = function ()
+	var deleteSelectedEntities = function (selectionArg)
 	{
-		Engine.PostNetworkCommand({"type": "delete-entities", "entities": selection});
+		Engine.PostNetworkCommand({"type": "delete-entities", "entities": selectionArg});
 	};
 
 	var btCaptions = ["Yes", "No"];
 	var btCode = [deleteSelectedEntities, resumeGame];
 
-	messageBox(400, 200, "Destroy everything currently selected?", "Delete", 0, btCaptions, btCode);
+	messageBox(400, 200, "Destroy everything currently selected?", "Delete", 0, btCaptions, btCode, [selection, null]);
 }
 
 // Menu functions
@@ -175,41 +176,42 @@ function openSave()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	Engine.PushGuiPage("page_savegame.xml", {"gameDataCallback": getSavedGameData, "closeCallback": resumeGame});
+	var savedGameData = getSavedGameData();
+	Engine.PushGuiPage("page_savegame.xml", {"savedGameData": savedGameData, "callback": "resumeGame"});
 }
 
 function openSettings()
 {
-	getGUIObjectByName("settingsDialogPanel").hidden = false;
+	Engine.GetGUIObjectByName("settingsDialogPanel").hidden = false;
 	pauseGame();
 }
 
 function closeSettings(resume)
 {
-	getGUIObjectByName("settingsDialogPanel").hidden = true;
+	Engine.GetGUIObjectByName("settingsDialogPanel").hidden = true;
 	if (resume)
 		resumeGame();
 }
 
 function openChat()
 {
-	getGUIObjectByName("chatInput").focus(); // Grant focus to the input area
-	getGUIObjectByName("chatDialogPanel").hidden = false;
+	Engine.GetGUIObjectByName("chatInput").focus(); // Grant focus to the input area
+	Engine.GetGUIObjectByName("chatDialogPanel").hidden = false;
 }
 
 function closeChat()
 {
-	getGUIObjectByName("chatInput").caption = ""; // Clear chat input
-	getGUIObjectByName("chatInput").blur(); // Remove focus
-	getGUIObjectByName("chatDialogPanel").hidden = true;
+	Engine.GetGUIObjectByName("chatInput").caption = ""; // Clear chat input
+	Engine.GetGUIObjectByName("chatInput").blur(); // Remove focus
+	Engine.GetGUIObjectByName("chatDialogPanel").hidden = true;
 }
 
 function toggleChatWindow(teamChat)
 {
 	closeSettings();
 
-	var chatWindow = getGUIObjectByName("chatDialogPanel");
-	var chatInput = getGUIObjectByName("chatInput");
+	var chatWindow = Engine.GetGUIObjectByName("chatDialogPanel");
+	var chatInput = Engine.GetGUIObjectByName("chatInput");
 
 	if (chatWindow.hidden)
 		chatInput.focus(); // Grant focus to the input area
@@ -223,7 +225,7 @@ function toggleChatWindow(teamChat)
 		chatInput.caption = ""; // Clear chat input
 	}
 
-	getGUIObjectByName("toggleTeamChat").checked = teamChat;
+	Engine.GetGUIObjectByName("toggleTeamChat").checked = teamChat;
 	chatWindow.hidden = !chatWindow.hidden;
 }
 
@@ -247,14 +249,14 @@ function openDiplomacy()
 	var players = getPlayerData(g_PlayerAssignments);
 
 	// Get offset for one line
-	var onesize = getGUIObjectByName("diplomacyPlayer[0]").size;
+	var onesize = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
 	var rowsize = onesize.bottom - onesize.top;
 
 	// We don't include gaia
 	for (var i = 1; i < players.length; i++)
 	{
 		// Apply offset
-		var row = getGUIObjectByName("diplomacyPlayer["+(i-1)+"]");
+		var row = Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]");
 		var size = row.size;
 		size.top = rowsize*(i-1);
 		size.bottom = rowsize*i;
@@ -264,27 +266,27 @@ function openDiplomacy()
 		var playerColor = players[i].color.r+" "+players[i].color.g+" "+players[i].color.b;
 		row.sprite = "colour: "+playerColor + " 32";
 
-		getGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = "[color=\"" + playerColor + "\"]" + players[i].name + "[/color]";
-		getGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[players[i].civ].Name;
+		Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = "[color=\"" + playerColor + "\"]" + players[i].name + "[/color]";
+		Engine.GetGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[players[i].civ].Name;
 
-		getGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption = (players[i].team < 0) ? "None" : players[i].team+1;
+		Engine.GetGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption = (players[i].team < 0) ? "None" : players[i].team+1;
 
 		if (i != we)
-			getGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (players[i].isAlly[we] ? "Ally" : (players[i].isNeutral[we] ? "Neutral" : "Enemy"));
+			Engine.GetGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (players[i].isAlly[we] ? "Ally" : (players[i].isNeutral[we] ? "Neutral" : "Enemy"));
 
 		// Don't display the options for ourself, or if we or the other player aren't active anymore
 		if (i == we || players[we].state != "active" || players[i].state != "active")
 		{
 			// Hide the unused/unselectable options
 			for each (var a in ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
-				getGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
+				Engine.GetGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
 			continue;
 		}
 
 		// Tribute
 		for each (var resource in ["food", "wood", "stone", "metal"])
 		{
-			var button = getGUIObjectByName("diplomacyPlayerTribute"+toTitleCase(resource)+"["+(i-1)+"]");
+			var button = Engine.GetGUIObjectByName("diplomacyPlayerTribute"+toTitleCase(resource)+"["+(i-1)+"]");
 			button.onpress = (function(player, resource, button){
 				// Implement something like how unit batch training works. Shift+click to send 500, shift+click+click to send 1000, etc.
 				// Also see input.js (searching for "INPUT_MASSTRIBUTING" should get all the relevant parts).
@@ -326,7 +328,7 @@ function openDiplomacy()
 		// Set up the buttons
 		for each (var setting in ["ally", "neutral", "enemy"])
 		{
-			var button = getGUIObjectByName("diplomacyPlayer"+toTitleCase(setting)+"["+(i-1)+"]");
+			var button = Engine.GetGUIObjectByName("diplomacyPlayer"+toTitleCase(setting)+"["+(i-1)+"]");
 
 			if (setting == "ally")
 			{
@@ -355,13 +357,13 @@ function openDiplomacy()
 		}
 	}
 
-	getGUIObjectByName("diplomacyDialogPanel").hidden = false;
+	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = false;
 }
 
 function closeDiplomacy()
 {
 	isDiplomacyOpen = false;
-	getGUIObjectByName("diplomacyDialogPanel").hidden = true;
+	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = true;
 }
 
 function toggleDiplomacy()
@@ -405,24 +407,24 @@ function openTrade()
 	var selec = RESOURCES[0];
 	for (var i = 0; i < RESOURCES.length; ++i)
 	{
-		var buttonResource = getGUIObjectByName("tradeResource["+i+"]");
+		var buttonResource = Engine.GetGUIObjectByName("tradeResource["+i+"]");
 		if (i > 0)
 		{
-			var size = getGUIObjectByName("tradeResource["+(i-1)+"]").size;
+			var size = Engine.GetGUIObjectByName("tradeResource["+(i-1)+"]").size;
 			var width = size.right - size.left;
 			size.left += width;
 			size.right += width;
-			getGUIObjectByName("tradeResource["+i+"]").size = size;
+			Engine.GetGUIObjectByName("tradeResource["+i+"]").size = size;
 		}
 		var resource = RESOURCES[i];
 		proba[resource] = (proba[resource] ? proba[resource] : 0);
-		var buttonResource = getGUIObjectByName("tradeResourceButton["+i+"]");
-		var icon = getGUIObjectByName("tradeResourceIcon["+i+"]");
+		var buttonResource = Engine.GetGUIObjectByName("tradeResourceButton["+i+"]");
+		var icon = Engine.GetGUIObjectByName("tradeResourceIcon["+i+"]");
 		icon.sprite = "stretched:session/icons/resources/" + resource + ".png";
-		var label = getGUIObjectByName("tradeResourceText["+i+"]");
-		var buttonUp = getGUIObjectByName("tradeArrowUp["+i+"]");
-		var buttonDn = getGUIObjectByName("tradeArrowDn["+i+"]");
-		var iconSel = getGUIObjectByName("tradeResourceSelection["+i+"]");
+		var label = Engine.GetGUIObjectByName("tradeResourceText["+i+"]");
+		var buttonUp = Engine.GetGUIObjectByName("tradeArrowUp["+i+"]");
+		var buttonDn = Engine.GetGUIObjectByName("tradeArrowDn["+i+"]");
+		var iconSel = Engine.GetGUIObjectByName("tradeResourceSelection["+i+"]");
 		button[resource] = { "res": buttonResource, "up": buttonUp, "dn": buttonDn, "label": label, "sel": iconSel };
 
 		buttonResource.onpress = (function(resource){
@@ -475,7 +477,7 @@ function openTrade()
 		if (inactive > 0)
 			caption += comma + "[color=\"orange\"]" + inactive + " inactive[/color]";
 	}
-	getGUIObjectByName("landTraders").caption = caption;
+	Engine.GetGUIObjectByName("landTraders").caption = caption;
 
 	caption = "";
 	comma = "";
@@ -492,15 +494,15 @@ function openTrade()
 		if (inactive > 0)
 			caption += comma + "[color=\"orange\"]" + inactive + " inactive[/color]";
 	}
-	getGUIObjectByName("shipTraders").caption = caption;
+	Engine.GetGUIObjectByName("shipTraders").caption = caption;
 
-	getGUIObjectByName("tradeDialogPanel").hidden = false;
+	Engine.GetGUIObjectByName("tradeDialogPanel").hidden = false;
 }
 
 function closeTrade()
 {
 	isTradeOpen = false;
-	getGUIObjectByName("tradeDialogPanel").hidden = true;
+	Engine.GetGUIObjectByName("tradeDialogPanel").hidden = true;
 }
 
 function toggleTrade()
@@ -513,7 +515,7 @@ function toggleTrade()
 
 function toggleGameSpeed()
 {
-	var gameSpeed = getGUIObjectByName("gameSpeed");
+	var gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 	gameSpeed.hidden = !gameSpeed.hidden;
 }
 
@@ -525,16 +527,16 @@ function pauseGame()
 	if (g_IsNetworked)
 		return;
 
-	getGUIObjectByName("pauseButtonText").caption = RESUME;
-	getGUIObjectByName("pauseOverlay").hidden = false;
-	setPaused(true);
+	Engine.GetGUIObjectByName("pauseButtonText").caption = RESUME;
+	Engine.GetGUIObjectByName("pauseOverlay").hidden = false;
+	Engine.SetPaused(true);
 }
 
 function resumeGame()
 {
-	getGUIObjectByName("pauseButtonText").caption = PAUSE;
-	getGUIObjectByName("pauseOverlay").hidden = true;
-	setPaused(false);
+	Engine.GetGUIObjectByName("pauseButtonText").caption = PAUSE;
+	Engine.GetGUIObjectByName("pauseOverlay").hidden = true;
+	Engine.SetPaused(false);
 }
 
 function togglePause()
@@ -542,17 +544,17 @@ function togglePause()
 	closeMenu();
 	closeOpenDialogs();
 
-	var pauseOverlay = getGUIObjectByName("pauseOverlay");
+	var pauseOverlay = Engine.GetGUIObjectByName("pauseOverlay");
 
 	if (pauseOverlay.hidden)
 	{
-		getGUIObjectByName("pauseButtonText").caption = RESUME;
-		setPaused(true);
+		Engine.GetGUIObjectByName("pauseButtonText").caption = RESUME;
+		Engine.SetPaused(true);
 	}
 	else
 	{
-		setPaused(false);
-		getGUIObjectByName("pauseButtonText").caption = PAUSE;
+		Engine.SetPaused(false);
+		Engine.GetGUIObjectByName("pauseButtonText").caption = PAUSE;
 	}
 
 	pauseOverlay.hidden = !pauseOverlay.hidden;
@@ -571,11 +573,11 @@ function toggleDeveloperOverlay()
 	if (Engine.HasXmppClient() && Engine.IsRankedGame())
 		return;
 
-	var devCommands = getGUIObjectByName("devCommands");
+	var devCommands = Engine.GetGUIObjectByName("devCommands");
 	var text = devCommands.hidden ? "opened." : "closed.";
 	submitChatDirectly("The Developer Overlay was " + text);
 	// Update the options dialog
-	getGUIObjectByName("developerOverlayCheckbox").checked = devCommands.hidden;
+	Engine.GetGUIObjectByName("developerOverlayCheckbox").checked = devCommands.hidden;
 	devCommands.hidden = !devCommands.hidden;
 }
 

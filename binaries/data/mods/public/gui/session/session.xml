@@ -66,7 +66,7 @@
 	    <action on="Press">
 		var newSetting = !Engine.Renderer_GetSilhouettesEnabled();
 		Engine.Renderer_SetSilhouettesEnabled(newSetting);
-		getGUIObjectByName("silhouettesCheckbox").checked = newSetting;
+		Engine.GetGUIObjectByName("silhouettesCheckbox").checked = newSetting;
 	    </action>
 	</object>
 
@@ -259,7 +259,7 @@
 
 	    <object size="0 16 100%-18 32" type="text" style="devCommandsText">Change perspective</object>
 	    <object size="100%-16 16 100% 32" type="checkbox" style="StoneCrossBox">
-		<action on="Press">getGUIObjectByName("viewPlayer").hidden = !this.checked;</action>
+		<action on="Press">Engine.GetGUIObjectByName("viewPlayer").hidden = !this.checked;</action>
 	    </object>
 
 	    <object size="0 32 100%-18 48" type="text" style="devCommandsText">Display selection state</object>
@@ -679,8 +679,8 @@
 		ALPHA XV : Osiris<!-- IMPORTANT: remember to update pregame/mainmenu.xml in sync with this -->
 
 		<!-- Displays build date and revision number-->
-		<object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" style="BuildNameText" ghost="true">
-		    <action on="Load">this.caption = buildTime(0) + " (" + buildTime(2) + ")"</action>
+		<object size="50%-128 0 50%+128 100%-2" name="Engine.BuildTimeLabel" type="text" style="BuildNameText" ghost="true">
+		    <action on="Load">this.caption = Engine.BuildTime(0) + " (" + Engine.BuildTime(2) + ")"</action>
 		</object>
 	    </object>
 

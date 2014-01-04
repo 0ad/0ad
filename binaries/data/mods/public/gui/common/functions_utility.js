@@ -20,7 +20,7 @@ function getRandom(randomMin, randomMax)
 // Get list of XML files in pathname with recursion, excepting those starting with _
 function getXMLFileList(pathname)
 {
-	var files = buildDirEntList(pathname, "*.xml", true);
+	var files = Engine.BuildDirEntList(pathname, "*.xml", true);
 
 	var result = [];
 
@@ -45,7 +45,7 @@ function getXMLFileList(pathname)
 // Get list of JSON files in pathname
 function getJSONFileList(pathname)
 {
-	var files = buildDirEntList(pathname, "*.json", false);
+	var files = Engine.BuildDirEntList(pathname, "*.json", false);
 
 	// Remove the path and extension from each name, since we just want the filename
 	files = [ n.substring(pathname.length, n.length-5) for each (n in files) ];
@@ -61,7 +61,7 @@ function parseJSONData(pathname)
 {
 	var data = {};
 
-	var rawData = readFile(pathname);
+	var rawData = Engine.ReadFile(pathname);
 	if (!rawData)
 	{
 		error("Failed to read file: "+pathname);
@@ -139,7 +139,7 @@ function toTitleCase (string)
 function parseJSONFromDataFile(filename)
 {
 	var path = "simulation/data/"+filename;
-	var rawData = readFile(path);
+	var rawData = Engine.ReadFile(path);
 	if (!rawData)
 		error("Failed to read file: "+path);
 

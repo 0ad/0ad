@@ -59,8 +59,8 @@ static std::string Hexify(const std::string& s) // TODO: shouldn't duplicate thi
 class CSimulation2Impl
 {
 public:
-	CSimulation2Impl(CUnitManager* unitManager, CTerrain* terrain) :
-		m_SimContext(), m_ComponentManager(m_SimContext),
+	CSimulation2Impl(CUnitManager* unitManager, shared_ptr<ScriptRuntime> rt, CTerrain* terrain) :
+		m_SimContext(), m_ComponentManager(m_SimContext, rt),
 		m_EnableOOSLog(false), m_EnableSerializationTest(false)
 	{
 		m_SimContext.m_UnitManager = unitManager;
@@ -376,7 +376,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		CTerrain secondaryTerrain;
 		CSimContext secondaryContext;
 		secondaryContext.m_Terrain = &secondaryTerrain;
-		CComponentManager secondaryComponentManager(secondaryContext);
+		CComponentManager secondaryComponentManager(secondaryContext, m_ComponentManager.GetScriptInterface().GetRuntime());
 		secondaryComponentManager.LoadComponentTypes();
 		ENSURE(LoadDefaultScripts(secondaryComponentManager, NULL));
 		ResetComponentState(secondaryComponentManager, false, false);
@@ -565,8 +565,8 @@ void CSimulation2Impl::DumpState()
 
 ////////////////////////////////////////////////////////////////
 
-CSimulation2::CSimulation2(CUnitManager* unitManager, CTerrain* terrain) :
-	m(new CSimulation2Impl(unitManager, terrain))
+CSimulation2::CSimulation2(CUnitManager* unitManager, shared_ptr<ScriptRuntime> rt, CTerrain* terrain) :
+	m(new CSimulation2Impl(unitManager, rt, terrain))
 {
 }
 

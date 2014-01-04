@@ -44,7 +44,7 @@ function initCivNameList()
 	var civListCodes = [ civ.code for each (civ in civList) ];
 
 	// Set civ control
-	var civSelection = getGUIObjectByName("civSelection");
+	var civSelection = Engine.GetGUIObjectByName("civSelection");
 	civSelection.list = civListNames;
 	civSelection.list_data = civListCodes;
 	civSelection.selected = 0;
@@ -85,7 +85,7 @@ function selectCiv(code)
 		error("Error loading civ data for \""+code+"\"");
 
 	// Update civ gameplay display
-	getGUIObjectByName("civGameplayHeading").caption = heading(civInfo.Name+" Gameplay", 16);
+	Engine.GetGUIObjectByName("civGameplayHeading").caption = heading(civInfo.Name+" Gameplay", 16);
 
 
 	// Bonuses
@@ -105,7 +105,7 @@ function selectCiv(code)
                     + civInfo.TeamBonuses[i].History + '" tooltip_style="civInfoTooltip"]\n     ' + civInfo.TeamBonuses[i].Description + '\n[/color]';
 	}
 	
-	getGUIObjectByName("civBonuses").caption = bonusCaption;
+	Engine.GetGUIObjectByName("civBonuses").caption = bonusCaption;
 
 
 	// Special techs / buildings
@@ -129,7 +129,7 @@ function selectCiv(code)
                     + civInfo.Structures[i].History + '" tooltip_style="civInfoTooltip"]\n';
 	}
 	
-	getGUIObjectByName("civTechs").caption = techCaption;
+	Engine.GetGUIObjectByName("civTechs").caption = techCaption;
 
 
 	// Heroes
@@ -146,10 +146,10 @@ function selectCiv(code)
 		heroCaption += '\n';
 	}
 	
-	getGUIObjectByName("civHeroes").caption = heroCaption;
+	Engine.GetGUIObjectByName("civHeroes").caption = heroCaption;
 
 
 	// Update civ history display
-	getGUIObjectByName("civHistoryHeading").caption = heading("History of the " + civInfo.Name, 16);
-	getGUIObjectByName("civHistoryText").caption = civInfo.History;
+	Engine.GetGUIObjectByName("civHistoryHeading").caption = heading("History of the " + civInfo.Name, 16);
+	Engine.GetGUIObjectByName("civHistoryText").caption = civInfo.History;
 }

@@ -17,6 +17,7 @@
 
 #include "lib/self_test.h"
 
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpTest.h"
@@ -56,7 +57,7 @@ public:
 
 	void test_AddEntity()
 	{
-		CSimulation2 sim(NULL, &m_Terrain);
+		CSimulation2 sim(NULL, ScriptInterface::CreateRuntime(), &m_Terrain);
 		TS_ASSERT(sim.LoadScripts(L"simulation/components/addentity/"));
 
 		sim.ResetState(true, true);
@@ -76,7 +77,7 @@ public:
 
 	void test_DestroyEntity()
 	{
-		CSimulation2 sim(NULL, &m_Terrain);
+		CSimulation2 sim(NULL, ScriptInterface::CreateRuntime(), &m_Terrain);
 		TS_ASSERT(sim.LoadScripts(L"simulation/components/addentity/"));
 
 		sim.ResetState(true, true);
@@ -128,7 +129,7 @@ public:
 
 	void test_hotload_scripts()
 	{
-		CSimulation2 sim(NULL, &m_Terrain);
+		CSimulation2 sim(NULL, ScriptInterface::CreateRuntime(), &m_Terrain);
 
 		TS_ASSERT_OK(CreateDirectories(DataDir()/"mods"/"_test.sim"/"simulation"/"components"/"hotload"/"", 0700));
 

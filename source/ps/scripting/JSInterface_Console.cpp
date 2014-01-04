@@ -32,21 +32,21 @@ bool JSI_Console::CheckGlobalInitialized()
 	return true;
 }
 
-bool JSI_Console::GetVisibleEnabled(void* UNUSED(cbdata))
+bool JSI_Console::GetVisibleEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	if (!CheckGlobalInitialized())
 		return false;
 	return g_Console->IsActive();
 }
 
-void JSI_Console::SetVisibleEnabled(void* UNUSED(cbdata), bool Enabled)
+void JSI_Console::SetVisibleEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool Enabled)
 {
 	if (!CheckGlobalInitialized())
 		return;
 	g_Console->SetVisible(Enabled);
 }
 
-void JSI_Console::Write(void* UNUSED(cbdata), std::wstring output)
+void JSI_Console::Write(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring output)
 {
 	if (!CheckGlobalInitialized())
 		return;

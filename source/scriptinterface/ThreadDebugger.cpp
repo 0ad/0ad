@@ -289,10 +289,10 @@ CThreadDebugger::~CThreadDebugger()
 	ReturnActiveBreakPoints(NULL);
 
 	// Remove all the hooks because they store a pointer to this object
-	JS_SetExecuteHook(m->m_pScriptInterface->GetRuntime(), NULL, NULL);
-	JS_SetCallHook(m->m_pScriptInterface->GetRuntime(), NULL, NULL);
-	JS_SetNewScriptHook(m->m_pScriptInterface->GetRuntime(), NULL, NULL);
-	JS_SetDestroyScriptHook(m->m_pScriptInterface->GetRuntime(), NULL, NULL);
+	JS_SetExecuteHook(m->m_pScriptInterface->GetJSRuntime(), NULL, NULL);
+	JS_SetCallHook(m->m_pScriptInterface->GetJSRuntime(), NULL, NULL);
+	JS_SetNewScriptHook(m->m_pScriptInterface->GetJSRuntime(), NULL, NULL);
+	JS_SetDestroyScriptHook(m->m_pScriptInterface->GetJSRuntime(), NULL, NULL);
 }
 
 void CThreadDebugger::ReturnActiveBreakPoints(jsbytecode* pBytecode)
@@ -329,16 +329,16 @@ void CThreadDebugger::Initialize(uint id, std::string name, ScriptInterface* pSc
 	m->m_Name = name;
 	m->m_pScriptInterface = pScriptInterface;
 	m->m_pDebuggingServer = pDebuggingServer;
-	JS_SetExecuteHook(m->m_pScriptInterface->GetRuntime(), CallHook_, (void*)this);
-	JS_SetCallHook(m->m_pScriptInterface->GetRuntime(), CallHook_, (void*)this);
-	JS_SetNewScriptHook(m->m_pScriptInterface->GetRuntime(), NewScriptHook_, (void*)this);
-	JS_SetDestroyScriptHook(m->m_pScriptInterface->GetRuntime(), DestroyScriptHook_, (void*)this);
-	JS_SetThrowHook(m->m_pScriptInterface->GetRuntime(), ThrowHandler_, (void*)this);
+	JS_SetExecuteHook(m->m_pScriptInterface->GetJSRuntime(), CallHook_, (void*)this);
+	JS_SetCallHook(m->m_pScriptInterface->GetJSRuntime(), CallHook_, (void*)this);
+	JS_SetNewScriptHook(m->m_pScriptInterface->GetJSRuntime(), NewScriptHook_, (void*)this);
+	JS_SetDestroyScriptHook(m->m_pScriptInterface->GetJSRuntime(), DestroyScriptHook_, (void*)this);
+	JS_SetThrowHook(m->m_pScriptInterface->GetJSRuntime(), ThrowHandler_, (void*)this);
 	
 	if (m->m_pDebuggingServer->GetSettingSimultaneousThreadBreak())
 	{
 		// Setup a handler to check for break-requests from the DebuggingServer regularly
-		JS_SetInterrupt(m->m_pScriptInterface->GetRuntime(), CheckForBreakRequestHandler_, (void*)this);
+		JS_SetInterrupt(m->m_pScriptInterface->GetJSRuntime(), CheckForBreakRequestHandler_, (void*)this);
 	}
 }
 
@@ -456,7 +456,7 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 	
 	if (breakSrc == BREAK_SRC_INTERRUP)
 	{
-		JS_ClearInterrupt(m->m_pScriptInterface->GetRuntime(), NULL, NULL);
+		JS_ClearInterrupt(m->m_pScriptInterface->GetJSRuntime(), NULL, NULL);
 		JS_SetSingleStepMode(cx, script, false);
 	}
 	
@@ -496,17 +496,17 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 			{
 				if (nextDbgCmd == DBG_CMD_SINGLESTEP)
 				{
-					JS_SetInterrupt(m->m_pScriptInterface->GetRuntime(), StepHandler_, this);
+					JS_SetInterrupt(m->m_pScriptInterface->GetJSRuntime(), StepHandler_, this);
 					break;
 				}
 				else if (nextDbgCmd == DBG_CMD_STEPINTO)
 				{
-					JS_SetInterrupt(m->m_pScriptInterface->GetRuntime(), StepIntoHandler_, this);
+					JS_SetInterrupt(m->m_pScriptInterface->GetJSRuntime(), StepIntoHandler_, this);
 					break;
 				}
 				else if (nextDbgCmd == DBG_CMD_STEPOUT)
 				{
-					JS_SetInterrupt(m->m_pScriptInterface->GetRuntime(), StepOutHandler_, this);
+					JS_SetInterrupt(m->m_pScriptInterface->GetJSRuntime(), StepOutHandler_, this);
 					break;
 				}
 			}
@@ -518,7 +518,7 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 			else
 			{
 				// Setup a handler to check for break-requests from the DebuggingServer regularly
-				JS_SetInterrupt(m->m_pScriptInterface->GetRuntime(), CheckForBreakRequestHandler_, this);
+				JS_SetInterrupt(m->m_pScriptInterface->GetJSRuntime(), CheckForBreakRequestHandler_, this);
 			}
 			break;
 		}

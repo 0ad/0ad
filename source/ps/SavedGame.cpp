@@ -32,7 +32,7 @@ static const int SAVED_GAME_VERSION_MINOR = 0; // increment on compatible change
 // TODO: we ought to check version numbers when loading files
 
 
-Status SavedGames::SavePrefix(const std::wstring& prefix, const std::wstring& description, CSimulation2& simulation, CGUIManager* gui, int playerID)
+Status SavedGames::SavePrefix(const std::wstring& prefix, const std::wstring& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone, int playerID)
 {
 	// Determine the filename to save under
 	const VfsPath basenameFormat(L"saves/" + prefix + L"-%04d");
@@ -44,10 +44,10 @@ Status SavedGames::SavePrefix(const std::wstring& prefix, const std::wstring& de
 	size_t nextSaveNumber = 0;
 	vfs::NextNumberedFilename(g_VFS, filenameFormat, nextSaveNumber, filename);
 
-	return Save(filename.Filename().string(), description, simulation, gui, playerID);
+	return Save(filename.Filename().string(), description, simulation, guiMetadataClone, playerID);
 }
 
-Status SavedGames::Save(const std::wstring& name, const std::wstring& description, CSimulation2& simulation, CGUIManager* gui, int playerID)
+Status SavedGames::Save(const std::wstring& name, const std::wstring& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone, int playerID)
 {
 	// Determine the filename to save under
 	const VfsPath basenameFormat(L"saves/" + name);
@@ -79,11 +79,10 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "time", (double)now);
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "player", playerID);
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "initAttributes", simulation.GetInitAttributes());
-	if (gui)
-	{
-		CScriptVal guiMetadata = simulation.GetScriptInterface().CloneValueFromOtherContext(gui->GetScriptInterface(), gui->GetSavedGameData().get());
-		simulation.GetScriptInterface().SetProperty(metadata.get(), "gui", guiMetadata);
-	}
+
+	CScriptVal guiMetadata = simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone);
+	simulation.GetScriptInterface().SetProperty(metadata.get(), "gui", guiMetadata);
+
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "description", description);
 	
 	std::string metadataString = simulation.GetScriptInterface().StringifyJSON(metadata.get(), true);

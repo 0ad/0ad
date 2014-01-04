@@ -38,6 +38,7 @@ class ScriptInterface;
 class CMessage;
 class SceneCollector;
 class CFrustum;
+class ScriptRuntime;
 
 /**
  * Public API for simulation system.
@@ -48,7 +49,7 @@ class CSimulation2
 public:
 	// TODO: CUnitManager should probably be handled automatically by this
 	// module, but for now we'll have it passed in externally instead
-	CSimulation2(CUnitManager*, CTerrain*);
+	CSimulation2(CUnitManager* unitManager, shared_ptr<ScriptRuntime> rt, CTerrain* terrain);
 	~CSimulation2();
 
 	void EnableOOSLog();
