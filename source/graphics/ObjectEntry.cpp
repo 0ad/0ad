@@ -235,7 +235,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			if (isAmmo)
 				model->AddAmmoProp(proppoint, propmodel, oe);
 			else
-				model->AddProp(proppoint, propmodel, oe, prop.m_minHeight, prop.m_maxHeight);
+				model->AddProp(proppoint, propmodel, oe, prop.m_minHeight, prop.m_maxHeight, prop.m_selectable);
 			if (propmodel->ToCModel())
 				propmodel->ToCModel()->SetAnimation(oe->GetRandomAnimation("idle"));
 		}

@@ -208,7 +208,7 @@ const CBoundingBoxAligned CModel::GetObjectSelectionBoundsRec()
 	for (size_t i = 0; i < m_Props.size(); ++i)
 	{
 		const Prop& prop = m_Props[i];
-		if (prop.m_Hidden)
+		if (prop.m_Hidden || !prop.m_Selectable)
 			continue; // prop is hidden from rendering, so it also shouldn't be used for selection
 
 		CBoundingBoxAligned propSelectionBounds = prop.m_Model->GetObjectSelectionBoundsRec();
@@ -400,7 +400,7 @@ void CModel::ValidatePosition()
 		}
 
 		// Adjust prop height to terrain level when needed
-		if (prop.m_maxHeight != 0.f || prop.m_minHeight != 0.f) 
+		if (prop.m_MaxHeight != 0.f || prop.m_MinHeight != 0.f) 
 		{
 			CVector3D propTranslation = proptransform.GetTranslation();
 			CVector3D objTranslation = m_Transform.GetTranslation();
@@ -410,8 +410,8 @@ void CModel::ValidatePosition()
 			{
 				float objTerrain = cmpTerrain->GetExactGroundLevel(objTranslation.X, objTranslation.Z);
 				float propTerrain = cmpTerrain->GetExactGroundLevel(propTranslation.X, propTranslation.Z);
-				float translateHeight = std::min(prop.m_maxHeight,
-				                                 std::max(prop.m_minHeight, propTerrain - objTerrain));
+				float translateHeight = std::min(prop.m_MaxHeight,
+				                                 std::max(prop.m_MinHeight, propTerrain - objTerrain));
 				CMatrix3D translate = CMatrix3D();
 				translate.SetTranslation(0.f, translateHeight, 0.f);
 				proptransform.Concatenate(translate);
@@ -508,7 +508,7 @@ void CModel::CopyAnimationFrom(CModel* source)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AddProp: add a prop to the model on the given point
-void CModel::AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry, float minHeight, float maxHeight)
+void CModel::AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry, float minHeight, float maxHeight, bool selectable)
 {
 	// position model according to prop point position
 
@@ -520,8 +520,9 @@ void CModel::AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntr
 	prop.m_Point = point;
 	prop.m_Model = model;
 	prop.m_ObjectEntry = objectentry;
-	prop.m_minHeight = minHeight;
-	prop.m_maxHeight = maxHeight;
+	prop.m_MinHeight = minHeight;
+	prop.m_MaxHeight = maxHeight;
+	prop.m_Selectable = selectable;
 	m_Props.push_back(prop);
 }
 
@@ -603,7 +604,7 @@ CModelAbstract* CModel::Clone() const
 		if (m_AmmoPropPoint && i == m_AmmoLoadedProp)
 			clone->AddAmmoProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone(), m_Props[i].m_ObjectEntry);
 		else
-			clone->AddProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone(), m_Props[i].m_ObjectEntry, m_Props[i].m_minHeight, m_Props[i].m_maxHeight);
+			clone->AddProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone(), m_Props[i].m_ObjectEntry, m_Props[i].m_MinHeight, m_Props[i].m_MaxHeight, m_Props[i].m_Selectable);
 	}
 
 	return clone;

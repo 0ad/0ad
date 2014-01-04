@@ -54,10 +54,10 @@ class CModel : public CModelAbstract
 public:
 	struct Prop
 	{
-		Prop() : m_minHeight(0.f), m_maxHeight(0.f), m_Point(0), m_Model(0), m_ObjectEntry(0), m_Hidden(false) {}
+		Prop() : m_MinHeight(0.f), m_MaxHeight(0.f), m_Point(0), m_Model(0), m_ObjectEntry(0), m_Hidden(false), m_Selectable(true) {}
 
-		float m_minHeight;
-		float m_maxHeight;
+		float m_MinHeight;
+		float m_MaxHeight;
 
 		/**
 		 * Location of the prop point within its parent model, relative to either a bone in the parent model or to the 
@@ -75,6 +75,7 @@ public:
 		CObjectEntry* m_ObjectEntry;
 
 		bool m_Hidden; ///< Should this prop be temporarily removed from rendering?
+		bool m_Selectable; /// < should this prop count in the selection size?
 	};
 
 public:
@@ -213,7 +214,7 @@ public:
 	/**
 	 * Add a prop to the model on the given point.
 	 */
-	void AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry, float minHeight = 0.f, float maxHeight = 0.f);
+	void AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry, float minHeight = 0.f, float maxHeight = 0.f, bool selectable = true);
 
 	/**
 	 * Add a prop to the model on the given point, and treat it as the ammo prop.
