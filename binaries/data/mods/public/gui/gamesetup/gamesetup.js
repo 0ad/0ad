@@ -1184,6 +1184,17 @@ function updateGameAttributes()
     }
 }
 
+function AIConfigCallback(ai) 
+{
+	g_GameAttributes.settings.PlayerData[ai.playerSlot].AI = ai.id;
+	g_GameAttributes.settings.PlayerData[ai.playerSlot].AIDiff = ai.difficulty;
+
+	if (g_IsNetworked)
+		Engine.SetNetworkGameAttributes(g_GameAttributes);
+	else
+		updatePlayerList();
+}
+
 function updatePlayerList()
 {
 	g_IsInGuiUpdate = true;
@@ -1280,15 +1291,8 @@ function updatePlayerList()
 						ais: g_AIs,
 						id: g_GameAttributes.settings.PlayerData[playerSlot].AI,
 						difficulty: g_GameAttributes.settings.PlayerData[playerSlot].AIDiff,
-						callback: function(ai) {
-							g_GameAttributes.settings.PlayerData[playerSlot].AI = ai.id;
-							g_GameAttributes.settings.PlayerData[playerSlot].AIDiff = ai.difficulty;
-
-							if (g_IsNetworked)
-								Engine.SetNetworkGameAttributes(g_GameAttributes);
-							else
-								updatePlayerList();
-						}
+						callback: "AIConfigCallback",
+						playerSlot: playerSlot // required by the callback function
 					});
 				};
 			}

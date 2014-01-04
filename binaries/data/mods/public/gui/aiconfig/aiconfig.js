@@ -1,10 +1,9 @@
 var g_AIs; // [ {"id": ..., "data": {"name": ..., "description": ..., ...} }, ... ]
-var g_Callback; // for the OK button
+var g_PlayerSlot;
 
 function init(settings)
 {
-	g_Callback = settings.callback;
-
+	g_PlayerSlot = settings.playerSlot;
 	g_AIs = [
 		{id: "", data: {name: "None", description: "AI will be disabled for this player."}}
 	].concat(settings.ais);
@@ -48,7 +47,5 @@ function returnAI()
 	
 	// Pop the page before calling the callback, so the callback runs
 	// in the parent GUI page's context
-	Engine.PopGuiPage();
-
-	g_Callback({"id": id, "name": name, "difficulty" : difficulty});
+	Engine.PopGuiPageCB({"id": id, "name": name, "difficulty" : difficulty, "playerSlot" : g_PlayerSlot });
 }
