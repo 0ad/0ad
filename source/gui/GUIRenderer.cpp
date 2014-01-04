@@ -56,7 +56,7 @@ DrawCalls& DrawCalls::operator=(const DrawCalls&)
 }
 
 
-void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, const CRect &Size, int CellID, std::map<CStr, CGUISprite> &Sprites)
+void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, const CRect &Size, int CellID, std::map<CStr, CGUISprite*> &Sprites)
 {
 	// This is called only when something has changed (like the size of the
 	// sprite), so it doesn't need to be particularly efficient.
@@ -71,7 +71,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		return;
 
 
-	std::map<CStr, CGUISprite>::iterator it (Sprites.find(SpriteName));
+	std::map<CStr, CGUISprite*>::iterator it (Sprites.find(SpriteName));
 	if (it == Sprites.end())
 	{
 		// Sprite not found. Check whether this a special sprite:
@@ -84,26 +84,26 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		if (SpriteName.substr(0, 10) == "stretched:")
 		{
 			// TODO: Should check (nicely) that this is a valid file?
-			SGUIImage Image;
+			SGUIImage* Image = new SGUIImage;
 			
 			// Allow grayscale images for disabled portraits
 			if (SpriteName.substr(10, 10) == "grayscale:")
 			{
-				Image.m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(20));
-				Image.m_Effects = new SGUIImageEffects;
-				Image.m_Effects->m_Greyscale = true;
+				Image->m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(20));
+				Image->m_Effects = new SGUIImageEffects;
+				Image->m_Effects->m_Greyscale = true;
 			}
 			else
 			{
-				Image.m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(10));
+				Image->m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(10));
 			}
 
 			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
-			Image.m_Size = ca;
-			Image.m_TextureSize = ca;
+			Image->m_Size = ca;
+			Image->m_TextureSize = ca;
 
-			CGUISprite Sprite;
-			Sprite.AddImage(Image);
+			CGUISprite* Sprite = new CGUISprite;
+			Sprite->AddImage(Image);
 
 			Sprites[SpriteName] = Sprite;
 			
@@ -113,22 +113,22 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		else if (SpriteName.substr(0, 8) == "cropped:")
 		{
 			// TODO: Should check (nicely) that this is a valid file?
-			SGUIImage Image;
+			SGUIImage* Image = new SGUIImage;
 
 			double xRatio = SpriteName.BeforeFirst(",").AfterLast("(").ToDouble();
 			double yRatio = SpriteName.BeforeFirst(")").AfterLast(",").ToDouble();
 			
 			int PathStart = SpriteName.Find(")") + 1;
 			
-			Image.m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(PathStart));
+			Image->m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(PathStart));
 
 			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 			CClientArea cb(CRect(0, 0, 0, 0), CRect(0, 0, 100/xRatio, 100/yRatio));
-			Image.m_Size = ca;
-			Image.m_TextureSize = cb;
+			Image->m_Size = ca;
+			Image->m_TextureSize = cb;
 
-			CGUISprite Sprite;
-			Sprite.AddImage(Image);
+			CGUISprite* Sprite = new CGUISprite;
+			Sprite->AddImage(Image);
 
 			Sprites[SpriteName] = Sprite;
 			
@@ -147,16 +147,16 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 				return;
 			}
 
-			SGUIImage image;
+			SGUIImage* Image = new SGUIImage;
 
-			image.m_BackColor = color;
+			Image->m_BackColor = color;
 
 			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
-			image.m_Size = ca;
-			image.m_TextureSize = ca;
+			Image->m_Size = ca;
+			Image->m_TextureSize = ca;
 
-			CGUISprite Sprite;
-			Sprite.AddImage(image);
+			CGUISprite* Sprite = new CGUISprite;
+			Sprite->AddImage(Image);
 
 			Sprites[SpriteName] = Sprite;
 
@@ -171,16 +171,16 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		}
 	}
 
-	Calls.reserve(it->second.m_Images.size());
+	Calls.reserve(it->second->m_Images.size());
 
 	// Iterate through all the sprite's images, loading the texture and
 	// calculating the texture coordinates
-	std::vector<SGUIImage>::const_iterator cit;
-	for (cit = it->second.m_Images.begin(); cit != it->second.m_Images.end(); ++cit)
+	std::vector<SGUIImage*>::const_iterator cit;
+	for (cit = it->second->m_Images.begin(); cit != it->second->m_Images.end(); ++cit)
 	{
-		SDrawCall Call(&*cit); // pointers are safe since we never modify sprites/images after startup
+		SDrawCall Call(*cit); // pointers are safe since we never modify sprites/images after startup
 
-		CRect ObjectSize = cit->m_Size.GetClientArea(Size);
+		CRect ObjectSize = (*cit)->m_Size.GetClientArea(Size);
 
 		if (ObjectSize.GetWidth() == 0.0 || ObjectSize.GetHeight() == 0.0)
 		{
@@ -189,7 +189,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		}
 
 		Call.m_Vertices = ObjectSize;
-		if (cit->m_RoundCoordinates)
+		if ((*cit)->m_RoundCoordinates)
 		{
 			// Round the vertex coordinates to integers, to avoid ugly filtering artifacts
 			Call.m_Vertices.left = (int)(Call.m_Vertices.left + 0.5f);
@@ -198,10 +198,10 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			Call.m_Vertices.bottom = (int)(Call.m_Vertices.bottom + 0.5f);
 		}
 
-		if (! cit->m_TextureName.empty())
+		if (!(*cit)->m_TextureName.empty())
 		{
-			CTextureProperties textureProps(cit->m_TextureName);
-			textureProps.SetWrap(cit->m_WrapMode);
+			CTextureProperties textureProps((*cit)->m_TextureName);
+			textureProps.SetWrap((*cit)->m_WrapMode);
 			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 			texture->Prefetch();
 			Call.m_HasTexture = true;
@@ -216,29 +216,29 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		{
 			Call.m_HasTexture = false;
 			// Enable blending if it's transparent (allowing a little error in the calculations)
-			Call.m_EnableBlending = !(fabs(cit->m_BackColor.a - 1.0f) < 0.0000001f);
+			Call.m_EnableBlending = !(fabs((*cit)->m_BackColor.a - 1.0f) < 0.0000001f);
 		}
 
-		Call.m_BackColor = cit->m_BackColor;
-		Call.m_BorderColor = cit->m_Border ? cit->m_BorderColor : CColor();
-		Call.m_DeltaZ = cit->m_DeltaZ;
+		Call.m_BackColor = (*cit)->m_BackColor;
+		Call.m_BorderColor = (*cit)->m_Border ? (*cit)->m_BorderColor : CColor();
+		Call.m_DeltaZ = (*cit)->m_DeltaZ;
 
 		if (!Call.m_HasTexture)
 		{
 			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
 		}
-		else if (cit->m_Effects)
+		else if ((*cit)->m_Effects)
 		{
-			if (cit->m_Effects->m_AddColor != CColor())
+			if ((*cit)->m_Effects->m_AddColor != CColor())
 			{
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_add);
-				Call.m_ShaderColorParameter = cit->m_Effects->m_AddColor;
+				Call.m_ShaderColorParameter = (*cit)->m_Effects->m_AddColor;
 				// Always enable blending if something's being subtracted from
 				// the alpha channel
-				if (cit->m_Effects->m_AddColor.a < 0.f)
+				if ((*cit)->m_Effects->m_AddColor.a < 0.f)
 					Call.m_EnableBlending = true;
 			}
-			else if (cit->m_Effects->m_Greyscale)
+			else if ((*cit)->m_Effects->m_Greyscale)
 			{
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_grayscale);
 			}

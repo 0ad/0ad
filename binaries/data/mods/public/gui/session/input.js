@@ -383,6 +383,8 @@ function getActionInfo(action, target)
 					tooltip = "Right-click to set as origin trade market";
 					break;
 				case "set second":
+					if (tradingDetails.gain.traderGain == 0)   // markets too close
+						return {"possible": false};
 					tooltip = "Right-click to set as destination trade market.\nGain: " + getTradingTooltip(tradingDetails.gain);
 					break;
 				}

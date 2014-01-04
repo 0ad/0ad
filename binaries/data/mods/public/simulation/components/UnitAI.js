@@ -376,8 +376,14 @@ var UnitFsmSpec = {
 	"Order.Flee": function(msg) {
 		// We use the distance between the entities to account for ranged attacks
 		var distance = DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
-		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-		if (cmpUnitMotion.MoveToTargetRange(this.order.data.target, distance, -1))
+		var cmpTargetPosition = Engine.QueryInterface(this.order.data.target, IID_Position);
+		if (!cmpTargetPosition)
+		{
+			this.StopMoving();
+			this.FinishOrder();
+		}
+		var pos = cmpTargetPosition.GetPosition2D();
+		if (this.MoveToPointRange(pos.x, pos.y, distance, -1))
 		{
 			// We've started fleeing from the given target
 			if (this.IsAnimal())
@@ -1668,6 +1674,27 @@ var UnitFsmSpec = {
 
 			"ATTACKING": {
 				"enter": function() {
+					var target = this.order.data.target;
+					// Check the target is still alive and attackable
+					if 
+					(
+						this.TargetIsAlive(target) && 
+						this.CanAttack(target, this.order.data.forceResponse || null) && 
+						!this.CheckTargetAttackRange(target, IID_Attack, this.order.data.attackType)
+					)
+					{
+						// Can't reach it - try to chase after it
+						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
+						{
+							if (this.MoveToTargetRange(target, IID_Attack, this.order.data.attackType))
+							{
+								this.SetNextState("COMBAT.CHASING");
+								return;
+							}
+						}
+					}
+					
+
 					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 					this.attackTimers = cmpAttack.GetTimers(this.order.data.attackType);
 
@@ -4825,7 +4852,13 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextM
 
 	if (this.CheckTargetRange(currentMarket, IID_Trader))
 	{
-		this.PerformTrade(currentMarket);
+		var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+		cmpTrader.PerformTrade(currentMarket);
+		if (!cmpTrader.GetGain().traderGain)
+		{
+			this.StopTrading();
+			return;
+		}
 		if (this.MoveToMarket(nextMarket))
 		{
 			// We've started walking to the next market
@@ -4837,12 +4870,6 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextM
 		// If the current market is not reached try again
 		this.MoveToMarket(currentMarket);
 	}
-};
-
-UnitAI.prototype.PerformTrade = function(currentMarket)
-{
-	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-	cmpTrader.PerformTrade(currentMarket);
 };
 
 UnitAI.prototype.StopTrading = function()
@@ -5004,14 +5031,17 @@ UnitAI.prototype.GetTargetsFromUnit = function()
 	if (!cmpAttack)
 		return [];
 
-	const animalfilter = function(e) {
+	const attackfilter = function(e) {
+		var cmpPlayer = Engine.QueryInterface(e, IID_Player);
+		if (cmpPlayer && cmpPlayer.GetPlayerID() > 0)
+			return true;
 		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
-		return !cmpUnitAI || !cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal();
+		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
 	};
 
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var entities = rangeMan.ResetActiveQuery(this.losRangeQuery);
-	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && animalfilter(v); })
+	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && attackfilter(v); })
 		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
 
 	return targets;
@@ -5411,13 +5441,16 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 	if (!cmpAttack)
 		return false;
 
-	const animalfilter = function(e) {
+	const attackfilter = function(e) {
+		var cmpPlayer = Engine.QueryInterface(e, IID_Player);
+		if (cmpPlayer && cmpPlayer.GetPlayerID() > 0)
+			return true;
 		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
-		return !cmpUnitAI || !cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal();
+		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
 	};
 
 	return this.RespondToTargetedEntities(
-		ents.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && animalfilter(v); })
+		ents.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && attackfilter(v); })
 		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); })
 	);
 };

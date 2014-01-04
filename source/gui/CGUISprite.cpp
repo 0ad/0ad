@@ -18,7 +18,20 @@
 #include "precompiled.h"
 #include "CGUISprite.h"
 
-void CGUISpriteInstance::Draw(CRect Size, int CellID, std::map<CStr, CGUISprite> &Sprites, float Z) const
+CGUISprite::~CGUISprite()
+{
+	for (std::vector<SGUIImage*>::iterator it = m_Images.begin(); it != m_Images.end(); it++)
+	{
+		delete *it;
+	}
+}
+
+void CGUISprite::AddImage(SGUIImage* image)
+{
+	m_Images.push_back(image);
+}
+
+void CGUISpriteInstance::Draw(CRect Size, int CellID, std::map<CStr, CGUISprite*> &Sprites, float Z) const
 {
 	if (m_CachedSize != Size || m_CachedCellID != CellID)
 	{

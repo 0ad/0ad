@@ -14,6 +14,14 @@
     <Square width="18.0" depth="18.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>3</Max>
+    <BuffHeal>0</BuffHeal>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectEntitiesOnDestroy>true</EjectEntitiesOnDestroy>
+    <List datatype="tokens">Support</List>
+    <LoadingRange>1</LoadingRange>
+  </GarrisonHolder>
   <Health>
     <Max>800</Max>
     <SpawnEntityOnDeath>rubble/rubble_stone_3x3</SpawnEntityOnDeath>

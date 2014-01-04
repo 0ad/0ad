@@ -53,7 +53,7 @@ AlertRaiser.prototype.IncreaseAlertLevel = function()
 	var level = this.GetLevel();
 	var units = rangeMan.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_UnitAI).filter( function(e){
 		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
-		return (cmpUnitAI.ReactsToAlert(level) && !cmpUnitAI.IsDomestic());
+		return (!cmpUnitAI.IsUnderAlert() && cmpUnitAI.ReactsToAlert(level) && !cmpUnitAI.IsDomestic());
 		});
 	
 	for each(var unit in units)

@@ -485,8 +485,7 @@ void CGUI::Destroy()
 {
 	// We can use the map to delete all
 	//  now we don't want to cancel all if one Destroy fails
-	map_pObjects::iterator it;
-	for (it = m_pAllObjects.begin(); it != m_pAllObjects.end(); ++it)
+	for (map_pObjects::iterator it = m_pAllObjects.begin(); it != m_pAllObjects.end(); ++it)
 	{
 		try
 		{
@@ -502,12 +501,10 @@ void CGUI::Destroy()
 		delete it->second;
 	}
 
-	for (std::map<CStr, CGUISprite>::iterator it2 = m_Sprites.begin(); it2 != m_Sprites.end(); ++it2)
-		for (std::vector<SGUIImage>::iterator it3 = it2->second.m_Images.begin(); it3 != it2->second.m_Images.end(); ++it3)
-			delete it3->m_Effects;
-
 	// Clear all
 	m_pAllObjects.clear();
+	for(std::map<CStr, CGUISprite*>::iterator it = m_Sprites.begin(); it != m_Sprites.end(); ++it)
+		delete it->second;
 	m_Sprites.clear();
 	m_Icons.clear();
 }
@@ -1454,7 +1451,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 {
 	// Sprite object we're adding
-	CGUISprite sprite;
+	CGUISprite* Sprite = new CGUISprite;
 	
 	// and what will be its reference name
 	CStr name;
@@ -1487,7 +1484,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 
 		if (ElementName == "image")
 		{
-			Xeromyces_ReadImage(child, pFile, sprite);
+			Xeromyces_ReadImage(child, pFile, *Sprite);
 		}
 		else if (ElementName == "effect")
 		{
@@ -1510,9 +1507,9 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	// Apply the effects to every image (unless the image overrides it with
 	// different effects)
 	if (effects)
-		for (std::vector<SGUIImage>::iterator it = sprite.m_Images.begin(); it != sprite.m_Images.end(); ++it)
-			if (! it->m_Effects)
-				it->m_Effects = new SGUIImageEffects(*effects); // do a copy just so it can be deleted correctly later
+		for (std::vector<SGUIImage*>::iterator it = Sprite->m_Images.begin(); it != Sprite->m_Images.end(); ++it)
+			if (! (*it)->m_Effects)
+				(*it)->m_Effects = new SGUIImageEffects(*effects); // do a copy just so it can be deleted correctly later
 
 	delete effects;
 
@@ -1520,18 +1517,18 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	//	Add Sprite
 	//
 
-	m_Sprites[name] = sprite;
+	m_Sprites[name] = Sprite;
 }
 
 void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite &parent)
 {
 
 	// Image object we're adding
-	SGUIImage image;
+	SGUIImage* Image = new SGUIImage;
 	
 	// Set defaults to "0 0 100% 100%"
-	image.m_TextureSize = CClientArea(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
-	image.m_Size = CClientArea(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
+	Image->m_TextureSize = CClientArea(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
+	Image->m_Size = CClientArea(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 	
 	// TODO Gee: Setup defaults here (or maybe they are in the SGUIImage ctor)
 
@@ -1549,7 +1546,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 
 		if (attr_name == "texture")
 		{
-			image.m_TextureName = VfsPath("art/textures/ui") / attr_value;
+			Image->m_TextureName = VfsPath("art/textures/ui") / attr_value;
 		}
 		else
 		if (attr_name == "size")
@@ -1557,7 +1554,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
-			else image.m_Size = ca;
+			else Image->m_Size = ca;
 		}
 		else
 		if (attr_name == "texture_size")
@@ -1565,7 +1562,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
-			else image.m_TextureSize = ca;
+			else Image->m_TextureSize = ca;
 		}
 		else
 		if (attr_name == "real_texture_placement")
@@ -1573,7 +1570,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CRect rect;
 			if (!GUI<CRect>::ParseString(attr_value, rect))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
-			else image.m_TexturePlacementInFile = rect;
+			else Image->m_TexturePlacementInFile = rect;
 		}
 		else
 		if (attr_name == "cell_size")
@@ -1581,7 +1578,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CSize size;
 			if (!GUI<CSize>::ParseString(attr_value, size))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
-			else image.m_CellSize = size;
+			else Image->m_CellSize = size;
 		}
 		else
 		if (attr_name == "fixed_h_aspect_ratio")
@@ -1589,7 +1586,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			float val;
 			if (!GUI<float>::ParseString(attr_value, val))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
-			else image.m_FixedHAspectRatio = val;
+			else Image->m_FixedHAspectRatio = val;
 		}
 		else
 		if (attr_name == "round_coordinates")
@@ -1597,17 +1594,17 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			bool b;
 			if (!GUI<bool>::ParseString(attr_value, b))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
-			else image.m_RoundCoordinates = b;
+			else Image->m_RoundCoordinates = b;
 		}
 		else
 		if (attr_name == "wrap_mode")
 		{
 			if (attr_value == L"repeat")
-				image.m_WrapMode = GL_REPEAT;
+				Image->m_WrapMode = GL_REPEAT;
 			else if (attr_value == L"mirrored_repeat")
-				image.m_WrapMode = GL_MIRRORED_REPEAT;
+				Image->m_WrapMode = GL_MIRRORED_REPEAT;
 			else if (attr_value == L"clamp_to_edge")
-				image.m_WrapMode = GL_CLAMP_TO_EDGE;
+				Image->m_WrapMode = GL_CLAMP_TO_EDGE;
 			else
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 		}
@@ -1617,7 +1614,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			float z_level;
 			if (!GUI<float>::ParseString(attr_value, z_level))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
-			else image.m_DeltaZ = z_level/100.f;
+			else Image->m_DeltaZ = z_level/100.f;
 		}
 		else
 		if (attr_name == "backcolor")
@@ -1625,7 +1622,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
-			else image.m_BackColor = color;
+			else Image->m_BackColor = color;
 		}
 		else
 		if (attr_name == "bordercolor")
@@ -1633,7 +1630,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
-			else image.m_BorderColor = color;
+			else Image->m_BorderColor = color;
 		}
 		else
 		if (attr_name == "border")
@@ -1641,7 +1638,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			bool b;
 			if (!GUI<bool>::ParseString(attr_value, b))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
-			else image.m_Border = b;
+			else Image->m_Border = b;
 		}
 		else
 		{
@@ -1657,14 +1654,14 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		CStr ElementName (pFile->GetElementString(child.GetNodeName()));
 		if (ElementName == "effect")
 		{
-			if (image.m_Effects)
+			if (Image->m_Effects)
 			{
 				LOGERROR(L"GUI <image> must not have more than one <effect>");
 			}
 			else
 			{
-				image.m_Effects = new SGUIImageEffects;
-				Xeromyces_ReadEffects(child, pFile, *image.m_Effects);
+				Image->m_Effects = new SGUIImageEffects;
+				Xeromyces_ReadEffects(child, pFile, *Image->m_Effects);
 			}
 		}
 		else
@@ -1677,7 +1674,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	//	Input
 	//
 
-	parent.AddImage(image);	
+	parent.AddImage(Image);	
 }
 
 void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImageEffects &effects)

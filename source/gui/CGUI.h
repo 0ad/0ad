@@ -670,7 +670,7 @@ private:
 	//--------------------------------------------------------
 
 	// Sprites
-	std::map<CStr, CGUISprite> m_Sprites;
+	std::map<CStr, CGUISprite*> m_Sprites;
 
 	// Styles
 	std::map<CStr, SGUIStyle> m_Styles;
