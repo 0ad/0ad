@@ -2830,8 +2830,8 @@ var UnitFsmSpec = {
 
 		"Order.LeaveFoundation": function(msg) {
 			// Run away from the foundation
-			this.MoveToTargetRangeExplicit(msg.data.target, +this.template.FleeDistance, +this.template.FleeDistance);
-			this.SetNextState("FLEEING");
+			this.FinishOrder();
+			this.PushOrderFront("Flee", { "target": msg.data.target, "force": false });
 		},
 
 		"IDLE": {
