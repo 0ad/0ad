@@ -381,6 +381,7 @@ var UnitFsmSpec = {
 		{
 			this.StopMoving();
 			this.FinishOrder();
+			return;
 		}
 		var pos = cmpTargetPosition.GetPosition2D();
 		if (this.MoveToPointRange(pos.x, pos.y, distance, -1))
