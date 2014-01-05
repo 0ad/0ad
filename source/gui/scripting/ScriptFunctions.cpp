@@ -88,7 +88,10 @@ namespace {
 // TODO: Use LOGERROR to print a friendly error message when the requirements aren't met instead of failing with debug_warn when cloning.
 void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData)
 {
-	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData.get()));
+	// TODO: Check the comment in CGUIManager::SwitchPage for a detailed explanation of this hack.	
+	CScriptVal cloneSaveInitData;
+	cloneSaveInitData = g_GUI->GetScriptInterface()->CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), initData.get());
+	g_GUI->PushPage(name, g_GUI->GetScriptInterface()->WriteStructuredClone(cloneSaveInitData.get()));
 }
 
 void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData)

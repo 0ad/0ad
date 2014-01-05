@@ -15,6 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
  
+ // JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
+ /*
 #include "precompiled.h"
 
 #include "ThreadDebugger.h"
@@ -757,7 +759,7 @@ void CThreadDebugger::SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel
 		}
 	}
 }
-
+*/
 
 /*
  * TODO: This is very hacky and ugly and should be improved. 
@@ -772,6 +774,7 @@ void CThreadDebugger::SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel
  *    the rest of the game and because this part of code should be replaced anyway in the future.
  */
  
+ /*
 namespace CyclicRefWorkaround
 {
 	std::set<JSObject*> g_ProcessedObjects;
@@ -933,4 +936,4 @@ uint CThreadDebugger::GetID()
 	CScopeLock lock(m->m_Mutex);
 	return m->m_ID;
 }
-
+*/

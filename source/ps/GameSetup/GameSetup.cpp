@@ -694,9 +694,10 @@ void Shutdown(int UNUSED(flags))
 	g_UserReporter.Deinitialize();
 	TIMER_END(L"shutdown UserReporter");
 
-	TIMER_BEGIN(L"shutdown DebuggingServer (if active)");
-	delete g_DebuggingServer;
-	TIMER_END(L"shutdown DebuggingServer (if active)");
+	// JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
+	//TIMER_BEGIN(L"shutdown DebuggingServer (if active)");
+	//delete g_DebuggingServer;
+	//TIMER_END(L"shutdown DebuggingServer (if active)");
 
 	TIMER_BEGIN(L"shutdown ConfigDB");
 	delete &g_ConfigDB;
@@ -895,8 +896,9 @@ void Init(const CmdLineArgs& args, int flags)
 	CONFIG_Init(args);
 
 	// before scripting 
-	if (g_JSDebuggerEnabled)
-		g_DebuggingServer = new CDebuggingServer();
+	// JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
+	//if (g_JSDebuggerEnabled)
+	//	g_DebuggingServer = new CDebuggingServer();
 
 	// Optionally start profiler HTTP output automatically
 	// (By default it's only enabled by a hotkey, for security/performance)
