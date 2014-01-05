@@ -660,7 +660,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 			defines.Add(str_USE_REAL_DEPTH, str_1);
 		if (WaterMgr->m_WaterFoam)
 			defines.Add(str_USE_FOAM, str_1);
-		if (WaterMgr->m_WaterCoastalWaves && !g_AtlasGameLoop->running)
+		if (WaterMgr->m_WaterCoastalWaves && false)
 			defines.Add(str_USE_WAVES, str_1);
 		if (WaterMgr->m_WaterRefraction)
 			defines.Add(str_USE_REFRACTION, str_1);
