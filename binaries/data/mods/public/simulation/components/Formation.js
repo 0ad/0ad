@@ -1,40 +1,45 @@
 function Formation() {}
 
 Formation.prototype.Schema =
-	"<element name='FormationName'>" +
+	"<element name='FormationName' a:help='Name of the formation'>" +
 		"<text/>" +
 	"</element>" +
-	"<element name='SpeedMultiplier'>" +
+	"<element name='SpeedMultiplier' a:help='The speed of the formation is determined by the minimum speed of all members, multiplied with this number.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='FormationShape'>" +
+	"<element name='FormationShape' a:help='Formation shape, currently supported are square and special, where special will be defined in the source code.'>" +
 		"<text/>" +
 	"</element>" +
-	"<element name='ShiftRows'>" +
+	"<element name='ShiftRows' a:help='Set the value to true to shift subsequent rows'>" +
 		"<text/>" +
 	"</element>" +
-	"<element name='WidthDepthRatio'>" +
+	"<element name='WidthDepthRatio' a:help='Average width/depth, counted in number of units.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<optional>" +
-		"<element name='MinColumns'>" +
+		"<element name='MinColumns' a:help='When possible, this number of colums will be created. Overriding the wanted width depth ratio'>" +
 			"<data type='nonNegativeInteger'/>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='MaxColumns'>" +
+		"<element name='MaxColumns' a:help='When possible within the number of units, and the maximum number of rows, this will be the maximum number of columns.'>" +
 			"<data type='nonNegativeInteger'/>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='MaxRows'>" +
+		"<element name='MaxRows' a:help='The maximum number of rows in the formation'>" +
 			"<data type='nonNegativeInteger'/>" +
 		"</element>" +
 	"</optional>" +
-	"<element name='UnitSeparationWidthMultiplier'>" +
+	"<optional>" +
+		"<element name='CenterGap' a:help='The size of the central gap, expressed in number of units wide'>" +
+			"<ref name='nonNegativeDecimal'/>" +
+		"</element>" +
+	"</optional>" +
+	"<element name='UnitSeparationWidthMultiplier' a:help='Place the units in the formation closer or further to each other. The standard separation is the footprint size.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='UnitSeparationDepthMultiplier'>" +
+	"<element name='UnitSeparationDepthMultiplier' a:help='Place the units in the formation closer or further to each other. The standard separation is the footprint size.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";	
 
@@ -52,6 +57,7 @@ Formation.prototype.Init = function()
 	this.minColumns = +(this.template.MinColumns || 0);
 	this.maxColumns = +(this.template.MaxColumns || 0);
 	this.maxRows = +(this.template.MaxRows || 0);
+	this.centerGap = +(this.template.CenterGap || 0);
 
 	this.members = []; // entity IDs currently belonging to this formation
 	this.inPosition = []; // entities that have reached their final position
@@ -540,6 +546,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 	var count = active.length;
 
 	var shape = this.formationShape;
+	var shiftRows = this.shiftRows;
+	var centerGap = this.centerGap;
 	var ordering = [];
 
 	var offsets = [];
@@ -551,6 +559,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 	{
 		shape = "square";
 		cols = Math.min(count,3);
+		shiftRows = false;
+		centerGap = 0;
 	}
 	else
 	{
@@ -644,31 +654,6 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 			}
 		}
 		break;
-	case "Flank":
-		cols = 3;
-		var leftside = [];
-		leftside[0] = Math.ceil(count/2);
-		leftside[1] = Math.floor(count/2);
-		ranks = Math.ceil(leftside[0] / cols);
-		var off = - separation.width * 4;
-		for (var side = 0; side < 2; ++side)
-		{
-			var left = leftside[side];
-			off += side * separation.width * 8;
-			for (var r = 0; r < ranks; ++r)
-			{
-				var n = Math.min(left, cols);
-				for (var c = 0; c < n; ++c)
-				{
-					var x = off + ((n-1)/2 - c) * separation.width;
-					var z = -r * separation.depth;
-					offsets.push({"x": x, "z": z});
-				}
-				left -= n;
-			}
-		}
-		ordering.push("FillFromTheCenter");
-		break;
 	case "Battle Line":
 		ordering.push("FillFromTheSides");
 		break;
@@ -684,7 +669,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 		{
 			var n = cols;
 			var sign = 1;
-			if (this.shiftRows)
+			if (shiftRows)
 				n -= r%2;
 			else if (n > left)
 				n = left;
@@ -695,6 +680,12 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 					var x = sign * (Math.floor(c/2) + 0.5) * separation.width;
 				else
 					var x = sign * Math.ceil(c/2) * separation.width;
+				if (centerGap)
+				{
+					if (x == 0) // don't use the center position with a center gap
+						continue;
+					x += sign * centerGap / 2;
+				}
 				var z = -r * separation.depth;
 				offsets.push({"x": x, "z": z});
 				left--

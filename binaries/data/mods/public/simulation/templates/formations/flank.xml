@@ -2,6 +2,8 @@
 <Entity parent="template_formation">
   <Formation>
     <FormationName>Flank</FormationName>
-    <FormationShape>special</FormationShape>
+    <FormationShape>square</FormationShape>
+    <ShiftRows>true</ShiftRows>
+    <CenterGap>12</CenterGap>
   </Formation>
 </Entity>
