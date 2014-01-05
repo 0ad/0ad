@@ -376,15 +376,8 @@ var UnitFsmSpec = {
 	"Order.Flee": function(msg) {
 		// We use the distance between the entities to account for ranged attacks
 		var distance = DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
-		var cmpTargetPosition = Engine.QueryInterface(this.order.data.target, IID_Position);
-		if (!cmpTargetPosition)
-		{
-			this.StopMoving();
-			this.FinishOrder();
-			return;
-		}
-		var pos = cmpTargetPosition.GetPosition2D();
-		if (this.MoveToPointRange(pos.x, pos.y, distance, -1))
+		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+		if (cmpUnitMotion.MoveToTargetRange(this.order.data.target, distance, -1))
 		{
 			// We've started fleeing from the given target
 			if (this.IsAnimal())
@@ -1554,6 +1547,11 @@ var UnitFsmSpec = {
 				this.SetMoveSpeed(speed);
 			},
 
+			"HealthChanged": function() {
+				var speed = this.GetRunSpeed();
+				this.SetMoveSpeed(speed);
+			},
+
 			"leave": function() {
 				// Reset normal speed
 				this.SetMoveSpeed(this.GetWalkSpeed());
@@ -1827,10 +1825,27 @@ var UnitFsmSpec = {
 					this.SetGathererAnimationOverride(true);
 
 					this.SelectAnimation("move");
+					var cmpUnitAI = Engine.QueryInterface(this.order.data.target, IID_UnitAI);
+					if (cmpUnitAI && cmpUnitAI.IsFleeing())
+					{
+						// Run after a fleeing target
+						var speed = this.GetRunSpeed();
+						this.SetMoveSpeed(speed);
+					}
 					this.StartTimer(1000, 1000);
 				},
 
+				"HealthChanged": function() {
+					var cmpUnitAI = Engine.QueryInterface(this.order.data.target, IID_UnitAI);
+					if (!cmpUnitAI || !cmpUnitAI.IsFleeing())
+						return;
+					var speed = this.GetRunSpeed();
+					this.SetMoveSpeed(speed);
+				},
+
 				"leave": function() {
+					// Reset normal speed in case it was changed
+					this.SetMoveSpeed(this.GetWalkSpeed());
 					// Show carried resources when walking.
 					this.SetGathererAnimationOverride();
 
@@ -3031,6 +3046,12 @@ UnitAI.prototype.IsGarrisoned = function()
 	return this.isGarrisoned;
 };
 
+UnitAI.prototype.IsFleeing = function()
+{
+	var state = this.GetCurrentState().split(".").pop();
+	return (state == "FLEEING");
+};
+
 UnitAI.prototype.IsWalking = function()
 {
 	var state = this.GetCurrentState().split(".").pop();
@@ -3672,7 +3693,13 @@ UnitAI.prototype.GetWalkSpeed = function()
 UnitAI.prototype.GetRunSpeed = function()
 {
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.GetRunSpeed();
+	var runSpeed = cmpUnitMotion.GetRunSpeed();
+	var walkSpeed = cmpUnitMotion.GetWalkSpeed();
+	if (runSpeed <= walkSpeed)
+		return runSpeed;
+	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
+	var health = cmpHealth.GetHitpoints()/cmpHealth.GetMaxHitpoints();
+	return (health*runSpeed + (1-health)*walkSpeed);
 };
 
 /**
