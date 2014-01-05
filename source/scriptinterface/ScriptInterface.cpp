@@ -18,7 +18,7 @@
 #include "precompiled.h"
 
 #include "ScriptInterface.h"
-#include "DebuggingServer.h"
+// #include "DebuggingServer.h" // JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
 #include "ScriptStats.h"
 #include "AutoRooters.h"
 
