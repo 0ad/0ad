@@ -2,5 +2,9 @@
 <Entity parent="template_formation">
   <Formation>
     <FormationName>Phalanx</FormationName>
+    <MinColumns>5</MinColumns>
+    <MaxColumns>8</MaxColumns>
+    <MaxRows>6</MaxRows>
+    <WidthDepthRatio>2</WidthDepthRatio>
   </Formation>
 </Entity>

@@ -5,7 +5,14 @@
     <Actor>props/special/common/waypoint_flag.xml</Actor>
   </VisualActor>
   -->
-  <Formation/>
+  <Formation>
+    <SpeedMultiplier>1</SpeedMultiplier>
+    <FormationShape>square</FormationShape>
+    <ShiftRows>false</ShiftRows>
+    <UnitSeparationWidthMultiplier>1</UnitSeparationWidthMultiplier>
+    <UnitSeparationDepthMultiplier>1</UnitSeparationDepthMultiplier>
+    <WidthDepthRatio>1</WidthDepthRatio>
+  </Formation>
   <Ownership/>
   <Position>
     <Altitude>0</Altitude>

@@ -2,5 +2,7 @@
 <Entity parent="template_formation">
   <Formation>
     <FormationName>Line Closed</FormationName>
+    <MinColumns>3</MinColumns>
+    <WidthDepthRatio>4</WidthDepthRatio>
   </Formation>
 </Entity>

@@ -2,5 +2,10 @@
 <Entity parent="template_formation">
   <Formation>
     <FormationName>Battle Line</FormationName>
+    <ShiftRows>true</ShiftRows>
+    <MinColumns>5</MinColumns>
+    <MaxColumns>8</MaxColumns>
+    <MaxRows>6</MaxRows>
+    <WidthDepthRatio>2</WidthDepthRatio>
   </Formation>
 </Entity>

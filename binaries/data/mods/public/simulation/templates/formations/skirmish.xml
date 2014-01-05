@@ -2,5 +2,9 @@
 <Entity parent="template_formation">
   <Formation>
     <FormationName>Skirmish</FormationName>
+    <ShiftRows>true</ShiftRows>
+    <UnitSeparationWidthMultiplier>2</UnitSeparationWidthMultiplier>
+    <MaxRows>2</MaxRows>
+    <MinColumns>3</MinColumns>
   </Formation>
 </Entity>
