@@ -56,12 +56,6 @@ function setWaterHeight(h)
 	WATER_LEVEL_CHANGED = true;
 }
 
-// Set water shininess
-function setWaterShininess(s)
-{
-	g_Environment.Water.WaterBody.Shininess = s;
-}
-
 // Set water waviness
 function setWaterWaviness(w)
 {

@@ -34,8 +34,6 @@ uniform vec3 sunColor;
 uniform vec3 sunDir;
 uniform vec3 cameraPos;
 
-
-uniform float shininess;
 uniform float specularStrength;
 uniform float waviness;
 uniform vec3 waterTint;
@@ -124,7 +122,7 @@ void main()
 	refrColor = (0.5 + 0.5*ndotl) * mix(vec3(0.3), sunColor * waterTint,
 					murkiness * clamp(waterDepth / fullDepth, 0.0, 1.0)); // Murkiness and tint at this pixel (tweaked based on lighting and depth)
 	
-	specular = pow(max(0.0, ndoth), shininess) * sunColor * specularStrength;
+	specular = pow(max(0.0, ndoth), 150.0f) * sunColor * specularStrength;
 
 	losMod = texture2D(losTex, v_los).a;
 

@@ -256,7 +256,6 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 					CmpPtr<ICmpWaterManager> cmpWaterManager(*pSimulation2, SYSTEM_ENTITY);
 					ENSURE(cmpWaterManager);
 					XML_Setting("Height", cmpWaterManager->GetExactWaterLevel(0, 0));
-					XML_Setting("Shininess", pWaterMan->m_Shininess);
 					XML_Setting("Waviness", pWaterMan->m_Waviness);
 					XML_Setting("Murkiness", pWaterMan->m_Murkiness);
 					{

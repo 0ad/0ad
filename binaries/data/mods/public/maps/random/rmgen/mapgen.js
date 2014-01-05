@@ -15,7 +15,6 @@ var g_Environment = {
 			Type: "default",
 			Colour: {r: 0.3, g: 0.35, b: 0.7, a: 0},
 			Height: 5,
-			Shininess: 150,
 			Waviness: 8,
 			Murkiness: 0.45,
 			Tint: {r: 0.28, g: 0.3, b: 0.59, a: 0},

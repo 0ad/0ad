@@ -22,6 +22,7 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(WaterManager)
+DEFINE_INTERFACE_METHOD_0("RecomputeWaterData", void, ICmpWaterManager, RecomputeWaterData)
 DEFINE_INTERFACE_METHOD_1("SetWaterLevel", void, ICmpWaterManager, SetWaterLevel, entity_pos_t)
 DEFINE_INTERFACE_METHOD_2("GetWaterLevel", entity_pos_t, ICmpWaterManager, GetWaterLevel, entity_pos_t, entity_pos_t)
 END_INTERFACE_WRAPPER(WaterManager)

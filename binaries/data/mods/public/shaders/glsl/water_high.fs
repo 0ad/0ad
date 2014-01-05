@@ -5,7 +5,6 @@ uniform vec3 sunDir;
 uniform vec3 sunColor;
 uniform vec3 cameraPos;
 uniform sampler2D losMap;
-uniform float shininess;		// Blinn-Phong specular strength
 uniform float specularStrength;	// Scaling for specular reflection (specular color is (this,this,this))
 uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
 uniform vec3 tint;				// Tint for refraction (used to simulate particles in water)
@@ -102,8 +101,7 @@ void main()
 		vec2 beachOrientation = heightmapval.rg;
 		float distToShore = heightmapval.b;
 	#endif
-	
-	
+		
   	vec3 n, l, h, v;		// Normal, light vector, half-vector and view vector (vector to eye)
 	float ndotl, ndoth, ndotv;
 	float fresnel;
@@ -185,7 +183,7 @@ void main()
 		// texture is not rotated, moves twice faster in the opposite direction, translated.
 		vec2 foam2RC = gl_TexCoord[0].st*1.8 + vec2(time*-0.019,time*-0.012) - 0.012*n.xz + vec2(0.4,0.2);
 		
-		vec2 WaveRocking = cos(time*1.2566) * beachOrientation * clamp(1.0 - distToShore,0.1,1.0)/3.0;
+		vec2 WaveRocking = cos(time*1.2566) * beachOrientation * clamp(1.0 - distToShore*0.8,0.1,1.0)/3.0;
 		vec4 foam1 = texture2D(Foam, foam1RC + vec2(-WaveRocking.t,WaveRocking.s));
 		vec4 foam2 = foam1.r*texture2D(Foam, foam2RC + WaveRocking);
 		

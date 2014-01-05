@@ -70,7 +70,6 @@ WaterManager::WaterManager()
 	m_ReflectionTextureSize = 0;
 	m_RefractionTextureSize = 0;
 	m_WaterTexTimer = 0.0;
-	m_Shininess = 150.0f;
 	m_SpecularStrength = 0.6f;
 	m_Waviness = 8.0f;
 	m_ReflectionTint = CColor(0.28f, 0.3f, 0.59f, 1.0f);
@@ -268,11 +267,18 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	m_WaterHeight = cmpWaterManager->GetExactWaterLevel(0,0);
 	
 	// Get the square we want to work on.
-	i32 Xstart = clamp(m_updatei0, 0, (i32)m_MapSize-1);
-	i32 Xend = clamp(m_updatei1, 0, (i32)m_MapSize-1);
-	i32 Zstart = clamp(m_updatej0, 0, (i32)m_MapSize-1);
-	i32 Zend = clamp(m_updatej1, 0, (i32)m_MapSize-1);
+	ssize_t Xstart = m_updatei0 < 0 ? 0 : (m_updatei0 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : m_updatei0);
+	ssize_t Xend = m_updatei1 < 0 ? 0 : (m_updatei1 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : m_updatei1);
+	ssize_t Zstart = m_updatej0 < 0 ? 0 : (m_updatej0 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : m_updatej0);
+	ssize_t Zend = m_updatej1 < 0 ? 0 : (m_updatej1 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : m_updatej1);
 
+	if (!(Xend > Xstart && Zend > Zstart))
+	{
+		// it corrupts every now and then for reasons I don't get.
+		std::cout << m_updatei0 << " , " << Xstart << std::endl;
+		std::cout << m_MapSize << "," << (ssize_t)m_MapSize << std::endl;
+	}
+	
 	if (m_WaveX == NULL)
 	{
 		m_WaveX = new float[m_MapSize*m_MapSize];
@@ -291,13 +297,13 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	// this might be updated to actually cache in the terrain manager but that's not for now.
 	CVector3D* normals = new CVector3D[m_MapSize*m_MapSize];
 
-	
 	// taken out of the bottom loop, blurs the normal map
 	// To remove if below is reactivated
 	ssize_t blurZstart = Zstart-4 < 0 ? 0 : Zstart - 4;
 	ssize_t blurZend = Zend+4 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : Zend + 4;
 	ssize_t blurXstart = Xstart-4 < 0 ? 0 : Xstart - 4;
 	ssize_t blurXend = Xend+4 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : Xend + 4;
+	
 	for (ssize_t j = blurZstart; j < blurZend; ++j)
 	{
 		for (ssize_t i = blurXstart; i < blurXend; ++i)
@@ -339,113 +345,107 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	{
 		for (ssize_t i = Xstart; i < Xend; ++i)
 		{
+			ssize_t index = j*m_MapSize + i;
 			if (circular && (i-halfSize)*(i-halfSize)+(j-halfSize)*(j-halfSize) > mSize)
 			{
-				m_WaveX[j*m_MapSize + i] = 0.0f;
-				m_WaveZ[j*m_MapSize + i] = 0.0f;
-				m_DistanceToShore[j*m_MapSize + i] = 100;
-				m_FoamFactor[j*m_MapSize + i] = 0.0f;
+				m_WaveX[index] = 0.0f;
+				m_WaveZ[index] = 0.0f;
+				m_DistanceToShore[index] = 100;
+				m_FoamFactor[index] = 0.0f;
 				continue;
 			}
-			float depth = m_WaterHeight - heightmap[j*m_MapSize + i]*HEIGHT_SCALE;
-			int distanceToShore = 10000;
+			float depth = m_WaterHeight - heightmap[index]*HEIGHT_SCALE;
+			float distanceToShore = 10000;
 			
 			// calculation of the distance to the shore.
-			// TODO: this is fairly dumb, though it returns a good result
-			// Could be sped up a fair bit.
-			if (depth >= 0)
+			if (i > 0 && i < (ssize_t)m_MapSize-1 && j > 0 && j < (ssize_t)m_MapSize-1)
 			{
-				// check in the square around.
-				for (int yy = -5; yy <= 5; ++yy)
+				// search a 5x5 array with us in the center (do not search me)
+				// much faster since we spiral search and can just stop once we've found the shore.
+				// also everything is precomputed and we get exact results instead.
+				int offset[24] = { -1,1,-m_MapSize,+m_MapSize, -1-m_MapSize,+1-m_MapSize,-1+m_MapSize,1+m_MapSize,
+					-2,2,-2*m_MapSize,2*m_MapSize,-2-m_MapSize,-2+m_MapSize,2-m_MapSize,2+m_MapSize,
+					-1-2*m_MapSize,+1-2*m_MapSize,-1+2*m_MapSize,1+2*m_MapSize,
+					-2-2*m_MapSize,2+2*m_MapSize,-2+2*m_MapSize,2-2*m_MapSize };
+				float dist[24] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.414f, 1.414f, 1.414f, 1.414f,
+					2.0f, 2.0f, 2.0f, 2.0f, 2.236f, 2.236f, 2.236f, 2.236f,
+					2.236f, 2.236f, 2.236f, 2.236f,
+					2.828f, 2.828f, 2.828f, 2.828f };
+				
+				int max = 8;
+				if (i > 1 && i < (ssize_t)m_MapSize-2 && j > 1 && j < (ssize_t)m_MapSize-2)
+					max = 24;
+				
+				for(int lookupI = 0; lookupI < max;++lookupI)
 				{
-					for (int xx = -5; xx <= 5; ++xx)
-					{
-						if (i+xx >= 0 && i + xx < (long)m_MapSize)
-							if (j + yy >= 0 && j + yy < (long)m_MapSize)
-							{
-								float hereDepth = m_WaterHeight - heightmap[(j+yy)*m_MapSize + (i+xx)]*HEIGHT_SCALE;
-								if (hereDepth < 0 && xx*xx + yy*yy < distanceToShore)
-									distanceToShore = xx*xx + yy*yy;
-							}
-					}
+					float hereDepth = m_WaterHeight - heightmap[index+offset[lookupI]]*HEIGHT_SCALE;
+					distanceToShore = hereDepth <= 0 && depth >= 0 ? dist[lookupI] : (depth < 0 ? 1 : distanceToShore);
+					if (distanceToShore != 10000)
+						break;
 				}
-				// refine the calculation if we're close enough
-				if (distanceToShore < 9)
-				{
-					for (float yy = -2.5f; yy <= 2.5f; ++yy)
+			} else {
+				// revert to for and if-based because I can't be bothered to special case all that.
+				for (int xx = -1; xx <= 1;++xx)
+					for (int yy = -1; yy <= 1;++yy)
 					{
-						for (float xx = -2.5f; xx <= 2.5f; ++xx)
+						if (i+xx >= 0 && i+xx < (ssize_t)m_MapSize && j+yy >= 0 && j+yy < (ssize_t)m_MapSize)
 						{
-							float hereDepth = m_WaterHeight - terrain->GetExactGroundLevel( (i+xx)*4, (j+yy)*4 );
-							if (hereDepth < 0 && xx*xx + yy*yy < distanceToShore)
-								distanceToShore = xx*xx + yy*yy;
+							float hereDepth = m_WaterHeight - heightmap[index+xx+yy*m_MapSize]*HEIGHT_SCALE;
+							distanceToShore = (hereDepth < 0 && sqrt((double)xx*xx+yy*yy) < distanceToShore) ? sqrt((double)xx*xx+yy*yy) : distanceToShore;
 						}
 					}
-				}
 			}
-			else
-			{
-				for (int yy = -2; yy <= 2; ++yy)
-				{
-					for (int xx = -2; xx <= 2; ++xx)
-					{
-						float hereDepth = m_WaterHeight - terrain->GetVertexGroundLevel(i+xx, j+yy);
-						if (hereDepth > 0)
-							distanceToShore = 0;
-					}
-				}
-				
-			}
+
 			// speedup with default values for land squares
 			if (distanceToShore == 10000)
 			{
-				m_WaveX[j*m_MapSize + i] = 0.0f;
-				m_WaveZ[j*m_MapSize + i] = 0.0f;
-				m_DistanceToShore[j*m_MapSize + i] = 100;
-				m_FoamFactor[j*m_MapSize + i] = 0.0f;
+				m_WaveX[index] = 0.0f;
+				m_WaveZ[index] = 0.0f;
+				m_DistanceToShore[index] = 100.0f;
+				m_FoamFactor[index] = 0.0f;
 				continue;
 			}
+						
 			// We'll compute the normals and the "water raise", to know about foam
 			// Normals are a pretty good calculation but it's slow since we normalize so much.
 			CVector3D normal;
 			int waterRaise = 0;
-			for (int yy = -4; yy <= 4; yy += 2)
+			for (int yy = -3; yy <= 3; yy += 2)
 			{
-				for (int xx = -4; xx <= 4; xx += 2)	// every 2 tile is good enough.
+				for (int xx = -3; xx <= 3; xx += 2)	// every 2 tile is good enough.
 				{
 					if (j+yy < (long)m_MapSize && i+xx < (long)m_MapSize && i+xx >= 0 && j+yy >= 0)
 						normal += normals[(j+yy)*m_MapSize + (i+xx)];
-					if (terrain->GetVertexGroundLevel(i+xx,j+yy) < heightmap[j*m_MapSize + i]*HEIGHT_SCALE)
-						waterRaise += heightmap[j*m_MapSize + i]*HEIGHT_SCALE - terrain->GetVertexGroundLevel(i+xx,j+yy);
+					waterRaise += heightmap[index]*HEIGHT_SCALE - terrain->GetVertexGroundLevel(i+xx,j+yy) > 0 ? heightmap[index]*HEIGHT_SCALE - terrain->GetVertexGroundLevel(i+xx,j+yy) : 0.0f;
 				}
 			}
 			// normalizes the terrain info to avoid foam moving at too different speeds.
-			normal *= 0.012345679f;
+			normal *= 0.08f;
 			normal[1] = 0.1f;
 			normal = normal.Normalized();
 
-			m_WaveX[j*m_MapSize + i] = normal[0];
-			m_WaveZ[j*m_MapSize + i] = normal[2];
+			m_WaveX[index] = normal[0];
+			m_WaveZ[index] = normal[2];
 			// distance is /5.0 to be a [0,1] value.
 
-			m_DistanceToShore[j*m_MapSize + i] = sqrtf(distanceToShore)/5.0f; // TODO: this can probably be cached as I'm integer here.
+			m_DistanceToShore[index] = distanceToShore;
 
 			// computing the amount of foam I want
-
 			depth = clamp(depth,0.0f,10.0f);
 			float foamAmount = (waterRaise/255.0f) * (1.0f - depth/10.0f) /** (waveForceHQ[j*m_MapSize+i]/255.0f)*/ * (m_Waviness/8.0f);
-			foamAmount += clamp(m_Waviness/2.0f - distanceToShore,0.0f,m_Waviness/2.0f)/(m_Waviness/2.0f) * clamp(m_Waviness/9.0f,0.3f,1.0f);
-			foamAmount = foamAmount > 1.0f ? 1.0f: foamAmount;
+			foamAmount += clamp(m_Waviness/2.0f,0.0f,m_Waviness/2.0f)/(m_Waviness/2.0f) * clamp(m_Waviness/9.0f,0.3f,1.0f);
+			foamAmount *= (m_Waviness/4.0f - distanceToShore);
+			foamAmount = foamAmount > 1.0f ? 1.0f: (foamAmount < 0.0f ? 0.0f : foamAmount);
 			
-			m_FoamFactor[j*m_MapSize + i] = foamAmount;
+			m_FoamFactor[index] = foamAmount;
 		}
 	}
 
 	delete[] normals;
 	//delete[] waveForceHQ;
 	
-	// TODO: The rest should be cleaned up
-	
+	// TODO: reactivate this with something that looks good and is efficient.
+/*
 	// okay let's create the waves squares. i'll divide the map in arbitrary squares
 	// For each of these squares, check if waves are needed.
 	// If yes, look for the best positionning (in order to have a nice blending with the shore)
@@ -604,6 +604,7 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	// Construct indices buffer
 	m_VBWavesIndices = g_VBMan.Allocate(sizeof(GLushort), waves_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
 	m_VBWavesIndices->m_Owner->UpdateChunkVertices(m_VBWavesIndices, &waves_indices[0]);
+ */
 }
 
 ////////////////////////////////////////////////////////////////////////

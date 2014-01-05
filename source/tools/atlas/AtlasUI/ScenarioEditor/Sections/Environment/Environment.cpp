@@ -197,6 +197,9 @@ END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
 
+enum {
+	ID_RecomputeWaterData
+};
 static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
 {
 	POST_COMMAND(SetEnvironmentSettings, (settings));
@@ -213,9 +216,8 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 
 	wxSizer* waterSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Water settings"));
 	scrollSizer->Add(waterSizer, wxSizerFlags().Expand());
-
+	waterSizer->Add(new wxButton(this, ID_RecomputeWaterData, _("Reset Water Data")), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water height"), g_EnvironmentSettings.waterheight, 0.f, 1.2f), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water shininess"), g_EnvironmentSettings.watershininess, 0.f, 250.f), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water waviness"), g_EnvironmentSettings.waterwaviness, 0.f, 10.f), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water murkiness"), g_EnvironmentSettings.watermurkiness, 0.f, 1.f), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableColourBox(scrolledWindow, _("Water colour"), g_EnvironmentSettings.watercolour), wxSizerFlags().Expand());
@@ -277,3 +279,13 @@ void EnvironmentSidebar::OnMapReload()
 
 	g_EnvironmentSettings.NotifyObservers();
 }
+
+void EnvironmentSidebar::RecomputeWaterData(wxCommandEvent& evt)
+{
+	POST_COMMAND(RecalculateWaterData, (0.0f));
+}
+
+BEGIN_EVENT_TABLE(EnvironmentSidebar, Sidebar)
+	EVT_BUTTON(ID_RecomputeWaterData, EnvironmentSidebar::RecomputeWaterData)
+END_EVENT_TABLE();
+
