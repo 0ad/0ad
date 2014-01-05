@@ -1,7 +1,9 @@
 function Formation() {}
 
 Formation.prototype.Schema =
-	"<a:component type='system'/><empty/>";
+	"<element name='FormationName'>" +
+		"<text/>" +
+	"</element>";	
 
 var g_ColumnDistanceThreshold = 128; // distance at which we'll switch between column/box formations
 
@@ -10,7 +12,7 @@ Formation.prototype.Init = function()
 	this.members = []; // entity IDs currently belonging to this formation
 	this.inPosition = []; // entities that have reached their final position
 	this.columnar = false; // whether we're travelling in column (vs box) formation
-	this.formationName = "Line Closed";
+	this.formationName = this.template.FormationName;
 	this.rearrange = true; // whether we should rearrange all formation members
 	this.formationMembersWithAura = []; // Members with a formation aura
 	this.width = 0;
@@ -108,6 +110,7 @@ Formation.prototype.SetMembers = function(ents)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(this.entity);
+		cmpUnitAI.SetLastFormationName(this.formationName);
 		
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		if (cmpAuras && cmpAuras.HasFormationAura())
@@ -564,37 +567,6 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 			offsets.push({"x": Math.random()*width, "z": Math.random()*width});
 		}
 		break;
-	case "Circle":
-		var depth;
-		var pop;
-		if (count <= 36)
-		{
-			pop = 12;
-			depth = Math.ceil(count / pop);
-		}
-		else
-		{
-			depth = 3;
-			pop = Math.ceil(count / depth);
-		}
-
-		var left = count;
-		var radius = Math.min(left, pop) / (2 * Math.PI);
-		for (var c = 0; c < depth; ++c)
-		{
-			var ctodo = Math.min(left, pop);
-			var cradius = radius - c / 2;
-			var delta = 2 * Math.PI / ctodo;
-			for (var alpha = 0; ctodo; alpha += delta)
-			{
-				var x = Math.cos(alpha) * cradius;
-				var z = Math.sin(alpha) * cradius;
-				offsets.push({"x": x, "z": z});
-				ctodo--;
-				left--;
-			}
-		}
-		break;
 	case "Box":
 		var root = Math.ceil(Math.sqrt(count));
 
@@ -1009,13 +981,17 @@ Formation.prototype.DeleteTwinFormations = function()
 
 Formation.prototype.LoadFormation = function(formationName)
 {
-	this.formationName = formationName;
-	for each (var ent in this.members)
-	{
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		cmpUnitAI.SetLastFormationName(this.formationName);
-	}
-	this.offsets = undefined;
+	var members = this.members;
+	this.Disband();
+	var newFormation = Engine.AddEntity("formations/"+formationName.replace(/\s+/g, "_").toLowerCase());
+
+	var cmpFormation = Engine.QueryInterface(newFormation, IID_Formation);
+	cmpFormation.SetMembers(members);
+
+	var cmpThisUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	var cmpNewUnitAI = Engine.QueryInterface(newFormation, IID_UnitAI);
+	cmpNewUnitAI.AddOrders(cmpThisUnitAI.GetOrders());
+
 };
 
 Engine.RegisterComponentType(IID_Formation, "Formation", Formation);

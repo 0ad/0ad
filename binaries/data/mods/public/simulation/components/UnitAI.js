@@ -4429,8 +4429,6 @@ UnitAI.prototype.MoveIntoFormation = function(cmd)
 	if (!cmpFormation)
 		return;
 
-	cmpFormation.LoadFormation(cmd.name);
-
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!cmpPosition || !cmpPosition.IsInWorld())
 		return;

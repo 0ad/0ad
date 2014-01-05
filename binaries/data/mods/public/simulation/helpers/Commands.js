@@ -1156,7 +1156,7 @@ function RemoveFromFormation(ents)
  * Returns a list of UnitAI components, each belonging either to a
  * selected unit or to a formation entity for groups of the selected units.
  */
-function GetFormationUnitAIs(ents, player, formName)
+function GetFormationUnitAIs(ents, player, formationName)
 {
 	// If an individual was selected, remove it from any formation
 	// and command it individually
@@ -1187,7 +1187,7 @@ function GetFormationUnitAIs(ents, player, formName)
 		// if we move them to it. We should check if we can use formations
 		// for the other cases.
 		// We only use "LineClosed" instead of "Line Closed" to access the templates.
-		if (cmpIdentity && cmpIdentity.CanUseFormation(formName === undefined ? "LineClosed" : formName.replace(/\s+/,'')))
+		if (cmpIdentity && cmpIdentity.CanUseFormation(formationName === undefined ? "LineClosed" : formationName.replace(/\s+/,'')))
 			formedEnts.push(ent);
 		else
 			nonformedUnitAIs.push(cmpUnitAI);
@@ -1215,8 +1215,11 @@ function GetFormationUnitAIs(ents, player, formName)
 			cmpFormation.DeleteTwinFormations();
 			// The whole formation was selected, so reuse its controller for this command
 			formationUnitAIs = [Engine.QueryInterface(+fid, IID_UnitAI)];
+			if (formationName && CanMoveEntsIntoFormation(formation.entities, formationName))
+				cmpFormation.LoadFormation(formationName);
 		}
 	}
+
 	if (!formationUnitAIs.length)
 	{
 		// We need to give the selected units a new formation controller
@@ -1234,8 +1237,35 @@ function GetFormationUnitAIs(ents, player, formName)
 		var formationEnts = [];
 		for each (var cluster in clusters)
 		{
+			if (!formationName || !CanMoveEntsIntoFormation(cluster, formationName))
+			{
+				// get the most recently used formation, or default to line closed
+				var lastFormationName = undefined;
+				for each (var ent in cluster)
+				{
+					var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+					if (cmpUnitAI)
+					{
+						var name = cmpUnitAI.GetLastFormationName();
+						if (lastFormationName === undefined)
+						{
+							lastFormationName = name;
+						}
+						else if (lastFormationName != name)
+						{
+							lastFormationName = undefined;
+							break;
+						}
+					}
+				}
+				if (lastFormationName && CanMoveEntsIntoFormation(cluster, lastFormationName))
+					formationName = lastFormationName;
+				else
+					formationName = "Line Closed";
+			}
+
 			// Create the new controller
-			var formationEnt = Engine.AddEntity("special/formation");
+			var formationEnt = Engine.AddEntity("formations/"+formationName.replace(/\s+/g, "_").toLowerCase());
 			var cmpFormation = Engine.QueryInterface(formationEnt, IID_Formation);
 			formationUnitAIs.push(Engine.QueryInterface(formationEnt, IID_UnitAI));
 			cmpFormation.SetFormationSeparation(formationSeparation);
@@ -1247,37 +1277,6 @@ function GetFormationUnitAIs(ents, player, formName)
 			formationEnts.push(formationEnt);
 			var cmpOwnership = Engine.QueryInterface(formationEnt, IID_Ownership);
 			cmpOwnership.SetOwner(player);
-
-			// If all the selected units were previously in formations of the same shape,
-			// then set this new formation to that shape too; otherwise use the default shape
-			var lastFormationName = undefined;
-			for each (var ent in cluster)
-			{
-				var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-				if (cmpUnitAI)
-				{
-					var name = cmpUnitAI.GetLastFormationName();
-					if (lastFormationName === undefined)
-					{
-						lastFormationName = name;
-					}
-					else if (lastFormationName != name)
-					{
-						lastFormationName = undefined;
-						break;
-					}
-				}
-			}
-			var formationName;
-			if (lastFormationName)
-				formationName = lastFormationName;
-			else
-				formationName = "Line Closed";
-
-			if (CanMoveEntsIntoFormation(cluster, formationName))
-				cmpFormation.LoadFormation(formationName);
-			else
-				cmpFormation.LoadFormation("Scatter");
 		}
 	}
 
@@ -1397,7 +1396,7 @@ function GetFormationRequirements(formationName)
 		break;
 	case "Syntagma":
 		countRequired = 9;
- 		classesRequired = ["Melee", "Infantry"]; // TODO: pike only
+ 		classesRequired = ["Pike", "Infantry"]; 
 		break;
 	case "Testudo":
 		countRequired = 9;
