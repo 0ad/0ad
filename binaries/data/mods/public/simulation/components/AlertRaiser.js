@@ -6,11 +6,14 @@ AlertRaiser.prototype.Schema =
 
 AlertRaiser.prototype.Init = function() 
 {
-    this.level = 0;
-	
+	this.level = 0;
+
 	// Remember the units ordered to garrison
 	this.garrisonedUnits = [];
 	this.walkingUnits = [];
+
+	// Remember production buildings under alert
+	this.prodBuildings = [];
 };
 
 AlertRaiser.prototype.GetLevel = function()
@@ -34,20 +37,14 @@ AlertRaiser.prototype.SoundAlert = function()
 	PlaySound(alertString, this.entity);
 };
 
-AlertRaiser.prototype.IncreaseAlertLevel = function()
+AlertRaiser.prototype.UpdateUnits = function()
 {
-	if(!this.CanIncreaseLevel())
-		return false;
-	
 	// Find units owned by this unit's player
 	var players = [];
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (cmpOwnership)
 		players = [cmpOwnership.GetOwner()];
-		
-	this.level++;
-	this.SoundAlert();
-	
+
 	// Select units to put under alert, ignoring domestic animals (NB : war dogs are not domestic)
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var level = this.GetLevel();
@@ -56,12 +53,45 @@ AlertRaiser.prototype.IncreaseAlertLevel = function()
 		return (!cmpUnitAI.IsUnderAlert() && cmpUnitAI.ReactsToAlert(level) && !cmpUnitAI.IsDomestic());
 		});
 	
-	for each(var unit in units)
+	for each (var unit in units)
 	{
 		var cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
 		cmpUnitAI.ReplaceOrder("Alert", {"raiser": this.entity, "force": true});
 		this.walkingUnits.push(unit);
 	}
+}
+
+AlertRaiser.prototype.IncreaseAlertLevel = function()
+{
+	if (!this.CanIncreaseLevel())
+		return false;
+
+	this.level++;
+	this.SoundAlert();
+
+	// Find buildings owned by this unit's player
+	var players = [];
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (cmpOwnership)
+		players = [cmpOwnership.GetOwner()];
+	
+	// Select production buildings to put "under alert", including the raiser itself if possible
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var level = this.GetLevel();
+	var buildings = rangeMan.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_ProductionQueue);
+	var ownCmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
+	if (ownCmpProductionQueue)
+		buildings.push(this.entity);
+	
+	for each (var building in buildings)
+	{
+		var cmpProductionQueue = Engine.QueryInterface(building, IID_ProductionQueue);
+		cmpProductionQueue.PutUnderAlert(this.entity);
+		this.prodBuildings.push(building);
+	}
+	
+	// Put units under alert
+	this.UpdateUnits();
 	
 	return true;
 };
@@ -73,7 +103,6 @@ AlertRaiser.prototype.OnUnitGarrisonedAfterAlert = function(msg)
 	var index = this.walkingUnits.indexOf(msg.unit);
 	if (index != -1)
 		this.walkingUnits.splice(index, 1);
-	
 }
 
 AlertRaiser.prototype.EndOfAlert = function()
@@ -82,9 +111,11 @@ AlertRaiser.prototype.EndOfAlert = function()
 	this.SoundAlert();
 	
 	// First, handle units not yet garrisoned
-	for each(var unit in this.walkingUnits)
+	for each (var unit in this.walkingUnits)
 	{
 		var cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
+		if (!cmpUnitAI)
+			continue;
 		
 		cmpUnitAI.ResetAlert();
 			
@@ -96,10 +127,12 @@ AlertRaiser.prototype.EndOfAlert = function()
 	this.walkingUnits = [];
 	
 	// Then, eject garrisoned units
-	for each(var slot in this.garrisonedUnits)
+	for each (var slot in this.garrisonedUnits)
 	{
 		var cmpGarrisonHolder = Engine.QueryInterface(slot.holder, IID_GarrisonHolder);
 		var cmpUnitAI = Engine.QueryInterface(slot.unit, IID_UnitAI);
+		if (!cmpUnitAI || !cmpGarrisonHolder)
+			continue;
 		
 		if(cmpGarrisonHolder && cmpGarrisonHolder.PerformEject([slot.unit], true))
 		{
@@ -109,6 +142,15 @@ AlertRaiser.prototype.EndOfAlert = function()
 		}
 	}
 	this.garrisonedUnits = [];
+
+	// Finally, reset production buildings state
+	for each (var building in this.prodBuildings)
+	{
+		var cmpProductionQueue = Engine.QueryInterface(building, IID_ProductionQueue);
+		if (cmpProductionQueue)
+			cmpProductionQueue.ResetAlert();
+	}
+	this.prodBuildings = [];
 	
 	return true;
 };

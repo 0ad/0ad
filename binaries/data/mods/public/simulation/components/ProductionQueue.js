@@ -65,6 +65,18 @@ ProductionQueue.prototype.Init = function()
 
 	this.entityCache = [];
 	this.spawnNotified = false;
+	
+	this.alertRaiser = undefined;
+};
+
+ProductionQueue.prototype.PutUnderAlert = function(raiser)
+{
+	this.alertRaiser = raiser;
+};
+
+ProductionQueue.prototype.ResetAlert = function()
+{
+	this.alertRaiser = undefined;
 };
 
 /*
@@ -592,6 +604,13 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			"owner": cmpOwnership.GetOwner(),
 			"metadata": metadata,
 		});
+		
+		if(this.alertRaiser)
+		{
+			var cmpAlertRaiser = Engine.QueryInterface(this.alertRaiser, IID_AlertRaiser);
+			if(cmpAlertRaiser)
+				cmpAlertRaiser.UpdateUnits();
+		}
 	}
 	
 	return createdEnts.length;

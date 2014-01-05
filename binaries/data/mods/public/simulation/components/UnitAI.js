@@ -703,19 +703,19 @@ var UnitFsmSpec = {
 		this.SetNextState("INDIVIDUAL.AUTOGARRISON");
 	},
 
-    "Order.Alert": function(msg) {
+	"Order.Alert": function(msg) {
 		this.alertRaiser = this.order.data.raiser;
 		
 		// Find a target to garrison into, if we don't already have one
-		if(!this.alertGarrisoningTarget)
+		if (!this.alertGarrisoningTarget)
 			this.alertGarrisoningTarget = this.FindNearbyGarrisonHolder();
 		
-		if(this.alertGarrisoningTarget)
+		if (this.alertGarrisoningTarget)
 			this.ReplaceOrder("Garrison", {"target": this.alertGarrisoningTarget});
 		else
 			this.FinishOrder();
-    },	
-	
+	},	
+
 	"Order.Cheering": function(msg) {
 		this.SetNextState("INDIVIDUAL.CHEERING");
 	},
