@@ -503,7 +503,7 @@ function onSimulationUpdate()
 function updateGUIStatusBar(nameOfBar, points, maxPoints, direction) 
 {
 	// check, if optional direction parameter is valid.
-	if (!direction || !(direction>=0 && direction<4))
+	if (!direction || !(direction >= 0 && direction < 4))
 		direction = 0;
 
 	// get the bar and update it
