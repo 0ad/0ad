@@ -363,7 +363,7 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 				// search a 5x5 array with us in the center (do not search me)
 				// much faster since we spiral search and can just stop once we've found the shore.
 				// also everything is precomputed and we get exact results instead.
-				int offset[24] = { -1,1,-m_MapSize,+m_MapSize, -1-m_MapSize,+1-m_MapSize,-1+m_MapSize,1+m_MapSize,
+				size_t offset[24] = { -1,1,-m_MapSize,+m_MapSize, -1-m_MapSize,+1-m_MapSize,-1+m_MapSize,1+m_MapSize,
 					-2,2,-2*m_MapSize,2*m_MapSize,-2-m_MapSize,-2+m_MapSize,2-m_MapSize,2+m_MapSize,
 					-1-2*m_MapSize,+1-2*m_MapSize,-1+2*m_MapSize,1+2*m_MapSize,
 					-2-2*m_MapSize,2+2*m_MapSize,-2+2*m_MapSize,2-2*m_MapSize };
