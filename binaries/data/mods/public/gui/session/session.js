@@ -51,8 +51,10 @@ var g_ShowGuarding = false;
 var g_ShowGuarded = false;
 var g_AdditionalHighlight = [];
 
-// for saving the hitpoins of the hero (is there a better way to do that?)
-var g_heroHitpoints = undefined;
+// for saving the hitpoins of the hero (is there a better way to do that?) 
+// Should be possible with AttackDetection but might be an overkill because it would have to loop
+// always through the list of all ongoing attacks...
+var g_previousHeroHitPoints = undefined;
 
 function GetSimState()
 {
@@ -506,27 +508,27 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 
 	// get the bar and update it
 	var statusBar = Engine.GetGUIObjectByName(nameOfBar);
-	if (statusBar) 
-	{
-		var healthSize = statusBar.size;
-		var value = 100*Math.max(0, Math.min(1, points / maxPoints));
+	if (!statusBar) 
+		return;
 		
-		// inverse bar
-		if(direction == 2 || direction == 3) 
-			value = 100 - value;
+	var healthSize = statusBar.size;
+	var value = 100*Math.max(0, Math.min(1, points / maxPoints));
+	
+	// inverse bar
+	if(direction == 2 || direction == 3) 
+		value = 100 - value;
 
-		if(direction == 0)
-			healthSize.rright = value;
-		else if(direction == 1)
-			healthSize.rbottom = value;
-		else if(direction == 2)
-			healthSize.rleft = value;
-		else if(direction == 3)
-			healthSize.rtop = value;
-		
-		// update bar
-		statusBar.size = healthSize;
-	}
+	if(direction == 0)
+		healthSize.rright = value;
+	else if(direction == 1)
+		healthSize.rbottom = value;
+	else if(direction == 2)
+		healthSize.rleft = value;
+	else if(direction == 3)
+		healthSize.rtop = value;
+	
+	// update bar
+	statusBar.size = healthSize;
 }
 
 
@@ -539,7 +541,7 @@ function updateHero()
 
 	if (!playerState || playerState.heroes.length <= 0)
 	{
-		g_heroHitpoints = undefined;
+		g_previousHeroHitPoints = undefined;
 		unitHeroPanel.hidden = true;
 		return;
 	}
@@ -577,19 +579,18 @@ function updateHero()
 	updateGUIStatusBar("heroHealthBar", heroState.hitpoints, heroState.maxHitpoints);
 	
 	// define the hit points if not defined
-	if (!g_heroHitpoints)
-		g_heroHitpoints = heroState.hitpoints;
+	if (!g_previousHeroHitPoints)
+		g_previousHeroHitPoints = heroState.hitpoints;
 	
 	// check, if the health of the hero changed since the last update
-	if (heroState.hitpoints < g_heroHitpoints)
+	if (heroState.hitpoints < g_previousHeroHitPoints)
 	{	
-		g_heroHitpoints = heroState.hitpoints;
+		g_previousHeroHitPoints = heroState.hitpoints;
 		// trigger the animation
 		fadeColour("heroHitOverlay", 100, 10000, {"r": 175,"g": 0,"b": 0,"o": 100}, colourFade_attackUnit, smoothColourFadeRestart_attackUnit);
 		return;
 	}
 }
-
 
 
 function updateGroups()

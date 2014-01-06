@@ -24,40 +24,41 @@ function fadeColour(name, changeInterval, duration, colour, fun_colorTransform, 
 {
 	// get the overlay
 	var overlay = Engine.GetGUIObjectByName(name);
-	if (overlay)
-	{
-		// check, if fade overlay was started just now
-		if (!tickCounter)
-		{
-			tickCounter = 1;
-			overlay.hidden = false;
-						
-			// check, if another animation is running and restart it, if it's the case
-			if (isColourFadeRunning(name)) 
-			{
-				restartColourFade(name, changeInterval, duration, colour, fun_colorTransform, fun_smoothRestart, g_colorFade.tick[name]);
-				return;
-			}
-		}
-		
-		// get colors
-		fun_colorTransform(colour, tickCounter);
-		
-		// set new colour
-		overlay.sprite="colour: "+colour.r+" "+colour.g+" "+colour.b+" "+colour.o;
+	if (!overlay)
+		return;
 
-		// recusive call, if duration is positive
-		duration-= changeInterval; 
-		if (duration > 0 && colour.o > 0)
+	// check, if fade overlay was started just now
+	if (!tickCounter)
+	{
+		tickCounter = 1;
+		overlay.hidden = false;
+					
+		// check, if another animation is running and restart it, if it's the case
+		if (isColourFadeRunning(name)) 
 		{
-			var id = setTimeout(function() { fadeColour(name, changeInterval, duration, colour, fun_colorTransform, fun_smoothRestart, ++tickCounter); }, changeInterval);
-			g_colorFade.id[name] = id;
-			g_colorFade.tick[name] = tickCounter;
+			restartColourFade(name, changeInterval, duration, colour, fun_colorTransform, fun_smoothRestart, g_colorFade.tick[name]);
+			return;
 		}
-		else {
-			overlay.hidden = true;
-			stopColourFade(name);
-		}
+	}
+	
+	// get colors
+	fun_colorTransform(colour, tickCounter);
+	
+	// set new colour
+	overlay.sprite="colour: "+colour.r+" "+colour.g+" "+colour.b+" "+colour.o;
+
+	// recusive call, if duration is positive
+	duration-= changeInterval; 
+	if (duration > 0 && colour.o > 0)
+	{
+		var id = setTimeout(function() { fadeColour(name, changeInterval, duration, colour, fun_colorTransform, fun_smoothRestart, ++tickCounter); }, changeInterval);
+		g_colorFade.id[name] = id;
+		g_colorFade.tick[name] = tickCounter;
+	}
+	else 
+	{
+		overlay.hidden = true;
+		stopColourFade(name);
 	}
 }
 
@@ -75,27 +76,28 @@ function isColourFadeRunning(name)
 /**
  * stops fading a colour
  * name: name of the object which colour fade should be stopped
+ * hideOverlay: hides the overlay, if true
  * return: true a running fade was stopped
  */
-function stopColourFade(name, doNotHideOverlay)
+function stopColourFade(name, hideOverlay)
 {
-	if (isColourFadeRunning(name))
-	{
-		clearTimeout(g_colorFade.id[name]);
-		delete g_colorFade.id[name];
-		delete g_colorFade.tick[name];
-		
-		// get the overlay and hide it
-		if (doNotHideOverlay != true)
-		{
-			var overlay = Engine.GetGUIObjectByName(name);
-			if(overlay) 
-				overlay.hidden = true;
-		}
+	// check, if a colour fade is running
+	if (!isColourFadeRunning(name))
+		return false;
+
+	// delete the timer
+	clearTimeout(g_colorFade.id[name]);
+	delete g_colorFade.id[name];
+	delete g_colorFade.tick[name];
 	
-		return true;
+	// get the overlay and hide it
+	if (hideOverlay)
+	{
+		var overlay = Engine.GetGUIObjectByName(name);
+		if(overlay) 
+			overlay.hidden = true;
 	}
-	return false;
+	return true;
 }
 
 /**
@@ -104,28 +106,37 @@ function stopColourFade(name, doNotHideOverlay)
  */
 function restartColourFade(name, changeInterval, duration, colour, fun_colorTransform, fun_smoothRestart, tickCounter)
 {
-	if (isColourFadeRunning(name))
+	// check, if a colour fade is running
+	if (!isColourFadeRunning(name))
+		return false;
+	
+	// check, if fade can be restarted smoothly
+	if (fun_smoothRestart)
 	{
-		// check, if fade can be restarted smoothly
-		if (fun_smoothRestart)
-		{
-			tickCounter = fun_smoothRestart(colour, tickCounter);
-			// set new function to existing timer
-			var fun = function() { fadeColour(name, changeInterval, duration, colour, fun_colorTransform, fun_smoothRestart, tickCounter); };
-			setNewTimerFunction(g_colorFade.id[name], fun);
-		}
-		// stop it and restart it
-		else
-		{
-			stopColourFade(name, true);
-			fadeColour(name, changeInterval, duration, colour, fun_colorTransform);
-		}
+		tickCounter = fun_smoothRestart(colour, tickCounter);
+		// set new function to existing timer
+		var fun = function() { fadeColour(name, changeInterval, duration, colour, fun_colorTransform, fun_smoothRestart, tickCounter); };
+		setNewTimerFunction(g_colorFade.id[name], fun);
 	}
+	// stop it and restart it
+	else
+	{
+		stopColourFade(name, true);
+		fadeColour(name, changeInterval, duration, colour, fun_colorTransform);
+	}
+	return true;
 }
 
-/********************************************************************************************************/
-/*										PREDEFINED FUNCTIONS											*/
-/********************************************************************************************************/
+/**										PREDEFINED FUNCTIONS											*/
+
+//[START] of hero fade functions
+
+var g_fadeAttackUnit = {};
+g_fadeAttackUnit.blinkingTicks = 50; // how many ticks should first blinking phase be
+g_fadeAttackUnit.blinkingChangeInterval = 5; // how often should the colour be changed during the blinking phase
+g_fadeAttackUnit.gbColourChangeRate = 3; // how fast should blue and green part of the colour change
+g_fadeAttackUnit.fadeOutStart = 100; // when should the fade out start using the opacity
+g_fadeAttackUnit.opacityChangeRate = 3; // how fast should opacity change
 
 /**
  * rgb: colour object with keys r,g,b and o
@@ -133,26 +144,25 @@ function restartColourFade(name, changeInterval, duration, colour, fun_colorTran
  */
 function colourFade_attackUnit(rgb, tickCounter)
 {
-
 	// blinking
-	if (tickCounter < 50) 
+	if (tickCounter < g_fadeAttackUnit.blinkingTicks) 
 	{
 		// slow that process down
-		if (tickCounter%5 != 0) 
+		if (tickCounter % g_fadeAttackUnit.blinkingChangeInterval != 0) 
 			return;
 			
 		rgb.g = rgb.g == 0 ? 255 : rgb.g = 0;
 		rgb.b = rgb.b == 0 ? 255 : rgb.b = 0;
 	}
 	// wait a short time and then colour fade from red to grey to nothing
-	else if ( tickCounter > 54) 
+	else if ( tickCounter >= g_fadeAttackUnit.blinkingTicks + g_fadeAttackUnit.blinkingChangeInterval) 
 	{
-		rgb.g = rgb.g < 255 ? rgb.g += 3*Math.sqrt(tickCounter-50) : 255;
+		rgb.g = rgb.g < 255 ? rgb.g += g_fadeAttackUnit.gbColourChangeRate * Math.sqrt(tickCounter - g_fadeAttackUnit.blinkingTicks) : 255;
 		rgb.b = rgb.g;
 		
 		// start with fading it out
-		if (rgb.g > 100) 
-			rgb.o = rgb.o > 3 ? rgb.o -= 3 : 0;
+		if (rgb.g > g_fadeAttackUnit.fadeOutStart) 
+			rgb.o = rgb.o > g_fadeAttackUnit.opacityChangeRate ? rgb.o -= g_fadeAttackUnit.opacityChangeRate : 0;
 	}
 }
 
@@ -164,13 +174,15 @@ function colourFade_attackUnit(rgb, tickCounter)
 function smoothColourFadeRestart_attackUnit(rgb, tickCounter)
 {
 	// check, if in blinking phase
-	if (tickCounter < 50) 
+	if (tickCounter < g_fadeAttackUnit.blinkingTicks) 
 	{
 		// get rgb to current state
 		for (var i = 1; i <= tickCounter; i++)
 			colourFade_attackUnit(rgb, i);
 		// set the tick counter back to start
-		return (tickCounter%10)+1;
+		return (tickCounter % (g_fadeAttackUnit.blinkingChangeInterval * 2)) + 1;
 	}
 	return 1;
 }
+
+//[END] of hero fade functions

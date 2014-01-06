@@ -31,9 +31,8 @@ function clearTimeout(id)
 */
 function setNewTimerFunction(id, func)
 {
-	if (id in g_Timers) {
+	if (id in g_Timers)
 		g_Timers[id][1] = func;
-	}
 }
 
 /**
