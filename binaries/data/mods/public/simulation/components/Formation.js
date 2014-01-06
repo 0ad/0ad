@@ -412,7 +412,7 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 	var dCos = Math.abs(newOrientation.cos - this.oldOrientation.cos);
 	// If the formation existed, only recalculate positions if the turning agle is somewhat biggish
 	if (!this.offsets || dSin > 1 || dCos > 1)
-		this.offsets = this.ComputeFormationOffsets(active, positions, this.columnar);
+		this.offsets = this.ComputeFormationOffsets(active, positions);
 
 	this.oldOrientation = newOrientation;
 
@@ -508,7 +508,7 @@ Formation.prototype.GetAvgFootprint = function(active)
 	return r;
 };
 
-Formation.prototype.ComputeFormationOffsets = function(active, positions, columnar)
+Formation.prototype.ComputeFormationOffsets = function(active, positions)
 {
 	var separation = this.GetAvgFootprint(active);
 	separation.width *= this.separationMultiplier.width;
@@ -555,7 +555,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 	// Choose a sensible size/shape for the various formations, depending on number of units
 	var cols;
 
-	if (columnar)
+	if (this.columnar)
 	{
 		shape = "square";
 		cols = Math.min(count,3);
@@ -781,8 +781,8 @@ Formation.prototype.GetTargetOrientation = function(pos)
 {
 	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	var targetPos = cmpUnitAI.GetTargetPositions();
-	var sin = 1;
-	var cos = 0;
+	var sin = 0;
+	var cos = 1;
 	if (targetPos.length)
 	{
 		var dx = targetPos[0].x - pos.x;
