@@ -134,7 +134,7 @@ m.BaseManager.prototype.initGatheringFunctions = function(HQ, gameState, specTyp
 	var self = this;
 	var count = 0;
 	
-	for (i in types)
+	for (var i in types)
 	{
 		var type = types[i];
 		// TODO: set us as "X" gatherer
@@ -148,7 +148,7 @@ m.BaseManager.prototype.initGatheringFunctions = function(HQ, gameState, specTyp
 	{
 		var needFarm = true;
 		// Let's check again for food
-		for (base in HQ.baseManagers)
+		for (var base in HQ.baseManagers)
 			if (HQ.baseManagers[base].willGather["food"] === 1)
 				needFarm = false;
 		if (needFarm)
@@ -161,7 +161,7 @@ m.BaseManager.prototype.initGatheringFunctions = function(HQ, gameState, specTyp
 }
 
 m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
-	for (i in events)
+	for (var i in events)
 	{
 		if (events[i].type == "Destroy")
 		{
@@ -197,7 +197,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 			}
 		}
 	}
-	for (i in events)
+	for (var i in events)
 	{
 		if (events[i].type == "ConstructionFinished")
 		{
@@ -216,7 +216,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 					if(ent.hasTerritoryInfluence())
 						this.territoryBuildings.push(ent.id());
 					if (ent.resourceDropsiteTypes())
-						for (ress in ent.resourceDropsiteTypes())
+						for (var ress in ent.resourceDropsiteTypes())
 							this.initializeDropsite(gameState, ent, ent.resourceDropsiteTypes()[ress]);
 					if (ent.resourceSupplyAmount() && ent.resourceSupplyType()["specific"] == "grain")
 						this.assignResourceToDP(gameState,ent);
@@ -249,7 +249,7 @@ m.BaseManager.prototype.assignResourceToDP = function (gameState, supply, specif
 	{
 		var closest = -1;
 		var dist = Math.min();
-		for (i in this.dropsites)
+		for (var i in this.dropsites)
 		{
 			var dp = gameState.getEntityById(i);
 			var distance = API3.SquareVectorDistance(supply.position(), dp.position());
@@ -378,7 +378,7 @@ m.BaseManager.prototype.scrapDropsite = function (gameState, ent) {
 	if (this.dropsites[ent.id()] === undefined)
 		return true;
 	
-	for (i in this.dropsites[ent.id()])
+	for (var i in this.dropsites[ent.id()])
 	{
 		var type = i;
 		var dp = this.dropsites[ent.id()][i];
@@ -495,9 +495,9 @@ m.BaseManager.prototype.updateDropsite = function (gameState, ent, type) {
 // Updates dropsites.
 m.BaseManager.prototype.updateDropsites = function (gameState) {
 	// for each dropsite, recalculate
-	for (i in this.dropsites)
+	for (var i in this.dropsites)
 	{
-		for (type in this.dropsites[i])
+		for (var type in this.dropsites[i])
 		{
 			this.updateDropsite(gameState,gameState.getEntityById(i),type);
 		}
@@ -516,7 +516,7 @@ m.BaseManager.prototype.getWorkerCapacity = function (gameState, type) {
 		return 1000000;	// TODO: perhaps return something sensible here.
 	if (type === "stone" || type === "metal")
 	{
-		for (id in this.dropsites)
+		for (var id in this.dropsites)
 			if (this.dropsites[id][type])
 				this.dropsites[id][type][1].forEach(function (ent) {// }){
 					if (ent.resourceSupplyAmount() > 500)
@@ -524,7 +524,7 @@ m.BaseManager.prototype.getWorkerCapacity = function (gameState, type) {
 				});
 	} else if (type === "wood")
 	{
-		for (id in this.dropsites)
+		for (var id in this.dropsites)
 			if (this.dropsites[id][type] && (this.dropsites[id][type][4]) > 1000)
 				count += Math.min(15, this.dropsites[id][type][4] / 200);
 	}
@@ -546,7 +546,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, searchType
 	if (searchType == "dropsites")
 	{
 		// for each dropsite, recalculate
-		for (i in this.dropsites)
+		for (var i in this.dropsites)
 			if (this.dropsites[i][type] !== undefined)
 				count += this.dropsites[i][type][4];
 		return count;
@@ -554,7 +554,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, searchType
 	if (searchType == "dropsitesClose")
 	{
 		// for each dropsite, recalculate
-		for (i in this.dropsites)
+		for (var i in this.dropsites)
 			if (this.dropsites[i][type] !== undefined)
 				count += this.dropsites[i][type][3];
 		return count;
@@ -565,7 +565,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, searchType
 		if (threshold)
 			seuil = threshold;
 		// for each dropsite, recalculate
-		for (i in this.dropsites)
+		for (var i in this.dropsites)
 			if (this.dropsites[i][type] !== undefined)
 			{
 				if (this.dropsites[i][type][4] > seuil)
@@ -578,7 +578,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, searchType
 
 // check our resource levels and react accordingly
 m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
-	for (type in this.willGather)
+	for (var type in this.willGather)
 	{
 		if (this.willGather[type] === 0)
 			continue;
@@ -600,7 +600,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 				}
 			} else if (!this.isFarming && count < 650)
 			{
-				for (i in queues.field.queue)
+				for (var i in queues.field.queue)
 					queues.field.queue[i].isGo = function() { return true; };	// start them
 				this.isFarming = true;
 			}
@@ -674,12 +674,12 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState){
 	
 	var avgOverdraft = 0;
 	
-	for (i in types.types)
+	for (var i in types.types)
 		avgOverdraft += types[types.types[i]];
 
 	avgOverdraft /= 4;
 	
-	for (i in types.types)
+	for (var i in types.types)
 		if (types[types.types[i]] > avgOverdraft + 200 || (types[types.types[i]] > avgOverdraft && avgOverdraft > 200))
 			if (this.gatherersByType(gameState,types.types[i]).length > 0)
 			{

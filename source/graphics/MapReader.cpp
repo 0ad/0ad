@@ -717,12 +717,14 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					// graphics are disabled
 					if (!m_MapReader.pWaterMan)
 						continue;
-
-					float this_avoids_a_warning_about_unused_variables = 0;
 					
 					if (element_name == el_type)
 					{
 						// TODO: implement this, when WaterManager supports it
+					}
+					else if (element_name == el_shininess)
+					{
+						// deprecated.
 					}
 #define READ_COLOUR(el, out) \
 					else if (element_name == el) \
@@ -742,7 +744,6 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					} \
 
 					READ_COLOUR(el_colour, m_MapReader.pWaterMan->m_WaterColor)
-					READ_FLOAT(el_shininess, this_avoids_a_warning_about_unused_variables)
 					READ_FLOAT(el_waviness, m_MapReader.pWaterMan->m_Waviness)
 					READ_FLOAT(el_murkiness, m_MapReader.pWaterMan->m_Murkiness)
 					READ_COLOUR(el_tint, m_MapReader.pWaterMan->m_WaterTint)

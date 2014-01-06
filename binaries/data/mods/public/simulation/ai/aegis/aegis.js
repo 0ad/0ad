@@ -21,7 +21,7 @@ m.AegisBot = function AegisBot(settings) {
 
 	// this.queues can only be modified by the queue manager or things will go awry.
 	this.queues = {};
-	for (i in this.priorities)
+	for (var i in this.priorities)
 		this.queues[i] = new m.Queue();
 
 	this.queueManager = new m.QueueManager(this.Config, this.queues, this.priorities);

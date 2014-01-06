@@ -340,7 +340,7 @@ m.TransportPlan.prototype.carryOn = function(gameState, navalManager)
 		{
 			// could have died or could have be full
 			// we'll pick a new one, one that isn't full
-			for (i in this.transportShips._entities)
+			for (var i in this.transportShips._entities)
 			{
 				if (this.transportShips._entities[i].canGarrisonInside())
 				{

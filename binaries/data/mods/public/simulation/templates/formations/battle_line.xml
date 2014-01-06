@@ -2,6 +2,8 @@
 <Entity parent="template_formation">
   <Formation>
     <FormationName>Battle Line</FormationName>
+    <SortingClasses>Cavalry Melee Ranged</SortingClasses>
+    <SortingOrder>fillFromTheSides</SortingOrder>
     <ShiftRows>true</ShiftRows>
     <MinColumns>5</MinColumns>
     <MaxColumns>8</MaxColumns>

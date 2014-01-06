@@ -51,6 +51,11 @@ var g_ShowGuarding = false;
 var g_ShowGuarded = false;
 var g_AdditionalHighlight = [];
 
+// for saving the hitpoins of the hero (is there a better way to do that?) 
+// Should be possible with AttackDetection but might be an overkill because it would have to loop
+// always through the list of all ongoing attacks...
+var g_previousHeroHitPoints = undefined;
+
 function GetSimState()
 {
 	if (!g_SimState)
@@ -485,17 +490,59 @@ function onSimulationUpdate()
 	var battleState = Engine.GuiInterfaceCall("GetBattleState", Engine.GetPlayerID());
 	if (battleState)
 		global.music.setState(global.music.states[battleState]);
+	
 }
+
+/**
+* updates a status bar on the GUI
+* nameOfBar: name of the bar
+* points: points to show
+* maxPoints: max points 
+* direction: gets less from (right to left) 0; (top to bottom) 1; (left to right) 2; (bottom to top) 3;
+*/
+function updateGUIStatusBar(nameOfBar, points, maxPoints, direction) 
+{
+	// check, if optional direction parameter is valid.
+	if (!direction || !(direction >= 0 && direction < 4))
+		direction = 0;
+
+	// get the bar and update it
+	var statusBar = Engine.GetGUIObjectByName(nameOfBar);
+	if (!statusBar) 
+		return;
+		
+	var healthSize = statusBar.size;
+	var value = 100*Math.max(0, Math.min(1, points / maxPoints));
+	
+	// inverse bar
+	if(direction == 2 || direction == 3) 
+		value = 100 - value;
+
+	if(direction == 0)
+		healthSize.rright = value;
+	else if(direction == 1)
+		healthSize.rbottom = value;
+	else if(direction == 2)
+		healthSize.rleft = value;
+	else if(direction == 3)
+		healthSize.rtop = value;
+	
+	// update bar
+	statusBar.size = healthSize;
+}
+
 
 function updateHero()
 {
 	var simState = GetSimState();
 	var playerState = simState.players[Engine.GetPlayerID()];
+	var unitHeroPanel = Engine.GetGUIObjectByName("unitHeroPanel");
 	var heroButton = Engine.GetGUIObjectByName("unitHeroButton");
 
 	if (!playerState || playerState.heroes.length <= 0)
 	{
-		heroButton.hidden = true;
+		g_previousHeroHitPoints = undefined;
+		unitHeroPanel.hidden = true;
 		return;
 	}
 
@@ -512,7 +559,7 @@ function updateHero()
 		g_Selection.addList([hero]);
 	};
 	heroButton.ondoublepress = function() { selectAndMoveTo(getEntityOrHolder(hero)); };
-	heroButton.hidden = false;
+	unitHeroPanel.hidden = false;
 
 	// Setup tooltip
 	var tooltip = "[font=\"serif-bold-16\"]" + template.name.specific + "[/font]";
@@ -527,7 +574,24 @@ function updateHero()
 	tooltip += "\n" + template.tooltip;
 
 	heroButton.tooltip = tooltip;
-};
+	
+	// update heros health bar
+	updateGUIStatusBar("heroHealthBar", heroState.hitpoints, heroState.maxHitpoints);
+	
+	// define the hit points if not defined
+	if (!g_previousHeroHitPoints)
+		g_previousHeroHitPoints = heroState.hitpoints;
+	
+	// check, if the health of the hero changed since the last update
+	if (heroState.hitpoints < g_previousHeroHitPoints)
+	{	
+		g_previousHeroHitPoints = heroState.hitpoints;
+		// trigger the animation
+		fadeColour("heroHitOverlay", 100, 10000, {"r": 175,"g": 0,"b": 0,"o": 100}, colourFade_attackUnit, smoothColourFadeRestart_attackUnit);
+		return;
+	}
+}
+
 
 function updateGroups()
 {

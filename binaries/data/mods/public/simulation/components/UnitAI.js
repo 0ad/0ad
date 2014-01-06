@@ -5058,8 +5058,8 @@ UnitAI.prototype.GetTargetsFromUnit = function()
 		return [];
 
 	const attackfilter = function(e) {
-		var cmpPlayer = Engine.QueryInterface(e, IID_Player);
-		if (cmpPlayer && cmpPlayer.GetPlayerID() > 0)
+		var cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
+		if (cmpOwnership && cmpOwnership.GetOwner() > 0)
 			return true;
 		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
 		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
@@ -5067,7 +5067,7 @@ UnitAI.prototype.GetTargetsFromUnit = function()
 
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var entities = rangeMan.ResetActiveQuery(this.losRangeQuery);
-	var targets = entities.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && attackfilter(v); })
+	var targets = entities.filter(function (v) { return cmpAttack.CanAttack(v) && attackfilter(v); })
 		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
 
 	return targets;
@@ -5468,15 +5468,15 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 		return false;
 
 	const attackfilter = function(e) {
-		var cmpPlayer = Engine.QueryInterface(e, IID_Player);
-		if (cmpPlayer && cmpPlayer.GetPlayerID() > 0)
+		var cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
+		if (cmpOwnership && cmpOwnership.GetOwner() > 0)
 			return true;
 		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
 		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
 	};
 
 	return this.RespondToTargetedEntities(
-		ents.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && attackfilter(v); })
+		ents.filter(function (v) { return cmpAttack.CanAttack(v) && attackfilter(v); })
 		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); })
 	);
 };

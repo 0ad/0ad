@@ -334,7 +334,7 @@ m.Accessibility.prototype.getAccessValue = function(position, onWater) {
 	{
 		// quick spiral search.
 		var indx = [ [-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1]]
-		for (i in indx)
+		for (var i in indx)
 		{
 			ret = this.landPassMap[gamePos[0]+indx[0] + this.width*(gamePos[1]+indx[0])]
 			if (ret !== undefined && ret !== 1)
@@ -431,7 +431,7 @@ m.Accessibility.prototype.getTrajectToIndex = function(istart, iend, noBound){
 	else
 	{
 		var rgs = this.regionLinks[startRegion];
-		for (p in rgs)
+		for (var p in rgs)
 		{
 			if (this.regionLinks[rgs[p]].indexOf(endRegion) !== -1)
 				return [startRegion, rgs[p], endRegion];

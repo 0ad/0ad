@@ -4,6 +4,8 @@ var g_Time = Date.now();
 
 /**
  * Set a timeout to call func() after 'delay' msecs.
+ * func: function to call
+ * delay: delay in ms
  * Returns an id that can be passed to clearTimeout.
  */
 function setTimeout(func, delay)
@@ -13,9 +15,24 @@ function setTimeout(func, delay)
 	return id;
 }
 
+/**
+ * deletes a timer
+ * id: of the timer
+ */
 function clearTimeout(id)
 {
 	delete g_Timers[id];
+}
+
+/**
+* alters an function call
+* id: of the timer
+* func: function to call
+*/
+function setNewTimerFunction(id, func)
+{
+	if (id in g_Timers)
+		g_Timers[id][1] = func;
 }
 
 /**

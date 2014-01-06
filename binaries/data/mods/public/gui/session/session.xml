@@ -7,6 +7,7 @@
     <script file="gui/common/functions_global_object.js" />
     <script file="gui/common/music.js"/>
     <script file="gui/common/timer.js"/>
+	<script file="gui/common/colorFades.js"/>
     <script file="gui/session/session.js"/>
     <script file="gui/session/selection.js"/>
     <script file="gui/session/placement.js"/>
@@ -864,14 +865,26 @@
 	<!-- ================================  ================================ -->
 	<!-- Hero Selection -->
 	<!-- ================================  ================================ -->
-	<object
+<object
 	    name="unitHeroPanel"
-	    size="0 36 50 86"
+	    size="0 36 50 93"
+		hidden="true"
 	>
-		<object name="unitHeroButton" size="0 0 50 50" type="button" hidden="false" style="iconButton" 
+		<object name="unitHeroButton" size="0 0 50 50" type="button" style="iconButton" 
 			tooltip_style="sessionToolTip" tooltip="Attack and Armor">
 			<object name="unitHeroImage" size="5 5 100%-5 100%-5" type="image" ghost="true"/>
+			<object name="heroHitOverlay" hidden="true" type="image" ghost="true" size="5 5 100%-5 100%-5"/> 
 		</object>
+		<!-- Hero Health bar -->
+			<object size="3 100%-7 100%-3 100%-2" name="heroHealthSection" ghost="true">
+				<object size="0 0 100% 5" name="heroHealth" type="image" ghost="true">
+					<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
+					<object type="image" sprite="healthBackground" ghost="true"/> 
+					<object type="image" sprite="healthForeground" ghost="true" name="heroHealthBar"/> 
+					<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
+				</object>
+			</object>
+		<!-- Hit overlay -->
 	</object>
 	
 	<!-- ================================  ================================ -->

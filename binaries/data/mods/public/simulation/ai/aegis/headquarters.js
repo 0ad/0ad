@@ -78,7 +78,7 @@ m.HQ.prototype.init = function(gameState, events, queues){
 	if (hasCC)
 	{
 		var CC = ents.filter(API3.Filters.byClass("CivCentre")).toEntityArray()[0];
-		for (i in treasureAmount)
+		for (var i in treasureAmount)
 			gameState.getResourceSupplies(i).forEach( function (ent) {
 				if (ent.resourceSupplyType().generic === "treasure" && API3.SquareVectorDistance(ent.position(), CC.position()) < 5000)
 					treasureAmount[i] += ent.resourceSupplyMax();
@@ -178,7 +178,7 @@ m.HQ.prototype.init = function(gameState, events, queues){
 };
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues) {
-	for (i in events)
+	for (var i in events)
 	{
 		if (events[i].type == "Destroy")
 		{
@@ -452,7 +452,7 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, newBaseID, number) {
 			return 1;
 		return 0;
 	});
-	for (i in baseBest)
+	for (var i in baseBest)
 	{
 		if (baseBest[i].workers.length > number)
 		{
@@ -471,7 +471,7 @@ m.HQ.prototype.GetCurrentGatherRates = function(gameState) {
 	for (var type in this.wantedRates)
 		currentRates[type] = 0;
 	
-	for (i in this.baseManagers)
+	for (var i in this.baseManagers)
 		this.baseManagers[i].getGatherRates(gameState, currentRates);
 
 	return currentRates;
@@ -488,7 +488,7 @@ m.HQ.prototype.pickMostNeededResources = function(gameState) {
 	for (var type in this.wantedRates)
 		currentRates[type] = 0;
 	
-	for (i in this.baseManagers)
+	for (var i in this.baseManagers)
 	{
 		var base = this.baseManagers[i];
 		for (var type in this.wantedRates)
@@ -528,7 +528,7 @@ m.HQ.prototype.buildNewCC= function(gameState, queues) {
 
 	// no use trying to lay foundations that will be destroyed
 	if (gameState.defcon() > 2)
-		for ( var i = numCCs; i < 1; i++) {
+		for (var i = numCCs; i < 1; i++) {
 			gameState.ai.queueManager.clear();
 			this.baseNeed["food"] = 0;
 			this.baseNeed["wood"] = 50;
@@ -789,10 +789,10 @@ m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 	var need = { "wood" : true, "stone" : true, "metal" : true };
 	var posss = [];
 
-	for (i in this.baseManagers)
+	for (var i in this.baseManagers)
 	{
 		var base = this.baseManagers[i];
-		for (type in count)
+		for (var type in count)
 		{
 			if (base.getResourceLevel(gameState, type, "all") > 1500*Math.max(this.Config.difficulty,2))
 				count[type]++;
@@ -801,7 +801,7 @@ m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 				need[type] = false;
 		}
 	}
-	for (type in count)
+	for (var type in count)
 	{
 		if (count[type] === 0 || need[type]
 			|| capacity[type] < gameState.getOwnEntities().filter(API3.Filters.and(API3.Filters.byMetadata(PlayerID, "subrole", "gatherer"), API3.Filters.byMetadata(PlayerID, "gather-type", type))).length * 1.05)
@@ -833,9 +833,9 @@ m.HQ.prototype.buildDefences = function(gameState, queues){
 	
 	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv('structures/{civ}_defense_tower'))
 		+ queues.defenceBuilding.length() < gameState.getEntityLimits()["DefenseTower"] && queues.defenceBuilding.length() < 4 && gameState.currentPhase() > 1) {
-		for (i in this.baseManagers)
+		for (var i in this.baseManagers)
 		{
-			for (j in this.baseManagers[i].dropsites)
+			for (var j in this.baseManagers[i].dropsites)
 			{
 				var amnts = this.baseManagers[i].dropsites[j];
 				var dpEnt = gameState.getEntityById(j);
@@ -1092,7 +1092,7 @@ m.HQ.prototype.update = function(gameState, queues, events) {
 		this.buildDefences(gameState, queues);
 	Engine.ProfileStop();
 
-	for (i in this.baseManagers)
+	for (var i in this.baseManagers)
 	{
 		this.baseManagers[i].checkEvents(gameState, events, queues)
 		if ( ( (+i + gameState.ai.playedTurn) % (m.playerGlobals[PlayerID].uniqueIDBases - 1)) === 0)

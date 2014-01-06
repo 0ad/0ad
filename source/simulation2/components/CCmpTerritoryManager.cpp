@@ -451,9 +451,7 @@ void CCmpTerritoryManager::CalculateTerritories()
 			FloodFill(entityGrid, influenceGrid, openTiles, falloff);
 
 			// TODO: we should do a sparse grid and only add the non-zero regions, for performance
-			for (u16 j = 0; j < entityGrid.m_H; ++j)
-				for (u16 i = 0; i < entityGrid.m_W; ++i)
-					playerGrid.set(i, j, playerGrid.get(i, j) + entityGrid.get(i, j));
+			playerGrid.add(entityGrid);
 		}
 
 		playerGrids.push_back(std::make_pair(it->first, playerGrid));
