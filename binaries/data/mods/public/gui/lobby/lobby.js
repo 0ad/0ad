@@ -193,7 +193,7 @@ function updateGameList()
 	var showFullFilter = showFullFilterCB.checked;
 
 	var c = 0;
-	for each (g in gameList)
+	for each (var g in gameList)
 	{
 		if(displayGame(g, mapSizeFilter, playersNumberFilter, mapTypeFilter, showFullFilter))
 		{

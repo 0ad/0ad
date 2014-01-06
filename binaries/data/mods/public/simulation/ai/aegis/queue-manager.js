@@ -137,7 +137,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 			{
 				// assume 2 minutes.
 				// TODO work on this.
-				for (type in qCosts)
+				for (var type in qCosts)
 					qCosts[type] += cost[type];
 				qTime += 120000;
 				break;	// disregard other stuffs.
@@ -146,20 +146,20 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 			{
 				// estimate time based on priority + cost + nb
 				// TODO: work on this.
-				for (type in qCosts)
+				for (var type in qCosts)
 				{
 					qCosts[type] += (cost[type] + Math.min(cost[type],this.priorities[name]));
 				}
 				qTime += 30000;
 			} else {
 				// TODO: work on this.
-				for (type in qCosts)
+				for (var type in qCosts)
 					qCosts[type] += (cost[type] + Math.min(cost[type],this.priorities[name]));
 				// TODO: refine based on % completed.
 				qTime += (elem.endTime-elem.startTime);
 			}
 		}
-		for (j in qCosts)
+		for (var j in qCosts)
 		{
 			qCosts[j] -= this.accounts[name][j];
 			var diff = Math.min(qCosts[j], currentRess[j]);
@@ -191,7 +191,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 	var currentRates = {};
 	for (var type in array)
 		currentRates[type] = 0;
-	for (i in gameState.ai.HQ.baseManagers)
+	for (var i in gameState.ai.HQ.baseManagers)
 	{
 		var base = gameState.ai.HQ.baseManagers[i];
 		for (var type in array)
@@ -222,7 +222,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 	if (gameState.getTimeElapsed() > 20*60*1000 && !this.once)
 	{
 		this.once = true;
-		for (j in array)
+		for (var j in array)
 		{
 			log (j + ";");
 			for (var i = 0; i < this.totor.length; ++i)
@@ -231,7 +231,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 			}
 		}
 		log();
-		for (j in array)
+		for (var j in array)
 		{
 			log (j + ";");
 			for (var i = 0; i < this.totor.length; ++i)
@@ -240,7 +240,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 			}
 		}
 		log();
-		for (j in array)
+		for (var j in array)
 		{
 			log (j + ";");
 			for (var i = 0; i < this.totor.length; ++i)
@@ -249,7 +249,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 			}
 		}
 		log();
-		for (j in array)
+		for (var j in array)
 		{
 			log (j + ";");
 			for (var i = 0; i < this.totor.length; ++i)
@@ -296,7 +296,7 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState){
 		
 		var q = this.queues[i];
 		var str = "<th>" + i +"<br>";
-		for each (k in this.accounts[i].types)
+		for each (var k in this.accounts[i].types)
 			if(k != "population")
 			{
 				str += this.accounts[i][k] + k.substr(0,1).toUpperCase() ;
@@ -375,7 +375,7 @@ m.QueueManager.prototype.update = function(gameState) {
 					// check that we're not too forward in this resource compared to others.
 					/*var maxp = this.accounts[j][ress] / (queueCost[ress]+1);
 					var tooFull = false;
-					for (tempRess in availableRes)
+					for (var tempRess in availableRes)
 						if (tempRess !== ress && queueCost[tempRess] > 0 && (this.accounts[j][tempRess] / (queueCost[tempRess]+1)) - maxp < -0.2)
 							tooFull = true;
 					if (tooFull)

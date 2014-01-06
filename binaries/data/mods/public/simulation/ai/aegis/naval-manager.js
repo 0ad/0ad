@@ -112,7 +112,7 @@ m.NavalManager.prototype.canReach = function (gameState, regionA, regionB) {
 
 
 m.NavalManager.prototype.checkEvents = function (gameState, queues, events) {
-	for (i in events)
+	for (var i in events)
 	{
 		if (events[i].type == "Destroy")
 		{
@@ -155,7 +155,7 @@ m.NavalManager.prototype.askForTransport = function(entity, startPos, endPos) {
 m.NavalManager.prototype.createPlans = function(gameState) {
 	var startID = {};
 
-	for (i in this.askedPlans)
+	for (var i in this.askedPlans)
 	{
 		var plan = this.askedPlans[i];
 		var startIndex = gameState.ai.accessibility.getAccessValue(plan[1]);
@@ -227,7 +227,7 @@ m.NavalManager.prototype.assignToPlans = function(gameState, queues, events) {
 			var zone = plan.neededShipsZone();
 			if (zone)
 			{
-				for each (ship in this.seaTpShips[zone]._entities)
+				for each (var ship in this.seaTpShips[zone]._entities)
 				{
 					if (!ship.getMetadata(PlayerID, "tpplan"))
 					{
