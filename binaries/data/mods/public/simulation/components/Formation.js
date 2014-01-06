@@ -13,6 +13,14 @@ Formation.prototype.Schema =
 	"<element name='ShiftRows' a:help='Set the value to true to shift subsequent rows'>" +
 		"<text/>" +
 	"</element>" +
+	"<element name='SortingClasses' a:help='Classes will be added to the formation in this order. Where the classes will be added first depends on the formation'>" +
+		"<text/>" +
+	"</element>" +
+	"<optional>" +
+		"<element name='SortingOrder' a:help='The order of sorting. This defaults to an order where the formation is filled from the first row to the last, and the center of each row to the sides. Other possible sort orders are \"fillFromTheSides\", where the most important units are on the sides of each row, and \"fillToTheCenter\", where the most vulerable units are right in the center of the formation. '>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
 	"<element name='WidthDepthRatio' a:help='Average width/depth, counted in number of units.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
@@ -48,6 +56,8 @@ var g_ColumnDistanceThreshold = 128; // distance at which we'll switch between c
 Formation.prototype.Init = function()
 {
 	this.formationShape = this.template.FormationShape;
+	this.sortingClasses = this.template.SortingClasses.split(/\s+/g);
+	this.sortingOrder = this.template.SortingOrder;
 	this.shiftRows = this.template.ShiftRows == "true";
 	this.separationMultiplier = {
 		"width": +this.template.UnitSeparationWidthMultiplier,
@@ -514,27 +524,27 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	separation.width *= this.separationMultiplier.width;
 	separation.depth *= this.separationMultiplier.depth;
 
+	if (this.columnar)
+		var sortingClasses = ["Cavalry","Infantry"];
+	else
+		var sortingClasses = this.sortingClasses;
+
 	// the entities will be assigned to positions in the formation in 
 	// the same order as the types list is ordered
-	var types = {
-		"Cavalry" : [],
-		"Hero" : [],
-		"Melee" : [],
-		"Ranged" : [],
-		"Support" : [],
-		"Unknown": []
-	}; 
+	var types = {"Unknown": []}; 
+	for (var i = 0; i < sortingClasses.length; ++i)
+		types[sortingClasses[i]] = [];
 
 	for (var i in active)
 	{
 		var cmpIdentity = Engine.QueryInterface(active[i], IID_Identity);
 		var classes = cmpIdentity.GetClassesList();
 		var done = false;
-		for each (var cla in classes)
+		for (var c = 0; c < sortingClasses.length; ++c)
 		{
-			if (cla in types)
+			if (classes.indexOf(sortingClasses[c]) > -1)
 			{
-				types[cla].push({"ent": active[i], "pos": positions[i]});
+				types[sortingClasses[c]].push({"ent": active[i], "pos": positions[i]});
 				done = true;
 				break;
 			}
@@ -548,7 +558,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	var shape = this.formationShape;
 	var shiftRows = this.shiftRows;
 	var centerGap = this.centerGap;
-	var ordering = [];
+	var sortingOrder = this.sortingOrder;
 
 	var offsets = [];
 
@@ -561,6 +571,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 		cols = Math.min(count,3);
 		shiftRows = false;
 		centerGap = 0;
+		sortingOrder = null;
 	}
 	else
 	{
@@ -575,66 +586,18 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	}
 
 	// define special formations here
-	switch(this.formationName)
+	if (this.formationName == "Scatter")
 	{
-	case "Scatter":
 		var width = Math.sqrt(count) * (separation.width + separation.depth) * 2.5;
 
 		for (var i = 0; i < count; ++i)
 			offsets.push({"x": Math.random()*width, "z": Math.random()*width});
-		break;
-	case "Box":
-		var root = Math.ceil(Math.sqrt(count));
-
-		var left = count;
-		var meleeleft = types["Melee"].length;
-		for (var sq = Math.floor(root/2); sq >= 0; --sq)
-		{
-			var width = sq * 2 + 1;
-			var stodo;
-			if (sq == 0)
-			{
-				stodo = left;
-			}
-			else
-			{
-				if (meleeleft >= width*width - (width-2)*(width-2)) // form a complete box
-				{
-					stodo = width*width - (width-2)*(width-2);
-					meleeleft -= stodo;
-				}
-				else	// compact
-				{
-					stodo = Math.max(0, left - (width-2)*(width-2));
-				}
-			}
-
-			for (var r = -sq; r <= sq && stodo; ++r)
-			{
-				for (var c = -sq; c <= sq && stodo; ++c)
-				{
-					if (Math.abs(r) == sq || Math.abs(c) == sq)
-					{
-						var x = c * separation.width;
-						var z = -r * separation.depth;
-						offsets.push({"x": x, "z": z});
-						stodo--;
-						left--;
-					}
-				}
-			}
-		}
-		break;
-	case "Battle Line":
-		ordering.push("FillFromTheSides");
-		break;
-	default:
-		break;
 	}
 
 	// For non-special formations, calculate the positions based on the number of entities
 	if (shape != "special")
 	{
+		offsets = [];
 		var r = 0;
 		var left = count;
 		// while there are units left, start a new row in the formation
@@ -694,15 +657,12 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	// sort the available places in certain ways
 	// the places first in the list will contain the heaviest units as defined by the order
 	// of the types list
-	for each (var order in ordering)
-	{
-		if (order == "FillFromTheSides")
-			offsets.sort(function(o1, o2) { return Math.abs(o1.x) < Math.abs(o2.x);});
-		else if (order == "FillFromTheCenter")
-			offsets.sort(function(o1, o2) { return Math.abs(o1.x) > Math.abs(o2.x);});
-		else if (order == "FillFromTheFront")
-			offsets.sort(function(o1, o2) { return o1.z < o2.z;});
-	}
+	if (this.sortingOrder == "fillFromTheSides")
+		offsets.sort(function(o1, o2) { return Math.abs(o1.x) < Math.abs(o2.x);});
+	else if (this.sortingOrder == "fillToTheCenter")
+		offsets.sort(function(o1, o2) { 
+			return Math.max(Math.abs(o1.x), Math.abs(o1.z)) < Math.max(Math.abs(o2.x), Math.abs(o2.z));
+		});
 
 	// query the 2D position of the formation, and bring to the right coordinate system
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
@@ -714,8 +674,9 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	// every soldier searches the closest available place in the formation
 	var newOffsets = [];
 	var realPositions = this.GetRealOffsetPositions(offsets, formationPos);
-	for each (var t in types)
+	for (var i = 0; i < sortingClasses.length; ++i)
 	{
+		var t = types[sortingClasses[i]];
 		var usedOffsets = offsets.splice(0,t.length);
 		var usedRealPositions = realPositions.splice(0, t.length);
 		for each (var entPos in t)

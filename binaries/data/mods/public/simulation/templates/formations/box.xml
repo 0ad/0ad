@@ -2,6 +2,8 @@
 <Entity parent="template_formation">
   <Formation>
     <FormationName>Box</FormationName>
-    <FormationShape>special</FormationShape>
+    <FormationShape>square</FormationShape>
+    <SortingClasses>Melee Ranged</SortingClasses>
+    <SortingOrder>fillToTheCenter</SortingOrder>
   </Formation>
 </Entity>
