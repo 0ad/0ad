@@ -231,7 +231,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 
 	// If we have a cached URL, try that first, otherwise try getting a valid UPnP device for 10 seconds. We also get our LAN address here.
 	if (!((!rootDescURL.empty() && UPNP_GetIGDFromUrl(rootDescURL.c_str(), &urls, &data, internalIPAddress, sizeof(internalIPAddress)))
-	  || ((devlist = upnpDiscover(10000, 0, 0, 0, 0, 0)) && (ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress))))))
+	  || ((devlist = upnpDiscover(10000, 0, 0, 0, 0, 0)) != NULL && (ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress))) != 0)))
 	{
 		LOGMESSAGE(L"Net server: upnpDiscover failed and no working cached URL.");
 		return NULL;
