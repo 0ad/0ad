@@ -7,7 +7,7 @@ Formation.prototype.Schema =
 	"<element name='SpeedMultiplier' a:help='The speed of the formation is determined by the minimum speed of all members, multiplied with this number.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='FormationShape' a:help='Formation shape, currently supported are square and special, where special will be defined in the source code.'>" +
+	"<element name='FormationShape' a:help='Formation shape, currently supported are square, triangle and special, where special will be defined in the source code.'>" +
 		"<text/>" +
 	"</element>" +
 	"<element name='ShiftRows' a:help='Set the value to true to shift subsequent rows'>" +
@@ -625,35 +625,6 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 			}
 		}
 		break;
-	case "Wedge":
-		var depth = Math.ceil(Math.sqrt(count));
-
-		var left = count;
-		var width = 2 * depth - 1;
-		for (var p = 0; p < depth && left; ++p)
-		{
-			for (var r = p; r < depth && left; ++r)
-			{
-				var c1 = depth - r + p;
-				var c2 = depth + r - p;
-
-				if (left)
-				{
-						var x = c1 * separation.width;
-						var z = -r * separation.depth;
-						offsets.push({"x": x, "z": z});
-						left--;
-				}
-				if (left && c1 != c2)
-				{
-						var x = c2 * separation.width;
-						var z = -r * separation.depth;
-						offsets.push({"x": x, "z": z});
-						left--;
-				}
-			}
-		}
-		break;
 	case "Battle Line":
 		ordering.push("FillFromTheSides");
 		break;
@@ -661,32 +632,48 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 		break;
 	}
 
-	if (shape == "square")
+	// For non-special formations, calculate the positions based on the number of entities
+	if (shape != "special")
 	{
 		var r = 0;
 		var left = count;
+		// while there are units left, start a new row in the formation
 		while (left > 0)
 		{
-			var n = cols;
-			var sign = 1;
-			if (shiftRows)
-				n -= r%2;
-			else if (n > left)
+			// save the position of the row
+			var z = -r * separation.depth;
+			// switch between the left and right side of the center to have a symmetrical distribution
+			var side = 1;
+			// determine the number of entities in this row of the formation
+			if (shape == "square")
+			{
+				var n = cols;
+				if (shiftRows)
+					n -= r%2;
+			}
+			else if (shape == "triangle")
+			{
+				if (shiftRows)
+					var n = r + 1;
+				else
+					var n = r * 2 + 1;
+			}
+			if (!shiftRows && n > left)
 				n = left;
 			for (var c = 0; c < n && left > 0; ++c)
 			{
-				sign *= -1;
+				// switch sides for the next entity
+				side *= -1;
 				if (n%2 == 0)
-					var x = sign * (Math.floor(c/2) + 0.5) * separation.width;
+					var x = side * (Math.floor(c/2) + 0.5) * separation.width;
 				else
-					var x = sign * Math.ceil(c/2) * separation.width;
+					var x = side * Math.ceil(c/2) * separation.width;
 				if (centerGap)
 				{
 					if (x == 0) // don't use the center position with a center gap
 						continue;
-					x += sign * centerGap / 2;
+					x += side * centerGap / 2;
 				}
-				var z = -r * separation.depth;
 				offsets.push({"x": x, "z": z});
 				left--
 			}
