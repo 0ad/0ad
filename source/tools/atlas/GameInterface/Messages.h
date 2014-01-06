@@ -422,7 +422,6 @@ MESSAGE(SetView,
 struct sEnvironmentSettings
 {
 	Shareable<float> waterheight; // range 0..1 corresponds to min..max terrain height; out-of-bounds values allowed
-	Shareable<float> watershininess; // range ???
 	Shareable<float> waterwaviness; // range ???
 	Shareable<float> watermurkiness; // range ???
 	
@@ -470,6 +469,8 @@ QUERY(GetEnvironmentSettings,
 COMMAND(SetEnvironmentSettings, MERGE,	// merge lots of small changes into one undoable command
 		((sEnvironmentSettings, settings))
 		);
+
+COMMAND(RecalculateWaterData, NOMERGE, ((float,unused)));
 
 QUERY(GetSkySets,
 	  // no inputs

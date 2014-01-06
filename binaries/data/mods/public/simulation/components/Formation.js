@@ -1,16 +1,68 @@
 function Formation() {}
 
 Formation.prototype.Schema =
-	"<a:component type='system'/><empty/>";
+	"<element name='FormationName' a:help='Name of the formation'>" +
+		"<text/>" +
+	"</element>" +
+	"<element name='SpeedMultiplier' a:help='The speed of the formation is determined by the minimum speed of all members, multiplied with this number.'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<element name='FormationShape' a:help='Formation shape, currently supported are square and special, where special will be defined in the source code.'>" +
+		"<text/>" +
+	"</element>" +
+	"<element name='ShiftRows' a:help='Set the value to true to shift subsequent rows'>" +
+		"<text/>" +
+	"</element>" +
+	"<element name='WidthDepthRatio' a:help='Average width/depth, counted in number of units.'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<optional>" +
+		"<element name='MinColumns' a:help='When possible, this number of colums will be created. Overriding the wanted width depth ratio'>" +
+			"<data type='nonNegativeInteger'/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='MaxColumns' a:help='When possible within the number of units, and the maximum number of rows, this will be the maximum number of columns.'>" +
+			"<data type='nonNegativeInteger'/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='MaxRows' a:help='The maximum number of rows in the formation'>" +
+			"<data type='nonNegativeInteger'/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='CenterGap' a:help='The size of the central gap, expressed in number of units wide'>" +
+			"<ref name='nonNegativeDecimal'/>" +
+		"</element>" +
+	"</optional>" +
+	"<element name='UnitSeparationWidthMultiplier' a:help='Place the units in the formation closer or further to each other. The standard separation is the footprint size.'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<element name='UnitSeparationDepthMultiplier' a:help='Place the units in the formation closer or further to each other. The standard separation is the footprint size.'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>";	
 
 var g_ColumnDistanceThreshold = 128; // distance at which we'll switch between column/box formations
 
 Formation.prototype.Init = function()
 {
+	this.formationShape = this.template.FormationShape;
+	this.shiftRows = this.template.ShiftRows == "true";
+	this.separationMultiplier = {
+		"width": +this.template.UnitSeparationWidthMultiplier,
+		"depth": +this.template.UnitSeparationDepthMultiplier
+	};
+	this.widthDepthRatio = +this.template.WidthDepthRatio;
+	this.minColumns = +(this.template.MinColumns || 0);
+	this.maxColumns = +(this.template.MaxColumns || 0);
+	this.maxRows = +(this.template.MaxRows || 0);
+	this.centerGap = +(this.template.CenterGap || 0);
+
 	this.members = []; // entity IDs currently belonging to this formation
 	this.inPosition = []; // entities that have reached their final position
 	this.columnar = false; // whether we're travelling in column (vs box) formation
-	this.formationName = "Line Closed";
+	this.formationName = this.template.FormationName;
 	this.rearrange = true; // whether we should rearrange all formation members
 	this.formationMembersWithAura = []; // Members with a formation aura
 	this.width = 0;
@@ -34,6 +86,11 @@ Formation.prototype.SetFormationSeparation = function(value)
 Formation.prototype.GetSize = function()
 {
 	return {"width": this.width, "depth": this.depth};
+};
+
+Formation.prototype.GetSpeedMultiplier = function()
+{
+	return +this.template.SpeedMultiplier;
 };
 
 Formation.prototype.GetMemberCount = function()
@@ -108,6 +165,7 @@ Formation.prototype.SetMembers = function(ents)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(this.entity);
+		cmpUnitAI.SetLastFormationName(this.formationName);
 		
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		if (cmpAuras && cmpAuras.HasFormationAura())
@@ -453,6 +511,8 @@ Formation.prototype.GetAvgFootprint = function(active)
 Formation.prototype.ComputeFormationOffsets = function(active, positions, columnar)
 {
 	var separation = this.GetAvgFootprint(active);
+	separation.width *= this.separationMultiplier.width;
+	separation.depth *= this.separationMultiplier.depth;
 
 	// the entities will be assigned to positions in the formation in 
 	// the same order as the types list is ordered
@@ -480,14 +540,14 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 			}
 		}
 		if (!done)
-		{
 			types["Unknown"].push({"ent": active[i], "pos": positions[i]});
-		}
 	}
 
 	var count = active.length;
 
-	var shape = undefined;
+	var shape = this.formationShape;
+	var shiftRows = this.shiftRows;
+	var centerGap = this.centerGap;
 	var ordering = [];
 
 	var offsets = [];
@@ -496,104 +556,32 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 	var cols;
 
 	if (columnar)
-		var formationName = "Column Closed";
-	else
-		var formationName = this.formationName;
-
-	switch(formationName)
 	{
-	case "Column Closed":
-		// Have at most 3 files
-		if (count <= 3)
-			cols = count;
-		else
-			cols = 3;
 		shape = "square";
-		break;
-	case "Phalanx":
-		// Try to have at least 5 files (so batch training gives a single line),
-		// and at most 8
-		if (count <= 5)
-			cols = count;
-		else if (count <= 10)
-			cols = 5;
-		else if (count <= 16)
-			cols = Math.ceil(count/2);
-		else if (count <= 48)
-			cols = 8;
-		else
-			cols = Math.ceil(count/6);
-		separation.width *= 0.7;
-		shape = "square";
-		break;
-	case "Line Closed":
-		if (count <= 3)
-			cols = count;
-		else if (count < 30)
-			cols = Math.max(Math.ceil(count/2), 3);
-		else
-			cols = Math.ceil(count/3);
-		shape = "square";
-		ordering = ["FillFromTheCenter", "FillFromTheFront"];
-		break;
-	case "Testudo":
-		cols = Math.ceil(Math.sqrt(count));
-		shape = "square";
-		break;
-	case "Column Open":
-		cols = 2;
-		shape = "opensquare";
-		break;
-	case "Line Open":
-		if (count <= 5)
-			cols = 3;
-		else if (count <= 11)
-			cols = 4;
-		else if (count <= 18)
-			cols = 5;
-		else
-			cols = 6;
-		shape = "opensquare";
-		ordering = ["FillFromTheCenter", "FillFromTheFront"];
-		break;
+		cols = Math.min(count,3);
+		shiftRows = false;
+		centerGap = 0;
+	}
+	else
+	{
+		var depth = Math.sqrt(count / this.widthDepthRatio);
+		if (this.maxRows && depth > this.maxRows)
+			depth = this.maxRows;
+		cols = Math.ceil(count / Math.ceil(depth) + (this.shiftRows ? 0.5 : 0));
+		if (cols < this.minColumns)
+			cols = Math.min(count, this.minColumns);
+		if (this.maxColumns && cols > this.maxColumns && this.maxRows != depth)
+			cols = this.maxColumns;
+	}
+
+	// define special formations here
+	switch(this.formationName)
+	{
 	case "Scatter":
 		var width = Math.sqrt(count) * (separation.width + separation.depth) * 2.5;
 
 		for (var i = 0; i < count; ++i)
-		{
 			offsets.push({"x": Math.random()*width, "z": Math.random()*width});
-		}
-		break;
-	case "Circle":
-		var depth;
-		var pop;
-		if (count <= 36)
-		{
-			pop = 12;
-			depth = Math.ceil(count / pop);
-		}
-		else
-		{
-			depth = 3;
-			pop = Math.ceil(count / depth);
-		}
-
-		var left = count;
-		var radius = Math.min(left, pop) / (2 * Math.PI);
-		for (var c = 0; c < depth; ++c)
-		{
-			var ctodo = Math.min(left, pop);
-			var cradius = radius - c / 2;
-			var delta = 2 * Math.PI / ctodo;
-			for (var alpha = 0; ctodo; alpha += delta)
-			{
-				var x = Math.cos(alpha) * cradius;
-				var z = Math.sin(alpha) * cradius;
-				offsets.push({"x": x, "z": z});
-				ctodo--;
-				left--;
-			}
-		}
 		break;
 	case "Box":
 		var root = Math.ceil(Math.sqrt(count));
@@ -637,10 +625,6 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 			}
 		}
 		break;
-	case "Skirmish":
-		cols = Math.ceil(count/2);
-		shape = "opensquare";
-		break;
 	case "Wedge":
 		var depth = Math.ceil(Math.sqrt(count));
 
@@ -670,88 +654,46 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions, column
 			}
 		}
 		break;
-	case "Flank":
-		cols = 3;
-		var leftside = [];
-		leftside[0] = Math.ceil(count/2);
-		leftside[1] = Math.floor(count/2);
-		ranks = Math.ceil(leftside[0] / cols);
-		var off = - separation.width * 4;
-		for (var side = 0; side < 2; ++side)
-		{
-			var left = leftside[side];
-			off += side * separation.width * 8;
-			for (var r = 0; r < ranks; ++r)
-			{
-				var n = Math.min(left, cols);
-				for (var c = 0; c < n; ++c)
-				{
-					var x = off + ((n-1)/2 - c) * separation.width;
-					var z = -r * separation.depth;
-					offsets.push({"x": x, "z": z});
-				}
-				left -= n;
-			}
-		}
-		ordering.push("FillFromTheCenter");
-		break;
-	case "Syntagma":
-		cols = Math.ceil(Math.sqrt(count));
-		shape = "square";
-		break;
 	case "Battle Line":
-		if (count <= 5)
-			cols = count;
-		else if (count <= 10)
-			cols = 5;
-		else if (count <= 16)
-			cols = Math.ceil(count/2);
-		else if (count <= 48)
-			cols = 8;
-		else
-			cols = Math.ceil(count/6);
-		shape = "opensquare";
-		separation.width /= 2;
-		separation.depth /= 1.5;
 		ordering.push("FillFromTheSides");
 		break;
 	default:
-		warn("Unknown formation: " + formationName);
 		break;
 	}
 
 	if (shape == "square")
 	{
-		var ranks = Math.ceil(count / cols);
+		var r = 0;
+		var left = count;
+		while (left > 0)
+		{
+			var n = cols;
+			var sign = 1;
+			if (shiftRows)
+				n -= r%2;
+			else if (n > left)
+				n = left;
+			for (var c = 0; c < n && left > 0; ++c)
+			{
+				sign *= -1;
+				if (n%2 == 0)
+					var x = sign * (Math.floor(c/2) + 0.5) * separation.width;
+				else
+					var x = sign * Math.ceil(c/2) * separation.width;
+				if (centerGap)
+				{
+					if (x == 0) // don't use the center position with a center gap
+						continue;
+					x += sign * centerGap / 2;
+				}
+				var z = -r * separation.depth;
+				offsets.push({"x": x, "z": z});
+				left--
+			}
+			++r;
+		}
+	}
 
-		var left = count;
-		for (var r = 0; r < ranks; ++r)
-		{
-			var n = Math.min(left, cols);
-			for (var c = 0; c < n; ++c)
-			{
-				var x = ((n-1)/2 - c) * separation.width;
-				var z = -r * separation.depth;
-				offsets.push({"x": x, "z": z});
-			}
-			left -= n;
-		}
-	}
-	else if (shape == "opensquare")
-	{
-		var left = count;
-		for (var r = 0; left; ++r)
-		{
-			var n = Math.min(left, cols - (r&1?1:0));
-			for (var c = 0; c < 2*n; c+=2)
-			{
-				var x = (- c - (r&1)) * separation.width;
-				var z = -r * separation.depth;
-				offsets.push({"x": x, "z": z});
-			}
-			left -= n;
-		}
-	}
 	// make sure the average offset is zero, as the formation is centered around that
 	// calculating offset distances without a zero average makes no sense, as the formation
 	// will jump to a different position any time
@@ -898,6 +840,7 @@ Formation.prototype.ComputeMotionParameters = function()
 		if (cmpUnitMotion)
 			minSpeed = Math.min(minSpeed, cmpUnitMotion.GetWalkSpeed());
 	}
+	minSpeed *= this.GetSpeedMultiplier();
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	cmpUnitMotion.SetUnitRadius(maxRadius);
@@ -1009,13 +952,27 @@ Formation.prototype.DeleteTwinFormations = function()
 
 Formation.prototype.LoadFormation = function(formationName)
 {
-	this.formationName = formationName;
-	for each (var ent in this.members)
+	if (formationName == this.formationName)
 	{
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		cmpUnitAI.SetLastFormationName(this.formationName);
+		var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+		cmpUnitAI.MoveIntoFormation();
+		return;
 	}
-	this.offsets = undefined;
+	var members = this.members;
+	this.Disband();
+	var newFormation = Engine.AddEntity("formations/"+formationName.replace(/\s+/g, "_").toLowerCase());
+
+	var cmpFormation = Engine.QueryInterface(newFormation, IID_Formation);
+	cmpFormation.SetMembers(members);
+
+	var cmpThisUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	var cmpNewUnitAI = Engine.QueryInterface(newFormation, IID_UnitAI);
+	var orders = cmpThisUnitAI.GetOrders();
+	if (orders.length)
+		cmpNewUnitAI.AddOrders(orders);
+	else
+		cmpNewUnitAI.MoveIntoFormation();
+
 };
 
 Engine.RegisterComponentType(IID_Formation, "Formation", Formation);

@@ -658,9 +658,9 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 			defines.Add(str_USE_NORMALS, str_1);
 		if (WaterMgr->m_WaterRealDepth)
 			defines.Add(str_USE_REAL_DEPTH, str_1);
-		if (WaterMgr->m_WaterFoam && !g_AtlasGameLoop->running)
+		if (WaterMgr->m_WaterFoam)
 			defines.Add(str_USE_FOAM, str_1);
-		if (WaterMgr->m_WaterCoastalWaves && !g_AtlasGameLoop->running)
+		if (WaterMgr->m_WaterCoastalWaves && false)
 			defines.Add(str_USE_WAVES, str_1);
 		if (WaterMgr->m_WaterRefraction)
 			defines.Add(str_USE_REFRACTION, str_1);
@@ -747,7 +747,8 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	GLuint FramebufferName = 0;
 
 	// rendering waves to a framebuffer
-	if (WaterMgr->m_WaterCoastalWaves && WaterMgr->m_VBWaves && !g_AtlasGameLoop->running)
+	// TODO: reactivate this with something that looks good.
+	if (false && WaterMgr->m_WaterCoastalWaves && WaterMgr->m_VBWaves && !g_AtlasGameLoop->running)
 	{
 		// Save the post-processing framebuffer.
 		GLint fbo;
@@ -840,7 +841,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	m->fancyWaterShader->Uniform(str_sunDir, lightEnv.GetSunDir());
 	m->fancyWaterShader->Uniform(str_sunColor, lightEnv.m_SunColor.X);
 	m->fancyWaterShader->Uniform(str_color, WaterMgr->m_WaterColor);
-	m->fancyWaterShader->Uniform(str_shininess, WaterMgr->m_Shininess);
 	m->fancyWaterShader->Uniform(str_specularStrength, WaterMgr->m_SpecularStrength);
 	m->fancyWaterShader->Uniform(str_waviness, WaterMgr->m_Waviness);
 	m->fancyWaterShader->Uniform(str_murkiness, WaterMgr->m_Murkiness);

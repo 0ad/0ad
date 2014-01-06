@@ -16,8 +16,8 @@
  */
  
 // JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
+#include "precompiled.h" // needs to be here for Windows builds
 /* 
-#include "precompiled.h"
 
 #include "DebuggingServer.h"
 #include "ThreadDebugger.h"

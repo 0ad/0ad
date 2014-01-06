@@ -27,6 +27,7 @@ public:
 	EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 
 	virtual void OnMapReload();
+	virtual void RecomputeWaterData(wxCommandEvent& evt);
 
 protected:
 	virtual void OnFirstDisplay();
@@ -35,4 +36,6 @@ private:
 	VariableListBox* m_PostEffectList;
 	VariableListBox* m_SkyList;
 	ObservableScopedConnection m_Conn;
+	
+	DECLARE_EVENT_TABLE();
 };

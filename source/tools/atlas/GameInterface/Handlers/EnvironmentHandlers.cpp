@@ -44,7 +44,6 @@ sEnvironmentSettings GetSettings()
 	s.waterheight = cmpWaterManager->GetExactWaterLevel(0, 0) / (65536.f * HEIGHT_SCALE);
 
 	WaterManager* wm = g_Renderer.GetWaterManager();
-	s.watershininess = wm->m_Shininess;
 	s.waterwaviness = wm->m_Waviness;
 	s.watermurkiness = wm->m_Murkiness;
 	s.waterreflectiontintstrength = wm->m_ReflectionTintStrength;
@@ -100,7 +99,6 @@ void SetSettings(const sEnvironmentSettings& s)
 	cmpWaterManager->SetWaterLevel(entity_pos_t::FromFloat(s.waterheight * (65536.f * HEIGHT_SCALE)));
 
 	WaterManager* wm = g_Renderer.GetWaterManager();
-	wm->m_Shininess = s.watershininess;
 	wm->m_Waviness = s.waterwaviness;
 	wm->m_Murkiness = s.watermurkiness;
 	wm->m_ReflectionTintStrength = s.waterreflectiontintstrength;
@@ -169,6 +167,30 @@ BEGIN_COMMAND(SetEnvironmentSettings)
 };
 END_COMMAND(SetEnvironmentSettings)
 
+BEGIN_COMMAND(RecalculateWaterData)
+{
+	void Do()
+	{
+		Redo();
+	}
+	
+	void Redo()
+	{
+		CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		ENSURE(cmpWaterManager);
+		
+		cmpWaterManager->RecomputeWaterData();
+	}
+	
+	void Undo()
+	{
+		Redo();
+	}
+
+};
+END_COMMAND(RecalculateWaterData)
+
+	
 QUERYHANDLER(GetEnvironmentSettings)
 {
 	msg->settings = GetSettings();

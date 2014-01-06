@@ -26,6 +26,8 @@
 #include "renderer/WaterManager.h"
 #include "simulation2/MessageTypes.h"
 
+#include "tools/atlas/GameInterface/GameLoop.h"
+
 class CCmpWaterManager : public ICmpWaterManager
 {
 public:
@@ -81,7 +83,9 @@ public:
 			case MT_TerrainChanged:
 			{
 				// Tell the renderer to redraw the map.
-				if (CRenderer::IsInitialised())
+				// TODO: sometimes atlas glitches out.
+				// I've added a button to recompute on demand but that's not extremely nice.
+				if (CRenderer::IsInitialised() && !g_AtlasGameLoop->running)
 				{
 					const CMessageTerrainChanged& msgData = static_cast<const CMessageTerrainChanged&> (msg);
 					g_Renderer.GetWaterManager()->m_NeedInfoUpdate = true;
@@ -95,6 +99,19 @@ public:
 				break;
 			}
 		}
+	}
+
+	virtual void RecomputeWaterData()
+	{
+		ssize_t mapSize = GetSimContext().GetTerrain().GetVerticesPerSide();
+		g_Renderer.GetWaterManager()->m_NeedInfoUpdate = true;
+		g_Renderer.GetWaterManager()->m_updatei0 = 0;
+		g_Renderer.GetWaterManager()->m_updatej0 = 0;
+		g_Renderer.GetWaterManager()->m_updatei1 = mapSize-1;
+		g_Renderer.GetWaterManager()->m_updatej1 = mapSize-1;
+
+		// Tell the terrain it'll need to recompute its cached render data
+		GetSimContext().GetTerrain().MakeDirty(RENDERDATA_UPDATE_VERTICES);
 	}
 
 	virtual void SetWaterLevel(entity_pos_t h)

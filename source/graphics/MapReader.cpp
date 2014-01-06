@@ -583,7 +583,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	EL(type);
 	EL(colour);
 	EL(height);
-	EL(shininess);
+	EL(shininess);	// for compatibility
 	EL(waviness);
 	EL(murkiness);
 	EL(tint);
@@ -718,6 +718,8 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					if (!m_MapReader.pWaterMan)
 						continue;
 
+					float this_avoids_a_warning_about_unused_variables = 0;
+					
 					if (element_name == el_type)
 					{
 						// TODO: implement this, when WaterManager supports it
@@ -740,7 +742,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					} \
 
 					READ_COLOUR(el_colour, m_MapReader.pWaterMan->m_WaterColor)
-					READ_FLOAT(el_shininess, m_MapReader.pWaterMan->m_Shininess)
+					READ_FLOAT(el_shininess, this_avoids_a_warning_about_unused_variables)
 					READ_FLOAT(el_waviness, m_MapReader.pWaterMan->m_Waviness)
 					READ_FLOAT(el_murkiness, m_MapReader.pWaterMan->m_Murkiness)
 					READ_COLOUR(el_tint, m_MapReader.pWaterMan->m_WaterTint)
@@ -1461,7 +1463,6 @@ int CMapReader::ParseEnvironment()
 		// TODO: Water type not implemented
 
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Colour, pWaterMan->m_WaterColor)
-		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Shininess, pWaterMan->m_Shininess)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Waviness, pWaterMan->m_Waviness)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Murkiness, pWaterMan->m_Murkiness)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Tint, pWaterMan->m_WaterTint)

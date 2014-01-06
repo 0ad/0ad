@@ -26,6 +26,11 @@ class ICmpWaterManager : public IComponent
 {
 public:
 	/**
+	 * Recompute all the water information (foam…)
+	 */
+	virtual void RecomputeWaterData() = 0;
+
+	/**
 	 * Set the height of the water level, as a constant value across the whole map.
 	 */
 	virtual void SetWaterLevel(entity_pos_t h) = 0;
