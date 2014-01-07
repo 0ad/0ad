@@ -53,7 +53,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 	cmpRangeManager->GetSubdivision()->GetNear(ents, pos, entity_pos_t::FromInt(range));
 
 	// Filter for relevent entities and calculate precise distances.
-	std::vector<std::pair<float, entity_id_t>> hits; // (dist^2, entity) pairs
+	std::vector<std::pair<float, entity_id_t> > hits; // (dist^2, entity) pairs
 	for (int i = 0; i < ents.size(); ++i)
 	{
 		CmpPtr<ICmpSelectable> cmpSelectable(simulation, ents[i]);
