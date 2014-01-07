@@ -24,6 +24,7 @@
 #include "simulation2/system/Interface.h"
 #include "simulation2/helpers/Position.h"
 #include "simulation2/helpers/Player.h"
+#include "simulation2/helpers/Spatial.h"
 
 #include "graphics/Terrain.h" // for TERRAIN_TILE_SIZE
 
@@ -73,6 +74,12 @@ public:
 	typedef u32 tag_t;
 
 	/**
+	 * Access the spatial subdivision kept by the range manager.
+	 * @return pointer to spatial subdivision structure.
+	 */
+	virtual SpatialSubdivision* GetSubdivision() = 0;
+
+	/**
 	 * Set the bounds of the world.
 	 * Entities should not be outside the bounds (else efficiency will suffer).
 	 * @param x0,z0,x1,z1 Coordinates of the corners of the world
@@ -118,12 +125,12 @@ public:
 		entity_pos_t minRange, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface, u8 flags) = 0;
 
     /**
-	 * Construct an active query of a paraboloic form around the unit. 
+	 * Construct an active query of a paraboloic form around the unit.
 	 * The query will be disabled by default.
 	 * @param source the entity around which the range will be computed.
 	 * @param minRange non-negative minimum horizontal distance in metres (inclusive). MinRange doesn't do parabolic checks.
-	 * @param maxRange non-negative maximum distance in metres (inclusive) for units on the same elevation; 
-	 *      or -1.0 to ignore distance. 
+	 * @param maxRange non-negative maximum distance in metres (inclusive) for units on the same elevation;
+	 *      or -1.0 to ignore distance.
 	 *      For units on a different elevation, a physical correct paraboloid with height=maxRange/2 above the unit is used to query them
 	 * @param elevationBonus extra bonus so the source can be placed higher and shoot further
 	 * @param owners list of player IDs that matching entities may have; -1 matches entities with no owner.

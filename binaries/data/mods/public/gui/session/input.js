@@ -36,6 +36,8 @@ var placementSupport = new PlacementSupport();
 var mouseX = 0;
 var mouseY = 0;
 var mouseIsOverObject = false;
+// Distance to search for a selatable entity in. Bigger numbers are slower.
+var SELECTION_SEARCH_RADIUS = 100;
 
 // Number of pixels the mouse can move before the action is considered a drag
 var maxDragDelta = 4;
@@ -495,7 +497,7 @@ function determineAction(x, y, fromMinimap)
 	var targets = [];
 	var target = undefined;
 	if (!fromMinimap)
-		targets = Engine.PickEntitiesAtPoint(x, y);
+		targets = Engine.PickEntitiesAtPoint(x, y, SELECTION_SEARCH_RADIUS);
 
 	if (targets.length)
 		target = targets[0];
@@ -1108,7 +1110,7 @@ function handleInputAfterGui(ev)
 		{
 		case "mousemotion":
 			// Highlight the first hovered entity (if any)
-			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y);
+			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y, SELECTION_SEARCH_RADIUS);
 			if (ents.length)
 				g_Selection.setHighlightList([ents[0]]);
 			else
@@ -1162,7 +1164,7 @@ function handleInputAfterGui(ev)
 		{
 		case "mousemotion":
 			// Highlight the first hovered entity (if any)
-			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y);
+			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y, SELECTION_SEARCH_RADIUS);
 			if (ents.length)
 				g_Selection.setHighlightList([ents[0]]);
 			else
@@ -1212,14 +1214,14 @@ function handleInputAfterGui(ev)
 				return false;
 			}
 
-			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y);
+			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y, SELECTION_SEARCH_RADIUS);
 			g_Selection.setHighlightList(ents);
 			return false;
 
 		case "mousebuttonup":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y);
+				var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y, SELECTION_SEARCH_RADIUS);
 				if (!ents.length)
 				{
 					if (!Engine.HotkeyIsPressed("selection.add") && !Engine.HotkeyIsPressed("selection.remove"))

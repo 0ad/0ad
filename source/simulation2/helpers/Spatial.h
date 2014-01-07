@@ -18,6 +18,7 @@
 #ifndef INCLUDED_SPATIAL
 #define INCLUDED_SPATIAL
 
+#include "simulation2/system/Component.h"
 #include "simulation2/serialization/SerializeTemplates.h"
 #include "ps/CLogger.h"
 
