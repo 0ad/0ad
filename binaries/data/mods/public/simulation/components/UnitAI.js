@@ -198,7 +198,7 @@ var UnitFsmSpec = {
 		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 		cmpUnitMotion.MoveToFormationOffset(msg.data.target, msg.data.x, msg.data.z);
 
-		this.SetNextState("FORMATIONMEMBER.WALKING");
+		this.SetNextStateAlwaysEntering("FORMATIONMEMBER.WALKING");
 	},
 
 	// Special orders:
@@ -1231,6 +1231,13 @@ var UnitFsmSpec = {
 
 		"WALKING": {
 			"enter": function () {
+				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+				var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+				if (cmpFormation && cmpVisual)
+				{
+					cmpVisual.ReplaceMoveAnimation("walk", cmpFormation.GetFormationAnimation(this.entity, "walk"));
+					cmpVisual.ReplaceMoveAnimation("run", cmpFormation.GetFormationAnimation(this.entity, "run"));
+				}
 				this.SelectAnimation("move");
 			},
 
@@ -1241,6 +1248,12 @@ var UnitFsmSpec = {
 				// We can only finish this order if the move was really completed.
 				if (!msg.data.error && this.FinishOrder())
 					return;
+				var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+				if (cmpVisual)
+				{
+					cmpVisual.ResetMoveAnimation("walk");
+					cmpVisual.ResetMoveAnimation("run");
+				}
 
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 				if (cmpFormation)

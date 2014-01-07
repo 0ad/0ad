@@ -49,6 +49,14 @@ Formation.prototype.Schema =
 	"</element>" +
 	"<element name='UnitSeparationDepthMultiplier' a:help='Place the units in the formation closer or further to each other. The standard separation is the footprint size.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<element name='Animations' a:help='Give a list of animations to use for the particular formation members, based on their positions'>" +
+		"<zeroOrMore>" +
+			"<element a:help='The name of the default animation (walk, idle, attack_ranged...) that will be transformed in the formation-specific ResetMoveAnimation'>" +
+				"<anyName/>" +
+				"<text a:help='example text: \"1..1,1..-1:animation1;2..2,1..-1;animation2\", this will set animation1 for the first row, and animation2 for the second row. The first part of the numbers (1..1 and 2..2) means the row range. Every row between (and including) those values will switch animations. The second part of the numbers (1..-1) denote the columns inside those rows that will be affected. Note that in both cases, you can use -1 for the last row/column, -2 for the second to last, etc.'/>" +
+			"</element>" +
+		"</zeroOrMore>" +
 	"</element>";	
 
 var g_ColumnDistanceThreshold = 128; // distance at which we'll switch between column/box formations
@@ -69,7 +77,36 @@ Formation.prototype.Init = function()
 	this.maxRows = +(this.template.MaxRows || 0);
 	this.centerGap = +(this.template.CenterGap || 0);
 
+	var animations = this.template.Animations;
+	this.animations = {}
+	for (var animationName in animations)
+	{
+		var differentAnimations = animations[animationName].split(/\s*;\s*/);
+		this.animations[animationName] = [];
+		// loop over the different rectangulars that will map to different animations
+		for each (var rectAnimation in differentAnimations)
+		{
+			var rect, replacementAnimationName;
+			[rect, replacementAnimationName] = rectAnimation.split(/\s*:\s*/);
+			var rows, columns;
+			[rows, columns] = rect.split(/\s*,\s*/);
+			var minRow, maxRow, minColumn, maxColumn;
+			[minRow, maxRow] = rows.split(/\s*\.\.\s*/);
+			[minColumn, maxColumn] = columns.split(/\s*\.\.\s*/);
+			this.animations[animationName].push({
+				"minRow": +minRow,
+				"maxRow": +maxRow,
+				"minColumn": +minColumn,
+				"maxColumn": +maxColumn,
+				"animation": replacementAnimationName
+			});
+		}
+	}
+
 	this.members = []; // entity IDs currently belonging to this formation
+	this.memberPositions = {};
+	this.maxRowsUsed = 0;
+	this.maxColumnsUsed = [];
 	this.inPosition = []; // entities that have reached their final position
 	this.columnar = false; // whether we're travelling in column (vs box) formation
 	this.rearrange = true; // whether we should rearrange all formation members
@@ -117,6 +154,52 @@ Formation.prototype.GetMemberCount = function()
 Formation.prototype.GetPrimaryMember = function()
 {
 	return this.members[0];
+};
+
+/**
+ * Get the formation animation for a certain member of this formation
+ * @param entity The entity ID to get the animation for
+ * @param defaultAnimation The name of the default wanted animation for the entity
+ * E.g. "walk", "idle" ...
+ * @return The name of the transformed animation as defined in the template
+ * E.g. "walk_testudo_row1"
+ */
+Formation.prototype.GetFormationAnimation = function(entity, defaultAnimation)
+{
+	var animationGroup = this.animations[defaultAnimation];
+	if (!animationGroup || this.columnar)
+		return defaultAnimation;
+	var row = this.memberPositions[entity].row;
+	var column = this.memberPositions[entity].column;
+	for (var i = 0; i < animationGroup.length; ++i)
+	{
+		var minRow = animationGroup[i].minRow;
+		if (minRow < 0)
+			minRow += this.maxRowsUsed + 1;
+		if (row < minRow)
+			continue;
+
+		var maxRow = animationGroup[i].maxRow;
+		if (maxRow < 0)
+			maxRow += this.maxRowsUsed + 1;
+		if (row > maxRow)
+			continue;
+
+		var minColumn = animationGroup[i].minColumn;
+		if (minColumn < 0)
+			minColumn += this.maxColumnsUsed[row] + 1;
+		if (column < minColumn)
+			continue;
+
+		var maxColumn = animationGroup[i].maxColumn;
+		if (maxColumn < 0)
+			maxColumn += this.maxColumnsUsed[row] + 1;
+		if (column > maxColumn)
+			continue;
+
+		return animationGroup[i].animation;
+	}
+	return defaultAnimation;
 };
 
 /**
@@ -598,6 +681,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	}
 
 	// For non-special formations, calculate the positions based on the number of entities
+	this.maxColumnsUsed = [];
+	this.maxRowsUsed = 0;
 	if (shape != "special")
 	{
 		offsets = [];
@@ -640,11 +725,14 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 						continue;
 					x += side * centerGap / 2;
 				}
-				offsets.push({"x": x, "z": z});
+				var column = Math.ceil(n/2) + Math.ceil(c/2) * side;
+				offsets.push({"x": x, "z": z, "row": r + 1, "column": column});
 				left--
 			}
 			++r;
+			this.maxColumnsUsed[r] = n;
 		}
+		this.maxRowsUsed = r;
 	}
 
 	// make sure the average offset is zero, as the formation is centered around that
@@ -716,6 +804,7 @@ Formation.prototype.TakeClosestOffset = function(entPos, realPositions)
 			closestOffsetId = i;
 		}
 	}
+	this.memberPositions[entPos.ent] = {"row": realPositions[closestOffsetId].row, "column": realPositions[closestOffsetId].column};
 	return closestOffsetId;
 };
 
@@ -729,8 +818,10 @@ Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
 	// calculate the world positions
 	for each (var o in offsets)
 		offsetPositions.push({
-			"x" : pos.x + o.z * sin + o.x * cos, 
-			"z" : pos.z + o.z * cos - o.x * sin
+			"x": pos.x + o.z * sin + o.x * cos, 
+			"z": pos.z + o.z * cos - o.x * sin,
+			"row": o.row,
+			"column": o.column
 		});
 
 	return offsetPositions;
