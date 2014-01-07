@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -280,7 +280,7 @@ void EnvironmentSidebar::OnMapReload()
 	g_EnvironmentSettings.NotifyObservers();
 }
 
-void EnvironmentSidebar::RecomputeWaterData(wxCommandEvent& evt)
+void EnvironmentSidebar::RecomputeWaterData(wxCommandEvent& WXUNUSED(evt))
 {
 	POST_COMMAND(RecalculateWaterData, (0.0f));
 }
