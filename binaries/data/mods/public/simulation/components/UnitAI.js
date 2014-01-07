@@ -2958,7 +2958,7 @@ UnitAI.prototype.Init = function()
 	this.formationController = INVALID_ENTITY; // entity with IID_Formation that we belong to
 	this.isGarrisoned = false;
 	this.isIdle = false;
-	this.lastFormationName = "";
+	this.lastFormationTemplate = "";
 	this.finishedOrder = false; // used to find if all formation members finished the order
 	
 	// Queue of remembered works
@@ -4440,14 +4440,14 @@ UnitAI.prototype.GetFormationController = function()
 	return this.formationController;
 };
 
-UnitAI.prototype.SetLastFormationName = function(name)
+UnitAI.prototype.SetLastFormationTemplate = function(template)
 {
-	this.lastFormationName = name;
+	this.lastFormationTemplate = template;
 };
 
-UnitAI.prototype.GetLastFormationName = function()
+UnitAI.prototype.GetLastFormationTemplate = function()
 {
-	return this.lastFormationName;
+	return this.lastFormationTemplate;
 };
 
 UnitAI.prototype.MoveIntoFormation = function(cmd)

@@ -1938,7 +1938,7 @@ function performCommand(entity, commandName)
 }
 
 // Performs the specified formation
-function performFormation(entity, formationName)
+function performFormation(entity, formationTemplate)
 {
 	if (entity)
 	{
@@ -1946,7 +1946,7 @@ function performFormation(entity, formationName)
 		Engine.PostNetworkCommand({
 			"type": "formation",
 			"entities": selection,
-			"name": formationName
+			"name": formationTemplate
 		});
 	}
 }

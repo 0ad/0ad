@@ -72,7 +72,6 @@ Formation.prototype.Init = function()
 	this.members = []; // entity IDs currently belonging to this formation
 	this.inPosition = []; // entities that have reached their final position
 	this.columnar = false; // whether we're travelling in column (vs box) formation
-	this.formationName = this.template.FormationName;
 	this.rearrange = true; // whether we should rearrange all formation members
 	this.formationMembersWithAura = []; // Members with a formation aura
 	this.width = 0;
@@ -171,11 +170,14 @@ Formation.prototype.SetMembers = function(ents)
 {
 	this.members = ents;
 
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
+
 	for each (var ent in this.members)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(this.entity);
-		cmpUnitAI.SetLastFormationName(this.formationName);
+		cmpUnitAI.SetLastFormationTemplate(templateName);
 		
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		if (cmpAuras && cmpAuras.HasFormationAura())
@@ -587,7 +589,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	}
 
 	// define special formations here
-	if (this.formationName == "Scatter")
+	if (this.template.FormationName == "Scatter")
 	{
 		var width = Math.sqrt(count) * (separation.width + separation.depth) * 2.5;
 
@@ -899,29 +901,24 @@ Formation.prototype.DeleteTwinFormations = function()
 	this.twinFormations = [];
 };
 
-Formation.prototype.LoadFormation = function(formationName)
+Formation.prototype.LoadFormation = function(newTemplate)
 {
-	if (formationName == this.formationName)
-	{
-		var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-		cmpUnitAI.MoveIntoFormation();
-		return;
-	}
-	var members = this.members;
-	this.Disband();
-	var newFormation = Engine.AddEntity("formations/"+formationName.replace(/\s+/g, "_").toLowerCase());
-
-	var cmpFormation = Engine.QueryInterface(newFormation, IID_Formation);
-	cmpFormation.SetMembers(members);
-
+	// get the old formation info
+	var members = this.members.slice();
 	var cmpThisUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	var orders = cmpThisUnitAI.GetOrders().slice();
+
+	this.Disband();
+
+	var newFormation = Engine.AddEntity(newTemplate);
+	// apply the info from the old formation to the new one
+	var cmpFormation = Engine.QueryInterface(newFormation, IID_Formation);
 	var cmpNewUnitAI = Engine.QueryInterface(newFormation, IID_UnitAI);
-	var orders = cmpThisUnitAI.GetOrders();
+	cmpFormation.SetMembers(members);
 	if (orders.length)
 		cmpNewUnitAI.AddOrders(orders);
 	else
 		cmpNewUnitAI.MoveIntoFormation();
-
 };
 
 Engine.RegisterComponentType(IID_Formation, "Formation", Formation);

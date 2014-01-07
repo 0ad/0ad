@@ -45,6 +45,9 @@
     <Classes datatype="tokens">Hero</Classes>
     <GenericName>Hero Skirmisher</GenericName>
     <RequiredTechnology>phase_city</RequiredTechnology>
+    <Formations datatype="tokens">
+      formations/skirmish
+    </Formations>
   </Identity>
   <Loot>
     <xp>350</xp>

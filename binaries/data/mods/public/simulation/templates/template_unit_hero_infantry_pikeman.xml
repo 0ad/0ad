@@ -34,6 +34,10 @@
     <Classes datatype="tokens">Melee Spear Pike</Classes>
     <GenericName>Hero Pikeman</GenericName>
     <RequiredTechnology>phase_city</RequiredTechnology>
+    <Formations datatype="tokens">
+      formations/phalanx
+      formations/testudo
+    </Formations>
   </Identity>
   <Loot>
     <wood>10</wood>

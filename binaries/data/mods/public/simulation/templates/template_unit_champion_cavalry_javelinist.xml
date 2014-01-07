@@ -40,6 +40,9 @@
     <Tooltip>Classes: Champion Ranged Cavalry Skirmisher.
 Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.
 Countered by: Spearmen and Elephants.</Tooltip>
+    <Formations datatype="tokens">
+      formations/skirmish
+    </Formations>
   </Identity>
   <Obstruction>
     <Unit radius="1.0"/>

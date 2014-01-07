@@ -447,8 +447,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				break;
 
 			case STANCE:
-			case FORMATION:
 				var tooltip = toTitleCase(item);
+				break;
+			case FORMATION:
+				var tooltip = Engine.GuiInterfaceCall("GetFormationNameFromTemplate", {"templateName": item});
 				break;
 
 			case TRAINING:
@@ -588,30 +590,19 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 
 				// Display a meaningful tooltip why the formation is disabled
 				var requirements = Engine.GuiInterfaceCall("GetFormationRequirements", {
-					"formationName": item
+					"formationTemplate": item
 				});
 
- 				button.tooltip += " (disabled)";
-				if (requirements.count > 1)
-					button.tooltip += "\n" + requirements.count + " units required";
-				if (requirements.classesRequired)
-				{
-					button.tooltip += "\nOnly units of type";
-					for each (var classRequired in requirements.classesRequired)
-					{
-						button.tooltip += " " + classRequired;
-					}
-					button.tooltip += " allowed.";
-				}
+ 				button.tooltip += " (disabled)"+requirements.tooltip;
  			}
 
 			var formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
 				"ents": g_Selection.toList(),
-				"formationName": item
+				"formationTemplate": item
 			});
 
 			guiSelection.hidden = !formationSelected;
-			icon.sprite = "stretched:"+grayscale+"session/icons/formations/"+item.replace(/\s+/,'').toLowerCase()+".png";
+			icon.sprite = "stretched:"+grayscale+"session/icons/"+item+".png";
 
  		}
 		else if (guiName == STANCE)
@@ -1312,14 +1303,14 @@ function getAllBuildableEntitiesFromSelection()
 }
 
 // Check if the selection can move into formation, and cache the result
-function canMoveSelectionIntoFormation(formationName)
+function canMoveSelectionIntoFormation(formationTemplate)
 {
-	if (!(formationName in g_canMoveIntoFormation))
+	if (!(formationTemplate in g_canMoveIntoFormation))
 	{
-		g_canMoveIntoFormation[formationName] = Engine.GuiInterfaceCall("CanMoveEntsIntoFormation", {
+		g_canMoveIntoFormation[formationTemplate] = Engine.GuiInterfaceCall("CanMoveEntsIntoFormation", {
 			"ents": g_Selection.toList(),
-			"formationName": formationName
+			"formationTemplate": formationTemplate
 		});
 	}
-	return g_canMoveIntoFormation[formationName];
+	return g_canMoveIntoFormation[formationTemplate];
 }

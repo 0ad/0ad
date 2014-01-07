@@ -57,6 +57,11 @@
 	<Tooltip>Classes: Champion Melee Infantry Spearman.
 Counters: 2x vs. All Cavalry, 1.5x vs. Elephants. 
 Countered by: Swordsmen, Skirmishers, and Cavalry Archers.</Tooltip>
+    <Formations datatype="tokens">
+      formations/phalanx
+      formations/syntagma
+      formations/testudo
+    </Formations>
   </Identity>
   <Sound>
     <SoundGroups>
