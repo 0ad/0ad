@@ -113,7 +113,7 @@ function TestFormationExiting(mode)
 			GetHitpoints: function() { return 0; },
 		});
 
-	var controllerFormation = ConstructComponent(controller, "Formation");
+	var controllerFormation = ConstructComponent(controller, "Formation", {"FormationShape": "square", "ShiftRows": "false", "SortingClasses": "", "WidthDepthRatio": 1, "UnitSeparationWidthMultiplier": 1, "UnitSeparationDepthMultiplier": 1, "SpeedMultiplier": 1});
 	var controllerAI = ConstructComponent(controller, "UnitAI", { "FormationController": "true", "DefaultStance": "aggressive" });
 
 	AddMock(controller, IID_Position, {
@@ -245,7 +245,7 @@ function TestMoveIntoFormationWhileAttacking()
 		GetHitpoints: function() { return 40; },
 	});
 
-	var controllerFormation = ConstructComponent(controller, "Formation");
+	var controllerFormation = ConstructComponent(controller, "Formation", {"FormationShape": "square", "ShiftRows": "false", "SortingClasses": "", "WidthDepthRatio": 1, "UnitSeparationWidthMultiplier": 1, "UnitSeparationDepthMultiplier": 1, "SpeedMultiplier": 1});
 	var controllerAI = ConstructComponent(controller, "UnitAI", { "FormationController": "true", "DefaultStance": "aggressive" });
 
 	AddMock(controller, IID_Position, {

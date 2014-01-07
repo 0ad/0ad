@@ -527,11 +527,12 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	if (this.columnar)
 		var sortingClasses = ["Cavalry","Infantry"];
 	else
-		var sortingClasses = this.sortingClasses;
+		var sortingClasses = this.sortingClasses.slice();
+	sortingClasses.push("Unknown");
 
 	// the entities will be assigned to positions in the formation in 
 	// the same order as the types list is ordered
-	var types = {"Unknown": []}; 
+	var types = {}; 
 	for (var i = 0; i < sortingClasses.length; ++i)
 		types[sortingClasses[i]] = [];
 
