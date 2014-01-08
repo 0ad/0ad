@@ -1365,53 +1365,17 @@ function ClusterEntities(ents, separationDistance)
 
 function GetFormationRequirements(formationTemplate)
 {
-	// TODO fix by querying the formation template and only accessing the info there
-	var formationName = formationTemplate.split("/")[1];
+	var cmpTempManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var template = cmpTempManager.GetTemplate(formationTemplate);
+	if (!template.Formation)
+		return false;
+
 	var r = {};
-	r.minCount = 1;
-	r.maxCount = 200;
-	r.tooltip = ""
-	switch(formationName)
-	{
-	case "scatter":
-	case "column_closed":
-	case "line_closed":
-	case "column_open":
-	case "line_open":
-	case "battle_line":
-		break;
-	case "skirmish":
-		r.tooltip = "Only ranged unit allowed.";
-		break;
-	case "box":
-		r.minCount = 4;
-		r.tooltip = "4 units required.";
-		break;
-	case "flank":
-		r.minCount = 8;
-		r.tooltip = "8 units required.";
-		break;
-	case "wedge":
-		r.minCount = 3;
-		r.tooltip = "3 cavalry units required.";
-		break;
-	case "phalanx":
-		r.minCount = 10;
-		r.tooltip = "10 melee units required.";
-		break;
-	case "syntagma":
-		r.minCount = 9;
-		r.tooltip = "9 pikemen required.";
-		break;
-	case "testudo":
-		r.minCount = 9;
-		r.tooltip = "9 melee units required.";
-		break;
-	default:
-		// We encountered a unknown formation -> warn the user
-		warn("Commands.js: GetFormationRequirements: unknown formation: " + formationName);
- 		return null;
- 	}
+	r.minCount = +template.Formation.RequiredMemberCount;
+	if (template.Formation.DisabledTooltip)
+		r.tooltip = "\n" + template.Formation.DisabledTooltip;
+	else
+		r.tooltip = "";
 	return r;
 }
 
@@ -1436,7 +1400,7 @@ function CanMoveEntsIntoFormation(ents, formationTemplate)
 		count++;
 	}
 
-	return count >= requirements.minCount && count <= requirements.maxCount;
+	return count >= requirements.minCount;
 }
 
 /**

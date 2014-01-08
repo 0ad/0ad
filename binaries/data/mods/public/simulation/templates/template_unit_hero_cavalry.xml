@@ -40,6 +40,9 @@
     <GenericName>Hero Cavalry</GenericName>
     <Classes datatype="tokens">Hero -Champion</Classes>
     <RequiredTechnology>phase_city</RequiredTechnology>
+    <Formations datatype="tokens">
+      formations/wedge
+    </Formations>
   </Identity>
   <Loot>
     <xp>500</xp>

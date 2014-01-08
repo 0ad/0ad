@@ -31,6 +31,9 @@
     <Classes datatype="tokens">Cavalry CitizenSoldier Organic</Classes>
     <GenericName>Cavalry</GenericName>
     <Rank>Basic</Rank>
+    <Formations datatype="tokens">
+      formations/wedge
+    </Formations>
   </Identity>
   <Loot>
     <xp>130</xp>

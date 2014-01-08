@@ -4,6 +4,12 @@ Formation.prototype.Schema =
 	"<element name='FormationName' a:help='Name of the formation'>" +
 		"<text/>" +
 	"</element>" +
+	"<element name='RequiredMemberCount' a:help='Minimum number of entities the formation should contain'>" +
+		"<data type='nonNegativeInteger'/>" +
+	"</element>" +
+	"<element name='DisabledTooltip' a:help='Tooltip shown when the formation is disabled'>" +
+		"<text/>" +
+	"</element>" +
 	"<element name='SpeedMultiplier' a:help='The speed of the formation is determined by the minimum speed of all members, multiplied with this number.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
