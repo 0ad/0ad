@@ -209,26 +209,14 @@ Formation.prototype.GetFormationAnimation = function(entity, defaultAnimation)
 };
 
 /**
- * Permits formation members to register that they've reached their
- * destination, and automatically disbands the formation if all members
- * are at their final positions and no controller orders remain.
+ * Permits formation members to register that they've reached their destination.
  */
 Formation.prototype.SetInPosition = function(ent)
 {
 	if (this.inPosition.indexOf(ent) != -1)
 		return;
 
-	// Only consider automatically disbanding if there are no orders left.
-	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-	if (cmpUnitAI.GetOrders().length)
-	{
-		this.inPosition = [];
-		return;
-	}
-
 	this.inPosition.push(ent);
-	if (this.inPosition.length >= this.members.length)
-		this.Disband();
 };
 
 /**
@@ -281,7 +269,6 @@ Formation.prototype.SetMembers = function(ents)
 	this.MoveToMembersCenter();
 
 	this.ComputeMotionParameters();
-
 };
 
 /**
