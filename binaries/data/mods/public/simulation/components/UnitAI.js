@@ -2551,13 +2551,21 @@ var UnitFsmSpec = {
 
 					this.repairTarget = this.order.data.target;	// temporary, deleted in "leave".
 					// Check we can still reach and repair the target
-					if (!this.CheckTargetRange(this.repairTarget, IID_Builder) || !this.CanRepair(this.repairTarget))
+					if (!this.CanRepair(this.repairTarget))
 					{
 						// Can't reach it, no longer owned by ally, or it doesn't exist any more
 						this.FinishOrder();
 						return true;
 					}
 
+					if (!this.CheckTargetRange(this.repairTarget, IID_Builder))
+					{
+						if (this.MoveToTargetRange(this.repairTarget, IID_Builder))
+							this.SetNextState("APPROACHING");
+						else
+							this.FinishOrder();
+						return true;
+					}
 					// Check if the target is still repairable
 					var cmpHealth = Engine.QueryInterface(this.repairTarget, IID_Health);
 					if (cmpHealth && cmpHealth.GetHitpoints() >= cmpHealth.GetMaxHitpoints())
@@ -2587,15 +2595,19 @@ var UnitFsmSpec = {
 
 				"Timer": function(msg) {
 					// Check we can still reach and repair the target
-					if (!this.CheckTargetRange(this.repairTarget, IID_Builder) || !this.CanRepair(this.repairTarget))
+					if (!this.CanRepair(this.repairTarget))
 					{
-						// Can't reach it, no longer owned by ally, or it doesn't exist any more
+						// No longer owned by ally, or it doesn't exist any more
 						this.FinishOrder();
 						return;
 					}
 					
 					var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
 					cmpBuilder.PerformBuilding(this.repairTarget);
+					if (this.MoveToTargetRange(this.repairTarget, IID_Builder))
+						this.SetNextState("APPROACHING");
+					else if (!this.CheckTargetRange(this.repairTarget, IID_Builder))
+						this.FinishOrder(); //can't approach and isn't in reach
 				},
 			},
 
