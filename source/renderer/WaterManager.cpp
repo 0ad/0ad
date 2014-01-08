@@ -360,13 +360,16 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			// calculation of the distance to the shore.
 			if (i > 0 && i < (ssize_t)m_MapSize-1 && j > 0 && j < (ssize_t)m_MapSize-1)
 			{
+				// this is needed otherwise I get many warnings for the code below
+				ssize_t mapSize = (ssize_t)m_MapSize;
+
 				// search a 5x5 array with us in the center (do not search me)
 				// much faster since we spiral search and can just stop once we've found the shore.
 				// also everything is precomputed and we get exact results instead.
-				ssize_t offset[24] = { -1,1,-m_MapSize,+m_MapSize, -1-m_MapSize,+1-m_MapSize,-1+m_MapSize,1+m_MapSize,
-					-2,2,-2*m_MapSize,2*m_MapSize,-2-m_MapSize,-2+m_MapSize,2-m_MapSize,2+m_MapSize,
-					-1-2*m_MapSize,+1-2*m_MapSize,-1+2*m_MapSize,1+2*m_MapSize,
-					-2-2*m_MapSize,2+2*m_MapSize,-2+2*m_MapSize,2-2*m_MapSize };
+				ssize_t offset[24] = { -1,1,-mapSize,+mapSize, -1-mapSize,+1-mapSize,-1+mapSize,1+mapSize,
+					-2,2,-2*mapSize,2*mapSize,-2-mapSize,-2+mapSize,2-mapSize,2+mapSize,
+					-1-2*mapSize,+1-2*mapSize,-1+2*mapSize,1+2*mapSize,
+					-2-2*mapSize,2+2*mapSize,-2+2*mapSize,2-2*mapSize };
 				float dist[24] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.414f, 1.414f, 1.414f, 1.414f,
 					2.0f, 2.0f, 2.0f, 2.0f, 2.236f, 2.236f, 2.236f, 2.236f,
 					2.236f, 2.236f, 2.236f, 2.236f,
