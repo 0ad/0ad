@@ -2604,6 +2604,8 @@ var UnitFsmSpec = {
 					
 					var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
 					cmpBuilder.PerformBuilding(this.repairTarget);
+					if (!this.repairTarget)
+						return;
 					if (this.MoveToTargetRange(this.repairTarget, IID_Builder))
 						this.SetNextState("APPROACHING");
 					else if (!this.CheckTargetRange(this.repairTarget, IID_Builder))
