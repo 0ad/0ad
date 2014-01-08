@@ -1224,13 +1224,10 @@ var UnitFsmSpec = {
 						this.SetNextState("INDIVIDUAL.IDLE");
 					return true;
 				}
-				var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
-				if (cmpVisual)
-					cmpVisual.ReplaceMoveAnimation("idle", cmpFormation.GetFormationAnimation(this.entity, "idle"));
 
 				// Switch back to idle animation to guarantee we won't
 				// get stuck with an incorrect animation
-				this.SelectAnimation("idle");
+				this.SelectAnimation(cmpFormation.GetFormationAnimation(this.entity, "idle"));
 
 				// If the unit is guarding/escorting, go back to its duty
 				if (this.isGuardOf)
@@ -1276,10 +1273,6 @@ var UnitFsmSpec = {
 					rangeMan.DisableActiveQuery(this.losRangeQuery);
 				if (this.losHealRangeQuery)
 					rangeMan.DisableActiveQuery(this.losHealRangeQuery);
-
-				var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
-				if (cmpVisual)
-					cmpVisual.ResetMoveAnimation("idle");
 
 				this.StopTimer();
 

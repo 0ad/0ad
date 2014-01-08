@@ -495,7 +495,7 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		this.offsets = undefined;
 	}
 
-	var newOrientation = this.GetTargetOrientation(avgpos);
+	var newOrientation = this.GetEstimatedOrientation(avgpos);
 	var dSin = Math.abs(newOrientation.sin - this.oldOrientation.sin);
 	var dCos = Math.abs(newOrientation.cos - this.oldOrientation.cos);
 	// If the formation existed, only recalculate positions if the turning agle is somewhat biggish
@@ -807,7 +807,7 @@ Formation.prototype.TakeClosestOffset = function(entPos, realPositions)
 Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
 {
 	var offsetPositions = [];
-	var {sin, cos} = this.GetTargetOrientation(pos);
+	var {sin, cos} = this.GetEstimatedOrientation(pos);
 	// calculate the world positions
 	for each (var o in offsets)
 		offsetPositions.push({
@@ -822,27 +822,37 @@ Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
 
 /**
  * calculate the estimated rotation of the formation 
- * based on the first unitAI target position
+ * based on the first unitAI target position when ordered to walk,
+ * based on the current rotation in other cases
  * Return the sine and cosine of the angle
  */
-Formation.prototype.GetTargetOrientation = function(pos)
+Formation.prototype.GetEstimatedOrientation = function(pos)
 {
 	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-	var targetPos = cmpUnitAI.GetTargetPositions();
-	var sin = 0;
-	var cos = 1;
-	if (targetPos.length)
+	var r = {"sin": 0, "cos": 1};
+	if (cmpUnitAI.GetCurrentState() == "FORMATIONCONTROLLER.WALKING")
 	{
+		var targetPos = cmpUnitAI.GetTargetPositions();
+		if (!targetPos.length)
+			return r;
 		var dx = targetPos[0].x - pos.x;
 		var dz = targetPos[0].z - pos.z;
-		if (dx || dz)
-		{
-			var dist = Math.sqrt(dx * dx + dz * dz);
-			cos = dz / dist;
-			sin = dx / dist;
-		}
+		if (!dx && !dz)
+			return r;
+		var dist = Math.sqrt(dx * dx + dz * dz);
+		r.cos = dz / dist;
+		r.sin = dx / dist;
 	}
-	return {"sin": sin, "cos": cos};
+	else
+	{
+		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+		if (!cmpPosition)
+			return r;
+		var rot = cmpPosition.GetRotation().y;
+		r.sin = Math.sin(rot);
+		r.cos = Math.cos(rot);
+	}
+	return r;
 };
 
 Formation.prototype.ComputeAveragePosition = function(positions)
