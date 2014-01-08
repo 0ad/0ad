@@ -49,7 +49,7 @@
   <GarrisonHolder>
     <Max>20</Max>
     <EjectHealth>0.1</EjectHealth>
-    <EjectEntitiesOnDestroy>true</EjectEntitiesOnDestroy>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <List datatype="tokens">Support Infantry Cavalry</List>
     <BuffHeal>1</BuffHeal>
     <LoadingRange>1</LoadingRange>

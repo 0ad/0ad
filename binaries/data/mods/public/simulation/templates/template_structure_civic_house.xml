@@ -18,7 +18,7 @@
     <Max>3</Max>
     <BuffHeal>0</BuffHeal>
     <EjectHealth>0.1</EjectHealth>
-    <EjectEntitiesOnDestroy>true</EjectEntitiesOnDestroy>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <List datatype="tokens">Support</List>
     <LoadingRange>1</LoadingRange>
   </GarrisonHolder>

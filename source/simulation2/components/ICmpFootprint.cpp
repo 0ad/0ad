@@ -62,5 +62,6 @@ CScriptVal ICmpFootprint::GetShape_wrapper()
 
 BEGIN_INTERFACE_WRAPPER(Footprint)
 DEFINE_INTERFACE_METHOD_1("PickSpawnPoint", CFixedVector3D, ICmpFootprint, PickSpawnPoint, entity_id_t)
+DEFINE_INTERFACE_METHOD_1("PickSpawnPointBothPass", CFixedVector3D, ICmpFootprint, PickSpawnPointBothPass, entity_id_t)
 DEFINE_INTERFACE_METHOD_0("GetShape", CScriptVal, ICmpFootprint, GetShape_wrapper)
 END_INTERFACE_WRAPPER(Footprint)

@@ -158,7 +158,7 @@ public:
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (!cmpPathfinder)
 			return error;
-		
+
 		CFixedVector2D initialPos = cmpPosition->GetPosition2D();
 		entity_angle_t initialAngle = cmpPosition->GetRotation().Y;
 
@@ -243,6 +243,144 @@ public:
 						SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
 						if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, spawnedRadius, spawnedPass) == ICmpObstruction::FOUNDATION_CHECK_SUCCESS)
 							return CFixedVector3D(pos.X, fixed::Zero(), pos.Y); // this position is okay, so return it
+					}
+				}
+			}
+		}
+
+		return error;
+	}
+
+	virtual CFixedVector3D PickSpawnPointBothPass(entity_id_t spawned)
+	{
+		// Try to find a free space inside and around this footprint
+		// at the intersection between the footprint passability and the unit passability.
+		// (useful for example for destroyed ships where the spawning point should be in the intersection
+		// of the unit and ship passabilities).
+		// As the overlap between these passabilities regions may be narrow, we need a small step (1 meter)
+
+		const CFixedVector3D error(fixed::FromInt(-1), fixed::FromInt(-1), fixed::FromInt(-1));
+
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+		if (!cmpPosition || !cmpPosition->IsInWorld())
+			return error;
+
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+		if (!cmpObstructionManager)
+			return error;
+
+		entity_pos_t spawnedRadius;
+		ICmpObstructionManager::tag_t spawnedTag;
+
+		CmpPtr<ICmpObstruction> cmpSpawnedObstruction(GetSimContext(), spawned);
+		if (cmpSpawnedObstruction)
+		{
+			spawnedRadius = cmpSpawnedObstruction->GetUnitRadius();
+			spawnedTag = cmpSpawnedObstruction->GetObstruction();
+		}
+		// else use zero radius
+
+		// Get passability class from UnitMotion
+		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), spawned);
+		if (!cmpUnitMotion)
+			return error;
+
+		ICmpPathfinder::pass_class_t spawnedPass = cmpUnitMotion->GetPassabilityClass();
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
+		if (!cmpPathfinder)
+			return error;
+
+		// Get the Footprint entity passability
+		CmpPtr<ICmpUnitMotion> cmpEntityMotion(GetEntityHandle());
+		if (!cmpEntityMotion)
+			return error;
+		ICmpPathfinder::pass_class_t entityPass = cmpEntityMotion->GetPassabilityClass();
+		
+		CFixedVector2D initialPos = cmpPosition->GetPosition2D();
+		entity_angle_t initialAngle = cmpPosition->GetRotation().Y;
+
+		// Max spawning distance + 1 (in meters)
+		const i32 maxSpawningDistance = 13;
+
+		if (m_Shape == CIRCLE)
+		{
+			// Expand outwards from foundation with a fixed step of 1 meter
+			for (i32 dist = 0; dist <= maxSpawningDistance; ++dist)
+			{
+				// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
+				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(1+dist);
+				entity_pos_t radius = m_Size0 + clearance;
+
+				// Try equally-spaced points around the circle in alternating directions, starting from the front
+				const i32 numPoints = 31 + 2*dist;
+				for (i32 i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
+				{
+					entity_angle_t angle = initialAngle + (entity_angle_t::Pi()*2).Multiply(entity_angle_t::FromInt(i)/(int)numPoints);
+
+					fixed s, c;
+					sincos_approx(angle, s, c);
+
+					CFixedVector3D pos (initialPos.X + s.Multiply(radius), fixed::Zero(), initialPos.Y + c.Multiply(radius));
+
+					SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
+					if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Z, spawnedRadius, spawnedPass) == ICmpObstruction::FOUNDATION_CHECK_SUCCESS &&
+						cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Z, spawnedRadius, entityPass) == ICmpObstruction::FOUNDATION_CHECK_SUCCESS)
+						return pos; // this position is okay, so return it
+				}
+			}
+		}
+		else
+		{
+			fixed s, c;
+			sincos_approx(initialAngle, s, c);
+
+			// Expand outwards from foundation with a fixed step of 1 meter
+			for (i32 dist = 0; dist <= maxSpawningDistance; ++dist)
+			{
+				// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
+				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(1+dist);
+
+				for (i32 edge = 0; edge < 4; ++edge)
+				{
+					// Compute the direction and length of the current edge
+					CFixedVector2D dir;
+					fixed sx, sy;
+					switch (edge)
+					{
+					case 0:
+						dir = CFixedVector2D(c, -s);
+						sx = m_Size0;
+						sy = m_Size1;
+						break;
+					case 1:
+						dir = CFixedVector2D(-s, -c);
+						sx = m_Size1;
+						sy = m_Size0;
+						break;
+					case 2:
+						dir = CFixedVector2D(s, c);
+						sx = m_Size1;
+						sy = m_Size0;
+						break;
+					case 3:
+						dir = CFixedVector2D(-c, s);
+						sx = m_Size0;
+						sy = m_Size1;
+						break;
+					}
+					sx = sx/2 + clearance;
+					sy = sy/2 + clearance;
+					// Try equally-spaced (1 meter) points along the edge in alternating directions, starting from the middle
+					i32 numPoints = 1 + 2*sx.ToInt_RoundToNearest();
+					CFixedVector2D center = initialPos - dir.Perpendicular().Multiply(sy);
+					for (i32 i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
+					{
+						CFixedVector2D pos (center + dir*i);
+
+						SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
+						if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, spawnedRadius, spawnedPass) == ICmpObstruction::FOUNDATION_CHECK_SUCCESS &&
+							cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, spawnedRadius, entityPass) == ICmpObstruction::FOUNDATION_CHECK_SUCCESS)
+       							return CFixedVector3D(pos.X, fixed::Zero(), pos.Y); // this position is okay, so return it
 					}
 				}
 			}
