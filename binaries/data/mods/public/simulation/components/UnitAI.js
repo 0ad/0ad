@@ -2604,6 +2604,9 @@ var UnitFsmSpec = {
 					
 					var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
 					cmpBuilder.PerformBuilding(this.repairTarget);
+					// if the building is completed, the leave() function will be called
+					// by the ConstructionFinished message
+					// in that case, the repairTarget is deleted, and we can just return
 					if (!this.repairTarget)
 						return;
 					if (this.MoveToTargetRange(this.repairTarget, IID_Builder))
