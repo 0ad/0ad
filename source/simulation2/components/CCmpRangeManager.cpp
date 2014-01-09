@@ -97,17 +97,17 @@ static u32 CalcSharedLosMask(std::vector<player_id_t> players)
  * Checks whether v is in a parabolic range of (0,0,0)
  * The highest point of the paraboloid is (0,range/2,0)
  * and the circle of distance 'range' around (0,0,0) on height y=0 is part of the paraboloid
- * 
+ *
  * Avoids sqrting and overflowing.
  */
-static bool InParabolicRange(CFixedVector3D v, fixed range) 
+static bool InParabolicRange(CFixedVector3D v, fixed range)
 {
 	i32 x = v.X.GetInternalValue(); // abs(x) <= 2^31
 	i32 z = v.Z.GetInternalValue();
 	u64 xx = (u64)FIXED_MUL_I64_I32_I32(x, x); // xx <= 2^62
 	u64 zz = (u64)FIXED_MUL_I64_I32_I32(z, z);
 	i64 d2 = (xx + zz) >> 1; // d2 <= 2^62 (no overflow)
-	
+
 	i32 y = v.Y.GetInternalValue();
 	i32 c = range.GetInternalValue();
 	i32 c_2 = c >> 1;
@@ -327,7 +327,7 @@ public:
 		// will get confused when trying to run from enemies
 		m_LosRevealAll.resize(MAX_LOS_PLAYER_ID+2,false);
 		m_SharedLosMasks.resize(MAX_LOS_PLAYER_ID+2,0);
-		
+
 		m_LosCircular = false;
 		m_TerrainVerticesPerSide = 0;
 
@@ -601,6 +601,11 @@ public:
 			debug_warn(L"inconsistent subdivs");
 	}
 
+	SpatialSubdivision* GetSubdivision()
+	{
+		return & m_Subdivision;
+	}
+
 	// Reinitialise subdivisions and LOS data, based on entity data
 	void ResetDerivedData(bool skipLosState)
 	{
@@ -844,7 +849,7 @@ public:
 			if (!query.enabled)
 				continue;
 
-			CmpPtr<ICmpPosition> cmpSourcePosition(query.source);			
+			CmpPtr<ICmpPosition> cmpSourcePosition(query.source);
 			if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
 				continue;
 
@@ -858,9 +863,9 @@ public:
 			removed.clear();
 			// Return the 'added' list sorted by distance from the entity
 			// (Don't bother sorting 'removed' because they might not even have positions or exist any more)
-			std::set_difference(results.begin(), results.end(), query.lastMatch.begin(), query.lastMatch.end(), 
+			std::set_difference(results.begin(), results.end(), query.lastMatch.begin(), query.lastMatch.end(),
 				std::back_inserter(added));
-			std::set_difference(query.lastMatch.begin(), query.lastMatch.end(), results.begin(), results.end(), 
+			std::set_difference(query.lastMatch.begin(), query.lastMatch.end(), results.begin(), results.end(),
 				std::back_inserter(removed));
 			if (added.empty() && removed.empty())
 				continue;
@@ -927,7 +932,7 @@ public:
 			}
 		}
 		// Not the entire world, so check a parabolic range, or a regular range
-		else if (q.parabolic) 
+		else if (q.parabolic)
 		{
 			// elevationBonus is part of the 3D position, as the source is really that much heigher
 			CmpPtr<ICmpPosition> cmpSourcePosition(q.source);
@@ -944,7 +949,7 @@ public:
 
 				if (!TestEntityQuery(q, it->first, it->second))
 					continue;
-				
+
 				CmpPtr<ICmpPosition> cmpSecondPosition(GetSimContext(), ents[i]);
 				if (!cmpSecondPosition || !cmpSecondPosition->IsInWorld())
 					continue;
@@ -952,8 +957,8 @@ public:
 
 				// Restrict based on precise distance
 				if (!InParabolicRange(
-						CFixedVector3D(it->second.x, secondPosition.Y, it->second.z) 
-							- pos3d, 
+						CFixedVector3D(it->second.x, secondPosition.Y, it->second.z)
+							- pos3d,
 						q.maxRange))
 					continue;
 
@@ -968,12 +973,12 @@ public:
 			}
 		}
 		// check a regular range (i.e. not the entire world, and not parabolic)
-		else 
+		else
 		{
 			// Get a quick list of entities that are potentially in range
 			SpatialQueryArray ents;
 			m_Subdivision.GetNear(ents, pos, q.maxRange);
-			
+
 			for (int i = 0; i < ents.size(); ++i)
 			{
 				EntityMap<EntityData>::const_iterator it = m_EntityData.find(ents[i]);
@@ -1002,7 +1007,7 @@ public:
 	virtual entity_pos_t GetElevationAdaptedRange(CFixedVector3D pos, CFixedVector3D rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle)
 	{
 		entity_pos_t r = entity_pos_t::Zero() ;
-		
+
 		pos.Y += elevationBonus;
 		entity_pos_t orientation = rot.Y;
 
@@ -1022,26 +1027,26 @@ public:
 		{
 			r = r + CFixedVector2D(coords[2*i],coords[2*i+1]).Length() / part;
 		}
-		
+
 		return r;
-		
+
 	}
 
-	virtual std::vector<entity_pos_t> getParabolicRangeForm(CFixedVector3D pos, entity_pos_t maxRange, entity_pos_t cutoff, entity_pos_t minAngle, entity_pos_t maxAngle, int numberOfSteps) 
+	virtual std::vector<entity_pos_t> getParabolicRangeForm(CFixedVector3D pos, entity_pos_t maxRange, entity_pos_t cutoff, entity_pos_t minAngle, entity_pos_t maxAngle, int numberOfSteps)
 	{
-		
+
 		// angle = 0 goes in the positive Z direction
 		entity_pos_t precision = entity_pos_t::FromInt((int)TERRAIN_TILE_SIZE)/8;
 
 		std::vector<entity_pos_t> r;
-		
+
 
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 		entity_pos_t waterLevel = cmpWaterManager->GetWaterLevel(pos.X,pos.Z);
 		entity_pos_t thisHeight = pos.Y > waterLevel ? pos.Y : waterLevel;
 
-		if (cmpTerrain) 
+		if (cmpTerrain)
 		{
 			for (int i = 0; i < numberOfSteps; i++)
 			{
@@ -1064,7 +1069,7 @@ public:
 					r.push_back(maxVector.Y);
 					continue;
 				}
-				
+
 				// Loop until vectors come close enough
 				while ((maxVector - minVector).CompareLength(precision) > 0)
 				{
@@ -1083,26 +1088,26 @@ public:
 						minVector = newVector;
 						minDistance = newDistance;
 					}
-					else 
+					else
 					{
 						// new vector is out parabolic range, so this is a new maxVector
 						maxVector = newVector;
 						maxDistance = newDistance;
 					}
-					
+
 				}
 				r.push_back(maxVector.X);
 				r.push_back(maxVector.Y);
-				
+
 			}
 			r.push_back(r[0]);
-			r.push_back(r[1]); 
+			r.push_back(r[1]);
 
 		}
 		return r;
 
 	}
-	
+
 	Query ConstructQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
 		const std::vector<int>& owners, int requiredInterface, u8 flagsMask)
@@ -1150,7 +1155,7 @@ public:
 			return;
 		static CColor disabledRingColour(1, 0, 0, 1);	// red
 		static CColor enabledRingColour(0, 1, 0, 1);	// green
-		static CColor subdivColour(0, 0, 1, 1);			// blue 
+		static CColor subdivColour(0, 0, 1, 1);			// blue
 		static CColor rayColour(1, 1, 0, 0.2f);
 
 		if (m_DebugOverlayDirty)
@@ -1173,26 +1178,26 @@ public:
 					m_DebugOverlayLines.back().m_Color = (q.enabled ? enabledRingColour : disabledRingColour);
 					SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToFloat(), q.maxRange.ToFloat(), m_DebugOverlayLines.back(), true);
 				}
-				else 
-				{ 
+				else
+				{
 					// elevation bonus is part of the 3D position. As if the unit is really that much higher
-					CFixedVector3D pos = cmpSourcePosition->GetPosition(); 
+					CFixedVector3D pos = cmpSourcePosition->GetPosition();
 					pos.Y += q.elevationBonus;
 
 					std::vector<entity_pos_t> coords;
-					
+
 					// Get the outline from cache if possible
 					if (ParabolicRangesOutlines.find(q.source.GetId()) != ParabolicRangesOutlines.end())
 					{
 						EntityParabolicRangeOutline e = ParabolicRangesOutlines[q.source.GetId()];
-						if (e.position == pos && e.range == q.maxRange) 
+						if (e.position == pos && e.range == q.maxRange)
 						{
 							// outline is cached correctly, use it
-							coords = e.outline;	
+							coords = e.outline;
 						}
 						else
 						{
-							// outline was cached, but important parameters changed 
+							// outline was cached, but important parameters changed
 							// (position, elevation, range)
 							// update it
 							coords = getParabolicRangeForm(pos,q.maxRange,q.maxRange*2, entity_pos_t::Zero(), entity_pos_t::FromFloat(2.0f*3.14f),70);
@@ -1202,9 +1207,9 @@ public:
 							ParabolicRangesOutlines[q.source.GetId()] = e;
 						}
 					}
-					else 
+					else
 					{
-						// outline wasn't cached (first time you enable the range overlay 
+						// outline wasn't cached (first time you enable the range overlay
 						// or you created a new entiy)
 						// cache a new outline
 						coords = getParabolicRangeForm(pos,q.maxRange,q.maxRange*2, entity_pos_t::Zero(), entity_pos_t::FromFloat(2.0f*3.14f),70);
@@ -1215,10 +1220,10 @@ public:
 						e.outline = coords;
 						ParabolicRangesOutlines[q.source.GetId()] = e;
 					}
-					
+
 					CColor thiscolor = q.enabled ? enabledRingColour : disabledRingColour;
-					
-					// draw the outline (piece by piece)	
+
+					// draw the outline (piece by piece)
 					for (size_t i = 3; i < coords.size(); i += 2)
 					{
 						std::vector<float> c;
@@ -1268,7 +1273,7 @@ public:
 				{
 					m_DebugOverlayLines.push_back(SOverlayLine());
 					m_DebugOverlayLines.back().m_Color = subdivColour;
-					
+
 					float xpos = x*divSize + divSize/2;
 					float zpos = y*divSize + divSize/2;
 					SimRender::ConstructSquareOnGround(GetSimContext(), xpos, zpos, divSize, divSize, 0.0f,

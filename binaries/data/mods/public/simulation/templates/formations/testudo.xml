@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
+    <RequiredMemberCount>9</RequiredMemberCount>
+    <DisabledTooltip>9 melee infantry units required</DisabledTooltip>
     <FormationName>Testudo</FormationName>
+    <UnitSeparationWidthMultiplier>0.7</UnitSeparationWidthMultiplier>
   </Formation>
 </Entity>

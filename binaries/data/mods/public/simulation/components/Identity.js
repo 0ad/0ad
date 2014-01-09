@@ -119,9 +119,9 @@ Identity.prototype.GetFormationsList = function()
 	}
 };
 
-Identity.prototype.CanUseFormation = function(name)
+Identity.prototype.CanUseFormation = function(template)
 {
-	return this.GetFormationsList().indexOf(name) != -1;
+	return this.GetFormationsList().indexOf(template) != -1;
 };
 
 Identity.prototype.GetSelectionGroupName = function()

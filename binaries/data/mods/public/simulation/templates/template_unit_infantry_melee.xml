@@ -27,5 +27,9 @@
   <Identity>
     <GenericName>Melee Infantry</GenericName>
     <Classes datatype="tokens">Melee</Classes>
+    <Formations datatype="tokens">
+      formations/phalanx
+      formations/testudo
+    </Formations>
   </Identity>
 </Entity>

@@ -36,6 +36,9 @@
   <Identity>
     <GenericName>Champion Cavalry</GenericName>
     <Classes datatype="tokens">Cavalry</Classes>
+    <Formations datatype="tokens">
+      formations/wedge
+    </Formations>
   </Identity>
   <Obstruction>
     <Unit radius="1.0"/>

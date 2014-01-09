@@ -64,6 +64,13 @@ public:
 	 */
 	virtual CFixedVector3D PickSpawnPoint(entity_id_t spawned) = 0;
 
+	/**
+	 * Pick a sensible position to place a newly-spawned entity near this footprint,
+	 * at the intersection between the footprint passability and the entity one.
+	 * @return the X and Z coordinates of the spawn point, with Y = 0; or the special value (-1, -1, -1) if there's no space
+	 */
+	virtual CFixedVector3D PickSpawnPointBothPass(entity_id_t spawned) = 0;
+
 	DECLARE_INTERFACE_TYPE(Footprint)
 };
 

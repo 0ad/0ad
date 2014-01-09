@@ -49,6 +49,9 @@
     <Tooltip>Hero Aura: n/a.
 Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen.</Tooltip>
     <RequiredTechnology>phase_city</RequiredTechnology>
+    <Formations datatype="tokens">
+      formations/skirmish
+    </Formations>
   </Identity>
   <Loot>
     <xp>450</xp>

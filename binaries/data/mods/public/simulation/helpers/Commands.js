@@ -1156,7 +1156,7 @@ function RemoveFromFormation(ents)
  * Returns a list of UnitAI components, each belonging either to a
  * selected unit or to a formation entity for groups of the selected units.
  */
-function GetFormationUnitAIs(ents, player, formationName)
+function GetFormationUnitAIs(ents, player, formationTemplate)
 {
 	// If an individual was selected, remove it from any formation
 	// and command it individually
@@ -1186,8 +1186,7 @@ function GetFormationUnitAIs(ents, player, formationName)
 		// TODO: We only check if the formation is usable by some units
 		// if we move them to it. We should check if we can use formations
 		// for the other cases.
-		// We only use "LineClosed" instead of "Line Closed" to access the templates.
-		if (cmpIdentity && cmpIdentity.CanUseFormation(formationName === undefined ? "LineClosed" : formationName.replace(/\s+/,'')))
+		if (cmpIdentity && cmpIdentity.CanUseFormation(formationTemplate || "formations/line_closed"))
 			formedEnts.push(ent);
 		else
 			nonformedUnitAIs.push(cmpUnitAI);
@@ -1215,8 +1214,8 @@ function GetFormationUnitAIs(ents, player, formationName)
 			cmpFormation.DeleteTwinFormations();
 			// The whole formation was selected, so reuse its controller for this command
 			formationUnitAIs = [Engine.QueryInterface(+fid, IID_UnitAI)];
-			if (formationName && CanMoveEntsIntoFormation(formation.entities, formationName))
-				cmpFormation.LoadFormation(formationName);
+			if (formationTemplate && CanMoveEntsIntoFormation(formation.entities, formationTemplate))
+				cmpFormation.LoadFormation(formationTemplate);
 		}
 	}
 
@@ -1237,35 +1236,35 @@ function GetFormationUnitAIs(ents, player, formationName)
 		var formationEnts = [];
 		for each (var cluster in clusters)
 		{
-			if (!formationName || !CanMoveEntsIntoFormation(cluster, formationName))
+			if (!formationTemplate || !CanMoveEntsIntoFormation(cluster, formationTemplate))
 			{
 				// get the most recently used formation, or default to line closed
-				var lastFormationName = undefined;
+				var lastFormationTemplate = undefined;
 				for each (var ent in cluster)
 				{
 					var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 					if (cmpUnitAI)
 					{
-						var name = cmpUnitAI.GetLastFormationName();
-						if (lastFormationName === undefined)
+						var template = cmpUnitAI.GetLastFormationTemplate();
+						if (lastFormationTemplate === undefined)
 						{
-							lastFormationName = name;
+							lastFormationTemplate = template;
 						}
-						else if (lastFormationName != name)
+						else if (lastFormationTemplate != template)
 						{
-							lastFormationName = undefined;
+							lastFormationTemplate = undefined;
 							break;
 						}
 					}
 				}
-				if (lastFormationName && CanMoveEntsIntoFormation(cluster, lastFormationName))
-					formationName = lastFormationName;
+				if (lastFormationTemplate && CanMoveEntsIntoFormation(cluster, lastFormationTemplate))
+					formationTemplate = lastFormationTemplate;
 				else
-					formationName = "Line Closed";
+					formationTemplate = "formations/line_closed";
 			}
 
 			// Create the new controller
-			var formationEnt = Engine.AddEntity("formations/"+formationName.replace(/\s+/g, "_").toLowerCase());
+			var formationEnt = Engine.AddEntity(formationTemplate);
 			var cmpFormation = Engine.QueryInterface(formationEnt, IID_Formation);
 			formationUnitAIs.push(Engine.QueryInterface(formationEnt, IID_UnitAI));
 			cmpFormation.SetFormationSeparation(formationSeparation);
@@ -1364,83 +1363,44 @@ function ClusterEntities(ents, separationDistance)
 	return clusters;
 }
 
-function GetFormationRequirements(formationName)
+function GetFormationRequirements(formationTemplate)
 {
-	var countRequired = 1;
- 	var classesRequired;
-	switch(formationName)
-	{
-	case "Scatter":
-	case "Column Closed":
-	case "Line Closed":
-	case "Column Open":
-	case "Line Open":
-	case "Battle Line":
-		break;
-	case "Box":
-		countRequired = 4;
-		break;
-	case "Flank":
-		countRequired = 8;
-		break;
-	case "Skirmish":
-		classesRequired = ["Ranged"];
-		break;
-	case "Wedge":
-		countRequired = 3;
- 		classesRequired = ["Cavalry"];
-		break;
-	case "Phalanx":
-		countRequired = 10;
- 		classesRequired = ["Melee", "Infantry"];
-		break;
-	case "Syntagma":
-		countRequired = 9;
- 		classesRequired = ["Pike", "Infantry"]; 
-		break;
-	case "Testudo":
-		countRequired = 9;
- 		classesRequired = ["Melee", "Infantry"];
-		break;
-	default:
-		// We encountered a unknown formation -> warn the user
-		warn("Commands.js: GetFormationRequirements: unknown formation: " + formationName);
- 		return false;
- 	}
-	return { "count": countRequired, "classesRequired": classesRequired };
+	var cmpTempManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var template = cmpTempManager.GetTemplate(formationTemplate);
+	if (!template.Formation)
+		return false;
+
+	var r = {};
+	r.minCount = +template.Formation.RequiredMemberCount;
+	if (template.Formation.DisabledTooltip)
+		r.tooltip = "\n" + template.Formation.DisabledTooltip;
+	else
+		r.tooltip = "";
+	return r;
 }
 
 
-function CanMoveEntsIntoFormation(ents, formationName)
+function CanMoveEntsIntoFormation(ents, formationTemplate)
 {
 	// TODO: should check the player's civ is allowed to use this formation
 	// See simulation/components/Player.js GetFormations() for a list of all allowed formations
 
-	var requirements = GetFormationRequirements(formationName);
+	var requirements = GetFormationRequirements(formationTemplate);
 	if (!requirements)
 		return false;
-
-	formationName = formationName.replace(/\s+/g,"");
 
 	var count = 0;
 	var reqClasses = requirements.classesRequired || [];
 	for each (var ent in ents)
 	{
 		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		if (!cmpIdentity || !cmpIdentity.CanUseFormation(formationName))
+		if (!cmpIdentity || !cmpIdentity.CanUseFormation(formationTemplate))
 			continue;
-
-		var classes = cmpIdentity.GetClassesList();
-		if (reqClasses.some(function(c){return classes.indexOf(c) == -1;}))
-			return false;
 
 		count++;
 	}
 
-	if (count < requirements.count)
-		return false;
-
-	return true;
+	return count >= requirements.minCount;
 }
 
 /**

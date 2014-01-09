@@ -43,10 +43,11 @@ namespace EntitySelection
  *	this value is ignored as the whole map is revealed.
  * @param allowEditorSelectables if true, all entities with the ICmpSelectable interface
  *	will be selected (including decorative actors), else only those selectable ingame.
+ * @param range Approximate range to check for entity in.
  *
  * @return ordered list of selected entities with the closest first.
  */
-std::vector<entity_id_t> PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables);
+std::vector<entity_id_t> PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables, int range = 200);
 
 /**
  * Finds all selectable entities within the given screen coordinate rectangle,

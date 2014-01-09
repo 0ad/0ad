@@ -198,7 +198,7 @@ var UnitFsmSpec = {
 		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 		cmpUnitMotion.MoveToFormationOffset(msg.data.target, msg.data.x, msg.data.z);
 
-		this.SetNextState("FORMATIONMEMBER.WALKING");
+		this.SetNextStateAlwaysEntering("FORMATIONMEMBER.WALKING");
 	},
 
 	// Special orders:
@@ -794,7 +794,6 @@ var UnitFsmSpec = {
 		"Order.Stop": function(msg) {
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 			cmpFormation.CallMemberFunction("Stop", [false]);
-			cmpFormation.Disband();
 		},
 
 		"Order.Attack": function(msg) {
@@ -1024,9 +1023,6 @@ var UnitFsmSpec = {
 					cmpFormation.CallMemberFunction("ResetFinishOrder", []);
 					return;
 				}
-
-				// No more orders left.
-				cmpFormation.Disband();
 			},
 		},
 
@@ -1058,9 +1054,6 @@ var UnitFsmSpec = {
 					cmpFormation.CallMemberFunction("ResetFinishOrder", []);
 					return;
 				}
-
-				// No more orders left.
-				cmpFormation.Disband();
 			},
 		},
 
@@ -1131,7 +1124,6 @@ var UnitFsmSpec = {
 					return;
 				}
 
-				// If this was the last order, attempt to disband the formation.
 				cmpFormation.FindInPosition();
 			}
 		},
@@ -1159,9 +1151,6 @@ var UnitFsmSpec = {
 						this.FindWalkAndFightTargets();
 					return;
 				}
-
-				// No more order left.
-				cmpFormation.Disband();
 			},
 
 			"leave": function(msg) {
@@ -1225,22 +1214,125 @@ var UnitFsmSpec = {
 
 		"IDLE": {
 			"enter": function() {
-				this.SelectAnimation("idle");
+				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+				if (!cmpFormation)
+				{
+					warn("UnitAI: " + this.entity + " got into FORMATIONMEMBER.IDLE mode without a valid formationController");
+					if (this.IsAnimal())
+						this.SetNextState("ANIMAL.IDLE");
+					else
+						this.SetNextState("INDIVIDUAL.IDLE");
+					return true;
+				}
+
+				// Switch back to idle animation to guarantee we won't
+				// get stuck with an incorrect animation
+				this.SelectAnimation(cmpFormation.GetFormationAnimation(this.entity, "idle"));
+
+				// If the unit is guarding/escorting, go back to its duty
+				if (this.isGuardOf)
+				{
+					this.Guard(this.isGuardOf, false);
+					cmpFormation.RemoveMembers([this.entity]);
+					return true;
+				}
+
+				// The GUI and AI want to know when a unit is idle, but we don't
+				// want to send frequent spurious messages if the unit's only
+				// idle for an instant and will quickly go off and do something else.
+				// So we'll set a timer here and only report the idle event if we
+				// remain idle
+				this.StartTimer(1000);
+
+				// If a unit can heal and attack we first want to heal wounded units,
+				// so check if we are a healer and find whether there's anybody nearby to heal.
+				// (If anyone approaches later it'll be handled via LosHealRangeUpdate.)
+				// If anyone in sight gets hurt that will be handled via LosHealRangeUpdate.
+				if (this.IsHealer() && this.FindNewHealTargets())
+				{
+					cmpFormation.RemoveMembers([this.entity]);
+					return true; // (abort the FSM transition since we may have already switched state)
+				}
+
+				// If we entered the idle state we must have nothing better to do,
+				// so immediately check whether there's anybody nearby to attack.
+				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
+				if (this.FindNewTargets())
+				{
+					cmpFormation.RemoveMembers([this.entity]);
+					return true; // (abort the FSM transition since we may have already switched state)
+				}
+
+				// Nobody to attack - stay in idle
+				return false;
+			},
+
+			"leave": function() {
+				var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+				if (this.losRangeQuery)
+					rangeMan.DisableActiveQuery(this.losRangeQuery);
+				if (this.losHealRangeQuery)
+					rangeMan.DisableActiveQuery(this.losHealRangeQuery);
+
+				this.StopTimer();
+
+				if (this.isIdle)
+				{
+					this.isIdle = false;
+					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
+				}
+			},
+
+			"LosRangeUpdate": function(msg) {
+				if (this.GetStance().targetVisibleEnemies)
+				{
+					// Start attacking one of the newly-seen enemy (if any)
+					this.AttackEntitiesByPreference(msg.data.added);
+				}
+			},
+
+			"LosHealRangeUpdate": function(msg) {
+				if (this.RespondToHealableEntities(msg.data.added))
+				{
+					var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+					if (cmpFormation)
+						cmpFormation.RemoveMembers([this.entity]);
+				}
+			},
+
+			"Timer": function(msg) {
+				if (!this.isIdle)
+				{
+					this.isIdle = true;
+					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
+				}
 			},
 		},
 
 		"WALKING": {
 			"enter": function () {
+				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+				var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+				if (cmpFormation && cmpVisual)
+				{
+					cmpVisual.ReplaceMoveAnimation("walk", cmpFormation.GetFormationAnimation(this.entity, "walk"));
+					cmpVisual.ReplaceMoveAnimation("run", cmpFormation.GetFormationAnimation(this.entity, "run"));
+				}
 				this.SelectAnimation("move");
 			},
 
 			// Occurs when the unit has reached its destination and the controller
-			// is done moving. The controller is notified, and will disband the
-			// formation if all units are in formation and no orders remain.
+			// is done moving. The controller is notified.
 			"MoveCompleted": function(msg) {
 				// We can only finish this order if the move was really completed.
 				if (!msg.data.error && this.FinishOrder())
 					return;
+				var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+				if (cmpVisual)
+				{
+					cmpVisual.ResetMoveAnimation("walk");
+					cmpVisual.ResetMoveAnimation("run");
+				}
 
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 				if (cmpFormation)
@@ -2459,13 +2551,21 @@ var UnitFsmSpec = {
 
 					this.repairTarget = this.order.data.target;	// temporary, deleted in "leave".
 					// Check we can still reach and repair the target
-					if (!this.CheckTargetRange(this.repairTarget, IID_Builder) || !this.CanRepair(this.repairTarget))
+					if (!this.CanRepair(this.repairTarget))
 					{
 						// Can't reach it, no longer owned by ally, or it doesn't exist any more
 						this.FinishOrder();
 						return true;
 					}
 
+					if (!this.CheckTargetRange(this.repairTarget, IID_Builder))
+					{
+						if (this.MoveToTargetRange(this.repairTarget, IID_Builder))
+							this.SetNextState("APPROACHING");
+						else
+							this.FinishOrder();
+						return true;
+					}
 					// Check if the target is still repairable
 					var cmpHealth = Engine.QueryInterface(this.repairTarget, IID_Health);
 					if (cmpHealth && cmpHealth.GetHitpoints() >= cmpHealth.GetMaxHitpoints())
@@ -2495,15 +2595,24 @@ var UnitFsmSpec = {
 
 				"Timer": function(msg) {
 					// Check we can still reach and repair the target
-					if (!this.CheckTargetRange(this.repairTarget, IID_Builder) || !this.CanRepair(this.repairTarget))
+					if (!this.CanRepair(this.repairTarget))
 					{
-						// Can't reach it, no longer owned by ally, or it doesn't exist any more
+						// No longer owned by ally, or it doesn't exist any more
 						this.FinishOrder();
 						return;
 					}
 					
 					var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
 					cmpBuilder.PerformBuilding(this.repairTarget);
+					// if the building is completed, the leave() function will be called
+					// by the ConstructionFinished message
+					// in that case, the repairTarget is deleted, and we can just return
+					if (!this.repairTarget)
+						return;
+					if (this.MoveToTargetRange(this.repairTarget, IID_Builder))
+						this.SetNextState("APPROACHING");
+					else if (!this.CheckTargetRange(this.repairTarget, IID_Builder))
+						this.FinishOrder(); //can't approach and isn't in reach
 				},
 			},
 
@@ -2958,7 +3067,7 @@ UnitAI.prototype.Init = function()
 	this.formationController = INVALID_ENTITY; // entity with IID_Formation that we belong to
 	this.isGarrisoned = false;
 	this.isIdle = false;
-	this.lastFormationName = "";
+	this.lastFormationTemplate = "";
 	this.finishedOrder = false; // used to find if all formation members finished the order
 	
 	// Queue of remembered works
@@ -4440,14 +4549,14 @@ UnitAI.prototype.GetFormationController = function()
 	return this.formationController;
 };
 
-UnitAI.prototype.SetLastFormationName = function(name)
+UnitAI.prototype.SetLastFormationTemplate = function(template)
 {
-	this.lastFormationName = name;
+	this.lastFormationTemplate = template;
 };
 
-UnitAI.prototype.GetLastFormationName = function()
+UnitAI.prototype.GetLastFormationTemplate = function()
 {
-	return this.lastFormationName;
+	return this.lastFormationTemplate;
 };
 
 UnitAI.prototype.MoveIntoFormation = function(cmd)

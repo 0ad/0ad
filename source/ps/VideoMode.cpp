@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,11 @@
 #include "ps/Game.h"
 #include "ps/GameSetup/Config.h"
 #include "renderer/Renderer.h"
+
+#if OS_MACOSX
+# include "lib/sysdep/os/osx/osx_sys_version.h"
+#endif
+
 
 static int DEFAULT_WINDOW_W = 1024;
 static int DEFAULT_WINDOW_H = 768;
@@ -278,8 +283,18 @@ bool CVideoMode::InitSDL()
 	if (SDL_SetWindowGammaRamp(m_Window, ramp, ramp, ramp) < 0)
 		LOGWARNING(L"SDL_SetGamma failed");
 #else
+# if OS_MACOSX
+	// Workaround for crash on Mavericks, see http://trac.wildfiregames.com/ticket/2272
+	int major, minor, bugfix;
+	GetSystemVersion(major, minor, bugfix);
+	if (minor < 9)
+	{
+# endif
 	if (SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
 		LOGWARNING(L"SDL_SetGamma failed");
+# if OS_MACOSX
+	}
+# endif
 #endif
 
 	m_IsInitialised = true;

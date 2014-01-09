@@ -13,8 +13,11 @@ GarrisonHolder.prototype.Schema =
 	"<element name='EjectHealth' a:help='Percentage of maximum health below which this holder no longer allows garrisoning'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='EjectEntitiesOnDestroy' a:help='Whether the entity should eject or kill all garrisoned entities on destroy'>" +
-		"<data type='boolean'/>" +
+	"<element name='EjectClassesOnDestroy' a:help='Classes of entities to be ejected on destroy. Others are killed'>" +
+		"<attribute name='datatype'>" +
+			"<value>tokens</value>" +
+		"</attribute>" +
+		"<text/>" +
 	"</element>" +
 	"<element name='BuffHeal' a:help='Number of hit points that will be restored to this holder&apos;s garrisoned units each second'>" +
 		"<ref name='nonNegativeDecimal'/>" +
@@ -103,11 +106,6 @@ GarrisonHolder.prototype.IsFull = function()
 GarrisonHolder.prototype.GetHealRate = function()
 {
 	return ApplyValueModificationsToEntity("GarrisonHolder/BuffHeal", +this.template.BuffHeal, this.entity);
-};
-
-GarrisonHolder.prototype.EjectEntitiesOnDestroy = function()
-{
-	return this.template.EjectEntitiesOnDestroy == "true";
 };
 
 /**
@@ -270,7 +268,15 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 	
 	// Find spawning location
 	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
-	var pos = cmpFootprint.PickSpawnPoint(entity);
+	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
+	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	// If the garrisonHolder is a sinking ship, restrict the location to the intersection of both passabilities
+	// TODO: should use passability classes to be more generic
+	if ((!cmpHealth || cmpHealth.GetHitpoints() == 0) && cmpIdentity && cmpIdentity.HasClass("Ship"))
+		var pos = cmpFootprint.PickSpawnPointBothPass(entity);
+	else
+		var pos = cmpFootprint.PickSpawnPoint(entity);
+
 	if (pos.y < 0)
 	{
 		// Error: couldn't find space satisfying the unit's passability criteria
@@ -602,8 +608,13 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	// Eject the units which can be ejected (if not in world, it generally means this holder
 	// is inside a holder which kills its entities, so do not eject)
-	if (cmpPosition.IsInWorld() && this.EjectEntitiesOnDestroy())
-		this.PerformEject(entities, true);
+	if (cmpPosition.IsInWorld())
+	{
+		var cmpGarrisonHolder = this;
+		var ejectables = entities.filter(function(ent) { return cmpGarrisonHolder.IsEjectable(ent) });
+		if (ejectables.length)
+			this.PerformEject(ejectables, false);
+	}
 
 	// And destroy all remaining entities
 	for each (var entity in entities)
@@ -619,6 +630,21 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 	this.UpdateGarrisonFlag();
+};
+
+/**
+ * Checks if an entity is ejectable on destroy if possible
+ */
+GarrisonHolder.prototype.IsEjectable = function(entity)
+{
+	var ejectableClasses = this.template.EjectClassesOnDestroy._string;
+	ejectableClasses = ejectableClasses ? ejectableClasses.split(/\s+/) : [];
+	var entityClasses = (Engine.QueryInterface(entity, IID_Identity)).GetClassesList();
+	for each (var ejectableClass in ejectableClasses)
+		if (entityClasses.indexOf(ejectableClass) != -1)
+			return true;
+
+	return false;
 };
 
 Engine.RegisterComponentType(IID_GarrisonHolder, "GarrisonHolder", GarrisonHolder);

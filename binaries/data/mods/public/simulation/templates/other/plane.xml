@@ -24,7 +24,7 @@
     <List datatype="tokens">Support Infantry</List>
     <BuffHeal>1</BuffHeal>
     <LoadingRange>5</LoadingRange>
-    <EjectEntitiesOnDestroy>false</EjectEntitiesOnDestroy> 
+    <EjectClassesOnDestroy datatype="tokens" /> 
   </GarrisonHolder>
   <Decay>
     <Inactive/>

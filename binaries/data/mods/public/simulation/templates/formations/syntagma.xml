@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
+    <RequiredMemberCount>9</RequiredMemberCount>
+    <DisabledTooltip>9 pike infantry units required</DisabledTooltip>
     <FormationName>Syntagma</FormationName>
   </Formation>
 </Entity>

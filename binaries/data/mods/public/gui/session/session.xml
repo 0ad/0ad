@@ -293,7 +293,14 @@
 
 	    <object size="0 128 100%-18 144" type="text" style="devCommandsText">Restrict camera</object>
 	    <object size="100%-16 128 100% 144" type="checkbox" style="StoneCrossBox" checked="true">
-		<action on="Press">Engine.GameView_SetConstrainCameraEnabled(this.checked);</action>
+			<action on="Press">
+				Engine.GameView_SetConstrainCameraEnabled(this.checked);
+				// Make selection more durable at the expense of speed if unchecked.
+				if (this.checked)
+					SELECTION_SEARCH_RADIUS -= 200;
+				else
+					SELECTION_SEARCH_RADIUS += 200; 
+			</action>
 	    </object>
 
 	    <object size="0 144 100%-18 160" type="text" style="devCommandsText">Reveal map</object>

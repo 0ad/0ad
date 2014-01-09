@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
+    <RequiredMemberCount>10</RequiredMemberCount>
+    <DisabledTooltip>10 melee infantry units required</DisabledTooltip>
     <FormationName>Phalanx</FormationName>
     <MinColumns>5</MinColumns>
     <MaxColumns>8</MaxColumns>
