@@ -300,6 +300,11 @@ UnitMotionFlying.prototype.GetWalkSpeed = function()
 	return +this.template.MaxSpeed;
 };
 
+UnitMotionFlying.prototype.SetSpeed = function()
+{
+	// ignore this, the speed is always the walk speed
+};
+
 UnitMotionFlying.prototype.GetRunSpeed = function()
 {
 	return this.GetWalkSpeed();
