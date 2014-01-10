@@ -145,7 +145,7 @@ void TerrainOverlay::RenderBeforeWater()
 	// PolygonMode, and use PolygonOffset to pull them towards the camera.
 	// (See e.g. http://www.opengl.org/resources/faq/technical/polygonoffset.htm)
 	glPolygonOffset(-1.f, -1.f);
-	glEnable(GL_POLYGON_OFFSET_LINE);
+	//glEnable(GL_POLYGON_OFFSET_LINE);
 	glEnable(GL_POLYGON_OFFSET_FILL);
 
 	pglActiveTextureARB(GL_TEXTURE0);
@@ -172,7 +172,7 @@ void TerrainOverlay::RenderBeforeWater()
 	// Clean up state changes
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_POLYGON_OFFSET_LINE);
+	//glDisable(GL_POLYGON_OFFSET_LINE);
 	glDisable(GL_POLYGON_OFFSET_FILL);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(GL_TRUE);
