@@ -163,7 +163,7 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
-		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.resourceSupply.gatherers[entState.player].length + " / " + entState.resourceSupply.maxGatherers + "    ";
+		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.resourceSupply.gatherers[entState.player-1].length + " / " + entState.resourceSupply.maxGatherers + "    ";
 		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "Current/max gatherers";
 	}
 	else
