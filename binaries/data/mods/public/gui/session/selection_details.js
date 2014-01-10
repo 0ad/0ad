@@ -225,15 +225,29 @@ function displaySingle(entState, template)
 				Math.round(range/4);
 
 			if (Math.round((realRange - range)/4) > 0)
-			{ 
 				attack += " (+" + Math.round((realRange - range)/4) + ")";
-			}
 			else if (Math.round((realRange - range)/4) < 0)
-			{
 				attack += " (" + Math.round((realRange - range)/4) + ")";
-			} // don't show when it's 0
 
 		}
+		attack += "\n[font=\"serif-bold-13\"]Rate:[/font] ";
+
+		var hits = 0;
+		if (entState.unitAI)
+			hits++;
+		if (entState.buildingAI)
+			hits += entState.buildingAI.arrowCount;
+
+		if (hits == 1)
+			attack += hits + " attack per ";
+		else
+			attack += hits + " attacks per ";
+
+		var time = entState.attack.repeatTime/1000;
+		if (time == 1)
+			attack += "second";
+		else
+			attack += time + " seconds";
 	}
 	
 	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n[font=\"serif-bold-13\"]Armor:[/font] " + armorTypeDetails(entState.armour);
