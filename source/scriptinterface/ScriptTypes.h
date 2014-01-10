@@ -58,8 +58,6 @@
 #endif
 
 
-#include <cstring> // required by jsutil.h
-
 // SpiderMonkey wants the DEBUG flag
 #ifndef NDEBUG
 # ifndef DEBUG
