@@ -356,7 +356,7 @@ public:
 		// reset the value so it can be used to determine if we actually initialized it.
 		m_HasSharedComponent = false;
 		
-		if (LoadScripts(L"common-api-v3"))
+		if (LoadScripts(L"common-api"))
 			m_HasSharedComponent = true;
 		else
 			return false;

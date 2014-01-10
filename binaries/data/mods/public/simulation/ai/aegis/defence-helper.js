@@ -299,7 +299,7 @@ m.Army.prototype.removeDefender = function (gameState, defenderID, defenderObj)
 	delete this.assignedTo[defenderID];
 	
 	if (defenderObj !== undefined || ent.owner() !== PlayerID)
-		return;	// assume this means dead.
+		return false;	// assume this means dead.
 	
 	ent.setMetadata(PlayerID, "DefManagerArmy", undefined);
 	
@@ -324,7 +324,7 @@ m.Army.prototype.assignDefender = function (gameState, entID)
 	var ent = gameState.getEntityById(entID);
 
 	if (!ent)
-		return;
+		return false;
 	
 	// TODO: improve the logic in there.
 	var maxVal = 1000000;
@@ -349,7 +349,7 @@ m.Army.prototype.assignDefender = function (gameState, entID)
 		}
 	}
 	if (maxEnt === -1)
-		return;
+		return false;
 	
 	// let's attack id
 	this.assignedAgainst[maxEnt].push(entID);
