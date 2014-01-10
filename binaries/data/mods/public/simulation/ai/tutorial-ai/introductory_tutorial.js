@@ -123,39 +123,39 @@ var introductoryTutorial = [
 }
 ];
 
-function introductory_tutorial_attack(gameState) {
+var introductory_tutorial_attack = function(gameState) {
 	var units = gameState.updatingCollection(
 		"intro_tutorial_attackers", 
-		Filters.or(
-			Filters.byType("units/athen_infantry_spearman_b"), 
-			Filters.byType("units/athen_infantry_javelinist_b")
+		API3.Filters.or(
+			API3.Filters.byType("units/athen_infantry_spearman_b"), 
+			API3.Filters.byType("units/athen_infantry_javelinist_b")
 		),
 		gameState.getOwnEntities()
 	);
 	var towers = gameState.updatingCollection(
 		"players_towers", 
-		Filters.byType("structures/spart_defense_tower"),
+		API3.Filters.byType("structures/spart_defense_tower"),
 		gameState.getEnemyEntities()
 	);
 	var towerPos = towers.toEntityArray()[0].position();
 	units.move(towerPos[0]+5, towerPos[1]+15);
 }
 
-function introductory_tutorial_remove_champions(gameState) {
+var introductory_tutorial_remove_champions = function(gameState) {
 	var units = gameState.updatingCollection(
 		"intro_tutorial_champions", 
-		Filters.or(
-			Filters.byType("units/athen_champion_infantry"), 
-			Filters.or(
-				Filters.byType("units/athen_champion_marine"), 
-				Filters.byType("units/athen_champion_ranged")
+		API3.Filters.or(
+			API3.Filters.byType("units/athen_champion_infantry"), 
+			API3.Filters.or(
+				API3.Filters.byType("units/athen_champion_marine"), 
+				API3.Filters.byType("units/athen_champion_ranged")
 			)
 		),
 		gameState.getOwnEntities()
 	);
 	var cc = gameState.updatingCollection(
 		"intro_tutorial_cc", 
-		Filters.byType("structures/athen_civil_centre"),
+		API3.Filters.byType("structures/athen_civil_centre"),
 		gameState.getOwnEntities()
 	);
 
