@@ -114,7 +114,7 @@ m.NavalManager.prototype.canReach = function (gameState, regionA, regionB) {
 m.NavalManager.prototype.checkEvents = function (gameState, queues, events) {
 	var evts = events["ConstructionFinished"];
 	// TODO: probably check stuffs like a base destruction.
-	for (i in evts)
+	for (var i in evts)
 	{
 		var evt = evts[i];
 		if (evt && evt.newentity)

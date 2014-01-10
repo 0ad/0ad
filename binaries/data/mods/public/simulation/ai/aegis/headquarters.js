@@ -180,7 +180,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues) {
 	// TODO: probably check stuffs like a base destruction.
 	var CreateEvents = events["Create"];
 	var ConstructionEvents = events["ConstructionFinished"];
-	for (i in CreateEvents)
+	for (var i in CreateEvents)
 	{
 		var evt = CreateEvents[i];
 		// Let's check if we have a building set to create a new base.
@@ -211,7 +211,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues) {
 			}
 		}
 	}
-	for (i in ConstructionEvents)
+	for (var i in ConstructionEvents)
 	{
 		var evt = ConstructionEvents[i];
 		// Let's check if we have a building set to create a new base.

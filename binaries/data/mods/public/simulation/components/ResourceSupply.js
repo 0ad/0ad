@@ -142,7 +142,7 @@ ResourceSupply.prototype.RemoveGatherer = function(gathererID, player)
 	// this can happen if the unit is dead
 	if (player === undefined || player === -1)
 	{
-		for (var i = 0; i <= 7; ++i)
+		for (var i = 0; i < 8; ++i)
 		{
 			var index = this.gatherers[i].indexOf(gathererID);
 			if (index !== -1)
@@ -153,7 +153,9 @@ ResourceSupply.prototype.RemoveGatherer = function(gathererID, player)
 				return;
 			}
 		}
-	} else {
+	}
+	else
+	{
 		var index = this.gatherers[player-1].indexOf(gathererID);
 		if (index !== -1)
 		{
