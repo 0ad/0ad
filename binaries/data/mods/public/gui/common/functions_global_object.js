@@ -34,7 +34,7 @@ var g_messageBoxCallbackFunction = function(btnCode)
 
 function messageBox (mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCaptions, mbBtnCode, mbCallbackArgs)
 {
-	if (g_messageBoxBtnFunctions.length != 0)
+	if (g_messageBoxBtnFunctions && g_messageBoxBtnFunctions.length != 0)
 	{
 		warn("A messagebox was called when a previous callback function is still set, aborting!");
 		return;	
