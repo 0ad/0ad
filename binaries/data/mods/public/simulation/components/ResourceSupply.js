@@ -43,7 +43,13 @@ ResourceSupply.prototype.Init = function()
 {
 	// Current resource amount (non-negative)
 	this.amount = this.GetMaxAmount();
-    this.gatherers = [[], [], [], [], [], [], [], []];	// list of IDs for each players
+
+    this.gatherers = [];	// list of IDs for each players
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);	// system component so that's safe.
+	var numPlayers = cmpPlayerManager.GetNumPlayers();
+    for (var i = 0; i < numPlayers; ++i)
+    	this.gatherers.push([]);
+
     this.infinite = !isFinite(+this.template.Amount);
 };
 
@@ -143,16 +149,7 @@ ResourceSupply.prototype.RemoveGatherer = function(gathererID, player)
 	if (player === undefined || player === -1)
 	{
 		for (var i = 0; i < 8; ++i)
-		{
-			var index = this.gatherers[i].indexOf(gathererID);
-			if (index !== -1)
-			{
-				this.gatherers[i].splice(index,1);
-				// broadcast message, mainly useful for the AIs.
-				Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.gatherers });
-				return;
-			}
-		}
+			this.RemoveGatherer(gathererID, i);
 	}
 	else
 	{
