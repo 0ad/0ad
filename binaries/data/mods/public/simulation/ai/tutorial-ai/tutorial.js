@@ -1,6 +1,8 @@
-
-function TutorialAI(settings) {
-	BaseAI.call(this, settings);
+var TutorialAI = (function() {
+var m = {};
+			 
+m.TutorialAI = function(settings) {
+	API3.BaseAI.call(this, settings);
 
 	this.turn = 0;
 	
@@ -11,10 +13,10 @@ function TutorialAI(settings) {
 	this.toUpdate = [];
 }
 
-TutorialAI.prototype = new BaseAI();
+m.TutorialAI.prototype = new API3.BaseAI();
 
 //Some modules need the gameState to fully initialise
-TutorialAI.prototype.runInit = function(gameState) {
+m.TutorialAI.prototype.runInit = function(gameState) {
 	if (this.firstTime){
 		this.firstTime = false;
 		
@@ -29,8 +31,8 @@ TutorialAI.prototype.runInit = function(gameState) {
 	}
 };
 
-TutorialAI.prototype.chooseTutorial = function(gameState) {
-	var trees = gameState.updatingCollection("trees", Filters.byClass("ForestPlant"), gameState.getEntities());
+m.TutorialAI.prototype.chooseTutorial = function(gameState) {
+	var trees = gameState.updatingCollection("trees", API3.Filters.byClass("ForestPlant"), gameState.getEntities());
 	
 	var numTrees = trees.length;
 	switch (numTrees) {
@@ -44,7 +46,7 @@ TutorialAI.prototype.chooseTutorial = function(gameState) {
 	this.chat("Tutorial AI does not recognise this map, are you sure you have selected a tutorial map?  (" + numTrees + " trees found)");
 };
 
-TutorialAI.prototype.OnUpdate = function() {
+m.TutorialAI.prototype.OnUpdate = function() {
 	if (this.gameFinished){
 		return;
 	}
@@ -55,7 +57,7 @@ TutorialAI.prototype.OnUpdate = function() {
 	
 	Engine.ProfileStart("tutorialBot");
 	
-	var gameState = new GameState(this);
+	var gameState = this.gameState;
 	this.runInit(gameState);
 	
 	if (this.tutorial === undefined) return;
@@ -71,13 +73,13 @@ TutorialAI.prototype.OnUpdate = function() {
 	switch (nextState.trigger) {
 	case "near_cc":
 		var ents = gameState.getEnemyEntities();
-		var CC = gameState.updatingCollection("cc", Filters.and(Filters.byClass("CivCentre"), Filters.byOwner(2)), gameState.getEntities());
+		var CC = gameState.updatingCollection("cc", API3.Filters.and(API3.Filters.byClass("CivCentre"), API3.Filters.byOwner(2)), gameState.getEntities());
 		
 		ents.forEach(function(ent) {
 			if (!ent.position()){
 				return;
 			}
-			if (VectorDistance(CC.toEntityArray()[0].position(), ent.position()) < 50){
+			if (API3.VectorDistance(CC.toEntityArray()[0].position(), ent.position()) < 50){
 				doNext = true;
 			}
 		});
@@ -114,7 +116,7 @@ TutorialAI.prototype.OnUpdate = function() {
 	case "entity_count":
 		var ents = gameState.updatingCollection(
 			nextState.template, 
-			Filters.byType(nextState.template),
+			API3.Filters.byType(nextState.template),
 			gameState.getEnemyEntities());
 		if (ents.length >= nextState.count) {
 			doNext = true;
@@ -125,7 +127,7 @@ TutorialAI.prototype.OnUpdate = function() {
 		for (var i = 0; i < nextState.templates.length; i++) {
 			var ents = gameState.updatingCollection(
 				nextState.templates[i], 
-				Filters.byType(nextState.templates[i]),
+				API3.Filters.byType(nextState.templates[i]),
 				gameState.getEnemyEntities());
 			if (ents.length < nextState.counts[i]) {
 				doNext = false;
@@ -177,14 +179,14 @@ TutorialAI.prototype.OnUpdate = function() {
 };
 
 // TODO: Remove override when the whole AI state is serialised
-TutorialAI.prototype.Deserialize = function(data)
+m.TutorialAI.prototype.Deserialize = function(data)
 {
 	BaseAI.prototype.Deserialize.call(this, data);
 	this._entityMetadata = {};
 };
 
 // Override the default serializer
-TutorialAI.prototype.Serialize = function()
+m.TutorialAI.prototype.Serialize = function()
 {
 	return {
 		_rawEntities: this._rawEntities,
@@ -194,12 +196,11 @@ TutorialAI.prototype.Serialize = function()
 	};
 };
 
-function debug(output){
-	if (Config.debug){
-		if (typeof output === "string"){
-			warn(output);
-		}else{
-			warn(uneval(output));
-		}
-	}
+m.debug = function(output)
+{
+	API3.debug(output);
 }
+
+
+return m;
+}());

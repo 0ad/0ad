@@ -34,7 +34,8 @@ AIProxy.prototype.Init = function()
 {
 	this.changes = null;
 	this.needsFullGet = true;
-
+	this.owner = -1;	// for convenience now and then.
+	
 	// Let the AIInterface know that we exist and that it should query us
 	this.NotifyChange();
 };
@@ -89,13 +90,6 @@ AIProxy.prototype.OnHealthChanged = function(msg)
 	this.NotifyChange();
 
 	this.changes.hitpoints = msg.to;
-};
-
-AIProxy.prototype.OnOwnershipChanged = function(msg)
-{
-	this.NotifyChange();
-
-	this.changes.owner = msg.to;
 };
 
 AIProxy.prototype.OnUnitIdleChanged = function(msg)
@@ -199,6 +193,8 @@ AIProxy.prototype.GetFullRepresentation = function()
 	{
 		// Updated by OnOwnershipChanged
 		ret.owner = cmpOwnership.GetOwner();
+		if (!this.owner)
+			this.owner = ret.owner;
 	}
 
 	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
@@ -258,16 +254,28 @@ AIProxy.prototype.GetFullRepresentation = function()
 // because that would be very expensive and AI will rarely care about all those
 // events.)
 
-AIProxy.prototype.OnCreate = function(msg)
+// special case: this changes the state and sends an event.
+AIProxy.prototype.OnOwnershipChanged = function(msg)
 {
+	this.NotifyChange();
+	
+	if (msg.from === -1)
+	{
+		var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+		cmpAIInterface.PushEvent("Create", {"entity" : msg.entity});
+		return;
+	} else if (msg.to === -1)
+	{
+		var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+		cmpAIInterface.PushEvent("Destroy", {"entity" : msg.entity});
+		return;
+	}
+	
+	this.owner = msg.to;
+	this.changes.owner = msg.to;
+	
 	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
-	cmpAIInterface.PushEvent("Create", msg);
-};
-
-AIProxy.prototype.OnDestroy = function(msg)
-{
-	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
-	cmpAIInterface.PushEvent("Destroy", msg);
+	cmpAIInterface.PushEvent("OwnershipChanged", msg);
 };
 
 AIProxy.prototype.OnAttacked = function(msg)
@@ -275,6 +283,16 @@ AIProxy.prototype.OnAttacked = function(msg)
 	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
 	cmpAIInterface.PushEvent("Attacked", msg);
 };
+
+/*
+ Deactivated for actually not really being practical for most uses.
+ AIProxy.prototype.OnRangeUpdate = function(msg)
+{
+	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+	msg.owner = this.owner;
+	cmpAIInterface.PushEvent("RangeUpdate", msg);
+	warn(uneval(msg));
+};*/
 
 AIProxy.prototype.OnConstructionFinished = function(msg)
 {

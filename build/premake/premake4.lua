@@ -668,7 +668,6 @@ function setup_all_libs ()
 		"soundmanager/data",
 		"soundmanager/items",
 		"soundmanager/scripting",
-		"scripting",
 		"maths",
 		"maths/scripting",
 	}

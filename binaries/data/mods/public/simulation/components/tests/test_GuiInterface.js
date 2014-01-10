@@ -22,6 +22,7 @@ Engine.LoadComponentScript("interfaces/Trader.js")
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
+Engine.LoadComponentScript("interfaces/BuildingAI.js");
 Engine.LoadComponentScript("GuiInterface.js");
 
 var cmp = ConstructComponent(SYSTEM_ENTITY, "GuiInterface");

@@ -1,4 +1,3 @@
-
 var AEGIS = (function() {
 var m = {};
 
@@ -30,7 +29,7 @@ m.AegisBot = function AegisBot(settings) {
 
 	this.firstTime = true;
 
-	this.savedEvents = [];
+	this.savedEvents = {};
 	
 	this.defcon = 5;
 	this.defconChangeTime = -10000000;
@@ -44,6 +43,7 @@ m.AegisBot.prototype.CustomInit = function(gameState, sharedScript) {
 	m.playerGlobals[PlayerID].uniqueIDBOPlans = 0;	// training/building/research plans
 	m.playerGlobals[PlayerID].uniqueIDBases = 1;	// base manager ID. Starts at one because "0" means "no base" on the map
 	m.playerGlobals[PlayerID].uniqueIDTPlans = 1;	// transport plans. starts at 1 because 0 might be used as none.	
+	m.playerGlobals[PlayerID].uniqueIDDefManagerArmy = 0;
 
 	this.HQ.init(gameState,sharedScript.events,this.queues);
 	m.debug ("Initialized with the difficulty " + this.Config.difficulty);
@@ -90,16 +90,18 @@ m.AegisBot.prototype.CustomInit = function(gameState, sharedScript) {
 }
 
 m.AegisBot.prototype.OnUpdate = function(sharedScript) {
-
 	if (this.gameFinished){
 		return;
 	}
-	
-	if (this.events.length > 0 && this.turn !== 0){
-		this.savedEvents = this.savedEvents.concat(this.events);
+
+	for (var i in this.events)
+	{
+		if(this.savedEvents[i] !== undefined)
+			this.savedEvents[i] = this.savedEvents[i].concat(this.events[i]);
+		else
+			this.savedEvents[i] = this.events[i];
 	}
-	
-	
+
 	// Run the update every n turns, offset depending on player ID to balance the load
 	if ((this.turn + this.player) % 8 == 5) {
 		
@@ -206,17 +208,17 @@ m.AegisBot.prototype.OnUpdate = function(sharedScript) {
 		
 		// Generate some entropy in the random numbers (against humans) until the engine gets random initialised numbers
 		// TODO: remove this when the engine gives a random seed
-		var n = this.savedEvents.length % 29;
+		var n = this.savedEvents["Create"].length % 29;
 		for (var i = 0; i < n; i++){
 			Math.random();
 		}
 		
-		delete this.savedEvents;
-		this.savedEvents = [];
+		for (var i in this.savedEvents)
+			this.savedEvents[i] = [];
 
 		Engine.ProfileStop();
 	}
-
+	
 	this.turn++;
 };
 

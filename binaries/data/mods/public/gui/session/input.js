@@ -1973,14 +1973,16 @@ function performGroup(action, groupId)
 			Engine.CameraFollow(toSelect[0]);
 		break;
 	case "save":
-		var selection = g_Selection.toList();
+	case "breakUp":
 		g_Groups.groups[groupId].reset();
-		g_Groups.addEntities(groupId, selection);
+		
+		if (action == "save")
+			g_Groups.addEntities(groupId, g_Selection.toList());
+			
 		updateGroups();
 		break;
 	}
 }
-
 // Performs the specified stance
 function performStance(entity, stanceName)
 {

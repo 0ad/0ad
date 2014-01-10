@@ -187,51 +187,49 @@ m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand){
 m.TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI) {
 	var self = this;
 	
-	var events = sharedAI.events;
+	var events = sharedAI.events["Destroy"];
 	var passabilityMap = sharedAI.passabilityMap;
 	
 	// looking for creation or destruction of entities, and updates the map accordingly.
 	for (var i in events) {
 		var e = events[i];
-		if (e.type === "Destroy") {
-			if (e.msg.entityObj){
-				var ent = e.msg.entityObj;
-				if (ent.hasClass("Geology")) {
-					var x = self.gamePosToMapPos(ent.position())[0];
-					var y = self.gamePosToMapPos(ent.position())[1];
-					// remove it. Don't really care about surrounding and possible overlappings.
-					var radius = Math.floor(ent.obstructionRadius() / self.cellSize);
-					for (var xx = -radius; xx <= radius;xx++)
-						for (var yy = -radius; yy <= radius;yy++)
+		if (e.entityObj){
+			var ent = e.entityObj;
+			if (ent.hasClass("Geology")) {
+				var x = self.gamePosToMapPos(ent.position())[0];
+				var y = self.gamePosToMapPos(ent.position())[1];
+				// remove it. Don't really care about surrounding and possible overlappings.
+				var radius = Math.floor(ent.obstructionRadius() / self.cellSize);
+				for (var xx = -radius; xx <= radius;xx++)
+					for (var yy = -radius; yy <= radius;yy++)
+					{
+						if (x+xx >= 0 && x+xx < self.width && y+yy >= 0 && y+yy < self.height && this.map[(x+xx) + (y+yy)*self.width] === 30)
 						{
-							if (x+xx >= 0 && x+xx < self.width && y+yy >= 0 && y+yy < self.height && this.map[(x+xx) + (y+yy)*self.width] === 30)
-							{
-								this.map[(x+xx) + (y+yy)*self.width] = 255;
-							}
+							this.map[(x+xx) + (y+yy)*self.width] = 255;
 						}
-				} else if (ent.hasClass("ForestPlant")){
-					var x = self.gamePosToMapPos(ent.position())[0];
-					var y = self.gamePosToMapPos(ent.position())[1];
-					var nbOfNeigh = 0;
-					for (var xx = -1; xx <= 1;xx++)
-						for (var yy = -1; yy <= 1;yy++)
+					}
+			} else if (ent.hasClass("ForestPlant")){
+				var x = self.gamePosToMapPos(ent.position())[0];
+				var y = self.gamePosToMapPos(ent.position())[1];
+				var nbOfNeigh = 0;
+				for (var xx = -1; xx <= 1;xx++)
+					for (var yy = -1; yy <= 1;yy++)
+					{
+						if (xx == 0 && yy == 0)
+							continue;
+						if (this.map[(x+xx) + (y+yy)*self.width] === 40)
+							nbOfNeigh++;
+						else if (this.map[(x+xx) + (y+yy)*self.width] === 41)
 						{
-							if (xx == 0 && yy == 0)
-								continue;
-							if (this.map[(x+xx) + (y+yy)*self.width] === 40)
-								nbOfNeigh++;
-							else if (this.map[(x+xx) + (y+yy)*self.width] === 41)
-							{
-								this.map[(x+xx) + (y+yy)*self.width] = 255;
-							}
-							else if (this.map[(x+xx) + (y+yy)*self.width] > 41 && this.map[(x+xx) + (y+yy)*self.width] < 50)
-								this.map[(x+xx) + (y+yy)*self.width] = this.map[(x+xx) + (y+yy)*self.width] - 1;
+							this.map[(x+xx) + (y+yy)*self.width] = 255;
 						}
-					if (nbOfNeigh > 0)
-						this.map[x + y*self.width] = this.map[x + y*self.width] = 40 + nbOfNeigh;
-					else
-						this.map[x + y*self.width] = this.map[x + y*self.width] = 255;
-				}
+						else if (this.map[(x+xx) + (y+yy)*self.width] > 41 && this.map[(x+xx) + (y+yy)*self.width] < 50)
+							this.map[(x+xx) + (y+yy)*self.width] = this.map[(x+xx) + (y+yy)*self.width] - 1;
+					}
+				if (nbOfNeigh > 0)
+					this.map[x + y*self.width] = this.map[x + y*self.width] = 40 + nbOfNeigh;
+				else
+					this.map[x + y*self.width] = this.map[x + y*self.width] = 255;
 			}
 		}
 	}
@@ -730,54 +728,57 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events) {
 	
 	// Look for destroy events and subtract the entities original influence from the resourceMap
 	// TODO: perhaps do something when dropsites appear/disappear.
-	for (var key in events) {
-		var e = events[key];
-		if (e.type === "Destroy") {
-			if (e.msg.entityObj){
-				var ent = e.msg.entityObj;
-				if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
-					var resource = ent.resourceSupplyType().generic;
-					var x = Math.floor(ent.position()[0] / 4);
-					var z = Math.floor(ent.position()[1] / 4);
-					var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-					
-					if (resource === "wood" || resource === "food")
-					{
-						this.resourceMaps[resource].addInfluence(x, z, 2, 5,'constant');
-						this.resourceMaps[resource].addInfluence(x, z, 9.0, -strength,'constant');
-						this.CCResourceMaps[resource].addInfluence(x, z, 15, -strength/2.0,'constant');
-					}
-					else if (resource === "stone" || resource === "metal")
-					{
-						this.resourceMaps[resource].addInfluence(x, z, 8, 50);
-						this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/1.5);
-						this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/2.0,'constant');
-						this.CCResourceMaps[resource].addInfluence(x, z, 30, -strength,'constant');
-					}
+	var destEvents = events["Destroy"];
+	var createEvents = events["Create"];
+	
+	for (var key in destEvents) {
+		var e = destEvents[key];
+		if (e.entityObj){
+			var ent = e.entityObj;
+			if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
+				var resource = ent.resourceSupplyType().generic;
+				var x = Math.floor(ent.position()[0] / 4);
+				var z = Math.floor(ent.position()[1] / 4);
+				var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
+				
+				if (resource === "wood" || resource === "food")
+				{
+					this.resourceMaps[resource].addInfluence(x, z, 2, 5,'constant');
+					this.resourceMaps[resource].addInfluence(x, z, 9.0, -strength,'constant');
+					this.CCResourceMaps[resource].addInfluence(x, z, 15, -strength/2.0,'constant');
+				}
+				else if (resource === "stone" || resource === "metal")
+				{
+					this.resourceMaps[resource].addInfluence(x, z, 8, 50);
+					this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/1.5);
+					this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/2.0,'constant');
+					this.CCResourceMaps[resource].addInfluence(x, z, 30, -strength,'constant');
 				}
 			}
-		} else if (e.type === "Create") {
-			if (e.msg.entity){
-				var ent = sharedScript._entities[e.msg.entity];
-				if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure"){
-					var resource = ent.resourceSupplyType().generic;
-					
-					var x = Math.floor(ent.position()[0] / 4);
-					var z = Math.floor(ent.position()[1] / 4);
-					var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-					if (resource === "wood" || resource === "food")
-					{
-						this.CCResourceMaps[resource].addInfluence(x, z, 15, strength/2.0,'constant');
-						this.resourceMaps[resource].addInfluence(x, z, 9.0, strength,'constant');
-						this.resourceMaps[resource].addInfluence(x, z, 2, -5,'constant');
-					}
-					else if (resource === "stone" || resource === "metal")
-					{
-						this.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
-						this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);
-						this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/2.0,'constant');
-						this.resourceMaps[resource].addInfluence(x, z, 8, -50);
-					}
+		}
+	}
+	for (var key in createEvents) {
+		var e = createEvents[key];
+		if (e.entity){
+			var ent = sharedScript._entities[e.entity];
+			if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure"){
+				var resource = ent.resourceSupplyType().generic;
+				
+				var x = Math.floor(ent.position()[0] / 4);
+				var z = Math.floor(ent.position()[1] / 4);
+				var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
+				if (resource === "wood" || resource === "food")
+				{
+					this.CCResourceMaps[resource].addInfluence(x, z, 15, strength/2.0,'constant');
+					this.resourceMaps[resource].addInfluence(x, z, 9.0, strength,'constant');
+					this.resourceMaps[resource].addInfluence(x, z, 2, -5,'constant');
+				}
+				else if (resource === "stone" || resource === "metal")
+				{
+					this.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
+					this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);
+					this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/2.0,'constant');
+					this.resourceMaps[resource].addInfluence(x, z, 8, -50);
 				}
 			}
 		}

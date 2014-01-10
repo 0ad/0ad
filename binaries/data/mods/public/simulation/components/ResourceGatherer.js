@@ -274,9 +274,10 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	// between -0.5 and 0.5. Adding 0.5 to that changes the range to 0 to 1. The diminishingReturns constant
 	// adjusts the period of the curve.
 	// Alternatively, just find scythetwirler (who came up with the math here) or alpha123 (who wrote the code) on IRC.
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var diminishingReturns = cmpResourceSupply.GetDiminishingReturns();
 	if (diminishingReturns)
-		rate = (0.5 * Math.cos((cmpResourceSupply.GetGatherers().length - 1) * Math.PI / diminishingReturns) + 0.5) * rate;
+		rate = (0.5 * Math.cos((cmpResourceSupply.GetGatherers(cmpOwnership.GetOwner()).length - 1) * Math.PI / diminishingReturns) + 0.5) * rate;
 
 	return rate || 0;
 };

@@ -161,81 +161,81 @@ m.BaseManager.prototype.initGatheringFunctions = function(HQ, gameState, specTyp
 }
 
 m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
-	for (var i in events)
+	var destEvents = events["Destroy"];
+	var createEvents = events["Create"];
+	var cFinishedEvents = events["ConstructionFinished"];
+	for (var i in destEvents)
 	{
-		if (events[i].type == "Destroy")
+		var evt = destEvents[i];
+		// let's check we haven't lost an important building here.
+		if (evt != undefined && !evt.SuccessfulFoundation && evt.entityObj != undefined && evt.metadata !== undefined && evt.metadata[PlayerID] &&
+			evt.metadata[PlayerID]["base"] !== undefined && evt.metadata[PlayerID]["base"] == this.ID)
 		{
-			// let's check we haven't lost an important building here.
-			var evt = events[i];
-			if (evt.msg != undefined && !evt.msg.SuccessfulFoundation && evt.msg.entityObj != undefined && evt.msg.metadata !== undefined && evt.msg.metadata[PlayerID] &&
-				evt.msg.metadata[PlayerID]["base"] !== undefined && evt.msg.metadata[PlayerID]["base"] == this.ID)
+			var ent = evt.entityObj;
+			if (ent.hasTerritoryInfluence())
+				this.territoryBuildings.splice(this.territoryBuildings.indexOf(ent.id()),1);
+			if (ent.resourceDropsiteTypes())
+				this.scrapDropsite(gameState, ent);
+			if (evt.metadata[PlayerID]["baseAnchor"] && evt.metadata[PlayerID]["baseAnchor"] == true)
 			{
-				var ent = evt.msg.entityObj;
-				if (ent.hasTerritoryInfluence())
-					this.territoryBuildings.splice(this.territoryBuildings.indexOf(ent.id()),1);
-				if (ent.resourceDropsiteTypes())
-					this.scrapDropsite(gameState, ent);
-				if (evt.msg.metadata[PlayerID]["baseAnchor"] && evt.msg.metadata[PlayerID]["baseAnchor"] == true)
+				// sounds like we lost our anchor. Let's try rebuilding it.
+				// TODO: currently the HQ manager sets us as initgathering, we probably ouht to do it
+				this.anchor = undefined;
+				
+				this.constructing = true;	// let's switch mode.
+				this.workers.forEach( function (worker) {
+									 worker.stopMoving();
+									 });
+				if (ent.hasClass("CivCentre"))
 				{
-					// sounds like we lost our anchor. Let's try rebuilding it.
-					// TODO: currently the HQ manager sets us as initgathering, we probably ouht to do it
-					this.anchor = undefined;
-
-					this.constructing = true;	// let's switch mode.
-					this.workers.forEach( function (worker) {
-						worker.stopMoving();
-					});
-					if (ent.hasClass("CivCentre"))
-					{
-						// TODO: might want to tell the queue manager to pause other stuffs if we are the only base.
-						queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, 0 , -1,ent.position()));
-					} else {
-						// TODO
-						queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true },0,-1,ent.position()));
-					}
+					// TODO: might want to tell the queue manager to pause other stuffs if we are the only base.
+					queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, 0 , -1,ent.position()));
+				} else {
+					// TODO
+					queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true },0,-1,ent.position()));
 				}
+			}
+			
+		}
+	}
+	for (var i in cFinishedEvents)
+	{
+		var evt = cFinishedEvents[i];
+		if (evt && evt.newentity)
+		{
+			// TODO: we ought to add new resources or do something.
+			var ent = gameState.getEntityById(evt.newentity);
+			
+			if (ent === undefined)
+				continue;
+			
+			if (ent.getMetadata(PlayerID,"base") == this.ID)
+			{
+				if(ent.hasTerritoryInfluence())
+					this.territoryBuildings.push(ent.id());
+				if (ent.resourceDropsiteTypes())
+					for (ress in ent.resourceDropsiteTypes())
+						this.initializeDropsite(gameState, ent, ent.resourceDropsiteTypes()[ress]);
+				if (ent.resourceSupplyAmount() && ent.resourceSupplyType()["specific"] == "grain")
+					this.assignResourceToDP(gameState,ent);
 			}
 		}
 	}
-	for (var i in events)
+	for (var i in createEvents)
 	{
-		if (events[i].type == "ConstructionFinished")
+		var evt = createEvents[i];
+		// Checking for resources.
+		var evt = events[i];
+		if (evt && evt.entity)
 		{
-			// let's check we haven't lost an important building here.
-			var evt = events[i];
-			if (evt.msg && evt.msg.newentity)
-			{
-				// TODO: we ought to add new resources or do something.
-				var ent = gameState.getEntityById(evt.msg.newentity);
-				
-				if (ent === undefined)
-					continue;
-				
-				if (ent.getMetadata(PlayerID,"base") == this.ID)
-				{
-					if(ent.hasTerritoryInfluence())
-						this.territoryBuildings.push(ent.id());
-					if (ent.resourceDropsiteTypes())
-						for (var ress in ent.resourceDropsiteTypes())
-							this.initializeDropsite(gameState, ent, ent.resourceDropsiteTypes()[ress]);
-					if (ent.resourceSupplyAmount() && ent.resourceSupplyType()["specific"] == "grain")
-						this.assignResourceToDP(gameState,ent);
-				}
-			}
-		} else if (events[i].type == "Create")
-		{
-			// Checking for resources.
-			var evt = events[i];
-			if (evt.msg && evt.msg.entity)
-			{
-				var ent = gameState.getEntityById(evt.msg.entity);
-
-				if (ent === undefined)
-					continue;
-
-				if (ent.resourceSupplyAmount() && ent.owner() == 0)
-					this.assignResourceToDP(gameState,ent);
-			}
+			var ent = gameState.getEntityById(evt.entity);
+			
+			if (ent === undefined)
+				continue;
+			
+			if (ent.resourceSupplyAmount() && ent.owner() == 0)
+				this.assignResourceToDP(gameState,ent);
+			
 		}
 	}
 };
@@ -461,6 +461,8 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	var best = friendlyTiles.findBestTile(2, obstructions);	// try to find a spot to place a DP.
 	var bestIdx = best[0];
 
+	m.debug ("for dropsite best is " +best[1] + " at " + gameState.getTimeElapsed());
+	
 	// tell the dropsite builder we haven't found anything satisfactory.
 	if (best[1] < 60)
 		return false;
@@ -644,7 +646,21 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 
 // let's return the estimated gather rates.
 m.BaseManager.prototype.getGatherRates = function(gameState, currentRates) {
-
+	for (var i in currentRates)
+	{
+		// I calculate the exact gathering rate for each unit.
+		// I must then lower that to account for travel time.
+		// Given that the faster you gather, the more travel time matters,
+		// I use some logarithms.
+		// TODO: this should take into account for unit speed and/or distance to target
+		
+		var units = this.gatherersByType(gameState, i);
+		units.forEach(function (ent) {
+			var gRate = ent.currentGatherRate()
+			if (gRate !== undefined)
+				currentRates[i] += Math.log(1+gRate)/1.1;
+		});
+	}
 };
 
 m.BaseManager.prototype.assignRolelessUnits = function(gameState) {
@@ -774,7 +790,6 @@ m.BaseManager.prototype.pickBuilders = function(gameState, number) {
 }
 
 m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
-
 	// If we have some foundations, and we don't have enough builder-workers,
 	// try reassigning some other workers who are nearby
 	
@@ -782,6 +797,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 	
 	var self = this;
 	
+	// TODO: this is not perfect performance-wise.
 	var foundations = this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(),API3.Filters.not(API3.Filters.byClass("Field")))).toEntityArray();
 	var damagedBuildings = this.buildings.filter(function (ent) { if (ent.needsRepair() && ent.getMetadata(PlayerID, "plan") == undefined) { return true; } return false; }).toEntityArray();
 	
@@ -914,6 +930,13 @@ m.BaseManager.prototype.update = function(gameState, queues, events) {
 	Engine.ProfileStart("Assign builders");
 	this.assignToFoundations(gameState);
 	Engine.ProfileStop()
+	
+	if (this.constructing && this.anchor)
+	{
+		var terrMap = m.createTerritoryMap(gameState);
+		if(terrMap.getOwner(this.anchor.position()) !== 0 && terrMap.getOwner(this.anchor.position()) !== PlayerID)
+			this.anchor.destroy();
+	}
 
 //	if (!this.constructing)
 //	{

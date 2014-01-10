@@ -615,6 +615,7 @@ function updateGroups()
 			button.hidden = false;
 		button.onpress = (function(i) { return function() { performGroup((Engine.HotkeyIsPressed("selection.add") ? "add" : "select"), i); } })(i);
 		button.ondoublepress = (function(i) { return function() { performGroup("snap", i); } })(i);
+		button.onpressright = (function(i) { return function() { performGroup("breakUp", i); } })(i);
 	}
 	var numButtons = i;
 	var rowLength = 1;

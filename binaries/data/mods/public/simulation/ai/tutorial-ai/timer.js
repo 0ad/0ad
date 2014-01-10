@@ -92,7 +92,7 @@ var Timer = function() {
 
 
 //-EmjeR-// Alarm class //
-function alarm(gameState, id, interval, delay, repeat) {
+var alarm = function(gameState, id, interval, delay, repeat) {
 	this.id = id;
 	this.interval = interval;
 	this.delay = delay;

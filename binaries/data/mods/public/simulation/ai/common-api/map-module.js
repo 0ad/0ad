@@ -61,32 +61,63 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 			str = +strength;
 		break;
 	}
-		
-	for ( var y = y0; y < y1; ++y) {
-		for ( var x = x0; x < x1; ++x) {
-			var dx = x - cx;
-			var dy = y - cy;
-			var r2 = dx*dx + dy*dy;
-			if (r2 < maxDist2){
-				var quant = 0;
-				switch (type){
-					case 'linear':
-						var r = Math.sqrt(r2);
-						quant = str * (maxDist - r);
-						break;
-					case 'quadratic':
-						quant = str * (maxDist2 - r2);
-						break;
-					case 'constant':
-						quant = str;
-						break;
+	
+	// code duplicating for speed
+	if (type === 'linear' || type === "linear")
+	{
+		for ( var y = y0; y < y1; ++y) {
+			for ( var x = x0; x < x1; ++x) {
+				var dx = x - cx;
+				var dy = y - cy;
+				var r2 = dx*dx + dy*dy;
+				if (r2 < maxDist2){
+					var quant = 0;
+					var r = Math.sqrt(r2);
+					quant = str * (maxDist - r);
+
+					if (this.map[x + y * this.width] + quant < 0)
+						this.map[x + y * this.width] = 0;
+					else if (this.map[x + y * this.width] + quant > this.maxVal)
+						this.map[x + y * this.width] = this.maxVal;	// avoids overflow.
+					else
+						this.map[x + y * this.width] += quant;
 				}
-				if (this.map[x + y * this.width] + quant < 0)
-					this.map[x + y * this.width] = 0;
-				else if (this.map[x + y * this.width] + quant > this.maxVal)
-					this.map[x + y * this.width] = this.maxVal;	// avoids overflow.
-				else
-					this.map[x + y * this.width] += quant;
+			}
+		}
+	} else if (type === 'quadratic' || type === "quadratic")
+	{
+		for ( var y = y0; y < y1; ++y) {
+			for ( var x = x0; x < x1; ++x) {
+				var dx = x - cx;
+				var dy = y - cy;
+				var r2 = dx*dx + dy*dy;
+				if (r2 < maxDist2){
+					var quant = str * (maxDist2 - r2);
+					
+					if (this.map[x + y * this.width] + quant < 0)
+						this.map[x + y * this.width] = 0;
+					else if (this.map[x + y * this.width] + quant > this.maxVal)
+						this.map[x + y * this.width] = this.maxVal;	// avoids overflow.
+					else
+						this.map[x + y * this.width] += quant;
+				}
+			}
+		}
+	} else if (type === 'constant' || type === "constant")
+	{
+		for ( var y = y0; y < y1; ++y) {
+			for ( var x = x0; x < x1; ++x) {
+				var dx = x - cx;
+				var dy = y - cy;
+				var r2 = dx*dx + dy*dy;
+				if (r2 < maxDist2){
+					if (this.map[x + y * this.width] + str < 0)
+						this.map[x + y * this.width] = 0;
+					else if (this.map[x + y * this.width] + str > this.maxVal)
+						this.map[x + y * this.width] = this.maxVal;	// avoids overflow.
+					else
+						this.map[x + y * this.width] += str;
+				}
 			}
 		}
 	}
@@ -115,32 +146,67 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type) {
 			break;
 	}
 	
-	for ( var y = y0; y < y1; ++y) {
-		for ( var x = x0; x < x1; ++x) {
-			var dx = x - cx;
-			var dy = y - cy;
-			var r2 = dx*dx + dy*dy;
-			if (r2 < maxDist2){
-				var quant = 0;
-				switch (type){
-					case 'linear':
-						var r = Math.sqrt(r2);
-						quant = str * (maxDist - r);
-						break;
-					case 'quadratic':
-						quant = str * (maxDist2 - r2);
-						break;
-					case 'constant':
-						quant = str;
-						break;
+	if (type === 'linear' || type === "linear")
+	{
+		for ( var y = y0; y < y1; ++y) {
+			for ( var x = x0; x < x1; ++x) {
+				var dx = x - cx;
+				var dy = y - cy;
+				var r2 = dx*dx + dy*dy;
+				if (r2 < maxDist2){
+					var quant = 0;
+					var r = Math.sqrt(r2);
+					quant = str * (maxDist - r);
+					
+					var machin = this.map[x + y * this.width] * quant;
+					if (machin < 0)
+						this.map[x + y * this.width] = 0;
+					else if (machin > this.maxVal)
+						this.map[x + y * this.width] = this.maxVal;
+					else
+						this.map[x + y * this.width] = machin;
+
 				}
-				var machin = this.map[x + y * this.width] * quant;
-				if (machin < 0)
-					this.map[x + y * this.width] = 0;
-				else if (machin > this.maxVal)
-					this.map[x + y * this.width] = this.maxVal;
-				else
-					this.map[x + y * this.width] = machin;
+			}
+		}
+	} else if (type === 'quadratic' || type === "quadratic")
+	{
+		for ( var y = y0; y < y1; ++y) {
+			for ( var x = x0; x < x1; ++x) {
+				var dx = x - cx;
+				var dy = y - cy;
+				var r2 = dx*dx + dy*dy;
+				if (r2 < maxDist2){
+					var quant = str * (maxDist2 - r2);
+					
+					var machin = this.map[x + y * this.width] * quant;
+					if (machin < 0)
+						this.map[x + y * this.width] = 0;
+					else if (machin > this.maxVal)
+						this.map[x + y * this.width] = this.maxVal;
+					else
+						this.map[x + y * this.width] = machin;
+
+				}
+			}
+		}
+	} else if (type === 'constant' || type === "constant")
+	{
+		for ( var y = y0; y < y1; ++y) {
+			for ( var x = x0; x < x1; ++x) {
+				var dx = x - cx;
+				var dy = y - cy;
+				var r2 = dx*dx + dy*dy;
+				if (r2 < maxDist2){
+					var machin = this.map[x + y * this.width] * str;
+					if (machin < 0)
+						this.map[x + y * this.width] = 0;
+					else if (machin > this.maxVal)
+						this.map[x + y * this.width] = this.maxVal;
+					else
+						this.map[x + y * this.width] = machin;
+
+				}
 			}
 		}
 	}

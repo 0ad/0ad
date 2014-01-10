@@ -112,29 +112,25 @@ m.NavalManager.prototype.canReach = function (gameState, regionA, regionB) {
 
 
 m.NavalManager.prototype.checkEvents = function (gameState, queues, events) {
-	for (var i in events)
+	var evts = events["ConstructionFinished"];
+	// TODO: probably check stuffs like a base destruction.
+	for (var i in evts)
 	{
-		if (events[i].type == "Destroy")
+		var evt = evts[i];
+		if (evt && evt.newentity)
 		{
-			// TODO: probably check stuffs like a base destruction.
-		} else if (events[i].type == "ConstructionFinished")
-		{
-			var evt = events[i];
-			if (evt.msg && evt.msg.newentity)
+			var entity = gameState.getEntityById(evt.newentity);
+			if (entity && entity.hasClass("Dock") && entity.isOwn(PlayerID))
 			{
-				var entity = gameState.getEntityById(evt.msg.newentity);
-				if (entity && entity.hasClass("Dock") && entity.isOwn(PlayerID))
-				{
-					// okay we have a dock whose construction is finished.
-					// let's assign it to us.
-					var pos = entity.position();
-					var li = gameState.ai.accessibility.getAccessValue(pos);
-					var ni = entity.getMetadata(PlayerID, "sea");
-					if (this.landZoneDocked[li].indexOf(ni) === -1)
-						this.landZoneDocked[li].push(ni);
-					if (this.accessibleSeas.indexOf(ni) === -1)
-						this.accessibleSeas.push(ni);
-				}
+				// okay we have a dock whose construction is finished.
+				// let's assign it to us.
+				var pos = entity.position();
+				var li = gameState.ai.accessibility.getAccessValue(pos);
+				var ni = entity.getMetadata(PlayerID, "sea");
+				if (this.landZoneDocked[li].indexOf(ni) === -1)
+					this.landZoneDocked[li].push(ni);
+				if (this.accessibleSeas.indexOf(ni) === -1)
+					this.accessibleSeas.push(ni);
 			}
 		}
 	}

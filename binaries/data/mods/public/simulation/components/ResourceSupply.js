@@ -43,7 +43,13 @@ ResourceSupply.prototype.Init = function()
 {
 	// Current resource amount (non-negative)
 	this.amount = this.GetMaxAmount();
-    this.gatherers = [];	// list of IDs
+
+    this.gatherers = [];	// list of IDs for each players
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);	// system component so that's safe.
+	var numPlayers = cmpPlayerManager.GetNumPlayers();
+    for (var i = 0; i < numPlayers; ++i)
+    	this.gatherers.push([]);
+
     this.infinite = !isFinite(+this.template.Amount);
 };
 
@@ -72,9 +78,11 @@ ResourceSupply.prototype.GetMaxGatherers = function()
 	return +this.template.MaxGatherers;
 };
 
-ResourceSupply.prototype.GetGatherers = function()
+ResourceSupply.prototype.GetGatherers = function(player)
 {
-	return this.gatherers;
+	if (player === undefined)
+		return this.gatherers;
+	return this.gatherers[player-1];
 };
 
 ResourceSupply.prototype.GetDiminishingReturns = function()
@@ -112,21 +120,21 @@ ResourceSupply.prototype.GetType = function()
 	return { "generic": type, "specific": subtype };
 };
 
-ResourceSupply.prototype.IsAvailable = function(gathererID)
+ResourceSupply.prototype.IsAvailable = function(player, gathererID)
 {
-	if (this.gatherers.length < this.GetMaxGatherers() || this.gatherers.indexOf(gathererID) !== -1)
+	if (this.gatherers[player-1].length < this.GetMaxGatherers() || this.gatherers[player-1].indexOf(gathererID) !== -1)
 		return true;
 	return false;
 };
 
-ResourceSupply.prototype.AddGatherer = function(gathererID)
+ResourceSupply.prototype.AddGatherer = function(player, gathererID)
 {
-	if (!this.IsAvailable(gathererID))
+	if (!this.IsAvailable(player, gathererID))
 		return false;
  	
-	if (this.gatherers.indexOf(gathererID) === -1)
+	if (this.gatherers[player-1].indexOf(gathererID) === -1)
 	{
-		this.gatherers.push(gathererID);
+		this.gatherers[player-1].push(gathererID);
 		// broadcast message, mainly useful for the AIs.
 		Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.gatherers });
 	}
@@ -135,13 +143,26 @@ ResourceSupply.prototype.AddGatherer = function(gathererID)
 };
 
 // should this return false if the gatherer didn't gather from said resource?
-ResourceSupply.prototype.RemoveGatherer = function(gathererID)
+ResourceSupply.prototype.RemoveGatherer = function(gathererID, player)
 {
-	if (this.gatherers.indexOf(gathererID) !== -1)
+	// this can happen if the unit is dead
+	if (player === undefined || player === -1)
 	{
-		this.gatherers.splice(this.gatherers.indexOf(gathererID),1);
-		// broadcast message, mainly useful for the AIs.
-		Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.gatherers });
+		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		var numPlayers = cmpPlayerManager.GetNumPlayers();
+	    for (var i = 0; i < numPlayers; ++i)
+			this.RemoveGatherer(gathererID, i);
+	}
+	else
+	{
+		var index = this.gatherers[player-1].indexOf(gathererID);
+		if (index !== -1)
+		{
+			this.gatherers[player-1].splice(index,1);
+			// broadcast message, mainly useful for the AIs.
+			Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.gatherers });
+			return;
+		}
 	}
 };
 

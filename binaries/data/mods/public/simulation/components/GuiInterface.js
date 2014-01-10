@@ -322,6 +322,9 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		ret.attack.type = type;
 		ret.attack.minRange = range.min;
 		ret.attack.maxRange = range.max;
+		var timers = cmpAttack.GetTimers(type);
+		ret.attack.prepareTime = timers.prepare;
+		ret.attack.repeatTime = timers.repeat;
 		if (type == "Ranged")
 		{
 			ret.attack.elevationBonus = range.elevationBonus;
@@ -357,6 +360,17 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 	if (cmpArmour)
 	{
 		ret.armour = cmpArmour.GetArmourStrengths();
+	}
+
+	var cmpBuildingAI = Engine.QueryInterface(ent, IID_BuildingAI);
+	if (cmpBuildingAI)
+	{
+		ret.buildingAI = {
+			"defaultArrowCount": cmpBuildingAI.GetDefaultArrowCount(),
+			"garrisonArrowMultiplier": cmpBuildingAI.GetGarrisonArrowMultiplier(),
+			"garrisonArrowClasses": cmpBuildingAI.GetGarrisonArrowClasses(),
+			"arrowCount": cmpBuildingAI.GetArrowCount()
+		};
 	}
 
 	var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
