@@ -197,100 +197,109 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 
 	var foundationFinished = {};
 	
-	for each (var evt in state.events)
+	// by order of updating:
+	// we "Destroy" last because we want to be able to switch Metadata first.
+	var CreateEvents = state.events["Create"];
+	var DestroyEvents = state.events["Destroy"];
+	var RenamingEvents = state.events["EntityRenamed"];
+	var TrainingEvents = state.events["TrainingFinished"];
+	var ConstructionEvents = state.events["ConstructionFinished"];
+	var MetadataEvents = state.events["AIMetadata"];
+	var ownershipChangeEvents = state.events["OwnershipChanged"];
+
+	for (var i = 0; i < CreateEvents.length; ++i)
 	{
-		if (evt.type == "Create")
-		{
-			if (!state.entities[evt.msg.entity])
-			{
-				continue; // Sometimes there are things like foundations which get destroyed too fast
-			}
-			this._entities[evt.msg.entity] = new m.Entity(this, state.entities[evt.msg.entity]);
-			this.entities.addEnt(this._entities[evt.msg.entity]);
+		var evt = CreateEvents[i];
+		if (!state.entities[evt.entity])
+			continue; // Sometimes there are things like foundations which get destroyed too fast
 
-			// Update all the entity collections since the create operation affects static properties as well as dynamic
-			for (var entCollection in this._entityCollections)
-			{
-				this._entityCollections[entCollection].updateEnt(this._entities[evt.msg.entity]);
-			}
-		}
-		else if (evt.type == "Destroy")
+		this._entities[evt.entity] = new m.Entity(this, state.entities[evt.entity]);
+		this.entities.addEnt(this._entities[evt.entity]);
+		
+		// Update all the entity collections since the create operation affects static properties as well as dynamic
+		for (var entCollection in this._entityCollections)
+			this._entityCollections[entCollection].updateEnt(this._entities[evt.entity]);
+	}
+	for (var i in RenamingEvents)
+	{
+		var evt = RenamingEvents[i];
+		// Switch the metadata
+		for (var p in this._players)
 		{
-			// A small warning: javascript "delete" does not actually delete, it only removes the reference in this object.
-			// the "deleted" object remains in memory, and any older reference to it will still reference it as if it were not "deleted".
-			// Worse, they might prevent it from being garbage collected, thus making it stay alive and consuming ram needlessly.
-			// So take care, and if you encounter a weird bug with deletion not appearing to work correctly, this is probably why.
-			
-			if (!this._entities[evt.msg.entity])
-				continue;
-			
-			if (foundationFinished[evt.msg.entity])
-				evt.msg["SuccessfulFoundation"] = true;
-			
-			// The entity was destroyed but its data may still be useful, so
-			// remember the entity and this AI's metadata concerning it
-			evt.msg.metadata = {};
-			evt.msg.entityObj = (evt.msg.entityObj || this._entities[evt.msg.entity]);
-			for (var i in this._players)
-				evt.msg.metadata[this._players[i]] = this._entityMetadata[this._players[i]][evt.msg.entity];
-
-			for each (var entCol in this._entityCollections)
-			{
-				entCol.removeEnt(this._entities[evt.msg.entity]);
-			}
-			this.entities.removeEnt(this._entities[evt.msg.entity]);
-
-			delete this._entities[evt.msg.entity];
-			for (var i in this._players)
-				delete this._entityMetadata[this._players[i]][evt.msg.entity];
+			this._entityMetadata[this._players[p]][evt.newentity] = this._entityMetadata[this._players[p]][evt.entity];
+			this._entityMetadata[this._players[p]][evt.entity] = {};
 		}
-		else if (evt.type == "EntityRenamed")
+	}
+	for (var i in TrainingEvents)
+	{
+		var evt = TrainingEvents[i];
+		// Apply metadata stored in training queues
+		for each (var ent in evt.entities)
 		{
-			// Switch the metadata
-			for (var i in this._players)
+			for (var key in evt.metadata)
 			{
-				this._entityMetadata[this._players[i]][evt.msg.newentity] = this._entityMetadata[this._players[i]][evt.msg.entity];
-				this._entityMetadata[this._players[i]][evt.msg.entity] = {};
-			}
-		}
-		else if (evt.type == "TrainingFinished")
-		{
-			// Apply metadata stored in training queues
-			for each (var ent in evt.msg.entities)
-			{
-				for (var key in evt.msg.metadata)
-				{
-					this.setMetadata(evt.msg.owner, this._entities[ent], key, evt.msg.metadata[key])
-				}
-			}
-		}
-		else if (evt.type == "ConstructionFinished")
-		{
-			// we can rely on this being before the "Destroy" command as this is the order defined by FOundation.js
-			// we'll move metadata.
-			if (!this._entities[evt.msg.entity])
-				continue;
-			var ent = this._entities[evt.msg.entity];
-			var newEnt = this._entities[evt.msg.newentity];
-			if (this._entityMetadata[ent.owner()] && this._entityMetadata[ent.owner()][evt.msg.entity] !== undefined)
-				for (var key in this._entityMetadata[ent.owner()][evt.msg.entity])
-				{
-					this.setMetadata(ent.owner(), newEnt, key, this._entityMetadata[ent.owner()][evt.msg.entity][key])
-				}
-			foundationFinished[evt.msg.entity] = true;
-		}
-		else if (evt.type == "AIMetadata")
-		{
-			if (!this._entities[evt.msg.id])
-				continue;	// might happen in some rare cases of foundations getting destroyed, perhaps.
-			// Apply metadata (here for buildings for example)
-			for (var key in evt.msg.metadata)
-			{
-				this.setMetadata(evt.msg.owner, this._entities[evt.msg.id], key, evt.msg.metadata[key])
+				this.setMetadata(evt.owner, this._entities[ent], key, evt.metadata[key])
 			}
 		}
 	}
+	for (var i in ConstructionEvents)
+	{
+		var evt = ConstructionEvents[i];
+		// we'll move metadata.
+		if (!this._entities[evt.entity])
+			continue;
+		var ent = this._entities[evt.entity];
+		var newEnt = this._entities[evt.newentity];
+		if (this._entityMetadata[ent.owner()] && this._entityMetadata[ent.owner()][evt.entity] !== undefined)
+			for (var key in this._entityMetadata[ent.owner()][evt.entity])
+			{
+				this.setMetadata(ent.owner(), newEnt, key, this._entityMetadata[ent.owner()][evt.entity][key])
+			}
+		foundationFinished[evt.entity] = true;
+	}
+	for (var i in MetadataEvents)
+	{
+		var evt = MetadataEvents[i];
+		if (!this._entities[evt.id])
+			continue;	// might happen in some rare cases of foundations getting destroyed, perhaps.
+						// Apply metadata (here for buildings for example)
+		for (var key in evt.metadata)
+		{
+			this.setMetadata(evt.owner, this._entities[evt.id], key, evt.metadata[key])
+		}
+	}
 	
+	for (var i = 0; i < DestroyEvents.length; ++i)
+	{
+		var evt = DestroyEvents[i];
+		// A small warning: javascript "delete" does not actually delete, it only removes the reference in this object.
+		// the "deleted" object remains in memory, and any older reference to it will still reference it as if it were not "deleted".
+		// Worse, they might prevent it from being garbage collected, thus making it stay alive and consuming ram needlessly.
+		// So take care, and if you encounter a weird bug with deletion not appearing to work correctly, this is probably why.
+		if (!this._entities[evt.entity])
+			continue;
+
+		if (foundationFinished[evt.entity])
+			evt["SuccessfulFoundation"] = true;
+		
+		// The entity was destroyed but its data may still be useful, so
+		// remember the entity and this AI's metadata concerning it
+		evt.metadata = {};
+		evt.entityObj = this._entities[evt.entity];
+		for (var j in this._players)
+			evt.metadata[this._players[j]] = this._entityMetadata[this._players[j]][evt.entity];
+		
+		for each (var entCol in this._entityCollections)
+		{
+			entCol.removeEnt(this._entities[evt.entity]);
+		}
+		this.entities.removeEnt(this._entities[evt.entity]);
+		
+		delete this._entities[evt.entity];
+		for (var j in this._players)
+			delete this._entityMetadata[this._players[j]][evt.entity];
+	}
+
 	for (var id in state.entities)
 	{
 		var changes = state.entities[id];

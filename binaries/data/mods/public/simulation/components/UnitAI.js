@@ -1970,8 +1970,9 @@ var UnitFsmSpec = {
 					this.gatheringTarget = this.order.data.target;	// temporary, deleted in "leave".
 
 					// check that we can gather from the resource we're supposed to gather from.
+					var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-					if (!cmpSupply || !cmpSupply.AddGatherer(this.entity))
+					if (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity))
 					{
 						// Save the current order's data in case we need it later
 						var oldType = this.order.data.type;
@@ -2029,8 +2030,11 @@ var UnitFsmSpec = {
 						// We failed to reach the target
 
 						// remove us from the list of entities gathering from Resource.
+						var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 						var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-						if (cmpSupply)
+						if (cmpSupply && cmpOwnership)
+							cmpSupply.RemoveGatherer(this.entity, cmpOwnership.GetOwner());
+						else if (cmpSupply)
 							cmpSupply.RemoveGatherer(this.entity);
 
 						// Save the current order's data in case we need it later
@@ -2069,8 +2073,11 @@ var UnitFsmSpec = {
 				},
 				
 				"leave": function() {
+					var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-					if (cmpSupply)
+					if (cmpSupply && cmpOwnership)
+						cmpSupply.RemoveGatherer(this.entity, cmpOwnership.GetOwner());
+					else if (cmpSupply)
 						cmpSupply.RemoveGatherer(this.entity);
 					delete this.gatheringTarget;
 				},
@@ -2128,8 +2135,9 @@ var UnitFsmSpec = {
 					{
 						// Check that we can gather from the resource we're supposed to gather from.
 						// Will only be added if we're not already in.
+						var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 						var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-						if (!cmpSupply || !cmpSupply.AddGatherer(this.entity))
+						if (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity))
 						{
 							this.gatheringTarget = INVALID_ENTITY;
 							this.StartTimer(0);
@@ -2184,8 +2192,11 @@ var UnitFsmSpec = {
 				"leave": function() {
 					this.StopTimer();
 
+					var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-					if (cmpSupply)
+					if (cmpSupply && cmpOwnership)
+						cmpSupply.RemoveGatherer(this.entity, cmpOwnership.GetOwner());
+					else if (cmpSupply)
 						cmpSupply.RemoveGatherer(this.entity);
 					delete this.gatheringTarget;
 
@@ -2197,9 +2208,12 @@ var UnitFsmSpec = {
 					var resourceTemplate = this.order.data.template;
 					var resourceType = this.order.data.type;
 
-					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+					var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+					if (!cmpOwnership)
+						return;
 
-					if (cmpSupply && cmpSupply.IsAvailable(this.entity))
+					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+					if (cmpSupply && cmpSupply.IsAvailable(cmpOwnership.GetOwner(), this.entity))
 					{
 						// Check we can still reach and gather from the target
 						if (this.CheckTargetRange(this.gatheringTarget, IID_ResourceGatherer) && this.CanGather(this.gatheringTarget))
@@ -3857,6 +3871,7 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
 	for each (var ent in nearby)
 	{
@@ -3871,7 +3886,7 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 		if (template.indexOf("resource|") != -1)
 			template = template.slice(9);
 
-		if (amount > 0 && cmpResourceSupply.IsAvailable(this.entity) && filter(ent, type, template))
+		if (amount > 0 && cmpResourceSupply.IsAvailable(cmpOwnership.GetOwner(), this.entity) && filter(ent, type, template))
 			return ent;
 	}
 

@@ -202,7 +202,6 @@ m.Worker.prototype.checkUnsatisfactoryResource = function(gameState) {
 };
 
 m.Worker.prototype.startGathering = function(baseManager, gameState) {
-
 	var resource = this.ent.getMetadata(PlayerID, "gather-type");
 	var ent = this.ent;
 	var self = this;
@@ -276,7 +275,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 			}
 		});
 	}
-	
+
 	if (!nearestResources || nearestResources.length === 0){
 		if (resource === "food")
 			if (this.buildAnyField(gameState))
@@ -338,9 +337,9 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 			return;
 		}
 
-		if (supply.isFull() === true
+		if (supply.isFull(PlayerID) === true
 			|| (gameState.turnCache["ressGathererNB"] && gameState.turnCache["ressGathererNB"][supply.id()]
-				&& gameState.turnCache["ressGathererNB"][supply.id()] + supply.resourceSupplyGatherers().length >= supply.maxGatherers))
+				&& gameState.turnCache["ressGathererNB"][supply.id()] + supply.resourceSupplyGatherers(PlayerID).length >= supply.maxGatherers()))
 			return;
 
 							 
@@ -520,7 +519,7 @@ m.Worker.prototype.startHunting = function(gameState, baseManager){
 		if (supply.getMetadata(PlayerID, "inaccessible") === true)
 			return;
 		
-		if (supply.isFull() === true)
+		if (supply.isFull(PlayerID) === true)
 			return;
 		
 		if (!supply.hasClass("Animal"))

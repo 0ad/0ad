@@ -3,8 +3,8 @@ var AEGIS = function(m)
 
 m.Config = function() {
 	this.difficulty = 2;	// 0 is sandbox, 1 is easy, 2 is medium, 3 is hard, 4 is very hard.
-				// overriden by the GUI
 
+	// overriden by the GUI, this defines the base difficulty.
 	this.Military = {
 		"fortressLapseTime" : 540, // Time to wait between building 2 fortresses
 		"defenceBuildingTime" : 600, // Time to wait before building towers or fortresses
@@ -31,9 +31,12 @@ m.Config = function() {
 	// defence
 	this.Defence =
 	{
-		"defenceRatio" : 5,	// see defence.js for more info.
-		"armyCompactSize" : 700,	// squared. Half-diameter of an army.
-		"armyBreakawaySize" : 900  // squared.
+		"defenceRatio" : 2,	// see defence.js for more info.
+		"armyCompactSize" : 2000,	// squared. Half-diameter of an army.
+		"armyBreakawaySize" : 3500,  // squared.
+		"armyMergeSize" : 1400,	// squared.
+		"armyStrengthWariness" : 2,  // Representation of how important army strength is for its "watch level" (see defense-helper.js).
+		"prudence" : 1  // Representation of how quickly we'll forget about a dangerous army.
 	};
 	
 	// military

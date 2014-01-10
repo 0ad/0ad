@@ -13,7 +13,7 @@ var API3 = function(m)
 // this should only be called by an AI player after setting gamestate.ai
 
 // The initializer creates an expanded influence map for checking.
-// It's not extraordinarily slow, but it might be.
+// It's not extraordinarily slow, but it's not exactly fast either.
 m.aStarPath = function(gameState, onWater, disregardEntities, targetTerritory) {
 	var self = this;
 	

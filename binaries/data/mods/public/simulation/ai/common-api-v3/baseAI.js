@@ -64,8 +64,10 @@ m.BaseAI.prototype.CustomInit = function()
 
 m.BaseAI.prototype.HandleMessage = function(state, playerID, sharedAI)
 {
-	this.events = sharedAI.events;
 	PlayerID = playerID;
+	this.events = sharedAI.events;
+	this.passabilityMap = sharedAI.passabilityMap;
+	this.territoryMap = sharedAI.territoryMap;
 	
 	if (this.isDeserialized && this.turn !== 0)
 	{

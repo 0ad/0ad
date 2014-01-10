@@ -147,9 +147,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 				// estimate time based on priority + cost + nb
 				// TODO: work on this.
 				for (var type in qCosts)
-				{
 					qCosts[type] += (cost[type] + Math.min(cost[type],this.priorities[name]));
-				}
 				qTime += 30000;
 			} else {
 				// TODO: work on this.
@@ -528,9 +526,7 @@ m.QueueManager.prototype.addQueue = function(queueName, priority) {
 		var self = this;
 		this.queueArrays = [];
 		for (var p in this.queues)
-		{
 			this.queueArrays.push([p,this.queues[p]]);
-		}
 		this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
 	}
 }
@@ -547,9 +543,7 @@ m.QueueManager.prototype.removeQueue = function(queueName) {
 		var self = this;
 		this.queueArrays = [];
 		for (var p in this.queues)
-		{
 			this.queueArrays.push([p,this.queues[p]]);
-		}
 		this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
 	}
 }
@@ -559,9 +553,7 @@ m.QueueManager.prototype.changePriority = function(queueName, newPriority) {
 		this.priorities[queueName] = newPriority;
 	this.queueArrays = [];
 	for (var p in this.queues)
-	{
 		this.queueArrays.push([p,this.queues[p]]);
-	}
 	this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
 }
 

@@ -15,8 +15,8 @@ var AEGIS = function(m)
  */
 
 m.HQ = function(Config) {
-	
 	this.Config = Config;
+	
 	this.targetNumBuilders = this.Config.Economy.targetNumBuilders; // number of workers we want building stuff
 	
 	this.dockStartTime =  this.Config.Economy.dockStartTime * 1000;
@@ -173,66 +173,63 @@ m.HQ.prototype.init = function(gameState, events, queues){
 		if (PlayerID != i && gameState.isPlayerEnemy(i)) {
 			this.enemyWatchers[i] = new m.enemyWatcher(gameState, i);
 			this.ennWatcherIndex.push(i);
-			this.defenceManager.enemyArmy[i] = [];
 		}
 };
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues) {
-	for (var i in events)
+	// TODO: probably check stuffs like a base destruction.
+	var CreateEvents = events["Create"];
+	var ConstructionEvents = events["ConstructionFinished"];
+	for (i in CreateEvents)
 	{
-		if (events[i].type == "Destroy")
+		var evt = CreateEvents[i];
+		// Let's check if we have a building set to create a new base.
+		if (evt && evt.entity)
 		{
-			// TODO: probably check stuffs like a base destruction.
-		} else if (events[i].type == "Create")
-		{
-			var evt = events[i];
-			// Let's check if we have a building set to create a new base.
-			if (evt.msg && evt.msg.entity)
+			var ent = gameState.getEntityById(evt.entity);
+			
+			if (ent === undefined)
+				continue; // happens when this message is right before a "Destroy" one for the same entity.
+			
+			if (ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "base") === -1)
 			{
-				var ent = gameState.getEntityById(evt.msg.entity);
+				// Okay so let's try to create a new base around this.
+				var bID = m.playerGlobals[PlayerID].uniqueIDBases;
+				this.baseManagers[bID] = new m.BaseManager(this.Config);
+				this.baseManagers[bID].init(gameState, events, true);
+				this.baseManagers[bID].setAnchor(ent);
+				this.baseManagers[bID].initTerritory(this, gameState);
 				
-				if (ent === undefined)
-					continue; // happens when this message is right before a "Destroy" one for the same entity.
-
-				if (ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "base") === -1)
-				{
-					// Okay so let's try to create a new base around this.
-					var bID = m.playerGlobals[PlayerID].uniqueIDBases;
-					this.baseManagers[bID] = new m.BaseManager(this.Config);
-					this.baseManagers[bID].init(gameState, events, true);
-					this.baseManagers[bID].setAnchor(ent);
-					this.baseManagers[bID].initTerritory(this, gameState);
-					
-					// Let's get a few units out there to build this.
-					// TODO: select the best base, or use multiple bases.
-					var builders = this.bulkPickWorkers(gameState, bID, 10);
-					builders.forEach(function (worker) {
-						worker.setMetadata(PlayerID, "base", bID);
-						worker.setMetadata(PlayerID, "subrole", "builder");
-						worker.setMetadata(PlayerID, "target-foundation", ent.id());
-					});
-				}
+				// Let's get a few units out there to build this.
+				// TODO: select the best base, or use multiple bases.
+				var builders = this.bulkPickWorkers(gameState, bID, 10);
+				builders.forEach(function (worker) {
+					worker.setMetadata(PlayerID, "base", bID);
+					worker.setMetadata(PlayerID, "subrole", "builder");
+					worker.setMetadata(PlayerID, "target-foundation", ent.id());
+				});
 			}
-		} else if (events[i].type == "ConstructionFinished")
+		}
+	}
+	for (i in ConstructionEvents)
+	{
+		var evt = ConstructionEvents[i];
+		// Let's check if we have a building set to create a new base.
+		// TODO: move to the base manager.
+		if (evt.newentity)
 		{
-			var evt = events[i];
-			// Let's check if we have a building set to create a new base.
-			// TODO: move to the base manager.
-			if (evt.msg && evt.msg.newentity)
+			var ent = gameState.getEntityById(evt.newentity);
+
+			if (ent === undefined)
+				continue; // happens when this message is right before a "Destroy" one for the same entity.
+			
+			if (ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "baseAnchor") == true)
 			{
-				var ent = gameState.getEntityById(evt.msg.newentity);
-				
-				if (ent === undefined)
-					continue; // happens when this message is right before a "Destroy" one for the same entity.
-				
-				if (ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "baseAnchor") == true)
+				var base = ent.getMetadata(PlayerID, "base");
+				if (this.baseManagers[base].constructing)
 				{
-					var base = ent.getMetadata(PlayerID, "base");
-					if (this.baseManagers[base].constructing)
-					{
-						this.baseManagers[base].constructing = false;
-						this.baseManagers[base].initGatheringFunctions(this, gameState);
-					}
+					this.baseManagers[base].constructing = false;
+					this.baseManagers[base].initGatheringFunctions(this, gameState);
 				}
 			}
 		}
@@ -582,11 +579,13 @@ m.HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 			entPos = [entPos[0]/4.0,entPos[1]/4.0];
 			
 			var dist = API3.SquareVectorDistance(entPos, pos);
+			if (dist < 3500 || dist > 7900)
+				friendlyTiles.map[j] /= 2.0;
 			if (dist < 2120)
 			{
 				canBuild = false;
 				continue;
-			} else if (dist < 8000 || this.waterMap)
+			} else if (dist < 9200 || this.waterMap)
 				canBuild2 = true;
 		}
 		// checking for bases.
@@ -625,12 +624,13 @@ m.HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 				continue;
 			}
 			dpPos = [dpPos[0]/4.0,dpPos[1]/4.0];
-			if (API3.SquareVectorDistance(dpPos, pos) < 100)
+			var dist = API3.SquareVectorDistance(dpPos, pos);
+			if (dist < 600)
 			{
 				friendlyTiles.map[j] = 0;
 				continue;
-			} else if (API3.SquareVectorDistance(dpPos, pos) < 400)
-				friendlyTiles.map[j] /= 2;
+			} else if (dist < 1500)
+				friendlyTiles.map[j] /= 2.0;
 		}
 
 		friendlyTiles.map[j] *= 1.5;
@@ -1070,6 +1070,8 @@ m.HQ.prototype.update = function(gameState, queues, events) {
 
 	this.buildMoreHouses(gameState,queues);
 
+	this.GetCurrentGatherRates(gameState);
+	
 	if (gameState.getTimeElapsed() > this.techStartTime && gameState.currentPhase() > 2)
 		this.tryResearchTechs(gameState,queues);
 	

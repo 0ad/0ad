@@ -340,7 +340,7 @@ m.EntityTemplate = m.Class({
 			return +this._template.ResourceSupply.MaxGatherers;
 		return 0;
 	},
-
+	
 	resourceGatherRates: function() {
 		if (!this._template.ResourceGatherer)
 			return undefined;
@@ -558,17 +558,17 @@ m.Entity = m.Class({
 		return this._entity.resourceSupplyAmount;
 	},
 				   
-	resourceSupplyGatherers: function()
+	resourceSupplyGatherers: function(player)
 	{
 		if (this._entity.resourceSupplyGatherers !== undefined)
-			return this._entity.resourceSupplyGatherers;
+			return this._entity.resourceSupplyGatherers[player-1];
 		return [];
 	},
 				   
-	isFull: function()
+	isFull: function(player)
 	{
 		if (this._entity.resourceSupplyGatherers !== undefined)
-			return (this.maxGatherers() === this._entity.resourceSupplyGatherers.length);
+			return (this.maxGatherers() === this._entity.resourceSupplyGatherers[player-1].length);
 
 		return undefined;
 	},
@@ -577,6 +577,40 @@ m.Entity = m.Class({
 		if(this._entity.resourceCarrying === undefined)
 			return undefined;
 		return this._entity.resourceCarrying; 
+	},
+				   
+	currentGatherRate: function() {
+		// returns the gather rate for the current target if applicable.
+		if (!this._template.ResourceGatherer)
+			return undefined;
+		
+		if (this.unitAIOrderData().length &&
+			(this.unitAIState().split(".")[1] === "GATHER" || this.unitAIState().split(".")[1] === "RETURNRESOURCE"))
+		{
+			var ress = undefined;
+			// this is an abuse of "_ai" but it works.
+			if (this.unitAIState().split(".")[1] === "GATHER" && this.unitAIOrderData()[0]["target"] !== undefined)
+				ress = this._ai._entities[this.unitAIOrderData()[0]["target"]];
+			else if (this.unitAIOrderData()[1] !== undefined && this.unitAIOrderData()[1]["target"] !== undefined)
+				ress = this._ai._entities[this.unitAIOrderData()[1]["target"]];
+			
+			if (ress == undefined)
+				return undefined;
+			
+			var type = ress.resourceSupplyType();
+			var tstring = type.generic + "." + type.specific;
+				   
+			if (type.generic == "treasure")
+				return 1000;
+				
+			var speed = GetTechModifiedProperty(this._techModifications, this._template, "ResourceGatherer/BaseSpeed", +this._template.ResourceGatherer.BaseSpeed);
+			speed *= GetTechModifiedProperty(this._techModifications, this._template, "ResourceGatherer/Rates/"+tstring, +this._template.ResourceGatherer.Rates[tstring]);
+				   
+			if (speed)
+				return speed;
+			return 0;
+		}
+		return undefined;
 	},
 
 	garrisoned: function() { return new m.EntityCollection(this._ai, this._entity.garrisoned); },
@@ -702,6 +736,7 @@ m.Entity = m.Class({
 	construct: function(template, x, z, angle, metadata) {
 		// TODO: verify this unit can construct this, just for internal
 		// sanity-checking and error reporting
+
 		Engine.PostCommand(PlayerID,{
 			"type": "construct",
 			"entities": [this.id()],

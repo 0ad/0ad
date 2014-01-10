@@ -80,13 +80,9 @@ m.ShallowClone = function(obj)
 // Picks a random element from an array
 m.PickRandom = function(list){
 	if (list.length === 0)
-	{
 		return undefined;
-	}
 	else
-	{
 		return list[Math.floor(Math.random()*list.length)];
-	}
 }
 
 return m;

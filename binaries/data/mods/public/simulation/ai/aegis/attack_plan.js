@@ -745,31 +745,32 @@ m.CityAttack.prototype.update = function(gameState, HQ, events){
 		var armyToProcess = {};
 		// Let's check if any of our unit has been attacked. In case yes, we'll determine if we're simply off against an enemy army, a lone unit/builing
 		// or if we reached the enemy base. Different plans may react differently.
-		for (var key in events) {
-			var e = events[key];
-			if (e.type === "Attacked" && e.msg) {
-				if (IDs.indexOf(e.msg.target) !== -1) {
-					var attacker = gameState.getEntityById(e.msg.attacker);
-					var ourUnit = gameState.getEntityById(e.msg.target);
-
-					if (attacker && attacker.position() && attacker.hasClass("Unit") && attacker.owner() != 0 && attacker.owner() != PlayerID) {
-						
-						var territoryMap = m.createTerritoryMap(gameState);
-						if ( +territoryMap.point(attacker.position()) - 64 === +this.targetPlayer)
-						{
-							attackedNB++;
-						}
-						//if (HQ.enemyWatchers[attacker.owner()]) {
-							//toProcess[attacker.id()] = attacker;
-							//var armyID = HQ.enemyWatchers[attacker.owner()].getArmyFromMember(attacker.id());
-							//armyToProcess[armyID[0]] = armyID[1];
-						//}
+		
+		var attackedEvents = events["Attacked"];
+		for (var key in attackedEvents) {
+			var e = attackedEvents[key];
+			if (IDs.indexOf(e.target) !== -1) {
+				var attacker = gameState.getEntityById(e.attacker);
+				var ourUnit = gameState.getEntityById(e.target);
+				
+				if (attacker && attacker.position() && attacker.hasClass("Unit") && attacker.owner() != 0 && attacker.owner() != PlayerID) {
+					
+					var territoryMap = m.createTerritoryMap(gameState);
+					if ( +territoryMap.point(attacker.position()) - 64 === +this.targetPlayer)
+					{
+						attackedNB++;
 					}
-					// if we're being attacked by a building, flee.
-					if (attacker && ourUnit && attacker.hasClass("Structure")) {
-						ourUnit.flee(attacker);
-					}
+					//if (HQ.enemyWatchers[attacker.owner()]) {
+					//toProcess[attacker.id()] = attacker;
+					//var armyID = HQ.enemyWatchers[attacker.owner()].getArmyFromMember(attacker.id());
+					//armyToProcess[armyID[0]] = armyID[1];
+					//}
 				}
+				// if we're being attacked by a building, flee.
+				if (attacker && ourUnit && attacker.hasClass("Structure")) {
+					ourUnit.flee(attacker);
+				}
+				
 			}
 		}
 		if (attackedNB > 4) {
@@ -897,13 +898,6 @@ m.CityAttack.prototype.update = function(gameState, HQ, events){
 				&& API3.SquareVectorDistance(this.unitCollection.filter(API3.Filters.byClass("Siege")).getCentrePosition(), this.path[0][0]) >= 650)
 			{
 			} else {
-
-				for (var i = 0; i < this.path.length; ++i)
-				{
-					m.debug ("path waypoint " + i + "," + this.path[i][1] + " at " + uneval(this.path[i][0]));
-				}
-				m.debug ("position is " + this.unitCollection.getCentrePosition());
-
 				// okay so here basically two cases. The first one is "we need a boat at this point".
 				// the second one is "we need to unload at this point". The third is "normal".
 				if (this.path[0][1] !== true)
@@ -983,32 +977,31 @@ m.CityAttack.prototype.update = function(gameState, HQ, events){
 	
 	if (this.state === "") {
 		// Units attacked will target their attacker unless they're siege. Then we take another non-siege unit to attack them.
-		for (var key in events) {
-			var e = events[key];
-			if (e.type === "Attacked" && e.msg) {
-				if (IDs.indexOf(e.msg.target) !== -1) {
-					var attacker = gameState.getEntityById(e.msg.attacker);
-					var ourUnit = gameState.getEntityById(e.msg.target);
-					
-					if (attacker && attacker.position() && attacker.hasClass("Unit") && attacker.owner() != 0 && attacker.owner() != PlayerID) {
-						if (ourUnit.hasClass("Siege"))
+		var attackedEvents = events["Attacked"];
+		for (var key in attackedEvents) {
+			var e = attackedEvents[key];
+			if (IDs.indexOf(e.target) !== -1) {
+				var attacker = gameState.getEntityById(e.attacker);
+				var ourUnit = gameState.getEntityById(e.target);
+				
+				if (attacker && attacker.position() && attacker.hasClass("Unit") && attacker.owner() != 0 && attacker.owner() != PlayerID) {
+					if (ourUnit.hasClass("Siege"))
+					{
+						var collec = this.unitCollection.filterNearest(ourUnit.position(), 8).filter(Filters.not(Filters.byClass("Siege"))).toEntityArray();
+						if (collec.length !== 0)
 						{
-							var collec = this.unitCollection.filterNearest(ourUnit.position(), 8).filter(API3.Filters.not(API3.Filters.byClass("Siege"))).toEntityArray();
-							if (collec.length !== 0)
+							collec[0].attack(attacker.id());
+							if (collec.length !== 1)
 							{
-								collec[0].attack(attacker.id());
-								if (collec.length !== 1)
+								collec[1].attack(attacker.id());
+								if (collec.length !== 2)
 								{
-									collec[1].attack(attacker.id());
-									if (collec.length !== 2)
-									{
-										collec[2].attack(attacker.id());
-									}
+									collec[2].attack(attacker.id());
 								}
 							}
-						} else {
-							ourUnit.attack(attacker.id());
 						}
+					} else {
+						ourUnit.attack(attacker.id());
 					}
 				}
 			}
