@@ -105,6 +105,11 @@ Player.prototype.SetPopulationBonuses = function(num)
 	this.popBonuses = num;
 };
 
+Player.prototype.AddPopulationBonuses = function(num)
+{
+	this.popBonuses += num;
+};
+
 Player.prototype.GetPopulationLimit = function()
 {
 	return Math.min(this.GetMaxPopulation(), this.popBonuses);
@@ -546,10 +551,7 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 			Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).CheckConquestCriticalEntities();
 
 		if (cmpCost)
-		{
 			this.popUsed -= cmpCost.GetPopCost();
-			this.popBonuses -= cmpCost.GetPopBonus();
-		}
 
 		if (cmpIdentity && cmpIdentity.HasClass("Hero"))
 		{
@@ -565,10 +567,7 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 			this.conquestCriticalEntitiesCount++;
 
 		if (cmpCost)
-		{
 			this.popUsed += cmpCost.GetPopCost();
-			this.popBonuses += cmpCost.GetPopBonus();
-		}
 
 		if (cmpIdentity && cmpIdentity.HasClass("Hero"))
 			this.heroes.push(msg.entity);

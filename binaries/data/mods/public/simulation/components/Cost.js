@@ -33,6 +33,7 @@ Cost.prototype.Schema =
 
 Cost.prototype.Init = function()
 {
+	this.populationBonus = +this.template.PopulationBonus;
 };
 
 Cost.prototype.Serialize = null; // we have no dynamic state to save
@@ -44,7 +45,7 @@ Cost.prototype.GetPopCost = function()
 
 Cost.prototype.GetPopBonus = function()
 {
-	return +this.template.PopulationBonus;
+	return this.populationBonus;
 };
 
 Cost.prototype.GetBuildTime = function()
@@ -63,6 +64,40 @@ Cost.prototype.GetResourceCosts = function()
 		costs[r] = ApplyValueModificationsToEntity("Cost/Resources/"+r, costs[r], this.entity);
 	}
 	return costs;
+};
+
+Cost.prototype.OnOwnershipChanged = function(msg)
+{
+	if (msg.from != -1)
+	{
+		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(msg.from), IID_Player);
+		if (cmpPlayer)
+			cmpPlayer.AddPopulationBonuses(-this.GetPopBonus());
+	}
+	if (msg.to != -1)
+	{
+		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(msg.to), IID_Player);
+		if (cmpPlayer)
+			cmpPlayer.AddPopulationBonuses(this.GetPopBonus());
+	}
+};
+
+Cost.prototype.OnValueModification = function(msg)
+{
+	if (msg.component != "Cost")
+		return;
+
+	// update the population bonuses
+	var newPopBonus = ApplyValueModificationsToEntity("Cost/PopulationBonus",  +this.template.PopulationBonus, this.entity);
+	var popDifference = newPopBonus - this.populationBonus;
+	if (!popDifference)
+		return;
+
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	if (cmpPlayer)
+		cmpPlayer.AddPopulationBonuses(popDifference);
 };
 
 Engine.RegisterComponentType(IID_Cost, "Cost", Cost);
