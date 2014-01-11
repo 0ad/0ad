@@ -148,10 +148,8 @@ ResourceSupply.prototype.RemoveGatherer = function(gathererID, player)
 	// this can happen if the unit is dead
 	if (player === undefined || player === -1)
 	{
-		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		var numPlayers = cmpPlayerManager.GetNumPlayers();
-	    for (var i = 0; i < numPlayers; ++i)
-			this.RemoveGatherer(gathererID, i);
+	    for (var i = 0; i < this.gatherers.length; ++i)
+			this.RemoveGatherer(gathererID, i+1);
 	}
 	else
 	{

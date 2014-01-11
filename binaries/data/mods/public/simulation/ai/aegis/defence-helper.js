@@ -449,7 +449,7 @@ m.Army.prototype.getState = function (gameState)
 // check if we should remain at state 2 or drift away
 m.Army.prototype.checkDangerosity = function (gameState)
 {
-	this.territoryMap = Map.createTerritoryMap(gameState);
+	this.territoryMap = m.createTerritoryMap(gameState);
 	// right now we'll check if our position is "enemy" or not.
 	if (this.territoryMap.getOwner(this.position) !== PlayerID)
 		this.state = 1;
