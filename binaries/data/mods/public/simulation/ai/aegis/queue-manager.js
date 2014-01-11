@@ -293,14 +293,14 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState){
 		log ("<tr>");
 		
 		var q = this.queues[i];
-		var str = "<th>" + i +"<br>";
+		var str = "<th>" + i + "  (" + this.priorities[i] + ")<br><span class=\"ressLevel\">";
 		for each (var k in this.accounts[i].types)
 			if(k != "population")
 			{
 				str += this.accounts[i][k] + k.substr(0,1).toUpperCase() ;
 				if (k != "metal") str += " / ";
 			}
-		log(str + "</th>");
+		log(str + "</span></th>");
 		for (var j in q.queue) {
 			if (q.queue[j].isGo(gameState))
 				log ("<td>");
@@ -308,9 +308,9 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState){
 				log ("<td class=\"NotGo\">");
 
 			var qStr = "";
-			qStr += q.queue[j].type;
 			if (q.queue[j].number)
-				qStr += "x" + q.queue[j].number;
+				qStr += q.queue[j].number + " ";
+			qStr += q.queue[j].type;
 			log (qStr);
 			log ("</td>");
 		}
@@ -351,7 +351,10 @@ m.QueueManager.prototype.update = function(gameState) {
 	var availableRes = this.getAvailableResources(gameState);
 	for (var ress in availableRes)
 	{
-		if (availableRes[ress] > 0 && ress != "population")
+		if (ress === "population")
+			continue;
+
+		if (availableRes[ress] > 0)
 		{
 			var totalPriority = 0;
 			var tempPrio = {};
@@ -479,7 +482,7 @@ m.QueueManager.prototype.update = function(gameState) {
 	
 	Engine.ProfileStop();
 	
-	if (gameState.ai.playedTurn % 30 === 0)
+	if (gameState.ai.playedTurn % 10 === 5)
 		this.HTMLprintQueues(gameState);
 
 	Engine.ProfileStop();

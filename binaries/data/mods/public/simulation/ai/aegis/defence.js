@@ -212,7 +212,7 @@ m.Defence.prototype.assignDefenders = function(gameState, events)
 				potDefs.splice(0,1);
 				continue;
 			}
-			var str = getMaxStrength(ent);
+			var str = m.getMaxStrength(ent);
 			need -= str;
 			
 			army.addDefender(gameState,potDefs[0]);

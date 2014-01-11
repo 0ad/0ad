@@ -19,7 +19,7 @@ m.HQ = function(Config) {
 	
 	this.targetNumBuilders = this.Config.Economy.targetNumBuilders; // number of workers we want building stuff
 	
-	this.dockStartTime =  this.Config.Economy.dockStartTime * 1000;
+	this.dockStartTime = this.Config.Economy.dockStartTime * 1000;
 	this.techStartTime = this.Config.Economy.techStartTime * 1000;
 	
 	this.dockFailed = false;	// sanity check
@@ -285,9 +285,11 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues) {
 				size = 2;
 		}
 		
-		if (numFemales/numTotal > this.femaleRatio * 1.3)
+		// TODO: improve that logic.
+		if (numFemales/numTotal > this.femaleRatio * 1.3 && numTotal > 25)
 			queues.villager.paused = true;
-		else if ((numFemales/numTotal < this.femaleRatio * 1.1) || gameState.ai.queueManager.getAvailableResources(gameState)["food"] > 250)
+		else if ((numFemales/numTotal < this.femaleRatio * 1.1) || gameState.ai.queueManager.getAvailableResources(gameState)["food"] > 250
+			|| numTotal <= 25)
 			queues.villager.paused = false;
 		
 		// TODO: perhaps assign them a default resource and check the base according to that.
