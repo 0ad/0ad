@@ -5600,7 +5600,7 @@ UnitAI.prototype.TestAllMemberFunction = function(funcname, args)
 	for each (var ent in members)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (!cmpUnitAI[funcname].apply(cmpUnitAI, args));
+		if (!cmpUnitAI[funcname].apply(cmpUnitAI, args))
 			return false;
 	}
 	return true;

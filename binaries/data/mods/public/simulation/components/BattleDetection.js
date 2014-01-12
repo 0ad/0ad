@@ -36,6 +36,7 @@ BattleDetection.prototype.Init = function()
 	this.damage = 0; // Damage counter. Accumulative damage done over the current timer period.
 	this.damageRecord = []; // Damage record. Array of elements representing total damage done in a given timer cycle.
 	this.alertness = 0; // Alertness level. Incremented if damage rate exceeds 'damageRateThreshold' over a given timer period and decremented if it does not.
+	this.state = "PEACE";
 };
 
 BattleDetection.prototype.setState = function(state)
