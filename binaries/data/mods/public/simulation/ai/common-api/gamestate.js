@@ -44,9 +44,9 @@ m.GameState.prototype.update = function(SharedScript, state) {
 };
 
 m.GameState.prototype.updatingCollection = function(id, filter, collection, allowQuick){
-	// automatically add the player ID
+	// automatically add the player ID in front.
 	id = this.player + "-" + id;
-	if (!this.EntCollecNames[id]){
+	if (!this.EntCollecNames[id])  {
 		if (collection !== undefined)
 			this.EntCollecNames[id] = collection.filter(filter);
 		else {
@@ -106,6 +106,30 @@ m.GameState.prototype.getGEC = function(id)
 	return undefined;
 };
 
+m.GameState.prototype.getTimeElapsed = function()
+{
+	return this.timeElapsed;
+};
+
+m.GameState.prototype.getTemplate = function(type)
+{
+	if (this.techTemplates[type] !== undefined)
+		return new m.Technology(this.techTemplates, type);
+	
+	if (!this.templates[type])
+		return null;
+	
+	return new m.EntityTemplate(this.templates[type], this.techModifications);
+};
+
+m.GameState.prototype.applyCiv = function(str) {
+	return str.replace(/\{civ\}/g, this.playerData.civ);
+};
+
+m.GameState.prototype.civ = function() {
+	return this.playerData.civ;
+};
+
 m.GameState.prototype.currentPhase = function()
 {
 	if (this.isResearched("phase_city"))
@@ -133,13 +157,14 @@ m.GameState.prototype.isResearched = function(template)
 {
 	return this.playerData.researchedTechs[template] !== undefined;
 };
+
 // true if started or queued
 m.GameState.prototype.isResearching = function(template)
 {
 	return (this.playerData.researchStarted[template] !== undefined || this.playerData.researchQueued[template] !== undefined);
 };
 
-// this is an absolute check that doesn't check if we have a building to research from.
+// this is an "in-absolute" check that doesn't check if we have a building to research from.
 m.GameState.prototype.canResearch = function(techTemplateName, noRequirementCheck)
 {
 	var template = this.getTemplate(techTemplateName);
@@ -232,40 +257,19 @@ m.GameState.prototype.checkTechRequirements = function (reqs)
 	return false;
 };
 
-
-m.GameState.prototype.getTimeElapsed = function()
-{
-	return this.timeElapsed;
-};
-
-m.GameState.prototype.getTemplate = function(type)
-{
-	if (this.techTemplates[type] !== undefined)
-		return new m.Technology(this.techTemplates, type);
-	
-	if (!this.templates[type])
-		return null;
-	
-	return new m.EntityTemplate(this.templates[type], this.techModifications);
-};
-
-m.GameState.prototype.applyCiv = function(str) {
-	return str.replace(/\{civ\}/g, this.playerData.civ);
-};
-
-m.GameState.prototype.civ = function() {
-	return this.playerData.civ;
-};
-
-/**
- * @returns {Resources}
- */
-m.GameState.prototype.getResources = function() {
-	return new m.Resources(this.playerData.resourceCounts);
-};
-
 m.GameState.prototype.getMap = function() {
 	return this.sharedScript.passabilityMap;
+};
+
+m.GameState.prototype.getPassabilityClassMask = function(name) {
+	if (!(name in this.sharedScript.passabilityClasses)){
+		error("Tried to use invalid passability class name '" + name + "'");
+	}
+	return this.sharedScript.passabilityClasses[name];
+};
+
+m.GameState.prototype.getResources = function() {
+	return new m.Resources(this.playerData.resourceCounts);
 };
 
 m.GameState.prototype.getPopulation = function() {
@@ -278,13 +282,6 @@ m.GameState.prototype.getPopulationLimit = function() {
 
 m.GameState.prototype.getPopulationMax = function() {
 	return this.playerData.popMax;
-};
-
-m.GameState.prototype.getPassabilityClassMask = function(name) {
-	if (!(name in this.sharedScript.passabilityClasses)){
-		error("Tried to use invalid passability class name '" + name + "'");
-	}
-	return this.sharedScript.passabilityClasses[name];
 };
 
 m.GameState.prototype.getPlayerID = function() {
@@ -336,80 +333,89 @@ m.GameState.prototype.isEntityOwn = function(ent) {
 	return false;
 };
 
-m.GameState.prototype.getOwnEntities = function() {
-	return this.updatingCollection("own-entities", m.Filters.byOwner(this.player));
-};
+m.GameState.prototype.getEntityById = function(id){
+	if (this.entities._entities[id])
+		return this.entities._entities[id];
 
-m.GameState.prototype.getEnemyEntities = function() {
-	var diplomacyChange = false;
-	var enemies = this.getEnemies();
-	if (this.enemies){
-		if (this.enemies.length != enemies.length){
-			diplomacyChange = true;
-		}else{
-			for (var i  = 0; i < enemies.length; i++){
-				if (enemies[i] !== this.enemies[i]){
-					diplomacyChange = true;
-				}
-			}
-		}
-	}
-	if (diplomacyChange || !this.enemies){
-		return this.updatingCollection("enemy-entities", m.Filters.byOwners(enemies));
-		this.enemies = enemies;
-	}
-	return this.getEC("enemy-entities");
+	return undefined;
 };
 
 m.GameState.prototype.getEntities = function() {
 	return this.entities;
 };
 
-m.GameState.prototype.getEntityById = function(id){
-	if (this.entities._entities[id]) {
-		return this.entities._entities[id];
-	}else{
-		//debug("Entity " + id + " requested does not exist");
-	}
-	return undefined;
+m.GameState.prototype.getOwnEntities = function() {
+	return this.updatingGlobalCollection("" + this.player + "-entities", m.Filters.byOwner(this.player));
 };
 
+m.GameState.prototype.getOwnStructures = function() {
+	return this.updatingGlobalCollection("" + this.player + "-structures", m.Filters.byClass("Structure"), this.getOwnEntities());
+};
+
+m.GameState.prototype.getOwnUnits = function() {
+	return this.updatingGlobalCollection("" + this.player + "-units", m.Filters.byClass("Unit"), this.getOwnEntities());
+};
+
+// Try to use a parameter for those three, it'll be a lot faster.
+m.GameState.prototype.getEnemyEntities = function(enemyID) {
+	if (enemyID === undefined)
+		return this.entities.filter(m.Filters.byOwners(this.getEnemies()));
+
+	return this.updatingGlobalCollection("" + enemyID + "-entities", m.Filters.byOwner(enemyID));
+};
+
+m.GameState.prototype.getEnemyStructures = function(enemyID) {
+	if (enemyID === undefined)
+		return this.getEnemyEntities().filter(m.Filters.byClass("Structure"));
+
+	return this.updatingGlobalCollection("" + enemyID + "-structures", m.Filters.byClass("Structure"), this.getEnemyEntities(enemyID));
+};
+
+m.GameState.prototype.getEnemyUnits = function(enemyID) {
+	if (enemyID === undefined)
+		return this.getEnemyEntities().filter(m.Filters.byClass("Unit"));
+
+	return this.updatingGlobalCollection("" + enemyID + "-units", m.Filters.byClass("Unit"), this.getEnemyEntities(enemyID));
+};
+
+// if maintain is true, this will be stored. Otherwise it's one-shot.
 m.GameState.prototype.getOwnEntitiesByMetadata = function(key, value, maintain){
 	if (maintain === true)
 		return this.updatingCollection(key + "-" + value, m.Filters.byMetadata(this.player, key, value),this.getOwnEntities());
 	return this.getOwnEntities().filter(m.Filters.byMetadata(this.player, key, value));
 };
 
-m.GameState.prototype.getOwnEntitiesByRole = function(role){
-	return this.getOwnEntitiesByMetadata("role", role, true);
-};
-
-m.GameState.prototype.getOwnTrainingFacilities = function(){
-	return this.updatingCollection("own-training-facilities", m.Filters.byTrainingQueue(), this.getOwnEntities(), true);
-};
-
-m.GameState.prototype.getOwnResearchFacilities = function(){
-	return this.updatingCollection("own-research-facilities", m.Filters.byResearchAvailable(), this.getOwnEntities(), true);
+m.GameState.prototype.getOwnEntitiesByRole = function(role, maintain){
+	return this.getOwnEntitiesByMetadata("role", role, maintain);
 };
 
 m.GameState.prototype.getOwnEntitiesByType = function(type, maintain){
 	var filter = m.Filters.byType(type);
 	if (maintain === true)
-		return this.updatingCollection("own-by-type-" + type, filter, this.getOwnEntities());
+		return this.updatingCollection("type-" + type, filter, this.getOwnEntities());
 	return this.getOwnEntities().filter(filter);
 
 };
+
+m.GameState.prototype.getOwnTrainingFacilities = function(){
+	return this.updatingGlobalCollection("" + this.player + "-training-facilities", m.Filters.byTrainingQueue(), this.getOwnEntities(), true);
+};
+
+m.GameState.prototype.getOwnResearchFacilities = function(){
+	return this.updatingGlobalCollection("" + this.player + "-research-facilities", m.Filters.byResearchAvailable(), this.getOwnEntities(), true);
+};
+
 
 m.GameState.prototype.countEntitiesByType = function(type, maintain) {
 	return this.getOwnEntitiesByType(type, maintain).length;
 };
 
-m.GameState.prototype.countEntitiesAndQueuedByType = function(type) {
-	var count = this.countEntitiesByType(type, true);
+m.GameState.prototype.countEntitiesAndQueuedByType = function(type, maintain) {
+	var count = this.countEntitiesByType(type, maintain);
 	
 	// Count building foundations
 	if (this.getTemplate(type).hasClass("Structure") === true)
-		count += this.countEntitiesByType("foundation|" + type, true);
+		count += this.countFoundationsByType(type, true);
 	else if (this.getTemplate(type).resourceSupplyType() !== undefined)	// animal resources
 		count += this.countEntitiesByType("resource|" + type, true);
 	else
@@ -428,10 +434,14 @@ m.GameState.prototype.countEntitiesAndQueuedByType = function(type) {
 	return count;
 };
 
-m.GameState.prototype.countFoundationsWithType = function(type) {
+m.GameState.prototype.countFoundationsByType = function(type, maintain) {
 	var foundationType = "foundation|" + type;
+
+	if (maintain === true)
+		return this.updatingCollection("foundation-type-" + type, m.Filters.byType(foundationType), this.getOwnFoundations());
+
 	var count = 0;
-	this.getOwnEntities().forEach(function(ent) {
+	this.getOwnStructures().forEach(function(ent) {
 		var t = ent.templateName();
 		if (t == foundationType)
 			++count;
@@ -468,126 +478,43 @@ m.GameState.prototype.countOwnQueuedEntitiesWithMetadata = function(data, value)
 	return count;
 };
 
-/**
- * Find buildings that are capable of training the given unit type, and aren't
- * already too busy.
- */
-m.GameState.prototype.findTrainers = function(template) {
-	var maxQueueLength = 3; // avoid tying up resources in giant training queues
-	
-	return this.getOwnTrainingFacilities().filter(function(ent) {
-
-		var trainable = ent.trainableEntities();
-		if (!trainable || trainable.indexOf(template) == -1)
-			return false;
-
-		var queue = ent.trainingQueue();
-		if (queue) {
-			if (queue.length >= maxQueueLength)
-				return false;
-		}
-
-		return true;
-	});
-};
-
-/**
- * Find units that are capable of constructing the given building type.
- */
-m.GameState.prototype.findBuilders = function(template) {
-	return this.getOwnEntities().filter(function(ent) {
-
-		var buildable = ent.buildableEntities();
-		if (!buildable || buildable.indexOf(template) == -1)
-			return false;
-
-		return true;
-	});
-};
-
-/**
- * Find buildings that are capable of researching the given tech, and aren't
- * already too busy.
- */
-m.GameState.prototype.findResearchers = function(templateName, noRequirementCheck) {
-	// let's check we can research the tech.
-	if (!this.canResearch(templateName, noRequirementCheck))
-		return [];
-
-	var template = this.getTemplate(templateName);
-	var self = this;
-	
-	return this.getOwnResearchFacilities().filter(function(ent) { //}){
-		var techs = ent.researchableTechs();
-		for (var i in techs)
-		{
-			var thisTemp = self.getTemplate(techs[i]);
-			if (thisTemp.pairDef())
-			{
-				var pairedTechs = thisTemp.getPairedTechs();
-				if (pairedTechs[0]._templateName == templateName || pairedTechs[1]._templateName == templateName)
-					return true;
-			} else {
-				if (techs[i] == templateName)
-					return true;
-			}
-		}
-		return false;
-	});
-};
-
 m.GameState.prototype.getOwnFoundations = function() {
-	return this.updatingCollection("ownFoundations", m.Filters.isFoundation(), this.getOwnEntities());
+	return this.updatingGlobalCollection("" + this.player + "-foundations", m.Filters.isFoundation(), this.getOwnStructures());
 };
 
 m.GameState.prototype.getOwnDropsites = function(resource){
 	if (resource !== undefined)
-		return this.updatingCollection("dropsite-own-" + resource, m.Filters.isDropsite(resource), this.getOwnEntities(), true);
-	return this.updatingCollection("dropsite-own", m.Filters.isDropsite(), this.getOwnEntities(), true);
+		return this.updatingCollection("dropsite-" + resource, m.Filters.isDropsite(resource), this.getOwnEntities(), true);
+	return this.updatingCollection("dropsite-all", m.Filters.isDropsite(), this.getOwnEntities(), true);
 };
 
 m.GameState.prototype.getResourceSupplies = function(resource){
 	return this.updatingGlobalCollection("resource-" + resource, m.Filters.byResource(resource), this.getEntities(), true);
 };
 
-m.GameState.prototype.getEntityLimits = function() {
-	return this.playerData.entityLimits;
-};
-
-m.GameState.prototype.getEntityCounts = function() {
-	return this.playerData.entityCounts;
-};
-
-// Checks whether the maximum number of buildings have been cnstructed for a certain catergory
-m.GameState.prototype.isEntityLimitReached = function(category) {
-	if(this.playerData.entityLimits[category] === undefined || this.playerData.entityCounts[category] === undefined)
-		return false;
-	return (this.playerData.entityCounts[category] >= this.playerData.entityLimits[category]);
-};
-
+// This returns only units from buildings.
 m.GameState.prototype.findTrainableUnits = function(classes){
 	var allTrainable = [];
-	this.getOwnEntities().forEach(function(ent) {
+	this.getOwnStructures().forEach(function(ent) {
 		var trainable = ent.trainableEntities();
-		if (ent.hasClass("Structure"))
-			for (var i in trainable){
-				if (allTrainable.indexOf(trainable[i]) === -1){
-					allTrainable.push(trainable[i]);
-				}
+		for (var i in trainable){
+			if (allTrainable.indexOf(trainable[i]) === -1){
+				allTrainable.push(trainable[i]);
 			}
+		}
 	});
 	var ret = [];
 	for (var i in allTrainable) {
 		var template = this.getTemplate(allTrainable[i]);
-		var okay = true;
+
+		if (template.hasClass("Hero"))	// disabling heroes for now
+			continue;
 		
+		var okay = true;
 		for (var o in classes)
 			if (!template.hasClass(classes[o]))
 				okay = false;
-		
-		if (template.hasClass("Hero"))	// disabling heroes for now
-			okay = false;
-		
+
 		if (okay)
 			ret.push( [allTrainable[i], template] );
 	}
@@ -626,6 +553,75 @@ m.GameState.prototype.findAvailableTech = function() {
 		}
 	}
 	return ret;
+};
+
+/**
+ * Find buildings that are capable of training said template.
+ * Getting the best is up to the AI.
+ */
+m.GameState.prototype.findTrainers = function(template) {	
+	return this.getOwnTrainingFacilities().filter(function(ent) {
+		var trainable = ent.trainableEntities();
+		if (!trainable || trainable.indexOf(template) == -1)
+			return false;
+		return true;
+	});
+};
+
+/**
+ * Find units that are capable of constructing the given building type.
+ */
+m.GameState.prototype.findBuilders = function(template) {
+	return this.getOwnUnits().filter(function(ent) {
+		var buildable = ent.buildableEntities();
+		if (!buildable || buildable.indexOf(template) == -1)
+			return false;
+
+		return true;
+	});
+};
+
+// Find buildings that are capable of researching the given tech
+m.GameState.prototype.findResearchers = function(templateName, noRequirementCheck) {
+	// let's check we can research the tech.
+	if (!this.canResearch(templateName, noRequirementCheck))
+		return [];
+
+	var template = this.getTemplate(templateName);
+	var self = this;
+	
+	return this.getOwnResearchFacilities().filter(function(ent) {
+		var techs = ent.researchableTechs();
+		for (var i in techs)
+		{
+			var thisTemp = self.getTemplate(techs[i]);
+			if (thisTemp.pairDef())
+			{
+				var pairedTechs = thisTemp.getPairedTechs();
+				if (pairedTechs[0]._templateName == templateName || pairedTechs[1]._templateName == templateName)
+					return true;
+			} else {
+				if (techs[i] == templateName)
+					return true;
+			}
+		}
+		return false;
+	});
+};
+
+m.GameState.prototype.getEntityLimits = function() {
+	return this.playerData.entityLimits;
+};
+
+m.GameState.prototype.getEntityCounts = function() {
+	return this.playerData.entityCounts;
+};
+
+// Checks whether the maximum number of buildings have been cnstructed for a certain catergory
+m.GameState.prototype.isEntityLimitReached = function(category) {
+	if(this.playerData.entityLimits[category] === undefined || this.playerData.entityCounts[category] === undefined)
+		return false;
+	return (this.playerData.entityCounts[category] >= this.playerData.entityLimits[category]);
 };
 
 // defcon utilities

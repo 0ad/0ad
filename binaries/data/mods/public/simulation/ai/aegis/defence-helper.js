@@ -140,6 +140,8 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 	{
 		var ent = gameState.getEntityById(this.entities[i]);
 		var epos = ent.position();
+		if (epos == undefined)
+			continue;
 		pos[0] += epos[0];
 		pos[1] += epos[1];
 	}

@@ -74,7 +74,7 @@ m.HQ.prototype.init = function(gameState, events, queues){
 	if (ents.filter(API3.Filters.byClass("Cavalry")).length > 0)
 		hasScout = true;
 	
-	// tODO: take multiple CCs into account.
+	// TODO: take multiple CCs into account.
 	if (hasCC)
 	{
 		var CC = ents.filter(API3.Filters.byClass("CivCentre")).toEntityArray()[0];
@@ -121,10 +121,9 @@ m.HQ.prototype.init = function(gameState, events, queues){
 	
 	//this.reassignIdleWorkers(gameState);
 	
-	
 	this.navalManager.init(gameState, events, queues);
 
-	// TODO: change that.
+	// TODO: change that to something dynamic.
 	var civ = gameState.playerData.civ;
 	
 	// load units and buildings from the config files
@@ -153,27 +152,6 @@ m.HQ.prototype.init = function(gameState, events, queues){
 	for (var i in this.bFort){
 		this.bFort[i] = gameState.applyCiv(this.bFort[i]);
 	}
-	
-	// TODO: figure out how to make this generic
-	for (var i in this.attackManagers){
-		this.availableAttacks[i] = new this.attackManagers[i](gameState, this);
-	}
-	
-	var enemies = gameState.getEnemyEntities();
-	var filter = API3.Filters.byClassesOr(["CitizenSoldier", "Champion", "Hero", "Siege"]);
-	this.enemySoldiers = enemies.filter(filter); // TODO: cope with diplomacy changes
-	this.enemySoldiers.registerUpdates();
-	
-	// each enemy watchers keeps a list of entity collections about the enemy it watches
-	// It also keeps track of enemy armies, merging/splitting as needed
-	// TODO: remove those.
-	this.enemyWatchers = {};
-	this.ennWatcherIndex = [];
-	for (var i = 1; i <= 8; i++)
-		if (PlayerID != i && gameState.isPlayerEnemy(i)) {
-			this.enemyWatchers[i] = new m.enemyWatcher(gameState, i);
-			this.ennWatcherIndex.push(i);
-		}
 };
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues) {
@@ -244,14 +222,16 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues) {
 // TODO: This should probably be changed to favor a more mixed approach for better defense.
 //		(or even to adapt based on estimated enemy strategy).
 // TODO: this should probably set which base it wants them in.
-m.HQ.prototype.trainMoreWorkers = function(gameState, queues) {
+m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
+{
+	// Get some data.
 	// Count the workers in the world and in progress
 	var numFemales = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("units/{civ}_support_female_citizen"));
 	numFemales += queues.villager.countQueuedUnitsWithClass("Support");
 
 	// counting the workers that aren't part of a plan
 	var numWorkers = 0;
-	gameState.getOwnEntities().forEach (function (ent) {
+	gameState.getOwnunits().forEach (function (ent) {
 		if (ent.getMetadata(PlayerID, "role") == "worker" && ent.getMetadata(PlayerID, "plan") == undefined)
 			numWorkers++;
 	});
@@ -273,12 +253,12 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues) {
 		var template = gameState.applyCiv("units/{civ}_support_female_citizen");
 		
 		var size = Math.min(5, Math.ceil(numTotal / 10));
-
 		if (numFemales/numTotal > this.femaleRatio && (numTotal > 20 || (this.fastStart && numTotal > 10))) {
 			if (numTotal < 100)
 				template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["cost",1], ["speed",0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]]);
 			else
 				template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["strength",1] ]);
+
 			if (!template)
 				template = gameState.applyCiv("units/{civ}_support_female_citizen");
 			if (gameState.currentPhase() === 1)
@@ -286,10 +266,10 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues) {
 		}
 		
 		// TODO: improve that logic.
-		if (numFemales/numTotal > this.femaleRatio * 1.3 && numTotal > 25)
+		if (numFemales/numTotal > this.femaleRatio * 1.3 && numWorkers > 25)
 			queues.villager.paused = true;
 		else if ((numFemales/numTotal < this.femaleRatio * 1.1) || gameState.ai.queueManager.getAvailableResources(gameState)["food"] > 250
-			|| numTotal <= 25)
+			|| numWorkers <= 25)
 			queues.villager.paused = false;
 		
 		// TODO: perhaps assign them a default resource and check the base according to that.
@@ -557,8 +537,8 @@ m.HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 	// copy the resource map as initialization.
 	var friendlyTiles = new API3.Map(gameState.sharedScript, gameState.sharedScript.CCResourceMaps[resource].map, true);
 	friendlyTiles.setMaxVal(255);
-	var ents = gameState.getOwnEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-	var eEnts = gameState.getEnemyEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+	var ents = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+	var eEnts = gameState.getEnemyStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 
 	var dps = gameState.getOwnDropsites().toEntityArray();
 
@@ -806,10 +786,10 @@ m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 	for (var type in count)
 	{
 		if (count[type] === 0 || need[type]
-			|| capacity[type] < gameState.getOwnEntities().filter(API3.Filters.and(API3.Filters.byMetadata(PlayerID, "subrole", "gatherer"), API3.Filters.byMetadata(PlayerID, "gather-type", type))).length * 1.05)
+			|| capacity[type] < gameState.getOwnUnits().filter(API3.Filters.and(API3.Filters.byMetadata(PlayerID, "subrole", "gatherer"), API3.Filters.byMetadata(PlayerID, "gather-type", type))).length * 1.05)
 		{
 			// plan a new base.
-			if (gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_civil_centre")) === 0 && queues.civilCentre.length() === 0) {
+			if (gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_civil_centre")) === 0 && queues.civilCentre.length() === 0) {
 				if (this.outOf[type] && gameState.ai.playedTurn % 10 !== 0)
 					continue;
 				var pos = this.findBestEcoCCLocation(gameState, type);
@@ -831,7 +811,7 @@ m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 // TODO: Fortresses are placed randomly atm.
 m.HQ.prototype.buildDefences = function(gameState, queues){
 	
-	var workersNumber = gameState.getOwnEntitiesByRole("worker").filter(API3.Filters.not(API3.Filters.byHasMetadata(PlayerID,"plan"))).length;
+	var workersNumber = gameState.getOwnEntitiesByRole("worker", true).filter(API3.Filters.not(API3.Filters.byHasMetadata(PlayerID,"plan"))).length;
 	
 	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv('structures/{civ}_defense_tower'))
 		+ queues.defenceBuilding.length() < gameState.getEntityLimits()["DefenseTower"] && queues.defenceBuilding.length() < 4 && gameState.currentPhase() > 1) {
@@ -904,7 +884,7 @@ m.HQ.prototype.buildBlacksmith = function(gameState, queues){
 // TODO: building placement is bad. Choice of buildings is also fairly dumb.
 m.HQ.prototype.constructTrainingBuildings = function(gameState, queues) {
 	Engine.ProfileStart("Build buildings");
-	var workersNumber = gameState.getOwnEntitiesByRole("worker").filter(API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "plan"))).length;
+	var workersNumber = gameState.getOwnEntitiesByRole("worker", true).filter(API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "plan"))).length;
 
 	if (workersNumber > this.Config.Military.popForBarracks1) {
 		if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) + queues.militaryBuilding.length() < 1) {
@@ -931,7 +911,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues) {
 		if (queues.militaryBuilding.length() === 0){
 			var inConst = 0;
 			for (var i in this.bAdvanced)
-				inConst += gameState.countFoundationsWithType(gameState.applyCiv(this.bAdvanced[i]));
+				inConst += gameState.countFoundationsByType(gameState.applyCiv(this.bAdvanced[i]));
 			if (inConst == 0 && this.bAdvanced && this.bAdvanced.length !== 0) {
 				var i = Math.floor(Math.random() * this.bAdvanced.length);
 				if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i])) < 1){
@@ -960,8 +940,8 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues) {
 
 // TODO: use pop(). Currently unused as this is too gameable.
 m.HQ.prototype.garrisonAllFemales = function(gameState) {
-	var buildings = gameState.getOwnEntities().filter(API3.Filters.byCanGarrison()).toEntityArray();
-	var females = gameState.getOwnEntities().filter(API3.Filters.byClass("Support"));
+	var buildings = gameState.getOwnStructures().filter(API3.Filters.byCanGarrison()).toEntityArray();
+	var females = gameState.getOwnUnits().filter(API3.Filters.byClass("Support"));
 	
 	var cache = {};
 	
@@ -986,7 +966,7 @@ m.HQ.prototype.garrisonAllFemales = function(gameState) {
 };
 m.HQ.prototype.ungarrisonAll = function(gameState) {
 	this.hasGarrisonedFemales = false;
-	var buildings = gameState.getOwnEntities().filter(API3.Filters.and(API3.Filters.byClass("Structure"),API3.Filters.byCanGarrison())).toEntityArray();
+	var buildings = gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("Structure"),API3.Filters.byCanGarrison())).toEntityArray();
 	buildings.forEach( function (struct) {
 		if (struct.garrisoned() && struct.garrisoned().length)
 			struct.unloadAll();

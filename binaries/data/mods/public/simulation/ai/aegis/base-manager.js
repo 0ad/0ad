@@ -37,8 +37,8 @@ m.BaseManager = function(Config) {
 m.BaseManager.prototype.init = function(gameState, events, unconstructed){
 	this.constructing = unconstructed;
 	// entitycollections
-	this.units = gameState.getOwnEntities().filter(API3.Filters.and(API3.Filters.byClass("Unit"),API3.Filters.byMetadata(PlayerID, "base", this.ID)));
-	this.buildings = gameState.getOwnEntities().filter(API3.Filters.and(API3.Filters.byClass("Structure"),API3.Filters.byMetadata(PlayerID, "base", this.ID)));
+	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
+	this.buildings = gameState.getOwnStructures().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
 	
 	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID,"role","worker"));
 
@@ -623,7 +623,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 				// TODO: refine count to only count my base.
 			}
-		} else if (queues.dropsites.length() === 0 && gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_storehouse")) === 0) {
+		} else if (queues.dropsites.length() === 0 && gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_storehouse")) === 0) {
 			var wantedDPs = Math.ceil(this.gatherersByType(gameState, type).length / 12.0);
 			var need = wantedDPs - this.getResourceLevel(gameState,type, "dropsites-dpcount",2000);
 			if (need > 0)
@@ -947,7 +947,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events) {
 		
 		/*Engine.ProfileStart("Swap Workers");
 		 var gathererGroups = {};
-		 gameState.getOwnEntitiesByRole("worker").forEach(function(ent){ }){
+		 gameState.getOwnEntitiesByRole("worker", true).forEach(function(ent){ }){
 		 if (ent.hasClass("Cavalry"))
 		 return;
 		 var key = uneval(ent.resourceGatherRates());

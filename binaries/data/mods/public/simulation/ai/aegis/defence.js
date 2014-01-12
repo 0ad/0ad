@@ -60,13 +60,11 @@ m.Defence.prototype.isDangerous = function(gameState, entity)
 	if (this.territoryMap.getOwner(entity.position()) === entity.owner() || entity.attackTypes() === undefined)
 		return false;
 	
-	// TODO: use global collections.
-	var myBuildings = gameState.getOwnEntities().filter(API3.Filters.byClass("Structure"));
+	var myBuildings = gameState.getOwnStructures();
 	for (var i in myBuildings._entities)
-	{
 		if (API3.SquareVectorDistance(myBuildings._entities[i].position(), entity.position()) < 6000)
 			return true;
-	}
+
 	return false;
 }
 
@@ -186,12 +184,12 @@ m.Defence.prototype.assignDefenders = function(gameState, events)
 										 API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "DefManagerArmy"))),
 							 API3.Filters.and(API3.Filters.not(API3.Filters.byMetadata(PlayerID,"subrole","walking")),
 										 API3.Filters.not(API3.Filters.byMetadata(PlayerID,"subrole","attacking"))));
-	var potentialDefendersOne = gameState.getOwnEntities().filter(filter).toIdArray();
+	var potentialDefendersOne = gameState.getOwnUnits().filter(filter).toIdArray();
 	
 	filter = API3.Filters.and(API3.Filters.and(API3.Filters.not(API3.Filters.byHasMetadata(PlayerID,"plan")),
 									 API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "DefManagerArmy"))),
 						 API3.Filters.byClassesOr(["Infantry","Cavalry"]));
-	var potentialDefendersTwo = gameState.getOwnEntities().filter(filter).toIdArray();
+	var potentialDefendersTwo = gameState.getOwnUnits().filter(filter).toIdArray();
 	
 	var potDefs = this.releasedDefenders.concat(potentialDefendersOne).concat(potentialDefendersTwo);
 	

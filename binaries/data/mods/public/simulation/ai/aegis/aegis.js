@@ -146,7 +146,7 @@ m.AegisBot.prototype.OnUpdate = function(sharedScript) {
 		// TODO: softcode this.
 		if (this.gameState.canResearch(townPhase,true) && this.gameState.getTimeElapsed() > (this.Config.Economy.townPhase*1000) && this.gameState.getPopulation() > 40
 			&& this.gameState.findResearchers(townPhase,true).length != 0 && this.queues.majorTech.length() === 0
-			&& this.gameState.getOwnEntities().filter(API3.Filters.byClass("Village")).length > 5)
+			&& this.gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length > 5)
 		{
 			this.queueManager.pauseQueue("villager", true);
 			this.queueManager.pauseQueue("citizenSoldier", true);
@@ -155,7 +155,7 @@ m.AegisBot.prototype.OnUpdate = function(sharedScript) {
 			m.debug ("Trying to reach town phase");
 		}
 		else if (this.gameState.canResearch(cityPhase,true) && this.gameState.getTimeElapsed() > (this.Config.Economy.cityPhase*1000)
-				&& this.gameState.getOwnEntitiesByRole("worker").length > 85
+				&& this.gameState.getOwnEntitiesByRole("worker", true).length > 85
 				&& this.gameState.findResearchers(cityPhase, true).length != 0 && this.queues.majorTech.length() === 0) {
 			m.debug ("Trying to reach city phase");
 			this.queues.majorTech.addItem(new m.ResearchPlan(this.gameState, cityPhase));

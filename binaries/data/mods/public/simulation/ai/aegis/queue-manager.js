@@ -482,7 +482,7 @@ m.QueueManager.prototype.update = function(gameState) {
 	
 	Engine.ProfileStop();
 	
-	if (gameState.ai.playedTurn % 10 === 5)
+	if (gameState.ai.playedTurn % 30 === 5)
 		this.HTMLprintQueues(gameState);
 
 	Engine.ProfileStop();
