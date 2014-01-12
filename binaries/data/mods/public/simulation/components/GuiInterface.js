@@ -824,13 +824,16 @@ GuiInterface.prototype.CanMoveEntsIntoFormation = function(player, data)
 	return CanMoveEntsIntoFormation(data.ents, data.formationTemplate);
 };
 
-GuiInterface.prototype.GetFormationNameFromTemplate = function(player, data)
+GuiInterface.prototype.GetFormationInfoFromTemplate = function(player, data)
 {
+	var r = {};
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var template = cmpTemplateManager.GetTemplate(data.templateName);
-	if (template && template.Formation)
-		return template.Formation.FormationName;
-	return "";
+	if (!template || !template.Formation)
+		return r;
+	r.name = template.Formation.FormationName;
+	r.tooltip = template.Formation.DisabledTooltip;
+	return r;
 };
 
 GuiInterface.prototype.IsFormationSelected = function(player, data)
@@ -1959,7 +1962,7 @@ var exposedFunctions = {
 	"GetFormationRequirements": 1,
 	"CanMoveEntsIntoFormation": 1,
 	"IsFormationSelected": 1,
-	"GetFormationNameFromTemplate": 1,
+	"GetFormationInfoFromTemplate": 1,
 	"IsStanceSelected": 1,
 
 	"SetSelectionHighlight": 1,

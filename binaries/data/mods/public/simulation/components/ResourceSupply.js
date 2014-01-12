@@ -44,13 +44,13 @@ ResourceSupply.prototype.Init = function()
 	// Current resource amount (non-negative)
 	this.amount = this.GetMaxAmount();
 
-    this.gatherers = [];	// list of IDs for each players
+	this.gatherers = [];	// list of IDs for each players
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);	// system component so that's safe.
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
-    for (var i = 0; i < numPlayers; ++i)
-    	this.gatherers.push([]);
+	for (var i = 0; i < numPlayers; ++i)
+		this.gatherers.push([]);
 
-    this.infinite = !isFinite(+this.template.Amount);
+	this.infinite = !isFinite(+this.template.Amount);
 };
 
 ResourceSupply.prototype.IsInfinite = function()
@@ -148,10 +148,8 @@ ResourceSupply.prototype.RemoveGatherer = function(gathererID, player)
 	// this can happen if the unit is dead
 	if (player === undefined || player === -1)
 	{
-		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		var numPlayers = cmpPlayerManager.GetNumPlayers();
-	    for (var i = 0; i < numPlayers; ++i)
-			this.RemoveGatherer(gathererID, i);
+	    for (var i = 0; i < this.gatherers.length; ++i)
+			this.RemoveGatherer(gathererID, i+1);
 	}
 	else
 	{

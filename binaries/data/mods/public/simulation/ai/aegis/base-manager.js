@@ -34,11 +34,11 @@ m.BaseManager = function(Config) {
 	this.territoryIndices = [];
 };
 
-m.BaseManager.prototype.init = function(gameState, events, unconstructed){
+m.BaseManager.prototype.init = function(gameState, unconstructed){
 	this.constructing = unconstructed;
 	// entitycollections
-	this.units = gameState.getOwnEntities().filter(API3.Filters.and(API3.Filters.byClass("Unit"),API3.Filters.byMetadata(PlayerID, "base", this.ID)));
-	this.buildings = gameState.getOwnEntities().filter(API3.Filters.and(API3.Filters.byClass("Structure"),API3.Filters.byMetadata(PlayerID, "base", this.ID)));
+	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
+	this.buildings = gameState.getOwnStructures().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
 	
 	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID,"role","worker"));
 
@@ -214,7 +214,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 				if(ent.hasTerritoryInfluence())
 					this.territoryBuildings.push(ent.id());
 				if (ent.resourceDropsiteTypes())
-					for (ress in ent.resourceDropsiteTypes())
+					for (var ress in ent.resourceDropsiteTypes())
 						this.initializeDropsite(gameState, ent, ent.resourceDropsiteTypes()[ress]);
 				if (ent.resourceSupplyAmount() && ent.resourceSupplyType()["specific"] == "grain")
 					this.assignResourceToDP(gameState,ent);
@@ -584,7 +584,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 	{
 		if (this.willGather[type] === 0)
 			continue;
-		if (type !== "food" && gameState.playedTurn % 10 === 4 && this.getResourceLevel(gameState,type, "all") < 200)
+		if (type !== "food" && gameState.ai.playedTurn % 10 === 4 && this.getResourceLevel(gameState,type, "all") < 200)
 			this.willGather[type] = 0;	// won't gather at all
 		if (this.willGather[type] === 2)
 			continue;
@@ -623,7 +623,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 				// TODO: refine count to only count my base.
 			}
-		} else if (queues.dropsites.length() === 0 && gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_storehouse")) === 0) {
+		} else if (queues.dropsites.length() === 0 && gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_storehouse"), true) === 0) {
 			var wantedDPs = Math.ceil(this.gatherersByType(gameState, type).length / 12.0);
 			var need = wantedDPs - this.getResourceLevel(gameState,type, "dropsites-dpcount",2000);
 			if (need > 0)
@@ -901,13 +901,13 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 			continue;
 		
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
-		if (assigned < this.targetNumBuilders/3) {
-			if (builderWorkers.length + addedWorkers < this.targetNumBuilders*2) {
+		if (assigned < targetNB/3) {
+			if (builderWorkers.length + addedWorkers < targetNB*2) {
 				
 				var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.position() !== undefined); });
 				if (gameState.defcon() < 5)
 					nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.hasClass("Female") && ent.position() !== undefined); });
-				var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), this.targetNumBuilders/3 - assigned);
+				var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), targetNB/3 - assigned);
 				
 				nearestNonBuilders.forEach(function(ent) {
 					ent.stopMoving();
@@ -947,7 +947,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events) {
 		
 		/*Engine.ProfileStart("Swap Workers");
 		 var gathererGroups = {};
-		 gameState.getOwnEntitiesByRole("worker").forEach(function(ent){ }){
+		 gameState.getOwnEntitiesByRole("worker", true).forEach(function(ent){ }){
 		 if (ent.hasClass("Cavalry"))
 		 return;
 		 var key = uneval(ent.resourceGatherRates());

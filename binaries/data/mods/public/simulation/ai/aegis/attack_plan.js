@@ -37,7 +37,7 @@ m.CityAttack = function CityAttack(gameState, HQ, Config, uniqueID, targetEnemy,
 		return false;
 	}
 	
-	var CCs = gameState.getOwnEntities().filter(API3.Filters.byClass("CivCentre"));
+	var CCs = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre"));
 	if (CCs.length === 0)
 	{
 		this.failed = true;
@@ -125,7 +125,7 @@ m.CityAttack = function CityAttack(gameState, HQ, Config, uniqueID, targetEnemy,
 	};*/
 
 	var filter = API3.Filters.and(API3.Filters.byMetadata(PlayerID, "plan",this.name),API3.Filters.byOwner(PlayerID));
-	this.unitCollection = gameState.getOwnEntities().filter(filter);
+	this.unitCollection = gameState.getOwnUnits().filter(filter);
 	this.unitCollection.registerUpdates();
 	this.unitCollection.length;
 	
@@ -141,7 +141,7 @@ m.CityAttack = function CityAttack(gameState, HQ, Config, uniqueID, targetEnemy,
 		var Unit = this.unitStat[cat];
 
 		filter = API3.Filters.and(API3.Filters.byClassesAnd(Unit["classes"]),API3.Filters.and(API3.Filters.byMetadata(PlayerID, "plan",this.name),API3.Filters.byOwner(PlayerID)));
-		this.unit[cat] = gameState.getOwnEntities().filter(filter);
+		this.unit[cat] = gameState.getOwnUnits().filter(filter);
 		this.unit[cat].registerUpdates();
 		this.unit[cat].length;
 		this.buildOrder.push([0, Unit["classes"], this.unit[cat], Unit, cat]);
@@ -321,7 +321,7 @@ m.CityAttack.prototype.addBuildOrder = function(gameState, name, unitStats, rese
 		this.unitStat[name] = unitStats;
 		var Unit = this.unitStat[name];
 		var filter = API3.Filters.and(API3.Filters.byClassesAnd(Unit["classes"]),API3.Filters.and(API3.Filters.byMetadata(PlayerID, "plan",this.name),API3.Filters.byOwner(PlayerID)));
-		this.unit[name] = gameState.getOwnEntities().filter(filter);
+		this.unit[name] = gameState.getOwnUnits().filter(filter);
 		this.unit[name].registerUpdates();
 		this.buildOrder.push([0, Unit["classes"], this.unit[name], Unit, name]);
 		if (resetQueue)
@@ -592,9 +592,9 @@ m.CityAttack.prototype.assignUnits = function(gameState){
 
 	// TODO: assign myself units that fit only, right now I'm getting anything.
 	// Assign all no-roles that fit (after a plan aborts, for example).
-	var NoRole = gameState.getOwnEntitiesByRole(undefined);
+	var NoRole = gameState.getOwnEntitiesByRole(undefined, false);
 	if (this.type === "rush")
-		NoRole = gameState.getOwnEntitiesByRole("worker");
+		NoRole = gameState.getOwnEntitiesByRole("worker", true);
 	NoRole.forEach(function(ent) {
 		if (ent.hasClass("Unit") && ent.attackTypes() !== undefined)
 		{
@@ -641,20 +641,20 @@ m.CityAttack.prototype.AllToRallyPoint = function(gameState, evenWorkers) {
 m.CityAttack.prototype.defaultTargetFinder = function(gameState, HQ){
 	var targets = undefined;
 	
-	targets = HQ.enemyWatchers[this.targetPlayer].getEnemyBuildings(gameState, "CivCentre",true);
+	targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("CivCentre"));
 	if (targets.length == 0) {
-		targets = HQ.enemyWatchers[this.targetPlayer].getEnemyBuildings(gameState, "ConquestCritical");
+		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("ConquestCritical"));
 	}
 	// If there's nothing, attack anything else that's less critical
 	if (targets.length == 0) {
-		targets = HQ.enemyWatchers[this.targetPlayer].getEnemyBuildings(gameState, "Town",true);
+		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("Town"));
 	}
 	if (targets.length == 0) {
-		targets = HQ.enemyWatchers[this.targetPlayer].getEnemyBuildings(gameState, "Village",true);
+		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("Village"));
 	}
 	// no buildings, attack anything conquest critical, even units (it's assuming it won't move).
 	if (targets.length == 0) {
-		targets = gameState.getEnemyEntities().filter(API3.Filters.and( API3.Filters.byOwner(this.targetPlayer),API3.Filters.byClass("ConquestCritical")));
+		targets = gameState.getEnemyEntities(this.targetPlayer).filter(API3.Filters.byClass("ConquestCritical"));
 	}
 	return targets;
 };

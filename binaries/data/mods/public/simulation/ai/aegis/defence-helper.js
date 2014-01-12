@@ -140,6 +140,8 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 	{
 		var ent = gameState.getEntityById(this.entities[i]);
 		var epos = ent.position();
+		if (epos == undefined)
+			continue;
 		pos[0] += epos[0];
 		pos[1] += epos[1];
 	}
@@ -449,7 +451,7 @@ m.Army.prototype.getState = function (gameState)
 // check if we should remain at state 2 or drift away
 m.Army.prototype.checkDangerosity = function (gameState)
 {
-	this.territoryMap = Map.createTerritoryMap(gameState);
+	this.territoryMap = m.createTerritoryMap(gameState);
 	// right now we'll check if our position is "enemy" or not.
 	if (this.territoryMap.getOwner(this.position) !== PlayerID)
 		this.state = 1;
@@ -539,7 +541,7 @@ m.Army.prototype.debug = function (gameState)
 	m.debug ("WatchLevel " + this.watchLevel);
 	m.debug ("Entities " + this.entities.length);
 	m.debug ("Strength " + this.totalStrength);
-	for (id in this.assignedAgainst)
+	for (var id in this.assignedAgainst)
 		m.debug ("Assigned " + uneval(this.assignedAgainst[id]) + " against " + id);
 	//for each (ent in this.entities)
 	//	debug (gameState.getEntityById(ent)._templateName + ", ID " + ent);

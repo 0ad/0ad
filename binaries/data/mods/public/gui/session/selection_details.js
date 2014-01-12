@@ -158,12 +158,12 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders + "    ";
 		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "Number of builders";
 	}
-	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints))
+	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints) && player !== 0)
 	{
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
-		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.resourceSupply.gatherers[entState.player].length + " / " + entState.resourceSupply.maxGatherers + "    ";
+		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.resourceSupply.gatherers[player-1].length + " / " + entState.resourceSupply.maxGatherers + "    ";
 		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "Current/max gatherers";
 	}
 	else

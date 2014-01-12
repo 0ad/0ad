@@ -35,9 +35,9 @@ m.NavalManager = function() {
 };
 
 // More initialisation for stuff that needs the gameState
-m.NavalManager.prototype.init = function(gameState, events, queues) {
+m.NavalManager.prototype.init = function(gameState, queues) {
 	// finished docks
-	this.docks = gameState.getOwnEntities().filter(API3.Filters.and(API3.Filters.byClass("Dock"), API3.Filters.not(API3.Filters.isFoundation())));
+	this.docks = gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("Dock"), API3.Filters.not(API3.Filters.isFoundation())));
 	this.docks.allowQuickIter();
 	this.docks.registerUpdates();
 	

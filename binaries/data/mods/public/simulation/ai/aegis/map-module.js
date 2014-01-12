@@ -116,14 +116,14 @@ m.createObstructionMap = function(gameState, accessIndex, template){
 		var minDist = template.buildDistance().MinDistance;
 		var category = template.buildDistance().FromCategory;
 		if (minDist !== undefined && category !== undefined){
-			gameState.getOwnEntities().forEach(function(ent) {
-											   if (ent.buildCategory() === category && ent.position()){
-											   var pos = ent.position();
-											   var x = Math.round(pos[0] / gameState.cellSize);
-											   var z = Math.round(pos[1] / gameState.cellSize);
-											   map.addInfluence(x, z, minDist/gameState.cellSize, -255, 'constant');
-											   }
-											   });
+			gameState.getOwnStructures().forEach(function(ent) {
+				if (ent.buildCategory() === category && ent.position()){
+				   var pos = ent.position();
+				   var x = Math.round(pos[0] / gameState.cellSize);
+				   var z = Math.round(pos[1] / gameState.cellSize);
+				   map.addInfluence(x, z, minDist/gameState.cellSize, -255, 'constant');
+			   }
+			});
 		}
 	}
 	return map;

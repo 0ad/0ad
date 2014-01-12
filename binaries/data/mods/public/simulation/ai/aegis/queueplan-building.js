@@ -118,56 +118,54 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 		friendlyTiles.addInfluence(x, z, 255);
 	} else {
 		// No position was specified so try and find a sensible place to build
-		gameState.getOwnEntities().forEach(function(ent) {
-			if (ent.hasClass("Structure")) {
-				var infl = 32;
-				if (ent.hasClass("CivCentre"))
-					infl *= 4;
-	
-				var pos = ent.position();
-				var x = Math.round(pos[0] / cellSize);
-				var z = Math.round(pos[1] / cellSize);
-										   
-				if (ent.buildCategory() == "Wall") {	// no real blockers, but can't build where they are
-					friendlyTiles.addInfluence(x, z, 2,-1000);
-					return;
-				}
+		gameState.getOwnStructures().forEach(function(ent) {
+			var infl = 32;
+			if (ent.hasClass("CivCentre"))
+				infl *= 4;
 
-				if (template._template.BuildRestrictions.Category === "Field"){
-					if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1){
-						if (ent.hasClass("CivCentre"))
-							friendlyTiles.addInfluence(x, z, infl/4, infl);
-						else
-							 friendlyTiles.addInfluence(x, z, infl, infl);
-										   
-					}
-				}else{
-					if (template.genericName() == "House" && ent.genericName() == "House") {
-						friendlyTiles.addInfluence(x, z, 15.0,20,'linear');	// houses are close to other houses
-						alreadyHasHouses = true;
-					} else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
-					{
-						friendlyTiles.addInfluence(x, z, 30, -50);
-					} else if (template.genericName() == "House") {
-						friendlyTiles.addInfluence(x, z, Math.ceil(infl/4.0),-infl/2.0);	// houses are farther away from other buildings but houses
-					} else if (template.hasClass("GarrisonFortress"))
-					{
-						friendlyTiles.addInfluence(x, z, 20, 10);
-						friendlyTiles.addInfluence(x, z, 10, -40, 'linear');
-					} else if (ent.genericName() != "House") // houses have no influence on other buildings
-					{
-						friendlyTiles.addInfluence(x, z, infl);
-						//avoid building too close to each other if possible.
-						friendlyTiles.addInfluence(x, z, 5, -5, 'linear');
-					}
-						// If this is not a field add a negative influence near the CivCentre because we want to leave this
-						// area for fields.
-					if (ent.hasClass("CivCentre") && template.genericName() != "House"){
-						friendlyTiles.addInfluence(x, z, Math.floor(infl/8), Math.floor(-infl/2));
-					} else if (ent.hasClass("CivCentre")) {
-						friendlyTiles.addInfluence(x, z, infl/3.0, infl + 1);
-						friendlyTiles.addInfluence(x, z, Math.ceil(infl/5.0), -(infl/2.0), 'linear');
-					}
+			var pos = ent.position();
+			var x = Math.round(pos[0] / cellSize);
+			var z = Math.round(pos[1] / cellSize);
+									   
+			if (ent.buildCategory() == "Wall") {	// no real blockers, but can't build where they are
+				friendlyTiles.addInfluence(x, z, 2,-1000);
+				return;
+			}
+
+			if (template._template.BuildRestrictions.Category === "Field"){
+				if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1){
+					if (ent.hasClass("CivCentre"))
+						friendlyTiles.addInfluence(x, z, infl/4, infl);
+					else
+						 friendlyTiles.addInfluence(x, z, infl, infl);
+									   
+				}
+			}else{
+				if (template.genericName() == "House" && ent.genericName() == "House") {
+					friendlyTiles.addInfluence(x, z, 15.0,20,'linear');	// houses are close to other houses
+					alreadyHasHouses = true;
+				} else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
+				{
+					friendlyTiles.addInfluence(x, z, 30, -50);
+				} else if (template.genericName() == "House") {
+					friendlyTiles.addInfluence(x, z, Math.ceil(infl/4.0),-infl/2.0);	// houses are farther away from other buildings but houses
+				} else if (template.hasClass("GarrisonFortress"))
+				{
+					friendlyTiles.addInfluence(x, z, 20, 10);
+					friendlyTiles.addInfluence(x, z, 10, -40, 'linear');
+				} else if (ent.genericName() != "House") // houses have no influence on other buildings
+				{
+					friendlyTiles.addInfluence(x, z, infl);
+					//avoid building too close to each other if possible.
+					friendlyTiles.addInfluence(x, z, 5, -5, 'linear');
+				}
+					// If this is not a field add a negative influence near the CivCentre because we want to leave this
+					// area for fields.
+				if (ent.hasClass("CivCentre") && template.genericName() != "House"){
+					friendlyTiles.addInfluence(x, z, Math.floor(infl/8), Math.floor(-infl/2));
+				} else if (ent.hasClass("CivCentre")) {
+					friendlyTiles.addInfluence(x, z, infl/3.0, infl + 1);
+					friendlyTiles.addInfluence(x, z, Math.ceil(infl/5.0), -(infl/2.0), 'linear');
 				}
 			}
 		});

@@ -449,9 +449,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			case STANCE:
 				var tooltip = toTitleCase(item);
 				break;
-			case FORMATION:
-				var tooltip = Engine.GuiInterfaceCall("GetFormationNameFromTemplate", {"templateName": item});
-				break;
 
 			case TRAINING:
 				var tooltip = getEntityNamesFormatted(template);
@@ -535,7 +532,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		var guiSelection = Engine.GetGUIObjectByName("unit"+guiName+"Selection["+i+"]");
 		var pair = Engine.GetGUIObjectByName("unit"+guiName+"Pair["+i+"]");
 		button.hidden = false;
-		button.tooltip = tooltip;
+		button.tooltip = tooltip || "";
 
 		// Button Function (need nested functions to get the closure right)
 		// Items can have a callback element that overrides the normal caller-supplied callback function.
@@ -581,6 +578,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		// Get icon image
 		if (guiName == FORMATION)
 		{
+			var formationInfo = Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", {"templateName": item});
+
+			button.tooltip = formationInfo.name;
 			var formationOk = canMoveSelectionIntoFormation(item);
 			var grayscale = "";
 			button.enabled = formationOk;
@@ -589,11 +589,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				grayscale = "grayscale:";
 
 				// Display a meaningful tooltip why the formation is disabled
-				var requirements = Engine.GuiInterfaceCall("GetFormationRequirements", {
-					"formationTemplate": item
-				});
-
- 				button.tooltip += " (disabled)"+requirements.tooltip;
+ 				button.tooltip += " (disabled)"+formationInfo.tooltip;
  			}
 
 			var formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {

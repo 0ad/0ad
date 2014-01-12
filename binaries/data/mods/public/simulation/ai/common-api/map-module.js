@@ -45,8 +45,8 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 	
 	var x0 = Math.max(0, cx - maxDist);
 	var y0 = Math.max(0, cy - maxDist);
-	var x1 = Math.min(this.width, cx + maxDist);
-	var y1 = Math.min(this.height, cy + maxDist);
+	var x1 = Math.min(this.width-1, cx + maxDist);
+	var y1 = Math.min(this.height-1, cy + maxDist);
 	var maxDist2 = maxDist * maxDist;
 	
 	var str = 0.0;
@@ -70,11 +70,11 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 				var dx = x - cx;
 				var dy = y - cy;
 				var r2 = dx*dx + dy*dy;
-				if (r2 < maxDist2){
+				if (r2 < maxDist2) {
 					var quant = 0;
 					var r = Math.sqrt(r2);
 					quant = str * (maxDist - r);
-
+					
 					if (this.map[x + y * this.width] + quant < 0)
 						this.map[x + y * this.width] = 0;
 					else if (this.map[x + y * this.width] + quant > this.maxVal)

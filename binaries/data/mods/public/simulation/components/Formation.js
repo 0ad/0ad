@@ -150,6 +150,11 @@ Formation.prototype.GetMemberCount = function()
 	return this.members.length;
 };
 
+Formation.prototype.GetMembers = function()
+{
+	return this.members;
+};
+
 /**
  * Returns the 'primary' member of this formation (typically the most
  * important unit type), for e.g. playing a representative sound.
@@ -392,54 +397,6 @@ Formation.prototype.Disband = function()
 	this.offsets = undefined;
 
 	Engine.DestroyEntity(this.entity);
-};
-
-/**
- * Call obj.funcname(args) on UnitAI components of all members.
- */
-Formation.prototype.CallMemberFunction = function(funcname, args)
-{
-	for each (var ent in this.members)
-	{
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		cmpUnitAI[funcname].apply(cmpUnitAI, args);
-	}
-};
-
-/**
- * Call obj.functname(args) on UnitAI components of all members,
- * and return true if all calls return true.
- */
-Formation.prototype.TestAllMemberFunction = function(funcname, args)
-{
-	for each (var ent in this.members)
-	{
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (!cmpUnitAI[funcname].apply(cmpUnitAI, args))
-			return false;
-	}
-	return true;
-};
-
-Formation.prototype.GetMaxAttackRangeFunction = function(target)
-{
-	var result = 0;
-	var range = 0;
-	for each (var ent in this.members)
-	{
-		var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
-		if (!cmpAttack)
-			continue;
-
-		var type = cmpAttack.GetBestAttackAgainst(target);
-		if (!type)
-			continue;
-
-		range = cmpAttack.GetRange(type);
-		if (range.max > result)
-			result = range.max;
-	}
-	return result;
 };
 
 /**

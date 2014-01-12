@@ -239,6 +239,7 @@ function formatPlayerListEntry(nickname, presence)
 		var color = '[color="125 0 0"]';
 		var status = color + "Busy" + color_close;
 		break;
+	case "gone":
 	case "away":
 		var color = '[color="229 76 13"]';
 		var status = color + "Away" + color_close;
@@ -253,6 +254,8 @@ function formatPlayerListEntry(nickname, presence)
 		break;
 	default:
 		warn("Unknown presence '"+presence+"'");
+		var color = '[color="178 178 178"]';
+		var status = color + "Unknown" + color_close;
 		break;
 	}
 

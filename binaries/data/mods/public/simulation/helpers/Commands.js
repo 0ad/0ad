@@ -1370,13 +1370,7 @@ function GetFormationRequirements(formationTemplate)
 	if (!template.Formation)
 		return false;
 
-	var r = {};
-	r.minCount = +template.Formation.RequiredMemberCount;
-	if (template.Formation.DisabledTooltip)
-		r.tooltip = "\n" + template.Formation.DisabledTooltip;
-	else
-		r.tooltip = "";
-	return r;
+	return {"minCount": +template.Formation.RequiredMemberCount};
 }
 
 

@@ -412,7 +412,7 @@ var UnitFsmSpec = {
 		this.order.data.attackType = type;
 
 		// If we are already at the target, try attacking it from here
-		if (this.CheckTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType))
+		if (this.CheckTargetAttackRange(this.order.data.target, this.order.data.attackType))
 		{
 			this.StopMoving();
 			// For packable units within attack range:
@@ -482,7 +482,7 @@ var UnitFsmSpec = {
 		}
 
 		// Try to move within attack range
-		if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType))
+		if (this.MoveToTargetAttackRange(this.order.data.target, this.order.data.attackType))
 		{
 			// We've started walking to the given point
 			if (this.IsAnimal())
@@ -747,24 +747,21 @@ var UnitFsmSpec = {
 	"FORMATIONCONTROLLER": {
 
 		"Order.Walk": function(msg) {
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
+			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
 
 			this.MoveToPoint(this.order.data.x, this.order.data.z);
 			this.SetNextState("WALKING");
 		},
 
 		"Order.WalkAndFight": function(msg) {
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
+			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
 
 			this.MoveToPoint(this.order.data.x, this.order.data.z);
 			this.SetNextState("WALKINGANDFIGHTING");
 		},
 		
 		"Order.MoveIntoFormation": function(msg) {
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
+			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
 
 			this.MoveToPoint(this.order.data.x, this.order.data.z);
 			this.SetNextState("FORMING");
@@ -786,39 +783,32 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Guard": function(msg) {
+			this.CallMemberFunction("Guard", [msg.data.target, false]);
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("Guard", [msg.data.target, false]);
 			cmpFormation.Disband();
 		},
 
 		"Order.Stop": function(msg) {
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("Stop", [false]);
+			this.CallMemberFunction("Stop", [false]);
 		},
 
 		"Order.Attack": function(msg) {
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-
-			var maxRange = cmpFormation.GetMaxAttackRangeFunction(msg.data.target);
-			maxRange += cmpFormation.GetSize().depth / 2;
 			// Check if we are already in range, otherwise walk there
-			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, maxRange))
+			if (!this.CheckTargetAttackRange(msg.data.target, msg.data.target))
 			{
-				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
-					// The target was destroyed or isn't visible any more.
-					this.FinishOrder();
-				else
-					// Out of range; move there in formation
-					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": maxRange });
+				if (this.TargetIsAlive(msg.data.target) && 
+					this.CheckTargetVisible(msg.data.target) &&
+					this.MoveToTargetAttackRange(msg.data.target, msg.data.target))
+				{
+					this.SetNextState("COMBAT.APPROACHING");
+					return;
+				}
+				this.FinishOrder();
 				return;
 			}
 
-			// We don't want to rearrange the formation if the individual units are carrying
-			// out a task and one of the members dies/leaves the formation.
-			cmpFormation.SetRearrange(false);
-			cmpFormation.CallMemberFunction("Attack", [msg.data.target, false]);
 
-			this.SetNextStateAlwaysEntering("MEMBER");
+			this.SetNextState("COMBAT.ATTACKING");
 		},
 
 		"Order.Garrison": function(msg) {
@@ -888,11 +878,7 @@ var UnitFsmSpec = {
 				return;
 			}
 
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			// We don't want to rearrange the formation if the individual units are carrying
-			// out a task and one of the members dies/leaves the formation.
-			cmpFormation.SetRearrange(false);
-			cmpFormation.CallMemberFunction("Gather", [msg.data.target, false]);
+			this.CallMemberFunction("Gather", [msg.data.target, false]);
 
 			this.SetNextStateAlwaysEntering("MEMBER");
 		},
@@ -907,11 +893,7 @@ var UnitFsmSpec = {
 				return;
 			}
 
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			// We don't want to rearrange the formation if the individual units are carrying
-			// out a task and one of the members dies/leaves the formation.
-			cmpFormation.SetRearrange(false);
-			cmpFormation.CallMemberFunction("GatherNearPosition", [msg.data.x, msg.data.z, msg.data.type, msg.data.template, false]);
+			this.CallMemberFunction("GatherNearPosition", [msg.data.x, msg.data.z, msg.data.type, msg.data.template, false]);
 
 			this.SetNextStateAlwaysEntering("MEMBER");
 		},
@@ -930,11 +912,7 @@ var UnitFsmSpec = {
 				return;
 			}
 
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			// We don't want to rearrange the formation if the individual units are carrying
-			// out a task and one of the members dies/leaves the formation.
-			cmpFormation.SetRearrange(false);
-			cmpFormation.CallMemberFunction("Heal", [msg.data.target, false]);
+			this.CallMemberFunction("Heal", [msg.data.target, false]);
 
 			this.SetNextStateAlwaysEntering("MEMBER");
 		},
@@ -953,11 +931,7 @@ var UnitFsmSpec = {
 				return;
 			}
 
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			// We don't want to rearrange the formation if the individual units are carrying
-			// out a task and one of the members dies/leaves the formation.
-			cmpFormation.SetRearrange(false);
-			cmpFormation.CallMemberFunction("Repair", [msg.data.target, msg.data.autocontinue, false]);
+			this.CallMemberFunction("Repair", [msg.data.target, msg.data.autocontinue, false]);
 
 			this.SetNextStateAlwaysEntering("MEMBER");
 		},
@@ -976,31 +950,19 @@ var UnitFsmSpec = {
 				return;
 			}
 
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			// We don't want to rearrange the formation if the individual units are carrying
-			// out a task and one of the members dies/leaves the formation.
-			cmpFormation.SetRearrange(false);
-			cmpFormation.CallMemberFunction("ReturnResource", [msg.data.target, false]);
+			this.CallMemberFunction("ReturnResource", [msg.data.target, false]);
 
 			this.SetNextStateAlwaysEntering("MEMBER");
 		},
 
 		"Order.Pack": function(msg) {
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			// We don't want to rearrange the formation if the individual units are carrying
-			// out a task and one of the members dies/leaves the formation.
-			cmpFormation.SetRearrange(false);
-			cmpFormation.CallMemberFunction("Pack", [false]);
+			this.CallMemberFunction("Pack", [false]);
 
 			this.SetNextStateAlwaysEntering("MEMBER");
 		},
 
 		"Order.Unpack": function(msg) {
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			// We don't want to rearrange the formation if the individual units are carrying
-			// out a task and one of the members dies/leaves the formation.
-			cmpFormation.SetRearrange(false);
-			cmpFormation.CallMemberFunction("Unpack", [false]);
+			this.CallMemberFunction("Unpack", [false]);
 
 			this.SetNextStateAlwaysEntering("MEMBER");
 		},
@@ -1016,13 +978,31 @@ var UnitFsmSpec = {
 			},
 
 			"MoveCompleted": function(msg) {
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-
 				if (this.FinishOrder())
-				{
-					cmpFormation.CallMemberFunction("ResetFinishOrder", []);
-					return;
-				}
+					this.CallMemberFunction("ResetFinishOrder", []);
+			},
+		},
+
+		"COMBAT": {
+			"APPROACHING": {
+				"MoveStarted": function(msg) {
+					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(true);
+					cmpFormation.MoveMembersIntoFormation(true, true);
+				},
+
+				"MoveCompleted": function(msg) {
+					this.SetNextState("ATTACKING");
+				},
+			},
+
+			"ATTACKING": {
+				"enter": function(msg) {
+					this.CallMemberFunction("Attack", [this.order.data.target, false]);
+					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(false);
+					this.SetNextState("MEMBER");
+				},
 			},
 		},
 
@@ -1047,13 +1027,8 @@ var UnitFsmSpec = {
 			},
 
 			"MoveCompleted": function(msg) {
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-
 				if (this.FinishOrder())
-				{
-					cmpFormation.CallMemberFunction("ResetFinishOrder", []);
-					return;
-				}
+					this.CallMemberFunction("ResetFinishOrder", []);
 			},
 		},
 
@@ -1098,11 +1073,7 @@ var UnitFsmSpec = {
 						Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
 						delete this.pickup;
 					}
-					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-					// We don't want to rearrange the formation if the individual units are carrying
-					// out a task and one of the members dies/leaves the formation.
-					cmpFormation.SetRearrange(false);
-					cmpFormation.CallMemberFunction("Garrison", [this.order.data.target, false]);
+					this.CallMemberFunction("Garrison", [this.order.data.target, false]);
 					this.SetNextStateAlwaysEntering("MEMBER");
 				},
 			},
@@ -1116,13 +1087,13 @@ var UnitFsmSpec = {
 			},
 
 			"MoveCompleted": function(msg) {
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 
 				if (this.FinishOrder())
 				{
-					cmpFormation.CallMemberFunction("ResetFinishOrder", []);
+					this.CallMemberFunction("ResetFinishOrder", []);
 					return;
 				}
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 
 				cmpFormation.FindInPosition();
 			}
@@ -1131,17 +1102,17 @@ var UnitFsmSpec = {
 		"MEMBER": {
 			// Wait for individual members to finish
 			"enter": function(msg) {
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
 				this.StartTimer(1000, 1000);
 			},
 
 			"Timer": function(msg) {
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-
 				// Have all members finished the task?
-				if (!cmpFormation.TestAllMemberFunction("HasFinishedOrder", []))
+				if (!this.TestAllMemberFunction("HasFinishedOrder", []))
 					return;
 
-				cmpFormation.CallMemberFunction("ResetFinishOrder", []);
+				this.CallMemberFunction("ResetFinishOrder", []);
 
 				// Execute the next order
 				if (this.FinishOrder())
@@ -1698,7 +1669,7 @@ var UnitFsmSpec = {
 
 				"MoveCompleted": function() {
 
-					if (this.CheckTargetAttackRange(this.order.data.target, IID_Attack , this.order.data.attackType)) 
+					if (this.CheckTargetAttackRange(this.order.data.target, this.order.data.attackType)) 
 					{
 						// If the unit needs to unpack, do so
 						if (this.CanUnpack())
@@ -1708,7 +1679,7 @@ var UnitFsmSpec = {
 					} 
 					else 
 					{
-						if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType))
+						if (this.MoveToTargetAttackRange(this.order.data.target, this.order.data.attackType))
 						{
 							this.SetNextState("APPROACHING");
 						}
@@ -1733,9 +1704,9 @@ var UnitFsmSpec = {
 			"UNPACKING": {
 				"enter": function() {
 					// If we're not in range yet (maybe we stopped moving), move to target again
-					if (!this.CheckTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType))
+					if (!this.CheckTargetAttackRange(this.order.data.target, this.order.data.attackType))
 					{
-						if (this.MoveToTargetAttackRange(this.order.data.target, IID_Attack, this.order.data.attackType))
+						if (this.MoveToTargetAttackRange(this.order.data.target, this.order.data.attackType))
 							this.SetNextState("APPROACHING");
 						else
 						{
@@ -1771,7 +1742,7 @@ var UnitFsmSpec = {
 					(
 						this.TargetIsAlive(target) && 
 						this.CanAttack(target, this.order.data.forceResponse || null) && 
-						!this.CheckTargetAttackRange(target, IID_Attack, this.order.data.attackType)
+						!this.CheckTargetAttackRange(target, this.order.data.attackType)
 					)
 					{
 						// Can't reach it - try to chase after it
@@ -1845,7 +1816,7 @@ var UnitFsmSpec = {
 
 						
 						// Check we can still reach the target for the next attack
-						if (this.CheckTargetAttackRange(target, IID_Attack, this.order.data.attackType))
+						if (this.CheckTargetAttackRange(target, this.order.data.attackType))
 						{
 							if (this.resyncAnimation)
 							{
@@ -3554,11 +3525,7 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 	if (data && data.force)
 	{
 		if (this.IsFormationController())
-		{
-			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			if (cmpFormation)
-				cmpFormation.CallMemberFunction("UpdateWorkOrders", [type]);
-		}
+			this.CallMemberFunction("UpdateWorkOrders", [type]);
 		else
 			this.UpdateWorkOrders(type);
 	}
@@ -4133,17 +4100,16 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
  * for melee attacks, this goes straight to the default range checks
  * for ranged attacks, the parabolic range is used
  */
-UnitAI.prototype.MoveToTargetAttackRange = function(target, iid, type)
+UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 {
-
 	if(type!= "Ranged") 
-		return this.MoveToTargetRange(target, iid, type);
+		return this.MoveToTargetRange(target, IID_Attack, type);
 	
 	if (!this.CheckTargetVisible(target)) 
 		return false;
 	
-	var cmpRanged = Engine.QueryInterface(this.entity, iid);
-	var range = cmpRanged.GetRange(type);
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	var range = cmpAttack.GetRange(type);
 
 	var thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var s = thisCmpPosition.GetPosition();
@@ -4221,18 +4187,18 @@ UnitAI.prototype.CheckTargetRange = function(target, iid, type)
  * For ranged attacks, the parabolic formula is used to accout for bigger ranges
  * when the target is lower, and smaller ranges when the target is higher
  */ 
-UnitAI.prototype.CheckTargetAttackRange = function(target, iid, type)
+UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 {
 
 	if (type != "Ranged") 
-		return this.CheckTargetRange(target,iid,type);
+		return this.CheckTargetRange(target, IID_Attack, type);
 	
 	var targetCmpPosition = Engine.QueryInterface(target, IID_Position);
 	if (!targetCmpPosition || !targetCmpPosition.IsInWorld()) 
 		return false; 
 
-	var cmpRanged = Engine.QueryInterface(this.entity, iid);
-	var range = cmpRanged.GetRange(type);
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	var range = cmpAttack.GetRange(type);
 
 	var thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var s = thisCmpPosition.GetPosition();
@@ -4479,7 +4445,7 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
 		if (cmpUnitAI && cmpAttack)
 		{
 			for each (var type in cmpAttack.GetAttackTypes())
-				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, IID_Attack, type))
+				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, type))
 					return false;
 		}
 	}
@@ -4526,7 +4492,7 @@ UnitAI.prototype.ShouldChaseTargetedEntity = function(target, force)
 		if (cmpUnitAI && cmpAttack)
 		{
 			for each (var type in cmpAttack.GetAttackTypes())
-				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, IID_Attack, type))
+				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, type))
 					return true;
 		}
 	}
@@ -5603,6 +5569,41 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 		ents.filter(function (v) { return cmpAttack.CanAttack(v) && attackfilter(v); })
 		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); })
 	);
+};
+
+/**
+ * Call obj.funcname(args) on UnitAI components of all formation members.
+ */
+UnitAI.prototype.CallMemberFunction = function(funcname, args)
+{
+	var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+	if (!cmpFormation)
+		return;
+	var members = cmpFormation.GetMembers();
+	for each (var ent in members)
+	{
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		cmpUnitAI[funcname].apply(cmpUnitAI, args);
+	}
+};
+
+/**
+ * Call obj.functname(args) on UnitAI components of all formation members,
+ * and return true if all calls return true.
+ */
+UnitAI.prototype.TestAllMemberFunction = function(funcname, args)
+{
+	var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+	if (!cmpFormation)
+		return false;
+	var members = cmpFormation.GetMembers();
+	for each (var ent in members)
+	{
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (!cmpUnitAI[funcname].apply(cmpUnitAI, args));
+			return false;
+	}
+	return true;
 };
 
 Engine.RegisterComponentType(IID_UnitAI, "UnitAI", UnitAI);
