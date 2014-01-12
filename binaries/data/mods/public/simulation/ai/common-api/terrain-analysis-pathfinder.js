@@ -205,7 +205,7 @@ m.aStarPath.prototype.continuePath = function(gamestate)
 		{
 			var index = 0 + this.currentSquare +positions[i][0]*this.Sampling +w*this.Sampling*positions[i][1];
 			if (this.widthMap[index] >= this.minWidth || (this.onWater && this.map[index] > 0 && this.map[index] !== 200 && this.map[index] !== 201)
-				|| (!this.onWater && this.map[this.index] === 200))
+				|| (!this.onWater && this.map[index] === 200))
 			{
 				if(this.isOpened[index] === undefined)
 				{

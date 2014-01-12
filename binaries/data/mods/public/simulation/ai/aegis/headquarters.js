@@ -30,6 +30,9 @@ m.HQ = function(Config) {
 	
 	this.baseManagers = {};
 	
+	// cache the rates currently want for resource gathering.
+	this.wantedRates = {};
+
 	// this means we'll have about a big third of women, and thus we can maximize resource gathering rates.
 	this.femaleRatio = this.Config.Economy.femaleRatio;
 	
@@ -47,7 +50,7 @@ m.HQ = function(Config) {
 };
 
 // More initialisation for stuff that needs the gameState
-m.HQ.prototype.init = function(gameState, events, queues){
+m.HQ.prototype.init = function(gameState, queues){
 	// initialize base map. Each pixel is a base ID, or 0 if none
 	this.basesMap = new API3.Map(gameState.sharedScript, new Uint8Array(gameState.getMap().data.length));
 	this.basesMap.setMaxVal(255);
@@ -84,7 +87,7 @@ m.HQ.prototype.init = function(gameState, events, queues){
 					treasureAmount[i] += ent.resourceSupplyMax();
 			});
 		this.baseManagers[1] = new m.BaseManager(this.Config);
-		this.baseManagers[1].init(gameState, events);
+		this.baseManagers[1].init(gameState);
 		this.baseManagers[1].setAnchor(CC);
 		this.baseManagers[1].initTerritory(this, gameState);
 		this.baseManagers[1].initGatheringFunctions(this, gameState);
@@ -121,7 +124,7 @@ m.HQ.prototype.init = function(gameState, events, queues){
 	
 	//this.reassignIdleWorkers(gameState);
 	
-	this.navalManager.init(gameState, events, queues);
+	this.navalManager.init(gameState, queues);
 
 	// TODO: change that to something dynamic.
 	var civ = gameState.playerData.civ;
@@ -214,20 +217,14 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues) {
 	}
 };
 
-// okay, so here we'll create both females and male workers.
-// We'll try to keep close to the "ratio" defined atop.
-// Choice of citizen soldier is a bit messy.
-// Before having 100 workers it focuses on speed, cost, and won't choose units that cost stone/metal
-// After 100 it just picks the strongest;
-// TODO: This should probably be changed to favor a more mixed approach for better defense.
-//		(or even to adapt based on estimated enemy strategy).
-// TODO: this should probably set which base it wants them in.
+// This code trains females and citizen workers, trying to keep close to a ratio of females/CS
+// TODO: this should choose a base depending on which base need workers
+// TODO: also there are several things that could be greatly improved here.
 m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 {
 	// Get some data.
 	// Count the workers in the world and in progress
 	var numFemales = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("units/{civ}_support_female_citizen"), true);
-	numFemales += queues.villager.countQueuedUnitsWithClass("Support");
 
 	// counting the workers that aren't part of a plan
 	var numWorkers = 0;
@@ -243,43 +240,50 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 			numInTraining += item.count;
 		});
 	});
-	var numQueued = queues.villager.countQueuedUnits() + queues.citizenSoldier.countQueuedUnits();
+	var numQueuedF = queues.villager.countQueuedUnits();
+	var numQueuedS = queues.citizenSoldier.countQueuedUnits();
+	var numQueued = numQueuedS + numQueuedF;
 	var numTotal = numWorkers + numQueued;
 
 	// If we have too few, train more
 	// should plan enough to always have females…
 	// TODO: 15 here should be changed to something more sensible, such as nb of producing buildings.
-	if (numTotal < this.targetNumWorkers && numQueued < 50 && (queues.villager.length() + queues.citizenSoldier.length()) < 120 && numInTraining < 15) {
-		var template = gameState.applyCiv("units/{civ}_support_female_citizen");
-		
-		var size = Math.min(5, Math.ceil(numTotal / 10));
-		if (numFemales/numTotal > this.femaleRatio && (numTotal > 20 || (this.fastStart && numTotal > 10))) {
-			if (numTotal < 100)
-				template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["cost",1], ["speed",0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]]);
-			else
-				template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["strength",1] ]);
+	if (numTotal > this.targetNumWorkers || numQueued > 50 || (numQueuedF > 20 && numQueuedS > 20) || numInTraining > 15)
+		return;
 
-			if (!template)
-				template = gameState.applyCiv("units/{civ}_support_female_citizen");
-			if (gameState.currentPhase() === 1)
-				size = 2;
-		}
-		
-		// TODO: improve that logic.
-		if (numFemales/numTotal > this.femaleRatio * 1.3 && numWorkers > 25)
-			queues.villager.paused = true;
-		else if ((numFemales/numTotal < this.femaleRatio * 1.1) || gameState.ai.queueManager.getAvailableResources(gameState)["food"] > 250
-			|| numWorkers <= 25)
-			queues.villager.paused = false;
-		
-		// TODO: perhaps assign them a default resource and check the base according to that.
-		
-		// base "0" means "auto"
-		if (template === gameState.applyCiv("units/{civ}_support_female_citizen"))
-			queues.villager.addItem(new m.TrainingPlan(gameState, template, { "role" : "worker", "base" : 0 }, size, 0, -1, size ));
+	// default template and size
+	var template = gameState.applyCiv("units/{civ}_support_female_citizen");
+	var size = Math.min(5, Math.ceil(numTotal / 10));
+
+	// Choose whether we want soldiers instead.
+	// TODO: we might want to adjust our female ratio.
+	if ((numFemales+numQueuedF)/numTotal > this.femaleRatio && numQueuedS < 20) {
+		if (numTotal < 35)
+			template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["cost",1], ["speed",0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]]);
 		else
-			queues.citizenSoldier.addItem(new m.TrainingPlan(gameState, template, { "role" : "worker", "base" : 0 }, size, 0, -1, size));
+			template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["strength",1] ]);
+
+		if (!template)
+			template = gameState.applyCiv("units/{civ}_support_female_citizen");
+		else
+			size = Math.min(5, Math.ceil(numTotal / 12));
 	}
+
+	// TODO: improve that logic.
+	/*
+	if (numFemales/numWorkers > this.femaleRatio && numQueuedS > 0 && numWorkers > 25)
+		queues.villager.paused = true;
+	else
+		queues.villager.paused = false;
+	*/
+
+	// TODO: perhaps assign them a default resource and check the base according to that.
+	
+	// base "0" means "auto"
+	if (template === gameState.applyCiv("units/{civ}_support_female_citizen"))
+		queues.villager.addItem(new m.TrainingPlan(gameState, template, { "role" : "worker", "base" : 0 }, size, 0, -1, size ));
+	else
+		queues.citizenSoldier.addItem(new m.TrainingPlan(gameState, template, { "role" : "worker", "base" : 0 }, size, 0, -1, size));
 };
 
 // picks the best template based on parameters and classes
@@ -457,7 +461,13 @@ m.HQ.prototype.GetCurrentGatherRates = function(gameState) {
 };
 
 
-// Pick the resource which most needs another worker
+/* Pick the resource which most needs another worker
+ * How this works:
+ * We get the rates we would want to have to be able to deal with our plans
+ * We get our current rates
+ * We compare; we pick the one where the discrepancy is highest.
+ * Need to balance long-term needs and possible short-term needs.
+ */
 m.HQ.prototype.pickMostNeededResources = function(gameState) {
 	var self = this;
 	
@@ -491,7 +501,7 @@ m.HQ.prototype.pickMostNeededResources = function(gameState) {
 		var va = (Math.max(0,self.wantedRates[a] - currentRates[a]))/ (currentRates[a]+1);
 		var vb = (Math.max(0,self.wantedRates[b] - currentRates[b]))/ (currentRates[b]+1);
 		
-		// If they happen to be equal (generally this means "0" aka no need), make it equitable.
+		// If they happen to be equal (generally this means "0" aka no need), make it fair.
 		if (va === vb)
 			return (self.wantedRates[b]/(currentRates[b]+1)) - (self.wantedRates[a]/(currentRates[a]+1));
 		return vb-va;
@@ -1054,7 +1064,7 @@ m.HQ.prototype.update = function(gameState, queues, events) {
 
 	this.GetCurrentGatherRates(gameState);
 	
-	if (gameState.getTimeElapsed() > this.techStartTime && gameState.currentPhase() > 2)
+	if (gameState.getTimeElapsed() > this.techStartTime && gameState.currentPhase() > 2 )
 		this.tryResearchTechs(gameState,queues);
 	
 	if (this.Config.difficulty > 1)

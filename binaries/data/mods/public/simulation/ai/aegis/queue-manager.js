@@ -111,10 +111,14 @@ m.QueueManager.prototype.futureNeeds = function(gameState) {
 	};
 };
 
-// calculate the gather rates we'd want to be able to use all elements in our queues
+// calculate the gather rates we'd want to be able to start all elements in our queues
+// TODO: many things.
 m.QueueManager.prototype.wantedGatherRates = function(gameState) {
+	// global rates
 	var rates = { "food" : 0, "wood" : 0, "stone" : 0, "metal" : 0 };
+	// per-queue.
 	var qTime = gameState.getTimeElapsed();
+	var time = gameState.getTimeElapsed();
 	var qCosts = { "food" : 0, "wood" : 0, "stone" : 0, "metal" : 0 };
 
 	var currentRess = this.getAvailableResources(gameState);
@@ -127,32 +131,37 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 		var name = this.queueArrays[i][0];
 		var queue = this.queueArrays[i][1];
 
+		// we'll move temporally along the queue.
 		for (var j = 0; j < queue.length(); ++j)
 		{
 			var elem = queue.queue[j];
 			var cost = elem.getCost();
+			
 			if (qTime < elem.startTime)
 				qTime = elem.startTime;
+			// TODO: what is the else case here?
+
 			if (!elem.isGo(gameState))
 			{
-				// assume 2 minutes.
-				// TODO work on this.
+				// assume we'll be wanted in four minutes.
+				// TODO: work on this.
 				for (var type in qCosts)
-					qCosts[type] += cost[type];
-				qTime += 120000;
+					qCosts[type] += cost[type] / (qTime/time);
+				qTime += 240000;
 				break;	// disregard other stuffs.
 			}
 			if (!elem.endTime)
 			{
-				// estimate time based on priority + cost + nb
+				// Assume we want it in 30 seconds from current time.
+				// Costs are made higher based on priority and lower based on current time.
 				// TODO: work on this.
 				for (var type in qCosts)
-					qCosts[type] += (cost[type] + Math.min(cost[type],this.priorities[name]));
+					qCosts[type] += (cost[type] + Math.min(cost[type],this.priorities[name])) / (qTime/time);
 				qTime += 30000;
 			} else {
 				// TODO: work on this.
 				for (var type in qCosts)
-					qCosts[type] += (cost[type] + Math.min(cost[type],this.priorities[name]));
+					qCosts[type] += (cost[type] + Math.min(cost[type],this.priorities[name]))  / (qTime/time);
 				// TODO: refine based on % completed.
 				qTime += (elem.endTime-elem.startTime);
 			}
@@ -166,6 +175,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 			rates[j] += qCosts[j]/(qTime/1000);
 		}
 	}
+
 	return rates;
 };
 
@@ -311,8 +321,14 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState){
 			if (q.queue[j].number)
 				qStr += q.queue[j].number + " ";
 			qStr += q.queue[j].type;
+			qStr += "<br><span class=\"ressLevel\">";
+			var costs = q.queue[j].getCost();
+			for each (var k in costs.types) {
+				qStr += costs[k] + k.substr(0,1).toUpperCase() ;
+				if (k != "metal") qStr += " / ";
+			}
+			qStr += "</span></td>";
 			log (qStr);
-			log ("</td>");
 		}
 		log ("</tr>");
 	}
@@ -322,7 +338,6 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState){
 	{
 		log("<p>" + p + ": " + uneval(this.accounts[p]) + " </p>");
 	}*/
-	log ("<p>Needed Resources:" + uneval(this.futureNeeds(gameState,false)) + "</p>");
 	log ("<p>Wanted Gather Rate:" + uneval(this.wantedGatherRates(gameState)) + "</p>");
 	log ("<p>Current Resources:" + uneval(gameState.getResources()) + "</p>");
 	log ("<p>Available Resources:" + uneval(this.getAvailableResources(gameState)) + "</p>");

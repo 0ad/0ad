@@ -34,7 +34,7 @@ m.BaseManager = function(Config) {
 	this.territoryIndices = [];
 };
 
-m.BaseManager.prototype.init = function(gameState, events, unconstructed){
+m.BaseManager.prototype.init = function(gameState, unconstructed){
 	this.constructing = unconstructed;
 	// entitycollections
 	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
@@ -584,7 +584,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 	{
 		if (this.willGather[type] === 0)
 			continue;
-		if (type !== "food" && gameState.playedTurn % 10 === 4 && this.getResourceLevel(gameState,type, "all") < 200)
+		if (type !== "food" && gameState.ai.playedTurn % 10 === 4 && this.getResourceLevel(gameState,type, "all") < 200)
 			this.willGather[type] = 0;	// won't gather at all
 		if (this.willGather[type] === 2)
 			continue;
@@ -901,13 +901,13 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 			continue;
 		
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
-		if (assigned < this.targetNumBuilders/3) {
-			if (builderWorkers.length + addedWorkers < this.targetNumBuilders*2) {
+		if (assigned < targetNB/3) {
+			if (builderWorkers.length + addedWorkers < targetNB*2) {
 				
 				var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.position() !== undefined); });
 				if (gameState.defcon() < 5)
 					nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.hasClass("Female") && ent.position() !== undefined); });
-				var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), this.targetNumBuilders/3 - assigned);
+				var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), targetNB/3 - assigned);
 				
 				nearestNonBuilders.forEach(function(ent) {
 					ent.stopMoving();

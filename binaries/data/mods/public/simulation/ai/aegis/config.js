@@ -10,7 +10,7 @@ m.Config = function() {
 		"defenceBuildingTime" : 600, // Time to wait before building towers or fortresses
 		"attackPlansStartTime" : 0,	// time to wait before attacking. Start as soon as possible (first barracks)
 		"techStartTime" : 120,	// time to wait before teching. Will only start after town phase so it's irrelevant.
-		"popForBarracks1" : 15,
+		"popForBarracks1" : 20,
 		"popForBarracks2" : 95,
 		"timeForBlacksmith" : 900,
 	};
@@ -63,21 +63,20 @@ m.Config = function() {
 		}
 	};
 
-	// qbot
 	this.priorities = 
-	{  // Note these are dynamic, you are only setting the initial values
-		"house" : 350,
-		"villager" : 40,
+	{
+		"villager" : 30,	// should be slightly lower than the citizen soldier one because otherwise they get all the food
 		"citizenSoldier" : 60,
 		"ships" : 70,
-		"economicBuilding" : 90,
+		"house" : 350,
 		"dropsites" : 120,
 		"field" : 500,
-		"militaryBuilding" : 110,
+		"economicBuilding" : 90,
+		"militaryBuilding" : 140,	// TODO: set to a lower value after the first barracks.
 		"defenceBuilding" : 70,
+		"civilCentre" : 400,
 		"majorTech" : 700,
-		"minorTech" : 50,
-		"civilCentre" : 400
+		"minorTech" : 40
 	};
 };
 

@@ -45,7 +45,7 @@ m.AegisBot.prototype.CustomInit = function(gameState, sharedScript) {
 	m.playerGlobals[PlayerID].uniqueIDTPlans = 1;	// transport plans. starts at 1 because 0 might be used as none.	
 	m.playerGlobals[PlayerID].uniqueIDDefManagerArmy = 0;
 
-	this.HQ.init(gameState,sharedScript.events,this.queues);
+	this.HQ.init(gameState,this.queues);
 	m.debug ("Initialized with the difficulty " + this.Config.difficulty);
 
 	var ents = gameState.getEntities().filter(API3.Filters.byOwner(this.player));
