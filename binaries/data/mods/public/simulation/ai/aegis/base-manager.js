@@ -623,7 +623,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 				// TODO: refine count to only count my base.
 			}
-		} else if (queues.dropsites.length() === 0 && gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_storehouse")) === 0) {
+		} else if (queues.dropsites.length() === 0 && gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_storehouse"), true) === 0) {
 			var wantedDPs = Math.ceil(this.gatherersByType(gameState, type).length / 12.0);
 			var need = wantedDPs - this.getResourceLevel(gameState,type, "dropsites-dpcount",2000);
 			if (need > 0)

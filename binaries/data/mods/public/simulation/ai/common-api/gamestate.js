@@ -438,7 +438,7 @@ m.GameState.prototype.countFoundationsByType = function(type, maintain) {
 	var foundationType = "foundation|" + type;
 
 	if (maintain === true)
-		return this.updatingCollection("foundation-type-" + type, m.Filters.byType(foundationType), this.getOwnFoundations());
+		return this.updatingCollection("foundation-type-" + type, m.Filters.byType(foundationType), this.getOwnFoundations()).length;
 
 	var count = 0;
 	this.getOwnStructures().forEach(function(ent) {

@@ -226,12 +226,12 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 {
 	// Get some data.
 	// Count the workers in the world and in progress
-	var numFemales = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("units/{civ}_support_female_citizen"));
+	var numFemales = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("units/{civ}_support_female_citizen"), true);
 	numFemales += queues.villager.countQueuedUnitsWithClass("Support");
 
 	// counting the workers that aren't part of a plan
 	var numWorkers = 0;
-	gameState.getOwnunits().forEach (function (ent) {
+	gameState.getOwnUnits().forEach (function (ent) {
 		if (ent.getMetadata(PlayerID, "role") == "worker" && ent.getMetadata(PlayerID, "plan") == undefined)
 			numWorkers++;
 	});
@@ -502,7 +502,7 @@ m.HQ.prototype.pickMostNeededResources = function(gameState) {
 // If all the CC's are destroyed then build a new one
 // TODO: rehabilitate.
 m.HQ.prototype.buildNewCC= function(gameState, queues) {
-	var numCCs = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_civil_centre"));
+	var numCCs = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_civil_centre"), true);
 	numCCs += queues.civilCentre.length();
 
 	// no use trying to lay foundations that will be destroyed
@@ -654,7 +654,7 @@ m.HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 m.HQ.prototype.buildTemple = function(gameState, queues){
 	if (gameState.currentPhase() >= 2 ) {
 		if (queues.economicBuilding.countQueuedUnits() === 0 &&
-			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_temple")) === 0){
+			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_temple"), true) === 0){
 			queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_temple", { "base" : 1 }));
 		}
 	}
@@ -663,7 +663,7 @@ m.HQ.prototype.buildTemple = function(gameState, queues){
 m.HQ.prototype.buildMarket = function(gameState, queues){
 	if (gameState.getPopulation() > this.Config.Economy.popForMarket && gameState.currentPhase() >= 2 ) {
 		if (queues.economicBuilding.countQueuedUnitsWithClass("BarterMarket") === 0 &&
-			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market")) === 0){
+			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market"), true) === 0){
 			//only ever build one storehouse/CC/market at a time
 			queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_market", { "base" : 1 }));
 		}
@@ -675,7 +675,7 @@ m.HQ.prototype.buildFarmstead = function(gameState, queues){
 	if (gameState.getPopulation() > this.Config.Economy.popForFarmstead) {
 		// achtung: "DropsiteFood" does not refer to CCs.
 		if (queues.economicBuilding.countQueuedUnitsWithClass("DropsiteFood") === 0 &&
-			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_farmstead")) === 0){
+			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_farmstead"), true) === 0){
 			//only ever build one storehouse/CC/market at a time
 			queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_farmstead", { "base" : 1 }));
 		}
@@ -688,7 +688,7 @@ m.HQ.prototype.buildDock = function(gameState, queues){
 		return;
 	if (gameState.getTimeElapsed() > this.dockStartTime) {
 		if (queues.economicBuilding.countQueuedUnitsWithClass("NavalMarket") === 0 &&
-			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_dock")) === 0) {
+			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_dock"), true) === 0) {
 			var tp = ""
 			if (gameState.civ() == "cart" && gameState.currentPhase() > 1)
 				tp = "structures/{civ}_super_dock";
@@ -789,7 +789,7 @@ m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 			|| capacity[type] < gameState.getOwnUnits().filter(API3.Filters.and(API3.Filters.byMetadata(PlayerID, "subrole", "gatherer"), API3.Filters.byMetadata(PlayerID, "gather-type", type))).length * 1.05)
 		{
 			// plan a new base.
-			if (gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_civil_centre")) === 0 && queues.civilCentre.length() === 0) {
+			if (gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_civil_centre"), true) === 0 && queues.civilCentre.length() === 0) {
 				if (this.outOf[type] && gameState.ai.playedTurn % 10 !== 0)
 					continue;
 				var pos = this.findBestEcoCCLocation(gameState, type);
@@ -813,7 +813,7 @@ m.HQ.prototype.buildDefences = function(gameState, queues){
 	
 	var workersNumber = gameState.getOwnEntitiesByRole("worker", true).filter(API3.Filters.not(API3.Filters.byHasMetadata(PlayerID,"plan"))).length;
 	
-	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv('structures/{civ}_defense_tower'))
+	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv('structures/{civ}_defense_tower'), true)
 		+ queues.defenceBuilding.length() < gameState.getEntityLimits()["DefenseTower"] && queues.defenceBuilding.length() < 4 && gameState.currentPhase() > 1) {
 		for (var i in this.baseManagers)
 		{
@@ -836,7 +836,7 @@ m.HQ.prototype.buildDefences = function(gameState, queues){
 	
 	var numFortresses = 0;
 	for (var i in this.bFort){
-		numFortresses += gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bFort[i]));
+		numFortresses += gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bFort[i]), true);
 	}
 	
 	if (queues.defenceBuilding.length() < 1 && (gameState.currentPhase() > 2 || gameState.isResearching("phase_city_generic")))
@@ -870,7 +870,7 @@ m.HQ.prototype.buildDefences = function(gameState, queues){
 m.HQ.prototype.buildBlacksmith = function(gameState, queues){
 	if (gameState.getTimeElapsed() > this.Config.Military.timeForBlacksmith*1000) {
 		if (queues.militaryBuilding.length() === 0 &&
-			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_blacksmith")) === 0) {
+			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_blacksmith"), true) === 0) {
 			var tp = gameState.getTemplate(gameState.applyCiv("structures/{civ}_blacksmith"));
 			if (tp.available(gameState))
 				queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_blacksmith", { "base" : 1 }));
@@ -887,17 +887,17 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues) {
 	var workersNumber = gameState.getOwnEntitiesByRole("worker", true).filter(API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "plan"))).length;
 
 	if (workersNumber > this.Config.Military.popForBarracks1) {
-		if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) + queues.militaryBuilding.length() < 1) {
+		if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0]), true) + queues.militaryBuilding.length() < 1) {
 			m.debug ("Trying to build barracks");
 			queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, this.bModerate[0], { "base" : 1 }));
 		}
 	}
 	
-	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) < 2 && workersNumber > this.Config.Military.popForBarracks2)
+	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0]), true) < 2 && workersNumber > this.Config.Military.popForBarracks2)
 		if (queues.militaryBuilding.length() < 1)
 			queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, this.bModerate[0], { "base" : 1 }));
 	
-	if (gameState.countEntitiesByType(gameState.applyCiv(this.bModerate[0]), true) === 2 && gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0])) < 3 && workersNumber > 125)
+	if (gameState.countEntitiesByType(gameState.applyCiv(this.bModerate[0]), true) === 2 && gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0]), true) < 3 && workersNumber > 125)
 		if (queues.militaryBuilding.length() < 1)
 		{
 			queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, this.bModerate[0], { "base" : 1 }));
@@ -914,7 +914,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues) {
 				inConst += gameState.countFoundationsByType(gameState.applyCiv(this.bAdvanced[i]));
 			if (inConst == 0 && this.bAdvanced && this.bAdvanced.length !== 0) {
 				var i = Math.floor(Math.random() * this.bAdvanced.length);
-				if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i])) < 1){
+				if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i]), true) < 1){
 					queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, this.bAdvanced[i], { "base" : 1 }));
 				}
 			}
@@ -928,7 +928,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues) {
 			Const += gameState.countEntitiesByType(gameState.applyCiv(this.bAdvanced[i]), true);
 		if (inConst == 1) {
 			var i = Math.floor(Math.random() * this.bAdvanced.length);
-			if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i])) < 1){
+			if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i]), true) < 1){
 				queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, this.bAdvanced[i], { "base" : 1 }));
 				queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, this.bAdvanced[i], { "base" : 1 }));
 			}
@@ -1063,7 +1063,7 @@ m.HQ.prototype.update = function(gameState, queues, events) {
 	this.buildFarmstead(gameState, queues);
 	this.buildMarket(gameState, queues);
 	// Deactivated: the temple had no useful purpose for the AI now.
-	//if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market")) === 1)
+	//if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market"), true) === 1)
 	//	this.buildTemple(gameState, queues);
 	this.buildDock(gameState, queues);	// not if not a water map.
 	
@@ -1241,7 +1241,7 @@ m.HQ.prototype.update = function(gameState, queues, events) {
 	this.buildFarmstead(gameState, queues);
 	this.buildMarket(gameState, queues);
 	// Deactivated: the temple had no useful purpose for the AI now.
-	//if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market")) === 1)
+	//if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market"), true === 1)
 	//	this.buildTemple(gameState, queues);
 	this.buildDock(gameState, queues);	// not if not a water map.
 */
