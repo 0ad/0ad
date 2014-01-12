@@ -214,7 +214,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 				if(ent.hasTerritoryInfluence())
 					this.territoryBuildings.push(ent.id());
 				if (ent.resourceDropsiteTypes())
-					for (ress in ent.resourceDropsiteTypes())
+					for (var ress in ent.resourceDropsiteTypes())
 						this.initializeDropsite(gameState, ent, ent.resourceDropsiteTypes()[ress]);
 				if (ent.resourceSupplyAmount() && ent.resourceSupplyType()["specific"] == "grain")
 					this.assignResourceToDP(gameState,ent);

@@ -641,20 +641,20 @@ m.CityAttack.prototype.AllToRallyPoint = function(gameState, evenWorkers) {
 m.CityAttack.prototype.defaultTargetFinder = function(gameState, HQ){
 	var targets = undefined;
 	
-	targets = gameState.getEnemyStructures(this.targetPlayer).filter(m.Filters.byClass("CivCentre"));
+	targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("CivCentre"));
 	if (targets.length == 0) {
-		targets = gameState.getEnemyStructures(this.targetPlayer).filter(m.Filters.byClass("ConquestCritical"));
+		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("ConquestCritical"));
 	}
 	// If there's nothing, attack anything else that's less critical
 	if (targets.length == 0) {
-		targets = gameState.getEnemyStructures(this.targetPlayer).filter(m.Filters.byClass("Town"));
+		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("Town"));
 	}
 	if (targets.length == 0) {
-		targets = gameState.getEnemyStructures(this.targetPlayer).filter(m.Filters.byClass("Village"));
+		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("Village"));
 	}
 	// no buildings, attack anything conquest critical, even units (it's assuming it won't move).
 	if (targets.length == 0) {
-		targets = gameState.getEnemyEntities(this.targetPlayer).filter(m.Filters.byClass("ConquestCritical"));
+		targets = gameState.getEnemyEntities(this.targetPlayer).filter(API3.Filters.byClass("ConquestCritical"));
 	}
 	return targets;
 };
