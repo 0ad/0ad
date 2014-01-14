@@ -1103,7 +1103,7 @@ var UnitFsmSpec = {
 			// Wait for individual members to finish
 			"enter": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(true);
+				cmpFormation.SetRearrange(false);
 				this.StartTimer(1000, 1000);
 			},
 
@@ -1334,14 +1334,6 @@ var UnitFsmSpec = {
 			// Sanity-checking
 			if (this.IsAnimal())
 				error("Animal got moved into INDIVIDUAL.* state");
-
-			// an entity in individual state shouldn't belong to a formation
-			if (this.IsFormationMember())
-			{
-				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-				if (cmpFormation)
-					cmpFormation.RemoveMembers([this.entity]);
-			}
 		},
 
 		"Attacked": function(msg) {
