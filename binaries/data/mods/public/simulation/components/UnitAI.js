@@ -1334,6 +1334,14 @@ var UnitFsmSpec = {
 			// Sanity-checking
 			if (this.IsAnimal())
 				error("Animal got moved into INDIVIDUAL.* state");
+
+			// an entity in individual state shouldn't belong to a formation
+			if (this.IsFormationMember())
+			{
+				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+				if (cmpFormation)
+					cmpFormation.RemoveMembers([this.entity]);
+			}
 		},
 
 		"Attacked": function(msg) {

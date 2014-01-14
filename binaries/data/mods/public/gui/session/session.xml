@@ -873,24 +873,25 @@
 	<!-- Hero Selection -->
 	<!-- ================================  ================================ -->
 <object
-	    name="unitHeroPanel"
-	    size="0 36 50 93"
+		name="unitHeroPanel"
+		size="0 36 50 93"
 		hidden="true"
 	>
 		<object name="unitHeroButton" size="0 0 50 50" type="button" style="iconButton" 
-			tooltip_style="sessionToolTip" tooltip="Attack and Armor">
+			tooltip_style="sessionToolTip" tooltip="Attack and Armor"
+		>
 			<object name="unitHeroImage" size="5 5 100%-5 100%-5" type="image" ghost="true"/>
 			<object name="heroHitOverlay" hidden="true" type="image" ghost="true" size="5 5 100%-5 100%-5"/> 
 		</object>
 		<!-- Hero Health bar -->
-			<object size="3 100%-7 100%-3 100%-2" name="heroHealthSection" ghost="true">
-				<object size="0 0 100% 5" name="heroHealth" type="image" ghost="true">
-					<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
-					<object type="image" sprite="healthBackground" ghost="true"/> 
-					<object type="image" sprite="healthForeground" ghost="true" name="heroHealthBar"/> 
-					<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
-				</object>
+		<object size="3 100%-7 100%-3 100%-2" name="heroHealthSection" ghost="true">
+			<object size="0 0 100% 5" name="heroHealth" type="image" ghost="true">
+				<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
+				<object type="image" sprite="healthBackground" ghost="true"/> 
+				<object type="image" sprite="healthForeground" ghost="true" name="heroHealthBar"/> 
+				<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
 			</object>
+		</object>
 		<!-- Hit overlay -->
 	</object>
 	
@@ -898,26 +899,27 @@
 	<!-- Unit Selection Groups -->
 	<!-- ================================  ================================ -->
 	<object
-	    name="unitGroupPanel"
-	    size="0% 50%-216 0%+36 50%+144"
+		name="unitGroupPanel"
+		size="0% 50%-216 0%+36 50%+144"
 	>
-	    <repeat count="10">
-		<object name="unitGroupButton[n]" size="0 0 36 36" type="button" hidden="false" style="iconButton" tooltip_style="sessionToolTipBottomBold"
-			tooltip="Click to select grouped units, double-click to focus the grouped units and right-click to disband the group.">
-		    <object name="unitGroupIcon[n]" size="3 3 33 33" type="image" sprite="groupsIcon" ghost="true"/>
-		    <object name="unitGroupLabel[n]" type="text" style="largeCenteredOutlinedText" ghost="true"/>
-		</object>
-	    </repeat>
+		<repeat count="10">
+			<object name="unitGroupButton[n]" size="0 0 36 36" type="button" hidden="false" style="iconButton" tooltip_style="sessionToolTipBottomBold"
+				tooltip="Click to select grouped units, double-click to focus the grouped units and right-click to disband the group."
+			>
+				<object name="unitGroupIcon[n]" size="3 3 33 33" type="image" sprite="groupsIcon" ghost="true"/>
+				<object name="unitGroupLabel[n]" type="text" style="largeCenteredOutlinedText" ghost="true"/>
+			</object>
+		</repeat>
 	</object>
 
 	<!-- ================================  ================================ -->
-	<!-- Information tooltip
-		Follows the mouse around if 'independent' is set to 'true'. -->
+	<!-- Information tooltip -->
+	<!-- Follows the mouse around if 'independent' is set to 'true'. -->
 	<!-- ================================  ================================ -->
 	<object name="informationTooltip" type="tooltip" independent="true" style="informationTooltip"/>
 
 	<!-- ================================  ================================ -->
-	<!-- Building placement info tooltip									-->
+	<!-- Building placement info tooltip -->
 	<!-- ================================  ================================ -->
 	<object name="placementTooltip" type="tooltip" independent="true" style="informationTooltip"/>
 
@@ -927,71 +929,65 @@
 
 	<object size="50%-512 100%-180 50%+512 100%">
 
-	    <!-- ================================  ================================ -->
-	    <!-- Minimap -->
-	    <!-- ================================  ================================ -->
-	    <object
+	<!-- ================================  ================================ -->
+	<!-- Minimap -->
+	<!-- ================================  ================================ -->
+	<object
 		name="minimapPanel"
 		size="0 100%-212 212 100%"
 		type="image"
 		sprite="mapPanel"
 		z="20"
-	    >
+	>
 		<object name="minimap"
 			type="minimap"
-			size="14 14 100%-14 100%-14"
+			size="4 4 100%-4 100%-4"
 		>
-		    <action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
+			<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
 		</object>
-
-		<object name="minimapOverlay" size="10 10 100%-10 100%-10" type="image" sprite="stretched:session/minimap_circle.png" ghost="true"/>
 
 		<!-- Idle Worker Button -->
 		<object type="image"
 			size="100%-36 4 100%-4 36"
 		>
-		    <object type="button"
-			    style="iconButton"
-			    tooltip_style="sessionToolTip"
-			    tooltip="Find idle worker"
-			    hotkey="selection.idleworker"
-		    >
-			<!-- TODO: should highlight the button if there's non-zero idle workers -->
-			<object size="0 0 100% 100%" type="image" sprite="idleWorker" ghost="true" />
-			<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
-		    </object>
+			<object type="button"
+				style="iconButton"
+				tooltip_style="sessionToolTip"
+				tooltip="Find idle worker"
+				hotkey="selection.idleworker"
+			>
+				<!-- TODO: should highlight the button if there's non-zero idle workers -->
+				<object size="0 0 100% 100%" type="image" sprite="idleWorker" ghost="true" />
+				<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
+			</object>
 		</object>
-	    </object>
+	</object>
 
-	    <!-- ================================  ================================ -->
-	    <!-- Supplemental Details Panel (Left of Selection Details) -->
-	    <!-- ================================  ================================ -->
-	    <object size="50%-304 100%-170 50%-110 100%" name="supplementalSelectionDetails" type="image" sprite="supplementalDetailsPanel" z="20">
+	<!-- ================================  ================================ -->
+	<!-- Supplemental Details Panel (Left of Selection Details) -->
+	<!-- ================================  ================================ -->
+	<object size="50%-304 100%-170 50%-110 100%" name="supplementalSelectionDetails" type="image" sprite="supplementalDetailsPanel" z="20">
 
-		<object name="unitFormationPanel"
-			size="24 12 100% 100%"
-		>
-		    <object size="0 0 100% 100%">
-			<repeat count="16">
-			    <object name="unitFormationButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
-				<object name="unitFormationIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
-				<object name="unitFormationSelection[n]" hidden="true" type="image" ghost="true" size="3 3 33 33" sprite="stretched:session/icons/corners.png"/>
-			    </object>
-			</repeat>
-		    </object>
+		<object name="unitFormationPanel" size="24 12 100% 100%">
+			<object size="0 0 100% 100%">
+				<repeat count="16">
+					<object name="unitFormationButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
+						<object name="unitFormationIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+						<object name="unitFormationSelection[n]" hidden="true" type="image" ghost="true" size="3 3 33 33" sprite="stretched:session/icons/corners.png"/>
+					</object>
+				</repeat>
+			</object>
 		</object>
 
-		<object name="unitGarrisonPanel"
-			size="24 12 100% 100%"
-		>
-		    <object size="0 0 100% 100%">
-			<repeat count="12">
-			    <object name="unitGarrisonButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
-				<object name="unitGarrisonIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
-				<object name="unitGarrisonCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
-			    </object>
-			</repeat>
-		    </object>
+		<object name="unitGarrisonPanel" size="24 12 100% 100%">
+			<object size="0 0 100% 100%">
+				<repeat count="12">
+					<object name="unitGarrisonButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
+						<object name="unitGarrisonIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+						<object name="unitGarrisonCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
+					</object>
+				</repeat>
+			</object>
 		</object>
 
 		<object name="unitBarterPanel" 
