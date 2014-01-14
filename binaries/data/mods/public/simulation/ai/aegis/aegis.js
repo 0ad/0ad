@@ -8,24 +8,12 @@ m.playerGlobals = [];
 m.AegisBot = function AegisBot(settings) {
 	API3.BaseAI.call(this, settings);
 
-	this.Config = new m.Config();
-
-	this.Config.updateDifficulty(settings.difficulty);
-	
 	this.turn = 0;
-
 	this.playedTurn = 0;
-	
-	this.priorities = this.Config.priorities;
 
-	// this.queues can only be modified by the queue manager or things will go awry.
-	this.queues = {};
-	for (var i in this.priorities)
-		this.queues[i] = new m.Queue();
-
-	this.queueManager = new m.QueueManager(this.Config, this.queues, this.priorities);
-
-	this.HQ = new m.HQ(this.Config);
+	this.Config = new m.Config();
+	this.Config.updateDifficulty(settings.difficulty);	
+	this.Config.personality = settings.personality;	
 
 	this.firstTime = true;
 
@@ -38,6 +26,19 @@ m.AegisBot = function AegisBot(settings) {
 m.AegisBot.prototype = new API3.BaseAI();
 
 m.AegisBot.prototype.CustomInit = function(gameState, sharedScript) {
+	
+	this.initPersonality(this.gameState);
+
+	this.priorities = this.Config.priorities;
+	// this.queues can only be modified by the queue manager or things will go awry.
+	this.queues = {};
+	for (var i in this.priorities)
+		this.queues[i] = new m.Queue();
+
+	this.queueManager = new m.QueueManager(this.Config, this.queues, this.priorities);
+
+	this.HQ = new m.HQ(this.Config);
+	gameState.Config = this.Config;
 
 	m.playerGlobals[PlayerID] = {};
 	m.playerGlobals[PlayerID].uniqueIDBOPlans = 0;	// training/building/research plans
@@ -85,8 +86,6 @@ m.AegisBot.prototype.CustomInit = function(gameState, sharedScript) {
 	}
 
 	this.pathInfo.angle += Math.PI/3.0;
-
-	this.chooseRandomStrategy();
 }
 
 m.AegisBot.prototype.OnUpdate = function(sharedScript) {
@@ -142,19 +141,30 @@ m.AegisBot.prototype.OnUpdate = function(sharedScript) {
 		
 		var townPhase = this.gameState.townPhase();
 		var cityPhase = this.gameState.cityPhase();
+		
 		// try going up phases.
-		// TODO: softcode this.
-		if (this.gameState.canResearch(townPhase,true) && this.gameState.getTimeElapsed() > (this.Config.Economy.townPhase*1000) && this.gameState.getPopulation() > 40
-			&& this.gameState.findResearchers(townPhase,true).length != 0 && this.queues.majorTech.length() === 0
-			&& this.gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length > 5)
+		// TODO: softcode this more
+		if (this.gameState.canResearch(townPhase,true) && this.gameState.getPopulation() >= this.Config.Economy.villagePopCap - 10
+			&& this.gameState.findResearchers(townPhase,true).length != 0 && this.queues.majorTech.length() === 0)
 		{
-			this.queueManager.pauseQueue("villager", true);
-			this.queueManager.pauseQueue("citizenSoldier", true);
-			this.queueManager.pauseQueue("house", true);
-			this.queues.majorTech.addItem(new m.ResearchPlan(this.gameState, townPhase,0,-1,true));	// we rush the town phase.
-			m.debug ("Trying to reach town phase");
-		}
-		else if (this.gameState.canResearch(cityPhase,true) && this.gameState.getTimeElapsed() > (this.Config.Economy.cityPhase*1000)
+			var plan = new m.ResearchPlan(this.gameState, townPhase, true);
+			plan.lastIsGo = false;
+			plan.onStart = function (gameState) { gameState.ai.HQ.econState = "growth"; gameState.ai.HQ.OnTownPhase(gameState) };
+			plan.isGo = function (gameState) {
+				var ret = gameState.getPopulation() >= gameState.Config.Economy.villagePopCap
+				if (ret && !this.lastIsGo)
+					this.onGo(gameState);
+				else if (!ret && this.lastIsGo)
+					this.onNotGo(gameState);
+				this.lastIsGo = ret;
+				return ret;
+			};
+			plan.onGo = function (gameState) { gameState.ai.HQ.econState = "townPhasing"; m.debug ("Trying to reach TownPhase"); };
+			plan.onNotGo = function (gameState) { gameState.ai.HQ.econState = "growth"; };
+
+			this.queues.majorTech.addItem(plan);
+			m.debug ("Planning Town Phase");
+		} else if (this.gameState.canResearch(cityPhase,true) && this.gameState.getTimeElapsed() > (this.Config.Economy.cityPhase*1000)
 				&& this.gameState.getOwnEntitiesByRole("worker", true).length > 85
 				&& this.gameState.findResearchers(cityPhase, true).length != 0 && this.queues.majorTech.length() === 0) {
 			m.debug ("Trying to reach city phase");
@@ -222,20 +232,43 @@ m.AegisBot.prototype.OnUpdate = function(sharedScript) {
 	this.turn++;
 };
 
-m.AegisBot.prototype.chooseRandomStrategy = function()
+// defines our core components strategy-wise.
+// TODO: the sky's the limit here.
+m.AegisBot.prototype.initPersonality = function(gameState)
 {
-	// deactivated for now.
-	this.strategy = "normal";
-	// rarely and if we can assume it's not a water map.
-	if (!this.pathInfo.needboat && 0)//Math.random() < 0.2 && this.Config.difficulty == 2)
+	this.aggressiveness = 0.5;	// I'll try to keep this as a percent but it's basically arbitrary.
+	if (this.Config.difficulty >= 2)
+		this.aggressiveness = Math.random();
+
+	var agrThrsh = 0.8; // treshold for aggressiveness.
+	if (gameState.civ() == "athen")
+		agrThrsh = 0.6;	// works very well with athens
+
+	if (this.aggressiveness > agrThrsh)
 	{
-		this.strategy = "rush";
-		// going to rush.
-		this.HQ.targetNumWorkers = 0;
-		this.Config.Economy.townPhase = 480;
+		m.debug("Going the Rush route");
+		this.aggressiveness = 1.0;
+		// we'll try to pull in an attack at village phase.
+		this.Config.Military.defenceBuildingTime = 900;
+		this.Config.Military.popForBarracks1 = 0;
+		this.Config.Economy.villagePopCap = 75;
 		this.Config.Economy.cityPhase = 900;
-		this.Config.Economy.farmsteadStartTime = 600;
-		this.Config.Economy.femaleRatio = 0;	// raise it since we'll want to rush age 2.
+		this.Config.Economy.popForMarket = 80;
+		this.Config.Economy.popForFarmstead = 50;
+		this.Config.Economy.targetNumBuilders = 2;
+		this.Config.Economy.femaleRatio = 0.6;
+		this.Config.Defence.prudence = 0.5;
+	} else if (this.aggressiveness < 0.15) {
+		m.debug("Going the Boom route");
+		// Now and then Superboom
+		this.Config.Military.defenceBuildingTime = 600;
+		this.Config.Economy.cityPhase = 1000;
+		this.Config.Military.attackPlansStartTime = 1000;
+		this.Config.Military.popForBarracks1 = 39;
+		this.Config.Economy.villagePopCap = 50;
+		this.Config.Economy.femaleRatio = 1.0;
+		this.Config.Economy.popForMarket = 55;
+		this.Config.Economy.popForFarmstead = 55;
 	}
 };
 

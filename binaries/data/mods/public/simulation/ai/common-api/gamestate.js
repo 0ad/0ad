@@ -25,6 +25,7 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	this.player = player;
 	this.playerData = this.sharedScript.playersData[this.player];
 	this.techModifications = SharedScript._techModifications[this.player];
+	this.barterPrices = SharedScript.barterPrices;
 };
 
 m.GameState.prototype.update = function(SharedScript, state) {
@@ -38,6 +39,7 @@ m.GameState.prototype.update = function(SharedScript, state) {
 	this.entities = SharedScript.entities;
 	this.playerData = SharedScript.playersData[this.player];
 	this.techModifications = SharedScript._techModifications[this.player];
+	this.barterPrices = SharedScript.barterPrices;
 
 	this.buildingsBuilt = 0;
 	this.turnCache = {};
@@ -109,6 +111,11 @@ m.GameState.prototype.getGEC = function(id)
 m.GameState.prototype.getTimeElapsed = function()
 {
 	return this.timeElapsed;
+};
+
+m.GameState.prototype.getBarterPrices = function()
+{
+	return this.barterPrices;
 };
 
 m.GameState.prototype.getTemplate = function(type)

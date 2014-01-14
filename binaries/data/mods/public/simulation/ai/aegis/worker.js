@@ -143,9 +143,9 @@ m.Worker.prototype.update = function(baseManager, gameState) {
 	} else if(subrole === "builder") {
 		
 		// check for transport.
-		if (gameState.ai.playedTurn % 5 === 0)
+		/*if (gameState.ai.playedTurn % 5 === 0)
 		{
-			if (this.ent.unitAIOrderData().length && this.ent.unitAIState().split(".")[2] === "APPROACHING" && this.ent.unitAIOrderData()[0]["target"])
+			if (this.ent.unitAIOrderData().length && this.ent.unitAIState().split(".")[2] && this.ent.unitAIState().split(".")[2] === "APPROACHING" && this.ent.unitAIOrderData()[0]["target"])
 			{
 				var ress = gameState.getEntityById(this.ent.unitAIOrderData()[0]["target"]);
 				if (ress !== undefined)
@@ -154,12 +154,11 @@ m.Worker.prototype.update = function(baseManager, gameState) {
 					var mIndex = gameState.ai.accessibility.getAccessValue(this.ent.position());
 					if (index !== mIndex && index !== 1)
 					{
-						//gameState.ai.HQ.navalManager.askForTransport(this.ent.id(), this.ent.position(), ress.position());
+						gameState.ai.HQ.navalManager.askForTransport(this.ent.id(), this.ent.position(), ress.position());
 					}
 				}
 			}
-		}
-
+		}*/
 		
 		if (this.ent.unitAIState().split(".")[1] !== "REPAIR") {
 			var target = gameState.getEntityById(this.ent.getMetadata(PlayerID, "target-foundation"));
@@ -169,8 +168,7 @@ m.Worker.prototype.update = function(baseManager, gameState) {
 			{
 				if (!this.ent.getMetadata(PlayerID, "keepSubrole"))
 					this.ent.setMetadata(PlayerID, "subrole", "idle");
-			}
-			else
+			} else
 				this.ent.repair(target);
 		}
 		this.startApproachingResourceTime = gameState.getTimeElapsed();

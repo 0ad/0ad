@@ -1,42 +1,25 @@
 var AEGIS = function(m)
 {
 
-m.ConstructionPlan = function(gameState, type, metadata, startTime, expectedTime, position) {
-	this.type = gameState.applyCiv(type);
-	this.position = position;
+// Defines a construction plan, ie a building.
+// We'll try to fing a good position if non has been provided
 
-	this.metadata = metadata;
-
-	this.ID = m.playerGlobals[PlayerID].uniqueIDBOPlans++;
-
-	this.template = gameState.getTemplate(this.type);
-	if (!this.template) {
+m.ConstructionPlan = function(gameState, type, metadata, position) {
+	if (!m.QueuePlan.call(this, gameState, type, metadata))
 		return false;
-	}
-	
-	this.category = "building";
-	this.cost = new API3.Resources(this.template.cost());
-	this.number = 1; // The number of buildings to build
-	
-	if (!startTime)
-		this.startTime = 0;
-	else
-		this.startTime = startTime;
 
-	if (!expectedTime)
-		this.expectedTime = -1;
-	else
-		this.expectedTime = expectedTime;
+	this.position = position ? position : 0;
+
+	this.category = "building";
+
 	return true;
 };
 
-// return true if we willstart amassing resource for this plan
-m.ConstructionPlan.prototype.isGo = function(gameState) {
-	return (gameState.getTimeElapsed() > this.startTime);
-};
+m.ConstructionPlan.prototype = Object.create(m.QueuePlan.prototype);
 
 // checks other than resource ones.
 // TODO: change this.
+// TODO: if there are specific requirements here, maybe try to do them?
 m.ConstructionPlan.prototype.canStart = function(gameState) {
 	if (gameState.buildingsBuilt > 0)
 		return false;
@@ -81,12 +64,7 @@ m.ConstructionPlan.prototype.start = function(gameState) {
 		}
 	} else
 		builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
-};
-
-m.ConstructionPlan.prototype.getCost = function() {
-	var costs = new API3.Resources();
-	costs.add(this.cost);
-	return costs;
+	this.onStart(gameState);
 };
 
 m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
@@ -119,54 +97,31 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	} else {
 		// No position was specified so try and find a sensible place to build
 		gameState.getOwnStructures().forEach(function(ent) {
-			var infl = 32;
-			if (ent.hasClass("CivCentre"))
-				infl *= 4;
-
 			var pos = ent.position();
 			var x = Math.round(pos[0] / cellSize);
 			var z = Math.round(pos[1] / cellSize);
-									   
-			if (ent.buildCategory() == "Wall") {	// no real blockers, but can't build where they are
-				friendlyTiles.addInfluence(x, z, 2,-1000);
-				return;
-			}
 
-			if (template._template.BuildRestrictions.Category === "Field"){
-				if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1){
-					if (ent.hasClass("CivCentre"))
-						friendlyTiles.addInfluence(x, z, infl/4, infl);
-					else
-						 friendlyTiles.addInfluence(x, z, infl, infl);
-									   
-				}
-			}else{
-				if (template.genericName() == "House" && ent.genericName() == "House") {
-					friendlyTiles.addInfluence(x, z, 15.0,20,'linear');	// houses are close to other houses
+			if (template.hasClass("Field")) {
+				if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1)
+					friendlyTiles.addInfluence(x, z, 20, 50);
+			} else if (template.hasClass("House")) {
+				if (ent.hasClass("House"))
+				{
+					friendlyTiles.addInfluence(x, z, 15,40);	// houses are close to other houses
 					alreadyHasHouses = true;
-				} else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
-				{
+				} else {
+					friendlyTiles.addInfluence(x, z, 15, -40); // and further away from other stuffs
+				}
+			} else {
+				if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
 					friendlyTiles.addInfluence(x, z, 30, -50);
-				} else if (template.genericName() == "House") {
-					friendlyTiles.addInfluence(x, z, Math.ceil(infl/4.0),-infl/2.0);	// houses are farther away from other buildings but houses
-				} else if (template.hasClass("GarrisonFortress"))
-				{
-					friendlyTiles.addInfluence(x, z, 20, 10);
-					friendlyTiles.addInfluence(x, z, 10, -40, 'linear');
-				} else if (ent.genericName() != "House") // houses have no influence on other buildings
-				{
-					friendlyTiles.addInfluence(x, z, infl);
-					//avoid building too close to each other if possible.
-					friendlyTiles.addInfluence(x, z, 5, -5, 'linear');
-				}
-					// If this is not a field add a negative influence near the CivCentre because we want to leave this
-					// area for fields.
-				if (ent.hasClass("CivCentre") && template.genericName() != "House"){
-					friendlyTiles.addInfluence(x, z, Math.floor(infl/8), Math.floor(-infl/2));
-				} else if (ent.hasClass("CivCentre")) {
-					friendlyTiles.addInfluence(x, z, infl/3.0, infl + 1);
-					friendlyTiles.addInfluence(x, z, Math.ceil(infl/5.0), -(infl/2.0), 'linear');
-				}
+				else if (template.hasClass("Military"))
+					friendlyTiles.addInfluence(x, z, 10, -40);
+
+				// If this is not a field add a negative influence near the CivCentre because we want to leave this
+				// area for fields.
+				if (ent.hasClass("CivCentre"))
+					friendlyTiles.addInfluence(x, z, 20, -20);
 			}
 		});
 		if (this.metadata && this.metadata.base !== undefined)
@@ -230,7 +185,6 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 		"angle" : angle
 	};
 };
-
 
 return m;
 }(AEGIS);

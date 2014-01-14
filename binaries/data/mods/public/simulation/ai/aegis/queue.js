@@ -8,6 +8,7 @@ var AEGIS = function(m)
 m.Queue = function() {
 	this.queue = [];
 	this.paused = false;
+	this.switched = 0;
 };
 
 m.Queue.prototype.empty = function() {
@@ -52,7 +53,7 @@ m.Queue.prototype.maxAccountWanted = function(gameState) {
 	if (this.queue.length > 1 && this.queue[1].isGo(gameState))
 	{
 		var costs = this.queue[1].getCost();
-		costs.multiply(0.8);
+		costs.multiply(0.4);
 		cost.add(costs);
 	}
 	return cost;

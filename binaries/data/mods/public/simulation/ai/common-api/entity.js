@@ -142,7 +142,7 @@ m.EntityTemplate = m.Class({
 	maxHitpoints: function()
 	{
 		if (this._template.Health !== undefined)
-			return this._template.Health.Max;
+			return GetTechModifiedProperty(this._techModifications, this._template, "Health/Max",+this._template.Health.Max);
 		return 0;
 	},
 	isHealable: function()

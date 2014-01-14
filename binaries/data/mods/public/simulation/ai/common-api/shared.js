@@ -125,6 +125,7 @@ m.SharedScript.prototype.init = function(state) {
 	this.playersData = state.players;
 	this.territoryMap = state.territoryMap;
 	this.timeElapsed = state.timeElapsed;
+	this.barterPrices = state.barterPrices;
 
 	for (var o in state.players)
 		this._techModifications[o] = state.players[o].techModifications;
@@ -175,6 +176,7 @@ m.SharedScript.prototype.onUpdate = function(state)
 	this.playersData = state.players;
 	this.territoryMap = state.territoryMap;
 	this.timeElapsed = state.timeElapsed;
+	this.barterPrices = state.barterPrices;
 	
 	for (var o in state.players)
 		this._techModifications[o] = state.players[o].techModifications;

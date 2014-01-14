@@ -8,7 +8,7 @@ m.Defence = function(Config)
 }
 
 
-m.Defence.prototype.init = function(gameState,events)
+m.Defence.prototype.init = function(gameState)
 {
 	this.armyMergeSize = this.Config.Defence.armyMergeSize;
 	

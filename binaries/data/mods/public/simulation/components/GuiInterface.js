@@ -135,6 +135,10 @@ GuiInterface.prototype.GetExtendedSimulationState = function(player)
 		ret.players[i].statistics = cmpPlayerStatisticsTracker.GetStatistics();
 	}
 
+	// Add bartering prices
+	var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
+	ret.barterPrices = cmpBarter.GetPrices();
+
 	return ret;
 };
 
