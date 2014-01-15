@@ -47,7 +47,7 @@ ResourceSupply.prototype.Init = function()
 	this.gatherers = [];	// list of IDs for each players
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);	// system component so that's safe.
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
-	for (var i = 0; i < numPlayers; ++i)
+	for (var i = 0; i <= numPlayers; ++i)	// use "<=" because we want Gaia too.
 		this.gatherers.push([]);
 
 	this.infinite = !isFinite(+this.template.Amount);
@@ -82,7 +82,7 @@ ResourceSupply.prototype.GetGatherers = function(player)
 {
 	if (player === undefined)
 		return this.gatherers;
-	return this.gatherers[player-1];
+	return this.gatherers[player];
 };
 
 ResourceSupply.prototype.GetDiminishingReturns = function()
@@ -122,7 +122,7 @@ ResourceSupply.prototype.GetType = function()
 
 ResourceSupply.prototype.IsAvailable = function(player, gathererID)
 {
-	if (this.gatherers[player-1].length < this.GetMaxGatherers() || this.gatherers[player-1].indexOf(gathererID) !== -1)
+	if (this.gatherers[player].length < this.GetMaxGatherers() || this.gatherers[player].indexOf(gathererID) !== -1)
 		return true;
 	return false;
 };
@@ -132,9 +132,9 @@ ResourceSupply.prototype.AddGatherer = function(player, gathererID)
 	if (!this.IsAvailable(player, gathererID))
 		return false;
  	
-	if (this.gatherers[player-1].indexOf(gathererID) === -1)
+	if (this.gatherers[player].indexOf(gathererID) === -1)
 	{
-		this.gatherers[player-1].push(gathererID);
+		this.gatherers[player].push(gathererID);
 		// broadcast message, mainly useful for the AIs.
 		Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.gatherers });
 	}
@@ -149,14 +149,14 @@ ResourceSupply.prototype.RemoveGatherer = function(gathererID, player)
 	if (player === undefined || player === -1)
 	{
 	    for (var i = 0; i < this.gatherers.length; ++i)
-			this.RemoveGatherer(gathererID, i+1);
+			this.RemoveGatherer(gathererID, i);
 	}
 	else
 	{
-		var index = this.gatherers[player-1].indexOf(gathererID);
+		var index = this.gatherers[player].indexOf(gathererID);
 		if (index !== -1)
 		{
-			this.gatherers[player-1].splice(index,1);
+			this.gatherers[player].splice(index,1);
 			// broadcast message, mainly useful for the AIs.
 			Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.gatherers });
 			return;

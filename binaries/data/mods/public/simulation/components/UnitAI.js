@@ -2044,11 +2044,10 @@ var UnitFsmSpec = {
 				},
 				
 				"leave": function() {
-					var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+					// don't use ownership because this is called after a conversion/resignation
+					// and the ownership would be invalid then.
 					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-					if (cmpSupply && cmpOwnership)
-						cmpSupply.RemoveGatherer(this.entity, cmpOwnership.GetOwner());
-					else if (cmpSupply)
+					if (cmpSupply)
 						cmpSupply.RemoveGatherer(this.entity);
 					delete this.gatheringTarget;
 				},
@@ -2163,11 +2162,10 @@ var UnitFsmSpec = {
 				"leave": function() {
 					this.StopTimer();
 
-					var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+					// don't use ownership because this is called after a conversion/resignation
+					// and the ownership would be invalid then.
 					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-					if (cmpSupply && cmpOwnership)
-						cmpSupply.RemoveGatherer(this.entity, cmpOwnership.GetOwner());
-					else if (cmpSupply)
+					if (cmpSupply)
 						cmpSupply.RemoveGatherer(this.entity);
 					delete this.gatheringTarget;
 
@@ -3190,6 +3188,9 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 	// If the unit isn't being created or dying, reset stance and clear orders (if not garrisoned).
 	if (msg.to != -1 && msg.from != -1)
 	{
+		// Switch to an empty state to let states execute their leave handlers.
+		UnitFsm.SwitchToNextState(this, "");
+
 		this.SetStance(this.template.DefaultStance);
 		if(!this.isGarrisoned)
 			this.Stop(false);
