@@ -342,6 +342,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 	],
 	circularMap: false,
 	timeElapsed: 0,
+	barterPrices: {buy: {food: 150}, sell: {food: 25}}
 });
 
 
