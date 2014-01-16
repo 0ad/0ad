@@ -11,17 +11,33 @@
   </group>
   <group>
     <variant frequency="1" name="Shield: Crescent Moon">
-      <textures><texture file="props/shield/hele_thespian_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/hele_thespian_a.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Shield: Boeotian Shield">
-      <textures><texture file="props/shield/hele_thespian_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/hele_thespian_b.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Shield: Theban Sphinx">
-      <textures><texture file="props/shield/hele_thespian_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/hele_thespian_c.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Shield: Snake">
-      <textures><texture file="props/shield/hele_round_ab.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/hele_round_ab.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

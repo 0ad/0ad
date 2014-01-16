@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="438.3" y="62.5195" z="101.504"/>
-		<Rotation angle="0"/>
+		<Position x="653.269" y="53.2307" z="165.762"/>
+		<Rotation angle="0.0346268"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -3881,13 +3881,13 @@
 		<Entity uid="939">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="226.90365" z="664.32314"/>
-			<Orientation y="3.9976"/>
+			<Position x="222.78757" z="674.07917"/>
+			<Orientation y="0.04442"/>
 		</Entity>
 		<Entity uid="940">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="234.61545" z="662.0158"/>
+			<Position x="240.10672" z="687.45063"/>
 			<Orientation y="3.17907"/>
 		</Entity>
 		<Entity uid="941">
@@ -6275,7 +6275,7 @@
 		</Entity>
 		<Entity uid="1577">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="753.9121" z="688.70624"/>
+			<Position x="755.32044" z="680.1435"/>
 			<Orientation y="3.3516"/>
 		</Entity>
 		<Entity uid="1578">
@@ -6524,8 +6524,8 @@
 		<Entity uid="1624">
 			<Template>gaia/fauna_camel</Template>
 			<Player>0</Player>
-			<Position x="831.78101" z="728.04487"/>
-			<Orientation y="-2.78994"/>
+			<Position x="834.7895" z="714.1471"/>
+			<Orientation y="-1.48716"/>
 		</Entity>
 		<Entity uid="1625">
 			<Template>gaia/fauna_camel</Template>
@@ -7041,12 +7041,12 @@
 		</Entity>
 		<Entity uid="1731">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="225.1263" z="664.74805"/>
+			<Position x="216.4481" z="675.8166"/>
 			<Orientation y="2.13486"/>
 		</Entity>
 		<Entity uid="1732">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="237.06778" z="660.06208"/>
+			<Position x="245.56208" z="686.16291"/>
 			<Orientation y="0.16999"/>
 		</Entity>
 		<Entity uid="1733">
@@ -9256,7 +9256,7 @@
 		</Entity>
 		<Entity uid="2204">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="795.84083" z="747.10425"/>
+			<Position x="775.24018" z="749.59021"/>
 			<Orientation y="-0.06531"/>
 		</Entity>
 		<Entity uid="2205">
@@ -10086,7 +10086,7 @@
 		<Entity uid="2495">
 			<Template>structures/sele_library</Template>
 			<Player>1</Player>
-			<Position x="593.36" z="208.83841"/>
+			<Position x="591.57953" z="212.61545"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="55362"/>
 		</Entity>
@@ -10156,8 +10156,8 @@
 		<Entity uid="2505">
 			<Template>structures/sele_temple</Template>
 			<Player>1</Player>
-			<Position x="550.83533" z="119.9159"/>
-			<Orientation y="0.79407"/>
+			<Position x="676.1136" z="122.40464"/>
+			<Orientation y="-0.74384"/>
 			<Actor seed="20738"/>
 		</Entity>
 		<Entity uid="2506">
@@ -10191,23 +10191,9 @@
 		<Entity uid="2510">
 			<Template>structures/sele_barracks</Template>
 			<Player>1</Player>
-			<Position x="503.72202" z="214.58497"/>
+			<Position x="505.60578" z="219.4102"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="64210"/>
-		</Entity>
-		<Entity uid="2511">
-			<Template>structures/sele_stables</Template>
-			<Player>1</Player>
-			<Position x="527.41834" z="236.15096"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="3322"/>
-		</Entity>
-		<Entity uid="2512">
-			<Template>structures/sele_stables</Template>
-			<Player>1</Player>
-			<Position x="549.08252" z="253.21071"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="58872"/>
 		</Entity>
 		<Entity uid="2513">
 			<Template>structures/sele_temple</Template>
@@ -10534,189 +10520,189 @@
 		<Entity uid="2559">
 			<Template>units/sele_cavalry_archer_b</Template>
 			<Player>1</Player>
-			<Position x="533.17237" z="219.69306"/>
+			<Position x="525.05304" z="226.98179"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="21916"/>
 		</Entity>
 		<Entity uid="2560">
 			<Template>units/sele_cavalry_archer_b</Template>
 			<Player>1</Player>
-			<Position x="536.27381" z="221.25765"/>
+			<Position x="528.15448" z="228.54638"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="33538"/>
 		</Entity>
 		<Entity uid="2561">
 			<Template>units/sele_cavalry_archer_b</Template>
 			<Player>1</Player>
-			<Position x="539.4062" z="224.97306"/>
+			<Position x="531.28687" z="232.26178"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="24318"/>
 		</Entity>
 		<Entity uid="2562">
 			<Template>units/sele_cavalry_archer_a</Template>
 			<Player>1</Player>
-			<Position x="537.56525" z="213.87374"/>
+			<Position x="529.44593" z="221.16247"/>
 			<Orientation y="2.4472"/>
 			<Actor seed="62080"/>
 		</Entity>
 		<Entity uid="2563">
 			<Template>units/sele_cavalry_archer_a</Template>
 			<Player>1</Player>
-			<Position x="540.62543" z="217.03856"/>
+			<Position x="532.50611" z="224.3273"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="46376"/>
 		</Entity>
 		<Entity uid="2564">
 			<Template>units/sele_cavalry_archer_a</Template>
 			<Player>1</Player>
-			<Position x="543.38471" z="219.86261"/>
+			<Position x="535.26539" z="227.15134"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="52898"/>
 		</Entity>
 		<Entity uid="2565">
 			<Template>units/sele_cavalry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="542.95307" z="209.14135"/>
+			<Position x="534.83375" z="216.43007"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="47678"/>
 		</Entity>
 		<Entity uid="2566">
 			<Template>units/sele_cavalry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="545.86658" z="211.38988"/>
+			<Position x="537.74726" z="218.67861"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="28966"/>
 		</Entity>
 		<Entity uid="2567">
 			<Template>units/sele_cavalry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="549.3252" z="214.02303"/>
+			<Position x="541.20588" z="221.31176"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="43392"/>
 		</Entity>
 		<Entity uid="2568">
 			<Template>units/sele_cavalry_javelinist_b</Template>
 			<Player>1</Player>
-			<Position x="548.14368" z="230.61007"/>
+			<Position x="540.02436" z="237.8988"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="7358"/>
 		</Entity>
 		<Entity uid="2569">
 			<Template>units/sele_cavalry_javelinist_b</Template>
 			<Player>1</Player>
-			<Position x="551.305" z="232.70922"/>
+			<Position x="543.18567" z="239.99795"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="51306"/>
 		</Entity>
 		<Entity uid="2570">
 			<Template>units/sele_cavalry_javelinist_b</Template>
 			<Player>1</Player>
-			<Position x="553.60883" z="235.69852"/>
+			<Position x="545.48951" z="242.98725"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="6128"/>
 		</Entity>
 		<Entity uid="2571">
 			<Template>units/sele_cavalry_javelinist_a</Template>
 			<Player>1</Player>
-			<Position x="553.20716" z="224.71341"/>
+			<Position x="545.08783" z="232.00214"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="34866"/>
 		</Entity>
 		<Entity uid="2572">
 			<Template>units/sele_cavalry_javelinist_a</Template>
 			<Player>1</Player>
-			<Position x="556.22053" z="227.56238"/>
+			<Position x="548.1012" z="234.85111"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="11126"/>
 		</Entity>
 		<Entity uid="2573">
 			<Template>units/sele_cavalry_javelinist_a</Template>
 			<Player>1</Player>
-			<Position x="558.55085" z="230.29114"/>
+			<Position x="550.43152" z="237.57987"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="5894"/>
 		</Entity>
 		<Entity uid="2574">
 			<Template>units/sele_cavalry_javelinist_e</Template>
 			<Player>1</Player>
-			<Position x="556.46131" z="220.06296"/>
+			<Position x="548.34198" z="227.35169"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="2124"/>
 		</Entity>
 		<Entity uid="2575">
 			<Template>units/sele_cavalry_javelinist_e</Template>
 			<Player>1</Player>
-			<Position x="560.02985" z="222.3675"/>
+			<Position x="551.91053" z="229.65622"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="15714"/>
 		</Entity>
 		<Entity uid="2576">
 			<Template>units/sele_cavalry_javelinist_e</Template>
 			<Player>1</Player>
-			<Position x="562.51697" z="225.33233"/>
+			<Position x="554.39765" z="232.62105"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="8056"/>
 		</Entity>
 		<Entity uid="2577">
 			<Template>units/sele_cavalry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="563.1485" z="238.86034"/>
+			<Position x="555.02918" z="246.14907"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="26958"/>
 		</Entity>
 		<Entity uid="2578">
 			<Template>units/sele_cavalry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="565.87269" z="241.83735"/>
+			<Position x="557.75336" z="249.12607"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32380"/>
 		</Entity>
 		<Entity uid="2579">
 			<Template>units/sele_cavalry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="570.50422" z="245.13578"/>
+			<Position x="562.3849" z="252.4245"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="30286"/>
 		</Entity>
 		<Entity uid="2580">
 			<Template>units/sele_cavalry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="568.38862" z="234.17379"/>
+			<Position x="560.2693" z="241.46251"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="48302"/>
 		</Entity>
 		<Entity uid="2581">
 			<Template>units/sele_cavalry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="571.06061" z="236.76734"/>
+			<Position x="562.94129" z="244.05607"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="29790"/>
 		</Entity>
 		<Entity uid="2582">
 			<Template>units/sele_cavalry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="574.34046" z="239.62546"/>
+			<Position x="566.22114" z="246.91419"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="4900"/>
 		</Entity>
 		<Entity uid="2583">
 			<Template>units/sele_cavalry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="572.54383" z="228.12613"/>
+			<Position x="564.4245" z="235.41486"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="27728"/>
 		</Entity>
 		<Entity uid="2584">
 			<Template>units/sele_cavalry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="574.46052" z="230.44404"/>
+			<Position x="566.3412" z="237.73276"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="14330"/>
 		</Entity>
 		<Entity uid="2585">
 			<Template>units/sele_cavalry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="577.82551" z="233.68133"/>
+			<Position x="569.70618" z="240.97005"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="10052"/>
 		</Entity>
@@ -10779,7 +10765,7 @@
 		<Entity uid="2595">
 			<Template>units/sele_champion_elephant</Template>
 			<Player>1</Player>
-			<Position x="446.76688" z="182.67161"/>
+			<Position x="446.70215" z="182.63083"/>
 			<Orientation y="2.2788"/>
 			<Actor seed="27974"/>
 		</Entity>
@@ -10800,56 +10786,56 @@
 		<Entity uid="2601">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="436.68912" z="157.65371"/>
+			<Position x="435.95667" z="158.67568"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="56576"/>
 		</Entity>
 		<Entity uid="2602">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="438.79679" z="159.55642"/>
+			<Position x="438.04722" z="160.58298"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="7738"/>
 		</Entity>
 		<Entity uid="2603">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="440.69098" z="161.56681"/>
+			<Position x="439.94141" z="162.59337"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="35086"/>
 		</Entity>
 		<Entity uid="2604">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="443.25965" z="162.76752"/>
+			<Position x="442.51008" z="163.79409"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="64494"/>
 		</Entity>
 		<Entity uid="2605">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="446.51178" z="159.2782"/>
+			<Position x="445.76221" z="160.30477"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19614"/>
 		</Entity>
 		<Entity uid="2606">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="443.4976" z="157.91926"/>
+			<Position x="442.74802" z="158.94582"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="38004"/>
 		</Entity>
 		<Entity uid="2607">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="441.3672" z="156.22873"/>
+			<Position x="440.61762" z="157.2553"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="60836"/>
 		</Entity>
 		<Entity uid="2608">
 			<Template>units/sele_champion_infantry_swordsman</Template>
 			<Player>1</Player>
-			<Position x="439.94578" z="153.90104"/>
+			<Position x="439.1962" z="154.9276"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="13528"/>
 		</Entity>
@@ -10877,14 +10863,14 @@
 		<Entity uid="2612">
 			<Template>units/sele_mechanical_siege_lithobolos_packed</Template>
 			<Player>1</Player>
-			<Position x="429.46393" z="185.93351"/>
+			<Position x="429.40326" z="186.12366"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="39878"/>
 		</Entity>
 		<Entity uid="2613">
 			<Template>units/sele_mechanical_siege_tower</Template>
 			<Player>1</Player>
-			<Position x="468.54102" z="218.65"/>
+			<Position x="462.19516" z="224.94977"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="4750"/>
 		</Entity>
@@ -11371,100 +11357,693 @@
 		<Entity uid="2684">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="426.5897" z="149.74502"/>
+			<Position x="417.46454" z="143.41288"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="30888"/>
 		</Entity>
 		<Entity uid="2685">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="428.12146" z="151.5693"/>
+			<Position x="419.10633" z="145.20673"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="4088"/>
 		</Entity>
 		<Entity uid="2686">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="429.48578" z="153.64388"/>
+			<Position x="420.47065" z="147.28129"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="21760"/>
 		</Entity>
 		<Entity uid="2687">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="431.04834" z="154.80193"/>
+			<Position x="422.03321" z="148.43934"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="59106"/>
 		</Entity>
 		<Entity uid="2688">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="434.46494" z="150.14689"/>
+			<Position x="425.4498" z="143.78434"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="2216"/>
 		</Entity>
 		<Entity uid="2689">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="432.55597" z="148.58155"/>
+			<Position x="423.54084" z="142.219"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="44522"/>
 		</Entity>
 		<Entity uid="2690">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="431.21589" z="147.26337"/>
+			<Position x="422.20075" z="140.90085"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="27594"/>
 		</Entity>
 		<Entity uid="2691">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="429.25495" z="145.88985"/>
+			<Position x="420.23981" z="139.52735"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="16668"/>
 		</Entity>
 		<Entity uid="2692">
 			<Template>units/sele_champion_chariot</Template>
 			<Player>1</Player>
-			<Position x="431.5182" z="166.84227"/>
+			<Position x="415.46854" z="161.95554"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="56896"/>
 		</Entity>
 		<Entity uid="2693">
 			<Template>units/sele_champion_chariot</Template>
 			<Player>1</Player>
-			<Position x="419.48026" z="177.82355"/>
+			<Position x="407.41611" z="154.04928"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="34838"/>
 		</Entity>
 		<Entity uid="2694">
 			<Template>units/sele_champion_cavalry</Template>
 			<Player>1</Player>
-			<Position x="420.79047" z="155.50344"/>
+			<Position x="432.70316" z="163.19355"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="40492"/>
 		</Entity>
 		<Entity uid="2695">
 			<Template>units/sele_champion_cavalry</Template>
 			<Player>1</Player>
-			<Position x="424.01133" z="158.86529"/>
+			<Position x="435.92402" z="166.5554"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="14394"/>
 		</Entity>
 		<Entity uid="2696">
 			<Template>units/sele_champion_cavalry</Template>
 			<Player>1</Player>
-			<Position x="418.67402" z="164.77553"/>
+			<Position x="430.58671" z="172.46564"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="63800"/>
 		</Entity>
 		<Entity uid="2697">
 			<Template>units/sele_champion_cavalry</Template>
 			<Player>1</Player>
-			<Position x="415.3632" z="160.90741"/>
+			<Position x="427.27588" z="168.59752"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="60586"/>
+		</Entity>
+		<Entity uid="2698">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="757.01038" z="731.48932"/>
+			<Orientation y="3.03852"/>
+			<Actor seed="32238"/>
+		</Entity>
+		<Entity uid="2699">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="759.39759" z="716.1222"/>
+			<Orientation y="2.49656"/>
+			<Actor seed="29488"/>
+		</Entity>
+		<Entity uid="2700">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="767.12964" z="713.10633"/>
+			<Orientation y="1.89089"/>
+			<Actor seed="39348"/>
+		</Entity>
+		<Entity uid="2701">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="773.50861" z="694.09351"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30514"/>
+		</Entity>
+		<Entity uid="2702">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="771.64692" z="699.94721"/>
+			<Orientation y="-1.09858"/>
+			<Actor seed="16378"/>
+		</Entity>
+		<Entity uid="2703">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="766.83442" z="703.13038"/>
+			<Orientation y="-1.36355"/>
+			<Actor seed="17590"/>
+		</Entity>
+		<Entity uid="2704">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="761.48407" z="713.06202"/>
+			<Orientation y="-1.383"/>
+			<Actor seed="4252"/>
+		</Entity>
+		<Entity uid="2705">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="762.18677" z="706.5102"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="47222"/>
+		</Entity>
+		<Entity uid="2706">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="771.69275" z="705.12385"/>
+			<Orientation y="1.37761"/>
+			<Actor seed="20656"/>
+		</Entity>
+		<Entity uid="2707">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="848.27857" z="714.98035"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16788"/>
+		</Entity>
+		<Entity uid="2708">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="844.35743" z="710.44727"/>
+			<Orientation y="-1.90494"/>
+			<Actor seed="34704"/>
+		</Entity>
+		<Entity uid="2709">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="841.1031" z="712.98469"/>
+			<Orientation y="-2.87078"/>
+			<Actor seed="7034"/>
+		</Entity>
+		<Entity uid="2710">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="834.85541" z="700.04822"/>
+			<Orientation y="-2.6477"/>
+			<Actor seed="40572"/>
+		</Entity>
+		<Entity uid="2711">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="831.02686" z="696.08161"/>
+			<Orientation y="1.13256"/>
+			<Actor seed="34844"/>
+		</Entity>
+		<Entity uid="2712">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="841.39557" z="700.17811"/>
+			<Orientation y="2.52158"/>
+			<Actor seed="26286"/>
+		</Entity>
+		<Entity uid="2713">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="842.83436" z="704.1623"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40584"/>
+		</Entity>
+		<Entity uid="2714">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="845.42902" z="704.31067"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2726"/>
+		</Entity>
+		<Entity uid="2715">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="851.26172" z="706.93232"/>
+			<Orientation y="-0.56351"/>
+			<Actor seed="24604"/>
+		</Entity>
+		<Entity uid="2716">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="853.57538" z="712.13373"/>
+			<Orientation y="2.05459"/>
+			<Actor seed="37804"/>
+		</Entity>
+		<Entity uid="2717">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="849.14698" z="703.74537"/>
+			<Orientation y="-0.55108"/>
+			<Actor seed="55570"/>
+		</Entity>
+		<Entity uid="2718">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="753.7829" z="722.57776"/>
+			<Orientation y="-0.02154"/>
+			<Actor seed="47070"/>
+		</Entity>
+		<Entity uid="2719">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="748.2953" z="717.7782"/>
+			<Orientation y="2.89728"/>
+			<Actor seed="6858"/>
+		</Entity>
+		<Entity uid="2720">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="756.28528" z="706.9209"/>
+			<Orientation y="2.53103"/>
+			<Actor seed="41214"/>
+		</Entity>
+		<Entity uid="2721">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="760.19861" z="703.81202"/>
+			<Orientation y="3.04496"/>
+			<Actor seed="60378"/>
+		</Entity>
+		<Entity uid="2722">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="764.01471" z="695.05146"/>
+			<Orientation y="1.24207"/>
+			<Actor seed="13238"/>
+		</Entity>
+		<Entity uid="2723">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="769.15638" z="696.29908"/>
+			<Orientation y="2.07204"/>
+			<Actor seed="8244"/>
+		</Entity>
+		<Entity uid="2724">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="773.94294" z="692.75904"/>
+			<Orientation y="1.71567"/>
+			<Actor seed="54894"/>
+		</Entity>
+		<Entity uid="2725">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="777.62684" z="695.14368"/>
+			<Orientation y="0.0687"/>
+			<Actor seed="26900"/>
+		</Entity>
+		<Entity uid="2726">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="776.44239" z="704.82911"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="38916"/>
+		</Entity>
+		<Entity uid="2727">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="772.77442" z="708.7751"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49638"/>
+		</Entity>
+		<Entity uid="2728">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="769.92988" z="718.31385"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24064"/>
+		</Entity>
+		<Entity uid="2729">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="767.85792" z="718.73902"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="728"/>
+		</Entity>
+		<Entity uid="2730">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="764.75922" z="724.17273"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54718"/>
+		</Entity>
+		<Entity uid="2731">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="764.69648" z="716.49366"/>
+			<Orientation y="0.78736"/>
+			<Actor seed="4638"/>
+		</Entity>
+		<Entity uid="2732">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="834.0959" z="708.17115"/>
+			<Orientation y="-1.8349"/>
+			<Actor seed="53668"/>
+		</Entity>
+		<Entity uid="2733">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="827.27808" z="702.5752"/>
+			<Orientation y="0.31019"/>
+			<Actor seed="63874"/>
+		</Entity>
+		<Entity uid="2734">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="825.08582" z="694.73957"/>
+			<Orientation y="-0.20264"/>
+			<Actor seed="33146"/>
+		</Entity>
+		<Entity uid="2735">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="836.25397" z="692.8365"/>
+			<Orientation y="-1.28237"/>
+			<Actor seed="53820"/>
+		</Entity>
+		<Entity uid="2736">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="845.04932" z="694.76453"/>
+			<Orientation y="-0.39895"/>
+			<Actor seed="61402"/>
+		</Entity>
+		<Entity uid="2737">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="847.37244" z="696.22535"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="35252"/>
+		</Entity>
+		<Entity uid="2738">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="853.82648" z="705.08924"/>
+			<Orientation y="-2.73255"/>
+			<Actor seed="64754"/>
+		</Entity>
+		<Entity uid="2739">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="857.13544" z="716.05781"/>
+			<Orientation y="-1.1717"/>
+			<Actor seed="5678"/>
+		</Entity>
+		<Entity uid="2740">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="853.79865" z="723.71943"/>
+			<Orientation y="-2.16211"/>
+			<Actor seed="20858"/>
+		</Entity>
+		<Entity uid="2741">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="846.26764" z="721.8747"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60158"/>
+		</Entity>
+		<Entity uid="2742">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="836.80591" z="705.96167"/>
+			<Orientation y="0.68572"/>
+			<Actor seed="6930"/>
+		</Entity>
+		<Entity uid="2743">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="840.75141" z="701.2157"/>
+			<Orientation y="-0.97223"/>
+			<Actor seed="30802"/>
+		</Entity>
+		<Entity uid="2744">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="833.95282" z="693.94819"/>
+			<Orientation y="-0.68554"/>
+			<Actor seed="28162"/>
+		</Entity>
+		<Entity uid="2745">
+			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
+			<Position x="806.08436" z="783.61011"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1510"/>
+		</Entity>
+		<Entity uid="2746">
+			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
+			<Position x="844.32923" z="776.1579"/>
+			<Orientation y="1.34704"/>
+			<Actor seed="30296"/>
+		</Entity>
+		<Entity uid="2747">
+			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
+			<Position x="834.10694" z="718.30799"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54600"/>
+		</Entity>
+		<Entity uid="2748">
+			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
+			<Position x="784.20313" z="721.25171"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45706"/>
+		</Entity>
+		<Entity uid="2749">
+			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
+			<Position x="785.27021" z="756.36188"/>
+			<Orientation y="-1.35093"/>
+			<Actor seed="35822"/>
+		</Entity>
+		<Entity uid="2750">
+			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
+			<Position x="772.11005" z="725.5204"/>
+			<Orientation y="1.69513"/>
+			<Actor seed="3606"/>
+		</Entity>
+		<Entity uid="2751">
+			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
+			<Position x="833.21216" z="718.84205"/>
+			<Orientation y="-2.33732"/>
+			<Actor seed="46852"/>
+		</Entity>
+		<Entity uid="2752">
+			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
+			<Position x="820.40784" z="785.25715"/>
+			<Orientation y="-0.76398"/>
+			<Actor seed="40680"/>
+		</Entity>
+		<Entity uid="2753">
+			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
+			<Position x="800.27369" z="770.4737"/>
+			<Orientation y="-1.92547"/>
+			<Actor seed="27800"/>
+		</Entity>
+		<Entity uid="2754">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="769.97077" z="766.20716"/>
+			<Orientation y="-1.25261"/>
+			<Actor seed="53286"/>
+		</Entity>
+		<Entity uid="2755">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="845.6742" z="784.78583"/>
+			<Orientation y="0.5285"/>
+			<Actor seed="13704"/>
+		</Entity>
+		<Entity uid="2756">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="843.00727" z="735.01465"/>
+			<Orientation y="-1.05127"/>
+			<Actor seed="42280"/>
+		</Entity>
+		<Entity uid="2757">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="768.30237" z="744.15998"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="58592"/>
+		</Entity>
+		<Entity uid="2758">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="793.50135" z="783.42817"/>
+			<Orientation y="-0.2446"/>
+			<Actor seed="45132"/>
+		</Entity>
+		<Entity uid="2759">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="822.58606" z="795.88056"/>
+			<Orientation y="-3.01273"/>
+			<Actor seed="35634"/>
+		</Entity>
+		<Entity uid="2760">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="857.95215" z="802.92786"/>
+			<Orientation y="0.28446"/>
+			<Actor seed="11356"/>
+		</Entity>
+		<Entity uid="2761">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="833.54126" z="836.74726"/>
+			<Orientation y="-1.68789"/>
+			<Actor seed="30496"/>
+		</Entity>
+		<Entity uid="2762">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="760.40168" z="805.40162"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16494"/>
+		</Entity>
+		<Entity uid="2763">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="825.04407" z="671.45081"/>
+			<Orientation y="-1.55391"/>
+			<Actor seed="51860"/>
+		</Entity>
+		<Entity uid="2764">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="787.8473" z="667.89881"/>
+			<Orientation y="0.29406"/>
+			<Actor seed="20826"/>
+		</Entity>
+		<Entity uid="2765">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="720.66993" z="743.42005"/>
+			<Orientation y="-2.60521"/>
+			<Actor seed="18250"/>
+		</Entity>
+		<Entity uid="2766">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="684.72986" z="866.12616"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22806"/>
+		</Entity>
+		<Entity uid="2767">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="859.51716" z="714.39271"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4538"/>
+		</Entity>
+		<Entity uid="2768">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="892.6125" z="778.46198"/>
+			<Orientation y="-0.399"/>
+			<Actor seed="17168"/>
+		</Entity>
+		<Entity uid="2769">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="773.57728" z="795.1684"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50424"/>
+		</Entity>
+		<Entity uid="2770">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="860.63654" z="770.68696"/>
+			<Orientation y="-1.0624"/>
+			<Actor seed="2596"/>
+		</Entity>
+		<Entity uid="2771">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="869.95044" z="758.75208"/>
+			<Orientation y="-0.11234"/>
+			<Actor seed="26660"/>
+		</Entity>
+		<Entity uid="2772">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="784.08088" z="774.20258"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="52074"/>
+		</Entity>
+		<Entity uid="2773">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="838.95887" z="810.15296"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="38946"/>
+		</Entity>
+		<Entity uid="2774">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="802.94263" z="688.0901"/>
+			<Orientation y="-0.7419"/>
+			<Actor seed="33608"/>
+		</Entity>
+		<Entity uid="2775">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="809.6836" z="673.44684"/>
+			<Orientation y="-0.02215"/>
+			<Actor seed="44890"/>
+		</Entity>
+		<Entity uid="2776">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="787.41022" z="685.46717"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="15984"/>
+		</Entity>
+		<Entity uid="2777">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="796.75214" z="676.50672"/>
+			<Orientation y="0.16843"/>
+			<Actor seed="17314"/>
+		</Entity>
+		<Entity uid="2778">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="854.47248" z="783.26679"/>
+			<Orientation y="-0.88445"/>
+			<Actor seed="55190"/>
+		</Entity>
+		<Entity uid="2779">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="783.94935" z="781.77283"/>
+			<Orientation y="-1.22619"/>
+			<Actor seed="59778"/>
+		</Entity>
+		<Entity uid="2780">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="807.72034" z="792.18763"/>
+			<Orientation y="-0.86329"/>
+			<Actor seed="19890"/>
+		</Entity>
+		<Entity uid="2781">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="779.15467" z="670.1366"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="25610"/>
+		</Entity>
+		<Entity uid="2782">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="855.88343" z="791.37037"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30124"/>
+		</Entity>
+		<Entity uid="2783">
+			<Template>structures/sele_military_colony</Template>
+			<Player>1</Player>
+			<Position x="734.23133" z="767.26197"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5722"/>
 		</Entity>
 	</Entities>
 	<Paths/>

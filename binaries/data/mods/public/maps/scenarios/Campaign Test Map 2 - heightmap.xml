@@ -2,31 +2,42 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
-		<SkySet>sunny</SkySet>
-		<SunColour r="1.38464" g="1.17287" b="0.743905"/>
-		<SunElevation angle="0.187146"/>
-		<SunRotation angle="-0.785396"/>
+		<SkySet>cumulus</SkySet>
+		<SunColour r="0.866667" g="0.776471" b="0.490196"/>
+		<SunElevation angle="1.23098"/>
+		<SunRotation angle="-0.554308"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0.000996094</FogFactor>
+			<FogThickness>0.00195313</FogThickness>
+			<FogColour r="0.882353" g="0.839216" b="0.701961"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Colour r="0" g="0.501961" b="0.752941"/>
 				<Height>5</Height>
 				<Shininess>150</Shininess>
-				<Waviness>8</Waviness>
-				<Murkiness>1</Murkiness>
-				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<Waviness>9.99023</Waviness>
+				<Murkiness>0.900391</Murkiness>
+				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>DOF</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="2768.02" y="107.546" z="1121.81"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="2783.02" y="114.955" z="1138.3"/>
+		<Rotation angle="0.0043361"/>
+		<Declination angle="0.773237"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -46,19 +57,23 @@
     },
     {
       "AI": "",
-      "Civ": "cart"
+      "Civ": "spart"
     },
     {
       "AI": "",
-      "Civ": "celt"
+      "Civ": "hele"
     },
     {
       "AI": "",
-      "Civ": "iber"
+      "Civ": "hele"
     },
     {
       "AI": "",
-      "Civ": "mace"
+      "Civ": "hele"
+    },
+    {
+      "AI": "",
+      "Civ": "hele"
     },
     {
       "AI": "",
@@ -66,11 +81,7 @@
     },
     {
       "AI": "",
-      "Civ": "rome"
-    },
-    {
-      "AI": "",
-      "Civ": "spart"
+      "Civ": "mace"
     }
   ],
   "RevealMap": true
@@ -4838,6 +4849,240 @@
 			<Player>1</Player>
 			<Position x="2773.61207" z="1278.06959"/>
 			<Orientation y="-1.92721"/>
+		</Entity>
+		<Entity uid="963">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2605.32837" z="1182.2428"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34364"/>
+		</Entity>
+		<Entity uid="964">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3047.59278" z="1385.8401"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24696"/>
+		</Entity>
+		<Entity uid="965">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2165.15064" z="1808.42066"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45962"/>
+		</Entity>
+		<Entity uid="966">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2902.37745" z="875.57972"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42976"/>
+		</Entity>
+		<Entity uid="967">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2339.70777" z="878.91004"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51614"/>
+		</Entity>
+		<Entity uid="968">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1937.41041" z="1115.51905"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37374"/>
+		</Entity>
+		<Entity uid="969">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1617.96302" z="1010.06751"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45670"/>
+		</Entity>
+		<Entity uid="970">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1757.15894" z="581.94935"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23926"/>
+		</Entity>
+		<Entity uid="971">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2174.00342" z="328.51404"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19666"/>
+		</Entity>
+		<Entity uid="972">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2681.3042" z="401.04877"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60662"/>
+		</Entity>
+		<Entity uid="973">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3136.7439" z="480.56543"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33358"/>
+		</Entity>
+		<Entity uid="974">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3402.05298" z="874.07374"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40926"/>
+		</Entity>
+		<Entity uid="975">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3343.42408" z="1451.97632"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29120"/>
+		</Entity>
+		<Entity uid="976">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3642.50562" z="1725.8429"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45632"/>
+		</Entity>
+		<Entity uid="977">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3228.75953" z="2099.38209"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44210"/>
+		</Entity>
+		<Entity uid="978">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2737.09693" z="2377.19605"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28254"/>
+		</Entity>
+		<Entity uid="979">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2145.99683" z="2506.62574"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59308"/>
+		</Entity>
+		<Entity uid="980">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2412.3169" z="2899.7627"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19630"/>
+		</Entity>
+		<Entity uid="981">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2029.6078" z="3142.07911"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1864"/>
+		</Entity>
+		<Entity uid="982">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2283.97681" z="3467.06055"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34174"/>
+		</Entity>
+		<Entity uid="983">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1965.37281" z="3453.05958"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16420"/>
+		</Entity>
+		<Entity uid="984">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1371.90137" z="3180.86475"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12864"/>
+		</Entity>
+		<Entity uid="985">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1012.7837" z="2900.17627"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12332"/>
+		</Entity>
+		<Entity uid="986">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1115.82532" z="2568.65699"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="35470"/>
+		</Entity>
+		<Entity uid="987">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="827.36908" z="2166.00123"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="35932"/>
+		</Entity>
+		<Entity uid="988">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="451.56782" z="1874.06959"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44018"/>
+		</Entity>
+		<Entity uid="989">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="645.24683" z="1476.15687"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22150"/>
+		</Entity>
+		<Entity uid="990">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="933.5163" z="1233.94068"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20902"/>
+		</Entity>
+		<Entity uid="991">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="864.74494" z="670.73316"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43806"/>
+		</Entity>
+		<Entity uid="992">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1230.37598" z="406.08283"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="35846"/>
+		</Entity>
+		<Entity uid="993">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1654.54566" z="778.15351"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14268"/>
+		</Entity>
+		<Entity uid="994">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2450.04322" z="1552.91504"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34362"/>
+		</Entity>
+		<Entity uid="995">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2926.39747" z="1211.88526"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28470"/>
+		</Entity>
+		<Entity uid="996">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3457.43995" z="2157.23121"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23232"/>
+		</Entity>
+		<Entity uid="997">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3497.49048" z="2125.86084"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="47380"/>
+		</Entity>
+		<Entity uid="998">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3573.41431" z="2208.19727"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32286"/>
+		</Entity>
+		<Entity uid="999">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3512.53882" z="2224.22071"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17994"/>
+		</Entity>
+		<Entity uid="1000">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3430.82691" z="2145.25513"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="446"/>
+		</Entity>
+		<Entity uid="1001">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="3518.42408" z="2171.47632"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1498"/>
 		</Entity>
 	</Entities>
 	<Paths/>

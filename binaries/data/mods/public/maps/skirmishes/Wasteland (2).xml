@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="1.10938" g="0.978865" b="0.613422"/>
+		<SunColour r="1" g="0.882353" b="0.54902"/>
 		<SunElevation angle="0.510983"/>
 		<SunRotation angle="-1.15355"/>
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
@@ -35,14 +35,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="303.055" y="97.2998" z="423.28"/>
+		<Position x="303.3" y="99.7874" z="462.139"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "A barren wasteland with little wood and few animals.",
+  "Description": "A barren wasteland with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\u000a\u000aThe player who sets up a profitable trade caravan earliest will gain a decisive advantage.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -67,7 +67,7 @@
       }
     }
   ],
-  "Preview": "",
+  "Preview": "wasteland.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -23427,6 +23427,419 @@
 			<Position x="417.09922" z="1114.91773"/>
 			<Orientation y="0.99093"/>
 			<Actor seed="2236"/>
+		</Entity>
+		<Entity uid="3979">
+			<Template>gaia/special_treasure_food_jars</Template>
+			<Player>0</Player>
+			<Position x="176.07447" z="554.71595"/>
+			<Orientation y="-2.38587"/>
+			<Actor seed="53698"/>
+		</Entity>
+		<Entity uid="3980">
+			<Template>gaia/special_treasure_food_jars</Template>
+			<Player>0</Player>
+			<Position x="1071.10804" z="645.91028"/>
+			<Orientation y="-1.02024"/>
+			<Actor seed="29478"/>
+		</Entity>
+		<Entity uid="3981">
+			<Template>gaia/special_treasure_food_persian_big</Template>
+			<Player>0</Player>
+			<Position x="899.1764" z="418.97284"/>
+			<Orientation y="1.82352"/>
+			<Actor seed="21138"/>
+		</Entity>
+		<Entity uid="3982">
+			<Template>gaia/special_treasure_food_persian_big</Template>
+			<Player>0</Player>
+			<Position x="436.84598" z="609.0047"/>
+			<Orientation y="0.49222"/>
+			<Actor seed="40812"/>
+		</Entity>
+		<Entity uid="3984">
+			<Template>gaia/special_treasure_metal_persian_bigl</Template>
+			<Player>0</Player>
+			<Position x="647.60053" z="166.06333"/>
+			<Orientation y="-2.81272"/>
+			<Actor seed="11676"/>
+		</Entity>
+		<Entity uid="3985">
+			<Template>gaia/special_treasure_metal_persian_small</Template>
+			<Player>0</Player>
+			<Position x="800.06305" z="192.676"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13986"/>
+		</Entity>
+		<Entity uid="3986">
+			<Template>gaia/special_treasure_metal_persian_small</Template>
+			<Player>0</Player>
+			<Position x="606.73981" z="795.22535"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41340"/>
+		</Entity>
+		<Entity uid="3987">
+			<Template>gaia/special_treasure_metal_persian_bigl</Template>
+			<Player>0</Player>
+			<Position x="802.78138" z="843.34205"/>
+			<Orientation y="2.20368"/>
+			<Actor seed="13216"/>
+		</Entity>
+		<Entity uid="3988">
+			<Template>gaia/special_treasure_metal_persian_bigl</Template>
+			<Player>0</Player>
+			<Position x="186.84267" z="243.39322"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2678"/>
+		</Entity>
+		<Entity uid="3989">
+			<Template>gaia/special_treasure_metal_persian_bigl</Template>
+			<Player>0</Player>
+			<Position x="1207.1731" z="811.39521"/>
+			<Orientation y="-2.16413"/>
+			<Actor seed="37638"/>
+		</Entity>
+		<Entity uid="3990">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="1070.71497" z="476.28489"/>
+			<Orientation y="-1.49856"/>
+			<Actor seed="62332"/>
+		</Entity>
+		<Entity uid="3991">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="283.14383" z="485.11191"/>
+			<Orientation y="0.35056"/>
+			<Actor seed="33958"/>
+		</Entity>
+		<Entity uid="3992">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="294.47782" z="482.43317"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62874"/>
+		</Entity>
+		<Entity uid="3993">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="298.7469" z="483.64551"/>
+			<Orientation y="-2.23498"/>
+			<Actor seed="10748"/>
+		</Entity>
+		<Entity uid="3994">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="299.58814" z="478.03934"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59586"/>
+		</Entity>
+		<Entity uid="3995">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="1103.97645" z="504.41587"/>
+			<Orientation y="-1.93084"/>
+			<Actor seed="18686"/>
+		</Entity>
+		<Entity uid="3996">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="1100.6183" z="499.06156"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49540"/>
+		</Entity>
+		<Entity uid="3997">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="1105.59803" z="499.63636"/>
+			<Orientation y="-3.00495"/>
+			<Actor seed="49072"/>
+		</Entity>
+		<Entity uid="3998">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="671.94617" z="541.42518"/>
+			<Orientation y="-2.06966"/>
+			<Actor seed="29642"/>
+		</Entity>
+		<Entity uid="3999">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="673.91095" z="32.59911"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="6656"/>
+		</Entity>
+		<Entity uid="4000">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="686.38978" z="1134.59522"/>
+			<Orientation y="-2.93775"/>
+			<Actor seed="62654"/>
+		</Entity>
+		<Entity uid="4001">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>0</Player>
+			<Position x="579.72077" z="1095.75452"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32962"/>
+		</Entity>
+		<Entity uid="4002">
+			<Template>gaia/special_ruins_stone_statues_egyptian</Template>
+			<Player>0</Player>
+			<Position x="767.00776" z="1128.40931"/>
+			<Orientation y="-2.45174"/>
+			<Actor seed="26334"/>
+		</Entity>
+		<Entity uid="4003">
+			<Template>gaia/special_ruins_column_doric</Template>
+			<Player>0</Player>
+			<Position x="486.21015" z="1093.95228"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3090"/>
+		</Entity>
+		<Entity uid="4004">
+			<Template>gaia/special_ruins</Template>
+			<Player>0</Player>
+			<Position x="690.10438" z="855.67615"/>
+			<Orientation y="0.39795"/>
+			<Actor seed="3134"/>
+		</Entity>
+		<Entity uid="4005">
+			<Template>gaia/special_ruins</Template>
+			<Player>0</Player>
+			<Position x="686.70002" z="850.30298"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7544"/>
+		</Entity>
+		<Entity uid="4006">
+			<Template>gaia/special_ruins</Template>
+			<Player>0</Player>
+			<Position x="685.61994" z="844.56714"/>
+			<Orientation y="2.99195"/>
+			<Actor seed="48940"/>
+		</Entity>
+		<Entity uid="4007">
+			<Template>gaia/special_ruins_column_doric</Template>
+			<Player>0</Player>
+			<Position x="682.4676" z="839.19861"/>
+			<Orientation y="-0.93116"/>
+			<Actor seed="5902"/>
+		</Entity>
+		<Entity uid="4008">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>2</Player>
+			<Position x="1052.74952" z="502.7906"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31662"/>
+		</Entity>
+		<Entity uid="4009">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>2</Player>
+			<Position x="1059.20582" z="508.7292"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="8806"/>
+		</Entity>
+		<Entity uid="4010">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>2</Player>
+			<Position x="1055.03772" z="544.81605"/>
+			<Orientation y="0.64141"/>
+			<Actor seed="11702"/>
+		</Entity>
+		<Entity uid="4011">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>2</Player>
+			<Position x="1058.50293" z="539.59693"/>
+			<Orientation y="0.32132"/>
+			<Actor seed="14264"/>
+		</Entity>
+		<Entity uid="4012">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1015.75214" z="511.20224"/>
+			<Orientation y="-2.28556"/>
+			<Actor seed="36172"/>
+		</Entity>
+		<Entity uid="4013">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1019.51154" z="508.10807"/>
+			<Orientation y="-2.254"/>
+			<Actor seed="52904"/>
+		</Entity>
+		<Entity uid="4014">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1023.40156" z="505.13501"/>
+			<Orientation y="-2.15339"/>
+			<Actor seed="64462"/>
+		</Entity>
+		<Entity uid="4015">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1027.2256" z="502.86481"/>
+			<Orientation y="-1.9547"/>
+			<Actor seed="49036"/>
+		</Entity>
+		<Entity uid="4016">
+			<Template>skirmish/units/default_cavalry</Template>
+			<Player>2</Player>
+			<Position x="1017.2345" z="540.93836"/>
+			<Orientation y="-0.96717"/>
+			<Actor seed="8928"/>
+		</Entity>
+		<Entity uid="4017">
+			<Template>skirmish/units/special_starting_unit</Template>
+			<Player>2</Player>
+			<Position x="1020.35767" z="544.78278"/>
+			<Orientation y="-0.86695"/>
+			<Actor seed="62374"/>
+		</Entity>
+		<Entity uid="4018">
+			<Template>skirmish/units/special_starting_unit</Template>
+			<Player>1</Player>
+			<Position x="283.64521" z="550.8932"/>
+			<Orientation y="-0.91749"/>
+			<Actor seed="43254"/>
+		</Entity>
+		<Entity uid="4019">
+			<Template>skirmish/units/default_cavalry</Template>
+			<Player>1</Player>
+			<Position x="280.52143" z="546.48505"/>
+			<Orientation y="-0.83642"/>
+			<Actor seed="30446"/>
+		</Entity>
+		<Entity uid="4020">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>1</Player>
+			<Position x="315.52207" z="512.08167"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39218"/>
+		</Entity>
+		<Entity uid="4021">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>1</Player>
+			<Position x="319.57364" z="516.34412"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26700"/>
+		</Entity>
+		<Entity uid="4022">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="319.18674" z="547.29737"/>
+			<Orientation y="0.80346"/>
+			<Actor seed="34586"/>
+		</Entity>
+		<Entity uid="4023">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="323.59922" z="542.88953"/>
+			<Orientation y="0.88424"/>
+			<Actor seed="13658"/>
+		</Entity>
+		<Entity uid="4024">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="282.3079" z="517.94996"/>
+			<Orientation y="-2.32335"/>
+			<Actor seed="27570"/>
+		</Entity>
+		<Entity uid="4025">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="285.98905" z="514.76905"/>
+			<Orientation y="-2.01499"/>
+			<Actor seed="24804"/>
+		</Entity>
+		<Entity uid="4026">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="289.00843" z="512.32483"/>
+			<Orientation y="-2.55985"/>
+			<Actor seed="34548"/>
+		</Entity>
+		<Entity uid="4027">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="292.0145" z="509.85187"/>
+			<Orientation y="-1.9353"/>
+			<Actor seed="31272"/>
+		</Entity>
+		<Entity uid="4041">
+			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Player>0</Player>
+			<Position x="977.0199" z="534.62238"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="6844"/>
+		</Entity>
+		<Entity uid="4042">
+			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Player>0</Player>
+			<Position x="396.13135" z="517.09534"/>
+			<Orientation y="-2.76215"/>
+			<Actor seed="23800"/>
+		</Entity>
+		<Entity uid="4043">
+			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Player>0</Player>
+			<Position x="431.38697" z="162.22806"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51618"/>
+		</Entity>
+		<Entity uid="4044">
+			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Player>0</Player>
+			<Position x="810.89161" z="141.20475"/>
+			<Orientation y="-1.37015"/>
+			<Actor seed="5604"/>
+		</Entity>
+		<Entity uid="4045">
+			<Template>gaia/special_treasure_food_barrels_buried</Template>
+			<Player>0</Player>
+			<Position x="654.50849" z="727.11744"/>
+			<Orientation y="0.34607"/>
+			<Actor seed="30012"/>
+		</Entity>
+		<Entity uid="4047">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="1002.08271" z="487.93702"/>
+			<Orientation y="0.5584"/>
+			<Actor seed="21258"/>
+		</Entity>
+		<Entity uid="4048">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="1005.72632" z="486.01658"/>
+			<Orientation y="-2.99582"/>
+			<Actor seed="2056"/>
+		</Entity>
+		<Entity uid="4049">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="1003.75623" z="483.51157"/>
+			<Orientation y="2.0044"/>
+			<Actor seed="42"/>
+		</Entity>
+		<Entity uid="4052">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="340.88443" z="569.13837"/>
+			<Orientation y="-3.00751"/>
+			<Actor seed="3548"/>
+		</Entity>
+		<Entity uid="4054">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="337.57544" z="574.01648"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39580"/>
+		</Entity>
+		<Entity uid="4055">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="340.20676" z="574.9394"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60088"/>
 		</Entity>
 	</Entities>
 	<Paths/>
