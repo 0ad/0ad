@@ -366,19 +366,43 @@ public:
 };
 
 /**
- * Sent by value modification manager when a value of a certain component is changed
+ * Sent by aura manager when a value of a certain entity's component is changed
  */
 class CMessageValueModification : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(ValueModification)
 
-	CMessageValueModification(std::wstring component) :
-		component(component)
+	CMessageValueModification(const std::vector<entity_id_t>& entities, std::wstring component, const std::vector<std::wstring>& valueNames) :
+	entities(entities),
+	component(component),
+	valueNames(valueNames)
 	{
 	}
-
+	
+	std::vector<entity_id_t> entities;
 	std::wstring component;
+	std::vector<std::wstring> valueNames;
+};
+
+/**
+ * Sent by aura and tech managers when a value of a certain template's component is changed
+ */
+class CMessageTemplateModification : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(TemplateModification)
+	
+	CMessageTemplateModification(player_id_t player, std::wstring component, const std::vector<std::wstring>& valueNames) :
+	player(player),
+	component(component),
+	valueNames(valueNames)
+	{
+	}
+	
+	player_id_t player;
+	std::wstring component;
+	std::vector<std::wstring> valueNames;
 };
 
 /**

@@ -23,6 +23,7 @@
 
 BEGIN_INTERFACE_WRAPPER(TemplateManager)
 DEFINE_INTERFACE_METHOD_1("GetTemplate", const CParamNode*, ICmpTemplateManager, GetTemplate, std::string)
+DEFINE_INTERFACE_METHOD_1("GetTemplateWithoutValidation", const CParamNode*, ICmpTemplateManager, GetTemplateWithoutValidation, std::string)
 DEFINE_INTERFACE_METHOD_1("GetCurrentTemplateName", std::string, ICmpTemplateManager, GetCurrentTemplateName, entity_id_t)
 DEFINE_INTERFACE_METHOD_1("FindAllTemplates", std::vector<std::string>, ICmpTemplateManager, FindAllTemplates, bool)
 DEFINE_INTERFACE_METHOD_1("GetEntitiesUsingTemplate", std::vector<entity_id_t>, ICmpTemplateManager, GetEntitiesUsingTemplate, std::string)

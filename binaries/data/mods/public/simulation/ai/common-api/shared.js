@@ -58,7 +58,7 @@ m.SharedScript.prototype.Deserialize = function(data)
 // Components that will be disabled in foundation entity templates.
 // (This is a bit yucky and fragile since it's the inverse of
 // CCmpTemplateManager::CopyFoundationSubset and only includes components
-// that our EntityTemplate class currently uses.)
+// that our Template class currently uses.)
 m.g_FoundationForbiddenComponents = {
 	"ProductionQueue": 1,
 	"ResourceSupply": 1,
@@ -119,6 +119,8 @@ m.SharedScript.prototype.GetTemplate = function(name)
 // We need to now the initial state of the game for this, as we will use it.
 // This is called right at the end of the map generation.
 m.SharedScript.prototype.init = function(state) {
+	this.ApplyTemplatesDelta(state);
+
 	this.passabilityClasses = state.passabilityClasses;
 	this.passabilityMap = state.passabilityMap;
 	this.players = this._players;
@@ -127,9 +129,6 @@ m.SharedScript.prototype.init = function(state) {
 	this.timeElapsed = state.timeElapsed;
 	this.barterPrices = state.barterPrices;
 
-	for (var o in state.players)
-		this._techModifications[o] = state.players[o].techModifications;
-	
 	this._entities = {};
 	for (var id in state.entities)
 		this._entities[id] = new m.Entity(this, state.entities[id]);
@@ -166,6 +165,7 @@ m.SharedScript.prototype.onUpdate = function(state)
 		return;
 	// deals with updating based on create and destroy messages.
 	this.ApplyEntitiesDelta(state);
+	this.ApplyTemplatesDelta(state);
 
 	Engine.ProfileStart("onUpdate");
 
@@ -178,9 +178,6 @@ m.SharedScript.prototype.onUpdate = function(state)
 	this.timeElapsed = state.timeElapsed;
 	this.barterPrices = state.barterPrices;
 	
-	for (var o in state.players)
-		this._techModifications[o] = state.players[o].techModifications;
-
 	for (var i in this.gameState)
 		this.gameState[i].update(this,state);
 
@@ -311,6 +308,34 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			this._entities[id]._entity[prop] = changes[prop];
 			
 			this.updateEntityCollections(prop, this._entities[id]);
+		}
+	}
+
+	// apply per-entity aura-related changes.
+	// this supersedes tech-related changes.
+	for (var id in state.changedEntityTemplateInfo)
+	{
+		var changes = state.changedEntityTemplateInfo[id];
+		for each (var change in changes)
+			this._entities[id]._auraTemplateModif[change.variable] = change.value;
+	}
+	Engine.ProfileStop();
+};
+
+m.SharedScript.prototype.ApplyTemplatesDelta = function(state)
+{
+	Engine.ProfileStart("Shared ApplyTemplatesDelta");
+
+	for (var player in state.changedTemplateInfo)
+	{
+		var playerDiff = state.changedTemplateInfo[player];
+		for (var template in playerDiff)
+		{
+			var changes = playerDiff[template];
+			if (!this._techModifications[player][template])
+				this._techModifications[player][template] = {};
+			for each (var change in changes)
+				this._techModifications[player][template][change.variable] = change.value;
 		}
 	}
 	Engine.ProfileStop();

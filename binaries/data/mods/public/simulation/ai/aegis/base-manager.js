@@ -908,10 +908,6 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 		}
 	}
 
-	// auras/techs are buggy and the AI tries to repair healthy buildings.
-	// TODO: reimplement once that's fixed.
-	return;
-
 	// don't repair if we're still under attack, unless it's like a vital (civcentre or wall) building that's getting destroyed.
 	for (var i in damagedBuildings) {
 		var target = damagedBuildings[i];
@@ -955,7 +951,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events) {
 	
 	Engine.ProfileStart("Assign builders");
 	this.assignToFoundations(gameState);
-	Engine.ProfileStop()
+	Engine.ProfileStop();
 	
 	if (this.constructing && this.anchor)
 	{

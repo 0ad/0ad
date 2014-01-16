@@ -46,7 +46,7 @@ AuraManager.prototype.ApplyBonus = function(value, ent, data, key)
 		this.modificationsCache[value][ent].add += data.add;
 
 	// post message to the entity to notify it about the change
-	Engine.PostMessage(ent, MT_ValueModification, { "component": value.split("/")[0] });
+	Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
 };
 
 AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data, key)
@@ -73,6 +73,7 @@ AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data
 		if (data.add)
 			this.templateModificationsCache[value][player][c][key].add += data.add;
 
+		Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": player, "component": value.split("/")[0], "valueNames": [value] });
 	}
 };
 
@@ -98,7 +99,9 @@ AuraManager.prototype.RemoveBonus = function(value, ent, key)
 		this.modificationsCache[value][ent].multiply /= data.multiply;
 
 	// post message to the entity to notify it about the change
-	Engine.PostMessage(ent, MT_ValueModification, { "component": value.split("/")[0] });
+	var effects = {};
+	effects[value] = this.modificationsCache[value][ent];
+	Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
 };
 
 AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key)
@@ -119,6 +122,7 @@ AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key
 		this.templateModificationsCache[value][player][c][key].multiply = 1;
 		this.templateModificationsCache[value][player][c][key].add = 0;
 	}
+	Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": player, "component": value.split("/")[0], "valueNames": [value] });
 };
 
 AuraManager.prototype.ApplyModifications = function(valueName, value, ent)

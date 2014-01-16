@@ -126,7 +126,7 @@ m.GameState.prototype.getTemplate = function(type)
 	if (!this.templates[type])
 		return null;
 	
-	return new m.EntityTemplate(this.templates[type], this.techModifications);
+	return new m.Template(this.templates[type], this.techModifications);
 };
 
 m.GameState.prototype.applyCiv = function(str) {

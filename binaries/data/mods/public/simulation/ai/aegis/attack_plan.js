@@ -544,6 +544,8 @@ m.CityAttack.prototype.updatePreparation = function(gameState, HQ,events) {
 					count++;
 					if (count > 1000){
 						m.debug("No target with a valid position found");
+						Engine.ProfileStop();
+						Engine.ProfileStop();
 						return false;
 					}
 				}

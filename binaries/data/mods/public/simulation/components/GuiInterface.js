@@ -97,7 +97,6 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"entityLimits": cmpPlayerEntityLimits.GetLimits(),
 			"entityCounts": cmpPlayerEntityLimits.GetCounts(),
 			"entityLimitChangers": cmpPlayerEntityLimits.GetLimitChangers(),
-			"techModifications": cmpTechnologyManager.GetTechModifications(),
 			"researchQueued": cmpTechnologyManager.GetQueuedResearch(),
 			"researchStarted": cmpTechnologyManager.GetStartedResearch(),
 			"researchedTechs": cmpTechnologyManager.GetResearchedTechs(),
@@ -475,8 +474,8 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 	{
 		ret.armour = {
 			"hack": ApplyValueModificationsToTemplate("Armour/Hack", +template.Armour.Hack, player, template),
-			"pierce": ApplyValueModificationsToTemplate("Armour/Pierce", +template.Armour.Hack, player, template),
-			"crush": ApplyValueModificationsToTemplate("Armour/Crush", +template.Armour.Hack, player, template),
+			"pierce": ApplyValueModificationsToTemplate("Armour/Pierce", +template.Armour.Pierce, player, template),
+			"crush": ApplyValueModificationsToTemplate("Armour/Crush", +template.Armour.Crush, player, template),
 		};
 	}
 	

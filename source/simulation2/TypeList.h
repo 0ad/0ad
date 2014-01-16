@@ -48,6 +48,7 @@ MESSAGE(TerrainChanged)
 MESSAGE(TerritoriesChanged)
 MESSAGE(PathResult)
 MESSAGE(ValueModification)
+MESSAGE(TemplateModification)
 MESSAGE(VisionRangeChanged)
 MESSAGE(MinimapPing)
 

@@ -1121,7 +1121,6 @@ m.HQ.prototype.update = function(gameState, queues, events) {
 	this.checkEvents(gameState,events,queues);
 	//this.buildMoreHouses(gameState);
 
-	//Engine.ProfileStart("Train workers and build farms, houses. Research techs.");
 	this.trainMoreWorkers(gameState, queues);
 	
 	// sandbox doesn't expand.
