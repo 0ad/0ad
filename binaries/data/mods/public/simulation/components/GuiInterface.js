@@ -97,7 +97,6 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"entityLimits": cmpPlayerEntityLimits.GetLimits(),
 			"entityCounts": cmpPlayerEntityLimits.GetCounts(),
 			"entityLimitChangers": cmpPlayerEntityLimits.GetLimitChangers(),
-			"techModifications": cmpTechnologyManager.GetTechModifications(),
 			"researchQueued": cmpTechnologyManager.GetQueuedResearch(),
 			"researchStarted": cmpTechnologyManager.GetStartedResearch(),
 			"researchedTechs": cmpTechnologyManager.GetResearchedTechs(),
@@ -134,6 +133,10 @@ GuiInterface.prototype.GetExtendedSimulationState = function(player)
 		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
 		ret.players[i].statistics = cmpPlayerStatisticsTracker.GetStatistics();
 	}
+
+	// Add bartering prices
+	var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
+	ret.barterPrices = cmpBarter.GetPrices();
 
 	return ret;
 };
@@ -392,7 +395,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 			"type": cmpResourceSupply.GetType(),
 			"killBeforeGather": cmpResourceSupply.GetKillBeforeGather(),
 			"maxGatherers": cmpResourceSupply.GetMaxGatherers(),
-			"gatherers": cmpResourceSupply.GetGatherers()
+			"gatherers": cmpResourceSupply.GetGatherers(player)
 		};
 	}
 
@@ -471,8 +474,8 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 	{
 		ret.armour = {
 			"hack": ApplyValueModificationsToTemplate("Armour/Hack", +template.Armour.Hack, player, template),
-			"pierce": ApplyValueModificationsToTemplate("Armour/Pierce", +template.Armour.Hack, player, template),
-			"crush": ApplyValueModificationsToTemplate("Armour/Crush", +template.Armour.Hack, player, template),
+			"pierce": ApplyValueModificationsToTemplate("Armour/Pierce", +template.Armour.Pierce, player, template),
+			"crush": ApplyValueModificationsToTemplate("Armour/Crush", +template.Armour.Crush, player, template),
 		};
 	}
 	

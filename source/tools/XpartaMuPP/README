@@ -13,7 +13,7 @@ You should now be able to connect to this XMPP server using a normal XMPP client
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@ Installation of the custom XMPP module @@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-Go to it's source directory
+Go to its source directory
 $ cd source/tools/XpartaMuPP
 
 Edit the file to set the domain on which is run the ejabberd server. (e.g. localhost)
@@ -29,7 +29,7 @@ in the Modules list "Modules enabled in all ejabberd virtual hosts"
 Restart ejabberd
 # service ejabberd restart
 
-If something goes wrong read /var/log/ejabberd/ejabberd.log
+If something goes wrong, read /var/log/ejabberd/ejabberd.log
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@ Ejabberd administration @@
@@ -37,7 +37,7 @@ If something goes wrong read /var/log/ejabberd/ejabberd.log
 Go http://localhost:5280/admin and connect 
 (the login looks like login@domain (e.g. adminjabber@localhost))
 
-In "Acces rules" check that "register" is set to "[{allow,all}]"
+In "Access rules" check that "register" is set to "[{allow,all}]"
 
 You can see the list of registered / connected users in
 "Virtual Hosts" >> domain name >> "users"

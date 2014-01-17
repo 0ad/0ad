@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -101,16 +101,6 @@ public:
 	 * See CGUI::GetPreDefinedColor; applies to the currently active page.
 	 */
 	bool GetPreDefinedColor(const CStr& name, CColor& output);
-
-	/**
-	 * See CGUI::IconExists; applies to the currently active page.
-	 */
-	bool IconExists(const CStr& str) const;
-
-	/**
-	 * See CGUI::GetIcon; applies to the currently active page.
-	 */
-	SGUIIcon GetIcon(const CStr& str) const;
 
 	/**
 	 * See CGUI::FindObjectByName; applies to the currently active page.

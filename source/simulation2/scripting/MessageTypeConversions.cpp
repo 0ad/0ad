@@ -303,15 +303,39 @@ CMessage* CMessagePathResult::FromJSVal(ScriptInterface& UNUSED(scriptInterface)
 jsval CMessageValueModification::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(entities);
 	SET_MSG_PROPERTY(component);
+	SET_MSG_PROPERTY(valueNames);
 	return OBJECT_TO_JSVAL(obj);
 }
 
 CMessage* CMessageValueModification::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 {
 	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(std::vector<entity_id_t>, entities);
 	GET_MSG_PROPERTY(std::wstring, component);
-	return new CMessageValueModification(component);
+	GET_MSG_PROPERTY(std::vector<std::wstring>, valueNames);
+	return new CMessageValueModification(entities, component, valueNames);
+}
+
+////////////////////////////////
+
+jsval CMessageTemplateModification::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(player);
+	SET_MSG_PROPERTY(component);
+	SET_MSG_PROPERTY(valueNames);
+	return OBJECT_TO_JSVAL(obj);
+}
+
+CMessage* CMessageTemplateModification::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+{
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(player_id_t, player);
+	GET_MSG_PROPERTY(std::wstring, component);
+	GET_MSG_PROPERTY(std::vector<std::wstring>, valueNames);
+	return new CMessageTemplateModification(player, component, valueNames);
 }
 
 ////////////////////////////////

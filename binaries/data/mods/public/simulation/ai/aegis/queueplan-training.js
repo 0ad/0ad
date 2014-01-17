@@ -1,44 +1,20 @@
 var AEGIS = function(m)
 {
 
-m.TrainingPlan = function(gameState, type, metadata, number, startTime, expectedTime, maxMerge) {
-	this.type = gameState.applyCiv(type);
-	this.metadata = metadata;
-
-	this.ID = m.playerGlobals[PlayerID].uniqueIDBOPlans++;
-	
-	this.template = gameState.getTemplate(this.type);
-	if (!this.template)
+m.TrainingPlan = function(gameState, type, metadata, number, maxMerge) {
+	if (!m.QueuePlan.call(this, gameState, type, metadata))
 		return false;
 
 	this.category = "unit";
 	this.cost = new API3.Resources(this.template.cost(), this.template._template.Cost.Population);
-	if (!number)
-		this.number = 1;
-	else
-		this.number = number;
 	
-	if (!maxMerge)
-		this.maxMerge = 5;
-	else
-		this.maxMerge = maxMerge;
+	this.number = number !== undefined ? number : 1;
+	this.maxMerge = maxMerge !== undefined ? maxMerge : 5;
 
-	if (!startTime)
-		this.startTime = 0;
-	else
-		this.startTime = startTime;
-
-	if (!expectedTime)
-		this.expectedTime = -1;
-	else
-		this.expectedTime = expectedTime;
 	return true;
 };
 
-// return true if we willstart amassing resource for this plan
-m.TrainingPlan.prototype.isGo = function(gameState) {
-	return (gameState.getTimeElapsed() > this.startTime);
-};
+m.TrainingPlan.prototype = Object.create(m.QueuePlan.prototype);
 
 m.TrainingPlan.prototype.canStart = function(gameState) {
 	if (this.invalidTemplate)
@@ -73,21 +49,14 @@ m.TrainingPlan.prototype.start = function(gameState) {
 			this.metadata.base = trainers[0].getMetadata(PlayerID,"base");
 		trainers[0].train(this.type, this.number, this.metadata);
 	}
+	this.onStart(gameState);
 };
 
-m.TrainingPlan.prototype.getCost = function(){
-	var multCost = new API3.Resources();
-	multCost.add(this.cost);
-	multCost.multiply(this.number);
-	return multCost;
-};
-
-m.TrainingPlan.prototype.addItem = function(amount){
+m.TrainingPlan.prototype.addItem = function(amount) {
 	if (amount === undefined)
 		amount = 1;
 	this.number += amount;
 };
-
 
 return m;
 }(AEGIS);

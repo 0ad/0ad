@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -351,16 +351,6 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 bool CGUIManager::GetPreDefinedColor(const CStr& name, CColor& output)
 {
 	return top()->GetPreDefinedColor(name, output);
-}
-
-bool CGUIManager::IconExists(const CStr& str) const
-{
-	return top()->IconExists(str);
-}
-
-SGUIIcon CGUIManager::GetIcon(const CStr& str) const
-{
-	return top()->GetIcon(str);
 }
 
 IGUIObject* CGUIManager::FindObjectByName(const CStr& name) const

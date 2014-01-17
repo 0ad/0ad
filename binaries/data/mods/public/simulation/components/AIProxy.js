@@ -36,8 +36,17 @@ AIProxy.prototype.Init = function()
 	this.needsFullGet = true;
 	this.owner = -1;	// for convenience now and then.
 	
+	this.cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+
 	// Let the AIInterface know that we exist and that it should query us
 	this.NotifyChange();
+};
+
+AIProxy.prototype.Serialize = null; // we have no dynamic state to save
+
+AIProxy.prototype.Deserialize = function ()
+{
+	this.cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
 };
 
 AIProxy.prototype.GetRepresentation = function()
@@ -67,9 +76,7 @@ AIProxy.prototype.NotifyChange = function()
 	if (!this.changes)
 	{
 		this.changes = {};
-
-		var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
-		cmpAIInterface.ChangedEntity(this.entity);
+	this.cmpAIInterface.ChangedEntity(this.entity);
 	}
 };
 
@@ -261,55 +268,47 @@ AIProxy.prototype.OnOwnershipChanged = function(msg)
 	
 	if (msg.from === -1)
 	{
-		var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
-		cmpAIInterface.PushEvent("Create", {"entity" : msg.entity});
+		this.cmpAIInterface.PushEvent("Create", {"entity" : msg.entity});
 		return;
 	} else if (msg.to === -1)
 	{
-		var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
-		cmpAIInterface.PushEvent("Destroy", {"entity" : msg.entity});
+		this.cmpAIInterface.PushEvent("Destroy", {"entity" : msg.entity});
 		return;
 	}
 	
 	this.owner = msg.to;
 	this.changes.owner = msg.to;
 	
-	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
-	cmpAIInterface.PushEvent("OwnershipChanged", msg);
+	this.cmpAIInterface.PushEvent("OwnershipChanged", msg);
 };
 
 AIProxy.prototype.OnAttacked = function(msg)
 {
-	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
-	cmpAIInterface.PushEvent("Attacked", msg);
+	this.cmpAIInterface.PushEvent("Attacked", msg);
 };
 
 /*
  Deactivated for actually not really being practical for most uses.
  AIProxy.prototype.OnRangeUpdate = function(msg)
 {
-	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
 	msg.owner = this.owner;
-	cmpAIInterface.PushEvent("RangeUpdate", msg);
+	this.cmpAIInterface.PushEvent("RangeUpdate", msg);
 	warn(uneval(msg));
 };*/
 
 AIProxy.prototype.OnConstructionFinished = function(msg)
 {
-	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
-	cmpAIInterface.PushEvent("ConstructionFinished", msg);
+	this.cmpAIInterface.PushEvent("ConstructionFinished", msg);
 };
 
 AIProxy.prototype.OnTrainingFinished = function(msg)
 {
-	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
-	cmpAIInterface.PushEvent("TrainingFinished", msg);
+	this.cmpAIInterface.PushEvent("TrainingFinished", msg);
 };
 
 AIProxy.prototype.OnAIMetadata = function(msg)
 {
-	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
-	cmpAIInterface.PushEvent("AIMetadata", msg);
+	this.cmpAIInterface.PushEvent("AIMetadata", msg);
 };
 
 Engine.RegisterComponentType(IID_AIProxy, "AIProxy", AIProxy);

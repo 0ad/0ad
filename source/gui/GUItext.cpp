@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,6 @@ GUI text
 #include "precompiled.h"
 
 #include "GUI.h"
-#include "GUIManager.h"
 #include "graphics/FontMetrics.h"
 #include "ps/CLogger.h"
 #include "ps/Parser.h"
@@ -42,7 +41,8 @@ void CGUIString::SFeedback::Reset()
 	m_NewLine=false;
 }
 
-void CGUIString::GenerateTextCall(SFeedback &Feedback,
+void CGUIString::GenerateTextCall(const CGUI *pGUI,
+								  SFeedback &Feedback,
 								  CStrIntern DefaultFont,
 								  const int &from, const int &to,
 								  const bool FirstLine,
@@ -98,7 +98,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			if (itTextChunk->m_Tags[0].m_TagType == CGUIString::TextChunk::Tag::TAG_IMGLEFT)
 			{
 				// Only add the image if the icon exists.
-				if (g_GUI->IconExists(itTextChunk->m_Tags[0].m_TagValue))
+				if (pGUI->IconExists(itTextChunk->m_Tags[0].m_TagValue))
 				{
 					Feedback.m_Images[SFeedback::Left].push_back(itTextChunk->m_Tags[0].m_TagValue);
 				}
@@ -111,7 +111,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			if (itTextChunk->m_Tags[0].m_TagType == CGUIString::TextChunk::Tag::TAG_IMGRIGHT)
 			{
 				// Only add the image if the icon exists.
-				if (g_GUI->IconExists(itTextChunk->m_Tags[0].m_TagValue))
+				if (pGUI->IconExists(itTextChunk->m_Tags[0].m_TagValue))
 				{
 					Feedback.m_Images[SFeedback::Right].push_back(itTextChunk->m_Tags[0].m_TagValue);
 				}
@@ -124,7 +124,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			if (itTextChunk->m_Tags[0].m_TagType == CGUIString::TextChunk::Tag::TAG_ICON)
 			{
 				// Only add the image if the icon exists.
-				if (g_GUI->IconExists(itTextChunk->m_Tags[0].m_TagValue))
+				if (pGUI->IconExists(itTextChunk->m_Tags[0].m_TagValue))
 				{
 					// We'll need to setup a text-call that will point
 					//  to the icon, this is to be able to iterate
@@ -135,8 +135,8 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					// Also add it to the sprites being rendered.
 					SGUIText::SSpriteCall SpriteCall;
 
-					// Get Icon from icon database in g_GUI
-					SGUIIcon icon = g_GUI->GetIcon(itTextChunk->m_Tags[0].m_TagValue);
+					// Get Icon from icon database in pGUI
+					SGUIIcon icon = pGUI->GetIcon(itTextChunk->m_Tags[0].m_TagValue);
 
 					CSize size = icon.m_Size;
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -318,6 +318,7 @@ CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime) : m_MouseButtons(0), m_Focu
 {
 	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", runtime));
 	GuiScriptingInit(*m_ScriptInterface);
+	m_ScriptInterface->LoadGlobalScripts();
 	m_BaseObject = new CGUIDummyObject;
 	m_BaseObject->SetGUI(this);	
 }
@@ -601,7 +602,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 		float prelim_line_height=0.f;
 
 		// Width and height of all text calls generated.
-		string.GenerateTextCall(Feedback, Font,
+		string.GenerateTextCall(this, Feedback, Font,
 								string.m_Words[i], string.m_Words[i+1],
 								FirstLine);
 
@@ -719,7 +720,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				// Don't attach object, it'll suppress the errors
 				//  we want them to be reported in the final GenerateTextCall()
 				//  so that we don't get duplicates.
-				string.GenerateTextCall(Feedback2, Font,
+				string.GenerateTextCall(this, Feedback2, Font,
 										string.m_Words[j], string.m_Words[j+1],
 										FirstLine);
 
@@ -772,7 +773,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				CGUIString::SFeedback Feedback2;
 
 				// Defaults
-				string.GenerateTextCall(Feedback2, Font,
+				string.GenerateTextCall(this, Feedback2, Font,
 										string.m_Words[j], string.m_Words[j+1], 
 										FirstLine, pObject);
 

@@ -139,6 +139,8 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 	for (var i in this.entities)
 	{
 		var ent = gameState.getEntityById(this.entities[i]);
+		if (!ent)	// whaaat?
+			continue;
 		var epos = ent.position();
 		if (epos == undefined)
 			continue;
@@ -503,6 +505,8 @@ m.Army.prototype.update = function (gameState)
 		{
 			var id = this.entities[i];
 			var ent = gameState.getEntityById(id);
+			if (!ent.position)	// shouldn't be able to happen but apparently does.
+				continue;
 			if (API3.SquareVectorDistance(ent.position(), this.position) > this.breakawaySize)
 			{
 				breakaways.push(id);

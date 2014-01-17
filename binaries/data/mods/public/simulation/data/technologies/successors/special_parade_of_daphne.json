@@ -1,0 +1,13 @@
+{
+	"genericName": "Parade of Daphne",
+	"description": "Significantly increase training speed of champions and siege weapons at the fortress by training them in large batches or battalions.",
+	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 500},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "walk.png",
+	"researchTime": 60,
+	"tooltip": "Fortress increased batch training speed bonus.",
+	"modifications": [{"value": "ProductionQueue/BatchTimeModifier", "add": -0.2}],
+	"affects": ["Fortress"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

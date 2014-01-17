@@ -1,56 +1,78 @@
 var API3 = function(m)
 {
 
-m.EntityTemplate = m.Class({
+// defines a template.
+// It's completely raw data, except it's slightly cleverer now and then.
+m.Template = m.Class({
 
-	// techModifications should be the tech modifications of only one player.
-	// gamestates handle "GetTemplate" and should push the player's
-	// while entities should push the owner's
-	_init: function(template, techModifications)
+	_init: function(template)
 	{
-		this._techModifications = techModifications;
 		this._template = template;
+		this._tpCache = {};
 	},
 	
-	genericName: function() {
-		if (!this._template.Identity || !this._template.Identity.GenericName)
-			return undefined;
-		return this._template.Identity.GenericName;
+	// helper function to return a template value, optionally adjusting for tech.
+	// TODO: there's no support for "_string" values here.
+	get: function(string)
+	{
+		var value = this._template;
+		if (this._auraTemplateModif && this._auraTemplateModif[string])		{
+			return this._auraTemplateModif[string];
+		} else if (this._techModif && this._techModif[string]) {
+			return this._techModif[string];
+		} else {
+			if (this._tpCache[string] === undefined)
+			{
+				var args = string.split("/");
+				for (var i = 0; i < args.length; ++i)
+					if (value[args[i]])
+						value = value[args[i]];
+					else
+					{
+						value = undefined;
+						break;
+					}
+				this._tpCache[string] = value;
+			}
+			return this._tpCache[string];
+		} 
 	},
-						   
-	rank: function() {
-		if (!this._template.Identity)
+
+	genericName: function() {
+		if (!this.get("Identity") || !this.get("Identity/GenericName"))
 			return undefined;
-		return this._template.Identity.Rank;
+		return this.get("Identity/GenericName");
+	},
+						  
+	rank: function() {
+		if (!this.get("Identity"))
+			return undefined;
+		return this.get("Identity/Rank");
 	},
 
 	classes: function() {
-		if (!this._template.Identity || !this._template.Identity.Classes || !this._template.Identity.Classes._string)
+		if (!this.get("Identity") || !this.get("Identity/Classes") || !this.get("Identity/Classes/_string"))
 			return undefined;
-		return this._template.Identity.Classes._string.split(/\s+/);
+		return this.get("Identity/Classes/_string").split(/\s+/);
 	},
 	
 	requiredTech: function() {
-		if (!this._template.Identity || !this._template.Identity.RequiredTechnology)
-			return undefined;
-		return this._template.Identity.RequiredTechnology;
+		return this.get("Identity/RequiredTechnology");
 	},
-						   
+						  
 	available: function(gameState) {
-		if (!this._template.Identity || !this._template.Identity.RequiredTechnology)
-			return true;
-		return gameState.isResearched(this._template.Identity.RequiredTechnology);
+		return gameState.isResearched(this.get("Identity/RequiredTechnology"));
 	},
-						   
+						  
 	// specifically
 	phase: function() {
-		if (!this._template.Identity || !this._template.Identity.RequiredTechnology)
+		if (!this.get("Identity/RequiredTechnology"))
 			return 0;
-		if (this.template.Identity.RequiredTechnology == "phase_village")
+		if (this.get("Identity/RequiredTechnology") == "phase_village")
 			return 1;
-		if (this.template.Identity.RequiredTechnology == "phase_town")
+		if (this.get("Identity/RequiredTechnology") == "phase_town")
 			return 2;
-		if (this.template.Identity.RequiredTechnology == "phase_city")
+		if (this.get("Identity/RequiredTechnology") == "phase_city")
 			return 3;
 		return 0;
 	},
@@ -72,28 +94,26 @@ m.EntityTemplate = m.Class({
 	},
 
 	civ: function() {
-		if (!this._template.Identity)
-			return undefined;
-		return this._template.Identity.Civ;
+		return this.get("Identity/Civ");
 	},
 
 	cost: function() {
-		if (!this._template.Cost)
+		if (!this.get("Cost"))
 			return undefined;
 
 		var ret = {};
-		for (var type in this._template.Cost.Resources)
-			ret[type] = GetTechModifiedProperty(this._techModifications, this._template, "Cost/Resources/"+type, +this._template.Cost.Resources[type]);
+		for (var type in this.get("Cost/Resources"))
+			ret[type] = +this.get("Cost/Resources/" + type);
 		return ret;
 	},
 	
 	costSum: function() {
-		if (!this._template.Cost)
+		if (!this.get("Cost"))
 			return undefined;
 		
 		var ret = 0;
-		for (var type in this._template.Cost.Resources)
-			ret += +this._template.Cost.Resources[type];
+		for (var type in this.get("Cost/Resources"))
+			ret += +this.get("Cost/Resources/" + type);
 		return ret;
 	},
 
@@ -102,134 +122,134 @@ m.EntityTemplate = m.Class({
 	 * obstruction shape, or undefined if no obstruction.
 	 */
 	obstructionRadius: function() {
-		if (!this._template.Obstruction)
+		if (!this.get("Obstruction"))
 			return undefined;
 
-		if (this._template.Obstruction.Static)
+		if (this.get("Obstruction/Static"))
 		{
-			var w = +this._template.Obstruction.Static["@width"];
-			var h = +this._template.Obstruction.Static["@depth"];
+			var w = +this.get("Obstruction/Static/@width");
+			var h = +this.get("Obstruction/Static/@depth");
 			return Math.sqrt(w*w + h*h) / 2;
 		}
 
-		if (this._template.Obstruction.Unit)
-			return +this._template.Obstruction.Unit["@radius"];
+		if (this.get("Obstruction/Unit"))
+			return +this.get("Obstruction/Unit/@radius");
 
 		return 0; // this should never happen
 	},
-						   
+						  
 	/**
 	 * Returns the radius of a circle surrounding this entity's
 	 * footprint.
 	 */
 	footprintRadius: function() {
-		if (!this._template.Footprint)
+		if (!this.get("Footprint"))
 			return undefined;
 		
-		if (this._template.Footprint.Square)
+		if (this.get("Footprint/Square"))
 		{
-			var w = +this._template.Footprint.Square["@width"];
-			var h = +this._template.Footprint.Square["@depth"];
+			var w = +this.get("Footprint/Square/@width");
+			var h = +this.get("Footprint/Square/@depth");
 			return Math.sqrt(w*w + h*h) / 2;
 		}
 		
-		if (this._template.Footprint.Circle)
-			return +this._template.Footprint.Circle["@radius"];
+		if (this.get("Footprint/Circle"))
+			return +this.get("Footprint/Circle/@radius");
 		
 		return 0; // this should never happen
 	},
 
 	maxHitpoints: function()
 	{
-		if (this._template.Health !== undefined)
-			return this._template.Health.Max;
+		if (this.get("Health") !== undefined)
+			return +this.get("Health/Max");
 		return 0;
 	},
+
 	isHealable: function()
 	{
-		if (this._template.Health !== undefined)
-			return this._template.Health.Unhealable !== "true";
+		if (this.get("Health") !== undefined)
+			return this.get("Health/Unhealable") !== "true";
 		return false;
 	},
+
 	isRepairable: function()
 	{
-		if (this._template.Health !== undefined)
-			return this._template.Health.Repairable === "true";
+		if (this.get("Health") !== undefined)
+			return this.get("Health/Repairable") === "true";
 		return false;
 	},
 
 	getPopulationBonus: function() {
-		if (!this._template.Cost || !this._template.Cost.PopulationBonus)
-			return undefined;
-		return this._template.Cost.PopulationBonus;
+		return this.get("Cost/PopulationBonus");
 	},
 
 	armourStrengths: function() {
-		if (!this._template.Armour)
+		if (!this.get("Armour"))
 			return undefined;
 
 		return {
-			hack: GetTechModifiedProperty(this._techModifications, this._template, "Armour/Hack", +this._template.Armour.Hack),
-			pierce: GetTechModifiedProperty(this._techModifications, this._template, "Armour/Pierce", +this._template.Armour.Pierce),
-			crush: GetTechModifiedProperty(this._techModifications, this._template, "Armour/Crush", +this._template.Armour.Crush)
+			hack: +this.get("Armour/Hack"),
+			pierce: +this.get("Armour/Pierce"),
+			crush: +this.get("Armour/Crush")
 		};
 	},
 
 	attackTypes: function() {
-		if (!this._template.Attack)
+		if (!this.get("Attack"))
 			return undefined;
 
 		var ret = [];
-		for (var type in this._template.Attack)
+		for (var type in this.get("Attack"))
 			ret.push(type);
 
 		return ret;
 	},
 
 	attackRange: function(type) {
-		if (!this._template.Attack || !this._template.Attack[type])
+		if (!this.get("Attack/" + type +""))
 			return undefined;
 
 		return {
-				max: GetTechModifiedProperty(this._techModifications, this._template, "Attack/MaxRange", +this._template.Attack[type].MaxRange),
-				min: GetTechModifiedProperty(this._techModifications, this._template, "Attack/MinRange", +(this._template.Attack[type].MinRange || 0))
+				max: +this.get("Attack/" + type +"/MaxRange"),
+				min: +(this.get("Attack/" + type +"/MinRange") || 0)
 		};
 	},
 
 	attackStrengths: function(type) {
-		if (!this._template.Attack || !this._template.Attack[type])
+		if (!this.get("Attack/" + type +""))
 			return undefined;
 
 		return {
-			hack: GetTechModifiedProperty(this._techModifications, this._template, "Attack/"+type+"/Hack", +(this._template.Attack[type].Hack || 0)),
-			pierce: GetTechModifiedProperty(this._techModifications, this._template, "Attack/"+type+"/Pierce", +(this._template.Attack[type].Pierce || 0)),
-			crush: GetTechModifiedProperty(this._techModifications, this._template, "Attack/"+type+"/Crush", +(this._template.Attack[type].Crush || 0))
+			hack: +(this.get("Attack/" + type + "/Hack") || 0),
+			pierce: +(this.get("Attack/" + type + "/Pierce") || 0),
+			crush: +(this.get("Attack/" + type + "/Crush") || 0)
 		};
 	},
 	
 	attackTimes: function(type) {
-		if (!this._template.Attack || !this._template.Attack[type])
+		if (!this.get("Attack/" + type +""))
 			return undefined;
 
 		return {
-			prepare: GetTechModifiedProperty(this._techModifications, this._template, "Attack/"+type+"/PrepareTime", +(this._template.Attack[type].PrepareTime || 0)),
-			repeat: GetTechModifiedProperty(this._techModifications, this._template, "Attack/"+type+"/RepeatTime", +(this._template.Attack[type].RepeatTime || 1000))
+			prepare: +(this.get("Attack/" + type + "/PrepareTime") || 0),
+			repeat: +(this.get("Attack/" + type + "/RepeatTime") || 1000)
 		};
 	},
 
 	// returns the classes this templates counters:
-	// Return type is [ [-neededClasses-] , multiplier ].
+	// Return type is [ [-neededClasses- , multiplier], … ].
 	getCounteredClasses: function() {
-		if (!this._template.Attack)
+		if (!this.get("Attack"))
 			return undefined;
 		
 		var Classes = [];
-		for (var i in this._template.Attack) {
-			if (!this._template.Attack[i].Bonuses)
+		for (var i in this.get("Attack")) {
+			if (!this.get("Attack/" + i + "/Bonuses"))
 				continue;
-			for (var o in this._template.Attack[i].Bonuses)
-				if (this._template.Attack[i].Bonuses[o].Classes)
-					Classes.push([this._template.Attack[i].Bonuses[o].Classes.split(" "), +this._template.Attack[i].Bonuses[o].Multiplier]);
+			for (var o in this.get("Attack/" + i + "/Bonuses"))
+				if (this.get("Attack/" + i + "/Bonuses/" + o + "/Classes"))
+					Classes.push([this.get("Attack/" + i +"/Bonuses/" + o +"/Classes").split(" "), +this.get("Attack/" + i +"/Bonuses" +o +"/Multiplier")]);
 		}
 		return Classes;
 	},
@@ -237,15 +257,15 @@ m.EntityTemplate = m.Class({
 	// returns true if the entity counters those classes.
 	// TODO: refine using the multiplier
 	countersClasses: function(classes) {
-		if (!this._template.Attack)
+		if (!this.get("Attack"))
 			return false;
 		var mcounter = [];
-		for (var i in this._template.Attack) {
-			if (!this._template.Attack[i].Bonuses)
+		for (var i in this.get("Attack")) {
+			if (!this.get("Attack/" + i + "/Bonuses"))
 				continue;
-			for (var o in this._template.Attack[i].Bonuses)
-				if (this._template.Attack[i].Bonuses[o].Classes)
-					mcounter.concat(this._template.Attack[i].Bonuses[o].Classes.split(" "));
+			for (var o in this.get("Attack/" + i + "/Bonuses"))
+				if (this.get("Attack/" + i + "/Bonuses/" + o + "/Classes"))
+					mcounter.concat(this.get("Attack/" + i + "/Bonuses/" + o + "/Classes").split(" "));
 		}
 		for (var i in classes)
 		{
@@ -257,30 +277,30 @@ m.EntityTemplate = m.Class({
 
 	// returns, if it exists, the multiplier from each attack against a given class
 	getMultiplierAgainst: function(type, againstClass) {
-		if (!this._template.Attack || !this._template.Attack[type])
+		if (!this.get("Attack/" + type +""))
 			return undefined;
 
-		if (this._template.Attack[type].Bonuses)
-			for (var o in this._template.Attack[type].Bonuses) {
-				if (!this._template.Attack[type].Bonuses[o].Classes)
+		if (this.get("Attack/" + type + "/Bonuses"))
+			for (var o in this.get("Attack/" + type + "/Bonuses")) {
+				if (!this.get("Attack/" + type + "/Bonuses/" + o + "/Classes"))
 					continue;
-				var total = this._template.Attack[type].Bonuses[o].Classes.split(" ");
+				var total = this.get("Attack/" + type + "/Bonuses/" + o + "/Classes").split(" ");
 				for (var j in total)
 					if (total[j] === againstClass)
-						return this._template.Attack[type].Bonuses[o].Multiplier;
+						return this.get("Attack/" + type + "/Bonuses/" + o + "/Multiplier");
 			}
 		return 1;
 	},
 
 	// returns true if the entity can attack the given class
 	canAttackClass: function(saidClass) {
-		if (!this._template.Attack)
+		if (!this.get("Attack"))
 			return false;
 		
-		for (var i in this._template.Attack) {
-			if (!this._template.Attack[i].RestrictedClasses || !this._template.Attack[i].RestrictedClasses._string)
+		for (var i in this.get("Attack")) {
+			if (!this.get("Attack/" + i + "/RestrictedClasses") || !this.get("Attack/" + i + "/RestrictedClasses/_string"))
 				continue;
-			var cannotAttack = this._template.Attack[i].RestrictedClasses._string.split(" ");
+			var cannotAttack = this.get("Attack/" + i + "/RestrictedClasses/_string").split(" ");
 			if (cannotAttack.indexOf(saidClass) !== -1)
 				return false;
 		}
@@ -288,86 +308,84 @@ m.EntityTemplate = m.Class({
 	},
 
 	buildableEntities: function() {
-		if (!this._template.Builder)
-			return undefined;
-		if (!this._template.Builder.Entities._string)
+		if (!this.get("Builder/Entities/_string"))
 			return [];
 		var civ = this.civ();
-		var templates = this._template.Builder.Entities._string.replace(/\{civ\}/g, civ).split(/\s+/);
+		var templates = this.get("Builder/Entities/_string").replace(/\{civ\}/g, civ).split(/\s+/);
 		return templates; // TODO: map to Entity?
 	},
 
 	trainableEntities: function() {
-		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Entities || !this._template.ProductionQueue.Entities._string)
+		if (!this.get("ProductionQueue/Entities/_string"))
 			return undefined;
 		var civ = this.civ();
-		var templates = this._template.ProductionQueue.Entities._string.replace(/\{civ\}/g, civ).split(/\s+/);
+		var templates = this.get("ProductionQueue/Entities/_string").replace(/\{civ\}/g, civ).split(/\s+/);
 		return templates;
 	},
 
 	researchableTechs: function() {
-		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Technologies || !this._template.ProductionQueue.Technologies._string)
+		if (!this.get("ProductionQueue/Technologies/_string"))
 			return undefined;
-		var templates = this._template.ProductionQueue.Technologies._string.split(/\s+/);
+		var templates = this.get("ProductionQueue/Technologies/_string").split(/\s+/);
 		return templates;
 	},
 
 	resourceSupplyType: function() {
-		if (!this._template.ResourceSupply)
+		if (!this.get("ResourceSupply"))
 			return undefined;
-		var [type, subtype] = this._template.ResourceSupply.Type.split('.');
+		var [type, subtype] = this.get("ResourceSupply/Type").split('.');
 		return { "generic": type, "specific": subtype };
 	},
 	// will return either "food", "wood", "stone", "metal" and not treasure.
 	getResourceType: function() {
-		if (!this._template.ResourceSupply)
+		if (!this.get("ResourceSupply"))
 			return undefined;
-		var [type, subtype] = this._template.ResourceSupply.Type.split('.');
+		var [type, subtype] = this.get("ResourceSupply/Type").split('.');
 		if (type == "treasure")
 			return subtype;
 		return type;
 	},
 
 	resourceSupplyMax: function() {
-		if (!this._template.ResourceSupply)
+		if (!this.get("ResourceSupply"))
 			return undefined;
-		return +this._template.ResourceSupply.Amount;
+		return +this.get("ResourceSupply/Amount");
 	},
 
 	maxGatherers: function()
 	{
-		if (this._template.ResourceSupply !== undefined)
-			return +this._template.ResourceSupply.MaxGatherers;
+		if (this.get("ResourceSupply") !== undefined)
+			return +this.get("ResourceSupply/MaxGatherers");
 		return 0;
 	},
 	
 	resourceGatherRates: function() {
-		if (!this._template.ResourceGatherer)
+		if (!this.get("ResourceGatherer"))
 			return undefined;
 		var ret = {};
-		var baseSpeed = GetTechModifiedProperty(this._techModifications, this._template, "ResourceGatherer/BaseSpeed", +this._template.ResourceGatherer.BaseSpeed);
-		for (var r in this._template.ResourceGatherer.Rates)
-			ret[r] = GetTechModifiedProperty(this._techModifications, this._template, "ResourceGatherer/Rates/"+r, +this._template.ResourceGatherer.Rates[r]) * baseSpeed;
+		var baseSpeed = +this.get("ResourceGatherer/BaseSpeed");
+		for (var r in this.get("ResourceGatherer/Rates"))
+			ret[r] = +this.get("ResourceGatherer/Rates/" + r) * baseSpeed;
 		return ret;
 	},
 
 	resourceDropsiteTypes: function() {
-		if (!this._template.ResourceDropsite)
+		if (!this.get("ResourceDropsite"))
 			return undefined;
-		return this._template.ResourceDropsite.Types.split(/\s+/);
+		return this.get("ResourceDropsite/Types").split(/\s+/);
 	},
 
 
 	garrisonableClasses: function() {
-		if (!this._template.GarrisonHolder || !this._template.GarrisonHolder.List._string)
+		if (!this.get("GarrisonHolder") || !this.get("GarrisonHolder/List/_string"))
 			return undefined;
-		return this._template.GarrisonHolder.List._string.split(/\s+/);
+		return this.get("GarrisonHolder/List/_string").split(/\s+/);
 	},
 
 	garrisonMax: function() {
-		if (!this._template.GarrisonHolder)
+		if (!this.get("GarrisonHolder"))
 			return undefined;
-		return this._template.GarrisonHolder.Max;
+		return this.get("GarrisonHolder/Max");
 	},
 	
 	/**
@@ -375,47 +393,47 @@ m.EntityTemplate = m.Class({
 	 * (Any non domestic currently.)
 	 */
 	isUnhuntable: function() {
-		if (!this._template.UnitAI || !this._template.UnitAI.NaturalBehaviour)
+		if (!this.get("UnitAI") || !this.get("UnitAI/NaturalBehaviour"))
 			return false;
 
 		// only attack domestic animals since they won't flee nor retaliate.
-		return this._template.UnitAI.NaturalBehaviour !== "domestic";
+		return this.get("UnitAI/NaturalBehaviour") !== "domestic";
 	},
-						   
+						  
 	walkSpeed: function() {
-		if (!this._template.UnitMotion || !this._template.UnitMotion.WalkSpeed)
+		if (!this.get("UnitMotion") || !this.get("UnitMotion/WalkSpeed"))
 			 return undefined;
-		return this._template.UnitMotion.WalkSpeed;
+		return this.get("UnitMotion/WalkSpeed");
 	},
 
 	buildCategory: function() {
-		if (!this._template.BuildRestrictions || !this._template.BuildRestrictions.Category)
+		if (!this.get("BuildRestrictions") || !this.get("BuildRestrictions/Category"))
 			return undefined;
-		return this._template.BuildRestrictions.Category;
+		return this.get("BuildRestrictions/Category");
 	},
 	
 	buildTime: function() {
-		if (!this._template.Cost || !this._template.Cost.BuildTime)
+		if (!this.get("Cost") || !this.get("Cost/BuildTime"))
 			return undefined;
-		return this._template.Cost.BuildTime;
+		return this.get("Cost/BuildTime");
 	},
 
 	buildDistance: function() {
-		if (!this._template.BuildRestrictions || !this._template.BuildRestrictions.Distance)
+		if (!this.get("BuildRestrictions") || !this.get("BuildRestrictions/Distance"))
 			return undefined;
-		return this._template.BuildRestrictions.Distance;
+		return this.get("BuildRestrictions/Distance");
 	},
 
 	buildPlacementType: function() {
-		if (!this._template.BuildRestrictions || !this._template.BuildRestrictions.PlacementType)
+		if (!this.get("BuildRestrictions") || !this.get("BuildRestrictions/PlacementType"))
 			return undefined;
-		return this._template.BuildRestrictions.PlacementType;
+		return this.get("BuildRestrictions/PlacementType");
 	},
 
 	buildTerritories: function() {
-		if (!this._template.BuildRestrictions || !this._template.BuildRestrictions.Territory)
+		if (!this.get("BuildRestrictions") || !this.get("BuildRestrictions/Territory"))
 			return undefined;
-		return this._template.BuildRestrictions.Territory.split(/\s+/);
+		return this.get("BuildRestrictions/Territory").split(/\s+/);
 	},
 
 	hasBuildTerritory: function(territory) {
@@ -424,42 +442,45 @@ m.EntityTemplate = m.Class({
 	},
 
 	hasTerritoryInfluence: function() {
-		return (this._template.TerritoryInfluence !== undefined);
+		return (this.get("TerritoryInfluence") !== undefined);
 	},
 
 	territoryInfluenceRadius: function() {
-		if (this._template.TerritoryInfluence !== undefined)
-			return (this._template.TerritoryInfluence.Radius);
+		if (this.get("TerritoryInfluence") !== undefined)
+			return (this.get("TerritoryInfluence/Radius"));
 		else
 			return -1;
 	},
 
 	territoryInfluenceWeight: function() {
-		if (this._template.TerritoryInfluence !== undefined)
-			return (this._template.TerritoryInfluence.Weight);
+		if (this.get("TerritoryInfluence") !== undefined)
+			return (this.get("TerritoryInfluence/Weight"));
 		else
 			return -1;
 	},
 
 	visionRange: function() {
-		if (!this._template.Vision)
-			return undefined;
-		return this._template.Vision.Range;
+		return this.get("Vision/Range");
 	}
 });
 
 
-
+// defines an entity, with a super Template.
+// also redefines several of the template functions where the only change is applying aura and tech modifications.
 m.Entity = m.Class({
-	_super: m.EntityTemplate,
+	_super: m.Template,
 
 	_init: function(sharedAI, entity)
 	{
-		this._super.call(this, sharedAI.GetTemplate(entity.template), sharedAI._techModifications[entity.owner]);
+		this._super.call(this, sharedAI.GetTemplate(entity.template));
 
-		this._ai = sharedAI;
 		this._templateName = entity.template;
 		this._entity = entity;
+		this._auraTemplateModif = {};	// template modification from auras. this is only for this entity.
+		this._ai = sharedAI;
+		if (!sharedAI._techModifications[entity.owner][this._templateName])
+			sharedAI._techModifications[entity.owner][this._templateName] = {};
+		this._techModif = sharedAI._techModifications[entity.owner][this._templateName]; // save a reference to the template tech modifications
 	},
 
 	toString: function() {
@@ -477,7 +498,7 @@ m.Entity = m.Class({
 	/**
 	 * Returns extra data that the AI scripts have associated with this entity,
 	 * for arbitrary local annotations.
-	 * (This data is not shared with any other AI scripts.)
+	 * (This data should not be shared with any other AI scripts.)
 	 */
 	getMetadata: function(player, key) {
 		return this._ai.getMetadata(player, this, key);
@@ -493,7 +514,7 @@ m.Entity = m.Class({
 	deleteAllMetadata: function(player) {
 		delete this._ai._entityMetadata[player][this.id()];
 	},
-				   
+				  
 	deleteMetadata: function(player, key) {
 		this._ai.deleteMetadata(player, this, key);
 	},
@@ -508,7 +529,8 @@ m.Entity = m.Class({
 	
 	unitAIState: function() { return this._entity.unitAIState; },
 	unitAIOrderData: function() { return this._entity.unitAIOrderData; },
-	hitpoints: function() { if (this._entity.hitpoints !== undefined) return this._entity.hitpoints; return undefined; },
+	
+	hitpoints: function() {if (this._entity.hitpoints !== undefined) return this._entity.hitpoints; return undefined; },
 	isHurt: function() { return this.hitpoints() < this.maxHitpoints(); },
 	healthLevel: function() { return (this.hitpoints() / this.maxHitpoints()); },
 	needsHeal: function() { return this.isHurt() && this.isHealable(); },
@@ -540,14 +562,17 @@ m.Entity = m.Class({
 	owner: function() {
 		return this._entity.owner;
 	},
+
 	isOwn: function(player) {
 		if (typeof(this._entity.owner) === "undefined")
 			return false;
 		return this._entity.owner === player;
 	},
+	
 	isFriendly: function(player) {
 		return this.isOwn(player); // TODO: diplomacy
 	},
+	
 	isEnemy: function(player) {
 		return !this.isOwn(player); // TODO: diplomacy
 	},
@@ -557,18 +582,18 @@ m.Entity = m.Class({
 			return undefined;
 		return this._entity.resourceSupplyAmount;
 	},
-				   
+				  
 	resourceSupplyGatherers: function(player)
 	{
 		if (this._entity.resourceSupplyGatherers !== undefined)
-			return this._entity.resourceSupplyGatherers[player-1];
+			return this._entity.resourceSupplyGatherers[player];
 		return [];
 	},
-				   
+				  
 	isFull: function(player)
 	{
 		if (this._entity.resourceSupplyGatherers !== undefined)
-			return (this.maxGatherers() === this._entity.resourceSupplyGatherers[player-1].length);
+			return (this.maxGatherers() === this._entity.resourceSupplyGatherers[player].length);
 
 		return undefined;
 	},
@@ -578,10 +603,10 @@ m.Entity = m.Class({
 			return undefined;
 		return this._entity.resourceCarrying; 
 	},
-				   
+				  
 	currentGatherRate: function() {
 		// returns the gather rate for the current target if applicable.
-		if (!this._template.ResourceGatherer)
+		if (!this.get("ResourceGatherer"));
 			return undefined;
 		
 		if (this.unitAIOrderData().length &&
@@ -599,13 +624,13 @@ m.Entity = m.Class({
 			
 			var type = ress.resourceSupplyType();
 			var tstring = type.generic + "." + type.specific;
-				   
+				  
 			if (type.generic == "treasure")
 				return 1000;
 				
-			var speed = GetTechModifiedProperty(this._techModifications, this._template, "ResourceGatherer/BaseSpeed", +this._template.ResourceGatherer.BaseSpeed);
-			speed *= GetTechModifiedProperty(this._techModifications, this._template, "ResourceGatherer/Rates/"+tstring, +this._template.ResourceGatherer.Rates[tstring]);
-				   
+			var speed = +this.get("ResourceGatherer/BaseSpeed");
+			speed *= +this.get("ResourceGatherer/Rates/" +tstring);
+				  
 			if (speed)
 				return speed;
 			return 0;
@@ -644,7 +669,7 @@ m.Entity = m.Class({
 	},
 
 	unload: function(id) {
-		if (!this._template.GarrisonHolder)
+		if (!this.get("GarrisonHolder"))
 			return undefined;
 		Engine.PostCommand(PlayerID,{"type": "unload", "garrisonHolder": this.id(), "entities": [id]});
 		return this;
@@ -652,7 +677,7 @@ m.Entity = m.Class({
 
 	// Unloads all owned units, don't unload allies
 	unloadAll: function() {
-		if (!this._template.GarrisonHolder)
+		if (!this.get("GarrisonHolder"))
 			return undefined;
 		Engine.PostCommand(PlayerID,{"type": "unload-all-own", "garrisonHolders": [this.id()]});
 		return this;
@@ -751,7 +776,7 @@ m.Entity = m.Class({
 		});
 		return this;
 	},
-				   
+				  
 	 research: function(template) {
 		Engine.PostCommand(PlayerID,{ "type": "research", "entity": this.id(), "template": template });
 		return this;

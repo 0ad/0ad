@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,6 +40,8 @@ GUI text, handles text stuff
 
 #include "CGUISprite.h"
 #include "ps/CStrIntern.h"
+
+class CGUI;
 
 //--------------------------------------------------------
 //  Declarations
@@ -308,6 +310,7 @@ public:
 	 * Notice it won't make it complete, you will have to add
 	 * X/Y values and such.
 	 *
+	 * @param pGUI Pointer to CGUI object making this call, for e.g. icon retrieval.
 	 * @param Feedback contains all info that is generated.
 	 * @param DefaultFont Default Font
 	 * @param from From character n,
@@ -318,7 +321,8 @@ public:
 	 *		  to make several GenerateTextCall in different phases,
 	 *		  it avoids duplicates.
 	 */
-	void GenerateTextCall(SFeedback &Feedback,
+	void GenerateTextCall(const CGUI *pGUI,
+						  SFeedback &Feedback,
 						  CStrIntern DefaultFont,
 						  const int &from, const int &to,
 						  const bool FirstLine,

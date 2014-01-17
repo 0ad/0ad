@@ -187,7 +187,7 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues, events) {
 			&& tpNb + queues.ships.length() === 0 && gameState.getTemplate(gameState.applyCiv("units/{civ}_ship_bireme")).available(gameState))
 		{
 			// TODO: check our dock can build the wanted ship types, for Carthage.
-			queues.ships.addItem(new m.TrainingPlan(gameState, "units/{civ}_ship_bireme", { "sea" : i }, 1, 0, -1, 1 ));
+			queues.ships.addItem(new m.TrainingPlan(gameState, "units/{civ}_ship_bireme", { "sea" : i }, 1, 1 ));
 		}
 	}
 };

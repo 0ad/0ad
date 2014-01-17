@@ -1,33 +1,32 @@
 var AEGIS = function(m)
 {
 
+// this defines the medium difficulty
 m.Config = function() {
 	this.difficulty = 2;	// 0 is sandbox, 1 is easy, 2 is medium, 3 is hard, 4 is very hard.
 
-	// overriden by the GUI, this defines the base difficulty.
 	this.Military = {
 		"fortressLapseTime" : 540, // Time to wait between building 2 fortresses
 		"defenceBuildingTime" : 600, // Time to wait before building towers or fortresses
-		"attackPlansStartTime" : 0,	// time to wait before attacking. Start as soon as possible (first barracks)
+		"attackPlansStartTime" : 0,	// time to wait before attacking. Start as soon as possible.
 		"techStartTime" : 120,	// time to wait before teching. Will only start after town phase so it's irrelevant.
-		"popForBarracks1" : 20,
+		"popForBarracks1" : 25,
 		"popForBarracks2" : 95,
 		"timeForBlacksmith" : 900,
 	};
 	this.Economy = {
-		"townPhase" : 180,	// time to start trying to reach town phase (might be a while after. Still need the requirements + ress )
+		"villagePopCap" : 40,	// How many units we want before aging to town.
 		"cityPhase" : 840,	// time to start trying to reach city phase
-		"popForMarket" : 80,
-		"popForFarmstead" : 45,
+		"popForMarket" : 50,
+		"popForFarmstead" : 35,
 		"dockStartTime" : 240,	// Time to wait before building the dock
 		"techStartTime" : 0,	// time to wait before teching.
 		"targetNumBuilders" : 1.5, // Base number of builders per foundation.
-		"femaleRatio" : 0.4, // percent of females among the workforce.
+		"femaleRatio" : 0.5, // percent of females among the workforce.
 		"initialFields" : 2
 	};
-	
+
 	// Note: attack settings are set directly in attack_plan.js
-	
 	// defence
 	this.Defence =
 	{
@@ -72,7 +71,7 @@ m.Config = function() {
 		"dropsites" : 120,
 		"field" : 500,
 		"economicBuilding" : 90,
-		"militaryBuilding" : 140,	// TODO: set to a lower value after the first barracks.
+		"militaryBuilding" : 240,	// set to something lower after the first barracks.
 		"defenceBuilding" : 70,
 		"civilCentre" : 400,
 		"majorTech" : 700,

@@ -9,7 +9,7 @@
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<UnitsAmbientColour r="0.458824" g="0.458824" b="0.458824"/>
 		<Fog>
-			<FogFactor>0.00330078</FogFactor>
+			<FogFactor>0.00229492</FogFactor>
 			<FogThickness>0</FogThickness>
 			<FogColour r="0.866667" g="0.776471" b="0.486275"/>
 		</Fog>
@@ -35,7 +35,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="352.729" y="100.914" z="459.995"/>
+		<Position x="605.808" y="92.0018" z="230.984"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -13589,258 +13589,6 @@
 			<Orientation y="2.57589"/>
 			<Actor seed="49116"/>
 		</Entity>
-		<Entity uid="5508">
-			<Template>units/sele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="1129.09888" z="513.1402"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="51636"/>
-		</Entity>
-		<Entity uid="5509">
-			<Template>units/sele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="1131.61646" z="514.29578"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="30166"/>
-		</Entity>
-		<Entity uid="5510">
-			<Template>units/sele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="1134.30994" z="517.27863"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="57090"/>
-		</Entity>
-		<Entity uid="5511">
-			<Template>units/sele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="1136.21558" z="518.55036"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="16932"/>
-		</Entity>
-		<Entity uid="5512">
-			<Template>units/sele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="1137.80115" z="519.46503"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="1698"/>
-		</Entity>
-		<Entity uid="5513">
-			<Template>units/sele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="1139.21961" z="520.97876"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="4568"/>
-		</Entity>
-		<Entity uid="5514">
-			<Template>units/sele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="1141.24817" z="522.88843"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="65284"/>
-		</Entity>
-		<Entity uid="5515">
-			<Template>units/sele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="1143.43934" z="524.41431"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="16502"/>
-		</Entity>
-		<Entity uid="5516">
-			<Template>units/sele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="1145.87378" z="527.33259"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="16668"/>
-		</Entity>
-		<Entity uid="5517">
-			<Template>units/sele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="1148.74634" z="530.19904"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="53396"/>
-		</Entity>
-		<Entity uid="5518">
-			<Template>units/sele_infantry_spearman_a</Template>
-			<Player>3</Player>
-			<Position x="1125.47547" z="517.84662"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="15260"/>
-		</Entity>
-		<Entity uid="5519">
-			<Template>units/sele_infantry_spearman_a</Template>
-			<Player>3</Player>
-			<Position x="1127.35511" z="519.48798"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="6814"/>
-		</Entity>
-		<Entity uid="5520">
-			<Template>units/sele_infantry_spearman_a</Template>
-			<Player>3</Player>
-			<Position x="1129.59693" z="520.10926"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="31156"/>
-		</Entity>
-		<Entity uid="5521">
-			<Template>units/sele_infantry_spearman_a</Template>
-			<Player>3</Player>
-			<Position x="1130.26319" z="520.8606"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="60674"/>
-		</Entity>
-		<Entity uid="5522">
-			<Template>units/sele_infantry_spearman_a</Template>
-			<Player>3</Player>
-			<Position x="1131.36121" z="521.07355"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="53972"/>
-		</Entity>
-		<Entity uid="5523">
-			<Template>units/sele_infantry_spearman_a</Template>
-			<Player>3</Player>
-			<Position x="1132.91993" z="522.67383"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="3600"/>
-		</Entity>
-		<Entity uid="5524">
-			<Template>units/sele_infantry_spearman_a</Template>
-			<Player>3</Player>
-			<Position x="1134.81666" z="525.99537"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="4770"/>
-		</Entity>
-		<Entity uid="5525">
-			<Template>units/sele_infantry_spearman_a</Template>
-			<Player>3</Player>
-			<Position x="1136.60096" z="527.57044"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="60666"/>
-		</Entity>
-		<Entity uid="5526">
-			<Template>units/sele_infantry_spearman_a</Template>
-			<Player>3</Player>
-			<Position x="1138.6952" z="528.05408"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="1310"/>
-		</Entity>
-		<Entity uid="5527">
-			<Template>units/sele_infantry_spearman_a</Template>
-			<Player>3</Player>
-			<Position x="1140.85413" z="530.69135"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="10504"/>
-		</Entity>
-		<Entity uid="5528">
-			<Template>units/sele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="1121.20765" z="520.27564"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="1634"/>
-		</Entity>
-		<Entity uid="5529">
-			<Template>units/sele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="1122.04078" z="522.63727"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="1706"/>
-		</Entity>
-		<Entity uid="5530">
-			<Template>units/sele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="1123.62842" z="523.63221"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="11164"/>
-		</Entity>
-		<Entity uid="5531">
-			<Template>units/sele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="1125.71912" z="526.5688"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="58310"/>
-		</Entity>
-		<Entity uid="5532">
-			<Template>units/sele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="1126.71229" z="529.26502"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="64812"/>
-		</Entity>
-		<Entity uid="5533">
-			<Template>units/sele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="1128.06214" z="531.41932"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="18108"/>
-		</Entity>
-		<Entity uid="5534">
-			<Template>units/sele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="1129.43287" z="532.8661"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="5796"/>
-		</Entity>
-		<Entity uid="5535">
-			<Template>units/sele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="1131.06556" z="536.0351"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="55164"/>
-		</Entity>
-		<Entity uid="5536">
-			<Template>units/sele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="1132.77137" z="537.15156"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="57376"/>
-		</Entity>
-		<Entity uid="5537">
-			<Template>units/sele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="1135.46363" z="538.44697"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="52754"/>
-		</Entity>
-		<Entity uid="5538">
-			<Template>units/sele_champion_elephant</Template>
-			<Player>3</Player>
-			<Position x="1139.43494" z="558.47999"/>
-			<Orientation y="-0.54636"/>
-			<Actor seed="14544"/>
-		</Entity>
-		<Entity uid="5539">
-			<Template>units/sele_champion_elephant</Template>
-			<Player>3</Player>
-			<Position x="1111.36463" z="521.60108"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="62444"/>
-		</Entity>
-		<Entity uid="5540">
-			<Template>units/sele_champion_elephant</Template>
-			<Player>3</Player>
-			<Position x="1116.99585" z="533.13044"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="40400"/>
-		</Entity>
-		<Entity uid="5541">
-			<Template>units/sele_champion_elephant</Template>
-			<Player>3</Player>
-			<Position x="1122.1338" z="543.14008"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="2146"/>
-		</Entity>
-		<Entity uid="5542">
-			<Template>units/sele_champion_elephant</Template>
-			<Player>3</Player>
-			<Position x="1127.49915" z="546.18"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="8778"/>
-		</Entity>
-		<Entity uid="5543">
-			<Template>units/sele_hero_antiochus_great</Template>
-			<Player>3</Player>
-			<Position x="1125.30494" z="510.43482"/>
-			<Orientation y="-1.22428"/>
-			<Actor seed="14058"/>
-		</Entity>
 		<Entity uid="5544">
 			<Template>structures/ptol_barracks</Template>
 			<Player>1</Player>
@@ -14124,69 +13872,6 @@
 			<Position x="266.60697" z="509.61905"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="6756"/>
-		</Entity>
-		<Entity uid="5585">
-			<Template>structures/ptol_house</Template>
-			<Player>1</Player>
-			<Position x="638.51288" z="1006.73493"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="13362"/>
-		</Entity>
-		<Entity uid="5586">
-			<Template>structures/ptol_house</Template>
-			<Player>1</Player>
-			<Position x="653.81312" z="1023.06812"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="56066"/>
-		</Entity>
-		<Entity uid="5587">
-			<Template>structures/ptol_house</Template>
-			<Player>1</Player>
-			<Position x="653.10071" z="993.14704"/>
-			<Orientation y="-0.73142"/>
-			<Actor seed="50398"/>
-		</Entity>
-		<Entity uid="5588">
-			<Template>structures/ptol_house</Template>
-			<Player>1</Player>
-			<Position x="667.54719" z="1005.6822"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="50756"/>
-		</Entity>
-		<Entity uid="5589">
-			<Template>structures/ptol_house</Template>
-			<Player>1</Player>
-			<Position x="682.70026" z="998.99988"/>
-			<Orientation y="-0.61333"/>
-			<Actor seed="63366"/>
-		</Entity>
-		<Entity uid="5590">
-			<Template>structures/ptol_house</Template>
-			<Player>1</Player>
-			<Position x="625.72645" z="994.64368"/>
-			<Orientation y="0.65223"/>
-			<Actor seed="60484"/>
-		</Entity>
-		<Entity uid="5591">
-			<Template>structures/ptol_house</Template>
-			<Player>1</Player>
-			<Position x="638.8617" z="979.4336"/>
-			<Orientation y="-2.19475"/>
-			<Actor seed="31200"/>
-		</Entity>
-		<Entity uid="5592">
-			<Template>structures/ptol_house</Template>
-			<Player>1</Player>
-			<Position x="628.50623" z="895.25013"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="64862"/>
-		</Entity>
-		<Entity uid="5593">
-			<Template>structures/ptol_house</Template>
-			<Player>1</Player>
-			<Position x="649.74354" z="889.28125"/>
-			<Orientation y="-2.29993"/>
-			<Actor seed="7766"/>
 		</Entity>
 		<Entity uid="5594">
 			<Template>structures/ptol_lighthouse</Template>
@@ -14810,6 +14495,682 @@
 			<Position x="389.68638" z="580.25696"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="41042"/>
+		</Entity>
+		<Entity uid="5683">
+			<Template>structures/ptol_blacksmith</Template>
+			<Player>1</Player>
+			<Position x="340.0319" z="655.78418"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39750"/>
+		</Entity>
+		<Entity uid="5684">
+			<Template>units/sele_champion_elephant</Template>
+			<Player>3</Player>
+			<Position x="1077.73133" z="417.86912"/>
+			<Orientation y="-2.38944"/>
+			<Actor seed="4996"/>
+		</Entity>
+		<Entity uid="5685">
+			<Template>units/sele_champion_elephant</Template>
+			<Player>3</Player>
+			<Position x="1084.71155" z="411.96033"/>
+			<Orientation y="-2.18406"/>
+			<Actor seed="6388"/>
+		</Entity>
+		<Entity uid="5686">
+			<Template>units/sele_champion_elephant</Template>
+			<Player>3</Player>
+			<Position x="1092.1919" z="405.54395"/>
+			<Orientation y="-2.22654"/>
+			<Actor seed="47466"/>
+		</Entity>
+		<Entity uid="5687">
+			<Template>units/sele_champion_elephant</Template>
+			<Player>3</Player>
+			<Position x="1098.48804" z="398.80216"/>
+			<Orientation y="-2.43534"/>
+			<Actor seed="38684"/>
+		</Entity>
+		<Entity uid="5688">
+			<Template>units/sele_champion_elephant</Template>
+			<Player>3</Player>
+			<Position x="1104.52747" z="391.9911"/>
+			<Orientation y="-1.82468"/>
+			<Actor seed="52400"/>
+		</Entity>
+		<Entity uid="5689">
+			<Template>units/sele_champion_elephant</Template>
+			<Player>3</Player>
+			<Position x="1110.90491" z="386.47504"/>
+			<Orientation y="-2.0188"/>
+			<Actor seed="7250"/>
+		</Entity>
+		<Entity uid="5690">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1079.62732" z="440.25095"/>
+			<Orientation y="-2.55692"/>
+			<Actor seed="14494"/>
+		</Entity>
+		<Entity uid="5691">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1082.84192" z="436.2798"/>
+			<Orientation y="-2.6235"/>
+			<Actor seed="20516"/>
+		</Entity>
+		<Entity uid="5692">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1085.14112" z="432.68671"/>
+			<Orientation y="-2.5701"/>
+			<Actor seed="146"/>
+		</Entity>
+		<Entity uid="5693">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1087.80054" z="430.41529"/>
+			<Orientation y="-2.61413"/>
+			<Actor seed="56106"/>
+		</Entity>
+		<Entity uid="5694">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1089.59351" z="433.47373"/>
+			<Orientation y="-2.72483"/>
+			<Actor seed="38164"/>
+		</Entity>
+		<Entity uid="5695">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1087.521" z="434.73725"/>
+			<Orientation y="-2.81611"/>
+			<Actor seed="57884"/>
+		</Entity>
+		<Entity uid="5696">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1084.80823" z="437.48774"/>
+			<Orientation y="-2.7168"/>
+			<Actor seed="796"/>
+		</Entity>
+		<Entity uid="5697">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1081.86878" z="441.735"/>
+			<Orientation y="-2.65319"/>
+			<Actor seed="40626"/>
+		</Entity>
+		<Entity uid="5698">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1085.19459" z="442.2924"/>
+			<Orientation y="-2.72873"/>
+			<Actor seed="2952"/>
+		</Entity>
+		<Entity uid="5699">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1087.43555" z="440.37235"/>
+			<Orientation y="-2.79438"/>
+			<Actor seed="54294"/>
+		</Entity>
+		<Entity uid="5700">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1089.417" z="438.57105"/>
+			<Orientation y="-2.74321"/>
+			<Actor seed="25494"/>
+		</Entity>
+		<Entity uid="5701">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1092.12745" z="436.43778"/>
+			<Orientation y="-2.41227"/>
+			<Actor seed="13946"/>
+		</Entity>
+		<Entity uid="5702">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1087.8805" z="444.83115"/>
+			<Orientation y="-2.50953"/>
+			<Actor seed="774"/>
+		</Entity>
+		<Entity uid="5703">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1090.3855" z="443.01044"/>
+			<Orientation y="-2.42258"/>
+			<Actor seed="61854"/>
+		</Entity>
+		<Entity uid="5704">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1092.61878" z="441.15531"/>
+			<Orientation y="-2.67408"/>
+			<Actor seed="15750"/>
+		</Entity>
+		<Entity uid="5705">
+			<Template>units/sele_champion_infantry_pikeman</Template>
+			<Player>3</Player>
+			<Position x="1094.9928" z="438.44767"/>
+			<Orientation y="-2.24512"/>
+			<Actor seed="21910"/>
+		</Entity>
+		<Entity uid="5706">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1124.11121" z="395.58817"/>
+			<Orientation y="-2.42309"/>
+			<Actor seed="27534"/>
+		</Entity>
+		<Entity uid="5707">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1125.74158" z="393.64533"/>
+			<Orientation y="-2.41761"/>
+			<Actor seed="59002"/>
+		</Entity>
+		<Entity uid="5708">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1126.64026" z="391.0233"/>
+			<Orientation y="-2.37966"/>
+			<Actor seed="49914"/>
+		</Entity>
+		<Entity uid="5709">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1128.02149" z="388.8967"/>
+			<Orientation y="-2.09385"/>
+			<Actor seed="19218"/>
+		</Entity>
+		<Entity uid="5710">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1126.32105" z="397.37537"/>
+			<Orientation y="-2.2002"/>
+			<Actor seed="51676"/>
+		</Entity>
+		<Entity uid="5711">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1128.11194" z="395.83835"/>
+			<Orientation y="-2.67414"/>
+			<Actor seed="14508"/>
+		</Entity>
+		<Entity uid="5712">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1129.19446" z="393.04954"/>
+			<Orientation y="-2.63028"/>
+			<Actor seed="6542"/>
+		</Entity>
+		<Entity uid="5713">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1130.51661" z="390.60642"/>
+			<Orientation y="-2.13613"/>
+			<Actor seed="41542"/>
+		</Entity>
+		<Entity uid="5714">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1128.36463" z="398.97681"/>
+			<Orientation y="-2.59281"/>
+			<Actor seed="60382"/>
+		</Entity>
+		<Entity uid="5715">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1130.03162" z="396.72736"/>
+			<Orientation y="-2.61858"/>
+			<Actor seed="45622"/>
+		</Entity>
+		<Entity uid="5716">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1131.1902" z="394.69263"/>
+			<Orientation y="-2.42865"/>
+			<Actor seed="2736"/>
+		</Entity>
+		<Entity uid="5717">
+			<Template>units/sele_champion_infantry_swordsman</Template>
+			<Player>3</Player>
+			<Position x="1132.35206" z="391.75455"/>
+			<Orientation y="-2.24843"/>
+			<Actor seed="49184"/>
+		</Entity>
+		<Entity uid="5718">
+			<Template>units/sele_hero_antiochus_great</Template>
+			<Player>3</Player>
+			<Position x="1062.18067" z="444.56635"/>
+			<Orientation y="-2.24459"/>
+			<Actor seed="53422"/>
+		</Entity>
+		<Entity uid="5719">
+			<Template>units/sele_champion_cavalry</Template>
+			<Player>3</Player>
+			<Position x="1067.65027" z="450.65284"/>
+			<Orientation y="-2.38425"/>
+			<Actor seed="48424"/>
+		</Entity>
+		<Entity uid="5720">
+			<Template>units/sele_champion_cavalry</Template>
+			<Player>3</Player>
+			<Position x="1070.2024" z="448.92759"/>
+			<Orientation y="-2.35334"/>
+			<Actor seed="54408"/>
+		</Entity>
+		<Entity uid="5721">
+			<Template>units/sele_champion_cavalry</Template>
+			<Player>3</Player>
+			<Position x="1073.64393" z="446.34375"/>
+			<Orientation y="-2.2391"/>
+			<Actor seed="37204"/>
+		</Entity>
+		<Entity uid="5722">
+			<Template>units/sele_champion_cavalry</Template>
+			<Player>3</Player>
+			<Position x="1071.98084" z="454.60001"/>
+			<Orientation y="-2.50562"/>
+			<Actor seed="54032"/>
+		</Entity>
+		<Entity uid="5723">
+			<Template>units/sele_champion_cavalry</Template>
+			<Player>3</Player>
+			<Position x="1074.15687" z="451.0506"/>
+			<Orientation y="-2.57117"/>
+			<Actor seed="41694"/>
+		</Entity>
+		<Entity uid="5724">
+			<Template>units/sele_champion_cavalry</Template>
+			<Player>3</Player>
+			<Position x="1077.18653" z="448.44819"/>
+			<Orientation y="-2.15787"/>
+			<Actor seed="64594"/>
+		</Entity>
+		<Entity uid="5725">
+			<Template>units/sele_cavalry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="1062.69776" z="453.95386"/>
+			<Orientation y="-2.38312"/>
+			<Actor seed="5918"/>
+		</Entity>
+		<Entity uid="5726">
+			<Template>units/sele_cavalry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="1059.27857" z="456.34147"/>
+			<Orientation y="-2.58765"/>
+			<Actor seed="7566"/>
+		</Entity>
+		<Entity uid="5727">
+			<Template>units/sele_cavalry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="1062.76136" z="458.60776"/>
+			<Orientation y="-2.31714"/>
+			<Actor seed="36912"/>
+		</Entity>
+		<Entity uid="5728">
+			<Template>units/sele_cavalry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="1065.84485" z="457.18204"/>
+			<Orientation y="-2.45392"/>
+			<Actor seed="11486"/>
+		</Entity>
+		<Entity uid="5729">
+			<Template>units/sele_cavalry_javelinist_e</Template>
+			<Player>3</Player>
+			<Position x="1140.64234" z="380.76932"/>
+			<Orientation y="-2.24373"/>
+			<Actor seed="41206"/>
+		</Entity>
+		<Entity uid="5730">
+			<Template>units/sele_cavalry_javelinist_e</Template>
+			<Player>3</Player>
+			<Position x="1143.91797" z="377.95438"/>
+			<Orientation y="-2.21665"/>
+			<Actor seed="20132"/>
+		</Entity>
+		<Entity uid="5731">
+			<Template>units/sele_cavalry_javelinist_e</Template>
+			<Player>3</Player>
+			<Position x="1147.61304" z="375.80204"/>
+			<Orientation y="-1.99587"/>
+			<Actor seed="12336"/>
+		</Entity>
+		<Entity uid="5732">
+			<Template>units/sele_cavalry_javelinist_a</Template>
+			<Player>3</Player>
+			<Position x="1145.97669" z="385.69767"/>
+			<Orientation y="-2.38372"/>
+			<Actor seed="26988"/>
+		</Entity>
+		<Entity uid="5733">
+			<Template>units/sele_cavalry_javelinist_a</Template>
+			<Player>3</Player>
+			<Position x="1147.11951" z="381.08677"/>
+			<Orientation y="-2.20507"/>
+			<Actor seed="31374"/>
+		</Entity>
+		<Entity uid="5734">
+			<Template>units/sele_cavalry_javelinist_a</Template>
+			<Player>3</Player>
+			<Position x="1150.62537" z="380.07093"/>
+			<Orientation y="-2.09098"/>
+			<Actor seed="22288"/>
+		</Entity>
+		<Entity uid="5735">
+			<Template>units/sele_cavalry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="1152.5907" z="391.41941"/>
+			<Orientation y="-2.11216"/>
+			<Actor seed="61860"/>
+		</Entity>
+		<Entity uid="5736">
+			<Template>units/sele_cavalry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="1155.07569" z="387.6483"/>
+			<Orientation y="-1.98992"/>
+			<Actor seed="24866"/>
+		</Entity>
+		<Entity uid="5737">
+			<Template>units/sele_cavalry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="1156.10401" z="381.69751"/>
+			<Orientation y="-2.0561"/>
+			<Actor seed="43030"/>
+		</Entity>
+		<Entity uid="5738">
+			<Template>units/sele_infantry_spearman_2_e</Template>
+			<Player>3</Player>
+			<Position x="1092.72083" z="427.01285"/>
+			<Orientation y="-2.30578"/>
+			<Actor seed="15308"/>
+		</Entity>
+		<Entity uid="5739">
+			<Template>units/sele_infantry_spearman_2_e</Template>
+			<Player>3</Player>
+			<Position x="1094.17579" z="430.07728"/>
+			<Orientation y="-2.85441"/>
+			<Actor seed="2570"/>
+		</Entity>
+		<Entity uid="5740">
+			<Template>units/sele_infantry_spearman_2_e</Template>
+			<Player>3</Player>
+			<Position x="1096.8617" z="428.73444"/>
+			<Orientation y="-2.69268"/>
+			<Actor seed="2566"/>
+		</Entity>
+		<Entity uid="5741">
+			<Template>units/sele_infantry_spearman_2_e</Template>
+			<Player>3</Player>
+			<Position x="1095.93738" z="424.0605"/>
+			<Orientation y="-1.89794"/>
+			<Actor seed="38100"/>
+		</Entity>
+		<Entity uid="5742">
+			<Template>units/sele_infantry_spearman_2_e</Template>
+			<Player>3</Player>
+			<Position x="1096.19947" z="432.83924"/>
+			<Orientation y="-2.21821"/>
+			<Actor seed="29576"/>
+		</Entity>
+		<Entity uid="5743">
+			<Template>units/sele_infantry_spearman_2_e</Template>
+			<Player>3</Player>
+			<Position x="1098.43506" z="431.5698"/>
+			<Orientation y="-2.53423"/>
+			<Actor seed="31728"/>
+		</Entity>
+		<Entity uid="5744">
+			<Template>units/sele_infantry_spearman_2_e</Template>
+			<Player>3</Player>
+			<Position x="1099.41541" z="423.86347"/>
+			<Orientation y="-2.6511"/>
+			<Actor seed="36748"/>
+		</Entity>
+		<Entity uid="5745">
+			<Template>units/sele_infantry_spearman_2_a</Template>
+			<Player>3</Player>
+			<Position x="1101.29236" z="427.25605"/>
+			<Orientation y="-2.476"/>
+			<Actor seed="40646"/>
+		</Entity>
+		<Entity uid="5746">
+			<Template>units/sele_infantry_spearman_2_a</Template>
+			<Player>3</Player>
+			<Position x="1102.41956" z="429.6442"/>
+			<Orientation y="-2.50403"/>
+			<Actor seed="44208"/>
+		</Entity>
+		<Entity uid="5747">
+			<Template>units/sele_infantry_spearman_2_a</Template>
+			<Player>3</Player>
+			<Position x="1103.03992" z="433.69623"/>
+			<Orientation y="-2.62919"/>
+			<Actor seed="5216"/>
+		</Entity>
+		<Entity uid="5748">
+			<Template>units/sele_infantry_spearman_2_a</Template>
+			<Player>3</Player>
+			<Position x="1100.41334" z="435.25858"/>
+			<Orientation y="-2.46978"/>
+			<Actor seed="40926"/>
+		</Entity>
+		<Entity uid="5749">
+			<Template>units/sele_infantry_spearman_2_a</Template>
+			<Player>3</Player>
+			<Position x="1097.1797" z="437.2527"/>
+			<Orientation y="-2.57313"/>
+			<Actor seed="53530"/>
+		</Entity>
+		<Entity uid="5750">
+			<Template>units/sele_infantry_swordsman_a</Template>
+			<Player>3</Player>
+			<Position x="1121.46253" z="398.89673"/>
+			<Orientation y="-2.41265"/>
+			<Actor seed="61830"/>
+		</Entity>
+		<Entity uid="5751">
+			<Template>units/sele_infantry_swordsman_a</Template>
+			<Player>3</Player>
+			<Position x="1123.57154" z="400.45908"/>
+			<Orientation y="-2.45034"/>
+			<Actor seed="4244"/>
+		</Entity>
+		<Entity uid="5752">
+			<Template>units/sele_infantry_swordsman_a</Template>
+			<Player>3</Player>
+			<Position x="1125.99463" z="401.27634"/>
+			<Orientation y="-2.14634"/>
+			<Actor seed="21726"/>
+		</Entity>
+		<Entity uid="5753">
+			<Template>units/sele_infantry_swordsman_e</Template>
+			<Player>3</Player>
+			<Position x="1119.71448" z="401.77887"/>
+			<Orientation y="-2.48272"/>
+			<Actor seed="16714"/>
+		</Entity>
+		<Entity uid="5754">
+			<Template>units/sele_infantry_swordsman_e</Template>
+			<Player>3</Player>
+			<Position x="1122.14283" z="403.25498"/>
+			<Orientation y="-2.60358"/>
+			<Actor seed="33960"/>
+		</Entity>
+		<Entity uid="5755">
+			<Template>units/sele_infantry_swordsman_e</Template>
+			<Player>3</Player>
+			<Position x="1123.70545" z="404.25355"/>
+			<Orientation y="-2.08074"/>
+			<Actor seed="46850"/>
+		</Entity>
+		<Entity uid="5756">
+			<Template>units/sele_infantry_swordsman_e</Template>
+			<Player>3</Player>
+			<Position x="1117.40772" z="404.43894"/>
+			<Orientation y="-2.26676"/>
+			<Actor seed="31996"/>
+		</Entity>
+		<Entity uid="5757">
+			<Template>units/sele_infantry_swordsman_e</Template>
+			<Player>3</Player>
+			<Position x="1120.17005" z="405.67414"/>
+			<Orientation y="-2.16396"/>
+			<Actor seed="40138"/>
+		</Entity>
+		<Entity uid="5758">
+			<Template>units/sele_infantry_swordsman_e</Template>
+			<Player>3</Player>
+			<Position x="1121.90882" z="409.28183"/>
+			<Orientation y="-2.31318"/>
+			<Actor seed="52630"/>
+		</Entity>
+		<Entity uid="5759">
+			<Template>units/sele_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="1102.96106" z="417.0081"/>
+			<Orientation y="-3.0457"/>
+			<Actor seed="11348"/>
+		</Entity>
+		<Entity uid="5760">
+			<Template>units/sele_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="1106.44068" z="413.73081"/>
+			<Orientation y="-2.8635"/>
+			<Actor seed="4866"/>
+		</Entity>
+		<Entity uid="5761">
+			<Template>units/sele_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="1109.40699" z="410.2299"/>
+			<Orientation y="-2.96657"/>
+			<Actor seed="38126"/>
+		</Entity>
+		<Entity uid="5762">
+			<Template>units/sele_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="1112.22278" z="407.86991"/>
+			<Orientation y="-2.99381"/>
+			<Actor seed="25126"/>
+		</Entity>
+		<Entity uid="5763">
+			<Template>units/sele_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="1114.693" z="405.66706"/>
+			<Orientation y="-2.3578"/>
+			<Actor seed="41716"/>
+		</Entity>
+		<Entity uid="5764">
+			<Template>units/sele_infantry_spearman_a</Template>
+			<Player>3</Player>
+			<Position x="1104.74854" z="420.97922"/>
+			<Orientation y="3.13447"/>
+			<Actor seed="42920"/>
+		</Entity>
+		<Entity uid="5765">
+			<Template>units/sele_infantry_spearman_a</Template>
+			<Player>3</Player>
+			<Position x="1107.10804" z="418.4412"/>
+			<Orientation y="-2.98554"/>
+			<Actor seed="26124"/>
+		</Entity>
+		<Entity uid="5766">
+			<Template>units/sele_infantry_spearman_a</Template>
+			<Player>3</Player>
+			<Position x="1109.75062" z="415.68015"/>
+			<Orientation y="-2.91092"/>
+			<Actor seed="46474"/>
+		</Entity>
+		<Entity uid="5767">
+			<Template>units/sele_infantry_spearman_a</Template>
+			<Player>3</Player>
+			<Position x="1112.26966" z="413.09458"/>
+			<Orientation y="-2.93102"/>
+			<Actor seed="30956"/>
+		</Entity>
+		<Entity uid="5768">
+			<Template>units/sele_infantry_spearman_a</Template>
+			<Player>3</Player>
+			<Position x="1115.01038" z="410.79621"/>
+			<Orientation y="-2.47851"/>
+			<Actor seed="41864"/>
+		</Entity>
+		<Entity uid="5769">
+			<Template>units/sele_infantry_spearman_a</Template>
+			<Player>3</Player>
+			<Position x="1116.60328" z="408.787"/>
+			<Orientation y="-2.98685"/>
+			<Actor seed="42572"/>
+		</Entity>
+		<Entity uid="5770">
+			<Template>units/sele_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="1100.22327" z="419.81342"/>
+			<Orientation y="-2.97562"/>
+			<Actor seed="62146"/>
+		</Entity>
+		<Entity uid="5771">
+			<Template>units/sele_infantry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="1108.11988" z="424.61744"/>
+			<Orientation y="-2.88355"/>
+			<Actor seed="46334"/>
+		</Entity>
+		<Entity uid="5772">
+			<Template>units/sele_infantry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="1110.84571" z="422.16041"/>
+			<Orientation y="-3.03054"/>
+			<Actor seed="61950"/>
+		</Entity>
+		<Entity uid="5773">
+			<Template>units/sele_infantry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="1113.09693" z="419.35163"/>
+			<Orientation y="-2.88775"/>
+			<Actor seed="53414"/>
+		</Entity>
+		<Entity uid="5774">
+			<Template>units/sele_infantry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="1114.8755" z="416.96622"/>
+			<Orientation y="-3.02952"/>
+			<Actor seed="55836"/>
+		</Entity>
+		<Entity uid="5775">
+			<Template>units/sele_infantry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="1117.47962" z="413.86097"/>
+			<Orientation y="-2.62409"/>
+			<Actor seed="6740"/>
+		</Entity>
+		<Entity uid="5776">
+			<Template>units/sele_infantry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="1119.41688" z="410.7205"/>
+			<Orientation y="-2.73934"/>
+			<Actor seed="56646"/>
+		</Entity>
+		<Entity uid="5777">
+			<Template>actor|particle/dust_storm.xml</Template>
+			<Position x="882.76008" z="175.31447"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1550"/>
+		</Entity>
+		<Entity uid="5778">
+			<Template>actor|particle/dust_storm.xml</Template>
+			<Position x="1108.2887" z="666.99286"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50072"/>
+		</Entity>
+		<Entity uid="5779">
+			<Template>actor|particle/dust_storm.xml</Template>
+			<Position x="364.20688" z="1035.86988"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22078"/>
 		</Entity>
 	</Entities>
 	<Paths/>

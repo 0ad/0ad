@@ -58,9 +58,9 @@ m.BaseManager.prototype.init = function(gameState, unconstructed){
 	// TODO: difficulty levels for this?
 	
 	// smallRadius is the distance necessary to mark a resource as linked to a dropsite.
-	this.smallRadius = { 'food':40*40,'wood':45*45,'stone':40*40,'metal':40*40 };
+	this.smallRadius = { 'food':40*40,'wood':50*50,'stone':40*40,'metal':40*40 };
 	// medRadius is the maximal distance for a link, albeit one that would still make us want to build a new dropsite.
-	this.medRadius = { 'food':70*70,'wood':70*70,'stone':80*80,'metal':80*80 };
+	this.medRadius = { 'food':70*70,'wood':55*55,'stone':80*80,'metal':80*80 };
 	// bigRadius is the distance for a weak link, mainly for optimizing search for resources when a DP is depleted.
 	this.bigRadius = { 'food':70*70,'wood':200*200,'stone':200*200,'metal':200*200 };
 };
@@ -115,6 +115,9 @@ m.BaseManager.prototype.initTerritory = function(HQ, gameState) {
 	var width = gameState.getMap().width;
 	for (var xi = -radius; xi <= radius; ++xi)
 		for (var yi = -radius; yi <= radius; ++yi)
+		{
+			if (x+xi >= width || y+yi >= width)
+				continue;
 			if (xi*xi+yi*yi < radius*radius && HQ.basesMap.map[(x+xi) + (y+yi)*width] === 0)
 			{
 				if (this.accessIndex == gameState.sharedScript.accessibility.landPassMap[x+xi + width*(y+yi)])
@@ -123,6 +126,7 @@ m.BaseManager.prototype.initTerritory = function(HQ, gameState) {
 					HQ.basesMap.map[(x+xi) + (y+yi)*width] = this.ID;
 				}
 			}
+		}
 }
 
 m.BaseManager.prototype.initGatheringFunctions = function(HQ, gameState, specTypes) {
@@ -189,10 +193,10 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 				if (ent.hasClass("CivCentre"))
 				{
 					// TODO: might want to tell the queue manager to pause other stuffs if we are the only base.
-					queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, 0 , -1,ent.position()));
+					queues.civilCentre.addItem(gameState, new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, ent.position()));
 				} else {
 					// TODO
-					queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true },0,-1,ent.position()));
+					queues.civilCentre.addItem(gameState, new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, ent.position()));
 				}
 			}
 			
@@ -600,7 +604,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 					plan.isGo = function() { return false; };	// don't start right away.
 					queues.field.addItem(plan);
 				}
-			} else if (!this.isFarming && count < 650)
+			} else if (!this.isFarming && count < 400)
 			{
 				for (var i in queues.field.queue)
 					queues.field.queue[i].isGo = function() { return true; };	// start them
@@ -636,7 +640,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 					// TODO: tell the HQ we'll be needing a new base for this resource, or tell it we've ran out of resource Z.
 				} else {
 					m.debug ("planning new dropsite for " + type);
-					queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse",{ "base" : this.ID }, 0, -1, pos));
+					queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse",{ "base" : this.ID }, pos));
 				}
 			}
 		}
@@ -660,6 +664,15 @@ m.BaseManager.prototype.getGatherRates = function(gameState, currentRates) {
 			if (gRate !== undefined)
 				currentRates[i] += Math.log(1+gRate)/1.1;
 		});
+		if (i === "food")
+		{
+			units = this.workers.filter(API3.Filters.byMetadata(PlayerID, "subrole", "hunter"));
+			units.forEach(function (ent) {
+				var gRate = ent.currentGatherRate()
+				if (gRate !== undefined)
+					currentRates[i] += Math.log(1+gRate)/1.1;
+			});
+		}
 	}
 };
 
@@ -799,7 +812,12 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 	
 	// TODO: this is not perfect performance-wise.
 	var foundations = this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(),API3.Filters.not(API3.Filters.byClass("Field")))).toEntityArray();
-	var damagedBuildings = this.buildings.filter(function (ent) { if (ent.needsRepair() && ent.getMetadata(PlayerID, "plan") == undefined) { return true; } return false; }).toEntityArray();
+	
+	var damagedBuildings = this.buildings.filter(function (ent) {
+		if (ent.foundationProgress() === undefined && ent.needsRepair())
+			return true;
+		return false;
+	}).toEntityArray();
 	
 	// Check if nothing to build
 	if (!foundations.length && !damagedBuildings.length){
@@ -846,15 +864,18 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 	
 	for (var i in foundations) {
 		var target = foundations[i];
-		// Removed: sometimes the AI would not notice it has empty unbuilt fields
-		//if (target._template.BuildRestrictions.Category === "Field")
-		//	continue; // we do not build fields
+
+		if (target.hasClass("Field"))
+			continue; // we do not build fields
 		
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
-
 		var targetNB = this.Config.Economy.targetNumBuilders;	// TODO: dynamic that.
-		if (target.hasClass("CivCentre") || target.buildTime() > 150 || target.hasClass("House"))
+		if (target.hasClass("House"))
 			targetNB *= 2;
+		else if (target.hasClass("Barracks"))
+			targetNB = 4;
+		else if (target.hasClass("Fortress"))
+			targetNB = 7;
 		if (target.getMetadata(PlayerID, "baseAnchor") == true)
 			targetNB = 15;
 
@@ -886,6 +907,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 			}
 		}
 	}
+
 	// don't repair if we're still under attack, unless it's like a vital (civcentre or wall) building that's getting destroyed.
 	for (var i in damagedBuildings) {
 		var target = damagedBuildings[i];
@@ -929,14 +951,25 @@ m.BaseManager.prototype.update = function(gameState, queues, events) {
 	
 	Engine.ProfileStart("Assign builders");
 	this.assignToFoundations(gameState);
-	Engine.ProfileStop()
+	Engine.ProfileStop();
 	
 	if (this.constructing && this.anchor)
 	{
 		var terrMap = m.createTerritoryMap(gameState);
 		if(terrMap.getOwner(this.anchor.position()) !== 0 && terrMap.getOwner(this.anchor.position()) !== PlayerID)
-			this.anchor.destroy();
+		{
+			// we're in enemy territory. If we're too close from the enemy, destroy us.
+			var eEnts = gameState.getEnemyStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+			for (var i in eEnts)
+			{
+				var entPos = eEnts[i].position();
+				entPos = [entPos[0]/4.0,entPos[1]/4.0];
+				if (API3.SquareVectorDistance(entPos, pos) < 500)
+					this.anchor.destroy();
+			}
+		}
 	}
+
 
 //	if (!this.constructing)
 //	{

@@ -37,16 +37,18 @@ m.Map.prototype.gamePosToMapPos = function(p){
 
 m.Map.prototype.point = function(p){
 	var q = this.gamePosToMapPos(p);
+	q[0] = q[0] >= this.width ? this.width : (q[0] < 0 ? 0 : q[0]);
+	q[1] = q[1] >= this.width ? this.width : (q[1] < 0 ? 0 : q[1]);
 	return this.map[q[0] + this.width * q[1]];
 };
 m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 	strength = strength ? +strength : +maxDist;
 	type = type ? type : 'linear';
 	
-	var x0 = Math.max(0, cx - maxDist);
-	var y0 = Math.max(0, cy - maxDist);
-	var x1 = Math.min(this.width-1, cx + maxDist);
-	var y1 = Math.min(this.height-1, cy + maxDist);
+	var x0 = Math.floor(Math.max(0, cx - maxDist));
+	var y0 = Math.floor(Math.max(0, cy - maxDist));
+	var x1 = Math.floor(Math.min(this.width-1, cx + maxDist));
+	var y1 = Math.floor(Math.min(this.height-1, cy + maxDist));
 	var maxDist2 = maxDist * maxDist;
 	
 	var str = 0.0;
