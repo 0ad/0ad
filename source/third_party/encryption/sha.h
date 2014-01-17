@@ -23,6 +23,8 @@
 #ifndef SHA_INCLUDED
 #define SHA_INCLUDED
 
+#define SHA_DIGEST_SIZE 32
+
 /**
  * Structure for performing SHA256 encryption on arbitrary data
  */

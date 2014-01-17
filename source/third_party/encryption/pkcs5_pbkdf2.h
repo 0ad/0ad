@@ -23,8 +23,8 @@
 #ifndef PKCS5_PBKD2_INCLUDED
 #define PKCS5_PBKD2_INCLUDED
 
-#define SHA_DIGEST_SIZE 32
-
+// We need to know SHA_DIGEST_SIZE.
+#include "third_party/encryption/sha.h"
 
 /**
  * Simple PBKDF2 implementation for hard to crack passwords
