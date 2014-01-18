@@ -51,8 +51,10 @@ in particular, let us know and we can try to clarify it.
   /source/lib
     MIT
 
-  /source/lobby/pkcs5_pbkdf2.cpp
-    ISC
+  /source/third_party/encryption
+    GPL version 2 (or later)
+    ISC (pkcs5_pbkdf2.cpp)
+    MIT (pkcs5_pbkdf2.h)
 
   /source/third_party/mikktspace
     zlib
