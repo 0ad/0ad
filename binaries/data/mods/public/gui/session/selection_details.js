@@ -221,7 +221,7 @@ function displaySingle(entState, template)
 		{
 			var realRange = entState.attack.elevationAdaptedRange;
 			var range =  entState.attack.maxRange;
-			attack += ", [font=\"serif-bold-13\"]Range:[/font] " + range +
+			attack += ", [font=\"serif-bold-13\"]Range:[/font] " + Math.round(range) +
 				"[font=\"sans-10\"][color=\"orange\"] meters[/color][/font]";
 
 			if (Math.round(realRange - range) > 0)
