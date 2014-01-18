@@ -194,7 +194,11 @@ AIInterface.prototype.OnGlobalValueModification = function(msg)
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	for each (var ent in msg.entities)
 	{
-		var template = cmpTemplateManager.GetTemplateWithoutValidation(cmpTemplateManager.GetCurrentTemplateName(ent));
+		var templateName = cmpTemplateManager.GetCurrentTemplateName(ent);
+		// if there's no template name, the unit is probably killed, ignore it.
+		if (!templateName || !templateName.length)
+			continue;
+		var template = cmpTemplateManager.GetTemplateWithoutValidation(templateName);
 		for each (var value in msg.valueNames)
 		{
 			// let's get the base template value.
