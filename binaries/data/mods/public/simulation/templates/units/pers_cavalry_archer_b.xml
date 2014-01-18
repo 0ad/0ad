@@ -47,7 +47,7 @@ Causes trample damage to enemy units.</Tooltip>
     <metal>20</metal>
   </Loot>
   <Obstruction>
-    <Unit radius="2.0"/>
+    <Unit radius="1.3"/>
   </Obstruction>
   <Promotion>
     <Entity>units/pers_cavalry_archer_a</Entity>
@@ -59,9 +59,9 @@ Causes trample damage to enemy units.</Tooltip>
     </Capacities>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>11.0</WalkSpeed>
+    <WalkSpeed>15.0</WalkSpeed>
     <Run>
-      <Speed>33.0</Speed>
+      <Speed>35.0</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

@@ -35,7 +35,7 @@
     <Icon>units/celt_hero_boudicca.png</Icon>
   </Identity>
   <Obstruction>
-    <Unit radius="1.5"/>
+    <Unit radius="2.0"/>
   </Obstruction>
   <Sound>
     <SoundGroups>
@@ -48,6 +48,12 @@
       <death>actor/human/death/female_death.xml</death>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed>18.0</WalkSpeed>
+    <Run>
+      <Speed>38.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/celts/boudicca_chariot.xml</Actor>
   </VisualActor>
