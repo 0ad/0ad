@@ -47,7 +47,7 @@
     <KillBeforeGather>false</KillBeforeGather>
     <Amount>Infinity</Amount>
     <Type>food.grain</Type>
-    <MaxGatherers>5</MaxGatherers>
+    <MaxGatherers>3</MaxGatherers>
 	<!-- Note to people looking to change this: see the comments
 		 around line 260 in simulation/components/ResourceGatherer.js -->
     <DiminishingReturns>14</DiminishingReturns>
