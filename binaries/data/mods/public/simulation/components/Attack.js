@@ -454,9 +454,9 @@ Attack.prototype.PerformAttack = function(type, target)
 
 		var targetVelocity = {"x": (targetPosition.x - previousTargetPosition.x) / this.turnLength, "z": (targetPosition.z - previousTargetPosition.z) / this.turnLength}
 		// the component of the targets velocity radially away from the archer
-		var radialSpeed = this.VectorDot(relativePosition, targetVelocity) / this.VectorLength(relativePosition);
+		var radialSpeed = Math.VectorDot(relativePosition, targetVelocity) / Math.VectorLength(relativePosition);
 
-		var horizDistance = this.VectorDistance(targetPosition, selfPosition);
+		var horizDistance = Math.VectorDistance(targetPosition, selfPosition);
 
 		// This is an approximation of the time ot the target, it assumes that the target has a constant radial 
 		// velocity, but since units move in straight lines this is not true.  The exact value would be more 
@@ -475,13 +475,13 @@ Attack.prototype.PerformAttack = function(type, target)
 		var distanceModifiedSpread = spread * horizDistance/elevationAdaptedMaxRange;
 
 		var randNorm = this.GetNormalDistribution();
-		var offsetX = randNorm[0] * distanceModifiedSpread * (1 + this.VectorLength(targetVelocity) / 20);
-		var offsetZ = randNorm[1] * distanceModifiedSpread * (1 + this.VectorLength(targetVelocity) / 20);
+		var offsetX = randNorm[0] * distanceModifiedSpread * (1 + Math.VectorLength(targetVelocity) / 20);
+		var offsetZ = randNorm[1] * distanceModifiedSpread * (1 + Math.VectorLength(targetVelocity) / 20);
 
 		var realTargetPosition = { "x": predictedPosition.x + offsetX, "y": targetPosition.y, "z": predictedPosition.z + offsetZ };
 
 		// Calculate when the missile will hit the target position
-		var realHorizDistance = this.VectorDistance(realTargetPosition, selfPosition);
+		var realHorizDistance = Math.VectorDistance(realTargetPosition, selfPosition);
 		var timeToTarget = realHorizDistance / horizSpeed;
 
 		var missileDirection = {"x": (realTargetPosition.x - selfPosition.x) / realHorizDistance, "z": (realTargetPosition.z - selfPosition.z) / realHorizDistance};
@@ -516,21 +516,6 @@ Attack.prototype.InterpolatedLocation = function(ent, lateness)
 	        "z": (curPos.z * (this.turnLength - lateness) + prevPos.z * lateness) / this.turnLength};
 };
 
-Attack.prototype.VectorDistance = function(p1, p2)
-{
-	return Math.sqrt((p1.x - p2.x)*(p1.x - p2.x) + (p1.z - p2.z)*(p1.z - p2.z));
-};
-
-Attack.prototype.VectorDot = function(p1, p2)
-{
-	return (p1.x * p2.x + p1.z * p2.z);
-};
-
-Attack.prototype.VectorLength = function(p)
-{
-	return Math.sqrt(p.x*p.x + p.z*p.z);
-};
-
 // Tests whether it point is inside of ent's footprint
 Attack.prototype.testCollision = function(ent, point, lateness)
 {
@@ -547,7 +532,8 @@ Attack.prototype.testCollision = function(ent, point, lateness)
 
 	if (targetShape.type === 'circle')
 	{
-		return (this.VectorDistance(point, targetPosition) < targetShape.radius);
+		// Use VectorDistanceSquared and square targetShape.radius to avoid square roots.
+		return (Math.VectorDistanceSquared(point, targetPosition) < (targetShape.radius * targetShape.radius));
 	}
 	else
 	{
@@ -601,7 +587,7 @@ Attack.prototype.MissileHit = function(data, lateness)
 	{
 		// If we didn't hit the main target look for nearby units
 		var cmpPlayer = Engine.QueryInterface(Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetPlayerByID(data.playerId), IID_Player)
-		var ents = Damage.EntitiesNearPoint(data.position, this.VectorDistance(data.position, targetPosition) * 2, cmpPlayer.GetEnemies());
+		var ents = Damage.EntitiesNearPoint(data.position, Math.VectorDistance(data.position, targetPosition) * 2, cmpPlayer.GetEnemies());
 
 		for (var i = 0; i < ents.length; i++)
 		{
