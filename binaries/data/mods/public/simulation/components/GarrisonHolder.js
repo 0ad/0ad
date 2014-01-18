@@ -244,7 +244,7 @@ GarrisonHolder.prototype.PerformGarrison = function(entity)
 	if (cmpAura && cmpAura.HasGarrisonAura())
 		cmpAura.ApplyGarrisonBonus(this.entity);	
 
-	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [entity], "removed": [] });
 	
 	var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 	if (cmpUnitAI && cmpUnitAI.GetAlertRaiser())
@@ -310,7 +310,7 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 	cmpNewPosition.JumpTo(pos.x, pos.z);
 	// TODO: what direction should they face in?
 	
-	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [], "removed": [entity] });
 	
 	return true;
 };
@@ -563,7 +563,7 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cmpHealth && cmpHealth.GetHitpoints() == 0)
 		{
 			this.entities.splice(entityIndex, 1);
-			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [], "removed": [msg.entity] });
 			this.UpdateGarrisonFlag();
 		}
 		else if(!IsOwnedByMutualAllyOfEntity(this.entity, this.entities[entityIndex]))
@@ -580,7 +580,7 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 	if (entityIndex != -1)
 	{
 		this.entities[entityIndex] = msg.newentity;
-		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [msg.newentity], "removed": [msg.entity] });
 	}
 };
 
@@ -628,7 +628,7 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 		this.entities.splice(entityIndex, 1);
 	}
 
-	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
+	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [], "removed" : entities });
 	this.UpdateGarrisonFlag();
 };
 

@@ -157,6 +157,8 @@ m.GameState.prototype.townPhase = function()
 
 m.GameState.prototype.cityPhase = function()
 {
+	if (this.playerData.civ == "athen")
+		return "phase_city_athen";
 	return "phase_city_generic";
 };
 

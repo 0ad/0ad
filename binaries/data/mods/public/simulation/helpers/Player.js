@@ -54,6 +54,11 @@ function LoadPlayerSettings(settings, newPlayers)
 
 			// Add player to player manager
 			cmpPlayerManager.AddPlayer(entID);
+
+			// Properly autoresearch techs on init.
+			var cmpTechManager = Engine.QueryInterface(entID, IID_TechnologyManager);
+			if (cmpTechManager !== undefined)
+				cmpTechManager.UpdateAutoResearch();
 		}
 	}
 
