@@ -32,6 +32,17 @@ function toTitleCase(word)
 	return word;
 }
 
+function pluralize(word, count, pluralWord)
+{
+	if (count == 1 && pluralWord != null)
+		return pluralWord;
+
+	var plural = "s";
+	if (word[word.length - 1] == "s")
+		plural = "es";
+	return word + (count == 1 ? "" : plural);
+}
+
 // Get the basic player data
 function getPlayerData(playerAssignments)
 {
@@ -164,6 +175,19 @@ function damageTypeDetails(dmg)
 	{
 		return "[font=\"serif-12\"](None)[/font]";
 	}
+}
+
+function attackRateDetails(entState) {
+	if (entState.buildingAI)
+		var arrows = entState.buildingAI.arrowCount;
+
+	var time = entState.attack.repeatTime / 1000;
+	if (entState.buildingAI) {
+		return arrows + "[font=\"sans-10\"][color=\"orange\"] " + pluralize("arrow", arrows) + "[/color][/font]" +
+			" / " + (time == 1 ? "" : time) + " [font=\"sans-10\"][color=\"orange\"]" + pluralize("second", time) +
+			"[/color][/font]";
+	}
+	return time + "[font=\"sans-10\"][color=\"orange\"] " + pluralize("second", time) + "[/color][/font]";
 }
 
 // Converts an armor level into the actual reduction percentage

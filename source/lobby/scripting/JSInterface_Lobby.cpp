@@ -22,8 +22,8 @@
 #include "gui/GUIManager.h"
 #include "lib/utf8.h"
 #include "lobby/IXmppClient.h"
-#include "lobby/pkcs5_pbkdf2.h"
-#include "lobby/sha.h"
+#include "third_party/encryption/pkcs5_pbkdf2.h"
+#include "third_party/encryption/sha.h"
 
 #include "scriptinterface/ScriptInterface.h"
 
@@ -246,8 +246,8 @@ std::string JSI_Lobby::EncryptPassword(const std::string& password, const std::s
 	char hex[2 * DIGESTSIZE];
 	for (int i = 0; i < DIGESTSIZE; ++i)
 	{
-		hex[i*2] = base16[encrypted[i] >> 4];		   // 4 high bits
-		hex[i*2 + 1] = base16[encrypted[i] & 0x0F];// 4 low bits
+		hex[i*2] = base16[encrypted[i] >> 4];		// 4 high bits
+		hex[i*2 + 1] = base16[encrypted[i] & 0x0F];	// 4 low bits
 	}
 	return std::string(hex, sizeof(hex));
 }

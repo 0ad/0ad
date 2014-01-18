@@ -590,6 +590,7 @@ function setup_all_libs ()
 		source_dirs = {
 			"lobby",
 			"lobby/scripting",
+			"third_party/encryption"
 		}
 
 		extern_libs = {
@@ -619,6 +620,7 @@ function setup_all_libs ()
 	else
 		source_dirs = {
 			"lobby/scripting",
+			"third_party/encryption"
 		}
 		extern_libs = {
 			"spidermonkey",

@@ -892,9 +892,8 @@
 				<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
 			</object>
 		</object>
-		<!-- Hit overlay -->
 	</object>
-	
+
 	<!-- ================================  ================================ -->
 	<!-- Unit Selection Groups -->
 	<!-- ================================  ================================ -->
@@ -941,23 +940,37 @@
 	>
 		<object name="minimap"
 			type="minimap"
-			size="4 4 100%-4 100%-4"
+			size="8 8 100%-8 100%-8"
 		>
 			<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
 		</object>
 
+		<object name="minimapOverlay" size="4 4 100%-4 100%-4" type="image" sprite="stretched:session/minimap_circle_modern.png" ghost="true"/>
+
 		<!-- Idle Worker Button -->
-		<object type="image"
-			size="100%-36 4 100%-4 36"
-		>
+		<object size="100%-36 100%-36 100%-4 100%-4">
+			<!-- TODO: should highlight the button if there's non-zero idle workers -->
+			<object size="-80 -80 100% 100%" type="image" sprite="stretched:session/minimap-idle.png" ghost="true" />
+			<!-- Since we don't support non-rectangular buttons, we approximate the area using 3 rectangles -->
 			<object type="button"
-				style="iconButton"
 				tooltip_style="sessionToolTip"
 				tooltip="Find idle worker"
 				hotkey="selection.idleworker"
 			>
-				<!-- TODO: should highlight the button if there's non-zero idle workers -->
-				<object size="0 0 100% 100%" type="image" sprite="idleWorker" ghost="true" />
+				<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
+			</object>
+			<object type="button"
+				tooltip_style="sessionToolTip"
+				tooltip="Find idle worker"
+				size="15 -15 100% 0"
+			>
+				<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
+			</object>
+			<object type="button"
+				tooltip_style="sessionToolTip"
+				tooltip="Find idle worker"
+				size="-15 15 0 100%"
+			>
 				<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
 			</object>
 		</object>

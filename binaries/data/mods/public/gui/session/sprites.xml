@@ -9,26 +9,19 @@
 		/>
 	</sprite>
 
-	<sprite name="idleWorker">
-		<image
-			texture="session/icons/repair.png"
-			cell_size="32 32"
-			size="0 0 100% 100%"
-		/>
-	</sprite>
-
 	<!-- ================================  ================================ -->
 	<!-- Menu -->
 	<!-- ================================  ================================ -->
+
 	<sprite name="menuButton">
 		<image
 			texture="session/icons/menu.png"
-                        real_texture_placement="6 10 60 23"
+			real_texture_placement="6 10 60 23"
 			size="6 10 60 23"
 		/>
 	</sprite>
 
-        <sprite name="horizontalThinBorder">
+	<sprite name="horizontalThinBorder">
 		<image
 			texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
@@ -114,12 +107,9 @@
 
 	<!-- Map Panel -->
 	<sprite name="mapPanel">
-		<image
-			texture="session/map_bg.png"
-			texture_size="0 0 100% 100%"
+		<image backcolor="0 0 0"
 			size="0 0 100% 100%"
 		/>
-
 		<!-- sides -->
 		<image
 			texture="global/border/line_horiz.png"

@@ -12,9 +12,6 @@
       <MinRange>16.0</MinRange>
     </Ranged>
   </Attack>
-  <Cost>
-    <Population>6</Population>
-  </Cost>
   <Footprint replace="">
     <Square width="8.0" depth="11.0"/>
     <Height>5.0</Height>
@@ -25,21 +22,12 @@
   <Identity>
     <Rank>Advanced</Rank>
   </Identity>
-  <Obstruction>
-    <Unit radius="2.5"/>
-  </Obstruction>
   <Promotion>
     <Entity>units/pers_cavalry_archer_e</Entity>
   </Promotion>
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
-  <UnitMotion>
-    <WalkSpeed>10.0</WalkSpeed>
-    <Run>
-      <Speed>30.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/persians/cavalry_archer_a.xml</Actor>
   </VisualActor>

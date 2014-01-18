@@ -24,7 +24,7 @@ Damage.CauseSplashDamage = function(data)
 		var entityPosition = Engine.QueryInterface(entity, IID_Position).GetPosition();
 		if(data.shape == 'Circular') // circular effect with quadratic falloff in every direction
 		{
-			var squaredDistanceFromOrigin = Damage.VectorDistanceSquared(data.origin, entityPosition);
+			var squaredDistanceFromOrigin = Math.VectorDistanceSquared(data.origin, entityPosition);
 			damageMultiplier == 1 - squaredDistanceFromOrigin / (data.radius * data.radius);
 		}
 		else if(data.shape == 'Linear') // linear effect with quadratic falloff in two directions (only used for certain missiles)
@@ -36,8 +36,8 @@ Damage.CauseSplashDamage = function(data)
 			var width = data.radius/5;
 
 			// Effectivly rotate the axis to align with the missile direction.
-			var parallelDist = Damage.VectorDot(relativePos, data.direction); // z axis
-			var perpDist = Math.abs(Damage.VectorCross(relativePos, data.direction)); // y axis
+			var parallelDist = Math.VectorDot(relativePos, data.direction); // z axis
+			var perpDist = Math.abs(Math.VectorCross(relativePos, data.direction)); // y axis
 
 			// Check that the unit is within the distance at which it will get damaged.
 			if (parallelDist > -width && perpDist < width) // If in radius, quadratic falloff in both directions
@@ -135,24 +135,6 @@ Damage.TargetKilled = function(killerEntity, targetEntity)
 	var cmpLooter = Engine.QueryInterface(killerEntity, IID_Looter);
 	if (cmpLooter)
 		cmpLooter.Collect(targetEntity);
-};
-
-// Gets the straight line distance between p1 and p2
-Damage.VectorDistanceSquared = function(p1, p2)
-{
-	return (p1.x - p2.x) * (p1.x - p2.x) + (p1.z - p2.z) * (p1.z - p2.z);
-};
-
-// Gets the dot product of two vectors.
-Damage.VectorDot = function(p1, p2)
-{
-	return p1.x * p2.x + p1.z * p2.z;
-};
-
-// Gets the 2D interpreted version of the cross product of two vectors.
-Damage.VectorCross = function(p1, p2)
-{
-	return p1.x * p2.z - p1.z * p2.x;
 };
 
 Engine.RegisterGlobal("Damage", Damage);
