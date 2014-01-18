@@ -15,7 +15,7 @@ function displaySingle(entState, template)
 {
 	// Get general unit and player data
 	var specificName = template.name.specific;
-	var genericName = template.name.generic != template.name.specific? template.name.generic : "";
+	var genericName = template.name.generic != template.name.specific ? template.name.generic : "";
 	// If packed, add that to the generic name (reduces template clutter)
 	if (genericName && template.pack && template.pack.state == "packed")
 		genericName += " -- Packed";
@@ -221,33 +221,16 @@ function displaySingle(entState, template)
 		{
 			var realRange = entState.attack.elevationAdaptedRange;
 			var range =  entState.attack.maxRange;
-			attack += ", [font=\"serif-bold-13\"]Range:[/font] " + 
-				Math.round(range/4);
+			attack += ", [font=\"serif-bold-13\"]Range:[/font] " + range +
+				"[font=\"sans-10\"][color=\"orange\"] meters[/color][/font]";
 
-			if (Math.round((realRange - range)/4) > 0)
-				attack += " (+" + Math.round((realRange - range)/4) + ")";
-			else if (Math.round((realRange - range)/4) < 0)
-				attack += " (" + Math.round((realRange - range)/4) + ")";
+			if (Math.round(realRange - range) > 0)
+				attack += " (+" + Math.round(realRange - range) + ")";
+			else if (Math.round(realRange - range) < 0)
+				attack += " (" + Math.round(realRange - range) + ")";
 
 		}
-		attack += "\n[font=\"serif-bold-13\"]Rate:[/font] ";
-
-		var hits = 0;
-		if (entState.unitAI)
-			hits++;
-		if (entState.buildingAI)
-			hits += entState.buildingAI.arrowCount;
-
-		if (hits == 1)
-			attack += hits + " attack per ";
-		else
-			attack += hits + " attacks per ";
-
-		var time = entState.attack.repeatTime/1000;
-		if (time == 1)
-			attack += "second";
-		else
-			attack += time + " seconds";
+		attack += ", [font=\"serif-bold-13\"]Rate:[/font] " + attackRateDetails(entState);
 	}
 	
 	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n[font=\"serif-bold-13\"]Armor:[/font] " + armorTypeDetails(entState.armour);
