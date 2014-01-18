@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Cost>
+    <BuildTime>200</BuildTime>
+    <Resources>
+      <wood>300</wood>
+	  <stone>0</stone>
+	  <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>2000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>mace</Civ>
+    <SpecificName>Synergeíon Poliorkías</SpecificName>
+	<GenericName>Siege Workshop</GenericName>
+    <History>The Macedonians were innovators in siege craft.</History>
+    <Tooltip>Build siege engines. Research siege technologies.</Tooltip>
+    <Icon>structures/fortress.png</Icon>
+    <RequiredTechnology>phase_city</RequiredTechnology>
+  </Identity>
+  <ProductionQueue>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/mace_mechanical_siege_oxybeles_packed
+      units/mace_mechanical_siege_lithobolos_packed
+      units/mace_mechanical_siege_ram
+      units/mace_mechanical_siege_tower
+    </Entities>
+    <Technologies datatype="tokens">
+	  pair_siege_attack_pack
+	  pair_siege_cost_armor
+	  siege_bolt_accuracy
+    </Technologies>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/hellenes/blacksmith.xml</Actor>
+  </VisualActor>
+</Entity>
