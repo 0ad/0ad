@@ -21,7 +21,7 @@ function createBumps(constraint, count, minsize, maxsize, spread, failfraction, 
 	);
 }
 
-function createHills(terrainset, tileclass, constraint, count, minsize, maxsize, spread, failfraction, elevation, elevationsmooth)
+function createHills(terrainset, constraint, tileclass, count, minsize, maxsize, spread, failfraction, elevation, elevationsmooth)
 {
 	log("Creating hills...");
 	
@@ -49,7 +49,7 @@ function createHills(terrainset, tileclass, constraint, count, minsize, maxsize,
 	);
 }
 
-function createMountains(terrain, tileclass, constraint, count, maxHeight, minRadius, maxRadius, numCircles)
+function createMountains(terrain, constraint, tileclass, count, maxHeight, minRadius, maxRadius, numCircles)
 {
 	log("Creating mountains...");
 	
@@ -80,7 +80,7 @@ function createMountains(terrain, tileclass, constraint, count, maxHeight, minRa
 	}
 }
 
-function createForests(terrainset, tileclass, constraint, numMultiplier, biomeID)
+function createForests(terrainset, constraint, tileclass, numMultiplier, biomeID)
 {
 	log("Creating forests...");
 
@@ -142,5 +142,121 @@ function createForests(terrainset, tileclass, constraint, numMultiplier, biomeID
 				num
 			);
 		}
+	}
+}
+
+function createLayeredPatches(sizes, terrainset, twidthset, constraint, count, tileclass, failfraction)
+{
+	tileclass = (tileclass !== undefined ? tileclass : clDirt);
+	constraint = (constraint !== undefined ? constraint : avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12));
+	count = (count !== undefined ? count : scaleByMapSize(15, 45));
+	failfraction = (failfraction !== undefined ? failfraction : 0.5);
+
+	for (var i = 0; i < sizes.length; i++)
+	{
+		var placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], failfraction);
+		var painter = new LayeredPainter(
+			terrainset, 		// terrains
+			twidthset			// widths
+		);
+		createAreas(
+			placer,
+			[painter, paintClass(tileclass)],
+			constraint,
+			count
+		);
+	}
+}
+
+function createPatches(sizes, terrain, constraint, count,  tileclass, failfraction)
+{
+	tileclass = (tileclass !== undefined ? tileclass : clDirt);
+	constraint = (constraint !== undefined ? constraint : avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12));
+	count = (count !== undefined ? count : scaleByMapSize(15, 45));
+	failfraction = (failfraction !== undefined ? failfraction : 0.5);
+
+	for (var i = 0; i < sizes.length; i++)
+	{
+		var placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], failfraction);
+		var painter = new TerrainPainter(terrain)
+		createAreas(
+			placer,
+			[painter, paintClass(tileclass)],
+			constraint,
+			count
+		);
+	}
+}
+
+function createMines(mines, constraint, tileclass, count)
+{
+	tileclass = (tileclass !== undefined ? tileclass : clRock);
+	constraint = (constraint !== undefined ? constraint : avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1));
+	count = (count !== undefined ? count : scaleByMapSize(4,16));
+	for (var i = 0; i < mines.length; ++i)
+	{
+		var group = new SimpleGroup(mines[i], true, tileclass);
+		createObjectGroups(group, 0,
+			constraint,
+			count, 70
+		);
+	}
+}
+
+function createDecoration(objects, counts, constraint)
+{
+	log("Creating decoration...");
+	constraint = (constraint !== undefined ? constraint : avoidClasses(clForest, 0, clPlayer, 0, clHill, 0));
+	for (var i = 0; i < objects.length; ++i)
+	{
+		var group = new SimpleGroup(
+			objects[i],
+			true
+		);
+		createObjectGroups(
+			group, 0,
+			constraint,
+			counts[i], 5
+		);
+	}
+}
+
+function createFood(objects, counts, constraint, tileclass)
+{
+	log("Creating food...");
+	constraint = (constraint !== undefined ? constraint : avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 20));
+	tileclass = (tileclass !== undefined ? tileclass : clFood);
+	for (var i = 0; i < objects.length; ++i)
+	{
+		var group = new SimpleGroup(
+			objects[i],
+			true, tileclass
+		);
+		createObjectGroups(
+			group, 0,
+			constraint,
+			counts[i], 50
+		);
+	}
+}
+
+function createStragglerTrees(types, constraint, tileclass)
+{
+	log("Creating straggler trees...");
+
+	constraint = (constraint !== undefined ? constraint : avoidClasses(clForest, 8, clHill, 1, clPlayer, 12, clMetal, 1, clRock, 1));
+	tileclass = (tileclass !== undefined ? tileclass : clForest);
+	
+	var num = floor(g_numStragglerTrees / types.length);
+	for (var i = 0; i < types.length; ++i)
+	{
+		group = new SimpleGroup(
+			[new SimpleObject(types[i], 1,1, 0,3)],
+			true, tileclass
+		);
+		createObjectGroups(group, 0,
+			constraint,
+			num
+		);
 	}
 }
