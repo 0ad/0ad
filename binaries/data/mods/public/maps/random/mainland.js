@@ -214,81 +214,17 @@ for (var i = 0; i < numPlayers; i++)
 RMS.SetProgress(20);
 
 // create bumps
-log("Creating bumps...");
-placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
-painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
-createAreas(
-	placer,
-	painter, 
-	avoidClasses(clPlayer, 20),
-	scaleByMapSize(100, 200)
-);
+createBumps()
 
 // create hills
-log("Creating hills...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
-var terrainPainter = new LayeredPainter(
-	[tMainTerrain, tCliff, tHill],		// terrains
-	[1, 2]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 18, 2);
-createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)], 
-	avoidClasses(clPlayer, 20, clHill, 15),
-	scaleByMapSize(3, 15)
-);
-
-
-// calculate desired number of trees for map (based on size)
-if (random_terrain == 6)
-{
-	var MIN_TREES = 200;
-	var MAX_TREES = 1250;
-	var P_FOREST = 0;
-}
-else if (random_terrain == 7)
-{
-	var MIN_TREES = 1000;
-	var MAX_TREES = 6000;
-	var P_FOREST = 0.52;
-}
+if (randInt(1,2) == 1)
+	createHills([tMainTerrain, tCliff, tHill], clHill, avoidClasses(clPlayer, 20, clHill, 15), scaleByMapSize(3, 15))
 else
-{
-	var MIN_TREES = 500;
-	var MAX_TREES = 3000;
-	var P_FOREST = 0.7;
-}
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
+	createMountains(tCliff, clHill, avoidClasses(clPlayer, 20, clHill, 15), scaleByMapSize(3, 15))
 
 // create forests
-log("Creating forests...");
-var types = [
-	[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
-	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
-];	// some variation
+createForests([tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2], clForest, avoidClasses(clPlayer, 20, clForest, 18, clHill, 0), 1.0, random_terrain)
 
-if (random_terrain != 6)
-{
-	var size = numForest / (scaleByMapSize(3,6) * numPlayers);
-	var num = floor(size / types.length);
-	for (var i = 0; i < types.length; ++i)
-	{
-		placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / num, 0.5);
-		painter = new LayeredPainter(
-			types[i],		// terrains
-			[2]											// widths
-			);
-		createAreas(
-			placer,
-			[painter, paintClass(clForest)], 
-			avoidClasses(clPlayer, 20, clForest, 18, clHill, 0),
-			num
-		);
-	}
-}
 RMS.SetProgress(50);
 
 // create dirt patches
@@ -418,7 +354,7 @@ RMS.SetProgress(85);
 // create straggler trees
 log("Creating straggler trees...");
 var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
-var num = floor(numStragglers / types.length);
+var num = floor(g_numStragglerTrees / types.length);
 for (var i = 0; i < types.length; ++i)
 {
 	group = new SimpleGroup(
