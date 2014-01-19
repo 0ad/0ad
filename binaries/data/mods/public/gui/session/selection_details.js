@@ -230,7 +230,7 @@ function displaySingle(entState, template)
 				attack += " (" + Math.round(realRange - range) + ")";
 
 		}
-		attack += ", [font=\"serif-bold-13\"]Rate:[/font] " + attackRateDetails(entState);
+		attack += ", [font=\"serif-bold-13\"]" + (entState.buildingAI ? "Rate" : "Interval" ":[/font] ") + attackRateDetails(entState);
 	}
 	
 	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n[font=\"serif-bold-13\"]Armor:[/font] " + armorTypeDetails(entState.armour);
