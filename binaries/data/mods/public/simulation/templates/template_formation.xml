@@ -17,7 +17,9 @@
     <WidthDepthRatio>1</WidthDepthRatio>
     <Animations/>
   </Formation>
-  <FormationAttack/>
+  <FormationAttack>
+    <CanAttackAsFormation>false</CanAttackAsFormation>
+  </FormationAttack>
   <Ownership/>
   <Position>
     <Altitude>0</Altitude>
