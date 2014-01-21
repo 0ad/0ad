@@ -793,22 +793,22 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Attack": function(msg) {
+			var target = msg.data.target;
 			// Check if we are already in range, otherwise walk there
-			if (!this.CheckTargetAttackRange(msg.data.target, msg.data.target))
+			if (!this.CheckTargetAttackRange(target, target))
 			{
-				if (this.TargetIsAlive(msg.data.target) && 
-					this.CheckTargetVisible(msg.data.target) &&
-					this.MoveToTargetAttackRange(msg.data.target, msg.data.target))
+				if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 				{
-					this.SetNextState("COMBAT.APPROACHING");
+					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+					var range = cmpAttack.GetRange(target);
+					this.PushOrderFront("WalkToTargetRange", { "target": target, "min": range.min, "max": range.max }); 
 					return;
 				}
 				this.FinishOrder();
 				return;
 			}
-
-
-			this.SetNextState("COMBAT.ATTACKING");
+			this.CallMemberFunction("Attack", [target, false]); 
+			this.SetNextState("MEMBER");
 		},
 
 		"Order.Garrison": function(msg) {
@@ -980,29 +980,6 @@ var UnitFsmSpec = {
 			"MoveCompleted": function(msg) {
 				if (this.FinishOrder())
 					this.CallMemberFunction("ResetFinishOrder", []);
-			},
-		},
-
-		"COMBAT": {
-			"APPROACHING": {
-				"MoveStarted": function(msg) {
-					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-					cmpFormation.SetRearrange(true);
-					cmpFormation.MoveMembersIntoFormation(true, true);
-				},
-
-				"MoveCompleted": function(msg) {
-					this.SetNextState("ATTACKING");
-				},
-			},
-
-			"ATTACKING": {
-				"enter": function(msg) {
-					this.CallMemberFunction("Attack", [this.order.data.target, false]);
-					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-					cmpFormation.SetRearrange(false);
-					this.SetNextState("MEMBER");
-				},
 			},
 		},
 

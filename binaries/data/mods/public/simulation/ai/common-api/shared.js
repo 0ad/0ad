@@ -131,8 +131,12 @@ m.SharedScript.prototype.init = function(state) {
 
 	this._entities = {};
 	for (var id in state.entities)
+	{
+		// entropy generator
+		for (var p = 0; p < id; ++p)
+			Math.random();
 		this._entities[id] = new m.Entity(this, state.entities[id]);
-
+	}
 	// entity collection updated on create/destroy event.
 	this.entities = new m.EntityCollection(this, this._entities);
 	

@@ -622,8 +622,9 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 				numFarms += queues.field.countQueuedUnits();
 				
 				// let's see if we need to push new farms.
+				var maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
 				if (numFd < 2)
-					if (numFarms < Math.round(this.gatherersByType(gameState, "food").length / 4.6) || numFarms < Math.round(this.workers.length / 15.0))
+					if (numFarms < Math.round(this.gatherersByType(gameState, "food").length / (maxGatherers*0.9)) || numFarms < Math.round(this.workers.length / (maxGatherers*3)))
 						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 				// TODO: refine count to only count my base.
 			}

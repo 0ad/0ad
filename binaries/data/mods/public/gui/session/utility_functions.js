@@ -183,9 +183,9 @@ function attackRateDetails(entState) {
 
 	var time = entState.attack.repeatTime / 1000;
 	if (entState.buildingAI) {
-		return arrows + "[font=\"sans-10\"][color=\"orange\"] " + pluralize("arrow", arrows) + "[/color][/font]" +
-			" / " + (time == 1 ? "" : time) + " [font=\"sans-10\"][color=\"orange\"]" + pluralize("second", time) +
-			"[/color][/font]";
+		return Math.max(arrows, entState.buildingAI.defaultArrowCount) + "[font=\"sans-10\"][color=\"orange\"] " +
+			pluralize("arrow", arrows) + "[/color][/font]" + " / " + (time == 1 ? "" : time) +
+			" [font=\"sans-10\"][color=\"orange\"]" + pluralize("second", time) + "[/color][/font]";
 	}
 	return time + "[font=\"sans-10\"][color=\"orange\"] " + pluralize("second", time) + "[/color][/font]";
 }

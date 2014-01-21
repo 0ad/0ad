@@ -49,8 +49,6 @@ TechnologyManager.prototype.Init = function ()
 		if (this.allTechs[key].autoResearch || this.allTechs[key].top)
 			this.autoResearchTech[key] = this.allTechs[key];
 	}
-	
-	this.UpdateAutoResearch();
 };
 
 TechnologyManager.prototype.OnUpdate = function () 
@@ -337,12 +335,12 @@ TechnologyManager.prototype.ResearchTechnology = function (tech)
 	this.UpdateAutoResearch();
 	
 	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-	if (!cmpPlayer || ! cmpPlayer.GetPlayerID())
+	if (!cmpPlayer || cmpPlayer.GetPlayerID() === undefined)
 		return;
 	var playerID = cmpPlayer.GetPlayerID();
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var ents = cmpRangeManager.GetEntitiesByPlayer(playerID);
-	// TODO: Handle technology broadcasting for autoresearch properly (some components might not be initialized currently)
+
 	for (var component in modifiedComponents)
 	{
 		Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": playerID, "component": component, "valueNames": modifiedComponents[component]});

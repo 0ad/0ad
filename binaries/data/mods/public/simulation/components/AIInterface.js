@@ -3,19 +3,26 @@ function AIInterface() {}
 AIInterface.prototype.Schema =
 	"<a:component type='system'/><empty/>";
 
+AIInterface.prototype.EventNames = [
+	"Create",
+	"Destroy",
+	"Attacked",
+	"RangeUpdate",
+	"ConstructionFinished",
+	"TrainingFinished",
+	"AIMetadata",
+	"PlayerDefeated",
+	"EntityRenamed",
+	"OwnershipChanged",
+	"Garrison",
+	"UnGarrison"
+];
+
 AIInterface.prototype.Init = function()
 {
 	this.events = {};
-	this.events["Create"] = [];
-	this.events["Destroy"] = [];
-	this.events["Attacked"] = [];
-	this.events["RangeUpdate"] = [];
-	this.events["ConstructionFinished"] = [];
-	this.events["TrainingFinished"] = [];
-	this.events["AIMetadata"] = [];
-	this.events["PlayerDefeated"] = [];
-	this.events["EntityRenamed"] = [];
-	this.events["OwnershipChanged"] = [];
+	for each (var i in this.EventNames)
+		this.events[i] = [];
 
 	this.changedEntities = {};
 
@@ -34,28 +41,13 @@ AIInterface.prototype.GetNonEntityRepresentation = function()
 	var state = cmpGuiInterface.GetExtendedSimulationState(-1);
 	
 	// Add some extra AI-specific data
+	// add custom events and reset them for the next turn
 	state.events = {};
-	state.events["Create"] = this.events["Create"];
-	state.events["Destroy"] = this.events["Destroy"];
-	state.events["Attacked"] = this.events["Attacked"];
-	state.events["RangeUpdate"] = this.events["RangeUpdate"];
-	state.events["ConstructionFinished"] = this.events["ConstructionFinished"];
-	state.events["TrainingFinished"] = this.events["TrainingFinished"];
-	state.events["AIMetadata"] = this.events["AIMetadata"];
-	state.events["PlayerDefeated"] = this.events["PlayerDefeated"];
-	state.events["EntityRenamed"] = this.events["EntityRenamed"];
-	state.events["OwnershipChanged"] = this.events["OwnershipChanged"];
-	// Reset the event list for the next turn
-	this.events["Create"] = [];
-	this.events["Destroy"] = [];
-	this.events["Attacked"] = [];
-	this.events["RangeUpdate"] = [];
-	this.events["ConstructionFinished"] = [];
-	this.events["TrainingFinished"] = [];
-	this.events["AIMetadata"] = [];
-	this.events["PlayerDefeated"] = [];
-	this.events["EntityRenamed"] = [];
-	this.events["OwnershipChanged"] = [];
+	for each (var i in this.EventNames)
+	{
+		state.events[i] = this.events[i];
+		this.events[i] = [];
+	}
 
 	return state;
 };
@@ -90,18 +82,8 @@ AIInterface.prototype.GetFullRepresentation = function(flushEvents)
 	var state = this.GetNonEntityRepresentation();
 
 	if (flushEvents)
-	{
-		state.events["Create"] = [];
-		state.events["Destroy"] = [];
-		state.events["Attacked"] = [];
-		state.events["RangeUpdate"] = [];
-		state.events["ConstructionFinished"] = [];
-		state.events["TrainingFinished"] = [];
-		state.events["AIMetadata"] = [];
-		state.events["PlayerDefeated"] = [];
-		state.events["EntityRenamed"] = [];
-		state.events["OwnershipChanged"] = [];
-	}
+		for each (var i in this.EventNames)
+			state.events[i] = [];
 
 	// Add entity representations
 	Engine.ProfileStart("proxy representations");
@@ -212,7 +194,11 @@ AIInterface.prototype.OnGlobalValueModification = function(msg)
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	for each (var ent in msg.entities)
 	{
-		var template = cmpTemplateManager.GetTemplateWithoutValidation(cmpTemplateManager.GetCurrentTemplateName(ent));
+		var templateName = cmpTemplateManager.GetCurrentTemplateName(ent);
+		// if there's no template name, the unit is probably killed, ignore it.
+		if (!templateName || !templateName.length)
+			continue;
+		var template = cmpTemplateManager.GetTemplateWithoutValidation(templateName);
 		for each (var value in msg.valueNames)
 		{
 			// let's get the base template value.

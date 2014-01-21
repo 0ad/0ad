@@ -221,7 +221,7 @@ function displaySingle(entState, template)
 		{
 			var realRange = entState.attack.elevationAdaptedRange;
 			var range =  entState.attack.maxRange;
-			attack += ", [font=\"serif-bold-13\"]Range:[/font] " + range +
+			attack += ", [font=\"serif-bold-13\"]Range:[/font] " + Math.round(range) +
 				"[font=\"sans-10\"][color=\"orange\"] meters[/color][/font]";
 
 			if (Math.round(realRange - range) > 0)
@@ -230,7 +230,7 @@ function displaySingle(entState, template)
 				attack += " (" + Math.round(realRange - range) + ")";
 
 		}
-		attack += ", [font=\"serif-bold-13\"]Rate:[/font] " + attackRateDetails(entState);
+		attack += ", [font=\"serif-bold-13\"]" + (entState.buildingAI ? "Rate" : "Interval") + ":[/font] " + attackRateDetails(entState);
 	}
 	
 	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n[font=\"serif-bold-13\"]Armor:[/font] " + armorTypeDetails(entState.armour);

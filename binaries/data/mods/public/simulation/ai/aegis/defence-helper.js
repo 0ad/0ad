@@ -505,7 +505,7 @@ m.Army.prototype.update = function (gameState)
 		{
 			var id = this.entities[i];
 			var ent = gameState.getEntityById(id);
-			if (!ent.position)	// shouldn't be able to happen but apparently does.
+			if (!ent || !ent.position())	// shouldn't be able to happen but apparently does.
 				continue;
 			if (API3.SquareVectorDistance(ent.position(), this.position) > this.breakawaySize)
 			{

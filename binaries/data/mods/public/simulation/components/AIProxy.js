@@ -34,7 +34,8 @@ AIProxy.prototype.Init = function()
 {
 	this.changes = null;
 	this.needsFullGet = true;
-	this.owner = -1;	// for convenience now and then.
+	// cache some data across turns
+	this.owner = -1;
 	
 	this.cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
 
@@ -76,7 +77,7 @@ AIProxy.prototype.NotifyChange = function()
 	if (!this.changes)
 	{
 		this.changes = {};
-	this.cmpAIInterface.ChangedEntity(this.entity);
+		this.cmpAIInterface.ChangedEntity(this.entity);
 	}
 };
 
@@ -134,6 +135,15 @@ AIProxy.prototype.OnGarrisonedUnitsChanged = function(msg)
 	
 	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	this.changes.garrisoned = cmpGarrisonHolder.GetEntities();
+
+	// Send a message telling a unit garrisoned or ungarrisoned.
+	// I won't check if the unit is still alive so it'll be up to the AI.
+	var added = msg.added;
+	var removed = msg.removed;
+	for each (var ent in added)
+		this.cmpAIInterface.PushEvent("Garrison", {"entity" : ent, "holder": this.entity});
+	for each (var ent in removed)
+		this.cmpAIInterface.PushEvent("UnGarrison", {"entity" : ent, "holder": this.entity});
 };
 
 AIProxy.prototype.OnResourceSupplyChanged = function(msg)
