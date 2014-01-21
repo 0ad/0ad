@@ -5,11 +5,19 @@ function init()
 	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
 
 	var savedGames = Engine.GetSavedGames();
+	if (savedGames.length == 0)
+	{
+		gameSelection.list = [ "No saved games found" ];
+		gameSelection.selected = 0;
+		Engine.GetGUIObjectByName("loadGameButton").enabled = false;
+		Engine.GetGUIObjectByName("deleteGameButton").enabled = false;
+		return;
+	}
+
+	savedGames.sort(sortDecreasingDate);
 
 	// get current game version and loaded mods 
 	var engineInfo = Engine.GetEngineInfo();
-
-	savedGames.sort(sortDecreasingDate);
 
 	var gameListIds = [ game.id for each (game in savedGames) ];
 	var gameListLabels = [ generateLabel(game.metadata, engineInfo) for each (game in savedGames) ];
