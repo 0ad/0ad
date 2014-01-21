@@ -155,6 +155,31 @@ Formation.prototype.GetMembers = function()
 	return this.members;
 };
 
+Formation.prototype.GetClosestMember = function(ent)
+{
+	var cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
+	if (!cmpEntPosition)
+		return INVALID_ENTITY;
+
+	var entPosition = cmpEntPosition.GetPosition2D();
+	var closestMember = INVALID_ENTITY;
+	var closestDistance = Infinity;
+	for each (var member in this.members)
+	{
+		var cmpPosition = Engine.QueryInterface(member, IID_Position);
+		var pos = cmpPosition.GetPosition2D();
+		var dx = entPosition.x - pos.x;
+		var dy = entPosition.y - pos.y;
+		var dist = dx * dx + dy * dy;
+		if (dist < closestDistance)
+		{
+			closestMember = member;
+			closestDistance = dist;
+		}
+	}
+	return closestMember;
+};
+
 /**
  * Returns the 'primary' member of this formation (typically the most
  * important unit type), for e.g. playing a representative sound.

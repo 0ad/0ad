@@ -10,6 +10,11 @@ FormationAttack.prototype.Init = function()
 	this.canAttackAsFormation = this.template.CanAttackAsFormation == "true";
 };
 
+FormationAttack.prototype.CanAttackAsFormation = function()
+{
+	return this.canAttackAsFormation;
+};
+
 FormationAttack.prototype.GetRange = function(target)
 {
 	var result = {"min": 0, "max": this.canAttackAsFormation ? -1 : 0};
@@ -50,10 +55,6 @@ FormationAttack.prototype.GetRange = function(target)
 	}
 	// add half the formation size, so it counts as the range for the units on the first row
 	var extraRange = cmpFormation.GetSize().depth/2;
-	// if the target is also a formation, also add that size
-	var cmpTargetFormation = Engine.QueryInterface(target, IID_Formation);
-	if (cmpTargetFormation)
-		extraRange += cmpTargetFormation.GetSize().depth/2;
 
 	if (result.max >= 0)
 		result.max += extraRange;
