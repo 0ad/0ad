@@ -92,6 +92,17 @@ std::vector<CScriptValRooted> GetSavedGames(ScriptInterface& scriptInterface);
  */
 bool DeleteSavedGame(const std::wstring& name);
 
+/**
+ * Gets info (version and mods loaded) on the running engine
+ *
+ * @param scriptInterface the ScriptInterface in which to create the return data.
+ * @return list of objects containing saved game data
+ */
+CScriptValRooted GetEngineInfo(ScriptInterface& scriptInterface);
+
 }
+
+// list of mods currently loaded
+extern std::vector<std::string> g_modsLoaded;
 
 #endif // INCLUDED_SAVEDGAME

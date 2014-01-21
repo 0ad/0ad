@@ -69,6 +69,7 @@
 #include "ps/ProfileViewer.h"
 #include "ps/Profiler2.h"
 #include "ps/Pyrogenesis.h"	// psSetLogDir
+#include "ps/SavedGame.h"
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/TouchInput.h"
 #include "ps/UserReport.h"
@@ -391,6 +392,10 @@ ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(
 static std::vector<CStr> GetMods(const CmdLineArgs& args, bool dev)
 {
 	std::vector<CStr> mods = args.GetMultiple("mod");
+	// List of the mods, to be used by the Gui
+	g_modsLoaded.clear();
+	for (size_t i = 0; i < mods.size(); ++i)
+		g_modsLoaded.push_back((std::string)mods[i]);
 	// TODO: It would be nice to remove this hard-coding
 	mods.insert(mods.begin(), "public");
 
