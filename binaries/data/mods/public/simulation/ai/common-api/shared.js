@@ -280,7 +280,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		// Worse, they might prevent it from being garbage collected, thus making it stay alive and consuming ram needlessly.
 		// So take care, and if you encounter a weird bug with deletion not appearing to work correctly, this is probably why.
 		if (!this._entities[evt.entity])
-			continue;
+			continue;// probably should remove the event.
 
 		if (foundationFinished[evt.entity])
 			evt["SuccessfulFoundation"] = true;
@@ -319,6 +319,8 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	// this supersedes tech-related changes.
 	for (var id in state.changedEntityTemplateInfo)
 	{
+		if (!this._entities[id])
+			continue;	// dead, presumably.
 		var changes = state.changedEntityTemplateInfo[id];
 		for each (var change in changes)
 			this._entities[id]._auraTemplateModif[change.variable] = change.value;

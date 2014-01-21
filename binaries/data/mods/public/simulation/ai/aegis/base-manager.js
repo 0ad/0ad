@@ -965,7 +965,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events) {
 			{
 				var entPos = eEnts[i].position();
 				entPos = [entPos[0]/4.0,entPos[1]/4.0];
-				if (API3.SquareVectorDistance(entPos, pos) < 500)
+				if (API3.SquareVectorDistance(entPos, this.anchor.position()) < 500)
 					this.anchor.destroy();
 			}
 		}

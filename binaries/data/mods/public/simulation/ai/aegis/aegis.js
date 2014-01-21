@@ -44,7 +44,7 @@ m.AegisBot.prototype.CustomInit = function(gameState, sharedScript) {
 	m.playerGlobals[PlayerID].uniqueIDBOPlans = 0;	// training/building/research plans
 	m.playerGlobals[PlayerID].uniqueIDBases = 1;	// base manager ID. Starts at one because "0" means "no base" on the map
 	m.playerGlobals[PlayerID].uniqueIDTPlans = 1;	// transport plans. starts at 1 because 0 might be used as none.	
-	m.playerGlobals[PlayerID].uniqueIDDefManagerArmy = 0;
+	m.playerGlobals[PlayerID].uniqueIDArmy = 0;
 
 	this.HQ.init(gameState,this.queues);
 	m.debug ("Initialized with the difficulty " + this.Config.difficulty);
