@@ -794,6 +794,10 @@ var UnitFsmSpec = {
 
 		"Order.Attack": function(msg) {
 			var target = msg.data.target;
+			var cmpTargetUnitAI = Engine.QueryInterface(target, IID_UnitAI);
+			if (cmpTargetUnitAI && cmpTargetUnitAI.IsFormationMember())
+				target = cmpTargetUnitAI.GetFormationController();
+
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetAttackRange(target, target))
 			{
@@ -1714,6 +1718,14 @@ var UnitFsmSpec = {
 			"ATTACKING": {
 				"enter": function() {
 					var target = this.order.data.target;
+					var cmpFormation = Engine.QueryInterface(target, IID_Formation);
+					// if the target is a formation, save the attacking formation, and pick a member
+					if (cmpFormation)
+					{
+						this.order.data.formationTarget = target;
+						target = cmpFormation.GetClosestMember(this.entity);
+						this.order.data.target = target;
+					}
 					// Check the target is still alive and attackable
 					if 
 					(
@@ -1766,6 +1778,14 @@ var UnitFsmSpec = {
 
 				"Timer": function(msg) {
 					var target = this.order.data.target;
+					var cmpFormation = Engine.QueryInterface(target, IID_Formation);
+					// if the target is a formation, save the attacking formation, and pick a member
+					if (cmpFormation)
+					{
+						this.order.data.formationTarget = target;
+						target = cmpFormation.GetClosestMember(this.entity);
+						this.order.data.target = target;
+					}
 					// Check the target is still alive and attackable
 					if (this.TargetIsAlive(target) && this.CanAttack(target, this.order.data.forceResponse || null))
 					{
@@ -1812,6 +1832,15 @@ var UnitFsmSpec = {
 								return;
 							}
 						}
+					}
+
+					// if we're targetting a formation, find a new member of that formation
+					var cmpTargetFormation = Engine.QueryInterface(this.order.data.formationTarget || INVALID_ENTITY, IID_Formation);
+					if (cmpTargetFormation)
+					{
+						this.order.data.target = this.order.data.formationTarget;
+						this.TimerHandler(msg.data, msg.lateness);
+						return;
 					}
 
 					this.oldAttackType = this.order.data.attackType;
@@ -3775,6 +3804,10 @@ UnitAI.prototype.GetRunSpeed = function()
  */
 UnitAI.prototype.TargetIsAlive = function(ent)
 {
+	var cmpFormation = Engine.QueryInterface(ent, IID_Formation);
+	if (cmpFormation)
+		return true;
+
 	var cmpHealth = Engine.QueryInterface(ent, IID_Health);
 	if (!cmpHealth)
 		return false;
@@ -4080,6 +4113,10 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
  */
 UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 {
+	var cmpFormation = Engine.QueryInterface(target, IID_Formation)
+	if (cmpFormation)
+		target = cmpFormation.GetClosestMember(this.entity);
+
 	if(type!= "Ranged") 
 		return this.MoveToTargetRange(target, IID_Attack, type);
 	
@@ -4167,6 +4204,9 @@ UnitAI.prototype.CheckTargetRange = function(target, iid, type)
  */ 
 UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 {
+	var cmpFormation = Engine.QueryInterface(target, IID_Formation)
+	if (cmpFormation)
+		target = cmpFormation.GetClosestMember(this.entity);
 
 	if (type != "Ranged") 
 		return this.CheckTargetRange(target, IID_Attack, type);

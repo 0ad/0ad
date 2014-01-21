@@ -223,6 +223,10 @@ Attack.prototype.GetRestrictedClasses = function(type)
 
 Attack.prototype.CanAttack = function(target)
 {
+	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
+	if (cmpFormation)
+		return true;
+
 	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 	if (!cmpIdentity) 
 		return undefined;
@@ -289,6 +293,10 @@ Attack.prototype.GetBestAttack = function()
 
 Attack.prototype.GetBestAttackAgainst = function(target)
 {
+	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
+	if (cmpFormation)
+		return this.GetBestAttack();
+
 	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 	if (!cmpIdentity) 
 		return undefined;
