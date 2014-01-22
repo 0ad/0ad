@@ -799,12 +799,12 @@ var UnitFsmSpec = {
 			if (cmpTargetUnitAI && cmpTargetUnitAI.IsFormationMember())
 				target = cmpTargetUnitAI.GetFormationController();
 
+			var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 			// Check if we are already in range, otherwise walk there
 			if (!this.CheckTargetAttackRange(target, target))
 			{
 				if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 				{
-					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 					var range = cmpAttack.GetRange(target);
 					this.PushOrderFront("WalkToTargetRange", { "target": target, "min": range.min, "max": range.max }); 
 					return;
@@ -813,7 +813,10 @@ var UnitFsmSpec = {
 				return;
 			}
 			this.CallMemberFunction("Attack", [target, false]); 
-			this.SetNextState("ATTACKING");
+			if (cmpAttack.CanAttackAsFormation())
+				this.SetNextState("ATTACKING");
+			else
+				this.SetNextState("MEMBER");
 		},
 
 		"Order.Garrison": function(msg) {
