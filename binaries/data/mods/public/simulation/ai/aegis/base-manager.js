@@ -193,10 +193,10 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 				if (ent.hasClass("CivCentre"))
 				{
 					// TODO: might want to tell the queue manager to pause other stuffs if we are the only base.
-					queues.civilCentre.addItem(gameState, new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, ent.position()));
+					queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, ent.position()));
 				} else {
 					// TODO
-					queues.civilCentre.addItem(gameState, new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, ent.position()));
+					queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, ent.position()));
 				}
 			}
 			
@@ -624,7 +624,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 				// let's see if we need to push new farms.
 				var maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
 				if (numFd < 2)
-					if (numFarms < Math.round(this.gatherersByType(gameState, "food").length / (maxGatherers*0.9)) || numFarms < Math.round(this.workers.length / (maxGatherers*3)))
+					if (numFarms < Math.round(this.gatherersByType(gameState, "food").length / (maxGatherers*0.9)) || numFarms < Math.round(this.workers.length / (maxGatherers*4)))
 						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 				// TODO: refine count to only count my base.
 			}

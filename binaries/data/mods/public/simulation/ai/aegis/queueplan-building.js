@@ -62,8 +62,18 @@ m.ConstructionPlan.prototype.start = function(gameState) {
 		{
 			builders[0].construct(this.type, pos.x, pos.z, angle, this.metadata);
 		}
-	} else
-		builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
+	} else {
+		// try with the lowest, move towards us unless we're same
+		if (pos.x == pos.xx && pos.z == pos.zz)
+			builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
+		else
+		{
+			for (var step = 0; step <= 1; step += 0.2)
+			{
+				builders[0].construct(this.type, (step*pos.x + (1-step)*pos.xx), (step*pos.z + (1-step)*pos.zz), pos.angle, this.metadata);
+			}
+		}
+	}
 	this.onStart(gameState);
 };
 
@@ -176,13 +186,18 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	var x = ((bestIdx % friendlyTiles.width) + 0.5) * cellSize;
 	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * cellSize;
 
+	// cut off to make the AI spread its building more.
+	var secondBest = obstructionMap.findLowestNeighbor(x,z);
+
 	// default angle
 	var angle = 3*Math.PI/4;
 	
 	return {
 		"x" : x,
 		"z" : z,
-		"angle" : angle
+		"angle" : angle,
+		"xx" : secondBest[0],
+		"zz" : secondBest[1]
 	};
 };
 

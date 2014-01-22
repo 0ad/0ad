@@ -554,9 +554,25 @@ m.Entity = m.Class({
 	},
 
 	foundationProgress: function() {
-		if (this._entity.foundationProgress == undefined)
+		if (this._entity.foundationProgress === undefined)
 			return undefined;
 		return this._entity.foundationProgress;
+	},
+	
+	getBuilders: function() {
+		if (this._entity.foundationProgress === undefined)
+			return undefined;
+		if (this._entity.foundationBuilders === undefined)
+			return [];
+		return this._entity.foundationBuilders;
+	},
+	
+	getBuildersNb: function() {
+		if (this._entity.foundationProgress === undefined)
+			return undefined;
+		if (this._entity.foundationBuilders === undefined)
+			return 0;
+		return this._entity.foundationBuilders.length;
 	},
 
 	owner: function() {

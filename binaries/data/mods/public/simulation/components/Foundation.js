@@ -117,6 +117,7 @@ Foundation.prototype.AddBuilder = function(builderEnt)
 		this.builders.push(builderEnt);
 		Engine.QueryInterface(this.entity, IID_Visual).SetVariable("numbuilders", this.builders.length);
 		this.SetBuildMultiplier();
+		Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": this.builders });
 	}
 };
 
@@ -127,6 +128,7 @@ Foundation.prototype.RemoveBuilder = function(builderEnt)
 		this.builders.splice(this.builders.indexOf(builderEnt),1);
 		Engine.QueryInterface(this.entity, IID_Visual).SetVariable("numbuilders", this.builders.length);
  		this.SetBuildMultiplier();
+		Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": this.builders });
  	}
  };
 

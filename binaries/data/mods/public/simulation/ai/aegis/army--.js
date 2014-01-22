@@ -237,10 +237,10 @@ m.Army.prototype.assignUnit = function (gameState, entID)
 // assumes we already cleared dead units.
 m.Army.prototype.clear = function (gameState, events)
 {
-	for each (var id in this.foeEntities)
-		this.removeFoe(gameState,id);
-	for each (var id in this.ownEntities)
-		this.removeOwn(gameState,id);
+	for (var i  = 0; i < this.foeEntities.length; ++i)
+		this.removeFoe(gameState,this.foeEntities[i--]);
+	for (var i  = 0; i < this.ownEntities.length; ++i)
+		this.removeOwn(gameState,this.ownEntities[i--]);
 
 	this.assignedAgainst = {};
 	this.assignedTo = {};
@@ -287,7 +287,7 @@ m.Army.prototype.checkEvents = function (gameState, events)
 	for each (var msg in destroyEvents)
 	{
 		if (msg.entityObj === undefined)
-			continue;	
+			continue;
 		if (msg.entityObj._entity.owner === PlayerID)
 			this.removeOwn(gameState, msg.entity, msg.entityObj);
 		else
@@ -324,13 +324,15 @@ m.Army.prototype.onUpdate = function (gameState)
 		this.positionLastUpdate = gameState.getTimeElapsed();
 	
 		// Check for breakaways.
-		for each (var id in this.foeEntities)
+		for (var i = 0; i < this.foeEntities.length; ++i)
 		{
+			var id = this.foeEntities[i];
 			var ent = gameState.getEntityById(id);
 			if (API3.SquareVectorDistance(ent.position(), this.foePosition) > this.breakawaySize)
 			{
 				breakaways.push(id);
-				this.removeFoe(gameState, id);
+				if(this.removeFoe(gameState, id))
+					i--;
 			}
 		}
 		

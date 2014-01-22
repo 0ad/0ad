@@ -41,6 +41,7 @@ m.Map.prototype.point = function(p){
 	q[1] = q[1] >= this.width ? this.width : (q[1] < 0 ? 0 : q[1]);
 	return this.map[q[0] + this.width * q[1]];
 };
+
 m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 	strength = strength ? +strength : +maxDist;
 	type = type ? type : 'linear';
@@ -322,22 +323,6 @@ m.Map.prototype.expandInfluences = function(maximum, map) {
 	}
 };
 
-m.Map.prototype.findBestTile = function(radius, obstructionTiles){
-	// Find the best non-obstructed tile
-	var bestIdx = 0;
-	var bestVal = -1;
-	for ( var i = 0; i < this.length; ++i) {
-		if (obstructionTiles.map[i] > radius) {
-			var v = this.map[i];
-			if (v > bestVal) {
-				bestVal = v;
-				bestIdx = i;
-			}
-		}
-	}
-	
-	return [bestIdx, bestVal];
-};
 // Multiplies current map by the parameter map pixelwise
 m.Map.prototype.multiply = function(map, onlyBetter, divider, maxMultiplier){
 	for (var i = 0; i < this.length; ++i){
@@ -356,6 +341,40 @@ m.Map.prototype.add = function(map){
 			this.map[i] += map.map[i];
 	}
 };
+
+m.Map.prototype.findBestTile = function(radius, obstructionTiles){
+	// Find the best non-obstructed tile
+	var bestIdx = 0;
+	var bestVal = -1;
+	for ( var i = 0; i < this.length; ++i) {
+		if (obstructionTiles.map[i] > radius) {
+			var v = this.map[i];
+			if (v > bestVal) {
+				bestVal = v;
+				bestIdx = i;
+			}
+		}
+	}
+	
+	return [bestIdx, bestVal];
+};
+
+// returns the point with the lowest radius in the immediate vicinity
+m.Map.prototype.findLowestNeighbor = function(x,y) {
+	var lowestPt = [0,0];
+	var lowestcoeff = 99999;
+	x = Math.floor(x/4);
+	y = Math.floor(y/4);
+	for (var xx = x-1; xx <= x+1; ++xx)
+		for (var yy = y-1; yy <= y+1; ++yy)
+			if (xx >= 0 && xx < this.width && yy >= 0 && yy < this.width)
+				if (this.map[xx+yy*this.width] <= lowestcoeff)
+				{
+					lowestcoeff = this.map[xx+yy*this.width];
+					lowestPt = [xx*4,yy*4];
+				}
+	return lowestPt;
+}
 
 m.Map.prototype.dumpIm = function(name, threshold){
 	name = name ? name : "default.png";

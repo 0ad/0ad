@@ -126,6 +126,7 @@ m.createObstructionMap = function(gameState, accessIndex, template){
 			});
 		}
 	}
+
 	return map;
 };
 
