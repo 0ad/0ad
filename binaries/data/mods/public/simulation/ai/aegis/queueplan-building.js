@@ -164,7 +164,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	//	radius *= 0.95;
 
 	// Find the best non-obstructed
-	if (template.genericName() == "House" && !alreadyHasHouses) {
+	if (template.hasClass("House") && !alreadyHasHouses) {
 		// try to get some space first
 		var bestTile = friendlyTiles.findBestTile(10, obstructionMap);
 		var bestIdx = bestTile[0];
@@ -186,8 +186,10 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	var x = ((bestIdx % friendlyTiles.width) + 0.5) * cellSize;
 	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * cellSize;
 
-	// cut off to make the AI spread its building more.
-	var secondBest = obstructionMap.findLowestNeighbor(x,z);
+	if (template.hasClass("House") || template.hasClass("Field") || template.resourceDropsiteTypes() !== undefined)
+		var secondBest = obstructionMap.findLowestNeighbor(x,z);
+	else
+		var secondBest = [x,z];
 
 	// default angle
 	var angle = 3*Math.PI/4;

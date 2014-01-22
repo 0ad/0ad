@@ -237,10 +237,10 @@ m.Army.prototype.assignUnit = function (gameState, entID)
 // assumes we already cleared dead units.
 m.Army.prototype.clear = function (gameState, events)
 {
-	for (var i  = 0; i < this.foeEntities.length; ++i)
-		this.removeFoe(gameState,this.foeEntities[i--]);
-	for (var i  = 0; i < this.ownEntities.length; ++i)
-		this.removeOwn(gameState,this.ownEntities[i--]);
+	while(this.foeEntities.length > 0)
+		this.removeFoe(gameState,this.foeEntities[0]);
+	while(this.ownEntities.length > 0)
+		this.removeOwn(gameState,this.ownEntities[0]);
 
 	this.assignedAgainst = {};
 	this.assignedTo = {};

@@ -810,6 +810,8 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			cmpGuiInterface.PushNotification({ "player": player, "message": ret.message });
 			
 			// Remove the foundation because the construction was aborted
+			// move it out of world because it's not destroyed immediately.
+			cmpPosition.MoveOutOfWorld();
 			Engine.DestroyEntity(ent);
 			return false;
 		}
@@ -827,6 +829,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		}
 
 		// Remove the foundation because the construction was aborted
+		cmpPosition.MoveOutOfWorld();
 		Engine.DestroyEntity(ent);
 		return false;
 	}
@@ -845,6 +848,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		cmpGuiInterface.PushNotification({ "player": player, "message": "Building's technology requirements are not met." }); 
 		
 		// Remove the foundation because the construction was aborted 
+		cmpPosition.MoveOutOfWorld();
 		Engine.DestroyEntity(ent); 
 	}
 	
@@ -866,6 +870,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			warn("Invalid command: building cost check failed for player "+player+": "+uneval(cmd));
 		
 		Engine.DestroyEntity(ent);
+		cmpPosition.MoveOutOfWorld();
 		return false;
 	}
 
