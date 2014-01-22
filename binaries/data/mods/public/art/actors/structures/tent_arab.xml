@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/tent_arab.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+      </props>
+      <textures>
+		<texture file="structural/tent_arab.png" name="baseTex"/>
+		<texture file="structural/tent_arab_norm.png" name="normTex"/>
+        <texture file="structural/tent_arab_spec.png" name="specTex"/>
+		<texture file="structural/ao/tent_arab.png" name="aoTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
