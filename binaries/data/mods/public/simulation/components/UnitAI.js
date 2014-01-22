@@ -1735,8 +1735,13 @@ var UnitFsmSpec = {
 					}
 
 					// add prefix + no capital first letter for attackType
-					var attackName = "attack_" + this.order.data.attackType.toLowerCase();
-					this.SelectAnimation(attackName, false, 1.0, "attack");
+					var animationName = "attack_" + this.order.data.attackType.toLowerCase();
+					if (this.IsFormationMember())
+					{
+						var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+						animationName = cmpFormation.GetFormationAnimation(this.entity, animationName);
+					}
+					this.SelectAnimation(animationName, false, 1.0, "attack");
 					this.SetAnimationSync(prepare, this.attackTimers.repeat);
 					this.StartTimer(prepare, this.attackTimers.repeat);
 					// TODO: we should probably only bother syncing projectile attacks, not melee
@@ -1757,8 +1762,12 @@ var UnitFsmSpec = {
 					// if the target is a formation, save the attacking formation, and pick a member
 					if (cmpFormation)
 					{
+						var thisObject = this;
+						var filter = function(t) {
+							return thisObject.TargetIsAlive(t) && thisObject.CanAttack(t, thisObject.order.data.forceResponse || null);
+						};
 						this.order.data.formationTarget = target;
-						target = cmpFormation.GetClosestMember(this.entity);
+						target = cmpFormation.GetClosestMember(this.entity, filter);
 						this.order.data.target = target;
 					}
 					// Check the target is still alive and attackable
@@ -1814,7 +1823,7 @@ var UnitFsmSpec = {
 					if (cmpTargetFormation)
 					{
 						this.order.data.target = this.order.data.formationTarget;
-						//this.TimerHandler(msg.data, msg.lateness);
+						this.TimerHandler(msg.data, msg.lateness);
 						return;
 					}
 
