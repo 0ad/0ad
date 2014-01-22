@@ -790,6 +790,7 @@ var UnitFsmSpec = {
 
 		"Order.Stop": function(msg) {
 			this.CallMemberFunction("Stop", [false]);
+			this.FinishOrder();
 		},
 
 		"Order.Attack": function(msg) {
@@ -812,7 +813,7 @@ var UnitFsmSpec = {
 				return;
 			}
 			this.CallMemberFunction("Attack", [target, false]); 
-			this.SetNextState("MEMBER");
+			this.SetNextState("ATTACKING");
 		},
 
 		"Order.Garrison": function(msg) {
@@ -972,6 +973,10 @@ var UnitFsmSpec = {
 		},
 
 		"IDLE": {
+			"enter": function(msg) {
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(false);
+			},
 		},
 
 		"WALKING": {
@@ -1080,6 +1085,53 @@ var UnitFsmSpec = {
 			}
 		},
 
+		"ATTACKING": {
+			// Wait for individual members to finish
+			"enter": function(msg) {
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(false, false);
+				this.StartTimer(1000, 1000);
+
+				var target = this.order.data.target;
+				// Check if we are already in range, otherwise walk there
+				if (!this.CheckTargetAttackRange(target, target))
+				{
+					if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
+					{
+						var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+						var range = cmpAttack.GetRange(target);
+						this.PushOrderFront("WalkToTargetRange", { "target": target, "min": range.min, "max": range.max }); 
+						return;
+					}
+					this.FinishOrder();
+					return;
+				}
+
+			},
+
+			"Timer": function(msg) {
+				var target = this.order.data.target;
+				// Check if we are already in range, otherwise walk there
+				if (!this.CheckTargetAttackRange(target, target))
+				{
+					if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
+					{
+						var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+						var range = cmpAttack.GetRange(target);
+						this.PushOrderFront("WalkToTargetRange", { "target": target, "min": range.min, "max": range.max }); 
+						return;
+					}
+					this.FinishOrder();
+					return;
+				}
+			},
+
+			"leave": function(msg) {
+				this.StopTimer();
+			},
+		},
+
 		"MEMBER": {
 			// Wait for individual members to finish
 			"enter": function(msg) {
@@ -1166,98 +1218,11 @@ var UnitFsmSpec = {
 
 		"IDLE": {
 			"enter": function() {
-				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-				if (!cmpFormation)
-				{
-					warn("UnitAI: " + this.entity + " got into FORMATIONMEMBER.IDLE mode without a valid formationController");
-					if (this.IsAnimal())
-						this.SetNextState("ANIMAL.IDLE");
-					else
-						this.SetNextState("INDIVIDUAL.IDLE");
-					return true;
-				}
-
-				// Switch back to idle animation to guarantee we won't
-				// get stuck with an incorrect animation
-				this.SelectAnimation(cmpFormation.GetFormationAnimation(this.entity, "idle"));
-
-				// If the unit is guarding/escorting, go back to its duty
-				if (this.isGuardOf)
-				{
-					this.Guard(this.isGuardOf, false);
-					cmpFormation.RemoveMembers([this.entity]);
-					return true;
-				}
-
-				// The GUI and AI want to know when a unit is idle, but we don't
-				// want to send frequent spurious messages if the unit's only
-				// idle for an instant and will quickly go off and do something else.
-				// So we'll set a timer here and only report the idle event if we
-				// remain idle
-				this.StartTimer(1000);
-
-				// If a unit can heal and attack we first want to heal wounded units,
-				// so check if we are a healer and find whether there's anybody nearby to heal.
-				// (If anyone approaches later it'll be handled via LosHealRangeUpdate.)
-				// If anyone in sight gets hurt that will be handled via LosHealRangeUpdate.
-				if (this.IsHealer() && this.FindNewHealTargets())
-				{
-					cmpFormation.RemoveMembers([this.entity]);
-					return true; // (abort the FSM transition since we may have already switched state)
-				}
-
-				// If we entered the idle state we must have nothing better to do,
-				// so immediately check whether there's anybody nearby to attack.
-				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
-				if (this.FindNewTargets())
-				{
-					cmpFormation.RemoveMembers([this.entity]);
-					return true; // (abort the FSM transition since we may have already switched state)
-				}
-
-				// Nobody to attack - stay in idle
-				return false;
-			},
-
-			"leave": function() {
-				var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-				if (this.losRangeQuery)
-					rangeMan.DisableActiveQuery(this.losRangeQuery);
-				if (this.losHealRangeQuery)
-					rangeMan.DisableActiveQuery(this.losHealRangeQuery);
-
-				this.StopTimer();
-
-				if (this.isIdle)
-				{
-					this.isIdle = false;
-					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
-				}
-			},
-
-			"LosRangeUpdate": function(msg) {
-				if (this.GetStance().targetVisibleEnemies)
-				{
-					// Start attacking one of the newly-seen enemy (if any)
-					this.AttackEntitiesByPreference(msg.data.added);
-				}
-			},
-
-			"LosHealRangeUpdate": function(msg) {
-				if (this.RespondToHealableEntities(msg.data.added))
-				{
-					var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-					if (cmpFormation)
-						cmpFormation.RemoveMembers([this.entity]);
-				}
-			},
-
-			"Timer": function(msg) {
-				if (!this.isIdle)
-				{
-					this.isIdle = true;
-					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
-				}
+				if (this.IsAnimal())
+					this.SetNextState("ANIMAL.IDLE");
+				else
+					this.SetNextState("INDIVIDUAL.IDLE");
+				return true;
 			},
 		},
 
@@ -1380,7 +1345,14 @@ var UnitFsmSpec = {
 			"enter": function() {
 				// Switch back to idle animation to guarantee we won't
 				// get stuck with an incorrect animation
-				this.SelectAnimation("idle");
+				var animationName = "idle";
+				if (this.IsFormationMember())
+				{
+					var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+					if (cmpFormation)
+						animationName = cmpFormation.GetFormationAnimation(this.entity, animationName);
+				}
+				this.SelectAnimation(animationName);
 
 				// If the unit is guarding/escorting, go back to its duty
 				if (this.isGuardOf)
@@ -1737,7 +1709,7 @@ var UnitFsmSpec = {
 						// Can't reach it - try to chase after it
 						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
 						{
-							if (this.MoveToTargetRange(target, IID_Attack, this.order.data.attackType))
+							if (this.MoveToTargetAttackRange(target, this.order.data.attackType))
 							{
 								this.SetNextState("COMBAT.CHASING");
 								return;
@@ -1839,7 +1811,7 @@ var UnitFsmSpec = {
 					if (cmpTargetFormation)
 					{
 						this.order.data.target = this.order.data.formationTarget;
-						this.TimerHandler(msg.data, msg.lateness);
+						//this.TimerHandler(msg.data, msg.lateness);
 						return;
 					}
 
@@ -3744,8 +3716,12 @@ UnitAI.prototype.OnGlobalConstructionFinished = function(msg)
 UnitAI.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	for each (var order in this.orderQueue)
+	{
 		if (order.data && order.data.target && order.data.target == msg.entity)
 			order.data.target = msg.newentity;
+		if (order.data && order.data.formationTarget && order.data.formationTarget == msg.entity)
+			order.data.formationTarget = msg.newentity;
+	}
 
 	if (this.isGuardOf && this.isGuardOf == msg.entity)
 		this.isGuardOf = msg.newentity;
@@ -4113,6 +4089,15 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
  */
 UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 {
+	// for formation members, the formation will take care of the range check
+	if (this.IsFormationMember())
+	{
+		var cmpFormationAttack = Engine.QueryInterface(this.formationController, IID_Attack);
+		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
+		if (cmpFormationAttack && cmpFormationAttack.CanAttackAsFormation() && cmpFormationUnitAI && cmpFormationUnitAI.GetCurrentState == "FORMATIONCONTROLLER.ATTACKING")
+			return false;
+	}
+
 	var cmpFormation = Engine.QueryInterface(target, IID_Formation)
 	if (cmpFormation)
 		target = cmpFormation.GetClosestMember(this.entity);
@@ -4204,6 +4189,15 @@ UnitAI.prototype.CheckTargetRange = function(target, iid, type)
  */ 
 UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 {
+	// for formation members, the formation will take care of the range check
+	if (this.IsFormationMember())
+	{
+		var cmpFormationAttack = Engine.QueryInterface(this.formationController, IID_Attack);
+		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
+		if (cmpFormationAttack && cmpFormationAttack.CanAttackAsFormation() && cmpFormationUnitAI && cmpFormationUnitAI.GetCurrentState == "FORMATIONCONTROLLER.ATTACKING")
+			return true;
+	}
+
 	var cmpFormation = Engine.QueryInterface(target, IID_Formation)
 	if (cmpFormation)
 		target = cmpFormation.GetClosestMember(this.entity);

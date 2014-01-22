@@ -995,6 +995,8 @@ Formation.prototype.LoadFormation = function(newTemplate)
 		cmpNewUnitAI.AddOrders(orders);
 	else
 		cmpNewUnitAI.MoveIntoFormation();
+
+	Engine.BroadcastMessage(MT_EntityRenamed, {"entity": this.entity, "newentity": newFormation});
 };
 
 Engine.RegisterComponentType(IID_Formation, "Formation", Formation);
