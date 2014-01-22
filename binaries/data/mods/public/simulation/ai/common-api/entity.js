@@ -61,6 +61,8 @@ m.Template = m.Class({
 	},
 						  
 	available: function(gameState) {
+		if (this.requiredTech() === undefined)
+			return true;
 		return gameState.isResearched(this.get("Identity/RequiredTechnology"));
 	},
 						  

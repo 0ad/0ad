@@ -233,6 +233,15 @@ m.HQ.prototype.OnTownPhase = function(gameState)
 		this.femaleRatio = 0.4;
 		gameState.ai.queues["villager"].empty();
 		gameState.ai.queues["citizenSoldier"].empty();
+		for (var i in this.baseManagers)
+		{
+			if (this.baseManagers[i].willGather["wood"] === 2)
+				this.baseManagers[i].willGather["wood"] = 1;	// retry.
+			if (this.baseManagers[i].willGather["stone"] === 2)
+				this.baseManagers[i].willGather["stone"] = 1;	// retry.
+			if (this.baseManagers[i].willGather["metal"] === 2)
+				this.baseManagers[i].willGather["metal"] = 1;	// retry.
+		}
 	}
 }
 
@@ -382,14 +391,16 @@ m.HQ.prototype.tryResearchTechs = function(gameState, queues) {
 // TODO: improve choice alogrithm
 m.HQ.prototype.switchWorkerBase = function(gameState, worker, type) {
 	var bestBase = 0;
+	var bestBaseState = -1;
 
 	for (var i in this.baseManagers)
 	{
-		if (this.baseManagers[i].willGather[type] >= 1)
+		if (this.baseManagers[i].willGather[type] === 1 || (this.baseManagers[i].willGather[type] === 2 && bestBaseState !== 1))
 		{
 			if (this.baseManagers[i].accessIndex === this.baseManagers[worker.getMetadata(PlayerID,"base")].accessIndex
 				|| this.navalManager.canReach(gameState, this.baseManagers[i].accessIndex, this.baseManagers[worker.getMetadata(PlayerID,"base")].accessIndex))
 			{
+				bestBaseState = this.baseManagers[i].willGather[type]
 				bestBase = i;
 				break;
 			}
@@ -845,10 +856,10 @@ m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 		var base = this.baseManagers[i];
 		for (var type in count)
 		{
-			if (base.getResourceLevel(gameState, type, "all") > 1500*Math.max(this.Config.difficulty,2))
+			if (base.getResourceLevel(gameState, type, "all") > 2200*Math.max(this.Config.difficulty,2))
 				count[type]++;
-			capacity[type] += base.getWorkerCapacity(gameState, type);
-			if (base.willGather[type] !== 2)
+			capacity[type] += base.getWorkerCapacity(gameState, type, true);
+			if (base.willGather[type] === 1)
 				need[type] = false;
 		}
 	}
@@ -867,6 +878,7 @@ m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 					// Okay so we'll set us as out of this.
 					this.outOf[type] = true;
 				} else {
+					warn ("planning new base ");
 					// base "-1" means new base.
 					queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre",{ "base" : -1 }, pos));
 				}

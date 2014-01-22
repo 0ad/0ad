@@ -507,7 +507,7 @@ m.GameState.prototype.findTrainableUnits = function(classes){
 	this.getOwnStructures().forEach(function(ent) {
 		var trainable = ent.trainableEntities();
 		for (var i in trainable){
-			if (allTrainable.indexOf(trainable[i]) === -1){
+			if (allTrainable.indexOf(trainable[i]) === -1) {
 				allTrainable.push(trainable[i]);
 			}
 		}
@@ -517,6 +517,9 @@ m.GameState.prototype.findTrainableUnits = function(classes){
 		var template = this.getTemplate(allTrainable[i]);
 
 		if (template.hasClass("Hero"))	// disabling heroes for now
+			continue;
+
+		if (!template.available(this))
 			continue;
 		
 		var okay = true;

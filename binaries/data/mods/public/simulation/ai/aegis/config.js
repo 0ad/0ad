@@ -73,7 +73,7 @@ m.Config = function() {
 		"economicBuilding" : 90,
 		"militaryBuilding" : 240,	// set to something lower after the first barracks.
 		"defenceBuilding" : 70,
-		"civilCentre" : 400,
+		"civilCentre" : 750,
 		"majorTech" : 700,
 		"minorTech" : 40
 	};

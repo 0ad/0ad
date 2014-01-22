@@ -106,6 +106,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 		friendlyTiles.addInfluence(x, z, 255);
 	} else {
 		// No position was specified so try and find a sensible place to build
+		if (this.metadata && this.metadata.base !== undefined)
+			for each (var px in gameState.ai.HQ.baseManagers[this.metadata.base].territoryIndices)
+				friendlyTiles.map[px] = 20;
 		gameState.getOwnStructures().forEach(function(ent) {
 			var pos = ent.position();
 			var x = Math.round(pos[0] / cellSize);
@@ -122,6 +125,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 				} else {
 					friendlyTiles.addInfluence(x, z, 15, -40); // and further away from other stuffs
 				}
+			} else if (template.hasClass("Farmstead")) {
+				// move farmsteads away to make room.
+				friendlyTiles.addInfluence(x, z, 25, -25);
 			} else {
 				if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
 					friendlyTiles.addInfluence(x, z, 30, -50);
@@ -134,6 +140,16 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 					friendlyTiles.addInfluence(x, z, 20, -20);
 			}
 		});
+
+		if (template.hasClass("Farmstead"))
+		{
+			for (var j = 0; j < gameState.sharedScript.resourceMaps["wood"].map.length; ++j)
+			{
+				var value = friendlyTiles.map[j] -  (gameState.sharedScript.resourceMaps["wood"].map[j])/3;
+				friendlyTiles.map[j] = value >= 0 ? value : 0;
+			}
+		}
+
 		if (this.metadata && this.metadata.base !== undefined)
 			for (var base in gameState.ai.HQ.baseManagers)
 				if (base != this.metadata.base)
