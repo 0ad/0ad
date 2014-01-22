@@ -24,7 +24,9 @@
         <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/shields/hele_round_xenophon.xml" attachpoint="shield"/>
       </props>
-      <textures><texture file="skeletal/hele_xenophon.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_xenophon.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -56,5 +58,5 @@
       </props>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>
