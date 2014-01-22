@@ -239,8 +239,7 @@ function ProcessCommand(player, cmd)
 		if (CanControlUnit(cmd.entity, player, controlAllUnits))
 		{
 			var cmpTechnologyManager = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
-			// TODO: Enable this check once the AI gets technology support
-			if (cmpTechnologyManager.CanResearch(cmd.template) || cmpPlayer.IsAI())
+			if (cmpTechnologyManager.CanResearch(cmd.template))
 			{
 				var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
 				if (queue)
