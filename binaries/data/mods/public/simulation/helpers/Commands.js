@@ -214,8 +214,7 @@ function ProcessCommand(player, cmd)
 				}
 
 				var cmpTechnologyManager = QueryOwnerInterface(ent, IID_TechnologyManager);
-				// TODO: Enable this check once the AI gets technology support
-				if (cmpTechnologyManager.CanProduce(cmd.template) || cmpPlayer.IsAI())
+				if (cmpTechnologyManager.CanProduce(cmd.template))
 				{
 					var queue = Engine.QueryInterface(ent, IID_ProductionQueue);
 					// Check if the building can train the unit
