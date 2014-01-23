@@ -36,8 +36,6 @@ Cost.prototype.Init = function()
 	this.populationBonus = +this.template.PopulationBonus;
 };
 
-Cost.prototype.Serialize = null; // we have no dynamic state to save
-
 Cost.prototype.GetPopCost = function()
 {
 	return +this.template.Population;
