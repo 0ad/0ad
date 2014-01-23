@@ -163,7 +163,10 @@ template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(JSContext* cx, jsval 
 
 template<> jsval ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, const CFixedVector3D& val)
 {
-	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+	// apply the Vector3D prototype to the return value;
+ 	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
+	JSObject* obj = JS_NewObject(cx, NULL, JSVAL_TO_OBJECT(pCxPrivate->pScriptInterface->vector3Dprototype.get()), NULL);
+
 	if (!obj)
 		return JSVAL_VOID;
 
@@ -197,7 +200,10 @@ template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, jsval 
 
 template<> jsval ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, const CFixedVector2D& val)
 {
-	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+	// apply the Vector2D prototype to the return value
+ 	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
+	JSObject* obj = JS_NewObject(cx, NULL, JSVAL_TO_OBJECT(pCxPrivate->pScriptInterface->vector2Dprototype.get()), NULL);
+
 	if (!obj)
 		return JSVAL_VOID;
 

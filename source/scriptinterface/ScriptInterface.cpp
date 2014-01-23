@@ -627,7 +627,11 @@ bool ScriptInterface::LoadGlobalScripts()
 			return false;
 		}
 	}
-
+	jsval proto;
+	if (JS_GetProperty(m->m_cx, JS_GetGlobalObject(m->m_cx), "Vector2Dprototype", &proto))
+		vector2Dprototype = CScriptValRooted(m->m_cx, proto);
+	if (JS_GetProperty(m->m_cx, JS_GetGlobalObject(m->m_cx), "Vector3Dprototype", &proto))
+		vector3Dprototype = CScriptValRooted(m->m_cx, proto);
 	return true;
 }
 
@@ -1032,7 +1036,6 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 
 	return ok ? true : false;
 }
-
 
 bool ScriptInterface::Eval(const char* code)
 {

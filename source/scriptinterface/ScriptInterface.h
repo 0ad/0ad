@@ -91,6 +91,9 @@ public:
 	 */
 	static shared_ptr<ScriptRuntime> CreateRuntime(int runtimeSize = DEFAULT_RUNTIME_SIZE);
 
+	CScriptValRooted vector2Dprototype;
+	CScriptValRooted vector3Dprototype;
+
 	/**
 	 * Constructor.
 	 * @param nativeScopeName Name of global object that functions (via RegisterFunction) will
