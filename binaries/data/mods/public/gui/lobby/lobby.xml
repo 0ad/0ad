@@ -19,14 +19,15 @@
 		</action>
 
 		<!-- Left panel: Player list. -->
-		<object name="leftPanel" size="20 30 15% 100%-50">
-			<object name="playersBox" style="ModernList" type="olist" size="0 0 100% 100%">
-				<def id="status" heading="Status" width="40%"/>
-				<def id="name" heading="Name" width="60%"/>
+		<object name="leftPanel" size="20 30 20% 100%-50">
+			<object name="playersBox" style="ModernList" type="olist" size="0 0 100% 100%" font="serif-bold-13">
+				<def id="status" heading="Status" width="28%"/>
+				<def id="name" heading="Name" width="47%"/>
+				<def id="rating" heading="Rating" width="25%" />
 			</object>
 		</object>
 
-		<object name="leftButtonPanel" size="20 100%-45 15% 100%-20">
+		<object name="leftButtonPanel" size="20 100%-45 20% 100%-20">
 			<object type="button" style="StoneButton" size="0 0 100% 100%">
 				Leaderboard
 				<action on="Press">Engine.GetGUIObjectByName("leaderboard").hidden = false;Engine.GetGUIObjectByName("leaderboardFade").hidden = false;</action>
@@ -34,7 +35,7 @@
 		</object>
 
 		<!-- Right panel: Game details. -->
-		<object name="rightPanel" size="100%-300 30 100%-20 100%-20">
+		<object name="rightPanel" size="100%-250 30 100%-20 100%-20" >
 			<object name="gameInfoEmpty" size="0 0 100% 100%-60" type="image" sprite="ModernDarkBoxGold" hidden="false">
 				<object size="50%-110 50%-50 50%+110 50%+50" type="image" sprite="productLogo"/>
 			</object>
@@ -106,7 +107,7 @@
 		</object>
 
 		<!-- Middle panel: Filters, game list, chat box. -->
-		<object name="middlePanel" size="15%+5 5% 100%-305 97.2%">
+		<object name="middlePanel" size="20%+5 5% 100%-255 97.2%">
 			<object name="gamesBox" style="ModernList" type="olist" size="0 25 100% 48%">
 				<action on="SelectionChange">selectGame(this.selected);</action>
 				<def id="name" heading="Name" color="0 60 0" width="25%"/>
@@ -121,21 +122,24 @@
 				<object name="mapSizeFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="49.7% 0 62% 100%">
+					size="49.7% 0 62% 100%"
+					font="serif-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
 
 				<object name="mapTypeFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="69.3% 0 82% 100%">
+					size="69.3% 0 82% 100%"
+					font="serif-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
 
 				<object name="playersNumberFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="89% 0 100% 100%">
+					size="89% 0 100% 100%"
+					font="serif-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
 
@@ -144,14 +148,15 @@
 					type="checkbox"
 					checked="true"
 					style="ModernTickBox"
-					size="0% 0 20 100%">
+					size="0% 0 20 100%"
+					font="serif-bold-13">
 					<action on="Press">applyFilters();</action>
 				</object>
 			</object>
 
 			<object name="chatPanel" size="0 49% 100% 100%" type="image" sprite="ModernDarkBoxGold">
-				<object name="chatText" size="0 0 100% 94%" type="text" style="ChatPanel"/>
-				<object name="chatInput" size="0 94% 100% 100%" type="input" style="ModernInput">
+				<object name="chatText" size="0 0 100% 94%" type="text" style="ChatPanel" font="serif-13"/>
+				<object name="chatInput" size="0 94% 100% 100%" type="input" style="ModernInput" font="serif-13">
 					<action on="Press">submitChatInput();</action>
 					<action on="Tab">completeNick();</action>
 				</object>

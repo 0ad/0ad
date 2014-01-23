@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -60,6 +60,7 @@ public:
 	void recv();
 	void SendIqGetGameList();
 	void SendIqGetBoardList();
+	void SendIqGetRatingList();
 	void SendIqGameReport(ScriptInterface& scriptInterface, CScriptVal data);
 	void SendIqRegisterGame(ScriptInterface& scriptInterface, CScriptVal data);
 	void SendIqUnregisterGame();
@@ -74,7 +75,7 @@ public:
 	CScriptValRooted GUIGetPlayerList(ScriptInterface& scriptInterface);
 	CScriptValRooted GUIGetGameList(ScriptInterface& scriptInterface);
 	CScriptValRooted GUIGetBoardList(ScriptInterface& scriptInterface);
-
+	CScriptValRooted GUIGetRatingList(ScriptInterface& scriptInterface);
 	//Script
 	ScriptInterface& GetScriptInterface();
 
@@ -140,6 +141,8 @@ private:
 	std::vector<const glooxwrapper::Tag*> m_GameList;
 	/// List of rankings
 	std::vector<const glooxwrapper::Tag*> m_BoardList;
+	/// List of ratings
+	std::vector<const glooxwrapper::Tag*> m_RatingList;
 	/// Queue of messages
 	std::deque<GUIMessage> m_GuiMessageQueue;
 };

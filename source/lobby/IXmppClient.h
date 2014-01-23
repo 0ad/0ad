@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,6 +33,7 @@ public:
 	virtual void recv() = 0;
 	virtual void SendIqGetGameList() = 0;
 	virtual void SendIqGetBoardList() = 0;
+	virtual void SendIqGetRatingList() = 0;
 	virtual void SendIqGameReport(ScriptInterface& scriptInterface, CScriptVal data) = 0;
 	virtual void SendIqRegisterGame(ScriptInterface& scriptInterface, CScriptVal data) = 0;
 	virtual void SendIqUnregisterGame() = 0;

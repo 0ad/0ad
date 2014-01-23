@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Copyright (C) 2013 Wildfire Games.
+"""Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -183,6 +183,24 @@ class LeaderboardList():
         continue
       board[player.jid] = {'name': '@'.join(player.jid.split('@')[:-1]), 'rating': str(player.rating)}
     return board
+  def getRatingList(self, nicks):
+    """
+    Returns a rating list of players
+    currently in the lobby by nick
+    because the client can't link
+    JID to nick conveniently.
+    """
+    ratinglist = {}
+    for JID in nicks.keys():
+      players = db.query(Player).filter_by(jid=str(JID))
+      if players.first():
+        if players.first().rating == -1:
+          ratinglist[nicks[JID]] = {'name': nicks[JID], 'rating': ''}
+        else:
+          ratinglist[nicks[JID]] = {'name': nicks[JID], 'rating': str(players.first().rating)}
+      else:
+        ratinglist[nicks[JID]] = {'name': nicks[JID], 'rating': ''}
+    return ratinglist
 
 ## Class to tracks all games in the lobby ##
 class GameList():
@@ -342,14 +360,16 @@ class GameListXmppPlugin(ElementBase):
       data[key] = item
     return data
 
-## Class for custom boardlist stanza extension ##
+## Class for custom boardlist and ratinglist stanza extension ##
 class BoardListXmppPlugin(ElementBase):
   name = 'query'
   namespace = 'jabber:iq:boardlist'
-  interfaces = ('board')
+  interfaces = set(('board', 'command'))
   sub_interfaces = interfaces
   plugin_attrib = 'boardlist'
-
+  def addCommand(self, command):
+    commandXml = ET.fromstring("<command>%s</command>" % command)
+    self.xml.append(commandXml)
   def addItem(self, name, rating):
     itemXml = ET.Element("board", {"name": name, "rating": rating})
     self.xml.append(itemXml)
@@ -488,11 +508,22 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
           traceback.print_exc()
           logging.error("Failed to process gamelist request from %s" % iq['from'].bare)
       elif 'boardlist' in iq.plugins:
-        try:
-          self.leaderboard.getOrCreatePlayer(iq['from'])
-          self.sendBoardList(iq['from'])
-        except:
-          traceback.print_exc()
+        command = iq['boardlist']['command']
+        if command == 'getleaderboard':
+          try:
+            self.leaderboard.getOrCreatePlayer(iq['from'])
+            self.sendBoardList(iq['from'])
+          except:
+            traceback.print_exc()
+            logging.error("Failed to process leaderboardlist request from %s" % iq['from'].bare)
+        elif command == 'getratinglist':
+          try:
+            self.leaderboard.getOrCreatePlayer(iq['from'])
+            self.sendRatingList(iq['from'])
+          except:
+            traceback.print_exc()
+            logging.error("Failed to process ratinglist request from %s" % iq['from'].bare)
+        else:
           logging.error("Failed to process boardlist request from %s" % iq['from'].bare)
       else:
         logging.error("Unknown 'get' type stanza request from %s" % iq['from'].bare)
@@ -543,7 +574,8 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
           if self.leaderboard.getLastRatedMessage() != "":
             self.send_message(mto=self.room, mbody=self.leaderboard.getLastRatedMessage(), mtype="groupchat",
               mnick=self.nick)
-            self.sendBoardList()       
+            self.sendBoardList()
+            self.sendRatingList()
         except:
           traceback.print_exc()
           logging.error("Failed to update game statistics for %s" % iq['from'].bare)
@@ -557,7 +589,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         to all clients.
     """
     games = self.gameList.getAllGames()
-    if to == "":      
+    if to == "":
       for JID in self.nicks.keys():
         stz = GameListXmppPlugin()
 
@@ -620,10 +652,11 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     iq['type'] = 'result'
     for i in board:
       stz.addItem(board[i]['name'], board[i]['rating'])
+    stz.addCommand('boardlist')
     iq.setPayload(stz)
     if to == "":    
       for JID in self.nicks.keys():
-        ## Set aditional IQ attributes
+        ## Set additional IQ attributes
         iq['to'] = JID
         ## Try sending the stanza
         try:
@@ -635,13 +668,50 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       if str(to) not in self.nicks:
         logging.error("No player with the XmPP ID '%s' known to send boardlist to" % str(to))
         return
-      ## Set aditional IQ attributes
+      ## Set additional IQ attributes
       iq['to'] = to
       ## Try sending the stanza
       try:
         iq.send(block=False, now=True)
       except:
         logging.error("Failed to send leaderboard list")
+        
+  def sendRatingList(self, to = ""):
+    """
+      Send the rating list.
+      If no target is passed the rating list is broadcasted
+        to all clients.
+    """
+    ## Pull rating list data and add it to the stanza  
+    ratinglist = self.leaderboard.getRatingList(self.nicks)
+    stz = BoardListXmppPlugin()
+    iq = self.Iq()
+    iq['type'] = 'result'
+    for i in ratinglist:
+      stz.addItem(ratinglist[i]['name'], ratinglist[i]['rating'])
+    stz.addCommand('ratinglist')
+    iq.setPayload(stz)
+    if to == "":    
+      for JID in self.nicks.keys():
+        ## Set additional IQ attributes
+        iq['to'] = JID
+        ## Try sending the stanza
+        try:
+          iq.send(block=False, now=True)
+        except:
+          logging.error("Failed to send rating list")
+    else:
+      ## Check recipient exists
+      if str(to) not in self.nicks:
+        logging.error("No player with the XmPP ID '%s' known to send ratinglist to" % str(to))
+        return
+      ## Set additional IQ attributes
+      iq['to'] = to
+      ## Try sending the stanza
+      try:
+        iq.send(block=False, now=True)
+      except:
+        logging.error("Failed to send rating list")
 
 ## Main Program ##
 if __name__ == '__main__':
@@ -680,7 +750,7 @@ if __name__ == '__main__':
 
   # Setup logging.
   logging.basicConfig(level=opts.loglevel,
-                      format='%(asctime)s        %(levelname)-8s %(message)s', datefmt='%m-%d-%y %H:%M:%S')
+                      format='%(asctime)s        %(levelname)-8s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
   # XpartaMuPP
   xmpp = XpartaMuPP(opts.xlogin+'@'+opts.xdomain+'/CC', opts.xpassword, opts.xroom+'@conference.'+opts.xdomain, opts.xnickname)
