@@ -170,6 +170,12 @@ AIProxy.prototype.OnFoundationProgressChanged = function(msg)
 	this.changes.foundationProgress = msg.to;
 };
 
+AIProxy.prototype.OnFoundationBuildersChanged = function(msg)
+{
+	this.NotifyChange();
+	this.changes.foundationBuilders = msg.to;
+};
+
 // TODO: event handlers for all the other things
 
 AIProxy.prototype.GetFullRepresentation = function()

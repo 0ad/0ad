@@ -204,7 +204,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 	var ent = this.ent;
 	var self = this;
 	
-	if (!ent.position()){
+	if (!ent.position()) {
 		// TODO: work out what to do when entity has no position
 		return;
 	}
@@ -613,30 +613,49 @@ m.Worker.prototype.getGatherRate = function(gameState) {
 
 m.Worker.prototype.buildAnyField = function(gameState){
 	var self = this;
-	var okay = false;
-	var foundations = gameState.getOwnFoundations().filter(API3.Filters.byMetadata(PlayerID,"base",this.baseID));
-	foundations.filterNearest(this.ent.position(), foundations.length);
-	foundations.forEach(function (found) {
-		if (found._template.BuildRestrictions.Category === "Field" && !okay) {
-			self.ent.repair(found);
-			okay = true;
-			return;
+	var foundations = gameState.getOwnFoundations();
+	var baseFoundations = foundations.filter(API3.Filters.byMetadata(PlayerID,"base",this.baseID));
+	
+	var maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
+
+	var bestFarmEnt = undefined;
+	var bestFarmCoeff = 10000000;
+	baseFoundations.forEach(function (found) {
+		if (found.hasClass("Field")) {
+			var coeff = API3.SquareVectorDistance(found.position(), self.ent.position());
+			if (found.getBuildersNb() && found.getBuildersNb() >= maxGatherers)
+				return;
+			if (coeff <= bestFarmCoeff)
+			{
+				bestFarmEnt = found;
+				bestFarmCoeff = coeff;
+			}
 		}
 	});
-	if (!okay)
+	if (bestFarmEnt !== undefined)
 	{
-		var foundations = gameState.getOwnFoundations();
-		foundations.filterNearest(this.ent.position(), foundations.length);
-		foundations.forEach(function (found) {
-			if (found._template.BuildRestrictions.Category === "Field" && !okay) {
-				self.ent.repair(found);
-				self.ent.setMetadata(PlayerID,"base", found.getMetadata(PlayerID,"base"));
-				okay = true;
-				return;
-			}
-		});
+		self.ent.repair(bestFarmEnt);
+		return true;
 	}
-	return okay;
+	foundations.forEach(function (found) {
+		if (found.hasClass("Field")) {
+			var coeff = API3.SquareVectorDistance(found.position(), self.ent.position());
+			if (found.getBuildersNb() && found.getBuildersNb() >= found.maxGatherers())
+				return;
+			if (coeff <= bestFarmCoeff)
+			{
+				bestFarmEnt = found;
+				bestFarmCoeff = coeff;
+			}
+		}
+	});
+	if (bestFarmEnt !== undefined)
+	{
+		self.ent.repair(bestFarmEnt);
+		self.ent.setMetadata(PlayerID,"base", bestFarmEnt.getMetadata(PlayerID,"base"));
+		return true;
+	}
+	return false;
 };
 
 return m;

@@ -74,6 +74,7 @@ function TestFormationExiting(mode)
 	AddMock(unit, IID_Position, {
 		GetPosition: function() { return { "x": 0, "y": 0,"z": 0 }; },
 		GetPosition2D: function() { return { "x": 0, "y": 0 }; },
+		GetRotation: function() { return { "y": 0 }; },
 		IsInWorld: function() { return true; },
 	});
 
@@ -124,6 +125,7 @@ function TestFormationExiting(mode)
 		JumpTo: function(x, z) { this.x = x; this.z = z; },
 		GetPosition: function() { return { "x": this.x, "z": this.z }; },
 		GetPosition2D: function() { return { "x": this.x, "y": this.z }; },
+		GetRotation: function() { return { "y": 0 }; },
 		IsInWorld: function() { return true; },
 	});
 
@@ -217,6 +219,8 @@ function TestMoveIntoFormationWhileAttacking()
 	
 		AddMock(unit + i, IID_Position, {
 			GetPosition: function() { return { "x": 0, "z": 0 }; },
+			GetPosition2D: function() { return { "x": 0, "y": 0 }; },
+			GetRotation: function() { return { "y": 0 }; },
 			IsInWorld: function() { return true; },
 		});
 	
@@ -259,6 +263,8 @@ function TestMoveIntoFormationWhileAttacking()
 	AddMock(controller, IID_Position, {
 		JumpTo: function(x, z) { this.x = x; this.z = z; },
 		GetPosition: function() { return { "x": this.x, "z": this.z }; },
+		GetPosition2D: function() { return { "x": this.x, "y": this.z }; },
+		GetRotation: function() { return { "y": 0 }; },
 		IsInWorld: function() { return true; },
 	});
 
@@ -271,6 +277,7 @@ function TestMoveIntoFormationWhileAttacking()
 
 	AddMock(controller, IID_Attack, {
 		GetRange: function() { return {"max":10, "min": 0}; },
+		CanAttackAsFormation: function() { return false },
 	});
 
 	controllerAI.OnCreate();

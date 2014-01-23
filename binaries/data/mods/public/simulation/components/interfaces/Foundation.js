@@ -9,3 +9,6 @@ Engine.RegisterMessageType("ConstructionFinished");
 // Message of the form { "to", 59 }, as the percentage complete
 // sent whenever the foundations progress changes.
 Engine.RegisterMessageType("FoundationProgressChanged");
+
+// Message of the form { "to", [builders] }, as the builders change
+Engine.RegisterMessageType("FoundationBuildersChanged");

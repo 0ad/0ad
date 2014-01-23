@@ -214,8 +214,7 @@ function ProcessCommand(player, cmd)
 				}
 
 				var cmpTechnologyManager = QueryOwnerInterface(ent, IID_TechnologyManager);
-				// TODO: Enable this check once the AI gets technology support
-				if (cmpTechnologyManager.CanProduce(cmd.template) || cmpPlayer.IsAI())
+				if (cmpTechnologyManager.CanProduce(cmd.template))
 				{
 					var queue = Engine.QueryInterface(ent, IID_ProductionQueue);
 					// Check if the building can train the unit
@@ -239,8 +238,7 @@ function ProcessCommand(player, cmd)
 		if (CanControlUnit(cmd.entity, player, controlAllUnits))
 		{
 			var cmpTechnologyManager = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
-			// TODO: Enable this check once the AI gets technology support
-			if (cmpTechnologyManager.CanResearch(cmd.template) || cmpPlayer.IsAI())
+			if (cmpTechnologyManager.CanResearch(cmd.template))
 			{
 				var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
 				if (queue)
@@ -810,6 +808,8 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			cmpGuiInterface.PushNotification({ "player": player, "message": ret.message });
 			
 			// Remove the foundation because the construction was aborted
+			// move it out of world because it's not destroyed immediately.
+			cmpPosition.MoveOutOfWorld();
 			Engine.DestroyEntity(ent);
 			return false;
 		}
@@ -827,6 +827,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		}
 
 		// Remove the foundation because the construction was aborted
+		cmpPosition.MoveOutOfWorld();
 		Engine.DestroyEntity(ent);
 		return false;
 	}
@@ -845,6 +846,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		cmpGuiInterface.PushNotification({ "player": player, "message": "Building's technology requirements are not met." }); 
 		
 		// Remove the foundation because the construction was aborted 
+		cmpPosition.MoveOutOfWorld();
 		Engine.DestroyEntity(ent); 
 	}
 	
@@ -866,6 +868,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			warn("Invalid command: building cost check failed for player "+player+": "+uneval(cmd));
 		
 		Engine.DestroyEntity(ent);
+		cmpPosition.MoveOutOfWorld();
 		return false;
 	}
 

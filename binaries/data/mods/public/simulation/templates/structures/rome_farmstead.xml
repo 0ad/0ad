@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_farmstead">
   <Footprint>
-    <Square width="24.0" depth="22.0"/>
+    <Square width="24.0" depth="20.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Health>
@@ -13,7 +13,7 @@
     <History>As Rome grew more and more affluent, many of the rich senators built lavish villas throughout Italy. Most of them emulated earlier Hellenistic examples; remains can be seen even today at Pompeii.</History>
   </Identity>
   <Obstruction>
-    <Static width="20.0" depth="18.0"/>
+    <Static width="20.0" depth="16.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/romans/farmstead.xml</Actor>

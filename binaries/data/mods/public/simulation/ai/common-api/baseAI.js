@@ -74,7 +74,7 @@ m.BaseAI.prototype.HandleMessage = function(state, playerID, sharedAI)
 	if (this.isDeserialized && this.turn !== 0)
 	{
 		this.isDeserialized = false;
-		this.Init(state, sharedAI);
+		this.Init(state, playerID, sharedAI);
 		warn("AIs don't work completely with saved games yet. You may run into idle units and unused buildings.");
 	} else if (this.isDeserialized)
 		return;

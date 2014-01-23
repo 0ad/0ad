@@ -51,7 +51,7 @@ m.BaseManager.prototype.init = function(gameState, unconstructed){
 	this.workers.registerUpdates();
 	
 	// array of entity IDs, with each being
-	// { "food" : [close entities, semi-close entities, faraway entities, closeAmount, medianAmount, assignedWorkers collection ] … } (one per resource)
+	// { "food" : [close entities, semi-close entities, faraway entities, closeAmount, medianAmount, assignedWorkers collection, Rebuilt ] … } (one per resource)
 	// note that "median amount" also counts the closeAmount.
 	this.dropsites = { };
 	
@@ -193,10 +193,10 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 				if (ent.hasClass("CivCentre"))
 				{
 					// TODO: might want to tell the queue manager to pause other stuffs if we are the only base.
-					queues.civilCentre.addItem(gameState, new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, ent.position()));
+					queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, ent.position()));
 				} else {
 					// TODO
-					queues.civilCentre.addItem(gameState, new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, ent.position()));
+					queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base" : this.ID, "baseAnchor" : true }, ent.position()));
 				}
 			}
 			
@@ -269,6 +269,16 @@ m.BaseManager.prototype.assignResourceToDP = function (gameState, supply, specif
 			supply.setMetadata(PlayerID, "linked-dropsite-nearby", (dist < this.medRadius[type]) );
 			supply.setMetadata(PlayerID, "linked-dropsite", closest );
 			supply.setMetadata(PlayerID, "linked-dropsite-dist", +dist);
+
+			if (m.DebugEnabled())
+			{
+				if (type == "food" && dist < this.smallRadius[type])
+					Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [supply.id()], "rgb": [10,0,0]});
+				else if (type == "food" && dist < this.medRadius[type])
+					Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [supply.id()], "rgb": [2,0,0]});
+				else
+					Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [supply.id()], "rgb": [0.5,0,0]});
+			}
 		}
 	}
 	// TODO: ought to recount immediatly.
@@ -319,7 +329,7 @@ m.BaseManager.prototype.initializeDropsite = function (gameState, ent, type) {
 		
 		if (!self.dropsites[ent.id()])
 			self.dropsites[ent.id()] = {};
-		self.dropsites[ent.id()][type] = [collection2,collection3, collection, count, farCount, WkCollection];
+		self.dropsites[ent.id()][type] = [collection2,collection3, collection, count, farCount, WkCollection, false];
 		
 		// TODO: flag us on the SharedScript "type" map.
 		// TODO: get workers on those resources and do something with them.
@@ -483,18 +493,41 @@ m.BaseManager.prototype.updateDropsite = function (gameState, ent, type) {
 		return undefined;	// should initialize it first.
 
 	var count = 0, farCount = 0;
-	
 	var resources = gameState.getResourceSupplies(type);
 	
-	this.dropsites[ent.id()][type][1].forEach( function (supply) { //}){
+	var dropsite = this.dropsites[ent.id()][type];
+
+	var medianPositionX = 0;
+	var medianPositionY = 0;
+	var divider = 0;
+	dropsite[1].forEach( function (supply) { //}){
 		farCount += supply.resourceSupplyAmount();
+		medianPositionX += supply.position()[0];
+		medianPositionY += supply.position()[1];
+		++divider;
 	});
-	this.dropsites[ent.id()][type][0].forEach( function (supply) { //}){
+	dropsite[0].forEach( function (supply) { //}){
 		count += supply.resourceSupplyAmount();
+		medianPositionX += supply.position()[0];
+		medianPositionY += supply.position()[1];
+		++divider;
 	});
 
-	this.dropsites[ent.id()][type][3] = count;
-	this.dropsites[ent.id()][type][4] = farCount;
+	// once per dropsite, if the average wood resource is too far away, try to build a closer one.
+	if (type === "wood" && divider !== 0 && !dropsite[6] && count < 300 && farCount > 700
+		&& gameState.ai.queues.dropsites.length() === 0 && gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_storehouse"), true) === 0)
+	{
+		medianPositionX /= divider;
+		medianPositionY /= divider;
+		if (API3.SquareVectorDistance([medianPositionX,medianPositionY], ent.position()) > 1800)
+		{
+			dropsite[6] = true;
+			gameState.ai.queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base" : this.ID }, [medianPositionX,medianPositionY]));
+		}
+	}
+
+	dropsite[3] = count;
+	dropsite[4] = farCount;
 	return true;
 };
 
@@ -512,28 +545,38 @@ m.BaseManager.prototype.updateDropsites = function (gameState) {
 };
 
 // TODO: ought to be cached or something probably
-// Returns the number of slots available for workers here.
-// we're assuming Max - 3 for metal/stone mines, and 20 for any dropsite that has wood.
-// TODO: for wood might want to count the trees too.
-// TODO: this returns "future" worker capacity, might want to have a current one.
-m.BaseManager.prototype.getWorkerCapacity = function (gameState, type) {
+// Returns the number of slots available for workers on this dropsite.
+m.BaseManager.prototype.getDpWorkerCapacity = function (gameState, entID, type, faraway) {
+	if (this.dropsites[entID] === undefined || this.dropsites[entID][type] === undefined)
+		return undefined;	// should initialize it first.
+	var dropsite = this.dropsites[entID];
+
 	var count = 0;
 	if (type == "food")
-		return 1000000;	// TODO: perhaps return something sensible here.
-	if (type === "stone" || type === "metal")
+		return (dropsite["food"] !== undefined ? 10000 : 0);
+
+	if ((type === "stone" && dropsite["stone"])|| (type === "metal" && dropsite["metal"]))
 	{
-		for (var id in this.dropsites)
-			if (this.dropsites[id][type])
-				this.dropsites[id][type][1].forEach(function (ent) {// }){
-					if (ent.resourceSupplyAmount() > 500)
-						count += ent.maxGatherers() - 3;
-				});
+		var slot = dropsite[type][0];
+		if (faraway === true)
+			dropsite[type][1];
+		slot.forEach(function (ent) {
+			if (ent.resourceSupplyAmount() > 500)
+				count += ent.maxGatherers();
+		});
 	} else if (type === "wood")
 	{
-		for (var id in this.dropsites)
-			if (this.dropsites[id][type] && (this.dropsites[id][type][4]) > 1000)
-				count += Math.min(15, this.dropsites[id][type][4] / 200);
+		count = (faraway === true) ? dropsite[type][4] / 250 : dropsite[type][3] / 200;
 	}
+	return count;
+};
+
+// TODO: ought to be cached or something probably
+// Returns the number of slots available for workers here.
+m.BaseManager.prototype.getWorkerCapacity = function (gameState, type, faraway) {
+	var count = 0;
+	for (var i in this.dropsites)
+		count += this.getDpWorkerCapacity(gameState,i,type, faraway);
 	return count;
 };
 
@@ -588,10 +631,13 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 	{
 		if (this.willGather[type] === 0)
 			continue;
+		// not enough resources on the map, tell us we've stopped.
 		if (type !== "food" && gameState.ai.playedTurn % 10 === 4 && this.getResourceLevel(gameState,type, "all") < 200)
 			this.willGather[type] = 0;	// won't gather at all
+		// we're waiting for a new dropsite.
 		if (this.willGather[type] === 2)
 			continue;
+
 		var count = this.getResourceLevel(gameState,type, "dropsites");
 		if (type == "food")
 		{
@@ -624,14 +670,14 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 				// let's see if we need to push new farms.
 				var maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
 				if (numFd < 2)
-					if (numFarms < Math.round(this.gatherersByType(gameState, "food").length / (maxGatherers*0.9)) || numFarms < Math.round(this.workers.length / (maxGatherers*3)))
+					if (numFarms < Math.round(this.gatherersByType(gameState, "food").length / (maxGatherers*0.9)))
 						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 				// TODO: refine count to only count my base.
 			}
 		} else if (queues.dropsites.length() === 0 && gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_storehouse"), true) === 0) {
-			var wantedDPs = Math.ceil(this.gatherersByType(gameState, type).length / 12.0);
-			var need = wantedDPs - this.getResourceLevel(gameState,type, "dropsites-dpcount",2000);
-			if (need > 0)
+			var workerCapacity = this.getWorkerCapacity(gameState, type);	// only close;
+			var wantDropsite = (this.gatherersByType(gameState, type).length / workerCapacity) > 0.9;
+			if (wantDropsite)
 			{
 				var pos = this.findBestDropsiteLocation(gameState, type);
 				if (!pos)
@@ -859,7 +905,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 	}
 	var addedWorkers = 0;
 	
-	var maxTotalBuilders = Math.ceil(workers.length * 0.15);
+	var maxTotalBuilders = Math.ceil(workers.length * 0.33);
 	if (this.constructing == true && maxTotalBuilders < 15)
 		maxTotalBuilders = 15;
 	
@@ -965,7 +1011,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events) {
 			{
 				var entPos = eEnts[i].position();
 				entPos = [entPos[0]/4.0,entPos[1]/4.0];
-				if (API3.SquareVectorDistance(entPos, pos) < 500)
+				if (API3.SquareVectorDistance(entPos, this.anchor.position()) < 500)
 					this.anchor.destroy();
 			}
 		}

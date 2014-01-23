@@ -44,11 +44,11 @@ m.Defence.prototype.makeIntoArmy = function(gameState, entityID)
 	// Try to add it to an existing army.
 	for (var o in this.armies)
 	{
-		if (this.armies[o].addEnemy(gameState,entityID))
+		if (this.armies[o].addFoe(gameState,entityID))
 			return;	// over
 	}
 	// Create a new army for it.
-	var army = new m.Army(gameState, this, [entityID]);
+	var army = new m.DefenseArmy(gameState, this, [], [entityID]);
 	this.armies.push(army);
 }
 
@@ -86,7 +86,7 @@ m.Defence.prototype.checkEnemyUnits = function(gameState)
 	
 	enemyUnits.forEach( function (ent) {
 		// first check: is this unit already part of an army.
-		if (ent.getMetadata(PlayerID, "DefManagerArmy") !== undefined)
+		if (ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
 			return;
 		
 		if (ent.attackTypes() === undefined || ent.hasClass("Support") || ent.hasClass("Ship"))
@@ -101,22 +101,11 @@ m.Defence.prototype.checkEnemyUnits = function(gameState)
 m.Defence.prototype.checkEnemyArmies = function(gameState, events)
 {
 	var self = this;
-	
-	// get the player we'll check this turn for load balancing.
-	var nbPlayers = gameState.sharedScript.playersData.length - 1;
-	var i = 1 + gameState.ai.playedTurn % nbPlayers;
-	if (i === PlayerID && i !== nbPlayers)
-		i++;
-	else if (i === PlayerID)
-		i = 1;
 
 	for (var o = 0; o < this.armies.length; ++o)
 	{
 		var army = this.armies[o];
 		army.checkEvents(gameState, events);	// must be called every turn for all armies
-		
-		if (army.owner !== i)
-			continue;
 		
 		// this returns a list of IDs: the units that broke away from the army for being too far.
 		var breakaways = army.update(gameState);
@@ -133,23 +122,22 @@ m.Defence.prototype.checkEnemyArmies = function(gameState, events)
 			this.armies.splice(o--,1);
 			continue;
 		}
-		
-		// Check if we can't merge it with another.
-		for (var p = 0; p < this.armies.length; p++)
+	}
+	// Check if we can't merge it with another.
+	for (var o = 0; o < this.armies.length; ++o)
+	{
+		var army = this.armies[o];
+		for (var p = o+1; p < this.armies.length; ++p)
 		{
-			if (p === o)
-				continue;
 			var otherArmy = this.armies[p];
 			if (otherArmy.state !== army.state)
 				continue;
 			
-			if (API3.SquareVectorDistance(army.position,otherArmy.position) < this.armyMergeSize)
+			if (API3.SquareVectorDistance(army.foePosition, otherArmy.foePosition) < this.armyMergeSize)
 			{
 				// no need to clear here.
 				army.merge(gameState, otherArmy);
-				if (o > p) --o;
-				this.armies.splice(p,1);
-				break;
+				this.armies.splice(p--,1);
 			}
 		}
 	}
@@ -181,13 +169,13 @@ m.Defence.prototype.assignDefenders = function(gameState, events)
 	// let's get our potential units
 	// TODO: this should rather be a HQ function that returns viable plans.
 	var filter = API3.Filters.and(API3.Filters.and(API3.Filters.byHasMetadata(PlayerID,"plan"),
-										 API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "DefManagerArmy"))),
+										 API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "PartOfArmy"))),
 							 API3.Filters.and(API3.Filters.not(API3.Filters.byMetadata(PlayerID,"subrole","walking")),
 										 API3.Filters.not(API3.Filters.byMetadata(PlayerID,"subrole","attacking"))));
 	var potentialDefendersOne = gameState.getOwnUnits().filter(filter).toIdArray();
 	
 	filter = API3.Filters.and(API3.Filters.and(API3.Filters.not(API3.Filters.byHasMetadata(PlayerID,"plan")),
-									 API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "DefManagerArmy"))),
+									 API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "PartOfArmy"))),
 						 API3.Filters.byClassesOr(["Infantry","Cavalry"]));
 	var potentialDefendersTwo = gameState.getOwnUnits().filter(filter).toIdArray();
 	
@@ -205,7 +193,7 @@ m.Defence.prototype.assignDefenders = function(gameState, events)
 				return;	// won't do anything anymore.
 			var ent = gameState.getEntityById(potDefs[0]);
 
-			if (ent.getMetadata(PlayerID, "DefManagerArmy") !== undefined)
+			if (ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
 			{
 				potDefs.splice(0,1);
 				continue;
@@ -213,7 +201,8 @@ m.Defence.prototype.assignDefenders = function(gameState, events)
 			var str = m.getMaxStrength(ent);
 			need -= str;
 			
-			army.addDefender(gameState,potDefs[0]);
+			army.addOwn(gameState,potDefs[0]);
+			army.assignUnit(gameState, potDefs[0]);
 			potDefs.splice(0,1);
 		}
 	}

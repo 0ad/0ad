@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="broch top">
+      <mesh>props/gaul_farmstead_props.dae</mesh>
+      <textures>
+	  <texture file="props/celt_prop_1.png" name="baseTex"/>
+	  <texture file="props/celt_prop_1_norm.png" name="normTex"/>
+      <texture file="props/celt_prop_1_spec.png" name="specTex"/>
+	  <texture file="structural/ao/gaul_farmstead.png" name="aoTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

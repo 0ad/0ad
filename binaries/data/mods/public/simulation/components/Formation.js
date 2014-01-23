@@ -155,7 +155,7 @@ Formation.prototype.GetMembers = function()
 	return this.members;
 };
 
-Formation.prototype.GetClosestMember = function(ent)
+Formation.prototype.GetClosestMember = function(ent, filter)
 {
 	var cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
 	if (!cmpEntPosition)
@@ -166,6 +166,9 @@ Formation.prototype.GetClosestMember = function(ent)
 	var closestDistance = Infinity;
 	for each (var member in this.members)
 	{
+		if (filter && !filter(ent))
+			continue;
+
 		var cmpPosition = Engine.QueryInterface(member, IID_Position);
 		var pos = cmpPosition.GetPosition2D();
 		var dx = entPosition.x - pos.x;
@@ -995,6 +998,8 @@ Formation.prototype.LoadFormation = function(newTemplate)
 		cmpNewUnitAI.AddOrders(orders);
 	else
 		cmpNewUnitAI.MoveIntoFormation();
+
+	Engine.BroadcastMessage(MT_EntityRenamed, {"entity": this.entity, "newentity": newFormation});
 };
 
 Engine.RegisterComponentType(IID_Formation, "Formation", Formation);

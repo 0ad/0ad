@@ -29,6 +29,8 @@
 
 static const int SAVED_GAME_VERSION_MAJOR = 1; // increment on incompatible changes to the format
 static const int SAVED_GAME_VERSION_MINOR = 0; // increment on compatible changes to the format
+std::vector<std::string> g_modsLoaded; // list of mods loaded
+
 // TODO: we ought to check version numbers when loading files
 
 
@@ -76,6 +78,7 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	simulation.GetScriptInterface().Eval("({})", metadata);
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "version_major", SAVED_GAME_VERSION_MAJOR);
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "version_minor", SAVED_GAME_VERSION_MINOR);
+	simulation.GetScriptInterface().SetProperty(metadata.get(), "mods", g_modsLoaded);
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "time", (double)now);
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "player", playerID);
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "initAttributes", simulation.GetInitAttributes());
@@ -241,3 +244,14 @@ bool SavedGames::DeleteSavedGame(const std::wstring& name)
 	// Successfully deleted file
 	return true;
 }
+
+CScriptValRooted SavedGames::GetEngineInfo(ScriptInterface& scriptInterface) 
+{ 
+	CScriptValRooted metainfo; 
+	scriptInterface.Eval("({})", metainfo); 
+	scriptInterface.SetProperty(metainfo.get(), "version_major", SAVED_GAME_VERSION_MAJOR); 
+	scriptInterface.SetProperty(metainfo.get(), "version_minor", SAVED_GAME_VERSION_MINOR); 
+	scriptInterface.SetProperty(metainfo.get(), "mods"         , g_modsLoaded);
+	return metainfo; 
+}
+

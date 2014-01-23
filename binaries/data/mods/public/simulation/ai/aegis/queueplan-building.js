@@ -62,8 +62,18 @@ m.ConstructionPlan.prototype.start = function(gameState) {
 		{
 			builders[0].construct(this.type, pos.x, pos.z, angle, this.metadata);
 		}
-	} else
-		builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
+	} else {
+		// try with the lowest, move towards us unless we're same
+		if (pos.x == pos.xx && pos.z == pos.zz)
+			builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
+		else
+		{
+			for (var step = 0; step <= 1; step += 0.2)
+			{
+				builders[0].construct(this.type, (step*pos.x + (1-step)*pos.xx), (step*pos.z + (1-step)*pos.zz), pos.angle, this.metadata);
+			}
+		}
+	}
 	this.onStart(gameState);
 };
 
@@ -96,6 +106,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 		friendlyTiles.addInfluence(x, z, 255);
 	} else {
 		// No position was specified so try and find a sensible place to build
+		if (this.metadata && this.metadata.base !== undefined)
+			for each (var px in gameState.ai.HQ.baseManagers[this.metadata.base].territoryIndices)
+				friendlyTiles.map[px] = 20;
 		gameState.getOwnStructures().forEach(function(ent) {
 			var pos = ent.position();
 			var x = Math.round(pos[0] / cellSize);
@@ -112,6 +125,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 				} else {
 					friendlyTiles.addInfluence(x, z, 15, -40); // and further away from other stuffs
 				}
+			} else if (template.hasClass("Farmstead")) {
+				// move farmsteads away to make room.
+				friendlyTiles.addInfluence(x, z, 25, -25);
 			} else {
 				if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
 					friendlyTiles.addInfluence(x, z, 30, -50);
@@ -124,6 +140,16 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 					friendlyTiles.addInfluence(x, z, 20, -20);
 			}
 		});
+
+		if (template.hasClass("Farmstead"))
+		{
+			for (var j = 0; j < gameState.sharedScript.resourceMaps["wood"].map.length; ++j)
+			{
+				var value = friendlyTiles.map[j] -  (gameState.sharedScript.resourceMaps["wood"].map[j])/3;
+				friendlyTiles.map[j] = value >= 0 ? value : 0;
+			}
+		}
+
 		if (this.metadata && this.metadata.base !== undefined)
 			for (var base in gameState.ai.HQ.baseManagers)
 				if (base != this.metadata.base)
@@ -154,7 +180,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	//	radius *= 0.95;
 
 	// Find the best non-obstructed
-	if (template.genericName() == "House" && !alreadyHasHouses) {
+	if (template.hasClass("House") && !alreadyHasHouses) {
 		// try to get some space first
 		var bestTile = friendlyTiles.findBestTile(10, obstructionMap);
 		var bestIdx = bestTile[0];
@@ -176,13 +202,20 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	var x = ((bestIdx % friendlyTiles.width) + 0.5) * cellSize;
 	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * cellSize;
 
+	if (template.hasClass("House") || template.hasClass("Field") || template.resourceDropsiteTypes() !== undefined)
+		var secondBest = obstructionMap.findLowestNeighbor(x,z);
+	else
+		var secondBest = [x,z];
+
 	// default angle
 	var angle = 3*Math.PI/4;
 	
 	return {
 		"x" : x,
 		"z" : z,
-		"angle" : angle
+		"angle" : angle,
+		"xx" : secondBest[0],
+		"zz" : secondBest[1]
 	};
 };
 

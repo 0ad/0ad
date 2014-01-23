@@ -112,7 +112,7 @@ m.createObstructionMap = function(gameState, accessIndex, template){
 	var map = new API3.Map(gameState.sharedScript, obstructionTiles);
 	map.setMaxVal(255);
 	
-	if (template && template.buildDistance()){
+	if (template && template.buildDistance()) {
 		var minDist = template.buildDistance().MinDistance;
 		var category = template.buildDistance().FromCategory;
 		if (minDist !== undefined && category !== undefined){
@@ -126,6 +126,7 @@ m.createObstructionMap = function(gameState, accessIndex, template){
 			});
 		}
 	}
+
 	return map;
 };
 
