@@ -2,19 +2,22 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>stormy</SkySet>
 		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.439216" g="0.521569" b="0.611765"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>19.9</Height>
-				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.947266</Murkiness>
 				<Tint r="0" g="0.501961" b="1"/>
@@ -22,9 +25,16 @@
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="148.894" y="82.0582" z="480.421"/>
+		<Position x="183.11" y="173.704" z="380.631"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -32,7 +42,6 @@
 {
   "Description": "The Celts invade Greece. Fight through the central valley or cut through the rich highlands in order to secure the lands around Delphi!",
   "GameType": "conquest",
-  "Preview" : "massacre_of_delphi.png",
   "Keywords": [],
   "LockTeams": false,
   "Name": "Massacre of Delphi",
@@ -58,6 +67,7 @@
       "Team": -1
     }
   ],
+  "Preview": "massacre_of_delphi.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -2394,12 +2404,6 @@
 			<Player>1</Player>
 			<Position x="35.34296" z="399.83146"/>
 			<Orientation y="1.99079"/>
-		</Entity>
-		<Entity uid="564">
-			<Template>other/celt_tavern</Template>
-			<Player>1</Player>
-			<Position x="101.96297" z="598.6543"/>
-			<Orientation y="2.46232"/>
 		</Entity>
 		<Entity uid="574">
 			<Template>units/hele_infantry_spearman_e</Template>
@@ -11458,12 +11462,6 @@
 			<Position x="134.8611" z="520.26911"/>
 			<Orientation y="0.90285"/>
 		</Entity>
-		<Entity uid="2457">
-			<Template>other/celt_tavern</Template>
-			<Player>0</Player>
-			<Position x="741.44166" z="754.67774"/>
-			<Orientation y="-2.36701"/>
-		</Entity>
 		<Entity uid="2458">
 			<Template>gaia/special_treasure_pegasus</Template>
 			<Player>0</Player>
@@ -17034,6 +17032,13 @@
 			<Player>1</Player>
 			<Position x="210.3307" z="589.7212"/>
 			<Orientation y="-1.6365"/>
+		</Entity>
+		<Entity uid="3487">
+			<Template>structures/gaul_tavern</Template>
+			<Player>1</Player>
+			<Position x="100.81067" z="604.93335"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55258"/>
 		</Entity>
 	</Entities>
 	<Paths/>

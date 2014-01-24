@@ -18,7 +18,6 @@
 				<Type>default</Type>
 				<Colour r="0.219608" g="0.247059" b="0.356863"/>
 				<Height>21.0885</Height>
-				<Shininess>250</Shininess>
 				<Waviness>3.125</Waviness>
 				<Murkiness>0.871094</Murkiness>
 				<Tint r="0.592157" g="0.639216" b="0.756863"/>
@@ -35,7 +34,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="563.662" y="74.2832" z="293.133"/>
+		<Position x="537.619" y="64.0602" z="407.17"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -17522,18 +17521,6 @@
 			<Player>0</Player>
 			<Position x="753.04261" z="99.05979"/>
 			<Orientation y="1.04381"/>
-		</Entity>
-		<Entity uid="2991">
-			<Template>other/celt_tavern</Template>
-			<Player>3</Player>
-			<Position x="523.84565" z="773.51758"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2992">
-			<Template>other/celt_tavern</Template>
-			<Player>2</Player>
-			<Position x="687.87037" z="350.25312"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2999">
 			<Template>units/rome_legionnaire_marian</Template>

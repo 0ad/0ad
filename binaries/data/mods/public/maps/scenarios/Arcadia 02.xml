@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>rain</SkySet>
-		<SunColour r="0.940564" g="0.771262" b="0.249249"/>
+		<SunColour r="0.937255" g="0.768627" b="0.247059"/>
 		<SunElevation angle="0.812077"/>
 		<SunRotation angle="0.632749"/>
 		<TerrainAmbientColour r="0.239216" g="0.294118" b="0.419608"/>
@@ -18,7 +18,6 @@
 				<Type>default</Type>
 				<Colour r="0.34902" g="0.392157" b="0.447059"/>
 				<Height>15.7377</Height>
-				<Shininess>150</Shininess>
 				<Waviness>2.1875</Waviness>
 				<Murkiness>0.900391</Murkiness>
 				<Tint r="0.329412" g="0.419608" b="0.501961"/>
@@ -35,7 +34,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="586.342" y="72.9301" z="544.56"/>
+		<Position x="126.059" y="91.2288" z="58.8316"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -21636,12 +21635,6 @@
 			<Player>0</Player>
 			<Position x="544.0146" z="582.15967"/>
 			<Orientation y="0.1832"/>
-		</Entity>
-		<Entity uid="4575">
-			<Template>other/celt_tavern</Template>
-			<Player>2</Player>
-			<Position x="147.9222" z="119.67664"/>
-			<Orientation y="-2.27611"/>
 		</Entity>
 		<Entity uid="4585">
 			<Template>other/unfinished_greek_temple</Template>
