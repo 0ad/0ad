@@ -120,6 +120,7 @@ class LeaderboardList():
                                   if state == 'won'}))
     # We only support 1v1s right now. TODO: Support team games.
     if len(winning_jids) * 2 > len(dict.keys(gamereport['playerStates'])):
+      # More than half the people have won. This is not a balanced team game or duel.
       return False
     if len(dict.keys(gamereport['playerStates'])) != 2:
       return False
