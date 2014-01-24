@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,22 +59,30 @@ glooxwrapper::StanzaExtension* GameReport::clone() const
 }
 
 /******************************************************
- * BoardListQuery, custom IQ Stanza, used solely to
- * request and receive leaderboard data from server.
+ * BoardListQuery, a flexible custom IQ Stanza useful for anything with ratings, used to
+ * request and receive leaderboard and rating data from server.
+ * Example stanza:
+ * <board player="foobar">1200</board>
  */
 BoardListQuery::BoardListQuery( const glooxwrapper::Tag* tag ):StanzaExtension( ExtBoardListQuery )
 {
 	if( !tag || tag->name() != "query" || tag->xmlns() != XMLNS_BOARDLIST )
 		return;
-
+	
+	const glooxwrapper::Tag* c = tag->findTag_clone( "query/command" );
+	if (c)
+		m_Command = c->cdata();
+	glooxwrapper::Tag::free(c);
 	const glooxwrapper::ConstTagList boardTags = tag->findTagList_clone( "query/board" );
 	glooxwrapper::ConstTagList::const_iterator it = boardTags.begin();
 	for ( ; it != boardTags.end(); ++it )
-		m_BoardList.push_back( *it );
+	{
+		m_StanzaBoardList.push_back( *it );
+	}
 }
 
 /**
- * Required by gloox, used to find the BoardList element in a recived IQ.
+ * Required by gloox, used to find the BoardList element in a received IQ.
  */
 const glooxwrapper::string& BoardListQuery::filterString() const
 {
@@ -89,9 +97,13 @@ glooxwrapper::Tag* BoardListQuery::tag() const
 {
 	glooxwrapper::Tag* t = glooxwrapper::Tag::allocate( "query" );
 	t->setXmlns( XMLNS_BOARDLIST );
+	
+	// Check for ratinglist or boardlist command
+	if(!m_Command.empty())
+		t->addChild(glooxwrapper::Tag::allocate("command", m_Command));
 
-	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_BoardList.begin();
-	for( ; it != m_BoardList.end(); ++it )
+	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_StanzaBoardList.begin();
+	for( ; it != m_StanzaBoardList.end(); ++it )
 		t->addChild( (*it)->clone() );
 
 	return t;
@@ -105,10 +117,10 @@ glooxwrapper::StanzaExtension* BoardListQuery::clone() const
 
 BoardListQuery::~BoardListQuery()
 {
-	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_BoardList.begin();
-	for( ; it != m_BoardList.end(); ++it )
+	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_StanzaBoardList.begin();
+	for( ; it != m_StanzaBoardList.end(); ++it )
 		glooxwrapper::Tag::free(*it);
-	m_BoardList.clear();
+	m_StanzaBoardList.clear();
 }
 
 /******************************************************
@@ -133,7 +145,7 @@ GameListQuery::GameListQuery( const glooxwrapper::Tag* tag ):StanzaExtension( Ex
 }
 
 /**
- * Required by gloox, used to find the GameList element in a recived IQ.
+ * Required by gloox, used to find the GameList element in a received IQ.
  */
 const glooxwrapper::string& GameListQuery::filterString() const
 {

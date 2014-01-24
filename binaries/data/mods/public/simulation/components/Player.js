@@ -610,6 +610,7 @@ Player.prototype.OnPlayerDefeated = function(msg)
 Player.prototype.OnDiplomacyChanged = function()
 {
 	this.UpdateSharedLos();
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).CheckConquestCriticalEntities();
 };
 
 Player.prototype.SetCheatsEnabled = function(flag)

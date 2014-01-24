@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 #define ExtBoardListQuery 1404
 #define XMLNS_BOARDLIST "jabber:iq:boardlist"
 
-/// Global Boardlist Extension
+/// Global Gamereport Extension
 #define ExtGameReport 1405
 #define XMLNS_GAMEREPORT "jabber:iq:gamereport"
 
@@ -84,6 +84,7 @@ public:
 
 	~BoardListQuery();
 
-	std::vector<const glooxwrapper::Tag*> m_BoardList;
+	glooxwrapper::string m_Command;
+	std::vector<const glooxwrapper::Tag*> m_StanzaBoardList;
 };
 #endif

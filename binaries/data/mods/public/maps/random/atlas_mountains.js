@@ -203,222 +203,109 @@ for (var i = 0; i < numPlayers; i++)
 RMS.SetProgress(10);
 
 // create bumps
-log("Creating bumps...");
-placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
-painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
-createAreas(
-	placer,
-	painter, 
-	avoidClasses(clPlayer, 9),
-	scaleByMapSize(100, 200)
-);
+createBumps(avoidClasses(clPlayer, 9));
 
-// create hills 1
-log("Creating hills 1...");
-placer = new ClumpPlacer(scaleByMapSize(40, 300), 0.2, 0.1, 1);
-var terrainPainter = new LayeredPainter(
-	[tCliff, tHill],		// terrains
-	[2]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 16, 2);
-createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)], 
-	avoidClasses(clPlayer, 20, clHill, 10),
-	6*scaleByMapSize(1, 4) * numPlayers
-);
-
-// create hills 2
-log("Creating hills 2...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.18, 0.15, 1);
-terrainPainter = new LayeredPainter(
-	[tCliff, tHill],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 20, 2);
-createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)], 
-	avoidClasses(clPlayer, 20, clHill, 7),
-	7*scaleByMapSize(1, 4) * numPlayers
-);
-
-// create hills 3
-log("Creating hills 2...");
-placer = new ClumpPlacer(scaleByMapSize(10, 75), 0.2, 0.1, 1);
-terrainPainter = new LayeredPainter(
-	[tCliff, tHill],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 24, 2);
-createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)], 
-	stayClasses(clHill, 0),
-	14*scaleByMapSize(1, 4) * numPlayers
-);
+createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMapSize(20, 120));
 
 RMS.SetProgress(25);
 
-// calculate desired number of trees for map (based on size)
-const MIN_TREES = 400;
-const MAX_TREES = 2000;
-const P_FOREST = 0.7;
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 // create forests
-log("Creating forests...");
-var types = [
-	[[tForestFloor, tGrass, pForest1], [tForestFloor, pForest1]],
-	[[tForestFloor, tGrass, pForest2], [tForestFloor, pForest2]]
-];	// some variation
-var size = numForest / (scaleByMapSize(2,8) * numPlayers);
-var num = floor(size / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
-	painter = new LayeredPainter(
-		types[i],		// terrains
-		[2]											// widths
-		);
-	createAreas(
-		placer,
-		[painter, paintClass(clForest)], 
-		avoidClasses(clPlayer, 20, clForest, 8, clHill, 1),
-		num
-	);
-}
+createForests(
+ [tGrass, tForestFloor, tForestFloor, pForest1, pForest2],
+ avoidClasses(clPlayer, 20, clForest, 14, clHill, 1), 
+ clForest,
+ 0.6,
+ 0
+);
 
 RMS.SetProgress(40);
 
 // create dirt patches
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter(
-		[tGrassDirt,tDirt], 		// terrains
-		[2]															// widths
-	);
-	createAreas(
-		placer,
-		[painter, paintClass(clDirt)],
-		avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10),
-		scaleByMapSize(20, 60)
-	);
-}
+createLayeredPatches(
+ [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
+ [tGrassDirt,tDirt],
+ [2],
+ avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10)
+);
 
 // create grass patches
 log("Creating grass patches...");
-
-var sizes = [scaleByMapSize(3, 32), scaleByMapSize(5, 48), scaleByMapSize(8, 80)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter(
-		[tGrass2,tGrassPatch], 		// terrains
-		[1]															// widths
-	);
-	createAreas(
-		placer,
-		[painter, paintClass(clGrass)],
-		avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10, clGrass, 15),
-		scaleByMapSize(20, 60)
-	);
-}
+createLayeredPatches(
+ [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
+ [tGrass2,tGrassPatch],
+ [1],
+ avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10, clGrass, 15)
+);
 
 RMS.SetProgress(50);
 
 log("Creating stone mines...");
-// create large stone quarries
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
-createObjectGroups(group, 0,
-	[avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2)],
-	scaleByMapSize(4,16), 100
-);
-
-// create small stone quarries
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
-createObjectGroups(group, 0,
-	[avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2)],
-	scaleByMapSize(4,16), 100
-);
+// create stone quarries
+createMines(
+ [
+  [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
+  [new SimpleObject(oStoneSmall, 2,5, 1,3)]
+ ],
+ avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2)
+)
 
 log("Creating metal mines...");
 // create large metal quarries
-group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
-createObjectGroups(group, 0,
-	[avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2)],
-	scaleByMapSize(4,16), 100
-);
+createMines(
+ [
+  [new SimpleObject(oMetalLarge, 1,1, 0,4)]
+ ],
+ avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2),
+ clMetal
+)
 
 RMS.SetProgress(60);
 
-// create small decorative rocks
-log("Creating small decorative rocks...");
-group = new SimpleGroup(
-	[new SimpleObject(aRockMedium, 1,3, 0,1)],
-	true
-);
-createObjectGroups(
-	group, 0,
-	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
-	scaleByMapSize(16, 262), 50
-);
-
-RMS.SetProgress(65);
-
-// create large decorative rocks
-log("Creating large decorative rocks...");
-group = new SimpleGroup(
-	[new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
-	true
-);
-createObjectGroups(
-	group, 0,
-	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
-	scaleByMapSize(8, 131), 50
-);
-
-RMS.SetProgress(70);
-
-// create deer
-log("Creating deer...");
-group = new SimpleGroup(
-	[new SimpleObject(oDeer, 5,7, 0,4)],
-	true, clFood
-);
-createObjectGroups(group, 0,
-	avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 20),
-	3 * numPlayers, 50
+// create decoration
+createDecoration
+(
+ [[new SimpleObject(aRockMedium, 1,3, 0,1)], 
+  [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
+  [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)],
+  [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)],
+  [new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
+ ],
+ [
+  scaleByMapSize(16, 262),
+  scaleByMapSize(8, 131),
+  scaleByMapSize(13, 200),
+  scaleByMapSize(13, 200),
+  scaleByMapSize(13, 200)
+ ],
+ avoidClasses(clForest, 0, clPlayer, 0, clHill, 0)
 );
 
 RMS.SetProgress(75);
 
-// create sheep
-log("Creating sheep...");
-group = new SimpleGroup(
-	[new SimpleObject(oSheep, 2,3, 0,2)],
-	true, clFood
-);
-createObjectGroups(group, 0,
-	avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 20),
-	3 * numPlayers, 50
+// create animals
+createFood
+(
+ [
+  [new SimpleObject(oSheep, 5,7, 0,4)],
+  [new SimpleObject(oDeer, 2,3, 0,2)]
+ ], 
+ [
+  3 * numPlayers,
+  3 * numPlayers
+ ]
 );
 
-// create berry bush
-log("Creating berry bush...");
-group = new SimpleGroup(
-	[new SimpleObject(oBerryBush, 5,7, 0,4)],
-	true, clFood
-);
-createObjectGroups(group, 0,
-	avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 20),
-	randInt(3, 12) * numPlayers + 2, 50
+// create fruits
+createFood
+(
+ [
+  [new SimpleObject(oBerryBush, 5,7, 0,4)]
+ ], 
+ [
+  randInt(3, 12) * numPlayers + 2
+ ],
+ avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
 );
 
 // create food treasures
@@ -446,25 +333,13 @@ createObjectGroups(group, 0,
 RMS.SetProgress(80);
 
 // create straggler trees
-log("Creating straggler trees...");
 var types = [oCarob, oAleppoPine];	// some variation
-var num = floor(numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup(
-		[new SimpleObject(types[i], 1,1, 0,3)],
-		true, clForest
-	);
-	createObjectGroups(group, 0,
-		avoidClasses(clForest, 1, clHill, 1, clPlayer, 10, clMetal, 1, clRock, 1, clTreasure, 1),
-		num
-	);
-}
+createStragglerTrees(types, avoidClasses(clForest, 1, clHill, 1, clPlayer, 10, clMetal, 1, clRock, 1, clTreasure, 1));
 
 // create hill trees
 log("Creating hill trees...");
 var types = [aCarob, aAleppoPine];	// some variation
-var num = floor(0.5 * numStragglers / types.length);
+var num = floor(0.2 * g_numStragglerTrees / types.length);
 for (var i = 0; i < types.length; ++i)
 {
 	group = new SimpleGroup(
@@ -477,42 +352,13 @@ for (var i = 0; i < types.length; ++i)
 	);
 }
 
-RMS.SetProgress(85);
+setFogFactor(0.2);
+setFogThickness(0.14);
 
-//create small grass tufts
-log("Creating small grass tufts...");
-group = new SimpleGroup(
-	[new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)]
-);
-createObjectGroups(group, 0,
-	avoidClasses(clHill, 2, clPlayer, 16, clDirt, 0),
-	scaleByMapSize(13, 200)
-);
-
-RMS.SetProgress(90);
-
-// create large grass tufts
-log("Creating large grass tufts...");
-group = new SimpleGroup(
-	[new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)]
-);
-createObjectGroups(group, 0,
-	avoidClasses(clHill, 2, clPlayer, 16, clDirt, 1, clForest, 0),
-	scaleByMapSize(13, 200)
-);
-
-RMS.SetProgress(95);
-
-// create bushes
-log("Creating bushes...");
-group = new SimpleGroup(
-	[new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
-);
-createObjectGroups(group, 0,
-	avoidClasses(clHill, 1, clPlayer, 10, clDirt, 1),
-	scaleByMapSize(13, 200), 50
-);
-
+setPPEffect("hdr");
+setPPContrast(0.45);
+setPPSaturation(0.56);
+setPPBloom(0.1);
 
 // Export map data
 ExportMap();

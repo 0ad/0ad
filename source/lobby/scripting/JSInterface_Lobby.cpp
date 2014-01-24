@@ -91,6 +91,13 @@ void JSI_Lobby::SendGetBoardList(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	g_XmppClient->SendIqGetBoardList();
 }
 
+void JSI_Lobby::SendGetRatingList(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	if (!g_XmppClient)
+		return;
+	g_XmppClient->SendIqGetRatingList();
+}
+
 void JSI_Lobby::SendGameReport(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal data)
 {
 	if (!g_XmppClient)

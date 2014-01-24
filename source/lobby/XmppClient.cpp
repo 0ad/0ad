@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -147,6 +147,8 @@ XmppClient::~XmppClient()
 		glooxwrapper::Tag::free(*it);
 	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_BoardList.begin(); it != m_BoardList.end(); ++it)
 		glooxwrapper::Tag::free(*it);
+	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_RatingList.begin(); it != m_RatingList.end(); ++it)
+		glooxwrapper::Tag::free(*it);
 }
 
 /// Network
@@ -208,6 +210,7 @@ void XmppClient::onDisconnect(gloox::ConnectionError error)
 	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_BoardList.begin(); it != m_BoardList.end(); ++it)
 		glooxwrapper::Tag::free(*it);
 	m_BoardList.clear();
+	m_RatingList.clear();
 	m_GameList.clear();
 	m_PlayerMap.clear();
 
@@ -270,9 +273,27 @@ void XmppClient::SendIqGetBoardList()
 	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
 
 	// Send IQ
+	BoardListQuery* b = new BoardListQuery();
+	b->m_Command = "getleaderboard";
 	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid);
-	iq.addExtension(new BoardListQuery());
+	iq.addExtension(b);
 	DbgXMPP("SendIqGetBoardList [" << tag_xml(iq) << "]");
+	m_client->send(iq);
+}
+
+/**
+ * Request the rating data from the server.
+ */
+void XmppClient::SendIqGetRatingList()
+{
+	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
+
+	// Send IQ
+	BoardListQuery* b = new BoardListQuery();
+	b->m_Command = "getratinglist";
+	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid);
+	iq.addExtension(b);
+	DbgXMPP("SendIqGetRatingList [" << tag_xml(iq) << "]");
 	m_client->send(iq);
 }
 
@@ -523,6 +544,31 @@ CScriptValRooted XmppClient::GUIGetBoardList(ScriptInterface& scriptInterface)
 	return boardList;
 }
 
+/**
+ * Handle requests from the GUI for rating list data.
+ *
+ * @return A JS array containing all known leaderboard data
+ */
+CScriptValRooted XmppClient::GUIGetRatingList(ScriptInterface& scriptInterface)
+{
+	CScriptValRooted ratingList;
+	scriptInterface.Eval("([])", ratingList);
+	for(std::vector<const glooxwrapper::Tag*>::const_iterator it = m_RatingList.begin(); it != m_RatingList.end(); ++it)
+	{
+		CScriptValRooted rating;
+		scriptInterface.Eval("({})", rating);
+
+		const char* attributes[] = { "name", "rank", "rating" };
+		short attributes_length = 3;
+		for (short i = 0; i < attributes_length; i++)
+			scriptInterface.SetProperty(rating.get(), attributes[i], wstring_from_utf8((*it)->findAttribute(attributes[i]).to_string()));
+
+		scriptInterface.CallFunctionVoid(ratingList.get(), "push", rating);
+	}
+
+	return ratingList;
+}
+
 /*****************************************************
  * Message interfaces                                *
  *****************************************************/
@@ -625,14 +671,28 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 		}
 		if(bq)
 		{
-			for(std::vector<const glooxwrapper::Tag*>::const_iterator it = m_BoardList.begin(); it != m_BoardList.end(); ++it )
-				glooxwrapper::Tag::free(*it);
-			m_BoardList.clear();
+			if (bq->m_Command == "boardlist")
+			{
+				for(std::vector<const glooxwrapper::Tag*>::const_iterator it = m_BoardList.begin(); it != m_BoardList.end(); ++it )
+					glooxwrapper::Tag::free(*it);
+				m_BoardList.clear();
 
-			for(std::vector<const glooxwrapper::Tag*>::const_iterator it = bq->m_BoardList.begin(); it != bq->m_BoardList.end(); ++it)
-				m_BoardList.push_back( (*it)->clone() );
+				for(std::vector<const glooxwrapper::Tag*>::const_iterator it = bq->m_StanzaBoardList.begin(); it != bq->m_StanzaBoardList.end(); ++it)
+					m_BoardList.push_back( (*it)->clone() );
 
-			CreateSimpleMessage("system", "boardlist updated", "internal");
+				CreateSimpleMessage("system", "boardlist updated", "internal");
+			}
+			else if (bq->m_Command == "ratinglist")
+			{
+				for(std::vector<const glooxwrapper::Tag*>::const_iterator it = m_RatingList.begin(); it != m_RatingList.end(); ++it )
+					glooxwrapper::Tag::free(*it);
+				m_RatingList.clear();
+
+				for(std::vector<const glooxwrapper::Tag*>::const_iterator it = bq->m_StanzaBoardList.begin(); it != bq->m_StanzaBoardList.end(); ++it)
+					m_RatingList.push_back( (*it)->clone() );
+
+				CreateSimpleMessage("system", "ratinglist updated", "internal");
+			}
 		}
 	}
 	else if(iq.subtype() == gloox::IQ::Error)

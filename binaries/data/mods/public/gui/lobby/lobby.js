@@ -36,6 +36,7 @@ function init(attribs)
 	Engine.LobbySetPlayerPresence("available");
 	Engine.SendGetGameList();
 	Engine.SendGetBoardList();
+	Engine.SendGetRatingList();
 	updatePlayerList();
 
 	resetFilters();
@@ -105,24 +106,37 @@ function displayGame(g, mapSizeFilter, playersNumberFilter, mapTypeFilter, showF
 	return true;
 }
 
-// Do a full update of the player listing **Only call on init**
+// Do a full update of the player listing, including ratings.
 function updatePlayerList()
 {
 	var playersBox = Engine.GetGUIObjectByName("playersBox");
-	[playerList, presenceList, nickList] = [[],[],[]];
+	[playerList, presenceList, nickList, ratingList] = [[],[],[],[]];
+	var ratingsmap = Engine.GetRatingList();
+	var defaultrating;
 	for each (var p in Engine.GetPlayerList())
 	{
-		var [name, status] = formatPlayerListEntry(p.name, p.presence);
+		defaultrating = '    -'; //Start with unrated. If no rating is found, keep it unrated.
+		for each (var user in ratingsmap)
+		{
+			if (user.name.toLowerCase() == p.name.toLowerCase())
+			{
+				defaultrating = user.rating;
+				break;
+			}
+		}
+		var [name, status, rating] = formatPlayerListEntry(p.name, p.presence, defaultrating);
 		playerList.push(name);
 		presenceList.push(status);
 		nickList.push(p.name);
+		ratingList.push(String("  " + rating));
 	}
 	playersBox.list_name = playerList;
 	playersBox.list_status = presenceList;
-	playersBox.list = nickList;
+	playersBox.list_rating = ratingList;
+	playersBox.list = nickList;	
 	if (playersBox.selected >= playersBox.list.length)
 		playersBox.selected = -1;
-	return [playerList, presenceList, nickList];
+	return [playerList, presenceList, nickList, ratingList];
 }
 
 // Update leaderboard listing
@@ -229,40 +243,41 @@ function updateGameList()
 }
 
 // The following function colorizes and formats the entries in the player list.
-function formatPlayerListEntry(nickname, presence)
+function formatPlayerListEntry(nickname, presence, rating)
 {
 	// Set colors based on player status
+	var color;
 	var color_close = '[/color]';
 	switch (presence)
 	{
 	case "playing":
-		var color = '[color="125 0 0"]';
+		color = '[color="125 0 0"]';
 		var status = color + "Busy" + color_close;
 		break;
 	case "gone":
 	case "away":
-		var color = '[color="229 76 13"]';
+		color = '[color="229 76 13"]';
 		var status = color + "Away" + color_close;
 		break;
 	case "available":
-		var color = '[color="0 125 0"]';
+		color = '[color="0 125 0"]';
 		var status = color + "Online" + color_close;
 		break;
 	case "offline":
-		var color = '[color="0 0 0"]';
+		color = '[color="0 0 0"]';
 		var status = color + "Offline" + color_close;
 		break;
 	default:
 		warn("Unknown presence '"+presence+"'");
-		var color = '[color="178 178 178"]';
+		color = '[color="178 178 178"]';
 		var status = color + "Unknown" + color_close;
 		break;
 	}
-
+	var elo = color + rating + color_close; 
 	var name = colorPlayerName(nickname);
 
 	// Push this player's name and status onto the list
-	return [name, status];
+	return [name, status, elo];
 }
 
 function selectGame(selected)
@@ -349,6 +364,11 @@ function twoDigits(n)
 	return n < 10 ? "0" + n : n;
 }
 
+function stripColorCodes(input)
+{
+	return input.replace(/\[(\w+)[^w]*?](.*?)\[\/\1]/g, '$2');
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // GUI event handlers
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -384,6 +404,7 @@ function onTick()
 			var playerList = playersBox.list_name;
 			var presenceList = playersBox.list_status;
 			var nickList = playersBox.list;
+			var ratingList = playersBox.list_rating;
 			var nickIndex = nickList.indexOf(nick);
 			switch(message.level)
 			{
@@ -391,13 +412,15 @@ function onTick()
 				if (nick == g_Name)
 				{
 					// We just joined, we need to get the full player list
-					[playerList, presenceList, nickList] = updatePlayerList();
+					[playerList, presenceList, nickList, ratingList] = updatePlayerList();
 					break;
 				}
-				var [name, status] = formatPlayerListEntry(nick, presence);
+				var [name, status, rating] = formatPlayerListEntry(nick, presence, "    -");
 				playerList.push(name);
 				presenceList.push(status);
 				nickList.push(nick);
+				ratingList.push(String(rating));
+				Engine.SendGetRatingList();
 				addChatMessage({ "text": "/special " + nick + " has joined.", "key": g_specialKey });
 				break;
 			case "leave":
@@ -406,6 +429,7 @@ function onTick()
 				playerList.splice(nickIndex, 1);
 				presenceList.splice(nickIndex, 1);
 				nickList.splice(nickIndex, 1);
+				ratingList.splice(nickIndex, 1);
 				addChatMessage({ "text": "/special " + nick + " has left.", "key": g_specialKey });
 				break;
 			case "nick":
@@ -416,18 +440,20 @@ function onTick()
 					addChatMessage({ "from": "system", "text": "Invalid nickname: " + message.data });
 					break;
 				}
-				var [name, status] = formatPlayerListEntry(message.data, presence); // TODO: actually we don't want to change the presence here, so use what was used before
+				var [name, status, rating] = formatPlayerListEntry(message.data, presence, stripColorCodes(ratingList[nickIndex])); // TODO: actually we don't want to change the presence here, so use what was used before
 				playerList[nickIndex] = name;
 				// presence stays the same
 				nickList[nickIndex] = message.data;
 				addChatMessage({ "text": "/special " + nick + " is now known as " + message.data + ".", "key": g_specialKey });
+				Engine.SendGetRatingList();
 				break;
 			case "presence":
 				if (nickIndex == -1) // This shouldn't ever happen
 					break;
-				var [name, status] = formatPlayerListEntry(nick, presence);
+				var [name, status, rating] = formatPlayerListEntry(nick, presence, stripColorCodes(ratingList[nickIndex]));
 				presenceList[nickIndex] = status;
 				playerList[nickIndex] = name;
+				ratingList[nickIndex] = rating;
 				break;
 			default:
 				warn("Unknown message.level '" + message.level + "'");
@@ -436,7 +462,8 @@ function onTick()
 			// Push new data to GUI
 			playersBox.list_name = playerList;
 			playersBox.list_status = presenceList;
-			playersBox.list = nickList;
+			playersBox.list_rating = ratingList;
+			playersBox.list = nickList;		
 			if (playersBox.selected >= playersBox.list.length)
 				playersBox.selected = -1;
 			break;
@@ -470,6 +497,9 @@ function onTick()
 					break;
 				case "boardlist updated":
 					updateBoardList();
+					break;
+				case "ratinglist updated":
+					updatePlayerList();
 					break;
 				}
 				break
@@ -541,14 +571,6 @@ function handleSpecialCommand(text)
 		break;
 	case "back":
 		Engine.LobbySetPlayerPresence("available");
-		break;
-	case "nick":
-		if (g_spammers[g_Name] != undefined)
-			break;
-		// Strip invalid characters.
-		nick = sanitizePlayerName(nick, true, true);
-		Engine.LobbySetNick(nick);
-		g_Name = nick;
 		break;
 	case "kick": // TODO: Split reason from nick and pass it too, for now just support "/kick nick"
 			// also allow quoting nicks (and/or prevent users from changing it here, but that doesn't help if the spammer uses a different client)
