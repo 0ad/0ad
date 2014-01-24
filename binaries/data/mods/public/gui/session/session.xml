@@ -459,7 +459,7 @@
 
 		<!-- Trading goods -->
 		<object name="tradeGoods" size="20 50 100%-20 82">
-			<object name="tradeHeader" size="0 0 180 100%" type="text" style="ModernLeftLabelText" ghost="true" caption="Trading goods selection:"/>
+			<object name="tradeHeader" size="0 0 180 100%" type="text" style="ModernLabelText" text_align="left" ghost="true" caption="Trading goods selection:"/>
 
 			<object size="180 0 100% 100%">
 				<repeat count="4">
@@ -467,7 +467,7 @@
 						<object name="tradeResourceButton[n]" size="4 0 36 100%" type="button" style="StoneButton">
 							<object name="tradeResourceIcon[n]" type="image" ghost="true"/>
 							<object name="tradeResourceSelection[n]" type="image" sprite="stretched:session/icons/corners.png" ghost="true"/>
-							<object name="tradeResourceText[n]" type="text" style="ModernCenteredLabelText" ghost="true"/>
+							<object name="tradeResourceText[n]" type="text" style="ModernLabelText" ghost="true"/>
 						</object>
 						<object name="tradeArrowUp[n]" size="36 0 52 50%" type="button" style="iconButton">
 							<object type="image" ghost="true" sprite="wheatArrowUp"/>
@@ -484,10 +484,10 @@
 		</object>
 
 		<object name="tradeStatistics" size="20 120 100%-20 168">
-			<object                    size="0   0   130   50%" type="text" style="ModernLeftLabelText" ghost="true" caption="Traders:"/>
-			<object name="landTraders" size="130 0   100%  50%" type="text" style="ModernLeftLabelText" ghost="true" />
-			<object                    size="0   50% 130  100%" type="text" style="ModernLeftLabelText" ghost="true" caption = "Merchant ships:"/>
-			<object name="shipTraders" size="130 50% 100% 100%" type="text" style="ModernLeftLabelText" ghost="true" />
+			<object                    size="0   0   130   50%" type="text" style="ModernLabelText" text_align="left" ghost="true" caption="Traders:"/>
+			<object name="landTraders" size="130 0   100%  50%" type="text" style="ModernLabelText" text_align="left" ghost="true" />
+			<object                    size="0   50% 130  100%" type="text" style="ModernLabelText" text_align="left" ghost="true" caption = "Merchant ships:"/>
+			<object name="shipTraders" size="130 50% 100% 100%" type="text" style="ModernLabelText" text_align="left" ghost="true" />
 		</object>
 
 		<object size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
@@ -948,10 +948,10 @@
 		<object name="minimapOverlay" size="4 4 100%-4 100%-4" type="image" sprite="stretched:session/minimap_circle_modern.png" ghost="true"/>
 
 		<!-- Idle Worker Button -->
-		<object size="100%-36 100%-36 100%-4 100%-4">
+		<object size="100%-36 100%-36 100%-5 100%-5">
 			<!-- TODO: should highlight the button if there's non-zero idle workers -->
-			<object size="-80 -80 100% 100%" type="image" sprite="stretched:session/minimap-idle.png" ghost="true" />
-			<!-- Since we don't support non-rectangular buttons, we approximate the area using 3 rectangles -->
+			<object name="idle-overlay" size="-85 -85 100% 100%" type="image" sprite="stretched:session/minimap-idle.png" ghost="true"/>
+			<!-- Since we don't support non-rectangular buttons, we approximate the area using 3 rectangles TODO: Make this cleaner -->
 			<object type="button"
 				tooltip_style="sessionToolTip"
 				tooltip="Find idle worker"
@@ -971,7 +971,7 @@
 				tooltip="Find idle worker"
 				size="-15 15 0 100%"
 			>
-				<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
+				<action on="Press">minimapButtonAction("idle", "pressed");findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
 			</object>
 		</object>
 	</object>
