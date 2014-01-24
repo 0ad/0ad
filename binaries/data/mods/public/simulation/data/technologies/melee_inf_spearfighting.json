@@ -16,8 +16,8 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "spear.png",
 	"researchTime": 40,
-	"tooltip": "Spearmen +2 hack attack.",
+	"tooltip": "All Spear units +2 hack attack.",
 	"modifications": [{"value": "Attack/Melee/Hack", "add": 2.0}],
-	"affects": ["Infantry Spear"],
+	"affects": ["Spear"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

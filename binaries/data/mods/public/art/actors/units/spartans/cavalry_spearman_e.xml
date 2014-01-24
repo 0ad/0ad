@@ -25,20 +25,26 @@
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
       <props>
-        <prop actor="units/macedonians/cavalry_spearman_e_r.xml" attachpoint="rider"/>
+        <prop actor="units/spartans/cavalry_spearman_e_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="hyppikon-horse-texture-plain">
-      <textures><texture file="skeletal/horse_hele_csw_e_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_hele_csw_e_1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="hyppikon-horse-texture-plain2">
-      <textures><texture file="skeletal/horse_hele_csw_e_2.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_hele_csw_e_2.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="hyppikon-horse-texture-blaze">
-      <textures><texture file="skeletal/horse_hele_csw_e_3.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_hele_csw_e_3.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
