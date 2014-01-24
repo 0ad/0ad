@@ -109,6 +109,21 @@ class LeaderboardList():
     db.add(game)
     db.commit()
     return game
+ 
+  def verifyGame(self, gamereport):
+    """
+      Returns a boolean based on whether the game should be rated.
+      Here, we can specify the criteria for rated games.
+    """
+    winning_jids = list(dict.keys({jid: state for jid, state in
+                                  gamereport['playerStates'].items()
+                                  if state == 'won'}))
+    # We only support 1v1s right now. TODO: Support team games.
+    if len(winning_jids) * 2 > len(dict.keys(gamereport['playerStates'])):
+      return False
+    if len(dict.keys(gamereport['playerStates'])) != 2:
+      return False
+    return True
 
   def rateGame(self, game):
     """
@@ -164,7 +179,7 @@ class LeaderboardList():
       Returns the result of addGame.
     """
     game = self.addGame(gamereport)
-    if game and len(game.players) == 2:
+    if game and self.verifyGame(gamereport):
       self.rateGame(game)
     else:
       self.lastRated = ""
