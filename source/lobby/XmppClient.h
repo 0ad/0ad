@@ -86,7 +86,7 @@ protected:
 	virtual void handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const glooxwrapper::MUCRoomParticipant, const glooxwrapper::Presence&);
 	virtual void handleMUCError(glooxwrapper::MUCRoom*, gloox::StanzaError);
 	virtual void handleMUCMessage(glooxwrapper::MUCRoom* room, const glooxwrapper::Message& msg, bool priv);
-	virtual void handleMUCSubject(glooxwrapper::MUCRoom*, const std::string& nick, const std::string& subject);
+	virtual void handleMUCSubject(glooxwrapper::MUCRoom*, const glooxwrapper::string& nick, const glooxwrapper::string& subject);
 	/* MUC handlers not supported by glooxwrapper */
 	// virtual bool handleMUCRoomCreation(glooxwrapper::MUCRoom*) {return false;}
 	// virtual void handleMUCInviteDecline(glooxwrapper::MUCRoom*, const glooxwrapper::JID&, const std::string&) {}
@@ -147,7 +147,7 @@ private:
 	/// Queue of messages for the GUI
 	std::deque<GUIMessage> m_GuiMessageQueue;
 	/// Current room subject/topic.
-	std::string m_Subject = "";
+	std::string m_Subject;
 };
 
 #endif // XMPPCLIENT_H

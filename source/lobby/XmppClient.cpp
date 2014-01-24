@@ -111,6 +111,8 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 
 	m_client->registerMessageHandler( this );
 
+	m_Subject = "";
+
 	// Uncomment to see the raw stanzas
 	//m_client->getWrapped()->logInstance().registerLogHandler( gloox::LogLevelDebug, gloox::LogAreaAll, this );
 
@@ -768,10 +770,10 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 /**
  * Update local cache when subject changes.
  */
-void XmppClient::handleMUCSubject(glooxwrapper::MUCRoom*, const std::string& UNUSED(nick), const std::string& subject)
+void XmppClient::handleMUCSubject(glooxwrapper::MUCRoom*, const glooxwrapper::string& UNUSED(nick), const glooxwrapper::string& subject)
 {
-	m_Subject = subject;
-	CreateSimpleMessage("muc", subject, "subject");
+	m_Subject = subject.to_string();
+	CreateSimpleMessage("muc", m_Subject, "subject");
 }
 
 /**
