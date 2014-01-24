@@ -3,18 +3,14 @@ function DistanceBetweenEntities(first, second)
 	var cmpFirstPosition = Engine.QueryInterface(first, IID_Position);
 	if (!cmpFirstPosition || !cmpFirstPosition.IsInWorld())
 			return Infinity;
-	var firstPosition = cmpFirstPosition.GetPosition();
+	var firstPosition = cmpFirstPosition.GetPosition2D();
 
 	var cmpSecondPosition = Engine.QueryInterface(second, IID_Position);
 	if (!cmpSecondPosition || !cmpSecondPosition.IsInWorld())
 			return Infinity;
-	var secondPosition = cmpSecondPosition.GetPosition();
+	var secondPosition = cmpSecondPosition.GetPosition2D();
 
-  var dx = secondPosition.x - firstPosition.x;
-  var dz = secondPosition.z - firstPosition.z;
-
-  var horizDistance = Math.sqrt(dx * dx + dz * dz);
-  return horizDistance;
+  return firstPosition.distanceTo(secondPosition);
 }
 
 /**

@@ -4,7 +4,7 @@ var Damage = {};
 /**
  * Damages units around a given origin.
  * data.attacker = <entity id>
- * data.origin = {'x':<int>, 'z':<int>}
+ * data.origin = <Vector2D>
  * data.radius = <int>
  * data.shape = <string>
  * data.strengths = {'hack':<float>, 'pierce':<float>, 'crush':<float>}
@@ -21,23 +21,23 @@ Damage.CauseSplashDamage = function(data)
 	// Cycle through all the nearby entities and damage it appropriately based on its distance from the origin.
 	for each (var entity in nearEnts)
 	{
-		var entityPosition = Engine.QueryInterface(entity, IID_Position).GetPosition();
+		var entityPosition = Engine.QueryInterface(entity, IID_Position).GetPosition2D();
 		if(data.shape == 'Circular') // circular effect with quadratic falloff in every direction
 		{
-			var squaredDistanceFromOrigin = Math.VectorDistanceSquared(data.origin, entityPosition);
+			var squaredDistanceFromOrigin = data.origin.distanceToSquared(entityPosition);
 			damageMultiplier == 1 - squaredDistanceFromOrigin / (data.radius * data.radius);
 		}
 		else if(data.shape == 'Linear') // linear effect with quadratic falloff in two directions (only used for certain missiles)
 		{
 			// Get position of entity relative to splash origin.
-			var relativePos = {"x":entityPosition.x - data.origin.x, "z":entityPosition.z - data.origin.z};
+			var relativePos = entityPosition.sub(data.origin);
 
 			// The width of linear splash is one fifth of the normal splash radius.
 			var width = data.radius/5;
 
 			// Effectivly rotate the axis to align with the missile direction.
-			var parallelDist = Math.VectorDot(relativePos, data.direction); // z axis
-			var perpDist = Math.abs(Math.VectorCross(relativePos, data.direction)); // y axis
+			var parallelDist = relativePos.dot(data.direction); // z axis
+			var perpDist = Math.abs(relativePos.cross(data.direction)); // y axis
 
 			// Check that the unit is within the distance at which it will get damaged.
 			if (parallelDist > -width && perpDist < width) // If in radius, quadratic falloff in both directions
@@ -87,15 +87,13 @@ Damage.CauseDamage = function(data)
 
 /**
  * Gets entities near a give point for given players.
- * origin = {'x':<int>, 'z':<int>}
+ * origin = <Vector2D>
  * radius = <int>
  * players = <array>
  * If players is not included, entities from all players are used.
  */
 Damage.EntitiesNearPoint = function(origin, radius, players)
 {
-	// Path to dummy template.
-	var dummyPath = "special/dummy";
 	// If there is insufficient data return an empty array.
 	if (!origin || !radius)
 		return [];
@@ -111,7 +109,7 @@ Damage.EntitiesNearPoint = function(origin, radius, players)
 
 	// Call RangeManager with dummy entity and return the result.
 	var rangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var rangeQuery = rangeManager.ExecuteQueryAroundPos({"x": origin.x, "y": origin.z}, 0, radius, players, IID_DamageReceiver);
+	var rangeQuery = rangeManager.ExecuteQueryAroundPos(origin, 0, radius, players, IID_DamageReceiver);
 	return rangeQuery;
 };
 
