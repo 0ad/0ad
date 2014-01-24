@@ -71,6 +71,7 @@ public:
 	void ban(const std::string& nick, const std::string& reason);
 	void SetPresence(const std::string& presence);
 	void GetPresence(const std::string& nickname, std::string& presence);
+	void GetSubject(std::string& subject);
 
 	CScriptValRooted GUIGetPlayerList(ScriptInterface& scriptInterface);
 	CScriptValRooted GUIGetGameList(ScriptInterface& scriptInterface);
@@ -85,9 +86,9 @@ protected:
 	virtual void handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const glooxwrapper::MUCRoomParticipant, const glooxwrapper::Presence&);
 	virtual void handleMUCError(glooxwrapper::MUCRoom*, gloox::StanzaError);
 	virtual void handleMUCMessage(glooxwrapper::MUCRoom* room, const glooxwrapper::Message& msg, bool priv);
+	virtual void handleMUCSubject(glooxwrapper::MUCRoom*, const std::string& nick, const std::string& subject);
 	/* MUC handlers not supported by glooxwrapper */
 	// virtual bool handleMUCRoomCreation(glooxwrapper::MUCRoom*) {return false;}
-	// virtual void handleMUCSubject(glooxwrapper::MUCRoom*, const std::string&, const std::string&) {}
 	// virtual void handleMUCInviteDecline(glooxwrapper::MUCRoom*, const glooxwrapper::JID&, const std::string&) {}
 	// virtual void handleMUCInfo(glooxwrapper::MUCRoom*, int, const std::string&, const glooxwrapper::DataForm*) {}
 	// virtual void handleMUCItems(glooxwrapper::MUCRoom*, const std::list<gloox::Disco::Item*, std::allocator<gloox::Disco::Item*> >&) {}
@@ -143,8 +144,10 @@ private:
 	std::vector<const glooxwrapper::Tag*> m_BoardList;
 	/// List of ratings
 	std::vector<const glooxwrapper::Tag*> m_RatingList;
-	/// Queue of messages
+	/// Queue of messages for the GUI
 	std::deque<GUIMessage> m_GuiMessageQueue;
+	/// Current room subject/topic.
+	std::string m_Subject = "";
 };
 
 #endif // XMPPCLIENT_H

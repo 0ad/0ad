@@ -164,9 +164,10 @@ public:
 		return false;
 	}
 
-	virtual void handleMUCSubject(gloox::MUCRoom* UNUSED(room), const std::string& UNUSED(nick), const std::string& UNUSED(subject))
+	virtual void handleMUCSubject(gloox::MUCRoom* UNUSED(room), const std::string& nick, const std::string& subject)
 	{
-		/* Not supported */
+		/* MUCRoom not supported */
+		m_Wrapped->handleMUCSubject(NULL, nick, subject);
 	}
 
 	virtual void handleMUCInviteDecline(gloox::MUCRoom* UNUSED(room), const gloox::JID& UNUSED(invitee), const std::string& UNUSED(reason))
