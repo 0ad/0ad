@@ -454,7 +454,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     self.add_event_handler("session_start", self.start)
     self.add_event_handler("muc::%s::got_online" % self.room, self.muc_online)
     self.add_event_handler("muc::%s::got_offline" % self.room, self.muc_offline)
-    self.add_event_handler("groupchat_message", self.muc_message)    
+    self.add_event_handler("groupchat_message", self.muc_message)
 
   def start(self, event):
     """
