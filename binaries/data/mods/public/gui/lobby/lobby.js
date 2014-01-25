@@ -2,10 +2,12 @@ var g_ChatMessages = [];
 var g_Name = "unknown";
 var g_GameList = {};
 var g_specialKey = Math.random();
+// This object looks like {"name":[numMessagesSinceReset, lastReset, timeBlocked]} when in use.
 var g_spamMonitor = {};
-var g_spammers = {};
 var g_timestamp = Engine.ConfigDB_GetValue("user", "lobby.chattimestamp") == "true";
 var g_mapSizes = {};
+// Block spammers for 30 seconds.
+var SPAM_BLOCK_LENGTH = 30;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -41,8 +43,6 @@ function init(attribs)
 	updateSubject(Engine.LobbyGetRoomSubject());
 
 	resetFilters();
-	setTimeout(clearSpamMonitor, 5000);
-	setTimeout(clearSpammers, 30000);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -281,43 +281,43 @@ function updateGameList()
  * @param nickname Name of player.
  * @param presence Presence of player.
  * @param rating Rating of player.
- * @return Array of mutated parameters.
+ * @return Colorized versions of name, status, and rating.
  */
 function formatPlayerListEntry(nickname, presence, rating)
 {
 	// Set colors based on player status
-	var color;
-	var color_close = '[/color]';
+	var color, status;
 	switch (presence)
 	{
 	case "playing":
-		color = '[color="125 0 0"]';
-		var status = color + "Busy" + color_close;
+		color = "125 0 0";
+		status = "Busy";
 		break;
 	case "gone":
 	case "away":
-		color = '[color="229 76 13"]';
-		var status = color + "Away" + color_close;
+		color = "229 76 13";
+		status = "Away";
 		break;
 	case "available":
-		color = '[color="0 125 0"]';
-		var status = color + "Online" + color_close;
+		color = "0 125 0";
+		status = "Online";
 		break;
 	case "offline":
-		color = '[color="0 0 0"]';
-		var status = color + "Offline" + color_close;
+		color = "0 0 0";
+		status = "Offline";
 		break;
 	default:
-		warn("Unknown presence '"+presence+"'");
-		color = '[color="178 178 178"]';
-		var status = color + "Unknown" + color_close;
+		warn("Unknown presence '" + presence + "'");
+		color = "178 178 178";
+		status = "Unknown";
 		break;
 	}
-	var elo = color + rating + color_close; 
-	var name = colorPlayerName(nickname);
+	var formattedStatus = '[color="' + color + '"]' + status + "[/color]";
+	var formattedRating = '[color="' + color + '"]' + rating + "[/color]"; 
+	var formattedName = colorPlayerName(nickname);
 
 	// Push this player's name and status onto the list
-	return [name, status, elo];
+	return [formattedName, formattedStatus, formattedRating];
 }
 
 /**
@@ -329,10 +329,9 @@ function updateGameSelection()
 	// If a game is not selected, hide the game information area.
 	if (selected == -1)
 	{
-		// Hide the game info panel if a game is not selected
 		Engine.GetGUIObjectByName("gameInfo").hidden = true;
-		Engine.GetGUIObjectByName("gameInfoEmpty").hidden = false;
 		Engine.GetGUIObjectByName("joinGameButton").hidden = true;
+		Engine.GetGUIObjectByName("gameInfoEmpty").hidden = false;
 		return;
 	}
 
@@ -348,12 +347,12 @@ function updateGameSelection()
 		mapData = Engine.LoadMapSettings(g_GameList[g].mapName + ".xml");
 	else
 		// Warn the player if we can't find the map. 
-		warn("Map '"+ g_GameList[g].mapName +"'  not found");
+		warn("Map '" + g_GameList[g].mapName + "' not found locally.");
 
-	// Show the game info paneland join button.
+	// Show the game info panel and join button.
 	Engine.GetGUIObjectByName("gameInfo").hidden = false;
-	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = true;
 	Engine.GetGUIObjectByName("joinGameButton").hidden = false;
+	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = true;
 
 	// Display the map name, number of players, the names of the players, the map size and the map type.
 	Engine.GetGUIObjectByName("sgMapName").caption = g_GameList[g].niceMapName;
@@ -367,13 +366,13 @@ function updateGameSelection()
 		var mapDescription = mapData.settings.Description;
 	else
 		var mapDescription = "Sorry, no description available.";
-	
+
 	// Display map preview if it exists, otherwise display a placeholder.
 	if (mapData && mapData.settings.Preview)
 		var mapPreview = mapData.settings.Preview;
 	else
 		var mapPreview = "nopreview.png";
-	
+
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapDescription;
 	Engine.GetGUIObjectByName("sgMapPreview").sprite = "cropped:(0.7812,0.5859)session/icons/mappreview/" + mapPreview;
 }
@@ -430,6 +429,7 @@ function onTick()
 	Engine.RecvXmppClient();
 
 	updateTimers();
+	checkSpamMonitor();
 
 	// Receive messages
 	while (true)
@@ -741,48 +741,56 @@ function ircFormat(text, from, color, key)
  *
  * @param text Body of message.
  * @param from Sender of message.
- * @return True is message is spam.
+ * @return True is message should be blocked.
  */
 function updateSpamandDetect(text, from)
 {
-	// Check for blank lines.
+	// Integer time in seconds.
+	var time = Math.floor(Date.now() / 1000);
+
+	// Update or initialize the player in the spam monitor.
+	if (g_spamMonitor[from])
+		g_spamMonitor[from][0]++;
+	else
+		g_spamMonitor[from] = [1, time, 0];
+
+	// Block blank lines.
 	if (text == " ")
 		return true;
-	// Update the spam monitor. TODO: Make this smarter and block profanity.
-	if (g_spamMonitor[from])
-		g_spamMonitor[from]++;
-	else
-		g_spamMonitor[from] = 1;
-	if (g_spamMonitor[from] > 5)
-		g_spammers[from] = true
-	// Block spammers and notify the player if they are blocked.
-	if(from in g_spammers)
+	// Block users who are still within their spam block period.
+	else if (g_spamMonitor[from][2] + SPAM_BLOCK_LENGTH >= time)
+		return true;
+	// Block users who exceed the rate of 1 message per second for five seconds and are not already blocked. TODO: Make this smarter and block profanity.
+	else if (g_spamMonitor[from][0] == 5)
 	{
+		g_spamMonitor[from][2] = time;
 		if (from == g_Name)
-			// TODO: Only show this once each time they are blocked.
 			addChatMessage({ "from": "system", "text": "Please do not spam. You have been blocked for thirty seconds." });
 		return true;
 	}
 	// Return false if everything is clear.
-	return false;
+	else
+		return false;
 }
 
 /**
  * Reset timer used to measure message send speed.
  */
-function clearSpamMonitor()
+function checkSpamMonitor()
 {
-	g_spamMonitor = {};
-	setTimeout(clearSpamMonitor, 5000);
-}
+	// Integer time in seconds.
+	var time = Math.floor(Date.now() / 1000);
 
-/**
- * Clear the list of spammers every 30 seconds.
- */
-function clearSpammers()
-{
-	g_spammers = {};
-	setTimeout(clearSpammers, 30000);
+	// Clear message count every 5 seconds.
+	for each (var stats in g_spamMonitor)
+	{
+		if (stats[1] + 5 <= time)
+		{
+			stats[1] = time;
+			stats[0] = 0;
+		}
+	}
+
 }
 
 /* Utilities */
