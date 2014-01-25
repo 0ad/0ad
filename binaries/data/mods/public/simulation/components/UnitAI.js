@@ -1820,7 +1820,8 @@ var UnitFsmSpec = {
 
 					// if we're targetting a formation, find a new member of that formation
 					var cmpTargetFormation = Engine.QueryInterface(this.order.data.formationTarget || INVALID_ENTITY, IID_Formation);
-					if (cmpTargetFormation)
+					// if there is no target, it means previously searching for the target inside the target formation failed, so don't repeat the search
+					if (target && cmpTargetFormation)
 					{
 						this.order.data.target = this.order.data.formationTarget;
 						this.TimerHandler(msg.data, msg.lateness);
