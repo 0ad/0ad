@@ -572,7 +572,7 @@ function submitChatInput()
 	var text = escapeText(input.caption);
 	if (text.length)
 	{
-		if (!handleSpecialCommand(text))
+		if (!handleSpecialCommand(text) && !isSpam(text, g_Name))
 			Engine.LobbySendMessage(text);
 		input.caption = "";
 	}
@@ -666,7 +666,8 @@ function addChatMessage(msg)
 		msg.text = msg.text.replace(new RegExp('\\b' + '\\' + g_Name + '\\b', "g"), colorPlayerName(g_Name));
 
 	// Run spam test
-	if (updateSpamandDetect(msg.text, msg.from))
+	updateSpamMonitor(msg.from);
+	if (isSpam(msg.text, msg.from))
 		return;
 
 	// Format Text
@@ -737,21 +738,36 @@ function ircFormat(text, from, color, key)
 }
 
 /**
- * Track potential spammers and block if nessasary.
+ * Update the spam monitor.
  *
- * @param text Body of message.
- * @param from Sender of message.
- * @return True is message should be blocked.
+ * @param from User to update.
  */
-function updateSpamandDetect(text, from)
+function updateSpamMonitor(from)
 {
 	// Integer time in seconds.
 	var time = Math.floor(Date.now() / 1000);
 
-	// Update or initialize the player in the spam monitor.
+	// Update or initialize the user in the spam monitor.
 	if (g_spamMonitor[from])
 		g_spamMonitor[from][0]++;
 	else
+		g_spamMonitor[from] = [1, time, 0];
+}
+
+/**
+ * Check if a message is spam.
+ *
+ * @param text Body of message.
+ * @param from Sender of message.
+ * @return True if message should be blocked.
+ */
+function isSpam(text, from)
+{
+	// Integer time in seconds.
+	var time = Math.floor(Date.now() / 1000);
+
+	// Initialize if not already in the database.
+	if (!g_spamMonitor[from])
 		g_spamMonitor[from] = [1, time, 0];
 
 	// Block blank lines.
@@ -761,7 +777,7 @@ function updateSpamandDetect(text, from)
 	else if (g_spamMonitor[from][2] + SPAM_BLOCK_LENGTH >= time)
 		return true;
 	// Block users who exceed the rate of 1 message per second for five seconds and are not already blocked. TODO: Make this smarter and block profanity.
-	else if (g_spamMonitor[from][0] == 5)
+	else if (g_spamMonitor[from][0] == 6)
 	{
 		g_spamMonitor[from][2] = time;
 		if (from == g_Name)
