@@ -111,8 +111,6 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 
 	m_client->registerMessageHandler( this );
 
-	m_Subject = "";
-
 	// Uncomment to see the raw stanzas
 	//m_client->getWrapped()->logInstance().registerLogHandler( gloox::LogLevelDebug, gloox::LogAreaAll, this );
 
@@ -772,7 +770,7 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
  */
 void XmppClient::handleMUCSubject(glooxwrapper::MUCRoom*, const glooxwrapper::string& UNUSED(nick), const glooxwrapper::string& subject)
 {
-	m_Subject = subject.to_string();
+	m_Subject = subject.c_str();
 	CreateSimpleMessage("muc", m_Subject, "subject");
 }
 
