@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="corral wood">
+      <mesh>props/iber_corral_wood.dae</mesh>
+      <textures>
+        <texture file="props/scaffold.png" name="baseTex"/>
+		<texture file="structural/ao/iber_corral.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>no_trans_ao.xml</material>
+</actor>
