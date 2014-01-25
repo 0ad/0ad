@@ -454,7 +454,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     self.add_event_handler("session_start", self.start)
     self.add_event_handler("muc::%s::got_online" % self.room, self.muc_online)
     self.add_event_handler("muc::%s::got_offline" % self.room, self.muc_offline)
-    
+    self.add_event_handler("groupchat_message", self.muc_message)    
 
   def start(self, event):
     """
@@ -502,6 +502,15 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       self.lastLeft = str(presence['muc']['jid'])
       if str(presence['muc']['jid']) in self.nicks:
         del self.nicks[str(presence['muc']['jid'])]
+
+  def muc_message(self, msg):
+    """
+    Process new messages from the chatroom.
+    """
+    if msg['mucnick'] != self.nick and self.nick.lower() in msg['body'].lower():
+      self.send_message(mto=msg['from'].bare,
+                        mbody="I (%s) am the administrative bot in this lobby and cannot participate in any games." % self.nick,
+                        mtype='groupchat')
 
   def iqhandler(self, iq):
     """
