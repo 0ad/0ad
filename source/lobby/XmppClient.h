@@ -136,13 +136,11 @@ public:
 
 private:
 	/// Map of players
-	std::map<std::string, gloox::Presence::PresenceType> m_PlayerMap;
+	std::map<std::string, std::vector<std::string> > m_PlayerMap;
 	/// List of games
 	std::vector<const glooxwrapper::Tag*> m_GameList;
 	/// List of rankings
 	std::vector<const glooxwrapper::Tag*> m_BoardList;
-	/// List of ratings
-	std::vector<const glooxwrapper::Tag*> m_RatingList;
 	/// Queue of messages for the GUI
 	std::deque<GUIMessage> m_GuiMessageQueue;
 	/// Current room subject/topic.

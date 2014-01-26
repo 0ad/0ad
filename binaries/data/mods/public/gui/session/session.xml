@@ -971,7 +971,7 @@
 				tooltip="Find idle worker"
 				size="-15 15 0 100%"
 			>
-				<action on="Press">minimapButtonAction("idle", "pressed");findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
+				<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
 			</object>
 		</object>
 	</object>

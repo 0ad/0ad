@@ -154,8 +154,6 @@ XmppClient::~XmppClient()
 		glooxwrapper::Tag::free(*it);
 	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_BoardList.begin(); it != m_BoardList.end(); ++it)
 		glooxwrapper::Tag::free(*it);
-	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_RatingList.begin(); it != m_RatingList.end(); ++it)
-		glooxwrapper::Tag::free(*it);
 }
 
 /// Network
@@ -217,7 +215,6 @@ void XmppClient::onDisconnect(gloox::ConnectionError error)
 	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_BoardList.begin(); it != m_BoardList.end(); ++it)
 		glooxwrapper::Tag::free(*it);
 	m_BoardList.clear();
-	m_RatingList.clear();
 	m_GameList.clear();
 	m_PlayerMap.clear();
 
@@ -484,44 +481,17 @@ void XmppClient::handleOOB(const glooxwrapper::JID&, const glooxwrapper::OOB&)
  */
 CScriptValRooted XmppClient::GUIGetPlayerList(ScriptInterface& scriptInterface)
 {
-	const int PLAYER_NUM = m_PlayerMap.size();
-	std::string playerListArray[PLAYER_NUM][3];
-	std::string presence;
 	CScriptValRooted playerList;
 	scriptInterface.Eval("([])", playerList);
 
-	int i = 0;
-	// Load name and presence data.
-	for (std::map<std::string, gloox::Presence::PresenceType>::const_iterator it = m_PlayerMap.begin(); it != m_PlayerMap.end(); ++it, i++)
-	{
-		playerListArray[i][0] = it->first;
-		GetPresenceString(it->second, presence);
-		playerListArray[i][1] = presence;
-	}
-
-	// Load rating data.
-	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_RatingList.begin(); it != m_RatingList.end(); ++it)
-	{
-		// Try to match the names in the rating list to the names from the player map.
-		for (i = 0; i < PLAYER_NUM; i++)
-		{
-			std::string name = (*it)->findAttribute("name").to_string();
-			if (playerListArray[i][0].compare(name) == 0)
-			{
-				playerListArray[i][2] = (*it)->findAttribute("rating").to_string();
-				break;
-			}
-		}
-	}
-
-	// Convert the array to a Javascript object.
-	for (i = 0; i < PLAYER_NUM; i++)
+	// Convert the internal data structure to a Javascript object.
+	for (std::map<std::string, std::vector<std::string> >::const_iterator it = m_PlayerMap.begin(); it != m_PlayerMap.end(); ++it)
 	{
 		CScriptValRooted player;
 		scriptInterface.Eval("({})", player);
-		scriptInterface.SetProperty(player.get(), "name", wstring_from_utf8(playerListArray[i][0]));
-		scriptInterface.SetProperty(player.get(), "presence", wstring_from_utf8(playerListArray[i][1]));
-		scriptInterface.SetProperty(player.get(), "rating", wstring_from_utf8(playerListArray[i][2]));
+		scriptInterface.SetProperty(player.get(), "name", wstring_from_utf8(it->first));
+		scriptInterface.SetProperty(player.get(), "presence", wstring_from_utf8(it->second[0]));
+		scriptInterface.SetProperty(player.get(), "rating", wstring_from_utf8(it->second[1]));
 		scriptInterface.CallFunctionVoid(playerList.get(), "push", player);
 	}
 
@@ -687,18 +657,18 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 				m_BoardList.clear();
 
 				for(std::vector<const glooxwrapper::Tag*>::const_iterator it = bq->m_StanzaBoardList.begin(); it != bq->m_StanzaBoardList.end(); ++it)
-					m_BoardList.push_back( (*it)->clone() );
+					m_BoardList.push_back((*it)->clone());
 
 				CreateSimpleMessage("system", "boardlist updated", "internal");
 			}
 			else if (bq->m_Command == "ratinglist")
 			{
-				for(std::vector<const glooxwrapper::Tag*>::const_iterator it = m_RatingList.begin(); it != m_RatingList.end(); ++it )
-					glooxwrapper::Tag::free(*it);
-				m_RatingList.clear();
-
 				for(std::vector<const glooxwrapper::Tag*>::const_iterator it = bq->m_StanzaBoardList.begin(); it != bq->m_StanzaBoardList.end(); ++it)
-					m_RatingList.push_back( (*it)->clone() );
+				{
+					std::string name = (*it)->findAttribute("name").to_string();
+					if (m_PlayerMap.find(name) != m_PlayerMap.end())
+						m_PlayerMap[name][1] = (*it)->findAttribute("rating").to_string();
+				}
 
 				CreateSimpleMessage("system", "ratinglist updated", "internal");
 			}
@@ -748,12 +718,16 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 	//std::string jid = participant.jid->full();
 	std::string nick = participant.nick->resource().to_string();
 	gloox::Presence::PresenceType presenceType = presence.presence();
+	std::string presenceString;
+	GetPresenceString(presenceType, presenceString);
 	if (presenceType == gloox::Presence::Unavailable)
 	{
 		if (!participant.newNick.empty() && (participant.flags & (gloox::UserNickChanged | gloox::UserSelf)))
 		{
 			// we have a nick change
-			m_PlayerMap[participant.newNick.to_string()] = gloox::Presence::Unavailable;
+			std::string newNick = participant.newNick.to_string();
+			m_PlayerMap[newNick].resize(2);
+			m_PlayerMap[newNick] = {presenceString, ""};
 			CreateSimpleMessage("muc", nick, "nick", participant.newNick.to_string());
 		}
 		else
@@ -770,7 +744,8 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 			CreateSimpleMessage("muc", nick, "presence");
 
 		DbgXMPP(nick << " is in the room, presence : " << (int)presenceType);
-		m_PlayerMap[nick] = presenceType;
+		m_PlayerMap[nick].resize(2);
+		m_PlayerMap[nick] = {presenceString, ""};
 	}
 }
 
@@ -863,7 +838,7 @@ void XmppClient::SetPresence(const std::string& presence)
 void XmppClient::GetPresence(const std::string& nick, std::string& presence)
 {
 	if (m_PlayerMap.find(nick) != m_PlayerMap.end())
-		GetPresenceString(m_PlayerMap[nick], presence);
+		presence = m_PlayerMap[nick][0];
 	else
 		presence = "offline";
 }
