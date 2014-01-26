@@ -727,7 +727,8 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 			// we have a nick change
 			std::string newNick = participant.newNick.to_string();
 			m_PlayerMap[newNick].resize(2);
-			m_PlayerMap[newNick] = {presenceString, ""};
+			m_PlayerMap[newNick][0] = presenceString;
+			m_PlayerMap[newNick][1] =  "";
 			CreateSimpleMessage("muc", nick, "nick", participant.newNick.to_string());
 		}
 		else
@@ -745,7 +746,8 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 
 		DbgXMPP(nick << " is in the room, presence : " << (int)presenceType);
 		m_PlayerMap[nick].resize(2);
-		m_PlayerMap[nick] = {presenceString, ""};
+		m_PlayerMap[newNick][0] = presenceString;
+		m_PlayerMap[newNick][1] =  "";
 	}
 }
 
