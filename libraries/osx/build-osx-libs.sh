@@ -44,6 +44,7 @@ GLOOX_VERSION="gloox-1.0.9"
 # * ENet 1.3.3
 # * NVTT
 # * FCollada
+# * MiniUPnPc
 # --------------------------------------------------------------
 # Provided by OS X:
 # * OpenAL
