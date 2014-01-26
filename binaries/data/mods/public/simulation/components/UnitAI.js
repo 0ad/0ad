@@ -2695,8 +2695,7 @@ var UnitFsmSpec = {
 							if (nearby)
 							{
 								this.alertGarrisoningTarget = nearby;
-								if (this.MoveToTarget(this.alertGarrisoningTarget))
-									this.SetNextState("APPROACHING");
+								this.ReplaceOrder("Garrison", {"target": this.alertGarrisoningTarget});
 							}
 							else
 								this.FinishOrder();
