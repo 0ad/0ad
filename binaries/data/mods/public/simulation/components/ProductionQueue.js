@@ -609,7 +609,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		{
 			var cmpAlertRaiser = Engine.QueryInterface(this.alertRaiser, IID_AlertRaiser);
 			if(cmpAlertRaiser)
-				cmpAlertRaiser.UpdateUnits();
+				cmpAlertRaiser.UpdateUnits(createdEnts);
 		}
 	}
 	
