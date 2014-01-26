@@ -37,12 +37,15 @@
 		<!-- Right panel: Game details. -->
 		<object name="rightPanel" size="100%-250 30 100%-20 100%-20" >
 			<object name="gameInfoEmpty" size="0 0 100% 100%-60" type="image" sprite="ModernDarkBoxGold" hidden="false">
-				<object size="50%-110 50%-50 50%+110 50%+50" type="image" sprite="productLogo"/>
+				<object name="logo" size="50%-110 40 50%+110 140" type="image" sprite="productLogo"/>
+				<object name="subjectBox" type="image" sprite="ModernDarkBoxWhite" size="3% 180 97% 99%">
+					<object name="subject" size="5 5 100%-5 100%-5" type="text" style="ModernText" text_align="center"/>
+				</object>
 			</object>
 			<object name="gameInfo" size="0 0 100% 100%-90" type="image" sprite="ModernDarkBoxGold" hidden="true">
 
 				<!-- Map Name -->
-				<object name="sgMapName" size="0 5 100% 20" type="text" style="ModernCenteredLabelText"/>
+				<object name="sgMapName" size="0 5 100% 20" type="text" style="ModernLabelText"/>
 
 				<!-- Map Preview -->
 				<object name="sgMapPreview" size="5 25 100%-5 235"  type="image" sprite=""/>
@@ -51,20 +54,20 @@
 
 				<!-- Map Type -->
 				<object size="5 240 50% 265" type="image" sprite="ModernItemBackShadeLeft">
-					<object size="0 0 100%-10 100%" type="text" style="ModernRightLabelText">Map Type:</object>
+					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">Map Type:</object>
 				</object>
 				<object size="50% 240 100%-5 265" type="image" sprite="ModernItemBackShadeRight">
-					<object name="sgMapType" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+					<object name="sgMapType" size="0 0 100% 100%" type="text" style="ModernLabelText" text_align="left"/>
 				</object>
 
 				<object size="5 264 100%-5 265" type="image" sprite="ModernWhiteLine" z="25"/>
 
 				<!-- Map Size -->
 				<object size="5 265 50% 290" type="image" sprite="ModernItemBackShadeLeft">
-					<object size="0 0 100%-10 100%" type="text" style="ModernRightLabelText">Map Size:</object>
+					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">Map Size:</object>
 				</object>
 				<object size="50% 265 100%-5 290" type="image" sprite="ModernItemBackShadeRight">
-					<object name="sgMapSize" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+					<object name="sgMapSize" size="0 0 100% 100%" type="text" style="ModernLabelText" text_align="left"/>
 				</object>
 
 				<object size="5 289 100%-5 290" type="image" sprite="ModernWhiteLine" z="25"/>
@@ -76,8 +79,8 @@
 
 				<object type="image" sprite="ModernDarkBoxWhite" size="3% 76% 97% 99%">
 					<!-- Number of Players -->
-					<object size="32% 3% 57% 12%" type="text" style="ModernLeftLabelText">Players:</object>
-					<object name="sgNbPlayers" size="52% 3% 62% 12%" type="text" style="ModernLeftLabelText"/>
+					<object size="32% 3% 57% 12%" type="text" style="ModernLabelText" text_align="left">Players:</object>
+					<object name="sgNbPlayers" size="52% 3% 62% 12%" type="text" style="ModernLabelText" text_align="left"/>
 
 					<!-- Player Names -->
 					<object name="sgPlayersNames" size="0 15% 100% 100%" type="text" style="MapPlayerList"/>
@@ -109,7 +112,7 @@
 		<!-- Middle panel: Filters, game list, chat box. -->
 		<object name="middlePanel" size="20%+5 5% 100%-255 97.2%">
 			<object name="gamesBox" style="ModernList" type="olist" size="0 25 100% 48%">
-				<action on="SelectionChange">selectGame(this.selected);</action>
+				<action on="SelectionChange">updateGameSelection();</action>
 				<def id="name" heading="Name" color="0 60 0" width="25%"/>
 				<!--<def id="ip" heading="IP" color="0 128 128" width="170"/>-->
 				<def id="mapName" heading="Map Name" color="128 128 128" width="25%"/>

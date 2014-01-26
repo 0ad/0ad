@@ -52,23 +52,17 @@
 		sound_closed="audio/interface/ui/ui_button_click.ogg"
 		sound_selected="audio/interface/ui/ui_button_click.ogg"
 	/>
-	<style name="ModernLeftLabelText"
-		font="serif-bold-stroke-14"
-		textcolor="white"
-		text_align="left"
-		text_valign="center"
-	/>
-	<style name="ModernRightLabelText"
-		font="serif-bold-stroke-14"
-		textcolor="white"
-		text_align="right"
-		text_valign="center"
-	/>
-	<style name="ModernCenteredLabelText"
+	<style name="ModernLabelText"
 		font="serif-bold-stroke-14"
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
+	/>
+	<style name="ModernText"
+		font="serif-14"
+		textcolor="white"
+		text_align="left"
+		text_valign="top"
 	/>
 	<style  name="ModernInput"
 		sprite="ModernDarkBoxWhite"

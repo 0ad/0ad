@@ -724,7 +724,7 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 			ret[tech].progress = 0;
 	}
 	return ret;
-}
+};
 
 // Returns the battle state of the player.
 GuiInterface.prototype.GetBattleState = function(player)
@@ -1745,7 +1745,7 @@ function isIdleUnit(ent, idleClass)
 	
 	// TODO: Do something with garrisoned idle units
 	return (cmpUnitAI && cmpIdentity && cmpUnitAI.IsIdle() && !cmpUnitAI.IsGarrisoned() && idleClass && cmpIdentity.HasClass(idleClass));
-}
+};
 
 GuiInterface.prototype.FindIdleUnits = function(player, data)
 {
@@ -1778,7 +1778,7 @@ GuiInterface.prototype.FindIdleUnits = function(player, data)
 	}
 
 	return idleUnits;
-}
+};
 
 GuiInterface.prototype.GetTradingRouteGain = function(player, data)
 {
@@ -1786,7 +1786,7 @@ GuiInterface.prototype.GetTradingRouteGain = function(player, data)
 		return null;
 
 	return CalculateTraderGain(data.firstMarket, data.secondMarket, data.template);
-}
+};
 
 GuiInterface.prototype.GetTradingDetails = function(player, data)
 {
@@ -1934,7 +1934,7 @@ GuiInterface.prototype.GetTradingGoods = function(player, tradingGoods)
 GuiInterface.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	this.renamedEntities.push(msg);
-}
+};
 
 // List the GuiInterface functions that can be safely called by GUI scripts.
 // (GUI scripts are non-deterministic and untrusted, so these functions must be

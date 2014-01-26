@@ -25,25 +25,35 @@
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
       <props>
-        <prop actor="units/macedonians/cavalry_spearman_b_r.xml" attachpoint="rider"/>
+        <prop actor="units/spartans/cavalry_spearman_b_r.xml" attachpoint="rider"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="3" name="horse texture black">
-      <textures><texture file="skeletal/horse_black_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_black_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="horse texture brown">
-      <textures><texture file="skeletal/horse_brown_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_brown_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="4" name="horse texture chestnut">
-      <textures><texture file="skeletal/horse_chestnut_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_chestnut_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="horse texture dun">
-      <textures><texture file="skeletal/horse_dun_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_dun_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="horse texture white">
-      <textures><texture file="skeletal/horse_white_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_white_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

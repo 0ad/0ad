@@ -274,4 +274,14 @@ void JSI_Lobby::SetRankedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bo
 	g_rankedGame = isRanked;
 }
 
+std::wstring JSI_Lobby::LobbyGetRoomSubject(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	if (!g_XmppClient)
+		return L"";
+
+	std::string subject;
+	g_XmppClient->GetSubject(subject);
+	return wstring_from_utf8(subject);
+}
+
 #endif

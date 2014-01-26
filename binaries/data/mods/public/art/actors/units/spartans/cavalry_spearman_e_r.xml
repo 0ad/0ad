@@ -19,7 +19,24 @@
         <prop actor="props/units/weapons/spear_lance.xml" attachpoint="r_hand"/>
         <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
       </props>
-      <textures><texture file="skeletal/spart_phalangite_officer.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Armor 1">
+      <textures>
+        <texture file="skeletal/hele_pezhetairoi.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor 2 Scale">
+      <textures>
+        <texture file="skeletal/hele_linothorax_scale.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor 3">
+      <textures>
+        <texture file="skeletal/hele_isp_e_b.dds" name="baseTex"/>
+        <texture name=""/>
+      </textures>
     </variant>
   </group>
   <group>

@@ -1311,11 +1311,7 @@ function ClusterEntities(ents, separationDistance)
 		}
 		positions.push(cmpPosition.GetPosition2D());
 		for (var j = 0; j < i; j++)
-		{
-			var dx = positions[i].x - positions[j].x;
-			var dy = positions[i].y - positions[j].y;
-			matrix[i][j] = dx * dx + dy * dy;
-		}
+			matrix[i][j] = positions[i].distanceToSquared(positions[j]);
 	}
 	while (clusters.length > 1)
 	{

@@ -965,3 +965,15 @@ function reportGame(extendedSimState)
 			"tradeIncome": playerTradeIncomeString
 		});
 }
+
+/* Since minimap buttons are a composite of smaller ones, we can't 
+ * directly use sprite_down etc on them. Each smaller button calls this
+ * function which activates the larger overlay sprite.
+ */
+function minimapButtonAction(name, action)
+{
+	var overlay = Engine.GetGUIObjectByName(name + "-overlay");
+	var inactiveSpriteName = "overlay.sprite_" + action;
+	overlay.sprite = eval(inactiveSpriteName);
+}
+

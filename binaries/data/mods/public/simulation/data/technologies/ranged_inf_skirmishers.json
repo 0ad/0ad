@@ -17,10 +17,10 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "javelin_thong.png",
 	"researchTime": 30,
-	"tooltip": "Skirmisher infantry +2 pierce attack and +4 range.",
+	"tooltip": "All Javelin units +2 pierce attack and +4 range.",
 	"modifications": [
 		{"value": "Attack/Ranged/Pierce", "add": 2.0},
 		{"value": "Attack/Ranged/MaxRange", "add": 4.0}],
-	"affects": ["Infantry Javelin"],
+	"affects": ["Javelin"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

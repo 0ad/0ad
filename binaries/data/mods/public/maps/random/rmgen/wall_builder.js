@@ -188,7 +188,7 @@ wallStyles["palisades"]["cornerIn"] = new WallElement("cornerIn", "other/palisad
 wallStyles["palisades"]["cornerOut"] = new WallElement("cornerOut", "other/palisades_rocks_curve", 5*PI/4, 2.1, -0.7, -PI/2);
 wallStyles["palisades"]["outpost"] = new WallElement("outpost", "other/palisades_rocks_outpost", PI, 0, -2);
 wallStyles["palisades"]["house"] = new WallElement("house", "other/celt_hut", PI, 0, 5);
-wallStyles["palisades"]["barracks"] = new WallElement("barracks", "other/celt_tavern", PI, 0, 5);
+wallStyles["palisades"]["barracks"] = new WallElement("barracks", "structures/gaul_tavern", PI, 0, 5);
 wallStyles["palisades"]["endRight"] = new WallElement("endRight", "other/palisades_rocks_end", -PI/2, 0.2);
 wallStyles["palisades"]["endLeft"] = new WallElement("endLeft", "other/palisades_rocks_end", PI/2, 0.2);
 

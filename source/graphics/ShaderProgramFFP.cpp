@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -466,6 +466,8 @@ public:
 class CShaderProgramFFP_GuiAdd : public CShaderProgramFFP_Gui_Base
 {
 public:
+	using CShaderProgramFFP_Gui_Base::Uniform;
+
 	CShaderProgramFFP_GuiAdd() :
 		CShaderProgramFFP_Gui_Base(STREAM_POS | STREAM_UV0)
 	{
@@ -637,6 +639,8 @@ public:
 class CShaderProgramFFP_GuiSolid : public CShaderProgramFFP_Gui_Base
 {
 public:
+	using CShaderProgramFFP_Gui_Base::Uniform;
+
 	CShaderProgramFFP_GuiSolid() :
 		CShaderProgramFFP_Gui_Base(STREAM_POS)
 	{

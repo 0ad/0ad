@@ -26,7 +26,7 @@ namespace JSI_Lobby
 {
 	bool HasXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	
-#if CONFIG2_LOBBY 
+#if CONFIG2_LOBBY
 	void StartXmppClient(ScriptInterface::CxPrivate* pCxPrivate, std::wstring username, std::wstring password, std::wstring room, std::wstring nick);
 	void StartRegisterXmppClient(ScriptInterface::CxPrivate* pCxPrivate, std::wstring username, std::wstring password);
 	void StopXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
@@ -52,6 +52,7 @@ namespace JSI_Lobby
 	void LobbyKick(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nick, std::wstring reason);
 	void LobbyBan(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nick, std::wstring reason);
 	std::wstring LobbyGetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nickname);
+	std::wstring LobbyGetRoomSubject(ScriptInterface::CxPrivate* pCxPrivate);
 
 	// Non-public secure PBKDF2 hash function with salting and 1,337 iterations
 	std::string EncryptPassword(const std::string& password, const std::string& username);
@@ -61,7 +62,8 @@ namespace JSI_Lobby
 	
 	bool IsRankedGame(ScriptInterface::CxPrivate* pCxPrivate);
 	void SetRankedGame(ScriptInterface::CxPrivate* pCxPrivate, bool isRanked);
-#endif // CONFIG2_LOBBY 
+#endif // CONFIG2_LOBBY
 }
 
 #endif
+

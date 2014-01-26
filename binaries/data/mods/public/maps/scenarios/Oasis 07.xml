@@ -2,36 +2,45 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
 		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.650408"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.482353" g="0.584314" b="0.815686"/>
+				<Colour r="0.482353" g="0.584314" b="0.811765"/>
 				<Height>20.6689</Height>
-				<Shininess>51.0254</Shininess>
 				<Waviness>2.1875</Waviness>
 				<Murkiness>0.71875</Murkiness>
-				<Tint r="0.545098" g="0.745098" b="0.898039"/>
+				<Tint r="0.541176" g="0.741176" b="0.894118"/>
 				<ReflectionTint r="0.564706" g="0.513726" b="0.419608"/>
 				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="795.461" y="100.411" z="244.919"/>
+		<Position x="787.225" y="91.3371" z="322.927"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "oasis_7.png",
   "Description": "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.",
   "GameType": "conquest",
   "Keywords": [],
@@ -67,6 +76,7 @@
       "Team": -1
     }
   ],
+  "Preview": "oasis_7.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -15460,12 +15470,6 @@
 			<Position x="795.64283" z="374.19217"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3035">
-			<Template>other/celt_tavern</Template>
-			<Player>1</Player>
-			<Position x="828.04694" z="378.52311"/>
-			<Orientation y="-2.37105"/>
-		</Entity>
 		<Entity uid="3036">
 			<Template>other/cart_tophet</Template>
 			<Player>2</Player>
@@ -15561,6 +15565,13 @@
 			<Player>1</Player>
 			<Position x="809.59607" z="390.63532"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3052">
+			<Template>structures/gaul_tavern</Template>
+			<Player>1</Player>
+			<Position x="742.318" z="412.35874"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1666"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -247,8 +247,10 @@ Trader.prototype.GetNextMarket = function()
 {
 	if (this.goods.amount && this.goods.origin == this.firstMarket)
 		return this.secondMarket;
-	else
-		return this.firstMarket;
+
+	if (this.goods.amount && this.goods.origin != this.secondMarket)
+		this.goods.amount = null;   // leftover from previous trading
+	return this.firstMarket;
 };
 
 Trader.prototype.StopTrading = function()

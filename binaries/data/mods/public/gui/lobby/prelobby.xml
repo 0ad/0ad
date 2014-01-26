@@ -25,10 +25,10 @@
 		</object>
 
 		<object name="pageConnect" size="0 32 100% 100%">
-			<object type="text" style="ModernCenteredLabelText" size="0 0 400 30">
+			<object type="text" size="0 0 400 30" style="ModernLabelText" text_align="center">
 				Connect to the game lobby
 			</object>
-			<object name="connectUsernameLabel" type="text" size="50 40 125 70" style="ModernRightLabelText">
+			<object name="connectUsernameLabel" type="text" size="50 40 125 70" style="ModernLabelText" text_align="right">
 				Login:
 			</object>
 			<object name="connectUsername" type="input" size="135 40 100%-50 64" style="ModernInput">
@@ -36,7 +36,7 @@
 					this.caption = Engine.ConfigDB_GetValue("user", "lobby.login");
 				</action>
 			</object>
-			<object name="connectPasswordLabel" type="text" size="50 80 125 110" style="ModernRightLabelText">
+			<object name="connectPasswordLabel" type="text" size="50 80 125 110" style="ModernLabelText" text_align="right">
 				Password:
 			</object>
 			<object name="connectPassword" type="input" size="135 80 100%-50 104" style="ModernInput" mask="true" mask_char="*">
@@ -50,10 +50,10 @@
 			</object>
 		</object>
 		<object name="pageRegister" size="0 32 100% 100%" hidden="true">
-			<object type="text" style="ModernCenteredLabelText" size="0 0 400 30">
+			<object type="text" style="ModernLabelText" size="0 0 400 30" text_align="center">
 				Registration
 			</object>
-			<object type="text" size="50 40 170 70" style="ModernRightLabelText">
+			<object type="text" size="50 40 170 70" style="ModernLabelText" text_align="right">
 				Password again:
 			</object>
 			<object name="registerPasswordAgain" type="input" size="180 40 100%-50 64" style="ModernInput" mask="true" mask_char="*">
@@ -62,7 +62,7 @@
 				</action>
 			</object>
 		</object>
-		<object name="feedback" type="text" style="ModernCenteredLabelText" size="50 150 100%-50 190" textcolor="red"/>
+		<object name="feedback" type="text" size="50 150 100%-50 190" style="ModernLabelText" textcolor="red" text_align="center"/>
 		<object type="button" size="18 100%-45 126 100%-17" style="StoneButton">
 			Cancel
 			<action on="Press">

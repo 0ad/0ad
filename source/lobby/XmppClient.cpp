@@ -728,7 +728,7 @@ void XmppClient::CreateSimpleMessage(const std::string& type, const std::string&
 }
 
 /*****************************************************
- * Presence and nickname                             *
+ * Presence, nickname, and subject                   *
  *****************************************************/
 
 /**
@@ -763,6 +763,25 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 		DbgXMPP(nick << " is in the room, presence : " << (int)presenceType);
 		m_PlayerMap[nick] = presenceType;
 	}
+}
+
+/**
+ * Update local cache when subject changes.
+ */
+void XmppClient::handleMUCSubject(glooxwrapper::MUCRoom*, const glooxwrapper::string& UNUSED(nick), const glooxwrapper::string& subject)
+{
+	m_Subject = subject.c_str();
+	CreateSimpleMessage("muc", m_Subject, "subject");
+}
+
+/**
+ * Get current subject.
+ *
+ * @param topic Variable to store subject in.
+ */
+void XmppClient::GetSubject(std::string& subject)
+{
+	subject = m_Subject;
 }
 
 /**

@@ -340,6 +340,7 @@ namespace glooxwrapper
 		virtual void handleMUCParticipantPresence(MUCRoom* room, const MUCRoomParticipant participant, const Presence& presence) = 0; // MUCRoom not supported
 		virtual void handleMUCMessage(MUCRoom* room, const Message& msg, bool priv) = 0; // MUCRoom not supported
 		virtual void handleMUCError(MUCRoom* room, gloox::StanzaError error) = 0; // MUCRoom not supported
+		virtual void handleMUCSubject(MUCRoom* room, const string& nick, const string& subject) = 0; // MUCRoom not supported
 	};
 
 	class GLOOXWRAPPER_API RegistrationHandler

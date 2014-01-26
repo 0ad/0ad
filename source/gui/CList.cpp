@@ -462,7 +462,7 @@ void CList::SelectPrevElement()
 	int selected;
 	GUI<int>::GetSetting(this, "selected", selected);
 
-	if (selected != 0)
+	if (selected >= 0)
 	{
 		--selected;
 		GUI<int>::SetSetting(this, "selected", selected);
@@ -478,7 +478,7 @@ void CList::SelectFirstElement()
 	int selected;
 	GUI<int>::GetSetting(this, "selected", selected);
 
-	if (selected != 0)
+	if (selected >= 0)
 	{
 		GUI<int>::SetSetting(this, "selected", 0);
 	}
