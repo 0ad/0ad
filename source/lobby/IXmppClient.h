@@ -25,7 +25,7 @@ class CScriptValRooted;
 class IXmppClient
 {
 public:
-	static IXmppClient* create(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, bool regOpt = false);
+	static IXmppClient* create(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize = 0, bool regOpt = false);
 	virtual ~IXmppClient() {}
 
 	virtual void connect() = 0;

@@ -60,15 +60,22 @@ static std::string tag_name(const glooxwrapper::IQ& iq)
 	return ret;
 }
 
-IXmppClient* IXmppClient::create(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, bool regOpt)
+IXmppClient* IXmppClient::create(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize,bool regOpt)
 {
-	return new XmppClient(sUsername, sPassword, sRoom, sNick, regOpt);
+	return new XmppClient(sUsername, sPassword, sRoom, sNick, historyRequestSize, regOpt);
 }
 
 /**
- * Construct the xmpp client
+ * Construct the XMPP client.
+ *
+ * @param sUsername Username to login with of register.
+ * @param sPassword Password to login with or register.
+ * @param sRoom MUC room to join.
+ * @param sNick Nick to join with.
+ * @param historyRequestSize Number of stanzas of room history to request.
+ * @param regOpt If we are just registering or not.
  */
-XmppClient::XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, bool regOpt)
+XmppClient::XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize, bool regOpt)
 	: m_client(NULL), m_mucRoom(NULL), m_registration(NULL), m_username(sUsername), m_password(sPassword), m_nick(sNick)
 {
 	// Read lobby configuration from default.cfg
@@ -118,8 +125,8 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 	{
 		// Create a Multi User Chat Room
 		m_mucRoom = new glooxwrapper::MUCRoom(m_client, roomJid, this, 0);
-		// Disable the history because its anoying
-		m_mucRoom->setRequestHistory(0, gloox::MUCRoom::HistoryMaxStanzas);
+		// Get room history.
+		m_mucRoom->setRequestHistory(historyRequestSize, gloox::MUCRoom::HistoryMaxStanzas);
 	}
 	else
 	{

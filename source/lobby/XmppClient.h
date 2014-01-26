@@ -51,7 +51,7 @@ private:
 
 public:
 	//Basic
-	XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, bool regOpt = false);
+	XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize = 0, const bool regOpt = false);
 	virtual ~XmppClient();
 
 	//Network

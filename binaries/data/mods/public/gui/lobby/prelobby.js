@@ -30,13 +30,14 @@ function lobbyStart()
 	var password = Engine.GetGUIObjectByName("connectPassword").caption;
 	var feedback = Engine.GetGUIObjectByName("feedback");
 	var room = Engine.ConfigDB_GetValue("user", "lobby.room");
+	var history = Number(Engine.ConfigDB_GetValue("user", "lobby.history"));
 
 	feedback.caption = "Connecting....";
 	// If they enter a different password, re-encrypt.
 	if (password != g_EncrytedPassword.substring(0, 10))
 		g_EncrytedPassword = Engine.EncryptPassword(password, username);
 	// We just use username as nick for simplicity.
-	Engine.StartXmppClient(username, g_EncrytedPassword, room, username);
+	Engine.StartXmppClient(username, g_EncrytedPassword, room, username, history);
 	g_LobbyIsConnecting = true;
 	Engine.ConnectXmppClient();
 }

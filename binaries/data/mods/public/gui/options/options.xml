@@ -7,56 +7,71 @@
 -->
 
 <objects>
-	<script file="gui/common/functions_civinfo.js"/>
-	<script file="gui/options/options.js"/>
-	
+    <script file="gui/common/functions_civinfo.js"/>
+    <script file="gui/options/options.js"/>
+
     <!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="0" style="TranslucentPanel"/>
+    <object type="image" z="0" style="TranslucentPanel"/>
         
     <!-- Settings Window -->
-	<object name="options" type="image" style="StoneDialog" size="50%-466 50%-316 50%+466 50%+316">
+    <object name="options" type="image" style="ModernDialog" size="50%-466 50%-316 50%+466 50%+316">
         <object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">Game Options</object>
-       	<object name="SystemSettings" type="image" sprite="BackgroundIndentFillDark" size="16 16 316 100%-16">
+        <object name="SystemSettings" type="image" sprite="ModernDarkBoxGold" size="16 16 316 100%-16">
             <object style="TitleText" type="text" size="0 5 100% 25">System Settings</object>
-            <object size="0 25 65% 50" type="text" style="RightLabelText" ghost="true">Windowed Mode</object>
-            <object name="WindowedCFGLate" size="70% 30 70%+25 55" type="checkbox" style="StoneCrossBox">
+            <object size="0 25 65% 50" type="text" style="ModernLabelText" text_align="right">Windowed Mode</object>
+            <object name="WindowedCFGLate" size="70% 30 70%+25 55" type="checkbox" style="ModernTickBox">
                 <action on="Load">Engine.ConfigDB_GetValue("user", "windowed") === "true" ? this.checked = true : this.checked = false;</action>
                 <action on="Press">Engine.ConfigDB_CreateValue("user", "windowed", String(this.checked));</action>
             </object>
-            <object size="0 50 65% 75" type="text" style="RightLabelText" ghost="true">Background Pause</object>
-            <object name="PauseCFGNow" size="70% 55 70%+25 80" type="checkbox" style="StoneCrossBox">
+            <object size="0 50 65% 75" type="text" style="ModernLabelText" text_align="right">Background Pause</object>
+            <object name="PauseCFGNow" size="70% 55 70%+25 80" type="checkbox" style="ModernTickBox">
                 <action on="Load">Engine.ConfigDB_GetValue("user", "pauseonfocusloss") === "true" ? this.checked = true : this.checked = false;</action>
                 <action on="Press">Engine.ConfigDB_CreateValue("user", "pauseonfocusloss", String(this.checked));</action>
             </object>
         </object>
-        <object name="GraphicsSettings" type="image" sprite="BackgroundIndentFillDark" size="316 16 616 100%-16">
+        <object name="GraphicsSettings" type="image" sprite="ModernDarkBoxGold" size="316 16 616 100%-16">
             <object style="TitleText" type="text" size="0 5 100% 25">Graphics Settings</object>
-            <object size="0 25 65% 50" type="text" style="RightLabelText" ghost="true">Enable Shadows</object>
-            <object name="ShadowsCFG" size="70% 30 70%+25 55" type="checkbox" style="StoneCrossBox">
+            <object size="0 25 65% 50" type="text" style="ModernLabelText" text_align="right">Enable Shadows</object>
+            <object name="ShadowsCFG" size="70% 30 70%+25 55" type="checkbox" style="ModernTickBox">
                 <action on="Load">this.checked = Engine.Renderer_GetShadowsEnabled();</action>
                 <action on="Press">Engine.Renderer_SetShadowsEnabled(this.checked);</action>
             </object>
-            <object size="0 50 65% 75" type="text" style="RightLabelText" ghost="true">Enable Shadow Filtering</object>
-            <object name="ShadowPCFCFGNow" size="70% 55 70%+25 80" type="checkbox" style="StoneCrossBox">
+            <object size="0 50 65% 75" type="text" style="ModernLabelText" text_align="right">Enable Shadow Filtering</object>
+            <object name="ShadowPCFCFGNow" size="70% 55 70%+25 80" type="checkbox" style="ModernTickBox">
                 <action on="Load">this.checked = Engine.Renderer_GetShadowPCFEnabled();</action>
                 <action on="Press">Engine.Renderer_SetShadowPCFEnabled(this.checked);</action>
             </object>
         </object>
-        <object name="SoundSettings" type="image" sprite="BackgroundIndentFillDark" size="616 16 916 100%-16">
+        <object name="SoundSettings" type="image" sprite="ModernDarkBoxGold" size="616 16 916 50%">
             <object style="TitleText" type="text" size="0 5 100% 25">Sound Settings</object>
-            <object size="0 25 65% 50" type="text" style="RightLabelText" ghost="true">Master Gain</object>
-            <object name="SMasterCFG" size="70% 25 70%+35 50" type="input" style="StoneInput">
+            <object size="0 25 65% 50" type="text" style="ModernLabelText" text_align="right">Master Gain</object>
+            <object name="SMasterCFG" size="70% 25 70%+35 50" type="input" style="ModernInput">
                 <action on="Load">this.caption = Engine.ConfigDB_GetValue("user", "sound.mastergain");</action>
             </object>
-            <object size="70%+35 25 70%+75 50" type="button" style="StoneButton">Save
+            <object size="70%+40 25 70%+85 50" type="button" style="StoneButton">Save
                 <action on="Press">Engine.ConfigDB_CreateValue("user", "sound.mastergain", String(Engine.GetGUIObjectByName("SMasterCFG").caption));</action>
             </object>
-            <object size="0 50 65% 75" type="text" style="RightLabelText" ghost="true">Music Gain</object>
-            <object name="SMusicCFG" size="70% 50 70%+35 75" type="input" style="StoneInput">
+            <object size="0 50 65% 75" type="text" style="ModernLabelText" text_align="right">Music Gain</object>
+            <object name="SMusicCFG" size="70% 50 70%+35 75" type="input" style="ModernInput">
                 <action on="Load">this.caption = Engine.ConfigDB_GetValue("user", "sound.musicgain");</action>
             </object>
-            <object size="70%+35 50 70%+75 75" type="button" style="StoneButton">Save
+            <object size="70%+40 25 70%+85 50" type="button" style="StoneButton">Save
                 <action on="Press">Engine.ConfigDB_CreateValue("user", "sound.musicgain", String(Engine.GetGUIObjectByName("SMusicCFG").caption));</action>
+            </object>
+        </object>
+        <object name="LobbySettings" type="image" sprite="ModernDarkBoxGold" size="616 50% 916 100%-16">
+            <object style="TitleText" type="text" size="0 5 100% 25">Lobby Settings</object>
+            <object size="0 25 65% 50" type="text" style="ModernLabelText" text_align="right">Amount of Chat History</object>
+            <object name="LHistoryCFG" size="70% 25 70%+35 50" type="input" style="ModernInput">
+                <action on="Load">this.caption = Engine.ConfigDB_GetValue("user", "lobby.history");</action>
+            </object>
+            <object size="70%+40 25 70%+85 50" type="button" style="StoneButton">Save
+                <action on="Press">Engine.ConfigDB_CreateValue("user", "lobby.history", String(Engine.GetGUIObjectByName("LHistoryCFG").caption));</action>
+            </object>
+            <object size="0 50 65% 75" type="text" style="ModernLabelText" text_align="right">Show Chat Timestamp</object>
+            <object name="LChatTSCFG" size="70% 55 70%+25 80" type="checkbox" style="ModernTickBox">
+                <action on="Load">this.checked = Engine.ConfigDB_GetValue("user", "lobby.showchattimestamp");</action>
+                <action on="Press">Engine.ConfigDB_CreateValue("user", "lobby.showchattimestamp", String(Engine.GetGUIObjectByName("LChatTSCFG").checked));</action>
             </object>
         </object>
 <!--

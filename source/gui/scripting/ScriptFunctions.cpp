@@ -889,7 +889,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	// Lobby functions
 	scriptInterface.RegisterFunction<bool, &JSI_Lobby::HasXmppClient>("HasXmppClient");
 #if CONFIG2_LOBBY // Allow the lobby to be disabled
-	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, std::wstring, std::wstring, &JSI_Lobby::StartXmppClient>("StartXmppClient");
+	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, std::wstring, std::wstring, int, &JSI_Lobby::StartXmppClient>("StartXmppClient");
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &JSI_Lobby::StartRegisterXmppClient>("StartRegisterXmppClient");
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::StopXmppClient>("StopXmppClient");
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::ConnectXmppClient>("ConnectXmppClient");

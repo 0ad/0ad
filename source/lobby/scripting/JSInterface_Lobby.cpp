@@ -34,12 +34,12 @@ bool JSI_Lobby::HasXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 
 #if CONFIG2_LOBBY
 
-void JSI_Lobby::StartXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring username, std::wstring password, std::wstring room, std::wstring nick)
+void JSI_Lobby::StartXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring username, std::wstring password, std::wstring room, std::wstring nick, int historyRequestSize)
 {
 	ENSURE(!g_XmppClient);
 
 	g_XmppClient = IXmppClient::create(utf8_from_wstring(username), utf8_from_wstring(password),
-		utf8_from_wstring(room), utf8_from_wstring(nick));
+		utf8_from_wstring(room), utf8_from_wstring(nick), historyRequestSize);
 	g_rankedGame = true;
 }
 
