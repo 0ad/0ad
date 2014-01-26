@@ -157,7 +157,7 @@ function updatePlayerList()
 	{
 		// Add a "-" for unrated players.
 		if (!cleanPlayerList[i].rating)
-			cleanPlayerList[i].rating = "    -";
+			cleanPlayerList[i].rating = "-";
 		// Colorize.
 		var [name, status, rating] = formatPlayerListEntry(cleanPlayerList[i].name, cleanPlayerList[i].presence, cleanPlayerList[i].rating);
 		// Push to lists.
@@ -307,6 +307,9 @@ function formatPlayerListEntry(nickname, presence, rating)
 		status = "Unknown";
 		break;
 	}
+	// Center the unrated symbol.
+	if (rating == "-")
+		rating = "    -";
 	var formattedStatus = '[color="' + color + '"]' + status + "[/color]";
 	var formattedRating = '[color="' + color + '"]' + rating + "[/color]"; 
 	var formattedName = colorPlayerName(nickname);
@@ -461,7 +464,7 @@ function onTick()
 					[playerList, presenceList, nickList, ratingList] = updatePlayerList();
 					break;
 				}
-				var [name, status, rating] = formatPlayerListEntry(nick, presence, "    -");
+				var [name, status, rating] = formatPlayerListEntry(nick, presence, "-");
 				playerList.push(name);
 				presenceList.push(status);
 				nickList.push(nick);
