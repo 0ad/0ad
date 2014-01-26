@@ -477,18 +477,45 @@ void XmppClient::handleOOB(const glooxwrapper::JID&, const glooxwrapper::OOB&)
  */
 CScriptValRooted XmppClient::GUIGetPlayerList(ScriptInterface& scriptInterface)
 {
+	const int PLAYER_NUM = m_PlayerMap.size();
+	std::string playerListArray[PLAYER_NUM][3];
 	std::string presence;
 	CScriptValRooted playerList;
-	scriptInterface.Eval("({})", playerList);
-	for(std::map<std::string, gloox::Presence::PresenceType>::const_iterator it = m_PlayerMap.begin(); it != m_PlayerMap.end(); ++it)
+	scriptInterface.Eval("([])", playerList);
+
+	int i = 0;
+	// Load name and presence data.
+	for (std::map<std::string, gloox::Presence::PresenceType>::const_iterator it = m_PlayerMap.begin(); it != m_PlayerMap.end(); ++it, i++)
+	{
+		playerListArray[i][0] = it->first;
+		GetPresenceString(it->second, presence);
+		playerListArray[i][1] = presence;
+	}
+
+	// Load rating data.
+	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_RatingList.begin(); it != m_RatingList.end(); ++it)
+	{
+		// Try to match the names in the rating list to the names from the player map.
+		for (i = 0; i < PLAYER_NUM; i++)
+		{
+			std::string name = (*it)->findAttribute("name").to_string();
+			if (playerListArray[i][0].compare(name) == 0)
+			{
+				playerListArray[i][2] = (*it)->findAttribute("rating").to_string();
+				break;
+			}
+		}
+	}
+
+	// Convert the array to a Javascript object.
+	for (i = 0; i < PLAYER_NUM; i++)
 	{
 		CScriptValRooted player;
-		GetPresenceString(it->second, presence);
 		scriptInterface.Eval("({})", player);
-		scriptInterface.SetProperty(player.get(), "name", wstring_from_utf8(it->first));
-		scriptInterface.SetProperty(player.get(), "presence", wstring_from_utf8(presence));
-
-		scriptInterface.SetProperty(playerList.get(), wstring_from_utf8(it->first).c_str(), player);
+		scriptInterface.SetProperty(player.get(), "name", wstring_from_utf8(playerListArray[i][0]));
+		scriptInterface.SetProperty(player.get(), "presence", wstring_from_utf8(playerListArray[i][1]));
+		scriptInterface.SetProperty(player.get(), "rating", wstring_from_utf8(playerListArray[i][2]));
+		scriptInterface.CallFunctionVoid(playerList.get(), "push", player);
 	}
 
 	return playerList;
@@ -542,31 +569,6 @@ CScriptValRooted XmppClient::GUIGetBoardList(ScriptInterface& scriptInterface)
 	}
 
 	return boardList;
-}
-
-/**
- * Handle requests from the GUI for rating list data.
- *
- * @return A JS array containing all known leaderboard data
- */
-CScriptValRooted XmppClient::GUIGetRatingList(ScriptInterface& scriptInterface)
-{
-	CScriptValRooted ratingList;
-	scriptInterface.Eval("([])", ratingList);
-	for(std::vector<const glooxwrapper::Tag*>::const_iterator it = m_RatingList.begin(); it != m_RatingList.end(); ++it)
-	{
-		CScriptValRooted rating;
-		scriptInterface.Eval("({})", rating);
-
-		const char* attributes[] = { "name", "rank", "rating" };
-		short attributes_length = 3;
-		for (short i = 0; i < attributes_length; i++)
-			scriptInterface.SetProperty(rating.get(), attributes[i], wstring_from_utf8((*it)->findAttribute(attributes[i]).to_string()));
-
-		scriptInterface.CallFunctionVoid(ratingList.get(), "push", rating);
-	}
-
-	return ratingList;
 }
 
 /*****************************************************

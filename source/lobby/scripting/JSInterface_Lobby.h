@@ -43,7 +43,6 @@ namespace JSI_Lobby
 	CScriptVal GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate);
 	CScriptVal GetGameList(ScriptInterface::CxPrivate* pCxPrivate);
 	CScriptVal GetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
-	CScriptVal GetRatingList(ScriptInterface::CxPrivate* pCxPrivate);
 	CScriptVal LobbyGuiPollMessage(ScriptInterface::CxPrivate* pCxPrivate);
 	void LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring message);
 	void LobbySetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, std::wstring presence);

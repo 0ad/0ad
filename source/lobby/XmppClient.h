@@ -76,7 +76,6 @@ public:
 	CScriptValRooted GUIGetPlayerList(ScriptInterface& scriptInterface);
 	CScriptValRooted GUIGetGameList(ScriptInterface& scriptInterface);
 	CScriptValRooted GUIGetBoardList(ScriptInterface& scriptInterface);
-	CScriptValRooted GUIGetRatingList(ScriptInterface& scriptInterface);
 	//Script
 	ScriptInterface& GetScriptInterface();
 
