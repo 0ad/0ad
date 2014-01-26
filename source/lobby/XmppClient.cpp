@@ -746,8 +746,8 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 
 		DbgXMPP(nick << " is in the room, presence : " << (int)presenceType);
 		m_PlayerMap[nick].resize(2);
-		m_PlayerMap[newNick][0] = presenceString;
-		m_PlayerMap[newNick][1] =  "";
+		m_PlayerMap[nick][0] = presenceString;
+		m_PlayerMap[nick][1] =  "";
 	}
 }
 
