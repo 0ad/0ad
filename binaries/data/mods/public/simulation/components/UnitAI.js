@@ -3067,12 +3067,18 @@ UnitAI.prototype.ReactsToAlert = function(level)
 
 UnitAI.prototype.IsUnderAlert = function()
 {
-	return this.alertGarrisoningTarget != undefined;
+	return this.alertRaiser != undefined;
 };
 
 UnitAI.prototype.ResetAlert = function()
 {
 	this.alertGarrisoningTarget = undefined;
+	this.alertRaiser = undefined;
+};
+
+UnitAI.prototype.GetAlertRaiser = function()
+{
+	return this.alertRaiser;
 };
 
 UnitAI.prototype.IsFormationController = function()
@@ -3570,11 +3576,15 @@ UnitAI.prototype.GetOrderData = function()
 
 UnitAI.prototype.UpdateWorkOrders = function(type)
 {
+	// Under alert, remembered work orders won't be forgotten
+	if (this.IsUnderAlert())
+		return;
+	
 	var isWorkType = function(type){
 		return (type == "Gather" || type == "Trade" || type == "Repair" || type == "ReturnResource");
 	};
 	
-	// If we are being reaffected to a work order, forgot the previous ones
+	// If we are being re-affected to a work order, forget the previous ones
 	if (isWorkType(type))
 	{
 		this.workOrders = [];
@@ -3654,11 +3664,6 @@ UnitAI.prototype.GetWorkOrders = function()
 UnitAI.prototype.SetWorkOrders = function(orders)
 {
 	this.workOrders = orders;
-};
-
-UnitAI.prototype.GetAlertRaiser = function()
-{
-	return this.alertRaiser;
 };
 
 UnitAI.prototype.TimerHandler = function(data, lateness)
