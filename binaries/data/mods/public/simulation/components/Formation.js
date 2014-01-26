@@ -170,6 +170,9 @@ Formation.prototype.GetClosestMember = function(ent, filter)
 			continue;
 
 		var cmpPosition = Engine.QueryInterface(member, IID_Position);
+		if (!cmpPosition || !cmpPosition.IsInWorld)
+			continue;
+
 		var pos = cmpPosition.GetPosition2D();
 		var dx = entPosition.x - pos.x;
 		var dy = entPosition.y - pos.y;
