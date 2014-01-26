@@ -357,18 +357,24 @@ function getEntityCommandsList(entState)
 	if(entState.alertRaiser)
 	{
 		if(entState.alertRaiser.canIncreaseLevel)
+		{
+			if(entState.alertRaiser.hasRaisedAlert)
+				var tooltip = "Increase the alert level to protect more units";
+			else
+				var tooltip = "Raise an alert!";
 			commands.push({
-					"name": "increase-alert-level",
-					"tooltip": "Raise the alert ! Or raise it again to protect more units.",
-					"icon": "bell_level1.png"
-				});
-		
+				"name": "increase-alert-level",
+				"tooltip": tooltip,
+				"icon": "bell_level1.png"
+			});
+		}
+
 		if(entState.alertRaiser.hasRaisedAlert)
 			commands.push({
-					"name": "alert-end",
-					"tooltip": "End of alert.",
-					"icon": "bell_level0.png"
-				});
+				"name": "alert-end",
+				"tooltip": "End of alert.",
+				"icon": "bell_level0.png"
+			});
 	}
 
 	return commands;
