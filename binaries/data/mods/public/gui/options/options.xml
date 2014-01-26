@@ -66,12 +66,12 @@
                 <action on="Load">this.caption = Engine.ConfigDB_GetValue("user", "lobby.history");</action>
             </object>
             <object size="70%+40 25 70%+85 50" type="button" style="StoneButton">Save
-                <action on="Press">Engine.ConfigDB_CreateValue("user", "lobby.history", String(Engine.GetGUIObjectByName("LHistoryCFG").caption));</action>
+                <action on="Press">Engine.ConfigDB_CreateValue("user", "lobby.history", Engine.GetGUIObjectByName("LHistoryCFG").caption);</action>
             </object>
             <object size="0 50 65% 75" type="text" style="ModernLabelText" text_align="right">Show Chat Timestamp</object>
             <object name="LChatTSCFG" size="70% 55 70%+25 80" type="checkbox" style="ModernTickBox">
-                <action on="Load">this.checked = Engine.ConfigDB_GetValue("user", "lobby.showchattimestamp");</action>
-                <action on="Press">Engine.ConfigDB_CreateValue("user", "lobby.showchattimestamp", String(Engine.GetGUIObjectByName("LChatTSCFG").checked));</action>
+                <action on="Load">this.checked = Engine.ConfigDB_GetValue("user", "lobby.chattimestamp") === "false" ? this.checked = true : this.checked = false;</action>
+                <action on="Press">Engine.ConfigDB_CreateValue("user", "lobby.chattimestamp", String(this.checked));</action>
             </object>
         </object>
 <!--
