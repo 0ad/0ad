@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -145,10 +145,17 @@ Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 	return INFO::OK;
 }
 
-Status GetMonitorSize(int* xres, int* yres, int* bpp, int* freq)
+Status GetMonitorSize(int& width_mm, int& height_mm)
 {
-	// TODO Implement
-	return ERR::NOT_SUPPORTED;	// NOWARN
+	CGSize screenSize = CGDisplayScreenSize(kCGDirectMainDisplay);
+
+	if (screenSize.width == 0 || screenSize.height == 0)
+		return ERR::FAIL;
+
+	width_mm = screenSize.width;
+	height_mm = screenSize.height;
+
+	return INFO::OK;
 }
 
 }	// namespace gfx
