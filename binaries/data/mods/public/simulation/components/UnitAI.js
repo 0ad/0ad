@@ -4598,7 +4598,7 @@ UnitAI.prototype.GetTargetPositions = function()
 		case "WalkToPointRange":
 		case "MoveIntoFormation":
 		case "GatherNearPosition":
-			targetPositions.push({"x" : order.data.x, "z" : order.data.z})
+			targetPositions.push(new Vector2D(order.data.x, order.data.z));
 			break; // and continue the loop
 
 		case "WalkToTarget":
@@ -4616,8 +4616,7 @@ UnitAI.prototype.GetTargetPositions = function()
 			var cmpTargetPosition = Engine.QueryInterface(order.data.target, IID_Position);
 			if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
 				return targetPositions;
-			var targetPos = cmpTargetPosition.GetPosition2D();
-			targetPositions.push({"x" : targetPos.x, "z" : targetPos.y})
+			targetPositions.push(cmpTargetPosition.GetPosition2D());
 			return targetPositions;
 
 		case "Stop":
@@ -4645,13 +4644,11 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 		return 0;
 
 	// Keep track of the position at the start of each order
-	var pos = cmpPosition.GetPosition();
+	var pos = cmpPosition.GetPosition2D();
 	var targetPositions = this.GetTargetPositions();
 	for (var i = 0; i < targetPositions.length; i++)
 	{
-		var dx = targetPositions[i].x - pos.x;
-		var dz = targetPositions[i].z - pos.z;
-		distance += Math.sqrt(dx*dx + dz*dz);
+		distance += pos.distanceTo(targetPositions[i]);
 
 		// Remember this as the start position for the next order
 		pos = targetPositions[i];
