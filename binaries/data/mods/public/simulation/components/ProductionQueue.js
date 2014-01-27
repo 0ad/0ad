@@ -605,11 +605,11 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			"metadata": metadata,
 		});
 		
-		if(this.alertRaiser)
+		if(this.alertRaiser && spawnedEnts.length > 0)
 		{
 			var cmpAlertRaiser = Engine.QueryInterface(this.alertRaiser, IID_AlertRaiser);
 			if(cmpAlertRaiser)
-				cmpAlertRaiser.UpdateUnits(createdEnts);
+				cmpAlertRaiser.UpdateUnits(spawnedEnts);
 		}
 	}
 	
