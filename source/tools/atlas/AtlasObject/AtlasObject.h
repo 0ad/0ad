@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,8 @@
 
 #include <wchar.h> // for wchar_t
 #include <string>
+
+class wxString;
 
 typedef struct JSContext JSContext;
 
@@ -162,15 +164,17 @@ public:
 	// Check recursively whether there's actually any non-empty data in the object
 	bool hasContent() const;
 
-	// Add or set a child. The wchar_t* versions create a new AtObj with
-	// the appropriate string value, then use that as the child.
+	// Add or set a child. The wchar_t* and wxString& versions create a new
+	// AtObj with the appropriate string value, then use that as the child.
 	//
 	// These alter the AtObj's internal pointer, and the pointed-to data is
 	// never actually altered. Copies of this AtObj (including copies stored
 	// inside other AtObjs) will not be affected.
 	void add(const char* key, const wchar_t* value);
+	void add(const char* key, const wxString& value);
 	void add(const char* key, AtObj& data);
 	void set(const char* key, const wchar_t* value);
+	void set(const char* key, const wxString& value);
 	void set(const char* key, AtObj& data);
 	void setBool(const char* key, bool value);
 	void setDouble(const char* key, double value);

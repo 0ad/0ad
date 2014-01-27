@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,8 @@
 
 #include <assert.h>
 #include <sstream>
+
+#include <wx/string.h>
 
 #define ATSMARTPTR_IMPL(T) \
 	template<> void AtSmartPtr<T>::inc_ref()	\
@@ -160,6 +162,11 @@ void AtObj::add(const char* key, AtObj& data)
 	p = p->addChild(key, data.p);
 }
 
+void AtObj::add(const char* key, const wxString& value)
+{
+	add(key, value.wc_str());
+}
+
 void AtObj::add(const char* key, const wchar_t* value)
 {
 	const AtNode* o = new AtNode(value);
@@ -176,6 +183,11 @@ void AtObj::set(const char* key, AtObj& data)
 		p = new AtNode();
 
 	p = p->setChild(key, data.p);
+}
+
+void AtObj::set(const char* key, const wxString& value)
+{
+	set(key, value.wc_str());
 }
 
 void AtObj::set(const char* key, const wchar_t* value)
