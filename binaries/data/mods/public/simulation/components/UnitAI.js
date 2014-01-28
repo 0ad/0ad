@@ -816,9 +816,11 @@ var UnitFsmSpec = {
 			{
 				if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 				{
-					var range = cmpAttack.GetRange(target);
-					this.PushOrderFront("WalkToTargetRange", { "target": target, "min": range.min, "max": range.max }); 
-					return;
+					if (this.MoveToTargetAttackRange(target, target))
+					{
+						this.SetNextState("WALKING");
+						return;
+					}
 				}
 				this.FinishOrder();
 				return;
