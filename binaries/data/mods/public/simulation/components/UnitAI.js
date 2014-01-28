@@ -641,15 +641,19 @@ var UnitFsmSpec = {
 
 		var nextMarket = cmpTrader.GetNextMarket();
 		if (nextMarket == this.order.data.firstMarket)
-			var state = "INDIVIDUAL.TRADE.APPROACHINGFIRSTMARKET";
+			var state = "TRADE.APPROACHINGFIRSTMARKET";
 		else
-			var state = "INDIVIDUAL.TRADE.APPROACHINGSECONDMARKET";
+			var state = "TRADE.APPROACHINGSECONDMARKET";
 
+		// TODO find the nearest way-point from our position, and start with it
+		this.waypoints = undefined;
 		if (this.MoveToMarket(nextMarket))
 		{
 			// We've started walking to the next market
 			this.SetNextState(state);
 		}
+		else
+			this.FinishOrder();
 	},
 
 	"Order.Repair": function(msg) {
@@ -770,6 +774,13 @@ var UnitFsmSpec = {
 		// Only used by other orders to walk there in formation
 		"Order.WalkToTargetRange": function(msg) {
 			if (this.MoveToTargetRangeExplicit(this.order.data.target, this.order.data.min, this.order.data.max))
+				this.SetNextState("WALKING");
+			else
+				this.FinishOrder();
+		},
+
+		"Order.WalkToTarget": function(msg) {
+			if (this.MoveToTarget(this.order.data.target))
 				this.SetNextState("WALKING");
 			else
 				this.FinishOrder();
@@ -2487,7 +2498,10 @@ var UnitFsmSpec = {
 				},
 
 				"MoveCompleted": function() {
-					this.PerformTradeAndMoveToNextMarket(this.order.data.firstMarket, this.order.data.secondMarket, "INDIVIDUAL.TRADE.APPROACHINGSECONDMARKET");
+					if (this.waypoints && this.waypoints.length)
+						this.MoveToMarket(this.order.data.firstMarket);
+					else
+						this.PerformTradeAndMoveToNextMarket(this.order.data.firstMarket, this.order.data.secondMarket, "APPROACHINGSECONDMARKET");
 				},
 			},
 
@@ -2497,8 +2511,10 @@ var UnitFsmSpec = {
 				},
 
 				"MoveCompleted": function() {
-					this.order.data.firstPass = false;
-					this.PerformTradeAndMoveToNextMarket(this.order.data.secondMarket, this.order.data.firstMarket, "INDIVIDUAL.TRADE.APPROACHINGFIRSTMARKET");
+					if (this.waypoints && this.waypoints.length)
+						this.MoveToMarket(this.order.data.secondMarket);
+					else
+						this.PerformTradeAndMoveToNextMarket(this.order.data.secondMarket, this.order.data.firstMarket, "APPROACHINGFIRSTMARKET");
 				},
 			},
 		},
@@ -3444,9 +3460,7 @@ UnitAI.prototype.PushOrder = function(type, data)
 		// If the order was rejected then immediately take it off
 		// and process the remaining queue
 		if (ret && ret.discardOrder)
-		{
 			this.FinishOrder();
-		}
 	}
 };
 
@@ -4660,6 +4674,9 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 
 UnitAI.prototype.AddOrder = function(type, data, queued)
 {
+	if (this.expectedRoute)
+		this.expectedRoute = undefined;
+
 	if (queued)
 		this.PushOrder(type, data);
 	else
@@ -4764,7 +4781,10 @@ UnitAI.prototype.CanGuard = function()
  */
 UnitAI.prototype.Walk = function(x, z, queued)
 {
-	this.AddOrder("Walk", { "x": x, "z": z, "force": true }, queued);
+	if (this.expectedRoute && queued)
+		this.expectedRoute.push({ "x": x, "z": z });
+	else
+		this.AddOrder("Walk", { "x": x, "z": z, "force": true }, queued);
 };
 
 /**
@@ -4947,8 +4967,10 @@ UnitAI.prototype.ReturnResource = function(target, queued)
 /**
  * Adds trade order to the queue. Either walk to the first market, or
  * start a new route. Not forced, so it can be interrupted by attacks.
+ * The possible route may be given directly as a SetupTradeRoute argument
+ * if coming from a RallyPoint, or through this.expectedRoute if a user command.
  */
-UnitAI.prototype.SetupTradeRoute = function(target, source, queued)
+UnitAI.prototype.SetupTradeRoute = function(target, source, route, queued)
 {
 	if (!this.CanTrade(target))
 	{
@@ -4956,32 +4978,73 @@ UnitAI.prototype.SetupTradeRoute = function(target, source, queued)
 		return;
 	}
 
-	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-	var marketsChanged = cmpTrader.SetTargetMarket(target, source);
+	var marketsChanged = this.SetTargetMarket(target, source);
 	if (marketsChanged)
 	{
+		var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 		if (cmpTrader.HasBothMarkets())
-			this.AddOrder("Trade", { "firstMarket": cmpTrader.GetFirstMarket(), "secondMarket": cmpTrader.GetSecondMarket(), "force": false }, queued);
+		{
+			var data = { "firstMarket": cmpTrader.GetFirstMarket(), "secondMarket": cmpTrader.GetSecondMarket(), "route": route, "force": false };
+
+			if (this.expectedRoute)
+			{
+				if (!route && this.expectedRoute.length)
+					data.route = this.expectedRoute.slice();
+				this.expectedRoute = undefined;
+			}
+
+			if (this.IsFormationController())
+				this.CallMemberFunction("AddOrder", ["Trade", data, queued]);
+			else
+				this.AddOrder("Trade", data, queued);
+		}
 		else
-			this.WalkToTarget(cmpTrader.GetFirstMarket(), queued);
+		{
+			if (this.IsFormationController())
+				this.CallMemberFunction("WalkToTarget", [cmpTrader.GetFirstMarket(), queued]);
+			else
+				this.WalkToTarget(cmpTrader.GetFirstMarket(), queued);
+			this.expectedRoute = [];
+		}
 	}
+};
+
+UnitAI.prototype.SetTargetMarket = function(target, source)
+{
+	var  cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+	if (!cmpTrader)
+		return false;
+	var marketsChanged = cmpTrader.SetTargetMarket(target, source);
+
+	if (this.IsFormationController())
+		this.CallMemberFunction("SetTargetMarket", [target, source]);
+
+	return marketsChanged;
 };
 
 UnitAI.prototype.MoveToMarket = function(targetMarket)
 {
-	if (this.MoveToTarget(targetMarket))
+	if (this.waypoints && this.waypoints.length > 1)
 	{
-		// We've started walking to the market
-		return true;
+		var point = this.waypoints.pop();
+		var ok = this.MoveToPoint(point.x, point.z);
+		if (!ok)
+			ok = this.MoveToMarket(targetMarket);
 	}
 	else
 	{
-		// We can't reach the market.
-		// Give up.
+		this.waypoints = undefined;
+		var ok = this.MoveToTarget(targetMarket);
+	}
+
+	if (!ok)
+	{
+		// We can't reach the market. Give up.
 		this.StopMoving();
 		this.StopTrading();
-		return false;
 	}
+
+	return ok;
 };
 
 UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextMarket, nextFsmStateName)
@@ -5001,16 +5064,24 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextM
 			this.StopTrading();
 			return;
 		}
-		if (this.MoveToMarket(nextMarket))
+
+		if (this.order.data.route && this.order.data.route.length)
 		{
-			// We've started walking to the next market
-			this.SetNextState(nextFsmStateName);
+			this.waypoints = this.order.data.route.slice();
+			if (nextFsmStateName == "APPROACHINGSECONDMARKET")
+				this.waypoints.reverse();
+			this.waypoints.unshift(null);  // additionnal dummy point for the market
 		}
+
+		if (this.MoveToMarket(nextMarket))	// We've started walking to the next market
+			this.SetNextState(nextFsmStateName);
+		else
+			this.StopTrading();
 	}
 	else
 	{
-		// If the current market is not reached try again
-		this.MoveToMarket(currentMarket);
+		if (!this.MoveToMarket(currentMarket))	// If the current market is not reached try again
+			this.StopTrading();
 	}
 };
 

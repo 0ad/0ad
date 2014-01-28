@@ -1443,7 +1443,7 @@ function doAction(action, ev)
 		return true;
 
 	case "setup-trade-route":
-		Engine.PostNetworkCommand({"type": "setup-trade-route", "entities": selection, "target": action.target});
+		Engine.PostNetworkCommand({"type": "setup-trade-route", "entities": selection, "target": action.target, "source": undefined, "route": undefined, "queued": queued});
 		Engine.GuiInterfaceCall("PlaySound", { "name": "order_trade", "entity": selection[0] });
 		return true;
 

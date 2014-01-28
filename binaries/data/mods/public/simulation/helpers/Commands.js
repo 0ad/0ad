@@ -489,13 +489,9 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "setup-trade-route":
-		for each (var ent in entities)
-		{
-			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			if (cmpUnitAI)
-				cmpUnitAI.SetupTradeRoute(cmd.target, cmd.source);
-		}
-		break;
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
+			cmpUnitAI.SetupTradeRoute(cmd.target, cmd.source, cmd.route, cmd.queued);
+		});
 
 	case "select-required-goods":
 		for each (var ent in entities)
