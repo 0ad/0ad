@@ -233,21 +233,6 @@ createAreas(
 	scaleByMapSize(1, 5)*randInt(5,10)
 );
 
-// create shore jaggedness
-log("Creating shore jaggedness...");
-placer = new ChainPlacer(2, floor(scaleByMapSize(4, 6)), 3, 1);
-terrainPainter = new LayeredPainter(
-	[tCliff, tHill],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 4);
-createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clLand)], 
-	borderClasses(clLand, 6, 3),
-	scaleByMapSize(12, 130) * 2, 150
-);
-
 //painting the terrain
 paintTerrainBasedOnHeight(2.4, 3.4, 3, tMainTerrain);
 paintTerrainBasedOnHeight(1, 3, 0, tShore);
@@ -268,44 +253,43 @@ for (var i = 0; i < numPlayers; i++)
 }
 
 // create bumps
-createBumps([avoidClasses(clWater, 2, clPlayer, 0), stayClasses(clLand, 3)]);
-log("Creating bumps...");
+createBumps([avoidClasses(clWater, 2, clPlayer, 10), stayClasses(clLand, 5)]);
 
 // create hills
 if (randInt(1,2) == 1)
-	createHills([tCliff, tCliff, tHill], [avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)], clHill, scaleByMapSize(8, 30));
+	createHills([tMainTerrain, tCliff, tHill], [avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)], clHill, scaleByMapSize(1, 4) * numPlayers);
 else
-	createMountains(tCliff, [avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)], clHill, scaleByMapSize(8, 30));
+	createMountains(tCliff, [avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)], clHill, scaleByMapSize(1, 4) * numPlayers);
 
 // create forests
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
- [avoidClasses(clPlayer, 0, clForest, 17, clHill, 0), stayClasses(clLand, 6)], 
+ [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0), stayClasses(clLand, 4)], 
  clForest,
  1.0,
  random_terrain
 );
 
 RMS.SetProgress(50);
+
 // create dirt patches
 log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]],
  [1,1],
- [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 0), stayClasses(clLand, 7)]
+ [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)]
 );
 
 // create grass patches
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
- tTier5Terrain,
- [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 0), stayClasses(clLand, 7)]
+ tTier4Terrain,
+ [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)]
 );
 
 RMS.SetProgress(55);
-
 
 log("Creating stone mines...");
 // create stone quarries
@@ -314,7 +298,7 @@ createMines(
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
- [avoidClasses(clForest, 1, clPlayer, 0, clRock, 10, clHill, 1), stayClasses(clLand, 3)]
+ [avoidClasses(clForest, 1, clPlayer, 7, clRock, 10, clHill, 1), stayClasses(clLand, 6)]
 )
 
 log("Creating metal mines...");
@@ -323,7 +307,7 @@ createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
  ],
- [avoidClasses(clForest, 1, clPlayer, 0, clMetal, 10, clRock, 5, clHill, 1), stayClasses(clLand, 3)],
+ [avoidClasses(clForest, 1, clPlayer, 7, clMetal, 10, clRock, 5, clHill, 1), stayClasses(clLand, 6)],
  clMetal
 )
 
@@ -350,7 +334,7 @@ createDecoration
   planetm * scaleByMapSize(13, 200),
   planetm * scaleByMapSize(13, 200)
  ],
- [avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 3)]
+ [avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 5)]
 );
 
 RMS.SetProgress(70);
@@ -366,7 +350,7 @@ createFood
   3 * numPlayers,
   3 * numPlayers
  ],
- [avoidClasses(clWater, 3, clForest, 0, clPlayer, 5, clHill, 1, clFood, 20), stayClasses(clLand, 2)]
+ [avoidClasses(clForest, 0, clPlayer, 1, clHill, 1, clFood, 20), stayClasses(clLand, 3)]
 );
 
 // create fruits
@@ -378,7 +362,7 @@ createFood
  [
   3 * numPlayers
  ],
- [avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 1, clFood, 10), stayClasses(clLand, 2)]
+ [avoidClasses(clForest, 0, clPlayer, 1, clHill, 1, clFood, 10), stayClasses(clLand, 3)]
 );
 
 // create fish
@@ -390,13 +374,15 @@ createFood
  [
   25 * numPlayers
  ],
- avoidClasses(clLand, 4, clForest, 0, clPlayer, 0, clHill, 0, clFood, 20)
+ avoidClasses(clLand, 2, clFood, 20)
 );
 
-// create straggler trees
-var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
-createStragglerTrees(types, [avoidClasses(clWater, 5, clForest, 7, clHill, 1, clPlayer, 12, clMetal, 1, clRock, 1), stayClasses(clLand, 3)]);
+RMS.SetProgress(85);
 
+// create straggler trees
+log("Creating straggler trees...");
+var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
+createStragglerTrees(types, [avoidClasses(clForest, 7, clHill, 1, clPlayer, 3, clMetal, 1, clRock, 1), stayClasses(clLand, 7)]);
 setWaterWaviness(10);
 
 // Export map data

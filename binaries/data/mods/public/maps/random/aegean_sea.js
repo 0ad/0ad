@@ -295,8 +295,6 @@ createLayeredPatches(
  avoidClasses(clForest, 0, clGrass, 2, clPlayer, 10, clWater, 2, clDirt, 2, clHill, 1)
 );
 
-
-
 RMS.SetProgress(55);
 
 // create dirt patches
@@ -383,6 +381,7 @@ createMines(
 
 RMS.SetProgress(65);
 
+// create decoration
 createDecoration
 (
  [[new SimpleObject(aDecorativeRock, 1,3, 0,1)], 
@@ -396,7 +395,6 @@ createDecoration
 );
 
 RMS.SetProgress(70);
-
 
 // create fish
 createFood
