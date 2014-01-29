@@ -658,8 +658,10 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 
 		for (var i = 0; i < count; ++i)
 		{
-			positionIndices.push({"row": 1, "column": i+1});
-			offsets.push(new Vector2D(Math.random()*width, Math.random()*width));
+			var obj = new Vector2D(Math.random()*width, Math.random()*width);
+			obj.row = 1;
+			obj.column = i + 1;
+			offsets.push(obj);
 		}
 	}
 
