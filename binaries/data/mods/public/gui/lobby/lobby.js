@@ -144,7 +144,7 @@ function updateSubject(newSubject)
 }
 
 /**
- * Do a full update of the player listing, including ratings.
+ * Do a full update of the player listing, including ratings from C++.
  *
  * @return Array containing the player, presence, nickname, and rating listings.
  */
@@ -152,29 +152,24 @@ function updatePlayerList()
 {
 	var playersBox = Engine.GetGUIObjectByName("playersBox");
 	[playerList, presenceList, nickList, ratingList] = [[],[],[],[]];
-	var ratingsmap = Engine.GetRatingList();
-	var defaultrating;
-	for each (var p in Engine.GetPlayerList())
+	var cleanPlayerList = Engine.GetPlayerList();
+	for (var i = 0; i < cleanPlayerList.length; i++)
 	{
-		defaultrating = '    -'; //Start with unrated. If no rating is found, keep it unrated.
-		for each (var user in ratingsmap)
-		{
-			if (user.name.toLowerCase() == p.name.toLowerCase())
-			{
-				defaultrating = user.rating;
-				break;
-			}
-		}
-		var [name, status, rating] = formatPlayerListEntry(p.name, p.presence, defaultrating);
+		// Add a "-" for unrated players.
+		if (!cleanPlayerList[i].rating)
+			cleanPlayerList[i].rating = "-";
+		// Colorize.
+		var [name, status, rating] = formatPlayerListEntry(cleanPlayerList[i].name, cleanPlayerList[i].presence, cleanPlayerList[i].rating);
+		// Push to lists.
 		playerList.push(name);
 		presenceList.push(status);
-		nickList.push(p.name);
+		nickList.push(cleanPlayerList[i].name);
 		ratingList.push(String("  " + rating));
 	}
 	playersBox.list_name = playerList;
 	playersBox.list_status = presenceList;
 	playersBox.list_rating = ratingList;
-	playersBox.list = nickList;	
+	playersBox.list = nickList;
 	if (playersBox.selected >= playersBox.list.length)
 		playersBox.selected = -1;
 	return [playerList, presenceList, nickList, ratingList];
@@ -312,6 +307,9 @@ function formatPlayerListEntry(nickname, presence, rating)
 		status = "Unknown";
 		break;
 	}
+	// Center the unrated symbol.
+	if (rating == "-")
+		rating = "    -";
 	var formattedStatus = '[color="' + color + '"]' + status + "[/color]";
 	var formattedRating = '[color="' + color + '"]' + rating + "[/color]"; 
 	var formattedName = colorPlayerName(nickname);
@@ -466,7 +464,7 @@ function onTick()
 					[playerList, presenceList, nickList, ratingList] = updatePlayerList();
 					break;
 				}
-				var [name, status, rating] = formatPlayerListEntry(nick, presence, "    -");
+				var [name, status, rating] = formatPlayerListEntry(nick, presence, "-");
 				playerList.push(name);
 				presenceList.push(status);
 				nickList.push(nick);

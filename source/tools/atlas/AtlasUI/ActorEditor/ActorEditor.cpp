@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -122,7 +122,7 @@ AtObj ActorEditor::FreezeData()
 		actor.set("float", L"");
 
 	if (m_Material->GetValue().length())
-		actor.set("material", m_Material->GetValue().c_str());
+		actor.set("material", m_Material->GetValue());
 
 	AtObj out;
 	out.set("actor", actor);
@@ -335,7 +335,7 @@ AtObj ActorEditor::ExportData()
 		actor.set("float", L"");
 
 	if (m_Material->GetValue().length())
-		actor.set("material", m_Material->GetValue().c_str());
+		actor.set("material", m_Material->GetValue());
 
 	AtObj out;
 	out.set("actor", actor);

@@ -571,7 +571,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		}
 
 		var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
-		cmpPlayerStatisticsTracker.IncreaseTrainedUnitsCounter();
+		cmpPlayerStatisticsTracker.IncreaseTrainedUnitsCounter(ent);
 
 		// Play a sound, but only for the first in the batch (to avoid nasty phasing effects)
 		if (createdEnts.length == 0)
@@ -605,11 +605,11 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			"metadata": metadata,
 		});
 		
-		if(this.alertRaiser)
+		if(this.alertRaiser && spawnedEnts.length > 0)
 		{
 			var cmpAlertRaiser = Engine.QueryInterface(this.alertRaiser, IID_AlertRaiser);
 			if(cmpAlertRaiser)
-				cmpAlertRaiser.UpdateUnits();
+				cmpAlertRaiser.UpdateUnits(spawnedEnts);
 		}
 	}
 	

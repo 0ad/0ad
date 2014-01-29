@@ -170,10 +170,11 @@ Formation.prototype.GetClosestMember = function(ent, filter)
 			continue;
 
 		var cmpPosition = Engine.QueryInterface(member, IID_Position);
+		if (!cmpPosition || !cmpPosition.IsInWorld())
+			continue;
+
 		var pos = cmpPosition.GetPosition2D();
-		var dx = entPosition.x - pos.x;
-		var dy = entPosition.y - pos.y;
-		var dist = dx * dx + dy * dy;
+		var dist = entPosition.distanceToSquared(pos);
 		if (dist < closestDistance)
 		{
 			closestMember = member;
@@ -436,6 +437,9 @@ Formation.prototype.Disband = function()
  */
 Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 {
+	if (!this.members.length)
+		return;
+
 	var active = [];
 	var positions = [];
 
@@ -449,19 +453,17 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		// query the 2D position as exact hight calculation isn't needed
 		// but bring the position to the right coordinates
 		var pos = cmpPosition.GetPosition2D();
-		pos.z = pos.y;
-		pos.y = undefined;
 		positions.push(pos);
 	}
 
-	var avgpos = this.ComputeAveragePosition(positions);
+	var avgpos = Vector2D.avg(positions);
 
 	// Reposition the formation if we're told to or if we don't already have a position
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var inWorld = cmpPosition.IsInWorld();
 	if (moveCenter || !inWorld)
 	{
-		cmpPosition.JumpTo(avgpos.x, avgpos.z);
+		cmpPosition.JumpTo(avgpos.x, avgpos.y);
 		// Don't make the formation controller entity show up in range queries
 		if (!inWorld)
 		{
@@ -490,7 +492,7 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 	this.oldOrientation = newOrientation;
 
 	var xMax = 0;
-	var zMax = 0;
+	var yMax = 0;
 
 	for (var i = 0; i < this.offsets.length; ++i)
 	{
@@ -505,7 +507,7 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 			cmpUnitAI.ReplaceOrder("FormationWalk", {
 				"target": this.entity,
 				"x": offset.x,
-				"z": offset.z
+				"z": offset.y
 			});
 		}
 		else
@@ -513,14 +515,14 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 			cmpUnitAI.PushOrderFront("FormationWalk", {
 				"target": this.entity,
 				"x": offset.x,
-				"z": offset.z
+				"z": offset.y
 			});
 		}
 		xMax = Math.max(xMax, offset.x);
-		zMax = Math.max(zMax, offset.z);
+		yMax = Math.max(yMax, offset.y);
 	}
 	this.width = xMax * 2;
-	this.depth = zMax * 2;
+	this.depth = yMax * 2;
 };
 
 Formation.prototype.MoveToMembersCenter = function()
@@ -533,14 +535,14 @@ Formation.prototype.MoveToMembersCenter = function()
 		if (!cmpPosition || !cmpPosition.IsInWorld())
 			continue;
 
-		positions.push(cmpPosition.GetPosition());
+		positions.push(cmpPosition.GetPosition2D());
 	}
 
-	var avgpos = this.ComputeAveragePosition(positions);
+	var avgpos = Vector2D.avg(positions);
 
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var inWorld = cmpPosition.IsInWorld();
-	cmpPosition.JumpTo(avgpos.x, avgpos.z);
+	cmpPosition.JumpTo(avgpos.x, avgpos.y);
 
 	// Don't make the formation controller show up in range queries
 	if (!inWorld)
@@ -655,7 +657,12 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 		var width = Math.sqrt(count) * (separation.width + separation.depth) * 2.5;
 
 		for (var i = 0; i < count; ++i)
-			offsets.push({"x": Math.random()*width, "z": Math.random()*width});
+		{
+			var obj = new Vector2D(Math.random()*width, Math.random()*width);
+			obj.row = 1;
+			obj.column = i + 1;
+			offsets.push(obj);
+		}
 	}
 
 	// For non-special formations, calculate the positions based on the number of entities
@@ -704,7 +711,9 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 					x += side * centerGap / 2;
 				}
 				var column = Math.ceil(n/2) + Math.ceil(c/2) * side;
-				offsets.push({"x": x, "z": z, "row": r + 1, "column": column});
+				offsets.push(new Vector2D(x, z));
+				offsets[offsets.length - 1].row = r+1;
+				offsets[offsets.length - 1].column = column;
 				left--
 			}
 			++r;
@@ -716,12 +725,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	// make sure the average offset is zero, as the formation is centered around that
 	// calculating offset distances without a zero average makes no sense, as the formation
 	// will jump to a different position any time
-	var avgoffset = this.ComputeAveragePosition(offsets);
-	for each (var offset in offsets)
-	{
-		offset.x -= avgoffset.x;
-		offset.z -= avgoffset.z;
-	}
+	var avgoffset = Vector2D.avg(offsets);
+	offsets.forEach(function (o) {o.sub(avgoffset);});
 
 	// sort the available places in certain ways
 	// the places first in the list will contain the heaviest units as defined by the order
@@ -730,24 +735,24 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 		offsets.sort(function(o1, o2) { return Math.abs(o1.x) < Math.abs(o2.x);});
 	else if (this.sortingOrder == "fillToTheCenter")
 		offsets.sort(function(o1, o2) { 
-			return Math.max(Math.abs(o1.x), Math.abs(o1.z)) < Math.max(Math.abs(o2.x), Math.abs(o2.z));
+			return Math.max(Math.abs(o1.x), Math.abs(o1.y)) < Math.max(Math.abs(o2.x), Math.abs(o2.y));
 		});
 
-	// query the 2D position of the formation, and bring to the right coordinate system
+	// query the 2D position of the formation
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var formationPos = cmpPosition.GetPosition2D();
-	formationPos.z = formationPos.y;
-	formationPos.y = undefined;
 
 	// use realistic place assignment,
 	// every soldier searches the closest available place in the formation
 	var newOffsets = [];
 	var realPositions = this.GetRealOffsetPositions(offsets, formationPos);
-	for (var i = 0; i < sortingClasses.length; ++i)
+	for (var i = sortingClasses.length; i; --i)
 	{
-		var t = types[sortingClasses[i]];
-		var usedOffsets = offsets.splice(0,t.length);
-		var usedRealPositions = realPositions.splice(0, t.length);
+		var t = types[sortingClasses[i-1]];
+		if (!t.length)
+			continue;
+		var usedOffsets = offsets.splice(-t.length);
+		var usedRealPositions = realPositions.splice(-t.length);
 		for each (var entPos in t)
 		{
 			var closestOffsetId = this.TakeClosestOffset(entPos, usedRealPositions);
@@ -773,9 +778,7 @@ Formation.prototype.TakeClosestOffset = function(entPos, realPositions)
 	var offsetDistanceSq = Infinity;
 	for (var i = 0; i < realPositions.length; i++)
 	{
-		var dx = realPositions[i].x - pos.x;
-		var dz = realPositions[i].z - pos.z;
-		var distSq = dx * dx + dz * dz;
+		var distSq = pos.distanceToSquared(realPositions[i]);
 		if (distSq < offsetDistanceSq)
 		{
 			offsetDistanceSq = distSq;
@@ -795,12 +798,7 @@ Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
 	var {sin, cos} = this.GetEstimatedOrientation(pos);
 	// calculate the world positions
 	for each (var o in offsets)
-		offsetPositions.push({
-			"x": pos.x + o.z * sin + o.x * cos, 
-			"z": pos.z + o.z * cos - o.x * sin,
-			"row": o.row,
-			"column": o.column
-		});
+		offsetPositions.push(new Vector2D(pos.x + o.y * sin + o.x * cos, pos.y + o.y * cos - o.x * sin));
 
 	return offsetPositions;
 };
@@ -820,13 +818,11 @@ Formation.prototype.GetEstimatedOrientation = function(pos)
 		var targetPos = cmpUnitAI.GetTargetPositions();
 		if (!targetPos.length)
 			return r;
-		var dx = targetPos[0].x - pos.x;
-		var dz = targetPos[0].z - pos.z;
-		if (!dx && !dz)
+		var d = targetPos[0].sub(pos).normalize();
+		if (!d.x && !d.y)
 			return r;
-		var dist = Math.sqrt(dx * dx + dz * dz);
-		r.cos = dz / dist;
-		r.sin = dx / dist;
+		r.cos = d.y;
+		r.sin = d.x;
 	}
 	else
 	{
@@ -838,18 +834,6 @@ Formation.prototype.GetEstimatedOrientation = function(pos)
 		r.cos = Math.cos(rot);
 	}
 	return r;
-};
-
-Formation.prototype.ComputeAveragePosition = function(positions)
-{
-	var sx = 0;
-	var sz = 0;
-	for each (var pos in positions)
-	{
-		sx += pos.x;
-		sz += pos.z;
-	}
-	return { "x": sx / positions.length, "z": sz / positions.length };
 };
 
 /**

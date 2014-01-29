@@ -75,6 +75,7 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"entities": spawnedEnts,
 				"source": data[i].source,
 				"target": data[i].target,
+				"route": undefined,
 				"queued": true
 			});
 			break;
@@ -89,6 +90,30 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 			break;
 		}
 	}
+
+	// special case: trade route with waypoints
+	// (we do not modify the RallyPoint before, as we want it to be displayed with all way-points)
+	if (ret.length > 1 && ret[ret.length-1].type == "setup-trade-route")
+	{
+
+		var route = [];
+		var waypoints = ret.length - 1;
+		for (var i = 0; i < waypoints; ++i)
+		{
+			if (ret[i].type != "walk")
+			{
+				route = undefined;
+				break;
+			}
+			route.push( {"x": ret[i].x, "z": ret[i].z} );
+		}
+		if (route && route.length > 0)
+		{
+			ret.splice(0, waypoints);
+			ret[0].route = route;
+		}
+	}
+
 	return ret;
 }
 

@@ -166,6 +166,18 @@ Vector2D.div = function(v, f)
 	return new Vector2D(v.x / f, v.y / f);
 };
 
+Vector2D.avg = function(vectorList)
+{
+	return Vector2D.sum(vectorList).div(vectorList.length);
+};
+
+Vector2D.sum = function(vectorList)
+{
+	var sum = new Vector2D();
+	vectorList.forEach(function(v) {sum.add(v);});
+	return sum;
+};
+
 /////////////////////////////////////////////////////////////////////
 //	Vector3D
 //

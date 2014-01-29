@@ -21,6 +21,9 @@
     <Classes datatype="tokens">Juggernaut</Classes>
     <Icon>units/rome_ship_quinquereme.png</Icon>
   </Identity>
+  <TrainingRestrictions>
+    <Category>Juggernaut</Category>
+  </TrainingRestrictions>
   <VisualActor>
     <Actor>structures/romans/quinquereme.xml</Actor>
   </VisualActor>

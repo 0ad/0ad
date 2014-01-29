@@ -27,7 +27,7 @@ namespace JSI_Lobby
 	bool HasXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	
 #if CONFIG2_LOBBY
-	void StartXmppClient(ScriptInterface::CxPrivate* pCxPrivate, std::wstring username, std::wstring password, std::wstring room, std::wstring nick);
+	void StartXmppClient(ScriptInterface::CxPrivate* pCxPrivate, std::wstring username, std::wstring password, std::wstring room, std::wstring nick, int historyRequestSize);
 	void StartRegisterXmppClient(ScriptInterface::CxPrivate* pCxPrivate, std::wstring username, std::wstring password);
 	void StopXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	void ConnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
@@ -43,7 +43,6 @@ namespace JSI_Lobby
 	CScriptVal GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate);
 	CScriptVal GetGameList(ScriptInterface::CxPrivate* pCxPrivate);
 	CScriptVal GetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
-	CScriptVal GetRatingList(ScriptInterface::CxPrivate* pCxPrivate);
 	CScriptVal LobbyGuiPollMessage(ScriptInterface::CxPrivate* pCxPrivate);
 	void LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring message);
 	void LobbySetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, std::wstring presence);

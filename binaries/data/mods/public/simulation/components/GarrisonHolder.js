@@ -247,7 +247,7 @@ GarrisonHolder.prototype.PerformGarrison = function(entity)
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [entity], "removed": [] });
 	
 	var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
-	if (cmpUnitAI && cmpUnitAI.GetAlertRaiser())
+	if (cmpUnitAI && cmpUnitAI.IsUnderAlert())
 		Engine.PostMessage(cmpUnitAI.GetAlertRaiser(), MT_UnitGarrisonedAfterAlert, {"holder": this.entity, "unit": entity});
 	
 	return true;

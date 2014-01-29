@@ -314,11 +314,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 		// ----------------------------------------------------------------------
 		
 		var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
-		cmpPlayerStatisticsTracker.IncreaseConstructedBuildingsCounter();
-
-		var cmpIdentity = Engine.QueryInterface(building, IID_Identity);
-		if (cmpIdentity.GetClassesList().indexOf("CivCentre") != -1)
-			cmpPlayerStatisticsTracker.IncreaseBuiltCivCentresCounter();
+		cmpPlayerStatisticsTracker.IncreaseConstructedBuildingsCounter(building);
 		
 		var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 		var cmpBuildingHealth = Engine.QueryInterface(building, IID_Health);

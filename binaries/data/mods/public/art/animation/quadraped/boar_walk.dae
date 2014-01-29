@@ -8396,7 +8396,7 @@
   </library_controllers>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="Armature" type="NODE">
+      <node id="Armature" name="BoarArmature_" type="NODE">
         <translate sid="location">0 0 0</translate>
         <rotate sid="rotationZ">0 0 1 0</rotate>
         <rotate sid="rotationY">0 1 0 0</rotate>
