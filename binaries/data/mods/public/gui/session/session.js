@@ -595,7 +595,7 @@ function updateHero()
 	{	
 		g_previousHeroHitPoints = heroState.hitpoints;
 		// trigger the animation
-		fadeColour("heroHitOverlay", 100, 10000, {"r": 175,"g": 0,"b": 0,"o": 100}, colourFade_attackUnit, smoothColourFadeRestart_attackUnit);
+		startColorFade("heroHitOverlay", 100, 0, colorFade_attackUnit, true, smoothColorFadeRestart_attackUnit);
 		return;
 	}
 }
