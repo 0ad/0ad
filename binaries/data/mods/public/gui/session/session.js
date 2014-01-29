@@ -895,10 +895,9 @@ function reportGame(extendedSimState)
 		"resourcesSold",
 		"resourcesBought"
 	];
-	
 
 	var playerStatistics = { };
-	
+
 	// Unit Stats
 	for each (var unitCounterType in unitsCountersTypes)
 	{
@@ -907,7 +906,7 @@ function reportGame(extendedSimState)
 		for each (var unitsClass in unitsClasses)
 			playerStatistics[unitCounterType][unitsClass] = "";
 	}
-			
+
 	playerStatistics.unitsLostValue = "";
 	playerStatistics.unitsKilledValue = "";
 	// Building stats
@@ -918,7 +917,7 @@ function reportGame(extendedSimState)
 		for each (var buildingsClass in buildingsClasses)
 			playerStatistics[buildingCounterType][buildingsClass] = "";
 	}
-			
+
 	playerStatistics.buildingsLostValue = "";
 	playerStatistics.enemyBuildingsDestroyedValue = "";
 	// Resources
@@ -930,7 +929,7 @@ function reportGame(extendedSimState)
 			playerStatistics[resourcesCounterType][resourcesType] = "";
 	}
 	playerStatistics.resourcesGathered.vegetarianFood = "";
-			
+
 	playerStatistics.tradeIncome = "";
 	// Tribute
 	playerStatistics.tributesSent = "";
@@ -956,15 +955,15 @@ function reportGame(extendedSimState)
 			for each (var resourcesType in resourcesTypes)
 				playerStatistics[resourcesCounterType][resourcesType] += player.statistics[resourcesCounterType][resourcesType] + ",";
 		playerStatistics.resourcesGathered.vegetarianFood += player.statistics.resourcesGathered.vegetarianFood + ",";
-				
+
 		for each (var unitCounterType in unitsCountersTypes)
 			for each (var unitsClass in unitsClasses)
 				playerStatistics[unitCounterType][unitsClass] += player.statistics[unitCounterType][unitsClass] + ",";
-				
+
 		for each (var buildingCounterType in buildingsCountersTypes)
 			for each (var buildingsClass in buildingsClasses)
 				playerStatistics[buildingCounterType][buildingsClass] += player.statistics[buildingCounterType][buildingsClass] + ",";
-				
+
 		playerStatistics.tradeIncome += player.statistics.tradeIncome + ",";
 		playerStatistics.tributesSent += player.statistics.tributesSent + ",";
 		playerStatistics.tributesReceived += player.statistics.tributesReceived + ",";
@@ -980,7 +979,7 @@ function reportGame(extendedSimState)
 	reportObject.matchID = g_MatchID;
 	reportObject.civs = playerCivs;
 	reportObject.teams = teams;
-	reportObject.teamsLocked = teamsLocked;
+	reportObject.teamsLocked = String(teamsLocked);
 	reportObject.mapName = mapName;
 	for each (var rct in resourcesCounterTypes)
 	{
@@ -1001,15 +1000,13 @@ function reportGame(extendedSimState)
 		reportObject[(type.substr(0,1)).toLowerCase()+type.substr(1)+"BuildingsConstructed"] = playerStatistics.buildingsConstructed[type];
 		reportObject[(type.substr(0,1)).toLowerCase()+type.substr(1)+"BuildingsLost"] = playerStatistics.buildingsLost[type];
 		reportObject["enemy"+type+"BuildingsDestroyed"] = playerStatistics.enemyBuildingsDestroyed[type];
-	}	
+	}
 	reportObject.tributesSent = playerStatistics.tributesSent;
 	reportObject.tributesReceived = playerStatistics.tributesReceived;
 	reportObject.precentMapExplored = playerStatistics.percentMapExplored;
 	reportObject.treasuresCollected = playerStatistics.treasuresCollected;
 	reportObject.tradeIncome = playerStatistics.tradeIncome;
-	
+
 	Engine.SendGameReport(reportObject);
 }
-
-
 
