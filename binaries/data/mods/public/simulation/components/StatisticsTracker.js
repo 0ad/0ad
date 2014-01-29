@@ -6,45 +6,114 @@ StatisticsTracker.prototype.Schema =
 StatisticsTracker.prototype.Init = function()
 {
 	// units
-	this.unitsTrained = 0;
-	this.unitsLost = 0;
+	this.unitsClasses = [
+		"Infantry",
+		"Worker",
+		"Female",
+		"Cavalry",
+		"Champion",
+		"Hero",
+		"Ship"
+	];	
+	this.unitsTrained = {
+		"Infantry": 0,
+		"Worker": 0,
+		"Female": 0,
+		"Cavalry": 0,
+		"Champion": 0,
+		"Hero": 0,
+		"Ship": 0,
+		"total": 0
+	};
+	this.unitsLost = {
+		"Infantry": 0,
+		"Worker": 0,
+		"Female": 0,
+		"Cavalry": 0,
+		"Champion": 0,
+		"Hero": 0,
+		"Ship": 0,
+		"total": 0
+	};
 	this.unitsLostValue = 0;
-	this.enemyUnitsKilled = 0;
+	this.enemyUnitsKilled = {
+		"Infantry": 0,
+		"Worker": 0,
+		"Female": 0,
+		"Cavalry": 0,
+		"Champion": 0,
+		"Hero": 0,
+		"Ship": 0,
+		"total": 0
+	};
 	this.enemyUnitsKilledValue = 0;
-	//buildings
-	this.buildingsConstructed = 0;
-	this.buildingsLost = 0;
+	// buildings
+	this.buildingsClasses = [
+		"House",
+		"Economic",
+		"Outpost",
+		"Military",
+		"Fortress",
+		"CivCentre",
+		"Wonder"
+	];
+	this.buildingsConstructed = {
+		"House": 0,
+		"Economic": 0,
+		"Outpost": 0,
+		"Military": 0,
+		"Fortress": 0,
+		"CivCentre": 0,
+		"Wonder": 0,
+		"total": 0	
+	};
+	this.buildingsLost = {
+		"House": 0,
+		"Economic": 0,
+		"Outpost": 0,
+		"Military": 0,
+		"Fortress": 0,
+		"CivCentre": 0,
+		"Wonder": 0,
+		"total": 0
+		};
 	this.buildingsLostValue = 0;
-	this.enemyBuildingsDestroyed = 0;
+	this.enemyBuildingsDestroyed = {
+		"House": 0,
+		"Economic": 0,
+		"Outpost": 0,
+		"Military": 0,
+		"Fortress": 0,
+		"CivCentre": 0,
+		"Wonder": 0,
+		"total": 0
+		};
 	this.enemyBuildingsDestroyedValue = 0;
-	// civ centres
-	this.civCentresBuilt = 0;
-	this.enemyCivCentresDestroyed = 0;
 	// resources
 	this.resourcesGathered = {
-			"food": 0,
-			"wood": 0,
-			"metal": 0,
-			"stone": 0,
-			"vegetarianFood": 0
+		"food": 0,
+		"wood": 0,
+		"metal": 0,
+		"stone": 0,
+		"vegetarianFood": 0
 	};
 	this.resourcesUsed = {
-			"food": 0,
-			"wood": 0,
-			"metal": 0,
-			"stone": 0
+		"food": 0,
+		"wood": 0,
+		"metal": 0,
+		"stone": 0
 	};
 	this.resourcesSold = {
-			"food": 0,
-			"wood": 0,
-			"metal": 0,
-			"stone": 0
+		"food": 0,
+		"wood": 0,
+		"metal": 0,
+		"stone": 0
 	};
 	this.resourcesBought = {
-			"food": 0,
-			"wood": 0,
-			"metal": 0,
-			"stone": 0
+		"food": 0,
+		"wood": 0,
+		"metal": 0,
+		"stone": 0
 	};
 	this.tributesSent = 0;
 	this.tributesReceived = 0;
@@ -65,8 +134,6 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"buildingsLostValue": this.buildingsLostValue,
 		"enemyBuildingsDestroyed": this.enemyBuildingsDestroyed,
 		"enemyBuildingsDestroyedValue": this.enemyBuildingsDestroyedValue,
-		"civCentresBuilt": this.civCentresBuilt,
-		"enemyCivCentresDestroyed": this.enemyCivCentresDestroyed,
 		"resourcesGathered": this.resourcesGathered,
 		"resourcesUsed": this.resourcesUsed,
 		"resourcesSold": this.resourcesSold,
@@ -79,19 +146,55 @@ StatisticsTracker.prototype.GetStatistics = function()
 	};
 };
 
-StatisticsTracker.prototype.IncreaseTrainedUnitsCounter = function()
+/**
+ * Increments counter associated with certain entity/counter and type of given entity.
+ * @param entity The entity id
+ * @param counter The name of the counter to increment (e.g. "unitsTrained")
+ * @param type The type of the counter (e.g. "workers")
+ */
+StatisticsTracker.prototype.CounterIncrement = function(entity, counter, type)
 {
-	return this.unitsTrained++;
+	var classes = entity.GetClassesList();
+	if (!classes)
+		return;
+	if (classes.indexOf(type) != -1)
+		this[counter][type]++;
 };
 
-StatisticsTracker.prototype.IncreaseConstructedBuildingsCounter = function()
+/** 
+ * Counts the total number of units trained as well as an individual count for 
+ * each unit type. Based on templates.
+ * @param trainedUnit The unit that has been trained 
+ */ 
+StatisticsTracker.prototype.IncreaseTrainedUnitsCounter = function(trainedUnit)
 {
-	return this.buildingsConstructed++;
+	var cmpUnitEntityIdentity = Engine.QueryInterface(trainedUnit, IID_Identity);
+
+	if (!cmpUnitEntityIdentity)
+		return;
+
+	for each (var type in this.unitsClasses)
+		this.CounterIncrement(cmpUnitEntityIdentity, "unitsTrained", type);
+
+	this.unitsTrained.total++;
 };
 
-StatisticsTracker.prototype.IncreaseBuiltCivCentresCounter = function()
+/** 
+ * Counts the total number of buildings constructed as well as an individual count for 
+ * each building type. Based on templates.
+ * @param constructedBuilding The building that has been constructed 
+ */ 
+StatisticsTracker.prototype.IncreaseConstructedBuildingsCounter = function(constructedBuilding)
 {
-	return this.civCentresBuilt++;
+	var cmpBuildingEntityIdentity = Engine.QueryInterface(constructedBuilding, IID_Identity);
+		
+	if (!cmpBuildingEntityIdentity)
+		return;
+
+	for each(var type in this.buildingsClasses)
+		this.CounterIncrement(cmpBuildingEntityIdentity, "buildingsConstructed", type);
+
+	this.buildingsConstructed.total++;
 };
 
 StatisticsTracker.prototype.KilledEntity = function(targetEntity)
@@ -99,40 +202,41 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 	var cmpTargetEntityIdentity = Engine.QueryInterface(targetEntity, IID_Identity);
 	var cmpCost = Engine.QueryInterface(targetEntity, IID_Cost);
 	var costs = cmpCost.GetResourceCosts();
-	if (cmpTargetEntityIdentity)
-	{
-		var cmpFoundation = Engine.QueryInterface(targetEntity, IID_Foundation);
-		// We want to deal only with real structures, not foundations
-		var targetIsStructure = cmpTargetEntityIdentity.HasClass("Structure") && cmpFoundation == null;
-		var targetIsDomesticAnimal = cmpTargetEntityIdentity.HasClass("Animal") && cmpTargetEntityIdentity.HasClass("Domestic");
-		// Don't count domestic animals as units
-		var targetIsUnit = cmpTargetEntityIdentity.HasClass("Unit") && !targetIsDomesticAnimal;
-		var targetIsCivCentre = cmpTargetEntityIdentity.HasClass("CivCentre");
+	if (!cmpTargetEntityIdentity)
+		return;
 
-		var cmpTargetOwnership = Engine.QueryInterface(targetEntity, IID_Ownership);
-	    
-		// Don't increase counters if target player is gaia (player 0)
-		if (cmpTargetOwnership.GetOwner() != 0)
-		{
-			if (targetIsUnit)
-			{
-				this.enemyUnitsKilled++;
-				for (var r in costs)
-				{
-					this.enemyUnitsKilledValue += costs[r];
-				}
-			}	
-			if (targetIsStructure)
-			{
-				this.enemyBuildingsDestroyed++;
-				for (var r in costs)
-				{
-					this.enemyBuildingsDestroyedValue += costs[r];
-				}
-			}
-			if (targetIsCivCentre && targetIsStructure)
-				this.enemyCivCentresDestroyed++;
-		}
+	var cmpFoundation = Engine.QueryInterface(targetEntity, IID_Foundation);
+	// We want to deal only with real structures, not foundations
+	var targetIsStructure = cmpTargetEntityIdentity.HasClass("Structure") && cmpFoundation == null;
+	var targetIsDomesticAnimal = cmpTargetEntityIdentity.HasClass("Animal") && cmpTargetEntityIdentity.HasClass("Domestic");
+	// Don't count domestic animals as units
+	var targetIsUnit = cmpTargetEntityIdentity.HasClass("Unit") && !targetIsDomesticAnimal;
+
+	var cmpTargetOwnership = Engine.QueryInterface(targetEntity, IID_Ownership);
+    
+	// Don't increase counters if target player is gaia (player 0)
+	if (cmpTargetOwnership.GetOwner() == 0)
+		return;
+
+	if (targetIsUnit)
+	{
+		for each (var type in this.unitsClasses)
+			this.CounterIncrement(cmpTargetEntityIdentity, "enemyUnitsKilled", type);
+
+		this.enemyUnitsKilled.total++;
+		
+		for each (var cost in costs)
+			this.enemyUnitsKilledValue += cost;
+	}	
+	if (targetIsStructure)
+	{
+		for each (var type in this.buildingsClasses)
+			this.CounterIncrement(cmpTargetEntityIdentity, "enemyBuildingsDestroyed", type);
+
+		this.enemyBuildingsDestroyed.total++;
+		
+		for each (var cost in costs)
+			this.enemyBuildingsDestroyedValue += cost;
 	}
 };
 
@@ -141,31 +245,35 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 	var cmpLostEntityIdentity = Engine.QueryInterface(lostEntity, IID_Identity);
 	var cmpCost = Engine.QueryInterface(lostEntity, IID_Cost);
 	var costs = cmpCost.GetResourceCosts();
-	if (cmpLostEntityIdentity)
-	{
-		var cmpFoundation = Engine.QueryInterface(lostEntity, IID_Foundation);
-		// We want to deal only with real structures, not foundations
-		var lostEntityIsStructure = cmpLostEntityIdentity.HasClass("Structure") && cmpFoundation == null;
-		var lostEntityIsDomesticAnimal = cmpLostEntityIdentity.HasClass("Animal") && cmpLostEntityIdentity.HasClass("Domestic");
-		// Don't count domestic animals as units
-		var lostEntityIsUnit = cmpLostEntityIdentity.HasClass("Unit") && !lostEntityIsDomesticAnimal;
+	if (!cmpLostEntityIdentity)
+		return;
+	
+	var cmpFoundation = Engine.QueryInterface(lostEntity, IID_Foundation);
+	// We want to deal only with real structures, not foundations
+	var lostEntityIsStructure = cmpLostEntityIdentity.HasClass("Structure") && cmpFoundation == null;
+	var lostEntityIsDomesticAnimal = cmpLostEntityIdentity.HasClass("Animal") && cmpLostEntityIdentity.HasClass("Domestic");
+	// Don't count domestic animals as units
+	var lostEntityIsUnit = cmpLostEntityIdentity.HasClass("Unit") && !lostEntityIsDomesticAnimal;
 
-		if (lostEntityIsUnit)
-		{
-			this.unitsLost++;
-			for (var r in costs)
-			{
-				this.unitsLostValue += costs[r];
-			}	
-		}	
-		if (lostEntityIsStructure)
-		{
-			this.buildingsLost++;
-			for (var r in costs)
-			{
-				this.buildingsLostValue += costs[r];
-			}
-		}
+	if (lostEntityIsUnit)
+	{
+		for each (var type in this.unitsClasses)
+			this.CounterIncrement(cmpLostEntityIdentity, "unitsLost", type);
+
+		this.unitsLost.total++;
+		
+		for each (var cost in costs)
+			this.unitsLostValue += cost;	
+	}	
+	if (lostEntityIsStructure)
+	{
+		for each (var type in this.buildingsClasses)
+			this.CounterIncrement(cmpLostEntityIdentity, "buildingsLost", type);
+
+		this.buildingsLost.total++;
+		
+		for each (var cost in costs)
+			this.buildingsLostValue += cost;
 	}
 };
 
@@ -179,7 +287,7 @@ StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amo
 	this.resourcesGathered[type] += amount;
 	
 	if (type == "food" && (specificType == "fruit" || specificType == "grain"))
-		this.resourcesGathered["vegetarianFood"] += amount;
+		this.resourcesGathered.vegetarianFood += amount;
 };
 
 /**
@@ -193,33 +301,33 @@ StatisticsTracker.prototype.IncreaseResourceUsedCounter = function(type, amount)
 
 StatisticsTracker.prototype.IncreaseTreasuresCollectedCounter = function()
 {
-	return this.treasuresCollected++;
+	this.treasuresCollected++;
 };
 
 StatisticsTracker.prototype.IncreaseResourcesSoldCounter = function(type, amount)
 {
 	this.resourcesSold[type] += amount;
-}
+};
 
 StatisticsTracker.prototype.IncreaseResourcesBoughtCounter = function(type, amount)
 {
 	this.resourcesBought[type] += amount;
-}
+};
 
 StatisticsTracker.prototype.IncreaseTributesSentCounter = function(amount)
 {
 	this.tributesSent += amount;
-}
+};
 
 StatisticsTracker.prototype.IncreaseTributesReceivedCounter = function(amount)
 {
 	this.tributesReceived += amount;
-}
+};
 
 StatisticsTracker.prototype.IncreaseTradeIncomeCounter = function(amount)
 {
 	this.tradeIncome += amount;
-}
+};
 
 StatisticsTracker.prototype.GetPercentMapExplored = function()
 {
