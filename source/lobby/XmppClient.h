@@ -116,6 +116,7 @@ protected:
 
 	// Helpers
 	void GetPresenceString(const gloox::Presence::PresenceType p, std::string& presence) const;
+	void GetRoleString(const gloox::MUCRoomRole r, std::string& role) const;
 	std::string StanzaErrorToString(gloox::StanzaError err);
 public:
 	/* Messages */

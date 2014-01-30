@@ -492,6 +492,7 @@ CScriptValRooted XmppClient::GUIGetPlayerList(ScriptInterface& scriptInterface)
 		scriptInterface.SetProperty(player.get(), "name", wstring_from_utf8(it->first));
 		scriptInterface.SetProperty(player.get(), "presence", wstring_from_utf8(it->second[0]));
 		scriptInterface.SetProperty(player.get(), "rating", wstring_from_utf8(it->second[1]));
+		scriptInterface.SetProperty(player.get(), "role", wstring_from_utf8(it->second[2]));
 		scriptInterface.CallFunctionVoid(playerList.get(), "push", player);
 	}
 
@@ -718,16 +719,18 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 	//std::string jid = participant.jid->full();
 	std::string nick = participant.nick->resource().to_string();
 	gloox::Presence::PresenceType presenceType = presence.presence();
-	std::string presenceString;
+	std::string presenceString, roleString;
 	GetPresenceString(presenceType, presenceString);
+	GetRoleString(participant.role, roleString);
 	if (presenceType == gloox::Presence::Unavailable)
 	{
 		if (!participant.newNick.empty() && (participant.flags & (gloox::UserNickChanged | gloox::UserSelf)))
 		{
 			// we have a nick change
 			std::string newNick = participant.newNick.to_string();
-			m_PlayerMap[newNick].resize(2);
+			m_PlayerMap[newNick].resize(3);
 			m_PlayerMap[newNick][0] = presenceString;
+			m_PlayerMap[newNick][2] = roleString;
 			CreateSimpleMessage("muc", nick, "nick", participant.newNick.to_string());
 		}
 		else
@@ -744,8 +747,9 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 			CreateSimpleMessage("muc", nick, "presence");
 
 		DbgXMPP(nick << " is in the room, presence : " << (int)presenceType);
-		m_PlayerMap[nick].resize(2);
+		m_PlayerMap[nick].resize(3);
 		m_PlayerMap[nick][0] = presenceString;
+		m_PlayerMap[nick][2] = roleString;
 	}
 }
 
@@ -869,6 +873,29 @@ void XmppClient::GetPresenceString(const gloox::Presence::PresenceType p, std::s
 	CASE(Invalid, "invalid");
 	default:
 		LOGERROR(L"Unknown presence type '%d'", (int)p);
+		break;
+#undef CASE
+	}
+}
+
+/**
+ * Convert a gloox role type to string.
+ *
+ * @param p Role to be converted
+ * @param presence Variable to store the converted role string in
+ */
+void XmppClient::GetRoleString(const gloox::MUCRoomRole r, std::string& role) const
+{
+	switch(r)
+	{
+#define CASE(x,y) case gloox::MUCRoomRole::x: role = y; break
+	CASE(RoleNone, "none");
+	CASE(RoleVisitor, "visitor");
+	CASE(RoleParticipant, "participant");
+	CASE(RoleModerator, "moderator");
+	CASE(RoleInvalid, "invalid");
+	default:
+		LOGERROR(L"Unknown role type '%d'", (int)r);
 		break;
 #undef CASE
 	}
