@@ -479,6 +479,19 @@ createDecoration
  avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0)
 );
 
+// create water decoration in the shallow parts
+createDecoration
+(
+ [[new SimpleObject(aReeds, 1,3, 0,1)], 
+  [new SimpleObject(aLillies, 1,2, 0,1)]
+ ],
+ [
+  scaleByMapSize(800, 12800),
+  scaleByMapSize(800, 12800)
+ ],
+ stayClasses(clShallow, 0)
+);
+
 RMS.SetProgress(70);
 
 // create animals
