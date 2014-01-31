@@ -20,7 +20,7 @@
 
 		<!-- Left panel: Player list. -->
 		<object name="leftPanel" size="20 30 20% 100%-50">
-			<object name="playersBox" style="ModernList" type="olist" size="0 0 100% 100%" font="serif-bold-13">
+			<object name="playersBox" style="ModernList" type="olist" size="0 0 100% 100%" font="serif-bold-stroke-13">
 				<def id="status" heading="Status" width="28%"/>
 				<def id="name" heading="Name" width="47%"/>
 				<def id="rating" heading="Rating" width="25%"/>

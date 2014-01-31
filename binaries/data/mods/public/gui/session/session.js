@@ -669,10 +669,10 @@ function updatePlayerDisplay()
 	if (!playerState)
 		return;
 
-	Engine.GetGUIObjectByName("resourceFood").caption = playerState.resourceCounts.food;
-	Engine.GetGUIObjectByName("resourceWood").caption = playerState.resourceCounts.wood;
-	Engine.GetGUIObjectByName("resourceStone").caption = playerState.resourceCounts.stone;
-	Engine.GetGUIObjectByName("resourceMetal").caption = playerState.resourceCounts.metal;
+	Engine.GetGUIObjectByName("resourceFood").caption = Math.floor(playerState.resourceCounts.food);
+	Engine.GetGUIObjectByName("resourceWood").caption = Math.floor(playerState.resourceCounts.wood);
+	Engine.GetGUIObjectByName("resourceStone").caption = Math.floor(playerState.resourceCounts.stone);
+	Engine.GetGUIObjectByName("resourceMetal").caption = Math.floor(playerState.resourceCounts.metal);
 	Engine.GetGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
 
 	g_IsTrainingBlocked = playerState.trainingBlocked;

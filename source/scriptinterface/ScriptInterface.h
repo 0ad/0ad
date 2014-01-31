@@ -91,8 +91,6 @@ public:
 	 */
 	static shared_ptr<ScriptRuntime> CreateRuntime(int runtimeSize = DEFAULT_RUNTIME_SIZE);
 
-	CScriptValRooted vector2Dprototype;
-	CScriptValRooted vector3Dprototype;
 
 	/**
 	 * Constructor.
@@ -129,6 +127,9 @@ public:
 	 * located in the /globalscripts directory. VFS must be initialized.
 	 */
 	bool LoadGlobalScripts();
+
+	enum CACHED_VAL { CACHE_VECTOR2DPROTO, CACHE_VECTOR3DPROTO };
+	CScriptValRooted GetCachedValue(CACHED_VAL valueIdentifier);
 
 	/**
 	 * Replace the default JS random number geenrator with a seeded, network-sync'd one.

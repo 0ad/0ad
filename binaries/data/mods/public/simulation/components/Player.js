@@ -199,7 +199,7 @@ Player.prototype.GetNeededResources = function(amounts)
 	var amountsNeeded = {};
 	for (var type in amounts)
 		if (this.resourceCount[type] != undefined && amounts[type] > this.resourceCount[type])
-			amountsNeeded[type] = amounts[type] - this.resourceCount[type];
+			amountsNeeded[type] = amounts[type] - Math.floor(this.resourceCount[type]);
 
 	if (Object.keys(amountsNeeded).length == 0)
 		return undefined;

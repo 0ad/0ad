@@ -218,7 +218,7 @@ createBumps();
 
 // create hills
 if (randInt(1,2) == 1)
-	createHills([tMainTerrain, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15), clHill, scaleByMapSize(3, 15));
+	createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15), clHill, scaleByMapSize(3, 15));
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15), clHill, scaleByMapSize(3, 15));
 
@@ -245,7 +245,7 @@ createLayeredPatches(
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
- tTie4Terrain
+ tTier4Terrain
 );
 
 RMS.SetProgress(55);

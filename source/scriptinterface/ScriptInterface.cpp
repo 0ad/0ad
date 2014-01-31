@@ -239,6 +239,9 @@ struct ScriptInterface_impl
 	JSContext* m_cx;
 	JSObject* m_glob; // global scope object
 	JSObject* m_nativeScope; // native function scope object
+
+	typedef std::map<ScriptInterface::CACHED_VAL, CScriptValRooted> ScriptValCache;
+	ScriptValCache m_ScriptValCache;
 };
 
 namespace
@@ -529,6 +532,9 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 
 ScriptInterface_impl::~ScriptInterface_impl()
 {
+	// Important: this must come before JS_DestroyContext because CScriptValRooted needs the context to unroot the values!
+	// TODO: Check again when SpiderMonkey is upgraded and when/if CScriptValRooted gets replaces by JS::Heap<T>.
+	m_ScriptValCache.clear(); 
 	JS_DestroyContext(m_cx);
 }
 
@@ -610,6 +616,12 @@ ScriptInterface::CxPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSConte
 	return pCxPrivate;
 }
 
+CScriptValRooted ScriptInterface::GetCachedValue(CACHED_VAL valueIdentifier)
+{
+	return m->m_ScriptValCache[valueIdentifier];
+}
+
+
 bool ScriptInterface::LoadGlobalScripts()
 {
 	// Ignore this failure in tests
@@ -629,9 +641,9 @@ bool ScriptInterface::LoadGlobalScripts()
 	}
 	jsval proto;
 	if (JS_GetProperty(m->m_cx, JS_GetGlobalObject(m->m_cx), "Vector2Dprototype", &proto))
-		vector2Dprototype = CScriptValRooted(m->m_cx, proto);
+		m->m_ScriptValCache[CACHE_VECTOR2DPROTO] = CScriptValRooted(m->m_cx, proto);
 	if (JS_GetProperty(m->m_cx, JS_GetGlobalObject(m->m_cx), "Vector3Dprototype", &proto))
-		vector3Dprototype = CScriptValRooted(m->m_cx, proto);
+		m->m_ScriptValCache[CACHE_VECTOR3DPROTO] = CScriptValRooted(m->m_cx, proto);
 	return true;
 }
 

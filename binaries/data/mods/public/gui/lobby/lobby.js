@@ -159,7 +159,7 @@ function updatePlayerList()
 		if (!cleanPlayerList[i].rating)
 			cleanPlayerList[i].rating = "-";
 		// Colorize.
-		var [name, status, rating] = formatPlayerListEntry(cleanPlayerList[i].name, cleanPlayerList[i].presence, cleanPlayerList[i].rating);
+		var [name, status, rating] = formatPlayerListEntry(cleanPlayerList[i].name, cleanPlayerList[i].presence, cleanPlayerList[i].rating, cleanPlayerList[i].role);
 		// Push to lists.
 		playerList.push(name);
 		presenceList.push(status);
@@ -278,7 +278,7 @@ function updateGameList()
  * @param rating Rating of player.
  * @return Colorized versions of name, status, and rating.
  */
-function formatPlayerListEntry(nickname, presence, rating)
+function formatPlayerListEntry(nickname, presence, rating, role)
 {
 	// Set colors based on player status
 	var color, status;
@@ -314,6 +314,9 @@ function formatPlayerListEntry(nickname, presence, rating)
 	var formattedRating = '[color="' + color + '"]' + rating + "[/color]"; 
 	var formattedName = colorPlayerName(nickname);
 
+	// Give moderators special formatting.
+	if (role == "moderator")
+		formattedName = formattedName; //TODO
 	// Push this player's name and status onto the list
 	return [formattedName, formattedStatus, formattedRating];
 }
