@@ -74,6 +74,9 @@ TechnologyManager.prototype.UpdateAutoResearch = function ()
 
 TechnologyManager.prototype.GetTechnologyTemplate = function (tech)
 {
+	if (!(tech in this.allTechs))
+		return undefined;
+
 	return this.allTechs[tech];
 };
 
