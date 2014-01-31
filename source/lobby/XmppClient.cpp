@@ -888,7 +888,7 @@ void XmppClient::GetRoleString(const gloox::MUCRoomRole r, std::string& role) co
 {
 	switch(r)
 	{
-#define CASE(x,y) case gloox::MUCRoomRole::x: role = y; break
+#define CASE(x,y) case gloox::x: role = y; break
 	CASE(RoleNone, "none");
 	CASE(RoleVisitor, "visitor");
 	CASE(RoleParticipant, "participant");
