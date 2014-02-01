@@ -3202,8 +3202,10 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 	// If the unit isn't being created or dying, reset stance and clear orders (if not garrisoned).
 	if (msg.to != -1 && msg.from != -1)
 	{
-		// Switch to an empty state to let states execute their leave handlers.
-		UnitFsm.SwitchToNextState(this, "");
+		// Switch to a virgin state to let states execute their leave handlers.
+		var index = this.GetCurrentState().indexOf(".");
+		if (index != -1)
+			UnitFsm.SwitchToNextState(this, this.GetCurrentState().slice(0,index));
 
 		this.SetStance(this.template.DefaultStance);
 		if(!this.isGarrisoned)
