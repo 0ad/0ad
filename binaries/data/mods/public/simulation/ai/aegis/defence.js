@@ -80,6 +80,9 @@ m.Defence.prototype.checkEnemyUnits = function(gameState)
 		i++;
 	else if (i === PlayerID)
 		i = 1;
+
+	if (gameState.isPlayerAlly(i))
+		return;
 	
 	var filter = API3.Filters.and(API3.Filters.byClass("Unit"), API3.Filters.byOwner(i));
 	var enemyUnits = gameState.updatingGlobalCollection("player-" +i + "-units", filter);
