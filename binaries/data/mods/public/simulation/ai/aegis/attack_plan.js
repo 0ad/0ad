@@ -980,7 +980,7 @@ m.CityAttack.prototype.update = function(gameState, HQ, events){
 
 				if (!ourUnit.hasClass("Siege"))
 					continue;
-				var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5).toEntityArray();
+				var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5);
 				if (collec.length === 0)
 					continue;
 				collec.attack(attacker.id())
