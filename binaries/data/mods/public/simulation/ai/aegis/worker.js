@@ -386,7 +386,6 @@ m.Worker.prototype.pickResourceNearDropsite = function(gameState, resource, drop
 			if ( (gameState.sharedScript.passabilityClasses["pathfinderObstruction"] & gameState.getMap().data[id]) )
 			{
 				supply.setMetadata(PlayerID, "inaccessible", true)
-				warn ("there")
 				return;
 			}
 		}
