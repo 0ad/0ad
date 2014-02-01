@@ -4,7 +4,7 @@ var API3 = (function() {
 
 var m = {};
 
-m.DebugEnabled = true;
+m.DebugEnabled = false;
 
 m.BaseAI = function(settings)
 {
