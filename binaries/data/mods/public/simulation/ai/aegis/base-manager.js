@@ -58,11 +58,11 @@ m.BaseManager.prototype.init = function(gameState, unconstructed){
 	// TODO: difficulty levels for this?
 	
 	// smallRadius is the distance necessary to mark a resource as linked to a dropsite.
-	this.smallRadius = { 'food':40*40,'wood':50*50,'stone':40*40,'metal':40*40 };
+	this.smallRadius = { 'food':50*50,'wood':50*50,'stone':40*40,'metal':40*40 };
 	// medRadius is the maximal distance for a link, albeit one that would still make us want to build a new dropsite.
-	this.medRadius = { 'food':70*70,'wood':55*55,'stone':80*80,'metal':80*80 };
+	this.medRadius = { 'food':90*90,'wood':55*55,'stone':80*80,'metal':80*80 };
 	// bigRadius is the distance for a weak link, mainly for optimizing search for resources when a DP is depleted.
-	this.bigRadius = { 'food':70*70,'wood':200*200,'stone':200*200,'metal':200*200 };
+	this.bigRadius = { 'food':200*200,'wood':200*200,'stone':200*200,'metal':200*200 };
 };
 
 m.BaseManager.prototype.assignEntity = function(unit){
@@ -257,6 +257,8 @@ m.BaseManager.prototype.assignResourceToDP = function (gameState, supply, specif
 		{
 			var dp = gameState.getEntityById(i);
 			var distance = API3.SquareVectorDistance(supply.position(), dp.position());
+			if (supply.resourceSupplyType()["specific"] === "grain")
+				distance /= 100;
 			if (distance < dist && distance < this.bigRadius[type])
 			{
 				closest = dp.id();
@@ -548,18 +550,25 @@ m.BaseManager.prototype.updateDropsites = function (gameState) {
 // Returns the number of slots available for workers on this dropsite.
 m.BaseManager.prototype.getDpWorkerCapacity = function (gameState, entID, type, faraway) {
 	if (this.dropsites[entID] === undefined || this.dropsites[entID][type] === undefined)
-		return undefined;	// should initialize it first.
+		return undefined;	// should initialize it first, or it just doesn't exist.
 	var dropsite = this.dropsites[entID];
 
 	var count = 0;
 	if (type == "food")
-		return (dropsite["food"] !== undefined ? 10000 : 0);
-
-	if ((type === "stone" && dropsite["stone"])|| (type === "metal" && dropsite["metal"]))
 	{
 		var slot = dropsite[type][0];
 		if (faraway === true)
-			dropsite[type][1];
+			slot = dropsite[type][1];
+		slot.forEach(function (ent) {
+			if (ent.resourceSupplyAmount() > 50)
+				count += ent.maxGatherers();
+		});
+	}
+	else if ((type === "stone" && dropsite["stone"])|| (type === "metal" && dropsite["metal"]))
+	{
+		var slot = dropsite[type][0];
+		if (faraway === true)
+			slot = dropsite[type][1];
 		slot.forEach(function (ent) {
 			if (ent.resourceSupplyAmount() > 500)
 				count += ent.maxGatherers();
@@ -664,13 +673,14 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 						numFarms++;
 				});
 				var numFd = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_field"), true);
-				numFarms += numFd;
-				numFarms += queues.field.countQueuedUnits();
+				var numQueued = queues.field.countQueuedUnits();
+				numFarms += numFd + numQueued;
 				
 				// let's see if we need to push new farms.
 				var maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
-				if (numFd < 2)
-					if (numFarms < Math.round(this.gatherersByType(gameState, "food").length / (maxGatherers*0.9)))
+				if (numQueued < 3)
+					if (numFarms < Math.round(this.gatherersByType(gameState, "food").length / (maxGatherers*0.9))
+						&& numFarms < Math.round((this.workers.length*0.4)/maxGatherers))
 						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 				// TODO: refine count to only count my base.
 			}
@@ -707,7 +717,7 @@ m.BaseManager.prototype.getGatherRates = function(gameState, currentRates) {
 		
 		var units = this.gatherersByType(gameState, i);
 		units.forEach(function (ent) {
-			var gRate = ent.currentGatherRate()
+			var gRate = ent.currentGatherRate();
 			if (gRate !== undefined)
 				currentRates[i] += Math.log(1+gRate)/1.1;
 		});
@@ -720,6 +730,7 @@ m.BaseManager.prototype.getGatherRates = function(gameState, currentRates) {
 					currentRates[i] += Math.log(1+gRate)/1.1;
 			});
 		}
+		currentRates[i] += 0.5*m.GetTCRessGatherer(gameState,i);
 	}
 };
 
@@ -796,10 +807,8 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState) {
 				ent.setMetadata(PlayerID, "subrole", "gatherer");
 				ent.setMetadata(PlayerID, "gather-type", types[0]);
 				
-				if (gameState.turnCache["gathererAssignementCache-" + types[0]])
-					gameState.turnCache["gathererAssignementCache-" + types[0]]++;
-				else
-					gameState.turnCache["gathererAssignementCache-" + types[0]] = 1;
+				m.AddTCRessGatherer(gameState,types[0]);
+
 				// Okay let's now check we can actually remain here for that
 				if (self.willGather[types[0]] !== 1)
 				{
@@ -905,7 +914,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 	}
 	var addedWorkers = 0;
 	
-	var maxTotalBuilders = Math.ceil(workers.length * 0.33);
+	var maxTotalBuilders = Math.ceil(workers.length * 0.2);
 	if (this.constructing == true && maxTotalBuilders < 15)
 		maxTotalBuilders = 15;
 	
@@ -941,15 +950,27 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 				});
 				if (assigned + addedToThis < targetNB)
 				{
-					var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.position() !== undefined); });
-					var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), targetNB - assigned - addedToThis);
-					nearestNonBuilders.forEach(function(ent) {
+					var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.position() !== undefined); }).toEntityArray();
+					nonBuilderWorkers.sort(function (workerA,workerB)
+					{
+						var coeffA = API3.SquareVectorDistance(target.position(),workerA.position());
+						if (workerA.getMetadata(PlayerID, "gather-type") === "food")
+							coeffA *= 3;
+						var coeffB = API3.SquareVectorDistance(target.position(),workerB.position());
+						if (workerB.getMetadata(PlayerID, "gather-type") === "food")
+							coeffB *= 3;
+							return (coeffA - coeffB);						
+					});
+					var current = 0;
+					while (assigned + addedToThis < targetNB && current < nonBuilderWorkers.length)
+					{
 						addedWorkers++;
 						addedToThis++;
+						var ent = nonBuilderWorkers[current++];
 						ent.stopMoving();
 						ent.setMetadata(PlayerID, "subrole", "builder");
 						ent.setMetadata(PlayerID, "target-foundation", target.id());
-					});
+					};
 				}
 			}
 		}

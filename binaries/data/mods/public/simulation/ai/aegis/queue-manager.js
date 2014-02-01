@@ -102,7 +102,7 @@ m.QueueManager.prototype.futureNeeds = function(gameState) {
 
 // calculate the gather rates we'd want to be able to start all elements in our queues
 // TODO: many things.
-m.QueueManager.prototype.wantedGatherRates = function(gameState) {
+m.QueueManager.prototype.wantedGatherRates = function(gameState, shortTerm) {
 	// global rates
 	var rates = { "food" : 0, "wood" : 0, "stone" : 0, "metal" : 0 };
 	// per-queue.
@@ -126,12 +126,16 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 			var elem = queue.queue[j];
 			var cost = elem.getCost();
 			
+			var timeMultiplier = Math.max(1,(qTime-time)/25000);
+			if (shortTerm)
+				timeMultiplier += 0.8;
+
 			if (!elem.isGo(gameState))
 			{
 				// assume we'll be wanted in four minutes.
 				// TODO: work on this.
 				for (var type in qCosts)
-					qCosts[type] += cost[type] / (qTime/time);
+					qCosts[type] += cost[type] / timeMultiplier;
 				qTime += 240000;
 				break;	// disregard other stuffs.
 			}
@@ -139,7 +143,11 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState) {
 			// Costs are made higher based on priority and lower based on current time.
 			// TODO: work on this.
 			for (var type in qCosts)
-				qCosts[type] += (cost[type] + Math.min(cost[type],this.priorities[name])) / (qTime/time);
+			{
+				if (cost[type] === 0)
+					continue;
+				qCosts[type] += (cost[type] + Math.min(cost[type],this.priorities[name])) / timeMultiplier;
+			}
 			qTime += 30000;	// TODO: this needs a lot more work.
 		}
 		for (var j in qCosts)
@@ -274,9 +282,10 @@ m.QueueManager.prototype.printQueues = function(gameState){
 m.QueueManager.prototype.HTMLprintQueues = function(gameState){
 	if (!m.DebugEnabled())
 		return;
-	log("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\"> <html> <head> <title>Aegis Queue Manager</title> <link rel=\"stylesheet\" href=\"table.css\">  </head> <body> <table> <caption>Aegis Build Order</caption> ");
+	var strToSend = [];
+	strToSend.push("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\"> <html> <head> <title>Aegis Queue Manager</title> <link rel=\"stylesheet\" href=\"table.css\">  </head> <body> <table> <caption>Aegis Build Order</caption> ");
 	for (var i in this.queues){
-		log ("<tr>");
+		strToSend.push("<tr>");
 		
 		var q = this.queues[i];
 		var str = "<th>" + i + "  (" + this.priorities[i] + ")<br><span class=\"ressLevel\">";
@@ -286,12 +295,12 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState){
 				str += this.accounts[i][k] + k.substr(0,1).toUpperCase() ;
 				if (k != "metal") str += " / ";
 			}
-		log(str + "</span></th>");
+		strToSend.push(str + "</span></th>");
 		for (var j in q.queue) {
 			if (q.queue[j].isGo(gameState))
-				log ("<td>");
+				strToSend.push("<td>");
 			else
-				log ("<td class=\"NotGo\">");
+				strToSend.push("<td class=\"NotGo\">");
 
 			var qStr = "";
 			if (q.queue[j].number)
@@ -304,20 +313,22 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState){
 				if (k != "metal") qStr += " / ";
 			}
 			qStr += "</span></td>";
-			log (qStr);
+			strToSend.push(qStr);
 		}
-		log ("</tr>");
+		strToSend.push("</tr>");
 	}
-	log ("</table>");
-	/*log ("<h3>Accounts</h3>");
+	strToSend.push("</table>");
+	/*strToSend.push("<h3>Accounts</h3>");
 	for (var p in this.accounts)
 	{
-		log("<p>" + p + ": " + uneval(this.accounts[p]) + " </p>");
+		strToSend.push("<p>" + p + ": " + uneval(this.accounts[p]) + " </p>");
 	}*/
-	log ("<p>Wanted Gather Rate:" + uneval(this.wantedGatherRates(gameState)) + "</p>");
-	log ("<p>Current Resources:" + uneval(gameState.getResources()) + "</p>");
-	log ("<p>Available Resources:" + uneval(this.getAvailableResources(gameState)) + "</p>");
-	log("</body></html>");
+	strToSend.push("<p>Wanted Gather Rate:" + uneval(this.wantedGatherRates(gameState)) + "</p>");
+	strToSend.push("<p>Current Resources:" + uneval(gameState.getResources()) + "</p>");
+	strToSend.push("<p>Available Resources:" + uneval(this.getAvailableResources(gameState)) + "</p>");
+	strToSend.push("</body></html>");
+	for each (var logged in strToSend)
+		log(logged);
 };
 
 m.QueueManager.prototype.clear = function(){
@@ -469,7 +480,7 @@ m.QueueManager.prototype.update = function(gameState) {
 	
 	Engine.ProfileStop();
 	
-	if (gameState.ai.playedTurn % 30 === 5)
+	if (gameState.ai.playedTurn % 15 === 2)
 		this.HTMLprintQueues(gameState);
 
 	Engine.ProfileStop();
