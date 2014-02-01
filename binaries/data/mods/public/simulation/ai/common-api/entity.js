@@ -624,7 +624,7 @@ m.Entity = m.Class({
 				  
 	currentGatherRate: function() {
 		// returns the gather rate for the current target if applicable.
-		if (!this.get("ResourceGatherer"));
+		if (!this.get("ResourceGatherer"))
 			return undefined;
 		
 		if (this.unitAIOrderData().length &&

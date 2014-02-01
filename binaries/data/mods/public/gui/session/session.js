@@ -1003,7 +1003,7 @@ function reportGame(extendedSimState)
 	}
 	reportObject.tributesSent = playerStatistics.tributesSent;
 	reportObject.tributesReceived = playerStatistics.tributesReceived;
-	reportObject.precentMapExplored = playerStatistics.percentMapExplored;
+	reportObject.percentMapExplored = playerStatistics.percentMapExplored;
 	reportObject.treasuresCollected = playerStatistics.treasuresCollected;
 	reportObject.tradeIncome = playerStatistics.tradeIncome;
 

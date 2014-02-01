@@ -28,7 +28,6 @@ Player.prototype.Init = function()
 	this.state = "active"; // game state - one of "active", "defeated", "won"
 	this.diplomacy = [];	// array of diplomatic stances for this player with respect to other players (including gaia and self)
 	this.conquestCriticalEntitiesCount = 0; // number of owned units with ConquestCritical class
-	this.phase = "village";
 	this.formations = [];
 	this.startCam = undefined;
 	this.controlAllUnits = false;

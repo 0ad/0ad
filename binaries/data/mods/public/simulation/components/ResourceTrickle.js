@@ -54,9 +54,9 @@ ResourceTrickle.prototype.Trickle = function(data, lateness)
 	
 	// Get the player
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-	
-	for (var resource in rates)
-		cmpPlayer.AddResource(resource, rates[resource]);
+	if (cmpPlayer)
+		for (var resource in rates)
+			cmpPlayer.AddResource(resource, rates[resource]);
 	
 };
 

@@ -11,8 +11,10 @@ m.QueuePlan = function(gameState, type, metadata) {
 
 	this.template = gameState.getTemplate(this.type);
 	if (!this.template)
+	{
+		warn ("Tried to add the inexisting tempalte " + this.type + " to Aegis. Please report thison the forums")
 		return false;
-	
+	}
 	this.ID = m.playerGlobals[PlayerID].uniqueIDBOPlans++;
 	this.cost = new API3.Resources(this.template.cost());
 	this.number = 1;

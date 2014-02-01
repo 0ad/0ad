@@ -61,8 +61,12 @@ m.HQ.prototype.init = function(gameState, queues){
 
 	if (this.Config.Economy.targetNumWorkers)
 		this.targetNumWorkers = this.Config.Economy.targetNumWorkers;
+	else if (this.targetNumWorkers === undefined && this.Config.difficulty === 0)
+		this.targetNumWorkers = Math.max(1, Math.min(40, Math.floor(gameState.getPopulationMax())));
+	else if (this.targetNumWorkers === undefined && this.Config.difficulty === 1)
+		this.targetNumWorkers = Math.max(1, Math.min(60, Math.floor(gameState.getPopulationMax())));
 	else if (this.targetNumWorkers === undefined)
-		this.targetNumWorkers = Math.max(Math.floor(gameState.getPopulationMax()*(0.2 + Math.min(+(this.Config.difficulty)*0.125,0.3))), 1);
+		this.targetNumWorkers = Math.max(1, Math.min(120,Math.floor(gameState.getPopulationMax()/3.0)));
 
 
 	// Let's get our initial situation here.
@@ -445,8 +449,8 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, newBaseID, number) {
 m.HQ.prototype.GetCurrentGatherRates = function(gameState) {
 	var self = this;
 
-	if (gameState.getTimeElapsed() - this.currentRateLastUpdateTime < 10000 && this.currentRateLastUpdateTime !== 0 && gameState.ai.playedTurn > 3)
-		return this.currentRates;
+//	if (gameState.getTimeElapsed() - this.currentRateLastUpdateTime < 10000 && this.currentRateLastUpdateTime !== 0 && gameState.ai.playedTurn > 3)
+//		return this.currentRates;
 	
 	this.currentRateLastUpdateTime = gameState.getTimeElapsed();
 
@@ -475,25 +479,9 @@ m.HQ.prototype.pickMostNeededResources = function(gameState) {
 	var currentRates = {};
 	for (var type in this.wantedRates)
 		currentRates[type] = 0;
-	
-	for (var i in this.baseManagers)
-	{
-		var base = this.baseManagers[i];
-		for (var type in this.wantedRates)
-		{
-			if (gameState.turnCache["gathererAssignementCache-" + type])
-				currentRates[type] += gameState.turnCache["gathererAssignementCache-" + type];
+	currentRates = this.GetCurrentGatherRates(gameState);
 
-			base.gatherersByType(gameState,type).forEach (function (ent) { //}){
-				var worker = ent.getMetadata(PlayerID, "worker-object");
-				if (worker)
-					currentRates[type] += worker.getGatherRate(gameState);
-			});
-		}
-	}
-	
 	// let's get our ideal number.
-	
 	var types = Object.keys(this.wantedRates);
 
 	types.sort(function(a, b) {
@@ -689,7 +677,7 @@ m.HQ.prototype.buildFarmstead = function(gameState, queues){
 			//only ever build one storehouse/CC/market at a time
 			queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_farmstead", { "base" : 1 }));
 			// add the farming plough to the research we want.
-			queues.minorTech.addItem(new m.ResearchPlan(gameState, "gather_farming_plough"));
+			queues.minorTech.addItem(new m.ResearchPlan(gameState, "gather_farming_plows"));
 		}
 	}
 };
