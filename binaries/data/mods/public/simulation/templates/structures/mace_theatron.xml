@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <Auras>
+    <struct_territory_20>
+      <Type>global</Type>
+    </struct_territory_20>
+  </Auras>
   <BuildRestrictions>
     <Category>Theater</Category>
   </BuildRestrictions>
@@ -16,25 +21,20 @@
     <Height>10.0</Height>
   </Footprint>
   <Health>
-    <Max>5500</Max>
+    <Max>2000</Max>
   </Health>
   <Identity>
     <Civ>mace</Civ>
 	<GenericName>Greek Theater</GenericName>
     <SpecificName>Théātron</SpecificName>
-    <Tooltip>Take advantage of the Hellenization special technology.</Tooltip>
+    <Classes datatype="tokens">Theater</Classes>
+    <Tooltip>Exellinismós (Hellenization): +20% territory influence for all buildings while the Theatron exists.</Tooltip>
     <History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture and spreading its influence.</History>
     <Icon>structures/theatron.png</Icon>
   </Identity>
   <Obstruction>
     <Static width="46.0" depth="46.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Technologies datatype="tokens">
-      hellenes/temp_special_hellenization
-    </Technologies>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_greek_theater.xml</select>
