@@ -1,4 +1,4 @@
-	/* Copyright (C) 2013 Wildfire Games.
+	/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -384,7 +384,7 @@ Status CSoundManager::AlcInit()
 		debug_printf(L"Sound: AlcInit success, using %hs\n", dev_name);
 	else
 	{
-		LOGERROR(L"Sound: AlcInit failed, m_Device=%p m_Context=%p dev_name=%hs err=%d\n", m_Device, m_Context, dev_name, err);
+		LOGERROR(L"Sound: AlcInit failed, m_Device=%p m_Context=%p dev_name=%hs err=%x\n", m_Device, m_Context, dev_name, err);
 
 
 
@@ -474,39 +474,41 @@ long CSoundManager::GetBufferSize()
 
 void CSoundManager::AddPlayListItem(const VfsPath& itemPath)
 {
-  m_PlayListItems->push_back(itemPath);
+	if (m_Enabled)
+		m_PlayListItems->push_back(itemPath);
 }
 
 void CSoundManager::ClearPlayListItems()
 {
-  if ( m_PlayingPlaylist )
-    SetMusicItem( NULL );
+	if (m_Enabled)
+	{
+		if ( m_PlayingPlaylist )
+			SetMusicItem( NULL );
 
-  m_PlayingPlaylist = false;
-  m_LoopingPlaylist = false;
-  m_RunningPlaylist = false;
+		m_PlayingPlaylist = false;
+		m_LoopingPlaylist = false;
+		m_RunningPlaylist = false;
 
-  m_PlayListItems->clear();
+		m_PlayListItems->clear();
+	}
 }
 
 void CSoundManager::StartPlayList( bool doLoop )
 {
-	if ( m_MusicEnabled )
+	if (m_Enabled && m_MusicEnabled)
 	{
-	  if ( m_PlayListItems->size() > 0 )
-	  {
-	    m_PlayingPlaylist = true;
-	    m_LoopingPlaylist = doLoop;
-	    m_RunningPlaylist = false;
+		if (m_PlayListItems->size() > 0)
+		{
+			m_PlayingPlaylist = true;
+			m_LoopingPlaylist = doLoop;
+			m_RunningPlaylist = false;
 	    
-	    ISoundItem* aSnd = LoadItem( (m_PlayListItems->at( 0 )) );
-	    if ( aSnd )
-	      SetMusicItem( aSnd );
-	    else
-	    {
-	      SetMusicItem( NULL );
-	    }
-	  }
+			ISoundItem* aSnd = LoadItem( (m_PlayListItems->at( 0 )) );
+			if (aSnd)
+				SetMusicItem(aSnd);
+			else
+				SetMusicItem(NULL);
+		}
 	}
 }
 
@@ -704,36 +706,45 @@ void CSoundManager::PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, e
 
 void CSoundManager::PlayAsMusic( const VfsPath& itemPath, bool looping )
 {
-		UNUSED2( looping );
+	if (m_Enabled)
+	{
+		UNUSED2(looping);
 
-    ISoundItem* aSnd = LoadItem(itemPath);
-    if (aSnd != NULL)
-      SetMusicItem( aSnd );
+		ISoundItem* aSnd = LoadItem(itemPath);
+		if (aSnd != NULL)
+			SetMusicItem(aSnd);
+	}
 }
 
 void CSoundManager::PlayAsAmbient( const VfsPath& itemPath, bool looping )
 {
+	if (m_Enabled)
+	{
 		UNUSED2( looping );
-    ISoundItem* aSnd = LoadItem(itemPath);
-    if (aSnd != NULL)
-      SetAmbientItem( aSnd );
+		ISoundItem* aSnd = LoadItem(itemPath);
+		if (aSnd != NULL)
+			SetAmbientItem( aSnd );
+	}
 }
 
 
 void CSoundManager::PlayAsUI(const VfsPath& itemPath, bool looping)
 {
-	IdleTask();
-	
-  if ( ISoundItem* anItem = LoadItem(itemPath) )
+	if (m_Enabled)
 	{
-		if (m_Enabled && (m_UIGain > 0))
+		IdleTask();
+	
+		if (ISoundItem* anItem = LoadItem(itemPath))
 		{
-			anItem->SetGain(m_UIGain);
-			anItem->SetLooping( looping );
-			anItem->PlayAndDelete();
+			if (m_UIGain > 0)
+			{
+				anItem->SetGain(m_UIGain);
+				anItem->SetLooping( looping );
+				anItem->PlayAndDelete();
+			}
 		}
+		AL_CHECK
 	}
-	AL_CHECK
 }
 
 
@@ -776,61 +787,67 @@ void CSoundManager::PauseAction (bool pauseIt)
 
 void CSoundManager::SetMusicItem(ISoundItem* anItem)
 {
-	AL_CHECK
-	if (m_CurrentTune)
+	if (m_Enabled)
 	{
-		m_CurrentTune->FadeAndDelete(2.00);
-		m_CurrentTune = 0L;
-	}
-
-	IdleTask();
-
-	if (anItem)
-	{
-		if (m_MusicEnabled && m_Enabled)
+		AL_CHECK
+		if (m_CurrentTune)
 		{
-			m_CurrentTune = anItem;
-			m_CurrentTune->SetGain(0);
+			m_CurrentTune->FadeAndDelete(2.00);
+			m_CurrentTune = 0L;
+		}
 
-			if ( m_PlayingPlaylist )
+		IdleTask();
+
+		if (anItem)
+		{
+			if (m_MusicEnabled)
 			{
-				m_RunningPlaylist = true;
-				m_CurrentTune->Play();
+				m_CurrentTune = anItem;
+				m_CurrentTune->SetGain(0);
+
+				if (m_PlayingPlaylist)
+				{
+					m_RunningPlaylist = true;
+					m_CurrentTune->Play();
+				}
+				else
+					m_CurrentTune->PlayLoop();
+
+				m_MusicPaused = false;
+				m_CurrentTune->FadeToIn( m_MusicGain, 1.00);
 			}
 			else
-				m_CurrentTune->PlayLoop();
-
-			m_MusicPaused = false;
-			m_CurrentTune->FadeToIn( m_MusicGain, 1.00);
+			{
+				anItem->StopAndDelete();
+			}
 		}
-		else
-		{
-			anItem->StopAndDelete();
-		}
+		AL_CHECK
 	}
-	AL_CHECK
 }
 
 void CSoundManager::SetAmbientItem(ISoundItem* anItem)
 {
-	if (m_CurrentEnvirons)
+	if (m_Enabled)
 	{
-		m_CurrentEnvirons->FadeAndDelete(3.00);
-		m_CurrentEnvirons = 0L;
-	}
-	IdleTask();
-	
-	if (anItem)
-	{
-		if (m_Enabled && (m_AmbientGain > 0))
+		if (m_CurrentEnvirons)
 		{
-			m_CurrentEnvirons = anItem;
-			m_CurrentEnvirons->SetGain(0);
-			m_CurrentEnvirons->PlayLoop();
-			m_CurrentEnvirons->FadeToIn( m_AmbientGain, 2.00);
+			m_CurrentEnvirons->FadeAndDelete(3.00);
+			m_CurrentEnvirons = 0L;
 		}
+		IdleTask();
+	
+		if (anItem)
+		{
+			if (m_AmbientGain > 0)
+			{
+				m_CurrentEnvirons = anItem;
+				m_CurrentEnvirons->SetGain(0);
+				m_CurrentEnvirons->PlayLoop();
+				m_CurrentEnvirons->FadeToIn( m_AmbientGain, 2.00);
+			}
+		}
+		AL_CHECK
 	}
-	AL_CHECK
 }
 #else // CONFIG2_AUDIO
 
