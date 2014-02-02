@@ -1752,7 +1752,8 @@ var UnitFsmSpec = {
 					if (this.IsFormationMember())
 					{
 						var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-						animationName = cmpFormation.GetFormationAnimation(this.entity, animationName);
+						if (cmpFormation)
+							animationName = cmpFormation.GetFormationAnimation(this.entity, animationName);
 					}
 					this.SelectAnimation(animationName, false, 1.0, "attack");
 					this.SetAnimationSync(prepare, this.attackTimers.repeat);
