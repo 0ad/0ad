@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <Auras>
+    <struct_territory_20>
+      <Type>global</Type>
+    </struct_territory_20>
+  </Auras>
   <BuildRestrictions>
     <Category>Theater</Category>
   </BuildRestrictions>
@@ -16,13 +21,14 @@
     <Height>10.0</Height>
   </Footprint>
   <Health>
-    <Max>5000</Max>
+    <Max>2000</Max>
   </Health>
   <Identity>
     <Civ>theb</Civ>
 	<GenericName>Greek Theater</GenericName>
     <SpecificName>Théātron</SpecificName>
-    <Tooltip>Take advantage of the Hellenization civ bonus. (Currently a useless structure)</Tooltip>
+    <Classes datatype="tokens">Theater</Classes>
+    <Tooltip>Exellinismós (Hellenization): +20% territory influence for all buildings while the Theatron exists.</Tooltip>
     <History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.</History>
     <Icon>structures/theatron.png</Icon>
   </Identity>
