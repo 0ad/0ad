@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="olive_1">
+      <mesh>gaia/tree_olive_01.dae</mesh>
+      <props>
+        <prop actor="props/flora/olive_decal.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/tree_olive.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="olive_2">
+      <mesh>gaia/tree_olive_02.dae</mesh>
+      <props>
+        <prop actor="props/flora/olive_decal.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/tree_olive.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="olive_3">
+      <mesh>gaia/tree_olive_03.dae</mesh>
+      <props>
+        <prop actor="props/flora/olive_decal.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/tree_olive.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

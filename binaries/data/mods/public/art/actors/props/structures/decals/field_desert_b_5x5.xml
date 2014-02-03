@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="decal_dirt_5x5">
+      <decal angle="0" depth="35" offsetx="0" offsetz="0" width="35"/>
+      <textures>
+        <texture file="gaia/farm_decal_desert_b.png" name="baseTex"/>
+        <texture file="gaia/decal_farmland_norm.png" name="normTex"/>
+        <texture file="gaia/decal_farmland_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_norm_spec.xml</material>
+</actor>

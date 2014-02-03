@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+
+  <group>
+    <variant name="decal_palms_3x3">
+      <decal width="15" depth="15" angle="0" offsetx="0" offsetz="0"/>
+      <textures><texture file="gaia/tree_olive_decal.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_base.xml</material>
+</actor>
