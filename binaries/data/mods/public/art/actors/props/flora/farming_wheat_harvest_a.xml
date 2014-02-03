@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="a">
       <mesh>gaia/cross_large_short.dae</mesh>
@@ -11,13 +9,12 @@
       <mesh>gaia/cross_angledfromtop.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant>
-      <textures><texture file="gaia/farming_wheat_harvest_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/farming_wheat_harvest_a.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
   <material>basic_trans.xml</material>
-
 </actor>

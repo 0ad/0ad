@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.65.0 r53189</authoring_tool>
+    </contributor>
+    <created>2014-01-20T18:50:17</created>
+    <modified>2014-01-20T18:50:17</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="wrld_foragebush_a-Geometry-mesh" name="wrld_foragebush_a-Geometry">
+      <mesh>
+        <source id="wrld_foragebush_a-Geometry-mesh-positions">
+          <float_array id="wrld_foragebush_a-Geometry-mesh-positions-array" count="96">2.063537 -1.51492 1.899493 1.170997 -0.405611 5.805937 -1.687473 -1.51492 1.899493 -0.7446112 0.4479121 5.805937 1.000983 2.821364 1.899493 -0.0251345 0.6514942 5.805937 1.295213 -3.180856 1.899493 -0.9032678 -1.19884 5.805935 -2.687269 1.987981 1.899493 -0.8841821 1.306123 5.805937 3.070492 1.987981 1.899493 1.031426 0.7133954 5.805935 -1.518665 -3.490393 1.899493 -0.02205109 -1.075324 5.805937 -1.518665 2.866769 1.899493 0.2248308 0.8402833 5.805937 2.61903 -2.982661 2.028658 1.369453 -1.75104 5.309001 -3.267437 -2.90183 2.028658 -1.496118 -0.9691199 5.309001 2.756506 3.322027 2.028658 1.777818 1.286684 5.309001 1.882135 -3.454134 2.028658 1.047186 -1.152641 5.106992 -2.758051 1.517186 2.028658 -1.854723 0.1026467 5.309001 3.249617 -0.2046923 2.028658 1.283035 -0.6310397 5.232719 -2.751662 -3.184402 2.028658 -1.402211 -1.951234 5.309001 -2.01033 3.010343 2.028658 -0.7121062 0.2754343 5.309001</float_array>
+          <technique_common>
+            <accessor source="#wrld_foragebush_a-Geometry-mesh-positions-array" count="32" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_foragebush_a-Geometry-mesh-normals">
+          <float_array id="wrld_foragebush_a-Geometry-mesh-normals-array" count="96">0 -0.9619435 0.2731407 -0.2094485 -0.889584 0.4058657 -0.1136814 -0.9307535 0.3474838 -0.3555101 -0.7979065 0.4867092 0.9593799 0.04702901 0.2781152 0.8899808 -0.1367229 0.4349498 0.9184851 -0.07855463 0.387524 0.7310709 -0.3469344 0.5874508 0 0.9850764 0.1719412 0.114719 0.9523912 0.2823572 0.0826441 0.9641713 0.2519608 0.267922 0.8659017 0.4223762 -0.9338054 0 0.357738 -0.9163488 0.04614394 0.3976562 -0.9221473 0.03192234 0.3855098 -0.8838771 0.1138951 0.4535661 -0.01284825 -0.9377117 0.347148 -0.09009063 -0.8931242 0.4406872 -0.1035493 -0.8836939 0.4564043 -0.2145756 -0.786401 0.5792108 0.9692984 -0.1250648 0.2115848 0.9438154 -0.1736808 0.281045 0.9336833 -0.1895809 0.3036897 0.8462172 -0.2904446 0.4466689 0.2609332 0.9104892 0.3207495 0.2504349 0.9193091 0.3035371 0.2455824 0.9231544 0.2956633 0.2256844 0.9379253 0.2633137 -0.9330729 0.1116367 0.3418684 -0.8975494 0.1612903 0.4103214 -0.8964812 0.1625721 0.412122 -0.8100223 0.2510452 0.5298929</float_array>
+          <technique_common>
+            <accessor source="#wrld_foragebush_a-Geometry-mesh-normals-array" count="32" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_foragebush_a-Geometry-mesh-map-0">
+          <float_array id="wrld_foragebush_a-Geometry-mesh-map-0-array" count="96">0.3076446 -0.005570948 0.4369176 0.760138 0.8910713 -0.005570948 0.7157543 0.760138 0.8910713 -0.005570948 0.4369176 0.760138 0.209694 -0.005570948 0.361989 0.760138 0.7931208 -0.005570948 0.6408258 0.760138 0.7931208 -0.005570948 0.361989 0.760138 0.4055952 -0.005570948 0.5550674 0.760138 0.9890219 -0.005570948 0.8339042 0.760138 0.9890219 -0.005570948 0.5550674 0.760138 0.1117434 -0.005570948 0.2363498 0.760138 0.6951702 -0.005570948 0.5151867 0.760138 0.6951702 -0.005570948 0.2363498 0.760138 0.209694 -0.005570948 0.361989 0.760138 0.7931208 -0.005570948 0.6408258 0.760138 0.7931208 -0.005570948 0.361989 0.760138 0.3076446 -0.005570948 0.4088025 0.760138 0.8910713 -0.005570948 0.6876392 0.760138 0.8910713 -0.005570948 0.4088025 0.760138 0.01379287 -0.005570948 0.1474788 0.760138 0.5972196 -0.005570948 0.4263156 0.760138 0.5972196 -0.005570948 0.1474788 0.760138 0.1117434 -0.005570948 0.3151755 0.760138 0.6951702 -0.005570948 0.5940123 0.760138 0.6951702 -0.005570948 0.3151755 0.760138</float_array>
+          <technique_common>
+            <accessor source="#wrld_foragebush_a-Geometry-mesh-map-0-array" count="48" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_foragebush_a-Geometry-mesh-vertices">
+          <input semantic="POSITION" source="#wrld_foragebush_a-Geometry-mesh-positions"/>
+        </vertices>
+        <polylist count="16">
+          <input semantic="VERTEX" source="#wrld_foragebush_a-Geometry-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#wrld_foragebush_a-Geometry-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#wrld_foragebush_a-Geometry-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>0 0 0 1 1 1 2 2 2 3 3 3 2 2 4 1 1 5 4 4 6 5 5 7 6 6 8 7 7 9 6 6 10 5 5 11 8 8 12 9 9 13 10 10 14 11 11 15 10 10 16 9 9 17 12 12 18 13 13 19 14 14 20 15 15 21 14 14 22 13 13 23 16 16 24 17 17 25 18 18 26 19 19 27 18 18 28 17 17 29 20 20 30 21 21 31 22 22 32 23 23 33 22 22 34 21 21 35 24 24 36 25 25 37 26 26 38 27 27 39 26 26 40 25 25 41 28 28 42 29 29 43 30 30 44 31 31 45 30 30 46 29 29 47</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_foragebush_a" name="wrld_foragebush_a" type="NODE">
+        <translate sid="location">0 0 -1.747153</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1.125121 1.125121 0.754693</scale>
+        <instance_geometry url="#wrld_foragebush_a-Geometry-mesh"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
-    <variant name="a">
-      <mesh>gaia/cross_large_short.dae</mesh>
-    </variant>
-    <variant name="c">
-      <mesh>gaia/cross_angledfromtop.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant>
+    <variant name="Barley">
+      <mesh>gaia/wrld_barley.dae</mesh>
       <textures>
         <texture file="gaia/farming_barley_harvest_a.png" name="baseTex"/>
       </textures>
