@@ -393,7 +393,8 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				break;
 			/* END: Message History Lookup */
 
-			case '\r':
+			case SDLK_KP_ENTER:
+			case SDLK_RETURN:
 				// 'Return' should do a Press event for single liners (e.g. submitting forms)
 				//  otherwise a '\n' character will be added.
 				{
