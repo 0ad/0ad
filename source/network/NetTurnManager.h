@@ -200,6 +200,11 @@ public:
 	virtual void OnSimulationMessage(CSimulationMessage* msg);
 
 	virtual void PostCommand(CScriptValRooted data);
+	
+	/**
+	 * Notifiy the server that all commands are sent to prepare the connection for termination.
+	 */
+	void OnDestroyConnection();
 
 protected:
 	virtual void NotifyFinishedOwnCommands(u32 turn);
