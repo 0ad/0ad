@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -118,8 +118,10 @@ size_t os_cpu_LargePageSize()
 		if(pGetLargePageMinimum)
 		{
 			largePageSize = pGetLargePageMinimum();
-			ENSURE(largePageSize != 0);	// IA-32 and AMD64 definitely support large pages
-			ENSURE(largePageSize > os_cpu_PageSize());
+			// Note: checks disabled due to failing on Vista SP2 with old Xeon CPU
+			//	see http://trac.wildfiregames.com/ticket/2346
+			//ENSURE(largePageSize != 0);	// IA-32 and AMD64 definitely support large pages
+			//ENSURE(largePageSize > os_cpu_PageSize());
 		}
 		// no OS support for large pages
 		else

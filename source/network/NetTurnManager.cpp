@@ -419,6 +419,11 @@ void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 	m_NetClient.SendMessage(&msg);
 }
 
+void CNetClientTurnManager::OnDestroyConnection()
+{
+	NotifyFinishedOwnCommands(m_CurrentTurn + COMMAND_DELAY);
+}
+
 void CNetClientTurnManager::OnSimulationMessage(CSimulationMessage* msg)
 {
 	// Command received from the server - store it for later execution
