@@ -838,9 +838,9 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues) {
 m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 	if (gameState.currentPhase() === 1 && !gameState.isResearching(gameState.townPhase()))
 		return;
-	var count = { "wood" : 0, "stone" : 0, "metal" : 0 }
+	var count = { "food" : 0, "wood" : 0, "stone" : 0, "metal" : 0 }
 	var capacity = { "wood" : 0, "stone" : 0, "metal" : 0 }
-	var need = { "wood" : true, "stone" : true, "metal" : true };
+	var need = { "food": false, "wood" : true, "stone" : true, "metal" : true };
 	var posss = [];
 
 	for (var i in this.baseManagers)
@@ -848,7 +848,14 @@ m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 		var base = this.baseManagers[i];
 		for (var type in count)
 		{
-			if (base.getResourceLevel(gameState, type, "all") > 2200*Math.max(this.Config.difficulty,2))
+			if (type == "food")
+			{
+				count[type] = 1;
+				capacity[type] = 20000;
+				need[type] = (base.willGather[type] !== 1);
+				continue;
+			}
+			if (base.getResourceLevel(gameState, type, "dropsites") > 4000*Math.max(this.Config.difficulty,2))
 				count[type]++;
 			capacity[type] += base.getWorkerCapacity(gameState, type, true);
 			if (base.willGather[type] === 1)
@@ -870,7 +877,7 @@ m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 					// Okay so we'll set us as out of this.
 					this.outOf[type] = true;
 				} else {
-					warn ("planning new base ");
+					warn ("planning new base");
 					// base "-1" means new base.
 					queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre",{ "base" : -1 }, pos));
 				}

@@ -7,7 +7,7 @@ m.Config = function() {
 
 	this.Military = {
 		"fortressLapseTime" : 540, // Time to wait between building 2 fortresses
-		"defenceBuildingTime" : 600, // Time to wait before building towers or fortresses
+		"defenceBuildingTime" : 900, // Time to wait before building towers or fortresses
 		"attackPlansStartTime" : 0,	// time to wait before attacking. Start as soon as possible.
 		"techStartTime" : 120,	// time to wait before teching. Will only start after town phase so it's irrelevant.
 		"popForBarracks1" : 25,
@@ -23,7 +23,7 @@ m.Config = function() {
 		"techStartTime" : 0,	// time to wait before teching.
 		"targetNumBuilders" : 1.5, // Base number of builders per foundation.
 		"femaleRatio" : 0.5, // percent of females among the workforce.
-		"initialFields" : 2
+		"initialFields" : 5
 	};
 
 	// Note: attack settings are set directly in attack_plan.js
@@ -73,7 +73,7 @@ m.Config = function() {
 		"economicBuilding" : 90,
 		"militaryBuilding" : 240,	// set to something lower after the first barracks.
 		"defenceBuilding" : 70,
-		"civilCentre" : 750,
+		"civilCentre" : 950,
 		"majorTech" : 700,
 		"minorTech" : 40
 	};

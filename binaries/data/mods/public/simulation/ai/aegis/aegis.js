@@ -166,7 +166,8 @@ m.AegisBot.prototype.OnUpdate = function(sharedScript) {
 			m.debug ("Planning Town Phase");
 		} else if (this.gameState.canResearch(cityPhase,true) && this.gameState.getTimeElapsed() > (this.Config.Economy.cityPhase*1000)
 				&& this.gameState.getOwnEntitiesByRole("worker", true).length > 85
-				&& this.gameState.findResearchers(cityPhase, true).length != 0 && this.queues.majorTech.length() === 0) {
+				&& this.gameState.findResearchers(cityPhase, true).length != 0 && this.queues.majorTech.length() === 0
+				&& this.queues.civilCentre.length() === 0) {
 			m.debug ("Trying to reach city phase");
 			this.queues.majorTech.addItem(new m.ResearchPlan(this.gameState, cityPhase));
 		}
