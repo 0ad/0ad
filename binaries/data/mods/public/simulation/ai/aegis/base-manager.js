@@ -833,11 +833,10 @@ m.BaseManager.prototype.gatherersByType = function(gameState, type) {
 
 // returns an entity collection of workers.
 // They are idled immediatly and their subrole set to idle.
-m.BaseManager.prototype.pickBuilders = function(gameState, number) {
-	var collec = new API3.EntityCollection(gameState.sharedScript);
+m.BaseManager.prototype.pickBuilders = function(gameState, workers, number) {
 	// TODO: choose better.
-	var workers = this.workers.filter(API3.Filters.not(API3.Filters.byClass("Cavalry"))).toEntityArray();
-	workers.sort(function (a,b) {
+	var availableWorkers = this.workers.filter(API3.Filters.not(API3.Filters.byClass("Cavalry"))).toEntityArray();
+	availableWorkers.sort(function (a,b) {
 		var vala = 0, valb = 0;
 		if (a.getMetadata(PlayerID,"subrole") == "builder")
 			vala = 100;
@@ -847,16 +846,17 @@ m.BaseManager.prototype.pickBuilders = function(gameState, number) {
 			vala = -100;
 		if (b.getMetadata(PlayerID,"plan") != undefined)
 			valb = -100;
-		return a < b
+		return vala < valb
 	});
-	for (var  i = 0; i < number; ++i)
+	var needed = Math.min(number, availableWorkers.length);
+	for (var i = 0; i < needed; ++i)
 	{
-		workers[i].stopMoving();
-		workers[i].setMetadata(PlayerID, "subrole","idle");
-		collec.addEnt(workers[i]);
+		availableWorkers[i].stopMoving();
+		availableWorkers[i].setMetadata(PlayerID, "subrole", "idle");
+		workers.addEnt(availableWorkers[i]);
 	}
-	return collec;
-}
+	return;
+};
 
 m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 	// If we have some foundations, and we don't have enough builder-workers,
