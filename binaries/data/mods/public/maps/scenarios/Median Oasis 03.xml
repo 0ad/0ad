@@ -35,8 +35,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="443.598" y="117.273" z="231.818"/>
-		<Rotation angle="0.112443"/>
+		<Position x="406.606" y="114.445" z="291.393"/>
+		<Rotation angle="0.166065"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -46,31 +46,31 @@
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
-  "Name": "Median Oasis 6",
+  "Name": "Median Oasis 3",
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "rome",
+      "Civ": "pers",
       "Colour": {
         "b": 200,
         "g": 46,
         "r": 46
       },
-      "Name": "Lucius Junius Brutus",
+      "Name": "Kurush",
       "Team": -1
     },
     {
-      "Civ": "maur",
+      "Civ": "spart",
       "Colour": {
         "b": 20,
         "g": 20,
         "r": 150
       },
-      "Name": "Samprati Maurya",
+      "Name": "Leonidas",
       "Team": -1
     }
   ],
-  "Preview": "median_oasis_6.png",
+  "Preview": "median_oasis_7.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -4728,7 +4728,7 @@
 		</Entity>
 		<Entity uid="1128">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="709.4947" z="814.74067"/>
+			<Position x="661.29163" z="816.80848"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1129">
@@ -6471,7 +6471,7 @@
 		</Entity>
 		<Entity uid="1555">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="673.67426" z="697.50916"/>
+			<Position x="695.89649" z="686.84095"/>
 			<Orientation y="-1.38474"/>
 		</Entity>
 		<Entity uid="1556">
@@ -6626,7 +6626,7 @@
 		</Entity>
 		<Entity uid="1586">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="667.27222" z="691.92847"/>
+			<Position x="645.36261" z="751.51362"/>
 			<Orientation y="1.29686"/>
 		</Entity>
 		<Entity uid="1597">
@@ -7206,17 +7206,17 @@
 		</Entity>
 		<Entity uid="1712">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="687.4897" z="679.29981"/>
+			<Position x="689.46662" z="680.63331"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1713">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="680.8274" z="683.7505"/>
+			<Position x="667.05854" z="759.95191"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1714">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="677.28516" z="689.14545"/>
+			<Position x="700.4485" z="690.54505"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1715">
@@ -7226,12 +7226,12 @@
 		</Entity>
 		<Entity uid="1716">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="681.63355" z="693.31647"/>
+			<Position x="664.38721" z="696.14094"/>
 			<Orientation y="-2.20778"/>
 		</Entity>
 		<Entity uid="1717">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="660.78174" z="687.10138"/>
+			<Position x="667.99073" z="674.40778"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1718">
@@ -8174,160 +8174,6 @@
 			<Orientation y="-0.73501"/>
 			<Actor seed="8300"/>
 		</Entity>
-		<Entity uid="1934">
-			<Template>structures/maur_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="691.79633" z="696.57801"/>
-			<Orientation y="-2.63373"/>
-			<Actor seed="9174"/>
-		</Entity>
-		<Entity uid="1935">
-			<Template>structures/maur_pillar_ashoka</Template>
-			<Player>2</Player>
-			<Position x="548.96308" z="772.7663"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="36318"/>
-		</Entity>
-		<Entity uid="1936">
-			<Template>structures/maur_pillar_ashoka</Template>
-			<Player>2</Player>
-			<Position x="799.87543" z="583.30506"/>
-			<Orientation y="2.70086"/>
-			<Actor seed="35410"/>
-		</Entity>
-		<Entity uid="1940">
-			<Template>units/maur_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="663.75373" z="679.4123"/>
-			<Orientation y="-2.62166"/>
-			<Actor seed="56630"/>
-		</Entity>
-		<Entity uid="1941">
-			<Template>units/maur_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="670.6366" z="675.80079"/>
-			<Orientation y="-2.54165"/>
-			<Actor seed="61264"/>
-		</Entity>
-		<Entity uid="1942">
-			<Template>units/maur_infantry_archer_b</Template>
-			<Player>2</Player>
-			<Position x="685.62726" z="666.52051"/>
-			<Orientation y="-3.0341"/>
-			<Actor seed="13982"/>
-		</Entity>
-		<Entity uid="1943">
-			<Template>units/maur_infantry_archer_b</Template>
-			<Player>2</Player>
-			<Position x="690.55274" z="664.51954"/>
-			<Orientation y="-2.63814"/>
-			<Actor seed="6074"/>
-		</Entity>
-		<Entity uid="1944">
-			<Template>units/maur_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="710.42078" z="676.25324"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="7640"/>
-		</Entity>
-		<Entity uid="1945">
-			<Template>units/maur_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="712.38575" z="680.26063"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="32000"/>
-		</Entity>
-		<Entity uid="1946">
-			<Template>units/maur_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="714.65796" z="682.49756"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="65372"/>
-		</Entity>
-		<Entity uid="1947">
-			<Template>units/maur_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="716.88324" z="685.78827"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="64940"/>
-		</Entity>
-		<Entity uid="1948">
-			<Template>units/maur_support_elephant</Template>
-			<Player>2</Player>
-			<Position x="662.53956" z="707.21735"/>
-			<Orientation y="-1.20948"/>
-			<Actor seed="47470"/>
-		</Entity>
-		<Entity uid="1949">
-			<Template>structures/rome_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="343.4665" z="404.83194"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="21452"/>
-		</Entity>
-		<Entity uid="1950">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="359.4805" z="379.37165"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="51978"/>
-		</Entity>
-		<Entity uid="1951">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="362.95133" z="382.21943"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="37302"/>
-		</Entity>
-		<Entity uid="1952">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="366.14939" z="385.02497"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="33334"/>
-		</Entity>
-		<Entity uid="1953">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="369.49753" z="388.14853"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="28810"/>
-		</Entity>
-		<Entity uid="1954">
-			<Template>units/rome_cavalry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="365.154" z="427.10505"/>
-			<Orientation y="0.62781"/>
-			<Actor seed="1268"/>
-		</Entity>
-		<Entity uid="1955">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="329.68778" z="380.69529"/>
-			<Orientation y="-2.20688"/>
-			<Actor seed="15438"/>
-		</Entity>
-		<Entity uid="1956">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="324.8571" z="384.48926"/>
-			<Orientation y="-2.37475"/>
-			<Actor seed="8578"/>
-		</Entity>
-		<Entity uid="1957">
-			<Template>units/rome_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="306.6949" z="425.79737"/>
-			<Orientation y="-0.78849"/>
-			<Actor seed="51752"/>
-		</Entity>
-		<Entity uid="1958">
-			<Template>units/rome_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="308.97312" z="431.9709"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="20374"/>
-		</Entity>
 		<Entity uid="1959">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
@@ -8732,6 +8578,230 @@
 			<Position x="429.26136" z="782.2978"/>
 			<Orientation y="0.51333"/>
 			<Actor seed="64138"/>
+		</Entity>
+		<Entity uid="2018">
+			<Template>structures/pers_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="684.7732" z="700.4773"/>
+			<Orientation y="-2.4552"/>
+			<Actor seed="19052"/>
+		</Entity>
+		<Entity uid="2019">
+			<Template>units/pers_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="701.63617" z="685.05317"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="58326"/>
+		</Entity>
+		<Entity uid="2020">
+			<Template>units/pers_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="704.14002" z="689.01844"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7412"/>
+		</Entity>
+		<Entity uid="2021">
+			<Template>units/pers_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="660.34858" z="723.06513"/>
+			<Orientation y="-0.86348"/>
+			<Actor seed="58342"/>
+		</Entity>
+		<Entity uid="2022">
+			<Template>units/pers_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="665.66388" z="685.66498"/>
+			<Orientation y="-2.62404"/>
+			<Actor seed="31666"/>
+		</Entity>
+		<Entity uid="2023">
+			<Template>units/pers_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="662.62012" z="688.839"/>
+			<Orientation y="-2.31887"/>
+			<Actor seed="33300"/>
+		</Entity>
+		<Entity uid="2024">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="695.35822" z="727.75855"/>
+			<Orientation y="1.0793"/>
+			<Actor seed="37116"/>
+		</Entity>
+		<Entity uid="2025">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="700.17865" z="720.32404"/>
+			<Orientation y="1.00153"/>
+			<Actor seed="5282"/>
+		</Entity>
+		<Entity uid="2026">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="705.09717" z="717.5522"/>
+			<Orientation y="0.98392"/>
+			<Actor seed="24932"/>
+		</Entity>
+		<Entity uid="2027">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="707.34272" z="712.70643"/>
+			<Orientation y="1.04224"/>
+			<Actor seed="59498"/>
+		</Entity>
+		<Entity uid="2028">
+			<Template>structures/spart_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="333.66126" z="381.99524"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="58104"/>
+		</Entity>
+		<Entity uid="2030">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="318.06006" z="367.44254"/>
+			<Orientation y="-2.56916"/>
+			<Actor seed="34484"/>
+		</Entity>
+		<Entity uid="2032">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="316.78211" z="363.64948"/>
+			<Orientation y="-2.58223"/>
+			<Actor seed="24642"/>
+		</Entity>
+		<Entity uid="2035">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="314.00101" z="364.8172"/>
+			<Orientation y="-2.73278"/>
+			<Actor seed="33986"/>
+		</Entity>
+		<Entity uid="2036">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="314.45511" z="369.28357"/>
+			<Orientation y="-2.53788"/>
+			<Actor seed="19926"/>
+		</Entity>
+		<Entity uid="2039">
+			<Template>units/spart_hero_leonidas</Template>
+			<Player>2</Player>
+			<Position x="310.28055" z="366.91492"/>
+			<Orientation y="-2.59108"/>
+			<Actor seed="43438"/>
+		</Entity>
+		<Entity uid="2041">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="323.66846" z="359.31513"/>
+			<Orientation y="-2.5046"/>
+			<Actor seed="1918"/>
+		</Entity>
+		<Entity uid="2042">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="326.24665" z="357.07544"/>
+			<Orientation y="-2.52781"/>
+			<Actor seed="65523"/>
+		</Entity>
+		<Entity uid="2043">
+			<Template>units/spart_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="350.20798" z="395.85099"/>
+			<Orientation y="1.1912"/>
+			<Actor seed="50834"/>
+		</Entity>
+		<Entity uid="2044">
+			<Template>units/spart_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="347.19208" z="401.66413"/>
+			<Orientation y="0.89348"/>
+			<Actor seed="39752"/>
+		</Entity>
+		<Entity uid="2045">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="342.32474" z="359.00617"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23730"/>
+		</Entity>
+		<Entity uid="2046">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="345.24253" z="361.374"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20456"/>
+		</Entity>
+		<Entity uid="2047">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="348.14921" z="363.94782"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56510"/>
+		</Entity>
+		<Entity uid="2048">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="351.37458" z="367.00202"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21944"/>
+		</Entity>
+		<Entity uid="2049">
+			<Template>units/spart_cavalry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="313.79874" z="398.54355"/>
+			<Orientation y="-1.02924"/>
+			<Actor seed="7898"/>
+		</Entity>
+		<Entity uid="2050">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="674.0428" z="678.56336"/>
+			<Orientation y="-2.40387"/>
+			<Actor seed="3768"/>
+		</Entity>
+		<Entity uid="2051">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="675.81098" z="677.00226"/>
+			<Orientation y="-2.4582"/>
+			<Actor seed="11014"/>
+		</Entity>
+		<Entity uid="2052">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="677.29029" z="675.45783"/>
+			<Orientation y="-2.67005"/>
+			<Actor seed="35752"/>
+		</Entity>
+		<Entity uid="2053">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="671.96613" z="676.35016"/>
+			<Orientation y="-2.48723"/>
+			<Actor seed="52360"/>
+		</Entity>
+		<Entity uid="2054">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="674.02192" z="674.8365"/>
+			<Orientation y="-2.50998"/>
+			<Actor seed="55162"/>
+		</Entity>
+		<Entity uid="2055">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="675.29145" z="672.84034"/>
+			<Orientation y="-2.43775"/>
+			<Actor seed="60486"/>
+		</Entity>
+		<Entity uid="2056">
+			<Template>units/pers_hero_cyrus</Template>
+			<Player>1</Player>
+			<Position x="668.93836" z="681.22297"/>
+			<Orientation y="-2.3526"/>
+			<Actor seed="5852"/>
 		</Entity>
 	</Entities>
 	<Paths/>
