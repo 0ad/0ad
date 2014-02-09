@@ -632,8 +632,8 @@ m.Worker.prototype.buildAnyField = function(gameState){
 		self.ent.repair(bestFarmEnt);
 		self.ent.setMetadata(PlayerID,"base", bestFarmEnt.getMetadata(PlayerID,"base"));
 		this.startEnt = bestFarmEnt.id();
-		ent.gather(bestFarmEnt,true);
-		ent.setMetadata(PlayerID, "target-foundation", undefined);
+		self.ent.gather(bestFarmEnt,true);
+		self.ent.setMetadata(PlayerID, "target-foundation", undefined);
 		return true;
 	}
 	return false;
