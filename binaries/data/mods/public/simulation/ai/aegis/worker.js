@@ -226,7 +226,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 
 	// So for now what I'll do is that I'll check dropsites in my base, then in other bases.
 
-	for (id in baseManager.dropsites)
+	for (var id in baseManager.dropsites)
 	{
 		var dropsiteInfo = baseManager.dropsites[id][resource];
 		var capacity = baseManager.getDpWorkerCapacity(gameState, id, resource);
@@ -234,7 +234,9 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 			continue;
 		if (dropsiteInfo)
 		{
-			var coeff = dropsiteInfo[3] + (capacity-dropsiteInfo[5].length)*100;
+			var coeff = dropsiteInfo[3] + (capacity-dropsiteInfo[5].length)*1000;
+			if (gameState.getEntityById(id).hasClass("CivilCentre"))
+				coeff += 20000;
 			if (coeff > wantedDropsiteCoeff)
 			{
 				wantedDropsiteCoeff = coeff;
@@ -245,7 +247,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 
 	if (wantedDropsite === 0)
 	{
-		for (id in baseManager.dropsites)
+		for (var id in baseManager.dropsites)
 		{
 			var dropsiteInfo = baseManager.dropsites[id][resource];
 			var capacity = baseManager.getDpWorkerCapacity(gameState, id, resource, true);
@@ -277,7 +279,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 			// TODO: check we can access that base, and/or pick the best base.
 			if (base.ID === this.baseID || wantedDropsite !== 0)
 				continue;
-			for (id in base.dropsites)
+			for (var id in base.dropsites)
 			{
 				// if we have at least 1000 resources (including faraway) on this d
 				var dropsiteInfo = base.dropsites[id][resource];
@@ -287,7 +289,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 				if (dropsiteInfo && dropsiteInfo[3] > 600 && dropsiteInfo[5].length < capacity)
 				{
 					// we want to change bases.
-					this.ent.setMetadata(PlayerID,"base",this.baseID);
+					this.ent.setMetadata(PlayerID,"base",base.ID);
 					wantedDropsite = id;
 					break;
 				}
@@ -306,7 +308,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 		{
 			if (base.ID === this.baseID || wantedDropsite !== 0)
 				continue;
-			for (id in base.dropsites)
+			for (var id in base.dropsites)
 			{
 				// if we have at least 1000 resources (including faraway) on this d
 				var dropsiteInfo = base.dropsites[id][resource];
@@ -315,7 +317,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 					continue;
 				if (dropsiteInfo && dropsiteInfo[4] > 600 && dropsiteInfo[5].length < capacity)
 				{
-					this.ent.setMetadata(PlayerID,"base",this.baseID);
+					this.ent.setMetadata(PlayerID,"base",base.ID);
 					wantedDropsite = id;
 					break;	// here I'll break, TODO.
 				}
@@ -325,6 +327,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 
 	if (wantedDropsite === 0)
 	{
+		//TODO: something.
 		// Okay so we haven't found any appropriate dropsite anywhere.
 		m.debug("No proper dropsite found for " + resource + ", waiting.");
 		return;
@@ -412,8 +415,7 @@ m.Worker.prototype.pickResourceNearDropsite = function(gameState, resource, drop
 		if (resource === "food" && this.buildAnyField(gameState))
 			return true;
 
-		m.debug("Found a proper dropsite for " + resource + " but apparently no resources are available.");
-		m.debug("Please report this to wraitii on the wildfire games Forum");
+		//m.debug("Found a proper dropsite for " + resource + " but apparently no resources are available.");
 		return false;
 	}
 

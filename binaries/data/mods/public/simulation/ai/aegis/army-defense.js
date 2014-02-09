@@ -81,7 +81,7 @@ m.DefenseArmy.prototype.needsDefenders = function (gameState, events)
 {
 	// some preliminary checks because we don't update for tech
 	if (this.foeStrength < 0 || this.ownStrength < 0)
-		this.recalculateStrength(gameState);
+		this.recalculateStrengths(gameState);
 	
 	if (this.foeStrength * this.defenceRatio < this.ownStrength)
 		return false;

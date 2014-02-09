@@ -13,4 +13,17 @@
 			sprite_back_vertical = "ModernScrollBack"
 			sprite_bar_vertical = "ModernScrollBar"
 	/>
+	==========================================
+	- TOOLTIPS -
+	==========================================
+	<tooltip name="default"
+			anchor="top"
+			buffer_zone="4"
+			delay="500"
+			font="serif-14"
+			maxwidth="300"
+			offset="16 32"
+			sprite="colour:255 255 255"
+			textcolor="0 0 0"
+	/>
 </setup>

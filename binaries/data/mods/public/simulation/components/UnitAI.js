@@ -4999,7 +4999,12 @@ UnitAI.prototype.SetupTradeRoute = function(target, source, route, queued)
 			}
 
 			if (this.IsFormationController())
+			{
 				this.CallMemberFunction("AddOrder", ["Trade", data, queued]);
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				if (cmpFormation)
+					cmpFormation.Disband();
+			}
 			else
 				this.AddOrder("Trade", data, queued);
 		}

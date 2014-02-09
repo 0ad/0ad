@@ -1244,12 +1244,128 @@ void ScriptInterface::MaybeGC()
 	JS_MaybeGC(m->m_cx);
 }
 
+class ValueCloner
+{
+public:
+	ValueCloner(ScriptInterface& from, ScriptInterface& to) :
+		scriptInterfaceFrom(from), cxFrom(from.GetContext()), cxTo(to.GetContext()), m_RooterFrom(from), m_RooterTo(to)
+	{
+	}
+
+	// Return the cloned object (or an already-computed object if we've cloned val before)
+	jsval GetOrClone(jsval val)
+	{
+		if (!JSVAL_IS_GCTHING(val) || JSVAL_IS_NULL(val))
+			return val;
+
+		std::map<void*, jsval>::iterator it = m_Mapping.find(JSVAL_TO_GCTHING(val));
+		if (it != m_Mapping.end())
+			return it->second;
+
+		m_RooterFrom.Push(val); // root it so our mapping doesn't get invalidated
+
+		return Clone(val);
+	}
+
+private:
+
+#define CLONE_REQUIRE(expr, msg) if (!(expr)) { debug_warn(L"Internal error in CloneValueFromOtherContext: " msg); return JSVAL_VOID; }
+
+	// Clone a new value (and root it and add it to the mapping)
+	jsval Clone(jsval val)
+	{
+		if (JSVAL_IS_DOUBLE(val))
+		{
+			jsval rval;
+			CLONE_REQUIRE(JS_NewNumberValue(cxTo, JSVAL_TO_DOUBLE(val), &rval), L"JS_NewNumberValue");
+			m_RooterTo.Push(rval);
+			return rval;
+		}
+
+		if (JSVAL_IS_STRING(val))
+		{
+			size_t len;
+			const jschar* chars = JS_GetStringCharsAndLength(cxFrom, JSVAL_TO_STRING(val), &len);
+			CLONE_REQUIRE(chars, L"JS_GetStringCharsAndLength");
+			JSString* str = JS_NewUCStringCopyN(cxTo, chars, len);
+			CLONE_REQUIRE(str, L"JS_NewUCStringCopyN");
+			jsval rval = STRING_TO_JSVAL(str);
+			m_Mapping[JSVAL_TO_GCTHING(val)] = rval;
+			m_RooterTo.Push(rval);
+			return rval;
+		}
+
+		ENSURE(JSVAL_IS_OBJECT(val));
+
+		JSObject* newObj;
+		if (JS_IsArrayObject(cxFrom, JSVAL_TO_OBJECT(val)))
+		{
+			jsuint length;
+			CLONE_REQUIRE(JS_GetArrayLength(cxFrom, JSVAL_TO_OBJECT(val), &length), L"JS_GetArrayLength");
+			newObj = JS_NewArrayObject(cxTo, length, NULL);
+			CLONE_REQUIRE(newObj, L"JS_NewArrayObject");
+		}
+		else
+		{
+			newObj = JS_NewObject(cxTo, NULL, NULL, NULL);
+			CLONE_REQUIRE(newObj, L"JS_NewObject");
+		}
+
+		m_Mapping[JSVAL_TO_GCTHING(val)] = OBJECT_TO_JSVAL(newObj);
+		m_RooterTo.Push(newObj);
+
+		AutoJSIdArray ida (cxFrom, JS_Enumerate(cxFrom, JSVAL_TO_OBJECT(val)));
+		CLONE_REQUIRE(ida.get(), L"JS_Enumerate");
+
+		AutoGCRooter idaRooter(scriptInterfaceFrom);
+		idaRooter.Push(ida.get());
+
+		for (size_t i = 0; i < ida.length(); ++i)
+		{
+			jsid id = ida[i];
+			jsval idval, propval;
+			CLONE_REQUIRE(JS_IdToValue(cxFrom, id, &idval), L"JS_IdToValue");
+			CLONE_REQUIRE(JS_GetPropertyById(cxFrom, JSVAL_TO_OBJECT(val), id, &propval), L"JS_GetPropertyById");
+			jsval newPropval = GetOrClone(propval);
+
+			if (JSVAL_IS_INT(idval))
+			{
+				// int jsids are portable across runtimes
+				CLONE_REQUIRE(JS_SetPropertyById(cxTo, newObj, id, &newPropval), L"JS_SetPropertyById");
+			}
+			else if (JSVAL_IS_STRING(idval))
+			{
+				// string jsids are runtime-specific, so we need to copy the string content
+				JSString* idstr = JS_ValueToString(cxFrom, idval);
+				CLONE_REQUIRE(idstr, L"JS_ValueToString (id)");
+				size_t len;
+				const jschar* chars = JS_GetStringCharsAndLength(cxFrom, idstr, &len);
+				CLONE_REQUIRE(idstr, L"JS_GetStringCharsAndLength (id)");
+				CLONE_REQUIRE(JS_SetUCProperty(cxTo, newObj, chars, len, &newPropval), L"JS_SetUCProperty");
+			}
+			else
+			{
+				// this apparently could be an XML object; ignore it
+			}
+		}
+
+		return OBJECT_TO_JSVAL(newObj);
+	}
+
+	ScriptInterface& scriptInterfaceFrom;
+	JSContext* cxFrom;
+	JSContext* cxTo;
+	std::map<void*, jsval> m_Mapping;
+	AutoGCRooter m_RooterFrom;
+	AutoGCRooter m_RooterTo;
+};
+
 jsval ScriptInterface::CloneValueFromOtherContext(ScriptInterface& otherContext, jsval val)
 {
 	PROFILE("CloneValueFromOtherContext");
-	shared_ptr<StructuredClone> structuredClone = otherContext.WriteStructuredClone(val);
-	jsval clone = ReadStructuredClone(structuredClone);
-	return clone;
+
+	ValueCloner cloner(otherContext, *this);
+	return cloner.GetOrClone(val);
 }
 
 ScriptInterface::StructuredClone::StructuredClone() :

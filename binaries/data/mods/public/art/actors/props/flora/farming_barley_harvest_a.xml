@@ -13,8 +13,9 @@
     <variant>
       <textures>
         <texture file="gaia/farming_barley_harvest_a.png" name="baseTex"/>
+		<texture file="props/yellow.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_glow.xml</material>
 </actor>

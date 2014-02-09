@@ -248,7 +248,6 @@ createAreas(
 paintTerrainBasedOnHeight(2.4, 3.4, 3, tMainTerrain);
 paintTerrainBasedOnHeight(1, 2.4, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
-
 paintTileClassBasedOnHeight(-6, 0, 1, clWater)
 
 for (var i = 0; i < numPlayers; ++i)
@@ -398,5 +397,4 @@ createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 7, clHill, 1, clP
 setWaterWaviness(10);
 
 // Export map data
-
 ExportMap();

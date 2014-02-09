@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_house">
+  <Footprint>
+    <Square width="6" depth="6"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>500</Max>
+  </Health>
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Small stall</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="4" depth="4"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/ptolemies/stall_small_a.xml</Actor>
+  </VisualActor>
+</Entity>

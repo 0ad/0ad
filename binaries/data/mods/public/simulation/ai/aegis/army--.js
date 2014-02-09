@@ -220,8 +220,12 @@ m.Army.prototype.removeOwn = function (gameState, ID, Entity)
 	var formerSubRole = ent.getMetadata(PlayerID, "formerSubRole");
 	if (formerRole !== undefined)
 		ent.setMetadata(PlayerID,"role", formerRole);
+	else
+		ent.setMetadata(PlayerID,"role", undefined);
 	if (formerSubRole !== undefined)
 		ent.setMetadata(PlayerID,"subrole", formerSubRole);
+	else
+		ent.setMetadata(PlayerID,"subrole", undefined);
 	
 	return true;
 }

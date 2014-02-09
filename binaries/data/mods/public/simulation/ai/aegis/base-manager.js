@@ -521,7 +521,7 @@ m.BaseManager.prototype.updateDropsite = function (gameState, ent, type) {
 	{
 		medianPositionX /= divider;
 		medianPositionY /= divider;
-		if (API3.SquareVectorDistance([medianPositionX,medianPositionY], ent.position()) > 1800)
+		if (API3.SquareVectorDistance([medianPositionX,medianPositionY], ent.position()) > 600)
 		{
 			dropsite[6] = true;
 			gameState.ai.queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base" : this.ID }, [medianPositionX,medianPositionY]));
@@ -673,20 +673,32 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 						numFarms++;
 				});
 				var numFd = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_field"), true);
+				if (numFarms+numFd > 15)
+				{
+					warn("treu");
+					this.willGather["food"] = 2;
+				}
 				var numQueued = queues.field.countQueuedUnits();
 				numFarms += numFd + numQueued;
 				
+
 				// let's see if we need to push new farms.
 				var maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
 				if (numQueued < 3)
-					if (numFarms < Math.round(this.gatherersByType(gameState, "food").length / (maxGatherers*0.9))
-						&& numFarms < Math.round((this.workers.length*0.4)/maxGatherers))
+					if (numFarms < Math.round(this.gatherersByType(gameState, "food").length / (maxGatherers*0.9)))
 						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 				// TODO: refine count to only count my base.
 			}
 		} else if (queues.dropsites.length() === 0 && gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_storehouse"), true) === 0) {
 			var workerCapacity = this.getWorkerCapacity(gameState, type);	// only close;
-			var wantDropsite = (this.gatherersByType(gameState, type).length / workerCapacity) > 0.9;
+			// check how often we'll want new dropsites.
+			// if we're booming we'll aggressively grab terrain
+			if (gameState.currentPhase() >= 1 && gameState.ai.aggressiveness < 0.15)
+				var wantDropsite = (this.gatherersByType(gameState, type).length / workerCapacity) > 0.45;
+			else if (gameState.currentPhase() >= 1)
+				var wantDropsite = (this.gatherersByType(gameState, type).length / workerCapacity) > 0.6;
+			else
+				var wantDropsite = (this.gatherersByType(gameState, type).length / workerCapacity) > 0.9;
 			if (wantDropsite)
 			{
 				var pos = this.findBestDropsiteLocation(gameState, type);
@@ -803,17 +815,22 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState) {
 			}
 			if (ent.hasClass("Worker")) {
 				var types = gameState.ai.HQ.pickMostNeededResources(gameState);
-				//m.debug ("assigning " +ent.id() + " to " + types[0]);
-				ent.setMetadata(PlayerID, "subrole", "gatherer");
-				ent.setMetadata(PlayerID, "gather-type", types[0]);
-				
-				m.AddTCRessGatherer(gameState,types[0]);
 
-				// Okay let's now check we can actually remain here for that
-				if (self.willGather[types[0]] !== 1)
+				for (var i = 0; i < 4; ++i)
 				{
-					// TODO: if fail, we should probably pick the second most needed resource.
-					gameState.ai.HQ.switchWorkerBase(gameState, ent, types[0]);
+					// Okay let's now check we can actually remain here for that
+					if (self.willGather[types[i]] !== 1)
+					{
+						if (!gameState.ai.HQ.switchWorkerBase(gameState, ent, types[i]))
+							continue;
+						else
+							break;
+					}
+					//m.debug ("assigning " +ent.id() + " to " + types[0]);
+					ent.setMetadata(PlayerID, "subrole", "gatherer");
+					ent.setMetadata(PlayerID, "gather-type", types[i]);
+					m.AddTCRessGatherer(gameState,types[i]);
+					break;
 				}
 			} else {
 				ent.setMetadata(PlayerID, "subrole", "hunter");
@@ -833,11 +850,10 @@ m.BaseManager.prototype.gatherersByType = function(gameState, type) {
 
 // returns an entity collection of workers.
 // They are idled immediatly and their subrole set to idle.
-m.BaseManager.prototype.pickBuilders = function(gameState, number) {
-	var collec = new API3.EntityCollection(gameState.sharedScript);
+m.BaseManager.prototype.pickBuilders = function(gameState, workers, number) {
 	// TODO: choose better.
-	var workers = this.workers.filter(API3.Filters.not(API3.Filters.byClass("Cavalry"))).toEntityArray();
-	workers.sort(function (a,b) {
+	var availableWorkers = this.workers.filter(API3.Filters.not(API3.Filters.byClass("Cavalry"))).toEntityArray();
+	availableWorkers.sort(function (a,b) {
 		var vala = 0, valb = 0;
 		if (a.getMetadata(PlayerID,"subrole") == "builder")
 			vala = 100;
@@ -847,16 +863,17 @@ m.BaseManager.prototype.pickBuilders = function(gameState, number) {
 			vala = -100;
 		if (b.getMetadata(PlayerID,"plan") != undefined)
 			valb = -100;
-		return a < b
+		return vala < valb
 	});
-	for (var  i = 0; i < number; ++i)
+	var needed = Math.min(number, availableWorkers.length);
+	for (var i = 0; i < needed; ++i)
 	{
-		workers[i].stopMoving();
-		workers[i].setMetadata(PlayerID, "subrole","idle");
-		collec.addEnt(workers[i]);
+		availableWorkers[i].stopMoving();
+		availableWorkers[i].setMetadata(PlayerID, "subrole", "idle");
+		workers.addEnt(availableWorkers[i]);
 	}
-	return collec;
-}
+	return;
+};
 
 m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair) {
 	// If we have some foundations, and we don't have enough builder-workers,
