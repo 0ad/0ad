@@ -401,7 +401,7 @@ public:
 	{
 		helper_script_roundtrip("Int8Array",
 			"var arr=new Int8Array(8);"
-			"for(i=0; i<arr.length; ++i)"
+			"for(var i=0; i<arr.length; ++i)"
 			"  arr[i]=(i+1)*32;"
 			"arr",
 		/* expected: */
@@ -410,7 +410,7 @@ public:
 
 		helper_script_roundtrip("Uint8Array",
 			"var arr=new Uint8Array(8);"
-			"for(i=0; i<arr.length; ++i)"
+			"for(var i=0; i<arr.length; ++i)"
 			"  arr[i]=(i+1)*32;"
 			"arr",
 		/* expected: */
@@ -419,7 +419,7 @@ public:
 
 		helper_script_roundtrip("Int16Array",
 			"var arr=new Int16Array(8);"
-			"for(i=0; i<arr.length; ++i)"
+			"for(var i=0; i<arr.length; ++i)"
 			"  arr[i]=(i+1)*8192;"
 			"arr",
 		/* expected: */
@@ -428,7 +428,7 @@ public:
 
 		helper_script_roundtrip("Uint16Array",
 			"var arr=new Uint16Array(8);"
-			"for(i=0; i<arr.length; ++i)"
+			"for(var i=0; i<arr.length; ++i)"
 			"  arr[i]=(i+1)*8192;"
 			"arr",
 		/* expected: */
@@ -437,7 +437,7 @@ public:
 
 		helper_script_roundtrip("Int32Array",
 			"var arr=new Int32Array(8);"
-			"for(i=0; i<arr.length; ++i)"
+			"for(var i=0; i<arr.length; ++i)"
 			"  arr[i]=(i+1)*536870912;"
 			"arr",
 		/* expected: */
@@ -446,7 +446,7 @@ public:
 
 		helper_script_roundtrip("Uint32Array",
 			"var arr=new Uint32Array(8);"
-			"for(i=0; i<arr.length; ++i)"
+			"for(var i=0; i<arr.length; ++i)"
 			"  arr[i]=(i+1)*536870912;"
 			"arr", 
 		/* expected: */
@@ -473,7 +473,7 @@ public:
 
 		helper_script_roundtrip("Uint8ClampedArray",
 			"var arr=new Uint8ClampedArray(8);"
-			"for(i=0; i<arr.length; ++i)"
+			"for(var i=0; i<arr.length; ++i)"
 			"  arr[i]=(i-2)*64;"
 			"arr",
 		/* expected: */
@@ -486,7 +486,7 @@ public:
 		helper_script_roundtrip("ArrayBuffer with Int16Array",
 			"var buf=new ArrayBuffer(16);"
 			"var int16=Int16Array(buf);"
-			"for(i=0; i<int16.length; ++i)"
+			"for(var i=0; i<int16.length; ++i)"
 			"  int16[i]=(i+1)*8192;"
 			"int16",
 		/* expected: */
@@ -496,7 +496,7 @@ public:
 		helper_script_roundtrip("ArrayBuffer with Int16Array and Uint32Array",
 			"var buf = new ArrayBuffer(16);"
 			"var int16 = Int16Array(buf);"
-			"for(i=0; i < int16.length; ++i)"
+			"for(var i=0; i < int16.length; ++i)"
 			"  int16[i] = (i+1)*32768;"
 			"var uint32 = new Uint32Array(buf);"
 			"uint32[0] = 4294967295;"
@@ -512,11 +512,11 @@ public:
 			"var chunk1=Int8Array(buf, 0, 4);" // 4 bytes
 			"var chunk2=Uint16Array(buf, 4, 2);" // 4 bytes
 			"var chunk3=Int32Array(buf, 8, 2);" // 8 bytes
-			"for(i=0; i<chunk1.length; ++i)"
+			"for(var i=0; i<chunk1.length; ++i)"
 			"  chunk1[i]=255;"
-			"for(i=0; i<chunk2.length; ++i)"
+			"for(var i=0; i<chunk2.length; ++i)"
 			"  chunk2[i]=65535;"
-			"for(i=0; i<chunk3.length; ++i)"
+			"for(var i=0; i<chunk3.length; ++i)"
 			"  chunk3[i]=4294967295;"
 			"var bytes = Uint8Array(buf);"
 			"({'struct':[chunk1, chunk2, chunk3], 'bytes':bytes})",

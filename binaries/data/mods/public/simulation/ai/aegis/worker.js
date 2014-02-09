@@ -226,7 +226,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 
 	// So for now what I'll do is that I'll check dropsites in my base, then in other bases.
 
-	for (id in baseManager.dropsites)
+	for (var id in baseManager.dropsites)
 	{
 		var dropsiteInfo = baseManager.dropsites[id][resource];
 		var capacity = baseManager.getDpWorkerCapacity(gameState, id, resource);
@@ -247,7 +247,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 
 	if (wantedDropsite === 0)
 	{
-		for (id in baseManager.dropsites)
+		for (var id in baseManager.dropsites)
 		{
 			var dropsiteInfo = baseManager.dropsites[id][resource];
 			var capacity = baseManager.getDpWorkerCapacity(gameState, id, resource, true);
@@ -279,7 +279,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 			// TODO: check we can access that base, and/or pick the best base.
 			if (base.ID === this.baseID || wantedDropsite !== 0)
 				continue;
-			for (id in base.dropsites)
+			for (var id in base.dropsites)
 			{
 				// if we have at least 1000 resources (including faraway) on this d
 				var dropsiteInfo = base.dropsites[id][resource];
@@ -308,7 +308,7 @@ m.Worker.prototype.startGathering = function(baseManager, gameState) {
 		{
 			if (base.ID === this.baseID || wantedDropsite !== 0)
 				continue;
-			for (id in base.dropsites)
+			for (var id in base.dropsites)
 			{
 				// if we have at least 1000 resources (including faraway) on this d
 				var dropsiteInfo = base.dropsites[id][resource];
