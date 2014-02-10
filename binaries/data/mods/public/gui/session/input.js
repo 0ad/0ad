@@ -275,12 +275,6 @@ function getActionInfo(action, target)
 			data.target = target;
 			cursor = "action-build";
 		}
-		else if (targetState.needsRepair && allyOwned)
-		{
-			data.command = "repair";
-			data.target = target;
-			cursor = "action-repair";
-		}
 		else if (hasClass(entState, "Market") && hasClass(targetState, "Market") && entState.id != targetState.id &&
 				(!hasClass(entState, "NavalMarket") || hasClass(targetState, "NavalMarket")) && !enemyOwned)
 		{
@@ -305,6 +299,12 @@ function getActionInfo(action, target)
 				else // Foundation or cannot produce traders
 					tooltip += "\nExpected gain: " + getTradingTooltip(gain);
 			}
+		}
+		else if (targetState.needsRepair && allyOwned)
+		{
+			data.command = "repair";
+			data.target = target;
+			cursor = "action-repair";
 		}
 
 		// Don't allow the rally point to be set on any of the currently selected entities (used for unset)
