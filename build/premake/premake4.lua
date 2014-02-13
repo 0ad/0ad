@@ -370,7 +370,7 @@ function project_set_build_flags()
 				if _ACTION == "gmake" then
 					linkoptions { "-Wl,-rpath,'$$ORIGIN'" } 
 				elseif _ACTION == "codeblocks" then
-					linkoptions { "-Wl,-R\\\\$$ORIGIN" }
+					linkoptions { "-Wl,-R\\\\$$$ORIGIN" }
 				end
 			end
 		end
