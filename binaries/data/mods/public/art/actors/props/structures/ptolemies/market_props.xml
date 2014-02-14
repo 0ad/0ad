@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/ptol_market_props.dae</mesh>
+      <textures>
+	    	<texture file="structural/ptol_struct.png" name="baseTex"/>
+	    	<texture file="structural/ptol_struct_norm.png" name="normTex"/>
+        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
+		    <texture file="structural/ao/ptol_market.png" name="aoTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

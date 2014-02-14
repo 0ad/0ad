@@ -4,6 +4,18 @@
   <group>
     <variant frequency="100" name="market">
       <mesh>structural/ptol_market.dae</mesh>
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="props/structures/ptolemies/market_stall.xml" attachpoint="stall" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/ptolemies/market_props.xml" attachpoint="props" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/ptolemies/market_cloth_big.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/market_waterplane.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/market_fountain.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/market_cloth_big2.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/market_cloth_small.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/market_plants.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+      </props>
       <textures>
         <texture file="structural/ptol_struct.png" name="baseTex"/>
         <texture file="structural/ptol_struct_norm.png" name="normTex"/>
@@ -20,7 +32,7 @@
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_6x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
