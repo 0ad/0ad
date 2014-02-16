@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_market">
+  <Footprint>
+    <Square width="27" depth="27"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Identity>
     <Civ>ptol</Civ>
     <SpecificName>ḥwt-n-ḫt.w-wḫa.w</SpecificName>
     <History>Most Hellenistic cities were centers of trade, and Egyptian cities were no exception.</History>
   </Identity>
+  <Obstruction>
+    <Static width="25.0" depth="25.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/ptolemies/market.xml</Actor>
   </VisualActor>

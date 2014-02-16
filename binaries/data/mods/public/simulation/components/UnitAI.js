@@ -346,9 +346,20 @@ var UnitFsmSpec = {
 			return;
 		}
 
+		// Check if we need to move     TODO implement a better way to know if we are on the shoreline
+		var needToMove = true;
+		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+		if (this.lastShorelinePosition && cmpPosition && (this.lastShorelinePosition.x == cmpPosition.GetPosition().x)
+			&& (this.lastShorelinePosition.z == cmpPosition.GetPosition().z))
+		{
+			// we were already on the shoreline, and have not moved since
+			if (DistanceBetweenEntities(this.entity, this.order.data.target) < 50)
+				needToMove = false;
+		} 
+
 		// TODO: what if the units are on a cliff ? the ship will go below the cliff
 		// and the units won't be able to garrison. Should go to the nearest (accessible) shore
-		if (this.MoveToTarget(this.order.data.target))
+		if (needToMove && this.MoveToTarget(this.order.data.target))
 		{
 			this.SetNextState("INDIVIDUAL.PICKUP.APPROACHING");
 		}
@@ -2773,6 +2784,10 @@ var UnitFsmSpec = {
 								// If a pickup has been requested, remove it
 								if (this.pickup)
 								{
+									var cmpHolderPosition = Engine.QueryInterface(target, IID_Position);
+									var cmpHolderUnitAI = Engine.QueryInterface(target, IID_UnitAI);
+									if (cmpHolderUnitAI && cmpHolderPosition)
+										cmpHolderUnitAI.lastShorelinePosition = cmpHolderPosition.GetPosition();
 									Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
 									delete this.pickup;
 								}

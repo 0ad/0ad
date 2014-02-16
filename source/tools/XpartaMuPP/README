@@ -66,7 +66,7 @@ If you would like to run the leaderboard database,
 $ sudo apt-get install sqlalchemy
 
 Then execute the following command to setup the database.
-$ ./source/tools/XpartaMuPP/LobbyRankings.py
+$ ./source/tools/XpartaMuPP/LobbyRanking.py
 
 Execute the following command to run the bot with default options
 $ ./source/tools/XpartaMuPP/XpartaMuPP.py

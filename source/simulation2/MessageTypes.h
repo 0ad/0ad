@@ -258,6 +258,21 @@ public:
 	entity_angle_t a;
 };
 
+/*Sent whenever the territory type (neutral,own,enemy) differs from the former type*/
+class CMessageTerritoryPositionChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(TerritoryPositionChanged)
+
+	CMessageTerritoryPositionChanged(entity_id_t entity, player_id_t newTerritory) : 
+		entity(entity), newTerritory(newTerritory)
+	{
+	}
+
+	entity_id_t entity;
+	player_id_t newTerritory;
+};
+
 /**
  * Sent by CCmpUnitMotion during Update, whenever the motion status has changed
  * since the previous update.

@@ -216,6 +216,24 @@ CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& scriptInterface, j
 
 ////////////////////////////////
 
+jsval CMessageTerritoryPositionChanged::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(entity);
+	SET_MSG_PROPERTY(newTerritory);
+	return OBJECT_TO_JSVAL(obj);
+}
+
+CMessage* CMessageTerritoryPositionChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+{
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(entity_id_t, entity);
+	GET_MSG_PROPERTY(player_id_t, newTerritory);
+	return new CMessageTerritoryPositionChanged(entity, newTerritory);
+}
+
+////////////////////////////////
+
 jsval CMessageMotionChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();

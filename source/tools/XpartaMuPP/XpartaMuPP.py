@@ -85,24 +85,41 @@ class LeaderboardList():
     winning_jid = list(dict.keys({jid: state for jid, state in
                                   gamereport['playerStates'].items()
                                   if state == 'won'}))[0]
-
     def get(stat, jid):
       return gamereport[stat][jid]
 
-    stats = {'civ': 'civs', 'foodGathered': 'foodGathered', 'foodUsed': 'foodUsed',
-             'woodGathered': 'woodGathered', 'woodUsed': 'woodUsed',
-             'stoneGathered': 'stoneGathered', 'stoneUsed': 'stoneUsed',
-             'metalGathered': 'metalGathered', 'metalUsed': 'metalUsed'}
+    singleStats = {'timeElapsed', 'mapName', 'teamsLocked', 'matchID'}
+    totalScoreStats = {'economyScore', 'militaryScore', 'totalScore'}
+    resourceStats = {'foodGathered', 'foodUsed', 'woodGathered', 'woodUsed', 
+            'stoneGathered', 'stoneUsed', 'metalGathered', 'metalUsed', 'vegetarianFoodGathered',
+            'treasuresCollected', 'tributesSent', 'tributesReceived'}
+    unitsStats = {'totalUnitsTrained', 'totalUnitsLost', 'enemytotalUnitsKilled', 'infantryUnitsTrained',
+            'infantryUnitsLost', 'enemyInfantryUnitsKilled', 'workerUnitsTrained', 'workerUnitsLost',
+            'enemyWorkerUnitsKilled', 'femaleUnitsTrained', 'femaleUnitsLost', 'enemyFemaleUnitsKilled',
+            'cavalryUnitsTrained', 'cavalryUnitsLost', 'enemyCavalryUnitsKilled', 'championUnitsTrained',
+            'championUnitsLost', 'enemyChampionUnitsKilled', 'heroUnitsTrained', 'heroUnitsLost',
+            'enemyHeroUnitsKilled', 'shipUnitsTrained', 'shipUnitsLost', 'enemyShipUnitsKilled'}
+    buildingsStats = {'totalBuildingsConstructed', 'totalBuildingsLost', 'enemytotalBuildingsDestroyed',
+            'civCentreBuildingsConstructed', 'civCentreBuildingsLost', 'enemyCivCentreBuildingsDestroyed',
+            'houseBuildingsConstructed', 'houseBuildingsLost', 'enemyHouseBuildingsDestroyed',
+            'economicBuildingsConstructed', 'economicBuildingsLost', 'enemyEconomicBuildingsDestroyed',
+            'outpostBuildingsConstructed', 'outpostBuildingsLost', 'enemyOutpostBuildingsDestroyed',
+            'militaryBuildingsConstructed', 'militaryBuildingsLost', 'enemyMilitaryBuildingsDestroyed',
+            'fortressBuildingsConstructed', 'fortressBuildingsLost', 'enemyFortressBuildingsDestroyed',
+            'wonderBuildingsConstructed', 'wonderBuildingsLost', 'enemyWonderBuildingsDestroyed'}
+    marketStats = {'woodBought', 'foodBought', 'stoneBought', 'metalBought', 'tradeIncome'}
+    miscStats = {'civs', 'teams', 'percentMapExplored'}
 
+    stats = totalScoreStats | resourceStats | unitsStats | buildingsStats | marketStats | miscStats
     playerInfos = []
     for player in players:
       jid = player.jid
       playerinfo = PlayerInfo(player=player)
-      for dbname, reportname in stats.items():
-        setattr(playerinfo, dbname, get(reportname, jid))
+      for reportname in stats:
+        setattr(playerinfo, reportname, get(reportname, jid))
       playerInfos.append(playerinfo)
 
-    game = Game(map=gamereport['mapName'], duration=int(gamereport['timeElapsed']))
+    game = Game(map=gamereport['mapName'], duration=int(gamereport['timeElapsed']), teamsLocked=bool(gamereport['teamsLocked']), matchID=gamereport['matchID'])
     game.players.extend(players)
     game.player_info.extend(playerInfos)
     game.winner = db.query(Player).filter_by(jid=winning_jid).first()
@@ -165,14 +182,14 @@ class LeaderboardList():
     player2.rating += rating_adjustment2
     db.commit()
     return self
-    
+
   def getLastRatedMessage(self):
     """
       Gets the string of the last rated game. Triggers an update
       chat for the bot.
     """
     return self.lastRated
-    
+
   def addAndRateGame(self, gamereport):
     """
       Calls addGame and if the game has only two
@@ -475,7 +492,6 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         self.nicks[str(presence['muc']['jid'])] = presence['muc']['nick']
       # Check the jid isn't already in the lobby.
       if str(presence['muc']['jid']) != self.lastLeft:
-        self.send_message(mto=presence['from'], mbody="Hello %s, welcome to the 0 A.D. lobby. Polish your weapons and get ready to fight!" %(presence['muc']['nick']), mtype='')
         # Send Gamelist to new player.
         self.sendGameList(presence['muc']['jid'])
         # Following two calls make sqlalchemy complain about using objects in the
@@ -509,7 +525,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     """
     if msg['mucnick'] != self.nick and self.nick.lower() in msg['body'].lower():
       self.send_message(mto=msg['from'].bare,
-                        mbody="I (%s) am the administrative bot in this lobby and cannot participate in any games." % self.nick,
+                        mbody="I am the administrative bot in this lobby and cannot participate in any games.",
                         mtype='groupchat')
 
   def iqhandler(self, iq):

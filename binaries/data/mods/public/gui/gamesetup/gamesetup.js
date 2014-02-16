@@ -600,6 +600,8 @@ function cancelSetup()
 	}
 }
 
+var lastXmppClientPoll = Date.now();
+
 function onTick()
 {
 	// First tick happens before first render, so don't load yet
@@ -624,6 +626,13 @@ function onTick()
 
 			handleNetMessage(message);
 		}
+	}
+
+	// If the lobby is running, wake it up every 10 seconds so we stay connected.
+	if (Engine.HasXmppClient() && (Date.now() - lastXmppClientPoll) > 10000)
+	{
+		Engine.RecvXmppClient();
+		lastXmppClientPoll = Date.now();
 	}
 }
 
