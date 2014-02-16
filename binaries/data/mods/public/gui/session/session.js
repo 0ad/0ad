@@ -934,6 +934,10 @@ function reportGame(extendedSimState)
 	// Tribute
 	playerStatistics.tributesSent = "";
 	playerStatistics.tributesReceived = "";
+	// Total	
+	playerStatistics.economyScore = "";
+	playerStatistics.militaryScore = "";
+	playerStatistics.totalScore = "";
 	// Various
 	playerStatistics.treasuresCollected = "";
 	playerStatistics.feminisation = "";
@@ -963,7 +967,14 @@ function reportGame(extendedSimState)
 		for each (var buildingCounterType in buildingsCountersTypes)
 			for each (var buildingsClass in buildingsClasses)
 				playerStatistics[buildingCounterType][buildingsClass] += player.statistics[buildingCounterType][buildingsClass] + ",";
-
+		var total = 0;
+		for each (var res in player.statistics.resourcesGathered)
+			total += res;
+		playerStatistics.economyScore += total + ",";
+		playerStatistics.militaryScore += Math.round((player.statistics.enemyUnitsKilledValue +
+			player.statistics.enemyBuildingsDestroyedValue) / 10)  + ",";
+		playerStatistics.totalScore += (total + Math.round((player.statistics.enemyUnitsKilledValue +
+			player.statistics.enemyBuildingsDestroyedValue) / 10)) + ",";
 		playerStatistics.tradeIncome += player.statistics.tradeIncome + ",";
 		playerStatistics.tributesSent += player.statistics.tributesSent + ",";
 		playerStatistics.tributesReceived += player.statistics.tributesReceived + ",";
@@ -981,6 +992,9 @@ function reportGame(extendedSimState)
 	reportObject.teams = teams;
 	reportObject.teamsLocked = String(teamsLocked);
 	reportObject.mapName = mapName;
+	reportObject.economyScore = playerStatistics.economyScore;
+	reportObject.militaryScore = playerStatistics.militaryScore;
+	reportObject.totalScore = playerStatistics.totalScore;
 	for each (var rct in resourcesCounterTypes)
 	{
 		for each (var rt in resourcesTypes)
