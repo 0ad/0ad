@@ -61,6 +61,12 @@ TerritoryDecay.prototype.OnTerritoriesChanged = function(msg)
 	this.UpdateDecayState();
 };
 
+TerritoryDecay.prototype.OnTerritoryPositionChanged = function(msg)
+{
+	warn(uneval(msg));
+	this.UpdateDecayState();
+};
+
 TerritoryDecay.prototype.OnOwnershipChanged = function(msg)
 {
 	this.UpdateDecayState();
