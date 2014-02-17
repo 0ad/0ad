@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Roman Army Camp">
+      <animations>
+        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
+      </animations>
+      <mesh>structural/ptol_settlement_palisade.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="campfire" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/ptolemies/settlement_campfire.xml" attachpoint="campfire" minheight="-20" maxheight="20"/>        
+        <prop actor="props/structures/ptolemies/settlement_outpost.xml" attachpoint="outpost" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/ptolemies/settlement_greektent.xml" attachpoint="greektent" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/ptolemies/settlement_arabtent.xml" attachpoint="arabtent" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/ptolemies/settlement_bigtent.xml" attachpoint="bigtent" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/persians/stable_horse_a.xml" attachpoint="horse" minheight="-20" maxheight="20"/>        
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/settlement_entrance.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+      </props>
+      <textures>
+        <texture file="props/palisade_main.png" name="baseTex"/>
+        <texture file="props/palisade_main_norm.png" name="normTex"/>
+        <texture file="props/palisade_main_spec.png" name="specTex"/>
+        <texture file="structural/ao/ptol_settlement.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/settlement_campfire.xml" attachpoint="campfire" minheight="-20" maxheight="20"/>        
+        <prop actor="props/structures/ptolemies/settlement_outpost.xml" attachpoint="outpost" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/ptolemies/settlement_greektent.xml" attachpoint="greektent" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/ptolemies/settlement_arabtent.xml" attachpoint="arabtent" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/ptolemies/settlement_bigtent.xml" attachpoint="bigtent" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/ptolemies/settlement_entrance.xml" attachpoint="root" minheight="-20" maxheight="20"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

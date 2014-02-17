@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/ptol_settlement_arabtent.dae</mesh>
+      <props>
+        <prop actor="props/structures/ptolemies/settlement_arabtent_props.xml" attachpoint="root"/>
+      </props>
+      <textures>
+		   <texture file="structural/tent_arab.png" name="baseTex"/>
+		   <texture file="structural/tent_arab_norm.png" name="normTex"/>
+       <texture file="structural/tent_arab_spec.png" name="specTex"/>
+	     <texture file="structural/ao/ptol_settlement.png" name="aoTex"/>
+	    </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
