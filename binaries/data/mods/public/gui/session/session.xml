@@ -225,7 +225,7 @@
 
 		<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
 	<object hotkey="selection.idlewarrior">
-	    <action on="Press">findIdleUnit(["Hero", "Champion", "CitizenSoldier", "Siege", "Warship"]);</action>
+	    <action on="Press">findIdleUnit(["Hero", "Champion", "CitizenSoldier", "Siege", "Warship", "Dog"]);</action>
 	</object>
 
 	<!-- Unselect any selected entities -->
