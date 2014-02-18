@@ -802,7 +802,8 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues) {
 				var HouseNb = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_house"), true);
 
 				var freeSlots = 0;
-				if (gameState.civ() == "gaul" || gameState.civ() == "brit" || gameState.civ() == "iber")
+				if (gameState.civ() == "gaul" || gameState.civ() == "brit" || gameState.civ() == "iber" ||
+					gameState.civ() == "maur" || gameState.civ() == "ptol")
 					freeSlots = gameState.getPopulationLimit() + HouseNb*5 - gameState.getPopulation();
 				else
 					freeSlots = gameState.getPopulationLimit() + HouseNb*10 - gameState.getPopulation();
