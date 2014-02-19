@@ -49,11 +49,13 @@ IGUIObject::IGUIObject() :
 	AddSetting(GUIST_bool,			"hidden");
 	AddSetting(GUIST_CClientArea,	"size");
 	AddSetting(GUIST_CStr,			"style");
-	AddSetting(GUIST_CStr,			"hotkey" );
+	AddSetting(GUIST_CStr,			"hotkey");
 	AddSetting(GUIST_float,			"z");
 	AddSetting(GUIST_bool,			"absolute");
 	AddSetting(GUIST_bool,			"ghost");
 	AddSetting(GUIST_float,			"aspectratio");
+	AddSetting(GUIST_CStrW,			"tooltip");
+	AddSetting(GUIST_CStr,			"tooltip_style");
 
 	// Setup important defaults
 	GUI<bool>::SetSetting(this, "hidden", false);

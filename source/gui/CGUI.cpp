@@ -1631,7 +1631,7 @@ void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 	CStr name;
 	
 	//
-	//	Read Attributes
+	// Read Attributes
 	//
 
 	// Now we can iterate all attributes and store
@@ -1650,7 +1650,7 @@ void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 	}
 
 	//
-	//	Add to CGUI
+	// Add to CGUI
 	//
 
 	m_Styles[name] = style;
@@ -1661,9 +1661,15 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 	// style object we're adding
 	SGUIScrollBarStyle scrollbar;
 	CStr name;
-	
+
+	// Setup some defaults.
+	scrollbar.m_MinimumBarSize = 0.f;
+	// Using 1.0e100 as a substitute for infinity
+	scrollbar.m_MaximumBarSize = 1.0e100;
+	scrollbar.m_UseEdgeButtons = false;
+
 	//
-	//	Read Attributes
+	// Read Attributes
 	//
 
 	// Now we can iterate all attributes and store
