@@ -21,9 +21,9 @@
 		<!-- Left panel: Player list. -->
 		<object name="leftPanel" size="20 30 20% 100%-50">
 			<object name="playersBox" style="ModernList" type="olist" size="0 0 100% 100%" font="serif-bold-stroke-13">
-				<def id="status" heading="Status" width="28%"/>
-				<def id="name" heading="Name" width="47%"/>
-				<def id="rating" heading="Rating" width="25%"/>
+				<def id="status" heading="Status" width="27%"/>
+				<def id="name" heading="Name" width="50%"/>
+				<def id="rating" heading="Rating" width="23%"/>
 			</object>
 		</object>
 
@@ -95,8 +95,7 @@
 			<object name="hostButton" type="button" style="StoneButton" size="0 100%-55 100% 100%-30">
 				Host Game
 				<action on="Press">
-					// Open Multiplayer connection window with host option.
-					Engine.PushGuiPage("page_gamesetup_mp.xml", { multiplayerGameType: "host", name: g_Name });
+					hostGame();
 				</action>
 			</object>
 

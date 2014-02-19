@@ -71,7 +71,7 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	this.assignedAgainst[maxEnt].push(entID);
 	this.assignedTo[entID] = maxEnt;
 	
-	ent.attack(id);
+	ent.attack(maxEnt);
 	
 	return true;
 }
