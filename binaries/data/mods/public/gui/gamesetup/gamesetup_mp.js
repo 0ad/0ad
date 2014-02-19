@@ -5,9 +5,11 @@ var g_ServerName = "";
 var g_IsRejoining = false;
 var g_GameAttributes; // used when rejoining
 var g_PlayerAssignments; // used when rejoining
+var g_userRating; // player rating
 
 function init(attribs)
 {
+	g_userRating = attribs.rating;
 	switch (attribs.multiplayerGameType)
 	{
 	case "join":
@@ -187,7 +189,10 @@ function startHost(playername, servername)
 	}
 	try
 	{
-		Engine.StartNetworkHost(playername);
+		if(Engine.HasXmppClient())
+			Engine.StartNetworkHost(playername + " (" + g_userRating + ")");
+		else
+			Engine.StartNetworkHost(playername);
 	}
 	catch (e)
 	{
@@ -210,7 +215,10 @@ function startJoin(playername, ip)
 {
 	try
 	{
-		Engine.StartNetworkJoin(playername, ip);
+		if(Engine.HasXmppClient())
+			Engine.StartNetworkJoin(playername + " (" + g_userRating + ")", ip);
+		else
+			Engine.StartNetworkJoin(playername, ip);
 	}
 	catch (e)
 	{
