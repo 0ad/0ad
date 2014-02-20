@@ -47,9 +47,7 @@ IGUIScrollBar::~IGUIScrollBar()
 void IGUIScrollBar::SetupBarSize()
 {
 	if (!GetStyle())
-	{
 		return;
-	}
 	float min = GetStyle()->m_MinimumBarSize;
 	float max = GetStyle()->m_MaximumBarSize;
 	float length = m_Length;
@@ -73,7 +71,7 @@ const SGUIScrollBarStyle *IGUIScrollBar::GetStyle() const
 	if (!m_pHostObject)
 		return NULL;
 
-    return m_pHostObject->GetScrollBarStyle(m_ScrollBarStyle);
+	return m_pHostObject->GetScrollBarStyle(m_ScrollBarStyle);
 }
 
 CGUI *IGUIScrollBar::GetGUI() const 

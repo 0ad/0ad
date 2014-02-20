@@ -140,7 +140,7 @@ void CTooltip::SetupText()
 		size.pixel.right -= size.pixel.left, size.pixel.left = 0.f;
 	else if (size.pixel.right > screenw)
 		size.pixel.left -= (size.pixel.right-screenw), size.pixel.right = screenw;
-	
+
 	GUI<CClientArea>::SetSetting(this, "size", size);
 }
 
