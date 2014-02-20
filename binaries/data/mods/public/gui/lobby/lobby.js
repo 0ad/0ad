@@ -7,6 +7,7 @@ var g_spamMonitor = {};
 var g_timestamp = Engine.ConfigDB_GetValue("user", "lobby.chattimestamp") == "true";
 var g_mapSizes = {};
 var g_userRating = "UNR"; // Rating of user, defaults to Unrated
+var g_modPrefix = "@";
 // Block spammers for 30 seconds.
 var SPAM_BLOCK_LENGTH = 30;
 
@@ -318,7 +319,9 @@ function formatPlayerListEntry(nickname, presence, rating, role)
 	if (rating == "-")
 		rating = "    -";
 	var formattedStatus = '[color="' + color + '"]' + status + "[/color]";
-	var formattedRating = '[color="' + color + '"]' + rating + "[/color]"; 
+	var formattedRating = '[color="' + color + '"]' + rating + "[/color]";
+	if (role == "moderator")
+		nickname = g_modPrefix + nickname;
 	var formattedName = colorPlayerName(nickname);
 
 	// Give moderators special formatting.
@@ -849,7 +852,7 @@ function repeatString(times, string) {
 }
 
 // Some names are special and should always appear in certain colors.
-var fixedColors = { "system": repeatString(7, "255.0.0."), "WFGbot": repeatString(6, "255.24.24."),
+var fixedColors = { "system": repeatString(7, "255.0.0."), "@WFGbot": repeatString(7, "255.24.24."),
 					"pyrogenesis": repeatString(2, "97.0.0.") + repeatString(2, "124.0.0.") + "138.0.0." +
 						repeatString(2, "174.0.0.") + repeatString(2, "229.40.0.") + repeatString(2, "243.125.15.") };
 function colorPlayerName(playername)
@@ -860,7 +863,7 @@ function colorPlayerName(playername)
 	return ('[color="' + playername.split("").map(function (c, i) color.slice(i * 3, i * 3 + 3).join(" ") + '"]' + c + '[/color][color="')
 				.join("") + '"]').slice(0, -10);
 	}
-	return '[color="' + getPlayerColor(playername) + '"]' + playername + '[/color]';
+	return '[color="' + getPlayerColor(playername.replace(g_modPrefix, "")) + '"]' + playername + '[/color]';
 }
 
 // Ensure `value` is between 0 and 1.
