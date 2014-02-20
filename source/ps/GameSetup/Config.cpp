@@ -123,11 +123,11 @@ static void LoadGlobals()
 		CFG_GET_VAL("sound.actiongain", Float, actionGain);
 		CFG_GET_VAL("sound.uigain", Float, uiGain);
 
-  	g_SoundManager->SetMasterGain( gain );
-  	g_SoundManager->SetMusicGain( musicGain );
-  	g_SoundManager->SetAmbientGain( ambientGain );
-  	g_SoundManager->SetActionGain( actionGain );
-  	g_SoundManager->SetUIGain( uiGain );
+	g_SoundManager->SetMasterGain(gain);
+	g_SoundManager->SetMusicGain(musicGain);
+	g_SoundManager->SetAmbientGain(ambientGain);
+	g_SoundManager->SetActionGain(actionGain);
+	g_SoundManager->SetUIGain(uiGain);
 	}
 
 
