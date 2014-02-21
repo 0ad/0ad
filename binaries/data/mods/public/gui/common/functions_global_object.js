@@ -22,10 +22,17 @@ var g_messageBoxCallbackFunction = function(btnCode)
 {
 	if (btnCode !== undefined && g_messageBoxBtnFunctions[btnCode])
 	{
-		if (g_messageBoxCallbackArgs[btnCode])
-			g_messageBoxBtnFunctions[btnCode](g_messageBoxCallbackArgs[btnCode]);
+		// Cache the variables to make it possible to call a messageBox from a callback function.
+		var callbackFunction = g_messageBoxBtnFunctions[btnCode];
+		var callbackArgs = g_messageBoxCallbackArgs[btnCode]
+		g_messageBoxBtnFunctions  = [];
+		g_messageBoxCallbackArgs = [];
+
+		if (callbackArgs !== undefined)
+			callbackFunction(callbackArgs);
 		else
-			g_messageBoxBtnFunctions[btnCode]();
+			callbackFunction();
+		return;
 	}
 
 	g_messageBoxBtnFunctions  = [];

@@ -146,11 +146,31 @@ function exitMenuButton()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	var btCaptions = ["Yes", "No"];
-	var btCode = [leaveGame, resumeGame];
-	messageBox(400, 200, "Are you sure you want to quit?", "Confirmation", 0, btCaptions, btCode);
+	if (g_IsNetworked && g_IsController)
+	{
+		var btCode = [leaveGame, resumeGame];
+		var message = "Are you sure you want to quit? Leaving will disconnect all other players.";
+	}
+	else if (g_IsNetworked && !g_GameEnded)
+	{
+		var btCode = [networkReturnQuestion, resumeGame];
+		var message = "Are you sure you want to quit?";
+	}
+	else
+	{
+		var btCode = [leaveGame, resumeGame];
+		var message = "Are you sure you want to quit?";
+	}
+	messageBox(400, 200, message, "Confirmation", 0, ["Yes", "No"], btCode);
 }
 
+function networkReturnQuestion()
+{
+	var btCaptions = ["I resign", "I will return"];
+	var btCode = [leaveGame, leaveGame];
+	var btArgs = [false, true];
+	messageBox(400, 200, "Do you want to resign or will you return soon?", "Confirmation", 0, btCaptions, btCode, btArgs);
+}
 
 function openDeleteDialog(selection)
 {
