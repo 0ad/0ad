@@ -234,7 +234,11 @@ function reportPerformance(time)
 	Engine.SubmitUserReport("profile", 3, JSON.stringify(data));
 }
 
-function resignGame()
+/**
+ * Resign a player.
+ * @param leaveGameAfterResign If player is quitting after resignation.
+ */
+function resignGame(leaveGameAfterResign)
 {
 	var simState = GetSimState();
 
@@ -249,10 +253,17 @@ function resignGame()
 	});
 
 	global.music.setState(global.music.states.DEFEAT);
-	resumeGame();
+	
+	// Resume the game if not resigning.
+	if (!leaveGameAfterResign)
+		resumeGame();
 }
 
-function leaveGame()
+/**
+ * Leave the game
+ * @param willRejoin If player is going to be rejoining a networked game.
+ */
+function leaveGame(willRejoin)
 {
 	var extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
 	var playerState = extendedSimState.players[Engine.GetPlayerID()];
@@ -273,15 +284,14 @@ function leaveGame()
 	}
 	else // "active"
 	{
-		gameResult = "You have abandoned the game.";
-
-		// Tell other players that we have given up and been defeated
-		Engine.PostNetworkCommand({
-			"type": "defeat-player",
-			"playerId": Engine.GetPlayerID()
-		});
-
 		global.music.setState(global.music.states.DEFEAT);
+		if (willRejoin)
+			gameResult = "You have left the game.";
+		else
+		{
+			gameResult = "You have abandoned the game.";
+			resignGame(true);
+		}
 	}
 
 	stopAmbient();

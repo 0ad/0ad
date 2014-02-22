@@ -84,6 +84,35 @@ namespace JSI_Sound
     return true;
   }
 
+  void SetMasterGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+  {
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
+      sndManager->SetMasterGain(gain);
+  }
+
+  void SetMusicGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+  {
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
+      sndManager->SetMusicGain(gain);
+  }
+
+  void SetAmbientGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+  {
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
+      sndManager->SetAmbientGain(gain);
+  }
+
+  void SetActionGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+  {
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
+      sndManager->SetActionGain(gain);
+  }
+
+  void SetUIGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+  {
+    if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
+      sndManager->SetUIGain(gain);
+  }
 
 
   #else
@@ -96,6 +125,11 @@ namespace JSI_Sound
 	void ClearPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
 	void StopMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
 	void StartMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
+	void SetMasterGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
+	void SetMusicGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
+	void SetAmbientGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
+	void SetActionGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
+	void SetUIGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
 
   #endif
 
@@ -111,6 +145,11 @@ namespace JSI_Sound
     scriptInterface.RegisterFunction<void, std::wstring, bool, &PlayUISound>("PlayUISound");
     scriptInterface.RegisterFunction<void, std::wstring, bool, &PlayAmbientSound>("PlayAmbientSound");
     scriptInterface.RegisterFunction<bool, &MusicPlaying>("MusicPlaying");
+    scriptInterface.RegisterFunction<void, float, &SetMasterGain>("SetMasterGain");
+    scriptInterface.RegisterFunction<void, float, &SetMusicGain>("SetMusicGain");
+    scriptInterface.RegisterFunction<void, float, &SetAmbientGain>("SetAmbientGain");
+    scriptInterface.RegisterFunction<void, float, &SetActionGain>("SetActionGain");
+    scriptInterface.RegisterFunction<void, float, &SetUIGain>("SetUIGain");
   }
 }
 

@@ -44,7 +44,6 @@ public:
 	{
 		componentManager.SubscribeToMessageType(MT_TurnStart);
 		componentManager.SubscribeToMessageType(MT_Interpolate);
-		componentManager.SubscribeToMessageType(MT_TerritoriesChanged);
 
 		// TODO: if this component turns out to be a performance issue, it should
 		// be optimised by creating a new PositionStatic component that doesn't subscribe
@@ -563,20 +562,28 @@ public:
 			m_LastZ = m_Z;
 			m_LastYOffset = m_YOffset;
 
-			break;
-		}
-		case MT_TerritoriesChanged:
-		{
-			if (!m_InWorld)
-				break;
-			CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
-			player_id_t newTerritory = cmpTerritoryManager->GetOwner(m_X, m_Z);
-			if (newTerritory != m_Territory)
+
+			// warn when a position change also causes a territory change under the entity
+			if (m_InWorld)
 			{
-				m_Territory = newTerritory;
+				player_id_t newTerritory;
+				CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
+				if (cmpTerritoryManager)
+					newTerritory = cmpTerritoryManager->GetOwner(m_X, m_Z);
+				else
+					newTerritory = INVALID_PLAYER;
+				if (newTerritory != m_Territory)
+				{
+					m_Territory = newTerritory;
+					CMessageTerritoryPositionChanged msg(GetEntityId(), m_Territory);
+					GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+				}
+			}
+			else if (m_Territory != INVALID_PLAYER)
+			{
 				CMessageTerritoryPositionChanged msg(GetEntityId(), m_Territory);
 				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-			}			
+			}
 			break;
 		}
 	}
@@ -589,29 +596,11 @@ private:
 		{
 			CMessagePositionChanged msg(GetEntityId(), true, m_X, m_Z, m_RotY);
 			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-
-			player_id_t newTerritory;
-			CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
-			if (cmpTerritoryManager)
-				newTerritory = cmpTerritoryManager->GetOwner(m_X, m_Z);
-			else
-				newTerritory = INVALID_PLAYER;
-			if (newTerritory != m_Territory)
-			{
-				m_Territory = newTerritory;
-				CMessageTerritoryPositionChanged msg(GetEntityId(), m_Territory);
-				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-			}			
 		}
 		else
 		{
 			CMessagePositionChanged msg(GetEntityId(), false, entity_pos_t::Zero(), entity_pos_t::Zero(), entity_angle_t::Zero());
 			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-			if (m_Territory != INVALID_PLAYER)
-			{
-				CMessageTerritoryPositionChanged msg(GetEntityId(), m_Territory);
-				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-			}
 		}
 	}
 

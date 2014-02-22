@@ -85,8 +85,8 @@ protected:
 	bool m_AmbientPaused;
 	bool m_ActionPaused;
 	bool m_RunningPlaylist;
- 	bool m_PlayingPlaylist;
-  bool m_LoopingPlaylist;
+	bool m_PlayingPlaylist;
+	bool m_LoopingPlaylist;
 
 	long m_PlaylistGap;
 	long m_DistressErrCount;
@@ -135,8 +135,8 @@ public:
 	long GetBufferCount();
 	long GetBufferSize();
 
-	void PlayAsMusic( const VfsPath& itemPath, bool looping );
-	void PlayAsAmbient( const VfsPath& itemPath, bool looping );
+	void PlayAsMusic( const VfsPath& itemPath, bool looping);
+	void PlayAsAmbient( const VfsPath& itemPath, bool looping);
 	void PlayAsUI(const VfsPath& itemPath, bool looping);
 	void PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source, bool ownedSound);
 
@@ -152,15 +152,16 @@ public:
 	void PauseAction (bool pauseIt);
 	void SetAmbientItem(ISoundItem* anItem);
 
-protected:
-	void InitListener();
-	Status AlcInit();
-	void SetMusicItem(ISoundItem* anItem);
 	void SetMasterGain(float gain);
 	void SetMusicGain(float gain);
 	void SetAmbientGain(float gain);
 	void SetActionGain(float gain);
 	void SetUIGain(float gain);
+
+protected:
+	void InitListener();
+	Status AlcInit();
+	void SetMusicItem(ISoundItem* anItem);
 
 private:
 	CSoundManager(CSoundManager* UNUSED(other)){};
