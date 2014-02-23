@@ -23,6 +23,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/serialization/BinarySerializer.h"
 #include "simulation2/serialization/StdDeserializer.h"
+#include "simulation2/serialization/StdSerializer.h" // for DEBUG_SERIALIZER_ANNOTATE
 
 #include <sstream>
 
@@ -34,8 +35,17 @@ public:
 	{
 	}
 
-	void Put(const char* UNUSED(name), const u8* data, size_t len)
+	void Put(const char* name, const u8* data, size_t len)
 	{
+		#if DEBUG_SERIALIZER_ANNOTATE
+			std::string tag = "<";
+			tag.append(name);
+			tag.append(">");
+			memcpy(m_Buffer, tag.c_str(), tag.length());
+			m_Buffer += tag.length();
+		#else
+			UNUSED2(name);
+		#endif
 		memcpy(m_Buffer, data, len);
 		m_Buffer += len;
 	}
@@ -68,8 +78,14 @@ public:
 	{
 	}
 
-	void Put(const char* UNUSED(name), const u8* UNUSED(data), size_t len)
+	void Put(const char* name, const u8* UNUSED(data), size_t len)
 	{
+		#if DEBUG_SERIALIZER_ANNOTATE
+		m_Length += 2;	// '<' and '>'
+		m_Length += strlen(name);
+		#else
+			UNUSED2(name);
+		#endif
 		m_Length += len;
 	}
 

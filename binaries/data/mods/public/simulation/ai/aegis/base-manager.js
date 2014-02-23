@@ -165,9 +165,19 @@ m.BaseManager.prototype.initGatheringFunctions = function(HQ, gameState, specTyp
 }
 
 m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
+	var renameEvents = events["EntityRenamed"];
 	var destEvents = events["Destroy"];
 	var createEvents = events["Create"];
 	var cFinishedEvents = events["ConstructionFinished"];
+
+	for (var i in renameEvents)
+	{
+		var ent = gameState.getEntityById(renameEvents[i].newentity);
+		var workerObject = ent.getMetadata(PlayerID, "worker-object");
+		if (workerObject)
+			workerObject.ent = ent;
+	}
+
 	for (var i in destEvents)
 	{
 		var evt = destEvents[i];
