@@ -284,10 +284,42 @@ m.Army.prototype.merge = function (gameState, otherArmy)
 // TODO: when there is a technology update, we should probably recompute the strengths, or weird stuffs might happen.
 m.Army.prototype.checkEvents = function (gameState, events)
 {
+	var renameEvents = events["EntityRenamed"];   // take care of promoted and packed units
 	var destroyEvents = events["Destroy"];
 	var convEvents = events["OwnershipChanged"];
 	var garriEvents = events["Garrison"];
-	
+
+	// Warning the metadata is already cloned in shared.js. Futhermore, changes should be done before destroyEvents
+	// otherwise it would remove the old entity from this army list
+	// TODO we should may-be reevaluate the strength
+	for each (var msg in renameEvents)
+	{
+		if (this.foeEntities.indexOf(msg.entity) !== -1)
+		{
+			var idx = this.foeEntities.indexOf(msg.entity);
+			this.foeEntities[idx] = msg.newentity;
+			this.assignedAgainst[msg.newentity] = this.assignedAgainst[msg.entity];
+			this.assignedAgainst[msg.entity] = undefined;
+			for (var to in this.assignedTo)
+				if (this.assignedTo[to] == msg.entity)
+					this.assignedTo[to] = msg.newentity;
+		}
+		else if (this.ownEntities.indexOf(msg.entity) !== -1)
+		{
+			var idx = this.ownEntities.indexOf(msg.entity);
+			this.ownEntities[idx] = msg.newentity;
+			this.assignedTo[msg.newentity] = this.assignedTo[msg.entity];
+			this.assignedTo[msg.entity] = undefined;
+			for (var against in this.assignedAgainst)
+			{
+				if (!this.assignedAgainst[against])
+					continue;
+				if (this.assignedAgainst[against].indexOf(msg.entity) !== -1)
+					this.assignedAgainst[against][this.assignedAgainst[against].indexOf(msg.entity)] = msg.newentity;
+			}
+		}
+	}
+
 	for each (var msg in destroyEvents)
 	{
 		if (msg.entityObj === undefined)
