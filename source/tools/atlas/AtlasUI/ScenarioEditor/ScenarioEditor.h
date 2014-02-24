@@ -27,12 +27,10 @@
 #include "CustomControls/FileHistory/FileHistory.h"
 #include "SectionLayout.h"
 
-class ScriptInterface;
-
 class ScenarioEditor : public wxFrame
 {
 public:
-	ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterface);
+	ScenarioEditor(wxWindow* parent);
 	void OnClose(wxCloseEvent& event);
 	void OnTimer(wxTimerEvent& event);
 	void OnIdle(wxIdleEvent& event);
@@ -66,7 +64,6 @@ public:
 
 	static float GetSpeedModifier();
 
-	ScriptInterface& GetScriptInterface() const { return m_ScriptInterface; }
 	Observable<ObjectSettings>& GetObjectSettings() { return m_ObjectSettings; }
 	Observable<AtObj>& GetMapSettings() { return m_MapSettings; }
 
@@ -75,7 +72,6 @@ public:
 	void SelectPage(const wxString& classname) { m_SectionLayout.SelectPage(classname); }
 
 private:
-	ScriptInterface& m_ScriptInterface;
 
 	ToolManager m_ToolManager;
 

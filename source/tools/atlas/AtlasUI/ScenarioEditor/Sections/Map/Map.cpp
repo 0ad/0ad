@@ -20,7 +20,6 @@
 #include "Map.h"
 
 #include "AtlasObject/AtlasObject.h"
-#include "AtlasScript/ScriptInterface.h"
 #include "GameInterface/Messages.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
@@ -186,7 +185,7 @@ void MapSettingsControl::ReadFromEngine()
 	if (!(*qry.settings).empty())
 	{
 		// Prevent error if there's no map settings to parse
-		m_MapSettings = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qry.settings);
+		m_MapSettings = AtlasObject::LoadFromJSON(*qry.settings);
 	}
 
 	// map name
@@ -275,7 +274,7 @@ void MapSettingsControl::SendToEngine()
 {
 	UpdateSettingsObject();
 
-	std::string json = AtlasObject::SaveToJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), m_MapSettings);
+	std::string json = AtlasObject::SaveToJSON(m_MapSettings);
 
 	// TODO: would be nice if we supported undo for settings changes
 
@@ -370,7 +369,7 @@ void MapSidebar::OnFirstDisplay()
 	// Load the map sizes list
 	AtlasMessage::qGetMapSizes qrySizes;
 	qrySizes.Post();
-	AtObj sizes = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qrySizes.sizes);
+	AtObj sizes = AtlasObject::LoadFromJSON(*qrySizes.sizes);
 	wxChoice* sizeChoice = wxDynamicCast(FindWindow(ID_RandomSize), wxChoice);
 	for (AtIter s = sizes["Sizes"]["item"]; s.defined(); ++s)
 	{
@@ -388,7 +387,7 @@ void MapSidebar::OnFirstDisplay()
 	scriptChoice->Clear();
 	for (size_t i = 0; i < scripts.size(); ++i)
 	{
-		AtObj data = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), scripts[i]);
+		AtObj data = AtlasObject::LoadFromJSON(scripts[i]);
 		wxString name(data["settings"]["Name"]);
 		scriptChoice->Append(name, new AtObjClientData(*data["settings"]));
 	}
@@ -528,7 +527,7 @@ void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 
 	settings.setInt("Seed", wxAtoi(wxDynamicCast(FindWindow(ID_RandomSeed), wxTextCtrl)->GetValue()));
 
-	std::string json = AtlasObject::SaveToJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), settings);
+	std::string json = AtlasObject::SaveToJSON(settings);
 
 	wxBusyInfo busy(_("Generating map"));
 	wxBusyCursor busyc;

@@ -20,7 +20,6 @@
 #include "Player.h"
 
 #include "AtlasObject/AtlasObject.h"
-#include "AtlasScript/ScriptInterface.h"
 #include "CustomControls/ColourDialog/ColourDialog.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 
@@ -591,7 +590,7 @@ void PlayerSettingsControl::CreateWidgets()
 	std::vector<std::string> civData = *qryCiv.data;
 	for (size_t i = 0; i < civData.size(); ++i)
 	{
-		AtObj civ = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), civData[i]);
+		AtObj civ = AtlasObject::LoadFromJSON(civData[i]);
 		civNames.Add(wxString(civ["Name"]));
 		civCodes.Add(wxString(civ["Code"]));
 	}
@@ -600,7 +599,7 @@ void PlayerSettingsControl::CreateWidgets()
 	ArrayOfAIData ais(AIData::CompareAIData);
 	AtlasMessage::qGetAIData qryAI;
 	qryAI.Post();
-	AtObj aiData = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qryAI.data);
+	AtObj aiData = AtlasObject::LoadFromJSON(*qryAI.data);
 	for (AtIter a = aiData["AIData"]["item"]; a.defined(); ++a)
 	{
 		ais.Add(new AIData(wxString(a["id"]), wxString(a["data"]["name"])));
@@ -646,7 +645,7 @@ void PlayerSettingsControl::LoadDefaults()
 {
 	AtlasMessage::qGetPlayerDefaults qryPlayers;
 	qryPlayers.Post();
-	AtObj playerData = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qryPlayers.defaults);
+	AtObj playerData = AtlasObject::LoadFromJSON(*qryPlayers.defaults);
 	m_PlayerDefaults = *playerData["PlayerData"];
 }
 
@@ -658,7 +657,7 @@ void PlayerSettingsControl::ReadFromEngine()
 	if (!(*qry.settings).empty())
 	{
 		// Prevent error if there's no map settings to parse
-		m_MapSettings = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qry.settings);
+		m_MapSettings = AtlasObject::LoadFromJSON(*qry.settings);
 	}
 	else
 	{
@@ -946,7 +945,7 @@ void PlayerSettingsControl::SendToEngine()
 {
 	UpdateSettingsObject();
 
-	std::string json = AtlasObject::SaveToJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), m_MapSettings);
+	std::string json = AtlasObject::SaveToJSON(m_MapSettings);
 
 	// TODO: would be nice if we supported undo for settings changes
 

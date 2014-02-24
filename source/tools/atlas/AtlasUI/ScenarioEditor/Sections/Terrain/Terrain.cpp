@@ -23,7 +23,6 @@
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Tools/Common/Brushes.h"
 #include "ScenarioEditor/Tools/Common/MiscState.h"
-#include "AtlasScript/ScriptInterface.h"
 
 #include "GameInterface/Messages.h"
 
@@ -286,7 +285,7 @@ void TerrainSidebar::OnResizeMap(wxCommandEvent& WXUNUSED(evt))
 	// Load the map sizes list
 	AtlasMessage::qGetMapSizes qrySizes;
 	qrySizes.Post();
-	AtObj sizes = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qrySizes.sizes);
+	AtObj sizes = AtlasObject::LoadFromJSON(*qrySizes.sizes);
 	for (AtIter s = sizes["Sizes"]["item"]; s.defined(); ++s)
 	{
 		long tiles = 0;

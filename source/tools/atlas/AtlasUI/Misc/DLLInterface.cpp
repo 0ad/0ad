@@ -29,8 +29,6 @@
 
 #include "GameInterface/MessagePasser.h"
 
-#include "AtlasScript/ScriptInterface.h"
-
 #include "wx/config.h"
 #include "wx/debugrpt.h"
 #include "wx/file.h"
@@ -173,23 +171,9 @@ ATLASDLLIMPEXP void Atlas_ReportError()
 	///ReportError();	// janwas: disabled until ErrorReporter.cpp compiles
 }
 
-void ScenarioEditorSubmitCommand(AtlasMessage::mWorldCommand* command)
-{
-	ScenarioEditor::GetCommandProc().Submit(new WorldCommand(command));
-}
-
 class AtlasDLLApp : public wxApp
 {
 public:
-	AtlasDLLApp()
-	: m_ScriptInterface(NULL)
-	{
-	}
-	
-	~AtlasDLLApp()
-	{
-		delete m_ScriptInterface;
-	}
 
 	virtual bool OnInit()
 	{
@@ -242,8 +226,7 @@ public:
 		}
 		else if (g_InitialWindowType == _T("ScenarioEditor"))
 		{
-			m_ScriptInterface = new ScriptInterface(&ScenarioEditorSubmitCommand);
-			frame = new ScenarioEditor(NULL, *m_ScriptInterface);
+			frame = new ScenarioEditor(NULL);
 		}
 		else
 		{
@@ -315,7 +298,6 @@ public:
 */
 
 private:
-	ScriptInterface* m_ScriptInterface;
 
 	bool OpenDirectory(const wxString& dir)
 	{

@@ -1021,27 +1021,15 @@ function setup_atlas_projects()
 
 	setup_atlas_project("AtlasObject", "StaticLib",
 	{	-- src
-		"."
+		".",
+		"../../../third_party/jsonspirit"
+		
 	},{	-- include
+		"../../../third_party/jsonspirit"
 	},{	-- extern_libs
 		"boost",
 		"libxml2",
-		"spidermonkey",
 		"wxwidgets"
-	},{	-- extra_params
-		no_pch = 1
-	})
-
-	setup_atlas_project("AtlasScript", "StaticLib",
-	{	-- src
-		"."
-	},{	-- include
-		".."
-	},{	-- extern_libs
-		"boost",
-		"spidermonkey",
-		"valgrind",
-		"wxwidgets",
 	},{	-- extra_params
 		no_pch = 1
 	})
@@ -1076,8 +1064,7 @@ function setup_atlas_projects()
 		"ScenarioEditor/Tools/Common",
 	}
 	atlas_extra_links = {
-		"AtlasObject",
-		"AtlasScript",
+		"AtlasObject"
 	}
 
 	atlas_extern_libs = {
@@ -1087,7 +1074,6 @@ function setup_atlas_projects()
 		--"ffmpeg", -- disabled for now because it causes too many build difficulties
 		"libxml2",
 		"sdl",	-- key definitions
-		"spidermonkey",
 		"wxwidgets",
 		"zlib",
 	}
@@ -1117,10 +1103,6 @@ function setup_atlas_frontend_project (project_name)
 
 	local target_type = get_main_project_target_type()
 	project_create(project_name, target_type)
-	project_add_extern_libs({
-		"spidermonkey",
-	},
-	target_type)
 	project_add_x11_dirs()
 
 	local source_root = rootdir.."/source/tools/atlas/AtlasFrontends/"
