@@ -267,17 +267,10 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 	m_WaterHeight = cmpWaterManager->GetExactWaterLevel(0,0);
 	
 	// Get the square we want to work on.
-	ssize_t Xstart = m_updatei0 < 0 ? 0 : (m_updatei0 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : m_updatei0);
-	ssize_t Xend = m_updatei1 < 0 ? 0 : (m_updatei1 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : m_updatei1);
-	ssize_t Zstart = m_updatej0 < 0 ? 0 : (m_updatej0 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : m_updatej0);
-	ssize_t Zend = m_updatej1 < 0 ? 0 : (m_updatej1 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : m_updatej1);
-
-	if (!(Xend > Xstart && Zend > Zstart))
-	{
-		// it corrupts every now and then for reasons I don't get.
-		std::cout << m_updatei0 << " , " << Xstart << std::endl;
-		std::cout << m_MapSize << "," << (ssize_t)m_MapSize << std::endl;
-	}
+	size_t Xstart = m_updatei0 >= m_MapSize ? m_MapSize-1 : m_updatei0;
+	size_t Xend = m_updatei1 >= m_MapSize ? m_MapSize-1 : m_updatei1;
+	size_t Zstart = m_updatej0 >= m_MapSize ? m_MapSize-1 : m_updatej0;
+	size_t Zend = m_updatej1 >= m_MapSize ? m_MapSize-1 : m_updatej1;
 	
 	if (m_WaveX == NULL)
 	{
@@ -299,16 +292,17 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 
 	// taken out of the bottom loop, blurs the normal map
 	// To remove if below is reactivated
-	ssize_t blurZstart = Zstart-4 < 0 ? 0 : Zstart - 4;
-	ssize_t blurZend = Zend+4 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : Zend + 4;
-	ssize_t blurXstart = Xstart-4 < 0 ? 0 : Xstart - 4;
-	ssize_t blurXend = Xend+4 >= (ssize_t)m_MapSize ? (ssize_t)m_MapSize-1 : Xend + 4;
+	size_t blurZstart = (int)(Zstart-4) < 0 ? 0 : Zstart - 4;
+	size_t blurZend = Zend+4 >= m_MapSize ? m_MapSize-1 : Zend + 4;
+	size_t blurXstart = (int)(Xstart-4) < 0 ? 0 : Xstart - 4;
+	size_t blurXend = Xend+4 >= m_MapSize ? m_MapSize-1 : Xend + 4;
 	
-	for (ssize_t j = blurZstart; j < blurZend; ++j)
+	float ii = blurXstart*4.0f, jj = blurXend*4.0f;
+	for (size_t j = blurZstart; j < blurZend; ++j, jj += 4.0f)
 	{
-		for (ssize_t i = blurXstart; i < blurXend; ++i)
+		for (size_t i = blurXstart; i < blurXend; ++i, ii += 4.0f)
 		{
-			normals[j*m_MapSize + i] = terrain->CalcExactNormal(((float)i)*4.0f,((float)j)*4.0f);
+			normals[j*m_MapSize + i] = terrain->CalcExactNormal(ii,jj);
 		}
 	}
 	// TODO: reactivate?
@@ -340,12 +334,26 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 		}
 	}
 	 */
+
+	// Cache some data to spiral-search for the closest tile that's either coastal or water depending on what we are.
+	// this is insanely faster.
+	// I use a define because it's more readable and various compilers have annoying (different) warnings otherwise.
+	ssize_t offset[24] = { -1,1,-m_MapSize,+m_MapSize, -1-m_MapSize,+1-m_MapSize,-1+m_MapSize,1+m_MapSize,
+		-2,2,-2*m_MapSize,2*m_MapSize,-2-m_MapSize,-2+m_MapSize,2-m_MapSize,2+m_MapSize,
+		-1-2*m_MapSize,+1-2*m_MapSize,-1+2*m_MapSize,1+2*m_MapSize,
+		-2-2*m_MapSize,2+2*m_MapSize,-2+2*m_MapSize,2-2*m_MapSize };
+	float dist[24] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.414f, 1.414f, 1.414f, 1.414f,
+		2.0f, 2.0f, 2.0f, 2.0f, 2.236f, 2.236f, 2.236f, 2.236f,
+		2.236f, 2.236f, 2.236f, 2.236f,
+		2.828f, 2.828f, 2.828f, 2.828f };
+
 	// this creates information for waves and stores it in float arrays. PatchRData then puts it in the vertex info for speed.
-	for (ssize_t j = Zstart; j < Zend; ++j)
+	CVector3D normal;
+	for (size_t j = Zstart; j < Zend; ++j)
 	{
-		for (ssize_t i = Xstart; i < Xend; ++i)
+		for (size_t i = Xstart; i < Xend; ++i)
 		{
-			ssize_t index = j*m_MapSize + i;
+			ssize_t register index = j*m_MapSize + i;
 			if (circular && (i-halfSize)*(i-halfSize)+(j-halfSize)*(j-halfSize) > mSize)
 			{
 				m_WaveX[index] = 0.0f;
@@ -355,43 +363,31 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 				continue;
 			}
 			float depth = m_WaterHeight - heightmap[index]*HEIGHT_SCALE;
-			float distanceToShore = 10000;
+			float register distanceToShore = 10000.0f;
 			
 			// calculation of the distance to the shore.
-			if (i > 0 && i < (ssize_t)m_MapSize-1 && j > 0 && j < (ssize_t)m_MapSize-1)
+			if (i > 0 && i < m_MapSize-1 && j > 0 && j < m_MapSize-1)
 			{
-				// this is needed otherwise I get many warnings for the code below
-				ssize_t mapSize = (ssize_t)m_MapSize;
-
 				// search a 5x5 array with us in the center (do not search me)
 				// much faster since we spiral search and can just stop once we've found the shore.
 				// also everything is precomputed and we get exact results instead.
-				ssize_t offset[24] = { -1,1,-mapSize,+mapSize, -1-mapSize,+1-mapSize,-1+mapSize,1+mapSize,
-					-2,2,-2*mapSize,2*mapSize,-2-mapSize,-2+mapSize,2-mapSize,2+mapSize,
-					-1-2*mapSize,+1-2*mapSize,-1+2*mapSize,1+2*mapSize,
-					-2-2*mapSize,2+2*mapSize,-2+2*mapSize,2-2*mapSize };
-				float dist[24] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.414f, 1.414f, 1.414f, 1.414f,
-					2.0f, 2.0f, 2.0f, 2.0f, 2.236f, 2.236f, 2.236f, 2.236f,
-					2.236f, 2.236f, 2.236f, 2.236f,
-					2.828f, 2.828f, 2.828f, 2.828f };
-				
 				int max = 8;
-				if (i > 1 && i < (ssize_t)m_MapSize-2 && j > 1 && j < (ssize_t)m_MapSize-2)
+				if (i > 1 && i < m_MapSize-2 && j > 1 && j < m_MapSize-2)
 					max = 24;
 				
 				for(int lookupI = 0; lookupI < max;++lookupI)
 				{
 					float hereDepth = m_WaterHeight - heightmap[index+offset[lookupI]]*HEIGHT_SCALE;
 					distanceToShore = hereDepth <= 0 && depth >= 0 ? dist[lookupI] : (depth < 0 ? 1 : distanceToShore);
-					if (distanceToShore != 10000)
-						break;
+					if (distanceToShore < 5000.0f)
+						goto FoundShore;
 				}
 			} else {
 				// revert to for and if-based because I can't be bothered to special case all that.
 				for (int xx = -1; xx <= 1;++xx)
 					for (int yy = -1; yy <= 1;++yy)
 					{
-						if (i+xx >= 0 && i+xx < (ssize_t)m_MapSize && j+yy >= 0 && j+yy < (ssize_t)m_MapSize)
+						if ((int)(i+xx) >= 0 && i+xx < m_MapSize && (int)(j+yy) >= 0 && j+yy < m_MapSize)
 						{
 							float hereDepth = m_WaterHeight - heightmap[index+xx+yy*m_MapSize]*HEIGHT_SCALE;
 							distanceToShore = (hereDepth < 0 && sqrt((double)xx*xx+yy*yy) < distanceToShore) ? sqrt((double)xx*xx+yy*yy) : distanceToShore;
@@ -400,7 +396,7 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 			}
 
 			// speedup with default values for land squares
-			if (distanceToShore == 10000)
+			if (distanceToShore > 5000.0f)
 			{
 				m_WaveX[index] = 0.0f;
 				m_WaveZ[index] = 0.0f;
@@ -408,22 +404,21 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 				m_FoamFactor[index] = 0.0f;
 				continue;
 			}
-						
+		FoundShore:
 			// We'll compute the normals and the "water raise", to know about foam
 			// Normals are a pretty good calculation but it's slow since we normalize so much.
-			CVector3D normal;
+			normal.X = normal.Y = normal.Z = 0.0f;
 			int waterRaise = 0;
-			for (int yy = -3; yy <= 3; yy += 2)
+			for (size_t yy = (int(j-3) < 0 ? 0 : j-3); yy <= (j+3 < m_MapSize-1 ? 0 : j-3); yy += 2)
 			{
-				for (int xx = -3; xx <= 3; xx += 2)	// every 2 tile is good enough.
+				for (size_t xx = (int(i-3) < 0 ? 0 : i-3); xx <= (i+3 < m_MapSize-1 ? 0 : i+3); xx += 2)	// every 2 tile is good enough.
 				{
-					if (j+yy < (long)m_MapSize && i+xx < (long)m_MapSize && i+xx >= 0 && j+yy >= 0)
-						normal += normals[(j+yy)*m_MapSize + (i+xx)];
-					waterRaise += heightmap[index]*HEIGHT_SCALE - terrain->GetVertexGroundLevel(i+xx,j+yy) > 0 ? heightmap[index]*HEIGHT_SCALE - terrain->GetVertexGroundLevel(i+xx,j+yy) : 0.0f;
+					normal += normals[yy*m_MapSize + xx];
+					waterRaise += (heightmap[index]*HEIGHT_SCALE - heightmap[yy*m_MapSize + xx]) > 0 ? (heightmap[index]*HEIGHT_SCALE - heightmap[yy*m_MapSize + xx]) : 0;
 				}
 			}
 			// normalizes the terrain info to avoid foam moving at too different speeds.
-			normal *= 0.08f;
+			normal *= 0.08f;	// divide by about 11.
 			normal[1] = 0.1f;
 			normal = normal.Normalized();
 
