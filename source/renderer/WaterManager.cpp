@@ -337,7 +337,8 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 
 	// Cache some data to spiral-search for the closest tile that's either coastal or water depending on what we are.
 	// this is insanely faster.
-	// I use a define because it's more readable and various compilers have annoying (different) warnings otherwise.
+	// I use a define because it's more readable and C++11 doesn't like this otherwise
+#define m_MapSize (ssize_t)m_MapSize
 	ssize_t offset[24] = { -1,1,-m_MapSize,+m_MapSize, -1-m_MapSize,+1-m_MapSize,-1+m_MapSize,1+m_MapSize,
 		-2,2,-2*m_MapSize,2*m_MapSize,-2-m_MapSize,-2+m_MapSize,2-m_MapSize,2+m_MapSize,
 		-1-2*m_MapSize,+1-2*m_MapSize,-1+2*m_MapSize,1+2*m_MapSize,
@@ -346,7 +347,8 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 		2.0f, 2.0f, 2.0f, 2.0f, 2.236f, 2.236f, 2.236f, 2.236f,
 		2.236f, 2.236f, 2.236f, 2.236f,
 		2.828f, 2.828f, 2.828f, 2.828f };
-
+#undef m_MapSize
+	
 	// this creates information for waves and stores it in float arrays. PatchRData then puts it in the vertex info for speed.
 	CVector3D normal;
 	for (size_t j = Zstart; j < Zend; ++j)
