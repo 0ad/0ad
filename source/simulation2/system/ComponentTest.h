@@ -226,7 +226,7 @@ public:
 	{
 	}
 
-	virtual void ReloadTerrain(bool ReloadWater = true)
+	virtual void ReloadTerrain(bool UNUSED(ReloadWater))
 	{
 	}
 };
