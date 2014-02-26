@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_swordsman">
+  <Armour>
+    <Hack>6</Hack>
+    <Pierce>3</Pierce>
+    <Crush>5</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>16.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>32.0</Hack>
+    </Charge>
+  </Attack>
+  <Health>
+    <Max>120</Max>
+  </Health>
+  <Identity>
+    <Civ>merc</Civ>
+	<GenericName>Thracian Mercenary Swordsman</GenericName>
+    <SpecificName>Rhomphaiaphoros Thrakikós</SpecificName>
+    <Rank>Elite</Rank>
+    <Icon>units/sele_infantry_swordsman.png</Icon>
+    <History>Thracian tribesmen who wield the fearsome rhomphaia polearm weapon in combat. They were ubiquitous mercenary swordsmen and skirmishers throughout Hellenistic times, sometimes even serving in two opposing armies.</History>
+	<Tooltip>Classes: Mercenary Melee Infantry Swordsman.
+Counters: 2x vs. Spearmen, 1.5x vs. Elephants. 
+Countered by: Archers, Cavalry Spearmen, and Cavalry Archers.</Tooltip>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Looter disable=""/>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>6.5</WalkSpeed>
+    <Run>
+      <Speed>13.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/mercenaries/thracian_swordsman.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="thracian helmet iron 1">
+      <mesh>props/helmet/thracian.dae</mesh>
+      <textures>
+        <texture file="props/helmet/thracian_iron_1.png" name="baseTex"/>
+        <texture file="props/helmet/thracian_norm.png" name="normTex"/>
+        <texture file="props/helmet/thracian_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="thracian helmet iron 2">
+      <mesh>props/helmet/thracian.dae</mesh>
+      <textures>
+        <texture file="props/helmet/thracian_iron_2.png" name="baseTex"/>
+        <texture file="props/helmet/thracian_norm.png" name="normTex"/>
+        <texture file="props/helmet/thracian_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="thracian helmet bronze 1">
+      <mesh>props/helmet/thracian.dae</mesh>
+      <textures>
+        <texture file="props/helmet/thracian_brass_1.png" name="baseTex"/>
+        <texture file="props/helmet/thracian_norm.png" name="normTex"/>
+        <texture file="props/helmet/thracian_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="thracian helmet bronze 2">
+      <mesh>props/helmet/thracian.dae</mesh>
+      <textures>
+        <texture file="props/helmet/thracian_brass_2.png" name="baseTex"/>
+        <texture file="props/helmet/thracian_norm.png" name="normTex"/>
+        <texture file="props/helmet/thracian_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

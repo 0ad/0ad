@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="125"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="110"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="115"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="125"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="110"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="115"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="125"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="110"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="115"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="125"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="110"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="115"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_b.dae" name="Idle" speed="130"/>
+        <animation file="biped/inf_sword_ready_c.dae" name="Idle" speed="120"/>
+        <animation file="biped/inf_sword_ready_d.dae" name="Idle" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="Walk" speed="115"/>
+        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="Walk" speed="125"/>
+        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="40"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_em_04.psa" name="attack_melee" speed="80"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="80"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_slaughter" speed="100"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_food" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_meat" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
+        <animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
+        <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
+        <animation file="infantry/general/forage.psa" name="gather_fruit" speed="125"/>
+        <animation file="infantry/general/forage.psa" name="gather_meat" speed="125"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_rock" speed="250"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ore" speed="250"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
+        <animation event="0.6" file="infantry/general/dude/dudebuild.psa" name="Build" speed="300"/>
+        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+      </animations>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/thracian_mercenary.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/rhomphaia.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/shields/thracian_oval.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
+      </props>
+      <textures>
+        <texture file="skeletal/ptol_thureophoros_a_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="gather_tree">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant name="gather_grain">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant name="gather_fruit">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+        <prop attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant name="gather_meat">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+        <prop attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant name="gather_rock">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant name="gather_ore">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant name="gather_ruins">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant name="Build">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="l_hand"/>
+        <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
+        <prop attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant name="carry_food">
+      <props>
+        <prop actor="props/units/shuttle_basket.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="carry_wood">
+      <props>
+        <prop actor="props/units/shuttle_wood.xml" attachpoint="r_hand"/>
+        <prop actor="" attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="carry_stone">
+      <props>
+        <prop actor="props/units/shuttle_stone.xml" attachpoint="r_hand"/>
+        <prop actor="" attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="carry_metal">
+      <props>
+        <prop actor="props/units/shuttle_metal.xml" attachpoint="r_hand"/>
+        <prop actor="" attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
