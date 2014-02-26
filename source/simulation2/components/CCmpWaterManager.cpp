@@ -82,10 +82,8 @@ public:
 			}
 			case MT_TerrainChanged:
 			{
-				// Tell the renderer to redraw the map.
-				// TODO: sometimes atlas glitches out.
-				// I've added a button to recompute on demand but that's not extremely nice.
-				if (CRenderer::IsInitialised() && !g_AtlasGameLoop->running)
+				// Tell the renderer to redraw part of the map.
+				if (CRenderer::IsInitialised())
 				{
 					const CMessageTerrainChanged& msgData = static_cast<const CMessageTerrainChanged&> (msg);
 					g_Renderer.GetWaterManager()->m_NeedInfoUpdate = true;

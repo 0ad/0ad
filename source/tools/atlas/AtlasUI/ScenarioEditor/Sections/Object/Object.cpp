@@ -24,7 +24,6 @@
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Tools/Common/ObjectSettings.h"
 #include "ScenarioEditor/Tools/Common/MiscState.h"
-#include "AtlasScript/ScriptInterface.h"
 #include "VariationControl.h"
 
 #include "GameInterface/Messages.h"
@@ -479,7 +478,7 @@ void ObjectBottomBar::OnFirstDisplay()
 	wxArrayString players;
 	AtlasMessage::qGetPlayerDefaults qryPlayers;
 	qryPlayers.Post();
-	AtObj playerData = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qryPlayers.defaults);
+	AtObj playerData = AtlasObject::LoadFromJSON(*qryPlayers.defaults);
 	AtObj playerDefs = *playerData["PlayerData"];
 	for (AtIter p = playerDefs["item"]; p.defined(); ++p)
 	{

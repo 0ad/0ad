@@ -40,8 +40,6 @@
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
 
-#include "AtlasScript/ScriptInterface.h"
-
 #include "Misc/KeyMap.h"
 
 #include "Tools/Common/Tools.h"
@@ -358,9 +356,9 @@ END_EVENT_TABLE()
 static AtlasWindowCommandProc g_CommandProc;
 AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc; }
 
-ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterface)
+ScenarioEditor::ScenarioEditor(wxWindow* parent)
 : wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, wxSize(1024, 768))
-, m_FileHistory(_T("Scenario Editor")), m_ScriptInterface(scriptInterface)
+, m_FileHistory(_T("Scenario Editor"))
 , m_ObjectSettings(g_SelectedObjects, AtlasMessage::eRenderView::GAME)
 , m_ToolManager(this)
 {

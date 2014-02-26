@@ -290,7 +290,7 @@ ActorViewer::ActorViewer()
 	// Tell the simulation we've already loaded the terrain
 	CmpPtr<ICmpTerrain> cmpTerrain(m.Simulation2, SYSTEM_ENTITY);
 	if (cmpTerrain)
-		cmpTerrain->ReloadTerrain();
+		cmpTerrain->ReloadTerrain(false);
 
 	// Remove FOW since we're in Atlas
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m.Simulation2, SYSTEM_ENTITY);

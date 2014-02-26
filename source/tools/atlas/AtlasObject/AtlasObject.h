@@ -29,8 +29,6 @@
 
 class wxString;
 
-typedef struct JSContext JSContext;
-
 //////////////////////////////////////////////////////////////////////////
 // Mostly-private bits:
 
@@ -193,7 +191,7 @@ namespace AtlasObject
 	AtObj LoadFromXML(const std::string& xml);
 
 	// Returns AtObj() on failure - test with AtObj::defined()
-	AtObj LoadFromJSON(JSContext* cx, const std::string& json);
+	AtObj LoadFromJSON(const std::string& json);
 
 	// Returns UTF-8-encoded XML document string.
 	// Returns empty string on failure.
@@ -201,7 +199,7 @@ namespace AtlasObject
 
 	// Returns UTF-8-encoded JSON string.
 	// Returns empty string on failure.
-	std::string SaveToJSON(JSContext* cx, AtObj& obj);
+	std::string SaveToJSON(AtObj& obj);
 
 	AtObj TrimEmptyChildren(AtObj& obj);
 }

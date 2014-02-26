@@ -468,12 +468,12 @@ m.QueueManager.prototype.update = function(gameState) {
 				{
 					this.accounts[name].subtract(item.getCost());
 					queue.startNext(gameState);
-					otherQueue.switched = 0;
+					queue.switched = 0;
 				}
 			}
 		} else if (queue.length() === 0) {
 			this.accounts[name].reset();
-			otherQueue.switched = 0;
+			queue.switched = 0;
 		}
 	}
 	//m.debug (uneval(this.accounts));

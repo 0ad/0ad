@@ -111,7 +111,7 @@ public:
 		return m_Terrain;
 	}
 
-	virtual void ReloadTerrain()
+	virtual void ReloadTerrain(bool ReloadWater)
 	{
 		// TODO: should refactor this code to be nicer
 
@@ -135,7 +135,7 @@ public:
 					vertices);
 		}
 		
-		if (CRenderer::IsInitialised())
+		if (ReloadWater && CRenderer::IsInitialised())
 			g_Renderer.GetWaterManager()->SetMapSize(vertices);
 
 		MakeDirty(0, 0, tiles+1, tiles+1);

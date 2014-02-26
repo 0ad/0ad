@@ -59,7 +59,7 @@ public:
 	 * (TODO: eventually we should manage the CTerrain in this class so nobody
 	 * can modify it behind our backs).
 	 */
-	virtual void ReloadTerrain() = 0;
+	virtual void ReloadTerrain(bool ReloadWater = true) = 0;
 
 	/**
 	 * Indicate that terrain tiles within the given region (inclusive lower bound,

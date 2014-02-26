@@ -25,7 +25,6 @@
 #include "CustomControls/SnapSplitterWindow/SnapSplitterWindow.h"
 
 #include "ScenarioEditor.h"
-#include "AtlasScript/ScriptInterface.h"
 
 #include "Sections/Environment/Environment.h"
 #include "Sections/Map/Map.h"

@@ -65,10 +65,10 @@ public:
 	GLuint m_waveTT;
 
 	// used to know what to update when updating parts of the terrain only.
-	i32 m_updatei0;
-	i32 m_updatej0;
-	i32 m_updatei1;
-	i32 m_updatej1;
+	u32 m_updatei0;
+	u32 m_updatej0;
+	u32 m_updatei1;
+	u32 m_updatej1;
 	
 	int m_WaterCurrentTex;
 	CColor m_WaterColor;
