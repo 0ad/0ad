@@ -695,7 +695,6 @@ m.CityAttack.prototype.StartAttack = function(gameState, HQ){
 		
 		this.unitCollection.forEach(function(ent) { ent.setMetadata(PlayerID, "subrole", "walking"); ent.setMetadata(PlayerID, "role", "attack") ;});
 		// optimize our collection now.
-		this.unitCollection.freeze();
 		this.unitCollection.allowQuickIter();
 		
 		this.unitCollection.move(this.path[0][0][0], this.path[0][0][1]);
