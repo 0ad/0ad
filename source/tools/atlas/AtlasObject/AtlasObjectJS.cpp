@@ -154,7 +154,7 @@ json_spirit::Value BuildJSONNode(AtNode::Ptr p)
 		AtNode::child_maptype::const_iterator lower = p->children.lower_bound("item");
 		AtNode::child_maptype::const_iterator upper = p->children.upper_bound("item");
 
-		uint32_t idx = 0;
+		unsigned int idx = 0;
 		for (AtNode::child_maptype::const_iterator it = lower; it != upper; ++it)
 		{
 			json_spirit::Value child = BuildJSONNode(it->second);
