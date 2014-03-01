@@ -1196,7 +1196,9 @@ m.CityAttack.prototype.totalCountUnits = function(gameState){
 	return totalcount;
 };
 // reset any units
-m.CityAttack.prototype.Abort = function(gameState){	
+m.CityAttack.prototype.Abort = function(gameState){
+	// Do not use QuickIter with forEach when forEach removes elements
+	this.unitCollection.preventQuickIter();
 	this.unitCollection.forEach(function(ent) {
 		ent.setMetadata(PlayerID, "role",undefined);
 		ent.setMetadata(PlayerID, "subrole",undefined);

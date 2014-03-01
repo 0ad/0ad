@@ -48,6 +48,12 @@ m.EntityCollection.prototype.allowQuickIter = function()
 		this._entitiesArray.push(ent);
 };
 
+m.EntityCollection.prototype.preventQuickIter = function()
+{
+	this._quickIter = false;
+	this._entitiesArray = undefined;
+};
+
 m.EntityCollection.prototype.toIdArray = function()
 {
 	var ret = [];
