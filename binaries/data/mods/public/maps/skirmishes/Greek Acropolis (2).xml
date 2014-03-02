@@ -18,7 +18,6 @@
 				<Type>default</Type>
 				<Colour r="0.313726" g="0.321569" b="0.247059"/>
 				<Height>20.0394</Height>
-				<Shininess>229.004</Shininess>
 				<Waviness>3.18359</Waviness>
 				<Murkiness>0.701172</Murkiness>
 				<Tint r="0.819608" g="0.74902" b="0.513726"/>
@@ -35,7 +34,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="442.649" y="111.197" z="95.2411"/>
+		<Position x="767.628" y="56.2993" z="432.616"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -24066,6 +24065,18 @@
 			<Position x="139.59194" z="587.08472"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="16088"/>
+		</Entity>
+		<Entity uid="4671">
+			<Template>gaia/fauna_hawk</Template>
+			<Position x="292.55887" z="530.07081"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="35666"/>
+		</Entity>
+		<Entity uid="4672">
+			<Template>gaia/fauna_hawk</Template>
+			<Position x="762.435" z="500.01465"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34280"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -18,7 +18,6 @@
 				<Type>default</Type>
 				<Colour r="1" g="1" b="1"/>
 				<Height>15.6328</Height>
-				<Shininess>185.547</Shininess>
 				<Waviness>6.00586</Waviness>
 				<Murkiness>0.46875</Murkiness>
 				<Tint r="1" g="1" b="1"/>
@@ -35,8 +34,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="955.957" y="97.4587" z="474.1"/>
-		<Rotation angle="0"/>
+		<Position x="236.839" y="79.5999" z="315.989"/>
+		<Rotation angle="0.0152777"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -896,14 +895,14 @@
 		<Entity uid="244">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="187.41106" z="499.7357"/>
+			<Position x="179.67496" z="500.61594"/>
 			<Orientation y="3.09516"/>
 			<Actor seed="43740"/>
 		</Entity>
 		<Entity uid="245">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="181.32389" z="491.55729"/>
+			<Position x="183.35714" z="486.31199"/>
 			<Orientation y="2.76912"/>
 			<Actor seed="5212"/>
 		</Entity>

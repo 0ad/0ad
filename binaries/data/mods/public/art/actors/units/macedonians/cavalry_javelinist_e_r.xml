@@ -19,22 +19,12 @@
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
         <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
         <prop actor="props/units/shields/thracian_oval.xml" attachpoint="shield"/>
-      </props>
-      <textures><texture file="skeletal/hele_linothorax_scale.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="helmet-face guard">
-      <props>
-        <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/hele_mace_frontranker.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="2" name="helmet-open">
-      <props>
         <prop actor="props/units/heads/thrac_a.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/hele_su3.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/thracian_horned_cav_e.xml" attachpoint="helmet"/>
       </props>
+      <textures>
+        <texture file="skeletal/hele_linothorax_scale.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

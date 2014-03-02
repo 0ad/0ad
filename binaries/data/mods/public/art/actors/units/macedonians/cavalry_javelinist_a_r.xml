@@ -15,8 +15,6 @@
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/thrac_a.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/thracian_cap_01.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
@@ -24,6 +22,20 @@
         <prop actor="props/units/shields/thracian_oval.xml" attachpoint="shield"/>
       </props>
       <textures><texture file="skeletal/thrace_blackcloak_a.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="helmet-face guard">
+      <props>
+        <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/hele_mace_frontranker.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="helmet-open">
+      <props>
+        <prop actor="props/units/heads/thrac_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/hele_su3.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>

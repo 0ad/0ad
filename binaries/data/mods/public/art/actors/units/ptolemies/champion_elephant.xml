@@ -20,8 +20,18 @@
         <prop actor="units/carthaginians/hero_hannibal_mahout.xml" attachpoint="rider"/>
         <prop actor="props/units/turret_ptol_champ_ele.xml" attachpoint="turret"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Hide-Brown">
       <textures>
         <texture file="skeletal/ptol_elephant_a.png" name="baseTex"/>
+        <texture file="skeletal/ptol_elephant_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Hide-Gray">
+      <textures>
+        <texture file="skeletal/ptol_elephant_b.png" name="baseTex"/>
         <texture file="skeletal/ptol_elephant_a_spec.png" name="specTex"/>
       </textures>
     </variant>

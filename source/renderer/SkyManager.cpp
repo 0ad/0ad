@@ -31,15 +31,17 @@
 
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
+#include "ps/Game.h"
 #include "ps/Loader.h"
 #include "ps/Filesystem.h"
+#include "ps/World.h"
 
 #include "renderer/SkyManager.h"
 #include "renderer/Renderer.h"
 
-#include "graphics/Camera.h"
 #include "graphics/LightEnv.h"
 #include "graphics/ShaderManager.h"
+#include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
 
 
@@ -226,12 +228,9 @@ void SkyManager::RenderSky()
 #warning TODO: implement SkyManager::RenderSky for GLES
 #else
 
-	// Draw the sky as a small box around the camera position, with depth write enabled.
+	// Draw the sky as a small box around the map, with depth write enabled.
 	// This will be done before anything else is drawn so we'll be overlapped by everything else.
-
-	// Note: The coordinates for this were set up through a rather cumbersome trial-and-error 
-	//       process - there might be a smarter way to do it, but this seems to work.
-
+	
 	// Do nothing unless SetSkySet was called
 	if (m_SkySet.empty())
 		return;
@@ -244,19 +243,17 @@ void SkyManager::RenderSky()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	
-	// Translate so we are at the camera in the X and Z directions, but
-	// put the horizon at a fixed height regardless of camera Y
-	const CCamera& camera = g_Renderer.GetViewCamera();
-	CVector3D pos = camera.m_Orientation.GetTranslation();
-	
-	glTranslatef( pos.X, m_HorizonHeight, pos.Z );
+	// Translate so we are at the center of the map.
+	ssize_t mapSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+	glTranslatef(mapSize*(TERRAIN_TILE_SIZE/2.0f), m_HorizonHeight, mapSize*(TERRAIN_TILE_SIZE/2.0f) );
 
 	// Rotate so that the "left" face, which contains the brightest part of each
 	// skymap, is in the direction of the sun from our light environment
 	glRotatef( 180.0f /*+ 45.0f*/ + RADTODEG(g_Renderer.GetLightEnv().GetRotation()), 0.0f, 1.0f, 0.0f );
 
 	// Distance to draw the faces at
-	const float D = 2000.0;
+	const float D = 1500.0f; // distance from map center
+	const float H = 500.0f; // height of the ceiling
 	
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr skytech;
@@ -275,53 +272,43 @@ void SkyManager::RenderSky()
 		glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap);
 	}
 
-	// GL_TEXTURE_CUBE_MAP_NEGATIVE_X
 	glBegin(GL_QUADS);
-		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, -D, -D ); 
-		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, -D, +D ); 
-		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +D, +D ); 
-		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +D, -D ); 
-	glEnd();
+
+	// GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, -H, -D );
+		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, -H, +D );
+		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +H, +D );
+		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +H, -D );
 
 	// GL_TEXTURE_CUBE_MAP_POSITIVE_X
-	glBegin(GL_QUADS);
-		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, -D, +D ); 
-		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, -D, -D ); 
-		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +D, -D ); 
-		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +D, +D ); 
-	glEnd();
+		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, -H, +D );
+		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, -H, -D );
+		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +H, -D );
+		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +H, +D );
 	
 	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
-	glBegin(GL_QUADS);
-		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, -D, -D ); 
-		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, -D, +D ); 
-		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, -D, +D ); 
-		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, -D, -D ); 
+		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, -H, -D );
+		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, -H, +D );
+		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, -H, +D );
+		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, -H, -D );
 		
-	glEnd();
-	
 	// GL_TEXTURE_CUBE_MAP_POSITIVE_Y
-	glBegin(GL_QUADS);
-		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +D, -D ); 
-		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +D, +D ); 
-		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +D, +D ); 
-		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +D, -D ); 
-	glEnd();
+		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +H, -D );
+		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +H, +D );
+		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +H, +D );
+		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +H, -D );
 	
 	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
-	glBegin(GL_QUADS);
-		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, -D, -D ); 
-		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, -D, -D ); 
-		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +D, -D ); 
-		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +D, -D ); 
-	glEnd();
+		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, -H, -D );
+		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, -H, -D );
+		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +H, -D );
+		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +H, -D );
 
 	// GL_TEXTURE_CUBE_MAP_POSITIVE_Z
-	glBegin(GL_QUADS);
-		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, -D, +D ); 
-		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, -D, +D ); 
-		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +D, +D ); 
-		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +D, +D ); 
+		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, -H, +D );
+		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, -H, +D );
+		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +H, +D );
+		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +H, +D );
 	glEnd();
 
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)

@@ -2,14 +2,45 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="base">
-      <mesh>props/howdah_hannibal.dae</mesh>
+    <variant frequency="1" name="Ptolemaic elephant champion howdah gray">
+      <mesh>props/ptol_howdah.dae</mesh>
       <props>
         <prop actor="units/seleucids/champion_elephant_rider1.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/ptol_hero_1.xml" attachpoint="shield1"/>
+        <prop actor="props/units/shields/ptol_hero_1.xml" attachpoint="shield2"/>
       </props>
       <textures>
-        <texture file="props/turret_hannibal.png" name="baseTex"/>
+        <texture file="props/ptol_howdah_a.png" name="baseTex"/>
+        <texture file="props/ptol_howdah_a_norm.png" name="normTex"/>
+        <texture file="props/ptol_howdah_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Ptolemaic elephant champion howdah brown">
+      <mesh>props/ptol_howdah.dae</mesh>
+      <props>
+        <prop actor="units/seleucids/champion_elephant_rider1.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/ptol_hero_2.xml" attachpoint="shield1"/>
+        <prop actor="props/units/shields/ptol_hero_2.xml" attachpoint="shield2"/>
+      </props>
+      <textures>
+        <texture file="props/ptol_howdah_b.png" name="baseTex"/>
+        <texture file="props/ptol_howdah_b_norm.png" name="normTex"/>
+        <texture file="props/ptol_howdah_b_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Ptolemaic elephant champion howdah white">
+      <mesh>props/ptol_howdah.dae</mesh>
+      <props>
+        <prop actor="units/seleucids/champion_elephant_rider1.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/ptol_hero_1.xml" attachpoint="shield1"/>
+        <prop actor="props/units/shields/ptol_hero_1.xml" attachpoint="shield2"/>
+      </props>
+      <textures>
+        <texture file="props/ptol_howdah_c.png" name="baseTex"/>
+        <texture file="props/ptol_howdah_a_norm.png" name="normTex"/>
+        <texture file="props/ptol_howdah_a_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

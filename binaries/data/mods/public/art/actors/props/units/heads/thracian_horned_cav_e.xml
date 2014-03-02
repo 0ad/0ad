@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="thracian cavalry helmet iron">
+      <mesh>props/helmet/thracian_cav.dae</mesh>
+      <textures>
+		   <texture file="props/helmet/thracian_cav_iron.png" name="baseTex"/>
+		   <texture file="props/helmet/thracian_cav_norm.png" name="normTex"/>
+       <texture file="props/helmet/thracian_cav_spec.png" name="specTex"/>
+	  </textures>
+   </variant>
+    <variant frequency="1" name="thracian cavalry helmet bronze">
+      <mesh>props/helmet/thracian_cav.dae</mesh>
+      <textures>
+		   <texture file="props/helmet/thracian_cav_brass.png" name="baseTex"/>
+		   <texture file="props/helmet/thracian_cav_norm.png" name="normTex"/>
+       <texture file="props/helmet/thracian_cav_spec.png" name="specTex"/>
+	  </textures>
+   </variant>
+    <variant frequency="1" name="thracian cavalry helmet iron 2">
+      <mesh>props/helmet/thracian_cav.dae</mesh>
+      <textures>
+       <texture file="props/helmet/thracian_cav_iron_2.png" name="baseTex"/>
+       <texture file="props/helmet/thracian_cav_norm.png" name="normTex"/>
+       <texture file="props/helmet/thracian_cav_spec.png" name="specTex"/>
+    </textures>
+   </variant>
+    <variant frequency="1" name="thracian cavalry helmet bronze 2">
+      <mesh>props/helmet/thracian_cav.dae</mesh>
+      <textures>
+       <texture file="props/helmet/thracian_cav_brass_2.png" name="baseTex"/>
+       <texture file="props/helmet/thracian_cav_norm.png" name="normTex"/>
+       <texture file="props/helmet/thracian_cav_spec.png" name="specTex"/>
+    </textures>
+   </variant>   
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

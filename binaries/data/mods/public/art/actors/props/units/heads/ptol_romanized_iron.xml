@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Ptolemaic romanized helmet iron">
+      <mesh>props/helmet/ptol_romanized.dae</mesh>
+      <textures>
+		   <texture file="props/helmet/ptol_romanized_iron.png" name="baseTex"/>
+		   <texture file="props/helmet/ptol_romanized_norm.png" name="normTex"/>
+       <texture file="props/helmet/ptol_romanized_spec.png" name="specTex"/>
+	  </textures>
+   </variant>
+    <variant frequency="1" name="Ptolemaic romanized helmet iron 2">
+      <mesh>props/helmet/ptol_romanized.dae</mesh>
+      <textures>
+       <texture file="props/helmet/ptol_romanized_iron_2.png" name="baseTex"/>
+       <texture file="props/helmet/ptol_romanized_norm.png" name="normTex"/>
+       <texture file="props/helmet/ptol_romanized_spec.png" name="specTex"/>
+    </textures>
+   </variant>   
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
