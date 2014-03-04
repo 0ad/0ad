@@ -13,6 +13,12 @@
 		text_align = "left"
 		text_valign = "top"
 	/>
+	<style 	name = "ModernPanel"
+		sprite = "ModernPanel"
+		buffer_zone = "12"
+		text_align = "left"
+		text_valign = "top"
+	/>
 	<style 	name = "ModernList"
 		buffer_zone = "5"
 		font = "serif-bold-stroke-14"
@@ -29,7 +35,7 @@
 	/>
 	<style 	name="ModernDropDown"
 		dropdown_buffer="1"
-		font="serif-14"
+		font="serif-bold-14"
 		textcolor="white"
 		text_align="left"
 		text_valign="center"
@@ -39,7 +45,7 @@
 		sprite2="ModernDropDownArrow"
 		sprite2_pressed="ModernDropDownArrowHighlight"
 
-		buffer_zone="5"
+		buffer_zone="8"
 		dropdown_size="200"
 		sprite_list="colour:12 12 12"
 		sprite_selectarea="ModernDarkBoxWhite"
@@ -57,6 +63,36 @@
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
+	/>
+	<style name="ModernRightLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="right"
+		text_valign="center"
+	/>
+	<style name="ModernLeftLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="left"
+		text_valign="center"
+	/>
+	<style name="ModernTabLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="center"
+		text_valign="top"
+	/>
+	<style name="ModernRightTabLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="right"
+		text_valign="top"
+	/>
+	<style name="ModernLeftTabLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="left"
+		text_valign="top"
 	/>
 	<style name="ModernText"
 		font="serif-14"

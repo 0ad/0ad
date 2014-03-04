@@ -5,17 +5,17 @@
 	<script file="gui/splashscreen/splashscreen.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="0" style="TranslucentPanel"/>
+	<object type="image" z="0" style="modernFade"/>
 
-	<object type="image" style="StoneDialog" size="50%-274 50%-200 50%+274 50%+200">
+	<object type="image" style="ModernDialog" size="50%-274 50%-200 50%+274 50%+200">
 		<object type="text" style="TitleText" size="50%-128 0%-16 50%+128 16">Welcome to 0 A.D. !</object>
 
 			<object type="image" sprite="BackgroundTranslucent" size="20 20 100%-20 100%-52">
 				<object name="mainText" type="text" style="textPanel"/>
 				<object size="8 100%-60 100% 100%">
 					<object size="0 20 100% 100%">
-						<object name="displaySplashScreenText" size="20 0 100% 100%" type="text" style="LeftLabelText">Show this message in the future</object>
-						<object name="displaySplashScreen" checked="true" size="0 50%-8 16 50%+8" type="checkbox" style="StoneCrossBox"/>
+						<object name="displaySplashScreenText" size="20 0 100% 100%" type="text" style="ModernLeftLabelText">Show this message in the future</object>
+						<object name="displaySplashScreen" checked="true" size="0 50%-8 16 50%+8" type="checkbox" style="ModernTickBox"/>
 					</object>
 				</object>
 			</object>

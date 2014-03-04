@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <page>
-    <include>common/setup.xml</include>
-    <include>common/styles.xml</include>
-    <include>common/sprite1.xml</include>
+    <include>common/modern/styles.xml</include>
+    <include>common/modern/sprites.xml</include>
+    <include>common/modern/setup.xml</include>
 
+    <include>common/setup.xml</include>
+    <include>common/sprite1.xml</include>
+    <include>common/styles.xml</include>
     <include>common/common_sprites.xml</include>
     <include>common/common_styles.xml</include>
 
