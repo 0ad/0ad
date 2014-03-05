@@ -6,7 +6,7 @@
 	<script file="gui/common/functions_utility.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="0" sprite="modernFade"/>
+	<object type="image" z="50" sprite="ModernFade"/>
 
 	<object name="dialog" type="image" style="ModernDialog" size="50%-190 50%-120 50%+190 50%+120">
 
