@@ -5,32 +5,32 @@
 	<script file="gui/aiconfig/aiconfig.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="0" sprite="BackgroundTranslucent"/>
+	<object type="image" z="0" sprite="modernFade"/>
 
-	<object type="image" style="StoneDialog" size="50%-200 40%-140 50%+200 40%+180">
+	<object type="image" style="ModernDialog" size="50%-200 40%-140 50%+200 40%+180">
 
 		<object style="TitleText" type="text" size="50%-128 -16 50%+128 16">AI Configuration</object>
 
 		<object size="50%-128 30 50%+128 80">
-			<object type="text" style="RightLabelText" size="-10 0 90 50%">
+			<object type="text" style="ModernRightLabelText" size="-10 0 90 50%">
 				AI Player
 			</object>
 
-			<object name="aiSelection" type="dropdown" style="StoneDropDown" size="50%-24 0 50%+136 28">
+			<object name="aiSelection" type="dropdown" style="ModernDropDown" size="50%-24 0 50%+136 28">
 				<action on="SelectionChange">selectAI(this.selected);</action>
 			</object>
 
-			<object type="text" style="RightLabelText" size="-10 35 90 50%+35">
+			<object type="text" style="ModernRightLabelText" size="-10 35 90 50%+35">
 				AI Difficulty
 			</object>
 			
-			<object name="aiDifficulty" type="dropdown" style="StoneDropDown" size="50%-24 35 50%+136 63">
+			<object name="aiDifficulty" type="dropdown" style="ModernDropDown" size="50%-24 35 50%+136 63">
 			</object>
 		</object>
 
 		<object size="8% 50%-54 92% 50%+74">
 
-			<object name="aiDescription" type="text" style="LeftLabelText" size="0 0 100% 100%" text_align="center"/>
+			<object name="aiDescription" type="text" style="ModernLeftLabelText" size="0 0 100% 100%" text_align="center"/>
 
 			<!-- TODO: we might want to add things like difficulty controls into here -->
 

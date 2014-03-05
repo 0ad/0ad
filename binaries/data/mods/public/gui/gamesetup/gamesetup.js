@@ -1472,6 +1472,7 @@ function addChatMessage(msg)
 
 function toggleMoreOptions()
 {
+	Engine.GetGUIObjectByName("moreOptionsFade").hidden = !Engine.GetGUIObjectByName("moreOptionsFade").hidden;
 	Engine.GetGUIObjectByName("moreOptions").hidden = !Engine.GetGUIObjectByName("moreOptions").hidden;
 }
 

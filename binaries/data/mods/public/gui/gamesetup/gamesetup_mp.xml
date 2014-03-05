@@ -9,7 +9,7 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="bkTranslucent"/>
 
-	<object type="image" style="StoneDialog" size="50%-190 50%-120 50%+190 50%+120">
+	<object type="image" style="ModernDialog" size="50%-190 50%-120 50%+190 50%+120">
 
 		<action on="Tick">
 			onTick();
@@ -21,25 +21,25 @@
 
 		<object name="pageJoin" size="0 32 100% 100%" hidden="true">
 
-			<object type="text" style="CenteredLabelText" size="0 0 400 30">
+			<object type="text" style="ModernLabelText" size="0 0 400 30">
 				Joining an existing game.
 			</object>
 
-			<object type="text" size="0 40 200 70" style="RightLabelText">
+			<object type="text" size="0 40 200 70" style="ModernRightLabelText">
 				Player name:
 			</object>
 
-			<object name="joinPlayerName" type="input" size="210 40 100%-32 64" style="StoneInput">
+			<object name="joinPlayerName" type="input" size="210 40 100%-32 64" style="ModernInput">
 				<action on="Load">
 					this.caption = Engine.ConfigDB_GetValue("user", "playername");
 				</action>
 			</object>
 
-			<object type="text" size="0 80 200 110" style="RightLabelText">
+			<object type="text" size="0 80 200 110" style="ModernRightLabelText">
 				Server Hostname or IP:
 			</object>
 
-			<object name="joinServer" type="input" size="210 80 100%-32 104" style="StoneInput">
+			<object name="joinServer" type="input" size="210 80 100%-32 104" style="ModernInput">
 				<action on="Load">
 					this.caption = Engine.ConfigDB_GetValue("user", "multiplayerserver")
 				</action>
@@ -63,16 +63,16 @@
 
 		<object name="pageHost" size="0 32 100% 100%" hidden="true">
 
-			<object type="text" style="CenteredLabelText" size="0 0 400 30">
+			<object type="text" style="ModernLabelText" size="0 0 400 30">
 				Set up your server to host.
 			</object>
 
 			<object name="hostPlayerNameWrapper" hidden="true">
-			<object type="text" size="0 40 200 70" style="RightLabelText">
+			<object type="text" size="0 40 200 70" style="ModernRightLabelText">
 				Player name:
 			</object>
 
-			<object name="hostPlayerName" type="input" size="210 40 100%-32 64" style="StoneInput">
+			<object name="hostPlayerName" type="input" size="210 40 100%-32 64" style="ModernInput">
 				<action on="Load">
 					this.caption = Engine.ConfigDB_GetValue("user", "playername");
 				</action>
@@ -80,11 +80,11 @@
 			</object>
 
 			<object name="hostServerNameWrapper" hidden="true">
-			<object type="text" size="0 80 200 110" style="RightLabelText">
+			<object type="text" size="0 80 200 110" style="ModernRightLabelText">
 				Server name:
 			</object>
 
-			<object name="hostServerName" type="input" size="210 80 100%-32 104" style="StoneInput">
+			<object name="hostServerName" type="input" size="210 80 100%-32 104" style="ModernInput">
 				<action on="Load">
 					this.caption = Engine.ConfigDB_GetValue("user", "playername") + "'s game";
 				</action>
@@ -103,7 +103,7 @@
 			</object>
 		</object>
 
-		<object name="hostFeedback" type="text" style="CenteredLabelText" size="32 150 100%-32 180" textcolor="red" />
+		<object name="hostFeedback" type="text" style="ModernLabelText" size="32 150 100%-32 180" textcolor="red" />
 
 		<object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
 			Cancel
@@ -111,7 +111,7 @@
 		</object>
 
 		<object name="pageConnecting" hidden="true">
-			<object name="connectionStatus" type="text" style="CenteredLabelText" size="0 100 100% 120">
+			<object name="connectionStatus" type="text" style="ModernLabelText" size="0 100 100% 120">
 				[Connection status]
 			</object>
 		</object>

@@ -10,7 +10,7 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="bkTranslucent"/>
 
-	<object type="image" style="StoneDialog" size="50%-466 50%-316 50%+466 50%+316">
+	<object type="image" style="ModernDialog" size="50%-466 50%-316 50%+466 50%+316">
 
 		<object style="TitleText" type="text" size="50%-128 -16 50%+128 16">Civilizations</object>
 
@@ -20,20 +20,20 @@
 				name="civSelectionHeading"
 				type="text"
 				font="serif-bold-20"
-                                textcolor="white"
+                textcolor="white"
 				text_align="left"
 				size="50%-320 10 50%-96 48">
 				Civilization Selection
 			</object>
 
-			<object name="civSelection" type="dropdown" style="StoneDropDown" size="50%-96 10 50%+96 40">
+			<object name="civSelection" type="dropdown" style="ModernDropDown" size="50%-96 10 50%+96 40">
 				<action on="SelectionChange">selectCiv(this.list_data[this.selected]);</action>
 			</object>
 		</object>
 
 		<!-- Civ data display -->
 		<object size="25 50 100%-25 65%-5">
-			<object type="image" sprite="TranslucentPanelThinBorder" size="0 0 100% 40">
+			<object type="image" sprite="TranslucentPanelThinBorder" size="0 5 100% 40">
 				<object
 					name="civGameplayHeading"
 					type="text"
@@ -45,7 +45,7 @@
 				/>
 			</object>
 
-			<object type="image" sprite="BackgroundTranslucent" size="0 40 33%-5 100%">
+			<object type="image" sprite="ModernDarkBoxGold" size="0 45 33%-5 100%">
 				<object
 					name="civBonuses"
 					type="text"
@@ -56,7 +56,7 @@
 				/>
 			</object>
 
-			<object type="image" sprite="BackgroundTranslucent" size="33%+5 40 75%-5 100%">
+			<object type="image" sprite="ModernDarkBoxGold" size="33%+5 45 75%-5 100%">
 				<object
 					name="civTechs"
 					type="text"
@@ -67,7 +67,7 @@
 				/>
 			</object>
 
-			<object type="image" sprite="BackgroundTranslucent" size="75%+5 40 100% 100%">
+			<object type="image" sprite="ModernDarkBoxGold" size="75%+5 45 100% 100%">
 				<object
 					name="civHeroes"
 					type="text"
@@ -95,7 +95,7 @@
 				/>
 			</object>
 
-			<object type="image" sprite="BackgroundTranslucent" size="0 35 100% 100%">
+			<object type="image" sprite="ModernDarkBoxGold" size="0 35 100% 100%">
 				<object
 					name="civHistoryText"
 					type="text"

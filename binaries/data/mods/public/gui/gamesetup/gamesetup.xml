@@ -9,19 +9,19 @@
 	<script file="gui/gamesetup/gamesetup.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" style="StoneWindow" size="0 0 100% 100%">
+	<object type="image" style="ModernWindow" size="0 0 100% 100%">
 
 		<object style="TitleText" type="text" size="50%-128 4 50%+128 36">
 			Match Setup
 		</object>
 	
-		<object type="image" style="StoneDialog" size="50%-190 50%-80 50%+190 50%+80" name="loadingWindow">
+		<object type="image" style="ModernDialog" size="50%-190 50%-80 50%+190 50%+80" name="loadingWindow">
 
 			<object type="text" style="TitleText" size="50%-128 0%-16 50%+128 16">
 				Loading
 			</object>
 
-			<object type="text" style="CenteredLabelText">
+			<object type="text" style="ModernLabelText">
 				Loading map data. Please wait...
 			</object>
 
@@ -38,15 +38,15 @@
 
 				<!-- Number of Players-->
 				<object size="0 0 150 28">
-					<object size="0 0 100% 100%" type="text" style="RightLabelText">Number of players:</object>
+					<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Number of players:</object>
 				</object>
 					
 				<!-- Number of Players-->
 				<object size="150 0 200 28">
-					<object name="numPlayersText" size="0 0 100% 100%" type="text" style="LeftLabelText"/>
+					<object name="numPlayersText" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
 						<object name="numPlayersSelection"
 							type="dropdown"
-							style="StoneDropDown"
+							style="ModernDropDown"
 							size="0 0 100% 28"
 							tooltip_style="onscreenToolTip"
 							tooltip="Select number of players.">
@@ -57,11 +57,11 @@
 			</object>
 			
 			<!-- Player assignments -->
-			<object size="24 59 100%-440 358" type="image" sprite="BackgroundIndentFillDark" name="playerAssignmentsPannel">
+			<object size="24 59 100%-440 358" type="image" sprite="ModernDarkBoxGold" name="playerAssignmentsPannel">
 				<object size="0 6 100% 30">
-					<object name="playerNameHeading" type="text" style="CenteredLabelText" size="0 0 25% 100%">Player Name</object>
-					<object name="playerPlacementHeading" type="text" style="CenteredLabelText" size="25%+5 0 55% 100%">Player Placement</object>
-					<object name="playerCivHeading" type="text" style="CenteredLabelText" size="55%+65 0 85% 100%">Civilization</object>
+					<object name="playerNameHeading" type="text" style="ModernLabelText" size="0 0 25% 100%">Player Name</object>
+					<object name="playerPlacementHeading" type="text" style="ModernLabelText" size="25%+5 0 55% 100%">Player Placement</object>
+					<object name="playerCivHeading" type="text" style="ModernLabelText" size="55%+65 0 85% 100%">Civilization</object>
 					<object name="civInfoButton"
 						type="button"
 						sprite="iconInfoGold"
@@ -74,23 +74,23 @@
 							Engine.PushGuiPage("page_civinfo.xml");
 						]]></action>
 					</object>
-					<object name="playerTeamHeading" type="text" style="CenteredLabelText" size="85%+5 0 100%-5 100%">Team</object>
+					<object name="playerTeamHeading" type="text" style="ModernLabelText" size="85%+5 0 100%-5 100%">Team</object>
 				</object>
 				<object size="1 36 100%-1 100%">
 					<repeat count="8">
 						<object name="playerBox[n]" size="0 0 100% 32" hidden="true">
 							<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
-							<object name="playerName[n]" type="text" style="CenteredLabelText" size="0 2 25% 30"/>
-							<object name="playerAssignment[n]" type="dropdown" style="StoneDropDown" size="25%+5 2 55% 30" tooltip_style="onscreenToolTip" tooltip="Select player."/>
+							<object name="playerName[n]" type="text" style="ModernLabelText" size="0 2 25% 30"/>
+							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="25%+5 2 55% 30" tooltip_style="onscreenToolTip" tooltip="Select player."/>
 							<object name="playerConfig[n]" type="button" style="StoneButton" size="55%+5 6 55%+60 26"
 								tooltip_style="onscreenToolTip"
 								tooltip="Configure AI settings."
 								font="serif-bold-stroke-12"
 							>Settings</object>
-							<object name="playerCiv[n]" type="dropdown" style="StoneDropDown" size="55%+65 2 85% 30" tooltip_style="onscreenToolTip" tooltip="Select player's civilization."/>
-							<object name="playerCivText[n]" type="text" style="CenteredLabelText" size="55%+65 0 85% 30"/>
-							<object name="playerTeam[n]" type="dropdown" style="StoneDropDown" size="85%+5 2 100%-5 30" tooltip_style="onscreenToolTip" tooltip="Select player's team."/>
-							<object name="playerTeamText[n]" type="text" style="CenteredLabelText" size="85%+5 0 100%-5 100%"/>
+							<object name="playerCiv[n]" type="dropdown" style="ModernDropDown" size="55%+65 2 85% 30" tooltip_style="onscreenToolTip" tooltip="Select player's civilization."/>
+							<object name="playerCivText[n]" type="text" style="ModernLabelText" size="55%+65 0 85% 30"/>
+							<object name="playerTeam[n]" type="dropdown" style="ModernDropDown" size="85%+5 2 100%-5 30" tooltip_style="onscreenToolTip" tooltip="Select player's team."/>
+							<object name="playerTeamText[n]" type="text" style="ModernLabelText" size="85%+5 0 100%-5 100%"/>
 						</object>
 					</repeat>
 				</object>
@@ -100,23 +100,23 @@
 			
 			
 			<object size="100%-425 363 100%-325 455" name="mapTypeSelectionTooltip">
-				<object type="text" style="RightLabelText" size="0 0 100% 30">Match Type:</object>
-				<object type="text" style="RightLabelText" size="0 32 100% 62">Map Filter:</object>
-				<object type="text" style="RightLabelText" size="0 64 100% 94">Select Map:</object>
-				<object name="mapSizeDesc" type="text" style="RightLabelText" size="0 96 100% 126">Map Size:</object>
+				<object type="text" style="ModernRightLabelText" size="0 0 100% 30">Match Type:</object>
+				<object type="text" style="ModernRightLabelText" size="0 32 100% 62">Map Filter:</object>
+				<object type="text" style="ModernRightLabelText" size="0 64 100% 94">Select Map:</object>
+				<object name="mapSizeDesc" type="text" style="ModernRightLabelText" size="0 96 100% 126">Map Size:</object>
 			</object>
 
 			<object size="100%-327 363 100%-25 423" name="mapFilterSelectionTooltip">
-				<object name="mapTypeText" type="text" style="LeftLabelText" size="0 0 100% 30"  hidden="true"/>
-				<object name="mapFilterText" type="text" style="LeftLabelText" size="0 32 100% 62"  hidden="true"/>
-				<object name="mapSelectionText" type="text" style="LeftLabelText" size="0 64 100% 94"  hidden="true"/>
-				<object name="mapSizeText" type="text" style="LeftLabelText" size="0 96 100% 126" hidden="true"/>
+				<object name="mapTypeText" type="text" style="ModernLeftLabelText" size="0 0 100% 30"  hidden="true"/>
+				<object name="mapFilterText" type="text" style="ModernLeftLabelText" size="0 32 100% 62"  hidden="true"/>
+				<object name="mapSelectionText" type="text" style="ModernLeftLabelText" size="0 64 100% 94"  hidden="true"/>
+				<object name="mapSizeText" type="text" style="ModernLeftLabelText" size="0 96 100% 126" hidden="true"/>
 			</object>
 			
 			<object name="mapTypeSelection"
 				type="dropdown"
-				style="StoneDropDown"
-				size="100%-325 363 100%-25 391"
+				style="ModernDropDown"
+				size="100%-315 363 100%-25 391"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select a map type.">
 				<action on="SelectionChange">selectMapType(this.list_data[this.selected]);</action>
@@ -124,17 +124,17 @@
 
 			<object name="mapFilterSelection"
 				type="dropdown"
-				style="StoneDropDown"
-				size="100%-325 395 100%-25 423"
+				style="ModernDropDown"
+				size="100%-315 395 100%-25 423"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select a map filter.">
 				<action on="SelectionChange">selectMapFilter(this.list[this.selected]);</action>
 			</object>
 			
-			<object size="100%-325 427 100%-25 455" name="mapSelectionPannel" z="55">
+			<object size="100%-315 427 100%-25 455" name="mapSelectionPannel" z="55">
 
 				<object name="mapSelection"
-					style="StoneDropDown"
+					style="ModernDropDown"
 					type="dropdown"
 					size="0 0 100% 100%"
 					tooltip_style="onscreenToolTip"
@@ -143,123 +143,26 @@
 				</object>
 			</object>
 
-			<object name="mapSize" size="100%-325 459 100%-25 487" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size. (Larger sizes may reduce performance.)"/>
+			<object name="mapSize" size="100%-315 459 100%-25 487" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size. (Larger sizes may reduce performance.)"/>
 
 			<!-- Map Preview -->
-			<object  type="image" sprite="BackgroundIndentFillDark" name="gamePreviewBox" size="100%-426 57 100%-24 359">
+			<object  type="image" sprite="ModernDarkBoxGold" name="gamePreviewBox" size="100%-426 57 100%-24 359">
 				<object type="image" sprite="snMapPreview" size="1 1 401 301" name="mapPreview"/>
 			</object>
 
 			<!-- Map Description -->
 			<object size="100%-425 497 100%-25 100%-60">
-				<object name="mapInfoName" type="text" style="LeftLabelText" size="0 0 100%-120 30"/>
-				<object type="image" sprite="BackgroundIndentFillDark" size="0 30 100% 100%">
+				<object name="mapInfoName" type="text" style="ModernLeftLabelText" size="0 0 100%-120 30"/>
+				<object type="image" sprite="ModernDarkBoxGold" size="0 30 100% 100%">
 					<object name="mapInfoDescription" type="text" style="MapDescription" size="0 0 100% 100%"/>
 				</object>
 			</object>
 
-			<!-- Options -->
-			<object name="gameOptionsBox" size="100%-425 497 100%-25 525">
-				<!-- More Options Button -->
-				<object
-					name="showMoreOptions"
-					type="button"
-					style="StoneButton"
-					size="100%-120 0 100% 28"
-					tooltip_style="onscreenToolTip"
-					tooltip="See more game options"
-				>
-					More Options
-					<action on="Press">toggleMoreOptions();</action>
-				</object>
-
-			<!-- End Options -->
-			</object>
-
-			<!-- More Options -->
-			<object name="moreOptions" type="image" sprite="StoneWindow" size="50%-200 50%-150 50%+200 50%+155" z="70" hidden="true">
-				<object style="TitleText" type="text" size="50%-128 11 50%+128 27">
-					More Options
-				</object>
-
-				<object size="14 38 94% 66">
-					<object size="0 0 40% 28">
-						<object size="0 0 100% 100%" type="text" style="RightLabelText">Game Speed:</object>
-					</object>
-					<object name="gameSpeedText" size="40% 0 100% 100%" type="text" style="LeftLabelText"/>
-					<object name="gameSpeed" size="40% 0 100% 28" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select game speed."/>
-				</object>
-
-				<object size="14 68 94% 96">
-					<object size="0 0 40% 28">
-						<object size="0 0 100% 100%" type="text" style="RightLabelText">Victory Condition:</object>
-					</object>
-					<object name="victoryConditionText" size="40% 0 100% 100%" type="text" style="LeftLabelText"/>
-					<object name="victoryCondition" size="40% 0 100% 28" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select victory condition."/>
-				</object>
-
-				<object size="14 98 94% 126">
-					<object size="0 0 40% 28">
-						<object size="0 0 100% 100%" type="text" style="RightLabelText">Population Cap:</object>
-					</object>
-					<object name="populationCapText" size="40% 0 100% 100%" type="text" style="LeftLabelText"/>
-					<object name="populationCap" size="40% 0 100% 28" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select population cap."/>
-				</object>
-
-				<object size="14 128 94% 156">
-					<object size="0 0 40% 28">
-						<object size="0 0 100% 100%" type="text" style="RightLabelText">Starting Resources:</object>
-					</object>
-					<object name="startingResourcesText" size="40% 0 100% 100%" type="text" style="LeftLabelText"/>
-					<object name="startingResources" size="40% 0 100% 28" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select the game's starting resources."/>
-				</object>
-
-				<object size="14 158 94% 246">
-					<object size="0 0 40% 28">
-						<object size="0 0 100% 100%" type="text" style="RightLabelText">Reveal Map:</object>
-					</object>
-					<object size="0 30 40% 58">
-						<object size="0 0 100% 100%" type="text" style="RightLabelText">Teams Locked:</object>
-					</object>
-					<object size="0 60 40% 88" name="enableCheatsDesc" hidden="true">
-						<object size="0 0 100% 100%" type="text" style="RightLabelText">Cheats:</object>
-					</object>
-
-					<object size="40% 0 100% 28">
-						<object name="revealMapText" size="0 0 100% 100%" type="text" style="LeftLabelText"/>
-						<object name="revealMap" size="4 50%-8 20 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map."/>
-					</object>
-					<object size="40% 30 100% 58">
-						<object name="lockTeamsText" size="0 0 100% 100%" type="text" style="LeftLabelText"/>
-						<object name="lockTeams" size="4 50%-8 20 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle locked teams."/>
-					</object>
-					<object size="40% 60 100% 88">
-						<object name="enableCheatsText" size="0 0 100% 100%" type="text" style="LeftLabelText" hidden="true"/>
-						<object name="enableCheats" size="4 50%-8 20 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle the usability of cheats."/>
-					</object>
-				</object>
-
-				<!-- Hide More Options Button -->
-				<object
-					name="hideMoreOptions"
-					type="button"
-					style="StoneButton"
-					size="50%-70 248 50%+70 274"
-					tooltip_style="onscreenToolTip"
-					tooltip="Close more game options window"
-				>
-					OK
-					<action on="Press">toggleMoreOptions();</action>
-				</object>
-			<!-- End More Options -->
-			</object>
-
-
 			<!-- Chat window -->
-			<object name="chatPanel" size="24 370 100%-435 100%-58" type="image" sprite="BackgroundIndentFillDark">
+			<object name="chatPanel" size="24 370 100%-440 100%-58" type="image" sprite="ModernDarkBoxGold">
 				<object name="chatText" size="2 2 100%-2 100%-26" type="text" style="ChatPanel"/>
 
-				<object name="chatInput" size="4 100%-24 100%-76 100%-4" type="input" style="StoneInput">
+				<object name="chatInput" size="4 100%-24 100%-76 100%-4" type="input" style="ModernInput">
 					<action on="Press">submitChatInput();</action>
 				</object>
 
@@ -311,6 +214,101 @@
 							Engine.SwitchGuiPage("page_lobby.xml");
 					]]>
 				</action>
+			</object>
+			
+			<!-- Options -->
+			<object name="gameOptionsBox" size="100%-425 497 100%-25 525">
+				<!-- More Options Button -->
+				<object
+					name="showMoreOptions"
+					type="button"
+					style="StoneButton"
+					size="100%-120 0 100% 28"
+					tooltip_style="onscreenToolTip"
+					tooltip="See more game options"
+				>
+					More Options
+					<action on="Press">toggleMoreOptions();</action>
+				</object>
+
+			<!-- End Options -->
+			</object>
+
+			<!-- More Options -->
+			<object hidden="true" name="moreOptionsFade" type="image" z="0" sprite="modernFade"/>
+			<object name="moreOptions" type="image" sprite="ModernDialog" size="50%-200 50%-150 50%+200 50%+155" z="70" hidden="true">
+				<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">More Options</object>
+
+				<object size="14 38 94% 66">
+					<object size="0 0 40% 28">
+						<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Game Speed:</object>
+					</object>
+					<object name="gameSpeedText" size="40% 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+					<object name="gameSpeed" size="40%+10 0 100% 28" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select game speed."/>
+				</object>
+
+				<object size="14 68 94% 96">
+					<object size="0 0 40% 28">
+						<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Victory Condition:</object>
+					</object>
+					<object name="victoryConditionText" size="40% 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+					<object name="victoryCondition" size="40%+10 0 100% 28" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select victory condition."/>
+				</object>
+
+				<object size="14 98 94% 126">
+					<object size="0 0 40% 28">
+						<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Population Cap:</object>
+					</object>
+					<object name="populationCapText" size="40% 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+					<object name="populationCap" size="40%+10 0 100% 28" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select population cap."/>
+				</object>
+
+				<object size="14 128 94% 156">
+					<object size="0 0 40% 28">
+						<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Starting Resources:</object>
+					</object>
+					<object name="startingResourcesText" size="40% 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+					<object name="startingResources" size="40%+10 0 100% 28" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select the game's starting resources."/>
+				</object>
+
+				<object size="14 158 94% 246">
+					<object size="0 0 40% 28">
+						<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Reveal Map:</object>
+					</object>
+					<object size="0 30 40% 58">
+						<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Teams Locked:</object>
+					</object>
+					<object size="0 60 40% 88" name="enableCheatsDesc" hidden="true">
+						<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Cheats:</object>
+					</object>
+
+					<object size="40% 0 100% 28">
+						<object name="revealMapText" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+						<object name="revealMap" size="10 50%-8 26 50%+8" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map."/>
+					</object>
+					<object size="40% 30 100% 58">
+						<object name="lockTeamsText" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+						<object name="lockTeams" size="10 50%-8 26 50%+8" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle locked teams."/>
+					</object>
+					<object size="40% 60 100% 88">
+						<object name="enableCheatsText" size="0 0 100% 100%" type="text" style="ModernLeftLabelText" hidden="true"/>
+						<object name="enableCheats" size="10 50%-8 26 50%+8" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle the usability of cheats."/>
+					</object>
+				</object>
+
+				<!-- Hide More Options Button -->
+				<object
+					name="hideMoreOptions"
+					type="button"
+					style="StoneButton"
+					size="50%-70 250 50%+70 276"
+					tooltip_style="onscreenToolTip"
+					tooltip="Close more game options window"
+				>
+					OK
+					<action on="Press">toggleMoreOptions();</action>
+				</object>
+			<!-- End More Options -->
 			</object>
 		</object>
 	</object>
