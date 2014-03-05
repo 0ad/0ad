@@ -1664,8 +1664,8 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 
 	// Setup some defaults.
 	scrollbar.m_MinimumBarSize = 0.f;
-	// Using 1.0e100 as a substitute for infinity
-	scrollbar.m_MaximumBarSize = 1.0e100;
+	// Using 1.0e10 as a substitute for infinity
+	scrollbar.m_MaximumBarSize = 1.0e10;
 	scrollbar.m_UseEdgeButtons = false;
 
 	//
