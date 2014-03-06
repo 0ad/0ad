@@ -33,7 +33,7 @@ void IDeserializer::NumberU8(const char* name, uint8_t& out, uint8_t lower, uint
 	Get(name, (u8*)&value, sizeof(uint8_t));
 
 	if (!(lower <= value && value <= upper))
-		throw PSERROR_Deserialize_OutOfBounds();
+		throw PSERROR_Deserialize_OutOfBounds(name);
 
 	out = value;
 }
@@ -44,7 +44,7 @@ void IDeserializer::NumberI8(const char* name, int8_t& out, int8_t lower, int8_t
 	Get(name, (u8*)&value, sizeof(uint8_t));
 
 	if (!(lower <= value && value <= upper))
-		throw PSERROR_Deserialize_OutOfBounds();
+		throw PSERROR_Deserialize_OutOfBounds(name);
 
 	out = value;
 }
@@ -56,7 +56,7 @@ void IDeserializer::NumberU16(const char* name, uint16_t& out, uint16_t lower, u
 	value = to_le16(value);
 
 	if (!(lower <= value && value <= upper))
-		throw PSERROR_Deserialize_OutOfBounds();
+		throw PSERROR_Deserialize_OutOfBounds(name);
 
 	out = value;
 }
@@ -68,7 +68,7 @@ void IDeserializer::NumberI16(const char* name, int16_t& out, int16_t lower, int
 	value = (i16)to_le16((u16)value);
 
 	if (!(lower <= value && value <= upper))
-		throw PSERROR_Deserialize_OutOfBounds();
+		throw PSERROR_Deserialize_OutOfBounds(name);
 
 	out = value;
 }
@@ -80,7 +80,7 @@ void IDeserializer::NumberU32(const char* name, uint32_t& out, uint32_t lower, u
 	value = to_le32(value);
 
 	if (!(lower <= value && value <= upper))
-		throw PSERROR_Deserialize_OutOfBounds();
+		throw PSERROR_Deserialize_OutOfBounds(name);
 
 	out = value;
 }
@@ -92,7 +92,7 @@ void IDeserializer::NumberI32(const char* name, int32_t& out, int32_t lower, int
 	value = (i32)to_le32((u32)value);
 
 	if (!(lower <= value && value <= upper))
-		throw PSERROR_Deserialize_OutOfBounds();
+		throw PSERROR_Deserialize_OutOfBounds(name);
 
 	out = value;
 }
@@ -189,7 +189,7 @@ void IDeserializer::String(const char* name, std::wstring& out, uint32_t minleng
 		throw PSERROR_Deserialize_InvalidCharInString();
 
 	if (!(minlength <= out.length() && out.length() <= maxlength))
-		throw PSERROR_Deserialize_OutOfBounds();
+		throw PSERROR_Deserialize_OutOfBounds(name);
 }
 
 void IDeserializer::RawBytes(const char* name, u8* data, size_t len)

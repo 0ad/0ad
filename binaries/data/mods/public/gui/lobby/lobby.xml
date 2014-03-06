@@ -167,7 +167,7 @@
 
 		<!-- START Window for leaderboard stats -->
 		<!-- Add a translucent black background to fade out the menu page -->
-		<object hidden="true" name="leaderboardFade" type="image" z="100" sprite="modernFade"/>
+		<object hidden="true" name="leaderboardFade" type="image" z="100" sprite="ModernFade"/>
 		<object hidden="true" name="leaderboard" type="image" style="ModernDialog" size="50%-224 50%-160 50%+224 50%+160" z="101">
 			<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">Leaderboard</object>
 			<object name="leaderboardBox"

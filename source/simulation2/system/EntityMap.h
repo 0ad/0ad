@@ -22,8 +22,7 @@
 /**
  * A fast replacement for map<entity_id_t, T>.
  * We make the following assumptions:
- *  - entity id's (keys) are unique and are inserted in increasing order
- *  - an entity id that was removed is never added again
+ *  - entity id's (keys) are unique
  *  - modifications (add / delete) are far less frequent then look-ups
  *  - preformance for iteration is important
  */
@@ -149,6 +148,7 @@ fill_gaps:
 		}
 
 		value_type& item = m_Buffer[key];
+		key_type oldKey = item.first;
 		item.first = key;
 		if (key == m_BufferSize) // push_back
 		{
@@ -164,6 +164,8 @@ fill_gaps:
 		}
 		else // set existing value
 		{
+			if (oldKey == INVALID_ENTITY)
+				m_Count++;
 			item.second = value; // overwrite existing
 		}
 	}
@@ -247,11 +249,16 @@ struct SerializeEntityMap
 	{
 		size_t len = value.size();
 		serialize.NumberU32_Unbounded("length", (u32)len);
+		size_t count = 0;
 		for (typename EntityMap<V>::iterator it = value.begin(); it != value.end(); ++it)
 		{
-			serialize.NumberI32_Unbounded("key", it->first);
+			serialize.NumberU32_Unbounded("key", it->first);
 			VSerializer()(serialize, "value", it->second);
+			count++;
 		}
+		// test to see if the entityMap count wasn't wrong 
+		// (which causes a crashing deserialisation)
+		ENSURE(count == len);
 	}
 
 	template<class V>
