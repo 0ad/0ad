@@ -151,18 +151,14 @@ void CMiniMap::HandleMessage(SGUIMessage &Message)
 	case GUIM_MOUSE_RELEASE_LEFT:
 		{
 			if(m_MouseHovering && m_Clicking)
-			{
 				SetCameraPos();
-			}
 			m_Clicking = false;
 			break;
 		}
 	case GUIM_MOUSE_DBLCLICK_LEFT:
 		{
 			if(m_MouseHovering && m_Clicking)
-			{
 				SetCameraPos();
-			}
 			m_Clicking = false;
 			break;
 		}
@@ -190,9 +186,7 @@ void CMiniMap::HandleMessage(SGUIMessage &Message)
 	case GUIM_MOUSE_MOTION:
 		{
 			if (m_MouseHovering && m_Clicking)
-			{
 				SetCameraPos();
-			}
 			break;
 		}
 	case GUIM_MOUSE_WHEEL_DOWN:

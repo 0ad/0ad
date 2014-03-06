@@ -2,54 +2,46 @@
 
 <objects>
 
-    <script file="gui/common/functions_civinfo.js"/>
-    <script file="gui/common/functions_utility.js" />
-    <script file="gui/common/functions_global_object.js" />
-    <script file="gui/common/music.js"/>
-    <script file="gui/common/timer.js"/>
-	<script file="gui/common/colorFades.js"/>
-    <script file="gui/session/session.js"/>
-    <script file="gui/session/selection.js"/>
-    <script file="gui/session/placement.js"/>
-    <script file="gui/session/input.js"/>
-    <script file="gui/session/menu.js"/>
-    <script file="gui/session/selection_details.js"/>
-    <script file="gui/session/unit_commands.js"/>
-    <script file="gui/session/messages.js"/>
-    <script file="gui/session/utility_functions.js"/>
+<script file="gui/common/functions_civinfo.js"/>
+<script file="gui/common/functions_utility.js"/>
+<script file="gui/common/functions_global_object.js"/>
+<script file="gui/common/music.js"/>
+<script file="gui/common/timer.js"/>
+<script file="gui/common/colorFades.js"/>
+<script file="gui/session/session.js"/>
+<script file="gui/session/selection.js"/>
+<script file="gui/session/placement.js"/>
+<script file="gui/session/input.js"/>
+<script file="gui/session/menu.js"/>
+<script file="gui/session/selection_details.js"/>
+<script file="gui/session/unit_commands.js"/>
+<script file="gui/session/messages.js"/>
+<script file="gui/session/utility_functions.js"/>
 
-    <object name="sn" hotkey="session.gui.toggle">
+<object name="sn" hotkey="session.gui.toggle">
 	<action on="Tick">
-	    onTick();
+		onTick();
 	</action>
 
 	<action on="SimulationUpdate">
-	    onSimulationUpdate();
+		onSimulationUpdate();
 	</action>
 
 	<action on="Press">
-	    this.hidden = !this.hidden;
+		this.hidden = !this.hidden;
 	</action>
 
 	<!-- ================================  ================================ -->
 	<!-- HOTKEYS (For some reason, they won't work properly unless outside menu) -->
 	<!-- ================================  ================================ -->
 
-	<!-- Exit button Hotkey  -->
-	<!--
-		<action on="Press"><![CDATA[
-			messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0,
-				["Yes", "No!"], [leaveGame, null]);
-		]]></action>
-	-->
-
 	<object hotkey="leave">
-	    <action on="Press">closeOpenDialogs();</action>
+		<action on="Press">closeOpenDialogs();</action>
 	</object>
 
 	<!-- Chat: Depending on the current state, it either opens message window or closes message window / posts message -->
 	<object hotkey="chat">
-	    <action on="Press">toggleChatWindow();</action>
+		<action on="Press">toggleChatWindow();</action>
 	</object>
 
 	<!-- Team Chat: Does the same as the above, but sets the window up to only send messages to teammates. -->
@@ -59,47 +51,47 @@
 
 	<!-- Menu -->
 	<object hotkey="menu.toggle">
-	    <action on="Press">openMenu();</action>
+		<action on="Press">openMenu();</action>
 	</object>
 
 	<!-- Unit silhouettes -->
 	<object hotkey="silhouettes">
-	    <action on="Press">
-		var newSetting = !Engine.Renderer_GetSilhouettesEnabled();
-		Engine.Renderer_SetSilhouettesEnabled(newSetting);
-		Engine.GetGUIObjectByName("silhouettesCheckbox").checked = newSetting;
-	    </action>
+		<action on="Press">
+			var newSetting = !Engine.Renderer_GetSilhouettesEnabled();
+			Engine.Renderer_SetSilhouettesEnabled(newSetting);
+			Engine.GetGUIObjectByName("silhouettesCheckbox").checked = newSetting;
+		</action>
 	</object>
 
 	<!-- Sky -->
 	<object hotkey="showsky">
-	    <action on="Press">
-		var newSetting =  !Engine.Renderer_GetShowSkyEnabled();
-		Engine.Renderer_SetShowSkyEnabled(newSetting);
-	    </action>
+		<action on="Press">
+			var newSetting =  !Engine.Renderer_GetShowSkyEnabled();
+			Engine.Renderer_SetShowSkyEnabled(newSetting);
+		</action>
 	</object>
 
 	<!-- Pause -->
 	<object hotkey="pause">
-	    <action on="Press">togglePause();</action>
+		<action on="Press">togglePause();</action>
 	</object>
 
 	<!-- Quicksave/load -->
 	<object hotkey="quicksave">
-	    <action on="Press">Engine.QuickSave();</action>
+		<action on="Press">Engine.QuickSave();</action>
 	</object>
 	<object hotkey="quickload">
-	    <action on="Press">Engine.QuickLoad();</action>
+		<action on="Press">Engine.QuickLoad();</action>
 	</object>
 
 	<!-- Delete button Hotkey (For some reason it won't work when the console is visible -->
 	<object hotkey="session.kill">
-	    <action on="Press">performCommand(g_Selection.toList()[0], "delete");</action>
+		<action on="Press">performCommand(g_Selection.toList()[0], "delete");</action>
 	</object>
 
 	<!-- camera.follow mode - follow the first unit in the selection -->
 	<object hotkey="camera.follow">
-	    <action on="Press">setCameraFollow(g_Selection.toList()[0]);</action>
+		<action on="Press">setCameraFollow(g_Selection.toList()[0]);</action>
 	</object>
 
 	<!-- Camera jumping - press a hotkey to mark a position and another hotkey to jump back there -->
@@ -182,56 +174,57 @@
 	<object hotkey="camera.jump.set.10">
 		<action on="Press">setJumpCamera(10);</action>
 	</object>
-	
+
 	<!-- Stop the selected units -->
 	<object hotkey="session.stop">
-	    <action on="Press">stopUnits(g_Selection.toList());</action>
+		<action on="Press">stopUnits(g_Selection.toList());</action>
 	</object>
-	
+
 	<!-- queue first unit in the training queue  -->
 	<object hotkey="session.queueunit.1">
-	    <action on="Press">addTrainingByPosition(0);</action>
+		<action on="Press">addTrainingByPosition(0);</action>
 	</object>
 
 	<!-- queue 2nd unit in the training queue  -->
 	<object hotkey="session.queueunit.2">
-	    <action on="Press">addTrainingByPosition(1);</action>
+		<action on="Press">addTrainingByPosition(1);</action>
 	</object>
 
 	<!-- queue 3rd unit in the training queue  -->
 	<object hotkey="session.queueunit.3">
-	    <action on="Press">addTrainingByPosition(2);</action>
+		<action on="Press">addTrainingByPosition(2);</action>
 	</object>
 
 	<!-- queue 4th unit in the training queue  -->
 	<object hotkey="session.queueunit.4">
-	    <action on="Press">addTrainingByPosition(3);</action>
+		<action on="Press">addTrainingByPosition(3);</action>
 	</object>
-	
+
 	<!-- queue 5th unit in the training queue  -->
 	<object hotkey="session.queueunit.5">
-	    <action on="Press">addTrainingByPosition(4);</action>
+		<action on="Press">addTrainingByPosition(4);</action>
 	</object>
 
 	<!-- queue 6th unit in the training queue  -->
 	<object hotkey="session.queueunit.6">
-	    <action on="Press">addTrainingByPosition(5);</action>
+		<action on="Press">addTrainingByPosition(5);</action>
 	</object>
 
 	<!-- queue 7th unit in the training queue  -->
 	<object hotkey="session.queueunit.7">
-	    <action on="Press">addTrainingByPosition(6);</action>
+		<action on="Press">addTrainingByPosition(6);</action>
 	</object>
 
-		<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
+	<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
 	<object hotkey="selection.idlewarrior">
-	    <action on="Press">findIdleUnit(["Hero", "Champion", "CitizenSoldier", "Siege", "Warship", "Dog"]);</action>
+		<action on="Press">findIdleUnit(["Hero", "Champion", "CitizenSoldier", "Siege", "Warship", "Dog"]);</action>
 	</object>
 
 	<!-- Unselect any selected entities -->
 	<object hotkey="selection.cancel">
-	    <action on="Press">clearSelection()</action>
+		<action on="Press">clearSelection()</action>
 	</object>
+
 	<!-- ================================  ================================ -->
 	<!-- Developer / Debug items -->
 	<!-- ================================  ================================ -->
@@ -243,7 +236,7 @@
 		ghost="true"
 		textcolor="yellow"
 		font="mono-stroke-10"
-		/>
+	/>
 
 	<!-- Dev/cheat commands -->
 	<object name="devCommands" size="100%-156 50%-88 100%-8 50%+104" type="image" sprite="devCommandsBackground" z="40"
@@ -1330,32 +1323,28 @@
 			</repeat>
 		    </object>
 		</object>
-
 	    </object> <!-- END OF UNIT COMMANDS -->
-
 	</object><!-- END OF BOTTOM PANEL -->
+</object> <!-- END OF SN OBJECT -->
 
-    </object> <!-- END OF SN OBJECT -->
+<!-- ================================  ================================ -->
+<!-- Selection bandbox -->
+<!-- ================================  ================================ -->
+<object name="bandbox" type="image" sprite="bandbox" ghost="true" hidden="true" z="200"/>
 
-    <!-- ================================  ================================ -->
-    <!-- Selection bandbox -->
-    <!-- ================================  ================================ -->
-    <object name="bandbox" type="image" sprite="bandbox" ghost="true" hidden="true" z="200"/>
-
-    <!-- ================================  ================================ -->
-    <!-- Network status -->
-    <!-- ================================  ================================ -->
-    <object name="netStatus" type="text" style="netStatus" z="100" hidden="true">
+<!-- ================================  ================================ -->
+<!-- Network status -->
+<!-- ================================  ================================ -->
+<object name="netStatus" type="text" style="netStatus" z="100" hidden="true">
 	<object type="button"
 		name="disconnectedExitButton"
 		style="StoneButton"
 		size="50%-84 50%+128 50%+84 50%+160"
 		tooltip_style="sessionToolTip"
 	>
-	    <object size="0 0 100% 100%" type="text" style="CenteredButtonText" name="disconnectedExitButtonText" ghost="true">Exit</object>
-	    <action on="Press">leaveGame()</action>
+		<object size="0 0 100% 100%" type="text" style="CenteredButtonText" name="disconnectedExitButtonText" ghost="true">Exit</object>
+		<action on="Press">leaveGame()</action>
 	</object>
-
-    </object>
+</object>
 
 </objects>
