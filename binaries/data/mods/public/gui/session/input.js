@@ -2101,7 +2101,12 @@ function findIdleUnit(classes)
 
 	for (var i = 0; i < classes.length; ++i)
 	{
-		var data = { idleClass: classes[currIdleClass], prevUnit: lastIdleUnit, limit: 1 };
+		var data = { 
+			"idleClass": classes[currIdleClass],
+			"prevUnit": lastIdleUnit,
+			"limit": 1,
+			"excludeUnits": []
+		};
 		if (append)
 			data.excludeUnits = g_Selection.toList();
 
@@ -2122,7 +2127,8 @@ function findIdleUnit(classes)
 			{
 				g_Selection.addList([lastIdleUnit]);
 				var position = GetEntityState(lastIdleUnit).position;
-				Engine.CameraMoveTo(position.x, position.z);
+				if (position)
+					Engine.CameraMoveTo(position.x, position.z);
 				return;
 			}
 

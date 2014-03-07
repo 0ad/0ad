@@ -1636,7 +1636,7 @@ var UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Attack))
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Attack, this.order.data.attackType))
 					{
 						this.StopMoving();
 						this.FinishOrder();
@@ -1932,7 +1932,7 @@ var UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Attack))
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Attack, this.order.data.attackType))
 					{
 						this.StopMoving();
 						this.FinishOrder();
@@ -2330,7 +2330,7 @@ var UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Heal))
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Heal, null))
 					{
 						this.StopMoving();
 						this.FinishOrder();
@@ -2430,7 +2430,7 @@ var UnitFsmSpec = {
 					this.StopTimer();
 				},
 				"Timer": function(msg) {
-					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Heal))
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Heal, null))
 					{
 						this.StopMoving();
 						this.FinishOrder();
@@ -4494,7 +4494,7 @@ UnitAI.prototype.RespondToHealableEntities = function(ents)
 /**
  * Returns true if we should stop following the target entity.
  */
-UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
+UnitAI.prototype.ShouldAbandonChase = function(target, force, iid, type)
 {
 	// Forced orders shouldn't be interrupted.
 	if (force)
@@ -4507,8 +4507,8 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
 		var cmpAttack = Engine.QueryInterface(target, IID_Attack);
 		if (cmpUnitAI && cmpAttack)
 		{
-			for each (var type in cmpAttack.GetAttackTypes())
-				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, type))
+			for each (var targetType in cmpAttack.GetAttackTypes())
+				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, targetType))
 					return false;
 		}
 	}
@@ -4516,7 +4516,7 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
 	// Stop if we're in hold-ground mode and it's too far from the holding point
 	if (this.GetStance().respondHoldGround)
 	{
-		if (!this.CheckTargetDistanceFromHeldPosition(target, iid, this.order.data.attackType))
+		if (!this.CheckTargetDistanceFromHeldPosition(target, iid, type))
 			return true;
 	}
 
