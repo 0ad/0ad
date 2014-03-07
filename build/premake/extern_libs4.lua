@@ -267,10 +267,10 @@ extern_lib_defs = {
 	},
 	cxxtest = {
 		compile_settings = function()
-			add_source_include_paths("cxxtest")
+			includedirs { libraries_source_dir .. "cxxtest-4.3" }
 		end,
 		link_settings = function()
-			add_source_lib_paths("cxxtest")
+			add_source_lib_paths("cxxtest-4.3")
 		end,
 	},
 	enet = {

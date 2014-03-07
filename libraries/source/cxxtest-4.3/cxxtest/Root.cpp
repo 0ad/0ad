@@ -25,5 +25,6 @@
 #include <cxxtest/RealDescriptions.cpp>
 #include <cxxtest/TestSuite.cpp>
 #include <cxxtest/TestTracker.cpp>
+#include <cxxtest/PsTestWrapper.cpp>
 
 #endif // __cxxtest__Root_cpp__

@@ -27,6 +27,8 @@ namespace CxxTest
 {
 class TestRunner
 {
+	friend class PsTestRunner;
+
 public:
 
     static void setListener(TestListener* listener)

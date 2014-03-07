@@ -122,6 +122,7 @@ private:
     void countSkipped();
 
     friend class TestRunner;
+    friend class PsTestRunner;
 
     TestTracker();
     void setListener(TestListener *l);
