@@ -514,7 +514,7 @@ protected:
 
 	// Pointer to parent
 	IGUIObject								*m_pParent;
-	
+
 	//This represents the last click time for each mouse button
 	double m_LastClickTime[6];
 

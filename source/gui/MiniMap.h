@@ -39,6 +39,11 @@ protected:
 	 */
 	virtual void HandleMessage(SGUIMessage &Message);
 
+	/**
+	 * @see IGUIObject#MouseOver()
+	 */
+	virtual bool MouseOver();
+
 	// create the minimap textures
 	void CreateTextures();
 

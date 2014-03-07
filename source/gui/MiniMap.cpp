@@ -199,6 +199,21 @@ void CMiniMap::HandleMessage(SGUIMessage &Message)
 	}	// switch
 }
 
+bool CMiniMap::MouseOver()
+{
+	// Get the mouse position.
+	CPos mousePos = GetMousePos();
+	// Get the position of the center of the minimap.
+	CPos minimapCenter = CPos(m_CachedActualSize.left + m_CachedActualSize.GetWidth() / 2.0, m_CachedActualSize.bottom - m_CachedActualSize.GetHeight() / 2.0);
+	// Take the magnitude of the difference of the mouse position and minimap center.
+	double distFromCenter = sqrt(pow((mousePos.x - minimapCenter.x), 2) + pow((mousePos.y - minimapCenter.y), 2));
+	// If the distance is less then the radius of the minimap (half the width) the mouse is over the minimap.
+	if (distFromCenter < m_CachedActualSize.GetWidth() / 2.0)
+		return true;
+	else
+		return false;
+}
+
 void CMiniMap::GetMouseWorldCoordinates(float& x, float& z)
 {
 	// Determine X and Z according to proportion of mouse position and minimap
