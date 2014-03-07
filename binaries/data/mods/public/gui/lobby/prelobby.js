@@ -66,8 +66,7 @@ function lobbyStartRegister()
 	}
 
 	feedback.caption = "Registering...";
-	if (password != g_EncrytedPassword.substring(0, 10))
-		g_EncrytedPassword = Engine.EncryptPassword(password, account);
+	g_EncrytedPassword = Engine.EncryptPassword(password, account);
 	Engine.StartRegisterXmppClient(account, g_EncrytedPassword);
 	g_LobbyIsConnecting = true;
 	Engine.ConnectXmppClient();
@@ -112,14 +111,14 @@ function onTick()
 	// Check they are using a valid account name.
 	else if (username != sanitizedName)
 	{
-		feedback.caption = "Sorry, you can't use [, ], unicode, whitespace, or commas.";
+		feedback.caption = "Usernames can't contain [, ], unicode, whitespace, or commas.";
 		connectButton.enabled = false;
 		registerButton.enabled = false;
 	}
 	// Allow them to connect/begin registation if there aren't any problems.
 	else if (pageRegisterHidden)
 	{
-		if (feedback.caption == "Sorry, you can't use [, ], unicode, whitespace, or commas." ||
+		if (feedback.caption == "Usernames can't contain [, ], unicode, whitespace, or commas." ||
 			feedback.caption == "Please enter existing login or desired registration credentials.")
 			feedback.caption = "";
 		connectButton.enabled = true;
