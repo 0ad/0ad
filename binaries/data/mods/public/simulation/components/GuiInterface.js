@@ -1738,40 +1738,29 @@ GuiInterface.prototype.PlaySound = function(player, data)
 	PlaySound(data.name, data.entity);
 };
 
-function isIdleUnit(ent, idleClass)
-{
-	var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-	
-	// TODO: Do something with garrisoned idle units
-	return (cmpUnitAI && cmpIdentity && cmpUnitAI.IsIdle() && !cmpUnitAI.IsGarrisoned() && idleClass && cmpIdentity.HasClass(idleClass));
-};
-
 GuiInterface.prototype.FindIdleUnits = function(player, data)
 {
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var playerEntities = rangeMan.GetEntitiesByPlayer(player).filter( function(e) {
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var playerEntities = cmpRangeManager.GetEntitiesByPlayer(player).filter( function(e) {
 		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
-		if (cmpUnitAI)
-			return true;
-		return false;
+		if (!cmpUnitAI || !cmpUnitAI.IsIdle() || cmpUnitAI.IsGarrisoned())
+			return false;
+		var cmpIdentity = Engine.QueryInterface(e, IID_Identity);
+		if (!cmpIdentity || !cmpIdentity.HasClass(data.idleClass))
+			return false;
+		return true;
 	});
 
 	var idleUnits = [];
-	var noFilter = (data.prevUnit == undefined && data.excludeUnits == undefined);
 
 	for (var j = 0; j < playerEntities.length; ++j)
 	{
 		var ent = playerEntities[j];
-		if (!isIdleUnit(ent, data.idleClass))
-			continue;
 
-		if (noFilter || ((data.prevUnit == undefined || ent > data.prevUnit) &&
-				(data.excludeUnits == undefined || data.excludeUnits.indexOf(ent) == -1)))
-		{
-			idleUnits.push(ent);
-			playerEntities.splice(j--, 1);
-		}
+		if (ent <= data.prevUnit|0 || data.excludeUnits.indexOf(ent) > -1)
+			continue;
+		idleUnits.push(ent);
+		playerEntities.splice(j--, 1);
 
 		if (data.limit && idleUnits.length >= data.limit)
 			break;

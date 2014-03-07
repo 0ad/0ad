@@ -67,7 +67,8 @@ function heading(string, size)
 		var wordCaps = word.toUpperCase();
 		
 		// Check if word is capitalized, if so assume it needs a big first letter
-		if (wordCaps[0] == word[0])
+		// Check if toLowerCase changes the character to avoid false positives from special signs
+		if (word.length && word[0].toLowerCase() != word[0])
 			textArray[i] = bigFirstLetter(wordCaps, size);
 		else
 			textArray[i] = '[font="serif-bold-'+size+'"]' + wordCaps + '[/font]';	// TODO: Would not be necessary if we could do nested tags

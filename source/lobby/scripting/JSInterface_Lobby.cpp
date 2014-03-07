@@ -48,7 +48,7 @@ void JSI_Lobby::StartRegisterXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPr
 	ENSURE(!g_XmppClient);
 
 	g_XmppClient = IXmppClient::create(utf8_from_wstring(username), utf8_from_wstring(password),
-		"", "", true);
+		"", "", 0, true);
 }
 
 void JSI_Lobby::StopXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
