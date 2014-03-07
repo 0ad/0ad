@@ -1,0 +1,111 @@
+Running cxxtest tests (35 tests)
+In LessThanEquals::testLessThanEquals:
+LessThanEquals.h:16: Error: Expected (1 <= 0), found (1 > 0)
+In Relation::testPredicate:
+Relation.h:19: Error: Expected MyNegative( 1 ), found !MyNegative( 1 )
+In Relation::testRelation:
+Relation.h:29: Error: Expected MyLess<int>( 2, 1 ), found !MyLess<int>( 2, 1 )
+In DefaultTraits::testSmallDefaultTraits:
+DefaultTraits.h:23: Error: Test failed: { 00 01 02 03 04 05 06 07  }
+In DefaultTraits::testBigDefaultTraits:
+DefaultTraits.h:39: Error: Test failed: { 98 99 9A 9B 9C 9D 9E 9F ... }
+In DoubleCall::testAssertEqualsWithSideEffects:
+DoubleCall.h:21: Error: Expected (increment() == 3), found (1 != 3)
+In DoubleCall::testAssertDiffersWithSideEffects:
+DoubleCall.h:26: Error: Expected (increment() != 1), found (1)
+In DoubleCall::testAssertDeltaWithSideEffects:
+DoubleCall.h:31: Error: Expected (increment() == 2.0) up to 0.5 (0.5000), found (1 != 2.0000)
+In SameData::testAssertSameData:
+SameData.h:24: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC EB EA E9 E8 }
+In SameData::testAssertMessageSameData:
+SameData.h:29: Error: Test failed: Not same data
+SameData.h:29: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC EB EA E9 E8 }
+In SameData::testSafeAssertSameData:
+SameData.h:34: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC EB EA E9 E8 }
+In SameData::testSafeAssertMessageSameData:
+SameData.h:39: Error: Test failed: Not same data
+SameData.h:39: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC EB EA E9 E8 }
+.
+In SameFiles::testAssertFileShorter:
+SameFiles.h:18: Error: File 'SameFiles.h' ended before file 'SameFilesLonger.h' (line 42)
+=     }
+=  };
+=
+<
+
+In SameFiles::testAssertFileLonger:
+SameFiles.h:23: Error: File 'SameFiles.h' ended before file 'SameFilesLonger.h' (line 42)
+=     }
+=  };
+=
+>
+
+In SameFiles::testAssertMessageSameFiles:
+SameFiles.h:28: Error: Test failed: Not same files
+SameFiles.h:28: Error: Files 'SameFiles.h' and 'SameData.h' differ at line 4
+= #include <cxxtest/TestSuite.h>
+=
+= //
+< // This test suite demonstrates TS_ASSERT_SAME_ATA
+
+> // This test suite demonstrates TS_ASSERT_SAME_//
+
+.
+In SameFiles::testSafeAssertMessageSameFiles:
+SameFiles.h:38: Error: Test failed: Not same files
+SameFiles.h:38: Error: Files 'SameFiles.h' and 'SameData.h' differ at line 4
+= #include <cxxtest/TestSuite.h>
+=
+= //
+< // This test suite demonstrates TS_ASSERT_SAME_ATA
+
+> // This test suite demonstrates TS_ASSERT_SAME_//
+
+In TestMessageMacros::testMessageMacros:
+Tsm.h:15: Error: Test failed: String
+Tsm.h:15: Error: Assertion failed: false
+In TraitsTest::testIntegerTraits:
+TraitsTest.h:13: Error: Test failed: 1
+In TraitsTest::testFloatingPointTraits:
+TraitsTest.h:25: Error: Test failed: 0.1234
+In TraitsTest::testBoolTraits:
+TraitsTest.h:31: Error: Test failed: true
+In TraitsTest::testCharTraits:
+TraitsTest.h:37: Error: Test failed: 'A'
+In TraitsTest::testStringTraits:
+TraitsTest.h:51: Error: Test failed: (char *) is displayed as-is
+
+In TraitsTest::testStdStringTraits:
+TraitsTest.h:57: Error: Test failed: "std::string is displayed with \"\""
+..
+In MockTest::test_Unimplemented:
+MockTest.h:33: Error: Test failed: T::one(void) called with no T::Base_one object
+.
+In MockTest::test_Mock_traits:
+MockTest.h:40: Error: Test failed: T::getOpaque(int i) called with no T::Base_getOpaque object
+In MockTest::test_Override:
+MockTest.h:33: Error: Test failed: T::one(void) called with no T::Base_one object
+.
+In MockTest::test_Unimplemented_supply:
+MockTest.h:42: Error: Test failed: T::supplyOne(void) called with no T::Base_supplyOne object
+.
+In SameZero::test_TS_ASSERT_SAME_DATA_passed_zero:
+SameZero.h:22: Error: Expected sizeof(data) (4) bytes to be equal at (data) and (0), found:
+{ 00 01 02 03 }
+differs from
+(null)
+Failed 28 and Skipped 0 of 35 tests
+Success rate: 20%
+Error level = 28

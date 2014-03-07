@@ -1,0 +1,56 @@
+Running cxxtest tests (10 tests)
+In DynamicMax::test_Max_size_from_define:
+DynamicMax.h:20: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 ... }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC ... }
+In DynamicMax::test_Set_max_size:
+DynamicMax.h:26: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F ... }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 ... }
+In DynamicMax::test_Revert_to_max_size_from_define:
+DynamicMax.h:31: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 ... }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC ... }
+In DynamicMax::test_Set_max_size_to_zero__dumps_all:
+DynamicMax.h:37: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC EB EA E9 E8 }
+In SetUpAffectsAllTests::test_Use_12_in_this_test:
+DynamicMax.h:60: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B ... }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 ... }
+In SetUpAffectsAllTests::test_Use_12_in_this_test_too:
+DynamicMax.h:65: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B ... }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 ... }
+In SameData::testAssertSameData:
+SameData.h:24: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 ... }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC ... }
+In SameData::testAssertMessageSameData:
+SameData.h:29: Error: Test failed: Not same data
+SameData.h:29: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 ... }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC ... }
+In SameData::testSafeAssertSameData:
+SameData.h:34: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 ... }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC ... }
+In SameData::testSafeAssertMessageSameData:
+SameData.h:39: Error: Test failed: Not same data
+SameData.h:39: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 ... }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC ... }
+Failed 10 and Skipped 0 of 10 tests
+Success rate: 0%
+Error level = 10

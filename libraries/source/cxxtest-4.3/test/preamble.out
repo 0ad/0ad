@@ -1,0 +1,73 @@
+Running cxxtest tests (16 tests)
+In CreatedTest::test_nothing:
+CreatedTest.h:24: Error: Test failed: Nothing to test
+..
+In EnumTraits::test_Enum_traits:
+EnumTraits.h:30: Error: Test failed: Yes
+In ExceptionTest::testAssertion:
+ExceptionTest.h:18: Error: Expected (throwThis(5)) to throw (const char *) but it threw something else
+In FixtureTest::test_strcpy:
+FixtureTest.h:28: Error: Expected (_buffer[1] == 'E'), found ('e' != 'E')
+In MessageTest::testValues:
+MessageTest.h:21: Error: Test failed: My hovercraft
+MessageTest.h:21: Error: Assertion failed: value != 0
+In SimpleTest::testEquality:
+SimpleTest.h:14: Error: Expected (1 == 2), found (1 != 2)
+In SimpleTest::testAddition:
+SimpleTest.h:23: Error: Expected (2 + 2 == 5), found (4 != 5)
+In SimpleTest::TestMultiplication:
+SimpleTest.h:28: Error: Expected (4 * 4 == 44), found (16 != 44)
+In SimpleTest::testComparison:
+SimpleTest.h:34: Error: Expected (-1 < -2), found (-1 >= -2)
+In SimpleTest::testTheWorldIsCrazy:
+SimpleTest.h:38: Error: Expected (true == false), found (true != false)
+In SimpleTest::test_Failure:
+SimpleTest.h:42: Error: Test failed: Not implemented
+In SimpleTest::test_TS_SKIP_macro:
+SimpleTest.h:47: Warning: Test skipped: Simply skip this test
+s
+In SimpleTest::test_TS_WARN_macro:
+SimpleTest.h:52: Warning: Just a friendly warning
+SimpleTest.h:53: Warning: Warnings don't abort the test
+.
+In TestFunky::testPets:
+TraitsTest.h:53: Error: Expected (pet1 == pet2), found (Pet("dog") != Pet("cat"))
+Failed 12 and Skipped 1 of 16 tests
+Success rate: 20%
+Running cxxtest tests (16 tests)
+In CreatedTest::test_nothing:
+CreatedTest.h:24: Error: Test failed: Nothing to test
+..
+In EnumTraits::test_Enum_traits:
+EnumTraits.h:30: Error: Test failed: Yes
+In ExceptionTest::testAssertion:
+ExceptionTest.h:18: Error: Expected (throwThis(5)) to throw (const char *) but it threw something else
+In FixtureTest::test_strcpy:
+FixtureTest.h:28: Error: Expected (_buffer[1] == 'E'), found ('e' != 'E')
+In MessageTest::testValues:
+MessageTest.h:21: Error: Test failed: My hovercraft
+MessageTest.h:21: Error: Assertion failed: value != 0
+In SimpleTest::testEquality:
+SimpleTest.h:14: Error: Expected (1 == 2), found (1 != 2)
+In SimpleTest::testAddition:
+SimpleTest.h:23: Error: Expected (2 + 2 == 5), found (4 != 5)
+In SimpleTest::TestMultiplication:
+SimpleTest.h:28: Error: Expected (4 * 4 == 44), found (16 != 44)
+In SimpleTest::testComparison:
+SimpleTest.h:34: Error: Expected (-1 < -2), found (-1 >= -2)
+In SimpleTest::testTheWorldIsCrazy:
+SimpleTest.h:38: Error: Expected (true == false), found (true != false)
+In SimpleTest::test_Failure:
+SimpleTest.h:42: Error: Test failed: Not implemented
+In SimpleTest::test_TS_SKIP_macro:
+SimpleTest.h:47: Warning: Test skipped: Simply skip this test
+s
+In SimpleTest::test_TS_WARN_macro:
+SimpleTest.h:52: Warning: Just a friendly warning
+SimpleTest.h:53: Warning: Warnings don't abort the test
+.
+In TestFunky::testPets:
+TraitsTest.h:53: Error: Expected (pet1 == pet2), found (Pet("dog") != Pet("cat"))
+Failed 12 and Skipped 1 of 16 tests
+Success rate: 20%
+Error level = 24

@@ -1,0 +1,9 @@
+Running cxxtest tests (2 tests)
+In Suite::testOne:
+GfTearDownThrows.h:24: Error: Test failed: Error in GlobalFixture::tearDown()
+In Suite::testTwo:
+GfTearDownThrows.h:25: Warning: Testing should go on!
+GfTearDownThrows.h:25: Error: Test failed: Error in GlobalFixture::tearDown()
+Failed 2 and Skipped 0 of 2 tests
+Success rate: 0%
+Error level = 2

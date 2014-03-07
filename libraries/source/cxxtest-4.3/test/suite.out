@@ -1,0 +1,27 @@
+Running cxxtest tests (8 tests)
+In SimpleTest::testEquality:
+SimpleTest.h:14: Error: Expected (1 == 2), found (1 != 2)
+SimpleTest.h:15: Error: Expected ('a' == 'A'), found ('a' != 'A')
+SimpleTest.h:16: Error: Expected (1.0 == -12345678900000000000000000000000000000000000000000.1234), found (1.0000 != -1.2345E50)
+In SimpleTest::testAddition:
+SimpleTest.h:23: Error: Expected (2 + 2 == 5), found (4 != 5)
+In SimpleTest::TestMultiplication:
+SimpleTest.h:28: Error: Expected (4 * 4 == 44), found (16 != 44)
+SimpleTest.h:29: Error: Expected (-2 * -2 != 4), found (4)
+In SimpleTest::testComparison:
+SimpleTest.h:34: Error: Expected (-1 < -2), found (-1 >= -2)
+In SimpleTest::testTheWorldIsCrazy:
+SimpleTest.h:38: Error: Expected (true == false), found (true != false)
+In SimpleTest::test_Failure:
+SimpleTest.h:42: Error: Test failed: Not implemented
+SimpleTest.h:43: Error: Test failed: 1569779912
+In SimpleTest::test_TS_SKIP_macro:
+SimpleTest.h:47: Warning: Test skipped: Simply skip this test
+s
+In SimpleTest::test_TS_WARN_macro:
+SimpleTest.h:52: Warning: Just a friendly warning
+SimpleTest.h:53: Warning: Warnings don't abort the test
+.
+Failed 6 and Skipped 1 of 8 tests
+Success rate: 14%
+Error level = 6

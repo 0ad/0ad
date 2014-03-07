@@ -1,0 +1,7 @@
+Running cxxtest tests (1 test)
+In WideCharTest::testWideStringTraits:
+WideCharTest.h:14: Error: Test failed: L"std::wstring is displayed with L\"\""
+WideCharTest.h:16: Error: Test failed: L"\x1234\x5678"
+Failed 1 and Skipped 0 of 1 test
+Success rate: 0%
+Error level = 1

@@ -1,0 +1,24 @@
+Running cxxtest tests (7 tests)
+In BadTest::testEquality:
+BadTest.h:15: Error: Expected (1 == 2), found (1 != 2)
+BadTest.h:16: Error: Expected ('a' == 'A'), found ('a' != 'A')
+BadTest.h:17: Error: Expected (1.0 == -12345678900000000000000000000000000000000000000000.1234), found (1.0000 != -1.2345E50)
+In BadTest::testAddition:
+BadTest.h:23: Error: Expected (2 + 2 == 5), found (4 != 5)
+In BadTest::TestMultiplication:
+BadTest.h:29: Error: Expected (4 * 4 == 44), found (16 != 44)
+BadTest.h:30: Error: Expected (-2 * -2 != 4), found (4)
+In BadTest::testComparison:
+BadTest.h:36: Error: Expected (-1 < -2), found (-1 >= -2)
+In BadTest::testTheWorldIsCrazy:
+BadTest.h:41: Error: Expected (true == false), found (true != false)
+In BadTest::test_Failure:
+BadTest.h:46: Error: Test failed: Not implemented
+BadTest.h:47: Error: Test failed: 1569779912
+In BadTest::test_TS_WARN_macro:
+BadTest.h:52: Warning: Just a friendly warning
+BadTest.h:53: Warning: Warnings don't abort the test
+.
+Failed 6 and Skipped 0 of 7 tests
+Success rate: 14%
+Error level = 6
