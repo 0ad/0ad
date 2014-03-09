@@ -23,9 +23,10 @@
         <prop actor="props/units/weapons/spear_lance.xml" attachpoint="r_hand"/>
         <prop actor="props/units/shields/athen_aspis_pericles.xml" attachpoint="shield"/>
         <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
-        <prop actor="props/special/common/aura_60_common.xml" attachpoint="root" selectable="false"/>
       </props>
-      <textures><texture file="skeletal/hele_isp_e_f.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_isp_e_f.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
