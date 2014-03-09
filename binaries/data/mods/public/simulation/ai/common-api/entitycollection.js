@@ -203,7 +203,7 @@ m.EntityCollection.prototype.move = function(x, z, queued)
 m.EntityCollection.prototype.attackMove = function(x, z, queued)
 {
 	queued = queued || false;
-	Engine.PostCommand({"type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
+	Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
 	return this;
 };
 m.EntityCollection.prototype.moveIndiv = function(x, z, queued)
