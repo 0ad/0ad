@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_cavalry_spearman">
+  <Identity>
+    <Civ>mace</Civ>
+    <GenericName>Pyrrhus of Epirus</GenericName>
+    <SpecificName>Pyrrhos ton Epeiros</SpecificName>
+    <Tooltip>"Pyrrhic Victory" Aura: TBD.</Tooltip>
+    <History>Pyrrhus or Pyrrhos (Ancient Greek: Πύρρος, Pyrrhos; 319/318–272 BC) was a Greek general and statesman of the Hellenistic era. He was king of the Greek tribe of Molossians, of the royal Aeacid house (from c. 297 BC), and later he became king of Epirus (r. 306–302, 297–272 BC) and Macedon (r. 288–284, 273–272 BC). He was one of the strongest opponents of early Rome. Some of his battles, though successful, cost him heavy losses, from which the term Pyrrhic victory was coined. He is the subject of one of Plutarch's 'Parallel Lives'. He died in 272 BC, while leading an attack on the Greek city of Argos.</History>
+    <Icon>units/mace_hero_pyrrhus.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/macedonians/pyrrhus_horse.xml</Actor>
+  </VisualActor>
+</Entity>

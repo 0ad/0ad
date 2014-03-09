@@ -100,6 +100,10 @@ static AtSmartPtr<AtNode> ConvertNode(json_spirit::Value node)
 			));
 		}
 	}
+	else if (node.type() == json_spirit::null_type)
+	{
+		return obj;
+	}
 	else
 	{
 		assert(! "Unimplemented type found when parsing JSON!");
@@ -172,7 +176,11 @@ json_spirit::Value BuildJSONNode(AtNode::Ptr p)
 		for (AtNode::child_maptype::const_iterator it = p->children.begin(); it != p->children.end(); ++it)
 		{
 			json_spirit::Value child = BuildJSONNode(it->second);
-			rval.push_back(json_spirit::Pair(it->first.c_str(), child));
+			// We don't serialize childs with null value.
+			// Instead of something like this we omit the whole property: "StartingCamera": null
+			// There's no special reason for that, it's just the same behaviour the previous implementations had.
+			if (child.type() != json_spirit::null_type)
+				rval.push_back(json_spirit::Pair(it->first.c_str(), child));
 		}
 
 		return rval;

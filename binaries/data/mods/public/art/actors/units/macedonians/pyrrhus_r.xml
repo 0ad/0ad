@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Pyrrhus">
+      <animations>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="100"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="17"/>
+        <animation file="biped/rider_gallop.psa" name="run" speed="8"/>
+        <animation file="biped/rider_sword_death_a.psa" name="Death" speed="240"/>
+        <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="attack_melee" speed="200"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear_lance.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/hero_pyrrhus.xml" attachpoint="helmet"/>
+        <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
+      </props>
+      <textures>
+        <texture file="skeletal/mace_hero_craterus.png" name="baseTex"/>
+        <texture file="skeletal/mace_hero_craterus_norm.png" name="normTex"/>
+        <texture file="skeletal/mace_hero_craterus_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

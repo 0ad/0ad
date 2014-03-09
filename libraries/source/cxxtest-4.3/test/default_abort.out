@@ -1,0 +1,120 @@
+Running cxxtest tests (32 tests)
+In NullCreate::<no test>:
+Exceptions.h:10: Error: Test failed: createSuite() failed
+Exceptions.h:10: Error: Assertion failed: suite() != 0
+In ThrowCreate::<no test>:
+Exceptions.h:22: Error: Test failed: Exception thrown from createSuite()
+Exceptions.h:22: Error: Expected (createSuite()) not to throw, but it did
+Exceptions.h:22: Error: Test failed: createSuite() failed
+Exceptions.h:22: Error: Assertion failed: suite() != 0
+.
+In ThrowDestroy::<no test>:
+Exceptions.h:35: Error: Test failed: destroySuite() failed
+Exceptions.h:35: Error: Expected (destroySuite()) not to throw, but it did
+In ThrowSetUp::testNothing:
+Exceptions.h:46: Error: Test failed: Exception thrown from setUp()
+Exceptions.h:46: Error: Expected (suite()->setUp(); ok=true) not to throw, but it did
+In ThrowTearDown::testNothing:
+Exceptions.h:55: Error: Test failed: Exception thrown from tearDown()
+Exceptions.h:55: Error: Expected (suite()->tearDown()) not to throw, but it did
+In TestThrowFromTest::testThrowSomething:
+Exceptions.h:61: Error: Test failed: Exception thrown from test
+In TestThrowFromTest::testMoveOn:
+Exceptions.h:68: Trace: One failed test doesn't affect the others
+.
+In DynamicAbort::test_Abort_on_fail_in_this_test:
+DynamicAbort.h:8: Error: Expected (1 == 2), found (1 != 2)
+DynamicAbort.h:9: Error: Expected (2 == 3), found (2 != 3)
+In DynamicAbort::test_Dont_abort_in_this_test:
+DynamicAbort.h:15: Error: Expected (1 == 2), found (1 != 2)
+DynamicAbort.h:16: Error: Expected (2 == 3), found (2 != 3)
+In DynamicAbort::test_Revert_to_abort:
+DynamicAbort.h:21: Error: Expected (1 == 2), found (1 != 2)
+DynamicAbort.h:22: Error: Expected (2 == 3), found (2 != 3)
+In SetUpWorksAllTests::test_Dont_abort_in_this_test:
+DynamicAbort.h:36: Error: Expected (1 == 2), found (1 != 2)
+DynamicAbort.h:37: Error: Expected (2 == 3), found (2 != 3)
+In SetUpWorksAllTests::test_Dont_abort_in_this_test_either:
+DynamicAbort.h:42: Error: Expected (1 == 2), found (1 != 2)
+DynamicAbort.h:43: Error: Expected (2 == 3), found (2 != 3)
+In SetUpWorksAllTests::test_Override_in_this_test:
+DynamicAbort.h:49: Error: Expected (1 == 2), found (1 != 2)
+In DeepAbort::testAssertThrowsPassesAbort:
+DeepAbort.h:72: Error: Expected (0 == 1), found (0 != 1)
+DeepAbort.h:12: Error: Expected (fail()) to throw (int) but it didn't throw
+DeepAbort.h:13: Error: Test failed: You shouldn't see this if --abort-on-fail is used
+In DeepAbort::testMessageAssertThrowsPassesAbort:
+DeepAbort.h:72: Error: Expected (0 == 1), found (0 != 1)
+DeepAbort.h:18: Error: Test failed: fail() should throw an int
+DeepAbort.h:18: Error: Expected (fail()) to throw (int) but it didn't throw
+DeepAbort.h:19: Error: Test failed: You shouldn't see this if --abort-on-fail is used
+In DeepAbort::testAssertThrowsAborts:
+DeepAbort.h:24: Error: Expected (succeed()) to throw (int) but it didn't throw
+DeepAbort.h:25: Error: Test failed: You shouldn't see this if --abort-on-fail is used
+In DeepAbort::testMessageAssertThrowsAborts:
+DeepAbort.h:30: Error: Test failed: succeed() should throw an int
+DeepAbort.h:30: Error: Expected (succeed()) to throw (int) but it didn't throw
+DeepAbort.h:31: Error: Test failed: You shouldn't see this if --abort-on-fail is used
+In DeepAbort::testAssertThrowsNothingPassesAbort:
+DeepAbort.h:72: Error: Expected (0 == 1), found (0 != 1)
+DeepAbort.h:37: Error: Test failed: You shouldn't see this if --abort-on-fail is used
+In DeepAbort::testMessageAssertThrowsNothingPassesAbort:
+DeepAbort.h:72: Error: Expected (0 == 1), found (0 != 1)
+DeepAbort.h:43: Error: Test failed: You shouldn't see this if --abort-on-fail is used
+In DeepAbort::testAssertThrowsNothingAborts:
+DeepAbort.h:48: Error: Expected (throwSomething()) not to throw, but it did
+DeepAbort.h:49: Error: Test failed: You shouldn't see this if --abort-on-fail is used
+In DeepAbort::testMessageAssertThrowsNothingAborts:
+DeepAbort.h:54: Error: Test failed: fail() shouldn't throw anything
+DeepAbort.h:54: Error: Expected (throwSomething()) not to throw, but it did
+DeepAbort.h:55: Error: Test failed: You shouldn't see this if --abort-on-fail is used
+In DeepAbort::testAssertThrowsAnything:
+DeepAbort.h:60: Error: Expected (succeed()) to throw (...) but it didn't throw
+DeepAbort.h:61: Error: Test failed: You shouldn't see this if --abort-on-fail is used
+In DeepAbort::testMessageAssertThrowsAnything:
+DeepAbort.h:66: Error: Test failed: succeed() should throw something
+DeepAbort.h:66: Error: Expected (succeed()) to throw (...) but it didn't throw
+DeepAbort.h:67: Error: Test failed: You shouldn't see this if --abort-on-fail is used
+In ThrowsAssert::test_TS_ASSERT_THROWS_EQUALS:
+ThrowsAssert.h:23: Error: Expected (i == 2), found (1 != 2)
+ThrowsAssert.h:24: Error: Expected (thing.i() == 2), found (1 != 2)
+In ThrowsAssert::test_TS_ASSERT_THROWS_DIFFERS:
+ThrowsAssert.h:29: Error: Expected (i != 1), found (1)
+ThrowsAssert.h:30: Error: Expected (thing.i() != 1), found (1)
+In ThrowsAssert::test_TS_ASSERT_THROWS_SAME_DATA:
+ThrowsAssert.h:35: Error: Expected 3 (3) bytes to be equal at (s) and ("456"), found:
+{ 31 32 33 }
+differs from
+{ 34 35 36 }
+In ThrowsAssert::test_TS_ASSERT_THROWS_LESS_THAN:
+ThrowsAssert.h:40: Error: Expected (i < 1), found (1 >= 1)
+ThrowsAssert.h:41: Error: Expected (thing.i() < 1), found (1 >= 1)
+In ThrowsAssert::test_TS_ASSERT_THROWS_LESS_THAN_EQUALS:
+ThrowsAssert.h:46: Error: Expected (i <= 0), found (1 > 0)
+ThrowsAssert.h:47: Error: Expected (thing.i() <= 0), found (1 > 0)
+In ThrowsAssert::test_TS_ASSERT_THROWS_PREDICATE:
+ThrowsAssert.h:52: Error: Expected Fail( i ), found !Fail( 1 )
+ThrowsAssert.h:53: Error: Expected Fail( thing.i() ), found !Fail( 1 )
+In ThrowsAssert::test_TS_ASSERT_THROWS_RELATION:
+ThrowsAssert.h:58: Error: Expected Fail( i, 1 ), found !Fail( 1, 1 )
+ThrowsAssert.h:59: Error: Expected Fail( thing.i(), 1 ), found !Fail( 1, 1 )
+In ThrowsAssert::test_TS_ASSERT_THROWS_DELTA:
+ThrowsAssert.h:64: Error: Expected (i == 3) up to 1 (1), found (1 != 3)
+ThrowsAssert.h:65: Error: Expected (thing.i() == 3) up to 1 (1), found (1 != 3)
+In ThrowsAssert::test_TS_ASSERT_THROWS_ASSERT:
+ThrowsAssert.h:71: Error: Expected (i == 2), found (1 != 2)
+ThrowsAssert.h:74: Error: Expected (thing.i() == 2), found (1 != 2)
+ThrowsAssert.h:77: Error: Test failed: 1
+ThrowsAssert.h:80: Error: Assertion failed: thing.i() - 1
+ThrowsAssert.h:84: Error: Expected sizeof(char) (1) bytes to be equal at (&zero) and (&one), found:
+{ 00 }
+differs from
+{ 01 }
+ThrowsAssert.h:87: Error: Expected (thing.i() == 5) up to 2 (2), found (1 != 5)
+ThrowsAssert.h:90: Error: Expected (thing.i() != 1), found (1)
+ThrowsAssert.h:93: Error: Expected (thing.i() < 1), found (1 >= 1)
+ThrowsAssert.h:96: Error: Expected Fail( thing.i() ), found !Fail( 1 )
+ThrowsAssert.h:99: Error: Expected Fail( thing.i(), 33 ), found !Fail( 1, 33 )
+Failed 31 and Skipped 0 of 32 tests
+Success rate: 3%
+Error level = 31

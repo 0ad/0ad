@@ -1,0 +1,44 @@
+Running cxxtest tests (14 tests)
+In InheritedTests1::testEquality:
+InheritedTest.h:16: Error: Expected (1 == 2), found (1 != 2)
+InheritedTest.h:17: Error: Expected ('a' == 'A'), found ('a' != 'A')
+InheritedTest.h:18: Error: Expected (1.0 == -12345678900000000000000000000000000000000000000000.1234), found (1.0000 != -1.2345E50)
+In InheritedTests1::testAddition:
+InheritedTest.h:24: Error: Expected (2 + 2 == 5), found (4 != 5)
+In InheritedTests1::TestMultiplication:
+InheritedTest.h:30: Error: Expected (4 * 4 == 44), found (16 != 44)
+InheritedTest.h:31: Error: Expected (-2 * -2 != 4), found (4)
+In InheritedTests1::testComparison:
+InheritedTest.h:37: Error: Expected (-1 < -2), found (-1 >= -2)
+In InheritedTests1::testTheWorldIsCrazy:
+InheritedTest.h:42: Error: Expected (true == false), found (true != false)
+In InheritedTests1::test_Failure:
+InheritedTest.h:47: Error: Test failed: Not implemented
+InheritedTest.h:48: Error: Test failed: 1569779912
+In InheritedTests1::test_TS_WARN_macro:
+InheritedTest.h:53: Warning: Just a friendly warning
+InheritedTest.h:54: Warning: Warnings don't abort the test
+.
+In InheritedTests2::testEquality:
+InheritedTest.h:16: Error: Expected (1 == 2), found (1 != 2)
+InheritedTest.h:17: Error: Expected ('a' == 'A'), found ('a' != 'A')
+InheritedTest.h:18: Error: Expected (1.0 == -12345678900000000000000000000000000000000000000000.1234), found (1.0000 != -1.2345E50)
+In InheritedTests2::testAddition:
+InheritedTest.h:24: Error: Expected (2 + 2 == 5), found (4 != 5)
+In InheritedTests2::TestMultiplication:
+InheritedTest.h:30: Error: Expected (4 * 4 == 44), found (16 != 44)
+InheritedTest.h:31: Error: Expected (-2 * -2 != 4), found (4)
+In InheritedTests2::testComparison:
+InheritedTest.h:37: Error: Expected (-1 < -2), found (-1 >= -2)
+In InheritedTests2::testTheWorldIsCrazy:
+InheritedTest.h:42: Error: Expected (true == false), found (true != false)
+In InheritedTests2::test_Failure:
+InheritedTest.h:47: Error: Test failed: Not implemented
+InheritedTest.h:48: Error: Test failed: 1569779912
+In InheritedTests2::test_TS_WARN_macro:
+InheritedTest.h:53: Warning: Just a friendly warning
+InheritedTest.h:54: Warning: Warnings don't abort the test
+.
+Failed 12 and Skipped 0 of 14 tests
+Success rate: 14%
+Error level = 12

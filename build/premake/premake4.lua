@@ -27,6 +27,7 @@ newoption { trigger = "use-shared-glooxwrapper", description = "Use prebuilt glo
 newoption { trigger = "bindir", description = "Directory for executables (typically '/usr/games'); default is to be relocatable" }
 newoption { trigger = "datadir", description = "Directory for data files (typically '/usr/share/games/0ad'); default is ../data/ relative to executable" }
 newoption { trigger = "libdir", description = "Directory for libraries (typically '/usr/lib/games/0ad'); default is ./ relative to executable" }
+newoption { trigger = "jenkins-tests", description = "configure cxxtest to use the XmlPrinter runner which produces jenkins-compatible output" }
 
 -- Root directory of project checkout relative to this .lua file
 rootdir = "../.."
@@ -79,7 +80,7 @@ if os.is("windows") then
 	has_broken_pch = false
 else
 
-	lcxxtestpath = rootdir.."/build/bin/cxxtestgen.pl"
+	lcxxtestpath = rootdir.."/libraries/source/cxxtest-4.3/bin/cxxtestgen"
 
 	if os.is("linux") and arch == "amd64" then
 		nasmformat "elf64"
@@ -1242,10 +1243,15 @@ function configure_cxxtestgen()
 	-- Define the options used for cxxtestgen
 	local lcxxtestoptions = "--have-std"
 	local lcxxtestrootoptions = "--have-std"
-	if os.is("windows") then
-		lcxxtestrootoptions = lcxxtestrootoptions .. " --gui=PsTestWrapper --runner=Win32ODSPrinter"
+
+	if _OPTIONS["jenkins-tests"] then
+		lcxxtestrootoptions = lcxxtestrootoptions .. " --gui=PsTestWrapper --runner=XmlPrinter"
 	else
-		lcxxtestrootoptions = lcxxtestrootoptions .. " --gui=PsTestWrapper --runner=ErrorPrinter"
+		if os.is("windows") then
+			lcxxtestrootoptions = lcxxtestrootoptions .. " --gui=PsTestWrapper --runner=Win32ODSPrinter"
+		else
+			lcxxtestrootoptions = lcxxtestrootoptions .. " --gui=PsTestWrapper --runner=ErrorPrinter"
+		end
 	end
 
 	-- Precompiled headers - the header is added to all generated .cpp files

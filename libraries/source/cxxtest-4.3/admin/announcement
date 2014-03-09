@@ -1,0 +1,17 @@
+We are pleased to announce the updated release of CxxTest 4.3.  CxxTest is a unit testing framework for C++ that is similar in spirit to JUnit, CppUnit, and xUnit. CxxTest is easy to use because it does not require precompiling a CxxTest testing library, it employs no advanced features of C++ (e.g. RTTI) and it supports a very flexible form of test discovery.
+
+This release resolves the following issues:
+
+ - Changes to assess code coverage of the cxxtestgen command
+ - Standardizing C++ file formats (using astyle)
+ - Bug fixes that led to the test runner hanging
+ - Adding special assertions for floating point values
+ - Added date to XML output
+ - Added support for comparison of C strings
+
+See the CxxTest Home Page (http://cxxtest.com) for documentation and download instructions.
+
+Enjoy!
+
+    CxxTest Developer Team
+    cxxtest-developers@googlegroups.com

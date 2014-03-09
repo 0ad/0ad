@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite name="cxxtest" date="Tue Apr 23 23:28:43 2013" tests="35" errors="0" failures="28" time="0" >
+<testcase classname="LessThanEquals" name="testLessThanEquals" line="11">
+LessThanEquals.h" line="16" type="failedAssertLessThanEquals" >Error: Expected (1 &lt;= 0), found (1 &gt; 0)
+Test failed: 1 &lt;=? 0
+Error: Expected (1 &lt;= 0), found (1 &gt; 0)
+Error: Expected (1 &lt; 0), found (1 &gt;= 0)
+Test failed: 1 &lt;=? 0
+Error: Expected (1 &lt;= 0), found (1 &gt; 0)</failure>
+<system-out >
+In LessThanEquals::testLessThanEquals:
+LessThanEquals.h:16: Error: Expected (1 &lt;= 0), found (1 &gt; 0)
+LessThanEquals.h:17: Error: Test failed: 1 &lt;=? 0
+LessThanEquals.h:17: Error: Expected (1 &lt;= 0), found (1 &gt; 0)
+LessThanEquals.h:19: Error: Expected (1 &lt; 0), found (1 &gt;= 0)
+LessThanEquals.h:20: Error: Test failed: 1 &lt;=? 0
+LessThanEquals.h:20: Error: Expected (1 &lt;= 0), found (1 &gt; 0)
+</system-out>
+</testcase>
+<testcase classname="Relation" name="testPredicate" line="17">
+Relation.h" line="19" type="failedAssertPredicate" >Error: Expected MyNegative( 1 ), found !MyNegative( 1 )
+Test failed: 1 &lt;? 0
+Error: Expected MyNegative( 1 ), found !MyNegative( 1 )</failure>
+<warning line="22" >1</warning>
+<warning line="24" >1</warning>
+<system-out >In Relation::testPredicate:
+Relation.h:19: Error: Expected MyNegative( 1 ), found !MyNegative( 1 )
+Relation.h:20: Error: Test failed: 1 &lt;? 0
+Relation.h:20: Error: Expected MyNegative( 1 ), found !MyNegative( 1 )
+Relation.h:22: Warning: 1
+Relation.h:24: Warning: 1
+</system-out>
+</testcase>
+<testcase classname="Relation" name="testRelation" line="27">
+Relation.h" line="29" type="failedAssertRelation" >Error: Expected MyLess&lt;int&gt;( 2, 1 ), found !MyLess&lt;int&gt;( 2, 1 )
+Test failed: 2 &lt;? 1
+Error: Expected MyLess&lt;int&gt;( 2, 1 ), found !MyLess&lt;int&gt;( 2, 1 )</failure>
+<warning line="32" >1</warning>
+<warning line="34" >1</warning>
+<system-out >In Relation::testRelation:
+Relation.h:29: Error: Expected MyLess&lt;int&gt;( 2, 1 ), found !MyLess&lt;int&gt;( 2, 1 )
+Relation.h:30: Error: Test failed: 2 &lt;? 1
+Relation.h:30: Error: Expected MyLess&lt;int&gt;( 2, 1 ), found !MyLess&lt;int&gt;( 2, 1 )
+Relation.h:32: Warning: 1
+Relation.h:34: Warning: 1
+</system-out>
+</testcase>
+<testcase classname="DefaultTraits" name="testSmallDefaultTraits" line="16">
+DefaultTraits.h" line="23" type="failure" >Test failed: { 00 01 02 03 04 05 06 07  }</failure>
+<system-out >In DefaultTraits::testSmallDefaultTraits:
+DefaultTraits.h:23: Error: Test failed: { 00 01 02 03 04 05 06 07  }
+</system-out>
+</testcase>
+<testcase classname="DefaultTraits" name="testBigDefaultTraits" line="32">
+DefaultTraits.h" line="39" type="failure" >Test failed: { 98 99 9A 9B 9C 9D 9E 9F ... }</failure>
+<system-out >In DefaultTraits::testBigDefaultTraits:
+DefaultTraits.h:39: Error: Test failed: { 98 99 9A 9B 9C 9D 9E 9F ... }
+</system-out>
+</testcase>
+<testcase classname="DoubleCall" name="testAssertEqualsWithSideEffects" line="19">
+DoubleCall.h" line="21" type="failedAssertEquals" >Error: Expected (increment() == 3), found (1 != 3)</failure>
+<system-out >In DoubleCall::testAssertEqualsWithSideEffects:
+DoubleCall.h:21: Error: Expected (increment() == 3), found (1 != 3)
+</system-out>
+</testcase>
+<testcase classname="DoubleCall" name="testAssertDiffersWithSideEffects" line="24">
+DoubleCall.h" line="26" type="failedAssertDiffers" >Error: Expected (increment() != 1), found (1)</failure>
+<system-out >In DoubleCall::testAssertDiffersWithSideEffects:
+DoubleCall.h:26: Error: Expected (increment() != 1), found (1)
+</system-out>
+</testcase>
+<testcase classname="DoubleCall" name="testAssertDeltaWithSideEffects" line="29">
+DoubleCall.h" line="31" type="failedAssertDelta" >Error: Expected (increment() == 2.0) up to 0.5 (0.5000), found (1 != 2.0000)</failure>
+<system-out >In DoubleCall::testAssertDeltaWithSideEffects:
+DoubleCall.h:31: Error: Expected (increment() == 2.0) up to 0.5 (0.5000), found (1 != 2.0000)
+</system-out>
+</testcase>
+<testcase classname="SameData" name="testAssertSameData" line="22">
+SameData.h" line="24" type="failedAssertSameData" >Error: Expected DATA_SIZE (24)  bytes to be equal at (x) and (y), found</failure>
+<system-out >In SameData::testAssertSameData:
+SameData.h:24: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC EB EA E9 E8 }
+</system-out>
+</testcase>
+<testcase classname="SameData" name="testAssertMessageSameData" line="27">
+SameData.h" line="29" type="failure" >Test failed: Not same data
+Error: Expected DATA_SIZE (24)  bytes to be equal at (x) and (y), found</failure>
+<system-out >In SameData::testAssertMessageSameData:
+SameData.h:29: Error: Test failed: Not same data
+SameData.h:29: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC EB EA E9 E8 }
+</system-out>
+</testcase>
+<testcase classname="SameData" name="testSafeAssertSameData" line="32">
+SameData.h" line="34" type="failedAssertSameData" >Error: Expected DATA_SIZE (24)  bytes to be equal at (x) and (y), found</failure>
+<system-out >In SameData::testSafeAssertSameData:
+SameData.h:34: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC EB EA E9 E8 }
+</system-out>
+</testcase>
+<testcase classname="SameData" name="testSafeAssertMessageSameData" line="37">
+SameData.h" line="39" type="failure" >Test failed: Not same data
+Error: Expected DATA_SIZE (24)  bytes to be equal at (x) and (y), found</failure>
+<system-out >In SameData::testSafeAssertMessageSameData:
+SameData.h:39: Error: Test failed: Not same data
+SameData.h:39: Error: Expected DATA_SIZE (24) bytes to be equal at (x) and (y), found:
+{ 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 }
+differs from
+{ FF FE FD FC FB FA F9 F8 F7 F6 F5 F4 F3 F2 F1 F0 EF EE ED EC EB EA E9 E8 }
+</system-out>
+</testcase>
+<testcase classname="SameFiles" name="testAssertFiles" line="11" />
+<testcase classname="SameFiles" name="testAssertFileShorter" line="16">
+SameFiles.h" line="18" type="failedAssertSameFiles" >Error: File &apos;SameFiles.h&apos; ended before file &apos;SameFilesLonger.h&apos; (line 42)
+=     }
+=  };
+=
+&lt;
+</failure>
+<system-out >
+In SameFiles::testAssertFileShorter:
+SameFiles.h:18: Error: File &apos;SameFiles.h&apos; ended before file &apos;SameFilesLonger.h&apos; (line 42)
+=     }
+=  };
+=
+&lt;
+
+</system-out>
+</testcase>
+<testcase classname="SameFiles" name="testAssertFileLonger" line="21">
+SameFiles.h" line="23" type="failedAssertSameFiles" >Error: File &apos;SameFiles.h&apos; ended before file &apos;SameFilesLonger.h&apos; (line 42)
+=     }
+=  };
+=
+&gt;
+</failure>
+<system-out >In SameFiles::testAssertFileLonger:
+SameFiles.h:23: Error: File &apos;SameFiles.h&apos; ended before file &apos;SameFilesLonger.h&apos; (line 42)
+=     }
+=  };
+=
+&gt;
+
+</system-out>
+</testcase>
+<testcase classname="SameFiles" name="testAssertMessageSameFiles" line="26">
+SameFiles.h" line="28" type="failure" >Test failed: Not same files
+Error: Files &apos;SameFiles.h&apos; and &apos;SameData.h&apos; differ at line 4
+= #include &lt;cxxtest/TestSuite.h&gt;
+=
+= //
+&lt; // This test suite demonstrates TS_ASSERT_SAME_ATA
+
+&gt; // This test suite demonstrates TS_ASSERT_SAME_//
+</failure>
+<system-out >In SameFiles::testAssertMessageSameFiles:
+SameFiles.h:28: Error: Test failed: Not same files
+SameFiles.h:28: Error: Files &apos;SameFiles.h&apos; and &apos;SameData.h&apos; differ at line 4
+= #include &lt;cxxtest/TestSuite.h&gt;
+=
+= //
+&lt; // This test suite demonstrates TS_ASSERT_SAME_ATA
+
+&gt; // This test suite demonstrates TS_ASSERT_SAME_//
+
+</system-out>
+</testcase>
+<testcase classname="SameFiles" name="testSafeAssertSameFiles" line="31" />
+<testcase classname="SameFiles" name="testSafeAssertMessageSameFiles" line="36">
+SameFiles.h" line="38" type="failure" >Test failed: Not same files
+Error: Files &apos;SameFiles.h&apos; and &apos;SameData.h&apos; differ at line 4
+= #include &lt;cxxtest/TestSuite.h&gt;
+=
+= //
+&lt; // This test suite demonstrates TS_ASSERT_SAME_ATA
+
+&gt; // This test suite demonstrates TS_ASSERT_SAME_//
+</failure>
+<system-out >
+In SameFiles::testSafeAssertMessageSameFiles:
+SameFiles.h:38: Error: Test failed: Not same files
+SameFiles.h:38: Error: Files &apos;SameFiles.h&apos; and &apos;SameData.h&apos; differ at line 4
+= #include &lt;cxxtest/TestSuite.h&gt;
+=
+= //
+&lt; // This test suite demonstrates TS_ASSERT_SAME_ATA
+
+&gt; // This test suite demonstrates TS_ASSERT_SAME_//
+
+</system-out>
+</testcase>
+<testcase classname="TestMessageMacros" name="testMessageMacros" line="10">
+Tsm.h" line="15" type="failure" >Test failed: String
+Assertion failed: false
+Test failed: 42
+Assertion failed: false
+Test failed: String
+Error: Expected (2 + 2 == 5), found (4 != 5)
+Test failed: 42
+Error: Expected (2 + 2 == 5), found (4 != 5)
+Test failed: String
+Error: Expected 1 (1)  bytes to be equal at (&amp;x) and (&amp;y), found
+Test failed: 42
+Error: Expected 1 (1)  bytes to be equal at (&amp;x) and (&amp;y), found
+Test failed: String
+Error: Expected (1.0 == 2.0) up to 0.5 (0.5000), found (1.0000 != 2.0000)
+Test failed: 42
+Error: Expected (1.0 == 2.0) up to 0.5 (0.5000), found (1.0000 != 2.0000)
+Test failed: String
+Error: Expected (0 != 0), found (0)
+Test failed: 42
+Error: Expected (0 != 0), found (0)
+Test failed: String
+Error: Expected (2 &lt; 1), found (2 &gt;= 1)
+Test failed: 42
+Error: Expected (2 &lt; 1), found (2 &gt;= 1)
+Test failed: String
+Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Test failed: 42
+Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Test failed: String
+Error: Expected (throwNothing()) to throw (...) but it didn&apos;t throw
+Test failed: 42
+Error: Expected (throwNothing()) to throw (...) but it didn&apos;t throw
+Test failed: String
+Error: Expected (throwInteger(n)) not to throw, but it did
+Test failed: 42
+Error: Expected (throwInteger(n)) not to throw, but it did
+Test failed: String
+Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Test failed: 42
+Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Test failed: String
+Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Test failed: 42
+Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Test failed: String
+Error: Expected (i == 43), found (42 != 43)
+Test failed: 42
+Error: Expected (i == 43), found (42 != 43)</failure>
+<system-out >In TestMessageMacros::testMessageMacros:
+Tsm.h:15: Error: Test failed: String
+Tsm.h:15: Error: Assertion failed: false
+Tsm.h:16: Error: Test failed: 42
+Tsm.h:16: Error: Assertion failed: false
+Tsm.h:17: Error: Test failed: String
+Tsm.h:17: Error: Expected (2 + 2 == 5), found (4 != 5)
+Tsm.h:18: Error: Test failed: 42
+Tsm.h:18: Error: Expected (2 + 2 == 5), found (4 != 5)
+Tsm.h:19: Error: Test failed: String
+Tsm.h:19: Error: Expected 1 (1) bytes to be equal at (&amp;x) and (&amp;y), found:
+{ 78 }
+differs from
+{ 79 }
+Tsm.h:20: Error: Test failed: 42
+Tsm.h:20: Error: Expected 1 (1) bytes to be equal at (&amp;x) and (&amp;y), found:
+{ 78 }
+differs from
+{ 79 }
+Tsm.h:21: Error: Test failed: String
+Tsm.h:21: Error: Expected (1.0 == 2.0) up to 0.5 (0.5000), found (1.0000 != 2.0000)
+Tsm.h:22: Error: Test failed: 42
+Tsm.h:22: Error: Expected (1.0 == 2.0) up to 0.5 (0.5000), found (1.0000 != 2.0000)
+Tsm.h:23: Error: Test failed: String
+Tsm.h:23: Error: Expected (0 != 0), found (0)
+Tsm.h:24: Error: Test failed: 42
+Tsm.h:24: Error: Expected (0 != 0), found (0)
+Tsm.h:25: Error: Test failed: String
+Tsm.h:25: Error: Expected (2 &lt; 1), found (2 &gt;= 1)
+Tsm.h:26: Error: Test failed: 42
+Tsm.h:26: Error: Expected (2 &lt; 1), found (2 &gt;= 1)
+Tsm.h:27: Error: Test failed: String
+Tsm.h:27: Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Tsm.h:28: Error: Test failed: 42
+Tsm.h:28: Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Tsm.h:29: Error: Test failed: String
+Tsm.h:29: Error: Expected (throwNothing()) to throw (...) but it didn&apos;t throw
+Tsm.h:30: Error: Test failed: 42
+Tsm.h:30: Error: Expected (throwNothing()) to throw (...) but it didn&apos;t throw
+Tsm.h:31: Error: Test failed: String
+Tsm.h:31: Error: Expected (throwInteger(n)) not to throw, but it did
+Tsm.h:32: Error: Test failed: 42
+Tsm.h:32: Error: Expected (throwInteger(n)) not to throw, but it did
+Tsm.h:33: Error: Test failed: String
+Tsm.h:33: Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Tsm.h:34: Error: Test failed: 42
+Tsm.h:34: Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Tsm.h:35: Error: Test failed: String
+Tsm.h:35: Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Tsm.h:36: Error: Test failed: 42
+Tsm.h:36: Error: Expected (throwNothing()) to throw (int) but it didn&apos;t throw
+Tsm.h:37: Error: Test failed: String
+Tsm.h:37: Error: Expected (i == 43), found (42 != 43)
+Tsm.h:38: Error: Test failed: 42
+Tsm.h:38: Error: Expected (i == 43), found (42 != 43)
+</system-out>
+</testcase>
+<testcase classname="TraitsTest" name="testIntegerTraits" line="11">
+TraitsTest.h" line="13" type="failure" >Test failed: 1
+Test failed: &apos;\x0F&apos;
+Test failed: -12
+Test failed: 34
+Test failed: -123
+Test failed: 456
+Test failed: -12345
+Test failed: 67890</failure>
+<system-out >In TraitsTest::testIntegerTraits:
+TraitsTest.h:13: Error: Test failed: 1
+TraitsTest.h:14: Error: Test failed: &apos;\x0F&apos;
+TraitsTest.h:15: Error: Test failed: -12
+TraitsTest.h:16: Error: Test failed: 34
+TraitsTest.h:17: Error: Test failed: -123
+TraitsTest.h:18: Error: Test failed: 456
+TraitsTest.h:19: Error: Test failed: -12345
+TraitsTest.h:20: Error: Test failed: 67890
+</system-out>
+</testcase>
+<testcase classname="TraitsTest" name="testFloatingPointTraits" line="23">
+TraitsTest.h" line="25" type="failure" >Test failed: 0.1234
+Test failed: 0.1234</failure>
+<system-out >In TraitsTest::testFloatingPointTraits:
+TraitsTest.h:25: Error: Test failed: 0.1234
+TraitsTest.h:26: Error: Test failed: 0.1234
+</system-out>
+</testcase>
+<testcase classname="TraitsTest" name="testBoolTraits" line="29">
+TraitsTest.h" line="31" type="failure" >Test failed: true
+Test failed: false</failure>
+<system-out >In TraitsTest::testBoolTraits:
+TraitsTest.h:31: Error: Test failed: true
+TraitsTest.h:32: Error: Test failed: false
+</system-out>
+</testcase>
+<testcase classname="TraitsTest" name="testCharTraits" line="35">
+TraitsTest.h" line="37" type="failure" >Test failed: &apos;A&apos;
+Test failed: &apos;\x04&apos;
+Test failed: &apos;\x1B&apos;
+Test failed: &apos;\0&apos;
+Test failed: &apos;\r&apos;
+Test failed: &apos;\n&apos;
+Test failed: &apos;\b&apos;
+Test failed: &apos;\t&apos;
+Test failed: &apos;\a&apos;
+Test failed: &apos;\xFB&apos;</failure>
+<system-out >In TraitsTest::testCharTraits:
+TraitsTest.h:37: Error: Test failed: &apos;A&apos;
+TraitsTest.h:38: Error: Test failed: &apos;\x04&apos;
+TraitsTest.h:39: Error: Test failed: &apos;\x1B&apos;
+TraitsTest.h:40: Error: Test failed: &apos;\0&apos;
+TraitsTest.h:41: Error: Test failed: &apos;\r&apos;
+TraitsTest.h:42: Error: Test failed: &apos;\n&apos;
+TraitsTest.h:43: Error: Test failed: &apos;\b&apos;
+TraitsTest.h:44: Error: Test failed: &apos;\t&apos;
+TraitsTest.h:45: Error: Test failed: &apos;\a&apos;
+TraitsTest.h:46: Error: Test failed: &apos;\xFB&apos;
+</system-out>
+</testcase>
+<testcase classname="TraitsTest" name="testStringTraits" line="49">
+TraitsTest.h" line="51" type="failure" >Test failed: (char *) is displayed as-is
+</failure>
+<system-out >In TraitsTest::testStringTraits:
+TraitsTest.h:51: Error: Test failed: (char *) is displayed as-is
+
+</system-out>
+</testcase>
+<testcase classname="TraitsTest" name="testStdStringTraits" line="54">
+TraitsTest.h" line="57" type="failure" >Test failed: &quot;std::string is displayed with \&quot;\&quot;&quot;
+Test failed: &quot;Escapes\rAre\rTranslated&quot;
+Test failed: &quot;As are unprintable chars: \x124Vx&quot;</failure>
+<system-out >In TraitsTest::testStdStringTraits:
+TraitsTest.h:57: Error: Test failed: &quot;std::string is displayed with \&quot;\&quot;&quot;
+TraitsTest.h:58: Error: Test failed: &quot;Escapes\rAre\rTranslated&quot;
+TraitsTest.h:59: Error: Test failed: &quot;As are unprintable chars: \x124Vx&quot;
+</system-out>
+</testcase>
+<testcase classname="MockTest" name="test_Mock" line="115" />
+<testcase classname="MockTest" name="test_Real" line="121" />
+<testcase classname="MockTest" name="test_Unimplemented" line="127">
+MockTest.h" line="33" type="failure" >Test failed: T::one(void) called with no T::Base_one object
+Error: Expected (T::one() == 1), found (0 != 1)</failure>
+<system-out >
+In MockTest::test_Unimplemented:
+MockTest.h:33: Error: Test failed: T::one(void) called with no T::Base_one object
+MockTest.h:129: Error: Expected (T::one() == 1), found (0 != 1)
+</system-out>
+</testcase>
+<testcase classname="MockTest" name="test_More_complex_mock" line="132" />
+<testcase classname="MockTest" name="test_Mock_traits" line="141">
+MockTest.h" line="40" type="failure" >Test failed: T::getOpaque(int i) called with no T::Base_getOpaque object
+Error: Expected (T::getOpaque(3).value == 72), found (42 != 72)</failure>
+<system-out >
+In MockTest::test_Mock_traits:
+MockTest.h:40: Error: Test failed: T::getOpaque(int i) called with no T::Base_getOpaque object
+MockTest.h:143: Error: Expected (T::getOpaque(3).value == 72), found (42 != 72)
+</system-out>
+</testcase>
+<testcase classname="MockTest" name="test_Override" line="146">
+MockTest.h" line="33" type="failure" >Test failed: T::one(void) called with no T::Base_one object
+Error: Expected (T::one() == 1), found (0 != 1)</failure>
+<system-out >In MockTest::test_Override:
+MockTest.h:33: Error: Test failed: T::one(void) called with no T::Base_one object
+MockTest.h:157: Error: Expected (T::one() == 1), found (0 != 1)
+</system-out>
+</testcase>
+<testcase classname="MockTest" name="test_Supply" line="160" />
+<testcase classname="MockTest" name="test_Unimplemented_supply" line="166">
+MockTest.h" line="42" type="failure" >Test failed: T::supplyOne(void) called with no T::Base_supplyOne object
+Error: Expected (supplyOne() == 1), found (0 != 1)</failure>
+<system-out >
+In MockTest::test_Unimplemented_supply:
+MockTest.h:42: Error: Test failed: T::supplyOne(void) called with no T::Base_supplyOne object
+MockTest.h:168: Error: Expected (supplyOne() == 1), found (0 != 1)
+</system-out>
+</testcase>
+<testcase classname="MockTest" name="test_More_complex_supply" line="171" />
+<testcase classname="SameZero" name="test_TS_ASSERT_SAME_DATA_passed_zero" line="20">
+SameZero.h" line="22" type="failedAssertSameData" >Error: Expected sizeof(data) (4)  bytes to be equal at (data) and (0), found
+Error: Expected sizeof(data) (4)  bytes to be equal at (0) and (data), found</failure>
+<system-out >
+In SameZero::test_TS_ASSERT_SAME_DATA_passed_zero:
+SameZero.h:22: Error: Expected sizeof(data) (4) bytes to be equal at (data) and (0), found:
+{ 00 01 02 03 }
+differs from
+(null)
+SameZero.h:23: Error: Expected sizeof(data) (4) bytes to be equal at (0) and (data), found:
+(null)
+differs from
+{ 00 01 02 03 }
+</system-out>
+</testcase>
+</testsuite>

@@ -1,0 +1,8 @@
+Running cxxtest tests (1 test)
+In Int64::testInt64:
+Int64.h:12: Error: Expected ((__int64)1 == (__int64)2), found (1 != 2)
+Int64.h:13: Error: Expected ((__int64)3 != (__int64)3), found (3)
+Int64.h:14: Error: Expected ((__int64)5 < (__int64)4), found (5 >= 4)
+Failed 1 of 1 test
+Success rate: 0%
+Error level = 1

@@ -9,19 +9,18 @@
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.454902" g="0.501961" b="0.537255"/>
 		<Fog>
-			<FogFactor>0</FogFactor>
-			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.894118"/>
+			<FogFactor>0.00194336</FogFactor>
+			<FogThickness>0</FogThickness>
+			<FogColour r="0.913725" g="0.878431" b="0.780392"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.109804" g="0.219608" b="0.454902"/>
 				<Height>19.8295</Height>
-				<Shininess>4.15039</Shininess>
 				<Waviness>10</Waviness>
 				<Murkiness>0.825195</Murkiness>
-				<Tint r="0" g="0.501961" b="0.501961"/>
+				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0" g="1" b="1"/>
 				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
 			</WaterBody>
@@ -30,12 +29,12 @@
 			<Brightness>0</Brightness>
 			<Contrast>1</Contrast>
 			<Saturation>0.99</Saturation>
-			<Bloom>0.1999</Bloom>
-			<PostEffect>default</PostEffect>
+			<Bloom>0.140234</Bloom>
+			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="788.504" y="73.2782" z="353.082"/>
+		<Position x="219.486" y="115.624" z="444.614"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -49,10 +48,12 @@
   "Name": "Sicilia (2)",
   "PlayerData": [
     {
-      "Name": "Player 1"
+      "Name": "Player 1",
+      "StartingCamera": null
     },
     {
-      "Name": "Player 2"
+      "Name": "Player 2",
+      "StartingCamera": null
     }
   ],
   "Preview": "sicilia.png",
@@ -8630,7 +8631,7 @@
 		</Entity>
 		<Entity uid="2006">
 			<Template>actor|geology/stone_medit_med.xml</Template>
-			<Position x="755.24933" z="233.65485"/>
+			<Position x="778.83277" z="240.75355"/>
 			<Orientation y="0.54377"/>
 		</Entity>
 		<Entity uid="2007">
@@ -8640,7 +8641,7 @@
 		</Entity>
 		<Entity uid="2008">
 			<Template>actor|geology/stone_medit_med.xml</Template>
-			<Position x="773.68165" z="287.5943"/>
+			<Position x="774.3667" z="252.75986"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2009">
@@ -14725,18 +14726,6 @@
 			<Position x="873.56525" z="646.29126"/>
 			<Orientation y="-0.2741"/>
 		</Entity>
-		<Entity uid="3222">
-			<Template>gaia/fauna_whale_humpback</Template>
-			<Player>0</Player>
-			<Position x="532.0774" z="61.8358"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3223">
-			<Template>gaia/fauna_whale_humpback</Template>
-			<Player>0</Player>
-			<Position x="628.11548" z="959.78907"/>
-			<Orientation y="-2.05167"/>
-		</Entity>
 		<Entity uid="3224">
 			<Template>gaia/fauna_wolf</Template>
 			<Player>0</Player>
@@ -16081,14 +16070,12 @@
 			<Player>2</Player>
 			<Position x="777.14148" z="427.29505"/>
 			<Orientation y="2.35621"/>
-			<Actor seed="64872"/>
 		</Entity>
 		<Entity uid="3457">
 			<Template>skirmish/structures/default_house_5</Template>
 			<Player>2</Player>
 			<Position x="790.45917" z="414.15891"/>
 			<Orientation y="-2.32387"/>
-			<Actor seed="32924"/>
 		</Entity>
 		<Entity uid="3458">
 			<Template>skirmish/structures/default_house_10</Template>
@@ -16123,14 +16110,12 @@
 			<Player>1</Player>
 			<Position x="203.43368" z="635.12452"/>
 			<Orientation y="2.52015"/>
-			<Actor seed="33256"/>
 		</Entity>
 		<Entity uid="3463">
 			<Template>skirmish/structures/default_house_5</Template>
 			<Player>1</Player>
 			<Position x="219.00747" z="639.2295"/>
 			<Orientation y="2.35621"/>
-			<Actor seed="36612"/>
 		</Entity>
 		<Entity uid="3464">
 			<Template>gaia/fauna_fish</Template>
@@ -16151,28 +16136,38 @@
 			<Player>1</Player>
 			<Position x="232.94619" z="648.3631"/>
 			<Orientation y="2.35621"/>
-			<Actor seed="22754"/>
 		</Entity>
 		<Entity uid="3467">
 			<Template>skirmish/structures/default_house_5</Template>
 			<Player>1</Player>
 			<Position x="218.77616" z="657.13465"/>
 			<Orientation y="-0.78945"/>
-			<Actor seed="17080"/>
 		</Entity>
 		<Entity uid="3468">
 			<Template>skirmish/structures/default_house_5</Template>
 			<Player>2</Player>
 			<Position x="769.06653" z="411.24451"/>
 			<Orientation y="2.35621"/>
-			<Actor seed="14940"/>
 		</Entity>
 		<Entity uid="3469">
 			<Template>skirmish/structures/default_house_5</Template>
 			<Player>2</Player>
 			<Position x="798.02118" z="404.5098"/>
 			<Orientation y="2.35621"/>
-			<Actor seed="47882"/>
+		</Entity>
+		<Entity uid="3475">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="534.46113" z="76.86995"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36868"/>
+		</Entity>
+		<Entity uid="3476">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="635.2876" z="966.01343"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31658"/>
 		</Entity>
 	</Entities>
 	<Paths/>

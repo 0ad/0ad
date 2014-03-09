@@ -1,0 +1,15 @@
+{Start 7 tests} Running cxxtest tests (7 tests) {GreenYellowRed::test_Start_green()} . {GreenYellowRed::test_Green_again()}
+In GreenYellowRed::test_Green_again:
+GreenYellowRed.h:26: Trace: Still green
+. {GreenYellowRed::test_Now_yellow()}  {Yellow}
+In GreenYellowRed::test_Now_yellow:
+GreenYellowRed.h:32: Warning: Yellow
+. {GreenYellowRed::test_Cannot_go_back()} . {GreenYellowRed::test_Finally_red()}  {Red}
+In GreenYellowRed::test_Finally_red:
+GreenYellowRed.h:43: Error: Test failed: Red
+{GreenYellowRed::test_Cannot_go_back_to_yellow()} In GreenYellowRed::test_Cannot_go_back_to_yellow:
+GreenYellowRed.h:49: Warning: Yellow?
+. {GreenYellowRed::test_Cannot_go_back_to_green()} . {Stop}
+Failed 1 and Skipped 0 of 7 tests
+Success rate: 85%
+Error level = 1

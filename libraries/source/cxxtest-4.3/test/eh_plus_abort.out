@@ -1,0 +1,63 @@
+Running cxxtest tests (25 tests)
+In DynamicAbort::test_Abort_on_fail_in_this_test:
+DynamicAbort.h:8: Error: Expected (1 == 2), found (1 != 2)
+In DynamicAbort::test_Dont_abort_in_this_test:
+DynamicAbort.h:15: Error: Expected (1 == 2), found (1 != 2)
+DynamicAbort.h:16: Error: Expected (2 == 3), found (2 != 3)
+In DynamicAbort::test_Revert_to_abort:
+DynamicAbort.h:21: Error: Expected (1 == 2), found (1 != 2)
+In SetUpWorksAllTests::test_Dont_abort_in_this_test:
+DynamicAbort.h:36: Error: Expected (1 == 2), found (1 != 2)
+DynamicAbort.h:37: Error: Expected (2 == 3), found (2 != 3)
+In SetUpWorksAllTests::test_Dont_abort_in_this_test_either:
+DynamicAbort.h:42: Error: Expected (1 == 2), found (1 != 2)
+DynamicAbort.h:43: Error: Expected (2 == 3), found (2 != 3)
+In SetUpWorksAllTests::test_Override_in_this_test:
+DynamicAbort.h:49: Error: Expected (1 == 2), found (1 != 2)
+In DeepAbort::testAssertThrowsPassesAbort:
+DeepAbort.h:72: Error: Expected (0 == 1), found (0 != 1)
+In DeepAbort::testMessageAssertThrowsPassesAbort:
+DeepAbort.h:72: Error: Expected (0 == 1), found (0 != 1)
+In DeepAbort::testAssertThrowsAborts:
+DeepAbort.h:24: Error: Expected (succeed()) to throw (int) but it didn't throw
+In DeepAbort::testMessageAssertThrowsAborts:
+DeepAbort.h:30: Error: Test failed: succeed() should throw an int
+DeepAbort.h:30: Error: Expected (succeed()) to throw (int) but it didn't throw
+In DeepAbort::testAssertThrowsNothingPassesAbort:
+DeepAbort.h:72: Error: Expected (0 == 1), found (0 != 1)
+In DeepAbort::testMessageAssertThrowsNothingPassesAbort:
+DeepAbort.h:72: Error: Expected (0 == 1), found (0 != 1)
+In DeepAbort::testAssertThrowsNothingAborts:
+DeepAbort.h:48: Error: Expected (throwSomething()) not to throw, but it did
+In DeepAbort::testMessageAssertThrowsNothingAborts:
+DeepAbort.h:54: Error: Test failed: fail() shouldn't throw anything
+DeepAbort.h:54: Error: Expected (throwSomething()) not to throw, but it did
+In DeepAbort::testAssertThrowsAnything:
+DeepAbort.h:60: Error: Expected (succeed()) to throw (...) but it didn't throw
+In DeepAbort::testMessageAssertThrowsAnything:
+DeepAbort.h:66: Error: Test failed: succeed() should throw something
+DeepAbort.h:66: Error: Expected (succeed()) to throw (...) but it didn't throw
+In ThrowsAssert::test_TS_ASSERT_THROWS_EQUALS:
+ThrowsAssert.h:23: Error: Expected (i == 2), found (1 != 2)
+In ThrowsAssert::test_TS_ASSERT_THROWS_DIFFERS:
+ThrowsAssert.h:29: Error: Expected (i != 1), found (1)
+In ThrowsAssert::test_TS_ASSERT_THROWS_SAME_DATA:
+ThrowsAssert.h:35: Error: Expected 3 (3) bytes to be equal at (s) and ("456"), found:
+{ 31 32 33 }
+differs from
+{ 34 35 36 }
+In ThrowsAssert::test_TS_ASSERT_THROWS_LESS_THAN:
+ThrowsAssert.h:40: Error: Expected (i < 1), found (1 >= 1)
+In ThrowsAssert::test_TS_ASSERT_THROWS_LESS_THAN_EQUALS:
+ThrowsAssert.h:46: Error: Expected (i <= 0), found (1 > 0)
+In ThrowsAssert::test_TS_ASSERT_THROWS_PREDICATE:
+ThrowsAssert.h:52: Error: Expected Fail( i ), found !Fail( 1 )
+In ThrowsAssert::test_TS_ASSERT_THROWS_RELATION:
+ThrowsAssert.h:58: Error: Expected Fail( i, 1 ), found !Fail( 1, 1 )
+In ThrowsAssert::test_TS_ASSERT_THROWS_DELTA:
+ThrowsAssert.h:64: Error: Expected (i == 3) up to 1 (1), found (1 != 3)
+In ThrowsAssert::test_TS_ASSERT_THROWS_ASSERT:
+ThrowsAssert.h:71: Error: Expected (i == 2), found (1 != 2)
+Failed 25 and Skipped 0 of 25 tests
+Success rate: 0%
+Error level = 25

@@ -1,0 +1,11 @@
+Running cxxtest tests (3 tests)
+In TestNonFinite::testNaN:
+TestNonFinite.h:18: Error: Expected (nan == nan), found (nan != nan)
+TestNonFinite.h:19: Error: Expected (nan == zero), found (nan != 0.0000)
+In TestNonFinite::testPlusInf:
+TestNonFinite.h:25: Error: Expected (3.0 == plus_inf), found (3.0000 != inf)
+In TestNonFinite::testMinusInf:
+TestNonFinite.h:31: Error: Expected (1.0 / 3.0 == minus_inf), found (0.3333 != -inf)
+Failed 3 and Skipped 0 of 3 tests
+Success rate: 0%
+Error level = 3

@@ -1,0 +1,72 @@
+Running cxxtest tests (2 tests)
+In Factor::test_Some_numbers:
+Factor.h:30: Warning: 53 :)
+Factor.h:33: Warning: 0
+Factor.h:33: Warning: 1
+Factor.h:33: Warning: 2 :|
+Factor.h:33: Warning: 3 :|
+Factor.h:33: Warning: 4 = 2^2
+Factor.h:33: Warning: 5 :|
+Factor.h:33: Warning: 6 = 2 * 3
+Factor.h:33: Warning: 7 :|
+Factor.h:33: Warning: 8 = 2^3
+Factor.h:33: Warning: 9 = 3^2
+Factor.h:33: Warning: 10 = 2 * 5
+Factor.h:33: Warning: 11 :|
+Factor.h:33: Warning: 12 = 2^2 * 3
+Factor.h:33: Warning: 13 :|
+Factor.h:33: Warning: 14 = 2 * 7
+Factor.h:33: Warning: 15 = 3 * 5
+Factor.h:33: Warning: 16 = 2^4
+Factor.h:33: Warning: 17 :|
+Factor.h:33: Warning: 18 = 2 * 3^2
+Factor.h:33: Warning: 19 :|
+Factor.h:33: Warning: 20 = 2^2 * 5
+Factor.h:33: Warning: 21 = 3 * 7
+Factor.h:33: Warning: 22 = 2 * 11
+Factor.h:33: Warning: 23 :|
+Factor.h:33: Warning: 24 = 2^3 * 3
+Factor.h:33: Warning: 25 = 5^2
+Factor.h:33: Warning: 26 = 2 * 13
+Factor.h:33: Warning: 27 = 3^3
+Factor.h:33: Warning: 28 = 2^2 * 7
+Factor.h:33: Warning: 29 :|
+Factor.h:33: Warning: 30 = 2 * 3 * 5
+Factor.h:33: Warning: 31 :|
+Factor.h:32: Error: Expected (n != 32), found (32)
+Factor.h:33: Warning: 32 = 2^5
+Factor.h:33: Warning: 33 = 3 * 11
+Factor.h:33: Warning: 34 = 2 * 17
+Factor.h:33: Warning: 35 = 5 * 7
+Factor.h:33: Warning: 36 = 2^2 * 3^2
+Factor.h:33: Warning: 37 :(
+Factor.h:33: Warning: 38 = 2 * 19
+Factor.h:33: Warning: 39 = 3 * 13
+Factor.h:33: Warning: 40 = 2^3 * 5
+Factor.h:33: Warning: 41 :(
+Factor.h:33: Warning: 42 = 2 * 3 * 7
+Factor.h:33: Warning: 43 :(
+Factor.h:33: Warning: 44 = 2^2 * 11
+Factor.h:33: Warning: 45 = 3^2 * 5
+Factor.h:33: Warning: 46 = 2 * 23
+Factor.h:33: Warning: 47 :(
+Factor.h:33: Warning: 48 = 2^4 * 3
+Factor.h:33: Warning: 49 = 7^2
+Factor.h:33: Warning: 50 = 2 * 5^2
+Factor.h:33: Warning: 51 = 3 * 17
+Factor.h:33: Warning: 52 = 2^2 * 13
+Factor.h:33: Warning: 53 :(
+Factor.h:33: Warning: 54 = 2 * 3^3
+Factor.h:33: Warning: 55 = 5 * 11
+Factor.h:33: Warning: 56 = 2^3 * 7
+Factor.h:33: Warning: 57 = 3 * 19
+Factor.h:33: Warning: 58 = 2 * 29
+Factor.h:33: Warning: 59 :(
+Factor.h:33: Warning: 60 = 2^2 * 3 * 5
+Factor.h:33: Warning: 61 :(
+Factor.h:33: Warning: 62 = 2 * 31
+Factor.h:33: Warning: 63 = 3^2 * 7
+.
+Failed 1 of 2 :( tests
+Success rate: 50%
+Error level = 1
