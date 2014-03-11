@@ -226,8 +226,8 @@ $(LIBRARY):	$(LIBOBJS)
 
 $(SHAREDLIBRARY):	$(LIBOBJS)
 ifeq ($(OS), Darwin)
-#	$(CC) -dynamiclib $(LDFLAGS) -Wl,-install_name,$(SONAME) -o $@ $^
-	$(CC) -dynamiclib $(LDFLAGS) -Wl,-install_name,$(INSTALLDIRLIB)/$(SONAME) -o $@ $^
+	$(CC) -dynamiclib $(LDFLAGS) -Wl,-install_name,$(SONAME) -o $@ $^
+#	$(CC) -dynamiclib $(LDFLAGS) -Wl,-install_name,$(INSTALLDIRLIB)/$(SONAME) -o $@ $^
 else
 	$(CC) -shared $(LDFLAGS) -Wl,-soname,$(SONAME) -o $@ $^
 endif
