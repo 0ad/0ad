@@ -3439,6 +3439,8 @@ UnitAI.prototype.FinishOrder = function()
 	{
 		this.SetNextState("IDLE");
 
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
+
 		// Check if there are queued formation orders
 		if (this.IsFormationMember())
 		{
