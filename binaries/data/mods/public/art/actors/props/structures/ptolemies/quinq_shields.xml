@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Ptolemaic sail">
+      <mesh>structural/ptol_ship_quinquereme_shields.dae</mesh>
+      <textures>
+       <texture file="props/shield/ptol_round_k_eagle2_bronze_player.png" name="baseTex"/>
+       <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+       <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

@@ -59,14 +59,14 @@
 			<!-- Player assignments -->
 			<object size="24 59 100%-440 358" type="image" sprite="ModernDarkBoxGold" name="playerAssignmentsPannel">
 				<object size="0 6 100% 30">
-					<object name="playerNameHeading" type="text" style="ModernLabelText" size="0 0 25% 100%">Player Name</object>
-					<object name="playerPlacementHeading" type="text" style="ModernLabelText" size="25%+5 0 55% 100%">Player Placement</object>
-					<object name="playerCivHeading" type="text" style="ModernLabelText" size="55%+65 0 85% 100%">Civilization</object>
+					<object name="playerNameHeading" type="text" style="ModernLabelText" size="0 0 20% 100%">Player Name</object>
+					<object name="playerPlacementHeading" type="text" style="ModernLabelText" size="20%+5 0 50% 100%">Player Placement</object>
+					<object name="playerCivHeading" type="text" style="ModernLabelText" size="50%+65 0 85% 100%">Civilization</object>
 					<object name="civInfoButton"
 						type="button"
 						sprite="iconInfoGold"
 						sprite_over="iconInfoWhite"
-						size="85%-8 0 85%+8 16"
+						size="82%-8 0 82%+8 16"
 						tooltip_style="onscreenToolTip"
 						tooltip="View civilization info"
 					>
@@ -80,15 +80,15 @@
 					<repeat count="8">
 						<object name="playerBox[n]" size="0 0 100% 32" hidden="true">
 							<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
-							<object name="playerName[n]" type="text" style="ModernLabelText" size="0 2 25% 30"/>
-							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="25%+5 2 55% 30" tooltip_style="onscreenToolTip" tooltip="Select player."/>
-							<object name="playerConfig[n]" type="button" style="StoneButton" size="55%+5 6 55%+60 26"
+							<object name="playerName[n]" type="text" style="ModernLabelText" size="0 2 20% 30"/>
+							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="20%+5 2 50% 30" tooltip_style="onscreenToolTip" tooltip="Select player."/>
+							<object name="playerConfig[n]" type="button" style="StoneButton" size="50%+5 6 50%+60 26"
 								tooltip_style="onscreenToolTip"
 								tooltip="Configure AI settings."
 								font="serif-bold-stroke-12"
 							>Settings</object>
-							<object name="playerCiv[n]" type="dropdown" style="ModernDropDown" size="55%+65 2 85% 30" tooltip_style="onscreenToolTip" tooltip="Select player's civilization."/>
-							<object name="playerCivText[n]" type="text" style="ModernLabelText" size="55%+65 0 85% 30"/>
+							<object name="playerCiv[n]" type="dropdown" style="ModernDropDown" size="50%+65 2 85% 30" tooltip_style="onscreenToolTip" tooltip="Select player's civilization."/>
+							<object name="playerCivText[n]" type="text" style="ModernLabelText" size="50%+65 0 85% 30"/>
 							<object name="playerTeam[n]" type="dropdown" style="ModernDropDown" size="85%+5 2 100%-5 30" tooltip_style="onscreenToolTip" tooltip="Select player's team."/>
 							<object name="playerTeamText[n]" type="text" style="ModernLabelText" size="85%+5 0 100%-5 100%"/>
 						</object>
@@ -159,7 +159,7 @@
 			</object>
 
 			<!-- Chat window -->
-			<object name="chatPanel" size="24 370 100%-440 100%-58" type="image" sprite="ModernDarkBoxGold">
+			<object name="chatPanel" size="24 370 100%-440 100%-60" type="image" sprite="ModernDarkBoxGold">
 				<object name="chatText" size="2 2 100%-2 100%-26" type="text" style="ChatPanel"/>
 
 				<object name="chatInput" size="4 100%-24 100%-76 100%-4" type="input" style="ModernInput">
