@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="ptolemaic dock cloth full playercolor">
+      <mesh>props/ptol_dock_cloth.dae</mesh>
+      <textures>
+       <texture file="props/stall_big_cloth.png" name="baseTex"/>
+       <texture file="props/stall_big_cloth_norm.png" name="normTex"/>
+       <texture file="props/stall_big_cloth_spec.png" name="specTex"/>
+       <texture file="structural/ao/ptol_dock.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ptolemaic dock clothstripes1">
+      <mesh>props/ptol_dock_cloth.dae</mesh>
+      <textures>
+       <texture file="props/stall_big_stripe_a_cloth.png" name="baseTex"/>
+       <texture file="props/stall_big_cloth_norm.png" name="normTex"/>
+       <texture file="props/stall_big_cloth_spec.png" name="specTex"/>
+       <texture file="structural/ao/ptol_dock.png" name="aoTex"/>
+      </textures>
+    </variant>	  
+    <variant frequency="1" name="ptolemaic dock cloth stripes2">
+      <mesh>props/ptol_dock_cloth.dae</mesh>
+      <textures>
+       <texture file="props/stall_big_stripe_b_cloth.png" name="baseTex"/>
+       <texture file="props/stall_big_cloth_norm.png" name="normTex"/>
+       <texture file="props/stall_big_cloth_spec.png" name="specTex"/>
+       <texture file="structural/ao/ptol_dock.png" name="aoTex"/>
+      </textures>
+    </variant>
+
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

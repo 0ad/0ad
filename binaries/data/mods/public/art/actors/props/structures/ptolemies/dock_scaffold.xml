@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/ptol_dock_scaffold.dae</mesh>
+      <textures>
+        <texture file="props/scaffold.png" name="baseTex"/>
+		    <texture file="structural/ao/ptol_dock.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_ao.xml</material>
+</actor>
