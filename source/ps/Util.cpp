@@ -173,7 +173,7 @@ const wchar_t* ErrorString(int err)
 Status tex_write(Tex* t, const VfsPath& filename)
 {
 	DynArray da;
-	RETURN_STATUS_IF_ERR(tex_encode(t, filename.Extension(), &da));
+	RETURN_STATUS_IF_ERR(t->encode(filename.Extension(), &da));
 
 	// write to disk
 	Status ret = INFO::OK;
@@ -230,7 +230,7 @@ void WriteScreenshot(const VfsPath& extension)
 	AllocateAligned(buf, hdr_size+img_size, maxSectorSize);
 	GLvoid* img = buf.get() + hdr_size;
 	Tex t;
-	if(tex_wrap(w, h, bpp, flags, buf, hdr_size, &t) < 0)
+	if(t.wrap(w, h, bpp, flags, buf, hdr_size) < 0)
 		return;
 	glReadPixels(0, 0, (GLsizei)w, (GLsizei)h, fmt, GL_UNSIGNED_BYTE, img);
 
@@ -242,8 +242,6 @@ void WriteScreenshot(const VfsPath& extension)
 	}
 	else
 		LOGERROR(L"Error writing screenshot to '%ls'", filename.string().c_str());
-
-	tex_free(&t);
 }
 
 
@@ -294,7 +292,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 
 	Tex t;
 	GLvoid* img = img_buf.get() + hdr_size;
-	if(tex_wrap(img_w, img_h, bpp, flags, img_buf, hdr_size, &t) < 0)
+	if(t.wrap(img_w, img_h, bpp, flags, img_buf, hdr_size) < 0)
 	{
 		free(tile_data);
 		return;
@@ -378,6 +376,5 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	else
 		LOGERROR(L"Error writing screenshot to '%ls'", filename.string().c_str());
 
-	tex_free(&t);
 	free(tile_data);
 }

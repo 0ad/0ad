@@ -1929,7 +1929,7 @@ int CRenderer::LoadAlphaMaps()
 
 	// upload the composite texture
 	Tex t;
-	(void)tex_wrap(total_w, total_h, 8, TEX_GREY, data, 0, &t);
+	(void)t.wrap(total_w, total_h, 8, TEX_GREY, data, 0);
 	
 	/*VfsPath filename("blendtex.png");
 	

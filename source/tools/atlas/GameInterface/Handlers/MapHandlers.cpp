@@ -172,22 +172,21 @@ MESSAGEHANDLER(ImportHeightmap)
 
 	// decode to a raw pixel format
 	Tex tex;
-	if (tex_decode(fileData, fileSize, &tex) < 0)
+	if (tex.decode(fileData, fileSize) < 0)
 	{
 		LOGERROR(L"Failed to decode heightmap.");
 		return;
 	}
 
 	// Convert to uncompressed BGRA with no mipmaps
-	if (tex_transform_to(&tex, (tex.flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
+	if (tex.transform_to((tex.m_Flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
 	{
 		LOGERROR(L"Failed to transform heightmap.");
-		tex_free(&tex);
 		return;
 	}
 
 	// pick smallest side of texture; truncate if not divisible by PATCH_SIZE
-	ssize_t terrainSize = std::min(tex.w, tex.h);
+	ssize_t terrainSize = std::min(tex.m_Width, tex.m_Height);
 	terrainSize -= terrainSize % PATCH_SIZE;
 	
 	// resize terrain to heightmap size
@@ -198,9 +197,9 @@ MESSAGEHANDLER(ImportHeightmap)
 	u16* heightmap = g_Game->GetWorld()->GetTerrain()->GetHeightMap();
 	ssize_t hmSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 	
-	u8* mapdata = tex_get_data(&tex);
-	ssize_t bytesPP = tex.bpp / 8;
-	ssize_t mapLineSkip = tex.w * bytesPP;
+	u8* mapdata = tex.get_data();
+	ssize_t bytesPP = tex.m_Bpp / 8;
+	ssize_t mapLineSkip = tex.m_Width * bytesPP;
 	
 	for (ssize_t y = 0; y < terrainSize; ++y)
 	{
@@ -214,8 +213,6 @@ MESSAGEHANDLER(ImportHeightmap)
 			heightmap[(terrainSize-y-1) * hmSize + x] = clamp(value * 256, 0, 65535);
 		}
 	}
-	
-	tex_free(&tex);
 	
 	// update simulation
 	CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);

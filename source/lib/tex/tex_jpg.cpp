@@ -503,16 +503,8 @@ static Status jpg_decode_impl(rpU8 data, size_t size, jpeg_decompress_struct* ci
 	if(cinfo->err->num_warnings != 0)
 		ret = WARN::TEX_INVALID_DATA;
 
-	// store image info
-	t->data  = img;
-	t->dataSize = imgSize;
-	t->ofs   = 0;
-	t->w     = w;
-	t->h     = h;
-	t->bpp   = bpp;
-	t->flags = flags;
-
-	return ret;
+	// store image info and validate
+	return ret | t->wrap(w,h,bpp,flags,img,0);
 }
 
 
@@ -522,10 +514,10 @@ static Status jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* da)
 
 	// describe image format
 	// required:
-	cinfo->image_width = (JDIMENSION)t->w;
-	cinfo->image_height = (JDIMENSION)t->h;
-	cinfo->input_components = (int)t->bpp / 8;
-	cinfo->in_color_space = (t->bpp == 8)? JCS_GRAYSCALE : JCS_RGB;
+	cinfo->image_width = (JDIMENSION)t->m_Width;
+	cinfo->image_height = (JDIMENSION)t->m_Height;
+	cinfo->input_components = (int)t->m_Bpp / 8;
+	cinfo->in_color_space = (t->m_Bpp == 8)? JCS_GRAYSCALE : JCS_RGB;
 	// defaults depend on cinfo->in_color_space already having been set!
 	jpeg_set_defaults(cinfo);
 	// (add optional settings, e.g. quality, here)
@@ -535,16 +527,16 @@ static Status jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* da)
 	jpeg_start_compress(cinfo, TRUE);
 
 	// if BGR, convert to RGB.
-	WARN_IF_ERR(tex_transform_to(t, t->flags & ~TEX_BGR));
+	WARN_IF_ERR(t->transform_to(t->m_Flags & ~TEX_BGR));
 
-	const size_t pitch = t->w * t->bpp / 8;
-	u8* data = tex_get_data(t);
-	std::vector<RowPtr> rows = tex_codec_alloc_rows(data, t->h, pitch, t->flags, TEX_TOP_DOWN);
+	const size_t pitch = t->m_Width * t->m_Bpp / 8;
+	u8* data = t->get_data();
+	std::vector<RowPtr> rows = tex_codec_alloc_rows(data, t->m_Height, pitch, t->m_Flags, TEX_TOP_DOWN);
 
 	// could use cinfo->output_scanline to keep track of progress,
 	// but we need to count lines_left anyway (paranoia).
 	JSAMPARRAY row = (JSAMPARRAY)&rows[0];
-	JDIMENSION lines_left = (JDIMENSION)t->h;
+	JDIMENSION lines_left = (JDIMENSION)t->m_Height;
 	while(lines_left != 0)
 	{
 		JDIMENSION lines_read = jpeg_write_scanlines(cinfo, row, lines_left);

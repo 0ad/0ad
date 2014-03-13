@@ -232,7 +232,7 @@ void CHeightMipmap::DumpToDisk(const VfsPath& filename) const
 	AllocateAligned(buf, hdr_size+img_size, maxSectorSize);
 	void* img = buf.get() + hdr_size;
 	Tex t;
-	WARN_IF_ERR(tex_wrap(w, h, bpp, flags, buf, hdr_size, &t));
+	WARN_IF_ERR(t.wrap(w, h, bpp, flags, buf, hdr_size));
 
 	memset(img, 0x00, img_size);
 	size_t yoff = 0;
@@ -253,9 +253,7 @@ void CHeightMipmap::DumpToDisk(const VfsPath& filename) const
 	}
 
 	DynArray da;
-	WARN_IF_ERR(tex_encode(&t, filename.Extension(), &da));
+	WARN_IF_ERR(t.encode(filename.Extension(), &da));
 	g_VFS->CreateFile(filename, DummySharedPtr(da.base), da.pos);
 	(void)da_free(&da);
-
-	tex_free(&t);
 }

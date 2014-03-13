@@ -153,16 +153,8 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 	// success; make sure all data was consumed.
 	ENSURE(stream->RemainingSize() == 0);
 
-	// store image info
-	t->data     = data;
-	t->dataSize = img_size;
-	t->ofs   = 0;
-	t->w     = w;
-	t->h     = h;
-	t->bpp   = bpp;
-	t->flags = flags;
-
-	return INFO::OK;
+	// store image info and validate
+	return t->wrap(w,h,bpp,flags,data,0);
 }
 
 
@@ -170,11 +162,11 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 // "dtor / setjmp interaction" warning.
 static Status png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, DynArray* da)
 {
-	const png_uint_32 w = (png_uint_32)t->w, h = (png_uint_32)t->h;
-	const size_t pitch = w * t->bpp / 8;
+	const png_uint_32 w = (png_uint_32)t->m_Width, h = (png_uint_32)t->m_Height;
+	const size_t pitch = w * t->m_Bpp / 8;
 
 	int colour_type;
-	switch(t->flags & (TEX_GREY|TEX_ALPHA))
+	switch(t->m_Flags & (TEX_GREY|TEX_ALPHA))
 	{
 	case TEX_GREY|TEX_ALPHA:
 		colour_type = PNG_COLOR_TYPE_GRAY_ALPHA;
@@ -194,11 +186,11 @@ static Status png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, D
 	png_set_IHDR(png_ptr, info_ptr, w, h, 8, colour_type,
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
-	u8* data = tex_get_data(t);
-	std::vector<RowPtr> rows = tex_codec_alloc_rows(data, h, pitch, t->flags, TEX_TOP_DOWN);
+	u8* data = t->get_data();
+	std::vector<RowPtr> rows = tex_codec_alloc_rows(data, h, pitch, t->m_Flags, TEX_TOP_DOWN);
 
 	// PNG is native RGB.
-	const int png_transforms = (t->flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
+	const int png_transforms = (t->m_Flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
 
 	png_set_rows(png_ptr, info_ptr, (png_bytepp)&rows[0]);
 	png_write_png(png_ptr, info_ptr, png_transforms, 0);

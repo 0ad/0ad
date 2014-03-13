@@ -333,7 +333,7 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 
 	// upload the composite texture
 	Tex t;
-	(void)tex_wrap(total_w, total_h, 8, TEX_GREY, data, 0, &t);
+	(void)t.wrap(total_w, total_h, 8, TEX_GREY, data, 0);
 	
 	// uncomment the following to save a png of the generated texture
 	// in the public/ directory, for debugging

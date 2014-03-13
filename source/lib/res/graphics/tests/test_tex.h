@@ -35,27 +35,31 @@ class TestTex : public CxxTest::TestSuite
 		shared_ptr<u8> img(new u8[size], ArrayDeleter());
 		std::generate(img.get(), img.get()+size, rand);
 
-		// wrap in Tex
-		Tex t;
-		TS_ASSERT_OK(tex_wrap(w, h, bpp, flags, img, 0, &t));
-
-		// encode to file format
+		// create the DynArray that will be wrapped in a Tex Object
 		DynArray da;
-		TS_ASSERT_OK(tex_encode(&t, extension, &da));
-		memset(&t, 0, sizeof(t));
 
-		// decode from file format
-		shared_ptr<u8> ptr = DummySharedPtr(da.base);
-		TS_ASSERT_OK(tex_decode(ptr, da.cur_size, &t));
+		// Once the Tex created here goes out of scope, the DynArray should be freed
+		{
+			// wrap in Tex
+			Tex t;
+			TS_ASSERT_OK(t.wrap(w, h, bpp, flags, img, 0));
 
-		// make sure pixel format gets converted completely to plain
-		TS_ASSERT_OK(tex_transform_to(&t, 0));
+			// encode to file format
+			TS_ASSERT_OK(t.encode(extension, &da));
+			memset(&t, 0, sizeof(t));
 
-		// compare img
-		TS_ASSERT_SAME_DATA(tex_get_data(&t), img.get(), size);
+			// decode from file format
+			shared_ptr<u8> ptr = DummySharedPtr(da.base);
+			TS_ASSERT_OK(t.decode(ptr, da.cur_size));
+
+			// make sure pixel format gets converted completely to plain
+			TS_ASSERT_OK(t.transform_to(0));
+
+			// compare img
+			TS_ASSERT_SAME_DATA(t.get_data(), img.get(), size);
+		}
 
 		// cleanup
-		tex_free(&t);
 		TS_ASSERT_OK(da_free(&da));
 	}
 
@@ -136,10 +140,10 @@ public:
 		// assumes 2x2 box filter algorithm with rounding
 		static const u8 mipmap[] = { 0x6C,0x79,0x87 };
 		Tex t;
-		TS_ASSERT_OK(tex_wrap(2, 2, 24, 0, img, 0, &t));
-		TS_ASSERT_OK(tex_transform_to(&t, TEX_MIPMAPS));
-		const u8* const out_img = tex_get_data(&t);
-		TS_ASSERT_EQUALS((int)tex_img_size(&t), 12+3);
+		TS_ASSERT_OK(t.wrap(2, 2, 24, 0, img, 0));
+		TS_ASSERT_OK(t.transform_to(TEX_MIPMAPS));
+		const u8* const out_img = t.get_data();
+		TS_ASSERT_EQUALS((int)t.img_size(), 12+3);
 		TS_ASSERT_SAME_DATA(out_img, imgData, 12);
 		TS_ASSERT_SAME_DATA(out_img+12, mipmap, 3);
 	}
@@ -149,13 +153,13 @@ public:
 		shared_ptr<u8> img(new u8[100*100*4], ArrayDeleter());
 
 		Tex t;
-		TS_ASSERT_OK(tex_wrap(100, 100, 32, TEX_ALPHA, img, 0, &t));
-		TS_ASSERT_EQUALS((int)tex_img_size(&t), 40000);
+		TS_ASSERT_OK(t.wrap(100, 100, 32, TEX_ALPHA, img, 0));
+		TS_ASSERT_EQUALS((int)t.img_size(), 40000);
 
 		// DXT rounds up to 4x4 blocks; DXT1a is 4bpp
 		Tex t2;
-		TS_ASSERT_OK(tex_wrap(97, 97, 4, DXT1A, img, 0, &t2));
-		TS_ASSERT_EQUALS((int)tex_img_size(&t2),  5000);
+		TS_ASSERT_OK(t2.wrap(97, 97, 4, DXT1A, img, 0));
+		TS_ASSERT_EQUALS((int)t2.img_size(),  5000);
 	}
 
 	void test_s3tc_decode()
@@ -176,17 +180,15 @@ public:
 
 		// wrap in Tex
 		Tex t;
-		TS_ASSERT_OK(tex_wrap(w, h, bpp, flags, img, 0, &t));
+		TS_ASSERT_OK(t.wrap(w, h, bpp, flags, img, 0));
 
 		// decompress S3TC
-		TS_ASSERT_OK(tex_transform_to(&t, 0));
+		TS_ASSERT_OK(t.transform_to(0));
 
 		// compare img
-		TS_ASSERT_SAME_DATA(tex_get_data(&t), expected, 48);
+		TS_ASSERT_SAME_DATA(t.get_data(), expected, 48);
 
 		// cleanup
-		tex_free(&t);
-
 		tex_codec_unregister_all();
 	}
 };

@@ -331,22 +331,21 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	}
 
 	Tex tex;
-	if (tex_decode(file, fileSize, &tex) < 0)
+	if (tex.decode(file, fileSize) < 0)
 	{
 		LOGERROR(L"Failed to decode texture \"%ls\"", src.string().c_str());
 		return false;
 	}
 
 	// Check whether there's any alpha channel
-	bool hasAlpha = ((tex.flags & TEX_ALPHA) != 0);
+	bool hasAlpha = ((tex.m_Flags & TEX_ALPHA) != 0);
 
 	if (settings.format == FMT_ALPHA)
 	{
 		// Convert to uncompressed 8-bit with no mipmaps
-		if (tex_transform_to(&tex, (tex.flags | TEX_GREY) & ~(TEX_DXT | TEX_MIPMAPS | TEX_ALPHA)) < 0)
+		if (tex.transform_to((tex.m_Flags | TEX_GREY) & ~(TEX_DXT | TEX_MIPMAPS | TEX_ALPHA)) < 0)
 		{
 			LOGERROR(L"Failed to transform texture \"%ls\"", src.string().c_str());
-			tex_free(&tex);
 			return false;
 		}
 	}
@@ -355,17 +354,16 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 		// TODO: grayscale images will fail on some systems
 		// see http://trac.wildfiregames.com/ticket/1640
 		// (plain_transform doesn't know how to construct the alpha channel)
-		if (tex.flags & TEX_GREY)
+		if (tex.m_Flags & TEX_GREY)
 		{
 			LOGERROR(L"Failed to convert grayscale texture \"%ls\" - only RGB textures are currently supported", src.string().c_str());
 			return false;
 		}
 
 		// Convert to uncompressed BGRA with no mipmaps
-		if (tex_transform_to(&tex, (tex.flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
+		if (tex.transform_to((tex.m_Flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
 		{
 			LOGERROR(L"Failed to transform texture \"%ls\"", src.string().c_str());
-			tex_free(&tex);
 			return false;
 		}
 	}
@@ -375,8 +373,8 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	if (hasAlpha)
 	{
 		hasAlpha = false;
-		u8* data = tex_get_data(&tex);
-		for (size_t i = 0; i < tex.w * tex.h; ++i)
+		u8* data = tex.get_data();
+		for (size_t i = 0; i < tex.m_Width * tex.m_Height; ++i)
 		{
 			if (data[i*4+3] != 0xFF)
 			{
@@ -454,28 +452,25 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	// TODO: normal maps, gamma, etc
 
 	// Load the texture data
-	request->inputOptions.setTextureLayout(nvtt::TextureType_2D, tex.w, tex.h);
-	if (tex.bpp == 32)
+	request->inputOptions.setTextureLayout(nvtt::TextureType_2D, tex.m_Width, tex.m_Height);
+	if (tex.m_Bpp == 32)
 	{
-		request->inputOptions.setMipmapData(tex_get_data(&tex), tex.w, tex.h);
+		request->inputOptions.setMipmapData(tex.get_data(), tex.m_Width, tex.m_Height);
 	}
 	else // bpp == 8
 	{
 		// NVTT requires 32-bit input data, so convert
-		const u8* input = tex_get_data(&tex);
-		u8* rgba = new u8[tex.w * tex.h * 4];
+		const u8* input = tex.get_data();
+		u8* rgba = new u8[tex.m_Width * tex.m_Height * 4];
 		u8* p = rgba;
-		for (size_t i = 0; i < tex.w * tex.h; i++)
+		for (size_t i = 0; i < tex.m_Width * tex.m_Height; i++)
 		{
 			p[0] = p[1] = p[2] = p[3] = *input++;
 			p += 4;
 		}
-		request->inputOptions.setMipmapData(rgba, tex.w, tex.h);
+		request->inputOptions.setMipmapData(rgba, tex.m_Width, tex.m_Height);
 		delete[] rgba;
 	}
-
-	// NVTT copies the texture data so we can free it now
-	tex_free(&tex);
 
 	pthread_mutex_lock(&m_WorkerMutex);
 	m_RequestQueue.push_back(request);

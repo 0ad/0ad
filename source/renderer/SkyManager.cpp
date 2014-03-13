@@ -88,7 +88,7 @@ void SkyManager::LoadSkyTextures()
 		texture->Prefetch();
 		m_SkyTexture[i] = texture;
 	}*/
-	
+
 	///////////////////////////////////////////////////////////////////////////
 	// HACK: THE HORRIBLENESS HERE IS OVER 9000. The following code is a HUGE hack and will be removed completely
 	// as soon as all the hardcoded GL_TEXTURE_2D references are corrected in the TextureManager/OGL/tex libs.
@@ -132,37 +132,35 @@ void SkyManager::LoadSkyTextures()
 		}
 		
 		Tex tex;
-		tex_decode(file, fileSize, &tex);
+		tex.decode(file, fileSize);
 		
-		tex_transform_to(&tex, (tex.flags | TEX_BOTTOM_UP | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS));
+		tex.transform_to((tex.m_Flags | TEX_BOTTOM_UP | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS));
 		
-		u8* data = tex_get_data(&tex);
+		u8* data = tex.get_data();
 		
 		if (types[i] == GL_TEXTURE_CUBE_MAP_NEGATIVE_Y || types[i] == GL_TEXTURE_CUBE_MAP_POSITIVE_Y)
 		{
-			std::vector<u8> rotated(tex.dataSize);
+			std::vector<u8> rotated(tex.m_DataSize);
 		
-			for (size_t y = 0; y < tex.h; ++y)
+			for (size_t y = 0; y < tex.m_Height; ++y)
 			{
-				for (size_t x = 0; x < tex.w; ++x)
+				for (size_t x = 0; x < tex.m_Width; ++x)
 				{
-					size_t invx = y, invy = tex.w-x-1;
+					size_t invx = y, invy = tex.m_Width-x-1;
 					
-					rotated[(y*tex.w + x) * 4 + 0] = data[(invy*tex.w + invx) * 4 + 0];
-					rotated[(y*tex.w + x) * 4 + 1] = data[(invy*tex.w + invx) * 4 + 1];
-					rotated[(y*tex.w + x) * 4 + 2] = data[(invy*tex.w + invx) * 4 + 2];
-					rotated[(y*tex.w + x) * 4 + 3] = data[(invy*tex.w + invx) * 4 + 3];
+					rotated[(y*tex.m_Width + x) * 4 + 0] = data[(invy*tex.m_Width + invx) * 4 + 0];
+					rotated[(y*tex.m_Width + x) * 4 + 1] = data[(invy*tex.m_Width + invx) * 4 + 1];
+					rotated[(y*tex.m_Width + x) * 4 + 2] = data[(invy*tex.m_Width + invx) * 4 + 2];
+					rotated[(y*tex.m_Width + x) * 4 + 3] = data[(invy*tex.m_Width + invx) * 4 + 3];
 				}
 			}
 			
-			glTexImage2D(types[i], 0, GL_RGB, tex.w, tex.h, 0, GL_RGBA, GL_UNSIGNED_BYTE, &rotated[0]);
+			glTexImage2D(types[i], 0, GL_RGB, tex.m_Width, tex.m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &rotated[0]);
 		}
 		else
 		{
-			glTexImage2D(types[i], 0, GL_RGB, tex.w, tex.h, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(types[i], 0, GL_RGB, tex.m_Width, tex.m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		}
-		
-		tex_free(&tex);
 	}
 	
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

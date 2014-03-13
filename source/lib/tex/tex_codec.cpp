@@ -175,9 +175,9 @@ std::vector<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 
 Status tex_codec_write(Tex* t, size_t transforms, const void* hdr, size_t hdr_size, DynArray* da)
 {
-	RETURN_STATUS_IF_ERR(tex_transform(t, transforms));
+	RETURN_STATUS_IF_ERR(t->transform(transforms));
 
-	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
+	void* img_data = t->get_data(); const size_t img_size = t->img_size();
 	RETURN_STATUS_IF_ERR(da_append(da, hdr, hdr_size));
 	RETURN_STATUS_IF_ERR(da_append(da, img_data, img_size));
 	return INFO::OK;
