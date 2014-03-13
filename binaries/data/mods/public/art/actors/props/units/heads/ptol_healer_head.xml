@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations/>
+      <mesh>props/dude_head.dae</mesh>
+      <props/>
+      <textures>
+<texture file="props/head/ptol_healer.png" name="baseTex"/>
+<texture file="props/head/ptol_healer_spec.png" name="specTex"/>
+</textures>
+    </variant>
+  </group>
+<material>player_trans_spec.xml</material>
+</actor>

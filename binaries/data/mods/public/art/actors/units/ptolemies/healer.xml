@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="biped/inf_staff_idle_a.dae" name="Idle" speed="200"/>
+        <animation file="biped/inf_staff_walk_a.dae" name="Walk" speed="20"/>
+        <animation file="biped/inf_staff_walk_a.dae" name="Run" speed="20"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
+        <animation file="female/f_salute_01.dae" name="Heal" speed="30"/>
+      </animations>
+      <mesh>skeletal/m_dress_a.pmd</mesh>
+<textures>
+<texture file="skeletal/ptol_healer.png" name="baseTex"/>
+<texture file="skeletal/ptol_healer_spec.png" name="specTex"/>
+</textures>
+      <props>
+        <prop actor="props/units/heads/ptol_healer_head.xml" attachpoint="head"/>
+        <prop actor="props/units/staff.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>
