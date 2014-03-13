@@ -462,7 +462,7 @@ TIMER_ACCRUE(tc_plain_transform);
 
 TIMER_ADD_CLIENT(tc_transform);
 
-// change <t>'s pixel format by flipping the state of all TEX_* flags
+// change the pixel format by flipping the state of all TEX_* flags
 // that are set in transforms.
 Status Tex::transform(size_t transforms)
 {
@@ -489,11 +489,11 @@ Status Tex::transform(size_t transforms)
 }
 
 
-// change <t>'s pixel format to the new format specified by <new_flags>.
-// (note: this is equivalent to tex_transform(t, t->flags^new_flags).
+// change the pixel format to the new format specified by <new_flags>.
+// (note: this is equivalent to transform(t, t->flags^new_flags).
 Status Tex::transform_to(size_t new_flags)
 {
-	// tex_transform takes care of validating <t>
+	// transform takes care of validating
 	const size_t transforms = m_Flags ^ new_flags;
 	return transform(transforms);
 }
@@ -559,9 +559,9 @@ bool tex_orientations_match(size_t src_flags, size_t dst_orientation)
 //-----------------------------------------------------------------------------
 
 // indicate if <filename>'s extension is that of a texture format
-// supported by tex_load. case-insensitive.
+// supported by Tex::load. case-insensitive.
 //
-// rationale: tex_load complains if the given file is of an
+// rationale: Tex::load complains if the given file is of an
 // unsupported type. this API allows users to preempt that warning
 // (by checking the filename themselves), and also provides for e.g.
 // enumerating only images in a file picker.
@@ -580,7 +580,7 @@ bool tex_is_known_extension(const VfsPath& pathname)
 
 
 // store the given image data into a Tex object; this will be as if
-// it had been loaded via tex_load.
+// it had been loaded via Tex::load.
 //
 // rationale: support for in-memory images is necessary for
 //   emulation of glCompressedTexImage2D and useful overall.
@@ -609,7 +609,7 @@ Status Tex::wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<
 // use of it impossible.
 void Tex::free()
 {
-	// do not validate <t> - this is called from tex_load if loading
+	// do not validate - this is called from Tex::load if loading
 	// failed, so not all fields may be valid.
 
 	m_Data.reset();
@@ -756,7 +756,7 @@ Status Tex::encode(const OsPath& extension, DynArray* da)
 
 	// we could be clever here and avoid the extra alloc if our current
 	// memory block ensued from the same kind of texture file. this is
-	// most likely the case if in_img == tex_get_data() + c->hdr_size(0).
+	// most likely the case if in_img == get_data() + c->hdr_size(0).
 	// this would make for zero-copy IO.
 
 	const size_t max_out_size = img_size()*4 + 256*KiB;

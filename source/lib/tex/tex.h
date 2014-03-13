@@ -304,7 +304,7 @@ struct Tex
 	//
 
 	/**
-	 * Change \<t\>'s pixel format.
+	 * Change the pixel format.
 	 *
 	 * @param transforms TexFlags that are to be flipped.
 	 * @return Status
@@ -312,8 +312,8 @@ struct Tex
 	Status transform(size_t transforms);
 
 	/**
-	 * Change \<t\>'s pixel format (2nd version)
-	 * (note: this is equivalent to tex_transform(t, t-\>flags^new_flags).
+	 * Change the pixel format (2nd version)
+	 * (note: this is equivalent to Tex::transform(t, t-\>flags^new_flags).
 	 *
 	 * @param new_flags desired new value of TexFlags.
 	 * @return Status
@@ -323,13 +323,6 @@ struct Tex
 	//
 	// return image information
 	//
-
-	/**
-	 * rationale: since Tex is a struct, its fields are accessible to callers.
-	 * this is more for C compatibility than convenience; the following should
-	 * be used instead of direct access to the corresponding fields because
-	 * they take care of some dirty work.
-	 **/
 
 	/**
 	 * return a pointer to the image data (pixels), taking into account any

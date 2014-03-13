@@ -56,7 +56,7 @@ public:
 	 * encode the texture data into the codec's file format (in memory).
 	 *
 	 * @param t input texture object. note: non-const because encoding may
-	 * require a tex_transform.
+	 * require a Tex::transform.
 	 * @param da output data array, allocated by codec.
 	 * rationale: some codecs cannot calculate the output size beforehand
 	 * (e.g. PNG output via libpng), so the output memory cannot be allocated
