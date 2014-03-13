@@ -38,14 +38,10 @@ public:
 		m_VFS = CreateVfs(20*MiB);
 		TS_ASSERT_OK(m_VFS->Mount(L"", DataDir()/"mods"/"_test.tex", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(m_VFS->Mount(L"cache/", DataDir()/"_testcache"));
-
-		tex_codec_register_all();
 	}
 
 	void tearDown()
 	{
-		tex_codec_unregister_all();
-
 		m_VFS.reset();
 		DeleteDirectory(DataDir()/"_testcache");
 	}

@@ -586,25 +586,25 @@ static Status decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp,
 
 //-----------------------------------------------------------------------------
 
-static bool dds_is_hdr(const u8* file)
+bool TexCodecDds::is_hdr(const u8* file) const
 {
 	return *(u32*)file == FOURCC('D','D','S',' ');
 }
 
 
-static bool dds_is_ext(const OsPath& extension)
+bool TexCodecDds::is_ext(const OsPath& extension) const
 {
 	return extension == L".dds";
 }
 
 
-static size_t dds_hdr_size(const u8* UNUSED(file))
+size_t TexCodecDds::hdr_size(const u8* UNUSED(file)) const
 {
 	return 4+sizeof(DDS_HEADER);
 }
 
 
-static Status dds_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
+Status TexCodecDds::decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t) const
 {
 	const DDS_HEADER* sd = (const DDS_HEADER*)(data+4);
 	RETURN_STATUS_IF_ERR(decode_sd(sd, t->m_Width, t->m_Height, t->m_Bpp, t->m_Flags));
@@ -612,7 +612,7 @@ static Status dds_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
 }
 
 
-static Status dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da))
+Status TexCodecDds::encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da)) const
 {
 	// note: do not return ERR::NOT_SUPPORTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).
@@ -622,7 +622,7 @@ static Status dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da))
 
 TIMER_ADD_CLIENT(tc_dds_transform);
 
-static Status dds_transform(Tex* t, size_t transforms)
+Status TexCodecDds::transform(Tex* t, size_t transforms) const
 {
 	TIMER_ACCRUE(tc_dds_transform);
 
@@ -651,6 +651,3 @@ static Status dds_transform(Tex* t, size_t transforms)
 	// both not DXT (nothing we can do) - bail.
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
-
-
-TEX_CODEC_REGISTER(dds);

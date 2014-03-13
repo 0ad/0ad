@@ -107,7 +107,7 @@ static void io_flush(png_structp UNUSED(png_ptr))
 
 //-----------------------------------------------------------------------------
 
-static Status png_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
+Status TexCodecPng::transform(Tex* UNUSED(t), size_t UNUSED(transforms)) const
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
@@ -200,7 +200,7 @@ static Status png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, D
 
 
 
-static bool png_is_hdr(const u8* file)
+bool TexCodecPng::is_hdr(const u8* file) const
 {
 	// don't use png_sig_cmp, so we don't pull in libpng for
 	// this check alone (it might not actually be used).
@@ -208,13 +208,13 @@ static bool png_is_hdr(const u8* file)
 }
 
 
-static bool png_is_ext(const OsPath& extension)
+bool TexCodecPng::is_ext(const OsPath& extension) const
 {
 	return extension == L".png";
 }
 
 
-static size_t png_hdr_size(const u8* UNUSED(file))
+size_t TexCodecPng::hdr_size(const u8* UNUSED(file)) const
 {
 	return 0;	// libpng returns decoded image data; no header
 }
@@ -223,7 +223,7 @@ static size_t png_hdr_size(const u8* UNUSED(file))
 TIMER_ADD_CLIENT(tc_png_decode);
 
 // limitation: palette images aren't supported
-static Status png_decode(rpU8 data, size_t size, Tex* RESTRICT t)
+Status TexCodecPng::decode(rpU8 data, size_t size, Tex* RESTRICT t) const
 {
 TIMER_ACCRUE(tc_png_decode);
 
@@ -257,7 +257,7 @@ TIMER_ACCRUE(tc_png_decode);
 
 
 // limitation: palette images aren't supported
-static Status png_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
+Status TexCodecPng::encode(Tex* RESTRICT t, DynArray* RESTRICT da) const
 {
 	Status ret = ERR::FAIL;
 	png_infop info_ptr = 0;
@@ -284,5 +284,3 @@ fail:
 	png_destroy_write_struct(&png_ptr, &info_ptr);
 	return ret;
 }
-
-TEX_CODEC_REGISTER(png);

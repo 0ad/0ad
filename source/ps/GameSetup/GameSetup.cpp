@@ -682,8 +682,6 @@ void Shutdown(int UNUSED(flags))
 	g_VBMan.Shutdown();
 	TIMER_END(L"shutdown Renderer");
 
-	tex_codec_unregister_all();
-
 	g_Profiler2.ShutdownGPU();
 
 	// Free cursors before shutting down SDL, as they may depend on SDL.
@@ -935,8 +933,6 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 	}
 
 	RunHardwareDetection();
-
-	tex_codec_register_all();
 
 	const int quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
 	SetTextureQuality(quality);

@@ -569,7 +569,7 @@ bool tex_orientations_match(size_t src_flags, size_t dst_orientation)
 // but this is open to misuse.
 bool tex_is_known_extension(const VfsPath& pathname)
 {
-	const TexCodecVTbl* dummy;
+	const ITexCodec* dummy;
 	// found codec for it => known extension
 	const OsPath extension = pathname.Extension();
 	if(tex_codec_for_filename(extension, &dummy) == INFO::OK)
@@ -704,7 +704,7 @@ size_t Tex::img_size() const
 // directly into the output buffer and makes for zero-copy IO.
 size_t tex_hdr_size(const VfsPath& filename)
 {
-	const TexCodecVTbl* c;
+	const ITexCodec* c;
 	
 	const OsPath extension = filename.Extension();
 	WARN_RETURN_STATUS_IF_ERR(tex_codec_for_filename(extension, &c));
@@ -718,7 +718,7 @@ size_t tex_hdr_size(const VfsPath& filename)
 
 Status Tex::decode(const shared_ptr<u8>& Data, size_t DataSize)
 {
-	const TexCodecVTbl* c;
+	const ITexCodec* c;
 	RETURN_STATUS_IF_ERR(tex_codec_for_header(Data.get(), DataSize, &c));
 
 	// make sure the entire header is available
@@ -762,7 +762,7 @@ Status Tex::encode(const OsPath& extension, DynArray* da)
 	const size_t max_out_size = img_size()*4 + 256*KiB;
 	RETURN_STATUS_IF_ERR(da_alloc(da, max_out_size));
 
-	const TexCodecVTbl* c;
+	const ITexCodec* c;
 	WARN_RETURN_STATUS_IF_ERR(tex_codec_for_filename(extension, &c));
 
 	// encode into <da>

@@ -36,8 +36,6 @@
 CArchiveBuilder::CArchiveBuilder(const OsPath& mod, const OsPath& tempdir) :
 	m_TempDir(tempdir)
 {
-	tex_codec_register_all();
-
 	m_VFS = CreateVfs(20*MiB);
 
 	DeleteDirectory(m_TempDir/"_archivecache"); // clean up in case the last run failed
@@ -55,8 +53,6 @@ CArchiveBuilder::~CArchiveBuilder()
 	m_VFS.reset();
 
 	DeleteDirectory(m_TempDir/"_archivecache");
-
-	tex_codec_unregister_all();
 }
 
 void CArchiveBuilder::AddBaseMod(const OsPath& mod)

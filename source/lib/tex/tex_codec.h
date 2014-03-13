@@ -36,8 +36,9 @@
  * 'template method'-style interface to increase code reuse and
  * simplify writing new codecs.
  **/
-struct TexCodecVTbl
+class ITexCodec
 {
+public:
 	/**
 	 * decode the file into a Tex structure.
 	 *
@@ -49,7 +50,7 @@ struct TexCodecVTbl
 	 * @param t output texture object
 	 * @return Status
 	 **/
-	Status (*decode)(u8* data, size_t size, Tex* RESTRICT t);
+	virtual Status decode(u8* data, size_t size, Tex* RESTRICT t) const = 0;
 
 	/**
 	 * encode the texture data into the codec's file format (in memory).
@@ -62,7 +63,7 @@ struct TexCodecVTbl
 	 * by the caller.
 	 * @return Status
 	 **/
-	Status (*encode)(Tex* RESTRICT t, DynArray* RESTRICT da);
+	virtual Status encode(Tex* RESTRICT t, DynArray* RESTRICT da) const = 0;
 
 	/**
 	 * transform the texture's pixel format.
@@ -73,7 +74,7 @@ struct TexCodecVTbl
 	 * to its format; generic pixel format transforms are handled by
 	 * the caller.
 	 **/
-	Status (*transform)(Tex* t, size_t transforms);
+	virtual Status transform(Tex* t, size_t transforms) const = 0;
 
 	/**
 	 * indicate if the data appears to be an instance of this codec's header,
@@ -83,7 +84,7 @@ struct TexCodecVTbl
 	 * (this should be enough to examine the header's 'magic' field)
 	 * @return bool
 	 **/
-	bool (*is_hdr)(const u8* file);
+	virtual bool is_hdr(const u8* file) const = 0;
 
 	/**
 	 * is the extension that of a file format supported by this codec?
@@ -95,7 +96,7 @@ struct TexCodecVTbl
 	 * @param extension (including '.')
 	 * @return bool
 	 **/
-	bool (*is_ext)(const OsPath& extension);
+	virtual bool is_ext(const OsPath& extension) const = 0;
 
 	/**
 	 * return size of the file header supported by this codec.
@@ -106,59 +107,85 @@ struct TexCodecVTbl
 	 * variable-length fields.
 	 * @return size [bytes]
 	 **/
-	size_t (*hdr_size)(const u8* file);
+	virtual size_t hdr_size(const u8* file) const = 0;
 
 	/**
 	 * name of codec for debug purposes. typically set via TEX_CODEC_REGISTER.
 	 **/
-	const wchar_t* name;
+	virtual const wchar_t* get_name() const = 0;
 
-	/**
-	 * intrusive linked-list of codecs: more convenient than fixed-size
-	 * static storage.
-	 * set by caller; should be initialized to NULL.
-	 **/
-	const TexCodecVTbl* next;
+	virtual ~ITexCodec() {}
 };
 
+class TexCodecPng:ITexCodec {
+public:
+	virtual Status decode(u8* data, size_t size, Tex* RESTRICT t) const;
+	virtual Status encode(Tex* RESTRICT t, DynArray* RESTRICT da) const;
+	virtual Status transform(Tex* t, size_t transforms) const;
+	virtual bool is_hdr(const u8* file) const;
+	virtual bool is_ext(const OsPath& extension) const;
+	virtual size_t hdr_size(const u8* file) const;
+	virtual const wchar_t* get_name() const {
+		static const wchar_t *name = L"png";
+		return name;
+	};
+};
 
-/**
- * build codec vtbl and register it. the codec will be queried for future
- * texture load requests. call order is undefined, but since each codec
- * only steps up if it can handle the given format, this is not a problem.
- *
- * @param name identifier of codec (not string!). used to bind 'member'
- * functions prefixed with it to the vtbl, and as the TexCodecVTbl name.
- * it should also mirror the default file extension (e.g. dds) -
- * this is relied upon (but verified) in the self-test.
- *
- * usage: at file scope within the source file containing the codec's methods.
- **/
-#define TEX_CODEC_REGISTER(name)\
-	static TexCodecVTbl UID__ = \
-	{\
-		name##_decode, name##_encode, name##_transform,\
-		name##_is_hdr, name##_is_ext, name##_hdr_size,\
-		WIDEN(#name)\
-	};\
-	/*static int dummy = tex_codec_register(&vtbl);*/\
-	/* note: when building as a static library, pre-main initializers */\
-	/* will not run! as a workaround, we build an externally visible */\
-	/* registration function that must be called via */\
-	/* tex_codec_register_all - see comments there. */\
-	void name##_register() { tex_codec_register(&UID__); }
+class TexCodecJpg:ITexCodec {
+public:
+	virtual Status decode(u8* data, size_t size, Tex* RESTRICT t) const;
+	virtual Status encode(Tex* RESTRICT t, DynArray* RESTRICT da) const;
+	virtual Status transform(Tex* t, size_t transforms) const;
+	virtual bool is_hdr(const u8* file) const;
+	virtual bool is_ext(const OsPath& extension) const;
+	virtual size_t hdr_size(const u8* file) const;
+	virtual const wchar_t* get_name() const {
+		static const wchar_t *name = L"jpg";
+		return name;
+	};
+};
 
+class TexCodecDds:ITexCodec {
+public:
+	virtual Status decode(u8* data, size_t size, Tex* RESTRICT t) const;
+	virtual Status encode(Tex* RESTRICT t, DynArray* RESTRICT da) const;
+	virtual Status transform(Tex* t, size_t transforms) const;
+	virtual bool is_hdr(const u8* file) const;
+	virtual bool is_ext(const OsPath& extension) const;
+	virtual size_t hdr_size(const u8* file) const;
+	virtual const wchar_t* get_name() const {
+		static const wchar_t *name = L"dds";
+		return name;
+	};
+};
 
-/**
- * add this vtbl to the codec list. called at NLSO init time by the
- * TEX_CODEC_REGISTER in each codec file.
- * order in list is unspecified; see TEX_CODEC_REGISTER.
- *
- * @param c pointer to vtbl.
- * @return int (allows calling from a macro at file scope; value is not used)
- **/
-extern int tex_codec_register(TexCodecVTbl* c);
+class TexCodecTga:ITexCodec {
+public:
+	virtual Status decode(u8* data, size_t size, Tex* RESTRICT t) const;
+	virtual Status encode(Tex* RESTRICT t, DynArray* RESTRICT da) const;
+	virtual Status transform(Tex* t, size_t transforms) const;
+	virtual bool is_hdr(const u8* file) const;
+	virtual bool is_ext(const OsPath& extension) const;
+	virtual size_t hdr_size(const u8* file) const;
+	virtual const wchar_t* get_name() const {
+		static const wchar_t *name = L"tga";
+		return name;
+	};
+};
 
+class TexCodecBmp:ITexCodec {
+public:
+	virtual Status decode(u8* data, size_t size, Tex* RESTRICT t) const;
+	virtual Status encode(Tex* RESTRICT t, DynArray* RESTRICT da) const;
+	virtual Status transform(Tex* t, size_t transforms) const;
+	virtual bool is_hdr(const u8* file) const;
+	virtual bool is_ext(const OsPath& extension) const;
+	virtual size_t hdr_size(const u8* file) const;
+	virtual const wchar_t* get_name() const {
+		static const wchar_t *name = L"bmp";
+		return name;
+	};
+};
 
 /**
  * Find codec that recognizes the desired output file extension.
@@ -169,7 +196,7 @@ extern int tex_codec_register(TexCodecVTbl* c);
  * called by tex_is_known_extension) if no codec indicates they can
  * handle the given extension.
  **/
-extern Status tex_codec_for_filename(const OsPath& extension, const TexCodecVTbl** c);
+extern Status tex_codec_for_filename(const OsPath& extension, const ITexCodec** c);
 
 /**
  * find codec that recognizes the header's magic field.
@@ -181,19 +208,7 @@ extern Status tex_codec_for_filename(const OsPath& extension, const TexCodecVTbl
  * @return Status; ERR::RES_UNKNOWN_FORMAT if no codec indicates they can
  * handle the given format (header).
  **/
-extern Status tex_codec_for_header(const u8* data, size_t data_size, const TexCodecVTbl** c);
-
-/**
- * enumerate all registered codecs.
- *
- * used by self-test to test each one of them in turn.
- *
- * @param prev_codec the last codec returned by this function.
- * pass 0 the first time.
- * note: this routine is stateless and therefore reentrant.
- * @return the next codec, or 0 if all have been returned.
- **/
-extern const TexCodecVTbl* tex_codec_next(const TexCodecVTbl* prev_codec);
+extern Status tex_codec_for_header(const u8* data, size_t data_size, const ITexCodec** c);
 
 /**
  * transform the texture's pixel format.

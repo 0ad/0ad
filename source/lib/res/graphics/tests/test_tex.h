@@ -64,74 +64,6 @@ class TestTex : public CxxTest::TestSuite
 	}
 
 public:
-
-	// this also covers BGR and orientation transforms.
-	void DISABLED_test_encode_decode()	// disabled because it's completely broken
-	{
-		tex_codec_register_all();
-
-		// for each codec
-		const TexCodecVTbl* c = 0;
-		for(;;)
-		{
-			c = tex_codec_next(c);
-			if(!c)
-				break;
-
-			// get an extension that this codec will support
-			// (so that tex_encode uses this codec)
-			wchar_t extension[30] = {'.'};
-			wcscpy_s(extension+1, 29, c->name);
-			// .. make sure the c->name hack worked
-			const TexCodecVTbl* correct_c = 0;
-			TS_ASSERT_OK(tex_codec_for_filename(extension, &correct_c));
-			TS_ASSERT_EQUALS(c, correct_c);
-
-			// for each test width/height combination
-			const size_t widths [] = { 4, 5, 4, 256, 384 };
-			const size_t heights[] = { 4, 4, 5, 256, 256 };
-			for(size_t i = 0; i < ARRAY_SIZE(widths); i++)
-			{
-				// for each bit depth
-				for(size_t bpp = 8; bpp <= 32; bpp += 8)
-				{
-					size_t flags = 0;
-					if(!wcscmp(extension, L".dds"))
-						flags |= (TEX_DXT&3);	// DXT3
-					if(bpp == 8)
-						flags |= TEX_GREY;
-					else if(bpp == 16)
-						continue; // not supported
-					else if(bpp == 32)
-						flags |= TEX_ALPHA;
-
-					// normal
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-					// top-down
-					flags &= ~TEX_ORIENTATION; flags |= TEX_TOP_DOWN;
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-					// bottom up
-					flags &= ~TEX_ORIENTATION; flags |= TEX_BOTTOM_UP;
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-
-					flags &= ~TEX_ORIENTATION;
-					flags |= TEX_BGR;
-
-					// bgr, normal
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-					// bgr, top-down
-					flags &= ~TEX_ORIENTATION; flags |= TEX_TOP_DOWN;
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-					// bgr, bottom up
-					flags &= ~TEX_ORIENTATION; flags |= TEX_BOTTOM_UP;
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-				}	// for bpp
-			}	// for width/height
-		}	 // foreach codec
-
-		tex_codec_unregister_all();
-	}
-
 	// have mipmaps be created for a test image; check resulting size and pixels
 	void test_mipmap_create()
 	{
@@ -164,8 +96,6 @@ public:
 
 	void test_s3tc_decode()
 	{
-		tex_codec_register_all();
-
 		const size_t w = 4, h = 4, bpp = 4;
 		const size_t size = w*h/2;
 		shared_ptr<u8> img(new u8[size], ArrayDeleter());
@@ -187,8 +117,5 @@ public:
 
 		// compare img
 		TS_ASSERT_SAME_DATA(t.get_data(), expected, 48);
-
-		// cleanup
-		tex_codec_unregister_all();
 	}
 };

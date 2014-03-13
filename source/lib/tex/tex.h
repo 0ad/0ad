@@ -368,22 +368,6 @@ extern void tex_set_global_orientation(int orientation);
 
 
 /**
- * Manually register codecs. must be called before first use of a
- * codec (e.g. loading a texture).
- *
- * This would normally be taken care of by TEX_CODEC_REGISTER, but
- * no longer works when building as a static library.
- * Workaround: hard-code a list of codecs in tex_codec.cpp and
- * call their registration functions.
- **/
-extern void tex_codec_register_all();
-
-/**
- * remove all codecs that have been registered.
- **/
-extern void tex_codec_unregister_all();
-
-/**
  * special value for levels_to_skip: the callback will only be called
  * for the base mipmap level (i.e. 100%)
  **/

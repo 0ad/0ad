@@ -67,13 +67,13 @@ TgaHeader;
 #pragma pack(pop)
 
 
-static Status tga_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
+Status TexCodecTga::transform(Tex* UNUSED(t), size_t UNUSED(transforms)) const
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
 
 
-static bool tga_is_hdr(const u8* file)
+bool TexCodecTga::is_hdr(const u8* file) const
 {
 	TgaHeader* hdr = (TgaHeader*)file;
 
@@ -93,13 +93,13 @@ static bool tga_is_hdr(const u8* file)
 }
 
 
-static bool tga_is_ext(const OsPath& extension)
+bool TexCodecTga::is_ext(const OsPath& extension) const
 {
 	return extension == L".tga";
 }
 
 
-static size_t tga_hdr_size(const u8* file)
+size_t TexCodecTga::hdr_size(const u8* file) const
 {
 	size_t hdr_size = sizeof(TgaHeader);
 	if(file)
@@ -112,7 +112,7 @@ static size_t tga_hdr_size(const u8* file)
 
 
 // requirements: uncompressed, direct color, bottom up
-static Status tga_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
+Status TexCodecTga::decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t) const
 {
 	const TgaHeader* hdr = (const TgaHeader*)data;
 	const u8 type  = hdr->img_type;
@@ -144,7 +144,7 @@ static Status tga_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
 }
 
 
-static Status tga_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
+Status TexCodecTga::encode(Tex* RESTRICT t, DynArray* RESTRICT da) const
 {
 	u8 img_desc = 0;
 	if(t->m_Flags & TEX_TOP_DOWN)
@@ -173,4 +173,3 @@ static Status tga_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 	return tex_codec_write(t, transforms, &hdr, hdr_size, da);
 }
 
-TEX_CODEC_REGISTER(tga);

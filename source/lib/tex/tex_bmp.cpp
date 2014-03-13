@@ -60,13 +60,13 @@ struct BmpHeader
 #define BI_RGB 0		// biCompression
 
 
-static Status bmp_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
+Status TexCodecBmp::transform(Tex* UNUSED(t), size_t UNUSED(transforms)) const
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
 
 
-static bool bmp_is_hdr(const u8* file)
+bool TexCodecBmp::is_hdr(const u8* file) const
 {
 	// check header signature (bfType == "BM"?).
 	// we compare single bytes to be endian-safe.
@@ -74,13 +74,13 @@ static bool bmp_is_hdr(const u8* file)
 }
 
 
-static bool bmp_is_ext(const OsPath& extension)
+bool TexCodecBmp::is_ext(const OsPath& extension) const
 {
 	return extension == L".bmp";
 }
 
 
-static size_t bmp_hdr_size(const u8* file)
+size_t TexCodecBmp::hdr_size(const u8* file) const
 {
 	const size_t hdr_size = sizeof(BmpHeader);
 	if(file)
@@ -95,7 +95,7 @@ static size_t bmp_hdr_size(const u8* file)
 
 
 // requirements: uncompressed, direct colour, bottom up
-static Status bmp_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
+Status TexCodecBmp::decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t) const
 {
 	const BmpHeader* hdr = (const BmpHeader*)data;
 	const long w       = (long)read_le32(&hdr->biWidth);
@@ -124,7 +124,7 @@ static Status bmp_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
 }
 
 
-static Status bmp_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
+Status TexCodecBmp::encode(Tex* RESTRICT t, DynArray* RESTRICT da) const
 {
 	const size_t hdr_size = sizeof(BmpHeader);	// needed for BITMAPFILEHEADER
 	const size_t img_size = t->img_size();
@@ -155,5 +155,3 @@ static Status bmp_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 	};
 	return tex_codec_write(t, transforms, &hdr, hdr_size, da);
 }
-
-TEX_CODEC_REGISTER(bmp);

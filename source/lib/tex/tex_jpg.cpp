@@ -423,7 +423,7 @@ JpgErrorMgr::JpgErrorMgr(jpeg_decompress_struct& cinfo)
 //-----------------------------------------------------------------------------
 
 
-static Status jpg_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
+Status TexCodecJpg::transform(Tex* UNUSED(t), size_t UNUSED(transforms)) const
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
@@ -557,7 +557,7 @@ static Status jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* da)
 
 
 
-static bool jpg_is_hdr(const u8* file)
+bool TexCodecJpg::is_hdr(const u8* file) const
 {
 	// JFIF requires SOI marker at start of stream.
 	// we compare single bytes to be endian-safe.
@@ -565,19 +565,19 @@ static bool jpg_is_hdr(const u8* file)
 }
 
 
-static bool jpg_is_ext(const OsPath& extension)
+bool TexCodecJpg::is_ext(const OsPath& extension) const
 {
 	return extension == L".jpg" || extension == L".jpeg";
 }
 
 
-static size_t jpg_hdr_size(const u8* UNUSED(file))
+size_t TexCodecJpg::hdr_size(const u8* UNUSED(file)) const
 {
 	return 0;	// libjpg returns decoded image data; no header
 }
 
 
-static Status jpg_decode(rpU8 data, size_t size, Tex* RESTRICT t)
+Status TexCodecJpg::decode(rpU8 data, size_t size, Tex* RESTRICT t) const
 {
 	// contains the JPEG decompression parameters and pointers to
 	//  working space (allocated as needed by the JPEG library).
@@ -598,7 +598,7 @@ static Status jpg_decode(rpU8 data, size_t size, Tex* RESTRICT t)
 
 
 // limitation: palette images aren't supported
-static Status jpg_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
+Status TexCodecJpg::encode(Tex* RESTRICT t, DynArray* RESTRICT da) const
 {
 	// contains the JPEG compression parameters and pointers to
 	// working space (allocated as needed by the JPEG library).
@@ -616,5 +616,3 @@ static Status jpg_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 
 	return ret;
 }
-
-TEX_CODEC_REGISTER(jpg);
