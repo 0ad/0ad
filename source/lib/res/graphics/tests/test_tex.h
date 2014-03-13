@@ -35,99 +35,35 @@ class TestTex : public CxxTest::TestSuite
 		shared_ptr<u8> img(new u8[size], ArrayDeleter());
 		std::generate(img.get(), img.get()+size, rand);
 
-		// wrap in Tex
-		Tex t;
-		TS_ASSERT_OK(tex_wrap(w, h, bpp, flags, img, 0, &t));
-
-		// encode to file format
+		// create the DynArray that will be wrapped in a Tex Object
 		DynArray da;
-		TS_ASSERT_OK(tex_encode(&t, extension, &da));
-		memset(&t, 0, sizeof(t));
 
-		// decode from file format
-		shared_ptr<u8> ptr = DummySharedPtr(da.base);
-		TS_ASSERT_OK(tex_decode(ptr, da.cur_size, &t));
+		// Once the Tex created here goes out of scope, the DynArray should be freed
+		{
+			// wrap in Tex
+			Tex t;
+			TS_ASSERT_OK(t.wrap(w, h, bpp, flags, img, 0));
 
-		// make sure pixel format gets converted completely to plain
-		TS_ASSERT_OK(tex_transform_to(&t, 0));
+			// encode to file format
+			TS_ASSERT_OK(t.encode(extension, &da));
+			memset(&t, 0, sizeof(t));
 
-		// compare img
-		TS_ASSERT_SAME_DATA(tex_get_data(&t), img.get(), size);
+			// decode from file format
+			shared_ptr<u8> ptr = DummySharedPtr(da.base);
+			TS_ASSERT_OK(t.decode(ptr, da.cur_size));
+
+			// make sure pixel format gets converted completely to plain
+			TS_ASSERT_OK(t.transform_to(0));
+
+			// compare img
+			TS_ASSERT_SAME_DATA(t.get_data(), img.get(), size);
+		}
 
 		// cleanup
-		tex_free(&t);
 		TS_ASSERT_OK(da_free(&da));
 	}
 
 public:
-
-	// this also covers BGR and orientation transforms.
-	void DISABLED_test_encode_decode()	// disabled because it's completely broken
-	{
-		tex_codec_register_all();
-
-		// for each codec
-		const TexCodecVTbl* c = 0;
-		for(;;)
-		{
-			c = tex_codec_next(c);
-			if(!c)
-				break;
-
-			// get an extension that this codec will support
-			// (so that tex_encode uses this codec)
-			wchar_t extension[30] = {'.'};
-			wcscpy_s(extension+1, 29, c->name);
-			// .. make sure the c->name hack worked
-			const TexCodecVTbl* correct_c = 0;
-			TS_ASSERT_OK(tex_codec_for_filename(extension, &correct_c));
-			TS_ASSERT_EQUALS(c, correct_c);
-
-			// for each test width/height combination
-			const size_t widths [] = { 4, 5, 4, 256, 384 };
-			const size_t heights[] = { 4, 4, 5, 256, 256 };
-			for(size_t i = 0; i < ARRAY_SIZE(widths); i++)
-			{
-				// for each bit depth
-				for(size_t bpp = 8; bpp <= 32; bpp += 8)
-				{
-					size_t flags = 0;
-					if(!wcscmp(extension, L".dds"))
-						flags |= (TEX_DXT&3);	// DXT3
-					if(bpp == 8)
-						flags |= TEX_GREY;
-					else if(bpp == 16)
-						continue; // not supported
-					else if(bpp == 32)
-						flags |= TEX_ALPHA;
-
-					// normal
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-					// top-down
-					flags &= ~TEX_ORIENTATION; flags |= TEX_TOP_DOWN;
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-					// bottom up
-					flags &= ~TEX_ORIENTATION; flags |= TEX_BOTTOM_UP;
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-
-					flags &= ~TEX_ORIENTATION;
-					flags |= TEX_BGR;
-
-					// bgr, normal
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-					// bgr, top-down
-					flags &= ~TEX_ORIENTATION; flags |= TEX_TOP_DOWN;
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-					// bgr, bottom up
-					flags &= ~TEX_ORIENTATION; flags |= TEX_BOTTOM_UP;
-					generate_encode_decode_compare(widths[i], heights[i], flags, bpp, extension);
-				}	// for bpp
-			}	// for width/height
-		}	 // foreach codec
-
-		tex_codec_unregister_all();
-	}
-
 	// have mipmaps be created for a test image; check resulting size and pixels
 	void test_mipmap_create()
 	{
@@ -136,10 +72,10 @@ public:
 		// assumes 2x2 box filter algorithm with rounding
 		static const u8 mipmap[] = { 0x6C,0x79,0x87 };
 		Tex t;
-		TS_ASSERT_OK(tex_wrap(2, 2, 24, 0, img, 0, &t));
-		TS_ASSERT_OK(tex_transform_to(&t, TEX_MIPMAPS));
-		const u8* const out_img = tex_get_data(&t);
-		TS_ASSERT_EQUALS((int)tex_img_size(&t), 12+3);
+		TS_ASSERT_OK(t.wrap(2, 2, 24, 0, img, 0));
+		TS_ASSERT_OK(t.transform_to(TEX_MIPMAPS));
+		const u8* const out_img = t.get_data();
+		TS_ASSERT_EQUALS((int)t.img_size(), 12+3);
 		TS_ASSERT_SAME_DATA(out_img, imgData, 12);
 		TS_ASSERT_SAME_DATA(out_img+12, mipmap, 3);
 	}
@@ -149,19 +85,17 @@ public:
 		shared_ptr<u8> img(new u8[100*100*4], ArrayDeleter());
 
 		Tex t;
-		TS_ASSERT_OK(tex_wrap(100, 100, 32, TEX_ALPHA, img, 0, &t));
-		TS_ASSERT_EQUALS((int)tex_img_size(&t), 40000);
+		TS_ASSERT_OK(t.wrap(100, 100, 32, TEX_ALPHA, img, 0));
+		TS_ASSERT_EQUALS((int)t.img_size(), 40000);
 
 		// DXT rounds up to 4x4 blocks; DXT1a is 4bpp
 		Tex t2;
-		TS_ASSERT_OK(tex_wrap(97, 97, 4, DXT1A, img, 0, &t2));
-		TS_ASSERT_EQUALS((int)tex_img_size(&t2),  5000);
+		TS_ASSERT_OK(t2.wrap(97, 97, 4, DXT1A, img, 0));
+		TS_ASSERT_EQUALS((int)t2.img_size(),  5000);
 	}
 
 	void test_s3tc_decode()
 	{
-		tex_codec_register_all();
-
 		const size_t w = 4, h = 4, bpp = 4;
 		const size_t size = w*h/2;
 		shared_ptr<u8> img(new u8[size], ArrayDeleter());
@@ -176,17 +110,12 @@ public:
 
 		// wrap in Tex
 		Tex t;
-		TS_ASSERT_OK(tex_wrap(w, h, bpp, flags, img, 0, &t));
+		TS_ASSERT_OK(t.wrap(w, h, bpp, flags, img, 0));
 
 		// decompress S3TC
-		TS_ASSERT_OK(tex_transform_to(&t, 0));
+		TS_ASSERT_OK(t.transform_to(0));
 
 		// compare img
-		TS_ASSERT_SAME_DATA(tex_get_data(&t), expected, 48);
-
-		// cleanup
-		tex_free(&t);
-
-		tex_codec_unregister_all();
+		TS_ASSERT_SAME_DATA(t.get_data(), expected, 48);
 	}
 };

@@ -94,7 +94,7 @@ public:
 			data.get()[1] = 64;
 			data.get()[2] = 64;
 			Tex t;
-			(void)tex_wrap(1, 1, 24, 0, data, 0, &t);
+			(void)t.wrap(1, 1, 24, 0, data, 0);
 
 			m_DefaultHandle = ogl_tex_wrap(&t, m_VFS, L"(default texture)");
 			(void)ogl_tex_set_filter(m_DefaultHandle, GL_LINEAR);
@@ -111,7 +111,7 @@ public:
 			data.get()[1] = 0;
 			data.get()[2] = 255;
 			Tex t;
-			(void)tex_wrap(1, 1, 24, 0, data, 0, &t);
+			(void)t.wrap(1, 1, 24, 0, data, 0);
 
 			m_ErrorHandle = ogl_tex_wrap(&t, m_VFS, L"(error texture)");
 			(void)ogl_tex_set_filter(m_ErrorHandle, GL_LINEAR);

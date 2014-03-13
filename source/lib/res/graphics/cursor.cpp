@@ -60,17 +60,17 @@ static Status load_sys_cursor(const PIVFS& vfs, const VfsPath& pathname, int hx,
 	shared_ptr<u8> file; size_t fileSize;
 	RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, file, fileSize));
 
-	ScopedTex t;
-	RETURN_STATUS_IF_ERR(tex_decode(file, fileSize, &t));
+	Tex t;
+	RETURN_STATUS_IF_ERR(t.decode(file, fileSize));
 
 	// convert to required BGRA format.
-	const size_t flags = (t.flags | TEX_BGR) & ~TEX_DXT;
-	RETURN_STATUS_IF_ERR(tex_transform_to(&t, flags));
-	void* bgra_img = tex_get_data(&t);
+	const size_t flags = (t.m_Flags | TEX_BGR) & ~TEX_DXT;
+	RETURN_STATUS_IF_ERR(t.transform_to(flags));
+	void* bgra_img = t.get_data();
 	if(!bgra_img)
 		WARN_RETURN(ERR::FAIL);
 
-	RETURN_STATUS_IF_ERR(sys_cursor_create((int)t.w, (int)t.h, bgra_img, hx, hy, cursor));
+	RETURN_STATUS_IF_ERR(sys_cursor_create((int)t.m_Width, (int)t.m_Height, bgra_img, hx, hy, cursor));
 	return INFO::OK;
 #endif
 }

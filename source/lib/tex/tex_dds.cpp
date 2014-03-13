@@ -279,22 +279,22 @@ static Status s3tc_decompress(Tex* t)
 	// - adding or stripping alpha channels during transform is not
 	//   our job; we merely output the same pixel format as given
 	//   (tex.cpp's plain transform could cover it, if ever needed).
-	const size_t dxt = t->flags & TEX_DXT;
+	const size_t dxt = t->m_Flags & TEX_DXT;
 	const size_t out_bpp = (dxt != 1)? 32 : 24;
-	const size_t out_size = tex_img_size(t) * out_bpp / t->bpp;
+	const size_t out_size = t->img_size() * out_bpp / t->m_Bpp;
 	shared_ptr<u8> decompressedData;
 	AllocateAligned(decompressedData, out_size, pageSize);
 
 	const size_t s3tc_block_size = (dxt == 3 || dxt == 5)? 16 : 8;
 	S3tcDecompressInfo di = { dxt, s3tc_block_size, out_bpp/8, decompressedData.get() };
-	const u8* s3tc_data = tex_get_data(t);
-	const int levels_to_skip = (t->flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
-	tex_util_foreach_mipmap(t->w, t->h, t->bpp, s3tc_data, levels_to_skip, 4, s3tc_decompress_level, &di);
-	t->data = decompressedData;
-	t->dataSize = out_size;
-	t->ofs = 0;
-	t->bpp = out_bpp;
-	t->flags &= ~TEX_DXT;
+	const u8* s3tc_data = t->get_data();
+	const int levels_to_skip = (t->m_Flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
+	tex_util_foreach_mipmap(t->m_Width, t->m_Height, t->m_Bpp, s3tc_data, levels_to_skip, 4, s3tc_decompress_level, &di);
+	t->m_Data = decompressedData;
+	t->m_DataSize = out_size;
+	t->m_Ofs = 0;
+	t->m_Bpp = out_bpp;
+	t->m_Flags &= ~TEX_DXT;
 	return INFO::OK;
 }
 
@@ -586,33 +586,33 @@ static Status decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp,
 
 //-----------------------------------------------------------------------------
 
-static bool dds_is_hdr(const u8* file)
+bool TexCodecDds::is_hdr(const u8* file) const
 {
 	return *(u32*)file == FOURCC('D','D','S',' ');
 }
 
 
-static bool dds_is_ext(const OsPath& extension)
+bool TexCodecDds::is_ext(const OsPath& extension) const
 {
 	return extension == L".dds";
 }
 
 
-static size_t dds_hdr_size(const u8* UNUSED(file))
+size_t TexCodecDds::hdr_size(const u8* UNUSED(file)) const
 {
 	return 4+sizeof(DDS_HEADER);
 }
 
 
-static Status dds_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
+Status TexCodecDds::decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t) const
 {
 	const DDS_HEADER* sd = (const DDS_HEADER*)(data+4);
-	RETURN_STATUS_IF_ERR(decode_sd(sd, t->w, t->h, t->bpp, t->flags));
+	RETURN_STATUS_IF_ERR(decode_sd(sd, t->m_Width, t->m_Height, t->m_Bpp, t->m_Flags));
 	return INFO::OK;
 }
 
 
-static Status dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da))
+Status TexCodecDds::encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da)) const
 {
 	// note: do not return ERR::NOT_SUPPORTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).
@@ -622,12 +622,12 @@ static Status dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da))
 
 TIMER_ADD_CLIENT(tc_dds_transform);
 
-static Status dds_transform(Tex* t, size_t transforms)
+Status TexCodecDds::transform(Tex* t, size_t transforms) const
 {
 	TIMER_ACCRUE(tc_dds_transform);
 
-	size_t mipmaps = t->flags & TEX_MIPMAPS;
-	size_t dxt = t->flags & TEX_DXT;
+	size_t mipmaps = t->m_Flags & TEX_MIPMAPS;
+	size_t dxt = t->m_Flags & TEX_DXT;
 	ENSURE(is_valid_dxt(dxt));
 
 	const size_t transform_mipmaps = transforms & TEX_MIPMAPS;
@@ -637,7 +637,7 @@ static Status dds_transform(Tex* t, size_t transforms)
 	{
 		// we don't need to actually change anything except the flag - the
 		// mipmap levels will just be treated as trailing junk
-		t->flags &= ~TEX_MIPMAPS;
+		t->m_Flags &= ~TEX_MIPMAPS;
 		return INFO::OK;
 	}
 	// requesting decompression
@@ -651,6 +651,3 @@ static Status dds_transform(Tex* t, size_t transforms)
 	// both not DXT (nothing we can do) - bail.
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
-
-
-TEX_CODEC_REGISTER(dds);

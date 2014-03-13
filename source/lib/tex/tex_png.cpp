@@ -107,7 +107,7 @@ static void io_flush(png_structp UNUSED(png_ptr))
 
 //-----------------------------------------------------------------------------
 
-static Status png_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
+Status TexCodecPng::transform(Tex* UNUSED(t), size_t UNUSED(transforms)) const
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
@@ -153,16 +153,8 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 	// success; make sure all data was consumed.
 	ENSURE(stream->RemainingSize() == 0);
 
-	// store image info
-	t->data     = data;
-	t->dataSize = img_size;
-	t->ofs   = 0;
-	t->w     = w;
-	t->h     = h;
-	t->bpp   = bpp;
-	t->flags = flags;
-
-	return INFO::OK;
+	// store image info and validate
+	return t->wrap(w,h,bpp,flags,data,0);
 }
 
 
@@ -170,11 +162,11 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 // "dtor / setjmp interaction" warning.
 static Status png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, DynArray* da)
 {
-	const png_uint_32 w = (png_uint_32)t->w, h = (png_uint_32)t->h;
-	const size_t pitch = w * t->bpp / 8;
+	const png_uint_32 w = (png_uint_32)t->m_Width, h = (png_uint_32)t->m_Height;
+	const size_t pitch = w * t->m_Bpp / 8;
 
 	int colour_type;
-	switch(t->flags & (TEX_GREY|TEX_ALPHA))
+	switch(t->m_Flags & (TEX_GREY|TEX_ALPHA))
 	{
 	case TEX_GREY|TEX_ALPHA:
 		colour_type = PNG_COLOR_TYPE_GRAY_ALPHA;
@@ -194,11 +186,11 @@ static Status png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, D
 	png_set_IHDR(png_ptr, info_ptr, w, h, 8, colour_type,
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
-	u8* data = tex_get_data(t);
-	std::vector<RowPtr> rows = tex_codec_alloc_rows(data, h, pitch, t->flags, TEX_TOP_DOWN);
+	u8* data = t->get_data();
+	std::vector<RowPtr> rows = tex_codec_alloc_rows(data, h, pitch, t->m_Flags, TEX_TOP_DOWN);
 
 	// PNG is native RGB.
-	const int png_transforms = (t->flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
+	const int png_transforms = (t->m_Flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
 
 	png_set_rows(png_ptr, info_ptr, (png_bytepp)&rows[0]);
 	png_write_png(png_ptr, info_ptr, png_transforms, 0);
@@ -208,7 +200,7 @@ static Status png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, D
 
 
 
-static bool png_is_hdr(const u8* file)
+bool TexCodecPng::is_hdr(const u8* file) const
 {
 	// don't use png_sig_cmp, so we don't pull in libpng for
 	// this check alone (it might not actually be used).
@@ -216,13 +208,13 @@ static bool png_is_hdr(const u8* file)
 }
 
 
-static bool png_is_ext(const OsPath& extension)
+bool TexCodecPng::is_ext(const OsPath& extension) const
 {
 	return extension == L".png";
 }
 
 
-static size_t png_hdr_size(const u8* UNUSED(file))
+size_t TexCodecPng::hdr_size(const u8* UNUSED(file)) const
 {
 	return 0;	// libpng returns decoded image data; no header
 }
@@ -231,7 +223,7 @@ static size_t png_hdr_size(const u8* UNUSED(file))
 TIMER_ADD_CLIENT(tc_png_decode);
 
 // limitation: palette images aren't supported
-static Status png_decode(rpU8 data, size_t size, Tex* RESTRICT t)
+Status TexCodecPng::decode(rpU8 data, size_t size, Tex* RESTRICT t) const
 {
 TIMER_ACCRUE(tc_png_decode);
 
@@ -265,7 +257,7 @@ TIMER_ACCRUE(tc_png_decode);
 
 
 // limitation: palette images aren't supported
-static Status png_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
+Status TexCodecPng::encode(Tex* RESTRICT t, DynArray* RESTRICT da) const
 {
 	Status ret = ERR::FAIL;
 	png_infop info_ptr = 0;
@@ -292,5 +284,3 @@ fail:
 	png_destroy_write_struct(&png_ptr, &info_ptr);
 	return ret;
 }
-
-TEX_CODEC_REGISTER(png);

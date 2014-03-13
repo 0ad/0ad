@@ -60,13 +60,13 @@ struct BmpHeader
 #define BI_RGB 0		// biCompression
 
 
-static Status bmp_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
+Status TexCodecBmp::transform(Tex* UNUSED(t), size_t UNUSED(transforms)) const
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
 
 
-static bool bmp_is_hdr(const u8* file)
+bool TexCodecBmp::is_hdr(const u8* file) const
 {
 	// check header signature (bfType == "BM"?).
 	// we compare single bytes to be endian-safe.
@@ -74,13 +74,13 @@ static bool bmp_is_hdr(const u8* file)
 }
 
 
-static bool bmp_is_ext(const OsPath& extension)
+bool TexCodecBmp::is_ext(const OsPath& extension) const
 {
 	return extension == L".bmp";
 }
 
 
-static size_t bmp_hdr_size(const u8* file)
+size_t TexCodecBmp::hdr_size(const u8* file) const
 {
 	const size_t hdr_size = sizeof(BmpHeader);
 	if(file)
@@ -95,7 +95,7 @@ static size_t bmp_hdr_size(const u8* file)
 
 
 // requirements: uncompressed, direct colour, bottom up
-static Status bmp_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
+Status TexCodecBmp::decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t) const
 {
 	const BmpHeader* hdr = (const BmpHeader*)data;
 	const long w       = (long)read_le32(&hdr->biWidth);
@@ -116,22 +116,22 @@ static Status bmp_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
 	if(compress != BI_RGB)
 		WARN_RETURN(ERR::TEX_COMPRESSED);
 
-	t->w     = w;
-	t->h     = h;
-	t->bpp   = bpp;
-	t->flags = flags;
+	t->m_Width  = w;
+	t->m_Height = h;
+	t->m_Bpp    = bpp;
+	t->m_Flags  = flags;
 	return INFO::OK;
 }
 
 
-static Status bmp_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
+Status TexCodecBmp::encode(Tex* RESTRICT t, DynArray* RESTRICT da) const
 {
 	const size_t hdr_size = sizeof(BmpHeader);	// needed for BITMAPFILEHEADER
-	const size_t img_size = tex_img_size(t);
+	const size_t img_size = t->img_size();
 	const size_t file_size = hdr_size + img_size;
-	const i32 h = (t->flags & TEX_TOP_DOWN)? -(i32)t->h : (i32)t->h;
+	const i32 h = (t->m_Flags & TEX_TOP_DOWN)? -(i32)t->m_Height : (i32)t->m_Height;
 
-	size_t transforms = t->flags;
+	size_t transforms = t->m_Flags;
 	transforms &= ~TEX_ORIENTATION;	// no flip needed - we can set top-down bit.
 	transforms ^= TEX_BGR;			// BMP is native BGR.
 
@@ -145,15 +145,13 @@ static Status bmp_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 
 		// BITMAPINFOHEADER
 		40,					// biSize = sizeof(BITMAPINFOHEADER)
-		(i32)t->w,
+		(i32)t->m_Width,
 		h,
 		1,					// biPlanes
-		(u16)t->bpp,
+		(u16)t->m_Bpp,
 		BI_RGB,				// biCompression
 		(u32)img_size,		// biSizeImage
 		0, 0, 0, 0			// unused (bi?PelsPerMeter, biClr*)
 	};
 	return tex_codec_write(t, transforms, &hdr, hdr_size, da);
 }
-
-TEX_CODEC_REGISTER(bmp);

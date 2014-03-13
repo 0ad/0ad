@@ -33,42 +33,30 @@
 #include "lib/allocators/shared_ptr.h" // ArrayDeleter
 #include "tex.h"
 
-static const TexCodecVTbl* codecs;
-
-// add this vtbl to the codec list. called at NLSO init time by the
-// TEX_CODEC_REGISTER in each codec file. note that call order and therefore
-// order in the list is undefined, but since each codec only steps up if it
-// can handle the given format, this is not a problem.
-//
-// returns int to alloc calling from a macro at file scope.
-int tex_codec_register(TexCodecVTbl* c)
-{
-	ENSURE(c);
-
-	// insert at front of list.
-	c->next = codecs;
-	codecs = c;
-
-	return 0;	// (assigned to dummy variable)
-}
-
-// remove all codecs that have been registered.
-void tex_codec_unregister_all()
-{
-	codecs = NULL;
-}
+// Statically allocate all of the codecs...
+TexCodecDds DdsCodec;
+TexCodecPng PngCodec;
+TexCodecJpg JpgCodec;
+TexCodecTga TgaCodec;
+TexCodecPng BmpCodec;
+// Codecs will be searched in this order
+static const ITexCodec *codecs[] = {(ITexCodec *)&DdsCodec, (ITexCodec *)&PngCodec,
+	(ITexCodec *)&JpgCodec, (ITexCodec *)&TgaCodec, (ITexCodec *)&BmpCodec};
+static const int codecs_len = sizeof(codecs) / sizeof(ITexCodec*);
 
 // find codec that recognizes the desired output file extension,
 // or return ERR::TEX_UNKNOWN_FORMAT if unknown.
 // note: does not raise a warning because it is used by
 // tex_is_known_extension.
-Status tex_codec_for_filename(const OsPath& extension, const TexCodecVTbl** c)
+Status tex_codec_for_filename(const OsPath& extension, const ITexCodec** c)
 {
-	for(*c = codecs; *c; *c = (*c)->next)
+	for(int i = 0; i < codecs_len; ++i)
 	{
 		// we found it
-		if((*c)->is_ext(extension))
+		if(codecs[i]->is_ext(extension)) {
+			*c = codecs[i];
 			return INFO::OK;
+		}
 	}
 
 	return ERR::TEX_UNKNOWN_FORMAT;	// NOWARN
@@ -76,42 +64,32 @@ Status tex_codec_for_filename(const OsPath& extension, const TexCodecVTbl** c)
 
 
 // find codec that recognizes the header's magic field
-Status tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** c)
+Status tex_codec_for_header(const u8* file, size_t file_size, const ITexCodec** c)
 {
 	// we guarantee at least 4 bytes for is_hdr to look at
 	if(file_size < 4)
 		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
-
-	for(*c = codecs; *c; *c = (*c)->next)
+	
+	for(int i = 0; i < codecs_len; ++i)
 	{
 		// we found it
-		if((*c)->is_hdr(file))
+		if(codecs[i]->is_hdr(file)) {
+			*c = codecs[i];
 			return INFO::OK;
+		}
 	}
 
 	WARN_RETURN(ERR::TEX_UNKNOWN_FORMAT);
 }
-
-
-const TexCodecVTbl* tex_codec_next(const TexCodecVTbl* prev_codec)
-{
-	// first time
-	if(!prev_codec)
-		return codecs;
-	// middle of list: return next (can be 0 to indicate end of list)
-	else
-		return prev_codec->next;
-}
-
 
 Status tex_codec_transform(Tex* t, size_t transforms)
 {
 	Status ret = INFO::TEX_CODEC_CANNOT_HANDLE;
 
 	// find codec that understands the data, and transform
-	for(const TexCodecVTbl* c = codecs; c; c = c->next)
+	for(int i = 0; i < codecs_len; ++i)
 	{
-		Status err = c->transform(t, transforms);
+		Status err = codecs[i]->transform(t, transforms);
 		// success
 		if(err == INFO::OK)
 			return INFO::OK;
@@ -130,17 +108,6 @@ Status tex_codec_transform(Tex* t, size_t transforms)
 //-----------------------------------------------------------------------------
 // helper functions used by codecs
 //-----------------------------------------------------------------------------
-
-void tex_codec_register_all()
-{
-#define REGISTER_CODEC(name) extern void name##_register(); name##_register()
-	REGISTER_CODEC(bmp);
-	REGISTER_CODEC(dds);
-	REGISTER_CODEC(jpg);
-	REGISTER_CODEC(png);
-	REGISTER_CODEC(tga);
-#undef REGISTER_CODEC
-}
 
 // allocate an array of row pointers that point into the given texture data.
 // <file_orientation> indicates whether the file format is top-down or
@@ -175,9 +142,9 @@ std::vector<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 
 Status tex_codec_write(Tex* t, size_t transforms, const void* hdr, size_t hdr_size, DynArray* da)
 {
-	RETURN_STATUS_IF_ERR(tex_transform(t, transforms));
+	RETURN_STATUS_IF_ERR(t->transform(transforms));
 
-	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
+	void* img_data = t->get_data(); const size_t img_size = t->img_size();
 	RETURN_STATUS_IF_ERR(da_append(da, hdr, hdr_size));
 	RETURN_STATUS_IF_ERR(da_append(da, img_data, img_size));
 	return INFO::OK;

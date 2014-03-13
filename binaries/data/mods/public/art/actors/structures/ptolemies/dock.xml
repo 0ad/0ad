@@ -5,6 +5,13 @@
   <group>
     <variant frequency="100" name="dock">
       <mesh>structural/ptol_dock.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/wood_pile_1_c.xml" attachpoint="wood1"/>
+        <prop actor="props/special/eyecandy/wood_pile_1_c.xml" attachpoint="wood2"/>        
+        <prop actor="props/structures/ptolemies/dock_cloth.xml" attachpoint="root"/>        
+        <prop actor="props/structures/ptolemies/dock_roof.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/dock_scaffold.xml" attachpoint="root"/>
+      </props>
       <textures>
         <texture file="structural/ptol_struct.png" name="baseTex"/>
         <texture file="structural/ptol_struct_norm.png" name="normTex"/>
@@ -26,8 +33,12 @@
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_6x4.xml" attachpoint="root"/>
-      </props>
+        <prop actor="props/special/eyecandy/wood_pile_1_c.xml" attachpoint="wood1"/>
+        <prop actor="props/special/eyecandy/wood_pile_2_c.xml" attachpoint="wood2"/>        
+        <prop actor="props/structures/ptolemies/dock_cloth.xml" attachpoint="root"/>        
+        <prop actor="props/structures/ptolemies/dock_roof.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/dock_scaffold.xml" attachpoint="root"/>
+      </props>        
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>

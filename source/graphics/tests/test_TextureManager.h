@@ -41,7 +41,6 @@ public:
 		TS_ASSERT_OK(m_VFS->Mount(L"cache/", DataDir()/"_testcache"));
 
 		h_mgr_init();
-		tex_codec_register_all();
 
 		CXeromyces::Startup();
 	}
@@ -50,7 +49,6 @@ public:
 	{
 		CXeromyces::Terminate();
 
-		tex_codec_unregister_all();
 		h_mgr_shutdown();
 
 		m_VFS.reset();

@@ -336,7 +336,7 @@ public:
 		shared_ptr<u8> buf;
 		AllocateAligned(buf, hdr_size+img_size, maxSectorSize);
 		Tex t;
-		if (tex_wrap(w, h, bpp, flags, buf, hdr_size, &t) < 0)
+		if (t.wrap(w, h, bpp, flags, buf, hdr_size) < 0)
 			return;
 		
 		u8* img = buf.get() + hdr_size;
@@ -344,7 +344,6 @@ public:
 			img[i] = (u8)((data[i] * 255) / max);
 		
 		tex_write(&t, filename);
-		tex_free(&t);
 	}
 
 	bool TryLoadSharedComponent(bool hasTechs)

@@ -449,7 +449,7 @@ static void OglTex_dtor(OglTex* ot)
 {
 	if(ot->flags & OT_TEX_VALID)
 	{
-		tex_free(&ot->t);
+		ot->t.free();
 		ot->flags &= ~OT_TEX_VALID;
 	}
 
@@ -473,7 +473,7 @@ static Status OglTex_reload(OglTex* ot, const PIVFS& vfs, const VfsPath& pathnam
 	{
 		shared_ptr<u8> file; size_t fileSize;
 		RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, file, fileSize));
-		if(tex_decode(file, fileSize, &ot->t) >= 0)
+		if(ot->t.decode(file, fileSize) >= 0)
 			ot->flags |= OT_TEX_VALID;
 	}
 
@@ -491,13 +491,13 @@ static Status OglTex_validate(const OglTex* ot)
 {
 	if(ot->flags & OT_TEX_VALID)
 	{
-		RETURN_STATUS_IF_ERR(tex_validate(&ot->t));
+		RETURN_STATUS_IF_ERR(ot->t.validate());
 
 		// width, height
 		// (note: this is done here because tex.cpp doesn't impose any
 		// restrictions on dimensions, while OpenGL does).
-		size_t w = ot->t.w;
-		size_t h = ot->t.h;
+		size_t w = ot->t.m_Width;
+		size_t h = ot->t.m_Height;
 		// .. == 0; texture file probably not loaded successfully.
 		if(w == 0 || h == 0)
 			WARN_RETURN(ERR::_11);
@@ -794,12 +794,12 @@ static Status get_mipmaps(Tex* t, GLint filter, int q_flags, int* plevels_to_ski
 {
 	// decisions:
 	// .. does filter call for uploading mipmaps?
-	const bool need_mipmaps = are_mipmaps_needed(t->w, t->h, filter);
+	const bool need_mipmaps = are_mipmaps_needed(t->m_Width, t->m_Height, filter);
 	// .. does the image data include mipmaps? (stored as separate
 	//    images after the regular texels)
-	const bool includes_mipmaps = (t->flags & TEX_MIPMAPS) != 0;
+	const bool includes_mipmaps = (t->m_Flags & TEX_MIPMAPS) != 0;
 	// .. is this texture in S3TC format? (more generally, "compressed")
-	const bool is_s3tc = (t->flags & TEX_DXT) != 0;
+	const bool is_s3tc = (t->m_Flags & TEX_DXT) != 0;
 
 	*plevels_to_skip = TEX_BASE_LEVEL_ONLY;
 	if(!need_mipmaps)
@@ -833,7 +833,7 @@ static Status get_mipmaps(Tex* t, GLint filter, int q_flags, int* plevels_to_ski
 	// we will generate mipmaps in software.
 	else
 	{
-		RETURN_STATUS_IF_ERR(tex_transform_to(t, t->flags|TEX_MIPMAPS));
+		RETURN_STATUS_IF_ERR(t->transform_to(t->m_Flags|TEX_MIPMAPS));
 		*plevels_to_skip = 0;	// t contains mipmaps
 	}
 
@@ -843,7 +843,7 @@ static Status get_mipmaps(Tex* t, GLint filter, int q_flags, int* plevels_to_ski
 		// if OpenGL's texture dimension limit is too small, use the
 		// higher mipmap levels. NB: the minimum guaranteed size is
 		// far too low, and menu background textures may be large.
-		GLint w = (GLint)t->w, h = (GLint)t->h;
+		GLint w = (GLint)t->m_Width, h = (GLint)t->m_Height;
 		while(w > ogl_max_tex_size || h > ogl_max_tex_size)
 		{
 			(*plevels_to_skip)++;
@@ -893,13 +893,13 @@ static void upload_compressed_level(size_t level, size_t level_w, size_t level_h
 // pre: <t> is valid for OpenGL use; texture is bound.
 static void upload_impl(Tex* t, GLenum fmt, GLint int_fmt, int levels_to_skip, u32* uploaded_size)
 {
-	const GLsizei w  = (GLsizei)t->w;
-	const GLsizei h  = (GLsizei)t->h;
-	const size_t bpp   = t->bpp;
-	const u8* data = (const u8*)tex_get_data(t);
+	const GLsizei w  = (GLsizei)t->m_Width;
+	const GLsizei h  = (GLsizei)t->m_Height;
+	const size_t bpp   = t->m_Bpp;
+	const u8* data = (const u8*)t->get_data();
 	const UploadParams up = { fmt, int_fmt, uploaded_size };
 
-	if(t->flags & TEX_DXT)
+	if(t->m_Flags & TEX_DXT)
 		tex_util_foreach_mipmap(w, h, bpp, data, levels_to_skip, 4, upload_compressed_level, (void*)&up);
 	else
 		tex_util_foreach_mipmap(w, h, bpp, data, levels_to_skip, 1, upload_level, (void*)&up);
@@ -932,11 +932,11 @@ Status ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint in
 	if(ot->flags & OT_TEX_VALID)
 	{
 		// decompress S3TC if that's not supported by OpenGL.
-		if((t->flags & TEX_DXT) && !have_s3tc)
-			(void)tex_transform_to(t, t->flags & ~TEX_DXT);
+		if((t->m_Flags & TEX_DXT) && !have_s3tc)
+			(void)t->transform_to(t->m_Flags & ~TEX_DXT);
 
 		// determine fmt and int_fmt, allowing for user override.
-		ot->fmt = choose_fmt(t->bpp, t->flags);
+		ot->fmt = choose_fmt(t->m_Bpp, t->m_Flags);
 		if(fmt_ovr) ot->fmt = fmt_ovr;
 		if(q_flags_ovr) ot->q_flags = q_flags_ovr;
 		ot->int_fmt = choose_int_fmt(ot->fmt, ot->q_flags);
@@ -964,13 +964,10 @@ Status ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint in
 		ot->flags |= OT_IS_UPLOADED;
 
 		// see rationale for <refs> at declaration of OglTex.
-		// note: tex_free is safe even if this OglTex was wrapped -
-		//       the Tex contains a mem handle.
 		intptr_t refs = h_get_refcnt(ht);
 		if(refs == 1)
 		{
 			// note: we verify above that OT_TEX_VALID is set
-			tex_free(t);
 			ot->flags &= ~OT_TEX_VALID;
 		}
 	}
@@ -992,11 +989,11 @@ Status ogl_tex_get_size(Handle ht, size_t* w, size_t* h, size_t* bpp)
 	H_DEREF(ht, OglTex, ot);
 
 	if(w)
-		*w = ot->t.w;
+		*w = ot->t.m_Width;
 	if(h)
-		*h = ot->t.h;
+		*h = ot->t.m_Height;
 	if(bpp)
-		*bpp = ot->t.bpp;
+		*bpp = ot->t.m_Bpp;
 	return INFO::OK;
 }
 
@@ -1009,7 +1006,7 @@ Status ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt)
 	H_DEREF(ht, OglTex, ot);
 
 	if(flags)
-		*flags = ot->t.flags;
+		*flags = ot->t.m_Flags;
 	if(fmt)
 	{
 		ENSURE(ot->flags & OT_IS_UPLOADED);
@@ -1030,7 +1027,7 @@ Status ogl_tex_get_data(Handle ht, u8** p)
 {
 	H_DEREF(ht, OglTex, ot);
 
-	*p = tex_get_data(&ot->t);
+	*p = ot->t.get_data();
 	return INFO::OK;
 }
 
@@ -1048,7 +1045,7 @@ extern Status ogl_tex_get_average_colour(Handle ht, u32* p)
 	H_DEREF(ht, OglTex, ot);
 	warn_if_uploaded(ht, ot);
 
-	*p = tex_get_average_colour(&ot->t);
+	*p = ot->t.get_average_colour();
 	return INFO::OK;
 }
 
@@ -1111,7 +1108,7 @@ Status ogl_tex_get_texture_id(Handle ht, GLuint* id)
 Status ogl_tex_transform(Handle ht, size_t transforms)
 {
 	H_DEREF(ht, OglTex, ot);
-	Status ret = tex_transform(&ot->t, transforms);
+	Status ret = ot->t.transform(transforms);
 	return ret;
 }
 
@@ -1121,7 +1118,7 @@ Status ogl_tex_transform(Handle ht, size_t transforms)
 Status ogl_tex_transform_to(Handle ht, size_t new_flags)
 {
 	H_DEREF(ht, OglTex, ot);
-	Status ret = tex_transform_to(&ot->t, new_flags);
+	Status ret = ot->t.transform_to(new_flags);
 	return ret;
 }
 

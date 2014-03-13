@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -201,7 +201,6 @@ enum TexFlags
 	TEX_UNDEFINED_FLAGS = ~0x1FF
 };
 
-
 /**
  * stores all data describing an image.
  * we try to minimize size, since this is stored in OglTex resources
@@ -214,9 +213,9 @@ struct Tex
 	 * (which may occur when being loaded), this may be replaced with
 	 * a new buffer (e.g. if decompressing file contents).
 	 **/
-	shared_ptr<u8> data;
+	shared_ptr<u8> m_Data;
 
-	size_t dataSize;
+	size_t m_DataSize;
 
 	/**
 	 * offset to image data in file. this is required since
@@ -224,24 +223,139 @@ struct Tex
 	 * returns the actual file buffer. zero-copy load and
 	 * write-back to file is also made possible.
 	 **/
-	size_t ofs;
+	size_t m_Ofs;
 
-	size_t w;
-	size_t h;
-	size_t bpp;
+	size_t m_Width;
+	size_t m_Height;
+	size_t m_Bpp;
 
 	/// see TexFlags and "Format Conversion" in docs.
-	size_t flags;
+	size_t m_Flags;
+
+	~Tex()
+	{
+		free();
+	}
+
+	/**
+	 * Is the texture object valid and self-consistent?
+	 * 
+	 * @return Status
+	 **/
+	Status validate() const;
+
+	/**
+	 * free all resources associated with the image and make further
+	 * use of it impossible.
+	 *
+	 * @return Status
+	 **/
+	void free();
+
+	/**
+	 * decode an in-memory texture file into texture object.
+	 *
+	 * FYI, currently BMP, TGA, JPG, JP2, PNG, DDS are supported - but don't
+	 * rely on this (not all codecs may be included).
+	 *
+	 * @param data Input data.
+	 * @param data_size Its size [bytes].
+	 * @return Status.
+	 **/
+	Status decode(const shared_ptr<u8>& data, size_t data_size);
+
+	/**
+	 * encode a texture into a memory buffer in the desired file format.
+	 *
+	 * @param extension (including '.').
+	 * @param da Output memory array. Allocated here; caller must free it
+	 *		  when no longer needed. Invalid unless function succeeds.
+	 * @return Status
+	 **/
+	Status encode(const OsPath& extension, DynArray* da);
+	
+	/**
+	 * store the given image data into a Tex object; this will be as if
+	 * it had been loaded via tex_load.
+	 *
+	 * rationale: support for in-memory images is necessary for
+	 *   emulation of glCompressedTexImage2D and useful overall.
+	 *   however, we don't want to provide an alternate interface for each API;
+	 *   these would have to be changed whenever fields are added to Tex.
+	 *   instead, provide one entry point for specifying images.
+	 * note: since we do not know how \<img\> was allocated, the caller must free
+	 *   it themselves (after calling tex_free, which is required regardless of
+	 *   alloc type).
+	 *
+	 * we need only add bookkeeping information and "wrap" it in
+	 * our Tex struct, hence the name.
+	 *
+	 * @param w,h Pixel dimensions.
+	 * @param bpp Bits per pixel.
+	 * @param flags TexFlags.
+	 * @param data Img texture data. note: size is calculated from other params.
+	 * @param ofs
+	 * @return Status
+	 **/
+	Status wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs);
+	
+	//
+	// modify image
+	//
+
+	/**
+	 * Change \<t\>'s pixel format.
+	 *
+	 * @param transforms TexFlags that are to be flipped.
+	 * @return Status
+	 **/
+	Status transform(size_t transforms);
+
+	/**
+	 * Change \<t\>'s pixel format (2nd version)
+	 * (note: this is equivalent to tex_transform(t, t-\>flags^new_flags).
+	 *
+	 * @param new_flags desired new value of TexFlags.
+	 * @return Status
+	 **/
+	Status transform_to(size_t new_flags);
+
+	//
+	// return image information
+	//
+
+	/**
+	 * rationale: since Tex is a struct, its fields are accessible to callers.
+	 * this is more for C compatibility than convenience; the following should
+	 * be used instead of direct access to the corresponding fields because
+	 * they take care of some dirty work.
+	 **/
+
+	/**
+	 * return a pointer to the image data (pixels), taking into account any
+	 * header(s) that may come before it.
+	 *
+	 * @return pointer to data returned by mem_get_ptr (holds reference)!
+	 **/
+	u8* get_data();
+
+	/**
+	 * return the ARGB value of the 1x1 mipmap level of the texture.
+	 *
+	 * @return ARGB value (or 0 if texture does not have mipmaps)
+	 **/
+	u32 get_average_colour() const;
+
+	/**
+	 * return total byte size of the image pixels. (including mipmaps!)
+	 * rationale: this is preferable to calculating manually because it's
+	 * less error-prone (e.g. confusing bits_per_pixel with bytes).
+	 *
+	 * @return size [bytes]
+	 **/
+	size_t img_size() const;
+
 };
-
-
-/**
- * Is the texture object valid and self-consistent?
- * 
- * @param t
- * @return Status
- **/
-extern Status tex_validate(const Tex* t);
 
 
 /**
@@ -251,145 +365,6 @@ extern Status tex_validate(const Tex* t);
  * @param orientation Either TEX_BOTTOM_UP or TEX_TOP_DOWN.
  **/
 extern void tex_set_global_orientation(int orientation);
-
-
-/**
- * Manually register codecs. must be called before first use of a
- * codec (e.g. loading a texture).
- *
- * This would normally be taken care of by TEX_CODEC_REGISTER, but
- * no longer works when building as a static library.
- * Workaround: hard-code a list of codecs in tex_codec.cpp and
- * call their registration functions.
- **/
-extern void tex_codec_register_all();
-
-/**
- * remove all codecs that have been registered.
- **/
-extern void tex_codec_unregister_all();
-
-/**
- * decode an in-memory texture file into texture object.
- *
- * FYI, currently BMP, TGA, JPG, JP2, PNG, DDS are supported - but don't
- * rely on this (not all codecs may be included).
- *
- * @param data Input data.
- * @param data_size Its size [bytes].
- * @param t Output texture object.
- * @return Status.
- **/
-extern Status tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t);
-
-/**
- * encode a texture into a memory buffer in the desired file format.
- *
- * @param t Input texture object.
- * @param extension (including '.').
- * @param da Output memory array. Allocated here; caller must free it
- *		  when no longer needed. Invalid unless function succeeds.
- * @return Status
- **/
-extern Status tex_encode(Tex* t, const OsPath& extension, DynArray* da);
-
-/**
- * store the given image data into a Tex object; this will be as if
- * it had been loaded via tex_load.
- *
- * rationale: support for in-memory images is necessary for
- *   emulation of glCompressedTexImage2D and useful overall.
- *   however, we don't want to provide an alternate interface for each API;
- *   these would have to be changed whenever fields are added to Tex.
- *   instead, provide one entry point for specifying images.
- * note: since we do not know how \<img\> was allocated, the caller must free
- *   it themselves (after calling tex_free, which is required regardless of
- *   alloc type).
- *
- * we need only add bookkeeping information and "wrap" it in
- * our Tex struct, hence the name.
- *
- * @param w,h Pixel dimensions.
- * @param bpp Bits per pixel.
- * @param flags TexFlags.
- * @param data Img texture data. note: size is calculated from other params.
- * @param ofs
- * @param t output texture object.
- * @return Status
- **/
-extern Status tex_wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs, Tex* t);
-
-/**
- * free all resources associated with the image and make further
- * use of it impossible.
- *
- * @param t texture object (note: not zeroed afterwards; see impl)
- * @return Status
- **/
-extern void tex_free(Tex* t);
-
-
-//
-// modify image
-//
-
-/**
- * Change \<t\>'s pixel format.
- *
- * @param t Input texture object.
- * @param transforms TexFlags that are to be flipped.
- * @return Status
- **/
-extern Status tex_transform(Tex* t, size_t transforms);
-
-/**
- * Change \<t\>'s pixel format (2nd version)
- * (note: this is equivalent to tex_transform(t, t-\>flags^new_flags).
- *
- * @param t Input texture object.
- * @param new_flags desired new value of TexFlags.
- * @return Status
- **/
-extern Status tex_transform_to(Tex* t, size_t new_flags);
-
-
-//
-// return image information
-//
-
-/**
- * rationale: since Tex is a struct, its fields are accessible to callers.
- * this is more for C compatibility than convenience; the following should
- * be used instead of direct access to the corresponding fields because
- * they take care of some dirty work.
- **/
-
-/**
- * return a pointer to the image data (pixels), taking into account any
- * header(s) that may come before it.
- *
- * @param t input texture object
- * @return pointer to data returned by mem_get_ptr (holds reference)!
- **/
-extern u8* tex_get_data(const Tex* t);
-
-/**
- * return the ARGB value of the 1x1 mipmap level of the texture.
- *
- * @param t input texture object
- * @return ARGB value (or 0 if texture does not have mipmaps)
- **/
-extern u32 tex_get_average_colour(const Tex* t);
-
-/**
- * return total byte size of the image pixels. (including mipmaps!)
- * rationale: this is preferable to calculating manually because it's
- * less error-prone (e.g. confusing bits_per_pixel with bytes).
- *
- * @param t input texture object
- * @return size [bytes]
- **/
-extern size_t tex_img_size(const Tex* t);
 
 
 /**
@@ -463,14 +438,5 @@ extern bool tex_is_known_extension(const VfsPath& pathname);
  * @return size [bytes] or 0 on error (i.e. no codec found).
  **/
 extern size_t tex_hdr_size(const VfsPath& filename);
-
-// RAII wrapper
-struct ScopedTex : public Tex
-{
-	~ScopedTex()
-	{
-		tex_free(this);
-	}
-};
 
 #endif	 // INCLUDED_TEX

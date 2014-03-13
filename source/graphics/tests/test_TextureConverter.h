@@ -38,14 +38,10 @@ public:
 		m_VFS = CreateVfs(20*MiB);
 		TS_ASSERT_OK(m_VFS->Mount(L"", DataDir()/"mods"/"_test.tex", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(m_VFS->Mount(L"cache/", DataDir()/"_testcache"));
-
-		tex_codec_register_all();
 	}
 
 	void tearDown()
 	{
-		tex_codec_unregister_all();
-
 		m_VFS.reset();
 		DeleteDirectory(DataDir()/"_testcache");
 	}
@@ -78,11 +74,11 @@ public:
 		TS_ASSERT_OK(m_VFS->LoadFile(dest, file, fileSize));
 
 		Tex tex;
-		TS_ASSERT_OK(tex_decode(file, fileSize, &tex));
+		TS_ASSERT_OK(tex.decode(file, fileSize));
 
-		TS_ASSERT_OK(tex_transform_to(&tex, (tex.flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)));
+		TS_ASSERT_OK(tex.transform_to((tex.m_Flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)));
 
-		u8* texdata = tex_get_data(&tex);
+		u8* texdata = tex.get_data();
 
 		// The source texture is repeated after 4 pixels, so the compressed texture
 		// should be identical after 4 pixels
@@ -97,7 +93,5 @@ public:
 //			if (i % 4 == 0) printf("\n");
 //			printf("%02x ", texdata[i]);
 //		}
-
-		tex_free(&tex);
 	}
 };

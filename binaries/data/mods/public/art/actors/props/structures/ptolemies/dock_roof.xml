@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/ptol_dock_roof.dae</mesh>
+      <textures>
+        <texture file="structural/ptol_edfu_paintings.png" name="baseTex"/>
+		    <texture file="structural/ptol_edfu_paintings_norm.png" name="normTex"/>
+        <texture file="structural/ptol_edfu_paintings_spec.png" name="specTex"/>
+		    <texture file="structural/ao/ptol_dock.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_ao_parallax_spec.xml</material>
+</actor>

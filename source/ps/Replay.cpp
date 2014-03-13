@@ -134,7 +134,6 @@ void CReplayPlayer::Replay()
 
 	// Need some stuff for terrain movement costs:
 	// (TODO: this ought to be independent of any graphics code)
-	tex_codec_register_all();
 	new CTerrainTextureManager;
 	g_TexMan.LoadTerrainTextures();
 
@@ -246,7 +245,6 @@ void CReplayPlayer::Replay()
 
 	// Clean up
 	delete &g_TexMan;
-	tex_codec_unregister_all();
 
 	delete &g_Profiler;
 	delete &g_ProfileViewer;

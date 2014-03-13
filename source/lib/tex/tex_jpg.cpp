@@ -423,7 +423,7 @@ JpgErrorMgr::JpgErrorMgr(jpeg_decompress_struct& cinfo)
 //-----------------------------------------------------------------------------
 
 
-static Status jpg_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
+Status TexCodecJpg::transform(Tex* UNUSED(t), size_t UNUSED(transforms)) const
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
@@ -503,16 +503,8 @@ static Status jpg_decode_impl(rpU8 data, size_t size, jpeg_decompress_struct* ci
 	if(cinfo->err->num_warnings != 0)
 		ret = WARN::TEX_INVALID_DATA;
 
-	// store image info
-	t->data  = img;
-	t->dataSize = imgSize;
-	t->ofs   = 0;
-	t->w     = w;
-	t->h     = h;
-	t->bpp   = bpp;
-	t->flags = flags;
-
-	return ret;
+	// store image info and validate
+	return ret | t->wrap(w,h,bpp,flags,img,0);
 }
 
 
@@ -522,10 +514,10 @@ static Status jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* da)
 
 	// describe image format
 	// required:
-	cinfo->image_width = (JDIMENSION)t->w;
-	cinfo->image_height = (JDIMENSION)t->h;
-	cinfo->input_components = (int)t->bpp / 8;
-	cinfo->in_color_space = (t->bpp == 8)? JCS_GRAYSCALE : JCS_RGB;
+	cinfo->image_width = (JDIMENSION)t->m_Width;
+	cinfo->image_height = (JDIMENSION)t->m_Height;
+	cinfo->input_components = (int)t->m_Bpp / 8;
+	cinfo->in_color_space = (t->m_Bpp == 8)? JCS_GRAYSCALE : JCS_RGB;
 	// defaults depend on cinfo->in_color_space already having been set!
 	jpeg_set_defaults(cinfo);
 	// (add optional settings, e.g. quality, here)
@@ -535,16 +527,16 @@ static Status jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* da)
 	jpeg_start_compress(cinfo, TRUE);
 
 	// if BGR, convert to RGB.
-	WARN_IF_ERR(tex_transform_to(t, t->flags & ~TEX_BGR));
+	WARN_IF_ERR(t->transform_to(t->m_Flags & ~TEX_BGR));
 
-	const size_t pitch = t->w * t->bpp / 8;
-	u8* data = tex_get_data(t);
-	std::vector<RowPtr> rows = tex_codec_alloc_rows(data, t->h, pitch, t->flags, TEX_TOP_DOWN);
+	const size_t pitch = t->m_Width * t->m_Bpp / 8;
+	u8* data = t->get_data();
+	std::vector<RowPtr> rows = tex_codec_alloc_rows(data, t->m_Height, pitch, t->m_Flags, TEX_TOP_DOWN);
 
 	// could use cinfo->output_scanline to keep track of progress,
 	// but we need to count lines_left anyway (paranoia).
 	JSAMPARRAY row = (JSAMPARRAY)&rows[0];
-	JDIMENSION lines_left = (JDIMENSION)t->h;
+	JDIMENSION lines_left = (JDIMENSION)t->m_Height;
 	while(lines_left != 0)
 	{
 		JDIMENSION lines_read = jpeg_write_scanlines(cinfo, row, lines_left);
@@ -565,7 +557,7 @@ static Status jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* da)
 
 
 
-static bool jpg_is_hdr(const u8* file)
+bool TexCodecJpg::is_hdr(const u8* file) const
 {
 	// JFIF requires SOI marker at start of stream.
 	// we compare single bytes to be endian-safe.
@@ -573,19 +565,19 @@ static bool jpg_is_hdr(const u8* file)
 }
 
 
-static bool jpg_is_ext(const OsPath& extension)
+bool TexCodecJpg::is_ext(const OsPath& extension) const
 {
 	return extension == L".jpg" || extension == L".jpeg";
 }
 
 
-static size_t jpg_hdr_size(const u8* UNUSED(file))
+size_t TexCodecJpg::hdr_size(const u8* UNUSED(file)) const
 {
 	return 0;	// libjpg returns decoded image data; no header
 }
 
 
-static Status jpg_decode(rpU8 data, size_t size, Tex* RESTRICT t)
+Status TexCodecJpg::decode(rpU8 data, size_t size, Tex* RESTRICT t) const
 {
 	// contains the JPEG decompression parameters and pointers to
 	//  working space (allocated as needed by the JPEG library).
@@ -606,7 +598,7 @@ static Status jpg_decode(rpU8 data, size_t size, Tex* RESTRICT t)
 
 
 // limitation: palette images aren't supported
-static Status jpg_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
+Status TexCodecJpg::encode(Tex* RESTRICT t, DynArray* RESTRICT da) const
 {
 	// contains the JPEG compression parameters and pointers to
 	// working space (allocated as needed by the JPEG library).
@@ -624,5 +616,3 @@ static Status jpg_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 
 	return ret;
 }
-
-TEX_CODEC_REGISTER(jpg);

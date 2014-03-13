@@ -57,41 +57,41 @@ STATUS_ADD_DEFINITIONS(texStatusDefinitions);
 //-----------------------------------------------------------------------------
 
 // be careful not to use other tex_* APIs here because they call us.
-Status tex_validate(const Tex* t)
+Status Tex::validate() const
 {
-	if(t->flags & TEX_UNDEFINED_FLAGS)
+	if(m_Flags & TEX_UNDEFINED_FLAGS)
 		WARN_RETURN(ERR::_1);
 
 	// pixel data (only check validity if the image is still in memory;
 	// ogl_tex frees the data after uploading to GL)
-	if(t->data)
+	if(m_Data)
 	{
 		// file size smaller than header+pixels.
 		// possible causes: texture file header is invalid,
 		// or file wasn't loaded completely.
-		if(t->dataSize < t->ofs + t->w*t->h*t->bpp/8)
+		if(m_DataSize < m_Ofs + m_Width*m_Height*m_Bpp/8)
 			WARN_RETURN(ERR::_2);
 	}
 
 	// bits per pixel
 	// (we don't bother checking all values; a sanity check is enough)
-	if(t->bpp % 4 || t->bpp > 32)
+	if(m_Bpp % 4 || m_Bpp > 32)
 		WARN_RETURN(ERR::_3);
 
 	// flags
 	// .. DXT value
-	const size_t dxt = t->flags & TEX_DXT;
+	const size_t dxt = m_Flags & TEX_DXT;
 	if(dxt != 0 && dxt != 1 && dxt != DXT1A && dxt != 3 && dxt != 5)
 		WARN_RETURN(ERR::_4);
 	// .. orientation
-	const size_t orientation = t->flags & TEX_ORIENTATION;
+	const size_t orientation = m_Flags & TEX_ORIENTATION;
 	if(orientation == (TEX_BOTTOM_UP|TEX_TOP_DOWN))
 		WARN_RETURN(ERR::_5);
 
 	return INFO::OK;
 }
 
-#define CHECK_TEX(t) RETURN_STATUS_IF_ERR(tex_validate(t))
+#define CHECK_TEX(t) RETURN_STATUS_IF_ERR((t->validate()))
 
 
 // check if the given texture format is acceptable: 8bpp grey,
@@ -257,15 +257,15 @@ static Status add_mipmaps(Tex* t, size_t w, size_t h, size_t bpp, void* newData,
 	// the only place this is used (ogl_tex_upload) requires POT anyway.
 	if(!is_pow2(w) || !is_pow2(h))
 		WARN_RETURN(ERR::TEX_INVALID_SIZE);
-	t->flags |= TEX_MIPMAPS;	// must come before tex_img_size!
-	const size_t mipmap_size = tex_img_size(t);
+	t->m_Flags |= TEX_MIPMAPS;	// must come before tex_img_size!
+	const size_t mipmap_size = t->img_size();
 	shared_ptr<u8> mipmapData;
 	AllocateAligned(mipmapData, mipmap_size);
 	CreateLevelData cld = { bpp/8, w, h, (const u8*)newData, dataSize };
 	tex_util_foreach_mipmap(w, h, bpp, mipmapData.get(), 0, 1, create_level, &cld);
-	t->data = mipmapData;
-	t->dataSize = mipmap_size;
-	t->ofs = 0;
+	t->m_Data = mipmapData;
+	t->m_DataSize = mipmap_size;
+	t->m_Ofs = 0;
 
 	return INFO::OK;
 }
@@ -293,9 +293,9 @@ TIMER_ACCRUE(tc_plain_transform);
 	CHECK_TEX(t);
 
 	// extract texture info
-	const size_t w = t->w, h = t->h, bpp = t->bpp;
-	const size_t flags = t->flags;
-	u8* const srcStorage = tex_get_data(t);
+	const size_t w = t->m_Width, h = t->m_Height, bpp = t->m_Bpp;
+	const size_t flags = t->m_Flags;
+	u8* const srcStorage = t->get_data();
 
 	// sanity checks (not errors, we just can't handle these cases)
 	// .. unknown transform
@@ -307,7 +307,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	if(!transforms)
 		return INFO::OK;
 
-	const size_t srcSize = tex_img_size(t);
+	const size_t srcSize = t->img_size();
 	size_t dstSize = srcSize;
 
 	if(transforms & TEX_ALPHA)
@@ -316,7 +316,7 @@ TIMER_ACCRUE(tc_plain_transform);
 		if(bpp == 24)
 		{
 			dstSize = (srcSize / 3) * 4;
-			t->bpp = 32;
+			t->m_Bpp = 32;
 		}
 		// remove alpha channel
 		else if(bpp == 32)
@@ -448,11 +448,11 @@ TIMER_ACCRUE(tc_plain_transform);
 		return INFO::TEX_CODEC_CANNOT_HANDLE;
 	}
 
-	t->data = dstStorage;
-	t->dataSize = dstSize;
-	t->ofs = 0;
+	t->m_Data = dstStorage;
+	t->m_DataSize = dstSize;
+	t->m_Ofs = 0;
 
-	if(!(t->flags & TEX_MIPMAPS) && transforms & TEX_MIPMAPS)
+	if(!(t->m_Flags & TEX_MIPMAPS) && transforms & TEX_MIPMAPS)
 		RETURN_STATUS_IF_ERR(add_mipmaps(t, w, h, bpp, dstStorage.get(), dstSize));
 
 	CHECK_TEX(t);
@@ -464,38 +464,38 @@ TIMER_ADD_CLIENT(tc_transform);
 
 // change <t>'s pixel format by flipping the state of all TEX_* flags
 // that are set in transforms.
-Status tex_transform(Tex* t, size_t transforms)
+Status Tex::transform(size_t transforms)
 {
 	TIMER_ACCRUE(tc_transform);
-	CHECK_TEX(t);
+	CHECK_TEX(this);
 
-	const size_t target_flags = t->flags ^ transforms;
+	const size_t target_flags = m_Flags ^ transforms;
 	size_t remaining_transforms;
 	for(;;)
 	{
-		remaining_transforms = target_flags ^ t->flags;
+		remaining_transforms = target_flags ^ m_Flags;
 		// we're finished (all required transforms have been done)
 		if(remaining_transforms == 0)
 			return INFO::OK;
 
-		Status ret = tex_codec_transform(t, remaining_transforms);
+		Status ret = tex_codec_transform(this, remaining_transforms);
 		if(ret != INFO::OK)
 			break;
 	}
 
 	// last chance
-	RETURN_STATUS_IF_ERR(plain_transform(t, remaining_transforms));
+	RETURN_STATUS_IF_ERR(plain_transform(this, remaining_transforms));
 	return INFO::OK;
 }
 
 
 // change <t>'s pixel format to the new format specified by <new_flags>.
 // (note: this is equivalent to tex_transform(t, t->flags^new_flags).
-Status tex_transform_to(Tex* t, size_t new_flags)
+Status Tex::transform_to(size_t new_flags)
 {
 	// tex_transform takes care of validating <t>
-	const size_t transforms = t->flags ^ new_flags;
-	return tex_transform(t, transforms);
+	const size_t transforms = m_Flags ^ new_flags;
+	return transform(transforms);
 }
 
 
@@ -520,9 +520,9 @@ void tex_set_global_orientation(int o)
 static void flip_to_global_orientation(Tex* t)
 {
 	// (can't use normal CHECK_TEX due to void return)
-	WARN_IF_ERR(tex_validate(t));
+	WARN_IF_ERR(t->validate());
 
-	size_t orientation = t->flags & TEX_ORIENTATION;
+	size_t orientation = t->m_Flags & TEX_ORIENTATION;
 	// if codec knows which way around the image is (i.e. not DDS):
 	if(orientation)
 	{
@@ -534,10 +534,10 @@ static void flip_to_global_orientation(Tex* t)
 	// indicate image is at global orientation. this is still done even
 	// if the codec doesn't know: the default orientation should be chosen
 	// to make that work correctly (see "Default Orientation" in docs).
-	t->flags = (t->flags & ~TEX_ORIENTATION) | global_orientation;
+	t->m_Flags = (t->m_Flags & ~TEX_ORIENTATION) | global_orientation;
 
 	// (can't use normal CHECK_TEX due to void return)
-	WARN_IF_ERR(tex_validate(t));
+	WARN_IF_ERR(t->validate());
 }
 
 
@@ -569,7 +569,7 @@ bool tex_orientations_match(size_t src_flags, size_t dst_orientation)
 // but this is open to misuse.
 bool tex_is_known_extension(const VfsPath& pathname)
 {
-	const TexCodecVTbl* dummy;
+	const ITexCodec* dummy;
 	// found codec for it => known extension
 	const OsPath extension = pathname.Extension();
 	if(tex_codec_for_filename(extension, &dummy) == INFO::OK)
@@ -590,29 +590,29 @@ bool tex_is_known_extension(const VfsPath& pathname)
 //
 // we need only add bookkeeping information and "wrap" it in
 // our Tex struct, hence the name.
-Status tex_wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs, Tex* t)
+Status Tex::wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs)
 {
-	t->w     = w;
-	t->h     = h;
-	t->bpp   = bpp;
-	t->flags = flags;
-	t->data  = data;
-	t->dataSize = ofs + w*h*bpp/8;
-	t->ofs   = ofs;
+	m_Width    = w;
+	m_Height   = h;
+	m_Bpp      = bpp;
+	m_Flags    = flags;
+	m_Data     = data;
+	m_DataSize = ofs + w*h*bpp/8;
+	m_Ofs      = ofs;
 
-	CHECK_TEX(t);
+	CHECK_TEX(this);
 	return INFO::OK;
 }
 
 
 // free all resources associated with the image and make further
 // use of it impossible.
-void tex_free(Tex* t)
+void Tex::free()
 {
 	// do not validate <t> - this is called from tex_load if loading
 	// failed, so not all fields may be valid.
 
-	t->data.reset();
+	m_Data.reset();
 
 	// do not zero out the fields! that could lead to trouble since
 	// ogl_tex_upload followed by ogl_tex_free is legit, but would
@@ -626,47 +626,49 @@ void tex_free(Tex* t)
 
 // returns a pointer to the image data (pixels), taking into account any
 // header(s) that may come before it.
-u8* tex_get_data(const Tex* t)
+u8* Tex::get_data()
 {
 	// (can't use normal CHECK_TEX due to u8* return value)
-	WARN_IF_ERR(tex_validate(t));
+	WARN_IF_ERR(validate());
 
-	u8* p = t->data.get();
+	u8* p = m_Data.get();
 	if(!p)
 		return 0;
-	return p + t->ofs;
+	return p + m_Ofs;
 }
 
 // returns colour of 1x1 mipmap level
-u32 tex_get_average_colour(const Tex* t)
+u32 Tex::get_average_colour() const
 {
 	// require mipmaps
-	if(!(t->flags & TEX_MIPMAPS))
+	if(!(m_Flags & TEX_MIPMAPS))
 		return 0;
 
 	// find the total size of image data
-	size_t size = tex_img_size(t);
+	size_t size = img_size();
 
 	// compute the size of the last (1x1) mipmap level
-	const size_t data_padding = (t->flags & TEX_DXT)? 4 : 1;
-	size_t last_level_size = (size_t)(data_padding * data_padding * t->bpp/8);
+	const size_t data_padding = (m_Flags & TEX_DXT)? 4 : 1;
+	size_t last_level_size = (size_t)(data_padding * data_padding * m_Bpp/8);
 
 	// construct a new texture based on the current one,
-	// but set its data pointer offset to the last mipmap level's data
-	Tex basetex = *t;
-	basetex.w = 1;
-	basetex.h = 1;
-	basetex.ofs += size - last_level_size;
+	// but only include the last mipmap level
+	// do this so that we can use the general conversion methods for the pixel data
+	Tex basetex = *this;
+	uint8_t *data = new uint8_t[last_level_size];
+	memcpy(data, m_Data.get() + m_Ofs + size - last_level_size, last_level_size);
+	boost::shared_ptr<uint8_t> sdata(data);
+	basetex.wrap(1, 1, m_Bpp, m_Flags, sdata, 0);
 
 	// convert to BGRA
-	WARN_IF_ERR(tex_transform_to(&basetex, TEX_BGR | TEX_ALPHA));
+	WARN_IF_ERR(basetex.transform_to(TEX_BGR | TEX_ALPHA));
 
 	// extract components into u32
-	ENSURE(basetex.dataSize >= basetex.ofs+4);
-	u8 b = basetex.data.get()[basetex.ofs];
-	u8 g = basetex.data.get()[basetex.ofs+1];
-	u8 r = basetex.data.get()[basetex.ofs+2];
-	u8 a = basetex.data.get()[basetex.ofs+3];
+	ENSURE(basetex.m_DataSize >= basetex.m_Ofs+4);
+	u8 b = basetex.m_Data.get()[basetex.m_Ofs];
+	u8 g = basetex.m_Data.get()[basetex.m_Ofs+1];
+	u8 r = basetex.m_Data.get()[basetex.m_Ofs+2];
+	u8 a = basetex.m_Data.get()[basetex.m_Ofs+3];
 	return b + (g << 8) + (r << 16) + (a << 24);
 }
 
@@ -680,15 +682,15 @@ static void add_level_size(size_t UNUSED(level), size_t UNUSED(level_w), size_t 
 // return total byte size of the image pixels. (including mipmaps!)
 // this is preferable to calculating manually because it's
 // less error-prone (e.g. confusing bits_per_pixel with bytes).
-size_t tex_img_size(const Tex* t)
+size_t Tex::img_size() const
 {
 	// (can't use normal CHECK_TEX due to size_t return value)
-	WARN_IF_ERR(tex_validate(t));
+	WARN_IF_ERR(validate());
 
-	const int levels_to_skip = (t->flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
-	const size_t data_padding = (t->flags & TEX_DXT)? 4 : 1;
+	const int levels_to_skip = (m_Flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
+	const size_t data_padding = (m_Flags & TEX_DXT)? 4 : 1;
 	size_t out_size = 0;
-	tex_util_foreach_mipmap(t->w, t->h, t->bpp, 0, levels_to_skip, data_padding, add_level_size, &out_size);
+	tex_util_foreach_mipmap(m_Width, m_Height, m_Bpp, 0, levels_to_skip, data_padding, add_level_size, &out_size);
 	return out_size;
 }
 
@@ -702,7 +704,7 @@ size_t tex_img_size(const Tex* t)
 // directly into the output buffer and makes for zero-copy IO.
 size_t tex_hdr_size(const VfsPath& filename)
 {
-	const TexCodecVTbl* c;
+	const ITexCodec* c;
 	
 	const OsPath extension = filename.Extension();
 	WARN_RETURN_STATUS_IF_ERR(tex_codec_for_filename(extension, &c));
@@ -714,57 +716,57 @@ size_t tex_hdr_size(const VfsPath& filename)
 // read/write from memory and disk
 //-----------------------------------------------------------------------------
 
-Status tex_decode(const shared_ptr<u8>& data, size_t dataSize, Tex* t)
+Status Tex::decode(const shared_ptr<u8>& Data, size_t DataSize)
 {
-	const TexCodecVTbl* c;
-	RETURN_STATUS_IF_ERR(tex_codec_for_header(data.get(), dataSize, &c));
+	const ITexCodec* c;
+	RETURN_STATUS_IF_ERR(tex_codec_for_header(Data.get(), DataSize, &c));
 
 	// make sure the entire header is available
 	const size_t min_hdr_size = c->hdr_size(0);
-	if(dataSize < min_hdr_size)
+	if(DataSize < min_hdr_size)
 		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
-	const size_t hdr_size = c->hdr_size(data.get());
-	if(dataSize < hdr_size)
+	const size_t hdr_size = c->hdr_size(Data.get());
+	if(DataSize < hdr_size)
 		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
 
-	t->data = data;
-	t->dataSize = dataSize;
-	t->ofs = hdr_size;
+	m_Data = Data;
+	m_DataSize = DataSize;
+	m_Ofs = hdr_size;
 
-	RETURN_STATUS_IF_ERR(c->decode((rpU8)data.get(), dataSize, t));
+	RETURN_STATUS_IF_ERR(c->decode((rpU8)Data.get(), DataSize, this));
 
 	// sanity checks
-	if(!t->w || !t->h || t->bpp > 32)
+	if(!m_Width || !m_Height || m_Bpp > 32)
 		WARN_RETURN(ERR::TEX_FMT_INVALID);
-	if(t->dataSize < t->ofs + tex_img_size(t))
+	if(m_DataSize < m_Ofs + img_size())
 		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 
-	flip_to_global_orientation(t);
+	flip_to_global_orientation(this);
 
-	CHECK_TEX(t);
+	CHECK_TEX(this);
 
 	return INFO::OK;
 }
 
 
-Status tex_encode(Tex* t, const OsPath& extension, DynArray* da)
+Status Tex::encode(const OsPath& extension, DynArray* da)
 {
-	CHECK_TEX(t);
-	WARN_RETURN_STATUS_IF_ERR(tex_validate_plain_format(t->bpp, t->flags));
+	CHECK_TEX(this);
+	WARN_RETURN_STATUS_IF_ERR(tex_validate_plain_format(m_Bpp, m_Flags));
 
 	// we could be clever here and avoid the extra alloc if our current
 	// memory block ensued from the same kind of texture file. this is
 	// most likely the case if in_img == tex_get_data() + c->hdr_size(0).
 	// this would make for zero-copy IO.
 
-	const size_t max_out_size = tex_img_size(t)*4 + 256*KiB;
+	const size_t max_out_size = img_size()*4 + 256*KiB;
 	RETURN_STATUS_IF_ERR(da_alloc(da, max_out_size));
 
-	const TexCodecVTbl* c;
+	const ITexCodec* c;
 	WARN_RETURN_STATUS_IF_ERR(tex_codec_for_filename(extension, &c));
 
 	// encode into <da>
-	Status err = c->encode(t, da);
+	Status err = c->encode(this, da);
 	if(err < 0)
 	{
 		(void)da_free(da);
