@@ -68,23 +68,27 @@ export CC=${CC:="gcc"} CXX=${CXX:="g++"}
 # the confusion, Apple moved /Developer/SDKs into the Xcode app bundle
 # so the path can't be guessed by clever build tools (like Boost.Build).
 # Sometimes configure gets it wrong anyway, especially on cross compiles.
-# This is why we prefer using CFLAGS, CXXFLAGS, and LDFLAGS.
+# This is why we prefer using (OBJ)CFLAGS, (OBJ)CXXFLAGS, and LDFLAGS.
 
 # Check if SYSROOT is set and not empty
 if [[ $SYSROOT && ${SYSROOT-_} ]]; then
-  CFLAGS="$CFLAGS -isysroot $SYSROOT"
+  C_FLAGS="-isysroot $SYSROOT"
   LDFLAGS="$LDFLAGS -Wl,-syslibroot,$SYSROOT"
 fi
 # Check if MIN_OSX_VERSION is set and not empty
 if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
-  CFLAGS="$CFLAGS -mmacosx-version-min=$MIN_OSX_VERSION"
+  C_FLAGS="$C_FLAGS -mmacosx-version-min=$MIN_OSX_VERSION"
   # clang and llvm-gcc look at mmacosx-version-min to determine link target
   # and CRT version, and use it to set the macosx_version_min linker flag
   LDFLAGS="$LDFLAGS -mmacosx-version-min=$MIN_OSX_VERSION"
 fi
-CFLAGS="$CFLAGS -arch $ARCH -fvisibility=hidden"
-CXXFLAGS="$CXXFLAGS -arch $ARCH -fvisibility=hidden"
+C_FLAGS="$C_FLAGS -arch $ARCH -fvisibility=hidden"
 LDFLAGS="$LDFLAGS -arch $ARCH"
+
+CFLAGS="$CFLAGS $C_FLAGS"
+CXXFLAGS="$CXXFLAGS $C_FLAGS"
+OBJCFLAGS="$OBJCFLAGS $C_FLAGS"
+OBJCXXFLAGS="$OBJCXXFLAGS $C_FLAGS"
 
 JOBS=${JOBS:="-j2"}
 
