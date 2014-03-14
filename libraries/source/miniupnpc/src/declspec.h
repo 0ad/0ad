@@ -8,7 +8,11 @@
 		#define LIBSPEC __declspec(dllimport)
 	#endif
 #else
-	#define LIBSPEC
+	#if defined(__GNUC__) && __GNUC__ >= 4
+		#define LIBSPEC __attribute__ ((visibility ("default")))
+	#else
+		#define LIBSPEC
+	#endif
 #endif
 
 #endif

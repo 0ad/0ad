@@ -68,7 +68,7 @@ export CC=${CC:="gcc"} CXX=${CXX:="g++"}
 # the confusion, Apple moved /Developer/SDKs into the Xcode app bundle
 # so the path can't be guessed by clever build tools (like Boost.Build).
 # Sometimes configure gets it wrong anyway, especially on cross compiles.
-# This is why we prefer using CFLAGS, CPPFLAGS, and LDFLAGS.
+# This is why we prefer using CFLAGS, CXXFLAGS, and LDFLAGS.
 
 # Check if SYSROOT is set and not empty
 if [[ $SYSROOT && ${SYSROOT-_} ]]; then
@@ -82,9 +82,8 @@ if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
   # and CRT version, and use it to set the macosx_version_min linker flag
   LDFLAGS="$LDFLAGS -mmacosx-version-min=$MIN_OSX_VERSION"
 fi
-CFLAGS="$CFLAGS -arch $ARCH"
-# Avoid linker warnings about compiling translation units with different visibility settings
-CPPFLAGS="$CPPFLAGS $CFLAGS -fvisibility=hidden"
+CFLAGS="$CFLAGS -arch $ARCH -fvisibility=hidden"
+CXXFLAGS="$CXXFLAGS -arch $ARCH -fvisibility=hidden"
 LDFLAGS="$LDFLAGS -arch $ARCH"
 
 JOBS=${JOBS:="-j2"}
@@ -155,7 +154,6 @@ then
   pushd $LIB_DIRECTORY
 
   # patch zlib's configure script to use our CFLAGS and LDFLAGS
-  # TODO: could be done with sed...
   (patch -p0 -i ../../patches/zlib_flags.diff && CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" ./configure --prefix="$ZLIB_DIR" --static && make ${JOBS} && make install) || die "zlib build failed"
   popd
   touch .already-built
@@ -186,7 +184,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-ipv6 --without-gnutls --without-gssapi --without-libmetalink --without-librtmp --without-libssh2 --without-nss --without-polarssl --without-spnego --without-ssl --disable-ares --disable-ldap --disable-ldaps --without-libidn --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libcurl build failed"
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-ipv6 --without-gnutls --without-gssapi --without-libmetalink --without-librtmp --without-libssh2 --without-nss --without-polarssl --without-spnego --without-ssl --disable-ares --disable-ldap --disable-ldaps --without-libidn --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libcurl build failed"
   popd
   touch .already-built
 else
@@ -216,7 +214,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$ICONV_DIR" --without-libiconv-prefix --without-libintl-prefix --disable-nls --enable-shared=no && make ${JOBS} && make install) || die "libiconv build failed"
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix="$ICONV_DIR" --without-libiconv-prefix --without-libintl-prefix --disable-nls --enable-shared=no && make ${JOBS} && make install) || die "libiconv build failed"
   popd
   touch .already-built
 else
@@ -246,7 +244,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --without-lzma --without-python --with-iconv="${ICONV_DIR}" --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libxml2 build failed"
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --without-lzma --without-python --with-iconv="${ICONV_DIR}" --with-zlib="${ZLIB_DIR}" --enable-shared=no && make ${JOBS} && make install) || die "libxml2 build failed"
   popd
   touch .already-built
 else
@@ -280,7 +278,7 @@ then
 
   # patch SDL to fix Mavericks build (fixed upstream, see https://bugzilla.libsdl.org/show_bug.cgi?id=2085 )
   # Don't use X11 - we don't need it and Mountain Lion removed it
-  (patch -p0 -i ../../patches/sdl-mavericks-quartz-fix.diff && ./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --disable-video-x11 --without-x --enable-shared=no && make $JOBS && make install) || die "SDL build failed"
+  (patch -p0 -i ../../patches/sdl-mavericks-quartz-fix.diff && ./configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --disable-video-x11 --without-x --enable-shared=no && make $JOBS && make install) || die "SDL build failed"
   popd
   touch .already-built
 else
@@ -311,7 +309,7 @@ then
   pushd $LIB_DIRECTORY
 
   # Can't use macosx-version, see above comment.
-  (./bootstrap.sh --with-libraries=filesystem,system,signals --prefix=$INSTALL_DIR && ./b2 cflags="$CFLAGS" cxxflags="$CPPFLAGS" linkflags="$LDFLAGS" ${JOBS} -d2 --layout=tagged --debug-configuration link=static threading=multi variant=release,debug install) || die "Boost build failed"
+  (./bootstrap.sh --with-libraries=filesystem,system,signals --prefix=$INSTALL_DIR && ./b2 cflags="$CFLAGS" cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" ${JOBS} -d2 --layout=tagged --debug-configuration link=static threading=multi variant=release,debug install) || die "Boost build failed"
 
   popd
   touch .already-built
@@ -354,7 +352,7 @@ then
     CONF_OPTS="$CONF_OPTS --with-macosx-version-min=$MIN_OSX_VERSION"
   fi
 
-  (../configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
+  (../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
   popd
   touch .already-built
@@ -385,7 +383,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix=$INSTALL_DIR --enable-shared=no && make ${JOBS} && make install) || die "libjpg build failed"
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix=$INSTALL_DIR --enable-shared=no && make ${JOBS} && make install) || die "libjpg build failed"
   popd
   touch .already-built
 else
@@ -415,7 +413,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix=$INSTALL_DIR --enable-shared=no && make ${JOBS} && make install) || die "libpng build failed"
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix=$INSTALL_DIR --enable-shared=no && make ${JOBS} && make install) || die "libpng build failed"
   popd
   touch .already-built
 else
@@ -448,7 +446,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix=$OGG_DIR --enable-shared=no && make ${JOBS} && make install) || die "libogg build failed"
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix=$OGG_DIR --enable-shared=no && make ${JOBS} && make install) || die "libogg build failed"
   popd
   touch .already-built
 else
@@ -477,7 +475,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no --with-ogg="$OGG_DIR" && make ${JOBS} && make install) || die "libvorbis build failed"
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no --with-ogg="$OGG_DIR" && make ${JOBS} && make install) || die "libvorbis build failed"
   popd
   touch .already-built
 else
@@ -510,7 +508,7 @@ then
   # patch gloox to fix build error (fixed upstream in r4529)
   # TODO: pulls in libresolv dependency from /usr/lib
   # TODO: if we ever use SSL/TLS, that will add yet another dependency...
-  (patch -p0 -i ../../patches/gloox-r4529.diff && ./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no --with-zlib="${ZLIB_DIR}" --without-libidn --without-gnutls --without-openssl --without-tests --without-examples && make ${JOBS} && make install) || die "gloox build failed"
+  (patch -p0 -i ../../patches/gloox-r4529.diff && ./configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no --with-zlib="${ZLIB_DIR}" --without-libidn --without-gnutls --without-openssl --without-tests --without-examples && make ${JOBS} && make install) || die "gloox build failed"
   popd
   touch .already-built
 else
@@ -585,7 +583,7 @@ then
   rm -f .already-built
 
   pushd src
-  (./configure CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" --prefix=${INSTALL_DIR} --enable-shared=no && make clean && make ${JOBS} && make install) || die "ENet build failed"
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix=${INSTALL_DIR} --enable-shared=no && make clean && make ${JOBS} && make install) || die "ENet build failed"
   popd
   touch .already-built
 else
@@ -612,7 +610,7 @@ then
   # Could use CMAKE_OSX_DEPLOYMENT_TARGET and CMAKE_OSX_SYSROOT
   # but they're not as flexible for cross-compiling
   # Disable optional libs that we don't need (avoids some conflicts with MacPorts)
-  (cmake .. -DCMAKE_LINK_FLAGS="$LDFLAGS" -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CPPFLAGS" -DCMAKE_BUILD_TYPE=Release -DBINDIR=bin -DLIBDIR=lib -DGLUT=0 -DGLEW=0 -DCG=0 -DCUDA=0 -DOPENEXR=0 -DJPEG=0 -DPNG=0 -DTIFF=0 -G "Unix Makefiles" && make clean && make nvtt ${JOBS}) || die "NVTT build failed"
+  (cmake .. -DCMAKE_LINK_FLAGS="$LDFLAGS" -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CXXFLAGS" -DCMAKE_BUILD_TYPE=Release -DBINDIR=bin -DLIBDIR=lib -DGLUT=0 -DGLEW=0 -DCG=0 -DCUDA=0 -DOPENEXR=0 -DJPEG=0 -DPNG=0 -DTIFF=0 -G "Unix Makefiles" && make clean && make nvtt ${JOBS}) || die "NVTT build failed"
   popd
 
   mkdir -p ../lib
@@ -642,7 +640,7 @@ then
   # The Makefile refers to pkg-config for libxml2, but we
   # don't have that (replace with xml2-config instead)
   sed -i.bak -e 's/pkg-config libxml-2.0/xml2-config/' Makefile
-  (make clean && CXXFLAGS=$CPPFLAGS make ${JOBS}) || die "FCollada build failed"
+  (make clean && CXXFLAGS=$CXXFLAGS make ${JOBS}) || die "FCollada build failed"
   # Undo Makefile change
   mv Makefile.bak Makefile
   popd
