@@ -241,6 +241,7 @@ int32 FUStringConversion::ParseQualifier(const char* qualifier)
 	return returnValue;
 }
 
+#ifndef _MSC_VER
 template FMVector2 FUStringConversion::ToVector2<char>(const char**);
 template FMVector3 FUStringConversion::ToVector3<char>(const char**);
 template FMVector4 FUStringConversion::ToVector4<char>(const char**);
@@ -266,6 +267,7 @@ template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const 
 template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const FMMatrix44&);
 template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const fm::vector<float, true>&);
 template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const unsigned int*, size_t);
+#endif
 
 // Called by TrickLinker2 in FUStringBuilder.cpp
 extern void TrickLinkerFUStringConversion(void)
