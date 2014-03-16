@@ -495,7 +495,7 @@ m.Worker.prototype.startHunting = function(gameState, baseManager){
 		if (supply.getMetadata(PlayerID, "inaccessible") === true)
 			return;
 		
-		if (supply.isFull(PlayerID) === true)
+		if (supply.isFull() === true)
 			return;
 		
 		if (!supply.hasClass("Animal"))

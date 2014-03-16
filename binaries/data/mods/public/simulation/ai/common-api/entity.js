@@ -601,17 +601,17 @@ m.Entity = m.Class({
 		return this._entity.resourceSupplyAmount;
 	},
 				  
-	resourceSupplyGatherers: function(player)
+	resourceSupplyGatherers: function()
 	{
 		if (this._entity.resourceSupplyGatherers !== undefined)
-			return this._entity.resourceSupplyGatherers[player];
+			return this._entity.resourceSupplyGatherers;
 		return [];
 	},
 				  
-	isFull: function(player)
+	isFull: function()
 	{
 		if (this._entity.resourceSupplyGatherers !== undefined)
-			return (this.maxGatherers() === this._entity.resourceSupplyGatherers[player].length);
+			return (this.maxGatherers() === this._entity.resourceSupplyGatherers.length);
 
 		return undefined;
 	},
