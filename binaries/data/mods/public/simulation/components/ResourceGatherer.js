@@ -277,7 +277,7 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var diminishingReturns = cmpResourceSupply.GetDiminishingReturns();
 	if (diminishingReturns)
-		rate = (0.5 * Math.cos((cmpResourceSupply.GetGatherers(cmpOwnership.GetOwner()).length - 1) * Math.PI / diminishingReturns) + 0.5) * rate;
+		rate = (0.5 * Math.cos((cmpResourceSupply.GetGatherers().length - 1) * Math.PI / diminishingReturns) + 0.5) * rate;
 
 	return rate || 0;
 };

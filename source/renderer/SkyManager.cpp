@@ -252,6 +252,7 @@ void SkyManager::RenderSky()
 	// Distance to draw the faces at
 	const float D = 1500.0f; // distance from map center
 	const float H = 500.0f; // height of the ceiling
+	const float FH = -100.0f; // height of the "floor"
 	
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr skytech;
@@ -273,22 +274,22 @@ void SkyManager::RenderSky()
 	glBegin(GL_QUADS);
 
 	// GL_TEXTURE_CUBE_MAP_NEGATIVE_X
-		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, -H, -D );
-		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, -H, +D );
+		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, FH, -D );
+		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, FH, +D );
 		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +H, +D );
 		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +H, -D );
 
 	// GL_TEXTURE_CUBE_MAP_POSITIVE_X
-		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, -H, +D );
-		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, -H, -D );
+		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, FH, +D );
+		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, FH, -D );
 		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +H, -D );
 		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +H, +D );
 	
 	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
-		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, -H, -D );
-		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, -H, +D );
-		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, -H, +D );
-		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, -H, -D );
+		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, FH, -D );
+		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, FH, +D );
+		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, FH, +D );
+		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, FH, -D );
 		
 	// GL_TEXTURE_CUBE_MAP_POSITIVE_Y
 		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +H, -D );
@@ -297,14 +298,14 @@ void SkyManager::RenderSky()
 		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +H, -D );
 	
 	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
-		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, -H, -D );
-		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, -H, -D );
+		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, FH, -D );
+		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, FH, -D );
 		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +H, -D );
 		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +H, -D );
 
 	// GL_TEXTURE_CUBE_MAP_POSITIVE_Z
-		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, -H, +D );
-		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, -H, +D );
+		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, FH, +D );
+		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, FH, +D );
 		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +H, +D );
 		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +H, +D );
 	glEnd();

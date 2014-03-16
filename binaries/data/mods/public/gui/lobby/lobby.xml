@@ -112,19 +112,19 @@
 		<object name="middlePanel" size="20%+5 5% 100%-255 97.2%">
 			<object name="gamesBox" style="ModernList" type="olist" size="0 25 100% 48%">
 				<action on="SelectionChange">updateGameSelection();</action>
-				<def id="name" heading="Name" color="0 60 0" width="25%"/>
+				<def id="name" heading="Name" color="0 60 0" width="20%"/>
 				<!--<def id="ip" heading="IP" color="0 128 128" width="170"/>-->
 				<def id="mapName" heading="Map Name" color="128 128 128" width="25%"/>
-				<def id="mapSize" heading="Map Size" color="128 128 128" width="20%"/>
+				<def id="mapSize" heading="Map Size" color="128 128 128" width="25%"/>
 				<def id="mapType" heading="Map Type" color="0 128 128" width="20%"/>
 				<def id="nPlayers" heading="Players" color="0 128 128" width="10%"/>
 			</object>
 
-			<object name="filterPanel" size="0 0 100% 20">
+			<object name="filterPanel" size="0 0 100% 24">
 				<object name="mapSizeFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="49.7% 0 62% 100%"
+					size="45%-10 0 68% 100%"
 					font="serif-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
@@ -132,7 +132,7 @@
 				<object name="mapTypeFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="69.3% 0 82% 100%"
+					size="70% 0 88% 100%"
 					font="serif-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
@@ -140,7 +140,7 @@
 				<object name="playersNumberFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="89% 0 100% 100%"
+					size="90% 0 100% 100%"
 					font="serif-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
@@ -150,7 +150,7 @@
 					type="checkbox"
 					checked="true"
 					style="ModernTickBox"
-					size="0% 0 20 100%"
+					size="0 0 20 20"
 					font="serif-bold-13">
 					<action on="Press">applyFilters();</action>
 				</object>
