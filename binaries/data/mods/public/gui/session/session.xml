@@ -625,31 +625,31 @@
 		size="10 0 45% 100%"
 	    >
 		<!-- Food -->
-		<object size="0 0 90 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
+		<object name="food" size="0 0 90 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
 		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/food.png" ghost="true"/>
 		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
 		</object>
 
 		<!-- Wood -->
-		<object size="90 0 180 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
+		<object name="wood" size="90 0 180 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
 		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/wood.png" ghost="true"/>
 		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
 		</object>
 
 		<!-- Stone -->
-		<object size="180 0 270 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
+		<object name="stone" size="180 0 270 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
 		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/stone.png" ghost="true"/>
 		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
 		</object>
 
 		<!-- Metal -->
-		<object size="270 0 360 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
+		<object name="metal" size="270 0 360 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
 		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/metal.png" ghost="true"/>
 		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
 		</object>
 
 		<!-- Population -->
-		<object size="360 0 450 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
+		<object name="population" size="360 0 450 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
 		    <object size="0 -4 40 34" type="image" sprite="stretched:session/icons/resources/population.png" ghost="true"/>
 		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 		</object>
@@ -665,10 +665,16 @@
 		<action on="SelectionChange">selectViewPlayer(this.selected);</action>
 	    </object>
 
-	    <!-- ================================  ================================ -->
-	    <!-- Phase -->
-	    <!-- ================================  ================================ -->
-	    <!--<object size="50%+50 4 50%+300 100%-2" name="PhaseTitleBar" type="text" font="serif-bold-stroke-14" textcolor="white"> Death Match :: Village Phase</object>-->
+		<!-- ================================  ================================ -->
+		<!-- Phase -->
+		<!-- ================================  ================================ -->
+		<!--<object size="50%+50 4 50%+300 100%-2" name="PhaseTitleBar" type="text" font="serif-bold-stroke-14" textcolor="white"> Death Match :: Village Phase</object>-->
+
+		<!-- ================================  ================================ -->
+		<!-- Observer Mode Warning -->
+		<!-- ================================  ================================ -->
+		<object size="50 4 50% 100%-2" name="observerText" type="text" style="ModernLabelText" text_align="left" hidden="true">Observer Mode (experimental)</object>
+
 
 
 	    <!-- ================================  ================================ -->
@@ -1323,7 +1329,7 @@
 <!-- ================================  ================================ -->
 <!-- Network status -->
 <!-- ================================  ================================ -->
-<object name="netStatus" type="text" style="netStatus" z="100" hidden="true">
+<object name="netStatus" type="text" style="netStatus" z="200" hidden="true">
 	<object type="button"
 		name="disconnectedExitButton"
 		style="StoneButton"

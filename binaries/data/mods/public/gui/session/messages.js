@@ -270,7 +270,7 @@ function submitChatInput()
 	var isCheat = false;
 	if (text.length)
 	{
-		if (g_Players[Engine.GetPlayerID()].cheatsEnabled)
+		if (!g_IsObserver && g_Players[Engine.GetPlayerID()].cheatsEnabled)
 		{
 			for each (var cheat in Object.keys(cheats))
 			{
@@ -350,6 +350,9 @@ function addChatMessage(msg, playerAssignments)
 	if (playerAssignments[msg.guid])
 	{
 		var n = playerAssignments[msg.guid].player;
+		// Observers have an ID of -1 which is not a valid index.
+		if (n < 0)
+			n = 0;
 		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
 		username = escapeText(playerAssignments[msg.guid].name);
 
