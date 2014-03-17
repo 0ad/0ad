@@ -16,7 +16,7 @@
 		size="0 0 100% 100%"
 		z="0"
 
-		font="serif-14"
+		font="sans-14"
 		buffer_zone="5"
 		multiline="false"
 	/>
@@ -50,7 +50,7 @@
 
 	<style 	name="wheatWindowTitleBar"
 		size="50%-150 0%-35 50%+150 0%-3"
-		font="serif-bold-18"
+		font="sans-bold-18"
 		sprite="wheatWindowTitle"
 		text_align="center"
 		text_valign="center"
@@ -105,7 +105,7 @@
 		sprite_disabled="wheatButtonDisabled"
 		sprite_over="wheatButtonOver"
 		sprite_pressed="wheatButtonOver"
-		font="serif-14"
+		font="sans-14"
 		text_align="center"
 		text_valign="center"
 	/>
@@ -128,7 +128,7 @@
 	/>
 
 	<style 	name="wheatCrossBox"
-		font="serif-14"
+		font="sans-14"
 		sprite="wheatCheckBoxOpen"
 		sprite2="wheatCheckBoxCross"
 		square_side="16"
@@ -143,7 +143,7 @@
 	/>
 
 	<style 	name="wheatArrowLeft"
-		font="serif-14"
+		font="sans-14"
 		sprite="wheatArrowLeft"
 		sprite_over="wheatArrowLeftOver"
 		sprite_pressed="wheatArrowLeft"
@@ -151,7 +151,7 @@
 	/>
 
 	<style 	name="wheatArrowRight"
-		font="serif-14"
+		font="sans-14"
 		sprite="wheatArrowRight"
 		sprite_over="wheatArrowRightOver"
 		sprite_pressed="wheatArrowRight"
@@ -159,7 +159,7 @@
 	/>
 
 	<style 	name="wheatArrowUp"
-		font="serif-14"
+		font="sans-14"
 		sprite="wheatArrowUp"
 		sprite_over="wheatArrowUpOver"
 		sprite_pressed="wheatArrowUp"
@@ -167,7 +167,7 @@
 	/>
 
 	<style 	name="wheatArrowDn"
-		font="serif-14"
+		font="sans-14"
 		sprite="wheatArrowDn"
 		sprite_over="wheatArrowDnOver"
 		sprite_pressed="wheatArrowDn"
@@ -176,7 +176,7 @@
 
 	<style 	name="wheatList"
 		buffer_zone="5"
-		font="serif-14"
+		font="sans-14"
 		scrollbar="true"
 		scrollbar_style="wheatScrollBar"
 		sprite="wheatIndentFillLight"
@@ -209,7 +209,7 @@
 
 <!--	<style 	name="wheatDropDown"
 		dropdown_buffer="1"
-		font="serif-13"
+		font="sans-13"
 		textcolor="black"
 		text_align="center"
 		text_valign="center"
@@ -245,7 +245,7 @@
 
 <!--		<style 	name="wheatTextHeadMaxBlack"
 			ghost="true"
-			font="serif-bold-18"
+			font="sans-bold-18"
 			text_align="center"
 			textcolor="black"
 		/>-->
@@ -259,7 +259,7 @@
 
 <!--		<style 	name="wheatTextHeadBlack"
 			ghost="true"
-			font="serif-16"
+			font="sans-16"
 			textcolor="black"
 		/>-->
 
@@ -272,7 +272,7 @@
 
 <!--		<style 	name="wheatTextLabelBlack"
 			ghost="true"
-			font="serif-14"
+			font="sans-14"
 			textcolor="black"
 		/>-->
 
@@ -285,13 +285,13 @@
 
 <!--		<style 	name="fancyTextHeadGold"
 			ghost="true"
-			font="serif-16"
+			font="sans-16"
 			textcolor="gold"
 		/>
 
 		<style 	name="fancyTextHeadWhite"
 			ghost="true"
-			font="serif-14"
+			font="sans-14"
 			textcolor="white"
 		/>-->
 
@@ -310,7 +310,7 @@
 	/>
 
 	<style	name="wheatBorderBlackNote"
-		font="serif-12"
+		font="sans-12"
 		sprite="bkBorderBlack"
 		sprite_selectarea="bkFillGray"
 		textcolor="black"

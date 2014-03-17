@@ -11,98 +11,98 @@
 	-->
 
 	<style name="CenteredButtonText"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
 	/>
 
 	<style name="LeftButtonText"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="white"
 		text_align="left"
 		text_valign="top"
 	/>
 
 	<style name="RightButtonText"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="white"
 		text_align="right"
 		text_valign="top"
 	/>
 
 	<style name="LeftLabelText"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="gold"
 		text_align="left"
 		text_valign="center"
 	/>
 
 	<style name="RightLabelText"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="gold"
 		text_align="right"
 		text_valign="center"
 	/>
 
 	<style name="CenteredLabelText"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="gold"
 		text_align="center"
 		text_valign="center"
 	/>
 
 	<style name="LeftTabLabelText"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="gold"
 		text_align="left"
 		text_valign="top"
 	/>
 
 	<style name="RightTabLabelText"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="gold"
 		text_align="right"
 		text_valign="top"
 	/>
 
 	<style name="CenteredTabLabelText"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="gold"
 		text_align="center"
 		text_valign="top"
 	/>
 
 	<style name="SmallLeftLabelText"
-		font="serif-12"
+		font="sans-12"
 		textcolor="white"
 		text_align="left"
 		text_valign="top"
 	/>
 
 	<style name="TitleText"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
 	/>
 
 	<style name="LargeTitleText"
-		font="serif-bold-24"
+		font="sans-bold-24"
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
 	/>
 
 	<style name="MediumTitleText"
-		font="serif-bold-12"
+		font="sans-bold-12"
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
 	/>
 
 	<style name="ChatText"
-		font="serif-9"
+		font="sans-9"
 		textcolor="white"
 		text_align="left"
 		text_valign="top"
@@ -127,7 +127,7 @@
         <style 	name="TranslucentPanel"
 		sprite="BackgroundTranslucent"
 		buffer_zone="10"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="white"
 		text_align="left"
 		text_valign="top"
@@ -136,7 +136,7 @@
         <style 	name="TranslucentPanelThinBorder"
 		sprite="TranslucentPanelThinBorder"
 		buffer_zone="10"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="white"
 		text_align="left"
 		text_valign="top"
@@ -208,7 +208,7 @@
 		sprite_disabled="StoneButtonDisabled"
 		sprite_over="StoneButtonFancyOver"
 		sprite_pressed="StoneButtonFancyGlow"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
@@ -220,7 +220,7 @@
 		sprite_disabled="StoneButtonDisabled"
 		sprite_over="StoneButtonOver"
 		sprite_pressed="StoneButtonGlow"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
@@ -228,7 +228,7 @@
 	/>
 
 	<style 	name="StoneCrossBox"
-		font="serif-14"
+		font="sans-14"
 		sprite="StoneCheckBoxOpen"
 		sprite2="StoneCheckBoxCross"
 		square_side="16"
@@ -254,7 +254,7 @@
 
 	<style 	name="StoneDropDown"
 		dropdown_buffer="1"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		textcolor="white"
 		text_align="left"
 		text_valign="center"
@@ -283,7 +283,7 @@
 
 	<style 	name="StoneList"
 		buffer_zone="5"
-		font="serif-bold-stroke-14"
+		font="sans-bold-stroke-14"
 		scrollbar="true"
 		scrollbar_style="wheatScrollBar"
 		sprite="BackgroundIndentFillDark"

@@ -30,6 +30,17 @@ GUI text
 
 static const wchar_t TagStart = '[';
 static const wchar_t TagEnd   = ']';
+// List of word demlimitor bounds
+// The list contains ranges of word delimitors. The odd indexed chars are the start
+// of a range, the even are the end of a range. The list must be sorted in INCREASING ORDER
+static const int NUM_WORD_DELIMITORS = 4*2;
+static const u16 WordDelimitors[NUM_WORD_DELIMITORS] = {
+	' '   , ' ',    // spaces
+	'-'   , '-',    // hyphens
+	0x3000, 0x3002, // ideographic symbols (maybe this range should be wider)
+	0x4E00, 0x9FFF  // characters in the Chinese unicode block
+// TODO add unicode blocks of other languages that don't use spaces
+};
 
 void CGUIString::SFeedback::Reset()
 {
@@ -513,53 +524,31 @@ void CGUIString::SetValue(const CStrW& str)
 	// Add a delimiter at start and at end, it helps when
 	//  processing later, because we don't have make exceptions for
 	//  those cases.
-	// We'll sort later.
 	m_Words.push_back(0);
+
+	// Add word boundaries in increasing order
+	for (u32 i = 0; i < m_RawString.length(); ++i)
+	{
+		wchar_t c = m_RawString[i];
+		if (c == '\n')
+		{
+			m_Words.push_back((int)i);
+			m_Words.push_back((int)i+1);
+			continue;
+		}
+		for (int n = 0; n < NUM_WORD_DELIMITORS; n += 2)
+		{
+			if (c <= WordDelimitors[n+1])
+			{
+				if (c >= WordDelimitors[n])
+					m_Words.push_back((int)i+1);
+				// assume the WordDelimitors list is stored in increasing order
+				break;
+			}
+		}
+	}
+
 	m_Words.push_back((int)m_RawString.length());
-
-	// Space: ' '
-	for (position=0, curpos=0;;position = curpos+1)
-	{
-		// Find the next word-delimiter.
-		long dl = m_RawString.Find(position, ' ');
-
-		if (dl == -1)
-			break;
-
-		curpos = dl;
-		m_Words.push_back((int)dl+1);
-	}
-
-	// Dash: '-'
-	for (position=0, curpos=0;;position = curpos+1)
-	{
-		// Find the next word-delimiter.
-		long dl = m_RawString.Find(position, '-');
-
-		if (dl == -1)
-			break;
-
-		curpos = dl;
-		m_Words.push_back((int)dl+1);
-	}
-
-	// New Line: '\n'
-	for (position=0, curpos=0;;position = curpos+1)
-	{
-		// Find the next word-delimiter.
-		long dl = m_RawString.Find(position, '\n');
-
-		if (dl == -1)
-			break;
-
-		curpos = dl;
-
-		// Add before and
-		m_Words.push_back((int)dl);
-		m_Words.push_back((int)dl+1);
-	}
-
-	sort(m_Words.begin(), m_Words.end());
 
 	// Remove duplicates (only if larger than 2)
 	if (m_Words.size() > 2)
