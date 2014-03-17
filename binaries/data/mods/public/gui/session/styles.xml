@@ -6,21 +6,21 @@
     <!-- Text Styles -->
     <!-- ================================  ================================ -->
     <style name="PauseText"
-	   font="serif-bold-24"
+	   font="sans-bold-24"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
     />
 
     <style name="PauseMessageText"
-	   font="serif-bold-12"
+	   font="sans-bold-12"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
     />
 
     <style name="BuildNameText"
-	   font="serif-stroke-12"
+	   font="sans-stroke-12"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="bottom"
@@ -46,21 +46,21 @@
     />
 
     <style name="largeBoldCenteredText"
-	   font="serif-bold-18"
+	   font="sans-bold-18"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
     />
 
     <style name="largeCenteredOutlinedText"
-	   font="serif-bold-stroke-14"
+	   font="sans-bold-stroke-14"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
     />
 
     <style name="largeLeftOutlinedText"
-	   font="serif-bold-stroke-14"
+	   font="sans-bold-stroke-14"
 	   textcolor="white"
 	   text_align="left"
 	   text_valign="center"
@@ -68,7 +68,7 @@
 
     <style name="iconButtonCount"
 	   textcolor="255 255 255"
-	   font="serif-9"
+	   font="sans-9"
 	   text_align="right"
 	   text_valign="top"
 	   buffer_zone="4"
@@ -76,13 +76,13 @@
 
     <style name="iconButtonProgress"
 	   textcolor="255 255 255"
-	   font="serif-stroke-14"
+	   font="sans-stroke-14"
 	   text_align="center"
 	   text_valign="center"
     />
 
     <style name="groupIconsText"
-	   font="serif-bold-stroke-14"
+	   font="sans-bold-stroke-14"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
@@ -103,14 +103,14 @@
 
     <style name="resourceText"
 	   textcolor="white"
-	   font="serif-bold-stroke-14"
+	   font="sans-bold-stroke-14"
 	   ghost="true"
 	   text_align="left"
 	   text_valign="center"
     />
 
     <style name="StatsTextLeft"
-	   font="serif-stroke-12"
+	   font="sans-stroke-12"
 	   textcolor="white"
 	   text_align="left"
 	   text_valign="center"
@@ -118,7 +118,7 @@
     />
     
     <style name="StatsTextCentered"
-	   font="serif-stroke-12"
+	   font="sans-stroke-12"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
@@ -126,7 +126,7 @@
     />
     
     <style name="StatsTextRight"
-	   font="serif-stroke-12"
+	   font="sans-stroke-12"
 	   textcolor="white"
 	   text_align="right"
 	   text_valign="center"
@@ -134,7 +134,7 @@
     />
     
     <style name="CarryingTextRight"
-	   font="serif-bold-stroke-13"
+	   font="sans-bold-stroke-13"
 	   textcolor="white"
 	   text_align="right"
 	   text_valign="center"
@@ -142,7 +142,7 @@
     />
     
     <style name="SpecificNameCentered"
-	   font="serif-bold-stroke-13"
+	   font="sans-bold-stroke-13"
 	   textcolor="gold"
 	   text_align="center"
 	   text_valign="center"
@@ -150,7 +150,7 @@
     />
     
     <style name="GenericNameCentered"
-	   font="serif-stroke-12"
+	   font="sans-stroke-12"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
@@ -158,21 +158,21 @@
     />
     
     <style name="SettingsText"
-	   font="serif-stroke-16"
+	   font="sans-stroke-16"
 	   textcolor="white"
 	   text_align="right"
 	   text_valign="center"
     />
 
     <style name="dialogTitleText"
-	   font="serif-bold-18"
+	   font="sans-bold-18"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
     />
 
     <style name="dialogText"
-	   font="serif-16"
+	   font="sans-16"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
@@ -208,7 +208,7 @@
     <style name="informationTooltip"
 	   anchor="top"
 	   buffer_zone="6"
-	   font="serif-bold-14"
+	   font="sans-bold-14"
 	   maxwidth="300"
 	   offset="16 32"
 	   sprite="BackgroundInformationTooltip"
@@ -220,7 +220,7 @@
     <!-- ================================  ================================ -->
     <style name="chatPanel"
 	   buffer_zone="5"
-	   font="serif-bold-stroke-14"
+	   font="sans-bold-stroke-14"
 	   textcolor="white"
 	   textcolor_selected="white"
 	   text_align="left"
@@ -236,14 +236,14 @@
 
     <style name="notificationPanel"
 	   buffer_zone="5"
-	   font="serif-bold-stroke-14"
+	   font="sans-bold-stroke-14"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="bottom"
     />
 
     <style name="netStatus"
-	   font="serif-bold-18"
+	   font="sans-bold-18"
 	   textcolor="255 255 255"
 	   text_align="center"
 	   text_valign="center"

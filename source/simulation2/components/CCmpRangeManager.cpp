@@ -1398,10 +1398,8 @@ public:
 	virtual bool GetLosRevealAll(player_id_t player)
 	{
 		// Special player value can force reveal-all for every player
-		if(m_LosRevealAll[MAX_LOS_PLAYER_ID+1])
+		if (m_LosRevealAll[MAX_LOS_PLAYER_ID+1] || player == -1)
 			return true;
-		if (player == -1)
-			return false;
 		ENSURE(player >= 0 && player <= MAX_LOS_PLAYER_ID+1);
 		// Otherwise check the player-specific flag
 		if (m_LosRevealAll[player])

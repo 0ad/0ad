@@ -25,6 +25,10 @@ PlayerManager.prototype.GetPlayerByID = function(id)
 	if (id in this.playerEntities)
 		return this.playerEntities[id];
 
+	// All players at or below ID 0 get gaia-level data. (Observers for example)
+	if (id <= 0)
+		return this.playerEntities[0];
+
 	var stack = new Error().stack.trimRight().replace(/^/mg, '  '); // indent each line
 	warn("GetPlayerByID: no player defined for id '"+id+"'\n"+stack);
 

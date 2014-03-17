@@ -5,6 +5,8 @@ var g_IsNetworked = false;
 var g_IsController;
 // Match ID for tracking
 var g_MatchID;
+// Is this user an observer?
+var g_IsObserver = false;
 
 // Cache the basic player data (name, civ, color)
 var g_Players = [];
@@ -151,7 +153,29 @@ function init(initData, hotloadData)
 
 	// Cache civ data
 	g_CivData = loadCivData();
-	g_CivData["gaia"] = { "Code": "gaia", "Name": "Gaia" };
+	g_CivData["gaia"] = { "Code": "gaia", "Name": "Gaia"};
+
+	if (Engine.GetPlayerID() <= 0)
+	{
+		g_IsObserver = true;
+		// Hide stuff observers don't use.
+		Engine.GetGUIObjectByName("food").hidden = true;
+		Engine.GetGUIObjectByName("wood").hidden = true;
+		Engine.GetGUIObjectByName("stone").hidden = true;
+		Engine.GetGUIObjectByName("metal").hidden = true;
+		Engine.GetGUIObjectByName("population").hidden = true;
+		Engine.GetGUIObjectByName("diplomacyButton1").hidden = true;
+		Engine.GetGUIObjectByName("tradeButton1").hidden = true;
+		Engine.GetGUIObjectByName("menuResignButton").enabled = false;
+		Engine.GetGUIObjectByName("pauseButton").enabled = false;
+		Engine.GetGUIObjectByName("observerText").hidden = false;
+	}
+	else
+	{
+		// TODO: Get a civ icon for gaia/observers.
+		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
+		Engine.GetGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[Engine.GetPlayerID()].civ].Name;
+	}
 
 	g_GameSpeeds = initGameSpeeds();
 	g_CurrentSpeed = Engine.GetSimRate();
@@ -161,9 +185,6 @@ function init(initData, hotloadData)
 	var idx = g_GameSpeeds.speeds.indexOf(g_CurrentSpeed);
 	gameSpeed.selected = idx != -1 ? idx : g_GameSpeeds["default"];
 	gameSpeed.onSelectionChange = function() { changeGameSpeed(+this.list_data[this.selected]); }
-
-	Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
-	Engine.GetGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[Engine.GetPlayerID()].civ].Name;
 	initMenuPosition(); // set initial position
 
 	// Populate player selection dropdown
@@ -191,9 +212,11 @@ function init(initData, hotloadData)
 	else
 	{
 		// Starting for the first time:
-		var civMusic = g_CivData[g_Players[Engine.GetPlayerID()].civ].Music;
 		initMusic();
-		global.music.storeTracks(civMusic);
+		if (!g_IsObserver){
+			var civMusic = g_CivData[g_Players[Engine.GetPlayerID()].civ].Music;
+			global.music.storeTracks(civMusic);
+		}
 		global.music.setState(global.music.states.PEACE);
 		playRandomAmbient("temperate");
 	}
@@ -214,7 +237,7 @@ function init(initData, hotloadData)
 function selectViewPlayer(playerID)
 {
 	Engine.SetPlayerID(playerID);
-	if (playerID != 0) {
+	if (playerID > 0) {
 		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
 		Engine.GetGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[playerID].civ].Name;
 	}
@@ -266,31 +289,40 @@ function resignGame(leaveGameAfterResign)
 function leaveGame(willRejoin)
 {
 	var extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
-	var playerState = extendedSimState.players[Engine.GetPlayerID()];
 	var mapSettings = Engine.GetMapSettings();
 	var gameResult;
 
-	if (g_Disconnected)
+	if (g_IsObserver)
 	{
-		gameResult = "You have been disconnected."
+		// Observers don't win/lose.
+		gameResult = "You have left the game.";
+		global.music.setState(global.music.states.VICTORY);
 	}
-	else if (playerState.state == "won")
+	else
 	{
-		gameResult = "You have won the battle!";
-	}
-	else if (playerState.state == "defeated")
-	{
-		gameResult = "You have been defeated...";
-	}
-	else // "active"
-	{
-		global.music.setState(global.music.states.DEFEAT);
-		if (willRejoin)
-			gameResult = "You have left the game.";
-		else
+		var playerState = extendedSimState.players[Engine.GetPlayerID()];
+		if (g_Disconnected)
 		{
-			gameResult = "You have abandoned the game.";
-			resignGame(true);
+			gameResult = "You have been disconnected."
+		}
+		else if (playerState.state == "won")
+		{
+			gameResult = "You have won the battle!";
+		}
+		else if (playerState.state == "defeated")
+		{
+			gameResult = "You have been defeated...";
+		}
+		else // "active"
+		{
+			global.music.setState(global.music.states.DEFEAT);
+			if (willRejoin)
+				gameResult = "You have left the game.";
+			else
+			{
+				gameResult = "You have abandoned the game.";
+				resignGame(true);
+			}
 		}
 	}
 
@@ -372,7 +404,8 @@ function onTick()
 		onSimulationUpdate();
 
 		// Display rally points for selected buildings
-		Engine.GuiInterfaceCall("DisplayRallyPoint", { "entities": g_Selection.toList() });
+		if (!g_IsObserver)
+			Engine.GuiInterfaceCall("DisplayRallyPoint", { "entities": g_Selection.toList() });
 	}
 
 	// Run timers
@@ -401,7 +434,7 @@ function onTick()
 function checkPlayerState()
 {
 	// Once the game ends, we're done here.
-	if (g_GameEnded)
+	if (g_GameEnded || g_IsObserver)
 		return;
 
 	// Send a game report for each player in this game.
@@ -499,16 +532,18 @@ function onSimulationUpdate()
 	updateDebug();
 	updatePlayerDisplay();
 	updateSelectionDetails();
-	updateResearchDisplay();
 	updateBuildingPlacementPreview();
 	updateTimeElapsedCounter();
-	updateTimeNotifications();	
+	updateTimeNotifications();
 
-	// Update music state on basis of battle state.
-	var battleState = Engine.GuiInterfaceCall("GetBattleState", Engine.GetPlayerID());
-	if (battleState)
-		global.music.setState(global.music.states[battleState]);
-	
+	if (!g_IsObserver)
+	{
+		updateResearchDisplay();
+		// Update music state on basis of battle state.
+		var battleState = Engine.GuiInterfaceCall("GetBattleState", Engine.GetPlayerID());
+		if (battleState)
+			global.music.setState(global.music.states[battleState]);
+	}
 }
 
 /**

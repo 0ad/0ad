@@ -151,7 +151,7 @@ function exitMenuButton()
 		var btCode = [leaveGame, resumeGame];
 		var message = "Are you sure you want to quit? Leaving will disconnect all other players.";
 	}
-	else if (g_IsNetworked && !g_GameEnded)
+	else if (g_IsNetworked && !g_GameEnded && !g_IsObserver)
 	{
 		var btCode = [networkReturnQuestion, resumeGame];
 		var message = "Are you sure you want to quit?";

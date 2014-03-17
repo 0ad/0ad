@@ -1225,7 +1225,7 @@ function updatePlayerList()
 		hostGuidList.push(guid);
 		assignments[player] = hostID;
 
-		if (player != 255)
+		if (player != -1)
 			assignedCount++;
 	}
 
@@ -1386,7 +1386,7 @@ function swapPlayers(guid, newSlot)
 
 	// Attempt to swap the player or AI occupying the target slot,
 	// if any, into the slot this player is currently in.
-	if (playerID != 255)
+	if (playerID != -1)
 	{
 		for (var i in g_PlayerAssignments)
 		{
@@ -1433,7 +1433,7 @@ function addChatMessage(msg)
 	// TODO: Maybe host should have distinct font/color?
 	var color = "white";
 
-	if (g_PlayerAssignments[msg.guid] && g_PlayerAssignments[msg.guid].player != 255)
+	if (g_PlayerAssignments[msg.guid] && g_PlayerAssignments[msg.guid].player != -1)
 	{	// Valid player who has been assigned - get player colour
 		var player = g_PlayerAssignments[msg.guid].player - 1;
 		var mapName = g_GameAttributes.map;

@@ -306,13 +306,13 @@ function updateSelectionDetails()
 
 	g_Selection.update();
 	var selection = g_Selection.toList();
-	
+
 	if (selection.length == 0)
 	{
 		Engine.GetGUIObjectByName("detailsAreaMultiple").hidden = true;
 		Engine.GetGUIObjectByName("detailsAreaSingle").hidden = true;
 		hideUnitCommands();
-	
+
 		supplementalDetailsPanel.hidden = true;
 		detailsPanel.hidden = true;
 		commandsPanel.hidden = true;
@@ -334,11 +334,21 @@ function updateSelectionDetails()
 	else
 		displayMultiple(selection, template);
 
-	// Show Panels
-	supplementalDetailsPanel.hidden = false;
+	// Show basic details.
 	detailsPanel.hidden = false;
-	commandsPanel.hidden = false;
 
-	// Fill out commands panel for specific unit selected (or first unit of primary group)
-	updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection);
+	if (g_IsObserver)
+	{
+		// Observers don't need these displayed.
+		supplementalDetailsPanel.hidden = true;
+		commandsPanel.hidden = true;
+	}
+	else
+	{
+		// Fill out commands panel for specific unit selected (or first unit of primary group)
+		updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection);
+		// Show panels
+		supplementalDetailsPanel.hidden = false;
+		commandsPanel.hidden = false;
+	}
 }

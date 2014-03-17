@@ -80,10 +80,6 @@ ResourceSupply.prototype.GetMaxGatherers = function()
 
 ResourceSupply.prototype.GetGatherers = function()
 {
-	//if (player === undefined)
-	//	return this.gatherers;
-	//	
-	//	
 	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	var total = [];
 	for (var playerid = 0; playerid <= numPlayers; playerid++)
