@@ -139,7 +139,7 @@ ResourceSupply.prototype.AddGatherer = function(player, gathererID)
 	{
 		this.gatherers[player].push(gathererID);
 		// broadcast message, mainly useful for the AIs.
-		Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.gatherers });
+	    Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.GetGatherers() });
 	}
 	
 	return true;
@@ -161,7 +161,7 @@ ResourceSupply.prototype.RemoveGatherer = function(gathererID, player)
 		{
 			this.gatherers[player].splice(index,1);
 			// broadcast message, mainly useful for the AIs.
-			Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.gatherers });
+			Engine.PostMessage(this.entity, MT_ResourceSupplyGatherersChanged, { "to": this.GetGatherers() });
 			return;
 		}
 	}
