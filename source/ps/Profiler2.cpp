@@ -195,7 +195,11 @@ void CProfiler2::Shutdown()
 		m_MgContext = NULL;
 	}
 
-	// TODO: free non-NULL keys, instead of leaking them
+	// the destructor is not called for the main thread
+	// we have to call it manually to avoid memory leaks
+	ENSURE(ThreadUtil::IsMainThread());
+	void * dataptr = pthread_getspecific(m_TLS);
+	TLSDtor(dataptr);
 
 	int err = pthread_key_delete(m_TLS);
 	ENSURE(err == 0);
