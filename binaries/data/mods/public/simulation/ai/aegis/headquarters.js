@@ -530,8 +530,6 @@ m.HQ.prototype.findBestEcoCCLocation = function(gameState, resource){
 	// Then checks for a good spot in the territory. If none, and town/city phase, checks outside
 	// The AI will currently not build a CC if it wouldn't connect with an existing CC.
 	
-	var territory = m.createTerritoryMap(gameState);
-	
 	var obstructions = m.createObstructionMap(gameState, 0);
 	obstructions.expandInfluences();
 
@@ -869,9 +867,20 @@ m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 			|| capacity[type] < gameState.getOwnUnits().filter(API3.Filters.and(API3.Filters.byMetadata(PlayerID, "subrole", "gatherer"), API3.Filters.byMetadata(PlayerID, "gather-type", type))).length * 1.05)
 		{
 			// plan a new base.
-			if (gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_civil_centre"), true) === 0 && queues.civilCentre.length() === 0) {
-				if (this.outOf[type] && gameState.ai.playedTurn % 10 !== 0)
+			if (gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_civil_centre"), true) === 0 && queues.civilCentre.length() === 0) {	
+				// In endgame when the whole map is claimed by players, we won't find a spot for a new CC.
+				// findBestEcoCCLocation needs to search the whole map for a good spot and is currently way too slow, so we wait quite long
+				// until we check again. The "PlayerID * 10" part is to distribute the load across multiple turns. 
+				// TODO: this is a workaround. the current solution is bad for various reasons:
+				// 1. findBestEcoCCLocation could be much more efficient for the case when nearly all territory is occupied.
+				// 2. It doesn't make sense to check the whole map for a good spot for all resource types if we could see in the beginning
+				// that no free territory is available to build a CC.
+				// 3. Trying to build a new CC should not only be triggered by the need for more resources.
+				// Opportunity (having destroyed an enemy CC and some soldiers standing around) is also a good reason for a new CC.
+				// 4. Last but not least it causes the AI to react slowly when new territory becomes available.
+				if (this.outOf[type] && gameState.ai.playedTurn % 100 !== PlayerID * 10)
 					continue;
+
 				var pos = this.findBestEcoCCLocation(gameState, type);
 				if (!pos)
 				{

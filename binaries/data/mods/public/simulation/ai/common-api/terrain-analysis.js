@@ -321,7 +321,7 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser){
 
 	//Engine.DumpImage("LandPassMap.png", this.landPassMap, this.width, this.height, 255);
 	//Engine.DumpImage("NavalPassMap.png", this.navalPassMap, this.width, this.height, 255);
-}
+};
 
 m.Accessibility.prototype.getAccessValue = function(position, onWater) {
 	var gamePos = this.gamePosToMapPos(position);
@@ -334,8 +334,12 @@ m.Accessibility.prototype.getAccessValue = function(position, onWater) {
 		var indx = [ [-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1]]
 		for (var i in indx)
 		{
-			ret = this.landPassMap[gamePos[0]+indx[0] + this.width*(gamePos[1]+indx[0])]
-			if (ret !== undefined && ret !== 1)
+			var id0 = gamePos[0] + indx[i][0];
+			var id1 = gamePos[1] + indx[i][1];
+			if (id0 < 0 || id0 >= this.width || id1 < 0 || id1 >= this.width)
+				continue;
+			ret = this.landPassMap[id0 + this.width*id1];
+			if (ret !== 1)
 				return ret;
 		}
 	}
@@ -553,9 +557,8 @@ m.Accessibility.prototype.getRegionSizei = function(index, onWater) {
 m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 {
 	this.s = startIndex;
-	if ((!onWater && this.landPassMap[this.s] !== 0) || (onWater && this.navalPassMap[this.s] !== 0) ) {
+	if ((!onWater && this.landPassMap[this.s] !== 0) || (onWater && this.navalPassMap[this.s] !== 0) )
 		return false;	// already painted.
-	}
 	
 	this.floodFor = "land";
 	if (this.map[this.s] === 0)
