@@ -33,6 +33,9 @@ function handleNotifications()
 
 	if (!notification)
 		return;
+	
+	if (notification.type === undefined)
+		notification.type = "text";
 
 	// Handle chat notifications specially
 	if (notification.type == "chat")
@@ -107,7 +110,7 @@ function handleNotifications()
 			}
 		}
 	}
-	else
+	else if (notification.type == "text")
 	{
 		// Only display notifications directed to this player
 		if (notification.player == Engine.GetPlayerID())
@@ -120,6 +123,10 @@ function handleNotifications()
 			else
 				displayNotifications();
 		}
+	}
+	else
+	{
+		warn("notification of unknown type!");
 	}
 }
 
