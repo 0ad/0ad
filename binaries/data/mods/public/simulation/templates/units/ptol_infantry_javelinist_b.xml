@@ -2,7 +2,8 @@
 <Entity parent="template_unit_infantry_ranged_javelinist">
   <Builder>
     <Entities datatype="tokens">
-      structures/ptol_mercenary_camp
+      -structures/{civ}_civil_centre
+      structures/ptol_military_colony
       structures/ptol_lighthouse
       structures/ptol_library
       structures/ptol_wonder

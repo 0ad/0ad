@@ -129,9 +129,9 @@ function initMain()
 	mapTypes.list_data = ["skirmish","random","scenario"];
 
 	// Setup map filters - will appear in order they are added
-	addFilter("Default", function(settings) { return settings && !keywordTestOR(settings.Keywords, ["naval", "demo", "hidden"]); });
-	addFilter("Naval Maps", function(settings) { return settings && keywordTestAND(settings.Keywords, ["naval"]); });
-	addFilter("Demo Maps", function(settings) { return settings && keywordTestAND(settings.Keywords, ["demo"]); });
+	addFilter("Default", function(settings) { return settings && (settings.Keywords === undefined || !keywordTestOR(settings.Keywords, ["naval", "demo", "hidden"])); });
+	addFilter("Naval Maps", function(settings) { return settings && settings.Keywords !== undefined && keywordTestAND(settings.Keywords, ["naval"]); });
+	addFilter("Demo Maps", function(settings) { return settings && settings.Keywords !== undefined && keywordTestAND(settings.Keywords, ["demo"]); });
 	addFilter("All Maps", function(settings) { return true; });
 
 	// Populate map filters dropdown
@@ -951,15 +951,15 @@ function onGameAttributesChange()
 	var startingResourcesText = Engine.GetGUIObjectByName("startingResourcesText");
 	var gameSpeedText = Engine.GetGUIObjectByName("gameSpeedText");
 
-	var sizeIdx = (g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
+	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
 	var speedIdx = (g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) != -1) ? g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds["default"];
-	var victoryIdx = (VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
+	var victoryIdx = (mapSettings.GameType !== undefined && VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
 	enableCheats.checked = (g_GameAttributes.settings.CheatsEnabled === undefined || !g_GameAttributes.settings.CheatsEnabled ? false : true)
 	enableCheatsText.caption = (enableCheats.checked ? "Yes" : "No");
 	gameSpeedText.caption = g_GameSpeeds.names[speedIdx];
-	populationCap.selected = (POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) != -1 ? POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) : POPULATION_CAP_DEFAULTIDX);
+	populationCap.selected = (mapSettings.PopulationCap !== undefined && POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) != -1 ? POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) : POPULATION_CAP_DEFAULTIDX);
 	populationCapText.caption = POPULATION_CAP[populationCap.selected];
-	startingResources.selected = (STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) != -1 ? STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) : STARTING_RESOURCES_DEFAULTIDX);
+	startingResources.selected = (mapSettings.StartingResources !== undefined && STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) != -1 ? STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) : STARTING_RESOURCES_DEFAULTIDX);
 	startingResourcesText.caption = STARTING_RESOURCES[startingResources.selected];
 
 	// Update map preview

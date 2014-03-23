@@ -807,7 +807,7 @@ GuiInterface.prototype.GetNextNotification = function()
 	if (this.notifications.length)
 		return this.notifications.pop();
 	else
-		return "";
+		return false;
 };
 
 GuiInterface.prototype.GetAvailableFormations = function(player, data)

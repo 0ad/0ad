@@ -2,10 +2,10 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>cumulus</SkySet>
+		<SkySet>rain</SkySet>
 		<SunColour r="1" g="0.886275" b="0.556863"/>
-		<SunElevation angle="0.61666"/>
-		<SunRotation angle="0.834486"/>
+		<SunElevation angle="0.632"/>
+		<SunRotation angle="0.82835"/>
 		<TerrainAmbientColour r="0.203922" g="0.258824" b="0.301961"/>
 		<UnitsAmbientColour r="0.458824" g="0.458824" b="0.458824"/>
 		<Fog>
@@ -18,7 +18,6 @@
 				<Type>default</Type>
 				<Colour r="0.737255" g="0.592157" b="0.27451"/>
 				<Height>20.1443</Height>
-				<Shininess>104.004</Shininess>
 				<Waviness>4.94141</Waviness>
 				<Murkiness>0.818359</Murkiness>
 				<Tint r="0.737255" g="0.592157" b="0.27451"/>
@@ -29,13 +28,13 @@
 		<Postproc>
 			<Brightness>-0.015625</Brightness>
 			<Contrast>1.1377</Contrast>
-			<Saturation>1.01563</Saturation>
+			<Saturation>0.761719</Saturation>
 			<Bloom>0.160938</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="507.274" y="109.71" z="319.802"/>
+		<Position x="874.746" y="200.54" z="262.618"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -8694,6 +8693,7 @@
 			<Player>3</Player>
 			<Position x="368.91135" z="496.40531"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="4501"/>
 			<Actor seed="1660"/>
 		</Entity>
 		<Entity uid="4459">
@@ -8769,28 +8769,28 @@
 		<Entity uid="4469">
 			<Template>structures/ptol_field</Template>
 			<Player>0</Player>
-			<Position x="733.63971" z="631.49677"/>
+			<Position x="776.64838" z="664.22614"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="44738"/>
 		</Entity>
 		<Entity uid="4470">
 			<Template>structures/ptol_field</Template>
 			<Player>0</Player>
-			<Position x="755.63587" z="654.87488"/>
+			<Position x="798.64454" z="687.60425"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="26854"/>
 		</Entity>
 		<Entity uid="4471">
 			<Template>structures/ptol_field</Template>
 			<Player>0</Player>
-			<Position x="774.68067" z="633.84553"/>
+			<Position x="817.68934" z="666.5749"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="23962"/>
 		</Entity>
 		<Entity uid="4472">
 			<Template>structures/ptol_field</Template>
 			<Player>0</Player>
-			<Position x="754.21076" z="612.29224"/>
+			<Position x="797.21943" z="645.02161"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="906"/>
 		</Entity>
@@ -14948,6 +14948,20 @@
 			<Position x="425.15043" z="331.4607"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="352"/>
+		</Entity>
+		<Entity uid="5484">
+			<Template>structures/merc_camp_egyptian</Template>
+			<Player>0</Player>
+			<Position x="188.28193" z="993.76319"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20712"/>
+		</Entity>
+		<Entity uid="5485">
+			<Template>structures/merc_camp_egyptian</Template>
+			<Player>0</Player>
+			<Position x="1089.3805" z="377.1186"/>
+			<Orientation y="-2.35848"/>
+			<Actor seed="34154"/>
 		</Entity>
 	</Entities>
 	<Paths/>

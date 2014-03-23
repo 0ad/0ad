@@ -18,7 +18,6 @@
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>20.0394</Height>
-				<Shininess>0.976563</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>1</Murkiness>
 				<Tint r="0" g="0" b="0"/>
@@ -35,14 +34,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="568.739" y="131.303" z="637.333"/>
-		<Rotation angle="0.0283555"/>
+		<Position x="392.675" y="94.1171" z="169.607"/>
+		<Rotation angle="0.888113"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "Two players square off across the heavily forested Deccan Plateau of central India.\u000a\u000aNeither player starts the match with any units, but does receive a free farmstead and free storehouse.\u000a\u000aVirgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering.",
+  "Description": "Two players square off across the heavily forested Deccan Plateau of central India.\u000a\u000aEach player starts the match with a free farmstead and free storehouse.\u000a\u000aVirgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -22987,6 +22986,146 @@
 			<Orientation y="0.42225"/>
 			<Obstruction group="6969" group2="7535"/>
 			<Actor seed="17840"/>
+		</Entity>
+		<Entity uid="9860">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="562.80646" z="810.4521"/>
+			<Orientation y="-2.4118"/>
+			<Actor seed="28076"/>
+		</Entity>
+		<Entity uid="9861">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="566.89936" z="805.90131"/>
+			<Orientation y="-2.28574"/>
+			<Actor seed="23004"/>
+		</Entity>
+		<Entity uid="9862">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="571.12867" z="801.03663"/>
+			<Orientation y="-2.08925"/>
+			<Actor seed="44282"/>
+		</Entity>
+		<Entity uid="9863">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="574.34412" z="797.67438"/>
+			<Orientation y="-2.02721"/>
+			<Actor seed="11382"/>
+		</Entity>
+		<Entity uid="9864">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>2</Player>
+			<Position x="599.02594" z="800.2898"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="47832"/>
+		</Entity>
+		<Entity uid="9865">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>2</Player>
+			<Position x="603.8274" z="805.25709"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41384"/>
+		</Entity>
+		<Entity uid="9866">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>2</Player>
+			<Position x="598.65711" z="838.45325"/>
+			<Orientation y="0.74714"/>
+			<Actor seed="2836"/>
+		</Entity>
+		<Entity uid="9867">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>2</Player>
+			<Position x="602.21436" z="834.23017"/>
+			<Orientation y="0.38614"/>
+			<Actor seed="56436"/>
+		</Entity>
+		<Entity uid="9868">
+			<Template>skirmish/units/default_cavalry</Template>
+			<Player>2</Player>
+			<Position x="563.09144" z="835.6944"/>
+			<Orientation y="-0.85688"/>
+			<Actor seed="61788"/>
+		</Entity>
+		<Entity uid="9869">
+			<Template>skirmish/units/special_starting_unit</Template>
+			<Player>2</Player>
+			<Position x="564.84687" z="840.02802"/>
+			<Orientation y="-0.89808"/>
+			<Actor seed="50454"/>
+		</Entity>
+		<Entity uid="9870">
+			<Template>skirmish/units/special_starting_unit</Template>
+			<Player>1</Player>
+			<Position x="428.40876" z="222.0263"/>
+			<Orientation y="-0.82366"/>
+			<Actor seed="3958"/>
+		</Entity>
+		<Entity uid="9871">
+			<Template>skirmish/units/default_cavalry</Template>
+			<Player>1</Player>
+			<Position x="424.86811" z="217.14985"/>
+			<Orientation y="-0.88616"/>
+			<Actor seed="31210"/>
+		</Entity>
+		<Entity uid="9872">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>1</Player>
+			<Position x="458.26575" z="182.23716"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="552"/>
+		</Entity>
+		<Entity uid="9873">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>1</Player>
+			<Position x="461.8549" z="185.86164"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16896"/>
+		</Entity>
+		<Entity uid="9874">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="459.76276" z="217.64625"/>
+			<Orientation y="0.58948"/>
+			<Actor seed="41102"/>
+		</Entity>
+		<Entity uid="9875">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="462.95286" z="214.09324"/>
+			<Orientation y="0.30471"/>
+			<Actor seed="53178"/>
+		</Entity>
+		<Entity uid="9876">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="425.92392" z="191.32682"/>
+			<Orientation y="-2.02504"/>
+			<Actor seed="27606"/>
+		</Entity>
+		<Entity uid="9877">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="429.57325" z="187.70435"/>
+			<Orientation y="-1.80674"/>
+			<Actor seed="64978"/>
+		</Entity>
+		<Entity uid="9878">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="432.67936" z="184.28074"/>
+			<Orientation y="-1.71839"/>
+			<Actor seed="58612"/>
+		</Entity>
+		<Entity uid="9879">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="435.35715" z="181.29635"/>
+			<Orientation y="-2.03136"/>
+			<Actor seed="6964"/>
 		</Entity>
 	</Entities>
 	<Paths/>

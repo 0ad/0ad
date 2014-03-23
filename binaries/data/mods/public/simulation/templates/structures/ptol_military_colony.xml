@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre">
+  <Attack disable=""/>
+  <BuildRestrictions>
+    <Territory>own neutral</Territory>
+    <Distance>
+      <FromClass>Colony</FromClass>
+      <MinDistance>100</MinDistance>
+    </Distance>
+  </BuildRestrictions>
+  <Cost>
+    <BuildTime>300</BuildTime>
+    <Resources>
+      <wood>200</wood>
+      <stone>200</stone>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="25.0" depth="25.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Health>
+    <Max>2000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_stone_5x5</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>ptol</Civ>
+    <GenericName>Military Colony</GenericName>
+	<SpecificName>Klēroukhia</SpecificName>
+    <Classes datatype="tokens">Town Colony</Classes>
+    <History>The Ptolemaic kings invited Greeks, Macedonians, Galatians (Gauls), Cretans, and Thracians alike to settle within Egypt in military colonies called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the great king's army when called to duty. This created a upper-middle class of military settlers who owed their livelihoods and fortunes to the Ptolemaic kings and helped grow the available manpower for the imperial Ptolemaic army. A side effect of this system was that it drained the Greek homeland of military-aged men, a contributing factor to Greece's eventual conquest by Rome.</History>
+    <Tooltip>This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.
+- Train settler-soldiers of various nationalities.
+- Min. distance from other Military Colonies: 100 meters.</Tooltip>
+    <Icon>structures/military_settlement.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Obstruction>
+    <Static width="20.0" depth="20.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/ptol_infantry_spearman_2_b
+	  units/ptol_infantry_swordsman_b
+      units/ptol_cavalry_spearman_b
+      units/ptol_cavalry_javelinist_b
+    </Entities>
+    <Technologies datatype="tokens">
+      -phase_town_generic
+      -phase_city_generic
+	  upgrade_rank_advanced_infantry
+	  upgrade_rank_elite_infantry
+	  upgrade_rank_advanced_cavalry
+	  upgrade_rank_elite_cavalry
+    </Technologies>
+  </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_gymnasium.xml</select>
+      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryDecay>
+    <HealthDecayRate>1</HealthDecayRate>
+  </TerritoryDecay>
+  <TerritoryInfluence>
+    <Radius>80</Radius>
+  </TerritoryInfluence>
+  <VisualActor>
+    <Actor>structures/macedonians/barracks.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
+</Entity>

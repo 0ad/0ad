@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
+  <Builder>
+    <Rate>1.0</Rate>
+    <Entities datatype="tokens">
+      structures/{civ}_civil_centre
+    </Entities>
+  </Builder>
   <Identity>
     <Civ>ptol</Civ>
     <GenericName>Ptolemy IV "Father Loving"</GenericName>
