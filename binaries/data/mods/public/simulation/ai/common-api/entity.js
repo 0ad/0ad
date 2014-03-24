@@ -394,12 +394,26 @@ m.Template = m.Class({
 	 * Returns whether this is an animal that is too difficult to hunt.
 	 * (Any non domestic currently.)
 	 */
-	isUnhuntable: function() {
+	isUnhuntable: function() {   // used by Aegis
 		if (!this.get("UnitAI") || !this.get("UnitAI/NaturalBehaviour"))
 			return false;
 
 		// only attack domestic animals since they won't flee nor retaliate.
 		return this.get("UnitAI/NaturalBehaviour") !== "domestic";
+	},
+
+	isHuntable: function() {     // used by Petra
+		if (!this.get("UnitAI") || !this.get("UnitAI/NaturalBehaviour"))
+			return false;
+
+		// special case: rabbits too difficult to hunt for such a small food amount
+		if (this.get("Identity") && this.get("Identity/SpecificName") && this.get("Identity/SpecificName") === "Rabbit")
+			return false;
+
+		// do not hunt retaliating animals.
+		return !(this.get("UnitAI/NaturalBehaviour") === "violent" ||
+			this.get("UnitAI/NaturalBehaviour") === "aggressive" ||
+			this.get("UnitAI/NaturalBehaviour") === "defensive");
 	},
 						  
 	walkSpeed: function() {
@@ -532,8 +546,10 @@ m.Entity = m.Class({
 	unitAIState: function() { return this._entity.unitAIState; },
 	unitAIOrderData: function() { return this._entity.unitAIOrderData; },
 	
+	// TODO  understand why we have sometimes rounding problems with maxHitpoints ? making wrongly isHurt=true
+	// problem seems to be with hele civs (i.e. spart)
 	hitpoints: function() {if (this._entity.hitpoints !== undefined) return this._entity.hitpoints; return undefined; },
-	isHurt: function() { return this.hitpoints() < this.maxHitpoints(); },
+	isHurt: function() { return (this.hitpoints() + 1) < this.maxHitpoints(); },
 	healthLevel: function() { return (this.hitpoints() / this.maxHitpoints()); },
 	needsHeal: function() { return this.isHurt() && this.isHealable(); },
 	needsRepair: function() { return this.isHurt() && this.isRepairable(); },
@@ -680,10 +696,8 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	// TODO: replace this with the proper "STOP" command
 	stopMoving: function() {
-		if (this.position() !== undefined)
-			Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": this.position()[0], "z": this.position()[1], "queued": false});
+		Engine.PostCommand(PlayerID,{"type": "stop", "entities": [this.id()], "queued": false});
 	},
 
 	unload: function(id) {
@@ -749,6 +763,11 @@ m.Entity = m.Class({
 	
 	barter: function(buyType, sellType, amount) {
 		Engine.PostCommand(PlayerID,{"type": "barter", "sell" : sellType, "buy" : buyType, "amount" : amount });
+		return this;
+	},
+
+	tradeRoute: function(target, source) {
+		Engine.PostCommand(PlayerID,{"type": "setup-trade-route", "entities": [this.id()], "target": target.id(), "source": source.id(), "route": undefined, "queued": false });
 		return this;
 	},
 	

@@ -371,7 +371,7 @@ m.Map.prototype.findLowestNeighbor = function(x,y) {
 				if (this.map[xx+yy*this.width] <= lowestcoeff)
 				{
 					lowestcoeff = this.map[xx+yy*this.width];
-					lowestPt = [xx*4,yy*4];
+					lowestPt = [(xx+0.5)*4, (yy+0.5)*4];
 				}
 	return lowestPt;
 }

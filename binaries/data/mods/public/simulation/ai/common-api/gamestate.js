@@ -315,6 +315,16 @@ m.GameState.prototype.getEnemies = function(){
 	return ret;
 };
 
+m.GameState.prototype.getAllies = function(){  // Player is not included
+	var ret = [];
+	for (var i in this.playerData.isAlly){
+		if (this.playerData.isAlly[i] && +i !== this.player){
+			ret.push(i);
+		}
+	}
+	return ret;
+};
+
 m.GameState.prototype.isEntityAlly = function(ent) {
 	if (ent && ent.owner && (typeof ent.owner) === "function"){
 		return this.playerData.isAlly[ent.owner()];
@@ -365,7 +375,12 @@ m.GameState.prototype.getOwnUnits = function() {
 	return this.updatingGlobalCollection("" + this.player + "-units", m.Filters.byClass("Unit"), this.getOwnEntities());
 };
 
+m.GameState.prototype.getAllyEntities = function() {
+	return this.entities.filter(m.Filters.byOwners(this.getAllies()));
+};
+
 // Try to use a parameter for those three, it'll be a lot faster.
+
 m.GameState.prototype.getEnemyEntities = function(enemyID) {
 	if (enemyID === undefined)
 		return this.entities.filter(m.Filters.byOwners(this.getEnemies()));
@@ -499,6 +514,10 @@ m.GameState.prototype.getOwnDropsites = function(resource){
 
 m.GameState.prototype.getResourceSupplies = function(resource){
 	return this.updatingGlobalCollection("resource-" + resource, m.Filters.byResource(resource), this.getEntities(), true);
+};
+
+m.GameState.prototype.getHuntableSupplies = function(){
+	return this.updatingGlobalCollection("resource-hunt", m.Filters.isHuntable(), this.getEntities(), true);
 };
 
 // This returns only units from buildings.
