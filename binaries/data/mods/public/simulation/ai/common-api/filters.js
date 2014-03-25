@@ -222,24 +222,39 @@ m.Filters = {
 				return false;
 			
 			// And don't go for the bloody fish! TODO: better accessibility checks 
-			if (ent.hasClass("SeaCreature")) {
+			if (ent.hasClass("SeaCreature"))
 				return false;
-			}
 			
 			// Don't go for floating treasures since we won't be able to reach them and it kills the pathfinder.
 			if (ent.templateName() == "other/special_treasure_shipwreck_debris" || 
-					ent.templateName() == "other/special_treasure_shipwreck" ){
+					ent.templateName() == "other/special_treasure_shipwreck" )
 				return false;
-			}
 			
-			if (type.generic == "treasure"){
+			if (type.generic == "treasure")
 				return (resourceType == type.specific);
-			} else {
+			else
 				return (resourceType == type.generic);
-			}
 		},
 		"dynamicProperties": []};
-	}
+	},
+
+	isHuntable: function(){
+		return {"func" : function(ent){
+			if (!ent.hasClass("Animal"))
+				return false;
+			var amount = ent.resourceSupplyMax();
+			if (!amount)
+				return false;
+			// Skip targets that are too hard to hunt
+			if (!ent.isHuntable())
+				return false;
+			// And don't go for the fish! TODO: better accessibility checks 
+			if (ent.hasClass("SeaCreature"))
+				return false;
+			return true;
+		},
+		"dynamicProperties": []};
+	},
 };
 
 return m;

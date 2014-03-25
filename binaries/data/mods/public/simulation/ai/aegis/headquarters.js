@@ -887,7 +887,7 @@ m.HQ.prototype.checkBasesRessLevel = function(gameState,queues) {
 					// Okay so we'll set us as out of this.
 					this.outOf[type] = true;
 				} else {
-					warn ("planning new base");
+					//warn ("planning new base");
 					// base "-1" means new base.
 					queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre",{ "base" : -1 }, pos));
 				}
