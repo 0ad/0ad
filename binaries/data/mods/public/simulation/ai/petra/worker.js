@@ -113,8 +113,8 @@ m.Worker.prototype.update = function(baseManager, gameState) {
 		}
 		else
 		{
-			if (target && target.foundationProgress() === undefined && target.needsRepair() === true)
-				warn(" target " + target.id() + " needs repair " + target.hitpoints() + " max " + target.maxHitpoints());
+//			if (target && target.foundationProgress() === undefined && target.needsRepair() === true)
+//				warn(" target " + target.id() + " needs repair " + target.hitpoints() + " max " + target.maxHitpoints());
 			this.ent.repair(target);
 		}
 	}

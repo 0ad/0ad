@@ -313,7 +313,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 	if (this.state === "completing")
 	{
 		// bloqued units which cannot finish their order should not stop the attack
-		if (this.completingTurn + 50 < gameState.ai.playedTurn && this.hasForceOrder())
+		if (this.completingTurn + 60 < gameState.ai.playedTurn && this.hasForceOrder())
 			return 1;
 		return 2;
 	}
@@ -556,11 +556,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 		Engine.ProfileStop();
 		// can happen for now
 		if (this.buildOrder.length === 0)
-		{
-			if (this.Config.debug)
-				warn("Ending plan: no build orders");
 			return 0;	// will abort the plan, should return something else
-		}
 		return 1;
 	}
 
@@ -885,20 +881,18 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				ourUnit.flee(attacker);
 		}
 		var territoryMap = m.createTerritoryMap(gameState);
+		// Are we arrived at destination ?
 		if ((territoryMap.getOwner(this.position) === this.targetPlayer && attackedNB > 1) || attackedNB > 4)
-		{
-			// we must assume we've arrived at the end of the trail.
-			m.debug ("Attack Plan " +this.type +" " +this.name +" has arrived to destination.");
 			this.state = "arrived";
-		}
 	}
 
-	if (this.state === "walking"){
-		
+	if (this.state === "walking")
+	{	
 		this.position = this.unitCollection.getCentrePosition();
 
 		// probably not too good.
-		if (!this.position) {
+		if (!this.position)
+		{
 			Engine.ProfileStop();
 			return undefined;	// should spawn an error.
 		}
@@ -988,12 +982,12 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				}
 			}
 		}
-	} else if (this.state === "transporting") {
+	}
+	else if (this.state === "transporting")
+	{
 		// check that we haven't finished transporting, ie the plan
 		if (!gameState.ai.HQ.navalManager.checkActivePlan(this.tpPlanID))
-		{
 			this.state = "walking";
-		}
 	}
 
 
@@ -1025,7 +1019,6 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	// basic state of attacking.
 	if (this.state === "")
 	{
-
 		// events watch: if siege units are attacked, we'll send some units to deal with enemies.
 		var attackedEvents = events["Attacked"];
 		for (var key in attackedEvents) {

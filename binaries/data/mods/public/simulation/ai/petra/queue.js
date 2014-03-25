@@ -39,7 +39,6 @@ m.Queue.prototype.check= function(gameState)
 	{
 		if (!this.queue[0].isInvalid(gameState))
 			return;
-		warn(" plan " + this.queue[0].type + " invalid and suppressed");
 		this.queue.shift();
 	}
 	return;

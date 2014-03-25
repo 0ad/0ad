@@ -1067,7 +1067,7 @@ m.HQ.prototype.buildTradeRoute = function(gameState, queues)
 		}
 		if (distmax > 0)
 		{
-			if (this.Config.debug)
+			if (this.Config.debug > 1)
 				warn(" a second market will be built in base " + base);
 			// TODO build also docks when better
 			queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_market", { "base": base }));
@@ -1398,16 +1398,6 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 		if (template.hasClass(limitClass) && gameState.getOwnStructures().filter(API3.Filters.byClass(limitClass)).length >= limits[limitClass])
 			return false;
 
-/*	if (structure.indexOf("embassy") !== -1)
-	{
-		warn(" structure " + structure + " type " + type);
-		for (var limitClass in limits)
-		{
-			warn(" limitClass " + limitClass + " template ? " + template.hasClass(limitClass) + " num " + gameState.countEntitiesAndQueuedByType(type, true) + " limite " +  limits[limitClass]);
-			warn("   ---- autre compte " + gameState.getOwnStructures().filter(API3.Filters.byClass(limitClass)).length);
-		}
-	} */
-
 	return true;
 };
 
@@ -1473,7 +1463,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 	if (!expansion)
 		return;
 	// We've increased our territory, so we may have some new room to build
-	if (this.Config.debug)
+	if (this.Config.debug > 1)
 		warn(" buildings stopped " + uneval(this.stopBuilding));
 	this.stopBuilding = [];
 };
@@ -1572,7 +1562,12 @@ m.HQ.prototype.update = function(gameState, queues, events)
 
 	if (queues.minorTech.length() === 0 && gameState.ai.playedTurn % 5 === 1)
 		this.tryResearchTechs(gameState,queues);
-	
+
+	this.buildFarmstead(gameState, queues);
+	this.buildMarket(gameState, queues);
+	this.buildTemple(gameState, queues);
+	this.buildDock(gameState, queues);	// not if not a water map.
+
 	if (this.Config.difficulty > 1)
 	{
 		this.tryBartering(gameState);
@@ -1580,11 +1575,6 @@ m.HQ.prototype.update = function(gameState, queues, events)
 			this.buildTradeRoute(gameState, queues);
 		this.tradeManager.update(gameState, queues);
 	}
-
-	this.buildFarmstead(gameState, queues);
-	this.buildMarket(gameState, queues);
-	this.buildTemple(gameState, queues);
-	this.buildDock(gameState, queues);	// not if not a water map.
 
 	this.constructTrainingBuildings(gameState, queues);
 
