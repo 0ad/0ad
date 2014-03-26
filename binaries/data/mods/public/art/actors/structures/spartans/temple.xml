@@ -23,13 +23,15 @@
 			<texture file="structural/ao/spart_temple.png" name="aoTex"/>
 		</textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>    
     <variant name="death">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="smoke"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="smoke"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="smoke"/>
-        <prop actor="props/structures/spartans/temple_propsa.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/temple_props_a.xml" attachpoint="root"/>
         <prop actor="props/structures/spartans/temple_tile_c.xml" attachpoint="root"/>
       </props>
     </variant>
