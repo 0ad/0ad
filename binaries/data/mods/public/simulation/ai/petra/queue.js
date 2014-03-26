@@ -19,7 +19,6 @@ m.Queue.prototype.empty = function()
 
 m.Queue.prototype.addItem = function(plan)
 {
-    if (!plan) warn(" essaie d'ajout d un plan vide");
 	if (!plan)
 		return;
 	for (var i in this.queue)

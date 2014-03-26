@@ -155,7 +155,7 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 				&& nbGatherers > 0 && supply[i].ent.resourceSupplyAmount()/(1+nbGatherers) < 40)
 				continue;
 			// not in ennemy territory
-			var territoryOwner = m.createTerritoryMap(gameState).getOwner(supply[i].ent.position());
+			var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply[i].ent.position());
 			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 				continue;
 			m.AddTCGatherer(gameState, supply[i].id);
@@ -237,6 +237,11 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 			this.ent.setMetadata(PlayerID, "base", base.ID);
 			return true;
 		}
+	}
+
+	if (gameState.ai.HQ.Config.debug > 0)
+	{
+		warn(" >>>>> worker with gather-type " + resource + " with nothing to gather ");
 	}
 
 	return false;
@@ -346,7 +351,7 @@ m.Worker.prototype.startHunting = function(gameState, baseManager)
 		}
 
 		// Avoid ennemy territory
-		var territoryOwner = m.createTerritoryMap(gameState).getOwner(supply.position());
+		var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
 		if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 			return;
 
@@ -404,7 +409,6 @@ m.Worker.prototype.getGatherRate = function(gameState) {
 		if (type.generic == "treasure")
 			return 1000;
 		var tstring = type.generic + "." + type.specific;
-		//m.debug (+rates[tstring] + " for " + tstring + " for " + this.ent._templateName);
 		if (rates[tstring])
 			return rates[tstring];
 		return 0;

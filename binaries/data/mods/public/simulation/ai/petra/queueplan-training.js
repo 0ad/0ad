@@ -57,7 +57,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 		trainers[0].train(this.type, this.number, this.metadata);
 	}
 	else
-		warn("pas de trainers for this queue " + this.type);
+		warn(" no trainers for this queue " + this.type);
 	this.onStart(gameState);
 };
 

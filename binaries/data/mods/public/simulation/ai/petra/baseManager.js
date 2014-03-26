@@ -275,8 +275,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	var obstructions = m.createObstructionMap(gameState, this.accessIndex, storeHousePlate);
 	obstructions.expandInfluences();
 	
-	// copy the resource map as initialization.
-	var locateMap = new API3.Map(gameState.sharedScript, gameState.sharedScript.resourceMaps[resource].map, true);
+	var locateMap = new API3.Map(gameState.sharedScript);
 
 	var DPFoundations = gameState.getOwnFoundations().filter(API3.Filters.byType(gameState.applyCiv("foundation|structures/{civ}_storehouse")));
 
@@ -284,20 +283,25 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	
 	// TODO: might be better to check dropsites someplace else.
 	// loop over this in this.terrytoryindices. It's usually a little too much, but it's always enough.
+	var width = locateMap.width;
 	for (var p = 0; p < this.territoryIndices.length; ++p)
 	{
 		var j = this.territoryIndices[p];
-		locateMap.map[j] *= 2;
 		
-		// only add where the map is currently not null, ie in our territory and some "Resource" would be close.
-		// This makes the placement go from "OK" to "human-like".
+		// we add 3 times the needed resource and once the other two (not food)
+		var total = 0;
 		for (var i in gameState.sharedScript.resourceMaps)
-			if (locateMap.map[j] !== 0 && i !== "food")
-				locateMap.map[j] += gameState.sharedScript.resourceMaps[i].map[j];
+		{
+			if (i === "food")
+				continue;
+			total += gameState.sharedScript.resourceMaps[i].map[j];
+			if (i === resource)
+				total += 2*gameState.sharedScript.resourceMaps[i].map[j];
+		}
 
-		locateMap.map[j] *= 0.7;   // Just a normalisation factor as the max is 255
+		total = 0.7*total;   // Just a normalisation factor as the locateMap is limited to 255
 
-		var pos = [j%locateMap.width+0.5, Math.floor(j/locateMap.width)+0.5];
+		var pos = [j%width+0.5, Math.floor(j/width)+0.5];
 		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
 		for (var i in this.dropsites)
 		{
@@ -309,13 +313,13 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 			var dist = API3.SquareVectorDistance(dpPos, pos);
 			if (dist < 3600)
 			{
-				locateMap.map[j] = 0;
+				total = 0;
 				break;
 			}
 			else if (dist < 6400)
-				locateMap.map[j] /= 2;
+				total /= 2;
 		}
-		if (locateMap.map[j] == 0)
+		if (total == 0)
 			continue;
 
 		for (var i in DPFoundations._entities)
@@ -326,13 +330,13 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 			var dist = API3.SquareVectorDistance(dpPos, pos);
 			if (dist < 3600)
 			{
-				locateMap.map[j] = 0;
+				total = 0;
 				break;
 			}
 			else if (dist < 6400)
-				locateMap.map[j] /= 2;
+				total /= 2;
 		}
-		if (locateMap.map[j] == 0)
+		if (total == 0)
 			continue;
 
 		for each (var cc in ccEnts)
@@ -343,34 +347,27 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 			var dist = API3.SquareVectorDistance(ccPos, pos);
 			if (dist < 3600)
 			{
-				locateMap.map[j] = 0;
+				total = 0;
 				break;
 			}
 			else if (dist < 6400)
-				locateMap.map[j] /= 2;
+				total /= 2;
 		}
+
+		locateMap.map[j] = total;
 	}
 	
-	var best = locateMap.findBestTile(2, obstructions);	// try to find a spot to place a DP.
+	var best = locateMap.findBestTile(2, obstructions);
 	var bestIdx = best[0];
 
 	if (this.Config.debug == 2)
-		warn("for dropsite best is " + best[1] + " at " + gameState.getTimeElapsed());
-	
-	// tell the dropsite builder we haven't found anything satisfactory.
-//	var cutbest = 60;
-//	// being less demanding for first dropsite
-//	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_storehouse")) == 0)
-//		var cutbest = 50;
-
-//	if (best[1] < cutbest)
-//		return false;
+		warn(" for dropsite best is " + best[1]);
 
 	var quality = best[1];
 	if (quality <= 0)
 		return {"quality": quality, "pos": [0, 0]};
-	var x = ((bestIdx % locateMap.width) + 0.5) * gameState.cellSize;
-	var z = (Math.floor(bestIdx / locateMap.width) + 0.5) * gameState.cellSize;
+	var x = ((bestIdx % width) + 0.5) * gameState.cellSize;
+	var z = (Math.floor(bestIdx / width) + 0.5) * gameState.cellSize;
 	return {"quality": quality, "pos": [x, z]};
 };
 
@@ -770,8 +767,8 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		} else if (noRepair && !target.hasClass("CivCentre"))
 			continue;
 		
-		var territory = m.createTerritoryMap(gameState);
-		if (territory.getOwner(target.position()) !== PlayerID || territory.getOwner([target.position()[0] + 5, target.position()[1]]) !== PlayerID)
+		if (gameState.ai.HQ.territoryMap.getOwner(target.position()) !== PlayerID ||
+			gameState.ai.HQ.territoryMap.getOwner([target.position()[0] + 5, target.position()[1]]) !== PlayerID)
 			continue;
 		
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
@@ -804,7 +801,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 	
 	if (this.constructing && this.anchor)
 	{
-		var owner = m.createTerritoryMap(gameState).getOwner(this.anchor.position());
+		var owner = gameState.ai.HQ.territoryMap.getOwner(this.anchor.position());
 		if(owner !== 0 && !gameState.isPlayerAlly(owner))
 		{
 			// we're in enemy territory. If we're too close from the enemy, destroy us.

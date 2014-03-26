@@ -15,7 +15,7 @@ m.DefenseManager.prototype.init = function(gameState)
 
 m.DefenseManager.prototype.update = function(gameState, events)
 {
-	this.territoryMap = m.createTerritoryMap(gameState);
+	this.territoryMap = gameState.ai.HQ.territoryMap;
 	
 	this.checkEnemyArmies(gameState, events);
 	this.checkEnemyUnits(gameState);

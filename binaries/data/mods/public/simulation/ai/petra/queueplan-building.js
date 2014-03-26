@@ -174,7 +174,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				else
 					friendlyTiles.addInfluence(x, z, 15, -40);   // and further away from other stuffs
 			}
-			else if (template.hasClass("Farmstead") &&  !ent.hasClass("Field"))
+			else if (template.hasClass("Farmstead") && !ent.hasClass("Field"))
 				friendlyTiles.addInfluence(x, z, 25, -25);           // move farmsteads away to make room.
 			else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
 				friendlyTiles.addInfluence(x, z, 30, -50);
@@ -219,7 +219,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		radius = Math.floor(template.obstructionRadius() / cellSize) + 3;
 	else if (template.buildCategory() === "Dock")
 		radius = 1;
-	else if (template.resourceDropsiteTypes() === undefined)
+	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") && !template.hasClass("Field"))
 		radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
 	else
 		radius = Math.ceil(template.obstructionRadius() / cellSize);
