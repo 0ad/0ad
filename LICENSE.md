@@ -1,5 +1,5 @@
- 0 A.D. Licensing Details
-==========================
+0 A.D. Licensing Details
+========================
 
 0 A.D. is released as open source: you can freely use, copy, modify and
 distribute the game's source code and data files, as long as you include
