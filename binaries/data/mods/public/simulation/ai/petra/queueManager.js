@@ -68,13 +68,14 @@ m.QueueManager.prototype.currentNeeds = function(gameState)
 		var queue = this.queueArrays[i][1];
 		if (queue.length() == 0 || !queue.queue[0].isGo(gameState))
 			continue;
-		// we need resource if the account is smaller than the cost
 		var costs = queue.queue[0].getCost();
-		for each (var ress in costs.types)
-		    costs[ress] = Math.max(0, costs[ress] - this.accounts[name][ress]);
-
 		needed.add(costs);
 	}
+	// get out current resources, not removing accounts.
+	var current = this.getAvailableResources(gameState, true);
+	for each (var ress in needed.type)
+		needed[ress] = Math.max(0, needed[ress] - current[ress]);
+
 	return needed;
 };
 

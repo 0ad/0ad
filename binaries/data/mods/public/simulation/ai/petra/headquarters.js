@@ -417,7 +417,7 @@ m.HQ.prototype.tryResearchTechs = function(gameState, queues)
 
 
 // returns an entity collection of workers through BaseManager.pickBuilders
-// TODO: better the choice algo.
+// TODO: when same accessIndex, sort by distance
 m.HQ.prototype.bulkPickWorkers = function(gameState, newBaseID, number)
 {
 	var accessIndex = this.baseManagers[newBaseID].accessIndex;
@@ -436,6 +436,8 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, newBaseID, number)
 	var workers = new API3.EntityCollection(gameState.sharedScript);
 	for (var i in baseBest)
 	{
+		if (baseBest[i].ID === newBaseID)
+			continue;
 		baseBest[i].pickBuilders(gameState, workers, needed);
 		if (workers.length < number)
 			needed = number - workers.length;
@@ -735,17 +737,92 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState)
 		bestIdx = i;
 	}
 
-	if (this.Config.debug)
-		warn("on a trouve une base strategic avec bestVal = " + bestVal);	
+	if (this.Config.debug > 0)
+		warn("We've found a strategic base with bestVal = " + bestVal);	
 
 	if (bestVal === undefined)
 		return undefined;
 
 	var x = (bestIdx%width + 0.5) * gameState.cellSize;
 	var z = (Math.floor(bestIdx/width) + 0.5) * gameState.cellSize;
-	if (this.Config.debug)
-		warn(" avec accessIndex " + gameState.ai.myIndex + " new " + gameState.ai.accessibility.getAccessValue([x,z]));
 	return [x,z];
+};
+
+// Returns the best position to build a new market: if the allies already have a market, build it as far as possible
+// from it, although not in our border to be able to defend it easily. If no allied market, our second market will
+// follow the same logic
+m.HQ.prototype.findMarketLocation = function(gameState, template)
+{
+	// TODO may-be keep allied foundation, hoping it will be finished soon
+	var filter = API3.Filters.and(API3.Filters.byClass("Market"), API3.Filters.not(API3.Filters.isFoundation()));
+	var markets = gameState.getAllyEntities().filter(filter).toEntityArray();
+	if (!markets.length)
+		markets = gameState.getOwnStructures().filter(filter).toEntityArray();
+
+	if (!markets.length)
+	{
+		// this is the first market. We need to know in which direction we will expand
+		// but for the time being, place it arbitrarily by the ConstructionPlan
+		return [-1, -1, -1];
+	}
+
+	// obstruction map
+	var obstructions = m.createObstructionMap(gameState, 0);
+	obstructions.expandInfluences();
+
+	var map = {};
+	var width = this.territoryMap.width;
+
+	for (var j = 0; j < this.territoryMap.length; ++j)
+	{
+		// do not try on the border of our territory
+		if (this.frontierMap.map[j] === 2)
+			continue;
+		if (this.basesMap.map[j] === 0)   // inaccessible cell
+			continue;
+
+		var ix = j%width;
+		var iy = Math.floor(j/width);
+		var pos = [ix+0.5, iy+0.5];
+		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
+
+		// checking distances to other markets
+		var maxDist = 0;
+		for each (var market in markets)
+		{
+			var dist = API3.SquareVectorDistance(market.position(), pos);
+			if (dist > maxDist)
+				maxDist = dist;
+		}
+		if (maxDist == 0)
+			continue;
+
+		map[j] = maxDist;
+	}
+
+	var bestIdx = undefined;
+	var bestVal = undefined;
+	var radius = Math.ceil(template.obstructionRadius() / gameState.cellSize);
+	for (var i in map)
+	{
+		if (obstructions.map[+i] <= radius)
+			continue;
+		var v = map[i];
+		if (bestVal !== undefined && v < bestVal)
+			continue;
+		bestVal = v;
+		bestIdx = i;
+	}
+
+	if (this.Config.debug > 0)
+		warn("We found a market position with bestVal = " + bestVal);	
+
+	if (bestVal === undefined)
+		return undefined;
+
+	var x = (bestIdx%width + 0.5) * gameState.cellSize;
+	var z = (Math.floor(bestIdx/width) + 0.5) * gameState.cellSize;
+	return [x, z, this.basesMap.map[bestIdx]];
 };
 
 // Returns the best position to build defensive buildings (fortress and towers)
@@ -924,6 +1001,7 @@ m.HQ.prototype.tryBartering = function(gameState)
 
 	// Available resources after account substraction
 	var available = gameState.ai.queueManager.getAvailableResources(gameState);
+	var needs = gameState.ai.queueManager.currentNeeds(gameState);
 
 	var rates = this.GetCurrentGatherRates(gameState)
 
@@ -931,56 +1009,8 @@ m.HQ.prototype.tryBartering = function(gameState)
 	// calculates conversion rates
 	var getBarterRate = function (prices,buy,sell) { return Math.round(100 * prices["sell"][sell] / prices["buy"][buy]); };
 
-	// loop through each queues checking if we could barter and finish a queue quickly.
-	for (var j in gameState.ai.queues)
-	{
-		var queue = gameState.ai.queues[j];
-		if (queue.paused || queue.length() === 0)
-			continue;
-
-		var account = gameState.ai.queueManager.accounts[j];
-		var elem = queue.queue[0];
-		var elemCost = elem.getCost();
-		for each (var buy in elemCost.types)
-		{
-			if (available[buy] >= 0)
-				continue;	// don't care if we still have available resource
-			var need = elemCost[buy] - account[buy];
-			if (need <= 0 || 50*rates[buy] > need)	// don't care if we don't need resource or our rate is good enough
-				continue;
-			
-			if (buy == "food" && need < 400)
-				continue;
-
-			// pick the best resource to barter.
-			var bestToBarter = undefined;
-			var bestRate = 0;
-			for each (var sell in elemCost.types)
-			{
-				if (sell === buy)
-					continue;
-				// I wanna keep some
-				if (available[sell] < 130 + need)
-					continue;
-				var barterRate = getBarterRate(prices, buy, sell);
-				if (barterRate > bestRate)
-				{
-					bestRate = barterRate;
-					bestToBarter = otherRess;
-				}
-			}
-			if (bestToBarter !== undefined && bestRate > 10)
-			{
-				markets[0].barter(buy, sell, 100);
-				if (this.Config.debug > 0)
-					warn("Snipe bartered " + sell +" for " + buy + ", value 100" + " with barterRate " + bestRate);
-				return true;
-			}
-		}
-	}
-	// now barter for big needs.
-	var needs = gameState.ai.queueManager.currentNeeds(gameState);
-	for each (var buy in  needs.types)
+	// loop through each queues checking if we could barter and help finishing a queue quickly.
+	for each (var buy in needs.types)
 	{
 		if (needs[buy] == 0 || needs[buy] < rates[buy]*30) // check if our rate allows to gather it fast enough
 			continue;
@@ -1010,17 +1040,45 @@ m.HQ.prototype.tryBartering = function(gameState)
 				bestToSell = sell;
 			}
 		}
-
 		if (bestToSell !== undefined)
 		{
 			markets[0].barter(buy, bestToSell, 100);
 			if (this.Config.debug > 0)
-				warn("Gross bartered: sold " + bestToSell +" for " + buy + " >> need sell " + needs[bestToSell]
-					 + " buy " + needs[buy] + " rate " + rates[buy] + " available sell " + available[bestToSell]
-					 + " buy " + available[buy] + " barterRate " + bestRate);
+				warn("Necessity bartering: sold " + bestToSell +" for " + buy + " >> need sell " + needs[bestToSell]
+					 + " need buy " + needs[buy] + " rate buy " + rates[buy] + " available sell " + available[bestToSell]
+					 + " available buy " + available[buy] + " barterRate " + bestRate);
 			return true;
 		}
 	}
+
+	// now do contingency bartering, selling food to buy finite resources (and annoy our ennemies by increasing prices)
+	if (available["food"] < 1000 || needs["food"] > 0)
+		return false;
+	var bestToBuy = undefined;
+	var bestChoice = 0;
+	for each (var buy in needs.types)
+	{
+		if (buy === "food")
+			continue;
+		var barterRate = getBarterRate(prices, buy, "food");
+		if (barterRate < 80)
+			continue;
+		var choice = barterRate / (100 + available[buy]);
+		if (choice > bestChoice)
+		{
+			bestChoice = choice;
+			bestToBuy = buy;
+		}
+	}
+	if (bestToBuy !== undefined)
+	{
+		markets[0].barter(bestToBuy, "food", 100);
+		if (this.Config.debug > 0)
+			warn("Contingency bartering: sold food for " + bestToBuy + " available sell " + available["food"]
+				 + " available buy " + available[bestToBuy] + " barterRate " + getBarterRate(prices, bestToBuy, "food"));
+		return true;
+	}
+
 	return false;
 };
 
@@ -1113,13 +1171,7 @@ m.HQ.prototype.buildTradeRoute = function(gameState, queues)
 // kinda ugly, lots of special cases to both build enough houses but not tooo many…
 m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 {
-	if (gameState.getPopulationMax() < gameState.getPopulationLimit())
-	{
-		var numPlanned = queues.house.length();
-		if (numPlanned)
-			warn(" ########  Houses planned while already max pop !! remove them from queue");
-	}
-	if (gameState.getPopulationMax() < gameState.getPopulationLimit())
+	if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
 		return;
 
 	var numPlanned = queues.house.length();
@@ -1133,6 +1185,8 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 		plan.isGo = function (gameState) {
 			if (!self.canBuild(gameState, "structures/{civ}_house"))
 				return false;
+			if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
+				return false;
 			var HouseNb = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_house"), true);
 
 			var freeSlots = 0;
@@ -1145,7 +1199,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 			freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
 			if (gameState.getPopulation() > 55 && difficulty > 1)
 				return (freeSlots <= 21);
-			else if (gameState.getPopulation() >= 30 && difficulty !== 0)
+			else if (gameState.getPopulation() >= 30 && difficulty > 0)
 				return (freeSlots <= 15);
 			else
 				return (freeSlots <= 10);
@@ -1173,10 +1227,23 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 // checks the status of the territory expansion. If no new economic bases created, build some strategic ones.
 m.HQ.prototype.checkBaseExpansion = function(gameState,queues)
 {
+	// first expand if we have not enough room available for buildings
+	if (this.stopBuilding.length > 1)
+	{
+		if (this.Config.debug > 1)
+			warn("try to build a new base because not enough room to build " + uneval(this.stopBuilding));
+		this.buildNewBase(gameState, queues);
+		return;
+	}
+	// then expand if we have lots of units
 	var numUnits = 	gameState.getOwnUnits().length;
 	var numCCs = gameState.countEntitiesByType(gameState.applyCiv(this.bBase[0]), true);
 	if (Math.floor(numUnits/60) >= numCCs)
+	{
+		if (this.Config.debug > 1)
+			warn("try to build a new base because of population " + numUnits + " for " + numCCs + " CCs");
 		this.buildNewBase(gameState, queues);
+	}
 };
 
 m.HQ.prototype.buildNewBase = function(gameState, queues, type)
@@ -1556,10 +1623,6 @@ m.HQ.prototype.update = function(gameState, queues, events)
 		this.updateTerritories(gameState);
 
 	this.trainMoreWorkers(gameState, queues);
-	
-	// sandbox doesn't expand.
-	if (this.Config.difficulty !== 0 && gameState.ai.playedTurn % 10 === 7)
-		this.checkBaseExpansion(gameState, queues);
 
 	if (gameState.ai.playedTurn % 2 === 0)
 		this.buildMoreHouses(gameState,queues);
@@ -1574,6 +1637,10 @@ m.HQ.prototype.update = function(gameState, queues, events)
 
 	if (gameState.currentPhase() > 1)
 	{
+		// sandbox doesn't expand
+		if (this.Config.difficulty > 0 && gameState.ai.playedTurn % 10 === 7)
+			this.checkBaseExpansion(gameState, queues);
+
 		this.buildMarket(gameState, queues);
 		this.buildBlacksmith(gameState, queues);
 		this.buildTemple(gameState, queues);

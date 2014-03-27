@@ -69,7 +69,6 @@ m.AttackPlan = function(gameState, Config, uniqueID, targetEnemy, type , targetF
 
 	this.paused = false;
 	this.completingTurn = 0;	
-	this.onArrivalReaction = "proceedOnTargets";
 
 	// priority of the queues we'll create.
 	var priority = 70;
@@ -134,7 +133,8 @@ m.AttackPlan = function(gameState, Config, uniqueID, targetEnemy, type , targetF
 	
 	// defining the entity collections. Will look for units I own, that are part of this plan.
 	// Also defining the buildOrders.
-	for (var unitCat in this.unitStat) {
+	for (var unitCat in this.unitStat)
+	{
 		var cat = unitCat;
 		var Unit = this.unitStat[cat];
 
@@ -383,13 +383,19 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 			{
 				this.pathWidth = 2;
 				delete this.path;
-			} else {
+			}
+			else
+			{
 				delete this.pathFinder;
 				return 3;	// no path.
 			}
-		} else if (this.path === "toBeContinued") {
+		}
+		else if (this.path === "toBeContinued")
+		{
 			// carry on.
-		} else if (this.path[1] === true && this.pathWidth == 2) {
+		} 
+		else if (this.path[1] === true && this.pathWidth == 2)
+		{
 			// okay so we need a ship.
 			// Basically we'll add it as a new class to train compulsorily, and we'll recompute our path.
 			if (!gameState.ai.HQ.waterMap)
@@ -419,11 +425,15 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 					break;
 				}
 			}
-		} else if (this.path[1] === true && this.pathWidth == 6) {
+		}
+		else if (this.path[1] === true && this.pathWidth == 6)
+		{
 			// retry with a smaller pathwidth:
 			this.pathWidth = 2;
 			delete this.path;
-		} else {
+		}
+		else
+		{
 			this.path = this.path[0].reverse();
 			delete this.pathFinder;
 			
@@ -1000,22 +1010,19 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	{
 		// let's proceed on with whatever happens now.
 		// There's a ton of TODOs on this part.
-		if (this.onArrivalReaction == "proceedOnTargets")
+		this.state = "";
+		this.unitCollection.forEach( function (ent) {
+			ent.stopMoving();
+			ent.setMetadata(PlayerID, "subrole", "attacking");
+		});
+		if (this.type === "Rush")   // try to find a better target for rush
 		{
-			this.state = "";
-			this.unitCollection.forEach( function (ent) {
-				ent.stopMoving();
-				ent.setMetadata(PlayerID, "subrole", "attacking");
-			});
-			if (this.type === "Rush")   // try to find a better target for rush
+			var targets = this.rushTargetFinder(gameState);
+			if (targets.length !== 0)
 			{
-				var targets = this.rushTargetFinder(gameState);
-				if (targets.length !== 0)
-				{
-					for (var i in targets._entities)
-						this.target = targets._entities[i];
-					this.targetPos = this.target.position();
-				}
+				for (var i in targets._entities)
+					this.target = targets._entities[i];
+				this.targetPos = this.target.position();
 			}
 		}
 	}
@@ -1035,10 +1042,9 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			var ourUnit = gameState.getEntityById(e.target);
 			if (!ourUnit.hasClass("Siege"))
 				continue;
-			var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5);
-			if (collec.length === 0)
-				continue;
-			collec.attack(attacker.id())
+			var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5).toEntityArray();
+			for (var unit in collec)
+				unit.attack(attacker.id());
 		}
 		
 		var enemyUnits = gameState.getEnemyUnits(this.targetPlayer);
@@ -1054,7 +1060,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			var timeElapsed = gameState.getTimeElapsed();
 			
 			// Let's check a few units each time we update. Currently 10
-			var lgth = Math.min(this.unitCollUpdateArray.length, 10);
+			if (this.unitCollUpdateArray.length < 15)
+				var lgth = this.unitCollUpdateArray.length;
+			else
+				var lgth = 10;
 			for (var check = 0; check < lgth; check++)
 			{
 				var ent = gameState.getEntityById(this.unitCollUpdateArray[check]);
@@ -1101,13 +1110,11 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", timeElapsed);
 
 				// let's filter targets further based on this unit.
-				var mStruct = enemyStructures.filter(function (enemy) { //}){
-					if (!enemy.position() || (enemy.hasClass("StoneWall") && ent.canAttackClass("StoneWall"))) {
+				var mStruct = enemyStructures.filter(function (enemy) {
+					if (!enemy.position() || (enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall")))
 						return false;
-					}
-					if (API3.SquareVectorDistance(enemy.position(),ent.position()) > 3000) {
+					if (API3.SquareVectorDistance(enemy.position(),ent.position()) > 3000)
 						return false;
-					}
 					return true;
 				});
 				var nearby = (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged"));
@@ -1124,36 +1131,32 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					return true;
 				});
 				// Checking for gates if we're a siege unit.
-				var isGate = false;
 				mUnit = mUnit.toEntityArray();
 				mStruct = mStruct.toEntityArray();
-				if (ent.hasClass("Siege")) {
-					mStruct.sort(function (structa,structb) {
+				if (ent.hasClass("Siege"))
+				{
+					mStruct.sort(function (structa,structb)
+					{
 						var vala = structa.costSum();
 						if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))
-						{
-							isGate = true;
 							vala += 10000;
-						}
 						else if (structa.hasClass("ConquestCritical"))
 							vala += 200;
 						var valb = structb.costSum();
 						if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))
-						{
-							isGate = true;
 							valb += 10000;
-						}
 						else if (structb.hasClass("ConquestCritical"))
 							valb += 200;
 						return (valb - vala);
 					});
-					// TODO: handle ballistas here
-					if (mStruct.length !== 0) {
-						if (isGate)
+
+					if (mStruct.length !== 0)
+					{
+						if (mStruct[0].hasClass("Gates"))
 							ent.attack(mStruct[0].id());
 						else
 						{
-							var rand = Math.floor(Math.random() * mStruct.length*0.2);
+							var rand = Math.floor(Math.random() * mStruct.length * 0.2);
 							ent.attack(mStruct[+rand].id());
 						}
 					}
@@ -1164,7 +1167,6 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				{
 					if (mUnit.length !== 0)
 					{
-						var noFemale = (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged"))
 						mUnit.sort(function (unitA,unitB) {
 							var vala = unitA.hasClass("Support") ? 50 : 0;
 							if (ent.countersClasses(unitA.classes()))
@@ -1174,36 +1176,31 @@ m.AttackPlan.prototype.update = function(gameState, events)
 								valb += 100;
 							return valb - vala;
 						});
-						var rand = Math.floor(Math.random() * mUnit.length*0.1);
+						var rand = Math.floor(Math.random() * mUnit.length * 0.1);
 						ent.attack(mUnit[rand].id());
 					}
 					else if (API3.SquareVectorDistance(self.targetPos, ent.position()) > 2500 )
 						ent.attackMove(self.targetPos[0],self.targetPos[1]);
-					else if (mStruct.length !== 0) {
+					else if (mStruct.length !== 0)
+					{
 						mStruct.sort(function (structa,structb) {
 							var vala = structa.costSum();
 							if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))
-							{
-								isGate = true;
 								vala += 10000;
-							}
 							else if (structa.hasClass("ConquestCritical"))
 								vala += 100;
 							var valb = structb.costSum();
 							if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))
-							{
-								isGate = true;
 								valb += 10000;
-							}
 							else if (structb.hasClass("ConquestCritical"))
 								valb += 100;
 							return (valb - vala);
 						});
-						if (isGate)
+						if (mStruct[0].hasClass("Gates"))
 							ent.attack(mStruct[0].id());
 						else
 						{
-							var rand = Math.floor(Math.random() * mStruct.length*0.1);
+							var rand = Math.floor(Math.random() * mStruct.length * 0.1);
 							ent.attack(mStruct[rand].id());
 						}
 					}
