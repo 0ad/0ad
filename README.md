@@ -1,5 +1,5 @@
- 0 A.D. Introductory Information
-=================================
+0 A.D. Introductory Information
+===============================
 
 0 A.D. (pronounced "zero ey-dee") is a free, open-source, cross-platform
 real-time strategy game of ancient warfare.
@@ -19,8 +19,6 @@ There are several ways to contact us and find more information:
 
   IRC: #0ad on irc.quakenet.org
 
-
----------------------------------------
 Running precompiled binaries on Windows
 ---------------------------------------
 
@@ -30,8 +28,6 @@ To launch the game: Run pyrogenesis.exe
 
 To launch the map editor: Run Atlas.bat or "pyrogenesis.exe -editor"
 
-
------------------------------------
 Compiling the game from source code
 -----------------------------------
 
@@ -39,7 +35,6 @@ The instructions for compiling the game on Windows, Linux and OS X are at
 http://trac.wildfiregames.com/wiki/BuildInstructions
 
 
-------------------
 Reporting problems
 ------------------
 
