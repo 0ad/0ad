@@ -2513,7 +2513,10 @@ var UnitFsmSpec = {
 
 				"MoveCompleted": function() {
 					if (this.waypoints && this.waypoints.length)
-						this.MoveToMarket(this.order.data.firstMarket);
+					{
+						if (!this.MoveToMarket(this.order.data.firstMarket))
+							this.stopTrading();
+					}
 					else
 						this.PerformTradeAndMoveToNextMarket(this.order.data.firstMarket, this.order.data.secondMarket, "APPROACHINGSECONDMARKET");
 				},
@@ -2526,7 +2529,10 @@ var UnitFsmSpec = {
 
 				"MoveCompleted": function() {
 					if (this.waypoints && this.waypoints.length)
-						this.MoveToMarket(this.order.data.secondMarket);
+					{
+						if (!this.MoveToMarket(this.order.data.secondMarket))
+							this.stopTrading();
+					}
 					else
 						this.PerformTradeAndMoveToNextMarket(this.order.data.secondMarket, this.order.data.firstMarket, "APPROACHINGFIRSTMARKET");
 				},
@@ -5064,13 +5070,6 @@ UnitAI.prototype.MoveToMarket = function(targetMarket)
 		var ok = this.MoveToTarget(targetMarket);
 	}
 
-	if (!ok)
-	{
-		// We can't reach the market. Give up.
-		this.StopMoving();
-		this.StopTrading();
-	}
-
 	return ok;
 };
 
@@ -5114,6 +5113,7 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextM
 
 UnitAI.prototype.StopTrading = function()
 {
+	this.StopMoving();
 	this.FinishOrder();
 	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 	cmpTrader.StopTrading();

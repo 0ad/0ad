@@ -139,14 +139,14 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 		
 		// try going up phases.
 		// TODO: softcode this more
-		if (this.gameState.canResearch(townPhase,true) && this.gameState.getPopulation() >= this.Config.Economy.villagePopCap - 10
+		if (this.gameState.canResearch(townPhase,true) && this.gameState.getPopulation() >= this.Config.Economy.popForTown - 10
 			&& this.gameState.findResearchers(townPhase,true).length != 0 && this.queues.majorTech.length() === 0)
 		{
 			var plan = new m.ResearchPlan(this.gameState, townPhase, true);
 			plan.lastIsGo = false;
 			plan.onStart = function (gameState) { gameState.ai.HQ.econState = "growth"; gameState.ai.HQ.OnTownPhase(gameState) };
 			plan.isGo = function (gameState) {
-				var ret = gameState.getPopulation() >= gameState.Config.Economy.villagePopCap
+				var ret = gameState.getPopulation() >= gameState.Config.Economy.popForTown;
 				if (ret && !this.lastIsGo)
 					this.onGo(gameState);
 				else if (!ret && this.lastIsGo)
@@ -243,7 +243,7 @@ m.PetraBot.prototype.initPersonality = function()
 	if (this.Config.personality.aggressive > 0.7)
 	{
 		this.Config.Military.popForBarracks1 = 0;
-		this.Config.Economy.villagePopCap = 75;
+		this.Config.Economy.popForTown = 70;
 		this.Config.Economy.cityPhase = 900;
 		this.Config.Economy.popForMarket = 80;
 		this.Config.Economy.targetNumBuilders = 2;

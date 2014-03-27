@@ -11,10 +11,10 @@ m.Config = function() {
 		"fortressLapseTime" : 420, // Time to wait between building 2 fortresses
 		"popForBarracks1" : 25,
 		"popForBarracks2" : 95,
-		"timeForBlacksmith" : 900,
+		"popForBlacksmith" : 65
 	};
 	this.Economy = {
-		"villagePopCap" : 40,	// How many units we want before aging to town.
+		"popForTown" : 40,	// How many units we want before aging to town.
 		"cityPhase" : 840,	// time to start trying to reach city phase
 		"popForMarket" : 50,
 		"dockStartTime" : 240,	// Time to wait before building the dock

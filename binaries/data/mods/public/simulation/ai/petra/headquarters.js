@@ -55,6 +55,7 @@ m.HQ = function(Config)
 // More initialisation for stuff that needs the gameState
 m.HQ.prototype.init = function(gameState, queues)
 {
+	this.territoryMap = m.createTerritoryMap(gameState);
 	// initialize base map. Each pixel is a base ID, or 0 if not or not accessible
 	this.basesMap = new API3.Map(gameState.sharedScript);
 	// area of 10 cells on the border of the map : 0=inside map, 1=border map, 2=outside map
@@ -282,24 +283,30 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	// If we have too few, train more
 	// should plan enough to always have females…
 	// TODO: 15 here should be changed to something more sensible, such as nb of producing buildings.
-	if (numTotal > this.targetNumWorkers || numQueued > 50 || (numQueuedF > 20 && numQueuedS > 20) || numInTraining > 15)
-		return;
-
-	if (numTotal >= this.Config.Economy.villagePopCap && gameState.currentPhase() === 1 && !gameState.isResearching(gameState.townPhase()))
-		return;
+	if (!this.boostedSoldiers)
+	{
+		if (numTotal > this.targetNumWorkers || (numTotal >= this.Config.Economy.popForTown 
+			&& gameState.currentPhase() === 1 && !gameState.isResearching(gameState.townPhase())))
+			return;
+		if (numQueued > 50 || (numQueuedF > 20 && numQueuedS > 20) || numInTraining > 15)
+			return;
+	}
+	else if (numQueuedS > 20)
+			return;
 
 	// default template and size
 	var template = gameState.applyCiv("units/{civ}_support_female_citizen");
 	var size = Math.min(5, Math.ceil(numTotal / 10));
 
 	// Choose whether we want soldiers instead.
-	// TODO: we might want to adjust our female ratio.
-	if ((numFemales+numQueuedF)/numTotal > this.femaleRatio && numQueuedS < 20) {
+	if ((numFemales+numQueuedF)/numTotal > this.femaleRatio || this.boostedSoldiers)
+	{
 		if (numTotal < 35)
 			template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["cost",1], ["speed",0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]]);
 		else
 			template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["strength",1] ]);
-
+		if (!template && this.boostedSoldiers)
+			return;
 		if (!template)
 			template = gameState.applyCiv("units/{civ}_support_female_citizen");
 	}
@@ -528,8 +535,6 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, resource)
 	// obstruction map
 	var obstructions = m.createObstructionMap(gameState, 0);
 	obstructions.expandInfluences();
-	// territory map
-	var territory = m.createTerritoryMap(gameState);
 
 	var ccEnts = gameState.getEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 	var dpEnts = gameState.getOwnDropsites().toEntityArray();
@@ -540,7 +545,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, resource)
 		// This ensures territorial continuity.
 		
 		var norm = 0.5;   // TODO adjust it, knowing that we will sum 5 maps
-		if (territory.getOwnerIndex(j) !== 0 || this.borderMap.map[j] === 2)
+		if (this.territoryMap.getOwnerIndex(j) !== 0 || this.borderMap.map[j] === 2)
 		{
 			norm = 0;
 			continue;
@@ -663,15 +668,13 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState)
 	// obstruction map
 	var obstructions = m.createObstructionMap(gameState, 0);
 	obstructions.expandInfluences();
-	// territory map
-	var territory = m.createTerritoryMap(gameState);
 
 	var map = {};
-	var width = territory.width;
+	var width = this.territoryMap.width;
 
-	for (var j = 0; j < territory.length; ++j)
+	for (var j = 0; j < this.territoryMap.length; ++j)
 	{
-		if (territory.getOwnerIndex(j) !== 0 || this.borderMap.map[j] === 2)
+		if (this.territoryMap.getOwnerIndex(j) !== 0 || this.borderMap.map[j] === 2)
 			continue;
 
 		var ix = j%width;
@@ -759,12 +762,10 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	// obstruction map
 	var obstructions = m.createObstructionMap(gameState, 0);
 	obstructions.expandInfluences();
-	// territory map
-	var territory = m.createTerritoryMap(gameState);
 
 	var map = {};
-	var width = territory.width;
-	for (var j = 0; j < territory.length; ++j)
+	var width = this.territoryMap.width;
+	for (var j = 0; j < this.territoryMap.length; ++j)
 	{
 		// do not try if well inside or outside territory
 		if (this.frontierMap.map[j] === 0)
@@ -861,7 +862,7 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 
 m.HQ.prototype.buildMarket = function(gameState, queues)
 {
-	if (gameState.getPopulation() < this.Config.Economy.popForMarket || gameState.currentPhase() < 2 ||
+	if (gameState.getPopulation() < this.Config.Economy.popForMarket ||
 		queues.economicBuilding.countQueuedUnitsWithClass("BarterMarket") !== 0 ||
 		gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market"), true) !== 0)
 		return;
@@ -1112,7 +1113,6 @@ m.HQ.prototype.buildTradeRoute = function(gameState, queues)
 // kinda ugly, lots of special cases to both build enough houses but not tooo many…
 m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 {
-
 	if (gameState.getPopulationMax() < gameState.getPopulationLimit())
 	{
 		var numPlanned = queues.house.length();
@@ -1234,7 +1234,9 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		}
 	}
 
-	if (gameState.currentPhase() < 2 || queues.defenseBuilding.length() !== 0 || !this.canBuild(gameState, "structures/{civ}_defense_tower"))
+	if (gameState.currentPhase() < 2 
+		|| queues.defenseBuilding.length() !== 0 
+		|| !this.canBuild(gameState, "structures/{civ}_defense_tower"))
 		return;	
 
 	var numTowers = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_defense_tower"), true);
@@ -1248,7 +1250,8 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 
 m.HQ.prototype.buildBlacksmith = function(gameState, queues)
 {
-	if (gameState.getTimeElapsed() < this.Config.Military.timeForBlacksmith*1000 || queues.militaryBuilding.length() !== 0
+	if (gameState.getPopulation() < this.Config.Military.popForBlacksmith 
+		|| queues.militaryBuilding.length() !== 0
 		|| gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_blacksmith"), true) > 0)
 		return;
 
@@ -1408,14 +1411,13 @@ m.HQ.prototype.updateTerritories = function(gameState)
 		return;
 	this.lastTerritoryUpdate = gameState.ai.playedTurn;
 
-	var territory = m.createTerritoryMap(gameState);
-	var width = territory.width;
+	var width = this.territoryMap.width;
 	var expansion = false;
-	for (var j = 0; j < territory.length; ++j)
+	for (var j = 0; j < this.territoryMap.length; ++j)
 	{
 		if (this.borderMap.map[j] === 2)
 			continue;
-		if (territory.getOwnerIndex(j) !== PlayerID)
+		if (this.territoryMap.getOwnerIndex(j) !== PlayerID)
 		{
 			if (this.basesMap.map[j] === 0)
 				continue;
@@ -1510,6 +1512,8 @@ m.HQ.prototype.update = function(gameState, queues, events)
 {
 	Engine.ProfileStart("Headquarters update");
 	
+	this.territoryMap = m.createTerritoryMap(gameState);
+
 	if (this.Config.debug > 0)
 	{
 		gameState.getOwnUnits().forEach (function (ent) {
@@ -1559,26 +1563,33 @@ m.HQ.prototype.update = function(gameState, queues, events)
 
 	if (gameState.ai.playedTurn % 2 === 0)
 		this.buildMoreHouses(gameState,queues);
+	else
+		this.buildFarmstead(gameState, queues);
+
+	if (this.waterMap)
+		this.buildDock(gameState, queues);
 
 	if (queues.minorTech.length() === 0 && gameState.ai.playedTurn % 5 === 1)
 		this.tryResearchTechs(gameState,queues);
 
-	this.buildFarmstead(gameState, queues);
-	this.buildMarket(gameState, queues);
-	this.buildTemple(gameState, queues);
-	this.buildDock(gameState, queues);	// not if not a water map.
-
-	if (this.Config.difficulty > 1)
+	if (gameState.currentPhase() > 1)
 	{
-		this.tryBartering(gameState);
-		if (!this.tradeManager.hasTradeRoute() && gameState.ai.playedTurn % 5 === 2)
-			this.buildTradeRoute(gameState, queues);
-		this.tradeManager.update(gameState, queues);
+		this.buildMarket(gameState, queues);
+		this.buildBlacksmith(gameState, queues);
+		this.buildTemple(gameState, queues);
+
+		if (this.Config.difficulty > 1)
+		{
+			this.tryBartering(gameState);
+			if (!this.tradeManager.hasTradeRoute() && gameState.ai.playedTurn % 5 === 2)
+				this.buildTradeRoute(gameState, queues);
+			this.tradeManager.update(gameState, queues);
+		}
 	}
 
-	this.constructTrainingBuildings(gameState, queues);
+	this.defenseManager.update(gameState, events);
 
-	this.buildBlacksmith(gameState, queues);
+	this.constructTrainingBuildings(gameState, queues);
 
 	if (this.Config.difficulty > 0)
 		this.buildDefenses(gameState, queues);
@@ -1592,8 +1603,6 @@ m.HQ.prototype.update = function(gameState, queues, events)
 
 	this.navalManager.update(gameState, queues, events);
 	
-	this.defenseManager.update(gameState, events, this);
-
 	if (this.Config.difficulty > 0)
 		this.attackManager.update(gameState, queues, events);
 	

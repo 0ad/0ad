@@ -89,8 +89,8 @@ m.AttackPlan = function(gameState, Config, uniqueID, targetEnemy, type , targetF
 	}
 	else if (type === "Raid")
 	{
-		priority = 300;
-		this.unitStat["Cavalry"] = { "priority": 1, "minSize": 3, "targetSize": 6, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"], "interests": [ ["strength",1], ["cost",1] ] };
+		priority = 150;
+		this.unitStat["Cavalry"] = { "priority": 1, "minSize": 3, "targetSize": 4, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"], "interests": [ ["strength",1], ["cost",1] ] };
 	}
 	else if (type === "superSized")
 	{
@@ -323,26 +323,35 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 
 	var self = this;
 	
-	if (this.path == undefined || this.target == undefined || this.path === "toBeContinued") {
+	if (this.path == undefined || this.target == undefined || this.path === "toBeContinued")
+	{
 		// find our target
 		if (this.target == undefined)
 		{
-			var targets = undefined;
-			if (this.type === "Rush")
-				var targets = this.rushTargetFinder(gameState);
-			else if (this.type === "Raid")
-				var targets = this.raidTargetFinder(gameState);
-			if (!targets || targets.length === 0)
+			if (this.type === "Raid")
 			{
-				if (this.type !== "Raid")
-					var targets = this.targetFinder(gameState);
-				else
+				var targetList = gameState.ai.HQ.defenseManager.targetList;
+				for each (var targetId in targetList)
+				{
+					this.target = gameState.getEntityById(targetId);
+					if (this.target && this.target.position())
+						break;
+				}
+				if (!this.target || !this.target.position())
 					return 0;
 			}
-			if (targets.length === 0)
-				targets = this.defaultTargetFinder(gameState);
+			else
+			{
+				var targets = undefined;
+				if (this.type === "Rush")
+				var targets = this.rushTargetFinder(gameState);
+				if (!targets || targets.length === 0)
+					var targets = this.targetFinder(gameState);
+				if (targets.length === 0)
+					targets = this.defaultTargetFinder(gameState);
+				if (targets.length === 0)
+					return 0;
 
-			if (targets.length !== 0) {
 				// picking a target
 				var maxDist = -1;
 				var index = 0;
@@ -357,8 +366,8 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 					}
 				}
 				this.target = targets._entities[index];
-				this.targetPos = this.target.position();
 			}
+			this.targetPos = this.target.position();
 		}
 		// when we have a target, we path to it.
 		// I'd like a good high width sampling first.
@@ -398,8 +407,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 			{
 				// my pathfinder returns arrays in arrays in arrays.
 				var waypointPos = this.path[i][0];
-				var territory = m.createTerritoryMap(gameState);
-				if (territory.getOwner(waypointPos) !== PlayerID || this.path[i][1] === true)
+				if (gameState.ai.HQ.territoryMap.getOwner(waypointPos) !== PlayerID || this.path[i][1] === true)
 				{
 					// if we're suddenly out of our territory or this is the point where we change transportation method.
 					if (i !== 0)
@@ -424,8 +432,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 			{
 				// my pathfinder returns arrays in arrays in arrays.
 				var waypointPos = this.path[i][0];
-				var territory = m.createTerritoryMap(gameState);
-				if (territory.getOwner(waypointPos) !== PlayerID || this.path[i][1] === true)
+				if (gameState.ai.HQ.territoryMap.getOwner(waypointPos) !== PlayerID || this.path[i][1] === true)
 				{
 					// if we're suddenly out of our territory or this is the point where we change transportation method.
 					if (i !== 0)
@@ -667,12 +674,11 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState)
 		return targets;
 
 	this.position = this.unitCollection.getCentrePosition();
-    if (!this.position)
-    {
-	warn(" no position for rushTargetFinder " + this.unitCollection.length);
-	var ourCC = gameState.getEnemyStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-	this.position = ourCC[0].position();
-    }
+	if (!this.position)
+	{
+		var ourCC = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+		this.position = ourCC[0].position();
+	}
 
 	var minDist = Math.min();
 	var target = undefined;
@@ -707,10 +713,10 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState)
 	return targets;
 };
 
-// Raid target finder aims at isolated non-defended units or foundations
+// Raid target finder aims at destructing foundations from which our defenseManager has attacked the builders
 m.AttackPlan.prototype.raidTargetFinder = function(gameState)
 {
-	return gameState.getEnemyStructures().filter(API3.Filters.and(API3.Filters.byClass("CivCentre"), API3.Filters.isFoundation()));
+	return gameState.ai.HQ.defenseManager.targetList;
 };
 
 // Raid target finder aims at isolated non-defended units or foundations
@@ -799,19 +805,18 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 	if (this.Config.debug)
 		warn("start attack " + this.name + " with type " + this.type);
 
-	if (this.type === "Raid")
+	if (this.type === "Raid" && !this.target)   // in case our target was already destroyed
 	{
- 		var targets = this.raidTargetFinder(gameState);
-		if (targets.length !== 0)
+		var targetList = gameState.ai.HQ.defenseManager.targetList;
+		for each (var targetId in targetList)
 		{
-			for (var i in targets._entities)
-				this.target = targets._entities[i];
+			this.target = gameState.getEntityById(targetId);
 			this.targetPos = this.target.position();
+			if (this.target && this.targetPos)
+				break;
 		}
-		else
+		if (!this.target || !this.targetPos)
 			return false;
-		if (this.Config.debug > 0)
-			warn("startAttack du Raid avec target foundation " + this.target.foundationProgress() + " and path " + this.path);
 	}
 
 	// check we have a target and a path.
@@ -880,9 +885,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (attacker && ourUnit && attacker.hasClass("Structure"))
 				ourUnit.flee(attacker);
 		}
-		var territoryMap = m.createTerritoryMap(gameState);
 		// Are we arrived at destination ?
-		if ((territoryMap.getOwner(this.position) === this.targetPlayer && attackedNB > 1) || attackedNB > 4)
+		if ((gameState.ai.HQ.territoryMap.getOwner(this.position) === this.targetPlayer && attackedNB > 1) || attackedNB > 4)
 			this.state = "arrived";
 	}
 
@@ -1047,7 +1051,6 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		else
 		{
 			// some stuffs for locality and speed
-			var territoryMap = m.createTerritoryMap(gameState);
 			var timeElapsed = gameState.getTimeElapsed();
 			
 			// Let's check a few units each time we update. Currently 10

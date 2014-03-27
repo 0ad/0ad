@@ -196,15 +196,20 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			}
 		}
 
-		if (this.upcomingAttacks["Raid"].length === 999)
-		{ 
-			var enemyCC = gameState.getEnemyStructures().filter(API3.Filters.and(API3.Filters.byClass("CivCentre"), API3.Filters.isFoundation()));
-			if (enemyCC.length > 0)
+		if (this.upcomingAttacks["Raid"].length === 0 && gameState.ai.HQ.defenseManager.targetList.length)
+		{
+			var target = undefined;
+			for each (var targetId in gameState.ai.HQ.defenseManager.targetList)
 			{
-				// prepare some raid on this CC
-				var enemy = enemyCC.toEntityArray()[0].owner();
-				var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, enemy, "Raid");
-				if (this.Config.debug)
+				target = gameState.getEntityById(targetId);
+				if (target)
+					break;
+			}
+			if (target)
+			{
+				// prepare a raid against this target
+				var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, target.owner(), "Raid");
+				if (this.Config.debug > 0)
 					warn("Headquarters: Raiding plan " + this.totalNumber);
 				this.raidNumber++;
 				this.totalNumber++;

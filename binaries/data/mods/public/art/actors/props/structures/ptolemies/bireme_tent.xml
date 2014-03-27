@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="stall_cloth full playercolor">
+      <mesh>structural/ptol_ship_bireme_tent.dae</mesh>
+      <textures>
+       <texture file="props/stall_small_a_cloth.png" name="baseTex"/>
+       <texture file="props/stall_small_a_cloth_norm.png" name="normTex"/>
+       <texture file="props/stall_small_a_cloth_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="stall_cloth stripes 1">
+      <mesh>structural/ptol_ship_bireme_tent.dae</mesh>
+      <textures>
+       <texture file="props/stall_small_b_cloth.png" name="baseTex"/>
+       <texture file="props/stall_small_a_cloth_norm.png" name="normTex"/>
+       <texture file="props/stall_small_a_cloth_spec.png" name="specTex"/>
+      </textures>
+    </variant>	
+    <variant frequency="1" name="stall_cloth stripes 2">
+      <mesh>structural/ptol_ship_bireme_tent.dae</mesh>
+      <textures>
+       <texture file="props/stall_small_c_cloth.png" name="baseTex"/>
+       <texture file="props/stall_small_a_cloth_norm.png" name="normTex"/>
+       <texture file="props/stall_small_a_cloth_spec.png" name="specTex"/>
+      </textures>
+    </variant>		
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

@@ -16,7 +16,7 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.333333" g="0.423529" b="0.501961"/>
+				<Colour r="0.329412" g="0.419608" b="0.501961"/>
 				<Height>20.0394</Height>
 				<Waviness>3.18359</Waviness>
 				<Murkiness>0.833984</Murkiness>
@@ -30,12 +30,12 @@
 			<Contrast>1</Contrast>
 			<Saturation>0.99</Saturation>
 			<Bloom>0.140234</Bloom>
-			<PostEffect>hdr</PostEffect>
+			<PostEffect>default</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="1021.73" y="119.015" z="230.53"/>
-		<Rotation angle="0"/>
+		<Position x="1043.25" y="82.521" z="498.385"/>
+		<Rotation angle="1.198"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -5570,7 +5570,7 @@
 		<Entity uid="1075">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="650.23102" z="407.82648"/>
+			<Position x="654.5376" z="400.62433"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1076">
@@ -6254,7 +6254,7 @@
 		<Entity uid="1192">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="600.45875" z="911.3042"/>
+			<Position x="603.07331" z="908.57026"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1193">
@@ -6452,7 +6452,7 @@
 		<Entity uid="1226">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="518.40351" z="881.0113"/>
+			<Position x="498.64155" z="884.89271"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1227">
@@ -6494,7 +6494,7 @@
 		<Entity uid="1233">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="408.54432" z="255.20908"/>
+			<Position x="412.11072" z="255.57715"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1234">
@@ -7962,7 +7962,7 @@
 		<Entity uid="1501">
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
-			<Position x="645.29487" z="905.45905"/>
+			<Position x="635.08912" z="890.39075"/>
 			<Orientation y="-2.3227"/>
 		</Entity>
 		<Entity uid="1502">
@@ -7986,13 +7986,13 @@
 		<Entity uid="1505">
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
-			<Position x="635.8509" z="896.9745"/>
+			<Position x="625.64515" z="881.9062"/>
 			<Orientation y="-0.07674"/>
 		</Entity>
 		<Entity uid="1506">
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
-			<Position x="641.16169" z="897.03003"/>
+			<Position x="630.95594" z="881.96174"/>
 			<Orientation y="2.83767"/>
 		</Entity>
 		<Entity uid="1507">
@@ -8004,13 +8004,13 @@
 		<Entity uid="1508">
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
-			<Position x="649.96943" z="896.49061"/>
+			<Position x="639.76368" z="881.42231"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1509">
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
-			<Position x="655.45978" z="881.34321"/>
+			<Position x="648.33619" z="880.1424"/>
 			<Orientation y="-1.58127"/>
 		</Entity>
 		<Entity uid="1510">
@@ -8298,31 +8298,31 @@
 		<Entity uid="1557">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="293.85996" z="765.36634"/>
+			<Position x="283.40134" z="751.42615"/>
 			<Orientation y="-2.7282"/>
 		</Entity>
 		<Entity uid="1558">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="289.96665" z="755.31214"/>
+			<Position x="286.0792" z="753.28052"/>
 			<Orientation y="2.30604"/>
 		</Entity>
 		<Entity uid="1559">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="296.41147" z="754.1034"/>
+			<Position x="285.95286" z="740.16321"/>
 			<Orientation y="0.08283"/>
 		</Entity>
 		<Entity uid="1560">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="296.3253" z="761.35218"/>
+			<Position x="285.86667" z="747.412"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1561">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="298.44297" z="757.49134"/>
+			<Position x="287.98435" z="743.55115"/>
 			<Orientation y="-2.76783"/>
 		</Entity>
 		<Entity uid="1562">
@@ -8454,13 +8454,13 @@
 		<Entity uid="1591">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="868.1374" z="802.14264"/>
+			<Position x="866.66785" z="797.05652"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1592">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="903.74085" z="798.02503"/>
+			<Position x="890.88428" z="787.64667"/>
 			<Orientation y="-2.65447"/>
 		</Entity>
 		<Entity uid="1595">
@@ -17867,7 +17867,7 @@
 		<Entity uid="3525">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="909.7251" z="801.24482"/>
+			<Position x="895.93677" z="805.01844"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3526">
@@ -22864,7 +22864,7 @@
 		<Entity uid="4549">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
-			<Position x="928.4662" z="752.0525"/>
+			<Position x="922.60413" z="788.71436"/>
 			<Orientation y="2.61265"/>
 		</Entity>
 		<Entity uid="4550">
@@ -24788,7 +24788,7 @@
 		<Entity uid="4990">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
-			<Position x="228.0114" z="1000.94477"/>
+			<Position x="227.72187" z="998.63178"/>
 			<Orientation y="0.53028"/>
 		</Entity>
 		<Entity uid="4991">
@@ -26971,7 +26971,7 @@
 		<Entity uid="5377">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="1113.417" z="611.24494"/>
+			<Position x="1113.52552" z="607.88093"/>
 			<Orientation y="-0.88198"/>
 		</Entity>
 		<Entity uid="5378">

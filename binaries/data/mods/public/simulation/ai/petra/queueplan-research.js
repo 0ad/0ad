@@ -36,9 +36,6 @@ m.ResearchPlan.prototype.start = function(gameState)
 	//m.debug ("Starting the research plan for " + this.type);
 	var trainers = gameState.findResearchers(this.type).toEntityArray();
 
-	//for (var i in trainers)
-	//	warn (this.type + " - " +trainers[i].genericName());
-	
 	// Prefer training buildings with short queues
 	// (TODO: this should also account for units added to the queue by
 	// plans that have already been executed this turn)
