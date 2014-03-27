@@ -24,9 +24,9 @@ Running precompiled binaries on Windows
 
 Open the "binaries\system" folder.
 
-To launch the game: Run pyrogenesis.exe
+To launch the game: Run ```pyrogenesis.exe```
 
-To launch the map editor: Run Atlas.bat or "pyrogenesis.exe -editor"
+To launch the map editor: Run ```Atlas.bat``` or ```pyrogenesis.exe -editor```
 
 Compiling the game from source code
 -----------------------------------
