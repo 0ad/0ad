@@ -514,9 +514,37 @@ static intptr_t alloc_count = 0;
 // get the first called function via dlsym. So we kludge it by returning a statically-allocated
 // buffer for the very first call to calloc after we've called dlsym.
 // This is quite hacky but it seems to just about work in practice...
+
+// TODO: KNOWN ISSUE: Use after free and infinite recursion
+// We assign the glibc free function to libc_free in our malloc/calloc function (with dlsym).
+// We did that in the free function before, but had to change it to work around the first problem described below.
+// It's not a good solution because some of the problems described here can reappear when the first
+// call to malloc/calloc changes and enters the function with a different state.
+//
+// Dl* functions (dlsym, dlopen etc.) store an error message internally if something fails.
+// Calling dlerror returns a pointer to this error message. Calling dlerror a second time or calling dlsym
+// causes it to free the internal storage for this error message.
+// This behaviour can cause two types of problems:
+//
+// 1. Infinite recursion due to free call
+// Problem occurs if: We use any of the dl* functions in our free function and free gets called with an internal 
+// error message buffer allocated.
+// What happens: Our call to the dl* function causes another free-call insdie glibc which calls our free function
+// and can cause infinite recursion.
+// 
+// 2. Use after free
+// Problem occurs if: An external library (or any other function) calls a dl* function that stores an internal 
+// error string, then calls dlerror to receive the message and then calls any of our malloc/calloc/realloc/free fuctions.
+// Our function uses one of the dl* functions too. After calling our function, it tries to use the error message pointer 
+// it got with dlerror before.
+// What happens: Our call to the dl* function will free the storage of the message and the pointer in the external library
+// becomes invalid. We get undefined behaviour if the extern library uses the error message pointer after that.
+
+
 static bool alloc_bootstrapped = false;
 static char alloc_bootstrap_buffer[32]; // sufficient for x86_64
 static bool alloc_has_called_dlsym = false;
+static void (*libc_free)(void*) = NULL;
 // (We'll only be running a single thread at this point so no need for locking these variables)
 
 //#define ALLOC_DEBUG
@@ -535,6 +563,10 @@ void* malloc(size_t sz)
 #ifdef ALLOC_DEBUG
 	printf("### malloc(%d) = %p\n", sz, ret);
 #endif
+
+	if (libc_free == NULL)
+		libc_free = (void (*)(void*)) dlsym(RTLD_NEXT, "free");
+
 	return ret;
 }
 
@@ -578,17 +610,18 @@ void* calloc(size_t nm, size_t sz)
 #ifdef ALLOC_DEBUG
 	printf("### calloc(%d, %d) = %p\n", nm, sz, ret);
 #endif
+
+	if (libc_free == NULL)
+		libc_free = (void (*)(void*)) dlsym(RTLD_NEXT, "free");
+
 	return ret;
 }
 
 void free(void* ptr)
 {
-	static void (*libc_free)(void*);
-	if (libc_free == NULL)
-	{
-		alloc_has_called_dlsym = true;
-		libc_free = (void (*)(void*)) dlsym(RTLD_NEXT, "free");
-	}
+	// Might be triggered if free is called before any calloc/malloc calls or if the dlsym call inside 
+	// our calloc/malloc function causes a free call. Read the known issue comment block a few lines above.
+	ENSURE (libc_free != NULL);
 
 	libc_free(ptr);
 #ifdef ALLOC_DEBUG
