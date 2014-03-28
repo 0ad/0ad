@@ -25,13 +25,19 @@
 #include "scriptinterface/ScriptTypes.h"
 
 // Ignore some harmless warnings
-#if GCC_VERSION >= 402 // (older GCCs don't support this pragma)
+// Not all of these warnings can be disabled in older versions of GCC.
+// The version checking was taken from the manual here:
+// 	http://gcc.gnu.org/onlinedocs/
+// Choose the version and navigate to "Options to Request or Suppress Warnings"
+// or for some flags "Options Controlling C++ Dialect".
+#if GCC_VERSION >= 402
 # if GCC_VERSION >= 406 // store user flags
 #  pragma GCC diagnostic push
 # endif
 # pragma GCC diagnostic ignored "-Wunused-parameter"
 # pragma GCC diagnostic ignored "-Wredundant-decls"
-# if GCC_VERSION >= 408
+# pragma GCC diagnostic ignored "-Wnon-virtual-dtor"
+# if GCC_VERSION >= 407
 #  pragma GCC diagnostic ignored "-Wunused-local-typedefs" // caused by js/debug.h
 # endif
 #endif
@@ -46,8 +52,9 @@
 # define signbit std::signbit
 #endif
 
-#include "js/jstypedarray.h"
-#include "js/jsdbgapi.h"
+#include "jsfriendapi.h"
+#include "jsdbgapi.h"
+#include "js/GCAPI.h"
 
 #undef signbit
 
@@ -57,8 +64,10 @@
 #if GCC_VERSION >= 402
 # pragma GCC diagnostic warning "-Wunused-parameter"
 # pragma GCC diagnostic warning "-Wredundant-decls"
+# pragma GCC diagnostic warning "-Wnon-virtual-dtor"
 # if GCC_VERSION >= 406
-#  pragma GCC diagnostic pop // restore user flags
+// restore user flags (and we don't have to manually restore the warning levels for GCC >= 4.6)
+#  pragma GCC diagnostic pop
 # endif
 #endif
 

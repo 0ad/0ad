@@ -23,10 +23,10 @@
 /**** GUISize ****/
 JSClass JSI_GUISize::JSI_class = {
 	"GUISize", 0,
-		JS_PropertyStub, JS_PropertyStub,
+		JS_PropertyStub, JS_DeletePropertyStub,
 		JS_PropertyStub, JS_StrictPropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
-		JS_ConvertStub, JS_FinalizeStub,
+		JS_ConvertStub, NULL,
 		NULL, NULL, NULL, JSI_GUISize::construct
 };
 
@@ -45,48 +45,60 @@ JSPropertySpec JSI_GUISize::JSI_props[] =
 
 JSFunctionSpec JSI_GUISize::JSI_methods[] = 
 {
-	{ "toString", JSI_GUISize::toString, 0, 0 },
-	{ 0 }
+	JS_FS("toString", JSI_GUISize::toString, 0, 0),
+	JS_FS_END
 };
 
-JSBool JSI_GUISize::construct(JSContext* cx, uintN argc, jsval* vp)
+JSBool JSI_GUISize::construct(JSContext* cx, uint argc, jsval* vp)
 {
 	JSObject* obj = JS_NewObject(cx, &JSI_GUISize::JSI_class, NULL, NULL);
 
 	if (argc == 8)
 	{
-		JS_SetProperty(cx, obj, "left",		&JS_ARGV(cx, vp)[0]);
-		JS_SetProperty(cx, obj, "top",		&JS_ARGV(cx, vp)[1]);
-		JS_SetProperty(cx, obj, "right",	&JS_ARGV(cx, vp)[2]);
-		JS_SetProperty(cx, obj, "bottom",	&JS_ARGV(cx, vp)[3]);
-		JS_SetProperty(cx, obj, "rleft",	&JS_ARGV(cx, vp)[4]);
-		JS_SetProperty(cx, obj, "rtop",		&JS_ARGV(cx, vp)[5]);
-		JS_SetProperty(cx, obj, "rright",	&JS_ARGV(cx, vp)[6]);
-		JS_SetProperty(cx, obj, "rbottom",	&JS_ARGV(cx, vp)[7]);
+		JS::RootedValue v0(cx, JS_ARGV(cx, vp)[0]);
+		JS::RootedValue v1(cx, JS_ARGV(cx, vp)[1]);
+		JS::RootedValue v2(cx, JS_ARGV(cx, vp)[2]);
+		JS::RootedValue v3(cx, JS_ARGV(cx, vp)[3]);
+		JS::RootedValue v4(cx, JS_ARGV(cx, vp)[4]);
+		JS::RootedValue v5(cx, JS_ARGV(cx, vp)[5]);
+		JS::RootedValue v6(cx, JS_ARGV(cx, vp)[6]);
+		JS::RootedValue v7(cx, JS_ARGV(cx, vp)[7]);
+		JS_SetProperty(cx, obj, "left",		v0.address());
+		JS_SetProperty(cx, obj, "top",		v1.address());
+		JS_SetProperty(cx, obj, "right",	v2.address());
+		JS_SetProperty(cx, obj, "bottom",	v3.address());
+		JS_SetProperty(cx, obj, "rleft",	v4.address());
+		JS_SetProperty(cx, obj, "rtop",		v5.address());
+		JS_SetProperty(cx, obj, "rright",	v6.address());
+		JS_SetProperty(cx, obj, "rbottom",	v7.address());
 	}
 	else if (argc == 4)
 	{
-		jsval zero = JSVAL_ZERO;
-		JS_SetProperty(cx, obj, "left",		&JS_ARGV(cx, vp)[0]);
-		JS_SetProperty(cx, obj, "top",		&JS_ARGV(cx, vp)[1]);
-		JS_SetProperty(cx, obj, "right",	&JS_ARGV(cx, vp)[2]);
-		JS_SetProperty(cx, obj, "bottom",	&JS_ARGV(cx, vp)[3]);
-		JS_SetProperty(cx, obj, "rleft",	&zero);
-		JS_SetProperty(cx, obj, "rtop",		&zero);
-		JS_SetProperty(cx, obj, "rright",	&zero);
-		JS_SetProperty(cx, obj, "rbottom",	&zero);
+		JS::RootedValue zero(cx, JSVAL_ZERO);
+		JS::RootedValue v0(cx, JS_ARGV(cx, vp)[0]);
+		JS::RootedValue v1(cx, JS_ARGV(cx, vp)[1]);
+		JS::RootedValue v2(cx, JS_ARGV(cx, vp)[2]);
+		JS::RootedValue v3(cx, JS_ARGV(cx, vp)[3]);
+		JS_SetProperty(cx, obj, "left",		v0.address());
+		JS_SetProperty(cx, obj, "top",		v1.address());
+		JS_SetProperty(cx, obj, "right",	v2.address());
+		JS_SetProperty(cx, obj, "bottom",	v3.address());
+		JS_SetProperty(cx, obj, "rleft",	zero.address());
+		JS_SetProperty(cx, obj, "rtop",		zero.address());
+		JS_SetProperty(cx, obj, "rright",	zero.address());
+		JS_SetProperty(cx, obj, "rbottom",	zero.address());
 	}
 	else
 	{
-		jsval zero = JSVAL_ZERO;
-		JS_SetProperty(cx, obj, "left",		&zero);
-		JS_SetProperty(cx, obj, "top",		&zero);
-		JS_SetProperty(cx, obj, "right",	&zero);
-		JS_SetProperty(cx, obj, "bottom",	&zero);
-		JS_SetProperty(cx, obj, "rleft",	&zero);
-		JS_SetProperty(cx, obj, "rtop",		&zero);
-		JS_SetProperty(cx, obj, "rright",	&zero);
-		JS_SetProperty(cx, obj, "rbottom",	&zero);
+		JS::RootedValue zero(cx, JSVAL_ZERO);
+		JS_SetProperty(cx, obj, "left",		zero.address());
+		JS_SetProperty(cx, obj, "top",		zero.address());
+		JS_SetProperty(cx, obj, "right",	zero.address());
+		JS_SetProperty(cx, obj, "bottom",	zero.address());
+		JS_SetProperty(cx, obj, "rleft",	zero.address());
+		JS_SetProperty(cx, obj, "rtop",		zero.address());
+		JS_SetProperty(cx, obj, "rright",	zero.address());
+		JS_SetProperty(cx, obj, "rbottom",	zero.address());
 	}
 
 	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(obj));
@@ -102,7 +114,7 @@ CStr ToPercentString(double pix, double per)
 		return CStr::FromDouble(per)+"%"+( pix == 0.0 ? CStr() : pix > 0.0 ? CStr("+")+CStr::FromDouble(pix) : CStr::FromDouble(pix) );
 }
 
-JSBool JSI_GUISize::toString(JSContext* cx, uintN argc, jsval* vp)
+JSBool JSI_GUISize::toString(JSContext* cx, uint argc, jsval* vp)
 {
 	UNUSED2(argc);
 
@@ -141,10 +153,10 @@ JSBool JSI_GUISize::toString(JSContext* cx, uintN argc, jsval* vp)
 
 JSClass JSI_GUIColor::JSI_class = {
 	"GUIColor", 0,
-		JS_PropertyStub, JS_PropertyStub,
+		JS_PropertyStub, JS_DeletePropertyStub,
 		JS_PropertyStub, JS_StrictPropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
-		JS_ConvertStub, JS_FinalizeStub,
+		JS_ConvertStub, NULL,
 		NULL, NULL, NULL, JSI_GUIColor::construct
 };
 
@@ -159,11 +171,11 @@ JSPropertySpec JSI_GUIColor::JSI_props[] =
 
 JSFunctionSpec JSI_GUIColor::JSI_methods[] = 
 {
-	{ "toString", JSI_GUIColor::toString, 0, 0 },
-	{ 0 }
+	JS_FS("toString", JSI_GUIColor::toString, 0, 0),
+	JS_FS_END
 };
 
-JSBool JSI_GUIColor::construct(JSContext* cx, uintN argc, jsval* vp)
+JSBool JSI_GUIColor::construct(JSContext* cx, uint argc, jsval* vp)
 {
 	JSObject* obj = JS_NewObject(cx, &JSI_GUIColor::JSI_class, NULL, NULL);
 
@@ -177,22 +189,19 @@ JSBool JSI_GUIColor::construct(JSContext* cx, uintN argc, jsval* vp)
 	else
 	{
 		// Nice magenta:
-		jsval c;
-		if (!JS_NewNumberValue(cx, 1.0, &c))
-			return JS_FALSE;
-		JS_SetProperty(cx, obj, "r", &c);
-		JS_SetProperty(cx, obj, "b", &c);
-		JS_SetProperty(cx, obj, "a", &c);
-		if (!JS_NewNumberValue(cx, 0.0, &c))
-			return JS_FALSE;
-		JS_SetProperty(cx, obj, "g", &c);
+		JS::RootedValue c(cx, JS::NumberValue(1.0));
+		JS_SetProperty(cx, obj, "r", c.address());
+		JS_SetProperty(cx, obj, "b", c.address());
+		JS_SetProperty(cx, obj, "a", c.address());
+		c = JS::NumberValue(0.0);
+		JS_SetProperty(cx, obj, "g", c.address());
 	}
 
 	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(obj));
 	return JS_TRUE;
 }
 
-JSBool JSI_GUIColor::toString(JSContext* cx, uintN argc, jsval* vp)
+JSBool JSI_GUIColor::toString(JSContext* cx, uint argc, jsval* vp)
 {
 	UNUSED2(argc);
 
@@ -218,10 +227,10 @@ JSBool JSI_GUIColor::toString(JSContext* cx, uintN argc, jsval* vp)
 
 JSClass JSI_GUIMouse::JSI_class = {
 	"GUIMouse", 0,
-		JS_PropertyStub, JS_PropertyStub,
+		JS_PropertyStub, JS_DeletePropertyStub,
 		JS_PropertyStub, JS_StrictPropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
-		JS_ConvertStub, JS_FinalizeStub,
+		JS_ConvertStub, NULL,
 		NULL, NULL, NULL, JSI_GUIMouse::construct
 };
 
@@ -235,37 +244,40 @@ JSPropertySpec JSI_GUIMouse::JSI_props[] =
 
 JSFunctionSpec JSI_GUIMouse::JSI_methods[] = 
 {
-	{ "toString", JSI_GUIMouse::toString, 0, 0 },
-	{ 0 }
+	JS_FS("toString", JSI_GUIMouse::toString, 0, 0),
+	JS_FS_END
 };
 
-JSBool JSI_GUIMouse::construct(JSContext* cx, uintN argc, jsval* vp)
+JSBool JSI_GUIMouse::construct(JSContext* cx, uint argc, jsval* vp)
 {
 	JSObject* obj = JS_NewObject(cx, &JSI_GUIMouse::JSI_class, NULL, NULL);
 
 	if (argc == 3)
 	{
-		JS_SetProperty(cx, obj, "x", &JS_ARGV(cx, vp)[0]);
-		JS_SetProperty(cx, obj, "y", &JS_ARGV(cx, vp)[1]);
-		JS_SetProperty(cx, obj, "buttons", &JS_ARGV(cx, vp)[2]);
+		JS::RootedValue v0(cx, JS_ARGV(cx, vp)[0]);
+		JS::RootedValue v1(cx, JS_ARGV(cx, vp)[1]);
+		JS::RootedValue v2(cx, JS_ARGV(cx, vp)[2]);
+		JS_SetProperty(cx, obj, "x", v0.address());
+		JS_SetProperty(cx, obj, "y", v1.address());
+		JS_SetProperty(cx, obj, "buttons", v2.address());
 	}
 	else
 	{
-		jsval zero = JSVAL_ZERO;
-		JS_SetProperty(cx, obj, "x", &zero);
-		JS_SetProperty(cx, obj, "y", &zero);
-		JS_SetProperty(cx, obj, "buttons", &zero);
+		JS::RootedValue zero (cx, JS::NumberValue(0));
+		JS_SetProperty(cx, obj, "x", zero.address());
+		JS_SetProperty(cx, obj, "y", zero.address());
+		JS_SetProperty(cx, obj, "buttons", zero.address());
 	}
 
 	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(obj));
 	return JS_TRUE;
 }
 
-JSBool JSI_GUIMouse::toString(JSContext* cx, uintN argc, jsval* vp)
+JSBool JSI_GUIMouse::toString(JSContext* cx, uint argc, jsval* vp)
 {
 	UNUSED2(argc);
 
-	int32 x, y, buttons;
+	i32 x, y, buttons;
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 	pScriptInterface->GetProperty(JS_THIS_VALUE(cx, vp), "x", x);
 	pScriptInterface->GetProperty(JS_THIS_VALUE(cx, vp), "y", y);

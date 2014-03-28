@@ -562,38 +562,42 @@ extern_lib_defs = {
 	},
 	spidermonkey = {
 		compile_settings = function()
-			if _OPTIONS["with-system-mozjs185"] then
+			if _OPTIONS["with-system-mozjs24"] then
 				if not _OPTIONS["android"] then
-					pkgconfig_cflags("mozjs185")
+					pkgconfig_cflags("mozjs-24")
 				end
-				defines { "WITH_SYSTEM_MOZJS185" }
+				defines { "WITH_SYSTEM_MOZJS24" }
 			else
 				if os.is("windows") then
 					include_dir = "include-win32"
-				elseif os.is("macosx") then
-					include_dir = "include"
 				else
 					include_dir = "include-unix"
 				end
 				configuration "Debug"
-					includedirs { libraries_source_dir.."spidermonkey/"..include_dir }
+					includedirs { libraries_source_dir.."spidermonkey/"..include_dir.."-debug" }
+					defines { "DEBUG" }
 				configuration "Release"
-					includedirs { libraries_source_dir.."spidermonkey/"..include_dir }
+					includedirs { libraries_source_dir.."spidermonkey/"..include_dir.."-release" }
 				configuration { }
 			end
 		end,
 		link_settings = function()
-			if _OPTIONS["with-system-mozjs185"] then
+			if _OPTIONS["with-system-mozjs24"] then
 				if _OPTIONS["android"] then
-					links { "mozjs185-1.0" }
+					links { "mozjs-24" }
 				else
-					pkgconfig_libs("mozjs185")
+					pkgconfig_libs("nspr")
+					pkgconfig_libs("mozjs-24")
 				end
 			else
+				if os.is("macosx") then
+					add_default_lib_paths("nspr")
+					links { "nspr4", "plc4", "plds4" }
+				end
 				configuration "Debug"
-					links { "mozjs185-ps-debug" }
+					links { "mozjs24-ps-debug" }
 				configuration "Release"
-					links { "mozjs185-ps-release" }
+					links { "mozjs24-ps-release" }
 				configuration { }
 				add_source_lib_paths("spidermonkey")
 			end

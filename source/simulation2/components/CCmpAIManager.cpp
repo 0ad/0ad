@@ -152,7 +152,9 @@ private:
 				ENSURE(m_Worker.m_HasLoadedEntityTemplates);
 				m_ScriptInterface->SetProperty(settings.get(), "templates", m_Worker.m_EntityTemplates, false);
 
-				obj = m_ScriptInterface->CallConstructor(ctor.get(), settings.get());
+				JS::AutoValueVector argv(m_ScriptInterface->GetContext());
+				argv.append(settings.get());
+				obj = m_ScriptInterface->CallConstructor(ctor.get(), argv.length(), argv.handleAt(0));
 			}
 			else
 			{
@@ -209,12 +211,7 @@ public:
 	};
 
 	CAIWorker() :
-		// TODO: Passing a 32 MB argument to CreateRuntime() is a temporary fix
-		// to prevent frequent AI out-of-memory crashes. The argument should be
-		// removed as soon whenever the new pathfinder is committed
-		// And the AIs can stop relying on their own little hands.
-		m_ScriptRuntime(ScriptInterface::CreateRuntime(33554432)),
-		m_ScriptInterface(new ScriptInterface("Engine", "AI", m_ScriptRuntime)),
+		m_ScriptInterface(new ScriptInterface("Engine", "AI", g_ScriptRuntime)),
 		m_TurnNum(0),
 		m_CommandsComputed(true),
 		m_HasLoadedEntityTemplates(false),
@@ -305,7 +302,7 @@ public:
 	static void ForceGC(ScriptInterface::CxPrivate* pCxPrivate)
 	{
 		PROFILE3("AI compute GC");
-		JS_GC(pCxPrivate->pScriptInterface->GetContext());
+		JS_GC(pCxPrivate->pScriptInterface->GetJSRuntime());
 	}
 	
 	/**
@@ -388,7 +385,8 @@ public:
 		
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
-			jsval val = m_ScriptInterface->ToJSVal(m_ScriptInterface->GetContext(), m_Players[i]->m_Player);
+			JS::Value val;
+			m_ScriptInterface->ToJSVal(m_ScriptInterface->GetContext(), val, m_Players[i]->m_Player);
 			m_ScriptInterface->SetPropertyInt(playersID.get(), i, CScriptVal(val), true);
 		}
 		
@@ -407,7 +405,10 @@ public:
 			m_ScriptInterface->Eval("({})", fakeTech);
 			m_ScriptInterface->SetProperty(settings.get(), "techTemplates", fakeTech, false);
 		}
-		m_SharedAIObj = CScriptValRooted(m_ScriptInterface->GetContext(),m_ScriptInterface->CallConstructor(ctor.get(), settings.get()));
+		
+		JS::AutoValueVector argv(m_ScriptInterface->GetContext());
+		argv.append(settings.get());
+		m_SharedAIObj = CScriptValRooted(m_ScriptInterface->GetContext(),m_ScriptInterface->CallConstructor(ctor.get(), argv.length(), argv.handleAt(0)));
 	
 		
 		if (m_SharedAIObj.undefined())
@@ -429,8 +430,6 @@ public:
 		if (!m_HasSharedComponent)
 			m_HasSharedComponent = ai->m_UseSharedComponent;
 
-		m_ScriptInterface->MaybeGC();
-
 		m_Players.push_back(ai);
 
 		return true;
@@ -444,15 +443,17 @@ public:
 		CScriptVal state = m_ScriptInterface->ReadStructuredClone(gameState);
 		JSContext* cx = m_ScriptInterface->GetContext();
 
-		m_PassabilityMapVal = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, passabilityMap));
-		m_TerritoryMapVal = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, territoryMap));
+		JS::RootedValue tmpVal(cx);
+		ScriptInterface::ToJSVal(cx, tmpVal.get(), passabilityMap);
+		m_PassabilityMapVal = CScriptValRooted(cx, tmpVal.get());
+		ScriptInterface::ToJSVal(cx, tmpVal.get(), territoryMap);
+		m_TerritoryMapVal = CScriptValRooted(cx, tmpVal);
 		if (m_HasSharedComponent)
 		{
 			m_ScriptInterface->SetProperty(state.get(), "passabilityMap", m_PassabilityMapVal, true);
 			m_ScriptInterface->SetProperty(state.get(), "territoryMap", m_TerritoryMapVal, true);
 
 			m_ScriptInterface->CallFunctionVoid(m_SharedAIObj.get(), "init", state);
-			m_ScriptInterface->MaybeGC();
 			
 			for (size_t i = 0; i < m_Players.size(); ++i)
 			{
@@ -468,21 +469,24 @@ public:
 		ENSURE(m_CommandsComputed);
 
 		m_GameState = gameState;
+		
+		JSContext* cx = m_ScriptInterface->GetContext();
+		JSAutoRequest rq(cx);
 
 		if (passabilityMap.m_DirtyID != m_PassabilityMap.m_DirtyID)
 		{
 			m_PassabilityMap = passabilityMap;
-
-			JSContext* cx = m_ScriptInterface->GetContext();
-			m_PassabilityMapVal = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, m_PassabilityMap));
+			JS::RootedValue tmpVal(cx);
+			ScriptInterface::ToJSVal(cx, tmpVal.get(), m_PassabilityMap);
+			m_PassabilityMapVal = CScriptValRooted(cx, tmpVal);
 		}
 
 		if (territoryMapDirty)
 		{
 			m_TerritoryMap = territoryMap;
-
-			JSContext* cx = m_ScriptInterface->GetContext();
-			m_TerritoryMapVal = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, m_TerritoryMap));
+			JS::RootedValue tmpVal(cx);
+			ScriptInterface::ToJSVal(cx, tmpVal.get(), m_TerritoryMap);
+			m_TerritoryMapVal = CScriptValRooted(cx, tmpVal);
 		}
 
 		m_CommandsComputed = false;
@@ -705,20 +709,7 @@ private:
 	}
 
 	void PerformComputation()
-	{
-		if (m_Players.size() == 0)
-		{
-			// Run the GC every so often.
-			// (This isn't particularly necessary, but it makes profiling clearer
-			// since it avoids random GC delays while running other scripts)
-			if (m_TurnNum++ % 50 == 0)
-			{
-				PROFILE3("AI compute GC");
-				m_ScriptInterface->MaybeGC();
-			}
-			return;
-		}
-				
+	{			
 		// Deserialize the game state, to pass to the AI's HandleMessage
 		CScriptVal state;
 		{
@@ -752,23 +743,6 @@ private:
 			else
 				m_Players[i]->Run(state, m_Players[i]->m_Player);
 		}
-
-		// Run GC if we are about to overflow
-		if (JS_GetGCParameter(m_ScriptInterface->GetJSRuntime(), JSGC_BYTES) > 33000000)
-		{
-			PROFILE3("AI compute GC");
-
-			JS_GC(m_ScriptInterface->GetContext());
-		}
-		
-		// Run the GC every so often.
-		// (This isn't particularly necessary, but it makes profiling clearer
-		// since it avoids random GC delays while running other scripts)
-		/*if (m_TurnNum++ % 20 == 0)
-		{
-			PROFILE3("AI compute GC");
-			m_ScriptInterface->MaybeGC();
-		}*/
 	}
 
 	shared_ptr<ScriptRuntime> m_ScriptRuntime;

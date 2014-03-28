@@ -122,6 +122,12 @@ m.Worker.prototype.update = function(baseManager, gameState) {
 	{
 		if (this.ent.isIdle())
 			this.startHunting(gameState, baseManager);
+		else	// if we have drifted towards ennemy territory during the hunt, go home
+		{
+			var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(this.ent.position());
+			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
+				this.startHunting(gameState, baseManager);
+		}
 	}
 };
 

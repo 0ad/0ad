@@ -111,6 +111,17 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				return false;
 			}
 		}
+		else if (template.hasClass("Market"))
+		{
+			var pos = gameState.ai.HQ.findMarketLocation(gameState, template);
+			if (pos && pos[2] > 0)
+				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": pos[2] };
+			else if (!pos)
+			{
+				gameState.ai.HQ.stopBuilding.push(this.type);
+				return false;
+			}
+		}
 	}
 
 	var cellSize = gameState.cellSize; // size of each tile

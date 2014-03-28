@@ -25,8 +25,6 @@
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 
-#include "js/jsapi.h"
-
 #include <sstream>
 
 // Disable "'boost::algorithm::detail::is_classifiedF' : assignment operator could not be generated"
@@ -328,6 +326,7 @@ jsval CParamNode::ToJSVal(JSContext* cx, bool cacheValue) const
 
 jsval CParamNode::ConstructJSVal(JSContext* cx) const
 {
+	JSAutoRequest rq(cx);
 	if (m_Childs.empty())
 	{
 		// Empty node - map to undefined
@@ -351,8 +350,8 @@ jsval CParamNode::ConstructJSVal(JSContext* cx) const
 
 	for (std::map<std::string, CParamNode>::const_iterator it = m_Childs.begin(); it != m_Childs.end(); ++it)
 	{
-		jsval childVal = it->second.ConstructJSVal(cx);
-		if (!JS_SetProperty(cx, obj, it->first.c_str(), &childVal))
+		JS::RootedValue childVal(cx, it->second.ConstructJSVal(cx));
+		if (!JS_SetProperty(cx, obj, it->first.c_str(), childVal.address()))
 			return JSVAL_VOID; // TODO: report error
 	}
 
@@ -363,8 +362,8 @@ jsval CParamNode::ConstructJSVal(JSContext* cx) const
 		JSString* str = JS_InternUCStringN(cx, reinterpret_cast<const jschar*>(text.data()), text.length());
 		if (!str)
 			return JSVAL_VOID; // TODO: report error
-		jsval childVal = STRING_TO_JSVAL(str);
-		if (!JS_SetProperty(cx, obj, "_string", &childVal))
+		JS::RootedValue childVal(cx, STRING_TO_JSVAL(str));
+		if (!JS_SetProperty(cx, obj, "_string", childVal.address()))
 			return JSVAL_VOID; // TODO: report error
 	}
 

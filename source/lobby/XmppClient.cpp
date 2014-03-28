@@ -309,7 +309,7 @@ void XmppClient::SendIqGetRatingList()
 void XmppClient::SendIqGameReport(ScriptInterface& scriptInterface, CScriptVal data)
 {
 	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
-	jsval dataval = data.get();
+	JS::RootedValue dataval(scriptInterface.GetContext(), data.get());
 
 	// Setup some base stanza attributes
 	GameReport* game = new GameReport();
@@ -343,7 +343,7 @@ void XmppClient::SendIqGameReport(ScriptInterface& scriptInterface, CScriptVal d
 void XmppClient::SendIqRegisterGame(ScriptInterface& scriptInterface, CScriptVal data)
 {
 	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
-	jsval dataval = data.get();
+	JS::RootedValue dataval(scriptInterface.GetContext(), data.get());
 
 	// Setup some base stanza attributes
 	GameListQuery* g = new GameListQuery();

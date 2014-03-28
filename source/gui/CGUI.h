@@ -77,7 +77,7 @@ struct SGUIStyle
 	std::map<CStr, CStrW> m_SettingsDefaults;
 };
 
-struct JSObject; // The GUI stores a JSObject*, so needs to know that JSObject exists
+class JSObject; // The GUI stores a JSObject*, so needs to know that JSObject exists
 class IGUIObject;
 class CGUISpriteInstance;
 struct SGUIText;

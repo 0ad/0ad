@@ -146,6 +146,8 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	JSContext* cx = componentManager->m_ScriptInterface.GetContext();
+	JSAutoRequest rq(cx);
 
 	// Find the C++ component that wraps the interface
 	int cidWrapper = componentManager->GetScriptWrapper(iid);
@@ -234,7 +236,7 @@ void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate*
 		ctWrapper.dealloc,
 		cname,
 		schema,
-		CScriptValRooted(componentManager->m_ScriptInterface.GetContext(), ctor)
+		CScriptValRooted(cx, ctor)
 	};
 	componentManager->m_ComponentTypesById[cid] = ct;
 
@@ -242,13 +244,18 @@ void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate*
 
 
 	// Find all the ctor prototype's On* methods, and subscribe to the appropriate messages:
-
-	CScriptVal proto;
-	if (!componentManager->m_ScriptInterface.GetProperty(ctor.get(), "prototype", proto))
+	JS::RootedValue protoVal(cx);
+	if (!componentManager->m_ScriptInterface.GetPropertyJS(ctor.get(), "prototype", &protoVal))
 		return; // error
 
 	std::vector<std::string> methods;
-	if (!componentManager->m_ScriptInterface.EnumeratePropertyNamesWithPrefix(proto.get(), "On", methods))
+	JS::RootedObject proto(cx);
+	if (!protoVal.isObjectOrNull())
+		return; // error
+
+	proto = protoVal.toObjectOrNull();
+	
+	if (!componentManager->m_ScriptInterface.EnumeratePropertyNamesWithPrefix(protoVal, "On", methods))
 		return; // error
 
 	for (std::vector<std::string>::const_iterator it = methods.begin(); it != methods.end(); ++it)
@@ -287,9 +294,11 @@ void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate*
 		std::map<entity_id_t, IComponent*>::const_iterator eit = comps.begin();
 		for (; eit != comps.end(); ++eit)
 		{
-			jsval instance = eit->second->GetJSInstance();
-			if (!JSVAL_IS_NULL(instance))
-				componentManager->m_ScriptInterface.SetPrototype(instance, proto.get());
+			JS::RootedValue instance(cx, eit->second->GetJSInstance());
+			if (!instance.isNull())
+			{
+				componentManager->m_ScriptInterface.SetPrototype(instance, protoVal);
+			}
 		}
 	}
 }
@@ -616,7 +625,7 @@ IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTy
 	jsval obj = JSVAL_NULL;
 	if (ct.type == CT_Script)
 	{
-		obj = m_ScriptInterface.CallConstructor(ct.ctor.get(), JSVAL_VOID);
+		obj = m_ScriptInterface.CallConstructor(ct.ctor.get(), 0, JSVAL_VOID);
 		if (JSVAL_IS_VOID(obj))
 		{
 			LOGERROR(L"Script component constructor failed");

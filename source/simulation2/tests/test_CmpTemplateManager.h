@@ -127,25 +127,26 @@ public:
 		TS_ASSERT(tempMan != NULL);
 		tempMan->DisableValidation();
 
-		CScriptValRooted val;
 		JSContext* cx = man.GetScriptInterface().GetContext();
+		JSAutoRequest rq(cx);
 
 		// This is testing some bugs in the template JS object caching
 
 		const CParamNode* inherit1 = tempMan->LoadTemplate(ent2, "inherit1", -1);
-		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, inherit1));
+		JS::RootedValue val(cx);
+		ScriptInterface::ToJSVal(cx, val.get(), inherit1);
 		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Test1A:{'@a':\"a1\", '@b':\"b1\", '@c':\"c1\", d:\"d1\", e:\"e1\", f:\"f1\"}})");
 
 		const CParamNode* inherit2 = tempMan->LoadTemplate(ent2, "inherit2", -1);
-		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, inherit2));
+		ScriptInterface::ToJSVal(cx, val.get(), inherit2);
 		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({'@parent':\"inherit1\", Test1A:{'@a':\"a2\", '@b':\"b1\", '@c':\"c1\", d:\"d2\", e:\"e1\", f:\"f1\", g:\"g2\"}})");
 
 		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1", -1);
-		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, &actor->GetChild("VisualActor")));
+		ScriptInterface::ToJSVal(cx, val.get(), &actor->GetChild("VisualActor"));
 		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\", ActorOnly:(void 0), SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\", VisibleInAtlasOnly:\"false\"})");
 
 		const CParamNode* foundation = tempMan->LoadTemplate(ent2, "foundation|actor|example1", -1);
-		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, &foundation->GetChild("VisualActor")));
+		ScriptInterface::ToJSVal(cx, val.get(), &foundation->GetChild("VisualActor"));
 		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\", ActorOnly:(void 0), Foundation:(void 0), SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\", VisibleInAtlasOnly:\"false\"})");
 	}
 

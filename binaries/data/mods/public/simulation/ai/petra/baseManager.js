@@ -663,7 +663,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	{
 		foundations = this.buildings.filter(API3.Filters.byMetadata(PlayerID, "baseAnchor", true)).toEntityArray();
 		var tID = foundations[0].id();
-		workers.forEach(function (ent) { //}){
+		workers.forEach(function (ent) {
 			var target = ent.getMetadata(PlayerID, "target-foundation");
 			if (target && target != tID)
 			{
@@ -678,9 +678,9 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		var noobs = gameState.ai.HQ.bulkPickWorkers(gameState, this.ID, 2);
 		if(noobs)
 		{
-			noobs.forEach(function (worker) { //}){
-				worker.setMetadata(PlayerID,"base", self.ID);
-				worker.setMetadata(PlayerID,"subrole", "builder");
+			noobs.forEach(function (worker) {
+				worker.setMetadata(PlayerID, "base", self.ID);
+				worker.setMetadata(PlayerID, "subrole", "builder");
 				workers.updateEnt(worker);
 				builderWorkers.updateEnt(worker);
 				idleBuilderWorkers.updateEnt(worker);
@@ -693,7 +693,8 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	if (this.constructing == true && maxTotalBuilders < 15)
 		maxTotalBuilders = 15;
 	
-	for (var i in foundations) {
+	for (var i in foundations)
+	{
 		var target = foundations[i];
 
 		if (target.hasClass("Field"))
@@ -710,7 +711,8 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (target.getMetadata(PlayerID, "baseAnchor") == true)
 			targetNB = 15;
 
-		if (assigned < targetNB) {
+		if (assigned < targetNB)
+		{
 			if (builderWorkers.length - idleBuilderWorkers.length + addedWorkers < maxTotalBuilders) {
 
 				var addedToThis = 0;
@@ -758,23 +760,27 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	}
 
 	// don't repair if we're still under attack, unless it's like a vital (civcentre or wall) building that's getting destroyed.
-	for (var i in damagedBuildings) {
+	for (var i in damagedBuildings)
+	{
 		var target = damagedBuildings[i];
-		if (gameState.defcon() < 5) {
-			if (target.healthLevel() > 0.5 || !target.hasClass("CivCentre") || !target.hasClass("StoneWall")) {
+		if (gameState.defcon() < 5)
+		{
+			if (target.healthLevel() > 0.5 || !target.hasClass("CivCentre") || !target.hasClass("StoneWall"))
 				continue;
-			}
-		} else if (noRepair && !target.hasClass("CivCentre"))
+		}
+		else if (noRepair && !target.hasClass("CivCentre"))
 			continue;
 		
 		if (gameState.ai.HQ.territoryMap.getOwner(target.position()) !== PlayerID ||
-			gameState.ai.HQ.territoryMap.getOwner([target.position()[0] + 5, target.position()[1]]) !== PlayerID)
-			continue;
+			((gameState.ai.HQ.territoryMap.getOwner([target.position()[0] + 10, target.position()[1]]) !== PlayerID)  &&
+			gameState.ai.HQ.territoryMap.getOwner([target.position()[0] - 10, target.position()[1]]) !== PlayerID))
+			continue;  // TODO find a better way to signal a decaying building
 		
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
-		if (assigned < targetNB/3) {
-			if (builderWorkers.length + addedWorkers < targetNB*2) {
-				
+		if (assigned < targetNB/3)
+		{
+			if (builderWorkers.length + addedWorkers < targetNB*2)
+			{	
 				var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.position() !== undefined); });
 				if (gameState.defcon() < 5)
 					nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.hasClass("Female") && ent.position() !== undefined); });

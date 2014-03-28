@@ -25,8 +25,6 @@
 #include "ScriptTypes.h"
 #include "ScriptVal.h"
 
-#include "js/jsapi.h"
-
 #include "ps/Errors.h"
 ERROR_GROUP(Scripting);
 ERROR_TYPE(Scripting, SetupFailed);
@@ -140,7 +138,7 @@ public:
 	 * Call a constructor function, equivalent to JS "new ctor(arg)".
 	 * @return The new object; or JSVAL_VOID on failure, and logs an error message
 	 */
-	jsval CallConstructor(jsval ctor, jsval arg);
+	jsval CallConstructor(jsval ctor, uint argc, jsval argv);
 
 	/**
 	 * Create an object as with CallConstructor except don't actually execute the
@@ -243,6 +241,14 @@ public:
 	 */
 	template<typename T>
 	bool GetProperty(jsval obj, const char* name, T& out);
+	
+	/**
+	 * This function overload is used for JS::MutableHandleValue type.
+	 * If we use JS::RootedValue with the GetProperty function template, it will generate an overload for the type
+	 * JS::RootedValue*, but JS::MutableHandleValue needs to be used when passing JS::RootedValue& to a function.
+	 * Check the SpiderMonkey rooting guide for details.
+	 */
+	bool GetPropertyJS(jsval obj, const char* name, JS::MutableHandleValue out);
 
 	/**
 	 * Get the integer-named property on the given object.
@@ -255,9 +261,9 @@ public:
 	 */
 	bool HasProperty(jsval obj, const char* name);
 
-	bool EnumeratePropertyNamesWithPrefix(jsval obj, const char* prefix, std::vector<std::string>& out);
+	bool EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, const char* prefix, std::vector<std::string>& out);
 
-	bool SetPrototype(jsval obj, jsval proto);
+	bool SetPrototype(JS::HandleValue obj, JS::HandleValue proto);
 
 	bool FreezeObject(jsval obj, bool deep);
 
@@ -327,8 +333,11 @@ public:
 	/**
 	 * Convert a C++ type to a jsval. (This might trigger GC. The return
 	 * value must be rooted if you don't want it to be collected.)
+	 * NOTE: We are passing the JS::Value by reference instead of returning it by value.
+	 * The reason is a memory corruption problem that appears to be caused by a bug in Visual Studio.
+	 * Details here: http://www.wildfiregames.com/forum/index.php?showtopic=17289&p=285921
 	 */
-	template<typename T> static jsval ToJSVal(JSContext* cx, T const& val);
+	template<typename T> static void ToJSVal(JSContext* cx, JS::Value& ret, T const& val);
 
 	AutoGCRooter* ReplaceAutoGCRooter(AutoGCRooter* rooter);
 
@@ -338,9 +347,34 @@ public:
 	void DumpHeap();
 
 	/**
-	 * MaybeGC tries to determine whether garbage collection in cx's runtime would free up enough memory to be worth the amount of time it would take
+	 * MaybeGC tries to determine whether garbage collection in cx's runtime would free up enough memory to be worth the amount of time it would take.
+	 * This calls JS_MaybeGC directly, which does not do incremental GC. Usually you should prefer MaybeIncrementalRuntimeGC.
 	 */
 	void MaybeGC();
+	
+	/**
+	 * MaybeIncrementalRuntimeGC tries to determine whether a runtime-wide garbage collection would free up enough memory to 
+	 * be worth the amount of time it would take. It does this with our own logic and NOT some predefined JSAPI logic because
+	 * such functionality currently isn't available out of the box.
+	 * It does incremental GC which means it will collect one slice each time it's called until the garbage collection is done.
+	 * This can and should be called quite regularly. It shouldn't cost much performance because it tries to run a GC only if 
+	 * necessary.
+	 */
+	void MaybeIncrementalRuntimeGC();
+	
+	/**
+	 * Triggers a full non-incremental garbage collection immediately. That should only be required in special cases and normally
+	 * you should try to use MaybeIncrementalRuntimeGC instead.
+	 */
+	void ForceGC();
+
+	/**
+	 * MathRandom (this function) calls the random number generator assigned to this ScriptInterface instance and
+	 * returns the generated number.
+	 * Math_random (with underscore, not this function) is a global function, but different random number generators can be 
+	 * stored per ScriptInterface. It calls MathRandom of the current ScriptInterface instance.
+	 */
+	bool MathRandom(double& nbr);
 
 	/**
 	 * Structured clones are a way to serialize 'simple' JS values into a buffer
@@ -355,8 +389,7 @@ public:
 	public:
 		StructuredClone();
 		~StructuredClone();
-		JSContext* m_Context;
-		uint64* m_Data;
+		u64* m_Data;
 		size_t m_Size;
 	};
 
@@ -364,18 +397,18 @@ public:
 	jsval ReadStructuredClone(const shared_ptr<StructuredClone>& ptr);
 
 private:
-	bool CallFunction_(jsval val, const char* name, size_t argc, jsval* argv, jsval& ret);
+	bool CallFunction_(jsval val, const char* name, uint argc, jsval* argv, jsval& ret);
 	bool Eval_(const char* code, jsval& ret);
 	bool Eval_(const wchar_t* code, jsval& ret);
 	bool SetGlobal_(const char* name, jsval value, bool replace);
 	bool SetProperty_(jsval obj, const char* name, jsval value, bool readonly, bool enumerate);
 	bool SetProperty_(jsval obj, const wchar_t* name, jsval value, bool readonly, bool enumerate);
 	bool SetPropertyInt_(jsval obj, int name, jsval value, bool readonly, bool enumerate);
-	bool GetProperty_(jsval obj, const char* name, jsval& value);
-	bool GetPropertyInt_(jsval obj, int name, jsval& value);
+	bool GetProperty_(jsval obj, const char* name, JS::MutableHandleValue out);
+	bool GetPropertyInt_(jsval obj, int name, JS::MutableHandleValue value);
 	static bool IsExceptionPending(JSContext* cx);
-	static JSClass* GetClass(JSContext* cx, JSObject* obj);
-	static void* GetPrivate(JSContext* cx, JSObject* obj);
+	static JSClass* GetClass(JSObject* obj);
+	static void* GetPrivate(JSObject* obj);
 
 	class CustomType
 	{
@@ -387,6 +420,7 @@ private:
 	void Register(const char* name, JSNative fptr, size_t nargs);
 	std::auto_ptr<ScriptInterface_impl> m;
 	
+	boost::rand48* m_rng;
 	std::map<std::string, CustomType> m_CustomObjectTypes;
 
 // The nasty macro/template bits are split into a separate file so you don't have to look at them
@@ -425,7 +459,7 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 {
 	jsval jsRet;
 	jsval argv[1];
-	argv[0] = ToJSVal(GetContext(), a0);
+	ToJSVal(GetContext(), argv[0], a0);
 	return CallFunction_(val, name, 1, argv, jsRet);
 }
 
@@ -434,8 +468,8 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 {
 	jsval jsRet;
 	jsval argv[2];
-	argv[0] = ToJSVal(GetContext(), a0);
-	argv[1] = ToJSVal(GetContext(), a1);
+	ToJSVal(GetContext(), argv[0], a0);
+	ToJSVal(GetContext(), argv[1], a1);
 	return CallFunction_(val, name, 2, argv, jsRet);
 }
 
@@ -444,9 +478,9 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 {
 	jsval jsRet;
 	jsval argv[3];
-	argv[0] = ToJSVal(GetContext(), a0);
-	argv[1] = ToJSVal(GetContext(), a1);
-	argv[2] = ToJSVal(GetContext(), a2);
+	ToJSVal(GetContext(), argv[0], a0);
+	ToJSVal(GetContext(), argv[1], a1);
+	ToJSVal(GetContext(), argv[2], a2);
 	return CallFunction_(val, name, 3, argv, jsRet);
 }
 
@@ -455,7 +489,7 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, R&
 {
 	jsval jsRet;
 	jsval argv[1];
-	argv[0] = ToJSVal(GetContext(), a0);
+	ToJSVal(GetContext(), argv[0], a0);
 	bool ok = CallFunction_(val, name, 1, argv, jsRet);
 	if (!ok)
 		return false;
@@ -467,8 +501,8 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 {
 	jsval jsRet;
 	jsval argv[2];
-	argv[0] = ToJSVal(GetContext(), a0);
-	argv[1] = ToJSVal(GetContext(), a1);
+	ToJSVal(GetContext(), argv[0], a0);
+	ToJSVal(GetContext(), argv[1], a1);
 	bool ok = CallFunction_(val, name, 2, argv, jsRet);
 	if (!ok)
 		return false;
@@ -480,9 +514,9 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 {
 	jsval jsRet;
 	jsval argv[3];
-	argv[0] = ToJSVal(GetContext(), a0);
-	argv[1] = ToJSVal(GetContext(), a1);
-	argv[2] = ToJSVal(GetContext(), a2);
+	ToJSVal(GetContext(), argv[0], a0);
+	ToJSVal(GetContext(), argv[1], a1);
+	ToJSVal(GetContext(), argv[2], a2);
 	bool ok = CallFunction_(val, name, 3, argv, jsRet);
 	if (!ok)
 		return false;
@@ -494,10 +528,10 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 {
 	jsval jsRet;
 	jsval argv[4];
-	argv[0] = ToJSVal(GetContext(), a0);
-	argv[1] = ToJSVal(GetContext(), a1);
-	argv[2] = ToJSVal(GetContext(), a2);
-	argv[3] = ToJSVal(GetContext(), a3);
+	ToJSVal(GetContext(), argv[0], a0);
+	ToJSVal(GetContext(), argv[1], a1);
+	ToJSVal(GetContext(), argv[2], a2);
+	ToJSVal(GetContext(), argv[3], a3);
 	bool ok = CallFunction_(val, name, 4, argv, jsRet);
 	if (!ok)
 		return false;
@@ -507,13 +541,17 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 template<typename T>
 bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace)
 {
-	return SetGlobal_(name, ToJSVal(GetContext(), value), replace);
+	JS::Value val;
+	ToJSVal(GetContext(), val, value);
+	return SetGlobal_(name, val, replace);
 }
 
 template<typename T>
 bool ScriptInterface::SetProperty(jsval obj, const char* name, const T& value, bool readonly, bool enumerate)
 {
-	return SetProperty_(obj, name, ToJSVal(GetContext(), value), readonly, enumerate);
+	JS::Value val;
+	ToJSVal(GetContext(), val, value);
+	return SetProperty_(obj, name, val, readonly, enumerate);
 }
 
 template<typename T>
@@ -525,23 +563,28 @@ bool ScriptInterface::SetProperty(jsval obj, const wchar_t* name, const T& value
 template<typename T>
 bool ScriptInterface::SetPropertyInt(jsval obj, int name, const T& value, bool readonly, bool enumerate)
 {
-	return SetPropertyInt_(obj, name, ToJSVal(GetContext(), value), readonly, enumerate);
+	JS::Value val;
+	ToJSVal(GetContext(), val, value);
+	return SetPropertyInt_(obj, name, val, readonly, enumerate);
 }
 
 template<typename T>
 bool ScriptInterface::GetProperty(jsval obj, const char* name, T& out)
 {
-	jsval val;
-	if (! GetProperty_(obj, name, val))
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue val(cx);
+	if (! GetProperty_(obj, name, &val))
 		return false;
-	return FromJSVal(GetContext(), val, out);
+	return FromJSVal(cx, val, out);
 }
 
 template<typename T>
 bool ScriptInterface::GetPropertyInt(jsval obj, int name, T& out)
 {
-	jsval val;
-	if (! GetPropertyInt_(obj, name, val))
+	JSAutoRequest rq(GetContext());
+	JS::RootedValue val(GetContext());
+	if (! GetPropertyInt_(obj, name, &val))
 		return false;
 	return FromJSVal(GetContext(), val, out);
 }

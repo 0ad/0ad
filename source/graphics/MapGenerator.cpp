@@ -37,13 +37,6 @@ CMapGeneratorWorker::~CMapGeneratorWorker()
 {
 	// Wait for thread to end
 	pthread_join(m_WorkerThread, NULL);
-
-	// The StructuredClone destructor references a JSContext created by our
-	//	ScriptInterface, so explicitly clean it up before ScriptInterface
-	m_MapData.reset();
-
-	// Cleanup ScriptInterface
-	delete m_ScriptInterface;
 }
 
 void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::string& settings)
@@ -99,40 +92,52 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->RegisterFunction<void, CMapGeneratorWorker::MaybeGC>("MaybeGC");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, CMapGeneratorWorker::GetCivData>("GetCivData");
 
-	// Parse settings
-	CScriptValRooted settingsVal = m_ScriptInterface->ParseJSON(m_Settings);
-	if (settingsVal.undefined())
+	// TODO: This code is a bit ugly because we have to ensure that CScriptValRooted gets destroyed before the ScriptInterface.
+	// In the future we should work more with the standard JSAPI types for rooting on the stack, which should avoid such problems.
+	bool ret = true;
 	{
-		LOGERROR(L"CMapGeneratorWorker::Run: Failed to parse settings");
-		return false;
+		// Parse settings
+		CScriptValRooted settingsVal = m_ScriptInterface->ParseJSON(m_Settings);
+		if (settingsVal.undefined())
+		{
+			LOGERROR(L"CMapGeneratorWorker::Run: Failed to parse settings");
+			ret = false;
+		} 
+		else
+		{
+			// Init RNG seed
+			u32 seed;
+			if (!m_ScriptInterface->GetProperty(settingsVal.get(), "Seed", seed))
+			{	// No seed specified
+				LOGWARNING(L"CMapGeneratorWorker::Run: No seed value specified - using 0");
+				seed = 0;
+			}
+
+			m_MapGenRNG.seed(seed);
+
+			// Copy settings to global variable
+			if (!m_ScriptInterface->SetProperty(m_ScriptInterface->GetGlobalObject(), "g_MapSettings", settingsVal))
+			{
+				LOGERROR(L"CMapGeneratorWorker::Run: Failed to define g_MapSettings");
+				ret = false;
+			}
+			else
+			{
+				// Load RMS
+				LOGMESSAGE(L"Loading RMS '%ls'", m_ScriptPath.string().c_str());
+				if (!m_ScriptInterface->LoadGlobalScriptFile(m_ScriptPath))
+				{
+					LOGERROR(L"CMapGeneratorWorker::Run: Failed to load RMS '%ls'", m_ScriptPath.string().c_str());
+					ret = false;
+				}
+			}
+		}
 	}
+	
+	// We must destroy the ScriptInterface in the same thread because the JSAPI requires that!
+	SAFE_DELETE(m_ScriptInterface);
 
-	// Init RNG seed
-	uint32_t seed;
-	if (!m_ScriptInterface->GetProperty(settingsVal.get(), "Seed", seed))
-	{	// No seed specified
-		LOGWARNING(L"CMapGeneratorWorker::Run: No seed value specified - using 0");
-		seed = 0;
-	}
-
-	m_MapGenRNG.seed((int32_t)seed);
-
-	// Copy settings to global variable
-	if (!m_ScriptInterface->SetProperty(m_ScriptInterface->GetGlobalObject(), "g_MapSettings", settingsVal))
-	{
-		LOGERROR(L"CMapGeneratorWorker::Run: Failed to define g_MapSettings");
-		return false;
-	}
-
-	// Load RMS
-	LOGMESSAGE(L"Loading RMS '%ls'", m_ScriptPath.string().c_str());
-	if (!m_ScriptInterface->LoadGlobalScriptFile(m_ScriptPath))
-	{
-		LOGERROR(L"CMapGeneratorWorker::Run: Failed to load RMS '%ls'", m_ScriptPath.string().c_str());
-		return false;
-	}
-
-	return true;
+	return ret;
 }
 
 int CMapGeneratorWorker::GetProgress()

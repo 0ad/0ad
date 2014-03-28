@@ -25,36 +25,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h" // for typed arrays
 
-#include "js/jsapi.h"
-
 #include "lib/byte_order.h"
-
-static uint32 GetJSArrayType(u8 arrayType)
-{
-	switch(arrayType)
-	{
-	case SCRIPT_TYPED_ARRAY_INT8:
-		return js::TypedArray::TYPE_INT8;
-	case SCRIPT_TYPED_ARRAY_UINT8:
-		return js::TypedArray::TYPE_UINT8;
-	case SCRIPT_TYPED_ARRAY_INT16:
-		return js::TypedArray::TYPE_INT16;
-	case SCRIPT_TYPED_ARRAY_UINT16:
-		return js::TypedArray::TYPE_UINT16;
-	case SCRIPT_TYPED_ARRAY_INT32:
-		return js::TypedArray::TYPE_INT32;
-	case SCRIPT_TYPED_ARRAY_UINT32:
-		return js::TypedArray::TYPE_UINT32;
-	case SCRIPT_TYPED_ARRAY_FLOAT32:
-		return js::TypedArray::TYPE_FLOAT32;
-	case SCRIPT_TYPED_ARRAY_FLOAT64:
-		return js::TypedArray::TYPE_FLOAT64;
-	case SCRIPT_TYPED_ARRAY_UINT8_CLAMPED:
-		return js::TypedArray::TYPE_UINT8_CLAMPED;
-	default:
-		throw PSERROR_Deserialize_ScriptError("Failed to deserialize unrecognized typed array view");
-	}
-}
 
 CStdDeserializer::CStdDeserializer(ScriptInterface& scriptInterface, std::istream& stream) :
 	m_ScriptInterface(scriptInterface), m_Stream(stream)
@@ -138,11 +109,13 @@ void CStdDeserializer::SetReservedScriptBackref(u32 tag, JSObject* obj)
 
 void CStdDeserializer::FreeScriptBackrefs()
 {
+	JSContext* cx = m_ScriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	
 	std::map<u32, JSObject*>::iterator it = m_ScriptBackrefs.begin();
 	for (; it != m_ScriptBackrefs.end(); ++it)
 	{
-		if (!JS_RemoveObjectRoot(m_ScriptInterface.GetContext(), &it->second))
-			throw PSERROR_Deserialize_ScriptError("JS_RemoveRoot failed");
+		JS_RemoveObjectRoot(m_ScriptInterface.GetContext(), &it->second);
 	}
 	m_ScriptBackrefs.clear();
 }
@@ -152,6 +125,8 @@ void CStdDeserializer::FreeScriptBackrefs()
 jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* appendParent)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
+
+	JSAutoRequest rq(cx);
 
 	uint8_t type;
 	NumberU8_Unbounded("type", type);
@@ -192,25 +167,25 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 			if (!proto)
 				throw PSERROR_Deserialize_ScriptError("Failed to find serializable prototype for object");
 
-			JSObject* parent = JS_GetParent(cx, proto);
+			JSObject* parent = JS_GetParent(proto);
 			if (!proto || !parent)
 				throw PSERROR_Deserialize_ScriptError();
 
 			obj = JS_NewObject(cx, NULL, proto, parent);
 			if (!obj)
 				throw PSERROR_Deserialize_ScriptError("JS_NewObject failed");
-			CScriptValRooted objRoot(cx, OBJECT_TO_JSVAL(obj));
+			CScriptValRooted objRoot(cx, JS::ObjectValue(*obj));
 
 			// Does it have custom Deserialize function?
 			// if so, we let it handle the deserialized data, rather than adding properties directly
 			JSBool hasCustomDeserialize, hasCustomSerialize;
 			if (!JS_HasProperty(cx, obj, "Serialize", &hasCustomSerialize) || !JS_HasProperty(cx, obj, "Deserialize", &hasCustomDeserialize))
 				throw PSERROR_Serialize_ScriptError("JS_HasProperty failed");
-			
+
 			if (hasCustomDeserialize)
 			{
-				jsval serialize;
-				if (!JS_LookupProperty(cx, obj, "Serialize", &serialize))
+				JS::RootedValue serialize(cx);
+				if (!JS_LookupProperty(cx, obj, "Serialize", serialize.address()))
 					throw PSERROR_Serialize_ScriptError("JS_LookupProperty failed");
 				bool hasNullSerialize = hasCustomSerialize && JSVAL_IS_NULL(serialize);
 
@@ -219,17 +194,17 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 				if (!hasNullSerialize)
 					ScriptVal("data", data);
 
-				m_ScriptInterface.CallFunctionVoid(OBJECT_TO_JSVAL(obj), "Deserialize", data);
+				m_ScriptInterface.CallFunctionVoid(JS::ObjectValue(*obj), "Deserialize", data);
 				
 				AddScriptBackref(obj);
 				
-				return OBJECT_TO_JSVAL(obj);
+				return JS::ObjectValue(*obj);
 			}
 		}
 
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("Deserializer failed to create new object");
-		CScriptValRooted objRoot(cx, OBJECT_TO_JSVAL(obj));
+		CScriptValRooted objRoot(cx, JS::ObjectValue(*obj));
 
 		AddScriptBackref(obj);
 
@@ -241,33 +216,33 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 			utf16string propname;
 			ReadStringUTF16("prop name", propname);
 
-			jsval propval = ReadScriptVal("prop value", NULL);
+			JS::RootedValue propval(cx, ReadScriptVal("prop value", NULL));
 			CScriptValRooted propvalRoot(cx, propval);
 
-			if (!JS_SetUCProperty(cx, obj, (const jschar*)propname.data(), propname.length(), &propval))
+			if (!JS_SetUCProperty(cx, obj, (const jschar*)propname.data(), propname.length(), propval.address()))
 				throw PSERROR_Deserialize_ScriptError();
 		}
 
-		return OBJECT_TO_JSVAL(obj);
+		return JS::ObjectValue(*obj);
 	}
 	case SCRIPT_TYPE_STRING:
 	{
 		JSString* str;
 		ScriptString("string", str);
-		return STRING_TO_JSVAL(str);
+		return JS::StringValue(str);
 	}
 	case SCRIPT_TYPE_INT:
 	{
 		int32_t value;
 		NumberI32("value", value, JSVAL_INT_MIN, JSVAL_INT_MAX);
-		return INT_TO_JSVAL(value);
+		return JS::NumberValue(value);
 	}
 	case SCRIPT_TYPE_DOUBLE:
 	{
 		double value;
 		NumberDouble_Unbounded("value", value);
-		jsval rval;
-		if (!JS_NewNumberValue(cx, value, &rval))
+		jsval rval = JS::NumberValue(value);
+		if (JSVAL_IS_NULL(rval))
 			throw PSERROR_Deserialize_ScriptError("JS_NewNumberValue failed");
 		return rval;
 	}
@@ -275,7 +250,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 	{
 		uint8_t value;
 		NumberU8("value", value, 0, 1);
-		return BOOLEAN_TO_JSVAL(value ? JS_TRUE : JS_FALSE);
+		return JS::BooleanValue(value ? true : false);
 	}
 	case SCRIPT_TYPE_BACKREF:
 	{
@@ -284,26 +259,24 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 		JSObject* obj = GetScriptBackref(tag);
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("Invalid backref tag");
-		return OBJECT_TO_JSVAL(obj);
+		return JS::ObjectValue(*obj);
 	}
 	case SCRIPT_TYPE_OBJECT_NUMBER:
 	{
 		double value;
 		NumberDouble_Unbounded("value", value);
-		jsval val;
-		if (!JS_NewNumberValue(cx, value, &val))
-			throw PSERROR_Deserialize_ScriptError();
+		JS::RootedValue val(cx, JS::NumberValue(value));
 		CScriptValRooted objRoot(cx, val);
 
 		JSObject* ctorobj;
-		if (!JS_GetClassObject(cx, JS_GetGlobalObject(cx), JSProto_Number, &ctorobj))
+		if (!JS_GetClassObject(cx, JS_GetGlobalForScopeChain(cx), JSProto_Number, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
 
-		JSObject* obj = JS_New(cx, ctorobj, 1, &val);
+		JSObject* obj = JS_New(cx, ctorobj, 1, val.address());
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
-		return OBJECT_TO_JSVAL(obj);
+		return JS::ObjectValue(*obj);
 	}
 	case SCRIPT_TYPE_OBJECT_STRING:
 	{
@@ -311,35 +284,34 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 		ScriptString("value", str);
 		if (!str)
 			throw PSERROR_Deserialize_ScriptError();
-		jsval val = STRING_TO_JSVAL(str);
+		JS::RootedValue val(cx, JS::StringValue(str));
 		CScriptValRooted valRoot(cx, val);
 
 		JSObject* ctorobj;
-		if (!JS_GetClassObject(cx, JS_GetGlobalObject(cx), JSProto_String, &ctorobj))
+		if (!JS_GetClassObject(cx, JS_GetGlobalForScopeChain(cx), JSProto_String, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
 
-		JSObject* obj = JS_New(cx, ctorobj, 1, &val);
+		JSObject* obj = JS_New(cx, ctorobj, 1, val.address());
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
-		return OBJECT_TO_JSVAL(obj);
+		return JS::ObjectValue(*obj);
 	}
 	case SCRIPT_TYPE_OBJECT_BOOLEAN:
 	{
 		bool value;
 		Bool("value", value);
-		jsval val = BOOLEAN_TO_JSVAL(value ? JS_TRUE : JS_FALSE);
-		CScriptValRooted objRoot(cx, val);
+		JS::RootedValue val(cx, JS::BooleanValue(value));
 
 		JSObject* ctorobj;
-		if (!JS_GetClassObject(cx, JS_GetGlobalObject(cx), JSProto_Boolean, &ctorobj))
+		if (!JS_GetClassObject(cx, JS_GetGlobalForScopeChain(cx), JSProto_Boolean, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
 
-		JSObject* obj = JS_New(cx, ctorobj, 1, &val);
+		JSObject* obj = JS_New(cx, ctorobj, 1, val.address());
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
-		return OBJECT_TO_JSVAL(obj);
+		return JS::ObjectValue(*obj);
 	}
 	case SCRIPT_TYPE_TYPED_ARRAY:
 	{
@@ -354,46 +326,71 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 
 		// Get buffer object
 		jsval bufferVal = ReadScriptVal("buffer", NULL);
-		CScriptValRooted bufferValRoot(cx, bufferVal);
 
-		if (!JSVAL_IS_OBJECT(bufferVal))
+		if (!bufferVal.isObject())
 			throw PSERROR_Deserialize_ScriptError();
 
-		JSObject* bufferObj = JSVAL_TO_OBJECT(bufferVal);
-		if (!js_IsArrayBuffer(bufferObj))
+		JSObject* bufferObj = &bufferVal.toObject();
+		if (!JS_IsArrayBufferObject(bufferObj))
 			throw PSERROR_Deserialize_ScriptError("js_IsArrayBuffer failed");
 
-		JSObject* arrayObj = js_CreateTypedArrayWithBuffer(cx, GetJSArrayType(arrayType), bufferObj, byteOffset, length);
+		JSObject* arrayObj;
+		switch(arrayType)
+		{
+		case SCRIPT_TYPED_ARRAY_INT8:
+			arrayObj = JS_NewInt8ArrayWithBuffer(cx, bufferObj, byteOffset, length);
+			break;
+		case SCRIPT_TYPED_ARRAY_UINT8:
+			arrayObj = JS_NewUint8ArrayWithBuffer(cx, bufferObj, byteOffset, length);
+			break;
+		case SCRIPT_TYPED_ARRAY_INT16:
+			arrayObj = JS_NewInt16ArrayWithBuffer(cx, bufferObj, byteOffset, length);
+			break;
+		case SCRIPT_TYPED_ARRAY_UINT16:
+			arrayObj = JS_NewUint16ArrayWithBuffer(cx, bufferObj, byteOffset, length);
+			break;
+		case SCRIPT_TYPED_ARRAY_INT32:
+			arrayObj = JS_NewInt32ArrayWithBuffer(cx, bufferObj, byteOffset, length);
+			break;
+		case SCRIPT_TYPED_ARRAY_UINT32:
+			arrayObj = JS_NewUint32ArrayWithBuffer(cx, bufferObj, byteOffset, length);
+			break;
+		case SCRIPT_TYPED_ARRAY_FLOAT32:
+			arrayObj = JS_NewFloat32ArrayWithBuffer(cx, bufferObj, byteOffset, length);
+			break;
+		case SCRIPT_TYPED_ARRAY_FLOAT64:
+			arrayObj = JS_NewFloat64ArrayWithBuffer(cx, bufferObj, byteOffset, length);
+			break;
+		case SCRIPT_TYPED_ARRAY_UINT8_CLAMPED:
+			arrayObj = JS_NewUint8ClampedArrayWithBuffer(cx, bufferObj, byteOffset, length);
+			break;
+		default:
+			throw PSERROR_Deserialize_ScriptError("Failed to deserialize unrecognized typed array view");
+		}
 		if (!arrayObj)
 			throw PSERROR_Deserialize_ScriptError("js_CreateTypedArrayWithBuffer failed");
 
 		SetReservedScriptBackref(arrayTag, arrayObj);
 
-		return OBJECT_TO_JSVAL(arrayObj);
+		return JS::ObjectValue(*arrayObj);
 	}
 	case SCRIPT_TYPE_ARRAY_BUFFER:
 	{
 		u32 length;
 		NumberU32_Unbounded("buffer length", length);
+		u8* bufferData = NULL;
 		
-		u8* bufferData = new u8[length];
-		RawBytes("buffer data", bufferData, length);
 
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: need to convert JS ArrayBuffer data from little-endian
 #endif
-
-		JSObject* bufferObj = js_CreateArrayBuffer(cx, length);
-		if (!bufferObj)
-			throw PSERROR_Deserialize_ScriptError("js_CreateArrayBuffer failed");
-
+		void* contents = NULL;
+		JS_AllocateArrayBufferContents(cx, length, &contents, &bufferData);
+		RawBytes("buffer data", bufferData, length);
+		JSObject* bufferObj = JS_NewArrayBufferWithContents(cx, contents);
 		AddScriptBackref(bufferObj);
 
-		js::ArrayBuffer* buffer = js::ArrayBuffer::fromJSObject(bufferObj);
-		memcpy(buffer->data, bufferData, length);
-		delete[] bufferData;
-
-		return OBJECT_TO_JSVAL(bufferObj);
+		return JS::ObjectValue(*bufferObj);
 	}
 	default:
 		throw PSERROR_Deserialize_OutOfBounds();
@@ -440,7 +437,7 @@ void CStdDeserializer::ScriptVal(const char* name, CScriptValRooted& out)
 
 void CStdDeserializer::ScriptObjectAppend(const char* name, jsval& obj)
 {
-	if (!JSVAL_IS_OBJECT(obj))
+	if (!obj.isObject())
 		throw PSERROR_Deserialize_ScriptError();
 
 	ReadScriptVal(name, JSVAL_TO_OBJECT(obj));

@@ -77,7 +77,7 @@ public:
 
 	void test_basic()
 	{
-		ComponentTestHelper test;
+		ComponentTestHelper test(ScriptInterface::CreateRuntime());
 
 		ICmpRangeManager* cmp = test.Add<ICmpRangeManager>(CID_RangeManager, "");
 
