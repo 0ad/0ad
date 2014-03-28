@@ -574,9 +574,6 @@ public:
 
 		TestLogger logger;
 
-		TS_ASSERT(script.Eval("({x:1, y:<x/>})", obj));
-		TS_ASSERT_THROWS(serialize.ScriptVal("script", obj), PSERROR_Serialize_InvalidScriptValue);
-
 		TS_ASSERT(script.Eval("([1, 2, function () { }])", obj));
 		TS_ASSERT_THROWS(serialize.ScriptVal("script", obj), PSERROR_Serialize_InvalidScriptValue);
 	}

@@ -68,8 +68,9 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 {
 	BuildDirEntListState* s = (BuildDirEntListState*)cbData;
 
-	jsval val = ScriptInterface::ToJSVal(s->cx, CStrW(pathname.string()));
-	JS_SetElement(s->cx, s->filename_array, s->cur_idx++, &val);
+	JS::RootedValue val(s->cx);
+	ScriptInterface::ToJSVal( s->cx, val.get(), CStrW(pathname.string()) );
+	JS_SetElement(s->cx, s->filename_array, s->cur_idx++, val.address());
 	return INFO::OK;
 }
 
@@ -155,7 +156,9 @@ CScriptVal JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstrin
 	contents.Replace("\r\n", "\n");
 
 	// Decode as UTF-8
-	return ScriptInterface::ToJSVal( pCxPrivate->pScriptInterface->GetContext(), contents.FromUTF8() );
+	JS::Value ret;
+	ScriptInterface::ToJSVal( pCxPrivate->pScriptInterface->GetContext(), ret, contents.FromUTF8() );
+	return ret;
 }
 
 
@@ -191,8 +194,9 @@ CScriptVal JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::w
 	while (std::getline(ss, line))
 	{
 		// Decode each line as UTF-8
-		jsval val = ScriptInterface::ToJSVal(cx, CStr(line).FromUTF8());
-		JS_SetElement(cx, line_array, cur_line++, &val);
+		JS::RootedValue val(cx);
+		ScriptInterface::ToJSVal(cx, val.get(), CStr(line).FromUTF8());
+		JS_SetElement(cx, line_array, cur_line++, val.address());
 	}
 
 	return OBJECT_TO_JSVAL( line_array );

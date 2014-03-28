@@ -422,6 +422,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 		throw PSERROR_GUI_OperationNeedsGUIObject();
 		
 	JSContext* cx = pGUI->GetScriptInterface()->GetContext();
+	JSAutoRequest rq(cx);
 	
 	const int paramCount = 1;
 	const char* paramNames[paramCount] = { "mouse" };
@@ -445,7 +446,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 void IGUIObject::SetScriptHandler(const CStr& Action, JSObject* Function)
 {
-	m_ScriptHandlers[Action] = CScriptValRooted(m_pGUI->GetScriptInterface()->GetContext(), OBJECT_TO_JSVAL(Function));
+	m_ScriptHandlers[Action] = CScriptValRooted(m_pGUI->GetScriptInterface()->GetContext(), JS::ObjectValue(*Function));
 }
 
 InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
@@ -469,6 +470,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 		return;
 
 	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
+	JSAutoRequest rq(cx);
 
 	// Set up the 'mouse' parameter
 	CScriptVal mouse;
@@ -480,7 +482,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	jsval paramData[] = { mouse.get() };
 
 	jsval result;
-	JSBool ok = JS_CallFunctionValue(cx, GetJSObject(), (*it).second.get(), ARRAY_SIZE(paramData), paramData, &result);
+	bool ok = JS_CallFunctionValue(cx, GetJSObject(), (*it).second.get(), ARRAY_SIZE(paramData), paramData, &result);
 	if (!ok)
 	{
 		// We have no way to propagate the script exception, so just ignore it
@@ -490,17 +492,19 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 
 void IGUIObject::ScriptEvent(const CStr& Action, const CScriptValRooted& Argument)
 {
-	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
 	std::map<CStr, CScriptValRooted>::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
+
+	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
+	JSAutoRequest rq(cx);
 
 	JSObject* object = GetJSObject();
 
 	jsval arg = Argument.get();
 
 	jsval result;
-	JSBool ok = JS_CallFunctionValue(cx, object, (*it).second.get(), 1, &arg, &result);
+	bool ok = JS_CallFunctionValue(cx, object, (*it).second.get(), 1, &arg, &result);
 	if (!ok)
 	{
 		JS_ReportError(cx, "Errors executing script action \"%s\"", Action.c_str());
@@ -510,6 +514,7 @@ void IGUIObject::ScriptEvent(const CStr& Action, const CScriptValRooted& Argumen
 JSObject* IGUIObject::GetJSObject()
 {
 	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
+	JSAutoRequest rq(cx);
 	// Cache the object when somebody first asks for it, because otherwise
 	// we end up doing far too much object allocation. TODO: Would be nice to
 	// not have these objects hang around forever using up memory, though.
@@ -517,7 +522,7 @@ JSObject* IGUIObject::GetJSObject()
 	{
 		JSObject* obj = JS_NewObject(cx, &JSI_IGUIObject::JSI_class, NULL, NULL);
 		m_JSObject = CScriptValRooted(cx, OBJECT_TO_JSVAL(obj));
-		JS_SetPrivate(cx, JSVAL_TO_OBJECT(m_JSObject.get()), this);
+		JS_SetPrivate(JSVAL_TO_OBJECT(m_JSObject.get()), this);
 	}
 	return JSVAL_TO_OBJECT(m_JSObject.get());;
 }

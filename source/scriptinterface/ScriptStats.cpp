@@ -21,8 +21,6 @@
 
 #include "scriptinterface/ScriptInterface.h"
 
-#include "js/jsapi.h"
-
 CScriptStatsTable* g_ScriptStatsTable;
 
 enum

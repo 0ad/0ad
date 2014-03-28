@@ -78,23 +78,4 @@ private:
 	boost::shared_ptr<jsval> m_Val;
 };
 
-/**
- * RAII wrapper for JSIdArray*
- */
-class AutoJSIdArray
-{
-	NONCOPYABLE(AutoJSIdArray);
-public:
-	AutoJSIdArray(JSContext* cx, JSIdArray* ida);
-	~AutoJSIdArray();
-
-	JSIdArray* get() const;
-	size_t length() const;
-	jsid operator[](size_t i) const;
-
-private:
-	JSContext* m_Context;
-	JSIdArray* m_IdArray;
-};
-
 #endif // INCLUDED_SCRIPTVAL

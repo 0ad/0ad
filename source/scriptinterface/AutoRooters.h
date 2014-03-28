@@ -20,7 +20,6 @@
 
 #include "scriptinterface/ScriptTypes.h"
 
-#include "js/jsapi.h"
 
 /**
  * Helper for rooting large groups of script values.

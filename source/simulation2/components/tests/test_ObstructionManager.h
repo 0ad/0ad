@@ -68,7 +68,7 @@ public:
 		ent3z = ent2z + ent2r + ent3r; // ensure it just touches the border of ent2
 		ent3g = ent3;
 
-		testHelper = new ComponentTestHelper;
+		testHelper = new ComponentTestHelper(ScriptInterface::CreateRuntime());
 		cmp = testHelper->Add<ICmpObstructionManager>(CID_ObstructionManager, "");
 		cmp->SetBounds(fixed::FromInt(0), fixed::FromInt(0), fixed::FromInt(1000), fixed::FromInt(1000));
 

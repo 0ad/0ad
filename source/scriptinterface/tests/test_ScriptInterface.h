@@ -61,8 +61,9 @@ public:
 
 	void test_clone_basic()
 	{
-		ScriptInterface script1("Test", "Test", ScriptInterface::CreateRuntime());
-		ScriptInterface script2("Test", "Test", ScriptInterface::CreateRuntime());
+		shared_ptr<ScriptRuntime> runtime = ScriptInterface::CreateRuntime();
+		ScriptInterface script1("Test", "Test", runtime);
+		ScriptInterface script2("Test", "Test", runtime);
 
 		CScriptVal obj1;
 		TS_ASSERT(script1.Eval("({'x': 123, 'y': [1, 1.5, '2', 'test', undefined, null, true, false]})", obj1));
@@ -78,8 +79,9 @@ public:
 	{
 		// The tests should be run with JS_SetGCZeal so this can try to find GC bugs
 
-		ScriptInterface script1("Test", "Test", ScriptInterface::CreateRuntime());
-		ScriptInterface script2("Test", "Test", ScriptInterface::CreateRuntime());
+		shared_ptr<ScriptRuntime> runtime = ScriptInterface::CreateRuntime();
+		ScriptInterface script1("Test", "Test", runtime);
+		ScriptInterface script2("Test", "Test", runtime);
 
 		CScriptVal obj1;
 		TS_ASSERT(script1.Eval("var s = '?'; var v = ({get x() { return 123 }, 'y': {'w':{get z() { delete v.y; delete v.n; v = null; s += s; return 4 }}}, 'n': 100}); v", obj1));
@@ -88,22 +90,33 @@ public:
 
 		std::string source;
 		TS_ASSERT(script2.CallFunction(obj2.get(), "toSource", source));
-		TS_ASSERT_STR_EQUALS(source, "({x:123, y:{w:{z:4}}, n:(void 0)})");
+		TS_ASSERT_STR_EQUALS(source, "({x:123, y:{w:{z:4}}})");
 	}
 
 	void test_clone_cyclic()
 	{
-		ScriptInterface script1("Test", "Test", ScriptInterface::CreateRuntime());
-		ScriptInterface script2("Test", "Test", ScriptInterface::CreateRuntime());
+		shared_ptr<ScriptRuntime> runtime = ScriptInterface::CreateRuntime();
+		ScriptInterface script1("Test", "Test", runtime);
+		ScriptInterface script2("Test", "Test", runtime);
 
 		CScriptVal obj1;
 		TS_ASSERT(script1.Eval("var x = []; x[0] = x; ({'a': x, 'b': x})", obj1));
 
 		CScriptVal obj2 = script2.CloneValueFromOtherContext(script1, obj1.get());
 
-		std::string source;
-		TS_ASSERT(script2.CallFunction(obj2.get(), "toSource", source));
-		TS_ASSERT_STR_EQUALS(source, "({a:#1=[#1#], b:#1#})");
+		// Use JSAPI function to check if the values of the properties "a", "b" are equals a.x[0]
+		JSContext* cx2 = script2.GetContext();
+		JSAutoRequest rq(cx2);
+		JS::RootedValue prop_a(cx2);
+		JS::RootedValue prop_b(cx2);
+		JS::RootedValue prop_x1(cx2);
+		TS_ASSERT(JS_GetProperty(cx2, &(obj2.get().toObject()), "a", prop_a.address()));
+		TS_ASSERT(JS_GetProperty(cx2, &(obj2.get().toObject()), "b", prop_b.address()));
+		TS_ASSERT(prop_a.get().isObject());
+		TS_ASSERT(prop_b.get().isObject());
+		TS_ASSERT(JS_GetProperty(cx2, &(prop_a.get().toObject()), "0", prop_x1.address()));
+		TS_ASSERT_EQUALS(prop_x1.get(), prop_a.get());
+		TS_ASSERT_EQUALS(prop_x1.get(), prop_b.get());
 	}
 
 	void test_random()

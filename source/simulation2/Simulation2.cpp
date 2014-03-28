@@ -19,6 +19,8 @@
 
 #include "Simulation2.h"
 
+#include "scriptinterface/ScriptInterface.h"
+
 #include "simulation2/MessageTypes.h"
 #include "simulation2/system/ComponentManager.h"
 #include "simulation2/system/ParamNode.h"
@@ -451,8 +453,8 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 	// Run the GC occasionally
 	// (TODO: we ought to schedule this for a frame where we're not
 	// running the sim update, to spread the load)
-	if (m_TurnNumber % 10 == 0)
-		m_ComponentManager.GetScriptInterface().MaybeGC();
+	if (m_TurnNumber % 1 == 0)
+		m_ComponentManager.GetScriptInterface().MaybeIncrementalRuntimeGC();
 
 	if (m_EnableOOSLog)
 		DumpState();

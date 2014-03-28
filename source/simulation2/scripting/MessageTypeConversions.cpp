@@ -21,32 +21,40 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/MessageTypes.h"
 
-#include "js/jsapi.h"
-
 #define TOJSVAL_SETUP() \
-	JSObject* obj = JS_NewObject(scriptInterface.GetContext(), NULL, NULL, NULL); \
-	if (! obj) \
-		return JSVAL_VOID;
+	JSObject* obj; \
+	{\
+	JSAutoRequest rq(scriptInterface.GetContext()); \
+	obj = JS_NewObject(scriptInterface.GetContext(), NULL, NULL, NULL); \
+	if (!obj) \
+		return JSVAL_VOID; \
+	}
 
 #define SET_MSG_PROPERTY(name) \
 	do { \
-		jsval prop = ScriptInterface::ToJSVal(scriptInterface.GetContext(), this->name); \
-		if (! JS_SetProperty(scriptInterface.GetContext(), obj, #name, &prop)) \
+		JSAutoRequest rq(scriptInterface.GetContext()); \
+		JSContext* cx = scriptInterface.GetContext(); \
+		JS::RootedValue prop(cx);\
+		ScriptInterface::ToJSVal(cx, prop.get(), this->name); \
+		if (! JS_SetProperty(cx, obj, #name, prop.address())) \
 			return JSVAL_VOID; \
 	} while (0);
 
 #define FROMJSVAL_SETUP() \
-	if (! JSVAL_IS_OBJECT(val)) \
+	if ( JSVAL_IS_PRIMITIVE(val)) \
 		return NULL; \
 	JSObject* obj = JSVAL_TO_OBJECT(val); \
-	jsval prop;
+	JS::RootedValue prop(scriptInterface.GetContext());
 
 #define GET_MSG_PROPERTY(type, name) \
-	if (! JS_GetProperty(scriptInterface.GetContext(), obj, #name, &prop)) \
-		return NULL; \
 	type name; \
-	if (! ScriptInterface::FromJSVal(scriptInterface.GetContext(), prop, name)) \
-		return NULL;
+	{ \
+	JSAutoRequest rq(scriptInterface.GetContext()); \
+	if (! JS_GetProperty(scriptInterface.GetContext(), obj, #name, prop.address())) \
+		return NULL; \
+	if (! ScriptInterface::FromJSVal(scriptInterface.GetContext(), prop.get(), name)) \
+		return NULL; \
+	}
 
 jsval CMessage::ToJSValCached(ScriptInterface& scriptInterface) const
 {

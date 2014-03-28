@@ -342,6 +342,9 @@ void* CNetServerWorker::RunThread(void* data)
 
 void CNetServerWorker::Run()
 {
+	// The script runtime uses the profiler and therefore the thread must be registered before the runtime is created
+	g_Profiler2.RegisterCurrentThread("Net server");
+	
 	// To avoid the need for JS_SetContextThread, we create and use and destroy
 	// the script interface entirely within this network thread
 	m_ScriptInterface = new ScriptInterface("Engine", "Net server", ScriptInterface::CreateRuntime());

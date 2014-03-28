@@ -71,24 +71,7 @@ void CGUIManager::SwitchPage(const CStrW& pageName, ScriptInterface* srcScriptIn
 	shared_ptr<ScriptInterface::StructuredClone> initDataClone;
 	if (initData.get() != JSVAL_VOID)
 	{
-		ENSURE(srcScriptInterface);
-		// TODO: Fix this horribly ugly hack as soon as we have integrated the new SpiderMonkey library version. 
-		// In SpiderMonkey 1.8.5, StructuredClone data needs to be freed with JS_Free.
-		// JS_Free takes a JSContext as argument which must be the one the clone was created wtih.
-		// This means we must ensure to call the destructor of all structuredclones before the context is destroyed.
-		// To achieve this, we write all initData structured clones with the GUIManager's JSContext.
-		// That's why we have to clone the value twice here.
-		// Calling WriteStructuredClone with a context in another compartment than the value works, but I don't think that's
-		// supposed to work and will probably break under some conditions.
-		// Newer SpiderMonkey versions introduce JS_ClearStructuredClone instead of JS_Free which does not require a context.
-		if (srcScriptInterface != m_ScriptInterface.get())
-		{		
-			CScriptVal cloneSaveInitData;
-			cloneSaveInitData = m_ScriptInterface->CloneValueFromOtherContext(*srcScriptInterface, initData.get());
-			initDataClone = m_ScriptInterface->WriteStructuredClone(cloneSaveInitData.get());
-		}
-		else
-			initDataClone = m_ScriptInterface->WriteStructuredClone(initData.get());
+		initDataClone = srcScriptInterface->WriteStructuredClone(initData.get());
 	}
 	m_PageStack.clear();
 	PushPage(pageName, initDataClone);

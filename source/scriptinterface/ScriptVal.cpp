@@ -17,19 +17,24 @@
 
 #include "precompiled.h"
 
+#include "ScriptInterface.h"
 #include "ScriptVal.h"
 
-#include "js/jsapi.h"
 
 struct Unrooter
 {
 	Unrooter(JSContext* cx) : cx(cx) { }
-	void operator()(jsval* p) { JS_RemoveValueRoot(cx, p); delete p; }
+	void operator()(jsval* p)
+	{
+		JSAutoRequest rq(cx);
+		JS_RemoveValueRoot(cx, p); delete p;
+	}
 	JSContext* cx;
 };
 
 CScriptValRooted::CScriptValRooted(JSContext* cx, jsval val)
 {
+	JSAutoRequest rq(cx);
 	jsval* p = new jsval(val);
 	JS_AddNamedValueRoot(cx, p, "CScriptValRooted");
 	m_Val = boost::shared_ptr<jsval>(p, Unrooter(cx));
@@ -37,6 +42,7 @@ CScriptValRooted::CScriptValRooted(JSContext* cx, jsval val)
 
 CScriptValRooted::CScriptValRooted(JSContext* cx, CScriptVal val)
 {
+	JSAutoRequest rq(cx);
 	jsval* p = new jsval(val.get());
 	JS_AddNamedValueRoot(cx, p, "CScriptValRooted");
 	m_Val = boost::shared_ptr<jsval>(p, Unrooter(cx));
@@ -63,34 +69,4 @@ bool CScriptValRooted::undefined() const
 bool CScriptValRooted::uninitialised() const
 {
 	return !m_Val;
-}
-
-AutoJSIdArray::AutoJSIdArray(JSContext* cx, JSIdArray* ida) :
-	m_Context(cx), m_IdArray(ida)
-{
-}
-
-AutoJSIdArray::~AutoJSIdArray()
-{
-	if (m_IdArray)
-		JS_DestroyIdArray(m_Context, m_IdArray);
-}
-
-JSIdArray* AutoJSIdArray::get() const
-{
-	return m_IdArray;
-}
-
-size_t AutoJSIdArray::length() const
-{
-	if (!m_IdArray)
-		return 0;
-	return m_IdArray->length;
-}
-
-jsid AutoJSIdArray::operator[](size_t i) const
-{
-	if (!(m_IdArray && i < (size_t)m_IdArray->length))
-		return JSID_VOID;
-	return m_IdArray->vector[i];
 }

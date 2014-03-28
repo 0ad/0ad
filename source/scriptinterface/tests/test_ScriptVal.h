@@ -20,7 +20,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptVal.h"
 
-#include "js/jsapi.h"
+#include "jsapi.h"
 
 class TestScriptVal : public CxxTest::TestSuite
 {
@@ -29,18 +29,19 @@ public:
 	{
 		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		JSContext* cx = script.GetContext();
+		JSAutoRequest rq(cx);
 
 		JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 		TS_ASSERT(obj);
 
 		CScriptValRooted root(cx, OBJECT_TO_JSVAL(obj));
 
-		JS_GC(cx);
+		JS_GC(script.GetJSRuntime());
 
 		jsval val = INT_TO_JSVAL(123);
 		TS_ASSERT(JS_SetProperty(cx, obj, "test", &val));
 
-		JS_GC(cx);
+		JS_GC(script.GetJSRuntime());
 
 		jsval rval;
 		TS_ASSERT(JS_GetProperty(cx, obj, "test", &rval));

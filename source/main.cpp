@@ -184,8 +184,9 @@ static void PumpEvents()
 		PROFILE2("event");
 		if (g_GUI)
 		{
-			std::string data = g_GUI->GetScriptInterface()->StringifyJSON(
-				ScriptInterface::ToJSVal(g_GUI->GetScriptInterface()->GetContext(), ev));
+			JS::Value tmpVal;
+			ScriptInterface::ToJSVal(g_GUI->GetScriptInterface()->GetContext(), tmpVal, ev);
+			std::string data = g_GUI->GetScriptInterface()->StringifyJSON(tmpVal);
 			PROFILE2_ATTR("%s", data.c_str());
 		}
 		in_dispatch_event(&ev);

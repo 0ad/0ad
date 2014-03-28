@@ -23,7 +23,7 @@
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 
-#include "js/jsapi.h"
+#include "jsapi.h"
 
 class TestScriptConversions : public CxxTest::TestSuite
 {
@@ -32,13 +32,15 @@ class TestScriptConversions : public CxxTest::TestSuite
 	{
 		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		JSContext* cx = script.GetContext();
+		JSAutoRequest rq(cx);
 
-		jsval v1 = ScriptInterface::ToJSVal(cx, value);
+		JS::Value v1; 
+		ScriptInterface::ToJSVal(cx, v1, value);
 
 		// We want to convert values to strings, but can't just call toSource() on them
 		// since they might not be objects. So just use uneval.
 		std::string source;
-		TS_ASSERT(script.CallFunction(OBJECT_TO_JSVAL(JS_GetGlobalObject(cx)), "uneval", CScriptVal(v1), source));
+		TS_ASSERT(script.CallFunction(OBJECT_TO_JSVAL(JS_GetGlobalForScopeChain(cx)), "uneval", CScriptVal(v1), source));
 
 		TS_ASSERT_STR_EQUALS(source, expected);
 	}
@@ -48,11 +50,13 @@ class TestScriptConversions : public CxxTest::TestSuite
 	{
 		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		JSContext* cx = script.GetContext();
+		JSAutoRequest rq(cx);
 
-		jsval v1 = ScriptInterface::ToJSVal(cx, value);
+		JS::Value v1;
+		ScriptInterface::ToJSVal(cx, v1, value);
 
 		std::string source;
-		TS_ASSERT(script.CallFunction(OBJECT_TO_JSVAL(JS_GetGlobalObject(cx)), "uneval", CScriptVal(v1), source));
+		TS_ASSERT(script.CallFunction(OBJECT_TO_JSVAL(JS_GetGlobalForScopeChain(cx)), "uneval", CScriptVal(v1), source));
 
 		if (expected)
 			TS_ASSERT_STR_EQUALS(source, expected);
@@ -101,12 +105,12 @@ public:
 
 		roundtrip<std::string>("", "\"\"");
 		roundtrip<std::string>("test", "\"test\"");
-		roundtrip<std::string>(s1, "\"t\\0st\"");
+		roundtrip<std::string>(s1, "\"t\\x00st\"");
 		// TODO: should test non-ASCII strings
 
 		roundtrip<std::wstring>(L"", "\"\"");
 		roundtrip<std::wstring>(L"test", "\"test\"");
-		roundtrip<std::wstring>(w1, "\"t\\0st\"");
+		roundtrip<std::wstring>(w1, "\"t\\x00st\"");
 		// TODO: should test non-ASCII strings
 
 		convert_to<const char*>("", "\"\"");
@@ -123,19 +127,29 @@ public:
 	{
 		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		JSContext* cx = script.GetContext();
+		JSAutoRequest rq(cx);
+		
+		// using new uninitialized variables each time to be sure the test doesn't succeeed if ToJSVal doesn't touch the value at all.
+		JS::Value val0, val1, val2, val3, val4, val5, val6, val7, val8;
+		ScriptInterface::ToJSVal<i32>(cx, val0, 0);
+		ScriptInterface::ToJSVal<i32>(cx, val1, 2147483646); // JSVAL_INT_MAX-1
+		ScriptInterface::ToJSVal<i32>(cx, val2, 2147483647); // JSVAL_INT_MAX
+		ScriptInterface::ToJSVal<i32>(cx, val3, -2147483647); // JSVAL_INT_MIN+1
+		ScriptInterface::ToJSVal<i32>(cx, val4, -(i64)2147483648u); // JSVAL_INT_MIN
+		TS_ASSERT(JSVAL_IS_INT(val0));
+		TS_ASSERT(JSVAL_IS_INT(val1)); 
+		TS_ASSERT(JSVAL_IS_INT(val2)); 
+		TS_ASSERT(JSVAL_IS_INT(val3)); 
+		TS_ASSERT(JSVAL_IS_INT(val4)); 
 
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, 0)));
-
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, 2147483646))); // JSVAL_INT_MAX-1
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, 2147483647))); // JSVAL_INT_MAX
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, -2147483647))); // JSVAL_INT_MIN+1
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, -(i64)2147483648u))); // JSVAL_INT_MIN
-
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<u32>(cx, 0)));
-
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<u32>(cx, 2147483646u))); // JSVAL_INT_MAX-1
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<u32>(cx, 2147483647u))); // JSVAL_INT_MAX
-		TS_ASSERT(JSVAL_IS_DOUBLE(ScriptInterface::ToJSVal<u32>(cx, 2147483648u))); // JSVAL_INT_MAX+1
+		ScriptInterface::ToJSVal<u32>(cx, val5, 0);
+		ScriptInterface::ToJSVal<u32>(cx, val6, 2147483646u); // JSVAL_INT_MAX-1
+		ScriptInterface::ToJSVal<u32>(cx, val7, 2147483647u); // JSVAL_INT_MAX
+		ScriptInterface::ToJSVal<u32>(cx, val8, 2147483648u); // JSVAL_INT_MAX+1
+		TS_ASSERT(JSVAL_IS_INT(val5));
+		TS_ASSERT(JSVAL_IS_INT(val6)); 
+		TS_ASSERT(JSVAL_IS_INT(val7)); 
+		TS_ASSERT(JSVAL_IS_DOUBLE(val8));
 	}
 
 	void test_nonfinite()
@@ -146,9 +160,12 @@ public:
 
 		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		JSContext* cx = script.GetContext();
+		JSAutoRequest rq(cx);
 
 		float f = 0;
-		TS_ASSERT(ScriptInterface::FromJSVal(cx, ScriptInterface::ToJSVal(cx, NAN), f));
+		JS::Value testNANVal;
+		ScriptInterface::ToJSVal(cx, testNANVal, NAN);
+		TS_ASSERT(ScriptInterface::FromJSVal(cx, testNANVal, f));
 		TS_ASSERT(isnan(f));
 	}
 

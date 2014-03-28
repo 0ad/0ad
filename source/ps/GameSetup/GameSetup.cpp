@@ -560,6 +560,10 @@ static void ShutdownPs()
 	SAFE_DELETE(g_GUI);
 
 	SAFE_DELETE(g_Console);
+	
+	// This is needed to ensure that no callbacks from the JSAPI try to use 
+	// the profiler when it's already destructed
+	g_ScriptRuntime.reset();
 
 	// disable the special Windows cursor, or free textures for OGL cursors
 	cursor_draw(g_VFS, 0, g_mouse_x, g_yres-g_mouse_y, false);
@@ -856,7 +860,7 @@ void Init(const CmdLineArgs& args, int flags)
 	g_Logger = new CLogger;
 	
 	// Workaround until Simulation and AI use their own threads and also their own runtimes
-	g_ScriptRuntime = ScriptInterface::CreateRuntime(128 * 1024 * 1024);
+	g_ScriptRuntime = ScriptInterface::CreateRuntime(384 * 1024 * 1024);
 
 	// Special command-line mode to dump the entity schemas instead of running the game.
 	// (This must be done after loading VFS etc, but should be done before wasting time
@@ -1100,7 +1104,7 @@ bool Autostart(const CmdLineArgs& args)
 		CStr seedArg = args.Get("autostart-random");
 
 		// Default seed is 0
-		uint32 seed = 0;
+		u32 seed = 0;
 		if (!seedArg.empty())
 		{
 			if (seedArg.compare("-1") == 0)

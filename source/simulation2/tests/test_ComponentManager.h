@@ -594,7 +594,8 @@ public:
 	void test_serialization()
 	{
 		CSimContext context;
-		CComponentManager man(context, ScriptInterface::CreateRuntime());
+		shared_ptr<ScriptRuntime> runtime = ScriptInterface::CreateRuntime();
+		CComponentManager man(context, runtime);
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2, ent3 = FIRST_LOCAL_ENTITY;
@@ -664,7 +665,7 @@ public:
 		);
 
 		CSimContext context2;
-		CComponentManager man2(context2, ScriptInterface::CreateRuntime());
+		CComponentManager man2(context2, runtime);
 		man2.LoadComponentTypes();
 
 		TS_ASSERT(man2.QueryInterface(ent1, IID_Test1) == NULL);
@@ -683,7 +684,9 @@ public:
 	void test_script_serialization()
 	{
 		CSimContext context;
-		CComponentManager man(context, ScriptInterface::CreateRuntime());
+		shared_ptr<ScriptRuntime> runtime = ScriptInterface::CreateRuntime();
+
+		CComponentManager man(context, runtime);
 		ScriptTestSetup(man.m_ScriptInterface);
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-serialize.js"));
@@ -700,7 +703,12 @@ public:
 
 		man.AddComponent(hnd1, man.LookupCID("TestScript1_values"), testParam);
 		man.AddComponent(hnd2, man.LookupCID("TestScript1_entity"), testParam);
+
+		// TODO: Since the upgrade to SpiderMonkey v24 this test won't be able to correctly represent
+		// non-tree structures because sharp variables were removed (bug 566700).
+		// This also affects the debug serializer and it could make sense to implement correct serialization again.
 		man.AddComponent(hnd3, man.LookupCID("TestScript1_nontree"), testParam);
+
 		man.AddComponent(hnd4, man.LookupCID("TestScript1_custom"), testParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 1234);
@@ -713,48 +721,48 @@ public:
 		std::stringstream debugStream;
 		TS_ASSERT(man.DumpDebugState(debugStream, true));
 		TS_ASSERT_STR_EQUALS(debugStream.str(),
-				"rng: \"78606\"\n"
-				"entities:\n"
-				"- id: 1\n"
-				"  TestScript1_values:\n"
-				"    object: {\n"
-				"  \"x\": 1234,\n"
-				"  \"str\": \"this is a string\",\n"
-				"  \"things\": {\n"
-				"    \"a\": 1,\n"
-				"    \"b\": \"2\",\n"
-				"    \"c\": [\n"
-				"      3,\n"
-				"      \"4\",\n"
-				"      [\n"
-				"        5,\n"
-				"        []\n"
-				"      ]\n"
-				"    ]\n"
-				"  }\n"
-				"}\n"
-				"\n"
-				"- id: 2\n"
-				"  TestScript1_entity:\n"
-				"    object: {}\n"
-				"\n"
-				"- id: 3\n"
-				"  TestScript1_nontree:\n"
-				"    object: ({x:#2=[#1=[2], #1#, #2#, {y:#1#}]})\n"
-				"\n"
-				"- id: 4\n"
-				"  TestScript1_custom:\n"
-				"    object: {\n"
-				"  \"c\": 1\n"
-				"}\n"
-				"\n"
+				"rng: \"78606\"\n\
+entities:\n\
+- id: 1\n\
+  TestScript1_values:\n\
+    object: {\n\
+  \"x\": 1234,\n\
+  \"str\": \"this is a string\",\n\
+  \"things\": {\n\
+    \"a\": 1,\n\
+    \"b\": \"2\",\n\
+    \"c\": [\n\
+      3,\n\
+      \"4\",\n\
+      [\n\
+        5,\n\
+        []\n\
+      ]\n\
+    ]\n\
+  }\n\
+}\n\
+\n\
+- id: 2\n\
+  TestScript1_entity:\n\
+    object: {}\n\
+\n\
+- id: 3\n\
+  TestScript1_nontree:\n\
+    object: ({x:[[2], [2], [], {y:[2]}]})\n\
+\n\
+- id: 4\n\
+  TestScript1_custom:\n\
+    object: {\n\
+  \"c\": 1\n\
+}\n\
+\n"
 		);
 
 		std::stringstream stateStream;
 		TS_ASSERT(man.SerializeState(stateStream));
 
 		CSimContext context2;
-		CComponentManager man2(context2, ScriptInterface::CreateRuntime());
+		CComponentManager man2(context2, runtime);
 		man2.LoadComponentTypes();
 		TS_ASSERT(man2.LoadScript(L"simulation/components/test-serialize.js"));
 
@@ -789,7 +797,9 @@ public:
 	void test_script_serialization_template()
 	{
 		CSimContext context;
-		CComponentManager man(context, ScriptInterface::CreateRuntime());
+		shared_ptr<ScriptRuntime> runtime = ScriptInterface::CreateRuntime();
+
+		CComponentManager man(context, runtime);
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-serialize.js"));
 		man.InitSystemEntity();
@@ -813,7 +823,7 @@ public:
 		TS_ASSERT(man.SerializeState(stateStream));
 
 		CSimContext context2;
-		CComponentManager man2(context2, ScriptInterface::CreateRuntime());
+		CComponentManager man2(context2, runtime);
 		man2.LoadComponentTypes();
 		TS_ASSERT(man2.LoadScript(L"simulation/components/test-serialize.js"));
 

@@ -69,7 +69,6 @@
 #include "soundmanager/SoundManager.h"
 #include "soundmanager/scripting/JSInterface_Sound.h"
 
-#include "js/jsapi.h"
 /*
  * This file defines a set of functions that are available to GUI scripts, to allow
  * interaction with the rest of the engine.
@@ -88,10 +87,7 @@ namespace {
 // TODO: Use LOGERROR to print a friendly error message when the requirements aren't met instead of failing with debug_warn when cloning.
 void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData)
 {
-	// TODO: Check the comment in CGUIManager::SwitchPage for a detailed explanation of this hack.	
-	CScriptVal cloneSaveInitData;
-	cloneSaveInitData = g_GUI->GetScriptInterface()->CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), initData.get());
-	g_GUI->PushPage(name, g_GUI->GetScriptInterface()->WriteStructuredClone(cloneSaveInitData.get()));
+	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData.get()));
 }
 
 void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData)
@@ -557,7 +553,7 @@ void DebugWarn(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 void ForceGC(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	double time = timer_Time();
-	JS_GC(pCxPrivate->pScriptInterface->GetContext());
+	JS_GC(pCxPrivate->pScriptInterface->GetJSRuntime());
 	time = timer_Time() - time;
 	g_Console->InsertMessage(L"Garbage collection completed in: %f", time);
 }

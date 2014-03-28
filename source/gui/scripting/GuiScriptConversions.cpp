@@ -23,14 +23,13 @@
 #include "lib/external_libraries/libsdl.h"
 #include "ps/Hotkey.h"
 
-#include "js/jsapi.h"
-
-#define SET(obj, name, value) STMT(jsval v_ = ToJSVal(cx, (value)); JS_SetProperty(cx, (obj), (name), &v_))
+#define SET(obj, name, value) STMT(JS::RootedValue v_(cx); ToJSVal(cx, v_.get(), (value)); JS_SetProperty(cx, (obj), (name), v_.address()))
 	// ignore JS_SetProperty return value, because errors should be impossible
 	// and we can't do anything useful in the case of errors anyway
 
-template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ const& val)
+template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::Value& ret, SDL_Event_ const& val)
 {
+	JSAutoRequest rq(cx);
 	const char* typeName;
 
 	switch (val.ev.type)
@@ -55,7 +54,10 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 
 	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 	if (! obj)
-		return JSVAL_VOID;
+	{
+		ret = JSVAL_VOID;
+		return;
+	}
 
 	SET(obj, "type", typeName);
 
@@ -77,9 +79,12 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 
 		JSObject* keysym = JS_NewObject(cx, NULL, NULL, NULL);
 		if (! keysym)
-			return JSVAL_VOID;
-		jsval keysymVal = OBJECT_TO_JSVAL(keysym);
-		JS_SetProperty(cx, obj, "keysym", &keysymVal);
+		{
+			ret = JSVAL_VOID;
+			return;
+		}
+		JS::RootedValue keysymVal(cx, JS::ObjectValue(*keysym));
+		JS_SetProperty(cx, obj, "keysym", keysymVal.address());
 
 		// SET(keysym, "scancode", (int)val.ev.key.keysym.scancode); // (not in wsdl.h)
 		SET(keysym, "sym", (int)val.ev.key.keysym.sym);
@@ -126,15 +131,13 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 	}
 	}
 
-	jsval rval = OBJECT_TO_JSVAL(obj);
-
-	return rval;
+	ret = JS::ObjectValue(*obj);
 }
 
-template<> jsval ScriptInterface::ToJSVal<IGUIObject*>(JSContext* UNUSED(cx), IGUIObject* const& val)
+template<> void ScriptInterface::ToJSVal<IGUIObject*>(JSContext* UNUSED(cx), JS::Value& ret, IGUIObject* const& val)
 {
 	if (val == NULL)
-		return JSVAL_NULL;
-
-	return OBJECT_TO_JSVAL(val->GetJSObject());
+		ret = JSVAL_NULL;
+	else
+		ret = JS::ObjectValue(*val->GetJSObject());
 }

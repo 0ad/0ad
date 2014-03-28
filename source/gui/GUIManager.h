@@ -30,7 +30,7 @@
 #include <set>
 
 class CGUI;
-struct JSObject;
+class JSObject;
 class IGUIObject;
 struct CColor;
 struct SGUIIcon;

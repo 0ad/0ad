@@ -30,7 +30,7 @@ class CCinemaManager;
 class CVector3D;
 struct SViewPort;
 
-struct JSObject;
+class JSObject;
 
 class CGameViewImpl;
 
