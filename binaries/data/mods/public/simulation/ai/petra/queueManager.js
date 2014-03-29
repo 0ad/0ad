@@ -73,7 +73,7 @@ m.QueueManager.prototype.currentNeeds = function(gameState)
 	}
 	// get out current resources, not removing accounts.
 	var current = this.getAvailableResources(gameState, true);
-	for each (var ress in needed.type)
+	for each (var ress in needed.types)
 		needed[ress] = Math.max(0, needed[ress] - current[ress]);
 
 	return needed;

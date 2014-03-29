@@ -55,7 +55,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 		gameState.ai.HQ.stopBuilding.push(this.type);
 		return;
 	}
-	this.buildingsBuilt++;
+	gameState.buildingsBuilt++;
 
 	if (this.metadata === undefined)
 		this.metadata = { "base": pos.base };
