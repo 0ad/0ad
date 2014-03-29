@@ -166,7 +166,24 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	var ret = {
 		"id": ent,
-		"template": template
+		"template": template,
+
+		"alertRaiser": null,
+		"buildEntities": null,
+		"identity": null,
+		"foundation": null,
+		"garrisonHolder": null,
+		"gate": null,
+		"guard": null,
+		"pack": null,
+		"player": -1,
+		"position": null,
+		"production": null,
+		"rallyPoint": null,
+		"rotation": null,
+		"trader": null,
+		"unitAI": null,
+		"visibility": null,
 	};
 
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
