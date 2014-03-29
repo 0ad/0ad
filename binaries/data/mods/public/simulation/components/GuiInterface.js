@@ -24,6 +24,7 @@ GuiInterface.prototype.Init = function()
 	this.renamedEntities = [];
 	this.timeNotificationID = 1;
 	this.timeNotifications = [];
+	this.entsRallyPointsDisplayed = [];
 };
 
 /*
@@ -664,7 +665,10 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 		"specific": specific,
 		"generic": template.genericName,
 	};
-	ret.icon = "technologies/" + template.icon;
+	if (template.icon)
+		ret.icon = "technologies/" + template.icon;
+	else
+		ret.icon = null;
 	ret.cost = {
 		"food": template.cost ? (+template.cost.food) : 0,
 		"wood": template.cost ? (+template.cost.wood) : 0,

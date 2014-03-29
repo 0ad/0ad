@@ -364,7 +364,7 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 	if (this.teamsLocked)
 	{
 		// but can't stab your team members in the back
-		if (this.team == -1 || cmpPlayer && this.team != cmpPlayer.GetTeam())
+		if (this.team == -1 || this.team != cmpPlayer.GetTeam())
 		{
 			// Break alliance or declare war
 			if (Math.min(this.diplomacy[idx],cmpPlayer.diplomacy[this.playerID]) > value)

@@ -97,7 +97,6 @@ function LoadPlayerSettings(settings, newPlayers)
 			else
 			{
 				// Init diplomacy
-				cmpPlayer.SetDiplomacy(new Array(numPlayers));
 				var myTeam = getSetting(pData, pDefs, "Team");
 
 				// Set all but self as enemies as SetTeam takes care of allies

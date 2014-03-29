@@ -108,7 +108,7 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 	var upgradeTemplate = function(templateName)
 	{
 		var template = cmpTemplateManager.GetTemplate(templateName);
-		while (template.Promotion)
+		while (template.Promotion !== undefined)
 		{
 			var requiredXp = ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, playerID, template);
 			if (requiredXp > 0)
