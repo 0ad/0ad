@@ -313,7 +313,19 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
  */
 GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 {
-	var ret = {};
+	var ret = {
+		"armour": null,
+		"attack": null,
+		"barterMarket": null,
+		"buildingAI": null,
+		"healer": null,
+		"obstruction": null,
+		"promotion": null,
+		"resourceCarrying": null,
+		"resourceDropsite": null,
+		"resourceGatherRates": null,
+		"resourceSupply": null,
+	};
 
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 
