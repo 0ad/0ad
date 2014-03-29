@@ -597,10 +597,10 @@ void CNetServerWorker::OnUserLeave(CNetServerSession* session)
 
 void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 {
-	// Find all player IDs in active use; we mustn't give them to a second player
+	// Find all player IDs in active use; we mustn't give them to a second player (excluding the unassigned ID: -1)
 	std::set<i32> usedIDs;
 	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
-		if (it->second.m_Enabled)
+		if (it->second.m_Enabled && it->second.m_PlayerID != -1)
 			usedIDs.insert(it->second.m_PlayerID);
 
 	// If the player is rejoining after disconnecting, try to give them
