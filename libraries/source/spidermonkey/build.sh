@@ -113,6 +113,13 @@ mkdir -p ${INCLUDE_DIR_RELEASE}
 cp -R -L mozjs24/js/src/build-release/dist/include/* ${INCLUDE_DIR_RELEASE}/
 cp -R -L mozjs24/js/src/build-debug/dist/include/* ${INCLUDE_DIR_DEBUG}/
 
+# Fix an annoying compiler warning message that can't be disabled on many Linux systems due to a GCC bug (http://gcc.gnu.org/bugzilla/show_bug.cgi?id=53431)
+if [ "${OS}" != "Windows_NT" ]
+then
+perl -i -pe 's/(^#elif _MSC_VER >= 1600).*/#elif defined(_MSC_VER) && _MSC_VER >= 1600/' ${INCLUDE_DIR_DEBUG}/mozilla/NullPtr.h
+perl -i -pe 's/(^#elif _MSC_VER >= 1600).*/#elif defined(_MSC_VER) && _MSC_VER >= 1600/' ${INCLUDE_DIR_RELEASE}/mozilla/NullPtr.h
+fi
+
 mkdir -p lib/
 cp -L mozjs24/js/src/build-debug/dist/lib/${LIB_PREFIX}mozjs24-ps-debug${LIB_SRC_SUFFIX} lib/${LIB_PREFIX}mozjs24-ps-debug${LIB_DST_SUFFIX}
 cp -L mozjs24/js/src/build-release/dist/lib/${LIB_PREFIX}mozjs24-ps-release${LIB_SRC_SUFFIX} lib/${LIB_PREFIX}mozjs24-ps-release${LIB_DST_SUFFIX}
