@@ -121,7 +121,7 @@ TechnologyManager.prototype.CanResearch = function (tech)
 	if (this.IsInProgress(tech))
 		return false;
 	
-	return this.CheckTechnologyRequirements(template.requirements);
+	return this.CheckTechnologyRequirements(template.requirements || null);
 };
 
 // Private function for checking a set of requirements is met

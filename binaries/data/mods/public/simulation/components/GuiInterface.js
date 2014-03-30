@@ -24,6 +24,7 @@ GuiInterface.prototype.Init = function()
 	this.renamedEntities = [];
 	this.timeNotificationID = 1;
 	this.timeNotifications = [];
+	this.entsRallyPointsDisplayed = [];
 };
 
 /*
@@ -165,7 +166,24 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	var ret = {
 		"id": ent,
-		"template": template
+		"template": template,
+
+		"alertRaiser": null,
+		"buildEntities": null,
+		"identity": null,
+		"foundation": null,
+		"garrisonHolder": null,
+		"gate": null,
+		"guard": null,
+		"pack": null,
+		"player": -1,
+		"position": null,
+		"production": null,
+		"rallyPoint": null,
+		"rotation": null,
+		"trader": null,
+		"unitAI": null,
+		"visibility": null,
 	};
 
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
@@ -312,7 +330,19 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
  */
 GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 {
-	var ret = {};
+	var ret = {
+		"armour": null,
+		"attack": null,
+		"barterMarket": null,
+		"buildingAI": null,
+		"healer": null,
+		"obstruction": null,
+		"promotion": null,
+		"resourceCarrying": null,
+		"resourceDropsite": null,
+		"resourceGatherRates": null,
+		"resourceSupply": null,
+	};
 
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 
@@ -664,7 +694,10 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 		"specific": specific,
 		"generic": template.genericName,
 	};
-	ret.icon = "technologies/" + template.icon;
+	if (template.icon)
+		ret.icon = "technologies/" + template.icon;
+	else
+		ret.icon = null;
 	ret.cost = {
 		"food": template.cost ? (+template.cost.food) : 0,
 		"wood": template.cost ? (+template.cost.wood) : 0,

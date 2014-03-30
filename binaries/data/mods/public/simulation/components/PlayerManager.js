@@ -11,8 +11,20 @@ PlayerManager.prototype.Init = function()
 PlayerManager.prototype.AddPlayer = function(ent)
 {
 	var id = this.playerEntities.length;
-	Engine.QueryInterface(ent, IID_Player).SetPlayerID(id);
+	var cmpPlayer = Engine.QueryInterface(ent, IID_Player)
+	cmpPlayer.SetPlayerID(id);
 	this.playerEntities.push(ent);
+	// initialize / update the diplomacy arrays
+	var newDiplo = [];
+	for (var i = 0; i < id; i++)
+	{
+		var cmpOtherPlayer = Engine.QueryInterface(this.GetPlayerByID(i), IID_Player);
+		cmpOtherPlayer.diplomacy[id] = -1;
+		newDiplo[i] = -1;
+	}
+	newDiplo[id] = 1;
+	cmpPlayer.SetDiplomacy(newDiplo);
+	
 	return id;
 };
 

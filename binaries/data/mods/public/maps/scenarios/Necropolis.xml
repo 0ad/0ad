@@ -2,37 +2,47 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
 		<SunColour r="0.839216" g="0.819608" b="0.67451"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.582913"/>
 		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Colour r="0.333333" g="0.423529" b="0.501961"/>
 				<Height>19.3049</Height>
-				<Shininess>2.68555</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.686523</Murkiness>
 				<Tint r="0.247059" g="0.501961" b="0.501961"/>
 				<ReflectionTint r="0.756863" g="0.701961" b="0.521569"/>
-				<ReflectionTintStrength>0.373047</ReflectionTintStrength>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="466.629" y="109.526" z="382.526"/>
+		<Position x="993.241" y="87.9846" z="540.406"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "necropolis.png",
-  "Description": "4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\u000a\u000aScouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions.",
+  "Preview": "necropolis.png",
+  "Description": "4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n\nScouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,

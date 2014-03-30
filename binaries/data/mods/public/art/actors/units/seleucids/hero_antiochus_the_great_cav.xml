@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="800"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="400"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="350"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="600"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="666"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="333"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="222"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="250"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
+        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="400"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="300"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="40"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="100"/>
+        <animation event="0.5" file="quadraped/horse_attack_a.psa" name="attack_melee" speed="202"/>
+        <animation event="0.5" file="quadraped/horse_attack_b.psa" name="attack_melee" speed="215"/>
+        <animation event="0.5" file="quadraped/horse_attack_a.psa" name="attack_slaughter" speed="202"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/seleucids/hero_antiochus_the_great_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/pers_peytral.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse/crest_1.xml" attachpoint="head"/>
+        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
+      </props>
+      <textures>
+        <texture file="skeletal/horse_rome_maximus.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

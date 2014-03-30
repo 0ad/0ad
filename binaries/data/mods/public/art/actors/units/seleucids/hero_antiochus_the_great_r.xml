@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="17"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
+        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" load="" name="attack_melee" speed="400"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="225"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/ptol_romanized_crest_brass.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
+      </props>
+      <textures>
+        <texture file="skeletal/sele_hero_antiochus.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

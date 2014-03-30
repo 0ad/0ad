@@ -21,7 +21,7 @@ m.Template = m.Class({
 		} else if (this._techModif && this._techModif[string]) {
 			return this._techModif[string];
 		} else {
-			if (this._tpCache[string] === undefined)
+			if (this._tpCache[string] == null)
 			{
 				var args = string.split("/");
 				for (var i = 0; i < args.length; ++i)

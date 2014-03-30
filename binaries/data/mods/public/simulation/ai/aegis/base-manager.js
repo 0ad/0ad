@@ -173,6 +173,8 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues) {
 	for (var i in renameEvents)
 	{
 		var ent = gameState.getEntityById(renameEvents[i].newentity);
+		if (!ent)
+			continue;
 		var workerObject = ent.getMetadata(PlayerID, "worker-object");
 		if (workerObject)
 			workerObject.ent = ent;

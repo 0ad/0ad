@@ -1026,12 +1026,13 @@ m.HQ.prototype.tryBartering = function(gameState)
 				continue;
 
 			var barterRateMin = 70;
-			if (available > 1000)
+			if (available[sell] > 1000)
 				barterRateMin = 50;
+
 			if (sell === "food")
 				barterRateMin -= 40;
 			else if (buy === "food")
-				barterRateMin += 10;
+				barterRateMin += 20;
 
 			var barterRate = getBarterRate(prices, buy, sell);
 			if (barterRate > bestRate && barterRate > barterRateMin)
@@ -1227,6 +1228,8 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 // checks the status of the territory expansion. If no new economic bases created, build some strategic ones.
 m.HQ.prototype.checkBaseExpansion = function(gameState,queues)
 {
+	if (queues.civilCentre.length() > 0)
+		return;
 	// first expand if we have not enough room available for buildings
 	if (this.stopBuilding.length > 1)
 	{

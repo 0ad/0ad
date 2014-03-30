@@ -2,26 +2,25 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>cirrus</SkySet>
-		<SunColour r="0.784314" g="0.764706" b="0.682353"/>
+		<SkySet>cumulus</SkySet>
+		<SunColour r="0.866667" g="0.776471" b="0.490196"/>
 		<SunElevation angle="0.908117"/>
 		<SunRotation angle="-0.693359"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
-			<FogFactor>0</FogFactor>
-			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.898039"/>
+			<FogFactor>0.00117187</FogFactor>
+			<FogThickness>0</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.145098" g="0.321569" b="0.619608"/>
+				<Colour r="0.141176" g="0.321569" b="0.619608"/>
 				<Height>19</Height>
-				<Shininess>158</Shininess>
-				<Waviness>5.52734</Waviness>
-				<Murkiness>0.371094</Murkiness>
-				<Tint r="0.282353" g="0.705882" b="0.882353"/>
+				<Waviness>9.0625</Waviness>
+				<Murkiness>0.470703</Murkiness>
+				<Tint r="0.282353" g="0.701961" b="0.882353"/>
 				<ReflectionTint r="0.00392157" g="0.921569" b="0.992157"/>
 				<ReflectionTintStrength>0.385742</ReflectionTintStrength>
 			</WaterBody>
@@ -29,14 +28,14 @@
 		<Postproc>
 			<Brightness>0</Brightness>
 			<Contrast>1</Contrast>
-			<Saturation>0.99</Saturation>
+			<Saturation>0.789063</Saturation>
 			<Bloom>0.1999</Bloom>
-			<PostEffect>default</PostEffect>
+			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="939.435" y="28.4048" z="324.037"/>
-		<Rotation angle="0.105854"/>
+		<Position x="190.496" y="136.899" z="989.805"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -48534,6 +48533,60 @@
 			<Player>5</Player>
 			<Position x="888.86634" z="468.13025"/>
 			<Orientation y="0.49259"/>
+		</Entity>
+		<Entity uid="9236">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="332.65516" z="486.80158"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="544"/>
+		</Entity>
+		<Entity uid="9237">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="746.35352" z="248.2573"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41416"/>
+		</Entity>
+		<Entity uid="9238">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1127.375" z="248.12418"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56062"/>
+		</Entity>
+		<Entity uid="9239">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1306.50037" z="748.86121"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53304"/>
+		</Entity>
+		<Entity uid="9240">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="842.12848" z="777.72083"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53706"/>
+		</Entity>
+		<Entity uid="9241">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="423.53196" z="994.40229"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23984"/>
+		</Entity>
+		<Entity uid="9242">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1115.98365" z="1022.32544"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60176"/>
+		</Entity>
+		<Entity uid="9243">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="683.4668" z="1238.06543"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34594"/>
+		</Entity>
+		<Entity uid="9244">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="735.92365" z="449.87302"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57388"/>
 		</Entity>
 	</Entities>
 	<Paths/>
