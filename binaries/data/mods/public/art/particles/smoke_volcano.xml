@@ -2,11 +2,11 @@
 <particles>
 
     <texture>art/textures/particles/dust_256a.png</texture>
-    <blend mode="over"/>
+    <blend mode="overlay"/>
 
     <start_full/>
 
-    <constant name="emissionrate" value="6.0"/>
+    <constant name="emissionrate" value="4.0"/>
     <uniform name="lifetime" min="30.0" max="33.0"/>
 
     <constant name="position.y" value="2.5"/>
@@ -18,7 +18,8 @@
     <uniform name="velocity.z" min="-0.5" max="0.5"/>
     <uniform name="velocity.angle" min="-2.0" max="2.0"/>
 
-    <uniform name="size" min="6.5" max="10.5"/>
+    <uniform name="size" min="3.5" max="6.5"/>
+	<constant name="size.growthRate" value="1.0"/>
 
     <uniform name="color.r" min="0.4" max="0.8"/>
     <copy name="color.g" from="color.r"/>

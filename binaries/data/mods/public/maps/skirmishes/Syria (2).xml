@@ -9,7 +9,7 @@
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<UnitsAmbientColour r="0.439216" g="0.521569" b="0.556863"/>
 		<Fog>
-			<FogFactor>0.00164062</FogFactor>
+			<FogFactor>0.00235352</FogFactor>
 			<FogThickness>0.00195313</FogThickness>
 			<FogColour r="0.909804" g="0.87451" b="0.776471"/>
 		</Fog>
@@ -28,20 +28,20 @@
 		<Postproc>
 			<Brightness>0</Brightness>
 			<Contrast>1</Contrast>
-			<Saturation>0.988281</Saturation>
+			<Saturation>0.84375</Saturation>
 			<Bloom>0.2</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="383.396" y="177.198" z="31.998"/>
+		<Position x="302.818" y="125.651" z="386.84"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\u000a\u000aThe player who sets up a profitable trade caravan earliest may gain a decisive advantage.",
+  "Description": "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n\nThe player who sets up a profitable trade caravan earliest may gain a decisive advantage.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -66,7 +66,7 @@
       }
     }
   ],
-  "Preview": "wasteland.png",
+  "Preview": "syria_skirmish_2.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -18628,9 +18628,8 @@
 		</Entity>
 		<Entity uid="3184">
 			<Template>actor|particle/dust_storm.xml</Template>
-			<Position x="655.06867" z="1193.52344"/>
+			<Position x="600.72907" z="1089.71106"/>
 			<Orientation y="2.35621"/>
-			<Actor seed="50938"/>
 		</Entity>
 		<Entity uid="3185">
 			<Template>actor|particle/dust_storm.xml</Template>

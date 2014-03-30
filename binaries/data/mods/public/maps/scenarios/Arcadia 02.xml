@@ -3,8 +3,8 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>rain</SkySet>
-		<SunColour r="0.937255" g="0.768627" b="0.247059"/>
-		<SunElevation angle="0.812077"/>
+		<SunColour r="1.12397" g="0.91705" b="0.296278"/>
+		<SunElevation angle="0.49701"/>
 		<SunRotation angle="0.632749"/>
 		<TerrainAmbientColour r="0.239216" g="0.294118" b="0.419608"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
@@ -34,14 +34,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="126.059" y="91.2288" z="58.8316"/>
+		<Position x="97.5707" y="100.408" z="18.3908"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": false,
-  "Description": "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \u000a\u000aPlayers start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies.",
+  "Description": "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n\nPlayers start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
