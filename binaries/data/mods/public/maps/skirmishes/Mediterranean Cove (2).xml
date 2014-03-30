@@ -3,72 +3,61 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.755392" g="0.734865" b="0.67739"/>
-		<SunElevation angle="0.515418"/>
-		<SunRotation angle="2.50346"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<SunColour r="0.866667" g="0.776471" b="0.490196"/>
+		<SunElevation angle="0.471858"/>
+		<SunRotation angle="0.490668"/>
+		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
 		<UnitsAmbientColour r="0.513726" g="0.564706" b="0.603922"/>
 		<Fog>
 			<FogFactor>0.00242188</FogFactor>
-			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.882353" b="0.890196"/>
+			<FogThickness>0.244141</FogThickness>
+			<FogColour r="0.8" g="0.882353" b="0.886275"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.137255" g="0.337255" b="0.611765"/>
+				<Colour r="0.333333" g="0.423529" b="0.501961"/>
 				<Height>18.2557</Height>
-				<Shininess>85.9375</Shininess>
 				<Waviness>8.82813</Waviness>
-				<Murkiness>0.15625</Murkiness>
-				<Tint r="0.301961" g="0.729412" b="0.94902"/>
+				<Murkiness>0.455078</Murkiness>
+				<Tint r="0.133333" g="0.717647" b="1"/>
 				<ReflectionTint r="0.00392157" g="0.654902" b="0.764706"/>
 				<ReflectionTintStrength>0.0546875</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
-			<Brightness>0.0546875</Brightness>
-			<Contrast>1.07813</Contrast>
+			<Brightness>0.0703125</Brightness>
+			<Contrast>1.01563</Contrast>
 			<Saturation>0.953125</Saturation>
-			<Bloom>0.2</Bloom>
+			<Bloom>0.120313</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="231.668" y="61.8065" z="285.594"/>
+		<Position x="831.508" y="70.7654" z="207.173"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview": "mediterranean_coves.png",
   "Description": "A sheltered natural harbour on the Mediterranean coast provides the resources for battle.",
-  "Keywords": [],
+  "GameType": "wonder",
+  "Keywords": [
+    "naval"
+  ],
+  "LockTeams": false,
   "MapType": "conquest",
-  "Name": "Mediterranean Coves",
+  "Name": "Mediterranean Coves (2)",
   "PlayerData": [
     {
-      "Civ": "cart",
-      "Colour": {
-        "b": 200,
-        "g": 46,
-        "r": 46
-      },
-      "Name": "Player 1",
-      "Team": -1
+      "Name": "Player 1"
     },
     {
-      "Civ": "athen",
-      "Colour": {
-        "b": 20,
-        "g": 20,
-        "r": 150
-      },
-      "Name": "Player 2",
-      "Team": -1
+      "Name": "Player 2"
     }
   ],
+  "Preview": "mediterranean_coves.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -6905,97 +6894,97 @@
 		<Entity uid="1430">
 			<Template>gaia/special_treasure_wood</Template>
 			<Player>0</Player>
-			<Position x="807.41144" z="295.95954"/>
+			<Position x="815.01435" z="438.4665"/>
 			<Orientation y="1.11261"/>
 		</Entity>
 		<Entity uid="1431">
 			<Template>gaia/special_treasure_wood</Template>
 			<Player>0</Player>
-			<Position x="811.31012" z="301.8766"/>
+			<Position x="818.91303" z="444.38355"/>
 			<Orientation y="-1.31722"/>
 		</Entity>
 		<Entity uid="1432">
 			<Template>gaia/special_treasure_wood</Template>
 			<Player>0</Player>
-			<Position x="804.27717" z="301.24482"/>
+			<Position x="811.88007" z="443.75178"/>
 			<Orientation y="-2.70125"/>
 		</Entity>
 		<Entity uid="1433">
 			<Template>gaia/special_treasure_food_barrel</Template>
 			<Player>0</Player>
-			<Position x="816.30005" z="308.87446"/>
+			<Position x="861.28547" z="335.50583"/>
 			<Orientation y="-1.37468"/>
 		</Entity>
 		<Entity uid="1434">
 			<Template>gaia/special_treasure_food_barrel</Template>
 			<Player>0</Player>
-			<Position x="814.87177" z="310.84339"/>
+			<Position x="859.90198" z="337.69004"/>
 			<Orientation y="-0.72674"/>
 		</Entity>
 		<Entity uid="1435">
 			<Template>gaia/special_treasure_food_barrel</Template>
 			<Player>0</Player>
-			<Position x="817.2945" z="311.79633"/>
+			<Position x="862.27991" z="338.42771"/>
 			<Orientation y="1.087"/>
 		</Entity>
 		<Entity uid="1436">
 			<Template>gaia/special_treasure_food_barrel</Template>
 			<Player>0</Player>
-			<Position x="807.88666" z="306.00095"/>
+			<Position x="852.87208" z="332.63233"/>
 			<Orientation y="-2.20873"/>
 		</Entity>
 		<Entity uid="1437">
 			<Template>gaia/special_treasure_food_crate</Template>
 			<Player>0</Player>
-			<Position x="811.02533" z="306.33613"/>
+			<Position x="856.01075" z="332.9675"/>
 			<Orientation y="1.31241"/>
 		</Entity>
 		<Entity uid="1438">
 			<Template>gaia/special_treasure_food_barrel</Template>
 			<Player>0</Player>
-			<Position x="182.59081" z="248.49418"/>
+			<Position x="151.84806" z="243.21573"/>
 			<Orientation y="1.86913"/>
 		</Entity>
 		<Entity uid="1439">
 			<Template>gaia/special_treasure_food_barrel</Template>
 			<Player>0</Player>
-			<Position x="183.43303" z="252.3968"/>
+			<Position x="152.70206" z="247.15723"/>
 			<Orientation y="-1.78827"/>
 		</Entity>
 		<Entity uid="1440">
 			<Template>gaia/special_treasure_food_barrel</Template>
 			<Player>0</Player>
-			<Position x="180.5481" z="250.04035"/>
+			<Position x="149.81713" z="244.80079"/>
 			<Orientation y="1.58327"/>
 		</Entity>
 		<Entity uid="1441">
 			<Template>gaia/special_treasure_food_barrel</Template>
 			<Player>0</Player>
-			<Position x="185.05452" z="249.77283"/>
+			<Position x="154.32355" z="244.53327"/>
 			<Orientation y="-1.75135"/>
 		</Entity>
 		<Entity uid="1442">
 			<Template>gaia/special_treasure_wood</Template>
 			<Player>0</Player>
-			<Position x="192.32634" z="259.36521"/>
+			<Position x="135.37394" z="386.4463"/>
 			<Orientation y="-2.08393"/>
 		</Entity>
 		<Entity uid="1443">
 			<Template>gaia/special_treasure_wood</Template>
 			<Player>0</Player>
-			<Position x="189.59617" z="263.90778"/>
+			<Position x="132.64376" z="390.98887"/>
 			<Orientation y="1.44121"/>
 		</Entity>
 		<Entity uid="1444">
 			<Template>gaia/special_treasure_wood</Template>
 			<Player>0</Player>
-			<Position x="185.70936" z="257.771"/>
+			<Position x="128.75695" z="384.85209"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1445">
 			<Template>gaia/special_treasure_food_crate</Template>
 			<Player>0</Player>
-			<Position x="196.02067" z="265.80158"/>
+			<Position x="165.2897" z="260.56202"/>
 			<Orientation y="-2.09665"/>
 		</Entity>
 		<Entity uid="1446">
@@ -10535,61 +10524,13 @@
 			<Template>units/pers_ship_trireme</Template>
 			<Player>0</Player>
 			<Position x="368.01374" z="510.7594"/>
-			<Orientation y="-2.9468"/>
+			<Orientation y="2.60479"/>
 		</Entity>
 		<Entity uid="2121">
 			<Template>units/pers_ship_trireme</Template>
 			<Player>0</Player>
 			<Position x="553.1927" z="439.86713"/>
 			<Orientation y="0.3216"/>
-		</Entity>
-		<Entity uid="2122">
-			<Template>structures/cart_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="211.59682" z="239.04673"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2123">
-			<Template>units/cart_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="224.32676" z="214.14164"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2124">
-			<Template>units/cart_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="228.1935" z="217.59553"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2126">
-			<Template>units/cart_infantry_javelinist_a</Template>
-			<Player>1</Player>
-			<Position x="201.62003" z="214.80079"/>
-			<Orientation y="-2.24897"/>
-		</Entity>
-		<Entity uid="2127">
-			<Template>units/cart_infantry_javelinist_a</Template>
-			<Player>1</Player>
-			<Position x="199.37713" z="216.70075"/>
-			<Orientation y="-2.40967"/>
-		</Entity>
-		<Entity uid="2128">
-			<Template>units/cart_infantry_javelinist_a</Template>
-			<Player>1</Player>
-			<Position x="197.12916" z="218.41997"/>
-			<Orientation y="-2.1548"/>
-		</Entity>
-		<Entity uid="2129">
-			<Template>units/cart_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="192.6395" z="222.38913"/>
-			<Orientation y="-2.26632"/>
-		</Entity>
-		<Entity uid="2130">
-			<Template>units/cart_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="190.00506" z="225.3762"/>
-			<Orientation y="-2.70003"/>
 		</Entity>
 		<Entity uid="2131">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
@@ -13335,53 +13276,341 @@
 			<Position x="607.35712" z="477.76908"/>
 			<Orientation y="-1.65741"/>
 		</Entity>
-		<Entity uid="2700">
-			<Template>structures/athen_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="835.09076" z="289.59482"/>
+		<Entity uid="2708">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="290.4553" z="374.32563"/>
+			<Orientation y="-1.95058"/>
+			<Actor seed="17050"/>
+		</Entity>
+		<Entity uid="2709">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="409.79255" z="337.6378"/>
+			<Orientation y="0.59365"/>
+			<Actor seed="9692"/>
+		</Entity>
+		<Entity uid="2710">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="502.38706" z="165.2255"/>
+			<Orientation y="-2.34893"/>
+			<Actor seed="13630"/>
+		</Entity>
+		<Entity uid="2711">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="506.93845" z="106.49184"/>
+			<Orientation y="0.95083"/>
+			<Actor seed="59660"/>
+		</Entity>
+		<Entity uid="2712">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="514.26587" z="51.43548"/>
+			<Orientation y="-2.89165"/>
+			<Actor seed="32676"/>
+		</Entity>
+		<Entity uid="2713">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="500.2711" z="72.18572"/>
 			<Orientation y="2.35621"/>
+			<Actor seed="7728"/>
 		</Entity>
-		<Entity uid="2701">
-			<Template>units/athen_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="843.6595" z="266.64316"/>
-			<Orientation y="2.64104"/>
+		<Entity uid="2714">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="518.50971" z="21.52569"/>
+			<Orientation y="-1.55376"/>
+			<Actor seed="12900"/>
 		</Entity>
-		<Entity uid="2702">
-			<Template>units/athen_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="849.86438" z="272.32404"/>
-			<Orientation y="2.76984"/>
+		<Entity uid="2715">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="542.40046" z="173.51722"/>
+			<Orientation y="-1.45282"/>
+			<Actor seed="24994"/>
 		</Entity>
-		<Entity uid="2703">
-			<Template>units/athen_infantry_javelinist_a</Template>
-			<Player>2</Player>
-			<Position x="828.84131" z="266.41874"/>
-			<Orientation y="-2.54177"/>
+		<Entity uid="2716">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="488.0406" z="222.83631"/>
+			<Orientation y="1.16993"/>
+			<Actor seed="24126"/>
 		</Entity>
-		<Entity uid="2704">
-			<Template>units/athen_infantry_javelinist_a</Template>
-			<Player>2</Player>
-			<Position x="825.97504" z="269.72501"/>
-			<Orientation y="-2.26679"/>
+		<Entity uid="2717">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="544.03174" z="237.4029"/>
+			<Orientation y="0.6735"/>
+			<Actor seed="57298"/>
 		</Entity>
-		<Entity uid="2705">
-			<Template>units/athen_infantry_javelinist_a</Template>
-			<Player>2</Player>
-			<Position x="822.66401" z="272.59598"/>
-			<Orientation y="-2.45977"/>
+		<Entity uid="2718">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="680.05842" z="276.07374"/>
+			<Orientation y="-1.3136"/>
+			<Actor seed="12728"/>
 		</Entity>
-		<Entity uid="2706">
-			<Template>units/athen_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="817.03815" z="280.33884"/>
-			<Orientation y="-2.84871"/>
+		<Entity uid="2719">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="587.60883" z="338.40387"/>
+			<Orientation y="0.7268"/>
+			<Actor seed="33146"/>
 		</Entity>
-		<Entity uid="2707">
-			<Template>units/athen_support_female_citizen</Template>
+		<Entity uid="2720">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="442.72995" z="437.37995"/>
+			<Orientation y="-1.76594"/>
+			<Actor seed="58800"/>
+		</Entity>
+		<Entity uid="2721">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="277.71711" z="457.13694"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54020"/>
+		</Entity>
+		<Entity uid="2722">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="313.75776" z="619.6233"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12"/>
+		</Entity>
+		<Entity uid="2723">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="380.30448" z="680.72584"/>
+			<Orientation y="-1.8371"/>
+			<Actor seed="20804"/>
+		</Entity>
+		<Entity uid="2724">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="383.30286" z="623.79212"/>
+			<Orientation y="0.97638"/>
+			<Actor seed="11924"/>
+		</Entity>
+		<Entity uid="2725">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="456.25663" z="538.77912"/>
+			<Orientation y="1.57847"/>
+			<Actor seed="38422"/>
+		</Entity>
+		<Entity uid="2726">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="547.6139" z="521.33527"/>
+			<Orientation y="-1.73484"/>
+			<Actor seed="35348"/>
+		</Entity>
+		<Entity uid="2727">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="583.18165" z="586.56312"/>
+			<Orientation y="0.86512"/>
+			<Actor seed="13300"/>
+		</Entity>
+		<Entity uid="2728">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="640.38874" z="665.6194"/>
+			<Orientation y="-2.89364"/>
+			<Actor seed="5284"/>
+		</Entity>
+		<Entity uid="2729">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="679.77588" z="640.92786"/>
+			<Orientation y="1.19613"/>
+			<Actor seed="2052"/>
+		</Entity>
+		<Entity uid="2730">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="704.02161" z="593.95185"/>
+			<Orientation y="-1.78252"/>
+			<Actor seed="23672"/>
+		</Entity>
+		<Entity uid="2731">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="737.9964" z="556.49372"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34490"/>
+		</Entity>
+		<Entity uid="2732">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="677.74207" z="516.9693"/>
+			<Orientation y="1.89948"/>
+			<Actor seed="63220"/>
+		</Entity>
+		<Entity uid="2733">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="618.93299" z="474.00788"/>
+			<Orientation y="-1.16788"/>
+			<Actor seed="10148"/>
+		</Entity>
+		<Entity uid="2734">
+			<Template>skirmish/structures/default_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="211.04804" z="239.99404"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3788"/>
+		</Entity>
+		<Entity uid="2735">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="189.13593" z="229.15204"/>
+			<Orientation y="-2.49555"/>
+			<Actor seed="34376"/>
+		</Entity>
+		<Entity uid="2736">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="193.3095" z="224.19144"/>
+			<Orientation y="-2.13895"/>
+			<Actor seed="34610"/>
+		</Entity>
+		<Entity uid="2737">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="197.06522" z="220.27738"/>
+			<Orientation y="-2.10615"/>
+			<Actor seed="25822"/>
+		</Entity>
+		<Entity uid="2738">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="201.01742" z="214.96888"/>
+			<Orientation y="-2.17492"/>
+			<Actor seed="54532"/>
+		</Entity>
+		<Entity uid="2739">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="223.43659" z="260.7975"/>
+			<Orientation y="0.89655"/>
+			<Actor seed="30826"/>
+		</Entity>
+		<Entity uid="2740">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="227.58114" z="257.7128"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60698"/>
+		</Entity>
+		<Entity uid="2741">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>1</Player>
+			<Position x="225.81368" z="218.32477"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51198"/>
+		</Entity>
+		<Entity uid="2742">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>1</Player>
+			<Position x="229.6532" z="220.86783"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21532"/>
+		</Entity>
+		<Entity uid="2743">
+			<Template>skirmish/units/default_cavalry</Template>
+			<Player>1</Player>
+			<Position x="187.69118" z="259.37824"/>
+			<Orientation y="-0.81374"/>
+			<Actor seed="32064"/>
+		</Entity>
+		<Entity uid="2744">
+			<Template>skirmish/units/special_starting_unit</Template>
+			<Player>1</Player>
+			<Position x="190.54125" z="262.90876"/>
+			<Orientation y="-0.83407"/>
+			<Actor seed="43662"/>
+		</Entity>
+		<Entity uid="2745">
+			<Template>skirmish/structures/default_civil_centre</Template>
 			<Player>2</Player>
-			<Position x="819.6208" z="277.70142"/>
-			<Orientation y="-2.36612"/>
+			<Position x="832.28016" z="287.3477"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13946"/>
+		</Entity>
+		<Entity uid="2746">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="811.00116" z="275.82358"/>
+			<Orientation y="-2.47796"/>
+			<Actor seed="8244"/>
+		</Entity>
+		<Entity uid="2747">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="814.81232" z="270.91364"/>
+			<Orientation y="-2.37641"/>
+			<Actor seed="8200"/>
+		</Entity>
+		<Entity uid="2748">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="818.42981" z="266.80094"/>
+			<Orientation y="-2.67937"/>
+			<Actor seed="64238"/>
+		</Entity>
+		<Entity uid="2749">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="821.49457" z="263.96982"/>
+			<Orientation y="-2.02501"/>
+			<Actor seed="46070"/>
+		</Entity>
+		<Entity uid="2750">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>2</Player>
+			<Position x="845.20685" z="267.82398"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12602"/>
+		</Entity>
+		<Entity uid="2751">
+			<Template>skirmish/units/default_infantry_melee_b</Template>
+			<Player>2</Player>
+			<Position x="848.77924" z="271.03663"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="6850"/>
+		</Entity>
+		<Entity uid="2752">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>2</Player>
+			<Position x="847.14051" z="304.57514"/>
+			<Orientation y="0.6487"/>
+			<Actor seed="9342"/>
+		</Entity>
+		<Entity uid="2753">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>2</Player>
+			<Position x="851.03156" z="300.1482"/>
+			<Orientation y="0.64054"/>
+			<Actor seed="17420"/>
+		</Entity>
+		<Entity uid="2754">
+			<Template>skirmish/units/default_cavalry</Template>
+			<Player>2</Player>
+			<Position x="809.25757" z="304.4351"/>
+			<Orientation y="-0.81344"/>
+			<Actor seed="39752"/>
+		</Entity>
+		<Entity uid="2755">
+			<Template>skirmish/units/special_starting_unit</Template>
+			<Player>2</Player>
+			<Position x="811.66626" z="308.84626"/>
+			<Orientation y="-0.80909"/>
+			<Actor seed="29496"/>
 		</Entity>
 	</Entities>
 	<Paths/>
