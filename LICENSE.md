@@ -1,5 +1,5 @@
- 0 A.D. Licensing Details
-==========================
+0 A.D. Licensing Details
+========================
 
 0 A.D. is released as open source: you can freely use, copy, modify and
 distribute the game's source code and data files, as long as you include
@@ -15,19 +15,17 @@ Some files don't yet have licensing details specified - if you care about any
 in particular, let us know and we can try to clarify it.
 
   /binaries/data
-    GPL version 2 (or later) - see license_gpl-2.0.txt
+    GPL version 2 (or later) - see [license_gpl-2.0.txt](license_gpl-2.0.txt)
 
   /binaries/data/mods/art
   /binaries/data/mods/audio
-    Creative Commons Attribution-Share Alike 3.0 - see
-    http://creativecommons.org/licenses/by-sa/3.0/
-    and also see LICENSE.txt within those directories
+    [Creative Commons Attribution-Share Alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/) see also LICENSE.txt within those directories
 
   /binaries/system
     Various (unspecified)
 
   /binaries/system/dbghelp.dll
-    Proprietary - see license_dbghelp.txt for restrictions you must agree to
+    Proprietary - see [license_dbghelp.txt](license_dbghelp.txt) for restrictions you must agree to
     before distributing this particular file
 
   /build
@@ -43,10 +41,10 @@ in particular, let us know and we can try to clarify it.
     Various (unspecified)
 
   /libraries
-    Various - see LICENSE.txt within that directory
+    Various - see [LICENSE.txt](libraries/LICENSE.txt) within that directory
 
   /source
-    GPL version 2 (or later) - see license_gpl-2.0.txt
+    GPL version 2 (or later) - see [license_gpl-2.0.txt](license_gpl-2.0.txt)
 
   /source/lib
     MIT
@@ -66,4 +64,4 @@ in particular, let us know and we can try to clarify it.
     Various - see LICENSE.txt within that directory
 
   /source/tools/atlas
-    GPL version 2 (or later) - see license_gpl-2.0.txt
+    GPL version 2 (or later) - see [license_gpl-2.0.txt](license_gpl-2.0.txt)
