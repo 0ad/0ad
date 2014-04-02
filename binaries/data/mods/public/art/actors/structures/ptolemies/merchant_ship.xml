@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="quinquereme">
+      <mesh>structural/ptol_ship_merchant.dae</mesh>
+      <props>
+        <prop actor="props/structures/ptolemies/merchant_sail.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/merchant_tent.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/ptol_merch_ship.png" name="baseTex"/>
+       <texture file="structural/ptol_merch_ship_norm.png" name="normTex"/>
+       <texture file="structural/ptol_merch_ship_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
