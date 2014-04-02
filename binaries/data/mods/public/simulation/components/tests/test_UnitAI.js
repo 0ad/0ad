@@ -91,7 +91,7 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(unit, IID_Attack, {
-		GetRange: function() { return 10; },
+		GetRange: function() { return { "max": 10, "min": 0}; },
 		GetBestAttack: function() { return "melee"; },
 		GetBestAttackAgainst: function(t) { return "melee"; },
 		GetTimers: function() { return { "prepare": 500, "repeat": 1000 }; },
