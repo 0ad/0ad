@@ -141,7 +141,7 @@ m.Filters = {
 	
 	isGarrisoned: function(){
 		return {"func" : function(ent){
-			return ent.position() == -1;	// assumes garrisoned
+			return ent.position() === undefined;
 		},
 			"dynamicProperties": []};
 	},
