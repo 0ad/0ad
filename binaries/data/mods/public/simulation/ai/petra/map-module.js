@@ -156,7 +156,7 @@ m.createFrontierMap = function(gameState, borderMap)
 
 	for (var j = 0; j < territory.length; ++j)
 	{
-		if (territory.getOwnerIndex(j) !== PlayerID || borderMap.map[j] === 2)
+		if (territory.getOwnerIndex(j) !== PlayerID || (borderMap && borderMap.map[j] > 1))
 			continue;
 		var ix = j%width;
 		var iz = Math.floor(j/width);

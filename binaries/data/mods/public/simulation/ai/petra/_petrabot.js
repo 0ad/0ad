@@ -36,7 +36,7 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 	for (var i in this.priorities)
 		this.queues[i] = new m.Queue();
 
-	this.queueManager = new m.QueueManager(this.Config, this.queues, this.priorities);
+	this.queueManager = new m.QueueManager(this.Config, this.queues);
 
 	this.HQ = new m.HQ(this.Config);
 	gameState.Config = this.Config;
@@ -70,7 +70,8 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 
 	//Engine.DumpImage("initialPath" + this.player + ".png", this.pathFinder.TotorMap.map, this.pathFinder.TotorMap.width,this.pathFinder.TotorMap.height,255);
 	
-	if (path !== undefined && path[1] !== undefined && path[1] == false) {
+	if (path !== undefined && path[1] !== undefined && path[1] == false)
+	{
 		// path is viable and doesn't require boating.
 		// blackzone the last two waypoints.
 		this.pathFinder.markImpassableArea(path[0][0][0],path[0][0][1],20);

@@ -185,8 +185,8 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				else
 					friendlyTiles.addInfluence(x, z, 15, -40);   // and further away from other stuffs
 			}
-			else if (template.hasClass("Farmstead") && !ent.hasClass("Field"))
-				friendlyTiles.addInfluence(x, z, 25, -25);           // move farmsteads away to make room.
+			else if (template.hasClass("Farmstead") && (!ent.hasClass("Field") && (!ent.hasClass("StoneWall") || ent.hasClass("Gates"))))
+				friendlyTiles.addInfluence(x, z, 25, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
 			else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
 				friendlyTiles.addInfluence(x, z, 30, -50);
 			else if (template.hasClass("Military"))
@@ -206,18 +206,28 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	}
 
 	// requires to be inside our territory, and inside our base territory if required
+	// and if our first market, put it on border if possible to maximize distance with next market
+	var border = template.hasClass("BarterMarket");
 	if (this.metadata && this.metadata.base !== undefined)
 	{
 		var base = this.metadata.base;
 		for (var j = 0; j < friendlyTiles.map.length; ++j)
+		{
 			if (gameState.ai.HQ.basesMap.map[j] !== base)
 				friendlyTiles.map[j] = 0;
+			else if (border && gameState.ai.HQ.borderMap.map[j] > 0)
+				friendlyTiles.map[j] += 50;
+		}
 	}
 	else
 	{
 		for (var j = 0; j < friendlyTiles.map.length; ++j)
+		{
 			if (gameState.ai.HQ.basesMap.map[j] === 0)
 				friendlyTiles.map[j] = 0;
+			else if (border && gameState.ai.HQ.borderMap.map[j] > 0)
+				friendlyTiles.map[j] += 50;
+		}
 	}
 	
 	// Find target building's approximate obstruction radius, and expand by a bit to make sure we're not too close, this
@@ -226,7 +236,8 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	// also not for fields who can be stacked quite a bit
 
 	var radius = 0;
-	if (template.hasClass("Fortress") || this.type == "structures/{civ}_siege_workshop")
+	if (template.hasClass("Fortress") || this.type === "structures/{civ}_siege_workshop"
+		|| this.type === "structures/{civ}_elephant_stables")
 		radius = Math.floor(template.obstructionRadius() / cellSize) + 3;
 	else if (template.buildCategory() === "Dock")
 		radius = 1;

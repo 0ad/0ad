@@ -50,6 +50,15 @@ m.TradeManager.prototype.update = function(gameState, queues)
 {
 	if (!this.tradeRoute)
 		return;
+	var source = this.tradeRoute.source;
+	var target = this.tradeRoute.target;
+	if (!source || !target || !gameState.getEntityById(source.id()) || !gameState.getEntityById(target.id()))
+	{
+		if (this.Config.debug > 1)
+			warn("We have lost our trade route");
+		this.tradeRoute = undefined;
+		return;
+	}
 	var self = this;
 	if (gameState.ai.playedTurn % 100 === 9)
 		this.setTradingGoods(gameState);
@@ -73,7 +82,7 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 {
 	var tradingGoods = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
 	// first, try to anticipate future needs 
-	var stocks = gameState.ai.HQ.GetTotalResourceLevel(gameState);
+	var stocks = gameState.ai.HQ.getTotalResourceLevel(gameState);
 	var remaining = 100;
 	this.targetNumTraders = this.Config.Economy.targetNumTraders;
 	for (var type in stocks)
@@ -97,9 +106,13 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 	var mainNeed = Math.floor(remaining * 70 / 100)
 	var nextNeed = remaining - mainNeed;
 
+	var wantedRates = gameState.ai.queueManager.wantedGatherRates(gameState);
 	var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
 	tradingGoods[mostNeeded[0]] += mainNeed;
-	tradingGoods[mostNeeded[1]] += nextNeed;
+	if (wantedRates[mostNeeded[1]] > 0)
+		tradingGoods[mostNeeded[1]] += nextNeed;
+	else
+		tradingGoods[mostNeeded[0]] += nextNeed;
 	Engine.PostCommand(PlayerID, {"type": "set-trading-goods", "tradingGoods": tradingGoods});
 	if (this.Config.debug == 2)
 		warn(" trading goods set to " + uneval(tradingGoods));

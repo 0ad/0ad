@@ -20,6 +20,10 @@ m.AttackManager = function(Config)
 // More initialisation for stuff that needs the gameState
 m.AttackManager.prototype.init = function(gameState, queues)
 {
+	this.outOfPlan = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "plan", -1));
+	this.outOfPlan.allowQuickIter();
+	this.outOfPlan.registerUpdates();
+
 	this.maxRushes = 0;
 	if (this.Config.personality.aggressive > 0.9)
 		this.maxRushes = 2
@@ -139,10 +143,10 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			// okay so then we'll update the attack.
 			if (attack.isPaused())
 				continue;
-			var remaining = attack.update(gameState,this,events);
+			var remaining = attack.update(gameState,this, events);
 			if (!remaining)
 			{
-				if (this.Config.debug)
+				if (this.Config.debug > 0)
 					warn("Military Manager: " + attack.getType() + " plan " + attack.getName() + " is finished with remaining " + remaining);
 				attack.Abort(gameState);
 				this.startedAttacks[attackType].splice(i--,1);
@@ -150,6 +154,13 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		}
 	}
 	
+	// Number of running attacks
+	if (this.Config.debug > 0 && gameState.ai.playedTurn%50 === 0)
+	{
+		for (var attackType in this.startedAttacks)
+			warn(" === current number of " + attackType + " = " + this.startedAttacks[attackType].length);
+	}
+
 	// creating plans after updating because an aborted plan might be reused in that case.
 
 	// TODO: remove the limitation to attacks when on water maps.
@@ -158,10 +169,10 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		if (this.rushNumber < this.maxRushes && gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_barracks"), true) >= 1)
 		{
 			if (this.upcomingAttacks["Rush"].length === 0)
-			{ 
+			{
 				// we have a barracks and we want to rush, rush.
-				var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, -1, "Rush");
-				if (this.Config.debug)
+				var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Rush");
+				if (this.Config.debug > 0)
 					warn("Headquarters: Rushing plan " + this.totalNumber + " with maxRushes " + this.maxRushes);
 				this.rushNumber++;
 				this.totalNumber++;
@@ -179,15 +190,15 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			else if (this.upcomingAttacks["CityAttack"].length === 0)
 			{
 				if (this.attackNumber < 2)
-					var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, -1);
+					var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber);
 				else
-					var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, -1, "superSized");
+					var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "superSized");
 
 				if (attackPlan.failed)
 					this.attackPlansEncounteredWater = true; // hack
 				else
 				{
-					if (this.Config.debug)
+					if (this.Config.debug > 0)
 						warn("Military Manager: Creating the plan " + this.totalNumber);
 					this.attackNumber++;
 					this.totalNumber++;
@@ -208,7 +219,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			if (target)
 			{
 				// prepare a raid against this target
-				var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, target.owner(), "Raid");
+				var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Raid", target.owner(), target);
 				if (this.Config.debug > 0)
 					warn("Headquarters: Raiding plan " + this.totalNumber);
 				this.raidNumber++;

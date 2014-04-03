@@ -70,10 +70,10 @@ m.Config = function() {
 		"trader" : 50,
 		"ships" : 70,
 		"house" : 350,
-		"dropsites" : 120,
-		"field" : 500,
+		"dropsites" : 200,
+		"field" : 400,
 		"economicBuilding" : 90,
-		"militaryBuilding" : 240,	// set to something lower after the first barracks.
+		"militaryBuilding" : 130,
 		"defenseBuilding" : 70,
 		"civilCentre" : 950,
 		"majorTech" : 700,
