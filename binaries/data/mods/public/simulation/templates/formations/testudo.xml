@@ -4,7 +4,19 @@
     <RequiredMemberCount>9</RequiredMemberCount>
     <DisabledTooltip>9 melee infantry units required</DisabledTooltip>
     <FormationName>Testudo</FormationName>
-    <UnitSeparationWidthMultiplier>0.7</UnitSeparationWidthMultiplier>
+    <UnitSeparationWidthMultiplier>0.5</UnitSeparationWidthMultiplier>
+    <UnitSeparationDepthMultiplier>0.7</UnitSeparationDepthMultiplier>
+    <WidthDepthRatio>1.5</WidthDepthRatio>
+    <Animations>
+      <idle>
+        1..1,1..-1: idle_testudo_front;
+        2..-1,1..-1: idle_testudo_top
+      </idle>
+      <walk>
+        1..1,1..-1: walk_testudo_front;
+        2..-1,1..-1: walk_testudo_top
+      </walk>
+    </Animations>
   </Formation>
   <FormationAttack>
     <CanAttackAsFormation>true</CanAttackAsFormation>
