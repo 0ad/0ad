@@ -617,6 +617,10 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState)
 	}
 	if (target)
 		targets.addEnt(target);
+
+	if (targets.length == 0 && this.type === "normal")
+		targets = this.defaultTargetFinder(gameState);
+
 	return targets;
 };
 

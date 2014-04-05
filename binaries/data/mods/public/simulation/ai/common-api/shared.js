@@ -127,6 +127,7 @@ m.SharedScript.prototype.init = function(state) {
 	this.playersData = state.players;
 	this.territoryMap = state.territoryMap;
 	this.timeElapsed = state.timeElapsed;
+	this.circularMap = state.circularMap;
 	this.barterPrices = state.barterPrices;
 
 	this._entities = {};

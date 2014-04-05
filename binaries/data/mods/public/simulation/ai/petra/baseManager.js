@@ -715,7 +715,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		var targetNB = this.Config.Economy.targetNumBuilders;	// TODO: dynamic that.
-		if (target.hasClass("House"))
+		if (target.hasClass("House") || target.hasClass("Market"))
 			targetNB *= 2;
 		else if (target.hasClass("Barracks") || target.hasClass("Tower"))
 			targetNB = 4;
