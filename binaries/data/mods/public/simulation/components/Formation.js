@@ -930,7 +930,10 @@ Formation.prototype.OnGlobalEntityRenamed = function(msg)
 		this.offsets = undefined;
 		var cmpNewUnitAI = Engine.QueryInterface(msg.newentity, IID_UnitAI);
 		if (cmpNewUnitAI)
+		{
 			this.members[this.members.indexOf(msg.entity)] = msg.newentity;
+			this.memberPositions[msg.entity] = msg.newEntity;
+		}
 
 		var cmpOldUnitAI = Engine.QueryInterface(msg.entity, IID_UnitAI);
 		cmpOldUnitAI.SetFormationController(INVALID_ENTITY);
