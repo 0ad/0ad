@@ -359,6 +359,11 @@ function getSavedGameData()
 
 function restoreSavedGameData(data)
 {
+	// Restore camera if any
+	if (data.camera)
+		Engine.SetCameraData(data.camera.PosX, data.camera.PosY, data.camera.PosZ,
+			data.camera.RotX, data.camera.RotY, data.camera.Zoom);
+
 	// Clear selection when loading a game
 	g_Selection.reset();
 

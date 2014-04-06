@@ -19,11 +19,13 @@
 
 #include "SavedGame.h"
 
+#include "graphics/GameView.h"
 #include "gui/GUIManager.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/archive/archive_zip.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Game.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
@@ -84,6 +86,17 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "initAttributes", simulation.GetInitAttributes());
 
 	CScriptVal guiMetadata = simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone);
+
+	// get some camera data
+	CScriptVal cameraMetadata;
+	simulation.GetScriptInterface().Eval("({})", cameraMetadata);
+	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "PosX", g_Game->GetView()->GetCameraPosX());
+	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "PosY", g_Game->GetView()->GetCameraPosY());
+	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "PosZ", g_Game->GetView()->GetCameraPosZ());
+	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "RotX", g_Game->GetView()->GetCameraRotX());
+	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "RotY", g_Game->GetView()->GetCameraRotY());
+	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "Zoom", g_Game->GetView()->GetCameraZoom());
+	simulation.GetScriptInterface().SetProperty(guiMetadata.get(), "camera", cameraMetadata);
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "gui", guiMetadata);
 
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "description", description);
