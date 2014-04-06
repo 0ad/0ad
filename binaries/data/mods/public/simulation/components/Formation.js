@@ -932,7 +932,7 @@ Formation.prototype.OnGlobalEntityRenamed = function(msg)
 		if (cmpNewUnitAI)
 		{
 			this.members[this.members.indexOf(msg.entity)] = msg.newentity;
-			this.memberPositions[msg.entity] = msg.newEntity;
+			this.memberPositions[msg.newentity] = this.memberPositions[msg.entity];
 		}
 
 		var cmpOldUnitAI = Engine.QueryInterface(msg.entity, IID_UnitAI);
