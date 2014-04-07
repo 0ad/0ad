@@ -19,6 +19,7 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	this.EntCollecNames = SharedScript._entityCollectionsName;
 	this.EntCollec = SharedScript._entityCollections;
 	this.timeElapsed = SharedScript.timeElapsed;
+	this.circularMap = SharedScript.circularMap;
 	this.templates = SharedScript._templates;
 	this.techTemplates = SharedScript._techTemplates;
 	this.entities = SharedScript.entities;

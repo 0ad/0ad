@@ -8,21 +8,17 @@ var PETRA = function(m)
 m.Worker = function(ent) {
 	this.ent = ent;
 	this.baseID = 0;
-	this.lastUpdate = undefined;
+	this.lastIdle = undefined;
+	this.consecutiveIdle = 0;
 };
 
 m.Worker.prototype.update = function(baseManager, gameState) {
-	this.lastUpdate = gameState.ai.playedTurn;
 	this.baseID = baseManager.ID;
 	var subrole = this.ent.getMetadata(PlayerID, "subrole");
 
-	if (!this.ent.position() || (this.ent.getMetadata(PlayerID,"fleeing") && gameState.getTimeElapsed() - this.ent.getMetadata(PlayerID,"fleeing") < 8000)){
-		// If the worker has no position then no work can be done
+	if (!this.ent.position())
 		return;
-	}
-	if (this.ent.getMetadata(PlayerID,"fleeing"))
-		this.ent.setMetadata(PlayerID,"fleeing", undefined);
-	
+
 	// Okay so we have a few tasks.
 	// If we're gathering, we'll check that we haven't run idle.
 	// ANd we'll also check that we're gathering a resource we want to gather.
@@ -245,11 +241,11 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 		}
 	}
 
-	if (gameState.ai.HQ.Config.debug > 0)
-	{
+	// If we are here, we have nothing left to gather ... certainly no more resources of this type
+	gameState.ai.HQ.lastFailedGather[resource] = gameState.ai.playedTurn;
+	if (gameState.ai.HQ.Config.debug > 1)
 		warn(" >>>>> worker with gather-type " + resource + " with nothing to gather ");
-	}
-
+	this.ent.setMetadata(PlayerID, "subrole", "idle");
 	return false;
 };
 
@@ -348,8 +344,9 @@ m.Worker.prototype.startHunting = function(gameState, baseManager)
 		if (supply.footprintRadius() < 1)
 		{
 			var fakeMap = new API3.Map(gameState.sharedScript, gameState.getMap().data);
-			var id = fakeMap.gamePosToMapPos(supply.position())[0] + fakeMap.width*fakeMap.gamePosToMapPos(supply.position())[1];
-			if ((gameState.sharedScript.passabilityClasses["pathfinderObstruction"] & gameState.getMap().data[id]))
+			var mapPos = fakeMap.gamePosToMapPos(supply.position());
+			var id = mapPos[0] + fakeMap.width*mapPos[1];
+			if (gameState.sharedScript.passabilityClasses["pathfinderObstruction"] & gameState.getMap().data[id])
 			{
 				supply.setMetadata(PlayerID, "inaccessible", true)
 				return;

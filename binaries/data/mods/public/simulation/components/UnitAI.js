@@ -2750,7 +2750,7 @@ var UnitFsmSpec = {
 					if(this.order.data.target)
 						var target = this.order.data.target;
 					else
-					{	
+					{
 						if(!this.alertGarrisoningTarget)
 						{
 							// We've been unable to find a target nearby, so give up
@@ -2843,7 +2843,7 @@ var UnitFsmSpec = {
 				this.isGarrisoned = true;
 				return false;
 			},
-				
+
 			"Order.Ungarrison": function() {
 				if (this.FinishOrder())
 					return;
@@ -3608,10 +3608,11 @@ UnitAI.prototype.AddOrders = function(orders)
 UnitAI.prototype.GetOrderData = function()
 {
 	var orders = [];
-	for (var i in this.orderQueue) {
+	for (var i in this.orderQueue)
+	{
 		if (this.orderQueue[i].data)
 			orders.push(deepcopy(this.orderQueue[i].data));
-		}
+	}
 	return orders;
 };
 
@@ -3620,22 +3621,22 @@ UnitAI.prototype.UpdateWorkOrders = function(type)
 	// Under alert, remembered work orders won't be forgotten
 	if (this.IsUnderAlert())
 		return;
-	
+
 	var isWorkType = function(type){
 		return (type == "Gather" || type == "Trade" || type == "Repair" || type == "ReturnResource");
 	};
-	
+
 	// If we are being re-affected to a work order, forget the previous ones
 	if (isWorkType(type))
 	{
 		this.workOrders = [];
 		return;
 	}
-	
+
 	// Then if we already have work orders, keep them
 	if (this.workOrders.length)
 		return;
-	
+
 	// First if the unit is in a formation, get its workOrders from it
 	if (this.IsFormationMember())
 	{
@@ -3665,10 +3666,10 @@ UnitAI.prototype.UpdateWorkOrders = function(type)
 };
 
 UnitAI.prototype.BackToWork = function()
-{	
+{
 	if (this.workOrders.length == 0)
 		return false;
-	
+
 	// Clear the order queue considering special orders not to avoid
 	if (this.order && this.order.type == "Cheering")
 	{
@@ -3677,9 +3678,9 @@ UnitAI.prototype.BackToWork = function()
 	}
 	else
 		this.orderQueue = [];
-		
+
 	this.AddOrders(this.workOrders);
-		
+
 	// And if the unit is in a formation, remove it from the formation
 	if (this.IsFormationMember())
 	{
@@ -3687,7 +3688,7 @@ UnitAI.prototype.BackToWork = function()
 		if (cmpFormation)
 			cmpFormation.RemoveMembers([this.entity]);
 	}
-		
+
 	this.workOrders = [];
 	return true;
 };
@@ -4899,7 +4900,8 @@ UnitAI.prototype.Ungarrison = function()
 };
 
 /**
- * Adds autogarrison order to the queue (only used by ProductionQueue for auto-garrisoning)
+ * Adds autogarrison order to the queue (only used by ProductionQueue for auto-garrisoning
+ * and Promotion when promoting already garrisoned entities).
  */
 UnitAI.prototype.Autogarrison = function()
 {

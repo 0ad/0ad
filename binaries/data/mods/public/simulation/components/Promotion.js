@@ -37,7 +37,7 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	var cmpCurrentUnitPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var cmpPromotedUnitPosition = Engine.QueryInterface(promotedUnitEntity, IID_Position);
 	if (cmpCurrentUnitPosition.IsInWorld())
-	{	
+	{
 		var pos = cmpCurrentUnitPosition.GetPosition2D();
 		cmpPromotedUnitPosition.JumpTo(pos.x, pos.y);
 	}
@@ -69,15 +69,32 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 		var carriedResorces = cmpCurrentUnitResourceGatherer.GetCarryingStatus();
 		cmpPromotedUnitResourceGatherer.GiveResources(carriedResorces);
 	}
-	
+
 	var cmpCurrentUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	var cmpPromotedUnitAI = Engine.QueryInterface(promotedUnitEntity, IID_UnitAI);
 	cmpPromotedUnitAI.SetHeldPosition(cmpCurrentUnitAI.GetHeldPosition());
 	if (cmpCurrentUnitAI.GetStanceName())
 		cmpPromotedUnitAI.SwitchToStance(cmpCurrentUnitAI.GetStanceName());
-	cmpPromotedUnitAI.Cheer();
+
 	var orders = cmpCurrentUnitAI.GetOrders();
+	if (cmpCurrentUnitAI.IsGarrisoned())
+	{
+		if (orders.length > 0 && orders[0].type == "Garrison")
+		{
+			// Replace the garrison order by an autogarrison order,
+			// as we are already garrisoned and do not need to do
+			// any further checks (or else we should do them here).
+			orders.shift();
+			cmpPromotedUnitAI.Autogarrison();
+		}
+		else
+			warn("Promoted garrisoned entity with empty order queue.");
+	}
+	else
+		cmpPromotedUnitAI.Cheer();
+
 	cmpPromotedUnitAI.AddOrders(orders);
+
 	var workOrders = cmpCurrentUnitAI.GetWorkOrders();
 	cmpPromotedUnitAI.SetWorkOrders(workOrders);
 	cmpPromotedUnitAI.SetGuardOf(cmpCurrentUnitAI.IsGuardOf());

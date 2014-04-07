@@ -20,11 +20,13 @@ var PETRA = function(m)
 //
 // This system should be improved. It's probably not flexible enough.
 
-m.QueueManager = function(Config, queues, priorities)
+m.QueueManager = function(Config, queues)
 {
 	this.Config = Config;
 	this.queues = queues;
-	this.priorities = priorities;
+	this.priorities = {};
+	for (var i in Config.priorities)
+		this.priorities[i] = Config.priorities[i];
 	this.accounts = {};
 
 	// the sorting is updated on priority change.
@@ -88,7 +90,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 	// short queue is the first item of a queue, assumed to be ready in 30s
 	// medium queue is the second item of a queue, assumed to be ready in 60s
 	// long queue contains the is the isGo=false items, assumed to be ready in 300s
-	var totalShort = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	var totalShort = { "food": 200, "wood": 200, "stone": 100, "metal": 100 };
 	var totalMedium = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
 	var totalLong = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
 	var total;
@@ -120,7 +122,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 		}
 	}
 	// global rates
-	var rates = { "food" : 0, "wood" : 0, "stone" : 0, "metal" : 0 };
+	var rates = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
 	var diff;
 	for (var type in rates)
 	{
@@ -135,11 +137,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 				totalMedium[type] -= diff;
 				current[type] -= diff;
 				if (current[type] > 0)
-				{
-					diff = Math.min(current[type], totalLong[type]);
-					totalLong[type] -= diff;
-					current[type] -= diff;
-				}
+					totalLong[type] -= Math.min(current[type], totalLong[type]);
 			}
 		}
 		rates[type] = totalShort[type]/30 + totalMedium[type]/60 + totalLong[type]/300;
@@ -496,7 +494,7 @@ m.QueueManager.prototype.update = function(gameState)
 					this.accounts[j][ress] += diff;
 					this.accounts[i][ress] -= diff;
 					++otherQueue.switched;
-					if (this.Config.debug)
+					if (this.Config.debug > 1)
 						warn ("switching queue " + ress + " from " + i + " to " + j + " in amount " + diff);
 					break;
 				}
@@ -605,8 +603,15 @@ m.QueueManager.prototype.removeQueue = function(queueName)
 	}
 };
 
+m.QueueManager.prototype.getPriority = function(queueName)
+{
+	return this.priorities[queueName];
+};
+
 m.QueueManager.prototype.changePriority = function(queueName, newPriority)
 {
+	if (this.Config.debug > 0)
+		warn(">>> Priority of queue " + queueName + " changed from " + this.priorities[queueName] + " to " + newPriority);
 	var self = this;
 	if (this.queues[queueName] !== undefined)
 		this.priorities[queueName] = newPriority;

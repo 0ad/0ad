@@ -450,6 +450,23 @@ void CameraFollowFPS(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), entity_id_t
 		g_Game->GetView()->CameraFollow(entityid, true);
 }
 
+/**
+ * Set the data (position, orientation and zoom) of the camera
+ */
+void SetCameraData(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), entity_pos_t x, entity_pos_t y, entity_pos_t z, entity_pos_t rotx, entity_pos_t roty, entity_pos_t zoom)
+{
+	// called from JS; must not fail
+	if(!(g_Game && g_Game->GetWorld() && g_Game->GetView() && g_Game->GetWorld()->GetTerrain()))
+		return;
+
+	CVector3D Pos = CVector3D(x.ToFloat(), y.ToFloat(), z.ToFloat());
+	float RotX = rotx.ToFloat();
+	float RotY = roty.ToFloat();
+	float Zoom = zoom.ToFloat();
+
+	g_Game->GetView()->SetCamera(Pos, RotX, RotY, Zoom);
+}
+
 /// Move camera to a 2D location
 void CameraMoveTo(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), entity_pos_t x, entity_pos_t z)
 {
@@ -849,6 +866,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<float, &CameraGetZ>("CameraGetZ");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollowFPS>("CameraFollowFPS");
+	scriptInterface.RegisterFunction<void, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, &SetCameraData>("SetCameraData");
 	scriptInterface.RegisterFunction<void, entity_pos_t, entity_pos_t, &CameraMoveTo>("CameraMoveTo");
 	scriptInterface.RegisterFunction<entity_id_t, &GetFollowedEntity>("GetFollowedEntity");
 	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");

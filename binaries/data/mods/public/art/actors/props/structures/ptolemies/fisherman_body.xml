@@ -2,11 +2,17 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-<!--		<animations>
-			<animation file="biped/fisherman_idle_1.dae" name="Idle" speed="7"/>
+    <variant frequency="100" name="Idle">
+		<animations>
+			<animation file="biped/fisherman_idle_1.dae" name="Idle" speed="100"/>
+			<animation file="biped/fisherman_idle_2.dae" name="Idle" speed="100"/>
+			<animation file="biped/fisherman_idle_3.dae" name="Idle" speed="100"/>							
+			<animation file="biped/fisherman_row.dae" name="Walk" speed="20"/>
+			<animation file="biped/fisherman_row.dae" name="carry_food" speed="20"/>			
+			<animation file="biped/fisherman_gather.dae" name="gather_fish" speed="130"/>
+			<animation file="biped/fisherman_death.dae" name="death" speed="100"/>			
 		</animations>
--->		<mesh>skeletal/m_tunic_long.dae</mesh>
+    	<mesh>skeletal/m_tunic_long.dae</mesh>
 		<props>
 			<prop actor="props/units/heads/head_african_1.xml" attachpoint="head"/>
 			<prop actor="props/units/row.xml" attachpoint="l_hand"/>

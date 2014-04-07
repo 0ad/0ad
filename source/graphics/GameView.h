@@ -84,6 +84,13 @@ public:
 
 	float GetCameraX();
 	float GetCameraZ();
+	float GetCameraPosX();
+	float GetCameraPosY();
+	float GetCameraPosZ();
+	float GetCameraRotX();
+	float GetCameraRotY();
+	float GetCameraZoom();
+	void SetCamera(CVector3D Pos, float RotX, float RotY, float Zoom);
 	void MoveCameraTarget(const CVector3D& target);
 	void ResetCameraTarget(const CVector3D& target);
 	void ResetCameraAngleZoom();

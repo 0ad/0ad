@@ -17,6 +17,8 @@ m.DefenseManager.prototype.update = function(gameState, events)
 {
 	this.territoryMap = gameState.ai.HQ.territoryMap;
 	
+	this.checkDefenseStructures(gameState, events);
+
 	this.checkEnemyArmies(gameState, events);
 	this.checkEnemyUnits(gameState);
 	this.assignDefenders(gameState);
@@ -36,6 +38,16 @@ m.DefenseManager.prototype.makeIntoArmy = function(gameState, entityID)
 	this.armies.push(army);
 };
 
+m.DefenseManager.prototype.getArmy = function(partOfArmy)
+{
+	// Find the army corresponding to this ID partOfArmy
+	for (var o in this.armies)
+		if (this.armies[o].ID === partOfArmy)
+		    return this.armies[o];
+
+	return undefined;
+};
+
 // TODO: this algorithm needs to be improved, sorta.
 m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 {
@@ -52,7 +64,12 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 		if (this.targetList.indexOf(targetId) !== -1)
 			return true;
 		var target = gameState.getEntityById(targetId);
-		if (target && target.hasClass("CivCentre"))
+		if (target && this.territoryMap.getOwner(entity.position()) === PlayerID)
+		{
+			this.targetList.push(targetId);
+			return true;
+		}
+		else if (target && target.hasClass("CivCentre"))
 		{
 			var myBuildings = gameState.getOwnStructures();
 			for (var i in myBuildings._entities)
@@ -248,19 +265,16 @@ m.DefenseManager.prototype.assignDefenders = function(gameState, events)
 	// let's get our potential units
 	var potentialDefenders = []; 
 	gameState.getOwnUnits().forEach(function(ent) {
-		if (ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
+		if (!ent.position())
 			return;
-		if (ent.getMetadata(PlayerID, "plan") !== undefined)
+		if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
+			return;
+		if (ent.hasClass("Siege") || ent.hasClass("Support") || ent.attackTypes() === undefined)
+			return;
+		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
 		{
 			var subrole = ent.getMetadata(PlayerID, "subrole");
 			if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking"))
-				return;
-			if (ent.hasClass("Siege"))
-				return;
-		}
-		else
-		{
-			if (!ent.hasClass("Infantry") && !ent.hasClass("Cavalry"))
 				return;
 		}
 		potentialDefenders.push(ent.id());
@@ -303,9 +317,55 @@ m.DefenseManager.prototype.assignDefenders = function(gameState, events)
 
 	// If shortage of defenders: increase the priority of soldiers queues
 	if (armiesNeeding.length !== 0)
-		gameState.ai.HQ.boostSoldiers(gameState, 10000, true);
+		gameState.ai.HQ.boostSoldiers(gameState);
 	else
 		gameState.ai.HQ.unboostSoldiers(gameState);
+};
+
+// If our defense structures are attacked, garrison soldiers inside when possible
+// TODO transfer most of that code in a garrisonManager
+m.DefenseManager.prototype.checkDefenseStructures = function(gameState, events)
+{
+	var self = this;
+	var attackedEvents = events["Attacked"];
+	for (var key in attackedEvents)
+	{
+		var e = attackedEvents[key];
+		var target = gameState.getEntityById(e.target);
+		if (!target || !gameState.isEntityOwn(target) || !target.getArrowMultiplier())
+			continue;
+		if (!target.isGarrisonHolder() || gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
+			continue;
+		var attacker = gameState.getEntityById(e.attacker);
+		if (!attacker)
+			continue;
+		var dist = API3.SquareVectorDistance(attacker.position(), target.position());
+		var range = target.attackRange("Ranged").max;
+		if (dist >= range*range)
+			continue;
+		var garrisonManager = gameState.ai.HQ.garrisonManager;
+		gameState.getOwnUnits().filter(API3.Filters.byClassesAnd(["Infantry", "Ranged"])).filterNearest(target.position()).forEach(function(ent) {
+			if (garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
+				return;
+
+			if (!ent.position())
+				return;
+			var army = ent.getMetadata(PlayerID, "PartOfArmy");
+			if (army !== undefined)
+				army = self.getArmy(army);
+			if (army !== undefined)
+				army.removeOwn(gameState, ent.id(), ent);
+			if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
+				return;
+			if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
+			{
+				var subrole = ent.getMetadata(PlayerID, "subrole");
+				if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking")) 
+					return;
+			}
+			garrisonManager.garrison(gameState, ent, target, "protection");
+		});
+	}
 };
 
 // this processes the attackmessages

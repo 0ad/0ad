@@ -28,6 +28,8 @@ m.Queue.prototype.addItem = function(plan)
 			this.queue[i].addItem(plan.number)
 			return;
 		}
+		else if (plan.category === "technology" && this.queue[i].type === plan.type)
+			return;
 	}
 	this.queue.push(plan);
 };

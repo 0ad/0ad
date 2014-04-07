@@ -129,14 +129,14 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			var ent = gameState.getEntityById(evt.newentity);
 			if (ent === undefined)
 				continue;
+
+			if (evt.newentity === evt.entity)  // repaired building
+				continue;
 			
 			if (ent.getMetadata(PlayerID,"base") == this.ID)
 			{
 				if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 					this.assignResourceToDropsite(gameState, ent);
-				if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant") && this.Config.debug)
-					for each (var ress in ent.resourceDropsiteTypes())
-						warn(" DPresource " + ress + " = " + this.getResourceLevel(gameState, ress));
 			}
 		}
 	}
@@ -261,7 +261,8 @@ m.BaseManager.prototype.removeDropsite = function (gameState, ent)
 	return;
 };
 
-// Returns the position of the best place to build a new dropsite for the specified resource
+// Returns the position of the best place to build a new dropsite for the specified resource 
+// TODO check dropsites of other bases ... may-be better to do a simultaneous liste of dp and foundations
 m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 {
 	
@@ -562,14 +563,16 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState)
 	var idleWorkers = gameState.updatingCollection("idle-workers-base-" + this.ID, filter, this.workers);
 
 	var self = this;
-	if (idleWorkers.length) {
+	if (idleWorkers.length)
+	{
 		idleWorkers.forEach(function(ent)
 		{
 			// Check that the worker isn't garrisoned
 			if (ent.position() === undefined)
 				return;
 			// Support elephant can only be builders
-			if (ent.hasClass("Support") && ent.hasClass("Elephant")) {
+			if (ent.hasClass("Support") && ent.hasClass("Elephant"))
+			{
 				ent.setMetadata(PlayerID, "subrole", "idle");
 				return;
 			}
@@ -580,9 +583,16 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState)
 				else
 				{
 					var types = gameState.ai.HQ.pickMostNeededResources(gameState);
-					ent.setMetadata(PlayerID, "subrole", "gatherer");
-					ent.setMetadata(PlayerID, "gather-type", types[0]);
-					m.AddTCRessGatherer(gameState, types[0]);
+					for (var i = 0; i < types.length; ++i)
+					{
+						var lastFailed = gameState.ai.HQ.lastFailedGather[types[i]];
+						if (lastFailed && gameState.ai.playedTurn - lastFailed < 20)
+							continue;
+						ent.setMetadata(PlayerID, "subrole", "gatherer");
+						ent.setMetadata(PlayerID, "gather-type", types[i]);
+						m.AddTCRessGatherer(gameState, types[i]);
+						break;
+					}
 				}
 			}
 			else if (ent.hasClass("Cavalry"))
@@ -606,7 +616,10 @@ m.BaseManager.prototype.gatherersByType = function(gameState, type)
 // They are idled immediatly and their subrole set to idle.
 m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 {
-	var availableWorkers = this.workers.filter(API3.Filters.not(API3.Filters.byClass("Cavalry"))).toEntityArray();
+	var filter = API3.Filters.not(API3.Filters.or(
+		API3.Filters.or(API3.Filters.byMetadata(PlayerID, "plan", -2), API3.Filters.byMetadata(PlayerID, "plan", -3)),
+		API3.Filters.or(API3.Filters.isGarrisoned(), API3.Filters.byClass("Cavalry"))));
+	var availableWorkers = this.workers.filter(filter).toEntityArray();
 	availableWorkers.sort(function (a,b) {
 		var vala = 0, valb = 0;
 		if (a.getMetadata(PlayerID, "subrole") == "builder")
@@ -617,9 +630,9 @@ m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 			vala = -20;
 		if (b.getMetadata(PlayerID, "subrole") == "idle")
 			valb = -20;
-		if (a.getMetadata(PlayerID, "plan") != undefined)
+		if (a.getMetadata(PlayerID, "plan") !== undefined)
 			vala = -100;
-		if (b.getMetadata(PlayerID, "plan") != undefined)
+		if (b.getMetadata(PlayerID, "plan") !== undefined)
 			valb = -100;
 		return (vala - valb);
 	});
@@ -702,7 +715,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		var targetNB = this.Config.Economy.targetNumBuilders;	// TODO: dynamic that.
-		if (target.hasClass("House"))
+		if (target.hasClass("House") || target.hasClass("Market"))
 			targetNB *= 2;
 		else if (target.hasClass("Barracks") || target.hasClass("Tower"))
 			targetNB = 4;

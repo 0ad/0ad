@@ -181,11 +181,14 @@ m.Army.prototype.addOwn = function (gameState, ID)
 	ent.setMetadata(PlayerID, "PartOfArmy", this.ID);
 	this.assignedTo[ID] = 0;
 
-	var formerSubrole = ent.getMetadata(PlayerID, "subrole");
-	if (formerSubrole && formerSubrole === "defender")    // can happen when armies are merged for example
-		return true;
-	if (formerSubrole !== undefined)
-		ent.setMetadata(PlayerID, "formerSubrole", formerSubrole);
+	var plan = ent.getMetadata(PlayerID, "plan");
+	if (plan !== undefined)
+		ent.setMetadata(PlayerID, "plan", -2);
+	else
+ 		ent.setMetadata(PlayerID, "plan", -3);
+	var subrole = ent.getMetadata(PlayerID, "subrole");
+	if (subrole === undefined || subrole !== "defender")
+		ent.setMetadata(PlayerID, "formerSubrole", subrole);
 	ent.setMetadata(PlayerID, "subrole", "defender");
 	return true;
 }
@@ -206,6 +209,10 @@ m.Army.prototype.removeOwn = function (gameState, ID, Entity)
 	this.ownEntities.splice(idx, 1);
 	this.evaluateStrength(ent, true, true);
 	ent.setMetadata(PlayerID, "PartOfArmy", undefined);
+	if (ent.getMetadata(PlayerID, "plan") === -2)
+		ent.setMetadata(PlayerID, "plan", -1);
+	else
+		ent.setMetadata(PlayerID, "plan", undefined);
 
 	if (this.assignedTo[ID] !== 0)
 	{
@@ -215,12 +222,12 @@ m.Army.prototype.removeOwn = function (gameState, ID, Entity)
 	}
 	this.assignedTo[ID] = undefined;
 
-		
 	var formerSubrole = ent.getMetadata(PlayerID, "formerSubrole");
 	if (formerSubrole !== undefined)
 		ent.setMetadata(PlayerID, "subrole", formerSubrole);
 	else
 		ent.setMetadata(PlayerID, "subrole", undefined);
+	ent.setMetadata(PlayerID, "formerSubrole", undefined);
 
 	return true;
 }

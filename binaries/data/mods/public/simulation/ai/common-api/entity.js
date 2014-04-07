@@ -389,6 +389,24 @@ m.Template = m.Class({
 			return undefined;
 		return this.get("GarrisonHolder/Max");
 	},
+
+	getDefaultArrow: function() {
+		if (!this.get("BuildingAI"))
+			return undefined;
+		return +this.get("BuildingAI/DefaultArrowCount");
+	},
+
+	getArrowMultiplier: function() {
+		if (!this.get("BuildingAI"))
+			return undefined;
+		return +this.get("BuildingAI/GarrisonArrowMultiplier");
+	},
+
+	buffHeal: function() {
+		if (!this.get("GarrisonHolder"))
+			return undefined;
+		return this.get("GarrisonHolder/BuffHeal");
+	},
 	
 	/**
 	 * Returns whether this is an animal that is too difficult to hunt.
@@ -671,6 +689,8 @@ m.Entity = m.Class({
 		}
 		return undefined;
 	},
+
+	isGarrisonHolder: function() { return this.get("GarrisonHolder") },
 
 	garrisoned: function() { return new m.EntityCollection(this._ai, this._entity.garrisoned); },
 	

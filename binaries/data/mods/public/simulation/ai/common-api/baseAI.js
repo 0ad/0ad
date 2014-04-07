@@ -55,6 +55,8 @@ m.BaseAI.prototype.Init = function(state, playerID, sharedAI)
 	
 	this.timeElapsed = sharedAI.timeElapsed;
 
+	this.circularMap = sharedAI.circularMap;
+
 	this.barterPrices = sharedAI.barterPrices;
 
 	this.CustomInit(this.gameState, this.sharedScript);

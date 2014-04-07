@@ -755,7 +755,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 		var usedRealPositions = realPositions.splice(-t.length);
 		for each (var entPos in t)
 		{
-			var closestOffsetId = this.TakeClosestOffset(entPos, usedRealPositions);
+			var closestOffsetId = this.TakeClosestOffset(entPos, usedRealPositions, usedOffsets);
 			usedRealPositions.splice(closestOffsetId, 1);
 			newOffsets.push(usedOffsets.splice(closestOffsetId, 1)[0]);
 			newOffsets[newOffsets.length - 1].ent = entPos.ent;
@@ -771,7 +771,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
  * @param realPositions, the world coordinates of the available offsets
  * @return the index of the closest offset position
  */
-Formation.prototype.TakeClosestOffset = function(entPos, realPositions)
+Formation.prototype.TakeClosestOffset = function(entPos, realPositions, offsets)
 {
 	var pos = entPos.pos;
 	var closestOffsetId = -1;
@@ -785,7 +785,7 @@ Formation.prototype.TakeClosestOffset = function(entPos, realPositions)
 			closestOffsetId = i;
 		}
 	}
-	this.memberPositions[entPos.ent] = {"row": realPositions[closestOffsetId].row, "column": realPositions[closestOffsetId].column};
+	this.memberPositions[entPos.ent] = {"row": offsets[closestOffsetId].row, "column":offsets[closestOffsetId].column};
 	return closestOffsetId;
 };
 
@@ -930,7 +930,10 @@ Formation.prototype.OnGlobalEntityRenamed = function(msg)
 		this.offsets = undefined;
 		var cmpNewUnitAI = Engine.QueryInterface(msg.newentity, IID_UnitAI);
 		if (cmpNewUnitAI)
+		{
 			this.members[this.members.indexOf(msg.entity)] = msg.newentity;
+			this.memberPositions[msg.newentity] = this.memberPositions[msg.entity];
+		}
 
 		var cmpOldUnitAI = Engine.QueryInterface(msg.entity, IID_UnitAI);
 		cmpOldUnitAI.SetFormationController(INVALID_ENTITY);
