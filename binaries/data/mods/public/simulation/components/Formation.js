@@ -250,6 +250,12 @@ Formation.prototype.SetInPosition = function(ent)
 	if (this.inPosition.indexOf(ent) != -1)
 		return;
 
+	// Rotate the entity to the right angle
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	var cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
+	if (cmpEntPosition && cmpEntPosition.IsInWorld() && cmpPosition && cmpPosition.IsInWorld)
+		cmpEntPosition.TurnTo(cmpPosition.GetRotation().y);
+
 	this.inPosition.push(ent);
 };
 
