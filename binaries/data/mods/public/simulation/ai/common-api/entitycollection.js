@@ -40,7 +40,7 @@ m.EntityCollection.prototype.Serialize = function()
 	};
 };
 
-m.EntityCollection.prototype.DeSerialize = function(data, sharedAI)
+m.EntityCollection.prototype.Deserialize = function(data, sharedAI)
 {
 	this._ai = sharedAI;
 	for each (var id in data.ents)
