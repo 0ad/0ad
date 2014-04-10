@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Trader Cart">
+      <animations>
+        <animation file="mechanical/maur_trader_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/maur_trader_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/maur_trader_move.dae" name="Run" speed="10"/>
+      </animations>
+      <mesh>skeletal/maur_trader.dae</mesh>
+      <props>
+        <prop actor="fauna/zebu.xml" attachpoint="horseright"/>
+        <prop actor="fauna/zebu.xml" attachpoint="horseleft"/>        
+        <prop actor="units/hellenes/trader_r.xml" attachpoint="trader"/>
+        <prop actor="props/special/eyecandy/crate_a.xml" attachpoint="driver"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="rider"/>
+      </props>
+      <textures><texture file="props/maur_trader.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
