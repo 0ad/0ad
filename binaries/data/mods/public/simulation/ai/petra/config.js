@@ -4,7 +4,7 @@ var PETRA = function(m)
 // this defines the medium difficulty
 m.Config = function() {
 	this.difficulty = 2;	// 0 is sandbox, 1 is easy, 2 is medium, 3 is hard, 4 is very hard.
-	this.debug = 1;
+	this.debug = 0;
 
 	this.Military = {
 		"towerLapseTime" : 90, // Time to wait between building 2 towers
