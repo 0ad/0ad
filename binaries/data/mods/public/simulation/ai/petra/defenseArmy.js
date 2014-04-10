@@ -10,27 +10,6 @@ m.DefenseArmy = function(gameState, defManager, ownEntities, foeEntities)
 	this.watchTSMultiplicator = this.Config.Defense.armyStrengthWariness;
 	this.watchDecrement = this.Config.Defense.prudence;
 
-	this.foeSubStrength = {
-		"spear" : ["Infantry", "Spear"],	//also pikemen
-		"sword" : ["Infantry", "Sword"],
-		"ranged" : ["Infantry", "Ranged"],
-		"meleeCav" : ["Cavalry", "Melee"],
-		"rangedCav" : ["Cavalry", "Ranged"],
-		"Elephant" : ["Elephant"],
-		"meleeSiege" : ["Siege", "Melee"],
-		"rangedSiege" : ["Siege", "Ranged"]
-	};
-	this.ownSubStrength = {
-		"spear" : ["Infantry", "Spear"],	//also pikemen
-		"sword" : ["Infantry", "Sword"],
-		"ranged" : ["Infantry", "Ranged"],
-		"meleeCav" : ["Cavalry", "Melee"],
-		"rangedCav" : ["Cavalry", "Ranged"],
-		"Elephant" : ["Elephant"],
-		"meleeSiege" : ["Siege", "Melee"],
-		"rangedSiege" : ["Siege", "Ranged"]
-	};
-
 	this.checkDangerosity(gameState);	// might push us to 1.
 	this.watchLevel = this.foeStrength * this.watchTSMultiplicator;
 	

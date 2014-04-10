@@ -311,7 +311,7 @@ m.QueueManager.prototype.printQueues = function(gameState)
 		var q = this.queues[i];
 		if (q.queue.length > 0)
 		{
-			warn(i + ": ( paused " + q.paused + " with priority " + this.priorities[i] +" and accounts " + uneval(this.accounts[i]) +")");
+			warn(i + ": ( with priority " + this.priorities[i] +" and accounts " + uneval(this.accounts[i]) +")");
 			warn(" while maxAccountWanted(0.6) is " + uneval(q.maxAccountWanted(gameState, 0.6)));
 		}
 		for (var j in q.queue)
