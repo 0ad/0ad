@@ -89,7 +89,7 @@ m.EntityCollection.prototype.preventQuickIter = function()
 
 m.EntityCollection.prototype.toIdArray = function()
 {
-	return Object.keys(this._entities);
+	return Object.keys(this._entities).map(function(n){return +n;});
 };
 
 m.EntityCollection.prototype.toEntityArray = function()
