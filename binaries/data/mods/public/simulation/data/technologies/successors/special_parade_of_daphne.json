@@ -6,7 +6,7 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "parade_of_daphne.png",
 	"researchTime": 60,
-	"tooltip": "Fortress increased batch training speed bonus.",
+	"tooltip": "Faster batch training speed for the Fortress.",
 	"modifications": [{"value": "ProductionQueue/BatchTimeModifier", "add": -0.2}],
 	"affects": ["Fortress"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
