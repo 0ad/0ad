@@ -44,6 +44,7 @@ public:
 	virtual void ban(const std::string& nick, const std::string& reason) = 0;
 	virtual void SetPresence(const std::string& presence) = 0;
 	virtual void GetPresence(const std::string& nickname, std::string& presence) = 0;
+	virtual void GetRole(const std::string& nickname, std::string& role) = 0;
 	virtual void GetSubject(std::string& subject) = 0;
 
 	virtual CScriptValRooted GUIGetPlayerList(ScriptInterface& scriptInterface) = 0;

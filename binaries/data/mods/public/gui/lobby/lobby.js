@@ -681,6 +681,11 @@ function handleSpecialCommand(text)
  */
 function addChatMessage(msg)
 {
+	// Display the moderator symbol in the chatbox.
+	var playerRole = Engine.LobbyGetPlayerRole(msg.from);
+	if (playerRole == "moderator")
+		msg.from = g_modPrefix + msg.from;
+
 	// Highlight local user's nick
 	if (msg.text.indexOf(g_Name) != -1 && g_Name != msg.from)
 		msg.text = msg.text.replace(new RegExp('\\b' + '\\' + g_Name + '\\b', "g"), colorPlayerName(g_Name));

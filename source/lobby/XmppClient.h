@@ -71,6 +71,7 @@ public:
 	void ban(const std::string& nick, const std::string& reason);
 	void SetPresence(const std::string& presence);
 	void GetPresence(const std::string& nickname, std::string& presence);
+	void GetRole(const std::string& nickname, std::string& role);
 	void GetSubject(std::string& subject);
 
 	CScriptValRooted GUIGetPlayerList(ScriptInterface& scriptInterface);

@@ -51,6 +51,7 @@ namespace JSI_Lobby
 	void LobbyKick(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nick, std::wstring reason);
 	void LobbyBan(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nick, std::wstring reason);
 	std::wstring LobbyGetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nickname);
+	std::wstring LobbyGetPlayerRole(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nickname);
 	std::wstring LobbyGetRoomSubject(ScriptInterface::CxPrivate* pCxPrivate);
 
 	// Non-public secure PBKDF2 hash function with salting and 1,337 iterations

@@ -847,6 +847,20 @@ void XmppClient::GetPresence(const std::string& nick, std::string& presence)
 		presence = "offline";
 }
 
+/**
+ * Get the current xmpp role of the given nick.
+ *
+ * @param nick Nickname to look up presence for
+ * @param role Variable to store the role in
+ */
+void XmppClient::GetRole(const std::string& nick, std::string& role)
+{
+	if (m_PlayerMap.find(nick) != m_PlayerMap.end())
+		role = m_PlayerMap[nick][2];
+	else
+		role = "";
+}
+
 /*****************************************************
  * Utilities                                         *
  *****************************************************/
