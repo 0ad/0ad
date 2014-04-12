@@ -3,14 +3,14 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.961458" g="0.861397" b="0.543811"/>
-		<SunElevation angle="0.694003"/>
-		<SunRotation angle="0.429178"/>
+		<SunColour r="0.960784" g="0.858824" b="0.541176"/>
+		<SunElevation angle="0.693359"/>
+		<SunRotation angle="-0.392699"/>
 		<TerrainAmbientColour r="0.247059" g="0.403922" b="0.584314"/>
 		<UnitsAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.00199219</FogFactor>
-			<FogThickness>0.273438</FogThickness>
+			<FogThickness>0</FogThickness>
 			<FogColour r="0.882353" g="0.839216" b="0.701961"/>
 		</Fog>
 		<Water>
@@ -18,11 +18,10 @@
 				<Type>default</Type>
 				<Colour r="0.329412" g="0.419608" b="0.501961"/>
 				<Height>20.6689</Height>
-				<Shininess>1.46484</Shininess>
 				<Waviness>7.98828</Waviness>
 				<Murkiness>0.899414</Murkiness>
-				<Tint r="0.741176" g="0.592157" b="0.27451"/>
-				<ReflectionTint r="0.741176" g="0.592157" b="0.27451"/>
+				<Tint r="0.737255" g="0.592157" b="0.27451"/>
+				<ReflectionTint r="0.737255" g="0.592157" b="0.27451"/>
 				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
@@ -35,7 +34,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="662.787" y="109.736" z="544.795"/>
+		<Position x="661.583" y="78.8027" z="664.517"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>

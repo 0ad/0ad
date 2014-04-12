@@ -18,7 +18,6 @@
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>26.859</Height>
-				<Shininess>150</Shininess>
 				<Waviness>10</Waviness>
 				<Murkiness>0.679688</Murkiness>
 				<Tint r="0" g="1" b="1"/>
@@ -35,9 +34,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="1364.84" y="174.891" z="1085.03"/>
-		<Rotation angle="-0.00931619"/>
-		<Declination angle="0.788021"/>
+		<Position x="594.482" y="166.74" z="1253.55"/>
+		<Rotation angle="0.062531"/>
+		<Declination angle="0.646373"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -125,13 +124,13 @@
 		</Entity>
 		<Entity uid="93">
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
-			<Position x="622.8003" z="1578.83057"/>
-			<Orientation y="-2.98697"/>
+			<Position x="645.15644" z="1581.77271"/>
+			<Orientation y="-2.05654"/>
 		</Entity>
 		<Entity uid="94">
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
-			<Position x="611.14136" z="1575.2594"/>
-			<Orientation y="0.65554"/>
+			<Position x="635.74659" z="1571.1875"/>
+			<Orientation y="-2.5917"/>
 		</Entity>
 		<Entity uid="95">
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
@@ -2335,7 +2334,7 @@
 		<Entity uid="529">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="610.99177" z="1580.0376"/>
+			<Position x="624.47773" z="1582.92823"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="530">
@@ -4027,7 +4026,7 @@
 		<Entity uid="825">
 			<Template>structures/mace_fortress</Template>
 			<Player>1</Player>
-			<Position x="602.21216" z="1558.10792"/>
+			<Position x="502.17237" z="1198.75501"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="57108"/>
 		</Entity>
@@ -4111,14 +4110,14 @@
 		<Entity uid="837">
 			<Template>structures/mace_house</Template>
 			<Player>1</Player>
-			<Position x="587.93207" z="1505.6792"/>
+			<Position x="697.22553" z="1396.10816"/>
 			<Orientation y="1.3629"/>
 			<Actor seed="38872"/>
 		</Entity>
 		<Entity uid="838">
 			<Template>structures/mace_house</Template>
 			<Player>1</Player>
-			<Position x="628.20215" z="1515.83973"/>
+			<Position x="644.5871" z="1477.7494"/>
 			<Orientation y="-2.00142"/>
 			<Actor seed="55170"/>
 		</Entity>
@@ -4160,7 +4159,7 @@
 		<Entity uid="844">
 			<Template>structures/mace_fortress</Template>
 			<Player>1</Player>
-			<Position x="676.31556" z="1320.8501"/>
+			<Position x="734.44227" z="1305.9054"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="2168"/>
 		</Entity>
@@ -4919,111 +4918,6 @@
 			<Position x="556.50196" z="1409.85401"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="61806"/>
-		</Entity>
-		<Entity uid="953">
-			<Template>units/mace_thorakites</Template>
-			<Player>1</Player>
-			<Position x="712.88843" z="1297.73707"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="17768"/>
-		</Entity>
-		<Entity uid="954">
-			<Template>units/mace_thorakites</Template>
-			<Player>1</Player>
-			<Position x="710.58118" z="1294.8938"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="43924"/>
-		</Entity>
-		<Entity uid="955">
-			<Template>units/mace_thorakites</Template>
-			<Player>1</Player>
-			<Position x="707.39057" z="1291.72278"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="47246"/>
-		</Entity>
-		<Entity uid="956">
-			<Template>units/mace_thorakites</Template>
-			<Player>1</Player>
-			<Position x="704.98346" z="1289.82056"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="25870"/>
-		</Entity>
-		<Entity uid="957">
-			<Template>units/mace_thorakites</Template>
-			<Player>1</Player>
-			<Position x="702.38245" z="1287.66041"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="44958"/>
-		</Entity>
-		<Entity uid="958">
-			<Template>units/mace_thureophoros</Template>
-			<Player>1</Player>
-			<Position x="716.09394" z="1292.59522"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="39196"/>
-		</Entity>
-		<Entity uid="959">
-			<Template>units/mace_thureophoros</Template>
-			<Player>1</Player>
-			<Position x="713.89997" z="1289.95093"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="21806"/>
-		</Entity>
-		<Entity uid="960">
-			<Template>units/mace_thureophoros</Template>
-			<Player>1</Player>
-			<Position x="710.9698" z="1288.15845"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="39008"/>
-		</Entity>
-		<Entity uid="961">
-			<Template>units/mace_thureophoros</Template>
-			<Player>1</Player>
-			<Position x="708.6717" z="1285.66272"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="53096"/>
-		</Entity>
-		<Entity uid="962">
-			<Template>units/mace_thureophoros</Template>
-			<Player>1</Player>
-			<Position x="705.98371" z="1282.91651"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="29662"/>
-		</Entity>
-		<Entity uid="963">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>1</Player>
-			<Position x="710.54352" z="1280.2118"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="12012"/>
-		</Entity>
-		<Entity uid="964">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>1</Player>
-			<Position x="713.02259" z="1282.44971"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="56812"/>
-		</Entity>
-		<Entity uid="965">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>1</Player>
-			<Position x="715.20698" z="1284.64625"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="31832"/>
-		</Entity>
-		<Entity uid="966">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>1</Player>
-			<Position x="717.7071" z="1286.96827"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="37556"/>
-		</Entity>
-		<Entity uid="967">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>1</Player>
-			<Position x="720.68622" z="1290.56763"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="7972"/>
 		</Entity>
 		<Entity uid="968">
 			<Template>gaia/fauna_fish_tilapia</Template>
@@ -7459,6 +7353,20 @@
 			<Position x="1659.41028" z="465.2924"/>
 			<Orientation y="0.7283"/>
 			<Actor seed="62126"/>
+		</Entity>
+		<Entity uid="1356">
+			<Template>structures/mace_siege_workshop</Template>
+			<Player>1</Player>
+			<Position x="672.49231" z="1323.17847"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="38680"/>
+		</Entity>
+		<Entity uid="1357">
+			<Template>structures/mace_wonder</Template>
+			<Player>1</Player>
+			<Position x="602.02234" z="1547.43311"/>
+			<Orientation y="3.09313"/>
+			<Actor seed="37370"/>
 		</Entity>
 	</Entities>
 	<Paths/>
