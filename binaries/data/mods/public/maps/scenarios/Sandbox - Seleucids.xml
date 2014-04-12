@@ -18,7 +18,6 @@
 				<Type>default</Type>
 				<Colour r="0" g="0.501961" b="0.74902"/>
 				<Height>19.9</Height>
-				<Shininess>187.5</Shininess>
 				<Waviness>10</Waviness>
 				<Murkiness>0.700195</Murkiness>
 				<Tint r="0" g="1" b="1"/>
@@ -35,8 +34,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="653.269" y="53.2307" z="165.762"/>
-		<Rotation angle="0.0346268"/>
+		<Position x="564.645" y="62.4664" z="114.017"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -91,7 +90,7 @@
       "Team": -1
     }
   ],
-  "Preview": "sandbox-theromans.png",
+  "Preview": "sandbox-theseleucids.png",
   "RevealMap": false,
   "Script": "oasis.js",
   "Seed": 4278,
@@ -10185,7 +10184,7 @@
 			<Template>structures/sele_barracks</Template>
 			<Player>1</Player>
 			<Position x="484.92042" z="196.88466"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="0.76172"/>
 			<Actor seed="38346"/>
 		</Entity>
 		<Entity uid="2510">
@@ -10765,8 +10764,8 @@
 		<Entity uid="2595">
 			<Template>units/sele_champion_elephant</Template>
 			<Player>1</Player>
-			<Position x="446.70215" z="182.63083"/>
-			<Orientation y="2.2788"/>
+			<Position x="446.637" z="182.60904"/>
+			<Orientation y="-2.54589"/>
 			<Actor seed="27974"/>
 		</Entity>
 		<Entity uid="2596">
@@ -10779,7 +10778,7 @@
 		<Entity uid="2597">
 			<Template>units/sele_champion_elephant</Template>
 			<Player>1</Player>
-			<Position x="459.01581" z="192.60659"/>
+			<Position x="460.00998" z="194.69658"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="62464"/>
 		</Entity>
@@ -10863,7 +10862,7 @@
 		<Entity uid="2612">
 			<Template>units/sele_mechanical_siege_lithobolos_packed</Template>
 			<Player>1</Player>
-			<Position x="429.40326" z="186.12366"/>
+			<Position x="433.34781" z="184.13592"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="39878"/>
 		</Entity>
@@ -11357,56 +11356,56 @@
 		<Entity uid="2684">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="417.46454" z="143.41288"/>
+			<Position x="456.47831" z="179.53028"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="30888"/>
 		</Entity>
 		<Entity uid="2685">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="419.10633" z="145.20673"/>
+			<Position x="458.1201" z="181.32413"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="4088"/>
 		</Entity>
 		<Entity uid="2686">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="420.47065" z="147.28129"/>
+			<Position x="459.48441" z="183.39869"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="21760"/>
 		</Entity>
 		<Entity uid="2687">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="422.03321" z="148.43934"/>
+			<Position x="461.04697" z="184.55674"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="59106"/>
 		</Entity>
 		<Entity uid="2688">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="425.4498" z="143.78434"/>
+			<Position x="464.46357" z="179.90174"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="2216"/>
 		</Entity>
 		<Entity uid="2689">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="423.54084" z="142.219"/>
+			<Position x="462.5546" z="178.3364"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="44522"/>
 		</Entity>
 		<Entity uid="2690">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="422.20075" z="140.90085"/>
+			<Position x="461.21451" z="177.01825"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="27594"/>
 		</Entity>
 		<Entity uid="2691">
 			<Template>units/sele_champion_infantry_pikeman</Template>
 			<Player>1</Player>
-			<Position x="420.23981" z="139.52735"/>
+			<Position x="459.25358" z="175.64475"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="16668"/>
 		</Entity>
