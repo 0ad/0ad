@@ -155,6 +155,13 @@ function updatePlayerList()
 	var playersBox = Engine.GetGUIObjectByName("playersBox");
 	[playerList, presenceList, nickList, ratingList] = [[],[],[],[]];
 	var cleanPlayerList = Engine.GetPlayerList();
+	// Sort the player list, ignoring case.
+	cleanPlayerList.sort(function(a,b) 
+	{
+		var aName = a.name.toLowerCase();
+		var bName = b.name.toLowerCase();
+		return ((aName > bName) ? 1 : (bName > aName) ? -1 : 0);
+	} );
 	for (var i = 0; i < cleanPlayerList.length; i++)
 	{
 		// Identify current user's rating.
