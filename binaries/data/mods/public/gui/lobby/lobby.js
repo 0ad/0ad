@@ -458,14 +458,15 @@ function onTick()
 		// Clean Message
 		if (!message)
 			break;
-		var from = escapeText(message.from);
 		var text = escapeText(message.text);
 		switch (message.type)
 		{
 		case "mucmessage": // For room messages
+			var from = escapeText(message.from);
 			addChatMessage({ "from": from, "text": text });
 			break;
 		case "message": // For private messages
+			var from = escapeText(message.from);
 			addChatMessage({ "from": from, "text": text });
 			break;
 		case "muc":
@@ -681,10 +682,20 @@ function handleSpecialCommand(text)
  */
 function addChatMessage(msg)
 {
-	// Display the moderator symbol in the chatbox.
-	var playerRole = Engine.LobbyGetPlayerRole(msg.from);
-	if (playerRole == "moderator")
-		msg.from = g_modPrefix + msg.from;
+	// Some calls of this function will leave some msg parameters empty. Text is required though.
+	if (msg.from)
+	{
+		// Display the moderator symbol in the chatbox.
+		var playerRole = Engine.LobbyGetPlayerRole(msg.from);
+		if (playerRole == "moderator")
+			msg.from = g_modPrefix + msg.from;
+	}
+	else
+		msg.from = null;
+	if (!msg.color)
+		msg.color = null;
+	if (!msg.key)
+		msg.key = null;	
 
 	// Highlight local user's nick
 	if (msg.text.indexOf(g_Name) != -1 && g_Name != msg.from)
