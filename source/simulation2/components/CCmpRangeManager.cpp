@@ -1430,6 +1430,21 @@ public:
 		return m_SharedLosMasks[player];
 	}
 
+	void ExploreAllTiles(player_id_t p)
+	{
+		for (u16 j = 0; j < m_TerrainVerticesPerSide; ++j)
+		{
+			for (u16 i = 0; i < m_TerrainVerticesPerSide; ++i)
+			{
+				if (LosIsOffWorld(i,j))
+					continue;
+				u32 &explored = m_ExploredVertices.at(p);
+				explored += !(m_LosState[i + j*m_TerrainVerticesPerSide] & (LOS_EXPLORED << (2*(p-1))));
+				m_LosState[i + j*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
+			}
+		}
+	}
+
 	void UpdateTerritoriesLos()
 	{
 		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());

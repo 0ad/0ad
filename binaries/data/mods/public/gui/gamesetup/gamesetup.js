@@ -235,6 +235,15 @@ function initMain()
 				updateGameAttributes();
 		};
 
+		Engine.GetGUIObjectByName("exploreMap").onPress = function()
+		{	// Update attributes so other players can see change
+			g_GameAttributes.settings.ExploreMap = this.checked;
+
+			if (!g_IsInGuiUpdate)
+				updateGameAttributes();
+		};
+
+
 		Engine.GetGUIObjectByName("lockTeams").onPress = function()
 		{	// Update attributes so other players can see change
 			g_GameAttributes.settings.LockTeams = this.checked;
@@ -933,6 +942,7 @@ function onGameAttributesChange()
 	// Controls common to all map types
 	var numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
 	var revealMap = Engine.GetGUIObjectByName("revealMap");
+	var exploreMap = Engine.GetGUIObjectByName("exploreMap");
 	var victoryCondition = Engine.GetGUIObjectByName("victoryCondition");
 	var lockTeams = Engine.GetGUIObjectByName("lockTeams");
 	var mapSize = Engine.GetGUIObjectByName("mapSize");
@@ -944,6 +954,7 @@ function onGameAttributesChange()
 	var mapSizeDesc = Engine.GetGUIObjectByName("mapSizeDesc");
 	var mapSizeText = Engine.GetGUIObjectByName("mapSizeText");
 	var revealMapText = Engine.GetGUIObjectByName("revealMapText");
+	var exploreMapText = Engine.GetGUIObjectByName("exploreMapText");
 	var victoryConditionText = Engine.GetGUIObjectByName("victoryConditionText");
 	var lockTeamsText = Engine.GetGUIObjectByName("lockTeamsText");
 	var enableCheatsText = Engine.GetGUIObjectByName("enableCheatsText");
@@ -977,6 +988,7 @@ function onGameAttributesChange()
 			numPlayersSelection.hidden = false;
 			mapSize.hidden = false;
 			revealMap.hidden = false;
+			exploreMap.hidden = false;
 			victoryCondition.hidden = false;
 			lockTeams.hidden = false;
 			populationCap.hidden = false;
@@ -985,6 +997,7 @@ function onGameAttributesChange()
 			numPlayersText.hidden = true;
 			mapSizeText.hidden = true;
 			revealMapText.hidden = true;
+			exploreMapText.hidden = true;
 			victoryConditionText.hidden = true;
 			lockTeamsText.hidden = true;
 			populationCapText.hidden = true;
@@ -993,7 +1006,9 @@ function onGameAttributesChange()
 			mapSizeText.caption = "Map size:";
 			mapSize.selected = sizeIdx;
 			revealMapText.caption = "Reveal map:";
+			exploreMapText.caption = "Explore map:";
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
+			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
 
 			victoryConditionText.caption = "Victory condition:";
 			victoryCondition.selected = victoryIdx;
@@ -1006,6 +1021,7 @@ function onGameAttributesChange()
 			numPlayersText.hidden = false;
 			mapSizeText.hidden = false;
 			revealMapText.hidden = false;
+			exploreMapText.hidden = false;
 			victoryConditionText.hidden = false;
 			lockTeamsText.hidden = false;
 			populationCap.hidden = true;
@@ -1016,6 +1032,7 @@ function onGameAttributesChange()
 			numPlayersText.caption = numPlayers;
 			mapSizeText.caption = g_MapSizes.names[sizeIdx];
 			revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
+			exploreMapText.caption = (mapSettings.ExloreMap ? "Yes" : "No");
 			victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
 			lockTeamsText.caption = (mapSettings.LockTeams ? "Yes" : "No");
 		}
@@ -1033,6 +1050,7 @@ function onGameAttributesChange()
 		{
 			//Host
 			revealMap.hidden = false;
+			exploreMap.hidden = false;
 			victoryCondition.hidden = false;
 			lockTeams.hidden = false;
 			populationCap.hidden = false;
@@ -1040,13 +1058,16 @@ function onGameAttributesChange()
 			
 			numPlayersText.hidden = false;
 			revealMapText.hidden = true;
+			exploreMapText.hidden = true;
 			victoryConditionText.hidden = true;
 			lockTeamsText.hidden = true;
 			populationCapText.hidden = true;
 			startingResourcesText.hidden = true;
 
 			revealMapText.caption = "Reveal map:";
+			exploreMapText.caption = "Explore map:";
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
+			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
 
 			victoryConditionText.caption = "Victory condition:";
 			victoryCondition.selected = victoryIdx;
@@ -1058,6 +1079,7 @@ function onGameAttributesChange()
 			// Client
 			numPlayersText.hidden = false;
 			revealMapText.hidden = false;
+			exploreMapText.hidden = false;
 			victoryConditionText.hidden = false;
 			lockTeamsText.hidden = false;
 			populationCap.hidden = true;
@@ -1066,6 +1088,7 @@ function onGameAttributesChange()
 			startingResourcesText.hidden = false;
 
 			revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
+			exploreMapText.caption = (mapSettings.ExploreMap ? "Yes" : "No");
 			victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
 			lockTeamsText.caption = (mapSettings.LockTeams ? "Yes" : "No");
 		}
@@ -1078,12 +1101,14 @@ function onGameAttributesChange()
 		numPlayersSelection.hidden = true;
 		mapSize.hidden = true;
 		revealMap.hidden = true;
+		exploreMap.hidden = true;
 		victoryCondition.hidden = true;
 		lockTeams.hidden = true;
 		numPlayersText.hidden = false;
 		mapSizeText.hidden = true;
 		mapSizeDesc.hidden = true;
 		revealMapText.hidden = false;
+		exploreMapText.hidden = false;
 		victoryConditionText.hidden = false;
 		lockTeamsText.hidden = false;
 		populationCap.hidden = true;
@@ -1094,6 +1119,7 @@ function onGameAttributesChange()
 		numPlayersText.caption = numPlayers;
 		mapSizeText.caption = "Default";
 		revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
+		exploreMapText.caption = (mapSettings.ExploreMap ? "Yes" : "No");
 		victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
 		lockTeamsText.caption = (mapSettings.LockTeams ? "Yes" : "No");
 		Engine.GetGUIObjectByName("populationCap").selected = POPULATION_CAP_DEFAULTIDX;

@@ -36,6 +36,16 @@ function LoadMapSettings(settings)
 			cmpObstructionManager.SetPassabilityCircular(true);
 	}
 
+	if (settings.ExploreMap)
+	{
+		// this needs to happen after changing the map to a circular one
+		// as by making the map circular, the explored tiles get reset
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		if (cmpRangeManager)
+			for (var i = 0; i < settings.PlayerData.length; i++)
+				cmpRangeManager.ExploreAllTiles(i+1);
+	}
+
 	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	if (settings.GameType)
 		cmpEndGameManager.SetGameType(settings.GameType);

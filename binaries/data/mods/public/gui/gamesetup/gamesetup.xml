@@ -276,21 +276,29 @@
 						<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Reveal Map:</object>
 					</object>
 					<object size="0 30 40% 58">
+						<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Explore Map:</object>
+					</object>
+					<object size="0 60 40% 88">
 						<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Teams Locked:</object>
 					</object>
-					<object size="0 60 40% 88" name="enableCheatsDesc" hidden="true">
+					<object size="0 90 40% 118" name="enableCheatsDesc" hidden="true">
 						<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Cheats:</object>
 					</object>
 
 					<object size="40% 0 100% 28">
 						<object name="revealMapText" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
-						<object name="revealMap" size="10 50%-8 26 50%+8" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map."/>
+						<object name="revealMap" size="10 50%-8 26 50%+8" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map(see everything)."/>
 					</object>
 					<object size="40% 30 100% 58">
+						<object name="exploreMapText" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+						<object name="exploreMap" size="10 50%-8 26 50%+8" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle explore map (see everything apart from enemy units)."/>
+					</object>
+
+					<object size="40% 60 100% 88">
 						<object name="lockTeamsText" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
 						<object name="lockTeams" size="10 50%-8 26 50%+8" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle locked teams."/>
 					</object>
-					<object size="40% 60 100% 88">
+					<object size="40% 90 100% 1188">
 						<object name="enableCheatsText" size="0 0 100% 100%" type="text" style="ModernLeftLabelText" hidden="true"/>
 						<object name="enableCheats" size="10 50%-8 26 50%+8" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle the usability of cheats."/>
 					</object>
