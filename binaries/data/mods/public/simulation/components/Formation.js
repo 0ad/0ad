@@ -250,6 +250,12 @@ Formation.prototype.SetInPosition = function(ent)
 	if (this.inPosition.indexOf(ent) != -1)
 		return;
 
+	// Rotate the entity to the right angle
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	var cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
+	if (cmpEntPosition && cmpEntPosition.IsInWorld() && cmpPosition && cmpPosition.IsInWorld)
+		cmpEntPosition.TurnTo(cmpPosition.GetRotation().y);
+
 	this.inPosition.push(ent);
 };
 
@@ -978,6 +984,12 @@ Formation.prototype.LoadFormation = function(newTemplate)
 
 	var newFormation = Engine.AddEntity(newTemplate);
 	// apply the info from the old formation to the new one
+
+	var cmpNewPosition = Engine.QueryInterface(newFormation, IID_Position);
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (cmpPosition && cmpPosition.IsInWorld() && cmpNewPosition)
+		cmpNewPosition.TurnTo(cmpPosition.GetRotation().y);
+
 	var cmpFormation = Engine.QueryInterface(newFormation, IID_Formation);
 	var cmpNewUnitAI = Engine.QueryInterface(newFormation, IID_UnitAI);
 	cmpFormation.SetMembers(members);

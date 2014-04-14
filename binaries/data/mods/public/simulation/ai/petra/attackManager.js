@@ -12,8 +12,8 @@ m.AttackManager = function(Config)
 	this.attackNumber = 0;
 	this.rushNumber = 0;
 	this.raidNumber = 0;
-	this.upcomingAttacks = { "CityAttack": [], "Rush": [], "Raid": [] };
-	this.startedAttacks = { "CityAttack": [], "Rush": [], "Raid": [] };
+	this.upcomingAttacks = { "Rush": [], "Raid": [], "Attack": [], "HugeAttack": [] };
+	this.startedAttacks = { "Rush": [], "Raid": [], "Attack": [], "HugeAttack": [] };
 	this.debugTime = 0;
 };
 
@@ -153,13 +153,6 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			}
 		}
 	}
-	
-	// Number of running attacks
-	if (this.Config.debug > 0 && gameState.ai.playedTurn%50 === 0)
-	{
-		for (var attackType in this.startedAttacks)
-			warn(" === current number of " + attackType + " = " + this.startedAttacks[attackType].length);
-	}
 
 	// creating plans after updating because an aborted plan might be reused in that case.
 
@@ -181,28 +174,30 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		}
 		// if we have a barracks, there's no water, we're at age >= 1 and we've decided to attack.
 		else if (gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_barracks"), true) >= 1
+			&& (this.startedAttacks["Attack"].length + this.startedAttacks["HugeAttack"].length < Math.round(gameState.getPopulationMax()/100))
 			&& (gameState.currentPhase() > 1 || gameState.isResearching(gameState.townPhase())))
 		{
 			if (gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_dock"), true) === 0 && gameState.ai.HQ.waterMap)
 			{
 				// wait till we get a dock.
 			}
-			else if (this.upcomingAttacks["CityAttack"].length === 0)
+			else if (this.upcomingAttacks["Attack"].length === 0 && this.upcomingAttacks["HugeAttack"].length === 0)
 			{
-				if (this.attackNumber < 2)
-					var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber);
+				if (this.attackNumber < 2 || this.startedAttacks["HugeAttack"].length > 0)
+					var type = "Attack";
 				else
-					var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "superSized");
+					var type = "HugeAttack";
 
+				var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, type);
 				if (attackPlan.failed)
 					this.attackPlansEncounteredWater = true; // hack
 				else
 				{
 					if (this.Config.debug > 0)
-						warn("Military Manager: Creating the plan " + this.totalNumber);
+						warn("Military Manager: Creating the plan " + type + "  " + this.totalNumber);
 					this.attackNumber++;
 					this.totalNumber++;
-					this.upcomingAttacks["CityAttack"].push(attackPlan);
+					this.upcomingAttacks[type].push(attackPlan);
 				}
 			}
 		}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="shipwreck ram bow">
+      <mesh>props/special/shipwreck_ram_bow.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
+      <textures>
+	    <texture file="props/wooden_shipwreck.png" name="baseTex"/>
+		<texture file="props/ao/shipwreck_ram_bow_ao.png" name="aoTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="normal">
+      <props>
+        <prop actor="props/structures/hellenes/blacksmith_barrel.xml" attachpoint="inside1"/>
+        <prop actor="props/structures/hellenes/blacksmith_barrel.xml" attachpoint="inside2"/>
+        <prop actor="props/structures/hellenes/blacksmith_barrel.xml" attachpoint="outside1"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_ao.xml</material>
+</actor>

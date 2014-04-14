@@ -14,7 +14,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, enemy, target)
 {
 	this.Config = Config;
 	this.name = uniqueID;
-	this.type = type || "normal";	
+	this.type = type || "Attack";	
 	this.state = "unexecuted";
 
 	this.targetPlayer = enemy;
@@ -72,7 +72,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, enemy, target)
 		priority = 150;
 		this.unitStat["Cavalry"] = { "priority": 1, "minSize": 3, "targetSize": 4, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"], "interests": [ ["strength",1], ["cost",1] ] };
 	}
-	else if (type === "superSized")
+	else if (type === "HugeAttack")
 	{
 		priority = 90;
 		// basically we want a mix of citizen soldiers so our barracks have a purpose, and champion units.
@@ -105,8 +105,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, enemy, target)
 		return (strength[0] > 15 || strength[1] > 15);
 	};*/
 
-	var filter = API3.Filters.and(API3.Filters.byMetadata(PlayerID, "plan", this.name), API3.Filters.byOwner(PlayerID));
-	this.unitCollection = gameState.getOwnUnits().filter(filter);
+	this.unitCollection = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "plan", this.name));
 	this.unitCollection.registerUpdates();
 	
 	this.unit = {};
@@ -121,7 +120,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, enemy, target)
 		var cat = unitCat;
 		var Unit = this.unitStat[cat];
 
-		filter = API3.Filters.and(API3.Filters.byClassesAnd(Unit["classes"]),API3.Filters.and(API3.Filters.byMetadata(PlayerID, "plan",this.name),API3.Filters.byOwner(PlayerID)));
+		var filter = API3.Filters.and(API3.Filters.byClassesAnd(Unit["classes"]), API3.Filters.byMetadata(PlayerID, "plan",this.name));
 		this.unit[cat] = gameState.getOwnUnits().filter(filter);
 		this.unit[cat].registerUpdates();
 		this.buildOrder.push([0, Unit["classes"], this.unit[cat], Unit, cat]);
@@ -252,7 +251,7 @@ m.AttackPlan.prototype.addBuildOrder = function(gameState, name, unitStats, rese
 		// no minsize as we don't want the plan to fail at the last minute though.
 		this.unitStat[name] = unitStats;
 		var Unit = this.unitStat[name];
-		var filter = API3.Filters.and(API3.Filters.byClassesAnd(Unit["classes"]),API3.Filters.and(API3.Filters.byMetadata(PlayerID, "plan",this.name),API3.Filters.byOwner(PlayerID)));
+		var filter = API3.Filters.and(API3.Filters.byClassesAnd(Unit["classes"]), API3.Filters.byMetadata(PlayerID, "plan",this.name));
 		this.unit[name] = gameState.getOwnUnits().filter(filter);
 		this.unit[name].registerUpdates();
 		this.buildOrder.push([0, Unit["classes"], this.unit[name], Unit, name]);
@@ -329,7 +328,21 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 			this.queueSiege.empty();
 		}
 		else	// Abort the plan so that its units will be reassigned to other plans.
+		{
+			if (this.Config.debug > 0)
+			{
+				var am = gameState.ai.HQ.attackManager;
+				warn(" attacks upcoming: raid " + am.upcomingAttacks["Raid"].length
+					+ " raid " + am.upcomingAttacks["Rush"].length
+					+ " attack " + am.upcomingAttacks["Attack"].length
+					+ " huge " + am.upcomingAttacks["HugeAttack"].length);
+				warn(" attacks started: raid " + am.startedAttacks["Raid"].length
+					+ " raid " + am.startedAttacks["Rush"].length
+					+ " attack " + am.startedAttacks["Attack"].length
+					+ " huge " + am.startedAttacks["HugeAttack"].length);
+			}
 			return 0;
+	    }
 	}
 	else if (this.mustStart(gameState) && (gameState.countOwnQueuedEntitiesWithMetadata("plan", +this.name) > 0))
 	{
@@ -531,7 +544,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position)
 {
 	if (this.type === "Raid")
 		var targets = this.raidTargetFinder(gameState);
-	else if (this.type === "Rush" || this.type === "normal")
+	else if (this.type === "Rush" || this.type === "Attack")
 		var targets = this.rushTargetFinder(gameState);
 	else
 		var targets = this.defaultTargetFinder(gameState);
@@ -618,7 +631,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState)
 	if (target)
 		targets.addEnt(target);
 
-	if (targets.length == 0 && this.type === "normal")
+	if (targets.length == 0 && this.type === "Attack")
 		targets = this.defaultTargetFinder(gameState);
 
 	return targets;
@@ -810,7 +823,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				ourUnit.flee(attacker);
 		}
 		// Are we arrived at destination ?
-		if ((gameState.ai.HQ.territoryMap.getOwner(this.position) === this.targetPlayer && attackedNB > 1) || attackedNB > 4)
+		if ((gameState.ai.HQ.territoryMap.getOwner(this.position) === this.targetPlayer && attackedNB > 1) || attackedNB > 3)
 			this.state = "arrived";
 	}
 
@@ -833,9 +846,9 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			var farthest = 0;
 			var farthestEnt = -1;
 			sieges.forEach (function (ent) {
-				if (API3.SquareVectorDistance(ent.position(),self.position) > farthest)
+				if (API3.SquareVectorDistance(ent.position(), self.position) > farthest)
 				{
-					farthest = API3.SquareVectorDistance(ent.position(),self.position);
+					farthest = API3.SquareVectorDistance(ent.position(), self.position);
 					farthestEnt = ent;
 				}
 			});
@@ -952,7 +965,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (targets.length !== 0)
 			{
 				for (var i in targets._entities)
+				{
 					this.target = targets._entities[i];
+					break;
+				}
 				this.targetPos = this.target.position();
 			}
 		}
@@ -961,7 +977,6 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	// basic state of attacking.
 	if (this.state === "")
 	{
-		// events watch: if siege units are attacked, we'll send some units to deal with enemies.
 		var attackedEvents = events["Attacked"];
 		for (var key in attackedEvents)
 		{
@@ -972,11 +987,25 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (!attacker || !attacker.position() || !attacker.hasClass("Unit"))
 				continue;
 			var ourUnit = gameState.getEntityById(e.target);
-			if (!ourUnit.hasClass("Siege"))
-				continue;
-			var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5).toEntityArray();
-			for (var unit in collec)
-				unit.attack(attacker.id());
+			if (this.isSiegeUnit(gameState, ourUnit))
+			{
+				// if siege units are attacked, we'll send some units to deal with enemies.
+				var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5).toEntityArray();
+				for each (var ent in collec)
+					ent.attack(attacker.id());
+			}
+			else
+			{
+				// if other units are attacked, abandon their target (if it was a structure or a support) and retaliate
+				var orderData = ourUnit.unitAIOrderData();
+				if (orderData.length !== 0 && orderData[0]["target"])
+				{
+					var target = gameState.getEntityById(orderData[0]["target"]);
+					if (target && !target.hasClass("Structure") && !target.hasClass("Support"))
+						continue;
+				}
+				ourUnit.attack(attacker.id());
+			}
 		}
 		
 		var enemyUnits = gameState.getEnemyUnits(this.targetPlayer);
@@ -1008,11 +1037,9 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			// update the order if needed
 			var needsUpdate = false;
 			var maybeUpdate = false;
-			var isSiegeUnit = ent.hasClass("Siege") ||
-				(gameState.civ() === "maur" && ent.hasClass("Elephant") && ent.hasClass("Champion"));
 			if (ent.isIdle())
 				needsUpdate = true;
-			else if (isSiegeUnit && orderData && orderData["target"])
+			else if (this.isSiegeUnit(gameState, ent) && orderData && orderData["target"])
 			{
 				var target = gameState.getEntityById(orderData["target"]);
 				if (!target)
@@ -1064,7 +1091,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			// Checking for gates if we're a siege unit.
 			mUnit = mUnit.toEntityArray();
 			mStruct = mStruct.toEntityArray();
-			if (isSiegeUnit)
+			if (this.isSiegeUnit(gameState, ent))
 			{
 				mStruct.sort(function (structa,structb)
 				{
@@ -1223,6 +1250,12 @@ m.AttackPlan.prototype.hasForceOrder = function(data, value)
 				forced = true;
 	});
 	return forced;
+};
+
+m.AttackPlan.prototype.isSiegeUnit = function(gameState, ent)
+{
+	return (ent.hasClass("Siege") ||
+		(gameState.civ() === "maur" && ent.hasClass("Elephant") && ent.hasClass("Champion")));
 };
 
 m.AttackPlan.prototype.debugAttack = function()

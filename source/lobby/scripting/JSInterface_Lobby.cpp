@@ -228,6 +228,16 @@ std::wstring JSI_Lobby::LobbyGetPlayerPresence(ScriptInterface::CxPrivate* UNUSE
 	return wstring_from_utf8(presence);
 }
 
+std::wstring JSI_Lobby::LobbyGetPlayerRole(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring nickname)
+{
+	if (!g_XmppClient)
+		return L"";
+
+	std::string role;
+	g_XmppClient->GetRole(utf8_from_wstring(nickname), role);
+	return wstring_from_utf8(role);
+}
+
 // Non-public secure PBKDF2 hash function with salting and 1,337 iterations
 std::string JSI_Lobby::EncryptPassword(const std::string& password, const std::string& username)
 {

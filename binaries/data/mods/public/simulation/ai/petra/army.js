@@ -30,15 +30,11 @@ m.Army = function(gameState, owner, ownEntities, foeEntities)
 	// who we assigned against, for quick removal.
 	this.assignedTo = {};
 	
-	// For substrengths, format is "name": [classes]
-
 	this.foeEntities = [];
 	this.foeStrength = 0;
-	this.foeSubStrength = {};
 	
 	this.ownEntities = [];
 	this.ownStrength = 0;
-	this.ownSubStrength = {};
 	
 	// actually add units
 	for (var i in foeEntities)

@@ -2,12 +2,12 @@
 <Entity parent="template_unit_mechanical_ship_trireme">
   <Identity>
     <Civ>sele</Civ>
-	<GenericName>Trireme</GenericName>
-    <SpecificName>Triḗrēs</SpecificName>
-    <History>.</History>
+    <SpecificName>Seleukidó̱n Triērēs</SpecificName>
+    <GenericName>Seleucid Trireme</GenericName>
+    <History>The first Triremes were built circa 650BC, and by 500BC the Trireme was the most widely used heavy warship of the Greek city-states. In the Trireme, the outriggers were now an integral part of the ship's hull. The Trireme also had a partial or full fighting deck above the rowers. The length of the Trireme remained approximately 35-38 meters, and the beam was approximately 3.5 metres. A Trireme carried 170 oarsmen, plus twenty sailors and fourteen marines in Greek navies. The top speed of a Trireme was approximately 11.5 knots. Some Triremes may have been able to reach higher speeds in short bursts. A Trireme travelling from Athens to Mitylene in 427BC made the 350 kilometre trip in only 24 hours, averaging eight knots (14.6 km/h). The Trireme could accelerate much faster than a Bireme or Penteconter, and was much more maneuverable. This gave the Trireme an advantage in combat, where higher speed and manoeuvrability meant a better chance of victory.</History>
     <Icon>units/hele_ship_trireme.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>structures/hellenes/trireme.xml</Actor>
+    <Actor>structures/athenians/trireme.xml</Actor>
   </VisualActor>
 </Entity>

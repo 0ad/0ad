@@ -157,17 +157,10 @@ m.HQ.prototype.init = function(gameState, queues)
 	else
 		this.bAdvanced = this.Config.buildings.advanced['default'];
 	
-	if (civ in this.Config.buildings.fort)
-		this.bFort = this.Config.buildings.fort[civ];
-	else
-		this.bFort = this.Config.buildings.fort['default'];
-	
 	for (var i in this.bBase)
 		this.bBase[i] = gameState.applyCiv(this.bBase[i]);
 	for (var i in this.bAdvanced)
 		this.bAdvanced[i] = gameState.applyCiv(this.bAdvanced[i]);
-	for (var i in this.bFort)
-		this.bFort[i] = gameState.applyCiv(this.bFort[i]);
 };
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues)
@@ -1335,36 +1328,33 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 	if (gameState.currentPhase() > 2 || gameState.isResearching(gameState.cityPhase()))
 	{
 		// try to build fortresses
-		if (queues.defenseBuilding.length() === 0 && this.canBuild(gameState, this.bFort[0]))
+		if (queues.defenseBuilding.length() === 0 && this.canBuild(gameState, "structures/{civ}_fortress"))
 		{
-			var numFortresses = 0;
-			for (var i in this.bFort)
-				numFortresses += gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bFort[i]), true);
-
+			var numFortresses = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress"), true);
 			if (gameState.getTimeElapsed() > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime)
 			{
 				this.fortressStartTime = gameState.getTimeElapsed();
 				// TODO should affect it to the right base
-				queues.defenseBuilding.addItem(new m.ConstructionPlan(gameState, this.bFort[0]));
+				queues.defenseBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_fortress"));
 			}
 		}
 
 		// let's add a siege building plan to the current attack plan if there is none currently.
-		var numSiegeBuilder = 0;
 		if (gameState.civ() === "mace" || gameState.civ() === "maur")
-			numSiegeBuilder = gameState.countEntitiesByType(gameState.applyCiv(this.bAdvanced[0]), true);
+			var numSiegeBuilder = gameState.countEntitiesByType(gameState.applyCiv(this.bAdvanced[0]), true);
 		else
-			for (var i in this.bFort)
-				numSiegeBuilder += gameState.countEntitiesByType(gameState.applyCiv(this.bFort[i]), true);
-
+			var numSiegeBuilder = gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true);
 		if (numSiegeBuilder > 0)
 		{
-			if (this.attackManager.upcomingAttacks["CityAttack"].length !== 0)
-			{
-				var attack = this.attackManager.upcomingAttacks["CityAttack"][0];
-				if (!attack.unitStat["Siege"])
-					attack.addSiegeUnits(gameState);
-			}
+			var attack = undefined;
+			// There can only be one upcoming attack
+			if (this.attackManager.upcomingAttacks["Attack"].length !== 0)
+				var attack = this.attackManager.upcomingAttacks["Attack"][0];
+			else if (this.attackManager.upcomingAttacks["HugeAttack"].length !== 0)
+				var attack = this.attackManager.upcomingAttacks["HugeAttack"][0];
+
+			if (attack && !attack.unitStat["Siege"])
+				attack.addSiegeUnits(gameState);
 		}
 	}
 
@@ -1439,10 +1429,16 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 				inConst += gameState.countFoundationsByType(gameState.applyCiv(this.bAdvanced[i]));
 			if (inConst == 0 && this.bAdvanced && this.bAdvanced.length !== 0)
 			{
-				var i = Math.floor(Math.random() * this.bAdvanced.length);
-				if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i]), true) < 1 &&
-					this.canBuild(gameState, this.bAdvanced[i]))
-					queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, this.bAdvanced[i], { "base" : bestBase }));
+				for (var i in this.bAdvanced)
+				{
+					if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i]), true) < 1 &&
+						this.canBuild(gameState, this.bAdvanced[i]))
+					{
+						queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, this.bAdvanced[i], { "base" : bestBase }));
+						break;
+					}
+
+				}
 			}
 		}
 	}

@@ -46,20 +46,17 @@ m.Config = function() {
 		},
 		"advanced" : {
 			"default" : [],
-			"hele" : [ "structures/{civ}_gymnasion" ],
-			"athen" : [ "structures/{civ}_gymnasion" ],
-			"spart" : [ "structures/{civ}_syssiton" ],
+			"athen" : [ "structures/{civ}_gymnasion", "structures/{civ}_prytaneion", "structures/{civ}_theatron" ],
 			"cart" : [ "structures/{civ}_embassy_celtic",
 					"structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ],
-			"celt" : [ "structures/{civ}_kennel" ],
-			"pers" : [ "structures/{civ}_fortress", "structures/{civ}_stables", "structures/{civ}_apadana" ],
+			"gaul" : [ "structures/{civ}_tavern" ],
+			"mace" : [ "structures/{civ}_siege_workshop", "structures/{civ}_library", "structures/{civ}_theatron" ],
+			"maur" : [ "structures/{civ}_elephant_stables" ],
+			"pers" : [ "structures/{civ}_stables", "structures/{civ}_apadana" ],
+			"ptol" : [ "structures/{civ}_library" ],
 			"rome" : [ "structures/{civ}_army_camp" ],
-			"mace" : [ "structures/{civ}_siege_workshop"],
-			"maur" : [ "structures/{civ}_elephant_stables"]
-		},
-		"fort" : {
-			"default" : [ "structures/{civ}_fortress" ],
-			"celt" : [ "structures/{civ}_fortress_b", "structures/{civ}_fortress_g" ]
+			"sele" : [ "structures/{civ}_library" ],
+			"spart" : [ "structures/{civ}_syssiton", "structures/{civ}_theatron" ]
 		}
 	};
 

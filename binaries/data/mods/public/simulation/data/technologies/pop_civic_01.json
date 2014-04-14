@@ -1,0 +1,17 @@
+{
+	"pair": "pair_pop_01",
+	"genericName": "Dining Hall",
+	"specificName": {
+		"athen": "Tholos"
+	},
+	"description": "The state or tribe would often construct a dining hall for public feasts or to receive foreign emissaries.",
+	"cost": {"food": 0, "wood": 100, "stone": 100, "metal": 0},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "population.png",
+	"researchTime": 40,
+	"tooltip": "Civic Centers +5 population cap bonus.",
+	"modifications": [{"value": "Cost/PopulationBonus", "add": 5.0}],
+	"affects": ["CivCentre"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

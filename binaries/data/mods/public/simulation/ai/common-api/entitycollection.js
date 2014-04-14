@@ -27,6 +27,39 @@ m.EntityCollection = function(sharedAI, entities, filters)
 	this.frozen = false;
 };
 
+m.EntityCollection.prototype.Serialize = function()
+{
+	var filters = [];
+	for each (var f in this._filters)
+		filters.push(uneval(f));
+	return {
+		"ents": this.toIdArray(),
+		"frozen": this.frozen,
+		"quickIter": this._quickIter,
+		"filters": filters
+	};
+};
+
+m.EntityCollection.prototype.Deserialize = function(data, sharedAI)
+{
+	this._ai = sharedAI;
+	for each (var id in data.ents)
+		this._entities[id] = sharedAI._entities[id];
+
+	for each (var f in data.filters)
+		this._filters.push(eval(f));
+
+	if (data.frozen)
+		this.freeze;
+	else
+		this.defreeze;
+
+	if (data.quickIter)
+		this.allowQuickIter();
+	else
+		this.preventQuickIter();
+};
+
 // If an entitycollection is frozen, it will never automatically add a unit.
 // But can remove one.
 // this makes it easy to create entity collection that will auto-remove dead units
@@ -56,10 +89,7 @@ m.EntityCollection.prototype.preventQuickIter = function()
 
 m.EntityCollection.prototype.toIdArray = function()
 {
-	var ret = [];
-	for (var id in this._entities)
-		ret.push(+id);
-	return ret;
+	return Object.keys(this._entities).map(function(n){return +n;});
 };
 
 m.EntityCollection.prototype.toEntityArray = function()
@@ -158,10 +188,7 @@ m.EntityCollection.prototype.forEach = function(callback)
 {
 	if (this._quickIter === true)
 	{
-		for (var id in this._entitiesArray)
-		{
-			callback(this._entitiesArray[id]);
-		}
+		this._entitiesArray.forEach(callback);
 		return this;
 	}
 	for (var id in this._entities)

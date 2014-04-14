@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="shipwreck sail boat">
+      <mesh>props/special/shipwreck_sail_boat.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
+      <textures>
+		<texture file="props/wooden_shipwreck.png" name="baseTex"/>
+		<texture file="props/ao/shipwreck_sail_boat_ao.png" name="aoTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="baskets">
+      <props>
+        <prop actor="props/special/eyecandy/basket_rome_a.xml" attachpoint="placea"/>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="placeb"/>
+        <prop actor="props/special/eyecandy/basket_rome_a.xml" attachpoint="placec"/>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="placed"/>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="placee" minheight="-10" maxheight="10"/>
+        <prop actor="props/special/eyecandy/basket_rome_a.xml" attachpoint="placef" minheight="-10" maxheight="10"/>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="placeg" minheight="-10" maxheight="10"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="crate">
+      <props>
+        <prop actor="props/special/eyecandy/skeleton_propped.xml" attachpoint="placea"/>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="placeb"/>
+        <prop actor="props/special/eyecandy/basket_rome_a.xml" attachpoint="placec"/>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="placed"/>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="placee" minheight="-10" maxheight="10"/>
+        <prop actor="props/special/eyecandy/basket_rome_a.xml" attachpoint="placef" minheight="-10" maxheight="10"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="barrel">
+      <props>
+        <prop actor="props/special/eyecandy/wood_sm_pile_b.xml" attachpoint="placea"/>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="placeb"/>
+        <prop actor="props/special/eyecandy/basket_rome_a.xml" attachpoint="placec"/>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="placed"/>
+        <prop actor="props/structures/hellenes/blacksmith_barrel.xml" attachpoint="placee" minheight="-10" maxheight="10"/>
+        <prop actor="props/special/eyecandy/basket_rome_a.xml" attachpoint="placef" minheight="-10" maxheight="10"/>
+        <prop actor="props/structures/hellenes/blacksmith_barrel.xml" attachpoint="placeg" minheight="-10" maxheight="10"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_ao.xml</material>
+</actor>
