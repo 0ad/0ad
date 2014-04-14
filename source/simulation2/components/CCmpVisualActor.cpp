@@ -30,6 +30,7 @@
 #include "ICmpTemplateManager.h"
 #include "ICmpTerrain.h"
 #include "ICmpUnitMotion.h"
+#include "ICmpValueModificationManager.h"
 #include "ICmpVision.h"
 
 #include "graphics/Decal.h"
@@ -57,13 +58,15 @@ public:
 		componentManager.SubscribeToMessageType(MT_Interpolate);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
+		componentManager.SubscribeToMessageType(MT_ValueModification);
 		componentManager.SubscribeGloballyToMessageType(MT_TerrainChanged);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(VisualActor)
 
 private:
-	std::wstring m_ActorName;
+	std::wstring m_BaseActorName, m_ActorName;
+	bool m_IsFoundationActor;
 	CUnit* m_Unit;
 
 	fixed m_R, m_G, m_B; // shading colour
@@ -188,10 +191,11 @@ public:
 
 		m_Seed = GetEntityId();
 
-		if (paramNode.GetChild("Foundation").IsOk() && paramNode.GetChild("FoundationActor").IsOk())
-			m_ActorName = paramNode.GetChild("FoundationActor").ToString();
+		m_IsFoundationActor = paramNode.GetChild("Foundation").IsOk() && paramNode.GetChild("FoundationActor").IsOk();
+		if (m_IsFoundationActor)
+			m_BaseActorName = m_ActorName = paramNode.GetChild("FoundationActor").ToString();
 		else
-			m_ActorName = paramNode.GetChild("Actor").ToString();
+			m_BaseActorName = m_ActorName = paramNode.GetChild("Actor").ToString();
 
 		m_VisibleInAtlasOnly = paramNode.GetChild("VisibleInAtlasOnly").ToBool();
 		m_IsActorOnly = paramNode.GetChild("ActorOnly").IsOk();
@@ -228,6 +232,7 @@ public:
 
 		serialize.NumberU32_Unbounded("seed", m_Seed);
 		// TODO: variation/selection strings
+		serialize.String("actor", m_ActorName, 0, 256);
 
 		serialize.NumberFixed_Unbounded("constructionprogress", m_ConstructionProgress);
 
@@ -240,7 +245,7 @@ public:
 
 		if (serialize.IsDebug())
 		{
-			serialize.String("actor", m_ActorName, 0, 256);
+			serialize.String("base actor", m_BaseActorName, 0, 256);
 		}
 
 		SerializeCommon(serialize);
@@ -254,8 +259,8 @@ public:
 
 		SerializeCommon(deserialize);
 
-		// If we serialized a different seed, reload actor
-		if (oldSeed != GetActorSeed())
+		// If we serialized a different seed or different actor, reload actor
+		if (oldSeed != GetActorSeed() || m_BaseActorName != m_ActorName)
 			ReloadActor();
 
 		fixed repeattime = m_AnimSyncRepeatTime; // save because SelectAnimation overwrites it
@@ -311,6 +316,24 @@ public:
 		{
 			const CMessageTerrainChanged& msgData = static_cast<const CMessageTerrainChanged&> (msg);
 			m_Unit->GetModel().SetTerrainDirty(msgData.i0, msgData.j0, msgData.i1, msgData.j1);
+			break;
+		}
+		case MT_ValueModification:
+		{
+			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg);
+			if (msgData.component != L"VisualActor")
+				break;
+			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+			std::wstring newActorName;
+			if (m_IsFoundationActor)
+				newActorName = cmpValueModificationManager->ApplyModifications(L"VisualActor/FoundationActor", m_BaseActorName, GetEntityId());
+			else
+				newActorName = cmpValueModificationManager->ApplyModifications(L"VisualActor/Actor", m_BaseActorName, GetEntityId());
+			if (newActorName != m_ActorName)
+			{
+				m_ActorName = newActorName;
+				ReloadActor();
+			}
 			break;
 		}
 		}
@@ -519,7 +542,10 @@ void CCmpVisualActor::InitModel(const CParamNode& paramNode)
 	if (GetSimContext().HasUnitManager())
 	{
 		std::set<CStr> selections;
-		m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
+		std::wstring actorName = m_ActorName;
+		if (actorName.find(L".xml") == std::wstring::npos)
+			actorName += L".xml";
+		m_Unit = GetSimContext().GetUnitManager().CreateUnit(actorName, GetActorSeed(), selections);
 		if (m_Unit)
 		{
 			CModelAbstract& model = m_Unit->GetModel();
@@ -637,7 +663,10 @@ void CCmpVisualActor::ReloadActor()
 		return;
 
 	std::set<CStr> selections;
-	CUnit* newUnit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
+	std::wstring actorName = m_ActorName;
+	if (actorName.find(L".xml") == std::wstring::npos)
+		actorName += L".xml";
+	CUnit* newUnit = GetSimContext().GetUnitManager().CreateUnit(actorName, GetActorSeed(), selections);
 
 	if (!newUnit)
 		return;

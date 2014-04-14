@@ -373,9 +373,9 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 		this.modificationCache[valueName][ent] = {"origValue": curValue};
 		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		var templateName = cmpTemplateManager.GetCurrentTemplateName(ent);
-		// Ensure that preview entites have the same properties as the final building
-		if (templateName.indexOf("preview|") != -1)
-			templateName = templateName.slice(8);
+		// Ensure that preview or construction entites have the same properties as the final building
+		if (templateName.indexOf("preview|") > -1 || templateName.indexOf("construction|") > -1 )
+			templateName = templateName.slice(templateName.indexOf("|") + 1);
 		this.modificationCache[valueName][ent].newValue = GetTechModifiedProperty(this.modifications, cmpTemplateManager.GetTemplate(templateName), valueName, curValue);
 	}
 	

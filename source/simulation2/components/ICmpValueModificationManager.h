@@ -32,6 +32,7 @@ class ICmpValueModificationManager : public IComponent
 public:
 	virtual fixed ApplyModifications(std::wstring valueName, fixed currentValue, entity_id_t entity) = 0;
 	virtual u32 ApplyModifications(std::wstring valueName, u32 currentValue, entity_id_t entity) = 0;
+	virtual std::wstring ApplyModifications(std::wstring valueName, std::wstring currentValue, entity_id_t entity) = 0;
 
 	DECLARE_INTERFACE_TYPE(ValueModificationManager)
 };
