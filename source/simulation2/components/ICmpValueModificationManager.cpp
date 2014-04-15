@@ -39,6 +39,11 @@ public:
 	{
 		return m_Script.Call<u32>("ApplyModifications", valueName, currentValue, entity);
 	}
+
+	virtual std::wstring ApplyModifications(std::wstring valueName, std::wstring currentValue, entity_id_t entity)
+	{
+		return m_Script.Call<std::wstring>("ApplyModifications", valueName, currentValue, entity);
+	}
 };
 
 REGISTER_COMPONENT_SCRIPT_WRAPPER(ValueModificationManagerScripted)

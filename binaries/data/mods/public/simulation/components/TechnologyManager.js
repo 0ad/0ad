@@ -312,14 +312,15 @@ TechnologyManager.prototype.ResearchTechnology = function (tech)
 			if (!this.modifications[modification.value])
 				this.modifications[modification.value] = [];
 			
-			var modAffects = [];
+			var modAffects = affects.slice();
 			if (modification.affects)
 			{
-				for (var j in modification.affects)
-					modAffects.push(modification.affects[j].split(/\s+/));
+				var extraAffects = modification.affects.split(/\s+/);
+				for (var a in modAffects)
+					modAffects[a] = modAffects[a].concat(extraAffects);
 			}
 			
-			var mod = {"affects": affects.concat(modAffects)};
+			var mod = {"affects": modAffects};
 			
 			// copy the modification data into our new data structure
 			for (var j in modification)
@@ -373,9 +374,9 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 		this.modificationCache[valueName][ent] = {"origValue": curValue};
 		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		var templateName = cmpTemplateManager.GetCurrentTemplateName(ent);
-		// Ensure that preview entites have the same properties as the final building
-		if (templateName.indexOf("preview|") != -1)
-			templateName = templateName.slice(8);
+		// Ensure that preview or construction entites have the same properties as the final building
+		if (templateName.indexOf("preview|") > -1 || templateName.indexOf("construction|") > -1 )
+			templateName = templateName.slice(templateName.indexOf("|") + 1);
 		this.modificationCache[valueName][ent].newValue = GetTechModifiedProperty(this.modifications, cmpTemplateManager.GetTemplate(templateName), valueName, curValue);
 	}
 	

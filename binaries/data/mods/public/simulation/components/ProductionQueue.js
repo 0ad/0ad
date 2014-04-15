@@ -537,7 +537,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 	if (cmpRallyPoint)
 	{
 		var data = cmpRallyPoint.GetData()[0];
-		if (data && data.target == this.entity && data.command == "garrison")
+		if (data && data.target && data.target == this.entity && data.command == "garrison")
 			cmpAutoGarrison = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	}
 

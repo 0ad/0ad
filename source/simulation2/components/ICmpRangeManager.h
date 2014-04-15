@@ -333,6 +333,11 @@ public:
 	std::string GetLosVisibility_wrapper(entity_id_t ent, player_id_t player, bool forceRetainInFog);
 
 	/**
+	 * Explore all tiles (but leave them in the FoW) for player p
+	 */
+	virtual void ExploreAllTiles(player_id_t p) = 0;
+
+	/**
 	 * Set whether the whole map should be made visible to the given player.
 	 * If player is -1, the map will be made visible to all players.
 	 */

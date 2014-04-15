@@ -1072,6 +1072,9 @@ function handleInputBeforeGui(ev, hoveredObject)
 
 function handleInputAfterGui(ev)
 {
+	if (ev.hotkey === undefined)
+		ev.hotkey = null;
+
 	// Handle the time-warp testing features, restricted to single-player
 	if (!g_IsNetworked && Engine.GetGUIObjectByName("devTimeWarp").checked)
 	{
