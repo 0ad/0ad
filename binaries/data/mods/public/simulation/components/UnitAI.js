@@ -3083,6 +3083,8 @@ UnitAI.prototype.Init = function()
 	this.lastFormationTemplate = "";
 	this.finishedOrder = false; // used to find if all formation members finished the order
 	
+	this.heldPosition = undefined;
+
 	// Queue of remembered works
 	this.workOrders = [];
 
@@ -5389,7 +5391,7 @@ UnitAI.prototype.SetHeldPositionOnEntity = function(entity)
 	this.SetHeldPosition(pos.x, pos.z);
 };
 
-UnitAI.prototype.GetHeldPosition = function(pos)
+UnitAI.prototype.GetHeldPosition = function()
 {
 	return this.heldPosition;
 };
