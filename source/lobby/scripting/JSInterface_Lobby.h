@@ -25,7 +25,9 @@
 namespace JSI_Lobby
 {
 	bool HasXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
-	
+	bool IsRankedGame(ScriptInterface::CxPrivate* pCxPrivate);
+	void SetRankedGame(ScriptInterface::CxPrivate* pCxPrivate, bool isRanked);
+
 #if CONFIG2_LOBBY
 	void StartXmppClient(ScriptInterface::CxPrivate* pCxPrivate, std::wstring username, std::wstring password, std::wstring room, std::wstring nick, int historyRequestSize);
 	void StartRegisterXmppClient(ScriptInterface::CxPrivate* pCxPrivate, std::wstring username, std::wstring password);
@@ -59,9 +61,6 @@ namespace JSI_Lobby
 
 	// Public hash interface.
 	std::wstring EncryptPassword(ScriptInterface::CxPrivate* pCxPrivate, std::wstring pass, std::wstring user);
-	
-	bool IsRankedGame(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetRankedGame(ScriptInterface::CxPrivate* pCxPrivate, bool isRanked);
 #endif // CONFIG2_LOBBY
 }
 

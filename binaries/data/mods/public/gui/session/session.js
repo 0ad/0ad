@@ -898,7 +898,7 @@ function stopAmbient()
 // Send a report on the game status to the lobby
 function reportGame(extendedSimState)
 {
-	if (!Engine.HasXmppClient())
+	if (!Engine.HasXmppClient() || !Engine.IsRankedGame())
 		return;
 	// units
 	var unitsClasses = [

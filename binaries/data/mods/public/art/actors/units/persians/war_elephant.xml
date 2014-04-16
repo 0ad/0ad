@@ -2,47 +2,30 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Mesh">
+    <variant frequency="1" name="Persian War Elephant">
       <animations>
-        <animation file="quadraped/elephant_idle_01.dae" name="idle" speed="40"/>
-        <animation file="quadraped/elephant_idle_01.dae" name="idle" speed="50"/>
-        <animation file="quadraped/elephant_idle_02.dae" name="idle" speed="60"/>
-        <animation file="quadraped/elephant_walk_01.dae" name="walk" speed="45"/>
-        <animation file="quadraped/elephant_walk_01.dae" name="walk" speed="50"/>
-        <animation file="quadraped/elephant_run_01.dae" name="run" speed="50"/>
-        <animation event="0.5" file="quadraped/elephant_attack_01.dae" name="attack_melee" speed="50"/>
-        <animation event="0.5" file="quadraped/elephant_attack_02.dae" name="attack_melee" speed="50"/>
-        <animation event="0.5" file="quadraped/elephant_attack_03.dae" name="attack_melee" speed="50"/>
-        <animation file="quadraped/elephant_death_01.dae" name="death" speed="100"/>
+        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
+        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
+        <animation file="quadraped/elephant_asian_idle_01.dae" name="Idle" speed="25"/>
+        <animation file="quadraped/elephant_asian_idle_02.dae" name="Idle" speed="85"/>
+        <animation file="quadraped/elephant_asian_idle_03.dae" name="Idle" speed="75"/>
+        <animation file="quadraped/elephant_asian_idle_03.dae" name="Idle" speed="75"/>
+        <animation file="quadraped/elephant_asian_walk.dae" name="Walk" speed="20"/>
+        <animation file="quadraped/elephant_asian_walk.dae" name="carry_meat" speed="20"/>
+        <animation file="quadraped/elephant_asian_walk.dae" name="Run" speed="20"/>
+        <animation file="quadraped/elephant_asian_attack.dae" name="attack_melee" speed="75"/>
+        <animation file="quadraped/elephant_asian_death.dae" name="Death" speed="75"/>
       </animations>
-      <mesh>skeletal/elephant_asian.dae</mesh>
+      <mesh>skeletal/maur_elephant_archer.dae</mesh>
       <props>
-        <prop actor="units/persians/champion_unit_3_mahout.xml" attachpoint="rider1"/>
-        <prop actor="units/persians/champion_unit_3_raja.xml" attachpoint="rider2"/>
+        <prop actor="units/persians/champion_unit_3_mahout.xml" attachpoint="rider"/>
+        <prop actor="units/persians/champion_unit_3_raja.xml" attachpoint="rider1"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="elephant-hide-gray-1">
-      <textures><texture file="skeletal/pers_su2_ele_01.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="elephant-hide-brown-1">
-      <textures><texture file="skeletal/pers_su2_ele_02.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="elephant-hide-gray-2">
-      <textures><texture file="skeletal/pers_su2_ele_03.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="elephant-hide-brown-2">
-      <textures><texture file="skeletal/pers_su2_ele_04.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="elephant-hide-gray-3">
-      <textures><texture file="skeletal/pers_su2_ele_05.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="elephant-hide-gray-4">
-      <textures><texture file="skeletal/pers_su2_ele_06.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="elephant-hide-brown-4">
-      <textures><texture file="skeletal/pers_su2_ele_07.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/maur_elephant_archer.png" name="baseTex"/>
+        <texture file="skeletal/maur_elephant_archer_spec.png" name="specTex"/>
+        <texture file="skeletal/maur_elephant_archer_normal.png" name="normTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -52,6 +35,11 @@
         <prop actor="particle/dust_cav.xml" attachpoint="root"/>
       </props>
     </variant>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>
