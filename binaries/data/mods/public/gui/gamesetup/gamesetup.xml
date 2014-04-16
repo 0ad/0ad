@@ -236,7 +236,7 @@
 
 			<!-- More Options -->
 			<object hidden="true" name="moreOptionsFade" type="image" z="60" sprite="ModernFade"/>
-			<object name="moreOptions" type="image" sprite="ModernDialog" size="50%-200 50%-160 50%+200 50%+165" z="70" hidden="true">
+			<object name="moreOptions" type="image" sprite="ModernDialog" size="50%-200 50%-175 50%+200 50%+180" z="70" hidden="true">
 				<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">More Options</object>
 
 				<object size="14 38 94% 66">
@@ -266,25 +266,31 @@
 				<object size="14 158 94% 186">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">Reveal Map:</object>
 					<object name="revealMapText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
-					<object name="revealMap" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map."/>
+					<object name="revealMap" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map (see everything)."/>
 				</object>
 
 				<object size="14 188 94% 216">
+					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">Explore Map:</object>
+					<object name="exploreMapText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
+					<object name="exploreMap" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle explore map (see gaia and buildings)."/>
+				</object>
+
+				<object size="14 218 94% 246">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">Teams Locked:</object>
 					<object name="lockTeamsText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
 					<object name="lockTeams" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle locked teams."/>
 				</object>
 
-				<object name="optionCheats" size="14 218 94% 246" hidden="true">
+				<object name="optionCheats" size="14 248 94% 276" hidden="true">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">Cheats:</object>
 					<object name="enableCheatsText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
 					<object name="enableCheats" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle the usability of cheats."/>
 				</object>
 
-				<object name="optionRating" size="14 248 94% 276" hidden="true">
-					<object size="0 0 40% 28" hidden="false" type="text" style="ModernRightLabelText">Rated:</object>
+				<object name="optionRating" size="14 278 94% 306" hidden="true">
+					<object size="0 0 40% 28" hidden="false" type="text" style="ModernRightLabelText">Rated Game:</object>
 					<object name="enableRatingText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
-					<object name="enableRating" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle if this game will be ranked on the lobby leaderboard."/>
+					<object name="enableRating" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle if this game will be rated for the leaderboard."/>
 				</object>
 
 				<!-- Hide More Options Button -->
@@ -292,7 +298,7 @@
 					name="hideMoreOptions"
 					type="button"
 					style="StoneButton"
-					size="50%-70 280 50%+70 306"
+					size="50%-70 310 50%+70 336"
 					tooltip_style="onscreenToolTip"
 					tooltip="Close more game options window"
 				>
