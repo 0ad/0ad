@@ -32,6 +32,16 @@ bool JSI_Lobby::HasXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return (g_XmppClient ? true : false);
 }
 
+bool JSI_Lobby::IsRankedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return g_rankedGame;
+}
+
+void JSI_Lobby::SetRankedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool isRanked)
+{
+	g_rankedGame = isRanked;
+}
+
 #if CONFIG2_LOBBY
 
 void JSI_Lobby::StartXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring username, std::wstring password, std::wstring room, std::wstring nick, int historyRequestSize)
@@ -272,16 +282,6 @@ std::string JSI_Lobby::EncryptPassword(const std::string& password, const std::s
 std::wstring JSI_Lobby::EncryptPassword(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring pass, std::wstring user)
 {
 	return wstring_from_utf8(JSI_Lobby::EncryptPassword(utf8_from_wstring(pass), utf8_from_wstring(user)));
-}
-
-bool JSI_Lobby::IsRankedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	return g_rankedGame;
-}
-
-void JSI_Lobby::SetRankedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool isRanked)
-{
-	g_rankedGame = isRanked;
 }
 
 std::wstring JSI_Lobby::LobbyGetRoomSubject(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))

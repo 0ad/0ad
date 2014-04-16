@@ -592,7 +592,7 @@
 				<object size="0 310 100%-80 335" type="text" style="ModernRightLabelText" ghost="true">Developer Overlay</object>
 				<object name="developerOverlayCheckbox" size="100%-56 315 100%-30 340" type="checkbox" style="ModernTickBox" checked="false">
 					<action on="Load"><![CDATA[
-						if (Engine.HasXmppClient() && Engine.IsRankedGame())
+						if (Engine.IsRankedGame())
 							this.enabled = false;
 					]]></action>
 					<action on="Press">toggleDeveloperOverlay();</action>

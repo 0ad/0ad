@@ -218,19 +218,19 @@ function initMain()
 		mapSize.list = g_MapSizes.names;
 		mapSize.list_data = g_MapSizes.tiles;
 		mapSize.onSelectionChange = function()
-		{	// Update attributes so other players can see change
+		{
+			// Update attributes so other players can see change
 			if (this.selected != -1)
 				g_GameAttributes.settings.Size = g_MapSizes.tiles[this.selected];
-
 			if (!g_IsInGuiUpdate)
 				updateGameAttributes();
 		};
 		mapSize.selected = 0;
 
 		Engine.GetGUIObjectByName("revealMap").onPress = function()
-		{	// Update attributes so other players can see change
+		{
+			// Update attributes so other players can see change
 			g_GameAttributes.settings.RevealMap = this.checked;
-
 			if (!g_IsInGuiUpdate)
 				updateGameAttributes();
 		};
@@ -245,17 +245,26 @@ function initMain()
 
 
 		Engine.GetGUIObjectByName("lockTeams").onPress = function()
-		{	// Update attributes so other players can see change
+		{
+			// Update attributes so other players can see change
 			g_GameAttributes.settings.LockTeams = this.checked;
-
 			if (!g_IsInGuiUpdate)
 				updateGameAttributes();
 		};
 
 		Engine.GetGUIObjectByName("enableCheats").onPress = function()
-		{	// Update attributes so other players can see change
+		{
+			// Update attributes so other players can see change
 			g_GameAttributes.settings.CheatsEnabled = this.checked;
+			if (!g_IsInGuiUpdate)
+				updateGameAttributes();
+		};
 
+		Engine.GetGUIObjectByName("enableRating").onPress = function()
+		{
+			// Update attributes so other players can see change
+			g_GameAttributes.settings.RatingEnabled = this.checked;
+			Engine.SetRankedGame(this.checked);
 			if (!g_IsInGuiUpdate)
 				updateGameAttributes();
 		};
@@ -296,13 +305,26 @@ function initMain()
 	}
 	else
 	{
-		Engine.GetGUIObjectByName("enableCheatsDesc").hidden = false;
+		Engine.GetGUIObjectByName("optionCheats").hidden = false;
 		Engine.GetGUIObjectByName("enableCheats").checked = false;
 		g_GameAttributes.settings.CheatsEnabled = false;
+		// Setup ranked option if we are connected to the lobby.
+		if (Engine.HasXmppClient())
+		{
+			Engine.GetGUIObjectByName("optionRating").hidden = false;
+			Engine.GetGUIObjectByName("enableRating").checked = Engine.IsRankedGame();
+			g_GameAttributes.settings.RatingEnabled = true;
+		}
 		if (g_IsController)
+		{
+			Engine.GetGUIObjectByName("enableCheatsText").hidden = true;
 			Engine.GetGUIObjectByName("enableCheats").hidden = false;
-		else
-			Engine.GetGUIObjectByName("enableCheatsText").hidden = false;
+			if (Engine.HasXmppClient())
+			{
+				Engine.GetGUIObjectByName("enableRatingText").hidden = true;
+				Engine.GetGUIObjectByName("enableRating").hidden = false;
+			}
+		}
 	}
 
 	// Settings for all possible player slots
@@ -947,6 +969,7 @@ function onGameAttributesChange()
 	var lockTeams = Engine.GetGUIObjectByName("lockTeams");
 	var mapSize = Engine.GetGUIObjectByName("mapSize");
 	var enableCheats = Engine.GetGUIObjectByName("enableCheats");
+	var enableRating = Engine.GetGUIObjectByName("enableRating");
 	var populationCap = Engine.GetGUIObjectByName("populationCap");
 	var startingResources = Engine.GetGUIObjectByName("startingResources");
 
@@ -958,6 +981,7 @@ function onGameAttributesChange()
 	var victoryConditionText = Engine.GetGUIObjectByName("victoryConditionText");
 	var lockTeamsText = Engine.GetGUIObjectByName("lockTeamsText");
 	var enableCheatsText = Engine.GetGUIObjectByName("enableCheatsText");
+	var enableRatingText = Engine.GetGUIObjectByName("enableRatingText");
 	var populationCapText = Engine.GetGUIObjectByName("populationCapText");
 	var startingResourcesText = Engine.GetGUIObjectByName("startingResourcesText");
 	var gameSpeedText = Engine.GetGUIObjectByName("gameSpeedText");
@@ -967,6 +991,14 @@ function onGameAttributesChange()
 	var victoryIdx = (mapSettings.GameType !== undefined && VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
 	enableCheats.checked = (g_GameAttributes.settings.CheatsEnabled === undefined || !g_GameAttributes.settings.CheatsEnabled ? false : true)
 	enableCheatsText.caption = (enableCheats.checked ? "Yes" : "No");
+	if (g_GameAttributes.settings.RatingEnabled !== undefined)
+	{
+		enableRating.checked = g_GameAttributes.settings.RatingEnabled;
+		Engine.SetRankedGame(enableRating.checked);
+		enableRatingText.caption = (enableRating.checked ? "Yes" : "No");
+	}
+	else
+		enableRatingText.caption = "Unknown";
 	gameSpeedText.caption = g_GameSpeeds.names[speedIdx];
 	populationCap.selected = (mapSettings.PopulationCap !== undefined && POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) != -1 ? POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) : POPULATION_CAP_DEFAULTIDX);
 	populationCapText.caption = POPULATION_CAP[populationCap.selected];
