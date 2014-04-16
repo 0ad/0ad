@@ -27,6 +27,9 @@
       units/mace_champion_infantry_a
       units/mace_champion_cavalry
     </Entities>
+    <Technologies datatype="tokens">
+	  successors/upgrade_mace_silvershields
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/macedonians/fortress_up.xml</Actor>
