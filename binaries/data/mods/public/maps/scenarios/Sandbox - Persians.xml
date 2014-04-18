@@ -3,13 +3,13 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.960784" g="0.858824" b="0.541176"/>
-		<SunElevation angle="0.693359"/>
-		<SunRotation angle="-0.392699"/>
+		<SunColour r="0.866667" g="0.776471" b="0.490196"/>
+		<SunElevation angle="0.770058"/>
+		<SunRotation angle="-0.736311"/>
 		<TerrainAmbientColour r="0.247059" g="0.403922" b="0.584314"/>
 		<UnitsAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<Fog>
-			<FogFactor>0.00199219</FogFactor>
+			<FogFactor>0.0025</FogFactor>
 			<FogThickness>0</FogThickness>
 			<FogColour r="0.882353" g="0.839216" b="0.701961"/>
 		</Fog>
@@ -34,8 +34,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="661.583" y="78.8027" z="664.517"/>
-		<Rotation angle="0"/>
+		<Position x="671.546" y="82.4293" z="346.402"/>
+		<Rotation angle="-0.0879697"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[

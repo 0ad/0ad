@@ -18,7 +18,7 @@
 	},
 	"description": "Quilted linen or leather body armor for infantrymen.",
 	"cost": {"food": 0, "wood": 50, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_town"},
+	"requirements": {"any": [{"tech": "phase_town"},{"civ": "celt"},{"civ": "brit"},{"civ": "gaul"}]},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_leather.png",
 	"researchTime": 40,

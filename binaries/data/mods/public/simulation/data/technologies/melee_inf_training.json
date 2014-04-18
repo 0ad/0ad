@@ -10,7 +10,7 @@
 	},
 	"description": "Training increases damage of melee infantry units.",
 	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 50},
-	"requirements": {"tech": "phase_town"},
+	"requirements": {"any": [{"tech": "phase_town"},{"civ": "celt"},{"civ": "brit"},{"civ": "gaul"}]},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "sword.png",
 	"researchTime": 40,
