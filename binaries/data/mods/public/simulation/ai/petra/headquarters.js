@@ -50,7 +50,7 @@ m.HQ = function(Config)
 	this.defenseManager = new m.DefenseManager(this.Config);
 	this.tradeManager = new m.TradeManager(this.Config);
 	this.garrisonManager = new m.GarrisonManager();
-	this.navalManager = new m.NavalManager();
+	//this.navalManager = new m.NavalManager();
 
 	this.boostedSoldiers = undefined;
 };
@@ -138,7 +138,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	}
 
 	this.attackManager.init(gameState, queues);
-	this.navalManager.init(gameState, queues);
+	//this.navalManager.init(gameState, queues);
 	this.defenseManager.init(gameState);
 	this.tradeManager.init(gameState);
 
@@ -999,9 +999,11 @@ m.HQ.prototype.buildDock = function(gameState, queues)
 {
 	if (!this.waterMap || this.dockFailed)
 		return;
-	if (gameState.getTimeElapsed() > this.dockStartTime) {
+	if (gameState.getTimeElapsed() > this.dockStartTime)
+	{
 		if (queues.economicBuilding.countQueuedUnitsWithClass("NavalMarket") === 0 &&
-			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_dock"), true) === 0) {
+			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_dock"), true) === 0)
+		{
 			var tp = ""
 			if (gameState.civ() == "cart" && gameState.currentPhase() > 1)
 				tp = "structures/{civ}_super_dock";
@@ -1340,10 +1342,11 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		}
 
 		// let's add a siege building plan to the current attack plan if there is none currently.
-		if (gameState.civ() === "mace" || gameState.civ() === "maur")
-			var numSiegeBuilder = gameState.countEntitiesByType(gameState.applyCiv(this.bAdvanced[0]), true);
-		else
-			var numSiegeBuilder = gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true);
+		var numSiegeBuilder = 0;
+		if (gameState.civ() !== "mace" && gameState.civ() !== "maur")
+			numSiegeBuilder += gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true);
+		if (gameState.civ() === "mace" || gameState.civ() === "maur" || gameState.civ() === "rome")
+			numSiegeBuilder += gameState.countEntitiesByType(gameState.applyCiv(this.bAdvanced[0]), true);
 		if (numSiegeBuilder > 0)
 		{
 			var attack = undefined;
@@ -1421,39 +1424,22 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	}
 
 	//build advanced military buildings
-	if (gameState.getPopulation() > this.Config.Military.popForBarracks2 - 15 && gameState.currentPhase() > 2){
-		if (queues.militaryBuilding.length() === 0)
-		{
-			var inConst = 0;
-			for (var i in this.bAdvanced)
-				inConst += gameState.countFoundationsByType(gameState.applyCiv(this.bAdvanced[i]));
-			if (inConst == 0 && this.bAdvanced && this.bAdvanced.length !== 0)
-			{
-				for (var i in this.bAdvanced)
-				{
-					if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i]), true) < 1 &&
-						this.canBuild(gameState, this.bAdvanced[i]))
-					{
-						queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, this.bAdvanced[i], { "base" : bestBase }));
-						break;
-					}
+	if (gameState.currentPhase() > 2 && queues.militaryBuilding.length() === 0 && this.bAdvanced.length !== 0)
+	{
+		var nAdvanced = 0;
+		for each (var advanced in this.bAdvanced)
+			nAdvanced += gameState.countEntitiesAndQueuedByType(gameState.applyCiv(advanced));
 
+		if ((nAdvanced === 0 && gameState.getPopulation() > 80)	|| gameState.getPopulation() > 120)
+		{
+			for each (var advanced in this.bAdvanced)
+			{
+				if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(advanced), true) < 1 && this.canBuild(gameState, advanced))
+				{
+					queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, advanced, { "base" : bestBase }));
+					break;
 				}
 			}
-		}
-	}
-	// build second advanced building except for some civs.
-	if (gameState.currentPhase() > 2 && gameState.civ() !== "gaul" && gameState.civ() !== "brit" && gameState.civ() !== "iber" && gameState.getPopulation() > 130)
-	{
-		var Const = 0;
-		for (var i in this.bAdvanced)
-			Const += gameState.countEntitiesByType(gameState.applyCiv(this.bAdvanced[i]), true);
-		if (inConst == 1)
-		{
-			var i = Math.floor(Math.random() * this.bAdvanced.length);
-			if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i]), true) < 1 &&
-				this.canBuild(gameState, this.bAdvanced[i]))
-				queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, this.bAdvanced[i], { "base" : bestBase }));
 		}
 	}
 };
@@ -1723,7 +1709,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 			this.baseManagers[i].update(gameState, queues, events);
 	}
 
-	this.navalManager.update(gameState, queues, events);
+	//this.navalManager.update(gameState, queues, events);
 	
 	if (this.Config.difficulty > 0)
 		this.attackManager.update(gameState, queues, events);

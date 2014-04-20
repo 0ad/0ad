@@ -339,6 +339,9 @@ m.DefenseManager.prototype.checkDefenseStructures = function(gameState, events)
 		var attacker = gameState.getEntityById(e.attacker);
 		if (!attacker)
 			continue;
+		var attackTypes = target.attackTypes();
+		if (!attackTypes || attackTypes.indexOf("Ranged") === -1)
+			continue;
 		var dist = API3.SquareVectorDistance(attacker.position(), target.position());
 		var range = target.attackRange("Ranged").max;
 		if (dist >= range*range)
