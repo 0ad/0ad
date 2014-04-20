@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/spart_mechanical_siege_oxybeles_common">
+  <Identity>
+    <Icon>units/hele_mechanical_siege_oxybeles_packed.png</Icon>
+  </Identity>
+  <Pack>
+    <Entity>units/spart_mechanical_siege_oxybeles_unpacked</Entity>
+    <Time>10000</Time>
+    <State>packed</State>
+  </Pack>
+  <VisualActor>
+    <Actor>units/athenians/siege_spear_packed.xml</Actor>
+  </VisualActor>
+</Entity>
