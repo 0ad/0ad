@@ -67,4 +67,6 @@ extern void InitGraphics(const CmdLineArgs& args, int flags);
 extern void Shutdown(int flags);
 extern void CancelLoad(const CStrW& message);
 
+extern bool InDevelopmentCopy();
+
 #endif // INCLUDED_GAMESETUP

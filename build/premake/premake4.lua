@@ -542,6 +542,12 @@ function setup_static_lib_project (project_name, rel_source_dirs, extern_libs, e
 	end
 end
 
+function setup_third_party_static_lib_project (project_name, rel_source_dirs, extern_libs, extra_params)
+
+	setup_static_lib_project(project_name, rel_source_dirs, extern_libs, extra_params)
+	includedirs { source_root .. "third_party/" .. project_name .. "/include/" .. project_name }
+end
+
 function setup_shared_lib_project (project_name, rel_source_dirs, extern_libs, extra_params)
 
 	local target_type = "SharedLib"
@@ -585,6 +591,27 @@ function setup_all_libs ()
 		table.insert(extern_libs, "miniupnpc")
 	end
 	setup_static_lib_project("network", source_dirs, extern_libs, {})
+
+	source_dirs = {
+		"third_party/tinygettext/src",
+	}
+	extern_libs = {
+		"iconv",
+	}
+	setup_third_party_static_lib_project("tinygettext", source_dirs, extern_libs, { no_pch = 1 })
+	
+	-- it's an external library and we don't want to modify its source to fix warnings, so we just disable them to avoid noise in the compile output
+	if _ACTION == "vs2005" or _ACTION == "vs2008" or _ACTION == "vs2010" or _ACTION == "vs2012" or _ACTION == "vs2013" then
+		buildoptions { 
+			"/wd4127",
+			"/wd4309",
+			"/wd4800",
+			"/wd4100",
+			"/wd4996",
+			"/wd4099",
+			"/wd4503"
+		}
+	end
 
 
 	if not _OPTIONS["without-lobby"] then
@@ -673,6 +700,8 @@ function setup_all_libs ()
 		"soundmanager/scripting",
 		"maths",
 		"maths/scripting",
+		"i18n",
+		"i18n/scripting"
 	}
 	extern_libs = {
 		"spidermonkey",
@@ -683,6 +712,9 @@ function setup_all_libs ()
 		"boost",
 		"enet",
 		"libcurl",
+		"tinygettext",
+		"icu",
+		"iconv",
 	}
 	
 	if not _OPTIONS["without-audio"] then
@@ -727,13 +759,17 @@ function setup_all_libs ()
 
 	source_dirs = {
 		"gui",
-		"gui/scripting"
+		"gui/scripting",
+		"i18n"
 	}
 	extern_libs = {
 		"spidermonkey",
 		"sdl",	-- key definitions
 		"opengl",
 		"boost",
+		"tinygettext",
+		"icu",
+		"iconv",
 	}
 	if not _OPTIONS["without-audio"] then
 		table.insert(extern_libs, "openal")
@@ -858,6 +894,9 @@ used_extern_libs = {
 	"comsuppw",
 	"enet",
 	"libcurl",
+	"tinygettext",
+	"icu",
+	"iconv",
 
 	"valgrind",
 }

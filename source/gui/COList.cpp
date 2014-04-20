@@ -1,5 +1,6 @@
 #include "precompiled.h"
 #include "COList.h"
+#include "i18n/L10n.h"
 
 #include "ps/CLogger.h"
 
@@ -121,9 +122,13 @@ void COList::HandleMessage(SGUIMessage &Message)
 
 bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
 {
-	int elmt_item = pFile->GetElementID("item");
-	int elmt_heading = pFile->GetElementID("heading");
-	int elmt_def = pFile->GetElementID("def");
+	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
+	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
+	ELMT(item);
+	ELMT(heading);
+	ELMT(def);
+	ELMT(translatableAttribute);
+	ATTR(id);
 
 	if (child.GetNodeName() == elmt_item)
 	{
@@ -178,6 +183,30 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 				oDef.m_Heading = attr_value.FromUTF8();
 			}
 
+		}
+
+		XMBElementList grandchildren = child.GetChildNodes();
+		for (int i = 0; i < grandchildren.Count; ++i)
+		{
+			XMBElement grandchild = grandchildren.Item(i);
+			if (grandchild.GetNodeName() == elmt_translatableAttribute)
+			{
+				CStr attributeName(grandchild.GetAttributes().GetNamedItem(attr_id));
+				// only the heading is translatable for list defs
+				if (!attributeName.empty() && attributeName == "heading")
+				{
+					CStr value(grandchild.GetText());
+					if (!value.empty())
+					{
+						CStr translatedValue(L10n::Instance().Translate(value));
+						oDef.m_Heading = translatedValue.FromUTF8();
+					}
+				}
+				else // Ignore.
+				{
+					LOGERROR(L"GUI: translatable attribute in olist def that isn't a heading. (object: %hs)", this->GetPresentableName().c_str());
+				}
+			}
 		}
 
 		m_ObjectsDefs.push_back(oDef);
