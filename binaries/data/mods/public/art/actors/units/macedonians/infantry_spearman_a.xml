@@ -7,8 +7,17 @@
         <animation file="biped/not used/inf_phalanx_a.psa" name="Idle" speed="100"/>
         <animation file="biped/inf_phalanx_walk_a.psa" name="Walk" speed="140"/>
         <animation file="biped/inf_phalanx_walk_a.psa" name="run" speed="140"/>
-        <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="attack_melee" speed="350"/>
+        <animation event="0.5" file="biped/inf_syntagma_front_attack.dae" name="attack_melee" speed="100"/>
         <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="attack_slaughter" speed="350"/>
+        <animation file="biped/inf_syntagma_front_idle.dae" name="syntagma_front_idle" speed="100"/>
+        <animation file="biped/inf_syntagma_front_walk.dae" name="syntagma_front_walk" speed="50"/>
+        <animation file="biped/inf_syntagma_front_run.dae" name="syntagma_front_run" speed="50"/>
+        <animation file="biped/inf_syntagma_med_idle.dae" name="syntagma_med_idle" speed="100"/>
+        <animation file="biped/inf_syntagma_med_walk.dae" name="syntagma_med_walk" speed="50"/>
+        <animation file="biped/inf_syntagma_med_run.dae" name="syntagma_med_run" speed="50"/> 
+        <animation file="biped/inf_syntagma_back_idle.dae" name="syntagma_back_idle" speed="100"/>
+        <animation file="biped/inf_syntagma_back_walk.dae" name="syntagma_back_walk" speed="50"/>
+        <animation file="biped/inf_syntagma_back_run.dae" name="syntagma_back_run" speed="50"/>                        
         <animation file="biped/walk_spearshield.psa" name="carry_food" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_meat" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>

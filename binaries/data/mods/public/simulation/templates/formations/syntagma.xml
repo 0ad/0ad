@@ -4,6 +4,26 @@
     <RequiredMemberCount>9</RequiredMemberCount>
     <DisabledTooltip>9 pike infantry units required</DisabledTooltip>
     <FormationName>Syntagma</FormationName>
+    <UnitSeparationWidthMultiplier>0.65</UnitSeparationWidthMultiplier>
+    <UnitSeparationDepthMultiplier>0.75</UnitSeparationDepthMultiplier>
+    <WidthDepthRatio>1.25</WidthDepthRatio>
+    <Animations>
+      <idle>
+        1..2,1..-1: syntagma_front_idle;
+        3..4,1..-1: syntagma_med_idle;
+        4..8,1..-1: syntagma_back_idle
+      </idle>
+      <walk>
+        1..2,1..-1: syntagma_front_walk;
+        3..4,1..-1: syntagma_med_walk;
+        4..8,1..-1: syntagma_back_walk
+      </walk>
+      <run>
+        1..2,1..-1: syntagma_front_run;
+        3..4,1..-1: syntagma_med_run;
+        4..8,1..-1: syntagma_back_run
+      </run>      
+    </Animations>    
   </Formation>
   <FormationAttack>
     <CanAttackAsFormation>true</CanAttackAsFormation>
