@@ -4,14 +4,25 @@
   <group>
     <variant frequency="100" name="Mesh">
       <mesh>skeletal/wolf.dae</mesh>
+        <animations>
+          <animation file="quadraped/wolf_walk.dae" name="Walk" speed="75"/>
+          <animation file="quadraped/wolf_run.dae" name="Run" speed="10"/>   
+          <animation file="quadraped/wolf_attack_01.dae" name="attack_melee" speed="165"/>
+          <animation file="quadraped/wolf_attack_02.dae" name="attack_melee" speed="165"/>
+          <animation file="quadraped/wolf_idle_01.dae" name="Idle" speed="100"/>     
+          <animation file="quadraped/wolf_idle_02.dae" name="Idle" speed="100"/> 
+          <animation file="quadraped/wolf_idle_03.dae" name="Idle" speed="100"/>
+          <animation file="quadraped/wolf_death_01.dae" name="death" speed="100"/>
+          <animation file="quadraped/wolf_death_02.dae" name="death" speed="100"/>                                                                           
+        </animations>        
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="fur-black">
-      <textures><texture file="skeletal/animal_wolf_black.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="fur-brown">
+      <textures><texture file="skeletal/animal_wolf.png" name="baseTex"/></textures>
     </variant>
-    <variant frequency="4" name="fur-brown">
-      <textures><texture file="skeletal/animal_wolf_brown.dds" name="baseTex"/></textures>
+<variant frequency="4" name="fur-grey">
+      <textures><texture file="skeletal/animal_wolf_grey.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
@@ -22,4 +33,5 @@
       </props>
     </variant>
   </group>
+  <material>basic_trans.xml</material>  
 </actor>
