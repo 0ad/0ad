@@ -2,17 +2,22 @@
 <Entity parent="template_unit_hero_infantry_swordsman">
   <Auras>
     <javelin_attack_2>
-      <Type>global</Type>
+      <Type>range</Type>
+      <Radius>60</Radius>
     </javelin_attack_2>
     <javelin_armor_1>
-      <Type>global</Type>
+      <Type>range</Type>
+      <Radius>60</Radius>
     </javelin_armor_1>
   </Auras>
   <Identity>
     <Civ>spart</Civ>
 	<GenericName>Brasidas</GenericName>
     <SpecificName>Brasidas</SpecificName>
-    <Tooltip>Hero Aura: Nearby Helot Skirmishers have increased armor and attack.</Tooltip>
+    <Tooltip>Classes: Champion Melee Infantry Swordsman.
+"Helot Reforms" Aura: Helot Skirmishers within sight of him gain +2 attack and +1 all armor types.
+Counters: 2x vs. Spearmen, 1.5x vs. Elephants.
+Countered by: Archers, Cavalry Spearmen, and Cavalry Archers.</Tooltip>
     <History>Because Brasidas has sponsored their citizenship in return for service, Helot Skirmishers fight longer and harder for Sparta while within range of him.</History>
     <Icon>units/spart_hero_brasidas.png</Icon>
   </Identity>
