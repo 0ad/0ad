@@ -70,5 +70,5 @@ function messageBox (mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCapt
 
 function updateFPS()
 {	
-	Engine.GetGUIObjectByName("fpsCounter").caption = "FPS: " + Engine.GetFPS();
+	Engine.GetGUIObjectByName("fpsCounter").caption = sprintf(translate("FPS: %(fps)s"), { fps: Engine.GetFPS() });
 }

@@ -64,7 +64,7 @@ function parseJSONData(pathname)
 	var rawData = Engine.ReadFile(pathname);
 	if (!rawData)
 	{
-		error("Failed to read file: "+pathname);
+		error(sprintf("Failed to read file: %(path)s", { path: pathname }));
 	}
 	else
 	{
@@ -73,13 +73,11 @@ function parseJSONData(pathname)
 			// TODO: Need more info from the parser on why it failed: line number, position, etc!
 			data = JSON.parse(rawData);
 			if (!data)
-				error("Failed to parse JSON data in: "+pathname+" (check for valid JSON data)");
-
-
+				error(sprintf("Failed to parse JSON data in: %(path)s (check for valid JSON data)", { path: pathname }));
 		}
 		catch(err)
 		{
-			error(err.toString()+": parsing JSON data in "+pathname);
+			error(sprintf("%(error)s: parsing JSON data in %(path)s", { error: err.toString(), path: pathname }));
 		}
 	}
 
@@ -141,7 +139,7 @@ function parseJSONFromDataFile(filename)
 	var path = "simulation/data/"+filename;
 	var rawData = Engine.ReadFile(path);
 	if (!rawData)
-		error("Failed to read file: "+path);
+		error(sprintf("Failed to read file: %(path)s", { path: path }));
 
 	try
 	{
@@ -152,7 +150,7 @@ function parseJSONFromDataFile(filename)
 	}
 	catch(err)
 	{
-		error(err.toString()+": parsing JSON data in "+path);
+		error(sprintf("%(error)s: parsing JSON data in %(path)s", { error: err.toString(), path: path }));
 	}
 
 	return undefined;
@@ -169,7 +167,10 @@ function initPlayerDefaults()
 	if (!data || !data.PlayerData)
 		error("Failed to parse player defaults in player_defaults.json (check for valid JSON data)");
 	else
+	{
+		translateObjectKeys(data.PlayerData, ["Name"])
 		defaults = data.PlayerData;
+	}
 
 	return defaults;
 }
@@ -191,6 +192,7 @@ function initMapSizes()
 		error("Failed to parse map sizes in map_sizes.json (check for valid JSON data)");
 	else
 	{
+		translateObjectKeys(data, ["Name", "LongName"]);
 		for (var i = 0; i < data.Sizes.length; ++i)
 		{
 			sizes.shortNames.push(data.Sizes[i].Name);
@@ -221,6 +223,7 @@ function initGameSpeeds()
 		error("Failed to parse game speeds in game_speeds.json (check for valid JSON data)");
 	else
 	{
+		translateObjectKeys(data, ["Name"]);
 		for (var i = 0; i < data.Speeds.length; ++i)
 		{
 			gameSpeeds.names.push(data.Speeds[i].Name);
@@ -250,16 +253,17 @@ function iColorToString(color)
 // ====================================================================
 
 /**
- * Convert time in milliseconds to hh:mm:ss string representation.
+ * Convert time in milliseconds to [hh:]mm:ss string representation.
  * @param time Time period in milliseconds (integer)
  * @return String representing time period
  */
 function timeToString(time)
 {
-	var hours   = Math.floor(time / 1000 / 60 / 60);
-	var minutes = Math.floor(time / 1000 / 60) % 60;
-	var seconds = Math.floor(time / 1000) % 60;
-	return hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
+	if (time < 1000 * 60 * 60)
+		var format = translate("mm:ss");
+	else
+		var format = translate("HH:mm:ss");
+	return Engine.FormatMillisecondsIntoDateString(time, format);
 }
 
 // ====================================================================

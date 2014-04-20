@@ -783,7 +783,7 @@ GuiInterface.prototype.GetNeededResources = function(player, amounts)
 GuiInterface.prototype.AddTimeNotification = function(notification)
 {
 	var time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
-	notification.endTime = notification.time + time;
+	notification.endTime = notification.duration + time;
 	notification.id = ++this.timeNotificationID;
 	this.timeNotifications.push(notification);
 	this.timeNotifications.sort(function (n1, n2){return n2.endTime - n1.endTime});
@@ -802,32 +802,19 @@ GuiInterface.prototype.DeleteTimeNotification = function(notificationID)
 	}
 };
 
-GuiInterface.prototype.GetTimeNotificationText = function(playerID)
-{	
-	var formatTime = function(time)
-		{
-			// add 1000 ms to get ceiled instead of floored millisecons
-			// displaying 00:00 for a full second isn't nice
-			time += 1000;
-			var hours   = Math.floor(time / 1000 / 60 / 60);
-			var minutes = Math.floor(time / 1000 / 60) % 60;
-			var seconds = Math.floor(time / 1000) % 60;
-			return (hours ? hours + ':' : "") + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
-		};
+GuiInterface.prototype.GetTimeNotifications = function(playerID)
+{
 	var time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
-	var text = "";
-	for each (var n in this.timeNotifications)
+	var toDelete = [];
+	for (var n of this.timeNotifications)
 	{
-		if (time >= n.endTime)
-		{
-			// delete the notification and start over 
-			this.DeleteTimeNotification(n.id);
-			return this.GetTimeNotificationText(playerID);
-		}
-		if (n.players.indexOf(playerID) >= 0)
-			text += n.message.replace("%T",formatTime(n.endTime - time))+"\n";
+		n.time = n.endTime - time;
+		if (n.time < 0)
+			toDelete.push(n.id);
 	}
-	return text;
+	for (var id of toDelete)
+		this.DeleteTimeNotification(id);
+	return this.timeNotifications;
 };
 
 GuiInterface.prototype.PushNotification = function(notification)
@@ -868,7 +855,7 @@ GuiInterface.prototype.GetFormationInfoFromTemplate = function(player, data)
 	if (!template || !template.Formation)
 		return r;
 	r.name = template.Formation.FormationName;
-	r.tooltip = template.Formation.DisabledTooltip;
+	r.tooltip = template.Formation.DisabledTooltip || "";
 	return r;
 };
 
@@ -1027,8 +1014,9 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
  * 
  * Returns result object from CheckPlacement:
  * 	{
- *		"success":	true iff the placement is valid, else false
- *		"message":	message to display in UI for invalid placement, else empty string
+ *		"success":    true iff the placement is valid, else false
+ *		"message":    message to display in UI for invalid placement, else ""
+		"parameters": parameters to use in the message
  *  }
  */
 GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
@@ -1036,6 +1024,7 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 	var result = {
 		"success": false,
 		"message": "",
+		"parameters": {},
 	}
 
 	// See if we're changing template
@@ -1981,7 +1970,7 @@ var exposedFunctions = {
 	"GetIncomingAttacks": 1,
 	"GetNeededResources": 1,
 	"GetNextNotification": 1,
-	"GetTimeNotificationText": 1,
+	"GetTimeNotifications": 1,
 
 	"GetAvailableFormations": 1,
 	"GetFormationRequirements": 1,

@@ -11,7 +11,7 @@
 function removeItem (objectName, pos)
 {
 	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write ("removeItem(): " + objectName + " not found.");
+		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "removeItem()", object: objectName }));
 
 	var list = Engine.GetGUIObjectByName (objectName).list;
 	var selected = Engine.GetGUIObjectByName (objectName).selected;
@@ -41,7 +41,7 @@ function removeItem (objectName, pos)
 function addItem (objectName, pos, value)
 {
 	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write ("addItem(): " + objectName + " not found.");
+		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "addItem()", object: objectName }));
 
 	var list = Engine.GetGUIObjectByName (objectName).list;
 	var selected = Engine.GetGUIObjectByName (objectName).selected;
@@ -66,7 +66,7 @@ function addItem (objectName, pos, value)
 function pushItem (objectName, value)
 {
 	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write ("pushItem(): " + objectName + " not found.");
+		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "pushItem()", object: objectName }));
 
 	var list = Engine.GetGUIObjectByName (objectName).list;
 	list.push (value);
@@ -81,7 +81,7 @@ function pushItem (objectName, value)
 function popItem (objectName)
 {
 	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write ("popItem(): " + objectName + " not found.");
+		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "popItem()", object: objectName }));
 
 	var selected = Engine.GetGUIObjectByName (objectName).selected;
 	removeItem(objectName, getNumItems(objectName)-1);
@@ -98,7 +98,7 @@ function popItem (objectName)
 function getNumItems (objectName)
 {
 	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write ("getNumItems(): " + objectName + " not found.");
+		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "getNumItems()", object: objectName }));
 
 	var list = Engine.GetGUIObjectByName(objectName).list;
 	return list.length;
@@ -110,7 +110,7 @@ function getNumItems (objectName)
 function getItemValue (objectName, pos)
 {
 	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write ("getItemValue(): " + objectName + " not found.");
+		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "getItemValue()", object: objectName }));
 
 	var list = Engine.GetGUIObjectByName(objectName).list;
 	return list[pos];
@@ -122,7 +122,7 @@ function getItemValue (objectName, pos)
 function getCurrItemValue (objectName)
 {
 	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write ("getCurrItemValue(): " + objectName + " not found.");
+		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "getCurrItemValue()", object: objectName }));
 
 	if (Engine.GetGUIObjectByName(objectName).selected == -1)
 		return "";
@@ -136,8 +136,9 @@ function getCurrItemValue (objectName)
 // already in the list).
 function setCurrItemValue (objectName, string)
 {
-	if (Engine.GetGUIObjectByName(objectName) == null) {
-		Engine.Console_Write ("setCurrItemValue(): " + objectName + " not found.");
+	if (Engine.GetGUIObjectByName(objectName) == null)
+	{
+		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "setCurrItemValue()", object: objectName }));
 		return -1;
 	}
 
@@ -157,7 +158,7 @@ function setCurrItemValue (objectName, string)
 	}
 
 	// Return -2 if failed to find value in list.
-	Engine.Console_Write ("Requested string '" + string + "' not found in " + objectName + "'s list.");
+	Engine.Console_Write (sprintf(translate("Requested string '%(string)s' not found in %(object)s's list."), { string: string, object: objectName }));
 	return -2;
 }
 

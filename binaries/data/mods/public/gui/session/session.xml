@@ -243,7 +243,9 @@
 		hidden="true" hotkey="session.devcommands.toggle">
 		<action on="Press">toggleDeveloperOverlay();</action>
 
-	    <object size="0 0 100%-18 16" type="text" style="devCommandsText">Control all units</object>
+	    <object size="0 0 100%-18 16" type="text" style="devCommandsText">
+		<translatableAttribute id="caption">Control all units</translatableAttribute>
+	    </object>
 	    <object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="ModernTickBox">
 		<action on="Press">
 		    g_DevSettings.controlAll = this.checked;
@@ -251,40 +253,56 @@
 		</action>
 	    </object>
 
-	    <object size="0 16 100%-18 32" type="text" style="devCommandsText">Change perspective</object>
+	    <object size="0 16 100%-18 32" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Change perspective</translatableAttribute>
+		</object>
 	    <object size="100%-16 16 100% 32" type="checkbox" style="ModernTickBox">
 		<action on="Press">Engine.GetGUIObjectByName("viewPlayer").hidden = !this.checked;</action>
 	    </object>
 
-	    <object size="0 32 100%-18 48" type="text" style="devCommandsText">Display selection state</object>
+	    <object size="0 32 100%-18 48" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Display selection state</translatableAttribute>
+		</object>
 	    <object size="100%-16 32 100% 48" type="checkbox" name="devDisplayState" style="ModernTickBox"/>
 
-	    <object size="0 48 100%-18 64" type="text" style="devCommandsText">Pathfinder overlay</object>
+	    <object size="0 48 100%-18 64" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Pathfinder overlay</translatableAttribute>
+		</object>
 	    <object size="100%-16 48 100% 64" type="checkbox" style="ModernTickBox">
 		<action on="Press">Engine.GuiInterfaceCall("SetPathfinderDebugOverlay", this.checked);</action>
 	    </object>
 
-	    <object size="0 64 100%-18 80" type="text" style="devCommandsText">Obstruction overlay</object>
+	    <object size="0 64 100%-18 80" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Obstruction overlay</translatableAttribute>
+		</object>
 	    <object size="100%-16 64 100% 80" type="checkbox" style="ModernTickBox">
 		<action on="Press">Engine.GuiInterfaceCall("SetObstructionDebugOverlay", this.checked);</action>
 	    </object>
 
-	    <object size="0 80 100%-18 96" type="text" style="devCommandsText">Unit motion overlay</object>
+	    <object size="0 80 100%-18 96" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Unit motion overlay</translatableAttribute>
+		</object>
 	    <object size="100%-16 80 100% 96" type="checkbox" style="ModernTickBox">
 		<action on="Press">g_Selection.SetMotionDebugOverlay(this.checked);</action>
 	    </object>
 
-	    <object size="0 96 100%-18 112" type="text" style="devCommandsText">Range overlay</object>
+	    <object size="0 96 100%-18 112" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Range overlay</translatableAttribute>
+		</object>
 	    <object size="100%-16 96 100% 112" type="checkbox" style="ModernTickBox">
 		<action on="Press">Engine.GuiInterfaceCall("SetRangeDebugOverlay", this.checked);</action>
 	    </object>
 
-	    <object size="0 112 100%-18 128" type="text" style="devCommandsText">Bounding box overlay</object>
+	    <object size="0 112 100%-18 128" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Bounding box overlay</translatableAttribute>
+		</object>
 	    <object size="100%-16 112 100% 128" type="checkbox" style="ModernTickBox">
 		<action on="Press">Engine.SetBoundingBoxDebugOverlay(this.checked);</action>
 	    </object>
 
-	    <object size="0 128 100%-18 144" type="text" style="devCommandsText">Restrict camera</object>
+	    <object size="0 128 100%-18 144" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Restrict camera</translatableAttribute>
+		</object>
 	    <object size="100%-16 128 100% 144" type="checkbox" style="ModernTickBox" checked="true">
 			<action on="Press">
 				Engine.GameView_SetConstrainCameraEnabled(this.checked);
@@ -296,21 +314,27 @@
 			</action>
 	    </object>
 
-	    <object size="0 144 100%-18 160" type="text" style="devCommandsText">Reveal map</object>
+	    <object size="0 144 100%-18 160" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Reveal map</translatableAttribute>
+		</object>
 	    <object size="100%-16 144 100% 160" type="checkbox" name="devCommandsRevealMap" style="ModernTickBox">
 		<action on="Load">this.checked = Engine.GuiInterfaceCall("IsMapRevealed");</action>
 		<action on="Press">Engine.PostNetworkCommand({"type": "reveal-map", "enable": this.checked});</action>
 	    </object>
 
-	    <object size="0 160 100%-18 176" type="text" style="devCommandsText">Enable time warp</object>
+	    <object size="0 160 100%-18 176" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Enable time warp</translatableAttribute>
+		</object>
 	    <object size="100%-16 160 100% 176" type="checkbox" name="devTimeWarp" style="ModernTickBox">
 		<action on="Press">
         if (this.checked)
-          messageBox(500, 250, "Note: time warp mode is a developer option, and not intended\nfor use over long periods of time. Using it incorrectly may\ncause the game to run out of memory or crash.", "Time warp mode", 2);
+          showTimeWarpMessageBox();
         Engine.EnableTimeWarpRecording(this.checked ? 10 : 0);</action>
 	    </object>
 
-	    <object size="0 176 100%-18 192" type="text" style="devCommandsText">Promote selected units</object>
+	    <object size="0 176 100%-18 192" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Promote selected units</translatableAttribute>
+		</object>
 	    <object size="100%-16 176 100% 192" type="button" style="ModernTickBox">
 		<action on="Press">Engine.PostNetworkCommand({"type": "promote", "entities": g_Selection.toList()});</action>
 	    </object>
@@ -335,8 +359,12 @@
 		z="0"
 	>
 	    <object size="0 0 100% 100%" type="image" sprite="devCommandsBackground" ghost="true" z="0"/>
-	    <object size="50%-128 50%-20 50%+128 50%+20" type="text" style="PauseText" ghost="true" z="0">Game Paused</object>
-	    <object size="50%-128 50%+20 50%+128 50%+30" type="text" style="PauseMessageText" ghost="true" z="0">Click to Resume Game</object>
+	    <object size="50%-128 50%-20 50%+128 50%+20" type="text" style="PauseText" ghost="true" z="0">
+			<translatableAttribute id="caption">Game Paused</translatableAttribute>
+		</object>
+		<object size="50%-128 50%+20 50%+128 50%+30" type="text" style="PauseMessageText" ghost="true" z="0">
+			<translatableAttribute id="caption">Click to Resume Game</translatableAttribute>
+		</object>
 	    <action on="Press">togglePause();</action>
 	</object>
 
@@ -367,13 +395,13 @@
 	    </object>
 
 	    <object size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
-		Send
-		<action on="Press">submitChatInput();</action>
+			<translatableAttribute id="caption">Send</translatableAttribute>
+			<action on="Press">submitChatInput();</action>
 	    </object>
 
 	    <object size="30%+24 100%-40 60%+24 100%-12" type="button" style="StoneButton">
-		Cancel
-		<action on="Press">closeChat();</action>
+			<translatableAttribute id="caption">Cancel</translatableAttribute>
+			<action on="Press">closeChat();</action>
 	    </object>
 	    <object name="toggleTeamChat" size="60%+32 100%-34 60%+48 100%-6" type="checkbox" style="ModernTickBox"/>
 	    <object size="60%+48 100%-40 100% 100%-12" type="text"  style="ModernLeftLabelText">
@@ -390,17 +418,38 @@
 		hidden="true"
 		sprite="ModernDialog"
 	>
-		<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Diplomacy</object>
+		<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">
+			<translatableAttribute id="caption">Diplomacy</translatableAttribute>
+		</object>
 
 		<object name="diplomacyHeader" size="32 32 100%-32 64">
-			<object name="diplomacyHeaderName" size="0 0 150 100%" type="text" style="chatPanel" ghost="true" caption="Name"/>
-			<object name="diplomacyHeaderCiv" size="150 0 250 100%" type="text" style="chatPanel" ghost="true" caption="Civilization"/>
-			<object name="diplomacyHeaderTeam" size="250 0 300 100%" type="text" style="chatPanel" ghost="true" caption="Team"/>
-			<object name="diplomacyHeaderTheirs" size="300 0 360 100%" type="text" style="chatPanel" ghost="true" caption="Theirs"/>
-			<object name="diplomacyHeaderAlly" size="100%-180 0 100%-160 100%" type="text" style="chatPanel" caption="A" tooltip="Ally" tooltip_style="sessionToolTipBold"/>
-			<object name="diplomacyHeaderNeutral" size="100%-160 0 100%-140 100%" type="text" style="chatPanel" caption="N" tooltip="Neutral" tooltip_style="sessionToolTipBold"/>
-			<object name="diplomacyHeaderEnemy" size="100%-140 0 100%-120 100%" type="text" style="chatPanel" caption="E" tooltip="Enemy" tooltip_style="sessionToolTipBold"/>
-			<object name="diplomacyHeaderTribute" size="100%-110 0 100% 100%" type="text" style="chatPanel" caption="Tribute"/>
+			<object name="diplomacyHeaderName" size="0 0 150 100%" type="text" style="chatPanel" ghost="true">
+				<translatableAttribute id="caption">Name</translatableAttribute>
+			</object>
+			<object name="diplomacyHeaderCiv" size="150 0 250 100%" type="text" style="chatPanel" ghost="true">
+				<translatableAttribute id="caption">Civilization</translatableAttribute>
+			</object>
+			<object name="diplomacyHeaderTeam" size="250 0 300 100%" type="text" style="chatPanel" ghost="true">
+				<translatableAttribute id="caption">Team</translatableAttribute>
+			</object>
+			<object name="diplomacyHeaderTheirs" size="300 0 360 100%" type="text" style="chatPanel" ghost="true">
+				<translatableAttribute id="caption">Theirs</translatableAttribute>
+			</object>
+			<object name="diplomacyHeaderAlly" size="100%-180 0 100%-160 100%" type="text" style="chatPanel" tooltip_style="sessionToolTipBold">
+				<translatableAttribute id="caption">A</translatableAttribute>
+				<translatableAttribute id="tooltip">Ally</translatableAttribute>
+			</object>
+			<object name="diplomacyHeaderNeutral" size="100%-160 0 100%-140 100%" type="text" style="chatPanel" tooltip_style="sessionToolTipBold">
+				<translatableAttribute id="caption">N</translatableAttribute>
+				<translatableAttribute id="tooltip">Neutral</translatableAttribute>
+			</object>
+			<object name="diplomacyHeaderEnemy" size="100%-140 0 100%-120 100%" type="text" style="chatPanel" tooltip_style="sessionToolTipBold">
+				<translatableAttribute id="caption">E</translatableAttribute>
+				<translatableAttribute id="tooltip">Enemy</translatableAttribute>
+			</object>
+			<object name="diplomacyHeaderTribute" size="100%-110 0 100% 100%" type="text" style="chatPanel">
+				<translatableAttribute id="caption">Tribute</translatableAttribute>
+			</object>
 		</object>
 
 		<object size="32 64 100%-32 384">
@@ -448,11 +497,15 @@
 		hidden="true"
 		sprite="ModernDialog"
 	>
-		<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Trade</object>
+		<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">
+			<translatableAttribute id="caption">Trade</translatableAttribute>
+		</object>
 
 		<!-- Trading goods -->
 		<object name="tradeGoods" size="20 50 100%-20 82">
-			<object name="tradeHeader" size="0 0 180 100%" type="text" style="ModernLabelText" text_align="left" ghost="true" caption="Trading goods selection:"/>
+			<object name="tradeHeader" size="0 0 180 100%" type="text" style="ModernLabelText" text_align="left" ghost="true">
+				<translatableAttribute id="caption">Trading goods selection:</translatableAttribute>
+			</object>
 
 			<object size="180 0 100% 100%">
 				<repeat count="4">
@@ -470,21 +523,20 @@
 						</object>
 					</object>
 				</repeat>
-				<object name="tradeHelp" size="100%-24 4 100% 28" enabled="false" type="button" style="StoneButton" tooltip_style="sessionToolTipBold" tooltip="Select one goods as origin of the changes, \nthen use the arrows of the target goods to make the changes.">
+				<object name="tradeHelp" size="100%-24 4 100% 28" enabled="false" type="button" style="StoneButton" tooltip_style="sessionToolTipBold">
+					<translatableAttribute id="tooltip">Select one goods as origin of the changes,\nthen use the arrows of the target goods to make the changes.</translatableAttribute>
 					<object size="20% 15% 80% 75%" type="image" ghost="true" sprite="iconInfoWhite"/>
 				</object>
 			</object>
 		</object>
 
-		<object name="tradeStatistics" size="20 120 100%-20 168">
-			<object                    size="0   0   130   50%" type="text" style="ModernLabelText" text_align="left" ghost="true" caption="Traders:"/>
-			<object name="landTraders" size="130 0   100%  50%" type="text" style="ModernLabelText" text_align="left" ghost="true" />
-			<object                    size="0   50% 130  100%" type="text" style="ModernLabelText" text_align="left" ghost="true" caption = "Merchant ships:"/>
-			<object name="shipTraders" size="130 50% 100% 100%" type="text" style="ModernLabelText" text_align="left" ghost="true" />
+		<object name="tradeStatistics" size="20 90 100%-20 168">
+			<object name="landTraders" size="0 0   100%  50%" type="text" style="ModernLabelText" text_align="left" ghost="true" />
+			<object name="shipTraders" size="0 50% 100% 100%" type="text" style="ModernLabelText" text_align="left" ghost="true" />
 		</object>
 
 		<object size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
-		    Close
+			<translatableAttribute id="caption">Close</translatableAttribute>
 		    <action on="Press">closeTrade();</action>
 		</object>
 	</object>
@@ -499,97 +551,125 @@
 			hidden="true"
 			z="200"
 			>
-			<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Settings</object>
+			<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">
+				<translatableAttribute id="caption">Settings</translatableAttribute>
+			</object>
 			
 			<object style="TranslucentPanelThinBorder"
 				type="image"
 				size="32 32 100%-32 100%-70"
 				>
 				<!-- Settings / shadows -->
-				<object size="0 10 100%-80 35" type="text" style="ModernRightLabelText" ghost="true">Enable Shadows</object>
+				<object size="0 10 100%-80 35" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Enable Shadows</translatableAttribute>
+				</object>
 				<object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Load">this.checked = Engine.Renderer_GetShadowsEnabled();</action>
 					<action on="Press">Engine.Renderer_SetShadowsEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Shadow PCF -->
-				<object size="0 35 100%-80 60" type="text" style="ModernRightLabelText" ghost="true">Enable Shadow Filtering</object>
+				<object size="0 35 100%-80 60" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Enable Shadow Filtering</translatableAttribute>
+				</object>
 				<object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Load">this.checked = Engine.Renderer_GetShadowPCFEnabled();</action>
 					<action on="Press">Engine.Renderer_SetShadowPCFEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Water Normals -->
-				<object size="0 60 100%-80 85" type="text" style="ModernRightLabelText" ghost="true">Water - HQ Waviness</object>
+				<object size="0 60 100%-80 85" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Water - HQ Waviness</translatableAttribute>
+				</object>
 				<object name="waterNormalCheckox" size="100%-56 65 100%-30 90"  type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Load">this.checked = Engine.Renderer_GetWaterNormalEnabled();</action>
 					<action on="Press">Engine.Renderer_SetWaterNormalEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Real Depth -->
-				<object size="0 85 100%-80 110" type="text" style="ModernRightLabelText" ghost="true">Water - Use Actual Depth</object>
+				<object size="0 85 100%-80 110" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Water - Use Actual Depth</translatableAttribute>
+				</object>
 				<object name="waterRealDepthCheckbox" size="100%-56 90 100%-30 115"  type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Load">this.checked = Engine.Renderer_GetWaterRealDepthEnabled();</action>
 					<action on="Press">Engine.Renderer_SetWaterRealDepthEnabled(this.checked);</action>
 				</object>
 
 				<!-- Settings / Reflection -->
-				<object size="0 110 100%-80 135" type="text" style="ModernRightLabelText" ghost="true">Water - Enable Reflections</object>
+				<object size="0 110 100%-80 135" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Water - Enable Reflections</translatableAttribute>
+				</object>
 				<object name="waterReflectionCheckbox" size="100%-56 115 100%-30 140"  type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Load">this.checked = Engine.Renderer_GetWaterReflectionEnabled();</action>
 					<action on="Press">Engine.Renderer_SetWaterReflectionEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Refraction -->
-				<object size="0 135 100%-80 160" type="text" style="ModernRightLabelText" ghost="true">Water - Enable Refraction</object>
+				<object size="0 135 100%-80 160" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Water - Enable Refraction</translatableAttribute>
+				</object>
 				<object name="waterRefractionCheckbox" size="100%-56 140 100%-30 165"  type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Load">this.checked = Engine.Renderer_GetWaterRefractionEnabled();</action>
 					<action on="Press">Engine.Renderer_SetWaterRefractionEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Foam -->
-				<object size="0 160 100%-80 185" type="text" style="ModernRightLabelText" ghost="true">Water - Enable Shore Foam</object>
+				<object size="0 160 100%-80 185" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Water - Enable Shore Foam</translatableAttribute>
+				</object>
 				<object name="waterFoamCheckbox" size="100%-56 165 100%-30 190"  type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Load">this.checked = Engine.Renderer_GetWaterFoamEnabled();</action>
 					<action on="Press">Engine.Renderer_SetWaterFoamEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Waves -->
-				<object size="0 185 100%-80 210" type="text" style="ModernRightLabelText" ghost="true">Water - Enable Shore Waves</object>
+				<object size="0 185 100%-80 210" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Water - Enable Shore Waves</translatableAttribute>
+				</object>
 				<object name="waterCoastalWavesCheckbox" size="100%-56 190 100%-30 215"  type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Load">this.checked = Engine.Renderer_GetWaterCoastalWavesEnabled();</action>
 					<action on="Press">Engine.Renderer_SetWaterCoastalWavesEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Shadows -->
-				<object size="0 210 100%-80 235" type="text" style="ModernRightLabelText" ghost="true">Water - Use Surface Shadows</object>
+				<object size="0 210 100%-80 235" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Water - Use Surface Shadows</translatableAttribute>
+				</object>
 				<object name="waterShadowsCheckbox" size="100%-56 215 100%-30 240"  type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Load">if (Engine.Renderer_GetWaterShadowEnabled()) this.checked = true; else this.checked = false;</action>
 					<action on="Press">Engine.Renderer_SetWaterShadowEnabled(this.checked);</action>
 				</object>
 
 				<!-- Settings / Particles -->
-				<object size="0 235 100%-80 260" type="text" style="ModernRightLabelText" ghost="true">Enable Particles</object>
+				<object size="0 235 100%-80 260" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Enable Particles</translatableAttribute>
+				</object>
 				<object name="particlesCheckbox" size="100%-56 240 100%-30 265" type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Load">this.checked = Engine.Renderer_GetParticlesEnabled();</action>
 					<action on="Press">Engine.Renderer_SetParticlesEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Unit Silhouettes -->
-				<object size="0 260 100%-80 285" type="text" style="ModernRightLabelText" ghost="true">Enable Unit Silhouettes</object>
+				<object size="0 260 100%-80 285" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Enable Unit Silhouettes</translatableAttribute>
+				</object>
 				<object name="silhouettesCheckbox" size="100%-56 265 100%-30 290" type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Load">this.checked = Engine.Renderer_GetSilhouettesEnabled();</action>
 					<action on="Press">Engine.Renderer_SetSilhouettesEnabled(this.checked);</action>
 				</object>
 				
 				<!-- Settings / Music-->
-				<object size="0 285 100%-80 310" type="text" style="ModernRightLabelText" ghost="true">Enable Music</object>
+				<object size="0 285 100%-80 310" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Enable Music</translatableAttribute>
+				</object>
 				<object name="musicCheckbox" size="100%-56 290 100%-30 315" type="checkbox" style="ModernTickBox" checked="true">
 					<action on="Press">if (this.checked) global.music.start(); else global.music.stop();</action>
 				</object>
 				
 				<!-- Settings / Dev Overlay -->
-				<object size="0 310 100%-80 335" type="text" style="ModernRightLabelText" ghost="true">Developer Overlay</object>
+				<object size="0 310 100%-80 335" type="text" style="ModernRightLabelText" ghost="true">
+					<translatableAttribute id="caption">Developer Overlay</translatableAttribute>
+				</object>
 				<object name="developerOverlayCheckbox" size="100%-56 315 100%-30 340" type="checkbox" style="ModernTickBox" checked="false">
 					<action on="Load"><![CDATA[
 						if (Engine.IsRankedGame())
@@ -625,31 +705,36 @@
 		size="10 0 45% 100%"
 	    >
 		<!-- Food -->
-		<object name="food" size="0 0 90 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
+		<object name="food" size="0 0 90 100%" type="image" style="resourceCounter" tooltip_style="sessionToolTipBold">
+			<translatableAttribute id="tooltip">Food</translatableAttribute>
 		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/food.png" ghost="true"/>
 		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
 		</object>
 
 		<!-- Wood -->
-		<object name="wood" size="90 0 180 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
+		<object name="wood" size="90 0 180 100%" type="image" style="resourceCounter" tooltip_style="sessionToolTipBold">
+			<translatableAttribute id="tooltip">Wood</translatableAttribute>
 		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/wood.png" ghost="true"/>
 		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
 		</object>
 
 		<!-- Stone -->
-		<object name="stone" size="180 0 270 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
+		<object name="stone" size="180 0 270 100%" type="image" style="resourceCounter" tooltip_style="sessionToolTipBold">
+			<translatableAttribute id="tooltip">Stone</translatableAttribute>
 		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/stone.png" ghost="true"/>
 		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
 		</object>
 
 		<!-- Metal -->
-		<object name="metal" size="270 0 360 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
+		<object name="metal" size="270 0 360 100%"  type="image" style="resourceCounter" tooltip_style="sessionToolTipBold">
+			<translatableAttribute id="tooltip">Metal</translatableAttribute>
 		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/metal.png" ghost="true"/>
 		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
 		</object>
 
 		<!-- Population -->
-		<object name="population" size="360 0 450 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
+		<object name="population" size="360 0 450 100%" type="image" style="resourceCounter" tooltip_style="sessionToolTipBold">
+			<translatableAttribute id="tooltip">Population (current / limit)</translatableAttribute>
 		    <object size="0 -4 40 34" type="image" sprite="stretched:session/icons/resources/population.png" ghost="true"/>
 		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 		</object>
@@ -661,8 +746,9 @@
 	    <object size="50%-48 -26 50%+48 70" name="civIcon" type="image" tooltip_style="sessionToolTipBold"/>
 
 	    <!-- Switch the view perspective to another player's (largely for AI development) -->
-	    <object size="50%+50 5 50%+150 100%-5" name="viewPlayer" type="dropdown" hidden="true" style="ModernDropDown" tooltip_style="sessionToolTipBold" tooltip="Choose player to view">
-		<action on="SelectionChange">selectViewPlayer(this.selected);</action>
+		<object size="50%+50 5 50%+150 100%-5" name="viewPlayer" type="dropdown" hidden="true" style="ModernDropDown" tooltip_style="sessionToolTipBold">
+			<translatableAttribute id="tooltip">Choose player to view</translatableAttribute>
+			<action on="SelectionChange">selectViewPlayer(this.selected);</action>
 	    </object>
 
 		<!-- ================================  ================================ -->
@@ -683,12 +769,13 @@
 
 	    <!-- Displays Alpha name and number -->
 	    <object size="50%+48 0 100%-226 100%" name="alphaLabel" type="text" style="ModernLabelText" text_valign="top" ghost="true">
-		ALPHA XV : Osiris<!-- IMPORTANT: remember to update pregame/mainmenu.xml in sync with this -->
+			<!-- IMPORTANT: remember to update pregame/mainmenu.xml in sync with this: -->
+			<translatableAttribute id="caption">ALPHA XV : Osiris</translatableAttribute>
 
-		<!-- Displays build date and revision number-->
-		<object size="50%-128 0 50%+128 100%-2" name="Engine.BuildTimeLabel" type="text" style="BuildNameText" ghost="true">
-		    <action on="Load">this.caption = Engine.BuildTime(0) + " (" + Engine.BuildTime(2) + ")"</action>
-		</object>
+			<!-- Displays build date and revision number-->
+			<object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" style="BuildNameText" ghost="true">
+				<action on="Load">this.caption = getBuildString()</action>
+			</object>
 	    </object>
 
 		<!-- ================================  ================================ -->
@@ -699,16 +786,18 @@
 		size="100%-258 4 100%-230 32"
 		style="iconButton"
 		tooltip_style="sessionToolTip"
-		tooltip="Game speed"
-	    >
+		>
+			<translatableAttribute id="tooltip">Game speed</translatableAttribute>
 			<object size="5 5 100%-5 100%-5" type="image" sprite="stretched:session/icons/resources/time_small.png" ghost="true"/>
 			<action on="Press">
 				toggleGameSpeed();
 			</action>
 	    </object>
 
-		<object size="100%-380 40 100%-230 65" name="gameSpeed" type="dropdown" buffer_zone="5" style="ModernDropDown" hidden="true" tooltip="Choose game speed" tooltip_style="sessionToolTip"/>
-		
+		<object size="100%-380 40 100%-230 65" name="gameSpeed" type="dropdown" buffer_zone="5" style="ModernDropDown" hidden="true" tooltip_style="sessionToolTip">
+			<translatableAttribute id="tooltip">Choose game speed</translatableAttribute>
+		</object>
+
 	    <!-- ================================  ================================ -->
 	    <!-- Diplomacy Button -->
 	    <!-- ================================  ================================ -->
@@ -717,8 +806,8 @@
 		size="100%-226 4 100%-198 32"
 		style="iconButton"
 		tooltip_style="sessionToolTip"
-		tooltip="Diplomacy"
-	    >
+		>
+			<translatableAttribute id="tooltip">Diplomacy</translatableAttribute>
 		<!-- TODO make the button less ugly -->
 		<object size="0 0 100% 100%" name="diplomacyButtonImage" type="image" sprite="stretched:session/icons/diplomacy.png" ghost="true"/>
 		<action on="Press">
@@ -734,13 +823,13 @@
 		size="100%-194 4 100%-166 32"
 		style="iconButton"
 		tooltip_style="sessionToolTip"
-		tooltip="Trade"
 	    >
-		<!-- TODO make the button less ugly -->
-		<object size="0 0 100% 100%" name="tradeButtonImage" type="image" sprite="stretched:session/icons/economics.png" ghost="true"/>
-		<action on="Press">
-		    toggleTrade();
-		</action>
+			<!-- TODO make the button less ugly -->
+			<object size="0 0 100% 100%" name="tradeButtonImage" type="image" sprite="stretched:session/icons/economics.png" ghost="true"/>
+			<translatableAttribute id="tooltip">Trade</translatableAttribute>
+			<action on="Press">
+				toggleTrade();
+			</action>
 	    </object>
 
 	    <!-- ================================  ================================ -->
@@ -758,7 +847,9 @@
 		them on top of the main menu button -->
 		<object size="0 -4 100% 0" type="image" sprite="horizontalThinBorder" ghost="true"/>
 
-		<object size="50%-32 50%-16 50%+32 50%+16" type="image" sprite="menuButton" ghost="true">MENU</object>
+		<object size="50%-32 50%-16 50%+32 50%+16" type="image" sprite="menuButton" ghost="true">
+			<translatableAttribute id="caption">MENU</translatableAttribute>
+		</object>
 		<action on="Press">
 		    toggleMenu();
 		</action>
@@ -783,7 +874,7 @@
 				size="0 0 100% 28"
 				tooltip_style="sessionToolTip"
 			>
-				Manual
+				<translatableAttribute id="caption">Manual</translatableAttribute>
 				<action on="Press">openManual();</action>
 			</object>
 			
@@ -794,7 +885,7 @@
 				size="0 32 100% 60"
 				tooltip_style="sessionToolTip"
 			>
-				Chat
+				<translatableAttribute id="caption">Chat</translatableAttribute>
 				<action on="Press">chatMenuButton();</action>
 			</object>
 
@@ -805,7 +896,7 @@
 				size="0 64 100% 92"
 				tooltip_style="sessionToolTip"
 			>
-				Save
+				<translatableAttribute id="caption">Save</translatableAttribute>
 				<action on="Press">
 				openSave();
 				</action>
@@ -818,7 +909,7 @@
 				size="0 96 100% 124"
 				tooltip_style="sessionToolTip"
 			>
-				Settings
+				<translatableAttribute id="caption">Settings</translatableAttribute>
 				<action on="Press">settingsMenuButton();</action>
 			</object>
 
@@ -829,7 +920,9 @@
 				size="0 128 100% 156"
 				tooltip_style="sessionToolTip"
 			>
-				<object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
+				<object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">
+					<translatableAttribute id="caption">Pause</translatableAttribute>
+				</object>
 				<action on="Press">togglePause();</action>
 			</object>
 			
@@ -840,7 +933,7 @@
 				size="0 160 100% 188"
 				tooltip_style="sessionToolTip"
 			>
-				Resign
+				<translatableAttribute id="caption">Resign</translatableAttribute>
 				<action on="Press">resignMenuButton();</action>
 			</object>
 			
@@ -851,7 +944,7 @@
 				size="0 192 100% 220"
 				tooltip_style="sessionToolTip"
 			>
-				Exit
+				<translatableAttribute id="caption">Exit</translatableAttribute>
 				<action on="Press">exitMenuButton();</action>
 			</object>
 		</object>
@@ -870,14 +963,14 @@
 	<!-- ================================  ================================ -->
 	<!-- Hero Selection -->
 	<!-- ================================  ================================ -->
-<object
+	<object
 		name="unitHeroPanel"
 		size="0 36 50 93"
 		hidden="true"
 	>
 		<object name="unitHeroButton" size="0 0 50 50" type="button" style="iconButton" 
-			tooltip_style="sessionToolTip" tooltip="Attack and Armor"
-		>
+			tooltip_style="sessionToolTip">
+			<translatableAttribute id="tooltip">Attack and Armor</translatableAttribute>
 			<object name="unitHeroImage" size="5 5 100%-5 100%-5" type="image" ghost="true"/>
 			<object name="heroHitOverlay" hidden="true" type="image" ghost="true" size="5 5 100%-5 100%-5"/> 
 		</object>
@@ -900,9 +993,8 @@
 		size="0% 50%-216 0%+36 50%+144"
 	>
 		<repeat count="10">
-			<object name="unitGroupButton[n]" size="0 0 36 36" type="button" hidden="false" style="iconButton" tooltip_style="sessionToolTipBottomBold"
-				tooltip="Click to select grouped units, double-click to focus the grouped units and right-click to disband the group."
-			>
+			<object name="unitGroupButton[n]" size="0 0 36 36" type="button" hidden="false" style="iconButton" tooltip_style="sessionToolTipBottomBold">
+				<translatableAttribute id="tooltip">Click to select grouped units, double-click to focus the grouped units and right-click to disband the group.</translatableAttribute>
 				<object name="unitGroupIcon[n]" size="3 3 33 33" type="image" sprite="groupsIcon" ghost="true"/>
 				<object name="unitGroupLabel[n]" type="text" style="largeCenteredOutlinedText" ghost="true"/>
 			</object>
@@ -939,10 +1031,10 @@
 		<object size="100%-80 100%-80 100%-5 100%-5">
 			<!-- TODO: We should disable this button if there are no idle workers. -->
 			<object type="button"
-				tooltip="Find idle worker"
 				tooltip_style="sessionToolTip"
 				hotkey="selection.idleworker"
 			>
+				<translatableAttribute id="tooltip">Find idle worker</translatableAttribute>
 				<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
 				<action on="MouseEnter">Engine.GetGUIObjectByName("idleOverlay").sprite = "stretched:session/minimap-idle-highlight.png";</action>
 				<action on="MouseLeave">Engine.GetGUIObjectByName("idleOverlay").sprite = "stretched:session/minimap-idle.png";</action>
@@ -993,7 +1085,9 @@
 			size="6 36 100% 100%"
 			hidden="true"
 		>
-		    <object ghost="true" style="resourceText" type="text" size="0 0 100% 20">Exchange resources:</object>
+			<object ghost="true" style="resourceText" type="text" size="0 0 100% 20">
+				<translatableAttribute id="tooltip">Exchange resources:</translatableAttribute>
+			</object>
 		    <object size="0 32 100% 78">
 			<repeat count="4">
 			    <object name="unitBarterSellButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottomBold">
@@ -1050,7 +1144,9 @@
 			<object size="0 8 100% 60" type="image" sprite="edgedPanelShader">
 			    <!-- Health bar -->
 			    <object size="88 0 100% 24" name="healthSection">
-				<object size="0 0 100% 16" name="healthLabel" type="text" style="StatsTextLeft" ghost="true">Health:</object>
+				<object size="0 0 100% 16" name="healthLabel" type="text" style="StatsTextLeft" ghost="true">
+					<translatableAttribute id="tooltip">Health:</translatableAttribute>
+				</object>
 				<object size="0 0 100% 16" name="healthStats" type="text" style="StatsTextRight" ghost="true"/>
 				<object size="1 16 100% 23" name="health" type="image">
 				    <object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
@@ -1062,7 +1158,9 @@
 
 			    <!-- Stamina bar -->
 			    <object size="88 28 100% 52" name="staminaSection">
-				<object size="0 0 100% 16" name="staminaLabel" type="text" style="StatsTextLeft" ghost="true">Stamina:</object>
+				<object size="0 0 100% 16" name="staminaLabel" type="text" style="StatsTextLeft" ghost="true">
+					<translatableAttribute id="tooltip">Stamina:</translatableAttribute>
+				</object>
 				<object size="0 0 100% 16" name="staminaStats" type="text" style="StatsTextRight" ghost="true"/>
 				<object size="1 16 100% 23" name="stamina" type="image">
 				    <object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
@@ -1087,7 +1185,9 @@
 			
 			<object size="0 60 100% 96" type="image" sprite="edgedPanelShader">
 			    <!-- Attack and Armor -->
-			    <object size="90 -2 126 34" name="attackAndArmorStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip="Attack and Armor" tooltip_style="sessionToolTip"/>
+			    <object size="90 -2 126 34" name="attackAndArmorStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTip">
+					<translatableAttribute id="tooltip">Attack and Armor</translatableAttribute>
+				</object>
 
 			    <!-- Resource carrying icon/counter -->
 			    <!-- Used also for number of gatherers/builders -->
@@ -1100,14 +1200,17 @@
 			    <object size="1 1 100%-1 100%-1" type="image" name="icon" ghost="true"/>
 			
 			    <!-- Experience bar -->
-			    <object size="2 2 6 100%-2" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
-				<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
-				<object type="image" sprite="experienceBackground" ghost="true"/>
-				<object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
-				<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
+				<object size="2 2 6 100%-2" type="image" name="experience" tooltip_style="sessionToolTip">
+					<translatableAttribute id="tooltip">Experience</translatableAttribute>
+					<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
+					<object type="image" sprite="experienceBackground" ghost="true"/>
+					<object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
+					<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
 			    </object>
 			
-			    <object z="20" size="4 4 20 20" name="rankIcon" type="image" tooltip="Rank" tooltip_style="sessionToolTip"/>
+			    <object z="20" size="4 4 20 20" name="rankIcon" type="image" tooltip_style="sessionToolTip">
+					<translatableAttribute id="tooltip">Rank</translatableAttribute>
+				</object>
 			</object>
 		    </object>
 		    
@@ -1165,7 +1268,8 @@
 		    <!-- Stats Bars -->
 		    <object size= "100%-38 50 100%-18 100%-44" type="image" tooltip_style="sessionToolTip">
 			<!-- Health bar -->
-			<object size="4 0 11 100%" type="image" name="healthMultiple" tooltip="Hitpoints" tooltip_style="sessionToolTip">
+			<object size="4 0 11 100%" type="image" name="healthMultiple" tooltip_style="sessionToolTip">
+				<translatableAttribute id="tooltip">Hitpoints</translatableAttribute>
 			    <object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 			    <object type="image" sprite="healthBackground" ghost="true"/>
 			    <object type="image" sprite="healthForeground" ghost="true" name="healthBarMultiple"/>
@@ -1173,7 +1277,8 @@
 			</object>
 
 			<!-- Stamina bar -->
-			<object size="15 0 22 100%" type="image" name="staminaMultiple" tooltip="Stamina" tooltip_style="sessionToolTipBold">
+			<object size="15 0 22 100%" type="image" name="staminaMultiple" tooltip_style="sessionToolTipBold">
+				<translatableAttribute id="tooltip">Stamina</translatableAttribute>
 			    <object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 			    <object type="image" sprite="staminaBackground" ghost="true"/>
 			    <object type="image" sprite="staminaForeground" ghost="true" name="staminaBarMultiple"/>
@@ -1336,7 +1441,9 @@
 		size="50%-84 50%+128 50%+84 50%+160"
 		tooltip_style="sessionToolTip"
 	>
-		<object size="0 0 100% 100%" type="text" style="CenteredButtonText" name="disconnectedExitButtonText" ghost="true">Exit</object>
+		<object size="0 0 100% 100%" type="text" style="CenteredButtonText" name="disconnectedExitButtonText" ghost="true">
+			<translatableAttribute id="caption">Exit</translatableAttribute>
+		</object>
 		<action on="Press">leaveGame()</action>
 	</object>
 </object>

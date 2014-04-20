@@ -505,9 +505,9 @@ function init(data)
 	// Load data
 	var civData = loadCivData();
 	// Map
-	var mapSize = "Scenario";
+	var mapDisplayType = translate("Scenario");
 
-	Engine.GetGUIObjectByName("timeElapsed").caption = "Time elapsed: " + timeToString(data.timeElapsed);
+	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(translate("Time elapsed: %(time)s"), { time: timeToString(data.timeElapsed) });
 
 	Engine.GetGUIObjectByName("summaryText").caption = data.gameResult;
 
@@ -522,13 +522,13 @@ function init(data)
 		{
 			if (mapSizes.tiles[mapSizeIndex] == data.mapSettings.Size)
 			{
-				mapSize = mapSizes.names[mapSizeIndex];
+				mapDisplayType = mapSizes.names[mapSizeIndex];
 				break;
 			}
 		}
 	}
 
-	Engine.GetGUIObjectByName("mapName").caption = data.mapSettings.Name + " - " + mapSize;
+	Engine.GetGUIObjectByName("mapName").caption = sprintf(translate("%(mapName)s - %(mapType)s"), { mapName: data.mapSettings.Name, mapType: mapDisplayType});
 	
 	// Panels
 	// Align headers

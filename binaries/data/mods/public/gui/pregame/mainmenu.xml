@@ -91,16 +91,20 @@
 			<object
 				type="text"
 				style="userReportText"
->[font="serif-bold-16"]Help improve 0 A.D.![/font]
-
-You can automatically send us anonymous feedback that will help us fix bugs, and improve performance and compatibility.
+			>
+				<attribute id="caption">
+					<keep>[font="serif-bold-16"]</keep>
+					<translate>Help improve 0 A.D.!</translate>
+					<keep>[/font]\n\n</keep>
+					<translate>You can automatically send us anonymous feedback that will help us fix bugs, and improve performance and compatibility.</translate>
+				</attribute>
 			</object>
 			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
-				Enable feedback
+				<translatableAttribute id="caption">Enable feedback</translatableAttribute>
 				<action on="Press">EnableUserReport(true);</action>
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
-				Technical details
+				<translatableAttribute id="caption">Technical details</translatableAttribute>
 				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
 			</object>
 		</object>
@@ -115,18 +119,23 @@ You can automatically send us anonymous feedback that will help us fix bugs, and
 				name="userReportEnabledText"
 				type="text"
 				style="userReportText"
->[font="serif-bold-16"]Thank you for helping improve 0 A.D.![/font]
-
-Anonymous feedback is currently enabled.
-Status: $status.
-                        </object>
+			>
+				<attribute id="caption">
+					<keep>[font="serif-bold-16"]</keep>
+					<translate>Thank you for helping improve 0 A.D.!</translate>
+					<keep>[/font]\n\n</keep>
+					<translate>Anonymous feedback is currently enabled.</translate>
+					<keep>\n</keep>
+					<translate>Status: $status.</translate>
+				</attribute>
+			</object>
 
 			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
-				Disable feedback
+				<translatableAttribute id="caption">Disable feedback</translatableAttribute>
 				<action on="Press">EnableUserReport(false);</action>
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
-				Technical details
+				<translatableAttribute id="caption">Technical details</translatableAttribute>
 				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
 			</object>
 		</object>
@@ -157,7 +166,6 @@ Status: $status.
 				type="image"
 				size="0 4 100%-4 100%-4"
 				tooltip_style="pgToolTip"
-				tooltip="The 0 A.D. Game Manual."
 				hidden="true"
 			>
 				<object name="subMenuSinglePlayerButton"
@@ -165,9 +173,9 @@ Status: $status.
 					style="StoneButtonFancy"
 					size="0 0 100% 28"
 					tooltip_style="pgToolTip"
-					tooltip="Click here to start a new single player game."
 				>
-					Matches
+					<translatableAttribute id="caption">Matches</translatableAttribute>
+					<translatableAttribute id="tooltip">Click here to start a new single player game.</translatableAttribute>
 					<action on="Press">
 						Engine.SwitchGuiPage("page_gamesetup.xml", { type: "offline" });
 					</action>
@@ -178,10 +186,10 @@ Status: $status.
 					style="StoneButtonFancy"
 					size="0 32 100% 60"
 					tooltip_style="pgToolTip"
-					tooltip="Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 					enabled="false"
 				>
-					Campaigns
+					<translatableAttribute id="caption">Campaigns</translatableAttribute>
+					<translatableAttribute id="tooltip">Relive history through historical military campaigns. [NOT YET IMPLEMENTED]</translatableAttribute>
 					<action on="Press">
 					closeMenu();
 						<![CDATA[
@@ -196,9 +204,9 @@ Status: $status.
 					style="StoneButtonFancy"
 					size="0 64 100% 92"
 					tooltip_style="pgToolTip"
-					tooltip="Click here to load a saved game."
 				>
-					Load Game
+					<translatableAttribute id="caption">Load Game</translatableAttribute>
+					<translatableAttribute id="tooltip">Click here to load a saved game.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						Engine.PushGuiPage("page_loadgame.xml", { type: "offline" });
@@ -212,7 +220,6 @@ Status: $status.
 				type="image"
 				size="0 4 100%-4 100%-4"
 				tooltip_style="pgToolTip"
-				tooltip="The 0 A.D. Game Manual"
 				hidden="true"
 			>
 				<object name="subMenuMultiplayerJoinButton"
@@ -220,9 +227,9 @@ Status: $status.
 					style="StoneButtonFancy"
 					size="0 0 100% 28"
 					tooltip_style="pgToolTip"
-					tooltip="Joining an existing multiplayer game."
 				>
-					Join Game
+					<translatableAttribute id="caption">Join Game</translatableAttribute>
+					<translatableAttribute id="tooltip">Joining an existing multiplayer game.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						// Open Multiplayer connection window with join option.
@@ -235,9 +242,9 @@ Status: $status.
 					style="StoneButtonFancy"
 					size="0 32 100% 60"
 					tooltip_style="pgToolTip"
-					tooltip="Host a multiplayer game.\n\nRequires UDP port 20595 to be open."
 				>
-					Host Game
+					<translatableAttribute id="caption">Host Game</translatableAttribute>
+					<translatableAttribute id="tooltip">Host a multiplayer game.\n\nRequires UDP port 20595 to be open.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						// Open Multiplayer connection window with host option.
@@ -250,9 +257,9 @@ Status: $status.
 					style="StoneButtonFancy"
 					size="0 64 100% 92"
 					tooltip_style="pgToolTip"
-					tooltip="Launch the multiplayer lobby."
 				>
-					Game Lobby
+					<translatableAttribute id="caption">Game Lobby</translatableAttribute>
+					<translatableAttribute id="tooltip">Launch the multiplayer lobby.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						// Open Multiplayer game lobby.
@@ -262,7 +269,7 @@ Status: $status.
 						if (!Engine.StartXmppClient)
 						{
 							this.enabled = false;
-							this.tooltip = "Launch the multiplayer lobby. [DISABLED BY BUILD]";
+							this.tooltip = getLobbyDisabledByBuild();
 						}
 					</action>
 				</object>
@@ -273,7 +280,6 @@ Status: $status.
 				type="image"
 				size="0 4 100%-4 100%-4"
 				tooltip_style="pgToolTip"
-				tooltip="The 0 A.D. Game Manual"
 				hidden="true"
 			>
 				<object name="submenuOptionsButton"
@@ -281,10 +287,10 @@ Status: $status.
 					type="button"
 					size="0 0 100% 28"
 					tooltip_style="pgToolTip"
-					tooltip="Adjust game settings."
 					enabled="true"
 				>
-					Options
+					<translatableAttribute id="caption">Options</translatableAttribute>
+					<translatableAttribute id="tooltip">Adjust game settings.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						<![CDATA[
@@ -294,23 +300,32 @@ Status: $status.
 					</action>
 				</object>
 
-				<object name="submenuEditorButton"
+				<object name="submenuLocaleButton"
 					style="StoneButtonFancy"
 					type="button"
 					size="0 32 100% 60"
 					tooltip_style="pgToolTip"
-					tooltip="Open the Atlas Scenario Editor in a new window. You can run this more reliably by starting the game with the command-line argument &quot;-editor&quot;."
 				>
-					Scenario Editor
+					<translatableAttribute id="caption">Language</translatableAttribute>
+					<translatableAttribute id="tooltip">Choose the language of the game.</translatableAttribute>
 					<action on="Press">
-						closeMenu();
 						<![CDATA[
-							// Start Atlas
-							if (Engine.AtlasIsAvailable())
-							Engine.RestartInAtlas();
-							else
-							messageBox(400, 200, "The scenario editor is not available or failed to load.", "Error", 2);
+						closeMenu();
+						Engine.PushGuiPage("page_locale.xml");
 						]]>
+					</action>
+				</object>
+
+				<object name="submenuEditorButton"
+					style="StoneButtonFancy"
+					type="button"
+					size="0 64 100% 92"
+					tooltip_style="pgToolTip"
+				>
+					<translatableAttribute id="caption">Scenario Editor</translatableAttribute>
+					<translatableAttribute id="tooltip">Open the Atlas Scenario Editor in a new window. You can run this more reliably by starting the game with the command-line argument &quot;-editor&quot;.</translatableAttribute>
+					<action on="Press">
+						pressedScenarioEditorButton();
 					</action>
 				</object>
 			</object>
@@ -360,9 +375,9 @@ Status: $status.
 					style="StoneButtonFancy"
 					size="4 4 100%-4 32"
 					tooltip_style="pgToolTip"
-					tooltip="The 0 A.D. Game Manual"
 				>
-					Learn To Play
+					<translatableAttribute id="caption">Learn To Play</translatableAttribute>
+					<translatableAttribute id="tooltip">The 0 A.D. Game Manual</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						<![CDATA[
@@ -377,9 +392,9 @@ Status: $status.
 					type="button"
 					size="4 36 100%-4 64"
 					tooltip_style="pgToolTip"
-					tooltip="Challenge the computer player to a single player match."
 				>
-					Single Player
+					<translatableAttribute id="caption">Single Player</translatableAttribute>
+					<translatableAttribute id="tooltip">Challenge the computer player to a single player match.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						openMenu("submenuSinglePlayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 3);
@@ -392,9 +407,9 @@ Status: $status.
 					type="button"
 					size="4 68 100%-4 96"
 					tooltip_style="pgToolTip"
-					tooltip="Fight against one or more human players in a multiplayer game."
 				>
-					Multiplayer
+					<translatableAttribute id="caption">Multiplayer</translatableAttribute>
+					<translatableAttribute id="tooltip">Fight against one or more human players in a multiplayer game.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						openMenu("submenuMultiplayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 3);
@@ -407,12 +422,12 @@ Status: $status.
 					type="button"
 					size="4 100 100%-4 128"
 					tooltip_style="pgToolTip"
-					tooltip="Game options and scenario design tools."
 				>
-					Tools <![CDATA[&]]> Options
+					<translatableAttribute id="caption">Tools &amp; Options</translatableAttribute>
+					<translatableAttribute id="tooltip">Game options and scenario design tools.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						openMenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
+						openMenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 3);
 					</action>
 				</object>
 
@@ -422,9 +437,9 @@ Status: $status.
 					type="button"
 					size="4 132 100%-4 160"
 					tooltip_style="pgToolTip"
-					tooltip="Learn about the many civilizations featured in 0 A.D."
 				>
-					History
+					<translatableAttribute id="caption">History</translatableAttribute>
+					<translatableAttribute id="tooltip">Learn about the many civilizations featured in 0 A.D.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						<![CDATA[
@@ -439,17 +454,10 @@ Status: $status.
 					style="StoneButtonFancy"
 					size="4 164 100%-4 192"
 					tooltip_style="pgToolTip"
-					tooltip="Exit Game"
 				>
-					Exit
-					<action on="Press">
-						closeMenu();
-						<![CDATA[
-							var btCaptions = ["Yes", "No"];
-							var btCode = [Engine.Exit, null]
-							messageBox(400, 200, "Are you sure you want to quit 0 A.D.?", "Confirmation", 0, btCaptions, btCode);
-						]]>
-					</action>
+					<translatableAttribute id="caption">Exit</translatableAttribute>
+					<translatableAttribute id="tooltip">Exit Game</translatableAttribute>
+					<action on="Press">exitGamePressed();</action>
 				</object>
 			</object>
 
@@ -467,21 +475,25 @@ Status: $status.
 					size="8 8 100%-8 100%-36"
                                         ghost="true"
 				>
-[font="serif-bold-16"]Alpha XV: Osiris<!-- IMPORTANT: remember to update session/session.xml in sync with this -->[/font]
-
-WARNING: This is an early development version of the game. Many features have not been added yet.
-
-Get involved at: play0ad.com
+					<!-- IMPORTANT: remember to update session/session.xml in sync with this: -->
+					<attribute id="caption">
+						<keep>[font="serif-bold-16"]</keep>
+						<translate>Alpha XV: Osiris</translate>
+						<keep>[/font]\n\n</keep>
+						<translate>WARNING: This is an early development version of the game. Many features have not been added yet.</translate>
+						<keep>\n\n</keep>
+						<translate>Get involved at: play0ad.com</translate>
+					</attribute>
 				</object>
 
 				<!-- CONTACT METHODS -->
 				<object type="button"
 					style="StoneButton"
 					tooltip_style="pgToolTip"
-					tooltip="Click to open play0ad.com in your web browser."
 					size="8 100%-72 50%-4 100%-44"
 				>
-					Website
+					<translatableAttribute id="caption">Website</translatableAttribute>
+					<translatableAttribute id="tooltip">Click to open play0ad.com in your web browser.</translatableAttribute>
 					<action on="Press"><![CDATA[
 						var url = "http://play0ad.com/";
 						Engine.OpenURL(url);
@@ -492,10 +504,10 @@ Get involved at: play0ad.com
 				<object type="button"
 					style="StoneButton"
 					tooltip_style="pgToolTip"
-					tooltip="Click to open the 0 A.D. IRC chat in your browser. (#0ad on webchat.quakenet.org)"
 					size="50%+4 100%-72 100%-8 100%-44"
 				>
-					Chat
+					<translatableAttribute id="caption">Chat</translatableAttribute>
+					<translatableAttribute id="tooltip">Click to open the 0 A.D. IRC chat in your browser. (#0ad on webchat.quakenet.org)</translatableAttribute>
 					<action on="Press"><![CDATA[
 						var url = "http://webchat.quakenet.org/?channels=0ad";
 						Engine.OpenURL(url);
@@ -506,10 +518,10 @@ Get involved at: play0ad.com
 				<object type="button"
 					style="StoneButton"
 					tooltip_style="pgToolTip"
-					tooltip="Click to visit 0 A.D. Trac to report a bug, crash, or error"
 					size="8 100%-36 100%-8 100%-8"
 				>
-					Report a Bug
+					<translatableAttribute id="caption">Report a Bug</translatableAttribute>
+					<translatableAttribute id="tooltip">Click to visit 0 A.D. Trac to report a bug, crash, or error</translatableAttribute>
 					<action on="Press"><![CDATA[
 						var url = "http://trac.wildfiregames.com/wiki/ReportingErrors/";
 						Engine.OpenURL(url);
@@ -538,7 +550,9 @@ Get involved at: play0ad.com
 				        style="MediumTitleText"
 					ghost="true"
 					size="50%-128 32 50%+128 48"
-				>WILDFIRE GAMES</object>
+				>
+					<translatableAttribute id="caption">WILDFIRE GAMES</translatableAttribute>
+				</object>
 			</object>
 
 			<!-- VERSION -->
@@ -548,9 +562,9 @@ Get involved at: play0ad.com
 				ghost="true"
 				size="50%-128 100%-36 50%+128 100%"
 			>
-				<action on="Load"><![CDATA[
-					this.caption = "Build: " + Engine.BuildTime(0) + " - " + Engine.BuildTime(2);
-				]]></action>
+				<action on="Load">
+					this.caption = getBuildString();
+				</action>
 			</object>
 		</object>
 	</object>

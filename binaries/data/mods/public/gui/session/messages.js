@@ -19,7 +19,7 @@ function getCheatsData()
 	{
 		var currentCheat = parseJSONData("simulation/data/cheats/"+fileName+".json");
 		if (Object.keys(cheats).indexOf(currentCheat.Name) !== -1)
-			warn("Cheat name '"+currentCheat.Name+"' is already present");
+			warn(sprintf("Cheat name '%(name)s' is already present", { name: currentCheat.Name }));
 		else
 			cheats[currentCheat.Name] = currentCheat.Data;
 	}
@@ -142,13 +142,34 @@ function displayNotifications()
 {
 	var messages = [];
 	for each (var n in notifications)
-		messages.push(n.message);
+	{
+		var parameters = n.parameters || {};
+		if (n.translateParameters && n.translateParameters.length)
+			translateObjectKeys(parameters, n.translateParameters);
+		var message = n.message;
+		if (n.translateMessage)
+			message = translate(message);
+		messages.push(sprintf(message, parameters));
+	}
 	Engine.GetGUIObjectByName("notificationText").caption = messages.join("\n");
 }
 
 function updateTimeNotifications()
 {
-	Engine.GetGUIObjectByName("timeNotificationText").caption = Engine.GuiInterfaceCall("GetTimeNotificationText");
+	var notifications =  Engine.GuiInterfaceCall("GetTimeNotifications");
+	var notificationText = "";
+	for (var n of notifications)
+	{
+		var message = n.message;
+		if (n.translateMessage)
+			message = translate(message);
+		var parameters = n.parameters || {};
+		if (n.translateParameters && n.translateParameters.length)
+			translateObjectKeys(parameters, n.translateParameters);
+		parameters.time = timeToString(n.time);
+		notificationText += sprintf(message, parameters) + "\n";
+	}
+	Engine.GetGUIObjectByName("timeNotificationText").caption = notificationText;
 }
 
 // Returns [username, playercolor] for the given player
@@ -165,7 +186,7 @@ function getUsernameAndColor(player)
 // Messages
 function handleNetMessage(message)
 {
-	log("Net message: " + uneval(message));
+	log(sprintf(translate("Net message: %(message)s"), { message: uneval(message) }));
 
 	switch (message.type)
 	{
@@ -178,11 +199,11 @@ function handleNetMessage(message)
 		switch (message.status)
 		{
 		case "waiting_for_players":
-			obj.caption = "Waiting for other players to connect...";
+			obj.caption = translate("Waiting for other players to connect...");
 			obj.hidden = false;
 			break;
 		case "join_syncing":
-			obj.caption = "Synchronising gameplay with other players...";
+			obj.caption = translate("Synchronising gameplay with other players...");
 			obj.hidden = false;
 			break;
 		case "active":
@@ -190,20 +211,20 @@ function handleNetMessage(message)
 			obj.hidden = true;
 			break;
 		case "connected":
-			obj.caption = "Connected to the server.";
+			obj.caption = translate("Connected to the server.");
 			obj.hidden = false;
 			break;
 		case "authenticated":
-			obj.caption = "Connection to the server has been authenticated.";
+			obj.caption = translate("Connection to the server has been authenticated.");
 			obj.hidden = false;
 			break;
 		case "disconnected":
 			g_Disconnected = true;
-			obj.caption = "Connection to the server has been lost.\n\nThe game has ended.";
+			obj.caption = translate("Connection to the server has been lost.") + "\n\n" + translate("The game has ended.");
 			obj.hidden = false;
 			break;
 		default:
-			error("Unrecognised netstatus type "+message.status);
+			error(sprintf("Unrecognised netstatus type %(netType)s", { netType: message.status }));
 			break;
 		}
 		break;
@@ -255,7 +276,7 @@ function handleNetMessage(message)
 		break;
 
 	default:
-		error("Unrecognised net message type "+message.type);
+		error(sprintf("Unrecognised net message type %(messageType)s", { messageType: message.type }));
 	}
 }
 
@@ -351,8 +372,8 @@ function addChatMessage(msg, playerAssignments)
 
 	var playerColor, username;
 
-	// No prefix by default. May be set by parseChatCommands().
-	msg.prefix = "";
+	// No context by default. May be set by parseChatCommands().
+	msg.context = "";
 
 	if (playerAssignments[msg.guid])
 	{
@@ -379,37 +400,47 @@ function addChatMessage(msg, playerAssignments)
 	else
 	{
 		playerColor = "255 255 255";
-		username = "Unknown player";
+		username = translate("Unknown player");
 	}
-
-	var message = escapeText(msg.text);
 	
 	var formatted;
 	
 	switch (msg.type)
 	{
 	case "connect":
-		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has joined the game.";
+		formatted = sprintf(translate("%(player)s has joined the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "disconnect":
-		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has left the game.";
+		formatted = sprintf(translate("%(player)s has left the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "defeat":
 		// In singleplayer, the local player is "You". "You has" is incorrect.
-		var verb = (!g_IsNetworked && msg.player == Engine.GetPlayerID()) ? "have" : "has";
-		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] " + verb + " been defeated.";
+		if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
+			formatted = translate("You have been defeated.");
+		else
+			formatted = sprintf(translate("%(player)s has been defeated."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "diplomacy":
 		var status = (msg.status == "ally" ? "allied" : (msg.status == "enemy" ? "at war" : "neutral"));
 		if (msg.player == Engine.GetPlayerID())
 		{
 			[username, playerColor] = getUsernameAndColor(msg.player1);
-			formatted = "You are now "+status+" with [color=\"" + playerColor + "\"]"+username + "[/color].";
+			if (msg.status == "ally")
+				formatted = sprintf(translate("You are now allied with %(player)s."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+			else if (msg.status == "enemy")
+				formatted = sprintf(translate("You are now at war with %(player)s."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+			else // (msg.status == "neutral")
+				formatted = sprintf(translate("You are now neutral with %(player)s."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		}
 		else if (msg.player1 == Engine.GetPlayerID())
 		{
 			[username, playerColor] = getUsernameAndColor(msg.player);
-			formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] is now " + status + " with you."
+			if (msg.status == "ally")
+				formatted = sprintf(translate("%(player)s is now allied with you."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+			else if (msg.status == "enemy")
+				formatted = sprintf(translate("%(player)s is now at war with you."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+			else // (msg.status == "neutral")
+				formatted = sprintf(translate("%(player)s is now neutral with you."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		}
 		else // No need for other players to know of this.
 			return;
@@ -428,36 +459,84 @@ function addChatMessage(msg, playerAssignments)
 		if (amounts.length > 1)
 		{
 			var lastAmount = amounts.pop();
-			amounts = amounts.join(", ") + " and " + lastAmount;
+			amounts = sprintf(translate("%(previousAmounts)s and %(lastAmount)s"), {
+				previousAmounts: amounts.join(translate(", ")),
+				lastAmount: lastAmount
+			});
 		}
 
-		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has sent you " + amounts + ".";
+		formatted = sprintf(translate("%(player)s has sent you %(amounts)s."), {
+			player: "[color=\"" + playerColor + "\"]" + username + "[/color]",
+			amounts: amounts
+		});
 		break;
 	case "attack":
 		if (msg.player != Engine.GetPlayerID()) 
 			return;
 
 		[username, playerColor] = getUsernameAndColor(msg.attacker);
-		formatted = "You have been attacked by [color=\"" + playerColor + "\"]" + username + "[/color]!";
+		formatted = sprintf(translate("You have been attacked by %(attacker)s!"), { attacker: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "message":
 		// May have been hidden by the 'team' command.
 		if (msg.hide)
 			return;
 
+		var message = escapeText(msg.text);
+
 		if (msg.action)
 		{
-			Engine.Console_Write(msg.prefix + "* " + username + " " + message);
-			formatted = msg.prefix + "* [color=\"" + playerColor + "\"]" + username + "[/color] " + message;
+			if (msg.context !== "")
+			{
+				Engine.Console_Write(sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
+					context: msg.context,
+					user: username,
+					message: message
+				}));
+				formatted = sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
+					context: msg.context,
+					user: "[color=\"" + playerColor + "\"]" + username + "[/color]",
+					message: message
+				});
+			}
+			else
+			{
+				Engine.Console_Write(sprintf(translate("* %(user)s %(message)s"), {
+					user: username,
+					message: message
+				}));
+				formatted = sprintf(translate("* %(user)s %(message)s"), {
+					user: "[color=\"" + playerColor + "\"]" + username + "[/color]",
+					message: message
+				});
+			}
 		}
 		else
 		{
-			Engine.Console_Write(msg.prefix + "<" + username + "> " + message);
-			formatted = msg.prefix + "<[color=\"" + playerColor + "\"]" + username + "[/color]> " + message;
+			var userTag = sprintf(translate("<%(user)s>"), { user: username })
+			var formattedUserTag = sprintf(translate("<%(user)s>"), { user: "[color=\"" + playerColor + "\"]" + username + "[/color]" })
+			if (msg.context !== "")
+			{
+				Engine.Console_Write(sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
+					context: msg.context,
+					userTag: userTag,
+					message: message
+				}));
+				formatted = sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
+					context: msg.context,
+					userTag: formattedUserTag,
+					message: message
+				});
+			}
+			else
+			{
+				Engine.Console_Write(sprintf(translate("%(userTag)s %(message)s"), { userTag: userTag, message: message}));
+				formatted = sprintf(translate("%(userTag)s %(message)s"), { userTag: formattedUserTag, message: message});
+			}
 		}
 		break;
 	default:
-		error("Invalid chat message '" + uneval(msg) + "'");
+		error(sprintf("Invalid chat message '%(message)s'", { message: uneval(msg) }));
 		return;
 	}
 
@@ -499,7 +578,7 @@ function parseChatCommands(msg, playerAssignments)
 	{
 	case "/all":
 		// Resets values that 'team' or 'enemy' may have set.
-		msg.prefix = "";
+		msg.context = "";
 		msg.hide = false;
 		recurse = true;
 		break;
@@ -510,7 +589,7 @@ function parseChatCommands(msg, playerAssignments)
 			if (g_Players[Engine.GetPlayerID()].team != g_Players[sender].team)
 				msg.hide = true;
 			else
-				msg.prefix = "(Team) ";
+				msg.context = translate("Team");
 		}
 		else
 			msg.hide = true;
@@ -523,7 +602,7 @@ function parseChatCommands(msg, playerAssignments)
 			if (g_Players[Engine.GetPlayerID()].team == g_Players[sender].team && sender != Engine.GetPlayerID())
 				msg.hide = true;
 			else
-				msg.prefix = "(Enemy) ";
+				msg.context = translate("Enemy");
 		}
 		recurse = true;
 		break;
@@ -543,7 +622,7 @@ function parseChatCommands(msg, playerAssignments)
 		var playerName = g_Players[Engine.GetPlayerID()].name;
 		if (matched.length && (matched == playerName || sender == Engine.GetPlayerID()))
 		{
-			msg.prefix = "(Private) ";
+			msg.context = translate("Private");
 			msg.text = trimmed.substr(matched.length + 1);
 			msg.hide = false; // Might override team message hiding.
 			return;

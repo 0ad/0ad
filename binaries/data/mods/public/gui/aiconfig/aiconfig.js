@@ -4,12 +4,14 @@ var g_PlayerSlot;
 function init(settings)
 {
 	g_PlayerSlot = settings.playerSlot;
+
+	translateObjectKeys(settings.ais, ["name", "description"]);
 	g_AIs = [
-		{id: "", data: {name: "None", description: "AI will be disabled for this player."}}
+		{id: "", data: {name: translateWithContext("ai", "None"), description: translate("AI will be disabled for this player.")}}
 	].concat(settings.ais);
 
 	var aiSelection = Engine.GetGUIObjectByName("aiSelection");
-	aiSelection.list = [ ai.data.name for each (ai in g_AIs) ];
+	aiSelection.list = [ translate(ai.data.name) for each (ai in g_AIs) ];
 
 	var selected = 0;
 	for (var i = 0; i < g_AIs.length; ++i)
@@ -23,7 +25,7 @@ function init(settings)
 	aiSelection.selected = selected;
 	
 	var aiDiff = Engine.GetGUIObjectByName("aiDifficulty");
-	aiDiff.list = [ "Sandbox", "Easy", "Medium", "Hard", "Very Hard" ];
+	aiDiff.list = [translate("Sandbox"), translate("Easy"), translate("Medium"), translate("Hard"), translate("Very Hard")];
 	aiDiff.selected = settings.difficulty;
 }
 

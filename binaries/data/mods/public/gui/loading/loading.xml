@@ -44,7 +44,9 @@
 
 		<!-- LOADING SCREEN QUOTE (needs increased z value to overcome the transparent area of the tip image above it -->
 		<object size="50%-448 50%+230 50%+448 100%-16" z="20">
-			<object name="quoteTitleText" size="0 0 100% 30" type="text" style="LoadingTitleText">Quote of the Day:</object>
+			<object name="quoteTitleText" size="0 0 100% 30" type="text" style="LoadingTitleText">
+				<translatableAttribute id="caption">Quote of the Day:</translatableAttribute>
+			</object>
 			<object name="quoteText" size="0 30 100% 100%" type="text" style="LoadingText"></object>
 		</object>
 	</object>

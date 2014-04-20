@@ -32,17 +32,6 @@ function toTitleCase(word)
 	return word;
 }
 
-function pluralize(word, count, pluralWord)
-{
-	if (count == 1 && pluralWord != null)
-		return pluralWord;
-
-	var plural = "s";
-	if (word[word.length - 1] == "s")
-		plural = "es";
-	return word + (count == 1 ? "" : plural);
-}
-
 // Get the basic player data
 function getPlayerData(playerAssignments)
 {
@@ -162,110 +151,132 @@ function damageValues(dmg)
 // For the unit details panel
 function damageTypeDetails(dmg)
 {
-	if (dmg)
-	{
-		var dmgArray = [];
-		if (dmg.hack) dmgArray.push(dmg.hack + "[font=\"sans-10\"][color=\"orange\"] Hack[/color][/font]");
-		if (dmg.pierce) dmgArray.push(dmg.pierce + "[font=\"sans-10\"][color=\"orange\"] Pierce[/color][/font]");
-		if (dmg.crush) dmgArray.push(dmg.crush + "[font=\"sans-10\"][color=\"orange\"] Crush[/color][/font]");
+	if (!dmg)
+		return "[font=\"serif-12\"]" + translate("(None)") + "[/font]";
 
-		return dmgArray.join(", ");
-	}
-	else
-	{
-		return "[font=\"serif-12\"](None)[/font]";
-	}
+	var dmgArray = [];
+	if (dmg.hack)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
+			damage: dmg.hack,
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Hack") + "[/color][/font]"
+		}));
+	if (dmg.pierce)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
+			damage: dmg.pierce,
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Pierce") + "[/color][/font]"
+		}));
+	if (dmg.crush)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
+			damage: dmg.crush,
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Crush") + "[/color][/font]"
+		}));
+
+	return dmgArray.join(translate(", "));
 }
 
 function attackRateDetails(entState) {
-	if (entState.buildingAI)
-		var arrows = entState.buildingAI.arrowCount;
-
 	var time = entState.attack.repeatTime / 1000;
 	if (entState.buildingAI) {
-		return Math.max(arrows, entState.buildingAI.defaultArrowCount) + "[font=\"sans-10\"][color=\"orange\"] " +
-			pluralize("arrow", arrows) + "[/color][/font]" + " / " + (time == 1 ? "" : time) +
-			" [font=\"sans-10\"][color=\"orange\"]" + pluralize("second", time) + "[/color][/font]";
+		var arrows = Math.max(entState.buildingAI.arrowCount, entState.buildingAI.defaultArrowCount);
+		// TODO TODO TODO color, font
+		return sprintf(translate("%(arrowString)s / %(timeString)s"), {
+			arrowString: sprintf(translatePlural("%(arrows)s arrow", "%(arrows)s arrows", arrows), { arrows: arrows}),
+			timeString: sprintf(translatePlural("%(time)s second", "%(time)s seconds", time), { time: time })
+		});
 	}
-	return time + "[font=\"sans-10\"][color=\"orange\"] " + pluralize("second", time) + "[/color][/font]";
+	// TODO TODO TODO color, font
+	return sprintf(translatePlural("%(time)s second", "%(time)s seconds", time), { time: time });
 }
 
 // Converts an armor level into the actual reduction percentage
-function armorLevelToPercentage(level)
+function armorLevelToPercentageString(level)
 {
-	return 100 - Math.round(Math.pow(0.9, level) * 100);
+	return (100 - Math.round(Math.pow(0.9, level) * 100)) + "%";
+	// 	return sprintf(translate("%(armorPercentage)s%"), { armorPercentage: (100 - Math.round(Math.pow(0.9, level) * 100)) }); // Not supported by our sprintf implementation.
 }
 
 // Also for the unit details panel
 function armorTypeDetails(dmg)
 {
-	if (dmg)
-	{
-		var dmgArray = [];
-		if (dmg.hack)
-		{
-			dmgArray.push(dmg.hack + "[font=\"sans-10\"][color=\"orange\"] Hack[/color][/font] " +
-				" [font=\"sans-10\"](" + armorLevelToPercentage(dmg.hack) + "%)[/font]");
-		}
-		if (dmg.pierce)
-		{
-			dmgArray.push(dmg.pierce + "[font=\"sans-10\"][color=\"orange\"] Pierce[/color][/font] " +
-				" [font=\"sans-10\"](" + armorLevelToPercentage(dmg.pierce) + "%)[/font]");
-		}
-		if (dmg.crush)
-		{
-			dmgArray.push(dmg.crush + "[font=\"sans-10\"][color=\"orange\"] Crush[/color][/font] " +
-				" [font=\"sans-10\"](" + armorLevelToPercentage(dmg.crush) + "%)[/font]");
-		}
+	if (!dmg)
+		return "[font=\"serif-12\"]" + translate("(None)") + "[/font]";
 
-		return dmgArray.join(", ");
-	}
-	else
-	{
-		return "[font=\"serif-12\"](None)[/font]";
-	}
+	var dmgArray = [];
+	if (dmg.hack)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
+			damage: dmg.hack,
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Hack") + "[/color][/font]",
+			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.hack) }) + "[/font]"
+		}));
+	if (dmg.pierce)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
+			damage: dmg.pierce,
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Pierce") + "[/color][/font]",
+			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.pierce) }) + "[/font]"
+		}));
+	if (dmg.crush)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
+			damage: dmg.crush,
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Crush") + "[/color][/font]",
+			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.crush) }) + "[/font]"
+		}));
+
+	return dmgArray.join(translate(", "));
 }
 
 // For the training tooltip
 function damageTypesToText(dmg)
 {
 	if (!dmg)
-		return "[font=\"serif-12\"](None)[/font]";
-
-	var hackLabel = "[font=\"serif-12\"] Hack[/font]";
-	var pierceLabel = "[font=\"serif-12\"] Pierce[/font]";
-	var crushLabel = "[font=\"serif-12\"] Crush[/font]";
-	var hackDamage = dmg.hack;
-	var pierceDamage = dmg.pierce;
-	var crushDamage = dmg.crush;
+		return "[font=\"serif-12\"]" + translate("(None)") + "[/font]";
 
 	var dmgArray = [];
-	if (hackDamage) dmgArray.push(Math.round(hackDamage) + hackLabel);
-	if (pierceDamage) dmgArray.push(Math.round(pierceDamage) + pierceLabel);
-	if (crushDamage) dmgArray.push(Math.round(crushDamage) + crushLabel);
+	if (dmg.hack)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
+			damage: dmg.hack,
+			damageType: "[font=\"serif-12\"]" + translate("Hack") + "[/font]"
+		}));
+	if (dmg.pierce)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
+			damage: dmg.pierce,
+			damageType: "[font=\"serif-12\"]" + translate("Pierce") + "[/font]"
+		}));
+	if (dmg.crush)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
+			damage: dmg.crush,
+			damageType: "[font=\"serif-12\"]" + translate("Crush") + "[/font]"
+		}));
 
-	return dmgArray.join("[font=\"serif-12\"], [/font]");
+	return dmgArray.join("[font=\"serif-12\"]" + translate(", ") + "[/font]");
 }
 
 // Also for the training tooltip
 function armorTypesToText(dmg)
 {
 	if (!dmg)
-		return "[font=\"serif-12\"](None)[/font]";
-
-	var hackDamage = dmg.hack;
-	var pierceDamage = dmg.pierce;
-	var crushDamage = dmg.crush;
-	var hackLabel = "[font=\"serif-12\"] Hack (" + armorLevelToPercentage(hackDamage) + "%)[/font]";
-	var pierceLabel = "[font=\"serif-12\"] Pierce (" + armorLevelToPercentage(pierceDamage) + "%)[/font]";
-	var crushLabel = "[font=\"serif-12\"] Crush (" + armorLevelToPercentage(crushDamage) + "%)[/font]";
+		return "[font=\"serif-12\"]" + translate("(None)") + "[/font]";
 
 	var dmgArray = [];
-	if (hackDamage) dmgArray.push(hackDamage + hackLabel);
-	if (pierceDamage) dmgArray.push(pierceDamage + pierceLabel);
-	if (crushDamage) dmgArray.push(crushDamage + crushLabel);
+	if (dmg.hack)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
+			damage: dmg.hack,
+			damageType: "[font=\"serif-12\"]" + translate("Hack") + "[/font]",
+			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.hack) }) + "[/font]"
+		}));
+	if (dmg.pierce)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
+			damage: dmg.pierce,
+			damageType: "[font=\"serif-12\"]" + translate("Pierce") + "[/font]",
+			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.pierce) }) + "[/font]"
+		}));
+	if (dmg.crush)
+		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
+			damage: dmg.crush,
+			damageType: "[font=\"serif-12\"]" + translate("Crush") + "[/font]",
+			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.crush) }) + "[/font]"
+		}));
 
-	return dmgArray.join("[font=\"serif-12\"], [/font]");
+	return dmgArray.join("[font=\"serif-12\"]" + translate(", ") + "[/font]");
 }
 
 function getEntityCommandsList(entState)
@@ -275,14 +286,14 @@ function getEntityCommandsList(entState)
 	{
 		commands.push({
 		    "name": "unload-all",
-		    "tooltip": "Unload All",
+		    "tooltip": translate("Unload All"),
 		    "icon": "garrison-out.png"
 		});
 	}
 
 	commands.push({
 	    "name": "delete",
-	    "tooltip": "Delete",
+	    "tooltip": translate("Delete"),
 	    "icon": "kill_small.png"
 	});
 
@@ -290,12 +301,12 @@ function getEntityCommandsList(entState)
 	{
 		commands.push({
 		    "name": "stop",
-		    "tooltip": "Stop",
+		    "tooltip": translate("Stop"),
 		    "icon": "stop.png"
 		});
 		commands.push({
 		    "name": "garrison",
-		    "tooltip": "Garrison",
+		    "tooltip": translate("Garrison"),
 		    "icon": "garrison.png"
 		});
 	}
@@ -304,7 +315,7 @@ function getEntityCommandsList(entState)
 	{
 		commands.push({
 		    "name": "repair",
-		    "tooltip": "Repair",
+		    "tooltip": translate("Repair"),
 		    "icon": "repair.png"
 		});
 	}
@@ -313,16 +324,16 @@ function getEntityCommandsList(entState)
 	{
 		commands.push({
 		    "name": "focus-rally",
-		    "tooltip": "Focus on Rally Point",
+		    "tooltip": translate("Focus on Rally Point"),
 		    "icon": "focus-rally.png"
 		});
 	}
-	
+
 	if (entState.unitAI && entState.unitAI.hasWorkOrders)
 	{
 		commands.push({
 		    "name": "back-to-work",
-		    "tooltip": "Back to Work",
+		    "tooltip": translate("Back to Work"),
 		    "icon": "production.png"
 		});
 	}
@@ -331,7 +342,7 @@ function getEntityCommandsList(entState)
 	{
 		commands.push({
 		    "name": "add-guard",
-		    "tooltip": "Guard",
+		    "tooltip": translate("Guard"),
 		    "icon": "add-guard.png"
 		});
 	}
@@ -340,7 +351,7 @@ function getEntityCommandsList(entState)
 	{
 		commands.push({
 		    "name": "remove-guard",
-		    "tooltip": "Remove guard",
+		    "tooltip": translate("Remove guard"),
 		    "icon": "remove-guard.png"
 		});
 	}
@@ -349,7 +360,7 @@ function getEntityCommandsList(entState)
 	{
 		commands.push({
 		    "name": "select-trading-goods",
-		    "tooltip": "Select trading goods",
+		    "tooltip": translate("Select trading goods"),
 		    "icon": "economics.png"
 		});
 	}
@@ -359,9 +370,9 @@ function getEntityCommandsList(entState)
 		if(entState.alertRaiser.canIncreaseLevel)
 		{
 			if(entState.alertRaiser.hasRaisedAlert)
-				var tooltip = "Increase the alert level to protect more units";
+				var tooltip = translate("Increase the alert level to protect more units");
 			else
-				var tooltip = "Raise an alert!";
+				var tooltip = translate("Raise an alert!");
 			commands.push({
 				"name": "increase-alert-level",
 				"tooltip": tooltip,
@@ -372,7 +383,7 @@ function getEntityCommandsList(entState)
 		if(entState.alertRaiser.hasRaisedAlert)
 			commands.push({
 				"name": "alert-end",
-				"tooltip": "End of alert.",
+				"tooltip": translate("End of alert."),
 				"icon": "bell_level0.png"
 			});
 	}
@@ -413,12 +424,12 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 	totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", {"entity": entity, "batchSize": trainNum}) : 1));
 
 	var costs = [];
-	if (totalCosts.food) costs.push(getCostComponentDisplayName("food") + " " + totalCosts.food);
-	if (totalCosts.wood) costs.push(getCostComponentDisplayName("wood") + " " + totalCosts.wood);
-	if (totalCosts.metal) costs.push(getCostComponentDisplayName("metal") + " " + totalCosts.metal);
-	if (totalCosts.stone) costs.push(getCostComponentDisplayName("stone") + " " + totalCosts.stone);
-	if (totalCosts.population) costs.push(getCostComponentDisplayName("population") + " " + totalCosts.population);
-	if (totalCosts.time) costs.push(getCostComponentDisplayName("time") + " " + totalCosts.time);
+	if (totalCosts.food) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("food"), cost: totalCosts.food }));
+	if (totalCosts.wood) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("wood"), cost: totalCosts.wood }));
+	if (totalCosts.metal) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("metal"), cost: totalCosts.metal }));
+	if (totalCosts.stone) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("stone"), cost: totalCosts.stone }));
+	if (totalCosts.population) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("population"), cost: totalCosts.population }));
+	if (totalCosts.time) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("time"), cost: totalCosts.time }));
 	return costs;
 }
 
@@ -499,14 +510,13 @@ function getEntityCostTooltip(template, trainNum, entity)
 		var wallCosts = getWallPieceTooltip([templateShort, templateMedium, templateLong]);
 		var towerCosts = getEntityCostComponentsTooltipString(templateTower);
 
-		cost += "\n";
-		cost += " Walls:  " + wallCosts.join("  ") + "\n";
-		cost += " Towers: " + towerCosts.join("  ");
+		cost += " " + sprintf(translate("Walls:  %(costs)s"), { costs: wallCosts.join(translate("  ")) }) + "\n";
+		cost += " " + sprintf(translate("Towers:  %(costs)s"), { costs: towerCosts.join(translate("  ")) });
 	}
 	else if (template.cost)
 	{
 		var costs = getEntityCostComponentsTooltipString(template, trainNum, entity);
-		cost += costs.join("  ");
+		cost = costs.join(translate("  "));
 	}
 	else
 	{
@@ -523,7 +533,10 @@ function getPopulationBonusTooltip(template)
 {
 	var popBonus = "";
 	if (template.cost && template.cost.populationBonus)
-		popBonus = "\n[font=\"serif-bold-13\"]Population Bonus:[/font] " + template.cost.populationBonus;
+		popBonus = "\n" + sprintf(translate("%(label)s %(populationBonus)s"), {
+			label: "[font=\"serif-bold-13\"]" + translate("Population Bonus:") + "[/font]",
+			populationBonus: template.cost.populationBonus
+		});
 	return popBonus;
 }
 
@@ -534,9 +547,12 @@ function getNeededResourcesTooltip(resources)
 {
 	var formatted = [];
 	for (var resource in resources)
-		formatted.push("[font=\"serif-12\"]" + getCostComponentDisplayName(resource) + "[/font] " + resources[resource]);
+		formatted.push(sprintf(translate("%(component)s %(cost)s"), {
+			component: "[font=\"serif-12\"]" + getCostComponentDisplayName(resource) + "[/font]",
+			cost: resources[resource]
+		}));
 
-	return "\n\n[font=\"serif-bold-13\"][color=\"red\"]Insufficient resources:[/color][/font]\n" + formatted.join("  ");
+	return "\n\n[font=\"serif-bold-13\"][color=\"red\"]" + translate("Insufficient resources:") + "[/color][/font]\n" + formatted.join(translate("  "));
 }
 
 function getEntitySpeed(template)
@@ -544,12 +560,12 @@ function getEntitySpeed(template)
 	var speed = "";
 	if (template.speed)
 	{
-		speed += "[font=\"serif-bold-13\"]Speed:[/font] ";
+		var label = "[font=\"serif-bold-13\"]" + translate("Speed:") + "[/font]";
 		var speeds = [];
-		if (template.speed.walk) speeds.push(template.speed.walk + " [font=\"serif-12\"]Walk[/font]");
-		if (template.speed.run) speeds.push(template.speed.run + " [font=\"serif-12\"]Run[/font]");
+		if (template.speed.walk) speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: "[font=\"serif-12\"]" + translate("Walk") + "[/font]"}));
+		if (template.speed.run) speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: "[font=\"serif-12\"]" + translate("Run") + "[/font]"}));
 
-		speed += speeds.join(", ");
+		speed = sprintf(translate("%(label)s %(speeds)s"), { label: label, speeds: speeds.join(translate(", ")) })
 	}
 	return speed;
 }
@@ -563,34 +579,47 @@ function getEntityAttack(template)
 		delete template.attack['Slaughter'];
 		for (var type in template.attack)
 		{
-			var attack = "[font=\"serif-bold-13\"]" + type + " Attack:[/font] " + damageTypesToText(template.attack[type]);
-			// Show max attack range if ranged attack, also convert to tiles (4m per tile)
+			var attack = "";
+			var attackLabel = "[font=\"serif-bold-13\"]" + getAttackTypeLabel(type) + "[/font]";
 			if (type == "Ranged")
-				attack += ", [font=\"serif-bold-13\"]Range:[/font] "+Math.round(template.attack[type].maxRange/4);
+			{
+				// Show max attack range if ranged attack, also convert to tiles (4m per tile)
+				attack = sprintf(translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"), {
+					attackLabel: attackLabel,
+					damageTypes: damageTypesToText(template.attack[type]),
+					rangeLabel: "[font=\"serif-bold-13\"]" + translate("Range:") + "[/font]",
+					range: Math.round(template.attack[type].maxRange/4)
+				});
+			}
+			else
+			{
+				attack = sprintf(translate("%(attackLabel)s %(damageTypes)s"), {
+					attackLabel: attackLabel,
+					damageTypes: damageTypesToText(template.attack[type])
+				});
+			}
 			attacks.push(attack);
 		}
 	}
 	return attacks.join("\n");
 }
 
-function getEntityName(template)
-{
-	return template.name.specific || template.name.generic || "???";
-}
-
 function getEntityNames(template)
 {
-	var names = [];
 	if (template.name.specific)
-	{
-		names.push(template.name.specific);
-		if (template.name.generic && names[0] != template.name.generic)
-			names.push("(" + template.name.generic + ")");
-	}
-	else if (template.name.generic)
-		names.push(template.name.generic);
+    {
+		if (template.name.generic && template.name.specific != template.name.generic)
+			return sprintf(translate("%(specificName)s (%(genericName)s)"), {
+				specificName: template.name.specific,
+				genericName: template.name.generic
+			});
+        return template.name.specific;
+    }
+	if (template.name.generic)
+		return template.name.generic;
 
-	return (names.length) ? names.join(" ") : "???";
+	warn("Entity name requested on an entity without a name, specific or generic.");
+	return translate("???");
 }
 
 function getEntityNamesFormatted(template)
@@ -620,7 +649,7 @@ function getEntityRankedName(entState)
 	var template = GetTemplateData(entState.template)
 	var rank = entState.identity.rank;
 	if (rank)
-		return rank + " " + template.name.specific;
+		return sprintf(translate("%(rank)s %(name)s"), { rank: rank, name: template.name.specific });
 	else
 		return template.name.specific;
 }
@@ -642,19 +671,39 @@ function getRankIconSprite(entState)
  */
 function getTradingTooltip(gain)
 {
-	var tooltip = gain.traderGain;
+	var gainString = gain.traderGain;
 	if (gain.market1Gain && gain.market1Owner == gain.traderOwner)
-		tooltip += "+" + gain.market1Gain;
+		gainString += translate("+") + gain.market1Gain;
 	if (gain.market2Gain && gain.market2Owner == gain.traderOwner)
-		tooltip += "+" + gain.market2Gain;
-	tooltip += " (you)";
+		gainString += translate("+") + gain.market2Gain;
+
+	var tooltip = sprintf(translate("%(gain)s (%(player)s)"), {
+		gain: gainString,
+		player: translate("you")
+	});
 
 	if (gain.market1Gain && gain.market1Owner != gain.traderOwner)
-		tooltip += ", " + gain.market1Gain + " (player " + gain.market1Owner + ")";
+		tooltip += translate(", ") + sprintf(translate("%(gain)s (%(player)s)"), {
+			gain: gain.market1Gain,
+			player: sprintf(translate("player %(name)s"), { name: gain.market1Owner })
+		});
 	if (gain.market2Gain && gain.market2Owner != gain.traderOwner)
-		tooltip += ", " + gain.market2Gain + " (player " + gain.market2Owner + ")";
+		tooltip += translate(", ") + sprintf(translate("%(gain)s (%(player)s)"), {
+			gain: gain.market2Gain,
+			player: sprintf(translate("player %(name)s"), { name: gain.market2Owner })
+		});
 
 	return tooltip;
+}
+
+function getAttackTypeLabel(type)
+{
+	if (type === "Charge") return translate("Charge Attack:");
+	if (type === "Melee") return translate("Melee Attack:");
+	if (type === "Ranged") return translate("Ranged Attack:");
+
+	warn(sprintf("Internationalization: Unexpected attack type found with code ‘%(attackType)s’. This attack type must be internationalized.", { attackType: type }));
+	return translate("Attack:");
 }
 
 /**

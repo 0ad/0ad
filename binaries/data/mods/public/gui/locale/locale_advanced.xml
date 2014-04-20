@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<script file="gui/common/functions_global_object.js"/>
+	<script file="gui/locale/locale_advanced.js"/>
+
+	<!-- Add a translucent black background to fade out the menu page -->
+	<object type="image" z="0" sprite="bkTranslucent"/>
+	<object type="image" style="ModernDialog" size="50%-220 50%-200 50%+220 50%+200">
+		<action on="Tick">onTick();</action>
+		<object size="15 0 100%-15 100%">
+			<object style="TitleText" type="text" size="50%-150 0%-16 50%+150 16">
+				<translatableAttribute id="caption">Language</translatableAttribute>
+			</object>
+			<object type="text" size="5 50 40% 75" style="ModernLeftLabelText">
+				<translatableAttribute id="caption">Language:</translatableAttribute>
+			</object>
+			<object name="languageList"
+					type="dropdown"
+					style="ModernDropDown"
+					size="40%+10 50 100% 75">
+			</object>
+			<object type="text" size="5 80 40% 105" style="ModernLeftLabelText">
+				<translatableAttribute id="caption">Country:</translatableAttribute>
+			</object>
+			<object name="countryList"
+					type="dropdown"
+					style="ModernDropDown"
+					size="40%+10 80 100% 105">
+			</object>
+			
+			<object type="text" size="5 110 40% 135" style="ModernLeftLabelText">
+				<translatableAttribute id="caption">Script:</translatableAttribute>
+			</object>
+			<object name="scriptInput" size="40%+10 110 100% 135" type="input" style="ModernInput">
+				<translatableAttribute id="tooltip">Optional four-letter script code part following the language code (as listed in ISO 15924)</translatableAttribute>
+			</object>
+			
+			<object type="text" size="5 140 40% 165" style="ModernLeftLabelText">
+				<translatableAttribute id="caption">Variant (unused):</translatableAttribute>
+			</object>
+			<object name="variantInput" size="40%+10 140 100% 165" type="input" style="ModernInput">
+				<translatableAttribute id="tooltip">Not implemented yet.</translatableAttribute>
+			</object>
+			
+			<object type="text" size="5 170 40% 195" style="ModernLeftLabelText">
+				<translatableAttribute id="caption">Keywords (unused):</translatableAttribute>
+			</object>
+			<object name="keywordsInput" size="40%+10 170 100% 195" type="input" style="ModernInput">
+				<translatableAttribute id="tooltip">Not implemented yet.</translatableAttribute>
+			</object>
+			
+			<object type="text" size="5 230 40% 255" style="ModernLeftLabelText">
+				<translatableAttribute id="caption">Resulting locale:</translatableAttribute>
+			</object>
+			<object name="resultingLocale" type="text" size="40%+10 230 100% 255" textcolor="white" />
+			
+			<object type="text" size="5 260 40% 285" style="ModernLeftLabelText">
+				<translatableAttribute id="caption">Dictionary files used:</translatableAttribute>
+			</object>
+			<object name="dictionaryFile" type="text" size="40%+10 260 100% 345" textcolor="white" />
+		
+			<object type="button" size="0 100%-60 33% 100%-32" style="StoneButton">
+				<translatableAttribute id="caption">Accept</translatableAttribute>
+				<action on="Press">applySelectedLocale();</action>
+			</object>
+			
+			<object type="button" size="33%+5 100%-60 66% 100%-32" style="StoneButton">
+				<translatableAttribute id="caption">Auto detect</translatableAttribute>
+				<action on="Press">autoDetectLocale();</action>
+			</object>
+
+			<object type="button" style="StoneButton" size="66%+5 100%-60  100% 100%-32">
+				<translatableAttribute id="caption">Cancel</translatableAttribute>
+				<action on="Press">cancelSetup();</action>
+			</object>
+		</object>
+	</object>
+
+</objects>

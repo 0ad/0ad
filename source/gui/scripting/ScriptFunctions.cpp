@@ -899,7 +899,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<bool, &IsPaused>("IsPaused");
 	scriptInterface.RegisterFunction<void, bool, &SetPaused>("SetPaused");
 	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
-	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("BuildTime");
+	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
 
 	// User report functions
 	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");

@@ -10,6 +10,40 @@ function layoutSelectionMultiple()
 	Engine.GetGUIObjectByName("detailsAreaSingle").hidden = true;
 }
 
+function getLocalizedResourceName(resourceCode)
+{
+	switch(resourceCode)
+	{
+		case "food": return translate("Food");
+		case "meat": return translate("Meat");
+		case "metal": return translate("Metal");
+		case "ore": return translate("Ore");
+		case "rock": return translate("Rock");
+		case "ruins": return translate("Ruins");
+		case "stone": return translate("Stone");
+		case "treasure": return translate("Treasure");
+		case "tree": return translate("Tree");
+		case "wood": return translate("Wood");
+		case "fruit": return translate("Fruit");
+		case "grain": return translate("Grain");
+		case "fish": return translate("Fish");
+		default:
+			warn(sprintf("Internationalization: Unexpected resource type found with code ‘%(resource)s’. This resource type must be internationalized.", { resource: resourceCode }));
+			return resourceCode; // It should never get here.
+	}
+}
+
+function getResourceTypeDisplayName(resourceType)
+{
+	var resourceCode = resourceType["generic"];
+	var displayName = "";
+	if (resourceCode == "treasure")
+		displayName = getLocalizedResourceName(resourceType["specific"]);
+	else
+		displayName = getLocalizedResourceName(resourceCode);
+	return displayName;
+}
+
 // Fills out information that most entities have
 function displaySingle(entState, template)
 {
@@ -18,7 +52,7 @@ function displaySingle(entState, template)
 	var genericName = template.name.generic != template.name.specific ? template.name.generic : "";
 	// If packed, add that to the generic name (reduces template clutter)
 	if (genericName && template.pack && template.pack.state == "packed")
-		genericName += " -- Packed";
+		genericName = sprintf(translate("%(genericName)s — Packed"), { genericName: genericName });
 	var playerState = g_Players[entState.player];
 
 	var civName = g_CivData[playerState.civ].Name;
@@ -30,13 +64,13 @@ function displaySingle(entState, template)
 	// Indicate disconnected players by prefixing their name
 	if (g_Players[entState.player].offline)
 	{
-		playerName = "[OFFLINE] " + playerName;
+		playerName = sprintf(translate("[OFFLINE] %(player)s"), { player: playerName });
 	}
 
 	// Rank
 	if (entState.identity && entState.identity.rank && entState.identity.classes)
 	{
-		Engine.GetGUIObjectByName("rankIcon").tooltip = entState.identity.rank + " Rank";
+		Engine.GetGUIObjectByName("rankIcon").tooltip = sprintf(translate("%(rank)s Rank"), { rank: entState.identity.rank });
 		Engine.GetGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);
 		Engine.GetGUIObjectByName("rankIcon").hidden = false;
 	}
@@ -45,7 +79,7 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("rankIcon").hidden = true;
 		Engine.GetGUIObjectByName("rankIcon").tooltip = "";
 	}
-
+								
 	// Hitpoints
 	if (entState.hitpoints)
 	{
@@ -54,8 +88,10 @@ function displaySingle(entState, template)
 		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
 
-		var hitpoints = Math.ceil(entState.hitpoints) + " / " + entState.maxHitpoints;
-		Engine.GetGUIObjectByName("healthStats").caption = hitpoints;
+		Engine.GetGUIObjectByName("healthStats").caption = sprintf(translate("%(hitpoints)s / %(maxHitpoints)s"), {
+			hitpoints: Math.ceil(entState.hitpoints),
+			maxHitpoints: entState.maxHitpoints
+		});
 		Engine.GetGUIObjectByName("healthSection").hidden = false;
 	}
 	else
@@ -66,13 +102,9 @@ function displaySingle(entState, template)
 	// TODO: Stamina
 	var player = Engine.GetPlayerID();
 	if (entState.stamina && (entState.player == player || g_DevSettings.controlAll))
-	{
 		Engine.GetGUIObjectByName("staminaSection").hidden = false;
-	}
 	else
-	{
 		Engine.GetGUIObjectByName("staminaSection").hidden = true;
-	}
 
 	// Experience
 	if (entState.promotion)
@@ -82,10 +114,17 @@ function displaySingle(entState, template)
 		experienceSize.rtop = 100 - (100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / +entState.promotion.req)));
 		experienceBar.size = experienceSize;
  
-		var experience = "[font=\"serif-bold-13\"]Experience: [/font]" + Math.floor(entState.promotion.curr);
 		if (entState.promotion.curr < entState.promotion.req)
-			experience += " / " + entState.promotion.req;
-		Engine.GetGUIObjectByName("experience").tooltip = experience;
+			Engine.GetGUIObjectByName("experience").tooltip = sprintf(translate("%(experience)s %(current)s / %(required)s"), {
+				experience: "[font=\"serif-bold-13\"]" + translate("Experience:") + "[/font]",
+				current: Math.floor(entState.promotion.curr),
+				required: entState.promotion.req
+			});
+		else
+			Engine.GetGUIObjectByName("experience").tooltip = sprintf(translate("%(experience)s %(current)s"), {
+				experience: "[font=\"serif-bold-13\"]" + translate("Experience:") + "[/font]",
+				current: Math.floor(entState.promotion.curr)
+			});
 		Engine.GetGUIObjectByName("experience").hidden = false;
 	}
 	else
@@ -96,11 +135,9 @@ function displaySingle(entState, template)
 	// Resource stats
 	if (entState.resourceSupply)
 	{
-		var resources = entState.resourceSupply.isInfinite ? "\u221E" :  // Infinity symbol
-						Math.ceil(+entState.resourceSupply.amount) + " / " + entState.resourceSupply.max;
-		var resourceType = entState.resourceSupply.type["generic"];
-		if (resourceType == "treasure")
-			resourceType = entState.resourceSupply.type["specific"];
+		var resources = entState.resourceSupply.isInfinite ? translate("∞") :  // Infinity symbol
+						sprintf(translate("%(amount)s / %(max)s"), { amount: Math.ceil(+entState.resourceSupply.amount), max: entState.resourceSupply.max });
+		var resourceType = getResourceTypeDisplayName(entState.resourceSupply.type);
 
 		var unitResourceBar = Engine.GetGUIObjectByName("resourceBar");
 		var resourceSize = unitResourceBar.size;
@@ -108,7 +145,7 @@ function displaySingle(entState, template)
 		resourceSize.rright = entState.resourceSupply.isInfinite ? 100 :
 						100 * Math.max(0, Math.min(1, +entState.resourceSupply.amount / +entState.resourceSupply.max));
 		unitResourceBar.size = resourceSize;
-		Engine.GetGUIObjectByName("resourceLabel").caption = toTitleCase(resourceType) + ":";
+		Engine.GetGUIObjectByName("resourceLabel").caption = sprintf(translate("%(resource)s:"), { resource: resourceType });
 		Engine.GetGUIObjectByName("resourceStats").caption = resources;
 
 		if (entState.hitpoints)
@@ -132,7 +169,7 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+carried.type+".png";
-		Engine.GetGUIObjectByName("resourceCarryingText").caption = carried.amount + " / " + carried.max;
+		Engine.GetGUIObjectByName("resourceCarryingText").caption = sprintf(translate("%(amount)s / %(max)s"), { amount: carried.amount, max: carried.max });
 		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "";
 	}
 	// Use the same indicators for traders
@@ -147,7 +184,7 @@ function displaySingle(entState, template)
 		if (entState.trader.goods.amount.market2Gain)
 			totalGain += entState.trader.goods.amount.market2Gain;
 		Engine.GetGUIObjectByName("resourceCarryingText").caption = totalGain;
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "Gain: " + getTradingTooltip(entState.trader.goods.amount);
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Gain: %(amount)s"), { amount: getTradingTooltip(entState.trader.goods.amount) });
 	}
 	// And for number of workers
 	else if (entState.foundation)
@@ -156,15 +193,15 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
 		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders + "    ";
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "Number of builders";
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = translate("Number of builders");
 	}
 	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints))
 	{
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
-		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.resourceSupply.gatherers.length + " / " + entState.resourceSupply.maxGatherers + "    ";
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "Current/max gatherers";
+		Engine.GetGUIObjectByName("resourceCarryingText").caption = sprintf(translate("%(amount)s / %(max)s"), { amount: entState.resourceSupply.gatherers.length, max: entState.resourceSupply.maxGatherers }) + "    ";
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = translate("Current/max gatherers");
 	}
 	else
 	{
@@ -179,7 +216,7 @@ function displaySingle(entState, template)
 	
 	if (genericName)
 	{
-		Engine.GetGUIObjectByName("generic").caption = "(" + genericName + ")";
+		Engine.GetGUIObjectByName("generic").caption = sprintf(translate("(%(genericName)s)"), { genericName: genericName });
 	}
 	else
 	{
@@ -209,31 +246,78 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("icon").sprite = "bkFillBlack";
 	}
 
+	var armorLabel = "[font=\"serif-bold-13\"]" + translate("Armor:") + "[/font]"
+	var armorString = sprintf(translate("%(label)s %(details)s"), { label: armorLabel, details: armorTypeDetails(entState.armour) });
+
 	// Attack and Armor
-	var type = "";
-	var attack = "[font=\"serif-bold-13\"]"+type+"Attack:[/font] " + damageTypeDetails(entState.attack);
 	if (entState.attack)
 	{
-		type = entState.attack.type + " ";
+		// Rate
+		if (entState.buildingAI)
+			var rateLabel = "[font=\"serif-bold-13\"]" + translate("Interval:") + "[/font]";
+		else
+			var rateLabel = "[font=\"serif-bold-13\"]" + translate("Rate:") + "[/font]";
 
-		// Show max attack range if ranged attack, also convert to tiles (4m per tile)
+		var rate = sprintf(translate("%(label)s %(details)s"), {
+			label: rateLabel,
+			details: attackRateDetails(entState)
+		});
+
+		var attack;
+		var label = "[font=\"serif-bold-13\"]" + getAttackTypeLabel(entState.attack.type) + "[/font]"
 		if (entState.attack.type == "Ranged")
 		{
 			var realRange = entState.attack.elevationAdaptedRange;
 			var range =  entState.attack.maxRange;
-			attack += ", [font=\"serif-bold-13\"]Range:[/font] " + Math.round(range) +
-				"[font=\"sans-10\"][color=\"orange\"] meters[/color][/font]";
+			var rangeLabel = "[font=\"serif-bold-13\"]" + translate("Range:") + "[/font]"
+			var relativeRange = Math.round((realRange - range));
+			var meters = "[font=\"sans-10\"][color=\"orange\"]" + translate("meters") + "[/color][/font]";
 
-			if (Math.round(realRange - range) > 0)
-				attack += " (+" + Math.round(realRange - range) + ")";
-			else if (Math.round(realRange - range) < 0)
-				attack += " (" + Math.round(realRange - range) + ")";
-
+			if (relativeRange > 0)
+				attack = sprintf(translate("%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"), {
+					label: label,
+					details: damageTypeDetails(entState.attack),
+					rangeLabel: rangeLabel,
+					range: Math.round(range),
+					meters: meters,
+					relative: "+" + relativeRange,
+					rate: rate
+				});
+			else if (relativeRange < 0)
+				attack = sprintf(translate("%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"), {
+					label: label,
+					details: damageTypeDetails(entState.attack),
+					rangeLabel: rangeLabel,
+					range: Math.round(range),
+					meters: meters,
+					relative: relativeRange,
+					rate: rate
+				});
+			else // don't show when it's 0
+				attack = sprintf(translate("%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"), {
+					label: label,
+					details: damageTypeDetails(entState.attack),
+					rangeLabel: rangeLabel,
+					range: Math.round(range),
+					meters: meters,
+					rate: rate
+				});
 		}
-		attack += ", [font=\"serif-bold-13\"]" + (entState.buildingAI ? "Rate" : "Interval") + ":[/font] " + attackRateDetails(entState);
+		else
+		{
+			attack = sprintf(translate("%(label)s %(details)s, %(rate)s"), {
+				label: label,
+				details: damageTypeDetails(entState.attack),
+				rate: rate
+			});
+		}
+
+		Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n" + armorString;	
 	}
-	
-	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n[font=\"serif-bold-13\"]Armor:[/font] " + armorTypeDetails(entState.armour);
+	else
+	{
+		Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = armorString;
+	}
 
 	// Icon Tooltip
 	var iconTooltip = "";
@@ -277,7 +361,8 @@ function displayMultiple(selection, template)
 		healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
 		unitHealthBar.size = healthSize;
 
-		var hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + averageHealth + " / " + maxHealth;
+		var hitpointsLabel = "[font=\"serif-bold-13\"]" + translate("Hitpoints:") + "[/font]"
+		var hitpoints = sprintf(translate("%(label)s %(current)s / %(max)s"), { label: hitpointsLabel, current: averageHealth, max: maxHealth });
 		var healthMultiple = Engine.GetGUIObjectByName("healthMultiple");
 		healthMultiple.tooltip = hitpoints;
 		healthMultiple.hidden = false;

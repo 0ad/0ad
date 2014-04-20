@@ -27,7 +27,7 @@ function init(data)
 	var savedGames = Engine.GetSavedGames();
 	if (savedGames.length == 0)
 	{
-		gameSelection.list = [ "No saved games found" ];
+		gameSelection.list = [translate("No saved games found")];
 		gameSelection.selected = -1;
 		return;
 	}
@@ -56,9 +56,9 @@ function saveGame()
 	if (gameSelection.selected != -1)
 	{
 		// Ask for confirmation
-		var btCaptions = ["Yes", "No"];
+		var btCaptions = [translate("Yes"), translate("No")];
 		var btCode = [function(){ reallySaveGame(name, desc, false); }, null];
-		messageBox(500, 200, "\""+gameLabel+"\"\nSaved game will be permanently overwritten, are you sure?", "OVERWRITE SAVE", 0, btCaptions, btCode);
+		messageBox(500, 200, sprintf(translate("\"%(label)s\""), { label: gameLabel }) + "\n" + translate("Saved game will be permanently overwritten, are you sure?"), translate("OVERWRITE SAVE"), 0, btCaptions, btCode);
 	}
 	else
 		reallySaveGame(name, desc, true);
@@ -86,15 +86,15 @@ function deleteGame()
 	var gameID = gameSelection.list_data[gameSelection.selected];
 
 	// Ask for confirmation
-	var btCaptions = ["Yes", "No"];
+	var btCaptions = [translate("Yes"), translate("No")];
 	var btCode = [function(){ reallyDeleteGame(gameID); }, null];
-	messageBox(500, 200, "\""+gameLabel+"\"\nSaved game will be permanently deleted, are you sure?", "DELETE", 0, btCaptions, btCode);
+	messageBox(500, 200, sprintf(translate("\"%(label)s\""), { label: gameLabel }) + "\n" + translate("Saved game will be permanently deleted, are you sure?"), translate("DELETE"), 0, btCaptions, btCode);
 }
 
 function reallyDeleteGame(gameID)
 {
 	if (!Engine.DeleteSavedGame(gameID))
-		error("Could not delete saved game '"+gameID+"'");
+		error(sprintf("Could not delete saved game '%(id)s'", { id: gameID }));
 
 	// Run init again to refresh saved game list
 	init();

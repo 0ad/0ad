@@ -64,8 +64,9 @@ BuildRestrictions.prototype.Init = function()
  *
  * Returns result object:
  * 	{
- *		"success":	true iff the placement is valid, else false
- *		"message":	message to display in UI for invalid placement, else empty string
+ *		"success":    true iff the placement is valid, else false
+ *		"message":    message to display in UI for invalid placement, else ""
+ *		"parameters": parameters to use in the GUI message
  *  }
  *
  * Note: The entity which is used to check this should be a preview entity
@@ -79,7 +80,10 @@ BuildRestrictions.prototype.CheckPlacement = function()
 
 	var result = {
 		"success": false,
-		"message": name+" cannot be built due to unknown error",
+		"message": markForTranslation("%(name)s cannot be built due to unknown error"),
+		"parameters": {
+			"name": name,
+		}
 	};
 
 	// TODO: AI has no visibility info
@@ -97,7 +101,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 		var explored = (cmpRangeManager.GetLosVisibility(this.entity, cmpOwnership.GetOwner(), true) != "hidden");
 		if (!explored)
 		{
-			result.message = name+" cannot be built in unexplored area";
+			result.message = markForTranslation("%(name)s cannot be built in unexplored area");
 			return result; // Fail
 		}
 	}
@@ -145,11 +149,11 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			error("CheckPlacement: Error returned from CheckFoundation");
 			break;
 		case "fail_obstructs_foundation":
-			result.message = name+" cannot be built on another building or resource";
+			result.message = markForTranslation("%(name)s cannot be built on another building or resource");
 			break;
 		case "fail_terrain_class":
 			// TODO: be more specific and/or list valid terrain?
-			result.message = name+" cannot be built on invalid terrain";
+			result.message = markForTranslation("%(name)s cannot be built on invalid terrain");
 		}
 		return result; // Fail
 	}
@@ -172,19 +176,26 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	var territoryFail = true;
 	var territoryType = "";
 	if (isAlly && !this.HasTerritory("ally"))
-		territoryType = "ally";
+		// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
+		territoryType = markForTranslationWithContext("Territory type", "ally");
 	else if (isOwn && !this.HasTerritory("own"))
-		territoryType = "own";
+		// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
+		territoryType = markForTranslationWithContext("Territory type", "own");
 	else if (isNeutral && !this.HasTerritory("neutral"))
-		territoryType = "neutral";
+		// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
+		territoryType = markForTranslationWithContext("Territory type", "neutral");
 	else if (isEnemy && !this.HasTerritory("enemy"))
-		territoryType = "enemy";
+		// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
+		territoryType = markForTranslationWithContext("Territory type", "enemy");
 	else
 		territoryFail = false;
 
 	if (territoryFail)
 	{
-		result.message = name+" cannot be built in "+territoryType+" territory. Valid territories: " + this.GetTerritories().join(", ");
+		result.message = markForTranslation("%(name)s cannot be built in %(territoryType)s territory. Valid territories: %(validTerritories)s");
+		result.parameters.territoryType = {"context": "Territory type", "message": territoryType};
+		// gui code will join this array to a string
+		result.parameters.validTerritories = {"context": "Territory type list", "list": this.GetTerritories()};
 		return result;	// Fail
 	}
 
@@ -218,7 +229,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 		if ((cmpWaterManager.GetWaterLevel(pos.x + sz, pos.y + cz) - cmpTerrain.GetGroundLevel(pos.x + sz, pos.y + cz)) < 1.0 // front
 			|| (cmpWaterManager.GetWaterLevel(pos.x - sz, pos.y - cz) - cmpTerrain.GetGroundLevel(pos.x - sz, pos.y - cz)) > 2.0) // back
 		{
-			result.message = name+" must be built on a valid shoreline";
+			result.message = markForTranslation("%(name)s must be built on a valid shoreline");
 			return result;	// Fail
 		}
 	}
@@ -242,7 +253,9 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			var nearEnts = cmpRangeManager.ExecuteQuery(this.entity, 0, dist, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).filter(filter);
 			if (nearEnts.length)
 			{
-				result.message = name+" too close to a "+cat+", must be at least "+ +this.template.Distance.MinDistance+" units away";
+				result.message = markForTranslation("%(name)s too close to a %(category)s, must be at least %(distance)s meters away");
+				result.parameters.category = cat;
+				result.parameters.distance = this.template.Distance.MinDistance;
 				return result;	// Fail
 			}
 		}
@@ -252,7 +265,9 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			var nearEnts = cmpRangeManager.ExecuteQuery(this.entity, 0, dist, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).filter(filter);
 			if (!nearEnts.length)
 			{
-				result.message = name+" too far away from a "+cat+", must be within "+ +this.template.Distance.MaxDistance+" units";
+				result.message = markForTranslation("%(name)s too far from a %(category)s, must be within %(distance)s meters");
+				result.parameters.category = cat;
+				result.parameters.distance = this.template.Distance.MinDistance;
 				return result;	// Fail
 			}
 		}
@@ -278,5 +293,14 @@ BuildRestrictions.prototype.HasTerritory = function(territory)
 {
 	return (this.GetTerritories().indexOf(territory) != -1);
 };
+
+// Translation: Territory types being displayed as part of a list like "Valid territories: own, ally".
+markForTranslationWithContext("Territory type list", "own");
+// Translation: Territory types being displayed as part of a list like "Valid territories: own, ally".
+markForTranslationWithContext("Territory type list", "ally");
+// Translation: Territory types being displayed as part of a list like "Valid territories: own, ally".
+markForTranslationWithContext("Territory type list", "neutral");
+// Translation: Territory types being displayed as part of a list like "Valid territories: own, ally".
+markForTranslationWithContext("Territory type list", "enemy");
 
 Engine.RegisterComponentType(IID_BuildRestrictions, "BuildRestrictions", BuildRestrictions);
