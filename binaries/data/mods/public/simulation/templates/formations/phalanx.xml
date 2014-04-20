@@ -4,10 +4,12 @@
     <RequiredMemberCount>10</RequiredMemberCount>
     <DisabledTooltip>10 melee infantry units required</DisabledTooltip>
     <FormationName>Phalanx</FormationName>
+    <UnitSeparationWidthMultiplier>0.75</UnitSeparationWidthMultiplier>
+    <UnitSeparationDepthMultiplier>0.75</UnitSeparationDepthMultiplier>
+    <WidthDepthRatio>4</WidthDepthRatio>
     <MinColumns>5</MinColumns>
-    <MaxColumns>8</MaxColumns>
+    <MaxColumns>20</MaxColumns>
     <MaxRows>6</MaxRows>
-    <WidthDepthRatio>2</WidthDepthRatio>
   </Formation>
   <FormationAttack>
     <CanAttackAsFormation>true</CanAttackAsFormation>
