@@ -61,7 +61,7 @@ CStrW UnescapeString(CStrW originalString)
 		return originalString;
 	// clone the string
 	CStrW newString = CStrW();
-	for (ulong i; i < originalString.length(); ++i)
+	for (size_t i=0; i < originalString.length(); ++i)
 	{
 		if (originalString[i] == '&' && originalString[i+1] == '#')
 		{
