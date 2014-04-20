@@ -49,7 +49,6 @@ ICU_VERSION="icu4c-52_1"
 # * NVTT
 # * FCollada
 # * MiniUPnPc
-# * tinygettext
 # --------------------------------------------------------------
 # Provided by OS X:
 # * OpenAL
@@ -760,37 +759,6 @@ then
   (make clean && CFLAGS=$CFLAGS LDFLAGS=$LDFLAGS make ${JOBS}) || die "MiniUPnPc build failed"
 
   cp libminiupnpc.a ../lib/
-
-  popd
-  touch .already-built
-else
-  already_built
-fi
-popd > /dev/null
-
-# --------------------------------------------------------------
-# tinygettext - no install
-echo -e "Building tinygettext..."
-
-pushd ../source/tinygettext > /dev/null
-
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
-then
-  rm -f .already-built
-  rm -f lib/*.a
-  pushd src
-  rm -rf build
-  mkdir -p build
-  mkdir -p ../lib
-
-  pushd build
-
-  # TODO: pass in various flags we need on OS X
-  # Use our previously built iconv insread of OS X bundled version
-  (cmake .. -DBUILD_SHARED_LIBS=OFF -DCMAKE_CXX_FLAGS="$CPPFLAGS" -DCMAKE_BUILD_TYPE=Release -DICONV_LIBRARY="${ICONV_DIR}/lib/libiconv.a" -DICONV_INCLUDE_DIR="${ICONV_DIR}/include" -G "Unix Makefiles" && make clean && make ${JOBS}) || die "tinygettext build failed"
-  popd
-
-  cp build/libtinygettext.a ../lib/
 
   popd
   touch .already-built
