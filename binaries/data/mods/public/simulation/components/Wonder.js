@@ -50,14 +50,18 @@ Wonder.prototype.ResetTimer = function(ownerID)
 			players.push(i);
 
 	this.otherMessage = cmpGuiInterface.AddTimeNotification({
-		"message": cmpPlayer.GetName() + " will have won in %T",
+		"message": markForTranslation("%(player)s will have won in %(time)s"),
 		"players": players,
-		"time": +this.template.TimeTillVictory*1000
+		"duration": +this.template.TimeTillVictory*1000,
+		"parameters": {"player": cmpPlayer.GetName()},
+		"translateMessage": true,
+		"translateParameters": [],
 	});
 	this.ownMessage = cmpGuiInterface.AddTimeNotification({
-		"message": "You will have won in %T",
+		"message": markForTranslation("You will have won in %(time)s"),
 		"players": [ownerID],
-		"time": +this.template.TimeTillVictory*1000
+		"duration": +this.template.TimeTillVictory*1000,
+		"translateMessage": true,
 	});
 	this.timer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_EndGameManager, "MarkPlayerAsWon", +this.template.TimeTillVictory*1000, ownerID);
 };

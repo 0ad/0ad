@@ -103,34 +103,34 @@ function formatUserReportStatus(status)
 	var d = status.split(/:/, 3);
 
 	if (d[0] == "disabled")
-		return "disabled";
+		return translate("disabled");
 
 	if (d[0] == "connecting")
-		return "connecting to server";
+		return translate("connecting to server");
 
 	if (d[0] == "sending")
 	{
 		var done = d[1];
-		return "uploading (" + Math.floor(100*done) + "%)";
+		return sprintf(translate("uploading (%f%%)"), Math.floor(100*done));
 	}
 
 	if (d[0] == "completed")
 	{
 		var httpCode = d[1];
 		if (httpCode == 200)
-			return "upload succeeded";
+			return translate("upload succeeded");
 		else
-			return "upload failed (" + httpCode + ")";
+			return sprintf(translate("upload failed (%(errorCode)s)"), { errorCode: httpCode });
 	}
 
 	if (d[0] == "failed")
 	{
 		var errCode = d[1];
 		var errMessage = d[2];
-		return "upload failed (" + errMessage + ")";
+		return sprintf(translate("upload failed (%(errorMessage)s)"), { errorMessage: errMessage });
 	}
 
-	return "unknown";
+	return translate("unknown");
 }
 
 var lastTickTime = new Date;
@@ -162,7 +162,6 @@ function onTick()
 			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen", callback : "SplashScreenClosedCallback" } );
 		else
 			ShowRenderPathMessage();
-		
 	}
 }
 
@@ -173,10 +172,17 @@ function ShowRenderPathMessage()
 		messageBox(
 			600,
 			300,
-			"[font=\"serif-bold-16\"][color=\"200 20 20\"]Warning:[/color] You appear to be using non-shader (fixed function) graphics. This option will be removed in a future 0 A.D. release, to allow for more advanced graphics features. We advise upgrading your graphics card to a more recent, shader-compatible model.\n\nPlease press \"Read More\" for more information or \"Ok\" to continue.",
-			"WARNING!",
+			"[font=\"serif-bold-16\"]" +
+			sprintf(translate("%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader (fixed function) graphics. This option will be removed in a future 0 A.D. release, to allow for more advanced graphics features. We advise upgrading your graphics card to a more recent, shader-compatible model."), { startWarning: "[color=\"200 20 20\"]", endWarning: "[/color]"}) +
+			"\n\n" +
+			// Translation: This is the second paragraph of a warning. The
+			// warning explains that the user is using “non-shader“ graphics,
+			// and that in the future this will not be supported by the game, so
+			// the user will need a better graphics card.
+			translate("Please press \"Read More\" for more information or \"OK\" to continue."),
+			translate("WARNING!"),
 			0,
-			["Ok", "Read More"],
+			[translate("OK"), translate("Read More")],
 			[ null, function() { Engine.OpenURL("http://www.wildfiregames.com/forum/index.php?showtopic=16734"); } ]
 		);
 }
@@ -275,6 +281,11 @@ function blendSubmenuIntoMain(topPosition, bottomPosition)
 	bottomSprite.size = "100%-2 " + (bottomPosition) + " 100% 100%";
 }
 
+function getBuildString()
+{
+	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), { buildDate: Engine.GetBuildTimestamp(0), revision: Engine.GetBuildTimestamp(2) });
+}
+
 /*
  * FUNCTIONS BELOW DO NOT WORK YET
  */
@@ -330,3 +341,26 @@ function blendSubmenuIntoMain(topPosition, bottomPosition)
 //		guiUnHide ("pg");
 //	}
 //}
+
+function exitGamePressed()
+{
+	closeMenu();
+	var btCaptions = [translate("Yes"), translate("No")];
+	var btCode = [Engine.Exit, null];
+	messageBox(400, 200, translate("Are you sure you want to quit 0 A.D.?"), translate("Confirmation"), 0, btCaptions, btCode);
+}
+
+function pressedScenarioEditorButton()
+{
+	closeMenu();
+	// Start Atlas
+	if (Engine.AtlasIsAvailable())
+		Engine.RestartInAtlas();
+	else
+		messageBox(400, 200, translate("The scenario editor is not available or failed to load."), translate("Error"), 2);
+}
+
+function getLobbyDisabledByBuild()
+{
+	return translate("Launch the multiplayer lobby. [DISABLED BY BUILD]");
+}

@@ -40,6 +40,8 @@ VORBIS_VERSION="libvorbis-1.3.3"
 GLOOX_VERSION="gloox-1.0.9"
 # NSPR is necessary for threadsafe Spidermonkey
 NSPR_VERSION="4.10.3"
+# OS X only includes part of ICU, and only the dylib
+ICU_VERSION="icu4c-52_1"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey 24
@@ -548,6 +550,40 @@ then
   popd
   # TODO: how can we not build the dylibs?
   rm -f lib/*.dylib
+    touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building ICU..."
+
+LIB_VERSION="${ICU_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION-src.tgz"
+LIB_DIRECTORY="icu"
+LIB_URL="http://download.icu-project.org/files/icu4c/52.1/"
+
+mkdir -p icu
+pushd icu > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  rm -f .already-built
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY bin include lib sbin share
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  mkdir -p source/build
+  pushd source/build
+
+  (CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" ../runConfigureICU MacOSX --prefix=$INSTALL_DIR --disable-shared --enable-static --disable-samples --enable-extras --enable-icuio --enable-layout --enable-tools && make ${JOBS} && make install) || die "ICU build failed"
+  popd
+  popd
   touch .already-built
 else
   already_built

@@ -19,7 +19,7 @@ function cancelOnError(msg)
 			width: 500,
 			height: 200,
 			message: '[font="serif-bold-18"]' + msg + '[/font]',
-			title: "Loading Aborted",
+			title: translate("Loading Aborted"),
 			mode: 2
 		});
 	}

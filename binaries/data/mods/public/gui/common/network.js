@@ -3,11 +3,11 @@ function getDisconnectReason(id)
 	// Must be kept in sync with source/network/NetHost.h
 	switch (id)
 	{
-	case 0: return "Unknown reason";
-	case 1: return "Unexpected shutdown";
-	case 2: return "Incorrect network protocol version";
-	case 3: return "Game has already started";
-	default: return "[Invalid value "+id+"]";
+	case 0: return translate("Unknown reason");
+	case 1: return translate("Unexpected shutdown");
+	case 2: return translate("Incorrect network protocol version");
+	case 3: return translate("Game has already started");
+	default: return sprintf(translate("[Invalid value %(id)s]"), { id: id });
 	}
 }
 
@@ -16,6 +16,6 @@ function reportDisconnect(reason)
 	var reasontext = getDisconnectReason(reason);
 
 	messageBox(400, 200,
-		"Lost connection to the server.\n\nReason: " + reasontext + ".",
-		"Disconnected", 2);
+		translate("Lost connection to the server.") + "\n\n" + sprintf(translate("Reason: %(reason)s."), { reason: reasontext }),
+		translate("Disconnected"), 2);
 }

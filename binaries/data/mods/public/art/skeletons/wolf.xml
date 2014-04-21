@@ -1,0 +1,127 @@
+<skeletons>
+	<!--
+	This skeleton is for the deer and any other similiar shaped animals with the exact same number of bones.
+	-->
+
+	<standard_skeleton title="Wolf" id="Wolf">
+	 <bone name="Bone">
+		<bone name="Tail1">
+			<bone name="Tail2">
+				<bone name="Tail3">
+					<bone name="Tail4"></bone>
+				</bone>
+			</bone>
+		</bone>
+	</bone>
+		<bone name="Bone_005">
+			<bone name="Bone_001">
+				<bone name="Neck1">
+					<bone name="Neck2">
+						<bone name="Neck3">
+							<bone name="Head"></bone>
+							<bone name="Jaw1">
+								<bone name="Jaw2"></bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+			<bone name="FrontShoulder_L">
+				<bone name="FrontLeg1_L">
+					<bone name="FrontLeg2_L">
+						<bone name="FrontLeg3_L">
+							<bone name="FrontToe_L"></bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="FrontShoulder_R">
+				<bone name="FrontLeg1_R">
+					<bone name="FrontLeg2_R">
+						<bone name="FrontLeg3_R">
+							<bone name="FrontToe_R"></bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>				
+			<bone name="Bone_012"></bone>
+		<bone name="BackLeg1_L">
+			<bone name="BackLeg2_L">
+				<bone name="BackLeg3_L">
+					<bone name="BackToe_L"></bone>
+				</bone>
+			</bone>
+		</bone>
+		<bone name="BackLeg1_R">
+			<bone name="BackLeg2_R">
+				<bone name="BackLeg3_R">
+					<bone name="BackToe_R"></bone>
+				</bone>
+			</bone>
+		</bone>
+
+	</standard_skeleton>
+
+	<skeleton title="Wolf" target="Wolf">
+		 <identifier>
+			<root>Bone</root>
+		 </identifier>
+	 <bone name="Bone"><target>Bone</target>
+		<bone name="Tail1"><target>Tail1</target>
+			<bone name="Tail2"><target>Tail2</target>
+				<bone name="Tail3"><target>Tail3</target>
+					<bone name="Tail4"><target>Tail4</target></bone>
+				</bone>
+			</bone>
+		</bone>
+	</bone>
+		<bone name="Bone_005"><target>Bone_005</target>
+			<bone name="Bone_001"><target>Bone_001</target>
+				<bone name="Neck1"><target>Neck1</target>
+					<bone name="Neck2"><target>Neck2</target>
+						<bone name="Neck3"><target>Neck3</target>
+							<bone name="Head"><target>Head</target></bone>
+							<bone name="Jaw1"><target>Jaw1</target>
+								<bone name="Jaw2"><target>Jaw2</target></bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+			<bone name="FrontShoulder_L"><target>FrontShoulder_L</target>
+				<bone name="FrontLeg1_L"><target>FrontLeg1_L</target>
+					<bone name="FrontLeg2_L"><target>FrontLeg2_L</target>
+						<bone name="FrontLeg3_L"><target>FrontLeg3_L</target>
+							<bone name="FrontToe_L"><target>FrontToe_L</target></bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+			<bone name="FrontShoulder_R"><target>FrontShoulder_R</target>
+				<bone name="FrontLeg1_R"><target>FrontLeg1_R</target>
+					<bone name="FrontLeg2_R"><target>FrontLeg2_R</target>
+						<bone name="FrontLeg3_R"><target>FrontLeg3_R</target>
+							<bone name="FrontToe_R"><target>FrontToe_R</target></bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>				
+			<bone name="Bone_012"><target>Bone_012</target></bone>
+		<bone name="BackLeg1_L"><target>BackLeg1_L</target>
+			<bone name="BackLeg2_L"><target>BackLeg2_L</target>
+				<bone name="BackLeg3_L"><target>BackLeg3_L</target>
+					<bone name="BackToe_L"><target>BackToe_L</target></bone>
+				</bone>
+			</bone>
+		</bone>
+		<bone name="BackLeg1_R"><target>BackLeg1_R</target>
+			<bone name="BackLeg2_R"><target>BackLeg2_R</target>
+				<bone name="BackLeg3_R"><target>BackLeg3_R</target>
+					<bone name="BackToe_R"><target>BackToe_R</target></bone>
+				</bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>

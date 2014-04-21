@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,8 @@
 #include "gui/GUIManager.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/archive/archive_zip.h"
+#include "i18n/L10n.h"
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
@@ -121,7 +123,7 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 
 	OsPath realPath;
 	WARN_RETURN_STATUS_IF_ERR(g_VFS->GetRealPath(filename, realPath));
-	LOGMESSAGERENDER(L"Saved game to '%ls'\n", realPath.string().c_str());
+	LOGMESSAGERENDER(wstring_from_utf8(L10n::Instance().Translate("Saved game to '%ls'") + "\n").c_str(), realPath.string().c_str());
 
 	return INFO::OK;
 }

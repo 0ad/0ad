@@ -62,7 +62,7 @@ function updateTimers()
 			t[1]();
 		} catch (e) {
 			var stack = e.stack.trimRight().replace(/^/mg, '  '); // indent the stack trace
-			error("Error in timer: "+e+"\n"+stack+"\n");
+			error(sprintf("Error in timer: %(error)s", { error: e })+"\n"+stack+"\n");
 		}
 		delete g_Timers[id];
 	}

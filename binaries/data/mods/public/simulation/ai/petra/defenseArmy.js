@@ -115,6 +115,16 @@ m.DefenseArmy.prototype.checkDangerosity = function (gameState)
 
 m.DefenseArmy.prototype.update = function (gameState)
 {
+	for each (var entId in this.ownEntities)
+	{
+		var ent = gameState.getEntityById(entId);
+		if (!ent)
+			continue;
+		var orders = ent.unitAIOrderData();
+		if (orders.length === 0)
+			this.assignUnit(gameState, entId);
+	}
+
 	var breakaways = this.onUpdate(gameState);
 
 	this.checkDangerosity(gameState);

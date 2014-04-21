@@ -1,0 +1,14 @@
+{
+	"pair": "pair_house_01",
+	"genericName": "The Loom",
+	"description": "The Loom allowed the creation of finer clothing to clothe citizens in the settlement. Women of the household were taught from a young age how to weave on the loom, and subsequently spent a large  share of their lives working with it.",
+	"cost": {"food": 0, "wood": 100, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_village"},
+	"requirementsTooltip": "Unlocked in Village Phase.",
+	"icon": "wives_festival.png",
+	"researchTime": 40,
+	"tooltip": "Female Citizens +50% Health.",
+	"modifications": [{"value": "Health/Max", "multiply": 1.50}],
+	"affects": ["Female Citizen"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

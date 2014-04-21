@@ -14,6 +14,7 @@ function loadCivData()
 	for each (var filename in civFiles)
 	{	// Parse data if valid file
 		var data = parseJSONData(filename);
+		translateObjectKeys(data, ["Name", "Description", "History", "Special"]);
 		civData[data.Code] = data;
 	}
 	

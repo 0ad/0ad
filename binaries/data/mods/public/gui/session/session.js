@@ -16,7 +16,7 @@ var g_CivData = {};
 var g_GameSpeeds = {};
 var g_CurrentSpeed;
 
-var g_PlayerAssignments = { "local": { "name": "You", "player": 1 } };
+var g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1 } };
 
 // Cache dev-mode settings that are frequently or widely used
 var g_DevSettings = {
@@ -100,6 +100,7 @@ function GetExtendedEntityState(entId)
 
 // Cache TemplateData
 var g_TemplateData = {}; // {id:template}
+var g_TemplateDataWithoutLocalization = {};
 
 
 function GetTemplateData(templateName)
@@ -107,10 +108,22 @@ function GetTemplateData(templateName)
 	if (!(templateName in g_TemplateData))
 	{
 		var template = Engine.GuiInterfaceCall("GetTemplateData", templateName);
+		translateObjectKeys(template, ["specific", "generic", "tooltip"]);
 		g_TemplateData[templateName] = template;
 	}
 
 	return g_TemplateData[templateName];
+}
+
+function GetTemplateDataWithoutLocalization(templateName)
+{
+	if (!(templateName in g_TemplateDataWithoutLocalization))
+	{
+		var template = Engine.GuiInterfaceCall("GetTemplateData", templateName);
+		g_TemplateDataWithoutLocalization[templateName] = template;
+	}
+
+	return g_TemplateDataWithoutLocalization[templateName];
 }
 
 // Cache TechnologyData
@@ -121,6 +134,7 @@ function GetTechnologyData(technologyName)
 	if (!(technologyName in g_TechnologyData))
 	{
 		var template = Engine.GuiInterfaceCall("GetTechnologyData", technologyName);
+		translateObjectKeys(template, ["specific", "generic", "description", "tooltip", "requirementsTooltip"]);
 		g_TechnologyData[technologyName] = template;
 	}
 
@@ -153,7 +167,7 @@ function init(initData, hotloadData)
 
 	// Cache civ data
 	g_CivData = loadCivData();
-	g_CivData["gaia"] = { "Code": "gaia", "Name": "Gaia"};
+	g_CivData["gaia"] = { "Code": "gaia", "Name": translate("Gaia") };
 
 	if (Engine.GetPlayerID() <= 0)
 	{
@@ -295,32 +309,26 @@ function leaveGame(willRejoin)
 	if (g_IsObserver)
 	{
 		// Observers don't win/lose.
-		gameResult = "You have left the game.";
+		gameResult = translate("You have left the game.");
 		global.music.setState(global.music.states.VICTORY);
 	}
 	else
 	{
 		var playerState = extendedSimState.players[Engine.GetPlayerID()];
 		if (g_Disconnected)
-		{
-			gameResult = "You have been disconnected."
-		}
+			gameResult = translate("You have been disconnected.");
 		else if (playerState.state == "won")
-		{
-			gameResult = "You have won the battle!";
-		}
+			gameResult = translate("You have won the battle!");
 		else if (playerState.state == "defeated")
-		{
-			gameResult = "You have been defeated...";
-		}
+			gameResult = translate("You have been defeated...");
 		else // "active"
 		{
 			global.music.setState(global.music.states.DEFEAT);
 			if (willRejoin)
-				gameResult = "You have left the game.";
+				gameResult = translate("You have left the game.");
 			else
 			{
-				gameResult = "You have abandoned the game.";
+				gameResult = translate("You have abandoned the game.");
 				resignGame(true);
 			}
 		}
@@ -471,21 +479,21 @@ function checkPlayerState()
 	if (Engine.IsAtlasRunning())
 	{
 		// If we're in Atlas, we can't leave the game
-		var btCaptions = ["OK"];
+		var btCaptions = [translate("OK")];
 		var btCode = [null];
-		var message = "Press OK to continue";
+		var message = translate("Press OK to continue");
 	}
 	else
 	{
-		var btCaptions = ["Yes", "No"];
+		var btCaptions = [translate("Yes"), translate("No")];
 		var btCode = [leaveGame, null];
-		var message = "Do you want to quit?";
+		var message = translate("Do you want to quit?");
 	}
 
 	if (playerState.state == "defeated")
 	{
 		global.music.setState(global.music.states.DEFEAT);
-		messageBox(400, 200, message, "DEFEATED!", 0, btCaptions, btCode);
+		messageBox(400, 200, message, translate("DEFEATED!"), 0, btCaptions, btCode);
 	}
 	else if (playerState.state == "won")
 	{
@@ -493,9 +501,8 @@ function checkPlayerState()
 		// TODO: Reveal map directly instead of this silly proxy.
 		if (!Engine.GetGUIObjectByName("devCommandsRevealMap").checked)
 			Engine.GetGUIObjectByName("devCommandsRevealMap").checked = true;
-		messageBox(400, 200, message, "VICTORIOUS!", 0, btCaptions, btCode);
+		messageBox(400, 200, message, translate("VICTORIOUS!"), 0, btCaptions, btCode);
 	}
-
 }
 
 function changeGameSpeed(speed)
@@ -621,14 +628,25 @@ function updateHero()
 
 	// Setup tooltip
 	var tooltip = "[font=\"serif-bold-16\"]" + template.name.specific + "[/font]";
-	tooltip += "\n[font=\"serif-bold-13\"]Health:[/font] " + heroState.hitpoints + "/" + heroState.maxHitpoints;
-	tooltip += "\n[font=\"serif-bold-13\"]" + (heroState.attack ? heroState.attack.type + " " : "")
-	           + "Attack:[/font] " + damageTypeDetails(heroState.attack);
-	// Show max attack range if ranged attack, also convert to tiles (4m per tile)
+	var healthLabel = "[font=\"serif-bold-13\"]" + translate("Health:") + "[/font]";
+	tooltip += "\n" + sprintf(translate("%(label)s %(current)s / %(max)s"), { label: healthLabel, current: heroState.hitpoints, max: heroState.maxHitpoints });
+	var attackLabel = "[font=\"serif-bold-13\"]" + getAttackTypeLabel(heroState.attack.type) + "[/font]";
 	if (heroState.attack && heroState.attack.type == "Ranged")
-		tooltip += ", [font=\"serif-bold-13\"]Range:[/font] " + Math.round(heroState.attack.maxRange/4);
+		// Show max attack range if ranged attack, also convert to tiles (4m per tile)
+		tooltip += "\n" + sprintf(
+			translate("%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"),
+			{
+				attackLabel: attackLabel,
+				details: damageTypeDetails(heroState.attack),
+				rangeLabel: "[font=\"serif-bold-13\"]" + translate("Range:") + "[/font]",
+				range: Math.round(heroState.attack.maxRange/4)
+			}
+		);
+	else
+		tooltip += "\n" + sprintf(translate("%(label)s %(details)s"), { label: attackLabel, details: damageTypeDetails(heroState.armour) });
 
-	tooltip += "\n[font=\"serif-bold-13\"]Armor:[/font] " + damageTypeDetails(heroState.armour);
+	var armorLabel = "[font=\"serif-bold-13\"]" + translate("Armor:") + "[/font]";
+	tooltip += "\n" + sprintf(translate("%(label)s %(details)s"), { label: armorLabel, details: damageTypeDetails(heroState.attack) });
 	tooltip += "\n" + template.tooltip;
 
 	heroButton.tooltip = tooltip;
@@ -792,9 +810,11 @@ function updateResearchDisplay()
 function updateTimeElapsedCounter()
 {
 	var simState = GetSimState();
-	var speed = g_CurrentSpeed != 1.0 ? " (" + g_CurrentSpeed + "x)" : "";
 	var timeElapsedCounter = Engine.GetGUIObjectByName("timeElapsedCounter");
-	timeElapsedCounter.caption = timeToString(simState.timeElapsed) + speed;
+	if (g_CurrentSpeed != 1.0)
+		timeElapsedCounter.caption = sprintf(translate("%(time)s (%(speed)sx)"), { time: timeToString(simState.timeElapsed), speed: Engine.FormatDecimalNumberIntoString(g_CurrentSpeed) });
+	else
+		timeElapsedCounter.caption = timeToString(simState.timeElapsed);
 }
 
 // Toggles the display of status bars for all of the player's entities.
@@ -881,7 +901,7 @@ function playRandomAmbient(type)
 			break;
 
 		default:
-			Engine.Console_Write("Unrecognized ambient type: " + type);
+			Engine.Console_Write(sprintf(translate("Unrecognized ambient type: %(ambientType)s"), { ambientType: type }));
 			break;
 	}
 }
@@ -895,6 +915,17 @@ function stopAmbient()
 		currentAmbient = null;
 	}
 }
+
+function getBuildString()
+{
+	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), { buildDate: Engine.GetBuildTimestamp(0), revision: Engine.GetBuildTimestamp(2) });
+}
+
+function showTimeWarpMessageBox()
+{
+	messageBox(500, 250, translate("Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash."), translate("Time warp mode"), 2);
+}
+
 // Send a report on the game status to the lobby
 function reportGame(extendedSimState)
 {

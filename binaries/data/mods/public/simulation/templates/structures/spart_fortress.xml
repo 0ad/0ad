@@ -16,11 +16,13 @@
   <ProductionQueue>
     <Entities datatype="tokens">
       units/spart_mechanical_siege_ram
+      units/spart_mechanical_siege_oxybeles_packed
     </Entities>
     <Technologies datatype="tokens">
       -pair_champ_02
       pair_siege_attack_cost
       pair_siege_cost_armor
+      siege_bolt_accuracy
     </Technologies>
   </ProductionQueue>
   <VisualActor>

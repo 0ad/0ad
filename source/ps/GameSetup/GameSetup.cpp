@@ -116,6 +116,9 @@ shared_ptr<ScriptRuntime> g_ScriptRuntime;
 
 static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
 
+bool g_InDevelopmentCopy;
+bool g_CheckedIfInDevelopmentCopy = false;
+
 static void SetTextureQuality(int quality)
 {
 	int q_flags;
@@ -389,7 +392,7 @@ ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(
 	return ERI_NOT_IMPLEMENTED;
 }
 
-static std::vector<CStr> GetMods(const CmdLineArgs& args, bool dev)
+static std::vector<CStr> GetMods(const CmdLineArgs& args)
 {
 	std::vector<CStr> mods = args.GetMultiple("mod");
 	// List of the mods, to be used by the Gui
@@ -401,7 +404,7 @@ static std::vector<CStr> GetMods(const CmdLineArgs& args, bool dev)
 
 	// Add the user mod if not explicitly disabled or we have a dev copy so
 	// that saved files end up in version control and not in the user mod.
-	if (!dev && !args.Has("noUserMod"))
+	if (!InDevelopmentCopy() && !args.Has("noUserMod"))
 		mods.push_back("user");
 
 	return mods;
@@ -435,9 +438,11 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 	// (maps, etc) end up in version control.
 	const OsPath readonlyConfig = paths.RData()/"config"/"";
 	g_VFS->Mount(L"config/", readonlyConfig);
-	bool dev = (g_VFS->GetFileInfo(L"config/dev.cfg", NULL) == INFO::OK);
 
-	const std::vector<CStr> mods = GetMods(args, dev);
+	// Engine localization files.
+	g_VFS->Mount(L"l10n/", paths.RData()/"l10n"/"");
+
+	const std::vector<CStr> mods = GetMods(args);
 
 	OsPath modPath = paths.RData()/"mods";
 	OsPath modUserPath = paths.UserData()/"mods";
@@ -448,7 +453,7 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 		size_t baseFlags = userFlags|VFS_MOUNT_MUST_EXIST;
 		
 		OsPath modName(mods[i]);
-		if (dev)
+		if (InDevelopmentCopy())
 		{
 			// We are running a dev copy, so only mount mods in the user mod path
 			// if the mod does not exist in the data path.
@@ -1320,4 +1325,14 @@ void CancelLoad(const CStrW& message)
 		if (g_GUI->GetActiveGUI()->GetScriptInterface()->HasProperty(g_GUI->GetActiveGUI()->GetGlobalObject(), "cancelOnError" ))
 			g_GUI->GetActiveGUI()->GetScriptInterface()->CallFunctionVoid(g_GUI->GetActiveGUI()->GetGlobalObject(), "cancelOnError", message);
 	}
+}
+
+bool InDevelopmentCopy()
+{
+	if (!g_CheckedIfInDevelopmentCopy)
+	{
+		g_InDevelopmentCopy = (g_VFS->GetFileInfo(L"config/dev.cfg", NULL) == INFO::OK);
+		g_CheckedIfInDevelopmentCopy = true;
+	}
+	return g_InDevelopmentCopy;
 }

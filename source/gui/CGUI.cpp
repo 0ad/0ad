@@ -47,8 +47,10 @@ CGUI
 #include "graphics/TextRenderer.h"
 #include "lib/input.h"
 #include "lib/bits.h"
+#include "i18n/L10n.h"
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Hotkey.h"
@@ -1095,6 +1097,10 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	ELMT(object);
 	ELMT(action);
 	ELMT(repeat);
+	ELMT(translatableAttribute);
+	ELMT(translate);
+	ELMT(attribute);
+	ELMT(keep);
 	ATTR(style);
 	ATTR(type);
 	ATTR(name);
@@ -1102,6 +1108,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	ATTR(z);
 	ATTR(on);
 	ATTR(file);
+	ATTR(id);
 
 	//
 	//	Read Style and set defaults
@@ -1242,8 +1249,27 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				code = scriptfile.DecodeUTF8(); // assume it's UTF-8
 			}
 
-			// Read the inline code (concatenating to the file code, if both are specified)
-			code += CStr(child.GetText());
+			XMBElementList grandchildren = child.GetChildNodes();
+			if (grandchildren.Count > 0) // The <action> element contains <keep> and <translate> tags.
+			{
+				for (int i = 0; i < grandchildren.Count; ++i)
+				{
+					XMBElement grandchild = grandchildren.Item(i);
+					if (grandchild.GetNodeName() == elmt_translate)
+					{
+						code += L10n::Instance().Translate(grandchild.GetText());
+					}
+					else if (grandchild.GetNodeName() == elmt_keep)
+					{
+						code += grandchild.GetText();
+					}
+				}
+			}
+			else // It’s pure JavaScript code.
+			{
+				// Read the inline code (concatenating to the file code, if both are specified)
+				code += CStr(child.GetText());
+			}
 
 			CStr action = CStr(child.GetAttributes().GetNamedItem(attr_on));
 			
@@ -1254,6 +1280,53 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		else if (element_name == elmt_repeat)
 		{
 			Xeromyces_ReadRepeat(child, pFile, object, Paths);
+		}
+		else if (element_name == elmt_translatableAttribute)
+		{
+			// This is an element in the form “<translatableAttribute id="attributeName">attributeValue</translatableAttribute>”.
+			CStr attributeName(child.GetAttributes().GetNamedItem(attr_id)); // Read the attribute name.
+			if (!attributeName.empty())
+			{
+				CStr value(child.GetText());
+				if (!value.empty())
+				{
+					CStr translatedValue(L10n::Instance().Translate(value));
+					object->SetSetting(attributeName, translatedValue.UnescapeBackslashes().FromUTF8(), true);
+				}
+			}
+			else // Ignore.
+			{
+				LOGERROR(L"GUI: ‘attribute’ XML element with empty ‘id’ XML attribute found. (object: %hs)", object->GetPresentableName().c_str());
+			}
+		}
+		else if (element_name == elmt_attribute)
+		{
+			// This is an element in the form “<attribute id="attributeName"><keep>Don’t translate this part
+			// </keep><translate>but translate this one.</translate></attribute>”.
+			CStr attributeName(child.GetAttributes().GetNamedItem(attr_id)); // Read the attribute name.
+			if (!attributeName.empty())
+			{
+				CStr translatedValue;
+
+				XMBElementList grandchildren = child.GetChildNodes();
+				for (int i = 0; i < grandchildren.Count; ++i)
+				{
+					XMBElement grandchild = grandchildren.Item(i);
+					if (grandchild.GetNodeName() == elmt_translate)
+					{
+						translatedValue += L10n::Instance().Translate(grandchild.GetText());
+					}
+					else if (grandchild.GetNodeName() == elmt_keep)
+					{
+						translatedValue += grandchild.GetText();
+					}
+				}
+				object->SetSetting(attributeName, translatedValue.UnescapeBackslashes().FromUTF8(), true);
+			}
+			else // Ignore.
+			{
+				LOGERROR(L"GUI: ‘attribute’ XML element with empty ‘id’ XML attribute found. (object: %hs)", object->GetPresentableName().c_str());
+			}
 		}
 		else
 		{

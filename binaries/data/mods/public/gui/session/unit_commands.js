@@ -27,7 +27,7 @@ const BARTER_RESOURCES = ["food", "wood", "stone", "metal"];
 const BARTER_ACTIONS = ["Sell", "Buy"];
 
 // Gate constants
-const GATE_ACTIONS = ["Lock", "Unlock"];
+const GATE_ACTIONS = ["lock", "unlock"];
 
 // The number of currently visible buttons (used to optimise showing/hiding)
 var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Barter": 0, "Trading": 0, "Construction": 0, "Command": 0, "Stance": 0, "Gate": 0, "Pack": 0};
@@ -146,15 +146,15 @@ function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
 {
 	if (trainEntLimit == undefined)
 		return "";
-	var text = "\n\nCurrent Count: " + trainEntCount + ", Limit: " + trainEntLimit + ".";
+	var text = "\n\n" + sprintf(translate("Current Count: %(count)s, Limit: %(limit)s."), { count: trainEntCount, limit: trainEntLimit });
 	if (trainEntCount >= trainEntLimit)
 		text = "[color=\"red\"]" + text + "[/color]";
 	for (var c in trainEntLimitChangers)
 	{
 		if (trainEntLimitChangers[c] > 0)
-			text += "\n" + c + " enlarges the limit with " + trainEntLimitChangers[c] + ".";
+			text += "\n" + sprintf("%(changer)s enlarges the limit with %(change)s.", { changer: c, change: trainEntLimitChangers[c] });
 		else if (trainEntLimitChangers[c] < 0)
-			text += "\n" + c + " lessens the limit with " + (-trainEntLimitChangers[c]) + ".";
+			text += "\n" + sprintf("%(changer)s lessens the limit with %(change)s.", { changer: c, change: (-trainEntLimitChangers[c]) });
 	}
 	return text;
 }
@@ -181,25 +181,70 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 	if (buildingsCountToTrainFullBatch > 0)
 	{
 		if (buildingsCountToTrainFullBatch > 1)
-			fullBatchesString += buildingsCountToTrainFullBatch + "*";
-		fullBatchesString += fullBatchSize;
+			fullBatchesString = sprintf(translate("%(buildings)s*%(batchSize)s"), {
+				buildings: buildingsCountToTrainFullBatch,
+				batchSize: fullBatchSize
+			});
+		else
+			fullBatchesString = fullBatchSize;
 	}
 	var remainderBatchString = remainderBatch > 0 ? remainderBatch : "";
 	var batchDetailsString = "";
+	var action = "[font=\"serif-bold-13\"]" + translate("Shift-click") + "[/font][font=\"serif-13\"]"
+
 	// We need to display the batch details part if there is either more than
 	// one building with full batch or one building with the full batch and
 	// another with a partial batch
 	if (buildingsCountToTrainFullBatch > 1 ||
 		(buildingsCountToTrainFullBatch == 1 && remainderBatch > 0))
 	{
-		batchDetailsString += " (" + fullBatchesString;
-		if (remainderBatchString != "")
-			batchDetailsString += " + " + remainderBatchString;
-		batchDetailsString += ")";
+		if (remainderBatch > 0)
+			return "\n[font=\"serif-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."), {
+				action: action,
+				number: totalBatchTrainingCount,
+				fullBatch: fullBatchesString,
+				remainderBatch: remainderBatch
+			}) + "[/font]";
+
+		return "\n[font=\"serif-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s)."), {
+			action: action,
+			number: totalBatchTrainingCount,
+			fullBatch: fullBatchesString
+		}) + "[/font]";
 	}
 
-	return "\n[font=\"serif-bold-13\"]Shift-click[/font][font=\"serif-13\"] to train "
-		+ totalBatchTrainingCount + batchDetailsString + ".[/font]";
+	return "\n[font=\"serif-13\"]" + sprintf(translate("%(action)s to train %(number)s."), {
+		action: action,
+		number: totalBatchTrainingCount
+	}) + "[/font]";
+}
+
+function getStanceDisplayName(name)
+{
+	var displayName;
+	switch(name)
+	{
+		case "violent":
+			displayName = translate("Violent");
+			break;
+		case "aggressive":
+			displayName = translate("Aggressive");
+			break;
+		case "passive":
+			displayName = translate("Passive");
+			break;
+		case "defensive":
+			displayName = translate("Defensive");
+			break;
+		case "standground":
+			displayName = translate("Standground");
+			break;
+		default:
+			warn(sprintf("Internationalization: Unexpected stance found with code ‘%(stance)s’. This stance must be internationalized.", { stance: name }));
+			displayName = name;
+			break;
+	}
+	return displayName;
 }
 
 /**
@@ -393,7 +438,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			case QUEUE:
 				var tooltip = getEntityNames(template);
 				if (item.neededSlots)
-					tooltip += "\n[color=\"red\"]Insufficient population capacity:\n[/color]"+getCostComponentDisplayName("population")+" "+item.neededSlots;
+					tooltip += "\n[color=\"red\"]" + translate("Insufficient population capacity:") + "\n[/color]" + sprintf(translate("%(population)s %(neededSlots)s"), { population: getCostComponentDisplayName("population"), neededSlots: item.neededSlots });
 
 				var progress = Math.round(item.progress*100) + "%";
 				Engine.GetGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (item.count > 1 ? item.count : "");
@@ -411,7 +456,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 
 			case GARRISON:
 				var name = getEntityNames(template);
-				var tooltip = "Unload " + name + "\nSingle-click to unload 1. Shift-click to unload all of this type.";
+				var tooltip = sprintf(translate("Unload %(name)s"), { name: name })+ "\n" + translate("Single-click to unload 1. Shift-click to unload all of this type.");
 				var count = garrisonGroups.getCount(item);
 				Engine.GetGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
 				break;
@@ -447,7 +492,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				break;
 
 			case STANCE:
-				var tooltip = toTitleCase(item);
+				var tooltip = getStanceDisplayName(item);
 				break;
 
 			case TRAINING:
@@ -580,7 +625,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		{
 			var formationInfo = Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", {"templateName": item});
 
-			button.tooltip = formationInfo.name;
+			button.tooltip = translate(formationInfo.name);
 			var formationOk = canMoveSelectionIntoFormation(item);
 			var grayscale = "";
 			button.enabled = formationOk;
@@ -589,8 +634,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				grayscale = "grayscale:";
 
 				// Display a meaningful tooltip why the formation is disabled
- 				button.tooltip += " (disabled)"+formationInfo.tooltip;
- 			}
+				button.tooltip += "\n" + "[color=\"red\"]" + translate(formationInfo.tooltip) + "[/color]";
+			}
 
 			var formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
 				"ents": g_Selection.toList(),
@@ -621,7 +666,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			// If already a gate, show locking actions
 			if (item.gate)
 			{
-				gateIcon = "icons/lock_" + GATE_ACTIONS[item.locked ? 0 : 1].toLowerCase() + "ed.png";
+				gateIcon = "icons/lock_" + GATE_ACTIONS[item.locked ? 0 : 1] + "ed.png";
 				guiSelection.hidden = item.gate.locked === undefined ? false : item.gate.locked != item.locked;
 			}
 			// otherwise show gate upgrade icon
@@ -660,7 +705,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			{
 				button.enabled = false;
 				var techName = getEntityNames(GetTechnologyData(template.requiredTechnology));
-				button.tooltip += "\nRequires " + techName;
+				button.tooltip += "\n" + sprintf(translate("Requires %(technology)s"), { technology: techName });
 				grayscale = "grayscale:";
 				affordableMask.hidden = false;
 				affordableMask.sprite = "colour: 0 0 0 127";
@@ -905,7 +950,7 @@ function setupUnitTradingPanel(usedPanels, unitEntState, selection)
 			var selectRequiredGoodsData = { "entities": selection, "requiredGoods": resource };
 		button.onpress = (function(e){ return function() { selectRequiredGoods(e); } })(selectRequiredGoodsData);
 		button.enabled = true;
-		button.tooltip = "Set/unset " + resource + " as forced trading goods.";
+		button.tooltip = sprintf(translate("Set/unset %(resource)s as forced trading goods."), { resource: resource });
 		var icon = Engine.GetGUIObjectByName("unitTradingIcon["+i+"]");
 		var selected = Engine.GetGUIObjectByName("unitTradingSelection["+i+"]");
 		selected.hidden = !(resource == requiredGoods);
@@ -1091,11 +1136,37 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 					var gateTemplate = getWallGateTemplate(state.id);
 					if (gateTemplate)
 					{
-						var wallName = GetTemplateData(state.template).name.generic;
-						var gateName = GetTemplateData(gateTemplate).name.generic;
+						var wallName = GetTemplateDataWithoutLocalization(state.template).name.generic;
+						var gateName = GetTemplateDataWithoutLocalization(gateTemplate).name.generic;
+						var tooltipString;
+
+						// For internationalization purposes, when possible, available combinations should be provided
+						// as placeholder-free strings as below.
+						//
+						// The placeholder implementation is provided only so that undetected new combinations of wall
+						// and gate names are not simply printed in English, but as close to a perfect translation as
+						// possible.
+
+						if (wallName === "Wooden Wall" && gateName === "Wooden Gate")
+						{
+							tooltipString = translate("Convert Wooden Wall into Wooden Gate");
+						}
+						else if (wallName === "Stone Wall" && gateName === "City Gate")
+						{
+							tooltipString = translate("Convert Stone Wall into City Gate");
+						}
+						else if (wallName === "Siege Wall" && gateName === "Siege Wall Gate")
+						{
+							tooltipString = translate("Convert Siege Wall into Siege Wall Gate");
+						}
+						else
+						{
+							warn(sprintf("Internationalization: Unexpected combination of ‘%(localizedWall)s’ (%(englishWall)s) and ‘%(localizedGate)s’ (%(englishGate)s). This combination of wall and gate types must be internationalized.", { localizedWall: translate(wallName), englishWall: wallName, localizedGate: translate(gateName), englishGate: gateName }));
+							tooltipString = sprintf(translate("Convert %(wall)s into %(gate)s"), { wall: translate(wallName), gate: translate(gateName) });
+						}
 
 						walls.push({
-							"tooltip": "Convert " + wallName + " to " + gateName,
+							"tooltip": tooltipString,
 							"template": gateTemplate,
 							"callback": function (item) { transformWallToGate(item.template); }
 						});
@@ -1105,13 +1176,20 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 					longWallTypes[state.template] = true;
 				}
 				else if (state.gate && !gates.length)
-					for (var j = 0; j < GATE_ACTIONS.length; ++j)
-						gates.push({
-							"gate": state.gate,
-							"tooltip": GATE_ACTIONS[j] + " gate",
-							"locked": j == 0,
-							"callback": function (item) { lockGate(item.locked); }
-						});
+				{
+					gates.push({
+						"gate": state.gate,
+						"tooltip": translate("Lock Gate"),
+						"locked": true,
+						"callback": function (item) { lockGate(item.locked); }
+					});
+					gates.push({
+						"gate": state.gate,
+						"tooltip": translate("Unlock Gate"),
+						"locked": false,
+						"callback": function (item) { lockGate(item.locked); }
+					});
+				}
 				// Show both 'locked' and 'unlocked' as active if the selected gates have both lock states.
 				else if (state.gate && state.gate.locked != gates[0].gate.locked)
 					for (var j = 0; j < gates.length; ++j)
@@ -1156,13 +1234,13 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 				}
 			}
 			if (packButton)
-				items.push({ "packing": false, "packed": false, "tooltip": "Pack", "callback": function() { packUnit(true); } });
+				items.push({ "packing": false, "packed": false, "tooltip": translate("Pack"), "callback": function() { packUnit(true); } });
 			if (unpackButton)
-				items.push({ "packing": false, "packed": true, "tooltip": "Unpack", "callback": function() { packUnit(false); } });
+				items.push({ "packing": false, "packed": true, "tooltip": translate("Unpack"), "callback": function() { packUnit(false); } });
 			if (packCancelButton)
-				items.push({ "packing": true, "packed": false, "tooltip": "Cancel packing", "callback": function() { cancelPackUnit(true); } });
+				items.push({ "packing": true, "packed": false, "tooltip": translate("Cancel Packing"), "callback": function() { cancelPackUnit(true); } });
 			if (unpackCancelButton)
-				items.push({ "packing": true, "packed": true, "tooltip": "Cancel unpacking", "callback": function() { cancelPackUnit(false); } });
+				items.push({ "packing": true, "packed": true, "tooltip": translate("Cancel Unpacking"), "callback": function() { cancelPackUnit(false); } });
 
 			if (items.length)
 				setupUnitPanel(PACK, usedPanels, entState, playerState, items);

@@ -53,7 +53,7 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 	var soundArray = Engine.BuildDirEntList(randomSoundPath, "*" + soundSubType + "*", false);
 	if (soundArray.length == 0)
 	{
-		Engine.Console_Write ("Failed to find sounds matching '*"+soundSubType+"*'");
+		Engine.Console_Write (sprintf("Failed to find sounds matching '*%(subtype)s*'", { soundSubType: subtype }));
 		return undefined;
 	}
 	// Get a random number within the sound's range.
@@ -75,7 +75,7 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 			return new AmbientSound(randomSoundPath);
 		break;
 		case "effect":
-			Engine.Console_Write("am loading effect '*"+randomSoundPath+"*'");
+			Engine.Console_Write(sprintf("am loading effect '*%(path)s*'", { path: randomSoundPath }));
 		break;
 		default:
 		break;

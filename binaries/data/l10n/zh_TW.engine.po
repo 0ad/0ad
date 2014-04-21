@@ -1,0 +1,48 @@
+# Translation template for Pyrogenesis.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the Pyrogenesis project.
+# 
+# Translators:
+# Cheng-Chia Tseng <pswo10680@gmail.com>, 2014
+# 柏諺 黃 <s8321414@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-04-20 23:35+0200\n"
+"PO-Revision-Date: 2014-04-20 15:53+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#: gui/scripting/ScriptFunctions.cpp:712
+#, c-format
+msgid "%s (custom build)"
+msgstr "%s (自訂組建)"
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#: gui/scripting/ScriptFunctions.cpp:717
+#, c-format
+msgid "%s (%ls)"
+msgstr "%s (%ls)"
+
+#: gui/scripting/ScriptFunctions.cpp:738
+msgid "custom build"
+msgstr "自訂組建"
+
+#: i18n/L10n.cpp:220
+msgid "Long strings"
+msgstr "長字串"
+
+#: ps/SavedGame.cpp:126
+#, c-format
+msgid "Saved game to '%ls'"
+msgstr "將遊戲儲存到「%ls」"

@@ -1,5 +1,5 @@
 {
-	"pair": "pair_pop_01",
+	"pair": "pair_house_01",
 	"genericName": "Home Garden",
 	"specificName": {
 		"hele": "Peristyle",
@@ -11,10 +11,10 @@
 		"rome": "Peristyle",
 		"pers": "Paradise"
 	},
-	"description": "Home gardens ranged from simple fenced areas to large manicured and colonnaded enclosures.",
-	"cost": {"food": 0, "wood": 100, "stone": 100, "metal": 0},
-	"requirements": {"tech": "phase_town"},
-	"requirementsTooltip": "Unlocked in Town Phase.",
+	"description": "Home gardens ranged from simple fenced-in areas to large manicured and colonnaded enclosures.",
+	"cost": {"food": 0, "wood": 0, "stone": 100, "metal": 0},
+	"requirements": {"tech": "phase_village"},
+	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "population.png",
 	"researchTime": 40,
 	"tooltip": "Houses +1 population cap bonus.",

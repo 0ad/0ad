@@ -625,8 +625,10 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState)
 		if (defended)
 			continue;
 		var dist = API3.SquareVectorDistance(pos, this.position);
-		if (dist < minDist)
-			target = building;
+		if (dist > minDist)
+			continue;
+		minDist = dist;
+		target = building;
 	}
 	if (target)
 		targets.addEnt(target);
@@ -949,12 +951,12 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	}
 
 
-	// todo: re-implement raiding
 	if (this.state === "arrived")
 	{
 		// let's proceed on with whatever happens now.
 		// There's a ton of TODOs on this part.
 		this.state = "";
+		this.startingAttack = true;
 		this.unitCollection.forEach( function (ent) {
 			ent.stopMoving();
 			ent.setMetadata(PlayerID, "subrole", "attacking");
@@ -992,7 +994,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				// if siege units are attacked, we'll send some units to deal with enemies.
 				var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5).toEntityArray();
 				for each (var ent in collec)
-					ent.attack(attacker.id());
+				{
+					if (!this.isSiegeUnit(gameState, ent))
+						ent.attack(attacker.id());
+				}
 			}
 			else
 			{
@@ -1017,11 +1022,12 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		// some stuffs for locality and speed
 		var timeElapsed = gameState.getTimeElapsed();
 	
-		// Let's check a few units each time we update. Currently 10
-		if (this.unitCollUpdateArray.length < 15)
+		// Let's check a few units each time we update (currently 10) except when attack starts
+		if (this.unitCollUpdateArray.length < 15 || this.startingAttack)
 			var lgth = this.unitCollUpdateArray.length;
 		else
 			var lgth = 10;
+		this.startingAttack = false;
 		for (var check = 0; check < lgth; check++)
 		{
 			var ent = gameState.getEntityById(this.unitCollUpdateArray[check]);

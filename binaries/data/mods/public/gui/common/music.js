@@ -99,7 +99,7 @@ Music.prototype.updateState = function()
 			break;
 
 		default:
-			warn("Music.updateState(): Unknown music state: " + this.currentState);
+			warn(sprintf("%(functionName)s: Unknown music state: %(state)s", { functionName: "Music.updateState()", state: this.currentState }));
 			break;
 		}
 	}
@@ -122,7 +122,7 @@ Music.prototype.storeTracks = function(civMusic)
 
 		if (type === undefined)
 		{
-			warn("Music.storeTracks(): Unrecognized music type: " + music.Type);
+			warn(sprintf("%(functionName)s: Unrecognized music type: %(musicType)s", { functionName: "Music.storeTracks()", musicType: music.Type }));
 			continue;
 		}
 

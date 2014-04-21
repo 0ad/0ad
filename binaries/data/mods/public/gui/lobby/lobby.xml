@@ -11,7 +11,7 @@
 	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="lobbyWindow">
 
 		<object style="TitleText" type="text" size="50%-128 0%+4 50%+128 36">
-			Multiplayer Lobby
+			<translatableAttribute id="caption">Multiplayer Lobby</translatableAttribute>
 		</object>
 
 		<action on="Tick">
@@ -21,15 +21,21 @@
 		<!-- Left panel: Player list. -->
 		<object name="leftPanel" size="20 30 20% 100%-50">
 			<object name="playersBox" style="ModernList" type="olist" size="0 0 100% 100%" font="serif-bold-stroke-13">
-				<def id="status" heading="Status" width="27%"/>
-				<def id="name" heading="Name" width="50%"/>
-				<def id="rating" heading="Rating" width="23%"/>
+				<def id="status" width="27%">
+					<translatableAttribute id="heading">Status</translatableAttribute>
+				</def>
+				<def id="name" width="50%">
+					<translatableAttribute id="heading">Name</translatableAttribute>
+				</def>
+				<def id="rating" width="23%">
+					<translatableAttribute id="heading">Rating</translatableAttribute>
+				</def>
 			</object>
 		</object>
 
 		<object name="leftButtonPanel" size="20 100%-45 20% 100%-20">
 			<object type="button" style="StoneButton" size="0 0 100% 100%">
-				Leaderboard
+				<translatableAttribute id="caption">Leaderboard</translatableAttribute>
 				<action on="Press">Engine.GetGUIObjectByName("leaderboard").hidden = false;Engine.GetGUIObjectByName("leaderboardFade").hidden = false;</action>
 			</object>
 		</object>
@@ -54,7 +60,9 @@
 
 				<!-- Map Type -->
 				<object size="5 240 50% 265" type="image" sprite="ModernItemBackShadeLeft">
-					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">Map Type:</object>
+					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">
+						<translatableAttribute id="caption">Map Type:</translatableAttribute>
+					</object>
 				</object>
 				<object size="50% 240 100%-5 265" type="image" sprite="ModernItemBackShadeRight">
 					<object name="sgMapType" size="0 0 100% 100%" type="text" style="ModernLabelText" text_align="left"/>
@@ -64,7 +72,9 @@
 
 				<!-- Map Size -->
 				<object size="5 265 50% 290" type="image" sprite="ModernItemBackShadeLeft">
-					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">Map Size:</object>
+					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">
+						<translatableAttribute id="caption">Map Size:</translatableAttribute>
+					</object>
 				</object>
 				<object size="50% 265 100%-5 290" type="image" sprite="ModernItemBackShadeRight">
 					<object name="sgMapSize" size="0 0 100% 100%" type="text" style="ModernLabelText" text_align="left"/>
@@ -79,7 +89,9 @@
 
 				<object type="image" sprite="ModernDarkBoxWhite" size="3% 76% 97% 99%">
 					<!-- Number of Players -->
-					<object size="32% 3% 57% 12%" type="text" style="ModernLabelText" text_align="left">Players:</object>
+					<object size="32% 3% 57% 12%" type="text" style="ModernLabelText" text_align="left">
+						<translatableAttribute id="caption">Players:</translatableAttribute>
+					</object>
 					<object name="sgNbPlayers" size="52% 3% 62% 12%" type="text" style="ModernLabelText" text_align="left"/>
 
 					<!-- Player Names -->
@@ -87,20 +99,20 @@
 				</object>
 			</object>
 			<object name="joinGameButton" type="button" style="StoneButton" size="0 100%-85 100% 100%-60" hidden="true">
-				Join Game
+				<translatableAttribute id="caption">Join Game</translatableAttribute>
 				<action on="Press">
 					joinSelectedGame();
 				</action>
 			</object>
 			<object name="hostButton" type="button" style="StoneButton" size="0 100%-55 100% 100%-30">
-				Host Game
+				<translatableAttribute id="caption">Host Game</translatableAttribute>
 				<action on="Press">
 					hostGame();
 				</action>
 			</object>
 
 			<object type="button" style="StoneButton" size="0 100%-25 100% 100%">
-				Main Menu
+				<translatableAttribute id="caption">Main Menu</translatableAttribute>
 				<action on="Press">
 					lobbyStop();
 					Engine.SwitchGuiPage("page_pregame.xml");
@@ -112,12 +124,22 @@
 		<object name="middlePanel" size="20%+5 5% 100%-255 97.2%">
 			<object name="gamesBox" style="ModernList" type="olist" size="0 25 100% 48%">
 				<action on="SelectionChange">updateGameSelection();</action>
-				<def id="name" heading="Name" color="0 60 0" width="20%"/>
+				<def id="name" color="0 60 0" width="20%">
+					<translatableAttribute id="heading">Name</translatableAttribute>
+				</def>
 				<!--<def id="ip" heading="IP" color="0 128 128" width="170"/>-->
-				<def id="mapName" heading="Map Name" color="128 128 128" width="25%"/>
-				<def id="mapSize" heading="Map Size" color="128 128 128" width="25%"/>
-				<def id="mapType" heading="Map Type" color="0 128 128" width="20%"/>
-				<def id="nPlayers" heading="Players" color="0 128 128" width="10%"/>
+				<def id="mapName" color="128 128 128" width="25%">
+					<translatableAttribute id="heading">Map Name</translatableAttribute>
+				</def>
+				<def id="mapSize" color="128 128 128" width="25%">
+					<translatableAttribute id="heading">Map Size</translatableAttribute>
+				</def>
+				<def id="mapType" color="0 128 128" width="20%">
+					<translatableAttribute id="heading">Map Type</translatableAttribute>
+				</def>
+				<def id="nPlayers" color="0 128 128" width="10%">
+					<translatableAttribute id="heading">Players</translatableAttribute>
+				</def>
 			</object>
 
 			<object name="filterPanel" size="0 0 100% 24">
@@ -145,7 +167,9 @@
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
 
-				<object type="text" size="22 0 35% 100%" text_align="left" textcolor="white">Show full games</object>
+				<object type="text" size="22 0 35% 100%" text_align="left" textcolor="white">
+					<translatableAttribute id="caption">Show full games</translatableAttribute>
+				</object>
 				<object name="showFullFilter"
 					type="checkbox"
 					checked="true"
@@ -169,21 +193,29 @@
 		<!-- Add a translucent black background to fade out the menu page -->
 		<object hidden="true" name="leaderboardFade" type="image" z="100" sprite="ModernFade"/>
 		<object hidden="true" name="leaderboard" type="image" style="ModernDialog" size="50%-224 50%-160 50%+224 50%+160" z="101">
-			<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">Leaderboard</object>
+			<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">
+				<translatableAttribute id="caption">Leaderboard</translatableAttribute>
+			</object>
 			<object name="leaderboardBox"
 				style="ModernList"
 				type="olist"
 				size="19 19 100%-19 100%-58">
-				<def id="rank" heading="Rank" color="255 255 255" width="15%"/>
-				<def id="rating" heading="Rating" color="255 255 255" width="20%"/>
-				<def id="name" heading="Name" color="255 255 255" width="65%"/>
+				<def id="rank" color="255 255 255" width="15%">
+					<translatableAttribute id="heading">Rank</translatableAttribute>
+				</def>
+				<def id="rating" color="255 255 255" width="20%">
+					<translatableAttribute id="heading">Rating</translatableAttribute>
+				</def>
+				<def id="name" color="255 255 255" width="65%">
+					<translatableAttribute id="heading">Name</translatableAttribute>
+				</def>
 			</object>
 			<object type="button" style="StoneButton" size="50%+5 100%-45 50%+133 100%-17">
-				Back
+				<translatableAttribute id="caption">Back</translatableAttribute>
 				<action on="Press">Engine.GetGUIObjectByName("leaderboard").hidden = true;Engine.GetGUIObjectByName("leaderboardFade").hidden = true;</action>
 			</object>
 			<object type="button" style="StoneButton" size="50%-133 100%-45 50%-5 100%-17">
-				Update
+				<translatableAttribute id="caption">Update</translatableAttribute>
 				<action on="Press">Engine.SendGetBoardList();</action>
 			</object>
 		</object>

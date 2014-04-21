@@ -1,13 +1,13 @@
 {
 	"pair": "carthaginians/pair_iberian_mercs_2",
-	"genericName": "Spanish Hegemony",
+	"genericName": "Iberian Hegemony",
 	"description": "Iberian mercenaries have their train time decreased.",
 	"cost": {"food": 0, "wood": 0, "stone": 200, "metal": 200},
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "fist_spear.png",
 	"researchTime": 40,
-	"tooltip": "Subjugate Spain to reduce recruit time -20% for Iberian mercenaries.",
+	"tooltip": "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries.",
 	"modifications": [{"value": "Cost/BuildTime", "multiply": 0.8}],
 	"affects": ["Iberian Mercenary"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

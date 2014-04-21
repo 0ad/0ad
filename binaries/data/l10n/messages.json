@@ -1,0 +1,30 @@
+[
+	{
+		"output": "engine.pot",
+		"inputRoot": "../../../source",
+		"project": "Pyrogenesis",
+		"copyrightHolder": "Wildfire Games",
+		"rules": [
+			{
+				"extractor": "cpp",
+				"filemasks": {
+					"includeMasks": ["**.cpp"],
+					"excludeMasks": ["third_party/**", "tools/**"]
+				},
+				"options": {
+					"keywords": {
+						"Translate": [1],
+						"TranslatePlural": [1, 2],
+						"TranslateWithContext": [[1], 2],
+						"TranslatePluralWithContext": [[1], 2, 3],
+						"MarkForTranslation": [1],
+						"MarkForTranslationWithContext": [[1], 2]
+					},
+					"commentTags": [
+						"Translation:"
+					]
+				}
+			}
+		]
+	}
+]

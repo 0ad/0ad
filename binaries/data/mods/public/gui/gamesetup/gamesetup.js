@@ -4,13 +4,13 @@ const DEFAULT_NETWORKED_MAP = "Acropolis 01";
 const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
 // TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
-const VICTORY_TEXT = ["Conquest", "Wonder", "None"];
+const VICTORY_TEXT = [translate("Conquest"), translate("Wonder"), translateWithContext("victory", "None")];
 const VICTORY_DATA = ["conquest", "wonder", "endless"];
 const VICTORY_DEFAULTIDX = 0;
-const POPULATION_CAP = ["50", "100", "150", "200", "250", "300", "Unlimited"];
+const POPULATION_CAP = ["50", "100", "150", "200", "250", "300", translate("Unlimited")];
 const POPULATION_CAP_DATA = [50, 100, 150, 200, 250, 300, 10000];
 const POPULATION_CAP_DEFAULTIDX = 5;
-const STARTING_RESOURCES = ["Very Low", "Low", "Medium", "High", "Very High", "Deathmatch"];
+const STARTING_RESOURCES = [translate("Very Low"), translate("Low"), translate("Medium"), translate("High"), translate("Very High"), translate("Deathmatch")];
 const STARTING_RESOURCES_DATA = [100, 300, 500, 1000, 3000, 50000];
 const STARTING_RESOURCES_DEFAULTIDX = 1;
 // Max number of players for any map
@@ -53,9 +53,10 @@ var g_CivData = {};
 var g_MapFilters = [];
 
 // Warn about the AI's nonexistent naval map support.
-var g_NavalWarning = "\n\n[font=\"serif-bold-12\"][color=\"orange\"]Warning:[/color][/font] \
-The AI does not support naval maps and may cause severe performance issues. \
-Naval maps are recommended to be played with human opponents only.";
+var g_NavalWarning = "\n\n" + sprintf(
+	translate("%(warning)s The AI does not support naval maps and may cause severe performance issues. Naval maps are recommended to be played with human opponents only."),
+	{ warning: "[font=\"serif-bold-12\"][color=\"orange\"]" + translate("Warning:") + "[/color][/font]" }
+);
 
 // To prevent the display locking up while we load the map metadata,
 // we'll start with a 'loading' message and switch to the main screen in the
@@ -81,7 +82,7 @@ function init(attribs)
 		g_IsController = false;
 		break;
 	default:
-		error("Unexpected 'type' in gamesetup init: "+attribs.type);
+		error(sprintf("Unexpected 'type' in gamesetup init: %(unexpectedType)s", { unexpectedType: attribs.type }));
 	}
 
 	if (attribs.serverName)
@@ -91,11 +92,11 @@ function init(attribs)
 	var cancelButton = Engine.GetGUIObjectByName("cancelGame");
 	if(!Engine.HasXmppClient())
 	{
-		cancelButton.tooltip = "Return to the main menu."
+		cancelButton.tooltip = translate("Return to the main menu.");
 	}
 	else
 	{
-		cancelButton.tooltip = "Return to the lobby."
+		cancelButton.tooltip = translate("Return to the lobby.");
 	}
 
 }
@@ -125,19 +126,20 @@ function initMain()
 
 	// Init map types
 	var mapTypes = Engine.GetGUIObjectByName("mapTypeSelection");
-	mapTypes.list = ["Skirmish","Random","Scenario"];
+	mapTypes.list = [translateWithContext("map", "Skirmish"), translateWithContext("map", "Random"), translate("Scenario")];
 	mapTypes.list_data = ["skirmish","random","scenario"];
 
 	// Setup map filters - will appear in order they are added
-	addFilter("Default", function(settings) { return settings && (settings.Keywords === undefined || !keywordTestOR(settings.Keywords, ["naval", "demo", "hidden"])); });
-	addFilter("Naval Maps", function(settings) { return settings && settings.Keywords !== undefined && keywordTestAND(settings.Keywords, ["naval"]); });
-	addFilter("Demo Maps", function(settings) { return settings && settings.Keywords !== undefined && keywordTestAND(settings.Keywords, ["demo"]); });
-	addFilter("All Maps", function(settings) { return true; });
+	addFilter("default", translate("Default"), function(settings) { return settings && (settings.Keywords === undefined || !keywordTestOR(settings.Keywords, ["naval", "demo", "hidden"])); });
+	addFilter("naval", translate("Naval Maps"), function(settings) { return settings && settings.Keywords !== undefined && keywordTestAND(settings.Keywords, ["naval"]); });
+	addFilter("demo", translate("Demo Maps"), function(settings) { return settings && settings.Keywords !== undefined && keywordTestAND(settings.Keywords, ["demo"]); });
+	addFilter("all", translate("All Maps"), function(settings) { return true; });
 
 	// Populate map filters dropdown
 	var mapFilters = Engine.GetGUIObjectByName("mapFilterSelection");
-	mapFilters.list = getFilters();
-	g_GameAttributes.mapFilter = "Default";
+	mapFilters.list = getFilterNames();
+	mapFilters.list_data = getFilterIds();
+	g_GameAttributes.mapFilter = "default";
 
 	// Setup controls for host only
 	if (g_IsController)
@@ -341,7 +343,7 @@ function initMain()
 
 		// Populate team dropdowns
 		var team = Engine.GetGUIObjectByName("playerTeam["+i+"]");
-		team.list = ["None", "1", "2", "3", "4"];
+		team.list = [translateWithContext("team", "None"), "1", "2", "3", "4"];
 		team.list_data = [-1, 0, 1, 2, 3];
 		team.selected = 0;
 
@@ -512,9 +514,9 @@ function initCivNameList()
 	var civListNames = [ civ.name for each (civ in civList) ];
 	var civListCodes = [ civ.code for each (civ in civList) ];
 
-	//  Add random civ to beginning of list
-	civListNames.unshift("[color=\"orange\"]Random");
-	civListCodes.unshift("random");
+	//  Add random civ to beginning of list 
+	civListNames.unshift("[color=\"orange\"]" + translateWithContext("civilization", "Random"));
+	civListCodes.unshift("random"); 
 
 	// Update the dropdowns
 	for (var i = 0; i < MAX_PLAYERS; ++i)
@@ -546,7 +548,7 @@ function initMapNameList()
 		break;
 
 	default:
-		error("initMapNameList: Unexpected map type '"+g_GameAttributes.mapType+"'");
+		error(sprintf("initMapNameList: Unexpected map type '%(mapType)s'", { mapType: g_GameAttributes.mapType }));
 		return;
 	}
 
@@ -564,7 +566,7 @@ function initMapNameList()
 	// Alphabetically sort the list, ignoring case
 	mapList.sort(sortNameIgnoreCase);
 	if (g_GameAttributes.mapType == "random")
-		mapList.unshift({ "name": "[color=\"orange\"]Random[/color]", "file": "random" });
+		mapList.unshift({ "name": "[color=\"orange\"]" + translateWithContext("map", "Random") + "[/color]", "file": "random" });
 
 	var mapListNames = [ map.name for each (map in mapList) ];
 	var mapListFiles = [ map.file for each (map in mapList) ];
@@ -595,17 +597,21 @@ function loadMapData(name)
 		case "scenario":
 		case "skirmish":
 			g_MapData[name] = Engine.LoadMapSettings(name);
+			translateObjectKeys(g_MapData[name], ["Name", "Description"]);
 			break;
 
 		case "random":
 			if (name == "random")
-				g_MapData[name] = {settings : {"Name" : "Random", "Description" : "Randomly selects a map from the list"}};
+				g_MapData[name] = { settings: { "Name": translateWithContext("map", "Random"), "Description": translate("Randomly selects a map from the list") } };
 			else
+			{
 				g_MapData[name] = parseJSONData(name+".json");
+				translateObjectKeys(g_MapData[name], ["Name", "Description"]);
+			}
 			break;
 
 		default:
-			error("loadMapData: Unexpected map type '"+g_GameAttributes.mapType+"'");
+			error(sprintf("loadMapData: Unexpected map type '%(mapType)s'", { mapType: g_GameAttributes.mapType }));
 			return undefined;
 		}
 	}
@@ -705,7 +711,7 @@ function selectNumPlayers(num)
 			if (g_IsNetworked)
 				Engine.AssignNetworkPlayer(player, "");
 			else
-				g_PlayerAssignments = { "local": { "name": "You", "player": 1, "civ": "", "team": -1} };
+				g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1} };
 		}
 	}
 
@@ -759,7 +765,7 @@ function selectMapType(type)
 		break;
 
 	default:
-		error("selectMapType: Unexpected map type '"+g_GameAttributes.mapType+"'");
+		error(sprintf("selectMapType: Unexpected map type '%(mapType)s'", { mapType: g_GameAttributes.mapType }));
 		return;
 	}
 
@@ -768,7 +774,7 @@ function selectMapType(type)
 	updateGameAttributes();
 }
 
-function selectMapFilter(filterName)
+function selectMapFilter(id)
 {
 	// Avoid recursion
 	if (g_IsInGuiUpdate)
@@ -778,7 +784,7 @@ function selectMapFilter(filterName)
 	if (g_IsNetworked && !g_IsController)
 		return;
 
-	g_GameAttributes.mapFilter = filterName;
+	g_GameAttributes.mapFilter = id;
 
 	initMapNameList();
 
@@ -806,7 +812,7 @@ function selectMap(name)
 	// Copy any new settings
 	g_GameAttributes.map = name;
 	g_GameAttributes.script = mapSettings.Script;
-	if (mapData !== "Random")
+	if (g_GameAttributes.map !== "random")
 		for (var prop in mapSettings)
 			g_GameAttributes.settings[prop] = mapSettings[prop];
 
@@ -822,7 +828,7 @@ function selectMap(name)
 	// Reset player assignments on map change
 	if (!g_IsNetworked)
 	{	// Slot 1
-		g_PlayerAssignments = { "local": { "name": "You", "player": 1, "civ": "", "team": -1} };
+		g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1} };
 	}
 	else
 	{
@@ -897,8 +903,9 @@ function launchGame()
 					usedName++;
 
 			// Assign civ specific names to AI players
+			chosenName = translate(chosenName);
 			if (usedName)
-				g_GameAttributes.settings.PlayerData[i].Name = chosenName + " " + romanNumbers[usedName+1];
+				g_GameAttributes.settings.PlayerData[i].Name = sprintf(translate("%(playerName)s %(romanNumber)s"), { playerName: chosenName, romanNumber: romanNumbers[usedName+1]});
 			else
 				g_GameAttributes.settings.PlayerData[i].Name = chosenName;
 		}
@@ -947,7 +954,9 @@ function onGameAttributesChange()
 	// Update some controls for clients
 	if (!g_IsController)
 	{
-		Engine.GetGUIObjectByName("mapFilterText").caption = g_GameAttributes.mapFilter;
+		var mapFilderSelection = Engine.GetGUIObjectByName("mapFilterText");
+		var mapFilterId = mapFilderSelection.list_data.indexOf(g_GameAttributes.mapFilter);
+		Engine.GetGUIObjectByName("mapFilterText").caption = mapFilderSelection.list[mapFilterId];
 		var mapTypeSelection = Engine.GetGUIObjectByName("mapTypeSelection");
 		var idx = mapTypeSelection.list_data.indexOf(g_GameAttributes.mapType);
 		Engine.GetGUIObjectByName("mapTypeText").caption = mapTypeSelection.list[idx];
@@ -1012,7 +1021,7 @@ function onGameAttributesChange()
 	switch (g_GameAttributes.mapType)
 	{
 	case "random":
-			mapSizeDesc.hidden = false;
+		mapSizeDesc.hidden = false;
 		if (g_IsController)
 		{
 			//Host
@@ -1034,17 +1043,17 @@ function onGameAttributesChange()
 			lockTeamsText.hidden = true;
 			populationCapText.hidden = true;
 			startingResourcesText.hidden = true;
-
-			mapSizeText.caption = "Map size:";
+			
+			mapSizeText.caption = translate("Map size:");
 			mapSize.selected = sizeIdx;
-			revealMapText.caption = "Reveal map:";
-			exploreMapText.caption = "Explore map:";
+			revealMapText.caption = translate("Reveal map:");
+			exploreMapText.caption = translate("Explored map:");
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
 			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
 
-			victoryConditionText.caption = "Victory condition:";
+			victoryConditionText.caption = translate("Victory condition:");
 			victoryCondition.selected = victoryIdx;
-			lockTeamsText.caption = "Teams locked:";
+			lockTeamsText.caption = translate("Teams locked:");
 			lockTeams.checked = (mapSettings.LockTeams ? true : false);
 		}
 		else
@@ -1063,16 +1072,16 @@ function onGameAttributesChange()
 
 			numPlayersText.caption = numPlayers;
 			mapSizeText.caption = g_MapSizes.names[sizeIdx];
-			revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
-			exploreMapText.caption = (mapSettings.ExloreMap ? "Yes" : "No");
+			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
+			exploreMapText.caption = (mapSettings.ExporeMap ? translate("Yes") : translate("No"));
 			victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
-			lockTeamsText.caption = (mapSettings.LockTeams ? "Yes" : "No");
+			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		}
 
 		break;
 
 	case "skirmish":
-		mapSizeText.caption = "Default";
+		mapSizeText.caption = translate("Default");
 		numPlayersText.caption = numPlayers;
 		numPlayersSelection.hidden = true;
 		mapSize.hidden = true;
@@ -1096,14 +1105,14 @@ function onGameAttributesChange()
 			populationCapText.hidden = true;
 			startingResourcesText.hidden = true;
 
-			revealMapText.caption = "Reveal map:";
-			exploreMapText.caption = "Explore map:";
+			revealMapText.caption = translate("Reveal map:");
+			exploreMapText.caption = translate("Explore map:");
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
 			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
 
-			victoryConditionText.caption = "Victory condition:";
+			victoryConditionText.caption = translate("Victory condition:");
 			victoryCondition.selected = victoryIdx;
-			lockTeamsText.caption = "Teams locked:";
+			lockTeamsText.caption = translate("Teams locked:");
 			lockTeams.checked = (mapSettings.LockTeams ? true : false);
 		}
 		else
@@ -1119,10 +1128,10 @@ function onGameAttributesChange()
 			startingResources.hidden = true;
 			startingResourcesText.hidden = false;
 
-			revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
-			exploreMapText.caption = (mapSettings.ExploreMap ? "Yes" : "No");
+			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
+			exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
 			victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
-			lockTeamsText.caption = (mapSettings.LockTeams ? "Yes" : "No");
+			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		}
 
 		break;
@@ -1149,17 +1158,17 @@ function onGameAttributesChange()
 		startingResourcesText.hidden = false;
 
 		numPlayersText.caption = numPlayers;
-		mapSizeText.caption = "Default";
-		revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
-		exploreMapText.caption = (mapSettings.ExploreMap ? "Yes" : "No");
+		mapSizeText.caption = translate("Default");
+		revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
+		exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
 		victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
-		lockTeamsText.caption = (mapSettings.LockTeams ? "Yes" : "No");
+		lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		Engine.GetGUIObjectByName("populationCap").selected = POPULATION_CAP_DEFAULTIDX;
 
 		break;
 
 	default:
-		error("onGameAttributesChange: Unexpected map type '"+g_GameAttributes.mapType+"'");
+		error(sprintf("onGameAttributesChange: Unexpected map type '%(mapType)s'", { mapType: g_GameAttributes.mapType }));
 		return;
 	}
 
@@ -1167,13 +1176,13 @@ function onGameAttributesChange()
 	Engine.GetGUIObjectByName("mapInfoName").caption = getMapDisplayName(mapName);
 
 	// Load the description from the map file, if there is one
-	var description = mapSettings.Description || "Sorry, no description available.";
+	var description = mapSettings.Description || translate("Sorry, no description available.");
 
-	if (g_GameAttributes.mapFilter == "Naval Maps")
+	if (g_GameAttributes.mapFilter == "naval")
 		description += g_NavalWarning;
 
 	// Describe the number of players
-	var playerString = numPlayers + " " + (numPlayers == 1 ? "player" : "players") + ". ";
+	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: description });
 
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
@@ -1212,7 +1221,7 @@ function onGameAttributesChange()
 			pTeam.hidden = true;
 			// Set text values
 			if (civ == "random")
-				pCivText.caption = "[color=\"orange\"]Random";
+				pCivText.caption = "[color=\"orange\"]" + translateWithContext("civilization", "Random");
 			else
 				pCivText.caption = g_CivData[civ].Name;
 			pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
@@ -1229,7 +1238,7 @@ function onGameAttributesChange()
 		}
 	}
 
-	Engine.GetGUIObjectByName("mapInfoDescription").caption = playerString + description;
+	Engine.GetGUIObjectByName("mapInfoDescription").caption = playerString;
 
 	g_IsInGuiUpdate = false;
 
@@ -1310,12 +1319,12 @@ function updatePlayerList()
 		}
 		// Give AI a different color so it stands out
 		aiAssignments[ai.id] = hostNameList.length;
-		hostNameList.push("[color=\"70 150 70 255\"]AI: " + ai.data.name);
+		hostNameList.push("[color=\"70 150 70 255\"]" + sprintf(translate("AI: %(ai)s"), { ai: translate(ai.data.name) }));
 		hostGuidList.push("ai:" + ai.id);
 	}
 
 	noAssignment = hostNameList.length;
-	hostNameList.push("[color=\"140 140 140 255\"]Unassigned");
+	hostNameList.push("[color=\"140 140 140 255\"]" + translate("Unassigned"));
 	hostGuidList.push("");
 
 	for (var i = 0; i < MAX_PLAYERS; ++i)
@@ -1342,7 +1351,7 @@ function updatePlayerList()
 				if (aiId in aiAssignments)
 					selection = aiAssignments[aiId];
 				else
-					warn("AI \""+aiId+"\" not present. Defaulting to unassigned.");
+					warn(sprintf("AI \"%(id)s\" not present. Defaulting to unassigned.", { id: aiId }));
 			}
 
 			if (!selection)
@@ -1507,19 +1516,23 @@ function addChatMessage(msg)
 	switch (msg.type)
 	{
 	case "connect":
-		formatted = '[font="serif-bold-13"][color="'+ color +'"]' + username + '[/color][/font] [color="gold"]has joined[/color]';
+		var formattedUsername = '[font="serif-bold-13"][color="'+ color +'"]' + username + '[/color][/font][color="gold"]'
+		formatted = '[color="gold"]' + sprintf(translate("%(username)s has joined"), { username: formattedUsername });
 		break;
 
 	case "disconnect":
-		formatted = '[font="serif-bold-13"][color="'+ color +'"]' + username + '[/color][/font] [color="gold"]has left[/color]';
+		var formattedUsername = '[font="serif-bold-13"][color="'+ color +'"]' + username + '[/color][/font][color="gold"]'
+		formatted = '[color="gold"]' + sprintf(translate("%(username)s has left"), { username: formattedUsername });
 		break;
 
 	case "message":
-		formatted = '[font="serif-bold-13"]<[color="'+ color +'"]' + username + '[/color]>[/font] ' + message;
+		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]'
+		var formattedUsernamePrefix = '[font="serif-bold-13"]' + sprintf(translate("<%(username)s>"), { username: formattedUsername }) + '[/font]'
+		formatted = sprintf(translate("%(username)s %(message)s"), { username: formattedUsernamePrefix, message: message });
 		break;
 
 	default:
-		error("Invalid chat message '" + uneval(msg) + "'");
+		error(sprintf("Invalid chat message '%(message)s'", { message: uneval(msg) }));
 		return;
 	}
 
@@ -1538,11 +1551,12 @@ function toggleMoreOptions()
 // Basic map filters API
 
 // Add a new map list filter
-function addFilter(name, filterFunc)
+function addFilter(id, name, filterFunc)
 {
 	if (filterFunc instanceof Object)
 	{	// Basic validity test
 		var newFilter = {};
+		newFilter.id = id;
 		newFilter.name = name;
 		newFilter.filter = filterFunc;
 
@@ -1550,12 +1564,22 @@ function addFilter(name, filterFunc)
 	}
 	else
 	{
-		error("Invalid map filter: "+name);
+		error(sprintf("Invalid map filter: %(name)s", { name: name }));
 	}
 }
 
+// Get array of map filter IDs
+function getFilterIds()
+{
+	var filters = [];
+	for (var i = 0; i < g_MapFilters.length; ++i)
+		filters.push(g_MapFilters[i].id);
+
+	return filters;
+}
+
 // Get array of map filter names
-function getFilters()
+function getFilterNames()
 {
 	var filters = [];
 	for (var i = 0; i < g_MapFilters.length; ++i)
@@ -1565,13 +1589,13 @@ function getFilters()
 }
 
 // Test map filter on given map settings object
-function testFilter(name, mapSettings)
+function testFilter(id, mapSettings)
 {
 	for (var i = 0; i < g_MapFilters.length; ++i)
-		if (g_MapFilters[i].name == name)
+		if (g_MapFilters[i].id == id)
 			return g_MapFilters[i].filter(mapSettings);
 
-	error("Invalid map filter: "+name);
+	error(sprintf("Invalid map filter: %(id)s", { id: id }));
 	return false;
 }
 

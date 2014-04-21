@@ -7,7 +7,7 @@ function init()
 	var savedGames = Engine.GetSavedGames();
 	if (savedGames.length == 0)
 	{
-		gameSelection.list = [ "No saved games found" ];
+		gameSelection.list = [translate("No saved games found")];
 		gameSelection.selected = 0;
 		Engine.GetGUIObjectByName("loadGameButton").enabled = false;
 		Engine.GetGUIObjectByName("deleteGameButton").enabled = false;
@@ -41,29 +41,35 @@ function loadGame()
 	if (!hasSameVersion(metadata, engineInfo) || !hasSameMods(metadata, engineInfo))
 	{
 		// version not compatible ... ask for confirmation
-		var btCaptions = ["Yes", "No"];
+		var btCaptions = [translate("Yes"), translate("No")];
 		var btCode = [function(){ reallyLoadGame(gameId); }, init];
-		var message = "This saved game may not be compatible:";
+		var message = translate("This saved game may not be compatible:");
 		if (!hasSameVersion(metadata, engineInfo))
-			message += "\nIt needs 0AD version " + metadata.version_major
-				+ " while you are running version " + engineInfo.version_major + ".";
+			message += "\n" + sprintf(translate("It needs 0 A.D. version %(requiredVersion)s, while you are running version %(currentVersion)s."), {
+				requiredVersion: metadata.version_major,
+				currentVersion: engineInfo.version_major
+			});
 
 		if (!hasSameMods(metadata, engineInfo))
 		{
 			if (!metadata.mods)         // only for backwards compatibility with previous saved games
 				metadata.mods = [];
 			if (metadata.mods.length == 0)
-				message += "\nIt does not need any mod"
-					+ " while you are running with \"" + engineInfo.mods.join() + "\".";
+				message += "\n" + sprintf(translate("It does not need any mod while you are running with \"%(currentMod)s\"."), {
+					currentMod: engineInfo.mods.join()
+				});
 			else if (engineInfo.mods.length == 0)
-				message += "\nIt needs the mod \"" + metadata.mods.join() + "\""
-					+ " while you are running without mod.";
+				message += "\n" + sprintf(translate("It needs the mod \"%(requiredMod)s\" while you are running without a mod."), {
+					requiredMod: metadata.mods.join()
+				});
 			else
-				message += "\nIt needs the mod \"" + metadata.mods.join() + "\""
-					+ " while you are running with \"" + engineInfo.mods.join() + "\".";
+				message += "\n" + sprintf(translate("It needs the mod \"%(requiredMod)s\" while you are running with \"%(currentMod)s\"."), {
+					requiredMod: metadata.mods.join(),
+					currentMod: engineInfo.mods.join()
+				});
 		}
-		message += "\nDo you still want to proceed ?";
-		messageBox(500, 250, message, "Warning", 0, btCaptions, btCode);
+		message += "\n" + translate("Do you still want to proceed?");
+		messageBox(500, 250, message, translate("Warning"), 0, btCaptions, btCode);
 	}
 	else
 		reallyLoadGame(gameId);
@@ -76,7 +82,7 @@ function reallyLoadGame(gameId)
 	{
 		// Probably the file wasn't found
 		// Show error and refresh saved game list
-		error("Could not load saved game '"+gameId+"'");
+		error(sprintf("Could not load saved game '%(id)s'", { id: gameId }));
 		init();
 	}
 	else
@@ -97,15 +103,15 @@ function deleteGame()
 	var gameID = gameSelection.list_data[gameSelection.selected];
 
 	// Ask for confirmation
-	var btCaptions = ["Yes", "No"];
+	var btCaptions = [translate("Yes"), translate("No")];
 	var btCode = [function(){ reallyDeleteGame(gameID); }, null];
-	messageBox(500, 200, "\""+gameLabel+"\"\nSaved game will be permanently deleted, are you sure?", "DELETE", 0, btCaptions, btCode);
+	messageBox(500, 200, sprintf(translate("\"%(label)s\""), { label: gameLabel }) + "\n" + translate("Saved game will be permanently deleted, are you sure?"), translate("DELETE"), 0, btCaptions, btCode);
 }
 
 function reallyDeleteGame(gameID)
 {
 	if (!Engine.DeleteSavedGame(gameID))
-		error("Could not delete saved game '"+gameID+"'");
+		error(sprintf("Could not delete saved game '%(id)s'", { id: gameID }));
 
 	// Run init again to refresh saved game list
 	init();

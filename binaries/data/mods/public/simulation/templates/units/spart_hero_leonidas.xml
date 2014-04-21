@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_spearman">
+  <Auras>
+    <melee_attack_spearmen_20>
+      <Type>range</Type>
+      <Radius>30</Radius>
+    </melee_attack_spearmen_20>
+  </Auras>
   <Armour>
     <Hack>10</Hack>
     <Pierce>10</Pierce>
@@ -21,8 +27,10 @@
     <Civ>spart</Civ>
 	<GenericName>Leonidas I</GenericName>
     <SpecificName>Leōnídēs</SpecificName>
-    <Tooltip>Hero Aura: Increased Spartiate and Hoplite Attack. (TBD)
-Counters: 2x vs. all cavalry.</Tooltip>
+    <Tooltip>Classes: Hero Melee Infantry Spearman.
+"Last Stand" Aura: +20% attack for nearby Hoplites and Spartiates.
+Counters: 2x vs. All Cavalry.
+Countered by: Skirmishers, Swordsmen, and Cavalry Archers.</Tooltip>
     <History>The king of Sparta, who fought and died at the battle of Thermopylae in 480 BC. He successfully blocked the way of the huge Persian army through the narrow passage with his 7000 men, until Xerxes was made aware of a secret unobstructed path. Finding the enemy at his rear, Leonidas sent home most of his troops, choosing to stay behind with 300 hand-picked hoplites and win time for the others to withdraw.</History>
     <Icon>units/spart_hero_leonidas.png</Icon>
   </Identity>

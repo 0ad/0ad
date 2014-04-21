@@ -32,7 +32,7 @@ function lobbyStart()
 	var room = Engine.ConfigDB_GetValue("user", "lobby.room");
 	var history = Number(Engine.ConfigDB_GetValue("user", "lobby.history"));
 
-	feedback.caption = "Connecting....";
+	feedback.caption = translate("Connecting...");
 	// If they enter a different password, re-encrypt.
 	if (password != g_EncrytedPassword.substring(0, 10))
 		g_EncrytedPassword = Engine.EncryptPassword(password, username);
@@ -58,14 +58,14 @@ function lobbyStartRegister()
 	// Check the passwords match.
 	if (password != passwordAgain)
 	{
-		feedback.caption = "Passwords do not match";
+		feedback.caption = translate("Passwords do not match");
 		Engine.GetGUIObjectByName("connectPassword").caption = "";
 		Engine.GetGUIObjectByName("registerPasswordAgain").caption = "";
 		switchRegister();
 		return;
 	}
 
-	feedback.caption = "Registering...";
+	feedback.caption = translate("Registering...");
 	g_EncrytedPassword = Engine.EncryptPassword(password, account);
 	Engine.StartRegisterXmppClient(account, g_EncrytedPassword);
 	g_LobbyIsConnecting = true;
@@ -106,20 +106,21 @@ function onTick()
 		connectButton.enabled = false;
 		registerButton.enabled = false;
 		if (!username && !password)
-			feedback.caption = "Please enter existing login or desired registration credentials.";
+			feedback.caption = translate("Please enter existing login or desired registration credentials.");
 	}
 	// Check they are using a valid account name.
 	else if (username != sanitizedName)
 	{
-		feedback.caption = "Usernames can't contain [, ], unicode, whitespace, or commas.";
+		feedback.caption = translate("Usernames can't contain [, ], unicode, whitespace, or commas.");
 		connectButton.enabled = false;
 		registerButton.enabled = false;
 	}
 	// Allow them to connect/begin registation if there aren't any problems.
 	else if (pageRegisterHidden)
 	{
-		if (feedback.caption == "Usernames can't contain [, ], unicode, whitespace, or commas." ||
-			feedback.caption == "Please enter existing login or desired registration credentials.")
+		// TODO Do this without comparing the caption
+		if (feedback.caption == translate("Usernames can't contain [, ], unicode, whitespace, or commas.") ||
+			feedback.caption == translate("Please enter existing login or desired registration credentials."))
 			feedback.caption = "";
 		connectButton.enabled = true;
 		registerButton.enabled = true;

@@ -245,7 +245,7 @@ m.BaseManager.prototype.removeDropsite = function (gameState, ent)
 			if (!supply[i].ent || !gameState.getEntityById(supply[i].id))
 				supply.splice(i--, 1);
 			// resource assigned to the removed dropsite, remove it
-			else if (supply["dropsite"] === entId)
+			else if (supply[i].dropsite === entId)
 				supply.splice(i--, 1);
 		}
 	};

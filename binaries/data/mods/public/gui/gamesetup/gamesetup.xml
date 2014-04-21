@@ -12,17 +12,17 @@
 	<object type="image" style="ModernWindow" size="0 0 100% 100%">
 
 		<object style="TitleText" type="text" size="50%-128 4 50%+128 36">
-			Match Setup
+			<translatableAttribute id="caption">Match Setup</translatableAttribute>
 		</object>
 	
 		<object type="image" style="ModernDialog" size="50%-190 50%-80 50%+190 50%+80" name="loadingWindow">
 
 			<object type="text" style="TitleText" size="50%-128 0%-16 50%+128 16">
-				Loading
+				<translatableAttribute id="caption">Loading</translatableAttribute>
 			</object>
 
 			<object type="text" style="ModernLabelText">
-				Loading map data. Please wait...
+				<translatableAttribute id="caption">Loading map data. Please wait...</translatableAttribute>
 			</object>
 
 		</object>
@@ -38,7 +38,9 @@
 
 				<!-- Number of Players-->
 				<object size="0 0 150 28">
-					<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">Number of players:</object>
+					<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">
+						<translatableAttribute id="caption">Number of players:</translatableAttribute>
+					</object>
 				</object>
 					
 				<!-- Number of Players-->
@@ -48,8 +50,8 @@
 							type="dropdown"
 							style="ModernDropDown"
 							size="0 0 100% 28"
-							tooltip_style="onscreenToolTip"
-							tooltip="Select number of players.">
+							tooltip_style="onscreenToolTip">
+						<translatableAttribute id="tooltip">Select number of players.</translatableAttribute>
 						<action on="SelectionChange">selectNumPlayers(this.list_data[this.selected]);</action>
 					</object>
 				</object>
@@ -59,37 +61,53 @@
 			<!-- Player assignments -->
 			<object size="24 59 100%-440 358" type="image" sprite="ModernDarkBoxGold" name="playerAssignmentsPannel">
 				<object size="0 6 100% 30">
-					<object name="playerNameHeading" type="text" style="ModernLabelText" size="0 0 20% 100%">Player Name</object>
-					<object name="playerPlacementHeading" type="text" style="ModernLabelText" size="20%+5 0 50% 100%">Player Placement</object>
-					<object name="playerCivHeading" type="text" style="ModernLabelText" size="50%+65 0 85% 100%">Civilization</object>
+					<object name="playerNameHeading" type="text" style="ModernLabelText" size="0 0 20% 100%">
+						<translatableAttribute id="caption">Player Name</translatableAttribute>
+					</object>
+					<object name="playerPlacementHeading" type="text" style="ModernLabelText" size="20%+5 0 50% 100%">
+						<translatableAttribute id="caption">Player Placement</translatableAttribute>
+					</object>
+					<object name="playerCivHeading" type="text" style="ModernLabelText" size="50%+65 0 85% 100%">
+						<translatableAttribute id="caption">Civilization</translatableAttribute>
+					</object>
 					<object name="civInfoButton"
 						type="button"
 						sprite="iconInfoGold"
 						sprite_over="iconInfoWhite"
 						size="82%-8 0 82%+8 16"
 						tooltip_style="onscreenToolTip"
-						tooltip="View civilization info"
 					>
+						<translatableAttribute id="tooltip">View civilization info</translatableAttribute>
 						<action on="Press"><![CDATA[
 							Engine.PushGuiPage("page_civinfo.xml");
 						]]></action>
 					</object>
-					<object name="playerTeamHeading" type="text" style="ModernLabelText" size="85%+5 0 100%-5 100%">Team</object>
+					<object name="playerTeamHeading" type="text" style="ModernLabelText" size="85%+5 0 100%-5 100%">
+						<translatableAttribute id="caption">Team</translatableAttribute>
+					</object>
 				</object>
 				<object size="1 36 100%-1 100%">
 					<repeat count="8">
 						<object name="playerBox[n]" size="0 0 100% 32" hidden="true">
 							<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
 							<object name="playerName[n]" type="text" style="ModernLabelText" size="0 2 20% 30"/>
-							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="20%+5 2 50% 30" tooltip_style="onscreenToolTip" tooltip="Select player."/>
+							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="20%+5 2 50% 30" tooltip_style="onscreenToolTip">
+								<translatableAttribute id="tooltip">Select player.</translatableAttribute>
+							</object>
 							<object name="playerConfig[n]" type="button" style="StoneButton" size="50%+5 6 50%+60 26"
 								tooltip_style="onscreenToolTip"
-								tooltip="Configure AI settings."
 								font="serif-bold-stroke-12"
-							>Settings</object>
-							<object name="playerCiv[n]" type="dropdown" style="ModernDropDown" size="50%+65 2 85% 30" tooltip_style="onscreenToolTip" tooltip="Select player's civilization."/>
+							>
+								<translatableAttribute id="caption">Settings</translatableAttribute>
+								<translatableAttribute id="tooltip">Configure AI settings.</translatableAttribute>
+							</object>
+							<object name="playerCiv[n]" type="dropdown" style="ModernDropDown" size="50%+65 2 85% 30" tooltip_style="onscreenToolTip">
+								<translatableAttribute id="tooltip">Select player's civilization.</translatableAttribute>
+							</object>
 							<object name="playerCivText[n]" type="text" style="ModernLabelText" size="50%+65 0 85% 30"/>
-							<object name="playerTeam[n]" type="dropdown" style="ModernDropDown" size="85%+5 2 100%-5 30" tooltip_style="onscreenToolTip" tooltip="Select player's team."/>
+							<object name="playerTeam[n]" type="dropdown" style="ModernDropDown" size="85%+5 2 100%-5 30" tooltip_style="onscreenToolTip">
+								<translatableAttribute id="tooltip">Select player's team.</translatableAttribute>
+							</object>
 							<object name="playerTeamText[n]" type="text" style="ModernLabelText" size="85%+5 0 100%-5 100%"/>
 						</object>
 					</repeat>
@@ -100,10 +118,18 @@
 			
 			
 			<object size="100%-425 363 100%-325 455" name="mapTypeSelectionTooltip">
-				<object type="text" style="ModernRightLabelText" size="0 0 100% 30">Match Type:</object>
-				<object type="text" style="ModernRightLabelText" size="0 32 100% 62">Map Filter:</object>
-				<object type="text" style="ModernRightLabelText" size="0 64 100% 94">Select Map:</object>
-				<object name="mapSizeDesc" type="text" style="ModernRightLabelText" size="0 96 100% 126">Map Size:</object>
+				<object type="text" style="ModernRightLabelText" size="0 0 100% 30">
+					<translatableAttribute id="caption">Match Type:</translatableAttribute>
+				</object>
+				<object type="text" style="ModernRightLabelText" size="0 32 100% 62">
+					<translatableAttribute id="caption">Map Filter:</translatableAttribute>
+				</object>
+				<object type="text" style="ModernRightLabelText" size="0 64 100% 94">
+					<translatableAttribute id="caption">Select Map:</translatableAttribute>
+				</object>
+				<object name="mapSizeDesc" type="text" style="ModernRightLabelText" size="0 96 100% 126">
+					<translatableAttribute id="caption">Map Size:</translatableAttribute>
+				</object>
 			</object>
 
 			<object size="100%-327 363 100%-25 423" name="mapFilterSelectionTooltip">
@@ -117,8 +143,8 @@
 				type="dropdown"
 				style="ModernDropDown"
 				size="100%-315 363 100%-25 391"
-				tooltip_style="onscreenToolTip"
-				tooltip="Select a map type.">
+				tooltip_style="onscreenToolTip">
+				<translatableAttribute id="tooltip">Select a map type.</translatableAttribute>
 				<action on="SelectionChange">selectMapType(this.list_data[this.selected]);</action>
 			</object>
 
@@ -126,9 +152,9 @@
 				type="dropdown"
 				style="ModernDropDown"
 				size="100%-315 395 100%-25 423"
-				tooltip_style="onscreenToolTip"
-				tooltip="Select a map filter.">
-				<action on="SelectionChange">selectMapFilter(this.list[this.selected]);</action>
+				tooltip_style="onscreenToolTip">
+				<translatableAttribute id="tooltip">Select a map filter.</translatableAttribute>
+				<action on="SelectionChange">selectMapFilter(this.list_data[this.selected]);</action>
 			</object>
 			
 			<object size="100%-315 427 100%-25 455" name="mapSelectionPannel">
@@ -137,14 +163,16 @@
 					style="ModernDropDown"
 					type="dropdown"
 					size="0 0 100% 100%"
-					tooltip_style="onscreenToolTip"
-					tooltip="Select a map to play on.">
+					tooltip_style="onscreenToolTip">
+					<translatableAttribute id="tooltip">Select a map to play on.</translatableAttribute>
 					<action on="SelectionChange">selectMap(this.list_data[this.selected]);</action>
 				</object>
 			</object>
-
-			<object name="mapSize" size="100%-315 459 100%-25 487" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size. (Larger sizes may reduce performance.)"/>
-
+			
+			<object name="mapSize" size="100%-325 459 100%-25 487" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip">
+				<translatableAttribute id="tooltip">Select map size. (Larger sizes may reduce performance.)</translatableAttribute>
+			</object>
+			
 			<!-- Map Preview -->
 			<object  type="image" sprite="ModernDarkBoxGold" name="gamePreviewBox" size="100%-426 57 100%-24 359">
 				<object type="image" sprite="snMapPreview" size="1 1 401 301" name="mapPreview"/>
@@ -167,7 +195,7 @@
 				</object>
 
 				<object size="100%-72 100%-24 100%-4 100%-4" type="button" style="StoneButton">
-					Send
+					<translatableAttribute id="caption">Send</translatableAttribute>
 					<action on="Press">submitChatInput();</action>
 				</object>
 			</object>
@@ -180,7 +208,9 @@
 				sprite="BackgroundTranslucent"
 				hidden="true"
 				size="100%-700 100%-56 100%-312 100%-24"
-			>[Tooltip text]</object>
+			>
+				<translatableAttribute id="caption">[Tooltip text]</translatableAttribute>
+			</object>
 
 			<!-- Start Button -->
 			<object
@@ -189,22 +219,22 @@
 				style="StoneButton"
 				size="100%-308 100%-52 100%-168 100%-24"
 				tooltip_style="onscreenToolTip"
-				tooltip="Start a new game with the current settings."
 				enabled="false"
 			>
-				Start game!
+				<translatableAttribute id="caption">Start game!</translatableAttribute>
+				<translatableAttribute id="tooltip">Start a new game with the current settings.</translatableAttribute>
 				<action on="Press">launchGame();</action>
 			</object>
 
 			<!-- Cancel Button -->
 			<object
 				name="cancelGame"
-				caption="Back"
 				type="button"
 				style="StoneButton"
 				size="100%-164 100%-52 100%-24 100%-24"
 				tooltip_style="onscreenToolTip"
 			>
+				<translatableAttribute id="caption">Back</translatableAttribute>
 				<action on="Press">
 					<![CDATA[
 						cancelSetup();
@@ -225,9 +255,9 @@
 					style="StoneButton"
 					size="100%-120 0 100% 28"
 					tooltip_style="onscreenToolTip"
-					tooltip="See more game options"
 				>
-					More Options
+					<translatableAttribute id="caption">More Options</translatableAttribute>
+					<translatableAttribute id="tooltip">See more game options</translatableAttribute>
 					<action on="Press">toggleMoreOptions();</action>
 				</object>
 
@@ -300,9 +330,9 @@
 					style="StoneButton"
 					size="50%-70 310 50%+70 336"
 					tooltip_style="onscreenToolTip"
-					tooltip="Close more game options window"
 				>
-					OK
+					<translatableAttribute id="caption">OK</translatableAttribute>
+					<translatableAttribute id="tooltip">Close more game options window</translatableAttribute>
 					<action on="Press">toggleMoreOptions();</action>
 				</object>
 			<!-- End More Options -->

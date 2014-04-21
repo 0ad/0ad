@@ -16,20 +16,20 @@
 
 		<object name="pageConnecting" hidden="true">
 			<object name="connectionStatus" type="text" text_align="center" size="0 100 100% 120">
-				[Connection status]
+				<translatableAttribute id="caption">[Connection status]</translatableAttribute>
 			</object>
 		</object>
 
 		<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">
-			Multiplayer Lobby
+			<translatableAttribute id="caption">Multiplayer Lobby</translatableAttribute>
 		</object>
 
 		<object name="pageConnect" size="0 32 100% 100%">
 			<object type="text" size="0 0 400 30" style="ModernLabelText" text_align="center">
-				Connect to the game lobby
+				<translatableAttribute id="caption">Connect to the game lobby</translatableAttribute>
 			</object>
 			<object name="connectUsernameLabel" type="text" size="50 40 125 70" style="ModernLabelText" text_align="right">
-				Login:
+				<translatableAttribute id="caption">Login:</translatableAttribute>
 			</object>
 			<object name="connectUsername" type="input" size="135 40 100%-50 64" style="ModernInput">
 				<action on="Load">
@@ -37,7 +37,7 @@
 				</action>
 			</object>
 			<object name="connectPasswordLabel" type="text" size="50 80 125 110" style="ModernLabelText" text_align="right">
-				Password:
+				<translatableAttribute id="caption">Password:</translatableAttribute>
 			</object>
 			<object name="connectPassword" type="input" size="135 80 100%-50 104" style="ModernInput" mask="true" mask_char="*">
 				<action on="Load">
@@ -51,10 +51,10 @@
 		</object>
 		<object name="pageRegister" size="0 32 100% 100%" hidden="true">
 			<object type="text" style="ModernLabelText" size="0 0 400 30" text_align="center">
-				Registration
+				<translatableAttribute id="caption">Registration</translatableAttribute>
 			</object>
 			<object type="text" size="50 40 170 70" style="ModernLabelText" text_align="right">
-				Password again:
+				<translatableAttribute id="caption">Password again:</translatableAttribute>
 			</object>
 			<object name="registerPasswordAgain" type="input" size="180 40 100%-50 64" style="ModernInput" mask="true" mask_char="*">
 				<action on="Press">
@@ -64,7 +64,7 @@
 		</object>
 		<object name="feedback" type="text" size="50 150 100%-50 190" style="ModernLabelText" textcolor="red" text_align="center"/>
 		<object type="button" size="18 100%-45 126 100%-17" style="StoneButton">
-			Cancel
+			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">
 				if (Engine.GetGUIObjectByName("pageRegister").hidden)
 				{
@@ -76,7 +76,7 @@
 			</action>
 		</object>
 		<object name="register" type="button" size="136 100%-45 244 100%-17" style="StoneButton">
-			Register
+			<translatableAttribute id="caption">Register</translatableAttribute>
 			<action on="Press">
 				if (Engine.GetGUIObjectByName("pageRegister").hidden)
 				{
@@ -87,7 +87,7 @@
 			</action>
 		</object>
 		<object name="connect" type="button" size="254 100%-45 100%-18 100%-17" style="StoneButton">
-			Connect
+			<translatableAttribute id="caption">Connect</translatableAttribute>
 			<action on="Press">
 				lobbyStart();
 			</action>
