@@ -5,7 +5,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 0,
-				"instructions": "Lets get started, first train a batch (shift click) of 5 female citizens from the CC (Civil Centre)."
+				"instructions": "Lets get started, first train a batch (shift click) of 5 female citizens from the CC (Civil Center)."
 			},
 			{
 				"trigger": "time",
@@ -15,7 +15,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 15,
-				"instructions": "Now set the rally point of your civil centre on the berries"
+				"instructions": "Now set the rally point of your civil center on the berries"
 			},
 			{
 				"trigger": "time",

@@ -4,11 +4,11 @@ var introductoryTutorial = [
 	"instructions": "Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then Right-click on a berry bush nearby to make the unit collect food. Female citizens gather food faster than other units."
 },
 {
-	"instructions": "Select the citizen-soldier, Right-click on a tree near the Civil Centre to begin collecting wood. Citizen-soldiers gather wood faster than female citizens.",
+	"instructions": "Select the citizen-soldier, Right-click on a tree near the Civil Center to begin collecting wood. Citizen-soldiers gather wood faster than female citizens.",
 	"trigger": "food_gathered"
 },
 {
-	"instructions": "Select the Civil Centre building, and shift-click on the Hoplite icon (2nd in the row) once to begin training 5 Hoplites.",
+	"instructions": "Select the Civil Center building, and shift-click on the Hoplite icon (2nd in the row) once to begin training 5 Hoplites.",
 	"trigger": "wood_gathered"
 },
 {
@@ -24,13 +24,13 @@ var introductoryTutorial = [
 	"count": 1
 },
 {
-	"instructions": "Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd in the row) in the Civil Centre.",
+	"instructions": "Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd in the row) in the Civil Center.",
 	"trigger": "entity_count",
 	"template": "structures/spart_storehouse",
 	"count": 1
 },
 {
-	"instructions": "Build a farmstead in an open space beside the Civil Centre using any idle builders.",
+	"instructions": "Build a farmstead in an open space beside the Civil Center using any idle builders.",
 	"trigger": "training_start",
 	"template": "units/spart_infantry_javelinist_b",
 	"count": 5
@@ -48,7 +48,7 @@ var introductoryTutorial = [
 	"count": 1
 },
 {
-	"instructions": "Train 5 Hoplites from the Civil Centre. Select the Civil Centre and with it selected right click on a tree nearby. Units from the Civil Centre will now automatically gather wood.",
+	"instructions": "Train 5 Hoplites from the Civil Center. Select the Civil Center and with it selected right click on a tree nearby. Units from the Civil Center will now automatically gather wood.",
 	"trigger": "entity_count",
 	"template": "structures/spart_house",
 	"count": 2
@@ -60,13 +60,13 @@ var introductoryTutorial = [
 	"count": 10
 },
 {
-	"instructions": "Select the Civil Centre again and advance to Town Phase by clicking on the 'II' icon. This will allow Town Phase buildings to be constructed.",
+	"instructions": "Select the Civil Center again and advance to Town Phase by clicking on the 'II' icon. This will allow Town Phase buildings to be constructed.",
 	"trigger": "entity_count",
 	"template": "structures/spart_outpost",
 	"count": 1
 },
 {
-	"instructions": "Start building 5 female citizens in the Civil Centre and set its rally point to the farm (right click on it)",
+	"instructions": "Start building 5 female citizens in the Civil Center and set its rally point to the farm (right click on it)",
 	"trigger": "relative_time",
 	"time": 34 //TODO: This is a hack, should be when town phase is researched
 },
@@ -95,7 +95,7 @@ var introductoryTutorial = [
 	"collectionId": "intro_tutorial_attackers"
 },
 {
-	"instructions": "Now that City Phase requirements have been reached, select your Civil Centre and advance to City Phase.",
+	"instructions": "Now that City Phase requirements have been reached, select your Civil Center and advance to City Phase.",
 	"trigger": "entity_counts",
 	"templates": ["structures/spart_market", "structures/spart_temple"],
 	"counts": [1,1]
@@ -106,7 +106,7 @@ var introductoryTutorial = [
 	"time": 65 //TODO: This is a hack, should be when city phase is researched
 },
 {
-	"instructions": "Stop all your soldiers gathering resources and instead task small groups to find the enemy Civil Centre on the map. Female citizens should continue to gather resources.",
+	"instructions": "Stop all your soldiers gathering resources and instead task small groups to find the enemy Civil Center on the map. Female citizens should continue to gather resources.",
 	"action": introductory_tutorial_remove_champions,
 	"trigger": "entity_count",
 	"template": "units/spart_mechanical_siege_ram",
