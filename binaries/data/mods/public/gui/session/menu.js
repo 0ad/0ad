@@ -1,5 +1,5 @@
-const PAUSE = "Pause";
-const RESUME = "Resume";
+const PAUSE = translate("Pause");
+const RESUME = translate("Resume");
 
 /*
  * MENU POSITION CONSTANTS
