@@ -43,6 +43,8 @@ namespace JSI_Renderer
 	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterShadow);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(Silhouettes);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(ShowSky);
+	DECLARE_BOOLEAN_SCRIPT_SETTING(SmoothLOS);
+	DECLARE_BOOLEAN_SCRIPT_SETTING(Postproc);
 
 	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
 }

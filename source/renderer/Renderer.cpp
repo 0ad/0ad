@@ -763,6 +763,10 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_Silhouettes;
 		case OPT_SHOWSKY:
 			return m_Options.m_ShowSky;
+		case OPT_SMOOTHLOS:
+			return m_Options.m_SmoothLOS;
+		case OPT_POSTPROC:
+			return m_Options.m_Postproc;
 		default:
 			debug_warn(L"CRenderer::GetOptionBool: unknown option");
 			break;

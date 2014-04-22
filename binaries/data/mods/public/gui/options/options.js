@@ -10,19 +10,22 @@ var options = {
 	],
 	"graphicsSetting":
 	[
-		[translate("Prefer GLSL"), translate("Use OpenGL 2.0 shaders (recommended)"), {"renderer":"PreferGLSL"}, "boolean"],
-		[translate("Shadows"), translate("Enable shadows"), {"renderer":"Shadows"}, "boolean"],
-		[translate("Particles"), translate("Enable particles"), {"renderer":"Particles"}, "boolean"],
-		[translate("Show Sky"), translate("Render Sky"), {"renderer":"ShowSky"}, "boolean"],
-		[translate("Unit Silhouettes"), translate("Show outlines of units behind buildings"), {"renderer":"Silhouettes"}, "boolean"],
-		[translate("Shadow Filtering"), translate("Smooth shadows"), {"renderer":"ShadowPCF"}, "boolean"],
-		[translate("HQ Waviness"), translate("Use real normals for ocean-wave rendering, instead of applying them as a flat texture"), {"renderer":"WaterNormal"}, "boolean"],
-		[translate("Real Water Depth"), translate("Use actual water depth in rendering calculations"), {"renderer":"WaterRealDepth"}, "boolean"],
-		[translate("Water Reflections"), translate("Allow water to reflect a mirror image"), {"renderer":"WaterReflection"}, "boolean"],
-		[translate("Water Refraction"), translate("Use a real water refraction map and not transparency"), {"renderer":"WaterRefraction"}, "boolean"],
-		[translate("Shore Foam"), translate("Show foam on water near shore depending on water waviness"), {"renderer":"WaterFoam"}, "boolean"],
-		[translate("Shore Waves"), translate("Show breaking waves on water near shore (Requires HQ Waviness)"), {"renderer":"WaterCoastalWaves"}, "boolean"],
-		[translate("Water Shadows"), translate("Cast shadows on water"), {"renderer":"WaterShadow"}, "boolean"],
+		[translate("Prefer GLSL"), translate("Use OpenGL 2.0 shaders (recommended)"), {"renderer":"PreferGLSL", "config":"preferglsl"}, "boolean"],
+		[translate("Post Processing"), translate("Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"), {"renderer":"Postproc", "config":"postproc"}, "boolean"],
+		[translate("Shadows"), translate("Enable shadows"), {"renderer":"Shadows", "config":"shadows"}, "boolean"],
+		[translate("Particles"), translate("Enable particles"), {"renderer":"Particles", "config":"particles"}, "boolean"],
+		[translate("Show Sky"), translate("Render Sky"), {"renderer":"ShowSky", "config":"showsky"}, "boolean"],
+		[translate("Smooth LOS"), translate("Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."), {"renderer":"SmoothLOS", "config":"smoothlos"}, "boolean"],
+		[translate("Unit Silhouettes"), translate("Show outlines of units behind buildings"), {"renderer":"Silhouettes", "config":"silhouettes"}, "boolean"],
+		[translate("Shadow Filtering"), translate("Smooth shadows"), {"renderer":"ShadowPCF", "config":"shadowpcf"}, "boolean"],
+		[translate("HQ Waviness"), translate("Use real normals for ocean-wave rendering, instead of applying them as a flat texture"), {"renderer":"WaterNormal", "config":"waternormals"}, "boolean"],
+		[translate("Real Water Depth"), translate("Use actual water depth in rendering calculations"), {"renderer":"WaterRealDepth", "config":"waterrealdepth"}, "boolean"],
+		[translate("Water Reflections"), translate("Allow water to reflect a mirror image"), {"renderer":"WaterReflection", "config":"waterreflection"}, "boolean"],
+		[translate("Water Refraction"), translate("Use a real water refraction map and not transparency"), {"renderer":"WaterRefraction", "config":"waterrefraction"}, "boolean"],
+		[translate("Shore Foam"), translate("Show foam on water near shore depending on water waviness"), {"renderer":"WaterFoam", "config":"waterfoam"}, "boolean"],
+		[translate("Shore Waves"), translate("Show breaking waves on water near shore (Requires HQ Waviness)"), {"renderer":"WaterCoastalWaves", "config":"watercoastalwaves"}, "boolean"],
+		[translate("Water Shadows"), translate("Cast shadows on water"), {"renderer":"WaterShadow", "config":"watershadows"}, "boolean"],
+		[translate("VSync"), translate("Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"), {"config":"vsync"}, "boolean"],
 	],
 	"soundSetting":
 	[
@@ -96,30 +99,26 @@ function setupControl(option, i, prefix)
 				{
 					case "config":
 						// Load initial value if not yet loaded.
-						if (!checked || typeof checked != boolean)
+						if (!checked || typeof checked != "boolean")
 							checked = Engine.ConfigDB_GetValue("user", option[2][action]) === "true" ? true : false;
 						// Hacky macro to create the callback.
 						var callback = function(key)
 						{
 							return function()
-							{
 								Engine.ConfigDB_CreateValue("user", key, String(this.checked));
-							};
 						}(option[2][action]);
 						// Merge the new callback with any existing callbacks.
 						onPress = mergeFunctions(callback, onPress);
 						break;
 					case "renderer":
 						// Load initial value if not yet loaded.
-						if (!checked || typeof checked != boolean)
+						if (!checked || typeof checked != "boolean")
 							checked = eval("Engine.Renderer_Get" + option[2][action] + "Enabled()");
 						// Hacky macro to create the callback.
 						var callback = function(key)
 						{
 							return function()
-							{
 								eval("Engine.Renderer_Set" + key + "Enabled(" + this.checked + ")");
-							};
 						}(option[2][action]);
 						// Merge the new callback with any existing callbacks.
 						onPress = mergeFunctions(callback, onPress);
@@ -154,9 +153,7 @@ function setupControl(option, i, prefix)
 						var callback = function(key)
 						{
 							return function()
-							{
 								Engine.ConfigDB_CreateValue("user", key, String(this.caption));
-							};
 						}(option[2][action]);
 						// Merge the new callback with any existing callbacks.
 						onPress = mergeFunctions(callback, onPress);
