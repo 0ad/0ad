@@ -43,7 +43,7 @@ L10n& L10n::Instance()
 }
 
 L10n::L10n()
-	: currentLocaleIsOriginalGameLocale(false), dictionary(new tinygettext::Dictionary())
+	: currentLocaleIsOriginalGameLocale(false), useLongStrings(false), dictionary(new tinygettext::Dictionary())
 {
 	LoadListOfAvailableLocales();
 	ReevaluateCurrentLocaleAndReload();
@@ -63,11 +63,16 @@ Locale L10n::GetCurrentLocale()
 
 bool L10n::SaveLocale(const std::string& localeCode)
 {
+	if (localeCode == "long" && InDevelopmentCopy())
+	{
+		g_ConfigDB.SetValueString(CFG_USER, "locale", "long");
+		return true;
+	}
 	return SaveLocale(Locale(Locale::createCanonical(localeCode.c_str())));
 }
 
 bool L10n::SaveLocale(Locale locale)
-{	
+{
 	// TODO: Use the ConfigDB functions exposed to js to change the config value
 	// Save the new locale in the settings file.
 	if (!ValidateLocale(locale))
@@ -179,9 +184,20 @@ void L10n::ReevaluateCurrentLocaleAndReload()
 {
 	std::string locale;
 	CFG_GET_VAL("locale", String, locale);
-	
-	GetDictionaryLocale(locale, currentLocale);
-	currentLocaleIsOriginalGameLocale = (currentLocale == Locale::getUS()) == TRUE;
+
+	if (locale == "long")
+	{
+		// Set ICU to en_US to have a valid language for displaying dates
+		currentLocale = Locale::getUS();
+		currentLocaleIsOriginalGameLocale = false;
+		useLongStrings = true;
+	}
+	else
+	{
+		GetDictionaryLocale(locale, currentLocale);
+		currentLocaleIsOriginalGameLocale = (currentLocale == Locale::getUS()) == true;
+		useLongStrings = false;
+	}
 	LoadDictionaryForCurrentLocale();
 }
 
@@ -196,6 +212,11 @@ std::vector<std::string> L10n::GetAllLocales()
 	return ret;
 }
 
+
+bool L10n::UseLongStrings()
+{
+	return useLongStrings;
+};
 
 std::vector<std::string> L10n::GetSupportedLocaleBaseNames()
 {
@@ -396,8 +417,17 @@ void L10n::LoadDictionaryForCurrentLocale()
 	dictionary = new tinygettext::Dictionary();
 
 	VfsPaths filenames;
-	if (vfs::GetPathnames(g_VFS, L"l10n/", (wstring_from_utf8(currentLocale.getBaseName()) + L".*.po").c_str(), filenames) < 0)
-		return;
+
+	if (useLongStrings)
+	{
+		if (vfs::GetPathnames(g_VFS, L"l10n/", L"long.*.po", filenames) < 0)
+			return;
+	}
+	else
+	{
+		if (vfs::GetPathnames(g_VFS, L"l10n/", (wstring_from_utf8(currentLocale.getBaseName()) + L".*.po").c_str(), filenames) < 0)
+			return;
+	}
 	
 	// If not matching country is found, try to fall back to a matching language	
 	if (filenames.size() == 0)
