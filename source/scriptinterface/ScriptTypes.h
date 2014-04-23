@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,6 +65,7 @@
 # pragma warning(disable:4512) // "assignment operator could not be generated"
 # pragma warning(disable:4265) // "class has virtual functions, but destructor is not virtual"
 # pragma warning(disable:4251) // "class 'X' needs to have dll-interface to be used by clients of struct 'Y'"
+# pragma warning(disable:4005) // "macro redefinition"
 #endif
 
 #include "jspubtd.h"
