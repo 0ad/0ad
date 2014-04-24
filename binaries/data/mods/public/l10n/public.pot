@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-20 23:35+0200\n"
+"POT-Creation-Date: 2014-04-24 06:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -661,156 +661,180 @@ msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr ""
 
 #: gui/options/options.js:14
-msgid "Shadows"
+msgid "Post Processing"
 msgstr ""
 
 #: gui/options/options.js:14
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
+msgstr ""
+
+#: gui/options/options.js:15
+msgid "Shadows"
+msgstr ""
+
+#: gui/options/options.js:15
 msgid "Enable shadows"
 msgstr ""
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Particles"
 msgstr ""
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Enable particles"
 msgstr ""
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Show Sky"
 msgstr ""
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Render Sky"
 msgstr ""
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
+msgid "Smooth LOS"
+msgstr ""
+
+#: gui/options/options.js:18
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."
+msgstr ""
+
+#: gui/options/options.js:19
 msgid "Unit Silhouettes"
 msgstr ""
 
-#: gui/options/options.js:17
+#: gui/options/options.js:19
 msgid "Show outlines of units behind buildings"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Shadow Filtering"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Smooth shadows"
 msgstr ""
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid "HQ Waviness"
 msgstr ""
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a flat"
 " texture"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Real Water Depth"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Use actual water depth in rendering calculations"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Water Reflections"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Allow water to reflect a mirror image"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "Water Refraction"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "Use a real water refraction map and not transparency"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Shore Foam"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Show foam on water near shore depending on water waviness"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Shore Waves"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Water Shadows"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Cast shadows on water"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:28
+msgid "VSync"
+msgstr ""
+
+#: gui/options/options.js:28
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.js:32
 msgid "Master Gain"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:32
 msgid "Master audio gain"
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:33
 msgid "Music Gain"
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:33
 msgid "In game music gain"
 msgstr ""
 
-#: gui/options/options.js:31
+#: gui/options/options.js:34
 msgid "Ambient Gain"
 msgstr ""
 
-#: gui/options/options.js:31
+#: gui/options/options.js:34
 msgid "In game ambient sound gain"
 msgstr ""
 
-#: gui/options/options.js:32
+#: gui/options/options.js:35
 msgid "Action Gain"
 msgstr ""
 
-#: gui/options/options.js:32
+#: gui/options/options.js:35
 msgid "In game unit action sound gain"
 msgstr ""
 
-#: gui/options/options.js:33
+#: gui/options/options.js:36
 msgid "UI Gain"
 msgstr ""
 
-#: gui/options/options.js:33
+#: gui/options/options.js:36
 msgid "UI sound gain"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:40
 msgid "Chat Backlog"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:40
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:41
 msgid "Chat Timestamp"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:41
 msgid "Show time that messages are posted in the lobby chat"
 msgstr ""
 
@@ -1020,6 +1044,15 @@ msgstr ""
 
 #: gui/session/input.js:996
 msgid "Cannot build wall here!"
+msgstr ""
+
+#: gui/session/menu.js:1
+#: gui/session/session.xml:924 (caption)
+msgid "Pause"
+msgstr ""
+
+#: gui/session/menu.js:2
+msgid "Resume"
 msgstr ""
 
 #: gui/session/menu.js:141
@@ -2153,6 +2186,10 @@ msgid ""
 " %(resourceAmount4)s %(resourceType4)s"
 msgstr ""
 
+#: simulation/components/ProductionQueue.js:345
+msgid "The production queue is full."
+msgstr ""
+
 #: simulation/components/Wonder.js:53
 #, python-format
 msgid "%(player)s will have won in %(time)s"
@@ -2942,10 +2979,6 @@ msgstr ""
 
 #: gui/session/session.xml:851 (caption)
 msgid "MENU"
-msgstr ""
-
-#: gui/session/session.xml:924 (caption)
-msgid "Pause"
 msgstr ""
 
 #: gui/session/session.xml:936 (caption)
@@ -6206,8 +6239,9 @@ msgid "Colonization"
 msgstr ""
 
 #: civs/cart.json:Factions[0].Technologies[1].History
+#: simulation/data/technologies/carthaginians/special_colonisation.json:description
 msgid ""
-"Carthaginians established many trading centres as colonies and ultimately "
+"Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
 msgstr ""
 
@@ -6352,18 +6386,20 @@ msgstr ""
 #: civs/celt.json:Factions[1].Heroes[0].History
 #: civs/gaul.json:Factions[0].Heroes[0].History
 msgid ""
-"The story of how Marcus Claudius Marcellus killed a Gallic leader at "
-"Clastidium (222 B.C.) is typical of such encounters. Advancing with a "
-"smallish army, Marcellus met a combined force of Insubrian Gauls and Gaesatae"
-" at Clastidium. The Gallic army advanced with the usual rush and terrifying "
-"cries, and their king, Britomartos, picking out Marcellus by means of his "
-"badges of rank, made for him, shouting a challenge and brandishing his spear."
-" Britomartos was an outstanding figure not only for his size but also for his"
-" adornments; for he was resplendent in bright colors and his armor shone with"
-" gold and silver. This armor, thought Marcellus, would be a fitting offering "
-"to the gods. He charged the Gaul, pierced his bright breastplate and cast him"
-" to the ground. It was an easy task to kill Britomartos and strip him of his "
-"armor."
+"When celt armies met the enemy, before the battle would start, the celt "
+"leader would go to the first line and challenge the bravest of the enemy "
+"warriors to a single combat. The story of how Marcus Claudius Marcellus "
+"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
+"encounters. Advancing with a smallish army, Marcellus met a combined force of"
+" Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with "
+"the usual rush and terrifying cries, and their king, Britomartos, picking out"
+" Marcellus by means of his badges of rank, made for him, shouting a challenge"
+" and brandishing his spear. Britomartos was an outstanding figure not only "
+"for his size but also for his adornments; for he was resplendent in bright "
+"colors and his armor shone with gold and silver. This armor, thought "
+"Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
+"pierced his bright breastplate and cast him to the ground. It was an easy "
+"task to kill Britomartos and strip him of his armor."
 msgstr ""
 
 #: civs/celt.json:Factions[1].Heroes[0].Name
@@ -6836,7 +6872,7 @@ msgstr ""
 #: civs/iber.json:Factions[0].Heroes[1].History
 msgid ""
 "Karos was a chief of the Belli tribe located just east of the Celtiberi "
-"(Numantines at the centre). Leading the confederated tribes of the meseta "
+"(Numantines at the center). Leading the confederated tribes of the meseta "
 "central (central upland plain) he concealed 20,000 foot and 5,000 mounted "
 "troops along a densely wooded track. Q. Fulvius Nobilior neglected proper "
 "reconnaissance and lead his army into the trap strung out in a long column. "
@@ -10114,7 +10150,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city_gauls.json:tooltip
 msgid ""
 "Advance to City Phase, which unlocks Gallic structures and units. Territory "
-"radius for Civilization Centres increased by another +50%"
+"radius for Civilization Centers increased by another +50%"
 msgstr ""
 
 #: simulation/data/technologies/phase_city_gauls.json:genericName
@@ -10696,12 +10732,6 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_2.json:genericName
 msgid "Italian merc cost vs. recruit time #2"
-msgstr ""
-
-#: simulation/data/technologies/carthaginians/special_colonisation.json:description
-msgid ""
-"Carthaginians established many trading centers as colonies and ultimately "
-"held dominion over 300 cities and towns in North Africa alone."
 msgstr ""
 
 #: simulation/data/technologies/carthaginians/special_colonisation.json:tooltip
@@ -11450,7 +11480,7 @@ msgstr ""
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
 "Classes: Citizen Melee Cavalry Spearman.\n"
-"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers. \n"
+"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, Elephants."
 msgstr ""
 
@@ -11506,7 +11536,7 @@ msgstr ""
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:41
 msgid ""
 "Classes: Champion Ranged Cavalry Archer.\n"
-"Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen.\n"
 "Countered by: Skirmishers and Elephants."
 msgstr ""
 
@@ -11566,7 +11596,7 @@ msgstr ""
 #: simulation/templates/template_unit_champion_infantry_archer.xml:46
 msgid ""
 "Classes: Champion Ranged Infantry Archer.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
 msgstr ""
 
@@ -11577,7 +11607,7 @@ msgstr ""
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:54
 msgid ""
 "Classes: Champion Ranged Infantry Skirmisher.\n"
-"Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots. \n"
+"Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Swordsmen and Cavalry Spearmen."
 msgstr ""
 
@@ -11588,7 +11618,7 @@ msgstr ""
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:57
 msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
-"Counters: 2x vs. All Cavalry, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.\n"
 "Countered by: Swordsmen, Skirmishers, and Cavalry Archers."
 msgstr ""
 
@@ -11610,7 +11640,7 @@ msgstr ""
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:53
 msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr ""
 
@@ -11706,7 +11736,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_archer.xml:41
 msgid ""
 "Classes: Hero Infantry Ranged Archer Bow.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
 msgstr ""
 
@@ -11730,7 +11760,7 @@ msgstr ""
 msgid ""
 "Classes: Hero Infantry Melee Sword.\n"
 "\"Hero\" Aura: TBD.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
 msgstr ""
 
@@ -11906,7 +11936,7 @@ msgstr ""
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:62
 msgid ""
 "Classes: Siege Melee Ram.\n"
-"Counters: 1.5x vs. Gates. Generally good vs. Buildings. \n"
+"Counters: 1.5x vs. Gates. Generally good vs. Buildings.\n"
 "Countered by: Melee Cavalry. Cannot attack organic units (but can attack "
 "other siege and ships)."
 msgstr ""
@@ -14130,7 +14160,7 @@ msgid ""
 "\"Naval Commander\" Aura: When garrisoned in a ship, his ship is +50% faster."
 " \n"
 "\"Naval Architect\" Aura: Ships are built +20% faster during his lifespan.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
 msgstr ""
 
@@ -15035,7 +15065,7 @@ msgstr ""
 #: simulation/templates/units/mace_hero_alexander.xml:38
 msgid ""
 "\"Imperialism\" Aura: +10% territory effect for all buildings while he lives."
-" \n"
+"\n"
 "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr ""
 
@@ -15300,7 +15330,7 @@ msgstr ""
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 msgid ""
 "Classes: Mercenary Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr ""
 
@@ -15424,7 +15454,7 @@ msgid ""
 "Hero Archer.\n"
 "Hero Aura: \"Administrator.\" +15% Gather Rate and Build Rate of nearby "
 "units.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
 msgstr ""
 
@@ -15995,9 +16025,9 @@ msgstr ""
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
 "Classes: Hero Melee Cavalry Sword.\n"
-"\"Conquest\" Aura: All nearby bipedal melee units gain a +2x attack versus "
-"buildings, siege engines, and ships. Building capture time reduced by 25% "
-"during his reign.\n"
+"\"Conquest\" Aura: All nearby soldiers gain a +2x attack versus buildings, "
+"siege engines, and ships. Building capture time reduced by 25% during his "
+"reign.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
 msgstr ""
@@ -16054,7 +16084,7 @@ msgstr ""
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid ""
 "Classes: Mercenary Citizen Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr ""
 
@@ -16154,7 +16184,7 @@ msgstr ""
 msgid ""
 "Classes: Citizen Support Worker Female.\n"
 "Gather resources, build structures, and inspire nearby males to work faster. "
-"Bonused at foraging and farming. \n"
+"Bonused at foraging and farming.\n"
 "Counters: 2.5x vs. Siege."
 msgstr ""
 
@@ -16211,7 +16241,7 @@ msgstr ""
 #: simulation/templates/units/thrace_black_cloak.xml:21
 msgid ""
 "Classes: Mercenary Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr ""
 
@@ -17299,7 +17329,7 @@ msgstr ""
 
 #: maps/skirmishes/Lorraine Plain (2).xml:42:Description
 msgid ""
-"The map is cut through the centre by a river traversing east-west with some "
+"The map is cut through the center by a river traversing east-west with some "
 "shallows.\n"
 "\n"
 "Fairly open-wooded and basically flat. Plenty of building room. Well balanced"

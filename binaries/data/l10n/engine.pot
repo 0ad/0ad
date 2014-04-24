@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pyrogenesis\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-20 23:35+0200\n"
+"POT-Creation-Date: 2014-04-24 06:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -31,12 +31,18 @@ msgstr ""
 msgid "custom build"
 msgstr ""
 
-#: i18n/L10n.cpp:220
+#: i18n/L10n.cpp:241
 msgid "Long strings"
 msgstr ""
 
 #: ps/SavedGame.cpp:126
 #, c-format
 msgid "Saved game to '%ls'"
+msgstr ""
+
+#: ps/Util.cpp:244
+#: ps/Util.cpp:377
+#, c-format
+msgid "Screenshot written to '%ls'"
 msgstr ""
 
