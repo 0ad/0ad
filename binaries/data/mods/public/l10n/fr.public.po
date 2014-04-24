@@ -7,6 +7,7 @@
 # Loki <tontonloul@hotmail.fr>, 2013
 # Antoine Adet <antoine.adet@gmail.com>, 2013
 # Calinou, 2013
+# kalemiro <cuvillier.cl@gmail.com>, 2014
 # Thibaut Cuvelier <dourouc05@gmail.com>, 2014
 # Kachimatte <erwan.trestan.laigle@gmail.com>, 2013
 # François Poirotte <clicky@erebot.net>, 2014
@@ -33,6 +34,7 @@
 # Rodmar <rodriguemarch@sfr.fr>, 2013
 # Ross1396, 2014
 # sanderd17, 2014
+# Slim Khan, 2014
 # Thedemos <thekingadn@gmail.com>, 2014
 # Thedemos <thekingadn@gmail.com>, 2014
 # Thibaut Cuvelier <dourouc05@gmail.com>, 2014
@@ -49,8 +51,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-20 23:35+0200\n"
-"PO-Revision-Date: 2014-04-20 21:38+0000\n"
+"POT-Creation-Date: 2014-04-24 08:14+0200\n"
+"PO-Revision-Date: 2014-04-24 12:19+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +100,7 @@ msgstr "Très difficile"
 #: gui/civinfo/civinfo.js:94
 #, python-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "Jouer avec les %(civilization)s"
 
 #: gui/civinfo/civinfo.js:97
 msgid "Civilization Bonus"
@@ -607,7 +609,7 @@ msgstr "Enregistrement..."
 
 #: gui/lobby/prelobby.js:109 gui/lobby/prelobby.js:123
 msgid "Please enter existing login or desired registration credentials."
-msgstr ""
+msgstr "merci d'entrer un login existant ou celui préférer pour s'inscrire "
 
 #: gui/lobby/prelobby.js:114 gui/lobby/prelobby.js:122
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas."
@@ -666,156 +668,180 @@ msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Utilisé OpenGL 2.0 (recommandé)"
 
 #: gui/options/options.js:14
+msgid "Post Processing"
+msgstr ""
+
+#: gui/options/options.js:14
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
+msgstr ""
+
+#: gui/options/options.js:15
 msgid "Shadows"
 msgstr "Ombres"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Enable shadows"
 msgstr "Activer les ombres"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Particles"
 msgstr "Particules"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Enable particles"
 msgstr "Activer les particules"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Show Sky"
 msgstr "Voir le ciel"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Render Sky"
 msgstr "Rendu du ciel"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
+msgid "Smooth LOS"
+msgstr ""
+
+#: gui/options/options.js:18
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."
+msgstr ""
+
+#: gui/options/options.js:19
 msgid "Unit Silhouettes"
 msgstr "Silhouettes des unités"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:19
 msgid "Show outlines of units behind buildings"
 msgstr "Afficher les contours des unités derrière les bâtiments"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Shadow Filtering"
 msgstr "Filtrage des Ombres"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Smooth shadows"
 msgstr "Ombres douces"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid "HQ Waviness"
 msgstr "Ondulation HQ"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Real Water Depth"
 msgstr "Profondeur réelle de l'eau"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Use actual water depth in rendering calculations"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Water Reflections"
 msgstr "Réflexion de l'eau"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Allow water to reflect a mirror image"
 msgstr "Permettre à l'eau de refléter une image miroir"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "Water Refraction"
 msgstr "Réfraction de l'eau"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "Use a real water refraction map and not transparency"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Shore Foam"
 msgstr "Écume"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Show foam on water near shore depending on water waviness"
 msgstr "Afficher l'écume sur l'eau près des rives en fonction de l'ondulation de l'eau"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Shore Waves"
 msgstr "Vagues côtières"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr "Afficher les vagues se brisant sur l'eau près des rives (Nécessite ondulation HQ)"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Water Shadows"
 msgstr "Ombres de l'eau"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Cast shadows on water"
 msgstr "Ombres projetées sur l'eau"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:28
+msgid "VSync"
+msgstr ""
+
+#: gui/options/options.js:28
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.js:32
 msgid "Master Gain"
 msgstr "Principal"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:32
 msgid "Master audio gain"
 msgstr "Gain audio principal"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:33
 msgid "Music Gain"
 msgstr "Musique"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:33
 msgid "In game music gain"
 msgstr "Gain sonore de la musique dans le jeu"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:34
 msgid "Ambient Gain"
 msgstr "Ambiance"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:34
 msgid "In game ambient sound gain"
 msgstr "Gain sonore de l'ambiance dans le jeu"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:35
 msgid "Action Gain"
 msgstr "Action"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:35
 msgid "In game unit action sound gain"
 msgstr "Gain de sonore des actions des unités dans le jeu"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:36
 msgid "UI Gain"
 msgstr "Interface utilisateur"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:36
 msgid "UI sound gain"
 msgstr "Gain sonore de l'interface utilisateur"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:40
 msgid "Chat Backlog"
 msgstr "Historique de la discussion"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:40
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:41
 msgid "Chat Timestamp"
 msgstr "Horodatage du Chat"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:41
 msgid "Show time that messages are posted in the lobby chat"
 msgstr ""
 
@@ -1016,6 +1042,14 @@ msgstr "Clic droit pour définir le marché commercial de destination."
 #: gui/session/input.js:996
 msgid "Cannot build wall here!"
 msgstr "Impossible de construire un mur ici !"
+
+#: gui/session/menu.js:1 gui/session/session.xml:924 (caption)
+msgid "Pause"
+msgstr "Pause"
+
+#: gui/session/menu.js:2
+msgid "Resume"
+msgstr ""
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -1274,8 +1308,8 @@ msgstr "%(previousAmounts)s et %(lastAmount)s"
 
 #: gui/session/messages.js:463 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
-#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:568
-#: gui/session/utility_functions.js:686 gui/session/utility_functions.js:691
+#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
+#: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
 msgid ", "
 msgstr ", "
 
@@ -1323,200 +1357,122 @@ msgstr "Équipes"
 msgid "Private"
 msgstr "Privé"
 
-#: gui/session/selection_details.js:17 simulation/components/Player.js:40
-#: gui/session/session.xml:709 (tooltip) gui/summary/summary.xml:569 (caption)
-msgid "Food"
-msgstr "Nourriture"
-
-#: gui/session/selection_details.js:18
-msgid "Meat"
-msgstr "Viande"
-
-#: gui/session/selection_details.js:19 simulation/components/Player.js:42
-#: gui/session/session.xml:730 (tooltip) gui/summary/summary.xml:578 (caption)
-msgid "Metal"
-msgstr "Métal"
-
-#: gui/session/selection_details.js:20
-msgid "Ore"
-msgstr "Minéral"
-
-#: gui/session/selection_details.js:21
-#: simulation/templates/template_gaia_geo_rock.xml:4
-msgid "Rock"
-msgstr "Roche"
-
-#: gui/session/selection_details.js:22
-#: simulation/templates/template_gaia_ruins.xml:9
-#: simulation/templates/gaia/special_ruins.xml:9
-#: simulation/templates/gaia/special_ruins_column_doric.xml:9
-#: simulation/templates/other/unfinished_greek_temple.xml:9
-msgid "Ruins"
-msgstr "Ruines"
-
-#: gui/session/selection_details.js:23 simulation/components/Player.js:43
-#: gui/session/session.xml:723 (tooltip) gui/summary/summary.xml:575 (caption)
-msgid "Stone"
-msgstr "Pierre"
-
-#: gui/session/selection_details.js:24
-#: simulation/templates/template_gaia_treasure.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
-#: simulation/templates/gaia/special_treasure_food_bin.xml:9
-#: simulation/templates/gaia/special_treasure_food_crate.xml:9
-#: simulation/templates/gaia/special_treasure_food_jars.xml:9
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
-#: simulation/templates/gaia/special_treasure_pegasus.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:9
-#: simulation/templates/gaia/special_treasure_wood.xml:9
-#: simulation/templates/other/special_treasure_shipwreck.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
-msgid "Treasure"
-msgstr "Trésor"
-
-#: gui/session/selection_details.js:25
-#: simulation/templates/template_gaia_flora_tree.xml:5
-msgid "Tree"
-msgstr "Arbre"
-
-#: gui/session/selection_details.js:26 simulation/components/Player.js:41
-#: gui/session/session.xml:716 (tooltip) gui/summary/summary.xml:572 (caption)
-msgid "Wood"
-msgstr "Bois"
-
-#: gui/session/selection_details.js:27
-msgid "Fruit"
-msgstr "Fruit"
-
-#: gui/session/selection_details.js:28
-msgid "Grain"
-msgstr "Grain"
-
-#: gui/session/selection_details.js:29
-#: simulation/templates/template_unit_fauna_fish.xml:9
-msgid "Fish"
-msgstr "Poisson"
-
-#: gui/session/selection_details.js:55
+#: gui/session/selection_details.js:32
 #, python-format
 msgid "%(genericName)s — Packed"
 msgstr "%(genericName)s — Emballé"
 
-#: gui/session/selection_details.js:67
+#: gui/session/selection_details.js:44
 #, python-format
 msgid "[OFFLINE] %(player)s"
 msgstr "[HORS LIGNE]  %(player)s"
 
-#: gui/session/selection_details.js:73
+#: gui/session/selection_details.js:50
 #, python-format
 msgid "%(rank)s Rank"
 msgstr "%(rank)s Grade"
 
-#: gui/session/selection_details.js:91
+#: gui/session/selection_details.js:68
 #, python-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:118
+#: gui/session/selection_details.js:95
 #, python-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:119 gui/session/selection_details.js:125
+#: gui/session/selection_details.js:96 gui/session/selection_details.js:102
 msgid "Experience:"
 msgstr "Expérience :"
 
-#: gui/session/selection_details.js:124
+#: gui/session/selection_details.js:101
 #, python-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:138
+#: gui/session/selection_details.js:115
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:139 gui/session/selection_details.js:172
-#: gui/session/selection_details.js:203
+#: gui/session/selection_details.js:116 gui/session/selection_details.js:149
+#: gui/session/selection_details.js:180
 #, python-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:148
+#: gui/session/selection_details.js:125
 #, python-format
 msgid "%(resource)s:"
 msgstr "%(resource)s :"
 
-#: gui/session/selection_details.js:187
+#: gui/session/selection_details.js:164
 #, python-format
 msgid "Gain: %(amount)s"
 msgstr "Gain : %(amount)s"
 
-#: gui/session/selection_details.js:196
+#: gui/session/selection_details.js:173
 msgid "Number of builders"
 msgstr "Nombre de constructeurs"
 
-#: gui/session/selection_details.js:204
+#: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
 msgstr "Collecteurs actuels/max"
 
-#: gui/session/selection_details.js:219
+#: gui/session/selection_details.js:196
 #, python-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:249 gui/session/session.js:648
+#: gui/session/selection_details.js:226 gui/session/session.js:648
 msgid "Armor:"
 msgstr "Armure:"
 
-#: gui/session/selection_details.js:250 gui/session/selection_details.js:261
+#: gui/session/selection_details.js:227 gui/session/selection_details.js:238
 #: gui/session/session.js:646 gui/session/session.js:649
 #, python-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:257
+#: gui/session/selection_details.js:234
 msgid "Interval:"
 msgstr "Intervalle :"
 
-#: gui/session/selection_details.js:259
+#: gui/session/selection_details.js:236
 msgid "Rate:"
 msgstr "Taux :"
 
-#: gui/session/selection_details.js:272 gui/session/session.js:641
-#: gui/session/utility_functions.js:590
+#: gui/session/selection_details.js:249 gui/session/session.js:641
+#: gui/session/utility_functions.js:602
 msgid "Range:"
 msgstr "Distance :"
 
-#: gui/session/selection_details.js:274
+#: gui/session/selection_details.js:251
 msgid "meters"
 msgstr "mètres"
 
-#: gui/session/selection_details.js:277 gui/session/selection_details.js:287
+#: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, python-format
 msgid ""
 "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), "
 "%(rate)s"
 msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
-#: gui/session/selection_details.js:297
+#: gui/session/selection_details.js:274
 #, python-format
 msgid "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
-#: gui/session/selection_details.js:308
+#: gui/session/selection_details.js:285
 #, python-format
 msgid "%(label)s %(details)s, %(rate)s"
 msgstr "%(label)s %(details)s, %(rate)s"
 
-#: gui/session/selection_details.js:364
+#: gui/session/selection_details.js:341
 msgid "Hitpoints:"
 msgstr "Points de vie :"
 
-#: gui/session/selection_details.js:365 gui/session/session.js:632
+#: gui/session/selection_details.js:342 gui/session/session.js:632
 #, python-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -1819,122 +1775,337 @@ msgstr "Déclencher l'alerte!"
 msgid "End of alert."
 msgstr "Fin de l'alerte."
 
-#: gui/session/utility_functions.js:427 gui/session/utility_functions.js:428
-#: gui/session/utility_functions.js:429 gui/session/utility_functions.js:430
-#: gui/session/utility_functions.js:431 gui/session/utility_functions.js:432
-#: gui/session/utility_functions.js:550
+#: gui/session/utility_functions.js:433 gui/session/utility_functions.js:434
+#: gui/session/utility_functions.js:435 gui/session/utility_functions.js:436
+#: gui/session/utility_functions.js:437 gui/session/utility_functions.js:438
+#: gui/session/utility_functions.js:562
 #, python-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/session/utility_functions.js:513
+#. Translation: This string is part of the resources cost string on
+#. the tooltip for wall structures.
+#: gui/session/utility_functions.js:492
+#, python-format
+msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
+msgstr ""
+
+#: gui/session/utility_functions.js:525
 #, python-format
 msgid "Walls:  %(costs)s"
 msgstr "Murs:  %(costs)s"
 
-#: gui/session/utility_functions.js:513 gui/session/utility_functions.js:514
-#: gui/session/utility_functions.js:519 gui/session/utility_functions.js:555
+#: gui/session/utility_functions.js:525 gui/session/utility_functions.js:526
+#: gui/session/utility_functions.js:531 gui/session/utility_functions.js:567
 msgid "  "
 msgstr "  "
 
-#: gui/session/utility_functions.js:514
+#: gui/session/utility_functions.js:526
 #, python-format
 msgid "Towers:  %(costs)s"
 msgstr "Tours:  %(costs)s"
 
-#: gui/session/utility_functions.js:536
+#: gui/session/utility_functions.js:548
 #, python-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/session/utility_functions.js:537
+#: gui/session/utility_functions.js:549
 msgid "Population Bonus:"
 msgstr "Bonus de population:"
 
-#: gui/session/utility_functions.js:555
+#: gui/session/utility_functions.js:567
 msgid "Insufficient resources:"
 msgstr "Ressources insuffisantes:"
 
-#: gui/session/utility_functions.js:563
+#: gui/session/utility_functions.js:575
 msgid "Speed:"
 msgstr "Vitesse:"
 
-#: gui/session/utility_functions.js:565 gui/session/utility_functions.js:566
+#: gui/session/utility_functions.js:577 gui/session/utility_functions.js:578
 #, python-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/session/utility_functions.js:565
+#: gui/session/utility_functions.js:577
 msgid "Walk"
 msgstr "Marche"
 
-#: gui/session/utility_functions.js:566
+#: gui/session/utility_functions.js:578
 msgid "Run"
 msgstr "Course"
 
-#: gui/session/utility_functions.js:568
+#: gui/session/utility_functions.js:580
 #, python-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/session/utility_functions.js:587
+#: gui/session/utility_functions.js:599
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 
-#: gui/session/utility_functions.js:596
+#: gui/session/utility_functions.js:608
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr "%(attackLabel)s %(damageTypes)s"
 
-#: gui/session/utility_functions.js:612
+#: gui/session/utility_functions.js:624
 #, python-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/session/utility_functions.js:622
+#: gui/session/utility_functions.js:634
 msgid "???"
 msgstr "???"
 
-#: gui/session/utility_functions.js:652
+#: gui/session/utility_functions.js:664
 #, python-format
 msgid "%(rank)s %(name)s"
 msgstr "%(rank)s %(name)s"
 
-#: gui/session/utility_functions.js:676 gui/session/utility_functions.js:678
+#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:690
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:680 gui/session/utility_functions.js:686
-#: gui/session/utility_functions.js:691
+#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:698
+#: gui/session/utility_functions.js:703
 #, python-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:682
+#: gui/session/utility_functions.js:694
 msgid "you"
 msgstr "vous"
 
-#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:693
+#: gui/session/utility_functions.js:700 gui/session/utility_functions.js:705
 #, python-format
 msgid "player %(name)s"
 msgstr "joueur %(name)s "
 
-#: gui/session/utility_functions.js:701
+#: gui/session/utility_functions.js:713
 msgid "Charge Attack:"
 msgstr "Attaque de charge :"
 
-#: gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:714
 msgid "Melee Attack:"
 msgstr "Attaque de mêlée :"
 
-#: gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:715
 msgid "Ranged Attack:"
 msgstr "Attaque à distance :"
 
-#: gui/session/utility_functions.js:706
+#: gui/session/utility_functions.js:718
 msgid "Attack:"
 msgstr "Attaque:"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:741
+msgctxt "firstWord"
+msgid "Food"
+msgstr "Nourriture"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:743
+msgctxt "firstWord"
+msgid "Meat"
+msgstr "Viande"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:745
+msgctxt "firstWord"
+msgid "Metal"
+msgstr "Métal"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:747
+msgctxt "firstWord"
+msgid "Ore"
+msgstr "Minéral"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:749
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "Roche"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:751
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Ruines"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:753
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "Pierre"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:755
+msgctxt "firstWord"
+msgid "Treasure"
+msgstr "Trésor"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:757
+msgctxt "firstWord"
+msgid "Tree"
+msgstr "Arbre"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:759
+msgctxt "firstWord"
+msgid "Wood"
+msgstr "Bois"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:761
+msgctxt "firstWord"
+msgid "Fruit"
+msgstr "Fruit"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:763
+msgctxt "firstWord"
+msgid "Grain"
+msgstr "Grain"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:765
+msgctxt "firstWord"
+msgid "Fish"
+msgstr "Poisson"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:776
+msgctxt "withinSentence"
+msgid "Food"
+msgstr "Nourriture"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:778
+msgctxt "withinSentence"
+msgid "Meat"
+msgstr "Viande"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:780
+msgctxt "withinSentence"
+msgid "Metal"
+msgstr "Métal"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:782
+msgctxt "withinSentence"
+msgid "Ore"
+msgstr "Minéral"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:784
+msgctxt "withinSentence"
+msgid "Rock"
+msgstr "Roche"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:786
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "Ruines"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:788
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr "Pierre"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:790
+msgctxt "withinSentence"
+msgid "Treasure"
+msgstr "Trésor"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:792
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr "Arbre"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:794
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr "Bois"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:796
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr "Fruit"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:798
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr "Grain"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:800
+msgctxt "withinSentence"
+msgid "Fish"
+msgstr "Poisson"
 
 #: gui/splashscreen/splashscreen.js:9
 #, python-format
@@ -2062,6 +2233,26 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "ennemi"
 
+#: simulation/components/Player.js:40 gui/session/session.xml:709 (tooltip)
+#: gui/summary/summary.xml:569 (caption)
+msgid "Food"
+msgstr "Nourriture"
+
+#: simulation/components/Player.js:41 gui/session/session.xml:716 (tooltip)
+#: gui/summary/summary.xml:572 (caption)
+msgid "Wood"
+msgstr "Bois"
+
+#: simulation/components/Player.js:42 gui/session/session.xml:730 (tooltip)
+#: gui/summary/summary.xml:578 (caption)
+msgid "Metal"
+msgstr "Métal"
+
+#: simulation/components/Player.js:43 gui/session/session.xml:723 (tooltip)
+#: gui/summary/summary.xml:575 (caption)
+msgid "Stone"
+msgstr "Pierre"
+
 #: simulation/components/Player.js:236
 #, python-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
@@ -2088,6 +2279,10 @@ msgid ""
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Ressources insuffisantes : %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
+
+#: simulation/components/ProductionQueue.js:345
+msgid "The production queue is full."
+msgstr ""
 
 #: simulation/components/Wonder.js:53
 #, python-format
@@ -2128,7 +2323,7 @@ msgid "Civilization Selection"
 msgstr "Civilisation sélectionnée"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:28 (caption)
-#: gui/session/session.xml:539 (caption)
+#: gui/session/session.xml:486 (caption) gui/session/session.xml:539 (caption)
 msgid "Close"
 msgstr "Fermer"
 
@@ -2858,10 +3053,6 @@ msgstr "Choisir la vitesse de jeu"
 msgid "MENU"
 msgstr "MENU"
 
-#: gui/session/session.xml:924 (caption)
-msgid "Pause"
-msgstr "Pause"
-
 #: gui/session/session.xml:936 (caption)
 msgid "Resign"
 msgstr "Abandonner"
@@ -2907,7 +3098,7 @@ msgstr "Bienvenue !"
 
 #: gui/splashscreen/splashscreen.xml:20 (caption)
 msgid "Show this message in the future"
-msgstr "Montrer ce message dans le futur"
+msgstr "Montrer ce message ultérieurement"
 
 #: gui/splashscreen/splashscreen.xml:35 (caption)
 msgid "Known issues (web)"
@@ -3559,7 +3750,7 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr "En tant que jeu gratuit et à code source ouvert, nous n'avons pas la possibilité de le tester un échantillon de systèmes différents, mais nous voulons offrir la meilleure qualité d'expérience de jeu au plus grand nombre de joueurs possible. Quand vous autoriserez la remontée des données collectées, nous recevrons des données qui nous permettrons de comprendre sur quel type de matériel informatique à prendre en charge nous devrions nous concentrer et pour identifier les problèmes de performance que nous devrions corriger. "
+msgstr "Ce jeu étant libre et gratuit, nous n'avons pas les ressources nécessaires pour le tester sur un grand nombre de systèmes différents, mais nous voulons offrir la meilleure expérience de jeu au plus grand nombre de joueurs possible. Quand vous autoriserez le retour d'informations, nous recevrons des données qui nous permettront de comprendre sur quel type de matériel informatique nous devrions nous concentrer et d'identifier les problèmes de performance que nous devrions corriger. "
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
@@ -3576,13 +3767,13 @@ msgstr "• Un ID utilisateur aléatoire (stocké dans% APPDATA% \\ 0ad \\ confi
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr "• numéro de version de jeu et les paramètres de compilation de base (mode d'optimisation, l'architecture CPU, l'horodatage, la version du compilateur)."
+msgstr "• Numéro de version du jeu et les paramètres de compilation de base (mode d'optimisation, architecture du processeur, horodatage, version du compilateur)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr "Détails du matériel : version du système d'exploitation, version du pilote graphique, capacités OpenGL, taille de l'écran, détails des processeurs, taille de la mémoire."
+msgstr "• Détails matériels : version du système d'exploitation, version du pilote graphique, capacités OpenGL, taille de l'écran, détails des processeurs, taille de la mémoire."
 
 #: gui/manual/userreport.txt:8
 msgid ""
@@ -3594,7 +3785,7 @@ msgstr "• Détails de performance : un instantané des données de chronométr
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr "Les données seront seulement de quelques kilo-octets chaque fois que vous exécutez le jeu, donc l'usage de la bande passante est minimale."
+msgstr "Les données pèseront seulement quelques kilo-octets chaque fois que vous exécutez le jeu, donc l'usage de la bande passante est minimale."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -3603,11 +3794,11 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr "Nous stockerons les données soumises sur notre serveur, et publierons des statistiques pour aider les développeurs de jeu sur des questions similaires sans que l'utilisateur d’origine ne soit identifiable. Nous stockerons l'adresse IP d'origine de l'envoi des données, afin de détecter les abus de ce service, mais nous ne la publierons pas. Les données publiées peuvent être consultées ici : http://feedback.wildfiregames.com/"
+msgstr "Nous stockerons les données reçues sur notre serveur, et publierons des statistiques pour aider les développeurs du jeu sur des questions similaires sans que l'utilisateur d’origine ne soit identifiable. Nous stockerons l'adresse IP d'origine de l'envoi des données, afin de détecter les abus de ce service, mais nous ne la publierons pas. Les données publiées peuvent être consultées ici : http://feedback.wildfiregames.com/"
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"serif-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr "[font=\"serif-bold-16\"]Merci pour l'installation de 0 AD!"
+msgstr "[font=\"serif-bold-16\"]Merci d'avoir installé 0 A.D. !"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid "[font=\"serif-16\"]"
@@ -3617,7 +3808,7 @@ msgstr "[font=\"serif-16\"]"
 msgid ""
 "[icon=\"constructionIcon\"]  This is an early experimental version of the "
 "game. Features are missing and it contains bugs."
-msgstr "[icon=\"constructionIcon\"] Ceci est une première version expérimentale du jeu. Des fonctionnalités sont manquantes et elle contient des bogues."
+msgstr "[icon=\"constructionIcon\"] Ceci est une version expérimentale du jeu. Des fonctionnalités sont manquantes et elle contient des bogues."
 
 #: gui/splashscreen/splashscreen.txt:5
 msgid "[icon=iconLag]  The game lags when many units are moving."
@@ -4160,7 +4351,7 @@ msgstr "\"Oui, Ôte-toi de mon soleil.\" - Diogène de Sinope, quand Alexandre l
 
 #: gui/text/quotes.txt:101
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
-msgstr "\"Je suis un citoyen du monde.\" - Diogène de SInope"
+msgstr "\"Je suis un citoyen du monde.\" - Diogène de Sinope"
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -4423,7 +4614,7 @@ msgstr "\"La mort n'est pas la pire chose qui puisse arriver à un homme.\" - Pl
 
 #: gui/text/quotes.txt:150
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
-msgstr "\"Seuls les morts ont vus la fin de la guerre.\" - Inconnu"
+msgstr "\"Seuls les morts ont vu la fin de la guerre.\" - Inconnu"
 
 #: gui/text/quotes.txt:151
 msgid "\"Our need will be the real creator.\" - Plato"
@@ -5895,7 +6086,7 @@ msgid ""
 " was held up by the post-Roman Britons as one of their great heroes; a "
 "conqueror and uniter of petty kingdoms, something the post-Roman Britons or "
 "Romano-British sorely needed."
-msgstr "Kunobelinos, nom peut-être plus connu sous sa forme latinisée Cunobelin, était un souverain puissant sur les territoires autour de l'actuelle Colchester. Régnant sur les Catuvellauni de Kamulodunon (plus connu sous le nom de Camulodunum), il était un roi guerrier qui conquit une tribu voisine, les Trinovantes, alors qu'ils étaient alliés des Romains, ces derniers ne purent les appelés à l'aide car ils furent envahi juste après la déroute Romaine en Germanie. Cunobelin mourut de maladie après avoir assujetti la grande majorité du sud de la Bretagne (ses pièces de monnaie ont été frappées jusqu'au frontière de ce qui est devenu le Pays de Galles). Quand il mourut, son fils Togdumnos lui succéda mais mourut dans une batailla contre les Romains, et par la suite il fut aussi remplacé par son frère, Caratacos. Ce qui est ironique car même s'il était son troisième fils, c'est lui qui était à l'origine des représailles Romaines. Cunobelin semble avoir été indifférent aux Romains. Il a commercé avec eux librement, mais il n'a pas de scrupules pour asservir les alliés romains connus de la région, et envoya même Adminius comme une pupille  pour son éducation en Gaule romaine. Cela a participé à ce que Adminius tisse des liens d'amitiés avec les Romains, qui lui attribuèrent l'autorité sur les Cantaci, qui habitaient le Kent, du temps de son père. Cette région fut la principale zone d'influence et de commerce des Romains en Bretagne, et il a astucieusement observé l'amitié de son fils avec les puissants politiciens et commerçants Romains et Gallo-Romains qui avaient l'habitude d’administrer cette région. Ses autres fils n'avaient pas de sympathie pour les Romains, et quand Cunobelin mourut, Togdumnos devenu roi fit arrêté, exécuté ou expulsa nombres de sympathisants Romains, y compris son propre frère Adminius ainsi que le roi déchu des Atrébates, Verica, qui fit appel à ses connaissances dans l'empire Romain afin de récupérer ses terres. Cunobelin en son temps fut probablement un des plus grands rois de Bratagne. Il conquit de nombreuses terres, gouverna au début seulement la confédération de quatre tribus mineures, les Catuvellauni, puis fini par se faire reconnaître roi de Bretagne. Cette reconnaissance fut si étendue que même les tribus de Cambrie vinrent aider ses fils contre les Romains et leurs alliés bretons. Cunobelin a été retenu par les Britons post-romains comme l'un de leurs plus grands héros ; un conquérant et unificateur de petits royaumes, ce qui fit cruellement défaut aux bretons post-romains ou aux romano-bretons. "
+msgstr "Kunobelinos, ou Cunobelinos, était un souverain puissant des territoires autour de l'actuelle Colchester. Régnant sur les Catuvellauni de Kamulodunon (plus connu sous le nom de Camulodunum), il était un roi guerrier qui conquit une tribu voisine, les Trinovantes, et était appelé par les Romains Roi des Bretons. Les Trinovantes, même s'ils étaient alliés des Romains, ne purent appeler Rome à l'aide car ils furent envahis juste après la déroute romaine en Germanie. Kunobelinos mourut de maladie après avoir assujetti la grande majorité du sud de la Bretagne (ses pièces de monnaie ont été frappées jusqu'aux frontières de ce qui deviendrait le Pays de Galles). Quand il mourut, son fils Togdumnos lui succéda mais mourut lors d'une bataille contre les Romains, et fut à son tour remplacé par son frère, Caratacos. Ironiquement, c'est son troisième fils qui était à l'origine des représailles romaines. Kunobelinos semble avoir été indifférent aux Romains. Il a commercé avec eux librement, mais il n'avait pas de scrupules à asservir les alliés connus de Rome, et envoya même Adminius étudier en Gaule romaine. Cela explique les liens d'amitié d'Adminius avec les Romains, qui lui donnèrent autorité sur les Cantaci, qui habitaient le Kent du temps de son père. Cette région était la principale zone d'influence et de commerce des Romains en Bretagne, et il a compris que l'amitié de son plus jeune fils avec les puissants politiciens et commerçants romains et gallo-romains serait utile pour administrer cette région. Ses autres fils n'avaient cependant pas de sympathie pour les Romains, et quand Kunobelinos mourut, Togdumnos devenu roi fit arrêter, exécuter ou expulser nombre de sympathisants des Romains, y compris son propre frère Adminius, ainsi que le roi déchu des Atrébates, Verica, qui fit appel à ses connaissances dans l'empire Romain afin de récupérer ses terres. Kunobelinos en son temps fut probablement un des plus grands rois de Bretagne. Il conquit de nombreuses terres, gouverna au début seulement la confédération de quatre tribus mineures, les Catuvellauni, puis finit par se faire reconnaître roi de Bretagne. Cette reconnaissance fut si étendue que même les tribus de Cambrie vinrent aider ses fils contre les Romains et leurs alliés bretons. Kunobelinos a été retenu par les Bretons post-romains comme l'un de leurs plus grands héros ; un conquérant et unificateur de petits royaumes, ce qui fit cruellement défaut aux bretons post-romains ou aux romano-bretons. "
 
 #: civs/brit.jsonFactions[0].Heroes[2].History
 #: civs/celt.jsonFactions[0].Heroes[2].History
@@ -6108,10 +6299,11 @@ msgid "Colonization"
 msgstr "Colonisation"
 
 #: civs/cart.jsonFactions[0].Technologies[1].History
+#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
-"Carthaginians established many trading centres as colonies and ultimately "
+"Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "Les Carthaginois établirent de nombreux comptoirs commerciaux comme colonies et ont finalement dominé plus de 300 villes et villages pour la seule Afrique du Nord."
+msgstr "Les Carthaginois établirent de nombreux centres commerciaux comme des colonies et ont finalement dominé plus de 300 villes et villages pour la seule Afrique du Nord."
 
 #: civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -6255,19 +6447,21 @@ msgstr "Les druides Carnutes étaient des Aulerques. Ils se battaient qu'en cas 
 #: civs/celt.jsonFactions[1].Heroes[0].History
 #: civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
-"The story of how Marcus Claudius Marcellus killed a Gallic leader at "
-"Clastidium (222 B.C.) is typical of such encounters. Advancing with a "
-"smallish army, Marcellus met a combined force of Insubrian Gauls and "
-"Gaesatae at Clastidium. The Gallic army advanced with the usual rush and "
-"terrifying cries, and their king, Britomartos, picking out Marcellus by "
-"means of his badges of rank, made for him, shouting a challenge and "
-"brandishing his spear. Britomartos was an outstanding figure not only for "
-"his size but also for his adornments; for he was resplendent in bright "
-"colors and his armor shone with gold and silver. This armor, thought "
-"Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
+"When celt armies met the enemy, before the battle would start, the celt "
+"leader would go to the first line and challenge the bravest of the enemy "
+"warriors to a single combat. The story of how Marcus Claudius Marcellus "
+"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
+"encounters. Advancing with a smallish army, Marcellus met a combined force "
+"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
+" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"out Marcellus by means of his badges of rank, made for him, shouting a "
+"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"not only for his size but also for his adornments; for he was resplendent in"
+" bright colors and his armor shone with gold and silver. This armor, thought"
+" Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
 "task to kill Britomartos and strip him of his armor."
-msgstr "L'histoire de comment Marcus Claudius Marcellus a tué un chef gaulois à Clastidium (222 av. J.C.) est typique de ce genre de batailles. Avançant avec une petite armée, Marcellus rencontra une force combinée de Gaulois Insubres et de Gésates à Casteggio. L'armée gauloise attaquaient avec leur courses habituelles et leurs cris terrifiants, et leur roi, Viridomaros, sélectionnant Marcellus au moyens de ses galons et de ses insignes faites pour lui, lui envoya un défi et brandit sa lance. Viridomaros avait une silhouette remarquable, non pas seulement par sa taille, mais aussi par ses ornements ; il resplendissait ainsi de couleurs brillantes et son armure brillait d'or et d'argent. Son armure, pensa Marcellus, ferait une belle offrande aux dieux. Il chargea le Gaulois, transperça son plastron brillant et le jeta à terre. Ce fut une tâche facile de tuer Viridomaros et de le dépouiller de son armure. "
+msgstr ""
 
 #: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
 #: civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -6728,7 +6922,7 @@ msgstr "Viriathe, comme Vercingétorix en Gaule, était le plus célèbre des ch
 #: civs/iber.jsonFactions[0].Heroes[1].History
 msgid ""
 "Karos was a chief of the Belli tribe located just east of the Celtiberi "
-"(Numantines at the centre). Leading the confederated tribes of the meseta "
+"(Numantines at the center). Leading the confederated tribes of the meseta "
 "central (central upland plain) he concealed 20,000 foot and 5,000 mounted "
 "troops along a densely wooded track. Q. Fulvius Nobilior neglected proper "
 "reconnaissance and lead his army into the trap strung out in a long column. "
@@ -6798,7 +6992,7 @@ msgstr "Macédoniens"
 msgid ""
 "Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, "
 "but -5% attack debonus vs. Romans."
-msgstr "Les unités macédonniennes ont un bonus de +10% attaque c. les factions Perses et Helleniques, mais -5% attaque de malus c. les Romains"
+msgstr "Les unités macédoniennes ont un bonus d'attaque de +10% c. les Perses et les Hellènes, mais un malus d'attaque de -5% c. les Romains."
 
 #: civs/mace.jsonCivBonuses[0].Name
 msgid "Hellenic League"
@@ -7863,7 +8057,7 @@ msgid ""
 "execution. It has a turf wall, and it's surrounded by a canal filled with "
 "water whenever possible for extra defense. Many towns started up as bigger "
 "military camps to evolve to more complicated cities."
-msgstr ""
+msgstr "Il s'agissait parfois d'un camp temporaire construit face à la route empruntée par l'armée, parfois d'une structure défensive ou offensive (lors de sièges). Derrière la porte les tentes des premières centuries ou cohortes sont installées, et les dragons (insignes des cohortes) et autres insignes sont plantés. La porte décumane est directement opposée à la prétorienne à l'arrière du camp, et à travers elle les soldats sont conduits à l'endroit désigné pour les punitions et exécutions. Il est entouré d'un mur de briques et d'un canal rempli, lorsque c'était possible, d'eau fournissant une défense supplémentaire. De nombreuses cités ont d'abord été de grands camps militaires avant d'évoluer vers des villes plus complexes."
 
 #: civs/rome.jsonStructures[1].Name
 #: simulation/templates/structures/rome_wallset_siege.xml:6
@@ -8280,7 +8474,7 @@ msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr ""
+msgstr "Les citoyennes Spartan ne peuvent pas être capturés et elles se défendront avec acharnement contre tous les attaquants. Elles sont également capables de construire des tours de défense et de palissades."
 
 #: civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -8363,7 +8557,7 @@ msgid ""
 " the Battle of Megalopolis, the Macedonians prevailed in a long and bloody "
 "battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis "
 "made a heroic final stand in order to buy time for his troops to retreat."
-msgstr ""
+msgstr "Agis III était le 20ème roi de sparte de la dynastie eurypontide. Agis concocta une alliance des états de la Grèce du sud pour combattre l'hégémonie Macédonienne pendant qu'Alexandre le grand se trouve en Asie pour ses conquêtes. Après avoir sécurisé la Crète comme étant tributaire de Sparte, Agis assiégea ensuite la cité de Megalopolis dans le Péloponnèse, qui était un allié des Macédoniens. Antipater, le régent de Macédoine, conduit une armée pour arrêter ce nouveau soulèvement. Dans la bataille de Megalopolis, les macédoniens s'attendaient à une longue et sanglante bataille. Comme Leonidas 150 ans plus tôt, au lieu de se rendre, Agis s'opposa héroïquement dans un dernier combat afin de laisser du temps à ses troupes pour qu'elles battent en retraite."
 
 #: civs/spart.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/spart_hero_agis.xml:11
@@ -9424,7 +9618,7 @@ msgstr "Travail de l'acier"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
 msgid "Wootz Steel"
-msgstr "Acier wootz"
+msgstr "Wootz"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
@@ -9751,7 +9945,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
-msgstr ""
+msgstr "Citoyenne +50% santé"
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -9956,8 +10150,8 @@ msgstr "Cité bretonne"
 #: simulation/data/technologies/phase_city_gauls.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks Gallic structures and units. Territory "
-"radius for Civilization Centres increased by another +50%"
-msgstr "Évoluer vers une cité pour débloquer davantage de structures et unités gauloises. Le rayon du territoire des centres civiques augmente de +50%."
+"radius for Civilization Centers increased by another +50%"
+msgstr ""
 
 #: simulation/data/technologies/phase_city_gauls.jsongenericName
 msgid "City Phase - Gauls"
@@ -10060,7 +10254,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
-msgstr ""
+msgstr "Réunion publique"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.rome
 msgid "Comitium"
@@ -10078,11 +10272,11 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 msgid "Houses +1 population cap bonus."
-msgstr ""
+msgstr "Bonus de +1 de population pour les maisons."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
-msgstr ""
+msgstr "Jardin"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
@@ -10259,7 +10453,7 @@ msgstr "Améliore significativement la vitesse de formation des soldats à la ca
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
 msgid "Faster batch training speed for the Barracks."
-msgstr ""
+msgstr "Vitesse d'enrolement dans les casernes augmentée"
 
 #: simulation/data/technologies/training_conscription.jsongenericName
 msgid "Conscription"
@@ -10275,7 +10469,7 @@ msgstr "L'appel à l'enrôlement pour la cavalerie en temps de guerre aide à re
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr ""
+msgstr "La cavalerie s’entraîne -20% plus vite, mais perd -10 points de vie. Débloque Conscription."
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
@@ -10545,12 +10739,6 @@ msgstr "Coût des mercenaires Italiens c. temps de recrutement #1"
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_2.jsongenericName
 msgid "Italian merc cost vs. recruit time #2"
 msgstr "Coût des mercenaires Italiens c. temps de recrutement #2"
-
-#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
-msgid ""
-"Carthaginians established many trading centers as colonies and ultimately "
-"held dominion over 300 cities and towns in North Africa alone."
-msgstr "Les Carthaginois établirent de nombreux centres commerciaux comme des colonies et ont finalement dominé plus de 300 villes et villages pour la seule Afrique du Nord."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
@@ -10914,7 +11102,7 @@ msgstr "Améliore significativement la vitesse de formation de la cavalerie dans
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr ""
+msgstr "Vitesse d’enrôlement dans les écuries augmentée."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
@@ -10928,7 +11116,7 @@ msgstr "Conscription d'infanterie"
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "La cavalerie s’entraîne -20% plus vite, mais perd -10 points de vie. Débloque la Cavalerie Conscrite."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
@@ -10964,7 +11152,7 @@ msgstr "Améliore significativement la vitesse de formation des champions et des
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
-msgstr ""
+msgstr "Vitesse d'enrôlement dans les forteresses augmentée."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -11046,6 +11234,10 @@ msgstr "Baies"
 msgid "Chop down to accumulate Wood."
 msgstr "Abattre pour accumuler du bois."
 
+#: simulation/templates/template_gaia_flora_tree.xml:5
+msgid "Tree"
+msgstr "Arbre"
+
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
 msgstr "Géologie générique"
@@ -11066,6 +11258,10 @@ msgstr "Mine de métal"
 msgid "Mine these to provide Stone building material."
 msgstr "Leur exploitation fournit des matériaux de construction en pierre."
 
+#: simulation/templates/template_gaia_geo_rock.xml:4
+msgid "Rock"
+msgstr "Roche"
+
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Stone Mine"
 msgstr "Mine de pierre"
@@ -11078,6 +11274,13 @@ msgstr "Des ruines qui peuvent être exploitées pour les ressources."
 msgid "Generic Ruins"
 msgstr "Ruines génériques"
 
+#: simulation/templates/template_gaia_ruins.xml:9
+#: simulation/templates/gaia/special_ruins.xml:9
+#: simulation/templates/gaia/special_ruins_column_doric.xml:9
+#: simulation/templates/other/unfinished_greek_temple.xml:9
+msgid "Ruins"
+msgstr "Ruines"
+
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
 msgstr "Un trésor qui peut être collecté rapidement."
@@ -11085,6 +11288,24 @@ msgstr "Un trésor qui peut être collecté rapidement."
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
 msgstr "Trésor générique"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
+#: simulation/templates/gaia/special_treasure_food_bin.xml:9
+#: simulation/templates/gaia/special_treasure_food_crate.xml:9
+#: simulation/templates/gaia/special_treasure_food_jars.xml:9
+#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
+#: simulation/templates/gaia/special_treasure_pegasus.xml:9
+#: simulation/templates/gaia/special_treasure_stone.xml:9
+#: simulation/templates/gaia/special_treasure_wood.xml:9
+#: simulation/templates/other/special_treasure_shipwreck.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
+msgid "Treasure"
+msgstr "Trésor"
 
 #: simulation/templates/template_structure.xml:47
 msgid "Structure"
@@ -11096,7 +11317,7 @@ msgstr "Structure civile"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:31
 msgid "CivilCentre"
-msgstr ""
+msgstr "Centre Civil"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:63
 msgid ""
@@ -11133,7 +11354,7 @@ msgstr "Structure défensive"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:32
 msgid "DefenseTower"
-msgstr ""
+msgstr "Tour de défense"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:61
 msgid "Shoots arrows. Garrison to provide extra defense."
@@ -11312,9 +11533,9 @@ msgstr "Cavalerie de mêlée"
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
 "Classes: Citizen Melee Cavalry Spearman.\n"
-"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers. \n"
+"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, Elephants."
-msgstr "Classes : Lancier monté citoyen de mêlée.\nContre : 2x c. épéistes et armes de siège, 1.5x c. tirailleurs.\nContré par : Lanciers, archers, éléphants."
+msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
 msgid "Cavalry Spearman"
@@ -11368,9 +11589,9 @@ msgstr "Cavalerie Championne"
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:41
 msgid ""
 "Classes: Champion Ranged Cavalry Archer.\n"
-"Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr "Classes: Archer monté à distance Champion.\nContre: 2x c. épéistes, 1.5x c. lanciers.\nContré par: Tirailleurs et éléphants."
+msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:40
 msgid "Champion Cavalry Archer."
@@ -11427,9 +11648,9 @@ msgstr "Infanterie Championne"
 #: simulation/templates/template_unit_champion_infantry_archer.xml:46
 msgid ""
 "Classes: Champion Ranged Infantry Archer.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
-msgstr "Classes: Archer d'infanterie à distance Champion.\nContre : 2x c. épéistes, 1.25x c. lanciers montés.\nContré par: Épéistes montés et tirailleurs montés."
+msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
@@ -11438,9 +11659,9 @@ msgstr "Archer Champion"
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:54
 msgid ""
 "Classes: Champion Ranged Infantry Skirmisher.\n"
-"Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots. \n"
+"Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Swordsmen and Cavalry Spearmen."
-msgstr "Classes: Tirailleur d'infanterie à distance Champion.\nContre: 1.5x c. lanciers, archers montés, éléphants et chariots.\nContré par: Épéistes et lanciers montés."
+msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:53
 msgid "Champion Skirmisher"
@@ -11449,9 +11670,9 @@ msgstr "Tirailleur Champion"
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:57
 msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
-"Counters: 2x vs. All Cavalry, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.\n"
 "Countered by: Swordsmen, Skirmishers, and Cavalry Archers."
-msgstr "Classes : Lancier d'infanterie de mêlée champion.\nContre : 2x c. toutes cavaleries, 1,5x c. éléphants.\nContré par : Épéistes, tirailleurs et archers montés."
+msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:55
 msgid "Champion Pikeman"
@@ -11471,9 +11692,9 @@ msgstr "Lancier Champion"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:53
 msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Classes: Épéiste d'infanterie de mêlée Champion.\nContre: 2x c. lanciers, 1.5x c. éléphants.\nContré par: Archers, lanciers montés et archers montés."
+msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
@@ -11500,6 +11721,10 @@ msgstr "Chien de guerre"
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
 msgstr "Faune"
+
+#: simulation/templates/template_unit_fauna_fish.xml:9
+msgid "Fish"
+msgstr "Poisson"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:17
 msgid "Kill, then collect food from this bountiful oceanic resource."
@@ -11567,9 +11792,9 @@ msgstr "Classes : Héros Éléphant de mêlée Champion.\nContre : 2x c. toute l
 #: simulation/templates/template_unit_hero_infantry_archer.xml:41
 msgid ""
 "Classes: Hero Infantry Ranged Archer Bow.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr "Classes : Archer d'infanterie à distance héros.\nContre : 2x c. épéistes, 1.25x c. lanciers montés.\nContré par : épéistes montés, tirailleurs montés."
+msgstr ""
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:39
 msgid "Hero Archer"
@@ -11591,7 +11816,7 @@ msgstr "Lancier Héros"
 msgid ""
 "Classes: Hero Infantry Melee Sword.\n"
 "\"Hero\" Aura: TBD.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
 msgstr ""
 
@@ -11763,9 +11988,9 @@ msgstr "Catapulte de siège"
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:62
 msgid ""
 "Classes: Siege Melee Ram.\n"
-"Counters: 1.5x vs. Gates. Generally good vs. Buildings. \n"
+"Counters: 1.5x vs. Gates. Generally good vs. Buildings.\n"
 "Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships)."
-msgstr "Classes: Bélier de siège de mêlée.\nContre: 1.5x c. portes. Généralement bon contre les bâtiments.\nContré par: Cavalerie de mêlée. Vous ne pouvez pas attaquer les unités organiques (mais peut attaquer une autre arme de siège et navires)."
+msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:60
 msgid "Battering Ram"
@@ -11811,7 +12036,7 @@ msgstr "Guérisseur"
 msgid ""
 "Classes: Support Worker Slave.\n"
 "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr ""
+msgstr "Classe: Travailleurs de Soutient Esclaves.\nCueilleurs avec une durée de vie limitée. Bonus pour l'exploitation minière et forestière."
 
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
@@ -13421,7 +13646,7 @@ msgstr "Grand Stupa"
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
 msgid "MercenaryCamp"
-msgstr ""
+msgstr "Camp de Mercenaires."
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
@@ -13981,7 +14206,7 @@ msgid ""
 "Classes: Hero Infantry Melee Sword.\n"
 "\"Naval Commander\" Aura: When garrisoned in a ship, his ship is +50% faster. \n"
 "\"Naval Architect\" Aura: Ships are built +20% faster during his lifespan.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
 msgstr ""
 
@@ -14880,9 +15105,9 @@ msgstr "Hypaspistes Argyraspides"
 
 #: simulation/templates/units/mace_hero_alexander.xml:38
 msgid ""
-"\"Imperialism\" Aura: +10% territory effect for all buildings while he lives. \n"
+"\"Imperialism\" Aura: +10% territory effect for all buildings while he lives.\n"
 "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr "Aura \"Impérialisme\": +10% d'effet territorial pour tous les bâtiments au cours de sa vie.\nBonus \"Herocide\": +20% de bonus d'attaque contre les Héros ennemis."
+msgstr ""
 
 #: simulation/templates/units/mace_hero_craterus.xml:7
 msgid "Trusted general under Alexander the Great."
@@ -15142,9 +15367,9 @@ msgstr "Vaishya"
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 msgid ""
 "Classes: Mercenary Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Classes: Épéiste mercenaire d'infanterie de mêlée.\nContre: 2x c. lanciers, 1.5x c. éléphants.\nContré par: Archers, lanciers montés et archers montés."
+msgstr ""
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:21
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:14
@@ -15264,9 +15489,9 @@ msgstr "Darius le Grand"
 msgid ""
 "Hero Archer.\n"
 "Hero Aura: \"Administrator.\" +15% Gather Rate and Build Rate of nearby units.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr "Archer Héros.\nAura de héros: \"Administrateur\". +15% de taux de collecte et de taux de construction des unités à proximité.\nContre: 2x c. épéistes, 1.25x c. lanciers montés.\nContré par: Épéistes montés, tirailleurs montés."
+msgstr ""
 
 #: simulation/templates/units/pers_hero_xerxes.xml:15
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:39
@@ -15832,7 +16057,7 @@ msgstr "Antiokhos G' Mégās"
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
 "Classes: Hero Melee Cavalry Sword.\n"
-"\"Conquest\" Aura: All nearby bipedal melee units gain a +2x attack versus buildings, siege engines, and ships. Building capture time reduced by 25% during his reign.\n"
+"\"Conquest\" Aura: All nearby soldiers gain a +2x attack versus buildings, siege engines, and ships. Building capture time reduced by 25% during his reign.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
 msgstr ""
@@ -15888,9 +16113,9 @@ msgstr "Piquier en armure d'or"
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid ""
 "Classes: Mercenary Citizen Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Classes: Épéiste citoyen-mercenaire d'infanterie de mêlée.\nContre: 2x c. lanciers, 1.5x c. éléphants.\nContré par: Archers, lanciers montés et archers montés."
+msgstr ""
 
 #: simulation/templates/units/sele_ship_trireme.xml:6
 msgid "Seleucid Trireme"
@@ -15985,7 +16210,7 @@ msgstr "Hoplī́tēs Perioïkós"
 #: simulation/templates/units/spart_support_female_citizen.xml:29
 msgid ""
 "Classes: Citizen Support Worker Female.\n"
-"Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming. \n"
+"Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming.\n"
 "Counters: 2.5x vs. Siege."
 msgstr ""
 
@@ -16041,9 +16266,9 @@ msgstr "Hieros Lochos Hoplites"
 #: simulation/templates/units/thrace_black_cloak.xml:21
 msgid ""
 "Classes: Mercenary Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Classes: Épéiste d'infanterie de mêlée Champion mercenaire.\nContre: 2x c. lanciers, 1.5x c. éléphants.\nContrés par: Archers, archers montés et lanciers montés."
+msgstr ""
 
 #: simulation/templates/units/thrace_black_cloak.xml:19
 msgid "Thracian Black Cloak"
@@ -16945,7 +17170,7 @@ msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
-msgstr ""
+msgstr "Les joueurs commencent sur deux îles opposées, avec un relief très découpé qui rendra le débarquement difficile.\n\nOccupées initialement par les Torréens, puis légèrement colonisées par les Etrusques, Phocéens et Syracuse. Rome a conquis ces deux îles à Carthage pendant la Première Guerre punique et créa en 238 av. J.C. la province \"Corse-Sardaigne \". Les Corses se révoltèrent régulièrement et au cours d'un siècle, l'île a perdu deux tiers de sa population corse."
 
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:Name
 msgid "Corsica and Sardinia (4)"
@@ -17000,7 +17225,7 @@ msgid ""
 "Each player starts the match with a free farmstead and free storehouse.\n"
 "\n"
 "Virgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering."
-msgstr ""
+msgstr "Deux joueurs s'affrontent sur le plateau densément boisé du Deccan dans le centre de l'Inde.\n\nAucun joueurs ne commencent le match avec des unités, mais ils reçoivent une ferme et un entrepôt gratuit.\n\nLes ressources encore inexploitées se trouvent dans les plaines de chaque côté du plateau. Les plaines offrent également des possibilités d'expansion et de manœuvre stratégique."
 
 #: maps/skirmishes/Deccan Plateau (2).xml:41:Name
 msgid "Deccan Plateau (2)"
@@ -17090,12 +17315,12 @@ msgstr "Oasis Libyen (2)"
 
 #: maps/skirmishes/Lorraine Plain (2).xml:42:Description
 msgid ""
-"The map is cut through the centre by a river traversing east-west with some shallows.\n"
+"The map is cut through the center by a river traversing east-west with some shallows.\n"
 "\n"
 "Fairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\n"
 "\n"
 "Civ Territories are divided by main river and tributaries (with necessary shallows for crossings)."
-msgstr "La carte est coupée au centre par une rivière qui la traverse d'Est en Ouest avec quelques eaux peu profondes pour les traversées.\n\nAssez ouvert, boisé et essentiellement plat, les ressources y sont équilibrées. Beaucoup d'endroits constructibles.\n\nLes territoires civiques sont divisées par la rivière principale et ses affluents (avec des eaux peu profondes nécessaires pour les traversées)."
+msgstr ""
 
 #: maps/skirmishes/Lorraine Plain (2).xml:42:Name
 msgid "Lorraine Plain (2)"
@@ -17220,7 +17445,7 @@ msgstr "Une carte de démo en mode escarmouche"
 
 #: maps/skirmishes/Skirmish Demo.xml:42:Name
 msgid "Skirmish Demo"
-msgstr "Demo Escarmouche"
+msgstr "Démo Escarmouche"
 
 #: maps/skirmishes/Sporades Islands (2).xml:42:Name
 msgid "Sporades Islands (2)"

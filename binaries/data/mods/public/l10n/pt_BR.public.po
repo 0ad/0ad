@@ -7,9 +7,11 @@
 # alrope <alexandre.rp@gmail.com>, 2014
 # Qodek <andre.lucas.silva2468@gmail.com>, 2014
 # Dianakc <dianakac@gmail.com>, 2014
+# elisasr <lizzz.sr@gmail.com>, 2014
 # Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2013
 # erickalves05 <erickalves@outlook.com>, 2013-2014
-# ernan <ernymax@hotmail.com>, 2014
+# ernan, 2014
+# ernan, 2014
 # Filipe Oliveira <contato@fmoliveira.com.br>, 2013
 # Sturm <gravador202@yahoo.com.br>, 2014
 # gsoster <guilhermesosters@gmail.com>, 2014
@@ -30,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-20 23:35+0200\n"
-"PO-Revision-Date: 2014-04-20 21:38+0000\n"
+"POT-Creation-Date: 2014-04-24 08:14+0200\n"
+"PO-Revision-Date: 2014-04-24 12:19+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +115,7 @@ msgstr "Heróis"
 #: gui/civinfo/civinfo.js:158
 #, python-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "História dos %(civilization)s"
 
 #: gui/common/functions_global_object.js:73
 #, python-format
@@ -122,7 +124,7 @@ msgstr "FPS: %(fps)s"
 
 #: gui/common/functions_utility.js:263
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:265
 msgid "HH:mm:ss"
@@ -142,7 +144,7 @@ msgstr "Carregamento Abortado"
 #: gui/common/functions_utility_list.js:141
 #, python-format
 msgid "%(functionName)s: %(object)s not found."
-msgstr ""
+msgstr "%(functionName)s: %(object)s não encontrado"
 
 #: gui/common/functions_utility_list.js:161
 #, python-format
@@ -156,7 +158,7 @@ msgstr "aaaa-MM-dd HH:mm:ss"
 #: gui/common/functions_utility_loadsave.js:9
 #, python-format
 msgid "[%(date)s]"
-msgstr ""
+msgstr "[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, python-format
@@ -166,7 +168,7 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 #: gui/common/functions_utility_loadsave.js:20
 #, python-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
@@ -204,7 +206,7 @@ msgstr "Desconectado"
 
 #: gui/gamesetup/gamesetup.js:7
 msgid "Conquest"
-msgstr ""
+msgstr "Conquista"
 
 #: gui/gamesetup/gamesetup.js:7
 #: simulation/templates/template_structure_wonder.xml:35
@@ -417,7 +419,7 @@ msgstr "Conectando ao servidor..."
 #: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:189
 #, python-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Mensagem da rede: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
@@ -494,7 +496,7 @@ msgstr ""
 #: gui/lobby/lobby.js:497
 #, python-format
 msgid "%(nick)s has joined."
-msgstr ""
+msgstr "%(nick)s entrou."
 
 #: gui/lobby/lobby.js:506
 #, python-format
@@ -520,31 +522,31 @@ msgstr ""
 #: gui/lobby/lobby.js:754
 #, python-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:756
 #, python-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
 #, python-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:762 gui/lobby/lobby.js:773 gui/lobby/lobby.js:786
 #, python-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:767
 #, python-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the
@@ -554,7 +556,7 @@ msgstr ""
 #. #TOC-Date-Field-Symbol-Table
 #: gui/lobby/lobby.js:798
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
@@ -562,13 +564,13 @@ msgstr ""
 #: gui/lobby/lobby.js:801
 #, python-format
 msgid "[%(time)s]"
-msgstr ""
+msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:804
 #, python-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:854
 msgid "Please do not spam. You have been blocked for thirty seconds."
@@ -647,156 +649,180 @@ msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr ""
 
 #: gui/options/options.js:14
+msgid "Post Processing"
+msgstr ""
+
+#: gui/options/options.js:14
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
+msgstr ""
+
+#: gui/options/options.js:15
 msgid "Shadows"
 msgstr "Sombras"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Enable shadows"
 msgstr "Habilitar sombras"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Particles"
 msgstr ""
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Enable particles"
 msgstr ""
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Show Sky"
 msgstr "Mostrar Céu"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Render Sky"
 msgstr ""
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
+msgid "Smooth LOS"
+msgstr ""
+
+#: gui/options/options.js:18
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."
+msgstr ""
+
+#: gui/options/options.js:19
 msgid "Unit Silhouettes"
 msgstr ""
 
-#: gui/options/options.js:17
+#: gui/options/options.js:19
 msgid "Show outlines of units behind buildings"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Shadow Filtering"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Smooth shadows"
 msgstr ""
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid "HQ Waviness"
 msgstr ""
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Real Water Depth"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Use actual water depth in rendering calculations"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Water Reflections"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Allow water to reflect a mirror image"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "Water Refraction"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "Use a real water refraction map and not transparency"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Shore Foam"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Show foam on water near shore depending on water waviness"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Shore Waves"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Water Shadows"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Cast shadows on water"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:28
+msgid "VSync"
+msgstr ""
+
+#: gui/options/options.js:28
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.js:32
 msgid "Master Gain"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:32
 msgid "Master audio gain"
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:33
 msgid "Music Gain"
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:33
 msgid "In game music gain"
 msgstr ""
 
-#: gui/options/options.js:31
+#: gui/options/options.js:34
 msgid "Ambient Gain"
 msgstr ""
 
-#: gui/options/options.js:31
+#: gui/options/options.js:34
 msgid "In game ambient sound gain"
 msgstr ""
 
-#: gui/options/options.js:32
+#: gui/options/options.js:35
 msgid "Action Gain"
 msgstr ""
 
-#: gui/options/options.js:32
+#: gui/options/options.js:35
 msgid "In game unit action sound gain"
 msgstr ""
 
-#: gui/options/options.js:33
+#: gui/options/options.js:36
 msgid "UI Gain"
 msgstr ""
 
-#: gui/options/options.js:33
+#: gui/options/options.js:36
 msgid "UI sound gain"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:40
 msgid "Chat Backlog"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:40
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:41
 msgid "Chat Timestamp"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:41
 msgid "Show time that messages are posted in the lobby chat"
 msgstr ""
 
@@ -957,7 +983,7 @@ msgstr ""
 #: gui/session/input.js:264 gui/session/input.js:357
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr ""
+msgstr "Guarnição atual: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/input.js:306
 msgid "Right-click to establish a default route for new traders."
@@ -997,6 +1023,14 @@ msgstr ""
 #: gui/session/input.js:996
 msgid "Cannot build wall here!"
 msgstr "Não pode construir um muro aqui!"
+
+#: gui/session/menu.js:1 gui/session/session.xml:924 (caption)
+msgid "Pause"
+msgstr "Pausar"
+
+#: gui/session/menu.js:2
+msgid "Resume"
+msgstr ""
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -1079,22 +1113,22 @@ msgstr[1] ""
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s, e %(inactiveString)s."
 
 #: gui/session/menu.js:505
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, e %(garrisonedString)s."
 
 #: gui/session/menu.js:515 gui/session/menu.js:577
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, e %(inactiveString)s."
 
 #: gui/session/menu.js:522 gui/session/menu.js:584
 #, python-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
 #: gui/session/menu.js:532
 #, python-format
@@ -1110,12 +1144,12 @@ msgstr[1] ""
 #: gui/session/menu.js:535
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s, e %(inactiveString)s."
 
 #: gui/session/menu.js:542
 #, python-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/menu.js:551
 #, python-format
@@ -1255,8 +1289,8 @@ msgstr "%(previousAmounts)s e %(lastAmount)s"
 
 #: gui/session/messages.js:463 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
-#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:568
-#: gui/session/utility_functions.js:686 gui/session/utility_functions.js:691
+#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
+#: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
 msgid ", "
 msgstr ","
 
@@ -1304,200 +1338,122 @@ msgstr "Equipe"
 msgid "Private"
 msgstr "Privado"
 
-#: gui/session/selection_details.js:17 simulation/components/Player.js:40
-#: gui/session/session.xml:709 (tooltip) gui/summary/summary.xml:569 (caption)
-msgid "Food"
-msgstr "Comida"
-
-#: gui/session/selection_details.js:18
-msgid "Meat"
-msgstr "Carne"
-
-#: gui/session/selection_details.js:19 simulation/components/Player.js:42
-#: gui/session/session.xml:730 (tooltip) gui/summary/summary.xml:578 (caption)
-msgid "Metal"
-msgstr "Metal"
-
-#: gui/session/selection_details.js:20
-msgid "Ore"
-msgstr "Minério"
-
-#: gui/session/selection_details.js:21
-#: simulation/templates/template_gaia_geo_rock.xml:4
-msgid "Rock"
-msgstr "Pedra"
-
-#: gui/session/selection_details.js:22
-#: simulation/templates/template_gaia_ruins.xml:9
-#: simulation/templates/gaia/special_ruins.xml:9
-#: simulation/templates/gaia/special_ruins_column_doric.xml:9
-#: simulation/templates/other/unfinished_greek_temple.xml:9
-msgid "Ruins"
-msgstr "Ruínas"
-
-#: gui/session/selection_details.js:23 simulation/components/Player.js:43
-#: gui/session/session.xml:723 (tooltip) gui/summary/summary.xml:575 (caption)
-msgid "Stone"
-msgstr "Pedra"
-
-#: gui/session/selection_details.js:24
-#: simulation/templates/template_gaia_treasure.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
-#: simulation/templates/gaia/special_treasure_food_bin.xml:9
-#: simulation/templates/gaia/special_treasure_food_crate.xml:9
-#: simulation/templates/gaia/special_treasure_food_jars.xml:9
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
-#: simulation/templates/gaia/special_treasure_pegasus.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:9
-#: simulation/templates/gaia/special_treasure_wood.xml:9
-#: simulation/templates/other/special_treasure_shipwreck.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
-msgid "Treasure"
-msgstr "Tesouro"
-
-#: gui/session/selection_details.js:25
-#: simulation/templates/template_gaia_flora_tree.xml:5
-msgid "Tree"
-msgstr "Árvore"
-
-#: gui/session/selection_details.js:26 simulation/components/Player.js:41
-#: gui/session/session.xml:716 (tooltip) gui/summary/summary.xml:572 (caption)
-msgid "Wood"
-msgstr "Madeira"
-
-#: gui/session/selection_details.js:27
-msgid "Fruit"
-msgstr "Fruta"
-
-#: gui/session/selection_details.js:28
-msgid "Grain"
-msgstr "Grão"
-
-#: gui/session/selection_details.js:29
-#: simulation/templates/template_unit_fauna_fish.xml:9
-msgid "Fish"
-msgstr "Peixe"
-
-#: gui/session/selection_details.js:55
+#: gui/session/selection_details.js:32
 #, python-format
 msgid "%(genericName)s — Packed"
 msgstr ""
 
-#: gui/session/selection_details.js:67
+#: gui/session/selection_details.js:44
 #, python-format
 msgid "[OFFLINE] %(player)s"
 msgstr "[OFFLINE] %(player)s"
 
-#: gui/session/selection_details.js:73
+#: gui/session/selection_details.js:50
 #, python-format
 msgid "%(rank)s Rank"
 msgstr "%(rank)s Rank"
 
-#: gui/session/selection_details.js:91
+#: gui/session/selection_details.js:68
 #, python-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:118
+#: gui/session/selection_details.js:95
 #, python-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:119 gui/session/selection_details.js:125
+#: gui/session/selection_details.js:96 gui/session/selection_details.js:102
 msgid "Experience:"
 msgstr "Experiência:"
 
-#: gui/session/selection_details.js:124
+#: gui/session/selection_details.js:101
 #, python-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:138
+#: gui/session/selection_details.js:115
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:139 gui/session/selection_details.js:172
-#: gui/session/selection_details.js:203
+#: gui/session/selection_details.js:116 gui/session/selection_details.js:149
+#: gui/session/selection_details.js:180
 #, python-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:148
+#: gui/session/selection_details.js:125
 #, python-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:187
+#: gui/session/selection_details.js:164
 #, python-format
 msgid "Gain: %(amount)s"
 msgstr "Ganho: %(amount)s"
 
-#: gui/session/selection_details.js:196
+#: gui/session/selection_details.js:173
 msgid "Number of builders"
 msgstr "Número de construtores"
 
-#: gui/session/selection_details.js:204
+#: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
 msgstr "Coletores atuais/max"
 
-#: gui/session/selection_details.js:219
+#: gui/session/selection_details.js:196
 #, python-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:249 gui/session/session.js:648
+#: gui/session/selection_details.js:226 gui/session/session.js:648
 msgid "Armor:"
 msgstr "Armadura:"
 
-#: gui/session/selection_details.js:250 gui/session/selection_details.js:261
+#: gui/session/selection_details.js:227 gui/session/selection_details.js:238
 #: gui/session/session.js:646 gui/session/session.js:649
 #, python-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:257
+#: gui/session/selection_details.js:234
 msgid "Interval:"
 msgstr ""
 
-#: gui/session/selection_details.js:259
+#: gui/session/selection_details.js:236
 msgid "Rate:"
 msgstr "Taxa:"
 
-#: gui/session/selection_details.js:272 gui/session/session.js:641
-#: gui/session/utility_functions.js:590
+#: gui/session/selection_details.js:249 gui/session/session.js:641
+#: gui/session/utility_functions.js:602
 msgid "Range:"
 msgstr "Alcance:"
 
-#: gui/session/selection_details.js:274
+#: gui/session/selection_details.js:251
 msgid "meters"
 msgstr ""
 
-#: gui/session/selection_details.js:277 gui/session/selection_details.js:287
+#: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, python-format
 msgid ""
 "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), "
 "%(rate)s"
-msgstr ""
+msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
-#: gui/session/selection_details.js:297
+#: gui/session/selection_details.js:274
 #, python-format
 msgid "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
-msgstr ""
+msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
-#: gui/session/selection_details.js:308
+#: gui/session/selection_details.js:285
 #, python-format
 msgid "%(label)s %(details)s, %(rate)s"
-msgstr ""
+msgstr "%(label)s %(details)s, %(rate)s"
 
-#: gui/session/selection_details.js:364
+#: gui/session/selection_details.js:341
 msgid "Hitpoints:"
-msgstr ""
+msgstr "Resistência:"
 
-#: gui/session/selection_details.js:365 gui/session/session.js:632
+#: gui/session/selection_details.js:342 gui/session/session.js:632
 #, python-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -1625,12 +1581,12 @@ msgstr ""
 
 #: gui/session/unit_commands.js:441
 msgid "Insufficient population capacity:"
-msgstr ""
+msgstr "Capacidade populacional insuficiente:"
 
 #: gui/session/unit_commands.js:441
 #, python-format
 msgid "%(population)s %(neededSlots)s"
-msgstr ""
+msgstr "%(population)s %(neededSlots)s"
 
 #: gui/session/unit_commands.js:459
 #, python-format
@@ -1653,7 +1609,7 @@ msgstr ""
 
 #: gui/session/unit_commands.js:1152
 msgid "Convert Wooden Wall into Wooden Gate"
-msgstr ""
+msgstr "Transformar muros de madeira num portão de madeira"
 
 #: gui/session/unit_commands.js:1156
 msgid "Convert Stone Wall into City Gate"
@@ -1666,7 +1622,7 @@ msgstr ""
 #: gui/session/unit_commands.js:1165
 #, python-format
 msgid "Convert %(wall)s into %(gate)s"
-msgstr ""
+msgstr "Transformar %(wall)s em %(gate)s"
 
 #: gui/session/unit_commands.js:1182
 msgid "Lock Gate"
@@ -1702,7 +1658,7 @@ msgstr ""
 #: gui/session/utility_functions.js:240 gui/session/utility_functions.js:245
 #, python-format
 msgid "%(damage)s %(damageType)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s"
 
 #: gui/session/utility_functions.js:161 gui/session/utility_functions.js:208
 #: gui/session/utility_functions.js:237 gui/session/utility_functions.js:263
@@ -1722,7 +1678,7 @@ msgstr ""
 #: gui/session/utility_functions.js:182
 #, python-format
 msgid "%(arrowString)s / %(timeString)s"
-msgstr ""
+msgstr "%(arrowString)s / %(timeString)s"
 
 #: gui/session/utility_functions.js:183
 #, python-format
@@ -1800,122 +1756,337 @@ msgstr ""
 msgid "End of alert."
 msgstr "FIm do alerta."
 
-#: gui/session/utility_functions.js:427 gui/session/utility_functions.js:428
-#: gui/session/utility_functions.js:429 gui/session/utility_functions.js:430
-#: gui/session/utility_functions.js:431 gui/session/utility_functions.js:432
-#: gui/session/utility_functions.js:550
+#: gui/session/utility_functions.js:433 gui/session/utility_functions.js:434
+#: gui/session/utility_functions.js:435 gui/session/utility_functions.js:436
+#: gui/session/utility_functions.js:437 gui/session/utility_functions.js:438
+#: gui/session/utility_functions.js:562
 #, python-format
 msgid "%(component)s %(cost)s"
+msgstr "%(component)s %(cost)s"
+
+#. Translation: This string is part of the resources cost string on
+#. the tooltip for wall structures.
+#: gui/session/utility_functions.js:492
+#, python-format
+msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:513
+#: gui/session/utility_functions.js:525
 #, python-format
 msgid "Walls:  %(costs)s"
 msgstr "Muralhas:  %(costs)s"
 
-#: gui/session/utility_functions.js:513 gui/session/utility_functions.js:514
-#: gui/session/utility_functions.js:519 gui/session/utility_functions.js:555
+#: gui/session/utility_functions.js:525 gui/session/utility_functions.js:526
+#: gui/session/utility_functions.js:531 gui/session/utility_functions.js:567
 msgid "  "
 msgstr "  "
 
-#: gui/session/utility_functions.js:514
+#: gui/session/utility_functions.js:526
 #, python-format
 msgid "Towers:  %(costs)s"
 msgstr "Torres:  %(costs)s"
 
-#: gui/session/utility_functions.js:536
+#: gui/session/utility_functions.js:548
 #, python-format
 msgid "%(label)s %(populationBonus)s"
-msgstr ""
+msgstr "%(label)s %(populationBonus)s"
 
-#: gui/session/utility_functions.js:537
+#: gui/session/utility_functions.js:549
 msgid "Population Bonus:"
 msgstr "Bônus de População:"
 
-#: gui/session/utility_functions.js:555
+#: gui/session/utility_functions.js:567
 msgid "Insufficient resources:"
 msgstr "Recursos Insuficientes"
 
-#: gui/session/utility_functions.js:563
+#: gui/session/utility_functions.js:575
 msgid "Speed:"
 msgstr "Velocidade:"
 
-#: gui/session/utility_functions.js:565 gui/session/utility_functions.js:566
+#: gui/session/utility_functions.js:577 gui/session/utility_functions.js:578
 #, python-format
 msgid "%(speed)s %(movementType)s"
-msgstr ""
+msgstr "%(speed)s %(movementType)s"
 
-#: gui/session/utility_functions.js:565
+#: gui/session/utility_functions.js:577
 msgid "Walk"
 msgstr "Andar"
 
-#: gui/session/utility_functions.js:566
+#: gui/session/utility_functions.js:578
 msgid "Run"
 msgstr "Correr"
 
-#: gui/session/utility_functions.js:568
+#: gui/session/utility_functions.js:580
 #, python-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/session/utility_functions.js:587
+#: gui/session/utility_functions.js:599
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 
-#: gui/session/utility_functions.js:596
+#: gui/session/utility_functions.js:608
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr "%(attackLabel)s %(damageTypes)s"
 
-#: gui/session/utility_functions.js:612
+#: gui/session/utility_functions.js:624
 #, python-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/session/utility_functions.js:622
+#: gui/session/utility_functions.js:634
 msgid "???"
 msgstr "???"
 
-#: gui/session/utility_functions.js:652
+#: gui/session/utility_functions.js:664
 #, python-format
 msgid "%(rank)s %(name)s"
 msgstr "%(rank)s %(name)s"
 
-#: gui/session/utility_functions.js:676 gui/session/utility_functions.js:678
+#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:690
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:680 gui/session/utility_functions.js:686
-#: gui/session/utility_functions.js:691
+#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:698
+#: gui/session/utility_functions.js:703
 #, python-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:682
+#: gui/session/utility_functions.js:694
 msgid "you"
 msgstr "você"
 
-#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:693
+#: gui/session/utility_functions.js:700 gui/session/utility_functions.js:705
 #, python-format
 msgid "player %(name)s"
 msgstr "jogador %(name)s"
 
-#: gui/session/utility_functions.js:701
+#: gui/session/utility_functions.js:713
 msgid "Charge Attack:"
 msgstr ""
 
-#: gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:714
 msgid "Melee Attack:"
 msgstr ""
 
-#: gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:715
 msgid "Ranged Attack:"
 msgstr ""
 
-#: gui/session/utility_functions.js:706
+#: gui/session/utility_functions.js:718
 msgid "Attack:"
 msgstr "Ataque:"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:741
+msgctxt "firstWord"
+msgid "Food"
+msgstr "Comida"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:743
+msgctxt "firstWord"
+msgid "Meat"
+msgstr "Carne"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:745
+msgctxt "firstWord"
+msgid "Metal"
+msgstr "Metal"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:747
+msgctxt "firstWord"
+msgid "Ore"
+msgstr "Minério"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:749
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "Pedra"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:751
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Ruínas"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:753
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "Pedra"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:755
+msgctxt "firstWord"
+msgid "Treasure"
+msgstr "Tesouro"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:757
+msgctxt "firstWord"
+msgid "Tree"
+msgstr "Árvore"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:759
+msgctxt "firstWord"
+msgid "Wood"
+msgstr "Madeira"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:761
+msgctxt "firstWord"
+msgid "Fruit"
+msgstr "Fruta"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:763
+msgctxt "firstWord"
+msgid "Grain"
+msgstr "Grão"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:765
+msgctxt "firstWord"
+msgid "Fish"
+msgstr "Peixe"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:776
+msgctxt "withinSentence"
+msgid "Food"
+msgstr "Comida"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:778
+msgctxt "withinSentence"
+msgid "Meat"
+msgstr "Carne"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:780
+msgctxt "withinSentence"
+msgid "Metal"
+msgstr "Metal"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:782
+msgctxt "withinSentence"
+msgid "Ore"
+msgstr "Minério"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:784
+msgctxt "withinSentence"
+msgid "Rock"
+msgstr "Pedra"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:786
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "Ruínas"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:788
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr "Pedra"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:790
+msgctxt "withinSentence"
+msgid "Treasure"
+msgstr "Tesouro"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:792
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr "Árvore"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:794
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr "Madeira"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:796
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr "Fruta"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:798
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr "Grão"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:800
+msgctxt "withinSentence"
+msgid "Fish"
+msgstr "Peixe"
 
 #: gui/splashscreen/splashscreen.js:9
 #, python-format
@@ -1964,7 +2135,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:180
 msgctxt "Territory type"
 msgid "ally"
-msgstr ""
+msgstr "aliado"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -1980,7 +2151,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:186
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "neutro"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -1988,7 +2159,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:189
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "inimigo"
 
 #: simulation/components/BuildRestrictions.js:195
 #, python-format
@@ -2043,6 +2214,26 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "inimigo"
 
+#: simulation/components/Player.js:40 gui/session/session.xml:709 (tooltip)
+#: gui/summary/summary.xml:569 (caption)
+msgid "Food"
+msgstr "Comida"
+
+#: simulation/components/Player.js:41 gui/session/session.xml:716 (tooltip)
+#: gui/summary/summary.xml:572 (caption)
+msgid "Wood"
+msgstr "Madeira"
+
+#: simulation/components/Player.js:42 gui/session/session.xml:730 (tooltip)
+#: gui/summary/summary.xml:578 (caption)
+msgid "Metal"
+msgstr "Metal"
+
+#: simulation/components/Player.js:43 gui/session/session.xml:723 (tooltip)
+#: gui/summary/summary.xml:575 (caption)
+msgid "Stone"
+msgstr "Pedra"
+
 #: simulation/components/Player.js:236
 #, python-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
@@ -2068,6 +2259,10 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
+msgstr ""
+
+#: simulation/components/ProductionQueue.js:345
+msgid "The production queue is full."
 msgstr ""
 
 #: simulation/components/Wonder.js:53
@@ -2109,7 +2304,7 @@ msgid "Civilization Selection"
 msgstr "Selecionar Civilização"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:28 (caption)
-#: gui/session/session.xml:539 (caption)
+#: gui/session/session.xml:486 (caption) gui/session/session.xml:539 (caption)
 msgid "Close"
 msgstr "Fechar"
 
@@ -2839,10 +3034,6 @@ msgstr "Escolha velocidade do jogo"
 msgid "MENU"
 msgstr "MENU"
 
-#: gui/session/session.xml:924 (caption)
-msgid "Pause"
-msgstr "Pausar"
-
 #: gui/session/session.xml:936 (caption)
 msgid "Resign"
 msgstr ""
@@ -2876,7 +3067,7 @@ msgstr "Experiência"
 
 #: gui/session/session.xml:1272 (tooltip)
 msgid "Hitpoints"
-msgstr ""
+msgstr "Resistência"
 
 #: gui/session/session.xml:1281 (tooltip)
 msgid "Stamina"
@@ -2964,7 +3155,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:243 (caption)
 msgid "Outposts"
-msgstr ""
+msgstr "Postos avançados"
 
 #: gui/summary/summary.xml:246 (caption)
 msgid "Military"
@@ -2989,7 +3180,7 @@ msgstr ""
 #: gui/summary/summary.xml:411 (caption)
 #: simulation/templates/template_unit_infantry.xml:50
 msgid "Infantry"
-msgstr ""
+msgstr "Infantaria"
 
 #: gui/summary/summary.xml:414 (caption)
 msgid "Worker"
@@ -2998,7 +3189,7 @@ msgstr "Trabalhador"
 #: gui/summary/summary.xml:417 (caption)
 #: simulation/templates/template_unit_cavalry.xml:32
 msgid "Cavalry"
-msgstr "Cavalaria"
+msgstr "Cavaleiro"
 
 #: gui/summary/summary.xml:420 (caption)
 msgid "Champion"
@@ -4553,7 +4744,7 @@ msgstr ""
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr ""
+msgstr "ACAMPAMENTO DO EXÉRCITO ROMANO"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
@@ -4680,7 +4871,7 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr ""
+msgstr "CENTROS CÍVICOS"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
@@ -4782,7 +4973,7 @@ msgstr ""
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
-msgstr ""
+msgstr "IFÍCRATES"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
@@ -4800,7 +4991,7 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr ""
+msgstr "POSTOS AVANÇADOS"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
@@ -4838,7 +5029,7 @@ msgstr ""
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr ""
+msgstr "PÉRICLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
@@ -4916,7 +5107,7 @@ msgstr ""
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr ""
+msgstr "TORRES DEFENSIVAS"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
@@ -4974,7 +5165,7 @@ msgstr ""
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr ""
+msgstr "ARMAZÉNS"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
@@ -4988,7 +5179,7 @@ msgstr ""
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
-msgstr ""
+msgstr "FORMAÇÃO SINTAGMA"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
@@ -5032,7 +5223,7 @@ msgstr ""
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
-msgstr ""
+msgstr "TEMÍSTOCLES"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
@@ -5050,7 +5241,7 @@ msgstr "- O navio que o abrigar se move muito mais rápido."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr ""
+msgstr "TRIRREME"
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
@@ -5131,7 +5322,7 @@ msgstr ""
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr ""
+msgstr "-2000 de comida"
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
@@ -5467,7 +5658,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
+msgstr "Pouco depois das grandiosas vitórias navais em Salamina e Mícale, as cidades-estado gregas instituíram a chamada Liga de Delos em 478 a.C., com o objectivo de afastar os Persas da região do Egeu. Os estados aliados contribuíram com navios e dinheiro, tendo os Atenienses oferecido a sua armada inteira."
 
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
 #: civs/hele.jsonFactions[0].Heroes[0].Name
@@ -5483,11 +5674,11 @@ msgstr "Péricles"
 
 #: civs/athen.jsonAINames[2]
 msgid "Cimon"
-msgstr ""
+msgstr "Címon"
 
 #: civs/athen.jsonAINames[3]
 msgid "Aristides"
-msgstr ""
+msgstr "Aristides"
 
 #: civs/athen.jsonAINames[4] civs/hele.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/hele_hero_xenophon.xml:16
@@ -5496,15 +5687,15 @@ msgstr "Xenofonte"
 
 #: civs/athen.jsonAINames[5]
 msgid "Hippias"
-msgstr ""
+msgstr "Hípias"
 
 #: civs/athen.jsonAINames[6]
 msgid "Cleisthenes"
-msgstr ""
+msgstr "Clístenes"
 
 #: civs/athen.jsonAINames[7]
 msgid "Thucydides"
-msgstr ""
+msgstr "Tucídides"
 
 #: civs/athen.jsonAINames[8]
 msgid "Alcibiades"
@@ -5512,19 +5703,19 @@ msgstr "Alcibíades"
 
 #: civs/athen.jsonAINames[9]
 msgid "Miltiades"
-msgstr ""
+msgstr "Milcíades"
 
 #: civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr ""
+msgstr "Cleón"
 
 #: civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr ""
+msgstr "Cleofonte"
 
 #: civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
-msgstr ""
+msgstr "Trasíbulo"
 
 #: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/athen_hero_iphicrates.xml:16
@@ -5596,7 +5787,7 @@ msgstr "O general que persuadiu os Atenienses a investirem seus rendimentos das 
 
 #: civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr ""
+msgstr "Péricles foi o político ateniense com maior influência no século V a.C."
 
 #: civs/athen.jsonFactions[0].Heroes[2].History
 #: civs/maur.jsonFactions[0].Technologies[0].History
@@ -5762,7 +5953,7 @@ msgstr "Venúcio"
 
 #: civs/brit.jsonAINames[5]
 msgid "Cogidubnus"
-msgstr ""
+msgstr "Cogidubnus"
 
 #: civs/brit.jsonAINames[6]
 msgid "Commius"
@@ -5770,19 +5961,19 @@ msgstr "Cômio"
 
 #: civs/brit.jsonAINames[7]
 msgid "Comux"
-msgstr ""
+msgstr "Comux"
 
 #: civs/brit.jsonAINames[8]
 msgid "Adminius"
-msgstr ""
+msgstr "Adminius"
 
 #: civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
-msgstr ""
+msgstr "Dubnovellauno"
 
 #: civs/brit.jsonAINames[10]
 msgid "Vosenius"
-msgstr ""
+msgstr "Vodenos"
 
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
@@ -6007,7 +6198,7 @@ msgstr "Amílcar Barca"
 
 #: civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
-msgstr ""
+msgstr "Asdrúbal Barca"
 
 #: civs/cart.jsonAINames[3]
 msgid "Hasdrubal Gisco"
@@ -6036,7 +6227,7 @@ msgstr "Hanão, o Grande"
 
 #: civs/cart.jsonAINames[9]
 msgid "Himilco"
-msgstr ""
+msgstr "Himilcão"
 
 #: civs/cart.jsonAINames[10]
 msgid "Hampsicora"
@@ -6044,7 +6235,7 @@ msgstr ""
 
 #: civs/cart.jsonAINames[11]
 msgid "Hannibal Gisco"
-msgstr ""
+msgstr "Aníbal Gisco"
 
 #: civs/cart.jsonAINames[12]
 msgid "Dido"
@@ -6089,10 +6280,11 @@ msgid "Colonization"
 msgstr "Colonização"
 
 #: civs/cart.jsonFactions[0].Technologies[1].History
+#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
-"Carthaginians established many trading centres as colonies and ultimately "
+"Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "Os Cartagineses estabeleceram diversos centros comerciais como colônias eaté mantiveram dominavam mais de 300 cidades e vilas somente no norte da África."
+msgstr "Os cartagineses estabeleceram muitos centros comerciais como colônias e acabaram por dominar mais de 300 cidades e vilas só no Norte de África."
 
 #: civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -6201,7 +6393,7 @@ msgstr "Ilhas Britânicas"
 #: civs/celt.jsonFactions[1].Technologies[0].Description
 msgid ""
 "A set amount of ore and food from every structure destroyed or captured "
-msgstr ""
+msgstr "Recebe uma determinada quantidade de comida e de minério por cada edifício destruído ou conquistado"
 
 #: civs/celt.jsonFactions[1].Technologies[0].Name
 #: civs/gaul.jsonFactions[0].Technologies[0].Name
@@ -6236,16 +6428,18 @@ msgstr "Os Carnutes eram druidas da Aulercia. Eles lutavam quando necessário e 
 #: civs/celt.jsonFactions[1].Heroes[0].History
 #: civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
-"The story of how Marcus Claudius Marcellus killed a Gallic leader at "
-"Clastidium (222 B.C.) is typical of such encounters. Advancing with a "
-"smallish army, Marcellus met a combined force of Insubrian Gauls and "
-"Gaesatae at Clastidium. The Gallic army advanced with the usual rush and "
-"terrifying cries, and their king, Britomartos, picking out Marcellus by "
-"means of his badges of rank, made for him, shouting a challenge and "
-"brandishing his spear. Britomartos was an outstanding figure not only for "
-"his size but also for his adornments; for he was resplendent in bright "
-"colors and his armor shone with gold and silver. This armor, thought "
-"Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
+"When celt armies met the enemy, before the battle would start, the celt "
+"leader would go to the first line and challenge the bravest of the enemy "
+"warriors to a single combat. The story of how Marcus Claudius Marcellus "
+"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
+"encounters. Advancing with a smallish army, Marcellus met a combined force "
+"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
+" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"out Marcellus by means of his badges of rank, made for him, shouting a "
+"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"not only for his size but also for his adornments; for he was resplendent in"
+" bright colors and his armor shone with gold and silver. This armor, thought"
+" Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
 "task to kill Britomartos and strip him of his armor."
 msgstr ""
@@ -6296,7 +6490,7 @@ msgid ""
 "was. Because we only know of him from Roman sources we don't know much about"
 " Vercingetorix as a child or young man, except that perhaps he was probably "
 "very high spirited and probably gained some renown in deeds."
-msgstr ""
+msgstr "Vercingetórix era o chefe da tribo dos Arvernos da Gália (na atual França). Em 52 a.C. iniciou uma revolta contra os invasores romanos sob o comando de Júlio César; a sua atuação durante esta revolta é lembrada até hoje. Filho do chefe Céltilo, Vercingetórix nasceu provavelmente perto da capital de sua tribo, Gergóvia, em 72 a.C. Pouco se sabe a respeito de sua infância ou juventude, exceto que foi provavelmente um homem dinâmico e que ganhou algum renome pelos seus feitos. "
 
 #: civs/celt.jsonFactions[1].Heroes[2].Name civs/gaul.jsonAINames[2]
 #: civs/gaul.jsonFactions[0].Heroes[2].Name
@@ -6336,27 +6530,27 @@ msgstr ""
 
 #: civs/gaul.jsonAINames[3]
 msgid "Divico"
-msgstr ""
+msgstr "Divico"
 
 #: civs/gaul.jsonAINames[4]
 msgid "Ambiorix"
-msgstr ""
+msgstr "Ambiorix"
 
 #: civs/gaul.jsonAINames[5]
 msgid "Ariovistus"
-msgstr ""
+msgstr "Ariovisto"
 
 #: civs/gaul.jsonAINames[6]
 msgid "Cassivellaunus"
-msgstr ""
+msgstr "Cassivelauno"
 
 #: civs/gaul.jsonAINames[7]
 msgid "Liscus"
-msgstr ""
+msgstr "Lisco"
 
 #: civs/gaul.jsonAINames[8]
 msgid "Valetiacos"
-msgstr ""
+msgstr "Valetiacos"
 
 #: civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
@@ -6382,7 +6576,7 @@ msgstr "Helenos"
 
 #: civs/hele.jsonCivBonuses[0].Description
 msgid "10-15% cheaper technologies."
-msgstr ""
+msgstr "As tecnologias custam de 10-15% menos recursos."
 
 #: civs/hele.jsonCivBonuses[0].Name
 msgid "Oikoumene"
@@ -6453,11 +6647,11 @@ msgid ""
 "one of the 5 new generals to lead the army. After a trek of over 1,500 "
 "kilometers and 1 1/2 years, Xenophon finally helped lead his men home, "
 "fighting dozens of battles and skirmishes along the way."
-msgstr ""
+msgstr "Xenofonte (c. 430-355 a.C.) foi um soldado e (mais tarde) historiador grego. Nascido em Atenas no seio de uma família de oligarcas, foi aluno de Sócrates durante a sua juventude. Em 401 a.C., Xenofonte se juntou à um exército de mercenários gregos liderado por Clearco e mais quatro generais que ajudaram Ciro, o Jovem, em sua campanha militar contra seu irmão, o rei Artaxerxes II. Depois de estes generais terem sido assassinados traiçoeiramente pelos persas, Xenofonte foi eleito como um dos 5 novos generais que liderariam o exército. Depois de uma jornada de mais de 1.500 quilômetros ao longo de um ano e meio, Xenofonte ajudou seus soldados a voltar para casa, travando dezenas de batalhas e confrontos ao longo caminho."
 
 #: civs/hele.jsonFactions[0].Name
 msgid "Poleis"
-msgstr ""
+msgstr "Pólis"
 
 #: civs/hele.jsonFactions[0].Description
 msgid "Greek City-states"
@@ -6480,7 +6674,7 @@ msgid ""
 "SYNTAGMA formation, derived from the oblique battle front developed by the "
 "Theban commander Epaminondas. The phalanx, consisting of 256 men, is "
 "arranged in the following way 16 men in width and 16 in depth."
-msgstr ""
+msgstr "Assim que subiu ao trono, Filipe II tratou de transformar o fraco exército macedônio numa temível força militar profissional. Uma de suas reformas consistiu na introdução da formação \"Sintagma\", derivada da frente de batalha oblíqua desenvolvida pelo comandante tebano Epaminondas. Esta falange macedônica era composta por 256 soldados dispostos em 16 fileiras de 16 soldados cada."
 
 #: civs/hele.jsonFactions[1].Technologies[1].Description
 msgid "Civic Centers have double Health."
@@ -6558,7 +6752,7 @@ msgstr "Macedónia"
 
 #: civs/hele.jsonFactions[1].Description
 msgid "Kingdom bordering Greek city-states"
-msgstr ""
+msgstr "Um reino que faz fronteira com as cidades-estado gregas"
 
 #: civs/hele.jsonHistory
 msgid ""
@@ -6572,7 +6766,7 @@ msgid ""
 " (431-404 B.C.), and the conquests of Alexander the Great (4th Century "
 "B.C.). Their civilization would endure until their final absorption by Rome "
 "in 146 B.C."
-msgstr ""
+msgstr "Os Helenos eram um povo hoje famoso por sua arquitetura, desempenho militar e cultura. Os povos helênicos das tribos dórica, jônica e eólica espalharam-se pelo que viria a ser a  Grécia entre 3.000 a.C. e 1.100 a.C., em ondas sucessivas que acabaram por suplantar as culturas micênicas e minoicas que já haviam se estabelecido ali anteriormente. Os períodos mais relevantes da civilização helenística foram o da colonização,  nos séculos VII e VI a.C.; o das Guerras Médicas (499-449 a.C.); o da Guerra do Peloponeso (431-404 a.C.) e o das conquistas de Alexandre, o Grande (século IV a.C.). Sua civilização perdurou por séculos, até ser completamente absorvida por Roma em 146 a.C."
 
 #: civs/iber.jsonName
 msgid "Iberians"
@@ -6644,15 +6838,15 @@ msgstr "Indíbil"
 
 #: civs/iber.jsonAINames[4]
 msgid "Audax"
-msgstr ""
+msgstr "Audax"
 
 #: civs/iber.jsonAINames[5]
 msgid "Ditalcus"
-msgstr ""
+msgstr "Ditalco"
 
 #: civs/iber.jsonAINames[6]
 msgid "Minurus"
-msgstr ""
+msgstr "Minurus"
 
 #: civs/iber.jsonAINames[7] maps/scenarios/Sahel.xml:42:PlayerData[3].Name
 msgid "Tautalus"
@@ -6662,7 +6856,7 @@ msgstr "Táutalo"
 msgid ""
 "Causes targets struck to become inflamed and lose hitpoints at a constant "
 "rate until and if either healed or repaired, as appropriate."
-msgstr "Faz com que o alvo atingidos se incendeie e perca pontos de saúde a uma taxa constante até que seja curado ou reparado conforme apropriado."
+msgstr "As unidades atingidas incendeiam-se e vão perdendo resistência a um ritmo constante até serem curadas ou reparado, dependendo do caso."
 
 #: civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
@@ -6709,7 +6903,7 @@ msgstr ""
 #: civs/iber.jsonFactions[0].Heroes[1].History
 msgid ""
 "Karos was a chief of the Belli tribe located just east of the Celtiberi "
-"(Numantines at the centre). Leading the confederated tribes of the meseta "
+"(Numantines at the center). Leading the confederated tribes of the meseta "
 "central (central upland plain) he concealed 20,000 foot and 5,000 mounted "
 "troops along a densely wooded track. Q. Fulvius Nobilior neglected proper "
 "reconnaissance and lead his army into the trap strung out in a long column. "
@@ -6982,7 +7176,7 @@ msgstr "Macedônia foi um reino grego antigo, centrado na porção nordeste da p
 
 #: civs/maur.jsonName
 msgid "Mauryans"
-msgstr ""
+msgstr "Máurias"
 
 #: civs/maur.jsonCivBonuses[0].Description
 msgid ""
@@ -6992,7 +7186,7 @@ msgstr ""
 
 #: civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
-msgstr ""
+msgstr "Imperador dos Imperadores"
 
 #: civs/maur.jsonCivBonuses[0].History
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
@@ -7051,7 +7245,7 @@ msgstr ""
 
 #: civs/maur.jsonAINames[3]
 msgid "Acharya Bhadrabahu"
-msgstr ""
+msgstr "Acharya Bhadrabahu"
 
 #: civs/maur.jsonAINames[4]
 msgid "Bindusara Maurya"
@@ -7059,19 +7253,19 @@ msgstr ""
 
 #: civs/maur.jsonAINames[5]
 msgid "Dasaratha Maurya"
-msgstr ""
+msgstr "Dasaratha Máuria"
 
 #: civs/maur.jsonAINames[6]
 msgid "Samprati Maurya"
-msgstr ""
+msgstr "Samprati Máuria"
 
 #: civs/maur.jsonAINames[7]
 msgid "Salisuka Maurya"
-msgstr ""
+msgstr "Salisuka de Magadha"
 
 #: civs/maur.jsonAINames[8]
 msgid "Devavarman Maurya"
-msgstr ""
+msgstr "Devavarman Máuria"
 
 #: civs/maur.jsonAINames[9]
 msgid "Satadhanvan Maurya"
@@ -7109,11 +7303,11 @@ msgstr ""
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
-msgstr ""
+msgstr "Fundador do Império Máuria"
 
 #: civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
-msgstr ""
+msgstr "Último grande imperador da dinastia Máuria."
 
 #: civs/maur.jsonFactions[0].Heroes[2].History
 msgid "Great teacher and advisor to Chandragupta Maurya."
@@ -7173,7 +7367,7 @@ msgstr "Persas"
 msgid ""
 "The resource cost of training camel-mounted (trader) or horse-mounted units "
 "(cavalry) is reduced by 5% per animal (as appropriate) corralled."
-msgstr ""
+msgstr "Os recursos necessários para recrutar unidades montadas em camelos (comerciantes) ou em cavalos (cavalaria) são reduzidos em 5% por cada animal no estábulo (dependendo do caso)."
 
 #: civs/pers.jsonCivBonuses[0].Name
 msgid "Corral Camels and Horses"
@@ -7185,7 +7379,7 @@ msgid ""
 "accompanied by great success (most notably during the battle of Sardis in "
 "546 B.C.) The satrapy of Bactria was a rich source of 'two-hump' camels, "
 "while Northern Arabia supplied 'one-hump' camels."
-msgstr ""
+msgstr "Os persas nem sempre usavam camelos em suas guerras, mas quando o faziam obtiam quase sempre bons resultados (principalmente na batalha de Sardes em 546 a.C.). A satrapia da Báctria era rica em camelos, ao passo que o norte da Arábia fornecia dromedários."
 
 #: civs/pers.jsonCivBonuses[1].Description
 msgid ""
@@ -7196,7 +7390,7 @@ msgstr "Os persas tem um bônus de +10% de capacidade populacional (ex. 330 de c
 #: civs/pers.jsonCivBonuses[1].Name
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"
-msgstr ""
+msgstr "Mobilização Geral"
 
 #: civs/pers.jsonCivBonuses[1].History
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
@@ -7207,11 +7401,11 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr ""
+msgstr "Os Persas recrutavam um grande número de pessoas para integrarem seus regimentos de infantaria em períodos de guerra, devido à enorme dimensão do império aquemênida e à maneira como estava organizado. Em geral, a infantaria persa era bem treinada e combatia com bastante empenho. No entanto, ela não se saia muito bem no combate corpo a corpo. Com exceção dos regimentos de elite, a infantaria persa não era um exército profissional permanente."
 
 #: civs/pers.jsonTeamBonuses[0].Description
 msgid "+25% trade profit land routes."
-msgstr ""
+msgstr "+25% de lucro nas rotas comerciais terrestres."
 
 #: civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -7236,7 +7430,7 @@ msgstr "Dario I, o Grande"
 
 #: civs/pers.jsonAINames[2]
 msgid "Cambyses II"
-msgstr ""
+msgstr "Cambises II"
 
 #: civs/pers.jsonAINames[3]
 msgid "Bardiya"
@@ -7294,13 +7488,13 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr ""
+msgstr "Os primeiros monarcas aquemênidas fizeram da Pérsia o primeiro grande império asiático a dominar os mares. O Grande Rei era favorável aos povos do litoral para garantir os seus serviços, e empreendia diversas iniciativas marítimas. Durante o reinado de Dario, o Grande, por exemplo, foi construído um canal no Egito e uma frota persa foi enviada para explorar o rio Indo. Segundo Heródoto, cerca de 300 navios persas foram adaptados para que pudessem transportar cavalos e seus cavaleiros."
 
 #: civs/pers.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Increases hitpoints of all structures, but build time increased "
 "appropriately."
-msgstr ""
+msgstr "Aumenta a resistência de todos os edifícios, mas também aumenta proporcionalmente o seu tempo de construção."
 
 #: civs/pers.jsonFactions[0].Technologies[1].Name
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
@@ -7318,7 +7512,7 @@ msgstr ""
 
 #: civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
-msgstr ""
+msgstr "O tempo para recrutar o campeão de infantaria Anasuia é reduzido pela metade."
 
 #: civs/pers.jsonFactions[0].Technologies[2].Name
 #: simulation/data/technologies/persians/immortals.jsongenericName
@@ -7350,7 +7544,7 @@ msgid ""
 "was also renown as a benevolent conqueror. (OP - Kurush). Technically the "
 "second ruler of the Persians by that name, and so appears as Kurush II on "
 "his documents and coins. Kurush I was his grandfather."
-msgstr ""
+msgstr "Ciro (559-530 a.C.), o filho de uma princesa meda e governante de Anzan. Apropriadamente chamado de \"Pai do Império\", Ciro, o Grande conquistou a Média, a Lídia, Babilônia e a Báctria, fundando assim o Império Persa. Ficou também conhecido como um conquistador benevolente. Tecnicamente, é o segundo monarca persa com este nome (Kurus em persa antigo), assim, aparece como Kurus II em seus documentos e moedas. Kurus I foi o seu avô."
 
 #: civs/pers.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/pers_hero_cyrus.xml:12
@@ -7363,7 +7557,7 @@ msgid ""
 "Parthia and Hyrcania; a great administrator as well as a decent general, "
 "Darius introduced the division of the empire into satrapies and conquered NW"
 " India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
-msgstr ""
+msgstr "Dario (521-486 a.C.) era filho de Histaspes, sátrapa da Pártia e da Hircânia. Administrador notável e general competente, Dario organizou o império em satrapias e conquistou o noroeste da Índia, a Trácia e a Macedônia. Ele era chamado de \"O Mercador do Império\"."
 
 #: civs/pers.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -7371,7 +7565,7 @@ msgid ""
 "Cyrus the Great, Xerxes was an able administrator, who also extended "
 "Imperial rule into Chorasmia. Apart from his failed invasion of Greece, he "
 "was famous for his extensive building programme, especially at Persepolis."
-msgstr ""
+msgstr "Xerxes (485-465 a.C.) era filho de Dario, o Grande com Atossa, filha de Ciro, o Grande. Ele era um excelente administrador e estendeu o domínio do império até a Corásmia. Além do seu fracasso em invadir a Grécia, Xerxes ficou famoso pelo seu enorme plano de construções, especialmente em Persépolis."
 
 #: civs/pers.jsonStructures[0].Name civs/sele.jsonStructures[1].Name
 #: simulation/templates/structures/pers_stables.xml:18
@@ -7380,11 +7574,11 @@ msgstr "Estábulos de Cavalaria"
 
 #: civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr ""
+msgstr "Recrutar cidadãos-soldados para serem cavaleiros."
 
 #: civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
-msgstr ""
+msgstr "Os melhores soldados do império persa eram cavaleiros orientais,"
 
 #: civs/pers.jsonStructures[1].Name
 #: simulation/templates/structures/pers_apadana.xml:27
@@ -7404,7 +7598,7 @@ msgid ""
 "Persepolis. Functioning as the empire's central audience hall, the palace is"
 " famous for the reliefs of the tribute-bearers and of the army, including "
 "the Immortals."
-msgstr ""
+msgstr "O termo Apadana refere-se a enormes palácios persas sustentados por colunas. O exemplo mais conhecido - e de longe o maior - era o grande Apadana de Persépolis. Funcionando como o salão de audiências central do império, o palácio ficou famoso pelos seus relevos, que representavam portadores de tributo e o exército persa, incluindo os Imortais."
 
 #: civs/pers.jsonHistory
 msgid ""
@@ -7415,7 +7609,7 @@ msgid ""
 "rule over various peoples with different customs, laws, religions and "
 "languages, and building a cosmopolitan army made up of contingents from each"
 " of these nations."
-msgstr ""
+msgstr "Durante o reinado da dinastia aquemênida, o império persa foi um dos maiores da antiguidade, estendendo-se no seu apogeu desde o vale do Indo até a Grécia. Os Persas foram pioneiros na estruturação e gestão de um império, conseguindo estabelecer um governo centralizado sobre vários povos com diferentes costumes, leis e idiomas; e organizar um exército cosmopolita, constituído por contingentes originários de todas estas nações."
 
 #: civs/ptol.jsonName
 msgid "Ptolemies"
@@ -7510,11 +7704,11 @@ msgstr "Ptolemeu Epifânio"
 
 #: civs/ptol.jsonAINames[6]
 msgid "Ptolemy Philometor"
-msgstr ""
+msgstr "Ptolemeu VI Filometor"
 
 #: civs/ptol.jsonAINames[7]
 msgid "Ptolemy Eupator"
-msgstr ""
+msgstr "Ptolemeu Eupátor"
 
 #: civs/ptol.jsonAINames[8]
 msgid "Ptolemy Alexander"
@@ -7622,7 +7816,7 @@ msgstr ""
 #: civs/ptol.jsonStructures[1].Name
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratópedo Misthophóron"
-msgstr ""
+msgstr "Stratópedo Misthophóron"
 
 #: civs/ptol.jsonStructures[1].Special
 msgid ""
@@ -8226,7 +8420,7 @@ msgstr "Brásidas"
 
 #: civs/spart.jsonAINames[3] simulation/templates/units/spart_hero_agis.xml:12
 msgid "Agis"
-msgstr ""
+msgstr "Ágis"
 
 #: civs/spart.jsonAINames[4]
 msgid "Archidamus"
@@ -8250,11 +8444,11 @@ msgstr "Eurícrates"
 
 #: civs/spart.jsonAINames[10]
 msgid "Eucleidas"
-msgstr ""
+msgstr "Eucleidas"
 
 #: civs/spart.jsonAINames[11]
 msgid "Agesipolis"
-msgstr ""
+msgstr "Agesípolis"
 
 #: civs/spart.jsonFactions[0].Technologies[0].Description
 msgid ""
@@ -8363,7 +8557,7 @@ msgstr "Recrutar heróis e esparciatas e desenvolver tecnologias para estas unid
 msgid ""
 "The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
 "peer, even kings, belonged to one."
-msgstr ""
+msgstr "A Sissítia era o refeitório para os espartanos de puro sangue, incluindo os reis."
 
 #: civs/spart.jsonHistory
 msgid ""
@@ -8381,7 +8575,7 @@ msgstr "Tebanos"
 
 #: civs/theb.jsonCivBonuses[0].Name
 msgid "Oblique Order"
-msgstr ""
+msgstr "Ordem Oblíqua"
 
 #: civs/theb.jsonCivBonuses[1].Name
 #: civs/theb.jsonFactions[0].Technologies[1].Name
@@ -8407,19 +8601,19 @@ msgstr "Górgidas"
 
 #: civs/theb.jsonAINames[3]
 msgid "Calydnus"
-msgstr ""
+msgstr "Calídno"
 
 #: civs/theb.jsonAINames[4]
 msgid "Ogyges"
-msgstr ""
+msgstr "Ogiges"
 
 #: civs/theb.jsonAINames[5]
 msgid "Cadmus"
-msgstr ""
+msgstr "Cadmo"
 
 #: civs/theb.jsonAINames[6]
 msgid "Pentheus"
-msgstr ""
+msgstr "Penteu"
 
 #: civs/theb.jsonAINames[7]
 msgid "Polydorus"
@@ -8427,7 +8621,7 @@ msgstr "Polidoro"
 
 #: civs/theb.jsonAINames[8]
 msgid "Nycteus"
-msgstr ""
+msgstr "Nicteu"
 
 #: civs/theb.jsonAINames[9]
 msgid "Lycus"
@@ -8435,7 +8629,7 @@ msgstr "Lico"
 
 #: civs/theb.jsonAINames[10]
 msgid "Labdacus"
-msgstr ""
+msgstr "Lábdaco"
 
 #: civs/theb.jsonFactions[0].Description
 msgid ""
@@ -8446,7 +8640,7 @@ msgstr "O grande poder da Grécia Central e lider da confederação da Beócia."
 msgid ""
 "At the siege of the Athenian fortress at Delium, the Thebans employed what "
 "may be deemed the first recorded use of a flame thrower in warfare."
-msgstr ""
+msgstr "Durante o cerco da fortaleza ateniense de Délio, os Tebanos usaram o que se pode considerar ser o primeiro lança-chamas na história das guerras."
 
 #: civs/theb.jsonHistory
 msgid ""
@@ -8459,7 +8653,7 @@ msgid ""
 "Philip II and Alexander the Great. Prior to its destruction by Alexander in "
 "335 BC, Thebes was a major force in Greek history, and was the most dominant"
 " city-state at the time of the Macedonian conquest of Greece."
-msgstr ""
+msgstr "Líderes da Liga da Beócia e grande força na Grécia central, os Tebanos se tornaram uma potência considerável. Foram grandes rivais de Atenas e aliaram-se aos Persas durante a invasão de Xerxes em 480 a.C. As forças tebanas puseram fim ao domínio de Esparta na batalha de Leuctra em 371 a.C., sob o comando de Epaminondas. O famoso Batalhão Sagrado de Tebas (uma unidade militar de elite) tombou na batalha de Queroneia em 338 a.C. contra Filipe II da Macedônia e Alexandre Magno. Tebas foi uma das principais forças da história da Grécia e era a principal cidade-estado grega na época da conquista macedônia da Grécia, antes de ser destruída por Alexandre Magno em 335 a.C."
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands"
@@ -8609,7 +8803,7 @@ msgstr "Floresta densa"
 msgid ""
 "Players start in either northern France or southern Britain while the "
 "English channel separates them."
-msgstr ""
+msgstr "Os jogadores começam no norte de França ou no sul da Grã-Bretanha, separados pelo canal da Mancha."
 
 #: maps/random/english_channel.jsonsettings.Name
 msgid "English Channel"
@@ -8631,7 +8825,7 @@ msgstr "Uma território com canais decorados de uma maneira similar a uma teia d
 
 #: maps/random/gear.jsonsettings.Name
 msgid "Gear"
-msgstr ""
+msgstr "Forma de engrenagem"
 
 #: maps/random/guadalquivir_river.jsonsettings.Description
 msgid ""
@@ -8718,13 +8912,13 @@ msgstr "Um mapa típico sem água"
 
 #: maps/random/mainland.jsonsettings.Name
 msgid "Mainland"
-msgstr ""
+msgstr "Continente"
 
 #: maps/random/migration.jsonsettings.Description
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
 "big continent in the west ready for expansion."
-msgstr ""
+msgstr "Os jogadores começam em pequenas ilhas na parte oriental do mapa. Há um grande continente a oeste para ser conquistado."
 
 #: maps/random/migration.jsonsettings.Name
 #: maps/scenarios/Migration.xml:31:Name
@@ -8748,7 +8942,7 @@ msgstr "Um teste básico do gerador de mapas - sem jogabilidade"
 
 #: maps/random/new_rms_test.jsonsettings.Name
 msgid "New RMS Test"
-msgstr ""
+msgstr "Novo teste SMA"
 
 #: maps/random/northern_lights.jsonsettings.Description
 msgid ""
@@ -8845,7 +9039,7 @@ msgid ""
 "Players start around the map with lines of water between them\n"
 "\n"
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up."
-msgstr ""
+msgstr "Os jogadores começam espalhados pelo mapa, com cursos de água entre eles.\n\nA savana africana está repleta de vida animal para a caça e de ricos depósitos de minério. A estação seca se aproxima e os poços de água estão secando."
 
 #: maps/random/sahel_watering_holes.jsonsettings.Name
 msgid "Sahel Watering Holes"
@@ -8879,7 +9073,7 @@ msgstr "O Nilo"
 
 #: maps/random/unknown.jsonsettings.Description
 msgid "The unknown... Warning: May be a naval map"
-msgstr ""
+msgstr "O desconhecido... Aviso: Pode ser um mapa naval"
 
 #: maps/random/unknown_land.jsonsettings.Description
 msgid "The unknown..."
@@ -8893,7 +9087,7 @@ msgstr "Terra Desconhecida"
 msgid ""
 "The unknown... Players start with only some citizen soldiers and females. "
 "[color=\"red\"]Warning: AI players will cause the game to crash.[/color]"
-msgstr ""
+msgstr "O desconhecido... Os jogadores começam só com alguns cidadãos-soldados e cidadãs. [color=\"red\"]Aviso: Os jogadores artificiais vão fazer com que o jogo deixe de funcionar.[/color]"
 
 #: maps/random/unknown_nomad.jsonsettings.Name
 msgid "Unknown Nomad"
@@ -8919,7 +9113,7 @@ msgstr "Demonstração de Muralhas"
 
 #: simulation/ai/aegis/data.jsonname
 msgid "Aegis Bot"
-msgstr ""
+msgstr "Aegis Bot"
 
 #: simulation/ai/aegis/data.jsondescription
 msgid ""
@@ -8927,7 +9121,7 @@ msgid ""
 "player. Note that it doesn't support saved games yet, and there may be other"
 " bugs. Please report issues to Wildfire Games (see the link in the main "
 "menu)."
-msgstr ""
+msgstr "Melhoria do qBot por Wraitii. É mais confiável e em geral é um melhor jogador. Lembre-se que ele ainda não suporta jogos salvos e pode ter outros bugs. Se encontrar um erro, por favor, entre em contacto com a Wildfire Games (o link está no menu principal)."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -8940,11 +9134,11 @@ msgstr ""
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
 msgid "Tutorial AI"
-msgstr ""
+msgstr "Aprendizagem"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr ""
+msgstr "Armadura de metal para o rosto do cavalo."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
@@ -9090,7 +9284,7 @@ msgstr "Desbloqueado na \"Fase Cidade\""
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.hele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
 msgid "Sidi̱ró Panoplía"
-msgstr ""
+msgstr "Sidi̱ró Panoplía"
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
@@ -9190,7 +9384,7 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
 msgid "Aspidiskè"
-msgstr ""
+msgstr "Aspidiskè"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsondescription
 msgid ""
@@ -9447,7 +9641,7 @@ msgstr ""
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.hele
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.mace
 msgid "Nyktophylakes"
-msgstr ""
+msgstr "Nyktophylakes"
 
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.rome
 msgid "Vigiles"
@@ -9467,11 +9661,11 @@ msgstr ""
 
 #: simulation/data/technologies/decay_outpost.jsondescription
 msgid "Outposts survive twice as long in neutral territory."
-msgstr ""
+msgstr "Os postos avançados duram o dobro do tempo em território neutro."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay -50% for Outposts."
-msgstr ""
+msgstr "Redução de -50% no território dos postos avançados."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -9491,7 +9685,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid "Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Aumenta a capacidade de transporte para todos os recursos."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -9634,7 +9828,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
-msgstr ""
+msgstr "Cestos de Palha"
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
@@ -9782,7 +9976,7 @@ msgstr ""
 #: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.mace
 msgid "Siderénies Aichmés"
-msgstr ""
+msgstr "Siderénies Aichmés"
 
 #: simulation/data/technologies/melee_inf_training.jsondescription
 msgid "Training increases damage of melee infantry units."
@@ -9922,7 +10116,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city_britons.jsondescription
 #: simulation/data/technologies/phase_city_gauls.jsondescription
 msgid "Advance from a bustling town to large city."
-msgstr ""
+msgstr "Eleva de uma pequena vila a uma grande cidade."
 
 #: simulation/data/technologies/phase_city_britons.jsontooltip
 msgid ""
@@ -9932,17 +10126,17 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_britons.jsongenericName
 msgid "City Phase - Britons"
-msgstr ""
+msgstr "Fase \"Cidade\" - Bretões"
 
 #: simulation/data/technologies/phase_city_gauls.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks Gallic structures and units. Territory "
-"radius for Civilization Centres increased by another +50%"
+"radius for Civilization Centers increased by another +50%"
 msgstr ""
 
 #: simulation/data/technologies/phase_city_gauls.jsongenericName
 msgid "City Phase - Gauls"
-msgstr ""
+msgstr "Fase \"Cidade\" - Gauleses"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -10049,7 +10243,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
 msgid "Ekklesia"
-msgstr ""
+msgstr "Ekklesia"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -10059,7 +10253,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 msgid "Houses +1 population cap bonus."
-msgstr ""
+msgstr "Capacidade populacional das Casas aumenta +1."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -10086,7 +10280,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +2 population cap bonus."
-msgstr ""
+msgstr "Capacidade populacional das Casas aumenta +2."
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
@@ -10139,7 +10333,7 @@ msgstr ""
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.hele
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
 msgid "Ankyle"
-msgstr ""
+msgstr "Ankyle"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
 msgid "Amentum"
@@ -10155,7 +10349,7 @@ msgstr ""
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
-msgstr ""
+msgstr "Blindagem"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency"
@@ -10311,7 +10505,7 @@ msgstr ""
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
 msgid "Agèma"
-msgstr ""
+msgstr "Agèma"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
@@ -10323,7 +10517,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsontooltip
 msgid "Unlock the ability to train women from houses."
-msgstr ""
+msgstr "Desbloqueia a capacidade de recrutar mulheres a partir das casas."
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
@@ -10372,7 +10566,7 @@ msgstr ""
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
 msgid "Metikoi"
-msgstr ""
+msgstr "Metikoi"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
@@ -10405,15 +10599,15 @@ msgstr ""
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Zeugites"
-msgstr ""
+msgstr "Zeugita"
 
 #: simulation/data/technologies/vision_outpost.jsondescription
 msgid "Outposts gain longer vision for scouting."
-msgstr ""
+msgstr "Aumento de campo de visão para os postos avançados."
 
 #: simulation/data/technologies/vision_outpost.jsontooltip
 msgid "Vision Range +50% for Outposts."
-msgstr ""
+msgstr "O campo de visão dos postos avançados aumentam em +50%."
 
 #: simulation/data/technologies/vision_outpost.jsongenericName
 msgid "Carrier Pigeons"
@@ -10476,7 +10670,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
-msgstr ""
+msgstr "General Mercenário Celtibérico"
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
@@ -10527,17 +10721,11 @@ msgstr ""
 msgid "Italian merc cost vs. recruit time #2"
 msgstr ""
 
-#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
-msgid ""
-"Carthaginians established many trading centers as colonies and ultimately "
-"held dominion over 300 cities and towns in North Africa alone."
-msgstr ""
-
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
 "Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
 " time."
-msgstr ""
+msgstr "Os cartagineses eram colonizadores. Centros cívicos, templos e casas têm -25% de tempo de construção."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
@@ -10577,7 +10765,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
 msgid "Gallic Hegemony"
-msgstr ""
+msgstr "Hegemonia Gaulesa"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
@@ -10591,7 +10779,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
-msgstr ""
+msgstr "Aliança Ibérica"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
@@ -10615,7 +10803,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
 msgid "Italiote Alliance"
-msgstr ""
+msgstr "Aliança Italiota"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsontooltip
 msgid ""
@@ -10684,7 +10872,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
-msgstr ""
+msgstr "Mercenários Celtas de Elite"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
 msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
@@ -10698,7 +10886,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
-msgstr ""
+msgstr "Mercenários Ibéricos de Elite"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
 msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
@@ -10713,7 +10901,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
-msgstr ""
+msgstr "Mercenários Italiotas de Elite"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
 msgid ""
@@ -10724,7 +10912,7 @@ msgstr ""
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
-msgstr ""
+msgstr "Construção de Madeira"
 
 #: simulation/data/technologies/celts/special_gather_crop_rotation.jsondescription
 msgid ""
@@ -10766,7 +10954,7 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
-msgstr ""
+msgstr "Arquitetura Helênica"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -10825,7 +11013,7 @@ msgstr ""
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.theb
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.spart
 msgid "Exellinismós"
-msgstr ""
+msgstr "Exellinismós"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -10833,7 +11021,7 @@ msgstr ""
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
-msgstr ""
+msgstr "Chakravarti Samrāt"
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
 msgid ""
@@ -10949,7 +11137,7 @@ msgstr "Aumenta a velocidade de recrutamento conjunto nas Fortalezas."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
-msgstr ""
+msgstr "Desfile de Dafne"
 
 #: simulation/data/technologies/successors/special_war_horses.jsondescription
 msgid ""
@@ -11027,6 +11215,10 @@ msgstr ""
 msgid "Chop down to accumulate Wood."
 msgstr ""
 
+#: simulation/templates/template_gaia_flora_tree.xml:5
+msgid "Tree"
+msgstr "Árvore"
+
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
 msgstr "Geologia Genérica"
@@ -11047,6 +11239,10 @@ msgstr "Mina de Metais"
 msgid "Mine these to provide Stone building material."
 msgstr ""
 
+#: simulation/templates/template_gaia_geo_rock.xml:4
+msgid "Rock"
+msgstr "Pedra"
+
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Stone Mine"
 msgstr "Mina de pedras"
@@ -11059,6 +11255,13 @@ msgstr "Essas ruínas podem ser mineradas para conseguir recursos."
 msgid "Generic Ruins"
 msgstr "Ruínas Genéricas"
 
+#: simulation/templates/template_gaia_ruins.xml:9
+#: simulation/templates/gaia/special_ruins.xml:9
+#: simulation/templates/gaia/special_ruins_column_doric.xml:9
+#: simulation/templates/other/unfinished_greek_temple.xml:9
+msgid "Ruins"
+msgstr "Ruínas"
+
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
 msgstr ""
@@ -11066,6 +11269,24 @@ msgstr ""
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
 msgstr ""
+
+#: simulation/templates/template_gaia_treasure.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
+#: simulation/templates/gaia/special_treasure_food_bin.xml:9
+#: simulation/templates/gaia/special_treasure_food_crate.xml:9
+#: simulation/templates/gaia/special_treasure_food_jars.xml:9
+#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
+#: simulation/templates/gaia/special_treasure_pegasus.xml:9
+#: simulation/templates/gaia/special_treasure_stone.xml:9
+#: simulation/templates/gaia/special_treasure_wood.xml:9
+#: simulation/templates/other/special_treasure_shipwreck.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
+msgid "Treasure"
+msgstr "Tesouro"
 
 #: simulation/templates/template_structure.xml:47
 msgid "Structure"
@@ -11095,7 +11316,7 @@ msgstr "Aumentar a população limite."
 #: simulation/templates/template_structure_civic_house.xml:30
 #: simulation/templates/other/pers_house_a.xml:12
 msgid "House"
-msgstr ""
+msgstr "Casa"
 
 #: simulation/templates/template_structure_civic_temple.xml:37
 msgid ""
@@ -11133,7 +11354,7 @@ msgstr ""
 #: simulation/templates/template_structure_defense_outpost.xml:57
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
-msgstr ""
+msgstr "Posto avançado"
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
@@ -11179,7 +11400,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_economic_farmstead.xml:21
 msgid "Farmstead"
-msgstr ""
+msgstr "Propriedade Agrícola"
 
 #: simulation/templates/template_structure_economic_market.xml:22
 msgid ""
@@ -11195,18 +11416,18 @@ msgstr ""
 
 #: simulation/templates/template_structure_economic_storehouse.xml:21
 msgid "Storehouse"
-msgstr "Depósito"
+msgstr "Armazém"
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
-msgstr ""
+msgstr "Construa um Centro Cívico neste local para expandir o seu território."
 
 #: simulation/templates/template_structure_gaia_settlement.xml:9
 #: simulation/templates/template_structure_gaia_settlement.xml:10
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
 msgid "Settlement"
-msgstr ""
+msgstr "Povoado"
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
@@ -11262,7 +11483,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_resource_corral.xml:26
 msgid "Corral"
-msgstr ""
+msgstr "Estábulo"
 
 #: simulation/templates/template_structure_resource_field.xml:26
 msgid "Harvest vegetables for food. Max gatherers: 5."
@@ -11293,7 +11514,7 @@ msgstr ""
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
 "Classes: Citizen Melee Cavalry Spearman.\n"
-"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers. \n"
+"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, Elephants."
 msgstr ""
 
@@ -11310,7 +11531,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:45
 msgid "Cavalry Swordsman"
-msgstr ""
+msgstr "Cavaleiro Espadachim"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:29
 msgid "Ranged Cavalry"
@@ -11349,13 +11570,13 @@ msgstr "Cavalaria Campeã"
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:41
 msgid ""
 "Classes: Champion Ranged Cavalry Archer.\n"
-"Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen.\n"
 "Countered by: Skirmishers and Elephants."
 msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:40
 msgid "Champion Cavalry Archer."
-msgstr ""
+msgstr "Cavaleiro Arqueiro Campeão"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:40
 msgid ""
@@ -11408,7 +11629,7 @@ msgstr "Infantaria Campeã"
 #: simulation/templates/template_unit_champion_infantry_archer.xml:46
 msgid ""
 "Classes: Champion Ranged Infantry Archer.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
 msgstr ""
 
@@ -11419,7 +11640,7 @@ msgstr "Arqueiro Campeão"
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:54
 msgid ""
 "Classes: Champion Ranged Infantry Skirmisher.\n"
-"Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots. \n"
+"Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Swordsmen and Cavalry Spearmen."
 msgstr ""
 
@@ -11430,7 +11651,7 @@ msgstr ""
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:57
 msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
-"Counters: 2x vs. All Cavalry, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.\n"
 "Countered by: Swordsmen, Skirmishers, and Cavalry Archers."
 msgstr ""
 
@@ -11452,13 +11673,13 @@ msgstr "Lanceiro Campeão"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:53
 msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
-msgstr ""
+msgstr "Campeão espadachim"
 
 #: simulation/templates/template_unit_champion_ranged.xml:4
 msgid "Champion Ranged"
@@ -11481,6 +11702,10 @@ msgstr "Cão de Guerra"
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
 msgstr "Fauna"
+
+#: simulation/templates/template_unit_fauna_fish.xml:9
+msgid "Fish"
+msgstr "Peixe"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:17
 msgid "Kill, then collect food from this bountiful oceanic resource."
@@ -11548,7 +11773,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_archer.xml:41
 msgid ""
 "Classes: Hero Infantry Ranged Archer Bow.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
 msgstr ""
 
@@ -11572,7 +11797,7 @@ msgstr "Lanceiro Herói"
 msgid ""
 "Classes: Hero Infantry Melee Sword.\n"
 "\"Hero\" Aura: TBD.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
 msgstr ""
 
@@ -11598,7 +11823,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:37
 msgid "Spearman"
-msgstr ""
+msgstr "Lanceiro"
 
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:54
 msgid ""
@@ -11692,7 +11917,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
-msgstr ""
+msgstr "Navio Mercante"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid ""
@@ -11713,11 +11938,11 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
-msgstr ""
+msgstr "Navio de Guerra Médio"
 
 #: simulation/templates/template_unit_mechanical_siege.xml:13
 msgid "Siege"
-msgstr ""
+msgstr "Máquina de cerco"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:53
 msgid ""
@@ -11744,7 +11969,7 @@ msgstr ""
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:62
 msgid ""
 "Classes: Siege Melee Ram.\n"
-"Counters: 1.5x vs. Gates. Generally good vs. Buildings. \n"
+"Counters: 1.5x vs. Gates. Generally good vs. Buildings.\n"
 "Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships)."
 msgstr ""
 
@@ -11762,7 +11987,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:58
 msgid "Siege Tower"
-msgstr ""
+msgstr "Torre de Cerco"
 
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
@@ -11806,7 +12031,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_support_trader.xml:14
 msgid "Trader"
-msgstr ""
+msgstr "Mercador"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:30
 #: simulation/templates/campaigns/army_mace_standard.xml:22
@@ -11840,7 +12065,7 @@ msgstr "Exército de Leônidas I"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr ""
+msgstr "É uma pequena cidade grega e tem um efeito territorial de 150."
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
@@ -11848,7 +12073,7 @@ msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city. Has a territory effect of 300."
-msgstr ""
+msgstr "É uma grande cidade grega e tem um efeito territorial de 300."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
@@ -11924,7 +12149,7 @@ msgstr ""
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "Testudo"
-msgstr ""
+msgstr "Tartaruga"
 
 #: simulation/templates/formations/testudo.xml:5
 msgid "9 melee infantry units required"
@@ -11976,7 +12201,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
-msgstr ""
+msgstr "Elefante Africano (pequeno)"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:46
 msgid "Asian Elephant"
@@ -11984,7 +12209,7 @@ msgstr "Elefante-asiático"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:33
 msgid "North African Elephant"
-msgstr ""
+msgstr "Elefante Norte-Africano"
 
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
@@ -12030,7 +12255,7 @@ msgstr "Leão"
 
 #: simulation/templates/gaia/fauna_lioness.xml:18
 msgid "Lioness"
-msgstr ""
+msgstr "Leoa"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
@@ -12054,7 +12279,7 @@ msgstr "Tubarão"
 
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Great White"
-msgstr ""
+msgstr "Tubarão-branco"
 
 #: simulation/templates/gaia/fauna_sheep.xml:11
 msgid "Sheep"
@@ -12102,7 +12327,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
-msgstr ""
+msgstr "Fruta"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Grapes"
@@ -12178,11 +12403,11 @@ msgstr "Oliveira"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
-msgstr ""
+msgstr "Palmeira"
 
 #: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
 msgid "Tropical Palm"
-msgstr ""
+msgstr "Palmeira Tropical"
 
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
@@ -12317,7 +12542,7 @@ msgstr "Templo de Sacrifício"
 
 #: simulation/templates/other/cart_tophet.xml:23
 msgid "Tophet"
-msgstr ""
+msgstr "Tofete"
 
 #: simulation/templates/other/celt_homestead.xml:25
 msgid "A Celtic homestead."
@@ -12332,7 +12557,7 @@ msgstr ""
 #: simulation/templates/structures/celt_civil_centre.xml:9
 #: simulation/templates/structures/gaul_civil_centre.xml:9
 msgid "Caer"
-msgstr ""
+msgstr "Caer"
 
 #: simulation/templates/other/celt_hut.xml:23
 msgid "Add +2 to Population Cap."
@@ -12350,7 +12575,7 @@ msgstr "Adiciona +10 à Capacidade Populacional."
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
-msgstr ""
+msgstr "Cabana comunitária"
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
@@ -12400,7 +12625,7 @@ msgstr "Templo Épico"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:31
 msgid "Naos Parthenos"
-msgstr ""
+msgstr "Naos Parthenos"
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
@@ -12408,7 +12633,7 @@ msgstr "Pórtico"
 
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
-msgstr ""
+msgstr "Propileus"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:33
 msgid "Add +10 to Population Cap. Recruit special units."
@@ -12417,15 +12642,15 @@ msgstr "Adiciona +10 à Capacidade Populacional. Recruta unidades especiais."
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "Colunata"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:31
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "Coluna Real Helênica"
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr ""
+msgstr "Colunata Helênica"
 
 #: simulation/templates/other/maur_palace.xml:14
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
@@ -12528,7 +12753,7 @@ msgstr ""
 
 #: simulation/templates/other/pers_apartment_block.xml:15
 msgid "Apartment Block"
-msgstr ""
+msgstr "Bloco de apartamentos"
 
 #: simulation/templates/other/pers_house_b.xml:15
 #: simulation/templates/other/pers_inn.xml:15
@@ -12541,7 +12766,7 @@ msgstr "Armazém"
 
 #: simulation/templates/other/plane.xml:40
 msgid "A World War 2 American fighter plane."
-msgstr ""
+msgstr "Avião norte-americano da II Guerra Mundial."
 
 #: simulation/templates/other/plane.xml:38
 msgid "P-51 Mustang"
@@ -12624,11 +12849,11 @@ msgstr ""
 
 #: simulation/templates/other/unfinished_greek_temple.xml:12
 msgid "This temple is unfinished and has fallen to ruin."
-msgstr ""
+msgstr "A construção deste templo não terminou e por isso, ficou em ruínas."
 
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
-msgstr ""
+msgstr "Templo Grego Inacabado"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -12647,12 +12872,12 @@ msgstr ""
 #: simulation/templates/structures/mace_barracks.xml:18
 #: simulation/templates/structures/spart_barracks.xml:18
 msgid "Stratēgeîon"
-msgstr ""
+msgstr "Stratēgeîon"
 
 #: simulation/templates/structures/athen_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
 msgid "Khalkeîon"
-msgstr ""
+msgstr "Khalkeîon"
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/hele_civil_centre.xml:12
@@ -12660,7 +12885,7 @@ msgstr ""
 #: simulation/templates/structures/sele_civil_centre.xml:8
 #: simulation/templates/structures/spart_civil_centre.xml:8
 msgid "Agorā́"
-msgstr ""
+msgstr "Ágora"
 
 #: simulation/templates/structures/athen_corral.xml:12
 #: simulation/templates/structures/hele_corral.xml:16
@@ -12668,7 +12893,7 @@ msgstr ""
 #: simulation/templates/structures/sele_corral.xml:12
 #: simulation/templates/structures/spart_corral.xml:12
 msgid "Épaulos"
-msgstr ""
+msgstr "Épaulos"
 
 #: simulation/templates/structures/athen_defense_tower.xml:9
 #: simulation/templates/structures/hele_defense_tower.xml:15
@@ -12676,14 +12901,14 @@ msgstr ""
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgíon"
-msgstr ""
+msgstr "Pyrgíon"
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/hele_dock.xml:16
 #: simulation/templates/structures/mace_dock.xml:12
 #: simulation/templates/structures/spart_dock.xml:12
 msgid "Limḗn"
-msgstr ""
+msgstr "Limḗn"
 
 #: simulation/templates/structures/athen_farmstead.xml:12
 #: simulation/templates/structures/hele_farmstead.xml:16
@@ -12691,7 +12916,7 @@ msgstr ""
 #: simulation/templates/structures/sele_farmstead.xml:12
 #: simulation/templates/structures/spart_farmstead.xml:12
 msgid "Sītobólion"
-msgstr ""
+msgstr "Sītobólion"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/hele_field.xml:5
@@ -12699,7 +12924,7 @@ msgstr ""
 #: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
 msgid "Agrós"
-msgstr ""
+msgstr "Agrós"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/hele_fortress.xml:16
@@ -12709,7 +12934,7 @@ msgstr "Construa mecanismos de cerco. Abrigue até 20 soldados em seu interior p
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíchisma"
-msgstr ""
+msgstr "Epiteíchisma"
 
 #: simulation/templates/structures/athen_gymnasion.xml:22
 #: simulation/templates/structures/hele_gymnasion.xml:23
@@ -12719,11 +12944,11 @@ msgstr ""
 #: simulation/templates/structures/athen_gymnasion.xml:20
 #: simulation/templates/structures/hele_gymnasion.xml:21
 msgid "Gymnasium"
-msgstr ""
+msgstr "Ginásio"
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
 msgid "Gymnásieon"
-msgstr ""
+msgstr "Gymnásieon"
 
 #: simulation/templates/structures/athen_house.xml:18
 #: simulation/templates/structures/hele_house.xml:18
@@ -12731,7 +12956,7 @@ msgstr ""
 #: simulation/templates/structures/sele_house.xml:18
 #: simulation/templates/structures/spart_house.xml:18
 msgid "Oîkos"
-msgstr ""
+msgstr "Oîkos"
 
 #: simulation/templates/structures/athen_market.xml:5
 #: simulation/templates/structures/hele_market.xml:11
@@ -12739,14 +12964,14 @@ msgstr ""
 #: simulation/templates/structures/sele_market.xml:5
 #: simulation/templates/structures/spart_market.xml:5
 msgid "Empórion"
-msgstr ""
+msgstr "Empórion"
 
 #: simulation/templates/structures/athen_outpost.xml:5
 #: simulation/templates/structures/hele_outpost.xml:5
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr ""
+msgstr "Posto avançado grego"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
@@ -12768,12 +12993,12 @@ msgstr ""
 #: simulation/templates/structures/sele_storehouse.xml:5
 #: simulation/templates/structures/spart_storehouse.xml:5
 msgid "Apothḗkē"
-msgstr ""
+msgstr "Apothḗkē"
 
 #: simulation/templates/structures/athen_temple.xml:9
 #: simulation/templates/structures/hele_temple.xml:15
 msgid "Neṓs"
-msgstr ""
+msgstr "Neṓs"
 
 #: simulation/templates/structures/athen_theatron.xml:31
 #: simulation/templates/structures/hele_theatron.xml:31
@@ -12799,7 +13024,7 @@ msgstr "Teatro Grego"
 #: simulation/templates/structures/spart_theatron.xml:29
 #: simulation/templates/structures/theb_theatron.xml:29
 msgid "Théātron"
-msgstr ""
+msgstr "Théātron"
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/hele_wall_gate.xml:9
@@ -12807,7 +13032,7 @@ msgstr ""
 #: simulation/templates/structures/sele_wall_gate.xml:9
 #: simulation/templates/structures/spart_wall_gate.xml:9
 msgid "Pýlai"
-msgstr ""
+msgstr "Pýlai"
 
 #: simulation/templates/structures/athen_wall_long.xml:10
 #: simulation/templates/structures/athen_wall_medium.xml:10
@@ -12830,7 +13055,7 @@ msgstr ""
 #: simulation/templates/structures/spart_wall_short.xml:13
 #: simulation/templates/structures/spart_wallset_stone.xml:5
 msgid "Teîkhos"
-msgstr ""
+msgstr "Teîkhos"
 
 #: simulation/templates/structures/athen_wall_tower.xml:9
 #: simulation/templates/structures/hele_wall_tower.xml:9
@@ -12838,7 +13063,7 @@ msgstr ""
 #: simulation/templates/structures/sele_wall_tower.xml:9
 #: simulation/templates/structures/spart_wall_tower.xml:9
 msgid "Pýrgos"
-msgstr ""
+msgstr "Pýrgos"
 
 #: simulation/templates/structures/athen_wonder.xml:19
 #: simulation/templates/structures/hele_wonder.xml:19
@@ -12854,25 +13079,25 @@ msgstr ""
 #: simulation/templates/structures/mace_wonder.xml:17
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid "Neṓs Parthenos"
-msgstr ""
+msgstr "Neṓs Parthenos"
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/celt_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Gwersyllty"
-msgstr ""
+msgstr "Gwersyllty"
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/celt_blacksmith.xml:8
 #: simulation/templates/structures/gaul_blacksmith.xml:8
 msgid "Amoridas"
-msgstr ""
+msgstr "Amoridas"
 
 #: simulation/templates/structures/brit_corral.xml:9
 #: simulation/templates/structures/celt_corral.xml:9
 #: simulation/templates/structures/gaul_corral.xml:9
 msgid "Cavalidos"
-msgstr ""
+msgstr "Cavalidos"
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways"
@@ -12887,7 +13112,7 @@ msgstr ""
 #: simulation/templates/structures/celt_dock.xml:15
 #: simulation/templates/structures/gaul_dock.xml:15
 msgid "Crannóc"
-msgstr ""
+msgstr "Crannóc"
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
 #: simulation/templates/structures/brit_wall_tower.xml:11
@@ -12896,7 +13121,7 @@ msgstr ""
 #: simulation/templates/structures/gaul_defense_tower.xml:9
 #: simulation/templates/structures/gaul_wall_tower.xml:11
 msgid "Tyrau"
-msgstr ""
+msgstr "Tyrau"
 
 #: simulation/templates/structures/brit_farmstead.xml:8
 #: simulation/templates/structures/celt_farmstead.xml:8
@@ -12924,7 +13149,7 @@ msgstr ""
 #: simulation/templates/structures/celt_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:9
 msgid "Annedd"
-msgstr ""
+msgstr "Annedd"
 
 #: simulation/templates/structures/brit_kennel.xml:35
 #: simulation/templates/structures/celt_kennel.xml:35
@@ -12939,7 +13164,7 @@ msgstr ""
 
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
-msgstr ""
+msgstr "Posto avançado bretão"
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/celt_sb1.xml:25
@@ -12959,7 +13184,7 @@ msgstr ""
 #: simulation/templates/structures/celt_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
 msgid "Ystordy"
-msgstr ""
+msgstr "Ystordy"
 
 #: simulation/templates/structures/brit_temple.xml:19
 #: simulation/templates/structures/celt_temple.xml:19
@@ -12969,7 +13194,7 @@ msgstr ""
 
 #: simulation/templates/structures/brit_wall_gate.xml:16
 msgid "Dor"
-msgstr ""
+msgstr "Dor"
 
 #: simulation/templates/structures/brit_wall_long.xml:10
 #: simulation/templates/structures/brit_wall_medium.xml:13
@@ -12985,7 +13210,7 @@ msgstr ""
 #: simulation/templates/structures/gaul_wall_short.xml:13
 #: simulation/templates/structures/gaul_wallset_stone.xml:5
 msgid "Gwarchglawdd"
-msgstr ""
+msgstr "Gwarchglawdd"
 
 #: simulation/templates/structures/brit_wall_tower.xml:13
 #: simulation/templates/structures/celt_wall_tower.xml:13
@@ -12998,7 +13223,7 @@ msgstr ""
 #: simulation/templates/structures/gaul_wonder.xml:9
 #: simulation/templates/structures/iber_wonder.xml:9
 msgid "Stonehenge"
-msgstr ""
+msgstr "Stonehenge"
 
 #: simulation/templates/structures/cart_barracks.xml:20
 msgid ""
@@ -13008,7 +13233,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_barracks.xml:18
 msgid "Maḥanēt"
-msgstr ""
+msgstr "Maḥanēt"
 
 #: simulation/templates/structures/cart_blacksmith.xml:5
 #: simulation/templates/structures/ptol_blacksmith.xml:5
@@ -13019,16 +13244,16 @@ msgstr "?"
 
 #: simulation/templates/structures/cart_civil_centre.xml:5
 msgid "Merkāz"
-msgstr ""
+msgstr "Merkāz"
 
 #: simulation/templates/structures/cart_corral.xml:12
 msgid "Rēfet"
-msgstr ""
+msgstr "Rēfet"
 
 #: simulation/templates/structures/cart_defense_tower.xml:9
 #: simulation/templates/structures/cart_wall_tower.xml:12
 msgid "Mijdil"
-msgstr ""
+msgstr "Mijdil"
 
 #: simulation/templates/structures/cart_dock.xml:20
 msgid ""
@@ -13038,15 +13263,15 @@ msgstr ""
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
-msgstr ""
+msgstr "Porto Comercial"
 
 #: simulation/templates/structures/cart_dock.xml:18
 msgid "Namel"
-msgstr ""
+msgstr "Namel"
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
-msgstr ""
+msgstr "Contratar mercenários"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:22
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
@@ -13062,19 +13287,19 @@ msgstr "Treine mercenários Italianos. Pesquise melhorias para esses mercenário
 
 #: simulation/templates/structures/cart_farmstead.xml:9
 msgid "Aḥuzāh"
-msgstr ""
+msgstr "Aḥuzāh"
 
 #: simulation/templates/structures/cart_field.xml:5
 msgid "Šadd"
-msgstr ""
+msgstr "Šadd"
 
 #: simulation/templates/structures/cart_fortress.xml:9
 msgid "Blockhouse Fort"
-msgstr ""
+msgstr "Fortificação"
 
 #: simulation/templates/structures/cart_fortress.xml:10
 msgid "Ḥamet"
-msgstr ""
+msgstr "Ḥamet"
 
 #: simulation/templates/structures/cart_house.xml:22
 msgid "Bet"
@@ -13082,15 +13307,15 @@ msgstr ""
 
 #: simulation/templates/structures/cart_market.xml:12
 msgid "Šūq"
-msgstr ""
+msgstr "Šūq"
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
-msgstr ""
+msgstr "Posto avançado cartaginês"
 
 #: simulation/templates/structures/cart_storehouse.xml:9
 msgid "Maḥṣabah"
-msgstr ""
+msgstr "Maḥṣabah"
 
 #: simulation/templates/structures/cart_super_dock.xml:14
 msgid "Construct and repair mighty warships."
@@ -13108,22 +13333,22 @@ msgstr ""
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
-msgstr ""
+msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
 msgid "Jdar"
-msgstr ""
+msgstr "Jdar"
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
-msgstr ""
+msgstr "Mijdil-šaʿar"
 
 #: simulation/templates/structures/cart_wall_long.xml:10
 #: simulation/templates/structures/cart_wall_medium.xml:10
 #: simulation/templates/structures/cart_wall_short.xml:10
 msgid "Homah"
-msgstr ""
+msgstr "Homah"
 
 #: simulation/templates/structures/cart_wonder.xml:17
 msgid "Temple of Ba'al Hammon"
@@ -13141,7 +13366,7 @@ msgstr ""
 
 #: simulation/templates/structures/celt_outpost.xml:5
 msgid "Celtic Outpost"
-msgstr ""
+msgstr "Posto avançado celta"
 
 #: simulation/templates/structures/celt_slope_tower.xml:9
 #: simulation/templates/structures/celt_slope_wall.xml:9
@@ -13154,11 +13379,11 @@ msgstr "Portão"
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
-msgstr ""
+msgstr "Posto avançado gaulês"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr ""
+msgstr "Aumente em +10 o limite populacional. Recruta Destrajados Obstinados."
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Tavern"
@@ -13176,7 +13401,7 @@ msgstr ""
 #: simulation/templates/structures/mace_blacksmith.xml:5
 #: simulation/templates/structures/sele_blacksmith.xml:5
 msgid "Sidirourgeíon"
-msgstr ""
+msgstr "Sidirourgeíon"
 
 #: simulation/templates/structures/hele_fortress.xml:15
 #: simulation/templates/structures/mace_fortress.xml:15
@@ -13195,7 +13420,7 @@ msgstr "Treine Heróis. "
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
-msgstr ""
+msgstr "Kaserna"
 
 #: simulation/templates/structures/iber_blacksmith.xml:5
 msgid "Harotz"
@@ -13216,15 +13441,15 @@ msgstr ""
 
 #: simulation/templates/structures/iber_dock.xml:12
 msgid "Kai"
-msgstr ""
+msgstr "Kai"
 
 #: simulation/templates/structures/iber_farmstead.xml:5
 msgid "Baserri"
-msgstr ""
+msgstr "Baserri"
 
 #: simulation/templates/structures/iber_field.xml:5
 msgid "Soro"
-msgstr ""
+msgstr "Soro"
 
 #: simulation/templates/structures/iber_fortress.xml:16
 msgid "Castro"
@@ -13232,7 +13457,7 @@ msgstr ""
 
 #: simulation/templates/structures/iber_house.xml:12
 msgid "Etxe"
-msgstr ""
+msgstr "Etxe"
 
 #: simulation/templates/structures/iber_market.xml:12
 msgid "Arruga"
@@ -13250,15 +13475,15 @@ msgstr ""
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
-msgstr ""
+msgstr "Posto avançado ibérico"
 
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
-msgstr ""
+msgstr "Ola"
 
 #: simulation/templates/structures/iber_temple.xml:12
 msgid "Loki"
-msgstr ""
+msgstr "Loki"
 
 #: simulation/templates/structures/iber_wall.xml:9
 #: simulation/templates/structures/iber_wall_long.xml:10
@@ -13266,11 +13491,11 @@ msgstr ""
 #: simulation/templates/structures/iber_wall_short.xml:13
 #: simulation/templates/structures/iber_wallset_stone.xml:5
 msgid "Zabal Horma"
-msgstr ""
+msgstr "Zabal Horma"
 
 #: simulation/templates/structures/iber_wall_gate.xml:9
 msgid "Biko Sarbide"
-msgstr ""
+msgstr "Biko Sarbide"
 
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
@@ -13289,7 +13514,7 @@ msgstr ""
 #: simulation/templates/structures/mace_library.xml:16
 #: simulation/templates/structures/sele_library.xml:16
 msgid "Bibliothikon"
-msgstr ""
+msgstr "Bibliothikon"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
@@ -13297,35 +13522,35 @@ msgstr ""
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeíon Poliorkías"
-msgstr ""
+msgstr "Synergeíon Poliorkías"
 
 #: simulation/templates/structures/mace_temple.xml:9
 msgid "Asclepeion"
-msgstr ""
+msgstr "Asclepeion"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
-msgstr ""
+msgstr "Sainyavasa"
 
 #: simulation/templates/structures/maur_blacksmith.xml:5
 msgid "Lohakāra"
-msgstr ""
+msgstr "Lohakāra"
 
 #: simulation/templates/structures/maur_civil_centre.xml:9
 msgid "Rajadhanika"
-msgstr ""
+msgstr "Rajadhanika"
 
 #: simulation/templates/structures/maur_corral.xml:12
 msgid "Goshala"
-msgstr ""
+msgstr "Goshala"
 
 #: simulation/templates/structures/maur_defense_tower.xml:5
 msgid "Udarka"
-msgstr ""
+msgstr "Udarka"
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
-msgstr ""
+msgstr "Naukasthanaka"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:26
 msgid "Train elephant units."
@@ -13333,7 +13558,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_elephant_stables.xml:22
 msgid "Vāraṇaśālā"
-msgstr ""
+msgstr "Vāraṇaśālā"
 
 #: simulation/templates/structures/maur_farmstead.xml:12
 msgid "Kantu"
@@ -13341,7 +13566,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_field.xml:5
 msgid "Kshetra"
-msgstr ""
+msgstr "Kshetra"
 
 #: simulation/templates/structures/maur_fortress.xml:7
 msgid "Train heroes and champion units."
@@ -13353,7 +13578,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_house.xml:9
 msgid "Griham"
-msgstr ""
+msgstr "Griham"
 
 #: simulation/templates/structures/maur_market.xml:12
 msgid "Vipana"
@@ -13361,7 +13586,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_outpost.xml:5
 msgid "Uparaksana"
-msgstr ""
+msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:29
 msgid "The famous pillar of Ashoka. Currently a useless structure."
@@ -13369,15 +13594,15 @@ msgstr ""
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:27
 msgid "Śāsana Stambha Aśokā"
-msgstr ""
+msgstr "Śāsana Stambha Aśokā"
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
-msgstr ""
+msgstr "Khalla"
 
 #: simulation/templates/structures/maur_temple.xml:12
 msgid "Devalaya"
-msgstr ""
+msgstr "Devalaya"
 
 #: simulation/templates/structures/maur_wall.xml:9
 #: simulation/templates/structures/maur_wall_long.xml:16
@@ -13385,7 +13610,7 @@ msgstr ""
 #: simulation/templates/structures/maur_wall_short.xml:16
 #: simulation/templates/structures/maur_wallset_stone.xml:5
 msgid "Shilabanda"
-msgstr ""
+msgstr "Shilabanda"
 
 #: simulation/templates/structures/maur_wall_gate.xml:9
 msgid "Dwara"
@@ -13393,7 +13618,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_wall_tower.xml:18
 msgid "Puratta"
-msgstr ""
+msgstr "Puratta"
 
 #: simulation/templates/structures/maur_wonder.xml:9
 msgid "Great Stupa"
@@ -13414,7 +13639,7 @@ msgstr "Acampamento Mercenário (Egípcios)"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
-msgstr ""
+msgstr "Stratópedo Misthophóron Aigyptiakós"
 
 #: simulation/templates/structures/pers_apadana.xml:34
 msgid ""
@@ -13426,7 +13651,7 @@ msgstr ""
 #: simulation/templates/structures/pers_apadana.xml:26
 #: simulation/templates/structures/pers_palace.xml:23
 msgid "Persian Palace"
-msgstr ""
+msgstr "Palácio Persa"
 
 #: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
@@ -13434,40 +13659,40 @@ msgstr ""
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
-msgstr ""
+msgstr "Padgan"
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
-msgstr ""
+msgstr "Arštišta"
 
 #: simulation/templates/structures/pers_civil_centre.xml:5
 msgid "Provincial Governor"
-msgstr ""
+msgstr "Governador Provincial"
 
 #: simulation/templates/structures/pers_civil_centre.xml:6
 msgid "Xšaçapāvan"
-msgstr ""
+msgstr "Xšaçapāvan"
 
 #: simulation/templates/structures/pers_corral.xml:12
 msgid "Gaiāšta"
-msgstr ""
+msgstr "Gaiāšta"
 
 #: simulation/templates/structures/pers_defense_tower.xml:5
 #: simulation/templates/structures/pers_wall_tower.xml:9
 msgid "Pāyaud"
-msgstr ""
+msgstr "Pāyaud"
 
 #: simulation/templates/structures/pers_dock.xml:12
 msgid "Nāvašta"
-msgstr ""
+msgstr "Nāvašta"
 
 #: simulation/templates/structures/pers_farmstead.xml:12
 msgid "Kaštašta"
-msgstr ""
+msgstr "Kaštašta"
 
 #: simulation/templates/structures/pers_field.xml:5
 msgid "Kaštrya"
-msgstr ""
+msgstr "Kaštrya"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
@@ -13475,11 +13700,11 @@ msgstr ""
 
 #: simulation/templates/structures/pers_fortress.xml:5
 msgid "Didā"
-msgstr ""
+msgstr "Didā"
 
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
-msgstr ""
+msgstr "Huvādā"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:21
 #: simulation/templates/structures/rome_arch.xml:23
@@ -13488,15 +13713,15 @@ msgstr ""
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:20
 msgid "Ishtar Gate of Babylon"
-msgstr ""
+msgstr "Portão Babilônico de Istar"
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
-msgstr ""
+msgstr "Ardatašta"
 
 #: simulation/templates/structures/pers_outpost.xml:5
 msgid "Didebani"
-msgstr ""
+msgstr "Didebani"
 
 #: simulation/templates/structures/pers_palace.xml:30
 msgid "Build Limit: 1."
@@ -13504,7 +13729,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Palace"
-msgstr ""
+msgstr "Palácio"
 
 #: simulation/templates/structures/pers_sb2.xml:26
 msgid ""
@@ -13518,7 +13743,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_sb2.xml:23
 msgid "Parihuvādā"
-msgstr ""
+msgstr "Parihuvādā"
 
 #: simulation/templates/structures/pers_stables.xml:25
 msgid "Train citizen-cavalry units."
@@ -13526,7 +13751,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_stables.xml:19
 msgid "Paraspa"
-msgstr ""
+msgstr "Paraspa"
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
@@ -13534,7 +13759,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_temple.xml:12
 msgid "Ayadana"
-msgstr ""
+msgstr "Ayadana"
 
 #: simulation/templates/structures/pers_wall.xml:9
 #: simulation/templates/structures/pers_wall_long.xml:10
@@ -13546,59 +13771,59 @@ msgstr ""
 
 #: simulation/templates/structures/pers_wall_gate.xml:9
 msgid "Duvitaparnam"
-msgstr ""
+msgstr "Duvitaparnam"
 
 #: simulation/templates/structures/pers_wonder.xml:12
 msgid "Hanging Gardens of Babylon"
-msgstr ""
+msgstr "Jardins Suspensos de Babilônia"
 
 #: simulation/templates/structures/ptol_barracks.xml:19
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements. Garrison: 10."
-msgstr ""
+msgstr "Recruta cidadãos-soldados do Egito e do Oriente Médio. Desenvolve tecnologia de recrutamento. Guarnição: 10."
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
-msgstr ""
+msgstr "ḥwt-n-mš'"
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
-msgstr ""
+msgstr "pr-'a"
 
 #: simulation/templates/structures/ptol_corral.xml:19
 msgid "h-n-ssmt.w"
-msgstr ""
+msgstr "h-n-ssmt.w"
 
 #: simulation/templates/structures/ptol_defense_tower.xml:9
 msgid "mktr-n-ḏw"
-msgstr ""
+msgstr "mktr-n-ḏw"
 
 #: simulation/templates/structures/ptol_dock.xml:12
 msgid "ḥwt-n-dpt.w"
-msgstr ""
+msgstr "ḥwt-n-dpt.w"
 
 #: simulation/templates/structures/ptol_farmstead.xml:19
 msgid "pr-n-t"
-msgstr ""
+msgstr "pr-n-t"
 
 #: simulation/templates/structures/ptol_fortress.xml:9
 msgid "mktr-'a"
-msgstr ""
+msgstr "mktr-'a"
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid "ḥwt"
-msgstr ""
+msgstr "ḥwt"
 
 #: simulation/templates/structures/ptol_library.xml:16
 msgid "Bibliothí̱ki̱"
-msgstr ""
+msgstr "Bibliothí̱ki̱"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map (Not "
 "implemented). Very large vision range: 180 meters."
-msgstr ""
+msgstr "Construa ao longo da costa para revelar as linha da costa ao longo do mapa (Ainda não implementado). Campo de visão muito grande: 180 metros."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
 msgid "Pharos"
@@ -13606,7 +13831,7 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
-msgstr ""
+msgstr "ḥwt-n-ḫt.w-wḫa.w"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
@@ -13634,7 +13859,7 @@ msgstr ""
 #: simulation/templates/structures/ptol_military_colony.xml:30
 #: simulation/templates/structures/sele_military_colony.xml:30
 msgid "Klēroukhia"
-msgstr ""
+msgstr "Klēroukhia"
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -13646,26 +13871,26 @@ msgstr "h-n-ḫt.w"
 
 #: simulation/templates/structures/ptol_wall_gate.xml:9
 msgid "sba-n-njwt"
-msgstr ""
+msgstr "sba-n-njwt"
 
 #: simulation/templates/structures/ptol_wall_long.xml:10
 #: simulation/templates/structures/ptol_wall_medium.xml:10
 #: simulation/templates/structures/ptol_wall_short.xml:10
 #: simulation/templates/structures/ptol_wallset_stone.xml:5
 msgid "h-n-njwt"
-msgstr ""
+msgstr "h-n-njwt"
 
 #: simulation/templates/structures/ptol_wall_tower.xml:9
 msgid "mktr"
-msgstr ""
+msgstr "mktr"
 
 #: simulation/templates/structures/ptol_wonder.xml:17
 msgid "Temple of Edfu"
-msgstr ""
+msgstr "Templo de Edfu"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
-msgstr ""
+msgstr "Arco do Triunfo"
 
 #: simulation/templates/structures/rome_army_camp.xml:65
 msgid ""
@@ -13687,7 +13912,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
 msgid "Armamentarium"
-msgstr ""
+msgstr "Armamentarium"
 
 #: simulation/templates/structures/rome_civil_centre.xml:9
 msgid "Forum"
@@ -13699,7 +13924,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
 msgid "Turris Lignea"
-msgstr ""
+msgstr "Turris Lignea"
 
 #: simulation/templates/structures/rome_dock.xml:12
 msgid "Portus"
@@ -13707,11 +13932,11 @@ msgstr ""
 
 #: simulation/templates/structures/rome_farmstead.xml:12
 msgid "Villa"
-msgstr ""
+msgstr "Villa"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
-msgstr ""
+msgstr "Ager"
 
 #: simulation/templates/structures/rome_fortress.xml:5
 msgid "Castellum"
@@ -13719,7 +13944,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_house.xml:18
 msgid "Domus"
-msgstr ""
+msgstr "Domus"
 
 #: simulation/templates/structures/rome_market.xml:12
 msgid "Mercatus"
@@ -13771,15 +13996,15 @@ msgstr ""
 
 #: simulation/templates/structures/rome_temple.xml:9
 msgid "Aedes"
-msgstr ""
+msgstr "Aedes"
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
-msgstr ""
+msgstr "Templo de Marte"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedes Martis"
-msgstr ""
+msgstr "Aedes Martis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid ""
@@ -13789,11 +14014,11 @@ msgstr ""
 
 #: simulation/templates/structures/rome_temple_vesta.xml:12
 msgid "Temple of Vesta"
-msgstr ""
+msgstr "Templo de Vesta"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
-msgstr ""
+msgstr "Aedes Vestae"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."
@@ -13805,7 +14030,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:30
 msgid "Tabernāculum"
-msgstr ""
+msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:10
@@ -13821,7 +14046,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_wall_tower.xml:9
 msgid "Turris Lapidea"
-msgstr ""
+msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome_wonder.xml:17
 msgid "Aedes Iovis Optimi Maximi"
@@ -13833,7 +14058,7 @@ msgstr ""
 
 #: simulation/templates/structures/sele_dock.xml:12
 msgid "Liménas"
-msgstr ""
+msgstr "Liménas"
 
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
@@ -13858,7 +14083,7 @@ msgstr ""
 
 #: simulation/templates/structures/sele_temple.xml:9
 msgid "Naós"
-msgstr ""
+msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Paradise of Daphne"
@@ -13871,11 +14096,11 @@ msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
-msgstr ""
+msgstr "Senado Espartano"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerousia"
-msgstr ""
+msgstr "Gerúsia"
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
@@ -13887,34 +14112,34 @@ msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:22
 msgid "Syssítion"
-msgstr ""
+msgstr "Syssítion"
 
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklepeion"
-msgstr ""
+msgstr "Asklepeion"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:7
 msgid "Pródromos"
-msgstr ""
+msgstr "Pródromos"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:6
 msgid "Greek Cavalry"
-msgstr ""
+msgstr "Cavaleiro Grego"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:7
 msgid "Hippeús"
-msgstr ""
+msgstr "Hippeús"
 
 #: simulation/templates/units/athen_champion_infantry.xml:10
 msgid "City Guard"
-msgstr ""
+msgstr "Guarda da Cidade"
 
 #: simulation/templates/units/athen_champion_infantry.xml:11
 msgid "Epilektos"
-msgstr ""
+msgstr "Epilektos"
 
 #: simulation/templates/units/athen_champion_marine.xml:5
 msgid "Athenian Marine"
@@ -13922,15 +14147,15 @@ msgstr ""
 
 #: simulation/templates/units/athen_champion_marine.xml:6
 msgid "Épibatēs Athēnaïkós"
-msgstr ""
+msgstr "Épibatēs Athēnaïkós"
 
 #: simulation/templates/units/athen_champion_ranged.xml:13
 msgid "Scythian Archer"
-msgstr ""
+msgstr "Arqueiro Cita"
 
 #: simulation/templates/units/athen_champion_ranged.xml:14
 msgid "Toxotes Skithikos"
-msgstr ""
+msgstr "Toxotes Skithikos"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:18
 msgid ""
@@ -13942,7 +14167,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:17
 msgid "Iphikratēs"
-msgstr ""
+msgstr "Iphikratēs"
 
 #: simulation/templates/units/athen_hero_pericles.xml:16
 msgid ""
@@ -13955,43 +14180,43 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_pericles.xml:15
 msgid "Periklēs"
-msgstr ""
+msgstr "Periklēs"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:15
 msgid ""
 "Classes: Hero Infantry Melee Sword.\n"
 "\"Naval Commander\" Aura: When garrisoned in a ship, his ship is +50% faster. \n"
 "\"Naval Architect\" Aura: Ships are built +20% faster during his lifespan.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
 msgstr ""
 
 #: simulation/templates/units/athen_hero_themistocles.xml:14
 #: simulation/templates/units/hele_hero_themistocles.xml:14
 msgid "Themistoklês"
-msgstr ""
+msgstr "Themistoklês"
 
 #: simulation/templates/units/athen_infantry_archer_b.xml:21
 #: simulation/templates/units/hele_infantry_archer_b.xml:19
 #: simulation/templates/units/mace_infantry_archer_b.xml:19
 msgid "Cretan Mercenary Archer"
-msgstr ""
+msgstr "Arqueiro Cretense Mercenário"
 
 #: simulation/templates/units/athen_infantry_archer_b.xml:22
 #: simulation/templates/units/hele_infantry_archer_b.xml:20
 #: simulation/templates/units/mace_infantry_archer_b.xml:20
 msgid "Toxótēs Krētikós"
-msgstr ""
+msgstr "Toxótēs Krētikós"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:26
 #: simulation/templates/units/hele_infantry_javelinist_b.xml:23
 msgid "Thracian Peltast"
-msgstr ""
+msgstr "Peltasta Trácio"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:27
 #: simulation/templates/units/hele_infantry_javelinist_b.xml:24
 msgid "Peltastḗs Thrâx"
-msgstr ""
+msgstr "Peltastḗs Thrâx"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:14
 msgid "Athenian Slinger Militia"
@@ -13999,15 +14224,15 @@ msgstr ""
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:15
 msgid "Psilós Athēnaïkós"
-msgstr ""
+msgstr "Psilós Athēnaïkós"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:22
 msgid "Athenian Hoplite"
-msgstr ""
+msgstr "Hoplita Ateniense"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:23
 msgid "Hoplī́tēs Athēnaïkós"
-msgstr ""
+msgstr "Hoplī́tēs Athēnaïkós"
 
 #: simulation/templates/units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/units/hele_mechanical_siege_lithobolos_common.xml:5
@@ -14015,14 +14240,14 @@ msgstr ""
 #: simulation/templates/units/ptol_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/units/sele_mechanical_siege_lithobolos_common.xml:5
 msgid "Lithóbolos"
-msgstr ""
+msgstr "Lithóbolos"
 
 #: simulation/templates/units/athen_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/units/hele_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/units/mace_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/units/spart_mechanical_siege_oxybeles_common.xml:5
 msgid "Oxybelḗs"
-msgstr ""
+msgstr "Oxybelḗs"
 
 #: simulation/templates/units/athen_ship_bireme.xml:5
 msgid "Penteconter"
@@ -14032,7 +14257,7 @@ msgstr ""
 #: simulation/templates/units/hele_ship_bireme.xml:5
 #: simulation/templates/units/spart_ship_bireme.xml:5
 msgid "Pentēkónteros"
-msgstr ""
+msgstr "Pentēkónteros"
 
 #: simulation/templates/units/athen_ship_fishing.xml:8
 #: simulation/templates/units/hele_ship_fishing.xml:5
@@ -14041,7 +14266,7 @@ msgstr ""
 #: simulation/templates/units/sele_ship_fishing.xml:5
 #: simulation/templates/units/spart_ship_fishing.xml:5
 msgid "Ploîon Halieutikón"
-msgstr ""
+msgstr "Ploîon Halieutikón"
 
 #: simulation/templates/units/athen_ship_merchant.xml:9
 #: simulation/templates/units/hele_ship_merchant.xml:9
@@ -14050,23 +14275,23 @@ msgstr ""
 #: simulation/templates/units/sele_ship_merchant.xml:9
 #: simulation/templates/units/spart_ship_merchant.xml:9
 msgid "Ploîon Phortēgikón"
-msgstr ""
+msgstr "Ploîon Phortēgikón"
 
 #: simulation/templates/units/athen_ship_trireme.xml:6
 msgid "Athenian Trireme"
-msgstr ""
+msgstr "Trirreme Ateniense"
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaïkós"
-msgstr ""
+msgstr "Triḗrēs Athēnaïkós"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:6
 msgid "Athenian Woman"
-msgstr ""
+msgstr "Mulher Ateniense"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:5
 msgid "Gýnē Athēnaïkós"
-msgstr ""
+msgstr "Gýnē Athēnaïkós"
 
 #: simulation/templates/units/athen_support_healer_b.xml:6
 #: simulation/templates/units/hele_support_healer_b.xml:6
@@ -14074,12 +14299,12 @@ msgstr ""
 #: simulation/templates/units/sele_support_healer_b.xml:6
 #: simulation/templates/units/spart_support_healer_b.xml:6
 msgid "Hiereús"
-msgstr ""
+msgstr "Hiereús"
 
 #: simulation/templates/units/athen_support_slave.xml:5
 #: simulation/templates/units/hele_support_slave.xml:5
 msgid "Doulos"
-msgstr ""
+msgstr "Doulos"
 
 #: simulation/templates/units/athen_support_trader.xml:9
 #: simulation/templates/units/hele_support_trader.xml:9
@@ -14087,32 +14312,32 @@ msgstr ""
 #: simulation/templates/units/ptol_support_trader.xml:9
 #: simulation/templates/units/sele_support_trader.xml:9
 msgid "Émporos"
-msgstr ""
+msgstr "Émporos"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
 msgid "Raiding Cavalry"
-msgstr ""
+msgstr "Cavaleiro de Assalto"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/celt_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
 msgid "Gaisaredos"
-msgstr ""
+msgstr "Gaisaredos"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
-msgstr "Cavalaria Celta"
+msgstr "Cavaleiro Celta"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/celt_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul_cavalry_swordsman_b.xml:6
 msgid "Epos"
-msgstr ""
+msgstr "Epos"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:27
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:22
 msgid "Celtic Chariot"
-msgstr ""
+msgstr "Carruagem de Guerra Celta"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:28
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:23
@@ -14126,7 +14351,7 @@ msgstr ""
 #: simulation/templates/units/brit_champion_infantry.xml:18
 #: simulation/templates/units/celt_champion_infantry_brit.xml:14
 msgid "Delamokludda"
-msgstr ""
+msgstr "Delamokludda"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:33
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:20
@@ -14162,7 +14387,7 @@ msgstr ""
 #: simulation/templates/units/celt_infantry_javelinist_b.xml:15
 #: simulation/templates/units/gaul_infantry_javelinist_b.xml:15
 msgid "Baguada"
-msgstr ""
+msgstr "Baguada"
 
 #: simulation/templates/units/brit_infantry_slinger_b.xml:13
 #: simulation/templates/units/celt_infantry_slinger_b.xml:15
@@ -14174,7 +14399,7 @@ msgstr ""
 #: simulation/templates/units/celt_infantry_slinger_b.xml:16
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:16
 msgid "Iaosae"
-msgstr ""
+msgstr "Iaosae"
 
 #: simulation/templates/units/brit_infantry_spearman_b.xml:17
 msgid "Celtic Spearman"
@@ -14184,7 +14409,7 @@ msgstr ""
 #: simulation/templates/units/celt_infantry_spearman_b.xml:18
 #: simulation/templates/units/gaul_infantry_spearman_b.xml:15
 msgid "Gaeroa"
-msgstr ""
+msgstr "Gaeroa"
 
 #: simulation/templates/units/brit_mechanical_siege_ram.xml:21
 #: simulation/templates/units/celt_mechanical_siege_ram.xml:21
@@ -14234,7 +14459,7 @@ msgstr ""
 #: simulation/templates/units/celt_support_trader.xml:9
 #: simulation/templates/units/gaul_support_trader.xml:9
 msgid "Cyfnewidiwr"
-msgstr ""
+msgstr "Cyfnewidiwr"
 
 #: simulation/templates/units/brit_war_dog_b.xml:6
 #: simulation/templates/units/celt_war_dog_b.xml:6
@@ -14243,28 +14468,28 @@ msgstr ""
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
-msgstr ""
+msgstr "Cavaleiro Númida"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:7
 msgid "Ḥayyāl Raḫūv Masili"
-msgstr ""
+msgstr "Ḥayyāl Raḫūv Masili"
 
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:13
 msgid "Italic Cavalry"
-msgstr ""
+msgstr "Cavaleiro Itálico"
 
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
-msgstr ""
+msgstr "Ḥayyāl Romaḥ Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_2_b.xml:12
 msgid "Gallic Mercenary Cavalry"
-msgstr ""
+msgstr "Cavaleiro Gaulês Mercenário"
 
 #: simulation/templates/units/cart_cavalry_swordsman_2_b.xml:13
 #: simulation/templates/units/cart_cavalry_swordsman_b.xml:13
 msgid "Ḥayyāl Ḥerev Raḫūv"
-msgstr ""
+msgstr "Ḥayyāl Ḥerev Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_b.xml:12
 msgid "Iberian Heavy Cavalry"
@@ -14273,28 +14498,28 @@ msgstr ""
 #: simulation/templates/units/cart_champion_cavalry.xml:11
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:11
 msgid "Sacred Band Cavalry"
-msgstr ""
+msgstr "Cavaleiro da Legião Sagrada"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:12
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:12
 msgid "Sacred Band of Astarte"
-msgstr ""
+msgstr "Legionário Sagrado de Astarte"
 
 #: simulation/templates/units/cart_champion_elephant.xml:5
 msgid "North African War Elephant"
-msgstr ""
+msgstr "Elefante de Guerra do norte da África"
 
 #: simulation/templates/units/cart_champion_elephant.xml:6
 msgid "Pil Malḥamit"
-msgstr ""
+msgstr "Pil Malḥamit"
 
 #: simulation/templates/units/cart_champion_infantry.xml:12
 msgid "Sacred Band Infantry"
-msgstr ""
+msgstr "Infantaria da Legião Sagrada"
 
 #: simulation/templates/units/cart_champion_infantry.xml:13
 msgid "Sacred Band of Ba'al"
-msgstr ""
+msgstr "Legionário Sagrado de Baal"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
@@ -14302,7 +14527,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
 msgid "Mašal"
-msgstr ""
+msgstr "Mašal"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:14
 msgid ""
@@ -14314,7 +14539,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:10
 msgid "Ḥimelqart Baraq"
-msgstr ""
+msgstr "Ḥimelqart Baraq"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:15
 msgid ""
@@ -14327,7 +14552,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_hero_hannibal.xml:12
 msgid "Ḥannibaʿal Baraq"
-msgstr ""
+msgstr "Ḥannibaʿal Baraq"
 
 #: simulation/templates/units/cart_hero_maharbal.xml:15
 msgid ""
@@ -14339,15 +14564,15 @@ msgstr ""
 
 #: simulation/templates/units/cart_hero_maharbal.xml:12
 msgid "Maharbaʿal"
-msgstr ""
+msgstr "Maharbaʿal"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:15
 msgid "Mauritanian Archer"
-msgstr ""
+msgstr "Arqueiro Mauritânio"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:16
 msgid "Qešet"
-msgstr ""
+msgstr "Qešet"
 
 #: simulation/templates/units/cart_infantry_javelinist_b.xml:22
 msgid "Iberian Mercenary Skirmisher"
@@ -14355,7 +14580,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_infantry_javelinist_b.xml:23
 msgid "Sǝḫīr Kidōn"
-msgstr ""
+msgstr "Sǝḫīr Kidōn"
 
 #: simulation/templates/units/cart_infantry_slinger_b.xml:22
 msgid "Balearic Slinger"
@@ -14367,11 +14592,11 @@ msgstr ""
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:15
 msgid "Libyan Spearman"
-msgstr ""
+msgstr "Lanceiro Líbio"
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:16
 msgid "Sǝḫīr Ḥanīt"
-msgstr ""
+msgstr "Sǝḫīr Ḥanīt"
 
 #: simulation/templates/units/cart_infantry_swordsman_2_b.xml:21
 #: simulation/templates/units/samnite_swordsman.xml:5
@@ -14380,22 +14605,22 @@ msgstr ""
 
 #: simulation/templates/units/cart_infantry_swordsman_2_b.xml:22
 msgid "Seḫīr Romaḥ"
-msgstr ""
+msgstr "Seḫīr Romaḥ"
 
 #: simulation/templates/units/cart_infantry_swordsman_b.xml:21
 #: simulation/templates/units/ptol_infantry_swordsman_b.xml:21
 msgid "Gallic Mercenary Swordsman"
-msgstr ""
+msgstr "Espadachim Gaulês Mercenário"
 
 #: simulation/templates/units/cart_infantry_swordsman_b.xml:22
 msgid "Seḫīr Ḥerev"
-msgstr ""
+msgstr "Seḫīr Ḥerev"
 
 #: simulation/templates/units/cart_mechanical_siege_ballista_common.xml:5
 #: simulation/templates/units/rome_mechanical_siege_ballista_common.xml:32
 #: simulation/templates/units/rome_mechanical_siege_onager_unpacked.xml:32
 msgid "Ballista"
-msgstr ""
+msgstr "Ballista"
 
 #: simulation/templates/units/cart_mechanical_siege_oxybeles_common.xml:5
 msgid "Oxybeles"
@@ -14413,11 +14638,11 @@ msgstr "Birreme"
 
 #: simulation/templates/units/cart_ship_bireme.xml:10
 msgid "Du-Mašōt"
-msgstr ""
+msgstr "Du-Mašōt"
 
 #: simulation/templates/units/cart_ship_fishing.xml:5
 msgid "Noon-Mašōt"
-msgstr ""
+msgstr "Noon-Mašōt"
 
 #: simulation/templates/units/cart_ship_merchant.xml:11
 msgid ""
@@ -14432,33 +14657,33 @@ msgstr ""
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:5
 msgid "Quinquereme"
-msgstr ""
+msgstr "Quinquerreme"
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:6
 msgid "Ḥameš-Mašōt"
-msgstr ""
+msgstr "Ḥameš-Mašōt"
 
 #: simulation/templates/units/cart_ship_trireme.xml:5
 #: simulation/templates/units/mace_ship_trireme.xml:5
 #: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Trireme"
-msgstr ""
+msgstr "Trirreme"
 
 #: simulation/templates/units/cart_ship_trireme.xml:6
 msgid "Tlat-Mašōt"
-msgstr ""
+msgstr "Tlat-Mašōt"
 
 #: simulation/templates/units/cart_support_female_citizen.xml:6
 msgid "Carthaginian Woman"
-msgstr ""
+msgstr "Mulher Cartaginesa"
 
 #: simulation/templates/units/cart_support_female_citizen.xml:5
 msgid "Aštāh"
-msgstr ""
+msgstr "Aštāh"
 
 #: simulation/templates/units/cart_support_healer_b.xml:6
 msgid "Kehinit"
-msgstr ""
+msgstr "Kehinit"
 
 #: simulation/templates/units/cart_support_trader.xml:10
 msgid "Mekir"
@@ -14510,17 +14735,17 @@ msgstr ""
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:11
 #: simulation/templates/units/gaul_champion_infantry.xml:11
 msgid "Solduros"
-msgstr ""
+msgstr "Solduros"
 
 #: simulation/templates/units/celt_fanatic.xml:15
 #: simulation/templates/units/gaul_champion_fanatic.xml:15
 msgid "Naked Fanatic"
-msgstr ""
+msgstr "Destrajado Obstinado"
 
 #: simulation/templates/units/celt_fanatic.xml:16
 #: simulation/templates/units/gaul_champion_fanatic.xml:16
 msgid "Gaesata"
-msgstr ""
+msgstr "Gaesata"
 
 #: simulation/templates/units/celt_hero_brennus.xml:14
 #: simulation/templates/units/gaul_hero_brennus.xml:14
@@ -14554,7 +14779,7 @@ msgstr ""
 
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:6
 msgid "Thessalian Scout"
-msgstr ""
+msgstr "Explorador Tessálico"
 
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:23
 msgid ""
@@ -14571,7 +14796,7 @@ msgstr ""
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:22
 #: simulation/templates/units/mace_champion_cavalry.xml:20
 msgid "Hetaîros"
-msgstr ""
+msgstr "Hetaîros"
 
 #: simulation/templates/units/hele_champion_infantry_mace.xml:7
 msgid ""
@@ -14587,7 +14812,7 @@ msgstr ""
 #: simulation/templates/units/hele_champion_infantry_mace.xml:6
 #: simulation/templates/units/mace_infantry_spearman_b.xml:14
 msgid "Pezétairos"
-msgstr ""
+msgstr "Pezétairos"
 
 #: simulation/templates/units/hele_champion_infantry_polis.xml:100
 #: simulation/templates/units/spart_champion_infantry_spear.xml:102
@@ -14600,11 +14825,11 @@ msgstr ""
 #: simulation/templates/units/hele_champion_infantry_polis.xml:98
 #: simulation/templates/units/spart_champion_infantry_spear.xml:100
 msgid "Spartan Hoplite"
-msgstr ""
+msgstr "Hoplita Espartano"
 
 #: simulation/templates/units/hele_champion_infantry_polis.xml:99
 msgid "Spartiā́tēs"
-msgstr ""
+msgstr "Spartiā́tēs"
 
 #: simulation/templates/units/hele_champion_ranged_polis.xml:20
 msgid ""
@@ -14615,12 +14840,12 @@ msgstr ""
 #: simulation/templates/units/hele_champion_ranged_polis.xml:18
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:47
 msgid "Athenian Light Hoplite"
-msgstr ""
+msgstr "Hoplita Ateniense de Assalto"
 
 #: simulation/templates/units/hele_champion_ranged_polis.xml:19
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:48
 msgid "Ékdromos Athēnaïkós"
-msgstr ""
+msgstr "Ékdromos Athēnaïkós"
 
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:49
 msgid ""
@@ -14642,7 +14867,7 @@ msgstr "Alexandre Magno"
 #: simulation/templates/units/hele_hero_alexander.xml:22
 #: simulation/templates/units/mace_hero_alexander.xml:37
 msgid "Mégās Aléxandros"
-msgstr ""
+msgstr "Mégās Aléxandros"
 
 #: simulation/templates/units/hele_hero_demetrius.xml:15
 #: simulation/templates/units/mace_hero_demetrius.xml:15
@@ -14657,7 +14882,7 @@ msgstr ""
 #: simulation/templates/units/hele_hero_demetrius.xml:14
 #: simulation/templates/units/mace_hero_demetrius.xml:14
 msgid "Dēmḗtrios Poliorkḗtēs"
-msgstr ""
+msgstr "Dēmḗtrios Poliorkḗtēs"
 
 #: simulation/templates/units/hele_hero_leonidas.xml:33
 msgid "Hero Aura: Increased Spartiate and Hoplite Attack. (not imlemented)"
@@ -14666,7 +14891,7 @@ msgstr ""
 #: simulation/templates/units/hele_hero_leonidas.xml:32
 #: simulation/templates/units/spart_hero_leonidas.xml:29
 msgid "Leōnídēs"
-msgstr ""
+msgstr "Leōnídēs"
 
 #: simulation/templates/units/hele_hero_philip.xml:12
 #: simulation/templates/units/mace_hero_philip.xml:12
@@ -14676,7 +14901,7 @@ msgstr ""
 #: simulation/templates/units/hele_hero_philip.xml:11
 #: simulation/templates/units/mace_hero_philip.xml:11
 msgid "Phílippos B' ho Makedṓn"
-msgstr ""
+msgstr "Phílippos B' ho Makedṓn"
 
 #: simulation/templates/units/hele_hero_themistocles.xml:15
 msgid ""
@@ -14692,7 +14917,7 @@ msgstr ""
 
 #: simulation/templates/units/hele_hero_xenophon.xml:17
 msgid "Xenophôn"
-msgstr ""
+msgstr "Xenophôn"
 
 #: simulation/templates/units/hele_infantry_slinger_b.xml:19
 #: simulation/templates/units/mace_infantry_slinger_b.xml:19
@@ -14702,15 +14927,15 @@ msgstr ""
 #: simulation/templates/units/hele_infantry_slinger_b.xml:20
 #: simulation/templates/units/mace_infantry_slinger_b.xml:20
 msgid "Sphendonetes Rhodikos"
-msgstr ""
+msgstr "Sphendonetes Rhodikos"
 
 #: simulation/templates/units/hele_infantry_spearman_b.xml:26
 msgid "Greek Hoplite"
-msgstr ""
+msgstr "Hoplita Grego"
 
 #: simulation/templates/units/hele_infantry_spearman_b.xml:27
 msgid "Hoplī́tēs Hellēnikós"
-msgstr ""
+msgstr "Hoplī́tēs Hellēnikós"
 
 #: simulation/templates/units/hele_mechanical_siege_tower.xml:6
 msgid ""
@@ -14723,7 +14948,7 @@ msgstr ""
 #: simulation/templates/units/ptol_mechanical_siege_tower.xml:5
 #: simulation/templates/units/sele_mechanical_siege_tower.xml:5
 msgid "Helépolis"
-msgstr ""
+msgstr "Helépolis"
 
 #: simulation/templates/units/hele_ship_trireme.xml:6
 msgid ""
@@ -14735,7 +14960,7 @@ msgstr ""
 #: simulation/templates/units/mace_ship_trireme.xml:6
 #: simulation/templates/units/spart_ship_trireme.xml:6
 msgid "Triḗrēs"
-msgstr ""
+msgstr "Triḗrēs"
 
 #: simulation/templates/units/hele_support_female_citizen.xml:6
 msgid "Greek Woman"
@@ -14743,7 +14968,7 @@ msgstr "Mulher Grega"
 
 #: simulation/templates/units/hele_support_female_citizen.xml:5
 msgid "Gýnē Hellenikos"
-msgstr ""
+msgstr "Gýnē Hellenikos"
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
@@ -14751,7 +14976,7 @@ msgstr ""
 
 #: simulation/templates/units/iber_cavalry_spearman_b.xml:6
 msgid "Lantzari"
-msgstr ""
+msgstr "Lantzari"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:36
 msgid ""
@@ -14763,7 +14988,7 @@ msgstr ""
 
 #: simulation/templates/units/iber_champion_cavalry.xml:32
 msgid "Leial Zalduneria"
-msgstr ""
+msgstr "Leial Zalduneria"
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -14781,19 +15006,19 @@ msgstr ""
 
 #: simulation/templates/units/iber_infantry_javelinist_b.xml:11
 msgid "Lusitano Ezpatari"
-msgstr ""
+msgstr "Lusitano Ezpatari"
 
 #: simulation/templates/units/iber_infantry_slinger_b.xml:11
 msgid "Habailari"
-msgstr ""
+msgstr "Habailari"
 
 #: simulation/templates/units/iber_infantry_spearman_b.xml:11
 msgid "Ezkutari"
-msgstr ""
+msgstr "Ezkutari"
 
 #: simulation/templates/units/iber_infantry_swordsman_b.xml:11
 msgid "Ezpatari"
-msgstr ""
+msgstr "Ezpatari"
 
 #: simulation/templates/units/iber_mechanical_siege_ram.xml:9
 msgid "Ahariburu"
@@ -14809,19 +15034,19 @@ msgstr ""
 
 #: simulation/templates/units/iber_ship_merchant.xml:9
 msgid "Merkataritza Itsasontzi"
-msgstr ""
+msgstr "Merkataritza Itsasontzi"
 
 #: simulation/templates/units/iber_support_female_citizen.xml:6
 msgid "Iberian Woman"
-msgstr ""
+msgstr "Mulher Ibérica"
 
 #: simulation/templates/units/iber_support_female_citizen.xml:5
 msgid "Emazteki"
-msgstr ""
+msgstr "Emazteki"
 
 #: simulation/templates/units/iber_support_healer_b.xml:6
 msgid "Priestess of Ataekina"
-msgstr ""
+msgstr "Sacerdotisa de Atégina"
 
 #: simulation/templates/units/iber_support_healer_b.xml:7
 msgid "Emakumezko Apaiz de Ataekina"
@@ -14829,7 +15054,7 @@ msgstr ""
 
 #: simulation/templates/units/iber_support_trader.xml:5
 msgid "Merkatari"
-msgstr ""
+msgstr "Merkatari"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
@@ -14837,7 +15062,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Hippakontistès Odrysón"
-msgstr ""
+msgstr "Hippakontistès Odrysón"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:6
 msgid "Thessalian Lancer"
@@ -14845,23 +15070,23 @@ msgstr ""
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:7
 msgid "Xystophoros Thessalikos"
-msgstr ""
+msgstr "Xystophoros Thessalikos"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:30
 msgid "Macedonian Shield Bearer"
-msgstr ""
+msgstr "Escudeiro Macedônio"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:31
 msgid "Hypaspistes"
-msgstr ""
+msgstr "Hypaspistes"
 
 #: simulation/templates/units/mace_champion_infantry_e.xml:23
 msgid "Hypaspistes Argyraspides"
-msgstr ""
+msgstr "Hypaspistes Argyraspides"
 
 #: simulation/templates/units/mace_hero_alexander.xml:38
 msgid ""
-"\"Imperialism\" Aura: +10% territory effect for all buildings while he lives. \n"
+"\"Imperialism\" Aura: +10% territory effect for all buildings while he lives.\n"
 "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr ""
 
@@ -14883,20 +15108,20 @@ msgstr ""
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:6
 msgid "Pyrrhos ton Epeiros"
-msgstr ""
+msgstr "Pyrrhos ton Epeiros"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:23
 msgid "Agrianian Peltast"
-msgstr ""
+msgstr "Peltasta Agriano"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:24
 msgid "Peltastes Agrianikos"
-msgstr ""
+msgstr "Peltastes Agrianikos"
 
 #: simulation/templates/units/mace_mechanical_siege_ram.xml:9
 #: simulation/templates/units/spart_mechanical_siege_ram.xml:9
 msgid "Poliorkitikós Kriós"
-msgstr ""
+msgstr "Poliorkitikós Kriós"
 
 #: simulation/templates/units/mace_ship_bireme.xml:5
 msgid "Hemiolos"
@@ -14904,19 +15129,19 @@ msgstr ""
 
 #: simulation/templates/units/mace_support_female_citizen.xml:6
 msgid "Macedonian Woman"
-msgstr ""
+msgstr "Mulher Macedônia"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
 msgid "Gýnē Makedonikós"
-msgstr ""
+msgstr "Gýnē Makedonikós"
 
 #: simulation/templates/units/mace_thorakites.xml:5
 msgid "Armored Swordsman"
-msgstr ""
+msgstr "Espadachim com Armadura"
 
 #: simulation/templates/units/mace_thorakites.xml:6
 msgid "Thorakites"
-msgstr ""
+msgstr "Toracita"
 
 #: simulation/templates/units/mace_thureophoros.xml:9
 msgid "Heavy Skirmisher"
@@ -14924,19 +15149,19 @@ msgstr ""
 
 #: simulation/templates/units/mace_thureophoros.xml:10
 msgid "Thureophoros"
-msgstr ""
+msgstr "Thureophoros"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
-msgstr ""
+msgstr "Cavaleiro Indiano de Assalto"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:7
 msgid "Ashwarohi"
-msgstr ""
+msgstr "Ashwarohi"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
-msgstr ""
+msgstr "Cavaleiro Indiano de Assalto"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
@@ -14952,11 +15177,11 @@ msgstr ""
 
 #: simulation/templates/units/maur_champion_chariot.xml:30
 msgid "War Chariot"
-msgstr ""
+msgstr "Carruagem de Guerra"
 
 #: simulation/templates/units/maur_champion_chariot.xml:31
 msgid "Rath"
-msgstr ""
+msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -14965,7 +15190,7 @@ msgstr "Elefante de Guerra Indiano"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
-msgstr ""
+msgstr "Gajendra"
 
 #: simulation/templates/units/maur_champion_infantry.xml:48
 msgid ""
@@ -14980,7 +15205,7 @@ msgstr "Guerreiro"
 
 #: simulation/templates/units/maur_champion_infantry.xml:45
 msgid "Yōddha"
-msgstr ""
+msgstr "Yōddha"
 
 #: simulation/templates/units/maur_champion_maiden.xml:16
 msgid "Maiden Guard"
@@ -14989,7 +15214,7 @@ msgstr ""
 #: simulation/templates/units/maur_champion_maiden.xml:17
 #: simulation/templates/units/maur_champion_maiden_archer.xml:18
 msgid "Visha Kanya"
-msgstr ""
+msgstr "Assassina Venenosa"
 
 #: simulation/templates/units/maur_champion_maiden_archer.xml:17
 msgid "Maiden Guard Archer"
@@ -15004,11 +15229,11 @@ msgstr ""
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:26
 msgid "Elephant Archer"
-msgstr ""
+msgstr "Elefante com Arqueiro"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:27
 msgid "Vachii Gaja"
-msgstr ""
+msgstr "Vachii Gaja"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:36
 msgid ""
@@ -15031,7 +15256,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Acharya Chanakya"
-msgstr ""
+msgstr "Acharya Chanakya"
 
 #: simulation/templates/units/maur_hero_maurya.xml:7
 msgid ""
@@ -15045,7 +15270,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:14
 msgid "Dhanurdhar"
-msgstr ""
+msgstr "Dhanurdhar"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:23
 msgid "Bamboo Spearman"
@@ -15053,7 +15278,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:24
 msgid "Kauntika"
-msgstr ""
+msgstr "Kauntika"
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:26
 msgid "Indian Swordsman"
@@ -15061,12 +15286,12 @@ msgstr ""
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:27
 msgid "Khadagdhari"
-msgstr ""
+msgstr "Khadagdhari"
 
 #: simulation/templates/units/maur_ship_bireme.xml:5
 #: simulation/templates/units/maur_ship_trireme.xml:18
 msgid "Yudhpot"
-msgstr ""
+msgstr "Yudhpot"
 
 #: simulation/templates/units/maur_ship_fishing.xml:9
 msgid "Fisherman"
@@ -15074,7 +15299,7 @@ msgstr "Pescador"
 
 #: simulation/templates/units/maur_ship_fishing.xml:10
 msgid "Matsyapalak"
-msgstr ""
+msgstr "Matsyapalak"
 
 #: simulation/templates/units/maur_ship_merchant.xml:9
 msgid "Trading Ship"
@@ -15094,36 +15319,36 @@ msgstr ""
 
 #: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Worker Elephant"
-msgstr ""
+msgstr "Elefante de Trabalho"
 
 #: simulation/templates/units/maur_support_elephant.xml:29
 msgid "Karmākara Gaja"
-msgstr ""
+msgstr "Karmākara Gaja"
 
 #: simulation/templates/units/maur_support_female_citizen.xml:6
 msgid "Indian Woman"
-msgstr ""
+msgstr "Mulher Indiana"
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
-msgstr ""
+msgstr "Naari"
 
 #: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brahmin Priest"
-msgstr ""
+msgstr "Sacerdote Brâmane"
 
 #: simulation/templates/units/maur_support_healer_b.xml:7
 msgid "Brāhmaṇa Pujari"
-msgstr ""
+msgstr "Brāhmaṇa Pujari"
 
 #: simulation/templates/units/maur_support_trader.xml:9
 msgid "Vaishya"
-msgstr ""
+msgstr "Vaixá"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 msgid ""
 "Classes: Mercenary Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr ""
 
@@ -15135,7 +15360,7 @@ msgstr "Espadachim Mercenário da Trácia"
 #: simulation/templates/units/merc_thrace_swordsman.xml:22
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:15
 msgid "Rhomphaiaphoros Thrakikós"
-msgstr ""
+msgstr "Rhomphaiaphoros Thrakikós"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -15147,7 +15372,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_arstibara.xml:13
 msgid "Arštibara"
-msgstr ""
+msgstr "Arštibara"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:36
 msgid ""
@@ -15163,36 +15388,36 @@ msgstr ""
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:33
 msgid "Babiruviya Ratha"
-msgstr ""
+msgstr "Babiruviya Ratha"
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
 #: simulation/templates/units/sele_cavalry_javelinist_b.xml:6
 msgid "Median Light Cavalry"
-msgstr ""
+msgstr "Cavaleiro Medo de Assalto"
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:10
 msgid "Mada Asabara"
-msgstr ""
+msgstr "Mada Asabara"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:11
 msgid "Cappadocian Cavalry"
-msgstr ""
+msgstr "Cavaleiro Capadócio"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:12
 msgid "Katpaduka Asabara"
-msgstr ""
+msgstr "Katpaduka Asabara"
 
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:11
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:12
 msgid "Hyrcanian Cavalry"
-msgstr ""
+msgstr "Cavaleiro Hircaniano"
 
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:12
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:13
 msgid "Varkaniya Asabara"
-msgstr ""
+msgstr "Varkaniya Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:23
 msgid "Bactrian Heavy Lancer"
@@ -15201,7 +15426,7 @@ msgstr ""
 #: simulation/templates/units/pers_champion_cavalry.xml:24
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:17
 msgid "Bakhtrish Asabara"
-msgstr ""
+msgstr "Bakhtrish Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:16
 msgid "Bactrian Heavy Cavalry Archer"
@@ -15209,15 +15434,15 @@ msgstr ""
 
 #: simulation/templates/units/pers_champion_elephant.xml:6
 msgid "Hinduya Pila"
-msgstr ""
+msgstr "Hinduya Pila"
 
 #: simulation/templates/units/pers_champion_infantry.xml:11
 msgid "Persian Immortal"
-msgstr ""
+msgstr "Imortal Persa"
 
 #: simulation/templates/units/pers_champion_infantry.xml:12
 msgid "Anusiya"
-msgstr ""
+msgstr "Anasuia"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:14
 msgid ""
@@ -15227,7 +15452,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_hero_cyrus.xml:11
 msgid "Cyrus II The Great"
-msgstr ""
+msgstr "Ciro II, o Grande"
 
 #: simulation/templates/units/pers_hero_darius.xml:42
 msgid ""
@@ -15245,7 +15470,7 @@ msgstr "Dario, o Grande"
 msgid ""
 "Hero Archer.\n"
 "Hero Aura: \"Administrator.\" +15% Gather Rate and Build Rate of nearby units.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
 msgstr ""
 
@@ -15275,7 +15500,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_infantry_javelinist_b.xml:25
 msgid "Spardiya Takabara"
-msgstr ""
+msgstr "Spardiya Takabara"
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:19
 msgid "Shieldbearer"
@@ -15283,15 +15508,15 @@ msgstr ""
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:20
 msgid "Sparabara"
-msgstr ""
+msgstr "Sparabara"
 
 #: simulation/templates/units/pers_kardakes_hoplite.xml:5
 msgid "Cardaces Hoplite"
-msgstr ""
+msgstr "Hoplita Cárdace"
 
 #: simulation/templates/units/pers_kardakes_hoplite.xml:6
 msgid "Hoplites Kardakes"
-msgstr ""
+msgstr "Hoplites Kardakes"
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:13
 msgid "Cardaces Skirmisher"
@@ -15299,7 +15524,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:14
 msgid "Peltastes Kardakes"
-msgstr ""
+msgstr "Peltastes Kardakes"
 
 #: simulation/templates/units/pers_mechanical_siege_ram.xml:33
 msgid "Assyrian Siege Ram"
@@ -15307,7 +15532,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_mechanical_siege_ram.xml:34
 msgid "Athuriya Hamaranakuba"
-msgstr ""
+msgstr "Athuriya Hamaranakuba"
 
 #: simulation/templates/units/pers_ship_bireme.xml:9
 msgid "Cypriot Galley"
@@ -15315,31 +15540,31 @@ msgstr ""
 
 #: simulation/templates/units/pers_ship_bireme.xml:10
 msgid "Hamaraniyanava"
-msgstr ""
+msgstr "Hamaraniyanava"
 
 #: simulation/templates/units/pers_ship_fishing.xml:5
 msgid "Masiyakara"
-msgstr ""
+msgstr "Masiyakara"
 
 #: simulation/templates/units/pers_ship_merchant.xml:9
 msgid "Ionian Trade Ship"
-msgstr ""
+msgstr "Navio Mercante Jônico"
 
 #: simulation/templates/units/pers_ship_merchant.xml:10
 msgid "Yaunash Nav"
-msgstr ""
+msgstr "Yaunash Nav"
 
 #: simulation/templates/units/pers_ship_trireme.xml:9
 msgid "Phoenician Trireme"
-msgstr ""
+msgstr "Trirreme Fenício"
 
 #: simulation/templates/units/pers_ship_trireme.xml:10
 msgid "Vazarka Hamaraniyanava"
-msgstr ""
+msgstr "Vazarka Hamaraniyanava"
 
 #: simulation/templates/units/pers_support_female_citizen.xml:6
 msgid "Mesopotamian Woman"
-msgstr ""
+msgstr "Mulher Mesopotâmia"
 
 #: simulation/templates/units/pers_support_female_citizen.xml:5
 msgid "Banu Miyanrudani"
@@ -15351,7 +15576,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Mada"
-msgstr ""
+msgstr "Maguš Mada"
 
 #: simulation/templates/units/pers_support_trader.xml:14
 msgid ""
@@ -15361,11 +15586,11 @@ msgstr ""
 
 #: simulation/templates/units/pers_support_trader.xml:10
 msgid "Aramaean Merchant"
-msgstr ""
+msgstr "Mercador Arameu"
 
 #: simulation/templates/units/pers_support_trader.xml:11
 msgid "Tamkarum Arami"
-msgstr ""
+msgstr "Tamkarum Arami"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:11
 msgid ""
@@ -15381,7 +15606,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:8
 msgid "Mutsābiq Gamal Nabatu"
-msgstr ""
+msgstr "Mutsābiq Gamal Nabatu"
 
 #: simulation/templates/units/ptol_cavalry_javelinist_b.xml:13
 msgid "Tarantine Settler Cavalry"
@@ -15397,11 +15622,11 @@ msgstr ""
 
 #: simulation/templates/units/ptol_cavalry_spearman_b.xml:7
 msgid "Hippeus Makedonikós"
-msgstr ""
+msgstr "Hippeus Makedonikós"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:5
 msgid "Royal Guard Cavalry"
-msgstr ""
+msgstr "Cavaleiro da Guarda Real"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:6
 msgid "Agema Basilikos"
@@ -15413,7 +15638,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_champion_elephant.xml:6
 msgid "Polémou Eléphantos"
-msgstr ""
+msgstr "Polémou Eléphantos"
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:19
 msgid "Juggernaut"
@@ -15421,7 +15646,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Tessarakonterēs"
-msgstr ""
+msgstr "Tessarakonterēs"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:13
 msgid ""
@@ -15432,7 +15657,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:11
 msgid "Cleopatra VII"
-msgstr ""
+msgstr "Cleópatra VII"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:13
 msgid ""
@@ -15469,7 +15694,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:27
 msgid "Kousít Misthophóros Toxóti̱s"
-msgstr ""
+msgstr "Kousít Misthophóros Toxóti̱s"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:15
 msgid "Mercenary Thureos Skirmisher"
@@ -15477,7 +15702,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:16
 msgid "Thureophóros Akroboli̱stí̱s"
-msgstr ""
+msgstr "Thureophóros Akroboli̱stí̱s"
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:15
 msgid "Judean Slinger"
@@ -15485,7 +15710,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:16
 msgid "Ebraïkós Sphendonistes"
-msgstr ""
+msgstr "Ebraïkós Sphendonistes"
 
 #: simulation/templates/units/ptol_infantry_spearman_2_b.xml:22
 msgid "Mercenary Thureos Spearman"
@@ -15493,7 +15718,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_infantry_spearman_2_b.xml:23
 msgid "Thureophóros Misthophóros"
-msgstr ""
+msgstr "Thureophóros Misthophóros"
 
 #: simulation/templates/units/ptol_infantry_spearman_b.xml:15
 msgid "Egyptian Pikeman"
@@ -15505,7 +15730,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_infantry_swordsman_b.xml:22
 msgid "Gallikós Mistophorós"
-msgstr ""
+msgstr "Gallikós Mistophorós"
 
 #: simulation/templates/units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"
@@ -15514,16 +15739,16 @@ msgstr ""
 #: simulation/templates/units/ptol_ship_bireme.xml:6
 #: simulation/templates/units/sele_ship_bireme.xml:6
 msgid "Dierēs"
-msgstr ""
+msgstr "Dierēs"
 
 #: simulation/templates/units/ptol_ship_quinquereme.xml:5
 msgid "Octères"
-msgstr ""
+msgstr "Octères"
 
 #: simulation/templates/units/ptol_ship_trireme.xml:5
 #: simulation/templates/units/sele_ship_quinquereme.xml:5
 msgid "Pentères"
-msgstr ""
+msgstr "Pentères"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:11
 msgid "Egyptian Woman"
@@ -15531,15 +15756,15 @@ msgstr "Mulher Egípsia"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:10
 msgid "Gýnē Aigyptiakós"
-msgstr ""
+msgstr "Gýnē Aigyptiakós"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:6
 msgid "Egyptian Priest"
-msgstr ""
+msgstr "Sacerdote Egípcio"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:7
 msgid "Hiereús Aigyptikos"
-msgstr ""
+msgstr "Hiereús Aigyptikos"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:6
 msgid "Italian Allied Cavalry"
@@ -15551,7 +15776,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:6
 msgid "Roman Cavalry"
-msgstr ""
+msgstr "Cavaleiro Romano"
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:7
 msgid "Eques Romanus"
@@ -15559,11 +15784,11 @@ msgstr ""
 
 #: simulation/templates/units/rome_centurio_imperial.xml:16
 msgid "Roman Centurion"
-msgstr ""
+msgstr "Centurião Romano"
 
 #: simulation/templates/units/rome_centurio_imperial.xml:17
 msgid "Centurio Legionarius"
-msgstr ""
+msgstr "Centurio Legionarius"
 
 #: simulation/templates/units/rome_champion_cavalry.xml:6
 msgid "Consular Bodyguard"
@@ -15575,7 +15800,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_champion_infantry.xml:5
 msgid "Italic Heavy Infantry"
-msgstr ""
+msgstr "Infantaria Itálica Pesada"
 
 #: simulation/templates/units/rome_champion_infantry.xml:6
 msgid "Extraordinarius"
@@ -15603,7 +15828,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:27
 msgid "Roman Swordsman"
-msgstr ""
+msgstr "Espadachim Romano"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:28
 msgid "Hastatus"
@@ -15611,11 +15836,11 @@ msgstr ""
 
 #: simulation/templates/units/rome_legionnaire_imperial.xml:13
 msgid "Roman Legionnaire"
-msgstr ""
+msgstr "Legionário Romano"
 
 #: simulation/templates/units/rome_legionnaire_imperial.xml:14
 msgid "Legionarius Romanus"
-msgstr ""
+msgstr "Legionarius Romanus"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:5
 msgid "Marian Legionaire"
@@ -15623,7 +15848,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:6
 msgid "Marian Legionarius"
-msgstr ""
+msgstr "Marian Legionarius"
 
 #: simulation/templates/units/rome_mechanical_siege_ram.xml:9
 msgid "Aries"
@@ -15639,7 +15864,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_ship_fishing.xml:5
 msgid "Navicula Piscatoria"
-msgstr ""
+msgstr "Navicula Piscatoria"
 
 #: simulation/templates/units/rome_ship_merchant.xml:9
 msgid "Corbita"
@@ -15647,19 +15872,19 @@ msgstr ""
 
 #: simulation/templates/units/rome_ship_quinquereme.xml:6
 msgid "Roman Quinquereme"
-msgstr ""
+msgstr "Quinquerreme Romano"
 
 #: simulation/templates/units/rome_ship_quinquereme.xml:5
 msgid "Quinqueremis Romana"
-msgstr ""
+msgstr "Quinqueremis Romana"
 
 #: simulation/templates/units/rome_ship_trireme.xml:9
 msgid "Roman Trireme"
-msgstr ""
+msgstr "Trirreme Romano"
 
 #: simulation/templates/units/rome_ship_trireme.xml:8
 msgid "Triremis Romana"
-msgstr ""
+msgstr "Triremis Romana"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:6
 msgid "Roman Woman"
@@ -15671,7 +15896,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_support_healer_b.xml:6
 msgid "State Priest"
-msgstr ""
+msgstr "Sacerdote Real"
 
 #: simulation/templates/units/rome_support_healer_b.xml:7
 msgid "Pontifex Minor"
@@ -15679,11 +15904,11 @@ msgstr ""
 
 #: simulation/templates/units/rome_support_trader.xml:9
 msgid "Plebeian Merchant"
-msgstr ""
+msgstr "Mercador Plebeu"
 
 #: simulation/templates/units/rome_support_trader.xml:10
 msgid "Mercator Plebeius"
-msgstr ""
+msgstr "Mercator Plebeius"
 
 #: simulation/templates/units/samnite_skirmisher.xml:7
 msgid ""
@@ -15732,11 +15957,11 @@ msgstr ""
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
-msgstr ""
+msgstr "Cavaleiro arqueiro dahae"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Hippotoxotès Dahae"
-msgstr ""
+msgstr "Hippotoxotès Dahae"
 
 #: simulation/templates/units/sele_cavalry_javelinist.xml:6
 msgid "Militia Cavalry"
@@ -15744,7 +15969,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_cavalry_javelinist.xml:7
 msgid "Hippakontistès Politès"
-msgstr ""
+msgstr "Hippakontistès Politès"
 
 #: simulation/templates/units/sele_cavalry_javelinist_b.xml:7
 msgid "Hippeus Medikos"
@@ -15756,15 +15981,15 @@ msgstr ""
 
 #: simulation/templates/units/sele_champion_cavalry.xml:23
 msgid "Seleucid Cataphract"
-msgstr ""
+msgstr "Catafractário Selêucida"
 
 #: simulation/templates/units/sele_champion_cavalry.xml:24
 msgid "Seleukidón Kataphraktos"
-msgstr ""
+msgstr "Seleukidón Kataphraktos"
 
 #: simulation/templates/units/sele_champion_chariot.xml:30
 msgid "Scythed Chariot"
-msgstr ""
+msgstr "Carruagem de Guerra com Foice"
 
 #: simulation/templates/units/sele_champion_chariot.xml:31
 msgid "Drepanèphoros"
@@ -15776,7 +16001,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Thorakisménos Eléphantos"
-msgstr ""
+msgstr "Thorakisménos Eléphantos"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:5
 msgid "Silver Shield Pikeman"
@@ -15784,7 +16009,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:6
 msgid "Phalangitès Argyraspis"
-msgstr ""
+msgstr "Phalangitès Argyraspis"
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:5
 msgid "Romanized Heavy Swordsman"
@@ -15792,7 +16017,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:6
 msgid "Thorakitès Rhomaïkós"
-msgstr ""
+msgstr "Thorakitès Rhomaïkós"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:13
 msgid ""
@@ -15813,7 +16038,7 @@ msgstr ""
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
 "Classes: Hero Melee Cavalry Sword.\n"
-"\"Conquest\" Aura: All nearby bipedal melee units gain a +2x attack versus buildings, siege engines, and ships. Building capture time reduced by 25% during his reign.\n"
+"\"Conquest\" Aura: All nearby soldiers gain a +2x attack versus buildings, siege engines, and ships. Building capture time reduced by 25% during his reign.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
 msgstr ""
@@ -15840,7 +16065,7 @@ msgstr "Arqueiro Sírio"
 
 #: simulation/templates/units/sele_infantry_archer_b.xml:15
 msgid "Toxótēs Syrías"
-msgstr ""
+msgstr "Toxótēs Syrías"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:14
 msgid "Arab Javelineer"
@@ -15848,7 +16073,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:15
 msgid "Pezakontistès Aravikós"
-msgstr ""
+msgstr "Pezakontistès Aravikós"
 
 #: simulation/templates/units/sele_infantry_spearman_2_b.xml:14
 msgid "Militia Thureos Spearman"
@@ -15856,7 +16081,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_infantry_spearman_2_b.xml:15
 msgid "Thureophóros Politès"
-msgstr ""
+msgstr "Thureophóros Politès"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:14
 msgid "Bronze Shield Pikeman"
@@ -15869,7 +16094,7 @@ msgstr ""
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid ""
 "Classes: Mercenary Citizen Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr ""
 
@@ -15879,15 +16104,15 @@ msgstr "Trirreme Selêucida"
 
 #: simulation/templates/units/sele_ship_trireme.xml:5
 msgid "Seleukidó̱n Triērēs"
-msgstr ""
+msgstr "Seleukidó̱n Triērēs"
 
 #: simulation/templates/units/sele_support_female_citizen.xml:11
 msgid "Syrian Woman"
-msgstr ""
+msgstr "Mulher Síria"
 
 #: simulation/templates/units/sele_support_female_citizen.xml:10
 msgid "Syrías Gýnē"
-msgstr ""
+msgstr "Syrías Gýnē"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:6
 msgid "Perioikoi Cavalryman"
@@ -15895,7 +16120,7 @@ msgstr ""
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Pródromos Perioïkós"
-msgstr ""
+msgstr "Pródromos Perioïkós"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:6
 msgid "Allied Greek Cavalry"
@@ -15911,11 +16136,11 @@ msgstr ""
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:6
 msgid "Phalangites Spartiatis"
-msgstr ""
+msgstr "Phalangites Spartiatis"
 
 #: simulation/templates/units/spart_champion_infantry_spear.xml:101
 msgid "Spartiáti̱s"
-msgstr ""
+msgstr "Spartiáti̱s"
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:28
 msgid "Skiritai Commando"
@@ -15923,7 +16148,7 @@ msgstr ""
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:29
 msgid "Ékdromos Skiritis"
-msgstr ""
+msgstr "Ékdromos Skiritis"
 
 #: simulation/templates/units/spart_hero_agis.xml:13
 msgid ""
@@ -15957,39 +16182,39 @@ msgstr ""
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:21
 msgid "Perioikoi Hoplite"
-msgstr ""
+msgstr "Hoplita Perieco"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:22
 msgid "Hoplī́tēs Perioïkós"
-msgstr ""
+msgstr "Hoplī́tēs Perioïkós"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:29
 msgid ""
 "Classes: Citizen Support Worker Female.\n"
-"Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming. \n"
+"Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming.\n"
 "Counters: 2.5x vs. Siege."
 msgstr ""
 
 #: simulation/templates/units/spart_support_female_citizen.xml:25
 msgid "Spartan Woman"
-msgstr ""
+msgstr "Mulher Espartana"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:26
 msgid "Spartiátissa"
-msgstr ""
+msgstr "Spartiátissa"
 
 #: simulation/templates/units/spart_support_trader.xml:9
 msgid "Émporos Perioikos"
-msgstr ""
+msgstr "Émporos Perioikos"
 
 #: simulation/templates/units/theb_champion_spearman.xml:27
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
 msgid "Theban Sacred Band Hoplite"
-msgstr ""
+msgstr "Hoplita da Legião Sagrada de Tebas"
 
 #: simulation/templates/units/theb_champion_spearman.xml:28
 msgid "Hieròs Lókhos tôn Thebôn"
-msgstr ""
+msgstr "Hieròs Lókhos tôn Thebôn"
 
 #: simulation/templates/units/theb_champion_swordsman.xml:5
 #: simulation/templates/units/thespian_melanochitones.xml:5
@@ -15999,7 +16224,7 @@ msgstr ""
 #: simulation/templates/units/theb_champion_swordsman.xml:6
 #: simulation/templates/units/thespian_melanochitones.xml:6
 msgid "Melanochitones"
-msgstr ""
+msgstr "Melanochitones"
 
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:22
 msgid "Fire Raiser"
@@ -16022,7 +16247,7 @@ msgstr ""
 #: simulation/templates/units/thrace_black_cloak.xml:21
 msgid ""
 "Classes: Mercenary Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr ""
 
@@ -16032,7 +16257,7 @@ msgstr ""
 
 #: simulation/templates/units/thrace_black_cloak.xml:20
 msgid "Rhomphaiaphoros"
-msgstr ""
+msgstr "Rhomphaiaphoros"
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"
@@ -16052,7 +16277,7 @@ msgstr "Arcádia 2"
 #: maps/scenarios/Azure Coast(2).xml:31:Description maps/scenarios/Azure
 #: Coast(4).xml:31:Description maps/scenarios/Azure Coast.xml:41:Description
 msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
-msgstr ""
+msgstr "Ajude a recém-fundada Massília a florescer, ou expulse os Gregos da Gália."
 
 #: maps/scenarios/Azure Coast(2).xml:31:PlayerData[0].Name
 msgid "Greeks"
@@ -16104,7 +16329,7 @@ msgstr "Deciates"
 
 #: maps/scenarios/Azure Coast.xml:41:PlayerData[5].Name
 msgid "Salluvii"
-msgstr ""
+msgstr "Salluvii"
 
 #: maps/scenarios/Azure Coast.xml:41:PlayerData[6].Name
 msgid "Cavares"
@@ -16112,7 +16337,7 @@ msgstr "Cavares"
 
 #: maps/scenarios/Azure Coast.xml:41:PlayerData[7].Name
 msgid "Verguni"
-msgstr ""
+msgstr "Verguni"
 
 #: maps/scenarios/Azure Coast.xml:41:Name
 msgid "Azure Coast 1"
@@ -16156,11 +16381,11 @@ msgstr "Batalha pelo Tibre"
 
 #: maps/scenarios/Belgian_Bog_night.xml:42:Description
 msgid "Two Celtic tribes face off across a large bog at night."
-msgstr ""
+msgstr "Duas tribos célticas se enfrentam em um grande pântano durante a noite."
 
 #: maps/scenarios/Belgian_Bog_night.xml:42:Name
 msgid "Belgian Bog Night"
-msgstr ""
+msgstr "Pântano Belga de Noite"
 
 #: maps/scenarios/Bridge_demo.xml:31:PlayerData[0].Name
 msgid "Bridge Demo"
@@ -16228,11 +16453,11 @@ msgstr ""
 
 #: maps/scenarios/Combat_demo_(huge).xml:77:Name
 msgid "Combat Demo (Huge)"
-msgstr ""
+msgstr "Demonstração de Combate (Enorme)"
 
 #: maps/scenarios/Combat_demo_(huge).xml:77:Description
 msgid "1296 units. Extremely slow (we need more optimisation)."
-msgstr ""
+msgstr "1296 unidades. Extremamente lento (precisamos de mais otimização)."
 
 #: maps/scenarios/Death Canyon - Invasion Force.xml:42:Description
 msgid ""
@@ -16266,7 +16491,7 @@ msgstr ""
 
 #: maps/scenarios/Eire and Albion.xml:31:Name
 msgid "Eire and Albion (British Isles)"
-msgstr ""
+msgstr "Eire e Albion (Ilhas Britânicas)"
 
 #: maps/scenarios/Fast Oasis.xml:31:Description
 msgid ""
@@ -16308,7 +16533,7 @@ msgid ""
 "A wide-open map with a central rocky region rich in Minerals (Metal "
 "Resource). This map may be played if the other more detailed maps cause "
 "uncomfortable lag."
-msgstr ""
+msgstr "Um mapa aberto com uma região central rochosa rica em Mineirais (Recurso de Metal). Este mapa pode ser jogado se os outros mapas mais detalhados causarem problemas."
 
 #: maps/scenarios/Gold_Rush.xml:31:Name
 msgid "Gold Rush"
@@ -16324,7 +16549,7 @@ msgstr ""
 
 #: maps/scenarios/Height Map Import - Demo (Fractal).xml:31:Description
 msgid "Importation of a height map created with fractals."
-msgstr ""
+msgstr "Importação de um grande mapa criado com fractais."
 
 #: maps/scenarios/Height Map Import - Demo (Fractal).xml:31:Name
 msgid "Height Map Import Demo - Fractal"
@@ -16409,7 +16634,7 @@ msgstr "Necrópolis"
 
 #: maps/scenarios/Pathfinding_demo.xml:31:Name
 msgid "Pathfinding Demo"
-msgstr ""
+msgstr "Encontre o Caminho - Demonstração"
 
 #: maps/scenarios/Pathfinding_demo.xml:31:Description
 msgid "A map for testing unit movement algorithms."
@@ -16565,7 +16790,7 @@ msgstr "Simulador - Os Ibéricos"
 #: maps/scenarios/Sandbox - Macedonians.xml:41:Description
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Jogue com os macedônios num ambiente sem ameaças."
 
 #: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[0].Name
 msgid "The Macedonians"
@@ -16619,7 +16844,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:41:PlayerData[1].Name
 msgid "Kautilya"
-msgstr ""
+msgstr "Kautilya"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:41:Name
 msgid "Sandbox - The Ptolemaic Egyptians"
@@ -16627,7 +16852,7 @@ msgstr "Simulador - O Egito Ptolemaico"
 
 #: maps/scenarios/Sandbox - Romans.xml:42:Description
 msgid "A sandbox scenario for players to try out the Roman civilisation."
-msgstr ""
+msgstr "Um cenário solitário para os jogadores experimentarem a civilização romana."
 
 #: maps/scenarios/Sandbox - Romans.xml:42:Name
 msgid "Sandbox - The Republican Romans"
@@ -16666,7 +16891,7 @@ msgstr "Ravina na Savana"
 msgid ""
 "A wide-open Savanna map with a small ravine running down the center, which "
 "is easily forded."
-msgstr ""
+msgstr "Um mapa de savana aberta, com uma pequena ravina no centro que é fácil de ultrapassar."
 
 #: maps/scenarios/Serengeti.xml:31:PlayerData[1].Name
 msgid "Iberia"
@@ -16688,7 +16913,7 @@ msgstr ""
 
 #: maps/scenarios/Serengeti.xml:31:Name
 msgid "Serengeti 1"
-msgstr ""
+msgstr "Serengeti 1"
 
 #: maps/scenarios/Ship Formations.xml:31:Description
 msgid "Ship formations mockup."
@@ -16710,7 +16935,7 @@ msgstr ""
 
 #: maps/scenarios/Siwa Oasis.xml:31:Name
 msgid "Siwa Oasis"
-msgstr ""
+msgstr "Oásis de Siuá"
 
 #: maps/scenarios/Territory Demo.xml:31:Description
 msgid "A demo map showing the territory effects of each type of structure."
@@ -16779,7 +17004,7 @@ msgstr "Terceira Guerra Macedônica"
 
 #: maps/scenarios/Tropical Island.xml:41:Description
 msgid "Multiplayer map. A tropical paradise."
-msgstr ""
+msgstr "Mapa multiplayer. Um paraíso tropical."
 
 #: maps/scenarios/Tropical Island.xml:41:Name
 msgid "Tropical Island"
@@ -16893,7 +17118,7 @@ msgstr ""
 
 #: maps/skirmishes/Bactria (2).xml:42:Name
 msgid "Bactria (2)"
-msgstr ""
+msgstr "Báctria (2)"
 
 #: maps/skirmishes/Belgian Bog (2).xml:42:Description
 msgid ""
@@ -16919,7 +17144,7 @@ msgstr "Mar Cáspio (2v2)"
 
 #: maps/skirmishes/Corinthian Isthmus (2).xml:41:Name
 msgid "Corinthian Isthmus (2)"
-msgstr ""
+msgstr "Istmo de Corinto (2)"
 
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:Description
 msgid ""
@@ -16938,7 +17163,7 @@ msgstr ""
 
 #: maps/skirmishes/Cycladic Archipelago (2).xml:42:Name
 msgid "Cycladic Archipelago (2)"
-msgstr ""
+msgstr "Arquipélago das Cíclades (2)"
 
 #: maps/skirmishes/Cycladic Archipelago (3).xml:41:Description
 msgid ""
@@ -16961,7 +17186,7 @@ msgstr "Delos"
 
 #: maps/skirmishes/Cycladic Archipelago (3).xml:41:Name
 msgid "Cycladic Archipelago (3)"
-msgstr ""
+msgstr "Arquipélago das Cíclades (3)"
 
 #: maps/skirmishes/Death Canyon (2).xml:42:Description
 msgid ""
@@ -16992,7 +17217,7 @@ msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
 "Each player begins the match with a wooden palisade and some guard towers atop a low embankment."
-msgstr ""
+msgstr "Defenda o seu posto avançado gaulês dos ataques de seus vizinhos traiçoeiros!\n\nCada jogador começa o jogo com uma paliçada e torres defensivas em cima de uma represa."
 
 #: maps/skirmishes/Gallic Fields (3).xml:42:Name
 msgid "Gallic Fields (3)"
@@ -17054,7 +17279,7 @@ msgstr ""
 
 #: maps/skirmishes/Libyan Oases (4).xml:42:Name
 msgid "Libyan Oases (4)"
-msgstr ""
+msgstr "Oásis Líbio (4)"
 
 #: maps/skirmishes/Libyan Oasis (2).xml:42:Description
 msgid ""
@@ -17067,11 +17292,11 @@ msgstr ""
 
 #: maps/skirmishes/Libyan Oasis (2).xml:42:Name
 msgid "Libyan Oasis (2)"
-msgstr ""
+msgstr "Oásis Líbio (2)"
 
 #: maps/skirmishes/Lorraine Plain (2).xml:42:Description
 msgid ""
-"The map is cut through the centre by a river traversing east-west with some shallows.\n"
+"The map is cut through the center by a river traversing east-west with some shallows.\n"
 "\n"
 "Fairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\n"
 "\n"
@@ -17177,7 +17402,7 @@ msgstr ""
 
 #: maps/skirmishes/Sahel (4).xml:42:Name
 msgid "Sahel (4)"
-msgstr ""
+msgstr "Sahel (4)"
 
 #: maps/skirmishes/Savanna River.xml:42:Description
 msgid "A large savanna is bisected by a narrow jungle stream."
@@ -17193,7 +17418,7 @@ msgstr ""
 
 #: maps/skirmishes/Sicilia (2).xml:41:Name
 msgid "Sicilia (2)"
-msgstr ""
+msgstr "Sicília (2)"
 
 #: maps/skirmishes/Skirmish Demo.xml:42:Description
 msgid "A demo Skirmish map."

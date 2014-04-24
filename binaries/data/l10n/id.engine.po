@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-20 23:35+0200\n"
-"PO-Revision-Date: 2014-04-20 15:53+0000\n"
+"POT-Creation-Date: 2014-04-24 06:41+0200\n"
+"PO-Revision-Date: 2014-04-24 04:45+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: gui/scripting/ScriptFunctions.cpp:712
 #, c-format
 msgid "%s (custom build)"
-msgstr "%s (membangun bebas)"
+msgstr "%s (versi modifikasi)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
@@ -36,9 +36,9 @@ msgstr "%s (%ls)"
 
 #: gui/scripting/ScriptFunctions.cpp:738
 msgid "custom build"
-msgstr "membangun bebas"
+msgstr "versi modifikasi"
 
-#: i18n/L10n.cpp:220
+#: i18n/L10n.cpp:241
 msgid "Long strings"
 msgstr "Tulisan panjang"
 
@@ -46,3 +46,8 @@ msgstr "Tulisan panjang"
 #, c-format
 msgid "Saved game to '%ls'"
 msgstr "Menyimpan permainan ke '%ls'"
+
+#: ps/Util.cpp:244 ps/Util.cpp:377
+#, c-format
+msgid "Screenshot written to '%ls'"
+msgstr ""
