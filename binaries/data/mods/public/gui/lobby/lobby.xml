@@ -20,7 +20,7 @@
 
 		<!-- Left panel: Player list. -->
 		<object name="leftPanel" size="20 30 20% 100%-50">
-			<object name="playersBox" style="ModernList" type="olist" size="0 0 100% 100%" font="serif-bold-stroke-13">
+			<object name="playersBox" style="ModernList" type="olist" size="0 0 100% 100%" font="sans-bold-stroke-13">
 				<def id="status" width="27%">
 					<translatableAttribute id="heading">Status</translatableAttribute>
 				</def>
@@ -147,7 +147,7 @@
 					type="dropdown"
 					style="ModernDropDown"
 					size="45%-10 0 68% 100%"
-					font="serif-bold-13">
+					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
 
@@ -155,7 +155,7 @@
 					type="dropdown"
 					style="ModernDropDown"
 					size="70% 0 88% 100%"
-					font="serif-bold-13">
+					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
 
@@ -163,7 +163,7 @@
 					type="dropdown"
 					style="ModernDropDown"
 					size="90% 0 100% 100%"
-					font="serif-bold-13">
+					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
 
@@ -175,14 +175,14 @@
 					checked="true"
 					style="ModernTickBox"
 					size="0 0 20 20"
-					font="serif-bold-13">
+					font="sans-bold-13">
 					<action on="Press">applyFilters();</action>
 				</object>
 			</object>
 
 			<object name="chatPanel" size="0 49% 100% 100%" type="image" sprite="ModernDarkBoxGold">
-				<object name="chatText" size="0 0 100% 94%" type="text" style="ChatPanel" font="serif-13"/>
-				<object name="chatInput" size="0 94% 100% 100%" type="input" style="ModernInput" font="serif-13">
+				<object name="chatText" size="0 0 100% 94%" type="text" style="ChatPanel" font="sans-13"/>
+				<object name="chatInput" size="0 94% 100% 100%" type="input" style="ModernInput" font="sans-13">
 					<action on="Press">submitChatInput();</action>
 					<action on="Tab">completeNick();</action>
 				</object>

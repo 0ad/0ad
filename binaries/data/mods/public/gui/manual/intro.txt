@@ -1,12 +1,12 @@
-[font="serif-bold-18"]0 A.D. in-game manual
-[font="serif-14"]
+[font="sans-bold-18"]0 A.D. in-game manual
+[font="sans-14"]
 Thank you for installing 0 A.D.! This page will give a brief overview of the features available in this incomplete, under-development, alpha version of the game.
 
-[font="serif-bold-16"]Graphics settings
-[font="serif-14"]You can switch between fullscreen and windowed mode by pressing Alt + Enter. In windowed mode, you can resize the window. If the game runs too slowly, you can change some settings in the configuration file: look for binaries/data/config/default.cfg in the location where the game is installed, which gives instructions for editing, and try disabling the "fancywater" and "shadows" options.
+[font="sans-bold-16"]Graphics settings
+[font="sans-14"]You can switch between fullscreen and windowed mode by pressing Alt + Enter. In windowed mode, you can resize the window. If the game runs too slowly, you can change some settings in the configuration file: look for binaries/data/config/default.cfg in the location where the game is installed, which gives instructions for editing, and try disabling the "fancywater" and "shadows" options.
 
-[font="serif-bold-16"]Playing the game
-[font="serif-14"]The controls and gameplay should be familiar to players of traditional RTS games. There are currently a lot of missing features and poorly-balanced stats – you will probably have to wait until a beta release for it to work well.
+[font="sans-bold-16"]Playing the game
+[font="sans-14"]The controls and gameplay should be familiar to players of traditional RTS games. There are currently a lot of missing features and poorly-balanced stats – you will probably have to wait until a beta release for it to work well.
 
 Basic controls:
 • Left-click to select units.
@@ -16,17 +16,17 @@ Basic controls:
 • Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera.
 • Mouse wheel, or "+" and "-" keys, to zoom.
 
-[font="serif-bold-16"]Modes
-[font="serif-14"]The main menu gives access to two game modes:
+[font="sans-bold-16"]Modes
+[font="sans-14"]The main menu gives access to two game modes:
 
-• [font="serif-bold-14"]Single-player[font="serif-14"] — play a sandbox game or against one or more AI opponents. The AI/AIs are under development and may not always be up to date on the new features, but you can test playing the game against an actual opponent if you aren't able to play with a human.
+• [font="sans-bold-14"]Single-player[font="sans-14"] — play a sandbox game or against one or more AI opponents. The AI/AIs are under development and may not always be up to date on the new features, but you can test playing the game against an actual opponent if you aren't able to play with a human.
 
-• [font="serif-bold-14"]Multiplayer[font="serif-14"] — play against human opponents over the internet.
+• [font="sans-bold-14"]Multiplayer[font="sans-14"] — play against human opponents over the internet.
 
 To set up a multiplayer game, one player must select the "Host game" option. The game uses UDP port 20595, so the host must configure their NAT/firewall/etc to allow this. Other players can then select "Join game" and enter the host's IP address.
 
-[font="serif-bold-16"]Game setup
-[font="serif-14"]In a multiplayer game, only the host can alter the game setup options.
+[font="sans-bold-16"]Game setup
+[font="sans-14"]In a multiplayer game, only the host can alter the game setup options.
 
 First, select whether you want to play on a random map (created automatically from a random map script) or a scenario (created by a map designer). Scenarios can be filtered to show only some maps. The default maps are shown immediately, but custom maps are often not so select "All maps" to see a list of all available maps. Then select a map to play on. The "Demo Maps" are designed for testing particular gameplay features and are probably not generally useful.
 
@@ -34,9 +34,9 @@ Finally change the settings. For random maps this includes the number of players
 
 When you are ready to start, click the "Start game" button.
 
-[font="serif-bold-16"]Hotkeys:
-[font="serif-bold-14"]Always
-[font="serif-14"]Alt + F4: Close the game, without confirmation
+[font="sans-bold-16"]Hotkeys:
+[font="sans-bold-14"]Always
+[font="sans-14"]Alt + F4: Close the game, without confirmation
 Alt + Enter: Toggle between fullscreen and windowed
 ~ or F9: Show/hide console
 Alt + F: Show/hide frame counter (FPS)
@@ -45,8 +45,8 @@ Shift + F11: Save current profiler data to "logs/profile.txt"
 F2: Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
 Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
 
-[font="serif-bold-14"]In Game
-[font="serif-14"]Double Left Click [on unit]: Select all of your units of the same kind on the screen (even if they're different ranks)
+[font="sans-bold-14"]In Game
+[font="sans-14"]Double Left Click [on unit]: Select all of your units of the same kind on the screen (even if they're different ranks)
 Triple Left Click [on unit]: Select all of your units of the same kind and the same rank on the screen
 Alt + Double Left Click [on unit]: Select all your units of the same kind on the entire map (even if the are different ranks)
 Alt + Triple Left Click [on unit]: Select all your units of the same kind and rank on the entire map
@@ -69,8 +69,8 @@ Ctrl + F5 (and so on up to F8): Mark the current camera position, for jumping ba
 F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the last location if the camera is already over the marked position.
 Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ... unit shown to the training queue for all the selected buildings.
 
-[font="serif-bold-14"]Modify mouse action
-[font="serif-14"]Ctrl + Right Click on building: Garrison
+[font="sans-bold-14"]Modify mouse action
+[font="sans-14"]Ctrl + Right Click on building: Garrison
 Shift + Right Click: Queue the move/build/gather/etc order
 Shift + Left click when training unit/s: Add units in batches of five
 Shift + Left Click or Left Drag over unit on map: Add unit to selection
@@ -82,15 +82,15 @@ Ctrl + Right Click with units selected:
     - If the cursor is over a structure: Garrison
     - Otherwise: Attack move
 
-[font="serif-bold-14"]Overlays
-[font="serif-14"]Alt + G: Hide/show the GUI
+[font="sans-bold-14"]Overlays
+[font="sans-14"]Alt + G: Hide/show the GUI
 Alt + D: Show/hide developer overlay (with developer options)
 Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over the textured models, twice to get just the wireframes colored by the textures, thrice to get back to normal textured mode)
 Alt + S: Toggle unit silhouettes (might give a small performance boost)
 Alt + Z: Toggle sky
 
-[font="serif-bold-14"]Camera manipulation
-[font="serif-14"]W or [up]: Pan screen up
+[font="sans-bold-14"]Camera manipulation
+[font="sans-14"]W or [up]: Pan screen up
 S or [down]: Pan screen down
 A or [left]: Pan screen left
 D or [right]: Pan screen right
@@ -109,7 +109,7 @@ R: Reset camera zoom/orientation
 Alt + W: Toggle through wireframe modes
 Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to pan
 
-[font="serif-bold-14"]During Building Placement
-[font="serif-14"][: Rotate building 15 degrees counter-clockwise
+[font="sans-bold-14"]During Building Placement
+[font="sans-14"][: Rotate building 15 degrees counter-clockwise
 ]: Rotate building 15 degrees clockwise
 Left Drag: Rotate building using mouse (foundation will be placed on mouse release)

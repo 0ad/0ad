@@ -93,13 +93,13 @@ function displaySingle(entState, template)
  
 		if (entState.promotion.curr < entState.promotion.req)
 			Engine.GetGUIObjectByName("experience").tooltip = sprintf(translate("%(experience)s %(current)s / %(required)s"), {
-				experience: "[font=\"serif-bold-13\"]" + translate("Experience:") + "[/font]",
+				experience: "[font=\"sans-bold-13\"]" + translate("Experience:") + "[/font]",
 				current: Math.floor(entState.promotion.curr),
 				required: entState.promotion.req
 			});
 		else
 			Engine.GetGUIObjectByName("experience").tooltip = sprintf(translate("%(experience)s %(current)s"), {
-				experience: "[font=\"serif-bold-13\"]" + translate("Experience:") + "[/font]",
+				experience: "[font=\"sans-bold-13\"]" + translate("Experience:") + "[/font]",
 				current: Math.floor(entState.promotion.curr)
 			});
 		Engine.GetGUIObjectByName("experience").hidden = false;
@@ -223,7 +223,7 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("icon").sprite = "bkFillBlack";
 	}
 
-	var armorLabel = "[font=\"serif-bold-13\"]" + translate("Armor:") + "[/font]"
+	var armorLabel = "[font=\"sans-bold-13\"]" + translate("Armor:") + "[/font]"
 	var armorString = sprintf(translate("%(label)s %(details)s"), { label: armorLabel, details: armorTypeDetails(entState.armour) });
 
 	// Attack and Armor
@@ -231,9 +231,9 @@ function displaySingle(entState, template)
 	{
 		// Rate
 		if (entState.buildingAI)
-			var rateLabel = "[font=\"serif-bold-13\"]" + translate("Interval:") + "[/font]";
+			var rateLabel = "[font=\"sans-bold-13\"]" + translate("Interval:") + "[/font]";
 		else
-			var rateLabel = "[font=\"serif-bold-13\"]" + translate("Rate:") + "[/font]";
+			var rateLabel = "[font=\"sans-bold-13\"]" + translate("Rate:") + "[/font]";
 
 		var rate = sprintf(translate("%(label)s %(details)s"), {
 			label: rateLabel,
@@ -241,12 +241,12 @@ function displaySingle(entState, template)
 		});
 
 		var attack;
-		var label = "[font=\"serif-bold-13\"]" + getAttackTypeLabel(entState.attack.type) + "[/font]"
+		var label = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(entState.attack.type) + "[/font]"
 		if (entState.attack.type == "Ranged")
 		{
 			var realRange = entState.attack.elevationAdaptedRange;
 			var range =  entState.attack.maxRange;
-			var rangeLabel = "[font=\"serif-bold-13\"]" + translate("Range:") + "[/font]"
+			var rangeLabel = "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]"
 			var relativeRange = Math.round((realRange - range));
 			var meters = "[font=\"sans-10\"][color=\"orange\"]" + translate("meters") + "[/color][/font]";
 
@@ -300,10 +300,10 @@ function displaySingle(entState, template)
 	var iconTooltip = "";
 
 	if (genericName)
-		iconTooltip = "[font=\"serif-bold-16\"]" + genericName + "[/font]";
+		iconTooltip = "[font=\"sans-bold-16\"]" + genericName + "[/font]";
 
 	if (template.tooltip)
-		iconTooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
+		iconTooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
 
 	Engine.GetGUIObjectByName("iconBorder").tooltip = iconTooltip;
 
@@ -338,7 +338,7 @@ function displayMultiple(selection, template)
 		healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
 		unitHealthBar.size = healthSize;
 
-		var hitpointsLabel = "[font=\"serif-bold-13\"]" + translate("Hitpoints:") + "[/font]"
+		var hitpointsLabel = "[font=\"sans-bold-13\"]" + translate("Hitpoints:") + "[/font]"
 		var hitpoints = sprintf(translate("%(label)s %(current)s / %(max)s"), { label: hitpointsLabel, current: averageHealth, max: maxHealth });
 		var healthMultiple = Engine.GetGUIObjectByName("healthMultiple");
 		healthMultiple.tooltip = hitpoints;

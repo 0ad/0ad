@@ -122,7 +122,7 @@ def generate_font(outname, ttfNames, loadopts, size, renderstyle, dsizes):
     # (This is inefficient if multiple characters have the same glyph)
     glyphs = []
     #for c in chars:
-    for c in range(0x20, 0xFFFD):
+    for c in range(0x20, 0xFFFE):
         for i in range(len(indexList)):
             idx = indexList[i](unichr(c))
             if c == 0xFFFD and idx == 0: # use "?" if the missing-glyph glyph is missing
@@ -227,27 +227,6 @@ fonts = (
     ("sans-stroke-14", Sans, 14, stroked2),
     ("sans-bold-stroke-14", Sans_Bold, 14, stroked3),
     ("sans-stroke-16", Sans, 16, stroked2),
-
-    ("serif-9", Serif, 9, filled),
-    ("serif-12", Serif, 12, filled),
-    ("serif-13", Serif, 13, filled),
-    ("serif-14", Serif, 14, filled),
-    ("serif-16", Serif, 16, filled),
-    ("serif-bold-12", Serif_Bold, 12, filled),
-    ("serif-bold-13", Serif_Bold, 13, filled),
-    ("serif-bold-14", Serif_Bold, 14, filled),
-    ("serif-bold-16", Serif_Bold, 16, filled),
-    ("serif-bold-18", Serif_Bold, 18, filled),
-    ("serif-bold-20", Serif_Bold, 20, filled),
-    ("serif-bold-22", Serif_Bold, 22, filled),
-    ("serif-bold-24", Serif_Bold, 24, filled),
-    ("serif-stroke-12", Serif, 12, stroked2),
-    ("serif-bold-stroke-12", Serif_Bold, 12, stroked3),
-    ("serif-stroke-13", Serif, 13, stroked2),
-    ("serif-bold-stroke-13", Serif_Bold, 13, stroked3),
-    ("serif-stroke-14", Serif, 14, stroked2),
-    ("serif-bold-stroke-14", Serif_Bold, 14, stroked3),
-    ("serif-stroke-16", Serif, 16, stroked2),
 )
 
 for (name, (fontnames, loadopts), size, style) in fonts:

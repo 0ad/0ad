@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-24 08:14+0200\n"
+"POT-Creation-Date: 2014-04-24 15:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3331,11 +3331,11 @@ msgid "Map\\nexploration"
 msgstr ""
 
 #: gui/manual/intro.txt:1
-msgid "[font=\"serif-bold-18\"]0 A.D. in-game manual"
+msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
 msgstr ""
 
 #: gui/manual/intro.txt:2
-msgid "[font=\"serif-14\"]"
+msgid "[font=\"sans-14\"]"
 msgstr ""
 
 #: gui/manual/intro.txt:3
@@ -3346,12 +3346,12 @@ msgid ""
 msgstr ""
 
 #: gui/manual/intro.txt:5
-msgid "[font=\"serif-bold-16\"]Graphics settings"
+msgid "[font=\"sans-bold-16\"]Graphics settings"
 msgstr ""
 
 #: gui/manual/intro.txt:6
 msgid ""
-"[font=\"serif-14\"]You can switch between fullscreen and windowed mode by "
+"[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the configuration file:"
 " look for binaries/data/config/default.cfg in the location where the game is "
@@ -3360,13 +3360,13 @@ msgid ""
 msgstr ""
 
 #: gui/manual/intro.txt:8
-msgid "[font=\"serif-bold-16\"]Playing the game"
+msgid "[font=\"sans-bold-16\"]Playing the game"
 msgstr ""
 
 #: gui/manual/intro.txt:9
 msgid ""
-"[font=\"serif-14\"]The controls and gameplay should be familiar to players of"
-" traditional RTS games. There are currently a lot of missing features and "
+"[font=\"sans-14\"]The controls and gameplay should be familiar to players of "
+"traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
 msgstr ""
@@ -3400,16 +3400,16 @@ msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
 msgstr ""
 
 #: gui/manual/intro.txt:19
-msgid "[font=\"serif-bold-16\"]Modes"
+msgid "[font=\"sans-bold-16\"]Modes"
 msgstr ""
 
 #: gui/manual/intro.txt:20
-msgid "[font=\"serif-14\"]The main menu gives access to two game modes:"
+msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
 msgstr ""
 
 #: gui/manual/intro.txt:22
 msgid ""
-"• [font=\"serif-bold-14\"]Single-player[font=\"serif-14\"] — play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
 "game or against one or more AI opponents. The AI/AIs are under development "
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with a"
@@ -3418,8 +3418,8 @@ msgstr ""
 
 #: gui/manual/intro.txt:24
 msgid ""
-"• [font=\"serif-bold-14\"]Multiplayer[font=\"serif-14\"] — play against human"
-" opponents over the internet."
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"opponents over the internet."
 msgstr ""
 
 #: gui/manual/intro.txt:26
@@ -3431,12 +3431,12 @@ msgid ""
 msgstr ""
 
 #: gui/manual/intro.txt:28
-msgid "[font=\"serif-bold-16\"]Game setup"
+msgid "[font=\"sans-bold-16\"]Game setup"
 msgstr ""
 
 #: gui/manual/intro.txt:29
 msgid ""
-"[font=\"serif-14\"]In a multiplayer game, only the host can alter the game "
+"[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
 msgstr ""
 
@@ -3466,15 +3466,15 @@ msgid "When you are ready to start, click the \"Start game\" button."
 msgstr ""
 
 #: gui/manual/intro.txt:37
-msgid "[font=\"serif-bold-16\"]Hotkeys:"
+msgid "[font=\"sans-bold-16\"]Hotkeys:"
 msgstr ""
 
 #: gui/manual/intro.txt:38
-msgid "[font=\"serif-bold-14\"]Always"
+msgid "[font=\"sans-bold-14\"]Always"
 msgstr ""
 
 #: gui/manual/intro.txt:39
-msgid "[font=\"serif-14\"]Alt + F4: Close the game, without confirmation"
+msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
 msgstr ""
 
 #: gui/manual/intro.txt:40
@@ -3514,12 +3514,12 @@ msgid ""
 msgstr ""
 
 #: gui/manual/intro.txt:48
-msgid "[font=\"serif-bold-14\"]In Game"
+msgid "[font=\"sans-bold-14\"]In Game"
 msgstr ""
 
 #: gui/manual/intro.txt:49
 msgid ""
-"[font=\"serif-14\"]Double Left Click [on unit]: Select all of your units of "
+"[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
 msgstr ""
 
@@ -3622,11 +3622,11 @@ msgid ""
 msgstr ""
 
 #: gui/manual/intro.txt:72
-msgid "[font=\"serif-bold-14\"]Modify mouse action"
+msgid "[font=\"sans-bold-14\"]Modify mouse action"
 msgstr ""
 
 #: gui/manual/intro.txt:73
-msgid "[font=\"serif-14\"]Ctrl + Right Click on building: Garrison"
+msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
 msgstr ""
 
 #: gui/manual/intro.txt:74
@@ -3672,11 +3672,11 @@ msgid "- Otherwise: Attack move"
 msgstr ""
 
 #: gui/manual/intro.txt:85
-msgid "[font=\"serif-bold-14\"]Overlays"
+msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr ""
 
 #: gui/manual/intro.txt:86
-msgid "[font=\"serif-14\"]Alt + G: Hide/show the GUI"
+msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr ""
 
 #: gui/manual/intro.txt:87
@@ -3699,11 +3699,11 @@ msgid "Alt + Z: Toggle sky"
 msgstr ""
 
 #: gui/manual/intro.txt:92
-msgid "[font=\"serif-bold-14\"]Camera manipulation"
+msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr ""
 
 #: gui/manual/intro.txt:93
-msgid "[font=\"serif-14\"]W or [up]: Pan screen up"
+msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
 msgstr ""
 
 #: gui/manual/intro.txt:94
@@ -3779,11 +3779,11 @@ msgid ""
 msgstr ""
 
 #: gui/manual/intro.txt:112
-msgid "[font=\"serif-bold-14\"]During Building Placement"
+msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr ""
 
 #: gui/manual/intro.txt:113
-msgid "[font=\"serif-14\"][: Rotate building 15 degrees counter-clockwise"
+msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
 msgstr ""
 
 #: gui/manual/intro.txt:114
@@ -3850,11 +3850,11 @@ msgid ""
 msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:1
-msgid "[font=\"serif-bold-16\"]Thank you for installing 0 A.D.!"
+msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
 msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2
-msgid "[font=\"serif-16\"]"
+msgid "[font=\"sans-16\"]"
 msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:3
@@ -17192,6 +17192,7 @@ msgstr ""
 #: maps/scenarios/WallTest.xml:31:Description
 #: maps/scenarios/_default.xml:32:Description
 #: maps/scenarios/temperate map.xml:31:Description
+#: maps/scenarios/test.xml:41:Description
 msgid "Give an interesting description of your map."
 msgstr ""
 
@@ -17216,6 +17217,7 @@ msgid "A quick battle demo map using Roman legionnaires."
 msgstr ""
 
 #: maps/scenarios/_default.xml:32:Name
+#: maps/scenarios/test.xml:41:Name
 msgid "Unnamed map"
 msgstr ""
 
@@ -17297,6 +17299,14 @@ msgstr ""
 
 #: maps/skirmishes/Bactria (2).xml:42:Name
 msgid "Bactria (2)"
+msgstr ""
+
+#: maps/skirmishes/Basic Tutorial.xml:41:Description
+msgid "The first steps of playing 0 A.D."
+msgstr ""
+
+#: maps/skirmishes/Basic Tutorial.xml:41:Name
+msgid "Basic Tutorial"
 msgstr ""
 
 #: maps/skirmishes/Belgian Bog (2).xml:42:Description

@@ -93,7 +93,7 @@
 				style="userReportText"
 			>
 				<attribute id="caption">
-					<keep>[font="serif-bold-16"]</keep>
+					<keep>[font="sans-bold-16"]</keep>
 					<translate>Help improve 0 A.D.!</translate>
 					<keep>[/font]\n</keep>
 					<translate>You can automatically send us anonymous feedback that will help us fix bugs, and improve performance and compatibility.</translate>
@@ -121,7 +121,7 @@
 				style="userReportText"
 			>
 				<attribute id="caption">
-					<keep>[font="serif-bold-16"]</keep>
+					<keep>[font="sans-bold-16"]</keep>
 					<translate>Thank you for helping improve 0 A.D.!</translate>
 					<keep>[/font]\n\n</keep>
 					<translate>Anonymous feedback is currently enabled.</translate>
@@ -469,7 +469,7 @@
 
 				<!-- PRE-RELEASE WARNING -->
 				<object
-					font="serif-14"
+					font="sans-14"
 					type="text"
 					textcolor="white"
 					size="8 8 100%-8 100%-36"
@@ -477,7 +477,7 @@
 				>
 					<!-- IMPORTANT: remember to update session/session.xml in sync with this: -->
 					<attribute id="caption">
-						<keep>[font="serif-bold-16"]</keep>
+						<keep>[font="sans-bold-16"]</keep>
 						<translate>Alpha XV: Osiris</translate>
 						<keep>[/font]\n\n</keep>
 						<translate>WARNING: This is an early development version of the game. Many features have not been added yet.</translate>

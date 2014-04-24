@@ -751,24 +751,24 @@ function ircFormat(text, from, color, key)
 		{
 			case "me":
 				// Translation: IRC message prefix when the sender uses the /me command.
-				var senderString = '[font="serif-bold-13"]' + sprintf(translate("* %(sender)s"), { sender: coloredFrom }) + '[/font]';
+				var senderString = '[font="sans-bold-13"]' + sprintf(translate("* %(sender)s"), { sender: coloredFrom }) + '[/font]';
 				// Translation: IRC message issued using the ‘/me’ command.
 				var formattedMessage = sprintf(translate("%(sender)s %(action)s"), { sender: senderString, action: message });
 				break;
 			case "say":
 				// Translation: IRC message prefix.
-				var senderString = '[font="serif-bold-13"]' + sprintf(translate("<%(sender)s>"), { sender: coloredFrom }) + '[/font]';
+				var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { sender: coloredFrom }) + '[/font]';
 				// Translation: IRC message.
 				var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { sender: senderString, message: message });
 				break
 			case "special":
 				if (key === g_specialKey)
 					// Translation: IRC system message.
-					var formattedMessage = '[font="serif-bold-13"]' + sprintf(translate("== %(message)s"), { message: message }) + '[/font]';
+					var formattedMessage = '[font="sans-bold-13"]' + sprintf(translate("== %(message)s"), { message: message }) + '[/font]';
 				else
 				{
 					// Translation: IRC message prefix.
-					var senderString = '[font="serif-bold-13"]' + sprintf(translate("<%(sender)s>"), { sender: coloredFrom }) + '[/font]';
+					var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { sender: coloredFrom }) + '[/font]';
 					// Translation: IRC message.
 					var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { sender: senderString, message: message });
 				}
@@ -781,7 +781,7 @@ function ircFormat(text, from, color, key)
 	else
 	{
 		// Translation: IRC message prefix.
-		var senderString = '[font="serif-bold-13"]' + sprintf(translate("<%(sender)s>"), { sender: coloredFrom }) + '[/font]';
+		var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { sender: coloredFrom }) + '[/font]';
 		// Translation: IRC message.
 		var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { sender: senderString, message: text });
 	}
@@ -798,7 +798,7 @@ function ircFormat(text, from, color, key)
 		var timeString = Engine.FormatMillisecondsIntoDateString(time.getTime(), translate("HH:mm"));
 
 		// Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
-		var timePrefixString = '[font="serif-bold-13"]' + sprintf(translate("[%(time)s]"), { time: timeString }) + '[/font]';
+		var timePrefixString = '[font="sans-bold-13"]' + sprintf(translate("[%(time)s]"), { time: timeString }) + '[/font]';
 
 		// Translation: IRC message format when there is a time prefix.
 		return sprintf(translate("%(time)s %(message)s"), { time: timePrefixString, message: formattedMessage });
