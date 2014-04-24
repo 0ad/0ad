@@ -701,7 +701,7 @@ function formatTributeTooltip(player, resource, amount)
 	var playerColor = player.color.r + " " + player.color.g + " " + player.color.b;
 	return sprintf(translate("Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click to tribute %(greaterAmount)s."), {
 		resourceAmount: amount,
-		resourceType: resource,
+		resourceType: getLocalizedResourceName(resource, "withinSentence"),
 		playerName: "[color=\"" + playerColor + "\"]" + player.name + "[/color]",
 		greaterAmount: (amount < 500 ? 500 : amount + 500)
 	});
