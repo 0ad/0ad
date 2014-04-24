@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,9 @@
 #endif
 #include "lib/sysdep/smbios.h"
 #include "lib/tex/tex.h"
+
+#include "i18n/L10n.h"
+#include "lib/utf8.h"
 
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
@@ -238,7 +241,7 @@ void WriteScreenshot(const VfsPath& extension)
 	{
 		OsPath realPath;
 		g_VFS->GetRealPath(filename, realPath);
-		LOGMESSAGERENDER(L"Screenshot written to '%ls'", realPath.string().c_str());
+		LOGMESSAGERENDER(wstring_from_utf8(L10n::Instance().Translate("Screenshot written to '%ls'")).c_str(), realPath.string().c_str());
 	}
 	else
 		LOGERROR(L"Error writing screenshot to '%ls'", filename.string().c_str());
@@ -371,7 +374,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	{
 		OsPath realPath;
 		g_VFS->GetRealPath(filename, realPath);
-		LOGMESSAGERENDER(L"Screenshot written to '%ls'", realPath.string().c_str());
+        LOGMESSAGERENDER(wstring_from_utf8(L10n::Instance().Translate("Screenshot written to '%ls'")).c_str(), realPath.string().c_str());
 	}
 	else
 		LOGERROR(L"Error writing screenshot to '%ls'", filename.string().c_str());

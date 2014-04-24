@@ -483,7 +483,7 @@
 		</object>
 
 		<object size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
-		    Close
+            <translatableAttribute id="caption">Close</translatableAttribute>
 		    <action on="Press">closeDiplomacy();</action>
 		</object>
 	</object>

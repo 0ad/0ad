@@ -97,6 +97,11 @@ std::string JSI_L10n::GetCurrentLocale(ScriptInterface::CxPrivate* UNUSED(pCxPri
 	return L10n::Instance().GetCurrentLocaleString();
 }
 
+bool JSI_L10n::UseLongStrings(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return L10n::Instance().UseLongStrings();
+}
+
 std::vector<std::string> JSI_L10n::GetAllLocales(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return L10n::Instance().GetAllLocales();
@@ -167,6 +172,7 @@ void JSI_L10n::RegisterScriptFunctions(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::string, std::string, &GetDictionaryLocale>("GetDictionaryLocale");
 	scriptInterface.RegisterFunction<std::vector<std::wstring>, std::string, &GetDictionariesForDictLocale>("GetDictionariesForDictLocale");
 
+	scriptInterface.RegisterFunction<bool, &UseLongStrings>("UseLongStrings");
 	scriptInterface.RegisterFunction<std::string, std::string, &GetLocaleLanguage>("GetLocaleLanguage");
 	scriptInterface.RegisterFunction<std::string, std::string, &GetLocaleBaseName>("GetLocaleBaseName");
 	scriptInterface.RegisterFunction<std::string, std::string, &GetLocaleCountry>("GetLocaleCountry");

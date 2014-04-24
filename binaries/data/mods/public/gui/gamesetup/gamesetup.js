@@ -954,9 +954,9 @@ function onGameAttributesChange()
 	// Update some controls for clients
 	if (!g_IsController)
 	{
-		var mapFilderSelection = Engine.GetGUIObjectByName("mapFilterText");
-		var mapFilterId = mapFilderSelection.list_data.indexOf(g_GameAttributes.mapFilter);
-		Engine.GetGUIObjectByName("mapFilterText").caption = mapFilderSelection.list[mapFilterId];
+		var mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
+		var mapFilterId = mapFilterSelection.list_data.indexOf(g_GameAttributes.mapFilter);
+		Engine.GetGUIObjectByName("mapFilterText").caption = mapFilterSelection.list[mapFilterId];
 		var mapTypeSelection = Engine.GetGUIObjectByName("mapTypeSelection");
 		var idx = mapTypeSelection.list_data.indexOf(g_GameAttributes.mapType);
 		Engine.GetGUIObjectByName("mapTypeText").caption = mapTypeSelection.list[idx];

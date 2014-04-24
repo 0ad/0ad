@@ -55,6 +55,7 @@ public:
 	std::string GetLocaleBaseName(const std::string& locale);
 	std::string GetLocaleCountry(const std::string& locale);
 	std::string GetLocaleScript(const std::string& locale);
+	bool UseLongStrings();
 	std::vector<std::wstring> GetDictionariesForDictLocale(const std::string& locale);
 	std::string GetDictionaryLocale(std::string configLocaleString);
 	void GetDictionaryLocale(std::string configLocaleString, Locale& outLocale);
@@ -82,6 +83,7 @@ private:
 	Locale currentLocale;
 	std::vector<Locale*> availableLocales;
 	bool currentLocaleIsOriginalGameLocale;
+	bool useLongStrings;
 
 	Locale AutoDetectLocale();
 	void LoadDictionaryForCurrentLocale();

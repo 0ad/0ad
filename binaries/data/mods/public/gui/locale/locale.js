@@ -7,13 +7,23 @@ function init()
 	var currentLocale = Engine.GetCurrentLocale();
 	var currentLocaleBaseName = Engine.GetLocaleBaseName(currentLocale);
 	var currentLocaleLanguage = Engine.GetLocaleLanguage(currentLocale);
-	if (languageList.list_data.indexOf(currentLocaleBaseName) != -1)
-		languageList.selected = languageList.list_data.indexOf(currentLocaleBaseName);
-	else if (languageList.list_data.indexOf(currentLocaleLanguage) != -1)
-		languageList.selected = languageList.list_data.indexOf(currentLocaleLanguage);
+	var useLongStrings = Engine.UseLongStrings();
+	var index = -1;
+	if (useLongStrings)
+		index = languageList.list_data.indexOf("long");
+	if (index == -1)
+		index = languageList.list_data.indexOf(currentLocaleBaseName);
+	if (index == -1)
+		index = languageList.list_data.indexOf(currentLocaleLanguage);
+
+	if (index != -1)
+		languageList.selected = index;
 	
 	var localeText = Engine.GetGUIObjectByName("localeText");
-	localeText.caption = currentLocale;
+	if (useLongStrings)
+		localeText.caption = "long";
+	else
+		localeText.caption = currentLocale;
 }
 
 function cancelSetup()
@@ -37,7 +47,9 @@ function languageSelectionChanged()
 {
 	var languageList = Engine.GetGUIObjectByName("languageList");
 	var locale = languageList.list_data[languageList.selected];
-	if(!Engine.ValidateLocale(locale))
+	if (locale == "long")
+		warn("'long' is not an actual language, just a collection of all longest strings extracted from some languages");
+	else if(!Engine.ValidateLocale(locale))
 		warn("Selected locale is not valid! This is not expected, please report the issue.");
 	var localeText = Engine.GetGUIObjectByName("localeText");
 	localeText.caption = locale;

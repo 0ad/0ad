@@ -10,37 +10,14 @@ function layoutSelectionMultiple()
 	Engine.GetGUIObjectByName("detailsAreaSingle").hidden = true;
 }
 
-function getLocalizedResourceName(resourceCode)
-{
-	switch(resourceCode)
-	{
-		case "food": return translate("Food");
-		case "meat": return translate("Meat");
-		case "metal": return translate("Metal");
-		case "ore": return translate("Ore");
-		case "rock": return translate("Rock");
-		case "ruins": return translate("Ruins");
-		case "stone": return translate("Stone");
-		case "treasure": return translate("Treasure");
-		case "tree": return translate("Tree");
-		case "wood": return translate("Wood");
-		case "fruit": return translate("Fruit");
-		case "grain": return translate("Grain");
-		case "fish": return translate("Fish");
-		default:
-			warn(sprintf("Internationalization: Unexpected resource type found with code ‘%(resource)s’. This resource type must be internationalized.", { resource: resourceCode }));
-			return resourceCode; // It should never get here.
-	}
-}
-
 function getResourceTypeDisplayName(resourceType)
 {
 	var resourceCode = resourceType["generic"];
 	var displayName = "";
 	if (resourceCode == "treasure")
-		displayName = getLocalizedResourceName(resourceType["specific"]);
+		displayName = getLocalizedResourceName(resourceType["specific"], "firstWord");
 	else
-		displayName = getLocalizedResourceName(resourceCode);
+		displayName = getLocalizedResourceName(resourceCode, "firstWord");
 	return displayName;
 }
 

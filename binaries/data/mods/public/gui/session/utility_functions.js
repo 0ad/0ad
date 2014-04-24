@@ -718,3 +718,82 @@ function getEntityOrHolder(ent)
 
 	return ent;
 }
+
+function getLocalizedResourceName(resourceCode, context)
+{
+    if (context == "firstWord")
+    {
+        switch(resourceCode)
+        {
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "food": return translateWithContext("firstWord", "Food");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "meat": return translateWithContext("firstWord", "Meat");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "metal": return translateWithContext("firstWord", "Metal");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "ore": return translateWithContext("firstWord", "Ore");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "rock": return translateWithContext("firstWord", "Rock");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "ruins": return translateWithContext("firstWord", "Ruins");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "stone": return translateWithContext("firstWord", "Stone");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "treasure": return translateWithContext("firstWord", "Treasure");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "tree": return translateWithContext("firstWord", "Tree");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "wood": return translateWithContext("firstWord", "Wood");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "fruit": return translateWithContext("firstWord", "Fruit");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "grain": return translateWithContext("firstWord", "Grain");
+            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+            case "fish": return translateWithContext("firstWord", "Fish");
+            default:
+                warn(sprintf("Internationalization: Unexpected resource type found with code ‘%(resource)s’. This resource type must be internationalized.", { resource: resourceCode }));
+                return resourceCode; // It should never get here.
+        }
+    }
+    else if (context == "withinSentence")
+    {
+        switch(resourceCode)
+        {
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "food": return translateWithContext("withinSentence", "Food");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "meat": return translateWithContext("withinSentence", "Meat");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "metal": return translateWithContext("withinSentence", "Metal");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "ore": return translateWithContext("withinSentence", "Ore");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "rock": return translateWithContext("withinSentence", "Rock");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "ruins": return translateWithContext("withinSentence", "Ruins");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "stone": return translateWithContext("withinSentence", "Stone");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "treasure": return translateWithContext("withinSentence", "Treasure");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "tree": return translateWithContext("withinSentence", "Tree");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "wood": return translateWithContext("withinSentence", "Wood");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "fruit": return translateWithContext("withinSentence", "Fruit");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "grain": return translateWithContext("withinSentence", "Grain");
+            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+            case "fish": return translateWithContext("withinSentence", "Fish");
+            default:
+                warn(sprintf("Internationalization: Unexpected resource type found with code ‘%(resource)s’. This resource type must be internationalized.", { resource: resourceCode }));
+                return resourceCode; // It should never get here.
+        }
+    }
+    else
+    {
+        warn(sprintf("Internationalization: Unexpected context for resource type localization found: ‘%(context)s’. This context is not supported.", { context: context }));
+        return resourceCode; // It should never get here.
+    }
+}

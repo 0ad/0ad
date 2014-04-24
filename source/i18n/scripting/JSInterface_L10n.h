@@ -46,6 +46,7 @@ namespace JSI_L10n
 	std::string GetLocaleBaseName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
 	std::string GetLocaleCountry(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
 	std::string GetLocaleScript(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
+	bool UseLongStrings(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
 
 	bool ValidateLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
 	bool SaveLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
