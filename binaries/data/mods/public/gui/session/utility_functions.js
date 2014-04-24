@@ -397,7 +397,13 @@ function getEntityCommandsList(entState)
  */
 function getCostComponentDisplayName(costComponentName)
 {
-	return COST_DISPLAY_NAMES[costComponentName];
+	if (costComponentName in COST_DISPLAY_NAMES)
+		return COST_DISPLAY_NAMES[costComponentName];
+	else
+	{
+		warn(sprintf("The specified cost component, ‘%(component)s’, is not currently supported.", { component: costComponentName }));
+		return "";
+	}
 }
 
 /**
@@ -481,7 +487,13 @@ function getWallPieceTooltip(wallTypes)
 			var resourceMin = Math.min.apply(Math, resourceCount[resource]);
 			var resourceMax = Math.max.apply(Math, resourceCount[resource]);
 
-			out.push(getCostComponentDisplayName(resource) + " " + resourceMin + " to " + getCostComponentDisplayName(resource) + " " + resourceMax);
+			// Translation: This string is part of the resources cost string on
+			// the tooltip for wall structures.
+			out.push(sprintf(translate("%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"), {
+				resourceIcon: getCostComponentDisplayName(resource),
+				minimum: resourceMin,
+				maximum: resourceMax
+			}));
 		}
 	}
 	else

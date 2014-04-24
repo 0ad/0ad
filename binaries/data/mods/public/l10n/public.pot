@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-24 07:43+0200\n"
+"POT-Creation-Date: 2014-04-24 08:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1324,9 +1324,9 @@ msgstr ""
 #: gui/session/utility_functions.js:224
 #: gui/session/utility_functions.js:250
 #: gui/session/utility_functions.js:279
-#: gui/session/utility_functions.js:568
-#: gui/session/utility_functions.js:686
-#: gui/session/utility_functions.js:691
+#: gui/session/utility_functions.js:580
+#: gui/session/utility_functions.js:698
+#: gui/session/utility_functions.js:703
 msgid ", "
 msgstr ""
 
@@ -1472,7 +1472,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:249
 #: gui/session/session.js:641
-#: gui/session/utility_functions.js:590
+#: gui/session/utility_functions.js:602
 msgid "Range:"
 msgstr ""
 
@@ -1826,310 +1826,317 @@ msgstr ""
 msgid "End of alert."
 msgstr ""
 
-#: gui/session/utility_functions.js:427
-#: gui/session/utility_functions.js:428
-#: gui/session/utility_functions.js:429
-#: gui/session/utility_functions.js:430
-#: gui/session/utility_functions.js:431
-#: gui/session/utility_functions.js:432
-#: gui/session/utility_functions.js:550
+#: gui/session/utility_functions.js:433
+#: gui/session/utility_functions.js:434
+#: gui/session/utility_functions.js:435
+#: gui/session/utility_functions.js:436
+#: gui/session/utility_functions.js:437
+#: gui/session/utility_functions.js:438
+#: gui/session/utility_functions.js:562
 #, python-format
 msgid "%(component)s %(cost)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:513
+#. Translation: This string is part of the resources cost string on
+#. the tooltip for wall structures.
+#: gui/session/utility_functions.js:492
+#, python-format
+msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
+msgstr ""
+
+#: gui/session/utility_functions.js:525
 #, python-format
 msgid "Walls:  %(costs)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:513
-#: gui/session/utility_functions.js:514
-#: gui/session/utility_functions.js:519
-#: gui/session/utility_functions.js:555
+#: gui/session/utility_functions.js:525
+#: gui/session/utility_functions.js:526
+#: gui/session/utility_functions.js:531
+#: gui/session/utility_functions.js:567
 msgid "  "
 msgstr ""
 
-#: gui/session/utility_functions.js:514
+#: gui/session/utility_functions.js:526
 #, python-format
 msgid "Towers:  %(costs)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:536
+#: gui/session/utility_functions.js:548
 #, python-format
 msgid "%(label)s %(populationBonus)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:537
+#: gui/session/utility_functions.js:549
 msgid "Population Bonus:"
 msgstr ""
 
-#: gui/session/utility_functions.js:555
+#: gui/session/utility_functions.js:567
 msgid "Insufficient resources:"
 msgstr ""
 
-#: gui/session/utility_functions.js:563
+#: gui/session/utility_functions.js:575
 msgid "Speed:"
 msgstr ""
 
-#: gui/session/utility_functions.js:565
-#: gui/session/utility_functions.js:566
+#: gui/session/utility_functions.js:577
+#: gui/session/utility_functions.js:578
 #, python-format
 msgid "%(speed)s %(movementType)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:565
+#: gui/session/utility_functions.js:577
 msgid "Walk"
 msgstr ""
 
-#: gui/session/utility_functions.js:566
+#: gui/session/utility_functions.js:578
 msgid "Run"
 msgstr ""
 
-#: gui/session/utility_functions.js:568
+#: gui/session/utility_functions.js:580
 #, python-format
 msgid "%(label)s %(speeds)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:587
+#: gui/session/utility_functions.js:599
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:596
+#: gui/session/utility_functions.js:608
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:612
+#: gui/session/utility_functions.js:624
 #, python-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr ""
 
-#: gui/session/utility_functions.js:622
+#: gui/session/utility_functions.js:634
 msgid "???"
 msgstr ""
 
-#: gui/session/utility_functions.js:652
+#: gui/session/utility_functions.js:664
 #, python-format
 msgid "%(rank)s %(name)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:676
-#: gui/session/utility_functions.js:678
+#: gui/session/utility_functions.js:688
+#: gui/session/utility_functions.js:690
 msgid "+"
 msgstr ""
 
-#: gui/session/utility_functions.js:680
-#: gui/session/utility_functions.js:686
-#: gui/session/utility_functions.js:691
+#: gui/session/utility_functions.js:692
+#: gui/session/utility_functions.js:698
+#: gui/session/utility_functions.js:703
 #, python-format
 msgid "%(gain)s (%(player)s)"
 msgstr ""
 
-#: gui/session/utility_functions.js:682
+#: gui/session/utility_functions.js:694
 msgid "you"
 msgstr ""
 
-#: gui/session/utility_functions.js:688
-#: gui/session/utility_functions.js:693
+#: gui/session/utility_functions.js:700
+#: gui/session/utility_functions.js:705
 #, python-format
 msgid "player %(name)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:701
+#: gui/session/utility_functions.js:713
 msgid "Charge Attack:"
 msgstr ""
 
-#: gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:714
 msgid "Melee Attack:"
 msgstr ""
 
-#: gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:715
 msgid "Ranged Attack:"
 msgstr ""
 
-#: gui/session/utility_functions.js:706
+#: gui/session/utility_functions.js:718
 msgid "Attack:"
-msgstr ""
-
-#. Translation: Word as used at the beginning of a sentence or as a single-word
-#. sentence.
-#: gui/session/utility_functions.js:729
-msgctxt "firstWord"
-msgid "Food"
-msgstr ""
-
-#. Translation: Word as used at the beginning of a sentence or as a single-word
-#. sentence.
-#: gui/session/utility_functions.js:731
-msgctxt "firstWord"
-msgid "Meat"
-msgstr ""
-
-#. Translation: Word as used at the beginning of a sentence or as a single-word
-#. sentence.
-#: gui/session/utility_functions.js:733
-msgctxt "firstWord"
-msgid "Metal"
-msgstr ""
-
-#. Translation: Word as used at the beginning of a sentence or as a single-word
-#. sentence.
-#: gui/session/utility_functions.js:735
-msgctxt "firstWord"
-msgid "Ore"
-msgstr ""
-
-#. Translation: Word as used at the beginning of a sentence or as a single-word
-#. sentence.
-#: gui/session/utility_functions.js:737
-msgctxt "firstWord"
-msgid "Rock"
-msgstr ""
-
-#. Translation: Word as used at the beginning of a sentence or as a single-word
-#. sentence.
-#: gui/session/utility_functions.js:739
-msgctxt "firstWord"
-msgid "Ruins"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:741
 msgctxt "firstWord"
-msgid "Stone"
+msgid "Food"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:743
 msgctxt "firstWord"
-msgid "Treasure"
+msgid "Meat"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:745
 msgctxt "firstWord"
-msgid "Tree"
+msgid "Metal"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:747
 msgctxt "firstWord"
-msgid "Wood"
+msgid "Ore"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:749
 msgctxt "firstWord"
-msgid "Fruit"
+msgid "Rock"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:751
 msgctxt "firstWord"
-msgid "Grain"
+msgid "Ruins"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:753
 msgctxt "firstWord"
+msgid "Stone"
+msgstr ""
+
+#. Translation: Word as used at the beginning of a sentence or as a single-word
+#. sentence.
+#: gui/session/utility_functions.js:755
+msgctxt "firstWord"
+msgid "Treasure"
+msgstr ""
+
+#. Translation: Word as used at the beginning of a sentence or as a single-word
+#. sentence.
+#: gui/session/utility_functions.js:757
+msgctxt "firstWord"
+msgid "Tree"
+msgstr ""
+
+#. Translation: Word as used at the beginning of a sentence or as a single-word
+#. sentence.
+#: gui/session/utility_functions.js:759
+msgctxt "firstWord"
+msgid "Wood"
+msgstr ""
+
+#. Translation: Word as used at the beginning of a sentence or as a single-word
+#. sentence.
+#: gui/session/utility_functions.js:761
+msgctxt "firstWord"
+msgid "Fruit"
+msgstr ""
+
+#. Translation: Word as used at the beginning of a sentence or as a single-word
+#. sentence.
+#: gui/session/utility_functions.js:763
+msgctxt "firstWord"
+msgid "Grain"
+msgstr ""
+
+#. Translation: Word as used at the beginning of a sentence or as a single-word
+#. sentence.
+#: gui/session/utility_functions.js:765
+msgctxt "firstWord"
 msgid "Fish"
-msgstr ""
-
-#. Translation: Word as used in the middle of a sentence (which may require using
-#. lowercase for your language).
-#: gui/session/utility_functions.js:764
-msgctxt "withinSentence"
-msgid "Food"
-msgstr ""
-
-#. Translation: Word as used in the middle of a sentence (which may require using
-#. lowercase for your language).
-#: gui/session/utility_functions.js:766
-msgctxt "withinSentence"
-msgid "Meat"
-msgstr ""
-
-#. Translation: Word as used in the middle of a sentence (which may require using
-#. lowercase for your language).
-#: gui/session/utility_functions.js:768
-msgctxt "withinSentence"
-msgid "Metal"
-msgstr ""
-
-#. Translation: Word as used in the middle of a sentence (which may require using
-#. lowercase for your language).
-#: gui/session/utility_functions.js:770
-msgctxt "withinSentence"
-msgid "Ore"
-msgstr ""
-
-#. Translation: Word as used in the middle of a sentence (which may require using
-#. lowercase for your language).
-#: gui/session/utility_functions.js:772
-msgctxt "withinSentence"
-msgid "Rock"
-msgstr ""
-
-#. Translation: Word as used in the middle of a sentence (which may require using
-#. lowercase for your language).
-#: gui/session/utility_functions.js:774
-msgctxt "withinSentence"
-msgid "Ruins"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:776
 msgctxt "withinSentence"
-msgid "Stone"
+msgid "Food"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:778
 msgctxt "withinSentence"
-msgid "Treasure"
+msgid "Meat"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:780
 msgctxt "withinSentence"
-msgid "Tree"
+msgid "Metal"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:782
 msgctxt "withinSentence"
-msgid "Wood"
+msgid "Ore"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:784
 msgctxt "withinSentence"
-msgid "Fruit"
+msgid "Rock"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:786
 msgctxt "withinSentence"
-msgid "Grain"
+msgid "Ruins"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:788
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr ""
+
+#. Translation: Word as used in the middle of a sentence (which may require using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:790
+msgctxt "withinSentence"
+msgid "Treasure"
+msgstr ""
+
+#. Translation: Word as used in the middle of a sentence (which may require using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:792
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr ""
+
+#. Translation: Word as used in the middle of a sentence (which may require using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:794
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr ""
+
+#. Translation: Word as used in the middle of a sentence (which may require using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:796
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr ""
+
+#. Translation: Word as used in the middle of a sentence (which may require using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:798
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr ""
+
+#. Translation: Word as used in the middle of a sentence (which may require using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:800
 msgctxt "withinSentence"
 msgid "Fish"
 msgstr ""
