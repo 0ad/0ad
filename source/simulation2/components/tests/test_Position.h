@@ -39,7 +39,7 @@ public:
 
 	void test_basic()
 	{
-		ComponentTestHelper test(ScriptInterface::CreateRuntime());
+		ComponentTestHelper test(g_ScriptRuntime);
 
 		MockTerrain terrain;
 		test.AddMock(SYSTEM_ENTITY, IID_Terrain, terrain);
@@ -111,7 +111,7 @@ public:
 
 	void test_serialize()
 	{
-		ComponentTestHelper test(ScriptInterface::CreateRuntime());
+		ComponentTestHelper test(g_ScriptRuntime);
 
 		MockTerrain terrain;
 		test.AddMock(SYSTEM_ENTITY, IID_Terrain, terrain);

@@ -81,12 +81,14 @@ class MiscSetup : public CxxTest::GlobalFixture
 		ThreadUtil::SetMainThread();
 
 		g_Profiler2.Initialise();
+		g_ScriptRuntime = ScriptInterface::CreateRuntime();
 
 		return true;
 	}
 
 	virtual bool tearDownWorld()
 	{
+		g_ScriptRuntime.reset();
 		g_Profiler2.Shutdown();
 
 		return true;
