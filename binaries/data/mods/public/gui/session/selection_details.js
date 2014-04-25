@@ -47,7 +47,7 @@ function displaySingle(entState, template)
 	// Rank
 	if (entState.identity && entState.identity.rank && entState.identity.classes)
 	{
-		Engine.GetGUIObjectByName("rankIcon").tooltip = sprintf(translate("%(rank)s Rank"), { rank: entState.identity.rank });
+		Engine.GetGUIObjectByName("rankIcon").tooltip = sprintf(translate("%(rank)s Rank"), { rank: translateWithContext("Rank", entState.identity.rank) });
 		Engine.GetGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);
 		Engine.GetGUIObjectByName("rankIcon").hidden = false;
 	}
