@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-20 23:35+0200\n"
-"PO-Revision-Date: 2014-04-20 21:38+0000\n"
+"POT-Creation-Date: 2014-04-24 08:14+0200\n"
+"PO-Revision-Date: 2014-04-24 12:19+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr "Velmi těžká"
 #: gui/civinfo/civinfo.js:94
 #, python-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "%(civilization)s hra"
 
 #: gui/civinfo/civinfo.js:97
 msgid "Civilization Bonus"
@@ -110,7 +110,7 @@ msgstr "Hrdinové"
 #: gui/civinfo/civinfo.js:158
 #, python-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "Historie %(civilization)s"
 
 #: gui/common/functions_global_object.js:73
 #, python-format
@@ -457,7 +457,7 @@ msgstr "Jakýkoli"
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "Jakýkoli"
 
 #: gui/lobby/lobby.js:305
 msgid "Busy"
@@ -595,7 +595,7 @@ msgstr ""
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "Žádná"
 
 #: gui/locale/locale_advanced.js:89
 msgid "<invalid>"
@@ -645,156 +645,180 @@ msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr ""
 
 #: gui/options/options.js:14
-msgid "Shadows"
+msgid "Post Processing"
 msgstr ""
 
 #: gui/options/options.js:14
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
+msgstr ""
+
+#: gui/options/options.js:15
+msgid "Shadows"
+msgstr ""
+
+#: gui/options/options.js:15
 msgid "Enable shadows"
 msgstr ""
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Particles"
 msgstr ""
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Enable particles"
 msgstr ""
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Show Sky"
 msgstr ""
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Render Sky"
 msgstr ""
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
+msgid "Smooth LOS"
+msgstr ""
+
+#: gui/options/options.js:18
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."
+msgstr ""
+
+#: gui/options/options.js:19
 msgid "Unit Silhouettes"
 msgstr ""
 
-#: gui/options/options.js:17
+#: gui/options/options.js:19
 msgid "Show outlines of units behind buildings"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Shadow Filtering"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Smooth shadows"
 msgstr ""
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid "HQ Waviness"
 msgstr ""
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Real Water Depth"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Use actual water depth in rendering calculations"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Water Reflections"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Allow water to reflect a mirror image"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "Water Refraction"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "Use a real water refraction map and not transparency"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Shore Foam"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Show foam on water near shore depending on water waviness"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Shore Waves"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Water Shadows"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Cast shadows on water"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:28
+msgid "VSync"
+msgstr ""
+
+#: gui/options/options.js:28
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.js:32
 msgid "Master Gain"
 msgstr "Hlavní zesílení"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:32
 msgid "Master audio gain"
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:33
 msgid "Music Gain"
 msgstr "Zesílení hudby"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:33
 msgid "In game music gain"
 msgstr ""
 
-#: gui/options/options.js:31
+#: gui/options/options.js:34
 msgid "Ambient Gain"
 msgstr ""
 
-#: gui/options/options.js:31
+#: gui/options/options.js:34
 msgid "In game ambient sound gain"
 msgstr ""
 
-#: gui/options/options.js:32
+#: gui/options/options.js:35
 msgid "Action Gain"
 msgstr ""
 
-#: gui/options/options.js:32
+#: gui/options/options.js:35
 msgid "In game unit action sound gain"
 msgstr ""
 
-#: gui/options/options.js:33
+#: gui/options/options.js:36
 msgid "UI Gain"
 msgstr ""
 
-#: gui/options/options.js:33
+#: gui/options/options.js:36
 msgid "UI sound gain"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:40
 msgid "Chat Backlog"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:40
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:41
 msgid "Chat Timestamp"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:41
 msgid "Show time that messages are posted in the lobby chat"
 msgstr ""
 
@@ -995,6 +1019,14 @@ msgstr "Klepněte pravým tlačítkem myši pro nastavení jako cílový obchodn
 #: gui/session/input.js:996
 msgid "Cannot build wall here!"
 msgstr "Zde nelze hradbu postavit!"
+
+#: gui/session/menu.js:1 gui/session/session.xml:924 (caption)
+msgid "Pause"
+msgstr "Pozastavit"
+
+#: gui/session/menu.js:2
+msgid "Resume"
+msgstr ""
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -1262,8 +1294,8 @@ msgstr "%(previousAmounts)s a %(lastAmount)s"
 
 #: gui/session/messages.js:463 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
-#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:568
-#: gui/session/utility_functions.js:686 gui/session/utility_functions.js:691
+#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
+#: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
 msgid ", "
 msgstr ", "
 
@@ -1311,200 +1343,122 @@ msgstr "Tým"
 msgid "Private"
 msgstr "Soukromý"
 
-#: gui/session/selection_details.js:17 simulation/components/Player.js:40
-#: gui/session/session.xml:709 (tooltip) gui/summary/summary.xml:569 (caption)
-msgid "Food"
-msgstr "Jídlo"
-
-#: gui/session/selection_details.js:18
-msgid "Meat"
-msgstr "Maso"
-
-#: gui/session/selection_details.js:19 simulation/components/Player.js:42
-#: gui/session/session.xml:730 (tooltip) gui/summary/summary.xml:578 (caption)
-msgid "Metal"
-msgstr "Kov"
-
-#: gui/session/selection_details.js:20
-msgid "Ore"
-msgstr "Ruda"
-
-#: gui/session/selection_details.js:21
-#: simulation/templates/template_gaia_geo_rock.xml:4
-msgid "Rock"
-msgstr "Kámen"
-
-#: gui/session/selection_details.js:22
-#: simulation/templates/template_gaia_ruins.xml:9
-#: simulation/templates/gaia/special_ruins.xml:9
-#: simulation/templates/gaia/special_ruins_column_doric.xml:9
-#: simulation/templates/other/unfinished_greek_temple.xml:9
-msgid "Ruins"
-msgstr "Zříceniny"
-
-#: gui/session/selection_details.js:23 simulation/components/Player.js:43
-#: gui/session/session.xml:723 (tooltip) gui/summary/summary.xml:575 (caption)
-msgid "Stone"
-msgstr "Kámen"
-
-#: gui/session/selection_details.js:24
-#: simulation/templates/template_gaia_treasure.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
-#: simulation/templates/gaia/special_treasure_food_bin.xml:9
-#: simulation/templates/gaia/special_treasure_food_crate.xml:9
-#: simulation/templates/gaia/special_treasure_food_jars.xml:9
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
-#: simulation/templates/gaia/special_treasure_pegasus.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:9
-#: simulation/templates/gaia/special_treasure_wood.xml:9
-#: simulation/templates/other/special_treasure_shipwreck.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
-msgid "Treasure"
-msgstr "Poklad"
-
-#: gui/session/selection_details.js:25
-#: simulation/templates/template_gaia_flora_tree.xml:5
-msgid "Tree"
-msgstr "Strom"
-
-#: gui/session/selection_details.js:26 simulation/components/Player.js:41
-#: gui/session/session.xml:716 (tooltip) gui/summary/summary.xml:572 (caption)
-msgid "Wood"
-msgstr "Dřevo"
-
-#: gui/session/selection_details.js:27
-msgid "Fruit"
-msgstr "Ovoce"
-
-#: gui/session/selection_details.js:28
-msgid "Grain"
-msgstr "Obilí"
-
-#: gui/session/selection_details.js:29
-#: simulation/templates/template_unit_fauna_fish.xml:9
-msgid "Fish"
-msgstr "Ryba"
-
-#: gui/session/selection_details.js:55
+#: gui/session/selection_details.js:32
 #, python-format
 msgid "%(genericName)s — Packed"
 msgstr "%(genericName)s — Sbalen"
 
-#: gui/session/selection_details.js:67
+#: gui/session/selection_details.js:44
 #, python-format
 msgid "[OFFLINE] %(player)s"
 msgstr "[NEPŘIPOJENÝ] %(player)s"
 
-#: gui/session/selection_details.js:73
+#: gui/session/selection_details.js:50
 #, python-format
 msgid "%(rank)s Rank"
 msgstr "%(rank)s hodnost"
 
-#: gui/session/selection_details.js:91
+#: gui/session/selection_details.js:68
 #, python-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:118
+#: gui/session/selection_details.js:95
 #, python-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:119 gui/session/selection_details.js:125
+#: gui/session/selection_details.js:96 gui/session/selection_details.js:102
 msgid "Experience:"
 msgstr "Zkušenosti:"
 
-#: gui/session/selection_details.js:124
+#: gui/session/selection_details.js:101
 #, python-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:138
+#: gui/session/selection_details.js:115
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:139 gui/session/selection_details.js:172
-#: gui/session/selection_details.js:203
+#: gui/session/selection_details.js:116 gui/session/selection_details.js:149
+#: gui/session/selection_details.js:180
 #, python-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:148
+#: gui/session/selection_details.js:125
 #, python-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:187
+#: gui/session/selection_details.js:164
 #, python-format
 msgid "Gain: %(amount)s"
 msgstr "Zisk: %(amount)s"
 
-#: gui/session/selection_details.js:196
+#: gui/session/selection_details.js:173
 msgid "Number of builders"
 msgstr "Počet stavitelů"
 
-#: gui/session/selection_details.js:204
+#: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
 msgstr "Nyní/maximum sběračů"
 
-#: gui/session/selection_details.js:219
+#: gui/session/selection_details.js:196
 #, python-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:249 gui/session/session.js:648
+#: gui/session/selection_details.js:226 gui/session/session.js:648
 msgid "Armor:"
 msgstr "Brnění:"
 
-#: gui/session/selection_details.js:250 gui/session/selection_details.js:261
+#: gui/session/selection_details.js:227 gui/session/selection_details.js:238
 #: gui/session/session.js:646 gui/session/session.js:649
 #, python-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:257
+#: gui/session/selection_details.js:234
 msgid "Interval:"
 msgstr "Interval:"
 
-#: gui/session/selection_details.js:259
+#: gui/session/selection_details.js:236
 msgid "Rate:"
 msgstr "Výše:"
 
-#: gui/session/selection_details.js:272 gui/session/session.js:641
-#: gui/session/utility_functions.js:590
+#: gui/session/selection_details.js:249 gui/session/session.js:641
+#: gui/session/utility_functions.js:602
 msgid "Range:"
 msgstr "Dostřel:"
 
-#: gui/session/selection_details.js:274
+#: gui/session/selection_details.js:251
 msgid "meters"
 msgstr "metrů"
 
-#: gui/session/selection_details.js:277 gui/session/selection_details.js:287
+#: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, python-format
 msgid ""
 "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), "
 "%(rate)s"
 msgstr ""
 
-#: gui/session/selection_details.js:297
+#: gui/session/selection_details.js:274
 #, python-format
 msgid "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 msgstr ""
 
-#: gui/session/selection_details.js:308
+#: gui/session/selection_details.js:285
 #, python-format
 msgid "%(label)s %(details)s, %(rate)s"
 msgstr ""
 
-#: gui/session/selection_details.js:364
+#: gui/session/selection_details.js:341
 msgid "Hitpoints:"
 msgstr "Životy:"
 
-#: gui/session/selection_details.js:365 gui/session/session.js:632
+#: gui/session/selection_details.js:342 gui/session/session.js:632
 #, python-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -1809,122 +1763,337 @@ msgstr ""
 msgid "End of alert."
 msgstr "Konec poplachu."
 
-#: gui/session/utility_functions.js:427 gui/session/utility_functions.js:428
-#: gui/session/utility_functions.js:429 gui/session/utility_functions.js:430
-#: gui/session/utility_functions.js:431 gui/session/utility_functions.js:432
-#: gui/session/utility_functions.js:550
+#: gui/session/utility_functions.js:433 gui/session/utility_functions.js:434
+#: gui/session/utility_functions.js:435 gui/session/utility_functions.js:436
+#: gui/session/utility_functions.js:437 gui/session/utility_functions.js:438
+#: gui/session/utility_functions.js:562
 #, python-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/session/utility_functions.js:513
+#. Translation: This string is part of the resources cost string on
+#. the tooltip for wall structures.
+#: gui/session/utility_functions.js:492
+#, python-format
+msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
+msgstr ""
+
+#: gui/session/utility_functions.js:525
 #, python-format
 msgid "Walls:  %(costs)s"
 msgstr "Hradby:  %(costs)s"
 
-#: gui/session/utility_functions.js:513 gui/session/utility_functions.js:514
-#: gui/session/utility_functions.js:519 gui/session/utility_functions.js:555
+#: gui/session/utility_functions.js:525 gui/session/utility_functions.js:526
+#: gui/session/utility_functions.js:531 gui/session/utility_functions.js:567
 msgid "  "
 msgstr "  "
 
-#: gui/session/utility_functions.js:514
+#: gui/session/utility_functions.js:526
 #, python-format
 msgid "Towers:  %(costs)s"
 msgstr "Věže:  %(costs)s"
 
-#: gui/session/utility_functions.js:536
+#: gui/session/utility_functions.js:548
 #, python-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/session/utility_functions.js:537
+#: gui/session/utility_functions.js:549
 msgid "Population Bonus:"
 msgstr "Populační zvýhodnění:"
 
-#: gui/session/utility_functions.js:555
+#: gui/session/utility_functions.js:567
 msgid "Insufficient resources:"
 msgstr "Nedostatečné zdroje:"
 
-#: gui/session/utility_functions.js:563
+#: gui/session/utility_functions.js:575
 msgid "Speed:"
 msgstr "Rychlost:"
 
-#: gui/session/utility_functions.js:565 gui/session/utility_functions.js:566
+#: gui/session/utility_functions.js:577 gui/session/utility_functions.js:578
 #, python-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/session/utility_functions.js:565
+#: gui/session/utility_functions.js:577
 msgid "Walk"
 msgstr "Jít"
 
-#: gui/session/utility_functions.js:566
+#: gui/session/utility_functions.js:578
 msgid "Run"
 msgstr "Běžet"
 
-#: gui/session/utility_functions.js:568
+#: gui/session/utility_functions.js:580
 #, python-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/session/utility_functions.js:587
+#: gui/session/utility_functions.js:599
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 
-#: gui/session/utility_functions.js:596
+#: gui/session/utility_functions.js:608
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr "%(attackLabel)s %(damageTypes)s"
 
-#: gui/session/utility_functions.js:612
+#: gui/session/utility_functions.js:624
 #, python-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/session/utility_functions.js:622
+#: gui/session/utility_functions.js:634
 msgid "???"
 msgstr "???"
 
-#: gui/session/utility_functions.js:652
+#: gui/session/utility_functions.js:664
 #, python-format
 msgid "%(rank)s %(name)s"
 msgstr "%(rank)s %(name)s"
 
-#: gui/session/utility_functions.js:676 gui/session/utility_functions.js:678
+#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:690
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:680 gui/session/utility_functions.js:686
-#: gui/session/utility_functions.js:691
+#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:698
+#: gui/session/utility_functions.js:703
 #, python-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:682
+#: gui/session/utility_functions.js:694
 msgid "you"
 msgstr "vy"
 
-#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:693
+#: gui/session/utility_functions.js:700 gui/session/utility_functions.js:705
 #, python-format
 msgid "player %(name)s"
 msgstr "Hráč %(name)s"
 
-#: gui/session/utility_functions.js:701
+#: gui/session/utility_functions.js:713
 msgid "Charge Attack:"
 msgstr "Útok ztečí:"
 
-#: gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:714
 msgid "Melee Attack:"
 msgstr "Útok zblízka:"
 
-#: gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:715
 msgid "Ranged Attack:"
 msgstr "Útok na dálku:"
 
-#: gui/session/utility_functions.js:706
+#: gui/session/utility_functions.js:718
 msgid "Attack:"
 msgstr "Útok:"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:741
+msgctxt "firstWord"
+msgid "Food"
+msgstr "Jídlo"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:743
+msgctxt "firstWord"
+msgid "Meat"
+msgstr "Maso"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:745
+msgctxt "firstWord"
+msgid "Metal"
+msgstr "Kov"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:747
+msgctxt "firstWord"
+msgid "Ore"
+msgstr "Ruda"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:749
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "Kámen"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:751
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Zříceniny"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:753
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "Kámen"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:755
+msgctxt "firstWord"
+msgid "Treasure"
+msgstr "Poklad"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:757
+msgctxt "firstWord"
+msgid "Tree"
+msgstr "Strom"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:759
+msgctxt "firstWord"
+msgid "Wood"
+msgstr "Dřevo"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:761
+msgctxt "firstWord"
+msgid "Fruit"
+msgstr "Ovoce"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:763
+msgctxt "firstWord"
+msgid "Grain"
+msgstr "Obilí"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:765
+msgctxt "firstWord"
+msgid "Fish"
+msgstr "Ryba"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:776
+msgctxt "withinSentence"
+msgid "Food"
+msgstr "Jídlo"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:778
+msgctxt "withinSentence"
+msgid "Meat"
+msgstr "Maso"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:780
+msgctxt "withinSentence"
+msgid "Metal"
+msgstr "Kov"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:782
+msgctxt "withinSentence"
+msgid "Ore"
+msgstr "Ruda"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:784
+msgctxt "withinSentence"
+msgid "Rock"
+msgstr "Kámen"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:786
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "Zříceniny"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:788
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr "Kámen"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:790
+msgctxt "withinSentence"
+msgid "Treasure"
+msgstr "Poklad"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:792
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr "Strom"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:794
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr "Dřevo"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:796
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr "Ovoce"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:798
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr "Obilí"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:800
+msgctxt "withinSentence"
+msgid "Fish"
+msgstr "Ryba"
 
 #: gui/splashscreen/splashscreen.js:9
 #, python-format
@@ -2052,6 +2221,26 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr ""
 
+#: simulation/components/Player.js:40 gui/session/session.xml:709 (tooltip)
+#: gui/summary/summary.xml:569 (caption)
+msgid "Food"
+msgstr "Jídlo"
+
+#: simulation/components/Player.js:41 gui/session/session.xml:716 (tooltip)
+#: gui/summary/summary.xml:572 (caption)
+msgid "Wood"
+msgstr "Dřevo"
+
+#: simulation/components/Player.js:42 gui/session/session.xml:730 (tooltip)
+#: gui/summary/summary.xml:578 (caption)
+msgid "Metal"
+msgstr "Kov"
+
+#: simulation/components/Player.js:43 gui/session/session.xml:723 (tooltip)
+#: gui/summary/summary.xml:575 (caption)
+msgid "Stone"
+msgstr "Kámen"
+
 #: simulation/components/Player.js:236
 #, python-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
@@ -2077,6 +2266,10 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
+msgstr ""
+
+#: simulation/components/ProductionQueue.js:345
+msgid "The production queue is full."
 msgstr ""
 
 #: simulation/components/Wonder.js:53
@@ -2118,7 +2311,7 @@ msgid "Civilization Selection"
 msgstr "Výběr civilizace"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:28 (caption)
-#: gui/session/session.xml:539 (caption)
+#: gui/session/session.xml:486 (caption) gui/session/session.xml:539 (caption)
 msgid "Close"
 msgstr "Zavřít"
 
@@ -2847,10 +3040,6 @@ msgstr "Vyberte rychlost hry"
 #: gui/session/session.xml:851 (caption)
 msgid "MENU"
 msgstr "NABÍDKA"
-
-#: gui/session/session.xml:924 (caption)
-msgid "Pause"
-msgstr "Pozastavit"
 
 #: gui/session/session.xml:936 (caption)
 msgid "Resign"
@@ -3701,7 +3890,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:17
 msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
-msgstr ""
+msgstr "\"Není to jen pěkné peří, které dělá skvělé ptáky.\" - Ezop"
 
 #: gui/text/quotes.txt:18
 msgid ""
@@ -6098,10 +6287,11 @@ msgid "Colonization"
 msgstr "Kolonizace"
 
 #: civs/cart.jsonFactions[0].Technologies[1].History
+#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
-"Carthaginians established many trading centres as colonies and ultimately "
+"Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "Kartaginci založili mnoho obchodních center ve svých koloniích a v podstatě ovládali přes 300 měst jen v severní Africe."
+msgstr ""
 
 #: civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -6245,16 +6435,18 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Heroes[0].History
 #: civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
-"The story of how Marcus Claudius Marcellus killed a Gallic leader at "
-"Clastidium (222 B.C.) is typical of such encounters. Advancing with a "
-"smallish army, Marcellus met a combined force of Insubrian Gauls and "
-"Gaesatae at Clastidium. The Gallic army advanced with the usual rush and "
-"terrifying cries, and their king, Britomartos, picking out Marcellus by "
-"means of his badges of rank, made for him, shouting a challenge and "
-"brandishing his spear. Britomartos was an outstanding figure not only for "
-"his size but also for his adornments; for he was resplendent in bright "
-"colors and his armor shone with gold and silver. This armor, thought "
-"Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
+"When celt armies met the enemy, before the battle would start, the celt "
+"leader would go to the first line and challenge the bravest of the enemy "
+"warriors to a single combat. The story of how Marcus Claudius Marcellus "
+"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
+"encounters. Advancing with a smallish army, Marcellus met a combined force "
+"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
+" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"out Marcellus by means of his badges of rank, made for him, shouting a "
+"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"not only for his size but also for his adornments; for he was resplendent in"
+" bright colors and his armor shone with gold and silver. This armor, thought"
+" Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
 "task to kill Britomartos and strip him of his armor."
 msgstr ""
@@ -6718,7 +6910,7 @@ msgstr ""
 #: civs/iber.jsonFactions[0].Heroes[1].History
 msgid ""
 "Karos was a chief of the Belli tribe located just east of the Celtiberi "
-"(Numantines at the centre). Leading the confederated tribes of the meseta "
+"(Numantines at the center). Leading the confederated tribes of the meseta "
 "central (central upland plain) he concealed 20,000 foot and 5,000 mounted "
 "troops along a densely wooded track. Q. Fulvius Nobilior neglected proper "
 "reconnaissance and lead his army into the trap strung out in a long column. "
@@ -8560,7 +8752,7 @@ msgstr "Kantábrijská vrchovina"
 
 #: maps/random/canyon.jsonsettings.Description
 msgid "Players start around the map in deep canyons."
-msgstr ""
+msgstr "Hráči začínají okolo mapy v hlubokých kaňonech."
 
 #: maps/random/canyon.jsonsettings.Name
 msgid "Canyon"
@@ -8568,7 +8760,7 @@ msgstr "Kaňon"
 
 #: maps/random/continent.jsonsettings.Description
 msgid "All players starts on a continent surrounded by water."
-msgstr ""
+msgstr "Všichni hráči začínají na světadílu obklopeném vodou."
 
 #: maps/random/continent.jsonsettings.Name
 msgid "Continent"
@@ -8589,7 +8781,7 @@ msgstr "Korintská úžina"
 msgid ""
 "The players start on two opposing islands, both with a very jagged relief "
 "that will make landing difficult."
-msgstr ""
+msgstr "Hráči začínají na dvou protilehlých ostrovech, z nichž každý má velmi členitý reliéf, který činí přistání obtížným."
 
 #: maps/random/corsica.jsonsettings.Name
 msgid "Corsica vs Sardinia"
@@ -8608,7 +8800,7 @@ msgstr "Kykladské souostroví"
 
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
-msgstr ""
+msgstr "Hluboký temný les v Germánii."
 
 #: maps/random/deep_forest.jsonsettings.Name
 msgid "Deep Forest"
@@ -8626,7 +8818,7 @@ msgstr "Kanál La Manche"
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
-msgstr ""
+msgstr "Hráči začínají v připravené pevnosti se spoustou zdrojů."
 
 #: maps/random/fortress.jsonsettings.Name
 #: simulation/templates/template_structure_military_fortress.xml:31
@@ -8668,7 +8860,7 @@ msgstr "Botnický záliv"
 msgid ""
 "Each player starts in a coastal area between forested hills and the Caspian "
 "Sea."
-msgstr ""
+msgstr "Každý hráč začíná v pobřežní oblasti mezi zalesněnými kopci a Kaspickým mořem."
 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
@@ -8676,7 +8868,7 @@ msgstr "Hyrkánské pobřeží"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
-msgstr ""
+msgstr "Hráči začínají na malých ostrovech, a kolem dokola je mnoho dalších ostrůvků."
 
 #: maps/random/islands.jsonsettings.Name
 msgid "Islands"
@@ -8694,7 +8886,7 @@ msgstr "Kerala"
 
 #: maps/random/lake.jsonsettings.Description
 msgid "Players start around a lake in the center of the map."
-msgstr ""
+msgstr "Hráči začínají okolo jezera ve středu mapy."
 
 #: maps/random/lake.jsonsettings.Name
 msgid "Lake"
@@ -8715,7 +8907,7 @@ msgstr "Latium"
 msgid ""
 "Players start in a nearly flat Gallic plain divided by a river and its "
 "tributaries."
-msgstr ""
+msgstr "Hráči začínají na téměř rovné galské planine rozdělené řekou a jejími přítoky."
 
 #: maps/random/lorraine_plain.jsonsettings.Name
 msgid "Lorraine Plain"
@@ -8723,11 +8915,11 @@ msgstr "Lorrainská rovina"
 
 #: maps/random/mainland.jsonsettings.Description
 msgid "A typical map without any water"
-msgstr ""
+msgstr "Typická mapa bez vody"
 
 #: maps/random/mainland.jsonsettings.Name
 msgid "Mainland"
-msgstr ""
+msgstr "Pevnina"
 
 #: maps/random/migration.jsonsettings.Description
 msgid ""
@@ -8763,7 +8955,7 @@ msgstr "Nová zkouška RMS"
 msgid ""
 "Players start in a tough map to play with scarce wood and dangerous polar "
 "animals."
-msgstr ""
+msgstr "Hráči začínají na mapě, která se hraje nesnadno. Dřevo je vzácné a jsou tam nebezpečná polární zvířata."
 
 #: maps/random/northern_lights.jsonsettings.Name
 msgid "Northern Lights"
@@ -8773,7 +8965,7 @@ msgstr "Polární záře"
 msgid ""
 "Players start around a small oasis in the center of the map which holds much"
 " of the available wood on the map."
-msgstr ""
+msgstr "Hráči začínají uprostřed mapy kolem malé oázy, kde se nachází většina dostupných lesů."
 
 #: maps/random/oasis.jsonsettings.Name
 msgid "Oasis"
@@ -8794,7 +8986,7 @@ msgstr "Perská vrchovina"
 msgid ""
 "Players start in the eastern part of the map while a great sea is located to"
 " the west."
-msgstr ""
+msgstr "Hráči začínají ve východní části mapy, zatímco rozsáhlé jezero se rozkládá na západě."
 
 #: maps/random/pheonician_levant.jsonsettings.Name
 msgid "Phoenician Levant"
@@ -8824,7 +9016,7 @@ msgstr "Rýnské mokřady"
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
 "Rivers flow between players and join each other in the center of the map."
-msgstr ""
+msgstr "Řeky tečou mezi hráči a spojují se ve středu mapy."
 
 #: maps/random/rivers.jsonsettings.Name
 msgid "Rivers"
@@ -9946,7 +10138,7 @@ msgstr "Městská fáze - Britové"
 #: simulation/data/technologies/phase_city_gauls.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks Gallic structures and units. Territory "
-"radius for Civilization Centres increased by another +50%"
+"radius for Civilization Centers increased by another +50%"
 msgstr ""
 
 #: simulation/data/technologies/phase_city_gauls.jsongenericName
@@ -10536,12 +10728,6 @@ msgstr "Náklady na italské žoldnéře proti době potřebné na odvody #1"
 msgid "Italian merc cost vs. recruit time #2"
 msgstr "Náklady na italské žoldnéře proti době potřebné na odvody #2"
 
-#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
-msgid ""
-"Carthaginians established many trading centers as colonies and ultimately "
-"held dominion over 300 cities and towns in North Africa alone."
-msgstr ""
-
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
 "Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
@@ -11036,6 +11222,10 @@ msgstr "Drobné plody"
 msgid "Chop down to accumulate Wood."
 msgstr ""
 
+#: simulation/templates/template_gaia_flora_tree.xml:5
+msgid "Tree"
+msgstr "Strom"
+
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
 msgstr "Obecná geologie"
@@ -11056,6 +11246,10 @@ msgstr "Důl na kovy"
 msgid "Mine these to provide Stone building material."
 msgstr "Provádějte zde těžbu a získávejte stavební materiál v podobě kamene."
 
+#: simulation/templates/template_gaia_geo_rock.xml:4
+msgid "Rock"
+msgstr "Kámen"
+
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Stone Mine"
 msgstr "Kamenolom"
@@ -11068,6 +11262,13 @@ msgstr "Z těchto rozvalin by se daly těžit zdroje."
 msgid "Generic Ruins"
 msgstr "Obecně zříceniny"
 
+#: simulation/templates/template_gaia_ruins.xml:9
+#: simulation/templates/gaia/special_ruins.xml:9
+#: simulation/templates/gaia/special_ruins_column_doric.xml:9
+#: simulation/templates/other/unfinished_greek_temple.xml:9
+msgid "Ruins"
+msgstr "Zříceniny"
+
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
 msgstr "Poklad, který lze rychle sebrat."
@@ -11075,6 +11276,24 @@ msgstr "Poklad, který lze rychle sebrat."
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
 msgstr "Obecný poklad"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
+#: simulation/templates/gaia/special_treasure_food_bin.xml:9
+#: simulation/templates/gaia/special_treasure_food_crate.xml:9
+#: simulation/templates/gaia/special_treasure_food_jars.xml:9
+#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
+#: simulation/templates/gaia/special_treasure_pegasus.xml:9
+#: simulation/templates/gaia/special_treasure_stone.xml:9
+#: simulation/templates/gaia/special_treasure_wood.xml:9
+#: simulation/templates/other/special_treasure_shipwreck.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
+msgid "Treasure"
+msgstr "Poklad"
 
 #: simulation/templates/template_structure.xml:47
 msgid "Structure"
@@ -11302,9 +11521,9 @@ msgstr "Jízda pro boj zblízka"
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
 "Classes: Citizen Melee Cavalry Spearman.\n"
-"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers. \n"
+"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, Elephants."
-msgstr "Třídy: Občanský jízdní bojovník s oštěpem pro boj zblízka.\nZvýhodněn proti: 2 x proti bojovníkům s mečem a obléhacím strojům, 1.5 x proti harcovníkům.\nZnevýhodněn proti: bojovníkům s oštěpem, lučištníkům a slonům."
+msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
 msgid "Cavalry Spearman"
@@ -11358,9 +11577,9 @@ msgstr "Elitní jezdectvo"
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:41
 msgid ""
 "Classes: Champion Ranged Cavalry Archer.\n"
-"Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr "Třídy: Vynikající lučištník jízdy bojující na dálku.\nJde proti: 2 x proti bojovníkům s mečem, 1,5 x proti bojovníkům s oštěpem.\nJemu čelí: Harcovníci a sloni."
+msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:40
 msgid "Champion Cavalry Archer."
@@ -11417,9 +11636,9 @@ msgstr "Elitní pěchota"
 #: simulation/templates/template_unit_champion_infantry_archer.xml:46
 msgid ""
 "Classes: Champion Ranged Infantry Archer.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
-msgstr "Třídy: Vynikající lučištník pěchoty bojující na dálku.\nJde proti: 2 x proti bojovníkům s mečem, 1,25 x proti jízdním bojovníkům s oštěpem.\nJemu čelí: Bojovníci s mečem jedoucí na koni, harcovníci jedoucí na koni."
+msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
@@ -11428,9 +11647,9 @@ msgstr "Elitní lučištník"
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:54
 msgid ""
 "Classes: Champion Ranged Infantry Skirmisher.\n"
-"Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots. \n"
+"Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Swordsmen and Cavalry Spearmen."
-msgstr "Třídy: Vynikající harcovník pěchoty bojující na dálku.\nJde proti: 1,5 x proti bojovníkům s oštěpem, lučištníkům jedoucím na koni, slonům a válečným vozům. \nJemu čelí: Bojovníci s mečem a bojovníci s oštěpem jedoucí na koni."
+msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:53
 msgid "Champion Skirmisher"
@@ -11439,9 +11658,9 @@ msgstr "Vynikající harcovník"
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:57
 msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
-"Counters: 2x vs. All Cavalry, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.\n"
 "Countered by: Swordsmen, Skirmishers, and Cavalry Archers."
-msgstr "Třídy: Elitní pěšák  s oštěpem.\nZvýhodněn proti: 2 x proti jezdectvu, 1,5 x proti slonům.\nZnevýhodněn proti: Bojovníkům s mečem, oštěpařům a jízdním lučištníkům."
+msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:55
 msgid "Champion Pikeman"
@@ -11461,9 +11680,9 @@ msgstr "Elitní bojovník s oštěpem"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:53
 msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Třídy: Elitní pěší bojovník s mečem.\nZvýhodněn proti: 2 x proti bojovníkům s oštěpem, 1,5 x proti slonům.\nZnevýhodněn proti: Lučištníkům, jízdní bojovníkům s oštěpem a jízdní lučištníkům."
+msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
@@ -11490,6 +11709,10 @@ msgstr "Válečný pes"
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
 msgstr "Zvířena"
+
+#: simulation/templates/template_unit_fauna_fish.xml:9
+msgid "Fish"
+msgstr "Ryba"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:17
 msgid "Kill, then collect food from this bountiful oceanic resource."
@@ -11557,9 +11780,9 @@ msgstr "Třídy: Hrdina slonů pro boj na blízko.\nZvýhodněn proti: 2 x proti
 #: simulation/templates/template_unit_hero_infantry_archer.xml:41
 msgid ""
 "Classes: Hero Infantry Ranged Archer Bow.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr "Třídy: Hrdina pěších lučištníků pro boj na dálku s lukem.\nZvýhodněn proti: 2 x proti bojovníkům s mečem, 1,25 x proti jízdním bojovníkům s oštěpem.\nZnevýhodněn proti: Jízdním bojovníkům s mečem, jízdním harcovníkům."
+msgstr ""
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:39
 msgid "Hero Archer"
@@ -11581,7 +11804,7 @@ msgstr "Hrdina bojovník s oštěpem"
 msgid ""
 "Classes: Hero Infantry Melee Sword.\n"
 "\"Hero\" Aura: TBD.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
 msgstr ""
 
@@ -11753,9 +11976,9 @@ msgstr "Obléhací katapult"
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:62
 msgid ""
 "Classes: Siege Melee Ram.\n"
-"Counters: 1.5x vs. Gates. Generally good vs. Buildings. \n"
+"Counters: 1.5x vs. Gates. Generally good vs. Buildings.\n"
 "Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships)."
-msgstr "Třídy: Obléhací beranidlo pro boj na blízko.\nZvýhodněn proti: 1,5 x proti branám. Obecně dobrý proti stavbám.\nZnevýhodněn proti: Jízdě pro boj na blízko. Nemůže útočit na organické jednotky (může ale zaútočit na jiné obléhací stroje a na lodě)."
+msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:60
 msgid "Battering Ram"
@@ -13971,7 +14194,7 @@ msgid ""
 "Classes: Hero Infantry Melee Sword.\n"
 "\"Naval Commander\" Aura: When garrisoned in a ship, his ship is +50% faster. \n"
 "\"Naval Architect\" Aura: Ships are built +20% faster during his lifespan.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
 msgstr ""
 
@@ -14870,7 +15093,7 @@ msgstr "Hypaspistes Argyraspides"
 
 #: simulation/templates/units/mace_hero_alexander.xml:38
 msgid ""
-"\"Imperialism\" Aura: +10% territory effect for all buildings while he lives. \n"
+"\"Imperialism\" Aura: +10% territory effect for all buildings while he lives.\n"
 "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr ""
 
@@ -15132,7 +15355,7 @@ msgstr "Vaishya"
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 msgid ""
 "Classes: Mercenary Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr ""
 
@@ -15254,7 +15477,7 @@ msgstr "Dareios Veliký"
 msgid ""
 "Hero Archer.\n"
 "Hero Aura: \"Administrator.\" +15% Gather Rate and Build Rate of nearby units.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
 msgstr ""
 
@@ -15822,7 +16045,7 @@ msgstr "Antiokhos G' Mégās"
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
 "Classes: Hero Melee Cavalry Sword.\n"
-"\"Conquest\" Aura: All nearby bipedal melee units gain a +2x attack versus buildings, siege engines, and ships. Building capture time reduced by 25% during his reign.\n"
+"\"Conquest\" Aura: All nearby soldiers gain a +2x attack versus buildings, siege engines, and ships. Building capture time reduced by 25% during his reign.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
 msgstr ""
@@ -15878,7 +16101,7 @@ msgstr "Kopiník se zlatým štítem"
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid ""
 "Classes: Mercenary Citizen Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr ""
 
@@ -15975,7 +16198,7 @@ msgstr "Hoplī́tēs Perioïkós"
 #: simulation/templates/units/spart_support_female_citizen.xml:29
 msgid ""
 "Classes: Citizen Support Worker Female.\n"
-"Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming. \n"
+"Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming.\n"
 "Counters: 2.5x vs. Siege."
 msgstr ""
 
@@ -16031,9 +16254,9 @@ msgstr ""
 #: simulation/templates/units/thrace_black_cloak.xml:21
 msgid ""
 "Classes: Mercenary Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Třídy: Žoldnéřský elitní pěší bojovník s mečem.\nZvýhodněn proti: 2 x proti bojovníkům s oštěpem, 1,5 x proti slonům.\nZnevýhodněn proti: Lučištníkům, jízdním bojovníkům s oštěpem a jízdním lučištníkům."
+msgstr ""
 
 #: simulation/templates/units/thrace_black_cloak.xml:19
 msgid "Thracian Black Cloak"
@@ -17080,7 +17303,7 @@ msgstr "Libyjská oáza (2)"
 
 #: maps/skirmishes/Lorraine Plain (2).xml:42:Description
 msgid ""
-"The map is cut through the centre by a river traversing east-west with some shallows.\n"
+"The map is cut through the center by a river traversing east-west with some shallows.\n"
 "\n"
 "Fairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\n"
 "\n"

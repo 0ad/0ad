@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-20 23:35+0200\n"
-"PO-Revision-Date: 2014-04-20 15:53+0000\n"
+"POT-Creation-Date: 2014-04-24 06:41+0200\n"
+"PO-Revision-Date: 2014-04-24 04:45+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/projects/p/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "%s (%ls)"
 msgid "custom build"
 msgstr "prilagojena graditev"
 
-#: i18n/L10n.cpp:220
+#: i18n/L10n.cpp:241
 msgid "Long strings"
 msgstr "Dolgi nizi"
 
@@ -45,3 +45,8 @@ msgstr "Dolgi nizi"
 #, c-format
 msgid "Saved game to '%ls'"
 msgstr "Igra shranjena v '%ls'"
+
+#: ps/Util.cpp:244 ps/Util.cpp:377
+#, c-format
+msgid "Screenshot written to '%ls'"
+msgstr ""

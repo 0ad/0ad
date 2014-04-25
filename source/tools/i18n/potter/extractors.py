@@ -278,7 +278,7 @@ class txt(Extractor):
     def extractFromFile(self, filepath):
         with codecs.open(filepath, "r", encoding='utf-8-sig') as fileObject:
             lineCount = 0
-            for line in [line.strip() for line in fileObject.readlines()]:
+            for line in [line.strip("\n\r") for line in fileObject.readlines()]:
                 lineCount += 1
                 if line:
                     yield line, None, str(lineCount), []
@@ -399,13 +399,17 @@ class xml(Extractor):
             for keyword in self.keywords:
                 for element in xmlDocument.iter(keyword):
                     position = str(element.sourceline)
-                    if "extractJson" in self.keywords[keyword]:
-                        jsonExtractor = self.getJsonExtractor()
-                        jsonExtractor.setOptions(self.keywords[keyword]["extractJson"])
-                        for message, breadcrumbs in jsonExtractor.extractFromString(element.text):
-                            yield message, None, position + ":" + json.formatBreadcrumbs(breadcrumbs), []
-                    elif element.text is not None:
-                        if "locationAttributes" in self.keywords[keyword]:
-                            attributes = [element.get(attribute) for attribute in self.keywords[keyword]["locationAttributes"] if attribute in element.attrib]
-                            position += " ({attributes})".format(attributes=", ".join(attributes))
-                        yield element.text, None, position, []
+                    if element.text is not None:
+                        context = None
+                        if "extractJson" in self.keywords[keyword]:
+                            jsonExtractor = self.getJsonExtractor()
+                            jsonExtractor.setOptions(self.keywords[keyword]["extractJson"])
+                            for message, breadcrumbs in jsonExtractor.extractFromString(element.text):
+                                yield message, context, position + ":" + json.formatBreadcrumbs(breadcrumbs), []
+                        else:
+                            if "locationAttributes" in self.keywords[keyword]:
+                                attributes = [element.get(attribute) for attribute in self.keywords[keyword]["locationAttributes"] if attribute in element.attrib]
+                                position += " ({attributes})".format(attributes=", ".join(attributes))
+                            if "tagAsContext" in self.keywords[keyword]:
+                                context = keyword
+                            yield element.text, context, position, []

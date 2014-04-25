@@ -23,9 +23,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-20 23:35+0200\n"
-"PO-Revision-Date: 2014-04-20 21:38+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-04-24 08:14+0200\n"
+"PO-Revision-Date: 2014-04-24 12:51+0000\n"
+"Last-Translator: kanetaka\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,17 +72,17 @@ msgstr "とても難しい"
 #: gui/civinfo/civinfo.js:94
 #, python-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "%(civilization)sの特性"
 
 #: gui/civinfo/civinfo.js:97
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
+msgstr[0] "文明ボーナス"
 
 #: gui/civinfo/civinfo.js:105
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
+msgstr[0] "チームボーナス"
 
 #: gui/civinfo/civinfo.js:117
 msgid "Special Technologies"
@@ -94,7 +94,7 @@ msgstr "特有のテクノロジー"
 #: simulation/templates/structures/celt_kennel.xml:32
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
+msgstr[0] "特有の建物"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -103,7 +103,7 @@ msgstr "英雄"
 #: gui/civinfo/civinfo.js:158
 #, python-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "%(civilization)sの歴史"
 
 #: gui/common/functions_global_object.js:73
 #, python-format
@@ -112,7 +112,7 @@ msgstr "FPS: %(fps)s"
 
 #: gui/common/functions_utility.js:263
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:265
 msgid "HH:mm:ss"
@@ -410,7 +410,7 @@ msgstr "ネットメッセージ: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr ""
+msgstr "サーバーに登録しています…"
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
@@ -509,31 +509,31 @@ msgstr "We're sorry, the '%(cmd)s' command is not supported."
 #: gui/lobby/lobby.js:754
 #, python-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:756
 #, python-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
 #, python-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:762 gui/lobby/lobby.js:773 gui/lobby/lobby.js:786
 #, python-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:767
 #, python-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the
@@ -543,7 +543,7 @@ msgstr ""
 #. #TOC-Date-Field-Symbol-Table
 #: gui/lobby/lobby.js:798
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
@@ -551,13 +551,13 @@ msgstr ""
 #: gui/lobby/lobby.js:801
 #, python-format
 msgid "[%(time)s]"
-msgstr ""
+msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:804
 #, python-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:854
 msgid "Please do not spam. You have been blocked for thirty seconds."
@@ -586,7 +586,7 @@ msgstr "ユーザー名には、[,]・ユニコード文字・空白文字・コ
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 #: gui/locale/locale_advanced.js:89
 msgid "<invalid>"
@@ -636,156 +636,180 @@ msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "OpenGL 2.0シェーダーを使います（推奨）"
 
 #: gui/options/options.js:14
+msgid "Post Processing"
+msgstr "後処理"
+
+#: gui/options/options.js:14
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
+msgstr ""
+
+#: gui/options/options.js:15
 msgid "Shadows"
 msgstr "影"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Enable shadows"
 msgstr "影を表示します"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Particles"
 msgstr "降水"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Enable particles"
 msgstr "降水を許可します"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Show Sky"
 msgstr "空の表示"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Render Sky"
 msgstr "空を描画します"
 
-#: gui/options/options.js:17
-msgid "Unit Silhouettes"
-msgstr "ユニットの輪郭"
-
-#: gui/options/options.js:17
-msgid "Show outlines of units behind buildings"
-msgstr "建物の影に隠れたユニットの輪郭を表示します"
-
 #: gui/options/options.js:18
-msgid "Shadow Filtering"
+msgid "Smooth LOS"
 msgstr ""
 
 #: gui/options/options.js:18
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."
+msgstr ""
+
+#: gui/options/options.js:19
+msgid "Unit Silhouettes"
+msgstr "ユニットの輪郭"
+
+#: gui/options/options.js:19
+msgid "Show outlines of units behind buildings"
+msgstr "建物の影に隠れたユニットの輪郭を表示します"
+
+#: gui/options/options.js:20
+msgid "Shadow Filtering"
+msgstr "影のフィルタリング"
+
+#: gui/options/options.js:20
 msgid "Smooth shadows"
 msgstr "影を滑らかにします"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid "HQ Waviness"
 msgstr "高品質の波"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr "リアルな通常の海の波を描画し、平らな表面を使いません。"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Real Water Depth"
 msgstr "リアルな水深"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Use actual water depth in rendering calculations"
 msgstr "実際の水深で描画計算します"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Water Reflections"
 msgstr "水面の反射"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Allow water to reflect a mirror image"
 msgstr "水面が反射で鏡のように像を映すようにします"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "Water Refraction"
 msgstr "水面の屈折"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "Use a real water refraction map and not transparency"
 msgstr "リアルな水面屈折マップを用い、不透明にします。"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Shore Foam"
 msgstr "岸の泡"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Show foam on water near shore depending on water waviness"
 msgstr "岸の近くの水面の泡を表示を、波有効のとき行います"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Shore Waves"
 msgstr "砕ける波"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr "岸の近くで砕ける波を表示します（高品質な波が必要）"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Water Shadows"
 msgstr "水面の影"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Cast shadows on water"
 msgstr "水面に影を落とします"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:28
+msgid "VSync"
+msgstr ""
+
+#: gui/options/options.js:28
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.js:32
 msgid "Master Gain"
 msgstr "全体音量"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:32
 msgid "Master audio gain"
 msgstr "音楽音量"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:33
 msgid "Music Gain"
 msgstr "音楽の音量"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:33
 msgid "In game music gain"
 msgstr "ゲーム内の音楽の音量"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:34
 msgid "Ambient Gain"
 msgstr "環境音量"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:34
 msgid "In game ambient sound gain"
 msgstr "ゲーム内の環境音の音量"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:35
 msgid "Action Gain"
 msgstr "アクション音量"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:35
 msgid "In game unit action sound gain"
 msgstr "ゲーム内のユニットのアクションの音量"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:36
 msgid "UI Gain"
 msgstr "UI音量"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:36
 msgid "UI sound gain"
 msgstr "UIの音量"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:40
 msgid "Chat Backlog"
 msgstr "チャット過去ログ"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:40
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "ロビーに入った時に表示する過去のメッセージ数"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:41
 msgid "Chat Timestamp"
 msgstr "発言時刻"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:41
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "ロビーチャットに投稿されたメッセージの時刻を表示する"
 
@@ -809,12 +833,12 @@ msgstr "アップロード成功"
 #: gui/pregame/mainmenu.js:123
 #, python-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "アップロード失敗 (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:130
 #, python-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "アップロード失敗 (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:133
 msgid "unknown"
@@ -827,7 +851,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr ""
+msgstr "%(startWarning)s警告:%(endWarning)s プログラマブルシェーダーでない(固定機能の)グラフィックスを使用しているようです。このオプションは、より進んだグラフィックス機能の実現のために、将来の 0 A.D. リリースでは削除される見込みです。グラフィックスカードをより新しい、プログラマブルシェーダーのモデルに更新することをお勧めします。"
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -869,7 +893,7 @@ msgstr "エラー"
 
 #: gui/pregame/mainmenu.js:365
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
-msgstr ""
+msgstr "マルチプレイヤーロビーに入ります。［本ビルドでは利用不可］"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -877,39 +901,39 @@ msgstr "保存されたゲームがありません"
 
 #: gui/savedgames/load.js:46
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "このセーブゲームは互換性がない恐れがあります："
 
 #: gui/savedgames/load.js:48
 #, python-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr ""
+msgstr "0 A.D. version %(requiredVersion)sが必要ですが、version %(currentVersion)sを使用しています。"
 
 #: gui/savedgames/load.js:58
 #, python-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr ""
+msgstr "modは何も必要ありませんが、「%(currentMod)s」modを使用しています。"
 
 #: gui/savedgames/load.js:62
 #, python-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr ""
+msgstr "「%(requiredMod)s」modが必要ですが、modがありません。"
 
 #: gui/savedgames/load.js:66
 #, python-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr ""
+msgstr "「%(requiredMod)s」modが必要ですが、「%(currentMod)s」modを使用しています。"
 
 #: gui/savedgames/load.js:71
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "このまま続けますか？"
 
 #: gui/savedgames/load.js:72
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
@@ -987,6 +1011,14 @@ msgstr "右クリックして、終点となる交易市場をセットします
 msgid "Cannot build wall here!"
 msgstr "ここに壁は建設できません"
 
+#: gui/session/menu.js:1 gui/session/session.xml:924 (caption)
+msgid "Pause"
+msgstr "一時停止"
+
+#: gui/session/menu.js:2
+msgid "Resume"
+msgstr ""
+
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
 msgstr "本当に降伏しますか?"
@@ -1041,25 +1073,25 @@ msgstr "x"
 
 #: gui/session/menu.js:481
 msgid "There are no land traders."
-msgstr ""
+msgstr "商人がいません。"
 
 #: gui/session/menu.js:487
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfLandTraders)s人が待機"
 
 #: gui/session/menu.js:491
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
+msgstr[0] "%(numberTrading)s人の陸の商人が取引中"
 
 #: gui/session/menu.js:494
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
+msgstr[0] "%(numberGarrisoned)s人が交易船内に駐屯"
 
 #: gui/session/menu.js:497
 #, python-format
@@ -1080,7 +1112,7 @@ msgstr ""
 #: gui/session/menu.js:522 gui/session/menu.js:584
 #, python-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s。"
 
 #: gui/session/menu.js:532
 #, python-format
@@ -1090,7 +1122,7 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
+msgstr[0] "%(numberGarrisoned)s人の陸の商人が交易船内に駐屯"
 
 #: gui/session/menu.js:535
 #, python-format
@@ -1100,13 +1132,13 @@ msgstr ""
 #: gui/session/menu.js:542
 #, python-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s。"
 
 #: gui/session/menu.js:551
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfLandTraders)s人の陸の商人が待機"
 
 #: gui/session/menu.js:552 gui/session/menu.js:594
 #, python-format
@@ -1116,25 +1148,25 @@ msgstr[0] ""
 
 #: gui/session/menu.js:564
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "交易船がありません。"
 
 #: gui/session/menu.js:570
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfShipTraders)s隻が待機"
 
 #: gui/session/menu.js:574
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
+msgstr[0] "%(numberTrading)s隻の交易船が取引中"
 
 #: gui/session/menu.js:593
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfShipTraders)s隻の交易船が待機"
 
 #: gui/session/menu.js:682
 msgid "The Developer Overlay was opened."
@@ -1235,8 +1267,8 @@ msgstr ""
 
 #: gui/session/messages.js:463 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
-#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:568
-#: gui/session/utility_functions.js:686 gui/session/utility_functions.js:691
+#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
+#: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
 msgid ", "
 msgstr ", "
 
@@ -1284,200 +1316,122 @@ msgstr "チーム"
 msgid "Private"
 msgstr "プライベート"
 
-#: gui/session/selection_details.js:17 simulation/components/Player.js:40
-#: gui/session/session.xml:709 (tooltip) gui/summary/summary.xml:569 (caption)
-msgid "Food"
-msgstr "食料"
-
-#: gui/session/selection_details.js:18
-msgid "Meat"
-msgstr "肉"
-
-#: gui/session/selection_details.js:19 simulation/components/Player.js:42
-#: gui/session/session.xml:730 (tooltip) gui/summary/summary.xml:578 (caption)
-msgid "Metal"
-msgstr "金属"
-
-#: gui/session/selection_details.js:20
-msgid "Ore"
-msgstr "鉱石"
-
-#: gui/session/selection_details.js:21
-#: simulation/templates/template_gaia_geo_rock.xml:4
-msgid "Rock"
-msgstr "岩"
-
-#: gui/session/selection_details.js:22
-#: simulation/templates/template_gaia_ruins.xml:9
-#: simulation/templates/gaia/special_ruins.xml:9
-#: simulation/templates/gaia/special_ruins_column_doric.xml:9
-#: simulation/templates/other/unfinished_greek_temple.xml:9
-msgid "Ruins"
-msgstr "遺物"
-
-#: gui/session/selection_details.js:23 simulation/components/Player.js:43
-#: gui/session/session.xml:723 (tooltip) gui/summary/summary.xml:575 (caption)
-msgid "Stone"
-msgstr "石材"
-
-#: gui/session/selection_details.js:24
-#: simulation/templates/template_gaia_treasure.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
-#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
-#: simulation/templates/gaia/special_treasure_food_bin.xml:9
-#: simulation/templates/gaia/special_treasure_food_crate.xml:9
-#: simulation/templates/gaia/special_treasure_food_jars.xml:9
-#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
-#: simulation/templates/gaia/special_treasure_pegasus.xml:9
-#: simulation/templates/gaia/special_treasure_stone.xml:9
-#: simulation/templates/gaia/special_treasure_wood.xml:9
-#: simulation/templates/other/special_treasure_shipwreck.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
-#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
-msgid "Treasure"
-msgstr "財宝"
-
-#: gui/session/selection_details.js:25
-#: simulation/templates/template_gaia_flora_tree.xml:5
-msgid "Tree"
-msgstr "木"
-
-#: gui/session/selection_details.js:26 simulation/components/Player.js:41
-#: gui/session/session.xml:716 (tooltip) gui/summary/summary.xml:572 (caption)
-msgid "Wood"
-msgstr "木材"
-
-#: gui/session/selection_details.js:27
-msgid "Fruit"
-msgstr "木の実"
-
-#: gui/session/selection_details.js:28
-msgid "Grain"
-msgstr "穀物"
-
-#: gui/session/selection_details.js:29
-#: simulation/templates/template_unit_fauna_fish.xml:9
-msgid "Fish"
-msgstr "魚"
-
-#: gui/session/selection_details.js:55
+#: gui/session/selection_details.js:32
 #, python-format
 msgid "%(genericName)s — Packed"
 msgstr "%(genericName)s — Packed"
 
-#: gui/session/selection_details.js:67
+#: gui/session/selection_details.js:44
 #, python-format
 msgid "[OFFLINE] %(player)s"
 msgstr "[OFFLINE] %(player)s"
 
-#: gui/session/selection_details.js:73
+#: gui/session/selection_details.js:50
 #, python-format
 msgid "%(rank)s Rank"
 msgstr "%(rank)s階級"
 
-#: gui/session/selection_details.js:91
+#: gui/session/selection_details.js:68
 #, python-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:118
+#: gui/session/selection_details.js:95
 #, python-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:119 gui/session/selection_details.js:125
+#: gui/session/selection_details.js:96 gui/session/selection_details.js:102
 msgid "Experience:"
 msgstr "経験："
 
-#: gui/session/selection_details.js:124
+#: gui/session/selection_details.js:101
 #, python-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s%(current)s"
 
-#: gui/session/selection_details.js:138
+#: gui/session/selection_details.js:115
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:139 gui/session/selection_details.js:172
-#: gui/session/selection_details.js:203
+#: gui/session/selection_details.js:116 gui/session/selection_details.js:149
+#: gui/session/selection_details.js:180
 #, python-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:148
+#: gui/session/selection_details.js:125
 #, python-format
 msgid "%(resource)s:"
 msgstr "%(resource)s："
 
-#: gui/session/selection_details.js:187
+#: gui/session/selection_details.js:164
 #, python-format
 msgid "Gain: %(amount)s"
 msgstr "増加: %(amount)s"
 
-#: gui/session/selection_details.js:196
+#: gui/session/selection_details.js:173
 msgid "Number of builders"
 msgstr "建設者数"
 
-#: gui/session/selection_details.js:204
+#: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
 msgstr "現在の/最大の収集者数"
 
-#: gui/session/selection_details.js:219
+#: gui/session/selection_details.js:196
 #, python-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:249 gui/session/session.js:648
+#: gui/session/selection_details.js:226 gui/session/session.js:648
 msgid "Armor:"
 msgstr "防御："
 
-#: gui/session/selection_details.js:250 gui/session/selection_details.js:261
+#: gui/session/selection_details.js:227 gui/session/selection_details.js:238
 #: gui/session/session.js:646 gui/session/session.js:649
 #, python-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:257
+#: gui/session/selection_details.js:234
 msgid "Interval:"
 msgstr "インターバル:"
 
-#: gui/session/selection_details.js:259
+#: gui/session/selection_details.js:236
 msgid "Rate:"
 msgstr "レート:"
 
-#: gui/session/selection_details.js:272 gui/session/session.js:641
-#: gui/session/utility_functions.js:590
+#: gui/session/selection_details.js:249 gui/session/session.js:641
+#: gui/session/utility_functions.js:602
 msgid "Range:"
 msgstr "射程："
 
-#: gui/session/selection_details.js:274
+#: gui/session/selection_details.js:251
 msgid "meters"
 msgstr "メートル"
 
-#: gui/session/selection_details.js:277 gui/session/selection_details.js:287
+#: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, python-format
 msgid ""
 "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), "
 "%(rate)s"
 msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
-#: gui/session/selection_details.js:297
+#: gui/session/selection_details.js:274
 #, python-format
 msgid "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
-#: gui/session/selection_details.js:308
+#: gui/session/selection_details.js:285
 #, python-format
 msgid "%(label)s %(details)s, %(rate)s"
 msgstr "%(label)s %(details)s, %(rate)s"
 
-#: gui/session/selection_details.js:364
+#: gui/session/selection_details.js:341
 msgid "Hitpoints:"
 msgstr "HP："
 
-#: gui/session/selection_details.js:365 gui/session/session.js:632
+#: gui/session/selection_details.js:342 gui/session/session.js:632
 #, python-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -1637,11 +1591,11 @@ msgstr "木の壁を木の門に改築"
 
 #: gui/session/unit_commands.js:1156
 msgid "Convert Stone Wall into City Gate"
-msgstr ""
+msgstr "石の壁を城門に改築"
 
 #: gui/session/unit_commands.js:1160
 msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "包囲郭を囲郭門に変換します"
+msgstr "包囲壁を包囲壁の門に改築します"
 
 #: gui/session/unit_commands.js:1165
 #, python-format
@@ -1768,7 +1722,7 @@ msgstr "交易品を選択"
 
 #: gui/session/utility_functions.js:373
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "警戒レベルを上げて、より多くのユニットを守ります"
 
 #: gui/session/utility_functions.js:375
 msgid "Raise an alert!"
@@ -1778,122 +1732,337 @@ msgstr ""
 msgid "End of alert."
 msgstr "アラート終了。"
 
-#: gui/session/utility_functions.js:427 gui/session/utility_functions.js:428
-#: gui/session/utility_functions.js:429 gui/session/utility_functions.js:430
-#: gui/session/utility_functions.js:431 gui/session/utility_functions.js:432
-#: gui/session/utility_functions.js:550
+#: gui/session/utility_functions.js:433 gui/session/utility_functions.js:434
+#: gui/session/utility_functions.js:435 gui/session/utility_functions.js:436
+#: gui/session/utility_functions.js:437 gui/session/utility_functions.js:438
+#: gui/session/utility_functions.js:562
 #, python-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/session/utility_functions.js:513
+#. Translation: This string is part of the resources cost string on
+#. the tooltip for wall structures.
+#: gui/session/utility_functions.js:492
+#, python-format
+msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
+msgstr ""
+
+#: gui/session/utility_functions.js:525
 #, python-format
 msgid "Walls:  %(costs)s"
 msgstr "壁:  %(costs)s"
 
-#: gui/session/utility_functions.js:513 gui/session/utility_functions.js:514
-#: gui/session/utility_functions.js:519 gui/session/utility_functions.js:555
+#: gui/session/utility_functions.js:525 gui/session/utility_functions.js:526
+#: gui/session/utility_functions.js:531 gui/session/utility_functions.js:567
 msgid "  "
 msgstr "  "
 
-#: gui/session/utility_functions.js:514
+#: gui/session/utility_functions.js:526
 #, python-format
 msgid "Towers:  %(costs)s"
 msgstr "塔:  %(costs)s"
 
-#: gui/session/utility_functions.js:536
+#: gui/session/utility_functions.js:548
 #, python-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/session/utility_functions.js:537
+#: gui/session/utility_functions.js:549
 msgid "Population Bonus:"
 msgstr "人口ボーナス:"
 
-#: gui/session/utility_functions.js:555
+#: gui/session/utility_functions.js:567
 msgid "Insufficient resources:"
 msgstr "不足資源："
 
-#: gui/session/utility_functions.js:563
+#: gui/session/utility_functions.js:575
 msgid "Speed:"
 msgstr "速度："
 
-#: gui/session/utility_functions.js:565 gui/session/utility_functions.js:566
+#: gui/session/utility_functions.js:577 gui/session/utility_functions.js:578
 #, python-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(movementType)s %(speed)s"
 
-#: gui/session/utility_functions.js:565
+#: gui/session/utility_functions.js:577
 msgid "Walk"
 msgstr "歩行"
 
-#: gui/session/utility_functions.js:566
+#: gui/session/utility_functions.js:578
 msgid "Run"
 msgstr "走行"
 
-#: gui/session/utility_functions.js:568
+#: gui/session/utility_functions.js:580
 #, python-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s%(speeds)s"
 
-#: gui/session/utility_functions.js:587
+#: gui/session/utility_functions.js:599
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(damageTypes)s、%(rangeLabel)s %(range)s"
 
-#: gui/session/utility_functions.js:596
+#: gui/session/utility_functions.js:608
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr "%(attackLabel)s %(damageTypes)s"
 
-#: gui/session/utility_functions.js:612
+#: gui/session/utility_functions.js:624
 #, python-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/session/utility_functions.js:622
+#: gui/session/utility_functions.js:634
 msgid "???"
 msgstr "???"
 
-#: gui/session/utility_functions.js:652
+#: gui/session/utility_functions.js:664
 #, python-format
 msgid "%(rank)s %(name)s"
 msgstr "%(rank)s %(name)s"
 
-#: gui/session/utility_functions.js:676 gui/session/utility_functions.js:678
+#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:690
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:680 gui/session/utility_functions.js:686
-#: gui/session/utility_functions.js:691
+#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:698
+#: gui/session/utility_functions.js:703
 #, python-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:682
+#: gui/session/utility_functions.js:694
 msgid "you"
 msgstr "あなた"
 
-#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:693
+#: gui/session/utility_functions.js:700 gui/session/utility_functions.js:705
 #, python-format
 msgid "player %(name)s"
 msgstr "プレイヤー %(name)s"
 
-#: gui/session/utility_functions.js:701
+#: gui/session/utility_functions.js:713
 msgid "Charge Attack:"
 msgstr "突進 攻撃:"
 
-#: gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:714
 msgid "Melee Attack:"
 msgstr "近接戦闘 攻撃:"
 
-#: gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:715
 msgid "Ranged Attack:"
 msgstr "遠隔攻撃:"
 
-#: gui/session/utility_functions.js:706
+#: gui/session/utility_functions.js:718
 msgid "Attack:"
 msgstr "攻撃："
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:741
+msgctxt "firstWord"
+msgid "Food"
+msgstr "食料"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:743
+msgctxt "firstWord"
+msgid "Meat"
+msgstr "肉"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:745
+msgctxt "firstWord"
+msgid "Metal"
+msgstr "金属"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:747
+msgctxt "firstWord"
+msgid "Ore"
+msgstr "鉱石"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:749
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "岩"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:751
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "遺跡"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:753
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "石材"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:755
+msgctxt "firstWord"
+msgid "Treasure"
+msgstr "財宝"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:757
+msgctxt "firstWord"
+msgid "Tree"
+msgstr "木"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:759
+msgctxt "firstWord"
+msgid "Wood"
+msgstr "木材"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:761
+msgctxt "firstWord"
+msgid "Fruit"
+msgstr "木の実"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:763
+msgctxt "firstWord"
+msgid "Grain"
+msgstr "穀物"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:765
+msgctxt "firstWord"
+msgid "Fish"
+msgstr "魚"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:776
+msgctxt "withinSentence"
+msgid "Food"
+msgstr "食料"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:778
+msgctxt "withinSentence"
+msgid "Meat"
+msgstr "肉"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:780
+msgctxt "withinSentence"
+msgid "Metal"
+msgstr "金属"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:782
+msgctxt "withinSentence"
+msgid "Ore"
+msgstr "鉱石"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:784
+msgctxt "withinSentence"
+msgid "Rock"
+msgstr "岩"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:786
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "遺跡"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:788
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr "石材"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:790
+msgctxt "withinSentence"
+msgid "Treasure"
+msgstr "財宝"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:792
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr "木"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:794
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr "木材"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:796
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr "木の実"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:798
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr "穀物"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:800
+msgctxt "withinSentence"
+msgid "Fish"
+msgstr "魚"
 
 #: gui/splashscreen/splashscreen.js:9
 #, python-format
@@ -1998,47 +2167,67 @@ msgstr "%(name)sが%(category)sから離れすぎています。%(distance)sメ�
 #: simulation/components/BuildRestrictions.js:298
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "自国領"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:300
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "同盟国領"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:302
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "中立地帯"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:304
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "敵領"
+
+#: simulation/components/Player.js:40 gui/session/session.xml:709 (tooltip)
+#: gui/summary/summary.xml:569 (caption)
+msgid "Food"
+msgstr "食料"
+
+#: simulation/components/Player.js:41 gui/session/session.xml:716 (tooltip)
+#: gui/summary/summary.xml:572 (caption)
+msgid "Wood"
+msgstr "木材"
+
+#: simulation/components/Player.js:42 gui/session/session.xml:730 (tooltip)
+#: gui/summary/summary.xml:578 (caption)
+msgid "Metal"
+msgstr "金属"
+
+#: simulation/components/Player.js:43 gui/session/session.xml:723 (tooltip)
+#: gui/summary/summary.xml:575 (caption)
+msgid "Stone"
+msgstr "石材"
 
 #: simulation/components/Player.js:236
 #, python-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
+msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:238
 #, python-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr ""
+msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:240
 #, python-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr ""
+msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:242
 #, python-format
@@ -2046,7 +2235,11 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr ""
+msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
+
+#: simulation/components/ProductionQueue.js:345
+msgid "The production queue is full."
+msgstr "生産キューが満杯です。"
 
 #: simulation/components/Wonder.js:53
 #, python-format
@@ -2087,7 +2280,7 @@ msgid "Civilization Selection"
 msgstr "文明選択"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:28 (caption)
-#: gui/session/session.xml:539 (caption)
+#: gui/session/session.xml:486 (caption) gui/session/session.xml:539 (caption)
 msgid "Close"
 msgstr "閉じる"
 
@@ -2298,15 +2491,15 @@ msgstr "メインメニュー"
 
 #: gui/lobby/lobby.xml:132 (heading)
 msgid "Map Name"
-msgstr ""
+msgstr "マップ名"
 
 #: gui/lobby/lobby.xml:135 (heading)
 msgid "Map Size"
-msgstr ""
+msgstr "マップの大きさ"
 
 #: gui/lobby/lobby.xml:138 (heading)
 msgid "Map Type"
-msgstr ""
+msgstr "マップの種類"
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
@@ -2364,7 +2557,7 @@ msgstr "言語:"
 
 #: gui/locale/locale.xml:26 (caption)
 msgid "Locale:"
-msgstr ""
+msgstr "ロケール："
 
 #: gui/locale/locale.xml:31 (caption) gui/locale/locale_advanced.xml:65
 #: (caption)
@@ -2377,17 +2570,17 @@ msgstr ""
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
-msgstr ""
+msgstr "地域："
 
 #: gui/locale/locale_advanced.xml:34 (caption)
 msgid "Script:"
-msgstr ""
+msgstr "文字："
 
 #: gui/locale/locale_advanced.xml:37 (tooltip)
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
-msgstr ""
+msgstr "言語コードの後に続く、省略可能な4文字の文字体系コードパート（ISO 15924で規定）"
 
 #: gui/locale/locale_advanced.xml:41 (caption)
 msgid "Variant (unused):"
@@ -2396,7 +2589,7 @@ msgstr ""
 #: gui/locale/locale_advanced.xml:44 (tooltip)
 #: gui/locale/locale_advanced.xml:51 (tooltip)
 msgid "Not implemented yet."
-msgstr ""
+msgstr "未実装です。"
 
 #: gui/locale/locale_advanced.xml:48 (caption)
 msgid "Keywords (unused):"
@@ -2412,7 +2605,7 @@ msgstr ""
 
 #: gui/locale/locale_advanced.xml:70 (caption)
 msgid "Auto detect"
-msgstr ""
+msgstr "自動判定"
 
 #: gui/manual/manual.xml:12 (caption) gui/session/session.xml:877 (caption)
 msgid "Manual"
@@ -2729,11 +2922,11 @@ msgstr "貢ぎ物"
 
 #: gui/session/session.xml:501 (caption) gui/session/session.xml:829 (tooltip)
 msgid "Trade"
-msgstr ""
+msgstr "交易"
 
 #: gui/session/session.xml:507 (caption)
 msgid "Trading goods selection:"
-msgstr ""
+msgstr "交易品の選択："
 
 #: gui/session/session.xml:527 (tooltip)
 msgid ""
@@ -2816,10 +3009,6 @@ msgstr "ゲーム速度を選択"
 #: gui/session/session.xml:851 (caption)
 msgid "MENU"
 msgstr "メニュー"
-
-#: gui/session/session.xml:924 (caption)
-msgid "Pause"
-msgstr "一時停止"
 
 #: gui/session/session.xml:936 (caption)
 msgid "Resign"
@@ -2954,7 +3143,7 @@ msgstr "要塞"
 
 #: gui/summary/summary.xml:252 (caption)
 msgid "Civ Centers"
-msgstr ""
+msgstr "町の中心"
 
 #: gui/summary/summary.xml:255 (caption)
 msgid "Wonders"
@@ -3032,11 +3221,11 @@ msgstr "女性化"
 
 #: gui/summary/summary.xml:879 (caption)
 msgid "Kill / Death\\nratio"
-msgstr ""
+msgstr "殺害/死亡\\n比率"
 
 #: gui/summary/summary.xml:882 (caption)
 msgid "Map\\nexploration"
-msgstr ""
+msgstr "マップ\\n探索"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"serif-bold-18\"]0 A.D. in-game manual"
@@ -4610,7 +4799,7 @@ msgstr "- いずれも食料と金属を消費し、神殿で養成できます�
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr "- 槍兵は対騎兵の重装歩兵として使います。騎兵は攻城兵器と散兵に対して重い衝撃を与えるのに用います。"
+msgstr "- 槍兵は対騎兵の重装歩兵として用います。騎兵は攻城兵器と散兵に対して重い衝撃を与えるのに用います。"
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -4854,13 +5043,13 @@ msgstr "- ペルシアはまた、建物と防御に関する多数のテクノ�
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "大型軍艦"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
 "and Seleucids."
-msgstr ""
+msgstr "- 最大の標準軍艦です。ローマ、カルタゴ、プトレマイオス朝、セレウコス朝で建造可能です。"
 
 #: gui/text/tips/quinquereme.txt:4
 msgid ""
@@ -5075,7 +5264,7 @@ msgstr "速く動いて刀と燃えるジャベリンが両用できます。"
 msgid ""
 "- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
 "to ambush their opponents."
-msgstr ""
+msgstr "- 彼の「オーラ」は「ゲリラ戦術」であり、近くのイベリアユニットが待ち伏せして敵を攻撃できるようになります。"
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -6067,10 +6256,11 @@ msgid "Colonization"
 msgstr "入植"
 
 #: civs/cart.jsonFactions[0].Technologies[1].History
+#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
-"Carthaginians established many trading centres as colonies and ultimately "
+"Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "カルタゴは多くの交易拠点を植民地として建設し、最終的に北アフリカだけで300の都市や町を支配しました。"
+msgstr "カルタゴは多くの交易所を植民地として創設し、ついには北アフリカだけで300以上の都市や町を支配するに至りました。"
 
 #: civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -6214,19 +6404,21 @@ msgstr "カルヌテスはアウレルキアのドルイドです。彼らは必
 #: civs/celt.jsonFactions[1].Heroes[0].History
 #: civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
-"The story of how Marcus Claudius Marcellus killed a Gallic leader at "
-"Clastidium (222 B.C.) is typical of such encounters. Advancing with a "
-"smallish army, Marcellus met a combined force of Insubrian Gauls and "
-"Gaesatae at Clastidium. The Gallic army advanced with the usual rush and "
-"terrifying cries, and their king, Britomartos, picking out Marcellus by "
-"means of his badges of rank, made for him, shouting a challenge and "
-"brandishing his spear. Britomartos was an outstanding figure not only for "
-"his size but also for his adornments; for he was resplendent in bright "
-"colors and his armor shone with gold and silver. This armor, thought "
-"Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
+"When celt armies met the enemy, before the battle would start, the celt "
+"leader would go to the first line and challenge the bravest of the enemy "
+"warriors to a single combat. The story of how Marcus Claudius Marcellus "
+"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
+"encounters. Advancing with a smallish army, Marcellus met a combined force "
+"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
+" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"out Marcellus by means of his badges of rank, made for him, shouting a "
+"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"not only for his size but also for his adornments; for he was resplendent in"
+" bright colors and his armor shone with gold and silver. This armor, thought"
+" Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
 "task to kill Britomartos and strip him of his armor."
-msgstr "マルクス・クラウディウス・マルケッルスがガリア王を\nクラスティディウム (222 B.C.) で殺した逸話はそういう出来事の一つです。小規模な軍隊で前進し、\nマルケっルスはインサブリアのガリア人とGaesataeとクラスティディウムでぶつかりました。\nガリア人軍隊はいつもどおり、突進して恐ろしい雄叫びを上げながら前進しました。\nそしてその王 Britomartos は, マルケッルスを階級バッジによって見わけ、\n叫びながら決闘を申し込み、またそのスピアを得意げに振り回しました。 \n Britomartos は体格が大きいうえ、派手好きだったため、その見た目は一目でわかります。 \n明るい色の服装の上、鎧にしても、金や銀で飾り付けられていたのです。\nところでマルケッルスは、この金銀の鎧は神からの贈り物だと考えました。\n彼は Britomartos に突進し、その明るい胸当てを貫いて打ち捨てました。\n Britomartos を倒すことなど彼にとっては簡単な仕事でした。もちろん、その鎧は剥ぎとって持って帰りました。"
+msgstr ""
 
 #: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
 #: civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -6255,7 +6447,7 @@ msgid ""
 "and Bran are often muddled with the earlier brothers Belinus and Brennus "
 "(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
 " in around 390 B.C., and were regarded as gods in old Celtic tradition."
-msgstr ""
+msgstr "ブレンヌスはローマの歴史家がつけた名で、カミルスの時代にローマを占領したガリアの有名な指導者です。ジェフリー・オブ・モンマスという聖職者が著した「ブリタニア列王史」によると、ブレンヌスとベリヌスの兄弟がガリアを侵略し、紀元前390年にローマを略奪したことが、ブリトンが世界最高の文明ローマを、ローマがブリトンを征服するはるか前に征服した証だとします。ジェフリー以前の多くの古代の文献によると、ローマは確かに略奪されたが、390年ではなく387年であり、略奪はブレノス（ラテン語化するとブレンヌス）という指導者が率いていたとされます。しかし、彼と侵略者の大群はガリア・セノネス族で、イギリス人ではありません。このエピソードでジェフリーの編集技法の特徴のいくつかがわかります。彼は歴史上のブレンヌス/ブレノスを改変し、ベリヌスという兄弟を創作し、ガリアの侵略を借りつつも、ケルトが弱く愚かに見える部分は省きました。彼の技法は付加と省略の両方です。トロイ起源説のように、ローマの略奪は完全な創作ではありません。つまり、使える事実を創造的に再構成し、必要に応じて詳細を足したものです。歴史的な連想から、ベリとブランはしばしば、北ブリテンで紀元前390年頃に覇権を競っていた（ドゥンワロ・モルムティウスの息子の）ベリヌスとブレンヌス兄弟と混同されますが、古いケルトの伝統で神とされていました。"
 
 #: civs/celt.jsonFactions[1].Heroes[1].Name civs/gaul.jsonAINames[1]
 #: civs/gaul.jsonFactions[0].Heroes[1].Name
@@ -6310,7 +6502,7 @@ msgid ""
 "probably the largest contributing factor to their ultimate submission to "
 "Rome by 100 A.D. The other contributing factors were their lack of armor and"
 " their inability to counter the mighty legions and siege weapons of Rome."
-msgstr "最盛期（紀元前200年頃）に、ケルト帝国はスペインからルーマニア、北イタリアからスコットランドまで広がっていました。もっとも、本物の帝国というわけでありませｎん。なぜならケルト人はいかなる形態の政府にも統合されておらず、言語とさまざまな社会的観点でのみまとまりがあったからです。彼らのあらゆる点でのまとまりのなさが、100年までに最終的にローマに服従したおそらく最大の要因でした。他の要因は鎧の不足と、ローマの強力なレギオンや攻城兵器へ対抗できなかったためでした。"
+msgstr "最盛期（紀元前200年頃）に、ケルト帝国はスペインからルーマニア、北イタリアからスコットランドまで広がっていました。もっとも、本物の帝国というわけでありません。なぜならケルト人はいかなる形態の政府にも統合されておらず、言語とさまざまな社会的観点でのみまとまりがあったからです。彼らのあらゆる点でのまとまりのなさが、100年までに最終的にローマに服従したおそらく最大の要因でした。他の要因は鎧の不足と、ローマの強力なレギオンや攻城兵器へ対抗できなかったためでした。"
 
 #: civs/gaul.jsonAINames[3]
 msgid "Divico"
@@ -6687,7 +6879,7 @@ msgstr "ヴィリアトは、ガリアのウェルキンゲトリクスと同様
 #: civs/iber.jsonFactions[0].Heroes[1].History
 msgid ""
 "Karos was a chief of the Belli tribe located just east of the Celtiberi "
-"(Numantines at the centre). Leading the confederated tribes of the meseta "
+"(Numantines at the center). Leading the confederated tribes of the meseta "
 "central (central upland plain) he concealed 20,000 foot and 5,000 mounted "
 "troops along a densely wooded track. Q. Fulvius Nobilior neglected proper "
 "reconnaissance and lead his army into the trap strung out in a long column. "
@@ -6698,7 +6890,7 @@ msgid ""
 " a battle on the 23rd of August. Karos was wounded in an after battle small "
 "cavalry action the same evening and soon died thereafter, but he had carried"
 " off one of the most humiliating defeats that Rome ever suffered."
-msgstr ""
+msgstr "カロス（カルス）はケルティベリア人の居住域の中で、（中央にいたヌマンティア族の）すぐ東に居住したベリ族の首領でした。メセタ・セントラル（中央台地）の部族同盟を率い、彼は2万の歩兵と5千の騎兵を深い森の小道に隠しました。クィントゥス・フルウィウス・ノビリオルは適切な偵察を怠り、自軍を細長く散開させる罠へ導きました。1万5千のうちおよそ1万のローマのレギオン兵が倒されたのは、この大規模な待ち伏せが彼らの身に降りかかったためでした。その日は紀元前153年8月23日、ローマがウゥルカーヌスの祭礼を祝う日でした。のちに元老院令でこの日はdies ater（不吉な日）とされ、そしてローマは二度と8月23日に戦をしませんでした。カロスは同夜、戦闘後に騎兵と小競り合いになり負傷し、まもなくして亡くなりました。しかし、彼は、ローマがこれまでに喫した敗戦で最も屈辱的なひとつをやってのけました。"
 
 #: civs/iber.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -6947,7 +7139,7 @@ msgstr "マケドニアのすべての攻城兵器の建造と強化を行いま
 
 #: civs/mace.jsonStructures[2].History
 msgid "The Macedonians were innovators in area of siegecraft."
-msgstr "マケドニア族は、包囲攻城兵器の分野のイノベーターであった。"
+msgstr "マケドニアは攻城兵器の分野のイノベーターでした。"
 
 #: civs/mace.jsonHistory
 msgid ""
@@ -6997,7 +7189,7 @@ msgid ""
 "orders) in Hinduism. Traditionally Kshatriya constitute the military and "
 "ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
 "Laws of Manu."
-msgstr ""
+msgstr "クシャトリヤまたはカシュトリヤとは、戦士を意味し、ヒンドゥー教の4つのヴァルナ（社会階層）の中の1つです。伝統的にクシャトリヤは軍人や支配エリート層として、ヴェーダとマヌ法典に基づいたヴェーダ・ヒンドゥー教の社会システムを構成してきました。"
 
 #: civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied Temple techs -50% cost and research time."
@@ -7083,7 +7275,7 @@ msgstr "弓兵の伝統"
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
-msgstr ""
+msgstr "インドは弓術が盛んでした。インド軍の大半は高い技能を持つ弓兵で構成され、竹の長弓を装備していました。"
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -7292,7 +7484,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "ペルシアは1677マイルにおよぶ素晴らしい王の道をサルディスからスーサまで建設しました。また、ダレイオス大王とクセルクセスは壮麗なペルセポリスも建設しました。、キュロス大王はエクバタナを大きく改良し、エラム人の古都スーサを実質再建しました。"
 
 #: civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -7606,7 +7798,7 @@ msgstr "Stratópedo Misthophóron"
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
-msgstr ""
+msgstr "中立地帯に建設しなければなりません。領地半径効果を持ちません。全種の「傭兵」ユニットを養成します。"
 
 #: civs/ptol.jsonStructures[2].Name
 #: simulation/templates/structures/ptol_lighthouse.xml:17
@@ -7822,7 +8014,7 @@ msgid ""
 "execution. It has a turf wall, and it's surrounded by a canal filled with "
 "water whenever possible for extra defense. Many towns started up as bigger "
 "military camps to evolve to more complicated cities."
-msgstr ""
+msgstr "前線基地は、軍隊が行軍する経路沿いに設けた臨時野営地のこともあれば、防衛的あるいは（城攻め用の）攻撃的建築物のこともありました。東もしくは敵に面したはずのプラエトリアン門の中には、第一百人隊や歩兵隊のテントが張られ、ドラコ（歩兵隊の軍旗）や他の軍旗が掲げられました。デクマネ門は野営地後方のプラエトリアン門の反対側にあり、この門から兵士は制裁や作戦遂行の地へ導かれます。野営地は芝生の壁があり、また可能ならば壁を取り囲む水を湛えた濠で防御を強化します。多くの町は大きめな軍事野営地として始まり、より複雑な都市へ発展しました。"
 
 #: civs/rome.jsonStructures[1].Name
 #: simulation/templates/structures/rome_wallset_siege.xml:6
@@ -8239,7 +8431,7 @@ msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr ""
+msgstr "スパルタの女性市民は捕らえることができず、どんな攻撃者に対しても頑なに抵抗します。彼女らはまた防御塔と柵の建設にも力を発揮します。"
 
 #: civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -8322,7 +8514,7 @@ msgid ""
 " the Battle of Megalopolis, the Macedonians prevailed in a long and bloody "
 "battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis "
 "made a heroic final stand in order to buy time for his troops to retreat."
-msgstr ""
+msgstr "アギス3世は第20代のエウリュポン家系のスパルタの王でした。アレキサンドロス大王がアジアへの大遠征で不在の間に、アギスは南ギリシア諸国の同盟を急いでまとめ上げ、マケドニアの覇権打倒に立ち上がりました。クレタを確保してスパルタの属国とした後、アギスはペロポネソスのメガロポリスの包囲へ向かいました。マケドニアと同盟していたためです。マケドニアの伝説、アンティパトロスが軍を指揮して、この新たな反乱の鎮圧にあたりました。メガロポリスの戦いで、マケドニアは長く激しい戦闘の中末優勢となりました。150年前のレオニダス同様に、降伏を選ばず、アギスは英雄的な最後の抵抗を見せ、自軍の撤退の時間を稼ぎました。"
 
 #: civs/spart.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/spart_hero_agis.xml:11
@@ -8989,7 +9181,7 @@ msgstr "Prometoopidion"
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr ""
+msgstr "すべて鉄で作られた鎧です。鉄は古代に知られていた金属の中で、加工できる最も硬いものでした。"
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
@@ -9133,7 +9325,7 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr ""
+msgstr "すべて青銅で作られた鎧です。非常に高価で製作に時間がかかるため、最高の戦士のみが着用しました。"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
@@ -9449,7 +9641,7 @@ msgstr "中立地帯の前哨地の寿命が2倍になります。"
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay -50% for Outposts."
-msgstr ""
+msgstr "前哨地の領外劣化が50%鈍化します。"
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -9710,11 +9902,11 @@ msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
-msgstr ""
+msgstr "女性市民の耐久力が50%増加します。"
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr ""
+msgstr "織機"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
@@ -9821,11 +10013,11 @@ msgstr "駐留回復 対 自己回復"
 #: simulation/data/technologies/pair_house_01.jsongenericName
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Females vs. Population"
-msgstr ""
+msgstr "女性 対 人口"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Training vs. Irregulars"
-msgstr ""
+msgstr "訓練 対 不正規兵"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
@@ -9836,7 +10028,7 @@ msgstr ""
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "歩兵の対打撃鎧 vs. 槍兵の対貫通鎧"
+msgstr "歩兵の打撃装甲 対 槍兵の貫通装甲"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -9848,11 +10040,11 @@ msgstr "攻撃 対 コスト"
 
 #: simulation/data/technologies/pair_siege_attack_pack.jsongenericName
 msgid "Attack vs. Packing"
-msgstr ""
+msgstr "攻撃力 対 設置時間"
 
 #: simulation/data/technologies/pair_siege_cost_armor.jsongenericName
 msgid "Cost vs. Armor"
-msgstr ""
+msgstr "コスト 対 装甲"
 
 #: simulation/data/technologies/pair_tower_01.jsongenericName
 msgid "Night's Watch vs. Crenellations"
@@ -9915,7 +10107,7 @@ msgstr "都市の段階 - ブリトン"
 #: simulation/data/technologies/phase_city_gauls.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks Gallic structures and units. Territory "
-"radius for Civilization Centres increased by another +50%"
+"radius for Civilization Centers increased by another +50%"
 msgstr "都市の段階へ進むとガリア固有の建物やユニットが利用可能になります。町の中心の領地半径はさらに50%増加します。"
 
 #: simulation/data/technologies/phase_city_gauls.jsongenericName
@@ -9992,7 +10184,7 @@ msgstr "村の段階"
 msgid ""
 "The state or tribe would often construct a dining hall for public feasts or "
 "to receive foreign emissaries."
-msgstr ""
+msgstr "国や部族は、公的な饗宴や異国の大使をもてなすためにしばしば迎賓館を建てたものでした。"
 
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
@@ -10001,7 +10193,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
-msgstr ""
+msgstr "迎賓館"
 
 #: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
 msgid "Tholos"
@@ -10055,7 +10247,7 @@ msgstr "ペリスタイル"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
 msgid "Paradise"
-msgstr ""
+msgstr "楽園"
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -10072,19 +10264,19 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_02.jsonspecificName.rome
 msgid "Insulae"
-msgstr ""
+msgstr "Insulae"
 
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
-msgstr ""
+msgstr "遠隔攻撃歩兵の攻撃力を強化する訓練です。"
 
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "Ranged infantry +2 pierce attack."
-msgstr ""
+msgstr "遠隔攻撃歩兵の貫通攻撃力 +2。"
 
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr ""
+msgstr "不正規遠隔攻撃歩兵"
 
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.hele
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
@@ -10125,7 +10317,7 @@ msgstr "Amentum"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
-msgstr "攻城兵器の装甲を強化します。"
+msgstr "攻城兵器の装甲を強化します"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "All Siege weapons +2 Hack armor levels."
@@ -10185,11 +10377,11 @@ msgstr "射撃インストラクター"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
-msgstr ""
+msgstr "据置式の攻城兵器の組立と解体が速くなります"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "Immobile siege weapons pack/unpack 25% faster"
-msgstr ""
+msgstr "据置式の攻城兵器の組立と解体が25%速くなります"
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -10218,7 +10410,7 @@ msgstr "劇的な兵士の養成速度の上昇を、兵営で大量一括に養
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
 msgid "Faster batch training speed for the Barracks."
-msgstr ""
+msgstr "兵営での一括養成の速度が上がります。"
 
 #: simulation/data/technologies/training_conscription.jsongenericName
 msgid "Conscription"
@@ -10234,7 +10426,7 @@ msgstr ""
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr ""
+msgstr "すべての騎兵の養成時間が20%短縮しますが、耐久力は10減ります。徴兵を研究可能にします。"
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
@@ -10499,17 +10691,11 @@ msgstr "イベリア傭兵コスト対採用時間 #2"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_1.jsongenericName
 msgid "Italian merc cost vs. recruit time #1"
-msgstr ""
+msgstr "イタリオテ傭兵コスト 対 採用時間 #1"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_2.jsongenericName
 msgid "Italian merc cost vs. recruit time #2"
-msgstr ""
-
-#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
-msgid ""
-"Carthaginians established many trading centers as colonies and ultimately "
-"held dominion over 300 cities and towns in North Africa alone."
-msgstr "カルタゴは多くの交易所を植民地として創設し、ついには北アフリカだけで300以上の都市や町を支配するに至りました。"
+msgstr "イタリオテ傭兵コスト 対 採用時間 #2"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
@@ -10555,7 +10741,7 @@ msgstr "ガリアの部族を征服すると、ケルト傭兵の採用時間が
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
 msgid "Gallic Hegemony"
-msgstr "ガリアのヘゲモニー"
+msgstr "ガリア征服"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
@@ -10574,11 +10760,11 @@ msgstr "イベリア同盟"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr ""
+msgstr "ヒスパニアの町を征服すると、イベリア傭兵の採用時間が20%短縮されます。"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
-msgstr ""
+msgstr "イベリア征服"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
@@ -10593,7 +10779,7 @@ msgstr "イタリオテの町と同盟すると、イタリオテ傭兵の採用
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
 msgid "Italiote Alliance"
-msgstr ""
+msgstr "イタリオテ同盟"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsontooltip
 msgid ""
@@ -10603,7 +10789,7 @@ msgstr "イタリオテの町を征服すると、イタリオテ傭兵の採用
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsongenericName
 msgid "Italiote Hegemony"
-msgstr ""
+msgstr "イタリオテ征服"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
@@ -10720,7 +10906,7 @@ msgstr "輪作"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr ""
+msgstr "槍兵の攻撃力を強化する槍術訓練です。"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
@@ -10728,7 +10914,7 @@ msgstr "槍兵の打撃攻撃力 +2。"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
-msgstr ""
+msgstr "槍術"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -10873,7 +11059,7 @@ msgstr "劇的な騎兵の養成速度の上昇を、厩舎で一括大量に養
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr ""
+msgstr "厩舎での一括養成の速度が上がります。"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
@@ -10887,7 +11073,7 @@ msgstr "歩兵徴兵制"
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "すべての騎兵の養成時間が20%短縮しますが、耐久力が10減ります。騎兵の徴兵を研究可能にします。"
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
@@ -10923,7 +11109,7 @@ msgstr "劇的なチャンピオンと攻城兵器の養成速度の上昇を、
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
-msgstr ""
+msgstr "要塞での一括養成の速度が上がります。"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -10972,7 +11158,7 @@ msgstr "従来軍"
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr ""
+msgstr "銀楯隊すなわちアルギュラスピダイはマケドニア軍の精鋭重装歩兵部隊でした。"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
@@ -10982,7 +11168,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
-msgstr ""
+msgstr "銀楯隊"
 
 #: simulation/templates/template_gaia_flora.xml:8
 msgid "Generic Flora"
@@ -11005,6 +11191,10 @@ msgstr "木イチゴ"
 msgid "Chop down to accumulate Wood."
 msgstr "木材を採集するために伐採します。"
 
+#: simulation/templates/template_gaia_flora_tree.xml:5
+msgid "Tree"
+msgstr "木"
+
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
 msgstr "一般地形"
@@ -11025,6 +11215,10 @@ msgstr "金属鉱山"
 msgid "Mine these to provide Stone building material."
 msgstr "石製建造物をつくるために、これらを採掘します。"
 
+#: simulation/templates/template_gaia_geo_rock.xml:4
+msgid "Rock"
+msgstr "岩"
+
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Stone Mine"
 msgstr "石材鉱山"
@@ -11037,6 +11231,13 @@ msgstr "これらの遺物から資源を採集できます。"
 msgid "Generic Ruins"
 msgstr "一般遺跡"
 
+#: simulation/templates/template_gaia_ruins.xml:9
+#: simulation/templates/gaia/special_ruins.xml:9
+#: simulation/templates/gaia/special_ruins_column_doric.xml:9
+#: simulation/templates/other/unfinished_greek_temple.xml:9
+msgid "Ruins"
+msgstr "遺物"
+
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
 msgstr "手早く採集可能な財宝です。"
@@ -11044,6 +11245,24 @@ msgstr "手早く採集可能な財宝です。"
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
 msgstr "一般の財宝"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
+#: simulation/templates/gaia/special_treasure_food_bin.xml:9
+#: simulation/templates/gaia/special_treasure_food_crate.xml:9
+#: simulation/templates/gaia/special_treasure_food_jars.xml:9
+#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
+#: simulation/templates/gaia/special_treasure_pegasus.xml:9
+#: simulation/templates/gaia/special_treasure_stone.xml:9
+#: simulation/templates/gaia/special_treasure_wood.xml:9
+#: simulation/templates/other/special_treasure_shipwreck.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
+msgid "Treasure"
+msgstr "財宝"
 
 #: simulation/templates/template_structure.xml:47
 msgid "Structure"
@@ -11092,7 +11311,7 @@ msgstr "防衛施設"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:32
 msgid "DefenseTower"
-msgstr ""
+msgstr "防御塔"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:61
 msgid "Shoots arrows. Garrison to provide extra defense."
@@ -11226,7 +11445,7 @@ msgstr "大使館"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr "英雄、チャンピオン、攻城兵器を養成します。攻城兵器の改良を研究します。駐屯可能人数: 20。"
+msgstr "英雄、チャンピオンの養成と攻城兵器の建造をします。攻城兵器の改良を研究します。駐屯可能人数: 20。"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
@@ -11271,7 +11490,7 @@ msgstr "近接戦闘騎兵"
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
 "Classes: Citizen Melee Cavalry Spearman.\n"
-"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers. \n"
+"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, Elephants."
 msgstr "クラス：市民　近接　騎兵　槍兵。\n得意：2倍　対剣士、攻城兵器、1.5倍　対散兵。\n苦手：槍兵、弓兵、象。"
 
@@ -11327,7 +11546,7 @@ msgstr "チャンピオン騎兵"
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:41
 msgid ""
 "Classes: Champion Ranged Cavalry Archer.\n"
-"Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen.\n"
 "Countered by: Skirmishers and Elephants."
 msgstr "クラス：チャンピオン　遠隔　騎兵　弓兵。\n得意：2倍　剣士、1.5倍　対槍兵。\n苦手：散兵、象。"
 
@@ -11386,7 +11605,7 @@ msgstr "チャンピオン歩兵"
 #: simulation/templates/template_unit_champion_infantry_archer.xml:46
 msgid ""
 "Classes: Champion Ranged Infantry Archer.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
 msgstr "クラス：チャンピオン　遠隔　歩兵　弓兵。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
 
@@ -11397,7 +11616,7 @@ msgstr "チャンピオン弓兵"
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:54
 msgid ""
 "Classes: Champion Ranged Infantry Skirmisher.\n"
-"Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots. \n"
+"Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Swordsmen and Cavalry Spearmen."
 msgstr "クラス：チャンピオン　遠隔　歩兵　散兵。\n得意：1.5倍　対槍兵、弓騎兵、象、戦車。\n苦手：剣士、槍騎兵。"
 
@@ -11408,7 +11627,7 @@ msgstr "チャンピオン散兵"
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:57
 msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
-"Counters: 2x vs. All Cavalry, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.\n"
 "Countered by: Swordsmen, Skirmishers, and Cavalry Archers."
 msgstr "クラス：チャンピオン　近接　歩兵　槍兵。\n得意：2倍　対全騎兵、1.5倍　対象。\n苦手：剣士、散兵、弓騎兵。"
 
@@ -11430,7 +11649,7 @@ msgstr "チャンピオン槍兵"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:53
 msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr "クラス：チャンピオン　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
@@ -11460,6 +11679,10 @@ msgstr "軍犬"
 msgid "Fauna"
 msgstr "動物"
 
+#: simulation/templates/template_unit_fauna_fish.xml:9
+msgid "Fish"
+msgstr "魚"
+
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:17
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "この豊かな海の幸を狩って、食料を採集します。"
@@ -11482,7 +11705,7 @@ msgstr "英雄騎兵"
 msgid ""
 "Hero Aura: n/a.\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr ""
+msgstr "英雄オーラ：利用不可。\n遠隔攻撃力2倍　対槍兵。遠隔攻撃力1.5倍　対剣士。"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:48
 msgid "Hero Cavalry Archer"
@@ -11526,7 +11749,7 @@ msgstr "クラス：英雄　近接　象。\n得意：2倍　対全騎兵、1.5
 #: simulation/templates/template_unit_hero_infantry_archer.xml:41
 msgid ""
 "Classes: Hero Infantry Ranged Archer Bow.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
 msgstr "クラス：英雄　歩兵　遠隔　弓兵。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
 
@@ -11550,9 +11773,9 @@ msgstr "英雄槍兵"
 msgid ""
 "Classes: Hero Infantry Melee Sword.\n"
 "\"Hero\" Aura: TBD.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr "クラス：英雄　歩兵　近接　剣士。\n英雄オーラ：未定。\n得意：2倍　槍兵、1.5倍　散兵、象。\n苦手：弓兵、弓騎兵。"
+msgstr "クラス：英雄　歩兵　近接　剣士。\n英雄オーラ：未定。\n得意：2倍　対槍兵、1.5倍　対散兵、象。\n苦手：弓兵、弓騎兵。"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:53
 msgid "Hero Swordsman"
@@ -11722,7 +11945,7 @@ msgstr "攻城カタパルト"
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:62
 msgid ""
 "Classes: Siege Melee Ram.\n"
-"Counters: 1.5x vs. Gates. Generally good vs. Buildings. \n"
+"Counters: 1.5x vs. Gates. Generally good vs. Buildings.\n"
 "Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships)."
 msgstr ""
 
@@ -11750,7 +11973,7 @@ msgstr "支援"
 msgid ""
 "Classes: Citizen Support Worker Female.\n"
 "Gather resources, build civic structures, and inspire nearby males to work faster. Bonused at foraging and farming."
-msgstr ""
+msgstr "クラス：市民　補助　労働者　女性。\n資源採集、非軍事の建設に従事し、近辺の男性を励まし仕事を早めます。食料採集と農耕が得意です。"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:52
 msgid "Female Citizen"
@@ -11770,7 +11993,7 @@ msgstr "治癒者"
 msgid ""
 "Classes: Support Worker Slave.\n"
 "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr ""
+msgstr "クラス：補助　労働者　奴隷。\n寿命のある採集者。採掘と伐採が得意です。"
 
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
@@ -12891,7 +13114,7 @@ msgstr "Varmo"
 #: simulation/templates/structures/brit_fortress.xml:22
 #: simulation/templates/structures/celt_fortress_b.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "ブリトンの英雄やチャンピオン、破城槌を養成します。"
+msgstr "ブリトンの英雄やチャンピオンの養成と、破城槌の建造をします。"
 
 #: simulation/templates/structures/brit_fortress.xml:21
 #: simulation/templates/structures/celt_fortress_b.xml:21
@@ -13110,7 +13333,7 @@ msgstr "バアル・ハモン神殿"
 #: simulation/templates/structures/celt_fortress_g.xml:12
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "ガリアの英雄やチャンピオン、破城槌を養成します。"
+msgstr "ガリアの英雄やチャンピオンの養成と、破城槌の建造をします。"
 
 #: simulation/templates/structures/celt_fortress_g.xml:11
 #: simulation/templates/structures/gaul_fortress.xml:8
@@ -13449,7 +13672,7 @@ msgstr "Kaštrya"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "チャンピオン騎兵や破城槌を養成します。"
+msgstr "チャンピオン騎兵の養成と、破城槌の建造をします。"
 
 #: simulation/templates/structures/pers_fortress.xml:5
 msgid "Didā"
@@ -13720,7 +13943,7 @@ msgstr "Porta Circummunitionis"
 #: simulation/templates/structures/rome_siege_wall_short.xml:38
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr "木と土で固めて作った、敵領内や中立地帯にも建造可能な障壁です。"
+msgstr "木と芝土で作った柵で、敵領内や中立地帯にも建設可能です。"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:32
 #: simulation/templates/structures/rome_siege_wall_medium.xml:32
@@ -13916,7 +14139,7 @@ msgid ""
 "\"Reforms\" Aura: All units in his formation +15% speed and +1 armor. All Peltasts +15% speed.\n"
 "Counters: +20% Attack vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Melee Cavalry."
-msgstr ""
+msgstr "クラス：英雄　歩兵　遠隔　散兵。\n「改革」オーラ：彼が率いる全ユニットの速度+15%、装甲+1。全投槍兵の速度+15%。\n得意：攻撃力+20%　対槍兵、弓騎兵、象、戦車。\n苦手：近接戦闘騎兵。"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:17
 msgid "Iphikratēs"
@@ -13929,7 +14152,7 @@ msgid ""
 "\"Acropolis\" Aura: Temples are 50 stone cheaper during his lifetime.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr ""
+msgstr "クラス：英雄　近接　歩兵　槍兵。\n「建築家」オーラ： 彼の視界内の建物の建設速度を15%速めます。\n「アクロポリス」オーラ：存命中神殿は石材50個減で建てられます。\n得意：2倍　対全騎兵。\n苦手：散兵、剣士、弓騎兵。"
 
 #: simulation/templates/units/athen_hero_pericles.xml:15
 msgid "Periklēs"
@@ -13940,9 +14163,9 @@ msgid ""
 "Classes: Hero Infantry Melee Sword.\n"
 "\"Naval Commander\" Aura: When garrisoned in a ship, his ship is +50% faster. \n"
 "\"Naval Architect\" Aura: Ships are built +20% faster during his lifespan.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr ""
+msgstr "クラス：英雄　歩兵　近接　剣士。\n「海軍士官」オーラ：船内に駐屯すると、船が50%速くなります。\n「造船家」オーラ：存命中、船の建造が20%速くなります。\n得意：2倍　対槍兵、1.5倍　対散兵、象。\n苦手：弓兵、弓騎兵。"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:14
 #: simulation/templates/units/hele_hero_themistocles.xml:14
@@ -14446,7 +14669,7 @@ msgstr "Mekir"
 msgid ""
 "Brythonic Champion Chariot.\n"
 "Counters Infantry. High trample damage."
-msgstr ""
+msgstr "ブリトンチャンピオン戦車。\n得意は歩兵。高い踏み潰しダメージ。"
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:7
 msgid ""
@@ -14468,7 +14691,7 @@ msgstr ""
 msgid ""
 "Brythonic Champion Swordsman.\n"
 "Counters Spear Units."
-msgstr ""
+msgstr "ブリトンチャンピオン剣士。\n得意は槍兵。"
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:13
 msgid "Two-Handed Swordsman"
@@ -14478,7 +14701,7 @@ msgstr "両手剣士"
 msgid ""
 "Gallic Champion Swordsman.\n"
 "Counters Spearmen and Cavalry."
-msgstr ""
+msgstr "ガリアチャンピオン剣士。\n得意は槍兵と騎兵。"
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:10
 #: simulation/templates/units/gaul_champion_infantry.xml:10
@@ -14538,7 +14761,7 @@ msgstr "テッサリア斥候騎兵"
 msgid ""
 "Macedonian Champion Cavalry.\n"
 "Counters Cavalry and Archers. Countered by Champion Units."
-msgstr ""
+msgstr "マケドニアチャンピオン騎兵。\n得意は騎兵と弓兵。苦手はチャンピオンユニット。"
 
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:21
 #: simulation/templates/units/mace_champion_cavalry.xml:19
@@ -14839,9 +15062,9 @@ msgstr "Hypaspistes Argyraspides"
 
 #: simulation/templates/units/mace_hero_alexander.xml:38
 msgid ""
-"\"Imperialism\" Aura: +10% territory effect for all buildings while he lives. \n"
+"\"Imperialism\" Aura: +10% territory effect for all buildings while he lives.\n"
 "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr "「帝国主義」オーラ： 彼の生存中、すべての建物の領地効果+10%\n「英雄殺し」ボーナス： 敵英雄に対し攻撃力+20%"
+msgstr "「帝国主義」オーラ： 彼の生存中、すべての建物の領地効果+10%。\n「英雄殺し」ボーナス： 敵英雄に対し攻撃力+20%。"
 
 #: simulation/templates/units/mace_hero_craterus.xml:7
 msgid "Trusted general under Alexander the Great."
@@ -15064,7 +15287,7 @@ msgstr "Vanijyik Nauka"
 
 #: simulation/templates/units/maur_ship_trireme.xml:20
 msgid "Classes: Mechanical Warship Medium Ranged Melee."
-msgstr ""
+msgstr "クラス：兵器　軍艦　中型　遠隔　近接。"
 
 #: simulation/templates/units/maur_support_elephant.xml:32
 msgid "Mobile dropsite. Can also assist in constructing buildings."
@@ -15101,9 +15324,9 @@ msgstr "Vaishya"
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 msgid ""
 "Classes: Mercenary Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "クラス：傭兵　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:21
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:14
@@ -15223,9 +15446,9 @@ msgstr "ダレイオス大王"
 msgid ""
 "Hero Archer.\n"
 "Hero Aura: \"Administrator.\" +15% Gather Rate and Build Rate of nearby units.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen. \n"
+"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr ""
+msgstr "英雄弓兵。\n英雄オーラ：「行政官」。近くのユニットの採集・建設速度+15%。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:15
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:39
@@ -15553,7 +15776,7 @@ msgstr "Eques Consularis"
 
 #: simulation/templates/units/rome_champion_infantry.xml:5
 msgid "Italic Heavy Infantry"
-msgstr "イタリア重装剣士"
+msgstr "イタリオテ重装歩兵"
 
 #: simulation/templates/units/rome_champion_infantry.xml:6
 msgid "Extraordinarius"
@@ -15667,7 +15890,7 @@ msgstr "Mercator Plebeius"
 msgid ""
 "Mercenary skirmisher.\n"
 "Bonus vs. Archers and Spearmen."
-msgstr ""
+msgstr "傭兵散兵。\n弓兵と槍兵に対しボーナス。"
 
 #: simulation/templates/units/samnite_skirmisher.xml:5
 msgid "Samnite Skirmisher"
@@ -15681,7 +15904,7 @@ msgstr "（サムニウム散兵）"
 msgid ""
 "Mercenary spearman.\n"
 "Bonus vs. All Cavalry Units."
-msgstr ""
+msgstr "傭兵槍兵。\n全騎兵ユニットに対しボーナス。"
 
 #: simulation/templates/units/samnite_spearman.xml:5
 msgid "Samnite Spearman"
@@ -15695,7 +15918,7 @@ msgstr "（サムニウム槍兵）"
 msgid ""
 "Mercenary swordsman.\n"
 "Bonus vs. All Spear Units."
-msgstr ""
+msgstr "傭兵剣士。\n全槍ユニットに対しボーナス。"
 
 #: simulation/templates/units/samnite_swordsman.xml:6
 msgid "(Samnite Swordsman)"
@@ -15791,10 +16014,10 @@ msgstr "Antiokhos G' Mégās"
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
 "Classes: Hero Melee Cavalry Sword.\n"
-"\"Conquest\" Aura: All nearby bipedal melee units gain a +2x attack versus buildings, siege engines, and ships. Building capture time reduced by 25% during his reign.\n"
+"\"Conquest\" Aura: All nearby soldiers gain a +2x attack versus buildings, siege engines, and ships. Building capture time reduced by 25% during his reign.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr ""
+msgstr "クラス：英雄　近接　騎兵　剣士。\n「征服」オーラ：建物や攻城兵器、船に対し、近くの全ユニットの攻撃力が2倍。在位中、建物の奪取時間が25%減。\n得意：2倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:11
 msgid "Antiochus IV \"The Righteous\""
@@ -15847,9 +16070,9 @@ msgstr "金盾持ち長槍兵"
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid ""
 "Classes: Mercenary Citizen Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "クラス：傭兵　市民　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
 #: simulation/templates/units/sele_ship_trireme.xml:6
 msgid "Seleucid Trireme"
@@ -15907,7 +16130,7 @@ msgstr "Ékdromos Skiritis"
 msgid ""
 "No hero aura. Has 2x health of other infantry heroes. Basically a very tough hoplite.\n"
 "Counters: 2x vs. all cavalry."
-msgstr ""
+msgstr "英雄オーラなし。他の歩兵英雄の2倍の耐久力。基本は非常に頑健な重装歩兵。\n得意：2倍　対全騎兵。"
 
 #: simulation/templates/units/spart_hero_brasidas.xml:17
 msgid ""
@@ -15915,7 +16138,7 @@ msgid ""
 "\"Helot Reforms\" Aura: Helot Skirmishers within sight of him gain +2 attack and +1 all armor types.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "クラス：チャンピオン　近接戦闘　歩兵　剣士。\n「ヘイロタイ改革」オーラ：視界内のヘイロタイ散兵の攻撃力が+2、全タイプの装甲が+1。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:30
 msgid ""
@@ -15923,7 +16146,7 @@ msgid ""
 "\"Last Stand\" Aura: +20% attack for nearby Hoplites and Spartiates.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr ""
+msgstr "クラス：英雄　近接　歩兵　槍兵。\n「背水の陣」オーラ：近くの重装歩兵とスパルタ市民の攻撃力が2倍。\n得意：2倍　対全騎兵。\n苦手：散兵、剣士、弓騎兵。"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:16
 msgid "Helot Skirmisher"
@@ -15944,9 +16167,9 @@ msgstr "Hoplī́tēs Perioïkós"
 #: simulation/templates/units/spart_support_female_citizen.xml:29
 msgid ""
 "Classes: Citizen Support Worker Female.\n"
-"Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming. \n"
+"Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming.\n"
 "Counters: 2.5x vs. Siege."
-msgstr ""
+msgstr "クラス：市民　補助　労働者　女性。\n資源採集、建設に従事し、近辺の男性を励まし仕事を早めます。食料採集と農耕が得意です。\n得意：2.5倍　対攻城兵器。"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:25
 msgid "Spartan Woman"
@@ -15991,7 +16214,7 @@ msgstr "Pyrobolos"
 msgid ""
 "Champion Spearman.\n"
 "Counters Melee Units. Countered by Ranged Units. Extra Bonus vs. All Greek Units."
-msgstr ""
+msgstr "チャンピオン槍兵。\n得意は近接戦闘ユニット。苦手は遠隔攻撃ユニット。ギリシアの全ユニットに対しボーナス。"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
 msgid "Hieros Lochos Hoplites"
@@ -16000,7 +16223,7 @@ msgstr "Hieros Lochos Hoplites"
 #: simulation/templates/units/thrace_black_cloak.xml:21
 msgid ""
 "Classes: Mercenary Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants. \n"
+"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
 msgstr "クラス：傭兵　チャンピオン　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
@@ -16904,7 +17127,7 @@ msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
-msgstr ""
+msgstr "プレイヤーは対峙する2つの島から開始します。両者とも非常に起伏が激しく、上陸が困難です。\n\nトーレ人が先住していたところに、やがて周辺部にエトルリア人、フォカイア人、シュラクサイ人が定住しました。ローマがこの2島をカルタゴから奪ったのは、第一次ポエニ戦争中のことで、紀元前238年に「コルシカおよびサルディニア」属州が創設されました。コルシカ人は始終反乱し、そして1世紀を経てコルシカ島は人口の3分の2を失いました。"
 
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:Name
 msgid "Corsica and Sardinia (4)"
@@ -16959,7 +17182,7 @@ msgid ""
 "Each player starts the match with a free farmstead and free storehouse.\n"
 "\n"
 "Virgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering."
-msgstr ""
+msgstr "2プレイヤーが密林生い茂る中央インドのデカン高原を挟んでにらみ合っています。\n\n各プレイヤーは納屋と倉庫付きで対戦を開始します。\n\n手つかずの資源が高原の両側の低地に眠っています。低地はまた拡大と戦略的作戦行動の舞台でもあります。"
 
 #: maps/skirmishes/Deccan Plateau (2).xml:41:Name
 msgid "Deccan Plateau (2)"
@@ -17049,7 +17272,7 @@ msgstr "リビアのオアシス (2)"
 
 #: maps/skirmishes/Lorraine Plain (2).xml:42:Description
 msgid ""
-"The map is cut through the centre by a river traversing east-west with some shallows.\n"
+"The map is cut through the center by a river traversing east-west with some shallows.\n"
 "\n"
 "Fairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\n"
 "\n"
@@ -17108,7 +17331,7 @@ msgid ""
 "An Egyptian desert map bisected by the broad Nile River. Organic resources "
 "cluster near the river, while mineral resources can be found in the desert "
 "hinterlands."
-msgstr ""
+msgstr "エジプトの砂漠マップで、幅広いナイル川に二分されています。有機資源が川の近辺に集積する一方で、鉱物資源は砂漠の奥地で見つけられます。"
 
 #: maps/skirmishes/Nile River (4).xml:41:Name
 msgid "Nile River (4)"

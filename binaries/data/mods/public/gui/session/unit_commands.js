@@ -190,7 +190,7 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 	}
 	var remainderBatchString = remainderBatch > 0 ? remainderBatch : "";
 	var batchDetailsString = "";
-	var action = "[font=\"serif-bold-13\"]" + translate("Shift-click") + "[/font][font=\"serif-13\"]"
+	var action = "[font=\"sans-bold-13\"]" + translate("Shift-click") + "[/font][font=\"sans-13\"]"
 
 	// We need to display the batch details part if there is either more than
 	// one building with full batch or one building with the full batch and
@@ -199,21 +199,21 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 		(buildingsCountToTrainFullBatch == 1 && remainderBatch > 0))
 	{
 		if (remainderBatch > 0)
-			return "\n[font=\"serif-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."), {
+			return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."), {
 				action: action,
 				number: totalBatchTrainingCount,
 				fullBatch: fullBatchesString,
 				remainderBatch: remainderBatch
 			}) + "[/font]";
 
-		return "\n[font=\"serif-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s)."), {
+		return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s)."), {
 			action: action,
 			number: totalBatchTrainingCount,
 			fullBatch: fullBatchesString
 		}) + "[/font]";
 	}
 
-	return "\n[font=\"serif-13\"]" + sprintf(translate("%(action)s to train %(number)s."), {
+	return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s."), {
 		action: action,
 		number: totalBatchTrainingCount
 	}) + "[/font]";
@@ -499,10 +499,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				var tooltip = getEntityNamesFormatted(template);
 				var key = Engine.ConfigDB_GetValue("user", "hotkey.session.queueunit." + (i + 1));
 				if (key)
-					tooltip = "[color=\"255 251 131\"][font=\"serif-bold-16\"][" + key + "][/font][/color] " + tooltip;
+					tooltip = "[color=\"255 251 131\"][font=\"sans-bold-16\"][" + key + "][/font][/color] " + tooltip;
 
 				if (template.tooltip)
-					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
+					tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
 
 				var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
 					getTrainingBatchStatus(playerState, unitEntState.id, entType, selection);
@@ -521,7 +521,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			case RESEARCH:
 				var tooltip = getEntityNamesFormatted(template);
 				if (template.tooltip)
-					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
+					tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
 
 				tooltip += "\n" + getEntityCostTooltip(template);
 
@@ -529,7 +529,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				{
 					var tooltip1 = getEntityNamesFormatted(template1);
 					if (template1.tooltip)
-						tooltip1 += "\n[font=\"serif-13\"]" + template1.tooltip + "[/font]";
+						tooltip1 += "\n[font=\"sans-13\"]" + template1.tooltip + "[/font]";
 
 					tooltip1 += "\n" + getEntityCostTooltip(template1);
 				}
@@ -538,7 +538,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			case CONSTRUCTION:
 				var tooltip = getEntityNamesFormatted(template);
 				if (template.tooltip)
-					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
+					tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
 
 				tooltip += "\n" + getEntityCostTooltip(template);
 				tooltip += getPopulationBonusTooltip(template);

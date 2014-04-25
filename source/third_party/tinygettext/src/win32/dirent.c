@@ -8,6 +8,8 @@
 
 */
 
+#include "precompiled.h"
+
 #include "dirent.h"
 #include <errno.h>
 #include <io.h> /* _findfirst and _findnext set errno iff they return -1 */

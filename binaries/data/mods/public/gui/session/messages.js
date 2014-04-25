@@ -38,8 +38,11 @@ function handleNotifications()
 		notification.type = "text";
 
 	// Handle chat notifications specially
-	if (notification.type == "chat")
+	if (notification.type == "chat" ||
+		notification.type == "aichat")
 	{
+		if (notification.type == "aichat")
+			notification.message = translate(notification.message);
 		var guid = findGuidForPlayerID(g_PlayerAssignments, notification.player);
 		if (guid == undefined)
 		{
@@ -144,7 +147,7 @@ function displayNotifications()
 	for each (var n in notifications)
 	{
 		var parameters = n.parameters || {};
-		if (n.translateParameters && n.translateParameters.length)
+		if (n.translateParameters)
 			translateObjectKeys(parameters, n.translateParameters);
 		var message = n.message;
 		if (n.translateMessage)
@@ -164,7 +167,7 @@ function updateTimeNotifications()
 		if (n.translateMessage)
 			message = translate(message);
 		var parameters = n.parameters || {};
-		if (n.translateParameters && n.translateParameters.length)
+		if (n.translateParameters)
 			translateObjectKeys(parameters, n.translateParameters);
 		parameters.time = timeToString(n.time);
 		notificationText += sprintf(message, parameters) + "\n";
@@ -268,6 +271,10 @@ function handleNetMessage(message)
 
 	case "chat":
 		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
+		break;
+
+	case "aichat":
+		addChatMessage({ "type": "message", "guid": message.guid, "text": translate(message.text) });
 		break;
 
 	// To prevent errors, ignore these message types that occur during autostart

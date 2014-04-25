@@ -45,7 +45,7 @@ function getPlayerData(playerAssignments)
 	{
 		var playerState = simState.players[i];
 
-		var name = playerState.name;
+		var name = translate(playerState.name);
 		var civ = playerState.civ;
 		var color = {
 		    "r": playerState.colour.r*255,
@@ -152,7 +152,7 @@ function damageValues(dmg)
 function damageTypeDetails(dmg)
 {
 	if (!dmg)
-		return "[font=\"serif-12\"]" + translate("(None)") + "[/font]";
+		return "[font=\"sans-12\"]" + translate("(None)") + "[/font]";
 
 	var dmgArray = [];
 	if (dmg.hack)
@@ -199,7 +199,7 @@ function armorLevelToPercentageString(level)
 function armorTypeDetails(dmg)
 {
 	if (!dmg)
-		return "[font=\"serif-12\"]" + translate("(None)") + "[/font]";
+		return "[font=\"sans-12\"]" + translate("(None)") + "[/font]";
 
 	var dmgArray = [];
 	if (dmg.hack)
@@ -228,55 +228,55 @@ function armorTypeDetails(dmg)
 function damageTypesToText(dmg)
 {
 	if (!dmg)
-		return "[font=\"serif-12\"]" + translate("(None)") + "[/font]";
+		return "[font=\"sans-12\"]" + translate("(None)") + "[/font]";
 
 	var dmgArray = [];
 	if (dmg.hack)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.hack,
-			damageType: "[font=\"serif-12\"]" + translate("Hack") + "[/font]"
+			damageType: "[font=\"sans-12\"]" + translate("Hack") + "[/font]"
 		}));
 	if (dmg.pierce)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.pierce,
-			damageType: "[font=\"serif-12\"]" + translate("Pierce") + "[/font]"
+			damageType: "[font=\"sans-12\"]" + translate("Pierce") + "[/font]"
 		}));
 	if (dmg.crush)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.crush,
-			damageType: "[font=\"serif-12\"]" + translate("Crush") + "[/font]"
+			damageType: "[font=\"sans-12\"]" + translate("Crush") + "[/font]"
 		}));
 
-	return dmgArray.join("[font=\"serif-12\"]" + translate(", ") + "[/font]");
+	return dmgArray.join("[font=\"sans-12\"]" + translate(", ") + "[/font]");
 }
 
 // Also for the training tooltip
 function armorTypesToText(dmg)
 {
 	if (!dmg)
-		return "[font=\"serif-12\"]" + translate("(None)") + "[/font]";
+		return "[font=\"sans-12\"]" + translate("(None)") + "[/font]";
 
 	var dmgArray = [];
 	if (dmg.hack)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 			damage: dmg.hack,
-			damageType: "[font=\"serif-12\"]" + translate("Hack") + "[/font]",
+			damageType: "[font=\"sans-12\"]" + translate("Hack") + "[/font]",
 			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.hack) }) + "[/font]"
 		}));
 	if (dmg.pierce)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 			damage: dmg.pierce,
-			damageType: "[font=\"serif-12\"]" + translate("Pierce") + "[/font]",
+			damageType: "[font=\"sans-12\"]" + translate("Pierce") + "[/font]",
 			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.pierce) }) + "[/font]"
 		}));
 	if (dmg.crush)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 			damage: dmg.crush,
-			damageType: "[font=\"serif-12\"]" + translate("Crush") + "[/font]",
+			damageType: "[font=\"sans-12\"]" + translate("Crush") + "[/font]",
 			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.crush) }) + "[/font]"
 		}));
 
-	return dmgArray.join("[font=\"serif-12\"]" + translate(", ") + "[/font]");
+	return dmgArray.join("[font=\"sans-12\"]" + translate(", ") + "[/font]");
 }
 
 function getEntityCommandsList(entState)
@@ -397,7 +397,13 @@ function getEntityCommandsList(entState)
  */
 function getCostComponentDisplayName(costComponentName)
 {
-	return COST_DISPLAY_NAMES[costComponentName];
+	if (costComponentName in COST_DISPLAY_NAMES)
+		return COST_DISPLAY_NAMES[costComponentName];
+	else
+	{
+		warn(sprintf("The specified cost component, ‘%(component)s’, is not currently supported.", { component: costComponentName }));
+		return "";
+	}
 }
 
 /**
@@ -481,7 +487,13 @@ function getWallPieceTooltip(wallTypes)
 			var resourceMin = Math.min.apply(Math, resourceCount[resource]);
 			var resourceMax = Math.max.apply(Math, resourceCount[resource]);
 
-			out.push(getCostComponentDisplayName(resource) + " " + resourceMin + " to " + getCostComponentDisplayName(resource) + " " + resourceMax);
+			// Translation: This string is part of the resources cost string on
+			// the tooltip for wall structures.
+			out.push(sprintf(translate("%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"), {
+				resourceIcon: getCostComponentDisplayName(resource),
+				minimum: resourceMin,
+				maximum: resourceMax
+			}));
 		}
 	}
 	else
@@ -520,7 +532,7 @@ function getEntityCostTooltip(template, trainNum, entity)
 	}
 	else
 	{
-		cost = ""; // cleaner than duplicating the serif-bold-13 stuff
+		cost = ""; // cleaner than duplicating the sans-bold-13 stuff
 	}
 
 	return cost;
@@ -534,7 +546,7 @@ function getPopulationBonusTooltip(template)
 	var popBonus = "";
 	if (template.cost && template.cost.populationBonus)
 		popBonus = "\n" + sprintf(translate("%(label)s %(populationBonus)s"), {
-			label: "[font=\"serif-bold-13\"]" + translate("Population Bonus:") + "[/font]",
+			label: "[font=\"sans-bold-13\"]" + translate("Population Bonus:") + "[/font]",
 			populationBonus: template.cost.populationBonus
 		});
 	return popBonus;
@@ -548,11 +560,11 @@ function getNeededResourcesTooltip(resources)
 	var formatted = [];
 	for (var resource in resources)
 		formatted.push(sprintf(translate("%(component)s %(cost)s"), {
-			component: "[font=\"serif-12\"]" + getCostComponentDisplayName(resource) + "[/font]",
+			component: "[font=\"sans-12\"]" + getCostComponentDisplayName(resource) + "[/font]",
 			cost: resources[resource]
 		}));
 
-	return "\n\n[font=\"serif-bold-13\"][color=\"red\"]" + translate("Insufficient resources:") + "[/color][/font]\n" + formatted.join(translate("  "));
+	return "\n\n[font=\"sans-bold-13\"][color=\"red\"]" + translate("Insufficient resources:") + "[/color][/font]\n" + formatted.join(translate("  "));
 }
 
 function getEntitySpeed(template)
@@ -560,10 +572,10 @@ function getEntitySpeed(template)
 	var speed = "";
 	if (template.speed)
 	{
-		var label = "[font=\"serif-bold-13\"]" + translate("Speed:") + "[/font]";
+		var label = "[font=\"sans-bold-13\"]" + translate("Speed:") + "[/font]";
 		var speeds = [];
-		if (template.speed.walk) speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: "[font=\"serif-12\"]" + translate("Walk") + "[/font]"}));
-		if (template.speed.run) speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: "[font=\"serif-12\"]" + translate("Run") + "[/font]"}));
+		if (template.speed.walk) speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: "[font=\"sans-12\"]" + translate("Walk") + "[/font]"}));
+		if (template.speed.run) speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: "[font=\"sans-12\"]" + translate("Run") + "[/font]"}));
 
 		speed = sprintf(translate("%(label)s %(speeds)s"), { label: label, speeds: speeds.join(translate(", ")) })
 	}
@@ -580,14 +592,14 @@ function getEntityAttack(template)
 		for (var type in template.attack)
 		{
 			var attack = "";
-			var attackLabel = "[font=\"serif-bold-13\"]" + getAttackTypeLabel(type) + "[/font]";
+			var attackLabel = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(type) + "[/font]";
 			if (type == "Ranged")
 			{
 				// Show max attack range if ranged attack, also convert to tiles (4m per tile)
 				attack = sprintf(translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"), {
 					attackLabel: attackLabel,
 					damageTypes: damageTypesToText(template.attack[type]),
-					rangeLabel: "[font=\"serif-bold-13\"]" + translate("Range:") + "[/font]",
+					rangeLabel: "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]",
 					range: Math.round(template.attack[type].maxRange/4)
 				});
 			}
@@ -630,14 +642,14 @@ function getEntityNamesFormatted(template)
 	if (specific)
 	{
 		// drop caps for specific name
-		names += '[font="serif-bold-16"]' + specific[0] + '[/font]' +
-			'[font="serif-bold-12"]' + specific.slice(1).toUpperCase() + '[/font]';
+		names += '[font="sans-bold-16"]' + specific[0] + '[/font]' +
+			'[font="sans-bold-12"]' + specific.slice(1).toUpperCase() + '[/font]';
 
 		if (generic)
-			names += '[font="serif-bold-16"] (' + generic + ')[/font]';
+			names += '[font="sans-bold-16"] (' + generic + ')[/font]';
 	}
 	else if (generic)
-		names = '[font="serif-bold-16"]' + generic + "[/font]";
+		names = '[font="sans-bold-16"]' + generic + "[/font]";
 	else
 		names = "???";
 

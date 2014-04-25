@@ -248,7 +248,12 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 			"message": msg,
 			"parameters": parameters,
 			"translateMessage": true,
-			"translateParameters": ["resourceType1", "resourceType2", "resourceType3", "resourceType4"],
+			"translateParameters": {
+				"resourceType1": "withinSentence",
+				"resourceType2": "withinSentence",
+				"resourceType3": "withinSentence",
+				"resourceType4": "withinSentence",
+			},
 		};
 		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGUIInterface.PushNotification(notification);

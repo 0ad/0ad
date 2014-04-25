@@ -172,7 +172,7 @@ function ShowRenderPathMessage()
 		messageBox(
 			600,
 			300,
-			"[font=\"serif-bold-16\"]" +
+			"[font=\"sans-bold-16\"]" +
 			sprintf(translate("%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader (fixed function) graphics. This option will be removed in a future 0 A.D. release, to allow for more advanced graphics features. We advise upgrading your graphics card to a more recent, shader-compatible model."), { startWarning: "[color=\"200 20 20\"]", endWarning: "[/color]"}) +
 			"\n\n" +
 			// Translation: This is the second paragraph of a warning. The

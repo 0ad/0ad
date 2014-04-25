@@ -5,14 +5,14 @@
 # Translators:
 # fca1970 <iobaladi@yahoo.es>, 2014
 # OJankano <ojankano@hotmail.com>, 2014
-# Swyter ™ <Swyterzone@gmail.com>, 2013
+# Swyter ™ <Swyterzone@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-20 23:35+0200\n"
-"PO-Revision-Date: 2014-04-20 15:53+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-04-24 06:41+0200\n"
+"PO-Revision-Date: 2014-04-24 12:32+0000\n"
+"Last-Translator: Swyter ™ <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr "%s (%ls)"
 msgid "custom build"
 msgstr "versión propia"
 
-#: i18n/L10n.cpp:220
+#: i18n/L10n.cpp:241
 msgid "Long strings"
 msgstr "Cadenas largas"
 
@@ -47,3 +47,8 @@ msgstr "Cadenas largas"
 #, c-format
 msgid "Saved game to '%ls'"
 msgstr "Partida guardada en '%ls'"
+
+#: ps/Util.cpp:244 ps/Util.cpp:377
+#, c-format
+msgid "Screenshot written to '%ls'"
+msgstr "La captura de pantalla se ha guardado en '%ls'"

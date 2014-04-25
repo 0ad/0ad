@@ -55,7 +55,7 @@ var g_MapFilters = [];
 // Warn about the AI's nonexistent naval map support.
 var g_NavalWarning = "\n\n" + sprintf(
 	translate("%(warning)s The AI does not support naval maps and may cause severe performance issues. Naval maps are recommended to be played with human opponents only."),
-	{ warning: "[font=\"serif-bold-12\"][color=\"orange\"]" + translate("Warning:") + "[/color][/font]" }
+	{ warning: "[font=\"sans-bold-12\"][color=\"orange\"]" + translate("Warning:") + "[/color][/font]" }
 );
 
 // To prevent the display locking up while we load the map metadata,
@@ -1516,18 +1516,18 @@ function addChatMessage(msg)
 	switch (msg.type)
 	{
 	case "connect":
-		var formattedUsername = '[font="serif-bold-13"][color="'+ color +'"]' + username + '[/color][/font][color="gold"]'
+		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font][color="gold"]'
 		formatted = '[color="gold"]' + sprintf(translate("%(username)s has joined"), { username: formattedUsername });
 		break;
 
 	case "disconnect":
-		var formattedUsername = '[font="serif-bold-13"][color="'+ color +'"]' + username + '[/color][/font][color="gold"]'
+		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font][color="gold"]'
 		formatted = '[color="gold"]' + sprintf(translate("%(username)s has left"), { username: formattedUsername });
 		break;
 
 	case "message":
 		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]'
-		var formattedUsernamePrefix = '[font="serif-bold-13"]' + sprintf(translate("<%(username)s>"), { username: formattedUsername }) + '[/font]'
+		var formattedUsernamePrefix = '[font="sans-bold-13"]' + sprintf(translate("<%(username)s>"), { username: formattedUsername }) + '[/font]'
 		formatted = sprintf(translate("%(username)s %(message)s"), { username: formattedUsernamePrefix, message: message });
 		break;
 

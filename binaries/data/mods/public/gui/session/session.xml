@@ -239,7 +239,7 @@
 	/>
 
 	<!-- Dev/cheat commands -->
-	<object name="devCommands" size="100%-156 50%-88 100%-8 50%+104" type="image" sprite="devCommandsBackground" z="40"
+	<object name="devCommands" size="100%-225 50%-88 100%-8 50%+104" type="image" sprite="devCommandsBackground" z="40"
 		hidden="true" hotkey="session.devcommands.toggle">
 		<action on="Press">toggleDeveloperOverlay();</action>
 
@@ -754,7 +754,7 @@
 		<!-- ================================  ================================ -->
 		<!-- Phase -->
 		<!-- ================================  ================================ -->
-		<!--<object size="50%+50 4 50%+300 100%-2" name="PhaseTitleBar" type="text" font="serif-bold-stroke-14" textcolor="white"> Death Match :: Village Phase</object>-->
+		<!--<object size="50%+50 4 50%+300 100%-2" name="PhaseTitleBar" type="text" font="sans-bold-stroke-14" textcolor="white"> Death Match :: Village Phase</object>-->
 
 		<!-- ================================  ================================ -->
 		<!-- Observer Mode Warning -->

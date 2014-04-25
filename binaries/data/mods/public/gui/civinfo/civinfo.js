@@ -53,7 +53,7 @@ function initCivNameList()
 // Function to make first char of string big
 function bigFirstLetter(str, size)
 {
-	return '[font="serif-bold-'+(size+6)+'"]' + str[0] + '[/font]' + '[font="serif-bold-'+size+'"]' + str.substring(1) + '[/font]';
+	return '[font="sans-bold-'+(size+6)+'"]' + str[0] + '[/font]' + '[font="sans-bold-'+size+'"]' + str.substring(1) + '[/font]';
 }
 
 // Heading font - bold and mixed caps
@@ -71,7 +71,7 @@ function heading(string, size)
 		if (word.length && word[0].toLowerCase() != word[0])
 			textArray[i] = bigFirstLetter(wordCaps, size);
 		else
-			textArray[i] = '[font="serif-bold-'+size+'"]' + wordCaps + '[/font]';	// TODO: Would not be necessary if we could do nested tags
+			textArray[i] = '[font="sans-bold-'+size+'"]' + wordCaps + '[/font]';	// TODO: Would not be necessary if we could do nested tags
 	}
 	
 	return textArray.join(" ");
@@ -98,7 +98,7 @@ function selectCiv(code)
 	
 	for(var i = 0; i < civInfo.CivBonuses.length; ++i)
 	{
-		bonusCaption += '[color="' + TEXTCOLOR + '"][font="serif-bold-14"]' + civInfo.CivBonuses[i].Name + '[/font] [icon="iconInfo" tooltip="'
+		bonusCaption += '[color="' + TEXTCOLOR + '"][font="sans-bold-14"]' + civInfo.CivBonuses[i].Name + '[/font] [icon="iconInfo" tooltip="'
                     + escapeChars(civInfo.CivBonuses[i].History) + '" tooltip_style="civInfoTooltip"]\n     ' + civInfo.CivBonuses[i].Description + '\n[/color]';
 	}
 
@@ -106,7 +106,7 @@ function selectCiv(code)
 	
 	for(var i = 0; i < civInfo.TeamBonuses.length; ++i)
 	{
-		bonusCaption += '[color="' + TEXTCOLOR + '"][font="serif-bold-14"]' + civInfo.TeamBonuses[i].Name + '[/font] [icon="iconInfo" tooltip="'
+		bonusCaption += '[color="' + TEXTCOLOR + '"][font="sans-bold-14"]' + civInfo.TeamBonuses[i].Name + '[/font] [icon="iconInfo" tooltip="'
                     + escapeChars(civInfo.TeamBonuses[i].History) + '" tooltip_style="civInfoTooltip"]\n     ' + civInfo.TeamBonuses[i].Description + '\n[/color]';
 	}
 	
@@ -121,7 +121,7 @@ function selectCiv(code)
 		var faction = civInfo.Factions[i];
 		for(var j = 0; j < faction.Technologies.length; ++j)
 		{
-			techCaption += '[color="' + TEXTCOLOR + '"][font="serif-bold-14"]' + faction.Technologies[j].Name + '[/font] [icon="iconInfo" tooltip="'
+			techCaption += '[color="' + TEXTCOLOR + '"][font="sans-bold-14"]' + faction.Technologies[j].Name + '[/font] [icon="iconInfo" tooltip="'
                             + escapeChars(faction.Technologies[j].History) + '" tooltip_style="civInfoTooltip"]\n     ' + faction.Technologies[j].Description + '\n[/color]';
 		}
 	}
@@ -130,7 +130,7 @@ function selectCiv(code)
 	
 	for(var i = 0; i < civInfo.Structures.length; ++i)
 	{
-		techCaption += '[color="' + TEXTCOLOR + '"][font="serif-bold-14"]' + civInfo.Structures[i].Name + '[/font][/color] [icon="iconInfo" tooltip="'
+		techCaption += '[color="' + TEXTCOLOR + '"][font="sans-bold-14"]' + civInfo.Structures[i].Name + '[/font][/color] [icon="iconInfo" tooltip="'
                     + escapeChars(civInfo.Structures[i].History) + '" tooltip_style="civInfoTooltip"]\n';
 	}
 	
@@ -145,7 +145,7 @@ function selectCiv(code)
 		var faction = civInfo.Factions[i];
 		for(var j = 0; j < faction.Heroes.length; ++j)
 		{
-			heroCaption += '[color="' + TEXTCOLOR + '"][font="serif-bold-14"]' + faction.Heroes[j].Name + '[/font][/color] [icon="iconInfo" tooltip="'
+			heroCaption += '[color="' + TEXTCOLOR + '"][font="sans-bold-14"]' + faction.Heroes[j].Name + '[/font][/color] [icon="iconInfo" tooltip="'
                             + escapeChars(faction.Heroes[j].History) + '" tooltip_style="civInfoTooltip"]\n';
 		}
 		heroCaption += '\n';

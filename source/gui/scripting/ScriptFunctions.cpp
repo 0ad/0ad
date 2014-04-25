@@ -735,7 +735,7 @@ std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), i
 		sprintf_s(svnRevision, ARRAY_SIZE(svnRevision), "%ls", svn_revision);
 		if (strcmp(svnRevision, "custom build") == 0)
 		{
-			sprintf_s(buf, ARRAY_SIZE(buf), L10n::Instance().Translate("custom build").c_str());
+			sprintf_s(buf, ARRAY_SIZE(buf), "%s", L10n::Instance().Translate("custom build").c_str());
 		}
 		else
 		{

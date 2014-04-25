@@ -38,8 +38,9 @@ function ProcessCommand(player, cmd)
 		break;
 	
 	case "chat":
+	case "aichat":
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({"type": "chat", "player": player, "message": cmd.message});
+		cmpGuiInterface.PushNotification({"type": cmd.type, "player": player, "message": cmd.message});
 		break;
 		
 	case "cheat":
