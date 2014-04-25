@@ -278,7 +278,7 @@ class txt(Extractor):
     def extractFromFile(self, filepath):
         with codecs.open(filepath, "r", encoding='utf-8-sig') as fileObject:
             lineCount = 0
-            for line in [line.strip() for line in fileObject.readlines()]:
+            for line in [line.strip("\n\r") for line in fileObject.readlines()]:
                 lineCount += 1
                 if line:
                     yield line, None, str(lineCount), []
