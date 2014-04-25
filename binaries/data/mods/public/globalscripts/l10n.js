@@ -74,6 +74,36 @@ function translatePluralWithContext(context, singularMessage, pluralMessage, num
 }
 
 /**
+ * The input object should contain either of the following properties:
+ *
+ *     • A ‘message’ property that contains a message to translate.
+ *
+ *     • A ‘list’ property that contains a list of messages to translate as a
+ *     comma-separated list of translated.
+ *
+ * Optionally, the input object may contain a ‘context’ property. In that case,
+ * the value of this property is used as translation context, that is, passed to
+ * the translateWithContext(context, message) function.
+ */
+function translateMessageObject(object)
+{
+	// the translation function
+	var trans = translate;
+	if (object.context)
+		trans = function(msg) { return translateWithContext(object.context, msg);};
+
+	if (object.message)
+		object = trans(object.message);
+	else if (object.list)
+	{
+		var translatedList = object.list.map(trans);
+		object = translatedList.join(translateWithContext("enumeration", ", "));
+	}
+
+	return object;
+}
+
+/**
  * Translates any string value in the specified JavaScript object 
  * that is associated with a key included in the specified keys array.
  *
@@ -115,32 +145,49 @@ function translatePluralWithContext(context, singularMessage, pluralMessage, num
  * So you see that the keys array can also contain lower-level keys,
  * And that you can include objects in the keys array to translate 
  * them with a context, or to join a list of translations.
+ *
+ * Also, the keys array may be an object where properties are keys to translate
+ * and values are translation contexts to use for each key.
  */
 function translateObjectKeys(object, keys) {
-	for (var property in object)
+	// If ‘keys’ is an array, simply translate.
+	if (keys instanceof Array)
 	{
-		if (keys.indexOf(property) > -1)
+		for (var property in object)
 		{
-			if (typeof object[property] == "string")
-				object[property] = translate(object[property]);
-			else if (object[property] instanceof Object)
+			if (keys.indexOf(property) > -1)
 			{
-				// the translation function
-				var trans = translate;
-				if (object[property].context)
-					trans = function(msg) { return translateWithContext(object[property].context, msg);};
-
-				if (object[property].message)
-					object[property] = trans(object[property].message);
-				else if (object[property].list)
+				if (typeof object[property] == "string")
+					object[property] = translate(object[property]);
+				else if (object[property] instanceof Object)
 				{
-					var translatedList = object[property].list.map(trans);
-					object[property] = translatedList.join(translateWithContext("enumeration", ", "));
+					object[property] = translateMessageObject(object[property]);
 				}
 			}
+			else if (object[property] instanceof Object)
+				translateObjectKeys(object[property], keys);
 		}
-		else if (object[property] instanceof Object)
-			translateObjectKeys(object[property], keys);
+	}
+	// If ‘keys’ is not an array, it is an object where keys are properties to
+	// translate and values are translation contexts to use for each key.
+	// An empty value means no context.
+	else
+	{
+		for (var property in object)
+		{
+			if (property in keys)
+			{
+				if (typeof object[property] == "string")
+					if (keys[property])
+						object[property] = translateWithContext(keys[property], object[property]);
+					else
+						object[property] = translate(object[property]);
+				else if (object[property] instanceof Object)
+					object[property] = translateMessageObject(object[property]);
+			}
+			else if (object[property] instanceof Object)
+				translateObjectKeys(object[property], keys);
+		}
 	}
 }
 

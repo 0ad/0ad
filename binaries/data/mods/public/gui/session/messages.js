@@ -144,7 +144,7 @@ function displayNotifications()
 	for each (var n in notifications)
 	{
 		var parameters = n.parameters || {};
-		if (n.translateParameters && n.translateParameters.length)
+		if (n.translateParameters)
 			translateObjectKeys(parameters, n.translateParameters);
 		var message = n.message;
 		if (n.translateMessage)
@@ -164,7 +164,7 @@ function updateTimeNotifications()
 		if (n.translateMessage)
 			message = translate(message);
 		var parameters = n.parameters || {};
-		if (n.translateParameters && n.translateParameters.length)
+		if (n.translateParameters)
 			translateObjectKeys(parameters, n.translateParameters);
 		parameters.time = timeToString(n.time);
 		notificationText += sprintf(message, parameters) + "\n";
