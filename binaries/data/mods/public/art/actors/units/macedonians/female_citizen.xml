@@ -5,6 +5,7 @@
     <variant frequency="1" name="Base">
       <animations>
         <animation file="female/f_idle_01.dae" name="Idle" speed="100"/>
+        <animation file="biped/seeding.dae" name="Seed" speed="120"/>
         <animation file="female/f_walk_01.dae" name="Walk" speed="25"/>
         <animation file="female/f_run_01.dae" name="Run" speed="6"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="250"/>
@@ -141,6 +142,12 @@
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
+    <variant name="Seed">
+      <props>
+        <prop actor="props/units/seed_bag.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+      </props>  
+    </variant>    
   </group>
   <material>player_trans_spec.xml</material>
 </actor>
