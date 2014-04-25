@@ -45,7 +45,7 @@ function getPlayerData(playerAssignments)
 	{
 		var playerState = simState.players[i];
 
-		var name = playerState.name;
+		var name = translate(playerState.name);
 		var civ = playerState.civ;
 		var color = {
 		    "r": playerState.colour.r*255,
