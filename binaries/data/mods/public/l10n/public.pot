@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-25 05:26+0200\n"
+"POT-Creation-Date: 2014-04-25 21:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -422,7 +422,7 @@ msgid "Connecting to server..."
 msgstr ""
 
 #: gui/gamesetup/gamesetup_mp.js:79
-#: gui/session/messages.js:189
+#: gui/session/messages.js:192
 #, python-format
 msgid "Net message: %(message)s"
 msgstr ""
@@ -1102,7 +1102,7 @@ msgid "Neutral"
 msgstr ""
 
 #: gui/session/menu.js:295
-#: gui/session/messages.js:609
+#: gui/session/messages.js:612
 #: gui/session/session.xml:448 (tooltip)
 #: maps/scenarios/Sandbox - Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
@@ -1237,89 +1237,89 @@ msgid ""
 " tribute %(greaterAmount)s."
 msgstr ""
 
-#: gui/session/messages.js:202
+#: gui/session/messages.js:205
 msgid "Waiting for other players to connect..."
 msgstr ""
 
-#: gui/session/messages.js:206
+#: gui/session/messages.js:209
 msgid "Synchronising gameplay with other players..."
 msgstr ""
 
-#: gui/session/messages.js:214
+#: gui/session/messages.js:217
 msgid "Connected to the server."
 msgstr ""
 
-#: gui/session/messages.js:218
+#: gui/session/messages.js:221
 msgid "Connection to the server has been authenticated."
 msgstr ""
 
-#: gui/session/messages.js:223
+#: gui/session/messages.js:226
 msgid "Connection to the server has been lost."
 msgstr ""
 
-#: gui/session/messages.js:223
+#: gui/session/messages.js:226
 msgid "The game has ended."
 msgstr ""
 
-#: gui/session/messages.js:407
+#: gui/session/messages.js:410
 msgid "Unknown player"
-msgstr ""
-
-#: gui/session/messages.js:415
-#, python-format
-msgid "%(player)s has joined the game."
 msgstr ""
 
 #: gui/session/messages.js:418
 #, python-format
+msgid "%(player)s has joined the game."
+msgstr ""
+
+#: gui/session/messages.js:421
+#, python-format
 msgid "%(player)s has left the game."
 msgstr ""
 
-#: gui/session/messages.js:423
+#: gui/session/messages.js:426
 msgid "You have been defeated."
 msgstr ""
 
-#: gui/session/messages.js:425
+#: gui/session/messages.js:428
 #, python-format
 msgid "%(player)s has been defeated."
 msgstr ""
 
-#: gui/session/messages.js:433
+#: gui/session/messages.js:436
 #, python-format
 msgid "You are now allied with %(player)s."
 msgstr ""
 
-#: gui/session/messages.js:435
+#: gui/session/messages.js:438
 #, python-format
 msgid "You are now at war with %(player)s."
 msgstr ""
 
-#: gui/session/messages.js:437
+#: gui/session/messages.js:440
 #, python-format
 msgid "You are now neutral with %(player)s."
 msgstr ""
 
-#: gui/session/messages.js:443
+#: gui/session/messages.js:446
 #, python-format
 msgid "%(player)s is now allied with you."
 msgstr ""
 
-#: gui/session/messages.js:445
+#: gui/session/messages.js:448
 #, python-format
 msgid "%(player)s is now at war with you."
 msgstr ""
 
-#: gui/session/messages.js:447
+#: gui/session/messages.js:450
 #, python-format
 msgid "%(player)s is now neutral with you."
 msgstr ""
 
-#: gui/session/messages.js:466
+#: gui/session/messages.js:469
 #, python-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr ""
 
-#: gui/session/messages.js:467
+#: gui/session/messages.js:470
 #: gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224
 #: gui/session/utility_functions.js:250
@@ -1330,53 +1330,53 @@ msgstr ""
 msgid ", "
 msgstr ""
 
-#: gui/session/messages.js:472
+#: gui/session/messages.js:475
 #, python-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr ""
 
-#: gui/session/messages.js:482
+#: gui/session/messages.js:485
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr ""
 
-#: gui/session/messages.js:495
-#: gui/session/messages.js:500
+#: gui/session/messages.js:498
+#: gui/session/messages.js:503
 #, python-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:508
-#: gui/session/messages.js:512
+#: gui/session/messages.js:511
+#: gui/session/messages.js:515
 #, python-format
 msgid "* %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:520
-#: gui/session/messages.js:521
+#: gui/session/messages.js:523
+#: gui/session/messages.js:524
 #, python-format
 msgid "<%(user)s>"
 msgstr ""
 
-#: gui/session/messages.js:524
-#: gui/session/messages.js:529
+#: gui/session/messages.js:527
+#: gui/session/messages.js:532
 #, python-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:537
-#: gui/session/messages.js:538
+#: gui/session/messages.js:540
+#: gui/session/messages.js:541
 #, python-format
 msgid "%(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:596
+#: gui/session/messages.js:599
 #: gui/gamesetup/gamesetup.xml:86 (caption)
 #: gui/session/session.xml:433 (caption)
 msgid "Team"
 msgstr ""
 
-#: gui/session/messages.js:629
+#: gui/session/messages.js:632
 msgid "Private"
 msgstr ""
 
@@ -2238,7 +2238,7 @@ msgid ""
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
-msgid "Use 2-3 more female citizens to contruct the field."
+msgid "Use 2-3 more female citizens to construct the field."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:83
@@ -2261,7 +2261,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:98
 msgid ""
-"Move your woodcutters to the trees near the storehouse so they dont have to "
+"Move your woodcutters to the trees near the storehouse so they don’t have to "
 "walk as far."
 msgstr ""
 
@@ -2310,8 +2310,8 @@ msgstr ""
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:158
 msgid ""
 "Move 3 women from wood and 3 from stone to farming. Women are cheap to train "
-"initially but later in the game it is best to maxinmize efficiency as you are"
-" able to train more citizen soldiers."
+"initially but later in the game it is best to maximize efficiency as you are "
+"able to train more citizen soldiers."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:168
@@ -2381,7 +2381,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
-" - Don't have any idle units. Shift click queueing and rally points are very "
+" - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
 msgstr ""
 
@@ -2418,7 +2418,7 @@ msgstr ""
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:273
 msgid ""
 " - Don't get carried away on the last point or you will get raided and have "
-"no defence."
+"no defense."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:278
@@ -2436,7 +2436,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:7
 msgid ""
-"Select the citizen-soldier, Right-click on a tree near the Civil Center to "
+"Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
 msgstr ""

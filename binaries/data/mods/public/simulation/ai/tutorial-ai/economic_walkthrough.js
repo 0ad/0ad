@@ -70,7 +70,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 115,
-				"instructions": markForTranslation("Use 2-3 more female citizens to contruct the field.")
+				"instructions": markForTranslation("Use 2-3 more female citizens to construct the field.")
 			},
 			{
 				"trigger": "time",
@@ -95,7 +95,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 170,
-				"instructions": markForTranslation("Move your woodcutters to the trees near the storehouse so they dont have to walk as far.")
+				"instructions": markForTranslation("Move your woodcutters to the trees near the storehouse so they don’t have to walk as far.")
 			},
 			{
 				"trigger": "time",
@@ -155,7 +155,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 310,
-				"instructions": markForTranslation("Move 3 women from wood and 3 from stone to farming. Women are cheap to train initially but later in the game it is best to maxinmize efficiency as you are able to train more citizen soldiers.")
+				"instructions": markForTranslation("Move 3 women from wood and 3 from stone to farming. Women are cheap to train initially but later in the game it is best to maximize efficiency as you are able to train more citizen soldiers.")
 			},
 			{
 				"trigger": "time",
@@ -240,7 +240,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 513,
-				"instructions": markForTranslation(" - Don't have any idle units. Shift click queueing and rally points are very useful.")
+				"instructions": markForTranslation(" - Don't have any idle units. Shift click queuing and rally points are very useful.")
 			},
 			{
 				"trigger": "time",
@@ -270,7 +270,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 531,
-				"instructions": markForTranslation(" - Don't get carried away on the last point or you will get raided and have no defence.")
+				"instructions": markForTranslation(" - Don't get carried away on the last point or you will get raided and have no defense.")
 			},
 			{
 				"trigger": "time",
