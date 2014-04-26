@@ -401,15 +401,20 @@ class xml(Extractor):
                     position = str(element.sourceline)
                     if element.text is not None:
                         context = None
+                        comments = []
                         if "extractJson" in self.keywords[keyword]:
                             jsonExtractor = self.getJsonExtractor()
                             jsonExtractor.setOptions(self.keywords[keyword]["extractJson"])
                             for message, breadcrumbs in jsonExtractor.extractFromString(element.text):
-                                yield message, context, position + ":" + json.formatBreadcrumbs(breadcrumbs), []
+                                yield message, context, position + ":" + json.formatBreadcrumbs(breadcrumbs), comments
                         else:
                             if "locationAttributes" in self.keywords[keyword]:
                                 attributes = [element.get(attribute) for attribute in self.keywords[keyword]["locationAttributes"] if attribute in element.attrib]
                                 position += " ({attributes})".format(attributes=", ".join(attributes))
                             if "tagAsContext" in self.keywords[keyword]:
                                 context = keyword
-                            yield element.text, context, position, []
+                            if "comment" in element.attrib:
+                                comment = element.get("comment")
+                                comment = u" ".join(comment.split()) # Remove tabs, line breaks and unecessary spaces.
+                                comments.append(comment)
+                            yield element.text, context, position, comments

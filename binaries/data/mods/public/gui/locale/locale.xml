@@ -23,7 +23,12 @@
 					<action on="SelectionChange">languageSelectionChanged();</action>
 			</object>
 			<object type="text" size="5 80 40% 105" style="ModernLeftLabelText">
-				<translatableAttribute id="caption">Locale:</translatableAttribute>
+				<translatableAttribute id="caption" comment="A locale is a set of
+					parameters that defines the user’s language, country and any
+					special variant preferences that the user wants to see in
+					their user interface. Here, “Locale” refers to the code that
+					identifies those settings, such as ‘en_US’."
+					>Locale:</translatableAttribute>
 			</object>
 			<object name="localeText" type="text" size="40%+10 80 100% 105" textcolor="white" />
 		

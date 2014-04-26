@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-25 21:45+0200\n"
+"POT-Creation-Date: 2014-04-26 14:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2745,7 +2745,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.xml:47 (caption)
 #: gui/gamesetup/gamesetup_mp.xml:109 (caption)
 #: gui/lobby/prelobby.xml:67 (caption)
-#: gui/locale/locale.xml:41 (caption)
+#: gui/locale/locale.xml:46 (caption)
 #: gui/locale/locale_advanced.xml:75 (caption)
 #: gui/options/options.xml:73 (caption)
 #: gui/savedgames/load.xml:35 (caption)
@@ -3052,16 +3052,20 @@ msgstr ""
 msgid "Language:"
 msgstr ""
 
-#: gui/locale/locale.xml:26 (caption)
+#. A locale is a set of parameters that defines the user’s language, country and
+#. any special variant preferences that the user wants to see in their user
+#. interface. Here, “Locale” refers to the code that identifies those settings,
+#. such as ‘en_US’.
+#: gui/locale/locale.xml:31 (caption)
 msgid "Locale:"
 msgstr ""
 
-#: gui/locale/locale.xml:31 (caption)
+#: gui/locale/locale.xml:36 (caption)
 #: gui/locale/locale_advanced.xml:65 (caption)
 msgid "Accept"
 msgstr ""
 
-#: gui/locale/locale.xml:36 (caption)
+#: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
 msgstr ""
 
