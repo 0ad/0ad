@@ -623,6 +623,7 @@ function initMapNameList()
 	}
 
 	// Update the list control
+	translateObjectKeys(mapListNames, Object.keys(mapListNames));
 	mapSelectionBox.list = mapListNames;
 	mapSelectionBox.list_data = mapListFiles;
 	mapSelectionBox.selected = selected;
@@ -1212,7 +1213,7 @@ function onGameAttributesChange()
 	}
 
 	// Display map name
-	Engine.GetGUIObjectByName("mapInfoName").caption = getMapDisplayName(mapName);
+	Engine.GetGUIObjectByName("mapInfoName").caption = translate(getMapDisplayName(mapName));
 
 	// Load the description from the map file, if there is one
 	var description = mapSettings.Description || translate("Sorry, no description available.");
@@ -1221,7 +1222,7 @@ function onGameAttributesChange()
 		description += g_NavalWarning;
 
 	// Describe the number of players
-	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: description });
+	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: translate(description) });
 
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
@@ -1246,7 +1247,7 @@ function onGameAttributesChange()
 		// Common to all game types
 		var color = iColorToString(getSetting(pData, pDefs, "Colour"));
 		pColor.sprite = "colour:"+color+" 100";
-		pName.caption = getSetting(pData, pDefs, "Name");
+		pName.caption = translate(getSetting(pData, pDefs, "Name"));
 
 		var team = getSetting(pData, pDefs, "Team");
 		var civ = getSetting(pData, pDefs, "Civ");
@@ -1638,10 +1639,10 @@ function updateReadyUI()
 		var pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player - 1] : {};
 		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[g_PlayerAssignments[guid].player - 1] : {};			
 		if (g_PlayerAssignments[guid].status || !g_IsNetworked)
-			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = '[color="0 255 0"]' + getSetting(pData, pDefs, "Name") + '[/color]';
+			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
 		else
 		{
-			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = getSetting(pData, pDefs, "Name");
+			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = translate(getSetting(pData, pDefs, "Name"));
 			allReady = false;
 		}
 	}
@@ -1653,7 +1654,7 @@ function updateReadyUI()
 		var pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[playerid] : {};
 		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[playerid] : {};
 		if (g_GameAttributes.settings.PlayerData[playerid].AI != "" || g_GameAttributes.settings.PlayerData[playerid].Name == "Unassigned")
-			Engine.GetGUIObjectByName("playerName[" + playerid + "]").caption = '[color="0 255 0"]' + getSetting(pData, pDefs, "Name") + '[/color]';
+			Engine.GetGUIObjectByName("playerName[" + playerid + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
 	}
 	// The host is not allowed to start until everyone is ready.
 	if (g_IsNetworked && g_IsController)
