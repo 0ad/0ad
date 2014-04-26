@@ -214,15 +214,23 @@ template<> struct static_assert_<true>
 #define cassert2(expr) extern char CASSERT_FAILURE[1][(expr)]
 
 
-// indicate a class is noncopyable (usually due to const or reference members).
-// example:
-// class C {
-//   NONCOPYABLE(C);
-// public: // etc.
-// };
-// this is preferable to inheritance from boost::noncopyable because it
-// avoids ICC 11 W4 warnings about non-virtual dtors and suppression of
-// the copy assignment operator.
+/**
+ * Indicates that a class is noncopyable (usually due to const or reference
+ * members, or because the class works as a singleton).
+ *
+ * For example:
+ *
+ * @code
+ * class ClassName {
+ *   NONCOPYABLE(ClassName);
+ * public: // etc.
+ * };
+ * @endcode
+ *
+ * This is preferable to inheritance from boost::noncopyable because it avoids
+ * ICC 11 W4 warnings about non-virtual dtors and suppression of the copy
+ * assignment operator.
+ */
 #define NONCOPYABLE(className)\
 private:\
 	className(const className&);\
