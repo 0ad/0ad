@@ -66,12 +66,12 @@
             </repeat>
         </object>
         <object type="button" style="StoneButton" size="320 100%-48 50%-4 100%-16">
-            <translatableAttribute id="caption">Save</translatableAttribute>
-            <action on="Press">Engine.ConfigDB_WriteFile("user", "config/user.cfg");Engine.PopGuiPage();</action>
-        </object>
-        <object type="button" style="StoneButton" size="50%+4 100%-48 612 100%-16">
             <translatableAttribute id="caption">Cancel</translatableAttribute>
             <action on="Press">Engine.PopGuiPage();</action>
+        </object>
+        <object type="button" style="StoneButton" size="50%+4 100%-48 612 100%-16">
+            <translatableAttribute id="caption">Save</translatableAttribute>
+            <action on="Press">Engine.ConfigDB_WriteFile("user", "config/user.cfg");Engine.PopGuiPage();</action>
         </object>
     </object>
 </objects>
