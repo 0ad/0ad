@@ -329,7 +329,8 @@ std::string L10n::TranslateLines(const std::string& sourceString)
 	std::string line;
 
 	while (std::getline(stringOfLines, line)) {
-		targetString.append(Translate(line));
+		if (!line.empty())
+			targetString.append(Translate(line));
 		targetString.append("\n");
 	}
 
