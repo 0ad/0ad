@@ -3,6 +3,18 @@ var g_pluralTranslations = {};
 var g_translationsWithContext = {};
 var g_pluralTranslationsWithContext = {};
 
+// Checks if the specified variable is a string, and if it is, it checks that it
+// is not empty.
+function isNonEmptyString(variable)
+{
+	if (typeof variable != "string")
+		return false;
+	else if (variable.trim())
+		return true;
+	else
+		return false;
+}
+
 // Translates the specified English message into the current language.
 //
 // This function relies on the g_translations cache when possible. You should use this function instead of
@@ -157,7 +169,7 @@ function translateObjectKeys(object, keys) {
 		{
 			if (keys.indexOf(property) > -1)
 			{
-				if (typeof object[property] == "string")
+				if (isNonEmptyString(object[property]))
 					object[property] = translate(object[property]);
 				else if (object[property] instanceof Object)
 				{
@@ -177,7 +189,7 @@ function translateObjectKeys(object, keys) {
 		{
 			if (property in keys)
 			{
-				if (typeof object[property] == "string")
+				if (isNonEmptyString(object[property]))
 					if (keys[property])
 						object[property] = translateWithContext(keys[property], object[property]);
 					else
