@@ -202,15 +202,8 @@ function openSave()
 
 function openSettings()
 {
-	Engine.GetGUIObjectByName("settingsDialogPanel").hidden = false;
 	pauseGame();
-}
-
-function closeSettings(resume)
-{
-	Engine.GetGUIObjectByName("settingsDialogPanel").hidden = true;
-	if (resume)
-		resumeGame();
+	Engine.PushGuiPage("page_options.xml");
 }
 
 function openChat()
@@ -228,8 +221,6 @@ function closeChat()
 
 function toggleChatWindow(teamChat)
 {
-	closeSettings();
-
 	var chatWindow = Engine.GetGUIObjectByName("chatDialogPanel");
 	var chatInput = Engine.GetGUIObjectByName("chatInput");
 
@@ -683,7 +674,6 @@ function toggleDeveloperOverlay()
 	else
 		submitChatDirectly(translate("The Developer Overlay was closed."));
 	// Update the options dialog
-	Engine.GetGUIObjectByName("developerOverlayCheckbox").checked = devCommands.hidden;
 	devCommands.hidden = !devCommands.hidden;
 }
 
@@ -693,7 +683,6 @@ function closeOpenDialogs()
 	closeChat();
 	closeDiplomacy();
 	closeTrade();
-	closeSettings(false);
 }
 
 function formatTributeTooltip(player, resource, amount)
