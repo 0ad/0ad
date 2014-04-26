@@ -153,32 +153,6 @@ namespace JSI_L10n
 	std::vector<std::wstring> TranslateArray(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::vector<std::wstring> sourceArray);
 
 	/**
-	 * Returns the input string, untouched.
-	 *
-	 * Used to mark strings for translation at a later point in the
-	 * implementation than the point where they are defined as literals.
-	 *
-	 * This helper function is used to mark strings for translation when they
-	 * are defined in places where they cannot be translated. For example, this
-	 * function is used extensively in the ‘simulation’ folder of the ‘public’
-	 * mod.
-	 *
-	 * The message extraction system is configured to extract strings passed as
-	 * a parameter to MarkToTranslate(), so that translators can translate those
-	 * strings. In the game logic, the strings are translated at a different,
-	 * later point using Translate() . For example, continuing the example
-	 * above, strings marked for translation in the ‘simulation’ code are
-	 * actually translated in the ‘gui’ code.
-	 *
-	 * @param pCxPrivate JavaScript context.
-	 * @param sourceString String to mark for translation.
-	 * @return @p sourceString
-	 *
-	 * @sa http://trac.wildfiregames.com/wiki/Message_Extraction
-	 */
-	std::wstring MarkToTranslate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring sourceString);
-
-	/**
 	 * Returns the specified date using the specified date format.
 	 *
 	 * This is a JavaScript interface to
