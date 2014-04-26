@@ -239,10 +239,10 @@
 	/>
 
 	<!-- Dev/cheat commands -->
-	<object name="devCommands" size="100%-125 50%-88 100%-8 50%+104" type="image" sprite="devCommandsBackground" z="40"
+	<object name="devCommands" size="100%-225 50%-88 100%-8 50%+104" type="image" sprite="devCommandsBackground" z="40"
 		hidden="true" hotkey="session.devcommands.toggle">
 		<action on="Press">toggleDeveloperOverlay();</action>
-		<action on="tick">
+		<action on="Tick">
 			if (this.hidden != (Engine.ConfigDB_GetValue("user", "developeroverlay.enable") === "false"))
 				toggleDeveloperOverlay();
 		</action>

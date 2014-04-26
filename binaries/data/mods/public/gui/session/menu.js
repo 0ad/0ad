@@ -675,6 +675,8 @@ function toggleDeveloperOverlay()
 		submitChatDirectly(translate("The Developer Overlay was closed."));
 	// Update the options dialog
 	devCommands.hidden = !devCommands.hidden;
+	// Save the changes
+	Engine.ConfigDB_CreateValue("user", "developeroverlay.enable", String(!devCommands.hidden) );
 }
 
 function closeOpenDialogs()

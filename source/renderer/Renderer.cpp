@@ -724,6 +724,12 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_SHOWSKY:
 			m_Options.m_ShowSky = value;
 			break;
+		case OPT_SMOOTHLOS:
+			m_Options.m_SmoothLOS = value;
+			break;
+		case OPT_POSTPROC:
+			m_Options.m_Postproc = value;
+			break;
 		default:
 			debug_warn(L"CRenderer::SetOptionBool: unknown option");
 			break;
