@@ -1617,7 +1617,7 @@ function toggleReady()
 	if (g_IsReady)
 	{
 		Engine.SendNetworkReady(1);
-		Engine.GetGUIObjectByName("startGame").caption = translate("I'm not ready.");
+		Engine.GetGUIObjectByName("startGame").caption = translate("I'm not ready");
 		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you are not ready to play.");
 	}
 	else
