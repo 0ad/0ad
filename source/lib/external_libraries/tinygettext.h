@@ -35,6 +35,7 @@
 
 #include <tinygettext/tinygettext.hpp>
 #include <tinygettext/po_parser.hpp>
+#include <tinygettext/log.hpp>
 
 #if MSC_VERSION
 # pragma warning(pop)

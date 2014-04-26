@@ -45,6 +45,17 @@ L10n& L10n::Instance()
 L10n::L10n()
 	: currentLocaleIsOriginalGameLocale(false), useLongStrings(false), dictionary(new tinygettext::Dictionary())
 {
+	// Determine whether or not to print tinygettext messages to the standard
+	// error output, which it tinygettext’s default behavior, but not ours.
+	bool tinygettext_debug = false;
+	CFG_GET_VAL("tinygettext.debug", Bool, tinygettext_debug);
+	if (!tinygettext_debug)
+	{
+		tinygettext::Log::log_info_callback = 0;
+		tinygettext::Log::log_warning_callback = 0;
+		tinygettext::Log::log_error_callback = 0;
+	}
+
 	LoadListOfAvailableLocales();
 	ReevaluateCurrentLocaleAndReload();
 }
