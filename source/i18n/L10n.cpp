@@ -73,8 +73,6 @@ bool L10n::SaveLocale(const std::string& localeCode)
 
 bool L10n::SaveLocale(Locale locale)
 {
-	// TODO: Use the ConfigDB functions exposed to js to change the config value
-	// Save the new locale in the settings file.
 	if (!ValidateLocale(locale))
 		return false;
 
