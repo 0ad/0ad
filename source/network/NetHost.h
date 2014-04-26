@@ -46,6 +46,9 @@ struct PlayerAssignment
 
 	/// The player that the given host controls, or -1 if none (observer)
 	i32 m_PlayerID;
+
+	/// Status - Ready or not: 0 for not ready, 1 for ready
+	u8 m_Status;
 };
 
 typedef std::map<CStr, PlayerAssignment> PlayerAssignmentMap; // map from GUID -> assignment

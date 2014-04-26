@@ -344,11 +344,32 @@ void AssignNetworkPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int pla
 	g_NetServer->AssignPlayer(playerID, guid);
 }
 
+void SetNetworkPlayerStatus(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string guid, int ready)
+{
+	ENSURE(g_NetServer);
+
+	g_NetServer->SetPlayerReady(guid, ready);
+}
+
+void ClearAllPlayerReady (ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	ENSURE(g_NetServer);
+
+	g_NetServer->ClearAllPlayerReady();
+}
+
 void SendNetworkChat(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring message)
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendChatMessage(message);
+}
+
+void SendNetworkReady(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int message)
+{
+	ENSURE(g_NetClient);
+
+	g_NetClient->SendReadyMessage(message);
 }
 
 std::vector<CScriptValRooted> GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
@@ -861,7 +882,10 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<CScriptVal, &PollNetworkClient>("PollNetworkClient");
 	scriptInterface.RegisterFunction<void, CScriptVal, &SetNetworkGameAttributes>("SetNetworkGameAttributes");
 	scriptInterface.RegisterFunction<void, int, std::string, &AssignNetworkPlayer>("AssignNetworkPlayer");
+	scriptInterface.RegisterFunction<void, std::string, int, &SetNetworkPlayerStatus>("SetNetworkPlayerStatus");
+	scriptInterface.RegisterFunction<void, &ClearAllPlayerReady>("ClearAllPlayerReady");
 	scriptInterface.RegisterFunction<void, std::wstring, &SendNetworkChat>("SendNetworkChat");
+	scriptInterface.RegisterFunction<void, int, &SendNetworkReady>("SendNetworkReady");
 	scriptInterface.RegisterFunction<std::vector<CScriptValRooted>, &GetAIs>("GetAIs");
 	scriptInterface.RegisterFunction<CScriptValRooted, &GetEngineInfo>("GetEngineInfo");
 

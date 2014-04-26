@@ -87,6 +87,7 @@ CNetClient::CNetClient(CGame* game) :
 	AddTransition(NCS_INITIAL_GAMESETUP, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
 
 	AddTransition(NCS_PREGAME, (uint)NMT_CHAT, NCS_PREGAME, (void*)&OnChat, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_READY, NCS_PREGAME, (void*)&OnReady, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_PREGAME, (void*)&OnPlayerAssignment, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_GAME_START, NCS_LOADING, (void*)&OnGameStart, context);
@@ -214,6 +215,7 @@ void CNetClient::PostPlayerAssignmentsToScript()
 		GetScriptInterface().Eval("({})", host);
 		GetScriptInterface().SetProperty(host.get(), "name", std::wstring(it->second.m_Name), false);
 		GetScriptInterface().SetProperty(host.get(), "player", it->second.m_PlayerID, false);
+		GetScriptInterface().SetProperty(host.get(), "status", it->second.m_Status, false);
 		GetScriptInterface().SetProperty(hosts.get(), it->first.c_str(), host, false);
 	}
 
@@ -252,6 +254,13 @@ void CNetClient::SendChatMessage(const std::wstring& text)
 	CChatMessage chat;
 	chat.m_Message = text;
 	SendMessage(&chat);
+}
+
+void CNetClient::SendReadyMessage(const int status)
+{
+	CReadyMessage readyStatus;
+	readyStatus.m_Status = status;
+	SendMessage(&readyStatus);
 }
 
 bool CNetClient::HandleMessage(CNetMessage* message)
@@ -419,6 +428,23 @@ bool CNetClient::OnChat(void* context, CFsmEvent* event)
 	return true;
 }
 
+bool CNetClient::OnReady(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_READY);
+
+	CNetClient* client = (CNetClient*)context;
+
+	CReadyMessage* message = (CReadyMessage*)event->GetParamRef();
+
+	CScriptValRooted msg;
+	client->GetScriptInterface().Eval("({'type':'ready'})", msg);
+	client->GetScriptInterface().SetProperty(msg.get(), "guid", std::string(message->m_GUID), false);
+	client->GetScriptInterface().SetProperty(msg.get(), "status", int (message->m_Status), false);
+	client->PushGuiMessage(msg);
+
+	return true;
+}
+
 bool CNetClient::OnGameSetup(void* context, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_GAME_SETUP);
@@ -453,6 +479,7 @@ bool CNetClient::OnPlayerAssignment(void* context, CFsmEvent* event)
 		assignment.m_Enabled = true;
 		assignment.m_Name = message->m_Hosts[i].m_Name;
 		assignment.m_PlayerID = message->m_Hosts[i].m_PlayerID;
+		assignment.m_Status = message->m_Hosts[i].m_Status;
 		newPlayerAssignments[message->m_Hosts[i].m_GUID] = assignment;
 	}
 

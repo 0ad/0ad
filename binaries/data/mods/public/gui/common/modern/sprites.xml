@@ -271,11 +271,15 @@
 	<sprite name = "ModernDropDownArrow">
 		<image texture = "global/modern/dropdown-arrow.png"
 			real_texture_placement = "0 0 16 16"
+			texture_size="0 0 16 16"
+			size="0 6 16 22"
 		/>
 	</sprite>
 	<sprite name = "ModernDropDownArrowHighlight">
 		<image texture = "global/modern/dropdown-arrow.png"
 			real_texture_placement = "0 0 16 16"
+			texture_size="0 0 16 16"
+			size="0 6 16 22"
 		/>
 	</sprite>
 	<sprite name="ModernTickOn">
@@ -294,6 +298,21 @@
 		<image	texture="global/modern/tick-disabled.png"
 			real_texture_placement="0 0 27 27"
 			size="0 0 22 22"
+		/>
+	</sprite>
+	<sprite name="ModernGear">
+		<image	texture="global/modern/gear.png"
+			texture_size="0 0 24 24"
+		/>
+	</sprite>
+	<sprite name="ModernGearHover">
+		<image	texture="global/modern/gear-hover.png"
+			texture_size="0 0 24 24"
+		/>
+	</sprite>
+	<sprite name="ModernGearPressed">
+		<image	texture="global/modern/gear-press.png"
+			texture_size="0 0 24 24"
 		/>
 	</sprite>
 </sprites>
