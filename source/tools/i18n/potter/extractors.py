@@ -418,3 +418,37 @@ class xml(Extractor):
                                 comment = u" ".join(comment.split()) # Remove tabs, line breaks and unecessary spaces.
                                 comments.append(comment)
                             yield element.text, context, position, comments
+
+
+# Hack from http://stackoverflow.com/a/2819788
+class FakeSectionHeader(object):
+
+    def __init__(self, fp):
+        self.fp = fp
+        self.sechead = '[root]\n'
+
+    def readline(self):
+        if self.sechead:
+            try: return self.sechead
+            finally: self.sechead = None
+        else: return self.fp.readline()
+
+
+class ini(Extractor):
+    """ Extract messages from INI files.
+    """
+
+    def __init__(self, directoryPath, filemasks, options):
+        super(ini, self).__init__(directoryPath, filemasks, options)
+        self.keywords = self.options.get("keywords", [])
+
+    def extractFromFile(self, filepath):
+        import ConfigParser
+        config = ConfigParser.RawConfigParser()
+        config.readfp(FakeSectionHeader(open(filepath)))
+        for keyword in self.keywords:
+            message = config.get("root", keyword).strip('"').strip("'")
+            context = None
+            position = " ({})".format(keyword)
+            comments = []
+            yield message, context, position, comments
