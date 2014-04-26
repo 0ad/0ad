@@ -149,31 +149,23 @@ std::string L10n::GetDictionaryLocale(std::string configLocaleString)
 // First, try to get a valid locale from the config, then check if the system locale can be used and otherwise fall back to en_US.
 void L10n::GetDictionaryLocale(std::string configLocaleString, Locale& outLocale)
 {
-	bool validConfigLocale = false;
 	if (!configLocaleString.empty())
 	{
 		Locale configLocale = Locale::createCanonical(configLocaleString.c_str());
 		if (ValidateLocale(configLocale))
 		{
 			outLocale = configLocale;
-			validConfigLocale = true;
+			return;
 		}
 		else
 			LOGWARNING(L"The configured locale is not valid or no translations are available. Falling back to another locale.");
 	}
 	
-	if (!validConfigLocale)
-	{
-		Locale systemLocale = Locale::getDefault();
-		if (ValidateLocale(systemLocale))
-		{
-			outLocale = systemLocale;
-		}
-		else
-		{
-			outLocale = Locale::getUS();
-		}
-	}
+	Locale systemLocale = Locale::getDefault();
+	if (ValidateLocale(systemLocale))
+		outLocale = systemLocale;
+	else
+		outLocale = Locale::getUS();
 }
 
 
