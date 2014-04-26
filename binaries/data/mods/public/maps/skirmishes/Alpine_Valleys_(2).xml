@@ -34,14 +34,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="236.839" y="79.5999" z="315.989"/>
-		<Rotation angle="0.0152777"/>
+		<Position x="504.181" y="106.64" z="854.175"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "The high peaks and valleys of the Alps.\u000a\u000aEach player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range.",
+  "Description": "The high peaks and valleys of the Alps.\n\nEach player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -14790,6 +14790,48 @@
 			<Position x="526.08674" z="453.20301"/>
 			<Orientation y="0.66745"/>
 			<Actor seed="48470"/>
+		</Entity>
+		<Entity uid="2379">
+			<Template>gaia/fauna_wolf</Template>
+			<Player>0</Player>
+			<Position x="98.21531" z="544.11579"/>
+			<Orientation y="-2.52395"/>
+			<Actor seed="58142"/>
+		</Entity>
+		<Entity uid="2380">
+			<Template>gaia/fauna_wolf</Template>
+			<Player>0</Player>
+			<Position x="961.28437" z="503.91663"/>
+			<Orientation y="-1.99158"/>
+			<Actor seed="26368"/>
+		</Entity>
+		<Entity uid="2381">
+			<Template>gaia/fauna_wolf</Template>
+			<Player>0</Player>
+			<Position x="584.18946" z="66.01435"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63678"/>
+		</Entity>
+		<Entity uid="2382">
+			<Template>gaia/fauna_wolf</Template>
+			<Player>0</Player>
+			<Position x="759.43525" z="892.58014"/>
+			<Orientation y="-2.09366"/>
+			<Actor seed="15544"/>
+		</Entity>
+		<Entity uid="2383">
+			<Template>gaia/fauna_wolf</Template>
+			<Player>0</Player>
+			<Position x="224.15215" z="790.85981"/>
+			<Orientation y="1.63305"/>
+			<Actor seed="4372"/>
+		</Entity>
+		<Entity uid="2385">
+			<Template>gaia/fauna_wolf</Template>
+			<Player>0</Player>
+			<Position x="498.02521" z="978.10413"/>
+			<Orientation y="1.0483"/>
+			<Actor seed="53406"/>
 		</Entity>
 	</Entities>
 	<Paths/>

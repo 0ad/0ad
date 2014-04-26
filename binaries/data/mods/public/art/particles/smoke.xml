@@ -4,8 +4,6 @@
     <texture>art/textures/particles/smoke_64a.png</texture>
     <blend mode="over"/>
 
-    <start_full/>
-
     <constant name="emissionrate" value="9.0"/>
     <uniform name="lifetime" min="14.0" max="16.0"/>
 
