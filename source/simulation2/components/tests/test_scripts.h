@@ -68,7 +68,7 @@ public:
 		for (size_t i = 0; i < paths.size(); ++i)
 		{
 			CSimContext context;
-			CComponentManager componentManager(context, ScriptInterface::CreateRuntime(), true);
+			CComponentManager componentManager(context, g_ScriptRuntime, true);
 
 			ScriptTestSetup(componentManager.GetScriptInterface());
 

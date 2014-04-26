@@ -34,7 +34,7 @@ public:
 
 	void test_basic()
 	{
-		ComponentTestHelper test(ScriptInterface::CreateRuntime());
+		ComponentTestHelper test(g_ScriptRuntime);
 
 		std::vector<SimulationCommand> empty;
 

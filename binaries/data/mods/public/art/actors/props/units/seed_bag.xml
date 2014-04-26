@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+	<castshadow/>
+	<float/>
+	<group>
+		<variant frequency="100" name="Base">
+			<mesh>props/seed_bag.dae</mesh>
+			<textures><texture file="props/basket_hele_1.dds" name="baseTex"/></textures>
+		</variant>
+	</group>
+	<material>player_trans.xml</material>
+</actor>

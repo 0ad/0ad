@@ -4,7 +4,7 @@ var introductoryTutorial = [
 	"instructions": markForTranslation("Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then Right-click on a berry bush nearby to make the unit collect food. Female citizens gather food faster than other units.")
 },
 {
-	"instructions": markForTranslation("Select the citizen-soldier, Right-click on a tree near the Civil Center to begin collecting wood. Citizen-soldiers gather wood faster than female citizens."),
+	"instructions": markForTranslation("Select the citizen-soldier, right-click on a tree near the Civil Center to begin collecting wood. Citizen-soldiers gather wood faster than female citizens."),
 	"trigger": "food_gathered"
 },
 {

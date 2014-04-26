@@ -74,7 +74,7 @@ public:
 
 	void test_Debug_basic()
 	{
-		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		std::stringstream stream;
 		CDebugSerializer serialize(script, stream);
 		serialize.NumberI32_Unbounded("x", -123);
@@ -85,7 +85,7 @@ public:
 
 	void test_Debug_floats()
 	{
-		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		std::stringstream stream;
 		CDebugSerializer serialize(script, stream);
 		serialize.NumberFloat_Unbounded("x", 1e4f);
@@ -116,7 +116,7 @@ public:
 
 	void test_Debug_types()
 	{
-		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		std::stringstream stream;
 		CDebugSerializer serialize(script, stream);
 
@@ -147,7 +147,7 @@ public:
 
 	void test_Std_basic()
 	{
-		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		std::stringstream stream;
 		CStdSerializer serialize(script, stream);
 
@@ -173,7 +173,7 @@ public:
 
 	void test_Std_types()
 	{
-		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		std::stringstream stream;
 		CStdSerializer serialize(script, stream);
 
@@ -239,7 +239,7 @@ public:
 
 	void test_Hash_basic()
 	{
-		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		CHashSerializer serialize(script);
 
 		serialize.NumberI32_Unbounded("x", -123);
@@ -253,7 +253,7 @@ public:
 
 	void test_bounds()
 	{
-		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		std::stringstream stream;
 		CDebugSerializer serialize(script, stream);
 		serialize.NumberI32("x", 16, -16, 16);
@@ -266,7 +266,7 @@ public:
 
 	void test_script_basic()
 	{
-		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		CScriptVal obj;
 		TS_ASSERT(script.Eval("({'x': 123, 'y': [1, 1.5, '2', 'test', undefined, null, true, false]})", obj));
 
@@ -339,7 +339,7 @@ public:
 
 	void helper_script_roundtrip(const char* msg, const char* input, const char* expected, size_t expstreamlen = 0, const char* expstream = NULL)
 	{
-		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		CScriptVal obj;
 		TSM_ASSERT(msg, script.Eval(input, obj));
 
@@ -566,7 +566,7 @@ public:
 
 	void test_script_exceptions()
 	{
-		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		CScriptVal obj;
 
 		std::stringstream stream;
@@ -598,7 +598,7 @@ public:
 	{
 		const char* input = "var x = {}; for (var i=0;i<256;++i) x[i]=Math.pow(i, 2); x";
 
-		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		CScriptVal obj;
 		TS_ASSERT(script.Eval(input, obj));
 
@@ -640,7 +640,7 @@ public:
 
 		CTerrain terrain;
 
-		CSimulation2 sim2(NULL, ScriptInterface::CreateRuntime(), &terrain);
+		CSimulation2 sim2(NULL, g_ScriptRuntime, &terrain);
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
