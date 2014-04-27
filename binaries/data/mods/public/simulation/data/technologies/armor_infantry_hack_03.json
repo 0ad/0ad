@@ -1,6 +1,9 @@
 {
 	"pair": "pair_inf_armor_03",
 	"genericName": "Scale Body Armor",
+	"specificName": {
+		"rome": "Lorica Squamata"
+	},
 	"description": "Body armor reinforced with bronze scales.",
 	"cost": {"food": 150, "wood": 0, "stone": 0, "metal": 150},
 	"requirements": {"tech": "phase_city"},
