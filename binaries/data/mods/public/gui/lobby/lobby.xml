@@ -54,45 +54,45 @@
 				<object name="sgMapName" size="0 5 100% 20" type="text" style="ModernLabelText"/>
 
 				<!-- Map Preview -->
-				<object name="sgMapPreview" size="5 25 100%-5 235"  type="image" sprite=""/>
+				<object name="sgMapPreview" size="5 25 100%-5 190"  type="image" sprite=""/>
 
-				<object size="5 239 100%-5 240" type="image" sprite="ModernWhiteLine" z="25"/>
+				<object size="5 194 100%-5 195" type="image" sprite="ModernWhiteLine" z="25"/>
 
 				<!-- Map Type -->
-				<object size="5 240 50% 265" type="image" sprite="ModernItemBackShadeLeft">
+				<object size="5 195 50% 240" type="image" sprite="ModernItemBackShadeLeft">
 					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">
 						<translatableAttribute id="caption">Map Type:</translatableAttribute>
 					</object>
 				</object>
-				<object size="50% 240 100%-5 265" type="image" sprite="ModernItemBackShadeRight">
+				<object size="50% 195 100%-5 240" type="image" sprite="ModernItemBackShadeRight">
 					<object name="sgMapType" size="0 0 100% 100%" type="text" style="ModernLabelText" text_align="left"/>
 				</object>
 
-				<object size="5 264 100%-5 265" type="image" sprite="ModernWhiteLine" z="25"/>
+				<object size="5 239 100%-5 240" type="image" sprite="ModernWhiteLine" z="25"/>
 
 				<!-- Map Size -->
-				<object size="5 265 50% 290" type="image" sprite="ModernItemBackShadeLeft">
+				<object size="5 240 50% 285" type="image" sprite="ModernItemBackShadeLeft">
 					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">
 						<translatableAttribute id="caption">Map Size:</translatableAttribute>
 					</object>
 				</object>
-				<object size="50% 265 100%-5 290" type="image" sprite="ModernItemBackShadeRight">
+				<object size="50% 240 100%-5 285" type="image" sprite="ModernItemBackShadeRight">
 					<object name="sgMapSize" size="0 0 100% 100%" type="text" style="ModernLabelText" text_align="left"/>
 				</object>
 
-				<object size="5 289 100%-5 290" type="image" sprite="ModernWhiteLine" z="25"/>
+				<object size="5 284 100%-5 285" type="image" sprite="ModernWhiteLine" z="25"/>
 
 				<!-- Map Description -->
-				<object type="image" sprite="ModernDarkBoxWhite" size="3% 295 97% 75%">
+				<object type="image" sprite="ModernDarkBoxWhite" size="3% 290 97% 75%">
 					<object name="sgMapDescription" size="0 0 100% 100%" type="text" style="MapDescription"/>
 				</object>
 
-				<object type="image" sprite="ModernDarkBoxWhite" size="3% 76% 97% 99%">
+				<object type="image" sprite="ModernDarkBoxWhite" size="3% 75%+5 97% 99%">
 					<!-- Number of Players -->
-					<object size="32% 3% 57% 12%" type="text" style="ModernLabelText" text_align="left">
+					<object size="0% 3% 57% 12%" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Players:</translatableAttribute>
 					</object>
-					<object name="sgNbPlayers" size="52% 3% 62% 12%" type="text" style="ModernLabelText" text_align="left"/>
+					<object name="sgNbPlayers" size="58% 3% 70% 12%" type="text" style="ModernLeftLabelText" text_align="left"/>
 
 					<!-- Player Names -->
 					<object name="sgPlayersNames" size="0 15% 100% 100%" type="text" style="MapPlayerList"/>
