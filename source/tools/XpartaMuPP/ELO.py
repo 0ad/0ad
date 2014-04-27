@@ -55,7 +55,7 @@ def get_rating_adjustment(rating, opponent_rating, games_played, opponent_games_
 
     TODO: Team games.
   """
-  player_volatility = (games_played / volatility_constant + 0.25) / 1.25
+  player_volatility = (min(games_played, volatility_constant) / volatility_constant + 0.25) / 1.25
   rating_k_factor = 50.0 * (min(rating, elo_k_factor_constant_rating) / elo_k_factor_constant_rating + 1.0) / 2.0
   volatility = rating_k_factor * player_volatility
   difference = opponent_rating - rating
