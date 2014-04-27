@@ -112,11 +112,12 @@
 			</object>
 
 
-			<object size="100%-327 363 100%-25 438" name="mapFilterSelectionTooltip">
+			<object size="100%-275 355 100%-25 470" name="mapFilterSelectionTooltip">
 				<object name="mapTypeText" type="text" style="ModernLeftLabelText" size="0 0 100% 30"  hidden="true"/>
 				<object name="mapFilterText" type="text" style="ModernLeftLabelText" size="0 32 100% 62"  hidden="true"/>
 				<object name="mapSelectionText" type="text" style="ModernLeftLabelText" size="0 64 100% 94"  hidden="true"/>
-				<object name="mapSizeText" type="text" style="ModernLeftLabelText" size="0 96 100% 126" hidden="true"/>				
+				<object name="mapInfoName" type="text" style="ModernLeftLabelText" size="0 96 100% 126"  hidden="true"/>
+				<object name="mapSizeText" type="text" style="ModernLeftLabelText" size="0 128 100% 158" hidden="true"/>				
 			</object>
 
 			<object name="mapTypeSelection"
@@ -169,7 +170,7 @@
 
 			<!-- Map Description -->
 			<object size="100%-425 529 100%-25 100%-60">
-				<object name="mapInfoName" type="text" style="ModernLeftLabelText" size="0 0 100%-120 30"/>
+				
 				<object type="image" sprite="ModernDarkBoxGold" size="0 30 100% 100%">
 					<object name="mapInfoDescription" type="text" style="MapDescription" size="0 0 100% 100%"/>
 				</object>
