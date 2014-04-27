@@ -379,7 +379,7 @@ function addChatMessage(msg, playerAssignments)
 	// No context by default. May be set by parseChatCommands().
 	msg.context = "";
 
-	if (playerAssignments[msg.guid])
+	if ("guid" in msg && playerAssignments[msg.guid])
 	{
 		var n = playerAssignments[msg.guid].player;
 		// Observers have an ID of -1 which is not a valid index.
