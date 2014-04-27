@@ -177,7 +177,7 @@ function updateBuildingPlacementPreview()
 
 function findGatherType(gatherer, supply)
 {
-	if (!("resourceGatherRates" in gatherer) || !supply)
+	if (!("resourceGatherRates" in gatherer) || !gatherer.resourceGatherRates || !supply)
 		return undefined;
 	if (gatherer.resourceGatherRates[supply.type.generic+"."+supply.type.specific])
 		return supply.type.specific;
