@@ -80,13 +80,6 @@ void JSI_Lobby::DisconnectXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPriva
 	g_XmppClient->disconnect();
 }
 
-void JSI_Lobby::RecvXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	if (!g_XmppClient)
-		return;
-	g_XmppClient->recv();
-}
-
 void JSI_Lobby::SendGetGameList(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	if (!g_XmppClient)

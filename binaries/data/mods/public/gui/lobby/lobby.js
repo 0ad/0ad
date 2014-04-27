@@ -446,9 +446,6 @@ function stripColorCodes(input)
 
 function onTick()
 {
-	// Wake up XmppClient
-	Engine.RecvXmppClient();
-
 	updateTimers();
 	checkSpamMonitor();
 
