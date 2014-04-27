@@ -135,7 +135,12 @@ m.TutorialAI.prototype.OnUpdate = function() {
 		}
 		break;
 	case "dead_enemy_units":
-		var ents = gameState.updatingCollection(nextState.collectionId);
+		var ents = gameState.updatingCollection(nextState.collectionId,
+		API3.Filters.or(
+			API3.Filters.byType("units/athen_infantry_spearman_b"),
+			API3.Filters.byType("units/athen_infantry_javelinist_b")
+		),
+		gameState.getOwnEntities());
 		if (ents.length === 0) {
 			doNext = true;
 		}
@@ -159,7 +164,6 @@ m.TutorialAI.prototype.OnUpdate = function() {
 		this.currentState = this.tutorial[this.currentPos];
 		this.chat(this.currentState.instructions);
 		this.lastChat = gameState.getTimeElapsed();
-		
 		if (this.currentState.action) {
 			this.currentState.action(gameState);
 		}

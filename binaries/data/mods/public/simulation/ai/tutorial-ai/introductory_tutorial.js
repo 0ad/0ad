@@ -71,7 +71,7 @@ var introductoryTutorial = [
 	"time": 34 //TODO: This is a hack, should be when town phase is researched
 },
 {
-	"instructions": markForTranslation("Build a barracks nearby. Whenever your population limit is reached, build an extra house using any available builder units."),
+	"instructions": markForTranslation("Build a Barracks nearby. Whenever your population limit is reached, build an extra house using any available builder units."),
 	"trigger": "entity_count",
 	"template": "units/spart_support_female_citizen",
 	"count": 8
@@ -83,10 +83,16 @@ var introductoryTutorial = [
 	"count": 1
 },
 {
-	"instructions": markForTranslation("Select the Barracks and research the Infantry Training technology (sword icon) to improve infantry hack attack."),
-	"action": introductory_tutorial_attack,
+	"instructions": markForTranslation("Build a Blacksmith and research the Infantry Training technology (sword icon) to improve infantry hack attack."),
 	"trigger": "entity_count",
 	"template": "structures/spart_defense_tower",
+	"count": 1
+},
+{
+	"instructions": markForTranslation("The enemy is coming. Build more soldiers to fight off the enemies."),
+	"action": introductory_tutorial_attack,
+	"trigger": "entity_count",
+	"template": "structures/spart_blacksmith",
 	"count": 1
 },
 {
@@ -123,7 +129,7 @@ var introductoryTutorial = [
 }
 ];
 
-var introductory_tutorial_attack = function(gameState) {
+function introductory_tutorial_attack (gameState) {
 	var units = gameState.updatingCollection(
 		"intro_tutorial_attackers",
 		API3.Filters.or(
@@ -141,7 +147,7 @@ var introductory_tutorial_attack = function(gameState) {
 	units.move(towerPos[0]+5, towerPos[1]+15);
 }
 
-var introductory_tutorial_remove_champions = function(gameState) {
+function introductory_tutorial_remove_champions (gameState) {
 	var units = gameState.updatingCollection(
 		"intro_tutorial_champions",
 		API3.Filters.or(
