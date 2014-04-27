@@ -293,7 +293,7 @@ function updateGameList()
  * @param rating Rating of player.
  * @return Colorized versions of name, status, and rating.
  */
-function formatPlayerListEntry(nickname, presence, rating, role)
+function formatPlayerListEntry(nickname, presence, rating)
 {
 	// Set colors based on player status
 	var color;
@@ -328,6 +328,7 @@ function formatPlayerListEntry(nickname, presence, rating, role)
 		rating = "    -";
 	var formattedStatus = '[color="' + color + '"]' + status + "[/color]";
 	var formattedRating = '[color="' + color + '"]' + rating + "[/color]";
+	var role = Engine.LobbyGetPlayerRole(nickname);
 	if (role == "moderator")
 		nickname = g_modPrefix + nickname;
 	var formattedName = colorPlayerName(nickname);
@@ -446,9 +447,6 @@ function stripColorCodes(input)
 
 function onTick()
 {
-	// Wake up XmppClient
-	Engine.RecvXmppClient();
-
 	updateTimers();
 	checkSpamMonitor();
 

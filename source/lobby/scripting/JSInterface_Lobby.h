@@ -34,7 +34,6 @@ namespace JSI_Lobby
 	void StopXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	void ConnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	void DisconnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
-	void RecvXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	void SendGetGameList(ScriptInterface::CxPrivate* pCxPrivate);
 	void SendGetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
 	void SendGetRatingList(ScriptInterface::CxPrivate* pCxPrivate);

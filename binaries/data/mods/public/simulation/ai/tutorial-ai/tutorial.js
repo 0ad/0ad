@@ -159,7 +159,6 @@ m.TutorialAI.prototype.OnUpdate = function() {
 		this.currentState = this.tutorial[this.currentPos];
 		this.chat(this.currentState.instructions);
 		this.lastChat = gameState.getTimeElapsed();
-		
 		if (this.currentState.action) {
 			this.currentState.action(gameState);
 		}

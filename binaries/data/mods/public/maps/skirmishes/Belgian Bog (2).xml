@@ -2,8 +2,8 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>cirrus</SkySet>
-		<SunColour r="1.29883" g="1.02888" b="0.494065"/>
+		<SkySet>stormy</SkySet>
+		<SunColour r="1.15104" g="1.03125" b="0.651042"/>
 		<SunElevation angle="0.291456"/>
 		<SunRotation angle="-0.79767"/>
 		<TerrainAmbientColour r="0.309804" g="0.384314" b="0.537255"/>
@@ -11,19 +11,18 @@
 		<Fog>
 			<FogFactor>0.00398437</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="0.6" g="0.592157" b="0.466667"/>
+			<FogColour r="0.443137" g="0.521569" b="0.556863"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.486275" g="0.513726" b="0.282353"/>
+				<Colour r="0.329412" g="0.329412" b="0.160784"/>
 				<Height>22.1377</Height>
-				<Shininess>54.6875</Shininess>
 				<Waviness>5.54688</Waviness>
 				<Murkiness>1</Murkiness>
-				<Tint r="0.466667" g="0.901961" b="0.921569"/>
+				<Tint r="0.501961" g="0.501961" b="0.25098"/>
 				<ReflectionTint r="0.501961" g="0.501961" b="0.247059"/>
-				<ReflectionTintStrength>0.307617</ReflectionTintStrength>
+				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,14 +34,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="449.44" y="211.598" z="397.888"/>
-		<Rotation angle="0.332572"/>
+		<Position x="368.529" y="127.497" z="318.921"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "Two players face off across a large bog somewhere in the Rhine lowlands.\u000a\u000aWood is in abundance, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful.",
+  "Description": "Two players face off across a large bog somewhere in the Rhine lowlands.\n\nWood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -4793,8 +4792,8 @@
 		<Entity uid="939">
 			<Template>other/celt_hut</Template>
 			<Player>0</Player>
-			<Position x="467.54902" z="716.503"/>
-			<Orientation y="-0.73435"/>
+			<Position x="474.55262" z="723.22547"/>
+			<Orientation y="-2.1425"/>
 		</Entity>
 		<Entity uid="940">
 			<Template>other/celt_hut</Template>
@@ -13426,8 +13425,8 @@
 		<Entity uid="2458">
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
-			<Position x="550.65687" z="640.82361"/>
-			<Orientation y="-2.47872"/>
+			<Position x="575.82184" z="629.66511"/>
+			<Orientation y="2.68941"/>
 		</Entity>
 		<Entity uid="2459">
 			<Template>gaia/fauna_deer</Template>
@@ -13845,15 +13844,10 @@
 			<Position x="322.67313" z="385.18616"/>
 			<Orientation y="1.63923"/>
 		</Entity>
-		<Entity uid="2546">
-			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="352.36692" z="387.5647"/>
-			<Orientation y="-3.04407"/>
-		</Entity>
 		<Entity uid="2547">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="353.16837" z="361.27253"/>
-			<Orientation y="-2.93033"/>
+			<Position x="326.17756" z="357.9149"/>
+			<Orientation y="2.13744"/>
 		</Entity>
 		<Entity uid="2548">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
@@ -13862,17 +13856,17 @@
 		</Entity>
 		<Entity uid="2549">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="343.78266" z="347.4065"/>
+			<Position x="344.11252" z="369.78129"/>
 			<Orientation y="1.73021"/>
 		</Entity>
 		<Entity uid="2550">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="368.9553" z="344.24421"/>
+			<Position x="354.99" z="330.79014"/>
 			<Orientation y="1.66736"/>
 		</Entity>
 		<Entity uid="2551">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="381.04804" z="347.09406"/>
+			<Position x="382.53379" z="362.65894"/>
 			<Orientation y="0.58123"/>
 		</Entity>
 		<Entity uid="2552">
@@ -13914,11 +13908,6 @@
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
 			<Position x="365.53544" z="371.52814"/>
 			<Orientation y="0.60294"/>
-		</Entity>
-		<Entity uid="2561">
-			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="370.88831" z="382.6371"/>
-			<Orientation y="-0.22167"/>
 		</Entity>
 		<Entity uid="2562">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
@@ -14147,8 +14136,8 @@
 		</Entity>
 		<Entity uid="2616">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="519.48151" z="642.92133"/>
-			<Orientation y="-0.76743"/>
+			<Position x="570.19214" z="633.66999"/>
+			<Orientation y="2.6495"/>
 		</Entity>
 		<Entity uid="2617">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
@@ -14157,22 +14146,22 @@
 		</Entity>
 		<Entity uid="2618">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="494.16468" z="666.8144"/>
+			<Position x="470.926" z="689.9676"/>
 			<Orientation y="-1.20891"/>
 		</Entity>
 		<Entity uid="2619">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="485.80814" z="670.06348"/>
+			<Position x="493.85077" z="671.44129"/>
 			<Orientation y="-1.51781"/>
 		</Entity>
 		<Entity uid="2620">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="477.65961" z="672.43873"/>
+			<Position x="466.81598" z="625.35676"/>
 			<Orientation y="-2.22361"/>
 		</Entity>
 		<Entity uid="2621">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="472.38898" z="664.87793"/>
+			<Position x="474.85065" z="666.4903"/>
 			<Orientation y="2.67168"/>
 		</Entity>
 		<Entity uid="2622">
@@ -14187,17 +14176,17 @@
 		</Entity>
 		<Entity uid="2624">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="425.38605" z="682.93543"/>
+			<Position x="432.12122" z="679.65247"/>
 			<Orientation y="-1.7856"/>
 		</Entity>
 		<Entity uid="2625">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="413.89963" z="680.20691"/>
-			<Orientation y="-1.49802"/>
+			<Position x="418.50037" z="657.62006"/>
+			<Orientation y="-2.44079"/>
 		</Entity>
 		<Entity uid="2626">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="407.85798" z="680.80494"/>
+			<Position x="391.77659" z="685.34253"/>
 			<Orientation y="2.61355"/>
 		</Entity>
 		<Entity uid="2627">
@@ -14207,7 +14196,7 @@
 		</Entity>
 		<Entity uid="2628">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="384.73884" z="664.4037"/>
+			<Position x="377.25364" z="679.75293"/>
 			<Orientation y="-2.15484"/>
 		</Entity>
 		<Entity uid="2629">
@@ -14262,7 +14251,7 @@
 		</Entity>
 		<Entity uid="2639">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="463.0258" z="601.4709"/>
+			<Position x="471.60798" z="600.18311"/>
 			<Orientation y="1.29278"/>
 		</Entity>
 		<Entity uid="2640">
@@ -14277,7 +14266,7 @@
 		</Entity>
 		<Entity uid="2642">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="416.64344" z="695.13221"/>
+			<Position x="411.81666" z="695.87708"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2643">
@@ -14352,7 +14341,7 @@
 		</Entity>
 		<Entity uid="2658">
 			<Template>actor|props/flora/pond_lillies_large.xml</Template>
-			<Position x="514.52918" z="511.61493"/>
+			<Position x="526.35505" z="507.23157"/>
 			<Orientation y="-1.53975"/>
 		</Entity>
 		<Entity uid="2659">
@@ -14462,8 +14451,8 @@
 		</Entity>
 		<Entity uid="2680">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="606.38233" z="548.41254"/>
-			<Orientation y="-2.97843"/>
+			<Position x="608.04291" z="548.00513"/>
+			<Orientation y="-2.6042"/>
 		</Entity>
 		<Entity uid="2681">
 			<Template>actor|props/flora/water_lillies.xml</Template>
@@ -14498,7 +14487,7 @@
 		<Entity uid="2687">
 			<Template>actor|props/flora/water_lillies.xml</Template>
 			<Position x="618.89246" z="536.16742"/>
-			<Orientation y="-2.9993"/>
+			<Orientation y="0.96995"/>
 		</Entity>
 		<Entity uid="2688">
 			<Template>actor|props/flora/water_lillies.xml</Template>
@@ -21327,7 +21316,7 @@
 		</Entity>
 		<Entity uid="4062">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="379.3946" z="923.77503"/>
+			<Position x="378.87687" z="921.71625"/>
 			<Orientation y="-2.5671"/>
 		</Entity>
 		<Entity uid="4063">
@@ -21337,17 +21326,17 @@
 		</Entity>
 		<Entity uid="4064">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="380.42774" z="917.51722"/>
+			<Position x="388.71756" z="911.35181"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4065">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="380.48249" z="916.53083"/>
-			<Orientation y="-2.99048"/>
+			<Position x="391.3401" z="900.73792"/>
+			<Orientation y="0.20862"/>
 		</Entity>
 		<Entity uid="4066">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="378.81818" z="911.03412"/>
+			<Position x="383.46921" z="905.2688"/>
 			<Orientation y="-2.36971"/>
 		</Entity>
 		<Entity uid="4067">
@@ -22845,9 +22834,1281 @@
 		</Entity>
 		<Entity uid="9866">
 			<Template>actor|particle/cloud.xml</Template>
-			<Position x="540.0293" z="482.90735"/>
+			<Position x="540.16334" z="482.8744"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="47882"/>
+		</Entity>
+		<Entity uid="9867">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="511.05655" z="943.9007"/>
+			<Orientation y="-2.03313"/>
+			<Actor seed="43008"/>
+		</Entity>
+		<Entity uid="9868">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="507.632" z="941.5716"/>
+			<Orientation y="-2.25814"/>
+			<Actor seed="53900"/>
+		</Entity>
+		<Entity uid="9869">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="505.54535" z="938.8802"/>
+			<Orientation y="-3.08663"/>
+			<Actor seed="13024"/>
+		</Entity>
+		<Entity uid="9870">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="505.90281" z="929.12391"/>
+			<Orientation y="1.9571"/>
+			<Actor seed="38366"/>
+		</Entity>
+		<Entity uid="9871">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="510.85956" z="927.98847"/>
+			<Orientation y="-0.10814"/>
+			<Actor seed="62806"/>
+		</Entity>
+		<Entity uid="9872">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="512.2718" z="933.87415"/>
+			<Orientation y="0.62298"/>
+			<Actor seed="32884"/>
+		</Entity>
+		<Entity uid="9873">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="515.82038" z="939.51124"/>
+			<Orientation y="1.19262"/>
+			<Actor seed="39400"/>
+		</Entity>
+		<Entity uid="9874">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="521.79194" z="941.70527"/>
+			<Orientation y="-2.83982"/>
+			<Actor seed="30470"/>
+		</Entity>
+		<Entity uid="9875">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="519.64234" z="934.20441"/>
+			<Orientation y="2.41514"/>
+			<Actor seed="54692"/>
+		</Entity>
+		<Entity uid="9876">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="522.10358" z="931.43049"/>
+			<Orientation y="1.62806"/>
+			<Actor seed="202"/>
+		</Entity>
+		<Entity uid="9877">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="524.3556" z="934.98584"/>
+			<Orientation y="-0.08703"/>
+			<Actor seed="44976"/>
+		</Entity>
+		<Entity uid="9878">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="521.69446" z="944.15558"/>
+			<Orientation y="-1.57081"/>
+			<Actor seed="33230"/>
+		</Entity>
+		<Entity uid="9879">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="517.54023" z="944.01587"/>
+			<Orientation y="-1.69039"/>
+			<Actor seed="40806"/>
+		</Entity>
+		<Entity uid="9880">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="510.2476" z="935.09876"/>
+			<Orientation y="-2.32401"/>
+			<Actor seed="31156"/>
+		</Entity>
+		<Entity uid="9881">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="517.92963" z="929.71912"/>
+			<Orientation y="-1.56302"/>
+			<Actor seed="1254"/>
+		</Entity>
+		<Entity uid="9882">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="649.72144" z="877.594"/>
+			<Orientation y="-0.78402"/>
+			<Actor seed="31440"/>
+		</Entity>
+		<Entity uid="9883">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="646.45075" z="881.00818"/>
+			<Orientation y="-2.51731"/>
+			<Actor seed="8434"/>
+		</Entity>
+		<Entity uid="9884">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="640.66675" z="869.11768"/>
+			<Orientation y="3.0729"/>
+			<Actor seed="43984"/>
+		</Entity>
+		<Entity uid="9885">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="642.35108" z="860.49726"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21714"/>
+		</Entity>
+		<Entity uid="9886">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="639.9958" z="859.67865"/>
+			<Orientation y="-1.0663"/>
+			<Actor seed="47312"/>
+		</Entity>
+		<Entity uid="9887">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="634.43177" z="862.86237"/>
+			<Orientation y="-0.11136"/>
+			<Actor seed="15392"/>
+		</Entity>
+		<Entity uid="9888">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="633.0105" z="869.03998"/>
+			<Orientation y="-1.25188"/>
+			<Actor seed="48952"/>
+		</Entity>
+		<Entity uid="9889">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="627.34626" z="871.5896"/>
+			<Orientation y="-2.64556"/>
+			<Actor seed="15940"/>
+		</Entity>
+		<Entity uid="9890">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="623.24708" z="863.24134"/>
+			<Orientation y="-2.89351"/>
+			<Actor seed="39428"/>
+		</Entity>
+		<Entity uid="9891">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="624.74463" z="856.71119"/>
+			<Orientation y="1.35555"/>
+			<Actor seed="42608"/>
+		</Entity>
+		<Entity uid="9892">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="631.0636" z="862.31745"/>
+			<Orientation y="0.48806"/>
+			<Actor seed="41740"/>
+		</Entity>
+		<Entity uid="9893">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="635.58838" z="870.63752"/>
+			<Orientation y="1.54763"/>
+			<Actor seed="17654"/>
+		</Entity>
+		<Entity uid="9894">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="643.48072" z="871.727"/>
+			<Orientation y="3.02863"/>
+			<Actor seed="8154"/>
+		</Entity>
+		<Entity uid="9895">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="645.64802" z="862.77723"/>
+			<Orientation y="1.7451"/>
+			<Actor seed="13744"/>
+		</Entity>
+		<Entity uid="9896">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="649.38263" z="863.3581"/>
+			<Orientation y="0.73713"/>
+			<Actor seed="51072"/>
+		</Entity>
+		<Entity uid="9897">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="652.40125" z="869.8349"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50038"/>
+		</Entity>
+		<Entity uid="9898">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="653.57996" z="869.04438"/>
+			<Orientation y="1.44678"/>
+			<Actor seed="47430"/>
+		</Entity>
+		<Entity uid="9899">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="637.70173" z="876.31922"/>
+			<Orientation y="-1.04157"/>
+			<Actor seed="41258"/>
+		</Entity>
+		<Entity uid="9900">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="626.26404" z="881.78827"/>
+			<Orientation y="2.83002"/>
+			<Actor seed="31322"/>
+		</Entity>
+		<Entity uid="9901">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="630.68" z="866.61786"/>
+			<Orientation y="2.41582"/>
+			<Actor seed="62864"/>
+		</Entity>
+		<Entity uid="9902">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="647.23224" z="857.01697"/>
+			<Orientation y="-1.54723"/>
+			<Actor seed="50052"/>
+		</Entity>
+		<Entity uid="9903">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="813.01917" z="529.03467"/>
+			<Orientation y="-0.98958"/>
+			<Actor seed="8008"/>
+		</Entity>
+		<Entity uid="9904">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="807.76441" z="530.20044"/>
+			<Orientation y="-2.18252"/>
+			<Actor seed="44542"/>
+		</Entity>
+		<Entity uid="9905">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="803.47992" z="519.11603"/>
+			<Orientation y="3.05863"/>
+			<Actor seed="49974"/>
+		</Entity>
+		<Entity uid="9906">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="811.82691" z="514.13819"/>
+			<Orientation y="-0.47246"/>
+			<Actor seed="51556"/>
+		</Entity>
+		<Entity uid="9907">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="809.99476" z="517.52283"/>
+			<Orientation y="0.47146"/>
+			<Actor seed="51128"/>
+		</Entity>
+		<Entity uid="9908">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="813.16932" z="525.98414"/>
+			<Orientation y="0.2268"/>
+			<Actor seed="29432"/>
+		</Entity>
+		<Entity uid="9909">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="815.51594" z="531.82209"/>
+			<Orientation y="2.72043"/>
+			<Actor seed="29666"/>
+		</Entity>
+		<Entity uid="9910">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="819.09919" z="522.40577"/>
+			<Orientation y="3.13506"/>
+			<Actor seed="2320"/>
+		</Entity>
+		<Entity uid="9911">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="819.69495" z="516.75599"/>
+			<Orientation y="1.05748"/>
+			<Actor seed="8736"/>
+		</Entity>
+		<Entity uid="9912">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="824.24018" z="525.30414"/>
+			<Orientation y="-0.47498"/>
+			<Actor seed="60418"/>
+		</Entity>
+		<Entity uid="9913">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="818.45411" z="538.04456"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62086"/>
+		</Entity>
+		<Entity uid="9914">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="814.41187" z="537.87128"/>
+			<Orientation y="-2.68206"/>
+			<Actor seed="18516"/>
+		</Entity>
+		<Entity uid="9915">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="808.43854" z="524.0973"/>
+			<Orientation y="-3.1154"/>
+			<Actor seed="51510"/>
+		</Entity>
+		<Entity uid="9916">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="806.51429" z="514.1233"/>
+			<Orientation y="-1.65993"/>
+			<Actor seed="1166"/>
+		</Entity>
+		<Entity uid="9917">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="802.96381" z="528.24128"/>
+			<Orientation y="1.1851"/>
+			<Actor seed="51698"/>
+		</Entity>
+		<Entity uid="9918">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="878.19013" z="565.86408"/>
+			<Orientation y="-1.32285"/>
+			<Actor seed="32616"/>
+		</Entity>
+		<Entity uid="9919">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="872.0204" z="564.8335"/>
+			<Orientation y="-2.0102"/>
+			<Actor seed="35448"/>
+		</Entity>
+		<Entity uid="9920">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="865.17957" z="560.64258"/>
+			<Orientation y="3.0501"/>
+			<Actor seed="45514"/>
+		</Entity>
+		<Entity uid="9921">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="867.03657" z="552.76868"/>
+			<Orientation y="1.55027"/>
+			<Actor seed="33206"/>
+		</Entity>
+		<Entity uid="9922">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="876.11622" z="552.99531"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="25142"/>
+		</Entity>
+		<Entity uid="9923">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="875.83643" z="559.58307"/>
+			<Orientation y="-0.78486"/>
+			<Actor seed="59978"/>
+		</Entity>
+		<Entity uid="9924">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="871.72754" z="563.96662"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1580"/>
+		</Entity>
+		<Entity uid="9925">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="870.35914" z="564.25391"/>
+			<Orientation y="-2.60755"/>
+			<Actor seed="33680"/>
+		</Entity>
+		<Entity uid="9926">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="866.68244" z="556.172"/>
+			<Orientation y="-2.88593"/>
+			<Actor seed="20514"/>
+		</Entity>
+		<Entity uid="9927">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="862.36451" z="562.27662"/>
+			<Orientation y="1.95846"/>
+			<Actor seed="29852"/>
+		</Entity>
+		<Entity uid="9928">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="881.02833" z="552.20704"/>
+			<Orientation y="-2.54416"/>
+			<Actor seed="57210"/>
+		</Entity>
+		<Entity uid="9929">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="831.84845" z="351.7609"/>
+			<Orientation y="2.81504"/>
+			<Actor seed="12628"/>
+		</Entity>
+		<Entity uid="9930">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="834.87385" z="343.04151"/>
+			<Orientation y="-2.004"/>
+			<Actor seed="45648"/>
+		</Entity>
+		<Entity uid="9931">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="827.79932" z="342.17435"/>
+			<Orientation y="-1.10108"/>
+			<Actor seed="49694"/>
+		</Entity>
+		<Entity uid="9932">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="824.15638" z="348.215"/>
+			<Orientation y="-0.0924"/>
+			<Actor seed="30540"/>
+		</Entity>
+		<Entity uid="9933">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="822.09382" z="357.58378"/>
+			<Orientation y="-0.61196"/>
+			<Actor seed="21330"/>
+		</Entity>
+		<Entity uid="9934">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="821.10969" z="361.50614"/>
+			<Orientation y="1.78521"/>
+			<Actor seed="20594"/>
+		</Entity>
+		<Entity uid="9935">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="836.13294" z="359.78702"/>
+			<Orientation y="-3.02173"/>
+			<Actor seed="39388"/>
+		</Entity>
+		<Entity uid="9936">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="832.66993" z="346.27961"/>
+			<Orientation y="-2.18261"/>
+			<Actor seed="40478"/>
+		</Entity>
+		<Entity uid="9937">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="824.07508" z="341.70038"/>
+			<Orientation y="-1.94002"/>
+			<Actor seed="34622"/>
+		</Entity>
+		<Entity uid="9938">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="818.12897" z="339.94837"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41998"/>
+		</Entity>
+		<Entity uid="9939">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="818.67713" z="352.1193"/>
+			<Orientation y="0.51145"/>
+			<Actor seed="5996"/>
+		</Entity>
+		<Entity uid="9940">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="712.02991" z="188.74175"/>
+			<Orientation y="-1.34258"/>
+			<Actor seed="59598"/>
+		</Entity>
+		<Entity uid="9941">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="706.02796" z="191.20426"/>
+			<Orientation y="-2.0818"/>
+			<Actor seed="55192"/>
+		</Entity>
+		<Entity uid="9942">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="699.76978" z="184.59551"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45632"/>
+		</Entity>
+		<Entity uid="9943">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="699.7779" z="181.4056"/>
+			<Orientation y="2.46891"/>
+			<Actor seed="15762"/>
+		</Entity>
+		<Entity uid="9944">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="704.54926" z="178.0838"/>
+			<Orientation y="1.31092"/>
+			<Actor seed="39082"/>
+		</Entity>
+		<Entity uid="9945">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="710.84827" z="181.36503"/>
+			<Orientation y="-0.27549"/>
+			<Actor seed="9112"/>
+		</Entity>
+		<Entity uid="9946">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="706.33191" z="194.21415"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29704"/>
+		</Entity>
+		<Entity uid="9947">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="709.97419" z="193.4019"/>
+			<Orientation y="2.80675"/>
+			<Actor seed="56684"/>
+		</Entity>
+		<Entity uid="9948">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="713.68421" z="175.79355"/>
+			<Orientation y="-2.57479"/>
+			<Actor seed="34296"/>
+		</Entity>
+		<Entity uid="9949">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="711.64075" z="173.23519"/>
+			<Orientation y="-2.51647"/>
+			<Actor seed="32650"/>
+		</Entity>
+		<Entity uid="9950">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="707.88001" z="169.40249"/>
+			<Orientation y="-1.14889"/>
+			<Actor seed="21778"/>
+		</Entity>
+		<Entity uid="9951">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="702.46155" z="178.42945"/>
+			<Orientation y="0.82827"/>
+			<Actor seed="14876"/>
+		</Entity>
+		<Entity uid="9952">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="527.19678" z="125.21306"/>
+			<Orientation y="-0.23488"/>
+			<Actor seed="54524"/>
+		</Entity>
+		<Entity uid="9953">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="524.14661" z="134.68836"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13770"/>
+		</Entity>
+		<Entity uid="9954">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="516.36725" z="134.05625"/>
+			<Orientation y="-2.6028"/>
+			<Actor seed="53500"/>
+		</Entity>
+		<Entity uid="9955">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="515.20252" z="125.47941"/>
+			<Orientation y="2.74265"/>
+			<Actor seed="20712"/>
+		</Entity>
+		<Entity uid="9956">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="519.72974" z="119.82142"/>
+			<Orientation y="1.04058"/>
+			<Actor seed="48508"/>
+		</Entity>
+		<Entity uid="9957">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="523.56678" z="125.21306"/>
+			<Orientation y="-0.05898"/>
+			<Actor seed="36888"/>
+		</Entity>
+		<Entity uid="9958">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="523.65937" z="139.43255"/>
+			<Orientation y="2.02485"/>
+			<Actor seed="46878"/>
+		</Entity>
+		<Entity uid="9959">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="530.80115" z="140.31255"/>
+			<Orientation y="-3.11918"/>
+			<Actor seed="11752"/>
+		</Entity>
+		<Entity uid="9960">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="529.11524" z="127.2111"/>
+			<Orientation y="-3.01607"/>
+			<Actor seed="11478"/>
+		</Entity>
+		<Entity uid="9961">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="528.1761" z="119.11661"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4490"/>
+		</Entity>
+		<Entity uid="9962">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="533.22779" z="129.40636"/>
+			<Orientation y="-1.49068"/>
+			<Actor seed="7376"/>
+		</Entity>
+		<Entity uid="9963">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="369.60593" z="198.79883"/>
+			<Orientation y="-1.21984"/>
+			<Actor seed="13612"/>
+		</Entity>
+		<Entity uid="9964">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="360.40992" z="199.11547"/>
+			<Orientation y="-2.24906"/>
+			<Actor seed="35444"/>
+		</Entity>
+		<Entity uid="9965">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="353.59241" z="192.64849"/>
+			<Orientation y="-2.99396"/>
+			<Actor seed="18678"/>
+		</Entity>
+		<Entity uid="9966">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="353.67917" z="190.44521"/>
+			<Orientation y="1.78228"/>
+			<Actor seed="34364"/>
+		</Entity>
+		<Entity uid="9967">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="365.30326" z="187.1625"/>
+			<Orientation y="0.73481"/>
+			<Actor seed="51300"/>
+		</Entity>
+		<Entity uid="9968">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="367.4828" z="192.01905"/>
+			<Orientation y="0.04041"/>
+			<Actor seed="26340"/>
+		</Entity>
+		<Entity uid="9969">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="362.88364" z="203.8066"/>
+			<Orientation y="-0.90403"/>
+			<Actor seed="58324"/>
+		</Entity>
+		<Entity uid="9970">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="347.30637" z="216.71848"/>
+			<Orientation y="-2.85961"/>
+			<Actor seed="19860"/>
+		</Entity>
+		<Entity uid="9971">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="348.00727" z="201.17624"/>
+			<Orientation y="2.52189"/>
+			<Actor seed="12554"/>
+		</Entity>
+		<Entity uid="9972">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="357.77857" z="190.70316"/>
+			<Orientation y="1.79319"/>
+			<Actor seed="23900"/>
+		</Entity>
+		<Entity uid="9973">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="374.31791" z="190.78953"/>
+			<Orientation y="0.01738"/>
+			<Actor seed="10662"/>
+		</Entity>
+		<Entity uid="9974">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="374.464" z="207.48261"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53486"/>
+		</Entity>
+		<Entity uid="9975">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="371.96525" z="195.46351"/>
+			<Orientation y="-0.92986"/>
+			<Actor seed="14090"/>
+		</Entity>
+		<Entity uid="9976">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="97.98908" z="396.34946"/>
+			<Orientation y="-0.94164"/>
+			<Actor seed="61372"/>
+		</Entity>
+		<Entity uid="9977">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="90.86107" z="400.55811"/>
+			<Orientation y="-1.80616"/>
+			<Actor seed="34792"/>
+		</Entity>
+		<Entity uid="9978">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="83.70144" z="397.77594"/>
+			<Orientation y="-3.12146"/>
+			<Actor seed="28284"/>
+		</Entity>
+		<Entity uid="9979">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="86.07973" z="389.87763"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19428"/>
+		</Entity>
+		<Entity uid="9980">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="89.55103" z="387.3202"/>
+			<Orientation y="2.10659"/>
+			<Actor seed="42272"/>
+		</Entity>
+		<Entity uid="9981">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="98.84224" z="385.00123"/>
+			<Orientation y="0.52572"/>
+			<Actor seed="22126"/>
+		</Entity>
+		<Entity uid="9982">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="99.50986" z="388.95038"/>
+			<Orientation y="-0.60859"/>
+			<Actor seed="55134"/>
+		</Entity>
+		<Entity uid="9983">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="91.58495" z="397.67246"/>
+			<Orientation y="-1.0438"/>
+			<Actor seed="45660"/>
+		</Entity>
+		<Entity uid="9984">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="83.31678" z="401.33848"/>
+			<Orientation y="-2.18433"/>
+			<Actor seed="13020"/>
+		</Entity>
+		<Entity uid="9985">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="82.1573" z="394.87311"/>
+			<Orientation y="2.34784"/>
+			<Actor seed="31828"/>
+		</Entity>
+		<Entity uid="9986">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="89.56693" z="387.7212"/>
+			<Orientation y="2.12183"/>
+			<Actor seed="49382"/>
+		</Entity>
+		<Entity uid="9987">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="95.7707" z="384.48066"/>
+			<Orientation y="0.90471"/>
+			<Actor seed="35484"/>
+		</Entity>
+		<Entity uid="9988">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="96.92379" z="391.35578"/>
+			<Orientation y="-0.722"/>
+			<Actor seed="63502"/>
+		</Entity>
+		<Entity uid="9989">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="96.16527" z="391.35578"/>
+			<Orientation y="-1.45543"/>
+			<Actor seed="7518"/>
+		</Entity>
+		<Entity uid="9990">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="213.3106" z="478.34601"/>
+			<Orientation y="-1.76188"/>
+			<Actor seed="31840"/>
+		</Entity>
+		<Entity uid="9991">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="203.39721" z="474.7714"/>
+			<Orientation y="-2.53031"/>
+			<Actor seed="10978"/>
+		</Entity>
+		<Entity uid="9992">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="199.36307" z="467.7917"/>
+			<Orientation y="2.94224"/>
+			<Actor seed="37796"/>
+		</Entity>
+		<Entity uid="9993">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="202.05504" z="464.9145"/>
+			<Orientation y="1.61123"/>
+			<Actor seed="63466"/>
+		</Entity>
+		<Entity uid="9994">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="206.07653" z="465.8242"/>
+			<Orientation y="1.15636"/>
+			<Actor seed="32090"/>
+		</Entity>
+		<Entity uid="9995">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="215.82355" z="471.99152"/>
+			<Orientation y="0.33535"/>
+			<Actor seed="44192"/>
+		</Entity>
+		<Entity uid="9996">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="217.89718" z="474.14625"/>
+			<Orientation y="-3.0237"/>
+			<Actor seed="56542"/>
+		</Entity>
+		<Entity uid="9997">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="216.77285" z="468.47214"/>
+			<Orientation y="-2.94385"/>
+			<Actor seed="39756"/>
+		</Entity>
+		<Entity uid="9998">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="215.18207" z="465.19187"/>
+			<Orientation y="-2.90415"/>
+			<Actor seed="22126"/>
+		</Entity>
+		<Entity uid="9999">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="218.71641" z="465.54804"/>
+			<Orientation y="0.33016"/>
+			<Actor seed="5678"/>
+		</Entity>
+		<Entity uid="10000">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="220.67392" z="472.7139"/>
+			<Orientation y="-2.38138"/>
+			<Actor seed="1634"/>
+		</Entity>
+		<Entity uid="10001">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="212.41347" z="459.98267"/>
+			<Orientation y="-1.92347"/>
+			<Actor seed="7876"/>
+		</Entity>
+		<Entity uid="10002">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="206.37708" z="462.84919"/>
+			<Orientation y="0.64332"/>
+			<Actor seed="13446"/>
+		</Entity>
+		<Entity uid="10003">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="213.78559" z="473.42103"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2280"/>
+		</Entity>
+		<Entity uid="10004">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="139.12728" z="460.08954"/>
+			<Orientation y="-0.62667"/>
+			<Actor seed="13236"/>
+		</Entity>
+		<Entity uid="10005">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="130.3408" z="463.1922"/>
+			<Orientation y="-2.69451"/>
+			<Actor seed="32986"/>
+		</Entity>
+		<Entity uid="10006">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="128.79407" z="459.55793"/>
+			<Orientation y="2.8764"/>
+			<Actor seed="24744"/>
+		</Entity>
+		<Entity uid="10007">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="132.28064" z="453.01587"/>
+			<Orientation y="1.70691"/>
+			<Actor seed="23514"/>
+		</Entity>
+		<Entity uid="10008">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="138.77456" z="455.24186"/>
+			<Orientation y="0.11791"/>
+			<Actor seed="18762"/>
+		</Entity>
+		<Entity uid="10009">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="139.6354" z="462.39588"/>
+			<Orientation y="-0.34427"/>
+			<Actor seed="22344"/>
+		</Entity>
+		<Entity uid="10010">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="133.20917" z="472.57367"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53310"/>
+		</Entity>
+		<Entity uid="10011">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="136.53399" z="469.71778"/>
+			<Orientation y="2.56814"/>
+			<Actor seed="35564"/>
+		</Entity>
+		<Entity uid="10012">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="141.66224" z="462.73542"/>
+			<Orientation y="2.53763"/>
+			<Actor seed="16148"/>
+		</Entity>
+		<Entity uid="10013">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="144.53762" z="459.1373"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63340"/>
+		</Entity>
+		<Entity uid="10014">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="144.10857" z="459.03278"/>
+			<Orientation y="-1.83507"/>
+			<Actor seed="19418"/>
+		</Entity>
+		<Entity uid="10015">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="137.20118" z="458.3083"/>
+			<Orientation y="-0.81385"/>
+			<Actor seed="25222"/>
+		</Entity>
+		<Entity uid="10016">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="127.8042" z="464.11994"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48506"/>
+		</Entity>
+		<Entity uid="10017">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="125.42122" z="469.71778"/>
+			<Orientation y="3.0775"/>
+			<Actor seed="48928"/>
+		</Entity>
+		<Entity uid="10018">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="172.48682" z="696.98993"/>
+			<Orientation y="0.09919"/>
+			<Actor seed="13444"/>
+		</Entity>
+		<Entity uid="10019">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="169.88628" z="708.11377"/>
+			<Orientation y="-2.13009"/>
+			<Actor seed="53174"/>
+		</Entity>
+		<Entity uid="10020">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="165.70934" z="703.18781"/>
+			<Orientation y="2.90693"/>
+			<Actor seed="19696"/>
+		</Entity>
+		<Entity uid="10021">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="167.90421" z="694.42048"/>
+			<Orientation y="-2.01757"/>
+			<Actor seed="42546"/>
+		</Entity>
+		<Entity uid="10022">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="159.83747" z="692.2323"/>
+			<Orientation y="-1.29595"/>
+			<Actor seed="28536"/>
+		</Entity>
+		<Entity uid="10023">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="157.21756" z="692.73816"/>
+			<Orientation y="2.7082"/>
+			<Actor seed="15580"/>
+		</Entity>
+		<Entity uid="10024">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="163.32717" z="685.13862"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57332"/>
+		</Entity>
+		<Entity uid="10025">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="164.55611" z="686.00727"/>
+			<Orientation y="0.0106"/>
+			<Actor seed="49216"/>
+		</Entity>
+		<Entity uid="10026">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="165.64988" z="692.61115"/>
+			<Orientation y="1.1737"/>
+			<Actor seed="32890"/>
+		</Entity>
+		<Entity uid="10027">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="172.5493" z="690.99103"/>
+			<Orientation y="2.89435"/>
+			<Actor seed="25296"/>
+		</Entity>
+		<Entity uid="10028">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="173.7321" z="687.45655"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="65441"/>
+		</Entity>
+		<Entity uid="10029">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="174.71636" z="686.78174"/>
+			<Orientation y="1.11207"/>
+			<Actor seed="55076"/>
+		</Entity>
+		<Entity uid="10030">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="178.9814" z="690.38263"/>
+			<Orientation y="-1.09862"/>
+			<Actor seed="23194"/>
+		</Entity>
+		<Entity uid="10031">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="173.30166" z="695.08362"/>
+			<Orientation y="-1.19172"/>
+			<Actor seed="63116"/>
+		</Entity>
+		<Entity uid="10032">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="250.28203" z="810.15528"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="25254"/>
+		</Entity>
+		<Entity uid="10033">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="242.67557" z="809.92634"/>
+			<Orientation y="-2.69286"/>
+			<Actor seed="50658"/>
+		</Entity>
+		<Entity uid="10034">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="241.46158" z="805.37409"/>
+			<Orientation y="2.57503"/>
+			<Actor seed="61298"/>
+		</Entity>
+		<Entity uid="10035">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="245.74231" z="801.73096"/>
+			<Orientation y="1.65247"/>
+			<Actor seed="6992"/>
+		</Entity>
+		<Entity uid="10036">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="251.81919" z="801.26246"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14052"/>
+		</Entity>
+		<Entity uid="10037">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="255.93708" z="807.05262"/>
+			<Orientation y="0.64016"/>
+			<Actor seed="48130"/>
+		</Entity>
+		<Entity uid="10038">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="258.68848" z="809.6985"/>
+			<Orientation y="-2.816"/>
+			<Actor seed="1280"/>
+		</Entity>
+		<Entity uid="10039">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="252.49558" z="802.49195"/>
+			<Orientation y="-2.10001"/>
+			<Actor seed="336"/>
+		</Entity>
+		<Entity uid="10040">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="249.14174" z="801.44922"/>
+			<Orientation y="-1.4449"/>
+			<Actor seed="58722"/>
+		</Entity>
+		<Entity uid="10041">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="237.21735" z="813.36512"/>
+			<Orientation y="1.01572"/>
+			<Actor seed="4490"/>
+		</Entity>
+		<Entity uid="10042">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="241.1563" z="816.41742"/>
+			<Orientation y="2.21935"/>
+			<Actor seed="23008"/>
+		</Entity>
+		<Entity uid="10043">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="248.21367" z="809.35895"/>
+			<Orientation y="-2.85088"/>
+			<Actor seed="39126"/>
+		</Entity>
+		<Entity uid="10044">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="245.6101" z="803.36524"/>
+			<Orientation y="-2.86533"/>
+			<Actor seed="39140"/>
+		</Entity>
+		<Entity uid="10045">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="244.96328" z="799.88886"/>
+			<Orientation y="2.42177"/>
+			<Actor seed="54098"/>
+		</Entity>
+		<Entity uid="10046">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="458.13227" z="607.75355"/>
+			<Orientation y="-1.6579"/>
+			<Actor seed="40986"/>
+		</Entity>
+		<Entity uid="10047">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="450.61399" z="608.92725"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49642"/>
+		</Entity>
+		<Entity uid="10048">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="448.61677" z="605.56647"/>
+			<Orientation y="-2.87764"/>
+			<Actor seed="20198"/>
+		</Entity>
+		<Entity uid="10049">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="447.40772" z="597.94874"/>
+			<Orientation y="2.49498"/>
+			<Actor seed="45058"/>
+		</Entity>
+		<Entity uid="10050">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="452.3935" z="594.4358"/>
+			<Orientation y="0.77833"/>
+			<Actor seed="22116"/>
+		</Entity>
+		<Entity uid="10051">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="454.16031" z="597.90046"/>
+			<Orientation y="-0.69265"/>
+			<Actor seed="57476"/>
+		</Entity>
+		<Entity uid="10052">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="450.85038" z="600.80988"/>
+			<Orientation y="-0.64924"/>
+			<Actor seed="47922"/>
+		</Entity>
+		<Entity uid="10053">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="445.92295" z="606.5691"/>
+			<Orientation y="-1.16678"/>
+			<Actor seed="28004"/>
+		</Entity>
+		<Entity uid="10054">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="440.4769" z="607.27375"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2038"/>
+		</Entity>
+		<Entity uid="10055">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="440.56724" z="605.07801"/>
+			<Orientation y="2.0318"/>
+			<Actor seed="15652"/>
+		</Entity>
+		<Entity uid="10056">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="448.82096" z="601.60944"/>
+			<Orientation y="1.82409"/>
+			<Actor seed="50648"/>
+		</Entity>
+		<Entity uid="10057">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="457.41929" z="599.46515"/>
+			<Orientation y="2.50966"/>
+			<Actor seed="36446"/>
+		</Entity>
+		<Entity uid="10058">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="461.10935" z="597.56611"/>
+			<Orientation y="0.59475"/>
+			<Actor seed="64194"/>
+		</Entity>
+		<Entity uid="10059">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="460.37146" z="608.29365"/>
+			<Orientation y="-1.33843"/>
+			<Actor seed="6664"/>
+		</Entity>
+		<Entity uid="10060">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="455.78074" z="608.01655"/>
+			<Orientation y="-2.34873"/>
+			<Actor seed="60356"/>
+		</Entity>
+		<Entity uid="10061">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="450.46274" z="603.07984"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20816"/>
+		</Entity>
+		<Entity uid="10062">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="647.35596" z="488.7078"/>
+			<Orientation y="0.08313"/>
+			<Actor seed="54350"/>
+		</Entity>
+		<Entity uid="10063">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="646.71552" z="494.862"/>
+			<Orientation y="-2.11315"/>
+			<Actor seed="58572"/>
+		</Entity>
+		<Entity uid="10064">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="642.98731" z="488.24412"/>
+			<Orientation y="-2.87827"/>
+			<Actor seed="18880"/>
+		</Entity>
+		<Entity uid="10065">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="641.96314" z="482.7595"/>
+			<Orientation y="2.80929"/>
+			<Actor seed="44796"/>
+		</Entity>
+		<Entity uid="10066">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="645.21698" z="480.54584"/>
+			<Orientation y="1.88648"/>
+			<Actor seed="15596"/>
+		</Entity>
+		<Entity uid="10067">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="648.13337" z="480.16361"/>
+			<Orientation y="-0.04235"/>
+			<Actor seed="27800"/>
+		</Entity>
+		<Entity uid="10068">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="647.961" z="485.12494"/>
+			<Orientation y="-0.5042"/>
+			<Actor seed="39420"/>
+		</Entity>
+		<Entity uid="10069">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="645.40656" z="492.54926"/>
+			<Orientation y="1.61467"/>
+			<Actor seed="33266"/>
+		</Entity>
+		<Entity uid="10070">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="650.59321" z="492.28724"/>
+			<Orientation y="2.81667"/>
+			<Actor seed="2440"/>
+		</Entity>
+		<Entity uid="10071">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="652.15821" z="486.4101"/>
+			<Orientation y="2.87429"/>
+			<Actor seed="33982"/>
+		</Entity>
+		<Entity uid="10072">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="653.66376" z="480.82465"/>
+			<Orientation y="-1.33207"/>
+			<Actor seed="60438"/>
+		</Entity>
+		<Entity uid="10073">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="645.98096" z="482.42713"/>
+			<Orientation y="-1.33274"/>
+			<Actor seed="32378"/>
+		</Entity>
+		<Entity uid="10074">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="639.83808" z="484.3311"/>
+			<Orientation y="-1.23327"/>
+			<Actor seed="62452"/>
+		</Entity>
+		<Entity uid="10075">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="634.56635" z="487.21265"/>
+			<Orientation y="-1.67109"/>
+			<Actor seed="64496"/>
+		</Entity>
+		<Entity uid="10076">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="630.047" z="486.8249"/>
+			<Orientation y="1.39887"/>
+			<Actor seed="24482"/>
+		</Entity>
+		<Entity uid="10077">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="631.78901" z="495.07645"/>
+			<Orientation y="1.77326"/>
+			<Actor seed="8948"/>
+		</Entity>
+		<Entity uid="10078">
+			<Template>actor|geology/stone_granite_med.xml</Template>
+			<Position x="641.15528" z="492.93778"/>
+			<Orientation y="2.34186"/>
+			<Actor seed="27050"/>
 		</Entity>
 	</Entities>
 	<Paths/>

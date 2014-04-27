@@ -499,7 +499,7 @@ function handleNetMessage(message)
 	}
 }
 
-// Get display name from map data
+// Get display name from map data.
 function getMapDisplayName(map)
 {
 	var mapData = loadMapData(map);
@@ -609,9 +609,8 @@ function initMapNameList()
 	}
 
 	// Alphabetically sort the list, ignoring case
+	translateObjectKeys(mapList, ["name"]);
 	mapList.sort(sortNameIgnoreCase);
-	if (g_GameAttributes.mapType == "random")
-		mapList.unshift({ "name": "[color=\"orange\"]" + translateWithContext("map", "Random") + "[/color]", "file": "random" });
 
 	var mapListNames = [ map.name for each (map in mapList) ];
 	var mapListFiles = [ map.file for each (map in mapList) ];
@@ -625,7 +624,11 @@ function initMapNameList()
 	}
 
 	// Update the list control
-	translateObjectKeys(mapListNames, Object.keys(mapListNames));
+	if (g_GameAttributes.mapType == "random")
+	{
+		mapListNames.unshift("[color=\"orange\"]" + translateWithContext("map", "Random") + "[/color]");
+		mapListFiles.unshift("random");
+	}
 	mapSelectionBox.list = mapListNames;
 	mapSelectionBox.list_data = mapListFiles;
 	mapSelectionBox.selected = selected;
@@ -647,7 +650,8 @@ function loadMapData(name)
 
 		case "random":
 			if (name == "random")
-				g_MapData[name] = { settings: { "Name": translateWithContext("map", "Random"), "Description": translate("Randomly selects a map from the list") } };
+				// To be defined later.
+				g_MapData[name] = { settings: { "Name": "", "Description": "" } };
 			else
 				g_MapData[name] = parseJSONData(name+".json");
 			break;
@@ -705,13 +709,6 @@ function onTick()
 
 			handleNetMessage(message);
 		}
-	}
-
-	// If the lobby is running, wake it up every 10 seconds so we stay connected.
-	if (Engine.HasXmppClient() && (Date.now() - lastXmppClientPoll) > 10000)
-	{
-		Engine.RecvXmppClient();
-		lastXmppClientPoll = Date.now();
 	}
 }
 
@@ -1004,7 +1001,7 @@ function onGameAttributesChange()
 		Engine.GetGUIObjectByName("mapTypeText").caption = mapTypeSelection.list[idx];
 		var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
-		Engine.GetGUIObjectByName("mapSelectionText").caption = getMapDisplayName(mapName);
+		Engine.GetGUIObjectByName("mapSelectionText").caption = translate(getMapDisplayName(mapName));
 		var populationCapBox = Engine.GetGUIObjectByName("populationCap");
 		populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
 		var startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
@@ -1086,16 +1083,16 @@ function onGameAttributesChange()
 			populationCapText.hidden = true;
 			startingResourcesText.hidden = true;
 			
-			mapSizeText.caption = translate("Map size:");
+			mapSizeText.caption = translate("Map Size:");
 			mapSize.selected = sizeIdx;
-			revealMapText.caption = translate("Reveal map:");
-			exploreMapText.caption = translate("Explored map:");
+			revealMapText.caption = translate("Reveal Map:");
+			exploreMapText.caption = translate("Explore Map:");
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
 			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
 
-			victoryConditionText.caption = translate("Victory condition:");
+			victoryConditionText.caption = translate("Victory Condition:");
 			victoryCondition.selected = victoryIdx;
-			lockTeamsText.caption = translate("Teams locked:");
+			lockTeamsText.caption = translate("Teams Locked:");
 			lockTeams.checked = (mapSettings.LockTeams ? true : false);
 		}
 		else
@@ -1147,14 +1144,14 @@ function onGameAttributesChange()
 			populationCapText.hidden = true;
 			startingResourcesText.hidden = true;
 
-			revealMapText.caption = translate("Reveal map:");
-			exploreMapText.caption = translate("Explore map:");
+			revealMapText.caption = translate("Reveal Map:");
+			exploreMapText.caption = translate("Explore Map:");
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
 			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
 
-			victoryConditionText.caption = translate("Victory condition:");
+			victoryConditionText.caption = translate("Victory Condition:");
 			victoryCondition.selected = victoryIdx;
-			lockTeamsText.caption = translate("Teams locked:");
+			lockTeamsText.caption = translate("Teams Locked:");
 			lockTeams.checked = (mapSettings.LockTeams ? true : false);
 		}
 		else
@@ -1215,16 +1212,23 @@ function onGameAttributesChange()
 	}
 
 	// Display map name
-	Engine.GetGUIObjectByName("mapInfoName").caption = translate(getMapDisplayName(mapName));
+	if (mapName == "random")
+	{
+		var mapDisplayName  = translateWithContext("map", "Random");
+		mapSettings.Description = markForTranslation("Randomly selects a map from the list");
+	}
+	else
+		var mapDisplayName  = translate(getMapDisplayName(mapName));
+	Engine.GetGUIObjectByName("mapInfoName").caption = mapDisplayName;
 
 	// Load the description from the map file, if there is one
-	var description = mapSettings.Description || translate("Sorry, no description available.");
+	var description = mapSettings.Description ? translate(mapSettings.Description) : translate("Sorry, no description available.");
 
 	if (g_GameAttributes.mapFilter == "naval")
 		description += g_NavalWarning;
 
 	// Describe the number of players
-	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: translate(description) });
+	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: description });
 
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
@@ -1547,7 +1551,7 @@ function addChatMessage(msg)
 		username = escapeText(g_PlayerAssignments[msg.guid].name);
 
 	var message = "";
-	if (msg.text)
+	if ("text" in msg && msg.text)
 		message = escapeText(msg.text);
 
 	// TODO: Maybe host should have distinct font/color?
@@ -1570,17 +1574,17 @@ function addChatMessage(msg)
 	switch (msg.type)
 	{
 	case "connect":
-		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font]'
-		formatted = '[color="gold"]' + sprintf(translate("%(username)s has joined"), { username: formattedUsername }) + '[/color]';
+		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
+		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { message: sprintf(translate("%(username)s has joined"), { username: formattedUsername }) }) + '[/font]';
 		break;
 
 	case "disconnect":
-		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font]'
-		formatted = '[color="gold"]' + sprintf(translate("%(username)s has left"), { username: formattedUsername }) + '[/color]';
+		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
+		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { message: sprintf(translate("%(username)s has left"), { username: formattedUsername }) }) + '[/font]';
 		break;
 
 	case "message":
-		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]'
+		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
 		var formattedUsernamePrefix = '[font="sans-bold-13"]' + sprintf(translate("<%(username)s>"), { username: formattedUsername }) + '[/font]'
 		formatted = sprintf(translate("%(username)s %(message)s"), { username: formattedUsernamePrefix, message: message });
 		break;
@@ -1588,13 +1592,13 @@ function addChatMessage(msg)
 	case "ready":
 		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font]'
 		if (msg.ready)
-			formatted = '[color="gold"]*' + sprintf(translate("%(username)s is ready!"), { username: formattedUsername }) + '[/color]';
+			formatted = ' ' + sprintf(translate("* %(username)s is ready!"), { username: formattedUsername });
 		else
-			formatted = '[color="gold"]*' + sprintf(translate("%(username)s is not ready."), { username: formattedUsername }) + '[/color]';
+			formatted = ' ' + sprintf(translate("* %(username)s is not ready."), { username: formattedUsername });
 		break;
 
 	case "settings":
-		formatted = '[color="gold"][font="sans-bold-13"]*' + translate('Game settings have been changed.') + '[/font][/color]';
+		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { message: translate('Game settings have been changed') }) + '[/font]';
 		break;
 
 	default:
@@ -1658,9 +1662,19 @@ function updateReadyUI()
 		if (g_GameAttributes.settings.PlayerData[playerid].AI != "" || g_GameAttributes.settings.PlayerData[playerid].Name == "Unassigned")
 			Engine.GetGUIObjectByName("playerName[" + playerid + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
 	}
+
 	// The host is not allowed to start until everyone is ready.
+	var startGameButton = Engine.GetGUIObjectByName("startGame");
 	if (g_IsNetworked && g_IsController)
-		Engine.GetGUIObjectByName("startGame").enabled = allReady;
+	{
+		startGameButton.enabled = allReady;
+		// Add a explanation on to the tooltip if disabled.
+		var disabledIndex = startGameButton.tooltip.indexOf('Disabled');
+		if (disabledIndex != -1 && allReady)
+			startGameButton.tooltip = startGameButton.tooltip.substring(0, disabledIndex - 2);
+		else if (disabledIndex == -1 && !allReady)
+			startGameButton.tooltip = startGameButton.tooltip + " (Disabled until all players are ready)";
+	}
 }
 
 function resetReadyData()
@@ -1674,7 +1688,9 @@ function resetReadyData()
 	else
 		g_ReadyInit = false;
 	g_ReadyChanged = 2;
-	if (g_IsNetworked && g_IsController)
+	if (!g_IsNetworked)
+		g_IsReady = true;
+	else if (g_IsController)
 	{
 		Engine.ClearAllPlayerReady();
 		g_IsReady = true;

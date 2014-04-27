@@ -1,14 +1,17 @@
 {
 	"pair": "pair_inf_01",
-	"genericName": "Weapons Training",
+	"genericName": "Side Arms",
 	"specificName": {
-		"hele": "Hoplomachia",
-		"mace": "Hoplomachia",
-		"spart": "Hoplomachia",
-		"athen": "Hoplomachia",
-		"theb": "Hoplomachia"
+		"hele": "Xíphos",
+		"mace": "Xíphos",
+		"spart": "Xíphos",
+		"athen": "Xíphos",
+		"theb": "Xíphos",
+		"ptol": "Xíphos",
+		"sele": "Xíphos",
+		"rome": "Pugio"
 	},
-	"description": "Training increases damage of melee infantry units.",
+	"description": "Often, an infantryman would carry a secondary weapon in addition to his primary weapon of choice, to be drawn when the primary weapon has failed or been broken.",
 	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 50},
 	"requirements": {"any": [{"tech": "phase_town"},{"civ": "celt"},{"civ": "brit"},{"civ": "gaul"}]},
 	"requirementsTooltip": "Unlocked in Town Phase.",

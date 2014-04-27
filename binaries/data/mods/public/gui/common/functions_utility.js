@@ -167,10 +167,7 @@ function initPlayerDefaults()
 	if (!data || !data.PlayerData)
 		error("Failed to parse player defaults in player_defaults.json (check for valid JSON data)");
 	else
-	{
-		translateObjectKeys(data.PlayerData, ["Name"])
 		defaults = data.PlayerData;
-	}
 
 	return defaults;
 }

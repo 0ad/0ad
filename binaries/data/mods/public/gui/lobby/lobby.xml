@@ -21,13 +21,13 @@
 		<!-- Left panel: Player list. -->
 		<object name="leftPanel" size="20 30 20% 100%-50">
 			<object name="playersBox" style="ModernList" type="olist" size="0 0 100% 100%" font="sans-bold-stroke-13">
-				<def id="status" width="27%">
+				<def id="status" width="26%">
 					<translatableAttribute id="heading">Status</translatableAttribute>
 				</def>
 				<def id="name" width="50%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</def>
-				<def id="rating" width="23%">
+				<def id="rating" width="24%">
 					<translatableAttribute id="heading">Rating</translatableAttribute>
 				</def>
 			</object>
@@ -122,22 +122,22 @@
 
 		<!-- Middle panel: Filters, game list, chat box. -->
 		<object name="middlePanel" size="20%+5 5% 100%-255 97.2%">
-			<object name="gamesBox" style="ModernList" type="olist" size="0 25 100% 48%">
+			<object name="gamesBox" style="ModernList" type="olist" size="0 25 100% 48%" font="sans-stroke-13">
 				<action on="SelectionChange">updateGameSelection();</action>
-				<def id="name" color="0 60 0" width="20%">
+				<def id="name" color="0 60 0" width="27%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</def>
 				<!--<def id="ip" heading="IP" color="0 128 128" width="170"/>-->
 				<def id="mapName" color="128 128 128" width="25%">
 					<translatableAttribute id="heading">Map Name</translatableAttribute>
 				</def>
-				<def id="mapSize" color="128 128 128" width="25%">
-					<translatableAttribute id="heading">Map Size</translatableAttribute>
+				<def id="mapSize" color="128 128 128" width="16%">
+					<translatableAttribute id="heading">Size</translatableAttribute>
 				</def>
-				<def id="mapType" color="0 128 128" width="20%">
-					<translatableAttribute id="heading">Map Type</translatableAttribute>
+				<def id="mapType" color="0 128 128" width="16%">
+					<translatableAttribute id="heading">Type</translatableAttribute>
 				</def>
-				<def id="nPlayers" color="0 128 128" width="10%">
+				<def id="nPlayers" color="0 128 128" width="16%">
 					<translatableAttribute id="heading">Players</translatableAttribute>
 				</def>
 			</object>
@@ -146,7 +146,7 @@
 				<object name="mapSizeFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="45%-10 0 68% 100%"
+					size="52%-5 0 68%-10 100%"
 					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
@@ -154,7 +154,7 @@
 				<object name="mapTypeFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="70% 0 88% 100%"
+					size="68%-5 0 84%-10 100%"
 					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
@@ -162,7 +162,7 @@
 				<object name="playersNumberFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="90% 0 100% 100%"
+					size="84%-5 0 100% 100%"
 					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
@@ -199,16 +199,16 @@
 			<object name="leaderboardBox"
 				style="ModernList"
 				type="olist"
-				size="19 19 100%-19 100%-58">
+				size="19 19 100%-19 100%-62">
 				<def id="rank" color="255 255 255" width="15%">
 					<translatableAttribute id="heading">Rank</translatableAttribute>
 				</def>
-				<def id="rating" color="255 255 255" width="20%">
-					<translatableAttribute id="heading">Rating</translatableAttribute>
-				</def>
-				<def id="name" color="255 255 255" width="65%">
+				<def id="name" color="255 255 255" width="55%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</def>
+				<def id="rating" color="255 255 255" width="30%">
+					<translatableAttribute id="heading">Rating</translatableAttribute>
+				</def>				
 			</object>
 			<object type="button" style="StoneButton" size="50%+5 100%-45 50%+133 100%-17">
 				<translatableAttribute id="caption">Back</translatableAttribute>

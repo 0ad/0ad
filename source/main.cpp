@@ -66,6 +66,7 @@ that of Atlas depending on commandline parameters.
 #include "network/NetClient.h"
 #include "network/NetServer.h"
 #include "network/NetSession.h"
+#include "lobby/IXmppClient.h"
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "graphics/TextureManager.h"
@@ -347,6 +348,10 @@ static void Frame()
 	// Immediately flush any messages produced by simulation code
 	if (g_NetClient)
 		g_NetClient->Flush();
+
+	// Keep us connected to any XMPP servers
+	if (g_XmppClient)
+		g_XmppClient->recv();
 
 	g_UserReporter.Update();
 

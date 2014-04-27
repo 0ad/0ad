@@ -435,13 +435,6 @@ function onTick()
 
 	// Clear renamed entities list
 	Engine.GuiInterfaceCall("ClearRenamedEntities");
-
-	// If the lobby is running, wake it up every 10 seconds so we stay connected.
-	if (Engine.HasXmppClient() && (Date.now() - lastXmppClientPoll) > 10000)
-	{
-		Engine.RecvXmppClient();
-		lastXmppClientPoll = Date.now();
-	}
 }
 
 function checkPlayerState()
@@ -630,20 +623,23 @@ function updateHero()
 	var tooltip = "[font=\"sans-bold-16\"]" + template.name.specific + "[/font]";
 	var healthLabel = "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]";
 	tooltip += "\n" + sprintf(translate("%(label)s %(current)s / %(max)s"), { label: healthLabel, current: heroState.hitpoints, max: heroState.maxHitpoints });
-	var attackLabel = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(heroState.attack.type) + "[/font]";
-	if (heroState.attack && heroState.attack.type == "Ranged")
-		// Show max attack range if ranged attack, also convert to tiles (4m per tile)
-		tooltip += "\n" + sprintf(
-			translate("%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"),
-			{
-				attackLabel: attackLabel,
-				details: damageTypeDetails(heroState.attack),
-				rangeLabel: "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]",
-				range: Math.round(heroState.attack.maxRange/4)
-			}
-		);
-	else
-		tooltip += "\n" + sprintf(translate("%(label)s %(details)s"), { label: attackLabel, details: damageTypeDetails(heroState.armour) });
+	if (heroState.attack)
+	{
+		var attackLabel = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(heroState.attack.type) + "[/font]";
+		if (heroState.attack.type == "Ranged")
+			// Show max attack range if ranged attack, also convert to tiles (4m per tile)
+			tooltip += "\n" + sprintf(
+				translate("%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"),
+				{
+					attackLabel: attackLabel,
+					details: damageTypeDetails(heroState.attack),
+					rangeLabel: "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]",
+					range: Math.round(heroState.attack.maxRange/4)
+				}
+			);
+		else
+			tooltip += "\n" + sprintf(translate("%(label)s %(details)s"), { label: attackLabel, details: damageTypeDetails(heroState.armour) });
+	}
 
 	var armorLabel = "[font=\"sans-bold-13\"]" + translate("Armor:") + "[/font]";
 	tooltip += "\n" + sprintf(translate("%(label)s %(details)s"), { label: armorLabel, details: damageTypeDetails(heroState.attack) });

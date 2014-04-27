@@ -22,8 +22,6 @@
 #include "lib/utf8.h"
 
 // Debug
-// TODO: Use builtin error/warning/logging functions.
-#include <iostream>
 #include "ps/CLogger.h"
 
 // Gloox

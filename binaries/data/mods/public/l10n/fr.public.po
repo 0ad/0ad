@@ -51,8 +51,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-24 08:14+0200\n"
-"PO-Revision-Date: 2014-04-24 12:19+0000\n"
+"POT-Creation-Date: 2014-04-27 11:59+0200\n"
+"PO-Revision-Date: 2014-04-27 10:26+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: globalscripts/l10n.js:138
+#: globalscripts/l10n.js:112
 msgctxt "enumeration"
 msgid ", "
 msgstr ", "
@@ -76,24 +76,29 @@ msgstr "Aucun"
 msgid "AI will be disabled for this player."
 msgstr "L'IA sera désactivée pour ce joueur."
 
-#: gui/aiconfig/aiconfig.js:28
+#. Translation: AI difficulty level.
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Bac-à-sable"
 
-#: gui/aiconfig/aiconfig.js:28
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Facile"
 
-#: gui/aiconfig/aiconfig.js:28 gui/gamesetup/gamesetup.js:13
-#: simulation/data/map_sizes.jsonSizes[2].Name
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Moyen"
 
-#: gui/aiconfig/aiconfig.js:28
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Difficile"
 
-#: gui/aiconfig/aiconfig.js:28
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Très difficile"
 
@@ -223,45 +228,58 @@ msgstr "Motif : %(reason)s."
 msgid "Disconnected"
 msgstr "Déconnecté"
 
-#: gui/gamesetup/gamesetup.js:7
+#. Translation: Type of victory condition.
+#: gui/gamesetup/gamesetup.js:8
+msgctxt "victory"
 msgid "Conquest"
 msgstr "Conquête"
 
-#: gui/gamesetup/gamesetup.js:7
-#: simulation/templates/template_structure_wonder.xml:35
+#: gui/gamesetup/gamesetup.js:8
+msgctxt "victory"
 msgid "Wonder"
 msgstr "Merveille"
 
-#: gui/gamesetup/gamesetup.js:7
+#: gui/gamesetup/gamesetup.js:8
 msgctxt "victory"
 msgid "None"
 msgstr "Aucune"
 
-#: gui/gamesetup/gamesetup.js:10
+#: gui/gamesetup/gamesetup.js:11
 msgid "Unlimited"
 msgstr "Illimitée"
 
-#: gui/gamesetup/gamesetup.js:13
+#. Translation: Amount of starting resources.
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
 msgid "Very Low"
 msgstr "Très faibles"
 
-#: gui/gamesetup/gamesetup.js:13
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
 msgid "Low"
 msgstr "Faibles"
 
-#: gui/gamesetup/gamesetup.js:13
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "Moyen"
+
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
 msgid "High"
 msgstr "Élevées"
 
-#: gui/gamesetup/gamesetup.js:13
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
 msgid "Very High"
 msgstr "Très élevées"
 
-#: gui/gamesetup/gamesetup.js:13
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "Match à mort"
 
-#: gui/gamesetup/gamesetup.js:57
+#: gui/gamesetup/gamesetup.js:72
 #, python-format
 msgid ""
 "%(warning)s The AI does not support naval maps and may cause severe "
@@ -269,162 +287,196 @@ msgid ""
 "opponents only."
 msgstr "%(warning)s L'IA ne supporte pas les cartes navales et peut provoquer des graves problèmes de performance. Les cartes navales sont recommandées pour être jouées avec des adversaires humains uniquement."
 
-#: gui/gamesetup/gamesetup.js:58
+#: gui/gamesetup/gamesetup.js:73
 msgid "Warning:"
 msgstr "Attention:"
 
-#: gui/gamesetup/gamesetup.js:95
+#: gui/gamesetup/gamesetup.js:110
 msgid "Return to the main menu."
 msgstr "Revenir au menu principal."
 
-#: gui/gamesetup/gamesetup.js:99
+#: gui/gamesetup/gamesetup.js:114
 msgid "Return to the lobby."
 msgstr "Retourner au hall multijoueur."
 
-#: gui/gamesetup/gamesetup.js:129 gui/lobby/lobby.js:37
+#: gui/gamesetup/gamesetup.js:143 gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Escarmouche"
 
-#: gui/gamesetup/gamesetup.js:129 gui/gamesetup/gamesetup.js:569
-#: gui/gamesetup/gamesetup.js:605 gui/lobby/lobby.js:37
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:614
+#: gui/gamesetup/gamesetup.js:650 gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
 msgstr "Aléatoire"
 
-#: gui/gamesetup/gamesetup.js:129 gui/lobby/lobby.js:37
+#: gui/gamesetup/gamesetup.js:143 gui/lobby/lobby.js:37
 #: gui/summary/summary.js:508
 msgid "Scenario"
 msgstr "Scénario"
 
-#: gui/gamesetup/gamesetup.js:133 gui/gamesetup/gamesetup.js:1084
-#: gui/gamesetup/gamesetup.js:1161
+#: gui/gamesetup/gamesetup.js:147 gui/gamesetup/gamesetup.js:1119
+#: gui/gamesetup/gamesetup.js:1196
 msgid "Default"
 msgstr "Par défaut"
 
-#: gui/gamesetup/gamesetup.js:134
+#: gui/gamesetup/gamesetup.js:148
 msgid "Naval Maps"
 msgstr "Cartes navales"
 
-#: gui/gamesetup/gamesetup.js:135
+#: gui/gamesetup/gamesetup.js:149
 msgid "Demo Maps"
 msgstr "Cartes de démonstration"
 
-#: gui/gamesetup/gamesetup.js:136
+#: gui/gamesetup/gamesetup.js:150
 msgid "All Maps"
 msgstr "Toutes les cartes"
 
-#: gui/gamesetup/gamesetup.js:346 gui/session/menu.js:292
+#: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:283
 msgctxt "team"
 msgid "None"
 msgstr "Aucune"
 
-#: gui/gamesetup/gamesetup.js:518 gui/gamesetup/gamesetup.js:1224
+#: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1259
 msgctxt "civilization"
 msgid "Random"
 msgstr "Aléatoire"
 
-#: gui/gamesetup/gamesetup.js:605
+#: gui/gamesetup/gamesetup.js:650
 msgid "Randomly selects a map from the list"
 msgstr "Sélectionne aléatoirement une carte dans la liste"
 
-#: gui/gamesetup/gamesetup.js:714 gui/gamesetup/gamesetup.js:831
+#: gui/gamesetup/gamesetup.js:749 gui/gamesetup/gamesetup.js:866
 #: gui/session/session.js:19
 msgid "You"
 msgstr "Vous"
 
-#: gui/gamesetup/gamesetup.js:908
+#: gui/gamesetup/gamesetup.js:943
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1047
+#: gui/gamesetup/gamesetup.js:1082
 msgid "Map size:"
 msgstr "Taille de la carte:"
 
-#: gui/gamesetup/gamesetup.js:1049 gui/gamesetup/gamesetup.js:1108
+#: gui/gamesetup/gamesetup.js:1084 gui/gamesetup/gamesetup.js:1143
 msgid "Reveal map:"
 msgstr "Révéler la carte:"
 
-#: gui/gamesetup/gamesetup.js:1050
+#: gui/gamesetup/gamesetup.js:1085
 msgid "Explored map:"
 msgstr "Territoire exploré :"
 
-#: gui/gamesetup/gamesetup.js:1054 gui/gamesetup/gamesetup.js:1113
+#: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 msgid "Victory condition:"
 msgstr "Condition de victoire:"
 
-#: gui/gamesetup/gamesetup.js:1056 gui/gamesetup/gamesetup.js:1115
+#: gui/gamesetup/gamesetup.js:1091 gui/gamesetup/gamesetup.js:1150
 msgid "Teams locked:"
 msgstr "Équipes verrouillées:"
 
-#: gui/gamesetup/gamesetup.js:1075 gui/gamesetup/gamesetup.js:1076
-#: gui/gamesetup/gamesetup.js:1078 gui/gamesetup/gamesetup.js:1131
-#: gui/gamesetup/gamesetup.js:1132 gui/gamesetup/gamesetup.js:1134
-#: gui/gamesetup/gamesetup.js:1162 gui/gamesetup/gamesetup.js:1163
-#: gui/gamesetup/gamesetup.js:1165 gui/msgbox/msgbox.js:33
+#: gui/gamesetup/gamesetup.js:1110 gui/gamesetup/gamesetup.js:1111
+#: gui/gamesetup/gamesetup.js:1113 gui/gamesetup/gamesetup.js:1166
+#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1169
+#: gui/gamesetup/gamesetup.js:1197 gui/gamesetup/gamesetup.js:1198
+#: gui/gamesetup/gamesetup.js:1200 gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
-#: gui/session/menu.js:185 gui/session/session.js:488
+#: gui/session/menu.js:185 gui/session/session.js:481
 msgid "Yes"
 msgstr "Oui"
 
-#: gui/gamesetup/gamesetup.js:1075 gui/gamesetup/gamesetup.js:1076
-#: gui/gamesetup/gamesetup.js:1078 gui/gamesetup/gamesetup.js:1131
-#: gui/gamesetup/gamesetup.js:1132 gui/gamesetup/gamesetup.js:1134
-#: gui/gamesetup/gamesetup.js:1162 gui/gamesetup/gamesetup.js:1163
-#: gui/gamesetup/gamesetup.js:1165 gui/msgbox/msgbox.js:33
+#: gui/gamesetup/gamesetup.js:1110 gui/gamesetup/gamesetup.js:1111
+#: gui/gamesetup/gamesetup.js:1113 gui/gamesetup/gamesetup.js:1166
+#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1169
+#: gui/gamesetup/gamesetup.js:1197 gui/gamesetup/gamesetup.js:1198
+#: gui/gamesetup/gamesetup.js:1200 gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
-#: gui/session/menu.js:185 gui/session/session.js:488
+#: gui/session/menu.js:185 gui/session/session.js:481
 msgid "No"
 msgstr "Non"
 
-#: gui/gamesetup/gamesetup.js:1109
+#: gui/gamesetup/gamesetup.js:1144
 msgid "Explore map:"
 msgstr "Explorer la carte :"
 
-#: gui/gamesetup/gamesetup.js:1179 gui/lobby/lobby.js:388
+#: gui/gamesetup/gamesetup.js:1214 gui/lobby/lobby.js:388
 msgid "Sorry, no description available."
 msgstr "Désolé, aucune description n'est disponible."
 
-#: gui/gamesetup/gamesetup.js:1185
+#: gui/gamesetup/gamesetup.js:1220
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s joueur. %(description)s"
 msgstr[1] "%(number)s joueurs. %(description)s"
 
-#: gui/gamesetup/gamesetup.js:1322
+#: gui/gamesetup/gamesetup.js:1360
 #, python-format
 msgid "AI: %(ai)s"
 msgstr "IA : %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1327
+#: gui/gamesetup/gamesetup.js:1365
 msgid "Unassigned"
 msgstr "Non attribué"
 
-#: gui/gamesetup/gamesetup.js:1520
+#: gui/gamesetup/gamesetup.js:1567
 #, python-format
 msgid "%(username)s has joined"
 msgstr "%(username)s a rejoint"
 
-#: gui/gamesetup/gamesetup.js:1525
+#: gui/gamesetup/gamesetup.js:1572
 #, python-format
 msgid "%(username)s has left"
 msgstr "%(username)s a quitté"
 
-#: gui/gamesetup/gamesetup.js:1530
+#: gui/gamesetup/gamesetup.js:1577
 #, python-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1531
+#: gui/gamesetup/gamesetup.js:1578
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr " %(username)s %(message)s "
+
+#: gui/gamesetup/gamesetup.js:1584
+#, python-format
+msgid "%(username)s is ready!"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1586
+#, python-format
+msgid "%(username)s is not ready."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1590
+msgid "Game settings have been changed."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1615
+msgid "I'm not ready"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1616
+msgid "State that you are not ready to play."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1621 gui/gamesetup/gamesetup.js:1679
+msgid "I'm ready!"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1622
+msgid "State that you are ready to play!"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1680
+msgid "State that you accept the current settings and are ready to play!"
+msgstr ""
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
@@ -435,7 +487,7 @@ msgstr "Jeu de %(name)s"
 msgid "Connecting to server..."
 msgstr "Connexion au serveur ..."
 
-#: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:189
+#: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:192
 #, python-format
 msgid "Net message: %(message)s"
 msgstr "Message réseau: %(message)s"
@@ -512,60 +564,60 @@ msgstr "Une carte sélectionnée au hasard."
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "L'adresse de ce jeu '%(ip)s' ne semble pas être valide."
 
-#: gui/lobby/lobby.js:497
+#: gui/lobby/lobby.js:494
 #, python-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s a rejoint."
 
-#: gui/lobby/lobby.js:506
+#: gui/lobby/lobby.js:503
 #, python-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s a quitté."
 
-#: gui/lobby/lobby.js:513
+#: gui/lobby/lobby.js:510
 #, python-format
 msgid "Invalid nickname: %(nick)s"
 msgstr "Surnom invalide : %(nick)s"
 
-#: gui/lobby/lobby.js:520
+#: gui/lobby/lobby.js:517
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s est maintenant connu en tant que %(newnick)s."
 
-#: gui/lobby/lobby.js:674
+#: gui/lobby/lobby.js:671
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "Nous sommes désolés, la commande '%(cmd)s' n'est pas supportée."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:754
+#: gui/lobby/lobby.js:751
 #, python-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:756
+#: gui/lobby/lobby.js:753
 #, python-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
+#: gui/lobby/lobby.js:757 gui/lobby/lobby.js:768 gui/lobby/lobby.js:781
 #, python-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:762 gui/lobby/lobby.js:773 gui/lobby/lobby.js:786
+#: gui/lobby/lobby.js:759 gui/lobby/lobby.js:770 gui/lobby/lobby.js:783
 #, python-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:767
+#: gui/lobby/lobby.js:764
 #, python-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the
@@ -573,25 +625,25 @@ msgstr ""
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:798
+#: gui/lobby/lobby.js:795
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
 #. in the options page).
-#: gui/lobby/lobby.js:801
+#: gui/lobby/lobby.js:798
 #, python-format
 msgid "[%(time)s]"
 msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:804
+#: gui/lobby/lobby.js:801
 #, python-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:854
+#: gui/lobby/lobby.js:851
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Merci de ne pas spammer. Vous avez été bloqué(e) pour trente secondes."
 
@@ -625,8 +677,8 @@ msgid "<invalid>"
 msgstr ""
 
 #: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:185
-#: gui/session/session.js:482 gui/aiconfig/aiconfig.xml:42 (caption)
-#: gui/gamesetup/gamesetup.xml:334 (caption)
+#: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
+#: gui/gamesetup/gamesetup.xml:341 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "OK"
@@ -648,8 +700,8 @@ msgid "Windowed Mode"
 msgstr "Mode fenêtré"
 
 #: gui/options/options.js:8
-msgid "Start 0 A.D. in windowed mode"
-msgstr "Lancer 0 A.D en mode fenêtré "
+msgid "Start 0 A.D. in a window"
+msgstr ""
 
 #: gui/options/options.js:9
 msgid "Background Pause"
@@ -659,191 +711,201 @@ msgstr "Fond en pause"
 msgid "Pause single player games when window loses focus"
 msgstr "Met en pause les jeux solo lorsque la fenêtre perd le focus"
 
-#: gui/options/options.js:13
+#: gui/options/options.js:10
+msgid "Developer Overlay"
+msgstr "Surcouche développeur"
+
+#: gui/options/options.js:10
+msgid ""
+"Show overlay in-game with options such as reveal map, control all units, and"
+" change perspective. Designed for use by developers"
+msgstr ""
+
+#: gui/options/options.js:14
 msgid "Prefer GLSL"
 msgstr "Préférer GLSL"
 
-#: gui/options/options.js:13
+#: gui/options/options.js:14
 msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr "Utilisé OpenGL 2.0 (recommandé)"
-
-#: gui/options/options.js:14
-msgid "Post Processing"
-msgstr ""
-
-#: gui/options/options.js:14
-msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr ""
+msgstr "Utiliser OpenGL 2.0 (recommandé)"
 
 #: gui/options/options.js:15
+msgid "Post Processing"
+msgstr "Post-traitement"
+
+#: gui/options/options.js:15
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
+msgstr "Utiliser les filtres de post-traitement (HDR, Bloom, DOF, etc) sur la largeur de l'écran"
+
+#: gui/options/options.js:16
 msgid "Shadows"
 msgstr "Ombres"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Enable shadows"
 msgstr "Activer les ombres"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Particles"
 msgstr "Particules"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Enable particles"
 msgstr "Activer les particules"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Show Sky"
 msgstr "Voir le ciel"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Render Sky"
 msgstr "Rendu du ciel"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Smooth LOS"
-msgstr ""
-
-#: gui/options/options.js:18
-msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."
-msgstr ""
+msgstr "Ligne de mire douce"
 
 #: gui/options/options.js:19
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."
+msgstr "Faire disparaître l'obscurité et le brouillard de guerre doucement (Nécessite Préférer GLSL)."
+
+#: gui/options/options.js:20
 msgid "Unit Silhouettes"
 msgstr "Silhouettes des unités"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Show outlines of units behind buildings"
 msgstr "Afficher les contours des unités derrière les bâtiments"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Shadow Filtering"
 msgstr "Filtrage des Ombres"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Smooth shadows"
 msgstr "Ombres douces"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "HQ Waviness"
 msgstr "Ondulation HQ"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Real Water Depth"
 msgstr "Profondeur réelle de l'eau"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Use actual water depth in rendering calculations"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Water Reflections"
 msgstr "Réflexion de l'eau"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Allow water to reflect a mirror image"
 msgstr "Permettre à l'eau de refléter une image miroir"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Water Refraction"
 msgstr "Réfraction de l'eau"
 
-#: gui/options/options.js:24
-msgid "Use a real water refraction map and not transparency"
-msgstr ""
-
 #: gui/options/options.js:25
+msgid "Use a real water refraction map and not transparency"
+msgstr "Utiliser une vraie carte de réfraction de l'eau et non la laisser transparente"
+
+#: gui/options/options.js:26
 msgid "Shore Foam"
 msgstr "Écume"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Show foam on water near shore depending on water waviness"
 msgstr "Afficher l'écume sur l'eau près des rives en fonction de l'ondulation de l'eau"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Shore Waves"
 msgstr "Vagues côtières"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr "Afficher les vagues se brisant sur l'eau près des rives (Nécessite ondulation HQ)"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Water Shadows"
 msgstr "Ombres de l'eau"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Cast shadows on water"
 msgstr "Ombres projetées sur l'eau"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "VSync"
-msgstr ""
+msgstr "VSync"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Lancer la synchronisation verticale pour corriger les coupures d'écran. NÉCESSITE UN REDÉMARRAGE DU JEU"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Master Gain"
 msgstr "Principal"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Master audio gain"
 msgstr "Gain audio principal"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Music Gain"
 msgstr "Musique"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "In game music gain"
 msgstr "Gain sonore de la musique dans le jeu"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "Ambient Gain"
 msgstr "Ambiance"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "In game ambient sound gain"
 msgstr "Gain sonore de l'ambiance dans le jeu"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Action Gain"
 msgstr "Action"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "In game unit action sound gain"
 msgstr "Gain de sonore des actions des unités dans le jeu"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "UI Gain"
 msgstr "Interface utilisateur"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "UI sound gain"
 msgstr "Gain sonore de l'interface utilisateur"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Chat Backlog"
 msgstr "Historique de la discussion"
 
-#: gui/options/options.js:40
-msgid "Number of backlogged messages to load when joining the lobby"
-msgstr ""
-
 #: gui/options/options.js:41
+msgid "Number of backlogged messages to load when joining the lobby"
+msgstr "Nombre d'anciens messages à charger en rejoignant le hall"
+
+#: gui/options/options.js:42
 msgid "Chat Timestamp"
 msgstr "Horodatage du Chat"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Show time that messages are posted in the lobby chat"
-msgstr ""
+msgstr "Montrer à quelle heure les messages sont postés dans la discussion"
 
 #: gui/pregame/mainmenu.js:106
 msgid "disabled"
@@ -901,7 +963,7 @@ msgstr "ATTENTION !"
 msgid "Read More"
 msgstr "En savoir plus"
 
-#: gui/pregame/mainmenu.js:286 gui/session/session.js:921
+#: gui/pregame/mainmenu.js:286 gui/session/session.js:917
 #, python-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Version : %(buildDate)s (%(revision)s)"
@@ -1043,13 +1105,13 @@ msgstr "Clic droit pour définir le marché commercial de destination."
 msgid "Cannot build wall here!"
 msgstr "Impossible de construire un mur ici !"
 
-#: gui/session/menu.js:1 gui/session/session.xml:924 (caption)
+#: gui/session/menu.js:1 gui/session/session.xml:779 (caption)
 msgid "Pause"
 msgstr "Pause"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "Reprendre"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -1085,71 +1147,71 @@ msgstr "Détruire la sélection actuelle ?"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: gui/session/menu.js:295 gui/session/session.xml:440 (tooltip)
+#: gui/session/menu.js:286 gui/session/session.xml:444 (tooltip)
 msgid "Ally"
 msgstr "Allié"
 
-#: gui/session/menu.js:295 gui/session/session.xml:444 (tooltip)
+#: gui/session/menu.js:286 gui/session/session.xml:448 (tooltip)
 msgid "Neutral"
 msgstr "Neutre"
 
-#: gui/session/menu.js:295 gui/session/messages.js:605
-#: gui/session/session.xml:448 (tooltip) maps/scenarios/Sandbox -
+#: gui/session/menu.js:286 gui/session/messages.js:612
+#: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
 msgstr "Ennemi"
 
-#: gui/session/menu.js:356 gui/session/menu.js:363 gui/session/menu.js:370
+#: gui/session/menu.js:347 gui/session/menu.js:354 gui/session/menu.js:361
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:481
+#: gui/session/menu.js:472
 msgid "There are no land traders."
 msgstr ""
 
-#: gui/session/menu.js:487
+#: gui/session/menu.js:478
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:491
+#: gui/session/menu.js:482
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:494
+#: gui/session/menu.js:485
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberGarrisoned)s est en garnison sur un navire marchand"
+msgstr[1] "%(numberGarrisoned)s sont en garnison sur un navire marchand"
 
-#: gui/session/menu.js:497
+#: gui/session/menu.js:488
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s, et %(inactiveString)s."
 
-#: gui/session/menu.js:505
+#: gui/session/menu.js:496
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, et %(garrisonedString)s."
 
-#: gui/session/menu.js:515 gui/session/menu.js:577
+#: gui/session/menu.js:506 gui/session/menu.js:568
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, et %(inactiveString)s."
 
-#: gui/session/menu.js:522 gui/session/menu.js:584
+#: gui/session/menu.js:513 gui/session/menu.js:575
 #, python-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:532
+#: gui/session/menu.js:523
 #, python-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -1160,200 +1222,200 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:535
+#: gui/session/menu.js:526
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s, et %(inactiveString)s."
 
-#: gui/session/menu.js:542
+#: gui/session/menu.js:533
 #, python-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:551
+#: gui/session/menu.js:542
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:552 gui/session/menu.js:594
+#: gui/session/menu.js:543 gui/session/menu.js:585
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:564
+#: gui/session/menu.js:555
 msgid "There are no merchant ships."
 msgstr "Il n'y a aucun navire marchand."
 
-#: gui/session/menu.js:570
+#: gui/session/menu.js:561
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:574
+#: gui/session/menu.js:565
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:593
+#: gui/session/menu.js:584
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s navire marchand inactif"
 msgstr[1] "%(numberOfShipTraders)s navires marchands inactifs"
 
-#: gui/session/menu.js:682
+#: gui/session/menu.js:673
 msgid "The Developer Overlay was opened."
 msgstr "La sur-couche développeur a été ouverte"
 
-#: gui/session/menu.js:684
+#: gui/session/menu.js:675
 msgid "The Developer Overlay was closed."
 msgstr "La sur-couche développeur a été fermée."
 
-#: gui/session/menu.js:702
+#: gui/session/menu.js:693
 #, python-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "Donner %(resourceAmount)s %(resourceType)s à %(playerName)s. Shift+click pour donner %(greaterAmount)s."
 
-#: gui/session/messages.js:202
+#: gui/session/messages.js:205
 msgid "Waiting for other players to connect..."
 msgstr "En attente que d'autres joueurs se connectent ..."
 
-#: gui/session/messages.js:206
+#: gui/session/messages.js:209
 msgid "Synchronising gameplay with other players..."
 msgstr "Synchronisation avec d'autres joueurs ..."
 
-#: gui/session/messages.js:214
+#: gui/session/messages.js:217
 msgid "Connected to the server."
 msgstr "Connecté au serveur."
 
-#: gui/session/messages.js:218
+#: gui/session/messages.js:221
 msgid "Connection to the server has been authenticated."
 msgstr "La connexion au serveur a été authentifiée."
 
-#: gui/session/messages.js:223
+#: gui/session/messages.js:226
 msgid "Connection to the server has been lost."
 msgstr "La connexion au serveur a été perdue."
 
-#: gui/session/messages.js:223
+#: gui/session/messages.js:226
 msgid "The game has ended."
 msgstr "La partie est terminée."
 
-#: gui/session/messages.js:403
+#: gui/session/messages.js:410
 msgid "Unknown player"
 msgstr "Joueur inconnu"
 
-#: gui/session/messages.js:411
+#: gui/session/messages.js:418
 #, python-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)s a rejoint la partie."
 
-#: gui/session/messages.js:414
+#: gui/session/messages.js:421
 #, python-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s a quitté la partie."
 
-#: gui/session/messages.js:419
+#: gui/session/messages.js:426
 msgid "You have been defeated."
 msgstr "Vous avez été vaincus."
 
-#: gui/session/messages.js:421
+#: gui/session/messages.js:428
 #, python-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s a été vaincus."
 
-#: gui/session/messages.js:429
+#: gui/session/messages.js:436
 #, python-format
 msgid "You are now allied with %(player)s."
 msgstr "Vous êtes maintenant allié avec %(player)s."
 
-#: gui/session/messages.js:431
+#: gui/session/messages.js:438
 #, python-format
 msgid "You are now at war with %(player)s."
 msgstr "Vous êtes maintenant en guerre avec %(player)s."
 
-#: gui/session/messages.js:433
+#: gui/session/messages.js:440
 #, python-format
 msgid "You are now neutral with %(player)s."
 msgstr "Vous êtes maintenant neutre avec %(player)s."
 
-#: gui/session/messages.js:439
+#: gui/session/messages.js:446
 #, python-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s est maintenant allié avec vous."
 
-#: gui/session/messages.js:441
+#: gui/session/messages.js:448
 #, python-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s est maintenant en guerre avec vous."
 
-#: gui/session/messages.js:443
+#: gui/session/messages.js:450
 #, python-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s est maintenant neutre avec vous."
 
-#: gui/session/messages.js:462
+#: gui/session/messages.js:469
 #, python-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s et %(lastAmount)s"
 
-#: gui/session/messages.js:463 gui/session/utility_functions.js:174
+#: gui/session/messages.js:470 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
 #: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
 #: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:468
+#: gui/session/messages.js:475
 #, python-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s vous a envoyé %(amounts)s."
 
-#: gui/session/messages.js:478
+#: gui/session/messages.js:485
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Vous avez été attaqué par %(attacker)s !"
 
-#: gui/session/messages.js:491 gui/session/messages.js:496
+#: gui/session/messages.js:498 gui/session/messages.js:503
 #, python-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:504 gui/session/messages.js:508
+#: gui/session/messages.js:511 gui/session/messages.js:515
 #, python-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:516 gui/session/messages.js:517
+#: gui/session/messages.js:523 gui/session/messages.js:524
 #, python-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:520 gui/session/messages.js:525
+#: gui/session/messages.js:527 gui/session/messages.js:532
 #, python-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:533 gui/session/messages.js:534
+#: gui/session/messages.js:540 gui/session/messages.js:541
 #, python-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:592 gui/gamesetup/gamesetup.xml:86 (caption)
-#: gui/session/session.xml:433 (caption)
+#: gui/session/messages.js:599 gui/gamesetup/gamesetup.xml:86 (caption)
+#: gui/session/session.xml:437 (caption)
 msgid "Team"
 msgstr "Équipes"
 
-#: gui/session/messages.js:625
+#: gui/session/messages.js:632
 msgid "Private"
 msgstr "Privé"
 
@@ -1424,12 +1486,12 @@ msgstr "Collecteurs actuels/max"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:226 gui/session/session.js:648
+#: gui/session/selection_details.js:226 gui/session/session.js:644
 msgid "Armor:"
 msgstr "Armure:"
 
 #: gui/session/selection_details.js:227 gui/session/selection_details.js:238
-#: gui/session/session.js:646 gui/session/session.js:649
+#: gui/session/session.js:641 gui/session/session.js:645
 #, python-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -1442,7 +1504,7 @@ msgstr "Intervalle :"
 msgid "Rate:"
 msgstr "Taux :"
 
-#: gui/session/selection_details.js:249 gui/session/session.js:641
+#: gui/session/selection_details.js:249 gui/session/session.js:636
 #: gui/session/utility_functions.js:602
 msgid "Range:"
 msgstr "Distance :"
@@ -1472,7 +1534,7 @@ msgstr "%(label)s %(details)s, %(rate)s"
 msgid "Hitpoints:"
 msgstr "Points de vie :"
 
-#: gui/session/selection_details.js:342 gui/session/session.js:632
+#: gui/session/selection_details.js:342 gui/session/session.js:625
 #, python-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -1503,49 +1565,49 @@ msgstr "Vous avez été vaincu …"
 msgid "You have abandoned the game."
 msgstr "Vous avez abandonné la partie."
 
-#: gui/session/session.js:484
+#: gui/session/session.js:477
 msgid "Press OK to continue"
 msgstr "Appuyez sur OK pour continuer"
 
-#: gui/session/session.js:490
+#: gui/session/session.js:483
 msgid "Do you want to quit?"
 msgstr "Voulez-vous quitter ?"
 
-#: gui/session/session.js:496
+#: gui/session/session.js:489
 msgid "DEFEATED!"
 msgstr "DÉFAITE !"
 
-#: gui/session/session.js:504
+#: gui/session/session.js:497
 msgid "VICTORIOUS!"
 msgstr "VICTOIRE !"
 
-#: gui/session/session.js:631 gui/session/session.xml:1148 (tooltip)
+#: gui/session/session.js:624 gui/session/session.xml:1003 (tooltip)
 msgid "Health:"
 msgstr "Santé :"
 
-#: gui/session/session.js:637
+#: gui/session/session.js:632
 #, python-format
 msgid "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
 
-#: gui/session/session.js:815
+#: gui/session/session.js:811
 #, python-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/session/session.js:904
+#: gui/session/session.js:900
 #, python-format
 msgid "Unrecognized ambient type: %(ambientType)s"
 msgstr "Type d'ambiance non reconnu : %(ambientType)s"
 
-#: gui/session/session.js:926
+#: gui/session/session.js:922
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Remarque : Le mode 'déformation du temps' est une option de développeur, et n'est pas fait pour être utilisé sur de longues périodes de temps. Son utilisation incorrecte peut provoquer un manque de mémoire ou un plantage."
 
-#: gui/session/session.js:926
+#: gui/session/session.js:922
 msgid "Time warp mode"
 msgstr "Mode du saut temporel"
 
@@ -1628,15 +1690,15 @@ msgstr "Définir/oublier %(resource)s comme marchandise d'échange imposée."
 
 #: gui/session/unit_commands.js:1152
 msgid "Convert Wooden Wall into Wooden Gate"
-msgstr "Converti les murs en pois en porte en bois"
+msgstr "Convertis les Murs en bois en Portes de bois"
 
 #: gui/session/unit_commands.js:1156
 msgid "Convert Stone Wall into City Gate"
-msgstr "Converti les murs de pierre en porte de la cité"
+msgstr "Convertir les Murs de pierre en Portes de la cité"
 
 #: gui/session/unit_commands.js:1160
 msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Converti les murs de siège en porte de murs de siège"
+msgstr "Convertir les Murs de siège en Portes de murs de siège"
 
 #: gui/session/unit_commands.js:1165
 #, python-format
@@ -2128,6 +2190,418 @@ msgstr "Temps écoulé: %(time)s"
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:3
+msgid ""
+"Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
+" up just restart and try again. Practise makes perfect!"
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:8
+msgid ""
+"Lets get started, first train a batch (shift click) of 5 female citizens "
+"from the CC (Civil Center)."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:13
+msgid ""
+"Now, assign your female citizens to gather berries, your cavalryman to hunt "
+"the chickens and the citizen soldiers to gather wood."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:18
+msgid "Now set the rally point of your civil center on the berries."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:23
+msgid ""
+"Queue some slingers to train after the female citizens, you won't have "
+"enough resources for a batch."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:28
+msgid ""
+"When your female citizens have finished training, use 4 to build a house "
+"nearby."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:33
+msgid ""
+"Set the CC's rally point on the nearby trees, queue more slingers, you want "
+"to train 6 right now."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:38
+msgid "Queue a batch of 5 female citizens."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:43
+msgid "Use shift-click to queue another house for the 4 builders."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:48
+msgid ""
+"Set the rally point back to the berries once all of the citizen soldiers "
+"have finished training."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:53
+msgid ""
+"Send one citizen soldier to gather stone, send 2 others to build a "
+"storehouse near the southern trees."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:58
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:78
+msgid "Queue another 5 female citizens."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:63
+msgid "Use a female citizen to construct a field next to your CC."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:68
+msgid ""
+"Your cavalryman has probably run out of chickens by now, there are some "
+"goats to the left of your base."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:73
+msgid "Use 2-3 more female citizens to construct the field."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:83
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:128
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:138
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:163
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:188
+msgid "Queue another house."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:88
+msgid ""
+"The berry bushes are getting crowded, send some female citizens to work the "
+"field, set the rally point there."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:93
+msgid "Queue another 5 female citizens, these should gather stone."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:98
+msgid ""
+"Move your woodcutters to the trees near the storehouse so they don’t have to"
+" walk as far."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:103
+msgid ""
+"Make sure the workers from the berry bushes are used to gather from the "
+"field rather than standing idle when they run out."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:108
+msgid "Queue another house to be built."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:113
+msgid "Queue 5 more female citizens. These will gather wood."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:118
+msgid ""
+"Build another field, this decreases the amount of walking for your female "
+"citizens."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:123
+msgid ""
+"Train some more slingers, send them to gather stone. Train about 5, you may "
+"not have enough resources for a batch right now."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:133
+msgid "Queue another batch of 5 female citizens these are for wood."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:143
+msgid "Queue a batch of spearmen."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:148
+msgid "Research the stone mining technology from the storehouse."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:153
+msgid "Queue a batch of slingers."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:158
+msgid ""
+"Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
+" initially but later in the game it is best to maximize efficiency as you "
+"are able to train more citizen soldiers."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:168
+msgid ""
+"The slingers that you queue earlier should gather stone once they are "
+"trained."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:173
+msgid "Queue a batch of spearmen, they should gather wood."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:178
+msgid "Next queue a batch of slingers."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:183
+msgid ""
+"Send some of the stone miners to mine metal, getting ready for the next age."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:193
+msgid "Start researching Phase 2."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:198
+msgid "Queue some slingers."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:203
+msgid "Your fields may start getting exhausted, remember to rebuild them."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:208
+msgid ""
+"When you have advanced, use a single citizen soldier to place a barracks "
+"foundation. Then use the rest of the non food or house building female "
+"citizens to construct it."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:213
+msgid "Queue 5 more females for construction work."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:218
+msgid ""
+"Queue a batch of slingers to gather the trees on the north side of your "
+"base."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:223
+msgid ""
+"This is the end of the walkthrough. This should give you a good idea of how "
+"to build up a nice economy rapidly."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:228
+msgid ""
+"At this point you should be able to fully use both training facilities, keep"
+" putting units into economic work, to keep growing faster and faster."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:233
+msgid ""
+"From this point you have a good base to build an army and wipe out the "
+"opposition."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:238
+msgid "The key points to remember are:"
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:243
+msgid ""
+" - Don't have any idle units. Shift click queuing and rally points are very "
+"useful."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:248
+msgid ""
+" - Use all of your resources, stockpiled resources are waste, having too "
+"much of a resource is waste."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:253
+msgid ""
+" - Use the right units for the right task, female citizens gather food, "
+"cavalry hunt, citizen soldiers do the rest."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:258
+msgid ""
+" - Don't be afraid to swap units from one resource to another, see point 2. "
+"Make sure they deposit what they are carrying first though."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:263
+msgid ""
+" - Build enough houses, your CC should be kept busy as much as possible, it "
+"is the only training building until town phase."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:268
+msgid ""
+" - Female citizens are cheap, so you can build more of them and gather more "
+"resources."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:273
+msgid ""
+" - Don't get carried away on the last point or you will get raided and have "
+"no defense."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:278
+msgid ""
+"Each map is different, so you will need to play slightly differently on "
+"each. This should give an outline for a high resource map."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:4
+msgid ""
+"Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
+"Right-click on a berry bush nearby to make the unit collect food. Female "
+"citizens gather food faster than other units."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:7
+msgid ""
+"Select the citizen-soldier, right-click on a tree near the Civil Center to "
+"begin collecting wood. Citizen-soldiers gather wood faster than female "
+"citizens."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:11
+msgid ""
+"Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
+"in the row) once to begin training 5 Hoplites."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:15
+msgid ""
+"Select the two idle female citizens and build a house nearby by selecting "
+"the house icon. Place the house by left-clicking on a piece of land."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:21
+msgid ""
+"Select the newly trained Hoplites and assign them to build a storehouse "
+"beside some nearby trees. They will begin to gather wood when it's "
+"constructed."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:27
+msgid ""
+"Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
+"in the row) in the Civil Center."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:33
+msgid ""
+"Build a farmstead in an open space beside the Civil Center using any idle "
+"builders."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:39
+msgid ""
+"Once the farmstead is constructed, its builders will automatically begin "
+"gathering food if there is any nearby. Select the builders and instead make "
+"them construct a field beside the farmstead."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:45
+msgid ""
+"The field's builders will now automatically begin collecting food from the "
+"field. Using the newly created group of skirmishers, get them to build "
+"another house nearby."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:51
+msgid ""
+"Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
+"selected right click on a tree nearby. Units from the Civil Center will now "
+"automatically gather wood."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:57
+msgid ""
+"Order the idle Skirmishers to build an outpost to the north east at the edge"
+" of your territory.  This will be the fifth Village Phase structure that you"
+" have built, allowing you to advance to the Town Phase."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:63
+msgid ""
+"Select the Civil Center again and advance to Town Phase by clicking on the "
+"'II' icon. This will allow Town Phase buildings to be constructed."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:69
+msgid ""
+"Start building 5 female citizens in the Civil Center and set its rally point"
+" to the farm (right click on it)."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:74
+msgid ""
+"Build a Barracks nearby. Whenever your population limit is reached, build an"
+" extra house using any available builder units."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:80
+msgid ""
+"Prepare for an attack by an enemy player. Build more soldiers using the "
+"Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:86
+msgid ""
+"Build a Blacksmith and research the Infantry Training technology (sword "
+"icon) to improve infantry hack attack."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:92
+msgid "The enemy is coming. Build more soldiers to fight off the enemies."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:99
+msgid ""
+"The enemy's attack has been defeated. Now build a market and temple while "
+"assigning new units to gather any required resources."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:104
+msgid ""
+"Now that City Phase requirements have been reached, select your Civil Center"
+" and advance to City Phase."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:110
+msgid ""
+"Now that you are in City Phase, build a fortress nearby and use it to build "
+"2 Battering Rams."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:115
+msgid ""
+"Stop all your soldiers gathering resources and instead task small groups to "
+"find the enemy Civil Center on the map. Female citizens should continue to "
+"gather resources."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:122
+msgid ""
+"The enemy's base has been spotted, send your siege weapons and all remaining"
+" soldiers to destroy it."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:126
+msgid "The enemy has been defeated. All tutorial tasks are now completed…"
+msgstr ""
+
 #: simulation/components/BuildRestrictions.js:83
 #, python-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -2233,22 +2707,22 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "ennemi"
 
-#: simulation/components/Player.js:40 gui/session/session.xml:709 (tooltip)
+#: simulation/components/Player.js:40 gui/session/session.xml:564 (tooltip)
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
 msgstr "Nourriture"
 
-#: simulation/components/Player.js:41 gui/session/session.xml:716 (tooltip)
+#: simulation/components/Player.js:41 gui/session/session.xml:571 (tooltip)
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
 msgstr "Bois"
 
-#: simulation/components/Player.js:42 gui/session/session.xml:730 (tooltip)
+#: simulation/components/Player.js:42 gui/session/session.xml:585 (tooltip)
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
 msgstr "Métal"
 
-#: simulation/components/Player.js:43 gui/session/session.xml:723 (tooltip)
+#: simulation/components/Player.js:43 gui/session/session.xml:578 (tooltip)
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
 msgstr "Pierre"
@@ -2282,7 +2756,7 @@ msgstr "Ressources insuffisantes : %(resourceAmount1)s %(resourceType1)s, %(reso
 
 #: simulation/components/ProductionQueue.js:345
 msgid "The production queue is full."
-msgstr ""
+msgstr "La file de production est pleine."
 
 #: simulation/components/Wonder.js:53
 #, python-format
@@ -2307,10 +2781,10 @@ msgid "AI Difficulty"
 msgstr "Difficulté de l'IA"
 
 #: gui/aiconfig/aiconfig.xml:47 (caption) gui/gamesetup/gamesetup_mp.xml:109
-#: (caption) gui/lobby/prelobby.xml:67 (caption) gui/locale/locale.xml:41
+#: (caption) gui/lobby/prelobby.xml:67 (caption) gui/locale/locale.xml:46
 #: (caption) gui/locale/locale_advanced.xml:75 (caption)
-#: gui/options/options.xml:73 (caption) gui/savedgames/load.xml:35 (caption)
-#: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:403 (caption)
+#: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:35 (caption)
+#: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:407 (caption)
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -2323,7 +2797,7 @@ msgid "Civilization Selection"
 msgstr "Civilisation sélectionnée"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:28 (caption)
-#: gui/session/session.xml:486 (caption) gui/session/session.xml:539 (caption)
+#: gui/session/session.xml:490 (caption) gui/session/session.xml:543 (caption)
 msgid "Close"
 msgstr "Fermer"
 
@@ -2355,7 +2829,7 @@ msgstr "Nom du joueur"
 msgid "Player Placement"
 msgstr "Position du joueur"
 
-#: gui/gamesetup/gamesetup.xml:71 (caption) gui/session/session.xml:430
+#: gui/gamesetup/gamesetup.xml:71 (caption) gui/session/session.xml:434
 #: (caption)
 msgid "Civilization"
 msgstr "Civilisations"
@@ -2368,85 +2842,80 @@ msgstr "Voir les informations des civilisations"
 msgid "Select player."
 msgstr "Sélectionner un joueur."
 
-#: gui/gamesetup/gamesetup.xml:101 (caption) gui/session/session.xml:555
-#: (caption) gui/session/session.xml:912 (caption)
-msgid "Settings"
-msgstr "Paramètres"
-
-#: gui/gamesetup/gamesetup.xml:102 (tooltip)
+#: gui/gamesetup/gamesetup.xml:104 (tooltip)
 msgid "Configure AI settings."
 msgstr "Configurer les paramètres de l'IA."
 
-#: gui/gamesetup/gamesetup.xml:105 (tooltip)
+#: gui/gamesetup/gamesetup.xml:107 (tooltip)
 msgid "Select player's civilization."
 msgstr "Sélectionner la civilisation du joueur."
 
-#: gui/gamesetup/gamesetup.xml:109 (tooltip)
+#: gui/gamesetup/gamesetup.xml:111 (tooltip)
 msgid "Select player's team."
 msgstr "Sélectionner l'équipe du joueur."
 
-#: gui/gamesetup/gamesetup.xml:122 (caption)
+#: gui/gamesetup/gamesetup.xml:124 (caption)
 msgid "Match Type:"
 msgstr "Type de partie : "
 
-#: gui/gamesetup/gamesetup.xml:125 (caption)
+#: gui/gamesetup/gamesetup.xml:127 (caption)
 msgid "Map Filter:"
 msgstr "Filtre : "
 
-#: gui/gamesetup/gamesetup.xml:128 (caption)
+#: gui/gamesetup/gamesetup.xml:130 (caption)
 msgid "Select Map:"
 msgstr "Carte : "
 
-#: gui/gamesetup/gamesetup.xml:131 (caption) gui/lobby/lobby.xml:76 (caption)
+#: gui/gamesetup/gamesetup.xml:133 (caption) gui/lobby/lobby.xml:76 (caption)
 msgid "Map Size:"
 msgstr "Taille : "
 
-#: gui/gamesetup/gamesetup.xml:147 (tooltip)
+#: gui/gamesetup/gamesetup.xml:149 (tooltip)
 msgid "Select a map type."
 msgstr "Sélectionner un type de carte."
 
-#: gui/gamesetup/gamesetup.xml:156 (tooltip)
+#: gui/gamesetup/gamesetup.xml:158 (tooltip)
 msgid "Select a map filter."
 msgstr "Sélectionner un filtre de carte."
 
-#: gui/gamesetup/gamesetup.xml:167 (tooltip)
+#: gui/gamesetup/gamesetup.xml:169 (tooltip)
 msgid "Select a map to play on."
 msgstr "Sélectionner une carte sur laquelle jouer."
 
-#: gui/gamesetup/gamesetup.xml:173 (tooltip)
+#: gui/gamesetup/gamesetup.xml:175 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Sélectionner la taille de la carte. (Les grandes tailles peuvent réduire les performances.)"
 
-#: gui/gamesetup/gamesetup.xml:198 (caption) gui/session/session.xml:398
+#: gui/gamesetup/gamesetup.xml:200 (caption) gui/session/session.xml:402
 #: (caption)
 msgid "Send"
 msgstr "Envoyer"
 
-#: gui/gamesetup/gamesetup.xml:212 (caption)
+#: gui/gamesetup/gamesetup.xml:214 (caption)
 msgid "[Tooltip text]"
 msgstr "[Tooltip text]"
 
-#: gui/gamesetup/gamesetup.xml:224 (caption)
+#: gui/gamesetup/gamesetup.xml:226 (caption)
 msgid "Start game!"
 msgstr "Démarrer !"
 
-#: gui/gamesetup/gamesetup.xml:225 (tooltip)
+#: gui/gamesetup/gamesetup.xml:227 (tooltip)
 msgid "Start a new game with the current settings."
 msgstr "Démarrer une partie avec les paramètres actuels."
 
-#: gui/gamesetup/gamesetup.xml:237 (caption) gui/lobby/lobby.xml:214 (caption)
+#: gui/gamesetup/gamesetup.xml:244 (caption) gui/lobby/lobby.xml:214 (caption)
 msgid "Back"
 msgstr "Retour"
 
-#: gui/gamesetup/gamesetup.xml:259 (caption)
+#: gui/gamesetup/gamesetup.xml:266 (caption)
 msgid "More Options"
 msgstr "Options avancées"
 
-#: gui/gamesetup/gamesetup.xml:260 (tooltip)
+#: gui/gamesetup/gamesetup.xml:267 (tooltip)
 msgid "See more game options"
 msgstr "Voir les options avancées de la partie"
 
-#: gui/gamesetup/gamesetup.xml:335 (tooltip)
+#: gui/gamesetup/gamesetup.xml:342 (tooltip)
 msgid "Close more game options window"
 msgstr "Fermer la fenêtre des options avancées"
 
@@ -2500,7 +2969,7 @@ msgid "Status"
 msgstr "Statut"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:210 (heading) gui/session/session.xml:427 (caption)
+#: gui/lobby/lobby.xml:210 (heading) gui/session/session.xml:431 (caption)
 msgid "Name"
 msgstr "Nom"
 
@@ -2552,7 +3021,7 @@ msgstr "Joueurs"
 msgid "Show full games"
 msgstr "Afficher les parties complètes"
 
-#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1212 (tooltip)
+#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1067 (tooltip)
 msgid "Rank"
 msgstr "Grade"
 
@@ -2598,16 +3067,22 @@ msgstr "Langage"
 msgid "Language:"
 msgstr "Langage :"
 
-#: gui/locale/locale.xml:26 (caption)
+#. A locale is a set of parameters that defines the user’s language, country
+#. and
+#. any special variant preferences that the user wants to see in their user
+#. interface. Here, “Locale” refers to the code that identifies those
+#. settings,
+#. such as ‘en_US’.
+#: gui/locale/locale.xml:31 (caption)
 msgid "Locale:"
 msgstr ""
 
-#: gui/locale/locale.xml:31 (caption) gui/locale/locale_advanced.xml:65
+#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
 #: (caption)
 msgid "Accept"
 msgstr "Accepter"
 
-#: gui/locale/locale.xml:36 (caption)
+#: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
 msgstr "Avancé"
 
@@ -2632,7 +3107,7 @@ msgstr "Variante (inutilisée) :"
 #: gui/locale/locale_advanced.xml:44 (tooltip)
 #: gui/locale/locale_advanced.xml:51 (tooltip)
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Pas encore implémenté."
 
 #: gui/locale/locale_advanced.xml:48 (caption)
 msgid "Keywords (unused):"
@@ -2650,7 +3125,7 @@ msgstr "Fichers de dictionnaires utilisés :"
 msgid "Auto detect"
 msgstr "Détection automatique"
 
-#: gui/manual/manual.xml:12 (caption) gui/session/session.xml:877 (caption)
+#: gui/manual/manual.xml:12 (caption) gui/session/session.xml:732 (caption)
 msgid "Manual"
 msgstr "Manuel"
 
@@ -2678,8 +3153,8 @@ msgstr "Réglages du son"
 msgid "Lobby Settings"
 msgstr "Paramètres du hall"
 
-#: gui/options/options.xml:69 (caption) gui/savedgames/save.xml:37 (caption)
-#: gui/session/session.xml:899 (caption)
+#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:37 (caption)
+#: gui/session/session.xml:754 (caption)
 msgid "Save"
 msgstr "Sauvegarder"
 
@@ -2831,8 +3306,8 @@ msgstr "Historique"
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "En savoir plus sur les multiples civilisations d' 0 A.D."
 
-#: gui/pregame/mainmenu.xml:458 (caption) gui/session/session.xml:947
-#: (caption) gui/session/session.xml:1445 (caption)
+#: gui/pregame/mainmenu.xml:458 (caption) gui/session/session.xml:802
+#: (caption) gui/session/session.xml:1300 (caption)
 msgid "Exit"
 msgstr "Quitter"
 
@@ -2848,7 +3323,7 @@ msgstr "Site Web"
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Accéder à play0ad.com avec votre navigateur."
 
-#: gui/pregame/mainmenu.xml:509 (caption) gui/session/session.xml:888
+#: gui/pregame/mainmenu.xml:509 (caption) gui/session/session.xml:743
 #: (caption)
 msgid "Chat"
 msgstr "Chat"
@@ -2883,212 +3358,164 @@ msgstr "Sauvegarder"
 msgid "Description:"
 msgstr "Description:"
 
-#: gui/session/session.xml:247 (caption)
+#: gui/session/session.xml:251 (caption)
 msgid "Control all units"
 msgstr "Contrôler toutes les unités"
 
-#: gui/session/session.xml:257 (caption)
+#: gui/session/session.xml:261 (caption)
 msgid "Change perspective"
 msgstr "Changer de perspective"
 
-#: gui/session/session.xml:264 (caption)
+#: gui/session/session.xml:268 (caption)
 msgid "Display selection state"
 msgstr "Afficher l'état de sélection"
 
-#: gui/session/session.xml:269 (caption)
+#: gui/session/session.xml:273 (caption)
 msgid "Pathfinder overlay"
 msgstr "Surcouche Trouver le chemin"
 
-#: gui/session/session.xml:276 (caption)
+#: gui/session/session.xml:280 (caption)
 msgid "Obstruction overlay"
 msgstr "Surcouche Obstruction"
 
-#: gui/session/session.xml:283 (caption)
+#: gui/session/session.xml:287 (caption)
 msgid "Unit motion overlay"
 msgstr "Surcouche Déplacement d'unité"
 
-#: gui/session/session.xml:290 (caption)
+#: gui/session/session.xml:294 (caption)
 msgid "Range overlay"
 msgstr "Surcouche Portée"
 
-#: gui/session/session.xml:297 (caption)
+#: gui/session/session.xml:301 (caption)
 msgid "Bounding box overlay"
 msgstr "Surcouche Cadre de délimitation"
 
-#: gui/session/session.xml:304 (caption)
+#: gui/session/session.xml:308 (caption)
 msgid "Restrict camera"
 msgstr "Restreindre la caméra"
 
-#: gui/session/session.xml:318 (caption)
+#: gui/session/session.xml:322 (caption)
 msgid "Reveal map"
 msgstr "Révéler la carte"
 
-#: gui/session/session.xml:326 (caption)
+#: gui/session/session.xml:330 (caption)
 msgid "Enable time warp"
 msgstr "Activer la déformation du temps"
 
-#: gui/session/session.xml:336 (caption)
+#: gui/session/session.xml:340 (caption)
 msgid "Promote selected units"
 msgstr "Promouvoir les unités sélectionnées"
 
-#: gui/session/session.xml:363 (caption)
+#: gui/session/session.xml:367 (caption)
 msgid "Game Paused"
 msgstr "Jeu en pause"
 
-#: gui/session/session.xml:366 (caption)
+#: gui/session/session.xml:370 (caption)
 msgid "Click to Resume Game"
 msgstr "Cliquer pour reprendre la partie"
 
-#: gui/session/session.xml:422 (caption) gui/session/session.xml:810 (tooltip)
+#: gui/session/session.xml:426 (caption) gui/session/session.xml:665 (tooltip)
 msgid "Diplomacy"
 msgstr "Diplomatie"
 
-#: gui/session/session.xml:436 (caption)
+#: gui/session/session.xml:440 (caption)
 msgid "Theirs"
 msgstr "Eux"
 
-#: gui/session/session.xml:439 (caption)
+#: gui/session/session.xml:443 (caption)
 msgid "A"
 msgstr "A"
 
-#: gui/session/session.xml:443 (caption)
+#: gui/session/session.xml:447 (caption)
 msgid "N"
 msgstr "N"
 
-#: gui/session/session.xml:447 (caption)
+#: gui/session/session.xml:451 (caption)
 msgid "E"
 msgstr "E"
 
-#: gui/session/session.xml:451 (caption)
+#: gui/session/session.xml:455 (caption)
 msgid "Tribute"
 msgstr "Tribut"
 
-#: gui/session/session.xml:501 (caption) gui/session/session.xml:829 (tooltip)
+#: gui/session/session.xml:505 (caption) gui/session/session.xml:684 (tooltip)
 msgid "Trade"
 msgstr "Échange"
 
-#: gui/session/session.xml:507 (caption)
+#: gui/session/session.xml:511 (caption)
 msgid "Trading goods selection:"
 msgstr "Sélection des biens à échanger :"
 
-#: gui/session/session.xml:527 (tooltip)
+#: gui/session/session.xml:531 (tooltip)
 msgid ""
 "Select one goods as origin of the changes,\\nthen use the arrows of the "
 "target goods to make the changes."
 msgstr ""
 
-#: gui/session/session.xml:564 (caption)
-msgid "Enable Shadows"
-msgstr "Activer les ombres"
-
-#: gui/session/session.xml:573 (caption)
-msgid "Enable Shadow Filtering"
-msgstr "Filtrer les ombres"
-
-#: gui/session/session.xml:582 (caption)
-msgid "Water - HQ Waviness"
-msgstr "Eau - Ondulation HQ"
-
-#: gui/session/session.xml:591 (caption)
-msgid "Water - Use Actual Depth"
-msgstr "Eau - Profondeur réelle"
-
-#: gui/session/session.xml:600 (caption)
-msgid "Water - Enable Reflections"
-msgstr "Eau - Réflexion"
-
-#: gui/session/session.xml:609 (caption)
-msgid "Water - Enable Refraction"
-msgstr "Eau - Réfraction"
-
-#: gui/session/session.xml:618 (caption)
-msgid "Water - Enable Shore Foam"
-msgstr "Eau - Écume"
-
-#: gui/session/session.xml:627 (caption)
-msgid "Water - Enable Shore Waves"
-msgstr "Eau - Vagues côtières"
-
-#: gui/session/session.xml:636 (caption)
-msgid "Water - Use Surface Shadows"
-msgstr "Eau - Ombres de surface"
-
-#: gui/session/session.xml:645 (caption)
-msgid "Enable Particles"
-msgstr "Activer les particules"
-
-#: gui/session/session.xml:654 (caption)
-msgid "Enable Unit Silhouettes"
-msgstr "Silhouettes des unités"
-
-#: gui/session/session.xml:663 (caption)
-msgid "Enable Music"
-msgstr "Activer la musique"
-
-#: gui/session/session.xml:671 (caption)
-msgid "Developer Overlay"
-msgstr "Surcouche développeur"
-
-#: gui/session/session.xml:737 (tooltip)
+#: gui/session/session.xml:592 (tooltip)
 msgid "Population (current / limit)"
 msgstr "Population (actuelle / limite)"
 
-#: gui/session/session.xml:750 (tooltip)
+#: gui/session/session.xml:605 (tooltip)
 msgid "Choose player to view"
 msgstr "Choisir le joueur à visualiser"
 
-#: gui/session/session.xml:773 (caption)
+#: gui/session/session.xml:628 (caption)
 msgid "ALPHA XV : Osiris"
 msgstr "ALPHA XV : Osiris"
 
-#: gui/session/session.xml:790 (tooltip)
+#: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
 msgstr "Vitesse de jeu"
 
-#: gui/session/session.xml:798 (tooltip)
+#: gui/session/session.xml:653 (tooltip)
 msgid "Choose game speed"
 msgstr "Choisir la vitesse de jeu"
 
-#: gui/session/session.xml:851 (caption)
+#: gui/session/session.xml:706 (caption)
 msgid "MENU"
 msgstr "MENU"
 
-#: gui/session/session.xml:936 (caption)
+#: gui/session/session.xml:767 (caption)
+msgid "Settings"
+msgstr "Paramètres"
+
+#: gui/session/session.xml:791 (caption)
 msgid "Resign"
 msgstr "Abandonner"
 
-#: gui/session/session.xml:973 (tooltip) gui/session/session.xml:1189
+#: gui/session/session.xml:828 (tooltip) gui/session/session.xml:1044
 #: (tooltip)
 msgid "Attack and Armor"
 msgstr "Attaque et Armure"
 
-#: gui/session/session.xml:997 (tooltip)
+#: gui/session/session.xml:852 (tooltip)
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
 msgstr "Cliquer pour sélectionner le groupe, double-cliquer pour centrer la caméra sur les unités et cliquer droit pour dissoudre le groupe."
 
-#: gui/session/session.xml:1037 (tooltip)
+#: gui/session/session.xml:892 (tooltip)
 msgid "Find idle worker"
 msgstr "Trouver un travailleur inactif"
 
-#: gui/session/session.xml:1089 (tooltip)
+#: gui/session/session.xml:944 (tooltip)
 msgid "Exchange resources:"
 msgstr "Échanger des ressources:"
 
-#: gui/session/session.xml:1162 (tooltip)
+#: gui/session/session.xml:1017 (tooltip)
 msgid "Stamina:"
 msgstr "Endurance:"
 
-#: gui/session/session.xml:1204 (tooltip)
+#: gui/session/session.xml:1059 (tooltip)
 msgid "Experience"
 msgstr "Expérience"
 
-#: gui/session/session.xml:1272 (tooltip)
+#: gui/session/session.xml:1127 (tooltip)
 msgid "Hitpoints"
 msgstr "Points de vie"
 
-#: gui/session/session.xml:1281 (tooltip)
+#: gui/session/session.xml:1136 (tooltip)
 msgid "Stamina"
 msgstr "Endurance"
 
@@ -3270,13 +3697,192 @@ msgstr "Tués / Morts\\nratio"
 msgid "Map\\nexploration"
 msgstr "Carte\\nexploration"
 
+#: gui/lobby/Terms_of_Service.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
+msgid "Definitions:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
+msgid ""
+" * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
+"provided by Wildfire Games (WFG)."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
+msgid " * \"You\" are the user of the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:5
+msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:6
+msgid ""
+" * \"Rating\" refers to the process of analysing various user statistics for"
+" the purpose of generating a single comprehensive score."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:7
+msgid " * \"Moderate\" refers to the process of enforcing usage policies."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:8
+msgid "By using the service you agree to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:9
+msgid " 1. Follow all usage policies."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:10
+msgid ""
+" 2. Allow user identifiable statistics to be gathered for the purposes of "
+"rating, user profiles, and community statistics."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
+msgid "We also reserve the right to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:12
+msgid " 1. Moderate the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:13
+msgid " 2. Appoint others to moderate the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:14
+msgid ""
+" 3. Discontinue or interrupt service at any time with or without prior "
+"announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:15
+msgid " 4. Change the service at any time with or without announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:16
+msgid ""
+" 5. Delete any and all service data at any time with or without "
+"announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:17
+msgid ""
+" 6. Collect any or all user identifiable statistics at any time without "
+"consent for:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:18
+msgid ""
+"  a. Private analysis by Wildfire Games (WFG) team members and their "
+"affiliates."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:19
+msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:20
+msgid ""
+" 7. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition "
+"of adequate notice will be determined at the time by a panel of Wildfire "
+"Games (WFG) team members)."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:5
+msgid ""
+" * \"Impersonate\" refers to the action in which you attempt to exploit "
+"another's identity for your own purposes."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:6
+msgid ""
+" * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
+"number of recipients."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:7
+msgid " * \"Rating\" refers to the per-user comprehensive score."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:8
+msgid ""
+" * \"Ranked games\" refers to games in which rating changing statistics are "
+"tracked."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:9
+msgid "You agree to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:10
+msgid ""
+" 1. Only create one account per unique user on the service unless authorized"
+" by a Wildfire Games (WFG) team member."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:11
+msgid ""
+" 2. Not post profane statements, rude humor, pornographic content, or "
+"discriminatory comments on the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:12
+msgid " 3. Not purposefully demean the worth of others using the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:13
+msgid ""
+" 4. Not use the service to promote specific goods, services, or products."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:14
+msgid " 5. Not impersonate other users of the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:15
+msgid " 6. Not spam the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:16
+msgid ""
+" 7. Not attempt to artificially adjust any user of the service's rating or "
+"any of the statistics which impact it. (Examples of this are, but are not "
+"limited to: cheating in ranked games, reverse engineering the service, and "
+"taking advantage of other users of the service.)"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:17
+msgid ""
+" 8. Allow yourself to be removed from the service if at any time a moderator"
+" determines your behavior is not consistent with these rules."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:19
+msgid ""
+" 9. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition "
+"of adequate notice will be determined at the time by a panel of Wildfire "
+"Games (WFG) team members)."
+msgstr ""
+
 #: gui/manual/intro.txt:1
-msgid "[font=\"serif-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"serif-bold-18\"]Manuel intégré de 0 A.D."
+msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
+msgstr ""
 
 #: gui/manual/intro.txt:2
-msgid "[font=\"serif-14\"]"
-msgstr "[font=\"serif-14\"]"
+msgid "[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -3286,30 +3892,30 @@ msgid ""
 msgstr "Merci d'avoir installé 0 A.D. ! Cette page vous donnera un bref aperçu des fonctionnalités disponibles de cette version alpha, incomplète et en développement."
 
 #: gui/manual/intro.txt:5
-msgid "[font=\"serif-bold-16\"]Graphics settings"
-msgstr "[font=\"serif-bold-16\"]Paramètres graphiques"
+msgid "[font=\"sans-bold-16\"]Graphics settings"
+msgstr ""
 
 #: gui/manual/intro.txt:6
 msgid ""
-"[font=\"serif-14\"]You can switch between fullscreen and windowed mode by "
+"[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the configuration "
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"serif-14\"]Vous pouvez basculer entre le mode plein écran et fenêtre en appuyant sur Alt + Entrée. En mode fenêtré, vous pouvez redimensionner la fenêtre. Si le jeu tourne trop lentement, vous pouvez modifier certains paramètres dans le fichier de configuration : binaires/data/config/default.cfg (dans le répertoire d'installation du jeu), qui donne des instructions d'édition, et tester en désactivant les options \"fancywater\" et \"shadows\"."
+msgstr ""
 
 #: gui/manual/intro.txt:8
-msgid "[font=\"serif-bold-16\"]Playing the game"
-msgstr "[font=\"serif-bold-16\"]Déroulement du jeu"
+msgid "[font=\"sans-bold-16\"]Playing the game"
+msgstr ""
 
 #: gui/manual/intro.txt:9
 msgid ""
-"[font=\"serif-14\"]The controls and gameplay should be familiar to players "
-"of traditional RTS games. There are currently a lot of missing features and "
+"[font=\"sans-14\"]The controls and gameplay should be familiar to players of"
+" traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"serif-14\"]Les contrôles et la prise en main devraient être familiers aux joueurs de RTS traditionnels. Il y a actuellement beaucoup de fonctionnalités manquantes et des statistiques mal équilibrées - vous aurez probablement à attendre une version bêta pour que cela fonctionne bien."
+msgstr ""
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -3340,27 +3946,27 @@ msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
 msgstr "• Molette de la souris ou touches \"+\" et \"-\" pour zoomer."
 
 #: gui/manual/intro.txt:19
-msgid "[font=\"serif-bold-16\"]Modes"
-msgstr "[font=\"serif-bold-16\"]Modes"
+msgid "[font=\"sans-bold-16\"]Modes"
+msgstr ""
 
 #: gui/manual/intro.txt:20
-msgid "[font=\"serif-14\"]The main menu gives access to two game modes:"
-msgstr "[font=\"serif-14\"]Le menu principal donne accès à deux modes de jeu :"
+msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
+msgstr ""
 
 #: gui/manual/intro.txt:22
 msgid ""
-"• [font=\"serif-bold-14\"]Single-player[font=\"serif-14\"] — play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
 "game or against one or more AI opponents. The AI/AIs are under development "
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"serif-bold-14\"]Solo[font=\"serif-14\"] — jouer dans un environnement de test ou contre un ou plusieurs adversaires IA. Les IAs sont en cours de développement et peuvent ne pas toujours être à jour pour les nouvelles fonctionnalités, mais vous pouvez tester le jeu contre ces adversaires si vous n'êtes pas en mesure de jouer contre un humain."
+msgstr ""
 
 #: gui/manual/intro.txt:24
 msgid ""
-"• [font=\"serif-bold-14\"]Multiplayer[font=\"serif-14\"] — play against "
-"human opponents over the internet."
-msgstr "• [font=\"serif-bold-14\"]Multijoueur[font=\"serif-14\"] — jouer en réseau contre des adversaires humains."
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"opponents over the internet."
+msgstr ""
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -3371,14 +3977,14 @@ msgid ""
 msgstr "Pour créer une partie multijoueur, l'un des joueurs doit autoriser la connexion au port UDP 20595 de son NAT/pare-feu/... pour \"Héberger une partie\". Les autres joueurs peuvent alors \"Rejoindre une partie\" et entrer l'adresse IP de l'hôte."
 
 #: gui/manual/intro.txt:28
-msgid "[font=\"serif-bold-16\"]Game setup"
-msgstr "[font=\"serif-bold-16\"]Configuration du jeu"
+msgid "[font=\"sans-bold-16\"]Game setup"
+msgstr ""
 
 #: gui/manual/intro.txt:29
 msgid ""
-"[font=\"serif-14\"]In a multiplayer game, only the host can alter the game "
+"[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr "[font=\"serif-14\"]Dans une partie multijoueur, seul l'hôte peut modifier les paramètres du jeu."
+msgstr ""
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -3406,16 +4012,16 @@ msgid "When you are ready to start, click the \"Start game\" button."
 msgstr "Quand vous êtes prêt(e) à commencer, cliquez sur \"Démarrer la partie\"."
 
 #: gui/manual/intro.txt:37
-msgid "[font=\"serif-bold-16\"]Hotkeys:"
-msgstr "[font=\"serif-bold-16\"]Raccourcis clavier :"
+msgid "[font=\"sans-bold-16\"]Hotkeys:"
+msgstr ""
 
 #: gui/manual/intro.txt:38
-msgid "[font=\"serif-bold-14\"]Always"
-msgstr "• [font=\"serif-bold-14\"]À tout moment"
+msgid "[font=\"sans-bold-14\"]Always"
+msgstr ""
 
 #: gui/manual/intro.txt:39
-msgid "[font=\"serif-14\"]Alt + F4: Close the game, without confirmation"
-msgstr "[font=\"serif-14\"]Alt + F4 : Fermer le jeu, sans confirmation"
+msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -3454,12 +4060,12 @@ msgid ""
 msgstr "Maj + F2 : Prendre une grande capture d'écran (6400px*4800px, au format BMP, l'emplacement est affiché dans le coin supérieur gauche de l'interface une fois le fichier enregistré, et peut également être trouvé dans console/logs si vous le manquez là.)"
 
 #: gui/manual/intro.txt:48
-msgid "[font=\"serif-bold-14\"]In Game"
-msgstr "[font=\"serif-bold-14\"]En jeu"
+msgid "[font=\"sans-bold-14\"]In Game"
+msgstr ""
 
 #: gui/manual/intro.txt:49
 msgid ""
-"[font=\"serif-14\"]Double Left Click [on unit]: Select all of your units of "
+"[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
 msgstr ""
 
@@ -3467,7 +4073,7 @@ msgstr ""
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr ""
+msgstr "Triple Clic Gauche [sur une unité] : Sélectionner toutes vos unités de même type et de même rang sur l'écran"
 
 #: gui/manual/intro.txt:51
 msgid ""
@@ -3479,7 +4085,7 @@ msgstr "Alt + Double Clic Gauche [sur une unité] : Sélectionner toutes vos uni
 msgid ""
 "Alt + Triple Left Click [on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + Triple Clic Gauche [sur une unité] : Sélectionner toutes vos unités de même type et de même rang sur la carte entière"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -3564,12 +4170,12 @@ msgid ""
 msgstr "Z, X, C, V, B, N, M : Lorsque des bâtiments de production sont sélectionnés. Ajouter la 1ère, 2ème, ... unité affichée à la file de production de tous les bâtiments sélectionnés."
 
 #: gui/manual/intro.txt:72
-msgid "[font=\"serif-bold-14\"]Modify mouse action"
-msgstr "[font=\"serif-bold-14\"]Modifier l'action de la souris"
+msgid "[font=\"sans-bold-14\"]Modify mouse action"
+msgstr ""
 
 #: gui/manual/intro.txt:73
-msgid "[font=\"serif-14\"]Ctrl + Right Click on building: Garrison"
-msgstr "[font=\"serif-14\"]Ctrl + Clic Droit sur un bâtiment : Garnison"
+msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -3609,20 +4215,20 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + Clic Droit lorsque des unités sont sélectionnées :"
 
 #: gui/manual/intro.txt:82
-msgid "- If the cursor is over a structure: Garrison"
-msgstr "- Si le curseur est sur une structure : Garnison"
+msgid "    - If the cursor is over a structure: Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:83
-msgid "- Otherwise: Attack move"
-msgstr "- Sinon : Mouvement d'attaque"
+msgid "    - Otherwise: Attack move"
+msgstr ""
 
 #: gui/manual/intro.txt:85
-msgid "[font=\"serif-bold-14\"]Overlays"
-msgstr "[font=\"serif-bold-14\"]Overlays (surcouche développeurs)"
+msgid "[font=\"sans-bold-14\"]Overlays"
+msgstr ""
 
 #: gui/manual/intro.txt:86
-msgid "[font=\"serif-14\"]Alt + G: Hide/show the GUI"
-msgstr "[font=\"serif-14\"]Alt + G : Afficher/masquer l'interface utilisateur"
+msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
+msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -3645,12 +4251,12 @@ msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z : Basculer l'affichage du ciel"
 
 #: gui/manual/intro.txt:92
-msgid "[font=\"serif-bold-14\"]Camera manipulation"
-msgstr "[font=\"serif-bold-14\"]Manipulation de la caméra"
+msgid "[font=\"sans-bold-14\"]Camera manipulation"
+msgstr ""
 
 #: gui/manual/intro.txt:93
-msgid "[font=\"serif-14\"]W or [up]: Pan screen up"
-msgstr "[font=\"serif-14\"]W ou [haut] : Déplacer l'affichage vers le haut"
+msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
+msgstr ""
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
@@ -3726,12 +4332,12 @@ msgid ""
 msgstr "Bouton-molette de la souris ou / (barre de fraction) : Maintenez appuyé et déplacez la souris pour faire un panoramique"
 
 #: gui/manual/intro.txt:112
-msgid "[font=\"serif-bold-14\"]During Building Placement"
-msgstr "[font=\"serif-bold-14\"]Lors du placement d'un bâtiment"
+msgid "[font=\"sans-bold-14\"]During Building Placement"
+msgstr ""
 
 #: gui/manual/intro.txt:113
-msgid "[font=\"serif-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr "[font=\"serif-14\"][ : Tourner le bâtiment de 15 degrés dans le sens antihoraire"
+msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
+msgstr ""
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
@@ -3797,12 +4403,12 @@ msgid ""
 msgstr "Nous stockerons les données reçues sur notre serveur, et publierons des statistiques pour aider les développeurs du jeu sur des questions similaires sans que l'utilisateur d’origine ne soit identifiable. Nous stockerons l'adresse IP d'origine de l'envoi des données, afin de détecter les abus de ce service, mais nous ne la publierons pas. Les données publiées peuvent être consultées ici : http://feedback.wildfiregames.com/"
 
 #: gui/splashscreen/splashscreen.txt:1
-msgid "[font=\"serif-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr "[font=\"serif-bold-16\"]Merci d'avoir installé 0 A.D. !"
+msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
+msgstr "[font=\"sans-bold-16\"]Merci d'avoir installé 0 A.D. !"
 
 #: gui/splashscreen/splashscreen.txt:2
-msgid "[font=\"serif-16\"]"
-msgstr "[font=\"serif-16\"]"
+msgid "[font=\"sans-16\"]"
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid ""
@@ -5583,6 +6189,10 @@ msgstr "Petite"
 msgid "Small (2 players)"
 msgstr "Petite (2 joueurs)"
 
+#: simulation/data/map_sizes.jsonSizes[2].Name
+msgid "Medium"
+msgstr "Moyen"
+
 #: simulation/data/map_sizes.jsonSizes[2].LongName
 msgid "Medium (3 players)"
 msgstr "Moyenne (3 joueurs)"
@@ -7141,7 +7751,7 @@ msgstr "Démétrios Ier Poliorcète"
 
 #: civs/mace.jsonFactions[0].Description
 msgid "A Hellenistic kingdom bordering the Greek city-states."
-msgstr ""
+msgstr "Un royaume hellénistique en bordure des cités-états grecques."
 
 #: civs/mace.jsonStructures[0].Special
 msgid ""
@@ -7201,7 +7811,7 @@ msgstr "Mauryas"
 msgid ""
 "Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
 "usual 300)."
-msgstr "Les Maurya ont un bonus de limite de population de 10% (c'est à dire une capacité de 330 de pop au lieu de l'habituel 300)."
+msgstr "Les Maurya ont un bonus de limite de population de +10% (c'est à dire une limite de population à 330 au lieu de 300)."
 
 #: civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -7375,7 +7985,7 @@ msgid ""
 "Acharya Chanakya, contributed to such varied fields such as economics, "
 "religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
 "the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "Fondé en 322 av. J.C. par Chandragupta Maurya, l'Empire Maurya fut le premier à régner sur le sous-continent hindoue, et fut l'un des empires les plus grands et des plus peuplés de l'antiquité. Son armée comprenait des archers qui utilisaient des arcs en bambou à longue-portée, des guerrières féroces, des chars, et des milliers d'éléphants de guerre. Ses philosophes, surtout le célèbre Acharya Chanakya, participaient à des domaines variés tels que l'économie, la religion, la diplomatie, la guerre et la bonne gouvernance. Sous le règne d'Ashoka le Grand, l'empire vécu pendant 40 ans de paix, d'harmonie et de prospérité. "
+msgstr "Fondé en 322 av. J.C. par Chandragupta Maurya, l'Empire Maurya fut le premier à régner sur le sous-continent indien, et était l'un des empires les plus grands et des plus peuplés de l'Antiquité. Son armée comprenait des archers qui utilisaient des arcs en bambou à grande portée, des guerrières féroces, des chars, et des milliers d'éléphants de guerre. Ses philosophes, en particulier le célèbre Acharya Chânakya, participaient à des domaines variés tels que l'économie, la religion, la diplomatie, la guerre et la bonne gouvernance. Sous le règne d'Ashoka le Grand, l'empire vécut 40 ans de paix, d'harmonie et de prospérité."
 
 #: civs/pers.jsonName maps/scenarios/The Persian
 #: Gates.xml:31:PlayerData[3].Name
@@ -7404,7 +8014,7 @@ msgstr "Alors que les Perses employaient les chameaux seulement que dans quelque
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr "Les perses ont un bonus de +10% population maximale (par exemple 330 max au lieu de l'habituel 300)."
+msgstr "Les perses ont un bonus de limite de population de +10% (c'est à dire une limite de population à 330 au lieu de 300)."
 
 #: civs/pers.jsonCivBonuses[1].Name
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
@@ -7775,7 +8385,7 @@ msgstr "Arsinoé II"
 
 #: civs/ptol.jsonFactions[0].Technologies[1].Description
 msgid "Hero aura range boosted by 50%."
-msgstr "La portée de l'aura du héros augement de +50%."
+msgstr "Portée de l'aura du héros augmentée de 50%."
 
 #: civs/ptol.jsonFactions[0].Technologies[1].Name
 msgid "Pharaonic Cult."
@@ -9305,6 +9915,10 @@ msgstr "Nécessite une Cité."
 msgid "Sidi̱ró Panoplía"
 msgstr "Sidi̱ró Panoplía"
 
+#: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
+msgid "Lorica Ferrea"
+msgstr ""
+
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
 msgstr "Armure doublée en lin ou en cuir pour les hommes d'infanterie."
@@ -9949,7 +10563,7 @@ msgstr "Citoyenne +50% santé"
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr ""
+msgstr "Métier à tisser"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
@@ -10227,16 +10841,16 @@ msgstr "Village"
 msgid ""
 "The state or tribe would often construct a dining hall for public feasts or "
 "to receive foreign emissaries."
-msgstr ""
+msgstr "L’État ou la tribu construisait souvent une salle de banquet pour des festins publics ou pour recevoir des émissaires étrangers."
 
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr ""
+msgstr "Bonus de +5 de population pour les centres civiques."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
-msgstr ""
+msgstr "Salle de banquet"
 
 #: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
 msgid "Tholos"
@@ -10299,7 +10913,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +2 population cap bonus."
-msgstr ""
+msgstr "Bonus de +2 de population pour les maisons."
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
@@ -11522,9 +12136,30 @@ msgid ""
 "empire."
 msgstr "Apporter la gloire à votre civilisation et ajouter de grandes étendues de terres à votre empire."
 
+#: simulation/templates/template_structure_wonder.xml:35
+msgid "Wonder"
+msgstr "Merveille"
+
 #: simulation/templates/template_unit.xml:37
 msgid "Unit"
 msgstr "Unité"
+
+#: simulation/templates/template_unit_cavalry.xml:33
+#: simulation/templates/template_unit_dog.xml:80
+#: simulation/templates/template_unit_infantry.xml:52
+#: simulation/templates/template_unit_support_healer.xml:23
+#: simulation/templates/units/brit_support_healer_b.xml:9
+#: simulation/templates/units/cart_support_healer_b.xml:9
+#: simulation/templates/units/celt_support_healer_b.xml:9
+#: simulation/templates/units/gaul_support_healer_b.xml:9
+#: simulation/templates/units/hele_support_healer_b.xml:9
+#: simulation/templates/units/iber_support_healer_b.xml:10
+#: simulation/templates/units/maur_support_healer_b.xml:10
+#: simulation/templates/units/pers_support_healer_b.xml:10
+#: simulation/templates/units/rome_support_healer_b.xml:10
+msgctxt "Rank"
+msgid "Basic"
+msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee.xml:52
 msgid "Melee Cavalry"
@@ -11535,7 +12170,7 @@ msgid ""
 "Classes: Citizen Melee Cavalry Spearman.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, Elephants."
-msgstr ""
+msgstr "Classes : Lancier monté de mêlée citoyen.\nContre : 2x c. Épéistes et Armes de siège, 1,5x c. Tirailleurs.\nContré par : Lanciers, Archers, Éléphants."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
 msgid "Cavalry Spearman"
@@ -11591,7 +12226,7 @@ msgid ""
 "Classes: Champion Ranged Cavalry Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr ""
+msgstr "Classes : Archer monté à distance champion.\nContre : 2x c. Épéistes, 1,5x c. Lanciers.\nContré par : Tirailleurs et Éléphants."
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:40
 msgid "Champion Cavalry Archer."
@@ -11650,7 +12285,7 @@ msgid ""
 "Classes: Champion Ranged Infantry Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
-msgstr ""
+msgstr "Classes : Archer d'infanterie à distance champion.\nContre : 2x c. Épéistes, 1,25x c. Lanciers montés.\nContré par : Épéistes montés et Tirailleurs montés."
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
@@ -11661,7 +12296,7 @@ msgid ""
 "Classes: Champion Ranged Infantry Skirmisher.\n"
 "Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Swordsmen and Cavalry Spearmen."
-msgstr ""
+msgstr "Classes : Tirailleur d'infanterie à distance champion.\nContre : 1,5x c. Lanciers, Archers montés, Éléphants, et Chars.\nContré par : Épéistes et Lanciers montés."
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:53
 msgid "Champion Skirmisher"
@@ -11672,7 +12307,7 @@ msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.\n"
 "Countered by: Swordsmen, Skirmishers, and Cavalry Archers."
-msgstr ""
+msgstr "Classes : Lancier d'infanterie de mêlée champion.\nContre : 2x c. toute la cavalerie, 1,5x c. Éléphants.\nContré par : Épéistes, Tirailleurs, et Archers montés."
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:55
 msgid "Champion Pikeman"
@@ -11694,7 +12329,7 @@ msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Classes : Épéiste d'infanterie de mêlée champion.\nContre : 2x c. Lanciers, 1,5x c. Éléphants.\nContré par : Archers, Lanciers montés, et Archers montés."
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
@@ -11748,7 +12383,7 @@ msgstr "Cavalerie Héros"
 msgid ""
 "Hero Aura: n/a.\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr "Aura du héros : n/a.⏎\nAttaque à distance x2 c. Lanciers. Attaque à distance x1,5 c. Épéistes."
+msgstr ""
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:48
 msgid "Hero Cavalry Archer"
@@ -11794,7 +12429,7 @@ msgid ""
 "Classes: Hero Infantry Ranged Archer Bow.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr ""
+msgstr "Classes : Archer d'infanterie à distance héroïque.\nContre : 2x c. Épéistes, 1,25x c. Lanciers montés.\nContré par : Épéistes montés, Tirailleurs montés."
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:39
 msgid "Hero Archer"
@@ -11818,7 +12453,7 @@ msgid ""
 "\"Hero\" Aura: TBD.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr ""
+msgstr "Classes : Épéiste d'infanterie de mêlée héroïque.\nAura héroïque : (à définir).\nContre : 2x c. Lanciers, 1,5x c. Tirailleurs et Éléphants.\nContré par : Archers, Archers montés."
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:53
 msgid "Hero Swordsman"
@@ -11990,7 +12625,7 @@ msgid ""
 "Classes: Siege Melee Ram.\n"
 "Counters: 1.5x vs. Gates. Generally good vs. Buildings.\n"
 "Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships)."
-msgstr ""
+msgstr "Classes : Bélier de siège de mêlée.\nContre : 1,5x c. Portes. Généralement efficace c. Bâtiments.\nContré par : Cavalerie de mêlée. Ne peut attaquer les unités organiques (mais peut attaquer d'autres unités de siège et les navires)."
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:60
 msgid "Battering Ram"
@@ -13658,7 +14293,7 @@ msgstr "Camp de mercenaires (Egyptien)"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
-msgstr ""
+msgstr "Stratópedo Misthophóron Aigyptiakós"
 
 #: simulation/templates/structures/pers_apadana.xml:34
 msgid ""
@@ -14137,10 +14772,232 @@ msgstr "Syssítion"
 msgid "Asklepeion"
 msgstr "Asklepeion"
 
+#: simulation/templates/units/athen_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/athen_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/athen_infantry_archer_a.xml:18
+#: simulation/templates/units/athen_infantry_javelinist_a.xml:18
+#: simulation/templates/units/athen_infantry_slinger_a.xml:18
+#: simulation/templates/units/athen_infantry_spearman_a.xml:20
+#: simulation/templates/units/athen_support_healer_a.xml:11
+#: simulation/templates/units/brit_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/brit_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/brit_infantry_javelinist_a.xml:18
+#: simulation/templates/units/brit_infantry_slinger_a.xml:18
+#: simulation/templates/units/brit_infantry_spearman_a.xml:20
+#: simulation/templates/units/brit_support_healer_a.xml:11
+#: simulation/templates/units/brit_war_dog_a.xml:17
+#: simulation/templates/units/cart_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/cart_cavalry_spearman_a.xml:20
+#: simulation/templates/units/cart_cavalry_swordsman_2_a.xml:20
+#: simulation/templates/units/cart_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/cart_infantry_archer_a.xml:18
+#: simulation/templates/units/cart_infantry_javelinist_a.xml:18
+#: simulation/templates/units/cart_infantry_slinger_a.xml:18
+#: simulation/templates/units/cart_infantry_spearman_a.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_2_a.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_a.xml:20
+#: simulation/templates/units/cart_support_healer_a.xml:11
+#: simulation/templates/units/celt_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/celt_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/celt_infantry_javelinist_a.xml:18
+#: simulation/templates/units/celt_infantry_slinger_a.xml:15
+#: simulation/templates/units/celt_infantry_spearman_a.xml:20
+#: simulation/templates/units/celt_support_healer_a.xml:11
+#: simulation/templates/units/celt_war_dog_a.xml:17
+#: simulation/templates/units/gaul_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/gaul_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/gaul_infantry_javelinist_a.xml:18
+#: simulation/templates/units/gaul_infantry_slinger_a.xml:15
+#: simulation/templates/units/gaul_infantry_spearman_a.xml:20
+#: simulation/templates/units/gaul_support_healer_a.xml:11
+#: simulation/templates/units/hele_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/hele_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/hele_infantry_archer_a.xml:18
+#: simulation/templates/units/hele_infantry_javelinist_a.xml:18
+#: simulation/templates/units/hele_infantry_slinger_a.xml:18
+#: simulation/templates/units/hele_infantry_spearman_a.xml:20
+#: simulation/templates/units/hele_support_healer_a.xml:11
+#: simulation/templates/units/iber_cavalry_javelinist_a.xml:9
+#: simulation/templates/units/iber_cavalry_spearman_a.xml:20
+#: simulation/templates/units/iber_infantry_javelinist_a.xml:18
+#: simulation/templates/units/iber_infantry_slinger_a.xml:18
+#: simulation/templates/units/iber_infantry_spearman_a.xml:20
+#: simulation/templates/units/iber_infantry_swordsman_a.xml:20
+#: simulation/templates/units/iber_support_healer_a.xml:11
+#: simulation/templates/units/mace_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/mace_cavalry_spearman_a.xml:20
+#: simulation/templates/units/mace_infantry_archer_a.xml:18
+#: simulation/templates/units/mace_infantry_javelinist_a.xml:18
+#: simulation/templates/units/mace_infantry_slinger_a.xml:18
+#: simulation/templates/units/mace_infantry_spearman_a.xml:20
+#: simulation/templates/units/mace_support_healer_a.xml:11
+#: simulation/templates/units/maur_cavalry_javelinist_a.xml:9
+#: simulation/templates/units/maur_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/maur_elephant_archer_a.xml:7
+#: simulation/templates/units/maur_infantry_archer_a.xml:18
+#: simulation/templates/units/maur_infantry_spearman_a.xml:20
+#: simulation/templates/units/maur_infantry_swordsman_a.xml:20
+#: simulation/templates/units/maur_support_healer_a.xml:11
+#: simulation/templates/units/pers_cavalry_archer_a.xml:23
+#: simulation/templates/units/pers_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/pers_cavalry_javelinist_a_trireme.xml:18
+#: simulation/templates/units/pers_cavalry_spearman_a.xml:20
+#: simulation/templates/units/pers_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/pers_cavalry_swordsman_a_trireme.xml:20
+#: simulation/templates/units/pers_infantry_archer_a.xml:18
+#: simulation/templates/units/pers_infantry_javelinist_a.xml:18
+#: simulation/templates/units/pers_infantry_spearman_a.xml:20
+#: simulation/templates/units/pers_support_healer_a.xml:11
+#: simulation/templates/units/ptol_cavalry_archer_a.xml:19
+#: simulation/templates/units/ptol_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/ptol_cavalry_spearman_a.xml:20
+#: simulation/templates/units/ptol_infantry_archer_a.xml:18
+#: simulation/templates/units/ptol_infantry_javelinist_a.xml:18
+#: simulation/templates/units/ptol_infantry_slinger_a.xml:18
+#: simulation/templates/units/ptol_infantry_spearman_2_a.xml:20
+#: simulation/templates/units/ptol_infantry_spearman_a.xml:20
+#: simulation/templates/units/ptol_infantry_swordsman_a.xml:20
+#: simulation/templates/units/ptol_support_healer_a.xml:11
+#: simulation/templates/units/rome_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/rome_cavalry_spearman_a.xml:20
+#: simulation/templates/units/rome_infantry_javelinist_a.xml:18
+#: simulation/templates/units/rome_infantry_spearman_a.xml:20
+#: simulation/templates/units/rome_infantry_swordsman_a.xml:20
+#: simulation/templates/units/rome_support_healer_a.xml:11
+#: simulation/templates/units/sele_cavalry_archer_a.xml:19
+#: simulation/templates/units/sele_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/sele_cavalry_spearman_a.xml:20
+#: simulation/templates/units/sele_infantry_archer_a.xml:18
+#: simulation/templates/units/sele_infantry_javelinist_a.xml:18
+#: simulation/templates/units/sele_infantry_spearman_2_a.xml:20
+#: simulation/templates/units/sele_infantry_spearman_a.xml:20
+#: simulation/templates/units/sele_infantry_swordsman_a.xml:20
+#: simulation/templates/units/sele_support_healer_a.xml:11
+#: simulation/templates/units/spart_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/spart_cavalry_spearman_a.xml:20
+#: simulation/templates/units/spart_infantry_javelinist_a.xml:18
+#: simulation/templates/units/spart_infantry_spearman_a.xml:20
+#: simulation/templates/units/spart_support_healer_a.xml:11
+msgctxt "Rank"
+msgid "Advanced"
+msgstr "Avancé"
+
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:7
 msgid "Pródromos"
 msgstr "Pródromos"
+
+#: simulation/templates/units/athen_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/athen_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/athen_infantry_archer_e.xml:18
+#: simulation/templates/units/athen_infantry_javelinist_e.xml:18
+#: simulation/templates/units/athen_infantry_slinger_e.xml:18
+#: simulation/templates/units/athen_infantry_spearman_e.xml:20
+#: simulation/templates/units/athen_support_healer_e.xml:11
+#: simulation/templates/units/brit_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/brit_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/brit_infantry_javelinist_e.xml:18
+#: simulation/templates/units/brit_infantry_slinger_e.xml:18
+#: simulation/templates/units/brit_infantry_spearman_e.xml:20
+#: simulation/templates/units/brit_support_healer_e.xml:11
+#: simulation/templates/units/brit_war_dog_e.xml:17
+#: simulation/templates/units/cart_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/cart_cavalry_spearman_e.xml:20
+#: simulation/templates/units/cart_cavalry_swordsman_2_e.xml:20
+#: simulation/templates/units/cart_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/cart_infantry_archer_e.xml:18
+#: simulation/templates/units/cart_infantry_javelinist_e.xml:18
+#: simulation/templates/units/cart_infantry_slinger_e.xml:18
+#: simulation/templates/units/cart_infantry_spearman_e.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_2_e.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_e.xml:20
+#: simulation/templates/units/cart_support_healer_e.xml:11
+#: simulation/templates/units/celt_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/celt_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/celt_infantry_javelinist_e.xml:18
+#: simulation/templates/units/celt_infantry_slinger_e.xml:15
+#: simulation/templates/units/celt_infantry_spearman_e.xml:20
+#: simulation/templates/units/celt_support_healer_e.xml:11
+#: simulation/templates/units/celt_war_dog_e.xml:17
+#: simulation/templates/units/gaul_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/gaul_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/gaul_infantry_javelinist_e.xml:18
+#: simulation/templates/units/gaul_infantry_slinger_e.xml:15
+#: simulation/templates/units/gaul_infantry_spearman_e.xml:20
+#: simulation/templates/units/gaul_support_healer_e.xml:11
+#: simulation/templates/units/hele_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/hele_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/hele_infantry_archer_e.xml:18
+#: simulation/templates/units/hele_infantry_javelinist_e.xml:18
+#: simulation/templates/units/hele_infantry_slinger_e.xml:18
+#: simulation/templates/units/hele_infantry_spearman_e.xml:20
+#: simulation/templates/units/hele_support_healer_e.xml:11
+#: simulation/templates/units/iber_cavalry_javelinist_e.xml:9
+#: simulation/templates/units/iber_cavalry_spearman_e.xml:20
+#: simulation/templates/units/iber_infantry_javelinist_e.xml:20
+#: simulation/templates/units/iber_infantry_slinger_e.xml:18
+#: simulation/templates/units/iber_infantry_spearman_e.xml:20
+#: simulation/templates/units/iber_infantry_swordsman_e.xml:20
+#: simulation/templates/units/iber_support_healer_e.xml:11
+#: simulation/templates/units/mace_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/mace_cavalry_spearman_e.xml:20
+#: simulation/templates/units/mace_infantry_archer_e.xml:18
+#: simulation/templates/units/mace_infantry_javelinist_e.xml:18
+#: simulation/templates/units/mace_infantry_slinger_e.xml:18
+#: simulation/templates/units/mace_infantry_spearman_e.xml:20
+#: simulation/templates/units/mace_support_healer_e.xml:11
+#: simulation/templates/units/maur_cavalry_javelinist_e.xml:9
+#: simulation/templates/units/maur_cavalry_swordsman_e.xml:17
+#: simulation/templates/units/maur_elephant_archer_e.xml:7
+#: simulation/templates/units/maur_infantry_archer_e.xml:18
+#: simulation/templates/units/maur_infantry_spearman_e.xml:20
+#: simulation/templates/units/maur_infantry_swordsman_e.xml:20
+#: simulation/templates/units/maur_support_healer_e.xml:11
+#: simulation/templates/units/merc_thrace_swordsman.xml:23
+#: simulation/templates/units/pers_cavalry_archer_e.xml:19
+#: simulation/templates/units/pers_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/pers_cavalry_javelinist_e_trireme.xml:18
+#: simulation/templates/units/pers_cavalry_spearman_e.xml:20
+#: simulation/templates/units/pers_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/pers_cavalry_swordsman_e_trireme.xml:20
+#: simulation/templates/units/pers_infantry_archer_e.xml:18
+#: simulation/templates/units/pers_infantry_javelinist_e.xml:18
+#: simulation/templates/units/pers_infantry_spearman_e.xml:20
+#: simulation/templates/units/pers_support_healer_e.xml:11
+#: simulation/templates/units/ptol_cavalry_archer_e.xml:19
+#: simulation/templates/units/ptol_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/ptol_cavalry_spearman_e.xml:20
+#: simulation/templates/units/ptol_infantry_archer_e.xml:18
+#: simulation/templates/units/ptol_infantry_javelinist_e.xml:18
+#: simulation/templates/units/ptol_infantry_slinger_e.xml:18
+#: simulation/templates/units/ptol_infantry_spearman_2_e.xml:20
+#: simulation/templates/units/ptol_infantry_spearman_e.xml:20
+#: simulation/templates/units/ptol_infantry_swordsman_e.xml:20
+#: simulation/templates/units/ptol_support_healer_e.xml:11
+#: simulation/templates/units/rome_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/rome_cavalry_spearman_e.xml:20
+#: simulation/templates/units/rome_infantry_javelinist_e.xml:18
+#: simulation/templates/units/rome_infantry_spearman_e.xml:20
+#: simulation/templates/units/rome_infantry_swordsman_e.xml:20
+#: simulation/templates/units/rome_support_healer_e.xml:11
+#: simulation/templates/units/sele_cavalry_archer_e.xml:19
+#: simulation/templates/units/sele_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/sele_cavalry_spearman_e.xml:20
+#: simulation/templates/units/sele_infantry_archer_e.xml:18
+#: simulation/templates/units/sele_infantry_javelinist_e.xml:18
+#: simulation/templates/units/sele_infantry_spearman_2_e.xml:20
+#: simulation/templates/units/sele_infantry_spearman_e.xml:20
+#: simulation/templates/units/sele_infantry_swordsman_e.xml:20
+#: simulation/templates/units/sele_support_healer_e.xml:11
+#: simulation/templates/units/spart_cavalry_javelinist_e.xml:13
+#: simulation/templates/units/spart_cavalry_spearman_e.xml:20
+#: simulation/templates/units/spart_champion_infantry_sword.xml:30
+#: simulation/templates/units/spart_infantry_javelinist_e.xml:18
+#: simulation/templates/units/spart_infantry_spearman_e.xml:20
+#: simulation/templates/units/spart_support_healer_e.xml:11
+msgctxt "Rank"
+msgid "Elite"
+msgstr ""
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:6
@@ -14208,7 +15065,7 @@ msgid ""
 "\"Naval Architect\" Aura: Ships are built +20% faster during his lifespan.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr ""
+msgstr "Classes : Épéiste d'infanterie de mêlée héroïque.\nAura de Commandeur Naval : En garnison dans un bateau, son bateau est +50% plus rapide.\nAura d'Architecte Naval : Les bateaux se construisent +20% plus vite pendant qu'il vit.\nContre : 2x c. Lanciers, 1,5x c. Tirailleurs et Éléphants.\nContré par : Archers, Archers montés."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:14
 #: simulation/templates/units/hele_hero_themistocles.xml:14
@@ -14395,7 +15252,7 @@ msgstr "Caratacos"
 #: simulation/templates/units/brit_hero_cynvelin.xml:15
 #: simulation/templates/units/celt_hero_cynvelin.xml:12
 msgid "Hero Aura: Has a large and powerful Healing Aura."
-msgstr "Aura de héros: A une grande et puissante Aura de guérison."
+msgstr "Aura de héros : A une grande et puissante aura de Guérison."
 
 #: simulation/templates/units/brit_hero_cynvelin.xml:14
 #: simulation/templates/units/celt_hero_cynvelin.xml:11
@@ -14779,7 +15636,7 @@ msgstr "Brennos"
 #: simulation/templates/units/celt_hero_britomartus.xml:14
 #: simulation/templates/units/gaul_hero_britomartus.xml:14
 msgid "Hero Aura: Gathering rates increased with +15% during his lifetime."
-msgstr "Aura de héros: Les taux de collecte augmentent de +15% au cours de sa vie."
+msgstr "Aura de héros : Les taux de collecte augmentent de +15% au cours de sa vie."
 
 #: simulation/templates/units/celt_hero_britomartus.xml:13
 #: simulation/templates/units/gaul_hero_britomartus.xml:13
@@ -14789,7 +15646,7 @@ msgstr "Britomartus"
 #: simulation/templates/units/celt_hero_vercingetorix.xml:25
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:25
 msgid "Hero Aura: +2 attack for all units within his aura."
-msgstr "Aura de héros: +2 d'attaque pour toutes les unités dans son aura."
+msgstr "Aura de héros : +2 d'attaque pour toutes les unités dans son aura."
 
 #: simulation/templates/units/celt_hero_vercingetorix.xml:24
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:24
@@ -14876,7 +15733,7 @@ msgstr "Commando Champion poleis.\nContre: Unités de soutien, Unités à lance,
 msgid ""
 "Hero Aura: +2 Cavalry and Champion Cavalry Attack and +15% Speed. "
 "\"Herocide\" attack bonus vs. enemy Heroes."
-msgstr "Aura Héros: +2 d'attaque pour cavalerie et Champion monté, et +15% de vitesse. Bonus d'attaque \"Hérocide\" contre les Héros ennemis."
+msgstr "Aura Héros : +2 d'attaque pour cavalerie et Champion monté, et +15% de vitesse. Bonus d'attaque \"Hérocide\" contre les Héros ennemis."
 
 #: simulation/templates/units/hele_hero_alexander.xml:21
 #: simulation/templates/units/mace_hero_alexander.xml:36
@@ -14891,7 +15748,7 @@ msgstr "Mégās Aléxandros"
 #: simulation/templates/units/hele_hero_demetrius.xml:15
 #: simulation/templates/units/mace_hero_demetrius.xml:15
 msgid "Hero Aura: +15% Range and +10 Crush Attack for Siege Engines."
-msgstr "Aura de héros: +15% de portée et +10 d'attaque d'écrasement pour les engins de siège."
+msgstr "Aura de héros : +15% de portée et +10 d'attaque d'écrasement pour les engins de siège."
 
 #: simulation/templates/units/hele_hero_demetrius.xml:13
 #: simulation/templates/units/mace_hero_demetrius.xml:13
@@ -14905,7 +15762,7 @@ msgstr "Dēmḗtrios Poliorkḗtēs"
 
 #: simulation/templates/units/hele_hero_leonidas.xml:33
 msgid "Hero Aura: Increased Spartiate and Hoplite Attack. (not imlemented)"
-msgstr "Aura de héros: Attaque Spartiate et Hoplite augmentée. (pas imlementé)"
+msgstr "Aura de héros : Attaque Spartiate et Hoplite augmentée. (pas imlementé)"
 
 #: simulation/templates/units/hele_hero_leonidas.xml:32
 #: simulation/templates/units/spart_hero_leonidas.xml:29
@@ -14915,7 +15772,7 @@ msgstr "Leōnídēs"
 #: simulation/templates/units/hele_hero_philip.xml:12
 #: simulation/templates/units/mace_hero_philip.xml:12
 msgid "Hero Aura: +5 Attack for Champion Units."
-msgstr "Aura de héros: +5 d'attaque pour les unités championnes."
+msgstr "Aura de héros : +5 d'attaque pour les unités championnes."
 
 #: simulation/templates/units/hele_hero_philip.xml:11
 #: simulation/templates/units/mace_hero_philip.xml:11
@@ -14926,13 +15783,13 @@ msgstr "Phílippos B' ho Makedṓn"
 msgid ""
 "Hero Aura: +50% Move Speed for the ship he's in and -20% Build Time for all "
 "Warships."
-msgstr "Aura de héros: +50% de vitesse de déplacement des navires dans son aura, et -20% du temps de construction pour tous les navires de guerre."
+msgstr "Aura de héros : +50% de vitesse de déplacement des navires dans son aura, et -20% du temps de construction pour tous les navires de guerre."
 
 #: simulation/templates/units/hele_hero_xenophon.xml:18
 msgid ""
 "Hero Aura: +1 Armour and +15% Speed to units within his Formation. +15% "
 "Speed to Thracian Peltasts during his lifetime."
-msgstr "Aura de héros: +1 d'armure et +15% de vitesse pour les unités au sein de sa formation. +15% de vitesse pour les Peltastes thraces au cours de sa vie."
+msgstr "Aura de héros : +1 d'armure et +15% de vitesse pour les unités au sein de sa formation. +15% de vitesse pour les Peltastes thraces au cours de sa vie."
 
 #: simulation/templates/units/hele_hero_xenophon.xml:17
 msgid "Xenophôn"
@@ -15017,7 +15874,7 @@ msgstr "Leial Ezpatari"
 #: simulation/templates/units/iber_hero_indibil.xml:7
 #: simulation/templates/units/iber_hero_viriato.xml:12
 msgid "Hero Aura: \"Tactica Guerilla.\" TBD."
-msgstr "Aura de Héros: \"Tactique de guérilla\" (à définir)."
+msgstr "Aura héroïque : \"Tactique de guérilla\" (à définir)."
 
 #: simulation/templates/units/iber_hero_caros.xml:10
 msgid "Caros"
@@ -15107,7 +15964,7 @@ msgstr "Hypaspistes Argyraspides"
 msgid ""
 "\"Imperialism\" Aura: +10% territory effect for all buildings while he lives.\n"
 "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr ""
+msgstr "Aura \"Impérialisme\" : +10% d'extension de territoire pour tous les bâtiments tant qu'il vit.\nBonus \"Hérocide\" : +20% de bonus d'attaque contre les Héros ennemis."
 
 #: simulation/templates/units/mace_hero_craterus.xml:7
 msgid "Trusted general under Alexander the Great."
@@ -15259,7 +16116,7 @@ msgid ""
 "Hero Chariot Archer.\n"
 "Hero Aura: TBD.\n"
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr "Chariot Archer Héroïque.\nAura de héros : A déterminer\nSpécialités fu héros : \"édits d'Ashoka\" - Les Piliers de l'édit d'Ashoka peuvent être construits au cours de la vie d'Ashoka."
+msgstr "Archer sur char héroïque.\nAura héroïque : à déterminer.\nSpécialités du héros : \"édits d'Ashoka\" - Les Piliers de l'édit d'Ashoka peuvent être construits au cours de la vie d'Ashoka."
 
 #: simulation/templates/units/maur_hero_ashoka.xml:33
 msgid "Aśoka Devānāmpriya"
@@ -15281,7 +16138,7 @@ msgstr "Acharya Chanakya"
 msgid ""
 "Classes: Hero Melee Elephant.\n"
 "Hero Aura: TBD."
-msgstr "Classes: Éléphant de mêlée Héros.\nAura de Héros: à déterminer"
+msgstr "Classes : Éléphant de mêlée héroïque.\nAura héroïque : à déterminer."
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -15369,7 +16226,7 @@ msgid ""
 "Classes: Mercenary Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Classes : Épéiste mercenaire d'infanterie de mêlée.\nContre : 2x c. Lanciers, 1,5x c. Éléphants.\nContré par : Archers, Lanciers montés, et Archers montés."
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:21
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:14
@@ -15467,7 +16324,7 @@ msgstr "Anusiya"
 msgid ""
 "Hero Cavalry Lancer.\n"
 "Hero Aura: \"Lead from the Front.\" Boosts attack of nearby cavalry units."
-msgstr "Héros de cavalerie Lancier.⏎\nAura du héros : \"Monter au Front.\" Augmente l'attaque des unités de cavaleries proches."
+msgstr ""
 
 #: simulation/templates/units/pers_hero_cyrus.xml:11
 msgid "Cyrus II The Great"
@@ -15491,7 +16348,7 @@ msgid ""
 "Hero Aura: \"Administrator.\" +15% Gather Rate and Build Rate of nearby units.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr ""
+msgstr "Archer héroïque.\nAura héroïque : \"Administrateur.\" +15% de taux de collecte et de construction pour les unités alentour.\nContre : 2x c. Épéistes, 1,25x c. Lanciers montés.\nContré par : Épéistes montés, Tirailleurs montés."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:15
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:39
@@ -15705,7 +16562,7 @@ msgid ""
 "Classes: Ranged Mercenary Infantry Archer Worker.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr ""
+msgstr "Classes : Mercenaire travailleur d'infanterie rangée à distance.\nContre : 2x c. Épéistes, 1,25x c. Lanciers montés.\nContré par : Épéistes montés, Tirailleurs montés."
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:26
 msgid "Nubian Mercenary Archer"
@@ -16044,7 +16901,7 @@ msgid ""
 "\"Ilarchès\" Aura: All cavalry trained during his lifetime gain +2 levels of all armour types. These cavalrymen retain their armour bonuses even after Antiochus is dead.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr ""
+msgstr "Classes : Lancier monté héroïque de mêlée.\nAura \"Ilarchès\" : Tous les cavaliers entraînés avant qu'il ne meure gagnent +2 niveaux d'armure de tout type. Ces cavaliers conservent leur bonus d'armure même après la mort d'Antiochos.\nContre : 2x c. Épéistes et Armes de siège, 1,5x c. Tirailleurs.\nContré par : Lanciers, Archers, et Éléphants."
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:11
 msgid "Antiochus III \"The Great\""
@@ -16072,7 +16929,7 @@ msgid ""
 "\"Zooiarchos\" Aura: Boosts War Elephant attack and speed +20% within his vision.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr ""
+msgstr "Classes : Éléphant de mêlée héroïque.\nAura \"Zooiarchos\" : Booste l'attaque et la vitesse des Éléphants de guerre de +20% dans son champ de vision.\nContre : 2x c. toute la cavalerie, 1,5x c. tous les bâtiments. Bonus supplémentaire de 1,5x contre les portes.\nContré par : Tirailleurs et Épéistes. Capable de folie meurtrière."
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:11
 msgid "Seleucus I \"The Victor\""

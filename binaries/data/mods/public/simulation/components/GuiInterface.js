@@ -990,10 +990,11 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 		if (pos)
 		{
 			// Only update the position if we changed it (cmd.queued is set)
-			if (cmd.queued == true)
-				cmpRallyPointRenderer.AddPosition({'x': pos.x, 'y': pos.z}); // AddPosition takes a CFixedVector2D which has X/Y components, not X/Z
-			else if (cmd.queued == false)
-				cmpRallyPointRenderer.SetPosition({'x': pos.x, 'y': pos.z}); // SetPosition takes a CFixedVector2D which has X/Y components, not X/Z
+			if ("queued" in cmd)
+				if (cmd.queued == true)
+					cmpRallyPointRenderer.AddPosition({'x': pos.x, 'y': pos.z}); // AddPosition takes a CFixedVector2D which has X/Y components, not X/Z
+				else
+					cmpRallyPointRenderer.SetPosition({'x': pos.x, 'y': pos.z}); // SetPosition takes a CFixedVector2D which has X/Y components, not X/Z
 			// rebuild the renderer when not set (when reading saved game or in case of building update)
 			else if (!cmpRallyPointRenderer.IsSet())
 				for each (var posi in cmpRallyPoint.GetPositions())

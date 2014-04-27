@@ -138,9 +138,6 @@ function onTick()
 	// The XmppClient has been created, we are waiting
 	// to be connected or to receive an error.
 
-	//Wake up XmppClient
-	Engine.RecvXmppClient();
-
 	//Receive messages
 	while (true)
 	{

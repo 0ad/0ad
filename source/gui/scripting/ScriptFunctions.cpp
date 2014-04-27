@@ -957,7 +957,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::StopXmppClient>("StopXmppClient");
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::ConnectXmppClient>("ConnectXmppClient");
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::DisconnectXmppClient>("DisconnectXmppClient");
-	scriptInterface.RegisterFunction<void, &JSI_Lobby::RecvXmppClient>("RecvXmppClient");
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::SendGetGameList>("SendGetGameList");
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::SendGetBoardList>("SendGetBoardList");
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::SendGetRatingList>("SendGetRatingList");

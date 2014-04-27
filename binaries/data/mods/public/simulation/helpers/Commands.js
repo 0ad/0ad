@@ -220,7 +220,10 @@ function ProcessCommand(player, cmd)
 					var queue = Engine.QueryInterface(ent, IID_ProductionQueue);
 					// Check if the building can train the unit
 					if (queue && queue.GetEntitiesList().indexOf(cmd.template) != -1)
-						queue.AddBatch(cmd.template, "unit", +cmd.count, cmd.metadata);
+						if ("metadata" in cmd)
+							queue.AddBatch(cmd.template, "unit", +cmd.count, cmd.metadata);
+						else
+							queue.AddBatch(cmd.template, "unit", +cmd.count);
 				}
 				else if (g_DebugCommands)
 				{

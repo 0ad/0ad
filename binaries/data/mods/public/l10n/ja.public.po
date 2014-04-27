@@ -15,6 +15,7 @@
 # llen_llen, 2013-2014
 # mephistobooks <martin.route66.blues+transifex@gmail.com>, 2014
 # mephistobooks <martin.route66.blues+transifex@gmail.com>, 2014
+# mephistobooks <martin.route66.blues+transifex@gmail.com>, 2014
 # nobukof <akinobu329@yahoo.co.jp>, 2013
 # ramoramo <billiken316@yahoo.co.jp>, 2013
 # sgensum, 2014
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-24 08:14+0200\n"
-"PO-Revision-Date: 2014-04-24 12:51+0000\n"
+"POT-Creation-Date: 2014-04-27 11:59+0200\n"
+"PO-Revision-Date: 2014-04-27 12:44+0000\n"
 "Last-Translator: kanetaka\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +35,7 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: globalscripts/l10n.js:138
+#: globalscripts/l10n.js:112
 msgctxt "enumeration"
 msgid ", "
 msgstr ", "
@@ -48,24 +49,29 @@ msgstr "なし"
 msgid "AI will be disabled for this player."
 msgstr "このプレイヤーのAIが無効になります。"
 
-#: gui/aiconfig/aiconfig.js:28
+#. Translation: AI difficulty level.
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "練習"
 
-#: gui/aiconfig/aiconfig.js:28
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
 msgid "Easy"
 msgstr "簡単"
 
-#: gui/aiconfig/aiconfig.js:28 gui/gamesetup/gamesetup.js:13
-#: simulation/data/map_sizes.jsonSizes[2].Name
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
 msgid "Medium"
 msgstr "中"
 
-#: gui/aiconfig/aiconfig.js:28
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
 msgid "Hard"
 msgstr "難しい"
 
-#: gui/aiconfig/aiconfig.js:28
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "とても難しい"
 
@@ -192,45 +198,58 @@ msgstr "Reason: %(reason)s."
 msgid "Disconnected"
 msgstr "通信遮断"
 
-#: gui/gamesetup/gamesetup.js:7
+#. Translation: Type of victory condition.
+#: gui/gamesetup/gamesetup.js:8
+msgctxt "victory"
 msgid "Conquest"
 msgstr "征服"
 
-#: gui/gamesetup/gamesetup.js:7
-#: simulation/templates/template_structure_wonder.xml:35
+#: gui/gamesetup/gamesetup.js:8
+msgctxt "victory"
 msgid "Wonder"
 msgstr "象徴"
 
-#: gui/gamesetup/gamesetup.js:7
+#: gui/gamesetup/gamesetup.js:8
 msgctxt "victory"
 msgid "None"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:10
+#: gui/gamesetup/gamesetup.js:11
 msgid "Unlimited"
 msgstr "無制限"
 
-#: gui/gamesetup/gamesetup.js:13
+#. Translation: Amount of starting resources.
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
 msgid "Very Low"
 msgstr "非常に少ない"
 
-#: gui/gamesetup/gamesetup.js:13
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
 msgid "Low"
 msgstr "少ない"
 
-#: gui/gamesetup/gamesetup.js:13
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "中"
+
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
 msgid "High"
 msgstr "多い"
 
-#: gui/gamesetup/gamesetup.js:13
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
 msgid "Very High"
 msgstr "非常に多い"
 
-#: gui/gamesetup/gamesetup.js:13
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "デスマッチ"
 
-#: gui/gamesetup/gamesetup.js:57
+#: gui/gamesetup/gamesetup.js:72
 #, python-format
 msgid ""
 "%(warning)s The AI does not support naval maps and may cause severe "
@@ -238,161 +257,195 @@ msgid ""
 "opponents only."
 msgstr "%(warning)s AIは海洋マップをサポートしておらず、パフォーマンスに重大な影響を与える可能性があります。海洋マップは人間のみでプレイすることをおすすめします。"
 
-#: gui/gamesetup/gamesetup.js:58
+#: gui/gamesetup/gamesetup.js:73
 msgid "Warning:"
 msgstr "注意："
 
-#: gui/gamesetup/gamesetup.js:95
+#: gui/gamesetup/gamesetup.js:110
 msgid "Return to the main menu."
 msgstr "メインメニューに戻ります。"
 
-#: gui/gamesetup/gamesetup.js:99
+#: gui/gamesetup/gamesetup.js:114
 msgid "Return to the lobby."
 msgstr "ロビーに戻ります。"
 
-#: gui/gamesetup/gamesetup.js:129 gui/lobby/lobby.js:37
+#: gui/gamesetup/gamesetup.js:143 gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Skirmish"
 msgstr "短期戦"
 
-#: gui/gamesetup/gamesetup.js:129 gui/gamesetup/gamesetup.js:569
-#: gui/gamesetup/gamesetup.js:605 gui/lobby/lobby.js:37
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:614
+#: gui/gamesetup/gamesetup.js:650 gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
 msgstr "ランダム"
 
-#: gui/gamesetup/gamesetup.js:129 gui/lobby/lobby.js:37
+#: gui/gamesetup/gamesetup.js:143 gui/lobby/lobby.js:37
 #: gui/summary/summary.js:508
 msgid "Scenario"
 msgstr "シナリオ"
 
-#: gui/gamesetup/gamesetup.js:133 gui/gamesetup/gamesetup.js:1084
-#: gui/gamesetup/gamesetup.js:1161
+#: gui/gamesetup/gamesetup.js:147 gui/gamesetup/gamesetup.js:1119
+#: gui/gamesetup/gamesetup.js:1196
 msgid "Default"
 msgstr "デフォルト"
 
-#: gui/gamesetup/gamesetup.js:134
+#: gui/gamesetup/gamesetup.js:148
 msgid "Naval Maps"
 msgstr "海洋マップ"
 
-#: gui/gamesetup/gamesetup.js:135
+#: gui/gamesetup/gamesetup.js:149
 msgid "Demo Maps"
 msgstr "デモマップ"
 
-#: gui/gamesetup/gamesetup.js:136
+#: gui/gamesetup/gamesetup.js:150
 msgid "All Maps"
 msgstr "すべてのマップ"
 
-#: gui/gamesetup/gamesetup.js:346 gui/session/menu.js:292
+#: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:283
 msgctxt "team"
 msgid "None"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:518 gui/gamesetup/gamesetup.js:1224
+#: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1259
 msgctxt "civilization"
 msgid "Random"
 msgstr "ランダム"
 
-#: gui/gamesetup/gamesetup.js:605
+#: gui/gamesetup/gamesetup.js:650
 msgid "Randomly selects a map from the list"
 msgstr "リストの中からマップをランダムに選択"
 
-#: gui/gamesetup/gamesetup.js:714 gui/gamesetup/gamesetup.js:831
+#: gui/gamesetup/gamesetup.js:749 gui/gamesetup/gamesetup.js:866
 #: gui/session/session.js:19
 msgid "You"
 msgstr "あなた"
 
-#: gui/gamesetup/gamesetup.js:908
+#: gui/gamesetup/gamesetup.js:943
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1047
+#: gui/gamesetup/gamesetup.js:1082
 msgid "Map size:"
 msgstr "マップの大きさ："
 
-#: gui/gamesetup/gamesetup.js:1049 gui/gamesetup/gamesetup.js:1108
+#: gui/gamesetup/gamesetup.js:1084 gui/gamesetup/gamesetup.js:1143
 msgid "Reveal map:"
 msgstr "探索済マップ："
 
-#: gui/gamesetup/gamesetup.js:1050
+#: gui/gamesetup/gamesetup.js:1085
 msgid "Explored map:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1054 gui/gamesetup/gamesetup.js:1113
+#: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 msgid "Victory condition:"
 msgstr "勝利条件："
 
-#: gui/gamesetup/gamesetup.js:1056 gui/gamesetup/gamesetup.js:1115
+#: gui/gamesetup/gamesetup.js:1091 gui/gamesetup/gamesetup.js:1150
 msgid "Teams locked:"
 msgstr "固定チーム："
 
-#: gui/gamesetup/gamesetup.js:1075 gui/gamesetup/gamesetup.js:1076
-#: gui/gamesetup/gamesetup.js:1078 gui/gamesetup/gamesetup.js:1131
-#: gui/gamesetup/gamesetup.js:1132 gui/gamesetup/gamesetup.js:1134
-#: gui/gamesetup/gamesetup.js:1162 gui/gamesetup/gamesetup.js:1163
-#: gui/gamesetup/gamesetup.js:1165 gui/msgbox/msgbox.js:33
+#: gui/gamesetup/gamesetup.js:1110 gui/gamesetup/gamesetup.js:1111
+#: gui/gamesetup/gamesetup.js:1113 gui/gamesetup/gamesetup.js:1166
+#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1169
+#: gui/gamesetup/gamesetup.js:1197 gui/gamesetup/gamesetup.js:1198
+#: gui/gamesetup/gamesetup.js:1200 gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
-#: gui/session/menu.js:185 gui/session/session.js:488
+#: gui/session/menu.js:185 gui/session/session.js:481
 msgid "Yes"
 msgstr "はい"
 
-#: gui/gamesetup/gamesetup.js:1075 gui/gamesetup/gamesetup.js:1076
-#: gui/gamesetup/gamesetup.js:1078 gui/gamesetup/gamesetup.js:1131
-#: gui/gamesetup/gamesetup.js:1132 gui/gamesetup/gamesetup.js:1134
-#: gui/gamesetup/gamesetup.js:1162 gui/gamesetup/gamesetup.js:1163
-#: gui/gamesetup/gamesetup.js:1165 gui/msgbox/msgbox.js:33
+#: gui/gamesetup/gamesetup.js:1110 gui/gamesetup/gamesetup.js:1111
+#: gui/gamesetup/gamesetup.js:1113 gui/gamesetup/gamesetup.js:1166
+#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1169
+#: gui/gamesetup/gamesetup.js:1197 gui/gamesetup/gamesetup.js:1198
+#: gui/gamesetup/gamesetup.js:1200 gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
-#: gui/session/menu.js:185 gui/session/session.js:488
+#: gui/session/menu.js:185 gui/session/session.js:481
 msgid "No"
 msgstr "いいえ"
 
-#: gui/gamesetup/gamesetup.js:1109
+#: gui/gamesetup/gamesetup.js:1144
 msgid "Explore map:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1179 gui/lobby/lobby.js:388
+#: gui/gamesetup/gamesetup.js:1214 gui/lobby/lobby.js:388
 msgid "Sorry, no description available."
-msgstr "すみませんが、説明はまだありません。"
+msgstr "すみませんが、説明はありません。"
 
-#: gui/gamesetup/gamesetup.js:1185
+#: gui/gamesetup/gamesetup.js:1220
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
-msgstr[0] "%(number)s 人用。%(description)s"
+msgstr[0] "%(number)s人用。%(description)s"
 
-#: gui/gamesetup/gamesetup.js:1322
+#: gui/gamesetup/gamesetup.js:1360
 #, python-format
 msgid "AI: %(ai)s"
 msgstr "AI：%(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1327
+#: gui/gamesetup/gamesetup.js:1365
 msgid "Unassigned"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:1520
+#: gui/gamesetup/gamesetup.js:1567
 #, python-format
 msgid "%(username)s has joined"
 msgstr "%(username)sが参加しました"
 
-#: gui/gamesetup/gamesetup.js:1525
+#: gui/gamesetup/gamesetup.js:1572
 #, python-format
 msgid "%(username)s has left"
 msgstr "%(username)sが退出しました"
 
-#: gui/gamesetup/gamesetup.js:1530
+#: gui/gamesetup/gamesetup.js:1577
 #, python-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1531
+#: gui/gamesetup/gamesetup.js:1578
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
+
+#: gui/gamesetup/gamesetup.js:1584
+#, python-format
+msgid "%(username)s is ready!"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1586
+#, python-format
+msgid "%(username)s is not ready."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1590
+msgid "Game settings have been changed."
+msgstr "ゲーム設定が変更されました。"
+
+#: gui/gamesetup/gamesetup.js:1615
+msgid "I'm not ready"
+msgstr "わたしはまだ準備できていない"
+
+#: gui/gamesetup/gamesetup.js:1616
+msgid "State that you are not ready to play."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1621 gui/gamesetup/gamesetup.js:1679
+msgid "I'm ready!"
+msgstr "準備できた！"
+
+#: gui/gamesetup/gamesetup.js:1622
+msgid "State that you are ready to play!"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1680
+msgid "State that you accept the current settings and are ready to play!"
+msgstr ""
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
@@ -403,7 +456,7 @@ msgstr "%(name)s のゲーム"
 msgid "Connecting to server..."
 msgstr "サーバーに接続しています…"
 
-#: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:189
+#: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:192
 #, python-format
 msgid "Net message: %(message)s"
 msgstr "ネットメッセージ: %(message)s"
@@ -480,57 +533,57 @@ msgstr "ランダム選択マップ"
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "このゲームのアドレス '%(ip)s' は正しくない形式です。"
 
-#: gui/lobby/lobby.js:497
+#: gui/lobby/lobby.js:494
 #, python-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)sが参加しました。"
 
-#: gui/lobby/lobby.js:506
+#: gui/lobby/lobby.js:503
 #, python-format
 msgid "%(nick)s has left."
 msgstr "%(nick)sが退出しました。"
 
-#: gui/lobby/lobby.js:513
+#: gui/lobby/lobby.js:510
 #, python-format
 msgid "Invalid nickname: %(nick)s"
 msgstr "無効なニックネーム：%(nick)s"
 
-#: gui/lobby/lobby.js:520
+#: gui/lobby/lobby.js:517
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)sは名前を%(newnick)sに変更しました。"
 
-#: gui/lobby/lobby.js:674
+#: gui/lobby/lobby.js:671
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "We're sorry, the '%(cmd)s' command is not supported."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:754
+#: gui/lobby/lobby.js:751
 #, python-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:756
+#: gui/lobby/lobby.js:753
 #, python-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
+#: gui/lobby/lobby.js:757 gui/lobby/lobby.js:768 gui/lobby/lobby.js:781
 #, python-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:762 gui/lobby/lobby.js:773 gui/lobby/lobby.js:786
+#: gui/lobby/lobby.js:759 gui/lobby/lobby.js:770 gui/lobby/lobby.js:783
 #, python-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:767
+#: gui/lobby/lobby.js:764
 #, python-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -541,27 +594,27 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:798
+#: gui/lobby/lobby.js:795
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
 #. in the options page).
-#: gui/lobby/lobby.js:801
+#: gui/lobby/lobby.js:798
 #, python-format
 msgid "[%(time)s]"
 msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:804
+#: gui/lobby/lobby.js:801
 #, python-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:854
+#: gui/lobby/lobby.js:851
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "スパム行為をしないでください。あなたは30秒間ブロックされました。"
 
 #: gui/lobby/prelobby.js:35
 msgid "Connecting..."
@@ -590,11 +643,11 @@ msgstr "なし"
 
 #: gui/locale/locale_advanced.js:89
 msgid "<invalid>"
-msgstr ""
+msgstr "<無効>"
 
 #: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:185
-#: gui/session/session.js:482 gui/aiconfig/aiconfig.xml:42 (caption)
-#: gui/gamesetup/gamesetup.xml:334 (caption)
+#: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
+#: gui/gamesetup/gamesetup.xml:341 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "OK"
@@ -616,8 +669,8 @@ msgid "Windowed Mode"
 msgstr "ウィンドウモード"
 
 #: gui/options/options.js:8
-msgid "Start 0 A.D. in windowed mode"
-msgstr "0 A.D. をウィンドウモードで起動します"
+msgid "Start 0 A.D. in a window"
+msgstr "ウィンドウ内で0 A.D.を起動"
 
 #: gui/options/options.js:9
 msgid "Background Pause"
@@ -627,189 +680,199 @@ msgstr "バックグラウンドで一時停止"
 msgid "Pause single player games when window loses focus"
 msgstr "ウィンドウがフォーカスを外れたとき、シングルプレイヤーのゲームを中断します"
 
-#: gui/options/options.js:13
+#: gui/options/options.js:10
+msgid "Developer Overlay"
+msgstr "開発者用オーバーレイ"
+
+#: gui/options/options.js:10
+msgid ""
+"Show overlay in-game with options such as reveal map, control all units, and"
+" change perspective. Designed for use by developers"
+msgstr ""
+
+#: gui/options/options.js:14
 msgid "Prefer GLSL"
 msgstr "GLSLの使用"
 
-#: gui/options/options.js:13
+#: gui/options/options.js:14
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "OpenGL 2.0シェーダーを使います（推奨）"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Post Processing"
 msgstr "後処理"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr ""
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Shadows"
 msgstr "影"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Enable shadows"
 msgstr "影を表示します"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Particles"
 msgstr "降水"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Enable particles"
 msgstr "降水を許可します"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Show Sky"
 msgstr "空の表示"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Render Sky"
 msgstr "空を描画します"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Smooth LOS"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."
 msgstr ""
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Unit Silhouettes"
 msgstr "ユニットの輪郭"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Show outlines of units behind buildings"
 msgstr "建物の影に隠れたユニットの輪郭を表示します"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Shadow Filtering"
 msgstr "影のフィルタリング"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Smooth shadows"
 msgstr "影を滑らかにします"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "HQ Waviness"
 msgstr "高品質の波"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr "リアルな通常の海の波を描画し、平らな表面を使いません。"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Real Water Depth"
 msgstr "リアルな水深"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Use actual water depth in rendering calculations"
 msgstr "実際の水深で描画計算します"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Water Reflections"
 msgstr "水面の反射"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Allow water to reflect a mirror image"
 msgstr "水面が反射で鏡のように像を映すようにします"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Water Refraction"
 msgstr "水面の屈折"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Use a real water refraction map and not transparency"
 msgstr "リアルな水面屈折マップを用い、不透明にします。"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Shore Foam"
 msgstr "岸の泡"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Show foam on water near shore depending on water waviness"
 msgstr "岸の近くの水面の泡を表示を、波有効のとき行います"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Shore Waves"
 msgstr "砕ける波"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr "岸の近くで砕ける波を表示します（高品質な波が必要）"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Water Shadows"
 msgstr "水面の影"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Cast shadows on water"
 msgstr "水面に影を落とします"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "VSync"
-msgstr ""
+msgstr "VSync"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr ""
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Master Gain"
 msgstr "全体音量"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Master audio gain"
 msgstr "音楽音量"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Music Gain"
 msgstr "音楽の音量"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "In game music gain"
 msgstr "ゲーム内の音楽の音量"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "Ambient Gain"
 msgstr "環境音量"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "In game ambient sound gain"
 msgstr "ゲーム内の環境音の音量"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Action Gain"
 msgstr "アクション音量"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "In game unit action sound gain"
 msgstr "ゲーム内のユニットのアクションの音量"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "UI Gain"
 msgstr "UI音量"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "UI sound gain"
 msgstr "UIの音量"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Chat Backlog"
 msgstr "チャット過去ログ"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "ロビーに入った時に表示する過去のメッセージ数"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Chat Timestamp"
 msgstr "発言時刻"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "ロビーチャットに投稿されたメッセージの時刻を表示する"
 
@@ -869,7 +932,7 @@ msgstr "警告!"
 msgid "Read More"
 msgstr "詳しく読む"
 
-#: gui/pregame/mainmenu.js:286 gui/session/session.js:921
+#: gui/pregame/mainmenu.js:286 gui/session/session.js:917
 #, python-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
@@ -1011,13 +1074,13 @@ msgstr "右クリックして、終点となる交易市場をセットします
 msgid "Cannot build wall here!"
 msgstr "ここに壁は建設できません"
 
-#: gui/session/menu.js:1 gui/session/session.xml:924 (caption)
+#: gui/session/menu.js:1 gui/session/session.xml:779 (caption)
 msgid "Pause"
 msgstr "一時停止"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "再開"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -1053,68 +1116,68 @@ msgstr "選択中のユニットすべてを破壊しますか?"
 msgid "Delete"
 msgstr "削除"
 
-#: gui/session/menu.js:295 gui/session/session.xml:440 (tooltip)
+#: gui/session/menu.js:286 gui/session/session.xml:444 (tooltip)
 msgid "Ally"
 msgstr "同盟"
 
-#: gui/session/menu.js:295 gui/session/session.xml:444 (tooltip)
+#: gui/session/menu.js:286 gui/session/session.xml:448 (tooltip)
 msgid "Neutral"
 msgstr "中立"
 
-#: gui/session/menu.js:295 gui/session/messages.js:605
-#: gui/session/session.xml:448 (tooltip) maps/scenarios/Sandbox -
+#: gui/session/menu.js:286 gui/session/messages.js:612
+#: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
 msgstr "敵対"
 
-#: gui/session/menu.js:356 gui/session/menu.js:363 gui/session/menu.js:370
+#: gui/session/menu.js:347 gui/session/menu.js:354 gui/session/menu.js:361
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:481
+#: gui/session/menu.js:472
 msgid "There are no land traders."
 msgstr "商人がいません。"
 
-#: gui/session/menu.js:487
+#: gui/session/menu.js:478
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s人が待機"
 
-#: gui/session/menu.js:491
+#: gui/session/menu.js:482
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s人の陸の商人が取引中"
 
-#: gui/session/menu.js:494
+#: gui/session/menu.js:485
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s人が交易船内に駐屯"
 
-#: gui/session/menu.js:497
+#: gui/session/menu.js:488
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s、%(garrisonedString)s、そして%(inactiveString)sしています。"
 
-#: gui/session/menu.js:505
+#: gui/session/menu.js:496
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s、そして%(garrisonedString)sしています。"
 
-#: gui/session/menu.js:515 gui/session/menu.js:577
+#: gui/session/menu.js:506 gui/session/menu.js:568
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s、そして%(inactiveString)sしています。"
 
-#: gui/session/menu.js:522 gui/session/menu.js:584
+#: gui/session/menu.js:513 gui/session/menu.js:575
 #, python-format
 msgid "%(openingTradingString)s."
-msgstr "%(openingTradingString)s。"
+msgstr "%(openingTradingString)sです。"
 
-#: gui/session/menu.js:532
+#: gui/session/menu.js:523
 #, python-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -1124,195 +1187,195 @@ msgid_plural ""
 " ship"
 msgstr[0] "%(numberGarrisoned)s人の陸の商人が交易船内に駐屯"
 
-#: gui/session/menu.js:535
+#: gui/session/menu.js:526
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s、そして%(inactiveString)sしています。"
 
-#: gui/session/menu.js:542
+#: gui/session/menu.js:533
 #, python-format
 msgid "%(openingGarrisonedString)s."
-msgstr "%(openingGarrisonedString)s。"
+msgstr "%(openingGarrisonedString)sしています。"
 
-#: gui/session/menu.js:551
+#: gui/session/menu.js:542
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s人の陸の商人が待機"
 
-#: gui/session/menu.js:552 gui/session/menu.js:594
+#: gui/session/menu.js:543 gui/session/menu.js:585
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
+msgstr[0] "%(inactiveString)sしています。"
 
-#: gui/session/menu.js:564
+#: gui/session/menu.js:555
 msgid "There are no merchant ships."
 msgstr "交易船がありません。"
 
-#: gui/session/menu.js:570
+#: gui/session/menu.js:561
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s隻が待機"
 
-#: gui/session/menu.js:574
+#: gui/session/menu.js:565
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "%(numberTrading)s隻の交易船が取引中"
 
-#: gui/session/menu.js:593
+#: gui/session/menu.js:584
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s隻の交易船が待機"
 
-#: gui/session/menu.js:682
+#: gui/session/menu.js:673
 msgid "The Developer Overlay was opened."
 msgstr "開発者用オーバーレイを開きました。"
 
-#: gui/session/menu.js:684
+#: gui/session/menu.js:675
 msgid "The Developer Overlay was closed."
 msgstr "開発者用オーバーレイを閉じました。"
 
-#: gui/session/menu.js:702
+#: gui/session/menu.js:693
 #, python-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "%(resourceType)s %(resourceAmount)s を %(playerName)s に貢ぎます。Shift+クリックで %(greaterAmount)s 貢ぎます。"
 
-#: gui/session/messages.js:202
+#: gui/session/messages.js:205
 msgid "Waiting for other players to connect..."
 msgstr "他のプレイヤーの接続を待っています…"
 
-#: gui/session/messages.js:206
+#: gui/session/messages.js:209
 msgid "Synchronising gameplay with other players..."
 msgstr "他のプレイヤーと進行を同期しています…"
 
-#: gui/session/messages.js:214
+#: gui/session/messages.js:217
 msgid "Connected to the server."
 msgstr "サーバーに接続しました。"
 
-#: gui/session/messages.js:218
+#: gui/session/messages.js:221
 msgid "Connection to the server has been authenticated."
 msgstr "サーバーへの接続が認証されました。"
 
-#: gui/session/messages.js:223
+#: gui/session/messages.js:226
 msgid "Connection to the server has been lost."
 msgstr "サーバーとの接続が失われました。"
 
-#: gui/session/messages.js:223
+#: gui/session/messages.js:226
 msgid "The game has ended."
 msgstr "ゲームはすでに終了しました。"
 
-#: gui/session/messages.js:403
+#: gui/session/messages.js:410
 msgid "Unknown player"
 msgstr "不明なプレイヤー"
 
-#: gui/session/messages.js:411
+#: gui/session/messages.js:418
 #, python-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)sがゲームに参加しました。"
 
-#: gui/session/messages.js:414
+#: gui/session/messages.js:421
 #, python-format
 msgid "%(player)s has left the game."
 msgstr "%(player)sがゲームを離れました。"
 
-#: gui/session/messages.js:419
+#: gui/session/messages.js:426
 msgid "You have been defeated."
 msgstr "あなたは敗北しました。"
 
-#: gui/session/messages.js:421
+#: gui/session/messages.js:428
 #, python-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)sは敗北しました。"
 
-#: gui/session/messages.js:429
+#: gui/session/messages.js:436
 #, python-format
 msgid "You are now allied with %(player)s."
 msgstr "あなたは%(player)sと同盟しました。"
 
-#: gui/session/messages.js:431
+#: gui/session/messages.js:438
 #, python-format
 msgid "You are now at war with %(player)s."
 msgstr "あなたは%(player)sに宣戦しました。"
 
-#: gui/session/messages.js:433
+#: gui/session/messages.js:440
 #, python-format
 msgid "You are now neutral with %(player)s."
 msgstr "あなたは%(player)sと中立になりました。"
 
-#: gui/session/messages.js:439
+#: gui/session/messages.js:446
 #, python-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)sはあなたと同盟しました。"
 
-#: gui/session/messages.js:441
+#: gui/session/messages.js:448
 #, python-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)sはあなたに宣戦しました。"
 
-#: gui/session/messages.js:443
+#: gui/session/messages.js:450
 #, python-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)sはあなたと中立になりました。"
 
-#: gui/session/messages.js:462
+#: gui/session/messages.js:469
 #, python-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s たち と %(lastAmount)s たち"
 
-#: gui/session/messages.js:463 gui/session/utility_functions.js:174
+#: gui/session/messages.js:470 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
 #: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
 #: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:468
+#: gui/session/messages.js:475
 #, python-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)sはあなたに %(amounts)s を送りました。"
 
-#: gui/session/messages.js:478
+#: gui/session/messages.js:485
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "%(attacker)sが攻撃してきました！"
 
-#: gui/session/messages.js:491 gui/session/messages.js:496
+#: gui/session/messages.js:498 gui/session/messages.js:503
 #, python-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:504 gui/session/messages.js:508
+#: gui/session/messages.js:511 gui/session/messages.js:515
 #, python-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:516 gui/session/messages.js:517
+#: gui/session/messages.js:523 gui/session/messages.js:524
 #, python-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:520 gui/session/messages.js:525
+#: gui/session/messages.js:527 gui/session/messages.js:532
 #, python-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:533 gui/session/messages.js:534
+#: gui/session/messages.js:540 gui/session/messages.js:541
 #, python-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:592 gui/gamesetup/gamesetup.xml:86 (caption)
-#: gui/session/session.xml:433 (caption)
+#: gui/session/messages.js:599 gui/gamesetup/gamesetup.xml:86 (caption)
+#: gui/session/session.xml:437 (caption)
 msgid "Team"
 msgstr "チーム"
 
-#: gui/session/messages.js:625
+#: gui/session/messages.js:632
 msgid "Private"
 msgstr "プライベート"
 
@@ -1383,12 +1446,12 @@ msgstr "現在の/最大の収集者数"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:226 gui/session/session.js:648
+#: gui/session/selection_details.js:226 gui/session/session.js:644
 msgid "Armor:"
 msgstr "防御："
 
 #: gui/session/selection_details.js:227 gui/session/selection_details.js:238
-#: gui/session/session.js:646 gui/session/session.js:649
+#: gui/session/session.js:641 gui/session/session.js:645
 #, python-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -1401,7 +1464,7 @@ msgstr "インターバル:"
 msgid "Rate:"
 msgstr "レート:"
 
-#: gui/session/selection_details.js:249 gui/session/session.js:641
+#: gui/session/selection_details.js:249 gui/session/session.js:636
 #: gui/session/utility_functions.js:602
 msgid "Range:"
 msgstr "射程："
@@ -1431,7 +1494,7 @@ msgstr "%(label)s %(details)s, %(rate)s"
 msgid "Hitpoints:"
 msgstr "HP："
 
-#: gui/session/selection_details.js:342 gui/session/session.js:632
+#: gui/session/selection_details.js:342 gui/session/session.js:625
 #, python-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -1462,49 +1525,49 @@ msgstr "負けてしまいました…"
 msgid "You have abandoned the game."
 msgstr "ゲームを放棄しました。"
 
-#: gui/session/session.js:484
+#: gui/session/session.js:477
 msgid "Press OK to continue"
 msgstr "OKで続行"
 
-#: gui/session/session.js:490
+#: gui/session/session.js:483
 msgid "Do you want to quit?"
 msgstr "終了しますか?"
 
-#: gui/session/session.js:496
+#: gui/session/session.js:489
 msgid "DEFEATED!"
 msgstr "敗北！"
 
-#: gui/session/session.js:504
+#: gui/session/session.js:497
 msgid "VICTORIOUS!"
 msgstr "勝利！"
 
-#: gui/session/session.js:631 gui/session/session.xml:1148 (tooltip)
+#: gui/session/session.js:624 gui/session/session.xml:1003 (tooltip)
 msgid "Health:"
 msgstr "耐久力："
 
-#: gui/session/session.js:637
+#: gui/session/session.js:632
 #, python-format
 msgid "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(details)s、%(rangeLabel)s %(range)s"
 
-#: gui/session/session.js:815
+#: gui/session/session.js:811
 #, python-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)s倍速)"
 
-#: gui/session/session.js:904
+#: gui/session/session.js:900
 #, python-format
 msgid "Unrecognized ambient type: %(ambientType)s"
 msgstr "不明な環境タイプ: %(ambientType)s"
 
-#: gui/session/session.js:926
+#: gui/session/session.js:922
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash."
 
-#: gui/session/session.js:926
+#: gui/session/session.js:922
 msgid "Time warp mode"
 msgstr "タイムワープモード"
 
@@ -2085,6 +2148,418 @@ msgstr "プレイ時間：%(time)s"
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:3
+msgid ""
+"Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
+" up just restart and try again. Practise makes perfect!"
+msgstr "警告：これは上級チュートリアルで進行がとても速いです。もしついていけない時は始めからやり直してください。習うより慣れろということです。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:8
+msgid ""
+"Lets get started, first train a batch (shift click) of 5 female citizens "
+"from the CC (Civil Center)."
+msgstr "さあ始まりです。まず一括（シフトクリック）で5人の女性市民をCC（町の中心）で養成しましょう。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:13
+msgid ""
+"Now, assign your female citizens to gather berries, your cavalryman to hunt "
+"the chickens and the citizen soldiers to gather wood."
+msgstr "さあ、女性市民を木イチゴ採集に、騎兵を鶏狩りに、そして民兵を木の伐採につかせましょう。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:18
+msgid "Now set the rally point of your civil center on the berries."
+msgstr "それでは町の中心の集合地点を木イチゴに設定してください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:23
+msgid ""
+"Queue some slingers to train after the female citizens, you won't have "
+"enough resources for a batch."
+msgstr "キューに投石兵を数人貯めて女性市民の後に養成してください。十分な資源がないので一括は無理です。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:28
+msgid ""
+"When your female citizens have finished training, use 4 to build a house "
+"nearby."
+msgstr "女性市民の養成が終わったら、4人には近くに家を建てさせます。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:33
+msgid ""
+"Set the CC's rally point on the nearby trees, queue more slingers, you want "
+"to train 6 right now."
+msgstr "CCの集合地点を木の近くに設定し、キューにさらに投石兵を貯めてください。今すぐ6人養成したいところです。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:38
+msgid "Queue a batch of 5 female citizens."
+msgstr "キューに一括5人の女性市民を貯めてください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:43
+msgid "Use shift-click to queue another house for the 4 builders."
+msgstr "シフトクリックして、建設中の4人のキューにもう一つ家を追加します。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:48
+msgid ""
+"Set the rally point back to the berries once all of the citizen soldiers "
+"have finished training."
+msgstr "すべての民兵の養成が終わったら集合地点を木イチゴに戻してください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:53
+msgid ""
+"Send one citizen soldier to gather stone, send 2 others to build a "
+"storehouse near the southern trees."
+msgstr "1人の民兵には石を採掘させ、他の2人には倉庫を南の木のそばに建てさせてください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:58
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:78
+msgid "Queue another 5 female citizens."
+msgstr "キューにまた5人の女性市民を追加してください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:63
+msgid "Use a female citizen to construct a field next to your CC."
+msgstr "女性市民を使って畑をCCの隣に開墾してください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:68
+msgid ""
+"Your cavalryman has probably run out of chickens by now, there are some "
+"goats to the left of your base."
+msgstr "騎兵はおそらくもう鶏を取り尽しているでしょう。ヤギが何匹か拠点の左にいます。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:73
+msgid "Use 2-3 more female citizens to construct the field."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:83
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:128
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:138
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:163
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:188
+msgid "Queue another house."
+msgstr "キューにもう一つ家を追加してください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:88
+msgid ""
+"The berry bushes are getting crowded, send some female citizens to work the "
+"field, set the rally point there."
+msgstr "木イチゴの木が込み合って来ているので、何人かの女性市民を畑仕事にまわし、集合地点をそちらに設定してください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:93
+msgid "Queue another 5 female citizens, these should gather stone."
+msgstr "キューにさらに5人の女性市民を追加してください。採石にあてるべきです。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:98
+msgid ""
+"Move your woodcutters to the trees near the storehouse so they don’t have to"
+" walk as far."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:103
+msgid ""
+"Make sure the workers from the berry bushes are used to gather from the "
+"field rather than standing idle when they run out."
+msgstr "木イチゴの木で働いていた人が畑での収穫に従事し遊んでいないことを、木イチゴがなくなったときに確認してください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:108
+msgid "Queue another house to be built."
+msgstr "キューにさらに家を追加して建設してください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:113
+msgid "Queue 5 more female citizens. These will gather wood."
+msgstr "キューにさらに5人の女性市民を追加してください。木の伐採にあてる予定です。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:118
+msgid ""
+"Build another field, this decreases the amount of walking for your female "
+"citizens."
+msgstr "別の畑を開墾してください。これで女性市民が歩く距離が減ります。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:123
+msgid ""
+"Train some more slingers, send them to gather stone. Train about 5, you may "
+"not have enough resources for a batch right now."
+msgstr "さらに何人か投石兵を養成して、採石にあたらせてください。5人ほど養成してほしいですが、十分な資源がなく、ただちに一括では無理かもしれません。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:133
+msgid "Queue another batch of 5 female citizens these are for wood."
+msgstr "キューにさらに一括で5人の女性市民を追加して、伐採にあててください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:143
+msgid "Queue a batch of spearmen."
+msgstr "キューに一括で槍兵を追加してください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:148
+msgid "Research the stone mining technology from the storehouse."
+msgstr "採石のテクノロジーを倉庫で研究してください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:153
+msgid "Queue a batch of slingers."
+msgstr "キューに一括で投石兵を追加してください。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:158
+msgid ""
+"Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
+" initially but later in the game it is best to maximize efficiency as you "
+"are able to train more citizen soldiers."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:168
+msgid ""
+"The slingers that you queue earlier should gather stone once they are "
+"trained."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:173
+msgid "Queue a batch of spearmen, they should gather wood."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:178
+msgid "Next queue a batch of slingers."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:183
+msgid ""
+"Send some of the stone miners to mine metal, getting ready for the next age."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:193
+msgid "Start researching Phase 2."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:198
+msgid "Queue some slingers."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:203
+msgid "Your fields may start getting exhausted, remember to rebuild them."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:208
+msgid ""
+"When you have advanced, use a single citizen soldier to place a barracks "
+"foundation. Then use the rest of the non food or house building female "
+"citizens to construct it."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:213
+msgid "Queue 5 more females for construction work."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:218
+msgid ""
+"Queue a batch of slingers to gather the trees on the north side of your "
+"base."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:223
+msgid ""
+"This is the end of the walkthrough. This should give you a good idea of how "
+"to build up a nice economy rapidly."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:228
+msgid ""
+"At this point you should be able to fully use both training facilities, keep"
+" putting units into economic work, to keep growing faster and faster."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:233
+msgid ""
+"From this point you have a good base to build an army and wipe out the "
+"opposition."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:238
+msgid "The key points to remember are:"
+msgstr "覚えなくてはいけないキー・ポイントは:"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:243
+msgid ""
+" - Don't have any idle units. Shift click queuing and rally points are very "
+"useful."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:248
+msgid ""
+" - Use all of your resources, stockpiled resources are waste, having too "
+"much of a resource is waste."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:253
+msgid ""
+" - Use the right units for the right task, female citizens gather food, "
+"cavalry hunt, citizen soldiers do the rest."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:258
+msgid ""
+" - Don't be afraid to swap units from one resource to another, see point 2. "
+"Make sure they deposit what they are carrying first though."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:263
+msgid ""
+" - Build enough houses, your CC should be kept busy as much as possible, it "
+"is the only training building until town phase."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:268
+msgid ""
+" - Female citizens are cheap, so you can build more of them and gather more "
+"resources."
+msgstr "- 女性市民は安価なので、たくさん養成して多くの資源を集めることができます。"
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:273
+msgid ""
+" - Don't get carried away on the last point or you will get raided and have "
+"no defense."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:278
+msgid ""
+"Each map is different, so you will need to play slightly differently on "
+"each. This should give an outline for a high resource map."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:4
+msgid ""
+"Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
+"Right-click on a berry bush nearby to make the unit collect food. Female "
+"citizens gather food faster than other units."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:7
+msgid ""
+"Select the citizen-soldier, right-click on a tree near the Civil Center to "
+"begin collecting wood. Citizen-soldiers gather wood faster than female "
+"citizens."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:11
+msgid ""
+"Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
+"in the row) once to begin training 5 Hoplites."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:15
+msgid ""
+"Select the two idle female citizens and build a house nearby by selecting "
+"the house icon. Place the house by left-clicking on a piece of land."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:21
+msgid ""
+"Select the newly trained Hoplites and assign them to build a storehouse "
+"beside some nearby trees. They will begin to gather wood when it's "
+"constructed."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:27
+msgid ""
+"Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
+"in the row) in the Civil Center."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:33
+msgid ""
+"Build a farmstead in an open space beside the Civil Center using any idle "
+"builders."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:39
+msgid ""
+"Once the farmstead is constructed, its builders will automatically begin "
+"gathering food if there is any nearby. Select the builders and instead make "
+"them construct a field beside the farmstead."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:45
+msgid ""
+"The field's builders will now automatically begin collecting food from the "
+"field. Using the newly created group of skirmishers, get them to build "
+"another house nearby."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:51
+msgid ""
+"Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
+"selected right click on a tree nearby. Units from the Civil Center will now "
+"automatically gather wood."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:57
+msgid ""
+"Order the idle Skirmishers to build an outpost to the north east at the edge"
+" of your territory.  This will be the fifth Village Phase structure that you"
+" have built, allowing you to advance to the Town Phase."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:63
+msgid ""
+"Select the Civil Center again and advance to Town Phase by clicking on the "
+"'II' icon. This will allow Town Phase buildings to be constructed."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:69
+msgid ""
+"Start building 5 female citizens in the Civil Center and set its rally point"
+" to the farm (right click on it)."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:74
+msgid ""
+"Build a Barracks nearby. Whenever your population limit is reached, build an"
+" extra house using any available builder units."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:80
+msgid ""
+"Prepare for an attack by an enemy player. Build more soldiers using the "
+"Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:86
+msgid ""
+"Build a Blacksmith and research the Infantry Training technology (sword "
+"icon) to improve infantry hack attack."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:92
+msgid "The enemy is coming. Build more soldiers to fight off the enemies."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:99
+msgid ""
+"The enemy's attack has been defeated. Now build a market and temple while "
+"assigning new units to gather any required resources."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:104
+msgid ""
+"Now that City Phase requirements have been reached, select your Civil Center"
+" and advance to City Phase."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:110
+msgid ""
+"Now that you are in City Phase, build a fortress nearby and use it to build "
+"2 Battering Rams."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:115
+msgid ""
+"Stop all your soldiers gathering resources and instead task small groups to "
+"find the enemy Civil Center on the map. Female citizens should continue to "
+"gather resources."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:122
+msgid ""
+"The enemy's base has been spotted, send your siege weapons and all remaining"
+" soldiers to destroy it."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:126
+msgid "The enemy has been defeated. All tutorial tasks are now completed…"
+msgstr ""
+
 #: simulation/components/BuildRestrictions.js:83
 #, python-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -2190,22 +2665,22 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "敵領"
 
-#: simulation/components/Player.js:40 gui/session/session.xml:709 (tooltip)
+#: simulation/components/Player.js:40 gui/session/session.xml:564 (tooltip)
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
 msgstr "食料"
 
-#: simulation/components/Player.js:41 gui/session/session.xml:716 (tooltip)
+#: simulation/components/Player.js:41 gui/session/session.xml:571 (tooltip)
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
 msgstr "木材"
 
-#: simulation/components/Player.js:42 gui/session/session.xml:730 (tooltip)
+#: simulation/components/Player.js:42 gui/session/session.xml:585 (tooltip)
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
 msgstr "金属"
 
-#: simulation/components/Player.js:43 gui/session/session.xml:723 (tooltip)
+#: simulation/components/Player.js:43 gui/session/session.xml:578 (tooltip)
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
 msgstr "石材"
@@ -2264,10 +2739,10 @@ msgid "AI Difficulty"
 msgstr "AI難易度"
 
 #: gui/aiconfig/aiconfig.xml:47 (caption) gui/gamesetup/gamesetup_mp.xml:109
-#: (caption) gui/lobby/prelobby.xml:67 (caption) gui/locale/locale.xml:41
+#: (caption) gui/lobby/prelobby.xml:67 (caption) gui/locale/locale.xml:46
 #: (caption) gui/locale/locale_advanced.xml:75 (caption)
-#: gui/options/options.xml:73 (caption) gui/savedgames/load.xml:35 (caption)
-#: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:403 (caption)
+#: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:35 (caption)
+#: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:407 (caption)
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -2280,7 +2755,7 @@ msgid "Civilization Selection"
 msgstr "文明選択"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:28 (caption)
-#: gui/session/session.xml:486 (caption) gui/session/session.xml:539 (caption)
+#: gui/session/session.xml:490 (caption) gui/session/session.xml:543 (caption)
 msgid "Close"
 msgstr "閉じる"
 
@@ -2312,7 +2787,7 @@ msgstr "プレイヤー名"
 msgid "Player Placement"
 msgstr "プレイヤーの割当"
 
-#: gui/gamesetup/gamesetup.xml:71 (caption) gui/session/session.xml:430
+#: gui/gamesetup/gamesetup.xml:71 (caption) gui/session/session.xml:434
 #: (caption)
 msgid "Civilization"
 msgstr "文明"
@@ -2325,85 +2800,80 @@ msgstr "文明の情報を見る"
 msgid "Select player."
 msgstr "プレイヤーを選択します。"
 
-#: gui/gamesetup/gamesetup.xml:101 (caption) gui/session/session.xml:555
-#: (caption) gui/session/session.xml:912 (caption)
-msgid "Settings"
-msgstr "設定"
-
-#: gui/gamesetup/gamesetup.xml:102 (tooltip)
+#: gui/gamesetup/gamesetup.xml:104 (tooltip)
 msgid "Configure AI settings."
 msgstr "AIの設定を調整します。"
 
-#: gui/gamesetup/gamesetup.xml:105 (tooltip)
+#: gui/gamesetup/gamesetup.xml:107 (tooltip)
 msgid "Select player's civilization."
 msgstr "プレイヤーの文明を選択します。"
 
-#: gui/gamesetup/gamesetup.xml:109 (tooltip)
+#: gui/gamesetup/gamesetup.xml:111 (tooltip)
 msgid "Select player's team."
 msgstr "プレイヤーのチームを選択します。"
 
-#: gui/gamesetup/gamesetup.xml:122 (caption)
+#: gui/gamesetup/gamesetup.xml:124 (caption)
 msgid "Match Type:"
 msgstr "対戦の種類："
 
-#: gui/gamesetup/gamesetup.xml:125 (caption)
+#: gui/gamesetup/gamesetup.xml:127 (caption)
 msgid "Map Filter:"
 msgstr "マップ絞込み："
 
-#: gui/gamesetup/gamesetup.xml:128 (caption)
+#: gui/gamesetup/gamesetup.xml:130 (caption)
 msgid "Select Map:"
 msgstr "マップ選択："
 
-#: gui/gamesetup/gamesetup.xml:131 (caption) gui/lobby/lobby.xml:76 (caption)
+#: gui/gamesetup/gamesetup.xml:133 (caption) gui/lobby/lobby.xml:76 (caption)
 msgid "Map Size:"
 msgstr "マップの大きさ："
 
-#: gui/gamesetup/gamesetup.xml:147 (tooltip)
+#: gui/gamesetup/gamesetup.xml:149 (tooltip)
 msgid "Select a map type."
 msgstr "マップの種類を選択します。"
 
-#: gui/gamesetup/gamesetup.xml:156 (tooltip)
+#: gui/gamesetup/gamesetup.xml:158 (tooltip)
 msgid "Select a map filter."
 msgstr "マップの絞込みを選択します。"
 
-#: gui/gamesetup/gamesetup.xml:167 (tooltip)
+#: gui/gamesetup/gamesetup.xml:169 (tooltip)
 msgid "Select a map to play on."
 msgstr "プレイするマップを選択します。"
 
-#: gui/gamesetup/gamesetup.xml:173 (tooltip)
+#: gui/gamesetup/gamesetup.xml:175 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "マップの大きさを選択します。（大きくなるほど性能が落ちることがあります）"
 
-#: gui/gamesetup/gamesetup.xml:198 (caption) gui/session/session.xml:398
+#: gui/gamesetup/gamesetup.xml:200 (caption) gui/session/session.xml:402
 #: (caption)
 msgid "Send"
 msgstr "送信"
 
-#: gui/gamesetup/gamesetup.xml:212 (caption)
+#: gui/gamesetup/gamesetup.xml:214 (caption)
 msgid "[Tooltip text]"
 msgstr "[Tooltip text]"
 
-#: gui/gamesetup/gamesetup.xml:224 (caption)
+#: gui/gamesetup/gamesetup.xml:226 (caption)
 msgid "Start game!"
 msgstr "ゲーム開始！"
 
-#: gui/gamesetup/gamesetup.xml:225 (tooltip)
+#: gui/gamesetup/gamesetup.xml:227 (tooltip)
 msgid "Start a new game with the current settings."
 msgstr "現在の設定で新しいゲームを開始します。"
 
-#: gui/gamesetup/gamesetup.xml:237 (caption) gui/lobby/lobby.xml:214 (caption)
+#: gui/gamesetup/gamesetup.xml:244 (caption) gui/lobby/lobby.xml:214 (caption)
 msgid "Back"
 msgstr "戻る"
 
-#: gui/gamesetup/gamesetup.xml:259 (caption)
+#: gui/gamesetup/gamesetup.xml:266 (caption)
 msgid "More Options"
 msgstr "さらなるオプション"
 
-#: gui/gamesetup/gamesetup.xml:260 (tooltip)
+#: gui/gamesetup/gamesetup.xml:267 (tooltip)
 msgid "See more game options"
 msgstr "ゲームのさらなるオプションを見ます"
 
-#: gui/gamesetup/gamesetup.xml:335 (tooltip)
+#: gui/gamesetup/gamesetup.xml:342 (tooltip)
 msgid "Close more game options window"
 msgstr "ゲームのさらなるオプションウィンドウを閉じます"
 
@@ -2454,16 +2924,16 @@ msgstr "マルチプレイヤーロビー"
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
-msgstr ""
+msgstr "ステータス"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:210 (heading) gui/session/session.xml:427 (caption)
+#: gui/lobby/lobby.xml:210 (heading) gui/session/session.xml:431 (caption)
 msgid "Name"
 msgstr "名前"
 
 #: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:207 (heading)
 msgid "Rating"
-msgstr ""
+msgstr "レイティング"
 
 #: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
 msgid "Leaderboard"
@@ -2475,7 +2945,7 @@ msgstr "マップの種類："
 
 #: gui/lobby/lobby.xml:93 (caption)
 msgid "Players:"
-msgstr ""
+msgstr "プレイヤー:"
 
 #: gui/lobby/lobby.xml:102 (caption) gui/pregame/mainmenu.xml:231 (caption)
 msgid "Join Game"
@@ -2503,13 +2973,13 @@ msgstr "マップの種類"
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
-msgstr ""
+msgstr "プレイヤーたち"
 
 #: gui/lobby/lobby.xml:171 (caption)
 msgid "Show full games"
 msgstr ""
 
-#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1212 (tooltip)
+#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1067 (tooltip)
 msgid "Rank"
 msgstr "階級"
 
@@ -2539,7 +3009,7 @@ msgstr "パスワードの確認："
 
 #: gui/lobby/prelobby.xml:79 (caption)
 msgid "Register"
-msgstr ""
+msgstr "登録"
 
 #: gui/lobby/prelobby.xml:90 (caption)
 msgid "Connect"
@@ -2555,18 +3025,24 @@ msgstr "言語"
 msgid "Language:"
 msgstr "言語:"
 
-#: gui/locale/locale.xml:26 (caption)
+#. A locale is a set of parameters that defines the user’s language, country
+#. and
+#. any special variant preferences that the user wants to see in their user
+#. interface. Here, “Locale” refers to the code that identifies those
+#. settings,
+#. such as ‘en_US’.
+#: gui/locale/locale.xml:31 (caption)
 msgid "Locale:"
 msgstr "ロケール："
 
-#: gui/locale/locale.xml:31 (caption) gui/locale/locale_advanced.xml:65
+#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
 #: (caption)
 msgid "Accept"
 msgstr "承認"
 
-#: gui/locale/locale.xml:36 (caption)
+#: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
-msgstr ""
+msgstr "上級"
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
@@ -2601,13 +3077,13 @@ msgstr ""
 
 #: gui/locale/locale_advanced.xml:60 (caption)
 msgid "Dictionary files used:"
-msgstr ""
+msgstr "使用する辞書ファイル："
 
 #: gui/locale/locale_advanced.xml:70 (caption)
 msgid "Auto detect"
 msgstr "自動判定"
 
-#: gui/manual/manual.xml:12 (caption) gui/session/session.xml:877 (caption)
+#: gui/manual/manual.xml:12 (caption) gui/session/session.xml:732 (caption)
 msgid "Manual"
 msgstr "マニュアル"
 
@@ -2621,7 +3097,7 @@ msgstr "ゲームオプション"
 
 #: gui/options/options.xml:22 (caption)
 msgid "General"
-msgstr ""
+msgstr "将軍"
 
 #: gui/options/options.xml:34 (caption)
 msgid "Graphics Settings"
@@ -2635,8 +3111,8 @@ msgstr "サウンド設定"
 msgid "Lobby Settings"
 msgstr "ロビー設定"
 
-#: gui/options/options.xml:69 (caption) gui/savedgames/save.xml:37 (caption)
-#: gui/session/session.xml:899 (caption)
+#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:37 (caption)
+#: gui/session/session.xml:754 (caption)
 msgid "Save"
 msgstr "セーブ"
 
@@ -2788,8 +3264,8 @@ msgstr "歴史"
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "0 A.D.に登場する多くの文明について学びます。"
 
-#: gui/pregame/mainmenu.xml:458 (caption) gui/session/session.xml:947
-#: (caption) gui/session/session.xml:1445 (caption)
+#: gui/pregame/mainmenu.xml:458 (caption) gui/session/session.xml:802
+#: (caption) gui/session/session.xml:1300 (caption)
 msgid "Exit"
 msgstr "終了"
 
@@ -2805,7 +3281,7 @@ msgstr "ウェブサイト"
 msgid "Click to open play0ad.com in your web browser."
 msgstr "クリックしてplay0ad.comをウェブブラウザーで開きます。"
 
-#: gui/pregame/mainmenu.xml:509 (caption) gui/session/session.xml:888
+#: gui/pregame/mainmenu.xml:509 (caption) gui/session/session.xml:743
 #: (caption)
 msgid "Chat"
 msgstr "チャット"
@@ -2840,212 +3316,164 @@ msgstr "ゲームをセーブ"
 msgid "Description:"
 msgstr "説明:"
 
-#: gui/session/session.xml:247 (caption)
+#: gui/session/session.xml:251 (caption)
 msgid "Control all units"
 msgstr "すべてのユニットのコントロール"
 
-#: gui/session/session.xml:257 (caption)
+#: gui/session/session.xml:261 (caption)
 msgid "Change perspective"
 msgstr "視線の変更"
 
-#: gui/session/session.xml:264 (caption)
+#: gui/session/session.xml:268 (caption)
 msgid "Display selection state"
 msgstr "選択済み状態の表示"
 
-#: gui/session/session.xml:269 (caption)
+#: gui/session/session.xml:273 (caption)
 msgid "Pathfinder overlay"
 msgstr "パスファインダー・オーバーレイ"
 
-#: gui/session/session.xml:276 (caption)
+#: gui/session/session.xml:280 (caption)
 msgid "Obstruction overlay"
 msgstr "障害物のオーバレイ"
 
-#: gui/session/session.xml:283 (caption)
+#: gui/session/session.xml:287 (caption)
 msgid "Unit motion overlay"
 msgstr "ユニットの動きのオーバレイ"
 
-#: gui/session/session.xml:290 (caption)
+#: gui/session/session.xml:294 (caption)
 msgid "Range overlay"
 msgstr "飛び道具のオーバレイ"
 
-#: gui/session/session.xml:297 (caption)
+#: gui/session/session.xml:301 (caption)
 msgid "Bounding box overlay"
 msgstr "バウンディングボックスのオーバレイ"
 
-#: gui/session/session.xml:304 (caption)
+#: gui/session/session.xml:308 (caption)
 msgid "Restrict camera"
 msgstr "カメラを制限する"
 
-#: gui/session/session.xml:318 (caption)
+#: gui/session/session.xml:322 (caption)
 msgid "Reveal map"
 msgstr "マップを隠さない"
 
-#: gui/session/session.xml:326 (caption)
+#: gui/session/session.xml:330 (caption)
 msgid "Enable time warp"
 msgstr "タイムワープを許可する"
 
-#: gui/session/session.xml:336 (caption)
+#: gui/session/session.xml:340 (caption)
 msgid "Promote selected units"
 msgstr "選択したユニットを昇格"
 
-#: gui/session/session.xml:363 (caption)
+#: gui/session/session.xml:367 (caption)
 msgid "Game Paused"
 msgstr "ゲーム一時停止"
 
-#: gui/session/session.xml:366 (caption)
+#: gui/session/session.xml:370 (caption)
 msgid "Click to Resume Game"
 msgstr "クリックしてゲームを再開"
 
-#: gui/session/session.xml:422 (caption) gui/session/session.xml:810 (tooltip)
+#: gui/session/session.xml:426 (caption) gui/session/session.xml:665 (tooltip)
 msgid "Diplomacy"
 msgstr "外交"
 
-#: gui/session/session.xml:436 (caption)
+#: gui/session/session.xml:440 (caption)
 msgid "Theirs"
 msgstr "Theirs"
 
-#: gui/session/session.xml:439 (caption)
+#: gui/session/session.xml:443 (caption)
 msgid "A"
 msgstr "A"
 
-#: gui/session/session.xml:443 (caption)
+#: gui/session/session.xml:447 (caption)
 msgid "N"
 msgstr "N"
 
-#: gui/session/session.xml:447 (caption)
+#: gui/session/session.xml:451 (caption)
 msgid "E"
 msgstr "E"
 
-#: gui/session/session.xml:451 (caption)
+#: gui/session/session.xml:455 (caption)
 msgid "Tribute"
 msgstr "貢ぎ物"
 
-#: gui/session/session.xml:501 (caption) gui/session/session.xml:829 (tooltip)
+#: gui/session/session.xml:505 (caption) gui/session/session.xml:684 (tooltip)
 msgid "Trade"
 msgstr "交易"
 
-#: gui/session/session.xml:507 (caption)
+#: gui/session/session.xml:511 (caption)
 msgid "Trading goods selection:"
 msgstr "交易品の選択："
 
-#: gui/session/session.xml:527 (tooltip)
+#: gui/session/session.xml:531 (tooltip)
 msgid ""
 "Select one goods as origin of the changes,\\nthen use the arrows of the "
 "target goods to make the changes."
 msgstr ""
 
-#: gui/session/session.xml:564 (caption)
-msgid "Enable Shadows"
-msgstr "影を表示する"
-
-#: gui/session/session.xml:573 (caption)
-msgid "Enable Shadow Filtering"
-msgstr "シャドウフィルタリング"
-
-#: gui/session/session.xml:582 (caption)
-msgid "Water - HQ Waviness"
-msgstr "水域 - 高品質の波紋"
-
-#: gui/session/session.xml:591 (caption)
-msgid "Water - Use Actual Depth"
-msgstr "水域 - 実際の深さを反映"
-
-#: gui/session/session.xml:600 (caption)
-msgid "Water - Enable Reflections"
-msgstr "水域 - 映り込みを表現"
-
-#: gui/session/session.xml:609 (caption)
-msgid "Water - Enable Refraction"
-msgstr "水域 - 屈折を表現"
-
-#: gui/session/session.xml:618 (caption)
-msgid "Water - Enable Shore Foam"
-msgstr "水域 - 砕ける波を表現"
-
-#: gui/session/session.xml:627 (caption)
-msgid "Water - Enable Shore Waves"
-msgstr "水域 - 打ち寄せる波を表現"
-
-#: gui/session/session.xml:636 (caption)
-msgid "Water - Use Surface Shadows"
-msgstr "水域 - 水面に影を落とす"
-
-#: gui/session/session.xml:645 (caption)
-msgid "Enable Particles"
-msgstr "パーティクルを許可する"
-
-#: gui/session/session.xml:654 (caption)
-msgid "Enable Unit Silhouettes"
-msgstr "ユニットの輪郭を表示する"
-
-#: gui/session/session.xml:663 (caption)
-msgid "Enable Music"
-msgstr "音楽を流す"
-
-#: gui/session/session.xml:671 (caption)
-msgid "Developer Overlay"
-msgstr "開発者用オーバーレイ"
-
-#: gui/session/session.xml:737 (tooltip)
+#: gui/session/session.xml:592 (tooltip)
 msgid "Population (current / limit)"
 msgstr "人口 (現在 / 上限)"
 
-#: gui/session/session.xml:750 (tooltip)
+#: gui/session/session.xml:605 (tooltip)
 msgid "Choose player to view"
 msgstr "プレイヤーを選択して見よ"
 
-#: gui/session/session.xml:773 (caption)
+#: gui/session/session.xml:628 (caption)
 msgid "ALPHA XV : Osiris"
 msgstr "ALPHA XV : Osiris"
 
-#: gui/session/session.xml:790 (tooltip)
+#: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
 msgstr "ゲーム速度"
 
-#: gui/session/session.xml:798 (tooltip)
+#: gui/session/session.xml:653 (tooltip)
 msgid "Choose game speed"
 msgstr "ゲーム速度を選択"
 
-#: gui/session/session.xml:851 (caption)
+#: gui/session/session.xml:706 (caption)
 msgid "MENU"
 msgstr "メニュー"
 
-#: gui/session/session.xml:936 (caption)
+#: gui/session/session.xml:767 (caption)
+msgid "Settings"
+msgstr "設定"
+
+#: gui/session/session.xml:791 (caption)
 msgid "Resign"
 msgstr "降伏"
 
-#: gui/session/session.xml:973 (tooltip) gui/session/session.xml:1189
+#: gui/session/session.xml:828 (tooltip) gui/session/session.xml:1044
 #: (tooltip)
 msgid "Attack and Armor"
 msgstr "攻撃と防御"
 
-#: gui/session/session.xml:997 (tooltip)
+#: gui/session/session.xml:852 (tooltip)
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
 msgstr "クリックでユニットグループを選択、ダブルクリックでグループに視点を移動、右クリックでグループを解散します。"
 
-#: gui/session/session.xml:1037 (tooltip)
+#: gui/session/session.xml:892 (tooltip)
 msgid "Find idle worker"
 msgstr "仕事のない労働者を探す"
 
-#: gui/session/session.xml:1089 (tooltip)
+#: gui/session/session.xml:944 (tooltip)
 msgid "Exchange resources:"
 msgstr "交換する資源："
 
-#: gui/session/session.xml:1162 (tooltip)
+#: gui/session/session.xml:1017 (tooltip)
 msgid "Stamina:"
 msgstr "持久力："
 
-#: gui/session/session.xml:1204 (tooltip)
+#: gui/session/session.xml:1059 (tooltip)
 msgid "Experience"
 msgstr "経験"
 
-#: gui/session/session.xml:1272 (tooltip)
+#: gui/session/session.xml:1127 (tooltip)
 msgid "Hitpoints"
 msgstr "HP"
 
-#: gui/session/session.xml:1281 (tooltip)
+#: gui/session/session.xml:1136 (tooltip)
 msgid "Stamina"
 msgstr "持久力"
 
@@ -3227,13 +3655,192 @@ msgstr "殺害/死亡\\n比率"
 msgid "Map\\nexploration"
 msgstr "マップ\\n探索"
 
+#: gui/lobby/Terms_of_Service.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
+msgid "Definitions:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
+msgid ""
+" * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
+"provided by Wildfire Games (WFG)."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
+msgid " * \"You\" are the user of the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:5
+msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:6
+msgid ""
+" * \"Rating\" refers to the process of analysing various user statistics for"
+" the purpose of generating a single comprehensive score."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:7
+msgid " * \"Moderate\" refers to the process of enforcing usage policies."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:8
+msgid "By using the service you agree to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:9
+msgid " 1. Follow all usage policies."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:10
+msgid ""
+" 2. Allow user identifiable statistics to be gathered for the purposes of "
+"rating, user profiles, and community statistics."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
+msgid "We also reserve the right to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:12
+msgid " 1. Moderate the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:13
+msgid " 2. Appoint others to moderate the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:14
+msgid ""
+" 3. Discontinue or interrupt service at any time with or without prior "
+"announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:15
+msgid " 4. Change the service at any time with or without announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:16
+msgid ""
+" 5. Delete any and all service data at any time with or without "
+"announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:17
+msgid ""
+" 6. Collect any or all user identifiable statistics at any time without "
+"consent for:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:18
+msgid ""
+"  a. Private analysis by Wildfire Games (WFG) team members and their "
+"affiliates."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:19
+msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:20
+msgid ""
+" 7. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition "
+"of adequate notice will be determined at the time by a panel of Wildfire "
+"Games (WFG) team members)."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:5
+msgid ""
+" * \"Impersonate\" refers to the action in which you attempt to exploit "
+"another's identity for your own purposes."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:6
+msgid ""
+" * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
+"number of recipients."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:7
+msgid " * \"Rating\" refers to the per-user comprehensive score."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:8
+msgid ""
+" * \"Ranked games\" refers to games in which rating changing statistics are "
+"tracked."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:9
+msgid "You agree to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:10
+msgid ""
+" 1. Only create one account per unique user on the service unless authorized"
+" by a Wildfire Games (WFG) team member."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:11
+msgid ""
+" 2. Not post profane statements, rude humor, pornographic content, or "
+"discriminatory comments on the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:12
+msgid " 3. Not purposefully demean the worth of others using the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:13
+msgid ""
+" 4. Not use the service to promote specific goods, services, or products."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:14
+msgid " 5. Not impersonate other users of the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:15
+msgid " 6. Not spam the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:16
+msgid ""
+" 7. Not attempt to artificially adjust any user of the service's rating or "
+"any of the statistics which impact it. (Examples of this are, but are not "
+"limited to: cheating in ranked games, reverse engineering the service, and "
+"taking advantage of other users of the service.)"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:17
+msgid ""
+" 8. Allow yourself to be removed from the service if at any time a moderator"
+" determines your behavior is not consistent with these rules."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:19
+msgid ""
+" 9. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition "
+"of adequate notice will be determined at the time by a panel of Wildfire "
+"Games (WFG) team members)."
+msgstr ""
+
 #: gui/manual/intro.txt:1
-msgid "[font=\"serif-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"serif-bold-18\"]0 A.D. ゲーム内マニュアル"
+msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
+msgstr "[font=\"sans-bold-18\"]0 A.D. ゲーム内マニュアル"
 
 #: gui/manual/intro.txt:2
-msgid "[font=\"serif-14\"]"
-msgstr "[font=\"serif-14\"]"
+msgid "[font=\"sans-14\"]"
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -3243,30 +3850,30 @@ msgid ""
 msgstr "0 A.D. をインストールしていただきありがとうございます。このページでは、未完成で開発途上のアルファ版であるこのゲームで利用可能な機能の概要を説明します。"
 
 #: gui/manual/intro.txt:5
-msgid "[font=\"serif-bold-16\"]Graphics settings"
-msgstr "[font=\"serif-bold-16\"]グラフィックス設定"
+msgid "[font=\"sans-bold-16\"]Graphics settings"
+msgstr "[font=\"sans-bold-16\"]グラフィックス設定"
 
 #: gui/manual/intro.txt:6
 msgid ""
-"[font=\"serif-14\"]You can switch between fullscreen and windowed mode by "
+"[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the configuration "
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"serif-14\"]フルスクリーンとウィンドウのモード切替えは Alt + Enter を押すことで可能です。ウィンドウモードでは、ウィンドウの大きさを変えられます。ゲームの動作があまりに遅いときは、設定ファイルのいくつかの設定を変更可能です。ゲームがインストールされた場所のbinaries/data/config/default.cfgを見つけると、編集の仕方の説明があるので、 \"fancywater\"と\"shadows\"のオプションを無効にしてください。"
+msgstr "[font=\"sans-14\"]フルスクリーンとウィンドウのモード切替えは Alt + Enter を押すことで可能です。ウィンドウモードでは、ウィンドウの大きさを変えられます。ゲームの動作があまりに遅いときは、設定ファイルのいくつかの設定を変更可能です。ゲームがインストールされた場所のbinaries/data/config/default.cfgを見つけると、編集の仕方の説明があるので、 \"fancywater\"と\"shadows\"のオプションを無効にしてください。"
 
 #: gui/manual/intro.txt:8
-msgid "[font=\"serif-bold-16\"]Playing the game"
-msgstr "[font=\"serif-bold-16\"]ゲームをプレイする"
+msgid "[font=\"sans-bold-16\"]Playing the game"
+msgstr "[font=\"sans-bold-16\"]ゲームをプレイする"
 
 #: gui/manual/intro.txt:9
 msgid ""
-"[font=\"serif-14\"]The controls and gameplay should be familiar to players "
-"of traditional RTS games. There are currently a lot of missing features and "
+"[font=\"sans-14\"]The controls and gameplay should be familiar to players of"
+" traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"serif-14\"]操作とゲームプレイは従来のRTSゲームのプレイヤーにはなじみ深いものでしょう。今のところ多くの機能を欠き、また能力値のパランスがとれていません。しっかりとしたものはおそらくベータリリースまで待たねばならないでしょう。"
+msgstr "[font=\"sans-14\"]操作とゲームプレイは従来のRTSゲームのプレイヤーにはなじみ深いものでしょう。今のところ多くの機能を欠き、また能力値のパランスがとれていません。しっかりとしたものはおそらくベータリリースまで待たねばならないでしょう。"
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -3297,27 +3904,27 @@ msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
 msgstr "• マウスホイールや \"+\"、\"-\"キーでズームします。"
 
 #: gui/manual/intro.txt:19
-msgid "[font=\"serif-bold-16\"]Modes"
-msgstr "[font=\"serif-bold-16\"]モード"
+msgid "[font=\"sans-bold-16\"]Modes"
+msgstr "[font=\"sans-bold-16\"]モード"
 
 #: gui/manual/intro.txt:20
-msgid "[font=\"serif-14\"]The main menu gives access to two game modes:"
-msgstr "[font=\"serif-14\"]メインメニューから2つのゲームモードが選べます。"
+msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
+msgstr "[font=\"sans-14\"]メインメニューから2つのゲームモードが選べます："
 
 #: gui/manual/intro.txt:22
 msgid ""
-"• [font=\"serif-bold-14\"]Single-player[font=\"serif-14\"] — play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
 "game or against one or more AI opponents. The AI/AIs are under development "
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"serif-bold-14\"]シングルプレイヤー[font=\"serif-14\"] — 練習ゲームをプレイするか、1もしくは複数のAIと対戦します。AIは開発途上で、常に最新機能に対応しているわけではありませんが、人間とプレイできない時に、実際の対戦相手とプレイする練習ができます。"
+msgstr "• [font=\"sans-bold-14\"]シングルプレイヤー[font=\"sans-14\"] — 練習ゲームをプレイするか、1もしくは複数のAIと対戦します。AIは開発途上で、常に最新機能に対応しているわけではありませんが、人間とプレイできない時に、実際の対戦相手とプレイする練習ができます。"
 
 #: gui/manual/intro.txt:24
 msgid ""
-"• [font=\"serif-bold-14\"]Multiplayer[font=\"serif-14\"] — play against "
-"human opponents over the internet."
-msgstr "• [font=\"serif-bold-14\"]マルチプレイヤー[font=\"serif-14\"] — インターネット越しに人間と対戦します。"
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"opponents over the internet."
+msgstr "• [font=\"sans-bold-14\"]マルチプレイヤー[font=\"sans-14\"] — インターネット越しに人間と対戦します。"
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -3328,14 +3935,14 @@ msgid ""
 msgstr "マルチプレイヤーゲームを立ち上げるには、1人のプレイヤーが”ゲームをホストする”オプションを選ばなければなりません。ゲームはUDPの20595番ポートを使用するので、ホストは自分のNATやファイアウォールなどがこれを許可するように調整しなけれなりません。その後に、他のプレイヤーは”ゲームに参加する”を選んでホストのIPアドレスを入力できます。"
 
 #: gui/manual/intro.txt:28
-msgid "[font=\"serif-bold-16\"]Game setup"
-msgstr "[font=\"serif-bold-16\"]ゲームの立ち上げ"
+msgid "[font=\"sans-bold-16\"]Game setup"
+msgstr "[font=\"sans-bold-16\"]ゲームの立ち上げ"
 
 #: gui/manual/intro.txt:29
 msgid ""
-"[font=\"serif-14\"]In a multiplayer game, only the host can alter the game "
+"[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr "[font=\"serif-14\"]マルチプレイヤーゲームでは、ホストだけがゲーム立ち上げのオプションを変更できます。"
+msgstr "[font=\"sans-14\"]マルチプレイヤーゲームでは、ホストだけがゲーム立ち上げのオプションを変更できます。"
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -3363,16 +3970,16 @@ msgid "When you are ready to start, click the \"Start game\" button."
 msgstr "準備ができたら、”ゲーム開始”ボタンをクリックします。"
 
 #: gui/manual/intro.txt:37
-msgid "[font=\"serif-bold-16\"]Hotkeys:"
-msgstr "[font=\"serif-bold-16\"]ホットキー："
+msgid "[font=\"sans-bold-16\"]Hotkeys:"
+msgstr "[font=\"sans-bold-16\"]ホットキー："
 
 #: gui/manual/intro.txt:38
-msgid "[font=\"serif-bold-14\"]Always"
-msgstr "[font=\"serif-bold-14\"]常時"
+msgid "[font=\"sans-bold-14\"]Always"
+msgstr "[font=\"sans-bold-14\"]常時"
 
 #: gui/manual/intro.txt:39
-msgid "[font=\"serif-14\"]Alt + F4: Close the game, without confirmation"
-msgstr "[font=\"serif-14\"]Alt + F4：確認なしでゲームを終了"
+msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
+msgstr "[font=\"sans-14\"]Alt + F4：確認なしでゲームを終了"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -3411,14 +4018,14 @@ msgid ""
 msgstr "Shift + F2：大きなスクリーンショットを撮ります（6400×4800ピクセルのbmpフォーマットで保存されます。場所はファイルが保存された後の画面の左上に表示され、また見逃した場合はコンソールやログでも見られます）"
 
 #: gui/manual/intro.txt:48
-msgid "[font=\"serif-bold-14\"]In Game"
-msgstr "[font=\"serif-bold-14\"]ゲーム中"
+msgid "[font=\"sans-bold-14\"]In Game"
+msgstr "[font=\"sans-bold-14\"]ゲーム内"
 
 #: gui/manual/intro.txt:49
 msgid ""
-"[font=\"serif-14\"]Double Left Click [on unit]: Select all of your units of "
+"[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"serif-14\"][ユニットを]左ダブルクリック: スクリーン上の同種の全ユニットを選択(ランクが違っても可)"
+msgstr "[font=\"sans-14\"][ユニットを]左ダブルクリック: スクリーン上の同種の全ユニットを選択(ランクが違っても可)"
 
 #: gui/manual/intro.txt:50
 msgid ""
@@ -3521,12 +4128,12 @@ msgid ""
 msgstr "Z, X, C, V, B, N, M（訓練所を選択中に）：選択された全ての訓練所で訓練キューに示された1番目、2番目、… のユニットを追加　"
 
 #: gui/manual/intro.txt:72
-msgid "[font=\"serif-bold-14\"]Modify mouse action"
-msgstr "[font=\"serif-bold-14\"]修飾されたマウス操作"
+msgid "[font=\"sans-bold-14\"]Modify mouse action"
+msgstr "[font=\"sans-bold-14\"]修飾されたマウス操作"
 
 #: gui/manual/intro.txt:73
-msgid "[font=\"serif-14\"]Ctrl + Right Click on building: Garrison"
-msgstr "[font=\"serif-14\"]Ctrl + 右クリック［建物を］：駐屯"
+msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
+msgstr "[font=\"sans-14\"]建物をCtrl + 右クリック: 駐屯"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -3566,20 +4173,20 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + 右クリック（ユニット選択中）："
 
 #: gui/manual/intro.txt:82
-msgid "- If the cursor is over a structure: Garrison"
+msgid "    - If the cursor is over a structure: Garrison"
 msgstr "- カーソルが建物上の場合：駐屯"
 
 #: gui/manual/intro.txt:83
-msgid "- Otherwise: Attack move"
+msgid "    - Otherwise: Attack move"
 msgstr "- その他：攻撃のために移動"
 
 #: gui/manual/intro.txt:85
-msgid "[font=\"serif-bold-14\"]Overlays"
-msgstr "[font=\"serif-bold-14\"]オーバーレイ"
+msgid "[font=\"sans-bold-14\"]Overlays"
+msgstr "[font=\"sans-bold-14\"]オーバーレイ"
 
 #: gui/manual/intro.txt:86
-msgid "[font=\"serif-14\"]Alt + G: Hide/show the GUI"
-msgstr "[font=\"serif-14\"]Alt + G：GUIを隠すか見せる"
+msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
+msgstr "[font=\"sans-14\"]Alt + G：GUIを隠すか見せる"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -3602,12 +4209,12 @@ msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z：空の表示を切替える"
 
 #: gui/manual/intro.txt:92
-msgid "[font=\"serif-bold-14\"]Camera manipulation"
-msgstr "[font=\"serif-bold-14\"]カメラ操作"
+msgid "[font=\"sans-bold-14\"]Camera manipulation"
+msgstr "[font=\"sans-bold-14\"]カメラ操作"
 
 #: gui/manual/intro.txt:93
-msgid "[font=\"serif-14\"]W or [up]: Pan screen up"
-msgstr "[font=\"serif-14\"]W または [up]：画面を上に移動"
+msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
+msgstr "[font=\"sans-14\"]W または [up]：画面を上に移動"
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
@@ -3683,12 +4290,12 @@ msgid ""
 msgstr "マウスの中ボタンまたは / (スラッシュ): 押したままでマウスを動かすことでパンします"
 
 #: gui/manual/intro.txt:112
-msgid "[font=\"serif-bold-14\"]During Building Placement"
-msgstr "[font=\"serif-bold-14\"]建物配置時"
+msgid "[font=\"sans-bold-14\"]During Building Placement"
+msgstr "[font=\"sans-bold-14\"]建物配置時"
 
 #: gui/manual/intro.txt:113
-msgid "[font=\"serif-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr "[font=\"serif-14\"][：建物を反時計回りに15度回転"
+msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
+msgstr "[font=\"sans-14\"][：建物を反時計回りに15度回転"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
@@ -3754,12 +4361,12 @@ msgid ""
 msgstr "送信されたデータは私たちのサーバーに保存され、統計またはユーザーが特定できない形の詳細情報として、同様の問題を抱える他のゲーム開発者に資するために公開されることがあります。サービスの悪用を検知できるよう、データを送信した IP アドレスを保存しますが、公開はしません。公開されたデータは http://feedback.wildfiregames.com/ で見ることができます。"
 
 #: gui/splashscreen/splashscreen.txt:1
-msgid "[font=\"serif-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr "[font=\"serif-bold-16\"]0 A.D. をインストールしていただきありがとうございます"
+msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
+msgstr "[font=\"sans-bold-16\"]0 A.D. をインストールしていただきありがとうございます"
 
 #: gui/splashscreen/splashscreen.txt:2
-msgid "[font=\"serif-16\"]"
-msgstr "[font=\"serif-16\"]"
+msgid "[font=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid ""
@@ -5055,7 +5662,7 @@ msgstr "- 最大の標準軍艦です。ローマ、カルタゴ、プトレマ�
 msgid ""
 "- Garrison up to 50 units for tons of firepower, including ballistas and "
 "scorpions."
-msgstr ""
+msgstr "- 最大50ユニットを駐屯させて、バリスタやスコルピオンなどの火力を山盛りにできます。"
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships."
@@ -5539,6 +6146,10 @@ msgstr "小"
 #: simulation/data/map_sizes.jsonSizes[1].LongName
 msgid "Small (2 players)"
 msgstr "小 (2 人用)"
+
+#: simulation/data/map_sizes.jsonSizes[2].Name
+msgid "Medium"
+msgstr "中"
 
 #: simulation/data/map_sizes.jsonSizes[2].LongName
 msgid "Medium (3 players)"
@@ -6227,7 +6838,7 @@ msgstr "ヒミルコ・ファメアス"
 
 #: civs/cart.jsonAINames[15]
 msgid "Hasdrubal the Boetharch"
-msgstr ""
+msgstr "ハスドルバル・ボエタルク"
 
 #: civs/cart.jsonFactions[0].Technologies[0].Description
 msgid "All Traders and Ships +25% vision range."
@@ -6418,7 +7029,7 @@ msgid ""
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
 "task to kill Britomartos and strip him of his armor."
-msgstr ""
+msgstr "ケルト軍が敵と対面すると、戦いが始まる前にケルトの大将が最前線へ行き、敵兵の一番の勇者に一騎打ちを挑んだものでした。マルクス・クラウディウス・マルケッルスがガリア王をクラスティディウム （紀元前222年）で殺した逸話はそうした遭遇の典型です。小さめな軍隊で前進し、マルケッルスはインスブリアのガリア人とガエサタエの混成軍とクラスティディウムで遭遇しました。ガリア軍はいつもどおり雄叫びを上げて突進しました。そしてその王ブリトマルトスは, マルケッルスを階級バッジによって見わけ、大声で決闘を挑み、槍を得意げに振り回しました。 ブリトマルトスの外観は体格のみならず、装飾品でも際立っていました。鮮やかな色できらびやかに身を包み、鎧は金や銀で輝いていたのです。この鎧は神への奉納品にふさわしいと、マルケッルスは思いました。\n彼はそのガリア人 に突進し、鮮やかな胸当てを貫いて身を地面に打ち捨てました。ブリトマルトスを倒して鎧をはぎ取ることなど彼にとっては簡単な仕事でした。"
 
 #: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
 #: civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -7332,7 +7943,7 @@ msgid ""
 "Acharya Chanakya, contributed to such varied fields such as economics, "
 "religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
 "the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "B.C. 322 年にチャンドラグプタ・マウリヤによって設立されたマウリヤ帝国は、インド半島のほとんどを支配した最初の国であって、もっとも広大でもっとも人口の多い古代の帝国のひとつであった。その軍隊は、射程距離の長い竹製の長弓を使う弓兵、獰猛な女性兵士、戦車、そして何千もの装甲した戦象を特徴とする。その思想家は、特にアチャーリャ・チャーナキヤが有名で、経済、宗教、外交、戦争、そして良い統治とった様々な分野で貢献した。アショーカ大王の支配下では、帝国は 40 年もの平和と調和、そして繁栄をみた。"
+msgstr "B.C. 322 年にチャンドラグプタ・マウリヤによって設立されたマウリヤ帝国は、インド半島のほとんどを支配した最初の国であって、もっとも広大でもっとも人口の多い古代の帝国のひとつであった。その軍隊は、射程距離の長い竹製の長弓を使う弓兵、獰猛な女性兵士、戦車、そして何千もの装甲した戦象を特徴とする。その思想家は、特にアチャーリャ・チャーナキヤが有名で、経済、宗教、外交、戦争、そして良い統治といった様々な分野で貢献した。アショーカ大王の支配下では、帝国は 40 年もの平和と調和、そして繁栄をみた。"
 
 #: civs/pers.jsonName maps/scenarios/The Persian
 #: Gates.xml:31:PlayerData[3].Name
@@ -8014,7 +8625,7 @@ msgid ""
 "execution. It has a turf wall, and it's surrounded by a canal filled with "
 "water whenever possible for extra defense. Many towns started up as bigger "
 "military camps to evolve to more complicated cities."
-msgstr "前線基地は、軍隊が行軍する経路沿いに設けた臨時野営地のこともあれば、防衛的あるいは（城攻め用の）攻撃的建築物のこともありました。東もしくは敵に面したはずのプラエトリアン門の中には、第一百人隊や歩兵隊のテントが張られ、ドラコ（歩兵隊の軍旗）や他の軍旗が掲げられました。デクマネ門は野営地後方のプラエトリアン門の反対側にあり、この門から兵士は制裁や作戦遂行の地へ導かれます。野営地は芝生の壁があり、また可能ならば壁を取り囲む水を湛えた濠で防御を強化します。多くの町は大きめな軍事野営地として始まり、より複雑な都市へ発展しました。"
+msgstr "軍営は、軍隊が行軍する経路沿いに設けた臨時野営地のこともあれば、防衛的あるいは（城攻め用の）攻撃的建築物のこともありました。東もしくは敵に面したはずのプラエトリアン門の中には、第一百人隊や歩兵隊のテントが張られ、ドラコ（歩兵隊の軍旗）や他の軍旗が掲げられました。デクマネ門は野営地後方のプラエトリアン門の反対側にあり、この門から兵士は制裁や作戦遂行の地へ導かれます。野営地は芝生の壁があり、また可能ならば壁を取り囲む水を湛えた濠で防御を強化します。多くの町は大きめな軍営地として始まり、より複雑な都市へ発展しました。"
 
 #: civs/rome.jsonStructures[1].Name
 #: simulation/templates/structures/rome_wallset_siege.xml:6
@@ -8234,7 +8845,7 @@ msgid ""
 "alliance, he married his daughter to Chandragupta. In return, Chandragupta "
 "gifted Seleucus a corps of 500 war elephants, which would prove a decisive "
 "military asset for Seleucus as he fought the rest of Alexander's successors."
-msgstr ""
+msgstr "セレウコス1世勝利王は、インドのパンジャブ地方に紀元前305年に侵攻し、マウリヤ朝創始者のチャンドラグプタ・マウリヤ（サンドロコットス）と対峙しました。チャンドラグプタは60万の兵と9千の戦象を出したといわれています（プリニウス、博物誌6巻、22.4）。セレウコスの侵攻は不成功に終わり、二大勢力が和平を結び、同盟を形あるものにするため、娘をチャンドラグプタに嫁がせました。返礼にチャンドラグプタはセレウコスに500の戦象部隊を贈り、やがて、セレウコスの軍事的な切り札として、アレクサンドロスの後継者の残党と戦う際に真価を発揮しました。"
 
 #: civs/sele.jsonFactions[0].Technologies[3].History
 msgid ""
@@ -9063,7 +9674,7 @@ msgstr "未知の陸地"
 msgid ""
 "The unknown... Players start with only some citizen soldiers and females. "
 "[color=\"red\"]Warning: AI players will cause the game to crash.[/color]"
-msgstr ""
+msgstr "不明... プレイヤーは数人の民兵と女性のみで開始します。 [color=\"red\"]警告：AIプレイヤーはゲームを異常終了させることがあります。[/color]"
 
 #: maps/random/unknown_nomad.jsonsettings.Name
 msgid "Unknown Nomad"
@@ -9122,7 +9733,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_cav_chamfron.jsongenericName
 msgid "Chamfron"
-msgstr ""
+msgstr "馬面甲"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantry_hack_01.jsonrequirementsTooltip
@@ -9191,7 +9802,7 @@ msgstr "すべての英雄の打撃装甲レベルが2、貫通装甲レベル�
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
-msgstr ""
+msgstr "鉄製ヒーロー鎧"
 
 #: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsonrequirementsTooltip
@@ -9261,6 +9872,10 @@ msgstr "都市の段階から利用可能。"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
 msgid "Sidi̱ró Panoplía"
 msgstr "Sidi̱ró Panoplía"
+
+#: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
+msgid "Lorica Ferrea"
+msgstr "Lorica Ferrea"
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
@@ -9411,7 +10026,7 @@ msgstr "Chrysaspides"
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr ""
+msgstr "高名な戦士のみが、アレクサンドロス大王軍の有名な「銀楯」隊のような、銀をあしらった楯を装備しました。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
@@ -9518,7 +10133,7 @@ msgstr "Hasta"
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
-msgstr ""
+msgstr "防衛隊ユニットたちは戦闘において尋常でない勇敢さと剛勇さを持ちます。"
 
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
@@ -9898,7 +10513,7 @@ msgid ""
 "settlement. Women of the household were taught from a young age how to weave"
 " on the loom, and subsequently spent a large  share of their lives working "
 "with it."
-msgstr ""
+msgstr "織機によって、植民地の住民が着るより上質な衣類を作れるようになりました。家庭の女性は、若いうちから機織りを教えられ、その後、人生の大部分を機織りをして過ごしました。"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -9976,7 +10591,7 @@ msgstr "Hoplomachia"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
-msgstr ""
+msgstr "ランス 対 馬面甲"
 
 #: simulation/data/technologies/pair_champ_02.jsongenericName
 msgid "Champions vs. Part-timers"
@@ -10079,7 +10694,7 @@ msgstr "都市の段階へ進むとより多様な建物やユニットが利用
 #: simulation/data/technologies/phase_city_gauls.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr ""
+msgstr "新たに4つの村段階の建造物 (壁と町の中心は除く) が必要です。"
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.hele
@@ -10189,7 +10804,7 @@ msgstr "国や部族は、公的な饗宴や異国の大使をもてなすため
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr ""
+msgstr "町の中心に+5の人口上限ボーナス。"
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -10229,11 +10844,11 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 msgid "Houses +1 population cap bonus."
-msgstr ""
+msgstr "家に+1の人口上限ボーナス。"
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
-msgstr ""
+msgstr "ホーム・ガーデン"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
@@ -10256,7 +10871,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +2 population cap bonus."
-msgstr ""
+msgstr "家に+2の人口上限ボーナス。"
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
@@ -10452,7 +11067,7 @@ msgstr "歩兵の徴用"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
-msgstr ""
+msgstr "ドックでの船舶たちのバッチ処理スピードの目に見える向上。"
 
 #: simulation/data/technologies/training_naval_architects.jsontooltip
 msgid "Docks increased batch construction speed bonus."
@@ -10948,7 +11563,7 @@ msgstr "スパルタの陸軍は当時世界最大ではありませんでした
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr ""
+msgstr "アテナイの三段櫂船が海兵隊（Epibates Athenaikos）とクレタ傭兵射手（Toxotes Kretikos）を養成できるようになります。"
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
@@ -11027,11 +11642,11 @@ msgstr "木壁"
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr ""
+msgstr "不死隊チャンピオン歩兵の養成が2倍の速さになりますが、少し最大耐久力が減ります。"
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr ""
+msgstr "不死隊チャンピオン歩兵の養成時間が50%減りますが、同時に耐久力が20減ります。"
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid "All Persian structures +25% health, but also +20% build time."
@@ -11087,7 +11702,7 @@ msgstr "ローマは兵站の達人でした。"
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Territory decay eliminated for Army Camps and Siege Walls."
-msgstr ""
+msgstr "軍営と包囲壁が領外劣化しなくなります。"
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"
@@ -11479,9 +12094,30 @@ msgid ""
 "empire."
 msgstr "あなたの文明に栄光をもたらし、国土を大幅に広げます。"
 
+#: simulation/templates/template_structure_wonder.xml:35
+msgid "Wonder"
+msgstr "象徴"
+
 #: simulation/templates/template_unit.xml:37
 msgid "Unit"
 msgstr "ユニット"
+
+#: simulation/templates/template_unit_cavalry.xml:33
+#: simulation/templates/template_unit_dog.xml:80
+#: simulation/templates/template_unit_infantry.xml:52
+#: simulation/templates/template_unit_support_healer.xml:23
+#: simulation/templates/units/brit_support_healer_b.xml:9
+#: simulation/templates/units/cart_support_healer_b.xml:9
+#: simulation/templates/units/celt_support_healer_b.xml:9
+#: simulation/templates/units/gaul_support_healer_b.xml:9
+#: simulation/templates/units/hele_support_healer_b.xml:9
+#: simulation/templates/units/iber_support_healer_b.xml:10
+#: simulation/templates/units/maur_support_healer_b.xml:10
+#: simulation/templates/units/pers_support_healer_b.xml:10
+#: simulation/templates/units/rome_support_healer_b.xml:10
+msgctxt "Rank"
+msgid "Basic"
+msgstr "通常"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:52
 msgid "Melee Cavalry"
@@ -11492,7 +12128,7 @@ msgid ""
 "Classes: Citizen Melee Cavalry Spearman.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, Elephants."
-msgstr "クラス：市民　近接　騎兵　槍兵。\n得意：2倍　対剣士、攻城兵器、1.5倍　対散兵。\n苦手：槍兵、弓兵、象。"
+msgstr "分類：市民　近接　騎兵　槍兵。\n得意：2倍　対剣士、攻城兵器、1.5倍　対散兵。\n苦手：槍兵、弓兵、象。"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
 msgid "Cavalry Spearman"
@@ -11503,7 +12139,7 @@ msgid ""
 "Classes: Citizen Melee Cavalry Swordsman.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr "クラス：市民　近接　騎兵、剣士。\n得意：2倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
+msgstr "分類：市民　近接　騎兵、剣士。\n得意：2倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:45
 msgid "Cavalry Swordsman"
@@ -11518,7 +12154,7 @@ msgid ""
 "Classes: Citizen Ranged Cavalry Archer.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr "クラス：市民　遠隔　騎兵　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。\n苦手：散兵、象。"
+msgstr "分類：市民　遠隔　騎兵　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。\n苦手：散兵、象。"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:35
 msgid "Cavalry Archer"
@@ -11529,7 +12165,7 @@ msgid ""
 "Classes: Citizen Ranged Cavalry Skirmisher.\n"
 "Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.\n"
 "Countered by: Spearmen, Elephants."
-msgstr "クラス：市民　遠隔　騎兵　散兵。\n得意：2倍　対弓兵、1.5倍　対剣騎兵。\n苦手：槍兵、象。"
+msgstr "分類：市民　遠隔　騎兵　散兵。\n得意：2倍　対弓兵、1.5倍　対剣騎兵。\n苦手：槍兵、象。"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:35
 msgid "Cavalry Skirmisher"
@@ -11548,7 +12184,7 @@ msgid ""
 "Classes: Champion Ranged Cavalry Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr "クラス：チャンピオン　遠隔　騎兵　弓兵。\n得意：2倍　剣士、1.5倍　対槍兵。\n苦手：散兵、象。"
+msgstr "分類：チャンピオン　遠隔　騎兵　弓兵。\n得意：2倍　剣士、1.5倍　対槍兵。\n苦手：散兵、象。"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:40
 msgid "Champion Cavalry Archer."
@@ -11559,7 +12195,7 @@ msgid ""
 "Classes: Champion Ranged Cavalry Skirmisher.\n"
 "Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.\n"
 "Countered by: Spearmen and Elephants."
-msgstr "クラス：チャンピオン　遠隔　騎兵　散兵。\n得意：2倍　対弓兵、1.5倍　対剣騎兵。\n苦手：槍兵、象。"
+msgstr "分類：チャンピオン　遠隔　騎兵　散兵。\n得意：2倍　対弓兵、1.5倍　対剣騎兵。\n苦手：槍兵、象。"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:39
 msgid "Champion Cavalry Skirmisher"
@@ -11570,7 +12206,7 @@ msgid ""
 "Classes: Champion Melee Cavalry Spearman.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr "クラス：チャンピオン　近接　騎兵　槍兵。\n得意：2倍　対剣士、攻城兵器、1.5倍　対散兵。\n苦手：槍兵、弓兵、象。"
+msgstr "分類：チャンピオン　近接　騎兵　槍兵。\n得意：2倍　対剣士、攻城兵器、1.5倍　対散兵。\n苦手：槍兵、弓兵、象。"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:77
 msgid "Champion Cavalry Spearman"
@@ -11581,7 +12217,7 @@ msgid ""
 "Classes: Champion Melee Cavalry Swordsman.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr "クラス：チャンピオン　近接　騎兵　剣士。\n得意：２倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
+msgstr "分類：チャンピオン　近接　騎兵　剣士。\n得意：２倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:77
 msgid "Champion Cavalry Swordsman"
@@ -11596,7 +12232,7 @@ msgid ""
 "Classes: Champion Melee Elephant.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates. \"Stench\" aura vs. Cavalry.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "クラス：チャンピオン　近接　象。\n得意：2倍　対全騎兵、1.5倍　対全建物。さらに1.5倍　対城門。「悪臭」オーラ　対騎兵。\n苦手：散兵、剣士。暴れ出す。"
+msgstr "分類：チャンピオン　近接　象。\n得意：2倍　対全騎兵、1.5倍　対全建物。さらに1.5倍　対城門。「悪臭」オーラ　対騎兵。\n苦手：散兵、剣士。暴れ出す。"
 
 #: simulation/templates/template_unit_champion_infantry.xml:35
 msgid "Champion Infantry"
@@ -11607,7 +12243,7 @@ msgid ""
 "Classes: Champion Ranged Infantry Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
-msgstr "クラス：チャンピオン　遠隔　歩兵　弓兵。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
+msgstr "分類：チャンピオン　遠隔　歩兵　弓兵。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
@@ -11618,7 +12254,7 @@ msgid ""
 "Classes: Champion Ranged Infantry Skirmisher.\n"
 "Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Swordsmen and Cavalry Spearmen."
-msgstr "クラス：チャンピオン　遠隔　歩兵　散兵。\n得意：1.5倍　対槍兵、弓騎兵、象、戦車。\n苦手：剣士、槍騎兵。"
+msgstr "分類：チャンピオン　遠隔　歩兵　散兵。\n得意：1.5倍　対槍兵、弓騎兵、象、戦車。\n苦手：剣士、槍騎兵。"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:53
 msgid "Champion Skirmisher"
@@ -11629,7 +12265,7 @@ msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.\n"
 "Countered by: Swordsmen, Skirmishers, and Cavalry Archers."
-msgstr "クラス：チャンピオン　近接　歩兵　槍兵。\n得意：2倍　対全騎兵、1.5倍　対象。\n苦手：剣士、散兵、弓騎兵。"
+msgstr "分類：チャンピオン　近接　歩兵　槍兵。\n得意：2倍　対全騎兵、1.5倍　対象。\n苦手：剣士、散兵、弓騎兵。"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:55
 msgid "Champion Pikeman"
@@ -11640,7 +12276,7 @@ msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr "クラス：チャンピオン　近接　歩兵　槍兵。\n得意：2倍　対全騎兵。\n苦手：散兵、剣士、弓騎兵。"
+msgstr "分類：チャンピオン　近接　歩兵　槍兵。\n得意：2倍　対全騎兵。\n苦手：散兵、剣士、弓騎兵。"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:43
 msgid "Champion Spearman"
@@ -11651,7 +12287,7 @@ msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "クラス：チャンピオン　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
+msgstr "分類：チャンピオン　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
@@ -11663,7 +12299,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
-msgstr ""
+msgstr "スーパー包囲攻撃"
 
 #: simulation/templates/template_unit_dog.xml:81
 msgid ""
@@ -11721,7 +12357,7 @@ msgid ""
 "\"Hero\" Aura: TBD.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr "クラス：英雄　近接　騎兵　槍兵。\n英雄オーラ：　未定。\n得意：2倍　対剣士、攻城兵器、1.5倍　対散兵。\n苦手：槍兵、弓兵、象。"
+msgstr "分類：英雄　近接　騎兵　槍兵。\n英雄オーラ：　未定。\n得意：2倍　対剣士、攻城兵器、1.5倍　対散兵。\n苦手：槍兵、弓兵、象。"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:67
 msgid "Hero Cavalry Spearman"
@@ -11733,7 +12369,7 @@ msgid ""
 "\"Hero\" Aura: TBD.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr "クラス：英雄　近接　騎兵　剣士。\n英雄オーラ：未定。\n得意：2倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
+msgstr "分類：英雄　近接　騎兵　剣士。\n英雄オーラ：未定。\n得意：2倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:58
 msgid "Hero Cavalry Swordsman"
@@ -11744,14 +12380,14 @@ msgid ""
 "Classes: Hero Melee Elephant.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "クラス：英雄　近接　象。\n得意：2倍　対全騎兵、1.5倍　対全建物、さらに1.5倍　対城門。\n苦手：散兵、剣士。暴れ出す。"
+msgstr "分類：英雄　近接　象。\n得意：2倍　対全騎兵、1.5倍　対全建物、さらに1.5倍　対城門。\n苦手：散兵、剣士。暴れ出す。"
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:41
 msgid ""
 "Classes: Hero Infantry Ranged Archer Bow.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr "クラス：英雄　歩兵　遠隔　弓兵。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
+msgstr "分類：英雄　歩兵　遠隔　弓兵。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:39
 msgid "Hero Archer"
@@ -11775,7 +12411,7 @@ msgid ""
 "\"Hero\" Aura: TBD.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr "クラス：英雄　歩兵　近接　剣士。\n英雄オーラ：未定。\n得意：2倍　対槍兵、1.5倍　対散兵、象。\n苦手：弓兵、弓騎兵。"
+msgstr "分類：英雄　歩兵　近接　剣士。\n英雄オーラ：未定。\n得意：2倍　対槍兵、1.5倍　対散兵、象。\n苦手：弓兵、弓騎兵。"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:53
 msgid "Hero Swordsman"
@@ -11791,7 +12427,7 @@ msgid ""
 "Classes: Citizen Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, Cavalry Archers."
-msgstr "クラス：市民　近接　歩兵　槍兵。\n得意：2倍　対全騎兵。\n苦手：散兵、剣士、弓騎兵。"
+msgstr "分類：市民　近接　歩兵　槍兵。\n得意：2倍　対全騎兵。\n苦手：散兵、剣士、弓騎兵。"
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
@@ -11806,7 +12442,7 @@ msgid ""
 "Classes: Citizen Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers, and 1.25x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "クラス：市民　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対散兵、1.25倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
+msgstr "分類：市民　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対散兵、1.25倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:52
 msgid "Swordsman"
@@ -11821,7 +12457,7 @@ msgid ""
 "Classes: Citizen Ranged Infantry Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr "クラス：市民　遠隔　歩兵　弓兵。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
+msgstr "分類：市民　遠隔　歩兵　弓兵。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
 
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:38
 msgid "Archer"
@@ -11832,7 +12468,7 @@ msgid ""
 "Classes: Citizen Ranged Infantry Skirmisher.\n"
 "Counters: 1.5x vs. Spearmen and Cavalry Archers, 1.25x vs. Elephants and Chariots.\n"
 "Countered by: Swordsmen, Cavalry Spearmen."
-msgstr "クラス：市民　遠隔　歩兵　散兵。\n得意：1.5倍　対槍兵、弓騎兵、1.25倍　対象、戦車。\n苦手：剣士、槍騎兵。"
+msgstr "分類：市民　遠隔　歩兵　散兵。\n得意：1.5倍　対槍兵、弓騎兵、1.25倍　対象、戦車。\n苦手：剣士、槍騎兵。"
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:45
 msgid "Skirmisher"
@@ -11843,7 +12479,7 @@ msgid ""
 "Classes: Citizen Ranged Infantry Slinger.\n"
 "Counters: 1.5x vs. Ranged Infantry, 1.25x vs. Melee Infantry.\n"
 "Countered by: Cavalry."
-msgstr "クラス：市民　遠隔　歩兵　投石兵。\n得意：1.5倍　対遠隔攻撃歩兵、1.25倍　対近接戦闘歩兵。\n苦手：騎兵。"
+msgstr "分類：市民　遠隔　歩兵　投石兵。\n得意：1.5倍　対遠隔攻撃歩兵、1.25倍　対近接戦闘歩兵。\n苦手：騎兵。"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:38
 msgid "Slinger"
@@ -11859,7 +12495,7 @@ msgstr "船舶"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:47
 msgid "Classes: Mechanical Warship Light Ranged."
-msgstr ""
+msgstr "分類：機械　軍艦　小型　遠隔。"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
@@ -11869,7 +12505,7 @@ msgstr "軽量級軍艦"
 msgid ""
 "Classes: Mechanical Warship Fireship Melee.\n"
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on fire, so use the Fire Ship quickly."
-msgstr ""
+msgstr "分類：機械　軍艦　火船　近接。\n敵船の耐久力を急激に奪います。燃えているため徐々に耐久力を失います。よって火船は急いで使ってください。"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
@@ -11879,7 +12515,7 @@ msgstr "炎上船"
 msgid ""
 "Classes: Mechanical Ship FishingBoat.\n"
 "Fish the waters for Food. Garrison a support or infantry unit inside to boost fishing rate."
-msgstr ""
+msgstr "分類：機械　船舶　漁船。\n水域から魚をとり食料にします。補助あるいは歩兵ユニットを船内に駐屯させて、漁業効率を改善します。"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
@@ -11889,7 +12525,7 @@ msgstr "釣り舟"
 msgid ""
 "Classes: Mechanical Ship Trader.\n"
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% for each garrisoned). Gather profitable aquatic treasures."
-msgstr ""
+msgstr "港の間で交易をします。船に商人を乗せると利益が増加します（一人につき +20%）。水中の価値のある財宝を回収できます。"
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
@@ -11900,7 +12536,7 @@ msgid ""
 "Classes: Mechanical Warship Heavy Ranged Melee.\n"
 "Garrison with catapults to increase ranged fire power.\n"
 "Secondary Attack: Ramming."
-msgstr ""
+msgstr "分類：機械　軍艦　大型　遠隔　近接。\n投石器を駐屯させると遠隔攻撃の火力が増します。\n二次攻撃：体当たり。"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
 msgid "Heavy Warship"
@@ -11910,7 +12546,7 @@ msgstr "大型軍艦"
 msgid ""
 "Classes: Mechanical Warship Medium Ranged Melee.\n"
 "Secondary Attack: Ramming."
-msgstr ""
+msgstr "分類：機械　軍艦　中型　遠隔　近接。\n二次攻撃：体当たり。"
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
@@ -11959,7 +12595,7 @@ msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10.\n"
 "Counters: 2x vs. Buildings.\n"
 "Countered by: Melee Cavalry."
-msgstr ""
+msgstr "分類：遠隔　攻城塔。\n最大20人の歩兵を駐屯させて、矢の本数を0から10へ増やせます。\n得意：2倍　対建物。\n苦手：近接戦闘騎兵。"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:58
 msgid "Siege Tower"
@@ -11973,7 +12609,7 @@ msgstr "支援"
 msgid ""
 "Classes: Citizen Support Worker Female.\n"
 "Gather resources, build civic structures, and inspire nearby males to work faster. Bonused at foraging and farming."
-msgstr "クラス：市民　補助　労働者　女性。\n資源採集、非軍事の建設に従事し、近辺の男性を励まし仕事を早めます。食料採集と農耕が得意です。"
+msgstr "分類：市民　補助　労働者　女性。\n資源採集、非軍事の建設に従事し、近辺の男性を励まし仕事を早めます。食料採集と農耕が得意です。"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:52
 msgid "Female Citizen"
@@ -11983,7 +12619,7 @@ msgstr "女性市民"
 msgid ""
 "Classes: Support Healer.\n"
 "Heal units."
-msgstr "クラス：補助　治療師。\nユニットを治療します。"
+msgstr "分類：補助　治療師。\nユニットを治療します。"
 
 #: simulation/templates/template_unit_support_healer.xml:20
 msgid "Healer"
@@ -11993,7 +12629,7 @@ msgstr "治癒者"
 msgid ""
 "Classes: Support Worker Slave.\n"
 "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "クラス：補助　労働者　奴隷。\n寿命のある採集者。採掘と伐採が得意です。"
+msgstr "分類：補助　労働者　奴隷。\n寿命のある採集者。採掘と伐採が得意です。"
 
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
@@ -12003,7 +12639,7 @@ msgstr "奴隷"
 msgid ""
 "Classes: Support Trader.\n"
 "Trade resources between your own markets and those of your allies."
-msgstr "クラス：補助　商人。\n資源の取引を、自国や同盟国の市場間で行います。"
+msgstr "分類：補助　商人。\n資源の取引を、自国や同盟国の市場間で行います。"
 
 #: simulation/templates/template_unit_support_trader.xml:14
 msgid "Trader"
@@ -12065,7 +12701,7 @@ msgstr "ギリシアの宗教的聖地"
 
 #: simulation/templates/formations/battle_line.xml:4
 msgid "Battle Line"
-msgstr ""
+msgstr "戦線"
 
 #: simulation/templates/formations/box.xml:6
 msgid "Box"
@@ -12518,7 +13154,7 @@ msgstr "生贄の神殿"
 
 #: simulation/templates/other/cart_tophet.xml:23
 msgid "Tophet"
-msgstr ""
+msgstr "Tophet"
 
 #: simulation/templates/other/celt_homestead.xml:25
 msgid "A Celtic homestead."
@@ -12601,7 +13237,7 @@ msgstr "巨大神殿"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:31
 msgid "Naos Parthenos"
-msgstr ""
+msgstr "Naos Parthenos"
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
@@ -12821,7 +13457,7 @@ msgstr "正方形の卓"
 
 #: simulation/templates/other/temp_hele_super_infantry_p.xml:5
 msgid "Spartiate with Xiphos"
-msgstr ""
+msgstr "クシポス持ちスパルタ市民"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:12
 msgid "This temple is unfinished and has fallen to ruin."
@@ -13823,7 +14459,7 @@ msgstr "傭兵基地"
 #: simulation/templates/structures/ptol_military_colony.xml:7
 #: simulation/templates/structures/sele_military_colony.xml:7
 msgid "Colony"
-msgstr ""
+msgstr "植民地"
 
 #: simulation/templates/structures/ptol_military_colony.xml:33
 msgid ""
@@ -13876,7 +14512,7 @@ msgstr "マップ内のどこでも、敵領内でも建設できます。攻城
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
-msgstr "前線基地"
+msgstr "塹壕付き軍営"
 
 #: simulation/templates/structures/rome_army_camp.xml:60
 msgid "Castrum Vallum"
@@ -14094,10 +14730,232 @@ msgstr "Syssítion"
 msgid "Asklepeion"
 msgstr "Asklepeion"
 
+#: simulation/templates/units/athen_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/athen_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/athen_infantry_archer_a.xml:18
+#: simulation/templates/units/athen_infantry_javelinist_a.xml:18
+#: simulation/templates/units/athen_infantry_slinger_a.xml:18
+#: simulation/templates/units/athen_infantry_spearman_a.xml:20
+#: simulation/templates/units/athen_support_healer_a.xml:11
+#: simulation/templates/units/brit_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/brit_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/brit_infantry_javelinist_a.xml:18
+#: simulation/templates/units/brit_infantry_slinger_a.xml:18
+#: simulation/templates/units/brit_infantry_spearman_a.xml:20
+#: simulation/templates/units/brit_support_healer_a.xml:11
+#: simulation/templates/units/brit_war_dog_a.xml:17
+#: simulation/templates/units/cart_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/cart_cavalry_spearman_a.xml:20
+#: simulation/templates/units/cart_cavalry_swordsman_2_a.xml:20
+#: simulation/templates/units/cart_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/cart_infantry_archer_a.xml:18
+#: simulation/templates/units/cart_infantry_javelinist_a.xml:18
+#: simulation/templates/units/cart_infantry_slinger_a.xml:18
+#: simulation/templates/units/cart_infantry_spearman_a.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_2_a.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_a.xml:20
+#: simulation/templates/units/cart_support_healer_a.xml:11
+#: simulation/templates/units/celt_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/celt_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/celt_infantry_javelinist_a.xml:18
+#: simulation/templates/units/celt_infantry_slinger_a.xml:15
+#: simulation/templates/units/celt_infantry_spearman_a.xml:20
+#: simulation/templates/units/celt_support_healer_a.xml:11
+#: simulation/templates/units/celt_war_dog_a.xml:17
+#: simulation/templates/units/gaul_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/gaul_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/gaul_infantry_javelinist_a.xml:18
+#: simulation/templates/units/gaul_infantry_slinger_a.xml:15
+#: simulation/templates/units/gaul_infantry_spearman_a.xml:20
+#: simulation/templates/units/gaul_support_healer_a.xml:11
+#: simulation/templates/units/hele_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/hele_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/hele_infantry_archer_a.xml:18
+#: simulation/templates/units/hele_infantry_javelinist_a.xml:18
+#: simulation/templates/units/hele_infantry_slinger_a.xml:18
+#: simulation/templates/units/hele_infantry_spearman_a.xml:20
+#: simulation/templates/units/hele_support_healer_a.xml:11
+#: simulation/templates/units/iber_cavalry_javelinist_a.xml:9
+#: simulation/templates/units/iber_cavalry_spearman_a.xml:20
+#: simulation/templates/units/iber_infantry_javelinist_a.xml:18
+#: simulation/templates/units/iber_infantry_slinger_a.xml:18
+#: simulation/templates/units/iber_infantry_spearman_a.xml:20
+#: simulation/templates/units/iber_infantry_swordsman_a.xml:20
+#: simulation/templates/units/iber_support_healer_a.xml:11
+#: simulation/templates/units/mace_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/mace_cavalry_spearman_a.xml:20
+#: simulation/templates/units/mace_infantry_archer_a.xml:18
+#: simulation/templates/units/mace_infantry_javelinist_a.xml:18
+#: simulation/templates/units/mace_infantry_slinger_a.xml:18
+#: simulation/templates/units/mace_infantry_spearman_a.xml:20
+#: simulation/templates/units/mace_support_healer_a.xml:11
+#: simulation/templates/units/maur_cavalry_javelinist_a.xml:9
+#: simulation/templates/units/maur_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/maur_elephant_archer_a.xml:7
+#: simulation/templates/units/maur_infantry_archer_a.xml:18
+#: simulation/templates/units/maur_infantry_spearman_a.xml:20
+#: simulation/templates/units/maur_infantry_swordsman_a.xml:20
+#: simulation/templates/units/maur_support_healer_a.xml:11
+#: simulation/templates/units/pers_cavalry_archer_a.xml:23
+#: simulation/templates/units/pers_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/pers_cavalry_javelinist_a_trireme.xml:18
+#: simulation/templates/units/pers_cavalry_spearman_a.xml:20
+#: simulation/templates/units/pers_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/pers_cavalry_swordsman_a_trireme.xml:20
+#: simulation/templates/units/pers_infantry_archer_a.xml:18
+#: simulation/templates/units/pers_infantry_javelinist_a.xml:18
+#: simulation/templates/units/pers_infantry_spearman_a.xml:20
+#: simulation/templates/units/pers_support_healer_a.xml:11
+#: simulation/templates/units/ptol_cavalry_archer_a.xml:19
+#: simulation/templates/units/ptol_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/ptol_cavalry_spearman_a.xml:20
+#: simulation/templates/units/ptol_infantry_archer_a.xml:18
+#: simulation/templates/units/ptol_infantry_javelinist_a.xml:18
+#: simulation/templates/units/ptol_infantry_slinger_a.xml:18
+#: simulation/templates/units/ptol_infantry_spearman_2_a.xml:20
+#: simulation/templates/units/ptol_infantry_spearman_a.xml:20
+#: simulation/templates/units/ptol_infantry_swordsman_a.xml:20
+#: simulation/templates/units/ptol_support_healer_a.xml:11
+#: simulation/templates/units/rome_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/rome_cavalry_spearman_a.xml:20
+#: simulation/templates/units/rome_infantry_javelinist_a.xml:18
+#: simulation/templates/units/rome_infantry_spearman_a.xml:20
+#: simulation/templates/units/rome_infantry_swordsman_a.xml:20
+#: simulation/templates/units/rome_support_healer_a.xml:11
+#: simulation/templates/units/sele_cavalry_archer_a.xml:19
+#: simulation/templates/units/sele_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/sele_cavalry_spearman_a.xml:20
+#: simulation/templates/units/sele_infantry_archer_a.xml:18
+#: simulation/templates/units/sele_infantry_javelinist_a.xml:18
+#: simulation/templates/units/sele_infantry_spearman_2_a.xml:20
+#: simulation/templates/units/sele_infantry_spearman_a.xml:20
+#: simulation/templates/units/sele_infantry_swordsman_a.xml:20
+#: simulation/templates/units/sele_support_healer_a.xml:11
+#: simulation/templates/units/spart_cavalry_javelinist_a.xml:18
+#: simulation/templates/units/spart_cavalry_spearman_a.xml:20
+#: simulation/templates/units/spart_infantry_javelinist_a.xml:18
+#: simulation/templates/units/spart_infantry_spearman_a.xml:20
+#: simulation/templates/units/spart_support_healer_a.xml:11
+msgctxt "Rank"
+msgid "Advanced"
+msgstr "上級"
+
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:7
 msgid "Pródromos"
 msgstr "Pródromos"
+
+#: simulation/templates/units/athen_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/athen_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/athen_infantry_archer_e.xml:18
+#: simulation/templates/units/athen_infantry_javelinist_e.xml:18
+#: simulation/templates/units/athen_infantry_slinger_e.xml:18
+#: simulation/templates/units/athen_infantry_spearman_e.xml:20
+#: simulation/templates/units/athen_support_healer_e.xml:11
+#: simulation/templates/units/brit_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/brit_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/brit_infantry_javelinist_e.xml:18
+#: simulation/templates/units/brit_infantry_slinger_e.xml:18
+#: simulation/templates/units/brit_infantry_spearman_e.xml:20
+#: simulation/templates/units/brit_support_healer_e.xml:11
+#: simulation/templates/units/brit_war_dog_e.xml:17
+#: simulation/templates/units/cart_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/cart_cavalry_spearman_e.xml:20
+#: simulation/templates/units/cart_cavalry_swordsman_2_e.xml:20
+#: simulation/templates/units/cart_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/cart_infantry_archer_e.xml:18
+#: simulation/templates/units/cart_infantry_javelinist_e.xml:18
+#: simulation/templates/units/cart_infantry_slinger_e.xml:18
+#: simulation/templates/units/cart_infantry_spearman_e.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_2_e.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_e.xml:20
+#: simulation/templates/units/cart_support_healer_e.xml:11
+#: simulation/templates/units/celt_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/celt_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/celt_infantry_javelinist_e.xml:18
+#: simulation/templates/units/celt_infantry_slinger_e.xml:15
+#: simulation/templates/units/celt_infantry_spearman_e.xml:20
+#: simulation/templates/units/celt_support_healer_e.xml:11
+#: simulation/templates/units/celt_war_dog_e.xml:17
+#: simulation/templates/units/gaul_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/gaul_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/gaul_infantry_javelinist_e.xml:18
+#: simulation/templates/units/gaul_infantry_slinger_e.xml:15
+#: simulation/templates/units/gaul_infantry_spearman_e.xml:20
+#: simulation/templates/units/gaul_support_healer_e.xml:11
+#: simulation/templates/units/hele_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/hele_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/hele_infantry_archer_e.xml:18
+#: simulation/templates/units/hele_infantry_javelinist_e.xml:18
+#: simulation/templates/units/hele_infantry_slinger_e.xml:18
+#: simulation/templates/units/hele_infantry_spearman_e.xml:20
+#: simulation/templates/units/hele_support_healer_e.xml:11
+#: simulation/templates/units/iber_cavalry_javelinist_e.xml:9
+#: simulation/templates/units/iber_cavalry_spearman_e.xml:20
+#: simulation/templates/units/iber_infantry_javelinist_e.xml:20
+#: simulation/templates/units/iber_infantry_slinger_e.xml:18
+#: simulation/templates/units/iber_infantry_spearman_e.xml:20
+#: simulation/templates/units/iber_infantry_swordsman_e.xml:20
+#: simulation/templates/units/iber_support_healer_e.xml:11
+#: simulation/templates/units/mace_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/mace_cavalry_spearman_e.xml:20
+#: simulation/templates/units/mace_infantry_archer_e.xml:18
+#: simulation/templates/units/mace_infantry_javelinist_e.xml:18
+#: simulation/templates/units/mace_infantry_slinger_e.xml:18
+#: simulation/templates/units/mace_infantry_spearman_e.xml:20
+#: simulation/templates/units/mace_support_healer_e.xml:11
+#: simulation/templates/units/maur_cavalry_javelinist_e.xml:9
+#: simulation/templates/units/maur_cavalry_swordsman_e.xml:17
+#: simulation/templates/units/maur_elephant_archer_e.xml:7
+#: simulation/templates/units/maur_infantry_archer_e.xml:18
+#: simulation/templates/units/maur_infantry_spearman_e.xml:20
+#: simulation/templates/units/maur_infantry_swordsman_e.xml:20
+#: simulation/templates/units/maur_support_healer_e.xml:11
+#: simulation/templates/units/merc_thrace_swordsman.xml:23
+#: simulation/templates/units/pers_cavalry_archer_e.xml:19
+#: simulation/templates/units/pers_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/pers_cavalry_javelinist_e_trireme.xml:18
+#: simulation/templates/units/pers_cavalry_spearman_e.xml:20
+#: simulation/templates/units/pers_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/pers_cavalry_swordsman_e_trireme.xml:20
+#: simulation/templates/units/pers_infantry_archer_e.xml:18
+#: simulation/templates/units/pers_infantry_javelinist_e.xml:18
+#: simulation/templates/units/pers_infantry_spearman_e.xml:20
+#: simulation/templates/units/pers_support_healer_e.xml:11
+#: simulation/templates/units/ptol_cavalry_archer_e.xml:19
+#: simulation/templates/units/ptol_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/ptol_cavalry_spearman_e.xml:20
+#: simulation/templates/units/ptol_infantry_archer_e.xml:18
+#: simulation/templates/units/ptol_infantry_javelinist_e.xml:18
+#: simulation/templates/units/ptol_infantry_slinger_e.xml:18
+#: simulation/templates/units/ptol_infantry_spearman_2_e.xml:20
+#: simulation/templates/units/ptol_infantry_spearman_e.xml:20
+#: simulation/templates/units/ptol_infantry_swordsman_e.xml:20
+#: simulation/templates/units/ptol_support_healer_e.xml:11
+#: simulation/templates/units/rome_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/rome_cavalry_spearman_e.xml:20
+#: simulation/templates/units/rome_infantry_javelinist_e.xml:18
+#: simulation/templates/units/rome_infantry_spearman_e.xml:20
+#: simulation/templates/units/rome_infantry_swordsman_e.xml:20
+#: simulation/templates/units/rome_support_healer_e.xml:11
+#: simulation/templates/units/sele_cavalry_archer_e.xml:19
+#: simulation/templates/units/sele_cavalry_javelinist_e.xml:18
+#: simulation/templates/units/sele_cavalry_spearman_e.xml:20
+#: simulation/templates/units/sele_infantry_archer_e.xml:18
+#: simulation/templates/units/sele_infantry_javelinist_e.xml:18
+#: simulation/templates/units/sele_infantry_spearman_2_e.xml:20
+#: simulation/templates/units/sele_infantry_spearman_e.xml:20
+#: simulation/templates/units/sele_infantry_swordsman_e.xml:20
+#: simulation/templates/units/sele_support_healer_e.xml:11
+#: simulation/templates/units/spart_cavalry_javelinist_e.xml:13
+#: simulation/templates/units/spart_cavalry_spearman_e.xml:20
+#: simulation/templates/units/spart_champion_infantry_sword.xml:30
+#: simulation/templates/units/spart_infantry_javelinist_e.xml:18
+#: simulation/templates/units/spart_infantry_spearman_e.xml:20
+#: simulation/templates/units/spart_support_healer_e.xml:11
+msgctxt "Rank"
+msgid "Elite"
+msgstr "精鋭"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:6
@@ -14139,7 +14997,7 @@ msgid ""
 "\"Reforms\" Aura: All units in his formation +15% speed and +1 armor. All Peltasts +15% speed.\n"
 "Counters: +20% Attack vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Melee Cavalry."
-msgstr "クラス：英雄　歩兵　遠隔　散兵。\n「改革」オーラ：彼が率いる全ユニットの速度+15%、装甲+1。全投槍兵の速度+15%。\n得意：攻撃力+20%　対槍兵、弓騎兵、象、戦車。\n苦手：近接戦闘騎兵。"
+msgstr "分類：英雄　歩兵　遠隔　散兵。\n「改革」オーラ：彼が率いる全ユニットの速度+15%、装甲+1。全投槍兵の速度+15%。\n得意：攻撃力+20%　対槍兵、弓騎兵、象、戦車。\n苦手：近接戦闘騎兵。"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:17
 msgid "Iphikratēs"
@@ -14152,7 +15010,7 @@ msgid ""
 "\"Acropolis\" Aura: Temples are 50 stone cheaper during his lifetime.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr "クラス：英雄　近接　歩兵　槍兵。\n「建築家」オーラ： 彼の視界内の建物の建設速度を15%速めます。\n「アクロポリス」オーラ：存命中神殿は石材50個減で建てられます。\n得意：2倍　対全騎兵。\n苦手：散兵、剣士、弓騎兵。"
+msgstr "分類：英雄　近接　歩兵　槍兵。\n「建築家」オーラ： 彼の視界内の建物の建設速度を15%速めます。\n「アクロポリス」オーラ：存命中神殿は石材50個減で建てられます。\n得意：2倍　対全騎兵。\n苦手：散兵、剣士、弓騎兵。"
 
 #: simulation/templates/units/athen_hero_pericles.xml:15
 msgid "Periklēs"
@@ -14165,7 +15023,7 @@ msgid ""
 "\"Naval Architect\" Aura: Ships are built +20% faster during his lifespan.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr "クラス：英雄　歩兵　近接　剣士。\n「海軍士官」オーラ：船内に駐屯すると、船が50%速くなります。\n「造船家」オーラ：存命中、船の建造が20%速くなります。\n得意：2倍　対槍兵、1.5倍　対散兵、象。\n苦手：弓兵、弓騎兵。"
+msgstr "分類：英雄　歩兵　近接　剣士。\n「海軍士官」オーラ：船内に駐屯すると、船が50%速くなります。\n「造船家」オーラ：存命中、船の建造が20%速くなります。\n得意：2倍　対槍兵、1.5倍　対散兵、象。\n苦手：弓兵、弓騎兵。"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:14
 #: simulation/templates/units/hele_hero_themistocles.xml:14
@@ -14511,7 +15369,7 @@ msgid ""
 "\"Lightning\" Aura: All of the player's units +15% movement speed (walk and run, but not charge) while he lives.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr "クラス：英雄　近接　騎兵　剣士。\n「雷光」オーラ：存命中、プレイヤーの全ユニットの移動速度が+15%（歩きと走り、突進は除く）。\n得意：2倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
+msgstr "分類：英雄　近接　騎兵　剣士。\n「雷光」オーラ：存命中、プレイヤーの全ユニットの移動速度が+15%（歩きと走り、突進は除く）。\n得意：2倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:10
 msgid "Ḥimelqart Baraq"
@@ -14524,7 +15382,7 @@ msgid ""
 "\"Strategist\" Ability: The player can see changes within the fog of war while Hannibal lives.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "クラス：英雄　近接　象。\n「戦術家」オーラ：視界内の全同盟ユニットの攻撃力+2。\n「戦略家」能力：ハンニバル存命中、プレイヤーは戦場の霧内の変化を見ることができる。\n得意：2倍　対全騎兵、1.5倍　対全建物。さらに1.5倍　対城門。\n苦手：散兵、剣士。暴れ出す。"
+msgstr "分類：英雄　近接　象。\n「戦術家」オーラ：視界内の全同盟ユニットの攻撃力+2。\n「戦略家」能力：ハンニバル存命中、プレイヤーは戦場の霧内の変化を見ることができる。\n得意：2倍　対全騎兵、1.5倍　対全建物。さらに1.5倍　対城門。\n苦手：散兵、剣士。暴れ出す。"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:12
 msgid "Ḥannibaʿal Baraq"
@@ -14536,7 +15394,7 @@ msgid ""
 "\"Commander\" Aura: +5 Cavalry charge attack within vision range of him.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr "クラス：英雄　近接　騎兵　槍兵。\n「士官」オーラ：視界内の騎兵の突撃攻撃力が+5。\n得意：2倍　対剣士、攻城兵器。1.5倍　対散兵。\n苦手：槍兵、弓兵、象。"
+msgstr "分類：英雄　近接　騎兵　槍兵。\n「士官」オーラ：視界内の騎兵の突撃攻撃力が+5。\n得意：2倍　対剣士、攻城兵器。1.5倍　対散兵。\n苦手：槍兵、弓兵、象。"
 
 #: simulation/templates/units/cart_hero_maharbal.xml:12
 msgid "Maharbaʿal"
@@ -14685,7 +15543,7 @@ msgstr "ガリア貴族騎士"
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:6
 #: simulation/templates/units/gaul_champion_cavalry.xml:6
 msgid "Gallic Brihent"
-msgstr ""
+msgstr "Gallic Brihent"
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:15
 msgid ""
@@ -14778,7 +15636,7 @@ msgstr "Hetaîros"
 msgid ""
 "Macedonian Champion Pikeman.\n"
 "Heavy line infantry. Counters Cavalry and Infantry. Countered Ranged Units. Uses the Syntagma Formation."
-msgstr ""
+msgstr "マケドニアチャンピオン長槍兵。\n重装戦列歩兵。騎兵と歩兵を得意とします。遠隔攻撃ユニットが苦手です。シンタグマ陣形を用います。"
 
 #: simulation/templates/units/hele_champion_infantry_mace.xml:5
 #: simulation/templates/units/mace_infantry_spearman_b.xml:13
@@ -14796,7 +15654,7 @@ msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry types. +10% Attack vs. All Non-Greek Units.\n"
 "Countered by: Skirmishers, Swordsmen, Cavalry Archers."
-msgstr "クラス：チャンピオン　近接　歩兵　槍兵。\n得意：2倍　対全騎兵タイプ。攻撃力+10%　対全ての非ギリシアユニット。\n苦手：散兵、剣士、弓騎兵。"
+msgstr "分類：チャンピオン　近接　歩兵　槍兵。\n得意：2倍　対全騎兵タイプ。攻撃力+10%　対全ての非ギリシアユニット。\n苦手：散兵、剣士、弓騎兵。"
 
 #: simulation/templates/units/hele_champion_infantry_polis.xml:98
 #: simulation/templates/units/spart_champion_infantry_spear.xml:100
@@ -14833,7 +15691,7 @@ msgstr ""
 msgid ""
 "Hero Aura: +2 Cavalry and Champion Cavalry Attack and +15% Speed. "
 "\"Herocide\" attack bonus vs. enemy Heroes."
-msgstr ""
+msgstr "英雄オーラ：騎兵とチャンピオン騎兵の攻撃力が+2、速度が+15%。敵英雄に対し「英雄殺し」攻撃ボーナス。"
 
 #: simulation/templates/units/hele_hero_alexander.xml:21
 #: simulation/templates/units/mace_hero_alexander.xml:36
@@ -14862,7 +15720,7 @@ msgstr "Dēmḗtrios Poliorkḗtēs"
 
 #: simulation/templates/units/hele_hero_leonidas.xml:33
 msgid "Hero Aura: Increased Spartiate and Hoplite Attack. (not imlemented)"
-msgstr ""
+msgstr "英雄オーラ：スパルタ市民と重装歩兵の攻撃力増加。（未実装）"
 
 #: simulation/templates/units/hele_hero_leonidas.xml:32
 #: simulation/templates/units/spart_hero_leonidas.xml:29
@@ -14930,7 +15788,7 @@ msgstr "Helépolis"
 msgid ""
 "Medium Warship.\n"
 "Ramming Secondary Attack."
-msgstr ""
+msgstr "中型軍艦。\n体当たりで二次攻撃します。"
 
 #: simulation/templates/units/hele_ship_trireme.xml:5
 #: simulation/templates/units/mace_ship_trireme.xml:6
@@ -14960,7 +15818,7 @@ msgid ""
 "Special: Flaming javelins. Good vs. Buildings.\n"
 "Counters: 2x vs. Buildings, 1.5x vs. Archers.\n"
 "Countered by: Spearmen and Elephants."
-msgstr "クラス：チャンピオン　遠隔　騎兵　散兵。\n特技：火投槍。対建物に威力。\n得意：2倍　対建物、1.5倍　対弓兵。\n苦手：槍兵、象。"
+msgstr "分類：チャンピオン　遠隔　騎兵　散兵。\n特技：火投槍。対建物に威力。\n得意：2倍　対建物、1.5倍　対弓兵。\n苦手：槍兵、象。"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:32
 msgid "Leial Zalduneria"
@@ -15080,7 +15938,7 @@ msgstr "Kraterós"
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:7
 msgid "\"Pyrrhic Victory\" Aura: TBD."
-msgstr ""
+msgstr "「ピュロス王の勝利」オーラ：未定。"
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:6
 msgid "Pyrrhos ton Epeiros"
@@ -15149,7 +16007,7 @@ msgid ""
 "Classes: Champion Ranged Cavalry Chariot Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. Deals Trample Damage.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr "クラス：チャンピオン　遠隔　騎兵　戦車　弓兵。\n得意：2倍　対剣士、1.5倍　対槍兵。踏み潰しダメージを与える。\n苦手：散兵、象。"
+msgstr "分類：チャンピオン　遠隔　騎兵　戦車　弓兵。\n得意：2倍　対剣士、1.5倍　対槍兵。踏み潰しダメージを与える。\n苦手：散兵、象。"
 
 #: simulation/templates/units/maur_champion_chariot.xml:30
 msgid "War Chariot"
@@ -15173,7 +16031,7 @@ msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Structures, 1.25x vs. Spearmen and Elephants.\n"
 "Countered by: Archers and Cavalry Spearmen."
-msgstr "クラス：チャンピオン　近接　歩兵　剣士。\n得意：2倍　対建物、1.25倍　対槍兵、象。\n苦手：弓兵、槍騎兵。"
+msgstr "分類：チャンピオン　近接　歩兵　剣士。\n得意：2倍　対建物、1.25倍　対槍兵、象。\n苦手：弓兵、槍騎兵。"
 
 #: simulation/templates/units/maur_champion_infantry.xml:44
 msgid "Warrior"
@@ -15185,7 +16043,7 @@ msgstr "Yōddha"
 
 #: simulation/templates/units/maur_champion_maiden.xml:16
 msgid "Maiden Guard"
-msgstr ""
+msgstr "メイデン防衛隊"
 
 #: simulation/templates/units/maur_champion_maiden.xml:17
 #: simulation/templates/units/maur_champion_maiden_archer.xml:18
@@ -15194,14 +16052,14 @@ msgstr "Visha Kanya"
 
 #: simulation/templates/units/maur_champion_maiden_archer.xml:17
 msgid "Maiden Guard Archer"
-msgstr ""
+msgstr "メイデン防衛弓兵"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:30
 msgid ""
 "Classes: Ranged Elephant Archer.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen. \"Stench\" aura vs. Cavalry.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "クラス：遠隔　象　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。「悪臭」オーラ　対騎兵。\n苦手：散兵、剣士。暴れ出す。"
+msgstr "分類：遠隔　象　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。「悪臭」オーラ　対騎兵。\n苦手：散兵、剣士。暴れ出す。"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:26
 msgid "Elephant Archer"
@@ -15216,7 +16074,7 @@ msgid ""
 "Hero Chariot Archer.\n"
 "Hero Aura: TBD.\n"
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr ""
+msgstr "英雄戦車弓兵。\n英雄オーラ：未定。\n英雄特技：「アショーカの勅令」 - アショーカ存命中、アショーカ王の柱を建立できる。"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:33
 msgid "Aśoka Devānāmpriya"
@@ -15228,7 +16086,7 @@ msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr "クラス：英雄　治療師。\n英雄特技：「治療師」 -ユニット治療を増速で。\n英雄特技：「教師」 -建物の研究・養成が50%加速。\n英雄特技：「哲学者」 -チャーナキヤ固有の4つの特殊テクノロジーを研究。"
+msgstr "分類：英雄　治療師。\n英雄特技：「治療師」 -ユニット治療を増速で。\n英雄特技：「教師」 -建物の研究・養成が50%加速。\n英雄特技：「哲学者」 -チャーナキヤ固有の4つの特殊テクノロジーを研究。"
 
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Acharya Chanakya"
@@ -15238,7 +16096,7 @@ msgstr "チャーナキヤ博士"
 msgid ""
 "Classes: Hero Melee Elephant.\n"
 "Hero Aura: TBD."
-msgstr "クラス：英雄　近接　象。\n英雄オーラ：未定。"
+msgstr "分類：英雄　近接　象。\n英雄オーラ：未定。"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -15287,7 +16145,7 @@ msgstr "Vanijyik Nauka"
 
 #: simulation/templates/units/maur_ship_trireme.xml:20
 msgid "Classes: Mechanical Warship Medium Ranged Melee."
-msgstr "クラス：兵器　軍艦　中型　遠隔　近接。"
+msgstr "分類：機械　軍艦　中型　遠隔　近接。"
 
 #: simulation/templates/units/maur_support_elephant.xml:32
 msgid "Mobile dropsite. Can also assist in constructing buildings."
@@ -15326,7 +16184,7 @@ msgid ""
 "Classes: Mercenary Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "クラス：傭兵　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
+msgstr "分類：傭兵　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:21
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:14
@@ -15356,7 +16214,7 @@ msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
 "Countered by: Skirmishers and Elephants.\n"
 "Causes trample damage to enemy units."
-msgstr "クラス：遠隔攻撃　騎兵　戦車　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。\n苦手：散兵、象。\n踏み潰しダメージを敵ユニットに与える。"
+msgstr "分類：遠隔攻撃　騎兵　戦車　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。\n苦手：散兵、象。\n踏み潰しダメージを敵ユニットに与える。"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:32
 msgid "Babylonian Scythed Chariot"
@@ -15574,7 +16432,7 @@ msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
 "Countered by: Skirmishers and Elephants.\n"
 "\"Stench\" aura vs. Horses (Cavalry are less effective against Camels)."
-msgstr "クラス：遠隔　騎兵　ラクダ　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。\n苦手：散兵、象。\n「悪臭」オーラ　対馬（騎兵へのラクダの影響は少ない）。"
+msgstr "分類：遠隔　騎兵　ラクダ　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。\n苦手：散兵、象。\n「悪臭」オーラ　対馬（騎兵へのラクダの影響は少ない）。"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
@@ -15662,7 +16520,7 @@ msgid ""
 "Classes: Ranged Mercenary Infantry Archer Worker.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr "クラス：遠隔　傭兵　歩兵　弓兵　労働者。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
+msgstr "分類：遠隔　傭兵　歩兵　弓兵　労働者。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:26
 msgid "Nubian Mercenary Archer"
@@ -15929,7 +16787,7 @@ msgid ""
 "Classes: Ranged Cavalry Camel Archer.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr "クラス：遠隔　騎兵　ラクダ　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。\n苦手：散兵、象。"
+msgstr "分類：遠隔　騎兵　ラクダ　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。\n苦手：散兵、象。"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
@@ -16001,7 +16859,7 @@ msgid ""
 "\"Ilarchès\" Aura: All cavalry trained during his lifetime gain +2 levels of all armour types. These cavalrymen retain their armour bonuses even after Antiochus is dead.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr ""
+msgstr "クラス：英雄　近接　騎兵　槍兵。\n「騎兵隊長」オーラ：彼の存命中に養成された全騎兵の全タイプ装甲レベルが+2。この騎兵はアンティオコスの死後も装甲ボーナスを維持します。\n得意：2倍　対剣士、攻城兵器。1.5倍　対散兵。\n苦手：槍兵、弓兵、象。"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:11
 msgid "Antiochus III \"The Great\""
@@ -16017,7 +16875,7 @@ msgid ""
 "\"Conquest\" Aura: All nearby soldiers gain a +2x attack versus buildings, siege engines, and ships. Building capture time reduced by 25% during his reign.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr "クラス：英雄　近接　騎兵　剣士。\n「征服」オーラ：建物や攻城兵器、船に対し、近くの全ユニットの攻撃力が2倍。在位中、建物の奪取時間が25%減。\n得意：2倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
+msgstr "分類：英雄　近接　騎兵　剣士。\n「征服」オーラ：建物や攻城兵器、船に対し、近くの全ユニットの攻撃力が2倍。在位中、建物の奪取時間が25%減。\n得意：2倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:11
 msgid "Antiochus IV \"The Righteous\""
@@ -16072,7 +16930,7 @@ msgid ""
 "Classes: Mercenary Citizen Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "クラス：傭兵　市民　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
+msgstr "分類：傭兵　市民　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
 #: simulation/templates/units/sele_ship_trireme.xml:6
 msgid "Seleucid Trireme"
@@ -16138,7 +16996,7 @@ msgid ""
 "\"Helot Reforms\" Aura: Helot Skirmishers within sight of him gain +2 attack and +1 all armor types.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "クラス：チャンピオン　近接戦闘　歩兵　剣士。\n「ヘイロタイ改革」オーラ：視界内のヘイロタイ散兵の攻撃力が+2、全タイプの装甲が+1。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
+msgstr "分類：チャンピオン　近接戦闘　歩兵　剣士。\n「ヘイロタイ改革」オーラ：視界内のヘイロタイ散兵の攻撃力が+2、全タイプの装甲が+1。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:30
 msgid ""
@@ -16146,7 +17004,7 @@ msgid ""
 "\"Last Stand\" Aura: +20% attack for nearby Hoplites and Spartiates.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr "クラス：英雄　近接　歩兵　槍兵。\n「背水の陣」オーラ：近くの重装歩兵とスパルタ市民の攻撃力が2倍。\n得意：2倍　対全騎兵。\n苦手：散兵、剣士、弓騎兵。"
+msgstr "分類：英雄　近接　歩兵　槍兵。\n「背水の陣」オーラ：近くの重装歩兵とスパルタ市民の攻撃力が2倍。\n得意：2倍　対全騎兵。\n苦手：散兵、剣士、弓騎兵。"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:16
 msgid "Helot Skirmisher"
@@ -16169,7 +17027,7 @@ msgid ""
 "Classes: Citizen Support Worker Female.\n"
 "Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming.\n"
 "Counters: 2.5x vs. Siege."
-msgstr "クラス：市民　補助　労働者　女性。\n資源採集、建設に従事し、近辺の男性を励まし仕事を早めます。食料採集と農耕が得意です。\n得意：2.5倍　対攻城兵器。"
+msgstr "分類：市民　補助　労働者　女性。\n資源採集、建設に従事し、近辺の男性を励まし仕事を早めます。食料採集と農耕が得意です。\n得意：2.5倍　対攻城兵器。"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:25
 msgid "Spartan Woman"
@@ -16225,7 +17083,7 @@ msgid ""
 "Classes: Mercenary Champion Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "クラス：傭兵　チャンピオン　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
+msgstr "分類：傭兵　チャンピオン　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
 #: simulation/templates/units/thrace_black_cloak.xml:19
 msgid "Thracian Black Cloak"
@@ -16745,7 +17603,7 @@ msgstr "カルタゴ"
 #: maps/scenarios/Sandbox - Carthaginians.xml:41:PlayerData[1].Name
 #: maps/scenarios/Sandbox - Persians.xml:41:PlayerData[1].Name
 msgid "Creeps"
-msgstr ""
+msgstr "威嚇部隊"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:41:Name
 msgid "Sandbox - The Carthaginians"
@@ -17101,7 +17959,7 @@ msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is in abundance, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
-msgstr ""
+msgstr "2プレイヤーがライン低地のどこかにある大きな沼地を挟んで対決します。\n\n木材は豊富ですが、金属と石材の発見と採掘は困難です。狩猟採集は容易です。"
 
 #: maps/skirmishes/Belgian Bog (2).xml:42:Name
 msgid "Belgian Bog (2)"
@@ -17219,7 +18077,7 @@ msgstr "プレイヤーの開始位置はマップ中央にある小さなオア
 
 #: maps/skirmishes/Golden Oasis (2).xml:42:Name
 msgid "Gold Oasis (2)"
-msgstr ""
+msgstr "ゴールド・オアシス (2)"
 
 #: maps/skirmishes/Greek Acropolis (2).xml:41:Description
 #: maps/skirmishes/Greek Acropolis Night (2).xml:42:Description
@@ -17227,7 +18085,7 @@ msgid ""
 "Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr ""
+msgstr "2陣営の開始位置は安全な大きな岩がちの台地すなわちアクロポリスの上です。\n\n土地を偵察して財宝を獲得し、新たな資源を確保しましょう。"
 
 #: maps/skirmishes/Greek Acropolis (2).xml:41:Name
 msgid "Greek Acropolis (2)"
@@ -17277,7 +18135,7 @@ msgid ""
 "Fairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\n"
 "\n"
 "Civ Territories are divided by main river and tributaries (with necessary shallows for crossings)."
-msgstr ""
+msgstr "マップ中央を東西に横切る川に、いくつかの浅瀬があります。\n\nまずまず開けた森で基本的に平坦です。建設場所はふんだんにあります。資源の均衡がよく取れています。\n\n文明の領地は川の本流と支流で分割されていて、渡るのに必要な浅瀬があります。"
 
 #: maps/skirmishes/Lorraine Plain (2).xml:42:Name
 msgid "Lorraine Plain (2)"
@@ -17352,7 +18210,7 @@ msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
-msgstr ""
+msgstr "北西インドです。近くの川は雨季の雨で増水し、ごくわずかな危険な渡河場所しかありません。\n\n川ぞいが鬱蒼とした森に覆われるいっぽうで、周囲の田舎は草原が覆っています。草むらに潜む虎に気をつけてください！アジア象もよく見かけます。"
 
 #: maps/skirmishes/Punbjab (2).xml:42:Name
 msgid "Punjab (2)"
