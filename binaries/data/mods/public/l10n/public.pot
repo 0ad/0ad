@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-27 02:12+0200\n"
+"POT-Creation-Date: 2014-04-27 11:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -273,8 +273,8 @@ msgid "Scenario"
 msgstr ""
 
 #: gui/gamesetup/gamesetup.js:147
-#: gui/gamesetup/gamesetup.js:1126
-#: gui/gamesetup/gamesetup.js:1203
+#: gui/gamesetup/gamesetup.js:1119
+#: gui/gamesetup/gamesetup.js:1196
 msgid "Default"
 msgstr ""
 
@@ -297,7 +297,7 @@ msgid "None"
 msgstr ""
 
 #: gui/gamesetup/gamesetup.js:563
-#: gui/gamesetup/gamesetup.js:1266
+#: gui/gamesetup/gamesetup.js:1259
 msgctxt "civilization"
 msgid "Random"
 msgstr ""
@@ -306,49 +306,49 @@ msgstr ""
 msgid "Randomly selects a map from the list"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:756
-#: gui/gamesetup/gamesetup.js:873
+#: gui/gamesetup/gamesetup.js:749
+#: gui/gamesetup/gamesetup.js:866
 #: gui/session/session.js:19
 msgid "You"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:950
+#: gui/gamesetup/gamesetup.js:943
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1089
+#: gui/gamesetup/gamesetup.js:1082
 msgid "Map size:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1084
+#: gui/gamesetup/gamesetup.js:1143
+msgid "Reveal map:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1085
+msgid "Explored map:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1089
+#: gui/gamesetup/gamesetup.js:1148
+msgid "Victory condition:"
 msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1091
 #: gui/gamesetup/gamesetup.js:1150
-msgid "Reveal map:"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1092
-msgid "Explored map:"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1096
-#: gui/gamesetup/gamesetup.js:1155
-msgid "Victory condition:"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1098
-#: gui/gamesetup/gamesetup.js:1157
 msgid "Teams locked:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1117
-#: gui/gamesetup/gamesetup.js:1118
-#: gui/gamesetup/gamesetup.js:1120
-#: gui/gamesetup/gamesetup.js:1173
-#: gui/gamesetup/gamesetup.js:1174
-#: gui/gamesetup/gamesetup.js:1176
-#: gui/gamesetup/gamesetup.js:1204
-#: gui/gamesetup/gamesetup.js:1205
-#: gui/gamesetup/gamesetup.js:1207
+#: gui/gamesetup/gamesetup.js:1110
+#: gui/gamesetup/gamesetup.js:1111
+#: gui/gamesetup/gamesetup.js:1113
+#: gui/gamesetup/gamesetup.js:1166
+#: gui/gamesetup/gamesetup.js:1167
+#: gui/gamesetup/gamesetup.js:1169
+#: gui/gamesetup/gamesetup.js:1197
+#: gui/gamesetup/gamesetup.js:1198
+#: gui/gamesetup/gamesetup.js:1200
 #: gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348
 #: gui/savedgames/load.js:44
@@ -358,19 +358,19 @@ msgstr ""
 #: gui/session/menu.js:139
 #: gui/session/menu.js:164
 #: gui/session/menu.js:185
-#: gui/session/session.js:488
+#: gui/session/session.js:481
 msgid "Yes"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1117
-#: gui/gamesetup/gamesetup.js:1118
-#: gui/gamesetup/gamesetup.js:1120
-#: gui/gamesetup/gamesetup.js:1173
-#: gui/gamesetup/gamesetup.js:1174
-#: gui/gamesetup/gamesetup.js:1176
-#: gui/gamesetup/gamesetup.js:1204
-#: gui/gamesetup/gamesetup.js:1205
-#: gui/gamesetup/gamesetup.js:1207
+#: gui/gamesetup/gamesetup.js:1110
+#: gui/gamesetup/gamesetup.js:1111
+#: gui/gamesetup/gamesetup.js:1113
+#: gui/gamesetup/gamesetup.js:1166
+#: gui/gamesetup/gamesetup.js:1167
+#: gui/gamesetup/gamesetup.js:1169
+#: gui/gamesetup/gamesetup.js:1197
+#: gui/gamesetup/gamesetup.js:1198
+#: gui/gamesetup/gamesetup.js:1200
 #: gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348
 #: gui/savedgames/load.js:44
@@ -380,87 +380,87 @@ msgstr ""
 #: gui/session/menu.js:139
 #: gui/session/menu.js:164
 #: gui/session/menu.js:185
-#: gui/session/session.js:488
+#: gui/session/session.js:481
 msgid "No"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1151
+#: gui/gamesetup/gamesetup.js:1144
 msgid "Explore map:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1221
+#: gui/gamesetup/gamesetup.js:1214
 #: gui/lobby/lobby.js:388
 msgid "Sorry, no description available."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1227
+#: gui/gamesetup/gamesetup.js:1220
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/gamesetup/gamesetup.js:1367
+#: gui/gamesetup/gamesetup.js:1360
 #, python-format
 msgid "AI: %(ai)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1372
+#: gui/gamesetup/gamesetup.js:1365
 msgid "Unassigned"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1574
+#: gui/gamesetup/gamesetup.js:1567
 #, python-format
 msgid "%(username)s has joined"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1579
+#: gui/gamesetup/gamesetup.js:1572
 #, python-format
 msgid "%(username)s has left"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1584
+#: gui/gamesetup/gamesetup.js:1577
 #, python-format
 msgid "<%(username)s>"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1585
+#: gui/gamesetup/gamesetup.js:1578
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1591
+#: gui/gamesetup/gamesetup.js:1584
 #, python-format
 msgid "%(username)s is ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1593
+#: gui/gamesetup/gamesetup.js:1586
 #, python-format
 msgid "%(username)s is not ready."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1597
+#: gui/gamesetup/gamesetup.js:1590
 msgid "Game settings have been changed."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1615
 msgid "I'm not ready"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1623
+#: gui/gamesetup/gamesetup.js:1616
 msgid "State that you are not ready to play."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1628
-#: gui/gamesetup/gamesetup.js:1686
+#: gui/gamesetup/gamesetup.js:1621
+#: gui/gamesetup/gamesetup.js:1679
 msgid "I'm ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1629
+#: gui/gamesetup/gamesetup.js:1622
 msgid "State that you are ready to play!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1687
+#: gui/gamesetup/gamesetup.js:1680
 msgid "State that you accept the current settings and are ready to play!"
 msgstr ""
 
@@ -551,61 +551,61 @@ msgstr ""
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr ""
 
-#: gui/lobby/lobby.js:497
+#: gui/lobby/lobby.js:494
 #, python-format
 msgid "%(nick)s has joined."
 msgstr ""
 
-#: gui/lobby/lobby.js:506
+#: gui/lobby/lobby.js:503
 #, python-format
 msgid "%(nick)s has left."
 msgstr ""
 
-#: gui/lobby/lobby.js:513
+#: gui/lobby/lobby.js:510
 #, python-format
 msgid "Invalid nickname: %(nick)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:520
+#: gui/lobby/lobby.js:517
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr ""
 
-#: gui/lobby/lobby.js:674
+#: gui/lobby/lobby.js:671
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr ""
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:754
+#: gui/lobby/lobby.js:751
 #, python-format
 msgid "* %(sender)s"
 msgstr ""
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:756
+#: gui/lobby/lobby.js:753
 #, python-format
 msgid "%(sender)s %(action)s"
 msgstr ""
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:760
-#: gui/lobby/lobby.js:771
-#: gui/lobby/lobby.js:784
+#: gui/lobby/lobby.js:757
+#: gui/lobby/lobby.js:768
+#: gui/lobby/lobby.js:781
 #, python-format
 msgid "<%(sender)s>"
 msgstr ""
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:762
-#: gui/lobby/lobby.js:773
-#: gui/lobby/lobby.js:786
+#: gui/lobby/lobby.js:759
+#: gui/lobby/lobby.js:770
+#: gui/lobby/lobby.js:783
 #, python-format
 msgid "%(sender)s %(message)s"
 msgstr ""
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:767
+#: gui/lobby/lobby.js:764
 #, python-format
 msgid "== %(message)s"
 msgstr ""
@@ -614,24 +614,24 @@ msgstr ""
 #. options page).
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:798
+#: gui/lobby/lobby.js:795
 msgid "HH:mm"
 msgstr ""
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable it
 #. in the options page).
-#: gui/lobby/lobby.js:801
+#: gui/lobby/lobby.js:798
 #, python-format
 msgid "[%(time)s]"
 msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:804
+#: gui/lobby/lobby.js:801
 #, python-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:854
+#: gui/lobby/lobby.js:851
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr ""
 
@@ -669,7 +669,7 @@ msgstr ""
 
 #: gui/msgbox/msgbox.js:37
 #: gui/pregame/mainmenu.js:185
-#: gui/session/session.js:482
+#: gui/session/session.js:475
 #: gui/aiconfig/aiconfig.xml:42 (caption)
 #: gui/gamesetup/gamesetup.xml:341 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
@@ -957,7 +957,7 @@ msgid "Read More"
 msgstr ""
 
 #: gui/pregame/mainmenu.js:286
-#: gui/session/session.js:921
+#: gui/session/session.js:917
 #, python-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr ""
@@ -1512,14 +1512,14 @@ msgid "(%(genericName)s)"
 msgstr ""
 
 #: gui/session/selection_details.js:226
-#: gui/session/session.js:648
+#: gui/session/session.js:644
 msgid "Armor:"
 msgstr ""
 
 #: gui/session/selection_details.js:227
 #: gui/session/selection_details.js:238
-#: gui/session/session.js:646
-#: gui/session/session.js:649
+#: gui/session/session.js:641
+#: gui/session/session.js:645
 #, python-format
 msgid "%(label)s %(details)s"
 msgstr ""
@@ -1533,7 +1533,7 @@ msgid "Rate:"
 msgstr ""
 
 #: gui/session/selection_details.js:249
-#: gui/session/session.js:641
+#: gui/session/session.js:636
 #: gui/session/utility_functions.js:602
 msgid "Range:"
 msgstr ""
@@ -1565,7 +1565,7 @@ msgid "Hitpoints:"
 msgstr ""
 
 #: gui/session/selection_details.js:342
-#: gui/session/session.js:632
+#: gui/session/session.js:625
 #, python-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr ""
@@ -1597,50 +1597,50 @@ msgstr ""
 msgid "You have abandoned the game."
 msgstr ""
 
-#: gui/session/session.js:484
+#: gui/session/session.js:477
 msgid "Press OK to continue"
 msgstr ""
 
-#: gui/session/session.js:490
+#: gui/session/session.js:483
 msgid "Do you want to quit?"
 msgstr ""
 
-#: gui/session/session.js:496
+#: gui/session/session.js:489
 msgid "DEFEATED!"
 msgstr ""
 
-#: gui/session/session.js:504
+#: gui/session/session.js:497
 msgid "VICTORIOUS!"
 msgstr ""
 
-#: gui/session/session.js:631
+#: gui/session/session.js:624
 #: gui/session/session.xml:1003 (tooltip)
 msgid "Health:"
 msgstr ""
 
-#: gui/session/session.js:637
+#: gui/session/session.js:632
 #, python-format
 msgid "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
 msgstr ""
 
-#: gui/session/session.js:815
+#: gui/session/session.js:811
 #, python-format
 msgid "%(time)s (%(speed)sx)"
 msgstr ""
 
-#: gui/session/session.js:904
+#: gui/session/session.js:900
 #, python-format
 msgid "Unrecognized ambient type: %(ambientType)s"
 msgstr ""
 
-#: gui/session/session.js:926
+#: gui/session/session.js:922
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr ""
 
-#: gui/session/session.js:926
+#: gui/session/session.js:922
 msgid "Time warp mode"
 msgstr ""
 
@@ -2576,7 +2576,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:74
 msgid ""
-"Build a barracks nearby. Whenever your population limit is reached, build an "
+"Build a Barracks nearby. Whenever your population limit is reached, build an "
 "extra house using any available builder units."
 msgstr ""
 
@@ -2588,42 +2588,46 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:86
 msgid ""
-"Select the Barracks and research the Infantry Training technology (sword "
-"icon) to improve infantry hack attack."
+"Build a Blacksmith and research the Infantry Training technology (sword icon)"
+" to improve infantry hack attack."
 msgstr ""
 
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:93
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:92
+msgid "The enemy is coming. Build more soldiers to fight off the enemies."
+msgstr ""
+
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:99
 msgid ""
 "The enemy's attack has been defeated. Now build a market and temple while "
 "assigning new units to gather any required resources."
 msgstr ""
 
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:98
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:104
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center "
 "and advance to City Phase."
 msgstr ""
 
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:104
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build 2"
 " Battering Rams."
 msgstr ""
 
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:109
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
 "find the enemy Civil Center on the map. Female citizens should continue to "
 "gather resources."
 msgstr ""
 
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:116
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:122
 msgid ""
 "The enemy's base has been spotted, send your siege weapons and all remaining "
 "soldiers to destroy it."
 msgstr ""
 
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:120
+#: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr ""
 
@@ -3743,6 +3747,186 @@ msgstr ""
 
 #: gui/summary/summary.xml:882 (caption)
 msgid "Map\\nexploration"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:2
+#: gui/lobby/Terms_of_Use.txt:2
+msgid "Definitions:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:3
+#: gui/lobby/Terms_of_Use.txt:3
+msgid ""
+" * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby provided"
+" by Wildfire Games (WFG)."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:4
+#: gui/lobby/Terms_of_Use.txt:4
+msgid " * \"You\" are the user of the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:5
+msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:6
+msgid ""
+" * \"Rating\" refers to the process of analysing various user statistics for "
+"the purpose of generating a single comprehensive score."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:7
+msgid " * \"Moderate\" refers to the process of enforcing usage policies."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:8
+msgid "By using the service you agree to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:9
+msgid " 1. Follow all usage policies."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:10
+msgid ""
+" 2. Allow user identifiable statistics to be gathered for the purposes of "
+"rating, user profiles, and community statistics."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:11
+#: gui/lobby/Terms_of_Use.txt:18
+msgid "We also reserve the right to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:12
+msgid " 1. Moderate the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:13
+msgid " 2. Appoint others to moderate the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:14
+msgid ""
+" 3. Discontinue or interrupt service at any time with or without prior "
+"announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:15
+msgid " 4. Change the service at any time with or without announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:16
+msgid " 5. Delete any and all service data at any time with or without announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:17
+msgid ""
+" 6. Collect any or all user identifiable statistics at any time without "
+"consent for:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:18
+msgid ""
+"  a. Private analysis by Wildfire Games (WFG) team members and their "
+"affiliates."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:19
+msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:20
+msgid ""
+" 7. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition of"
+" adequate notice will be determined at the time by a panel of Wildfire Games "
+"(WFG) team members)."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:5
+msgid ""
+" * \"Impersonate\" refers to the action in which you attempt to exploit "
+"another's identity for your own purposes."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:6
+msgid ""
+" * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
+"number of recipients."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:7
+msgid " * \"Rating\" refers to the per-user comprehensive score."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:8
+msgid ""
+" * \"Ranked games\" refers to games in which rating changing statistics are "
+"tracked."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:9
+msgid "You agree to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:10
+msgid ""
+" 1. Only create one account per unique user on the service unless authorized "
+"by a Wildfire Games (WFG) team member."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:11
+msgid ""
+" 2. Not post profane statements, rude humor, pornographic content, or "
+"discriminatory comments on the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:12
+msgid " 3. Not purposefully demean the worth of others using the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:13
+msgid " 4. Not use the service to promote specific goods, services, or products."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:14
+msgid " 5. Not impersonate other users of the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:15
+msgid " 6. Not spam the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:16
+msgid ""
+" 7. Not attempt to artificially adjust any user of the service's rating or "
+"any of the statistics which impact it. (Examples of this are, but are not "
+"limited to: cheating in ranked games, reverse engineering the service, and "
+"taking advantage of other users of the service.)"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:17
+msgid ""
+" 8. Allow yourself to be removed from the service if at any time a moderator "
+"determines your behavior is not consistent with these rules."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:19
+msgid ""
+" 1. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition of"
+" adequate notice will be determined at the time by a panel of Wildfire Games "
+"(WFG) team members)."
 msgstr ""
 
 #: gui/manual/intro.txt:1
