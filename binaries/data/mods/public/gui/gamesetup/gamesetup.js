@@ -1658,7 +1658,7 @@ function updateReadyUI()
 	{
 		startGameButton.enabled = allReady;
 		// Add a explanation on to the tooltip if disabled.
-		disabledIndex = startGameButton.tooltip.indexOf('Disabled');
+		var disabledIndex = startGameButton.tooltip.indexOf('Disabled');
 		if (disabledIndex != -1 && allReady)
 			startGameButton.tooltip = startGameButton.tooltip.substring(0, disabledIndex - 2);
 		else if (disabledIndex == -1 && !allReady)
