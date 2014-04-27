@@ -4,13 +4,15 @@ const DEFAULT_NETWORKED_MAP = "Acropolis 01";
 const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
 // TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
-const VICTORY_TEXT = [translate("Conquest"), translate("Wonder"), translateWithContext("victory", "None")];
+// Translation: Type of victory condition.
+const VICTORY_TEXT = [translateWithContext("victory", "Conquest"), translateWithContext("victory", "Wonder"), translateWithContext("victory", "None")];
 const VICTORY_DATA = ["conquest", "wonder", "endless"];
 const VICTORY_DEFAULTIDX = 0;
 const POPULATION_CAP = ["50", "100", "150", "200", "250", "300", translate("Unlimited")];
 const POPULATION_CAP_DATA = [50, 100, 150, 200, 250, 300, 10000];
 const POPULATION_CAP_DEFAULTIDX = 5;
-const STARTING_RESOURCES = [translate("Very Low"), translate("Low"), translate("Medium"), translate("High"), translate("Very High"), translate("Deathmatch")];
+// Translation: Amount of starting resources.
+const STARTING_RESOURCES = [translateWithContext("startingResources", "Very Low"), translateWithContext("startingResources", "Low"), translateWithContext("startingResources", "Medium"), translateWithContext("startingResources", "High"), translateWithContext("startingResources", "Very High"), translateWithContext("startingResources", "Deathmatch")];
 const STARTING_RESOURCES_DATA = [100, 300, 500, 1000, 3000, 50000];
 const STARTING_RESOURCES_DEFAULTIDX = 1;
 // Max number of players for any map
