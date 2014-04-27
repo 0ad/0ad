@@ -1563,17 +1563,17 @@ function addChatMessage(msg)
 	switch (msg.type)
 	{
 	case "connect":
-		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font]'
-		formatted = '[color="gold"]' + sprintf(translate("%(username)s has joined"), { username: formattedUsername }) + '[/color]';
+		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
+		formatted = '[font="sans-bold-13"] == ' + sprintf(translate("%(username)s has joined"), { username: formattedUsername }) + '[/font]';
 		break;
 
 	case "disconnect":
-		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font]'
-		formatted = '[color="gold"]' + sprintf(translate("%(username)s has left"), { username: formattedUsername }) + '[/color]';
+		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
+		formatted = '[font="sans-bold-13"] == ' + sprintf(translate("%(username)s has left"), { username: formattedUsername }) + '[/font]';
 		break;
 
 	case "message":
-		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]'
+		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
 		var formattedUsernamePrefix = '[font="sans-bold-13"]' + sprintf(translate("<%(username)s>"), { username: formattedUsername }) + '[/font]'
 		formatted = sprintf(translate("%(username)s %(message)s"), { username: formattedUsernamePrefix, message: message });
 		break;
@@ -1581,13 +1581,13 @@ function addChatMessage(msg)
 	case "ready":
 		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font]'
 		if (msg.ready)
-			formatted = '[color="gold"]*' + sprintf(translate("%(username)s is ready!"), { username: formattedUsername }) + '[/color]';
+			formatted = ' * ' + sprintf(translate("%(username)s is ready!"), { username: formattedUsername });
 		else
-			formatted = '[color="gold"]*' + sprintf(translate("%(username)s is not ready."), { username: formattedUsername }) + '[/color]';
+			formatted = ' * ' + sprintf(translate("%(username)s is not ready."), { username: formattedUsername });
 		break;
 
 	case "settings":
-		formatted = '[color="gold"][font="sans-bold-13"]*' + translate('Game settings have been changed.') + '[/font][/color]';
+		formatted = '[font="sans-bold-13"] == ' + translate('Game settings have been changed') + '[/font]';
 		break;
 
 	default:
@@ -1651,9 +1651,19 @@ function updateReadyUI()
 		if (g_GameAttributes.settings.PlayerData[playerid].AI != "" || g_GameAttributes.settings.PlayerData[playerid].Name == "Unassigned")
 			Engine.GetGUIObjectByName("playerName[" + playerid + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
 	}
+
 	// The host is not allowed to start until everyone is ready.
+	var startGameButton = Engine.GetGUIObjectByName("startGame");
 	if (g_IsNetworked && g_IsController)
-		Engine.GetGUIObjectByName("startGame").enabled = allReady;
+	{
+		startGameButton.enabled = allReady;
+		// Add a explanation on to the tooltip if disabled.
+		disabledIndex = startGameButton.tooltip.indexOf('Disabled');
+		if (disabledIndex != -1 && allReady)
+			startGameButton.tooltip = startGameButton.tooltip.substring(0, disabledIndex - 2);
+		else if (disabledIndex == -1 && !allReady)
+			startGameButton.tooltip = startGameButton.tooltip + " (Disabled until all players are ready)";
+	}
 }
 
 function resetReadyData()
