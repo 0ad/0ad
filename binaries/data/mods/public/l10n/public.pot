@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-27 15:53+0200\n"
+"POT-Creation-Date: 2014-04-27 22:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -99,11 +99,11 @@ msgstr ""
 msgid "FPS: %(fps)s"
 msgstr ""
 
-#: gui/common/functions_utility.js:263
+#: gui/common/functions_utility.js:260
 msgid "mm:ss"
 msgstr ""
 
-#: gui/common/functions_utility.js:265
+#: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
 msgstr ""
 
@@ -259,8 +259,8 @@ msgid "Skirmish"
 msgstr ""
 
 #: gui/gamesetup/gamesetup.js:143
-#: gui/gamesetup/gamesetup.js:616
-#: gui/gamesetup/gamesetup.js:663
+#: gui/gamesetup/gamesetup.js:629
+#: gui/gamesetup/gamesetup.js:1217
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
@@ -273,8 +273,8 @@ msgid "Scenario"
 msgstr ""
 
 #: gui/gamesetup/gamesetup.js:147
-#: gui/gamesetup/gamesetup.js:1132
-#: gui/gamesetup/gamesetup.js:1209
+#: gui/gamesetup/gamesetup.js:1123
+#: gui/gamesetup/gamesetup.js:1200
 msgid "Default"
 msgstr ""
 
@@ -296,64 +296,64 @@ msgctxt "team"
 msgid "None"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:565
-#: gui/gamesetup/gamesetup.js:1272
+#: gui/gamesetup/gamesetup.js:563
+#: gui/gamesetup/gamesetup.js:1270
 msgctxt "civilization"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:643
-#: gui/lobby/lobby.js:388
-msgid "Sorry, no description available."
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:663
-msgid "Randomly selects a map from the list"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:762
-#: gui/gamesetup/gamesetup.js:879
+#: gui/gamesetup/gamesetup.js:753
+#: gui/gamesetup/gamesetup.js:870
 #: gui/session/session.js:19
 msgid "You"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:956
+#: gui/gamesetup/gamesetup.js:947
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr ""
 
+#: gui/gamesetup/gamesetup.js:1086
+#: gui/gamesetup/gamesetup.xml:110 (caption)
+#: gui/lobby/lobby.xml:76 (caption)
+msgid "Map Size:"
+msgstr ""
+
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.js:1088
+#: gui/gamesetup/gamesetup.js:1147
+#: gui/gamesetup/gamesetup.xml:310 (caption)
+msgid "Reveal Map:"
+msgstr ""
+
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.js:1089
+#: gui/gamesetup/gamesetup.js:1148
+#: gui/gamesetup/gamesetup.xml:320 (caption)
+msgid "Explore Map:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1093
+#: gui/gamesetup/gamesetup.js:1152
+#: gui/gamesetup/gamesetup.xml:280 (caption)
+msgid "Victory Condition:"
+msgstr ""
+
 #: gui/gamesetup/gamesetup.js:1095
-msgid "Map size:"
+#: gui/gamesetup/gamesetup.js:1154
+#: gui/gamesetup/gamesetup.xml:330 (caption)
+msgid "Teams Locked:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1097
-#: gui/gamesetup/gamesetup.js:1156
-msgid "Reveal map:"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1098
-msgid "Explored map:"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1102
-#: gui/gamesetup/gamesetup.js:1161
-msgid "Victory condition:"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1104
-#: gui/gamesetup/gamesetup.js:1163
-msgid "Teams locked:"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1123
-#: gui/gamesetup/gamesetup.js:1124
-#: gui/gamesetup/gamesetup.js:1126
-#: gui/gamesetup/gamesetup.js:1179
-#: gui/gamesetup/gamesetup.js:1180
-#: gui/gamesetup/gamesetup.js:1182
-#: gui/gamesetup/gamesetup.js:1210
-#: gui/gamesetup/gamesetup.js:1211
-#: gui/gamesetup/gamesetup.js:1213
+#: gui/gamesetup/gamesetup.js:1114
+#: gui/gamesetup/gamesetup.js:1115
+#: gui/gamesetup/gamesetup.js:1117
+#: gui/gamesetup/gamesetup.js:1170
+#: gui/gamesetup/gamesetup.js:1171
+#: gui/gamesetup/gamesetup.js:1173
+#: gui/gamesetup/gamesetup.js:1201
+#: gui/gamesetup/gamesetup.js:1202
+#: gui/gamesetup/gamesetup.js:1204
 #: gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348
 #: gui/savedgames/load.js:44
@@ -367,15 +367,15 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1123
-#: gui/gamesetup/gamesetup.js:1124
-#: gui/gamesetup/gamesetup.js:1126
-#: gui/gamesetup/gamesetup.js:1179
-#: gui/gamesetup/gamesetup.js:1180
-#: gui/gamesetup/gamesetup.js:1182
-#: gui/gamesetup/gamesetup.js:1210
-#: gui/gamesetup/gamesetup.js:1211
-#: gui/gamesetup/gamesetup.js:1213
+#: gui/gamesetup/gamesetup.js:1114
+#: gui/gamesetup/gamesetup.js:1115
+#: gui/gamesetup/gamesetup.js:1117
+#: gui/gamesetup/gamesetup.js:1170
+#: gui/gamesetup/gamesetup.js:1171
+#: gui/gamesetup/gamesetup.js:1173
+#: gui/gamesetup/gamesetup.js:1201
+#: gui/gamesetup/gamesetup.js:1202
+#: gui/gamesetup/gamesetup.js:1204
 #: gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348
 #: gui/savedgames/load.js:44
@@ -389,78 +389,92 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1157
-msgid "Explore map:"
+#: gui/gamesetup/gamesetup.js:1218
+msgid "Randomly selects a map from the list"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1233
+#: gui/gamesetup/gamesetup.js:1225
+#: gui/lobby/lobby.js:389
+msgid "Sorry, no description available."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1231
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/gamesetup/gamesetup.js:1373
+#: gui/gamesetup/gamesetup.js:1371
 #, python-format
 msgid "AI: %(ai)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1378
+#: gui/gamesetup/gamesetup.js:1376
 msgid "Unassigned"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1580
+#. Translation: IRC system message.
+#: gui/gamesetup/gamesetup.js:1578
+#: gui/gamesetup/gamesetup.js:1583
+#: gui/gamesetup/gamesetup.js:1601
+#: gui/lobby/lobby.js:765
+#, python-format
+msgid "== %(message)s"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1578
 #, python-format
 msgid "%(username)s has joined"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1585
+#: gui/gamesetup/gamesetup.js:1583
 #, python-format
 msgid "%(username)s has left"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1590
+#: gui/gamesetup/gamesetup.js:1588
 #, python-format
 msgid "<%(username)s>"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1591
+#: gui/gamesetup/gamesetup.js:1589
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr ""
 
+#: gui/gamesetup/gamesetup.js:1595
+#, python-format
+msgid "* %(username)s is ready!"
+msgstr ""
+
 #: gui/gamesetup/gamesetup.js:1597
 #, python-format
-msgid "%(username)s is ready!"
+msgid "* %(username)s is not ready."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1599
-#, python-format
-msgid "%(username)s is not ready."
+#: gui/gamesetup/gamesetup.js:1601
+msgid "Game settings have been changed"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1603
-msgid "Game settings have been changed."
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1628
+#: gui/gamesetup/gamesetup.js:1626
 msgid "I'm not ready"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1629
+#: gui/gamesetup/gamesetup.js:1627
 msgid "State that you are not ready to play."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1634
-#: gui/gamesetup/gamesetup.js:1692
+#: gui/gamesetup/gamesetup.js:1632
+#: gui/gamesetup/gamesetup.js:1702
 msgid "I'm ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1635
+#: gui/gamesetup/gamesetup.js:1633
 msgid "State that you are ready to play!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1693
+#: gui/gamesetup/gamesetup.js:1703
 msgid "State that you accept the current settings and are ready to play!"
 msgstr ""
 
@@ -542,96 +556,90 @@ msgctxt "lobby presence"
 msgid "Unknown"
 msgstr ""
 
-#: gui/lobby/lobby.js:363
+#: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
 msgstr ""
 
-#: gui/lobby/lobby.js:416
+#: gui/lobby/lobby.js:417
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr ""
 
-#: gui/lobby/lobby.js:494
+#: gui/lobby/lobby.js:495
 #, python-format
 msgid "%(nick)s has joined."
 msgstr ""
 
-#: gui/lobby/lobby.js:503
+#: gui/lobby/lobby.js:504
 #, python-format
 msgid "%(nick)s has left."
 msgstr ""
 
-#: gui/lobby/lobby.js:510
+#: gui/lobby/lobby.js:511
 #, python-format
 msgid "Invalid nickname: %(nick)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:517
+#: gui/lobby/lobby.js:518
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr ""
 
-#: gui/lobby/lobby.js:671
+#: gui/lobby/lobby.js:672
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr ""
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:751
+#: gui/lobby/lobby.js:752
 #, python-format
 msgid "* %(sender)s"
 msgstr ""
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:753
+#: gui/lobby/lobby.js:754
 #, python-format
 msgid "%(sender)s %(action)s"
 msgstr ""
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:757
-#: gui/lobby/lobby.js:768
-#: gui/lobby/lobby.js:781
+#: gui/lobby/lobby.js:758
+#: gui/lobby/lobby.js:769
+#: gui/lobby/lobby.js:782
 #, python-format
 msgid "<%(sender)s>"
 msgstr ""
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:759
-#: gui/lobby/lobby.js:770
-#: gui/lobby/lobby.js:783
+#: gui/lobby/lobby.js:760
+#: gui/lobby/lobby.js:771
+#: gui/lobby/lobby.js:784
 #, python-format
 msgid "%(sender)s %(message)s"
-msgstr ""
-
-#. Translation: IRC system message.
-#: gui/lobby/lobby.js:764
-#, python-format
-msgid "== %(message)s"
 msgstr ""
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in the
 #. options page).
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:795
+#: gui/lobby/lobby.js:796
 msgid "HH:mm"
 msgstr ""
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable it
 #. in the options page).
-#: gui/lobby/lobby.js:798
+#: gui/lobby/lobby.js:799
 #, python-format
 msgid "[%(time)s]"
 msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:801
+#: gui/lobby/lobby.js:802
 #, python-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:851
+#: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr ""
 
@@ -671,7 +679,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:185
 #: gui/session/session.js:475
 #: gui/aiconfig/aiconfig.xml:42 (caption)
-#: gui/gamesetup/gamesetup.xml:341 (caption)
+#: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr ""
@@ -1433,7 +1441,7 @@ msgid "%(userTag)s %(message)s"
 msgstr ""
 
 #: gui/session/messages.js:600
-#: gui/gamesetup/gamesetup.xml:86 (caption)
+#: gui/gamesetup/gamesetup.xml:61 (caption)
 #: gui/session/session.xml:437 (caption)
 msgid "Team"
 msgstr ""
@@ -2847,111 +2855,165 @@ msgstr ""
 msgid "Loading map data. Please wait..."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:42 (caption)
-msgid "Number of players:"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.xml:54 (tooltip)
-msgid "Select number of players."
-msgstr ""
-
-#: gui/gamesetup/gamesetup.xml:65 (caption)
+#: gui/gamesetup/gamesetup.xml:40 (caption)
 msgid "Player Name"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:68 (caption)
+#: gui/gamesetup/gamesetup.xml:43 (caption)
 msgid "Player Placement"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:71 (caption)
+#: gui/gamesetup/gamesetup.xml:46 (caption)
 #: gui/session/session.xml:434 (caption)
 msgid "Civilization"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:80 (tooltip)
+#: gui/gamesetup/gamesetup.xml:55 (tooltip)
 msgid "View civilization info"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:95 (tooltip)
+#: gui/gamesetup/gamesetup.xml:70 (tooltip)
 msgid "Select player."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:104 (tooltip)
+#: gui/gamesetup/gamesetup.xml:79 (tooltip)
 msgid "Configure AI settings."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:107 (tooltip)
+#: gui/gamesetup/gamesetup.xml:82 (tooltip)
 msgid "Select player's civilization."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:111 (tooltip)
+#: gui/gamesetup/gamesetup.xml:86 (tooltip)
 msgid "Select player's team."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:124 (caption)
+#: gui/gamesetup/gamesetup.xml:98 (caption)
 msgid "Match Type:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:127 (caption)
+#: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:130 (caption)
+#: gui/gamesetup/gamesetup.xml:104 (caption)
 msgid "Select Map:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:133 (caption)
-#: gui/lobby/lobby.xml:76 (caption)
-msgid "Map Size:"
+#: gui/gamesetup/gamesetup.xml:107 (caption)
+msgid "Number of Players:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:149 (tooltip)
+#: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:158 (tooltip)
+#: gui/gamesetup/gamesetup.xml:136 (tooltip)
 msgid "Select a map filter."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:169 (tooltip)
+#: gui/gamesetup/gamesetup.xml:146 (tooltip)
 msgid "Select a map to play on."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:175 (tooltip)
+#: gui/gamesetup/gamesetup.xml:157 (tooltip)
+msgid "Select number of players."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:162 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:200 (caption)
+#: gui/gamesetup/gamesetup.xml:187 (caption)
 #: gui/session/session.xml:402 (caption)
 msgid "Send"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:214 (caption)
+#: gui/gamesetup/gamesetup.xml:201 (caption)
 msgid "[Tooltip text]"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:226 (caption)
+#: gui/gamesetup/gamesetup.xml:213 (caption)
 msgid "Start game!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:227 (tooltip)
+#: gui/gamesetup/gamesetup.xml:214 (tooltip)
 msgid "Start a new game with the current settings."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:244 (caption)
+#: gui/gamesetup/gamesetup.xml:231 (caption)
 #: gui/lobby/lobby.xml:214 (caption)
 msgid "Back"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:266 (caption)
+#: gui/gamesetup/gamesetup.xml:253 (caption)
+#: gui/gamesetup/gamesetup.xml:265 (caption)
 msgid "More Options"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:267 (tooltip)
+#: gui/gamesetup/gamesetup.xml:254 (tooltip)
 msgid "See more game options"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:342 (tooltip)
+#: gui/gamesetup/gamesetup.xml:270 (caption)
+msgid "Game Speed:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:274 (tooltip)
+msgid "Select game speed."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:284 (tooltip)
+msgid "Select victory condition."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:290 (caption)
+msgid "Population Cap:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:294 (tooltip)
+msgid "Select population cap."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:300 (caption)
+msgid "Starting Resources:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:304 (tooltip)
+msgid "Select the game's starting resources."
+msgstr ""
+
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.xml:314 (tooltip)
+msgid "Toggle reveal map (see everything)."
+msgstr ""
+
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.xml:324 (tooltip)
+msgid "Toggle explore map (see gaia and buildings)."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:334 (tooltip)
+msgid "Toggle locked teams."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:340 (caption)
+msgid "Cheats:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:344 (tooltip)
+msgid "Toggle the usability of cheats."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:350 (caption)
+msgid "Rated Game:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:354 (tooltip)
+msgid "Toggle if this game will be rated for the leaderboard."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:367 (tooltip)
 msgid "Close more game options window"
 msgstr ""
 
@@ -3007,13 +3069,13 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:28 (heading)
 #: gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:210 (heading)
+#: gui/lobby/lobby.xml:207 (heading)
 #: gui/session/session.xml:431 (caption)
 msgid "Name"
 msgstr ""
 
 #: gui/lobby/lobby.xml:31 (heading)
-#: gui/lobby/lobby.xml:207 (heading)
+#: gui/lobby/lobby.xml:210 (heading)
 msgid "Rating"
 msgstr ""
 
@@ -3049,11 +3111,11 @@ msgid "Map Name"
 msgstr ""
 
 #: gui/lobby/lobby.xml:135 (heading)
-msgid "Map Size"
+msgid "Size"
 msgstr ""
 
 #: gui/lobby/lobby.xml:138 (heading)
-msgid "Map Type"
+msgid "Type"
 msgstr ""
 
 #: gui/lobby/lobby.xml:141 (heading)

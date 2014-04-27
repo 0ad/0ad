@@ -609,9 +609,8 @@ function initMapNameList()
 	}
 
 	// Alphabetically sort the list, ignoring case
+	translateObjectKeys(mapList, ["name"]);
 	mapList.sort(sortNameIgnoreCase);
-	if (g_GameAttributes.mapType == "random")
-		mapList.unshift({ "name": "[color=\"orange\"]" + translateWithContext("map", "Random") + "[/color]", "file": "random" });
 
 	var mapListNames = [ map.name for each (map in mapList) ];
 	var mapListFiles = [ map.file for each (map in mapList) ];
@@ -625,7 +624,11 @@ function initMapNameList()
 	}
 
 	// Update the list control
-	translateObjectKeys(mapListNames, Object.keys(mapListNames));
+	if (g_GameAttributes.mapType == "random")
+	{
+		mapListNames.unshift("[color=\"orange\"]" + translateWithContext("map", "Random") + "[/color]");
+		mapListFiles.unshift("random");
+	}
 	mapSelectionBox.list = mapListNames;
 	mapSelectionBox.list_data = mapListFiles;
 	mapSelectionBox.selected = selected;
@@ -647,7 +650,8 @@ function loadMapData(name)
 
 		case "random":
 			if (name == "random")
-				g_MapData[name] = { settings: { "Name": translateWithContext("map", "Random"), "Description": translate("Randomly selects a map from the list") } };
+				// To be defined later.
+				g_MapData[name] = { settings: { "Name": "", "Description": "" } };
 			else
 				g_MapData[name] = parseJSONData(name+".json");
 			break;
@@ -997,7 +1001,7 @@ function onGameAttributesChange()
 		Engine.GetGUIObjectByName("mapTypeText").caption = mapTypeSelection.list[idx];
 		var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
-		Engine.GetGUIObjectByName("mapSelectionText").caption = getMapDisplayName(mapName);
+		Engine.GetGUIObjectByName("mapSelectionText").caption = translate(getMapDisplayName(mapName));
 		var populationCapBox = Engine.GetGUIObjectByName("populationCap");
 		populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
 		var startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
@@ -1208,16 +1212,23 @@ function onGameAttributesChange()
 	}
 
 	// Display map name
-	Engine.GetGUIObjectByName("mapInfoName").caption = translate(getMapDisplayName(mapName));
+	if (mapName == "random")
+	{
+		var mapDisplayName  = translateWithContext("map", "Random");
+		mapSettings.Description = markForTranslation("Randomly selects a map from the list");
+	}
+	else
+		var mapDisplayName  = translate(getMapDisplayName(mapName));
+	Engine.GetGUIObjectByName("mapInfoName").caption = mapDisplayName;
 
 	// Load the description from the map file, if there is one
-	var description = mapSettings.Description || translate("Sorry, no description available.");
+	var description = mapSettings.Description ? translate(mapSettings.Description) : translate("Sorry, no description available.");
 
 	if (g_GameAttributes.mapFilter == "naval")
 		description += g_NavalWarning;
 
 	// Describe the number of players
-	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: translate(description) });
+	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: description });
 
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
@@ -1564,12 +1575,12 @@ function addChatMessage(msg)
 	{
 	case "connect":
 		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
-		formatted = '[font="sans-bold-13"] == ' + sprintf(translate("%(username)s has joined"), { username: formattedUsername }) + '[/font]';
+		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { message: sprintf(translate("%(username)s has joined"), { username: formattedUsername }) }) + '[/font]';
 		break;
 
 	case "disconnect":
 		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
-		formatted = '[font="sans-bold-13"] == ' + sprintf(translate("%(username)s has left"), { username: formattedUsername }) + '[/font]';
+		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { message: sprintf(translate("%(username)s has left"), { username: formattedUsername }) }) + '[/font]';
 		break;
 
 	case "message":
@@ -1581,13 +1592,13 @@ function addChatMessage(msg)
 	case "ready":
 		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font]'
 		if (msg.ready)
-			formatted = ' * ' + sprintf(translate("%(username)s is ready!"), { username: formattedUsername });
+			formatted = ' ' + sprintf(translate("* %(username)s is ready!"), { username: formattedUsername });
 		else
-			formatted = ' * ' + sprintf(translate("%(username)s is not ready."), { username: formattedUsername });
+			formatted = ' ' + sprintf(translate("* %(username)s is not ready."), { username: formattedUsername });
 		break;
 
 	case "settings":
-		formatted = '[font="sans-bold-13"] == ' + translate('Game settings have been changed') + '[/font]';
+		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { message: translate('Game settings have been changed') }) + '[/font]';
 		break;
 
 	default:
