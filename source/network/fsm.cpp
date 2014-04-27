@@ -402,7 +402,8 @@ bool CFsm::Update( unsigned int eventType, void* pEventParam )
 
 	// Lookup transition
 	CFsmTransition* pTransition = GetTransition( m_CurrState, eventType );
-	if ( !pTransition ) return false;
+	if ( !pTransition ) 
+		return false;
 
 	// Setup event parameter
 	EventMap::iterator it = m_Events.find( eventType );
@@ -413,14 +414,16 @@ bool CFsm::Update( unsigned int eventType, void* pEventParam )
 	}
 
 	// Valid transition?
-	if ( !pTransition->ApplyConditions() ) return false;
+	if ( !pTransition->ApplyConditions() ) 
+		return false;
 
 	// Save the default state transition (actions might call SetNextState
 	// to override this)
 	SetNextState( pTransition->GetNextState() );
 
 	// Run transition actions
-	if ( !pTransition->RunActions() ) return false;
+	if ( !pTransition->RunActions() ) 
+		return false;
 
 	// Switch state
 	SetCurrState( GetNextState() );

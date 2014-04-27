@@ -122,7 +122,19 @@ public:
 	 * The changes will be asynchronously propagated to all clients.
 	 */
 	void AssignPlayer(int playerID, const CStr& guid);
+	
+	/**
+	 * Call from the GUI to update the player readiness.
+	 * The changes will be asynchronously propagated to all clients.
+	 */
+	void SetPlayerReady(const CStr& guid, int ready);
 
+	/**
+	 * Call from the GUI to set the all player readiness to 0.
+	 * The changes will be asynchronously propagated to all clients.
+	 */
+	void ClearAllPlayerReady();
+	
 	/**
 	 * Call from the GUI to asynchronously notify all clients that they should start loading the game.
 	 */
@@ -233,7 +245,9 @@ private:
 
 	void AddPlayer(const CStr& guid, const CStrW& name);
 	void RemovePlayer(const CStr& guid);
+	void SetPlayerReady(const CStr& guid, const int ready); 
 	void SendPlayerAssignments();
+	void ClearAllPlayerReady();
 
 	void SetupSession(CNetServerSession* session);
 	bool HandleConnect(CNetServerSession* session);
@@ -245,6 +259,7 @@ private:
 	static bool OnAuthenticate(void* context, CFsmEvent* event);
 	static bool OnInGame(void* context, CFsmEvent* event);
 	static bool OnChat(void* context, CFsmEvent* event);
+	static bool OnReady(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
 	static bool OnJoinSyncingLoadedGame(void* context, CFsmEvent* event);
 	static bool OnDisconnect(void* context, CFsmEvent* event);
@@ -320,6 +335,8 @@ private:
 	// Queues for messages sent by the game thread:
 	std::vector<std::pair<int, CStr> > m_AssignPlayerQueue; // protected by m_WorkerMutex
 	std::vector<bool> m_StartGameQueue; // protected by m_WorkerMutex
+	std::vector<std::pair<CStr, int> > m_PlayerReadyQueue; // protected by m_WorkerMutex
+	std::vector<bool> m_PlayerResetReadyQueue; // protected by m_WorkerMutex
 	std::vector<std::string> m_GameAttributesQueue; // protected by m_WorkerMutex
 	std::vector<u32> m_TurnLengthQueue; // protected by m_WorkerMutex
 };

@@ -5,8 +5,9 @@
 var options = {
 	"generalSetting":
 	[
-		[translate("Windowed Mode"), translate("Start 0 A.D. in windowed mode"), {"config":"windowed"}, "boolean"],
+		[translate("Windowed Mode"), translate("Start 0 A.D. in a window"), {"config":"windowed"}, "boolean"],
 		[translate("Background Pause"), translate("Pause single player games when window loses focus"), {"config":"pauseonfocusloss"}, "boolean"],
+		[translate("Developer Overlay"), translate("Show overlay in-game with options such as reveal map, control all units, and change perspective. Designed for use by developers"), {"config":"developeroverlay.enable"}, "boolean"],
 	],
 	"graphicsSetting":
 	[

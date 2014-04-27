@@ -376,6 +376,8 @@ bool CNetServerWorker::RunStep()
 
 	std::vector<std::pair<int, CStr> > newAssignPlayer;
 	std::vector<bool> newStartGame;
+	std::vector<std::pair<CStr, int> > newPlayerReady;
+	std::vector<bool> newPlayerResetReady;
 	std::vector<std::string> newGameAttributes;
 	std::vector<u32> newTurnLength;
 
@@ -386,6 +388,8 @@ bool CNetServerWorker::RunStep()
 			return false;
 
 		newStartGame.swap(m_StartGameQueue);
+		newPlayerReady.swap(m_PlayerReadyQueue);
+		newPlayerResetReady.swap(m_PlayerResetReadyQueue);
 		newAssignPlayer.swap(m_AssignPlayerQueue);
 		newGameAttributes.swap(m_GameAttributesQueue);
 		newTurnLength.swap(m_TurnLengthQueue);
@@ -393,6 +397,12 @@ bool CNetServerWorker::RunStep()
 
 	for (size_t i = 0; i < newAssignPlayer.size(); ++i)
 		AssignPlayer(newAssignPlayer[i].first, newAssignPlayer[i].second);
+
+	for (size_t i = 0; i < newPlayerReady.size(); ++i)
+		SetPlayerReady(newPlayerReady[i].first, newPlayerReady[i].second);
+
+	if (!newPlayerResetReady.empty())
+		ClearAllPlayerReady();
 
 	if (!newGameAttributes.empty())
 		UpdateGameAttributes(GetScriptInterface().ParseJSON(newGameAttributes.back()));
@@ -548,6 +558,7 @@ void CNetServerWorker::SetupSession(CNetServerSession* session)
 
 	session->AddTransition(NSS_PREGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_CHAT, NSS_PREGAME, (void*)&OnChat, context);
+	session->AddTransition(NSS_PREGAME, (uint)NMT_READY, NSS_PREGAME, (void*)&OnReady, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnLoadedGame, context);
 
 	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnJoinSyncingLoadedGame, context);
@@ -649,6 +660,7 @@ void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 	assignment.m_Enabled = true;
 	assignment.m_Name = name;
 	assignment.m_PlayerID = playerID;
+	assignment.m_Status = 0;
 	m_PlayerAssignments[guid] = assignment;
 
 	// Send the new assignments to all currently active players
@@ -659,6 +671,21 @@ void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 void CNetServerWorker::RemovePlayer(const CStr& guid)
 {
 	m_PlayerAssignments[guid].m_Enabled = false;
+
+	SendPlayerAssignments();
+}
+
+void CNetServerWorker::SetPlayerReady(const CStr& guid, const int ready)
+{
+	m_PlayerAssignments[guid].m_Status = ready;
+
+	SendPlayerAssignments();
+}
+
+void CNetServerWorker::ClearAllPlayerReady()
+{
+	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
+		it->second.m_Status = 0;
 
 	SendPlayerAssignments();
 }
@@ -690,6 +717,7 @@ void CNetServerWorker::ConstructPlayerAssignmentMessage(CPlayerAssignmentMessage
 		h.m_GUID = it->first;
 		h.m_Name = it->second.m_Name;
 		h.m_PlayerID = it->second.m_PlayerID;
+		h.m_Status = it->second.m_Status;
 		message.m_Hosts.push_back(h);
 	}
 }
@@ -852,6 +880,22 @@ bool CNetServerWorker::OnChat(void* context, CFsmEvent* event)
 	CNetServerWorker& server = session->GetServer();
 
 	CChatMessage* message = (CChatMessage*)event->GetParamRef();
+
+	message->m_GUID = session->GetGUID();
+
+	server.Broadcast(message);
+
+	return true;
+}
+
+bool CNetServerWorker::OnReady(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_READY);
+
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	CReadyMessage* message = (CReadyMessage*)event->GetParamRef();
 
 	message->m_GUID = session->GetGUID();
 
@@ -1051,6 +1095,18 @@ void CNetServer::AssignPlayer(int playerID, const CStr& guid)
 {
 	CScopeLock lock(m_Worker->m_WorkerMutex);
 	m_Worker->m_AssignPlayerQueue.push_back(std::make_pair(playerID, guid));
+}
+
+void CNetServer::SetPlayerReady(const CStr& guid, int ready)
+{
+	CScopeLock lock(m_Worker->m_WorkerMutex);
+	m_Worker->m_PlayerReadyQueue.push_back(std::make_pair(guid, ready));
+}
+
+void CNetServer::ClearAllPlayerReady()
+{
+	CScopeLock lock(m_Worker->m_WorkerMutex);
+	m_Worker->m_PlayerResetReadyQueue.push_back(false);
 }
 
 void CNetServer::StartGame()

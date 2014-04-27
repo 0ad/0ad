@@ -401,15 +401,54 @@ class xml(Extractor):
                     position = str(element.sourceline)
                     if element.text is not None:
                         context = None
+                        comments = []
                         if "extractJson" in self.keywords[keyword]:
                             jsonExtractor = self.getJsonExtractor()
                             jsonExtractor.setOptions(self.keywords[keyword]["extractJson"])
                             for message, breadcrumbs in jsonExtractor.extractFromString(element.text):
-                                yield message, context, position + ":" + json.formatBreadcrumbs(breadcrumbs), []
+                                yield message, context, position + ":" + json.formatBreadcrumbs(breadcrumbs), comments
                         else:
                             if "locationAttributes" in self.keywords[keyword]:
                                 attributes = [element.get(attribute) for attribute in self.keywords[keyword]["locationAttributes"] if attribute in element.attrib]
                                 position += " ({attributes})".format(attributes=", ".join(attributes))
                             if "tagAsContext" in self.keywords[keyword]:
                                 context = keyword
-                            yield element.text, context, position, []
+                            if "comment" in element.attrib:
+                                comment = element.get("comment")
+                                comment = u" ".join(comment.split()) # Remove tabs, line breaks and unecessary spaces.
+                                comments.append(comment)
+                            yield element.text, context, position, comments
+
+
+# Hack from http://stackoverflow.com/a/2819788
+class FakeSectionHeader(object):
+
+    def __init__(self, fp):
+        self.fp = fp
+        self.sechead = '[root]\n'
+
+    def readline(self):
+        if self.sechead:
+            try: return self.sechead
+            finally: self.sechead = None
+        else: return self.fp.readline()
+
+
+class ini(Extractor):
+    """ Extract messages from INI files.
+    """
+
+    def __init__(self, directoryPath, filemasks, options):
+        super(ini, self).__init__(directoryPath, filemasks, options)
+        self.keywords = self.options.get("keywords", [])
+
+    def extractFromFile(self, filepath):
+        import ConfigParser
+        config = ConfigParser.RawConfigParser()
+        config.readfp(FakeSectionHeader(open(filepath)))
+        for keyword in self.keywords:
+            message = config.get("root", keyword).strip('"').strip("'")
+            context = None
+            position = " ({})".format(keyword)
+            comments = []
+            yield message, context, position, comments

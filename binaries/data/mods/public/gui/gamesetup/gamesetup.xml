@@ -14,7 +14,7 @@
 		<object style="TitleText" type="text" size="50%-128 4 50%+128 36">
 			<translatableAttribute id="caption">Match Setup</translatableAttribute>
 		</object>
-	
+
 		<object type="image" style="ModernDialog" size="50%-190 50%-80 50%+190 50%+80" name="loadingWindow">
 
 			<object type="text" style="TitleText" size="50%-128 0%-16 50%+128 16">
@@ -32,19 +32,19 @@
 			<action on="Tick">
 				onTick();
 			</action>
-			
+
 			<!-- Number of Players-->
-			<object size="24 26 224 54">
+			<object size="24 26 100%-24 54">
 
 				<!-- Number of Players-->
-				<object size="0 0 150 28">
+				<object size="0 0 50%-170 28">
 					<object size="0 0 100% 100%" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Number of players:</translatableAttribute>
 					</object>
 				</object>
-					
+
 				<!-- Number of Players-->
-				<object size="150 0 200 28">
+				<object size="50%-170 0 50%-120 28">
 					<object name="numPlayersText" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
 						<object name="numPlayersSelection"
 							type="dropdown"
@@ -61,20 +61,20 @@
 			<!-- Player assignments -->
 			<object size="24 59 100%-440 358" type="image" sprite="ModernDarkBoxGold" name="playerAssignmentsPannel">
 				<object size="0 6 100% 30">
-					<object name="playerNameHeading" type="text" style="ModernLabelText" size="0 0 20% 100%">
+					<object name="playerNameHeading" type="text" style="ModernLabelText" size="0 0 22% 100%">
 						<translatableAttribute id="caption">Player Name</translatableAttribute>
 					</object>
-					<object name="playerPlacementHeading" type="text" style="ModernLabelText" size="20%+5 0 50% 100%">
+					<object name="playerPlacementHeading" type="text" style="ModernLabelText" size="22%+5 0 50%+35 100%">
 						<translatableAttribute id="caption">Player Placement</translatableAttribute>
 					</object>
-					<object name="playerCivHeading" type="text" style="ModernLabelText" size="50%+65 0 85% 100%">
+					<object name="playerCivHeading" type="text" style="ModernLabelText" size="50%+65 0 85%-26 100%">
 						<translatableAttribute id="caption">Civilization</translatableAttribute>
 					</object>
 					<object name="civInfoButton"
 						type="button"
 						sprite="iconInfoGold"
 						sprite_over="iconInfoWhite"
-						size="82%-8 0 82%+8 16"
+						size="67.5%+68 0 67.5%+84 16"
 						tooltip_style="onscreenToolTip"
 					>
 						<translatableAttribute id="tooltip">View civilization info</translatableAttribute>
@@ -90,18 +90,20 @@
 					<repeat count="8">
 						<object name="playerBox[n]" size="0 0 100% 32" hidden="true">
 							<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
-							<object name="playerName[n]" type="text" style="ModernLabelText" size="0 2 20% 30"/>
-							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="20%+5 2 50% 30" tooltip_style="onscreenToolTip">
+							<object name="playerName[n]" type="text" style="ModernLabelText" size="0 2 22% 30"/>
+							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="22%+5 2 50%+35 30" tooltip_style="onscreenToolTip">
 								<translatableAttribute id="tooltip">Select player.</translatableAttribute>
 							</object>
-							<object name="playerConfig[n]" type="button" style="StoneButton" size="50%+5 6 50%+60 26"
+							<object name="playerConfig[n]" type="button" style="StoneButton" size="50%+40 4 50%+64 28"
 								tooltip_style="onscreenToolTip"
 								font="sans-bold-stroke-12"
+								sprite="ModernGear"
+								sprite_over="ModernGearHover"
+								sprite_pressed="ModernGearPressed"
 							>
-								<translatableAttribute id="caption">Settings</translatableAttribute>
 								<translatableAttribute id="tooltip">Configure AI settings.</translatableAttribute>
 							</object>
-							<object name="playerCiv[n]" type="dropdown" style="ModernDropDown" size="50%+65 2 85% 30" tooltip_style="onscreenToolTip">
+							<object name="playerCiv[n]" type="dropdown" style="ModernDropDown" size="50%+69 2 85% 30" tooltip_style="onscreenToolTip">
 								<translatableAttribute id="tooltip">Select player's civilization.</translatableAttribute>
 							</object>
 							<object name="playerCivText[n]" type="text" style="ModernLabelText" size="50%+65 0 85% 30"/>
@@ -113,7 +115,7 @@
 					</repeat>
 				</object>
 			</object>
-			<object size="24 64 100%-460 358" type="image" sprite="CoverFillDark" name="playerAssignmentsPannelCover" hidden="true"/>
+			<object size="24 64 100%-460 358" type="image" sprite="CoverFillDark" name="playerAssignmentsPanelCover" hidden="true"/>
 			<!-- Map selection -->
 			
 			
@@ -138,7 +140,7 @@
 				<object name="mapSelectionText" type="text" style="ModernLeftLabelText" size="0 64 100% 94"  hidden="true"/>
 				<object name="mapSizeText" type="text" style="ModernLeftLabelText" size="0 96 100% 126" hidden="true"/>
 			</object>
-			
+
 			<object name="mapTypeSelection"
 				type="dropdown"
 				style="ModernDropDown"
@@ -169,7 +171,7 @@
 				</object>
 			</object>
 			
-			<object name="mapSize" size="100%-325 459 100%-25 487" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip">
+			<object name="mapSize" size="100%-315 459 100%-25 487" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip">
 				<translatableAttribute id="tooltip">Select map size. (Larger sizes may reduce performance.)</translatableAttribute>
 			</object>
 			
@@ -187,7 +189,7 @@
 			</object>
 
 			<!-- Chat window -->
-			<object name="chatPanel" size="24 370 100%-440 100%-60" type="image" sprite="ModernDarkBoxGold">
+			<object name="chatPanel" size="24 370 100%-440 100%-58" type="image" sprite="ModernDarkBoxGold">
 				<object name="chatText" size="2 2 100%-2 100%-26" type="text" style="ChatPanel"/>
 
 				<object name="chatInput" size="4 100%-24 100%-76 100%-4" type="input" style="ModernInput">
@@ -207,12 +209,12 @@
 				textcolor="white"
 				sprite="BackgroundTranslucent"
 				hidden="true"
-				size="100%-700 100%-56 100%-312 100%-24"
+				size="20 100%-56 100%-312 100%-24"
 			>
 				<translatableAttribute id="caption">[Tooltip text]</translatableAttribute>
 			</object>
 
-			<!-- Start Button -->
+			<!-- Start/Ready Button -->
 			<object
 				name="startGame"
 				type="button"
@@ -223,7 +225,12 @@
 			>
 				<translatableAttribute id="caption">Start game!</translatableAttribute>
 				<translatableAttribute id="tooltip">Start a new game with the current settings.</translatableAttribute>
-				<action on="Press">launchGame();</action>
+				<action on="Press">
+					if (g_IsController)
+						launchGame();
+					else
+						toggleReady();
+				</action>
 			</object>
 
 			<!-- Cancel Button -->
@@ -245,7 +252,7 @@
 					]]>
 				</action>
 			</object>
-			
+
 			<!-- Options -->
 			<object name="gameOptionsBox" size="100%-425 497 100%-25 525">
 				<!-- More Options Button -->

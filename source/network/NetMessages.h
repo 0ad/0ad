@@ -46,6 +46,7 @@ enum NetMessageType
 	NMT_AUTHENTICATE,		// Authentication stage
 	NMT_AUTHENTICATE_RESULT,
 	NMT_CHAT,		// Common chat message
+	NMT_READY,
 	NMT_GAME_SETUP,
 	NMT_PLAYER_ASSIGNMENT,
 
@@ -118,11 +119,17 @@ START_NMT_CLASS_(Chat, NMT_CHAT)
 	NMT_FIELD(CStrW, m_Message)
 END_NMT_CLASS()
 
+START_NMT_CLASS_(Ready, NMT_READY)
+	NMT_FIELD(CStr8, m_GUID)
+	NMT_FIELD_INT(m_Status, u8, 1)
+END_NMT_CLASS()
+
 START_NMT_CLASS_(PlayerAssignment, NMT_PLAYER_ASSIGNMENT)
 	NMT_START_ARRAY(m_Hosts)
 		NMT_FIELD(CStr8, m_GUID)
 		NMT_FIELD(CStrW, m_Name)
 		NMT_FIELD_INT(m_PlayerID, i8, 1)
+		NMT_FIELD_INT(m_Status, u8, 1)
 	NMT_END_ARRAY()
 END_NMT_CLASS()
 

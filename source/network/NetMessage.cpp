@@ -174,6 +174,10 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 	case NMT_CHAT:
 		pNewMessage = new CChatMessage;
 		break;
+	
+	case NMT_READY:
+		pNewMessage = new CReadyMessage;
+		break;
 
 	case NMT_SIMULATION_COMMAND:
 		pNewMessage = new CSimulationMessage(scriptInterface);

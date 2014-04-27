@@ -633,8 +633,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
  			{
 				grayscale = "grayscale:";
 
-				// Display a meaningful tooltip why the formation is disabled
-				button.tooltip += "\n" + "[color=\"red\"]" + translate(formationInfo.tooltip) + "[/color]";
+				if (formationInfo.tooltip)
+					button.tooltip += "\n" + "[color=\"red\"]" + translate(formationInfo.tooltip) + "[/color]";
 			}
 
 			var formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {

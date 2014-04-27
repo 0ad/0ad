@@ -45,6 +45,17 @@ L10n& L10n::Instance()
 L10n::L10n()
 	: currentLocaleIsOriginalGameLocale(false), useLongStrings(false), dictionary(new tinygettext::Dictionary())
 {
+	// Determine whether or not to print tinygettext messages to the standard
+	// error output, which it tinygettext’s default behavior, but not ours.
+	bool tinygettext_debug = false;
+	CFG_GET_VAL("tinygettext.debug", Bool, tinygettext_debug);
+	if (!tinygettext_debug)
+	{
+		tinygettext::Log::log_info_callback = 0;
+		tinygettext::Log::log_warning_callback = 0;
+		tinygettext::Log::log_error_callback = 0;
+	}
+
 	LoadListOfAvailableLocales();
 	ReevaluateCurrentLocaleAndReload();
 }
@@ -73,8 +84,6 @@ bool L10n::SaveLocale(const std::string& localeCode)
 
 bool L10n::SaveLocale(Locale locale)
 {
-	// TODO: Use the ConfigDB functions exposed to js to change the config value
-	// Save the new locale in the settings file.
 	if (!ValidateLocale(locale))
 		return false;
 
@@ -151,31 +160,23 @@ std::string L10n::GetDictionaryLocale(std::string configLocaleString)
 // First, try to get a valid locale from the config, then check if the system locale can be used and otherwise fall back to en_US.
 void L10n::GetDictionaryLocale(std::string configLocaleString, Locale& outLocale)
 {
-	bool validConfigLocale = false;
 	if (!configLocaleString.empty())
 	{
 		Locale configLocale = Locale::createCanonical(configLocaleString.c_str());
 		if (ValidateLocale(configLocale))
 		{
 			outLocale = configLocale;
-			validConfigLocale = true;
+			return;
 		}
 		else
 			LOGWARNING(L"The configured locale is not valid or no translations are available. Falling back to another locale.");
 	}
 	
-	if (!validConfigLocale)
-	{
-		Locale systemLocale = Locale::getDefault();
-		if (ValidateLocale(systemLocale))
-		{
-			outLocale = systemLocale;
-		}
-		else
-		{
-			outLocale = Locale::getUS();
-		}
-	}
+	Locale systemLocale = Locale::getDefault();
+	if (ValidateLocale(systemLocale))
+		outLocale = systemLocale;
+	else
+		outLocale = Locale::getUS();
 }
 
 
@@ -328,7 +329,8 @@ std::string L10n::TranslateLines(const std::string& sourceString)
 	std::string line;
 
 	while (std::getline(stringOfLines, line)) {
-		targetString.append(Translate(line));
+		if (!line.empty())
+			targetString.append(Translate(line));
 		targetString.append("\n");
 	}
 

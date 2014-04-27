@@ -4,13 +4,15 @@ const DEFAULT_NETWORKED_MAP = "Acropolis 01";
 const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
 // TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
-const VICTORY_TEXT = [translate("Conquest"), translate("Wonder"), translateWithContext("victory", "None")];
+// Translation: Type of victory condition.
+const VICTORY_TEXT = [translateWithContext("victory", "Conquest"), translateWithContext("victory", "Wonder"), translateWithContext("victory", "None")];
 const VICTORY_DATA = ["conquest", "wonder", "endless"];
 const VICTORY_DEFAULTIDX = 0;
 const POPULATION_CAP = ["50", "100", "150", "200", "250", "300", translate("Unlimited")];
 const POPULATION_CAP_DATA = [50, 100, 150, 200, 250, 300, 10000];
 const POPULATION_CAP_DEFAULTIDX = 5;
-const STARTING_RESOURCES = [translate("Very Low"), translate("Low"), translate("Medium"), translate("High"), translate("Very High"), translate("Deathmatch")];
+// Translation: Amount of starting resources.
+const STARTING_RESOURCES = [translateWithContext("startingResources", "Very Low"), translateWithContext("startingResources", "Low"), translateWithContext("startingResources", "Medium"), translateWithContext("startingResources", "High"), translateWithContext("startingResources", "Very High"), translateWithContext("startingResources", "Deathmatch")];
 const STARTING_RESOURCES_DATA = [100, 300, 500, 1000, 3000, 50000];
 const STARTING_RESOURCES_DEFAULTIDX = 1;
 // Max number of players for any map
@@ -30,6 +32,19 @@ var g_ServerName;
 // Are we currently updating the GUI in response to network messages instead of user input
 // (and therefore shouldn't send further messages to the network)
 var g_IsInGuiUpdate;
+
+// Is this user ready
+var g_IsReady;
+
+// There are some duplicate orders on init, we can ignore these [bool].
+var g_ReadyInit = true;
+
+// If no one has changed ready status, we have no need to spam the settings changed message.
+// 2 - Host's initial ready, suppressed settings message, 1 - Will show settings message, <=0 - Suppressed settings message
+var g_ReadyChanged = 2;
+
+// Has the game started?
+var g_GameStarted = false;
 
 var g_PlayerAssignments = {};
 
@@ -98,7 +113,6 @@ function init(attribs)
 	{
 		cancelButton.tooltip = translate("Return to the lobby.");
 	}
-
 }
 
 // Called after the map data is loaded and cached
@@ -296,6 +310,7 @@ function initMain()
 		}
 
 		Engine.GetGUIObjectByName("numPlayersSelection").hidden = true;
+		Engine.GetGUIObjectByName("startGame").enabled = true;
 	}
 
 	// Set up multiplayer/singleplayer bits:
@@ -414,19 +429,37 @@ function handleNetMessage(message)
 		break;
 
 	case "players":
+		var resetReady = false;
+		var newPlayer = "";
 		// Find and report all joinings/leavings
 		for (var host in message.hosts)
+		{
 			if (! g_PlayerAssignments[host])
+			{
 				addChatMessage({ "type": "connect", "username": message.hosts[host].name });
+				newPlayer = host;
+			}
+		}
 
 		for (var host in g_PlayerAssignments)
+		{
 			if (! message.hosts[host])
+			{
 				addChatMessage({ "type": "disconnect", "guid": host });
+				if (g_PlayerAssignments[host].player != -1)
+					resetReady = true; // Observers shouldn't reset ready.
+			}
+		}
 
 		// Update the player list
 		g_PlayerAssignments = message.hosts;
 		updatePlayerList();
+		if (g_PlayerAssignments[newPlayer] && g_PlayerAssignments[newPlayer].player != -1)
+			resetReady = true;
 
+		if (resetReady)
+			resetReadyData(); // Observers shouldn't reset ready.
+		updateReadyUI();
 		if (g_IsController)
 			sendRegisterGameStanza();
 		break;
@@ -447,6 +480,18 @@ function handleNetMessage(message)
 
 	case "chat":
 		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
+		break;
+
+	// Singular client to host message
+	case "ready":
+		g_ReadyChanged -= 1;
+		if (g_ReadyChanged < 1 && g_PlayerAssignments[message.guid].player != -1)
+			addChatMessage({ "type": "ready", "guid": message.guid, "ready": +message.status == 1 });
+		if (!g_IsController)
+			break;
+		g_PlayerAssignments[message.guid].status = +message.status == 1;
+		Engine.SetNetworkPlayerStatus(message.guid, +message.status);
+		updateReadyUI();
 		break;
 
 	default:
@@ -580,6 +625,7 @@ function initMapNameList()
 	}
 
 	// Update the list control
+	translateObjectKeys(mapListNames, Object.keys(mapListNames));
 	mapSelectionBox.list = mapListNames;
 	mapSelectionBox.list_data = mapListFiles;
 	mapSelectionBox.selected = selected;
@@ -597,17 +643,13 @@ function loadMapData(name)
 		case "scenario":
 		case "skirmish":
 			g_MapData[name] = Engine.LoadMapSettings(name);
-			translateObjectKeys(g_MapData[name], ["Name", "Description"]);
 			break;
 
 		case "random":
 			if (name == "random")
 				g_MapData[name] = { settings: { "Name": translateWithContext("map", "Random"), "Description": translate("Randomly selects a map from the list") } };
 			else
-			{
 				g_MapData[name] = parseJSONData(name+".json");
-				translateObjectKeys(g_MapData[name], ["Name", "Description"]);
-			}
 			break;
 
 		default:
@@ -711,7 +753,7 @@ function selectNumPlayers(num)
 			if (g_IsNetworked)
 				Engine.AssignNetworkPlayer(player, "");
 			else
-				g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1} };
+				g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0} };
 		}
 	}
 
@@ -828,7 +870,7 @@ function selectMap(name)
 	// Reset player assignments on map change
 	if (!g_IsNetworked)
 	{	// Slot 1
-		g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1} };
+		g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0} };
 	}
 	else
 	{
@@ -861,7 +903,7 @@ function launchGame()
 	if (g_GameAttributes.map == "random")
 		selectMap(Engine.GetGUIObjectByName("mapSelection").list_data[Math.floor(Math.random() *
 			(Engine.GetGUIObjectByName("mapSelection").list.length - 1)) + 1]);
-
+	g_GameStarted = true;
 	g_GameAttributes.settings.mapType = g_GameAttributes.mapType;
 	var numPlayers = g_GameAttributes.settings.PlayerData.length;
 	// Assign random civilizations to players with that choice
@@ -1173,7 +1215,7 @@ function onGameAttributesChange()
 	}
 
 	// Display map name
-	Engine.GetGUIObjectByName("mapInfoName").caption = getMapDisplayName(mapName);
+	Engine.GetGUIObjectByName("mapInfoName").caption = translate(getMapDisplayName(mapName));
 
 	// Load the description from the map file, if there is one
 	var description = mapSettings.Description || translate("Sorry, no description available.");
@@ -1182,7 +1224,7 @@ function onGameAttributesChange()
 		description += g_NavalWarning;
 
 	// Describe the number of players
-	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: description });
+	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: translate(description) });
 
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
@@ -1207,7 +1249,7 @@ function onGameAttributesChange()
 		// Common to all game types
 		var color = iColorToString(getSetting(pData, pDefs, "Colour"));
 		pColor.sprite = "colour:"+color+" 100";
-		pName.caption = getSetting(pData, pDefs, "Name");
+		pName.caption = translate(getSetting(pData, pDefs, "Name"));
 
 		var team = getSetting(pData, pDefs, "Team");
 		var civ = getSetting(pData, pDefs, "Civ");
@@ -1244,6 +1286,9 @@ function onGameAttributesChange()
 
 	// Game attributes include AI settings, so update the player list
 	updatePlayerList();
+
+	// We should have everyone confirm that the new settings are acceptable.
+	resetReadyData();
 }
 
 function updateGameAttributes()
@@ -1413,6 +1458,7 @@ function updatePlayerList()
 						swapPlayers(guid, playerSlot);
 
 					Engine.SetNetworkGameAttributes(g_GameAttributes);
+					updateReadyUI();
 				}
 			};
 		}
@@ -1494,14 +1540,22 @@ function submitChatInput()
 
 function addChatMessage(msg)
 {
-	var username = escapeText(msg.username || g_PlayerAssignments[msg.guid].name);
-	var message = escapeText(msg.text);
+	var username = "";
+	if (msg.username)
+		username = escapeText(msg.username);
+	else if (msg.guid && g_PlayerAssignments[msg.guid])
+		username = escapeText(g_PlayerAssignments[msg.guid].name);
+
+	var message = "";
+	if (msg.text)
+		message = escapeText(msg.text);
 
 	// TODO: Maybe host should have distinct font/color?
 	var color = "white";
 
-	if (g_PlayerAssignments[msg.guid] && g_PlayerAssignments[msg.guid].player != -1)
-	{	// Valid player who has been assigned - get player colour
+	if (msg.guid && g_PlayerAssignments[msg.guid] && g_PlayerAssignments[msg.guid].player != -1)
+	{
+		// Valid player who has been assigned - get player colour
 		var player = g_PlayerAssignments[msg.guid].player - 1;
 		var mapName = g_GameAttributes.map;
 		var mapData = loadMapData(mapName);
@@ -1516,19 +1570,31 @@ function addChatMessage(msg)
 	switch (msg.type)
 	{
 	case "connect":
-		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font][color="gold"]'
-		formatted = '[color="gold"]' + sprintf(translate("%(username)s has joined"), { username: formattedUsername });
+		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font]'
+		formatted = '[color="gold"]' + sprintf(translate("%(username)s has joined"), { username: formattedUsername }) + '[/color]';
 		break;
 
 	case "disconnect":
-		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font][color="gold"]'
-		formatted = '[color="gold"]' + sprintf(translate("%(username)s has left"), { username: formattedUsername });
+		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font]'
+		formatted = '[color="gold"]' + sprintf(translate("%(username)s has left"), { username: formattedUsername }) + '[/color]';
 		break;
 
 	case "message":
 		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]'
 		var formattedUsernamePrefix = '[font="sans-bold-13"]' + sprintf(translate("<%(username)s>"), { username: formattedUsername }) + '[/font]'
 		formatted = sprintf(translate("%(username)s %(message)s"), { username: formattedUsernamePrefix, message: message });
+		break;
+
+	case "ready":
+		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font]'
+		if (msg.ready)
+			formatted = '[color="gold"]*' + sprintf(translate("%(username)s is ready!"), { username: formattedUsername }) + '[/color]';
+		else
+			formatted = '[color="gold"]*' + sprintf(translate("%(username)s is not ready."), { username: formattedUsername }) + '[/color]';
+		break;
+
+	case "settings":
+		formatted = '[color="gold"][font="sans-bold-13"]*' + translate('Game settings have been changed.') + '[/font][/color]';
 		break;
 
 	default:
@@ -1547,6 +1613,80 @@ function toggleMoreOptions()
 	Engine.GetGUIObjectByName("moreOptions").hidden = !Engine.GetGUIObjectByName("moreOptions").hidden;
 }
 
+function toggleReady()
+{
+	g_IsReady = !g_IsReady;
+	if (g_IsReady)
+	{
+		Engine.SendNetworkReady(1);
+		Engine.GetGUIObjectByName("startGame").caption = translate("I'm not ready");
+		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you are not ready to play.");
+	}
+	else
+	{
+		Engine.SendNetworkReady(0);
+		Engine.GetGUIObjectByName("startGame").caption = translate("I'm ready!");
+		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you are ready to play!");
+	}
+}
+
+function updateReadyUI()
+{	
+	var allReady = true;
+	for (var guid in g_PlayerAssignments)
+	{
+		// We don't really care whether observers are ready.
+		if (g_PlayerAssignments[guid].player == -1 || !g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player - 1])
+			continue;
+		var pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player - 1] : {};
+		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[g_PlayerAssignments[guid].player - 1] : {};			
+		if (g_PlayerAssignments[guid].status || !g_IsNetworked)
+			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
+		else
+		{
+			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = translate(getSetting(pData, pDefs, "Name"));
+			allReady = false;
+		}
+	}
+	// AIs are always ready.
+	for (var playerid = 0; playerid < MAX_PLAYERS; playerid++)
+	{		
+		if (!g_GameAttributes.settings.PlayerData[playerid])
+			continue;
+		var pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[playerid] : {};
+		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[playerid] : {};
+		if (g_GameAttributes.settings.PlayerData[playerid].AI != "" || g_GameAttributes.settings.PlayerData[playerid].Name == "Unassigned")
+			Engine.GetGUIObjectByName("playerName[" + playerid + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
+	}
+	// The host is not allowed to start until everyone is ready.
+	if (g_IsNetworked && g_IsController)
+		Engine.GetGUIObjectByName("startGame").enabled = allReady;
+}
+
+function resetReadyData()
+{
+	if (g_GameStarted)
+		return;
+	if (g_ReadyChanged < 1)
+		addChatMessage({ "type": "settings"});
+	else if (g_ReadyChanged == 2 && !g_ReadyInit)
+		return; // duplicate calls on init
+	else
+		g_ReadyInit = false;
+	g_ReadyChanged = 2;
+	if (g_IsNetworked && g_IsController)
+	{
+		Engine.ClearAllPlayerReady();
+		g_IsReady = true;
+		Engine.SendNetworkReady(1);
+	}
+	else
+	{
+		g_IsReady = false;
+		Engine.GetGUIObjectByName("startGame").caption = translate("I'm ready!");
+		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you accept the current settings and are ready to play!");
+	}
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Basic map filters API
 

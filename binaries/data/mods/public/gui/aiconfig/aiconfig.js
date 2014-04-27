@@ -25,7 +25,8 @@ function init(settings)
 	aiSelection.selected = selected;
 	
 	var aiDiff = Engine.GetGUIObjectByName("aiDifficulty");
-	aiDiff.list = [translate("Sandbox"), translate("Easy"), translate("Medium"), translate("Hard"), translate("Very Hard")];
+    // Translation: AI difficulty level.
+	aiDiff.list = [translateWithContext("aiDiff", "Sandbox"), translateWithContext("aiDiff", "Easy"), translateWithContext("aiDiff", "Medium"), translateWithContext("aiDiff", "Hard"), translateWithContext("aiDiff", "Very Hard")];
 	aiDiff.selected = settings.difficulty;
 }
 

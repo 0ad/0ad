@@ -164,6 +164,8 @@ public:
 	void LoadFinished();
 
 	void SendChatMessage(const std::wstring& text);
+	
+	void SendReadyMessage(const int status);
 
 private:
 	// Net message / FSM transition handlers
@@ -172,6 +174,7 @@ private:
 	static bool OnHandshakeResponse(void* context, CFsmEvent* event);
 	static bool OnAuthenticate(void* context, CFsmEvent* event);
 	static bool OnChat(void* context, CFsmEvent* event);
+	static bool OnReady(void* context, CFsmEvent* event);
 	static bool OnGameSetup(void* context, CFsmEvent* event);
 	static bool OnPlayerAssignment(void* context, CFsmEvent* event);
 	static bool OnInGame(void* context, CFsmEvent* event);
