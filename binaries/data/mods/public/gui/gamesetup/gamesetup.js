@@ -499,7 +499,9 @@ function handleNetMessage(message)
 	}
 }
 
-// Get display name from map data
+// Get display name from map data.
+// At this point the map name is already translated, do not translate the
+// display name returned.
 function getMapDisplayName(map)
 {
 	var mapData = loadMapData(map);
@@ -625,10 +627,21 @@ function initMapNameList()
 	}
 
 	// Update the list control
-	translateObjectKeys(mapListNames, Object.keys(mapListNames));
 	mapSelectionBox.list = mapListNames;
 	mapSelectionBox.list_data = mapListFiles;
 	mapSelectionBox.selected = selected;
+}
+
+function translateMapSettings(mapSettings)
+{
+	if ("PlayerData" in mapSettings.settings)
+		translateObjectKeys(mapSettings.settings.PlayerData, ["Name"]);
+	mapSettings.settings.Name = translate(mapSettings.settings.Name);
+	if (mapSettings.settings.Description) // Might be empty.
+		mapSettings.settings.Description = translate(mapSettings.settings.Description);
+	else
+		mapSettings.settings.Description = translate("Sorry, no description available.");
+	return mapSettings;
 }
 
 function loadMapData(name)
@@ -642,14 +655,14 @@ function loadMapData(name)
 		{
 		case "scenario":
 		case "skirmish":
-			g_MapData[name] = Engine.LoadMapSettings(name);
+			g_MapData[name] = translateMapSettings(Engine.LoadMapSettings(name));
 			break;
 
 		case "random":
 			if (name == "random")
 				g_MapData[name] = { settings: { "Name": translateWithContext("map", "Random"), "Description": translate("Randomly selects a map from the list") } };
 			else
-				g_MapData[name] = parseJSONData(name+".json");
+				g_MapData[name] = translateMapSettings(parseJSONData(name+".json"));
 			break;
 
 		default:
@@ -1208,16 +1221,16 @@ function onGameAttributesChange()
 	}
 
 	// Display map name
-	Engine.GetGUIObjectByName("mapInfoName").caption = translate(getMapDisplayName(mapName));
+	Engine.GetGUIObjectByName("mapInfoName").caption = getMapDisplayName(mapName);
 
-	// Load the description from the map file, if there is one
-	var description = mapSettings.Description || translate("Sorry, no description available.");
+	// Load the description from the map settings.
+	var description = mapSettings.Description;
 
 	if (g_GameAttributes.mapFilter == "naval")
 		description += g_NavalWarning;
 
 	// Describe the number of players
-	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: translate(description) });
+	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: description });
 
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
@@ -1242,7 +1255,7 @@ function onGameAttributesChange()
 		// Common to all game types
 		var color = iColorToString(getSetting(pData, pDefs, "Colour"));
 		pColor.sprite = "colour:"+color+" 100";
-		pName.caption = translate(getSetting(pData, pDefs, "Name"));
+		pName.caption = getSetting(pData, pDefs, "Name");
 
 		var team = getSetting(pData, pDefs, "Team");
 		var civ = getSetting(pData, pDefs, "Civ");
