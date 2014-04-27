@@ -1079,16 +1079,16 @@ function onGameAttributesChange()
 			populationCapText.hidden = true;
 			startingResourcesText.hidden = true;
 			
-			mapSizeText.caption = translate("Map size:");
+			mapSizeText.caption = translate("Map Size:");
 			mapSize.selected = sizeIdx;
-			revealMapText.caption = translate("Reveal map:");
-			exploreMapText.caption = translate("Explored map:");
+			revealMapText.caption = translate("Reveal Map:");
+			exploreMapText.caption = translate("Explore Map:");
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
 			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
 
-			victoryConditionText.caption = translate("Victory condition:");
+			victoryConditionText.caption = translate("Victory Condition:");
 			victoryCondition.selected = victoryIdx;
-			lockTeamsText.caption = translate("Teams locked:");
+			lockTeamsText.caption = translate("Teams Locked:");
 			lockTeams.checked = (mapSettings.LockTeams ? true : false);
 		}
 		else
@@ -1140,14 +1140,14 @@ function onGameAttributesChange()
 			populationCapText.hidden = true;
 			startingResourcesText.hidden = true;
 
-			revealMapText.caption = translate("Reveal map:");
-			exploreMapText.caption = translate("Explore map:");
+			revealMapText.caption = translate("Reveal Map:");
+			exploreMapText.caption = translate("Explore Map:");
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
 			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
 
-			victoryConditionText.caption = translate("Victory condition:");
+			victoryConditionText.caption = translate("Victory Condition:");
 			victoryCondition.selected = victoryIdx;
-			lockTeamsText.caption = translate("Teams locked:");
+			lockTeamsText.caption = translate("Teams Locked:");
 			lockTeams.checked = (mapSettings.LockTeams ? true : false);
 		}
 		else
