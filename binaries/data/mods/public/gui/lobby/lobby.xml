@@ -147,7 +147,7 @@
 					type="dropdown"
 					style="ModernDropDown"
 					size="52%-5 0 68%-10 100%"
-					font="sans-13">
+					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
 
@@ -155,7 +155,7 @@
 					type="dropdown"
 					style="ModernDropDown"
 					size="68%-5 0 84%-10 100%"
-					font="sans-13">
+					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
 
@@ -163,7 +163,7 @@
 					type="dropdown"
 					style="ModernDropDown"
 					size="84%-5 0 100% 100%"
-					font="sans-13">
+					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
 
@@ -175,7 +175,7 @@
 					checked="true"
 					style="ModernTickBox"
 					size="0 0 20 20"
-					font="sans-13">
+					font="sans-bold-13">
 					<action on="Press">applyFilters();</action>
 				</object>
 			</object>
@@ -199,16 +199,16 @@
 			<object name="leaderboardBox"
 				style="ModernList"
 				type="olist"
-				size="19 19 100%-19 100%-58">
+				size="19 19 100%-19 100%-62">
 				<def id="rank" color="255 255 255" width="15%">
 					<translatableAttribute id="heading">Rank</translatableAttribute>
 				</def>
-				<def id="rating" color="255 255 255" width="20%">
-					<translatableAttribute id="heading">Rating</translatableAttribute>
-				</def>
-				<def id="name" color="255 255 255" width="65%">
+				<def id="name" color="255 255 255" width="55%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</def>
+				<def id="rating" color="255 255 255" width="30%">
+					<translatableAttribute id="heading">Rating</translatableAttribute>
+				</def>				
 			</object>
 			<object type="button" style="StoneButton" size="50%+5 100%-45 50%+133 100%-17">
 				<translatableAttribute id="caption">Back</translatableAttribute>
