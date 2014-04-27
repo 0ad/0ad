@@ -227,7 +227,7 @@ function displaySingle(entState, template)
 	var armorString = sprintf(translate("%(label)s %(details)s"), { label: armorLabel, details: armorTypeDetails(entState.armour) });
 
 	// Attack and Armor
-	if (entState.attack)
+	if ("attack" in entState && entState.attack)
 	{
 		// Rate
 		if (entState.buildingAI)

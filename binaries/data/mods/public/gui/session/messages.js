@@ -41,24 +41,21 @@ function handleNotifications()
 	if (notification.type == "chat" ||
 		notification.type == "aichat")
 	{
+		var message = {
+			"type": "message",
+			"text": notification.message
+		}
 		if (notification.type == "aichat")
-			notification.message = translate(notification.message);
+			message["translate"] = true;
 		var guid = findGuidForPlayerID(g_PlayerAssignments, notification.player);
 		if (guid == undefined)
 		{
-			addChatMessage({
-				"type": "message",
-				"guid": -1,
-				"player": notification.player,
-				"text": notification.message
-			});
+			message["guid"] = -1;
+			message["player"] = notification.player;
 		} else {
-			addChatMessage({
-				"type": "message",
-				"guid": findGuidForPlayerID(g_PlayerAssignments, notification.player),
-				"text": notification.message
-			});
+			message["guid"] = findGuidForPlayerID(g_PlayerAssignments, notification.player);
 		}
+		addChatMessage(message);
 	}
 	else if (notification.type == "defeat")
 	{
@@ -274,7 +271,7 @@ function handleNetMessage(message)
 		break;
 
 	case "aichat":
-		addChatMessage({ "type": "message", "guid": message.guid, "text": translate(message.text) });
+		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text, "translate": true });
 		break;
 
 	// To prevent errors, ignore these message types that occur during autostart
@@ -489,7 +486,11 @@ function addChatMessage(msg, playerAssignments)
 		if (msg.hide)
 			return;
 
-		var message = escapeText(msg.text);
+		var message;
+		if ("translate" in msg && msg.translate)
+			message = translate(msg.text); // No need to escape, not a use message.
+		else
+			message = escapeText(msg.text)
 
 		if (msg.action)
 		{
