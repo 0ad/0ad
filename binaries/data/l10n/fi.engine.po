@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
-# linux_eki <ekiuusi@gmail.com>, 2013
+# linux_eki <ekiuusi@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-24 06:41+0200\n"
-"PO-Revision-Date: 2014-04-24 04:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-04-24 15:29+0200\n"
+"PO-Revision-Date: 2014-04-24 23:00+0000\n"
+"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,9 +44,9 @@ msgstr "Long strings"
 #: ps/SavedGame.cpp:126
 #, c-format
 msgid "Saved game to '%ls'"
-msgstr "Saved game to '%ls'"
+msgstr "Peli tallennettu: '%ls'"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%ls'"
-msgstr ""
+msgstr "Kuvakaappaus tallennettu: '%ls'"

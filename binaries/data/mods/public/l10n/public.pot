@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-27 11:59+0200\n"
+"POT-Creation-Date: 2014-04-27 15:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -259,8 +259,8 @@ msgid "Skirmish"
 msgstr ""
 
 #: gui/gamesetup/gamesetup.js:143
-#: gui/gamesetup/gamesetup.js:614
-#: gui/gamesetup/gamesetup.js:650
+#: gui/gamesetup/gamesetup.js:616
+#: gui/gamesetup/gamesetup.js:663
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
@@ -273,8 +273,8 @@ msgid "Scenario"
 msgstr ""
 
 #: gui/gamesetup/gamesetup.js:147
-#: gui/gamesetup/gamesetup.js:1119
-#: gui/gamesetup/gamesetup.js:1196
+#: gui/gamesetup/gamesetup.js:1132
+#: gui/gamesetup/gamesetup.js:1209
 msgid "Default"
 msgstr ""
 
@@ -296,59 +296,64 @@ msgctxt "team"
 msgid "None"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:563
-#: gui/gamesetup/gamesetup.js:1259
+#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:1272
 msgctxt "civilization"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:650
+#: gui/gamesetup/gamesetup.js:643
+#: gui/lobby/lobby.js:388
+msgid "Sorry, no description available."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:663
 msgid "Randomly selects a map from the list"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:749
-#: gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:762
+#: gui/gamesetup/gamesetup.js:879
 #: gui/session/session.js:19
 msgid "You"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:943
+#: gui/gamesetup/gamesetup.js:956
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1082
+#: gui/gamesetup/gamesetup.js:1095
 msgid "Map size:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1084
-#: gui/gamesetup/gamesetup.js:1143
+#: gui/gamesetup/gamesetup.js:1097
+#: gui/gamesetup/gamesetup.js:1156
 msgid "Reveal map:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1085
+#: gui/gamesetup/gamesetup.js:1098
 msgid "Explored map:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1089
-#: gui/gamesetup/gamesetup.js:1148
+#: gui/gamesetup/gamesetup.js:1102
+#: gui/gamesetup/gamesetup.js:1161
 msgid "Victory condition:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1091
-#: gui/gamesetup/gamesetup.js:1150
+#: gui/gamesetup/gamesetup.js:1104
+#: gui/gamesetup/gamesetup.js:1163
 msgid "Teams locked:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1110
-#: gui/gamesetup/gamesetup.js:1111
-#: gui/gamesetup/gamesetup.js:1113
-#: gui/gamesetup/gamesetup.js:1166
-#: gui/gamesetup/gamesetup.js:1167
-#: gui/gamesetup/gamesetup.js:1169
-#: gui/gamesetup/gamesetup.js:1197
-#: gui/gamesetup/gamesetup.js:1198
-#: gui/gamesetup/gamesetup.js:1200
+#: gui/gamesetup/gamesetup.js:1123
+#: gui/gamesetup/gamesetup.js:1124
+#: gui/gamesetup/gamesetup.js:1126
+#: gui/gamesetup/gamesetup.js:1179
+#: gui/gamesetup/gamesetup.js:1180
+#: gui/gamesetup/gamesetup.js:1182
+#: gui/gamesetup/gamesetup.js:1210
+#: gui/gamesetup/gamesetup.js:1211
+#: gui/gamesetup/gamesetup.js:1213
 #: gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348
 #: gui/savedgames/load.js:44
@@ -362,15 +367,15 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1110
-#: gui/gamesetup/gamesetup.js:1111
-#: gui/gamesetup/gamesetup.js:1113
-#: gui/gamesetup/gamesetup.js:1166
-#: gui/gamesetup/gamesetup.js:1167
-#: gui/gamesetup/gamesetup.js:1169
-#: gui/gamesetup/gamesetup.js:1197
-#: gui/gamesetup/gamesetup.js:1198
-#: gui/gamesetup/gamesetup.js:1200
+#: gui/gamesetup/gamesetup.js:1123
+#: gui/gamesetup/gamesetup.js:1124
+#: gui/gamesetup/gamesetup.js:1126
+#: gui/gamesetup/gamesetup.js:1179
+#: gui/gamesetup/gamesetup.js:1180
+#: gui/gamesetup/gamesetup.js:1182
+#: gui/gamesetup/gamesetup.js:1210
+#: gui/gamesetup/gamesetup.js:1211
+#: gui/gamesetup/gamesetup.js:1213
 #: gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348
 #: gui/savedgames/load.js:44
@@ -384,83 +389,78 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1144
+#: gui/gamesetup/gamesetup.js:1157
 msgid "Explore map:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1214
-#: gui/lobby/lobby.js:388
-msgid "Sorry, no description available."
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1220
+#: gui/gamesetup/gamesetup.js:1233
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:1373
 #, python-format
 msgid "AI: %(ai)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1365
+#: gui/gamesetup/gamesetup.js:1378
 msgid "Unassigned"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1567
+#: gui/gamesetup/gamesetup.js:1580
 #, python-format
 msgid "%(username)s has joined"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1572
+#: gui/gamesetup/gamesetup.js:1585
 #, python-format
 msgid "%(username)s has left"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1577
+#: gui/gamesetup/gamesetup.js:1590
 #, python-format
 msgid "<%(username)s>"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1578
+#: gui/gamesetup/gamesetup.js:1591
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1584
+#: gui/gamesetup/gamesetup.js:1597
 #, python-format
 msgid "%(username)s is ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1586
+#: gui/gamesetup/gamesetup.js:1599
 #, python-format
 msgid "%(username)s is not ready."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1590
+#: gui/gamesetup/gamesetup.js:1603
 msgid "Game settings have been changed."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1615
+#: gui/gamesetup/gamesetup.js:1628
 msgid "I'm not ready"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1629
 msgid "State that you are not ready to play."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1621
-#: gui/gamesetup/gamesetup.js:1679
+#: gui/gamesetup/gamesetup.js:1634
+#: gui/gamesetup/gamesetup.js:1692
 msgid "I'm ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1635
 msgid "State that you are ready to play!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1680
+#: gui/gamesetup/gamesetup.js:1693
 msgid "State that you accept the current settings and are ready to play!"
 msgstr ""
 
@@ -474,7 +474,7 @@ msgid "Connecting to server..."
 msgstr ""
 
 #: gui/gamesetup/gamesetup_mp.js:79
-#: gui/session/messages.js:192
+#: gui/session/messages.js:189
 #, python-format
 msgid "Net message: %(message)s"
 msgstr ""
@@ -1164,7 +1164,7 @@ msgid "Neutral"
 msgstr ""
 
 #: gui/session/menu.js:286
-#: gui/session/messages.js:612
+#: gui/session/messages.js:613
 #: gui/session/session.xml:452 (tooltip)
 #: maps/scenarios/Sandbox - Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
@@ -1299,89 +1299,89 @@ msgid ""
 " tribute %(greaterAmount)s."
 msgstr ""
 
-#: gui/session/messages.js:205
+#: gui/session/messages.js:202
 msgid "Waiting for other players to connect..."
 msgstr ""
 
-#: gui/session/messages.js:209
+#: gui/session/messages.js:206
 msgid "Synchronising gameplay with other players..."
 msgstr ""
 
-#: gui/session/messages.js:217
+#: gui/session/messages.js:214
 msgid "Connected to the server."
 msgstr ""
 
-#: gui/session/messages.js:221
+#: gui/session/messages.js:218
 msgid "Connection to the server has been authenticated."
 msgstr ""
 
-#: gui/session/messages.js:226
+#: gui/session/messages.js:223
 msgid "Connection to the server has been lost."
 msgstr ""
 
-#: gui/session/messages.js:226
+#: gui/session/messages.js:223
 msgid "The game has ended."
 msgstr ""
 
-#: gui/session/messages.js:410
+#: gui/session/messages.js:407
 msgid "Unknown player"
 msgstr ""
 
-#: gui/session/messages.js:418
+#: gui/session/messages.js:415
 #, python-format
 msgid "%(player)s has joined the game."
 msgstr ""
 
-#: gui/session/messages.js:421
+#: gui/session/messages.js:418
 #, python-format
 msgid "%(player)s has left the game."
 msgstr ""
 
-#: gui/session/messages.js:426
+#: gui/session/messages.js:423
 msgid "You have been defeated."
 msgstr ""
 
-#: gui/session/messages.js:428
+#: gui/session/messages.js:425
 #, python-format
 msgid "%(player)s has been defeated."
 msgstr ""
 
-#: gui/session/messages.js:436
+#: gui/session/messages.js:433
 #, python-format
 msgid "You are now allied with %(player)s."
 msgstr ""
 
-#: gui/session/messages.js:438
+#: gui/session/messages.js:435
 #, python-format
 msgid "You are now at war with %(player)s."
 msgstr ""
 
-#: gui/session/messages.js:440
+#: gui/session/messages.js:437
 #, python-format
 msgid "You are now neutral with %(player)s."
 msgstr ""
 
-#: gui/session/messages.js:446
+#: gui/session/messages.js:443
 #, python-format
 msgid "%(player)s is now allied with you."
 msgstr ""
 
-#: gui/session/messages.js:448
+#: gui/session/messages.js:445
 #, python-format
 msgid "%(player)s is now at war with you."
 msgstr ""
 
-#: gui/session/messages.js:450
+#: gui/session/messages.js:447
 #, python-format
 msgid "%(player)s is now neutral with you."
 msgstr ""
 
-#: gui/session/messages.js:469
+#: gui/session/messages.js:466
 #, python-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr ""
 
-#: gui/session/messages.js:470
+#: gui/session/messages.js:467
 #: gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224
 #: gui/session/utility_functions.js:250
@@ -1392,53 +1392,53 @@ msgstr ""
 msgid ", "
 msgstr ""
 
-#: gui/session/messages.js:475
+#: gui/session/messages.js:472
 #, python-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr ""
 
-#: gui/session/messages.js:485
+#: gui/session/messages.js:482
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr ""
 
-#: gui/session/messages.js:498
-#: gui/session/messages.js:503
+#: gui/session/messages.js:499
+#: gui/session/messages.js:504
 #, python-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:511
-#: gui/session/messages.js:515
+#: gui/session/messages.js:512
+#: gui/session/messages.js:516
 #, python-format
 msgid "* %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:523
 #: gui/session/messages.js:524
+#: gui/session/messages.js:525
 #, python-format
 msgid "<%(user)s>"
 msgstr ""
 
-#: gui/session/messages.js:527
-#: gui/session/messages.js:532
+#: gui/session/messages.js:528
+#: gui/session/messages.js:533
 #, python-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:540
 #: gui/session/messages.js:541
+#: gui/session/messages.js:542
 #, python-format
 msgid "%(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:599
+#: gui/session/messages.js:600
 #: gui/gamesetup/gamesetup.xml:86 (caption)
 #: gui/session/session.xml:437 (caption)
 msgid "Team"
 msgstr ""
 
-#: gui/session/messages.js:632
+#: gui/session/messages.js:633
 msgid "Private"
 msgstr ""
 
@@ -6038,7 +6038,7 @@ msgstr ""
 #: maps/skirmishes/Acropolis Bay (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Bactria (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Belgian Bog (2).xml:42:PlayerData[0].Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Caspian Sea (2v2).xml:42:PlayerData[0].Name
 #: maps/skirmishes/Corinthian Isthmus (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:PlayerData[0].Name
@@ -6101,7 +6101,7 @@ msgstr ""
 #: maps/skirmishes/Acropolis Bay (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Bactria (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Belgian Bog (2).xml:42:PlayerData[1].Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Caspian Sea (2v2).xml:42:PlayerData[1].Name
 #: maps/skirmishes/Corinthian Isthmus (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:PlayerData[1].Name
@@ -9923,7 +9923,7 @@ msgstr ""
 #: simulation/data/technologies/heal_range.json:requirementsTooltip
 #: simulation/data/technologies/heal_rate.json:requirementsTooltip
 #: simulation/data/technologies/health_walls_geometric_masonry.json:requirementsTooltip
-#: simulation/data/technologies/melee_inf_training.json:requirementsTooltip
+#: simulation/data/technologies/melee_inf_sidearms.json:requirementsTooltip
 #: simulation/data/technologies/pop_civic_01.json:requirementsTooltip
 #: simulation/data/technologies/pop_house_02.json:requirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.json:requirementsTooltip
@@ -9991,7 +9991,7 @@ msgstr ""
 #: simulation/data/technologies/heal_rate_2.json:requirementsTooltip
 #: simulation/data/technologies/heal_temple.json:requirementsTooltip
 #: simulation/data/technologies/health_regen_units.json:requirementsTooltip
-#: simulation/data/technologies/melee_inf_spearfighting.json:requirementsTooltip
+#: simulation/data/technologies/melee_inf_spearheads.json:requirementsTooltip
 #: simulation/data/technologies/pop_civic_02.json:requirementsTooltip
 #: simulation/data/technologies/ranged_inf_skirmishers.json:requirementsTooltip
 #: simulation/data/technologies/siege_armor.json:requirementsTooltip
@@ -10106,6 +10106,10 @@ msgstr ""
 msgid "Scale Body Armor"
 msgstr ""
 
+#: simulation/data/technologies/armor_infantry_hack_03.json:specificName.rome
+msgid "Lorica Squamata"
+msgstr ""
+
 #: simulation/data/technologies/armor_infantry_hack_04.json:description
 msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
@@ -10121,6 +10125,10 @@ msgstr ""
 msgid "Bronze Cuirass Body Armor"
 msgstr ""
 
+#: simulation/data/technologies/armor_infantry_hack_04.json:specificName.rome
+msgid "Lorica Musculata"
+msgstr ""
+
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:description
 msgid "Plywood construction for large shields."
 msgstr ""
@@ -10130,18 +10138,12 @@ msgid "Infantry Spearmen +2 Pierce Armor Levels."
 msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:genericName
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.pers
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.maur
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.celt
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.cart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.brit
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.rome
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.gaul
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.iber
 msgid "Plywood Shield Construction"
 msgstr ""
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.mace
@@ -10162,10 +10164,12 @@ msgstr ""
 msgid "Reinforced Shield"
 msgstr ""
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:specificName.ptol
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:specificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:specificName.sele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:specificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:specificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:specificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:specificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:specificName.athen
 msgid "Aspides"
 msgstr ""
 
@@ -10181,9 +10185,11 @@ msgstr ""
 msgid "Bronze Shield Facing"
 msgstr ""
 
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:specificName.hele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:specificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:specificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:specificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:specificName.athen
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:specificName.hele
 #: simulation/templates/units/sele_infantry_spearman_b.xml:15
 msgid "Chalkaspides"
 msgstr ""
@@ -10207,10 +10213,12 @@ msgstr ""
 msgid "Silver Shields"
 msgstr ""
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:specificName.ptol
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:specificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:specificName.sele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:specificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:specificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:specificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:specificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:specificName.athen
 msgid "Argyraspides"
 msgstr ""
 
@@ -10710,46 +10718,55 @@ msgstr ""
 msgid "Geometric Masonry"
 msgstr ""
 
-#: simulation/data/technologies/melee_inf_spearfighting.json:description
-msgid "Using iron instead of bronze gave spears additional piercing power."
+#: simulation/data/technologies/melee_inf_sidearms.json:description
+msgid ""
+"Often, an infantryman would carry a secondary weapon in addition to his "
+"primary weapon of choice, to be drawn when the primary weapon has failed or "
+"been broken."
 msgstr ""
 
-#: simulation/data/technologies/melee_inf_spearfighting.json:tooltip
-msgid "All Spear units +2 hack attack."
-msgstr ""
-
-#: simulation/data/technologies/melee_inf_spearfighting.json:genericName
-msgid "Iron Spearheads"
-msgstr ""
-
-#: simulation/data/technologies/melee_inf_spearfighting.json:specificName.ptol
-#: simulation/data/technologies/melee_inf_spearfighting.json:specificName.spart
-#: simulation/data/technologies/melee_inf_spearfighting.json:specificName.sele
-#: simulation/data/technologies/melee_inf_spearfighting.json:specificName.theb
-#: simulation/data/technologies/melee_inf_spearfighting.json:specificName.athen
-#: simulation/data/technologies/melee_inf_spearfighting.json:specificName.hele
-#: simulation/data/technologies/melee_inf_spearfighting.json:specificName.mace
-msgid "Siderénies Aichmés"
-msgstr ""
-
-#: simulation/data/technologies/melee_inf_training.json:description
-msgid "Training increases damage of melee infantry units."
-msgstr ""
-
-#: simulation/data/technologies/melee_inf_training.json:tooltip
+#: simulation/data/technologies/melee_inf_sidearms.json:tooltip
 msgid "Melee infantry +1 hack attack."
 msgstr ""
 
-#: simulation/data/technologies/melee_inf_training.json:genericName
-msgid "Weapons Training"
+#: simulation/data/technologies/melee_inf_sidearms.json:genericName
+msgid "Side Arms"
 msgstr ""
 
-#: simulation/data/technologies/melee_inf_training.json:specificName.hele
-#: simulation/data/technologies/melee_inf_training.json:specificName.mace
-#: simulation/data/technologies/melee_inf_training.json:specificName.spart
-#: simulation/data/technologies/melee_inf_training.json:specificName.theb
-#: simulation/data/technologies/melee_inf_training.json:specificName.athen
-msgid "Hoplomachia"
+#: simulation/data/technologies/melee_inf_sidearms.json:specificName.ptol
+#: simulation/data/technologies/melee_inf_sidearms.json:specificName.spart
+#: simulation/data/technologies/melee_inf_sidearms.json:specificName.sele
+#: simulation/data/technologies/melee_inf_sidearms.json:specificName.theb
+#: simulation/data/technologies/melee_inf_sidearms.json:specificName.athen
+#: simulation/data/technologies/melee_inf_sidearms.json:specificName.hele
+#: simulation/data/technologies/melee_inf_sidearms.json:specificName.mace
+msgid "Xíphos"
+msgstr ""
+
+#: simulation/data/technologies/melee_inf_sidearms.json:specificName.rome
+msgid "Pugio"
+msgstr ""
+
+#: simulation/data/technologies/melee_inf_spearheads.json:description
+msgid "Using iron instead of bronze gave spears additional piercing power."
+msgstr ""
+
+#: simulation/data/technologies/melee_inf_spearheads.json:tooltip
+msgid "All Spear units +2 hack attack."
+msgstr ""
+
+#: simulation/data/technologies/melee_inf_spearheads.json:genericName
+msgid "Iron Spearheads"
+msgstr ""
+
+#: simulation/data/technologies/melee_inf_spearheads.json:specificName.ptol
+#: simulation/data/technologies/melee_inf_spearheads.json:specificName.spart
+#: simulation/data/technologies/melee_inf_spearheads.json:specificName.sele
+#: simulation/data/technologies/melee_inf_spearheads.json:specificName.theb
+#: simulation/data/technologies/melee_inf_spearheads.json:specificName.athen
+#: simulation/data/technologies/melee_inf_spearheads.json:specificName.hele
+#: simulation/data/technologies/melee_inf_spearheads.json:specificName.mace
+msgid "Siderénies Aichmés"
 msgstr ""
 
 #: simulation/data/technologies/pair_cav_01.json:genericName
@@ -10794,7 +10811,7 @@ msgid "Females vs. Population"
 msgstr ""
 
 #: simulation/data/technologies/pair_inf_01.json:genericName
-msgid "Training vs. Irregulars"
+msgid "Side Arms vs. Irregulars"
 msgstr ""
 
 #: simulation/data/technologies/pair_inf_02.json:genericName
@@ -11053,12 +11070,14 @@ msgstr ""
 msgid "Ranged Infantry Irregulars"
 msgstr ""
 
-#: simulation/data/technologies/ranged_inf_irregulars.json:specificName.hele
-#: simulation/data/technologies/ranged_inf_irregulars.json:specificName.mace
+#: simulation/data/technologies/ranged_inf_irregulars.json:specificName.ptol
 #: simulation/data/technologies/ranged_inf_irregulars.json:specificName.spart
+#: simulation/data/technologies/ranged_inf_irregulars.json:specificName.sele
 #: simulation/data/technologies/ranged_inf_irregulars.json:specificName.theb
 #: simulation/data/technologies/ranged_inf_irregulars.json:specificName.athen
-msgid "Psiloi"
+#: simulation/data/technologies/ranged_inf_irregulars.json:specificName.hele
+#: simulation/data/technologies/ranged_inf_irregulars.json:specificName.mace
+msgid "Átaktoi"
 msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.json:description
@@ -15738,8 +15757,7 @@ msgid "Gaesata"
 msgstr ""
 
 #: simulation/templates/units/celt_hero_brennus.xml:14
-#: simulation/templates/units/gaul_hero_brennus.xml:14
-msgid "Hero Aura: +5 Metal loot for every enemy unit killed."
+msgid "Hero Aura: +10 Metal loot for every enemy unit killed."
 msgstr ""
 
 #: simulation/templates/units/celt_hero_brennus.xml:13
@@ -15765,6 +15783,10 @@ msgstr ""
 #: simulation/templates/units/celt_hero_vercingetorix.xml:24
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:24
 msgid "Vercingetorix"
+msgstr ""
+
+#: simulation/templates/units/gaul_hero_brennus.xml:14
+msgid "Hero Aura: +5 Metal loot for every enemy unit killed."
 msgstr ""
 
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:6
@@ -18149,15 +18171,15 @@ msgstr ""
 msgid "Bactria (2)"
 msgstr ""
 
-#: maps/skirmishes/Belgian Bog (2).xml:42:Description
+#: maps/skirmishes/Belgian Bog (2).xml:41:Description
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
-"Wood is in abundance, but Metal and Stone are hard to find and extract. "
-"Hunting and foraging is plentiful."
+"Wood is abundant, but Metal and Stone are hard to find and extract. Hunting "
+"and foraging is plentiful."
 msgstr ""
 
-#: maps/skirmishes/Belgian Bog (2).xml:42:Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:Name
 msgid "Belgian Bog (2)"
 msgstr ""
 
