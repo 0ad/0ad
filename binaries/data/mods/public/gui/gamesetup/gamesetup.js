@@ -1680,7 +1680,9 @@ function resetReadyData()
 	else
 		g_ReadyInit = false;
 	g_ReadyChanged = 2;
-	if (g_IsNetworked && g_IsController)
+	if (!g_IsNetworked)
+		g_IsReady = true;
+	else if (g_IsController)
 	{
 		Engine.ClearAllPlayerReady();
 		g_IsReady = true;
