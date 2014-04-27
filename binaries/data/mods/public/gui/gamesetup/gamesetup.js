@@ -1553,7 +1553,7 @@ function addChatMessage(msg)
 		username = escapeText(g_PlayerAssignments[msg.guid].name);
 
 	var message = "";
-	if (msg.text)
+	if ("text" in msg && msg.text)
 		message = escapeText(msg.text);
 
 	// TODO: Maybe host should have distinct font/color?

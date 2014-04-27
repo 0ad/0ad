@@ -177,11 +177,11 @@ function updateBuildingPlacementPreview()
 
 function findGatherType(gatherer, supply)
 {
-	if (!gatherer || !supply)
+	if (!("resourceGatherRates" in gatherer) || !supply)
 		return undefined;
-	if (gatherer[supply.type.generic+"."+supply.type.specific])
+	if (gatherer.resourceGatherRates[supply.type.generic+"."+supply.type.specific])
 		return supply.type.specific;
-	if (gatherer[supply.type.generic])
+	if (gatherer.resourceGatherRates[supply.type.generic])
 		return supply.type.generic;
 	return undefined;
 }
@@ -437,7 +437,7 @@ function getActionInfo(action, target)
 		case "gather":
 			if (targetState.resourceSupply)
 			{
-				var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
+				var resource = findGatherType(entState, targetState.resourceSupply);
 				if (resource)
 					return {"possible": true, "cursor": "action-gather-" + resource};
 			}
@@ -460,7 +460,7 @@ function getActionInfo(action, target)
 			break;
 		case "guard":
 			if (targetState.guard && (playerOwned || mutualAllyOwned))
-				return {"possible": (entState.unitAI && entState.unitAI.canGuard && !(targetState.unitAI && targetState.unitAI.isGuarding))};
+				return {"possible": (("unitAI" in entState) && entState.unitAI && entState.unitAI.canGuard && !(targetState.unitAI && targetState.unitAI.isGuarding))};
 			break;
 		}
 	}
@@ -509,7 +509,7 @@ function determineAction(x, y, fromMinimap)
 	// while none have UnitAI
 	var haveRallyPoints = !haveUnitAI && selection.some(function(ent) {
 		var entState = GetEntityState(ent);
-		return entState && entState.rallyPoint;
+		return entState && ("rallyPoint" in entState) && entState.rallyPoint;
 	});
 
 	var targets = [];
