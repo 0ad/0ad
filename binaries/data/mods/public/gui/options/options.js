@@ -111,6 +111,13 @@ function setupControl(option, i, prefix)
 						}(option[2][action]);
 						// Merge the new callback with any existing callbacks.
 						onPress = mergeFunctions(callback, onPress);
+						// TODO: Remove this once GLSL works without GenTangents (#2506)
+						if (option[2][action] == "preferglsl")
+						{
+							callback = function()
+								Engine.ConfigDB_CreateValue("user", "gentangents", String(this.checked));
+							onPress = mergeFunctions(callback, onPress);
+						}
 						break;
 					case "renderer":
 						// Load initial value if not yet loaded.
@@ -124,6 +131,13 @@ function setupControl(option, i, prefix)
 						}(option[2][action]);
 						// Merge the new callback with any existing callbacks.
 						onPress = mergeFunctions(callback, onPress);
+						// TODO: Remove this once GLSL works without GenTangents (#2506)
+						if (option[2][action] == "PreferGLSL")
+						{
+							callback = function()
+								eval("Engine.Renderer_SetGenTangentsEnabled(" + this.checked + ")");
+							onPress = mergeFunctions(callback, onPress);
+						}
 						break;
 					case "function":
 						// This allows for doing low-level actions, like hiding/showing UI elements.

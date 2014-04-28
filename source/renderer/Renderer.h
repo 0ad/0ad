@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,6 +89,7 @@ public:
 		OPT_WATERSHADOW,
 		OPT_SHADOWPCF,
 		OPT_PARTICLES,
+		OPT_GENTANGENTS,
 		OPT_PREFERGLSL,
 		OPT_SILHOUETTES,
 		OPT_SHOWSKY,
