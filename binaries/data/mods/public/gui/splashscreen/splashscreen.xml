@@ -19,14 +19,17 @@
 						<object name="displaySplashScreenText" size="20 0 100% 100%" type="text" style="ModernLeftLabelText">
 							<translatableAttribute id="caption">Show this message in the future</translatableAttribute>
 						</object>
-						<object name="displaySplashScreen" checked="true" size="0 50%-8 16 50%+8" type="checkbox" style="ModernTickBox"/>
+						<object name="displaySplashScreen" size="0 50%-8 16 50%+8" type="checkbox" style="ModernTickBox"/>
 					</object>
 				</object>
 			</object>
 		<object name="btnOK" type="button" style="StoneButton" tooltip_style="snToolTip" size="20 100%-42 184 100%-14">
 			<translatableAttribute id="caption">OK</translatableAttribute>
 			<action on="Press"><![CDATA[
-			Engine.ConfigDB_CreateValue("user", "splashscreenenable", Engine.GetGUIObjectByName("displaySplashScreen").checked ? "true" : "false");
+			if (Engine.GetGUIObjectByName("displaySplashScreen").checked)
+				Engine.ConfigDB_CreateValue("user", "splashscreenversion", 0);
+			else
+				Engine.ConfigDB_CreateValue("user", "splashscreenversion", Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"));
 			Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 			Engine.PopGuiPageCB();
 			]]></action>

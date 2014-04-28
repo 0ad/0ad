@@ -712,6 +712,9 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 	else
 		ret.requirementsTooltip = "";
 	
+	if (template.requirements.class)
+		ret.classRequirements = {"class": template.requirements.class, "number": template.requirements.number};
+	
 	ret.description = template.description;
 	
 	return ret;

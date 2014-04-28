@@ -43,7 +43,7 @@ function init(data)
 
 	if (data)
 	{
-		var mapName = data.attribs.settings.Name;
+		var mapName = translate(data.attribs.settings.Name);
 		switch (data.attribs.mapType)
 		{
 		case "skirmish":

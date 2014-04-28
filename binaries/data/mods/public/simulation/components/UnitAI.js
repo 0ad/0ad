@@ -829,7 +829,7 @@ var UnitFsmSpec = {
 				{
 					if (this.MoveToTargetAttackRange(target, target))
 					{
-						this.SetNextState("WALKING");
+						this.SetNextState("COMBAT.APPROACHING");
 						return;
 					}
 				}
@@ -1112,50 +1112,70 @@ var UnitFsmSpec = {
 			}
 		},
 
-		"ATTACKING": {
-			// Wait for individual members to finish
-			"enter": function(msg) {
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(false, false);
-				this.StartTimer(1000, 1000);
+		"COMBAT": {
+			"APPROACHING": {
+				"MoveStarted": function(msg) {
+					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(true);
+					cmpFormation.MoveMembersIntoFormation(true, true);
+				},
 
-				var target = this.order.data.target;
-				// Check if we are already in range, otherwise walk there
-				if (!this.CheckTargetAttackRange(target, target))
-				{
-					if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
-					{
-						var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-						var range = cmpAttack.GetRange(target);
-						this.PushOrderFront("WalkToTargetRange", { "target": target, "min": range.min, "max": range.max }); 
-						return;
-					}
-					this.FinishOrder();
-					return;
-				}
-
+				"MoveCompleted": function(msg) {
+					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+					this.CallMemberFunction("Attack", [this.order.data.target, false]); 
+					if (cmpAttack.CanAttackAsFormation())
+						this.SetNextState("COMBAT.ATTACKING");
+					else
+						this.SetNextState("MEMBER");
+				},
 			},
 
-			"Timer": function(msg) {
-				var target = this.order.data.target;
-				// Check if we are already in range, otherwise walk there
-				if (!this.CheckTargetAttackRange(target, target))
-				{
-					if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
+			"ATTACKING": {
+				// Wait for individual members to finish
+				"enter": function(msg) {
+					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(true);
+					cmpFormation.MoveMembersIntoFormation(false, false);
+					this.StartTimer(1000, 1000);
+
+					var target = this.order.data.target;
+					// Check if we are already in range, otherwise walk there
+					if (!this.CheckTargetAttackRange(target, target))
 					{
-						var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-						var range = cmpAttack.GetRange(target);
-						this.PushOrderFront("WalkToTargetRange", { "target": target, "min": range.min, "max": range.max }); 
+						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
+						{
+							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+							var range = cmpAttack.GetRange(target);
+							this.PushOrderFront("WalkToTargetRange", { "target": target, "min": range.min, "max": range.max }); 
+							return;
+						}
+						this.FinishOrder();
 						return;
 					}
-					this.FinishOrder();
-					return;
-				}
-			},
 
-			"leave": function(msg) {
-				this.StopTimer();
+				},
+
+				"Timer": function(msg) {
+					var target = this.order.data.target;
+					// Check if we are already in range, otherwise walk there
+					if (!this.CheckTargetAttackRange(target, target))
+					{
+						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
+						{
+							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+							var range = cmpAttack.GetRange(target);
+							this.FinishOrder();
+							this.PushOrderFront("Attack", { "target": target, "force": false }); 
+							return;
+						}
+						this.FinishOrder();
+						return;
+					}
+				},
+
+				"leave": function(msg) {
+					this.StopTimer();
+				},
 			},
 		},
 
@@ -4256,7 +4276,8 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 	{
 		var cmpFormationAttack = Engine.QueryInterface(this.formationController, IID_Attack);
 		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
-		if (cmpFormationAttack && cmpFormationAttack.CanAttackAsFormation() && cmpFormationUnitAI && cmpFormationUnitAI.GetCurrentState == "FORMATIONCONTROLLER.ATTACKING")
+
+		if (cmpFormationAttack && cmpFormationAttack.CanAttackAsFormation() && cmpFormationUnitAI && cmpFormationUnitAI.GetCurrentState() == "FORMATIONCONTROLLER.COMBAT.ATTACKING")
 			return true;
 	}
 

@@ -44,9 +44,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-27 11:59+0200\n"
-"PO-Revision-Date: 2014-04-27 12:36+0000\n"
-"Last-Translator: tema\n"
+"POT-Creation-Date: 2014-04-27 22:12+0200\n"
+"PO-Revision-Date: 2014-04-28 10:30+0000\n"
+"Last-Translator: fabiop <fabio.ped@libero.it>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,7 +98,7 @@ msgstr "Molto Difficile"
 #: gui/civinfo/civinfo.js:94
 #, python-format
 msgid "%(civilization)s Gameplay"
-msgstr "%(civilization)s Giocabilità"
+msgstr "%(civilization)s: Caratteristiche"
 
 #: gui/civinfo/civinfo.js:97
 msgid "Civilization Bonus"
@@ -132,18 +132,18 @@ msgstr "Eroi"
 #: gui/civinfo/civinfo.js:158
 #, python-format
 msgid "History of the %(civilization)s"
-msgstr "Storia dei %(civilization)s"
+msgstr "%(civilization)s: Storia"
 
 #: gui/common/functions_global_object.js:73
 #, python-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
-#: gui/common/functions_utility.js:263
+#: gui/common/functions_utility.js:260
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:265
+#: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -297,8 +297,8 @@ msgctxt "map"
 msgid "Skirmish"
 msgstr "Schermaglia"
 
-#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:614
-#: gui/gamesetup/gamesetup.js:650 gui/lobby/lobby.js:37
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:629
+#: gui/gamesetup/gamesetup.js:1217 gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
 msgstr "Casuale"
@@ -308,8 +308,8 @@ msgstr "Casuale"
 msgid "Scenario"
 msgstr "Scenario"
 
-#: gui/gamesetup/gamesetup.js:147 gui/gamesetup/gamesetup.js:1119
-#: gui/gamesetup/gamesetup.js:1196
+#: gui/gamesetup/gamesetup.js:147 gui/gamesetup/gamesetup.js:1123
+#: gui/gamesetup/gamesetup.js:1200
 msgid "Default"
 msgstr "Predefinito"
 
@@ -328,52 +328,55 @@ msgstr "Tutte le Mappe"
 #: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:283
 msgctxt "team"
 msgid "None"
-msgstr "Nessuno"
+msgstr "No"
 
-#: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1259
+#: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1270
 msgctxt "civilization"
 msgid "Random"
 msgstr "Casuale"
 
-#: gui/gamesetup/gamesetup.js:650
-msgid "Randomly selects a map from the list"
-msgstr "Seleziona casualmente una mappa dalla lista"
-
-#: gui/gamesetup/gamesetup.js:749 gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:753 gui/gamesetup/gamesetup.js:870
 #: gui/session/session.js:19
 msgid "You"
 msgstr "Tu"
 
-#: gui/gamesetup/gamesetup.js:943
+#: gui/gamesetup/gamesetup.js:947
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1082
-msgid "Map size:"
-msgstr "Dimensione mappa:"
+#: gui/gamesetup/gamesetup.js:1086 gui/gamesetup/gamesetup.xml:110 (caption)
+#: gui/lobby/lobby.xml:76 (caption)
+msgid "Map Size:"
+msgstr "Dimensione Mappa:"
 
-#: gui/gamesetup/gamesetup.js:1084 gui/gamesetup/gamesetup.js:1143
-msgid "Reveal map:"
-msgstr "Rivela mappa:"
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
+#: gui/gamesetup/gamesetup.xml:310 (caption)
+msgid "Reveal Map:"
+msgstr "Mostra la Mappa:"
 
-#: gui/gamesetup/gamesetup.js:1085
-msgid "Explored map:"
-msgstr "Mappa Esplorata:"
-
+#. Make sure to differentiate between the reveal map and explore map options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
-msgid "Victory condition:"
-msgstr "Condizioni di vittoria:"
+#: gui/gamesetup/gamesetup.xml:320 (caption)
+msgid "Explore Map:"
+msgstr "Esplora Mappa:"
 
-#: gui/gamesetup/gamesetup.js:1091 gui/gamesetup/gamesetup.js:1150
-msgid "Teams locked:"
-msgstr "Squadre bloccate:"
+#: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
+#: gui/gamesetup/gamesetup.xml:280 (caption)
+msgid "Victory Condition:"
+msgstr "Condizione di Vittoria:"
 
-#: gui/gamesetup/gamesetup.js:1110 gui/gamesetup/gamesetup.js:1111
-#: gui/gamesetup/gamesetup.js:1113 gui/gamesetup/gamesetup.js:1166
-#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1169
-#: gui/gamesetup/gamesetup.js:1197 gui/gamesetup/gamesetup.js:1198
-#: gui/gamesetup/gamesetup.js:1200 gui/msgbox/msgbox.js:33
+#: gui/gamesetup/gamesetup.js:1095 gui/gamesetup/gamesetup.js:1154
+#: gui/gamesetup/gamesetup.xml:330 (caption)
+msgid "Teams Locked:"
+msgstr "Squadre Bloccate:"
+
+#: gui/gamesetup/gamesetup.js:1114 gui/gamesetup/gamesetup.js:1115
+#: gui/gamesetup/gamesetup.js:1117 gui/gamesetup/gamesetup.js:1170
+#: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
+#: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
+#: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
@@ -381,11 +384,11 @@ msgstr "Squadre bloccate:"
 msgid "Yes"
 msgstr "Sì"
 
-#: gui/gamesetup/gamesetup.js:1110 gui/gamesetup/gamesetup.js:1111
-#: gui/gamesetup/gamesetup.js:1113 gui/gamesetup/gamesetup.js:1166
-#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1169
-#: gui/gamesetup/gamesetup.js:1197 gui/gamesetup/gamesetup.js:1198
-#: gui/gamesetup/gamesetup.js:1200 gui/msgbox/msgbox.js:33
+#: gui/gamesetup/gamesetup.js:1114 gui/gamesetup/gamesetup.js:1115
+#: gui/gamesetup/gamesetup.js:1117 gui/gamesetup/gamesetup.js:1170
+#: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
+#: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
+#: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
@@ -393,81 +396,88 @@ msgstr "Sì"
 msgid "No"
 msgstr "No"
 
-#: gui/gamesetup/gamesetup.js:1144
-msgid "Explore map:"
-msgstr "Esplora Mappa:"
+#: gui/gamesetup/gamesetup.js:1218
+msgid "Randomly selects a map from the list"
+msgstr "Seleziona casualmente una mappa dalla lista"
 
-#: gui/gamesetup/gamesetup.js:1214 gui/lobby/lobby.js:388
+#: gui/gamesetup/gamesetup.js:1225 gui/lobby/lobby.js:389
 msgid "Sorry, no description available."
 msgstr "Spiacenti, nessuna descrizione disponibile."
 
-#: gui/gamesetup/gamesetup.js:1220
+#: gui/gamesetup/gamesetup.js:1231
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s giocatore. %(description)s"
 msgstr[1] "%(number)s giocatori. %(description)s"
 
-#: gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:1371
 #, python-format
 msgid "AI: %(ai)s"
 msgstr "IA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1365
+#: gui/gamesetup/gamesetup.js:1376
 msgid "Unassigned"
 msgstr "Non assegnato"
 
-#: gui/gamesetup/gamesetup.js:1567
+#. Translation: IRC system message.
+#: gui/gamesetup/gamesetup.js:1578 gui/gamesetup/gamesetup.js:1583
+#: gui/gamesetup/gamesetup.js:1601 gui/lobby/lobby.js:765
+#, python-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#: gui/gamesetup/gamesetup.js:1578
 #, python-format
 msgid "%(username)s has joined"
 msgstr "%(username)s è entrato"
 
-#: gui/gamesetup/gamesetup.js:1572
+#: gui/gamesetup/gamesetup.js:1583
 #, python-format
 msgid "%(username)s has left"
 msgstr "%(username)s è uscito"
 
-#: gui/gamesetup/gamesetup.js:1577
+#: gui/gamesetup/gamesetup.js:1588
 #, python-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1578
+#: gui/gamesetup/gamesetup.js:1589
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1584
+#: gui/gamesetup/gamesetup.js:1595
 #, python-format
-msgid "%(username)s is ready!"
-msgstr "%(username)s è pronto!"
+msgid "* %(username)s is ready!"
+msgstr "* %(username)s è pronto!"
 
-#: gui/gamesetup/gamesetup.js:1586
+#: gui/gamesetup/gamesetup.js:1597
 #, python-format
-msgid "%(username)s is not ready."
-msgstr "%(username)s non è pronto."
+msgid "* %(username)s is not ready."
+msgstr "* %(username)s non è pronto."
 
-#: gui/gamesetup/gamesetup.js:1590
-msgid "Game settings have been changed."
-msgstr "Le impostazioni di gioco sono state modificate."
+#: gui/gamesetup/gamesetup.js:1601
+msgid "Game settings have been changed"
+msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1615
+#: gui/gamesetup/gamesetup.js:1626
 msgid "I'm not ready"
 msgstr "Io non sono pronto"
 
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1627
 msgid "State that you are not ready to play."
 msgstr "Indica che non sei pronto per giocare."
 
-#: gui/gamesetup/gamesetup.js:1621 gui/gamesetup/gamesetup.js:1679
+#: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
 msgid "I'm ready!"
 msgstr "Sono pronto!"
 
-#: gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1633
 msgid "State that you are ready to play!"
 msgstr "Indica che sei pronto per giocare!"
 
-#: gui/gamesetup/gamesetup.js:1680
+#: gui/gamesetup/gamesetup.js:1703
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Indica che accetti le impostazioni correnti e sei pronto a giocare!"
 
@@ -480,7 +490,7 @@ msgstr "partita di %(name)s"
 msgid "Connecting to server..."
 msgstr "Connessione al server..."
 
-#: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:192
+#: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:189
 #, python-format
 msgid "Net message: %(message)s"
 msgstr "Messaggio di rete: %(message)s"
@@ -537,7 +547,7 @@ msgstr "Assente"
 
 #: gui/lobby/lobby.js:314
 msgid "Online"
-msgstr "Online"
+msgstr "Presente"
 
 #: gui/lobby/lobby.js:318
 msgid "Offline"
@@ -548,69 +558,63 @@ msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: gui/lobby/lobby.js:363
+#: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
 msgstr "Una mappa casuale."
 
-#: gui/lobby/lobby.js:416
+#: gui/lobby/lobby.js:417
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "L'indirizzo di questo gioco '%(ip)s' non sembra essere valido."
 
-#: gui/lobby/lobby.js:494
+#: gui/lobby/lobby.js:495
 #, python-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s si è aggiunto."
 
-#: gui/lobby/lobby.js:503
+#: gui/lobby/lobby.js:504
 #, python-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s ha abbandonato."
 
-#: gui/lobby/lobby.js:510
+#: gui/lobby/lobby.js:511
 #, python-format
 msgid "Invalid nickname: %(nick)s"
 msgstr "Soprannome non valido: %(nick)s"
 
-#: gui/lobby/lobby.js:517
+#: gui/lobby/lobby.js:518
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s ora è conosciuto come %(newnick)s."
 
-#: gui/lobby/lobby.js:671
+#: gui/lobby/lobby.js:672
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "Siamo spiacenti, il comando '%(cmd)s' non è supportato."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:751
+#: gui/lobby/lobby.js:752
 #, python-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:753
+#: gui/lobby/lobby.js:754
 #, python-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:757 gui/lobby/lobby.js:768 gui/lobby/lobby.js:781
+#: gui/lobby/lobby.js:758 gui/lobby/lobby.js:769 gui/lobby/lobby.js:782
 #, python-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:759 gui/lobby/lobby.js:770 gui/lobby/lobby.js:783
+#: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
 #, python-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
-
-#. Translation: IRC system message.
-#: gui/lobby/lobby.js:764
-#, python-format
-msgid "== %(message)s"
-msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the
@@ -618,25 +622,25 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:795
+#: gui/lobby/lobby.js:796
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
 #. in the options page).
-#: gui/lobby/lobby.js:798
+#: gui/lobby/lobby.js:799
 #, python-format
 msgid "[%(time)s]"
 msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:801
+#: gui/lobby/lobby.js:802
 #, python-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:851
+#: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Si prega di non spammare. Sei stato bloccato per 30 secondi."
 
@@ -671,7 +675,7 @@ msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:185
 #: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
-#: gui/gamesetup/gamesetup.xml:341 (caption)
+#: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "OK"
@@ -706,13 +710,13 @@ msgstr "Metti in pausa le partite a giocatore singolo quando la finestra non è 
 
 #: gui/options/options.js:10
 msgid "Developer Overlay"
-msgstr "Sovrapposizione Sviluppatore"
+msgstr "Finestra Sviluppatore"
 
 #: gui/options/options.js:10
 msgid ""
 "Show overlay in-game with options such as reveal map, control all units, and"
 " change perspective. Designed for use by developers"
-msgstr "Mostra una sovrapposizione, con opzioni come rivela la mappa, controlla tutte le unità, e cambia la prospettiva. Progettato per l'uso da parte degli sviluppatori"
+msgstr "Mostra una finestra con opzioni come rivela la mappa, controlla tutte le unità, e cambia la prospettiva. Progettato per l'uso da parte degli sviluppatori"
 
 #: gui/options/options.js:14
 msgid "Prefer GLSL"
@@ -790,7 +794,7 @@ msgstr "Utilizzare normali reali per il rendering delle onde, invece di applicar
 
 #: gui/options/options.js:23
 msgid "Real Water Depth"
-msgstr "Profondità Effettiva dell'Acqua"
+msgstr "Profondità dell'Acqua"
 
 #: gui/options/options.js:23
 msgid "Use actual water depth in rendering calculations"
@@ -838,7 +842,7 @@ msgstr "Proietta ombre sull'acqua"
 
 #: gui/options/options.js:29
 msgid "VSync"
-msgstr "VSync"
+msgstr "Sincronia Verticale"
 
 #: gui/options/options.js:29
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -1148,7 +1152,7 @@ msgstr "Alleato"
 msgid "Neutral"
 msgstr "Neutrale"
 
-#: gui/session/menu.js:286 gui/session/messages.js:612
+#: gui/session/menu.js:286 gui/session/messages.js:613
 #: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
@@ -1266,11 +1270,11 @@ msgstr[1] "%(numberOfShipTraders)s navi mercantili inattive"
 
 #: gui/session/menu.js:673
 msgid "The Developer Overlay was opened."
-msgstr "La Sovrapposizione di Sviluppo è stata aperta."
+msgstr "La Finestra dello Sviluppatore è stata aperta."
 
 #: gui/session/menu.js:675
 msgid "The Developer Overlay was closed."
-msgstr "La Sovrapposizione di Sviluppo è stata chiusa."
+msgstr "La Finestra dello Sviluppatore è stata chiusa."
 
 #: gui/session/menu.js:693
 #, python-format
@@ -1279,136 +1283,136 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Tributa %(resourceAmount)s %(resourceType)s a %(playerName)s. Maiusc-clic per tributare %(greaterAmount)s."
 
-#: gui/session/messages.js:205
+#: gui/session/messages.js:202
 msgid "Waiting for other players to connect..."
 msgstr "In attesa della connessione di altri giocatori..."
 
-#: gui/session/messages.js:209
+#: gui/session/messages.js:206
 msgid "Synchronising gameplay with other players..."
 msgstr "Sincronizzazione del gioco con altri giocatori..."
 
-#: gui/session/messages.js:217
+#: gui/session/messages.js:214
 msgid "Connected to the server."
 msgstr "Connesso al server."
 
-#: gui/session/messages.js:221
+#: gui/session/messages.js:218
 msgid "Connection to the server has been authenticated."
 msgstr "La connessione al server è stata autenticata."
 
-#: gui/session/messages.js:226
+#: gui/session/messages.js:223
 msgid "Connection to the server has been lost."
 msgstr "La connessione al server è stata persa."
 
-#: gui/session/messages.js:226
+#: gui/session/messages.js:223
 msgid "The game has ended."
 msgstr "Fine del Gioco"
 
-#: gui/session/messages.js:410
+#: gui/session/messages.js:407
 msgid "Unknown player"
 msgstr "Giocatore sconosciuto"
 
-#: gui/session/messages.js:418
+#: gui/session/messages.js:415
 #, python-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)s si è unito alla partita."
 
-#: gui/session/messages.js:421
+#: gui/session/messages.js:418
 #, python-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s ha abbandonato la partita."
 
-#: gui/session/messages.js:426
+#: gui/session/messages.js:423
 msgid "You have been defeated."
 msgstr "Sei stato sconfitto."
 
-#: gui/session/messages.js:428
+#: gui/session/messages.js:425
 #, python-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s è stato sconfitto."
 
-#: gui/session/messages.js:436
+#: gui/session/messages.js:433
 #, python-format
 msgid "You are now allied with %(player)s."
 msgstr "Hai stretto una alleanza con %(player)s."
 
-#: gui/session/messages.js:438
+#: gui/session/messages.js:435
 #, python-format
 msgid "You are now at war with %(player)s."
 msgstr "Hai dichiarato guerra a %(player)s."
 
-#: gui/session/messages.js:440
+#: gui/session/messages.js:437
 #, python-format
 msgid "You are now neutral with %(player)s."
 msgstr "Hai stretto un patto di neutralità con %(player)s."
 
-#: gui/session/messages.js:446
+#: gui/session/messages.js:443
 #, python-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s è ora un tuo alleato."
 
-#: gui/session/messages.js:448
+#: gui/session/messages.js:445
 #, python-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s ti ha dichiarato guerra."
 
-#: gui/session/messages.js:450
+#: gui/session/messages.js:447
 #, python-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s è neutrale."
 
-#: gui/session/messages.js:469
+#: gui/session/messages.js:466
 #, python-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s e %(lastAmount)s"
 
-#: gui/session/messages.js:470 gui/session/utility_functions.js:174
+#: gui/session/messages.js:467 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
 #: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
 #: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:475
+#: gui/session/messages.js:472
 #, python-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s ti ha inviato %(amounts)s."
 
-#: gui/session/messages.js:485
+#: gui/session/messages.js:482
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Sei stato attaccato da %(attacker)s!"
 
-#: gui/session/messages.js:498 gui/session/messages.js:503
+#: gui/session/messages.js:499 gui/session/messages.js:504
 #, python-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:511 gui/session/messages.js:515
+#: gui/session/messages.js:512 gui/session/messages.js:516
 #, python-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:523 gui/session/messages.js:524
+#: gui/session/messages.js:524 gui/session/messages.js:525
 #, python-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:527 gui/session/messages.js:532
+#: gui/session/messages.js:528 gui/session/messages.js:533
 #, python-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:540 gui/session/messages.js:541
+#: gui/session/messages.js:541 gui/session/messages.js:542
 #, python-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:599 gui/gamesetup/gamesetup.xml:86 (caption)
+#: gui/session/messages.js:600 gui/gamesetup/gamesetup.xml:61 (caption)
 #: gui/session/session.xml:437 (caption)
 msgid "Team"
 msgstr "Squadra"
 
-#: gui/session/messages.js:632
+#: gui/session/messages.js:633
 msgid "Private"
 msgstr "Privato"
 
@@ -2771,7 +2775,7 @@ msgstr "Giocatore IA"
 
 #: gui/aiconfig/aiconfig.xml:26 (caption)
 msgid "AI Difficulty"
-msgstr "Difficoltà della IA"
+msgstr "Difficoltà IA"
 
 #: gui/aiconfig/aiconfig.xml:47 (caption) gui/gamesetup/gamesetup_mp.xml:109
 #: (caption) gui/lobby/prelobby.xml:67 (caption) gui/locale/locale.xml:46
@@ -2806,109 +2810,164 @@ msgstr "Caricamento"
 msgid "Loading map data. Please wait..."
 msgstr "Caricamento dati della mappa. Attendi per favore..."
 
-#: gui/gamesetup/gamesetup.xml:42 (caption)
-msgid "Number of players:"
-msgstr "Numero di giocatori:"
-
-#: gui/gamesetup/gamesetup.xml:54 (tooltip)
-msgid "Select number of players."
-msgstr "Seleziona numero di giocatori."
-
-#: gui/gamesetup/gamesetup.xml:65 (caption)
+#: gui/gamesetup/gamesetup.xml:40 (caption)
 msgid "Player Name"
 msgstr "Nome del Giocatore"
 
-#: gui/gamesetup/gamesetup.xml:68 (caption)
+#: gui/gamesetup/gamesetup.xml:43 (caption)
 msgid "Player Placement"
 msgstr "Posizione del Giocatore"
 
-#: gui/gamesetup/gamesetup.xml:71 (caption) gui/session/session.xml:434
+#: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:434
 #: (caption)
 msgid "Civilization"
 msgstr "Civiltà"
 
-#: gui/gamesetup/gamesetup.xml:80 (tooltip)
+#: gui/gamesetup/gamesetup.xml:55 (tooltip)
 msgid "View civilization info"
 msgstr "Mostra informazioni sulla civiltà"
 
-#: gui/gamesetup/gamesetup.xml:95 (tooltip)
+#: gui/gamesetup/gamesetup.xml:70 (tooltip)
 msgid "Select player."
 msgstr "Seleziona giocatore."
 
-#: gui/gamesetup/gamesetup.xml:104 (tooltip)
+#: gui/gamesetup/gamesetup.xml:79 (tooltip)
 msgid "Configure AI settings."
 msgstr "Configura le impostazioni dell'IA"
 
-#: gui/gamesetup/gamesetup.xml:107 (tooltip)
+#: gui/gamesetup/gamesetup.xml:82 (tooltip)
 msgid "Select player's civilization."
 msgstr "Seleziona la civiltà del giocatore"
 
-#: gui/gamesetup/gamesetup.xml:111 (tooltip)
+#: gui/gamesetup/gamesetup.xml:86 (tooltip)
 msgid "Select player's team."
 msgstr "Seleziona la squadra del giocatore"
 
-#: gui/gamesetup/gamesetup.xml:124 (caption)
+#: gui/gamesetup/gamesetup.xml:98 (caption)
 msgid "Match Type:"
 msgstr "Tipo di Partita:"
 
-#: gui/gamesetup/gamesetup.xml:127 (caption)
+#: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
 msgstr "Filtro Mappe:"
 
-#: gui/gamesetup/gamesetup.xml:130 (caption)
+#: gui/gamesetup/gamesetup.xml:104 (caption)
 msgid "Select Map:"
 msgstr "Seleziona Mappa:"
 
-#: gui/gamesetup/gamesetup.xml:133 (caption) gui/lobby/lobby.xml:76 (caption)
-msgid "Map Size:"
-msgstr "Dimensione Mappa:"
+#: gui/gamesetup/gamesetup.xml:107 (caption)
+msgid "Number of Players:"
+msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:149 (tooltip)
+#: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
 msgstr "Seleziona un tipo di mappa."
 
-#: gui/gamesetup/gamesetup.xml:158 (tooltip)
+#: gui/gamesetup/gamesetup.xml:136 (tooltip)
 msgid "Select a map filter."
 msgstr "Seleziona un filtro di mappe."
 
-#: gui/gamesetup/gamesetup.xml:169 (tooltip)
+#: gui/gamesetup/gamesetup.xml:146 (tooltip)
 msgid "Select a map to play on."
 msgstr "Seleziona una mappa su cui giocare."
 
-#: gui/gamesetup/gamesetup.xml:175 (tooltip)
+#: gui/gamesetup/gamesetup.xml:157 (tooltip)
+msgid "Select number of players."
+msgstr "Seleziona numero di giocatori."
+
+#: gui/gamesetup/gamesetup.xml:162 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Seleziona la dimensione della mappa. (Dimensioni grandi riducono le prestazioni.)"
 
-#: gui/gamesetup/gamesetup.xml:200 (caption) gui/session/session.xml:402
+#: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:402
 #: (caption)
 msgid "Send"
 msgstr "Invia"
 
-#: gui/gamesetup/gamesetup.xml:214 (caption)
+#: gui/gamesetup/gamesetup.xml:201 (caption)
 msgid "[Tooltip text]"
 msgstr "[Tooltip text]"
 
-#: gui/gamesetup/gamesetup.xml:226 (caption)
+#: gui/gamesetup/gamesetup.xml:213 (caption)
 msgid "Start game!"
 msgstr "Inizia la partita!"
 
-#: gui/gamesetup/gamesetup.xml:227 (tooltip)
+#: gui/gamesetup/gamesetup.xml:214 (tooltip)
 msgid "Start a new game with the current settings."
 msgstr "Inizia una nuova partita con le impostazioni correnti."
 
-#: gui/gamesetup/gamesetup.xml:244 (caption) gui/lobby/lobby.xml:214 (caption)
+#: gui/gamesetup/gamesetup.xml:231 (caption) gui/lobby/lobby.xml:214 (caption)
 msgid "Back"
 msgstr "Indietro"
 
-#: gui/gamesetup/gamesetup.xml:266 (caption)
+#: gui/gamesetup/gamesetup.xml:253 (caption) gui/gamesetup/gamesetup.xml:265
+#: (caption)
 msgid "More Options"
 msgstr "Più Opzioni"
 
-#: gui/gamesetup/gamesetup.xml:267 (tooltip)
+#: gui/gamesetup/gamesetup.xml:254 (tooltip)
 msgid "See more game options"
 msgstr "Mostra più opzioni di gioco"
 
-#: gui/gamesetup/gamesetup.xml:342 (tooltip)
+#: gui/gamesetup/gamesetup.xml:270 (caption)
+msgid "Game Speed:"
+msgstr "Velocità di Gioco:"
+
+#: gui/gamesetup/gamesetup.xml:274 (tooltip)
+msgid "Select game speed."
+msgstr "Seleziona la velocità di gioco."
+
+#: gui/gamesetup/gamesetup.xml:284 (tooltip)
+msgid "Select victory condition."
+msgstr "Seleziona la condizione di vittoria."
+
+#: gui/gamesetup/gamesetup.xml:290 (caption)
+msgid "Population Cap:"
+msgstr "Limite di Popolazione:"
+
+#: gui/gamesetup/gamesetup.xml:294 (tooltip)
+msgid "Select population cap."
+msgstr "Seleziona un limite di popolazione."
+
+#: gui/gamesetup/gamesetup.xml:300 (caption)
+msgid "Starting Resources:"
+msgstr "Risorse Iniziali:"
+
+#: gui/gamesetup/gamesetup.xml:304 (tooltip)
+msgid "Select the game's starting resources."
+msgstr "Seleziona le risorse iniziali del giocatore."
+
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.xml:314 (tooltip)
+msgid "Toggle reveal map (see everything)."
+msgstr "Attiva rivela la mappa (vedrai tutto)."
+
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.xml:324 (tooltip)
+msgid "Toggle explore map (see gaia and buildings)."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:334 (tooltip)
+msgid "Toggle locked teams."
+msgstr "Abilita squadre bloccate."
+
+#: gui/gamesetup/gamesetup.xml:340 (caption)
+msgid "Cheats:"
+msgstr "Trucchi:"
+
+#: gui/gamesetup/gamesetup.xml:344 (tooltip)
+msgid "Toggle the usability of cheats."
+msgstr "Abilita l'utilizzo dei trucchi."
+
+#: gui/gamesetup/gamesetup.xml:350 (caption)
+msgid "Rated Game:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:354 (tooltip)
+msgid "Toggle if this game will be rated for the leaderboard."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:367 (tooltip)
 msgid "Close more game options window"
 msgstr "Chiude la finestra delle opzioni aggiuntive"
 
@@ -2959,16 +3018,16 @@ msgstr "Gruppo Multiplayer"
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
-msgstr "Status"
+msgstr "Stato"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:210 (heading) gui/session/session.xml:431 (caption)
+#: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:431 (caption)
 msgid "Name"
 msgstr "Nome"
 
-#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:207 (heading)
+#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
 msgid "Rating"
-msgstr "Rating"
+msgstr "Posizione"
 
 #: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
 msgid "Leaderboard"
@@ -2999,12 +3058,12 @@ msgid "Map Name"
 msgstr "Nome Mappa"
 
 #: gui/lobby/lobby.xml:135 (heading)
-msgid "Map Size"
-msgstr "Dimensione Mappa"
+msgid "Size"
+msgstr ""
 
 #: gui/lobby/lobby.xml:138 (heading)
-msgid "Map Type"
-msgstr "Tipo di Mappa"
+msgid "Type"
+msgstr ""
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
@@ -3202,7 +3261,7 @@ msgstr "Disabilita feedback"
 
 #: gui/pregame/mainmenu.xml:177 (caption)
 msgid "Matches"
-msgstr "Partite"
+msgstr "Partite Veloci"
 
 #: gui/pregame/mainmenu.xml:178 (tooltip)
 msgid "Click here to start a new single player game."
@@ -3463,7 +3522,7 @@ msgstr "Velocità del gioco"
 
 #: gui/session/session.xml:653 (tooltip)
 msgid "Choose game speed"
-msgstr "Seleziona velocità del gioco"
+msgstr "Seleziona la velocità del gioco"
 
 #: gui/session/session.xml:706 (caption)
 msgid "MENU"
@@ -4164,11 +4223,11 @@ msgstr "Z, X, C, V, B, N, M: Con selezionati degli edifici di addestramento. Agg
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr "[font=\"sans-bold-14\"] Modifica l'azione del mouse"
+msgstr "[font=\"sans-bold-14\"]Modifica l'azione del mouse"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr "[font=\"sans-14\"] Ctrl + Clic Destro sugli edifici: Presidia"
+msgstr "[font=\"sans-14\"]Ctrl + Clic Destro sugli edifici: Presidia"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -4225,7 +4284,7 @@ msgstr "[font=\"sans-14\"]Alt + G: Nascondi/mostra l'interfaccia"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr "Alt + D: Mostra/nascondi sovrapposizione sviluppatore (con opzioni di sviluppo)"
+msgstr "Alt + D: Mostra/nascondi la finestra sviluppatore (con opzioni di sviluppo)"
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -6002,7 +6061,7 @@ msgstr "Folle (2x)"
 #: maps/skirmishes/Acropolis Bay (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Bactria (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Belgian Bog (2).xml:42:PlayerData[0].Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Caspian Sea (2v2).xml:42:PlayerData[0].Name
 #: maps/skirmishes/Corinthian Isthmus (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:PlayerData[0].Name
@@ -6065,7 +6124,7 @@ msgstr "Giocatore 1"
 #: maps/skirmishes/Acropolis Bay (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Bactria (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Belgian Bog (2).xml:42:PlayerData[1].Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Caspian Sea (2v2).xml:42:PlayerData[1].Name
 #: maps/skirmishes/Corinthian Isthmus (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:PlayerData[1].Name
@@ -6934,7 +6993,7 @@ msgid ""
 "significant contributions to the winning of many other battles during the "
 "2nd Punic War. He is known for having said, after the battle of Cannae, "
 "'Hannibal, you know how to win the victory; just not what to do with it.'"
-msgstr "Maarbale era il 'giovane e sfacciato comandante di cavalleria' di Annibale durante la 2a guerra punica. Ebbe il merito di costringere a far ripiegare l'ala delle legioni a Canne, con la conseguente sconfitta in cui morirono 30,000 dei 50,000 romani, così come altri contributi determinanti per la vittoria in molte altre battaglie durante la seconda guerra punica. E' noto per aver detto, dopo la battaglia di Canne, 'Annibale, tu sai come vincere, ma non come sfruttare la vittoria'."
+msgstr "Maarbale era il 'giovane e sfacciato comandante di cavalleria' di Annibale durante la 2a guerra punica. Ebbe il merito di costringere a far ripiegare l'ala delle legioni a Canne, con la conseguente sconfitta in cui morirono 30.000 dei 50.000 romani, così come altri contributi determinanti per la vittoria in molte altre battaglie durante la seconda guerra punica. E' noto per aver detto, dopo la battaglia di Canne, 'Annibale, tu sai come vincere, ma non come sfruttare la vittoria'."
 
 #: civs/cart.jsonStructures[0].Name
 #: simulation/templates/structures/cart_super_dock.xml:10
@@ -9735,7 +9794,7 @@ msgstr "Demo Muro"
 
 #: simulation/ai/aegis/data.jsonname
 msgid "Aegis Bot"
-msgstr "Bot Aegis"
+msgstr "Aegis"
 
 #: simulation/ai/aegis/data.jsondescription
 msgid ""
@@ -9743,11 +9802,11 @@ msgid ""
 "player. Note that it doesn't support saved games yet, and there may be other"
 " bugs. Please report issues to Wildfire Games (see the link in the main "
 "menu)."
-msgstr "Wraitii è un miglioramento di Qbot. È più affidabile e generalmente gioca meglio. N.B.: non supporta ancora giochi salvati, e ci potrebbero essere altri bug. Si prega di segnalare i problemi a Wildfire Games (vedi link nel menu principale)."
+msgstr "Miglioramento di Qbot a cura di Wraitii. È più affidabile e generalmente gioca meglio. N.B.: non supporta ancora giochi salvati, e ci potrebbero essere altri bug. Si prega di segnalare i problemi a Wildfire Games (vedi link nel menu principale)."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr "Bot Petra"
+msgstr "Petra"
 
 #: simulation/ai/petra/data.jsondescription
 msgid "Based on Aegis, but heavily modified and expected to be more robust"
@@ -9787,7 +9846,7 @@ msgstr "Testiera"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/health_walls_geometric_masonry.jsonrequirementsTooltip
-#: simulation/data/technologies/melee_inf_training.jsonrequirementsTooltip
+#: simulation/data/technologies/melee_inf_sidearms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_civic_01.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
@@ -9855,7 +9914,7 @@ msgstr "Armatura di Ferro Eroe"
 #: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_temple.jsonrequirementsTooltip
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
-#: simulation/data/technologies/melee_inf_spearfighting.jsonrequirementsTooltip
+#: simulation/data/technologies/melee_inf_spearheads.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_civic_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
@@ -9970,6 +10029,10 @@ msgstr "Armatura Corporea rinforzata con scaglie di bronzo."
 msgid "Scale Body Armor"
 msgstr "Armatura Corporea a Scaglie"
 
+#: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
+msgid "Lorica Squamata"
+msgstr "Lorica Squamata"
+
 #: simulation/data/technologies/armor_infantry_hack_04.jsondescription
 msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
@@ -9985,6 +10048,10 @@ msgstr "Campioni +2 livelli Armatura, ma anche +10 di Costo in Metallo."
 msgid "Bronze Cuirass Body Armor"
 msgstr "Armatura Corporea Corazzata in Bronzo"
 
+#: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
+msgid "Lorica Musculata"
+msgstr "Lorica Musculata"
+
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
 msgstr "Costruzioni in compensato per grandi scudi."
@@ -9994,18 +10061,12 @@ msgid "Infantry Spearmen +2 Pierce Armor Levels."
 msgstr "Fanteria Lancieri +2 livelli Armatura a Maglie."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.maur
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.celt
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.cart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.rome
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.gaul
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.iber
 msgid "Plywood Shield Construction"
 msgstr "Costruzione Scudi in Compensato"
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
@@ -10026,10 +10087,12 @@ msgstr "Fanteria Lancieri +1 Livelli Armatura a Maglie."
 msgid "Reinforced Shield"
 msgstr "Scudo Rinforzato"
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.sele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 msgid "Aspides"
 msgstr "Aspides"
 
@@ -10045,9 +10108,11 @@ msgstr "Fanteria Lancieri +1 Livello Perforazione Armatura."
 msgid "Bronze Shield Facing"
 msgstr "Scudo Bronzeo"
 
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.hele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.hele
 #: simulation/templates/units/sele_infantry_spearman_b.xml:15
 msgid "Chalkaspides"
 msgstr "Chalkaspidi"
@@ -10071,10 +10136,12 @@ msgstr "Campioni +2 livelli Armatura Antiperforante, ma anche +10 di Costo in Me
 msgid "Silver Shields"
 msgstr "Scudi d'Argento"
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.sele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 msgid "Argyraspides"
 msgstr "Argiraspidi"
 
@@ -10582,47 +10649,56 @@ msgstr "Mura della città +2 livelli di armatura, ma +10% tempo di costruzione."
 msgid "Geometric Masonry"
 msgstr "Mura Geometriche"
 
-#: simulation/data/technologies/melee_inf_spearfighting.jsondescription
-msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr "Utilizzando il ferro invece del bronzo le lance aumentano la capacità di perforare."
+#: simulation/data/technologies/melee_inf_sidearms.jsondescription
+msgid ""
+"Often, an infantryman would carry a secondary weapon in addition to his "
+"primary weapon of choice, to be drawn when the primary weapon has failed or "
+"been broken."
+msgstr "Spesso, un fante poteva portare una seconda arma in aggiunta alla sua arma principale, da estrarre quando l'arma primaria non andava a segno o veniva spezzata."
 
-#: simulation/data/technologies/melee_inf_spearfighting.jsontooltip
-msgid "All Spear units +2 hack attack."
-msgstr "Tutte le unità con Lancia +2 Attacco."
-
-#: simulation/data/technologies/melee_inf_spearfighting.jsongenericName
-msgid "Iron Spearheads"
-msgstr "Punte di lancia in Ferro"
-
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.ptol
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.spart
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.sele
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.theb
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.athen
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.hele
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.mace
-msgid "Siderénies Aichmés"
-msgstr "Siderénies Aichmés"
-
-#: simulation/data/technologies/melee_inf_training.jsondescription
-msgid "Training increases damage of melee infantry units."
-msgstr "L'addestramento aumenta il danno delle unità di fanteria da mischia."
-
-#: simulation/data/technologies/melee_inf_training.jsontooltip
+#: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
 msgstr "Fanteria da Mischia +1 attacco."
 
-#: simulation/data/technologies/melee_inf_training.jsongenericName
-msgid "Weapons Training"
-msgstr "Addestramento Armi"
+#: simulation/data/technologies/melee_inf_sidearms.jsongenericName
+msgid "Side Arms"
+msgstr "Arma Secondaria"
 
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.hele
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.mace
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.spart
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.theb
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.athen
-msgid "Hoplomachia"
-msgstr "Hoplomachia"
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.ptol
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.spart
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.sele
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.theb
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.athen
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.hele
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
+msgid "Xíphos"
+msgstr "Xíphos"
+
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.rome
+msgid "Pugio"
+msgstr "Pugio"
+
+#: simulation/data/technologies/melee_inf_spearheads.jsondescription
+msgid "Using iron instead of bronze gave spears additional piercing power."
+msgstr "Utilizzando il ferro invece del bronzo le lance aumentano la capacità di perforare."
+
+#: simulation/data/technologies/melee_inf_spearheads.jsontooltip
+msgid "All Spear units +2 hack attack."
+msgstr "Tutte le unità con Lancia +2 Attacco."
+
+#: simulation/data/technologies/melee_inf_spearheads.jsongenericName
+msgid "Iron Spearheads"
+msgstr "Punte di lancia in Ferro"
+
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.theb
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.hele
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.mace
+msgid "Siderénies Aichmés"
+msgstr "Siderénies Aichmés"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
@@ -10666,8 +10742,8 @@ msgid "Females vs. Population"
 msgstr "Donne vs Popolazione"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
-msgid "Training vs. Irregulars"
-msgstr "Addestrati vs Irregolari"
+msgid "Side Arms vs. Irregulars"
+msgstr "Armi secondarie vs. Irregolari"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
@@ -10928,13 +11004,15 @@ msgstr "La fanteria a distanza aumenta di +2 attacco perforante."
 msgid "Ranged Infantry Irregulars"
 msgstr "Fanteria Irregolare a Distanza"
 
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.hele
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.spart
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.sele
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.theb
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.athen
-msgid "Psiloi"
-msgstr "Psiloi"
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.hele
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
+msgid "Átaktoi"
+msgstr "Átaktoi"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -15617,9 +15695,8 @@ msgid "Gaesata"
 msgstr "Gaesata"
 
 #: simulation/templates/units/celt_hero_brennus.xml:14
-#: simulation/templates/units/gaul_hero_brennus.xml:14
-msgid "Hero Aura: +5 Metal loot for every enemy unit killed."
-msgstr "Aura Eroica: +5 Metallo raccolto da ogni unità nemica uccisa"
+msgid "Hero Aura: +10 Metal loot for every enemy unit killed."
+msgstr "Aura dell'Eroe: +10 pezzi di metallo per ogni unità nemica uccisa."
 
 #: simulation/templates/units/celt_hero_brennus.xml:13
 #: simulation/templates/units/gaul_hero_brennus.xml:13
@@ -15645,6 +15722,10 @@ msgstr "Aura dell'Eroe: +2 attacco per tutte le unità entro la sua aura."
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:24
 msgid "Vercingetorix"
 msgstr "Vercingetorix"
+
+#: simulation/templates/units/gaul_hero_brennus.xml:14
+msgid "Hero Aura: +5 Metal loot for every enemy unit killed."
+msgstr "Aura Eroica: +5 Metallo raccolto da ogni unità nemica uccisa"
 
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:6
 msgid "Thessalian Scout"
@@ -17989,14 +18070,14 @@ msgstr "Le terre aride e ricche di minerali della Battriana (odierno Afghanistan
 msgid "Bactria (2)"
 msgstr "Battriana (2)"
 
-#: maps/skirmishes/Belgian Bog (2).xml:42:Description
+#: maps/skirmishes/Belgian Bog (2).xml:41:Description
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
-"Wood is in abundance, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
-msgstr "Due giocatori si affrontano in una grande torbiera da qualche parte nelle pianure del Reno\n\nAbbondante legname, ma metallo e pietra sono difficili da trovare e da estrarre. Cacciagione e foraggio in grandi quantità."
+"Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
+msgstr "Due giocatori si affrontano in una grande palude nelle pianure del Reno.\n\nIl legno è abbondante, ma il metallo e la pietra sono difficili da trovare ed estrarre. Le risorse di cibo sono abbondanti."
 
-#: maps/skirmishes/Belgian Bog (2).xml:42:Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:Name
 msgid "Belgian Bog (2)"
 msgstr "Palude Belga (2)"
 

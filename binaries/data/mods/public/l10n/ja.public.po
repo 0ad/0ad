@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-27 11:59+0200\n"
-"PO-Revision-Date: 2014-04-27 12:44+0000\n"
+"POT-Creation-Date: 2014-04-27 22:12+0200\n"
+"PO-Revision-Date: 2014-04-28 12:27+0000\n"
 "Last-Translator: kanetaka\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -116,11 +116,11 @@ msgstr "%(civilization)sの歴史"
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
-#: gui/common/functions_utility.js:263
+#: gui/common/functions_utility.js:260
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:265
+#: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -274,8 +274,8 @@ msgctxt "map"
 msgid "Skirmish"
 msgstr "短期戦"
 
-#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:614
-#: gui/gamesetup/gamesetup.js:650 gui/lobby/lobby.js:37
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:629
+#: gui/gamesetup/gamesetup.js:1217 gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
 msgstr "ランダム"
@@ -285,8 +285,8 @@ msgstr "ランダム"
 msgid "Scenario"
 msgstr "シナリオ"
 
-#: gui/gamesetup/gamesetup.js:147 gui/gamesetup/gamesetup.js:1119
-#: gui/gamesetup/gamesetup.js:1196
+#: gui/gamesetup/gamesetup.js:147 gui/gamesetup/gamesetup.js:1123
+#: gui/gamesetup/gamesetup.js:1200
 msgid "Default"
 msgstr "デフォルト"
 
@@ -307,50 +307,53 @@ msgctxt "team"
 msgid "None"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1259
+#: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1270
 msgctxt "civilization"
 msgid "Random"
 msgstr "ランダム"
 
-#: gui/gamesetup/gamesetup.js:650
-msgid "Randomly selects a map from the list"
-msgstr "リストの中からマップをランダムに選択"
-
-#: gui/gamesetup/gamesetup.js:749 gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:753 gui/gamesetup/gamesetup.js:870
 #: gui/session/session.js:19
 msgid "You"
 msgstr "あなた"
 
-#: gui/gamesetup/gamesetup.js:943
+#: gui/gamesetup/gamesetup.js:947
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1082
-msgid "Map size:"
+#: gui/gamesetup/gamesetup.js:1086 gui/gamesetup/gamesetup.xml:110 (caption)
+#: gui/lobby/lobby.xml:76 (caption)
+msgid "Map Size:"
 msgstr "マップの大きさ："
 
-#: gui/gamesetup/gamesetup.js:1084 gui/gamesetup/gamesetup.js:1143
-msgid "Reveal map:"
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
+#: gui/gamesetup/gamesetup.xml:310 (caption)
+msgid "Reveal Map:"
 msgstr "探索済マップ："
 
-#: gui/gamesetup/gamesetup.js:1085
-msgid "Explored map:"
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
+#: gui/gamesetup/gamesetup.xml:320 (caption)
+msgid "Explore Map:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
-msgid "Victory condition:"
+#: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
+#: gui/gamesetup/gamesetup.xml:280 (caption)
+msgid "Victory Condition:"
 msgstr "勝利条件："
 
-#: gui/gamesetup/gamesetup.js:1091 gui/gamesetup/gamesetup.js:1150
-msgid "Teams locked:"
+#: gui/gamesetup/gamesetup.js:1095 gui/gamesetup/gamesetup.js:1154
+#: gui/gamesetup/gamesetup.xml:330 (caption)
+msgid "Teams Locked:"
 msgstr "固定チーム："
 
-#: gui/gamesetup/gamesetup.js:1110 gui/gamesetup/gamesetup.js:1111
-#: gui/gamesetup/gamesetup.js:1113 gui/gamesetup/gamesetup.js:1166
-#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1169
-#: gui/gamesetup/gamesetup.js:1197 gui/gamesetup/gamesetup.js:1198
-#: gui/gamesetup/gamesetup.js:1200 gui/msgbox/msgbox.js:33
+#: gui/gamesetup/gamesetup.js:1114 gui/gamesetup/gamesetup.js:1115
+#: gui/gamesetup/gamesetup.js:1117 gui/gamesetup/gamesetup.js:1170
+#: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
+#: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
+#: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
@@ -358,11 +361,11 @@ msgstr "固定チーム："
 msgid "Yes"
 msgstr "はい"
 
-#: gui/gamesetup/gamesetup.js:1110 gui/gamesetup/gamesetup.js:1111
-#: gui/gamesetup/gamesetup.js:1113 gui/gamesetup/gamesetup.js:1166
-#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1169
-#: gui/gamesetup/gamesetup.js:1197 gui/gamesetup/gamesetup.js:1198
-#: gui/gamesetup/gamesetup.js:1200 gui/msgbox/msgbox.js:33
+#: gui/gamesetup/gamesetup.js:1114 gui/gamesetup/gamesetup.js:1115
+#: gui/gamesetup/gamesetup.js:1117 gui/gamesetup/gamesetup.js:1170
+#: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
+#: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
+#: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
@@ -370,80 +373,87 @@ msgstr "はい"
 msgid "No"
 msgstr "いいえ"
 
-#: gui/gamesetup/gamesetup.js:1144
-msgid "Explore map:"
-msgstr ""
+#: gui/gamesetup/gamesetup.js:1218
+msgid "Randomly selects a map from the list"
+msgstr "リストの中からマップをランダムに選択"
 
-#: gui/gamesetup/gamesetup.js:1214 gui/lobby/lobby.js:388
+#: gui/gamesetup/gamesetup.js:1225 gui/lobby/lobby.js:389
 msgid "Sorry, no description available."
 msgstr "すみませんが、説明はありません。"
 
-#: gui/gamesetup/gamesetup.js:1220
+#: gui/gamesetup/gamesetup.js:1231
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s人用。%(description)s"
 
-#: gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:1371
 #, python-format
 msgid "AI: %(ai)s"
 msgstr "AI：%(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1365
+#: gui/gamesetup/gamesetup.js:1376
 msgid "Unassigned"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:1567
+#. Translation: IRC system message.
+#: gui/gamesetup/gamesetup.js:1578 gui/gamesetup/gamesetup.js:1583
+#: gui/gamesetup/gamesetup.js:1601 gui/lobby/lobby.js:765
+#, python-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#: gui/gamesetup/gamesetup.js:1578
 #, python-format
 msgid "%(username)s has joined"
 msgstr "%(username)sが参加しました"
 
-#: gui/gamesetup/gamesetup.js:1572
+#: gui/gamesetup/gamesetup.js:1583
 #, python-format
 msgid "%(username)s has left"
 msgstr "%(username)sが退出しました"
 
-#: gui/gamesetup/gamesetup.js:1577
+#: gui/gamesetup/gamesetup.js:1588
 #, python-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1578
+#: gui/gamesetup/gamesetup.js:1589
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1584
+#: gui/gamesetup/gamesetup.js:1595
 #, python-format
-msgid "%(username)s is ready!"
+msgid "* %(username)s is ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1586
+#: gui/gamesetup/gamesetup.js:1597
 #, python-format
-msgid "%(username)s is not ready."
+msgid "* %(username)s is not ready."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1590
-msgid "Game settings have been changed."
-msgstr "ゲーム設定が変更されました。"
+#: gui/gamesetup/gamesetup.js:1601
+msgid "Game settings have been changed"
+msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1615
+#: gui/gamesetup/gamesetup.js:1626
 msgid "I'm not ready"
 msgstr "わたしはまだ準備できていない"
 
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1627
 msgid "State that you are not ready to play."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1621 gui/gamesetup/gamesetup.js:1679
+#: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
 msgid "I'm ready!"
 msgstr "準備できた！"
 
-#: gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1633
 msgid "State that you are ready to play!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1680
+#: gui/gamesetup/gamesetup.js:1703
 msgid "State that you accept the current settings and are ready to play!"
 msgstr ""
 
@@ -456,7 +466,7 @@ msgstr "%(name)s のゲーム"
 msgid "Connecting to server..."
 msgstr "サーバーに接続しています…"
 
-#: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:192
+#: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:189
 #, python-format
 msgid "Net message: %(message)s"
 msgstr "ネットメッセージ: %(message)s"
@@ -524,69 +534,63 @@ msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "未定"
 
-#: gui/lobby/lobby.js:363
+#: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
 msgstr "ランダム選択マップ"
 
-#: gui/lobby/lobby.js:416
+#: gui/lobby/lobby.js:417
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "このゲームのアドレス '%(ip)s' は正しくない形式です。"
 
-#: gui/lobby/lobby.js:494
+#: gui/lobby/lobby.js:495
 #, python-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)sが参加しました。"
 
-#: gui/lobby/lobby.js:503
+#: gui/lobby/lobby.js:504
 #, python-format
 msgid "%(nick)s has left."
 msgstr "%(nick)sが退出しました。"
 
-#: gui/lobby/lobby.js:510
+#: gui/lobby/lobby.js:511
 #, python-format
 msgid "Invalid nickname: %(nick)s"
 msgstr "無効なニックネーム：%(nick)s"
 
-#: gui/lobby/lobby.js:517
+#: gui/lobby/lobby.js:518
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)sは名前を%(newnick)sに変更しました。"
 
-#: gui/lobby/lobby.js:671
+#: gui/lobby/lobby.js:672
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "We're sorry, the '%(cmd)s' command is not supported."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:751
+#: gui/lobby/lobby.js:752
 #, python-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:753
+#: gui/lobby/lobby.js:754
 #, python-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:757 gui/lobby/lobby.js:768 gui/lobby/lobby.js:781
+#: gui/lobby/lobby.js:758 gui/lobby/lobby.js:769 gui/lobby/lobby.js:782
 #, python-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:759 gui/lobby/lobby.js:770 gui/lobby/lobby.js:783
+#: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
 #, python-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
-
-#. Translation: IRC system message.
-#: gui/lobby/lobby.js:764
-#, python-format
-msgid "== %(message)s"
-msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the
@@ -594,25 +598,25 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:795
+#: gui/lobby/lobby.js:796
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
 #. in the options page).
-#: gui/lobby/lobby.js:798
+#: gui/lobby/lobby.js:799
 #, python-format
 msgid "[%(time)s]"
 msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:801
+#: gui/lobby/lobby.js:802
 #, python-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:851
+#: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "スパム行為をしないでください。あなたは30秒間ブロックされました。"
 
@@ -647,7 +651,7 @@ msgstr "<無効>"
 
 #: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:185
 #: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
-#: gui/gamesetup/gamesetup.xml:341 (caption)
+#: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "OK"
@@ -1124,7 +1128,7 @@ msgstr "同盟"
 msgid "Neutral"
 msgstr "中立"
 
-#: gui/session/menu.js:286 gui/session/messages.js:612
+#: gui/session/menu.js:286 gui/session/messages.js:613
 #: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
@@ -1246,136 +1250,136 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "%(resourceType)s %(resourceAmount)s を %(playerName)s に貢ぎます。Shift+クリックで %(greaterAmount)s 貢ぎます。"
 
-#: gui/session/messages.js:205
+#: gui/session/messages.js:202
 msgid "Waiting for other players to connect..."
 msgstr "他のプレイヤーの接続を待っています…"
 
-#: gui/session/messages.js:209
+#: gui/session/messages.js:206
 msgid "Synchronising gameplay with other players..."
 msgstr "他のプレイヤーと進行を同期しています…"
 
-#: gui/session/messages.js:217
+#: gui/session/messages.js:214
 msgid "Connected to the server."
 msgstr "サーバーに接続しました。"
 
-#: gui/session/messages.js:221
+#: gui/session/messages.js:218
 msgid "Connection to the server has been authenticated."
 msgstr "サーバーへの接続が認証されました。"
 
-#: gui/session/messages.js:226
+#: gui/session/messages.js:223
 msgid "Connection to the server has been lost."
 msgstr "サーバーとの接続が失われました。"
 
-#: gui/session/messages.js:226
+#: gui/session/messages.js:223
 msgid "The game has ended."
 msgstr "ゲームはすでに終了しました。"
 
-#: gui/session/messages.js:410
+#: gui/session/messages.js:407
 msgid "Unknown player"
 msgstr "不明なプレイヤー"
 
-#: gui/session/messages.js:418
+#: gui/session/messages.js:415
 #, python-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)sがゲームに参加しました。"
 
-#: gui/session/messages.js:421
+#: gui/session/messages.js:418
 #, python-format
 msgid "%(player)s has left the game."
 msgstr "%(player)sがゲームを離れました。"
 
-#: gui/session/messages.js:426
+#: gui/session/messages.js:423
 msgid "You have been defeated."
 msgstr "あなたは敗北しました。"
 
-#: gui/session/messages.js:428
+#: gui/session/messages.js:425
 #, python-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)sは敗北しました。"
 
-#: gui/session/messages.js:436
+#: gui/session/messages.js:433
 #, python-format
 msgid "You are now allied with %(player)s."
 msgstr "あなたは%(player)sと同盟しました。"
 
-#: gui/session/messages.js:438
+#: gui/session/messages.js:435
 #, python-format
 msgid "You are now at war with %(player)s."
 msgstr "あなたは%(player)sに宣戦しました。"
 
-#: gui/session/messages.js:440
+#: gui/session/messages.js:437
 #, python-format
 msgid "You are now neutral with %(player)s."
 msgstr "あなたは%(player)sと中立になりました。"
 
-#: gui/session/messages.js:446
+#: gui/session/messages.js:443
 #, python-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)sはあなたと同盟しました。"
 
-#: gui/session/messages.js:448
+#: gui/session/messages.js:445
 #, python-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)sはあなたに宣戦しました。"
 
-#: gui/session/messages.js:450
+#: gui/session/messages.js:447
 #, python-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)sはあなたと中立になりました。"
 
-#: gui/session/messages.js:469
+#: gui/session/messages.js:466
 #, python-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s たち と %(lastAmount)s たち"
 
-#: gui/session/messages.js:470 gui/session/utility_functions.js:174
+#: gui/session/messages.js:467 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
 #: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
 #: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:475
+#: gui/session/messages.js:472
 #, python-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)sはあなたに %(amounts)s を送りました。"
 
-#: gui/session/messages.js:485
+#: gui/session/messages.js:482
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "%(attacker)sが攻撃してきました！"
 
-#: gui/session/messages.js:498 gui/session/messages.js:503
+#: gui/session/messages.js:499 gui/session/messages.js:504
 #, python-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:511 gui/session/messages.js:515
+#: gui/session/messages.js:512 gui/session/messages.js:516
 #, python-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:523 gui/session/messages.js:524
+#: gui/session/messages.js:524 gui/session/messages.js:525
 #, python-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:527 gui/session/messages.js:532
+#: gui/session/messages.js:528 gui/session/messages.js:533
 #, python-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:540 gui/session/messages.js:541
+#: gui/session/messages.js:541 gui/session/messages.js:542
 #, python-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:599 gui/gamesetup/gamesetup.xml:86 (caption)
+#: gui/session/messages.js:600 gui/gamesetup/gamesetup.xml:61 (caption)
 #: gui/session/session.xml:437 (caption)
 msgid "Team"
 msgstr "チーム"
 
-#: gui/session/messages.js:632
+#: gui/session/messages.js:633
 msgid "Private"
 msgstr "プライベート"
 
@@ -2771,109 +2775,164 @@ msgstr "読込中"
 msgid "Loading map data. Please wait..."
 msgstr "マップデータ読み込み中。しばらくお待ちください…"
 
-#: gui/gamesetup/gamesetup.xml:42 (caption)
-msgid "Number of players:"
-msgstr "プレイヤーの人数："
-
-#: gui/gamesetup/gamesetup.xml:54 (tooltip)
-msgid "Select number of players."
-msgstr "プレイヤーの人数を選択します。"
-
-#: gui/gamesetup/gamesetup.xml:65 (caption)
+#: gui/gamesetup/gamesetup.xml:40 (caption)
 msgid "Player Name"
 msgstr "プレイヤー名"
 
-#: gui/gamesetup/gamesetup.xml:68 (caption)
+#: gui/gamesetup/gamesetup.xml:43 (caption)
 msgid "Player Placement"
 msgstr "プレイヤーの割当"
 
-#: gui/gamesetup/gamesetup.xml:71 (caption) gui/session/session.xml:434
+#: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:434
 #: (caption)
 msgid "Civilization"
 msgstr "文明"
 
-#: gui/gamesetup/gamesetup.xml:80 (tooltip)
+#: gui/gamesetup/gamesetup.xml:55 (tooltip)
 msgid "View civilization info"
 msgstr "文明の情報を見る"
 
-#: gui/gamesetup/gamesetup.xml:95 (tooltip)
+#: gui/gamesetup/gamesetup.xml:70 (tooltip)
 msgid "Select player."
 msgstr "プレイヤーを選択します。"
 
-#: gui/gamesetup/gamesetup.xml:104 (tooltip)
+#: gui/gamesetup/gamesetup.xml:79 (tooltip)
 msgid "Configure AI settings."
 msgstr "AIの設定を調整します。"
 
-#: gui/gamesetup/gamesetup.xml:107 (tooltip)
+#: gui/gamesetup/gamesetup.xml:82 (tooltip)
 msgid "Select player's civilization."
 msgstr "プレイヤーの文明を選択します。"
 
-#: gui/gamesetup/gamesetup.xml:111 (tooltip)
+#: gui/gamesetup/gamesetup.xml:86 (tooltip)
 msgid "Select player's team."
 msgstr "プレイヤーのチームを選択します。"
 
-#: gui/gamesetup/gamesetup.xml:124 (caption)
+#: gui/gamesetup/gamesetup.xml:98 (caption)
 msgid "Match Type:"
 msgstr "対戦の種類："
 
-#: gui/gamesetup/gamesetup.xml:127 (caption)
+#: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
 msgstr "マップ絞込み："
 
-#: gui/gamesetup/gamesetup.xml:130 (caption)
+#: gui/gamesetup/gamesetup.xml:104 (caption)
 msgid "Select Map:"
 msgstr "マップ選択："
 
-#: gui/gamesetup/gamesetup.xml:133 (caption) gui/lobby/lobby.xml:76 (caption)
-msgid "Map Size:"
-msgstr "マップの大きさ："
+#: gui/gamesetup/gamesetup.xml:107 (caption)
+msgid "Number of Players:"
+msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:149 (tooltip)
+#: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
 msgstr "マップの種類を選択します。"
 
-#: gui/gamesetup/gamesetup.xml:158 (tooltip)
+#: gui/gamesetup/gamesetup.xml:136 (tooltip)
 msgid "Select a map filter."
 msgstr "マップの絞込みを選択します。"
 
-#: gui/gamesetup/gamesetup.xml:169 (tooltip)
+#: gui/gamesetup/gamesetup.xml:146 (tooltip)
 msgid "Select a map to play on."
 msgstr "プレイするマップを選択します。"
 
-#: gui/gamesetup/gamesetup.xml:175 (tooltip)
+#: gui/gamesetup/gamesetup.xml:157 (tooltip)
+msgid "Select number of players."
+msgstr "プレイヤーの人数を選択します。"
+
+#: gui/gamesetup/gamesetup.xml:162 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "マップの大きさを選択します。（大きくなるほど性能が落ちることがあります）"
 
-#: gui/gamesetup/gamesetup.xml:200 (caption) gui/session/session.xml:402
+#: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:402
 #: (caption)
 msgid "Send"
 msgstr "送信"
 
-#: gui/gamesetup/gamesetup.xml:214 (caption)
+#: gui/gamesetup/gamesetup.xml:201 (caption)
 msgid "[Tooltip text]"
 msgstr "[Tooltip text]"
 
-#: gui/gamesetup/gamesetup.xml:226 (caption)
+#: gui/gamesetup/gamesetup.xml:213 (caption)
 msgid "Start game!"
 msgstr "ゲーム開始！"
 
-#: gui/gamesetup/gamesetup.xml:227 (tooltip)
+#: gui/gamesetup/gamesetup.xml:214 (tooltip)
 msgid "Start a new game with the current settings."
 msgstr "現在の設定で新しいゲームを開始します。"
 
-#: gui/gamesetup/gamesetup.xml:244 (caption) gui/lobby/lobby.xml:214 (caption)
+#: gui/gamesetup/gamesetup.xml:231 (caption) gui/lobby/lobby.xml:214 (caption)
 msgid "Back"
 msgstr "戻る"
 
-#: gui/gamesetup/gamesetup.xml:266 (caption)
+#: gui/gamesetup/gamesetup.xml:253 (caption) gui/gamesetup/gamesetup.xml:265
+#: (caption)
 msgid "More Options"
 msgstr "さらなるオプション"
 
-#: gui/gamesetup/gamesetup.xml:267 (tooltip)
+#: gui/gamesetup/gamesetup.xml:254 (tooltip)
 msgid "See more game options"
 msgstr "ゲームのさらなるオプションを見ます"
 
-#: gui/gamesetup/gamesetup.xml:342 (tooltip)
+#: gui/gamesetup/gamesetup.xml:270 (caption)
+msgid "Game Speed:"
+msgstr "ゲーム速度："
+
+#: gui/gamesetup/gamesetup.xml:274 (tooltip)
+msgid "Select game speed."
+msgstr "ゲーム速度を選択します。"
+
+#: gui/gamesetup/gamesetup.xml:284 (tooltip)
+msgid "Select victory condition."
+msgstr "勝利条件を選択します。"
+
+#: gui/gamesetup/gamesetup.xml:290 (caption)
+msgid "Population Cap:"
+msgstr "人口上限："
+
+#: gui/gamesetup/gamesetup.xml:294 (tooltip)
+msgid "Select population cap."
+msgstr "人口上限を選択します。"
+
+#: gui/gamesetup/gamesetup.xml:300 (caption)
+msgid "Starting Resources:"
+msgstr "開始時資源："
+
+#: gui/gamesetup/gamesetup.xml:304 (tooltip)
+msgid "Select the game's starting resources."
+msgstr "ゲーム開始時の資源を選択します。"
+
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.xml:314 (tooltip)
+msgid "Toggle reveal map (see everything)."
+msgstr "マップを探索済にするか切り替えます（すべて見えます）。"
+
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.xml:324 (tooltip)
+msgid "Toggle explore map (see gaia and buildings)."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:334 (tooltip)
+msgid "Toggle locked teams."
+msgstr "チームを固定するか切り替えます。"
+
+#: gui/gamesetup/gamesetup.xml:340 (caption)
+msgid "Cheats:"
+msgstr "チート："
+
+#: gui/gamesetup/gamesetup.xml:344 (tooltip)
+msgid "Toggle the usability of cheats."
+msgstr "チートを利用可能にするか切り替えます。"
+
+#: gui/gamesetup/gamesetup.xml:350 (caption)
+msgid "Rated Game:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:354 (tooltip)
+msgid "Toggle if this game will be rated for the leaderboard."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:367 (tooltip)
 msgid "Close more game options window"
 msgstr "ゲームのさらなるオプションウィンドウを閉じます"
 
@@ -2927,11 +2986,11 @@ msgid "Status"
 msgstr "ステータス"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:210 (heading) gui/session/session.xml:431 (caption)
+#: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:431 (caption)
 msgid "Name"
 msgstr "名前"
 
-#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:207 (heading)
+#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
 msgid "Rating"
 msgstr "レイティング"
 
@@ -2964,12 +3023,12 @@ msgid "Map Name"
 msgstr "マップ名"
 
 #: gui/lobby/lobby.xml:135 (heading)
-msgid "Map Size"
-msgstr "マップの大きさ"
+msgid "Size"
+msgstr ""
 
 #: gui/lobby/lobby.xml:138 (heading)
-msgid "Map Type"
-msgstr "マップの種類"
+msgid "Type"
+msgstr ""
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
@@ -3657,7 +3716,7 @@ msgstr "マップ\\n探索"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "0 A.D. Empires Ascendant マルチプレイヤーロビーサービス規約"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -3667,7 +3726,7 @@ msgstr ""
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "「サービス」とは、Wildfire Games (WFG)が提供する0 A.D. Empires Ascendant マルチプレイヤーロビーを指します。"
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
@@ -3755,7 +3814,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "0 A.D. Empires Ascendant マルチプレイヤーロビー利用規約"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
@@ -5967,7 +6026,7 @@ msgstr "特急 (2 倍速)"
 #: maps/skirmishes/Acropolis Bay (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Bactria (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Belgian Bog (2).xml:42:PlayerData[0].Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Caspian Sea (2v2).xml:42:PlayerData[0].Name
 #: maps/skirmishes/Corinthian Isthmus (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:PlayerData[0].Name
@@ -6030,7 +6089,7 @@ msgstr "プレイヤー 1"
 #: maps/skirmishes/Acropolis Bay (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Bactria (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Belgian Bog (2).xml:42:PlayerData[1].Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Caspian Sea (2v2).xml:42:PlayerData[1].Name
 #: maps/skirmishes/Corinthian Isthmus (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:PlayerData[1].Name
@@ -8829,7 +8888,7 @@ msgstr "従来軍 対 軍制改革"
 #: civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
-msgstr ""
+msgstr "マウリヤ帝国からのインド戦象たち 20 頭の一括払い。"
 
 #: civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Marriage Alliance"
@@ -9752,7 +9811,7 @@ msgstr "馬面甲"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/health_walls_geometric_masonry.jsonrequirementsTooltip
-#: simulation/data/technologies/melee_inf_training.jsonrequirementsTooltip
+#: simulation/data/technologies/melee_inf_sidearms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_civic_01.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
@@ -9820,7 +9879,7 @@ msgstr "鉄製ヒーロー鎧"
 #: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_temple.jsonrequirementsTooltip
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
-#: simulation/data/technologies/melee_inf_spearfighting.jsonrequirementsTooltip
+#: simulation/data/technologies/melee_inf_spearheads.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_civic_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
@@ -9913,7 +9972,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
-msgstr ""
+msgstr "ラミネート加工リネン胴鎧"
 
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.spart
@@ -9935,6 +9994,10 @@ msgstr "青銅の小札を装甲にした鎧です。"
 msgid "Scale Body Armor"
 msgstr "小札鎧"
 
+#: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
+msgid "Lorica Squamata"
+msgstr "Lorica Squamata"
+
 #: simulation/data/technologies/armor_infantry_hack_04.jsondescription
 msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
@@ -9950,6 +10013,10 @@ msgstr "チャンピオンの打撃装甲レベルが2上がりますが、金�
 msgid "Bronze Cuirass Body Armor"
 msgstr ""
 
+#: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
+msgid "Lorica Musculata"
+msgstr "Lorica Musculata"
+
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
 msgstr "合板を用いて大きな盾を作ります。"
@@ -9959,18 +10026,12 @@ msgid "Infantry Spearmen +2 Pierce Armor Levels."
 msgstr "槍歩兵の貫通装甲レベルを 2上げます。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.maur
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.celt
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.cart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.rome
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.gaul
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.iber
 msgid "Plywood Shield Construction"
 msgstr "合板製の盾"
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
@@ -9991,10 +10052,12 @@ msgstr "槍歩兵の貫通装甲レベルを 1上げます。"
 msgid "Reinforced Shield"
 msgstr "盾の補強"
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.sele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 msgid "Aspides"
 msgstr "Aspides"
 
@@ -10008,11 +10071,13 @@ msgstr "槍歩兵の貫通装甲レベルを1上げます。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
-msgstr ""
+msgstr "青銅シールド仕上げ"
 
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.hele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.hele
 #: simulation/templates/units/sele_infantry_spearman_b.xml:15
 msgid "Chalkaspides"
 msgstr "Chalkaspides"
@@ -10036,10 +10101,12 @@ msgstr "チャンピオンの貫通装甲レベルが2上がりますが、金�
 msgid "Silver Shields"
 msgstr "銀の盾"
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.sele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 msgid "Argyraspides"
 msgstr "Argyraspides"
 
@@ -10133,12 +10200,12 @@ msgstr "Hasta"
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
-msgstr "防衛隊ユニットたちは戦闘において尋常でない勇敢さと剛勇さを持ちます。"
+msgstr "防衛隊ユニットは戦闘において非凡な勇敢さと武勇を発揮します。"
 
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr ""
+msgstr "防衛隊ユニットは戦闘において非凡な度胸と武勇を発揮します。チャンピオンは攻撃力が2増加します。"
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
@@ -10547,47 +10614,56 @@ msgstr "城壁の衝突装甲レベルが2上がりますが、  建設時間が
 msgid "Geometric Masonry"
 msgstr ""
 
-#: simulation/data/technologies/melee_inf_spearfighting.jsondescription
-msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr "青銅の代わりに鉄を使用することで槍の貫通力が上昇しました。"
+#: simulation/data/technologies/melee_inf_sidearms.jsondescription
+msgid ""
+"Often, an infantryman would carry a secondary weapon in addition to his "
+"primary weapon of choice, to be drawn when the primary weapon has failed or "
+"been broken."
+msgstr "多くの場合、歩兵は第二の武器を、通常好まれる主要な武器に加えて携行し、主要な武器が失敗あるいは壊れた際に引き抜いたものでした。"
 
-#: simulation/data/technologies/melee_inf_spearfighting.jsontooltip
-msgid "All Spear units +2 hack attack."
-msgstr "すべての槍ユニットが打撃攻撃 +2。"
-
-#: simulation/data/technologies/melee_inf_spearfighting.jsongenericName
-msgid "Iron Spearheads"
-msgstr "鉄の槍頭"
-
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.ptol
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.spart
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.sele
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.theb
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.athen
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.hele
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.mace
-msgid "Siderénies Aichmés"
-msgstr "Siderénies Aichmés"
-
-#: simulation/data/technologies/melee_inf_training.jsondescription
-msgid "Training increases damage of melee infantry units."
-msgstr "近接攻撃歩兵の攻撃力を強化する訓練です。"
-
-#: simulation/data/technologies/melee_inf_training.jsontooltip
+#: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
 msgstr "近接攻撃歩兵の打撃攻撃力 +1。"
 
-#: simulation/data/technologies/melee_inf_training.jsongenericName
-msgid "Weapons Training"
-msgstr ""
+#: simulation/data/technologies/melee_inf_sidearms.jsongenericName
+msgid "Side Arms"
+msgstr "携帯武器"
 
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.hele
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.mace
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.spart
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.theb
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.athen
-msgid "Hoplomachia"
-msgstr "Hoplomachia"
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.ptol
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.spart
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.sele
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.theb
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.athen
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.hele
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
+msgid "Xíphos"
+msgstr "Xíphos"
+
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.rome
+msgid "Pugio"
+msgstr "Pugio"
+
+#: simulation/data/technologies/melee_inf_spearheads.jsondescription
+msgid "Using iron instead of bronze gave spears additional piercing power."
+msgstr "青銅の代わりに鉄を使用することで槍の貫通力が上昇しました。"
+
+#: simulation/data/technologies/melee_inf_spearheads.jsontooltip
+msgid "All Spear units +2 hack attack."
+msgstr "すべての槍ユニットが打撃攻撃 +2。"
+
+#: simulation/data/technologies/melee_inf_spearheads.jsongenericName
+msgid "Iron Spearheads"
+msgstr "鉄の槍頭"
+
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.theb
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.hele
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.mace
+msgid "Siderénies Aichmés"
+msgstr "Siderénies Aichmés"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
@@ -10631,12 +10707,12 @@ msgid "Females vs. Population"
 msgstr "女性 対 人口"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
-msgid "Training vs. Irregulars"
-msgstr "訓練 対 不正規兵"
+msgid "Side Arms vs. Irregulars"
+msgstr "携帯武器 対 不正規兵"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
-msgstr ""
+msgstr "対散兵としての槍による戦闘"
 
 #: simulation/data/technologies/pair_inf_armor_01.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_02.jsongenericName
@@ -10893,13 +10969,15 @@ msgstr "遠隔攻撃歩兵の貫通攻撃力 +2。"
 msgid "Ranged Infantry Irregulars"
 msgstr "不正規遠隔攻撃歩兵"
 
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.hele
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.spart
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.sele
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.theb
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.athen
-msgid "Psiloi"
-msgstr "Psiloi"
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.hele
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
+msgid "Átaktoi"
+msgstr "Átaktoi"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -11067,11 +11145,11 @@ msgstr "歩兵の徴用"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
-msgstr "ドックでの船舶たちのバッチ処理スピードの目に見える向上。"
+msgstr "港での船舶の一括建造の速度が著しく増加します。"
 
 #: simulation/data/technologies/training_naval_architects.jsontooltip
 msgid "Docks increased batch construction speed bonus."
-msgstr ""
+msgstr "港での一括建造速度が増加します。"
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
@@ -11261,7 +11339,7 @@ msgstr "ケルティベリア傭兵将官を雇うと、イベリア傭兵の金
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
-msgstr "ケルティ・イベリア傭兵将官"
+msgstr "ケルティベリア傭兵将官"
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
@@ -11290,19 +11368,19 @@ msgstr "イタリオテ傭兵将官"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
 msgid "Celtic merc cost vs. recruit time #1"
-msgstr "ケルト傭兵コスト対採用時間 #1"
+msgstr "ケルト傭兵コスト 対 採用時間 #1"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_2.jsongenericName
 msgid "Celtic merc cost vs. recruit time #2"
-msgstr "ケルト傭兵コスト対採用時間 #2"
+msgstr "ケルト傭兵コスト 対 採用時間 #2"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_1.jsongenericName
 msgid "Iberian merc cost vs. recruit time #1"
-msgstr "イベリア傭兵コスト対採用時間 #1"
+msgstr "イベリア傭兵コスト 対 採用時間 #1"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_2.jsongenericName
 msgid "Iberian merc cost vs. recruit time #2"
-msgstr "イベリア傭兵コスト対採用時間 #2"
+msgstr "イベリア傭兵コスト 対 採用時間 #2"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_1.jsongenericName
 msgid "Italian merc cost vs. recruit time #1"
@@ -11325,11 +11403,11 @@ msgstr "カルタゴ人は探検家でした。すべての商人と船舶の視
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
 msgid ""
 "Significantly increase build speed of batches of ships at the Shipyard."
-msgstr ""
+msgstr "造船所での船舶たちの建造バッチ処理スピードの著しい向上。"
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
 msgid "Shipyard increased batch construction speed bonus."
-msgstr ""
+msgstr "造船所でのバッチ建造速度ボーナスが上がります。"
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
@@ -12295,7 +12373,7 @@ msgstr "チャンピオン剣士"
 
 #: simulation/templates/template_unit_champion_ranged.xml:4
 msgid "Champion Ranged"
-msgstr ""
+msgstr "チャンピオン射撃兵"
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
@@ -12525,7 +12603,7 @@ msgstr "釣り舟"
 msgid ""
 "Classes: Mechanical Ship Trader.\n"
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% for each garrisoned). Gather profitable aquatic treasures."
-msgstr "港の間で交易をします。船に商人を乗せると利益が増加します（一人につき +20%）。水中の価値のある財宝を回収できます。"
+msgstr "分類：機械　船舶　商人。\n港の間で交易をします。船に商人を乗せると利益が増加します（一人につき +20%）。水中の価値のある財宝を回収できます。"
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
@@ -12572,7 +12650,7 @@ msgid ""
 "Classes: Siege Ranged Catapult.\n"
 "Counters: Structures and Massed Infantry. Causes splash damage.\n"
 "Countered by: Melee Cavalry."
-msgstr ""
+msgstr "分類：攻城　遠隔　投石器。\n得意：建物、密集した歩兵。隊列を崩す効果。\n苦手：近接戦闘騎兵。"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:54
 msgid "Siege Catapult"
@@ -13871,7 +13949,7 @@ msgstr "Mijdil"
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr "魚を採集する漁船や、他国の港と貿易する交易船を建造します。"
+msgstr "魚を採集する漁船や、他の港と貿易する交易船を建造します。"
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
@@ -14247,7 +14325,7 @@ msgstr ""
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
-msgstr ""
+msgstr "傭兵基地（エジプト）"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
@@ -15582,9 +15660,8 @@ msgid "Gaesata"
 msgstr "Gaesata"
 
 #: simulation/templates/units/celt_hero_brennus.xml:14
-#: simulation/templates/units/gaul_hero_brennus.xml:14
-msgid "Hero Aura: +5 Metal loot for every enemy unit killed."
-msgstr "英雄オーラ：　+5の金属を敵ユニット殺害ごとに獲得します。"
+msgid "Hero Aura: +10 Metal loot for every enemy unit killed."
+msgstr "英雄オーラ：10の金属を敵ユニット殺害ごとに略奪します。"
 
 #: simulation/templates/units/celt_hero_brennus.xml:13
 #: simulation/templates/units/gaul_hero_brennus.xml:13
@@ -15610,6 +15687,10 @@ msgstr "英雄オーラ： 彼のオーラの中のすべてのユニットの�
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:24
 msgid "Vercingetorix"
 msgstr "ウェルキンゲトリクス"
+
+#: simulation/templates/units/gaul_hero_brennus.xml:14
+msgid "Hero Aura: +5 Metal loot for every enemy unit killed."
+msgstr "英雄オーラ：　+5の金属を敵ユニット殺害ごとに獲得します。"
 
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:6
 msgid "Thessalian Scout"
@@ -16498,7 +16579,7 @@ msgid ""
 "Classes: Hero Melee Elephant.\n"
 "\"Mercenary Patron\" Aura: Mercenaries cost -50% during his lifetime.\n"
 "\"Construction\" Aura: -10% build time for nearby structures."
-msgstr ""
+msgstr "分類：英雄　近接　象。\n「傭兵保護者」オーラ：存命中、傭兵コストが50%減。\n「建設」オーラ：近くの建物の建設時間が10%減。"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Ptolemy I \"Savior\""
@@ -17954,14 +18035,14 @@ msgstr "乾燥し鉱物に富んだバクトリア（今日のアフガニスタ
 msgid "Bactria (2)"
 msgstr "バクトリア (2)"
 
-#: maps/skirmishes/Belgian Bog (2).xml:42:Description
+#: maps/skirmishes/Belgian Bog (2).xml:41:Description
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
-"Wood is in abundance, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
+"Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
 msgstr "2プレイヤーがライン低地のどこかにある大きな沼地を挟んで対決します。\n\n木材は豊富ですが、金属と石材の発見と採掘は困難です。狩猟採集は容易です。"
 
-#: maps/skirmishes/Belgian Bog (2).xml:42:Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:Name
 msgid "Belgian Bog (2)"
 msgstr "ベルギーの沼地 (2)"
 

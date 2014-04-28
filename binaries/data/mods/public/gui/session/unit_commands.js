@@ -715,6 +715,15 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			{
 				button.enabled = false;
 				button.tooltip += "\n" + GetTechnologyData(entType).requirementsTooltip;
+				if (GetTechnologyData(entType).classRequirements)
+				{
+					var player = Engine.GetPlayerID();
+					var current = GetSimState().players[player].classCounts[GetTechnologyData(entType).classRequirements.class];
+					// If current is undefined, this means no building filling the requirement has been found
+					current = current ? current : 0;
+					var remaining = GetTechnologyData(entType).classRequirements.number - current;
+					button.tooltip += " " + sprintf(translatePlural("Remaining: %(number)s to build.", "Remaining: %(number)s to build.", remaining), { number: remaining});
+				}
 				grayscale = "grayscale:";
 				affordableMask.hidden = false;
 				affordableMask.sprite = "colour: 0 0 0 127";

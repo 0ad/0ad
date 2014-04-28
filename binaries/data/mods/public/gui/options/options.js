@@ -7,6 +7,7 @@ var options = {
 	[
 		[translate("Windowed Mode"), translate("Start 0 A.D. in a window"), {"config":"windowed"}, "boolean"],
 		[translate("Background Pause"), translate("Pause single player games when window loses focus"), {"config":"pauseonfocusloss"}, "boolean"],
+		[translate("Disable Welcome Screen"), translate("If you disable this screen completely, you may miss important announcements.\nYou can still launch it using the main menu."), {"config":"splashscreendisable"}, "boolean"],
 		[translate("Developer Overlay"), translate("Show overlay in-game with options such as reveal map, control all units, and change perspective. Designed for use by developers"), {"config":"developeroverlay.enable"}, "boolean"],
 	],
 	"graphicsSetting":
@@ -16,7 +17,7 @@ var options = {
 		[translate("Shadows"), translate("Enable shadows"), {"renderer":"Shadows", "config":"shadows"}, "boolean"],
 		[translate("Particles"), translate("Enable particles"), {"renderer":"Particles", "config":"particles"}, "boolean"],
 		[translate("Show Sky"), translate("Render Sky"), {"renderer":"ShowSky", "config":"showsky"}, "boolean"],
-		[translate("Smooth LOS"), translate("Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."), {"renderer":"SmoothLOS", "config":"smoothlos"}, "boolean"],
+		[translate("Smooth LOS"), translate("Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"), {"renderer":"SmoothLOS", "config":"smoothlos"}, "boolean"],
 		[translate("Unit Silhouettes"), translate("Show outlines of units behind buildings"), {"renderer":"Silhouettes", "config":"silhouettes"}, "boolean"],
 		[translate("Shadow Filtering"), translate("Smooth shadows"), {"renderer":"ShadowPCF", "config":"shadowpcf"}, "boolean"],
 		[translate("HQ Waviness"), translate("Use real normals for ocean-wave rendering, instead of applying them as a flat texture"), {"renderer":"WaterNormal", "config":"waternormals"}, "boolean"],

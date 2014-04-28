@@ -22,13 +22,14 @@
 # tnt, 2013
 # xiqum <vincent@xiqum.net>, 2013
 # Spijker <woartel@hotmail.com>, 2014
+# Yves_G, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-27 11:59+0200\n"
-"PO-Revision-Date: 2014-04-27 10:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-04-27 22:12+0200\n"
+"PO-Revision-Date: 2014-04-28 09:40+0000\n"
+"Last-Translator: sanderd17\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -121,11 +122,11 @@ msgstr "Geschiedenis van de %(civilization)s"
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
-#: gui/common/functions_utility.js:263
+#: gui/common/functions_utility.js:260
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:265
+#: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -279,8 +280,8 @@ msgctxt "map"
 msgid "Skirmish"
 msgstr "Schermutselen"
 
-#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:614
-#: gui/gamesetup/gamesetup.js:650 gui/lobby/lobby.js:37
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:629
+#: gui/gamesetup/gamesetup.js:1217 gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
 msgstr "Willekeurig"
@@ -290,8 +291,8 @@ msgstr "Willekeurig"
 msgid "Scenario"
 msgstr "Scenario"
 
-#: gui/gamesetup/gamesetup.js:147 gui/gamesetup/gamesetup.js:1119
-#: gui/gamesetup/gamesetup.js:1196
+#: gui/gamesetup/gamesetup.js:147 gui/gamesetup/gamesetup.js:1123
+#: gui/gamesetup/gamesetup.js:1200
 msgid "Default"
 msgstr "Standaard"
 
@@ -312,50 +313,53 @@ msgctxt "team"
 msgid "None"
 msgstr "Geen"
 
-#: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1259
+#: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1270
 msgctxt "civilization"
 msgid "Random"
 msgstr "Willekeurig"
 
-#: gui/gamesetup/gamesetup.js:650
-msgid "Randomly selects a map from the list"
-msgstr "Selecteer een willekeurige kaart uit de lijst"
-
-#: gui/gamesetup/gamesetup.js:749 gui/gamesetup/gamesetup.js:866
+#: gui/gamesetup/gamesetup.js:753 gui/gamesetup/gamesetup.js:870
 #: gui/session/session.js:19
 msgid "You"
 msgstr "Jij"
 
-#: gui/gamesetup/gamesetup.js:943
+#: gui/gamesetup/gamesetup.js:947
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1082
-msgid "Map size:"
-msgstr "Kaartgrootte:"
+#: gui/gamesetup/gamesetup.js:1086 gui/gamesetup/gamesetup.xml:110 (caption)
+#: gui/lobby/lobby.xml:76 (caption)
+msgid "Map Size:"
+msgstr "Kaart grootte:"
 
-#: gui/gamesetup/gamesetup.js:1084 gui/gamesetup/gamesetup.js:1143
-msgid "Reveal map:"
-msgstr "Toon volledige kaart:"
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
+#: gui/gamesetup/gamesetup.xml:310 (caption)
+msgid "Reveal Map:"
+msgstr "Toon kaart:"
 
-#: gui/gamesetup/gamesetup.js:1085
-msgid "Explored map:"
-msgstr "Verken kaart"
-
+#. Make sure to differentiate between the reveal map and explore map options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
-msgid "Victory condition:"
-msgstr "Overwinningsconditie:"
+#: gui/gamesetup/gamesetup.xml:320 (caption)
+msgid "Explore Map:"
+msgstr "Verken kaart:"
 
-#: gui/gamesetup/gamesetup.js:1091 gui/gamesetup/gamesetup.js:1150
-msgid "Teams locked:"
-msgstr "Teams vastgezet:"
+#: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
+#: gui/gamesetup/gamesetup.xml:280 (caption)
+msgid "Victory Condition:"
+msgstr "Overwinningsvoorwaarde:"
 
-#: gui/gamesetup/gamesetup.js:1110 gui/gamesetup/gamesetup.js:1111
-#: gui/gamesetup/gamesetup.js:1113 gui/gamesetup/gamesetup.js:1166
-#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1169
-#: gui/gamesetup/gamesetup.js:1197 gui/gamesetup/gamesetup.js:1198
-#: gui/gamesetup/gamesetup.js:1200 gui/msgbox/msgbox.js:33
+#: gui/gamesetup/gamesetup.js:1095 gui/gamesetup/gamesetup.js:1154
+#: gui/gamesetup/gamesetup.xml:330 (caption)
+msgid "Teams Locked:"
+msgstr "Teams vergrendeld:"
+
+#: gui/gamesetup/gamesetup.js:1114 gui/gamesetup/gamesetup.js:1115
+#: gui/gamesetup/gamesetup.js:1117 gui/gamesetup/gamesetup.js:1170
+#: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
+#: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
+#: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
@@ -363,11 +367,11 @@ msgstr "Teams vastgezet:"
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/gamesetup/gamesetup.js:1110 gui/gamesetup/gamesetup.js:1111
-#: gui/gamesetup/gamesetup.js:1113 gui/gamesetup/gamesetup.js:1166
-#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1169
-#: gui/gamesetup/gamesetup.js:1197 gui/gamesetup/gamesetup.js:1198
-#: gui/gamesetup/gamesetup.js:1200 gui/msgbox/msgbox.js:33
+#: gui/gamesetup/gamesetup.js:1114 gui/gamesetup/gamesetup.js:1115
+#: gui/gamesetup/gamesetup.js:1117 gui/gamesetup/gamesetup.js:1170
+#: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
+#: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
+#: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
 #: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
@@ -375,81 +379,88 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nee"
 
-#: gui/gamesetup/gamesetup.js:1144
-msgid "Explore map:"
-msgstr "Verken kaart:"
+#: gui/gamesetup/gamesetup.js:1218
+msgid "Randomly selects a map from the list"
+msgstr "Selecteer een willekeurige kaart uit de lijst"
 
-#: gui/gamesetup/gamesetup.js:1214 gui/lobby/lobby.js:388
+#: gui/gamesetup/gamesetup.js:1225 gui/lobby/lobby.js:389
 msgid "Sorry, no description available."
 msgstr "Sorry, geen beschrijving beschikbaar."
 
-#: gui/gamesetup/gamesetup.js:1220
+#: gui/gamesetup/gamesetup.js:1231
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s player. %(description)s"
 msgstr[1] "%(number)s spelers. %(description)s"
 
-#: gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:1371
 #, python-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1365
+#: gui/gamesetup/gamesetup.js:1376
 msgid "Unassigned"
 msgstr "Niet toegekend"
 
-#: gui/gamesetup/gamesetup.js:1567
+#. Translation: IRC system message.
+#: gui/gamesetup/gamesetup.js:1578 gui/gamesetup/gamesetup.js:1583
+#: gui/gamesetup/gamesetup.js:1601 gui/lobby/lobby.js:765
+#, python-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#: gui/gamesetup/gamesetup.js:1578
 #, python-format
 msgid "%(username)s has joined"
 msgstr "%(username)s heeft zich aangesloten"
 
-#: gui/gamesetup/gamesetup.js:1572
+#: gui/gamesetup/gamesetup.js:1583
 #, python-format
 msgid "%(username)s has left"
 msgstr "%(username)s is verdwenen"
 
-#: gui/gamesetup/gamesetup.js:1577
+#: gui/gamesetup/gamesetup.js:1588
 #, python-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1578
+#: gui/gamesetup/gamesetup.js:1589
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1584
+#: gui/gamesetup/gamesetup.js:1595
 #, python-format
-msgid "%(username)s is ready!"
-msgstr "%(username)s is gereed!"
+msgid "* %(username)s is ready!"
+msgstr "* %(username)s is gereed!"
 
-#: gui/gamesetup/gamesetup.js:1586
+#: gui/gamesetup/gamesetup.js:1597
 #, python-format
-msgid "%(username)s is not ready."
-msgstr "%(username)s is niet gereed."
+msgid "* %(username)s is not ready."
+msgstr "* %(username)s is niet gereed."
 
-#: gui/gamesetup/gamesetup.js:1590
-msgid "Game settings have been changed."
-msgstr "Spelinstellingen zijn veranderd."
+#: gui/gamesetup/gamesetup.js:1601
+msgid "Game settings have been changed"
+msgstr "Spelinstellingen zijn veranderd"
 
-#: gui/gamesetup/gamesetup.js:1615
+#: gui/gamesetup/gamesetup.js:1626
 msgid "I'm not ready"
 msgstr "Ik ben niet gereed"
 
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1627
 msgid "State that you are not ready to play."
 msgstr "Geef aan dat je nog niet klaar bent om te spelen."
 
-#: gui/gamesetup/gamesetup.js:1621 gui/gamesetup/gamesetup.js:1679
+#: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
 msgid "I'm ready!"
 msgstr "Ik ben gereed!"
 
-#: gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1633
 msgid "State that you are ready to play!"
 msgstr "Geef aan dat je klaar bent om te spelen!"
 
-#: gui/gamesetup/gamesetup.js:1680
+#: gui/gamesetup/gamesetup.js:1703
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Geef aan dat je de huidige instellingen aanvaard, en dat je klaar bent om te spelen."
 
@@ -462,7 +473,7 @@ msgstr "Spel van %(name)s"
 msgid "Connecting to server..."
 msgstr "Verbinden met de server..."
 
-#: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:192
+#: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:189
 #, python-format
 msgid "Net message: %(message)s"
 msgstr "Net bericht: %(message)s"
@@ -530,69 +541,63 @@ msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gui/lobby/lobby.js:363
+#: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
 msgstr "Een willekeurig geselecteerde kaart."
 
-#: gui/lobby/lobby.js:416
+#: gui/lobby/lobby.js:417
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Het adres '%(ip)s' blijkt niet geldig."
 
-#: gui/lobby/lobby.js:494
+#: gui/lobby/lobby.js:495
 #, python-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s komt binnen."
 
-#: gui/lobby/lobby.js:503
+#: gui/lobby/lobby.js:504
 #, python-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s is vertrokken."
 
-#: gui/lobby/lobby.js:510
+#: gui/lobby/lobby.js:511
 #, python-format
 msgid "Invalid nickname: %(nick)s"
 msgstr "Ongeldige gebruikersnaam: %(nick)s"
 
-#: gui/lobby/lobby.js:517
+#: gui/lobby/lobby.js:518
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s heeft zijn naam gewijzigd naar %(newnick)s."
 
-#: gui/lobby/lobby.js:671
+#: gui/lobby/lobby.js:672
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "Onze excuses, het commando '%(cmd)s' wordt niet ondersteund."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:751
+#: gui/lobby/lobby.js:752
 #, python-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:753
+#: gui/lobby/lobby.js:754
 #, python-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:757 gui/lobby/lobby.js:768 gui/lobby/lobby.js:781
+#: gui/lobby/lobby.js:758 gui/lobby/lobby.js:769 gui/lobby/lobby.js:782
 #, python-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:759 gui/lobby/lobby.js:770 gui/lobby/lobby.js:783
+#: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
 #, python-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
-
-#. Translation: IRC system message.
-#: gui/lobby/lobby.js:764
-#, python-format
-msgid "== %(message)s"
-msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the
@@ -600,25 +605,25 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:795
+#: gui/lobby/lobby.js:796
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
 #. in the options page).
-#: gui/lobby/lobby.js:798
+#: gui/lobby/lobby.js:799
 #, python-format
 msgid "[%(time)s]"
 msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:801
+#: gui/lobby/lobby.js:802
 #, python-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:851
+#: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Gelieve niet te spammen. Je bent voor 30 seconden geblokkeerd."
 
@@ -653,7 +658,7 @@ msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:185
 #: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
-#: gui/gamesetup/gamesetup.xml:341 (caption)
+#: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "OK"
@@ -1130,7 +1135,7 @@ msgstr "Vriend"
 msgid "Neutral"
 msgstr "Neutraal"
 
-#: gui/session/menu.js:286 gui/session/messages.js:612
+#: gui/session/menu.js:286 gui/session/messages.js:613
 #: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
@@ -1261,136 +1266,136 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Schenk %(resourceAmount)s %(resourceType)s aan %(playerName)s. Shift+klik om %(greaterAmount)s te schenken."
 
-#: gui/session/messages.js:205
+#: gui/session/messages.js:202
 msgid "Waiting for other players to connect..."
 msgstr "Aan het wachten op de andere spelers..."
 
-#: gui/session/messages.js:209
+#: gui/session/messages.js:206
 msgid "Synchronising gameplay with other players..."
 msgstr "Spelstatus synchroniseren met andere spelers..."
 
-#: gui/session/messages.js:217
+#: gui/session/messages.js:214
 msgid "Connected to the server."
 msgstr "Verbonden met de server."
 
-#: gui/session/messages.js:221
+#: gui/session/messages.js:218
 msgid "Connection to the server has been authenticated."
 msgstr "De verbinding met de server is compleet."
 
-#: gui/session/messages.js:226
+#: gui/session/messages.js:223
 msgid "Connection to the server has been lost."
 msgstr "De verbinding met de server is verloren."
 
-#: gui/session/messages.js:226
+#: gui/session/messages.js:223
 msgid "The game has ended."
 msgstr "Het spel is gedaan."
 
-#: gui/session/messages.js:410
+#: gui/session/messages.js:407
 msgid "Unknown player"
 msgstr "Onbekende speler"
 
-#: gui/session/messages.js:418
+#: gui/session/messages.js:415
 #, python-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)s heeft zich bij het spel aangesloten."
 
-#: gui/session/messages.js:421
+#: gui/session/messages.js:418
 #, python-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s heeft het spel verlaten."
 
-#: gui/session/messages.js:426
+#: gui/session/messages.js:423
 msgid "You have been defeated."
 msgstr "Je bent verslegen."
 
-#: gui/session/messages.js:428
+#: gui/session/messages.js:425
 #, python-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s is verslagen."
 
-#: gui/session/messages.js:436
+#: gui/session/messages.js:433
 #, python-format
 msgid "You are now allied with %(player)s."
 msgstr "Je bent nu geallieerd met %(player)s."
 
-#: gui/session/messages.js:438
+#: gui/session/messages.js:435
 #, python-format
 msgid "You are now at war with %(player)s."
 msgstr "Je bent nu in staat van oorlog met %(player)s."
 
-#: gui/session/messages.js:440
+#: gui/session/messages.js:437
 #, python-format
 msgid "You are now neutral with %(player)s."
 msgstr "Je bent nu neutraal met %(player)s."
 
-#: gui/session/messages.js:446
+#: gui/session/messages.js:443
 #, python-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s is nu geallieerd met jou."
 
-#: gui/session/messages.js:448
+#: gui/session/messages.js:445
 #, python-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s is nu in staat van oorlog met jou."
 
-#: gui/session/messages.js:450
+#: gui/session/messages.js:447
 #, python-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s is nu neutraal met jou."
 
-#: gui/session/messages.js:469
+#: gui/session/messages.js:466
 #, python-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s en %(lastAmount)s"
 
-#: gui/session/messages.js:470 gui/session/utility_functions.js:174
+#: gui/session/messages.js:467 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
 #: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
 #: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
 msgid ", "
 msgstr ","
 
-#: gui/session/messages.js:475
+#: gui/session/messages.js:472
 #, python-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s heeft je %(amounts)s gestuurd."
 
-#: gui/session/messages.js:485
+#: gui/session/messages.js:482
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Je bent aangevallen door %(attacker)s!"
 
-#: gui/session/messages.js:498 gui/session/messages.js:503
+#: gui/session/messages.js:499 gui/session/messages.js:504
 #, python-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:511 gui/session/messages.js:515
+#: gui/session/messages.js:512 gui/session/messages.js:516
 #, python-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:523 gui/session/messages.js:524
+#: gui/session/messages.js:524 gui/session/messages.js:525
 #, python-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:527 gui/session/messages.js:532
+#: gui/session/messages.js:528 gui/session/messages.js:533
 #, python-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:540 gui/session/messages.js:541
+#: gui/session/messages.js:541 gui/session/messages.js:542
 #, python-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:599 gui/gamesetup/gamesetup.xml:86 (caption)
+#: gui/session/messages.js:600 gui/gamesetup/gamesetup.xml:61 (caption)
 #: gui/session/session.xml:437 (caption)
 msgid "Team"
 msgstr "Team"
 
-#: gui/session/messages.js:632
+#: gui/session/messages.js:633
 msgid "Private"
 msgstr "Privaat"
 
@@ -2242,7 +2247,7 @@ msgstr "Je ruiter heeft nu waarschijnlijk al alle kippen verzameld. Er zijn nog 
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
 msgid "Use 2-3 more female citizens to construct the field."
-msgstr ""
+msgstr "Gebruik een 2-3 extra vrouwelijke burgers om het veld te construeren."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:83
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:128
@@ -2524,7 +2529,7 @@ msgstr "Start met 5 vrouwelijke burgers te rekruteren in het beschavingscentrum 
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
-msgstr ""
+msgstr "Bouw een kazerne. Telkens wanneer je bevolkingslimiet bereikt is moet je extra huizen bouwen met een beschikbare werkkracht om je limiet te verhogen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:80
 msgid ""
@@ -2540,13 +2545,13 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
-msgstr ""
+msgstr "De vijand komt er aan. Rekruteer meer soldaten om de vijand te verslaan."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:99
 msgid ""
 "The enemy's attack has been defeated. Now build a market and temple while "
 "assigning new units to gather any required resources."
-msgstr "De vijand is verslegen, bouw nu een markt en een tempel terwijl je nieuwe eenheden gebruikt om nodige grondstoffen te verzamelen."
+msgstr "De vijand is verslagen, bouw nu een markt en een tempel terwijl je nieuwe eenheden gebruikt om benodigde grondstoffen te verzamelen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:104
 msgid ""
@@ -2788,109 +2793,164 @@ msgstr "Laden"
 msgid "Loading map data. Please wait..."
 msgstr "Kaart aan het laden. Gelieve te wachten..."
 
-#: gui/gamesetup/gamesetup.xml:42 (caption)
-msgid "Number of players:"
-msgstr "Aantal spelers:"
-
-#: gui/gamesetup/gamesetup.xml:54 (tooltip)
-msgid "Select number of players."
-msgstr "Selecteer het aantal spelers"
-
-#: gui/gamesetup/gamesetup.xml:65 (caption)
+#: gui/gamesetup/gamesetup.xml:40 (caption)
 msgid "Player Name"
 msgstr "Spelernaam"
 
-#: gui/gamesetup/gamesetup.xml:68 (caption)
+#: gui/gamesetup/gamesetup.xml:43 (caption)
 msgid "Player Placement"
 msgstr "Spelerplaatsing"
 
-#: gui/gamesetup/gamesetup.xml:71 (caption) gui/session/session.xml:434
+#: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:434
 #: (caption)
 msgid "Civilization"
 msgstr "Beschaving"
 
-#: gui/gamesetup/gamesetup.xml:80 (tooltip)
+#: gui/gamesetup/gamesetup.xml:55 (tooltip)
 msgid "View civilization info"
 msgstr "Bekijk beschavingsinformatie"
 
-#: gui/gamesetup/gamesetup.xml:95 (tooltip)
+#: gui/gamesetup/gamesetup.xml:70 (tooltip)
 msgid "Select player."
 msgstr "Selecteer speler."
 
-#: gui/gamesetup/gamesetup.xml:104 (tooltip)
+#: gui/gamesetup/gamesetup.xml:79 (tooltip)
 msgid "Configure AI settings."
 msgstr "Stel de AI in."
 
-#: gui/gamesetup/gamesetup.xml:107 (tooltip)
+#: gui/gamesetup/gamesetup.xml:82 (tooltip)
 msgid "Select player's civilization."
 msgstr "Selecteer de beschaving voor de speler."
 
-#: gui/gamesetup/gamesetup.xml:111 (tooltip)
+#: gui/gamesetup/gamesetup.xml:86 (tooltip)
 msgid "Select player's team."
 msgstr "Selecteer het team voor de speler."
 
-#: gui/gamesetup/gamesetup.xml:124 (caption)
+#: gui/gamesetup/gamesetup.xml:98 (caption)
 msgid "Match Type:"
 msgstr "Match type:"
 
-#: gui/gamesetup/gamesetup.xml:127 (caption)
+#: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
 msgstr "Kaart filter:"
 
-#: gui/gamesetup/gamesetup.xml:130 (caption)
+#: gui/gamesetup/gamesetup.xml:104 (caption)
 msgid "Select Map:"
 msgstr "Selecteer kaart:"
 
-#: gui/gamesetup/gamesetup.xml:133 (caption) gui/lobby/lobby.xml:76 (caption)
-msgid "Map Size:"
-msgstr "Kaart grootte:"
+#: gui/gamesetup/gamesetup.xml:107 (caption)
+msgid "Number of Players:"
+msgstr "Aantal spelers:"
 
-#: gui/gamesetup/gamesetup.xml:149 (tooltip)
+#: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
 msgstr "Selecteer kaarttype."
 
-#: gui/gamesetup/gamesetup.xml:158 (tooltip)
+#: gui/gamesetup/gamesetup.xml:136 (tooltip)
 msgid "Select a map filter."
 msgstr "Selecteer een kaartfilter."
 
-#: gui/gamesetup/gamesetup.xml:169 (tooltip)
+#: gui/gamesetup/gamesetup.xml:146 (tooltip)
 msgid "Select a map to play on."
 msgstr "Selecteer een kaart om op te spelen."
 
-#: gui/gamesetup/gamesetup.xml:175 (tooltip)
+#: gui/gamesetup/gamesetup.xml:157 (tooltip)
+msgid "Select number of players."
+msgstr "Selecteer het aantal spelers"
+
+#: gui/gamesetup/gamesetup.xml:162 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Selecteer een kaart grootte. (Grotere kaarten kunnen performantie verminderen)."
 
-#: gui/gamesetup/gamesetup.xml:200 (caption) gui/session/session.xml:402
+#: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:402
 #: (caption)
 msgid "Send"
 msgstr "Versturen"
 
-#: gui/gamesetup/gamesetup.xml:214 (caption)
+#: gui/gamesetup/gamesetup.xml:201 (caption)
 msgid "[Tooltip text]"
 msgstr "[Tooltip text]"
 
-#: gui/gamesetup/gamesetup.xml:226 (caption)
+#: gui/gamesetup/gamesetup.xml:213 (caption)
 msgid "Start game!"
 msgstr "Start spel!"
 
-#: gui/gamesetup/gamesetup.xml:227 (tooltip)
+#: gui/gamesetup/gamesetup.xml:214 (tooltip)
 msgid "Start a new game with the current settings."
 msgstr "Start een nieuw spel met de huidige instellingen."
 
-#: gui/gamesetup/gamesetup.xml:244 (caption) gui/lobby/lobby.xml:214 (caption)
+#: gui/gamesetup/gamesetup.xml:231 (caption) gui/lobby/lobby.xml:214 (caption)
 msgid "Back"
 msgstr "Terug"
 
-#: gui/gamesetup/gamesetup.xml:266 (caption)
+#: gui/gamesetup/gamesetup.xml:253 (caption) gui/gamesetup/gamesetup.xml:265
+#: (caption)
 msgid "More Options"
 msgstr "Meer opties"
 
-#: gui/gamesetup/gamesetup.xml:267 (tooltip)
+#: gui/gamesetup/gamesetup.xml:254 (tooltip)
 msgid "See more game options"
 msgstr "Bekijk meer spelopties"
 
-#: gui/gamesetup/gamesetup.xml:342 (tooltip)
+#: gui/gamesetup/gamesetup.xml:270 (caption)
+msgid "Game Speed:"
+msgstr "Snelheid:"
+
+#: gui/gamesetup/gamesetup.xml:274 (tooltip)
+msgid "Select game speed."
+msgstr "Selecteer de snelheid van het spel."
+
+#: gui/gamesetup/gamesetup.xml:284 (tooltip)
+msgid "Select victory condition."
+msgstr "Selecteer de overwinningsvoorwaarde."
+
+#: gui/gamesetup/gamesetup.xml:290 (caption)
+msgid "Population Cap:"
+msgstr "Maximum aantal inwoners:"
+
+#: gui/gamesetup/gamesetup.xml:294 (tooltip)
+msgid "Select population cap."
+msgstr "Selecteer een maximum aantal inwoners."
+
+#: gui/gamesetup/gamesetup.xml:300 (caption)
+msgid "Starting Resources:"
+msgstr "Beginkapitaal:"
+
+#: gui/gamesetup/gamesetup.xml:304 (tooltip)
+msgid "Select the game's starting resources."
+msgstr "Selecteer de resources die je krijgt bij de start van het spel."
+
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.xml:314 (tooltip)
+msgid "Toggle reveal map (see everything)."
+msgstr "Toon de volledige kaart (bekijk alles)."
+
+#. Make sure to differentiate between the reveal map and explore map options!
+#: gui/gamesetup/gamesetup.xml:324 (tooltip)
+msgid "Toggle explore map (see gaia and buildings)."
+msgstr "Verken de kaart (bekijk gaia en gebouwen)."
+
+#: gui/gamesetup/gamesetup.xml:334 (tooltip)
+msgid "Toggle locked teams."
+msgstr "Zet de teams vast of variabel."
+
+#: gui/gamesetup/gamesetup.xml:340 (caption)
+msgid "Cheats:"
+msgstr "Valsspelen:"
+
+#: gui/gamesetup/gamesetup.xml:344 (tooltip)
+msgid "Toggle the usability of cheats."
+msgstr "Zet de mogelijkheid om vals te spelen."
+
+#: gui/gamesetup/gamesetup.xml:350 (caption)
+msgid "Rated Game:"
+msgstr "Competitiespel:"
+
+#: gui/gamesetup/gamesetup.xml:354 (tooltip)
+msgid "Toggle if this game will be rated for the leaderboard."
+msgstr "Activeer dit als je wil dat het spel je score kan wijzigen."
+
+#: gui/gamesetup/gamesetup.xml:367 (tooltip)
 msgid "Close more game options window"
 msgstr "Sluit het opties venster"
 
@@ -2944,11 +3004,11 @@ msgid "Status"
 msgstr "Status"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:210 (heading) gui/session/session.xml:431 (caption)
+#: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:431 (caption)
 msgid "Name"
 msgstr "Naam"
 
-#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:207 (heading)
+#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
 msgid "Rating"
 msgstr "Score"
 
@@ -2981,12 +3041,12 @@ msgid "Map Name"
 msgstr "Kaarnaam"
 
 #: gui/lobby/lobby.xml:135 (heading)
-msgid "Map Size"
-msgstr "Kaartgrootte"
+msgid "Size"
+msgstr "Grootte"
 
 #: gui/lobby/lobby.xml:138 (heading)
-msgid "Map Type"
-msgstr "Kaarttype"
+msgid "Type"
+msgstr "Type"
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
@@ -3674,93 +3734,93 @@ msgstr "Kaartverkenning"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "0 A.D. Empires Ascendant spellobby servicevoorwaarden"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Definities:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "* De \"service\" is de 0 A.D. Empires Ascendant spellobby, aangeboden door Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr "* \"Jij\" bent de gebruiker van de service."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "* \"Wij\" zijn het collectief van Wildfire Games (WFG) team medewerkers."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analysing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* \"Score bepaling\" refereert naar het proces van het analyseren van verschillende gebruikersstatistieken met het doel een begrijpelijke score te bepalen."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "* \"Modereren\" refereert naar het proces van het afdwingen van de gebruikersvoorwaarden."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Door de service te gebruiken ga je akkoord dat:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. Je alle gebruikersvoorwaarden zal volgen."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. Je toestaat dat er identificeerbare statistieken verzameld worden met verschillende doelen zoals score bepaling, gebruikers profielen en gemeenschapsstatistieken."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "We behouden ook het recht om:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. De service te modereren."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. Anderen aanduiden om de service te modereren."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. Het permanent of tijdelijk stoppen van deze service, op eender welk moment, met of zonder aankondiging."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. De service te wijzigen, op ieder moment, met of zonder aankondiging."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. Het verwijderen van sommige of alle data op de service, op ieder moment, met of zonder aankondiging."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. Het verzamelen van alle identificeerbare data, op ieder moment, zonder waarschuwing voor:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "a. Private analyse door Wildfire Games (WFG) team medewerkers en hun geselecteerde partners."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "b. Geanonimiseerde publieke verspreiding van de data door Wildfire Games (WFG) team medewerkers."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -3768,66 +3828,66 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. Dit document op eender welke manier en eender welk tijdstip te wijzigen. Gegeven dat de gebruikers van de service gepast gewaarschuwd worden van de wijziging (de definitie van \"gepast\" zal later bepaald worden door een groep van Wildfire Games (WFG) team medewerkers)."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "0 A.D. Empires Ascendant spellobby gebruikersvoorwaarden."
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "* \"Jezelf als een andere speler voordoen\" refereert naar de actie waarin je probeert de identiteit van de andere speler te exploiteren voor je eigen doelen."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "* \"Spam\" refereert naar het posten van irrelevante of ongepaste berichten, gestuurd naar een groot aantal ontvangers."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr "* \"Score\" refereert naar de per-gebruiker specifieke score."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "* \"Competitiespellen\" zijn spellen die de score van spelers kunnen wijzigen naargelang het resultaat."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "Je gaat akkoord om:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. Slechts één account per unieke gebruiker op de service te creëren, tenzij expliciet toegestaan door een Wildfire Games (WFG) team medewerker."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. Geen profane teksten, zwarte humor, pornografische of discriminerende inhoud posten via de service."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. Andere gebruikers van de service niet kleineren."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. De service niet gebruiken om specifieke goederen, services of producten te adverteren."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. Jezelf niet voordoen als een andere gebruiker van de service."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. Geen spam verspreiden via de service."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -3835,13 +3895,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. Niet proberen om op een artificiële manier de statistieken die invloed hebben op je eigen of een andere score te wijzigen. (Bijvoorbeeld, maar niet gelimiteerd tot: valsspelen in competitiespellen, reverse engineering van de service en andere gebruikers van de service misbruiken.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. Toestaan van deze service uitgesloten te worden op eender welk moment een moderator vaststelt dat je gedrag niet volgens deze regels is."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -3849,7 +3909,7 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "9. Dit document op eender welke manier en eender welk tijdstip te wijzigen. Gegeven dat de gebruikers van de service gepast gewaarschuwd worden van de wijziging (de definitie van \"gepast\" zal later bepaald worden door een groep van Wildfire Games (WFG) team medewerkers)."
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -3935,13 +3995,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]Singleplayer[font=\"serif-14\"] — speel een zandbak spel tegen één of meerdere AI tegenstanders. De AI tegenstanders zijn onder ontwikkeling en kunnen dus af en toe niet up-to-date zijn met de nieuwe eigenschappen in het spel. "
+msgstr "• [font=\"sans-bold-14\"]Singleplayer[font=\"sans-14\"] — speel een zandbak spel tegen één of meerdere AI tegenstanders. De AI tegenstanders zijn onder ontwikkeling en kunnen dus af en toe niet up-to-date zijn met de nieuwe eigenschappen in het spel. "
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"serif-14\"] — speel tegen menselijke tegenstanders over het internet of een lokaal netwerk."
+msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — speel tegen menselijke tegenstanders over het internet of een lokaal netwerk."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -5984,7 +6044,7 @@ msgstr "Zot snel (2x)"
 #: maps/skirmishes/Acropolis Bay (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Bactria (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Belgian Bog (2).xml:42:PlayerData[0].Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Caspian Sea (2v2).xml:42:PlayerData[0].Name
 #: maps/skirmishes/Corinthian Isthmus (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:PlayerData[0].Name
@@ -6047,7 +6107,7 @@ msgstr "Speler 1"
 #: maps/skirmishes/Acropolis Bay (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Bactria (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Belgian Bog (2).xml:42:PlayerData[1].Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Caspian Sea (2v2).xml:42:PlayerData[1].Name
 #: maps/skirmishes/Corinthian Isthmus (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:PlayerData[1].Name
@@ -7327,7 +7387,7 @@ msgid ""
 "India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops "
 "made him halt. Died in Babylon at the age of 33 while planning a campaign "
 "against Arabia."
-msgstr "De sterkste held der helden, zoon van Philippus II, koning van Macedonië (336-323 V.C.). Na de rest van Thracië veroverd te hebben startte Alexander aan zijn wereld veroveringstocht. Hij heeft de Perzen verslegen in Granicus (334 V.C.), Issus (333 V.C.) en Gaugamela (331 V.C.) en werd zo heerser van Perzië. In Indië heeft hij koning Porus verslegen in Hydaspes (326 V.C.), maar door onenigheid in zijn troepen moest hij stoppen. Hij is gestorven in Babylon op 33 jarige leeftijd. Ondertussen was hij nog een campagne tegen Arabië aan het plannen."
+msgstr "De sterkste held der helden, zoon van Philippus II, koning van Macedonië (336-323 V.C.). Na de rest van Thracië veroverd te hebben, startte Alexander aan zijn wereld veroveringstocht. Hij versloeg de Perzen in Granicus (334 V.C.), Issus (333 V.C.) en Gaugamela (331 V.C.) en werd zo heerser van Perzië. In Indië versloeg hij koning Porus in Hydaspes (326 V.C.), maar moest vanwege zijn vermoeide troepen. Hij is gestorven in Babylon op 33 jarige leeftijd, terwijl hij een campagne tegen Arabië aan het plannen was."
 
 #: civs/hele.jsonFactions[1].Heroes[1].Name civs/mace.jsonAINames[0]
 #: civs/mace.jsonFactions[0].Heroes[1].Name
@@ -7502,7 +7562,7 @@ msgid ""
 "losses in some requiring retreat). He succumbed instead to another treachery"
 " arranged by a later Roman commander, Q. Servilius Caepio, to have him "
 "assassinated by three comrades that were close to him."
-msgstr "Vitario was, zoals Vercingetorix bij de Galliërs, was het bekendste Iberische stamhoofd. Hij heeft minstens 7 veldtochten tegen de Romeinen geleid in het zuiden van Iberië gedurende de \"Lusitanische oorlogen\" tussen 147 en 139 V.C. Hij kwam bekend als overlever van een bloedbad met 9000 man en een verkoop van 21 000 ouderen, vrouwen en kinderen als slaven. Ze hadden een vredesverdrag met de Romeinen, gemaakt door Servius Sulpicius Galba, gouverneur van Hispania Ulterior als uiteindelijke oplossing voor het Lusitanische probleem. Viriato was intelligent, een super tacticus. Werd nooit volledig verslegen (maar heeft soms verliezen geleden die het terugtrekken noodzakelijk maakten). Hij bezweek echter aan een verraad opgezet door de latere Romeinse commandant Q. Servilius Caepio. Die liet hem vermoorden door drie dichte vrienden."
+msgstr "Vitario was, zoals Vercingetorix bij de Galliërs, was het bekendste Iberische stamhoofd. Hij heeft minstens 7 veldtochten tegen de Romeinen geleid in het zuiden van Iberië gedurende de \"Lusitanische oorlogen\" van 147-139 V.C. Hij kwam bekend als overlever van een bloedbad met 9000 man en een verkoop van 21 000 ouderen, vrouwen en kinderen als slaven. Ze hadden een vredesverdrag met de Romeinen, gemaakt door Servius Sulpicius Galba, gouverneur van Hispania Ulterior als uiteindelijke oplossing voor het Lusitanische probleem. Hij werd in 151 V.C. leider van de Lusitaniërs. Viriato was intelligent en een super tacticus. Werd nooit volledig verslagen (maar heeft soms verliezen geleden die het terugtrekken noodzakelijk maakten). Hij bezweek echter aan een verraad opgezet door de latere Romeinse commandant Q. Servilius Caepio. Die liet hem vermoorden door drie dichte vrienden."
 
 #: civs/iber.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -7538,7 +7598,7 @@ msgid ""
 "were again defeated, Indibil losing his life in the final battle and "
 "Mandonio being captured then later put to death. From that date onward the "
 "Ilergetes remained a pacified tribe under Roman rule."
-msgstr "Indibil was koning van de Ilegeten, een grote federatie langs de rivier Ebro in het noordwesten van het Iberische schiereiland. Gedurende de Barcische expansie, van 212 V.C. voorts, heeft hij eerst een alliantie gesmeed met de Carthagers die controle hadden over een groot deel van het zuiden en het westen. Maar na een verlies, en zijn gevangenname, werd hij overtuigd om over te stappen naar de Romeinse zijde door Scipio Africanus. Maar die alliantie duurde niet lang. De Romeinse beloften waren leeg, en ze gedroegen zich meer als veroveraars dan als vrienden. Terwijl de Romeinen en hun vrienden de Carthagers uit Hispania hadden verdreven in 206 V.C., startten Indibil en een ander stamhoofd Mandonio (mogelijks zijn broer) een rebellie tegen de Romeinen. Ze werden verslegen in de veldslag, maar startten een 2de, grotere rebellie. Een unie van alle Ilergete in 205 V.C. Opnieuw waren ze in de minderheid, en dus verslegen. Indibil verloor zijn leven in de slag, en Mandonio werd gevangengenomen en later gedood. Vanaf dat moment bleven de Ilergete een vredevolle stam onder Romeins gezag."
+msgstr "Indibil was koning van de Ilegeten, een grote federatie langs de rivier Ebro in het noordwesten van het Iberische schiereiland. Gedurende de Barcische expansie, vanaf 212 V.C., heeft hij eerst een alliantie gesmeed met de Carthagers die controle hadden over een groot deel van het zuiden en het westen. Maar na een verlies en zijn gevangenname in een belangrijke veldslag werd hij door Scipio Africanus overtuigd om over te stappen naar de Romeinse zijde. Die alliantie duurde echter niet lang. De Romeinse beloften waren leeg en ze gedroegen zich meer als veroveraars dan als vrienden. Terwijl de Romeinen en hun vrienden, de Carthagers uit Hispania hadden verdreven in 206 V.C., startten Indibil en een ander stamhoofd Mandonio, mogelijk zijn broer, een rebellie tegen de Romeinen. Ze werden verslagen in de slag, maar startten een 2de, grotere rebellie, een unie van alle Ilergeten, in 205 V.C. Zwak en in de minderheid werden zij opnieuw verslagen, waarbij Indibil zijn leven verloor in de beslissende slag, en Mandonio gevangengenomen en later gedood werd. Vanaf dat moment bleven de Ilergeten een vreedzame stam onder Romeins gezag."
 
 #: civs/iber.jsonStructures[0].Name
 #: simulation/templates/structures/iber_monument.xml:37
@@ -9769,7 +9829,7 @@ msgstr "Chamfron"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/health_walls_geometric_masonry.jsonrequirementsTooltip
-#: simulation/data/technologies/melee_inf_training.jsonrequirementsTooltip
+#: simulation/data/technologies/melee_inf_sidearms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_civic_01.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
@@ -9837,7 +9897,7 @@ msgstr "Yzeren heldenpantser"
 #: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_temple.jsonrequirementsTooltip
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
-#: simulation/data/technologies/melee_inf_spearfighting.jsonrequirementsTooltip
+#: simulation/data/technologies/melee_inf_spearheads.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_civic_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
@@ -9952,6 +10012,10 @@ msgstr "Harnas verstevigd met bronzen schubben. "
 msgid "Scale Body Armor"
 msgstr "Geschaald lichaamspantser"
 
+#: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
+msgid "Lorica Squamata"
+msgstr "Lorica Squamata"
+
 #: simulation/data/technologies/armor_infantry_hack_04.jsondescription
 msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
@@ -9967,6 +10031,10 @@ msgstr "Kampioenen +2 slagpantser maar ook +10 metaal kost."
 msgid "Bronze Cuirass Body Armor"
 msgstr "Bronzen borstharnas"
 
+#: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
+msgid "Lorica Musculata"
+msgstr "Lorica Musculata"
+
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
 msgstr "Multiplex constructie voor grote schilden."
@@ -9976,18 +10044,12 @@ msgid "Infantry Spearmen +2 Pierce Armor Levels."
 msgstr "Infanterie speermannen +2 steekpantser."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.maur
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.celt
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.cart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.rome
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.gaul
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.iber
 msgid "Plywood Shield Construction"
 msgstr "Multiplex schildconstructie"
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
@@ -10008,10 +10070,12 @@ msgstr "Infanterie speermannen +1 steekpantser."
 msgid "Reinforced Shield"
 msgstr "Versterkt schild"
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.sele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 msgid "Aspides"
 msgstr "Aspides"
 
@@ -10027,9 +10091,11 @@ msgstr "Infanterie speervecthers +1 steekpantser."
 msgid "Bronze Shield Facing"
 msgstr "Bronzen schildbeslag"
 
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.hele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.hele
 #: simulation/templates/units/sele_infantry_spearman_b.xml:15
 msgid "Chalkaspides"
 msgstr "Chalkaspides"
@@ -10053,10 +10119,12 @@ msgstr "Kampioenen +2 steekpantser, maar ook +10 metaal kost."
 msgid "Silver Shields"
 msgstr "Zilveren schilden"
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.sele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 msgid "Argyraspides"
 msgstr "Argyraspides"
 
@@ -10564,47 +10632,56 @@ msgstr "Stadsmuren +2 verbrijzelpantser maar ook +10% bouwtijd."
 msgid "Geometric Masonry"
 msgstr "Geometrisch metselwerk"
 
-#: simulation/data/technologies/melee_inf_spearfighting.jsondescription
-msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr "Het gebruik van ijzer i.p.v. brons gaf speren een extra steekkracht."
+#: simulation/data/technologies/melee_inf_sidearms.jsondescription
+msgid ""
+"Often, an infantryman would carry a secondary weapon in addition to his "
+"primary weapon of choice, to be drawn when the primary weapon has failed or "
+"been broken."
+msgstr "Een infanteriesoldaat droeg vaak een tweede wapen naast zijn hoofdwapen. Dat kon hij gebruiken als zijn hoofdwapen verloren of gebroken was."
 
-#: simulation/data/technologies/melee_inf_spearfighting.jsontooltip
-msgid "All Spear units +2 hack attack."
-msgstr "Alle speervechters +2 slagkracht."
-
-#: simulation/data/technologies/melee_inf_spearfighting.jsongenericName
-msgid "Iron Spearheads"
-msgstr "Ijzeren speerpunten"
-
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.ptol
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.spart
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.sele
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.theb
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.athen
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.hele
-#: simulation/data/technologies/melee_inf_spearfighting.jsonspecificName.mace
-msgid "Siderénies Aichmés"
-msgstr "Siderénies Aichmés"
-
-#: simulation/data/technologies/melee_inf_training.jsondescription
-msgid "Training increases damage of melee infantry units."
-msgstr "Training verhoogt de kracht van mêlee infanteriesoldaten."
-
-#: simulation/data/technologies/melee_inf_training.jsontooltip
+#: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
 msgstr "Mêlee infanterie +1 slagkracht."
 
-#: simulation/data/technologies/melee_inf_training.jsongenericName
-msgid "Weapons Training"
-msgstr "Wapentraining"
+#: simulation/data/technologies/melee_inf_sidearms.jsongenericName
+msgid "Side Arms"
+msgstr "Zijwapens"
 
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.hele
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.mace
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.spart
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.theb
-#: simulation/data/technologies/melee_inf_training.jsonspecificName.athen
-msgid "Hoplomachia"
-msgstr "Hoplomachia"
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.ptol
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.spart
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.sele
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.theb
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.athen
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.hele
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
+msgid "Xíphos"
+msgstr "Xíphos"
+
+#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.rome
+msgid "Pugio"
+msgstr "Pugio"
+
+#: simulation/data/technologies/melee_inf_spearheads.jsondescription
+msgid "Using iron instead of bronze gave spears additional piercing power."
+msgstr "Het gebruik van ijzer i.p.v. brons gaf speren een extra steekkracht."
+
+#: simulation/data/technologies/melee_inf_spearheads.jsontooltip
+msgid "All Spear units +2 hack attack."
+msgstr "Alle speervechters +2 slagkracht."
+
+#: simulation/data/technologies/melee_inf_spearheads.jsongenericName
+msgid "Iron Spearheads"
+msgstr "Ijzeren speerpunten"
+
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.theb
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.hele
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.mace
+msgid "Siderénies Aichmés"
+msgstr "Siderénies Aichmés"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
@@ -10648,8 +10725,8 @@ msgid "Females vs. Population"
 msgstr "Vrouwen vs. bevolking"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
-msgid "Training vs. Irregulars"
-msgstr "Trainen vs. wilden"
+msgid "Side Arms vs. Irregulars"
+msgstr "Zijwapens vs. wilden"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
@@ -10910,13 +10987,15 @@ msgstr "Afstandsinfanterie +2 steekaanval."
 msgid "Ranged Infantry Irregulars"
 msgstr "Vrijetijdsafstandsinfanterie"
 
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.hele
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.spart
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.sele
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.theb
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.athen
-msgid "Psiloi"
-msgstr "Psiloi"
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.hele
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
+msgid "Átaktoi"
+msgstr "Átaktoi"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -15599,9 +15678,8 @@ msgid "Gaesata"
 msgstr "Gaesata"
 
 #: simulation/templates/units/celt_hero_brennus.xml:14
-#: simulation/templates/units/gaul_hero_brennus.xml:14
-msgid "Hero Aura: +5 Metal loot for every enemy unit killed."
-msgstr "Heldenaura: +5 metaalplundering voor ieder gedode eenheid."
+msgid "Hero Aura: +10 Metal loot for every enemy unit killed."
+msgstr "Heldenaura: +10 metaalplundering voor ieder vermoorde eenheid."
 
 #: simulation/templates/units/celt_hero_brennus.xml:13
 #: simulation/templates/units/gaul_hero_brennus.xml:13
@@ -15627,6 +15705,10 @@ msgstr "Heldenaura: +2 aanvalskracht voor alle eenheden in zijn aura."
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:24
 msgid "Vercingetorix"
 msgstr "Vercingetorix"
+
+#: simulation/templates/units/gaul_hero_brennus.xml:14
+msgid "Hero Aura: +5 Metal loot for every enemy unit killed."
+msgstr "Heldenaura: +5 metaalplundering voor ieder gedode eenheid."
 
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:6
 msgid "Thessalian Scout"
@@ -17971,14 +18053,14 @@ msgstr "De dorre en mineraalrijke regio Bactrië (tegenwoordig Afghanistan) aan 
 msgid "Bactria (2)"
 msgstr "Bactrië (2)"
 
-#: maps/skirmishes/Belgian Bog (2).xml:42:Description
+#: maps/skirmishes/Belgian Bog (2).xml:41:Description
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
-"Wood is in abundance, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
+"Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
 msgstr "Twee spelers starten rond een groot moeras, ergens bij de Rijn.\n\nHout is er in overvloed, maar metaal en steen zijn moeilijker te vinden. Jagen en voedsel verzamelen is gemakkelijk."
 
-#: maps/skirmishes/Belgian Bog (2).xml:42:Name
+#: maps/skirmishes/Belgian Bog (2).xml:41:Name
 msgid "Belgian Bog (2)"
 msgstr "Belgisch moeras (2)"
 

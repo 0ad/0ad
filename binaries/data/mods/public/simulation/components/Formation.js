@@ -819,7 +819,8 @@ Formation.prototype.GetEstimatedOrientation = function(pos)
 {
 	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	var r = {"sin": 0, "cos": 1};
-	if (cmpUnitAI.GetCurrentState() == "FORMATIONCONTROLLER.WALKING")
+	var unitAIState = cmpUnitAI.GetCurrentState();
+	if (unitAIState == "FORMATIONCONTROLLER.WALKING" || unitAIState == "FORMATIONCONTROLLER.COMBAT.APPROACHING")
 	{
 		var targetPos = cmpUnitAI.GetTargetPositions();
 		if (!targetPos.length)
