@@ -68,6 +68,13 @@ function messageBox (mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCapt
 
 // ====================================================================
 
+
+function openURL(url)
+{
+	Engine.OpenURL(url);
+	messageBox(600, 200, sprintf(translate("Opening %(url)s\n in default web browser. Please wait..."), { url: url }), translate("Opening page"), 2);
+}
+
 function updateFPS()
 {	
 	Engine.GetGUIObjectByName("fpsCounter").caption = sprintf(translate("FPS: %(fps)s"), { fps: Engine.GetFPS() });

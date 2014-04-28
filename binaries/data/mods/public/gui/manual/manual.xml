@@ -19,9 +19,7 @@
 		<object type="button" style="StoneButton" size="100%-308 100%-52 100%-168 100%-24">
 			<translatableAttribute id="caption">Online Manual</translatableAttribute>
 			<action on="Press"><![CDATA[
-				var url = "http://trac.wildfiregames.com/wiki/0adManual";
-				Engine.OpenURL(url);
-				messageBox(450, 200, "Opening "+url+"\n in default web browser. Please wait...", "Opening page", 2);
+				openURL("http://trac.wildfiregames.com/wiki/0adManual");
 			]]></action>
 		</object>
 		<object type="button" style="StoneButton" tooltip_style="snToolTip" size="100%-164 100%-52 100%-24 100%-24">
