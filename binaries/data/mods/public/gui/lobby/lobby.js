@@ -6,7 +6,7 @@ var g_specialKey = Math.random();
 var g_spamMonitor = {};
 var g_timestamp = Engine.ConfigDB_GetValue("user", "lobby.chattimestamp") == "true";
 var g_mapSizes = {};
-var g_userRating = "UNR"; // Rating of user, defaults to Unrated
+var g_userRating = ""; // Rating of user, defaults to Unrated
 var g_modPrefix = "@";
 // Block spammers for 30 seconds.
 var SPAM_BLOCK_LENGTH = 30;
