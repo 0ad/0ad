@@ -535,8 +535,8 @@
 					tooltip_style="pgToolTip"
 					size="8 100%-108 100%-8 100% -80"
 				>
-					<translatableAttribute id="caption">Help with the translation !</translatableAttribute>
-					<translatableAttribute id="tooltip">Click to open the 0 A.D translate page in your brownser</translatableAttribute>
+					<translatableAttribute id="caption">Help with the translation!</translatableAttribute>
+					<translatableAttribute id="tooltip">Click to open the 0 A.D translate page in your brownser.</translatableAttribute>
 					<action on="Press"><![CDATA[
 						var url = "http://trac.wildfiregames.com/wiki/Localization";
 						Engine.OpenURL(url);
