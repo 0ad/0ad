@@ -16,7 +16,7 @@ var options = {
 		[translate("Shadows"), translate("Enable shadows"), {"renderer":"Shadows", "config":"shadows"}, "boolean"],
 		[translate("Particles"), translate("Enable particles"), {"renderer":"Particles", "config":"particles"}, "boolean"],
 		[translate("Show Sky"), translate("Render Sky"), {"renderer":"ShowSky", "config":"showsky"}, "boolean"],
-		[translate("Smooth LOS"), translate("Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."), {"renderer":"SmoothLOS", "config":"smoothlos"}, "boolean"],
+		[translate("Smooth LOS"), translate("Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"), {"renderer":"SmoothLOS", "config":"smoothlos"}, "boolean"],
 		[translate("Unit Silhouettes"), translate("Show outlines of units behind buildings"), {"renderer":"Silhouettes", "config":"silhouettes"}, "boolean"],
 		[translate("Shadow Filtering"), translate("Smooth shadows"), {"renderer":"ShadowPCF", "config":"shadowpcf"}, "boolean"],
 		[translate("HQ Waviness"), translate("Use real normals for ocean-wave rendering, instead of applying them as a flat texture"), {"renderer":"WaterNormal", "config":"waternormals"}, "boolean"],

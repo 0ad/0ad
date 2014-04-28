@@ -377,7 +377,7 @@
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">Learn To Play</translatableAttribute>
-					<translatableAttribute id="tooltip">The 0 A.D. Game Manual</translatableAttribute>
+					<translatableAttribute id="tooltip">Open the 0 A.D. Game Manual.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
 						<![CDATA[
@@ -456,7 +456,7 @@
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">Exit</translatableAttribute>
-					<translatableAttribute id="tooltip">Exit Game</translatableAttribute>
+					<translatableAttribute id="tooltip">Exits the game.</translatableAttribute>
 					<action on="Press">exitGamePressed();</action>
 				</object>
 			</object>
@@ -521,7 +521,7 @@
 					size="8 100%-36 100%-8 100%-8"
 				>
 					<translatableAttribute id="caption">Report a Bug</translatableAttribute>
-					<translatableAttribute id="tooltip">Click to visit 0 A.D. Trac to report a bug, crash, or error</translatableAttribute>
+					<translatableAttribute id="tooltip">Click to visit 0 A.D. Trac to report a bug, crash, or error.</translatableAttribute>
 					<action on="Press"><![CDATA[
 						var url = "http://trac.wildfiregames.com/wiki/ReportingErrors/";
 						Engine.OpenURL(url);
