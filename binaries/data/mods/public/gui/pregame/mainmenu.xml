@@ -328,6 +328,22 @@
 						pressedScenarioEditorButton();
 					</action>
 				</object>
+
+				<object name="submenuWelcomeScreenButton"
+					style="StoneButtonFancy"
+					type="button"
+					size="0 96 100% 124"
+					tooltip_style="pgToolTip"
+				>
+					<translatableAttribute id="caption">Welcome Screen</translatableAttribute>
+					<translatableAttribute id="tooltip">Show the Welcome Screen. Useful if you hid it by mistake.</translatableAttribute>
+					<action on="Press">
+						<![CDATA[
+						closeMenu();
+						Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen", callback : "SplashScreenClosedCallback" } );
+						]]>
+					</action>
+				</object>
 			</object>
 		</object><!-- end of submenu -->
 
@@ -427,7 +443,7 @@
 					<translatableAttribute id="tooltip">Game options and scenario design tools.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						openMenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 3);
+						openMenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 4);
 					</action>
 				</object>
 
