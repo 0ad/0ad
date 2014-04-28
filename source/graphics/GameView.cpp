@@ -58,6 +58,7 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
+#include "lobby/IXmppClient.h"
 
 extern int g_xres, g_yres;
 
@@ -1132,7 +1133,9 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 
 		if (hotkey == "wireframe")
 		{
-			if (g_Renderer.GetModelRenderMode() == SOLID)
+			if (g_XmppClient && g_rankedGame == true)
+				break;
+			else if (g_Renderer.GetModelRenderMode() == SOLID)
 			{
 				g_Renderer.SetTerrainRenderMode(EDGED_FACES);
 				g_Renderer.SetModelRenderMode(EDGED_FACES);

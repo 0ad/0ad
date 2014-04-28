@@ -189,7 +189,7 @@ function startHost(playername, servername)
 	}
 	try
 	{
-		if(Engine.HasXmppClient())
+		if (g_userRating)
 			Engine.StartNetworkHost(playername + " (" + g_userRating + ")");
 		else
 			Engine.StartNetworkHost(playername);
@@ -215,7 +215,7 @@ function startJoin(playername, ip)
 {
 	try
 	{
-		if(Engine.HasXmppClient())
+		if (g_userRating)
 			Engine.StartNetworkJoin(playername + " (" + g_userRating + ")", ip);
 		else
 			Engine.StartNetworkJoin(playername, ip);
