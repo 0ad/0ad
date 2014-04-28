@@ -528,7 +528,7 @@ function init(data)
 		}
 	}
 
-	Engine.GetGUIObjectByName("mapName").caption = sprintf(translate("%(mapName)s - %(mapType)s"), { mapName: data.mapSettings.Name, mapType: mapDisplayType});
+	Engine.GetGUIObjectByName("mapName").caption = sprintf(translate("%(mapName)s - %(mapType)s"), { mapName: translate(data.mapSettings.Name), mapType: mapDisplayType});
 	
 	// Panels
 	// Align headers
