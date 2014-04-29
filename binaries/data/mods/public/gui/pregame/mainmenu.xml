@@ -507,6 +507,18 @@
 				<object type="button"
 					style="StoneButton"
 					tooltip_style="pgToolTip"
+					size="8 100%-108 100%-8 100% -80"
+				>
+					<translatableAttribute id="caption">Help with the translation!</translatableAttribute>
+					<translatableAttribute id="tooltip">Click to open the 0 A.D translate page in your browser.</translatableAttribute>
+					<action on="Press"><![CDATA[
+						openURL("http://trac.wildfiregames.com/wiki/Localization");
+					]]></action>
+				</object>
+
+				<object type="button"
+					style="StoneButton"
+					tooltip_style="pgToolTip"
 					size="8 100%-72 50%-4 100%-44"
 				>
 					<translatableAttribute id="caption">Website</translatableAttribute>
@@ -525,17 +537,6 @@
 					<translatableAttribute id="tooltip">Click to open the 0 A.D. IRC chat in your browser. (#0ad on webchat.quakenet.org)</translatableAttribute>
 					<action on="Press"><![CDATA[
 						openURL("http://webchat.quakenet.org/?channels=0ad");
-					]]></action>
-				</object>
-				<object type="button"
-					style="StoneButton"
-					tooltip_style="pgToolTip"
-					size="8 100%-108 100%-8 100% -80"
-				>
-					<translatableAttribute id="caption">Help with the translation!</translatableAttribute>
-					<translatableAttribute id="tooltip">Click to open the 0 A.D translate page in your browser.</translatableAttribute>
-					<action on="Press"><![CDATA[
-						openURL("http://trac.wildfiregames.com/wiki/Localization");
 					]]></action>
 				</object>
 

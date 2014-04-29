@@ -10,7 +10,7 @@
 
 	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="lobbyWindow">
 
-		<object style="TitleText" type="text" size="50%-128 0%+4 50%+128 36">
+		<object style="ModernLabelText" type="text" size="50%-128 0%+4 50%+128 36">
 			<translatableAttribute id="caption">Multiplayer Lobby</translatableAttribute>
 		</object>
 
@@ -34,7 +34,7 @@
 		</object>
 
 		<object name="leftButtonPanel" size="20 100%-45 20% 100%-20">
-			<object type="button" style="StoneButton" size="0 0 100% 100%">
+			<object type="button" style="ModernButtonRed" size="0 0 100% 100%">
 				<translatableAttribute id="caption">Leaderboard</translatableAttribute>
 				<action on="Press">Engine.GetGUIObjectByName("leaderboard").hidden = false;Engine.GetGUIObjectByName("leaderboardFade").hidden = false;</action>
 			</object>
@@ -43,7 +43,7 @@
 		<!-- Right panel: Game details. -->
 		<object name="rightPanel" size="100%-250 30 100%-20 100%-20" >
 			<object name="gameInfoEmpty" size="0 0 100% 100%-60" type="image" sprite="ModernDarkBoxGold" hidden="false">
-				<object name="logo" size="50%-110 40 50%+110 140" type="image" sprite="productLogo"/>
+				<object name="logo" size="50%-110 40 50%+110 140" type="image" sprite="logo"/>
 				<object name="subjectBox" type="image" sprite="ModernDarkBoxWhite" size="3% 180 97% 99%">
 					<object name="subject" size="5 5 100%-5 100%-5" type="text" style="ModernText" text_align="center"/>
 				</object>
@@ -98,20 +98,20 @@
 					<object name="sgPlayersNames" size="0 15% 100% 100%" type="text" style="MapPlayerList"/>
 				</object>
 			</object>
-			<object name="joinGameButton" type="button" style="StoneButton" size="0 100%-85 100% 100%-60" hidden="true">
+			<object name="joinGameButton" type="button" style="ModernButtonRed" size="0 100%-85 100% 100%-60" hidden="true">
 				<translatableAttribute id="caption">Join Game</translatableAttribute>
 				<action on="Press">
 					joinSelectedGame();
 				</action>
 			</object>
-			<object name="hostButton" type="button" style="StoneButton" size="0 100%-55 100% 100%-30">
+			<object name="hostButton" type="button" style="ModernButtonRed" size="0 100%-55 100% 100%-30">
 				<translatableAttribute id="caption">Host Game</translatableAttribute>
 				<action on="Press">
 					hostGame();
 				</action>
 			</object>
 
-			<object type="button" style="StoneButton" size="0 100%-25 100% 100%">
+			<object type="button" style="ModernButtonRed" size="0 100%-25 100% 100%">
 				<translatableAttribute id="caption">Main Menu</translatableAttribute>
 				<action on="Press">
 					lobbyStop();
@@ -193,7 +193,7 @@
 		<!-- Add a translucent black background to fade out the menu page -->
 		<object hidden="true" name="leaderboardFade" type="image" z="100" sprite="ModernFade"/>
 		<object hidden="true" name="leaderboard" type="image" style="ModernDialog" size="50%-224 50%-160 50%+224 50%+160" z="101">
-			<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">
+			<object style="ModernLabelText" type="text" size="50%-128 0%-16 50%+128 16">
 				<translatableAttribute id="caption">Leaderboard</translatableAttribute>
 			</object>
 			<object name="leaderboardBox"
@@ -210,11 +210,11 @@
 					<translatableAttribute id="heading">Rating</translatableAttribute>
 				</def>				
 			</object>
-			<object type="button" style="StoneButton" size="50%+5 100%-45 50%+133 100%-17">
+			<object type="button" style="ModernButtonRed" size="50%+5 100%-45 50%+133 100%-17">
 				<translatableAttribute id="caption">Back</translatableAttribute>
 				<action on="Press">Engine.GetGUIObjectByName("leaderboard").hidden = true;Engine.GetGUIObjectByName("leaderboardFade").hidden = true;</action>
 			</object>
-			<object type="button" style="StoneButton" size="50%-133 100%-45 50%-5 100%-17">
+			<object type="button" style="ModernButtonRed" size="50%-133 100%-45 50%-5 100%-17">
 				<translatableAttribute id="caption">Update</translatableAttribute>
 				<action on="Press">Engine.SendGetBoardList();</action>
 			</object>

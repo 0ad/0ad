@@ -20,7 +20,7 @@
 			</object>
 		</object>
 
-		<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">
+		<object style="ModernLabelText" type="text" size="50%-128 0%-16 50%+128 16">
 			<translatableAttribute id="caption">Multiplayer Lobby</translatableAttribute>
 		</object>
 
@@ -63,7 +63,7 @@
 			</object>
 		</object>
 		<object name="feedback" type="text" size="50 150 100%-50 190" style="ModernLabelText" textcolor="red" text_align="center"/>
-		<object type="button" size="18 100%-45 126 100%-17" style="StoneButton">
+		<object type="button" size="18 100%-45 126 100%-17" style="ModernButtonRed">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">
 				if (Engine.GetGUIObjectByName("pageRegister").hidden)
@@ -75,7 +75,7 @@
 					switchRegister();
 			</action>
 		</object>
-		<object name="register" type="button" size="136 100%-45 244 100%-17" style="StoneButton">
+		<object name="register" type="button" size="136 100%-45 244 100%-17" style="ModernButtonRed">
 			<translatableAttribute id="caption">Register</translatableAttribute>
 			<action on="Press">
 				if (Engine.GetGUIObjectByName("pageRegister").hidden)
@@ -86,7 +86,7 @@
 					lobbyStartRegister()
 			</action>
 		</object>
-		<object name="connect" type="button" size="254 100%-45 100%-18 100%-17" style="StoneButton">
+		<object name="connect" type="button" size="254 100%-45 100%-18 100%-17" style="ModernButtonRed">
 			<translatableAttribute id="caption">Connect</translatableAttribute>
 			<action on="Press">
 				lobbyStart();

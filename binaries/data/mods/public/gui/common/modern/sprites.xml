@@ -270,6 +270,151 @@
 	</sprite>
 	<!--
 	==========================================
+	- Buttons -
+	==========================================
+	-->
+	<sprite name="ModernButtonRed">
+		<!-- Left -->
+		<image texture="global/modern/button/red-unselected-left-top.png"
+			real_texture_placement="0 0 8 8"
+			size="0 0 8 8"
+		/>
+		<image texture="global/modern/button/red-unselected-left-center.png"
+			real_texture_placement="0 0 8 16"
+			texture_size="0 0 8 16"
+			size="0 8 8 100%-8"
+		/>
+		<image texture="global/modern/button/red-unselected-left-bottom.png"
+			real_texture_placement="0 0 8 8"
+			size="0 100%-8 8 100%"
+		/>
+		<!-- Center -->
+		<image texture="global/modern/button/red-unselected-center-top.png"
+			real_texture_placement="0 0 128 8"
+			texture_size="0 0 128 8"
+			size="8 0 100%-8 8"
+		/>
+		<image texture="global/modern/button/red-unselected-center-center.png"
+			real_texture_placement="0 0 128 16"
+			texture_size="0 0 128 16"
+			size="8 8 100%-8 100%-8"
+		/>
+		<image texture="global/modern/button/red-unselected-center-bottom.png"
+			real_texture_placement="0 0 128 8"
+			texture_size="0 0 128 8"
+			size="8 100%-8 100%-8 100%"
+		/>
+		<!-- Right -->
+		<image texture="global/modern/button/red-unselected-right-top.png"
+			real_texture_placement="0 0 8 8"
+			size="100%-8 0 100% 8"
+		/>
+		<image texture="global/modern/button/red-unselected-right-center.png"
+			real_texture_placement="0 0 8 16"
+			texture_size="0 0 8 16"
+			size="100%-8 8 100% 100%-8"
+		/>
+		<image texture="global/modern/button/red-unselected-right-bottom.png"
+			real_texture_placement="0 0 8 8"
+			size="100%-8 100%-8 100% 100%"
+		/>
+	</sprite>
+	<sprite name="ModernButtonRedOver">
+		<effect add_color="60 42 42 0"/>
+		<!-- Left -->
+		<image texture="global/modern/button/red-unselected-left-top.png"
+			real_texture_placement="0 0 8 8"
+			size="0 0 8 8"
+		/>
+		<image texture="global/modern/button/red-unselected-left-center.png"
+			real_texture_placement="0 0 8 16"
+			texture_size="0 0 8 16"
+			size="0 8 8 100%-8"
+		/>
+		<image texture="global/modern/button/red-unselected-left-bottom.png"
+			real_texture_placement="0 0 8 8"
+			size="0 100%-8 8 100%"
+		/>
+		<!-- Center -->
+		<image texture="global/modern/button/red-unselected-center-top.png"
+			real_texture_placement="0 0 128 8"
+			texture_size="0 0 128 8"
+			size="8 0 100%-8 8"
+		/>
+		<image texture="global/modern/button/red-unselected-center-center.png"
+			real_texture_placement="0 0 128 16"
+			texture_size="0 0 128 16"
+			size="8 8 100%-8 100%-8"
+		/>
+		<image texture="global/modern/button/red-unselected-center-bottom.png"
+			real_texture_placement="0 0 128 8"
+			texture_size="0 0 128 8"
+			size="8 100%-8 100%-8 100%"
+		/>
+		<!-- Right -->
+		<image texture="global/modern/button/red-unselected-right-top.png"
+			real_texture_placement="0 0 8 8"
+			size="100%-8 0 100% 8"
+		/>
+		<image texture="global/modern/button/red-unselected-right-center.png"
+			real_texture_placement="0 0 8 16"
+			texture_size="0 0 8 16"
+			size="100%-8 8 100% 100%-8"
+		/>
+		<image texture="global/modern/button/red-unselected-right-bottom.png"
+			real_texture_placement="0 0 8 8"
+			size="100%-8 100%-8 100% 100%"
+		/>
+	</sprite>
+	<sprite name="ModernButtonRedDisabled">
+		<effect grayscale=""/>
+		<!-- Left -->
+		<image texture="global/modern/button/red-unselected-left-top.png"
+			real_texture_placement="0 0 8 8"
+			size="0 0 8 8"
+		/>
+		<image texture="global/modern/button/red-unselected-left-center.png"
+			real_texture_placement="0 0 8 16"
+			texture_size="0 0 8 16"
+			size="0 8 8 100%-8"
+		/>
+		<image texture="global/modern/button/red-unselected-left-bottom.png"
+			real_texture_placement="0 0 8 8"
+			size="0 100%-8 8 100%"
+		/>
+		<!-- Center -->
+		<image texture="global/modern/button/red-unselected-center-top.png"
+			real_texture_placement="0 0 128 8"
+			texture_size="0 0 128 8"
+			size="8 0 100%-8 8"
+		/>
+		<image texture="global/modern/button/red-unselected-center-center.png"
+			real_texture_placement="0 0 128 16"
+			texture_size="0 0 128 16"
+			size="8 8 100%-8 100%-8"
+		/>
+		<image texture="global/modern/button/red-unselected-center-bottom.png"
+			real_texture_placement="0 0 128 8"
+			texture_size="0 0 128 8"
+			size="8 100%-8 100%-8 100%"
+		/>
+		<!-- Right -->
+		<image texture="global/modern/button/red-unselected-right-top.png"
+			real_texture_placement="0 0 8 8"
+			size="100%-8 0 100% 8"
+		/>
+		<image texture="global/modern/button/red-unselected-right-center.png"
+			real_texture_placement="0 0 8 16"
+			texture_size="0 0 8 16"
+			size="100%-8 8 100% 100%-8"
+		/>
+		<image texture="global/modern/button/red-unselected-right-bottom.png"
+			real_texture_placement="0 0 8 8"
+			size="100%-8 100%-8 100% 100%"
+		/>
+	</sprite>
+	<!--
+	==========================================
 	- Misc. -
 	==========================================
 	-->
@@ -318,6 +463,12 @@
 	<sprite name="ModernGearPressed">
 		<image	texture="global/modern/gear-press.png"
 			texture_size="0 0 24 24"
+		/>
+	</sprite>
+	<sprite name="logo">
+		<image texture="pregame/shell/logo/0ad_logo.png"
+			real_texture_placement="0 0 256 128"
+			size="0 -5% 100% 105%"
 		/>
 	</sprite>
 </sprites>
