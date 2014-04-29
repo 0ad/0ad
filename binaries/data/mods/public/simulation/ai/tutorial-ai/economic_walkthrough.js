@@ -165,7 +165,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 330,
-				"instructions": markForTranslation("The slingers that you queue earlier should gather stone once they are trained.")
+				"instructions": markForTranslation("The slingers that you queued earlier should gather stone once they are trained.")
 			},
 			{
 				"trigger": "time",
@@ -196,11 +196,6 @@ var economic_walkthrough = [
 				"trigger": "time",
 				"time": 430,
 				"instructions": markForTranslation("Queue some slingers.")
-			},
-			{
-				"trigger": "time",
-				"time": 435,
-				"instructions": markForTranslation("Your fields may start getting exhausted, remember to rebuild them.")
 			},
 			{
 				"trigger": "time",
