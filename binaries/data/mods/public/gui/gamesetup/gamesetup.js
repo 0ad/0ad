@@ -1086,7 +1086,7 @@ function onGameAttributesChange()
 			mapSizeText.caption = translate("Map Size:");
 			mapSize.selected = sizeIdx;
 			revealMapText.caption = translate("Reveal Map:");
-			exploreMapText.caption = translate("Explore Map:");
+			exploreMapText.caption = translate("Explored Map:");
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
 			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
 
@@ -1145,7 +1145,7 @@ function onGameAttributesChange()
 			startingResourcesText.hidden = true;
 
 			revealMapText.caption = translate("Reveal Map:");
-			exploreMapText.caption = translate("Explore Map:");
+			exploreMapText.caption = translate("Explored Map:");
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
 			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
 

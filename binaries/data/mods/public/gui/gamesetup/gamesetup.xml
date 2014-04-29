@@ -307,21 +307,21 @@
 
 				<object size="14 158 94% 186">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
-						<translatableAttribute id="caption" comment="Make sure to differentiate between the reveal map and explore map options!">Reveal Map:</translatableAttribute>
+						<translatableAttribute id="caption" comment="Make sure to differentiate between the reveal map and explored map options!">Reveal Map:</translatableAttribute>
 					</object>
 					<object name="revealMapText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
 					<object name="revealMap" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip">
-						<translatableAttribute id="tooltip" comment="Make sure to differentiate between the reveal map and explore map options!">Toggle reveal map (see everything).</translatableAttribute>
+						<translatableAttribute id="tooltip" comment="Make sure to differentiate between the reveal map and explored map options!">Toggle reveal map (see everything).</translatableAttribute>
 					</object>
 				</object>
 
 				<object size="14 188 94% 216">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
-						<translatableAttribute id="caption" comment="Make sure to differentiate between the reveal map and explore map options!">Explore Map:</translatableAttribute>
+						<translatableAttribute id="caption" comment="Make sure to differentiate between the reveal map and explored map options!">Explored Map:</translatableAttribute>
 					</object>
 					<object name="exploreMapText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
 					<object name="exploreMap" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip">
-						<translatableAttribute id="tooltip" comment="Make sure to differentiate between the reveal map and explore map options!">Toggle explore map (see gaia and buildings).</translatableAttribute>
+						<translatableAttribute id="tooltip" comment="Make sure to differentiate between the reveal map and explored map options!">Toggle explored map (see gaia and buildings).</translatableAttribute>
 					</object>
 				</object>
 
