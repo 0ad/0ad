@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -713,6 +713,9 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_PARTICLES:
 			m_Options.m_Particles = value;
 			break;
+		case OPT_GENTANGENTS:
+			m_Options.m_GenTangents = value;
+			break;
 		case OPT_PREFERGLSL:
 			m_Options.m_PreferGLSL = value;
 			MakeShadersDirty();
@@ -763,6 +766,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_ShadowPCF;
 		case OPT_PARTICLES:
 			return m_Options.m_Particles;
+		case OPT_GENTANGENTS:
+			return m_Options.m_GenTangents;
 		case OPT_PREFERGLSL:
 			return m_Options.m_PreferGLSL;
 		case OPT_SILHOUETTES:

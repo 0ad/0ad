@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@ void JSI_Renderer::Set##SCRIPTNAME##Enabled(ScriptInterface::CxPrivate* UNUSED(p
 }
 
 IMPLEMENT_BOOLEAN_SCRIPT_SETTING(PARTICLES, Particles);
+IMPLEMENT_BOOLEAN_SCRIPT_SETTING(GENTANGENTS, GenTangents);
 IMPLEMENT_BOOLEAN_SCRIPT_SETTING(PREFERGLSL, PreferGLSL);
 IMPLEMENT_BOOLEAN_SCRIPT_SETTING(WATERNORMAL, WaterNormal);
 IMPLEMENT_BOOLEAN_SCRIPT_SETTING(SHADOWPCF, ShadowPCF);
@@ -71,6 +72,7 @@ void JSI_Renderer::RegisterScriptFunctions(ScriptInterface& scriptInterface)
 	REGISTER_BOOLEAN_SCRIPT_SETTING(Shadows);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(ShadowPCF);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(Particles);
+	REGISTER_BOOLEAN_SCRIPT_SETTING(GenTangents);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(PreferGLSL);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(WaterNormal);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(WaterRealDepth);

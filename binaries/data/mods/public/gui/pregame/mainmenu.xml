@@ -2,6 +2,7 @@
 
 <objects>
 	<script file="gui/common/music.js"/>
+	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/common/functions_utility_error.js"/>
 	<script file="gui/pregame/mainmenu.js"/>
 
@@ -506,14 +507,24 @@
 				<object type="button"
 					style="StoneButton"
 					tooltip_style="pgToolTip"
+					size="8 100%-108 100%-8 100% -80"
+				>
+					<translatableAttribute id="caption">Help with the translation!</translatableAttribute>
+					<translatableAttribute id="tooltip">Click to open the 0 A.D translate page in your browser.</translatableAttribute>
+					<action on="Press"><![CDATA[
+						openURL("http://trac.wildfiregames.com/wiki/Localization");
+					]]></action>
+				</object>
+
+				<object type="button"
+					style="StoneButton"
+					tooltip_style="pgToolTip"
 					size="8 100%-72 50%-4 100%-44"
 				>
 					<translatableAttribute id="caption">Website</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to open play0ad.com in your web browser.</translatableAttribute>
 					<action on="Press"><![CDATA[
-						var url = "http://play0ad.com/";
-						Engine.OpenURL(url);
-						messageBox(450, 200, "Opening "+url+"\n in default web browser. Please wait...", "Opening page", 2);
+						openURL("http://play0ad.com/");
 					]]></action>
 				</object>
 
@@ -525,9 +536,7 @@
 					<translatableAttribute id="caption">Chat</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to open the 0 A.D. IRC chat in your browser. (#0ad on webchat.quakenet.org)</translatableAttribute>
 					<action on="Press"><![CDATA[
-						var url = "http://webchat.quakenet.org/?channels=0ad";
-						Engine.OpenURL(url);
-						messageBox(450, 200, "Opening "+url+"\n in default web browser. Please wait...", "Opening page", 2);
+						openURL("http://webchat.quakenet.org/?channels=0ad");
 					]]></action>
 				</object>
 
@@ -539,9 +548,7 @@
 					<translatableAttribute id="caption">Report a Bug</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to visit 0 A.D. Trac to report a bug, crash, or error.</translatableAttribute>
 					<action on="Press"><![CDATA[
-						var url = "http://trac.wildfiregames.com/wiki/ReportingErrors/";
-						Engine.OpenURL(url);
-						messageBox(450, 200, "Opening "+url+"\n in default web browser. Please wait...", "Opening page", 2);
+						openURL("http://trac.wildfiregames.com/wiki/ReportingErrors/");
 					]]></action>
 				</object>
 

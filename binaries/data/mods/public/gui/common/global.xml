@@ -43,7 +43,7 @@
 		==========================================
 		-->
 
-		<object	name="glbWaterMark"
+		<object name="glbWaterMark"
 			hidden="true"
 			hotkey="screenshot.watermark"
 			z="200"
@@ -52,13 +52,13 @@
 				this.hidden = !this.hidden;
 			]]></action>
 
-			<object	name="glbWaterMarkProductLogo"
+			<object name="glbWaterMarkProductLogo"
 				type="image"
 				size="0 100%-88 190 100%"
 				sprite="watermarkProduct"
 			/>
 
-			<object	name="glbWaterMarkCompanyLogo"
+			<object name="glbWaterMarkCompanyLogo"
 				type="image"
 				size="100%-207 100%-28 100% 100%"
 				sprite="watermarkCompany"
