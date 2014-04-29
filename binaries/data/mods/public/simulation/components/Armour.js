@@ -71,7 +71,7 @@ Armour.prototype.TakeDamage = function(hack, pierce, crush, source)
 
 	// Total is sum of individual damages
 	// Don't bother rounding, since HP is no longer integral.
-	var total = Math.max(1, adjHack + adjPierce + adjCrush);
+	var total = adjHack + adjPierce + adjCrush;
 
 	// Reduce health
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
