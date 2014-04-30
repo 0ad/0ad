@@ -106,7 +106,7 @@
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
 				<translatableAttribute id="caption">Technical details</translatableAttribute>
-				<action on="Press">Engine.PushGuiPage("page_manual.xml", {"page":"manual/userreport", "title":translate("Technical Details")});</action>
+				<action on="Press">Engine.PushGuiPage("page_manual.xml", {"page":"manual/userreport", "title":getTechnicalDetails()});</action>
 			</object>
 		</object>
 
@@ -137,7 +137,7 @@
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
 				<translatableAttribute id="caption">Technical details</translatableAttribute>
-				<action on="Press">Engine.PushGuiPage("page_manual.xml", {"page":"manual/userreport", "title":translate("Technical Details")});</action>
+				<action on="Press">Engine.PushGuiPage("page_manual.xml", {"page":"manual/userreport", "title":getTechnicalDetails()});</action>
 			</object>
 		</object>
 
@@ -398,7 +398,7 @@
 					<action on="Press">
 						closeMenu();
 						<![CDATA[
-							Engine.PushGuiPage("page_manual.xml", { "page":"manual/intro", "title":translate("Manual"), "url":"http://trac.wildfiregames.com/wiki/0adManual"});
+							Engine.PushGuiPage("page_manual.xml", {"page":"manual/intro", "title":getManual(), "url":"http://trac.wildfiregames.com/wiki/0adManual"});
 						]]>
 					</action>
 				</object>

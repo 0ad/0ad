@@ -14,12 +14,6 @@
 			onTick();
 		</action>
 
-		<object name="pageConnecting" hidden="true">
-			<object name="connectionStatus" type="text" text_align="center" size="0 100 100% 120">
-				<translatableAttribute id="caption">[Connection status]</translatableAttribute>
-			</object>
-		</object>
-
 		<object style="ModernLabelText" type="text" size="50%-128 0%-16 50%+128 16">
 			<translatableAttribute id="caption">Multiplayer Lobby</translatableAttribute>
 		</object>
@@ -82,18 +76,12 @@
 
 			<object type="button" size="50 160 100%-50 188" style="ModernButtonRed">
 				<translatableAttribute id="caption">Terms of Service</translatableAttribute>
-				<action on="Press">
-					g_TermsOfServiceRead = true;
-					Engine.PushGuiPage("page_manual.xml", {"page":"lobby/Terms_of_Service", "title":"Terms of Service"})
-				</action>
+				<action on="Press">openTermsOfService();</action>
 			</object>
 
 			<object type="button" size="50 200 100%-50 228" style="ModernButtonRed">
 				<translatableAttribute id="caption">Terms of Use</translatableAttribute>
-				<action on="Press">
-					g_TermsOfUseRead = true;
-					Engine.PushGuiPage("page_manual.xml", {"page":"lobby/Terms_of_Use", "title":"Terms of Use"})
-				</action>
+				<action on="Press">openTermsOfUse();</action>
 			</object>
 
 			<object name="registerAgreeTermsLabel" type="text" size="50 240 285 270" style="ModernLabelText">

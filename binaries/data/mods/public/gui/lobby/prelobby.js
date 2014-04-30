@@ -253,4 +253,21 @@ function switchPage(page)
 			break;
 	}
 }
+function openTermsOfService()
+{
+	g_TermsOfServiceRead = true;
+	Engine.PushGuiPage("page_manual.xml", {
+				"page":"lobby/Terms_of_Service",
+				"title":translate("Terms of Service"),
+				})
+}
+
+function openTermsOfUse()
+{
+	g_TermsOfUseRead = true;
+	Engine.PushGuiPage("page_manual.xml", {
+				"page":"lobby/Terms_of_Use",
+				"title":translate("Terms of Use"),
+				})
+}
 

@@ -415,6 +415,24 @@
 	</sprite>
 	<!--
 	==========================================
+	- Basic. -
+	==========================================
+	-->
+	<sprite name="logo">
+		<image texture="pregame/shell/logo/0ad_logo.png"
+			real_texture_placement="0 0 256 128"
+			size="0 -5% 100% 105%"
+		/>
+	</sprite>
+	<sprite name="BlackBorderOnGray">
+		<image backcolor="darkgray"
+			size="0 0 100% 100%"
+			border="true"
+			bordercolor="black"
+		/>
+	</sprite>
+	<!--
+	==========================================
 	- Misc. -
 	==========================================
 	-->
@@ -445,7 +463,8 @@
 		/>
 	</sprite>
 	<sprite name="ModernTickDisabled">
-		<image texture="global/modern/tick-disabled.png"
+		<effect grayscale=""/>
+		<image texture="global/modern/tick-on.png"
 			real_texture_placement="0 0 27 27"
 			size="0 0 22 22"
 		/>
@@ -463,12 +482,6 @@
 	<sprite name="ModernGearPressed">
 		<image texture="global/modern/gear-press.png"
 			texture_size="0 0 24 24"
-		/>
-	</sprite>
-	<sprite name="logo">
-		<image texture="pregame/shell/logo/0ad_logo.png"
-			real_texture_placement="0 0 256 128"
-			size="0 -5% 100% 105%"
 		/>
 	</sprite>
 </sprites>
