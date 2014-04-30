@@ -101,11 +101,11 @@
 				</attribute>
 			</object>
 			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
-				<translatableAttribute id="caption">Enable feedback</translatableAttribute>
+				<translatableAttribute id="caption">Enable Feedback</translatableAttribute>
 				<action on="Press">EnableUserReport(true);</action>
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
-				<translatableAttribute id="caption">Technical details</translatableAttribute>
+				<translatableAttribute id="caption">Technical Details</translatableAttribute>
 				<action on="Press">Engine.PushGuiPage("page_manual.xml", {"page":"manual/userreport", "title":getTechnicalDetails()});</action>
 			</object>
 		</object>
@@ -132,11 +132,11 @@
 			</object>
 
 			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
-				<translatableAttribute id="caption">Disable feedback</translatableAttribute>
+				<translatableAttribute id="caption">Disable Feedback</translatableAttribute>
 				<action on="Press">EnableUserReport(false);</action>
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
-				<translatableAttribute id="caption">Technical details</translatableAttribute>
+				<translatableAttribute id="caption">Technical Details</translatableAttribute>
 				<action on="Press">Engine.PushGuiPage("page_manual.xml", {"page":"manual/userreport", "title":getTechnicalDetails()});</action>
 			</object>
 		</object>
@@ -509,7 +509,7 @@
 					tooltip_style="pgToolTip"
 					size="8 100%-108 100%-8 100% -80"
 				>
-					<translatableAttribute id="caption">Help with the translation!</translatableAttribute>
+					<translatableAttribute id="caption">Help with the Translation!</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to open the 0 A.D translate page in your browser.</translatableAttribute>
 					<action on="Press"><![CDATA[
 						openURL("http://trac.wildfiregames.com/wiki/Localization");
