@@ -136,8 +136,8 @@ function resignMenuButton()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	var btCaptions = [translate("Yes"), translate("No")];
-	var btCode = [resignGame, resumeGame];
+	var btCaptions = [translate("No"), translate("Yes")];
+	var btCode = [resumeGame, resignGame];
 	messageBox(400, 200, translate("Are you sure you want to resign?"), translate("Confirmation"), 0, btCaptions, btCode);
 }
 
@@ -158,10 +158,10 @@ function exitMenuButton()
 	}
 	else
 	{
-		var btCode = [leaveGame, resumeGame];
+		var btCode = [resumeGame, leaveGame];
 		var message = translate("Are you sure you want to quit?");
 	}
-	messageBox(400, 200, message, translate("Confirmation"), 0, [translate("Yes"), translate("No")], btCode);
+	messageBox(400, 200, message, translate("Confirmation"), 0, [translate("No"), translate("Yes")], btCode);
 }
 
 function networkReturnQuestion()
@@ -182,8 +182,8 @@ function openDeleteDialog(selection)
 		Engine.PostNetworkCommand({"type": "delete-entities", "entities": selectionArg});
 	};
 
-	var btCaptions = [translate("Yes"), translate("No")];
-	var btCode = [deleteSelectedEntities, resumeGame];
+	var btCaptions = [translate("No"), translate("Yes")];
+	var btCode = [resumeGame, deleteSelectedEntities];
 
 	messageBox(400, 200, translate("Destroy everything currently selected?"), translate("Delete"), 0, btCaptions, btCode, [selection, null]);
 }
