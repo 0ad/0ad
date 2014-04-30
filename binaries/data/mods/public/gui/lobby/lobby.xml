@@ -132,10 +132,10 @@
 					<translatableAttribute id="heading">Map Name</translatableAttribute>
 				</def>
 				<def id="mapSize" color="128 128 128" width="16%">
-					<translatableAttribute id="heading">Size</translatableAttribute>
+					<translatableAttribute id="heading" context="map">Size</translatableAttribute>
 				</def>
 				<def id="mapType" color="0 128 128" width="16%">
-					<translatableAttribute id="heading">Type</translatableAttribute>
+					<translatableAttribute id="heading" context="map">Type</translatableAttribute>
 				</def>
 				<def id="nPlayers" color="0 128 128" width="16%">
 					<translatableAttribute id="heading">Players</translatableAttribute>

@@ -1109,6 +1109,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	ATTR(on);
 	ATTR(file);
 	ATTR(id);
+	ATTR(context);
 
 	//
 	//	Read Style and set defaults
@@ -1290,8 +1291,17 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				CStr value(child.GetText());
 				if (!value.empty())
 				{
-					CStr translatedValue(L10n::Instance().Translate(value));
-					object->SetSetting(attributeName, translatedValue.UnescapeBackslashes().FromUTF8(), true);
+					CStr context(child.GetAttributes().GetNamedItem(attr_context)); // Read the context if any.
+					if (!context.empty())
+					{
+						CStr translatedValue(L10n::Instance().TranslateWithContext(context, value));
+						object->SetSetting(attributeName, translatedValue.UnescapeBackslashes().FromUTF8(), true);
+					}
+					else
+					{
+						CStr translatedValue(L10n::Instance().Translate(value));
+						object->SetSetting(attributeName, translatedValue.UnescapeBackslashes().FromUTF8(), true);
+					}
 				}
 			}
 			else // Ignore.

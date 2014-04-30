@@ -413,6 +413,8 @@ class xml(Extractor):
                                 position += " ({attributes})".format(attributes=", ".join(attributes))
                             if "tagAsContext" in self.keywords[keyword]:
                                 context = keyword
+                            if "context" in element.attrib:
+                                context = element.get("context")
                             if "comment" in element.attrib:
                                 comment = element.get("comment")
                                 comment = u" ".join(comment.split()) # Remove tabs, line breaks and unecessary spaces.
