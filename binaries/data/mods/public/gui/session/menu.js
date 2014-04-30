@@ -197,13 +197,13 @@ function openSave()
 	closeOpenDialogs();
 	pauseGame();
 	var savedGameData = getSavedGameData();
-	Engine.PushGuiPage("page_savegame.xml", {"savedGameData": savedGameData, "callback": "resumeGame"});
+	Engine.PushGuiPage("page_savegame.xml", {"savedGameData":savedGameData, "callback":"resumeGame"});
 }
 
 function openSettings()
 {
 	pauseGame();
-	Engine.PushGuiPage("page_options.xml");
+	Engine.PushGuiPage("page_options.xml", {"callback":"resumeGame"});
 }
 
 function openChat()

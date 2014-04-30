@@ -1,3 +1,4 @@
+var g_hasCallback = false;
 /**
  * This array holds the data to populate the general section with.
  * Data is in the form [Title, Tooltip, {ActionType:Action}, InputType].
@@ -44,8 +45,11 @@ var options = {
 	],
 };
 
-function init()
+function init(data)
 {
+	if (data && data.callback)
+		g_hasCallback = true;
+
 	// WARNING: We assume a strict formatting of the XML and do minimal checking.
 	for each (var prefix in Object.keys(options))
 	{
@@ -207,4 +211,15 @@ function mergeFunctions(function1, function2)
 		function1.apply(this);
 		function2.apply(this);
 	};
+}
+
+/**
+ * Close GUI page and call callbacks if they exist.
+ **/
+function closePage()
+{
+	if (g_hasCallback)
+		Engine.PopGuiPageCB();
+	else
+		Engine.PopGuiPage();
 }
