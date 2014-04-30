@@ -24,7 +24,17 @@
 			<translatableAttribute id="caption">Multiplayer Lobby</translatableAttribute>
 		</object>
 
-		<object name="pageConnect" size="0 32 100% 100%">
+		<object name="pageWelcome" size="0 32 100% 100%">
+			<object type="button" size="50 12 100%-50 68" style="ModernButtonRed">
+				<translatableAttribute id="caption">Create a new account</translatableAttribute>
+				<action on="Press">switchPage("register");</action>
+			</object>
+			<object type="button" size="50 80 100%-50 136" style="ModernButtonRed">
+				<translatableAttribute id="caption">Login to an existing account</translatableAttribute>
+				<action on="Press">switchPage("connect");</action>
+			</object>
+		</object>
+		<object name="pageConnect" size="0 32 100% 100%" hidden="true">
 			<object type="text" size="0 0 400 30" style="ModernLabelText" text_align="center">
 				<translatableAttribute id="caption">Connect to the game lobby</translatableAttribute>
 			</object>
@@ -45,51 +55,75 @@
 					this.caption = Engine.ConfigDB_GetValue("user", "lobby.password").substring(0, 10);
 				</action>
 				<action on="Press">
-					lobbyStart();
+					lobbyStartConnect();
 				</action>
 			</object>
 		</object>
 		<object name="pageRegister" size="0 32 100% 100%" hidden="true">
+
 			<object type="text" style="ModernLabelText" size="0 0 400 30" text_align="center">
 				<translatableAttribute id="caption">Registration</translatableAttribute>
 			</object>
-			<object type="text" size="50 40 170 70" style="ModernLabelText" text_align="right">
+
+			<object name="registerUsernameLabel" type="text" size="50 40 130 70" style="ModernLabelText" text_align="right">
+				<translatableAttribute id="caption">Login:</translatableAttribute>
+			</object>
+			<object name="registerUsername" type="input" size="140 40 100%-50 64" style="ModernInput"/>
+
+			<object name="registerPasswordLabel" type="text" size="50 80 130 110" style="ModernLabelText" text_align="right">
+				<translatableAttribute id="caption">Password:</translatableAttribute>
+			</object>
+			<object name="registerPassword" type="input" size="140 80 100%-50 104" style="ModernInput" mask="true" mask_char="*"/>
+
+			<object name="registerPasswordAgainLabel" type="text" size="50 120 130 150" style="ModernLabelText" text_align="right">
 				<translatableAttribute id="caption">Password again:</translatableAttribute>
 			</object>
-			<object name="registerPasswordAgain" type="input" size="180 40 100%-50 64" style="ModernInput" mask="true" mask_char="*">
+			<object name="registerPasswordAgain" type="input" size="140 120 100%-50 144" style="ModernInput" mask="true" mask_char="*"/>
+
+			<object type="button" size="50 160 100%-50 188" style="ModernButtonRed">
+				<translatableAttribute id="caption">Terms of Service</translatableAttribute>
 				<action on="Press">
-					lobbyStartRegister()
+					g_TermsOfServiceRead = true;
+					Engine.PushGuiPage("page_manual.xml", {"page":"lobby/Terms_of_Service", "title":"Terms of Service"})
 				</action>
 			</object>
+
+			<object type="button" size="50 200 100%-50 228" style="ModernButtonRed">
+				<translatableAttribute id="caption">Terms of Use</translatableAttribute>
+				<action on="Press">
+					g_TermsOfUseRead = true;
+					Engine.PushGuiPage("page_manual.xml", {"page":"lobby/Terms_of_Use", "title":"Terms of Use"})
+				</action>
+			</object>
+
+			<object name="registerAgreeTermsLabel" type="text" size="50 240 285 270" style="ModernLabelText">
+				<translatableAttribute id="caption">I have read and agree to the Terms of Service and Terms of Use:</translatableAttribute>
+			</object>
+			<object name="registerAgreeTerms" type="checkbox" size="295 245 100%-50 270" style="ModernTickBox" enabled="false">
+				<action on="Tick"><![CDATA[this.enabled = g_TermsOfServiceRead && g_TermsOfUseRead;]]></action>
+			</object>
+
 		</object>
-		<object name="feedback" type="text" size="50 150 100%-50 190" style="ModernLabelText" textcolor="red" text_align="center"/>
-		<object type="button" size="18 100%-45 126 100%-17" style="ModernButtonRed">
+		<object name="feedback" type="text" size="50 100%-90 100%-50 100%-50" style="ModernLabelText" textcolor="red" text_align="center"/>
+		<object name="cancel" type="button" size="18 100%-45 50%-5 100%-17" style="ModernButtonRed">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">
-				if (Engine.GetGUIObjectByName("pageRegister").hidden)
+				if (Engine.GetGUIObjectByName("pageWelcome").hidden)
+					switchPage("welcome");
+				else
 				{
 					lobbyStop();
 					Engine.PopGuiPage();
 				}
-				else
-					switchRegister();
 			</action>
 		</object>
-		<object name="register" type="button" size="136 100%-45 244 100%-17" style="ModernButtonRed">
-			<translatableAttribute id="caption">Register</translatableAttribute>
-			<action on="Press">
-				if (Engine.GetGUIObjectByName("pageRegister").hidden)
-				{
-					switchRegister();
-				}
-				else
-					lobbyStartRegister()
-			</action>
-		</object>
-		<object name="connect" type="button" size="254 100%-45 100%-18 100%-17" style="ModernButtonRed">
+		<object name="continue" type="button" size="50%+5 100%-45 100%-18 100%-17" style="ModernButtonRed" enabled="false" hidden="true">
 			<translatableAttribute id="caption">Connect</translatableAttribute>
 			<action on="Press">
-				lobbyStart();
+				if (!Engine.GetGUIObjectByName("pageConnect").hidden)
+					lobbyStartConnect();
+				else if (!Engine.GetGUIObjectByName("pageRegister").hidden)
+					lobbyStartRegister();
 			</action>
 		</object>
 

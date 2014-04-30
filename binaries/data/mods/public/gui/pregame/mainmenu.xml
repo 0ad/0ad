@@ -106,7 +106,7 @@
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
 				<translatableAttribute id="caption">Technical details</translatableAttribute>
-				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
+				<action on="Press">Engine.PushGuiPage("page_manual.xml", {"page":"manual/userreport", "title":translate("Technical Details")});</action>
 			</object>
 		</object>
 
@@ -137,7 +137,7 @@
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
 				<translatableAttribute id="caption">Technical details</translatableAttribute>
-				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
+				<action on="Press">Engine.PushGuiPage("page_manual.xml", {"page":"manual/userreport", "title":translate("Technical Details")});</action>
 			</object>
 		</object>
 
@@ -398,7 +398,7 @@
 					<action on="Press">
 						closeMenu();
 						<![CDATA[
-							Engine.PushGuiPage("page_manual.xml", { "page": "intro" });
+							Engine.PushGuiPage("page_manual.xml", { "page":"manual/intro", "title":translate("Manual"), "url":"http://trac.wildfiregames.com/wiki/0adManual"});
 						]]>
 					</action>
 				</object>
@@ -561,7 +561,7 @@
 			>
 
 				<!-- COMPANY LOGO -->
-				<object	name="companyLogo"
+				<object name="companyLogo"
 					type="image"
 					sprite="companyLogo"
 					ghost="true"
@@ -570,7 +570,7 @@
 
 				<!-- COMPANY NAME -->
 				<object type="text"
-				        style="MediumTitleText"
+					style="MediumTitleText"
 					ghost="true"
 					size="50%-128 32 50%+128 48"
 				>

@@ -660,7 +660,7 @@ function openManual()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	Engine.PushGuiPage("page_manual.xml", {"page": "intro", "callback": "resumeGame"});
+	Engine.PushGuiPage("page_manual.xml", {"page": "intro", "title":translate("Manual"), "url":"http://trac.wildfiregames.com/wiki/0adManual", "callback": "resumeGame"});
 }
 
 function toggleDeveloperOverlay()
