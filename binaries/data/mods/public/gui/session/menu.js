@@ -185,7 +185,7 @@ function openDeleteDialog(selection)
 	var btCaptions = [translate("No"), translate("Yes")];
 	var btCode = [resumeGame, deleteSelectedEntities];
 
-	messageBox(400, 200, translate("Destroy everything currently selected?"), translate("Delete"), 0, btCaptions, btCode, [selection, null]);
+	messageBox(400, 200, translate("Destroy everything currently selected?"), translate("Delete"), 0, btCaptions, btCode, [null, selection]);
 }
 
 // Menu functions
