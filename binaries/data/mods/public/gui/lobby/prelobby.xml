@@ -8,7 +8,7 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="ModernFade"/>
 
-	<object name="dialog" type="image" style="ModernDialog" size="50%-190 50%-120 50%+190 50%+120">
+	<object name="dialog" type="image" style="ModernDialog" size="50%-230 50%-120 50%+230 50%+120">
 
 		<action on="Tick">
 			onTick();
@@ -29,21 +29,21 @@
 			</object>
 		</object>
 		<object name="pageConnect" size="0 32 100% 100%" hidden="true">
-			<object type="text" size="0 0 400 30" style="ModernLabelText" text_align="center">
+			<object type="text" size="0 0 100% 30" style="ModernLabelText" text_align="center">
 				<translatableAttribute id="caption">Connect to the game lobby</translatableAttribute>
 			</object>
-			<object name="connectUsernameLabel" type="text" size="50 40 125 70" style="ModernLabelText" text_align="right">
+			<object name="connectUsernameLabel" type="text" size="20 40 50% 70" style="ModernLabelText" text_align="right">
 				<translatableAttribute id="caption">Login:</translatableAttribute>
 			</object>
-			<object name="connectUsername" type="input" size="135 40 100%-50 64" style="ModernInput">
+			<object name="connectUsername" type="input" size="50%+10 40 100%-20 64" style="ModernInput">
 				<action on="Load">
 					this.caption = Engine.ConfigDB_GetValue("user", "lobby.login");
 				</action>
 			</object>
-			<object name="connectPasswordLabel" type="text" size="50 80 125 110" style="ModernLabelText" text_align="right">
+			<object name="connectPasswordLabel" type="text" size="20 80 50% 110" style="ModernLabelText" text_align="right">
 				<translatableAttribute id="caption">Password:</translatableAttribute>
 			</object>
-			<object name="connectPassword" type="input" size="135 80 100%-50 104" style="ModernInput" mask="true" mask_char="*">
+			<object name="connectPassword" type="input" size="50%+10 80 100%-20 104" style="ModernInput" mask="true" mask_char="*">
 				<action on="Load">
 					// We only show 10 characters to make it look decent.
 					this.caption = Engine.ConfigDB_GetValue("user", "lobby.password").substring(0, 10);
@@ -55,39 +55,39 @@
 		</object>
 		<object name="pageRegister" size="0 32 100% 100%" hidden="true">
 
-			<object type="text" style="ModernLabelText" size="0 0 400 30" text_align="center">
+			<object type="text" style="ModernLabelText" size="0 0 100% 30" text_align="center">
 				<translatableAttribute id="caption">Registration</translatableAttribute>
 			</object>
 
-			<object name="registerUsernameLabel" type="text" size="50 40 130 70" style="ModernLabelText" text_align="right">
+			<object name="registerUsernameLabel" type="text" size="10 40 50% 70" style="ModernLabelText" text_align="right">
 				<translatableAttribute id="caption">Login:</translatableAttribute>
 			</object>
-			<object name="registerUsername" type="input" size="140 40 100%-50 64" style="ModernInput"/>
+			<object name="registerUsername" type="input" size="50%+10 40 100%-20 64" style="ModernInput"/>
 
-			<object name="registerPasswordLabel" type="text" size="50 80 130 110" style="ModernLabelText" text_align="right">
+			<object name="registerPasswordLabel" type="text" size="10 80 50% 110" style="ModernLabelText" text_align="right">
 				<translatableAttribute id="caption">Password:</translatableAttribute>
 			</object>
-			<object name="registerPassword" type="input" size="140 80 100%-50 104" style="ModernInput" mask="true" mask_char="*"/>
+			<object name="registerPassword" type="input" size="50%+10 80 100%-20 104" style="ModernInput" mask="true" mask_char="*"/>
 
-			<object name="registerPasswordAgainLabel" type="text" size="50 120 130 150" style="ModernLabelText" text_align="right">
+			<object name="registerPasswordAgainLabel" type="text" size="10 120 50% 150" style="ModernLabelText" text_align="right">
 				<translatableAttribute id="caption">Password again:</translatableAttribute>
 			</object>
-			<object name="registerPasswordAgain" type="input" size="140 120 100%-50 144" style="ModernInput" mask="true" mask_char="*"/>
+			<object name="registerPasswordAgain" type="input" size="50%+10 120 100%-20 144" style="ModernInput" mask="true" mask_char="*"/>
 
-			<object type="button" size="50 160 100%-50 188" style="ModernButtonRed">
+			<object type="button" size="20 160 100%-20 188" style="ModernButtonRed">
 				<translatableAttribute id="caption">Terms of Service</translatableAttribute>
 				<action on="Press">openTermsOfService();</action>
 			</object>
 
-			<object type="button" size="50 200 100%-50 228" style="ModernButtonRed">
+			<object type="button" size="20 200 100%-20 228" style="ModernButtonRed">
 				<translatableAttribute id="caption">Terms of Use</translatableAttribute>
 				<action on="Press">openTermsOfUse();</action>
 			</object>
 
-			<object name="registerAgreeTermsLabel" type="text" size="50 240 285 270" style="ModernLabelText">
+			<object name="registerAgreeTermsLabel" type="text" size="20 240 100%-80 270" style="ModernLabelText">
 				<translatableAttribute id="caption">I have read and agree to the Terms of Service and Terms of Use:</translatableAttribute>
 			</object>
-			<object name="registerAgreeTerms" type="checkbox" size="295 245 100%-50 270" style="ModernTickBox" enabled="false">
+			<object name="registerAgreeTerms" type="checkbox" size="100%-60 245 100%-20 270" style="ModernTickBox" enabled="false">
 				<action on="Tick"><![CDATA[this.enabled = g_TermsOfServiceRead && g_TermsOfUseRead;]]></action>
 			</object>
 
