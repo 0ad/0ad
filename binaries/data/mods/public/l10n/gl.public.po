@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-27 22:12+0200\n"
-"PO-Revision-Date: 2014-04-28 10:40+0000\n"
+"POT-Creation-Date: 2014-05-01 03:17+0200\n"
+"PO-Revision-Date: 2014-05-01 01:27+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,18 @@ msgstr "Heroes"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s — Historia"
 
-#: gui/common/functions_global_object.js:73
+#: gui/common/functions_global_object.js:75
+#, python-format
+msgid ""
+"Opening %(url)s\n"
+" in default web browser. Please wait..."
+msgstr "Abrindo %(url)s\n no navegador predeterminado…"
+
+#: gui/common/functions_global_object.js:75
+msgid "Opening page"
+msgstr "Abrindo unha páxina"
+
+#: gui/common/functions_global_object.js:80
 #, python-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
@@ -315,17 +326,19 @@ msgstr "%(playerName)s %(romanNumber)s"
 msgid "Map Size:"
 msgstr "Tamaño:"
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
-msgid "Reveal Map:"
-msgstr "Revelar o mapa:"
+msgid "Revealed Map:"
+msgstr "Mapa revelado:"
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
-msgid "Explore Map:"
-msgstr "Explorar o mapa:"
+msgid "Explored Map:"
+msgstr "Mapa explorado:"
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -342,7 +355,7 @@ msgstr "Cambios de equipo:"
 #: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
 #: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
 #: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
-#: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
+#: gui/pregame/mainmenu.js:308 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
 #: gui/session/menu.js:185 gui/session/session.js:481
@@ -354,7 +367,7 @@ msgstr "Si"
 #: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
 #: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
 #: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
-#: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
+#: gui/pregame/mainmenu.js:308 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
 #: gui/session/menu.js:185 gui/session/session.js:481
@@ -609,25 +622,61 @@ msgstr "%(time)s %(message)s"
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Por favor, non envíe mensaxes non desexadas. Non poderá enviar mensaxes durante os próximos trinta segundos."
 
-#: gui/lobby/prelobby.js:35
+#: gui/lobby/prelobby.js:40
 msgid "Connecting..."
 msgstr "Conectando…"
 
-#: gui/lobby/prelobby.js:61
-msgid "Passwords do not match"
-msgstr "Os contrasinais non coinciden."
-
-#: gui/lobby/prelobby.js:68
+#: gui/lobby/prelobby.js:62
 msgid "Registering..."
 msgstr "Rexistrándose…"
 
-#: gui/lobby/prelobby.js:109 gui/lobby/prelobby.js:123
-msgid "Please enter existing login or desired registration credentials."
-msgstr "Introduza os seus datos de conexión existentes ou aqueles cos que queira rexistrarse."
+#: gui/lobby/prelobby.js:99
+msgid "Please enter your username"
+msgstr "Escriba o seu nome de usuario."
 
-#: gui/lobby/prelobby.js:114 gui/lobby/prelobby.js:122
-msgid "Usernames can't contain [, ], unicode, whitespace, or commas."
+#: gui/lobby/prelobby.js:105
+msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
 msgstr "Os nomes de usuarios non poden conter letras non latinas (nin tiles, nin eñes, etc.), corchetes («[]»), espazos en branco ou comas."
+
+#: gui/lobby/prelobby.js:111
+msgid "Please enter your password"
+msgstr "Escriba o seu contrasinal."
+
+#: gui/lobby/prelobby.js:124
+msgid "Please enter your password again"
+msgstr "Escriba o seu contrasinal de novo."
+
+#: gui/lobby/prelobby.js:130
+msgid "Passwords do not match"
+msgstr "Os contrasinais non coinciden."
+
+#: gui/lobby/prelobby.js:136
+msgid "Please read the Terms of Service"
+msgstr "Lea atentamente as condicións de servizo."
+
+#: gui/lobby/prelobby.js:142
+msgid "Please read the Terms of Use"
+msgstr "Lea atentamente as condicións de uso."
+
+#: gui/lobby/prelobby.js:148
+msgid "Please agree to the Terms of Service and Terms of Use"
+msgstr "Lea atentamente e acepte as condicións de servizo e de uso."
+
+#: gui/lobby/prelobby.js:246
+msgid "Register"
+msgstr "Rexistrarse"
+
+#: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:109 (caption)
+msgid "Connect"
+msgstr "Conectar"
+
+#: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
+msgid "Terms of Service"
+msgstr "Condicións de servizo"
+
+#: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
+msgid "Terms of Use"
+msgstr "Condicións de uso"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -638,7 +687,7 @@ msgstr "Ningún"
 msgid "<invalid>"
 msgstr "Configuración rexional inexistente."
 
-#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:185
+#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
 #: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
 #: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
@@ -657,215 +706,225 @@ msgstr "Ignorar"
 msgid "Abort"
 msgstr "Interromper"
 
-#: gui/options/options.js:8
+#: gui/options/options.js:9
 msgid "Windowed Mode"
 msgstr "Modo xanela"
 
-#: gui/options/options.js:8
+#: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
 msgstr "Iniciar 0 A.D. nunha xanela."
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Background Pause"
 msgstr "Pausa en segundo plano"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
 msgstr "Deter as partidas individuais cando a xanela do xogo perda o foco."
 
-#: gui/options/options.js:10
+#: gui/options/options.js:11
+msgid "Disable Welcome Screen"
+msgstr "Desactivar a pantalla de benvida"
+
+#: gui/options/options.js:11
+msgid ""
+"If you disable this screen completely, you may miss important announcements.\n"
+"You can still launch it using the main menu."
+msgstr "Se desactiva completamente a pantalla de benvida, é posíbel que se perda anuncios importantes.\nEn calquera caso, pode acceder á pantalla de benvida en calquera momento desde o menú principal."
+
+#: gui/options/options.js:12
 msgid "Developer Overlay"
 msgstr "Capa de desenvolvedores"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:12
 msgid ""
 "Show overlay in-game with options such as reveal map, control all units, and"
 " change perspective. Designed for use by developers"
 msgstr "Mostrar unha caixa durante as partidas con opcións como a de revelar o mapa, controlar todas as unidades, cambiar a perspectiva, etc. A caixa está pensada para desenvolvedores."
 
-#: gui/options/options.js:14
+#: gui/options/options.js:16
 msgid "Prefer GLSL"
 msgstr "Preferencia por GLSL"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:16
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Usar as tecnoloxías de sombras (shaders) de OpenGL 2.0 (recomendado)."
 
-#: gui/options/options.js:15
+#: gui/options/options.js:17
 msgid "Post Processing"
 msgstr "Post-procesamento"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:17
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Usar filtros de post-procesamento no espazo da pantalla (HDR, incandescencia, profundidade de campo, etc.)."
 
-#: gui/options/options.js:16
+#: gui/options/options.js:18
 msgid "Shadows"
 msgstr "Sombras"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:18
 msgid "Enable shadows"
 msgstr "Activar as sombras."
 
-#: gui/options/options.js:17
+#: gui/options/options.js:19
 msgid "Particles"
 msgstr "Partículas"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:19
 msgid "Enable particles"
 msgstr "Activar as partículas."
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Show Sky"
 msgstr "Ceo"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Render Sky"
 msgstr "Mostrar o ceo."
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid "Smooth LOS"
 msgstr "Liña de visión suave"
 
-#: gui/options/options.js:19
-msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."
+#: gui/options/options.js:21
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 msgstr "Retirar o manto do descoñecido e maila néboa de guerra de maneira suave. Require activar «Preferencia por GLSL» previamente."
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Unit Silhouettes"
 msgstr "Siluetas das unidades"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Show outlines of units behind buildings"
 msgstr "Mostrar as siluetas das unidades cando estean detrás de estruturas."
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Shadow Filtering"
 msgstr "Filtro de sombras"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Smooth shadows"
 msgstr "Usar sombras suavizadas."
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "HQ Waviness"
 msgstr "Ondas de calidade"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr "Usar vectores normais reais para xerar as ondas mariñas, en vez de empregar unha textura plana."
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Real Water Depth"
 msgstr "Profundidade na auga"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Use actual water depth in rendering calculations"
 msgstr "Usar profundidade real para a auga no cálculo da xeración da imaxe."
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Water Reflections"
 msgstr "Reflexión na auga"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Allow water to reflect a mirror image"
 msgstr "Permitir que a auga faga efecto espello."
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Water Refraction"
 msgstr "Refracción na auga"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Use a real water refraction map and not transparency"
 msgstr "Usar un refracción real na auga dos mapas en vez de transparencia."
 
-#: gui/options/options.js:26
+#: gui/options/options.js:28
 msgid "Shore Foam"
 msgstr "Espuma na costa"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:28
 msgid "Show foam on water near shore depending on water waviness"
 msgstr "Mostrar a espuma xerada ao romperen as ondas do mar na costa."
 
-#: gui/options/options.js:27
+#: gui/options/options.js:29
 msgid "Shore Waves"
 msgstr "Ondas na costa"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:29
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr "Mostrar como rompen as ondas do mar na costa. É necesario activar previamente a opción «Ondas de calidade»."
 
-#: gui/options/options.js:28
+#: gui/options/options.js:30
 msgid "Water Shadows"
 msgstr "Sombras na auga"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:30
 msgid "Cast shadows on water"
 msgstr "Imprimir sombras na auga."
 
-#: gui/options/options.js:29
+#: gui/options/options.js:31
 msgid "VSync"
 msgstr "Sincronización vertical"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:31
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Usa sincronización vertical para evitar que aparezan ao mesmo tempo imaxes de distintos fotogramas na pantalla. Para que a opción xurda efecto é necesario reiniciar o xogo."
 
-#: gui/options/options.js:33
+#: gui/options/options.js:35
 msgid "Master Gain"
 msgstr "Ganancia mestra"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:35
 msgid "Master audio gain"
 msgstr "Ganancia da canle mestra de son."
 
-#: gui/options/options.js:34
+#: gui/options/options.js:36
 msgid "Music Gain"
 msgstr "Ganancia da música"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:36
 msgid "In game music gain"
 msgstr "Ganancia da música do xogo."
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Ambient Gain"
 msgstr "Ganancia ambiental"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "In game ambient sound gain"
 msgstr "Ganancia dos sons ambientais do xogo."
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "Action Gain"
 msgstr "Ganancia da acción"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "In game unit action sound gain"
 msgstr "Ganancia dos sons de acción das unidades no xogo."
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "UI Gain"
 msgstr "Ganancia da interface"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "UI sound gain"
 msgstr "Ganancia dos sons da interface."
 
-#: gui/options/options.js:41
+#: gui/options/options.js:43
 msgid "Chat Backlog"
 msgstr "Historial de conversas"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:43
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Número de mensaxes previas que cargar ao unirse á sala de espera para partidas de varios xogadores."
 
-#: gui/options/options.js:42
+#: gui/options/options.js:44
 msgid "Chat Timestamp"
 msgstr "Hora das mensaxes"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:44
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Mostrar a hora das mensaxes que se envían e reciben no panel de conversa da sala de espera para partidas de varios xogadores."
 
@@ -900,7 +959,7 @@ msgstr "non foi posíbel completar o envío (%(errorMessage)s)"
 msgid "unknown"
 msgstr "descoñecido"
 
-#: gui/pregame/mainmenu.js:176
+#: gui/pregame/mainmenu.js:177
 #, python-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -913,43 +972,53 @@ msgstr "%(startWarning)sAdvertencia:%(endWarning)s Parece que o teu sistema de g
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:182
+#: gui/pregame/mainmenu.js:183
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Preme «Ler máis» para máis información, ou «Aceptar» para continuar."
 
-#: gui/pregame/mainmenu.js:183
+#: gui/pregame/mainmenu.js:184
 msgid "WARNING!"
 msgstr "Aviso!"
 
-#: gui/pregame/mainmenu.js:185
+#: gui/pregame/mainmenu.js:186
 msgid "Read More"
 msgstr "Ler máis"
 
-#: gui/pregame/mainmenu.js:286 gui/session/session.js:917
+#: gui/pregame/mainmenu.js:279 gui/session/session.js:917
 #, python-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versión: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:350
+#: gui/pregame/mainmenu.js:310
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Estás seguro de que queres saír de 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:350 gui/session/menu.js:141 gui/session/menu.js:164
+#: gui/pregame/mainmenu.js:310 gui/session/menu.js:141 gui/session/menu.js:164
 #: gui/session/menu.js:172
 msgid "Confirmation"
 msgstr "Confirmación"
 
-#: gui/pregame/mainmenu.js:360
+#: gui/pregame/mainmenu.js:320
 msgid "The scenario editor is not available or failed to load."
 msgstr "O editor de escenarios, ou non está dispoñíbel ou algún problema lle impediu iniciarse."
 
-#: gui/pregame/mainmenu.js:360
+#: gui/pregame/mainmenu.js:320
 msgid "Error"
 msgstr "Erro"
 
-#: gui/pregame/mainmenu.js:365
+#: gui/pregame/mainmenu.js:325
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 msgstr "Acceder á sala de espera para partidas de varios xogadores."
+
+#: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
+#: gui/pregame/mainmenu.xml:139 (caption)
+msgid "Technical Details"
+msgstr "Detalles técnicos"
+
+#: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
+#: gui/session/session.xml:732 (caption)
+msgid "Manual"
+msgstr "Manual"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -1645,49 +1714,56 @@ msgstr "Botón principal para desaloxar 1. Maiús + botón principal para desalo
 msgid "Requires %(technology)s"
 msgstr "Require a tecnoloxía «%(technology)s»."
 
-#: gui/session/unit_commands.js:953
+#: gui/session/unit_commands.js:725
+#, python-format
+msgid "Remaining: %(number)s to build."
+msgid_plural "Remaining: %(number)s to build."
+msgstr[0] "Falta %(number)s estrutura por construír."
+msgstr[1] "Faltan %(number)s estruturas por construír."
+
+#: gui/session/unit_commands.js:962
 #, python-format
 msgid "Set/unset %(resource)s as forced trading goods."
 msgstr "Establecer ou desactivar «%(resource)s» como ben de comercio imposto."
 
-#: gui/session/unit_commands.js:1152
+#: gui/session/unit_commands.js:1161
 msgid "Convert Wooden Wall into Wooden Gate"
 msgstr "Converter a muralla de madeira en porta"
 
-#: gui/session/unit_commands.js:1156
+#: gui/session/unit_commands.js:1165
 msgid "Convert Stone Wall into City Gate"
 msgstr "Converter a muralla de pedra en porta"
 
-#: gui/session/unit_commands.js:1160
+#: gui/session/unit_commands.js:1169
 msgid "Convert Siege Wall into Siege Wall Gate"
 msgstr "Converter a muralla de pedra en porta"
 
-#: gui/session/unit_commands.js:1165
+#: gui/session/unit_commands.js:1174
 #, python-format
 msgid "Convert %(wall)s into %(gate)s"
 msgstr "Converter %(wall)s en %(gate)s"
 
-#: gui/session/unit_commands.js:1182
+#: gui/session/unit_commands.js:1191
 msgid "Lock Gate"
 msgstr "Fechar a porta"
 
-#: gui/session/unit_commands.js:1188
+#: gui/session/unit_commands.js:1197
 msgid "Unlock Gate"
 msgstr "Abrir a porta"
 
-#: gui/session/unit_commands.js:1237
+#: gui/session/unit_commands.js:1246
 msgid "Pack"
 msgstr "Desmontar"
 
-#: gui/session/unit_commands.js:1239
+#: gui/session/unit_commands.js:1248
 msgid "Unpack"
 msgstr "Montar"
 
-#: gui/session/unit_commands.js:1241
+#: gui/session/unit_commands.js:1250
 msgid "Cancel Packing"
 msgstr "Deixar de desmontar"
 
-#: gui/session/unit_commands.js:1243
+#: gui/session/unit_commands.js:1252
 msgid "Cancel Unpacking"
 msgstr "Deixar de montar"
 
@@ -2131,17 +2207,6 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "peixe"
 
-#: gui/splashscreen/splashscreen.js:9
-#, python-format
-msgid ""
-"Opening %(url)s\n"
-" in default web browser. Please wait..."
-msgstr "Abrindo %(url)s\n no navegador predeterminado…"
-
-#: gui/splashscreen/splashscreen.js:9
-msgid "Opening page"
-msgstr "Abrindo unha páxina"
-
 #: gui/summary/summary.js:510
 #, python-format
 msgid "Time elapsed: %(time)s"
@@ -2306,7 +2371,7 @@ msgstr "Colle 3 cidadás das que están a tallar madeira e 3 das que están a pi
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:168
 msgid ""
-"The slingers that you queue earlier should gather stone once they are "
+"The slingers that you queued earlier should gather stone once they are "
 "trained."
 msgstr "Unha vez adestrados os fondeiros que puxeches na cola do centro cívico, ponos a picar pedra."
 
@@ -2332,91 +2397,87 @@ msgid "Queue some slingers."
 msgstr "Adestra un grupo de 5 fondeiros."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:203
-msgid "Your fields may start getting exhausted, remember to rebuild them."
-msgstr "Pode que os campos de cultivo se estean a esgotar, non esquezas reconstruílos cando iso suceda."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid ""
 "When you have advanced, use a single citizen soldier to place a barracks "
 "foundation. Then use the rest of the non food or house building female "
 "citizens to construct it."
 msgstr "Unha vez avances de fase, usa un cidadán soldado para planificar a construción dun cuartel. Despois colle ás cidadás que non estean nin recollendo comida nin construíndo casas, e ponas a traballar na construción do cuartel."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:213
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid "Queue 5 more females for construction work."
 msgstr "Pon outras 5 cidadás na cola para axudar a construír."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:218
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:213
 msgid ""
 "Queue a batch of slingers to gather the trees on the north side of your "
 "base."
 msgstr "Adestra un grupo de 5 fondeiros para tallar as árbores do norte do centro cívico."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:223
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:218
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of how "
 "to build up a nice economy rapidly."
 msgstr "Aquí remata a aprendizaxe. Con isto xa deberías ter unha idea aproximada de como avanzar economicamente nunha partida de seguida."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:228
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:223
 msgid ""
 "At this point you should be able to fully use both training facilities, keep"
 " putting units into economic work, to keep growing faster and faster."
 msgstr "A estas alturas deberías ser capaz de usar as dúas estruturas de adestramento, seguir poñendo unidades a recoller recursos, e continuar a medrar cada vez máis rápido."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:233
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:228
 msgid ""
 "From this point you have a good base to build an army and wipe out the "
 "opposition."
 msgstr "A partires deste punto tes a base que necesitas para levantar un exército e acabar co inimigo."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:238
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
 msgstr "Non esquezas os seguintes puntos:"
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:243
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
 " - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
 msgstr "    1. Non deixes que as unidades queden sen traballo. O adestramento en grupo e mailos puntos de encontro son funcionalidades clave."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:248
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
 " - Use all of your resources, stockpiled resources are waste, having too "
 "much of a resource is waste."
 msgstr "    2. Usa todos os recursos, os recursos almacenados son recursos que se están a desperdiciar. Ter unha gran cantidade dun recurso concreto é un desperdicio."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:253
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:248
 msgid ""
 " - Use the right units for the right task, female citizens gather food, "
 "cavalry hunt, citizen soldiers do the rest."
 msgstr "    3. Usa as unidades axeitadas para cada tarefa. As cidadás recollen comida, os xinetes cazan, os cidadáns soldado fan o demais."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:258
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:253
 msgid ""
 " - Don't be afraid to swap units from one resource to another, see point 2. "
 "Make sure they deposit what they are carrying first though."
 msgstr "    4. Cambia as unidades de recurso sen medo (véxase o punto 2). Pero asegúrate de que antes depositan o que levan recollido no almacén ou no centro cívico."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:263
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible, it "
 "is the only training building until town phase."
 msgstr "    5. Constrúe casas dabondo. A actividade no centro cívico debería ser constante, xa que ata a seguinte fase trátase da única estrutura de adestramento de que dispós."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:268
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
 " - Female citizens are cheap, so you can build more of them and gather more "
 "resources."
 msgstr "    6. As cidadás custan poucos recursos, podes construír máis e obter máis recursos."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:273
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:268
 msgid ""
 " - Don't get carried away on the last point or you will get raided and have "
 "no defense."
 msgstr "    7. Non te deixes levar no que respecta ao punto 6. Se adestras demasiadas cidadás e te atacan, non terás xeito de defenderte."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:278
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:273
 msgid ""
 "Each map is different, so you will need to play slightly differently on "
 "each. This should give an outline for a high resource map."
@@ -2743,7 +2804,7 @@ msgid "AI Difficulty"
 msgstr "Dificultade:"
 
 #: gui/aiconfig/aiconfig.xml:47 (caption) gui/gamesetup/gamesetup_mp.xml:109
-#: (caption) gui/lobby/prelobby.xml:67 (caption) gui/locale/locale.xml:46
+#: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:46
 #: (caption) gui/locale/locale_advanced.xml:75 (caption)
 #: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:35 (caption)
 #: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:407 (caption)
@@ -2758,7 +2819,7 @@ msgstr "Civilizacións"
 msgid "Civilization Selection"
 msgstr "Civilización:"
 
-#: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:28 (caption)
+#: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:23 (caption)
 #: gui/session/session.xml:490 (caption) gui/session/session.xml:543 (caption)
 msgid "Close"
 msgstr "Pechar"
@@ -2808,9 +2869,9 @@ msgstr "Escoller a civilización do xogador."
 msgid "Select player's team."
 msgstr "Escoller o equipo do xogador."
 
-#: gui/gamesetup/gamesetup.xml:98 (caption)
-msgid "Match Type:"
-msgstr "Tipo:"
+#: gui/gamesetup/gamesetup.xml:98 (caption) gui/lobby/lobby.xml:64 (caption)
+msgid "Map Type:"
+msgstr "Tipo de mapa:"
 
 #: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
@@ -2902,14 +2963,16 @@ msgstr "Recursos iniciais:"
 msgid "Select the game's starting resources."
 msgstr "Seleccionar os recursos iniciais da partida."
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
-msgid "Toggle reveal map (see everything)."
+msgid "Toggle revealed map (see everything)."
 msgstr "Ver todo o que ocorre no mapa en todo momento."
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
-msgid "Toggle explore map (see gaia and buildings)."
+msgid "Toggle explored map (see gaia and buildings)."
 msgstr "Ver as unidades e estruturas de gaia e mailas estruturas de todos os xogadores."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
@@ -2936,7 +2999,7 @@ msgstr "Activa esta opción para que os puntos que cada xogador obteña na parti
 msgid "Close more game options window"
 msgstr "Pechar a xanela de opcións adicionais da partida."
 
-#: gui/gamesetup/gamesetup_mp.xml:19 (caption) gui/pregame/mainmenu.xml:411
+#: gui/gamesetup/gamesetup_mp.xml:19 (caption) gui/pregame/mainmenu.xml:428
 #: (caption)
 msgid "Multiplayer"
 msgstr "Varios xogadores"
@@ -2968,8 +3031,7 @@ msgstr "Configurar o seu computador como anfitrión."
 msgid "Server name:"
 msgstr "Nome do servidor:"
 
-#: gui/gamesetup/gamesetup_mp.xml:115 (caption) gui/lobby/prelobby.xml:19
-#: (caption)
+#: gui/gamesetup/gamesetup_mp.xml:115 (caption)
 msgid "[Connection status]"
 msgstr "(estado da conexión)"
 
@@ -2977,7 +3039,7 @@ msgstr "(estado da conexión)"
 msgid "Quote of the Day:"
 msgstr "Cita:"
 
-#: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:24 (caption)
+#: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
 msgid "Multiplayer Lobby"
 msgstr "Sala de espera"
 
@@ -2998,19 +3060,15 @@ msgstr "Cualificación"
 msgid "Leaderboard"
 msgstr "Podio"
 
-#: gui/lobby/lobby.xml:64 (caption)
-msgid "Map Type:"
-msgstr "Tipo de mapa:"
-
 #: gui/lobby/lobby.xml:93 (caption)
 msgid "Players:"
 msgstr "Xogadores:"
 
-#: gui/lobby/lobby.xml:102 (caption) gui/pregame/mainmenu.xml:231 (caption)
+#: gui/lobby/lobby.xml:102 (caption) gui/pregame/mainmenu.xml:232 (caption)
 msgid "Join Game"
 msgstr "Unirse a unha partida"
 
-#: gui/lobby/lobby.xml:108 (caption) gui/pregame/mainmenu.xml:246 (caption)
+#: gui/lobby/lobby.xml:108 (caption) gui/pregame/mainmenu.xml:247 (caption)
 msgid "Host Game"
 msgstr "Aloxar unha partida"
 
@@ -3023,10 +3081,12 @@ msgid "Map Name"
 msgstr "Nome do mapa"
 
 #: gui/lobby/lobby.xml:135 (heading)
+msgctxt "map"
 msgid "Size"
 msgstr "Tamaño"
 
 #: gui/lobby/lobby.xml:138 (heading)
+msgctxt "map"
 msgid "Type"
 msgstr "Tipo"
 
@@ -3046,36 +3106,40 @@ msgstr "Rango"
 msgid "Update"
 msgstr "Actualizar"
 
-#: gui/lobby/prelobby.xml:29 (caption)
+#: gui/lobby/prelobby.xml:23 (caption)
+msgid "Create a new account"
+msgstr "Crear unha conta nova"
+
+#: gui/lobby/prelobby.xml:27 (caption)
+msgid "Login to an existing account"
+msgstr "Acceder cunha conta existente"
+
+#: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
 msgstr "Conectarse á sala de espera"
 
-#: gui/lobby/prelobby.xml:32 (caption)
+#: gui/lobby/prelobby.xml:36 (caption) gui/lobby/prelobby.xml:63 (caption)
 msgid "Login:"
 msgstr "Usuario:"
 
-#: gui/lobby/prelobby.xml:40 (caption)
+#: gui/lobby/prelobby.xml:44 (caption) gui/lobby/prelobby.xml:68 (caption)
 msgid "Password:"
 msgstr "Contrasinal:"
 
-#: gui/lobby/prelobby.xml:54 (caption)
+#: gui/lobby/prelobby.xml:59 (caption)
 msgid "Registration"
 msgstr "Rexistrarse"
 
-#: gui/lobby/prelobby.xml:57 (caption)
+#: gui/lobby/prelobby.xml:73 (caption)
 msgid "Password again:"
 msgstr "Contrasinal (repítao):"
 
-#: gui/lobby/prelobby.xml:79 (caption)
-msgid "Register"
-msgstr "Rexistrarse"
-
-#: gui/lobby/prelobby.xml:90 (caption)
-msgid "Connect"
-msgstr "Conectar"
+#: gui/lobby/prelobby.xml:88 (caption)
+msgid "I have read and agree to the Terms of Service and Terms of Use:"
+msgstr "Lin e acepto as condicións de uso e de servizo:"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:309 (caption)
+#: (caption) gui/pregame/mainmenu.xml:310 (caption)
 msgid "Language"
 msgstr "Idioma"
 
@@ -3142,13 +3206,13 @@ msgstr "Ficheiros de tradución:"
 msgid "Auto detect"
 msgstr "Detectar"
 
-#: gui/manual/manual.xml:12 (caption) gui/session/session.xml:732 (caption)
-msgid "Manual"
-msgstr "Manual"
+#: gui/manual/manual.xml:12 (caption)
+msgid "Information"
+msgstr "Información"
 
 #: gui/manual/manual.xml:20 (caption)
-msgid "Online Manual"
-msgstr "Manual en internet"
+msgid "View Online"
+msgstr "Ver por internet"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3175,191 +3239,202 @@ msgstr "Sala de espera"
 msgid "Save"
 msgstr "Gardar"
 
-#: gui/pregame/mainmenu.xml:97
+#: gui/pregame/mainmenu.xml:98
 msgid "Help improve 0 A.D.!"
 msgstr "Axuda a mellorar 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:99
+#: gui/pregame/mainmenu.xml:100
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Podes enviarnos información automaticamente de maneira anónima para axudarnos a solucionar erros e mellorar a eficiencia do xogo e maila compatibilidade con sistemas coma o teu."
 
-#: gui/pregame/mainmenu.xml:125
+#: gui/pregame/mainmenu.xml:126
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Grazas por axudar a mellorar 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:127
+#: gui/pregame/mainmenu.xml:128
 msgid "Anonymous feedback is currently enabled."
 msgstr "O envío anónimo de datos está activado."
 
-#: gui/pregame/mainmenu.xml:129
+#: gui/pregame/mainmenu.xml:130
 msgid "Status: $status."
 msgstr "Estado: $status."
 
-#: gui/pregame/mainmenu.xml:481
-msgid "Alpha XV: Osiris"
-msgstr "Alfa XV: Osiris"
+#: gui/pregame/mainmenu.xml:498
+msgid "Alpha XVI: Patañjali"
+msgstr "Alfa XVI: Patañjali"
 
-#: gui/pregame/mainmenu.xml:483
+#: gui/pregame/mainmenu.xml:500
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "Advertencia: Esta versión do xogo aínda está en pleno desenvolvemento. Queda moito por facer."
 
-#: gui/pregame/mainmenu.xml:485
+#: gui/pregame/mainmenu.xml:502
 msgid "Get involved at: play0ad.com"
 msgstr "Axúdanos: play0ad.com"
 
-#: gui/pregame/mainmenu.xml:103 (caption)
-msgid "Enable feedback"
+#: gui/pregame/mainmenu.xml:104 (caption)
+msgid "Enable Feedback"
 msgstr "Activar o envío"
 
-#: gui/pregame/mainmenu.xml:107 (caption) gui/pregame/mainmenu.xml:138
-#: (caption)
-msgid "Technical details"
-msgstr "Detalles técnicos"
-
-#: gui/pregame/mainmenu.xml:134 (caption)
-msgid "Disable feedback"
+#: gui/pregame/mainmenu.xml:135 (caption)
+msgid "Disable Feedback"
 msgstr "Desactivar o envío"
 
-#: gui/pregame/mainmenu.xml:177 (caption)
+#: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
 msgstr "Batallas"
 
-#: gui/pregame/mainmenu.xml:178 (tooltip)
+#: gui/pregame/mainmenu.xml:179 (tooltip)
 msgid "Click here to start a new single player game."
 msgstr "Prema para xogar unha partida contra a intelixencia artificial."
 
-#: gui/pregame/mainmenu.xml:191 (caption)
+#: gui/pregame/mainmenu.xml:192 (caption)
 msgid "Campaigns"
 msgstr "Campañas"
 
-#: gui/pregame/mainmenu.xml:192 (tooltip)
+#: gui/pregame/mainmenu.xml:193 (tooltip)
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 msgstr "Revive a historia a través de campañas militares (esta funcionalidade aínda non está dispoñíbel)."
 
-#: gui/pregame/mainmenu.xml:208 (caption) gui/savedgames/load.xml:15 (caption)
+#: gui/pregame/mainmenu.xml:209 (caption) gui/savedgames/load.xml:15 (caption)
 msgid "Load Game"
 msgstr "Cargar unha partida"
 
-#: gui/pregame/mainmenu.xml:209 (tooltip)
+#: gui/pregame/mainmenu.xml:210 (tooltip)
 msgid "Click here to load a saved game."
 msgstr "Preme para cargar unha partida gardada."
 
-#: gui/pregame/mainmenu.xml:232 (tooltip)
+#: gui/pregame/mainmenu.xml:233 (tooltip)
 msgid "Joining an existing multiplayer game."
 msgstr "Unirse a unha partida existente de varios xogadores."
 
-#: gui/pregame/mainmenu.xml:247 (tooltip)
+#: gui/pregame/mainmenu.xml:248 (tooltip)
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Aloxar unha partida de varios xogadores.\\n\\nÉ necesario ter o porto UDP 20595 aberto."
 
-#: gui/pregame/mainmenu.xml:261 (caption)
+#: gui/pregame/mainmenu.xml:262 (caption)
 msgid "Game Lobby"
 msgstr "Sala de espera"
 
-#: gui/pregame/mainmenu.xml:262 (tooltip)
+#: gui/pregame/mainmenu.xml:263 (tooltip)
 msgid "Launch the multiplayer lobby."
 msgstr "Acceder á sala de espera para partidas de varios xogadores."
 
-#: gui/pregame/mainmenu.xml:292 (caption)
+#: gui/pregame/mainmenu.xml:293 (caption)
 msgid "Options"
 msgstr "Configuración"
 
-#: gui/pregame/mainmenu.xml:293 (tooltip)
+#: gui/pregame/mainmenu.xml:294 (tooltip)
 msgid "Adjust game settings."
 msgstr "Axusta a configuración do xogo."
 
-#: gui/pregame/mainmenu.xml:310 (tooltip)
+#: gui/pregame/mainmenu.xml:311 (tooltip)
 msgid "Choose the language of the game."
 msgstr "Escolle o idioma do xogo."
 
-#: gui/pregame/mainmenu.xml:325 (caption)
+#: gui/pregame/mainmenu.xml:326 (caption)
 msgid "Scenario Editor"
 msgstr "Editor de escenarios"
 
-#: gui/pregame/mainmenu.xml:326 (tooltip)
+#: gui/pregame/mainmenu.xml:327 (tooltip)
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Abrir o editor de escenarios Atlas nunha nova xanela. Tamén pode abrilo executando o xogo co parámetro «-editor» na liña de ordes."
 
-#: gui/pregame/mainmenu.xml:379 (caption)
+#: gui/pregame/mainmenu.xml:339 (caption)
+msgid "Welcome Screen"
+msgstr "Pantalla de benvida"
+
+#: gui/pregame/mainmenu.xml:340 (tooltip)
+msgid "Show the Welcome Screen. Useful if you hid it by mistake."
+msgstr "Mostrar a pantalla de benvida. Útil se a ocultaches accidentalmente."
+
+#: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
 msgstr "Aprender a xogar"
 
-#: gui/pregame/mainmenu.xml:380 (tooltip)
-msgid "The 0 A.D. Game Manual"
-msgstr "Manual do xogo."
+#: gui/pregame/mainmenu.xml:397 (tooltip)
+msgid "Open the 0 A.D. Game Manual."
+msgstr "Abrir o manual de 0 A.D."
 
-#: gui/pregame/mainmenu.xml:396 (caption)
+#: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
 msgstr "Un xogador"
 
-#: gui/pregame/mainmenu.xml:397 (tooltip)
+#: gui/pregame/mainmenu.xml:414 (tooltip)
 msgid "Challenge the computer player to a single player match."
 msgstr "Xoga unha partida contra a intelixencia artificial."
 
-#: gui/pregame/mainmenu.xml:412 (tooltip)
+#: gui/pregame/mainmenu.xml:429 (tooltip)
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Xoga contra outras persoas."
 
-#: gui/pregame/mainmenu.xml:426 (caption)
+#: gui/pregame/mainmenu.xml:443 (caption)
 msgid "Tools & Options"
 msgstr "Ferramentas e opcións"
 
-#: gui/pregame/mainmenu.xml:427 (tooltip)
+#: gui/pregame/mainmenu.xml:444 (tooltip)
 msgid "Game options and scenario design tools."
 msgstr "Opcións do xogo e ferramentas de deseño de escenarios."
 
-#: gui/pregame/mainmenu.xml:441 (caption)
+#: gui/pregame/mainmenu.xml:458 (caption)
 msgid "History"
 msgstr "Historia"
 
-#: gui/pregame/mainmenu.xml:442 (tooltip)
+#: gui/pregame/mainmenu.xml:459 (tooltip)
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Infórmate sobre as civilizacións do xogo."
 
-#: gui/pregame/mainmenu.xml:458 (caption) gui/session/session.xml:802
+#: gui/pregame/mainmenu.xml:475 (caption) gui/session/session.xml:802
 #: (caption) gui/session/session.xml:1300 (caption)
 msgid "Exit"
 msgstr "Saír"
 
-#: gui/pregame/mainmenu.xml:459 (tooltip)
-msgid "Exit Game"
+#: gui/pregame/mainmenu.xml:476 (tooltip)
+msgid "Exits the game."
 msgstr "Saír do xogo."
 
-#: gui/pregame/mainmenu.xml:495 (caption)
+#: gui/pregame/mainmenu.xml:512 (caption)
+msgid "Help with the Translation!"
+msgstr "Colabora na tradución!"
+
+#: gui/pregame/mainmenu.xml:513 (tooltip)
+msgid "Click to open the 0 A.D translate page in your browser."
+msgstr "Abrir a páxina de tradución de 0 A.D. nun navegador web."
+
+#: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
 msgstr "Sitio web"
 
-#: gui/pregame/mainmenu.xml:496 (tooltip)
+#: gui/pregame/mainmenu.xml:525 (tooltip)
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Abrir play0ad.com nun navegador web."
 
-#: gui/pregame/mainmenu.xml:509 (caption) gui/session/session.xml:743
+#: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:743
 #: (caption)
 msgid "Chat"
 msgstr "Conversa"
 
-#: gui/pregame/mainmenu.xml:510 (tooltip)
+#: gui/pregame/mainmenu.xml:537 (tooltip)
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Abrir una xanela de conversa IRC de 0 A.D. nun navegador web (#0ad en webchat.quakenet.org)."
 
-#: gui/pregame/mainmenu.xml:523 (caption)
+#: gui/pregame/mainmenu.xml:548 (caption)
 msgid "Report a Bug"
 msgstr "Informar dun erro"
 
-#: gui/pregame/mainmenu.xml:524 (tooltip)
-msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error"
+#: gui/pregame/mainmenu.xml:549 (tooltip)
+msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Visitar o sitio Trac de 0 A.D., no que poderás informar dun erro, fallo ou quebra."
 
-#: gui/pregame/mainmenu.xml:554 (caption)
+#: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -3478,8 +3553,8 @@ msgid "Choose player to view"
 msgstr "Escolle un xogador para ver"
 
 #: gui/session/session.xml:628 (caption)
-msgid "ALPHA XV : Osiris"
-msgstr "Alfa XV: Osiris"
+msgid "ALPHA XVI : Patañjali"
+msgstr "Alfa XVI: Patañjali"
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
@@ -3544,7 +3619,7 @@ msgstr "Benvido a 0 A.D.!"
 msgid "Show this message in the future"
 msgstr "Mostrar esta mensaxe no futuro."
 
-#: gui/splashscreen/splashscreen.xml:35 (caption)
+#: gui/splashscreen/splashscreen.xml:38 (caption)
 msgid "Known issues (web)"
 msgstr "Problemas coñecidos (web)"
 
@@ -3887,11 +3962,11 @@ msgstr "8. Aceptar ser retirado do servizo se, en calquera momento, un moderador
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
-" 9. Change this document in any way; at any time; on the condition that the "
+" 1. Change this document in any way; at any time; on the condition that the "
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr "9. Cambiar calquera aspecto destas condicións de servizo, en calquera comento, e coa única condición de que vostede reciba unha notificación axeitada sobre dito cambio. A definición do que constitúe unha «notificación axeitada» poderana determinar en calquera momento os membros dun panel formado por membros do equipo de Wildfire Games (WFG)."
+msgstr "1. Cambiar calquera aspecto destas condicións de servizo, en calquera comento, e coa única condición de que vostede reciba unha notificación axeitada sobre dito cambio. A definición do que constitúe unha «notificación axeitada» poderana determinar en calquera momento os membros dun panel formado por membros do equipo de Wildfire Games (WFG)."
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -4508,876 +4583,872 @@ msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop
 msgstr "«Mellor aprender das desgrazas doutros que das propias.» — Esopo."
 
 #: gui/text/quotes.txt:13
-msgid "\"Beware the wolf in sheep's clothing.\" - Aesop"
-msgstr "«Cóidate do lobo con pel de cordeiro.» — Esopo."
-
-#: gui/text/quotes.txt:14
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
 msgstr "«A familiaridade leva ao desprezo; o coñecemento suaviza os prexuízos.» — Esopo."
 
-#: gui/text/quotes.txt:15
+#: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
 msgstr "«É doado mostrar valor a unha distancia segura.» — Esopo."
 
-#: gui/text/quotes.txt:16
+#: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
 msgstr "«Cómpre prepararse hoxe para as necesidades de mañá.» — Esopo."
 
-#: gui/text/quotes.txt:17
+#: gui/text/quotes.txt:16
 msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
 msgstr "«Non abonda unha gran plumaxe para ser un gran paxaro.» — Esopo."
 
-#: gui/text/quotes.txt:18
+#: gui/text/quotes.txt:17
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop"
 msgstr "«Desconfía do consello de quen atravesa as súas propias dificultades.» — Esopo."
 
-#: gui/text/quotes.txt:19
+#: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
 msgstr "«A persuasión adoita ser máis efectiva que a forza.» — Esopo."
 
-#: gui/text/quotes.txt:20
+#: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
 msgstr "«A soberbia pode levar á destrución.» — Esopo."
 
-#: gui/text/quotes.txt:21
+#: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
 msgstr "«O que é lento pero constante gaña a carreira.» — Esopo."
 
-#: gui/text/quotes.txt:22
+#: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
 msgstr "«Os deuses axudan a quen se axuda a si mesmo.» — Esopo."
 
-#: gui/text/quotes.txt:23
+#: gui/text/quotes.txt:22
 msgid ""
 "\"The shaft of the arrow had been feathered with one of the eagle's own "
 "plumes. We often give our enemies the means of our own destruction.\" - "
 "Aesop"
 msgstr "As plumas da frecha sacáranse da propia aguia. A miúdo lles entregamos aos inimigos as claves para a nosa destrución.» — Esopo."
 
-#: gui/text/quotes.txt:24
+#: gui/text/quotes.txt:23
 msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
 msgstr "«A unión fai a forza.» — Esopo, «A fasce»."
 
-#: gui/text/quotes.txt:25
+#: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
 msgstr "«As promesas dos inimigos fanse para incumprilas.» — Esopo."
 
-#: gui/text/quotes.txt:26
+#: gui/text/quotes.txt:25
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
 msgstr "«Os espartanos non preguntan cantos son, senón onde están.» — Axis II de Esparta."
 
-#: gui/text/quotes.txt:27
+#: gui/text/quotes.txt:26
 msgid ""
 "\"Weep not for me, suffering as I do unjustly, I am in a happier case than "
 "my murderers.\" - Agis IV, 24th Spartan king of the Eurypontid dynasty"
 msgstr "«Non choredes por min, que sufro inxustamente, por son máis feliz dos que o son os meus asasinos.» — Axis IV, 24º rei espartano da dinastía euripóntida."
 
-#: gui/text/quotes.txt:28
+#: gui/text/quotes.txt:27
 msgid ""
 "\"He who doeth good shall meet with good; and he who doeth evil shall meet "
 "with evil, for the Lord judgeth a man according to the measure of his "
 "work.\" - Ahiqar, Assyrian sage"
 msgstr "«Aquel que obra ben, ben atopará; aquel que obra mal, mal atopará, pois o señor xulga aos homes polas súas obras.» — Ahiqar, sabio asirio."
 
-#: gui/text/quotes.txt:29
+#: gui/text/quotes.txt:28
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
 msgstr "«Se non fose Alexandre, gustaríame ser Dióxenes.» — Alexandre Magno."
 
-#: gui/text/quotes.txt:30
+#: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
 msgstr "«Non roubo vitorias.» — Alexandre Magno."
 
-#: gui/text/quotes.txt:31
+#: gui/text/quotes.txt:30
 msgid ""
 "\"Are you still to learn that the end and perfection of our victories is to "
 "avoid the vices and infirmities of those whom we subdue?\" - Alexander the "
 "Great"
 msgstr "«Aínda non aprendiches que o obxectivo e maila perfección das nosas vitorias é para evitar os vicios e os males de aqueles aos que sometemos?» — Alexandre Magno."
 
-#: gui/text/quotes.txt:32
+#: gui/text/quotes.txt:31
 msgid ""
 "\"To the strongest!\" - Alexander, on his death bed, when asked who should "
 "succeed him as king"
 msgstr "«O máis forte!» — Alexandre, na súa cama, antes de morrer, tras ser preguntado quen debería sucedelo como rei."
 
-#: gui/text/quotes.txt:33
+#: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
 msgstr "«Non hai nada imposíbel para aqueles que o intentan.» — Alexandre Magno."
 
-#: gui/text/quotes.txt:34
+#: gui/text/quotes.txt:33
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great"
 msgstr "«Abondan o sexo e o sono para lembrarme que son mortal.» — Alexandre Magno."
 
-#: gui/text/quotes.txt:35
+#: gui/text/quotes.txt:34
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
 " covetously.\" - Anacharsis"
 msgstr "«A ágora é o lugar onde os homes se enganan os uns aos outros, e se comportan de maneira cobizosa.» — Anacarsis."
 
-#: gui/text/quotes.txt:36
+#: gui/text/quotes.txt:35
 msgid ""
 "\"Written laws are like spiders’ webs; they will catch, it is true, the weak"
 " and poor, but would be torn in pieces by the rich and powerful.\" - "
 "Anacharsis"
 msgstr "«A lei escrita é como as teas de araña; é certo que atrapan, pero só aos febles e aos pobres; os ricos e poderosos destrúenas.» — Anacarsis."
 
-#: gui/text/quotes.txt:37
+#: gui/text/quotes.txt:36
 msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
 msgstr "«O raposo sabe moitos trucos. O ourizo sabe un truco moi bo.» — Arquíloco."
 
-#: gui/text/quotes.txt:38
+#: gui/text/quotes.txt:37
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes"
 msgstr "«Os estados están condenados cando non saben distinguir entre os homes bos e os malos.» — Antístenes."
 
-#: gui/text/quotes.txt:39
+#: gui/text/quotes.txt:38
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever."
 msgstr "«Dádeme un lugar onde poñerme, e moverei o mundo.» — Arquimedes, sobre o uso da panca."
 
-#: gui/text/quotes.txt:40
+#: gui/text/quotes.txt:39
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes"
 msgstr "«Son os inimigos, e non os aliados, os que lles ensinan ás cidades a construír murallas altas e naves de guerra.» — Aristófanes."
 
-#: gui/text/quotes.txt:41
+#: gui/text/quotes.txt:40
 msgid ""
 "\"Words give wings to the mind and make a man soar to heaven.\" - "
 "Aristophanes"
 msgstr "«As palabras danlle ás á imaxinación e permítennos elevarnos ao ceo.»  — Aristófanes."
 
-#: gui/text/quotes.txt:42
+#: gui/text/quotes.txt:41
 msgid ""
 "\"It is the compelling power of great thoughts and ideas to engender "
 "language of equal greatness.\" - Aristophanes"
 msgstr "«Ás grandes ideas corresponde o poder de xerar unha linguaxe da mesma grandiosidade.»  — Aristófanes."
 
-#: gui/text/quotes.txt:43
+#: gui/text/quotes.txt:42
 msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
 msgstr "«O famento non ten máis amigo que o que lle dá de comer.»  — Aristófanes."
 
-#: gui/text/quotes.txt:44
+#: gui/text/quotes.txt:43
 msgid ""
 "\"I count him braver who overcomes his desires than him who overcomes his "
 "enemies.\" - Aristotle"
 msgstr "«Considero máis bravo a aquel que vence os seus propios desexos que aquel que vence aos seus inimigos.» — Aristóteles."
 
-#: gui/text/quotes.txt:45
+#: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
 msgstr "«O noso carácter é o resultado da nosa conduta.» — Aristóteles."
 
-#: gui/text/quotes.txt:46
+#: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
 msgstr "«O home é por natureza un animal político.» — Aristóteles."
 
-#: gui/text/quotes.txt:47
+#: gui/text/quotes.txt:46
 msgid ""
 "\"If liberty and equality, as is thought by some, are chiefly to be found in"
 " democracy, they will be best attained when all persons alike share in the "
 "government to the utmost.\" - Aristotle"
 msgstr "«Se a liberdade e maila igualdade están, como pensan algúns, especialmente presentes na democracia, estaremos aínda máis preto delas canto todas as persoas compartan por igual todos os aspectos do goberno.» — Aristóteles."
 
-#: gui/text/quotes.txt:48
+#: gui/text/quotes.txt:47
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle"
 msgstr "«Tanto a oligarquía como a tiranía desconfían do pobo, e por tanto despóxano das súas armas.» — Aristóteles."
 
-#: gui/text/quotes.txt:49
+#: gui/text/quotes.txt:48
 msgid "\"Wit is well-bred insolence.\" - Aristotle"
 msgstr "«O enxeño non é máis que a maduración da insolencia.» — Aristóteles."
 
-#: gui/text/quotes.txt:50
+#: gui/text/quotes.txt:49
 msgid ""
 "\"It is simplicity that makes the uneducated more effective than the "
 "educated when addressing popular audiences.\" - Aristotle"
 msgstr "«É a simplicidade a que fai máis efectivo ao iletrado que ao culto ao dirixirse ao pobo.» — Aristóteles."
 
-#: gui/text/quotes.txt:51
+#: gui/text/quotes.txt:50
 msgid ""
 "\"Poetry demands a man with a special gift for it, or else one with a touch "
 "of madness in him.\" - Aristotle"
 msgstr "«A poesía require un home cun talento especial para ela, ou un lixeiramente mal da cabeza.» — Aristóteles."
 
-#: gui/text/quotes.txt:52
+#: gui/text/quotes.txt:51
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle"
 msgstr "«Se algo conseguín coa filosofía é facer sen que ninguén mo ordene o que outros fan só por temor ás leis.» — Aristóteles."
 
-#: gui/text/quotes.txt:53
+#: gui/text/quotes.txt:52
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene"
 msgstr "«Toma decisións coidadosamente; pero unha vez tomadas, persevera nelas con firmeza.» — Bías de Priene."
 
-#: gui/text/quotes.txt:54
+#: gui/text/quotes.txt:53
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes"
 msgstr "«Foi unha estupidez por parte do rei arrincarse o pelo pola dor da súa perda. Como se a calvicie fose unha cura para a tristeza.» — Bión de Borístenes."
 
-#: gui/text/quotes.txt:55
+#: gui/text/quotes.txt:54
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes"
 msgstr "«Non adquiriu unha fortuna; a fortuna adquiriuno a el.» — Bión de Borístenes."
 
-#: gui/text/quotes.txt:56
+#: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
 msgstr "«Inimigo dos derrotados.» — Breno."
 
-#: gui/text/quotes.txt:57
+#: gui/text/quotes.txt:56
 msgid ""
 "\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
 "Gaius Julius Caesar"
 msgstr "«Iso é o que merecen todos os tiranos.» — Marco Xunio Bruto, tras asasinar a Caio Xulio César."
 
-#: gui/text/quotes.txt:58
+#: gui/text/quotes.txt:57
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide"
 msgstr "«Escapo, si, pero desta vez coas mans, non cos pes.» — Marco Xunio Bruto, antes de suicidarse."
 
-#: gui/text/quotes.txt:59
+#: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
 msgstr "«Cheguei, vin, vencín.» — Caio Xulio César."
 
-#: gui/text/quotes.txt:60
+#: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
 msgstr "«Os homes están dispostos a crer naquilo que desexan.» — Caio Xulio César."
 
-#: gui/text/quotes.txt:61
+#: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
 msgstr "«A sorte está deitada.» — Caio Xulio César."
 
-#: gui/text/quotes.txt:62
+#: gui/text/quotes.txt:61
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar"
 msgstr "«Non é aos homes ben alimentados e de pelo longo aos que temo, senón aos pálidos e famélicos.» — Caio Xulio César."
 
-#: gui/text/quotes.txt:63
+#: gui/text/quotes.txt:62
 msgid "\"Set a thief to catch a thief.\" - Callimachus"
 msgstr "«Requírese un ladrón para coller a outro.» — Calímaco."
 
-#: gui/text/quotes.txt:64
+#: gui/text/quotes.txt:63
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder"
 msgstr "«É máis o que os sabios aprenden dos parvos que o que os parvos aprenden dos sabios.» — Catón O Vello."
 
-#: gui/text/quotes.txt:65
+#: gui/text/quotes.txt:64
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the Elder"
 msgstr "«E para rematar, considero que Cartago debe ser destruída.» — Catón O Vello."
 
-#: gui/text/quotes.txt:66
+#: gui/text/quotes.txt:65
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder"
 msgstr "«Os homes mandan sobre as súas mulleres, e nós mandamos sobre os homes, pero as nosas mulleres mandan sobre nós.» — Catón O Vello."
 
-#: gui/text/quotes.txt:67
+#: gui/text/quotes.txt:66
 msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
 msgstr "«Sé firme ou feble segundo o requira a situación.» — Catón O Vello."
 
-#: gui/text/quotes.txt:68
+#: gui/text/quotes.txt:67
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
 msgstr "«Non hai peor gobernante que o que non pode gobernarse a si mesmo.» — Catón O Vello."
 
-#: gui/text/quotes.txt:69
+#: gui/text/quotes.txt:68
 msgid ""
 "\"Whoever imposes severe punishment becomes repulsive to the people; while "
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya"
 msgstr "«Quen impón un castigo severo é repulsivo. Quen impón un castigo suave é desprezábel. Quen impón un castigo xusto é respectábel.» — Chānakya."
 
-#: gui/text/quotes.txt:70
+#: gui/text/quotes.txt:69
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya"
 msgstr "«Se un rei mostra vitalidade, así o farán os seus súbditos.» — Chānakya."
 
-#: gui/text/quotes.txt:71
+#: gui/text/quotes.txt:70
 msgid ""
 "\"For there is but one essential justice which cements society, and one law "
 "which establishes this justice. This law is right reason, which is the true "
 "rule of all commandments and prohibitions.\" - Marcus Tullius Cicero"
 msgstr "«Non hai máis que unha xustiza esencial que serve de base para a sociedade, e unha única lei que establece esta xustiza. Esta lei é o sentido común, que é a verdadeira regra de todas as ordenanzas e prohibicións.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:72
+#: gui/text/quotes.txt:71
 msgid "\"O, the times, O, the customs!\" - Marcus Tullius Cicero"
 msgstr "«Oh, os tempos, oh, os costumes.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:73
+#: gui/text/quotes.txt:72
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Marcus"
 " Tullius Cicero"
 msgstr "«Ninguén é tan vello como para pensar que lle queda menos dun ano.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:74
+#: gui/text/quotes.txt:73
 msgid ""
 "\"We are not born, we do not live for ourselves alone; our country, our "
 "friends, have a share in us.\" - Marcus Tullius Cicero"
 msgstr "«Nin nacemos nin vivimos unicamente para nós; as nosas terras, os nosos amigos, teñen unha parte de nós.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:75
+#: gui/text/quotes.txt:74
 msgid ""
 "\"Yield, ye arms, to the toga; to civic praise, ye laurels.\" - Marcus "
 "Tullius Cicero"
 msgstr "«Que as armas cedan ante a toga, e que o laurel se conceda os méritos.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:76
+#: gui/text/quotes.txt:75
 msgid "\"At my signal, unleash Hell.\" - Maximus Decimus Meridius"
 msgstr "«Co meu sinal, soltade os urcos.» — Máximo Décimo Meridio, protagonista do filme «Gladiator»."
 
-#: gui/text/quotes.txt:77
+#: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
 msgstr "«O tempo cura todas as feridas.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:78
+#: gui/text/quotes.txt:77
 msgid ""
 "\"That, Senators, is what a favour from gangs amounts to. They refrain from "
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero"
 msgstr "«Iso, senadores, é ao que se reducen os favores das bandas. Contrólanse e non matan a alguén, para logo presumir de que lle perdoaron a vida!» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:79
+#: gui/text/quotes.txt:78
 msgid "\"Genius is fostered by energy.\" - Marcus Tullius Cicero"
 msgstr "«A vitalidade dá luz á xenialidade.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:80
+#: gui/text/quotes.txt:79
 msgid "\"While there's life, there's hope.\" - Marcus Tullius Cicero"
 msgstr "«Mentres queda vida, queda esperanza.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:81
+#: gui/text/quotes.txt:80
 msgid ""
 "\"We must not say that every mistake is a foolish one.\" - Marcus Tullius "
 "Cicero"
 msgstr "«Non debemos dicir de todos os erros que son parvos.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:82
+#: gui/text/quotes.txt:81
 msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
 msgstr "«Que o castigo sexa en proporción ao crime.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:83
+#: gui/text/quotes.txt:82
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero"
 msgstr "«Que o benestar do pobo sexa a lei máxima.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:84
+#: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
 msgstr "«As riquezas infinitas son as que alimentan as guerras.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:85
+#: gui/text/quotes.txt:84
 msgid "\"Laws are silent in time of war.\" - Marcus Tullius Cicero"
 msgstr "«As leis calan en tempos de guerra.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:86
+#: gui/text/quotes.txt:85
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero"
 msgstr "«O estado ideal nunca entra nunha guerra, salvo que sexa para defender o seu honor ou a súa seguridade.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:87
+#: gui/text/quotes.txt:86
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero"
 msgstr "«O deber primordial de calquera home é a busca da verdade.» — Marco Tulio Cicerón."
 
-#: gui/text/quotes.txt:88
+#: gui/text/quotes.txt:87
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Croesus (Greek: Kroisos), king of Lydia"
 msgstr "«En tempos de paz, os fillos enterran aos pais. En tempos de guerra, os pais enterran aos fillos.» — Creso, rei lidio."
 
-#: gui/text/quotes.txt:89
+#: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
 msgstr "«Son Ciro, rei do mundo…» — Ciro o Grande."
 
-#: gui/text/quotes.txt:90
+#: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
 msgstr "«Diversidade no consello, unidade na execución.» — Ciro o Grande."
 
-#: gui/text/quotes.txt:91
+#: gui/text/quotes.txt:90
 msgid ""
 "\"Do not therefore begrudge me this bit of earth that covers my bones.\" - "
 "Epitaph of Cyrus the Great"
 msgstr "«Así que non sintades envexa de min por esta pouca terra que cubre os meus ósos.» — Epitafio de Ciro o Grande."
 
-#: gui/text/quotes.txt:92
+#: gui/text/quotes.txt:91
 msgid ""
 "\"Success always calls for greater generosity — though most people, lost in "
 "the darkness of their own egos, treat it as an occasion for greater greed.\""
 " - Cyrus the Great"
 msgstr "«O éxito require unha maior xenerosidade, aínda que a meirande parte da xente, perdida na escuridade do seu propio ego, o aproveite para aumentar a súa cobiza.» — Ciro o Grande."
 
-#: gui/text/quotes.txt:93
+#: gui/text/quotes.txt:92
 msgid ""
 "\"Whether men lie, or say true, it is with one and the same object.\" - "
 "Darius I"
 msgstr "«Os homes menten e din a verdade co mesmo obxectivo.» — Darío I."
 
-#: gui/text/quotes.txt:94
+#: gui/text/quotes.txt:93
 msgid ""
 "\"Good breeding in cattle depends on physical health, but in men on a well-"
 "formed character.\" - Democritus"
 msgstr "«A saúde determina que o gando saia ben ou mal. Nos homes, o que o determina é o carácter.» — Demócrito."
 
-#: gui/text/quotes.txt:95
+#: gui/text/quotes.txt:94
 msgid ""
 "\"If your desires are not great, a little will seem much to you; for small "
 "appetite makes poverty equivalent to wealth.\" - Democritus"
 msgstr "«Se non albergas grandes desexos, unha pouca vontade parecerache gran cousa; a falta de apetito iguala a pobreza e a riqueza.» — Demócrito."
 
-#: gui/text/quotes.txt:96
+#: gui/text/quotes.txt:95
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric"
 msgstr "«Resultados, resultados e resultados.» — Demóstenes, ao preguntárselle cales eran as tres cousas máis importantes da retórica."
 
-#: gui/text/quotes.txt:97
+#: gui/text/quotes.txt:96
 msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes"
 msgstr "«É imposíbel acadar un poder duradeiro baseado en inxustiza, perxurio e traizón.» — Demóstenes."
 
-#: gui/text/quotes.txt:98
+#: gui/text/quotes.txt:97
 msgid "\"Small opportunities often presage great enterprises.\" - Demosthenes"
 msgstr "«As pequenas oportunidades son a miúdo presaxios de grandes empresas.» — Demóstenes."
 
-#: gui/text/quotes.txt:99
+#: gui/text/quotes.txt:98
 msgid ""
 "\"Every advantage in the past is judged in the light of the final issue.\" -"
 " Demosthenes"
 msgstr "«Toda vantaxe pasada xúlgase coa luz dos seus resultados.» — Demóstenes."
 
-#: gui/text/quotes.txt:100
+#: gui/text/quotes.txt:99
 msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope, when "
 "Alexander the Great found him sunbathing and asked if he could help in in "
 "any way"
 msgstr "«Si, apártate un chisco da luz.» — Dióxenes de Sínope, cando Alexandre Magno o atopou tomando o sol e lle preguntou se podía axudalo en algo."
 
-#: gui/text/quotes.txt:101
+#: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
 msgstr "«Son cidadán do mundo.» — Dióxenes de Sínope."
 
-#: gui/text/quotes.txt:102
+#: gui/text/quotes.txt:101
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope"
 msgstr "«Non é que estea tolo, é que a miña cabeza funciona de xeito distinto á vosa.» — Dióxenes de Sínope."
 
-#: gui/text/quotes.txt:103
+#: gui/text/quotes.txt:102
 msgid ""
 "\"Let thy speech be better than silence, or be silent.\" - Dionysius I of "
 "Syracuse"
 msgstr "«Que o que teñas que dicir sexa mellor que non dicir nada, ou cala.» — Dionisio I de Siracusa."
 
-#: gui/text/quotes.txt:104
+#: gui/text/quotes.txt:103
 msgid "\"Nothing has more strength than dire necessity.\" - Euripides"
 msgstr "«Non hai nada con máis forza que a que dá a necesidade.» — Eurípides."
 
-#: gui/text/quotes.txt:105
+#: gui/text/quotes.txt:104
 msgid "\"A coward turns away, but a brave man's choice is danger.\" - Euripides"
 msgstr "«Os covardes foxen, mentres que os valentes escollen o perigo.» — Eurípides."
 
-#: gui/text/quotes.txt:106
+#: gui/text/quotes.txt:105
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides"
 msgstr "«Os covardes non contan nas batallas; están aí, pero como se non estivesen.» — Eurípides."
 
-#: gui/text/quotes.txt:107
+#: gui/text/quotes.txt:106
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides"
 msgstr "«A fortuna sempre loita do lado da prudencia.» — Eurípides."
 
-#: gui/text/quotes.txt:108
+#: gui/text/quotes.txt:107
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi"
 msgstr "«Se un home lle quitou o ollo a outro, que tamén el quede sen ollo.» — Hammurabi."
 
-#: gui/text/quotes.txt:109
+#: gui/text/quotes.txt:108
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca"
 msgstr "«Non vin aquí para enfrontarme aos italiotas, senón para axudalos contra Roma.» — Aníbal Barca."
 
-#: gui/text/quotes.txt:110
+#: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
 msgstr "«Atoparei un camiño, ou abrirei un.» — Aníbal Barca."
 
-#: gui/text/quotes.txt:111
+#: gui/text/quotes.txt:110
 msgid ""
 "\"My ancestors yielded to Roman valour. I am endeavouring that others, in "
 "their turn, will be obliged to yield to my good fortune, and my valour.\" - "
 "Hannibal Barca"
 msgstr "«Os meus devanceiros cederon ante a coraxe de Roma. Só intento que outros, pola contra, se vexan obrigados a ceder ante a miña fortuna e a miña coraxe.» — Aníbal Barca."
 
-#: gui/text/quotes.txt:112
+#: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
 msgstr "«Todo flúe, nada queda quieto.» — Heráclito."
 
-#: gui/text/quotes.txt:113
+#: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
 msgstr "«O único constante é o cambio» — Heráclito."
 
-#: gui/text/quotes.txt:114
+#: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
 msgstr "«Non podes pisar dúas veces o mesmo río.» — Heráclito."
 
-#: gui/text/quotes.txt:115
+#: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
 msgstr "«O carácter é o destino.» — Heráclito."
 
-#: gui/text/quotes.txt:116
+#: gui/text/quotes.txt:115
 msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
 msgstr "«Son as circunstancias as que controlan aos homes, e non ao revés.» — Heródoto."
 
-#: gui/text/quotes.txt:117
+#: gui/text/quotes.txt:116
 msgid ""
 "\"The Lacedaemonians fought a memorable battle; they made it quite clear "
 "that they were the experts, and that they were fighting against amateurs.\" "
 "- Herodotus"
 msgstr "«Os lacónicos loitaron unha batalla digna de ser lembrada; deixaron ben claro que os expertos eran eles, e que estaban a loitar contra novatos.» — Heródoto."
 
-#: gui/text/quotes.txt:118
+#: gui/text/quotes.txt:117
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus"
 msgstr "«Esta é unha das meirandes dores entre os homes, teño un gran coñecemento pero ningún poder.» — Heródoto."
 
-#: gui/text/quotes.txt:119
+#: gui/text/quotes.txt:118
 msgid "\"In soft regions are born soft men.\" - Herodotus"
 msgstr "«Nas rexións febles nacen homes febles.» — Heródoto."
 
-#: gui/text/quotes.txt:120
+#: gui/text/quotes.txt:119
 msgid "\"It is sweet and honorable to die for one's country.\" - Horace"
 msgstr "«É doce e honorábel morrer polo país.» — Horacio."
 
-#: gui/text/quotes.txt:121
+#: gui/text/quotes.txt:120
 msgid "\"We are but dust and shadow.\" - Horace"
 msgstr "«Non somos máis que po e sombras.» — Horacio."
 
-#: gui/text/quotes.txt:122
+#: gui/text/quotes.txt:121
 msgid ""
 "\"I am not bound over to swear allegiance to any master; where the storm "
 "drives me I turn in for shelter.\" - Horace"
 msgstr "«Non teño obriga de xurarlle alianza a ningún dono; busco abeiro alí onde me leva a tormenta.» — Horacio."
 
-#: gui/text/quotes.txt:123
+#: gui/text/quotes.txt:122
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace"
 msgstr "«Unha vez conquistada, Grecia tomou refén ao salvaxe do seu conquistador, e levou as súas artes á rústica Península Itálica.» — Horacio."
 
-#: gui/text/quotes.txt:124
+#: gui/text/quotes.txt:123
 msgid ""
 "\"Guard yourself against accusations, even if they are false; for the "
 "multitude are ignorant of the truth and look only to reputation.\" - "
 "Isocrates"
 msgstr "«Protéxete das acusacións, incluso cando estas sexan falsas, pois a multitude é ignorante da verdade, e só teñen en conta a reputación.» — Isócrates."
 
-#: gui/text/quotes.txt:125
+#: gui/text/quotes.txt:124
 msgid ""
 "\"I never learned how to tune a harp, or play upon a lute; but I know how to"
 " raise a small and inconsiderable city to glory and greatness.\" - "
 "Themistocles"
 msgstr "«Nunca aprendín a afinar a arpa ou tocar o laúde; porén, sei como levar unha pequena citade descoñecida á gloria e a grandeza.» — Temístocles."
 
-#: gui/text/quotes.txt:126
+#: gui/text/quotes.txt:125
 msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
 msgstr "«Levo comigo dous deuses, a persuasión e a coerción.» — Temístocles."
 
-#: gui/text/quotes.txt:127
+#: gui/text/quotes.txt:126
 msgid ""
 "\"For the Athenians command the rest of Greece, I command the Athenians; "
 "your mother commands me, and you command your mother.\" - Themistocles, in a"
 " statement to his son"
 msgstr "«Os atenienses mandan sobre o resto de Grecia, eu mando sobre os atenienses, túa nai manda sobre min, e ti mandas sobre a túa nai.» — Temístocles, dirixíndose ao seu fillo."
 
-#: gui/text/quotes.txt:128
+#: gui/text/quotes.txt:127
 msgid "\"Strike, if you will, but listen.\" - Themistocles"
 msgstr "«Atacase se queredes, pero escoitade.» — Temístocles."
 
-#: gui/text/quotes.txt:129
+#: gui/text/quotes.txt:128
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife before"
 " he left for Thermopylae"
 msgstr "«Casa cun bo home, e dá a luz bos fillos.» — Leónidas, á súa muller, antes de partir para as Termópilas."
 
-#: gui/text/quotes.txt:130
+#: gui/text/quotes.txt:129
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms"
 msgstr "«Vinde por elas!» — Leónidas, ao mensaxeiro persa que esixiu que el e os seus homes entregasen as armas."
 
-#: gui/text/quotes.txt:131
+#: gui/text/quotes.txt:130
 msgid "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
 msgstr "«Para un home que pensa, a sabedoría é o seu fogar.» — Zoroastro."
 
-#: gui/text/quotes.txt:132
+#: gui/text/quotes.txt:131
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander"
 msgstr "«Un desprezo é un desprezo, e unha espada é unha espada.» — Menandro."
 
-#: gui/text/quotes.txt:133
+#: gui/text/quotes.txt:132
 msgid "\"The man who runs may fight again.\" - Menander"
 msgstr "«Aquel que fuxe vive para loitar outro día.» — Menandro."
 
-#: gui/text/quotes.txt:134
+#: gui/text/quotes.txt:133
 msgid ""
 "\"At times discretion should be thrown aside, and with the foolish we should"
 " play the fool.\" - Menander"
 msgstr "«Ás veces hai que deixar de lado a discreción, e cos parvos, facernos os parvos.» — Menandro."
 
-#: gui/text/quotes.txt:135
+#: gui/text/quotes.txt:134
 msgid ""
 "\"Freedom is the sure possession of those alone who have the courage to "
 "defend it.\" - Pericles"
 msgstr "«A liberdade só a posúen realmente aqueles que están dispostos a defendela.» — Pericles."
 
-#: gui/text/quotes.txt:136
+#: gui/text/quotes.txt:135
 msgid ""
 "\"What you leave behind is not what is engraved in stone monuments, but what"
 " is woven into the lives of others.\" - Pericles"
 msgstr "«O que deixas atrás non é o que queda gravado en monumentos de pedra, senón o que deixas gravado nas vidas dos demais.» — Pericles."
 
-#: gui/text/quotes.txt:137
+#: gui/text/quotes.txt:136
 msgid ""
 "\"We do not say that a man who takes no interest in politics is a man who "
 "minds his own business; we say that he has no business here at all.\" - "
 "Pericles"
 msgstr "«Un home ao que non lle interesa a política non é un home que se preocupa dos seus asuntos; é un home que aquí non pinta nada.» — Pericles."
 
-#: gui/text/quotes.txt:138
+#: gui/text/quotes.txt:137
 msgid ""
 "\"They gave her their lives, to Her and to all of us, and for their own "
 "selves they won praises that never grow old, the most splendid of "
 "sepulchers...\" - Pericles, Funeral Oration"
 msgstr "«Entregaron as súas vidas, a ela e a todos nós, e conseguiron eloxios que non envellecen, o máis espléndido dos sepulcros…» — Pericles."
 
-#: gui/text/quotes.txt:139
+#: gui/text/quotes.txt:138
 msgid ""
 "\"Make up your minds that happiness depends on being free, and freedom "
 "depends on being courageous.\" - Pericles"
 msgstr "«Entendede que para ser feliz un ten que ser libre, e para ser libre un ten que ter valor.» — Pericles."
 
-#: gui/text/quotes.txt:140
+#: gui/text/quotes.txt:139
 msgid ""
 "\"Your empire is now like a tyranny: it may have been wrong to take it; it "
 "is certainly dangerous to let it go.\" - Pericles"
 msgstr "«O teu imperio é agora como unha tiranía: pode que estivese mal facerse con el, pero desde logo desfacerse del sería perigoso.» — Pericles."
 
-#: gui/text/quotes.txt:141
+#: gui/text/quotes.txt:140
 msgid ""
 "\"If Athens shall appear great to you, consider then that her glories were "
 "purchased by valiant men, and by men who learned their duty.\" - Pericles"
 msgstr "«Se Atenas te parece grande, ten en conta que a súa grandeza obtivérona homes valentes que aprenderon o seu deber.» — Pericles."
 
-#: gui/text/quotes.txt:142
+#: gui/text/quotes.txt:141
 msgid ""
 "\"Just because you do not take an interest in politics doesn't mean politics"
 " won't take an interest in you.\" - Pericles"
 msgstr "«Só porque non che interese a política non significa que ti non lle intereses a ela.» — Pericles."
 
-#: gui/text/quotes.txt:143
+#: gui/text/quotes.txt:142
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man trembles exceedingly at heart on its approach.\" - Pindar"
 msgstr "«A guerra é doce para aqueles que non a experimentaron, pero os que a experimentaron tremen ante a posibilidade da súa chegada.» — Píndaro."
 
-#: gui/text/quotes.txt:144
+#: gui/text/quotes.txt:143
 msgid ""
 "\"The hour of departure has arrived, and we go our ways — I to die, and you "
 "to live. Which is better God only knows.\" - Plato"
 msgstr "«Chegou a hora de partir, e irmos cada un polo seu lado: eu a morrer, e ti a vivir. Só deus sabe cal é mellor.» — Platón."
 
-#: gui/text/quotes.txt:145
+#: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
 msgstr "«Unha vida sen discusión non paga a pena vivila.» — Platón."
 
-#: gui/text/quotes.txt:146
+#: gui/text/quotes.txt:145
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or from cowardice fall "
 "behind.\" - Plato"
 msgstr "«Que todo home lles lembre aos seus fillos que eles tamén son soldados que non deben desertar das filas dos seus devanceiros, ou quedarán atrás por covardes.» — Platón."
 
-#: gui/text/quotes.txt:147
+#: gui/text/quotes.txt:146
 msgid ""
 "\"False words are not only evil in themselves, but they infect the soul with"
 " evil.\" - Plato"
 msgstr "«As palabras falsas non só son malas en si mesmas, senón que infectan a alma de maldade.» — Platón."
 
-#: gui/text/quotes.txt:148
+#: gui/text/quotes.txt:147
 msgid ""
 "\"Democracy, which is a charming form of government, full of variety and "
 "disorder, and dispensing a sort of equality to equals and unequals alike.\" "
 "- Plato"
 msgstr "«A democracia, unha forma de goberno encantadora, chea de variedade e desorde, que outorga unha especie de igualdade tanto aos iguais como aos non iguais.» — Platón."
 
-#: gui/text/quotes.txt:149
+#: gui/text/quotes.txt:148
 msgid "\"Death is not the worst that can happen to men.\" - Plato"
 msgstr "«A morte non é o peor que lle pode pasar a alguén.» — Platón."
 
-#: gui/text/quotes.txt:150
+#: gui/text/quotes.txt:149
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
 msgstr "«Só ao morrer pode un ver o final da guerra.» — Autor descoñecido."
 
-#: gui/text/quotes.txt:151
+#: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
 msgstr "«A nosa necesidade será o verdadeiro creador.» — Platón."
 
-#: gui/text/quotes.txt:152
+#: gui/text/quotes.txt:151
 msgid "\"A man with courage has every blessing.\" - Plautus"
 msgstr "«Un home con coraxe ten todas as bendicións.» — Plauto."
 
-#: gui/text/quotes.txt:153
+#: gui/text/quotes.txt:152
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus"
 msgstr "«Non hai invitado mellor benvido na cada dun amigo que aquel que non se converte nun estorbo aos tres días.» — Plauto."
 
-#: gui/text/quotes.txt:154
+#: gui/text/quotes.txt:153
 msgid "\"He whom the gods love dies young.\" - Plautus"
 msgstr "«Quen ten o favor dos deuses morre novo.» — Plauto."
 
-#: gui/text/quotes.txt:155
+#: gui/text/quotes.txt:154
 msgid "\"Practice yourself what you preach.\" - Plautus"
 msgstr "«Practica o que predicas.» — Plauto."
 
-#: gui/text/quotes.txt:156
+#: gui/text/quotes.txt:155
 msgid "\"Drink, live like the Greeks, eat, gorge.\" - Plautus"
 msgstr "«Bebe, vive coma os gregos, come, sáciate.» — Plauto."
 
-#: gui/text/quotes.txt:157
+#: gui/text/quotes.txt:156
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Pompey "
 "the Great)"
 msgstr "«Deixa de citar leis, levamos armas!» — Pompeio o Magno."
 
-#: gui/text/quotes.txt:158
+#: gui/text/quotes.txt:157
 msgid ""
 "\"Man is the measure of all things: of things which are, that they are, and "
 "of things which are not, that they are not.\" - Protagoras"
 msgstr "«O home é a vara coa que se miden todas as cousas: as cousas que son, que o son, e as que non son, que non o son.» — Protágoras."
 
-#: gui/text/quotes.txt:159
+#: gui/text/quotes.txt:158
 msgid ""
 "\"We ought so to behave to one another as to avoid making enemies of our "
 "friends, and at the same time to make friends of our enemies.\" - Pythagoras"
 msgstr "«Deberíamos comportarnos os uns cos outros procurando non converter aos amigos en inimigos, e ao mesmo tempo procurando converter aos inimigos en amigos.» — Pitágoras."
 
-#: gui/text/quotes.txt:160
+#: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
 msgstr "«Cando a ira nos domina, cómpre non falar nin actuar.» — Pitágoras."
 
-#: gui/text/quotes.txt:161
+#: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
 msgstr "«O poder é veciño da necesidade.» —Pitágoras."
 
-#: gui/text/quotes.txt:162
+#: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
 msgstr "«O universo está gobernado por números.» — Pitágoras."
 
-#: gui/text/quotes.txt:163
+#: gui/text/quotes.txt:162
 msgid ""
 "\"Rest satisfied with doing well, and leave others to talk of you as they "
 "please.\" - Pythagoras"
 msgstr "«Confórmate con facer o correcto, e deixa que os demais digan sobre ti o que queiran.» — Pitágoras."
 
-#: gui/text/quotes.txt:164
+#: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
 msgstr "«A ira comeza pola estupidez e remata no arrepentimento.» — Pitágoras."
 
-#: gui/text/quotes.txt:165
+#: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
 msgstr "«Toda palabra e acción ten o seu eco na eternidade.» — Pitágoras."
 
-#: gui/text/quotes.txt:166
+#: gui/text/quotes.txt:165
 msgid ""
 "\"There is geometry in the humming of the strings, there is music in the "
 "spacing of the spheres.\" - Pythagoras"
 msgstr "«Hai xeometría no vibrar das cordas, así como hay música no espazo entre as esferas.» — Pitágoras."
 
-#: gui/text/quotes.txt:167
+#: gui/text/quotes.txt:166
 msgid ""
 "\"Practice justice in word and deed, and do not get in the habit of acting "
 "thoughtlessly about anything.\" - Pythagoras"
 msgstr "«Sea xusto ao falar e actuar, e non collas a mala costume de actuar sen pensar para todo.» — Pitágoras."
 
-#: gui/text/quotes.txt:168
+#: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
 msgstr "«Ni se che pase pola cabeza facer o que non se debería facer.» — Pitágoras."
 
-#: gui/text/quotes.txt:169
+#: gui/text/quotes.txt:168
 msgid ""
 "\"When the wise man opens his mouth, the beauties of his soul present "
 "themselves to the view, like the statues in a temple.\" - Pythagoras"
 msgstr "«Cando o home sabio abre a boca, as belezas da súa alma póñense á vista, como estatuas nun templo.» — Pitágoras."
 
-#: gui/text/quotes.txt:170
+#: gui/text/quotes.txt:169
 msgid ""
 "\"Remind yourself that all men assert that wisdom is the greatest good, but "
 "that there are few who strenuously seek out that greatest good.\" - "
 "Pythagoras"
 msgstr "«Non esquezas que, aínda que todos os homes afirman que a sabedoría é o mellor dos bens, son poucos os que a buscan activamente.» — Pitágoras."
 
-#: gui/text/quotes.txt:171
+#: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
 msgstr "«Ningún reino pode prosperar sen xustiza.» — Pitágoras."
 
-#: gui/text/quotes.txt:172
+#: gui/text/quotes.txt:171
 msgid ""
 "\"For harmony makes small states great, while discord undermines the "
 "mightiest empires.\" - Sallust"
 msgstr "«A harmonía outorga grandeza aos estados máis pequenos, mentres que a discordia socava a grandeza dos imperios máis poderosos.» — Salustio."
 
-#: gui/text/quotes.txt:173
+#: gui/text/quotes.txt:172
 msgid ""
 "\"I am mindful of human weakness, and I reflect upon the might of Fortune "
 "and know that everything that we do is exposed to a thousand chances.\" - "
 "Scipio Africanus"
 msgstr "«Son consciente da debilidade humana, coñecedor do poder da sorte, e sei que todo o que facemos depende de centos de posibilidades.» — Escipión o Africano."
 
-#: gui/text/quotes.txt:174
+#: gui/text/quotes.txt:173
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
 msgstr "«Prepárate para a guerra, xa que non fuches capaz de manter a paz.» — Escipión o Africano."
 
-#: gui/text/quotes.txt:175
+#: gui/text/quotes.txt:174
 msgid ""
 "\"Go, tell the Spartans, stranger passing by that here, obedient to their "
 "laws, we lie.\" - Simonides of Ceos, epitaph on the Cenotaph of Thermopylae"
 msgstr "«Vai e dille aos espartanos, estraño que pasas, que aquí xacemos, obedientes ás nosas leis.» — Simónides de Ceos, epitafio no cenotafio das Termópilas."
 
-#: gui/text/quotes.txt:176
+#: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
 msgstr "«Nin sequera os deuses loitan contra a necesidade.» — Simónides de Ceos."
 
-#: gui/text/quotes.txt:177
+#: gui/text/quotes.txt:176
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Simonides of Ceos"
 msgstr "«Sen vacilar por un instante demos as nosas vidas para salvar Grecia cando o seu destino pendía dun fío.» — Simónides de Ceos."
 
-#: gui/text/quotes.txt:178
+#: gui/text/quotes.txt:177
 msgid ""
 "\"The bravest are surely those who have the clearest vision of what is "
 "before them, glory and danger alike, and yet notwithstanding, go out to meet"
@@ -9763,19 +9834,21 @@ msgstr "Aegis"
 
 #: simulation/ai/aegis/data.jsondescription
 msgid ""
-"Wraitii's improvement of qBot. It is more reliable and generally a better "
-"player. Note that it doesn't support saved games yet, and there may be other"
-" bugs. Please report issues to Wildfire Games (see the link in the main "
-"menu)."
-msgstr "Mellora de Wraitii sobre qBot. É máis fiábel e en xeral un mellor xogador. Téñase en conta que aínda non é compatíbel con partidas gardadas, e pode que existan outros defectos. Se detectas un erro, non dubides en contactar con Wildfire Games (segue a ligazón do menú principal)."
+"The most stable AI currently available, Aegis is an improvement of earlier "
+"bots by Wratii. Note that it doesn't support saved games yet. Please report "
+"issues to Wildfire Games (see the link in the main menu)."
+msgstr "Aegis é a intelixencia artificial máis estábel dispoñíbel, resultado da mellora de intelixencias artificiais previas desenvolvidas polo mesmo autor, Wratii. Téñase en conta que esta intelixencia artificial non aínda é compatíbel con partidas gardadas. Se atopa algún problema con esta intelixencia artificial, non dubide en informar a Wildfire Games do problema (no menú principal atopará máis información ao respecto)."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
 msgstr "Petra"
 
 #: simulation/ai/petra/data.jsondescription
-msgid "Based on Aegis, but heavily modified and expected to be more robust"
-msgstr "Baseado en Aegis, pero completamente modificado e deseñado para ser máis robusto."
+msgid ""
+"Based on Aegis, but heavily modified and expected to be more robust. Note "
+"that it doesn't support saved games yet and is not as well tested as Aegis. "
+"Please report issues to Wildfire Games (see the link in the main menu)."
+msgstr "Intelixencia artificial baseada en Aegis, pero modificada en gran medida co obxectivo de aumentar a súa robustez. Téñase en conta que esta intelixencia artificial non aínda é compatíbel con partidas gardadas, e non está tan ben probada como Aegis. Se atopa algún problema con esta intelixencia artificial, non dubide en informar a Wildfire Games do problema (no menú principal atopará máis información ao respecto)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription

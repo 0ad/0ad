@@ -7,16 +7,16 @@
 	<script file="gui/savedgames/save.js" />
 
 	<!-- Add a translucent black background to fade out the page -->
-	<object type="image" z="0" sprite="BackgroundTranslucent"/>
+	<object type="image" z="0" sprite="ModernFade"/>
 
-	<object type="image" style="StoneDialog" size="50%-300 50%-200 50%+300 50%+200">
-		<object type="image" z="0" sprite="BackgroundTranslucent"/>
+	<object type="image" style="ModernDialog" size="50%-300 50%-200 50%+300 50%+200">
+		<object type="image" z="0" sprite="ModernFade"/>
 		<object type="text" style="TitleText" size="50%-128 0%-16 50%+128 16">
 			<translatableAttribute id="caption">Save Game</translatableAttribute>
 		</object>
 
 		<object name="gameSelection"
-			style="StoneList"
+			style="ModernList"
 			type="list"
 			
 			size="24 24 100%-24 100%-124">
@@ -25,11 +25,11 @@
 			</action>
 		</object>
 
-		<object size="24 100%-124 100%-24 100%-100" name="descLabel" type="text" style="LeftLabelText">
+		<object size="24 100%-124 100%-24 100%-100" name="descLabel" type="text" style="ModernLeftLabelText">
 			<translatableAttribute id="caption">Description:</translatableAttribute>
 		</object>
 
-		<object name="saveGameDesc" size="24 100%-96 100%-24 100%-72" type="input" style="StoneInput">
+		<object name="saveGameDesc" size="24 100%-96 100%-24 100%-72" type="input" style="ModernInput">
 			<action on="Press">saveGame();</action>
 		</object>
 

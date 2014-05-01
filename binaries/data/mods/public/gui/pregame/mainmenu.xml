@@ -101,12 +101,12 @@
 				</attribute>
 			</object>
 			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
-				<translatableAttribute id="caption">Enable feedback</translatableAttribute>
+				<translatableAttribute id="caption">Enable Feedback</translatableAttribute>
 				<action on="Press">EnableUserReport(true);</action>
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
-				<translatableAttribute id="caption">Technical details</translatableAttribute>
-				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
+				<translatableAttribute id="caption">Technical Details</translatableAttribute>
+				<action on="Press">Engine.PushGuiPage("page_manual.xml", {"page":"manual/userreport", "title":getTechnicalDetails()});</action>
 			</object>
 		</object>
 
@@ -132,12 +132,12 @@
 			</object>
 
 			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
-				<translatableAttribute id="caption">Disable feedback</translatableAttribute>
+				<translatableAttribute id="caption">Disable Feedback</translatableAttribute>
 				<action on="Press">EnableUserReport(false);</action>
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
-				<translatableAttribute id="caption">Technical details</translatableAttribute>
-				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
+				<translatableAttribute id="caption">Technical Details</translatableAttribute>
+				<action on="Press">Engine.PushGuiPage("page_manual.xml", {"page":"manual/userreport", "title":getTechnicalDetails()});</action>
 			</object>
 		</object>
 
@@ -398,7 +398,7 @@
 					<action on="Press">
 						closeMenu();
 						<![CDATA[
-							Engine.PushGuiPage("page_manual.xml", { "page": "intro" });
+							Engine.PushGuiPage("page_manual.xml", {"page":"manual/intro", "title":getManual(), "url":"http://trac.wildfiregames.com/wiki/0adManual"});
 						]]>
 					</action>
 				</object>
@@ -495,7 +495,7 @@
 					<!-- IMPORTANT: remember to update session/session.xml in sync with this: -->
 					<attribute id="caption">
 						<keep>[font="sans-bold-16"]</keep>
-						<translate>Alpha XV: Osiris</translate>
+						<translate>Alpha XVI: Patañjali</translate>
 						<keep>[/font]\n\n</keep>
 						<translate>WARNING: This is an early development version of the game. Many features have not been added yet.</translate>
 						<keep>\n\n</keep>
@@ -509,7 +509,7 @@
 					tooltip_style="pgToolTip"
 					size="8 100%-108 100%-8 100% -80"
 				>
-					<translatableAttribute id="caption">Help with the translation!</translatableAttribute>
+					<translatableAttribute id="caption">Help with the Translation!</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to open the 0 A.D translate page in your browser.</translatableAttribute>
 					<action on="Press"><![CDATA[
 						openURL("http://trac.wildfiregames.com/wiki/Localization");
@@ -561,7 +561,7 @@
 			>
 
 				<!-- COMPANY LOGO -->
-				<object	name="companyLogo"
+				<object name="companyLogo"
 					type="image"
 					sprite="companyLogo"
 					ghost="true"
@@ -570,7 +570,7 @@
 
 				<!-- COMPANY NAME -->
 				<object type="text"
-				        style="MediumTitleText"
+					style="MediumTitleText"
 					ghost="true"
 					size="50%-128 32 50%+128 48"
 				>

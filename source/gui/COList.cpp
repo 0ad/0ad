@@ -129,6 +129,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 	ELMT(def);
 	ELMT(translatableAttribute);
 	ATTR(id);
+	ATTR(context);
 
 	if (child.GetNodeName() == elmt_item)
 	{
@@ -198,8 +199,17 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 					CStr value(grandchild.GetText());
 					if (!value.empty())
 					{
-						CStr translatedValue(L10n::Instance().Translate(value));
-						oDef.m_Heading = translatedValue.FromUTF8();
+						CStr context(grandchild.GetAttributes().GetNamedItem(attr_context)); // Read the context if any.
+						if (!context.empty())
+						{
+							CStr translatedValue(L10n::Instance().TranslateWithContext(context, value));
+							oDef.m_Heading = translatedValue.FromUTF8();
+						}
+						else
+						{
+							CStr translatedValue(L10n::Instance().Translate(value));
+							oDef.m_Heading = translatedValue.FromUTF8();
+						}
 					}
 				}
 				else // Ignore.

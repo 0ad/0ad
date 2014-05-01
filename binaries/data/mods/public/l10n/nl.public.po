@@ -27,9 +27,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-27 22:12+0200\n"
-"PO-Revision-Date: 2014-04-28 09:40+0000\n"
-"Last-Translator: sanderd17\n"
+"POT-Creation-Date: 2014-05-01 03:17+0200\n"
+"PO-Revision-Date: 2014-05-01 01:24+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,7 +117,18 @@ msgstr "Helden"
 msgid "History of the %(civilization)s"
 msgstr "Geschiedenis van de %(civilization)s"
 
-#: gui/common/functions_global_object.js:73
+#: gui/common/functions_global_object.js:75
+#, python-format
+msgid ""
+"Opening %(url)s\n"
+" in default web browser. Please wait..."
+msgstr "%(url)s\nAan het openen in de web browser. Gelieve te wachten..."
+
+#: gui/common/functions_global_object.js:75
+msgid "Opening page"
+msgstr "Pagina aan het openen"
+
+#: gui/common/functions_global_object.js:80
 #, python-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
@@ -333,17 +344,19 @@ msgstr "%(playerName)s %(romanNumber)s"
 msgid "Map Size:"
 msgstr "Kaart grootte:"
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
-msgid "Reveal Map:"
-msgstr "Toon kaart:"
+msgid "Revealed Map:"
+msgstr ""
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
-msgid "Explore Map:"
-msgstr "Verken kaart:"
+msgid "Explored Map:"
+msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -360,7 +373,7 @@ msgstr "Teams vergrendeld:"
 #: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
 #: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
 #: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
-#: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
+#: gui/pregame/mainmenu.js:308 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
 #: gui/session/menu.js:185 gui/session/session.js:481
@@ -372,7 +385,7 @@ msgstr "Ja"
 #: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
 #: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
 #: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
-#: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
+#: gui/pregame/mainmenu.js:308 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
 #: gui/session/menu.js:185 gui/session/session.js:481
@@ -627,25 +640,61 @@ msgstr "%(time)s %(message)s"
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Gelieve niet te spammen. Je bent voor 30 seconden geblokkeerd."
 
-#: gui/lobby/prelobby.js:35
+#: gui/lobby/prelobby.js:40
 msgid "Connecting..."
 msgstr "Verbinden..."
 
-#: gui/lobby/prelobby.js:61
-msgid "Passwords do not match"
-msgstr "Wachtwoorden komen niet overeen"
-
-#: gui/lobby/prelobby.js:68
+#: gui/lobby/prelobby.js:62
 msgid "Registering..."
 msgstr "Registreren..."
 
-#: gui/lobby/prelobby.js:109 gui/lobby/prelobby.js:123
-msgid "Please enter existing login or desired registration credentials."
-msgstr "Gelieve bestaande login gegevens of nieuwe registratie gegevens in te vullen."
+#: gui/lobby/prelobby.js:99
+msgid "Please enter your username"
+msgstr ""
 
-#: gui/lobby/prelobby.js:114 gui/lobby/prelobby.js:122
-msgid "Usernames can't contain [, ], unicode, whitespace, or commas."
-msgstr "Onze excuses, je kan geen vierkante haakjes, spaties, commas of andere speciale tekens (zoals accenten) gebruiken in gebruikersnamen."
+#: gui/lobby/prelobby.js:105
+msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
+msgstr ""
+
+#: gui/lobby/prelobby.js:111
+msgid "Please enter your password"
+msgstr ""
+
+#: gui/lobby/prelobby.js:124
+msgid "Please enter your password again"
+msgstr ""
+
+#: gui/lobby/prelobby.js:130
+msgid "Passwords do not match"
+msgstr "Wachtwoorden komen niet overeen"
+
+#: gui/lobby/prelobby.js:136
+msgid "Please read the Terms of Service"
+msgstr ""
+
+#: gui/lobby/prelobby.js:142
+msgid "Please read the Terms of Use"
+msgstr ""
+
+#: gui/lobby/prelobby.js:148
+msgid "Please agree to the Terms of Service and Terms of Use"
+msgstr ""
+
+#: gui/lobby/prelobby.js:246
+msgid "Register"
+msgstr "Registreer"
+
+#: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:109 (caption)
+msgid "Connect"
+msgstr "Verbinden"
+
+#: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
+msgid "Terms of Service"
+msgstr ""
+
+#: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
+msgid "Terms of Use"
+msgstr ""
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -656,7 +705,7 @@ msgstr "Geen"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:185
+#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
 #: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
 #: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
@@ -675,215 +724,225 @@ msgstr "Negeer"
 msgid "Abort"
 msgstr "Stop"
 
-#: gui/options/options.js:8
+#: gui/options/options.js:9
 msgid "Windowed Mode"
 msgstr "Venstermodus"
 
-#: gui/options/options.js:8
+#: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
 msgstr "Start 0 A.D. in een venster."
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Background Pause"
 msgstr "Achtergrondpause"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
 msgstr "Pauzeer singleplayer spellen wanneer de focus naar een ander venster gaat"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:11
+msgid "Disable Welcome Screen"
+msgstr ""
+
+#: gui/options/options.js:11
+msgid ""
+"If you disable this screen completely, you may miss important announcements.\n"
+"You can still launch it using the main menu."
+msgstr ""
+
+#: gui/options/options.js:12
 msgid "Developer Overlay"
 msgstr "Ontwikkelingsmodus"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:12
 msgid ""
 "Show overlay in-game with options such as reveal map, control all units, and"
 " change perspective. Designed for use by developers"
 msgstr "Toon een menu in het spel met ontwikkelopties zoals \"Toon de kaart\", \"Bestuur alle eenheden\" en \"Wissel perspectief\". Dit is enkel voor ontwikkelaars van het spel bedoeld."
 
-#: gui/options/options.js:14
+#: gui/options/options.js:16
 msgid "Prefer GLSL"
 msgstr "Gebruik GLSL"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:16
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Gebruik OpenGL 2.0 shaders (aangeraden)"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:17
 msgid "Post Processing"
 msgstr "Postproces"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:17
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Gebruik postprocesfilters op het scherm (HDR, Mist, DOF, etc)"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:18
 msgid "Shadows"
 msgstr "Schaduwen"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:18
 msgid "Enable shadows"
 msgstr "Activeer schaduwen"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:19
 msgid "Particles"
 msgstr "Partikels"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:19
 msgid "Enable particles"
 msgstr "Activeer partikels"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Show Sky"
 msgstr "Toon lucht"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Render Sky"
 msgstr "Toon de lucht"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid "Smooth LOS"
 msgstr "Vloeiend gezichtsveld"
 
-#: gui/options/options.js:19
-msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."
+#: gui/options/options.js:21
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Unit Silhouettes"
 msgstr "Silhouetten"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Show outlines of units behind buildings"
 msgstr "Toon de omtrek van eenheden door gebouwen"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Shadow Filtering"
 msgstr "Schaduwfiltering"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Smooth shadows"
 msgstr "Zachte schaduwen"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "HQ Waviness"
 msgstr "HQ golven"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr "Gebruik echte normalen voor de weergave van golven i.p.v. het te benaderen als een vlak."
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Real Water Depth"
 msgstr "Werkelijke waterdiepte"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Use actual water depth in rendering calculations"
 msgstr "Gebruik de echte diepte van het water bij de weergaveberekeningen"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Water Reflections"
 msgstr "Waterreflectie"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Allow water to reflect a mirror image"
 msgstr "Laat water toe om een spiegelbeeld te reflecteren"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Water Refraction"
 msgstr "Waterrefractie"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Use a real water refraction map and not transparency"
 msgstr "Gebruik een realistische refractieafbeelding, en geen transparantie voor water."
 
-#: gui/options/options.js:26
+#: gui/options/options.js:28
 msgid "Shore Foam"
 msgstr "Kustschuim"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:28
 msgid "Show foam on water near shore depending on water waviness"
 msgstr "Toon schuim op het water nabij de kust, afhankelijk van de golfgrootte."
 
-#: gui/options/options.js:27
+#: gui/options/options.js:29
 msgid "Shore Waves"
 msgstr "Kustgolven"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:29
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr "Toon golven die breken bij de kust (vereist HQ golven)"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:30
 msgid "Water Shadows"
 msgstr "Waterschaduwen"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:30
 msgid "Cast shadows on water"
 msgstr "Toon schaduwen op het water"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:31
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:31
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Gebruik verticale synchronisatie om een scherm dat \"scheurt\" te voorkomen. HET SPEL MOET HERSTART WORDEN"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:35
 msgid "Master Gain"
 msgstr "Master volume"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:35
 msgid "Master audio gain"
 msgstr "Mastervolume"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:36
 msgid "Music Gain"
 msgstr "Muziek volume"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:36
 msgid "In game music gain"
 msgstr "Volume van de muziek"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Ambient Gain"
 msgstr "Achtergrondvolume"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "In game ambient sound gain"
 msgstr "Volume van het achtergrondgeluid"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "Action Gain"
 msgstr "Actievolume"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "In game unit action sound gain"
 msgstr "Volume van de spelelementen"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "UI Gain"
 msgstr "UI volume"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "UI sound gain"
 msgstr "Volume van de klikken"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:43
 msgid "Chat Backlog"
 msgstr "Chat log"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:43
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Aantal berichten die geladen worden wanneer je in de lobby binnen komt."
 
-#: gui/options/options.js:42
+#: gui/options/options.js:44
 msgid "Chat Timestamp"
 msgstr "Chat tijdsweergave"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:44
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Toon de tijd waarop chatberichten in de lobby verstuurd zijn."
 
@@ -918,7 +977,7 @@ msgstr "versturen mislukt  (%(errorMessage)s)"
 msgid "unknown"
 msgstr "onbekend"
 
-#: gui/pregame/mainmenu.js:176
+#: gui/pregame/mainmenu.js:177
 #, python-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -931,43 +990,53 @@ msgstr "%(startWarning)sWaarschuwing:%(endWarning)s Je blijkt niet-shader (fixed
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:182
+#: gui/pregame/mainmenu.js:183
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Klik op \"Lees Meer\" voor meer info, of \"OK\" om verder te gaan."
 
-#: gui/pregame/mainmenu.js:183
+#: gui/pregame/mainmenu.js:184
 msgid "WARNING!"
 msgstr "WAARSCHUWING!"
 
-#: gui/pregame/mainmenu.js:185
+#: gui/pregame/mainmenu.js:186
 msgid "Read More"
 msgstr "Lees meer"
 
-#: gui/pregame/mainmenu.js:286 gui/session/session.js:917
+#: gui/pregame/mainmenu.js:279 gui/session/session.js:917
 #, python-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versie: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:350
+#: gui/pregame/mainmenu.js:310
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Ben je zeker dat je 0 A.D. wil stoppen?"
 
-#: gui/pregame/mainmenu.js:350 gui/session/menu.js:141 gui/session/menu.js:164
+#: gui/pregame/mainmenu.js:310 gui/session/menu.js:141 gui/session/menu.js:164
 #: gui/session/menu.js:172
 msgid "Confirmation"
 msgstr "Bevestiging"
 
-#: gui/pregame/mainmenu.js:360
+#: gui/pregame/mainmenu.js:320
 msgid "The scenario editor is not available or failed to load."
 msgstr "De kaartenbewerker is niet beschikbaar of kon niet gestart worden."
 
-#: gui/pregame/mainmenu.js:360
+#: gui/pregame/mainmenu.js:320
 msgid "Error"
 msgstr "Fout"
 
-#: gui/pregame/mainmenu.js:365
+#: gui/pregame/mainmenu.js:325
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 msgstr "Start de spellobby. [NIET GEACTIVEERD IN DEZE VERSIE]"
+
+#: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
+#: gui/pregame/mainmenu.xml:139 (caption)
+msgid "Technical Details"
+msgstr ""
+
+#: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
+#: gui/session/session.xml:732 (caption)
+msgid "Manual"
+msgstr "Handleiding"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -1306,7 +1375,7 @@ msgstr "%(player)s heeft het spel verlaten."
 
 #: gui/session/messages.js:423
 msgid "You have been defeated."
-msgstr "Je bent verslegen."
+msgstr "Je bent verslagen."
 
 #: gui/session/messages.js:425
 #, python-format
@@ -1663,49 +1732,56 @@ msgstr "Klik om een eenheid van dit type naar buiten te sturen. Shift-klik om al
 msgid "Requires %(technology)s"
 msgstr "%(technology)s vereist"
 
-#: gui/session/unit_commands.js:953
+#: gui/session/unit_commands.js:725
+#, python-format
+msgid "Remaining: %(number)s to build."
+msgid_plural "Remaining: %(number)s to build."
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/session/unit_commands.js:962
 #, python-format
 msgid "Set/unset %(resource)s as forced trading goods."
 msgstr "Verhandel %(resource)s"
 
-#: gui/session/unit_commands.js:1152
+#: gui/session/unit_commands.js:1161
 msgid "Convert Wooden Wall into Wooden Gate"
 msgstr "Bouw de palissade muur om tot een houten poort."
 
-#: gui/session/unit_commands.js:1156
+#: gui/session/unit_commands.js:1165
 msgid "Convert Stone Wall into City Gate"
 msgstr "Verbouw het muursegment tot een stadspoort."
 
-#: gui/session/unit_commands.js:1160
+#: gui/session/unit_commands.js:1169
 msgid "Convert Siege Wall into Siege Wall Gate"
 msgstr "Bouw de belegeringsmuur om tot een poort"
 
-#: gui/session/unit_commands.js:1165
+#: gui/session/unit_commands.js:1174
 #, python-format
 msgid "Convert %(wall)s into %(gate)s"
 msgstr "Bouw %(wall)s om tot %(gate)s"
 
-#: gui/session/unit_commands.js:1182
+#: gui/session/unit_commands.js:1191
 msgid "Lock Gate"
 msgstr "Sluit poort"
 
-#: gui/session/unit_commands.js:1188
+#: gui/session/unit_commands.js:1197
 msgid "Unlock Gate"
 msgstr "Open poort"
 
-#: gui/session/unit_commands.js:1237
+#: gui/session/unit_commands.js:1246
 msgid "Pack"
 msgstr "Inpakken"
 
-#: gui/session/unit_commands.js:1239
+#: gui/session/unit_commands.js:1248
 msgid "Unpack"
 msgstr "Uitpakken"
 
-#: gui/session/unit_commands.js:1241
+#: gui/session/unit_commands.js:1250
 msgid "Cancel Packing"
 msgstr "Stop inpakken"
 
-#: gui/session/unit_commands.js:1243
+#: gui/session/unit_commands.js:1252
 msgid "Cancel Unpacking"
 msgstr "Stop uitpakken"
 
@@ -2149,17 +2225,6 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "vis"
 
-#: gui/splashscreen/splashscreen.js:9
-#, python-format
-msgid ""
-"Opening %(url)s\n"
-" in default web browser. Please wait..."
-msgstr "%(url)s\nAan het openen in de web browser. Gelieve te wachten..."
-
-#: gui/splashscreen/splashscreen.js:9
-msgid "Opening page"
-msgstr "Pagina aan het openen"
-
 #: gui/summary/summary.js:510
 #, python-format
 msgid "Time elapsed: %(time)s"
@@ -2324,9 +2389,9 @@ msgstr "Stuur 3 vrouwen van het hout en 3 van de steenmijn naar het veld.\nVrouw
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:168
 msgid ""
-"The slingers that you queue earlier should gather stone once they are "
+"The slingers that you queued earlier should gather stone once they are "
 "trained."
-msgstr "Deze slingeraars die je eerder gerekruteerd hebt zouden steen moeten gaan verzamelen eenmaal ze er zijn."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
@@ -2350,91 +2415,87 @@ msgid "Queue some slingers."
 msgstr "Stop enkele slingeraars in je wachtrij."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:203
-msgid "Your fields may start getting exhausted, remember to rebuild them."
-msgstr "Je velden raken uitgeput, vergeet niet ze opnieuw te bouwen."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid ""
 "When you have advanced, use a single citizen soldier to place a barracks "
 "foundation. Then use the rest of the non food or house building female "
 "citizens to construct it."
 msgstr "Wanneer je in de tweede fase bent, gebruik dan een enkele soldaat om de fundamenten van de kazerne te plaatsen. Gebruik dan de rest van de vrouwen die geen voedsel aan het verzamelen zijn om de kazerne te bouwen."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:213
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid "Queue 5 more females for construction work."
 msgstr "Stop 5 extra vrouwen in de wachtrij voor constructiewerken."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:218
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:213
 msgid ""
 "Queue a batch of slingers to gather the trees on the north side of your "
 "base."
 msgstr "Stop een groep van slingeraars in de wachtrij om hout te verzamelen van de bomen aan de noordkant van je basis."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:223
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:218
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of how "
 "to build up a nice economy rapidly."
 msgstr "Dit is het einde van de zelfstudie. Het zou je een goed idee moeten geven over hoe je best een goede economie opbouwt."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:228
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:223
 msgid ""
 "At this point you should be able to fully use both training facilities, keep"
 " putting units into economic work, to keep growing faster and faster."
 msgstr "Op dit moment zou je beide rekruteerfaciliteiten optimaal moeten kunnen benutten, en eenheden altijd aan het werk kunnen houden, om zo sneller en sneller te groeien."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:233
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:228
 msgid ""
 "From this point you have a good base to build an army and wipe out the "
 "opposition."
 msgstr "Vanaf nu heb je een goeie basis om je leger te bouwen, en de vijand te verslaan."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:238
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
 msgstr "De punten die je moet onthouden zijn:"
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:243
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
 " - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
 msgstr "- Zorg er voor dat er geen ongebruikte eenheden zijn. Shift-rechts-klik en het zetten van doelen zijn daarvoor heel nuttig."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:248
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
 " - Use all of your resources, stockpiled resources are waste, having too "
 "much of a resource is waste."
 msgstr "- Gebruik alle grondstoffen, ongebruikte grondstoffen zijn verloren. Teveel van dezelfde grondstof is verloren moeite."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:253
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:248
 msgid ""
 " - Use the right units for the right task, female citizens gather food, "
 "cavalry hunt, citizen soldiers do the rest."
 msgstr "- Gebruik de goede eenheden voor de goede taken. Vrouwen verzamelen voedsel, ruiters jagen, burgersoldaten doen de rest."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:258
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:253
 msgid ""
 " - Don't be afraid to swap units from one resource to another, see point 2. "
 "Make sure they deposit what they are carrying first though."
 msgstr "- Wees niet bang om eenheden van de ene naar de andere grondstof te wisselen. Zorg dat ze eerst afgeven wat ze aan het dragen zijn."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:263
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible, it "
 "is the only training building until town phase."
 msgstr "- Bouw genoeg huizen. Je BC moet altijd bezig zijn met eenheden rekruteren of technologieën onderzoeken."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:268
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
 " - Female citizens are cheap, so you can build more of them and gather more "
 "resources."
 msgstr "- Vrouwen zijn goedkoop, dus kan je er veel van bouwen en zo sneller grondstoffen verzamelen."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:273
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:268
 msgid ""
 " - Don't get carried away on the last point or you will get raided and have "
 "no defense."
 msgstr "- Produceer naast vrouwen ook soldaten, om een raid te kunnen overleven."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:278
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:273
 msgid ""
 "Each map is different, so you will need to play slightly differently on "
 "each. This should give an outline for a high resource map."
@@ -2541,7 +2602,7 @@ msgstr "Hou je klaar voor een aanval van een vijandige speler. Bouw meer soldate
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
-msgstr ""
+msgstr "Bouw een smidse en onderzoek de Infantrie Training technologie (icoontje met het zwaard) om de slagkracht van infantrie-eenheden te verbeteren."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
@@ -2761,7 +2822,7 @@ msgid "AI Difficulty"
 msgstr "AI moeilijkheidsgraad"
 
 #: gui/aiconfig/aiconfig.xml:47 (caption) gui/gamesetup/gamesetup_mp.xml:109
-#: (caption) gui/lobby/prelobby.xml:67 (caption) gui/locale/locale.xml:46
+#: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:46
 #: (caption) gui/locale/locale_advanced.xml:75 (caption)
 #: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:35 (caption)
 #: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:407 (caption)
@@ -2776,7 +2837,7 @@ msgstr "Beschavingen"
 msgid "Civilization Selection"
 msgstr "Selecteer beschaving"
 
-#: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:28 (caption)
+#: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:23 (caption)
 #: gui/session/session.xml:490 (caption) gui/session/session.xml:543 (caption)
 msgid "Close"
 msgstr "Sluiten"
@@ -2826,9 +2887,9 @@ msgstr "Selecteer de beschaving voor de speler."
 msgid "Select player's team."
 msgstr "Selecteer het team voor de speler."
 
-#: gui/gamesetup/gamesetup.xml:98 (caption)
-msgid "Match Type:"
-msgstr "Match type:"
+#: gui/gamesetup/gamesetup.xml:98 (caption) gui/lobby/lobby.xml:64 (caption)
+msgid "Map Type:"
+msgstr "Kaarttype:"
 
 #: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
@@ -2886,11 +2947,11 @@ msgstr "Terug"
 #: gui/gamesetup/gamesetup.xml:253 (caption) gui/gamesetup/gamesetup.xml:265
 #: (caption)
 msgid "More Options"
-msgstr "Meer opties"
+msgstr "Meer instellingen"
 
 #: gui/gamesetup/gamesetup.xml:254 (tooltip)
 msgid "See more game options"
-msgstr "Bekijk meer spelopties"
+msgstr "Bekijk meer spelinstellingen"
 
 #: gui/gamesetup/gamesetup.xml:270 (caption)
 msgid "Game Speed:"
@@ -2920,15 +2981,17 @@ msgstr "Beginkapitaal:"
 msgid "Select the game's starting resources."
 msgstr "Selecteer de resources die je krijgt bij de start van het spel."
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
-msgid "Toggle reveal map (see everything)."
-msgstr "Toon de volledige kaart (bekijk alles)."
+msgid "Toggle revealed map (see everything)."
+msgstr ""
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
-msgid "Toggle explore map (see gaia and buildings)."
-msgstr "Verken de kaart (bekijk gaia en gebouwen)."
+msgid "Toggle explored map (see gaia and buildings)."
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -2954,7 +3017,7 @@ msgstr "Activeer dit als je wil dat het spel je score kan wijzigen."
 msgid "Close more game options window"
 msgstr "Sluit het opties venster"
 
-#: gui/gamesetup/gamesetup_mp.xml:19 (caption) gui/pregame/mainmenu.xml:411
+#: gui/gamesetup/gamesetup_mp.xml:19 (caption) gui/pregame/mainmenu.xml:428
 #: (caption)
 msgid "Multiplayer"
 msgstr "Multiplayer"
@@ -2986,8 +3049,7 @@ msgstr "Stel je server in om een spel te hosten."
 msgid "Server name:"
 msgstr "Servernaam:"
 
-#: gui/gamesetup/gamesetup_mp.xml:115 (caption) gui/lobby/prelobby.xml:19
-#: (caption)
+#: gui/gamesetup/gamesetup_mp.xml:115 (caption)
 msgid "[Connection status]"
 msgstr "[Connectie status]"
 
@@ -2995,7 +3057,7 @@ msgstr "[Connectie status]"
 msgid "Quote of the Day:"
 msgstr "Quote van de dag:"
 
-#: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:24 (caption)
+#: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
 msgid "Multiplayer Lobby"
 msgstr "Multiplayer lobby"
 
@@ -3016,19 +3078,15 @@ msgstr "Score"
 msgid "Leaderboard"
 msgstr "Ranglijst"
 
-#: gui/lobby/lobby.xml:64 (caption)
-msgid "Map Type:"
-msgstr "Kaarttype:"
-
 #: gui/lobby/lobby.xml:93 (caption)
 msgid "Players:"
 msgstr "Spelers:"
 
-#: gui/lobby/lobby.xml:102 (caption) gui/pregame/mainmenu.xml:231 (caption)
+#: gui/lobby/lobby.xml:102 (caption) gui/pregame/mainmenu.xml:232 (caption)
 msgid "Join Game"
 msgstr "Join spel"
 
-#: gui/lobby/lobby.xml:108 (caption) gui/pregame/mainmenu.xml:246 (caption)
+#: gui/lobby/lobby.xml:108 (caption) gui/pregame/mainmenu.xml:247 (caption)
 msgid "Host Game"
 msgstr "Host een spel"
 
@@ -3041,10 +3099,12 @@ msgid "Map Name"
 msgstr "Kaarnaam"
 
 #: gui/lobby/lobby.xml:135 (heading)
+msgctxt "map"
 msgid "Size"
 msgstr "Grootte"
 
 #: gui/lobby/lobby.xml:138 (heading)
+msgctxt "map"
 msgid "Type"
 msgstr "Type"
 
@@ -3064,36 +3124,40 @@ msgstr "Rang"
 msgid "Update"
 msgstr "Bijwerken"
 
-#: gui/lobby/prelobby.xml:29 (caption)
+#: gui/lobby/prelobby.xml:23 (caption)
+msgid "Create a new account"
+msgstr ""
+
+#: gui/lobby/prelobby.xml:27 (caption)
+msgid "Login to an existing account"
+msgstr ""
+
+#: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
 msgstr "Verbind met de spellobby"
 
-#: gui/lobby/prelobby.xml:32 (caption)
+#: gui/lobby/prelobby.xml:36 (caption) gui/lobby/prelobby.xml:63 (caption)
 msgid "Login:"
-msgstr "Gebruikersnaam"
+msgstr "Gebruikersnaam:"
 
-#: gui/lobby/prelobby.xml:40 (caption)
+#: gui/lobby/prelobby.xml:44 (caption) gui/lobby/prelobby.xml:68 (caption)
 msgid "Password:"
 msgstr "Wachtwoord:"
 
-#: gui/lobby/prelobby.xml:54 (caption)
+#: gui/lobby/prelobby.xml:59 (caption)
 msgid "Registration"
 msgstr "Registratie"
 
-#: gui/lobby/prelobby.xml:57 (caption)
+#: gui/lobby/prelobby.xml:73 (caption)
 msgid "Password again:"
 msgstr "Herhaal wachtwoord:"
 
-#: gui/lobby/prelobby.xml:79 (caption)
-msgid "Register"
-msgstr "Registreer"
-
-#: gui/lobby/prelobby.xml:90 (caption)
-msgid "Connect"
-msgstr "Verbinden"
+#: gui/lobby/prelobby.xml:88 (caption)
+msgid "I have read and agree to the Terms of Service and Terms of Use:"
+msgstr ""
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:309 (caption)
+#: (caption) gui/pregame/mainmenu.xml:310 (caption)
 msgid "Language"
 msgstr "Taal"
 
@@ -3160,13 +3224,13 @@ msgstr "Woordenboekbestanden gebruikt:"
 msgid "Auto detect"
 msgstr "Automatisch detecteren"
 
-#: gui/manual/manual.xml:12 (caption) gui/session/session.xml:732 (caption)
-msgid "Manual"
-msgstr "Handleiding"
+#: gui/manual/manual.xml:12 (caption)
+msgid "Information"
+msgstr ""
 
 #: gui/manual/manual.xml:20 (caption)
-msgid "Online Manual"
-msgstr "Online handleiding"
+msgid "View Online"
+msgstr ""
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3193,191 +3257,202 @@ msgstr "Lobby instellingen"
 msgid "Save"
 msgstr "Opslaan"
 
-#: gui/pregame/mainmenu.xml:97
+#: gui/pregame/mainmenu.xml:98
 msgid "Help improve 0 A.D.!"
 msgstr "Help om 0 A.D. te verbeteren!"
 
-#: gui/pregame/mainmenu.xml:99
+#: gui/pregame/mainmenu.xml:100
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Je kan ons automatisch anonieme feedback sturen. Dit zal ons helpen om bugs op te lossen en de compatibiliteit te verbeteren."
 
-#: gui/pregame/mainmenu.xml:125
+#: gui/pregame/mainmenu.xml:126
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Bedankt om 0 A.D. te helpen verbeteren!"
 
-#: gui/pregame/mainmenu.xml:127
+#: gui/pregame/mainmenu.xml:128
 msgid "Anonymous feedback is currently enabled."
 msgstr "Anonieme feedback is momenteel geactiveerd."
 
-#: gui/pregame/mainmenu.xml:129
+#: gui/pregame/mainmenu.xml:130
 msgid "Status: $status."
 msgstr "Status: $status."
 
-#: gui/pregame/mainmenu.xml:481
-msgid "Alpha XV: Osiris"
-msgstr "Alpha XV: Osiris"
+#: gui/pregame/mainmenu.xml:498
+msgid "Alpha XVI: Patañjali"
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:483
+#: gui/pregame/mainmenu.xml:500
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "LET OP: Dit spel is nog volop in ontwikkeling. Vele functies zijn nog niet geïmplementeerd."
 
-#: gui/pregame/mainmenu.xml:485
+#: gui/pregame/mainmenu.xml:502
 msgid "Get involved at: play0ad.com"
 msgstr "Help mee op: play0ad.com"
 
-#: gui/pregame/mainmenu.xml:103 (caption)
-msgid "Enable feedback"
-msgstr "Feedback inschakelen"
+#: gui/pregame/mainmenu.xml:104 (caption)
+msgid "Enable Feedback"
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:107 (caption) gui/pregame/mainmenu.xml:138
-#: (caption)
-msgid "Technical details"
-msgstr "Technische details"
+#: gui/pregame/mainmenu.xml:135 (caption)
+msgid "Disable Feedback"
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:134 (caption)
-msgid "Disable feedback"
-msgstr "Feedback uitschakelen"
-
-#: gui/pregame/mainmenu.xml:177 (caption)
+#: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
 msgstr "Matches"
 
-#: gui/pregame/mainmenu.xml:178 (tooltip)
+#: gui/pregame/mainmenu.xml:179 (tooltip)
 msgid "Click here to start a new single player game."
 msgstr "Klik om een nieuw singleplayer spel te starten."
 
-#: gui/pregame/mainmenu.xml:191 (caption)
+#: gui/pregame/mainmenu.xml:192 (caption)
 msgid "Campaigns"
 msgstr "Veldtochten"
 
-#: gui/pregame/mainmenu.xml:192 (tooltip)
+#: gui/pregame/mainmenu.xml:193 (tooltip)
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 msgstr "Herbeleef de geschiedenis door middel van historische militaire veldtochten. [NOG NIET GEÏMPLEMENTEERD]"
 
-#: gui/pregame/mainmenu.xml:208 (caption) gui/savedgames/load.xml:15 (caption)
+#: gui/pregame/mainmenu.xml:209 (caption) gui/savedgames/load.xml:15 (caption)
 msgid "Load Game"
 msgstr "Laad spel"
 
-#: gui/pregame/mainmenu.xml:209 (tooltip)
+#: gui/pregame/mainmenu.xml:210 (tooltip)
 msgid "Click here to load a saved game."
 msgstr "Klik hier om een opgeslagen spel te laden."
 
-#: gui/pregame/mainmenu.xml:232 (tooltip)
+#: gui/pregame/mainmenu.xml:233 (tooltip)
 msgid "Joining an existing multiplayer game."
 msgstr "Sluit je aan bij een bestaand multiplayer spel."
 
-#: gui/pregame/mainmenu.xml:247 (tooltip)
+#: gui/pregame/mainmenu.xml:248 (tooltip)
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Host een nieuw multiplayer spel.\\n\\nUDP poort 20595 moet opengesteld worden."
 
-#: gui/pregame/mainmenu.xml:261 (caption)
+#: gui/pregame/mainmenu.xml:262 (caption)
 msgid "Game Lobby"
 msgstr "Spellobby"
 
-#: gui/pregame/mainmenu.xml:262 (tooltip)
+#: gui/pregame/mainmenu.xml:263 (tooltip)
 msgid "Launch the multiplayer lobby."
 msgstr "Start de spellobby"
 
-#: gui/pregame/mainmenu.xml:292 (caption)
+#: gui/pregame/mainmenu.xml:293 (caption)
 msgid "Options"
 msgstr "Instellingen"
 
-#: gui/pregame/mainmenu.xml:293 (tooltip)
+#: gui/pregame/mainmenu.xml:294 (tooltip)
 msgid "Adjust game settings."
 msgstr "Wijzig de instellingen."
 
-#: gui/pregame/mainmenu.xml:310 (tooltip)
+#: gui/pregame/mainmenu.xml:311 (tooltip)
 msgid "Choose the language of the game."
 msgstr "Kies de taal van het spel."
 
-#: gui/pregame/mainmenu.xml:325 (caption)
+#: gui/pregame/mainmenu.xml:326 (caption)
 msgid "Scenario Editor"
 msgstr "Scenario bewerker"
 
-#: gui/pregame/mainmenu.xml:326 (tooltip)
+#: gui/pregame/mainmenu.xml:327 (tooltip)
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Open de Atlas scenario bewerker in een nieuw venster. Je kan dit ook starten met de commando optie \"-editor\" op een meer betrouwbare manier."
+msgstr "Open de Atlas scenario bewerker in een nieuw venster. Je kan dit ook starten met de opdrachtpromt optie \"-editor\" op een meer betrouwbare manier."
 
-#: gui/pregame/mainmenu.xml:379 (caption)
+#: gui/pregame/mainmenu.xml:339 (caption)
+msgid "Welcome Screen"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:340 (tooltip)
+msgid "Show the Welcome Screen. Useful if you hid it by mistake."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
 msgstr "Spelhandleiding"
 
-#: gui/pregame/mainmenu.xml:380 (tooltip)
-msgid "The 0 A.D. Game Manual"
-msgstr "De handleiding voor 0 A.D."
+#: gui/pregame/mainmenu.xml:397 (tooltip)
+msgid "Open the 0 A.D. Game Manual."
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:396 (caption)
+#: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
 msgstr "Singleplayer"
 
-#: gui/pregame/mainmenu.xml:397 (tooltip)
+#: gui/pregame/mainmenu.xml:414 (tooltip)
 msgid "Challenge the computer player to a single player match."
 msgstr "Daag de computer uit voor een gevecht."
 
-#: gui/pregame/mainmenu.xml:412 (tooltip)
+#: gui/pregame/mainmenu.xml:429 (tooltip)
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Daag één of meerdere mensen uit voor een netwerk spel."
 
-#: gui/pregame/mainmenu.xml:426 (caption)
+#: gui/pregame/mainmenu.xml:443 (caption)
 msgid "Tools & Options"
 msgstr "Hulpmiddelen & opties"
 
-#: gui/pregame/mainmenu.xml:427 (tooltip)
+#: gui/pregame/mainmenu.xml:444 (tooltip)
 msgid "Game options and scenario design tools."
 msgstr "Spelinstellingen en scenario-ontwerphulpmiddelen."
 
-#: gui/pregame/mainmenu.xml:441 (caption)
+#: gui/pregame/mainmenu.xml:458 (caption)
 msgid "History"
 msgstr "Geschiedenis"
 
-#: gui/pregame/mainmenu.xml:442 (tooltip)
+#: gui/pregame/mainmenu.xml:459 (tooltip)
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Leer meer over de beschavingen in 0 A.D."
 
-#: gui/pregame/mainmenu.xml:458 (caption) gui/session/session.xml:802
+#: gui/pregame/mainmenu.xml:475 (caption) gui/session/session.xml:802
 #: (caption) gui/session/session.xml:1300 (caption)
 msgid "Exit"
 msgstr "Stop"
 
-#: gui/pregame/mainmenu.xml:459 (tooltip)
-msgid "Exit Game"
-msgstr "Stop het spel"
+#: gui/pregame/mainmenu.xml:476 (tooltip)
+msgid "Exits the game."
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:495 (caption)
+#: gui/pregame/mainmenu.xml:512 (caption)
+msgid "Help with the Translation!"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:513 (tooltip)
+msgid "Click to open the 0 A.D translate page in your browser."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
 msgstr "Website"
 
-#: gui/pregame/mainmenu.xml:496 (tooltip)
+#: gui/pregame/mainmenu.xml:525 (tooltip)
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Klik om play0ad.com in je webbrowser te openen."
 
-#: gui/pregame/mainmenu.xml:509 (caption) gui/session/session.xml:743
+#: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:743
 #: (caption)
 msgid "Chat"
 msgstr "Chat"
 
-#: gui/pregame/mainmenu.xml:510 (tooltip)
+#: gui/pregame/mainmenu.xml:537 (tooltip)
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Klik om de IRC chat in je webbrowser te openen. (#0ad op webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:523 (caption)
+#: gui/pregame/mainmenu.xml:548 (caption)
 msgid "Report a Bug"
 msgstr "Meld een probleem"
 
-#: gui/pregame/mainmenu.xml:524 (tooltip)
-msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error"
-msgstr "Klik om de 0 A.D. Trac pagina te bezoeken en zo een bug, crash of error te melden."
+#: gui/pregame/mainmenu.xml:549 (tooltip)
+msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:554 (caption)
+#: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -3496,8 +3571,8 @@ msgid "Choose player to view"
 msgstr "Kies een speler om te bekijken"
 
 #: gui/session/session.xml:628 (caption)
-msgid "ALPHA XV : Osiris"
-msgstr "ALPHA XV : Osiris"
+msgid "ALPHA XVI : Patañjali"
+msgstr ""
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
@@ -3562,7 +3637,7 @@ msgstr "Welkom bij 0 A.D. !"
 msgid "Show this message in the future"
 msgstr "Toon dit bericht ook in de toekomst."
 
-#: gui/splashscreen/splashscreen.xml:35 (caption)
+#: gui/splashscreen/splashscreen.xml:38 (caption)
 msgid "Known issues (web)"
 msgstr "Gekende problemen (web)"
 
@@ -3905,11 +3980,11 @@ msgstr "8. Toestaan van deze service uitgesloten te worden op eender welk moment
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
-" 9. Change this document in any way; at any time; on the condition that the "
+" 1. Change this document in any way; at any time; on the condition that the "
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr "9. Dit document op eender welke manier en eender welk tijdstip te wijzigen. Gegeven dat de gebruikers van de service gepast gewaarschuwd worden van de wijziging (de definitie van \"gepast\" zal later bepaald worden door een groep van Wildfire Games (WFG) team medewerkers)."
+msgstr ""
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -4030,7 +4105,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr "Ten eerste selecteer je als je een willekeurige kaart (door de computer gemaakt, iedere keer anders) of een scenario (door een kaart designer gemaakt) wil spelen. Daarna kan je ook enkele filters aanpassen. Voor AI spelen kies je best de standaard filter, voor Multiplayer kan je ook \"Naval\" kiezen als je dat wil. De demo kaarten zijn vooral gemaakt om het spel te testen, en zijn niet altijd even speelbaar."
+msgstr "Als eerste selecteer je of je een willekeurige kaart (door de computer gemaakt, iedere keer anders) of een scenario (door een kaart designer gemaakt) wil spelen. Daarna kan je ook enkele filters aanpassen. Voor AI spelen kies je best de standaard filter, voor Multiplayer kan je ook zeekaarten kiezen als je dat wil. De demo kaarten zijn vooral gemaakt om het spel te testen, en zijn niet altijd even speelbaar."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -4074,7 +4149,7 @@ msgstr "Alt + F: Toon/verberg frame teller (FPS)"
 msgid ""
 "F11: Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr "F11: Activeer/deactiveer real-time profiler (blader door de verschillende manieren om info weer te geven)"
+msgstr "F11: Activeer/deactiveer real-time profiler (blader door de verschillende informatieweergaven)"
 
 #: gui/manual/intro.txt:44
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
@@ -4085,14 +4160,14 @@ msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr "F2: Neem een schermafbeelding (in .png formaat, de map is weergegeven in de linker bovenhoek nadat het bestand opgeslagen is. Je kan dit ook zien in de console of de logs)"
+msgstr "F2: Maak een schermafbeelding (in .png formaat, de locatie is weergegeven in de linker bovenhoek nadat het bestand is opgeslagen. De locatie kan ook gevonden worden in de console of de logs)."
 
 #: gui/manual/intro.txt:46
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr "Shift + F2: Neem een grote schermafbeelding (6400px*4800px in .bmp formaat. De locatie is getoond in de linker bovenhoek van het scherm tijdens het opslaan. De locatie kan ook gevonden worden in de console of logs)."
+msgstr "Shift + F2: Neem een grote schermafbeelding (6400px*4800px in .bmp formaat. De locatie is weergegeven in de linker bovenhoek nadat het bestand is opgeslagen. De locatie kan ook gevonden worden in de console of logs)."
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -4136,7 +4211,7 @@ msgstr "F10: Open/sluit menu"
 
 #: gui/manual/intro.txt:56
 msgid "F12: Show/hide time elapsed counter"
-msgstr "F12: Toon/verberg timer"
+msgstr "F12: Toon/verberg verstreken tijd"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
@@ -4174,35 +4249,35 @@ msgstr "H: Stop (halt) de geselecteerde eenheden."
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr "Ctrl + 1 (enz, tot Ctrl + 0): Creëer een controle groep 1 (tot 0) met de geselecteerde eenheden of gebouwen."
+msgstr "Ctrl + 1 (en zo door tot Ctrl + 0): Creëer een controle groep 1 (tot 0) met de geselecteerde eenheden of gebouwen."
 
 #: gui/manual/intro.txt:66
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr "1 (enz tot 0): Selecteer de eenheden/gebouwen in controle groep 1 (tot 0)"
+msgstr "1 (en zo door tot 0): Selecteer de eenheden/gebouwen in controle groep 1 (tot 0)"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr "Shift + 1 (tot 0): Voeg de geselecteerde eenheden/gebouwen aan controlegroep 1 (tot 0) toe (voor azerty toetsenborden, zie http://trac.wildfiregames.com/wiki/Manual_Settings)."
+msgstr "Shift + 1 (tot 0): Voeg de geselecteerde eenheden/gebouwen aan controlegroep 1 (tot 0) toe"
 
 #: gui/manual/intro.txt:68
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr "Ctrl + F5 (enz tot F8): Sla de huidige camera positie op om later naar terug te keren."
+msgstr "Ctrl + F5 (en zo door tot F8): Sla de huidige camera positie op, om later naar terug te keren."
 
 #: gui/manual/intro.txt:69
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr "F5 (tot F8): Verplaats de camera tot de opgeslagen positie. Spring terug naar de laatste positie indien de camera er al was."
+msgstr "F5 (tot F8): Verplaats de camera naar de opgeslagen positie. Spring terug naar de laatste positie indien de camera al op de opgeslagen positie is."
 
 #: gui/manual/intro.txt:70
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: Met een gebouw geselecteerd, voeg de 1ste, 2de, 3de ... eenheid toe aan de rekruteerrij voor alle geselecteerde gebouwen."
+msgstr "Z, X, C, V, B, N, M: Met een gebouw geselecteerd, voeg de 1ste, 2de, ... getoonde eenheid toe aan de rekruteerwachtrij voor alle geselecteerde gebouwen."
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -4214,7 +4289,7 @@ msgstr "[font=\"sans-14\"]Ctrl + Rechter klik op gebouw: Beman gebouw"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Shift + Rechter klik: Voeg een order toe aan de wachtrij"
+msgstr "Shift + rechtsklik: Voeg een order toe aan de wachtrij"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
@@ -4223,16 +4298,16 @@ msgstr "Shift + klik bij het rekruteren van eenheden: Voeg eenheden toe aan de w
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Shift + klik of sleep over een eenheid op de kaart: Voeg deze toe aan de selectie"
+msgstr "Shift + klik of sleep over een eenheid op de kaart: Voeg eenheid toe aan de selectie"
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Ctrl + klik of sleep over een eenheid: Verwijder deze van de selectie"
+msgstr "Ctrl + klik of sleep over een eenheid: Verwijder eenheid van de selectie"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr "Alt + sleep over eenheden op de kaart: Selecteer enkel militaire eenheden"
+msgstr "Alt + sleep over eenheden op de kaart: Selecteer alleen militaire eenheden"
 
 #: gui/manual/intro.txt:79
 msgid ""
@@ -4243,11 +4318,11 @@ msgstr "Ctrl + Klik: Deselecteer eenheid of groep"
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr "Rechter klik met een gebouw geselecteerd: Zet een doel voor eenheden die uit dit gebouw komen."
+msgstr "Rechtsklik met een gebouw geselecteerd: Zet een doel voor eenheden die uit dit gebouw komen."
 
 #: gui/manual/intro.txt:81
 msgid "Ctrl + Right Click with units selected:"
-msgstr "Ctrl + rechter klik geselecteerde eenheden:"
+msgstr "Ctrl + rechtsklik met eenheden geselecteerd:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over a structure: Garrison"
@@ -4259,7 +4334,7 @@ msgstr "- Anders: Zoek en val vijanden aan"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Snelle (ontwikkelings) instellingen"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
@@ -4267,19 +4342,19 @@ msgstr "[font=\"sans-14\"]Alt + G: Toon/verberg de GUI"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr "Alt + D: Toon/verberg de ontwikkelaar overlay "
+msgstr "Alt + D: Toon/verberg de ontwikkelaars overlay (met ontwikkelopties)"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr "Alt + W: Activeer de draad modus (wireframe). Druk 1 keer om de draden over de vlakken te zien, twee maal om enkel de draden te zien, en een derde keer om terug te keren naar het oorspronkelijke beeld."
+msgstr "Alt + W: Activeer de draadmodus (wireframe). Druk 1 keer om de draden over de vlakken te zien, twee keer om enkel de draden te zien, en drie keer om terug te keren naar het oorspronkelijke beeld."
 
 #: gui/manual/intro.txt:89
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
-msgstr "Alt + S: (De)activeer de silhouetten (kan een kleine performantieboost geven)"
+msgstr "Alt + S: (De)activeer de silhouetten (kan een kleine snelheidswinst geven)"
 
 #: gui/manual/intro.txt:90
 msgid "Alt + Z: Toggle sky"
@@ -4315,11 +4390,11 @@ msgstr "Ctrl + S of [down]: Roteer camera om naar beneden te kijken"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
-msgstr "Ctrl + A of [left]: Roteer camera in wijzerzin rond het terrein"
+msgstr "Ctrl + A of [left]: Roteer de camera rond het terrein met de klok mee"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
-msgstr "Ctrl + D or [right]: Roteer camera in tegenwijzerzin rond het terrein"
+msgstr "Ctrl + D or [right]: Roteer de camera rond het terrein tegen de klok in"
 
 #: gui/manual/intro.txt:101
 msgid "Q: Rotate camera clockwise around terrain"
@@ -4376,7 +4451,7 @@ msgstr "[font=\"sans-14\"][: Roteer 15 graden tegenwijzerzin"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr "]: Roteer gebouw 15 graden in wijzerzin"
+msgstr "]: Roteer het gebouw 15 graden met de klok mee."
 
 #: gui/manual/intro.txt:115
 msgid ""
@@ -4439,7 +4514,7 @@ msgstr "We zullen de ontvangen data op onze server opslaan en kunnen deze geanon
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr "[font=\"sand-bold-16\"]Bedankt voor het installeren van 0 A.D.!"
+msgstr "[font=\"sans-bold-16\"]Bedankt voor het installeren van 0 A.D.!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid "[font=\"sans-16\"]"
@@ -4471,7 +4546,7 @@ msgstr "\"Een welvarend dwaas is een zware last.\" - Achilles"
 msgid ""
 "\"From him [Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
-msgstr ""
+msgstr "\"Hij [de dood] mist slechts één goddelijke kracht: overtuiging.\" - Achilles"
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
@@ -4515,7 +4590,7 @@ msgstr "\"Slechts weinig man heeft een karakter goed genoeg om zonder jaloezie e
 msgid ""
 "\"For a deadly blow let him pay with a deadly blow; it is for him who has "
 "done a deed to suffer.\" - Aeschylus"
-msgstr ""
+msgstr "\"Zet een dodelijke klap betaald met een dodelijke klap. Daar hij een daad om te leiden gedaan had.\" - Achilles"
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
@@ -4526,876 +4601,872 @@ msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop
 msgstr "\"Het is beter te leren van de fouten van anderen dan van je eigen fouten.\" -- Aesopus"
 
 #: gui/text/quotes.txt:13
-msgid "\"Beware the wolf in sheep's clothing.\" - Aesop"
-msgstr "\"Pas op voor de wolf in schaapsvacht.\" -- Aesopus"
-
-#: gui/text/quotes.txt:14
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
 msgstr "\"Vertrouwdheid leidt tot minachting; kennismaking verzacht de vooroordelen.\" - Aesop"
 
-#: gui/text/quotes.txt:15
+#: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
 msgstr "\"Het is gemakkelijk om dapper te zijn van op een veilige afstand.\" -- Aesopus"
 
-#: gui/text/quotes.txt:16
+#: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
 msgstr "\"Het is spaarzaam vandaag voor te bereiden op de behoeften van morgen.\" - Aesop"
 
-#: gui/text/quotes.txt:17
+#: gui/text/quotes.txt:16
 msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
 msgstr "\"Een vogel bestaat niet enkel uit zijn mooie pluimen.\" -- Aesopus"
 
-#: gui/text/quotes.txt:18
+#: gui/text/quotes.txt:17
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop"
 msgstr "\"Vertrouw nooit op advies van een man die zelf met moeilijkheden kampt.\" -- Aesop"
 
-#: gui/text/quotes.txt:19
+#: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
 msgstr "\"Verleiding is vaak effectiever dan kracht.\" -- Aesopus"
 
-#: gui/text/quotes.txt:20
+#: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
 msgstr "\"Eigendunk kan leiden tot eigen ondergang.\" -- Aesopus"
 
-#: gui/text/quotes.txt:21
+#: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
 msgstr "\"Rustige vastberadenheid wint de wedstrijd.\" -- Ausopus"
 
-#: gui/text/quotes.txt:22
+#: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
 msgstr "\"De Goden helpen de zelfredzamen.\" -- Aesopus"
 
-#: gui/text/quotes.txt:23
+#: gui/text/quotes.txt:22
 msgid ""
 "\"The shaft of the arrow had been feathered with one of the eagle's own "
 "plumes. We often give our enemies the means of our own destruction.\" - "
 "Aesop"
 msgstr "\"De staart van de pijl is gemaakt één van de arends eigen pluimen. We geven onze vijanden vaak de middelen voor onze eigen vernietiging.\" - Aesop"
 
-#: gui/text/quotes.txt:24
+#: gui/text/quotes.txt:23
 msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
 msgstr "\"Eendracht maakt macht.\" -- Aesopus, \"De bundel stokken\""
 
-#: gui/text/quotes.txt:25
+#: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
 msgstr "\"Beloftes van vijanden zijn gemaakt om te breken.\" -- Aesopus"
 
-#: gui/text/quotes.txt:26
+#: gui/text/quotes.txt:25
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
 msgstr "\"Spartanen vragen niet naar hoeveel, maar waar de vijand is.\" -- Agis II van Sparta"
 
-#: gui/text/quotes.txt:27
+#: gui/text/quotes.txt:26
 msgid ""
 "\"Weep not for me, suffering as I do unjustly, I am in a happier case than "
 "my murderers.\" - Agis IV, 24th Spartan king of the Eurypontid dynasty"
 msgstr "\"Ween niet voor mij, onrechtmatig lijden zoals ik. Ik ben in een gelukkiger geval dan mijn moordenaars.\" - Agis IV, 24ste Spartaanse koning van de Eurypontid dynastie"
 
-#: gui/text/quotes.txt:28
+#: gui/text/quotes.txt:27
 msgid ""
 "\"He who doeth good shall meet with good; and he who doeth evil shall meet "
 "with evil, for the Lord judgeth a man according to the measure of his "
 "work.\" - Ahiqar, Assyrian sage"
 msgstr "\"Hij die goed doet zal goed vinden. Hij die kwaad doet zal kwaad vinden. Daar de heer een man oordeelt naar zijn daden.\" - Ahiqar, Syrrische saga"
 
-#: gui/text/quotes.txt:29
+#: gui/text/quotes.txt:28
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
 msgstr "\"Als ik Alexander niet was, zou ik Diogenes willen zijn.\" -- Alexander de Grote"
 
-#: gui/text/quotes.txt:30
+#: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
 msgstr "\"Ik steel geen overwinningen.\" -- Alexander de Grote"
 
-#: gui/text/quotes.txt:31
+#: gui/text/quotes.txt:30
 msgid ""
 "\"Are you still to learn that the end and perfection of our victories is to "
 "avoid the vices and infirmities of those whom we subdue?\" - Alexander the "
 "Great"
 msgstr "\"Moet jij nog steeds leren dat het einde en de perfectie van onze overwinningen is om de ondeugden en zwakheden van hen die we onderwerpen te vermijden?\" - Alexander de Grote"
 
-#: gui/text/quotes.txt:32
+#: gui/text/quotes.txt:31
 msgid ""
 "\"To the strongest!\" - Alexander, on his death bed, when asked who should "
 "succeed him as king"
 msgstr "\"Op de sterkste!\" -- Alexander, op zijn sterfbed, toen gevraagd werd wie hem moest opvolgen als koning"
 
-#: gui/text/quotes.txt:33
+#: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
 msgstr "\"Niets is onmogelijk voor degene die proberen\" -- Alexander de Grote"
 
-#: gui/text/quotes.txt:34
+#: gui/text/quotes.txt:33
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great"
 msgstr "\"Enkel vrijen en slapen maken me bewust dat ik sterfelijk ben.\" Alexander de Grote"
 
-#: gui/text/quotes.txt:35
+#: gui/text/quotes.txt:34
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
 " covetously.\" - Anacharsis"
 msgstr "\"De agora is een plaats waar het bekend is dat mannen bedriegen en zich begeerlijk gedragen.\" - Anacharsis"
 
-#: gui/text/quotes.txt:36
+#: gui/text/quotes.txt:35
 msgid ""
 "\"Written laws are like spiders’ webs; they will catch, it is true, the weak"
 " and poor, but would be torn in pieces by the rich and powerful.\" - "
 "Anacharsis"
 msgstr "\"Geschreven wetten zijn als spinnenwebben, ze zullen de armen en zwakken vangen, maar worden kapot getrokken door de rijken en machtigen.\" -- Anacharsis"
 
-#: gui/text/quotes.txt:37
+#: gui/text/quotes.txt:36
 msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
 msgstr "\"De vos kent vele trucs, het everzwijn één goede.\" -- Archilochus"
 
-#: gui/text/quotes.txt:38
+#: gui/text/quotes.txt:37
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes"
 msgstr "\"Staten zijn gedoemd wanneer zij geen goede van slechte burgers kunnen onderscheiden.\" -- Antisthenes"
 
-#: gui/text/quotes.txt:39
+#: gui/text/quotes.txt:38
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever."
 msgstr "\"Geef me een steunpunt en ik zal de wereld verplaatsen.\" -- Archimedes over zijn hefboom"
 
-#: gui/text/quotes.txt:40
+#: gui/text/quotes.txt:39
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes"
 msgstr "\"Het is van hun vijanden, niet hun vrienden, dat steden hoge muren en een oorlogsvloot leren bouwen.\" -- Aristophanes"
 
-#: gui/text/quotes.txt:41
+#: gui/text/quotes.txt:40
 msgid ""
 "\"Words give wings to the mind and make a man soar to heaven.\" - "
 "Aristophanes"
 msgstr "\"Woorden geven de man vleugels en laten hem ten hemel reizen.\" - Aristophanes"
 
-#: gui/text/quotes.txt:42
+#: gui/text/quotes.txt:41
 msgid ""
 "\"It is the compelling power of great thoughts and ideas to engender "
 "language of equal greatness.\" - Aristophanes"
 msgstr "\"Het is de verleidelijke kracht van grote gedachten om evengrote woorden te vragen.\" - Aristophanes"
 
-#: gui/text/quotes.txt:43
+#: gui/text/quotes.txt:42
 msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
 msgstr "\"Honger kent geen andere vrienden dan z'n voeder.\" -- Aristophanes"
 
-#: gui/text/quotes.txt:44
+#: gui/text/quotes.txt:43
 msgid ""
 "\"I count him braver who overcomes his desires than him who overcomes his "
 "enemies.\" - Aristotle"
 msgstr "\"Ik noem degene die zijn verlangens overwint moediger dan wie zijn vijanden overwint\" - Aristoteles"
 
-#: gui/text/quotes.txt:45
+#: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
 msgstr "\"Ons karakter is het resultaat van ons gedrag.\" -- Aristoteles"
 
-#: gui/text/quotes.txt:46
+#: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
 msgstr "\"Een mens is van nature een politiek dier.\" -- Aristoteles"
 
-#: gui/text/quotes.txt:47
+#: gui/text/quotes.txt:46
 msgid ""
 "\"If liberty and equality, as is thought by some, are chiefly to be found in"
 " democracy, they will be best attained when all persons alike share in the "
 "government to the utmost.\" - Aristotle"
 msgstr "\"Als vrijheid en gelijkheid, zoals wordt gedacht door sommigen, vooral te vinden zijn in een democratie, zullen ze het makkelijkste bereikt worden wanneer iedereen in gelijke mate en tot het uiterste deel neemt aan de regering.\" - Aristoteles"
 
-#: gui/text/quotes.txt:48
+#: gui/text/quotes.txt:47
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle"
 msgstr "\"Zowel de oligarch als de tiran vertrouwt niemand, en neemt dus van iedereen de wapens weg.\" - Aristoteles"
 
-#: gui/text/quotes.txt:49
+#: gui/text/quotes.txt:48
 msgid "\"Wit is well-bred insolence.\" - Aristotle"
 msgstr "\"Vernuft is wel-opgevoede brutaliteit.\" -- Aristoteles"
 
-#: gui/text/quotes.txt:50
+#: gui/text/quotes.txt:49
 msgid ""
 "\"It is simplicity that makes the uneducated more effective than the "
 "educated when addressing popular audiences.\" - Aristotle"
 msgstr "\"De eenvoudigheid maakt ongeleerden effectiever dan geleerden bij het communiceren.\" -- Aristoteles"
 
-#: gui/text/quotes.txt:51
+#: gui/text/quotes.txt:50
 msgid ""
 "\"Poetry demands a man with a special gift for it, or else one with a touch "
 "of madness in him.\" - Aristotle"
 msgstr "\"Poëzie vraagt om een man met een speciale gave ervoor, of één met een vleugje krankzinnigheid.\" -- Aristoteles"
 
-#: gui/text/quotes.txt:52
+#: gui/text/quotes.txt:51
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle"
 msgstr "\"Ik heb deze filosofie ontdekt: dat wat ik doe zonder dat het me opgedragen is, doen anderen alleen uit angst voor de wet.\" -- Aristoteles"
 
-#: gui/text/quotes.txt:53
+#: gui/text/quotes.txt:52
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene"
 msgstr "\"Kies je koers wanneer je veranderd met wilkracht; maar hou de koers goed vast eenmaal gekozen\" - Bias van Priene"
 
-#: gui/text/quotes.txt:54
+#: gui/text/quotes.txt:53
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes"
 msgstr "\"Hoe stom was de koning om zijn haar uit te trekken van verdriet. Alsof kaalheid iets oplost.\" - Bion van Borysthenes"
 
-#: gui/text/quotes.txt:55
+#: gui/text/quotes.txt:54
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes"
 msgstr "\"Hij heeft niet het fortuin bemachtigd; het fortuin heeft hem bemachtigd.\" Bion of Borysthenes"
 
-#: gui/text/quotes.txt:56
+#: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
 msgstr "\"Wee de verslagenen\" -- Brennus"
 
-#: gui/text/quotes.txt:57
+#: gui/text/quotes.txt:56
 msgid ""
 "\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
 "Gaius Julius Caesar"
 msgstr "\"Zo vergaat het tirannen altijd.\" -- Marcus Junius Brutus, na zijn moord op Julius Caesar"
 
-#: gui/text/quotes.txt:58
+#: gui/text/quotes.txt:57
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide"
 msgstr "\"Ontsnappen, ja, maar deze keer met mijn handen, niet met mijn voeten.\" -- Marcus Junius Brutus, voor zijn zelfmoord"
 
-#: gui/text/quotes.txt:59
+#: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
 msgstr "\"Ik kwam, ik zag, ik overwon.\" -- Gaius Julius Caesar"
 
-#: gui/text/quotes.txt:60
+#: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
 msgstr "\"Mensen geloven wat ze willen geloven.\" - Gaius Julius Caesar"
 
-#: gui/text/quotes.txt:61
+#: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
 msgstr "\"De teerling is geworpen.\" -- Gaius Julius Caesar"
 
-#: gui/text/quotes.txt:62
+#: gui/text/quotes.txt:61
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar"
 msgstr "\"Ik ben niet bang van de goed doorvoede, langharige man, maar wel van de bleke hongerige.\" -- Gaius Juluis Caesar"
 
-#: gui/text/quotes.txt:63
+#: gui/text/quotes.txt:62
 msgid "\"Set a thief to catch a thief.\" - Callimachus"
 msgstr "\"Stropers zijn de beste boswachters.\" -- Callimachus"
 
-#: gui/text/quotes.txt:64
+#: gui/text/quotes.txt:63
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder"
 msgstr "\"Wijze mannen leren meer van zotten dan zotten van wijzen.\" -- Cato de Oudere"
 
-#: gui/text/quotes.txt:65
+#: gui/text/quotes.txt:64
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the Elder"
 msgstr "\"Ik overweeg zelfs dat Carthago vernield moet worden.\" - Cato de Oudere"
 
-#: gui/text/quotes.txt:66
+#: gui/text/quotes.txt:65
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder"
 msgstr "\"Heel de mensheid heersen over z'n vrouwen en wij heersen over de hele mensheid, maar onze vrouwen heersen over ons.\" - Cato de Oudste"
 
-#: gui/text/quotes.txt:67
+#: gui/text/quotes.txt:66
 msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
 msgstr "\"Wees streng of mild volgens de situatie.\" -- Cato de Oudere"
 
-#: gui/text/quotes.txt:68
+#: gui/text/quotes.txt:67
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
 msgstr "\"De slechtste heerser is degene die zichzelf niet kan beheersen.\" -- Cato de Oudere"
 
-#: gui/text/quotes.txt:69
+#: gui/text/quotes.txt:68
 msgid ""
 "\"Whoever imposes severe punishment becomes repulsive to the people; while "
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya"
 msgstr "\"Wie streng straft wordt afstotelijk voor het volk. Wie mild straft wordt verachtelijk. Maar wie correct straft wordt gerespecteerd.\" -- Chanakya"
 
-#: gui/text/quotes.txt:70
+#: gui/text/quotes.txt:69
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya"
 msgstr "\"Als een koning wild is, wordt zijn volk ook wild.\" -- Chanakya"
 
-#: gui/text/quotes.txt:71
+#: gui/text/quotes.txt:70
 msgid ""
 "\"For there is but one essential justice which cements society, and one law "
 "which establishes this justice. This law is right reason, which is the true "
 "rule of all commandments and prohibitions.\" - Marcus Tullius Cicero"
 msgstr "\"Er is slechts één essentiële gerechtigheid, en één wet die voor deze gerechtigheid zorgt. Deze wet is de rede. De rede is de echte regel achter alle geboden en verboden.\" - Marcus Tullius Cicero"
 
-#: gui/text/quotes.txt:72
+#: gui/text/quotes.txt:71
 msgid "\"O, the times, O, the customs!\" - Marcus Tullius Cicero"
 msgstr "\"O tijden, O zeden!\" -- Marcus Tullius Cicero"
 
-#: gui/text/quotes.txt:73
+#: gui/text/quotes.txt:72
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Marcus"
 " Tullius Cicero"
 msgstr "\"Niemand is zo oud dat hij denkt geen jaar meer te kunnen leven.\" -- Marcus Tullius Cicero "
 
-#: gui/text/quotes.txt:74
+#: gui/text/quotes.txt:73
 msgid ""
 "\"We are not born, we do not live for ourselves alone; our country, our "
 "friends, have a share in us.\" - Marcus Tullius Cicero"
 msgstr "\"We zijn niet geboren, we leven niet enkel voor onszelf. Ons land, onze vrienden zijn een deel van ons.\" "
 
-#: gui/text/quotes.txt:75
+#: gui/text/quotes.txt:74
 msgid ""
 "\"Yield, ye arms, to the toga; to civic praise, ye laurels.\" - Marcus "
 "Tullius Cicero"
 msgstr "\"Wijkt wapens, voor de toga, wijkt, lauweren, voor de mond.\" - Marcus Tullius Cicero"
 
-#: gui/text/quotes.txt:76
+#: gui/text/quotes.txt:75
 msgid "\"At my signal, unleash Hell.\" - Maximus Decimus Meridius"
 msgstr "\"Op mijn teken: laat de hel losbarsten!\" -- Maximus Decimus Meridius"
 
-#: gui/text/quotes.txt:77
+#: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
 msgstr " \"De tijd heelt alle wonden.\" -- Marcus Tullius Cicero"
 
-#: gui/text/quotes.txt:78
+#: gui/text/quotes.txt:77
 msgid ""
 "\"That, Senators, is what a favour from gangs amounts to. They refrain from "
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero"
 msgstr "\"Dat, Senatoren, is waar een gunst van bendes op neerkomt. Zij onthouden zich van het vermoorden van iemand; waarna zij opscheppen dat ze hem gespaard hebben!\" - Marcus Tullius Cicero"
 
-#: gui/text/quotes.txt:79
+#: gui/text/quotes.txt:78
 msgid "\"Genius is fostered by energy.\" - Marcus Tullius Cicero"
 msgstr "\"Genieën worden gekweekt door hoop.\" "
 
-#: gui/text/quotes.txt:80
+#: gui/text/quotes.txt:79
 msgid "\"While there's life, there's hope.\" - Marcus Tullius Cicero"
 msgstr "\"Waar er leven is, is er hoop\" -- Marcus Tullius Cicero"
 
-#: gui/text/quotes.txt:81
+#: gui/text/quotes.txt:80
 msgid ""
 "\"We must not say that every mistake is a foolish one.\" - Marcus Tullius "
 "Cicero"
 msgstr "\"We kunnen niet stellen dat iedere fout een domme is.\" -- Marcus Tullius Cicero"
 
-#: gui/text/quotes.txt:82
+#: gui/text/quotes.txt:81
 msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
 msgstr "\"Laat de straf overeenkomen met de aanval.\" "
 
-#: gui/text/quotes.txt:83
+#: gui/text/quotes.txt:82
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero"
 msgstr "\"Laat de welvaart van het volk de ultieme wet zijn.\" - "
 
-#: gui/text/quotes.txt:84
+#: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
 msgstr "\"Eindeloos kapitaal is de motor van de oorlog.\" - Marcus Tullius Cicero"
 
-#: gui/text/quotes.txt:85
+#: gui/text/quotes.txt:84
 msgid "\"Laws are silent in time of war.\" - Marcus Tullius Cicero"
 msgstr "\"In tijden van oorlog zijn de wetten stil.\" -- Marcus Tullius Cicero"
 
-#: gui/text/quotes.txt:86
+#: gui/text/quotes.txt:85
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero"
 msgstr "\"Een ideale staat start nooit een oorlog, tenzij het uit verdediging is.\" "
 
-#: gui/text/quotes.txt:87
+#: gui/text/quotes.txt:86
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero"
 msgstr "\"De belangrijkste taak van de man is de zoektocht naar de waarheid.\" - Marcus Tullius Cicero"
 
-#: gui/text/quotes.txt:88
+#: gui/text/quotes.txt:87
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Croesus (Greek: Kroisos), king of Lydia"
 msgstr "\"In vredestijd begraven de zonen hun vaders, in oorlogstijd andersom.\" -- Kroisos, koning van Lydië"
 
-#: gui/text/quotes.txt:89
+#: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
 msgstr "\"Ik ben Cyrus, koning van de wereld...\" -- Cyrus de Grote"
 
-#: gui/text/quotes.txt:90
+#: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
 msgstr "\"Verscheidenheid in het parlement, eenheid in bevel.\" -- Cyrus de Grote"
 
-#: gui/text/quotes.txt:91
+#: gui/text/quotes.txt:90
 msgid ""
 "\"Do not therefore begrudge me this bit of earth that covers my bones.\" - "
 "Epitaph of Cyrus the Great"
 msgstr "\"Misgun me dus niet dit stukje aarde dat mijn botten bedekt.\" - Grafschrift van Cyrus de Grote"
 
-#: gui/text/quotes.txt:92
+#: gui/text/quotes.txt:91
 msgid ""
 "\"Success always calls for greater generosity — though most people, lost in "
 "the darkness of their own egos, treat it as an occasion for greater greed.\""
 " - Cyrus the Great"
 msgstr "\"Succes vereist altijd een grotere vrijgevigheid — maar de meesten, gevangen in hun eigen ego, zien het als een mogelijkheid tot meer hebzucht.\" - Cyrus de Grote"
 
-#: gui/text/quotes.txt:93
+#: gui/text/quotes.txt:92
 msgid ""
 "\"Whether men lie, or say true, it is with one and the same object.\" - "
 "Darius I"
 msgstr "\"Of men liegt, of waar spreekt, het is met één en hetzelfde voorwerp.\" - Darius I"
 
-#: gui/text/quotes.txt:94
+#: gui/text/quotes.txt:93
 msgid ""
 "\"Good breeding in cattle depends on physical health, but in men on a well-"
 "formed character.\" - Democritus"
 msgstr "\"Het goede fokken van vee hangt af van hun fysieke gezondheid, maar bij mannen op een welgevormd karakter.\" - Democritus"
 
-#: gui/text/quotes.txt:95
+#: gui/text/quotes.txt:94
 msgid ""
 "\"If your desires are not great, a little will seem much to you; for small "
 "appetite makes poverty equivalent to wealth.\" - Democritus"
 msgstr "\"Als je tevreden bent met weinig, dan zal weinig veel voor je lijken. Een kleine appetijt zorgt dat armoede equivalent wordt met weelderigheid.\" - Democritus"
 
-#: gui/text/quotes.txt:96
+#: gui/text/quotes.txt:95
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric"
 msgstr "\"Leveren, leveren, leveren\" - Demosthenes, toen hem gevraagd werd wat de drie belangrijkste elementen van de retorica waren."
 
-#: gui/text/quotes.txt:97
+#: gui/text/quotes.txt:96
 msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes"
 msgstr "\"Het is niet mogelijk om een blijvende macht te baseren op onrechtmatigheid, vooroordelen en verraad.\" -- Demosthenes"
 
-#: gui/text/quotes.txt:98
+#: gui/text/quotes.txt:97
 msgid "\"Small opportunities often presage great enterprises.\" - Demosthenes"
 msgstr "\"Kleine mogelijkheden dwingen soms grote ondernemingen af\""
 
-#: gui/text/quotes.txt:99
+#: gui/text/quotes.txt:98
 msgid ""
 "\"Every advantage in the past is judged in the light of the final issue.\" -"
 " Demosthenes"
 msgstr "\"Ieder voordeel uit het verleden wordt beoordeeld tegen het licht van het heden.\" - Demonsthenes"
 
-#: gui/text/quotes.txt:100
+#: gui/text/quotes.txt:99
 msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope, when "
 "Alexander the Great found him sunbathing and asked if he could help in in "
 "any way"
 msgstr "\"Ja, ga eens uit mijn zonlicht.\" -- Diogenes van Sinope die aan het zonnebaden was toen Alexander de Grote vroeg of hij kon helpen."
 
-#: gui/text/quotes.txt:101
+#: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
 msgstr "\"Ik ben een wereldburger.\" - Diogenes van Sinope "
 
-#: gui/text/quotes.txt:102
+#: gui/text/quotes.txt:101
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope"
 msgstr "\"Ik ben niet gek, mijn hoofd is gewoon verschillend van het jouwe.\" -- Diogenes van Sinope"
 
-#: gui/text/quotes.txt:103
+#: gui/text/quotes.txt:102
 msgid ""
 "\"Let thy speech be better than silence, or be silent.\" - Dionysius I of "
 "Syracuse"
 msgstr "\"Laat je verhaal beter zijn dan de stilte, of wees stil.\" -- Dionysius I van Syracuse"
 
-#: gui/text/quotes.txt:104
+#: gui/text/quotes.txt:103
 msgid "\"Nothing has more strength than dire necessity.\" - Euripides"
 msgstr "\"Niets is sterker dan pure noodzaak.\" - Euripides "
 
-#: gui/text/quotes.txt:105
+#: gui/text/quotes.txt:104
 msgid "\"A coward turns away, but a brave man's choice is danger.\" - Euripides"
 msgstr "\"Een bangerik draait zich om, maar de keuze van een moedig man is gevaarlijk.\" "
 
-#: gui/text/quotes.txt:106
+#: gui/text/quotes.txt:105
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides"
 msgstr "\"Lafaards tellen niet in veldslagen, ze zijn daar, maar niet in de slag.\" -- Euripides"
 
-#: gui/text/quotes.txt:107
+#: gui/text/quotes.txt:106
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides"
 msgstr "\"Het geluk vecht altijd aan de zijde van de voorzichtige.\" - Euripides"
 
-#: gui/text/quotes.txt:108
+#: gui/text/quotes.txt:107
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi"
 msgstr "\"Als een man het oog van een andere man uitsteekt, zal ook zijn oog uitgestoken worden.\" - Hammurabi"
 
-#: gui/text/quotes.txt:109
+#: gui/text/quotes.txt:108
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca"
 msgstr "\"Ik ben niet gekomen voor oorlog met de Italianen, maar om de Italianen te helpen tegen Rome.\" -- Hannibal Barkas"
 
-#: gui/text/quotes.txt:110
+#: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
 msgstr "\"Ik zal een weg vinden, of er één maken.\" -- Hannibal Barkas"
 
-#: gui/text/quotes.txt:111
+#: gui/text/quotes.txt:110
 msgid ""
 "\"My ancestors yielded to Roman valour. I am endeavouring that others, in "
 "their turn, will be obliged to yield to my good fortune, and my valour.\" - "
 "Hannibal Barca"
-msgstr ""
+msgstr "\"Mijn voorgangers hielden aan Romeinse waarden. Ik onderneem pogingen zodat anderen, op hun buurt, zich verplicht zullen voelen om zich aan mijn waarden te houden.\" - Hannibal Barkas"
 
-#: gui/text/quotes.txt:112
+#: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
 msgstr "\"Alles vloeit, niets staat stil.\" -- Herakleitos"
 
-#: gui/text/quotes.txt:113
+#: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
 msgstr "\"Buiten verandering blijft niets bestaan.\" -- Herakleitos"
 
-#: gui/text/quotes.txt:114
+#: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
 msgstr "\"Je kan geen twee maal in dezelfde rivier treden.\" - Herkleitos"
 
-#: gui/text/quotes.txt:115
+#: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
 msgstr "\"Karakter is toekomst.\" -- Herakleitos"
 
-#: gui/text/quotes.txt:116
+#: gui/text/quotes.txt:115
 msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
 msgstr "\"Omstandigheden maken de man, de man maakt niet de omstandigheden.\" -- Herodus"
 
-#: gui/text/quotes.txt:117
+#: gui/text/quotes.txt:116
 msgid ""
 "\"The Lacedaemonians fought a memorable battle; they made it quite clear "
 "that they were the experts, and that they were fighting against amateurs.\" "
 "- Herodotus"
-msgstr ""
+msgstr "\"De Lakedaimoniërs vochten een memorabele slag; zij lieten duidelijk zien dat zij the experts waren en dat zij vochten tegen amateurs.\" - Herodotus"
 
-#: gui/text/quotes.txt:118
+#: gui/text/quotes.txt:117
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus"
 msgstr "\"Dit is de bitterste pijn onder de mensen, het bezitten van veel kennis, maar geen macht.\" - Herodotus"
 
-#: gui/text/quotes.txt:119
+#: gui/text/quotes.txt:118
 msgid "\"In soft regions are born soft men.\" - Herodotus"
 msgstr "\"In zwakke regio's worden zwakke mannen geboren.\" -- Herodotus"
 
-#: gui/text/quotes.txt:120
+#: gui/text/quotes.txt:119
 msgid "\"It is sweet and honorable to die for one's country.\" - Horace"
 msgstr "\"Het is zoet en eervol om voor je land te sterven.\" -- Horace"
 
-#: gui/text/quotes.txt:121
+#: gui/text/quotes.txt:120
 msgid "\"We are but dust and shadow.\" - Horace"
 msgstr "\"Stof en schaduw zijn wij.\" - Horatius"
 
-#: gui/text/quotes.txt:122
+#: gui/text/quotes.txt:121
 msgid ""
 "\"I am not bound over to swear allegiance to any master; where the storm "
 "drives me I turn in for shelter.\" - Horace"
 msgstr "\"Ik ben niet gebonden om trouw te zweren aan een meester. Waar de storm me drijft zal ik naar een schuilplaats zoeken.\" - Horace"
 
-#: gui/text/quotes.txt:123
+#: gui/text/quotes.txt:122
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace"
 msgstr "\"Het overwonnen Griekenland won van haar ruwe winnaar en bracht beschaving in het boerse Latium.\" - Horatius"
 
-#: gui/text/quotes.txt:124
+#: gui/text/quotes.txt:123
 msgid ""
 "\"Guard yourself against accusations, even if they are false; for the "
 "multitude are ignorant of the truth and look only to reputation.\" - "
 "Isocrates"
 msgstr "\"Weer jezelf van beschuldigingen, zelfs als ze vals zijn. Want de meerderheid is onwetend en ziet enkel je reputatie\" - Isocrates"
 
-#: gui/text/quotes.txt:125
+#: gui/text/quotes.txt:124
 msgid ""
 "\"I never learned how to tune a harp, or play upon a lute; but I know how to"
 " raise a small and inconsiderable city to glory and greatness.\" - "
 "Themistocles"
 msgstr "\"Ik heb nooit geleerd een harp te stemmen, of een luit te bespelen. Maar ik weet hoe een kleine stad naar glorie te leiden.\" -- Thermistocles "
 
-#: gui/text/quotes.txt:126
+#: gui/text/quotes.txt:125
 msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
 msgstr "\"Ik heb twee Goden bij me, overtuiging en dwang.\" -- Thermistocles"
 
-#: gui/text/quotes.txt:127
+#: gui/text/quotes.txt:126
 msgid ""
 "\"For the Athenians command the rest of Greece, I command the Athenians; "
 "your mother commands me, and you command your mother.\" - Themistocles, in a"
 " statement to his son"
 msgstr "\"Zo Athene de rest van Griekenland commandeert, commandeer ik Athene, commandeert je moeder mij, en commandeer jij je moeder.\" -- Thermistocles tegen zijn zoon"
 
-#: gui/text/quotes.txt:128
+#: gui/text/quotes.txt:127
 msgid "\"Strike, if you will, but listen.\" - Themistocles"
 msgstr "\"Sla toe als je wil, maar luister.\" - Thermistocles"
 
-#: gui/text/quotes.txt:129
+#: gui/text/quotes.txt:128
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife before"
 " he left for Thermopylae"
 msgstr "\"Trouw met een goeie man en krijg goeie kinderen.\" -- Leonidas tegen zijn vrouw, voor hij naar Thermopylae trok"
 
-#: gui/text/quotes.txt:130
+#: gui/text/quotes.txt:129
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms"
 msgstr "\"Kom ze zelf halen!\" -- Leonidas tegen de Perzische boodschapper die vroeg dat zijn leger de wapens zouden neerleggen"
 
-#: gui/text/quotes.txt:131
+#: gui/text/quotes.txt:130
 msgid "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
 msgstr "\"Een denkende man is waar wijsheid thuis is.\" - Zarathustra"
 
-#: gui/text/quotes.txt:132
+#: gui/text/quotes.txt:131
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander"
 msgstr "\"Ik noem een vijg een vijg en een spade een spade\" - Menander"
 
-#: gui/text/quotes.txt:133
+#: gui/text/quotes.txt:132
 msgid "\"The man who runs may fight again.\" - Menander"
 msgstr "\"De man die loopt kan opnieuw vechten.\" - Menander"
 
-#: gui/text/quotes.txt:134
+#: gui/text/quotes.txt:133
 msgid ""
 "\"At times discretion should be thrown aside, and with the foolish we should"
 " play the fool.\" - Menander"
 msgstr "\"Bij tijden moet de discretie aan de kant gezet worden, en zot spelen tussen de zotten.\" - Menander"
 
-#: gui/text/quotes.txt:135
+#: gui/text/quotes.txt:134
 msgid ""
 "\"Freedom is the sure possession of those alone who have the courage to "
 "defend it.\" - Pericles"
 msgstr "\"Vrijheid is de zure eigendom van deze die de kracht hebben het te verdedigen\" - Perikles"
 
-#: gui/text/quotes.txt:136
+#: gui/text/quotes.txt:135
 msgid ""
 "\"What you leave behind is not what is engraved in stone monuments, but what"
 " is woven into the lives of others.\" - Pericles"
 msgstr "\"Je nalatenschap is niet wat je in stenen hebt geschreven, maar wat verweven is met de levens van anderen.\" - Perikles"
 
-#: gui/text/quotes.txt:137
+#: gui/text/quotes.txt:136
 msgid ""
 "\"We do not say that a man who takes no interest in politics is a man who "
 "minds his own business; we say that he has no business here at all.\" - "
 "Pericles"
 msgstr "\"We zeggen niet dat een man die geen interesse heeft in politiek een man is die zich met zijn eigen zaken bezighoudt. We zeggen dat hij hier helemaal geen zaken heeft.\" - Perikles"
 
-#: gui/text/quotes.txt:138
+#: gui/text/quotes.txt:137
 msgid ""
 "\"They gave her their lives, to Her and to all of us, and for their own "
 "selves they won praises that never grow old, the most splendid of "
 "sepulchers...\" - Pericles, Funeral Oration"
 msgstr "\"Want zij gaven hun leven prijs voor de gemeenschap en verwierven zó als eigen deel van de eeuwig jonge lofzang en hun graf als hoogste ereteken...\" - Pericles, Lijkrede"
 
-#: gui/text/quotes.txt:139
+#: gui/text/quotes.txt:138
 msgid ""
 "\"Make up your minds that happiness depends on being free, and freedom "
 "depends on being courageous.\" - Pericles"
 msgstr "\"Denk er over. Geluk hangt af van vrijheid, en vrijheid hangt af van moed\" - Perikles"
 
-#: gui/text/quotes.txt:140
+#: gui/text/quotes.txt:139
 msgid ""
 "\"Your empire is now like a tyranny: it may have been wrong to take it; it "
 "is certainly dangerous to let it go.\" - Pericles"
 msgstr "\"Uw heerschappij is als een tirannie geworden: het was misschien niet rechtvaardig deze te grijpen, maar het is zeker gevaarlijk deze los te laten.\" - Perikles"
 
-#: gui/text/quotes.txt:141
+#: gui/text/quotes.txt:140
 msgid ""
 "\"If Athens shall appear great to you, consider then that her glories were "
 "purchased by valiant men, and by men who learned their duty.\" - Pericles"
 msgstr "\"Als Athene groot lijkt voor jou, hou er dan rekening mee dat haar glorie er gekomen is dankzij dappere mannen die leerden hun plichten kenden.\" - Perikles"
 
-#: gui/text/quotes.txt:142
+#: gui/text/quotes.txt:141
 msgid ""
 "\"Just because you do not take an interest in politics doesn't mean politics"
 " won't take an interest in you.\" - Pericles"
 msgstr "\"Gewoon omdat jij je niet interesseert voor de politiek, wil niet zeggen dat de politiek geen interesse heeft in jou.\" - Perikles"
 
-#: gui/text/quotes.txt:143
+#: gui/text/quotes.txt:142
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man trembles exceedingly at heart on its approach.\" - Pindar"
 msgstr "\"Oorlog is zoet voor deze die geen ervaring hebben, maar de ervaren man beeft enorm bij aankomst.\" - Pindar"
 
-#: gui/text/quotes.txt:144
+#: gui/text/quotes.txt:143
 msgid ""
 "\"The hour of departure has arrived, and we go our ways — I to die, and you "
 "to live. Which is better God only knows.\" - Plato"
 msgstr "\"Het uur om te gaan is gekomen, en we gaan onze eigen weg. Ik naar de dodenwereld, jij op deze wereld. Moge god weten welke beter is.\" - Plato"
 
-#: gui/text/quotes.txt:145
+#: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
 msgstr "\"Leven zonder vragen is het niet waard om te leven.\" - Plato"
 
-#: gui/text/quotes.txt:146
+#: gui/text/quotes.txt:145
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or from cowardice fall "
 "behind.\" - Plato"
 msgstr "\"Laat ieder man zijn nakomelingen er aan herinneren dat ook zij soldaten zijn die de rangen van hun voorouders niet mogen deserteren, of ze zullen uit lafheid achterop raken.\" - Plato"
 
-#: gui/text/quotes.txt:147
+#: gui/text/quotes.txt:146
 msgid ""
 "\"False words are not only evil in themselves, but they infect the soul with"
 " evil.\" - Plato"
 msgstr "\"Foute woorden zijn niet kwaad op zich, maar ze besmetten de ziel met het kwade.\" - Plato"
 
-#: gui/text/quotes.txt:148
+#: gui/text/quotes.txt:147
 msgid ""
 "\"Democracy, which is a charming form of government, full of variety and "
 "disorder, and dispensing a sort of equality to equals and unequals alike.\" "
 "- Plato"
 msgstr "\"Democratie is een charmerende bestuursvorm. Vol van variëteit en ordeloosheid. Een soort gelijkheid geven aan gelijken en ongelijken.\" - Plato"
 
-#: gui/text/quotes.txt:149
+#: gui/text/quotes.txt:148
 msgid "\"Death is not the worst that can happen to men.\" - Plato"
 msgstr "\"Dood is niet het ergste wat met een man kan gebeuren\" - Plato"
 
-#: gui/text/quotes.txt:150
+#: gui/text/quotes.txt:149
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
 msgstr "\"Alleen de doden hebben het einde van de oorlog gezien.\" - Unknown"
 
-#: gui/text/quotes.txt:151
+#: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
 msgstr "\"Onze behoefte zal de echte uitvinder zijn.\" - Plato"
 
-#: gui/text/quotes.txt:152
+#: gui/text/quotes.txt:151
 msgid "\"A man with courage has every blessing.\" - Plautus"
 msgstr "\"Een man met moed heeft iedere gave.\" - Plautus"
 
-#: gui/text/quotes.txt:153
+#: gui/text/quotes.txt:152
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus"
 msgstr "\"Geen gast is zo welkome in het huis van een vriend, dat hij geen ergernis zal veroorzaken na drie dagen.\" - Plautus"
 
-#: gui/text/quotes.txt:154
+#: gui/text/quotes.txt:153
 msgid "\"He whom the gods love dies young.\" - Plautus"
 msgstr "\"Hij van wie de goden houden, sterft jong\" - Plautus"
 
-#: gui/text/quotes.txt:155
+#: gui/text/quotes.txt:154
 msgid "\"Practice yourself what you preach.\" - Plautus"
 msgstr "\"Practice yourself what you preach.\" - Plautus"
 
-#: gui/text/quotes.txt:156
+#: gui/text/quotes.txt:155
 msgid "\"Drink, live like the Greeks, eat, gorge.\" - Plautus"
 msgstr "\"Drinken, leven als de Grieken, eten, vreet je, vol, dood het vetgemeste vee!\" - Plautus"
 
-#: gui/text/quotes.txt:157
+#: gui/text/quotes.txt:156
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Pompey "
 "the Great)"
 msgstr "\"Stop met wetten te citeren, wij zijn gewapend!\" - Gnaeus Pompeius Magnus"
 
-#: gui/text/quotes.txt:158
+#: gui/text/quotes.txt:157
 msgid ""
 "\"Man is the measure of all things: of things which are, that they are, and "
 "of things which are not, that they are not.\" - Protagoras"
 msgstr "\"De mens is de maat van alle dingen: van hetgeen dat is, dat het is, en van hetgeen dat niet is, dat het niet is.\" - Protagoras"
 
-#: gui/text/quotes.txt:159
+#: gui/text/quotes.txt:158
 msgid ""
 "\"We ought so to behave to one another as to avoid making enemies of our "
 "friends, and at the same time to make friends of our enemies.\" - Pythagoras"
 msgstr "\"We horen ons te gedragen voor elkaar, om geen vijanden onder je vrienden te maken, en tegelijkertijd om vrienden van je vijanden te maken.\" - Pythagoras"
 
-#: gui/text/quotes.txt:160
+#: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
 msgstr "\"Bij boosheid moeten we ons weerhouden van woorden en daden.\" - Pythagoras"
 
-#: gui/text/quotes.txt:161
+#: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
 msgstr "\"Macht is de buur van noodzaak.\" - Pythagoras"
 
-#: gui/text/quotes.txt:162
+#: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
 msgstr "\"Getallen besturen het universum.\" - Pythagoras"
 
-#: gui/text/quotes.txt:163
+#: gui/text/quotes.txt:162
 msgid ""
 "\"Rest satisfied with doing well, and leave others to talk of you as they "
 "please.\" - Pythagoras"
 msgstr "\"Doe goed en kijk niet om, laat anderen tegen je praten zoals ze het graag doen.\" - Pythagoras"
 
-#: gui/text/quotes.txt:164
+#: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
 msgstr "\"Boosheid begint in een folie, en stopt bij berouw.\" - Pythagoras"
 
-#: gui/text/quotes.txt:165
+#: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
 msgstr "\"Er is geen woord noch daad die geen echo in de eeuwigheid nalaat.\" - Pythagoras"
 
-#: gui/text/quotes.txt:166
+#: gui/text/quotes.txt:165
 msgid ""
 "\"There is geometry in the humming of the strings, there is music in the "
 "spacing of the spheres.\" - Pythagoras"
 msgstr "\"Er is geometrie in het trillen der touwen, er is muziek in de plaatsing van sferen.\" - Pythagoras"
 
-#: gui/text/quotes.txt:167
+#: gui/text/quotes.txt:166
 msgid ""
 "\"Practice justice in word and deed, and do not get in the habit of acting "
 "thoughtlessly about anything.\" - Pythagoras"
 msgstr "\"Oefen recht in woord en daad, en verval niet in de gewoonte om alles te doen zonder denken.\" - Pythagoras"
 
-#: gui/text/quotes.txt:168
+#: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
 msgstr "\"Denk er zelfs niet aan om te doen wat niet gedaan zou moeten worden.\" - Pythagoras"
 
-#: gui/text/quotes.txt:169
+#: gui/text/quotes.txt:168
 msgid ""
 "\"When the wise man opens his mouth, the beauties of his soul present "
 "themselves to the view, like the statues in a temple.\" - Pythagoras"
 msgstr "\"Wanneer een wijze man zijn mond opent, verschijnen de schoonheden als representaties van zijn ziel, zoals de beeldhouwwerken in een tempel.\" - Pythagoras"
 
-#: gui/text/quotes.txt:170
+#: gui/text/quotes.txt:169
 msgid ""
 "\"Remind yourself that all men assert that wisdom is the greatest good, but "
 "that there are few who strenuously seek out that greatest good.\" - "
 "Pythagoras"
 msgstr "\"Herinner je eraan dat mensen verzekeren dat wijsheid het meest begeerde goed is, maar dat er slechts enkelen hard zoeken naar dat begeerde goed.\" - Pythagoras"
 
-#: gui/text/quotes.txt:171
+#: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
 msgstr "\"Zonder recht kan geen enkel rijk bloeien.\" - Pythagoras"
 
-#: gui/text/quotes.txt:172
+#: gui/text/quotes.txt:171
 msgid ""
 "\"For harmony makes small states great, while discord undermines the "
 "mightiest empires.\" - Sallust"
 msgstr "\"Harmonie maakt kleine staten groot, terwijl onenigheid de grootste rijken ondermijnt.\" - Sallust"
 
-#: gui/text/quotes.txt:173
+#: gui/text/quotes.txt:172
 msgid ""
 "\"I am mindful of human weakness, and I reflect upon the might of Fortune "
 "and know that everything that we do is exposed to a thousand chances.\" - "
 "Scipio Africanus"
 msgstr "\"Ik hou rekening met de menselijke zwakheid, en ik denk na over de macht van Fortuin en weet dat alles dat we doen onderhevig is aan een duizend toevalligheden.\" - Scipio Africanus"
 
-#: gui/text/quotes.txt:174
+#: gui/text/quotes.txt:173
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
 msgstr "\"Bereid jezelf voor op oorlog, aangezien je de vrede niet kan volhouden.\" - Scipio Africanus"
 
-#: gui/text/quotes.txt:175
+#: gui/text/quotes.txt:174
 msgid ""
 "\"Go, tell the Spartans, stranger passing by that here, obedient to their "
 "laws, we lie.\" - Simonides of Ceos, epitaph on the Cenotaph of Thermopylae"
-msgstr ""
+msgstr "\"Vertel het aan de Spartanen, vreemdelingen op doorkomst, maar we houden ons aan hun wetten.\" - Simonides van Ceos, grafschrift op de Cenotaph van Thermopylae"
 
-#: gui/text/quotes.txt:176
+#: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
 msgstr "\"Zelfs de goden vechten niet tegen de noodzaak.\" - Simonides van Ceos"
 
-#: gui/text/quotes.txt:177
+#: gui/text/quotes.txt:176
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Simonides of Ceos"
 msgstr "\"Wij vertrokken geen spier, maar gaven ons leven om Griekenland te redden toen haar lot hing aan een zijden lint.\" - Simonides van Ceos"
 
-#: gui/text/quotes.txt:178
+#: gui/text/quotes.txt:177
 msgid ""
 "\"The bravest are surely those who have the clearest vision of what is "
 "before them, glory and danger alike, and yet notwithstanding, go out to meet"
@@ -7766,7 +7837,7 @@ msgid ""
 "In India near the end of his long anabasis, Alexander gifted to the Royal "
 "Hypaspist corps shields of silver for their long and valiant service in his "
 "army."
-msgstr ""
+msgstr "In India, aan het einde van zijn lange anabasis, schonk Alexander zilveren schilden aan zijn koninklijke hypaspisten voor hun lange en waardevolle dienst in het leger."
 
 #: civs/mace.jsonFactions[0].Technologies[2].Description
 #: civs/ptol.jsonFactions[0].Technologies[0].Description
@@ -7877,7 +7948,7 @@ msgid ""
 "orders) in Hinduism. Traditionally Kshatriya constitute the military and "
 "ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
 "Laws of Manu."
-msgstr ""
+msgstr "Kshatriya of Kashtriya, met de betekenis van krijger, is één van de vier varna's (sociale ordes) in het Hindoeïsme. Traditioneel zijn Kshatriya een militaire orde, en de leidende elite van het Vedisch-Hindoeïstische sociale systeem, bepaald door de Vedas en de wetten van Manu."
 
 #: civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied Temple techs -50% cost and research time."
@@ -9781,19 +9852,21 @@ msgstr "Aegis bot"
 
 #: simulation/ai/aegis/data.jsondescription
 msgid ""
-"Wraitii's improvement of qBot. It is more reliable and generally a better "
-"player. Note that it doesn't support saved games yet, and there may be other"
-" bugs. Please report issues to Wildfire Games (see the link in the main "
-"menu)."
-msgstr "Wraitii's verbetering van qBot. In het algemeen een betere speler. Let op, Aegis kan geen opgeslagen spellen aan, en er kunnen nog meer problemen zijn. Gelieve problemen te melden aan Wildfire Games (zie de link in het hoofdmenu)."
+"The most stable AI currently available, Aegis is an improvement of earlier "
+"bots by Wratii. Note that it doesn't support saved games yet. Please report "
+"issues to Wildfire Games (see the link in the main menu)."
+msgstr ""
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
 msgstr "Petra Bot"
 
 #: simulation/ai/petra/data.jsondescription
-msgid "Based on Aegis, but heavily modified and expected to be more robust"
-msgstr "Gebaseerd op Aegis, met aanpassingen om meer robust te zijn."
+msgid ""
+"Based on Aegis, but heavily modified and expected to be more robust. Note "
+"that it doesn't support saved games yet and is not as well tested as Aegis. "
+"Please report issues to Wildfire Games (see the link in the main menu)."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
@@ -10916,7 +10989,7 @@ msgid ""
 "open-aired assembly place in the great Forum Romanum called the Comitium. "
 "Here citizens could air grievances and present petitions to the patrician "
 "politicians who ruled their city in the Senate."
-msgstr "Publieke verzamelplaatsen waren vaak het centrum van het burgerleven voor oude beschavingen. Athene had de Ekkesia, de verzamelplaats voor burgers. Deze stond up de Pnyx heuvel, bij de agora, met een volledig overzicht over de acropolis. De Romeinen hadden een openlucht verzamelplaats in het grote Forum Romanum die de naam Comitiom kreeg. Hier konden burgers discussiëren of petities ondertekenen voor de politici die over hun stad heersten in de senaat."
+msgstr "Publieke verzamelplaatsen waren vaak het centrum van het burgerleven voor oude beschavingen. Athene had de Ekkesia, de verzamelplaats voor burgers. Deze stond up de Pnyx heuvel, bij de agora, met een volledig overzicht over de akropolis. De Romeinen hadden een openlucht verzamelplaats in het grote Forum Romanum die de naam Comitiom kreeg. Hier konden burgers discussiëren of petities ondertekenen voor de politici die over hun stad heersten in de senaat."
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
@@ -11760,7 +11833,7 @@ msgstr "Fenicisch triremen krijgen de mogelijkheid om ruiters te trainen."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
-msgstr "Equine transporten"
+msgstr "Paardentransport"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsondescription
 msgid ""
@@ -15106,7 +15179,7 @@ msgid ""
 "\"Acropolis\" Aura: Temples are 50 stone cheaper during his lifetime.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr "Klassen: Held Mêlee Infanterie Speervechter.\n\"Bouwer\" Aura: Gebouwen worden 15% sneller gebouwd in zijn gezichtsveld. \n\"Acropolis\" Aura: Tempels zijn 50 steen goedkoper tijdens zijn leven.\nMêlee 2x vs. alle cavalerie."
+msgstr "Klassen: Held Mêlee Infanterie Speervechter.\n\"Bouwer\" Aura: Gebouwen worden 15% sneller gebouwd in zijn gezichtsveld. \n\"Akropolis\" Aura: Tempels zijn 50 steen goedkoper tijdens zijn leven.\nMêlee 2x vs. alle cavalerie."
 
 #: simulation/templates/units/athen_hero_pericles.xml:15
 msgid "Periklēs"
@@ -18025,11 +18098,11 @@ msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
-msgstr "Elke speler start boven op een vlak plateau, ook gekend als een acropolis.\n\nIn het oosten is er een baai waar gevist kan worden. In het westen is het land ruwer, met de mogelijkheid om een nieuw stadscentrum op een acropolis te bouwen."
+msgstr "Elke speler start boven op een vlak plateau, ook gekend als een akropolis.\n\nIn het oosten is er een baai waar gevist kan worden. In het westen is het land ruwer, met de mogelijkheid om een nieuw stadscentrum op een akropolis te bouwen."
 
 #: maps/skirmishes/Acropolis Bay (2).xml:41:Name
 msgid "Acropolis Bay (2)"
-msgstr "Acropolisbaai (2)"
+msgstr "Akropolisbaai (2)"
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:Description
 msgid ""
@@ -18184,11 +18257,11 @@ msgid ""
 "Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Twee beschavingen bevinden zich vanboven op rotsachtige plateaus of acropolis.\n\nVerken het land om schatten te vinden en grondstoffen op te eisen."
+msgstr "Twee beschavingen bevinden zich vanboven op rotsachtige plateaus of akropoleis.\n\nVerken het land om schatten te vinden en grondstoffen op te eisen."
 
 #: maps/skirmishes/Greek Acropolis (2).xml:41:Name
 msgid "Greek Acropolis (2)"
-msgstr "Griekse Acropolis (2)"
+msgstr "Griekse Akropolis (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:41:Description
 msgid ""
@@ -18212,7 +18285,7 @@ msgstr "Een open, vlakke, woestijnkaart met in het midden twee weelderige oases.
 
 #: maps/skirmishes/Libyan Oases (4).xml:42:Name
 msgid "Libyan Oases (4)"
-msgstr "Lybische oase (4)"
+msgstr "Libische oase (4)"
 
 #: maps/skirmishes/Libyan Oasis (2).xml:42:Description
 msgid ""
@@ -18281,7 +18354,7 @@ msgstr "Nabije Oosten Badlands (2)"
 
 #: maps/skirmishes/Neareastern Badlands (4).xml:42:Name
 msgid "Neareastern Badlands (4)"
-msgstr "Nabije Oosten Badlands 4"
+msgstr "Nabije Oosten Badlands (4)"
 
 #: maps/skirmishes/Nile River (4).xml:41:Description
 msgid ""

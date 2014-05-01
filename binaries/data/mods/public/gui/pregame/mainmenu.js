@@ -205,14 +205,6 @@ function EnableUserReport(Enabled)
  * MENU FUNCTIONS
  */
 
-// Temporarily adding this here
-//const BUTTON_SOUND = "audio/interface/ui/ui_button_longclick.ogg";
-//function playButtonSound()
-//{
-//    var buttonSound = new Sound(BUTTON_SOUND);
-//    buttonSound.play();
-//}
-
 // Slide menu
 function updateMenuPosition(dt)
 {
@@ -291,39 +283,6 @@ function getBuildString()
  * FUNCTIONS BELOW DO NOT WORK YET
  */
 
-//// Switch to a given options tab window.
-//function openOptionsTab(tabName)
-//{
-//	// Hide the other tabs.
-//	for (var i = 1; i <= 3; i++)
-//	{
-//		switch (i)
-//		{
-//			case 1:
-//				var tmpName = "pgOptionsAudio";
-//			break;
-//			case 2:
-//				var tmpName = "pgOptionsVideo";
-//			break;
-//			case 3:
-//				var tmpName = "pgOptionsGame";
-//			break;
-//			default:
-//			break;
-//		}
-//
-//		if (tmpName != tabName)
-//		{
-//			Engine.GetGUIObjectByName (tmpName + "Window").hidden = true;
-//			Engine.GetGUIObjectByName (tmpName + "Button").enabled = true;
-//		}
-//	}
-//
-//	// Make given tab visible.
-//	Engine.GetGUIObjectByName (tabName + "Window").hidden = false;
-//	Engine.GetGUIObjectByName (tabName + "Button").enabled = false;
-//}
-//
 //// Move the credits up the screen.
 //function updateCredits()
 //{
@@ -365,3 +324,14 @@ function getLobbyDisabledByBuild()
 {
 	return translate("Launch the multiplayer lobby. [DISABLED BY BUILD]");
 }
+
+function getTechnicalDetails()
+{
+	return translate("Technical Details");
+}
+
+function getManual()
+{
+	return translate("Manual");
+}
+
