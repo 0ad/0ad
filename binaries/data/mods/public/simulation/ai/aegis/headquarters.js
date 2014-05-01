@@ -287,7 +287,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 
 	// default template and size
 	var template = gameState.applyCiv("units/{civ}_support_female_citizen");
-	var size = Math.min(5, Math.ceil(numTotal / 10));
+	var size = Math.min(5, Math.max(Math.ceil(numTotal / 10), 1));
 
 	// Choose whether we want soldiers instead.
 	// TODO: we might want to adjust our female ratio.
