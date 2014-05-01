@@ -19,7 +19,7 @@
 # hocker <iscestebanrodriguez@gmail.com>, 2013
 # Pretorg <fpgelmejor2@hotmail.com>, 2014
 # frenchiveruti <bil_94@hotmail.com>, 2014
-# FGuardia <mellaman.angel@gmail.com>, 2013
+# FGuardia <ancel0@openmailbox.org>, 2013
 # GaboXandre <gabo.xandre@gmail.com>, 2013
 # ninovolador <ignacio.rodriguez.mo@gmail.com>, 2013-2014
 # fca1970 <iobaladi@yahoo.es>, 2014
@@ -35,7 +35,7 @@
 # memmaker650 <memmaker650@gmail.com>, 2014
 # PedroL <pedrochusma@gmail.com>, 2014
 # PedroL <pedrochusma@gmail.com>, 2014
-# FGuardia <mellaman.angel@gmail.com>, 2013
+# FGuardia <ancel0@openmailbox.org>, 2013
 # 3xcl4m4t10n <drill.hurricane@hotmail.com>, 2013
 # gonzaleau <reddecontactos@gmail.com>, 2013
 # llroger7ll <r0g3rva5qu3z@hotmail.com>, 2013
@@ -49,9 +49,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-27 22:12+0200\n"
-"PO-Revision-Date: 2014-04-28 12:21+0000\n"
-"Last-Translator: Swyter ™ <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2014-05-01 03:17+0200\n"
+"PO-Revision-Date: 2014-05-01 01:24+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +88,7 @@ msgstr "Fácil"
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr "Normal"
+msgstr "Intermedia"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -139,7 +139,18 @@ msgstr "Héroes"
 msgid "History of the %(civilization)s"
 msgstr "Historia de los %(civilization)s"
 
-#: gui/common/functions_global_object.js:73
+#: gui/common/functions_global_object.js:75
+#, python-format
+msgid ""
+"Opening %(url)s\n"
+" in default web browser. Please wait..."
+msgstr "Abriendo %(url)s\nen el navegador por defecto. Espera un momento..."
+
+#: gui/common/functions_global_object.js:75
+msgid "Opening page"
+msgstr "Abriendo página"
+
+#: gui/common/functions_global_object.js:80
 #, python-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
@@ -198,7 +209,7 @@ msgstr "Razón desconocida"
 
 #: gui/common/network.js:7
 msgid "Unexpected shutdown"
-msgstr "Cierre inesperado."
+msgstr "Cierre inesperado"
 
 #: gui/common/network.js:8
 msgid "Incorrect network protocol version"
@@ -260,7 +271,7 @@ msgstr "Escasos"
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
 msgid "Medium"
-msgstr "Normal"
+msgstr "Intermedios"
 
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
@@ -355,17 +366,19 @@ msgstr "%(playerName)s %(romanNumber)s"
 msgid "Map Size:"
 msgstr "Tamaño de mapa:"
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
-msgid "Reveal Map:"
-msgstr "Mostrar mapa:"
+msgid "Revealed Map:"
+msgstr ""
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
-msgid "Explore Map:"
-msgstr "Explorar mapa:"
+msgid "Explored Map:"
+msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -382,7 +395,7 @@ msgstr "Bloquear equipos:"
 #: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
 #: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
 #: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
-#: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
+#: gui/pregame/mainmenu.js:308 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
 #: gui/session/menu.js:185 gui/session/session.js:481
@@ -394,7 +407,7 @@ msgstr "Sí"
 #: gui/gamesetup/gamesetup.js:1171 gui/gamesetup/gamesetup.js:1173
 #: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.js:1202
 #: gui/gamesetup/gamesetup.js:1204 gui/msgbox/msgbox.js:33
-#: gui/pregame/mainmenu.js:348 gui/savedgames/load.js:44
+#: gui/pregame/mainmenu.js:308 gui/savedgames/load.js:44
 #: gui/savedgames/load.js:106 gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89 gui/session/menu.js:139 gui/session/menu.js:164
 #: gui/session/menu.js:185 gui/session/session.js:481
@@ -649,25 +662,61 @@ msgstr "%(time)s %(message)s"
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Por favor, no hagas spam. Se te ha bloqueado durante treinta segundos."
 
-#: gui/lobby/prelobby.js:35
+#: gui/lobby/prelobby.js:40
 msgid "Connecting..."
 msgstr "Conectando..."
 
-#: gui/lobby/prelobby.js:61
-msgid "Passwords do not match"
-msgstr "Las contraseñas no coinciden"
-
-#: gui/lobby/prelobby.js:68
+#: gui/lobby/prelobby.js:62
 msgid "Registering..."
 msgstr "Registrando..."
 
-#: gui/lobby/prelobby.js:109 gui/lobby/prelobby.js:123
-msgid "Please enter existing login or desired registration credentials."
-msgstr "Introduce un nombre de usuario ya existente o crea una nueva cuenta."
+#: gui/lobby/prelobby.js:99
+msgid "Please enter your username"
+msgstr ""
 
-#: gui/lobby/prelobby.js:114 gui/lobby/prelobby.js:122
-msgid "Usernames can't contain [, ], unicode, whitespace, or commas."
-msgstr "Los nombres de usuario no pueden contener [, ], caracteres unicode, espacios en blanco o comas."
+#: gui/lobby/prelobby.js:105
+msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
+msgstr ""
+
+#: gui/lobby/prelobby.js:111
+msgid "Please enter your password"
+msgstr ""
+
+#: gui/lobby/prelobby.js:124
+msgid "Please enter your password again"
+msgstr ""
+
+#: gui/lobby/prelobby.js:130
+msgid "Passwords do not match"
+msgstr "Las contraseñas no coinciden"
+
+#: gui/lobby/prelobby.js:136
+msgid "Please read the Terms of Service"
+msgstr ""
+
+#: gui/lobby/prelobby.js:142
+msgid "Please read the Terms of Use"
+msgstr ""
+
+#: gui/lobby/prelobby.js:148
+msgid "Please agree to the Terms of Service and Terms of Use"
+msgstr ""
+
+#: gui/lobby/prelobby.js:246
+msgid "Register"
+msgstr "Registrarse"
+
+#: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:109 (caption)
+msgid "Connect"
+msgstr "Conectar"
+
+#: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
+msgid "Terms of Service"
+msgstr ""
+
+#: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
+msgid "Terms of Use"
+msgstr ""
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -678,7 +727,7 @@ msgstr "Ninguno"
 msgid "<invalid>"
 msgstr "<nulo>"
 
-#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:185
+#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
 #: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
 #: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
@@ -697,215 +746,225 @@ msgstr "Ignorar"
 msgid "Abort"
 msgstr "Cancelar"
 
-#: gui/options/options.js:8
+#: gui/options/options.js:9
 msgid "Windowed Mode"
 msgstr "Modo ventana"
 
-#: gui/options/options.js:8
+#: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
 msgstr "Comenzar 0 A.D. en una ventana"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Background Pause"
 msgstr "Pausar en segundo plano"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
 msgstr "Pausar la partida individual cuando la ventana pase a un segundo plano"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:11
+msgid "Disable Welcome Screen"
+msgstr ""
+
+#: gui/options/options.js:11
+msgid ""
+"If you disable this screen completely, you may miss important announcements.\n"
+"You can still launch it using the main menu."
+msgstr ""
+
+#: gui/options/options.js:12
 msgid "Developer Overlay"
 msgstr "Panel de desarrollo"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:12
 msgid ""
 "Show overlay in-game with options such as reveal map, control all units, and"
 " change perspective. Designed for use by developers"
 msgstr "Superpone opciones de desarrollo durante la partida, con las que mostrar el mapa, controlar unidades, y cambiar la perspectiva. Diseñado para que lo usen los programadores."
 
-#: gui/options/options.js:14
+#: gui/options/options.js:16
 msgid "Prefer GLSL"
 msgstr "Utilizar GLSL"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:16
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Utilizar sombreadores/shaders OpenGL 2.0 (recomendado)"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:17
 msgid "Post Processing"
 msgstr "Postproceso"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:17
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Utilizar filtros de postproceso (HDR, resplandor, desenfoque, y demás)"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:18
 msgid "Shadows"
 msgstr "Sombras"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:18
 msgid "Enable shadows"
 msgstr "Activa las sombras"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:19
 msgid "Particles"
 msgstr "Partículas"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:19
 msgid "Enable particles"
 msgstr "Activa los efectos de partículas"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Show Sky"
 msgstr "Mostrar cielo"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:20
 msgid "Render Sky"
 msgstr "Muestra el cielo sobre el mapa"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:21
 msgid "Smooth LOS"
 msgstr "Línea de visión suave"
 
-#: gui/options/options.js:19
-msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)."
-msgstr "La niebla de guerra y su oscuridad se desvanecen suavemente (Es necesario activar GLSL)"
+#: gui/options/options.js:21
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
+msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Unit Silhouettes"
 msgstr "Siluetas de unidades"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:22
 msgid "Show outlines of units behind buildings"
 msgstr "Muestra las siluetas de unidades ocultas tras edificios"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Shadow Filtering"
 msgstr "Filtrado de sombras"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:23
 msgid "Smooth shadows"
 msgstr "Suaviza las sombras"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid "HQ Waviness"
 msgstr "Oleaje HQ"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:24
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr "Utiliza las normales reales para el renderizado del oleaje marino, en vez de tratar a la textura como una superficie plana"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Real Water Depth"
 msgstr "Agua con profundidad real"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:25
 msgid "Use actual water depth in rendering calculations"
 msgstr "Utiliza la profundidad real de la superficie del agua a la hora de calcular su color"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Water Reflections"
 msgstr "Reflejos en el agua"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:26
 msgid "Allow water to reflect a mirror image"
 msgstr "Reflejar el entorno en la superficie del agua"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Water Refraction"
 msgstr "Refracción en el agua"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:27
 msgid "Use a real water refraction map and not transparency"
 msgstr "Utilizar un mapa de refracción real para el agua además de su transparencia"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:28
 msgid "Shore Foam"
 msgstr "Espuma en la orilla"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:28
 msgid "Show foam on water near shore depending on water waviness"
 msgstr "Muestra espuma en la orilla dependiendo de la fuerza del oleaje"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:29
 msgid "Shore Waves"
 msgstr "Olas en la orilla"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:29
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr "Mostrar las olas marinas rompiendo contra la orilla (Funciona junto con la opción Oleaje HQ)"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:30
 msgid "Water Shadows"
 msgstr "Sombras en el agua"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:30
 msgid "Cast shadows on water"
 msgstr "Proyectar sombras sobre el agua"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:31
 msgid "VSync"
 msgstr "Sincronización vertical"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:31
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Mantener la sincronización vertical de la pantalla para evitar el llamado «screen tearing». ES NECESARIO REINICIAR EL JUEGO"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:35
 msgid "Master Gain"
 msgstr "Volumen general"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:35
 msgid "Master audio gain"
 msgstr "Volumen general"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:36
 msgid "Music Gain"
 msgstr "Volumen de música"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:36
 msgid "In game music gain"
 msgstr "Volumen de la música del juego"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Ambient Gain"
 msgstr "Volumen ambiental"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "In game ambient sound gain"
 msgstr "Volumen de los sonidos ambientales"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "Action Gain"
 msgstr "Volumen de unidades"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "In game unit action sound gain"
 msgstr "Volumen de los sonidos emitidos por las unidades del juego"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "UI Gain"
 msgstr "Volumen de interfaz"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "UI sound gain"
 msgstr "Volumen de los sonidos emitidos por la interfaz de usuario"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:43
 msgid "Chat Backlog"
 msgstr "Historial de chat"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:43
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Número de mensajes en el historial a cargar al entrar en la Sala Multijugador"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:44
 msgid "Chat Timestamp"
 msgstr "Mostrar fecha y hora"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:44
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Muestra cuando se publicaron los mensajes en el chat de la Sala Multijugador"
 
@@ -940,7 +999,7 @@ msgstr "no se ha podido subir (%(errorMessage)s)"
 msgid "unknown"
 msgstr "desconocido"
 
-#: gui/pregame/mainmenu.js:176
+#: gui/pregame/mainmenu.js:177
 #, python-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -953,43 +1012,53 @@ msgstr "%(startWarning)sCuidado:%(endWarning)s Parece que estás usando una tarj
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:182
+#: gui/pregame/mainmenu.js:183
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Presiona \"Leer más\" o haz clic en \"Aceptar\" para continuar."
 
-#: gui/pregame/mainmenu.js:183
+#: gui/pregame/mainmenu.js:184
 msgid "WARNING!"
 msgstr "¡ATENCIÓN!"
 
-#: gui/pregame/mainmenu.js:185
+#: gui/pregame/mainmenu.js:186
 msgid "Read More"
 msgstr "Leer más"
 
-#: gui/pregame/mainmenu.js:286 gui/session/session.js:917
+#: gui/pregame/mainmenu.js:279 gui/session/session.js:917
 #, python-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versión: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:350
+#: gui/pregame/mainmenu.js:310
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "¿Seguro que quieres salir de 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:350 gui/session/menu.js:141 gui/session/menu.js:164
+#: gui/pregame/mainmenu.js:310 gui/session/menu.js:141 gui/session/menu.js:164
 #: gui/session/menu.js:172
 msgid "Confirmation"
-msgstr "Confirmación "
+msgstr "Confirmar decisión"
 
-#: gui/pregame/mainmenu.js:360
+#: gui/pregame/mainmenu.js:320
 msgid "The scenario editor is not available or failed to load."
 msgstr "El editor de escenarios no está disponible o no se ha cargado correctamente."
 
-#: gui/pregame/mainmenu.js:360
+#: gui/pregame/mainmenu.js:320
 msgid "Error"
 msgstr "Error"
 
-#: gui/pregame/mainmenu.js:365
+#: gui/pregame/mainmenu.js:325
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 msgstr "Entrar en la sala multijugador. [DESACTIVADO POR COMPILACIÓN]"
+
+#: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
+#: gui/pregame/mainmenu.xml:139 (caption)
+msgid "Technical Details"
+msgstr ""
+
+#: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
+#: gui/session/session.xml:732 (caption)
+msgid "Manual"
+msgstr "Manual"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -1035,7 +1104,7 @@ msgstr "Cuidado"
 #: gui/savedgames/save.js:91
 #, python-format
 msgid "\"%(label)s\""
-msgstr "\"%(label)s\""
+msgstr "«%(label)s»"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
@@ -1142,7 +1211,7 @@ msgstr "¿Quieres abandonar o regresarás pronto?"
 
 #: gui/session/menu.js:188
 msgid "Destroy everything currently selected?"
-msgstr "¿Estas seguro de destruir tu actual selección?"
+msgstr "¿Quieres destruir todo lo que está seleccionado?"
 
 #: gui/session/menu.js:188 gui/session/utility_functions.js:296
 #: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
@@ -1290,7 +1359,7 @@ msgstr "Dar de tributo %(resourceAmount)s de %(resourceType)s a %(playerName)s. 
 
 #: gui/session/messages.js:202
 msgid "Waiting for other players to connect..."
-msgstr "Esperando  a otros jugadores por conectar..."
+msgstr "Esperando a que se conecten los otros jugadores..."
 
 #: gui/session/messages.js:206
 msgid "Synchronising gameplay with other players..."
@@ -1302,15 +1371,15 @@ msgstr "Conectado al servidor."
 
 #: gui/session/messages.js:218
 msgid "Connection to the server has been authenticated."
-msgstr "Conexión al servidor ha sido autentificada."
+msgstr "Se ha autenticado la conexión con el servidor."
 
 #: gui/session/messages.js:223
 msgid "Connection to the server has been lost."
-msgstr "Conexión perdida con el servidor."
+msgstr "Se ha perdido la conexión con el servidor."
 
 #: gui/session/messages.js:223
 msgid "The game has ended."
-msgstr "El juego ha finalizado."
+msgstr "La partida ha terminado."
 
 #: gui/session/messages.js:407
 msgid "Unknown player"
@@ -1363,7 +1432,7 @@ msgstr "%(player)s ahora está en guerra contigo."
 #: gui/session/messages.js:447
 #, python-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s ahora es neutral contigo."
+msgstr "%(player)s ahora es neutral hacia ti."
 
 #: gui/session/messages.js:466
 #, python-format
@@ -1625,7 +1694,7 @@ msgstr "%(buildings)s*%(batchSize)s"
 
 #: gui/session/unit_commands.js:193
 msgid "Shift-click"
-msgstr "Clic-Mayús"
+msgstr "Mayús + Clic"
 
 #: gui/session/unit_commands.js:202
 #, python-format
@@ -1685,49 +1754,56 @@ msgstr "Un clic para deseleccionar una unidad. Mayús-clic para cancelar la sele
 msgid "Requires %(technology)s"
 msgstr "Necesita %(technology)s"
 
-#: gui/session/unit_commands.js:953
+#: gui/session/unit_commands.js:725
+#, python-format
+msgid "Remaining: %(number)s to build."
+msgid_plural "Remaining: %(number)s to build."
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/session/unit_commands.js:962
 #, python-format
 msgid "Set/unset %(resource)s as forced trading goods."
 msgstr "Utilizar o no %(resource)s como bienes de intercambio obligatorios."
 
-#: gui/session/unit_commands.js:1152
+#: gui/session/unit_commands.js:1161
 msgid "Convert Wooden Wall into Wooden Gate"
 msgstr "Convertir Muro de madera en Puerta de madera"
 
-#: gui/session/unit_commands.js:1156
+#: gui/session/unit_commands.js:1165
 msgid "Convert Stone Wall into City Gate"
 msgstr "Convertir Muro de piedra en Puerta de la ciudad."
 
-#: gui/session/unit_commands.js:1160
+#: gui/session/unit_commands.js:1169
 msgid "Convert Siege Wall into Siege Wall Gate"
 msgstr "Convierte esta sección de muro de asedio en una puerta de muro de asedio"
 
-#: gui/session/unit_commands.js:1165
+#: gui/session/unit_commands.js:1174
 #, python-format
 msgid "Convert %(wall)s into %(gate)s"
 msgstr "Convertir %(wall)s en %(gate)s"
 
-#: gui/session/unit_commands.js:1182
+#: gui/session/unit_commands.js:1191
 msgid "Lock Gate"
 msgstr "Bloquear la puerta"
 
-#: gui/session/unit_commands.js:1188
+#: gui/session/unit_commands.js:1197
 msgid "Unlock Gate"
 msgstr "Desbloquear la puerta"
 
-#: gui/session/unit_commands.js:1237
+#: gui/session/unit_commands.js:1246
 msgid "Pack"
 msgstr "Desmontar"
 
-#: gui/session/unit_commands.js:1239
+#: gui/session/unit_commands.js:1248
 msgid "Unpack"
 msgstr "Montar"
 
-#: gui/session/unit_commands.js:1241
+#: gui/session/unit_commands.js:1250
 msgid "Cancel Packing"
 msgstr "Cancelar desmontaje"
 
-#: gui/session/unit_commands.js:1243
+#: gui/session/unit_commands.js:1252
 msgid "Cancel Unpacking"
 msgstr "Cancelar montaje"
 
@@ -2171,17 +2247,6 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "pescado"
 
-#: gui/splashscreen/splashscreen.js:9
-#, python-format
-msgid ""
-"Opening %(url)s\n"
-" in default web browser. Please wait..."
-msgstr "Abriendo %(url)s\nen el navegador por defecto. Espera un momento..."
-
-#: gui/splashscreen/splashscreen.js:9
-msgid "Opening page"
-msgstr "Abriendo página"
-
 #: gui/summary/summary.js:510
 #, python-format
 msgid "Time elapsed: %(time)s"
@@ -2346,9 +2411,9 @@ msgstr "Mueve a 3 mujeres que estén recogiendo leña y a 3 que estén picando p
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:168
 msgid ""
-"The slingers that you queue earlier should gather stone once they are "
+"The slingers that you queued earlier should gather stone once they are "
 "trained."
-msgstr "Los honderos que pusiste en cola antes deberán picar piedra una vez hayan sido reclutados."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
@@ -2372,91 +2437,87 @@ msgid "Queue some slingers."
 msgstr "Pon en cola a unos cuantos honderos."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:203
-msgid "Your fields may start getting exhausted, remember to rebuild them."
-msgstr "Puede que la vitalidad de tus huertos comience a flaquear, recuerda reconstruirlos."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid ""
 "When you have advanced, use a single citizen soldier to place a barracks "
 "foundation. Then use the rest of the non food or house building female "
 "citizens to construct it."
 msgstr "Cuando hayas avanzado, utiliza a un solo ciudadano soldado para construir los cimientos de un cuartel. Después utiliza al resto de las ciudadanas que no estén recogiendo comida o construyendo casas para ayudarle."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:213
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid "Queue 5 more females for construction work."
 msgstr "Pon en cola a otras 5 ciudadanas para construir edificios."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:218
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:213
 msgid ""
 "Queue a batch of slingers to gather the trees on the north side of your "
 "base."
 msgstr "Pon en cola a un grupo de honderos para que recojan leña en la parte norte de tu base."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:223
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:218
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of how "
 "to build up a nice economy rapidly."
 msgstr "Aquí termina el tutorial. Ya deberías tener una idea bastante aproximada de cómo conseguir y mantener una economía sostenible rápidamente."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:228
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:223
 msgid ""
 "At this point you should be able to fully use both training facilities, keep"
 " putting units into economic work, to keep growing faster and faster."
 msgstr "Llegados a este punto deberías utilizar ambas estructuras de reclutamiento, y seguir asignando unidades a la explotación de recursos, para seguir creciendo más y más rápido."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:233
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:228
 msgid ""
 "From this point you have a good base to build an army and wipe out the "
 "opposition."
 msgstr "Ahora mismo tienes una buena base con la que construir un ejército y acabar con todos los que se te opongan."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:238
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
 msgstr "Los puntos clave a recordar son:"
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:243
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
 " - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
 msgstr "- No dejes a nadie inactivo. Técnicas como poner en cola con mayús + clic, o establecer puntos de reunión pueden resultar muy útiles."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:248
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
 " - Use all of your resources, stockpiled resources are waste, having too "
 "much of a resource is waste."
 msgstr "- Utiliza todos tos recursos de los que dispongas, no los reserves para otra ocasión, especialmente cuando tengas muchos."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:253
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:248
 msgid ""
 " - Use the right units for the right task, female citizens gather food, "
 "cavalry hunt, citizen soldiers do the rest."
 msgstr "- Utiliza a las unidades adecuadas para el trabajo, las ciudadanas consiguen comida, los jinetes cazan, los ciudadanos soldado se encargan del resto."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:258
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:253
 msgid ""
 " - Don't be afraid to swap units from one resource to another, see point 2. "
 "Make sure they deposit what they are carrying first though."
 msgstr "- No tengas miedo de mover unidades de un recurso a otro, mira el punto 2. No obstante asegúrate de que primero depositan lo que llevan."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:263
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible, it "
 "is the only training building until town phase."
 msgstr "- Construye suficientes casas, tu centro cívico deberá mantenerse ocupado tanto como te sea posible, será tu única estructura de reclutamiento hasta llegar a la fase de ciudad."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:268
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
 " - Female citizens are cheap, so you can build more of them and gather more "
 "resources."
 msgstr "- Las ciudadanas son más baratas, por lo que puedes reclutar mayor cantidad y conseguir más recursos."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:273
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:268
 msgid ""
 " - Don't get carried away on the last point or you will get raided and have "
 "no defense."
 msgstr "- No sigas al pie de la letra este último punto o te encontrarás invadido y sin defensas."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:278
+#: simulation/ai/tutorial-ai/economic_walkthrough.js:273
 msgid ""
 "Each map is different, so you will need to play slightly differently on "
 "each. This should give an outline for a high resource map."
@@ -2598,7 +2659,7 @@ msgstr "Detén a todos tus soldados que se encuentren recogiendo recursos y ord�
 msgid ""
 "The enemy's base has been spotted, send your siege weapons and all remaining"
 " soldiers to destroy it."
-msgstr "Has localizado la base del enemigo, envía tus armas de asedio y todos los soldados que te quedan para destruirla."
+msgstr "Has encontrado la base del enemigo, envía tus armas de asedio y todos los soldados que te queden para destruirla."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
@@ -2783,7 +2844,7 @@ msgid "AI Difficulty"
 msgstr "Dificultad"
 
 #: gui/aiconfig/aiconfig.xml:47 (caption) gui/gamesetup/gamesetup_mp.xml:109
-#: (caption) gui/lobby/prelobby.xml:67 (caption) gui/locale/locale.xml:46
+#: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:46
 #: (caption) gui/locale/locale_advanced.xml:75 (caption)
 #: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:35 (caption)
 #: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:407 (caption)
@@ -2798,7 +2859,7 @@ msgstr "Civilizaciones"
 msgid "Civilization Selection"
 msgstr "Selección de civilización"
 
-#: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:28 (caption)
+#: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:23 (caption)
 #: gui/session/session.xml:490 (caption) gui/session/session.xml:543 (caption)
 msgid "Close"
 msgstr "Cerrar"
@@ -2817,7 +2878,7 @@ msgstr "Cargando el mapa. Espera un momento..."
 
 #: gui/gamesetup/gamesetup.xml:40 (caption)
 msgid "Player Name"
-msgstr "Nombre de jugador"
+msgstr "Nombre del jugador"
 
 #: gui/gamesetup/gamesetup.xml:43 (caption)
 msgid "Player Placement"
@@ -2848,9 +2909,9 @@ msgstr "Elige la civilización del jugador."
 msgid "Select player's team."
 msgstr "Elige el equipo del jugador."
 
-#: gui/gamesetup/gamesetup.xml:98 (caption)
-msgid "Match Type:"
-msgstr "Tipo:"
+#: gui/gamesetup/gamesetup.xml:98 (caption) gui/lobby/lobby.xml:64 (caption)
+msgid "Map Type:"
+msgstr "Tipo de mapa:"
 
 #: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
@@ -2878,7 +2939,7 @@ msgstr "Elige un mapa en el que jugar."
 
 #: gui/gamesetup/gamesetup.xml:157 (tooltip)
 msgid "Select number of players."
-msgstr "Elige número de jugadores."
+msgstr "Elige el número de jugadores."
 
 #: gui/gamesetup/gamesetup.xml:162 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
@@ -2928,33 +2989,35 @@ msgstr "Elige una condición de victoria."
 
 #: gui/gamesetup/gamesetup.xml:290 (caption)
 msgid "Population Cap:"
-msgstr "Máxima población:"
+msgstr "Población máxima:"
 
 #: gui/gamesetup/gamesetup.xml:294 (tooltip)
 msgid "Select population cap."
-msgstr "Elige la población máxima."
+msgstr "Especifica la población máxima."
 
 #: gui/gamesetup/gamesetup.xml:300 (caption)
 msgid "Starting Resources:"
-msgstr "Recursos de inicio:"
+msgstr "Recursos iniciales:"
 
 #: gui/gamesetup/gamesetup.xml:304 (tooltip)
 msgid "Select the game's starting resources."
 msgstr "Elige con cuantos recursos empieza la partida."
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
-msgid "Toggle reveal map (see everything)."
-msgstr "Ver todo el mapa (o no)."
+msgid "Toggle revealed map (see everything)."
+msgstr ""
 
-#. Make sure to differentiate between the reveal map and explore map options!
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
-msgid "Toggle explore map (see gaia and buildings)."
-msgstr "Ver el mapa explorado, muestra gaia (animales) y edificios."
+msgid "Toggle explored map (see gaia and buildings)."
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
-msgstr "Bloquear/desbloquear equipos."
+msgstr "Bloquear o desbloquear equipos."
 
 #: gui/gamesetup/gamesetup.xml:340 (caption)
 msgid "Cheats:"
@@ -2976,7 +3039,7 @@ msgstr "Marca si esta partida debería contar para la clasificación general:"
 msgid "Close more game options window"
 msgstr "Cierra la ventana de opciones de juego adicionales"
 
-#: gui/gamesetup/gamesetup_mp.xml:19 (caption) gui/pregame/mainmenu.xml:411
+#: gui/gamesetup/gamesetup_mp.xml:19 (caption) gui/pregame/mainmenu.xml:428
 #: (caption)
 msgid "Multiplayer"
 msgstr "Multijugador"
@@ -3008,8 +3071,7 @@ msgstr "Configura tu propio servidor."
 msgid "Server name:"
 msgstr "Nombre del servidor:"
 
-#: gui/gamesetup/gamesetup_mp.xml:115 (caption) gui/lobby/prelobby.xml:19
-#: (caption)
+#: gui/gamesetup/gamesetup_mp.xml:115 (caption)
 msgid "[Connection status]"
 msgstr "[Estado de conexión]"
 
@@ -3017,7 +3079,7 @@ msgstr "[Estado de conexión]"
 msgid "Quote of the Day:"
 msgstr "Frase del día:"
 
-#: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:24 (caption)
+#: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
 msgid "Multiplayer Lobby"
 msgstr "Sala multijugador"
 
@@ -3038,19 +3100,15 @@ msgstr "Puntuación"
 msgid "Leaderboard"
 msgstr "Clasificación"
 
-#: gui/lobby/lobby.xml:64 (caption)
-msgid "Map Type:"
-msgstr "Tipo de mapa:"
-
 #: gui/lobby/lobby.xml:93 (caption)
 msgid "Players:"
 msgstr "Jugadores:"
 
-#: gui/lobby/lobby.xml:102 (caption) gui/pregame/mainmenu.xml:231 (caption)
+#: gui/lobby/lobby.xml:102 (caption) gui/pregame/mainmenu.xml:232 (caption)
 msgid "Join Game"
 msgstr "Unirse a una partida"
 
-#: gui/lobby/lobby.xml:108 (caption) gui/pregame/mainmenu.xml:246 (caption)
+#: gui/lobby/lobby.xml:108 (caption) gui/pregame/mainmenu.xml:247 (caption)
 msgid "Host Game"
 msgstr "Crear partida"
 
@@ -3063,10 +3121,12 @@ msgid "Map Name"
 msgstr "Nombre del mapa"
 
 #: gui/lobby/lobby.xml:135 (heading)
+msgctxt "map"
 msgid "Size"
 msgstr "Tamaño"
 
 #: gui/lobby/lobby.xml:138 (heading)
+msgctxt "map"
 msgid "Type"
 msgstr "Tipo"
 
@@ -3086,36 +3146,40 @@ msgstr "Rango"
 msgid "Update"
 msgstr "Actualizar"
 
-#: gui/lobby/prelobby.xml:29 (caption)
+#: gui/lobby/prelobby.xml:23 (caption)
+msgid "Create a new account"
+msgstr ""
+
+#: gui/lobby/prelobby.xml:27 (caption)
+msgid "Login to an existing account"
+msgstr ""
+
+#: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
 msgstr "Conectarse a la sala multijugador"
 
-#: gui/lobby/prelobby.xml:32 (caption)
+#: gui/lobby/prelobby.xml:36 (caption) gui/lobby/prelobby.xml:63 (caption)
 msgid "Login:"
 msgstr "Usuario:"
 
-#: gui/lobby/prelobby.xml:40 (caption)
+#: gui/lobby/prelobby.xml:44 (caption) gui/lobby/prelobby.xml:68 (caption)
 msgid "Password:"
 msgstr "Contraseña:"
 
-#: gui/lobby/prelobby.xml:54 (caption)
+#: gui/lobby/prelobby.xml:59 (caption)
 msgid "Registration"
 msgstr "Registro"
 
-#: gui/lobby/prelobby.xml:57 (caption)
+#: gui/lobby/prelobby.xml:73 (caption)
 msgid "Password again:"
 msgstr "Introduce otra vez la contraseña:"
 
-#: gui/lobby/prelobby.xml:79 (caption)
-msgid "Register"
-msgstr "Registrarse"
-
-#: gui/lobby/prelobby.xml:90 (caption)
-msgid "Connect"
-msgstr "Conectar"
+#: gui/lobby/prelobby.xml:88 (caption)
+msgid "I have read and agree to the Terms of Service and Terms of Use:"
+msgstr ""
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:309 (caption)
+#: (caption) gui/pregame/mainmenu.xml:310 (caption)
 msgid "Language"
 msgstr "Idioma"
 
@@ -3182,13 +3246,13 @@ msgstr "Archivos de diccionario en uso:"
 msgid "Auto detect"
 msgstr "Auto detectar"
 
-#: gui/manual/manual.xml:12 (caption) gui/session/session.xml:732 (caption)
-msgid "Manual"
-msgstr "Manual"
+#: gui/manual/manual.xml:12 (caption)
+msgid "Information"
+msgstr ""
 
 #: gui/manual/manual.xml:20 (caption)
-msgid "Online Manual"
-msgstr "Manual en línea"
+msgid "View Online"
+msgstr ""
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3215,191 +3279,202 @@ msgstr "Ajustes de la Sala multijugador"
 msgid "Save"
 msgstr "Guardar"
 
-#: gui/pregame/mainmenu.xml:97
+#: gui/pregame/mainmenu.xml:98
 msgid "Help improve 0 A.D.!"
 msgstr "¡Ayúdanos a mejorar 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:99
+#: gui/pregame/mainmenu.xml:100
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Puedes enviarnos automáticamente informes anónimos para ayudarnos a resolver problemas, mejorar el rendimiento y la compatibilidad."
 
-#: gui/pregame/mainmenu.xml:125
+#: gui/pregame/mainmenu.xml:126
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "¡Gracias por ayudarnos a mejorar 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:127
+#: gui/pregame/mainmenu.xml:128
 msgid "Anonymous feedback is currently enabled."
 msgstr "Los informes anónimos están habilitados."
 
-#: gui/pregame/mainmenu.xml:129
+#: gui/pregame/mainmenu.xml:130
 msgid "Status: $status."
 msgstr "Estado: $status."
 
-#: gui/pregame/mainmenu.xml:481
-msgid "Alpha XV: Osiris"
-msgstr "Alfa XV: Osiris"
+#: gui/pregame/mainmenu.xml:498
+msgid "Alpha XVI: Patañjali"
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:483
+#: gui/pregame/mainmenu.xml:500
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "ADVERTENCIA: Ésta es una versión temprana del juego. Muchas características todavía están en desarrollo."
 
-#: gui/pregame/mainmenu.xml:485
+#: gui/pregame/mainmenu.xml:502
 msgid "Get involved at: play0ad.com"
 msgstr "Involúcrate en: play0ad.com"
 
-#: gui/pregame/mainmenu.xml:103 (caption)
-msgid "Enable feedback"
-msgstr "Activar informes de compatibilidad"
+#: gui/pregame/mainmenu.xml:104 (caption)
+msgid "Enable Feedback"
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:107 (caption) gui/pregame/mainmenu.xml:138
-#: (caption)
-msgid "Technical details"
-msgstr "Detalles técnicos"
+#: gui/pregame/mainmenu.xml:135 (caption)
+msgid "Disable Feedback"
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:134 (caption)
-msgid "Disable feedback"
-msgstr "Desactivar informes"
-
-#: gui/pregame/mainmenu.xml:177 (caption)
+#: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
 msgstr "Batallas"
 
-#: gui/pregame/mainmenu.xml:178 (tooltip)
+#: gui/pregame/mainmenu.xml:179 (tooltip)
 msgid "Click here to start a new single player game."
 msgstr "Pulsa aquí para comenzar una nueva partida individual."
 
-#: gui/pregame/mainmenu.xml:191 (caption)
+#: gui/pregame/mainmenu.xml:192 (caption)
 msgid "Campaigns"
 msgstr "Campañas"
 
-#: gui/pregame/mainmenu.xml:192 (tooltip)
+#: gui/pregame/mainmenu.xml:193 (tooltip)
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 msgstr "Revive la historia a través de campañas militares históricas. [AÚN SIN IMPLEMENTAR]"
 
-#: gui/pregame/mainmenu.xml:208 (caption) gui/savedgames/load.xml:15 (caption)
+#: gui/pregame/mainmenu.xml:209 (caption) gui/savedgames/load.xml:15 (caption)
 msgid "Load Game"
 msgstr "Cargar partida"
 
-#: gui/pregame/mainmenu.xml:209 (tooltip)
+#: gui/pregame/mainmenu.xml:210 (tooltip)
 msgid "Click here to load a saved game."
 msgstr "Pulsa aquí para retomar un juego ya guardado."
 
-#: gui/pregame/mainmenu.xml:232 (tooltip)
+#: gui/pregame/mainmenu.xml:233 (tooltip)
 msgid "Joining an existing multiplayer game."
 msgstr "Unirse a una partida multijugador existente."
 
-#: gui/pregame/mainmenu.xml:247 (tooltip)
+#: gui/pregame/mainmenu.xml:248 (tooltip)
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Crear una partida multijugador. \\n\\nEs necesario que el puerto UDP 20595 esté abierto."
 
-#: gui/pregame/mainmenu.xml:261 (caption)
+#: gui/pregame/mainmenu.xml:262 (caption)
 msgid "Game Lobby"
 msgstr "Sala multijugador"
 
-#: gui/pregame/mainmenu.xml:262 (tooltip)
+#: gui/pregame/mainmenu.xml:263 (tooltip)
 msgid "Launch the multiplayer lobby."
 msgstr "Entrar en la sala multijugador."
 
-#: gui/pregame/mainmenu.xml:292 (caption)
+#: gui/pregame/mainmenu.xml:293 (caption)
 msgid "Options"
 msgstr "Opciones"
 
-#: gui/pregame/mainmenu.xml:293 (tooltip)
+#: gui/pregame/mainmenu.xml:294 (tooltip)
 msgid "Adjust game settings."
 msgstr "Ajustar los parámetros del juego."
 
-#: gui/pregame/mainmenu.xml:310 (tooltip)
+#: gui/pregame/mainmenu.xml:311 (tooltip)
 msgid "Choose the language of the game."
 msgstr "Selecciona el idioma del juego."
 
-#: gui/pregame/mainmenu.xml:325 (caption)
+#: gui/pregame/mainmenu.xml:326 (caption)
 msgid "Scenario Editor"
 msgstr "Editor de escenarios"
 
-#: gui/pregame/mainmenu.xml:326 (tooltip)
+#: gui/pregame/mainmenu.xml:327 (tooltip)
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Abre el editor de escenarios Atlas en una ventana nueva. Podrás ejecutarlo con mayor seguridad iniciando el juego con el parámetro \"-editor\" desde la consola."
 
-#: gui/pregame/mainmenu.xml:379 (caption)
+#: gui/pregame/mainmenu.xml:339 (caption)
+msgid "Welcome Screen"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:340 (tooltip)
+msgid "Show the Welcome Screen. Useful if you hid it by mistake."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
 msgstr "Aprender a jugar"
 
-#: gui/pregame/mainmenu.xml:380 (tooltip)
-msgid "The 0 A.D. Game Manual"
-msgstr "Manual de juego de 0 A.D."
+#: gui/pregame/mainmenu.xml:397 (tooltip)
+msgid "Open the 0 A.D. Game Manual."
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:396 (caption)
+#: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
 msgstr "Un jugador"
 
-#: gui/pregame/mainmenu.xml:397 (tooltip)
+#: gui/pregame/mainmenu.xml:414 (tooltip)
 msgid "Challenge the computer player to a single player match."
 msgstr "Desafía al ordenador en una partida individual."
 
-#: gui/pregame/mainmenu.xml:412 (tooltip)
+#: gui/pregame/mainmenu.xml:429 (tooltip)
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Combate contra uno o más jugadores humanos en una partida multijugador."
 
-#: gui/pregame/mainmenu.xml:426 (caption)
+#: gui/pregame/mainmenu.xml:443 (caption)
 msgid "Tools & Options"
 msgstr "Herramientas y opciones"
 
-#: gui/pregame/mainmenu.xml:427 (tooltip)
+#: gui/pregame/mainmenu.xml:444 (tooltip)
 msgid "Game options and scenario design tools."
 msgstr "Opciones de juego y herramientas de diseño de escenarios."
 
-#: gui/pregame/mainmenu.xml:441 (caption)
+#: gui/pregame/mainmenu.xml:458 (caption)
 msgid "History"
 msgstr "Historia"
 
-#: gui/pregame/mainmenu.xml:442 (tooltip)
+#: gui/pregame/mainmenu.xml:459 (tooltip)
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Aprende sobre las civilizaciones que aparecen en 0 A.D."
 
-#: gui/pregame/mainmenu.xml:458 (caption) gui/session/session.xml:802
+#: gui/pregame/mainmenu.xml:475 (caption) gui/session/session.xml:802
 #: (caption) gui/session/session.xml:1300 (caption)
 msgid "Exit"
 msgstr "Salir"
 
-#: gui/pregame/mainmenu.xml:459 (tooltip)
-msgid "Exit Game"
-msgstr "Salir del juego"
+#: gui/pregame/mainmenu.xml:476 (tooltip)
+msgid "Exits the game."
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:495 (caption)
+#: gui/pregame/mainmenu.xml:512 (caption)
+msgid "Help with the Translation!"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:513 (tooltip)
+msgid "Click to open the 0 A.D translate page in your browser."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
 msgstr "Página Web"
 
-#: gui/pregame/mainmenu.xml:496 (tooltip)
+#: gui/pregame/mainmenu.xml:525 (tooltip)
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Pulsa para abrir play0ad.com en tu navegador web."
 
-#: gui/pregame/mainmenu.xml:509 (caption) gui/session/session.xml:743
+#: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:743
 #: (caption)
 msgid "Chat"
 msgstr "Chat"
 
-#: gui/pregame/mainmenu.xml:510 (tooltip)
+#: gui/pregame/mainmenu.xml:537 (tooltip)
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Pulsa para abrir el chat IRC de 0 A.D. en tu navegador web. (#0ad en webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:523 (caption)
+#: gui/pregame/mainmenu.xml:548 (caption)
 msgid "Report a Bug"
 msgstr "Informar de un fallo"
 
-#: gui/pregame/mainmenu.xml:524 (tooltip)
-msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error"
-msgstr "Pulsa para visitar el Trac de 0 A.D. para informar de un fallo, caída o error"
+#: gui/pregame/mainmenu.xml:549 (tooltip)
+msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:554 (caption)
+#: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -3441,7 +3516,7 @@ msgstr "Superponer movimiento de unidades"
 
 #: gui/session/session.xml:294 (caption)
 msgid "Range overlay"
-msgstr "Superponer distancias de tiro"
+msgstr "Superponer distancias"
 
 #: gui/session/session.xml:301 (caption)
 msgid "Bounding box overlay"
@@ -3477,7 +3552,7 @@ msgstr "Diplomacia"
 
 #: gui/session/session.xml:440 (caption)
 msgid "Theirs"
-msgstr "Los suyos"
+msgstr "Relación"
 
 #: gui/session/session.xml:443 (caption)
 msgid "A"
@@ -3518,8 +3593,8 @@ msgid "Choose player to view"
 msgstr "Elige un jugador para ver"
 
 #: gui/session/session.xml:628 (caption)
-msgid "ALPHA XV : Osiris"
-msgstr "ALFA VX: Osiris"
+msgid "ALPHA XVI : Patañjali"
+msgstr ""
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
@@ -3584,7 +3659,7 @@ msgstr "¡Bienvenido a 0 A.D.!"
 msgid "Show this message in the future"
 msgstr "Mostrar este mensaje en el futuro"
 
-#: gui/splashscreen/splashscreen.xml:35 (caption)
+#: gui/splashscreen/splashscreen.xml:38 (caption)
 msgid "Known issues (web)"
 msgstr "Problemas conocidos (web)"
 
@@ -3838,7 +3913,7 @@ msgstr "6. Recoger cualquier tipo de estadísticas que puedan identificar al usu
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr "  a. El análisis privado de los miembros del equipo de Wildfire Games (WFG) y sus afiliados."
+msgstr "a. El análisis privado de los miembros del equipo de Wildfire Games (WFG) y sus afiliados."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
@@ -3927,11 +4002,11 @@ msgstr "8. Permitirte darte de baja del servicio si en cualquier momento algún 
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
-" 9. Change this document in any way; at any time; on the condition that the "
+" 1. Change this document in any way; at any time; on the condition that the "
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr "9. Actualizar este documento de cualquier forma y en cualquier momento, bajo la condición de que el usuario del servicio sea notificado del cambio (la definición de notificación adecuada estará determinada por el plantel del equipo de Wildfire Games (WFG))"
+msgstr ""
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -3980,15 +4055,15 @@ msgstr "Controles básicos:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "• Clic izquierdo para seleccionar unidades."
+msgstr "• Haz clic izquierdo para seleccionar unidades."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "Mantener clic izquierdo y arrastrar para seleccionar un grupo de unidades."
+msgstr "• Mantén el clic izquierdo y arrastra para seleccionar un grupo de unidades."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "• Clic derecho para dar a las unidades un objetivo."
+msgstr "• Haz clic derecho para especificar un objectivo a tus unidades."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
@@ -4000,7 +4075,7 @@ msgstr "• Utiliza Control + Flechas de dirección, o Bloq Mayús + Rueda del r
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• Rueda del ratón, o las teclas \"+\" y \"-\" para acercar/alejar."
+msgstr "• Utiliza la rueda del ratón, o las teclas «+» y «-» para acercar/alejar."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -4017,7 +4092,7 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — juega una partida de prueba, o contra uno o más oponentes de la IA. La IA está en desarrollo y podría no funcionar con las últimas características, pero al menos te dejaría probar el juego contra otro oponente en caso de que no puedas jugar con otra persona."
+msgstr "• [font=\"sans-bold-14\"]Un jugador[font=\"sans-14\"] — juega una partida de prueba, o contra uno o más oponentes de la IA. La IA está en desarrollo y podría no funcionar con las últimas características, pero al menos te dejaría probar el juego contra otro oponente en caso de que no puedas jugar con otra persona."
 
 #: gui/manual/intro.txt:24
 msgid ""
@@ -4066,7 +4141,7 @@ msgstr "Y por último el cambio de configuraciones. Para mapas aleatorios se inc
 
 #: gui/manual/intro.txt:35
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Cuando estés listo para empezar, haz clic en \"Empezar Partida\"."
+msgstr "Cuando estés listo para empezar, haz clic en el botón de «comenzar partida»."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
@@ -4086,11 +4161,11 @@ msgstr "Alt + Intro: Alternar entre pantalla completa y ventana"
 
 #: gui/manual/intro.txt:41
 msgid "~ or F9: Show/hide console"
-msgstr "~ o F9: Muestra/esconde el control  de consola."
+msgstr "~ o F9: Mostrar o esconder la consola."
 
 #: gui/manual/intro.txt:42
 msgid "Alt + F: Show/hide frame counter (FPS)"
-msgstr "Alt + F: Muestra/esconde contador de cuadros por segundo (FPS)"
+msgstr "Alt + F: Mostrar o ocultar la tasa de cuadros por segundo (FPS)"
 
 #: gui/manual/intro.txt:43
 msgid ""
@@ -4100,7 +4175,7 @@ msgstr "F11: Des/habilitar el analizador de rendimiento en tiempo real (alterna 
 
 #: gui/manual/intro.txt:44
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr "Mayusculas + F11: Salva el perfil actual de datos a \"logs/profile.txt\""
+msgstr "Mayús + F11: Guarda los datos del perfil actual a «logs/profile.txt»"
 
 #: gui/manual/intro.txt:45
 msgid ""
@@ -4114,7 +4189,7 @@ msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr "Mayús + F2: Realiza una gran captura de pantalla (6400x4800, en formato .bmp, la ruta del archivo se muestra en la esquina superior izquierda de la pantalla una vez el archivo haya sido guardado, también se puede ver en la consola y los registros)"
+msgstr "Mayús + F2: Realiza una captura de pantalla enorme (6400x4800, en formato .bmp, la ruta del archivo se muestra en la esquina superior izquierda de la pantalla una vez se haya guardado, también puede verse en la consola y los registros)"
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -4154,11 +4229,11 @@ msgstr "Mayús + F8: Cargado rápido"
 
 #: gui/manual/intro.txt:55
 msgid "F10: Open/close menu"
-msgstr "F10: Abre/cierra el menú"
+msgstr "F10: Abre o cierra el menú"
 
 #: gui/manual/intro.txt:56
 msgid "F12: Show/hide time elapsed counter"
-msgstr "F12: Muestra/oculta el contador de tiempo transcurrido"
+msgstr "F12: Muestra u oculta el contador de tiempo transcurrido"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
@@ -4166,7 +4241,7 @@ msgstr "ESC: Cierra todos los diálogos (chat, menú) o cancela la selección ac
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
-msgstr "Intro: Abrir/enviar mensaje de chat."
+msgstr "Intro: Abrir o enviar un mensaje de chat"
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
@@ -4182,11 +4257,11 @@ msgstr "Supr: Elimina las unidades y edificios seleccionados"
 
 #: gui/manual/intro.txt:62
 msgid ",: Select idle fighters"
-msgstr ",: Selecciona militares desocupados"
+msgstr ",: Selecciona unidades militares inactivas"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".: Selecciona trabajadores desocupados (incluye soldados-ciudadanos)"
+msgstr ".: Selecciona trabajadores inactivos (incluyendo a ciudadanos soldado)"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."
@@ -4236,7 +4311,7 @@ msgstr "[font=\"sans-14\"]Ctrl + Clic derecho en el edificio: Guarnecer"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Mayus  + Click: Poner en cola una orden de mover/construir/recolectar/etc"
+msgstr "Mayús + Clic izquierdo: Poner en cola una orden de mover/construir/recolectar/etc"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
@@ -4259,7 +4334,7 @@ msgstr "Alt + Selección rectangular sobre unidades en el mapa: Selecciona únic
 #: gui/manual/intro.txt:79
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr "Ctrl + Click izquierdo sobre un icono de unidad/grupo con múltiples unidades seleccionadas: Deselecciona"
+msgstr "Ctrl + Clic izquierdo sobre un icono de unidad/grupo con múltiples unidades seleccionadas: Deselecciona"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -4269,7 +4344,7 @@ msgstr "Clic derecho en un edificio seleccionado: establece un punto de encuentr
 
 #: gui/manual/intro.txt:81
 msgid "Ctrl + Right Click with units selected:"
-msgstr "Ctrl + Clic derecho con las unidades seleccionadas:"
+msgstr "Ctrl + Clic derecho con unidades seleccionadas:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over a structure: Garrison"
@@ -4301,11 +4376,11 @@ msgstr "Alt + W: Activa el modo wireframe (presiona una vez para superponer wire
 #: gui/manual/intro.txt:89
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
-msgstr "Alt + S: Des/activar siluetas de unidades (puede mejorar ligeramente el rendimiento)"
+msgstr "Alt + S: Activa o desactiva las siluetas de unidades (desactivarlas puede mejorar ligeramente el rendimiento)"
 
 #: gui/manual/intro.txt:90
 msgid "Alt + Z: Toggle sky"
-msgstr "Alt + Z: Mostar/ocultar cielo"
+msgstr "Alt + Z: Mostar u ocultar el cielo"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
@@ -4364,7 +4439,7 @@ msgstr "Mayús + Rueda del ratón hacía abajo: Rota la cámara en la dirección
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr "F: Sigue la unidad selecionada (mueve la cámara y se para en la unidad o unidades que están siendo seguidas)"
+msgstr "F: Sigue la unidad seleccionada (mueve la cámara para dejar de seguir a las unidades)"
 
 #: gui/manual/intro.txt:106
 msgid "R: Reset camera zoom/orientation"
@@ -4372,15 +4447,15 @@ msgstr "R: Restaurar la posición y orientación de la cámara por defecto"
 
 #: gui/manual/intro.txt:107
 msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr "+: Zoom hacía dentro (Continua presionando para continuar reduciendo el zoom)"
+msgstr "+: Acercar la cámara al terreno (Sigue presionando para hacerlo más suave)"
 
 #: gui/manual/intro.txt:108
 msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr "-: Zoom hacía fuera (Continua presionando para continuar aumentando el zoom)"
+msgstr "+: Alejar la cámara del terreno (Sigue presionando para hacerlo más suave)"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr "Alt + W: Itinerar entre los modos de wireframe."
+msgstr "Alt + W: Itinerar entre los modos de «wireframe»."
 
 #: gui/manual/intro.txt:110
 msgid ""
@@ -4398,13 +4473,13 @@ msgstr "[font=\"sans-14\"][: Rota el edificio 15 grados en el sentido contrario 
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr "]: Rota el edificio 15 grados en el sentido de las agujas del reloj"
+msgstr "]: Rotar el edificio 15 grados en el sentido de las agujas del reloj"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr "Arrastra con el botón izquierdo: Rota un edificio usando el ratón (los cimientos serán emplazados cuando el botón sea soltado)"
+msgstr "Arrastrar con el botón izquierdo: Rotar un edificio usando el ratón (los cimientos se emplazarán una vez se suelte el botón)"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -4436,19 +4511,19 @@ msgstr "• Número de versión del juego y opciones de compilación (modo de op
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr "• Detalles de hardware: versión del S.O., versión de los controladores gráficos, capacidad para OpenGL, tamaño de la pantalla, detalles de la CPU, tamaño de la RAM."
+msgstr "• Detalles de hardware: versión del S.O., versión de los controladores gráficos, funcionalidad OpenGL, tamaño de la pantalla, detalles del procesador, tamaño de la RAM."
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr "Detalles de rendimiento: una instantánea de datos de tiempo se mostrara durante unos segundos después de iniciar un partido o cambiar la configuración de gráficos."
+msgstr "• Detalles de rendimiento: transmitirnos algunas cifras tras comenzar una partida o cuando cambies los ajustes gráficos."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr "Los datos enviados solo suponen el coste de unos pocos kilobytes cada vez que lanzas el juego, el uso del ancho de banda es mínimo."
+msgstr "Los datos enviados solo suponen el coste de unos pocos kilobytes cada vez que ejecutas el juego, el uso de tu ancho de banda es mínimo."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -4457,7 +4532,7 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr "Nosotros guardaremos los datos recibidos en nuestro servidor, y quizás publicaremos estadísticas anónimas sobre detalles para ayudar a otros desarolladores de juegos con cuestiones similares. Guardaremos la dirección IP que envió los datos, para ayudar a detectar abusos del servicio, pero no la publicaremos. Los datos enviados pueden ser vistos en http://feedback.wildfiregames.com/"
+msgstr "Almacenaremos los datos recibidos en nuestro servidor, y puede que publiquemos estadísticas o detalles anónimos para ayudar a otros desarrolladores de juegos con dudas similares. Guardaremos la dirección IP que envió los datos para ayudar a detectar abusos del servicio, pero no la publicaremos. Los datos enviados pueden verse en http://feedback.wildfiregames.com/"
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
@@ -4548,876 +4623,872 @@ msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop
 msgstr "\"Mejor ser sabio por las desgracias de otros que por las propias.\" - Esopo"
 
 #: gui/text/quotes.txt:13
-msgid "\"Beware the wolf in sheep's clothing.\" - Aesop"
-msgstr "\"Cuidado del lobo con piel de oveja.\" - Esopo"
-
-#: gui/text/quotes.txt:14
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
 msgstr "\"La familiaridad alimenta el desdén; la convivencia suaviza prejuicios.\" - Esopo"
 
-#: gui/text/quotes.txt:15
+#: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
 msgstr "\"Es fácil ser valiente desde la distancia.\" - Esopo"
 
-#: gui/text/quotes.txt:16
+#: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
 msgstr "\"Es provechoso prepararse hoy para los deseos del mañana.\" - Esopo"
 
-#: gui/text/quotes.txt:17
+#: gui/text/quotes.txt:16
 msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
 msgstr "\"No sólo la bella pluma hace al ave bella.\" - Esopo"
 
-#: gui/text/quotes.txt:18
+#: gui/text/quotes.txt:17
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop"
 msgstr "\"Nunca confíes en el consejo de un hombre bajo la agonía de sus propios desafíos.\" - Esopo"
 
-#: gui/text/quotes.txt:19
+#: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
 msgstr "\"A menudo la persuasión es más efectiva que la misma fuerza.\" - Esopo"
 
-#: gui/text/quotes.txt:20
+#: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
 msgstr "\"El engreimiento propio lleva a la autodestrucción.\" - Esopo"
 
-#: gui/text/quotes.txt:21
+#: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
 msgstr "\"Más vale ir lento pero seguro.\" - Esopo"
 
-#: gui/text/quotes.txt:22
+#: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
 msgstr "\"Los dioses ayudan a los que se ayudan a sí mismos.\" - Esopo"
 
-#: gui/text/quotes.txt:23
+#: gui/text/quotes.txt:22
 msgid ""
 "\"The shaft of the arrow had been feathered with one of the eagle's own "
 "plumes. We often give our enemies the means of our own destruction.\" - "
 "Aesop"
 msgstr "\"El astil de la flecha se emplumó con el plumaje del mismo águila. A menudo proporcionamos a nuestros enemigos el medio de nuestra propia destrucción.\" - Esopo"
 
-#: gui/text/quotes.txt:24
+#: gui/text/quotes.txt:23
 msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
 msgstr "\"La unión hace la fuerza.\" - Esopo"
 
-#: gui/text/quotes.txt:25
+#: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
 msgstr "\"Las promesas de tus enemigos nacieron para ser rotas.\" - Esopo"
 
-#: gui/text/quotes.txt:26
+#: gui/text/quotes.txt:25
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
 msgstr "\"Los espartanos no preguntan el número, sino la ubicación del enemigo.\" - Agis II de Esparta"
 
-#: gui/text/quotes.txt:27
+#: gui/text/quotes.txt:26
 msgid ""
 "\"Weep not for me, suffering as I do unjustly, I am in a happier case than "
 "my murderers.\" - Agis IV, 24th Spartan king of the Eurypontid dynasty"
 msgstr "\"No lloréis por mí, sufriendo como hago en injusticia, mi situación es mejor que la de mis asesinos.\" - Agis IV, 24º rey espartano de la dinastía Europóntida"
 
-#: gui/text/quotes.txt:28
+#: gui/text/quotes.txt:27
 msgid ""
 "\"He who doeth good shall meet with good; and he who doeth evil shall meet "
 "with evil, for the Lord judgeth a man according to the measure of his "
 "work.\" - Ahiqar, Assyrian sage"
-msgstr "\"Él que hace el bien se emparejará con los buenos; y aquel que hace el mal será emparejado con los malvados, para que el Señor juzgue a un hombre de acuerdo a la medida de su trabajo.\" - Ahiqar, sabio asirio"
+msgstr "\"Al que hace el bien se emparejará con los buenos; y aquel que hace el mal será emparejado con los malvados, para que el Señor juzgue a todo hombre de acuerdo a la medida de su trabajo.\" - Ahiqar, sabio asirio"
 
-#: gui/text/quotes.txt:29
+#: gui/text/quotes.txt:28
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
 msgstr "\"Si yo no fuera Alejandro, mi deseo sería ser Diógenes.\" - Alejandro Magno"
 
-#: gui/text/quotes.txt:30
+#: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
 msgstr "\"Nunca robo la victoria.\" - Alejandro Magno"
 
-#: gui/text/quotes.txt:31
+#: gui/text/quotes.txt:30
 msgid ""
 "\"Are you still to learn that the end and perfection of our victories is to "
 "avoid the vices and infirmities of those whom we subdue?\" - Alexander the "
 "Great"
 msgstr "\"¿Todavía tenéis que aprender que el fin último y perfección de nuestras victorias es evitar los vicios y flaquezas de aquellos a los que hemos sometido?\" - Alejandro Magno"
 
-#: gui/text/quotes.txt:32
+#: gui/text/quotes.txt:31
 msgid ""
 "\"To the strongest!\" - Alexander, on his death bed, when asked who should "
 "succeed him as king"
 msgstr "\"¡El más fuerte!\" - Alejandro, en su lecho de muerte, cuando se le preguntó quién le sucedería como rey"
 
-#: gui/text/quotes.txt:33
+#: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
 msgstr "\"No hay nada imposible para aquellos que lo intentan.\" - Alejandro Magno"
 
-#: gui/text/quotes.txt:34
+#: gui/text/quotes.txt:33
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great"
 msgstr "\"Sexo y sueño me recuerdan de mi mortalidad.\" - Alejandro Magno"
 
-#: gui/text/quotes.txt:35
+#: gui/text/quotes.txt:34
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
 " covetously.\" - Anacharsis"
 msgstr "\"El ágora es un lugar creado para que los hombres se engañen entre sí, y se comporten con codicia.\" - Anarcarsis"
 
-#: gui/text/quotes.txt:36
+#: gui/text/quotes.txt:35
 msgid ""
 "\"Written laws are like spiders’ webs; they will catch, it is true, the weak"
 " and poor, but would be torn in pieces by the rich and powerful.\" - "
 "Anacharsis"
-msgstr "\"Las leyes son como las telarañas: los insectos pequeños quedan atrapados en ellas, los grandes y poderosos las rompen\" - Anarcarsis"
+msgstr "\"Las leyes son como las telarañas: los insectos pequeños quedan atrapados en ellas, los grandes y poderosos las rompen y despedazan.\" - Anarcarsis"
 
-#: gui/text/quotes.txt:37
+#: gui/text/quotes.txt:36
 msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
 msgstr "\"El zorro sabe muchos trucos; el erizo sólo uno, pero es bueno.\" - Arquíloco"
 
-#: gui/text/quotes.txt:38
+#: gui/text/quotes.txt:37
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes"
-msgstr "\"Los estados están condenados cuando no pueden distinguir a los buenos hombres de los malvados.\" - Antístenes"
+msgstr "\"Los Estados se condenan cuando no pueden distinguir a los hombres buenos de los malvados.\" - Antístenes"
 
-#: gui/text/quotes.txt:39
+#: gui/text/quotes.txt:38
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever."
 msgstr "\"Dadme un punto de apoyo, y moveré el mundo.\" - Arquímedes, en el uso de la palanca."
 
-#: gui/text/quotes.txt:40
+#: gui/text/quotes.txt:39
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes"
-msgstr "\"Es de sus enemigos, y no de sus amigos, que las ciudades aprenden la lección de construir altas murallas y mejores navíos de guerra.\" - Aristófanes"
+msgstr "\"Es de sus enemigos, y no de sus amigos, de quien las ciudades aprenden la lección de construir altas murallas y mejores navíos de guerra.\" - Aristófanes"
 
-#: gui/text/quotes.txt:41
+#: gui/text/quotes.txt:40
 msgid ""
 "\"Words give wings to the mind and make a man soar to heaven.\" - "
 "Aristophanes"
 msgstr "\"La palabra da alas a la mente y deja al hombre alcanzar los cielos.\" - Aristófanes"
 
-#: gui/text/quotes.txt:42
+#: gui/text/quotes.txt:41
 msgid ""
 "\"It is the compelling power of great thoughts and ideas to engender "
 "language of equal greatness.\" - Aristophanes"
-msgstr "\"El irresistible poder de los grandes pensamientos e ideas es el de engendrar un lenguaje de igual grandeza.\" - Aristófanes"
+msgstr "\"El irresistible poder de grandes pensamientos e ideas es el de engendrar un lenguaje de igual grandeza.\" - Aristófanes"
+
+#: gui/text/quotes.txt:42
+msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
+msgstr "\"El hambre no conoce más que quien la alimenta.\" - Aristófanes"
 
 #: gui/text/quotes.txt:43
-msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
-msgstr "\"El hambre no conoce a más quien la alimenta.\" - Aristófanes"
-
-#: gui/text/quotes.txt:44
 msgid ""
 "\"I count him braver who overcomes his desires than him who overcomes his "
 "enemies.\" - Aristotle"
 msgstr "\"Más valiente es aquel que vence a sus deseos que el que vence a sus enemigos.\" - Aristóteles"
 
-#: gui/text/quotes.txt:45
+#: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
 msgstr "\"Nuestro carácter es el resultado de nuestra conducta.\" - Aristóteles"
 
-#: gui/text/quotes.txt:46
+#: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
 msgstr "\"El hombre es por naturaleza un animal político.\" - Aristóteles"
 
-#: gui/text/quotes.txt:47
+#: gui/text/quotes.txt:46
 msgid ""
 "\"If liberty and equality, as is thought by some, are chiefly to be found in"
 " democracy, they will be best attained when all persons alike share in the "
 "government to the utmost.\" - Aristotle"
-msgstr "\"Si la libertad y la equidad, como algunos creen, se encuentran en la democracia, se lograrán mejor cuando todas las personas por igual compartan el gobierno hasta sus últimas consecuencias.\" - Aristóteles"
+msgstr "\"Si la libertad y la equidad, como algunos creen, se encuentran en la democracia, se lograrán mejor cuando todas las personas por igual compartan gobierno hasta sus últimas consecuencias.\" - Aristóteles"
 
-#: gui/text/quotes.txt:48
+#: gui/text/quotes.txt:47
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle"
 msgstr "\"Tanto oligarcas como tiranos recelan de su gente, por lo que les despojan de sus armas.\" - Aristóteles"
 
-#: gui/text/quotes.txt:49
+#: gui/text/quotes.txt:48
 msgid "\"Wit is well-bred insolence.\" - Aristotle"
 msgstr "\"El ingenio es insolencia bien encauzada.\" - Aristóteles"
 
-#: gui/text/quotes.txt:50
+#: gui/text/quotes.txt:49
 msgid ""
 "\"It is simplicity that makes the uneducated more effective than the "
 "educated when addressing popular audiences.\" - Aristotle"
 msgstr "\"La simplicidad es lo que hace a los no educados más efectivos que los educados al dirigirse a audiencias del pueblo.\" - Aristóteles"
 
-#: gui/text/quotes.txt:51
+#: gui/text/quotes.txt:50
 msgid ""
 "\"Poetry demands a man with a special gift for it, or else one with a touch "
 "of madness in him.\" - Aristotle"
 msgstr "\"La poesía necesita de un hombre con un don especial para ello, o en su defecto alguien con tintes de locura en su corazón.\" - Aristóteles"
 
-#: gui/text/quotes.txt:52
+#: gui/text/quotes.txt:51
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle"
-msgstr "\"He conseguido ésto a través de la filosofía; que hago sin ser ordenado que otros sólo harían por miedo a la ley.\" - Aristóteles"
+msgstr "\"Lo he conseguido a través de la filosofía; hago sin ser ordenado que otros sólo harían por miedo a la ley.\" - Aristóteles"
 
-#: gui/text/quotes.txt:53
+#: gui/text/quotes.txt:52
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene"
 msgstr "\"Transita el camino que eligas con prudencia; pero cuando lo hayas adoptado, persevera en él con firmeza.\" - Bias de Priene"
 
-#: gui/text/quotes.txt:54
+#: gui/text/quotes.txt:53
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes"
-msgstr "\"Que estúpido fue por por parte del rey el arrancarse su cabello en sufrimiento, como si la calvicie fuera la cura para el dolor.\" - Bion de Borístenes"
+msgstr "\"Que estúpido fue por por parte del rey el arrancarse su cabello en sufrimiento, como si la calvicie fuera su cura para el dolor.\" - Bion de Borístenes"
 
-#: gui/text/quotes.txt:55
+#: gui/text/quotes.txt:54
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes"
-msgstr "\"Él no ha adquirido una fortuna; la fortuna lo ha adquirido a él.\" - Bion de Borístenes"
+msgstr "\"No hay sido él quien ha adquirido la fortuna, sino que la fortuna lo ha adquirido a él.\" - Bion de Borístenes"
 
-#: gui/text/quotes.txt:56
+#: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
 msgstr "\"Aflicción a los vencidos.\" - Breno"
 
-#: gui/text/quotes.txt:57
+#: gui/text/quotes.txt:56
 msgid ""
 "\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
 "Gaius Julius Caesar"
 msgstr "\"Así se sirve a los tiranos.\" - Marco Junio Bruto, tras asesinar a Cayo Julio César"
 
-#: gui/text/quotes.txt:58
+#: gui/text/quotes.txt:57
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide"
-msgstr "\"Escapar, sí. Pero esta vez será con mis manos, no mis pies.\" - Marus Junius Brutus, antes de cometer suicidio"
+msgstr "\"Escapar, sí. Pero esta vez será con mis manos, no mis pies.\" - Marco Junio Bruto, antes de cometer suicidio"
 
-#: gui/text/quotes.txt:59
+#: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
 msgstr "\"Vine, ví, vencí.\" - Cayo Julio César"
 
-#: gui/text/quotes.txt:60
+#: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
 msgstr "\"Los hombres creen lo que quieren creer.\" - Cayo Julio César"
 
-#: gui/text/quotes.txt:61
+#: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
 msgstr "\"La suerte está echada.\" - Cayo Julio César"
 
-#: gui/text/quotes.txt:62
+#: gui/text/quotes.txt:61
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar"
 msgstr "\"No es al hombre de cabello largo y bien alimentado al que temo, es al hombre pálido y hambriento.\" - Cayo Julio César"
 
-#: gui/text/quotes.txt:63
+#: gui/text/quotes.txt:62
 msgid "\"Set a thief to catch a thief.\" - Callimachus"
 msgstr "\"Nada mejor que un ladrón para cazar a un ladrón.\" - Calímaco"
 
-#: gui/text/quotes.txt:64
+#: gui/text/quotes.txt:63
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder"
-msgstr "\"Un hombre sabio aprende más de la necedad de un necio que un necio de la sabiduría de un sabio.\" -- Catón el Viejo"
+msgstr "\"Un hombre sabio aprende más de la necedad de un necio que un necio de la sabiduría de un sabio.\" - Catón el Viejo"
 
-#: gui/text/quotes.txt:65
+#: gui/text/quotes.txt:64
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the Elder"
 msgstr "\"Es más, Cartago debe ser destruída.\" - Catón el Viejo"
 
-#: gui/text/quotes.txt:66
+#: gui/text/quotes.txt:65
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder"
-msgstr "\"Todos los hombres mandan a sus mujeres, y mandamos a toda la humanidad, pero las mujeres nos mandan a nosotros.\" - Cato el anciano"
+msgstr "\"Los hombres mandan a sus mujeres, y mandamos a la humanidad, pero las mujeres nos mandan a nosotros.\" - Catón el Viejo"
+
+#: gui/text/quotes.txt:66
+msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
+msgstr "\"Sé fuerte o compasivo según la ocasión lo requiera.\" - Catón el Viejo"
 
 #: gui/text/quotes.txt:67
-msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
-msgstr "\"Se fuerte o compasivo según la ocasión lo requiera.\" - Catón el Viejo"
-
-#: gui/text/quotes.txt:68
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
 msgstr "\"El peor dirigente es aquel que no puede dirigirse a sí mismo.\" - Catón el Viejo"
 
-#: gui/text/quotes.txt:69
+#: gui/text/quotes.txt:68
 msgid ""
 "\"Whoever imposes severe punishment becomes repulsive to the people; while "
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya"
-msgstr "\"Aquél que impone castigos severos se vuelve repulsivo para la gente; mientras que aquél que premia castigos leves se vuelve despreciable. Pero quien impone castigos merecidos se vuelve respetable.\" - Chanakya"
+msgstr "\"Aquél que imponga castigos severos se volverá repulsivo para el pueblo; mientras que otro que premie castigos leves se convertirá en despreciable. Pero el que inponga castigos merecidos se volverá respetable.\" - Chanakya"
 
-#: gui/text/quotes.txt:70
+#: gui/text/quotes.txt:69
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya"
-msgstr "\"Si un rey es energético, sus súbditos serán igual de energéticos.\" - Chanakya"
+msgstr "\"Si un rey es enérgico, sus súbditos serán igual de enérgicos.\" - Chanakya"
 
-#: gui/text/quotes.txt:71
+#: gui/text/quotes.txt:70
 msgid ""
 "\"For there is but one essential justice which cements society, and one law "
 "which establishes this justice. This law is right reason, which is the true "
 "rule of all commandments and prohibitions.\" - Marcus Tullius Cicero"
-msgstr "\"Sólo existe una justicia esencial que cementa la sociedad, y una sola ley que ejercita dicha justicia. Ésta ley es la razón final, por la que se regirán todas las órdenes y prohibiciones.\" - Marco Tulio Cicerón"
+msgstr "\"Sólo existe una justicia esencial que cementa la sociedad, y una sola ley que ejercita dicha justicia. Ésta ley es la razón final por la que se regirán todas las órdenes y prohibiciones.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:72
+#: gui/text/quotes.txt:71
 msgid "\"O, the times, O, the customs!\" - Marcus Tullius Cicero"
 msgstr "\"¡Oh, los tiempos! ¡Oh, las costumbres!\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:73
+#: gui/text/quotes.txt:72
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Marcus"
 " Tullius Cicero"
 msgstr "\"Nadie es tan viejo como para pensar que uno no pueda vivir un año más.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:74
+#: gui/text/quotes.txt:73
 msgid ""
 "\"We are not born, we do not live for ourselves alone; our country, our "
 "friends, have a share in us.\" - Marcus Tullius Cicero"
 msgstr "\"No nacemos ni vivimos para nosotros mismos; nuestro país, nuestros amigos, forman parte de nosotros.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:75
+#: gui/text/quotes.txt:74
 msgid ""
 "\"Yield, ye arms, to the toga; to civic praise, ye laurels.\" - Marcus "
 "Tullius Cicero"
-msgstr "\"Que las armas cedan a la toga, y que el laurel se conceda a los méritos\". - Marco Tulio Cicerón"
+msgstr "\"Que las armas cedan a la toga, y que el laurel se conceda a los méritos del pueblo.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:76
+#: gui/text/quotes.txt:75
 msgid "\"At my signal, unleash Hell.\" - Maximus Decimus Meridius"
 msgstr "\"A mi señal, desencadenad un infierno.\" - Máximo Decimo Meridio"
 
-#: gui/text/quotes.txt:77
+#: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
 msgstr "\"El tiempo todo lo cura.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:78
+#: gui/text/quotes.txt:77
 msgid ""
 "\"That, Senators, is what a favour from gangs amounts to. They refrain from "
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero"
-msgstr "\"Y eso, Senadores, es lo que vale un favor de bribones. Se abstienen de asesinar a alguien para después jactarse de haberle salvado la vida.\" - Marco Tulio Cicerón"
+msgstr "\"Y ese, Senadores, es el favor de un bribón. Se abstienen de asesinar a alguien para después jactarse de haberle salvado la vida.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:79
+#: gui/text/quotes.txt:78
 msgid "\"Genius is fostered by energy.\" - Marcus Tullius Cicero"
 msgstr "\"Al genio lo impulsa la energía.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:80
+#: gui/text/quotes.txt:79
 msgid "\"While there's life, there's hope.\" - Marcus Tullius Cicero"
 msgstr "\"Donde hay vida, hay esperanza.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:81
+#: gui/text/quotes.txt:80
 msgid ""
 "\"We must not say that every mistake is a foolish one.\" - Marcus Tullius "
 "Cicero"
 msgstr "\"No debemos decir que todo error es tonto.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:82
+#: gui/text/quotes.txt:81
 msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
 msgstr "\"Que el castigo se equipare con la ofensa.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:83
+#: gui/text/quotes.txt:82
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero"
 msgstr "\"Que el bienestar de la gente sea la ley suprema.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:84
+#: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
 msgstr "\"El dinero ilimitado conforma la base de la guerra.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:85
+#: gui/text/quotes.txt:84
 msgid "\"Laws are silent in time of war.\" - Marcus Tullius Cicero"
-msgstr "\"Las leyes se silencian en tiempos de guerra.\" - Marco Tulio Cicerón"
+msgstr "\"Las leyes son mudas en tiempos de guerra.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:86
+#: gui/text/quotes.txt:85
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero"
 msgstr "\"Un Estado ideal jamás promueve la guerra, salvo en justa defensa de su honor y seguridad.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:87
+#: gui/text/quotes.txt:86
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero"
-msgstr "\"El primer deber de un hombre es la búsqueda y la investigación de la verdad.\" - Marco Tulio Cicerón"
+msgstr "\"El primer deber de un hombre es la búsqueda e investigación de la verdad.\" - Marco Tulio Cicerón"
 
-#: gui/text/quotes.txt:88
+#: gui/text/quotes.txt:87
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Croesus (Greek: Kroisos), king of Lydia"
-msgstr "\"En la paz los hijos entierran a sus padres, pero en la guerra son los padres los que entierran a sus hijos.\" - Creso (del griego Kroisos), rey de Lidia"
+msgstr "\"En la paz los hijos entierran a sus padres, mientras que en la guerra son los padres los que entierran a sus hijos.\" - Creso (del griego Kroisos), rey de Lidia"
 
-#: gui/text/quotes.txt:89
+#: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
 msgstr "\"Yo soy Ciro, rey del mundo...\" - Ciro el Grande"
 
-#: gui/text/quotes.txt:90
+#: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
-msgstr "\"Diversidad en los consejos, unidad en el mando.\" -Ciro el Grande"
+msgstr "\"Diversidad en los consejos, unidad en el mando.\" - Ciro el Grande"
 
-#: gui/text/quotes.txt:91
+#: gui/text/quotes.txt:90
 msgid ""
 "\"Do not therefore begrudge me this bit of earth that covers my bones.\" - "
 "Epitaph of Cyrus the Great"
 msgstr "\"No envidiéis el pedazo de tierra que cubre mis huesos.\" - Epitafio de Ciro el Grande"
 
-#: gui/text/quotes.txt:92
+#: gui/text/quotes.txt:91
 msgid ""
 "\"Success always calls for greater generosity — though most people, lost in "
 "the darkness of their own egos, treat it as an occasion for greater greed.\""
 " - Cyrus the Great"
-msgstr "\"El éxito siempre es una llamada a tener una mayor generosidad — aunque para mucha gente, perdida en la oscuridad de sus propios egos, se convierte en una ocasión para una mayor codicia.\" - Ciro el Grande"
+msgstr "\"El éxito siempre es una llamada a tener una mayor generosidad — aunque para mucha gente, perdida en la oscuridad de sus propios egos, se convierte en una ocasión para tener una mayor codicia.\" - Ciro el Grande"
 
-#: gui/text/quotes.txt:93
+#: gui/text/quotes.txt:92
 msgid ""
 "\"Whether men lie, or say true, it is with one and the same object.\" - "
 "Darius I"
-msgstr "\"Sin importar si los hombres mienten, o dicen la verdad, es siempre con uno y el mismo objetivo.\" - Darius I"
+msgstr "\"Cuando un hombre miente o no, lo hace por la misma, única y sola razón.\" - Darío I"
 
-#: gui/text/quotes.txt:94
+#: gui/text/quotes.txt:93
 msgid ""
 "\"Good breeding in cattle depends on physical health, but in men on a well-"
 "formed character.\" - Democritus"
-msgstr "\"El buen ganado depende de su salud física, pero un buen hombre necesita un buen carácter.\" - Demócrito"
+msgstr "\"El buen ganado depende de su salud física, pero un buen hombre depende de un buen carácter.\" - Demócrito"
 
-#: gui/text/quotes.txt:95
+#: gui/text/quotes.txt:94
 msgid ""
 "\"If your desires are not great, a little will seem much to you; for small "
 "appetite makes poverty equivalent to wealth.\" - Democritus"
-msgstr "\"Si tus deseos no son de grandeza, solo un poco parecerá mucho para ti; pues poco apetito hace a la pobreza el equivalente a la riqueza.\" - Demócrito"
+msgstr "\"Si grandes no son tus deseos, un poco será demasiado; ya que el escaso apetito convierte a al probre en rico.\" - Demócrito"
 
-#: gui/text/quotes.txt:96
+#: gui/text/quotes.txt:95
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric"
-msgstr "\"Ejecución, ejecución y ejecución.\" - Demóscenes, sobre los los elementos más importantes de la retórica"
+msgstr "\"Una buena ejecución, ejecución y ejecución.\" - Demóscenes, sobre los tres elementos más importantes de la retórica"
 
-#: gui/text/quotes.txt:97
+#: gui/text/quotes.txt:96
 msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes"
 msgstr "\"No es posible encontrar un poder duradero que se base en la injusticia, el perjurio y el engaño.\" - Demóscenes"
 
-#: gui/text/quotes.txt:98
+#: gui/text/quotes.txt:97
 msgid "\"Small opportunities often presage great enterprises.\" - Demosthenes"
 msgstr "\"Las pequeñas oportunidades a menudo encierran grandes aventuras.\" - Demóstenes"
 
-#: gui/text/quotes.txt:99
+#: gui/text/quotes.txt:98
 msgid ""
 "\"Every advantage in the past is judged in the light of the final issue.\" -"
 " Demosthenes"
 msgstr "\"Cualquier ventaja pasada será juzgada a la luz del problema final.\" - Demóstenes"
 
-#: gui/text/quotes.txt:100
+#: gui/text/quotes.txt:99
 msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope, when "
 "Alexander the Great found him sunbathing and asked if he could help in in "
 "any way"
-msgstr "\"Sí, apartaos del sol.\" - Diógenes de Sinope, cuando Alejandro Magno le encontró tomando el sol y le preguntó si necesitaba algo"
+msgstr "\"Sí, apartaos ligeramente del sol.\" - Diógenes de Sinope, cuando Alejandro Magno le encontró tumbado tomando el sol y le preguntó si necesitaba algo"
 
-#: gui/text/quotes.txt:101
+#: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
 msgstr "\"Soy un ciudadano del mundo.\" - Diógenes de Sinope"
 
-#: gui/text/quotes.txt:102
+#: gui/text/quotes.txt:101
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope"
 msgstr "\"No es que yo esté loco, es que mi cabeza funciona de forma distinta a la tuya.\" - Diógenes de Sinope"
 
-#: gui/text/quotes.txt:103
+#: gui/text/quotes.txt:102
 msgid ""
 "\"Let thy speech be better than silence, or be silent.\" - Dionysius I of "
 "Syracuse"
-msgstr "\"Que tus palabras sean mejor que el silencio, o cállate.\" - Dionisio I de Siracusa"
+msgstr "\"Si no tienes nada mejor que decir que el silencio, cállate.\" - Dionisio I de Siracusa"
+
+#: gui/text/quotes.txt:103
+msgid "\"Nothing has more strength than dire necessity.\" - Euripides"
+msgstr "\"No hay nada más fuerte que la acuciante necesidad.\" - Eurípides"
 
 #: gui/text/quotes.txt:104
-msgid "\"Nothing has more strength than dire necessity.\" - Euripides"
-msgstr "\"Nada tiene más fuerza que la acuciante necesidad.\" - Eurípides"
-
-#: gui/text/quotes.txt:105
 msgid "\"A coward turns away, but a brave man's choice is danger.\" - Euripides"
 msgstr "\"El cobarde retrocede, el valiente elige el peligro.\" - Eurípides"
 
-#: gui/text/quotes.txt:106
+#: gui/text/quotes.txt:105
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides"
 msgstr "\"Los cobardes no cuentan en la batalla; están ahí, pero no en ella.\" - Eurípides"
 
-#: gui/text/quotes.txt:107
+#: gui/text/quotes.txt:106
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides"
-msgstr "\"La suerte lucha del lado de aquellos que son prudentes.\" - Euripides"
+msgstr "\"La suerte lucha del lado de aquellos que son prudentes.\" - Eurípides"
 
-#: gui/text/quotes.txt:108
+#: gui/text/quotes.txt:107
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi"
 msgstr "\"Si un hombre arranca el ojo de otro hombre, su ojo deberá ser arrancado.\" - Hammurabi"
 
-#: gui/text/quotes.txt:109
+#: gui/text/quotes.txt:108
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca"
-msgstr "\"No he venido a hacer la guerra contra los italianos, he venido a ayudar a los italianos contra Roma.\" - Hannibal Barca"
+msgstr "\"No he venido a hacer la guerra contra los italianos, he venido a ayudar a los italianos contra Roma.\" - Aníbal Barca"
+
+#: gui/text/quotes.txt:109
+msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
+msgstr "\"Encontraré un camino, o haré uno.\" - Aníbal Barca"
 
 #: gui/text/quotes.txt:110
-msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
-msgstr "\"Encontraré un camino, o haré uno.\" - Hannibal Barca"
-
-#: gui/text/quotes.txt:111
 msgid ""
 "\"My ancestors yielded to Roman valour. I am endeavouring that others, in "
 "their turn, will be obliged to yield to my good fortune, and my valour.\" - "
 "Hannibal Barca"
 msgstr "\"Mis ancestros cedieron ante el valor romano. Yo me esfuerzo para que otros, a su vez, se vean obligados a ceder ante mi buena suerte, y mi valor.\" - Aníbal Barca"
 
-#: gui/text/quotes.txt:112
+#: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
-msgstr "\"Todo fluye, nada permanece quieto.\" - Herakleitos"
+msgstr "\"Todo fluye, nada permanece quieto.\" - Heráclito"
+
+#: gui/text/quotes.txt:112
+msgid "\"Nothing endures but change.\" - Herakleitos"
+msgstr "\"Nada persiste más que el cambio.\" - Heráclito"
 
 #: gui/text/quotes.txt:113
-msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr "\"Nada persiste más que el cambio.\" - Herakleitos"
+msgid "\"You could not step twice into the same river.\" - Herakleitos"
+msgstr "\"No se puede entrar dos veces en el mismo río.\" - Heráclito"
 
 #: gui/text/quotes.txt:114
-msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr "\"No se puede entrar dos veces en el mismo río.\" - Herakleitos"
-
-#: gui/text/quotes.txt:115
 msgid "\"Character is destiny.\" - Herakleitos"
 msgstr "\"Carácter significa destino.\" - Heráclito"
 
-#: gui/text/quotes.txt:116
+#: gui/text/quotes.txt:115
 msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
 msgstr "\"Las circunstancias gobiernan a los hombres; los hombres no dominan las circunstancias.\" - Heródoto"
 
-#: gui/text/quotes.txt:117
+#: gui/text/quotes.txt:116
 msgid ""
 "\"The Lacedaemonians fought a memorable battle; they made it quite clear "
 "that they were the experts, and that they were fighting against amateurs.\" "
 "- Herodotus"
 msgstr "\"Los lacedemonios lucharon una batalla memorable; dejaron bien claro que eran ellos los expertos, y que estaban luchando contra meros aficionados.\" - Heródoto"
 
-#: gui/text/quotes.txt:118
+#: gui/text/quotes.txt:117
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus"
-msgstr "\"Es el más amargo dolor entre los hombres, el tener gran conocimiento pero nada de poder.\" - Herodotus"
+msgstr "\"Es el más amargo dolor entre los hombres, el tener gran conocimiento pero nada de poder.\" - Heródoto"
 
-#: gui/text/quotes.txt:119
+#: gui/text/quotes.txt:118
 msgid "\"In soft regions are born soft men.\" - Herodotus"
 msgstr "\"En blandas regiones nacen hombres blandos.\" - Heródoto"
 
-#: gui/text/quotes.txt:120
+#: gui/text/quotes.txt:119
 msgid "\"It is sweet and honorable to die for one's country.\" - Horace"
 msgstr "\"Es bonito y honorable morir por el país de uno.\" - Horacio"
 
-#: gui/text/quotes.txt:121
+#: gui/text/quotes.txt:120
 msgid "\"We are but dust and shadow.\" - Horace"
 msgstr "\"Sólo somos polvo y sombra.\" - Horacio"
 
-#: gui/text/quotes.txt:122
+#: gui/text/quotes.txt:121
 msgid ""
 "\"I am not bound over to swear allegiance to any master; where the storm "
 "drives me I turn in for shelter.\" - Horace"
-msgstr "\"No estoy obligado a jurar lealtad a ningún señor; a donde me lleve la tormenta me vuelvo por refugio.\" - Horace"
+msgstr "\"No estoy obligado a jurar lealtad a ningún señor; me cobijo donde me lleve la tormenta.\" - Horacio"
 
-#: gui/text/quotes.txt:123
+#: gui/text/quotes.txt:122
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace"
 msgstr "\"La Grecia conquistada apresó a su salvaje conquistador, llevando sus artes a la rústica Latium.\" - Horacio"
 
-#: gui/text/quotes.txt:124
+#: gui/text/quotes.txt:123
 msgid ""
 "\"Guard yourself against accusations, even if they are false; for the "
 "multitude are ignorant of the truth and look only to reputation.\" - "
 "Isocrates"
-msgstr "\"Ten cuidado de las acusaciones, incluso si son falsas; pues las masas son ignorantes de la verdad y solo atienden a la reputación.\" - Isocrates"
+msgstr "\"Ten cuidado de las acusaciones, incluso si son falsas; pues las masas son ignorantes de la verdad y sólo atienden a la reputación.\" - Isócrates"
 
-#: gui/text/quotes.txt:125
+#: gui/text/quotes.txt:124
 msgid ""
 "\"I never learned how to tune a harp, or play upon a lute; but I know how to"
 " raise a small and inconsiderable city to glory and greatness.\" - "
 "Themistocles"
-msgstr "\"Nunca aprendí como afinar un arpa, o tocar un laúd; pero se como llevar una pequeña ciudad sin importancia a la gloria y la grandeza.\" - Themistocles"
+msgstr "\"Nunca aprendí como afinar un arpa, o tocar un laúd; pero sé como llevar una pequeña ciudad sin importancia a la gloria y la grandeza.\" - Temístocles"
+
+#: gui/text/quotes.txt:125
+msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
+msgstr "\"Tengo conmigo dos dioses, Persuasión y Compulsión.\" - Temístocles"
 
 #: gui/text/quotes.txt:126
-msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
-msgstr "\"Tengo conmigo dos dioses, Persuasión y Compulsión.\" - Themistocles"
-
-#: gui/text/quotes.txt:127
 msgid ""
 "\"For the Athenians command the rest of Greece, I command the Athenians; "
 "your mother commands me, and you command your mother.\" - Themistocles, in a"
 " statement to his son"
-msgstr "\"Los atenienses mandan el resto de Grecia, yo mando a los atenienses; tu madre me manda a mi, y vos mandas a tu madre.\" - Themistocles, en un dicho a su hijo"
+msgstr "\"Los atenienses gobiernan al resto de Grecia, yo mando a los atenienses; tu madre me manda a mi, y tú mandas a tu madre.\" - Temístocles, a su hijo"
 
-#: gui/text/quotes.txt:128
+#: gui/text/quotes.txt:127
 msgid "\"Strike, if you will, but listen.\" - Themistocles"
 msgstr "\"Rebelaros, si es vuestro deseo, pero escuchadme.\" - Temístocles"
 
-#: gui/text/quotes.txt:129
+#: gui/text/quotes.txt:128
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife before"
 " he left for Thermopylae"
-msgstr "\"Cásate con un buen hombre, y ten buenos hijos.\" - Leonidas, a su esposa antes de partir para Thermopylae"
+msgstr "\"Cásate con un buen hombre, y trae unos buenos hijos.\" - Leónidas, a su esposa antes de partir hacia las Termópilas"
 
-#: gui/text/quotes.txt:130
+#: gui/text/quotes.txt:129
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms"
 msgstr "\"¡Venid y cogedlas!\" - Leónidas, a los mensajeros persas que le exigían a él y a sus hombres que se desprendieran de sus armas"
 
-#: gui/text/quotes.txt:131
+#: gui/text/quotes.txt:130
 msgid "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
-msgstr "\"Para el hombre racional es donde la Sabiduría está en casa.\" - Zoroastro"
+msgstr "\"En el hombre racional es donde la Sabiduría es encuentra en casa.\" - Zoroastro"
 
-#: gui/text/quotes.txt:132
+#: gui/text/quotes.txt:131
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander"
 msgstr "\"Llama higo al higo, y a la pala, pala.\" - Menandro"
 
-#: gui/text/quotes.txt:133
+#: gui/text/quotes.txt:132
 msgid "\"The man who runs may fight again.\" - Menander"
 msgstr "\"El hombre que huye puede volver a luchar.\" - Menandro"
 
-#: gui/text/quotes.txt:134
+#: gui/text/quotes.txt:133
 msgid ""
 "\"At times discretion should be thrown aside, and with the foolish we should"
 " play the fool.\" - Menander"
 msgstr "\"A veces la discreción se debería dejar de lado, y así hacer de necio con los necios.\" - Menandro"
 
-#: gui/text/quotes.txt:135
+#: gui/text/quotes.txt:134
 msgid ""
 "\"Freedom is the sure possession of those alone who have the courage to "
 "defend it.\" - Pericles"
 msgstr "\"La libertad es la firme posesión de aquellos que tienen el coraje de defenderla.\" - Pericles"
 
-#: gui/text/quotes.txt:136
+#: gui/text/quotes.txt:135
 msgid ""
 "\"What you leave behind is not what is engraved in stone monuments, but what"
 " is woven into the lives of others.\" - Pericles"
 msgstr "\"Lo que dejas detrás no está grabado en monumentos de piedra, sino en la urdimbre de las vidas de los demás.\" - Pericles"
 
-#: gui/text/quotes.txt:137
+#: gui/text/quotes.txt:136
 msgid ""
 "\"We do not say that a man who takes no interest in politics is a man who "
 "minds his own business; we say that he has no business here at all.\" - "
 "Pericles"
 msgstr "\"No decimos que un hombre sin interés en política es un hombre que se ocupa de sí mismo; decimos que no se ocupa de nadie.\" - Pericles"
 
-#: gui/text/quotes.txt:138
+#: gui/text/quotes.txt:137
 msgid ""
 "\"They gave her their lives, to Her and to all of us, and for their own "
 "selves they won praises that never grow old, the most splendid of "
 "sepulchers...\" - Pericles, Funeral Oration"
 msgstr "\"Ellos dieron sus vidas, por Ella y por todos nosotros, y para ellos han ganado elogios sin tiempo, los más esplendidos sepulcros.\" - Pericles, oración del funeral"
 
-#: gui/text/quotes.txt:139
+#: gui/text/quotes.txt:138
 msgid ""
 "\"Make up your minds that happiness depends on being free, and freedom "
 "depends on being courageous.\" - Pericles"
 msgstr "\"Tienes que saber que la felicidad depende de la libertad, y la libertad depende del coraje.\" - Pericles"
 
-#: gui/text/quotes.txt:140
+#: gui/text/quotes.txt:139
 msgid ""
 "\"Your empire is now like a tyranny: it may have been wrong to take it; it "
 "is certainly dangerous to let it go.\" - Pericles"
 msgstr "\"Tu imperio se acaba de convertir en una tiranía: tomarlo puede haber estado mal; pero dejarlo ir es demasiado peligroso.\" - Pericles"
 
-#: gui/text/quotes.txt:141
+#: gui/text/quotes.txt:140
 msgid ""
 "\"If Athens shall appear great to you, consider then that her glories were "
 "purchased by valiant men, and by men who learned their duty.\" - Pericles"
 msgstr "\"Si Atenas se te antoja grandiosa, considera que sus glorias las compraron hombres valientes, hombres que conocían su deber.\" - Pericles"
 
-#: gui/text/quotes.txt:142
+#: gui/text/quotes.txt:141
 msgid ""
 "\"Just because you do not take an interest in politics doesn't mean politics"
 " won't take an interest in you.\" - Pericles"
-msgstr "\"El hecho de que no tengas interés en la política no significa que los políticos no tengan interés en ti\" - Pericles"
+msgstr "\"El hecho de que no tengas interés en la política no significa que los políticos no tengan interés en ti.\" - Pericles"
 
-#: gui/text/quotes.txt:143
+#: gui/text/quotes.txt:142
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man trembles exceedingly at heart on its approach.\" - Pindar"
 msgstr "\"La guerra es tranquila para aquellos que no la han experimentado, pero el corazón de aquellos que la han vivido tiembla como nada cuando se acerca.\" - Pindar"
 
-#: gui/text/quotes.txt:144
+#: gui/text/quotes.txt:143
 msgid ""
 "\"The hour of departure has arrived, and we go our ways — I to die, and you "
 "to live. Which is better God only knows.\" - Plato"
 msgstr "\"La hora de partir ha llegado, y tomamos nuestros propios caminos — Yo a morir, y tu a vivir. Cual es mejor solo Dios lo sabe.\" - Platón"
 
-#: gui/text/quotes.txt:145
+#: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
 msgstr "\"Una vida sin experiencias no merece ser vivida.\" - Platón"
 
-#: gui/text/quotes.txt:146
+#: gui/text/quotes.txt:145
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or from cowardice fall "
 "behind.\" - Plato"
 msgstr "\"Que todo hombre recuerde que sus descendientes son también soldados que no deben desertar las filas de sus ancestros, o caer presas de la cobardía.\" - Platón"
 
-#: gui/text/quotes.txt:147
+#: gui/text/quotes.txt:146
 msgid ""
 "\"False words are not only evil in themselves, but they infect the soul with"
 " evil.\" - Plato"
 msgstr "\"Las mentiras no solo son malvadas en si mismas, si no que también envenenan el alma con maldad.\" - Platón"
 
-#: gui/text/quotes.txt:148
+#: gui/text/quotes.txt:147
 msgid ""
 "\"Democracy, which is a charming form of government, full of variety and "
 "disorder, and dispensing a sort of equality to equals and unequals alike.\" "
 "- Plato"
 msgstr "\"Democracia, una encantadora forma de gobierno, llena de variedad y desorden, dispensando algún tipo de equidad tanto a iguales como a desiguales.\" - Platón"
 
-#: gui/text/quotes.txt:149
+#: gui/text/quotes.txt:148
 msgid "\"Death is not the worst that can happen to men.\" - Plato"
 msgstr "\"La muerte no es lo peor que puede sufrir un hombre.\" - Platón"
 
-#: gui/text/quotes.txt:150
+#: gui/text/quotes.txt:149
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
 msgstr "\"Sólo los muertos han visto el fin de la guerra.\" - Desconocido"
 
-#: gui/text/quotes.txt:151
+#: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
 msgstr "\"Nuestra necesidad será la auténtica creadora.\" - Platón"
 
-#: gui/text/quotes.txt:152
+#: gui/text/quotes.txt:151
 msgid "\"A man with courage has every blessing.\" - Plautus"
 msgstr "\"Un hombre valiente lo tiene todo a su favor.\" - Plautus"
 
-#: gui/text/quotes.txt:153
+#: gui/text/quotes.txt:152
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus"
 msgstr "\"Ningún invitado resulta mejor bienvenido en la casa de un amigo que aquel que no se convierte una molestia al cabo de tres días.\" - Plautus"
 
-#: gui/text/quotes.txt:154
+#: gui/text/quotes.txt:153
 msgid "\"He whom the gods love dies young.\" - Plautus"
 msgstr "\"Aquel que ama a los dioses morirá joven.\" - Plautus"
 
-#: gui/text/quotes.txt:155
+#: gui/text/quotes.txt:154
 msgid "\"Practice yourself what you preach.\" - Plautus"
 msgstr "\"Practica lo que predicas.\" - Plautus"
 
-#: gui/text/quotes.txt:156
+#: gui/text/quotes.txt:155
 msgid "\"Drink, live like the Greeks, eat, gorge.\" - Plautus"
 msgstr "\"Bebe, vive como los griegos, come, atibórrate.\" - Plautus"
 
-#: gui/text/quotes.txt:157
+#: gui/text/quotes.txt:156
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Pompey "
 "the Great)"
 msgstr "\"Dejad de pronunciar leyes, nosotros tenemos armas.\" Gnaeus Pompeius Magnus (Pompeyo El Grande)"
 
-#: gui/text/quotes.txt:158
+#: gui/text/quotes.txt:157
 msgid ""
 "\"Man is the measure of all things: of things which are, that they are, and "
 "of things which are not, that they are not.\" - Protagoras"
-msgstr "\"El hombre es la medida de todas las cosas: de las que somos y las que no son, de las que no somos, y son.\" - Protágoras"
+msgstr "\"El hombre es la medida de todas las cosas, de las que son en cuanto que son, de las que no son en cuanto que no son.\" - Protágoras"
 
-#: gui/text/quotes.txt:159
+#: gui/text/quotes.txt:158
 msgid ""
 "\"We ought so to behave to one another as to avoid making enemies of our "
 "friends, and at the same time to make friends of our enemies.\" - Pythagoras"
 msgstr "\"Deberíamos comportarnos con los demás de forma que evitáramos hacernos enemigos de nuestros amigos, y al mismo tiempo hacernos amigos de nuestros enemigos.\" - Pitágoras"
 
-#: gui/text/quotes.txt:160
+#: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
 msgstr "\"Bajo el influjo de la ira deberíamos abstenernos del discurso y de la acción.\" - Pitágoras"
 
-#: gui/text/quotes.txt:161
+#: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
 msgstr "\"El poder es el vecino más cercano de la necesidad.\" - Pitágoras"
 
-#: gui/text/quotes.txt:162
+#: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
 msgstr "\"Los números controlan el universo.\" - Pitágoras"
 
-#: gui/text/quotes.txt:163
+#: gui/text/quotes.txt:162
 msgid ""
 "\"Rest satisfied with doing well, and leave others to talk of you as they "
 "please.\" - Pythagoras"
 msgstr "\"Consuélate con hacerlo bien, y deja que los otros hablen de ti como crean conveniente.\" - Pitágoras"
 
-#: gui/text/quotes.txt:164
+#: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
 msgstr "\"La ira comienza con necedad, y termina con arrepentimiento.\" - Pitágoras"
 
-#: gui/text/quotes.txt:165
+#: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
 msgstr "\"No hay palabra o acción que no tenga eco en la eternidad.\" - Pitágoras"
 
-#: gui/text/quotes.txt:166
+#: gui/text/quotes.txt:165
 msgid ""
 "\"There is geometry in the humming of the strings, there is music in the "
 "spacing of the spheres.\" - Pythagoras"
 msgstr "\"Hay geometría en la vibración de las cuerdas, hay música entre esferas.\" - Pitágoras"
 
-#: gui/text/quotes.txt:167
+#: gui/text/quotes.txt:166
 msgid ""
 "\"Practice justice in word and deed, and do not get in the habit of acting "
 "thoughtlessly about anything.\" - Pythagoras"
 msgstr "\"Practica la justicia en palabras y actos, no caigas en el hábito de actuar sin pensar en nada.\" - Pitágoras"
 
-#: gui/text/quotes.txt:168
+#: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
 msgstr "\"Ni siquiera pienses en hacer lo que no debe de ser hecho.\" - Pitágoras"
 
-#: gui/text/quotes.txt:169
+#: gui/text/quotes.txt:168
 msgid ""
 "\"When the wise man opens his mouth, the beauties of his soul present "
 "themselves to the view, like the statues in a temple.\" - Pythagoras"
 msgstr "\"Cuando el hombre sabio abre su boca, la belleza de su alma se presenta por si misma, como estatuas en un templo.\" - Pitágoras"
 
-#: gui/text/quotes.txt:170
+#: gui/text/quotes.txt:169
 msgid ""
 "\"Remind yourself that all men assert that wisdom is the greatest good, but "
 "that there are few who strenuously seek out that greatest good.\" - "
 "Pythagoras"
 msgstr "\"Recuerda que todos los hombres están de acuerdo en que el conocimiento es el mayor de los bienes, pero son pocos quienes incansablemente buscan ese mayor bien.\" - Pitágoras"
 
-#: gui/text/quotes.txt:171
+#: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
 msgstr "\"Sin justicia que lo ampare, no hay reino próspero.\" - Pitágoras"
 
-#: gui/text/quotes.txt:172
+#: gui/text/quotes.txt:171
 msgid ""
 "\"For harmony makes small states great, while discord undermines the "
 "mightiest empires.\" - Sallust"
 msgstr "\"La armonía hace grandiosos a los estamos más pequeños, mientras que la discordia quebranta los más poderosos imperios.\" - Sallust"
 
-#: gui/text/quotes.txt:173
+#: gui/text/quotes.txt:172
 msgid ""
 "\"I am mindful of human weakness, and I reflect upon the might of Fortune "
 "and know that everything that we do is exposed to a thousand chances.\" - "
 "Scipio Africanus"
 msgstr "\"Soy consciente de las debilidades humanas, y reflexiono sobre el poder de la fortuna y se que todo lo que hagamos está expuesto a miles de posibilidades.\" - Escorpión el Africano"
 
-#: gui/text/quotes.txt:174
+#: gui/text/quotes.txt:173
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
 msgstr "\"Prepárate para la guerra, ya que no has podido perdurar en paz.\" - Escorpión el Africano"
 
-#: gui/text/quotes.txt:175
+#: gui/text/quotes.txt:174
 msgid ""
 "\"Go, tell the Spartans, stranger passing by that here, obedient to their "
 "laws, we lie.\" - Simonides of Ceos, epitaph on the Cenotaph of Thermopylae"
 msgstr "\"Ve, oh viajero, díselo a los Espartanos, diles que, de acuerdo a sus leyes, aquí yacemos.\" - Simónides de Ceos, epitafio en el Cenotafio de las Termópilas"
 
-#: gui/text/quotes.txt:176
+#: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
 msgstr "\"Ni siquiera los dioses luchan contra la necesidad.\" - Simónides de Ceos"
 
-#: gui/text/quotes.txt:177
+#: gui/text/quotes.txt:176
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Simonides of Ceos"
 msgstr "\"No nos acobardamos, sino que dimos nuestras vidas para salvar Grecia cuando su destino pendía de un hilo.\" - Simónides de Ceos"
 
-#: gui/text/quotes.txt:178
+#: gui/text/quotes.txt:177
 msgid ""
 "\"The bravest are surely those who have the clearest vision of what is "
 "before them, glory and danger alike, and yet notwithstanding, go out to meet"
@@ -5433,7 +5504,7 @@ msgid ""
 "- Build anywhere on the map, even in enemy territory. Good for building a "
 "secret base behind enemy lines or to consolidate gains within enemy "
 "territory."
-msgstr "- Puede ser construido en cualquier sitio del mapa, incluso en territorio enemigo. Útil para construir una base secreta detrás de las líneas enemigas o para consolidar conquistas en el territorio enemigo."
+msgstr "- Se puede construir en cualquier parte del mapa, incluso en territorio enemigo. Útil para construir una base secreta detrás de las líneas enemigas o para consolidar conquistas en el territorio hostil."
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Loses health when in neutral or enemy territory."
@@ -5485,7 +5556,7 @@ msgstr "- Investiga mejoras de armamento y armadura para todas tus unidades."
 
 #: gui/text/tips/blacksmith.txt:6
 msgid "- Garrison a citizen-soldier inside to research faster."
-msgstr "- Guarnece un ciudadano-soldado dentro para investigar más rápido."
+msgstr "- Guarnece un ciudadano soldado dentro para investigar más rápido."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -5519,7 +5590,7 @@ msgstr "- Máquinas de asedio a distancia fuertes contra edificios."
 msgid ""
 "- May upgrade to flaming projectiles for extra effectiveness against "
 "buildings and units."
-msgstr "- Se puede mejorar a proyectiles ardientes para mayor efectividad contra edificios y unidades."
+msgstr "- Se pueden mejorar con proyectiles ardientes para mayor efectividad contra edificios y unidades."
 
 #: gui/text/tips/catapults.txt:6
 msgid "- Expensive and slow."
@@ -5529,7 +5600,7 @@ msgstr "- Caras y lentas."
 msgid ""
 "- Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr "- ¡Se mueven en carros desmontadas, y montadas se convierten en máquinas devastadoras!"
+msgstr "- Se transportan desmontadas en carros, y cuando se montan... ¡Se convierten en máquinas devastadoras!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -5557,7 +5628,7 @@ msgstr "CENTROS CÍVICOS"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr "- Los \"cimientos\" de tu nueva colonia."
+msgstr "- Los «cimientos» de tu nueva colonia."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -5565,7 +5636,7 @@ msgstr "- Reclama grandes extensiones de territorio."
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr "- Se puede construir en territorio aliado y neutral."
+msgstr "- Se pueden construir en territorio aliado y neutral."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
@@ -5577,7 +5648,7 @@ msgstr "EMBAJADAS"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr "- \"Cuarteles\" especiales, disponibles para la facción cartaginesa."
+msgstr "- «Cuarteles» especiales, disponibles para la facción cartaginesa."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
@@ -5677,11 +5748,11 @@ msgstr "AVANZADAS"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
-msgstr "-Construyela en territorio neutral  para descubrir un gran área."
+msgstr "-Constrúyelas en territorio neutral para descubrir un gran área."
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr "-Barata, a 80 Madera."
+msgstr "-Baratas, 80 Madera."
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
@@ -5707,7 +5778,7 @@ msgstr "- La mayoría de las facciones pueden utilizarlo en la Fase de poblado."
 msgid ""
 "- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
 " by siege weapons."
-msgstr "- Pueden ser atacadas por soldados enemigos, al contrario que los muros de la ciudad que son vulnerables únicamente contra armas de asedio."
+msgstr "- Las pueden atacar soldados enemigos, al contrario que los muros de la ciudad que son vulnerables únicamente contra armas de asedio."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -5761,7 +5832,7 @@ msgstr "- El navío de guerra estándar más pesado. Disponible para: Roma, Cart
 msgid ""
 "- Garrison up to 50 units for tons of firepower, including ballistas and "
 "scorpions."
-msgstr "- Guarnece hasta 50 unidades dentro para una potencia de fuego superior, incluyendo a balistas y escorpiones."
+msgstr "- Guarnece dentro hasta 50 unidades para ganar una potencia de fuego superior, incluyendo a balistas y escorpiones."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships."
@@ -5815,11 +5886,11 @@ msgstr "- Es la unidad de infantería más fuerte del juego."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
-msgstr "- Infantería campeona disponible para la formación espartana."
+msgstr "- Infantería campeona disponible para la facción espartana."
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid "- Long train time, but high armor and attack."
-msgstr "- Sufre de un largo reclutamiento, pero posee buena armadura y capacidad ofensiva."
+msgstr "- Su reclutamiento es lento, pero posee buena armadura y capacidad ofensiva."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
@@ -5885,11 +5956,11 @@ msgstr "TEMPLOS"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure required to upgrade to the City Phase."
-msgstr "- Se necesita una estructura de la Fase urbana para mejorar a la Fase de ciudad."
+msgstr "- Una estructura necesaria en la Fase urbana, con la que mejorar a la Fase de ciudad."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "- Recluta a sanadores para curar tus tropas en la batalla."
+msgstr "- Recluta a sanadores para curar a tus tropas en la batalla."
 
 #: gui/text/tips/temples.txt:6
 msgid "- Research healing, religious devotion, and cultural technologies."
@@ -5897,11 +5968,11 @@ msgstr "- Investiga tecnologías de sanación, devoción religiosa y cultura."
 
 #: gui/text/tips/temples.txt:8
 msgid "- Its \"aura\" heals nearby units."
-msgstr "- Su \"aura\" sana a las unidades cercanas."
+msgstr "- Su «aura» sana a las unidades cercanas."
 
 #: gui/text/tips/temples.txt:10
 msgid "- Garrison damaged units inside for quicker healing."
-msgstr "- Guarnece unidades heridas dentro para una sanación aún más rápida."
+msgstr "- Guarnece dentro a unidades heridas para una sanación aún más rápida."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -6248,7 +6319,7 @@ msgstr "Pequeño (2 jugadores)"
 
 #: simulation/data/map_sizes.jsonSizes[2].Name
 msgid "Medium"
-msgstr "Normal"
+msgstr "Intermedio"
 
 #: simulation/data/map_sizes.jsonSizes[2].LongName
 msgid "Medium (3 players)"
@@ -6293,7 +6364,7 @@ msgstr "La velocidad de explotación del metal se mejora un +10% f por cada edad
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
-msgstr "Buhos de plata"
+msgstr "Búhos de plata"
 
 #: civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -6514,7 +6585,7 @@ msgid ""
 "Greek theatres were places where the immortal tragedies of Aeschylus, "
 "Sophocles and many other talented dramatists were staged to the delight of "
 "the populace. They were instrumental in enriching Hellenic culture."
-msgstr "Los teatros griegos fueron lugares donde las tragedias inmortales tragedias de Esquilo, Sófocles y muchos otros dramaturgos  fueron escenificadas para el deleite de la población. Fueron un herramienta para enriquecer la cultura helénica."
+msgstr "Los teatros griegos fueron lugares donde las inmortales tragedias de Esquilo, Sófocles y muchos otros dramaturgos se representaban para deleite de la población. Resultaron una útil herramienta con la que enriquecer la cultura helénica."
 
 #: civs/athen.jsonStructures[1].Name civs/hele.jsonStructures[1].Name
 msgid "Gymnasion"
@@ -6529,7 +6600,7 @@ msgstr "Recluta unidades campeonas e investiga tecnologías relacionadas con és
 msgid ""
 "The Gymnasion was a vital place in Hellenic cities, where physical exercises"
 " were performed and social contacts established."
-msgstr "El Gymnasion era un lugar central en la vida social y cultural de las ciudades helenas, ya que allí era donde se desarrollaban competiciones de ejercicio físico y se establecían contactos."
+msgstr "El gimnasio era un lugar central en la vida social y cultural de las ciudades helenas, ya que allí era donde se desarrollaban competiciones de ejercicio físico y se establecían contactos."
 
 #: civs/athen.jsonStructures[2].Name civs/hele.jsonStructures[2].Name
 msgid "Prytaneion"
@@ -6543,7 +6614,7 @@ msgstr "Entrena héroes e investiga tecnologías relacionadas con ellos."
 msgid ""
 "The Prytaneion is the meeting place for the city elders to dine and to make "
 "swift decisions."
-msgstr "El pritaneo es el lugar donde se reunían los ancianos de la ciudad para cenar y tomar decisiones ágiles."
+msgstr "El pritaneo era el lugar donde se reunían los ancianos de la ciudad para cenar y tomar ágiles decisiones."
 
 #: civs/athen.jsonHistory
 msgid ""
@@ -6551,7 +6622,7 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr "Como cuna de la civilización occidental y lugar de nacimiento de la democracia, Atenas era famosa como centro de las artes, la educación y la filosofía. Los atenienses también eran guerreros poderosos, especialmente en el mar. En su apogeo, Atenas dominó gran parte del mundo griego durante varias décadas."
+msgstr "Como cuna de la civilización occidental y lugar de nacimiento de la democracia, Atenas fue reconocida como centro del arte, la educación y filosofía. Los atenienses también eran guerreros poderosos, especialmente en el mar. En su apogeo, Atenas dominó gran parte del mundo griego durante varias décadas."
 
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
 #: civs/celt.jsonFactions[0].Name
@@ -6905,7 +6976,7 @@ msgstr "Magón Barca"
 
 #: civs/cart.jsonAINames[7] maps/scenarios/Sahel.xml:42:PlayerData[1].Name
 msgid "Hasdrubal the Fair"
-msgstr "Asdrúbal el justo"
+msgstr "Asdrúbal el Justo"
 
 #: civs/cart.jsonAINames[8]
 msgid "Hanno the Great"
@@ -6979,7 +7050,7 @@ msgid ""
 "B.C. While he ultimately lost the Second Punic War his victories at Trebia, "
 "Lake Trasimene, and Cannae, and the feat of crossing the Alps have secured "
 "his position as among the best tacticians and strategists in history."
-msgstr "El hijo más famoso de Cartago. Hannibal Barca fue el mayor de los hijos de Hamilcar Barca y demostró ser un comandante incluso mejor que su padre. Vivió en 247-182 A.C. perdiendo finalmente la Segunda Guerra Púnica, sus victorias en Trebia, Lago Trasimene,  Cannae, y la hazaña de cruzar los Alpes le aseguró su posición entre los mejores estrategas tácticos en la historia."
+msgstr "El hijo más famoso de Cartago. Aníbal Barca fue el mayor de los hijos de Hamilcar Barca y demostró ser un comandante incluso mejor que su padre. Vivió en 247-182 A.C. perdiendo finalmente la Segunda Guerra Púnica, sus victorias en Trebia, Lago Trasimene,  Cannae, y la hazaña de cruzar los Alpes le aseguró su posición entre los mejores estrategas tácticos en la historia."
 
 #: civs/cart.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -6988,7 +7059,7 @@ msgid ""
 "B.C. While overshadowed by his sons, Hamilcar was great general in his own "
 "right, earning the nickname Baraq or Barca for the lightning speed of his "
 "advance."
-msgstr "Padre de Hannibal y dictador militar en la práctica. Hamilcar Barca fue un soldado y político que destacó a lo largo de toda su carrera. Vivió en 275-228 A.C. Aunque fue ensombrecido por sus hijos, Hamilcar fue un gran general por sus propios méritos, ganándose el apodo Baraq o Barca por sus avances a gran velocidad."
+msgstr "Padre de Aníbal y dictador militar en la práctica. Hamilcar Barca fue un soldado y político que destacó a lo largo de toda su carrera. Vivió en 275-228 A.C. Aunque fue ensombrecido por sus hijos, Hamilcar fue un gran general por sus propios méritos, ganándose el apodo Baraq o Barca por sus avances a gran velocidad."
 
 #: civs/cart.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -7042,7 +7113,7 @@ msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the Italian peoples subject to Rome, including the Italian Greeks "
 "and powerful Samnites, revolted and joined the Carthaginian cause."
-msgstr "Cuando Hannibal invadió Italia y derrotó a los romanos en una serie de batallas, muchos de los habitantes italianos sometidos a Roma, incluyendo los griegos italianos y los poderosos Samnitas, se sublevaron y se unieron a la causa Cartaginense."
+msgstr "Cuando Aníbal invadió Italia y derrotó a los romanos en una serie de batallas, muchos de los habitantes italianos sometidos a Roma, incluyendo los griegos italianos y los poderosos Samnitas, se sublevaron y se unieron a la causa Cartaginense."
 
 #: civs/cart.jsonStructures[3].Name
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
@@ -7128,7 +7199,7 @@ msgid ""
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
 "task to kill Britomartos and strip him of his armor."
-msgstr ""
+msgstr "Avanzando con un ejército pequeño, Marcelo reunió una fuerza combinada de galos insubrianos y aesatenos en Clastidium. El ejército galo avanzó con la prisa habitual y emitiendo gritos aterradores, y su rey, Britomartos, descubrio a Marcelo por medio de sus insignias de graduación, hechas por él mismo, retandolo y blandiendo su lanza. Britomartos era una figura destacada no sólo por su tamaño, sino también por sus adornos, porque estaba resplandeciente de colores brillantes y su armadura brillaba con el oro y la plata. Esta armadura, pensó Marcelo, sería un ofrecimiento apropiado para los dioses. Cargó contra el galo, atravesó su brillante peto y lo arrojó al suelo. Fue una tarea fácil matar a Britomartos y despojarlo de su armadura."
 
 #: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
 #: civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -7600,7 +7671,7 @@ msgid ""
 " a battle on the 23rd of August. Karos was wounded in an after battle small "
 "cavalry action the same evening and soon died thereafter, but he had carried"
 " off one of the most humiliating defeats that Rome ever suffered."
-msgstr ""
+msgstr "Karos fue un jefe de la tribu Belli, situada justo al este de los Celtíberos (Numantinos en el centro). Liderando a la confederación de tribus de la Meseta, ocultó 20.000 soldados de infantería y 5.000 jinetes a lo largo de un sendero de una zona boscosa. Entre 10.000 y 15.000 legionarios romanos cayeron en la emboscada. Esto sucedió el 23 de agosto de 153 a.C., el día en que Roma celebraba la festividad de Vulcano. Por un decreto senatorial posterior, se conoció la fecha como un dies ater, un \"día siniestro\", de donde viene la actual palabra desastre, y Roma nunca volvió a luchar en una batalla el 23 de agosto. Karos fue herido después de la batalla, esa misma tarde, en una pequeña maniobra de la caballería, y murió poco después, pero había conseguido una de las mayores derrotas que Romas jamás había sufrido."
 
 #: civs/iber.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -7632,7 +7703,7 @@ msgid ""
 "Defensive Aura - Gives all Iberian units and buildings within vision range "
 "of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
 "map."
-msgstr "Aura de Defensa - Ofrece a todas las unidades y edificios Ibéricos, dentro del rango de visión del monumento, un aumento de ataque de 10-15%. Límite de Construcción: Sólo se pueden construir 5 por mapa."
+msgstr "Aura defensiva - Ofrece a todas las unidades y edificios íberos un aumento de ataque de 10-15% dentro del rango de visión del monumento. Límite de construcción: Sólo se pueden construir 5 por mapa."
 
 #: civs/iber.jsonStructures[0].History
 msgid ""
@@ -7899,7 +7970,7 @@ msgid ""
 "orders) in Hinduism. Traditionally Kshatriya constitute the military and "
 "ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
 "Laws of Manu."
-msgstr ""
+msgstr "Kshatriya o Kashtriya, que significa luchador, es una de las cuatro varnas (castas sociales principales) en hinduismo. Tradicionalmente la Kshatriya constituía la élite militar que regía el país, tal y como se translucía en la organización social védico-hindú mantenida por los Vedas, descritas en las leyes de Manu."
 
 #: civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied Temple techs -50% cost and research time."
@@ -7985,7 +8056,7 @@ msgstr "Tradición arquera"
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
-msgstr "India era una tierra de arqueros. El grueso de cualquier ejército Indio estaba compuesto de arqueros extremadamente hábiles, armados con largos arcos de bambú."
+msgstr "India era una tierra de arqueros. El grueso de cualquier ejército hindú se componía de arqueros extremadamente hábiles armados con largos arcos de bambú."
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -8071,7 +8142,7 @@ msgstr "Mientras que los persas emplearon camellos solo en algunos casos, su uso
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr "Los Persas tienen un bono en la población máxima, de un +10% (por ejemplo, 330 de población en lugar de los habituales 300)."
+msgstr "Los persas tienen una bonificación de un +10% en la población máxima (por ejemplo, 330 de población en lugar de los habituales 300)."
 
 #: civs/pers.jsonCivBonuses[1].Name
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
@@ -8194,7 +8265,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "Los Persas construyeron el increíble Camino Real a lo largo de 1677 millas, desde Sardes hasta Susa; Darío el Grande y Jerjes también construyeron la magnífica Persépolis; Ciro el Grande desarrolló muchísimo Ecbatana y prácticamente reconstruyó la vieja capital Elamita de Susa. "
 
 #: civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -8519,7 +8590,7 @@ msgstr "Faro"
 msgid ""
 "When built along the shoreline, removes shroud of darkness over all the "
 "water, revealing all the coast lines on the map. Limit: 1."
-msgstr "Cuando es construido en la costa, elimina la oscuridad de toda el agua, revelando toda la costa en el mapa. Límite: 1."
+msgstr "Cuando se construye en en la línea de playa acaba con la niebla de guerra de todo el agua, revelando toda la costa en el mapa. Límite: 1."
 
 #: civs/ptol.jsonStructures[2].History
 msgid ""
@@ -8724,7 +8795,7 @@ msgid ""
 "execution. It has a turf wall, and it's surrounded by a canal filled with "
 "water whenever possible for extra defense. Many towns started up as bigger "
 "military camps to evolve to more complicated cities."
-msgstr ""
+msgstr "A veces era un campamento improvisado de cara a la ruta por la que marchaba el ejército, otras veces tenía una funcionalidad defensiva u ofensiva (para asedios). Tras el portón pretoriano, que debía encontrarse al este o frente al enemigo, se alzaban las primeras tiendas de centurios y cohortes. Los dracos (insignias de las cohortes) se plantaban allí. El portón decumano se encontraba diametralmente opuesto al pretoriano, en la parte trasera del campamento, y por ella los soldados se conducían al lugar fijado para castigo o ejecución. Tenía un muro de hierba, y, siempre que fuera posible, se rodeaba de un canal lleno de agua para mayor defensa. Muchas ciudades comenzaron como grandes campamentos militares, para evolucionar en ciudades, ya más complicadas."
 
 #: civs/rome.jsonStructures[1].Name
 #: simulation/templates/structures/rome_wallset_siege.xml:6
@@ -8928,7 +8999,7 @@ msgstr "Ejército tradicional vs. Ejército de la Reforma"
 #: civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
-msgstr "Una compra por única vez de 20 Elefantes de Guerra Indios del Imperio Mauriano."
+msgstr "Una compra única de 20 Elefantes de guerra hindúes del Imperio Mauriano."
 
 #: civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Marriage Alliance"
@@ -8944,7 +9015,7 @@ msgid ""
 "alliance, he married his daughter to Chandragupta. In return, Chandragupta "
 "gifted Seleucus a corps of 500 war elephants, which would prove a decisive "
 "military asset for Seleucus as he fought the rest of Alexander's successors."
-msgstr ""
+msgstr "Seleuco I Nicator invadió la región del Punjab de la India en el año 305 antes de Cristo, confrontando contra Chandragupta Maurya (Sandrokottos), fundador del imperio Maurya. Se dice que Chandragupta envió un ejército de 600.000 hombres y 9.000 elefantes de guerra (Plinio, Historia Natural VI, 22,4). Seleuco no tuvo ningún éxito y para establecer la paz entre las dos grandes potencias y por formalizar su alianza, casó su hija con Chandragupta. A cambio, Chandragupta doto a Seleuco con un regimiento de 500 elefantes de guerra, que probarían ser un activo militar decisivo para Seleuco mientras luchaba contra el resto de los sucesores de Alejandro."
 
 #: civs/sele.jsonFactions[0].Technologies[3].History
 msgid ""
@@ -9224,7 +9295,7 @@ msgid ""
 " the Battle of Megalopolis, the Macedonians prevailed in a long and bloody "
 "battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis "
 "made a heroic final stand in order to buy time for his troops to retreat."
-msgstr ""
+msgstr "Agis III fue el 20º rey espartano del  linaje de los Europóntidas. Agis improvisó una alianza de los estados griegos del sur para derribar la hegemonía macedónica mientras Alejandro Magno conquistaba Asia. Luego de asegurar a Creta como un estado tributario espartano, Agis sitió la ciudad de Megalópolis, aliada de Macedonia, en el Peloponeso. Antípatro, el regente de Macedonia, guió un ejército para detener el levantamiento. En la batalla de Megalópolis, los macedonios vencieron en una larga y sangrienta batalla. Como Leónidas 150 años atrás, en vez de rendirse, Agis hizo una heroica resistencia final para que sus tropas puedan replegarse."
 
 #: civs/spart.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/spart_hero_agis.xml:11
@@ -9676,7 +9747,7 @@ msgid ""
 "High mountains separating the enemies.\n"
 "\n"
 "The Pyrenees is a great mountain range located between modern France and Spain."
-msgstr "Las altas montañas que separan a los enemigos.\nLos Pirineos son una gran cadena montañosa situada entre la Francia y España moderna."
+msgstr "Altas montañas que separan a los enemigos.\n\nLos Pirineos son una gran cadena montañosa situada entre la Francia y España modernas."
 
 #: maps/random/pyrenean_sierra.jsonsettings.Name
 msgid "Pyrenean Sierra"
@@ -9803,19 +9874,21 @@ msgstr "Aegis Bot"
 
 #: simulation/ai/aegis/data.jsondescription
 msgid ""
-"Wraitii's improvement of qBot. It is more reliable and generally a better "
-"player. Note that it doesn't support saved games yet, and there may be other"
-" bugs. Please report issues to Wildfire Games (see the link in the main "
-"menu)."
-msgstr "Mejora creada por Wraitii de Qbot. Es más fiable y generalmente juega mejor. Ten en cuenta que no es compatible con partidas guardadas, y puede tener otros problemas. Manda tus informes de fallos a Wildfire Games (enlace en el menú principal)."
+"The most stable AI currently available, Aegis is an improvement of earlier "
+"bots by Wratii. Note that it doesn't support saved games yet. Please report "
+"issues to Wildfire Games (see the link in the main menu)."
+msgstr ""
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
 msgstr "Petra Bot"
 
 #: simulation/ai/petra/data.jsondescription
-msgid "Based on Aegis, but heavily modified and expected to be more robust"
-msgstr "Basado en Aegis, pero muy modificado y se espera que sea más robusto"
+msgid ""
+"Based on Aegis, but heavily modified and expected to be more robust. Note "
+"that it doesn't support saved games yet and is not as well tested as Aegis. "
+"Please report issues to Wildfire Games (see the link in the main menu)."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
@@ -10301,7 +10374,7 @@ msgstr "Acero wootz"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
-msgstr "Acero de Toledo"
+msgstr "Acero toledano"
 
 #: simulation/data/technologies/attack_tower_crenellations.jsondescription
 msgid ""
@@ -10620,7 +10693,7 @@ msgid ""
 "settlement. Women of the household were taught from a young age how to weave"
 " on the loom, and subsequently spent a large  share of their lives working "
 "with it."
-msgstr ""
+msgstr "El telar permitió la creación de ropa más fina con la que vestir en los asentamientos. Las mujeres de la casa eran instruidas desde una edad temprana en cómo tejer con el telar, por lo que pasaban gran parte de sus vidas trabajando con él."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -10839,7 +10912,7 @@ msgstr "Fase Ciudad - Britanos"
 msgid ""
 "Advance to City Phase, which unlocks Gallic structures and units. Territory "
 "radius for Civilization Centers increased by another +50%"
-msgstr ""
+msgstr "Avanza hacía la fase de ciudad, que desbloquea estructuras y unidades galas. El radio de territorio aumenta para los centros urbanos un +50% más."
 
 #: simulation/data/technologies/phase_city_gauls.jsongenericName
 msgid "City Phase - Gauls"
@@ -11222,7 +11295,7 @@ msgstr "Cohortes regias"
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
-msgstr "Un festival organizado exclusívamente para las mujeres, donde se festejaba la fertilidad femenina."
+msgstr "Un festival organizado exclusivamente para las mujeres, donde se festejaba la fertilidad femenina."
 
 #: simulation/data/technologies/unlock_females_house.jsontooltip
 msgid "Unlock the ability to train women from houses."
@@ -11548,7 +11621,7 @@ msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr "Promover a todos tus mercenarios Íberos al rango de Avanzado. Esto aumenta su destreza militar, pero disminuye su tasa de recolección de recursos -25%. Desbloquea la tecnología de Mercenarios Ibéricos Élite."
+msgstr "Mejora a todos tus mercenarios íberos al rango de Avanzado. Aumentando su destreza militar, pero disminuyendo su tasa de recolección de recursos un -25%. Desbloquea la tecnología de Mercenarios íberos de élite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
@@ -11701,7 +11774,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 BC, whose purpose "
 "was to push the Persians out of the Aegean region. The allied states "
 "contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Poco después de las grandes victorias navales de Salamina y Mykale, las ciudades-estado griegas conformaron la llamda Liga de Delos en el 478 a.C., cuyo propósito era expulsar a los Persas fuera de la región del Egeo. Las ciudades aliadas contribuyeron con barcos y dinero, mientras que los Atenienses ofrecieron su flota entera. "
+msgstr "Poco después de las grandes victorias navales de Salamina y Mykale, las ciudades-estado griegas conformaron la llamada Liga de Delos en el 478 a.C., cuyo propósito era expulsar a los Persas fuera de la región del Egeo. Las ciudades aliadas contribuyeron con barcos y dinero, mientras que los Atenienses ofrecieron su flota entera. "
 
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsondescription
 msgid ""
@@ -11806,7 +11879,7 @@ msgstr "Reclutamiento de infantería"
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "Caballeria -20% de tiempo de reclutamiento, pero -10 de salud. Desbloquea servicio militar obligatorio"
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
@@ -11897,7 +11970,7 @@ msgstr "Los Escudos de Plata, o Argyraspidai, fueron un cuerpo de infantería pe
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "attack, health, and armor."
-msgstr ""
+msgstr "Mejorar la infantería campeona portadora de escudo a escudos de plata, con mejor ataque, salud, y armadura."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
@@ -12246,7 +12319,7 @@ msgid ""
 "Classes: Citizen Melee Cavalry Spearman.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, Elephants."
-msgstr ""
+msgstr "Clase: Caballería ciudadana lancera cuerpo a cuerpo.\nEficaz contra: x2 contra espadachines y armas de asedio, x1.5 contra escaramuceros.\nDébil contra: Lanceros, arqueros, elefantes."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
 msgid "Cavalry Spearman"
@@ -12302,7 +12375,7 @@ msgid ""
 "Classes: Champion Ranged Cavalry Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr ""
+msgstr "Clase: Arquero campeón a caballo.\nEficaz contra: x2 contra espadachines, x1.5 contra lanceros.\nDébil contra: Escaramuceros y elefantes."
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:40
 msgid "Champion Cavalry Archer."
@@ -12361,7 +12434,7 @@ msgid ""
 "Classes: Champion Ranged Infantry Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
-msgstr ""
+msgstr "Clase: Arquero campeón.\nEficaz contra: x2 contra espadachines, x1.25 contra lanceros a caballo.\nDébil contra: Espadachines a caballo y escaramuceros a caballo."
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
@@ -12372,7 +12445,7 @@ msgid ""
 "Classes: Champion Ranged Infantry Skirmisher.\n"
 "Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Swordsmen and Cavalry Spearmen."
-msgstr ""
+msgstr "Clases: Infantería a Distancia - Campeón Guerrillero.\nEficaz contra: 1.5x vs Lanceros, Arqueros a Caballo, Elefantes y Carros.\nDébil contra: Espadachines y Lanceros a Caballo."
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:53
 msgid "Champion Skirmisher"
@@ -12383,7 +12456,7 @@ msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.\n"
 "Countered by: Swordsmen, Skirmishers, and Cavalry Archers."
-msgstr ""
+msgstr "Clase: Infantería lancera campeona cuerpo a cuerpo.\nBueno contra: x2 contra todo tipo de caballería, x1.5 contra elefantes.\nDébil contra: Espadachines, escaramuceros, y arqueros a caballo."
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:55
 msgid "Champion Pikeman"
@@ -12405,7 +12478,7 @@ msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Clases: Espadachín campeón.\nBueno contra: x2 contra lanceros, x1.5 contra elefantes.\nDébil contra: arqueros, jinetes lanceros y arqueros a caballo."
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
@@ -12505,7 +12578,7 @@ msgid ""
 "Classes: Hero Infantry Ranged Archer Bow.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr ""
+msgstr "Clases: Infantería a Distancia - Arquero Héroe del Arco.\nEficaz contra: 2x vs Espadachines, 1.25x vs. Lanceros a Caballo.\nDébil contra: Espadachines a Caballo y Guerrilleros a Caballo."
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:39
 msgid "Hero Archer"
@@ -12529,7 +12602,7 @@ msgid ""
 "\"Hero\" Aura: TBD.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr ""
+msgstr "Clases: Infantería Cuerpo a cuerpo - Héroe de la Espada.\n\"Héroe\" Aura: TBD.\nEficaz contra: 2x vs. Lanceros, 1,5x vs. Guerrilleros y Elefantes.\nDébil contra: Arqueros, y Arqueros a Caballo."
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:53
 msgid "Hero Swordsman"
@@ -12664,7 +12737,7 @@ msgstr "Nave de guerra pesada"
 msgid ""
 "Classes: Mechanical Warship Medium Ranged Melee.\n"
 "Secondary Attack: Ramming."
-msgstr "Clase: Buque de guerra mediano Ataque cuerpo a cuerpo\nAtaque secundario: Embestida"
+msgstr "Clase: Navío de guerra intermedio a distancia.\nAtaque secundario: Embestida."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
@@ -12701,7 +12774,7 @@ msgid ""
 "Classes: Siege Melee Ram.\n"
 "Counters: 1.5x vs. Gates. Generally good vs. Buildings.\n"
 "Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships)."
-msgstr ""
+msgstr "Clase: Arma de asedio.\nBueno contra: x1.5 contra portones. En general es bueno contra edificios.\nDébil contra: Caballería cuerpo a cuerpo. No puede atacar a las unidades orgánicas (pero puede atacar a otras armas de asedio y barcos)."
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:60
 msgid "Battering Ram"
@@ -12747,7 +12820,7 @@ msgstr "Sanador"
 msgid ""
 "Classes: Support Worker Slave.\n"
 "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr ""
+msgstr "Clase: Esclavo de trabajo de apoyo.\nRecolector con una vida limitada. Bonificación en minería y tala."
 
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
@@ -13868,7 +13941,7 @@ msgstr "Varmo"
 #: simulation/templates/structures/brit_fortress.xml:22
 #: simulation/templates/structures/celt_fortress_b.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Recluta héroes y campeones britones. Construye de ariete asedio."
+msgstr "Recluta héroes y campeones britones. Construye arietes de asedio."
 
 #: simulation/templates/structures/brit_fortress.xml:21
 #: simulation/templates/structures/celt_fortress_b.xml:21
@@ -13959,7 +14032,7 @@ msgstr "Stonehenge"
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr "Recluta ciudadanos-soldado norteafricanos. Investiga mejoras para la unidades norteafricanas."
+msgstr "Recluta ciudadanos soldado norteafricanos. Investiga mejoras para las unidades norteafricanas."
 
 #: simulation/templates/structures/cart_barracks.xml:18
 msgid "Maḥanēt"
@@ -14626,7 +14699,7 @@ msgstr "Arco del triunfo"
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Construye en cualquier parte del mapa, incluso en territorio enemigo. Construye armas de asedio y recluta ciudadanos-soldados. Sana lentamente a las unidades guarnecidas."
+msgstr "Levántalo en cualquier parte del mapa, incluso en territorio enemigo. Construye armas de asedio y recluta ciudadanos soldado. Sana lentamente a las unidades guarnecidas."
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
@@ -15115,7 +15188,7 @@ msgid ""
 "\"Reforms\" Aura: All units in his formation +15% speed and +1 armor. All Peltasts +15% speed.\n"
 "Counters: +20% Attack vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Melee Cavalry."
-msgstr ""
+msgstr "Clase: Héroe escaramucero a distancia.\nAura de \"Reformas\": Todas las unidades en su formación ganan +15% de velocidad y +1 de protección. Todos los peltastas ganan +15% de velocidad.\nBueno contra: +20% de ataque contra lanceros, arqueros a caballo, elefantes y carruajes.\nDébil contra: Jinetes cuerpo a cuerpo."
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:17
 msgid "Iphikratēs"
@@ -15128,7 +15201,7 @@ msgid ""
 "\"Acropolis\" Aura: Temples are 50 stone cheaper during his lifetime.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr ""
+msgstr "Clase: Héroe lancero.\nAura de \"constructor\": Los edificios se construyen 15% más rápido en su campo visual.\nAura de \"acrópolis\": Los templos cuestan 50 de piedra menos durante su vida.\nBueno contra: x2 contra toda la caballería.\nDébil contra: Escaramuceros, espadachines y arqueros a caballo."
 
 #: simulation/templates/units/athen_hero_pericles.xml:15
 msgid "Periklēs"
@@ -15141,7 +15214,7 @@ msgid ""
 "\"Naval Architect\" Aura: Ships are built +20% faster during his lifespan.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr ""
+msgstr "Clases: Héroe de infantería cuerpo a cuerpo con espada.\nAura de \"comandante Naval\": Cuando forma parte de la guarnición en un barco, su barco es un  +50% más rápido.\nAura de \"arquitecto naval\": Los barcos también se construyen +20% más rápido mientras se mantenga con vida.\nBueno contra: 2x vs Lanceros, 1.5x vs guerrilleros y elefantes.\nContrarrestado por: Arqueros, arqueros a caballo."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:14
 #: simulation/templates/units/hele_hero_themistocles.xml:14
@@ -15387,7 +15460,7 @@ msgstr "Curach"
 msgid ""
 "Classes: Medium Warship Ranged\n"
 "Transport many soldiers across the sea."
-msgstr "Clases: Navío de guerra intermedio a distancia\nTransporta un sinfín de soldados de una orilla a otra del mar."
+msgstr "Clase: Navío de guerra intermedio a distancia\nTransporta un sinfín de soldados de una orilla a otra del mar."
 
 #: simulation/templates/units/brit_ship_trireme.xml:18
 #: simulation/templates/units/celt_ship_trireme.xml:18
@@ -15475,7 +15548,7 @@ msgstr "Batallón Sagrado de Ba'al"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
-msgstr "Piqueros del Batallón Sagrado"
+msgstr "Piquero del Batallón Sagrado"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
 msgid "Mašal"
@@ -15500,7 +15573,7 @@ msgid ""
 "\"Strategist\" Ability: The player can see changes within the fog of war while Hannibal lives.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "Clases: Elefante Héroe Cuerpo a Cuerpo.\n\"Tactico\" Aura: Todas las unidades aliadas +2 ataque dentro del rango de visión de él.\n\"Estratega\" Capacidad: El jugador puede ver los cambios dentro de la niebla de la guerra, mientras que Hannibal vive.\nEficaz contra: 2x vs. Todas las unidades a caballo, 1.5x vs. Estructuras. Extra 1.5x vs. Puertas.\nDébil contra: Guerrilleros y Espadachines. Puede correr furiosamente."
+msgstr "Clases: Elefante Héroe Cuerpo a Cuerpo.\n\"Táctico\" Aura: Todas las unidades aliadas +2 ataque dentro del rango de visión de él.\n\"Estratega\" Capacidad: El jugador puede ver los cambios dentro de la niebla de la guerra, mientras que Aníbal viva.\nEficaz contra: x2 vs. Todas las unidades a caballo, x1.5 vs. Estructuras. Extra x1.5 vs. Puertas.\nDébil contra: Guerrilleros y Espadachines. Puede correr furiosamente."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:12
 msgid "Ḥannibaʿal Baraq"
@@ -15661,7 +15734,7 @@ msgstr "Caballería noble gálica"
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:6
 #: simulation/templates/units/gaul_champion_cavalry.xml:6
 msgid "Gallic Brihent"
-msgstr "Caballero galo"
+msgstr "Incursor galo"
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:15
 msgid ""
@@ -15701,7 +15774,7 @@ msgstr "Gaesata"
 
 #: simulation/templates/units/celt_hero_brennus.xml:14
 msgid "Hero Aura: +10 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "Aura de héroe: Saqueo de +10 de metal por cada baja enemiga."
 
 #: simulation/templates/units/celt_hero_brennus.xml:13
 #: simulation/templates/units/gaul_hero_brennus.xml:13
@@ -15734,7 +15807,7 @@ msgstr "Aura de héroe: Saqueo de +5 de metal por cada baja enemiga."
 
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:6
 msgid "Thessalian Scout"
-msgstr "Explorador Tesalio"
+msgstr "Explorador tesalio"
 
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:23
 msgid ""
@@ -15780,7 +15853,7 @@ msgstr "Clases: Campeón cuerpo a cuerpo de lanceros.\nBuenos contra: 2x vs todo
 #: simulation/templates/units/hele_champion_infantry_polis.xml:98
 #: simulation/templates/units/spart_champion_infantry_spear.xml:100
 msgid "Spartan Hoplite"
-msgstr "Hoplita Espartano"
+msgstr "Hoplita espartano"
 
 #: simulation/templates/units/hele_champion_infantry_polis.xml:99
 msgid "Spartiā́tēs"
@@ -15909,7 +15982,7 @@ msgstr "Helépolis"
 msgid ""
 "Medium Warship.\n"
 "Ramming Secondary Attack."
-msgstr "Clase: Buque de guerra mediano Ataque cuerpo a cuerpo\nAtaque secundario: Embestida"
+msgstr "Navío de guerra intermedio.\nAtaque secundario de embestida."
 
 #: simulation/templates/units/hele_ship_trireme.xml:5
 #: simulation/templates/units/mace_ship_trireme.xml:6
@@ -16043,7 +16116,7 @@ msgstr "Hypaspistes Argyraspides"
 msgid ""
 "\"Imperialism\" Aura: +10% territory effect for all buildings while he lives.\n"
 "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr ""
+msgstr "Aura de «Imperialismo»: +10% de efecto de territorio para todos los edificios mientras vive.\nBonificación de «Herocidio»: +20% de ataque contra héroes enemigos. "
 
 #: simulation/templates/units/mace_hero_craterus.xml:7
 msgid "Trusted general under Alexander the Great."
@@ -16108,7 +16181,7 @@ msgstr "Tureóforos"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
-msgstr "Caballería Hindú Ligera"
+msgstr "Caballería ligera hindú"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:7
 msgid "Ashwarohi"
@@ -16184,7 +16257,7 @@ msgstr "Clase: Elefantes con arqueros.\nEficaz contra: 2x vs lancero, 1.5x vs es
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:26
 msgid "Elephant Archer"
-msgstr "Elefante Arquero"
+msgstr "Arquero a elefante"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:27
 msgid "Vachii Gaja"
@@ -16266,7 +16339,7 @@ msgstr "Vanijyik Nauka"
 
 #: simulation/templates/units/maur_ship_trireme.xml:20
 msgid "Classes: Mechanical Warship Medium Ranged Melee."
-msgstr "Clases: Buque de guerra mecánico de medio alcance Ataque cuerpo a cuerpo."
+msgstr "Clase: Navío de guerra intermedio a distancia."
 
 #: simulation/templates/units/maur_support_elephant.xml:32
 msgid "Mobile dropsite. Can also assist in constructing buildings."
@@ -16305,7 +16378,7 @@ msgid ""
 "Classes: Mercenary Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Clases: Mercenario Cuerpo a cuerpo Infantería Espadachín.\nEficaz contra: 2x vs. Lanceros, 1,5x vs. Elefantes.\nDébil contra: Arqueros, Lanceros a Caballo, y Arqueros a Caballo."
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:21
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:14
@@ -16349,7 +16422,7 @@ msgstr "Babiruviya Ratha"
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
 #: simulation/templates/units/sele_cavalry_javelinist_b.xml:6
 msgid "Median Light Cavalry"
-msgstr "Caballería Meda Ligera "
+msgstr "Caballería ligera meda"
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:10
@@ -16427,7 +16500,7 @@ msgid ""
 "Hero Aura: \"Administrator.\" +15% Gather Rate and Build Rate of nearby units.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr ""
+msgstr "Héroe arquero.\nAura de Héroe: \"Administrador.\" +15% recolectar y construir de unidades cercanas.\nFuerte contra: 2x vs. Espadachín, 1.25x vs. Lancero a caballo.\nDébli contra: Espadachín a caballo, Escaramucero a caballo."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:15
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:39
@@ -16630,7 +16703,7 @@ msgid ""
 "Classes: Hero Melee Cavalry Swordsman.\n"
 "\"Raphia\" Aura: Egyptian Pikemen have greater stats within vision of him.\n"
 "\"Juggernaut\" Bonus: Build limit increased to 5 for Juggernaut Warships."
-msgstr ""
+msgstr "Clase: Héroe espadachín a caballo.\nAura de \"Raphia\": Los piqueros egipcios tienen mejores cuando están a su lado.\nBonificación de \"Juggernaut\": El límite de construcción sube a 5 para navíos de guerra Juggernaut."
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
 msgid "Ptolemy IV \"Father Loving\""
@@ -16755,7 +16828,7 @@ msgstr "Eques Consularis"
 
 #: simulation/templates/units/rome_champion_infantry.xml:5
 msgid "Italic Heavy Infantry"
-msgstr "Infantería pesada Italica"
+msgstr "Infantería pesada itálica"
 
 #: simulation/templates/units/rome_champion_infantry.xml:6
 msgid "Extraordinarius"
@@ -16799,7 +16872,7 @@ msgstr "Legionarius Romanus"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:5
 msgid "Marian Legionaire"
-msgstr "Legionario Mariano"
+msgstr "Legionario mariano"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:6
 msgid "Marian Legionarius"
@@ -16980,7 +17053,7 @@ msgid ""
 "\"Ilarchès\" Aura: All cavalry trained during his lifetime gain +2 levels of all armour types. These cavalrymen retain their armour bonuses even after Antiochus is dead.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr ""
+msgstr "Clase: Héroe a caballo con lanza.\nAura de \"Ilarchès\": Toda la caballería reclutada durante su vida gana +2 niveles de protección. Estos jinetes mantienen su bonificación de armadura incluso cuando Antíoco haya muerto.\nEficaz contra: x2 contra espadachines y armas de asedio. x1.5 contra escaramuceros.\nDébil contra: Lanceros, arqueros y elefantes."
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:11
 msgid "Antiochus III \"The Great\""
@@ -16996,7 +17069,7 @@ msgid ""
 "\"Conquest\" Aura: All nearby soldiers gain a +2x attack versus buildings, siege engines, and ships. Building capture time reduced by 25% during his reign.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr ""
+msgstr "Clases: Héroe Caballería Cuerpo a Cuerpo Espadachín.\nAura de \"conquista\": todos los soldados cercanos ganan un +2x de ataque contra edificios, armas de asedio, y navíos.\nTiempo de captura de edificios reducido un 25% durante su reinado.\nEficaz contra: x2 contra arqueros, Todas las unidades de apoyo y armas de asedio.\nDébil contra: Lanceros, Escaramuceros a caballo y elefantes."
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:11
 msgid "Antiochus IV \"The Righteous\""
@@ -17008,7 +17081,7 @@ msgid ""
 "\"Zooiarchos\" Aura: Boosts War Elephant attack and speed +20% within his vision.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr ""
+msgstr "Clase: Héroe sobre elefante cuerpo a cuerpo.\nAura de \"Zooiarchos\": Potencia el ataque y la velocidad de los elefantes de guerra un +20% en su rango de visión.\nEficaz contra: x2 contra toda la caballería, x1.5 contra todas las estructuras. Un x1.5 adicional contra portones.\nDébil contra: Escaramuceros y espadachines. Puede volverse desesperadamente agresivo."
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:11
 msgid "Seleucus I \"The Victor\""
@@ -17051,7 +17124,7 @@ msgid ""
 "Classes: Mercenary Citizen Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Clases: Mercenario Cuerpo a cuerpo Infantería Espadachín.\nEficaz contra: 2x vs. Lanceros, 1,5x vs. Elefantes.\nDébil contra: Arqueros, Lanceros a Caballo, y Arqueros a Caballo."
 
 #: simulation/templates/units/sele_ship_trireme.xml:6
 msgid "Seleucid Trireme"
@@ -17117,7 +17190,7 @@ msgid ""
 "\"Helot Reforms\" Aura: Helot Skirmishers within sight of him gain +2 attack and +1 all armor types.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Clase: Espadachín campeón.\nAura de \"Reformas ilotas\": Los escaramuceros ilotas en su rango de visión ganan +2 de ataque y +1 de todo tipo de armadura.\nBueno contra: x2 contra lanceros, x1.5 contra elefantes.\nDébil contra: arqueros, jinetes lanceros y arqueros a caballo."
 
 #: simulation/templates/units/spart_hero_leonidas.xml:30
 msgid ""
@@ -17125,7 +17198,7 @@ msgid ""
 "\"Last Stand\" Aura: +20% attack for nearby Hoplites and Spartiates.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr ""
+msgstr "Clase: Héroe lancero.\nAura de \"Última lucha\": +20% de ataque para los hoplitas y espartiatas cercanos.\nEficaz contra: x2 contra todas las unidades de caballería.\nDébil contra: escaramuceros, espadachines y arqueros a caballo."
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:16
 msgid "Helot Skirmisher"
@@ -17148,7 +17221,7 @@ msgid ""
 "Classes: Citizen Support Worker Female.\n"
 "Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming.\n"
 "Counters: 2.5x vs. Siege."
-msgstr ""
+msgstr "Clases: Ciudadana trabajadora de apoyo.\nReúne recursos, construye estructuras, e inspira a los hombres más cercanos a trabajar más rápido. Bonificación de búsqueda de alimento y agricultura.\nBueno contra: x2.5 contra asedio."
 
 #: simulation/templates/units/spart_support_female_citizen.xml:25
 msgid "Spartan Woman"
@@ -17204,7 +17277,7 @@ msgid ""
 "Classes: Mercenary Champion Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Clase: Mercenario espadachín campeón.\nEficaz contra: x2 contra lanceros, x1.5 contra elefantes.\nDébil contra: Arqueros, lanceros a caballo y arqueros a caballo."
 
 #: simulation/templates/units/thrace_black_cloak.xml:19
 msgid "Thracian Black Cloak"
@@ -17315,7 +17388,7 @@ msgstr "Una isla salvaje y arbolada, llena de bosques, oro y misterio... montañ
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
-msgstr "Roma lucha contra la ciudad etrusca de Veii por el control de la cuenca del río Tíber."
+msgstr "Roma lucha contra la ciudad etrusca de Veyes por el control de la cuenca del río Tíber."
 
 #: maps/scenarios/Battle for the Tiber.xml:31:PlayerData[0].Name
 msgid "Rome"
@@ -17336,7 +17409,7 @@ msgstr "Batalla por el Tíber"
 
 #: maps/scenarios/Belgian_Bog_night.xml:42:Description
 msgid "Two Celtic tribes face off across a large bog at night."
-msgstr "Dos tribus celtas se enfrentan a lo largo y ancho de una ciénaga a bajo la luz nocturna."
+msgstr "Dos tribus celtas se enfrentan a lo largo y ancho de una ciénaga bajo la luz nocturna."
 
 #: maps/scenarios/Belgian_Bog_night.xml:42:Name
 msgid "Belgian Bog Night"
@@ -17555,7 +17628,7 @@ msgid ""
 "Multiplayer map. Each player starts out on a small island with minimal resources situated off the coast of a large land mass.\n"
 "\n"
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
-msgstr "Mapa multijugador. Cada jugador empieza en una isla pequeña con recursos mínimos situados lejos de la costa de una gran masa de tierra.\n\nEste es un mapa de WFG diseñado por la comunidad. Hecho por SMST, NOXAS1 y Yodaspirine."
+msgstr "Mapa multijugador. Cada jugador comienza en una pequeña isla de recursos limitados situada lejos de la orilla de una gran masa terrestre.\n\nEste es un mapa de WFG diseñado por la comunidad. Hecho por SMST, NOXAS1 y Yodaspirine."
 
 #: maps/scenarios/Miletus.xml:31:PlayerData[0].Name
 #: maps/scenarios/Miletus.xml:31:Name
@@ -17664,7 +17737,7 @@ msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of food and mineral resources, while wood is somewhat scarce."
-msgstr "Situado en la cara sur de la cadena montañosa norteafricana, Atlas.\n\nUn mapa ligeramente abierto con abundancia de comida y recursos minerales, y donde la comida escasea."
+msgstr "Situado en la cara sur de la cadena montañosa norteafricana, Atlas.\n\nUn mapa ligeramente abierto con abundancia de comida y recursos minerales, donde la madera escasea."
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:Description
 msgid ""
@@ -17757,7 +17830,7 @@ msgstr "Escenario de prueba - Los macedonios"
 
 #: maps/scenarios/Sandbox - Mauryans.xml:42:Description
 msgid "Mauryan Indian faction showcase map."
-msgstr "Mapa de demostración de la facción de los Hindúes Maurianos."
+msgstr "Mapa de demostración de la facción de los hindúes maurianos."
 
 #: maps/scenarios/Sandbox - Mauryans.xml:42:Name
 msgid "Sandbox - The Mauryans"
@@ -17864,7 +17937,7 @@ msgstr "Persia"
 msgid ""
 "The African serengeti has herds of animals criss crossing the plain. Mineral"
 " wealth is bountiful and wood is in full supply."
-msgstr "El serengeti africano tiene manadas de animales que recorren las llanuras. El mineral es abundante y hay un suministro total de madera."
+msgstr "El serengeti africano está poblado por manadas de animales que recorren sus llanuras. La riqueza mineral es excepcional y hay un suministro total de madera."
 
 #: maps/scenarios/Serengeti.xml:31:Name
 msgid "Serengeti 1"
@@ -17886,7 +17959,7 @@ msgstr "Formaciones navales"
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
 " mountainous spokes that divide the home territories of each player."
-msgstr "¡Cartago vs. Macedonia vs. Persia vs. Iberia! Un gran oasis funciona como el centro de donde emergen cordilleras que dividen el territorio inicial de cada jugador."
+msgstr "¡Cartago, Macedonia, Persia e Iberia! Un gran oasis funciona como el ojo desde donde parten cordilleras que dividen el territorio inicial de cada jugador."
 
 #: maps/scenarios/Siwa Oasis.xml:31:Name
 msgid "Siwa Oasis"
@@ -18032,7 +18105,7 @@ msgid ""
 "This map will give a rough guide for starting the game effectively.  Early in the game the most important thing is to gather resources as fast as possible so you are able to build enough troops later.\n"
 "\n"
 "Warning: This is very fast at the start, be prepared to run through the initial bit several times."
-msgstr "Este mapa te dará una guía gruesa para empezar el juego eficazmente. En la parte temprana lo más importante es recoger recursos lo más rápido posible, para poder construir suficientes tropas más adelante.\n\nCuidado: Esto es muy rápido al comienzo, prepárate a repasar la primera parte varias veces. "
+msgstr "Este mapa te dará una idea aproximada de como empezar a jugar. Lo más importante en un primer momento es recoger recursos lo más rápido posible, con los que poder reclutar a suficientes tropas más adelante.\n\nCuidado: El comienzo es muy rápido, prepárate para tener que repetir la primera parte varias veces."
 
 #: maps/scenarios/starting_economy_walkthrough.xml:42:Name
 msgid "Starting Economy Walkthrough"
@@ -18084,7 +18157,7 @@ msgstr "Dos jugadores se enfrentan a lo largo de un gran pantano en algún lugar
 
 #: maps/skirmishes/Belgian Bog (2).xml:41:Name
 msgid "Belgian Bog (2)"
-msgstr "Ciénaga belga (2)"
+msgstr "Fangal belga (2)"
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:42:Description
 msgid ""
@@ -18106,7 +18179,7 @@ msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
-msgstr "Los jugadores empiezan en dos islas opuestas, ambas con un relieve muy escarpado que hace el aterrizaje difícil. \n\nOriginalmente ocupada por los Torreanos, luego habitada marginalmente por Etruscos, Foceanos y Siracusanos. Roma conquistó estas dos islas desde el Cártago durante la Primera Guerra Púnica, y el 238 A.C. crearon la provincia de \"Córcega y Cerdeña\". Los Corsos se sublevaron regularmente, y en el curso de un siglo la isla perdió dos tercios de la población Corsa."
+msgstr "Los jugadores comienzan la partida en dos islas opuestas, ambas con un relieve muy escarpado y difícil. \n\nOcupadas originalmente por torreanos, para pasar a ser habitadas de forma esporádica por etruscos, foceanos y siracusanos. Roma conquistó estas dos islas a Cártago durante la primera guerra púnica, y, en 238 d.C. crearon la provincia de «Córcega y Cerdeña». Los corsos se sublevaban de cuando en cuando y en el transcurso de un siglo la isla perdió dos tercios de su población corsa."
 
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:Name
 msgid "Corsica and Sardinia (4)"
@@ -18183,7 +18256,7 @@ msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
-msgstr "Todos los jugadores empiezan en una orilla del río, con una mínima cantidad de metal disponible. Cruzando el Río Gambia hay una sabana con muchos depósitos de metal para reclamar. \n\n(Atención: Mapa grande. Se recomienda computador con buenas especificaciones) "
+msgstr "Todos los jugadores empiezan en una orilla del río, con una mínima cantidad de metal disponible. Cruzando el Río Gambia hay una sabana con muchos depósitos de metal para explotar. \n\n(Atención: Mapa grande, es recomendable tener un buen equipo) "
 
 #: maps/skirmishes/Gambia River (3).xml:42:Name
 msgid "Gambia River (3)"
@@ -18281,7 +18354,7 @@ msgstr "Oasis meridional (4)"
 msgid ""
 "A sheltered natural harbour on the Mediterranean coast provides the "
 "resources for battle."
-msgstr "Un puerto natural, abrigado en las costas mediterráneas proporciona los recursos para la batalla."
+msgstr "Un puerto natural, abrigado en las costas mediterráneas, proporciona los recursos para la batalla."
 
 #: maps/skirmishes/Mediterranean Cove (2).xml:41:Name
 msgid "Mediterranean Coves (2)"
@@ -18425,7 +18498,7 @@ msgid ""
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.\n"
 "\n"
 "Note: This is a very small \"fast and furious\" map. Iberians do not start with their custom circuit walls."
-msgstr "La sabana africana está llena de animales de caza y los depósitos minerales cercanos son abundantes. La estación seca se acerca y los pozos de agua se están secando.\n\nNota: Es un mapa \"rápido y furioso\" muy pequeño. Ibéricos no empiezan con sus típicos muros de piedra."
+msgstr "La sabana africana está repleta de vida animal para la caza, y los depósitos minerales que hay cerca son abundantes. La estación seca se acerca y los abrevaderos naturales se están secando.\n\nNota: Es un mapa intenso, rápido, y muy pequeño. Además los íberos no empiezan con sus típicos muros de piedra rodeando su base."
 
 #: maps/skirmishes/Watering Holes (4).xml:42:Name
 msgid "Watering Holes (4)"
