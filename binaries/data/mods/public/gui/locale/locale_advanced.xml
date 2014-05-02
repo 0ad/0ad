@@ -61,7 +61,7 @@
 			</object>
 			<object name="dictionaryFile" type="text" size="50%+10 260 100% 345" textcolor="white" />
 		
-			<object type="button" size="0 100%-60 33% 100%-32" style="ModernButtonRed">
+			<object name="acceptButton" type="button" size="0 100%-60 33% 100%-32" style="ModernButtonRed">
 				<translatableAttribute id="caption">Accept</translatableAttribute>
 				<action on="Press">applySelectedLocale();</action>
 			</object>
