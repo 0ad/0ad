@@ -48,12 +48,22 @@
   "Name": "Sicilia (2)",
   "PlayerData": [
     {
-      "Name": "Player 1",
-      "StartingCamera": null
+      "Name": "Player 1"
     },
     {
       "Name": "Player 2",
-      "StartingCamera": null
+      "StartingCamera": {
+        "Position": {
+          "x": 802.456,
+          "y": 22.3825,
+          "z": 481.52
+        },
+        "Rotation": {
+          "x": 35,
+          "y": 0,
+          "z": 0
+        }
+      }
     }
   ],
   "Preview": "sicilia.png",
