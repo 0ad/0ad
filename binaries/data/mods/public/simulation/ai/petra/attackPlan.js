@@ -358,12 +358,9 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 		// We still have time left to recruit units and do stuffs.
 		this.trainMoreUnits(gameState);
 		Engine.ProfileStop();
-		// can happen for now  ?? really ?? should have been fixed now
+		// may happen if we have no more training facilities and build orders are canceled
 		if (this.buildOrder.length === 0)
-		{
-			warn("Should never happen  plan incomplete but no more buildOrder ???");
-			return 0;	// will abort the plan, should return something else
-		}
+			return 0;	// will abort the plan
 		return 1;
 	}
 

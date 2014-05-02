@@ -165,11 +165,14 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			{
 				// we have a barracks and we want to rush, rush.
 				var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Rush");
-				if (this.Config.debug > 0)
-					warn("Headquarters: Rushing plan " + this.totalNumber + " with maxRushes " + this.maxRushes);
-				this.rushNumber++;
-				this.totalNumber++;
-				this.upcomingAttacks["Rush"].push(attackPlan);
+				if (!attackPlan.failed)
+				{
+					if (this.Config.debug > 0)
+						warn("Headquarters: Rushing plan " + this.totalNumber + " with maxRushes " + this.maxRushes);
+					this.rushNumber++;
+					this.totalNumber++;
+					this.upcomingAttacks["Rush"].push(attackPlan);
+				}
 			}
 		}
 		// if we have a barracks, there's no water, we're at age >= 1 and we've decided to attack.
@@ -215,11 +218,14 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			{
 				// prepare a raid against this target
 				var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Raid", target.owner(), target);
-				if (this.Config.debug > 0)
-					warn("Headquarters: Raiding plan " + this.totalNumber);
-				this.raidNumber++;
-				this.totalNumber++;
-				this.upcomingAttacks["Raid"].push(attackPlan);
+				if (!attackPlan.failed)
+				{
+					if (this.Config.debug > 0)
+						warn("Headquarters: Raiding plan " + this.totalNumber);
+					this.raidNumber++;
+					this.totalNumber++;
+					this.upcomingAttacks["Raid"].push(attackPlan);
+				}
 			}
 		}
 	}
