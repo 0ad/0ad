@@ -23,7 +23,7 @@
 					</object>
 				</object>
 			</object>
-		<object name="btnOK" type="button" style="StoneButton" tooltip_style="snToolTip" size="20 100%-42 184 100%-14">
+		<object name="btnOK" type="button" style="StoneButton" tooltip_style="snToolTip" size="100%-184 100%-42 100%-20 100%-14">
 			<translatableAttribute id="caption">OK</translatableAttribute>
 			<action on="Press"><![CDATA[
 			if (Engine.GetGUIObjectByName("displaySplashScreen").checked)
