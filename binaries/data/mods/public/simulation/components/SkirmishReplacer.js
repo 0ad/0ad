@@ -43,6 +43,11 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 
 	var cmpCurPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var replacement = Engine.AddEntity(templateName);
+	if (!replacement)
+	{
+		Engine.DestroyEntity(this.entity);
+		return;
+	}
 	var cmpReplacementPosition = Engine.QueryInterface(replacement, IID_Position)
 	var pos = cmpCurPosition.GetPosition2D();
 	cmpReplacementPosition.JumpTo(pos.x, pos.y);
