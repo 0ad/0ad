@@ -61,7 +61,7 @@
 			</object>
 			<object name="dictionaryFile" type="text" size="50%+10 260 100% 345" textcolor="white" />
 		
-			<object name="acceptButton" type="button" size="0 100%-60 33% 100%-32" style="ModernButtonRed">
+			<object type="button" size="0 100%-60 33% 100%-32" style="ModernButtonRed">
 				<translatableAttribute id="caption">Cancel</translatableAttribute>
 				<action on="Press">cancelSetup();</action>
 			</object>
@@ -71,7 +71,7 @@
 				<action on="Press">autoDetectLocale();</action>
 			</object>
 
-			<object type="button" style="ModernButtonRed" size="66%+5 100%-60  100% 100%-32">
+			<object name="acceptButton" type="button" style="ModernButtonRed" size="66%+5 100%-60  100% 100%-32">
 				<translatableAttribute id="caption">Accept</translatableAttribute>
 				<action on="Press">applySelectedLocale();</action>
 			</object>
