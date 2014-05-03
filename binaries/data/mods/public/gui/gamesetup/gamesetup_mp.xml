@@ -45,7 +45,7 @@
 				</action>
 			</object>3 100%-33 103 100%-3
 
-			<object hotkey="confirm" type="button" size="50%-144 100%-60 50%-16 100%-32" style="StoneButton">
+			<object hotkey="confirm" type="button" size="50%+16 100%-60 50%+144 100%-32" style="StoneButton">
 				<translatableAttribute id="caption">Continue</translatableAttribute>
 				<action on="Press">
 					var joinPlayerName = Engine.GetGUIObjectByName("joinPlayerName").caption;
@@ -91,7 +91,7 @@
 			</object>
 			</object>
 
-			<object type="button" size="50%-144 100%-60 50%-16 100%-32" style="StoneButton">
+			<object type="button" size="50%+16 100%-60 50%+144 100%-32" style="StoneButton">
 				<translatableAttribute id="caption">Continue</translatableAttribute>
 				<action on="Press">
 					var hostPlayerName = Engine.GetGUIObjectByName("hostPlayerName").caption;
@@ -105,7 +105,7 @@
 
 		<object name="hostFeedback" type="text" style="ModernLabelText" size="32 150 100%-32 180" textcolor="red" />
 
-		<object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
+		<object type="button" style="StoneButton" size="50%-144 100%-60 50%-16 100%-32">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">cancelSetup();</action>
 		</object>
