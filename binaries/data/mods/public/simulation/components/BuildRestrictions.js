@@ -64,9 +64,11 @@ BuildRestrictions.prototype.Init = function()
  *
  * Returns result object:
  * 	{
- *		"success":    true iff the placement is valid, else false
- *		"message":    message to display in UI for invalid placement, else ""
- *		"parameters": parameters to use in the GUI message
+ *		"success":             true iff the placement is valid, else false
+ *		"message":             message to display in UI for invalid placement, else ""
+ *		"parameters":          parameters to use in the GUI message
+ *		"translateMessage":    always true
+ *		"translateParameters": list of parameters to translate
  *  }
  *
  * Note: The entity which is used to check this should be a preview entity
@@ -83,7 +85,9 @@ BuildRestrictions.prototype.CheckPlacement = function()
 		"message": markForTranslation("%(name)s cannot be built due to unknown error"),
 		"parameters": {
 			"name": name,
-		}
+		},
+		"translateMessage": true,
+		"translateParameters": ["name"],
 	};
 
 	// TODO: AI has no visibility info
@@ -193,6 +197,8 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	if (territoryFail)
 	{
 		result.message = markForTranslation("%(name)s cannot be built in %(territoryType)s territory. Valid territories: %(validTerritories)s");
+		result.translateParameters.push("territoryType");
+		result.translateParameters.push("validTerritories");
 		result.parameters.territoryType = {"context": "Territory type", "message": territoryType};
 		// gui code will join this array to a string
 		result.parameters.validTerritories = {"context": "Territory type list", "list": this.GetTerritories()};
@@ -255,6 +261,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			{
 				result.message = markForTranslation("%(name)s too close to a %(category)s, must be at least %(distance)s meters away");
 				result.parameters.category = cat;
+				result.translateParameters.push("category");
 				result.parameters.distance = this.template.Distance.MinDistance;
 				return result;	// Fail
 			}
@@ -267,6 +274,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			{
 				result.message = markForTranslation("%(name)s too far from a %(category)s, must be within %(distance)s meters");
 				result.parameters.category = cat;
+				result.translateParameters.push("category");
 				result.parameters.distance = this.template.Distance.MinDistance;
 				return result;	// Fail
 			}

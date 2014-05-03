@@ -399,13 +399,13 @@
 	    </object>
 
 	    <object size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
-			<translatableAttribute id="caption">Send</translatableAttribute>
-			<action on="Press">submitChatInput();</action>
+			<translatableAttribute id="caption">Cancel</translatableAttribute>
+			<action on="Press">closeChat();</action>
 	    </object>
 
 	    <object size="30%+24 100%-40 60%+24 100%-12" type="button" style="StoneButton">
-			<translatableAttribute id="caption">Cancel</translatableAttribute>
-			<action on="Press">closeChat();</action>
+			<translatableAttribute id="caption">Send</translatableAttribute>
+			<action on="Press">submitChatInput();</action>
 	    </object>
 	    <object name="toggleTeamChat" size="60%+32 100%-34 60%+48 100%-6" type="checkbox" style="ModernTickBox"/>
 	    <object size="60%+48 100%-40 100% 100%-12" type="text"  style="ModernLeftLabelText">

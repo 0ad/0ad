@@ -805,7 +805,8 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			}
 
 			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-			cmpGuiInterface.PushNotification({ "player": player, "message": ret.message });
+			ret.player = player;
+			cmpGuiInterface.PushNotification(ret);
 			
 			// Remove the foundation because the construction was aborted
 			// move it out of world because it's not destroyed immediately.

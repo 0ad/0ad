@@ -83,11 +83,15 @@ function updateResultingLocale()
 		var dictionaryFileString = "";
 		dictionaryFileList.forEach( function (entry) { dictionaryFileString = dictionaryFileString + entry + "\n"; });
 		dictionaryFile.caption = dictionaryFileString;
+		var acceptButton = Engine.GetGUIObjectByName("acceptButton");
+		acceptButton.enabled = true;
 	}
 	else
 	{
 		resultingLocaleText.caption = translate("<invalid>");
 		dictionaryFile.caption = "";
+		var acceptButton = Engine.GetGUIObjectByName("acceptButton");
+		acceptButton.enabled = false;
 	}
 }
 

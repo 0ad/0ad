@@ -87,7 +87,7 @@ var sprintf = (function() {
 					arg = argv[cursor];
 					for (k = 0; k < match[2].length; k++) {
 						if (!arg.hasOwnProperty(match[2][k])) {
-							throw(sprintf(Engine.Translate('[sprintf] property "%s" does not exist'), match[2][k]));
+							throw(new Error('[sprintf] property "' + match[2][k] + '" does not exist.'));
 						}
 						arg = arg[match[2][k]];
 					}
@@ -100,7 +100,7 @@ var sprintf = (function() {
 				}
 
 				if (/[^s]/.test(match[8]) && (get_type(arg) != 'number')) {
-					throw(sprintf(Engine.Translate('[sprintf] expecting number but found %s'), get_type(arg)));
+					throw(new Error('[sprintf] expecting number but found ' + get_type(arg) + '.'));
 				}
 				switch (match[8]) {
 					case 'b': arg = arg.toString(2); break;
@@ -149,12 +149,12 @@ var sprintf = (function() {
 								field_list.push(field_match[1]);
 							}
 							else {
-								throw(Engine.Translate('[sprintf] huh?'));
+								throw(new Error('[sprintf] huh?'));
 							}
 						}
 					}
 					else {
-						throw(Engine.Translate('[sprintf] huh?'));
+						throw(new Error('[sprintf] huh?'));
 					}
 					match[2] = field_list;
 				}
@@ -162,12 +162,12 @@ var sprintf = (function() {
 					arg_names |= 2;
 				}
 				if (arg_names === 3) {
-					throw(Engine.Translate('[sprintf] mixing positional and named placeholders is not (yet) supported'));
+					throw(new Error('[sprintf] mixing positional and named placeholders is not (yet) supported'));
 				}
 				parse_tree.push(match);
 			}
 			else {
-				throw(sprintf(Engine.Translate('[sprintf] No placeholder found in the ‘%(formatString)s’ format string. Maybe you used an incorrect syntax for your placeholder?'), { formatString: _fmt } ));
+				throw(new Error('[sprintf] No placeholder found in the ‘' + _fmt + '’ format string. Maybe you used an incorrect syntax for your placeholder?'));
 			}
 			_fmt = _fmt.substring(match[0].length);
 		}

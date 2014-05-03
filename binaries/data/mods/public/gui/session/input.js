@@ -129,9 +129,13 @@ function updateBuildingPlacementPreview()
 			{
 				if (result.message && result.parameters)
 				{
-					// translate the message parameters
-					translateObjectKeys(result.parameters, Object.keys(result.parameters), true)
-					placementSupport.tooltipMessage = sprintf(translate(result.message), result.parameters);
+					var message = result.message;
+					if (result.translateMessage)
+						message = translate(message);
+					var parameters = result.parameters;
+					if (result.translateParameters)
+						translateObjectKeys(parameters, result.translateParameters);
+					placementSupport.tooltipMessage = sprintf(message, parameters);
 				}
 				return false;
 			}
