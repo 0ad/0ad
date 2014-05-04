@@ -478,8 +478,8 @@ function checkPlayerState()
 	}
 	else
 	{
-		var btCaptions = [translate("Yes"), translate("No")];
-		var btCode = [leaveGame, null];
+		var btCaptions = [translate("No"), translate("Yes")];
+		var btCode = [null, leaveGame];
 		var message = translate("Do you want to quit?");
 	}
 
