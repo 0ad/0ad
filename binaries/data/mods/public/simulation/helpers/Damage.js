@@ -68,7 +68,7 @@ Damage.CauseDamage = function(data)
 	// Check the target can be damaged otherwise don't do anything.
 	var cmpDamageReceiver = Engine.QueryInterface(data.target, IID_DamageReceiver);
 	var cmpHealth = Engine.QueryInterface(data.target, IID_Health);
-	if (!cmpDamageReceiver && !cmpHealth)
+	if (!cmpDamageReceiver || !cmpHealth)
 		return;
 
 	// Damage the target
