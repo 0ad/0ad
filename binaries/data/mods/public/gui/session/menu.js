@@ -148,12 +148,12 @@ function exitMenuButton()
 	pauseGame();
 	if (g_IsNetworked && g_IsController)
 	{
-		var btCode = [leaveGame, resumeGame];
+		var btCode = [resumeGame, leaveGame];
 		var message = translate("Are you sure you want to quit? Leaving will disconnect all other players.");
 	}
 	else if (g_IsNetworked && !g_GameEnded && !g_IsObserver)
 	{
-		var btCode = [networkReturnQuestion, resumeGame];
+		var btCode = [resumeGame, networkReturnQuestion];
 		var message = translate("Are you sure you want to quit?");
 	}
 	else
@@ -167,7 +167,7 @@ function exitMenuButton()
 function networkReturnQuestion()
 {
 	var btCaptions = [translate("I resign"), translate("I will return")];
-	var btCode = [leaveGame, leaveGame];
+	var btCode = [resignGame, leaveGame];
 	var btArgs = [false, true];
 	messageBox(400, 200, translate("Do you want to resign or will you return soon?"), translate("Confirmation"), 0, btCaptions, btCode, btArgs);
 }

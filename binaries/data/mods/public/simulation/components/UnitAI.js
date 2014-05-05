@@ -838,7 +838,7 @@ var UnitFsmSpec = {
 			}
 			this.CallMemberFunction("Attack", [target, false]); 
 			if (cmpAttack.CanAttackAsFormation())
-				this.SetNextState("ATTACKING");
+				this.SetNextState("COMBAT.ATTACKING");
 			else
 				this.SetNextState("MEMBER");
 		},

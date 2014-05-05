@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -38,7 +38,7 @@ TexCodecDds DdsCodec;
 TexCodecPng PngCodec;
 TexCodecJpg JpgCodec;
 TexCodecTga TgaCodec;
-TexCodecPng BmpCodec;
+TexCodecBmp BmpCodec;
 // Codecs will be searched in this order
 static const ITexCodec *codecs[] = {(ITexCodec *)&DdsCodec, (ITexCodec *)&PngCodec,
 	(ITexCodec *)&JpgCodec, (ITexCodec *)&TgaCodec, (ITexCodec *)&BmpCodec};

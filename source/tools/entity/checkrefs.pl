@@ -7,7 +7,7 @@ use JSON;
 
 use Entity;
 
-use constant CHECK_SCENARIOS_XML => 0;
+use constant CHECK_MAPS_XML => 0;
 use constant ROOT_ACTORS => 1;
 
 my @files;
@@ -171,10 +171,11 @@ sub add_particles
     }
 }
 
-sub add_scenarios_xml
+sub add_maps_xml
 {
-    print "Loading scenario XML...\n";
+    print "Loading maps XML...\n";
     my @mapfiles = find_files('maps/scenarios', 'xml');
+	push @mapfiles, find_files('maps/skirmishes', 'xml');
     for my $f (sort @mapfiles)
     {
         print "  $f\n";
@@ -215,9 +216,9 @@ sub add_scenarios_xml
     }
 }
 
-sub add_scenarios_pmp
+sub add_maps_pmp
 {
-    print "Loading scenario PMP...\n";
+    print "Loading maps PMP...\n";
 
     # Need to generate terrain texture filename=>path lookup first
     my %terrains;
@@ -234,6 +235,7 @@ sub add_scenarios_pmp
     }
 
     my @mapfiles = find_files('maps/scenarios', 'pmp');
+	push @mapfiles, find_files('maps/skirmishes', 'pmp');
     for my $f (sort @mapfiles)
     {
         push @files, $f;
@@ -510,9 +512,9 @@ sub check_unused
 }
 
 
-add_scenarios_xml() if CHECK_SCENARIOS_XML;
+add_maps_xml() if CHECK_MAPS_XML;
 
-add_scenarios_pmp();
+add_maps_pmp();
 
 add_entities();
 
