@@ -30,6 +30,11 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
+		"<element name='GateConversionTooltip'>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
 		"<element name='Rollover'>" +
 			"<text/>" +
 		"</element>" +

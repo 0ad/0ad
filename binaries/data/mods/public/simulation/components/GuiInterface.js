@@ -628,6 +628,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 		};
 		ret.icon = template.Identity.Icon;
 		ret.tooltip =  template.Identity.Tooltip;
+		ret.gateConversionTooltip =  template.Identity.GateConversionTooltip;
 		ret.requiredTechnology = template.Identity.RequiredTechnology;
 		ret.identityClassesString = GetTemplateIdentityClassesString(template);
 	}
