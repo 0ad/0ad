@@ -272,6 +272,8 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 				CConfigValue argument;
 				argument.m_String = value;
 				newMap[name].push_back( argument );
+				if (name == "lobby.password")
+					value = "*******";
 				LOGMESSAGE(L"Loaded config string \"%hs\" = \"%hs\"", name.c_str(), value.c_str());
 			}
 		}

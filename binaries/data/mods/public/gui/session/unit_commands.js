@@ -1145,37 +1145,14 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 					var gateTemplate = getWallGateTemplate(state.id);
 					if (gateTemplate)
 					{
-						var wallName = GetTemplateDataWithoutLocalization(state.template).name.generic;
-						var gateName = GetTemplateDataWithoutLocalization(gateTemplate).name.generic;
-						var tooltipString;
-
-						// For internationalization purposes, when possible, available combinations should be provided
-						// as placeholder-free strings as below.
-						//
-						// The placeholder implementation is provided only so that undetected new combinations of wall
-						// and gate names are not simply printed in English, but as close to a perfect translation as
-						// possible.
-
-						if (wallName === "Wooden Wall" && gateName === "Wooden Gate")
+						var tooltipString = GetTemplateDataWithoutLocalization(state.template).gateConversionTooltip;
+						if (!tooltipString)
 						{
-							tooltipString = translate("Convert Wooden Wall into Wooden Gate");
+							warn(state.template + " is supposed to be convertable to a gate, but it's missing the GateConversionTooltip in the Identity template");
+							tooltipString = "";
 						}
-						else if (wallName === "Stone Wall" && gateName === "City Gate")
-						{
-							tooltipString = translate("Convert Stone Wall into City Gate");
-						}
-						else if (wallName === "Siege Wall" && gateName === "Siege Wall Gate")
-						{
-							tooltipString = translate("Convert Siege Wall into Siege Wall Gate");
-						}
-						else
-						{
-							warn(sprintf("Internationalization: Unexpected combination of ‘%(localizedWall)s’ (%(englishWall)s) and ‘%(localizedGate)s’ (%(englishGate)s). This combination of wall and gate types must be internationalized.", { localizedWall: translate(wallName), englishWall: wallName, localizedGate: translate(gateName), englishGate: gateName }));
-							tooltipString = sprintf(translate("Convert %(wall)s into %(gate)s"), { wall: translate(wallName), gate: translate(gateName) });
-						}
-
 						walls.push({
-							"tooltip": tooltipString,
+							"tooltip": translate(tooltipString),
 							"template": gateTemplate,
 							"callback": function (item) { transformWallToGate(item.template); }
 						});
