@@ -30,22 +30,16 @@
 			</object>
 		</object>
 
-		<object size="8% 50%-54 92% 50%+74">
-
-			<object name="aiDescription" type="text" style="ModernLeftLabelText" size="0 0 100% 100%" text_align="center"/>
-
-			<!-- TODO: we might want to add things like difficulty controls into here -->
-
-		</object>
+		<object name="aiDescription" type="text" style="ModernLabelText" size="8% 50%-54 92% 50%+74" text_align="center"/>
 
 		<object type="button" style="StoneButton" size="50%-144 100%-60 50%-16 100%-32">
-			<translatableAttribute id="caption">OK</translatableAttribute>
-			<action on="Press">returnAI();</action>
+			<translatableAttribute id="caption">Cancel</translatableAttribute>
+			<action on="Press">Engine.PopGuiPage();</action>
 		</object>
 
 		<object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
-			<translatableAttribute id="caption">Cancel</translatableAttribute>
-			<action on="Press">Engine.PopGuiPage();</action>
+			<translatableAttribute id="caption">OK</translatableAttribute>
+			<action on="Press">returnAI();</action>
 		</object>
 	</object>
 </objects>
