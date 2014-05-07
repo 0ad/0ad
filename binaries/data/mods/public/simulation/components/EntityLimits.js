@@ -154,6 +154,10 @@ EntityLimits.prototype.OnGlobalOwnershipChanged = function(msg)
 	var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
 	if (!cmpIdentity)
 		return;
+	// foundations shouldn't change the entity limits until they're completed
+	var cmpFoundation = Engine.QueryInterface(msg.entity, IID_Foundation);
+	if (cmpFoundation)
+		return;
 	var classes = cmpIdentity.GetClassesList();
 	for (var category in this.changers)
 		for (var c in this.changers[category])
