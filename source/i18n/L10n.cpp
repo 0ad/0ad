@@ -132,11 +132,10 @@ L10n::CheckLangAndCountry::CheckLangAndCountry(const Locale& locale) : m_MatchLo
 {
 }
 
-bool L10n::CheckLangAndCountry::operator()(const Locale* const locale)
+bool L10n::CheckLangAndCountry::operator()(const Locale* const locale) const
 {
-	bool found = false;
-	found = strcmp(m_MatchLocale.getLanguage(), locale->getLanguage()) == 0;
-	found &= strcmp(m_MatchLocale.getCountry(), locale->getCountry()) == 0;
+	bool found = strcmp(m_MatchLocale.getLanguage(), locale->getLanguage()) == 0
+				&& strcmp(m_MatchLocale.getCountry(), locale->getCountry()) == 0;
 	return found;
 }
 
@@ -144,10 +143,9 @@ L10n::CheckLang::CheckLang(const Locale& locale) : m_MatchLocale(locale)
 {
 }
 
-bool L10n::CheckLang::operator()(const Locale* const locale)
+bool L10n::CheckLang::operator()(const Locale* const locale) const
 {
-	bool found = false;
-	found = strcmp(m_MatchLocale.getLanguage(), locale->getLanguage()) == 0;
+	bool found = strcmp(m_MatchLocale.getLanguage(), locale->getLanguage()) == 0;
 	return found;
 }
 
@@ -163,7 +161,7 @@ std::wstring L10n::GetFallbackToAvailableDictLocale(const Locale& locale)
 	if (strcmp(locale.getCountry(), "") != 0)
 	{
 		CheckLangAndCountry fun(locale);
-		std::vector<Locale*>::iterator itr = find_if(availableLocales.begin(), availableLocales.end(), fun);
+		std::vector<Locale*>::iterator itr = std::find_if(availableLocales.begin(), availableLocales.end(), fun);
 		if (itr != availableLocales.end())
 		{
 			stream << locale.getLanguage() << L"_" << locale.getCountry();
@@ -172,7 +170,7 @@ std::wstring L10n::GetFallbackToAvailableDictLocale(const Locale& locale)
 	}
 
 	CheckLang fun(locale);
-	std::vector<Locale*>::iterator itr = find_if(availableLocales.begin(), availableLocales.end(), fun);
+	std::vector<Locale*>::iterator itr = std::find_if(availableLocales.begin(), availableLocales.end(), fun);
 	if (itr != availableLocales.end())
 	{
 		stream << locale.getLanguage();

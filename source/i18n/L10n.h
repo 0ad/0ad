@@ -261,7 +261,10 @@ public:
 		CheckLangAndCountry(const Locale& locale);
 		const Locale& m_MatchLocale;
 		
-		bool operator()(const Locale* const locale);
+		bool operator()(const Locale* const locale) const;
+
+	private:
+		const CheckLangAndCountry& operator=(const CheckLangAndCountry&);
 	};
 	
 	struct CheckLang
@@ -269,7 +272,10 @@ public:
 		CheckLang(const Locale& locale);
 		const Locale& m_MatchLocale;
 		
-		bool operator()(const Locale* const locale);
+		bool operator()(const Locale* const locale) const;
+
+	private:
+		const CheckLang& operator=(const CheckLang&);
 	};
 
 	/**
