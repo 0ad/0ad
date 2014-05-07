@@ -28,8 +28,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 01:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-05-07 15:46+0000\n"
+"Last-Translator: sanderd17\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,7 +191,7 @@ msgstr "Onverwachts afgesloten"
 
 #: gui/common/network.js:8
 msgid "Incorrect network protocol version"
-msgstr "Onjuiste netwerk protocol versie"
+msgstr "Onjuiste versie van het netwerkprotocol"
 
 #: gui/common/network.js:9
 msgid "Game has already started"
@@ -313,7 +313,7 @@ msgstr "Zeekaarten"
 
 #: gui/gamesetup/gamesetup.js:149
 msgid "Demo Maps"
-msgstr "Demo kaarten"
+msgstr "Demokaarten"
 
 #: gui/gamesetup/gamesetup.js:150
 msgid "All Maps"
@@ -349,14 +349,14 @@ msgstr "Kaart grootte:"
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Zichtbare kaart:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr ""
+msgstr "Verkende kaart:"
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -489,7 +489,7 @@ msgstr "Verbinden met de server..."
 #: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:189
 #, python-format
 msgid "Net message: %(message)s"
-msgstr "Net bericht: %(message)s"
+msgstr "Netwerkbericht: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
@@ -566,7 +566,7 @@ msgstr "Het adres '%(ip)s' blijkt niet geldig."
 #: gui/lobby/lobby.js:495
 #, python-format
 msgid "%(nick)s has joined."
-msgstr "%(nick)s komt binnen."
+msgstr "%(nick)s komt de chatroom binnen."
 
 #: gui/lobby/lobby.js:504
 #, python-format
@@ -650,19 +650,19 @@ msgstr "Registreren..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Gelieve je gebruikersnaam in te voeren"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Gebruikersnamen kunnen geen vierkante haakjes, spaties, komma's of andere speciale tekens (zoals accenten) bevatten."
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Gelieve je wachtwoord in te voeren"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Gelieve je wachtwoord te bevestigen"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -670,15 +670,15 @@ msgstr "Wachtwoorden komen niet overeen"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Gelieve de servicevoorwaarden te lezen"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Gelieve de gebruikersvoorwaarden te lezen"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Gelieve akkoord te gaan met de service- en gebruiksvoorwaarden"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -690,11 +690,11 @@ msgstr "Verbinden"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Servicevoorwaarden"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "Gebruiksvoorwaarden"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -742,13 +742,13 @@ msgstr "Pauzeer singleplayer spellen wanneer de focus naar een ander venster gaa
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Deactiveer het welkomstscherm"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Als je dit scherm volledig deactiveert kan je belangrijke meldingen missen.\nJe kan het welkomstscherm steeds bekijken via het hoofdmenu."
 
 #: gui/options/options.js:12
 msgid "Developer Overlay"
@@ -806,7 +806,7 @@ msgstr "Vloeiend gezichtsveld"
 
 #: gui/options/options.js:21
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "Maak de overgang van donkere stukken naar lichtere stukken zachter (vereist GLSL)."
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
@@ -1031,7 +1031,7 @@ msgstr "Start de spellobby. [NIET GEACTIVEERD IN DEZE VERSIE]"
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
 #: gui/pregame/mainmenu.xml:139 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "Technische details"
 
 #: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
 #: gui/session/session.xml:732 (caption)
@@ -1357,7 +1357,7 @@ msgstr "De verbinding met de server is verloren."
 
 #: gui/session/messages.js:223
 msgid "The game has ended."
-msgstr "Het spel is gedaan."
+msgstr "Het spel is afgelopen."
 
 #: gui/session/messages.js:407
 msgid "Unknown player"
@@ -1730,14 +1730,14 @@ msgstr "Klik om een eenheid van dit type naar buiten te sturen. Shift-klik om al
 #: gui/session/unit_commands.js:708
 #, python-format
 msgid "Requires %(technology)s"
-msgstr "%(technology)s vereist"
+msgstr "\"%(technology)s\" vereist"
 
 #: gui/session/unit_commands.js:725
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nog %(number)s te bouwen."
+msgstr[1] "Nog %(number)s te bouwen."
 
 #: gui/session/unit_commands.js:962
 #, python-format
@@ -1863,7 +1863,7 @@ msgstr "Herstel"
 
 #: gui/session/utility_functions.js:327
 msgid "Focus on Rally Point"
-msgstr "Ga naar verzamel punt"
+msgstr "Ga naar verzamelpunt"
 
 #: gui/session/utility_functions.js:336
 msgid "Back to Work"
@@ -2391,7 +2391,7 @@ msgstr "Stuur 3 vrouwen van het hout en 3 van de steenmijn naar het veld.\nVrouw
 msgid ""
 "The slingers that you queued earlier should gather stone once they are "
 "trained."
-msgstr ""
+msgstr "Deze slingeraars die je eerder gerekruteerd hebt zouden steen moeten gaan verzamelen eenmaal ze er zijn."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
@@ -2646,22 +2646,22 @@ msgstr "De vijand is verslagen, alle opdrachten zijn nu beëindigd..."
 #: simulation/components/BuildRestrictions.js:83
 #, python-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr "Kan %(name)s niet bouwen door een onbekend probleem."
+msgstr "%(name)s kan niet gebouwd worden door een onbekend probleem."
 
 #: simulation/components/BuildRestrictions.js:104
 #, python-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr "Kan %(name)s niet bouwen in onverkend gebied."
+msgstr "%(name)s kan niet gebouwd worden in onverkend gebied."
 
 #: simulation/components/BuildRestrictions.js:152
 #, python-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr "Kan %(name)s niet bouwen op een ander gebouw of grondstof"
+msgstr "%(name)s kan niet gebouwd worden op een ander gebouw of grondstof"
 
 #: simulation/components/BuildRestrictions.js:156
 #, python-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr "Kan %(name)s niet bouwen op ongeldig terrein"
+msgstr "%(name)s kan niet gebouwd worden op ongeldig terrein"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -2700,7 +2700,7 @@ msgstr "vijandig"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "Kan %(name)s niet bouwen in %(territoryType)s territorium. Geldige territoria: %(validTerritories)s"
+msgstr "%(name)s kan niet gebouwd worden in %(territoryType)s territorium. Geldige territoria: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:232
 #, python-format
@@ -2893,7 +2893,7 @@ msgstr "Kaarttype:"
 
 #: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
-msgstr "Kaart filter:"
+msgstr "Kaartfilter:"
 
 #: gui/gamesetup/gamesetup.xml:104 (caption)
 msgid "Select Map:"
@@ -2921,7 +2921,7 @@ msgstr "Selecteer het aantal spelers"
 
 #: gui/gamesetup/gamesetup.xml:162 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "Selecteer een kaart grootte. (Grotere kaarten kunnen performantie verminderen)."
+msgstr "Selecteer een kaartgrootte. (Grotere kaarten kunnen performantie verminderen)."
 
 #: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:402
 #: (caption)
@@ -2930,7 +2930,7 @@ msgstr "Versturen"
 
 #: gui/gamesetup/gamesetup.xml:201 (caption)
 msgid "[Tooltip text]"
-msgstr "[Tooltip text]"
+msgstr "[Tooltip tekst]"
 
 #: gui/gamesetup/gamesetup.xml:213 (caption)
 msgid "Start game!"
@@ -2985,13 +2985,13 @@ msgstr "Selecteer de resources die je krijgt bij de start van het spel."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Toon de volledige kaart (bekijk alles)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Verken de kaart (toon gaia en gebouwen)."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -3096,7 +3096,7 @@ msgstr "Hoofdmenu"
 
 #: gui/lobby/lobby.xml:132 (heading)
 msgid "Map Name"
-msgstr "Kaarnaam"
+msgstr "Kaartnaam"
 
 #: gui/lobby/lobby.xml:135 (heading)
 msgctxt "map"
@@ -3126,11 +3126,11 @@ msgstr "Bijwerken"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
-msgstr ""
+msgstr "Creëer een nieuwe account"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Log in met een bestaande account"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
@@ -3154,7 +3154,7 @@ msgstr "Herhaal wachtwoord:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Ik heb de service- en gebruiksvoorwaarden gelezen en goedgekeurd:"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:310 (caption)
@@ -3206,7 +3206,7 @@ msgstr "Variant (ongebruikt):"
 #: gui/locale/locale_advanced.xml:44 (tooltip)
 #: gui/locale/locale_advanced.xml:51 (tooltip)
 msgid "Not implemented yet."
-msgstr "Not niet geïmplementeerd."
+msgstr "Nog niet geïmplementeerd."
 
 #: gui/locale/locale_advanced.xml:48 (caption)
 msgid "Keywords (unused):"
@@ -3226,11 +3226,11 @@ msgstr "Automatisch detecteren"
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Informatie"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Bekijk online"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3281,7 +3281,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:498
 msgid "Alpha XVI: Patañjali"
-msgstr ""
+msgstr "Alpha XVI: Patañjali"
 
 #: gui/pregame/mainmenu.xml:500
 msgid ""
@@ -3295,11 +3295,11 @@ msgstr "Help mee op: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Feedback inschakelen"
 
 #: gui/pregame/mainmenu.xml:135 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Feedback uitschakelen"
 
 #: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
@@ -3366,11 +3366,11 @@ msgstr "Open de Atlas scenario bewerker in een nieuw venster. Je kan dit ook sta
 
 #: gui/pregame/mainmenu.xml:339 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Welkomstscherm"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Toon het welkomstscherm. Nuttig als je het per ongeluk verborgen had."
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
@@ -3378,7 +3378,7 @@ msgstr "Spelhandleiding"
 
 #: gui/pregame/mainmenu.xml:397 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Open de handleiding voor 0 A.D."
 
 #: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
@@ -3415,15 +3415,15 @@ msgstr "Stop"
 
 #: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "Stopt het spel"
 
 #: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "Help met de vertaling!"
 
 #: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open the 0 A.D translate page in your browser."
-msgstr ""
+msgstr "Klik om de 0 A.D. vertaalpagina te openen in je browser."
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
@@ -3450,7 +3450,7 @@ msgstr "Meld een probleem"
 
 #: gui/pregame/mainmenu.xml:549 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Klik om de 0 A.D. Trac pagina te bezoeken en zo een bug, crash of ander probleem te melden."
 
 #: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
@@ -3482,7 +3482,7 @@ msgstr "Geef selectiestaat weer"
 
 #: gui/session/session.xml:273 (caption)
 msgid "Pathfinder overlay"
-msgstr "Pathfinder overlay"
+msgstr "Kortste-pad overlay"
 
 #: gui/session/session.xml:280 (caption)
 msgid "Obstruction overlay"
@@ -3490,7 +3490,7 @@ msgstr "Obstructie overlay"
 
 #: gui/session/session.xml:287 (caption)
 msgid "Unit motion overlay"
-msgstr "Eenheidsverplaatsing overlay"
+msgstr "Eenhedenverplaatsingsoverlay"
 
 #: gui/session/session.xml:294 (caption)
 msgid "Range overlay"
@@ -3498,7 +3498,7 @@ msgstr "Bereik overlay"
 
 #: gui/session/session.xml:301 (caption)
 msgid "Bounding box overlay"
-msgstr "Buitenste kader overlay"
+msgstr "Begrensingskader overlay"
 
 #: gui/session/session.xml:308 (caption)
 msgid "Restrict camera"
@@ -3572,7 +3572,7 @@ msgstr "Kies een speler om te bekijken"
 
 #: gui/session/session.xml:628 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALPHA XVI : Patañjali"
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
@@ -3731,7 +3731,7 @@ msgstr "Wonderen"
 
 #: gui/summary/summary.xml:405 (caption)
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr "Eenheden statistieken (rekruteringen / verloren / vermoord)"
+msgstr "Eenhedenstatistieken (rekruteringen / verloren / vermoord)"
 
 #: gui/summary/summary.xml:411 (caption)
 #: simulation/templates/template_unit_infantry.xml:50
@@ -3757,7 +3757,7 @@ msgstr "Marine"
 
 #: gui/summary/summary.xml:566 (caption)
 msgid "Resource Statistics (Gathered / Used)"
-msgstr "Grondstoffen statistieken (verzameld/gebruikt)"
+msgstr "Grondstofstatistieken (verzameld/gebruikt)"
 
 #: gui/summary/summary.xml:584 (caption)
 msgid "Treasures collected"
@@ -3984,7 +3984,7 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Dit document op eender welke manier en eender welk tijdstip te wijzigen. Gegeven dat de gebruikers van de service gepast gewaarschuwd worden van de wijziging (de definitie van \"gepast\" zal later bepaald worden door een groep van Wildfire Games (WFG) team medewerkers)."
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -4821,7 +4821,7 @@ msgstr "\"Hoe stom was de koning om zijn haar uit te trekken van verdriet. Alsof
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes"
-msgstr "\"Hij heeft niet het fortuin bemachtigd; het fortuin heeft hem bemachtigd.\" Bion of Borysthenes"
+msgstr "\"Hij heeft niet het fortuin bemachtigd; het fortuin heeft hem bemachtigd.\" - Bion van Borysthenes"
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
@@ -4876,7 +4876,7 @@ msgstr "\"Ik overweeg zelfs dat Carthago vernield moet worden.\" - Cato de Ouder
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder"
-msgstr "\"Heel de mensheid heersen over z'n vrouwen en wij heersen over de hele mensheid, maar onze vrouwen heersen over ons.\" - Cato de Oudste"
+msgstr "\"De volledige mensheid heerst over z'n vrouwen en wij heersen over de hele mensheid, maar onze vrouwen heersen over ons.\" - Cato de Oudste"
 
 #: gui/text/quotes.txt:66
 msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
@@ -5024,7 +5024,7 @@ msgstr "\"Of men liegt, of waar spreekt, het is met één en hetzelfde voorwerp.
 msgid ""
 "\"Good breeding in cattle depends on physical health, but in men on a well-"
 "formed character.\" - Democritus"
-msgstr "\"Het goede fokken van vee hangt af van hun fysieke gezondheid, maar bij mannen op een welgevormd karakter.\" - Democritus"
+msgstr "\"Het goed fokken van vee hangt af van hun fysieke gezondheid, maar bij mannen op een welgevormd karakter.\" - Democritus"
 
 #: gui/text/quotes.txt:94
 msgid ""
@@ -5143,7 +5143,7 @@ msgid ""
 "\"The Lacedaemonians fought a memorable battle; they made it quite clear "
 "that they were the experts, and that they were fighting against amateurs.\" "
 "- Herodotus"
-msgstr "\"De Lakedaimoniërs vochten een memorabele slag; zij lieten duidelijk zien dat zij the experts waren en dat zij vochten tegen amateurs.\" - Herodotus"
+msgstr "\"De Lakedaimoniërs vochten een memorabele slag; zij lieten duidelijk zien dat zij de experten waren en dat zij vochten tegen amateurs.\" - Herodotus"
 
 #: gui/text/quotes.txt:117
 msgid ""
@@ -5161,7 +5161,7 @@ msgstr "\"Het is zoet en eervol om voor je land te sterven.\" -- Horace"
 
 #: gui/text/quotes.txt:120
 msgid "\"We are but dust and shadow.\" - Horace"
-msgstr "\"Stof en schaduw zijn wij.\" - Horatius"
+msgstr "\"Wij zijn slechts stof en schaduw.\" - Horatius"
 
 #: gui/text/quotes.txt:121
 msgid ""
@@ -5173,7 +5173,7 @@ msgstr "\"Ik ben niet gebonden om trouw te zweren aan een meester. Waar de storm
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace"
-msgstr "\"Het overwonnen Griekenland won van haar ruwe winnaar en bracht beschaving in het boerse Latium.\" - Horatius"
+msgstr "\"Het overwonnen Griekenland won van haar ruwe winnaar en bracht beschaving in het rustieke Latium.\" - Horatius"
 
 #: gui/text/quotes.txt:123
 msgid ""
@@ -5326,7 +5326,7 @@ msgstr "\"Dood is niet het ergste wat met een man kan gebeuren\" - Plato"
 
 #: gui/text/quotes.txt:149
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
-msgstr "\"Alleen de doden hebben het einde van de oorlog gezien.\" - Unknown"
+msgstr "\"Alleen de doden hebben het einde van de oorlog gezien.\" - Onbekend"
 
 #: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
@@ -5464,7 +5464,7 @@ msgstr "\"Zelfs de goden vechten niet tegen de noodzaak.\" - Simonides van Ceos"
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Simonides of Ceos"
-msgstr "\"Wij vertrokken geen spier, maar gaven ons leven om Griekenland te redden toen haar lot hing aan een zijden lint.\" - Simonides van Ceos"
+msgstr "\"Wij vertrokken geen spier, maar gaven ons leven om Griekenland te redden toen haar lot aan een zijden draadje hing.\" - Simonides van Ceos"
 
 #: gui/text/quotes.txt:177
 msgid ""
@@ -5514,7 +5514,7 @@ msgstr "- Onderzoek militaire technologieën, uniek voor iedere beschaving."
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "- Bouw één voordat je naar de stad fase gaat om nieuwe eenheden te kunnen blijven rekruteren."
+msgstr "- Bouw er één voordat je naar de stad fase gaat om nieuwe eenheden te kunnen blijven rekruteren."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
@@ -5658,7 +5658,7 @@ msgstr "- Beman met een ondersteunende eenheid om de vissnelheid te verdubbelen.
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr "- Voorzichtig! Vis is geen eindeloze grondstof!"
+msgstr "- Voorzichtig! Vis is geen onuitputtelijke grondstof!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -5934,7 +5934,7 @@ msgstr "TEMPELS"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure required to upgrade to the City Phase."
-msgstr "- Stadsfase gebouw nodig om door te gaan naar de Grootstad Fase"
+msgstr "- Stadsfase gebouw nodig om door te gaan naar de grootstadsfase."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -6338,7 +6338,7 @@ msgstr "Atheners"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Mijnwerkers in metaalmijnen werken 10% sneller."
+msgstr "Mijnwerkers in metaalmijnen werken 10% sneller per nieuwe fase bereikt."
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -6373,7 +6373,7 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr "De Grieken waren erg succesvol in de vergrieksing van ettelijke andere gebieden. Tijdens de klassieke oudheid was Grieks de lingua franca, gesproken van Spanje tot in India."
+msgstr "De Grieken waren erg succesvol in de Hellenisatie van ettelijke andere gebieden. Tijdens de klassieke oudheid was Grieks de lingua franca, gesproken van Spanje tot in India."
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
@@ -6507,7 +6507,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr "De klassieke falanx formatie is rond de 8ste eeuw V.C. ontwikkeld. Ze was 8 man diep en tot 800 man lang. De speermannen zorgden ervoor dat hun schilden overlapten, wat voor een perfecte bescherming zorgde."
+msgstr "De klassieke falanx formatie is rond de 8ste eeuw V.C. ontwikkeld. Ze was 8 man diep en tot 800 man breed. De speermannen zorgden ervoor dat hun schilden overlapten, wat voor een perfecte bescherming zorgde."
 
 #: civs/athen.jsonFactions[0].Heroes[0].History
 #: civs/hele.jsonFactions[0].Heroes[0].History
@@ -6713,7 +6713,7 @@ msgstr "Vosenius"
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr "Verhoogde aanvalskracht en bewegingssnelheid voor korte-afstandssoldaten."
+msgstr "Verhoogde aanvalskracht en bewegingssnelheid voor mêleesoldaten."
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 #: civs/celt.jsonFactions[0].Technologies[0].Name
@@ -6744,7 +6744,7 @@ msgid ""
 "'Great Tower'; Celtic legends abound with stories of massive tall towers "
 "built by the most powerful kings, and the remains of some very large towers "
 "have been found."
-msgstr "'Grote toren': Er doen Keltische legendes de ronde over massieve hoge torens, gebouwd door de machtigste koningen. De overblijfselen van grote torens zijn ook gevonden."
+msgstr "'Grote toren': Er doen Keltische legendes de ronde over massieve hoge torens, gebouwd door de machtigste koningen. De overblijfselen van sommige grote torens zijn gevonden."
 
 #: civs/brit.jsonFactions[0].Heroes[0].History
 #: civs/celt.jsonFactions[0].Heroes[0].History
@@ -6894,7 +6894,7 @@ msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr "De grondstofkost voor het trainen van oorlogsolifant of ruiters wordt met 5% per overeenkomstig dier in de veekraal verlaagd."
+msgstr "De grondstofkost voor het rekruteren van oorlogsolifanten of ruiters wordt met 5% per overeenkomstig dier in de veekraal verlaagd."
 
 #: civs/cart.jsonCivBonuses[1].Name civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
@@ -6905,7 +6905,7 @@ msgid ""
 "Not unlike the Iberian Peninsula, North Africa was known as horse country, "
 "capable of producing up to 100,000 new mounts each year. It was also the "
 "home of the North African Forest Elephant."
-msgstr "Zoals het Iberische schiereiland was Noord Afrika gekend als paardenland. Ze konden tot 100.000 nieuwe ruiters per jaar opleren. Het was ook het gebied van de inmiddels uitgestorven Noord-Afrikaanse bosolifant."
+msgstr "Zoals het Iberische schiereiland was Noord Afrika gekend als paardenland. Ze konden tot 100.000 nieuwe ruiters per jaar opleiden. Het was ook het gebied van de inmiddels uitgestorven Noord-Afrikaanse bosolifant."
 
 #: civs/cart.jsonTeamBonuses[0].Description
 msgid "+33% trade profit international routes."
@@ -7003,7 +7003,7 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr "Niemand wist beter dan de Carthagers waar ze naartoe gingen. Hun handelaren hadden overal missies. "
+msgstr "Niemand wist beter dan de Carthagers waar ze naartoe gingen. Hun handelaars hadden overal missies. "
 
 #: civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
@@ -7140,7 +7140,7 @@ msgstr "Uae Uictos"
 msgid ""
 "Means Woe to the Defeated  It was the words that the Gallic Leader, Brennos,"
 " spoke at the Capitol at Rome after they took their plunder."
-msgstr "Betekent Wee de Verslagenen Het waren de woorden die de Gallische leider, Brennos, sprak bij de Capitol in Rome nadat ze hadden geplunderd."
+msgstr "Wee de verslagenen. Dat waren de woorden die de Gallische leider, Brennos, sprak bij de Capitol in Rome nadat ze hun buit hadden geroofd."
 
 #: civs/celt.jsonFactions[1].Technologies[1].Description
 #: civs/gaul.jsonFactions[0].Technologies[1].Description
@@ -7250,7 +7250,7 @@ msgstr "Melonas"
 
 #: civs/celt.jsonStructures[0].History civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
-msgstr "De Kelten ontwikkelden de eerste beestenmolen."
+msgstr "De Kelten ontwikkelden de eerste draaiende bloemmolen."
 
 #: civs/celt.jsonHistory
 msgid ""
@@ -7420,7 +7420,7 @@ msgstr "Beschavingscentra hebben dubbele sterkte."
 #: civs/ptol.jsonFactions[0].Technologies[0].Name
 #: civs/sele.jsonFactions[0].Technologies[0].Name
 msgid "Hellenistic Metropolises"
-msgstr "Griekse metropoleis"
+msgstr "Hellenistische metropoleis"
 
 #: civs/hele.jsonFactions[1].Technologies[1].History
 #: civs/mace.jsonFactions[0].Technologies[2].History
@@ -7458,7 +7458,7 @@ msgid ""
 "India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops "
 "made him halt. Died in Babylon at the age of 33 while planning a campaign "
 "against Arabia."
-msgstr "De sterkste held der helden, zoon van Philippus II, koning van Macedonië (336-323 V.C.). Na de rest van Thracië veroverd te hebben, startte Alexander aan zijn wereld veroveringstocht. Hij versloeg de Perzen in Granicus (334 V.C.), Issus (333 V.C.) en Gaugamela (331 V.C.) en werd zo heerser van Perzië. In Indië versloeg hij koning Porus in Hydaspes (326 V.C.), maar moest vanwege zijn vermoeide troepen. Hij is gestorven in Babylon op 33 jarige leeftijd, terwijl hij een campagne tegen Arabië aan het plannen was."
+msgstr "De sterkste held der helden, zoon van Philippus II, koning van Macedonië (336-323 V.C.). Na de rest van Thracië veroverd te hebben, startte Alexander aan zijn mondiale veroveringstocht. Hij versloeg de Perzen in Granicus (334 V.C.), Issus (333 V.C.) en Gaugamela (331 V.C.) en werd zo heerser van Perzië. In Indië versloeg hij koning Porus in Hydaspes (326 V.C.), maar moest vanwege zijn vermoeide troepen stoppen. Hij is gestorven in Babylon op 33 jarige leeftijd, terwijl hij een campagne tegen Arabië aan het plannen was."
 
 #: civs/hele.jsonFactions[1].Heroes[1].Name civs/mace.jsonAINames[0]
 #: civs/mace.jsonFactions[0].Heroes[1].Name
@@ -7487,7 +7487,7 @@ msgstr "Macedonië"
 
 #: civs/hele.jsonFactions[1].Description
 msgid "Kingdom bordering Greek city-states"
-msgstr "Koninkrijk langs griekse Stadsstaten."
+msgstr "Koninkrijk langs Griekse stadstaten."
 
 #: civs/hele.jsonHistory
 msgid ""
@@ -7536,7 +7536,7 @@ msgstr "Zaldi Saldoa"
 msgid ""
 "Not unlike Numidia in North Africa, the Iberian Peninsula was known as "
 "'horse country', capable of producing up to 100,000 new mounts each year."
-msgstr "Zoals Numibië in Noord Afrika was ook het Iberische schiereiland gekend als een paardenstreek. De streek kon tot 100.000 nieuwe ruiters trainen per jaar."
+msgstr "Zoals Numidië in Noord-Afrika was ook het Iberische schiereiland gekend als een paardenstreek. De streek kon tot 100.000 nieuwe ruiters trainen per jaar."
 
 #: civs/iber.jsonTeamBonuses[0].Description
 msgid ""
@@ -7726,7 +7726,7 @@ msgstr "Na de vereniging van Griekenland verzamelde Philippus II alle stadstaten
 
 #: civs/mace.jsonCivBonuses[1].Description
 msgid "Infantry pike units can use the slow and powerful Syntagma formation."
-msgstr "Infanterie speer eenheden kunnen de slome en machtige Syntagma formatie gebruiken."
+msgstr "Infanterie speervechters kunnen de slome en machtige syntagma formatie gebruiken."
 
 #: civs/mace.jsonCivBonuses[1].Name
 #: simulation/templates/formations/syntagma.xml:6
@@ -7737,7 +7737,7 @@ msgstr "Syntagma"
 msgid ""
 "Based upon the Theban Oblique Order phalanx, the Syntagma was the formation "
 "that proved invincible against the armies of Hellas and the East."
-msgstr "Gebaseerd op de Thebaanse schuine phalanx opstelling was de Syntagma een formatie die onoverwinnelijk bleek tegen de legers van Hellas en het Oosten."
+msgstr "Gebaseerd op de Thebaanse schuine falanx opstelling was de syntagma een formatie die onoverwinnelijk bleek tegen de legers van Hellas en het oosten."
 
 #: civs/mace.jsonCivBonuses[2].History
 msgid ""
@@ -7812,7 +7812,7 @@ msgid ""
 "military units. This also applies to the Barracks of allied players (they "
 "receive 5 free units of their own culture for each new Barracks "
 "constructed)."
-msgstr "Iedere nieuwe barak komt met 5 gratis (willekeurige) militaire eenheden. Dit geldt ook voor de kazernes van gealliëerde spelers. "
+msgstr "Iedere nieuwe kazerne komt met 5 gratis (willekeurige) militaire eenheden. Dit geldt ook voor de kazernes van gealliëerde spelers. "
 
 #: civs/mace.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -7885,7 +7885,7 @@ msgid ""
 "Alexander the Great founded libraries all over his new empire. These became "
 "a center of learning for an entirely new synthesized culture: the "
 "Hellenistic culture."
-msgstr "Alexander de Grote stichtte bibliotheken over heel zijn rijk. Deze werden het centrum van wijsheid voor een nieuwe Griekse cultuur."
+msgstr "Alexander de Grote stichtte bibliotheken over heel zijn rijk. Deze werden het centrum van wijsheid voor een nieuwe Hellenistische cultuur."
 
 #: civs/mace.jsonStructures[2].Name civs/theb.jsonStructures[1].Name
 #: simulation/templates/structures/mace_siege_workshop.xml:18
@@ -8028,7 +8028,7 @@ msgstr "Groter bereik en snellere rekruteertijd voor Mauryaanse boogschutters."
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
-msgstr "Boogschiet traditie"
+msgstr "Boogschutterstraditie"
 
 #: civs/maur.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -8207,11 +8207,11 @@ msgstr "Xsayarsa II"
 
 #: civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry units."
-msgstr "Fenicisch triremen krijgen de mogelijkheid om ruiters te trainen."
+msgstr "Fenicische triremen krijgen de mogelijkheid om ruiters te rekruteren."
 
 #: civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
-msgstr "Maritiem Vakmanschap"
+msgstr "Maritiem vakmanschap"
 
 #: civs/pers.jsonFactions[0].Technologies[0].History
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
@@ -8495,7 +8495,7 @@ msgstr "Heldenaura bereik is 50% groter."
 
 #: civs/ptol.jsonFactions[0].Technologies[1].Name
 msgid "Pharaonic Cult."
-msgstr "Faraonische Cultus."
+msgstr "Faraonische cultus"
 
 #: civs/ptol.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -8782,11 +8782,11 @@ msgstr "Murus Latericius"
 
 #: civs/rome.jsonStructures[1].Special
 msgid "Can be built in neutral and enemy territory to strangle enemy towns."
-msgstr "Kan gebouwd worden in neutraal en vijandig gebieden om vijandige steden te versmachten."
+msgstr "Kan gebouwd worden in neutrale en vijandige gebieden om vijandige steden te versmachten."
 
 #: civs/rome.jsonStructures[1].History
 msgid "Turf walls built by legionaries during sieges."
-msgstr "Turven muren gebouwd door legionairs tijdens belegeringen."
+msgstr "Muren uit turf worden door legionairs tijdens belegeringen gebouwd."
 
 #: civs/rome.jsonHistory
 msgid ""
@@ -9225,7 +9225,7 @@ msgstr "Paeans waren gevechtshymnes die werden gezongen door hoplieten als ze te
 #: civs/spart.jsonFactions[0].Technologies[2].Description
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25%/ gezondheid en +10%/ trainingstijd voor speer infanterie."
+msgstr "+25% gezondheid voor speervechters, maar ook +10% rekruteertijd."
 
 #: civs/spart.jsonFactions[0].Technologies[2].Name
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
@@ -9237,7 +9237,7 @@ msgstr "De Agoge"
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "De spartanen werden van jonge leeftijd getraind om de beste krijgers te worden, en om elke ontbering door een militair leven aan te kunnen."
+msgstr "De Spartanen werden van jonge leeftijd getraind om de beste krijgers te worden, en om elke ontbering door een militair leven aan te kunnen."
 
 #: civs/spart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -9310,7 +9310,7 @@ msgstr "Thebanen"
 
 #: civs/theb.jsonCivBonuses[0].Name
 msgid "Oblique Order"
-msgstr "Schuine Opstelling"
+msgstr "Schuine opstelling"
 
 #: civs/theb.jsonCivBonuses[1].Name
 #: civs/theb.jsonFactions[0].Technologies[1].Name
@@ -9445,7 +9445,7 @@ msgstr "Elke speler begint diep in het bos.\n\nDe Ardennen is een regio met uitg
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
-msgstr "Ardense Bos"
+msgstr "Ardens bos"
 
 #: maps/random/atlas_mountains.jsonsettings.Description
 msgid ""
@@ -9532,7 +9532,7 @@ msgstr "Een diep en donker woud in Germanië."
 
 #: maps/random/deep_forest.jsonsettings.Name
 msgid "Deep Forest"
-msgstr "Donker Woud"
+msgstr "Donker woud"
 
 #: maps/random/english_channel.jsonsettings.Description
 msgid ""
@@ -9592,7 +9592,7 @@ msgstr "Iedere speler start aan de kust tussen beboste heuvels en de Kaspische Z
 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
-msgstr "Hyrcanische Kusten"
+msgstr "Hyrcanische kusten"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
@@ -9708,7 +9708,7 @@ msgstr "Een droog, centraal plateau. Het is rijk aan mineralen, en omgeven door 
 
 #: maps/random/persian_highlands.jsonsettings.Name
 msgid "Persian Highlands"
-msgstr "Persische Hooglanden"
+msgstr "Perzische hooglanden"
 
 #: maps/random/pheonician_levant.jsonsettings.Description
 msgid ""
@@ -9778,7 +9778,7 @@ msgstr "Spelers starten op de kaart van elkaar gescheiden door stroken van water
 
 #: maps/random/sahel_watering_holes.jsonsettings.Name
 msgid "Sahel Watering Holes"
-msgstr "Sahel Water Poelen"
+msgstr "Sahel waterpoelen"
 
 #: maps/random/snowflake_searocks.jsonsettings.Description
 msgid "Many small islands connected to each other by narrow passages."
@@ -9786,7 +9786,7 @@ msgstr "Vele kleine eilanden verbonden door kleine passages."
 
 #: maps/random/snowflake_searocks.jsonsettings.Name
 msgid "Snowflake Searocks"
-msgstr "Sneeuwvlokken Zeerotsen"
+msgstr "Sneeuwvlok zeerotsen"
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -9855,7 +9855,7 @@ msgid ""
 "The most stable AI currently available, Aegis is an improvement of earlier "
 "bots by Wratii. Note that it doesn't support saved games yet. Please report "
 "issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "De meest stabiele AI momenteel beschikbaar. Aegis is een verbetering over vroegere bots door Wraitii. Let op, de AI ondersteunt nog geen opgeslagen spellen. Gelieve problemen te rapporteren aan Wildfire Games (zie de link in het hoofdmenu)."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -9866,7 +9866,7 @@ msgid ""
 "Based on Aegis, but heavily modified and expected to be more robust. Note "
 "that it doesn't support saved games yet and is not as well tested as Aegis. "
 "Please report issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Gebaseerd op Aegis, maar sterk gewijzigd en verwacht om robuuster te zijn. Let op dat ook deze bot nog geen opgeslagen spellen ondersteunt, en dat hij minder getest is dan Aegis. Gelieven problemen te melden bij Wildfire Games (zie de link in het hoofdmenu)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
@@ -9926,7 +9926,7 @@ msgstr "Chamfron"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Beschikbaar in Stadsfase."
+msgstr "Beschikbaar in stadsfase."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
@@ -10012,7 +10012,7 @@ msgstr "Yzeren heldenpantser"
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Beschikbaar in Grootstad Fase."
+msgstr "Beschikbaar in grootstadsfase."
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
@@ -10840,7 +10840,7 @@ msgstr "Constructietijd vs. sterkte van muren"
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
-msgstr "Grootstad Fase"
+msgstr "Grootstadsfase"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -10884,7 +10884,7 @@ msgstr "Ga verder naar grootstadsfase. Deze geeft toegang tot Britse gebouwen en
 
 #: simulation/data/technologies/phase_city_britons.jsongenericName
 msgid "City Phase - Britons"
-msgstr "Grootstad Fase - Britten"
+msgstr "Grootstadsfase - Britten"
 
 #: simulation/data/technologies/phase_city_gauls.jsontooltip
 msgid ""
@@ -10894,7 +10894,7 @@ msgstr "Ga verder naar grootstadsfase. Deze geeft toegang tot Gallische gebouwen
 
 #: simulation/data/technologies/phase_city_gauls.jsongenericName
 msgid "City Phase - Gauls"
-msgstr "Grootstad Fase - Galliërs"
+msgstr "Grootstadsfase - Galliërs"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -11169,7 +11169,7 @@ msgstr "Immobiele belegeringswapen kunnen 25% sneller in- en uitpakken."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
-msgstr "Militaire Ingenieurs"
+msgstr "Militaire ingenieurs"
 
 #: simulation/data/technologies/speed_trader_01.jsondescription
 msgid ""
@@ -11530,7 +11530,7 @@ msgstr "Gallische hegemonie"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
 msgid "Iberian mercenaries have their train time decreased."
-msgstr "Iberische huurlingen worden sneller getraind."
+msgstr "Iberische huurlingen worden sneller gerekruteerd."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsontooltip
 msgid ""
@@ -11553,7 +11553,7 @@ msgstr "Iberische Hegemonie"
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
 msgid "Italian mercenaries have their train time decreased."
-msgstr "Italiaanse huurlingen worden sneller getraind."
+msgstr "Italiaanse huurlingen worden sneller gerekruteerd."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsontooltip
 msgid ""
@@ -11672,7 +11672,7 @@ msgstr "Keltische structuren bestonden vooral uit hout en fundamenten met brokst
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
-msgstr "Houten Constructie"
+msgstr "Houten constructie"
 
 #: simulation/data/technologies/celts/special_gather_crop_rotation.jsondescription
 msgid ""
@@ -11714,7 +11714,7 @@ msgstr "De Grieken gebruikten al steen voor de constructie van gebouwen sinds de
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
-msgstr "Hellenistische Architectuur"
+msgstr "Hellenistische architectuur"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -11847,11 +11847,11 @@ msgstr "Verhoogde groepsrekruteringssnelheid voor de stallen."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
-msgstr "Ruiters Dienstplicht"
+msgstr "Dienstplicht voor ruiters"
 
 #: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
 msgid "Infantry Conscription"
-msgstr "Infanterie Dienstplicht"
+msgstr "Dienstplicht voor infanterie"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
@@ -11985,7 +11985,7 @@ msgstr "Generische geologie"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:6
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "Een mineraal stortplaats, geeft toegang tot bijzondere vormen van kostbaar metaal."
+msgstr "Een mineralenopslagplaats, geeft toegang tot bijzondere vormen van kostbaar metaal."
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
@@ -12233,7 +12233,7 @@ msgstr "Rekruteer helden, kampioenen en bouw belegeringswapens. Onderzoek verbet
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
-msgstr "Grondstoffen Gebouw"
+msgstr "Grondstoffengebouw"
 
 #: simulation/templates/template_structure_resource_corral.xml:27
 msgid ""
@@ -12316,7 +12316,7 @@ msgstr "Ruiter Zwaardvechter"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:29
 msgid "Ranged Cavalry"
-msgstr "Afstand Cavalerie"
+msgstr "Afstandsruiters"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:37
 msgid ""
@@ -12379,7 +12379,7 @@ msgstr "Klassen: Kampioen Mêlee Ruiter Speervechter.\nSterk tegen: 2x tegen zwa
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:77
 msgid "Champion Cavalry Spearman"
-msgstr "Kampioen Ruiter Speerman"
+msgstr "Kampioen Ruiter Speervechter"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:78
 msgid ""
@@ -12416,7 +12416,7 @@ msgstr "Klassen: Kampioen Afstand Infanterie Boogschutter.\nSterk tegen: 2x Zwaa
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
-msgstr "Kampioen Boogschutter"
+msgstr "Kampioenboogschutter"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:54
 msgid ""
@@ -12530,7 +12530,7 @@ msgstr "Klassen: Held Mêlee Ruiter Speervechter.\nHeldenaura: NTD.\nSterk tegen
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:67
 msgid "Hero Cavalry Spearman"
-msgstr "Held Cavalarie Speerman"
+msgstr "Held Ruiter Speervechter"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:60
 msgid ""
@@ -12568,11 +12568,11 @@ msgstr "Heldentirailleur"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:35
 msgid "Hero Pikeman"
-msgstr "Held Piekenier"
+msgstr "Held piekenier"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:33
 msgid "Hero Spearman"
-msgstr "Held Speervechter"
+msgstr "Held speervechter"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:54
 msgid ""
@@ -12584,7 +12584,7 @@ msgstr "Klassen: Held Infanterie Mêlee Zwaard.\nHeldenaura: NTD.\nSterk tegen: 
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:53
 msgid "Hero Swordsman"
-msgstr "Held Zwaardvechter"
+msgstr "Held zwaardvechter"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
@@ -12668,7 +12668,7 @@ msgstr "Klassen: Mechanisch Oorlogsschip Licht Afstand"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
-msgstr "Licht Oorlogsschip "
+msgstr "Licht oorlogsschip "
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:36
 msgid ""
@@ -12745,7 +12745,7 @@ msgstr "Klassen: Belegering Afstand Katapult.\nSterk tegen: gebouwen en gegroepe
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:54
 msgid "Siege Catapult"
-msgstr "Belegering katapult"
+msgstr "Belegeringskatapult"
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:62
 msgid ""
@@ -12862,11 +12862,11 @@ msgstr "Griekse polis"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
-msgstr "Religieus Kerkhof"
+msgstr "Religieus kerkhof"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr "Grieks Religieus Kerkhof"
+msgstr "Grieks religieus kerkhof"
 
 #: simulation/templates/formations/battle_line.xml:4
 msgid "Battle Line"
@@ -13100,7 +13100,7 @@ msgstr "Zebra"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:8
 msgid "Hardy Bush"
-msgstr "Winterharde Struik"
+msgstr "Winterharde struik"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:6
 msgid "Gather grapes from these vines for Food."
@@ -13116,7 +13116,7 @@ msgstr "Druiven"
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
-msgstr "Bladverliezende Bush"
+msgstr "Bladverliezende struik"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
@@ -13272,7 +13272,7 @@ msgstr "Metalen schat"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:10
 msgid "Secret Box"
-msgstr "Geheime Doos"
+msgstr "Geheime doos"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
 msgid "Persian Wares"
@@ -13280,7 +13280,7 @@ msgstr "Perzische koopwaar"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
 msgid "Persian Rugs"
-msgstr "Perzische Tapijten"
+msgstr "Perzische tapijten"
 
 #: simulation/templates/gaia/special_treasure_pegasus.xml:10
 msgid "Pegasus"
@@ -13366,12 +13366,12 @@ msgstr "Zuil"
 
 #: simulation/templates/other/column_doric.xml:21
 msgid "Doric Column"
-msgstr "Dorische Zuil"
+msgstr "Dorische zuil"
 
 #: simulation/templates/other/column_doric_fallen.xml:21
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
-msgstr "Omgevallen Dorische Zuil"
+msgstr "Omgevallen Dorische zuil"
 
 #: simulation/templates/other/fence_long.xml:20
 #: simulation/templates/other/fence_short.xml:20
@@ -13431,7 +13431,7 @@ msgstr "Griekse koninklijke stoa"
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr "Hellenistische Stoa"
+msgstr "Hellenistische stoa"
 
 #: simulation/templates/other/maur_palace.xml:14
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
@@ -13634,7 +13634,7 @@ msgstr "Deze tempel is niet afgewerkt, en tot ruïnes hervallen."
 
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
-msgstr "Onvoltooide Griekse Tempel"
+msgstr "Onvoltooide Griekse tempel"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -13924,7 +13924,7 @@ msgstr "Rekruteer Brythonische helden en kampioenen. Bouw stormrammen."
 #: simulation/templates/structures/brit_fortress.xml:21
 #: simulation/templates/structures/celt_fortress_b.xml:21
 msgid "Brythonic Broch"
-msgstr "Brythonische Broch"
+msgstr "Brythonische broch"
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/celt_house.xml:9
@@ -13945,7 +13945,7 @@ msgstr "Marchnaty"
 
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
-msgstr "Brythonische Voorpost"
+msgstr "Brythonische voorpost"
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/celt_sb1.xml:25
@@ -14436,7 +14436,7 @@ msgstr "Perzisch Paleis"
 
 #: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
-msgstr "Gerekruteerde burgerinfanterie."
+msgstr "Rekruteer burgerinfanterie."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -15203,7 +15203,7 @@ msgstr "Themistoklês"
 #: simulation/templates/units/hele_infantry_archer_b.xml:19
 #: simulation/templates/units/mace_infantry_archer_b.xml:19
 msgid "Cretan Mercenary Archer"
-msgstr "Kretenzer Huurling Boogschutter"
+msgstr "Kretenzer huurlingboogschutter"
 
 #: simulation/templates/units/athen_infantry_archer_b.xml:22
 #: simulation/templates/units/hele_infantry_archer_b.xml:20
@@ -15349,7 +15349,7 @@ msgstr "Carbanto"
 
 #: simulation/templates/units/brit_champion_infantry.xml:17
 msgid "Brythonic Longswordsman"
-msgstr "Brythonische Zwaardvechter"
+msgstr "Brythonische zwaardvechter"
 
 #: simulation/templates/units/brit_champion_infantry.xml:18
 #: simulation/templates/units/celt_champion_infantry_brit.xml:14
@@ -15696,7 +15696,7 @@ msgstr "Mekir"
 msgid ""
 "Brythonic Champion Chariot.\n"
 "Counters Infantry. High trample damage."
-msgstr "Brythonische  Kampioen Strijdwagen.\nSterk tegen infanterie. Hoog vertrapschade."
+msgstr "Brythonische  Kampioen Strijdwagen.\nSterk tegen infanterie. Hoge vertrappelschade."
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:7
 msgid ""
@@ -15722,13 +15722,13 @@ msgstr "Brythonische Kampioen Zwaardvechter.\nSterk tegen Speereenheden."
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:13
 msgid "Two-Handed Swordsman"
-msgstr "Twee-Handige Zwaardvechter"
+msgstr "Tweehandige zwaardvechter"
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:12
 msgid ""
 "Gallic Champion Swordsman.\n"
 "Counters Spearmen and Cavalry."
-msgstr "Gallisch Kampioen Zwaardvechter.\nSterk tegen speermannen en ruiters."
+msgstr "Gallisch Kampioen Zwaardvechter.\nSterk tegen speervechters en ruiters."
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:10
 #: simulation/templates/units/gaul_champion_infantry.xml:10
@@ -15785,7 +15785,7 @@ msgstr "Heldenaura: +5 metaalplundering voor ieder gedode eenheid."
 
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:6
 msgid "Thessalian Scout"
-msgstr "Thessalische Verkenner"
+msgstr "Thessalische verkenner"
 
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:23
 msgid ""
@@ -15883,7 +15883,7 @@ msgstr "Heldenaura: +15% bereik en +10 verbrijzelkracht voor belegeringswapens."
 #: simulation/templates/units/hele_hero_demetrius.xml:13
 #: simulation/templates/units/mace_hero_demetrius.xml:13
 msgid "Demetrius The Besieger"
-msgstr "Demetrius De Belegeraar"
+msgstr "Demetrios De Belegeraar"
 
 #: simulation/templates/units/hele_hero_demetrius.xml:14
 #: simulation/templates/units/mace_hero_demetrius.xml:14
@@ -15928,7 +15928,7 @@ msgstr "Xenophôn"
 #: simulation/templates/units/hele_infantry_slinger_b.xml:19
 #: simulation/templates/units/mace_infantry_slinger_b.xml:19
 msgid "Rhodian Slinger"
-msgstr "Rhodenzen Slingeraar"
+msgstr "Slingeraar van Rhodos"
 
 #: simulation/templates/units/hele_infantry_slinger_b.xml:20
 #: simulation/templates/units/mace_infantry_slinger_b.xml:20
@@ -16167,7 +16167,7 @@ msgstr "Ashwarohi"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
-msgstr "Indische Bestormende Ruiter"
+msgstr "Indische plunderende ruiter"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
@@ -16774,7 +16774,7 @@ msgstr "Hiereús Aigyptikos"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:6
 msgid "Italian Allied Cavalry"
-msgstr "Italiaans Bevriend Ruiter"
+msgstr "Italiaans bevriend ruiter"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Eques Socius"
@@ -17283,7 +17283,7 @@ msgstr "Arcadië 2"
 #: maps/scenarios/Azure Coast(2).xml:31:Description maps/scenarios/Azure
 #: Coast(4).xml:31:Description maps/scenarios/Azure Coast.xml:41:Description
 msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
-msgstr "Help de jonge Massilia om zich te vestigen of de Grieken uit Gallië te verdrijven."
+msgstr "Help het jonge Massilia om zich te vestigen of de Grieken uit Gallië te verdrijven."
 
 #: maps/scenarios/Azure Coast(2).xml:31:PlayerData[0].Name
 msgid "Greeks"
@@ -17483,7 +17483,7 @@ msgstr "Kloof der doden - Invasiekracht"
 
 #: maps/scenarios/Demo_Trading.xml:31:Description
 msgid "A demonstration of the new trading feature."
-msgstr "Een demonstratie van de nieuwe handels optie."
+msgstr "Een demonstratie van de nieuwe handelsmogelijkheden."
 
 #: maps/scenarios/Demo_Trading.xml:31:Name
 msgid "Trading Demo"
@@ -17493,7 +17493,7 @@ msgstr "Handel demo"
 msgid ""
 "A demo map of the British Isles, created with the assistance of a height "
 "map."
-msgstr "Een demo kaart van Britse eilanden, gemaakt met behulp van een terreinprofiel."
+msgstr "Een demokaart van Britse eilanden, gemaakt met behulp van een terreinprofiel."
 
 #: maps/scenarios/Eire and Albion.xml:31:Name
 msgid "Eire and Albion (British Isles)"
@@ -17516,7 +17516,7 @@ msgstr "Vis demo"
 
 #: maps/scenarios/Fishing_demo.xml:31:Description
 msgid "Test out fishing with a fishing boat. Still in development."
-msgstr "Test vissen met een vissersboot. Nog in ontwikkeling."
+msgstr "Test het vissen met een vissersboot. Nog in ontwikkeling."
 
 #: maps/scenarios/Flight_demo.xml:31:Description
 msgid "Has some experimental fighter plane prototypes."
@@ -17588,7 +17588,7 @@ msgstr "Dit is een simpele zelfstudie om 0 A.D te leren spelen."
 
 #: maps/scenarios/Introductory Tutorial.xml:42:Name
 msgid "Introductory Tutorial"
-msgstr "Inleidende Tutorial"
+msgstr "Inleidende zelfstudie"
 
 #: maps/scenarios/Laconia 01.xml:31:Description
 msgid ""
@@ -17640,15 +17640,15 @@ msgstr "Necropolis"
 
 #: maps/scenarios/Pathfinding_demo.xml:31:Name
 msgid "Pathfinding Demo"
-msgstr "Pathfinding Demo"
+msgstr "Kortste-pad algoritme demo"
 
 #: maps/scenarios/Pathfinding_demo.xml:31:Description
 msgid "A map for testing unit movement algorithms."
-msgstr "Een kaart voor het testen van eenheidsverplaatsingsalgoritmes."
+msgstr "Een kaart voor het testen van de algoritmes om eenheden te bewegen."
 
 #: maps/scenarios/Pathfinding_terrain_demo.xml:31:Name
 msgid "Pathfinding Terrain Demo"
-msgstr "Pathfinding Terrein Demo"
+msgstr "Kortste-pad algoritme terrein demo"
 
 #: maps/scenarios/Pathfinding_terrain_demo.xml:31:Description
 msgid ""
@@ -17923,7 +17923,7 @@ msgstr "Serengeti 1"
 
 #: maps/scenarios/Ship Formations.xml:31:Description
 msgid "Ship formations mockup."
-msgstr "Schip formaties voorbeelden."
+msgstr "Scheepsformaties voorbeelden."
 
 #: maps/scenarios/Ship Formations.xml:31:PlayerData[0].Name
 msgid "Ships"
@@ -17937,7 +17937,7 @@ msgstr "Schip formaties"
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
 " mountainous spokes that divide the home territories of each player."
-msgstr "Carthago vs. Macedonië vs. Perzië vs. Iberië! Een grote oase als een middelpunt van bergketens die gebieden van elke speler verdelen."
+msgstr "Carthago vs. Macedonië vs. Perzië vs. Iberië! Een grote oase als een middelpunt van bergketens die gebieden van elke speler verdeelt."
 
 #: maps/scenarios/Siwa Oasis.xml:31:Name
 msgid "Siwa Oasis"
@@ -18064,11 +18064,11 @@ msgstr "Reservoir"
 
 #: maps/scenarios/road demo.xml:31:Description
 msgid "Demo map showcasing Temperate Road decals."
-msgstr "Demo kaart die de Matige Weg stroken toont."
+msgstr "Demo kaart die de wegen in een gematigd klimaat toont."
 
 #: maps/scenarios/road demo.xml:31:Name
 msgid "Road Decals Demo"
-msgstr "Weg Stroken Demo"
+msgstr "Wegtextuur demo"
 
 #: maps/scenarios/shipattacks.xml:31:Description
 msgid "Move ships around. Attack other ships."
@@ -18087,11 +18087,11 @@ msgstr "Deze kaart zal je een ruwe gids geven (in het Engels) om het spel effici
 
 #: maps/scenarios/starting_economy_walkthrough.xml:42:Name
 msgid "Starting Economy Walkthrough"
-msgstr "Beginnen Economie Doorloop"
+msgstr "Wegwijs door de economiestart"
 
 #: maps/scenarios/temperate map.xml:31:Name
 msgid "Base Temperate Map"
-msgstr "Basis Matige Kaart"
+msgstr "Basis matigeklimaatskaart"
 
 #: maps/skirmishes/Acropolis Bay (2).xml:41:Description
 msgid ""
@@ -18318,7 +18318,7 @@ msgstr "Vlakte van Lotharingen (2)"
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
-msgstr "Een grote oase als een middelpunt van bergketens die gebieden van elke speler verdelen."
+msgstr "Een grote oase als een middelpunt van bergketens die de gebieden van elke speler verdeelt."
 
 #: maps/skirmishes/Median Oasis (2).xml:41:Name
 msgid "Median Oasis (2)"
@@ -18365,7 +18365,7 @@ msgstr "Een Egyptische woestijnkaart, doorsneden door de brede Nijl. Organische 
 
 #: maps/skirmishes/Nile River (4).xml:41:Name
 msgid "Nile River (4)"
-msgstr "De Nijl Rivier (4)"
+msgstr "De Nijl (4)"
 
 #: maps/skirmishes/Persian Highlands (4).xml:42:Description
 msgid ""

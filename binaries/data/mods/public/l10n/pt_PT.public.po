@@ -21,8 +21,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 01:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-05-05 20:50+0000\n"
+"Last-Translator: onun <nnraimundo@outlook.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr ", "
 #: gui/aiconfig/aiconfig.js:10
 msgctxt "ai"
 msgid "None"
-msgstr "Nenhum"
+msgstr "Nenhum(a)"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
@@ -85,8 +85,8 @@ msgstr[1] "Bónus da Civilização"
 #: gui/civinfo/civinfo.js:105
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "Bónus da Equipa"
-msgstr[1] "Bónus da Equipa"
+msgstr[0] "Bónus de Equipa"
+msgstr[1] "Bónus de Equipa"
 
 #: gui/civinfo/civinfo.js:117
 msgid "Special Technologies"
@@ -222,7 +222,7 @@ msgstr "Maravilha"
 #: gui/gamesetup/gamesetup.js:8
 msgctxt "victory"
 msgid "None"
-msgstr "Nenhum"
+msgstr "Nenhum(a)"
 
 #: gui/gamesetup/gamesetup.js:11
 msgid "Unlimited"
@@ -315,7 +315,7 @@ msgstr "Todos os Mapas"
 #: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:283
 msgctxt "team"
 msgid "None"
-msgstr "Nenhum"
+msgstr "Nenhum(a)"
 
 #: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1270
 msgctxt "civilization"
@@ -342,14 +342,14 @@ msgstr "Tamanho do Mapa:"
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Mapa Revelado:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr ""
+msgstr "Mapa Explorado:"
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -643,19 +643,19 @@ msgstr "A registar..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Por favor, introduza o seu nome de utilizador"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Os nomes de utilizador não podem conter parênteses rectos, acentos, espaços nem vírgulas."
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Por favor introduza a sua senha"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Por favor introduza a sua senha novamente"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -663,15 +663,15 @@ msgstr "As senhas não coincidem"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Por favor, leia as Condições do Serviço"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Por favor, leia as Condições de Utilização"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Por favor, concorde com as Condições do Serviço e da sua Utilização"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -683,11 +683,11 @@ msgstr "Ligar"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Condições do Serviço"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "Condições de Utilização"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -735,13 +735,13 @@ msgstr "Pausa os jogos single player quando a janela não está activada"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Desactivar Ecrã de Boas-Vindas"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Se desactivar este ecrã, pode perder comunicações importantes.\nEm todo o caso, poderá sempre abri-lo a partir do menu principal."
 
 #: gui/options/options.js:12
 msgid "Developer Overlay"
@@ -799,7 +799,7 @@ msgstr "Suavizar Campo de Visão"
 
 #: gui/options/options.js:21
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "Desvanecer suavemente a obscuridade e a névoa da guerra (Requer 'Preferir GLSL')."
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
@@ -1024,7 +1024,7 @@ msgstr "Iniciar o lobby multiplayer. [DESACTIVADO NESTA VERSÃO]"
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
 #: gui/pregame/mainmenu.xml:139 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "Detalhes Técnicos"
 
 #: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
 #: gui/session/session.xml:732 (caption)
@@ -1729,8 +1729,8 @@ msgstr "Requer %(technology)s"
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Resta: %(number)s para construir."
+msgstr[1] "Restam: %(number)s para construir."
 
 #: gui/session/unit_commands.js:962
 #, python-format
@@ -2384,7 +2384,7 @@ msgstr "Remova 3 mulheres da madeira e 3 mulheres da pedra e envie-as para as se
 msgid ""
 "The slingers that you queued earlier should gather stone once they are "
 "trained."
-msgstr ""
+msgstr "Os últimos fundeiros que recrutou devem ser enviados para a pedreira."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
@@ -2978,13 +2978,13 @@ msgstr "Seleccionar os recursos iniciais da partida."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Activar/desactivar mapa revelado (tudo visível)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Activar/desactivar mapa explorado (natureza e edifícios visíveis)"
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -3119,11 +3119,11 @@ msgstr "Actualizar"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
-msgstr ""
+msgstr "Criar uma conta nova"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Iniciar sessão com uma conta existente"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
@@ -3147,7 +3147,7 @@ msgstr "Senha novamente:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Li e concordo com as Condições do Serviço e as Condições de Utilização:"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:310 (caption)
@@ -3219,11 +3219,11 @@ msgstr "Detectar autom."
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Informação"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Ver Online"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3274,7 +3274,7 @@ msgstr "Progresso: $status."
 
 #: gui/pregame/mainmenu.xml:498
 msgid "Alpha XVI: Patañjali"
-msgstr ""
+msgstr "Alfa XVI: Patañjali"
 
 #: gui/pregame/mainmenu.xml:500
 msgid ""
@@ -3288,15 +3288,15 @@ msgstr "Participe em: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Activar Relatórios"
 
 #: gui/pregame/mainmenu.xml:135 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Desactivar Relatórios"
 
 #: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
-msgstr "Partidas"
+msgstr "Partida"
 
 #: gui/pregame/mainmenu.xml:179 (tooltip)
 msgid "Click here to start a new single player game."
@@ -3359,11 +3359,11 @@ msgstr "Abre o editor de cenário Atlas numa nova janela. O editor pode ser exec
 
 #: gui/pregame/mainmenu.xml:339 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Ecrã de Boas-Vindas"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Mostrar o Ecrã de Boas-Vindas. Útil se o tiver ocultado por engano."
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
@@ -3371,7 +3371,7 @@ msgstr "Aprenda a Jogar"
 
 #: gui/pregame/mainmenu.xml:397 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Abrir o manual do jogo 0 A.D."
 
 #: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
@@ -3408,15 +3408,15 @@ msgstr "Sair"
 
 #: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "Sair do jogo."
 
 #: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "Ajude a Traduzir!"
 
 #: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open the 0 A.D translate page in your browser."
-msgstr ""
+msgstr "Clique para abrir a página de tradução do 0 A.D. no seu navegador."
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
@@ -3443,7 +3443,7 @@ msgstr "Comunicar um Erro"
 
 #: gui/pregame/mainmenu.xml:549 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Clique para visitar o 0 A.D. Trac para comunicar um bug, uma falha ou um erro."
 
 #: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
@@ -3547,7 +3547,7 @@ msgstr "Comercializar"
 
 #: gui/session/session.xml:511 (caption)
 msgid "Trading goods selection:"
-msgstr "Selecção da mercadoria a comercializar:"
+msgstr "Seleccionar mercadoria a comercializar:"
 
 #: gui/session/session.xml:531 (tooltip)
 msgid ""
@@ -3565,7 +3565,7 @@ msgstr "Escolher o jogador a visualizar"
 
 #: gui/session/session.xml:628 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALFA XVI : Patañjali"
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
@@ -3977,11 +3977,11 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Alterar este documento de qualquer modo e/ou a qualquer momento, desde que o utilizador do serviço seja devidamente notificado da alteração (a definição de 'devidamente notificado' será determinada na altura por um painel de membros da equipa Wildfire Games (WFG) )."
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"serif-bold-18\"]Manual do 0 A.D."
+msgstr "[font=\"sans-bold-18\"]Manual do 0 A.D."
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
@@ -4006,7 +4006,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"serif-14\"] Para alternar entre os modos de visualização ecrã completo e janela prima Alt + Enter. No modo janela, esta pode ser redimensionada. Se o jogo correr demasiado lentamente, pode alterar algumas definições no ficheiro de configuração localizado em binaries/data/config/default.cfg, sob o directório onde o jogo foi instalado. O ficheiro contém instruções (em inglês) sobre como pode ser editado. Experimente desactivar as opções \"fancywater\" e \"shadows\"."
+msgstr "[font=\"sans-14\"] Para alternar entre os modos de visualização ecrã completo e janela prima Alt + Enter. No modo janela, esta pode ser redimensionada. Se o jogo correr demasiado lentamente, pode alterar algumas definições no ficheiro de configuração localizado em binaries/data/config/default.cfg, sob o directório onde o jogo foi instalado. O ficheiro contém instruções (em inglês) sobre como pode ser editado. Experimente desactivar as opções \"fancywater\" e \"shadows\"."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -4018,7 +4018,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"serif-14\"] Os controlos e a jogabilidade serão familiares para quem já jogou jogos de estratégia em tempo real (RTS). Actualmente ainda falta implementar muitas funcionalidades e os atributos estão desequilibrados – terá de aguardar pelo lançamento da versão beta para que tudo funcione correctamente."
+msgstr "[font=\"sans-14\"] Os controlos e a jogabilidade serão familiares para quem já jogou jogos de estratégia em tempo real (RTS). Actualmente ainda falta implementar muitas funcionalidades e os atributos estão desequilibrados – terá de aguardar pelo lançamento da versão beta para que tudo funcione correctamente."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -4170,7 +4170,7 @@ msgstr "[font=\"sans-bold-14\"]Durante uma Partida"
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"serif-14\"]Duplo Clique Esquerdo [na unidade]: Selecciona todas as unidades visíveis do mesmo tipo (mesmo se forem de diferentes hierarquias)"
+msgstr "[font=\"sans-14\"]Duplo Clique Esquerdo [na unidade]: Selecciona todas as unidades visíveis do mesmo tipo (mesmo se forem de diferentes hierarquias)"
 
 #: gui/manual/intro.txt:50
 msgid ""
@@ -5531,7 +5531,7 @@ msgstr "- Guarneça este edifício com um cidadão-soldado para acelerar o desen
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr "LEGIÃO SAGRADA CARTAGINESA"
+msgstr "BATALHÃO SAGRADO DE CARTAGO"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
@@ -5547,7 +5547,7 @@ msgstr "- Ambos custam a mesma coisa e metal e são recrutados a partir do Templ
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr "Use o lanceiro como infantaria pesada contra cavalaria. Use a cavalaria como choque pesado contra armas de cerco e escaramuçadores."
+msgstr "Use o lanceiro como infantaria pesada contra cavalaria. Use a cavalaria como choque pesado contra armas de cerco e zagaieiros."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -5711,7 +5711,7 @@ msgstr "- As unidades desta formação são mais rápidas e mais fortes."
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr "- Os escaramuçadores deslocam-se mais rápidos."
+msgstr "- Os zagaieiros deslocam-se mais rapidamente enquanto ele for vivo."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6030,11 +6030,11 @@ msgstr "- Grande custo em comida e metal mas muito poderosos. Muito fortes contr
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr "- Vulneráveis aos ataques dos escaramuçadores. "
+msgstr "- Vulneráveis aos ataques dos zagaieiros."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr "- Disponíveis no Império Máuria, Egito ptolemaic, Império Selêucida e Cartagineses."
+msgstr "- Disponíveis para: Maurias, Ptolemaicos, Selêucidas e Cartagineses."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -6456,7 +6456,7 @@ msgstr "Demóstenes"
 
 #: civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "As trirremes atenienses podem recrutar infantaria de marinha (Epibastes Athenaikos)."
+msgstr "As trirremes atenienses podem recrutar soldados de Infantaria Naval (Epibastes Athenaikos)."
 
 #: civs/athen.jsonFactions[0].Technologies[0].Name
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
@@ -6839,7 +6839,7 @@ msgid ""
 "slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
 "and then slew her daughters, and then herself, to avoid further shame at "
 "Roman hands."
-msgstr "Amiano Marcelino descreveu como era difícil para um grupo de forasteiros lidar com um celta quando ele pedia ajuda à sua mulher - porque a mulher de um celta era mais forte do que ele e seria capaz de distribuir golpes e pontapés sobre os agressores com a mesma potência que uma catapulta. Boadiceia, rainha dos Icenos, era ‘muito alta e de aspecto aterrador; a sua voz era poderosa e uma cascata de cabelos ruivos caía sobre os seus ombros. Vestia uma túnica colorida, e sobre esta uma capa grossa, presa com um broche’. A princípio, após uma breve sublevação, Boadiceia fizera uma aliança com os Romanos, juntamente com o seu marido, Prasutago, rei dos Icenos. Prasutago era respeitado pela sua capacidade de antecipação, até pelos seus ex-inimigos romanos, e governava o seu reino com algum grau de liberdade, segundo as tradições da sua tribo, embora sob a autoridade de Roma. Quando sentiu que estava próximo da morte, Prasutago acordou um testamento com a sua mulher e os seus subalternos: as suas filhas herdariam a gestão do território e seriam aconselhadas por Boadiceia enquanto não chegassem à idade adulta; o imperador romano cobraria impostos e poderia requerer assistência militar - situação semelhante à que já se verificava, aliás. O problema é que os Romanos não reconheciam mulheres como herdeiras legítimas e por isso reivindicaram, após a morte de Prasutago, que apenas o imperador tinha direito ao reino da Icénia. Alegaram ainda que a prática usual era a de permitir que um reino vassalo apenas mantivesse a sua independência enquanto vivesse o primeiro rei nessa condição, como acontecera na Galácia. Assim, o Império Romano anexou formalmente o reino e começou imediatamente a cobrar severos impostos, justificando-os com base em dívidas de Prasutago aos Romanos, que alegadamente contraíra vários empréstimos que não conseguira pagar. As queixas de Boadiceia a este comportamento em clara violação da vontade do seu falecido marido foram respondidas com brutalidade: os soldados romanos açoitaram-na e violaram as suas filhas ainda crianças. O povo iceno ficou furioso com esta desonra. Boadiceia aproveitou o facto do governador romano da Britânia estar em guerra com os druidas de Cambria (actual País de Gales) para chamar à sua causa seguidores de outras tribos que partilhavam da desilusão em relação aos Romanos. Boadiceia e o seu exército arrasaram três cidades, destroçaram uma legião romana e apelou à memória de Armínio, um germânico que expulsara os Romanos das suas terras, e dos seus próprios antepassados, que haviam afastado César quase um século antes. Um erro táctico na batalha de Watling Street ditou a derrota da rainha e o massacre da maior parte do seu exército, que não foi capaz de se retirar da batalha em segurança. Boadiceia conseguiu fugir, mas matou as filhas e a si própria, para que não voltassem a ser humilhadas pelos Romanos."
+msgstr "Amiano Marcelino descreveu até que ponto era difícil para um grupo de forasteiros lidar com um celta quando ele pedia ajuda à sua mulher -- porque a mulher de um celta era mais forte do que ele e seria capaz de distribuir golpes e pontapés sobre os agressores com a mesma potência que uma catapulta.\n\nBoadiceia, rainha dos Icenos, era \"muito alta e de aspecto aterrador; a sua voz era poderosa e uma cascata de cabelos ruivos caía sobre os seus ombros. Vestia uma túnica colorida, e sobre esta uma capa grossa, presa com um broche\". A princípio, após uma breve sublevação, Boadiceia fizera uma aliança com os Romanos, juntamente com o seu marido, Prasutago, rei dos Icenos. Prasutago era respeitado pela sua capacidade de antecipação, até pelos seus ex-inimigos romanos, e governava o seu reino com algum grau de liberdade, segundo as tradições da sua tribo, embora sob a autoridade de Roma. Quando sentiu que estava próximo da morte, Prasutago acordou um testamento com a sua mulher e os seus subalternos: as suas filhas herdariam a gestão do território e seriam aconselhadas por Boadiceia enquanto não chegassem à idade adulta; o imperador romano cobraria impostos e poderia requerer assistência militar -- situação semelhante à que já se verificava, aliás. O problema é que os Romanos não reconheciam mulheres como herdeiras legítimas e por isso reivindicaram, após a morte de Prasutago, que apenas o imperador tinha direito ao reino da Icénia. Alegaram ainda que a prática usual era a de permitir que um reino vassalo apenas mantivesse a sua independência enquanto vivesse o primeiro rei nessa condição, como acontecera na Galácia.\n\nAssim, o Império Romano anexou formalmente o reino e começou imediatamente a cobrar severos impostos, justificando-os com base em dívidas de Prasutago aos Romanos, que alegadamente contraíra vários empréstimos que não conseguira pagar. As queixas de Boadiceia a este comportamento em clara violação da vontade do seu falecido marido foram respondidas com brutalidade: os soldados romanos açoitaram-na e violaram as suas filhas ainda crianças. O povo iceno ficou furioso com esta desonra. Boadiceia aproveitou o facto do governador romano da Britânia estar em guerra com os druidas de Cambria (actual País de Gales) para chamar à sua causa seguidores de outras tribos que partilhavam da desilusão em relação aos Romanos.\n\nBoadiceia e o seu exército arrasaram três cidades, destroçaram uma legião romana e apelaram à memória de Armínio, um germânico que expulsara os Romanos das suas terras, e dos seus próprios antepassados, que haviam afastado César quase um século antes. Um erro táctico na batalha de Watling Street ditou a derrota da rainha e o massacre da maior parte do seu exército, que não foi capaz de se retirar da batalha em segurança. Boadiceia conseguiu fugir, mas matou as filhas e a si própria, para que não voltassem a ser humilhadas pelos Romanos."
 
 #: civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
@@ -7012,7 +7012,7 @@ msgstr "Colonização"
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "Os cartagineses estableceram muitos centros de comércio como colónias e acabaram por dominar mais de 300 cidades e vilas só no Norte de África."
+msgstr "Os cartagineses estabeleceram muitas colónias a partir de entrepostos comerciais e acabaram por dominar mais de 300 cidades e vilas só no Norte de África."
 
 #: civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -7170,7 +7170,7 @@ msgid ""
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
 "task to kill Britomartos and strip him of his armor."
-msgstr "Quando os exércitos celtas defrontavam um inimigo, o seu líder deslocava-se à linha da frente, antes do início da batalha, e desafiava o mais corajoso dos guerreiros inimigos para um combate singular. A história da morte do líder gaulês Viridómaro às mãos de Marco Cláudio Marcelo, na batalha de Clastídio (222 a.C.), é representativa deste tipo de confronto.\nCom um exército relativamente pequeno, Marcelo enfrentava um exército que combinava gauleses da Insúbria e gesatas em Clastídio. O exército gaulês avançava com a habitual precipitação e gritos aterradores. O seu rei, Viridómaro, ao distinguir Marcelo pelas suas insígnias, desafiou-o brandindo a sua lança. O líder gaulês era uma figura extraordinária, não só pelo seu tamanho mas pelos seus ornamentos, pois resplandecia em cores vivas e a sua armadura brilhava com ouro e prata. Seria uma bela oferenda para os deuses, pensou Marcelo, e carregou contra o gaulês, trespassando a sua couraça e atirando-o ao chão. Com facilidade matou Viridómaro e o despojou da sua armadura."
+msgstr "Quando os exércitos celtas defrontavam um inimigo, o seu líder deslocava-se à linha da frente, antes do início da batalha, e desafiava o mais corajoso dos guerreiros inimigos para um combate singular. A história da morte do líder gaulês Viridómaro às mãos de Marco Cláudio Marcelo, na batalha de Clastídio (222 a.C.), é representativa deste tipo de confronto.\n\nCom um exército relativamente pequeno, Marcelo enfrentava um exército que combinava gauleses da Insúbria e gesatas em Clastídio. O exército gaulês avançava com a habitual precipitação e gritos aterradores. O seu rei, Viridómaro, ao distinguir Marcelo pelas suas insígnias, desafiou-o brandindo a sua lança. O líder gaulês era uma figura extraordinária, não só pelo seu tamanho mas pelos seus ornamentos, pois resplandecia em cores vivas e a sua armadura brilhava com ouro e prata. Seria uma bela oferenda para os deuses, pensou Marcelo, e carregou contra o gaulês, trespassando a sua couraça e atirando-o ao chão. Com facilidade matou Viridómaro e o despojou da sua armadura."
 
 #: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
 #: civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -7199,7 +7199,7 @@ msgid ""
 "and Bran are often muddled with the earlier brothers Belinus and Brennus "
 "(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
 " in around 390 B.C., and were regarded as gods in old Celtic tradition."
-msgstr "Breno é o nome que os historiadores romanos deram ao famoso líder gaulês que conquistou Roma no tempo de Camilo. Segundo Godofredo de Monmouth, o clérigo que escreveu a \"História dos Reis da Bretanha\", Breno e o seu irmão Belino teriam invadido a Gália e saqueado Roma em 390 a.C., 'provando' assim que os Bretões tinham conquistado Roma, a maior civilização do mundo, muito antes de Roma ter conquistado os Bretões.\nTodavia sabe-se, a partir de muitas fontes antigas que precedem Godofredo, que Roma foi de facto saqueada, mas em 387 a.C.; e que o ataque foi conduzido por um homem chamado Brennos (latinizado para Brennus), mas que este e a sua horda eram gauleses senonianos e não britânicos.\nEste episódio revela muitas das características do método historiográfico de Godofredo: modificou o histórico Breno, criou o irmão Belino, apropriou-se da invasão gaulesa, mas omitiu as partes em que os Celtas poderiam parecer fracos ou pouco ajuizados. A história do saque de Roma, tal como a história de origem de Tróia, não é pura invenção; é uma modificação criativa das informações disponíveis, com alguns pormenores acrescentados onde eram necessários. Em virtude desta associação histórica, as divindades galesas Beli e Bran são muitas vezes confundidas com os míticos irmãos Belino e Breno que lutaram pelo poder a norte da Britânia, por volta de 390 a.C., e eram considerados deuses pela antiga tradição celta."
+msgstr "Breno é o nome que os historiadores romanos deram ao famoso líder gaulês que conquistou Roma no tempo de Camilo. Segundo Godofredo de Monmouth, o clérigo que escreveu a \"História dos Reis da Bretanha\", Breno e o seu irmão Belino teriam invadido a Gália e saqueado Roma em 390 a.C., 'provando' assim que os Bretões tinham conquistado Roma, a maior civilização do mundo, muito antes de Roma ter conquistado os Bretões.\n\nTodavia sabe-se, a partir de muitas fontes antigas que precedem Godofredo, que Roma foi de facto saqueada, mas em 387 a.C.; e que o ataque foi conduzido por um homem chamado Brennos (latinizado para Brennus), mas que este e a sua horda eram gauleses senonianos e não britânicos.\n\nEste episódio revela muitas das características do método historiográfico de Godofredo: modificou o histórico Breno: criou o irmão Belino; apropriou-se da invasão gaulesa, mas omitiu as partes em que os Celtas poderiam parecer fracos ou pouco ajuizados. A história do saque de Roma, tal como a história de origem de Tróia, não é pura invenção; é uma modificação criativa das informações disponíveis, com alguns pormenores acrescentados onde eram necessários. Em virtude desta associação histórica, as divindades galesas Beli e Bran são muitas vezes confundidas com os míticos irmãos Belino e Breno que lutaram pelo poder a norte da Britânia, por volta de 390 a.C., e eram considerados deuses pela antiga tradição celta."
 
 #: civs/celt.jsonFactions[1].Heroes[1].Name civs/gaul.jsonAINames[1]
 #: civs/gaul.jsonFactions[0].Heroes[1].Name
@@ -7535,7 +7535,7 @@ msgstr "Tal como a Numídia no Norte de África, a Península Ibérica era conhe
 msgid ""
 "Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
 "allies."
-msgstr "A infantaria de cidadãos soldado escaramuçadores e a cavalaria de escaramuçadores custam -20% a todos os aliados."
+msgstr "A infantaria de cidadãos soldado zagaieiros e a cavalaria de zagaieiros custam -20% a todos os aliados."
 
 #: civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -7626,7 +7626,7 @@ msgid ""
 "losses in some requiring retreat). He succumbed instead to another treachery"
 " arranged by a later Roman commander, Q. Servilius Caepio, to have him "
 "assassinated by three comrades that were close to him."
-msgstr "Viriato, tal como Vercingetorix entre os Gauleses, foi o mais famoso dos líderes militares das tribos ibéricas, tendo empreendido pelo menos sete campanhas contra os Romanos na parte sul da península, durante as 'Guerras Lusitânicas' entre 147 e 139 a.C. Sobreviveu a um massacre desleal que vitimou 9000 homens e condenou 21.000 idosos, mulheres e crianças lusitanas à escravatura - isto depois de terem assinado um tratado de paz com os Romanos, por iniciativa de Sérvio Sulpício Galba, governador da Hispânia Ulterior, como 'solução final' para o problema lusitano. Viriato ... humilde em 151 a.C. e tornou-se o líder militar dos Lusitanos. Era inteligente e um estratega excepcional, nunca tendo sido derrotado em nenhum confronto (embora alguns lhe tenham causado perdas que o obrigaram a retirar-se). Acabou por sucumbir a mais uma traição, organizada pelo comandante romano Q. Servílio Cepião, que persuadiu três camaradas de Viriato a assassiná-lo."
+msgstr "Viriato, tal como Vercingetorix entre os Gauleses, foi o mais famoso dos líderes militares das tribos ibéricas, tendo empreendido pelo menos sete campanhas contra os Romanos na parte sul da península, durante as 'Guerras Lusitânicas' entre 147 e 139 a.C. Sobreviveu a um massacre desleal que vitimou 9000 homens e condenou 21.000 idosos, mulheres e crianças lusitanas à escravatura - isto depois de ter sido assinado um tratado de paz com os Romanos, por iniciativa de Sérvio Sulpício Galba, governador da Hispânia Ulterior, como \"solução final\" para o problema lusitano. Viriato emergiu de origens humildes para em 151 a.C. se tornar o líder militar dos Lusitanos. Era um estratega inteligente e excepcional, nunca tendo sido derrotado em nenhum confronto (embora alguns lhe tenham causado perdas que o obrigaram a retirar-se). Acabou por sucumbir a nova traição, organizada pelo comandante romano Q. Servílio Cepião, que persuadiu três camaradas de Viriato a assassiná-lo."
 
 #: civs/iber.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -7914,7 +7914,7 @@ msgstr "A capacidade populacional dos Maurias tem um bónus de +10% (isto é, ca
 
 #: civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
-msgstr "Imperador dos Imperadores."
+msgstr "Imperador dos Imperadores"
 
 #: civs/maur.jsonCivBonuses[0].History
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
@@ -7925,7 +7925,7 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "O Império Mauria era constituído por dezenas de reinos que foram independentes numa área de 5 milhões quilómetros quadrados com uma população aproximadamente de 60 milhões. Os regentes máurios possuíam o título de \"Imperador dos Imperadores\" e comandavam um exército permanente com 600.000 soldados, 9000 elefantes, 8000 carros de combate 30.000 cavaleiros, o que era o maior exército do seu tempo."
+msgstr "O Império Mauria compreendia dúzias de reinos outrora independentes, estendendo-se por uma área de 5 milhões quilómetros quadrados e com uma população de aproximadamente 60 milhões. Os governandes maurios possuíam o título de \"Imperador dos Imperadores\" e comandavam um exército permanente com 600.000 soldados, 9000 elefantes, 8000 bigas e 30.000 cavaleiros --possivelmente o maior exército do seu tempo."
 
 #: civs/maur.jsonCivBonuses[1].Description
 msgid "The Mauryans enjoy access to 4 champions."
@@ -7933,7 +7933,7 @@ msgstr "Os Maurias têm acesso a 4 campeões."
 
 #: civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
-msgstr "Xátria"
+msgstr "Xátria."
 
 #: civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -7949,7 +7949,7 @@ msgstr "Tecnologia aliada custa -50% e é desenvolvida 50% mais rápida."
 
 #: civs/maur.jsonTeamBonuses[0].Name
 msgid "Evangelism."
-msgstr "Evangelismo. "
+msgstr "Evangelismo"
 
 #: civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -7960,7 +7960,7 @@ msgstr "Asoka enviou embaixadores para o ocidente para difundir o conhecimento d
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
 msgid "Chandragupta Maurya"
-msgstr "Chandragupta Máuria"
+msgstr "Chandragupta Mauria"
 
 #: civs/maur.jsonAINames[1] civs/maur.jsonFactions[0].Heroes[1].Name
 #: simulation/templates/units/maur_hero_ashoka.xml:32
@@ -7981,7 +7981,7 @@ msgstr "Bindusara"
 
 #: civs/maur.jsonAINames[5]
 msgid "Dasaratha Maurya"
-msgstr "Dasaratha Máuria"
+msgstr "Dasaratha Mauria"
 
 #: civs/maur.jsonAINames[6]
 msgid "Samprati Maurya"
@@ -8007,11 +8007,11 @@ msgstr "Brihadratha de Magadha"
 msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "Capture até 5 elefantes e coloque-os nos estábulos dos elefante para ganhar uma bonificação até 25% no custo e no treino de elefantes."
+msgstr "Capture até 5 elefantes e coloque-os nos Currais de Elefantes para ganhar um bónus de até 25% no custo e no tempo de treino de unidades com elefantes."
 
 #: civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
-msgstr "Agrupamento de elefantes"
+msgstr "Cercado de Elefantes"
 
 #: civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
@@ -8031,15 +8031,15 @@ msgstr "A Índia era um país de arqueiros. O grosso de qualquer exército india
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
-msgstr "Fundador do Império Máuria."
+msgstr "Fundador do Império Mauria."
 
 #: civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
-msgstr "O último grande imperador da dinastia máuria."
+msgstr "O último grande imperador da dinastia mauria."
 
 #: civs/maur.jsonFactions[0].Heroes[2].History
 msgid "Great teacher and advisor to Chandragupta Maurya."
-msgstr "Grande professor e conselheiro de Chandragupta Máuria."
+msgstr "Grande professor e conselheiro de Chandragupta Mauria."
 
 #: civs/maur.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/maur_hero_chanakya.xml:30
@@ -8054,13 +8054,13 @@ msgstr "Maurias"
 #: civs/maur.jsonStructures[0].Name
 #: simulation/templates/structures/maur_elephant_stables.xml:21
 msgid "Elephant Stables"
-msgstr "Estábulo de Elefantes"
+msgstr "Curral de Elefantes"
 
 #: civs/maur.jsonStructures[0].Special
 msgid ""
 "Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
 "champion War Elephant at the City phase."
-msgstr "Permite recrutar arqueiros com elefantes e elefantes trabalhadores na Vila e elefante de guerra campeão na Cidade."
+msgstr "Recruta Arqueiros em Elefantes e Elefantes de Trabalho na Fase de Vila, e Elefantes de Guerra de elite na Fase de Cidade."
 
 #: civs/maur.jsonStructures[1].Name
 #: simulation/templates/structures/maur_pillar_ashoka.xml:26
@@ -8084,7 +8084,7 @@ msgid ""
 "Acharya Chanakya, contributed to such varied fields such as economics, "
 "religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
 "the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "Fundado em 322 a.C. por Chandragupta Máuria, o Império Máuria foi o primeiro a dominar grande parte da Índia e um dos mais extensos e povoados impérios da antiguidade. O seu exército era constituído por arqueiros com arcos de bambu que tinham grande alcance, guerreiras ferozes, carros de combate e milhares de elefantes de guerra. A filosofia, tendo Kautilya como seu maior representante, contribuiu para aumentar o saber em áreas como a economia, a religião, a diplomacia, a guerra e a governação. Durante o governo de Asoka, o império viveu 40 anos de paz, harmonia e prosperidade."
+msgstr "Fundado em 322 a.C. por Chandragupta Mauria, o Império Mauria foi o primeiro a dominar a maior parte do subcontinente indiano, e um dos mais extensos e povoados impérios da antiguidade. O seu exército era constituído por arqueiros com arcos de bambu que tinham grande alcance, ferozes mulheres guerreiras, carros de combate e milhares de elefantes de guerra. A filosofia mauria, que teve em Chanakya um dos seus maiores representantes, contribuiu para aumentar o saber em áreas tão distintas como a economia, a religião, a diplomacia, a guerra e a governação. Durante o governo de Asoka, o império viveu 40 anos de paz, harmonia e prosperidade."
 
 #: civs/pers.jsonName maps/scenarios/The Persian
 #: Gates.xml:31:PlayerData[3].Name
@@ -8347,7 +8347,7 @@ msgstr "Ptolemaicos"
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
-msgstr "Os Ptolemeus recebem o Acampamento de Mercenários que é um quartel que pode ser construído em território neutro para recrutar mercenários."
+msgstr "Os Ptolemaicos recebem o Acampamento de Mercenários, que é um quartel que pode ser construído em território neutro para recrutar mercenários."
 
 #: civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
@@ -8363,7 +8363,7 @@ msgid ""
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr "O Egipto ptolemaico depende de muitos mercenários gregos e estrangeiros para a estrutura do seu exército por causa da lealdade dos egípcios ser suspeitosa. Por isso, durante uma revolta egípcia, o Alto Egipto foi perdido para os Ptolemeus durante décadas. Os mercenários ficavam frequentemente mais fortes depois das batalhas ganhas e a sua lealdade podiam ser compradas por pouco ou muito dinheiro. Isto não importa porque o Egipto sob o domínio dos Ptolemeus foi tão próspero e rico dos estados sucessores de Alexandre Magno."
+msgstr "A Dinastia Ptolemaica Greco-Macedónia dependia de uma grande quantidade de mercenários gregos e estrangeiros, que formavam o grosso do seu exército -- isto porque desconfiavam da lealdade dos egípcios autóctones. De facto, devido a uma revolta indígena, os Ptolemaicos perderam o domínio sobre o Alto Egipto durante décadas.\n\nA maior parte dos mercenários tinha experiência de batalha e a sua lealdade podia ser comprada por pouco ou muito dinheiro, dependendo dos casos. Questão de somenos importância, já que o Egipto sob domínio dos Ptolemeus era altamente próspero -- o mais rico dos estados sucessores de Alexandre Magno."
 
 #: civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
@@ -8960,7 +8960,7 @@ msgstr "Filipo II Filoromeu "
 msgid ""
 "Traditional Army unlocks Silver Shields and Scythed Chariots, Reform Army "
 "unlocks Romanized Heavy Swordsmen and Cataphracts."
-msgstr "Exército tradicional desbloqueia escudos de prata e carro de guerra com ceifa. Reforma militar desbloqueia espadachins fortes e catafractários."
+msgstr "Exército tradicional desbloqueia escudos de prata e carro falcado. Reforma militar desbloqueia espadachins fortes e catafractários."
 
 #: civs/sele.jsonFactions[0].Technologies[1].Name
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
@@ -8970,7 +8970,7 @@ msgstr "Exército tradicional contra reforma militar"
 #: civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
-msgstr "Uma só compra de 20 elefantes de guerra indianos do império Máuria. "
+msgstr "Uma só compra de 20 elefantes de guerra indianos do império Mauria. "
 
 #: civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Marriage Alliance"
@@ -9381,7 +9381,7 @@ msgid ""
 "Philip II and Alexander the Great. Prior to its destruction by Alexander in "
 "335 BC, Thebes was a major force in Greek history, and was the most dominant"
 " city-state at the time of the Macedonian conquest of Greece."
-msgstr "Líderes da confederação beócia e grande força da Grécia central, os Tebanos formaram uma potência considerável. Foram grandes rivais de Atenas e aliaram-se aos Persas durante a invasão de Xerxes em 480 a.C. As forças tebanas puseram fim ao domínio de Esparta na batalha de Leuctra em 371 a.C. sob o comando de Epaminondas. O famoso Batalhão Sagrado de Tebas (uma unidade militar de elite) tombou na batalha de Queroneia contra Filipe II da Macedónia e Alexandre Magno. Tebas foi uma das principais forças da história da Grécia e era a pólis dominante na altura da conquista macedónia da Grécia, antes de ser destruída por Alexandre Magno em 335 a.C."
+msgstr "Líder da confederação beócia e grande força da Grécia central, Tebas constituía uma potência considerável. Foram grandes rivais de Atenas e aliaram-se aos Persas durante a invasão de Xerxes em 480 a.C. As forças tebanas puseram fim ao domínio de Esparta na batalha de Leuctra em 371 a.C. sob o comando de Epaminondas. O famoso Batalhão Sagrado de Tebas (uma unidade militar de elite) tombou na batalha de Queroneia contra Filipe II da Macedónia e Alexandre Magno. Tebas foi uma das principais potências da história da Grécia e era a pólis dominante na altura da conquista macedónia da Grécia, antes de ser destruída por Alexandre Magno em 335 a.C."
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands"
@@ -9848,7 +9848,7 @@ msgid ""
 "The most stable AI currently available, Aegis is an improvement of earlier "
 "bots by Wratii. Note that it doesn't support saved games yet. Please report "
 "issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "O Aegis é o jogador artificial mais estável neste momento. Foi melhorado a partir de outros bots programados por Wratii. Note porém que ainda não permite guardar jogos. Se encontrar problemas, por favor comunique-os à Wildfire Games (o link está no menu principal)."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -9859,7 +9859,7 @@ msgid ""
 "Based on Aegis, but heavily modified and expected to be more robust. Note "
 "that it doesn't support saved games yet and is not as well tested as Aegis. "
 "Please report issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Baseado no Aegis, mas altamente modificado e possivelmente mais robusto. Note que ainda não permite guardar jogos e não foi tão bem testado como o Aegis. Se encontrar problemas, por favor comunique-os à Wildfire Games (o link está no menu principal)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
@@ -9919,7 +9919,7 @@ msgstr "Barda"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Desbloqueado na Vila."
+msgstr "Desbloqueado na Fase de Vila."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
@@ -10510,11 +10510,11 @@ msgstr "Aumenta a capacidade de recolha do metal."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +25% metal gathering rate."
-msgstr "Desenvolve minaria de poço. +25% na obtenção de metal."
+msgstr "Desenvolve mineração em poço. +25% na obtenção de metal."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
-msgstr "Minaria de poço"
+msgstr "Mineração em Poço"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +25% metal gathering rate."
@@ -10763,11 +10763,11 @@ msgstr "Servos ou cunhas e macetes"
 
 #: simulation/data/technologies/pair_gather_02.jsongenericName
 msgid "Serfs vs. Shaft Mining"
-msgstr "Servos ou minaria de poço"
+msgstr "Servos ou Mineração em Poço"
 
 #: simulation/data/technologies/pair_gather_03.jsongenericName
 msgid "Slaves vs. Silver Mining"
-msgstr "Escravos ou minaria de prata"
+msgstr "Escravos ou Mineração de Prata"
 
 #: simulation/data/technologies/pair_gather_wood_01.jsongenericName
 msgid "Iron Axes vs. Wheelbarrow"
@@ -10840,7 +10840,7 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "Eleva de uma vulgar vila para uma verdadeira cidade cheia de maravilhas da tecnologia moderna. Esta é a cidade ateniense onde as taxas de metal são impulsionadas por causa da Coruja de Prata."
+msgstr "Eleva uma vila movimentada a cidade de grandes dimensões, plena de maravilhas da tecnologia moderna. Na Fase de Cidade ateniense, o ritmo de recolha do metal é impulsionado pelo bónus 'Corujas de Prata'."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
@@ -10854,7 +10854,7 @@ msgstr "Eleva para Cidade onde estão disponíveis novos edifícios e unidades. 
 #: simulation/data/technologies/phase_city_gauls.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "É necessário 4 estruturas de Vila (excepto muralhas e centros cívicos)."
+msgstr "Requer 4 edifícios próprios da Fase de Vila (excepto Muralhas e Centros Cívicos)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.hele
@@ -10867,7 +10867,7 @@ msgstr "Megalopolis"
 #: simulation/data/technologies/phase_city_britons.jsondescription
 #: simulation/data/technologies/phase_city_gauls.jsondescription
 msgid "Advance from a bustling town to large city."
-msgstr "Eleva de uma pequena vila a uma grande cidade."
+msgstr "Eleva uma vila movimentada a cidade de grandes dimensões."
 
 #: simulation/data/technologies/phase_city_britons.jsontooltip
 msgid ""
@@ -10893,7 +10893,7 @@ msgstr "Cidade - Gauleses"
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
-msgstr "Eleva de uma pequena vila para uma grande cidade com todas as maravilhas das tecnologias modernas."
+msgstr "Eleva uma vila movimentada a cidade de grandes dimensões, plena de maravilhas da tecnologia moderna."
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
@@ -10909,21 +10909,21 @@ msgstr "Bretões ou gauleses"
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
-msgstr "Vila"
+msgstr "Fase de Vila"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the Silver Owls bonus."
-msgstr "Eleva de uma vulgar vila para uma verdadeira cidade cheia de maravilhas da tecnologia moderna. Esta é a cidade ateniense onde as taxas de metal são impulsionadas por causa da Coruja de Prata."
+msgstr "Eleva uma vila movimentada a cidade de grandes dimensões, plena de maravilhas da tecnologia moderna. Na Fase de Cidade ateniense, o ritmo de recolha do metal é impulsionado pelo bónus 'Corujas de Prata'."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
-msgstr "Eleva para Vila onde estão disponíveis novos edifícios e unidades. A área territorial dos centros cívicos aumenta em +30%. A Coruja de Prata garante +10% na capacidade de obtenção do metal."
+msgstr "Avançar para a Fase de Vila, que desbloqueia novos edifícios e unidades. A área territorial dos Centros Cívicos aumenta +30%. O bónus de civilização 'Corujas de Prata' faz aumentar +10% o ritmo de recolha de metal de todos os trabalhadores."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -10943,13 +10943,13 @@ msgstr "Komópolis"
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Eleva de uma pequena vila a uma grande cidade. Pronto para se eleva rapidamente."
+msgstr "Eleva uma pequena aldeia a vila movimentada, pronta para rápida expansão."
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%"
-msgstr "Eleva para Vila onde estão disponíveis novos edifícios e unidades. A área territorial dos centros cívicos aumenta em +30%."
+msgstr "Avançar para a Fase de Vila, que desbloqueia novos edifícios e unidades. A área territorial dos Centros Cívicos aumenta +30%."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -11770,7 +11770,7 @@ msgstr "Exellinismós"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
-msgstr "Imperador dos imperadores"
+msgstr "Imperador dos Imperadores"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
@@ -11966,7 +11966,7 @@ msgstr "Frutos"
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
-msgstr "Corte para armazenar madeira."
+msgstr "Corte-a para obter Madeira."
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
@@ -12002,11 +12002,11 @@ msgstr "Mina de Pedra"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
-msgstr "Pode procurar recursos nestas ruínas."
+msgstr "Pode obter recursos nestas ruínas."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr "Ruínas genéricas"
+msgstr "Ruínas Genéricas"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
@@ -12021,7 +12021,7 @@ msgstr "Um tesouro que pode ser obtido facilmente."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
-msgstr "Tesouro genérico"
+msgstr "Tesouro Genérico"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:9
@@ -12084,7 +12084,7 @@ msgstr "Templo"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
-msgstr "Edifício defensivo"
+msgstr "Edifício Defensivo"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:32
 msgid "DefenseTower"
@@ -12112,11 +12112,11 @@ msgstr "Atalaia"
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Cerca a tua povoação para uma melhor defesa"
+msgstr "Cerque a sua povoação para uma defesa mais robusta."
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
-msgstr "Muralha em pedra"
+msgstr "Muralha de Pedra"
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid ""
@@ -12165,7 +12165,7 @@ msgstr "Cria mercadores para comercializar com outros mercados. Permite trocar r
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Armazena madeira, pedra e metal. Desenvolve tecnologias para melhorar a obtenção destes recursos."
+msgstr "Local de armazenamento de madeira, pedra e metal. Desenvolve tecnologias para optimizar a recolha destes recursos."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:21
 msgid "Storehouse"
@@ -12180,7 +12180,7 @@ msgstr "Construa um Centro Cívico nesta localização para expandir o seu terri
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
 msgid "Settlement"
-msgstr "Comunidade"
+msgstr "Povoação"
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
@@ -12206,7 +12206,7 @@ msgstr "Ferraria"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "Tem de estar localizado na costa. Permite construir embarcações e fazer comércio marítimo. Desenvolve tecnologia naval. "
+msgstr "Tem de estar localizado na costa. Permite construir embarcações e fazer comércio marítimo. Desenvolve tecnologias navais."
 
 #: simulation/templates/template_structure_military_dock.xml:24
 msgid "Dock"
@@ -12232,11 +12232,11 @@ msgstr "Edifício de Recursos"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "Cria animais para obter comida. Encurrala animais domésticos para obter mais comida ou outra bonificação (ainda não implementado)."
+msgstr "Cria animais para obter comida. Recolha animais domésticos neste edifício para obter mais comida ou outras bonificações (funcionalidade ainda não implementada)."
 
 #: simulation/templates/template_structure_resource_corral.xml:26
 msgid "Corral"
-msgstr "Estábulo"
+msgstr "Curral"
 
 #: simulation/templates/template_structure_resource_field.xml:26
 msgid "Harvest vegetables for food. Max gatherers: 5."
@@ -12320,7 +12320,7 @@ msgstr "Categoria: Arqueiro de Cavalaria de Arremesso Cidadão.\nPontos fortes: 
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:35
 msgid "Cavalry Archer"
-msgstr "Cavaleiro arqueiro"
+msgstr "Cavaleiro Arqueiro"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:37
 msgid ""
@@ -12350,7 +12350,7 @@ msgstr "Categorias: Elite, Arremesso, Cavalaria, Arqueiro.\nPontos fortes: 2x co
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:40
 msgid "Champion Cavalry Archer."
-msgstr "Cavaleiro campeão arqueiro"
+msgstr "Cavaleiro Arqueiro de Elite"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:40
 msgid ""
@@ -12361,14 +12361,14 @@ msgstr "Categoria: Atirador de Cavalaria de Arremesso de Elite.\nPontos fortes: 
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:39
 msgid "Champion Cavalry Skirmisher"
-msgstr "Cavaleiro escamuraçador campeão"
+msgstr "Cavaleiro Zagaieiro de Elite"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:78
 msgid ""
 "Classes: Champion Melee Cavalry Spearman.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr "Categoria: \nPonto forte: 2x contra espadachins e maquinaria de cerco 1.5x contra escaramuçadores.\nPonto fraco: Lanceiros, arqueiros e elefantes."
+msgstr "Categorias: Lanceiro, Cavalaria, Corpo-a-Corpo, Elite.\nPontos fortes: 2x contra Espadachins e Máquinas de Cerco; 1,5x contra Zagaieiros.\nFraco contra: Lanceiros, Arqueiros e Elefantes."
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:77
 msgid "Champion Cavalry Spearman"
@@ -12379,7 +12379,7 @@ msgid ""
 "Classes: Champion Melee Cavalry Swordsman.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr "Categoria: \nPonto forte: 2x contra arqueiros. Suporta todas unidades e maquinaria de cerco.\nPonto fraco: Lanceiros, cavaleiros escaramuçadores e elefantes."
+msgstr "Categorias: Espadachim, Cavalaria, Corpo-a-Corpo, Elite.\nPontos fortes: 2x contra Arqueiros, Unidades de Apoio e Máquinas de Cerco.\nFraco contra: Lanceiros, Cavaleiros Zagaieiros e Elefantes."
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:77
 msgid "Champion Cavalry Swordsman"
@@ -12387,14 +12387,14 @@ msgstr "Espadachim Cavaleiro de Elite"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
 msgid "War Elephant"
-msgstr "Elefante de guerra"
+msgstr "Elefante de Guerra"
 
 #: simulation/templates/template_unit_champion_elephant_melee.xml:49
 msgid ""
 "Classes: Champion Melee Elephant.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates. \"Stench\" aura vs. Cavalry.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "Categoria: Elefante de Contacto de Elite.\nPontos forte: 2x contra Cavalaria, 1,5x contra Estruturas e Portões. Aura \"fedor\" contra Cavalaria.\nPonto fraco: Escaramuçadores e Espadachins. Pode correr de forma muito rápida."
+msgstr "Categoria: Elefante de Contacto de Elite.\nPontos forte: 2x contra Cavalaria, 1,5x contra Estruturas e Portões. Aura \"fedor\" contra Cavalaria.\nPonto fraco: Escaramuçadores e Espadachins. Pode entrar em descontrolo."
 
 #: simulation/templates/template_unit_champion_infantry.xml:35
 msgid "Champion Infantry"
@@ -12409,7 +12409,7 @@ msgstr "Categorias: Elite, Arremesso, Infantaria, Arqueiro.\nPontos fortes: 2x c
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
-msgstr "Arqueiro campeão"
+msgstr "Arqueiro de Elite"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:54
 msgid ""
@@ -12420,7 +12420,7 @@ msgstr "Categorias: Elite, Arremesso, Infantaria, Zagaieiro.\nPontos fortes: 1,5
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:53
 msgid "Champion Skirmisher"
-msgstr "Escaramuçador campeão"
+msgstr "Zagaieiro de Elite"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:57
 msgid ""
@@ -12438,7 +12438,7 @@ msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr "Categoria: Lanceiro de Infantaria Corpo a Corpo de Elite.\nPonto forte 2x contra Cavalaria.\nPonto fraco: Espadachins, Escaramuçadores e Cavaleiros Arqueiros."
+msgstr "Categorias: Lanceiro, Infantaria, Corpo-a-Corpo, Elite.\nPontos fortes: 2x contra Cavalaria.\nFraco contra: Zagaieiros, Espadachins e Cavaleiros Arqueiros."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:43
 msgid "Champion Spearman"
@@ -12461,7 +12461,7 @@ msgstr "Campeão com projécteis "
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
-msgstr "Super máquina de cerco"
+msgstr "Máquina de Cerco Superior"
 
 #: simulation/templates/template_unit_dog.xml:81
 msgid ""
@@ -12493,11 +12493,11 @@ msgstr "Cetáceo"
 #: simulation/templates/template_unit_hero_infantry.xml:39
 #: simulation/templates/template_unit_hero_ranged.xml:31
 msgid "Hero"
-msgstr "Heroi"
+msgstr "Herói"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:40
 msgid "Hero Cavalry"
-msgstr "Herói cavaleiro"
+msgstr "Herói Cavaleiro"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:49
 msgid ""
@@ -12507,7 +12507,7 @@ msgstr "Aura de herói: Não definida.\nPonto forte: 2x o ataque a distância co
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:48
 msgid "Hero Cavalry Archer"
-msgstr "Herói arqueiro cavaleiro"
+msgstr "Herói Cavaleiro Arqueiro"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:40
 msgid "Hero Cavalry Skirmisher"
@@ -12519,7 +12519,7 @@ msgid ""
 "\"Hero\" Aura: TBD.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr "Categoria: Herói Cavaleiro Lanceiro de Contacto\nAura de Herói: Não definido.\nPonto forte: 2x contra espadachins e maquinaria de cerco 1,5x contra escaramuçadores.\nPonto fraco: Lanceiros, arqueiros e elefantes."
+msgstr "Categorias: Herói, Lanceiro, Cavalaria, Corpo-a-Corpo.\nAura de Herói: (a definir).\nPontos fortes: 2x contra Espadachins e Máquinas de Cerco; 1,5x contra Zagaieiros.\nFraco contra: Lanceiros, Arqueiros e Elefantes."
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:67
 msgid "Hero Cavalry Spearman"
@@ -12542,7 +12542,7 @@ msgid ""
 "Classes: Hero Melee Elephant.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "Categoria: Herói Elefante de Contacto.\nPontos forte: 2x contra Cavalaria, 1,5x contra Estruturas e Portões (extra).\nPonto fraco: Escaramuçadores e Espadachins. Pode correr de forma muito rápida."
+msgstr "Categorias: Herói, Elefante, Corpo-a-Corpo.\nPontos fortes: 2x contra Cavalaria; 1,5x contra Edifícios (1,5x adicionais contra Portões).\nFraco contra: Zagaieiros e Espadachins. Pode entrar em descontrolo."
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:41
 msgid ""
@@ -12553,19 +12553,19 @@ msgstr "Categorias: Arqueiro, Arremesso, Infantaria, Herói\nPontos fortes: 2x c
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:39
 msgid "Hero Archer"
-msgstr "Herói arqueiro"
+msgstr "Herói Arqueiro"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:46
 msgid "Hero Skirmisher"
-msgstr "Heróis escaramuçador"
+msgstr "Herói Zagaieiro"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:35
 msgid "Hero Pikeman"
-msgstr "Herói piqueiro"
+msgstr "Herói Piqueiro"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:33
 msgid "Hero Spearman"
-msgstr "Herói lanceiro"
+msgstr "Herói Lanceiro"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:54
 msgid ""
@@ -12577,11 +12577,11 @@ msgstr "Categorias: Espadachim, Infantaria, Corpo a Corpo, Herói.\nAura \"Heró
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:53
 msgid "Hero Swordsman"
-msgstr "Herói espadachim"
+msgstr "Herói Espadachim"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
-msgstr "Infantaria de contacto"
+msgstr "Infantaria Corpo-a-Corpo"
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:39
@@ -12589,7 +12589,7 @@ msgid ""
 "Classes: Citizen Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, Cavalry Archers."
-msgstr "Categoria: Lanceiro de Infantaria Corpo a Corpo de Elite Cidadão.\nPonto forte 2x contra cavalaria.\nPonto fraco: Espadachins, escaramuçadores e cavaleiros arqueiros."
+msgstr "Categoria: Lanceiro de Infantaria Corpo a Corpo de Elite Cidadão.\nPonto forte 2x contra cavalaria.\nPonto fraco: Espadachins, Zagaieiros e Cavaleiros Arqueiros."
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
@@ -12612,7 +12612,7 @@ msgstr "Espadachim"
 
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 msgid "Ranged"
-msgstr "Unidade de projécteis"
+msgstr "Arremesso"
 
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:40
 msgid ""
@@ -12634,7 +12634,7 @@ msgstr "Categoria: Atirador de Infantaria de Arremesso Cidadão.\nPontos fortes:
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:45
 msgid "Skirmisher"
-msgstr "Escaramuçador"
+msgstr "Zagaieiro"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:39
 msgid ""
@@ -12661,7 +12661,7 @@ msgstr "Categoria: Navio de Guerra Mecânico Ligeiro"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
-msgstr "Embarcação de guerra ligeira"
+msgstr "Navio de Guerra Ligeiro"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:36
 msgid ""
@@ -12671,7 +12671,7 @@ msgstr "Categoria: Embarcação de guerra de contacto mecânica.\nDanifica rapid
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
-msgstr "Embarcação Lança-chamas"
+msgstr "Brulote"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:33
 msgid ""
@@ -12771,7 +12771,7 @@ msgstr "Apoio"
 msgid ""
 "Classes: Citizen Support Worker Female.\n"
 "Gather resources, build civic structures, and inspire nearby males to work faster. Bonused at foraging and farming."
-msgstr "Categoria: Mulheres trabalhadores de suporte cidadãs\nObtêm recursos, controem edifícios cívicos e inspiram os homens próximos de si a trabalhar mais rapadimente. Bonificação na obtenção de comida."
+msgstr "Categorias: Cidadã, Trabalhadora, Apoio.\nObtém recursos, constrói edifícios cívicos e faz aumentar a produtividade dos trabalhadores homens mais próximos. Bónus na apanha de frutos e na agricultura."
 
 #: simulation/templates/template_unit_support_female_citizen.xml:52
 msgid "Female Citizen"
@@ -12811,19 +12811,19 @@ msgstr "Comerciante"
 #: simulation/templates/campaigns/army_mace_standard.xml:22
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
 msgid "This is what an army would look like on the Strat Map."
-msgstr "Assim é como se veria um exército num jogo de estratégia."
+msgstr "Este seria o aspecto de um exército no diagrama estratégico."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great."
-msgstr "Exército de Alexandre, o magno."
+msgstr "Exército de Alexandre Magno."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
 msgid "Army of Alexander the Great"
-msgstr "Exército de Alexandre, o magno"
+msgstr "Exército de Alexandre Magno"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedonia"
-msgstr "Exército macedónio"
+msgstr "Exército Macedónio"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 msgid "Army of Macedon"
@@ -12831,27 +12831,27 @@ msgstr "Exército Macedónio"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I."
-msgstr "Exército de Leónidas I"
+msgstr "Exército de Leónidas I."
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
 msgid "Army of Leonidas I"
-msgstr "Exército de Leónidas II"
+msgstr "Exército de Leónidas I"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr "É uma pequena cidade grega e tem um efeito territorial de 150."
+msgstr "Uma pequena cidade grega. Tem um efeito territorial de 150."
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
-msgstr "Pequena cidade-estado grega"
+msgstr "Pólis Grega Secundária"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city. Has a territory effect of 300."
-msgstr "É uma grande cidade grega e tem um efeito territorial de 300."
+msgstr "Uma importante cidade grega. Tem um efeito territorial de 300."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
-msgstr "Cidades-estado gregas"
+msgstr "Pólis Grega"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -12859,7 +12859,7 @@ msgstr "Santuário"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr "Santuário grego"
+msgstr "Santuário Grego"
 
 #: simulation/templates/formations/battle_line.xml:4
 msgid "Battle Line"
@@ -12911,7 +12911,7 @@ msgstr "Espalhados"
 
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Skirmish"
-msgstr "Escaramuçador"
+msgstr "Escaramuça"
 
 #: simulation/templates/formations/skirmish.xml:4
 msgid "Only ranged units allowed"
@@ -13308,7 +13308,7 @@ msgstr "Ponte de madeira"
 
 #: simulation/templates/other/cart_tophet.xml:25
 msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "Recruta físicos e cavaleiros da legião sagrada."
+msgstr "Recruta físicos e cavaleiros do batalhão sagrado."
 
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -14103,7 +14103,7 @@ msgstr "Cothon"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 15 units to heal them at a quick rate."
-msgstr "Recruta sacerdotisas para curar as suas tropas. Recruta piqueiros da Legião Sagrada. Guarneça até 15 unidades no seu interior para serem curadas rapidamente. "
+msgstr "Recruta sacerdotisas para curar as suas tropas. Recruta piqueiros do Batalhão Sagrado. Guarneça até 15 unidades no seu interior para serem curadas rapidamente. "
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
@@ -15122,7 +15122,7 @@ msgstr "Elite"
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:6
 msgid "Greek Cavalry"
-msgstr "Cavaleiro grego"
+msgstr "Cavaleiro Grego"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:7
@@ -15131,7 +15131,7 @@ msgstr "Hippeús"
 
 #: simulation/templates/units/athen_champion_infantry.xml:10
 msgid "City Guard"
-msgstr "Guarda da cidade"
+msgstr "Guarda da Cidade"
 
 #: simulation/templates/units/athen_champion_infantry.xml:11
 msgid "Epilektos"
@@ -15139,7 +15139,7 @@ msgstr "Epilektos"
 
 #: simulation/templates/units/athen_champion_marine.xml:5
 msgid "Athenian Marine"
-msgstr "Fuzileiro ateniense"
+msgstr "Infantaria Naval Ateniense"
 
 #: simulation/templates/units/athen_champion_marine.xml:6
 msgid "Épibatēs Athēnaïkós"
@@ -15147,7 +15147,7 @@ msgstr "Épibastēs Athēnaïkós"
 
 #: simulation/templates/units/athen_champion_ranged.xml:13
 msgid "Scythian Archer"
-msgstr "Arqueiro cita"
+msgstr "Arqueiro Cita"
 
 #: simulation/templates/units/athen_champion_ranged.xml:14
 msgid "Toxotes Skithikos"
@@ -15196,7 +15196,7 @@ msgstr "Themistoklês"
 #: simulation/templates/units/hele_infantry_archer_b.xml:19
 #: simulation/templates/units/mace_infantry_archer_b.xml:19
 msgid "Cretan Mercenary Archer"
-msgstr "Arqueiro mercenário cretense"
+msgstr "Arqueiro Mercenário Cretense"
 
 #: simulation/templates/units/athen_infantry_archer_b.xml:22
 #: simulation/templates/units/hele_infantry_archer_b.xml:20
@@ -15207,7 +15207,7 @@ msgstr "Toxótēs Krētikós"
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:26
 #: simulation/templates/units/hele_infantry_javelinist_b.xml:23
 msgid "Thracian Peltast"
-msgstr "Peltasta trácio"
+msgstr "Peltasta Trácio"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:27
 #: simulation/templates/units/hele_infantry_javelinist_b.xml:24
@@ -15216,7 +15216,7 @@ msgstr "Peltastḗs Thrâx"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:14
 msgid "Athenian Slinger Militia"
-msgstr "Milícia de fundeiros atenienses"
+msgstr "Milícia de Fundeiros Ateniense"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:15
 msgid "Psilós Athēnaïkós"
@@ -15275,7 +15275,7 @@ msgstr "Ploîon Phortēgikón"
 
 #: simulation/templates/units/athen_ship_trireme.xml:6
 msgid "Athenian Trireme"
-msgstr "Trirreme ateniense"
+msgstr "Trirreme Ateniense"
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaïkós"
@@ -15312,7 +15312,7 @@ msgstr "Émporos"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
 msgid "Raiding Cavalry"
-msgstr "Cavaleiro de assalto"
+msgstr "Cavalaria de Assalto"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/celt_cavalry_javelinist_b.xml:6
@@ -15322,7 +15322,7 @@ msgstr "Gaisaredos"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
-msgstr "Cavaleiro celta"
+msgstr "Cavaleiro Celta"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/celt_cavalry_swordsman_b.xml:6
@@ -15333,7 +15333,7 @@ msgstr "Epos"
 #: simulation/templates/units/brit_champion_cavalry.xml:27
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:22
 msgid "Celtic Chariot"
-msgstr "Carro de combate celta"
+msgstr "Carro Celta"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:28
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:23
@@ -15342,7 +15342,7 @@ msgstr "Carbanto"
 
 #: simulation/templates/units/brit_champion_infantry.xml:17
 msgid "Brythonic Longswordsman"
-msgstr "Espadachim britãnico com grande espada"
+msgstr "Espadachim Bretão com Montante"
 
 #: simulation/templates/units/brit_champion_infantry.xml:18
 #: simulation/templates/units/celt_champion_infantry_brit.xml:14
@@ -15389,7 +15389,7 @@ msgstr "Baguada"
 #: simulation/templates/units/celt_infantry_slinger_b.xml:15
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:15
 msgid "Celtic Slinger"
-msgstr "Fundeiro celta"
+msgstr "Fundeiro Celta"
 
 #: simulation/templates/units/brit_infantry_slinger_b.xml:14
 #: simulation/templates/units/celt_infantry_slinger_b.xml:16
@@ -15399,7 +15399,7 @@ msgstr "Iaosae"
 
 #: simulation/templates/units/brit_infantry_spearman_b.xml:17
 msgid "Celtic Spearman"
-msgstr "Lanceiro celta"
+msgstr "Lanceiro Celta"
 
 #: simulation/templates/units/brit_infantry_spearman_b.xml:16
 #: simulation/templates/units/celt_infantry_spearman_b.xml:18
@@ -15472,7 +15472,7 @@ msgstr "Ḥayyāl Raḫūv Masili"
 
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:13
 msgid "Italic Cavalry"
-msgstr "Cavaleiro italiota "
+msgstr "Cavaleiro Italiota "
 
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
@@ -15489,17 +15489,17 @@ msgstr "Ḥayyāl Ḥerev Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_b.xml:12
 msgid "Iberian Heavy Cavalry"
-msgstr "Cavaleiro pesado ibéric"
+msgstr "Cavalaria Pesada Ibérica"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:11
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:11
 msgid "Sacred Band Cavalry"
-msgstr "Cavaleiro da Legião Sagrada"
+msgstr "Cavaleiro do Batalhão Sagrado"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:12
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:12
 msgid "Sacred Band of Astarte"
-msgstr "Legião Sagrada de Astarte"
+msgstr "Batalhão Sagrado de Astarte"
 
 #: simulation/templates/units/cart_champion_elephant.xml:5
 msgid "North African War Elephant"
@@ -15511,15 +15511,15 @@ msgstr "Pil Malḥamit"
 
 #: simulation/templates/units/cart_champion_infantry.xml:12
 msgid "Sacred Band Infantry"
-msgstr "Infantaria da legião sagrada"
+msgstr "Infantaria do Batalhão Sagrado"
 
 #: simulation/templates/units/cart_champion_infantry.xml:13
 msgid "Sacred Band of Ba'al"
-msgstr "Legião sagrada de  Baal"
+msgstr "Batalhão Sagrado de Baal"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
-msgstr "Piqueiro da legião sagrada"
+msgstr "Piqueiro do Batalhão Sagrado"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
 msgid "Mašal"
@@ -15544,7 +15544,7 @@ msgid ""
 "\"Strategist\" Ability: The player can see changes within the fog of war while Hannibal lives.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "Categoria: Elefante de Contacto de Elite.\nAura de Herói: \"Táctica\". Todos as unidades aliadas do seu campo de visão têm +2de ataque.\nHabilidade de Estratega: O jogador pode ver dentro da névoa da guerra.\nPontos forte: 2x contra Cavalaria, 1,5x contra Estruturas e Portões (extra).\nPonto fraco: Escaramuçadores e Espadachins. Pode ficar fora de controlo."
+msgstr "Categoria: Elefante de Contacto de Elite.\nAura de Herói: \"Táctica\". Todos as unidades aliadas do seu campo de visão têm +2de ataque.\nHabilidade de Estratega: O jogador pode ver dentro da névoa da guerra.\nPontos forte: 2x contra Cavalaria, 1,5x contra Estruturas e Portões (extra).\nPonto fraco: Escaramuçadores e Espadachins. Pode entrar em descontrolo."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:12
 msgid "Ḥannibaʿal Baraq"
@@ -15556,7 +15556,7 @@ msgid ""
 "\"Commander\" Aura: +5 Cavalry charge attack within vision range of him.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr "Categoria: Herói Cavaleiro Lanceiro de Contacto\nAura de Comandante: +5 de ataque de carga de cavalaria no seu campo de visão.\nPonto forte: 2x contra espadachins e maquinaria de cerco 1,5x contra escaramuçadores.\nPonto fraco: Lanceiros, arqueiros e elefantes."
+msgstr "Categoria: Herói Cavaleiro Lanceiro de Contacto\nAura de Comandante: +5 de ataque de carga de cavalaria no seu campo de visão.\nPonto forte: 2x contra espadachins e maquinaria de cerco 1,5x contra Zagaieiros.\nPonto fraco: Lanceiros, arqueiros e elefantes."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:12
 msgid "Maharbaʿal"
@@ -15564,7 +15564,7 @@ msgstr "Maharbaʿal"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:15
 msgid "Mauritanian Archer"
-msgstr "Arqueiro mauritano "
+msgstr "Arqueiro Mauritano "
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:16
 msgid "Qešet"
@@ -15572,7 +15572,7 @@ msgstr "Qešet"
 
 #: simulation/templates/units/cart_infantry_javelinist_b.xml:22
 msgid "Iberian Mercenary Skirmisher"
-msgstr "Escaramuçador mercenário ibérico"
+msgstr "Zagaieiro Mercenário Ibérico"
 
 #: simulation/templates/units/cart_infantry_javelinist_b.xml:23
 msgid "Sǝḫīr Kidōn"
@@ -15588,7 +15588,7 @@ msgstr "Qallāʿ Ibušimi"
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:15
 msgid "Libyan Spearman"
-msgstr "Lanceiro líbio "
+msgstr "Lanceiro Líbio "
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:16
 msgid "Sǝḫīr Ḥanīt"
@@ -15606,7 +15606,7 @@ msgstr "Seḫīr Romaḥ"
 #: simulation/templates/units/cart_infantry_swordsman_b.xml:21
 #: simulation/templates/units/ptol_infantry_swordsman_b.xml:21
 msgid "Gallic Mercenary Swordsman"
-msgstr "Espadachim mercenário gaulês"
+msgstr "Espadachim Mercenário Gaulês"
 
 #: simulation/templates/units/cart_infantry_swordsman_b.xml:22
 msgid "Seḫīr Ḥerev"
@@ -15624,13 +15624,13 @@ msgstr "Oxybeles"
 
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:13
 msgid "Bonused vs. Ranged Units."
-msgstr "Bonificação contra unidades com projécteis."
+msgstr "Bónus contra Unidades de Arremesso."
 
 #: simulation/templates/units/cart_ship_bireme.xml:9
 #: simulation/templates/units/ptol_ship_bireme.xml:5
 #: simulation/templates/units/sele_ship_bireme.xml:5
 msgid "Bireme"
-msgstr "Bireme"
+msgstr "Birreme"
 
 #: simulation/templates/units/cart_ship_bireme.xml:10
 msgid "Du-Mašōt"
@@ -15645,7 +15645,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "Comércio entre portos. Guarnece um comerciante para ter uma bonificação de 20% em cada um. Recolhe tesouros da água. Os cartagineses têm +25% no comércio marítimo."
+msgstr "Comercializa entre portos. Pode ser guarnecido com Comerciantes a bordo para obter lucros adicionais (+20% lucro por cada comerciante a bordo). Recolhe tesouros aquáticos rentáveis. Os Cartagineses têm um bónus de +25% no comércio marítimo."
 
 #: simulation/templates/units/cart_ship_merchant.xml:9
 msgid "Seḥer"
@@ -15715,7 +15715,7 @@ msgstr "Categoria: Espadachim bretão campeão.\nPonto forte: Contra lanceiros."
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:13
 msgid "Two-Handed Swordsman"
-msgstr "Espadachim de duas mãos "
+msgstr "Soldado com Espadão"
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:12
 msgid ""
@@ -15726,7 +15726,7 @@ msgstr "Espadachim gaulês campeão.\nPonto forte: Contra lanceiros e cavaleiros
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:10
 #: simulation/templates/units/gaul_champion_infantry.xml:10
 msgid "Heavy Swordsman"
-msgstr "Espadachim pesado"
+msgstr "Espadachim Pesado"
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:11
 #: simulation/templates/units/gaul_champion_infantry.xml:11
@@ -15778,7 +15778,7 @@ msgstr "Aura de herói: +5 de saque de metal por cada inimigo morto."
 
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:6
 msgid "Thessalian Scout"
-msgstr "Explorador tessálico"
+msgstr "Batedor Tessálio"
 
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:23
 msgid ""
@@ -15824,7 +15824,7 @@ msgstr "Categoria: Lanceiro de Infantaria Corpo a Corpo de Elite.\nPontos fortes
 #: simulation/templates/units/hele_champion_infantry_polis.xml:98
 #: simulation/templates/units/spart_champion_infantry_spear.xml:100
 msgid "Spartan Hoplite"
-msgstr "Hoplita espartano"
+msgstr "Hoplita Espartano"
 
 #: simulation/templates/units/hele_champion_infantry_polis.xml:99
 msgid "Spartiā́tēs"
@@ -15930,7 +15930,7 @@ msgstr "Sphendonetes Rhodikos"
 
 #: simulation/templates/units/hele_infantry_spearman_b.xml:26
 msgid "Greek Hoplite"
-msgstr "Hoplita grego"
+msgstr "Hoplita Grego"
 
 #: simulation/templates/units/hele_infantry_spearman_b.xml:27
 msgid "Hoplī́tēs Hellēnikós"
@@ -15997,7 +15997,7 @@ msgstr "Leial Ezpatari"
 #: simulation/templates/units/iber_hero_indibil.xml:7
 #: simulation/templates/units/iber_hero_viriato.xml:12
 msgid "Hero Aura: \"Tactica Guerilla.\" TBD."
-msgstr "Aura de herói: Táctica de guerrilha. Ainda não funciona."
+msgstr "Aura de Herói: \"Guerrilha\" (a definir)."
 
 #: simulation/templates/units/iber_hero_caros.xml:10
 msgid "Caros"
@@ -16025,7 +16025,7 @@ msgstr "Ahariburu"
 
 #: simulation/templates/units/iber_ship_fire.xml:5
 msgid "Iberian Fire Ship"
-msgstr "Barco Lança-chamas ibérico"
+msgstr "Brulote Ibérico"
 
 #: simulation/templates/units/iber_ship_fishing.xml:5
 msgid "Arrantza Ontzi"
@@ -16057,7 +16057,7 @@ msgstr "Merkatari"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
-msgstr "Cavaleiro escaramuçador de Odrísio"
+msgstr "Cavaleiro Zagaieiro de Odrísio"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Hippakontistès Odrysón"
@@ -16065,7 +16065,7 @@ msgstr "Hippakontistès Odrysón"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:6
 msgid "Thessalian Lancer"
-msgstr "Lanceiro tessálio"
+msgstr "Lanceiro Tessálio"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:7
 msgid "Xystophoros Thessalikos"
@@ -16073,7 +16073,7 @@ msgstr "Xystophoros Thessalikos"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:30
 msgid "Macedonian Shield Bearer"
-msgstr "Portador de escudo macedónio"
+msgstr "Escudeiro Macedónio"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:31
 msgid "Hypaspistes"
@@ -16111,7 +16111,7 @@ msgstr "Pyrrhos ton Epeiros"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:23
 msgid "Agrianian Peltast"
-msgstr "Peltasta agrágio "
+msgstr "Peltasta Agriano"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:24
 msgid "Peltastes Agrianikos"
@@ -16160,7 +16160,7 @@ msgstr "Ashwarohi"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
-msgstr "Cavaleiro indiano de assalto"
+msgstr "Cavalaria de Assalto Indiana"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
@@ -16176,7 +16176,7 @@ msgstr "Categoria: Quadriga de Arqueiros de Cavalaria de Arremesso de Elite.\nPo
 
 #: simulation/templates/units/maur_champion_chariot.xml:30
 msgid "War Chariot"
-msgstr "Carro de guerra"
+msgstr "Carro de Guerra"
 
 #: simulation/templates/units/maur_champion_chariot.xml:31
 msgid "Rath"
@@ -16185,7 +16185,7 @@ msgstr "Rath"
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
 msgid "Indian War Elephant"
-msgstr "Elefante de guerra indiano"
+msgstr "Elefante de Guerra Indiano"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
@@ -16208,7 +16208,7 @@ msgstr "Yōddha"
 
 #: simulation/templates/units/maur_champion_maiden.xml:16
 msgid "Maiden Guard"
-msgstr "Guarda das Virgens"
+msgstr "Guarda Feminina"
 
 #: simulation/templates/units/maur_champion_maiden.xml:17
 #: simulation/templates/units/maur_champion_maiden_archer.xml:18
@@ -16217,18 +16217,18 @@ msgstr "Visha Kanya"
 
 #: simulation/templates/units/maur_champion_maiden_archer.xml:17
 msgid "Maiden Guard Archer"
-msgstr "Guarda arqueira"
+msgstr "Arqueira da Guarda Feminina"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:30
 msgid ""
 "Classes: Ranged Elephant Archer.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen. \"Stench\" aura vs. Cavalry.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "Categoria: Arqueiro em Elefante de Arremesso.\nPontos fortes: 2x contra Lanceiros; 1,5x contra Espadachins. Aura \"Fedor\" contra Cavalaria.\nPontos fracos: contra Atiradores e Espadachins. Pode ficar descontrolado."
+msgstr "Categoria: Arqueiro em Elefante de Arremesso.\nPontos fortes: 2x contra Lanceiros; 1,5x contra Espadachins. Aura \"Fedor\" contra Cavalaria.\nPontos fracos: contra Atiradores e Espadachins. Pode entrar em descontrolo."
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:26
 msgid "Elephant Archer"
-msgstr "Elefante com arqueiro"
+msgstr "Arqueiro em Elefante"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:27
 msgid "Vachii Gaja"
@@ -16255,7 +16255,7 @@ msgstr "Categoria: Herói sacerdote.\nHabilidade especial de herói: Médico - C
 
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Acharya Chanakya"
-msgstr "Kautilya"
+msgstr "Acharya Chanakya"
 
 #: simulation/templates/units/maur_hero_maurya.xml:7
 msgid ""
@@ -16265,7 +16265,7 @@ msgstr "Categoria: Herói em Elefante Corpo a Corpo.\nAura de Herói: ND."
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
-msgstr "Arqueiro de arco longo"
+msgstr "Arqueiro de Arco Longo"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:14
 msgid "Dhanurdhar"
@@ -16273,7 +16273,7 @@ msgstr "Dhanurdhar"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:23
 msgid "Bamboo Spearman"
-msgstr "Lanceiro de bambú "
+msgstr "Soldado com Lanças de Bambu"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:24
 msgid "Kauntika"
@@ -16281,7 +16281,7 @@ msgstr "Kauntika"
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:26
 msgid "Indian Swordsman"
-msgstr "Espadachim indiano"
+msgstr "Espadachim Indiano"
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:27
 msgid "Khadagdhari"
@@ -16302,7 +16302,7 @@ msgstr "Matsyapalak"
 
 #: simulation/templates/units/maur_ship_merchant.xml:9
 msgid "Trading Ship"
-msgstr "Embarcação de comércio"
+msgstr "Navio Mercante"
 
 #: simulation/templates/units/maur_ship_merchant.xml:10
 msgid "Vanijyik Nauka"
@@ -16334,7 +16334,7 @@ msgstr "Naari"
 
 #: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brahmin Priest"
-msgstr "Brâmane"
+msgstr "Sacerdote Brâmane"
 
 #: simulation/templates/units/maur_support_healer_b.xml:7
 msgid "Brāhmaṇa Pujari"
@@ -16367,7 +16367,7 @@ msgstr "Mankar Cirya"
 
 #: simulation/templates/units/pers_arstibara.xml:12
 msgid "Persian Apple Bearer"
-msgstr "Portador de lança persa"
+msgstr "Porta-Pomo Persa"
 
 #: simulation/templates/units/pers_arstibara.xml:13
 msgid "Arštibara"
@@ -16383,7 +16383,7 @@ msgstr "Categoria: Quadriga de Arqueiros de Cavalaria de Arremesso.\nPontos fort
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:32
 msgid "Babylonian Scythed Chariot"
-msgstr "Carro de guerra babilónico com ceifa"
+msgstr "Carro Falcado Babilónio"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:33
 msgid "Babiruviya Ratha"
@@ -16402,7 +16402,7 @@ msgstr "Mada Asabara"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:11
 msgid "Cappadocian Cavalry"
-msgstr "Cavaleiro capadócio "
+msgstr "Cavaleiro Capadócio "
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:12
 msgid "Katpaduka Asabara"
@@ -16420,7 +16420,7 @@ msgstr "Varkaniya Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:23
 msgid "Bactrian Heavy Lancer"
-msgstr "Lanceiro pesado bacteriano"
+msgstr "Lanceiro Pesado Bactriano"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:24
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:17
@@ -16429,7 +16429,7 @@ msgstr "Bakhtrish Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:16
 msgid "Bactrian Heavy Cavalry Archer"
-msgstr "Cavaleiro arqueiro pesado bacterian"
+msgstr "Cavaleiro Arqueiro Pesado Báctrio"
 
 #: simulation/templates/units/pers_champion_elephant.xml:6
 msgid "Hinduya Pila"
@@ -16437,7 +16437,7 @@ msgstr "Hinduya Pila"
 
 #: simulation/templates/units/pers_champion_infantry.xml:11
 msgid "Persian Immortal"
-msgstr "Persa Imortal"
+msgstr "Imortal Persa"
 
 #: simulation/templates/units/pers_champion_infantry.xml:12
 msgid "Anusiya"
@@ -16451,7 +16451,7 @@ msgstr "Herói cavaleiro lanceiro.\nAura de herói: Liderar deste a frente. Aume
 
 #: simulation/templates/units/pers_hero_cyrus.xml:11
 msgid "Cyrus II The Great"
-msgstr " Ciro, o Grande"
+msgstr " Ciro o Grande"
 
 #: simulation/templates/units/pers_hero_darius.xml:42
 msgid ""
@@ -16459,7 +16459,7 @@ msgid ""
 "Hero Aura: \"Leadership.\" +15% Movement Speed of all units.\n"
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr "Herói arqueiro em carro com ceifa.\nAura de herói: \"Liderança\". +15% a velocidade de movimento das unidades próximas.\nAura de herói: \"Comerciante do Império\". Aumenta o lucro comercial.\nPontos fortes: Ataque a distância 2x contra lanceiros e 1,5x contra espadachins."
+msgstr "Herói arqueiro em carro falcado.\nAura de herói: \"Liderança\". +15% a velocidade de movimento das unidades próximas.\nAura de herói: \"Comerciante do Império\". Aumenta o lucro comercial.\nPontos fortes: Ataque a distância 2x contra lanceiros e 1,5x contra espadachins."
 
 #: simulation/templates/units/pers_hero_darius.xml:39
 msgid "Darius The Great"
@@ -16483,11 +16483,11 @@ msgid ""
 "Hero Scythe Chariot Archer.\n"
 "High Trample Aura. Counters Melee Infantry. Countered by Skirmishers.\n"
 "Hero Aura: \"Administrator.\" +15% Gather Rate and Build Rate of nearby units."
-msgstr "Herói arqueiro em carro com ceifa.\nForte aura de esmagamento. Ponto forte: Infantaria de contacto. Ponto fraco: Escaramuçadores.\nAura de herói: \"Administrador.\" +15% a recolha de recursos e o tempo de recrutamento das unidades próximas."
+msgstr "Herói arqueiro em carro falcado.\nForte aura de esmagamento. Ponto forte: Infantaria de contacto. Ponto fraco: Escaramuçadores.\nAura de herói: \"Administrador.\" +15% a recolha de recursos e o tempo de recrutamento das unidades próximas."
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:13
 msgid "Sogdian Archer"
-msgstr "Arqueiro de Sogdiana"
+msgstr "Arqueiro Sogdiano"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:14
 msgid "Sugda Vaçabara"
@@ -16511,7 +16511,7 @@ msgstr "Sparabara"
 
 #: simulation/templates/units/pers_kardakes_hoplite.xml:5
 msgid "Cardaces Hoplite"
-msgstr "Hoplita de Kárdakes"
+msgstr "Hoplita dos Cardaces"
 
 #: simulation/templates/units/pers_kardakes_hoplite.xml:6
 msgid "Hoplites Kardakes"
@@ -16519,7 +16519,7 @@ msgstr "Hoplitas de Kárdakes "
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:13
 msgid "Cardaces Skirmisher"
-msgstr "Escaramuçador Kárdakes"
+msgstr "Zagaieiro dos Cardaces"
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:14
 msgid "Peltastes Kardakes"
@@ -16527,7 +16527,7 @@ msgstr "Peltasta Kárdakes"
 
 #: simulation/templates/units/pers_mechanical_siege_ram.xml:33
 msgid "Assyrian Siege Ram"
-msgstr "Aríete assírio"
+msgstr "Aríete Assírio"
 
 #: simulation/templates/units/pers_mechanical_siege_ram.xml:34
 msgid "Athuriya Hamaranakuba"
@@ -16547,7 +16547,7 @@ msgstr "Masiyakara"
 
 #: simulation/templates/units/pers_ship_merchant.xml:9
 msgid "Ionian Trade Ship"
-msgstr "Embarcação de comércio jónica"
+msgstr "Navio Mercante Jónio"
 
 #: simulation/templates/units/pers_ship_merchant.xml:10
 msgid "Yaunash Nav"
@@ -16571,7 +16571,7 @@ msgstr "Banu Miyanrudani"
 
 #: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
-msgstr "Mago mediano"
+msgstr "Mago Medo"
 
 #: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Mada"
@@ -16581,11 +16581,11 @@ msgstr "Maguš Mada"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Intercâmbio de recurso entre o seu mercado e dos seus aliados. Os persas têm +25% no comércio por terra."
+msgstr "Comercialize recursos entre o seu mercado e os dos seus aliados. Os persas têm um bónus de +25% no comércio terrestre."
 
 #: simulation/templates/units/pers_support_trader.xml:10
 msgid "Aramaean Merchant"
-msgstr "Comerciante Arameu"
+msgstr "Mercador Arameu"
 
 #: simulation/templates/units/pers_support_trader.xml:11
 msgid "Tamkarum Arami"
@@ -16799,7 +16799,7 @@ msgstr "Eques Consularis"
 
 #: simulation/templates/units/rome_champion_infantry.xml:5
 msgid "Italic Heavy Infantry"
-msgstr "Infantaria pesada italiota"
+msgstr "Infantaria Pesada Italiota"
 
 #: simulation/templates/units/rome_champion_infantry.xml:6
 msgid "Extraordinarius"
@@ -16807,7 +16807,7 @@ msgstr "Extraordinarius"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:14
 msgid "Roman Skirmisher"
-msgstr "Escaramuçador romano"
+msgstr "Vélite Romano"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:15
 msgid "Veles"
@@ -16815,7 +16815,7 @@ msgstr "Veles"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:14
 msgid "Veteran Spearman"
-msgstr "Lanceiro veterano"
+msgstr "Lanceiro Veterano"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:15
 msgid "Triarius"
@@ -16827,7 +16827,7 @@ msgstr "Princeps"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:27
 msgid "Roman Swordsman"
-msgstr "Espadachim romano"
+msgstr "Espadachim Romano"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:28
 msgid "Hastatus"
@@ -16835,7 +16835,7 @@ msgstr "Hastado"
 
 #: simulation/templates/units/rome_legionnaire_imperial.xml:13
 msgid "Roman Legionnaire"
-msgstr "Legionário"
+msgstr "Legionário Romano"
 
 #: simulation/templates/units/rome_legionnaire_imperial.xml:14
 msgid "Legionarius Romanus"
@@ -16843,7 +16843,7 @@ msgstr "Legionarius Romanus"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:5
 msgid "Marian Legionaire"
-msgstr "Legionário de Caio Mário"
+msgstr "Legionário Mariano"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:6
 msgid "Marian Legionarius"
@@ -16895,7 +16895,7 @@ msgstr "Romana"
 
 #: simulation/templates/units/rome_support_healer_b.xml:6
 msgid "State Priest"
-msgstr "Sacerdote imperia"
+msgstr "Sacerdote do Estado"
 
 #: simulation/templates/units/rome_support_healer_b.xml:7
 msgid "Pontifex Minor"
@@ -16903,7 +16903,7 @@ msgstr "Pontifex Minor"
 
 #: simulation/templates/units/rome_support_trader.xml:9
 msgid "Plebeian Merchant"
-msgstr "Comerciante plabeu "
+msgstr "Mercador Plebeu"
 
 #: simulation/templates/units/rome_support_trader.xml:10
 msgid "Mercator Plebeius"
@@ -16913,15 +16913,15 @@ msgstr "Mercator Plebeius"
 msgid ""
 "Mercenary skirmisher.\n"
 "Bonus vs. Archers and Spearmen."
-msgstr "Mercenário escaramuçador.\nBonificação contra arqueiros e lanceiros."
+msgstr "Zagaieiro mercenário.\nBónus contra Arqueiros e Lanceiros."
 
 #: simulation/templates/units/samnite_skirmisher.xml:5
 msgid "Samnite Skirmisher"
-msgstr "Escaramuçador samnita"
+msgstr "Zagaieiro Samnita"
 
 #: simulation/templates/units/samnite_skirmisher.xml:6
 msgid "(Samnite Skirmisher)"
-msgstr "(Escaramuçador samnita)"
+msgstr "(Zagaieiro Samnita)"
 
 #: simulation/templates/units/samnite_spearman.xml:7
 msgid ""
@@ -16931,11 +16931,11 @@ msgstr "Mercenário lanceiro.\nBonificação contra a cavalaria."
 
 #: simulation/templates/units/samnite_spearman.xml:5
 msgid "Samnite Spearman"
-msgstr "Lanceiro samnita"
+msgstr "Lanceiro Samnita"
 
 #: simulation/templates/units/samnite_spearman.xml:6
 msgid "(Samnite Spearman)"
-msgstr "(Lanceiro samnita)"
+msgstr "(Lanceiro Samnita)"
 
 #: simulation/templates/units/samnite_swordsman.xml:7
 msgid ""
@@ -17024,7 +17024,7 @@ msgid ""
 "\"Ilarchès\" Aura: All cavalry trained during his lifetime gain +2 levels of all armour types. These cavalrymen retain their armour bonuses even after Antiochus is dead.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr "Categoria: Herói Cavaleiro Lanceiro de Contacto\nAura \"Ilarchè\": Toda a cavalaria ganha +2 em todas as armaduras. Este bónus continuará activo depois da morte do herói.\nPonto forte: 2x contra espadachins e maquinaria de cerco 1,5x contra escaramuçadores.\nPonto fraco: Lanceiros, arqueiros e elefantes."
+msgstr "Categoria: Herói Cavaleiro Lanceiro de Contacto\nAura \"Ilarchè\": Toda a cavalaria ganha +2 em todas as armaduras. Este bónus continuará activo depois da morte do herói.\nPonto forte: 2x contra espadachins e maquinaria de cerco 1,5x contra Zagaieiros.\nPonto fraco: Lanceiros, arqueiros e elefantes."
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:11
 msgid "Antiochus III \"The Great\""
@@ -17052,7 +17052,7 @@ msgid ""
 "\"Zooiarchos\" Aura: Boosts War Elephant attack and speed +20% within his vision.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "Categoria: Herói Elefante de Contacto.\nAura \"Zooiarchos\": +20% de ataque e de velocidade aos elefantes no seu raio de visão.\nPontos forte: 2x contra Cavalaria, 1,5x contra Estruturas e Portões (extra).\nPonto fraco: Escaramuçadores e Espadachins. Pode correr de forma muito rápida."
+msgstr "Categoria: Herói Elefante de Contacto.\nAura \"Zooiarchos\": +20% de ataque e de velocidade aos elefantes no seu raio de visão.\nPontos forte: 2x contra Cavalaria, 1,5x contra Estruturas e Portões (extra).\nPonto fraco: Escaramuçadores e Espadachins. Pode entrar em descontrolo."
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:11
 msgid "Seleucus I \"The Victor\""
@@ -17115,7 +17115,7 @@ msgstr "Syrías Gýnē"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:6
 msgid "Perioikoi Cavalryman"
-msgstr "Cavaleiro perieco"
+msgstr "Cavaleiro Perieco"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Pródromos Perioïkós"
@@ -17131,7 +17131,7 @@ msgstr "Hippeús Symmakhikós"
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:5
 msgid "Spartan Pikeman"
-msgstr "Piqueiro espartano"
+msgstr "Piqueiro Espartano"
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:6
 msgid "Phalangites Spartiatis"
@@ -17173,7 +17173,7 @@ msgstr "Categoria: Herói, Corpo a corpo, Infantaria, Lanceiros.\nAura \"Preserv
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:16
 msgid "Helot Skirmisher"
-msgstr "Escaramuçador hilota"
+msgstr "Zagaieiro Hilota"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:17
 msgid "Akontistes Heilotes"
@@ -17181,7 +17181,7 @@ msgstr "Akontistes Heilotes"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:21
 msgid "Perioikoi Hoplite"
-msgstr "Hoplota perieco"
+msgstr "Hoplita Perieco"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:22
 msgid "Hoplī́tēs Perioïkós"
@@ -17209,7 +17209,7 @@ msgstr "Émporos Perioikos"
 #: simulation/templates/units/theb_champion_spearman.xml:27
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
 msgid "Theban Sacred Band Hoplite"
-msgstr "Hoplita de legião sagrada tebana"
+msgstr "Hoplita do Batalhão Sagrado de Tebas"
 
 #: simulation/templates/units/theb_champion_spearman.xml:28
 msgid "Hieròs Lókhos tôn Thebôn"
@@ -17218,7 +17218,7 @@ msgstr "Hieròs Lókhos tôn Thebôn"
 #: simulation/templates/units/theb_champion_swordsman.xml:5
 #: simulation/templates/units/thespian_melanochitones.xml:5
 msgid "Thespian Black Cloak"
-msgstr "Capa Negra de Téspias"
+msgstr "Capa-Negra Téspio"
 
 #: simulation/templates/units/theb_champion_swordsman.xml:6
 #: simulation/templates/units/thespian_melanochitones.xml:6
@@ -17227,7 +17227,7 @@ msgstr "Melanochitones"
 
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:22
 msgid "Fire Raiser"
-msgstr "Lança-chamas"
+msgstr "Lança-Chamas"
 
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:23
 msgid "Pyrobolos"
@@ -17252,7 +17252,7 @@ msgstr "Categorias: Espadachim, Infantaria, Corpo a Corpo, Elite, Mercenário.\n
 
 #: simulation/templates/units/thrace_black_cloak.xml:19
 msgid "Thracian Black Cloak"
-msgstr "Capa Negra de Trácia"
+msgstr "Capa-Negra Trácio"
 
 #: simulation/templates/units/thrace_black_cloak.xml:20
 msgid "Rhomphaiaphoros"
@@ -17260,7 +17260,7 @@ msgstr "Rhomphaiaphoros"
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"
-msgstr "Longboat"
+msgstr "Chalupa"
 
 #: maps/scenarios/Arcadia 02.xml:41:Description
 msgid ""
@@ -18113,7 +18113,7 @@ msgid ""
 "The arid and mineral-rich lands of Bactria (modern-day Afghanistan) at the foot of the Hindu Kush mountains.\n"
 "\n"
 "The center of the map is a dried up mountain. On either side are mountains and foothills pierced by treacherous passes and old trade routes."
-msgstr "As terras áridas e ricas em minerais de Báctria (actualmente o Afeganistão), no sopé das montanhas de Hindu Kush. \nO centro do mapa é uma montanha que secou. Em cada lado há montanhas e colinascom percursos traiçoeiros e rotas comerciais antigas."
+msgstr "As terras áridas e ricas em minerais da Báctria (actual Afeganistão), no sopé das montanhas de Hindu Kush.\n\nO centro do mapa é uma montanha seca. Em cada lado há montanhas e colinas atravessadas por passagens traiçoeiras e rotas comerciais antigas."
 
 #: maps/skirmishes/Bactria (2).xml:42:Name
 msgid "Bactria (2)"
@@ -18319,7 +18319,7 @@ msgstr "Oásis Medo (2)"
 
 #: maps/skirmishes/Median Oasis (4).xml:42:Name
 msgid "Median Oasis (4)"
-msgstr "Oásis médio (4)"
+msgstr "Oásis Medo (4)"
 
 #: maps/skirmishes/Mediterranean Cove (2).xml:41:Description
 msgid ""

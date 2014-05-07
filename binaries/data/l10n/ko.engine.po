@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# VictoriaKim <sis2468@hotmail.co.kr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-27 22:12+0200\n"
-"PO-Revision-Date: 2014-04-24 04:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-05-01 03:17+0200\n"
+"PO-Revision-Date: 2014-05-05 15:10+0000\n"
+"Last-Translator: VictoriaKim <sis2468@hotmail.co.kr>\n"
 "Language-Team: Korean (http://www.transifex.com/projects/p/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,29 +24,29 @@ msgstr ""
 #: gui/scripting/ScriptFunctions.cpp:733
 #, c-format
 msgid "%s (custom build)"
-msgstr ""
+msgstr "%s (건축모드)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
 #: gui/scripting/ScriptFunctions.cpp:738
 #, c-format
 msgid "%s (%ls)"
-msgstr ""
+msgstr "%s (%ls)"
 
 #: gui/scripting/ScriptFunctions.cpp:759
 msgid "custom build"
-msgstr ""
+msgstr "건축모드"
 
 #: i18n/L10n.cpp:242
 msgid "Long strings"
-msgstr ""
+msgstr "긴 줄들"
 
 #: ps/SavedGame.cpp:126
 #, c-format
 msgid "Saved game to '%ls'"
-msgstr ""
+msgstr "'%ls'로 게임저장하기"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%ls'"
-msgstr ""
+msgstr "'%ls'로 스크린샷 저장하기"

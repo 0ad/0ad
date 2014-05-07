@@ -47,8 +47,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 03:07+0000\n"
-"Last-Translator: Malik.Khodjaev <loc.root.123@gmail.com>\n"
+"PO-Revision-Date: 2014-05-05 15:10+0000\n"
+"Last-Translator: arcsin <arcsin@online.ua>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,17 +191,17 @@ msgstr "yyyy-MM-dd HH:mm:ss"
 #: gui/common/functions_utility_loadsave.js:9
 #, python-format
 msgid "[%(date)s]"
-msgstr ""
+msgstr "[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, python-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
 #, python-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
@@ -558,11 +558,11 @@ msgstr "Любой"
 
 #: gui/lobby/lobby.js:305
 msgid "Busy"
-msgstr ""
+msgstr "Занят"
 
 #: gui/lobby/lobby.js:310
 msgid "Away"
-msgstr ""
+msgstr "Далеко"
 
 #: gui/lobby/lobby.js:314
 msgid "Online"
@@ -579,12 +579,12 @@ msgstr "Неизвестно"
 
 #: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Выбрана случайная карта."
 
 #: gui/lobby/lobby.js:417
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "Этот адрес игры '%(ip)s' не является действительным."
 
 #: gui/lobby/lobby.js:495
 #, python-format
@@ -594,22 +594,22 @@ msgstr "%(nick)s присоединился."
 #: gui/lobby/lobby.js:504
 #, python-format
 msgid "%(nick)s has left."
-msgstr ""
+msgstr "%(nick)s ушел."
 
 #: gui/lobby/lobby.js:511
 #, python-format
 msgid "Invalid nickname: %(nick)s"
-msgstr ""
+msgstr "Неверный псевдоним: %(nick)s"
 
 #: gui/lobby/lobby.js:518
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr ""
+msgstr "%(oldnick)s теперь известен как %(newnick)s."
 
 #: gui/lobby/lobby.js:672
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr ""
+msgstr "К сожалению команда '%(cmd)s' не поддерживается."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:752
@@ -661,7 +661,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "Пожалуйста не спамте. Вы будете заблокированы через 30 секунд."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -677,7 +677,7 @@ msgstr "Пожалуйста, введите ваше имя профиля"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Имя пользователя не может содержать [,], юникод, пробел или запятые"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
@@ -689,11 +689,11 @@ msgstr "Подтверждение пароля:"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Пароли не совпадают"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Пожалуста прочтите Условия Сервиса"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
@@ -701,7 +701,7 @@ msgstr "Прочтите Правила Использования"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Пожалуйста согласитесь с Условиями Сервиса и Условия использования"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -713,11 +713,11 @@ msgstr "Присоединиться"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Условия Сервиса"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "Условия Использования"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -771,7 +771,7 @@ msgstr "Отключить окно приветствия"
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Если Вы отключите экран приветствия, Вы можете потерять важные сообщения.\nВы можете все еще включить его используя главное меню."
 
 #: gui/options/options.js:12
 msgid "Developer Overlay"
@@ -781,7 +781,7 @@ msgstr "Слой разработчика"
 msgid ""
 "Show overlay in-game with options such as reveal map, control all units, and"
 " change perspective. Designed for use by developers"
-msgstr ""
+msgstr "Показать игровой слой с опциями такими как открытость карты, управление всеми юнитами и изменение перспективы. Рассчитано для разработчиков"
 
 #: gui/options/options.js:16
 msgid "Prefer GLSL"
@@ -829,7 +829,7 @@ msgstr ""
 
 #: gui/options/options.js:21
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "Увеличить темноту и плавный туман войны (Необходим GLSL)"
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
@@ -855,7 +855,7 @@ msgstr "HQ Волнистости"
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
-msgstr ""
+msgstr "Использовать реальные нормали для рендеринга океанских волн, вместо наложения их как плоские текстуры"
 
 #: gui/options/options.js:25
 msgid "Real Water Depth"
@@ -863,7 +863,7 @@ msgstr "Фактическая глубина воды"
 
 #: gui/options/options.js:25
 msgid "Use actual water depth in rendering calculations"
-msgstr ""
+msgstr "Использовать реальную глубину воды в вычислениях рендеринга"
 
 #: gui/options/options.js:26
 msgid "Water Reflections"
@@ -871,7 +871,7 @@ msgstr "Преломления воды"
 
 #: gui/options/options.js:26
 msgid "Allow water to reflect a mirror image"
-msgstr ""
+msgstr "Разрешить воде отражать зеркальное изображение"
 
 #: gui/options/options.js:27
 msgid "Water Refraction"
@@ -887,7 +887,7 @@ msgstr "Береговая пена"
 
 #: gui/options/options.js:28
 msgid "Show foam on water near shore depending on water waviness"
-msgstr ""
+msgstr "Показывать пену на воде возле берега на волнах "
 
 #: gui/options/options.js:29
 msgid "Shore Waves"
@@ -895,7 +895,7 @@ msgstr "Береговые волны"
 
 #: gui/options/options.js:29
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr ""
+msgstr "Показывать разбивающиеся волны на воде возле берега (Требуется HQ Волнистость)"
 
 #: gui/options/options.js:30
 msgid "Water Shadows"
@@ -919,7 +919,7 @@ msgstr "Общая громкость"
 
 #: gui/options/options.js:35
 msgid "Master audio gain"
-msgstr ""
+msgstr "Общее усиление звука"
 
 #: gui/options/options.js:36
 msgid "Music Gain"
@@ -927,7 +927,7 @@ msgstr "Громкость музыки"
 
 #: gui/options/options.js:36
 msgid "In game music gain"
-msgstr ""
+msgstr "Усиление музыки в игре"
 
 #: gui/options/options.js:37
 msgid "Ambient Gain"
@@ -947,7 +947,7 @@ msgstr ""
 
 #: gui/options/options.js:39
 msgid "UI Gain"
-msgstr ""
+msgstr "Громкость интерфейса"
 
 #: gui/options/options.js:39
 msgid "UI sound gain"
@@ -1054,7 +1054,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
 #: gui/pregame/mainmenu.xml:139 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "Технические детали"
 
 #: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
 #: gui/session/session.xml:732 (caption)
@@ -1155,23 +1155,23 @@ msgstr ""
 
 #: gui/session/input.js:387
 msgid "Origin trade market."
-msgstr ""
+msgstr "Исходный пункт торгового рынка."
 
 #: gui/session/input.js:393
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr ""
+msgstr "Нажмите ПКМ на другом рынке чтобы выбрать место назначения торговорого рынка."
 
 #: gui/session/input.js:396
 msgid "Destination trade market."
-msgstr ""
+msgstr "Место назначения торгового рынка."
 
 #: gui/session/input.js:401
 msgid "Right-click to set as origin trade market"
-msgstr ""
+msgstr "Нажмите ПКМ для выбора исходного торгового рынка"
 
 #: gui/session/input.js:406
 msgid "Right-click to set as destination trade market."
-msgstr ""
+msgstr "Нажмите ПКМ для выбора пункта назначения торгового рынка. "
 
 #: gui/session/input.js:996
 msgid "Cannot build wall here!"
@@ -1235,7 +1235,7 @@ msgstr "Противник"
 
 #: gui/session/menu.js:347 gui/session/menu.js:354 gui/session/menu.js:361
 msgid "x"
-msgstr ""
+msgstr "х"
 
 #: gui/session/menu.js:472
 msgid "There are no land traders."
@@ -1354,11 +1354,11 @@ msgstr[2] ""
 
 #: gui/session/menu.js:673
 msgid "The Developer Overlay was opened."
-msgstr ""
+msgstr "Слой разработчика открыт."
 
 #: gui/session/menu.js:675
 msgid "The Developer Overlay was closed."
-msgstr ""
+msgstr "Слой разработчика закрыт."
 
 #: gui/session/menu.js:693
 #, python-format
@@ -1381,7 +1381,7 @@ msgstr "Подключен к серверу."
 
 #: gui/session/messages.js:218
 msgid "Connection to the server has been authenticated."
-msgstr ""
+msgstr "Соединение с сервером  аутентифицировано. "
 
 #: gui/session/messages.js:223
 msgid "Connection to the server has been lost."
@@ -1503,7 +1503,7 @@ msgstr "Приватный"
 #: gui/session/selection_details.js:32
 #, python-format
 msgid "%(genericName)s — Packed"
-msgstr ""
+msgstr "%(genericName)s — Запаковано"
 
 #: gui/session/selection_details.js:44
 #, python-format
@@ -1552,7 +1552,7 @@ msgstr "%(resource)s:"
 #: gui/session/selection_details.js:164
 #, python-format
 msgid "Gain: %(amount)s"
-msgstr ""
+msgstr "Усиление: %(amount)s"
 
 #: gui/session/selection_details.js:173
 msgid "Number of builders"
@@ -1560,7 +1560,7 @@ msgstr "Количество строителей"
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
-msgstr ""
+msgstr "Текущие/максимальное собирателей"
 
 #: gui/session/selection_details.js:196
 #, python-format
@@ -1579,7 +1579,7 @@ msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:234
 msgid "Interval:"
-msgstr ""
+msgstr "Интервал: "
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
@@ -1592,24 +1592,24 @@ msgstr "Радиус:"
 
 #: gui/session/selection_details.js:251
 msgid "meters"
-msgstr "Метры"
+msgstr "метры"
 
 #: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, python-format
 msgid ""
 "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), "
 "%(rate)s"
-msgstr ""
+msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
 #: gui/session/selection_details.js:274
 #, python-format
 msgid "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
-msgstr ""
+msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
 #: gui/session/selection_details.js:285
 #, python-format
 msgid "%(label)s %(details)s, %(rate)s"
-msgstr ""
+msgstr "%(label)s %(details)s, %(rate)s"
 
 #: gui/session/selection_details.js:341
 msgid "Hitpoints:"
@@ -1686,7 +1686,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr ""
+msgstr "Заметка: режим искривления времени это опция для разработчиков, и не предназначена для использования в длительных периодах. Использование этого некорректно может стать причиной переполнения памяти или краха."
 
 #: gui/session/session.js:922
 msgid "Time warp mode"
@@ -1709,17 +1709,17 @@ msgstr "Shift-клик"
 #: gui/session/unit_commands.js:202
 #, python-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr ""
+msgstr "%(action)s тренировать %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/unit_commands.js:209
 #, python-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr ""
+msgstr "%(action)s тренировать %(number)s (%(fullBatch)s)."
 
 #: gui/session/unit_commands.js:216
 #, python-format
 msgid "%(action)s to train %(number)s."
-msgstr ""
+msgstr "%(action)s тренировать %(number)s."
 
 #: gui/session/unit_commands.js:228
 msgid "Violent"
@@ -1748,16 +1748,16 @@ msgstr "Недостаточный предел населения:"
 #: gui/session/unit_commands.js:441
 #, python-format
 msgid "%(population)s %(neededSlots)s"
-msgstr ""
+msgstr "%(population)s %(neededSlots)s"
 
 #: gui/session/unit_commands.js:459
 #, python-format
 msgid "Unload %(name)s"
-msgstr ""
+msgstr "Выгрузить %(name)s"
 
 #: gui/session/unit_commands.js:459
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr ""
+msgstr "Нажмите ЛКМ для выгрузки одного. Shift+ЛКМ для выгрузки всех этого типа."
 
 #: gui/session/unit_commands.js:708
 #, python-format
@@ -1848,7 +1848,7 @@ msgstr ""
 #: gui/session/utility_functions.js:182
 #, python-format
 msgid "%(arrowString)s / %(timeString)s"
-msgstr ""
+msgstr "%(arrowString)s / %(timeString)s"
 
 #: gui/session/utility_functions.js:183
 #, python-format
@@ -1862,9 +1862,9 @@ msgstr[2] ""
 #, python-format
 msgid "%(time)s second"
 msgid_plural "%(time)s seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(time)s секунда"
+msgstr[1] "%(time)s секунд"
+msgstr[2] "%(time)s секунд"
 
 #: gui/session/utility_functions.js:206 gui/session/utility_functions.js:212
 #: gui/session/utility_functions.js:218 gui/session/utility_functions.js:261
@@ -1918,7 +1918,7 @@ msgstr "Выбрать вещи для торговли"
 
 #: gui/session/utility_functions.js:373
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "Увеличьте степень тревоги для защиты большего числа юнитов."
 
 #: gui/session/utility_functions.js:375
 msgid "Raise an alert!"
@@ -1951,7 +1951,7 @@ msgstr "Стены:  %(costs)s"
 #: gui/session/utility_functions.js:525 gui/session/utility_functions.js:526
 #: gui/session/utility_functions.js:531 gui/session/utility_functions.js:567
 msgid "  "
-msgstr ""
+msgstr " "
 
 #: gui/session/utility_functions.js:526
 #, python-format
@@ -2038,7 +2038,7 @@ msgstr "игрок %(name)s"
 
 #: gui/session/utility_functions.js:713
 msgid "Charge Attack:"
-msgstr ""
+msgstr "Выберете Атаку:"
 
 #: gui/session/utility_functions.js:714
 msgid "Melee Attack:"
@@ -2274,23 +2274,23 @@ msgstr "%(mapName)s - %(mapType)s"
 msgid ""
 "Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
 " up just restart and try again. Practise makes perfect!"
-msgstr ""
+msgstr "Предупреждение: это продвинутое руководство и проходится достаточно быстро. Если Вы не удовлетворены просто перезапустите и попробуйте снова. Практика сделает опытным!"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr ""
+msgstr "Давайте начнем, сначала натренируйте группу (Shift + ЛКМ) из 5 женщин в ГЦ (Городской Центр)."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr ""
+msgstr "Теперь, назначте Ваших женщин собирать ягоды, Вашего кавалериста охотиться на кур и городских солдат на сбор дерева."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr ""
+msgstr "Теперь установите точку сбора Вашего Городского Центра на на ягодах."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
@@ -2302,7 +2302,7 @@ msgstr ""
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr ""
+msgstr "Когда Ваши женщины закончат тренировку, используйте 4 для постройки дома неподалеку."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
@@ -2312,38 +2312,38 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
-msgstr ""
+msgstr "Добавте в очередь группу из 5 женщин."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
-msgstr ""
+msgstr "Используйте Shift + ЛКМ чтобы добавить другие дома для 4 строителей."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:48
 msgid ""
 "Set the rally point back to the berries once all of the citizen soldiers "
 "have finished training."
-msgstr ""
+msgstr "Установите точку сбора обратно на ягоды после того как городские солдаты завершат тренировку."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:53
 msgid ""
 "Send one citizen soldier to gather stone, send 2 others to build a "
 "storehouse near the southern trees."
-msgstr ""
+msgstr "Пошлите одгого Городского солдата добывать камень, пошлите 2 других строить Склад возле южных деревьев."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
 msgid "Queue another 5 female citizens."
-msgstr ""
+msgstr "Добавте в очередь еще раз 5 женщин."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:63
 msgid "Use a female citizen to construct a field next to your CC."
-msgstr ""
+msgstr "Используйте женщин для постройки поля рядом с ГЦ."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:68
 msgid ""
 "Your cavalryman has probably run out of chickens by now, there are some "
 "goats to the left of your base."
-msgstr ""
+msgstr "Ваш кавалерист возможно закончил с курами к этому моменту, слева от вашей базы есть несколько коз."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
 msgid "Use 2-3 more female citizens to construct the field."
@@ -2355,17 +2355,17 @@ msgstr "Используйте 2-3 или более женщин-строите
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:163
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:188
 msgid "Queue another house."
-msgstr ""
+msgstr "Добавьте еще один дом."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:88
 msgid ""
 "The berry bushes are getting crowded, send some female citizens to work the "
 "field, set the rally point there."
-msgstr ""
+msgstr "Кусты с ягодами заканчиваются, поэтому пошлите нескольких женщин работать в поле, установите точку сбора на нем."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:93
 msgid "Queue another 5 female citizens, these should gather stone."
-msgstr ""
+msgstr "Добавьте в очередь еще 5 женщин, пошлите добывать камень."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:98
 msgid ""
@@ -2381,17 +2381,17 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
-msgstr ""
+msgstr "Добавте в очередь еще один дом для постройки."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:113
 msgid "Queue 5 more female citizens. These will gather wood."
-msgstr ""
+msgstr "Добавьте в очередь 5 женщин. Они будут собирать дерево."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:118
 msgid ""
 "Build another field, this decreases the amount of walking for your female "
 "citizens."
-msgstr ""
+msgstr "Постройте еще одно поле, это уменьшит суммарную ходьбу Ваших женщин."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:123
 msgid ""
@@ -2401,15 +2401,15 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens these are for wood."
-msgstr ""
+msgstr "Добавьте в очередь еще группу из 5 женщин для добычи дерева. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
-msgstr ""
+msgstr "Добавте в очередь группу из копьеносцев."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:148
 msgid "Research the stone mining technology from the storehouse."
-msgstr ""
+msgstr "Исследуйте для камня горную технологию в складе."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:153
 msgid "Queue a batch of slingers."
@@ -2430,7 +2430,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
-msgstr ""
+msgstr "Добавьте в очередь группу копьеносцев, для сбора дерева."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:178
 msgid "Next queue a batch of slingers."
@@ -2625,7 +2625,7 @@ msgstr ""
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
-msgstr ""
+msgstr "Постройте Бараки поблизости. Всякий раз, когда ваше население достигнуто, стройте дома используя доступных для строительства юнитов."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:80
 msgid ""
@@ -2637,11 +2637,11 @@ msgstr ""
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
-msgstr ""
+msgstr "Постройте Кузнецу и исследуйте технологию Обучение Пехоты (иконка меча) для улучшения рубящей атаки пехоты."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
-msgstr ""
+msgstr "Враг пришел. Стройте больше солдат чтобы отбить врага."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:99
 msgid ""
@@ -3020,13 +3020,13 @@ msgstr "Выбери стартовые ресурсы."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Переключить видимость карты (видеть все)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Перекллючить разведку карты (видеть гею и здания)."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -3094,7 +3094,7 @@ msgstr "Цитата дня:"
 
 #: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Многопользовательское Лобби"
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
@@ -3161,11 +3161,11 @@ msgstr "Обновить"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
-msgstr ""
+msgstr "Создать новый аккаунт"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Войти в существующий аккаунт"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
@@ -3189,7 +3189,7 @@ msgstr "Повторите пароль"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Я прочитал и согласен со Статьями Службы и Статьями Использования:"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:310 (caption)
@@ -3218,7 +3218,7 @@ msgstr "Подтвердить"
 
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
-msgstr ""
+msgstr "Продвинутый"
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
@@ -3261,11 +3261,11 @@ msgstr ""
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Информация"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Просмотр Онлайн"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3316,7 +3316,7 @@ msgstr "Статус: $status."
 
 #: gui/pregame/mainmenu.xml:498
 msgid "Alpha XVI: Patañjali"
-msgstr ""
+msgstr "Alpha XVI: Патанджали"
 
 #: gui/pregame/mainmenu.xml:500
 msgid ""
@@ -3330,11 +3330,11 @@ msgstr "Посетите: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Включить обратную связь"
 
 #: gui/pregame/mainmenu.xml:135 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Выключить обратную связь"
 
 #: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
@@ -3401,11 +3401,11 @@ msgstr "Открыть редактор сценариев Atlas в новом �
 
 #: gui/pregame/mainmenu.xml:339 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Экран приветствия"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Показ Экрана приветствия. Полезно, если это скрыто по ошибке."
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
@@ -3413,7 +3413,7 @@ msgstr "Обучение игре"
 
 #: gui/pregame/mainmenu.xml:397 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Открыть Игровое Руководство 0 A.D."
 
 #: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
@@ -3450,7 +3450,7 @@ msgstr "Выход"
 
 #: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "Выйти из игры."
 
 #: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Help with the Translation!"
@@ -3458,7 +3458,7 @@ msgstr "Помогите с переводом!"
 
 #: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open the 0 A.D translate page in your browser."
-msgstr ""
+msgstr "Нажмите для открытия страницы перевода 0 A.D. в Вашем браузере."
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
@@ -3485,7 +3485,7 @@ msgstr "Сообщить об ошибке"
 
 #: gui/pregame/mainmenu.xml:549 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Нажмите чтобы посетить 0 A.D. Trac для отчетов о багах, крахах или ошибках."
 
 #: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
@@ -3509,7 +3509,7 @@ msgstr "Управлять всеми юнитами"
 
 #: gui/session/session.xml:261 (caption)
 msgid "Change perspective"
-msgstr ""
+msgstr "Изменить перспективу"
 
 #: gui/session/session.xml:268 (caption)
 msgid "Display selection state"
@@ -3529,7 +3529,7 @@ msgstr "Слой движения юнитов"
 
 #: gui/session/session.xml:294 (caption)
 msgid "Range overlay"
-msgstr ""
+msgstr "Слой радиуса действия"
 
 #: gui/session/session.xml:301 (caption)
 msgid "Bounding box overlay"
@@ -3549,7 +3549,7 @@ msgstr " Включить деформацию времени"
 
 #: gui/session/session.xml:340 (caption)
 msgid "Promote selected units"
-msgstr ""
+msgstr "Выдвинуть выделеных юнитов"
 
 #: gui/session/session.xml:367 (caption)
 msgid "Game Paused"
@@ -3607,7 +3607,7 @@ msgstr "Выберете игрока для просмотра"
 
 #: gui/session/session.xml:628 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALPHA XVI: Патанджали"
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
@@ -3729,7 +3729,7 @@ msgstr "Очков всего"
 
 #: gui/summary/summary.xml:231 (caption)
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr ""
+msgstr "Статистика Зданий (Построено / Потеряно / Разрушено)"
 
 #: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
 #: gui/summary/summary.xml:581 (caption)
@@ -3746,11 +3746,11 @@ msgstr "Экономика"
 
 #: gui/summary/summary.xml:243 (caption)
 msgid "Outposts"
-msgstr ""
+msgstr "Заставы"
 
 #: gui/summary/summary.xml:246 (caption)
 msgid "Military"
-msgstr ""
+msgstr "Военные"
 
 #: gui/summary/summary.xml:249 (caption)
 msgid "Fortresses"
@@ -3766,7 +3766,7 @@ msgstr "Чудеса"
 
 #: gui/summary/summary.xml:405 (caption)
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr ""
+msgstr "Статистика Юнитов (Натренировано / Потеряно / Убито)"
 
 #: gui/summary/summary.xml:411 (caption)
 #: simulation/templates/template_unit_infantry.xml:50
@@ -3784,11 +3784,11 @@ msgstr "Конница"
 
 #: gui/summary/summary.xml:420 (caption)
 msgid "Champion"
-msgstr ""
+msgstr "Чемпион"
 
 #: gui/summary/summary.xml:426 (caption)
 msgid "Navy"
-msgstr ""
+msgstr "Флот"
 
 #: gui/summary/summary.xml:566 (caption)
 msgid "Resource Statistics (Gathered / Used)"
@@ -3844,7 +3844,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "Определения терминов Сервиса 0 A.D. Господствующие империи"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -3854,79 +3854,79 @@ msgstr "Определения:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "* \"Сервис\" это Многопользовательское лобби 0 A.D. Господствующие Империи от Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr "* \"Вы\" это пользователь сервиса."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "* \"Мы\" это коллектив Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analysing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* \"Рейтинг\" относится к процессу анализа различных статистик пользователя для назначения единого комплексного показателя. "
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "* \"Модерировать\" относится к процессу принуждения к выполнению требований."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Используя сервис Вы соглашаетесь:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. Соблюдать выполнение всех требований."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. Разрешить пользовательсткую определимую статистику для сбора данных для рейтинга, профиля пользователя и статистики сообщества."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "Мы также оставляем за собой право:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. Модерировать сервис."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. Назначать других для морерирования сервиса."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. Прекращать или прерывать сервис в любое время с или без предварительного сообщения."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. Изменять сервис в любое время с или без предварительного сообщения."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. Удалять что-либо и всю сервисную информацию в любое время с или без предварительного сообщения."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. Собирать какую-либо или всю определяемую статистику в любое время без согласия:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "a. Персональный анализ командой Wildfire Games (WFG) или филиалами."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
@@ -3938,33 +3938,33 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. Изменеие этого документа в любое время; при условии что пользователь сервиса получит сообтвествующее сообщение об изменении (определение соответствующего изменения будет сообщено через панель команды  Wildfire Games (WFG))."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "Условия Использования Многопользовательское лобби 0 A.D. Господствующие Империи"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "* \"Чужой логин\" относится к действию в котором Вы пытаетесь использовать чужой аккаунт для собственных целях."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "* \"Спам\" относится к несущественным или неуместным сообщениям посылаемым большому числу получателей."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr "* \"Рейтинг\" относится  личному комплексной оценке."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "* \"Ранжированные игры\" относятся к играм в которых прослеживается рейтинг изменения статистики. "
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
@@ -3974,13 +3974,13 @@ msgstr "Вы соглашаетесь с:"
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. Создавать только один аккаунт для уникального пользователя на сервисе, кроме разрешенных командой Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. Не публиковать оскорбляющие сообщения, неприличный юмор, порнографию или дискриминирующие коментарии на сервисе. "
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
@@ -3989,15 +3989,15 @@ msgstr ""
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. Не использовать сервис в целях продажи определенных товаров, сервисов, изделий."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. Не выдавать себя за другого пользователя сервиса."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. Не спамить на сервисе."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -4005,13 +4005,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. Не пытайтесь искусственно регулировать рейтинг любого пользователя сервиса или какую-нибудь статистику которая влияет на него. (Примеры этого, но не запрещенные: читы в ранжированых играх, обратная разработка сервиса и получение выгоды от других пользователей сервиса.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. Разрешаете удаление себя из сервиса если в какое-либо время модератор определит что Ваше поведение не согласуется с данными правилами."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -4019,7 +4019,7 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Измените этот документ любым способом; в любое время; при условии что пользователь сервиса получит соответсвующее извещение об изменении (определение соответсвующего извещения будет установлено во время через панель членов команды Wildfire Games (WFG))."
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -4158,15 +4158,15 @@ msgstr "Когда ты будешь готов начать, нажми кно�
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Горячие клавиши:"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Всегда"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: Закрыть игру без  подтверждения"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -4206,7 +4206,7 @@ msgstr "Shift + F2: Сделать огромный скриншот (6400px*480
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]В игре"
 
 #: gui/manual/intro.txt:49
 msgid ""
@@ -4482,7 +4482,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"][: Вращайте здание на 15 градусов против часовой стрелки"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
@@ -4553,7 +4553,7 @@ msgstr "[font=\"sans-bold-16\"]Благодарим вас за установк
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid ""
@@ -5549,7 +5549,7 @@ msgstr "- Исследуйте военные технологии уникал�
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "- Постройте его в начале для тренировки городских солдат пока Ваше поселене не достаточно развилось. "
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
@@ -5573,7 +5573,7 @@ msgstr "- Разместите горожанина-солдата внутри 
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr ""
+msgstr "КАРФАГЕНСКИЙ СВЯЩЕННЫЙ ОТРЯД"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
@@ -5679,21 +5679,21 @@ msgstr "РЫБОЛОВСТВО"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "- Рыба в морях для богатых уловов."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of Food per trip."
-msgstr ""
+msgstr "- Рыболоветская лодка несет большой количество Еды за рейс."
 
 #: gui/text/tips/fishing.txt:6
 msgid ""
 "- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
 "rate."
-msgstr ""
+msgstr "- Разместите Юнитов Поддержки на борту чтобы удвоить  скорость лова. "
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "- Будте осторожны! Рыба не бесконечный ресурс!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -5823,7 +5823,7 @@ msgstr "- Все персидские постройки на +25% крепче.
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "- Как следствие постройка удлиняется на +20%."
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
@@ -5853,23 +5853,23 @@ msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr ""
+msgstr "САВАННЫЙ БИОМ"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "- В основном плоский, с несколькими водными впадинами и скалистыми выходами пласта. "
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "- Полностью напонен стадами животных для изобилующей охоты."
 
 #: gui/text/tips/savanna_biome.txt:6
 msgid "- Rich in all types of mining."
-msgstr ""
+msgstr "- Изобилует всеми типами месторождений."
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "- Дерево редкое, но заключается в больших количествах в Баобабовых деревьях."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -5877,17 +5877,17 @@ msgstr "ЗАЩИТНЫЕ БАШНИ"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "- Свободностоящие башни хороши для обороны больших площадей поселения."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr ""
+msgstr "- Они обычно стоят 100 Дерева и 100 Камня. Иберийские Оборонные Башни стоят 300 Камня (потому что они крепче)."
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "- Дальность действия увеличивается с каждым размещенный юнитом."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -5911,19 +5911,19 @@ msgstr "- Используйте построение \"Фаланга\" для 
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
-msgstr ""
+msgstr "СТОА"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for the Hellenes."
-msgstr ""
+msgstr "- Специальное начальное строение для Греков."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
-msgstr ""
+msgstr "- Предоставляет +10 к Населению."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only enabled in some game modes."
-msgstr ""
+msgstr "- Доступна только в нескольких режимах игры."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
@@ -5945,23 +5945,23 @@ msgstr "- Исследуйте технологии увеличивающие �
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
-msgstr ""
+msgstr "ФОРМИРОВАНИЕ СИНТАГМА"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr ""
+msgstr "- Формирование пехоты типа \"пикенёр\"."
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
-msgstr ""
+msgstr "- Формирование медленнное и громоздкое."
 
 #: gui/text/tips/syntagma.txt:6
 msgid "- Nearly invulnerable from the front."
-msgstr ""
+msgstr "- Особенно неуязвимые спереди."
 
 #: gui/text/tips/syntagma.txt:8
 msgid "- Vulnerable to attacks from the rear."
-msgstr ""
+msgstr "- Уязвимые к атакам с тыла."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -6024,13 +6024,13 @@ msgstr "- Подходит для транспортировки или сраж
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison a catapult aboard for a long-range siege attack."
-msgstr ""
+msgstr "- Разместите катапульту на борту для атаки большого радиуса действия."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use."
-msgstr ""
+msgstr "- Возможность разрушительной таранной аатаки на корабли, которая перезаряжается послекаждого использования. "
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -6048,13 +6048,13 @@ msgstr "- По крайней мере 7 кампаний против римл�
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr ""
+msgstr "- Быстро перемещаются и есть возможность выбора между мечем и огенным копьем. "
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
 "- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
 "to ambush their opponents."
-msgstr ""
+msgstr "- Его \"аура\" это \"Тактика Партизанской войны\" которая позволяет иберийским юнитам нападать из засады на их противников."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -8675,7 +8675,7 @@ msgstr "Соединение с Римом имело большую выгод�
 
 #: civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
-msgstr ""
+msgstr "Луций Юний Брут"
 
 #: civs/rome.jsonAINames[1]
 msgid "Lucius Tarquinius Collatinus"
@@ -9890,7 +9890,7 @@ msgid ""
 "The most stable AI currently available, Aegis is an improvement of earlier "
 "bots by Wratii. Note that it doesn't support saved games yet. Please report "
 "issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Наиболее стабильный ИИ доступний на этот момент, Aegis это улучшение более ранних ботов от Wratii. Примечание: пока не поддерживаются сохраненные игры. Пожалуйста делайте отчеты для Wildfire Games(смотрите ссылку в главном меню)."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -9901,7 +9901,7 @@ msgid ""
 "Based on Aegis, but heavily modified and expected to be more robust. Note "
 "that it doesn't support saved games yet and is not as well tested as Aegis. "
 "Please report issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Основан на Aegis, но весьма модифицированный и более надеженый. На данный момент не поддерживает сохранение игр и не так хорошо протестирован как Aegis. Пожалуйста, сообщайте об ошибках Wildfire Games (ссылка находится в главном меню)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
@@ -10485,7 +10485,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +25% farming rate."
-msgstr ""
+msgstr "Дайте вашим работникам железные плуги. +25% к скорости выращивания."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -10726,7 +10726,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
-msgstr ""
+msgstr "Военно полевая медицина"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
@@ -10745,7 +10745,7 @@ msgid ""
 "Often, an infantryman would carry a secondary weapon in addition to his "
 "primary weapon of choice, to be drawn when the primary weapon has failed or "
 "been broken."
-msgstr ""
+msgstr "Часто пехотинцы несут второе оружие в дополнение к своему основному оружию,  доставая когда основное оружие повреждено или поломано."
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
@@ -12321,7 +12321,7 @@ msgstr "Юнит"
 #: simulation/templates/units/rome_support_healer_b.xml:10
 msgctxt "Rank"
 msgid "Basic"
-msgstr ""
+msgstr "Основной"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:52
 msgid "Melee Cavalry"
@@ -12769,7 +12769,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:51
 msgid "Bolt Shooter"
-msgstr ""
+msgstr "Арбалетный стрелок"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:55
 msgid ""
@@ -12905,7 +12905,7 @@ msgstr "Греческое святилище"
 
 #: simulation/templates/formations/battle_line.xml:4
 msgid "Battle Line"
-msgstr ""
+msgstr "Линия фронта"
 
 #: simulation/templates/formations/box.xml:6
 msgid "Box"
@@ -12913,15 +12913,15 @@ msgstr "Коробка"
 
 #: simulation/templates/formations/box.xml:5
 msgid "4 units required"
-msgstr ""
+msgstr "Необходимо 4 юнита"
 
 #: simulation/templates/formations/column_closed.xml:4
 msgid "Column Closed"
-msgstr ""
+msgstr "Колонна закрыта"
 
 #: simulation/templates/formations/column_open.xml:4
 msgid "Column Open"
-msgstr ""
+msgstr "Колонна открыта"
 
 #: simulation/templates/formations/flank.xml:6
 msgid "Flank"
@@ -12929,15 +12929,15 @@ msgstr "Фланг"
 
 #: simulation/templates/formations/flank.xml:5
 msgid "8 units required"
-msgstr ""
+msgstr "Необходимо 8 юнитов"
 
 #: simulation/templates/formations/line_closed.xml:4
 msgid "Line Closed"
-msgstr ""
+msgstr "Ряд закрыт"
 
 #: simulation/templates/formations/line_open.xml:4
 msgid "Line Open"
-msgstr ""
+msgstr "Ряд открыт"
 
 #: simulation/templates/formations/phalanx.xml:6
 msgid "Phalanx"
@@ -12945,11 +12945,11 @@ msgstr "Фаланга"
 
 #: simulation/templates/formations/phalanx.xml:5
 msgid "10 melee infantry units required"
-msgstr ""
+msgstr "Необходимо 10 пехотинцев"
 
 #: simulation/templates/formations/scatter.xml:4
 msgid "Scatter"
-msgstr ""
+msgstr "Рассредоточить"
 
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Skirmish"
@@ -12961,23 +12961,23 @@ msgstr ""
 
 #: simulation/templates/formations/syntagma.xml:5
 msgid "9 pike infantry units required"
-msgstr ""
+msgstr "Необходимо 9 пикенёров"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "Testudo"
-msgstr ""
+msgstr "Черепаха"
 
 #: simulation/templates/formations/testudo.xml:5
 msgid "9 melee infantry units required"
-msgstr ""
+msgstr "Необходимо 9 пехотинцев"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "Wedge"
-msgstr ""
+msgstr "Клин"
 
 #: simulation/templates/formations/wedge.xml:5
 msgid "3 cavalry units required"
-msgstr ""
+msgstr "Необходимо 3 кавалериста"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -13801,7 +13801,7 @@ msgstr "Зал заседаний совета"
 #: simulation/templates/structures/athen_prytaneion.xml:25
 #: simulation/templates/structures/hele_prytaneion.xml:22
 msgid "Prytaneîon"
-msgstr ""
+msgstr "Пританей"
 
 #: simulation/templates/structures/athen_storehouse.xml:5
 #: simulation/templates/structures/hele_storehouse.xml:11
@@ -13949,7 +13949,7 @@ msgstr ""
 #: simulation/templates/structures/celt_field.xml:5
 #: simulation/templates/structures/gaul_field.xml:5
 msgid "Varmo"
-msgstr ""
+msgstr "Вармо"
 
 #: simulation/templates/structures/brit_fortress.xml:22
 #: simulation/templates/structures/celt_fortress_b.xml:22
@@ -13959,7 +13959,7 @@ msgstr "Обучай бриттских героев и чемпионов. По
 #: simulation/templates/structures/brit_fortress.xml:21
 #: simulation/templates/structures/celt_fortress_b.xml:21
 msgid "Brythonic Broch"
-msgstr ""
+msgstr "Бриттский Брох"
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/celt_house.xml:9
@@ -14244,7 +14244,7 @@ msgstr ""
 
 #: simulation/templates/structures/iber_civil_centre.xml:5
 msgid "Oppidum"
-msgstr ""
+msgstr "Оппидум"
 
 #: simulation/templates/structures/iber_corral.xml:12
 msgid "Saroe"
@@ -14342,7 +14342,7 @@ msgstr ""
 
 #: simulation/templates/structures/mace_temple.xml:9
 msgid "Asclepeion"
-msgstr ""
+msgstr "Асклепион"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
@@ -14358,7 +14358,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_corral.xml:12
 msgid "Goshala"
-msgstr ""
+msgstr "Гошала"
 
 #: simulation/templates/structures/maur_defense_tower.xml:5
 msgid "Udarka"
@@ -14382,7 +14382,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_field.xml:5
 msgid "Kshetra"
-msgstr ""
+msgstr "Кшетра"
 
 #: simulation/templates/structures/maur_fortress.xml:7
 msgid "Train heroes and champion units."
@@ -14438,7 +14438,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_wonder.xml:9
 msgid "Great Stupa"
-msgstr ""
+msgstr "Большая ступа"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
@@ -14571,7 +14571,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
-msgstr ""
+msgstr "Асият"
 
 #: simulation/templates/structures/pers_temple.xml:12
 msgid "Ayadana"
@@ -14748,7 +14748,7 @@ msgstr "Портус"
 
 #: simulation/templates/structures/rome_farmstead.xml:12
 msgid "Villa"
-msgstr ""
+msgstr "Вилла"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -14760,7 +14760,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_house.xml:18
 msgid "Domus"
-msgstr ""
+msgstr "Домус"
 
 #: simulation/templates/structures/rome_market.xml:12
 msgid "Mercatus"
@@ -14772,7 +14772,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:31
 msgid "Siege Wall Gate"
-msgstr ""
+msgstr "Осадные ворота"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:32
 msgid "Porta Circummunitionis"
@@ -14783,7 +14783,7 @@ msgstr ""
 #: simulation/templates/structures/rome_siege_wall_short.xml:38
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr ""
+msgstr "Деревянный и торфяной палисад может быть построен на вражеской и нейтральной территории."
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:32
 #: simulation/templates/structures/rome_siege_wall_medium.xml:32
@@ -14834,7 +14834,7 @@ msgstr "Храм Весты"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
-msgstr ""
+msgstr "Храм Весты"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."
@@ -14932,7 +14932,7 @@ msgstr ""
 
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklepeion"
-msgstr ""
+msgstr "Асклепион"
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:20
@@ -15042,7 +15042,7 @@ msgstr ""
 #: simulation/templates/units/spart_support_healer_a.xml:11
 msgctxt "Rank"
 msgid "Advanced"
-msgstr ""
+msgstr "Продвинутый"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:7
@@ -15159,7 +15159,7 @@ msgstr ""
 #: simulation/templates/units/spart_support_healer_e.xml:11
 msgctxt "Rank"
 msgid "Elite"
-msgstr ""
+msgstr "Элитный"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:6
@@ -15409,7 +15409,7 @@ msgstr ""
 #: simulation/templates/units/brit_hero_caratacos.xml:23
 #: simulation/templates/units/celt_hero_caratacos.xml:18
 msgid "Caratacos"
-msgstr ""
+msgstr "Каратак"
 
 #: simulation/templates/units/brit_hero_cynvelin.xml:15
 #: simulation/templates/units/celt_hero_cynvelin.xml:12
@@ -15506,7 +15506,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
-msgstr ""
+msgstr "Нумидийская Конница"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:7
 msgid "Ḥayyāl Raḫūv Masili"
@@ -15787,7 +15787,7 @@ msgstr ""
 
 #: simulation/templates/units/celt_hero_brennus.xml:14
 msgid "Hero Aura: +10 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "Аура героя: +10 Металл за каждого убитого вражеского юнита."
 
 #: simulation/templates/units/celt_hero_brennus.xml:13
 #: simulation/templates/units/gaul_hero_brennus.xml:13
@@ -16453,7 +16453,7 @@ msgstr ""
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:11
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:12
 msgid "Hyrcanian Cavalry"
-msgstr ""
+msgstr "Гирканская Конница"
 
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:12
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:13
@@ -16623,7 +16623,7 @@ msgstr ""
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr ""
+msgstr "Торгуйте ресурсами между Вашими собственными рынками и рынками Ваших союзников. Персы имеют +25% бонуса сухопутной торговли."
 
 #: simulation/templates/units/pers_support_trader.xml:10
 msgid "Aramaean Merchant"
@@ -16817,7 +16817,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:6
 msgid "Roman Cavalry"
-msgstr ""
+msgstr "Римская Конница"
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:7
 msgid "Eques Romanus"
@@ -17149,7 +17149,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_support_female_citizen.xml:11
 msgid "Syrian Woman"
-msgstr ""
+msgstr "Сирийка"
 
 #: simulation/templates/units/sele_support_female_citizen.xml:10
 msgid "Syrías Gýnē"
@@ -17165,7 +17165,7 @@ msgstr ""
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:6
 msgid "Allied Greek Cavalry"
-msgstr ""
+msgstr "Союзная Греческая Кавалерия"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:7
 msgid "Hippeús Symmakhikós"
@@ -17641,7 +17641,7 @@ msgid ""
 "Multiplayer map. Each player starts out on a small island with minimal resources situated off the coast of a large land mass.\n"
 "\n"
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
-msgstr ""
+msgstr "Многопользовательская карта. Каждый игрок стартует на маленьком, отдаленном от большой земли, острове с минимальными ресурсами.\n\nЭто карта разработана WFG-сообществом: SMST, NOXAS1, and Yodaspirine."
 
 #: maps/scenarios/Miletus.xml:31:PlayerData[0].Name
 #: maps/scenarios/Miletus.xml:31:Name
@@ -17743,7 +17743,7 @@ msgstr "Демо-карта для собирания ресурсов."
 msgid ""
 "A desert biome map where each player has founded their colony at their own "
 "lush oasis. The rest of the map is generally wide-open and barren."
-msgstr ""
+msgstr "На карте пустынный бином каждый игрок основывает его колонию на собственном пышном оазисе. Остальная карта в основном незащищенная и бесплодная. "
 
 #: maps/scenarios/Sahel.xml:42:Description
 msgid ""
@@ -17966,13 +17966,13 @@ msgstr "Корабли"
 
 #: maps/scenarios/Ship Formations.xml:31:Name
 msgid "Ship Formations"
-msgstr ""
+msgstr "Образования кораблей"
 
 #: maps/scenarios/Siwa Oasis.xml:31:Description
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
 " mountainous spokes that divide the home territories of each player."
-msgstr ""
+msgstr "Карфаген против Македонии против Персов против Иберии. Большой оазис действует как концентратор гоных спиц которые разделяют исходные территории каждого игрока."
 
 #: maps/scenarios/Siwa Oasis.xml:31:Name
 msgid "Siwa Oasis"
@@ -18067,7 +18067,7 @@ msgstr "Впишите описание вашей карты."
 
 #: maps/scenarios/WallTest.xml:31:Name
 msgid "WallTest"
-msgstr ""
+msgstr "Тест Стены"
 
 #: maps/scenarios/Walls.xml:31:Description
 msgid "Walls."
@@ -18144,7 +18144,7 @@ msgid ""
 "The high peaks and valleys of the Alps.\n"
 "\n"
 "Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
-msgstr ""
+msgstr "Альпийские высокие горы и долины.\n\nКаждый игрок начинает состязание расположившись в безопасной зеленой долине. Между лживыми и предательскими Альпийскими горами."
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:Name
 msgid "Alpine Valleys (2)"
@@ -18155,18 +18155,18 @@ msgid ""
 "The arid and mineral-rich lands of Bactria (modern-day Afghanistan) at the foot of the Hindu Kush mountains.\n"
 "\n"
 "The center of the map is a dried up mountain. On either side are mountains and foothills pierced by treacherous passes and old trade routes."
-msgstr ""
+msgstr "Бесплодные и богатые минералами земли Бактрии (современный Афганистан) у подножия гор Гиндукуш.\n\nЦентр карты засушливые горы. Все остальное горы и предгорье пронизанное предательскими проходами и старыми торговыми путями."
 
 #: maps/skirmishes/Bactria (2).xml:42:Name
 msgid "Bactria (2)"
-msgstr ""
+msgstr "Бактрия (2)"
 
 #: maps/skirmishes/Belgian Bog (2).xml:41:Description
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
-msgstr ""
+msgstr "Два игрока лицом к лицу разделенные большим болотм где-то низменностях Рейна.\n\nДерева в избытке, но Металл и Камнень  сложно найти и добыть. Охота и фуражировка обильная."
 
 #: maps/skirmishes/Belgian Bog (2).xml:41:Name
 msgid "Belgian Bog (2)"
@@ -18177,7 +18177,7 @@ msgid ""
 "Two teams face off across  a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
-msgstr ""
+msgstr "Две команды лицом к лицу через длинное, очень большое соленое озеро.\n\nРыбачить можно в центре озера. Карта обеспечена залежами Камня и Металла. "
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:42:Name
 msgid "Caspian Sea (2v2)"
@@ -18196,7 +18196,7 @@ msgstr ""
 
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:Name
 msgid "Corsica and Sardinia (4)"
-msgstr ""
+msgstr "Корсика и Сардиния (4)"
 
 #: maps/skirmishes/Cycladic Archipelago (2).xml:42:Description
 msgid "A \"small island\"-style map set in the Aegean Sea."
@@ -18258,7 +18258,7 @@ msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
 "Each player begins the match with a wooden palisade and some guard towers atop a low embankment."
-msgstr ""
+msgstr "Обороняйте Ваши Галльские аванпосты которые атакованы Вашими ненадежными соседями!\n\nКаждый игрок начинает состязание с деревянным палисадом и несколькими защитными башнями наверху небольшой земляной насыпью."
 
 #: maps/skirmishes/Gallic Fields (3).xml:42:Name
 msgid "Gallic Fields (3)"
@@ -18273,7 +18273,7 @@ msgstr "Все игроки начинают игру на одном берег
 
 #: maps/skirmishes/Gambia River (3).xml:42:Name
 msgid "Gambia River (3)"
-msgstr ""
+msgstr "Река Гамбия (3)"
 
 #: maps/skirmishes/Golden Oasis (2).xml:42:Description
 msgid ""
@@ -18309,7 +18309,7 @@ msgstr "Греческий Акрополь (4)"
 
 #: maps/skirmishes/Greek Acropolis Night (2).xml:42:Name
 msgid "Greek Acropolis Night (2)"
-msgstr ""
+msgstr "Греческий Акрополь Ночь (2)"
 
 #: maps/skirmishes/Libyan Oases (4).xml:42:Description
 msgid ""
@@ -18346,14 +18346,14 @@ msgstr ""
 
 #: maps/skirmishes/Lorraine Plain (2).xml:42:Name
 msgid "Lorraine Plain (2)"
-msgstr ""
+msgstr "Лотарингское плато (2)"
 
 #: maps/skirmishes/Median Oasis (2).xml:41:Description maps/skirmishes/Median
 #: Oasis (4).xml:42:Description
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
-msgstr ""
+msgstr "Большой оазис действует как концентратор горных спиц которые разделяют домашние территории каждого игрока."
 
 #: maps/skirmishes/Median Oasis (2).xml:41:Name
 msgid "Median Oasis (2)"
@@ -18367,7 +18367,7 @@ msgstr "Средний оазис (4)"
 msgid ""
 "A sheltered natural harbour on the Mediterranean coast provides the "
 "resources for battle."
-msgstr ""
+msgstr "Защищенные природные гавани в Средиземноморском побережье дают ресурсы для битвы."
 
 #: maps/skirmishes/Mediterranean Cove (2).xml:41:Name
 msgid "Mediterranean Coves (2)"
@@ -18385,7 +18385,7 @@ msgstr ""
 
 #: maps/skirmishes/Neareastern Badlands (2).xml:42:Name
 msgid "Neareastern Badlands (2)"
-msgstr ""
+msgstr "Ближневосточные бесплодные земли (2)"
 
 #: maps/skirmishes/Neareastern Badlands (4).xml:42:Name
 msgid "Neareastern Badlands (4)"
@@ -18432,34 +18432,34 @@ msgstr ""
 
 #: maps/skirmishes/Saharan Oases (4).xml:41:Name
 msgid "Saharan Oases (4)"
-msgstr ""
+msgstr "Оазис в Сахаре (4)"
 
 #: maps/skirmishes/Sahel (4).xml:42:Description
 msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of animals and mineral resources, while wood is scarce."
-msgstr ""
+msgstr "Расположенные на Южном склоне Атласских гор в Северной Африке.\n\nВесьма открытая карта с обилием животных и минеральных ресурсов, но дерево встречается редко."
 
 #: maps/skirmishes/Sahel (4).xml:42:Name
 msgid "Sahel (4)"
-msgstr ""
+msgstr "Сахель (4)"
 
 #: maps/skirmishes/Savanna River.xml:42:Description
 msgid "A large savanna is bisected by a narrow jungle stream."
-msgstr ""
+msgstr "Большая саванна разделена мелкими реками."
 
 #: maps/skirmishes/Savanna River.xml:42:Name
 msgid "Savanna River (2)"
-msgstr ""
+msgstr "Саванная река (2)"
 
 #: maps/skirmishes/Sicilia (2).xml:41:Description
 msgid "The large Mediterranean island of Sicily is open for conquest."
-msgstr ""
+msgstr "Большой средиземноморский остров Сицилия открыт для завоевания."
 
 #: maps/skirmishes/Sicilia (2).xml:41:Name
 msgid "Sicilia (2)"
-msgstr ""
+msgstr "Сицилия (2)"
 
 #: maps/skirmishes/Skirmish Demo.xml:42:Description
 msgid "A demo Skirmish map."
@@ -18500,22 +18500,22 @@ msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
 "starts the match safe atop a large acropolis."
-msgstr ""
+msgstr "Фессалийская равнина пересечена узкими реками, легко переходится вброд. Широкие пространства  доступны для массированной экспансии, каждый игрок начинает состязание наверху большого акрополь. "
 
 #: maps/skirmishes/Thessalian Plains (4).xml:41:Name
 msgid "Thessalian Plains (4)"
-msgstr ""
+msgstr "Фессалийская равнина (4)"
 
 #: maps/skirmishes/Watering Holes (4).xml:42:Description
 msgid ""
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.\n"
 "\n"
 "Note: This is a very small \"fast and furious\" map. Iberians do not start with their custom circuit walls."
-msgstr ""
+msgstr "Африканская саванна набита битком животными для охоты, поблизости богатые месторождения минералов.  Период засухи надвигается и водяные ямы высыхают.\n\nЗаметка: Это очень маленькая \"быстрая и яростная\" карта. Иберийцы начинают без окружной стены."
 
 #: maps/skirmishes/Watering Holes (4).xml:42:Name
 msgid "Watering Holes (4)"
-msgstr ""
+msgstr "Водные скважины (4)"
 
 #: maps/skirmishes/Zagros Mountains (2).xml:42:Description
 msgid ""
@@ -18528,4 +18528,4 @@ msgstr ""
 
 #: maps/skirmishes/Zagros Mountains (2).xml:42:Name
 msgid "Zagros Mountains (2)"
-msgstr ""
+msgstr "Горы Загрос (2)"
