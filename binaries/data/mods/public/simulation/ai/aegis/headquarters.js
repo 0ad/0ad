@@ -1268,9 +1268,12 @@ m.HQ.prototype.update = function(gameState, queues, events) {
 			{ 
 				// we have a barracks and we want to rush, rush.
 				var AttackPlan = new m.CityAttack(gameState, this, this.Config, this.TotalAttackNumber, -1, "Rush");
-				m.debug ("Headquarters: Rushing plan " +this.TotalAttackNumber);
-				this.TotalAttackNumber++;
-				this.upcomingAttacks["Rush"].push(AttackPlan);
+				if (!AttackPlan.failed)
+				{
+					m.debug ("Headquarters: Rushing plan " +this.TotalAttackNumber);
+					this.TotalAttackNumber++;
+					this.upcomingAttacks["Rush"].push(AttackPlan);
+				}
 			}
 		}
 		// if we have a barracks, there's no water, we're at age >= 1 and we've decided to attack.
