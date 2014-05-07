@@ -5,16 +5,13 @@ function init()
 	languageList.list_data = Engine.GetSupportedLocaleBaseNames();
 
 	var currentLocale = Engine.GetCurrentLocale();
-	var currentLocaleBaseName = Engine.GetLocaleBaseName(currentLocale);
-	var currentLocaleLanguage = Engine.GetLocaleLanguage(currentLocale);
+	var currentLocaleDictName = Engine.GetFallbackToAvailableDictLocale(currentLocale);
 	var useLongStrings = Engine.UseLongStrings();
 	var index = -1;
 	if (useLongStrings)
 		index = languageList.list_data.indexOf("long");
 	if (index == -1)
-		index = languageList.list_data.indexOf(currentLocaleBaseName);
-	if (index == -1)
-		index = languageList.list_data.indexOf(currentLocaleLanguage);
+		index = languageList.list_data.indexOf(currentLocaleDictName);
 
 	if (index != -1)
 		languageList.selected = index;
@@ -65,12 +62,12 @@ function applyFromAdvancedMenu(locale)
 {
 	var languageList = Engine.GetGUIObjectByName("languageList");
 	
-	var localeBaseName = Engine.GetLocaleBaseName(locale);
-	var localeLanguage = Engine.GetLocaleLanguage(locale);
-	if (languageList.list_data.indexOf(localeBaseName) != -1)
-		languageList.selected = languageList.list_data.indexOf(localeBaseName);
-	else if (languageList.list_data.indexOf(localeLanguage) != -1)
-		languageList.selected = languageList.list_data.indexOf(localeLanguage);
+	var currentLocaleDictName = Engine.GetFallbackToAvailableDictLocale(locale);
+	var index = -1;
+	index = languageList.list_data.indexOf(currentLocaleDictName);
+	
+	if (index != -1)
+		languageList.selected = index;
 	
 	var localeText = Engine.GetGUIObjectByName("localeText");
 	localeText.caption = locale;

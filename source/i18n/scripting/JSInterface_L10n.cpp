@@ -64,6 +64,11 @@ std::vector<std::wstring> JSI_L10n::TranslateArray(ScriptInterface::CxPrivate* U
 	return translatedArray;
 }
 
+std::wstring JSI_L10n::GetFallbackToAvailableDictLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale)
+{
+	return L10n::Instance().GetFallbackToAvailableDictLocale(locale);
+}
+
 // Return a localized version of a time given in milliseconds.
 std::wstring JSI_L10n::FormatMillisecondsIntoDateString(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, std::wstring formatString)
 {
@@ -106,9 +111,9 @@ std::string JSI_L10n::GetDictionaryLocale(ScriptInterface::CxPrivate* UNUSED(pCx
 	return L10n::Instance().GetDictionaryLocale(configLocale);
 }
 
-std::vector<std::wstring> JSI_L10n::GetDictionariesForDictLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale)
+std::vector<std::wstring> JSI_L10n::GetDictionariesForLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale)
 {
-	return L10n::Instance().GetDictionariesForDictLocale(locale);
+	return L10n::Instance().GetDictionariesForLocale(locale);
 }
 
 std::string JSI_L10n::GetLocaleLanguage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale)
@@ -163,13 +168,14 @@ void JSI_L10n::RegisterScriptFunctions(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::string, &GetCurrentLocale>("GetCurrentLocale");
 	scriptInterface.RegisterFunction<std::vector<std::string>, &GetAllLocales>("GetAllLocales");
 	scriptInterface.RegisterFunction<std::string, std::string, &GetDictionaryLocale>("GetDictionaryLocale");
-	scriptInterface.RegisterFunction<std::vector<std::wstring>, std::string, &GetDictionariesForDictLocale>("GetDictionariesForDictLocale");
+	scriptInterface.RegisterFunction<std::vector<std::wstring>, std::string, &GetDictionariesForLocale>("GetDictionariesForLocale");
 
 	scriptInterface.RegisterFunction<bool, &UseLongStrings>("UseLongStrings");
 	scriptInterface.RegisterFunction<std::string, std::string, &GetLocaleLanguage>("GetLocaleLanguage");
 	scriptInterface.RegisterFunction<std::string, std::string, &GetLocaleBaseName>("GetLocaleBaseName");
 	scriptInterface.RegisterFunction<std::string, std::string, &GetLocaleCountry>("GetLocaleCountry");
 	scriptInterface.RegisterFunction<std::string, std::string, &GetLocaleScript>("GetLocaleScript");
+	scriptInterface.RegisterFunction<std::wstring, std::string, &GetFallbackToAvailableDictLocale>("GetFallbackToAvailableDictLocale");
 
 	scriptInterface.RegisterFunction<bool, std::string, &ValidateLocale>("ValidateLocale");
 	scriptInterface.RegisterFunction<bool, std::string, &SaveLocale>("SaveLocale");

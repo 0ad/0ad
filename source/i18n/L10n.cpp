@@ -102,45 +102,23 @@ bool L10n::ValidateLocale(const std::string& localeCode)
 //  2. Either a dictionary for language_country or for language is available.
 bool L10n::ValidateLocale(Locale locale)
 {
-	int32_t count;
-	bool icuSupported = false;
-	const Locale* icuSupportedLocales = Locale::getAvailableLocales(count);
-	for (int i=0; i<count; ++i)
-	{
-		if (icuSupportedLocales[i] == locale)
-		{
-			icuSupported = true;
-			break;
-		}
-	}
-	if(!icuSupported)
+	if(locale.isBogus())
 		return false;
-	
-	for (std::vector<Locale*>::iterator iterator = availableLocales.begin(); iterator != availableLocales.end(); ++iterator)
-	{
-		if ((strcmp((*iterator)->getLanguage(), locale.getLanguage()) == 0 && strcmp((*iterator)->getCountry(), "") == 0) ||
-			(strcmp((*iterator)->getLanguage(), locale.getLanguage()) == 0 && strcmp((*iterator)->getCountry(), locale.getCountry()) == 0))
-		{
-			return true;
-		}
-	}
-	return false;
+
+	std::wstring dictLocale = GetFallbackToAvailableDictLocale(locale);
+	if (dictLocale.empty())
+		return false;
+
+	return true;
 }
 
-std::vector<std::wstring> L10n::GetDictionariesForDictLocale(const std::string& locale)
+std::vector<std::wstring> L10n::GetDictionariesForLocale(const std::string& locale)
 {
-	std::wstring tmpLocale(locale.begin(), locale.end());
 	std::vector<std::wstring> ret;
 	VfsPaths filenames;
-	if (vfs::GetPathnames(g_VFS, L"l10n/",  tmpLocale.append(L".*.po").c_str(), filenames) < 0)
-		return ret;
 
-	if (filenames.size() == 0)
-	{
-		Locale tmpLocale1 = Locale::createCanonical(locale.c_str());
-		if (vfs::GetPathnames(g_VFS, L"l10n/", wstring_from_utf8(tmpLocale1.getLanguage()).append(L".*.po").c_str(), filenames) < 0)
-			return ret;
-	}
+	std::wstring dictName = GetFallbackToAvailableDictLocale(Locale::createCanonical(locale.c_str()));
+	vfs::GetPathnames(g_VFS, L"l10n/", dictName.append(L".*.po").c_str(), filenames);
 
 	for (VfsPaths::iterator it = filenames.begin(); it != filenames.end(); ++it)
 	{
@@ -148,6 +126,60 @@ std::vector<std::wstring> L10n::GetDictionariesForDictLocale(const std::string& 
 		ret.push_back(filepath.Filename().string());
 	}
 	return ret;
+}
+
+L10n::CheckLangAndCountry::CheckLangAndCountry(const Locale& locale) : m_MatchLocale(locale) 
+{
+}
+
+bool L10n::CheckLangAndCountry::operator()(const Locale* const locale)
+{
+	bool found = false;
+	found = strcmp(m_MatchLocale.getLanguage(), locale->getLanguage()) == 0;
+	found &= strcmp(m_MatchLocale.getCountry(), locale->getCountry()) == 0;
+	return found;
+}
+
+L10n::CheckLang::CheckLang(const Locale& locale) : m_MatchLocale(locale) 
+{
+}
+
+bool L10n::CheckLang::operator()(const Locale* const locale)
+{
+	bool found = false;
+	found = strcmp(m_MatchLocale.getLanguage(), locale->getLanguage()) == 0;
+	return found;
+}
+
+std::wstring L10n::GetFallbackToAvailableDictLocale(const std::string& locale)
+{
+	return GetFallbackToAvailableDictLocale(Locale::createCanonical(locale.c_str()));
+}
+
+std::wstring L10n::GetFallbackToAvailableDictLocale(const Locale& locale)
+{
+	std::wstringstream stream;
+	
+	if (strcmp(locale.getCountry(), "") != 0)
+	{
+		CheckLangAndCountry fun(locale);
+		std::vector<Locale*>::iterator itr = find_if(availableLocales.begin(), availableLocales.end(), fun);
+		if (itr != availableLocales.end())
+		{
+			stream << locale.getLanguage() << L"_" << locale.getCountry();
+			return stream.str();
+		}
+	}
+
+	CheckLang fun(locale);
+	std::vector<Locale*>::iterator itr = find_if(availableLocales.begin(), availableLocales.end(), fun);
+	if (itr != availableLocales.end())
+	{
+		stream << locale.getLanguage();
+		return stream.str();
+	}
+	
+	return L"";
 }
 
 std::string L10n::GetDictionaryLocale(std::string configLocaleString)
@@ -180,7 +212,7 @@ void L10n::GetDictionaryLocale(std::string configLocaleString, Locale& outLocale
 }
 
 
-// Try to find the best disctionary locale based on user configuration and system locale, set the currentLocale and reload the dictionary.
+// Try to find the best dictionary locale based on user configuration and system locale, set the currentLocale and reload the dictionary.
 void L10n::ReevaluateCurrentLocaleAndReload()
 {
 	std::string locale;
@@ -427,15 +459,12 @@ void L10n::LoadDictionaryForCurrentLocale()
 	}
 	else
 	{
-		if (vfs::GetPathnames(g_VFS, L"l10n/", (wstring_from_utf8(currentLocale.getBaseName()) + L".*.po").c_str(), filenames) < 0)
+		std::wstring dictName = GetFallbackToAvailableDictLocale(currentLocale);
+		if (vfs::GetPathnames(g_VFS, L"l10n/", dictName.append(L".*.po").c_str(), filenames) < 0)
+		{
+			LOGERROR(L"No files for the dictionary found, but at this point the input should already be validated!");
 			return;
-	}
-	
-	// If not matching country is found, try to fall back to a matching language	
-	if (filenames.size() == 0)
-	{
-		if (vfs::GetPathnames(g_VFS, L"l10n/", (wstring_from_utf8(currentLocale.getLanguage()) + L".*.po").c_str(), filenames) < 0)
-			return;
+		}
 	}
 
 	for (VfsPaths::iterator it = filenames.begin(); it != filenames.end(); ++it)

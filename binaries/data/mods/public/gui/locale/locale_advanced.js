@@ -79,7 +79,7 @@ function updateResultingLocale()
 	if (Engine.ValidateLocale(resultingLocaleTmp))
 	{
 		resultingLocaleText.caption = resultingLocaleTmp;
-		var dictionaryFileList = Engine.GetDictionariesForDictLocale(Engine.GetDictionaryLocale(resultingLocaleTmp));
+		var dictionaryFileList = Engine.GetDictionariesForLocale(Engine.GetDictionaryLocale(resultingLocaleTmp));
 		var dictionaryFileString = "";
 		dictionaryFileList.forEach( function (entry) { dictionaryFileString = dictionaryFileString + entry + "\n"; });
 		dictionaryFile.caption = dictionaryFileString;
