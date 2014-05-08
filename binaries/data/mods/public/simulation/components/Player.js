@@ -579,10 +579,11 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 
 	var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
 	var cmpCost = Engine.QueryInterface(msg.entity, IID_Cost);
+	var cmpFoundation = Engine.QueryInterface(msg.entity, IID_Foundation);
 
 	if (msg.from == this.playerID)
 	{
-		if (cmpIdentity && cmpIdentity.HasClass("ConquestCritical"))
+		if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("ConquestCritical"))
 			this.conquestCriticalEntitiesCount--;
 
 		if (this.conquestCriticalEntitiesCount == 0) // end game when needed
@@ -601,7 +602,7 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 	}
 	if (msg.to == this.playerID)
 	{
-		if (cmpIdentity && cmpIdentity.HasClass("ConquestCritical"))
+		if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("ConquestCritical"))
 			this.conquestCriticalEntitiesCount++;
 
 		if (cmpCost)
