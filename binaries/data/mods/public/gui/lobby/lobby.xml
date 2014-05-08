@@ -208,13 +208,13 @@
 				</def>
 				<def id="rating" color="255 255 255" width="30%">
 					<translatableAttribute id="heading">Rating</translatableAttribute>
-				</def>				
+				</def>
 			</object>
-			<object type="button" style="ModernButtonRed" size="50%+5 100%-45 50%+133 100%-17">
+			<object type="button" style="ModernButtonRed" size="50%-133 100%-45 50%-5 100%-17">
 				<translatableAttribute id="caption">Back</translatableAttribute>
 				<action on="Press">Engine.GetGUIObjectByName("leaderboard").hidden = true;Engine.GetGUIObjectByName("leaderboardFade").hidden = true;</action>
 			</object>
-			<object type="button" style="ModernButtonRed" size="50%-133 100%-45 50%-5 100%-17">
+			<object type="button" style="ModernButtonRed" size="50%+5 100%-45 50%+133 100%-17">
 				<translatableAttribute id="caption">Update</translatableAttribute>
 				<action on="Press">Engine.SendGetBoardList();</action>
 			</object>

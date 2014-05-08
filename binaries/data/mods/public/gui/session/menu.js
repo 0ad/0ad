@@ -136,8 +136,8 @@ function resignMenuButton()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	var btCaptions = [translate("No"), translate("Yes")];
-	var btCode = [resumeGame, resignGame];
+	var btCaptions = [translate("Yes"), translate("No")];
+	var btCode = [resignGame, resumeGame];
 	messageBox(400, 200, translate("Are you sure you want to resign?"), translate("Confirmation"), 0, btCaptions, btCode);
 }
 
@@ -148,27 +148,27 @@ function exitMenuButton()
 	pauseGame();
 	if (g_IsNetworked && g_IsController)
 	{
-		var btCode = [resumeGame, leaveGame];
+		var btCode = [leaveGame, resumeGame];
 		var message = translate("Are you sure you want to quit? Leaving will disconnect all other players.");
 	}
 	else if (g_IsNetworked && !g_GameEnded && !g_IsObserver)
 	{
-		var btCode = [resumeGame, networkReturnQuestion];
+		var btCode = [networkReturnQuestion, resumeGame];
 		var message = translate("Are you sure you want to quit?");
 	}
 	else
 	{
-		var btCode = [resumeGame, leaveGame];
+		var btCode = [leaveGame, resumeGame];
 		var message = translate("Are you sure you want to quit?");
 	}
-	messageBox(400, 200, message, translate("Confirmation"), 0, [translate("No"), translate("Yes")], btCode);
+	messageBox(400, 200, message, translate("Confirmation"), 0, [translate("Yes"), translate("No")], btCode);
 }
 
 function networkReturnQuestion()
 {
-	var btCaptions = [translate("I resign"), translate("I will return")];
-	var btCode = [resignGame, leaveGame];
-	var btArgs = [false, true];
+	var btCaptions = [translate("I will return"), translate("I resign")];
+	var btCode = [leaveGame, resignGame];
+	var btArgs = [true, false];
 	messageBox(400, 200, translate("Do you want to resign or will you return soon?"), translate("Confirmation"), 0, btCaptions, btCode, btArgs);
 }
 
@@ -182,8 +182,8 @@ function openDeleteDialog(selection)
 		Engine.PostNetworkCommand({"type": "delete-entities", "entities": selectionArg});
 	};
 
-	var btCaptions = [translate("No"), translate("Yes")];
-	var btCode = [resumeGame, deleteSelectedEntities];
+	var btCaptions = [translate("Yes"), translate("No")];
+	var btCode = [deleteSelectedEntities, resumeGame];
 
 	messageBox(400, 200, translate("Destroy everything currently selected?"), translate("Delete"), 0, btCaptions, btCode, [null, selection]);
 }
