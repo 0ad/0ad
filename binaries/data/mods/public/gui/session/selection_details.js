@@ -201,7 +201,7 @@ function displaySingle(entState, template)
 
 	}
 
-	if ("Gaia" != civName)
+	if ("gaia" != playerState.civ)
 	{
 		Engine.GetGUIObjectByName("playerCivIcon").sprite = "stretched:grayscale:" + civEmblem;
 		Engine.GetGUIObjectByName("player").tooltip = civName;
