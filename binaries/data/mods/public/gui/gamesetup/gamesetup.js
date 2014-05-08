@@ -1635,7 +1635,10 @@ function toggleReady()
 }
 
 function updateReadyUI()
-{	
+{
+	var isAI = new Array(MAX_PLAYERS + 1);
+	for (var i = 0; i < isAI.length; ++i)
+		isAI[i] = true;
 	var allReady = true;
 	for (var guid in g_PlayerAssignments)
 	{
@@ -1643,7 +1646,8 @@ function updateReadyUI()
 		if (g_PlayerAssignments[guid].player == -1 || !g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player - 1])
 			continue;
 		var pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player - 1] : {};
-		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[g_PlayerAssignments[guid].player - 1] : {};			
+		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[g_PlayerAssignments[guid].player - 1] : {};
+		isAI[g_PlayerAssignments[guid].player] = false;
 		if (g_PlayerAssignments[guid].status || !g_IsNetworked)
 			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
 		else
@@ -1659,7 +1663,7 @@ function updateReadyUI()
 			continue;
 		var pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[playerid] : {};
 		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[playerid] : {};
-		if (g_GameAttributes.settings.PlayerData[playerid].AI != "" || g_GameAttributes.settings.PlayerData[playerid].Name == "Unassigned")
+		if (isAI[playerid + 1])
 			Engine.GetGUIObjectByName("playerName[" + playerid + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
 	}
 
