@@ -1,6 +1,5 @@
 
 var g_CivData = {};
-var TEXTCOLOR = "white"
 
 function init(settings)
 {
@@ -77,13 +76,28 @@ function heading(string, size)
 	return textArray.join(" ");
 }
 
+function escapeChars(str)
+{
+	return str.replace(/\[/g, "&#91;").replace(/\]/g, "&#93;").replace(/"/g, "&#34;");
+};
+
+function subHeading(obj)
+{
+	var string = "";
+	if (!obj.Name)
+		return string;
+	string += '[color="white"][font="sans-bold-14"]' + obj.Name + '[/font] ';
+	if (obj.History)
+		string += '[icon="iconInfo" tooltip="' + escapeChars(obj.History) + '" tooltip_style="civInfoTooltip"]';
+	if (obj.Description)
+		string += '\n     ' + obj.Description;
+	string += '\n[/color]';
+	return string;
+}
+
 // Called when user selects civ from dropdown
 function selectCiv(code)
 {
-	var escapeChars = function(str)
-	{
-		return str.replace(/\[/g, "&#91;").replace(/\]/g, "&#93;").replace(/"/g, "&#34;");
-	};
 
 	var civInfo = g_CivData[code];
 	
@@ -97,19 +111,13 @@ function selectCiv(code)
 	var bonusCaption = heading(translatePlural("Civilization Bonus", "Civilization Bonuses", civInfo.CivBonuses.length), 12) + '\n';
 	
 	for(var i = 0; i < civInfo.CivBonuses.length; ++i)
-	{
-		bonusCaption += '[color="' + TEXTCOLOR + '"][font="sans-bold-14"]' + civInfo.CivBonuses[i].Name + '[/font] [icon="iconInfo" tooltip="'
-                    + escapeChars(civInfo.CivBonuses[i].History) + '" tooltip_style="civInfoTooltip"]\n     ' + civInfo.CivBonuses[i].Description + '\n[/color]';
-	}
+		bonusCaption = subHeading(civInfo.CivBonuses[i]);
 
 	bonusCaption += heading(translatePlural("Team Bonus", "Team Bonuses", civInfo.TeamBonuses.length), 12) + '\n';
 	
 	for(var i = 0; i < civInfo.TeamBonuses.length; ++i)
-	{
-		bonusCaption += '[color="' + TEXTCOLOR + '"][font="sans-bold-14"]' + civInfo.TeamBonuses[i].Name + '[/font] [icon="iconInfo" tooltip="'
-                    + escapeChars(civInfo.TeamBonuses[i].History) + '" tooltip_style="civInfoTooltip"]\n     ' + civInfo.TeamBonuses[i].Description + '\n[/color]';
-	}
-	
+		bonusCaption += subHeading(civInfo.TeamBonuses[i]);
+
 	Engine.GetGUIObjectByName("civBonuses").caption = bonusCaption;
 
 
@@ -120,19 +128,13 @@ function selectCiv(code)
 	{
 		var faction = civInfo.Factions[i];
 		for(var j = 0; j < faction.Technologies.length; ++j)
-		{
-			techCaption += '[color="' + TEXTCOLOR + '"][font="sans-bold-14"]' + faction.Technologies[j].Name + '[/font] [icon="iconInfo" tooltip="'
-                            + escapeChars(faction.Technologies[j].History) + '" tooltip_style="civInfoTooltip"]\n     ' + faction.Technologies[j].Description + '\n[/color]';
-		}
+			techCaption += subHeading(faction.Technologies[j]);
 	}
 
 	techCaption += heading(translatePlural("Special Building", "Special Buildings", civInfo.Structures.length), 12) + '\n';
 	
 	for(var i = 0; i < civInfo.Structures.length; ++i)
-	{
-		techCaption += '[color="' + TEXTCOLOR + '"][font="sans-bold-14"]' + civInfo.Structures[i].Name + '[/font][/color] [icon="iconInfo" tooltip="'
-                    + escapeChars(civInfo.Structures[i].History) + '" tooltip_style="civInfoTooltip"]\n';
-	}
+		techCaption += subHeading(civInfo.Structures[i]);
 	
 	Engine.GetGUIObjectByName("civTechs").caption = techCaption;
 
@@ -144,10 +146,7 @@ function selectCiv(code)
 	{
 		var faction = civInfo.Factions[i];
 		for(var j = 0; j < faction.Heroes.length; ++j)
-		{
-			heroCaption += '[color="' + TEXTCOLOR + '"][font="sans-bold-14"]' + faction.Heroes[j].Name + '[/font][/color] [icon="iconInfo" tooltip="'
-                            + escapeChars(faction.Heroes[j].History) + '" tooltip_style="civInfoTooltip"]\n';
-		}
+			heroCaption += subHeading(faction.Heroes[j]);
 		heroCaption += '\n';
 	}
 	
