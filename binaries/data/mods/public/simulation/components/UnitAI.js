@@ -4903,6 +4903,8 @@ UnitAI.prototype.Attack = function(target, queued)
  */
 UnitAI.prototype.Garrison = function(target, queued)
 {
+	if (target == this.entity)
+		return;
 	if (!this.CanGarrison(target))
 	{
 		this.WalkToTarget(target, queued);
